@@ -8,7 +8,7 @@
  */
 import HADITH from '../hadith.json'
 
-import { MARKS } from './hadithWords'
+import { MARKS, QUOTED, chainOf } from './hadithWords'
 
 const { tones: TONES } = HADITH.narrator
 
@@ -40,3 +40,21 @@ export const withoutMarks = (text, names) =>
     const dropped = (to) => (text.slice(0, to).match(MARKS) ?? []).length
     return [start - dropped(start), end - dropped(end), id]
   })
+
+/**
+ * The hadith from the one who tells it on, with the chain before him dropped,
+ * and `names` moved to match. The chain walker (chainOf) finds the cut by its
+ * words; where it cannot, sunnah.com's own name links do: the last narrator
+ * named before the speech opens is the teller. Neither finds one: whole.
+ */
+export function told(arabic, names) {
+  const cut = chainOf(arabic)
+  const before = names.filter(([, end]) => end <= arabic.search(QUOTED))
+  const at = cut.chain
+    ? arabic.lastIndexOf(cut.teller, arabic.length - cut.body.length)
+    : (before.length > 1 ? Math.max(...before.map(([start]) => start)) : 0)
+  return {
+    text: arabic.slice(at),
+    names: names.filter(([start]) => start >= at).map(([start, end, id]) => [start - at, end - at, id]),
+  }
+}

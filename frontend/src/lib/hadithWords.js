@@ -138,7 +138,7 @@ const HANDS = new Set(HADITH.chain.hands)
 // Anything but a letter goes: vowels, tatweel, direction marks, commas, colons.
 const BARE = /[^\u0621-\u063A\u0641-\u064A\u0671]/g
 // A quote or a bracket is the hadith's own words or a verse, never a name.
-const QUOTED = /["“”«»{}()]/
+export const QUOTED = /["“”«»{}()]/
 // A full stop ends a sentence; a name never runs on past one.
 const STOP = /[.؟!]/
 const bare = (word) => {

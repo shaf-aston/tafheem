@@ -16,8 +16,8 @@
  */
 import ArabicText from './ArabicText'
 import ShowRest from './ShowRest'
-import { MARKS, chainOf, narrated, saying } from '../../lib/hadithWords'
-import { runs, withoutMarks } from '../../lib/rijal'
+import { MARKS, narrated, saying } from '../../lib/hadithWords'
+import { runs, told, withoutMarks } from '../../lib/rijal'
 import { useFirstSight } from '../../lib/firstSight'
 import { themeVariable } from '../../theme'
 
@@ -66,16 +66,15 @@ function Spans({ text, marks, names = [], onNarrator }) {
 /**
  * `action` is a slot beside the number: a favorite star or a collection badge.
  * `hideChain` drops the chain of narrators but the one who tells the hadith:
- * the Arabic as far as lib/hadithWords can tell where it ends. The English
+ * lib/rijal told finds where the chain ends. The English
  * "Narrated X:" line already names only that one, so it stays.
  * `names` are the narrators named in the Arabic (lib/rijal); with the chain
- * hidden none shows, so none is offered.
+ * hidden, the teller and anyone named after him keep theirs.
  * `footer` sits under the text: the other narrations of this number.
  */
 export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator, footer = null }) {
   const { narrator, body } = narrated(english)
-  const cut = chainOf(arabic)
-  const said = hideChain && cut.chain ? `${cut.teller} ${cut.body}` : arabic
+  const shown = hideChain ? told(arabic, names) : { text: arabic, names }
   const rise = useFirstSight(`hadith:${arabic.slice(0, 30)}`)
 
   return (
@@ -96,7 +95,7 @@ export default function HadithText({ label, arabic, english = '', accent, action
 
       <ShowRest lines={LINES} accent={accent} more="Show the rest" less="Show less">
         <ArabicText as="p" size="base" className="block leading-loose m-0">
-          <Spans text={said} marks={['«', '»']} names={hideChain ? [] : names} onNarrator={onNarrator} />
+          <Spans text={shown.text} marks={['«', '»']} names={shown.names} onNarrator={onNarrator} />
         </ArabicText>
 
         {english && (
