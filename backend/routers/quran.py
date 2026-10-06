@@ -49,6 +49,8 @@ LONGEST_SURAH = 286   # al-Baqarah, and so the largest ayah number there can be
 async def get_root(root: str) -> RootResponse:
     """Everywhere one root appears in the Qur'an, and the words built from it.
 
+    A word is accepted too and answered for its root.
+
     This is what joins the tabs together: the same root the dictionary defines and
     the conjugator builds a table for.
     """
@@ -58,6 +60,13 @@ async def get_root(root: str) -> RootResponse:
     found = await asyncio.to_thread(
         quran_corpus.occurrences_of_root, root, get_settings().root_occurrence_limit
     )
+    if not found["total"]:
+        # Not a root: it may be a word, so answer for the root it comes from.
+        word_root = await asyncio.to_thread(quran_corpus.root_of, root)
+        if word_root:
+            found = await asyncio.to_thread(
+                quran_corpus.occurrences_of_root, word_root, get_settings().root_occurrence_limit
+            )
     if not found["total"]:
         raise HTTPException(status_code=404, detail=f"The root {root} does not occur in the Qur'an")
     return RootResponse(**found, source=Source(**provenance.of("corpus")))
