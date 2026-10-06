@@ -751,6 +751,26 @@ class DictionaryResponse(BaseModel):
     corrected: list[Correction] = []
 
 
+class SentenceWord(BaseModel):
+    arabic: str
+    english: str
+    base: str  # the word without its joined pieces, what the dictionary looks up
+
+
+class SentenceResponse(BaseModel):
+    """A phrase or sentence asked of the dictionary: its sense, then word by word.
+
+    `meaning` is None when nothing could give a sense; the words still stand.
+    `ref` names the ayah when the text was one whole ayah."""
+
+    query: str
+    kind: str  # phrase | sentence
+    meaning: str | None = None
+    source: Source | None = None
+    ref: str | None = None
+    words: list[SentenceWord]
+    words_source: Source
+
 class RootMeaning(BaseModel):
     core_meaning: str
     sarf_pattern: str = ""

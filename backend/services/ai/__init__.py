@@ -122,6 +122,18 @@ def explain_root_entry(root: str, entry: str) -> dict:
     )
 
 
+def translate_sentence(text: str, word_by_word: str) -> dict:
+    """A reader's phrase or sentence in natural English, steered by its word-by-word.
+
+    Unlike the two below, this hands the model what a reader typed. The route
+    caps its length, and the answer only ever goes back to that reader as text.
+    """
+    return _ask(
+        prompts.SENTENCE_USER.format(text=text, word_by_word=word_by_word),
+        max_tokens=get_settings().sentence_max_tokens,
+    )
+
+
 def explain_root_entry_lines(root: str, lines: list[str]) -> dict:
     """A Maqayees entry put into English line by line, keeping the numbering.
 

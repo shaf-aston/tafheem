@@ -18,6 +18,8 @@ from backend.models.schemas import (
     RootEntryLinesResponse,
     RootMeaning,
     RootMeaningResponse,
+    SentenceResponse,
+    SentenceWord,
     Source,
     VerbVerdict,
 )
@@ -29,10 +31,11 @@ from backend.services import (
     root_english,
     root_gloss,
     root_meaning,
+    sentence_meaning,
     verb_forms,
 )
 from backend.services.arabic_text import normalize_root, spelled_out
-from backend.utils import call_service, normalize_text, require_arabic
+from backend.utils import arabic_sentence, call_service, normalize_text, require_arabic
 
 router = APIRouter(prefix="/api/dictionary", tags=["dictionary"])
 
@@ -92,6 +95,24 @@ async def search_dictionary(
         corrected=corrected,
     )
 
+
+
+@router.get("/sentence", response_model=SentenceResponse)
+async def translate_sentence(
+    q: str = Query(..., min_length=1, max_length=get_settings().search_max_query_chars, description="Arabic phrase or sentence"),
+) -> SentenceResponse:
+    """More than one word: the sense of the whole, then each word on its own."""
+    text = arabic_sentence(q, "Sentence")
+    found = await asyncio.to_thread(sentence_meaning.translate, text)
+    return SentenceResponse(
+        query=text,
+        kind=found["kind"],
+        meaning=found["meaning"],
+        source=Source(**provenance.of(found["source"])) if found["source"] else None,
+        ref=found["ref"],
+        words=[SentenceWord(**w) for w in found["words"]],
+        words_source=Source(**provenance.of(found["words_source"])),
+    )
 
 @router.get("/babs", response_model=VerbVerdict)
 async def get_root_babs(root: Root) -> VerbVerdict:

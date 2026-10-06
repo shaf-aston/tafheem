@@ -56,6 +56,14 @@ class Settings(BaseSettings):
     dictionary_fuzzy_candidates: int = 200
     # Without a minimum, single letters match inside every query: a search for اخذ returned alif, khaa and dhal.
     dictionary_fuzzy_min_key: int = 3
+    # Typed text ending in one of these is a sentence, whatever its words are.
+    sentence_end_marks: str = ".?!؟"
+    # The book whose English is the sense of a whole ayah typed into the dictionary (data/quran/editions.json).
+    sentence_translation: str = "saheeh-en"
+    # Word by word, each piece of a word shows up to this many of CAMeL's senses.
+    sentence_senses: int = Field(default=2, gt=0)
+    # One English sentence back, plus a reasoning model's thinking.
+    sentence_max_tokens: int = Field(default=1200, gt=0)
 
     # Ibn Faris's Maqayees as {"ك ت ب": {"core_meaning", "sarf_pattern", "variances": [...]}}.
     # Not shipped; panel says so until the file exists. Relative paths resolve inside backend/.

@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { rootBabsQuery, searchDictionary } from '../api'
+import { rootBabsQuery, searchDictionary, translateSentence } from '../api'
 import config from '../dictionary.json'
 import { isArabic } from '../lib/arabicText'
 import { entrySpan } from '../lib/entrySpan'
@@ -14,6 +14,7 @@ import { useSearch } from '../lib/useSearch'
 
 import LexiconShelf from './LexiconShelf'
 import RootMeaningCard from './RootMeaningCard'
+import SentenceMeaning from './SentenceMeaning'
 import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
 import ChipRow from './ui/ChipRow'
@@ -51,6 +52,13 @@ const SPAN_CLASS = { 2: 'sm:col-span-2', 3: 'sm:col-span-2 lg:col-span-3' }
  */
 const languageOf = (text) => (/[a-z]/i.test(text) && !isArabic(text) ? 'en' : 'ar')
 
+/**
+ * Arabic of two words or more is a phrase or a sentence, and wants translating
+ * rather than looking up. A word is two letters or more: ك ت ب is one root
+ * spelled out, not three words.
+ */
+const isSentence = (text) => languageOf(text) === 'ar' && text.split(/\s+/).filter((w) => w.length > 1).length > 1
+
 export default function Dictionary({ accent, incoming, arrival, onGo, onVisit }) {
   const { dictionaryLoaded } = useHealth()
   const missing = dictionaryLoaded === false
@@ -62,7 +70,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
   // same way as one typed: the command bar can hand over either language.
   const { query, setQuery, history, mutation, submit: lookUp, clear, shown } = useSearch({
     historyKey: 'dict-history',
-    ask: ({ q }) => searchDictionary(q, languageOf(q)),
+    ask: ({ q }) => (isSentence(q) ? translateSentence(q) : searchDictionary(q, languageOf(q))),
     place: (data) => data.query,
     onVisit,
     incoming,
@@ -79,7 +87,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
       <SectionHeader
         title="Dictionary"
         arabic="قاموس"
-        subtitle="Searchable by Arabic word, by root, or by English meaning."
+        subtitle="Search an Arabic word, a root or an English meaning, or translate a whole Arabic sentence."
       />
 
       {/* Say the dictionary is not installed rather than letting every search
@@ -157,9 +165,8 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
 
       <CorrectedNote corrected={shown?.corrected} />
 
-      {shown && (
-        <Results data={shown} accent={accent} onGo={onGo} onLookup={submit} />
-      )}
+      {shown?.words && <SentenceMeaning data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
+      {shown?.results && <Results data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
 
       {/* Under the word results, not above them: the meaning searched for is the
           answer, and the root's origin sense is the wider context behind it. On a
