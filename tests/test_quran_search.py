@@ -208,6 +208,8 @@ def test_a_slip_no_ayah_holds_is_searched_as_the_word_meant(index, monkeypatch) 
     assert (5, 5) in _keys(hits) and swaps == [("مالق", "مالك")]
     # A word found as typed, even inside a longer one, is never swapped.
     assert quran_search.search("رحمن", 10)[1] == []
+    # The same slip typed twice is one swap, not two notes.
+    assert quran_search.search("مالق مالق يوم", 10)[1] == [("مالق", "مالك")]
 
 
 def test_the_online_source_is_a_known_badge() -> None:
