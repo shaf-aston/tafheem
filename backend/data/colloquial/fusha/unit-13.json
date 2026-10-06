@@ -97,9 +97,7 @@
       "dialogue": [
         {
           "speaker": "Omar",
-          "arabic": "كَيْفَ حَالُكِ الْيَوْم؟",
-          "transliteration": "kayfa 7aaluki al-yawm?",
-          "english": "How are you today?"
+          "slot": "how-are-you-today-to-a-woman"
         },
         {
           "speaker": "Huda",
@@ -151,9 +149,7 @@
         },
         {
           "speaker": "Huda",
-          "arabic": "يَسُرُّنِي أَنَّكَ جِئْتَ.",
-          "transliteration": "yasurrunee annaka ji2ta.",
-          "english": "I'm glad you came."
+          "slot": "i-m-glad-you-came-to-a-man"
         },
         {
           "speaker": "Omar",
@@ -537,15 +533,12 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "جَيِّد، إِذًا اتَّفَقْنَا.",
-          "transliteration": "jayyid, idhan ittafaqnaa.",
-          "english": "Good, then we agree."
+          "slot": "i-agree-m",
+          "reply": true
         },
         {
           "speaker": "Mariam",
-          "arabic": "حَسَنًا، هَذَا مُنَاسِب.",
-          "transliteration": "7asanan, haadhaa munaasib.",
-          "english": "OK, that works."
+          "slot": "ok-that-works"
         }
       ],
       "de_book": [
@@ -870,9 +863,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "يَنْبَغِي أَنْ تَرْتَاحَ قَلِيلًا.",
-          "transliteration": "yanbaghee an tartaa7a qaleelan.",
-          "english": "You should get some rest."
+          "slot": "you-should-get-some-rest-to-a-man"
         },
         {
           "speaker": "Rami",
@@ -882,9 +873,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "الْأَفْضَلُ أَنْ تَذْهَبَ إِلَى الطَّبِيب.",
-          "transliteration": "al-afdalu an tadh-haba ilaa at-tabeeb.",
-          "english": "It's better you go to the doctor."
+          "slot": "it-s-better-you-go-to-the-doctor"
         },
         {
           "speaker": "Rami",
@@ -918,9 +907,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "اِبْقَ هَادِئًا وَلَا تَتَعَجَّلْ.",
-          "transliteration": "ibqa haadi2an wa laa tata3ajjal.",
-          "english": "Stay calm and don't rush."
+          "slot": "stay-calm-and-don-t-rush"
         },
         {
           "speaker": "Rami",
@@ -1248,9 +1235,7 @@
       "dialogue": [
         {
           "speaker": "Adam",
-          "arabic": "عَفْوًا، هُنَاكَ مُشْكِلَة صَغِيرَة.",
-          "transliteration": "3afwan, hunaaka mushkila sagheera.",
-          "english": "Excuse me, there's a small problem."
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man"
         },
         {
           "speaker": "Basem",
@@ -1278,9 +1263,8 @@
         },
         {
           "speaker": "Basem",
-          "arabic": "بِالتَّأْكِيد.",
-          "transliteration": "bit-ta2keed.",
-          "english": "Certainly."
+          "slot": "can-you-refund-my-money",
+          "reply": true
         },
         {
           "speaker": "Adam",
@@ -1308,9 +1292,7 @@
         },
         {
           "speaker": "Adam",
-          "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعِيدَ لِي الْمَال؟",
-          "transliteration": "hal yumkinuka an tu3eeda lee al-maal?",
-          "english": "Can you refund my money?"
+          "slot": "can-you-refund-my-money"
         },
         {
           "speaker": "Basem",
@@ -1672,9 +1654,7 @@
         },
         {
           "speaker": "Reem",
-          "arabic": "لَا شُكْرَ عَلَى وَاجِب.",
-          "transliteration": "laa shukra 3alaa waajib.",
-          "english": "Don't mention it, it was my duty."
+          "slot": "don-t-mention-it-it-was-my-duty"
         },
         {
           "speaker": "Hana",
@@ -1690,9 +1670,7 @@
         },
         {
           "speaker": "Hana",
-          "arabic": "جَزَاكِ اللَّهُ خَيْرًا.",
-          "transliteration": "jazaaki allaahu khayran.",
-          "english": "May Allah reward you with good."
+          "slot": "may-allah-reward-you-with-good-to-a-woman"
         },
         {
           "speaker": "Reem",
@@ -1702,9 +1680,7 @@
         },
         {
           "speaker": "Hana",
-          "arabic": "الْحَمْدُ لِلَّهِ، كُلُّ شَيْءٍ عَلَى مَا يُرَام.",
-          "transliteration": "al-7amdu lillaahi, kullu shay2in 3alaa maa yuraam.",
-          "english": "Praise be to Allah, everything is fine."
+          "slot": "praise-be-to-allah-everything-is-fine"
         },
         {
           "speaker": "Reem",
@@ -2006,9 +1982,7 @@
         },
         {
           "speaker": "Zayd",
-          "arabic": "لَا بَأْس، الْأَمْرُ بَسِيط.",
-          "transliteration": "laa ba2s, al-amru baseeT.",
-          "english": "No harm done, it is a small matter."
+          "slot": "no-harm-done-it-is-a-small-matter"
         },
         {
           "speaker": "Nadir",
@@ -2018,9 +1992,7 @@
         },
         {
           "speaker": "Zayd",
-          "arabic": "لَا تَحْزَنْ، هَذَا يَحْدُثُ لِلْجَمِيع.",
-          "transliteration": "laa ta7zan, haadhaa ya7duthu lil-jamee3.",
-          "english": "Don't be sad, it happens to everyone."
+          "slot": "don-t-be-sad-it-happens-to-everyone-to-a-man"
         },
         {
           "speaker": "Nadir",
@@ -2048,9 +2020,7 @@
         },
         {
           "speaker": "Nadir",
-          "arabic": "سَأَكُونُ أَكْثَرَ حَذَرًا فِي الْمَرَّةِ الْقَادِمَة.",
-          "transliteration": "sa-akoonu akthara 7adharan fee al-marrati al-qaadima.",
-          "english": "I will be more careful next time."
+          "slot": "i-will-be-more-careful-next-time"
         },
         {
           "speaker": "Zayd",

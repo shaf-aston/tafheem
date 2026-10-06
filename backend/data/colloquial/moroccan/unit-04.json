@@ -440,7 +440,8 @@
         {
           "slot": "is-there-vegetarian-food",
           "arabic": "وَاش كَايِن شِي حَاجَة بْلَا لْحَم؟",
-          "transliteration": "wash kayn shi 7aaja bla l7em?"
+          "transliteration": "wash kayn shi 7aaja bla l7em?",
+          "english": "Is there anything without meat?"
         },
         {
           "slot": "what-s-in-this-dish",
@@ -498,9 +499,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "وَاش عِنْدْكُم لاكَارْط بَالإِنْجِلِيزِيَّة؟",
-          "transliteration": "wash 3ndkum lakart b linglizya?",
-          "english": "Do you have an English menu?"
+          "slot": "do-you-have-an-english-menu"
         },
         {
           "speaker": "Hamza",
@@ -510,21 +509,16 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "شْنُو كَايِن الْيَوْم؟",
-          "transliteration": "shnoo kayn lyoum?",
-          "english": "What do you have today?"
+          "slot": "what-do-you-have-today"
         },
         {
           "speaker": "Hamza",
-          "arabic": "كاين الطاجين والكسكس والحريرة",
-          "transliteration": "kayn ttajin w lkuskus w l7riira",
-          "english": "There's tagine, couscous and harira soup."
+          "slot": "what-do-you-have-today",
+          "reply": true
         },
         {
           "speaker": "Sara",
-          "arabic": "وَاش كَايِن شِي حَاجَة بْلَا لْحَم؟",
-          "transliteration": "wash kayn shi 7aaja bla l7em?",
-          "english": "Is there anything without meat?"
+          "slot": "is-there-vegetarian-food"
         },
         {
           "speaker": "Hamza",
@@ -546,9 +540,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "شْنُو كْتِنْصَحْنِي نَاخْد؟",
-          "transliteration": "shnoo katnse7ni nakhud?",
-          "english": "What do you recommend I get?"
+          "slot": "what-do-you-recommend-i-get"
         },
         {
           "speaker": "Hamza",
@@ -1299,9 +1291,7 @@
         },
         {
           "speaker": "Amine",
-          "arabic": "وَاش كْتِقْبِلُو الكَاش وَلَا الكَارْط؟",
-          "transliteration": "wash katqablu lcash wla lkart?",
-          "english": "Do you take cash or card?"
+          "slot": "do-you-take-cash-or-card"
         },
         {
           "speaker": "Younes",
@@ -1311,9 +1301,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "وَاش نْقَسِّمُو الحِسَاب؟",
-          "transliteration": "wash nqasmu l7saab?",
-          "english": "Shall we split the bill?"
+          "slot": "shall-we-split-the-bill"
         },
         {
           "speaker": "Amine",
@@ -1335,9 +1323,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "وَاش البُورْبُوار دَاخِل فِ الحِسَاب؟",
-          "transliteration": "wash lburbwaar daakhl f l7saab?",
-          "english": "Is the tip included in the bill?"
+          "slot": "is-there-a-tip-included-in-the-bill"
         },
         {
           "speaker": "Younes",
@@ -1359,9 +1345,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "الله يبارك ف ليدين ديالك، الماكلة كانت بنينة بزاف",
-          "transliteration": "Allah ybaarek f lidiin dyaalek, lmakla kaant bniina bzaf",
-          "english": "Bless your hands, the food was really delicious."
+          "slot": "bless-your-hands-the-food-was-delicious"
         }
       ],
       "de_book": [

@@ -171,9 +171,7 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "جِبْت لَك شَي بَسِيط؟",
-          "transliteration": "jibt lak shay basiit?",
-          "english": "Did you bring something simple?"
+          "slot": "i-brought-you-a-few-simple-things-a-small-gift"
         },
         {
           "speaker": "محمد",
@@ -467,7 +465,8 @@
             "arabic": "تِسْلَم إِيدِك، كِتِير حِلْو",
             "transliteration": "tislam iidak, ktiir 7ilw",
             "english": "Bless your hands, very sweet."
-          }
+          },
+          "english": "I saw the sweets on the table."
         },
         {
           "slot": "turn-on-the-tv-if-you-d-like",
@@ -516,9 +515,8 @@
         },
         {
           "speaker": "عائشة",
-          "arabic": "قَهْوَة، مِن فَضْلِك",
-          "transliteration": "2ahwa, min fadlak",
-          "english": "Coffee, please."
+          "slot": "coffee-or-tea",
+          "reply": true
         },
         {
           "speaker": "فاطمة",
@@ -534,9 +532,7 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "شُفْت الْحَلْوَيَات عَلَى الْمَائِدَة",
-          "transliteration": "shuft il-7alwiyyat 3ala l-ma2ida",
-          "english": "I put sweets on the table."
+          "slot": "i-put-the-sweets-on-the-table"
         },
         {
           "speaker": "عائشة",
@@ -546,9 +542,7 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "وِلاَدِك كَبِرُوا بِشِدَّة!",
-          "transliteration": "willadak kabiru bi-shidda!",
-          "english": "Your children have grown so much!"
+          "slot": "your-kids-have-grown-up-so-much"
         },
         {
           "speaker": "عائشة",
@@ -824,15 +818,11 @@
       "dialogue": [
         {
           "speaker": "أُمّ محمد",
-          "arabic": "تَفَضَّلُوا عَلَى الْمَائِدَة، الْعَشِي جَاهِز",
-          "transliteration": "tafaddalu 3ala l-ma2ida, il-3ashi jahiz",
-          "english": "Please come to the table, dinner is ready."
+          "slot": "please-come-to-the-table-dinner-is-ready"
         },
         {
           "speaker": "محمد",
-          "arabic": "بِالْهَنَا وَالشِّفَا",
-          "transliteration": "bil-hana w ash-shifa",
-          "english": "Enjoy your meal."
+          "slot": "enjoy-your-meal-said-to-those-eating"
         },
         {
           "speaker": "الضَّيْف",
@@ -860,9 +850,7 @@
         },
         {
           "speaker": "الضَّيْف",
-          "arabic": "تِبْغَى شَوَيّة عَيْش أَكْتَر؟",
-          "transliteration": "tibgha shawayyah 3aysh akthar?",
-          "english": "Do you want more bread?"
+          "slot": "do-you-want-a-bit-more-bread"
         },
         {
           "speaker": "محمد",
@@ -1132,7 +1120,8 @@
         {
           "slot": "visit-me-again-soon",
           "arabic": "زُرْنَا كِمّاّن قَرِيب",
-          "transliteration": "zurna kimman 2arib"
+          "transliteration": "zurna kimman 2arib",
+          "english": "Visit us again soon."
         },
         {
           "slot": "goodbye-god-be-with-you",
@@ -1161,9 +1150,7 @@
         },
         {
           "speaker": "المضيف",
-          "arabic": "وَلاَ تِنْسَى، الْبَيْتُ بَيْتِك دَائِماً",
-          "transliteration": "wa la tansa, il-bayt baytuk dayman",
-          "english": "Don't forget, this house is always yours."
+          "slot": "don-t-forget-our-house-is-always-your-house"
         },
         {
           "speaker": "الضَّيْف",
@@ -1173,9 +1160,7 @@
         },
         {
           "speaker": "المضيف",
-          "arabic": "سَلِّم عَلَى أَهْلِك",
-          "transliteration": "sallim 3ala ahlik",
-          "english": "Give my regards to your family."
+          "slot": "give-my-regards-to-the-family"
         },
         {
           "speaker": "الضَّيْف",
@@ -1185,21 +1170,15 @@
         },
         {
           "speaker": "المضيف",
-          "arabic": "الطَّرِيقُ إِنْ شَاءَ اللَّه تِكُون سَالِمَة",
-          "transliteration": "it-tariq in shaa allah tikun salma",
-          "english": "The road should be safe, God willing."
+          "slot": "the-road-should-be-clear-god-willing"
         },
         {
           "speaker": "الضَّيْف",
-          "arabic": "زُرْنَا كِمّاّن قَرِيب",
-          "transliteration": "zurna kimman 2arib",
-          "english": "Visit us again soon."
+          "slot": "visit-me-again-soon"
         },
         {
           "speaker": "المضيف",
-          "arabic": "مَعَ السَّلاَمَة، اللَّه يَكُون مَعَك",
-          "transliteration": "ma3a s-salama, allah yakun ma3ak",
-          "english": "Goodbye, God be with you."
+          "slot": "goodbye-god-be-with-you"
         }
       ],
       "de_book": [

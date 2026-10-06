@@ -444,7 +444,8 @@
         {
           "slot": "in-winter-it-gets-very-cold-in-damascus",
           "arabic": "بِالشِّتِي بِيبِرّد كْتِير بِبِيرُوت",
-          "transliteration": "bishshiti biberrad ktiir bi Bayroot"
+          "transliteration": "bishshiti biberrad ktiir bi Bayroot",
+          "english": "In winter it gets very cold in Beirut."
         },
         {
           "slot": "in-summer-the-weather-s-hot-and-dry",
@@ -499,7 +500,8 @@
         {
           "slot": "summer-in-damascus-is-long",
           "arabic": "الصَّيْف بِلِبْنَان طَوِيل",
-          "transliteration": "eSSeef bi lebnaan Tawiil"
+          "transliteration": "eSSeef bi lebnaan Tawiil",
+          "english": "Summer in Lebanon is long."
         }
       ],
       "dialogue": [

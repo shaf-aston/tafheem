@@ -618,9 +618,7 @@
       "dialogue": [
         {
           "speaker": "أحمد",
-          "arabic": "هَل انْت جَاهِز تِطْلُب؟",
-          "transliteration": "hal anta jaahiz to6lub?",
-          "english": "Ready to order?"
+          "slot": "are-you-ready-to-order"
         },
         {
           "speaker": "علي",
@@ -799,9 +797,7 @@
       "dialogue": [
         {
           "speaker": "علي",
-          "arabic": "الْحِسَاب، لَو سَمَحْت",
-          "transliteration": "il 7isab, law samaht",
-          "english": "The bill, please."
+          "slot": "the-bill-please"
         },
         {
           "speaker": "محمد",

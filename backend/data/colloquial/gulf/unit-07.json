@@ -116,9 +116,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "كَم الساعَة الحِين؟",
-          "transliteration": "kam is-saa3a il-7een?",
-          "english": "What time is it now?"
+          "slot": "what-time-is-it-now"
         },
         {
           "speaker": "Mariam",
@@ -1211,9 +1209,7 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "مَتَى الاجْتِمَاع؟",
-          "transliteration": "mita l-ijtimaa3?",
-          "english": "When is the meeting?"
+          "slot": "when-is-the-meeting"
         },
         {
           "speaker": "Salem",
@@ -1229,9 +1225,7 @@
         },
         {
           "speaker": "Salem",
-          "arabic": "شُو نَاوِي تْسُوي في الْوِيكِند؟",
-          "transliteration": "shoo naawi tsawwi fil-weekend?",
-          "english": "What do you plan to do on the weekend?"
+          "slot": "what-do-you-plan-to-do-on-the-weekend"
         },
         {
           "speaker": "Ali",

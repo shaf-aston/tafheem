@@ -24,7 +24,7 @@ export default function Sheet({ phrases, at, onAt, onClose, place }) {
   }, [at, phrases.length, onAt])
 
   return (
-    <BottomSheet label={phrase.english} onClose={onClose} className="max-h-[100dvh] overflow-y-auto">
+    <BottomSheet label={phrase.english} onClose={onClose} className="max-h-[var(--sheet-tall)] overflow-y-auto">
       <div className="relative">
         <Face
           key={at}
@@ -32,7 +32,7 @@ export default function Sheet({ phrases, at, onAt, onClose, place }) {
           index={at}
           arabicSize="lg"
           showEnglish={false}
-          className="aspect-[4/3] w-full"
+          className="aspect-[2/1] w-full"
         />
         <CloseButton onClick={onClose} className={`absolute top-2 end-2 bg-[var(--bg)] ${FOCUS}`} />
       </div>
@@ -41,7 +41,7 @@ export default function Sheet({ phrases, at, onAt, onClose, place }) {
         <div className="space-y-1 text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-2">
             <Spelling size="body">{phrase.transliteration}</Spelling>
-            <SpeakButton key={phrase.arabic} inline="end" text={phrase.arabic} />
+            <SpeakButton key={phrase.arabic} early text={phrase.arabic} />
           </div>
           <p className="type-ui font-semibold text-[var(--text)]">{phrase.english}</p>
         </div>
@@ -52,7 +52,7 @@ export default function Sheet({ phrases, at, onAt, onClose, place }) {
             <ArabicText as="p" size="base" className="text-[var(--text)]">{phrase.reply.arabic}</ArabicText>
             <div className="flex flex-wrap items-center justify-center gap-x-2">
               <Spelling>{phrase.reply.transliteration}</Spelling>
-              <SpeakButton key={phrase.reply.arabic} inline="end" text={phrase.reply.arabic} />
+              <SpeakButton key={phrase.reply.arabic} early text={phrase.reply.arabic} />
             </div>
             <p className="type-small text-[var(--text)]">{phrase.reply.english}</p>
           </div>

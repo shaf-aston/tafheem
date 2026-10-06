@@ -138,9 +138,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "فِيني جَرّبُو؟",
-          "transliteration": "fiini jarrbo?",
-          "english": "Can I try it on?"
+          "slot": "can-i-try-it-on"
         },
         {
           "speaker": "Abu Hassan",
@@ -974,9 +972,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "مَا في أَرْخَص مِن هِيك؟",
-          "transliteration": "maa fi arkhaS min heek?",
-          "english": "Isn't there cheaper than this?"
+          "slot": "isn-t-there-cheaper-than-this"
         },
         {
           "speaker": "Abu Hassan",

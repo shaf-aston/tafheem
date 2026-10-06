@@ -501,9 +501,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "شُو عِنْدَكُم الْيَوْم؟",
-          "transliteration": "shu 3indkum il yoom?",
-          "english": "What do you have today?"
+          "slot": "what-do-you-have-today"
         },
         {
           "speaker": "Rashid",
@@ -513,15 +511,12 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "حَار وَلَا مُو حَار؟",
-          "transliteration": "7aar walla moo 7aar?",
-          "english": "Spicy or not spicy?"
+          "slot": "is-it-spicy-or-not-spicy"
         },
         {
           "speaker": "Rashid",
-          "arabic": "مُو حَار وَايِد",
-          "transliteration": "moo 7aar waayid",
-          "english": "Not very spicy."
+          "slot": "is-it-spicy-or-not-spicy",
+          "reply": true
         },
         {
           "speaker": "Khalid",
@@ -860,9 +855,7 @@
       "dialogue": [
         {
           "speaker": "Saeed",
-          "arabic": "جَاهِزِين تِطْلُبُون؟",
-          "transliteration": "jaahzeen ti6lubuun?",
-          "english": "Are you ready to order?"
+          "slot": "are-you-ready-to-order"
         },
         {
           "speaker": "Layla",
@@ -902,9 +895,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "مُمْكِن كَاس مُوِيَة؟",
-          "transliteration": "mumkin kaas mooya?",
-          "english": "Can I have a glass of water?"
+          "slot": "can-i-have-a-glass-of-water"
         },
         {
           "speaker": "Saeed",
@@ -914,9 +905,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "طَلَبِي لِلْحِين مَا وَصَل",
-          "transliteration": "6alabi lil7een ma wa9al",
-          "english": "My order hasn't arrived yet."
+          "slot": "my-order-hasn-t-arrived-yet"
         },
         {
           "speaker": "Saeed",
@@ -1217,7 +1206,8 @@
         {
           "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty",
           "arabic": "يِعْطِيك الْعَافِيَة، الْأَكِل كَان لَذِيذ",
-          "transliteration": "ya3teek il3aafya, il akil kaan litheeth"
+          "transliteration": "ya3teek il3aafya, il akil kaan litheeth",
+          "english": "Thanks (lit. may God give you wellness), the food was delicious."
         },
         {
           "slot": "can-i-have-the-receipt",
@@ -1250,15 +1240,11 @@
         },
         {
           "speaker": "Hamad",
-          "arabic": "الْيَوْم الْحِسَاب عَلَي",
-          "transliteration": "il yoom il7isaab 3alay",
-          "english": "Today the bill is on me."
+          "slot": "i-m-paying-today"
         },
         {
           "speaker": "Yousef",
-          "arabic": "لَا لَا، أَنَا الَّلِي أَدْفَع",
-          "transliteration": "laa laa, ana illi adfa3",
-          "english": "No no, I'm paying."
+          "slot": "no-i-m-paying"
         },
         {
           "speaker": "Hamad",
@@ -1274,15 +1260,12 @@
         },
         {
           "speaker": "Hamad",
-          "arabic": "تِقْبَلُون كَاش وَلَا كَرْت؟",
-          "transliteration": "tigbaloon cash walla kart?",
-          "english": "Do you take cash or card?"
+          "slot": "do-you-take-cash-or-card"
         },
         {
           "speaker": "Ahmed",
-          "arabic": "الِاثْنَين",
-          "transliteration": "il ithneen",
-          "english": "Both."
+          "slot": "do-you-take-cash-or-card",
+          "reply": true
         },
         {
           "speaker": "Hamad",
@@ -1298,9 +1281,7 @@
         },
         {
           "speaker": "Hamad",
-          "arabic": "يِعْطِيك الْعَافِيَة، الْأَكِل كَان لَذِيذ",
-          "transliteration": "ya3teek il3aafya, il akil kaan litheeth",
-          "english": "Thank you, the food was delicious."
+          "slot": "thanks-lit-wellness-of-your-heart-it-was-a-tasty"
         },
         {
           "speaker": "Ahmed",

@@ -97,9 +97,7 @@
       "dialogue": [
         {
           "speaker": "Omar",
-          "arabic": "كَيْفَ الطَّقْسُ الْيَوْم؟",
-          "transliteration": "kayfa at-taqsu al-yawm?",
-          "english": "How is the weather today?"
+          "slot": "what-s-the-weather-like-today"
         },
         {
           "speaker": "Salma",
@@ -530,9 +528,7 @@
         },
         {
           "speaker": "Huda",
-          "arabic": "فِي الْخَرِيفِ تَسْقُطُ الْأَوْرَاقُ مِنَ الْأَشْجَار.",
-          "transliteration": "fee al-khareefi tasqutu al-awraaqu mina al-ashjaar.",
-          "english": "In fall the leaves fall from the trees."
+          "slot": "in-fall-the-leaves-fall-from-the-trees"
         },
         {
           "speaker": "Yusuf",
@@ -850,9 +846,7 @@
       "dialogue": [
         {
           "speaker": "Khalid",
-          "arabic": "مَاذَا أَلْبَسُ الْيَوْم؟",
-          "transliteration": "maadhaa albasu al-yawm?",
-          "english": "What should I wear today?"
+          "slot": "what-should-i-wear-today"
         },
         {
           "speaker": "Nour",
@@ -868,9 +862,7 @@
         },
         {
           "speaker": "Nour",
-          "arabic": "اِلْبَسْ سُتْرَةً صُوفِيَّةً، الْجَوُّ بَارِد.",
-          "transliteration": "ilbas sutratan soofiyyatan, al-jawwu baarid.",
-          "english": "Wear a sweater, it's cold."
+          "slot": "wear-a-sweater-it-s-cold"
         },
         {
           "speaker": "Khalid",
@@ -1235,9 +1227,8 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "نَعَمْ، سَتُمْطِرُ غَدًا.",
-          "transliteration": "na3am, satumtiru ghadan.",
-          "english": "Yes, it's going to rain tomorrow."
+          "slot": "did-you-see-the-weather-forecast",
+          "reply": true
         },
         {
           "speaker": "Ziad",
@@ -1247,9 +1238,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "الرِّحْلَةُ إِلَى الْجَبَلِ تَعْتَمِدُ عَلَى الطَّقْس.",
-          "transliteration": "ar-ri7latu ilaa al-jabali ta3tamidu 3alaa at-taqs.",
-          "english": "The trip to the mountain depends on the weather."
+          "slot": "the-trip-to-the-mountain-depends-on-the-weather"
         },
         {
           "speaker": "Ziad",
@@ -1947,15 +1936,11 @@
       "dialogue": [
         {
           "speaker": "Yazan",
-          "arabic": "مَا دَرَجَةُ الْحَرَارَةِ غَدًا؟",
-          "transliteration": "maa darajatu al-7araarati ghadan?",
-          "english": "What's the temperature tomorrow?"
+          "slot": "what-s-the-temperature-tomorrow"
         },
         {
           "speaker": "Hamza",
-          "arabic": "سَتَكُونُ الْحَرَارَةُ ثَلَاثِينَ دَرَجَة.",
-          "transliteration": "satakoonu al-7araaratu thalaatheena daraja.",
-          "english": "The temperature will be thirty degrees."
+          "slot": "the-temperature-will-be-thirty-degrees"
         },
         {
           "speaker": "Yazan",
@@ -1977,15 +1962,11 @@
         },
         {
           "speaker": "Hamza",
-          "arabic": "أَنْظُرُ إِلَى حَالَةِ الطَّقْسِ فِي الْهَاتِف.",
-          "transliteration": "anzuru ilaa 7aalati at-taqsi fee al-haatif.",
-          "english": "I check the weather on my phone."
+          "slot": "i-check-the-weather-on-my-phone"
         },
         {
           "speaker": "Yazan",
-          "arabic": "هَلِ التَّوَقُّعَاتُ دَقِيقَةٌ دَائِمًا؟",
-          "transliteration": "hali at-tawaqqu3aatu daqeeqatun daa'iman?",
-          "english": "Are the forecasts always accurate?"
+          "slot": "are-the-forecasts-always-accurate"
         },
         {
           "speaker": "Hamza",
@@ -2001,9 +1982,7 @@
         },
         {
           "speaker": "Hamza",
-          "arabic": "سَتَنْخَفِضُ دَرَجَاتُ الْحَرَارَةِ فِي اللَّيْل.",
-          "transliteration": "satankhafidu darajaatu al-7araarati fee al-layl.",
-          "english": "The temperature will drop at night."
+          "slot": "the-temperature-will-drop-at-night"
         },
         {
           "speaker": "Yazan",

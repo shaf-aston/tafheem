@@ -1032,9 +1032,7 @@
         },
         {
           "speaker": "ماما",
-          "arabic": "خَلِّي النَّار هَادِيَة",
-          "transliteration": "khalli en-nar hadye",
-          "english": "Keep the flame low"
+          "slot": "keep-the-flame-low"
         },
         {
           "speaker": "نادين",
@@ -1826,9 +1824,7 @@
       "dialogue": [
         {
           "speaker": "Rima",
-          "arabic": "قُدِيش هِيدا؟",
-          "transliteration": "2addeesh hayda?",
-          "english": "How much is this?"
+          "slot": "how-much-is-this"
         },
         {
           "speaker": "Abu Khalil",
@@ -1868,9 +1864,7 @@
         },
         {
           "speaker": "Rima",
-          "arabic": "عِنْدَك لُون تَانِي؟",
-          "transliteration": "3andak loon taani?",
-          "english": "Do you have another color?"
+          "slot": "do-you-have-another-color-to-a-man"
         },
         {
           "speaker": "Abu Khalil",

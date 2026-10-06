@@ -432,7 +432,8 @@
         {
           "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
           "arabic": "كبرت في فريج قديم في دبي",
-          "transliteration": "kbart fi freej gadeem fi dubai"
+          "transliteration": "kbart fi freej gadeem fi dubai",
+          "english": "I grew up in an old neighborhood in Dubai."
         },
         {
           "slot": "i-had-a-friend-named-kareem",
@@ -1165,7 +1166,8 @@
         {
           "slot": "i-heard-that-samer-got-engaged",
           "arabic": "سمعت إن سالم خطب",
-          "transliteration": "sma3t inn Saalim khaTab"
+          "transliteration": "sma3t inn Saalim khaTab",
+          "english": "I heard that Salem got engaged."
         },
         {
           "slot": "there-s-news-you-won-t-believe",
@@ -1248,9 +1250,7 @@
         },
         {
           "speaker": "Aisha",
-          "arabic": "عندي خبر ما راح تصدقه!",
-          "transliteration": "3indi khabar ma raa7 tSaddigah!",
-          "english": "I have news you won't believe!"
+          "slot": "there-s-news-you-won-t-believe"
         },
         {
           "speaker": "Rashid",
@@ -1260,9 +1260,7 @@
         },
         {
           "speaker": "Aisha",
-          "arabic": "سمعت إن سالم خطب!",
-          "transliteration": "sma3t inn Saalim khaTab!",
-          "english": "I heard Salem got engaged!"
+          "slot": "i-heard-that-samer-got-engaged"
         },
         {
           "speaker": "Rashid",

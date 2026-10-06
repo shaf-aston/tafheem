@@ -194,9 +194,8 @@
         },
         {
           "speaker": "بَيَّاع",
-          "arabic": "اللَّه يِبَارِك فِيك، بِالْهَنَا",
-          "transliteration": "alla ybarek fik, bil-hana",
-          "english": "Thank you, enjoy"
+          "slot": "keep-the-change-thank-you",
+          "reply": true
         }
       ],
       "de_book": [
@@ -549,9 +548,7 @@
         },
         {
           "speaker": "زَبُون",
-          "arabic": "أَبِي رِبْطَة خُبْز طَازَة",
-          "transliteration": "abi ribta khubz taza",
-          "english": "Fresh bread"
+          "slot": "i-want-a-fresh-bundle-of-bread"
         },
         {
           "speaker": "خَبَّاز",
@@ -573,9 +570,7 @@
         },
         {
           "speaker": "زَبُون",
-          "arabic": "أَبِي كِيلُو لَحْمَة مَفْرُومَة",
-          "transliteration": "abi kilo lahma mafrooma",
-          "english": "Ground meat"
+          "slot": "i-want-a-kilo-of-ground-meat"
         },
         {
           "speaker": "جَزَّار",
@@ -1716,9 +1711,7 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "كَمْ هَذَا؟",
-          "transliteration": "kam haatha?",
-          "english": "How much is this?"
+          "slot": "how-much-is-this"
         },
         {
           "speaker": "أَبُو عَلِي",

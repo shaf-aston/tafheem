@@ -428,7 +428,8 @@
         {
           "slot": "in-winter-it-gets-very-cold-in-damascus",
           "arabic": "فَالشِّتَا كِيكُون الْبَرْد بْزَاف فَالرِّبَاط",
-          "transliteration": "fshshta kaykoon lberd bzaaf frrbaaT"
+          "transliteration": "fshshta kaykoon lberd bzaaf frrbaaT",
+          "english": "In winter it gets very cold in Rabat."
         },
         {
           "slot": "in-summer-the-weather-s-hot-and-dry",
@@ -478,7 +479,8 @@
         {
           "slot": "summer-in-damascus-is-long",
           "arabic": "الصَّيْف فَالدَّار الْبَيْضَاء طَوِيل",
-          "transliteration": "SSeef fddaar lbeyDa Taweel"
+          "transliteration": "SSeef fddaar lbeyDa Taweel",
+          "english": "Summer in Casablanca is long."
         }
       ],
       "dialogue": [

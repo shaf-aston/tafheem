@@ -163,9 +163,8 @@
         },
         {
           "speaker": "بياع",
-          "arabic": "أَبْشِر، شَي ثاني؟",
-          "transliteration": "abshir, shay thaani?",
-          "english": "Right away, anything else?"
+          "slot": "give-me-a-bag-of-parsley-and-coriander",
+          "reply": true
         },
         {
           "speaker": "زبون",
@@ -601,9 +600,8 @@
         },
         {
           "speaker": "خباز",
-          "arabic": "بِدِرْهَمَين",
-          "transliteration": "b-dirhamayn",
-          "english": "Two dirhams"
+          "slot": "how-much-is-a-bundle-of-bread",
+          "reply": true
         },
         {
           "speaker": "زبون",
@@ -619,9 +617,7 @@
         },
         {
           "speaker": "زبون",
-          "arabic": "عِطْنِي كِيلُو لَحْم غَنَم بِدُون عِظْم",
-          "transliteration": "3atni keelo la7am ghanam bidoon 3adhm",
-          "english": "Give me a kilo of lamb without bone"
+          "slot": "give-me-a-kilo-of-lamb-without-bone"
         },
         {
           "speaker": "جزار",
@@ -1436,9 +1432,8 @@
         },
         {
           "speaker": "ميثاء",
-          "arabic": "المَجْبُوس، ما أَمَلّ مِنْه",
-          "transliteration": "il-majboos, maa amill minnah",
-          "english": "Machboos, I never get tired of it"
+          "slot": "what-s-your-favorite-dish",
+          "reply": true
         },
         {
           "speaker": "سالم",
@@ -1454,9 +1449,8 @@
         },
         {
           "speaker": "سالم",
-          "arabic": "إِي، بِس مُو وايِد",
-          "transliteration": "ee, bas moo waayid",
-          "english": "Yes, but not too much"
+          "slot": "do-you-like-spicy-food",
+          "reply": true
         },
         {
           "speaker": "ميثاء",
@@ -1484,9 +1478,7 @@
         },
         {
           "speaker": "ميثاء",
-          "arabic": "ما أَحِبّ رِيحة السّمَك",
-          "transliteration": "maa a7ibb ree7at is-samak",
-          "english": "I don't like the smell of fish"
+          "slot": "i-don-t-like-the-smell-of-fish"
         },
         {
           "speaker": "سالم",
@@ -1852,9 +1844,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "بِكَم هَذَا؟",
-          "transliteration": "bikam haatha?",
-          "english": "How much is this?"
+          "slot": "how-much-is-this"
         },
         {
           "speaker": "Abu Rashid",
@@ -1894,9 +1884,8 @@
         },
         {
           "speaker": "Abu Rashid",
-          "arabic": "إِي، عِندِي أزْرَق وأحْمَر.",
-          "transliteration": "ee, 3indi azrag w a7mar.",
-          "english": "Yes, I have blue and red."
+          "slot": "do-you-have-another-color-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Sara",

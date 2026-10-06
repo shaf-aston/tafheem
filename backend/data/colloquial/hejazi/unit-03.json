@@ -161,9 +161,8 @@
         },
         {
           "speaker": "بياع",
-          "arabic": "تِمَام، شَيْ ثَانِي؟",
-          "transliteration": "tamam, shay thani?",
-          "english": "Fine, anything else?"
+          "slot": "i-want-half-a-kilo-of-potatoes",
+          "reply": true
         },
         {
           "speaker": "زبون",
@@ -623,9 +622,7 @@
         },
         {
           "speaker": "زبون",
-          "arabic": "عَطِينِي كِيلُو لَحْم غَنَم بِدُون عَظْم",
-          "transliteration": "3atini keelo la7am ghanam bidoon 3adhm",
-          "english": "Give me a kilo of lamb without bone"
+          "slot": "give-me-a-kilo-of-lamb-without-bone"
         },
         {
           "speaker": "جَزَّار",
@@ -1449,9 +1446,8 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "الْمَطْبَق، مَا أَمِلّ مِنْهُ",
-          "transliteration": "il-matbaq, maa amill minhu",
-          "english": "Matbaq, I never get tired of it"
+          "slot": "what-s-your-favorite-dish",
+          "reply": true
         },
         {
           "speaker": "سَالِم",
@@ -1467,9 +1463,8 @@
         },
         {
           "speaker": "سَالِم",
-          "arabic": "إِي، بِس مَا وَايِدِ",
-          "transliteration": "ee, bas maa wayid",
-          "english": "Yes, but not too much"
+          "slot": "do-you-like-spicy-food",
+          "reply": true
         },
         {
           "speaker": "فَاطِمَة",
@@ -1497,9 +1492,7 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "أَنَا مَا أُحِبّ رِيحَة السَّمَك",
-          "transliteration": "ana maa a7ibb ree7at is-samak",
-          "english": "I don't like the smell of fish"
+          "slot": "i-don-t-like-the-smell-of-fish"
         },
         {
           "speaker": "سَالِم",
@@ -1845,9 +1838,7 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "بِكَمْ هَذَا؟",
-          "transliteration": "bikam haatha?",
-          "english": "How much is this?"
+          "slot": "how-much-is-this"
         },
         {
           "speaker": "أبو علي",

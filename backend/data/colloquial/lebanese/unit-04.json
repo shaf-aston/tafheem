@@ -439,7 +439,8 @@
         {
           "slot": "is-there-vegetarian-food",
           "arabic": "فِي شَي بْلَا لَحْمَة؟",
-          "transliteration": "fee shi bala la7me?"
+          "transliteration": "fee shi bala la7me?",
+          "english": "Is there anything without meat?"
         },
         {
           "slot": "what-s-in-this-dish",
@@ -861,9 +862,7 @@
       "dialogue": [
         {
           "speaker": "Waiter",
-          "arabic": "جَاهْزِين تِطْلِبُو؟",
-          "transliteration": "jaahzeen tiTlbu?",
-          "english": "Are you ready to order?"
+          "slot": "are-you-ready-to-order"
         },
         {
           "speaker": "Elie",
@@ -1242,9 +1241,7 @@
       "dialogue": [
         {
           "speaker": "Rami",
-          "arabic": "الْحِسَاب مِن فَضْلَك",
-          "transliteration": "l7esaab min fadlak",
-          "english": "The bill, please."
+          "slot": "the-bill-please"
         },
         {
           "speaker": "Waiter",
@@ -1254,9 +1251,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "قِدّيش الْحِسَاب؟",
-          "transliteration": "2addeesh l7esaab?",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         },
         {
           "speaker": "Waiter",
@@ -1266,9 +1261,7 @@
         },
         {
           "speaker": "Sana",
-          "arabic": "مْنِقَسِم الْحِسَاب؟",
-          "transliteration": "mn2assem l7esaab?",
-          "english": "Shall we split the bill?"
+          "slot": "shall-we-split-the-bill"
         },
         {
           "speaker": "Rami",

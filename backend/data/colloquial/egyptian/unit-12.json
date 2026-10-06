@@ -97,9 +97,7 @@
       "dialogue": [
         {
           "speaker": "Samer",
-          "arabic": "أَلّو؟",
-          "transliteration": "aloo?",
-          "english": "Hello?"
+          "slot": "hello-answering-the-phone"
         },
         {
           "speaker": "Lina",
@@ -469,7 +467,8 @@
         {
           "slot": "we-ll-meet-at-the-umayyad-mosque",
           "arabic": "هَنِتْقَابِل عِند الْجَامِع الأَزْهَر",
-          "transliteration": "hanet2aabel 3and el-gaame3 el-azhar"
+          "transliteration": "hanet2aabel 3and el-gaame3 el-azhar",
+          "english": "We'll meet at al-Azhar Mosque."
         },
         {
           "slot": "i-know-exactly-where-the-place-is",
@@ -503,15 +502,12 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "السَّاعَة سَبْعَة تِنْفَع؟",
-          "transliteration": "es-saa3a sab3a tenfa3?",
-          "english": "Is 7 o'clock good?"
+          "slot": "is-7-o-clock-good"
         },
         {
           "speaker": "Samer",
-          "arabic": "تَمَام، نِتْقَابِل السَّاعَة سَبْعَة",
-          "transliteration": "tamaam, net2aabel es-saa3a sab3a",
-          "english": "Great, we'll meet at 7."
+          "slot": "is-7-o-clock-good",
+          "reply": true
         },
         {
           "speaker": "Lina",
@@ -1208,7 +1204,8 @@
             "arabic": "أَكِيد، أَقُولَهُ إِيه؟",
             "transliteration": "akeed, a2ulu eh?",
             "english": "Sure, what should I tell him?"
-          }
+          },
+          "english": "Can you pass him a message from me?"
         },
         {
           "slot": "tell-him-to-call-me",
@@ -1259,9 +1256,7 @@
       "dialogue": [
         {
           "speaker": "Rami",
-          "arabic": "أَلّو، سَامِر مَوْجُود؟",
-          "transliteration": "aloo, saamer mawgood?",
-          "english": "Hello, is Samer there?"
+          "slot": "hello-is-samer-there"
         },
         {
           "speaker": "Lina",
@@ -1289,9 +1284,8 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "أَكِيد، أَقُولَهُ إِيه؟",
-          "transliteration": "akeed, a2ulu eh?",
-          "english": "Sure, what should I tell him?"
+          "slot": "can-you-take-a-message-for-me",
+          "reply": true
         },
         {
           "speaker": "Rami",

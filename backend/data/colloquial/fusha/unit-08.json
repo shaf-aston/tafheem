@@ -552,9 +552,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "يَجِبُ أَنْ نُنْهِيَ هَذِهِ الْمُهِمَّةَ قَبْلَ الظُّهْر.",
-          "transliteration": "yajibu an nunhiya haadhihi al-muhimmata qabla adh-dhuhr.",
-          "english": "We must finish this task before noon."
+          "slot": "we-must-finish-this-task-before-the-afternoon"
         },
         {
           "speaker": "Maha",
@@ -964,9 +962,7 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "يَجِبُ أَنْ أَدْرُسَ كَثِيرًا هَذَا الْفَصْل.",
-          "transliteration": "yajibu an adrusa katheeran haadhaa al-fasl.",
-          "english": "I have to study a lot this semester."
+          "slot": "i-have-to-study-a-lot-this-semester"
         },
         {
           "speaker": "Sara",
@@ -1354,9 +1350,7 @@
         },
         {
           "speaker": "Noura",
-          "arabic": "أُرِيدُ أَنْ أُكْمِلَ دِرَاسَتِي لِلْمَاجِسْتِير.",
-          "transliteration": "ureedu an ukmila diraasatee lil-maajisteer.",
-          "english": "I want to continue my studies for a master's."
+          "slot": "i-want-to-continue-my-studies-for-a-master-s"
         },
         {
           "speaker": "Hassan",
@@ -1378,21 +1372,15 @@
         },
         {
           "speaker": "Noura",
-          "arabic": "بَعْدَ خَمْسِ سَنَوَاتٍ، أَيْنَ سَتَكُون؟",
-          "transliteration": "ba3da khamsi sanawaatin, ayna sataakoon?",
-          "english": "In five years, where will you be?"
+          "slot": "in-five-years-where-will-you-be"
         },
         {
           "speaker": "Hassan",
-          "arabic": "طُمُوحِي أَنْ أُصْبِحَ مُدِيرًا يَوْمًا مَا.",
-          "transliteration": "tumoo7ee an usbi7a mudeeran yawman maa.",
-          "english": "My ambition is to become a manager one day."
+          "slot": "my-ambition-is-to-become-a-manager-one-day"
         },
         {
           "speaker": "Noura",
-          "arabic": "حُلْمِي أَنْ أَفْتَحَ مَطْعَمًا.",
-          "transliteration": "7ulmee an aftaha mat3aman.",
-          "english": "My dream is to open a restaurant."
+          "slot": "my-dream-is-to-open-a-restaurant"
         },
         {
           "speaker": "Hassan",
@@ -2175,21 +2163,16 @@
         },
         {
           "speaker": "Faisal",
-          "arabic": "كَمْ سَنَةً مِنَ الْخِبْرَةِ لَدَيْكَ؟",
-          "transliteration": "kam sanatan mina al-khibrati ladayka?",
-          "english": "How many years of experience do you have?"
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma"
         },
         {
           "speaker": "Karim",
-          "arabic": "لَدَيَّ خَمْسُ سَنَوَاتٍ مِنَ الْخِبْرَة.",
-          "transliteration": "ladayya khamsu sanawaatin mina al-khibra.",
-          "english": "I have five years of experience."
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma",
+          "reply": true
         },
         {
           "speaker": "Faisal",
-          "arabic": "لِمَاذَا تُرِيدُ أَنْ تَعْمَلَ مَعَنَا؟",
-          "transliteration": "limaadhaa tureedu an ta3mala ma3anaa?",
-          "english": "Why do you want to work with us?"
+          "slot": "why-do-you-want-to-work-with-us-to-a-man"
         },
         {
           "speaker": "Karim",
@@ -2199,9 +2182,7 @@
         },
         {
           "speaker": "Faisal",
-          "arabic": "مَا الرَّاتِبُ الَّذِي تَتَوَقَّعُهُ؟",
-          "transliteration": "maa ar-raatibu alladhee tatawaqqa3uhu?",
-          "english": "What salary do you expect?"
+          "slot": "what-salary-do-you-expect-to-a-man"
         },
         {
           "speaker": "Karim",

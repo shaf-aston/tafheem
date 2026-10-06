@@ -167,27 +167,21 @@
         },
         {
           "speaker": "Receptionist",
-          "arabic": "إيه، من السبعة حتى للعشرة",
-          "transliteration": "iyyeh, mn s-sb3a 7ta l-3ashra",
-          "english": "Yes, from seven to ten."
+          "slot": "is-breakfast-included-with-the-room",
+          "reply": true
         },
         {
           "speaker": "Nour",
-          "arabic": "واش نقدر نشوف البيت قبل؟",
-          "transliteration": "waash nqder nshuf l-bit qbel?",
-          "english": "Can I see the room first?"
+          "slot": "can-i-see-the-room-first"
         },
         {
           "speaker": "Receptionist",
-          "arabic": "بْلَا مْشْكِل، تْفَضَّل مْعَايَا",
-          "transliteration": "bla mushkil, tfaDDal m3aya",
-          "english": "No problem, come with me."
+          "slot": "can-i-see-the-room-first",
+          "reply": true
         },
         {
           "speaker": "Nour",
-          "arabic": "فِين كَاين لَّاسَانْسُور؟",
-          "transliteration": "fin kayn l-asansor?",
-          "english": "Where's the elevator?"
+          "slot": "where-s-the-elevator"
         },
         {
           "speaker": "Receptionist",
@@ -621,15 +615,12 @@
         },
         {
           "speaker": "Youssef",
-          "arabic": "واش كاين شي تخفيض للطلبة؟",
-          "transliteration": "waash kayn shi takhfiiD l-T-Tolba?",
-          "english": "Is there a discount for students?"
+          "slot": "is-there-a-discount-for-students"
         },
         {
           "speaker": "Clerk",
-          "arabic": "إيه، إلا كان عندك كارط الطالب",
-          "transliteration": "iyyeh, ila kaan 3andek kaarT T-Taalib",
-          "english": "Yes, if you have a student card."
+          "slot": "is-there-a-discount-for-students",
+          "reply": true
         },
         {
           "speaker": "Youssef",
@@ -639,9 +630,8 @@
         },
         {
           "speaker": "Clerk",
-          "arabic": "لَا، غِير كَاش، عَافَاك",
-          "transliteration": "laa, ghir kaash, 3afak",
-          "english": "No, cash only, please."
+          "slot": "can-i-pay-by-card",
+          "reply": true
         },
         {
           "speaker": "Youssef",
@@ -1048,7 +1038,8 @@
             "arabic": "اللَّهُ يْبَارِك فِيك",
             "transliteration": "allah ybaarek fik",
             "english": "God bless you."
-          }
+          },
+          "english": "Welcome to Morocco."
         }
       ],
       "dialogue": [
@@ -1078,21 +1069,16 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "فين كاينة البوابة ديال الطيارة؟",
-          "transliteration": "fin kaayna l-bawwaaba dyal T-Tayyaara?",
-          "english": "Where's the boarding gate?"
+          "slot": "where-s-the-boarding-gate"
         },
         {
           "speaker": "Agent",
-          "arabic": "البوابة نمرة تلاتة، دوز على اليسار",
-          "transliteration": "l-bawwaaba nomra tlaata, dwez 3la l-ysaar",
-          "english": "Gate number three, go left."
+          "slot": "where-s-the-boarding-gate",
+          "reply": true
         },
         {
           "speaker": "Sara",
-          "arabic": "فأي ساعة كتقلع الطيارة؟",
-          "transliteration": "f-ayy saa3a katqla3 T-Tayyaara?",
-          "english": "What time does the plane depart?"
+          "slot": "what-time-does-the-plane-depart"
         },
         {
           "speaker": "Agent",
@@ -1120,15 +1106,12 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "غير جوج د السيمانات",
-          "transliteration": "ghir jooj d s-simaanaat",
-          "english": "Just two weeks."
+          "slot": "how-long-will-you-stay-here",
+          "reply": true
         },
         {
           "speaker": "Officer",
-          "arabic": "مرحبا بيك فالمغرب",
-          "transliteration": "mer7ba bik f-l-maghrib",
-          "english": "Welcome to Morocco."
+          "slot": "welcome"
         }
       ],
       "de_book": [
@@ -1554,9 +1537,8 @@
         },
         {
           "speaker": "Agent",
-          "arabic": "كَاين وَاحِد تَانِي مِن بْعَد سَاعَة",
-          "transliteration": "kayn wa7ed taani mn b3d saa3a",
-          "english": "There's another one in an hour."
+          "slot": "i-missed-the-bus",
+          "reply": true
         },
         {
           "speaker": "Karim",
@@ -1572,9 +1554,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "اللَّهُ يْعَوِّض، إِن شَاءَ اللَّهُ كُلْشِي يْتْحَل",
-          "transliteration": "allah y3awwed, inshaa2 llah kolshi yta7el",
-          "english": "May God make up for it, God willing it'll all work out."
+          "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou"
         }
       ],
       "de_book": [

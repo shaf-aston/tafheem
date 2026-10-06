@@ -34,12 +34,14 @@
             "arabic": "تفضل، اركب.",
             "transliteration": "tfaddal, irkab.",
             "english": "Please, get in."
-          }
+          },
+          "english": "Please, I want to go to Old Baghdad."
         },
         {
           "slot": "can-you-take-me-to-bab-touma",
           "arabic": "تِگْدَرْ تُوَصِّلْنِي لْبَابْ الْمُعَظَّم؟",
-          "transliteration": "tigdar twassilni l-baab el-mu3adhdham?"
+          "transliteration": "tigdar twassilni l-baab el-mu3adhdham?",
+          "english": "Can you take me to Bab al-Muadham?"
         },
         {
           "slot": "turn-on-the-meter-please",
@@ -165,9 +167,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "دُغْرِي لْآخِرْ الشَّارِع.",
-          "transliteration": "dughri la-aakhir esh-shaari3.",
-          "english": "Straight to the end of the street."
+          "slot": "straight-ahead-to-the-end-of-the-street"
         },
         {
           "speaker": "سواق",
@@ -500,7 +500,8 @@
             "arabic": "امشي دغري وبعدها لفّ يمين.",
             "transliteration": "imshi dughri w-ba3dha liff yameen.",
             "english": "Walk straight, then turn right."
-          }
+          },
+          "english": "How do I get to the Haydar-Khana Mosque?"
         },
         {
           "slot": "thanks-a-lot",
@@ -535,15 +536,12 @@
         },
         {
           "speaker": "سائح",
-          "arabic": "شكد بعيد من هنا؟",
-          "transliteration": "shgadd ba3eed min hnaa?",
-          "english": "How far is it from here?"
+          "slot": "how-far-is-it-from-here"
         },
         {
           "speaker": "رجل",
-          "arabic": "لَا، گْرِيب، خَمْسْ دَقَايِقْ بِالْمَشْي.",
-          "transliteration": "laa, gireeb, khams dagaayig bil-mashi.",
-          "english": "No, it's near, five minutes on foot."
+          "slot": "is-it-far-or-near",
+          "reply": true
         },
         {
           "speaker": "سائح",
@@ -869,7 +867,8 @@
         {
           "slot": "do-you-stop-at-halbouni-roundabout",
           "arabic": "تِگِفْ بْسَاحَةْ التَّحْرِير؟",
-          "transliteration": "tgif b-saa7at et-ta7reer?"
+          "transliteration": "tgif b-saa7at et-ta7reer?",
+          "english": "Do you stop at Tahrir Square?"
         },
         {
           "slot": "please-let-me-off-here",
@@ -917,15 +916,12 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "شكد الأجرة؟",
-          "transliteration": "shgadd el-ojra?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "سواق",
-          "arabic": "ألْفْ دِينَار.",
-          "transliteration": "alf deenaar.",
-          "english": "One thousand dinars."
+          "slot": "how-much-is-the-fare",
+          "reply": true
         },
         {
           "speaker": "راكب",
@@ -941,15 +937,12 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "أَكُو كُرْسِي فَاضِي؟",
-          "transliteration": "aku kursi faadi?",
-          "english": "Is there an empty seat?"
+          "slot": "is-there-an-empty-seat"
         },
         {
           "speaker": "سواق",
-          "arabic": "إي، اگعد ورا.",
-          "transliteration": "ee, ig3ud wara.",
-          "english": "Yes, sit at the back."
+          "slot": "is-there-an-empty-seat",
+          "reply": true
         },
         {
           "speaker": "راكب",
@@ -965,9 +958,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "تِگِفْ بْسَاحَةْ التَّحْرِير؟",
-          "transliteration": "tgif b-saa7at et-ta7reer?",
-          "english": "Do you stop at Tahrir Square?"
+          "slot": "do-you-stop-at-halbouni-roundabout"
         },
         {
           "speaker": "سواق",
@@ -1304,9 +1295,8 @@
         },
         {
           "speaker": "ب",
-          "arabic": "أَگْرَبْ مَصْرِفْ گِبَالْ الْجَامِع.",
-          "transliteration": "agrab masrif gubaal ej-jaami3.",
-          "english": "The nearest bank is opposite the mosque."
+          "slot": "where-s-the-nearest-bank-from-here",
+          "reply": true
         },
         {
           "speaker": "أ",
@@ -1724,9 +1714,7 @@
         },
         {
           "speaker": "Ahmed",
-          "arabic": "شْكَد يَاخِذ الطرِيگ؟",
-          "transliteration": "shgad yaakhudh it-tareeg?",
-          "english": "How long does the way take?"
+          "slot": "how-long-does-the-way-take"
         },
         {
           "speaker": "Driver",
@@ -1748,9 +1736,7 @@
         },
         {
           "speaker": "Ahmed",
-          "arabic": "وگّف هنا، لو سمحت.",
-          "transliteration": "wagguf hnaa, law sama7t.",
-          "english": "Stop here, please."
+          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver"
         },
         {
           "speaker": "Driver",

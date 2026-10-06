@@ -494,9 +494,7 @@
       "dialogue": [
         {
           "speaker": "Huda",
-          "arabic": "اِقْعِدوا، اِرْتاحوا شوي",
-          "transliteration": "u23udu, irta7u shwaay",
-          "english": "Sit down, relax a little."
+          "slot": "sit-down-relax-a-little"
         },
         {
           "speaker": "Nabil",
@@ -512,21 +510,17 @@
         },
         {
           "speaker": "Nabil",
-          "arabic": "قَهْوة مِن فَضْلَك",
-          "transliteration": "ahwe min fadlak",
-          "english": "Coffee please."
+          "slot": "coffee-or-tea",
+          "reply": true
         },
         {
           "speaker": "Huda",
-          "arabic": "بِتاخِد سُكّر بِقَهْوتِك؟",
-          "transliteration": "btaakhod sukkar bi-ahwitak?",
-          "english": "Do you take sugar in your coffee?"
+          "slot": "do-you-take-sugar-in-your-coffee"
         },
         {
           "speaker": "Nabil",
-          "arabic": "لا، سادة لو سَمَحْت",
-          "transliteration": "la, saada law sama7t",
-          "english": "No, plain please."
+          "slot": "do-you-take-sugar-in-your-coffee",
+          "reply": true
         },
         {
           "speaker": "Huda",
@@ -542,9 +536,7 @@
         },
         {
           "speaker": "Huda",
-          "arabic": "عَالرّاحة، ما في اِسْتِعْجال",
-          "transliteration": "3ar-raa7a, ma fii ist3jaal",
-          "english": "Take your time, no rush."
+          "slot": "take-your-time-no-rush"
         },
         {
           "speaker": "Nabil",
@@ -853,9 +845,7 @@
       "dialogue": [
         {
           "speaker": "Wafa",
-          "arabic": "اِتْفَضّلوا عَالسُّفْرة",
-          "transliteration": "itfaddalu 3as-sufra",
-          "english": "Please come to the table."
+          "slot": "please-come-to-the-table-dinner-is-ready"
         },
         {
           "speaker": "Karim",
@@ -883,27 +873,21 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "طيب كتير، سَلِمْت ايْديكي",
-          "transliteration": "tayyeb ktiir, salmit iideeki",
-          "english": "It's very good, bless your hands."
+          "slot": "try-this-dish-i-made-it-today",
+          "reply": true
         },
         {
           "speaker": "Wafa",
-          "arabic": "خُدْلَك زِيادة، الْأكْل كتير",
-          "transliteration": "khudlak ziyaade, il-akil ktiir",
-          "english": "Take some more, there's plenty."
+          "slot": "take-some-more-there-s-plenty-of-food"
         },
         {
           "speaker": "Karim",
-          "arabic": "شِبِعْت، اللَّه يَعْطيكُم الْعافية",
-          "transliteration": "shbi3et, alla y3tiikun il-3afye",
-          "english": "I'm full, God give you strength."
+          "slot": "take-some-more-there-s-plenty-of-food",
+          "reply": true
         },
         {
           "speaker": "Wafa",
-          "arabic": "خَلِّيكُن، لِسّا في حَلَويّات",
-          "transliteration": "khalliikun, lissa fii 7alawiyaat",
-          "english": "Stay a bit, there's still dessert."
+          "slot": "stay-a-bit-there-s-still-dessert"
         },
         {
           "speaker": "Karim",
@@ -1213,69 +1197,52 @@
       "dialogue": [
         {
           "speaker": "Nour",
-          "arabic": "يَعْطيكُم الْعافية عَلَى الضِّيافة",
-          "transliteration": "y3tiikun il-3afye 3ad-diyaafe",
-          "english": "Thank you for the hospitality."
+          "slot": "thank-you-for-the-hospitality-lit-god-give-you-s"
         },
         {
           "speaker": "Samer",
-          "arabic": "اللَّه يَسْلِمَك، سَلامتَك",
-          "transliteration": "alla ysalmak, salaamtak",
-          "english": "God keep you safe, thanks for coming."
+          "slot": "thank-you-for-the-hospitality-lit-god-give-you-s",
+          "reply": true
         },
         {
           "speaker": "Nour",
-          "arabic": "لازِم نِمْشي، الْوقْت تَأَخِّر",
-          "transliteration": "lazim nimshi, il-wa2t ta2akhkhar",
-          "english": "We need to go, it's gotten late."
+          "slot": "we-need-to-go-it-s-gotten-late"
         },
         {
           "speaker": "Samer",
-          "arabic": "لِسّا بِدْري، اِقْعِدوا شوي كَمان",
-          "transliteration": "lissa badri, u23udu shwaay kamaan",
-          "english": "It's still early, stay a bit more."
+          "slot": "we-need-to-go-it-s-gotten-late",
+          "reply": true
         },
         {
           "speaker": "Nour",
-          "arabic": "شُكْرًا عَالدّعْوة، اِنْبِسَطْنا كتير",
-          "transliteration": "shukran 3ad-da3we, inbasatna ktiir",
-          "english": "Thanks for the invitation, we had a great time."
+          "slot": "thanks-for-the-invitation-we-had-a-great-time"
         },
         {
           "speaker": "Samer",
-          "arabic": "اللَّه يَخَلِّيكُن، تِشَرّفْنا فيكُن",
-          "transliteration": "alla ykhalliikun, tsharrafna fiikun",
-          "english": "God keep you, we were honored to have you."
+          "slot": "thanks-for-the-invitation-we-had-a-great-time",
+          "reply": true
         },
         {
           "speaker": "Nour",
-          "arabic": "سَلِّمْلي عَالْأَهْل",
-          "transliteration": "sallimli 3al-ahl",
-          "english": "Give my regards to the family."
+          "slot": "give-my-regards-to-the-family"
         },
         {
           "speaker": "Samer",
-          "arabic": "اللَّه يَسْلِمَك، هِنّي كَمان بِسَلِّموا عَليكُن",
-          "transliteration": "alla ysalmak, hinne kamaan bsalmu 3aleekun",
-          "english": "God keep you, they send their regards too."
+          "slot": "give-my-regards-to-the-family",
+          "reply": true
         },
         {
           "speaker": "Nour",
-          "arabic": "خَبِّرونا لِمّا تِوصِلوا عَالْبيت",
-          "transliteration": "khabbruuna lamma tuuwslu 3al-beet",
-          "english": "Let us know when you get home."
+          "slot": "let-us-know-when-you-get-home"
         },
         {
           "speaker": "Samer",
-          "arabic": "أَكيد، مِنْتِصِل فيكُن",
-          "transliteration": "akiid, mnittasil fiikun",
-          "english": "Of course, we'll call you."
+          "slot": "let-us-know-when-you-get-home",
+          "reply": true
         },
         {
           "speaker": "Nour",
-          "arabic": "مَع السَّلامة، اللَّه مَعِكُن",
-          "transliteration": "ma3 is-salaame, alla ma3kun",
-          "english": "Goodbye, God be with you."
+          "slot": "goodbye-god-be-with-you"
         }
       ],
       "de_book": [

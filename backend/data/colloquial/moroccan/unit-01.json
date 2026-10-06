@@ -132,9 +132,7 @@
         },
         {
           "speaker": "Youssef",
-          "arabic": "شْنُو سْمِيتَك؟",
-          "transliteration": "shnu smeetek?",
-          "english": "What's your name?"
+          "slot": "what-s-your-name-to-a-man"
         },
         {
           "speaker": "Salma",
@@ -162,9 +160,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "مِنِين نْتَا؟",
-          "transliteration": "mneen nta?",
-          "english": "Where are you from?"
+          "slot": "where-are-you-from-to-a-man"
         },
         {
           "speaker": "Youssef",
@@ -540,9 +536,7 @@
         },
         {
           "speaker": "Youssef",
-          "arabic": "وَاش تْقْدْرِي تْعَاوْنِي؟",
-          "transliteration": "waash tqdree t3aawni?",
-          "english": "Can you help me?"
+          "slot": "can-you-help-me-to-a-woman"
         },
         {
           "speaker": "Salma",

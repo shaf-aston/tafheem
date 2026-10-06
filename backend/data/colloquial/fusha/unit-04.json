@@ -504,9 +504,7 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "هَلْ عِنْدَكُمْ قَائِمَة بِالْإِنْجِلِيزِيَّة؟",
-          "transliteration": "hal 3indakum qaa2ima bil-injileeziyya?",
-          "english": "Do you have an English menu?"
+          "slot": "do-you-have-an-english-menu"
         },
         {
           "speaker": "Waiter",
@@ -516,9 +514,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "مَا الْمُقَبِّلَات الَّتِي عِنْدَكُمْ؟",
-          "transliteration": "maa al-muqabbilaat allatee 3indakum?",
-          "english": "What appetizers do you have?"
+          "slot": "what-appetizers-do-you-have"
         },
         {
           "speaker": "Waiter",
@@ -869,9 +865,7 @@
       "dialogue": [
         {
           "speaker": "Waiter",
-          "arabic": "هَلْ أَنْتُمْ جَاهِزُونَ لِلطَّلَب؟",
-          "transliteration": "hal antum jaahizoona liltalab?",
-          "english": "Are you ready to order?"
+          "slot": "are-you-ready-to-order"
         },
         {
           "speaker": "Rami",
@@ -1264,9 +1258,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "كَمْ يَبْلُغُ الْحِسَاب؟",
-          "transliteration": "kam yablughu al-7isaab?",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         },
         {
           "speaker": "Waiter",
@@ -1276,9 +1268,7 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "هَلْ نَتَقَاسَمُ الْحِسَاب؟",
-          "transliteration": "hal nataqaasamu al-7isaab?",
-          "english": "Shall we split the bill?"
+          "slot": "shall-we-split-the-bill"
         },
         {
           "speaker": "Rami",
@@ -1294,9 +1284,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "هَلْ تَقْبَلُونَ النَّقْدَ أَمِ الْبِطَاقَة؟",
-          "transliteration": "hal taqbaloona an-naqda ami al-bitaaqa?",
-          "english": "Do you take cash or card?"
+          "slot": "do-you-take-cash-or-card"
         },
         {
           "speaker": "Waiter",
@@ -1306,9 +1294,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "هَلْ الْإِكْرَامِيَّة مَشْمُولَة فِي الْحِسَاب؟",
-          "transliteration": "hal al-ikraamiyya mashmoola fee al-7isaab?",
-          "english": "Is the tip included in the bill?"
+          "slot": "is-there-a-tip-included-in-the-bill"
         },
         {
           "speaker": "Waiter",
@@ -1640,15 +1626,11 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "أُرِيدُ بُرْجَر دَجَاج وَبَطَاطَا مَقْلِيَّة.",
-          "transliteration": "ureedu burjar dajaaj wa bataata maqliyya.",
-          "english": "I'd like a chicken burger and fries."
+          "slot": "i-d-like-a-chicken-burger-and-fries"
         },
         {
           "speaker": "Cashier",
-          "arabic": "أَيَّ حَجْم تُرِيد، صَغِير أَمْ مُتَوَسِّط أَمْ كَبِير؟",
-          "transliteration": "ayya 7ajm tureed, sagheer am mutawassit am kabeer?",
-          "english": "Which size do you want, small, medium or large?"
+          "slot": "which-size-do-you-want-small-medium-or-large"
         },
         {
           "speaker": "Rami",
@@ -1658,9 +1640,7 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "هَلْ عِنْدَكُمْ وَجْبَة لِلْأَطْفَال؟",
-          "transliteration": "hal 3indakum wajba lil-2atfaal?",
-          "english": "Do you have a kids' meal?"
+          "slot": "do-you-have-a-kids-meal"
         },
         {
           "speaker": "Cashier",
@@ -1670,9 +1650,7 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "هَلِ اللَّحْم حَلَال؟",
-          "transliteration": "hal al-la7mu 7alaal?",
-          "english": "Is the meat halal?"
+          "slot": "is-the-meat-halal"
         },
         {
           "speaker": "Cashier",
@@ -1984,9 +1962,7 @@
       "dialogue": [
         {
           "speaker": "Yusuf",
-          "arabic": "شُكْرًا عَلَى الدَّعْوَة.",
-          "transliteration": "shukran 3alaa ad-da3wa.",
-          "english": "Thank you for the invitation."
+          "slot": "thank-you-for-the-invitation"
         },
         {
           "speaker": "Host",
@@ -1996,9 +1972,7 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "تَشَرَّفْتُ بِدَعْوَتِكُمْ.",
-          "transliteration": "tasharraftu bida3watikum.",
-          "english": "I am honoured by your invitation."
+          "slot": "i-am-honoured-by-your-invitation"
         },
         {
           "speaker": "Host",
@@ -2014,15 +1988,11 @@
         },
         {
           "speaker": "Host",
-          "arabic": "تَفَضَّلْ، خُذْ أَكْثَر.",
-          "transliteration": "tafaddal, khudh akthar.",
-          "english": "Please, take some more."
+          "slot": "please-take-some-more"
         },
         {
           "speaker": "Yusuf",
-          "arabic": "نَاوِلْنِي كُوبَ الْمَاء، مِنْ فَضْلِكَ.",
-          "transliteration": "naawilnee koob al-maa2, min fadlika.",
-          "english": "Please pass me the water."
+          "slot": "please-pass-me-the-water"
         },
         {
           "speaker": "Host",
@@ -2032,15 +2002,11 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "الْحَمْدُ لِلَّهِ، شَبِعْتُ.",
-          "transliteration": "al-7amdu lillaah, shabi3tu.",
-          "english": "Thank Allah, I'm full."
+          "slot": "thank-allah-i-m-full"
         },
         {
           "speaker": "Host",
-          "arabic": "هَلْ نَشْرَبُ الشَّايَ بَعْدَ الطَّعَام؟",
-          "transliteration": "hal nashrabu ash-shaaya ba3da at-ta3aam?",
-          "english": "Shall we have tea after the meal?"
+          "slot": "shall-we-have-tea-after-the-meal"
         },
         {
           "speaker": "Yusuf",

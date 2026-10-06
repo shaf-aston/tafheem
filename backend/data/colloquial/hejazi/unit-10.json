@@ -394,7 +394,8 @@
         {
           "slot": "in-winter-it-gets-very-cold-in-damascus",
           "arabic": "بِالشِّتَا الجَوّ يِصِير بَرِد كِتِير بِالْحِجَاز",
-          "transliteration": "bishshita iljaw ysiir barid ktiir bilhijaaz"
+          "transliteration": "bishshita iljaw ysiir barid ktiir bilhijaaz",
+          "english": "In winter it gets very cold in the Hijaz."
         },
         {
           "slot": "in-summer-the-weather-s-hot-and-dry",
@@ -449,7 +450,8 @@
         {
           "slot": "summer-in-damascus-is-long",
           "arabic": "الصَّيْف بِالْحِجَاز طَوِيل كِتِير",
-          "transliteration": "iSSayf bilhijaaz Tawiil ktiir"
+          "transliteration": "iSSayf bilhijaaz Tawiil ktiir",
+          "english": "Summer in the Hijaz is very long."
         }
       ],
       "dialogue": [

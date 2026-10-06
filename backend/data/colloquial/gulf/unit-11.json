@@ -160,9 +160,8 @@
         },
         {
           "speaker": "خالد",
-          "arabic": "وَقِّف قِدَّام الْبَاب، فِيه مَكَان",
-          "transliteration": "wagguf giddaam il-baab, fii makaan",
-          "english": "Park in front of the door, there's a spot."
+          "slot": "where-can-i-park-my-car",
+          "reply": true
         },
         {
           "speaker": "سعيد",
@@ -184,9 +183,8 @@
         },
         {
           "speaker": "خالد",
-          "arabic": "تفضل، الحمام على اليمين",
-          "transliteration": "tfaddal, il-7ammaam 3ala l-yamiin",
-          "english": "Go ahead, the bathroom is on the right."
+          "slot": "excuse-me-i-want-to-wash-my-hands",
+          "reply": true
         }
       ],
       "de_book": [
@@ -537,15 +535,12 @@
         },
         {
           "speaker": "فهد",
-          "arabic": "قَهْوَة لَو سَمَحْت",
-          "transliteration": "gahwa law sama7t",
-          "english": "Coffee, please."
+          "slot": "coffee-or-tea",
+          "reply": true
         },
         {
           "speaker": "ناصر",
-          "arabic": "تِبْغِي الْقَهْوَة بِسُكَّر؟",
-          "transliteration": "tabghi il-gahwa b-sukkar?",
-          "english": "Do you want sugar in your coffee?"
+          "slot": "do-you-take-sugar-in-your-coffee"
         },
         {
           "speaker": "فهد",
@@ -567,9 +562,7 @@
         },
         {
           "speaker": "فهد",
-          "arabic": "ما شاء الله، عيالكم كبروا مرة!",
-          "transliteration": "maa shaa allah, 3yaalkum kibraw marra!",
-          "english": "Masha'Allah, your kids have grown so much!"
+          "slot": "your-kids-have-grown-up-so-much"
         },
         {
           "speaker": "ناصر",
@@ -579,9 +572,7 @@
         },
         {
           "speaker": "فهد",
-          "arabic": "الْجَلْسَة الْيَوم حِلْوَة مَرَّة",
-          "transliteration": "ij-jalsa il-yoom 7ilwa marra",
-          "english": "Today's gathering is really nice."
+          "slot": "today-s-gathering-is-very-nice"
         }
       ],
       "de_book": [
@@ -920,9 +911,7 @@
       "dialogue": [
         {
           "speaker": "ماجد",
-          "arabic": "تفضلوا على السفرة، العشا جاهز",
-          "transliteration": "tfaddaluu 3ala s-sufra, il-3ashaa jaahiz",
-          "english": "Please come to the table, dinner is ready."
+          "slot": "please-come-to-the-table-dinner-is-ready"
         },
         {
           "speaker": "فيصل",
@@ -956,9 +945,7 @@
         },
         {
           "speaker": "ماجد",
-          "arabic": "خُذ زِيَادَة، الْأَكِل وَاجِد",
-          "transliteration": "khudh ziyaada, il-akil waajid",
-          "english": "Take more, there's plenty."
+          "slot": "take-some-more-there-s-plenty-of-food"
         },
         {
           "speaker": "فيصل",
@@ -980,9 +967,7 @@
         },
         {
           "speaker": "ماجد",
-          "arabic": "خَلِّك شْوَي، لِلْحِين فِيه حَلَا",
-          "transliteration": "khallik shwayy, lil-7iin fii 7alaa",
-          "english": "Stay a bit, there's still dessert."
+          "slot": "stay-a-bit-there-s-still-dessert"
         }
       ],
       "de_book": [
@@ -1286,7 +1271,8 @@
         {
           "slot": "no-excuses-do-we-have-to-part-so-quickly",
           "arabic": "مَا نِقْبَل أَعْذَار، لِيش هَالْعَجْلَة؟",
-          "transliteration": "maa nagbal a3dhaar, leysh hal-3ajala?"
+          "transliteration": "maa nagbal a3dhaar, leysh hal-3ajala?",
+          "english": "No excuses, why the rush?"
         },
         {
           "slot": "thanks-for-the-invitation-we-had-a-great-time",
@@ -1328,21 +1314,16 @@
         },
         {
           "speaker": "خالد",
-          "arabic": "الله يِعَافِيك، هَذَا وَاجِبِنَا",
-          "transliteration": "allah y3aafiik, haadha waajibnaa",
-          "english": "God give you health, it's our duty."
+          "slot": "thank-you-for-the-hospitality-lit-god-give-you-s",
+          "reply": true
         },
         {
           "speaker": "سعيد",
-          "arabic": "لَازِم نِمْشِي، الْوَقْت تَأَخِّر",
-          "transliteration": "laazim nimshi, il-wagt ta2akhkhar",
-          "english": "We have to go, it's late."
+          "slot": "we-need-to-go-it-s-gotten-late"
         },
         {
           "speaker": "خالد",
-          "arabic": "مَا نِقْبَل أَعْذَار، لِيش هَالْعَجْلَة؟",
-          "transliteration": "maa nagbal a3dhaar, leysh hal-3ajala?",
-          "english": "No excuses, why the rush?"
+          "slot": "no-excuses-do-we-have-to-part-so-quickly"
         },
         {
           "speaker": "سعيد",
@@ -1358,9 +1339,7 @@
         },
         {
           "speaker": "سعيد",
-          "arabic": "سلملي على الأهل",
-          "transliteration": "sallimli 3al-ahl",
-          "english": "Give my regards to the family."
+          "slot": "give-my-regards-to-the-family"
         },
         {
           "speaker": "خالد",

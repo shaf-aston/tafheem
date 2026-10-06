@@ -1273,15 +1273,12 @@
       "dialogue": [
         {
           "speaker": "Yousef",
-          "arabic": "لَو سَمَحْت، عِنْدِي مِشْكِلَة صِغِيرَة",
-          "transliteration": "law samaht, 3indi mushkila sgheera",
-          "english": "Excuse me, I have a small problem."
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man"
         },
         {
           "speaker": "Ali",
-          "arabic": "تِفَضَّل، شُو الْمِشْكِلَة؟",
-          "transliteration": "tfaddal, shu il-mushkila?",
-          "english": "Go ahead, what's the problem?"
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Yousef",

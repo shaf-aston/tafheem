@@ -580,9 +580,8 @@
         },
         {
           "speaker": "Umm Ali",
-          "arabic": "الساعة ست وربع",
-          "transliteration": "is-saa3a sitta w-rub3",
-          "english": "At quarter past six"
+          "slot": "what-time-is-iftar-today",
+          "reply": true
         },
         {
           "speaker": "Zaynab",
@@ -604,9 +603,8 @@
         },
         {
           "speaker": "Umm Ali",
-          "arabic": "مِنَّا وَمِنْكُم",
-          "transliteration": "minnaa w-minkum",
-          "english": "And from us and you"
+          "slot": "may-god-accept-your-fasting",
+          "reply": true
         }
       ],
       "de_book": [
@@ -1416,9 +1414,8 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "صَار عُمْرِي خَمْسَة وَعِشْرِين",
-          "transliteration": "Saar 3umri khamsa w-3ishriin",
-          "english": "I turned twenty five"
+          "slot": "how-old-did-you-turn",
+          "reply": true
         },
         {
           "speaker": "Omar",

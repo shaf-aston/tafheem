@@ -178,9 +178,7 @@
         },
         {
           "speaker": "Noor",
-          "arabic": "كَانَ الْجَوُّ جَمِيلًا جِدًّا أَمْسِ.",
-          "transliteration": "kaana al-jawwu jameelan jiddan amsi.",
-          "english": "The weather was very nice yesterday."
+          "slot": "yesterday-the-weather-was-very-nice"
         }
       ],
       "de_book": [
@@ -509,9 +507,7 @@
         },
         {
           "speaker": "Hala",
-          "arabic": "نَشَأْتُ فِي حَيٍّ قَدِيمٍ فِي دِمَشْق.",
-          "transliteration": "nasha2tu fee 7ayyin qadeemin fee Dimashq.",
-          "english": "I grew up in an old neighborhood in Damascus."
+          "slot": "i-grew-up-in-an-old-neighborhood-in-damascus"
         },
         {
           "speaker": "Omar",
@@ -930,9 +926,7 @@
         },
         {
           "speaker": "Tariq",
-          "arabic": "نَسِيتُ مِحْفَظَتِي فِي الْبَيْت.",
-          "transliteration": "naseetu mi7fadhatee fee al-bayt.",
-          "english": "I forgot my wallet at home."
+          "slot": "i-forgot-my-wallet-at-home"
         },
         {
           "speaker": "Dina",
@@ -1309,9 +1303,7 @@
         },
         {
           "speaker": "Yousef",
-          "arabic": "سَمِعْتُ أَنَّ سَامِرًا أَصْبَحَ مَخْطُوبًا.",
-          "transliteration": "sami3tu anna Saameran asba7a makhtooban.",
-          "english": "I heard that Samer got engaged."
+          "slot": "i-heard-that-samer-got-engaged"
         },
         {
           "speaker": "Maha",
@@ -1327,9 +1319,7 @@
         },
         {
           "speaker": "Maha",
-          "arabic": "لَسْنَا مُتَأَكِّدِينَ بَعْدُ، رُبَّمَا هِيَ مُجَرَّدُ إِشَاعَة.",
-          "transliteration": "lasnaa muta2akkideena ba3d, rubbamaa hiya mujarradu ishaa3a.",
-          "english": "We're not sure yet, it might just be a rumor."
+          "slot": "we-re-not-sure-yet-it-might-just-be-a-rumor"
         },
         {
           "speaker": "Yousef",
@@ -1688,9 +1678,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "سَافَرْتُ إِلَى مَدِينَةٍ أُخْرَى الْأُسْبُوعَ الْمَاضِي.",
-          "transliteration": "safartu ilaa madeenatin ukhraa al-usboo3a al-maadee.",
-          "english": "I traveled to another city last week."
+          "slot": "i-traveled-to-another-city-last-week"
         },
         {
           "speaker": "Lina",
@@ -1724,9 +1712,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "رَأَيْتُ حُقُولًا خَضْرَاءَ وَجِبَالًا.",
-          "transliteration": "ra2aytu 7uqoolan khadraa2a wajibaalan.",
-          "english": "I saw green fields and mountains."
+          "slot": "i-saw-green-fields-and-mountains"
         },
         {
           "speaker": "Lina",
@@ -2039,15 +2025,11 @@
         },
         {
           "speaker": "Yasir",
-          "arabic": "حَصَلْتُ عَلَى الْوَظِيفَة.",
-          "transliteration": "7asaltu 3alaa al-waZeefa.",
-          "english": "I got the job."
+          "slot": "i-got-the-job"
         },
         {
           "speaker": "Bilal",
-          "arabic": "مَبْرُوك، أَنَا سَعِيدٌ جِدًّا مِنْ أَجْلِكَ!",
-          "transliteration": "mabrook, ana sa3eedun jiddan min ajlika!",
-          "english": "Congratulations, I am very happy for you!"
+          "slot": "congratulations-i-am-very-happy-for-you-to-a-man"
         },
         {
           "speaker": "Yasir",
@@ -2057,9 +2039,7 @@
         },
         {
           "speaker": "Bilal",
-          "arabic": "اِلْحَمْدُ لِلَّه، هَذِهِ نِعْمَةٌ عَظِيمَة.",
-          "transliteration": "al-7amdu lillaah, haadhihi ni3matun 3aZeema.",
-          "english": "Praise be to Allah, this is a great blessing."
+          "slot": "praise-be-to-allah-this-is-a-great-blessing"
         },
         {
           "speaker": "Yasir",

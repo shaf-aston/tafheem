@@ -1004,9 +1004,7 @@
         },
         {
           "speaker": "Hicham",
-          "arabic": "شْحَالْ كُولْشِي؟",
-          "transliteration": "sh7aal koolshi?",
-          "english": "How much is the total?"
+          "slot": "how-much-did-the-total-come-to"
         },
         {
           "speaker": "Si Mohamed",

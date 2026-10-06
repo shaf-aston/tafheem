@@ -124,9 +124,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "أُرِيدُ كِيلُو طَمَاطِم مِنْ فَضْلِكَ.",
-          "transliteration": "ureedu keeloo tamaatim min fadlika.",
-          "english": "I want a kilo of tomatoes, please."
+          "slot": "i-want-a-kilo-of-tomatoes-please"
         },
         {
           "speaker": "Vendor",
@@ -136,9 +134,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "هَلْ عِنْدَكَ بَصَل وَثُوم؟",
-          "transliteration": "hal 3indaka basal wa thoom?",
-          "english": "Do you have onions and garlic?"
+          "slot": "do-you-have-onions-and-garlic"
         },
         {
           "speaker": "Vendor",
@@ -154,15 +150,12 @@
         },
         {
           "speaker": "Vendor",
-          "arabic": "بِخَمْسَةِ رِيَال لِلْكِيلُو.",
-          "transliteration": "bikhamsati riyaal lil-keeloo.",
-          "english": "Five riyals a kilo."
+          "slot": "how-much-is-the-cucumber",
+          "reply": true
         },
         {
           "speaker": "Sara",
-          "arabic": "هَذَا السِّعْر غَالٍ قَلِيلًا.",
-          "transliteration": "haathaa as-si3r ghaalin qaleelan.",
-          "english": "This price is a bit expensive."
+          "slot": "this-price-is-a-bit-expensive"
         },
         {
           "speaker": "Vendor",
@@ -172,9 +165,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "كَمْ سِعْرُ الْكِيلُوَيْن مَعًا؟",
-          "transliteration": "kam si3ru al-keeloowayn ma3an?",
-          "english": "How much are the two kilos together?"
+          "slot": "how-much-are-the-two-kilos-together"
         },
         {
           "speaker": "Vendor",
@@ -531,9 +522,7 @@
         },
         {
           "speaker": "Hamad",
-          "arabic": "هَلْ تُرِيدُ الْخُبْزَ الْعَرَبِيّ أَمِ الْمَرْقُوق؟",
-          "transliteration": "hal tureedu al-khubza al-3arabiyy ami al-marqooq?",
-          "english": "Do you want pita bread or markook?"
+          "slot": "do-you-want-pita-bread-or-markook"
         },
         {
           "speaker": "Yusuf",
@@ -585,15 +574,12 @@
         },
         {
           "speaker": "Yusuf",
-          "arabic": "بَارَكَ اللَّهُ فِيكَ، تُصْبِحُ عَلَى خَيْر.",
-          "transliteration": "baaraka allaahu feeka, tusbi7u 3alaa khayr.",
-          "english": "God bless you, good night."
+          "slot": "god-bless-you-good-night"
         },
         {
           "speaker": "Saleh",
-          "arabic": "وَأَنْتَ مِنْ أَهْلِ الْخَيْر.",
-          "transliteration": "wa anta min ahli al-khayr.",
-          "english": "And you are of the people of goodness."
+          "slot": "god-bless-you-good-night",
+          "reply": true
         }
       ],
       "de_book": [
@@ -924,9 +910,8 @@
         },
         {
           "speaker": "Huda",
-          "arabic": "سَأَطْبُخُ الْأَرُز وَالدَّجَاج.",
-          "transliteration": "sa-atbukhu al-aruzz wa ad-dajaaj.",
-          "english": "I'll cook rice and chicken."
+          "slot": "what-are-you-going-to-cook-today",
+          "reply": true
         },
         {
           "speaker": "Omar",
@@ -942,15 +927,12 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "هَلْ وَضَعْتِ مَا يَكْفِي مِنَ الْمِلْح؟",
-          "transliteration": "hal wada3ti maa yakfee mina al-mil7?",
-          "english": "Did you put enough salt?"
+          "slot": "did-you-put-enough-salt"
         },
         {
           "speaker": "Huda",
-          "arabic": "نَعَمْ، وَلَكِنْ تَذَوَّقْ أَنْتَ.",
-          "transliteration": "na3am, wa lakin tathawwaq anta.",
-          "english": "Yes, but you taste it."
+          "slot": "did-you-put-enough-salt",
+          "reply": true
         },
         {
           "speaker": "Omar",
@@ -960,15 +942,11 @@
         },
         {
           "speaker": "Huda",
-          "arabic": "يَجِبُ أَنْ نُضِيفَ الثُّومَ وَالْكُزْبَرَة.",
-          "transliteration": "yajibu an nudeefa ath-thooma wa al-kuzbara.",
-          "english": "We need to add garlic and coriander."
+          "slot": "we-need-to-add-garlic-and-coriander"
         },
         {
           "speaker": "Omar",
-          "arabic": "كَمْ مِنَ الْوَقْت يَحْتَاج عَلَى النَّار؟",
-          "transliteration": "kam mina al-waqt ya7taaj 3alaa an-naar?",
-          "english": "How long does it need to stay on the fire?"
+          "slot": "how-long-does-it-need-to-stay-on-the-fire"
         },
         {
           "speaker": "Huda",
@@ -1309,9 +1287,7 @@
         },
         {
           "speaker": "Reem",
-          "arabic": "أُحِبُّ الْفُول كَثِيرًا.",
-          "transliteration": "u7ibbu al-fool katheeran.",
-          "english": "I love fava beans a lot."
+          "slot": "i-love-fava-beans-a-lot"
         },
         {
           "speaker": "Tariq",
@@ -1333,9 +1309,7 @@
         },
         {
           "speaker": "Reem",
-          "arabic": "هَلْ تُفَضِّلُ الدَّجَاجَ أَمِ اللَّحْم؟",
-          "transliteration": "hal tufaddilu ad-dajaaja ami al-la7m?",
-          "english": "Do you prefer chicken or meat?"
+          "slot": "do-you-prefer-chicken-or-meat"
         },
         {
           "speaker": "Tariq",
@@ -1717,9 +1691,7 @@
         },
         {
           "speaker": "Sami",
-          "arabic": "هَلْ عِنْدَكَ لَوْنٌ آخَر؟",
-          "transliteration": "hal 3indaka lawnun aakhar?",
-          "english": "Do you have another color?"
+          "slot": "do-you-have-another-color-to-a-man"
         },
         {
           "speaker": "Mahmoud",
@@ -1741,9 +1713,7 @@
         },
         {
           "speaker": "Sami",
-          "arabic": "حَسَنًا، اِتَّفَقْنَا.",
-          "transliteration": "7asanan, ittafaqnaa.",
-          "english": "Okay, deal."
+          "slot": "okay-deal"
         },
         {
           "speaker": "Mahmoud",

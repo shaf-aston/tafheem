@@ -423,7 +423,8 @@
         {
           "slot": "in-winter-it-gets-very-cold-in-damascus",
           "arabic": "فِي الشِّتَا الْجَوّ بِيْبِقَّى بَرْد أَوِي فِي الْقَاهِرَة",
-          "transliteration": "fesh-shita el-gaww beyeb2a bard awi fel-2aahira"
+          "transliteration": "fesh-shita el-gaww beyeb2a bard awi fel-2aahira",
+          "english": "In winter it gets very cold in Cairo."
         },
         {
           "slot": "in-summer-the-weather-s-hot-and-dry",
@@ -478,7 +479,8 @@
         {
           "slot": "summer-in-damascus-is-long",
           "arabic": "الصَّيْف فِي الْقَاهِرَة طَوِيل أَوِي",
-          "transliteration": "es-sayf fel-2aahira Taweel awi"
+          "transliteration": "es-sayf fel-2aahira Taweel awi",
+          "english": "Summer in Cairo is very long."
         }
       ],
       "dialogue": [

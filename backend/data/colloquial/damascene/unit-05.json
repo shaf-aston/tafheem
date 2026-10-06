@@ -116,9 +116,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "شَغِّل العَدّاد لَو سَمِحْت.",
-          "transliteration": "shaghghel el-3addad law samaht.",
-          "english": "Turn on the meter please."
+          "slot": "turn-on-the-meter-please"
         },
         {
           "speaker": "سواق",
@@ -896,9 +894,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "قِدّيش الأجْرة؟",
-          "transliteration": "2addeish el-ojra?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "سواق",
@@ -1649,9 +1645,7 @@
       "dialogue": [
         {
           "speaker": "Kareem",
-          "arabic": "فاضِي؟",
-          "transliteration": "faadi؟",
-          "english": "Are you free?"
+          "slot": "are-you-free-asking-a-taxi-driver-if-available"
         },
         {
           "speaker": "Abu Rami",
@@ -1673,9 +1667,7 @@
         },
         {
           "speaker": "Kareem",
-          "arabic": "قدِيش بْياخِد الطرِيق؟",
-          "transliteration": "addeesh byaakhod it-tariiq؟",
-          "english": "How long does the way take?"
+          "slot": "how-long-does-the-way-take"
         },
         {
           "speaker": "Abu Rami",
@@ -1685,9 +1677,7 @@
         },
         {
           "speaker": "Kareem",
-          "arabic": "قدِيش الأجْرة؟",
-          "transliteration": "addeesh il2ujra؟",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "Abu Rami",

@@ -104,9 +104,7 @@
       "dialogue": [
         {
           "speaker": "Samer",
-          "arabic": "آلُو؟",
-          "transliteration": "aaloo?",
-          "english": "Hello?"
+          "slot": "hello-answering-the-phone"
         },
         {
           "speaker": "Zaynab",
@@ -510,9 +508,7 @@
         },
         {
           "speaker": "Samer",
-          "arabic": "السَّاعَةْ سَبْعَةْ زِينَةْ؟",
-          "transliteration": "is-saa3a sab3a zeena?",
-          "english": "Is 7 o'clock good?"
+          "slot": "is-7-o-clock-good"
         },
         {
           "speaker": "Zaynab",
@@ -892,9 +888,8 @@
         },
         {
           "speaker": "Zaynab",
-          "arabic": "مَا يِخَالِفْ، شْصَارْ؟",
-          "transliteration": "ma ykhaalif, shsaar?",
-          "english": "No problem, what happened?"
+          "slot": "i-want-to-change-the-appointment",
+          "reply": true
         },
         {
           "speaker": "Samer",
@@ -1308,21 +1303,15 @@
         },
         {
           "speaker": "Zaynab",
-          "arabic": "شْوَكِتْ يِرْجَعْ؟",
-          "transliteration": "shwakit yirja3?",
-          "english": "When will he be back?"
+          "slot": "when-will-he-be-back"
         },
         {
           "speaker": "Ahmed",
-          "arabic": "ما أدري بالضبط، بعد شوية",
-          "transliteration": "ma adri bidh-dhabut, ba3d shwayya",
-          "english": "I don't know exactly, in a bit."
+          "slot": "i-don-t-know-exactly-in-a-bit"
         },
         {
           "speaker": "Zaynab",
-          "arabic": "تِقْدِرْ تَاخِذْلِي رِسَالَةْ؟",
-          "transliteration": "tigdar taakhudhli risaala?",
-          "english": "Can you take a message for me?"
+          "slot": "can-you-take-a-message-for-me"
         },
         {
           "speaker": "Ahmed",

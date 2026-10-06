@@ -150,9 +150,7 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "هادا ضيق علي كتير.",
-          "transliteration": "hada Dayyig 3alayy ktheer.",
-          "english": "This is too tight for me."
+          "slot": "this-is-too-tight-for-me"
         },
         {
           "speaker": "أبو علي",
@@ -845,9 +843,7 @@
         },
         {
           "speaker": "علي",
-          "arabic": "ما في أرخص من هادا؟",
-          "transliteration": "ma fi arkhaS min hada?",
-          "english": "Isn't there cheaper?"
+          "slot": "isn-t-there-cheaper-than-this"
         },
         {
           "speaker": "أبو محمود",
@@ -869,9 +865,7 @@
         },
         {
           "speaker": "علي",
-          "arabic": "تمام، اتفقنا.",
-          "transliteration": "tamaam, ittafagna.",
-          "english": "Ok, we agreed."
+          "slot": "ok-we-agreed"
         },
         {
           "speaker": "أبو محمود",
@@ -1215,9 +1209,8 @@
         },
         {
           "speaker": "فاتن",
-          "arabic": "من أول أمبارح.",
-          "transliteration": "min awwal imbaare7.",
-          "english": "The day before yesterday."
+          "slot": "when-did-you-buy-it",
+          "reply": true
         },
         {
           "speaker": "أم خديجة",
@@ -1227,15 +1220,12 @@
         },
         {
           "speaker": "فاتن",
-          "arabic": "ترجعون المصاري؟",
-          "transliteration": "tajja3uun l-maSaari?",
-          "english": "Do you give money back?"
+          "slot": "do-you-give-money-back"
         },
         {
           "speaker": "أم خديجة",
-          "arabic": "لا، بس نبدله.",
-          "transliteration": "la, bas nbaddlu.",
-          "english": "No, we only exchange."
+          "slot": "do-you-give-money-back",
+          "reply": true
         },
         {
           "speaker": "فاتن",

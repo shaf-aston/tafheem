@@ -127,9 +127,7 @@
         },
         {
           "speaker": "نور",
-          "arabic": "اگِدِر اشوف الغُرفَة گِبِل؟",
-          "transliteration": "agdar ashoof il-ghurfa gabil?",
-          "english": "Can I see the room first?"
+          "slot": "can-i-see-the-room-first"
         },
         {
           "speaker": "الموظف",
@@ -151,9 +149,7 @@
         },
         {
           "speaker": "نور",
-          "arabic": "شوكِت لازِم اطلِع مِن الغُرفَة؟",
-          "transliteration": "shwakit laazim a6la3 min il-ghurfa?",
-          "english": "What time do I need to check out?"
+          "slot": "what-time-do-i-need-to-check-out"
         },
         {
           "speaker": "الموظف",
@@ -506,15 +502,12 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "ثَلاثين ألِف دينار",
-          "transliteration": "thalaatheen alif deenaar",
-          "english": "Thirty thousand dinars."
+          "slot": "how-much-is-a-round-trip-ticket",
+          "reply": true
         },
         {
           "speaker": "نور",
-          "arabic": "اكو تَخفيض لِلطُّلاب؟",
-          "transliteration": "aku takhfeeD lil-6ullaab?",
-          "english": "Is there a discount for students?"
+          "slot": "is-there-a-discount-for-students"
         },
         {
           "speaker": "الموظف",
@@ -536,15 +529,12 @@
         },
         {
           "speaker": "نور",
-          "arabic": "اگِدِر ادفَع بالكارت؟",
-          "transliteration": "agdar adfa3 bil-kaart?",
-          "english": "Can I pay by card?"
+          "slot": "can-i-pay-by-card"
         },
         {
           "speaker": "الموظف",
-          "arabic": "لا، كاش بِس",
-          "transliteration": "laa, kaash bass",
-          "english": "No, cash only."
+          "slot": "can-i-pay-by-card",
+          "reply": true
         },
         {
           "speaker": "الموظف",
@@ -904,9 +894,7 @@
         },
         {
           "speaker": "نور",
-          "arabic": "شگِد شِنطَة اگِدِر آخِذ؟",
-          "transliteration": "shgad shan6a agdar aakhuth?",
-          "english": "How many bags can I take?"
+          "slot": "how-many-bags-am-i-allowed-to-take"
         },
         {
           "speaker": "الموظف",
@@ -916,9 +904,7 @@
         },
         {
           "speaker": "نور",
-          "arabic": "وين بُوّابَة الطّيّارَة؟",
-          "transliteration": "ween bawwaabat i6-6ayyaara?",
-          "english": "Where's the plane gate?"
+          "slot": "where-s-the-boarding-gate"
         },
         {
           "speaker": "الموظف",
@@ -928,15 +914,11 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "عِندَك شي تِصَرّح بيه؟",
-          "transliteration": "3indak shi tSarri7 bii?",
-          "english": "Do you have anything to declare?"
+          "slot": "do-you-have-anything-to-declare"
         },
         {
           "speaker": "نور",
-          "arabic": "لا، ما عِندي شي",
-          "transliteration": "laa, ma 3indi shi",
-          "english": "No, I don't have anything."
+          "slot": "no-i-don-t-have-anything"
         },
         {
           "speaker": "الموظف",

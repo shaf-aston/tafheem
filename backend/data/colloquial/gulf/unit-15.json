@@ -152,9 +152,7 @@
         },
         {
           "speaker": "Nour",
-          "arabic": "اَلفُطور مِع اَلغُرِفَة؟",
-          "transliteration": "l-futoor ma3 l-ghurfa?",
-          "english": "Is breakfast included with the room?"
+          "slot": "is-breakfast-included-with-the-room"
         },
         {
           "speaker": "Receptionist",
@@ -182,9 +180,8 @@
         },
         {
           "speaker": "Receptionist",
-          "arabic": "الله يعافيك، نَوَّرتونا",
-          "transliteration": "allah y3aafeek, nawwartoona",
-          "english": "And you, you honour us."
+          "slot": "thanks-the-room-is-very-nice",
+          "reply": true
         }
       ],
       "de_book": [
@@ -534,9 +531,7 @@
         },
         {
           "speaker": "Saeed",
-          "arabic": "فيه خصم للطلاب؟",
-          "transliteration": "fiih khaSm li-T-Tullaab?",
-          "english": "Is there a discount for students?"
+          "slot": "is-there-a-discount-for-students"
         },
         {
           "speaker": "Clerk",
@@ -552,15 +547,12 @@
         },
         {
           "speaker": "Clerk",
-          "arabic": "إي أَكيد، أو كاش",
-          "transliteration": "ee akeed, aw kaash",
-          "english": "Yes of course, or cash."
+          "slot": "can-i-pay-by-card",
+          "reply": true
         },
         {
           "speaker": "Saeed",
-          "arabic": "كم ياخذ الطريق؟",
-          "transliteration": "kam yaakhudh T-Tareeg?",
-          "english": "How long does the trip take?"
+          "slot": "how-long-does-the-trip-take"
         },
         {
           "speaker": "Clerk",
@@ -955,9 +947,7 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "وَين بُوّابَة الطَيّارَة؟",
-          "transliteration": "ween bawwabat iT-Tayyaara?",
-          "english": "Where's the boarding gate?"
+          "slot": "where-s-the-boarding-gate"
         },
         {
           "speaker": "Agent",
@@ -1389,9 +1379,7 @@
         },
         {
           "speaker": "Fahad",
-          "arabic": "الله يعَوّض، إِن شاء الله يِصير خَير",
-          "transliteration": "allah y3awwiD, in shaa allah yiSeer khayr",
-          "english": "May God make up for it, God willing it will work out."
+          "slot": "may-god-make-up-for-it-god-willing-it-ll-work-ou"
         },
         {
           "speaker": "Agent",

@@ -136,9 +136,7 @@
         },
         {
           "speaker": "Raami",
-          "arabic": "شَكْلَك وَاخِد بَرْد",
-          "transliteration": "shaklak waakhed bard",
-          "english": "Looks like you have a cold"
+          "slot": "looks-like-you-have-a-cold-to-a-man"
         },
         {
           "speaker": "Saamer",
@@ -568,27 +566,21 @@
         },
         {
           "speaker": "Saamer",
-          "arabic": "الدُّوا دَه بِكَام؟",
-          "transliteration": "ed-dawa da bekaam?",
-          "english": "How much is this medicine?"
+          "slot": "how-much-does-this-medicine-cost"
         },
         {
           "speaker": "Haani",
-          "arabic": "بِتَمَانِين جِنِيه",
-          "transliteration": "bitamaneen gineeh",
-          "english": "80 pounds"
+          "slot": "how-much-does-this-medicine-cost",
+          "reply": true
         },
         {
           "speaker": "Saamer",
-          "arabic": "لَازِم رُوشْتَة؟",
-          "transliteration": "laazem roshetta?",
-          "english": "Do I need a prescription?"
+          "slot": "do-i-need-a-prescription"
         },
         {
           "speaker": "Haani",
-          "arabic": "لَأ، مِش لَازِم",
-          "transliteration": "la2, mish laazem",
-          "english": "No, you don't"
+          "slot": "do-i-need-a-prescription",
+          "reply": true
         },
         {
           "speaker": "Saamer",
@@ -1005,9 +997,8 @@
         },
         {
           "speaker": "Saamer",
-          "arabic": "بَطْنِي بِتُوجِعْنِي مِن إِمْبَارِح",
-          "transliteration": "baTni betwaga3ni men embaare7",
-          "english": "My stomach has hurt since yesterday"
+          "slot": "what-hurts-you-doctor-asking-a-man",
+          "reply": true
         },
         {
           "speaker": "Doktoor Ahmad",
@@ -1029,9 +1020,8 @@
         },
         {
           "speaker": "Saamer",
-          "arabic": "لَأ، وَلَّا حَاجَة",
-          "transliteration": "la2, wala 7aaga",
-          "english": "No, nothing"
+          "slot": "are-you-allergic-to-any-medicine-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Doktoor Ahmad",

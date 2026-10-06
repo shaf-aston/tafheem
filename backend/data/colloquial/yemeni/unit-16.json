@@ -416,7 +416,8 @@
         {
           "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
           "arabic": "تَرَبَّيْتُ فِي حَيّ قَدِيم فِي الصَّنْعَاء",
-          "transliteration": "tarabbayt fi 7ayy 2adim fi as-san3aa"
+          "transliteration": "tarabbayt fi 7ayy 2adim fi as-san3aa",
+          "english": "I grew up in an old neighborhood in Sana'a."
         },
         {
           "slot": "i-had-a-friend-named-kareem",
@@ -1121,7 +1122,8 @@
         {
           "slot": "i-heard-that-samer-got-engaged",
           "arabic": "سِمِعِت إِنُّه عَلِي خِطِب",
-          "transliteration": "smi3t innuh 3ali khaTib"
+          "transliteration": "smi3t innuh 3ali khaTib",
+          "english": "I heard that Ali got engaged."
         },
         {
           "slot": "there-s-news-you-won-t-believe",

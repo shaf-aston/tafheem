@@ -126,9 +126,8 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "مِقْيَاسِي لَارْج.",
-          "transliteration": "migyaasi laraj.",
-          "english": "My size is large."
+          "slot": "what-s-your-size-to-a-man",
+          "reply": true
         },
         {
           "speaker": "أَبُو سَالِم",
@@ -138,9 +137,7 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "أَقْدَر أَقِيسُهْ؟",
-          "transliteration": "agdar aqiisuh?",
-          "english": "Can I try it on?"
+          "slot": "can-i-try-it-on"
         },
         {
           "speaker": "أَبُو سَالِم",
@@ -150,9 +147,7 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "هَذَا ضَيِّق عَلَيّ كَثِير.",
-          "transliteration": "hadha dayyiq 3alayya katheer.",
-          "english": "This is too tight for me."
+          "slot": "this-is-too-tight-for-me"
         },
         {
           "speaker": "أَبُو سَالِم",
@@ -490,9 +485,7 @@
         },
         {
           "speaker": "ليلى",
-          "arabic": "يِعْجِبُنِي اللَّوْن الْأَزْرَق.",
-          "transliteration": "yi3jibuni l-lawn l-azrag.",
-          "english": "I like the blue color."
+          "slot": "i-like-the-blue-color"
         },
         {
           "speaker": "سَمِيرَة",
@@ -862,9 +855,8 @@
         },
         {
           "speaker": "أَبُو عَلِي",
-          "arabic": "شُوَيّ بَس، مُو كَثِير.",
-          "transliteration": "shwayy bas, mu katheer.",
-          "english": "A little, not much."
+          "slot": "can-you-lower-the-price",
+          "reply": true
         },
         {
           "speaker": "محمود",
@@ -898,9 +890,7 @@
         },
         {
           "speaker": "أَبُو عَلِي",
-          "arabic": "تَمَام، اتِّفَقْنَا.",
-          "transliteration": "tamam, ittafaqna.",
-          "english": "Ok, we agreed."
+          "slot": "ok-we-agreed"
         },
         {
           "speaker": "محمود",
@@ -1249,9 +1239,8 @@
         },
         {
           "speaker": "ليلى",
-          "arabic": "مِنْ أَوَّل أَمْس.",
-          "transliteration": "min awwal ams.",
-          "english": "The day before yesterday."
+          "slot": "when-did-you-buy-it",
+          "reply": true
         },
         {
           "speaker": "أُمّ سَامِر",

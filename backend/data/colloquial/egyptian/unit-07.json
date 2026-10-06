@@ -105,9 +105,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "السَّاعَة كَام دِلْوَقْتِي؟",
-          "transliteration": "es-saa3a kaam dilwa2ti?",
-          "english": "What time is it now?"
+          "slot": "what-time-is-it-now"
         },
         {
           "speaker": "Mona",
@@ -1236,9 +1234,7 @@
         },
         {
           "speaker": "Mona",
-          "arabic": "الاجْتِمَاع إمْتَى؟",
-          "transliteration": "el-egtimaa3 emta?",
-          "english": "When is the meeting?"
+          "slot": "when-is-the-meeting"
         },
         {
           "speaker": "Karim",
@@ -1272,9 +1268,7 @@
         },
         {
           "speaker": "Mona",
-          "arabic": "نَاوي تَعْمِل إيه في الْويك إنْد؟",
-          "transliteration": "nawi te3mel eh fel-weekend?",
-          "english": "What do you plan to do on the weekend?"
+          "slot": "what-do-you-plan-to-do-on-the-weekend"
         },
         {
           "speaker": "Karim",

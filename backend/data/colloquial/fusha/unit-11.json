@@ -51,7 +51,8 @@
         {
           "slot": "don-t-trouble-yourself-we-re-at-home-make-yourse",
           "arabic": "لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ",
-          "transliteration": "laa tatakallaf, anta fee baytika"
+          "transliteration": "laa tatakallaf, anta fee baytika",
+          "english": "Don't trouble yourself, you're at home."
         },
         {
           "slot": "where-can-i-park-my-car",
@@ -115,15 +116,11 @@
         },
         {
           "speaker": "Faisal",
-          "arabic": "لَا تَتَكَلَّفْ، أَنْتَ فِي بَيْتِكَ.",
-          "transliteration": "laa tatakallaf, anta fee baytika.",
-          "english": "Don't trouble yourself, you're at home."
+          "slot": "don-t-trouble-yourself-we-re-at-home-make-yourse"
         },
         {
           "speaker": "Faisal",
-          "arabic": "مِنْ فَضْلِكَ، اِخْلَعْ حِذَاءَكَ عِنْدَ الْبَاب.",
-          "transliteration": "min fadlika, ikhla3 7idhaa2aka 3inda al-baab.",
-          "english": "Please take off your shoes at the door."
+          "slot": "take-off-your-shoes-at-the-door-please"
         },
         {
           "speaker": "Ahmad",
@@ -133,9 +130,7 @@
         },
         {
           "speaker": "Faisal",
-          "arabic": "كَمِ اسْتَغْرَقَتْ رِحْلَتُكَ؟",
-          "transliteration": "kami istaghraqat ri7latuka?",
-          "english": "How long did it take you to arrive?"
+          "slot": "how-long-did-it-take-you-to-arrive"
         },
         {
           "speaker": "Ahmad",
@@ -499,9 +494,8 @@
         },
         {
           "speaker": "Tariq",
-          "arabic": "شَاي، مِنْ فَضْلِك.",
-          "transliteration": "shaay, min fadlik.",
-          "english": "Tea, please."
+          "slot": "coffee-or-tea",
+          "reply": true
         },
         {
           "speaker": "Mona",
@@ -517,9 +511,7 @@
         },
         {
           "speaker": "Mona",
-          "arabic": "وَضَعْتُ الْحَلْوَى عَلَى الطَّاوِلَة.",
-          "transliteration": "wada3tu al-7alwaa 3alaa at-taawila.",
-          "english": "I put the sweets on the table."
+          "slot": "i-put-the-sweets-on-the-table"
         },
         {
           "speaker": "Tariq",
@@ -529,9 +521,7 @@
         },
         {
           "speaker": "Mona",
-          "arabic": "لَا تَخْجَلْ، الْبَيْتُ بَيْتُك.",
-          "transliteration": "laa takhjal, al-baytu baytuk.",
-          "english": "Don't be shy, the house is your house."
+          "slot": "don-t-be-shy-the-house-is-your-house"
         },
         {
           "speaker": "Tariq",
@@ -547,9 +537,7 @@
         },
         {
           "speaker": "Tariq",
-          "arabic": "جَلْسَةُ الْيَوْمِ جَمِيلَةٌ جِدًّا.",
-          "transliteration": "jalsatu al-yawmi jameelatun jiddan.",
-          "english": "Today's gathering is very nice."
+          "slot": "today-s-gathering-is-very-nice"
         }
       ],
       "de_book": [
@@ -854,15 +842,14 @@
         {
           "slot": "stay-a-bit-there-s-still-dessert",
           "arabic": "اِبْقَ قَلِيلًا، لَمْ نَأْكُلِ الْحَلْوَى بَعْد",
-          "transliteration": "ibqa qaleelan, lam na2kuli al-7alwaa ba3d"
+          "transliteration": "ibqa qaleelan, lam na2kuli al-7alwaa ba3d",
+          "english": "Stay a little longer; we haven't had dessert yet."
         }
       ],
       "dialogue": [
         {
           "speaker": "Hana",
-          "arabic": "تَفَضَّلُوا إِلَى الْمَائِدَةِ، الْعَشَاءُ جَاهِز.",
-          "transliteration": "tafaddaloo ilaa al-maa2ida, al-3ashaa2u jaahiz.",
-          "english": "Please come to the table, dinner is ready."
+          "slot": "please-come-to-the-table-dinner-is-ready"
         },
         {
           "speaker": "Ali",
@@ -872,9 +859,7 @@
         },
         {
           "speaker": "Hana",
-          "arabic": "جَرِّبْ هَذَا الطَّبَق، أَعْدَدْتُهُ الْيَوْم.",
-          "transliteration": "jarrib hadhaa at-tabaq, a3dadtuhu al-yawm.",
-          "english": "Try this dish, I made it today."
+          "slot": "try-this-dish-i-made-it-today"
         },
         {
           "speaker": "Ali",
@@ -884,9 +869,7 @@
         },
         {
           "speaker": "Hana",
-          "arabic": "هَذَا الطَّعَامُ حَارٌّ قَلِيلًا، اِنْتَبِهْ.",
-          "transliteration": "hadhaa at-ta3aamu 7aarrun qaleelan, intabih.",
-          "english": "This food is a bit spicy, be careful."
+          "slot": "this-food-is-a-bit-spicy-be-careful"
         },
         {
           "speaker": "Ali",
@@ -896,9 +879,7 @@
         },
         {
           "speaker": "Hana",
-          "arabic": "هَلْ تُرِيدُ مَزِيدًا مِنَ الْخُبْز؟",
-          "transliteration": "hal tureedu mazeedan mina al-khubz?",
-          "english": "Do you want some more bread?"
+          "slot": "do-you-want-a-bit-more-bread"
         },
         {
           "speaker": "Ali",
@@ -908,21 +889,15 @@
         },
         {
           "speaker": "Hana",
-          "arabic": "لَا تَخْجَلْ، قُلْ لِي إِنْ أَرَدْتَ شَيْئًا آخَر.",
-          "transliteration": "laa takhjal, qul lee in aradta shay2an aakhar.",
-          "english": "Don't be shy, tell me if you want anything else."
+          "slot": "don-t-be-shy-tell-me-if-you-want-anything-else"
         },
         {
           "speaker": "Ali",
-          "arabic": "الْحَمْدُ لِلَّهِ، شَبِعْنَا وَاكْتَفَيْنَا.",
-          "transliteration": "al7amdu lillaahi, shabi3naa wa iktafaynaa.",
-          "english": "Thank God, we're full and satisfied."
+          "slot": "thank-god-we-re-full-and-satisfied"
         },
         {
           "speaker": "Hana",
-          "arabic": "اِبْقَ قَلِيلًا، لَمْ نَأْكُلِ الْحَلْوَى بَعْد.",
-          "transliteration": "ibqa qaleelan, lam na2kuli al-7alwaa ba3d.",
-          "english": "Stay a bit, we haven't had dessert yet."
+          "slot": "stay-a-bit-there-s-still-dessert"
         },
         {
           "speaker": "Ali",
@@ -1178,7 +1153,8 @@
             "arabic": "الْبَيْتُ بَيْتُكُمْ",
             "transliteration": "al-baytu baytukum",
             "english": "The house is yours."
-          }
+          },
+          "english": "May God reward you with good for the hospitality."
         },
         {
           "slot": "we-need-to-go-it-s-gotten-late",
@@ -1244,9 +1220,7 @@
       "dialogue": [
         {
           "speaker": "Jamal",
-          "arabic": "جَزَاكُمُ اللَّهُ خَيْرًا عَلَى الضِّيَافَة.",
-          "transliteration": "jazaakumu allaahu khayran 3alaa ad-diyaafa.",
-          "english": "Thank you for the hospitality."
+          "slot": "thank-you-for-the-hospitality-lit-god-give-you-s"
         },
         {
           "speaker": "Reem",
@@ -1256,27 +1230,19 @@
         },
         {
           "speaker": "Jamal",
-          "arabic": "يَجِبُ أَنْ نَذْهَبَ، لَقَدْ تَأَخَّرَ الْوَقْت.",
-          "transliteration": "yajibu an nadhhaba, laqad ta2akhkhara al-waqt.",
-          "english": "We need to go, it's gotten late."
+          "slot": "we-need-to-go-it-s-gotten-late"
         },
         {
           "speaker": "Reem",
-          "arabic": "لَا أَعْذَار، هَلْ يَجِبُ أَنْ نَفْتَرِقَ بِهَذِهِ السُّرْعَة؟",
-          "transliteration": "laa a3dhaar, hal yajibu an naftariqa bihadhihi as-sur3a?",
-          "english": "No excuses, do we have to part so quickly?"
+          "slot": "no-excuses-do-we-have-to-part-so-quickly"
         },
         {
           "speaker": "Jamal",
-          "arabic": "شُكْرًا عَلَى الدَّعْوَة، قَضَيْنَا وَقْتًا رَائِع.",
-          "transliteration": "shukran 3alaa ad-da3wa, qadaynaa waqtan raa2i3.",
-          "english": "Thanks for the invitation, we had a great time."
+          "slot": "thanks-for-the-invitation-we-had-a-great-time"
         },
         {
           "speaker": "Reem",
-          "arabic": "جَلْسَةٌ جَمِيلَةٌ جِدًّا، حَفِظَكُمُ اللَّه.",
-          "transliteration": "jalsatun jameelatun jiddan, 7afizakumu allaah.",
-          "english": "A very nice gathering, God keep you."
+          "slot": "a-very-nice-gathering-god-keep-you"
         },
         {
           "speaker": "Jamal",
@@ -1292,9 +1258,7 @@
         },
         {
           "speaker": "Reem",
-          "arabic": "أَخْبِرْنَا عِنْدَمَا تَصِلُ إِلَى الْبَيْت.",
-          "transliteration": "akhbirnaa 3indamaa tasilu ilaa al-bayt.",
-          "english": "Let us know when you get home."
+          "slot": "let-us-know-when-you-get-home"
         },
         {
           "speaker": "Jamal",
@@ -1310,9 +1274,7 @@
         },
         {
           "speaker": "Jamal",
-          "arabic": "مَعَ السَّلَامَة، فِي أَمَانِ اللَّه.",
-          "transliteration": "ma3a as-salaama, fee amaani allaah.",
-          "english": "Goodbye, God be with you."
+          "slot": "goodbye-god-be-with-you"
         }
       ],
       "de_book": [
@@ -1646,9 +1608,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "صُمْتُ الْيَوْمَ كُلَّهُ وَأَنَا جَائِعٌ جِدًّا.",
-          "transliteration": "sumtu al-yawma kullahu wa-ana jaa2i3un jiddan.",
-          "english": "I fasted all day and I am very hungry."
+          "slot": "i-fasted-all-day-and-i-am-very-hungry"
         },
         {
           "speaker": "Khalid",
@@ -1664,15 +1624,11 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "لِنُفْطِرْ عَلَى التَّمْرِ وَالْمَاء.",
-          "transliteration": "linufTir 3alaa at-tamri wal-maa2.",
-          "english": "Let us break our fast with dates and water."
+          "slot": "let-us-break-our-fast-with-dates-and-water"
         },
         {
           "speaker": "Omar",
-          "arabic": "ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّه.",
-          "transliteration": "dhahaba az-zama2u wabtallati al-3uroogu wathabata al-ajru in shaa2a allaah.",
-          "english": "The thirst is gone, the veins are wet, and the reward is certain, Allah willing."
+          "slot": "the-thirst-is-gone-the-veins-are-wet-and-the-rew"
         },
         {
           "speaker": "Khalid",
@@ -1694,9 +1650,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "بَارَكَ اللَّهُ فِيكُمْ عَلَى دَعْوَةِ الْإِفْطَار.",
-          "transliteration": "baaraka allaahu feekum 3alaa da3wati al-iftaar.",
-          "english": "May Allah bless you for the invitation to iftar."
+          "slot": "may-allah-bless-you-for-the-invitation-to-iftar"
         }
       ],
       "de_book": [

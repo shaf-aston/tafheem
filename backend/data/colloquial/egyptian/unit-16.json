@@ -445,7 +445,8 @@
         {
           "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
           "arabic": "اِتْرَبِّيت فِي حَيّ قَدِيم فِي اَلْقَاهِرَة",
-          "transliteration": "itrabbeet fee 7ayy 2adeem fil-2aahira"
+          "transliteration": "itrabbeet fee 7ayy 2adeem fil-2aahira",
+          "english": "I grew up in an old neighborhood in Cairo."
         },
         {
           "slot": "i-had-a-friend-named-kareem",

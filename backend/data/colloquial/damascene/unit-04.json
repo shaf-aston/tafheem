@@ -834,9 +834,7 @@
       "dialogue": [
         {
           "speaker": "Waiter",
-          "arabic": "جَاهِزِين تِطْلُبُوا؟",
-          "transliteration": "jaahziin ti6lubu?",
-          "english": "Are you ready to order?"
+          "slot": "are-you-ready-to-order"
         },
         {
           "speaker": "Omar",
@@ -1198,9 +1196,7 @@
       "dialogue": [
         {
           "speaker": "Rami",
-          "arabic": "الْحِسَاب، لَو سَمَحْت",
-          "transliteration": "l7saab, law sama7t",
-          "english": "The bill, please."
+          "slot": "the-bill-please"
         },
         {
           "speaker": "Waiter",
@@ -1210,9 +1206,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "قَدِيش الْحِسَاب؟",
-          "transliteration": "addeesh l7saab?",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         },
         {
           "speaker": "Waiter",
@@ -1222,9 +1216,7 @@
         },
         {
           "speaker": "Sana",
-          "arabic": "مِنْقَسِم الْحِسَاب؟",
-          "transliteration": "mn2assem l7saab?",
-          "english": "Shall we split the bill?"
+          "slot": "shall-we-split-the-bill"
         },
         {
           "speaker": "Rami",

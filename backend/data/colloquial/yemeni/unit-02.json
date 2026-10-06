@@ -516,9 +516,7 @@
         },
         {
           "speaker": "ليلى",
-          "arabic": "شنو تحب تاكل؟",
-          "transliteration": "shinu ti7ibb taakil?",
-          "english": "What do you like to eat?"
+          "slot": "what-do-you-like-to-eat"
         },
         {
           "speaker": "علي",
@@ -546,15 +544,12 @@
         },
         {
           "speaker": "ليلى",
-          "arabic": "بِالْعَافِيَة!",
-          "transliteration": "bil-3afya!",
-          "english": "Enjoy your meal!"
+          "slot": "enjoy-your-meal-said-to-someone-while-they-are-e"
         },
         {
           "speaker": "علي",
-          "arabic": "الله يَعْطِيك الْعَافِيَة.",
-          "transliteration": "allah ya3Tik il-3afya.",
-          "english": "May God give you well-being."
+          "slot": "to-your-health-said-to-someone-after-they-finish",
+          "reply": true
         },
         {
           "speaker": "علي",
@@ -564,21 +559,16 @@
         },
         {
           "speaker": "ليلى",
-          "arabic": "نُعيماً!",
-          "transliteration": "noo3ayman!",
-          "english": "To your health!"
+          "slot": "to-your-health-said-to-someone-after-they-finish"
         },
         {
           "speaker": "علي",
-          "arabic": "الله يَعْطِيك الْعَافِيَة.",
-          "transliteration": "allah ya3Tik il-3afya.",
-          "english": "May God give you well-being."
+          "slot": "to-your-health-said-to-someone-after-they-finish",
+          "reply": true
         },
         {
           "speaker": "علي",
-          "arabic": "الحساب لو سمحت.",
-          "transliteration": "il-7isaab law sama7t.",
-          "english": "The bill, please."
+          "slot": "the-bill-please"
         },
         {
           "speaker": "صاحب المحل",
@@ -588,9 +578,7 @@
         },
         {
           "speaker": "علي",
-          "arabic": "قديش الحساب؟",
-          "transliteration": "gadish il-7isaab?",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         },
         {
           "speaker": "صاحب المحل",

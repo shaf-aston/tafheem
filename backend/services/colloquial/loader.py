@@ -43,6 +43,33 @@ def _phrase_faults(phrase: dict, name: str) -> list[str]:
     return said
 
 
+def _said(text: str) -> str:
+    """A sentence without its trailing punctuation, for telling a repeat from a new line."""
+    return str(text or "").rstrip(".،,؟?! ")
+
+
+def _say_slots(lesson: dict, phrases: list[dict], where: str) -> tuple[list[dict], list[str]]:
+    """Dialogue lines that name a phrase `slot` become that phrase's words (or its reply's)."""
+    said, by_slot = [], {phrase["slot"]: phrase for phrase in phrases}
+    lines = []
+    for at, line in enumerate(lesson.get("dialogue") or [], 1):
+        if "slot" not in line:
+            lines.append(line)
+            continue
+        one = by_slot.get(line["slot"])
+        if one is None:
+            said.append(f"{where} dialogue line {at} says {line['slot']!r}, which is not a phrase of the lesson")
+            continue
+        if line.get("reply"):
+            one = one.get("reply")
+            if one is None:
+                said.append(f"{where} dialogue line {at} says the reply of {line['slot']!r}, which has none")
+                continue
+        lines.append({**{field: one.get(field) for field in ("arabic", "transliteration", "english")},
+                      "speaker": line.get("speaker"), "slot": line["slot"]})
+    return lines, said
+
+
 def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     """What is wrong with one lesson. seen_ids is shared across the whole unit."""
     name = f"lesson {lesson.get('lesson')!r}"
@@ -56,8 +83,12 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
         said.append(f"{name} has no culture note")
     for at, phrase in enumerate(lesson.get("phrases") or [], 1):
         said.extend(_phrase_faults(phrase, f"{name} phrase {at}"))
+    phrased = {_said(one.get("arabic")) for phrase in lesson.get("phrases") or []
+               for one in (phrase, phrase.get("reply") or {})}
     for at, line in enumerate(lesson.get("dialogue") or [], 1):
         where = f"{name} dialogue line {at}"
+        if "slot" not in line and _said(line.get("arabic")) in phrased:
+            said.append(f"{where} repeats a phrase of the lesson; say it with slot")
         if not str(line.get("speaker") or "").strip():
             said.append(f"{where} has no speaker")
         said.extend(_phrase_faults(line, where))
@@ -102,7 +133,10 @@ def _fill(outline: dict, written: dict) -> tuple[dict, list[str]]:
         for missing in (slot for slot in slots if slot not in words):
             said.append(f"lesson {plan['lesson']!r} has no words for {missing!r}")
         phrases = [{**slot, **words[slot["slot"]]} for slot in plan["phrases"] if slot["slot"] in words]
-        filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases, "written": True})
+        dialogue, faults = _say_slots(lesson, phrases, f"lesson {plan['lesson']!r}")
+        said.extend(faults)
+        filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases,
+                       "dialogue": dialogue, "written": True})
     return {**written, "title": outline["title"], "lessons": filled}, said
 
 

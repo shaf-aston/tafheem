@@ -79,9 +79,7 @@
       "dialogue": [
         {
           "speaker": "رامي",
-          "arabic": "تَاكْسِي!",
-          "transliteration": "taksi!",
-          "english": "Taxi!"
+          "slot": "taxi"
         },
         {
           "speaker": "شوفير",
@@ -103,9 +101,7 @@
         },
         {
           "speaker": "رامي",
-          "arabic": "شَغَّل الْعِدَّاد لَو سَمَحْت.",
-          "transliteration": "shaghghel el-3addaad law samaht.",
-          "english": "Turn on the meter please."
+          "slot": "turn-on-the-meter-please"
         },
         {
           "speaker": "شوفير",
@@ -505,9 +501,7 @@
         },
         {
           "speaker": "ليال",
-          "arabic": "بْعِيد وِلَّا قْرِيب؟",
-          "transliteration": "b3eed willa 2reeb?",
-          "english": "Far or near?"
+          "slot": "is-it-far-or-near"
         },
         {
           "speaker": "رجّال",
@@ -913,9 +907,7 @@
         },
         {
           "speaker": "جاد",
-          "arabic": "فِي مْحَل فَاضِي؟",
-          "transliteration": "fi ma7all faaDi?",
-          "english": "Is there an empty seat?"
+          "slot": "is-there-an-empty-seat"
         },
         {
           "speaker": "سوّاق",
@@ -925,9 +917,7 @@
         },
         {
           "speaker": "جاد",
-          "arabic": "قِدِّيش الْأُجْرَة؟",
-          "transliteration": "2addeish el-ojra?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "سوّاق",
@@ -949,9 +939,7 @@
         },
         {
           "speaker": "جاد",
-          "arabic": "نَزَّلْنِي هُون لَو سَمَحْت.",
-          "transliteration": "nazzelni hon law samaht.",
-          "english": "Let me off here please."
+          "slot": "please-let-me-off-here"
         },
         {
           "speaker": "سوّاق",
@@ -1681,9 +1669,7 @@
       "dialogue": [
         {
           "speaker": "Karim",
-          "arabic": "فَاضِي؟",
-          "transliteration": "faadi?",
-          "english": "Are you free?"
+          "slot": "are-you-free-asking-a-taxi-driver-if-available"
         },
         {
           "speaker": "Abu Ali",
@@ -1705,9 +1691,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "قُدِيش بِيَاخِد الطَّرِيق؟",
-          "transliteration": "2addeesh biyaakhod it-tari2?",
-          "english": "How long does the way take?"
+          "slot": "how-long-does-the-way-take"
         },
         {
           "speaker": "Abu Ali",
@@ -1717,9 +1701,7 @@
         },
         {
           "speaker": "Karim",
-          "arabic": "قُدِيش الْأُجْرَة؟",
-          "transliteration": "2addeesh il-2ojra?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "Abu Ali",

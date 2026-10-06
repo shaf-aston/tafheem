@@ -33,12 +33,14 @@
             "arabic": "تَمَام، اِرْكَب.",
             "transliteration": "tamam, erkab.",
             "english": "Okay, get in."
-          }
+          },
+          "english": "Please, I want to go to Old Sana'a."
         },
         {
           "slot": "can-you-take-me-to-bab-touma",
           "arabic": "تِقْدَر تُوصِلْنِي الْجَامِع الْكَبِير؟",
-          "transliteration": "tigdar twassilni el-jame3 el-kbeer?"
+          "transliteration": "tigdar twassilni el-jame3 el-kbeer?",
+          "english": "Can you take me to the Great Mosque?"
         },
         {
           "slot": "turn-on-the-meter-please",
@@ -116,9 +118,7 @@
         },
         {
           "speaker": "راكب",
-          "arabic": "شَغِّل الْعَدَّاد لَوْ سَمَحْتَ.",
-          "transliteration": "shaghghel el-3addad law samaht.",
-          "english": "Turn on the meter please."
+          "slot": "turn-on-the-meter-please"
         },
         {
           "speaker": "سواق",
@@ -478,7 +478,8 @@
         {
           "slot": "from-where-do-i-get-to-the-umayyad-mosque",
           "arabic": "مِن وَيْن أُرْوح لِلْجَامِع الْكَبِير؟",
-          "transliteration": "min wayn aroo7 lel-jame3 el-kbeer?"
+          "transliteration": "min wayn aroo7 lel-jame3 el-kbeer?",
+          "english": "How do I get to the Great Mosque?"
         },
         {
           "slot": "thanks-a-lot",
@@ -507,9 +508,7 @@
         },
         {
           "speaker": "محلي",
-          "arabic": "دُور عَلَى الْيَمِين عِنْد الإِشَارَة.",
-          "transliteration": "door 3ala el-yameen 3ind el-ishaara.",
-          "english": "Turn right at the traffic light."
+          "slot": "turn-right-at-the-traffic-light"
         },
         {
           "speaker": "سائل",
@@ -805,7 +804,8 @@
         {
           "slot": "do-you-stop-at-halbouni-roundabout",
           "arabic": "تُوقِف عِنْد سَاحَة الْقَصْر؟",
-          "transliteration": "twaqif 3ind saha el-2asr?"
+          "transliteration": "twaqif 3ind saha el-2asr?",
+          "english": "Do you stop at al-Qasr Square?"
         },
         {
           "slot": "please-let-me-off-here",
@@ -1560,9 +1560,7 @@
       "dialogue": [
         {
           "speaker": "مُحَمَّد",
-          "arabic": "فَاضِي؟",
-          "transliteration": "faadi?",
-          "english": "Are you free?"
+          "slot": "are-you-free-asking-a-taxi-driver-if-available"
         },
         {
           "speaker": "أَبُو قَاسِم",
@@ -1572,21 +1570,15 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "أَبِي أَرْوَح الْمَدِينَة الْقَدِيمَة.",
-          "transliteration": "abi aro7 il-madiina il-qadiima.",
-          "english": "I want to go to the Old City."
+          "slot": "i-want-to-go-to-the-old-city"
         },
         {
           "speaker": "أَبُو قَاسِم",
-          "arabic": "تَحْت أَمْرَك.",
-          "transliteration": "ta7t amrak.",
-          "english": "At your service."
+          "slot": "at-your-service-a-common-polite-reply-from-a-tax"
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "كَمْ يَاخِذ الطَّرِيق؟",
-          "transliteration": "kam yaakhith it-tareeq?",
-          "english": "How long does the way take?"
+          "slot": "how-long-does-the-way-take"
         },
         {
           "speaker": "أَبُو قَاسِم",
@@ -1596,9 +1588,7 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "كَمْ الأُجْرَة؟",
-          "transliteration": "kam il-ujra?",
-          "english": "How much is the fare?"
+          "slot": "how-much-is-the-fare"
         },
         {
           "speaker": "أَبُو قَاسِم",

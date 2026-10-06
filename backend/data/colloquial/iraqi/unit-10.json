@@ -428,7 +428,8 @@
         {
           "slot": "in-winter-it-gets-very-cold-in-damascus",
           "arabic": "بِالشّتَا الِجّو يِبِرْد هَوَايَة بِبَغْدَاد",
-          "transliteration": "bishshita ijjaw yibrad hawaaya bibaghdaad"
+          "transliteration": "bishshita ijjaw yibrad hawaaya bibaghdaad",
+          "english": "In winter it gets very cold in Baghdad."
         },
         {
           "slot": "in-summer-the-weather-s-hot-and-dry",
@@ -483,7 +484,8 @@
         {
           "slot": "summer-in-damascus-is-long",
           "arabic": "الصّيْف بِبَغْدَاد طَوِيل",
-          "transliteration": "iSSeef bibaghdaad Taweel"
+          "transliteration": "iSSeef bibaghdaad Taweel",
+          "english": "Summer in Baghdad is long."
         }
       ],
       "dialogue": [

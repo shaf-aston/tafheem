@@ -108,9 +108,7 @@
         },
         {
           "speaker": "Youssef",
-          "arabic": "هادي السبعة.",
-          "transliteration": "haadi ssab3a.",
-          "english": "It's seven."
+          "slot": "it-s-seven-o-clock"
         },
         {
           "speaker": "Salma",
@@ -483,9 +481,7 @@
         },
         {
           "speaker": "Youssef",
-          "arabic": "وَاش كَايْن شِي جْدِيد الْيَوم؟",
-          "transliteration": "waash kayn shi jdiid lyoum?",
-          "english": "What's the news today?"
+          "slot": "what-s-the-news-today"
         },
         {
           "speaker": "Salma",
@@ -864,9 +860,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "أَش غَادِي نَاكْلو فَالْعِشَا؟",
-          "transliteration": "ash ghaadi naaklo f-l3ashaa?",
-          "english": "What will we eat for dinner?"
+          "slot": "what-will-we-eat-for-dinner"
         },
         {
           "speaker": "Youssef",
@@ -912,9 +906,8 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "وانت من أهله.",
-          "transliteration": "w-nta men ahlo.",
-          "english": "And you too."
+          "slot": "good-night",
+          "reply": true
         }
       ],
       "de_book": [
@@ -1235,9 +1228,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "فُوقَاش الرّيونْيون؟",
-          "transliteration": "foo9aash l-reyonyon?",
-          "english": "When is the meeting?"
+          "slot": "when-is-the-meeting"
         },
         {
           "speaker": "Youssef",
@@ -1277,9 +1268,7 @@
         },
         {
           "speaker": "Youssef",
-          "arabic": "نهار السبت كانمشيو للسوق.",
-          "transliteration": "nhaar ssbt kanmshiw l-ssoo9.",
-          "english": "On Saturday we go to the market."
+          "slot": "on-saturday-we-go-to-the-market"
         },
         {
           "speaker": "Salma",

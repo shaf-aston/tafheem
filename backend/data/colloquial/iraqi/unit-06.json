@@ -147,9 +147,7 @@
         },
         {
           "speaker": "Ali",
-          "arabic": "أَقْدَر أَجَرْبَه؟",
-          "transliteration": "agdar ajarrba?",
-          "english": "Can I try it on?"
+          "slot": "can-i-try-it-on"
         },
         {
           "speaker": "Abu Hussein",
@@ -933,9 +931,8 @@
         },
         {
           "speaker": "Abu Ali",
-          "arabic": "أنت شكد تنطي؟",
-          "transliteration": "inta shgad tinTi?",
-          "english": "How much will you give?"
+          "slot": "can-you-lower-the-price",
+          "reply": true
         },
         {
           "speaker": "Hussein",
@@ -1331,9 +1328,7 @@
         },
         {
           "speaker": "Abu Ali",
-          "arabic": "شْوَكِت اِشْتَرِيتُه؟",
-          "transliteration": "shwakit ishtareeta?",
-          "english": "When did you buy it?"
+          "slot": "when-did-you-buy-it"
         },
         {
           "speaker": "Mustafa",
@@ -1349,9 +1344,7 @@
         },
         {
           "speaker": "Mustafa",
-          "arabic": "تِرْجِّعُون الْفُلُوس؟",
-          "transliteration": "trajj3oon il-fuloos?",
-          "english": "Do you give money back?"
+          "slot": "do-you-give-money-back"
         },
         {
           "speaker": "Abu Ali",

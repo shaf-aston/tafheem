@@ -145,9 +145,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "شَكْلَك فِي عِنْدَك رَشْح",
-          "transliteration": "shaklak fi 3indak rash7",
-          "english": "Looks like you have a cold"
+          "slot": "looks-like-you-have-a-cold-to-a-man"
         },
         {
           "speaker": "Samer",
@@ -509,15 +507,12 @@
         },
         {
           "speaker": "Layla",
-          "arabic": "لَازِم وَصْفَة طِبِّيَّة؟",
-          "transliteration": "laazim waSfeh Tibbiyye?",
-          "english": "Do I need a prescription?"
+          "slot": "do-i-need-a-prescription"
         },
         {
           "speaker": "Pharmacist",
-          "arabic": "لَا، هَاد بِيْنْدِفَع مِن دُون وَصْفَة",
-          "transliteration": "la, haad byindafa3 min doon waSfeh",
-          "english": "No, this one is sold without a prescription"
+          "slot": "do-i-need-a-prescription",
+          "reply": true
         },
         {
           "speaker": "Layla",
@@ -916,15 +911,12 @@
         },
         {
           "speaker": "Doctor",
-          "arabic": "عِنْدَك حَسَاسِيَّة مِن شَي دَوَا؟",
-          "transliteration": "3indak 7asaasiyye min shi dawa?",
-          "english": "Are you allergic to any medicine?"
+          "slot": "are-you-allergic-to-any-medicine-to-a-man"
         },
         {
           "speaker": "Fadi",
-          "arabic": "لَا، ما عِنْدِي حَسَاسِيَّة مِن شَي",
-          "transliteration": "la, ma 3indi 7asaasiyye min shi",
-          "english": "No, I'm not allergic to anything"
+          "slot": "are-you-allergic-to-any-medicine-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Doctor",

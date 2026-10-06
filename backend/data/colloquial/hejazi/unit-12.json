@@ -99,9 +99,7 @@
       "dialogue": [
         {
           "speaker": "سامر",
-          "arabic": "أَلُّو؟",
-          "transliteration": "aaloo?",
-          "english": "Hello?"
+          "slot": "hello-answering-the-phone"
         },
         {
           "speaker": "نور",
@@ -443,7 +441,8 @@
         {
           "slot": "we-ll-meet-at-the-umayyad-mosque",
           "arabic": "نِتْقَابَل عِنْد الْحَرَم",
-          "transliteration": "nitgaabal 3ind il-7aram"
+          "transliteration": "nitgaabal 3ind il-7aram",
+          "english": "We'll meet at the Haram."
         },
         {
           "slot": "i-know-exactly-where-the-place-is",
@@ -471,15 +470,11 @@
         },
         {
           "speaker": "نور",
-          "arabic": "أَيِّ وَقْت يِنَاسِبَك؟",
-          "transliteration": "ayy wagt yinaasibak?",
-          "english": "What time suits you?"
+          "slot": "what-time-suits-you"
         },
         {
           "speaker": "سامر",
-          "arabic": "السَّاعَة سَبْعَة تَمَام؟",
-          "transliteration": "is-saa3a sab3a tamaam?",
-          "english": "Is seven o'clock good?"
+          "slot": "is-7-o-clock-good"
         },
         {
           "speaker": "نور",
@@ -837,21 +832,15 @@
         },
         {
           "speaker": "سامر",
-          "arabic": "آسِف، التَّغْيِير جَا فَجْأَة",
-          "transliteration": "aasif, it-taghyeer ja faj2a",
-          "english": "Sorry, the change came suddenly."
+          "slot": "sorry-for-the-sudden-change"
         },
         {
           "speaker": "نور",
-          "arabic": "خَلِّينَا نِلَاقِي يَوْم يِنَاسِبْنَا إِحْنَا الِاثْنَيْن",
-          "transliteration": "khallina nilaagi yoom yinaasibna i7na il-ithneen",
-          "english": "Let us find a day that suits us both."
+          "slot": "let-s-find-a-day-that-suits-us-both"
         },
         {
           "speaker": "سامر",
-          "arabic": "مُمْكِن نِتْقَابَل بَعْد الظُّهْر بَدَل الصُّبْح؟",
-          "transliteration": "mumkin nitgaabal ba3d idh-dhuhr badal is-sub7?",
-          "english": "Can we meet in the afternoon instead of the morning?"
+          "slot": "can-we-meet-in-the-afternoon-instead-of-the-morn"
         },
         {
           "speaker": "نور",
@@ -1120,7 +1109,8 @@
             "arabic": "أَيْوَه، قُول لِي",
             "transliteration": "aywa, gool li",
             "english": "Yes, tell me."
-          }
+          },
+          "english": "Can you pass him a message from me?"
         },
         {
           "slot": "tell-him-to-call-me",
@@ -1166,39 +1156,28 @@
       "dialogue": [
         {
           "speaker": "نور",
-          "arabic": "أَلُّو، سَامِر مَوْجُود؟",
-          "transliteration": "aaloo, Saamer mawjood?",
-          "english": "Hello, is Samer there?"
+          "slot": "hello-is-samer-there"
         },
         {
           "speaker": "أخو سامر",
-          "arabic": "لَا، مُو هِنَا دَحِين",
-          "transliteration": "laa, moo hina da7iin",
-          "english": "No, he is not here right now."
+          "slot": "no-he-s-not-here-right-now"
         },
         {
           "speaker": "نور",
-          "arabic": "إِمْتَى بِيِرْجَع؟",
-          "transliteration": "imta biyirja3?",
-          "english": "When will he be back?"
+          "slot": "when-will-he-be-back"
         },
         {
           "speaker": "أخو سامر",
-          "arabic": "مَا أَدْرِي بِالضَّبْط، بَعْد شْوَيَّة",
-          "transliteration": "ma adri bid-dabt, ba3d shwayya",
-          "english": "I do not know exactly, in a bit."
+          "slot": "i-don-t-know-exactly-in-a-bit"
         },
         {
           "speaker": "نور",
-          "arabic": "تِقْدِر تِنْقُل لَهُ رِسَالَة مِنِّي؟",
-          "transliteration": "tigdar tingul lahu risaala minni?",
-          "english": "Can you pass him a message from me?"
+          "slot": "can-you-take-a-message-for-me"
         },
         {
           "speaker": "أخو سامر",
-          "arabic": "أَيْوَه، قُول لِي",
-          "transliteration": "aywa, gool li",
-          "english": "Yes, tell me."
+          "slot": "can-you-take-a-message-for-me",
+          "reply": true
         },
         {
           "speaker": "نور",

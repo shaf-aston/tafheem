@@ -99,9 +99,7 @@
       "dialogue": [
         {
           "speaker": "Rami",
-          "arabic": "مَرْحَبًا.",
-          "transliteration": "mar7aba.",
-          "english": "Hello."
+          "slot": "hello"
         },
         {
           "speaker": "Lina",
@@ -117,15 +115,11 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "تَمَام، الْحَمْدُ لِلَّهِ.",
-          "transliteration": "tamaam, il-7amdella.",
-          "english": "Fine, thank God."
+          "slot": "good-thank-god"
         },
         {
           "speaker": "Rami",
-          "arabic": "شْنُو إِسْمِك؟",
-          "transliteration": "shnoo ismik?",
-          "english": "What's your name?"
+          "slot": "what-s-your-name-to-a-woman"
         },
         {
           "speaker": "Lina",
@@ -135,9 +129,7 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "إِسْمِي رَامِي.",
-          "transliteration": "ismi Raami.",
-          "english": "My name is Rami."
+          "slot": "my-name-is-rami"
         },
         {
           "speaker": "Lina",
@@ -147,15 +139,11 @@
         },
         {
           "speaker": "Rami",
-          "arabic": "وَأَنَا كِمَان.",
-          "transliteration": "w ana kiman.",
-          "english": "Me too."
+          "slot": "me-too"
         },
         {
           "speaker": "Lina",
-          "arabic": "مِنْ وَيْن أَنْتَ؟",
-          "transliteration": "min wayn anta?",
-          "english": "Where are you from?"
+          "slot": "where-are-you-from-to-a-man"
         },
         {
           "speaker": "Rami",
@@ -529,15 +517,11 @@
         },
         {
           "speaker": "Tareq",
-          "arabic": "شُكْرًا كَتِير.",
-          "transliteration": "shukran ktiir.",
-          "english": "Thank you very much."
+          "slot": "thank-you-very-much"
         },
         {
           "speaker": "Maya",
-          "arabic": "عَفْوًا.",
-          "transliteration": "3afwan.",
-          "english": "You're welcome."
+          "slot": "you-re-welcome-excuse-me"
         },
         {
           "speaker": "Tareq",
@@ -553,9 +537,7 @@
         },
         {
           "speaker": "Tareq",
-          "arabic": "آسِف، مَا فَهِمْت.",
-          "transliteration": "aasif, ma fahimt.",
-          "english": "Sorry, I didn't understand."
+          "slot": "sorry-i-didn-t-understand"
         },
         {
           "speaker": "Maya",
@@ -917,9 +899,7 @@
         },
         {
           "speaker": "Abu Samer",
-          "arabic": "الِسَّاعَة اثْنَين.",
-          "transliteration": "is-sa3a ithnain.",
-          "english": "It's two o'clock."
+          "slot": "it-s-two-o-clock"
         },
         {
           "speaker": "Nour",
@@ -1329,9 +1309,7 @@
         },
         {
           "speaker": "Khaled",
-          "arabic": "مِنْ هُنَّا؟",
-          "transliteration": "min hunna?",
-          "english": "From here?"
+          "slot": "from-here"
         },
         {
           "speaker": "Dima",
@@ -1365,9 +1343,7 @@
         },
         {
           "speaker": "Khaled",
-          "arabic": "بَعِيد؟",
-          "transliteration": "ba3eed?",
-          "english": "Is it far?"
+          "slot": "far"
         },
         {
           "speaker": "Dima",

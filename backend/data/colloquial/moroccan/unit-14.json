@@ -52,7 +52,8 @@
             "arabic": "آمِين",
             "transliteration": "amin",
             "english": "Amen"
-          }
+          },
+          "english": "May God bring it back for us and for you."
         },
         {
           "slot": "blessed-eid-to-you-all",
@@ -125,9 +126,7 @@
         },
         {
           "speaker": "سعاد",
-          "arabic": "اللَّهُ يْعَاوِد عَلِينَا وَعَلِيكُم",
-          "transliteration": "Allah y3awed 3lina w 3likom",
-          "english": "May God bring it back for us and you"
+          "slot": "may-you-witness-it-again-next-year"
         },
         {
           "speaker": "خالتي فاطمة",
@@ -553,9 +552,7 @@
         },
         {
           "speaker": "ياسين",
-          "arabic": "فُوقَاش الْفِطُور الْيَوم؟",
-          "transliteration": "fuqash l-ftur l-yum?",
-          "english": "What time is iftar today?"
+          "slot": "what-time-is-iftar-today"
         },
         {
           "speaker": "عمر",
@@ -1004,9 +1001,7 @@
         },
         {
           "speaker": "أمينة",
-          "arabic": "شْنُو جِبْتِي لِيهُم كَادُو؟",
-          "transliteration": "shnu jbti lihum kado?",
-          "english": "What gift did you bring them?"
+          "slot": "what-gift-did-you-bring-them"
         },
         {
           "speaker": "سميرة",

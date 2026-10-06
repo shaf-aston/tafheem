@@ -147,9 +147,7 @@
         },
         {
           "speaker": "Khalid",
-          "arabic": "أَقْدِر أَقِيسِه؟",
-          "transliteration": "agdar agiisa?",
-          "english": "Can I try it on?"
+          "slot": "can-i-try-it-on"
         },
         {
           "speaker": "Abu Saeed",
@@ -959,9 +957,7 @@
         },
         {
           "speaker": "Fahad",
-          "arabic": "مَا عِنْدَك أَرْخَص مِن هَذَا؟",
-          "transliteration": "ma 3indak arkhaS min haadha?",
-          "english": "Isn't there cheaper than this?"
+          "slot": "isn-t-there-cheaper-than-this"
         },
         {
           "speaker": "Abu Hamad",
@@ -1394,9 +1390,7 @@
         },
         {
           "speaker": "Sara",
-          "arabic": "تِرَجّعُون الْفْلُوس؟",
-          "transliteration": "trajji3uun il-fluus?",
-          "english": "Do you give money back?"
+          "slot": "do-you-give-money-back"
         },
         {
           "speaker": "Ahmed",

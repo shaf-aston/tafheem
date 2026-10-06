@@ -104,9 +104,7 @@
       "dialogue": [
         {
           "speaker": "Samer",
-          "arabic": "أَلُو؟",
-          "transliteration": "aloo?",
-          "english": "Hello?"
+          "slot": "hello-answering-the-phone"
         },
         {
           "speaker": "Mariam",
@@ -466,7 +464,8 @@
         {
           "slot": "we-ll-meet-at-the-umayyad-mosque",
           "arabic": "بِنْتِلَاقَى عِنْد اِلْمَسْجِد اِلْكَبِير",
-          "transliteration": "binitlaagaa 3ind il-masjid il-kabeer"
+          "transliteration": "binitlaagaa 3ind il-masjid il-kabeer",
+          "english": "We'll meet at the Grand Mosque."
         },
         {
           "slot": "i-know-exactly-where-the-place-is",
@@ -500,15 +499,12 @@
         },
         {
           "speaker": "Mariam",
-          "arabic": "السَّاعَة سَبْعَة زَينَة؟",
-          "transliteration": "is-saa3a sab3a zeena?",
-          "english": "Is 7 o'clock good for you?"
+          "slot": "is-7-o-clock-good"
         },
         {
           "speaker": "Samer",
-          "arabic": "تَمَام، نِتْلَاقَى السَّاعَة سَبْعَة",
-          "transliteration": "tamaam, nitlaagaa is-saa3a sab3a",
-          "english": "Great, we'll meet at 7."
+          "slot": "is-7-o-clock-good",
+          "reply": true
         },
         {
           "speaker": "Mariam",
@@ -1186,7 +1182,8 @@
             "arabic": "أَكِيد، شُو تِبِي أَقُول لِه؟",
             "transliteration": "akeed, shu tibi agool lah?",
             "english": "Sure, what do you want to tell him?"
-          }
+          },
+          "english": "Can you pass him a message?"
         },
         {
           "slot": "tell-him-to-call-me",
@@ -1237,9 +1234,7 @@
       "dialogue": [
         {
           "speaker": "Rashid",
-          "arabic": "أَلُو، سَامِر مَوْجُود؟",
-          "transliteration": "aloo, Saamer mawjuud?",
-          "english": "Hello, is Samer there?"
+          "slot": "hello-is-samer-there"
         },
         {
           "speaker": "Mariam",
@@ -1267,9 +1262,8 @@
         },
         {
           "speaker": "Mariam",
-          "arabic": "أَكِيد، شُو تِبِي أَقُول لِه؟",
-          "transliteration": "akeed, shu tibi agool lah?",
-          "english": "Sure, what do you want to tell him?"
+          "slot": "can-you-take-a-message-for-me",
+          "reply": true
         },
         {
           "speaker": "Rashid",

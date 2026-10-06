@@ -535,9 +535,7 @@
         },
         {
           "speaker": "Yassine",
-          "arabic": "وَاخَا، هَادْشِي مْزِيَان",
-          "transliteration": "waakha, haadshi mezyaan",
-          "english": "OK, that works."
+          "slot": "ok-that-works"
         },
         {
           "speaker": "Salma",
@@ -1283,9 +1281,7 @@
       "dialogue": [
         {
           "speaker": "Yassine",
-          "arabic": "عْفَاك، كَايِن شِي مُشْكِل صْغِير",
-          "transliteration": "3afak, kayn shi mushkil Sghiir",
-          "english": "Excuse me, there's a small problem."
+          "slot": "excuse-me-there-s-a-small-problem-to-a-man"
         },
         {
           "speaker": "Hassan",
@@ -1295,9 +1291,7 @@
         },
         {
           "speaker": "Yassine",
-          "arabic": "هادشي ماشي هو لي طلبت",
-          "transliteration": "haadshi maashi huwa li Tlebt",
-          "english": "This isn't what I ordered."
+          "slot": "this-isn-t-what-i-ordered-m"
         },
         {
           "speaker": "Hassan",

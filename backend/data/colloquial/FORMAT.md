@@ -44,8 +44,8 @@ key in every unit of a dialect.
 | field | what it is |
 |---|---|
 | `lesson` | `lesson-01`, one of the spine's lessons for this unit |
-| `phrases` | one per spine slot: `slot`, `arabic`, `transliteration`, and optionally `reply` (the natural answer, with its own `english`) |
-| `dialogue` | one real conversation, in order: `speaker`, `arabic`, `transliteration`, `english` |
+| `phrases` | one per spine slot: `slot`, `arabic`, `transliteration`, optionally `english` (only when this dialect's words mean something other than the spine's English; it replaces it for this dialect), and optionally `reply` (the natural answer, with its own `english`) |
+| `dialogue` | one real conversation, in order: `speaker`, `arabic`, `transliteration`, `english`. A line that repeats a phrase of the lesson is written `{"speaker", "slot"}` instead (add `"reply": true` for that phrase's reply) and takes the card's words; this is the preferred form, and a full copy of a phrase is a fault |
 | `de_book` | question and answer drill: `pair` and `response`, each a phrase |
 | `culture` | one or two sentences on when and with whom this is said |
 | `exercises` | the practice, see below |

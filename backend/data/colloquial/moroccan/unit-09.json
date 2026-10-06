@@ -123,9 +123,7 @@
         },
         {
           "speaker": "Yassine",
-          "arabic": "شْنُو وقَعْ لِيك؟",
-          "transliteration": "shnu wqa3 lik?",
-          "english": "What happened to you?"
+          "slot": "what-happened-to-you-to-a-man"
         },
         {
           "speaker": "Salma",
@@ -526,9 +524,7 @@
         },
         {
           "speaker": "Hamza",
-          "arabic": "وَاش عِنْدِك شِي دوَا لِلصُّدَاع؟",
-          "transliteration": "wash 3andek shi dwa l-Sda3?",
-          "english": "Do you have some medicine for a headache?"
+          "slot": "do-you-have-medicine-for-a-headache"
         },
         {
           "speaker": "Pharmacist",
@@ -550,9 +546,7 @@
         },
         {
           "speaker": "Hamza",
-          "arabic": "قِبْلَ مَا نَاكِل وِلَا مِن بعْدِ؟",
-          "transliteration": "qbel ma nakol wla mn b3d?",
-          "english": "Before eating or after?"
+          "slot": "before-eating-or-after"
         },
         {
           "speaker": "Pharmacist",
@@ -580,9 +574,7 @@
         },
         {
           "speaker": "Pharmacist",
-          "arabic": "اللَّه يِشَافِيك، تِصْبِح عَلَى خِير",
-          "transliteration": "allah yshafik, tSba7 3la kheer",
-          "english": "Get well soon, goodnight"
+          "slot": "get-well-soon-goodnight-to-a-man"
         }
       ],
       "de_book": [
@@ -961,15 +953,12 @@
         },
         {
           "speaker": "Doctor",
-          "arabic": "وَاش عِنْدِك الحِسَاسِيَة مِن شِي دوَا؟",
-          "transliteration": "wash 3andek l7sasiya mn shi dwa?",
-          "english": "Are you allergic to any medicine?"
+          "slot": "are-you-allergic-to-any-medicine-to-a-man"
         },
         {
           "speaker": "Khadija",
-          "arabic": "لَا، الحَمْدُ لِلَّه",
-          "transliteration": "la, lhamdulillah",
-          "english": "No, thank God"
+          "slot": "are-you-allergic-to-any-medicine-to-a-man",
+          "reply": true
         },
         {
           "speaker": "Doctor",

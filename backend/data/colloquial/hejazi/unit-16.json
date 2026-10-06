@@ -417,7 +417,8 @@
         {
           "slot": "i-grew-up-in-an-old-neighborhood-in-damascus",
           "arabic": "كَبِرْتِ فِي حَيٍّ قَدِيمٌ فِي جِدَّةِ",
-          "transliteration": "kabirt fi 7ay gadeem fi jidda"
+          "transliteration": "kabirt fi 7ay gadeem fi jidda",
+          "english": "I grew up in an old neighborhood in Jeddah."
         },
         {
           "slot": "i-had-a-friend-named-kareem",
@@ -1137,7 +1138,8 @@
         {
           "slot": "i-heard-that-samer-got-engaged",
           "arabic": "سِمِعْتِ إِنِّ سَالِمِ خَطَبِ",
-          "transliteration": "simit inn Salim khaTib"
+          "transliteration": "simit inn Salim khaTib",
+          "english": "I heard that Salem got engaged."
         },
         {
           "slot": "there-s-news-you-won-t-believe",

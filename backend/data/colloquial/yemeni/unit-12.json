@@ -99,9 +99,7 @@
       "dialogue": [
         {
           "speaker": "سامر",
-          "arabic": "آلُّو؟",
-          "transliteration": "aaloo?",
-          "english": "Hello?"
+          "slot": "hello-answering-the-phone"
         },
         {
           "speaker": "ليينة",
@@ -449,7 +447,8 @@
         {
           "slot": "we-ll-meet-at-the-umayyad-mosque",
           "arabic": "نِلْتَقِي عِنْد الْجَامِع الْكَبِير",
-          "transliteration": "niltagi 3ind il-jami3 il-kabiir"
+          "transliteration": "niltagi 3ind il-jami3 il-kabiir",
+          "english": "We'll meet at the Great Mosque."
         },
         {
           "slot": "i-know-exactly-where-the-place-is",
@@ -483,15 +482,12 @@
         },
         {
           "speaker": "ليينة",
-          "arabic": "السَّاعَة سَبْعَة زَيِّنَة؟",
-          "transliteration": "is-saa3a sab3a zayna?",
-          "english": "Is 7 o'clock good for you?"
+          "slot": "is-7-o-clock-good"
         },
         {
           "speaker": "سامر",
-          "arabic": "تَمَام، نِلْتَقِي السَّاعَة سَبْعَة",
-          "transliteration": "tamaam, niltagi is-saa3a sab3a",
-          "english": "Great, we'll meet at 7."
+          "slot": "is-7-o-clock-good",
+          "reply": true
         },
         {
           "speaker": "ليينة",
@@ -1132,7 +1128,8 @@
             "arabic": "أَيْوَه، شْنُو الرِّسَالَة؟",
             "transliteration": "aywah, shnoo ir-risaala?",
             "english": "Sure, what's the message?"
-          }
+          },
+          "english": "Can you pass him a message? (to a woman)"
         },
         {
           "slot": "tell-him-to-call-me",
@@ -1183,9 +1180,7 @@
       "dialogue": [
         {
           "speaker": "رامي",
-          "arabic": "آلُّو، سَامِر مَوْجُود؟",
-          "transliteration": "aaloo, Saamer mawjuud?",
-          "english": "Hello, is Samer there?"
+          "slot": "hello-is-samer-there"
         },
         {
           "speaker": "ليينة",
@@ -1213,9 +1208,8 @@
         },
         {
           "speaker": "ليينة",
-          "arabic": "أَيْوَه، شْنُو الرِّسَالَة؟",
-          "transliteration": "aywah, shnoo ir-risaala?",
-          "english": "Sure, what's the message?"
+          "slot": "can-you-take-a-message-for-me",
+          "reply": true
         },
         {
           "speaker": "رامي",

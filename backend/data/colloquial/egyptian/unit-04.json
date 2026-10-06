@@ -507,9 +507,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "عِنْدُكُم مَنيو بِالْإِنْجِلِيزي؟",
-          "transliteration": "3andukum menu bil-ingleezi?",
-          "english": "Do you have an English menu?"
+          "slot": "do-you-have-an-english-menu"
         },
         {
           "speaker": "Waiter",
@@ -519,21 +517,16 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "عِنْدُكُم إِيه النَّهَاردَة؟",
-          "transliteration": "3andukum eeh en-nahaarda?",
-          "english": "What do you have today?"
+          "slot": "what-do-you-have-today"
         },
         {
           "speaker": "Waiter",
-          "arabic": "عِنْدِنَا مَشْوِيَّات وِفِرَاخ وِكِفْتَة",
-          "transliteration": "3andina mashwiyyaat wi firaakh wi kofta",
-          "english": "We have grills, chicken and kofta."
+          "slot": "what-do-you-have-today",
+          "reply": true
         },
         {
           "speaker": "Omar",
-          "arabic": "فِيه أَكْل نَبَاتي؟",
-          "transliteration": "feeh akl nabaati?",
-          "english": "Is there vegetarian food?"
+          "slot": "is-there-vegetarian-food"
         },
         {
           "speaker": "Waiter",
@@ -543,9 +536,7 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "تِنْصَحْني آخُد إِيه؟",
-          "transliteration": "tinsa7ni aakhud eeh?",
-          "english": "What do you recommend I get?"
+          "slot": "what-do-you-recommend-i-get"
         },
         {
           "speaker": "Waiter",
@@ -933,9 +924,7 @@
         },
         {
           "speaker": "Salma",
-          "arabic": "ينفع كوباية مية؟",
-          "transliteration": "yinfa3 kobbayit mayya?",
-          "english": "Can I have a glass of water?"
+          "slot": "can-i-have-a-glass-of-water"
         },
         {
           "speaker": "Waiter",
@@ -945,9 +934,7 @@
         },
         {
           "speaker": "Youssef",
-          "arabic": "شُكْرَاً، كِدَه تَمَام",
-          "transliteration": "shukran, kida tamaam",
-          "english": "Thanks, that's good."
+          "slot": "thanks-that-s-good-enough"
         },
         {
           "speaker": "Salma",
@@ -1296,9 +1283,7 @@
         },
         {
           "speaker": "Ahmed",
-          "arabic": "الْحِسَاب كَام؟",
-          "transliteration": "el-7isaab kaam?",
-          "english": "How much is the bill?"
+          "slot": "how-much-is-the-bill"
         },
         {
           "speaker": "Waiter",
@@ -1338,9 +1323,7 @@
         },
         {
           "speaker": "Ahmed",
-          "arabic": "الْحِسَاب فِيه الْخِدْمَة؟",
-          "transliteration": "el-7isaab feeh el-khidma?",
-          "english": "Is the service included in the bill?"
+          "slot": "is-there-a-tip-included-in-the-bill"
         },
         {
           "speaker": "Waiter",
@@ -1350,15 +1333,11 @@
         },
         {
           "speaker": "Ahmed",
-          "arabic": "خَلِّي الْبَاقي",
-          "transliteration": "khalli l-baa2i",
-          "english": "Keep the change."
+          "slot": "keep-the-change"
         },
         {
           "speaker": "Hany",
-          "arabic": "تِسْلَم إِيدَك، الْأَكْل كَان تُحْفَة",
-          "transliteration": "tislam eedak, el-akl kaan to7fa",
-          "english": "Bless your hands, the food was superb."
+          "slot": "bless-your-hands-the-food-was-delicious"
         },
         {
           "speaker": "Waiter",
