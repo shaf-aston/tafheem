@@ -65,6 +65,8 @@ def _named(entry: dict, found: dict) -> None:
     if found["role"] != NAMED.fil and entry.get("type") == "fi'l":
         # لَسِحْرًا: CAMeL's verb is the parser's noun, so the verb's case goes with it
         entry.update(type="harf" if found["role"] in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
+    elif entry.get("type") == "harf" and found["role"] and found["role"] not in (NAMED.harf, NAMED.harf_jarr):
+        entry["type"] = "ism"  # أينما: a particle's card named for a place is a built noun
     if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
         found = {**found, "case": CASE_NAME[own]}  # a recorded ayah's name brings its own case
     moved = found["case"] and found["case"] != entry.get("case")
@@ -73,8 +75,8 @@ def _named(entry: dict, found: dict) -> None:
         if entry.get("case") == "mabni" and found["case"] == "jazm":
             moved = False
         # a word CAMeL took for a noun (ضُرِبَ، كان) or a mood the particle before settled
-        # (لن يذهب): the card is the verb's own, by the parser's tense
-        if entry.get("type") != "fi'l" or moved:
+        # (لن يذهب), or a command CAMeL read as past (فَاتَّبِعْنِي): the card is the verb's own, by naming's tense
+        if entry.get("type") != "fi'l" or moved or found.get("aspect") not in (None, entry.get("aspect")):
             aspect = found.get("aspect") or ("i" if found["case"] != "mabni" else None)
             entry.update(type="fi'l", **rule_engine.verb_card(entry["camel"]["base"], aspect, found["case"]))
         return

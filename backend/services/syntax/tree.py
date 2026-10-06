@@ -253,9 +253,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             place_of[unit["id"]] = in_place(condition["case"]) if condition["case"] else said["no_place"]
             clauses.add(unit["id"])
             framed.add(unit["id"])
-        if holder.get(answer["id"]) is None:
-            roots.append(answer)
-            holder[answer["id"]] = roots
+        # أينما تكونوا يدرككم: an answer hung nowhere, or under the opener or its verb (which
+        # leave their places just below), stands beside them at the top
+        if answer["id"] not in holder or any(_inside(answer, unit, children_of) for unit in (opener, verb)):
+            holder.setdefault(answer["id"], [answer])
+            _move(holder, answer, roots)
         for unit in (opener, verb):
             holder[unit["id"]].remove(unit)
             del holder[unit["id"]]
