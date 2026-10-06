@@ -33,7 +33,12 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
   // While the wheel spins itself to a typed match, scroll events are its own, not a hand.
   const steering = useRef(false)
   const id = useId()
-  const typeable = options.length >= theme.wheel['type-from']
+  const n = options.length
+  const typeable = n >= theme.wheel['type-from']
+  // A long enough list loops: drawn three times, kept to the middle copy, so its last choices sit above its first.
+  const loop = n >= theme.wheel['loop-from']
+  const rows = loop ? [...options, ...options, ...options] : options
+  const home = loop ? n : 0
 
   const chosen = options.find((o) => o.id === value)
   const text = (words) => (arabic ? <ArabicText size="base">{words}</ArabicText> : words)
@@ -48,12 +53,12 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
   }
 
   const close = (refocus) => { setOpen(false); setTyped(''); if (refocus) pill.current?.focus() }
-  const pick = (index) => { const o = options[index]; if (o && !o.disabled) { onChange(o.id); close(true) } }
+  const pick = (row) => { const o = options[row % n]; if (o && !o.disabled) { onChange(o.id); close(true) } }
 
   // On opening, the wheel starts at the chosen option, keys going to the type box or the wheel.
   useEffect(() => {
     if (!open) return
-    spin(Math.max(0, options.findIndex((o) => o.id === value)), false)
+    spin(home + Math.max(0, options.findIndex((o) => o.id === value)), false)
     ;(typeBox.current ?? wheel.current)?.focus()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
@@ -65,6 +70,13 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
     return () => document.removeEventListener('pointerdown', outside)
   }, [open])
 
+  // A row outside the middle copy jumps, unseen, to the same choice inside it.
+  const recentre = (row) => {
+    const shift = row < home ? n : row >= home + n ? -n : 0
+    if (shift) wheel.current.scrollTop += shift * wheel.current.children[0].offsetHeight
+    return row + shift
+  }
+
   // Spinning by hand moves the middle band too.
   const onScroll = () => {
     if (steering.current) return
@@ -72,12 +84,12 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
     const first = list?.children[0]
     if (!first) return
     const middle = list.scrollTop + list.clientHeight / 2 - first.offsetTop
-    setAt(Math.min(options.length - 1, Math.max(0, Math.floor(middle / first.offsetHeight))))
+    setAt(recentre(Math.min(rows.length - 1, Math.max(0, Math.floor(middle / first.offsetHeight)))))
   }
 
   const onKeyDown = (event) => {
     const step = { ArrowDown: 1, ArrowUp: -1 }[event.key]
-    if (step) { event.preventDefault(); spin(Math.min(options.length - 1, Math.max(0, at + step))) }
+    if (step) { event.preventDefault(); spin(Math.min(rows.length - 1, Math.max(0, recentre(at) + step))) }
     else if (event.key === 'Enter') { event.preventDefault(); pick(at) }
     else if (event.key === 'Escape') { event.preventDefault(); close(true) }
   }
@@ -85,18 +97,19 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
   const onType = (text) => {
     setTyped(text)
     const found = wheelFind(options, text)
-    if (found >= 0) spin(found)
+    if (found >= 0) spin(home + found)
   }
 
-  // Kept on screen by measuring the card itself, never a guess at its width:
-  // nudged in from whichever edge it crosses, as far from it as the pill is.
-  // Layout sizes, not the animated box, which starts the rise scaled down.
+  // Hangs from the pill's left edge, or from its right edge when it would cross
+  // the screen's, kept as far in as the pill is. Layout width, not the animated
+  // box, which starts the rise scaled down.
   const fit = (card) => {
     if (!card) return
-    const left = box.current.getBoundingClientRect().left
+    const { left, right } = box.current.getBoundingClientRect()
     const room = document.documentElement.clientWidth
-    const edge = Math.min((room - card.offsetWidth) / 2, left)
-    card.style.translate = `${Math.max(edge - left, Math.min(0, room - edge - left - card.offsetWidth))}px 0`
+    const gap = Math.min(left, room - right)
+    const x = left + card.offsetWidth > room - gap ? right - card.offsetWidth : left
+    card.style.translate = `${Math.max(gap, x) - left}px 0`
   }
 
   return (
@@ -142,10 +155,11 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
             />
           )}
           <div className="wheel-window">
-            <ul ref={wheel} id={id} role="listbox" aria-label={label} tabIndex={-1} aria-activedescendant={typeable ? undefined : `${id}-${at}`} onScroll={onScroll} onScrollEnd={() => { steering.current = false }} onWheel={() => { steering.current = false }} onTouchStart={() => { steering.current = false }} className="wheel-list">
-              {options.map((o, i) => (
+            <ul ref={wheel} id={id} role="listbox" aria-label={label} tabIndex={-1} aria-activedescendant={typeable ? undefined : `${id}-${at}`} onScroll={onScroll} onScrollEnd={() => { steering.current = false; setAt(recentre(at)) }} onWheel={() => { steering.current = false }} onTouchStart={() => { steering.current = false }} className="wheel-list">
+              {rows.map((o, i) => (
                 <li
-                  key={o.id}
+                  key={`${i}`}
+                  aria-hidden={(loop && (i < home || i >= home + n)) || undefined}
                   id={`${id}-${i}`}
                   role="option"
                   aria-selected={i === at}
