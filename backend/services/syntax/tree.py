@@ -179,11 +179,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             continue
         word = {"id": max(by_id) + 1 + len(understood), "form": kept["word"], "head": held["head"],
                 "rel": "PRD", "pos": "NOM", "pos_camel": ""}
-        # the khabar sits on what the unit hung on, and the unit hangs on it; a subject
-        # the unit headed (the لِ of الحمدُ لله) hangs on the khabar beside it instead
-        for old in (held, subject) if subject["head"] == held["id"] else (held,):
-            new = {**old, "head": word["id"]}
-            drawn[drawn.index(old)], by_id[old["id"]] = new, new
+        # the books write مبتدأ، خبر (ثابت)، ق (ثابت) side by side, so the khabar sits beside
+        # the unit; a subject the unit headed (the لِ of الحمدُ لله) comes out beside them too
+        if subject["head"] == held["id"]:
+            new = {**subject, "head": held["head"]}
+            drawn[drawn.index(subject)], by_id[subject["id"]] = new, new
         by_id[word["id"]] = word
         role_of[word["id"]] = kept["khabar_of"][role_of[subject["id"]]]
         why_of[word["id"]] = None
@@ -403,7 +403,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         inside.append((index, pieces(token, _leaf(index, role, why, None if why else _unit_role(name_of[token["id"]], kid_roles)))))
         printed[token["id"]] = inside[-1][1]["role"]
         label = label_of.get(token["id"]) or _label(token, kid_roles) or (top_label if token is root and token["id"] not in opened
-                                             else NOMINAL if token["id"] in clauses & nominal or token["id"] in understood
+                                             else NOMINAL if token["id"] in clauses & nominal
                                              else VERBAL if token["id"] in clauses or role == NAMED.fil else "")
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
@@ -414,7 +414,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             else None if token is root or token["pos"] == "PRT" or job_of[token["id"]] == NAMED.fil
             else job_of[token["id"]])
         # مِن نارٍ: a jar-majroor with a word to hang on is named by it, متعلق بـX
-        if (label == JAR_MAJROOR or token["id"] in hung) and (up := parent(token)) in at:
+        if token["id"] in hung:
+            label = FRAMES["attached"].format(word=kept["word"])
+        elif label == JAR_MAJROOR and (up := parent(token)) in at:
             label = FRAMES["attached"].format(word=columns[at[up]])
         return {"role": job,
                 "label": label,
