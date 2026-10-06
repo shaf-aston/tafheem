@@ -15,7 +15,7 @@ import { useHadithCollections } from '../lib/useHadithCollections'
 import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
 import ChipRow from './ui/ChipRow'
-import { NarratorError, NarratorFacts, NarratorLinks, NarratorName } from './ui/NarratorParts'
+import { NarratorError, NarratorHead, NarratorLinks } from './ui/NarratorParts'
 import ShowRest from './ui/ShowRest'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
@@ -56,11 +56,7 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
 
       {who && (
         <>
-          <div className="space-y-3">
-            <NarratorName who={who} as="h2" />
-            <NarratorFacts who={who} />
-            {who.lineage_ar && <ArabicText as="p" size="sm" className="block text-[var(--text-dim)] m-0">{who.lineage_ar}</ArabicText>}
-          </div>
+          <NarratorHead who={who} />
 
           {/* The three side by side where the width allows, one column on a phone. */}
           <div className="grid gap-x-6 gap-y-4 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))] [&>*]:min-w-0">
