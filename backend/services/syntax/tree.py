@@ -17,7 +17,7 @@ from backend.services.syntax.facts import (Sentence, completes_kaada, is_masdar,
                                           shown_cases)
 from backend.services.syntax.naming import base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import has_tanween, letters, own_letters
+from backend.services.harakat import SHADDA, has_tanween, letters, own_letters
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
@@ -30,7 +30,6 @@ NAMED = named_roles()
 FRAMES = frames()
 CARDS = dict(family_cards())
 JAR_MAJROOR = term_ar("jar_majroor")
-SHADDA = "ّ"
 
 
 def _leaf(index: int, role: str | None, why: dict | None = None, name: str | None = None) -> dict:
@@ -174,7 +173,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
 
     def understand(text: str, role: str, place: int, **word) -> dict:
         """A word no one writes: its own column before `place`, a role, drawn hidden."""
-        word = {"id": max(by_id) + 1 + len(understood), "form": text, **word}
+        word = {"id": max(by_id) + 1, "form": text, **word}
         by_id[word["id"]] = word
         role_of[word["id"]] = role
         why_of[word["id"]] = None
@@ -207,7 +206,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     for noun in [t for t in drawn if t["id"] in typed_at and role_of[t["id"]] is None
                  and t["head"] not in by_id and t["pos"] == "NOM" and shown_cases(t) == {"a"}
                  and has_tanween(t.get("typed"))]:
-        verb = understand(said_verb["word"], said_verb["role"], drawn.index(noun), head=0, rel="---", pos="VRB",
+        verb = understand(said_verb["word"], NAMED.fil, drawn.index(noun), head=0, rel="---", pos="VRB",
                           pos_camel="", base=said_verb["word"], asp="na")
         role_of[noun["id"]] = said_verb["noun"]["masdar" if is_masdar(noun) else "other"]
         why_of[noun["id"]] = None  # the dash was for a case no job fitted; now one does
