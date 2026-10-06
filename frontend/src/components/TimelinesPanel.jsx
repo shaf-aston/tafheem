@@ -15,7 +15,7 @@ import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery } from '@tanstack/react-query'
 
 import { timelinesQuery } from '../api'
-import { parsePlace, placeOf } from '../lib/timelineLayout'
+import { nameOfPlace, parsePlace, placeOf } from '../lib/timelineLayout'
 
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
@@ -75,6 +75,7 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
       <SectionHeader
         title="Timelines"
         arabic="التاريخ"
+        nameOf={(q) => nameOfPlace(q, data.sections)}
         aside={<Segmented label="Science" options={filter} value={science} onChange={setScience} accent={accent} wrap />}
       />
 

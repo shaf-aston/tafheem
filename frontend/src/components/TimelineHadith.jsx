@@ -10,7 +10,8 @@
  *
  * The words come with the library (services/timelines), so an opened event has
  * them already. A cited number with no words is not an error: the tab shows the
- * number alone, as it always did.
+ * number alone, as it always did. The chain of narrators is left to the Hadith
+ * tab: here the reader came for what was said about the event.
  */
 import HadithText from './ui/HadithText'
 import { hadithKey } from '../lib/hadithWords'
@@ -32,6 +33,7 @@ export default function TimelineHadith({ refs = [], only, library, accent, class
           arabic={library.hadith[key].arabic}
           english={library.hadith[key].english}
           accent={accent}
+          hideChain
         />
       ))}
     </ul>

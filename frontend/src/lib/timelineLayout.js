@@ -198,6 +198,15 @@ export const placeOf = (section, event, report) => (
   report ? `${section}/${event}/asbab/${report}` : event ? `${section}/${event}` : section
 )
 
+/** A place as a reader names it: the event's title, else the section's name, the address itself when neither exists. */
+export function nameOfPlace(q, sections) {
+  const place = parsePlace(q, sections)
+  const section = sections.find((s) => s.id === place?.section)
+  if (!section) return q
+  const event = section.events.find((e) => e.id === place.event)
+  return event ? (place.report ? `${event.title} ${place.report}` : event.title) : section.name
+}
+
 /**
  * The ayah a Qur'an reference opens on: the first of its range, or the first of
  * the surah. The Qur'an tab reads one ayah at a time (QuranLookup's AYAH_REF).

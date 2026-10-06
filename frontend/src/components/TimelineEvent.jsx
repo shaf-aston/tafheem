@@ -42,7 +42,6 @@ export default function TimelineEvent({ section, event, library, accent, onGo, h
       <header className="tl-head">
         <span className="tl-clip"><TopicIcon topic={sectionLook(section.id).icon} className="tl-ico" /></span>
         <TimelineWhere section={section} event={event} here={here} onHere={onHere} onPick={onPick} />
-        <span className="tl-chip mt-2 inline-block">{section.name}</span>
         <h3>{event.title}</h3>
         <ArabicText className="tl-ar arabic-inline block">{event.arabic}</ArabicText>
         <div className="tl-facts">

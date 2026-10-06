@@ -7,11 +7,13 @@
  * `aside` is for a panel's own control, Nahw's two views, riding there too. A
  * short title leaves that half of the line empty, and a control put under the
  * title instead pushed the whole panel down a row for no gain.
+ *
+ * `nameOf` turns a step's address into words, for a tab whose addresses are ids.
  */
 import ArabicText from './ArabicText'
 import Trail from './Trail'
 
-export default function SectionHeader({ title, arabic, subtitle, aside = null }) {
+export default function SectionHeader({ title, arabic, subtitle, aside = null, nameOf }) {
   return (
     <div className="fade-in">
       <div className="flex items-baseline justify-between gap-4 flex-wrap">
@@ -33,7 +35,7 @@ export default function SectionHeader({ title, arabic, subtitle, aside = null })
 
         <div className="flex items-center justify-end gap-3 flex-wrap min-w-0 ms-auto">
           {aside}
-          <Trail />
+          <Trail nameOf={nameOf} />
         </div>
       </div>
       {subtitle && <p className="text-[var(--text-dim)] text-sm leading-snug mt-1 max-w-prose">{subtitle}</p>}
