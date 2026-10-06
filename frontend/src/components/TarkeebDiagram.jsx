@@ -13,7 +13,7 @@ import { Fragment, useCallback, useLayoutEffect, useMemo, useState } from 'react
 
 import { isQuranic, joinedOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
-import { kids, pieces, rows, share, splitConnectors } from '../lib/tarkeebLayout'
+import { cells, rows, splitConnectors } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
 import { colorFor } from '../theme'
 
@@ -48,20 +48,28 @@ function Bracket({ node, atEdge, style }) {
 
   return (
     <div className="tk-group" data-level={node.level} style={style}>
+      {/* each name over its own words' columns: the row is a subgrid of the chart's */}
       <div className="tk-roles">
-        {(kids(node) ?? pieces(node)).map((piece, index) => (
-          <Fragment key={index}>
-            {index > 0 && <span className="tk-plus" aria-hidden="true">+</span>}
-            <div
-              className={`tk-role${piece.gap ? ' tk-gap' : ''}${piece.raw_wording ? ' tk-raw' : ''}`}
-              style={{ flexGrow: share(piece), '--tone': roleVar(piece.tone) }}
-            >
-              {/* Tooltip is a no-op without text, so every role can pass through
-                  it, only the roles with a `detail` (currently the ghair-عامل
-                  connectives) end up hoverable. */}
-              <Tooltip text={piece.detail}>{piece.role}</Tooltip>
-            </div>
-          </Fragment>
+        {cells(node).map((cell, index) => (
+          <div
+            key={index}
+            className={`tk-cell${index > 0 ? ' tk-after' : ''}`}
+            style={{ gridColumn: `${cell.from - node.from + 1} / ${cell.to - node.from + 2}` }}
+          >
+            {cell.roles.map((piece, k) => (
+              <Fragment key={k}>
+                {k > 0 && <span className="tk-plus" aria-hidden="true">+</span>}
+                <div
+                  className={`tk-role${piece.gap ? ' tk-gap' : ''}${piece.raw_wording ? ' tk-raw' : ''}`}
+                  style={{ '--tone': roleVar(piece.tone) }}
+                >
+                  {/* Tooltip is a no-op without text, so every role can pass through
+                      it, only the roles with a `detail` end up hoverable. */}
+                  <Tooltip text={piece.detail}>{piece.role}</Tooltip>
+                </div>
+              </Fragment>
+            ))}
+          </div>
         ))}
       </div>
       <div className="tk-brace" style={{ '--tone': roleVar(node.tone) }}>{atEdge && name}</div>
@@ -119,9 +127,9 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
   const canSplit = split.words.length > words.length
   const shown = mode === 'split' && canSplit ? split : { words, written: written ?? words.map((_, i) => i), tree }
   const levels = rows(shown.tree, shown.words.length)
-  const cells = writtenWords(shown.written)
+  const spans = writtenWords(shown.written)
   // the columns of a written word cut into pieces
-  const cut = new Set(cells.flatMap(({ from, to }) => (to > from ? Array.from({ length: to - from + 1 }, (_, k) => from + k) : [])))
+  const cut = new Set(spans.flatMap(({ from, to }) => (to > from ? Array.from({ length: to - from + 1 }, (_, k) => from + k) : [])))
   const goTo = (index) => {
     const view = strip.current
     const word = view.querySelectorAll('.tk-word')[index]
@@ -176,12 +184,12 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
             gridTemplateColumns: `${shown.words.map((_, index) => (cut.has(index) ? 'max-content' : 'minmax(max-content, 1fr)')).join(' ')} ${NAME_COLUMN}`,
           }}
         >
-          {cells.map(({ from, to }) => {
+          {spans.map(({ from, to }) => {
             const word = shown.words[from]
             // The mark comes from the API, so no text stands for "not written" here.
             const missing = unwritten && word === unwritten.mark
-            // فَـ لْـ يَصُمْهُ: one written word is drawn once across its pieces' columns,
-            // its pieces close and joined as the script joins them, on one line
+            // فَـ لْـ يَصُمْهُ: one written word drawn across its pieces' columns, each piece
+            // over its own name, joined to the next by a line as the script joins them
             const pieces = shown.words.slice(from, to + 1)
             return (
               <div
@@ -189,13 +197,18 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
                 key={`word-${from}`}
                 style={{ gridColumn: `${from + 1} / ${to + 2}` }}
               >
-                <Tooltip text={missing ? unwritten.note : undefined}>
-                  <span>
-                    {to > from
-                      ? pieces.map((text, k) => <span key={k} className="tk-cut">{seatSmallAlef(k < pieces.length - 1 ? joinedOn(text) : text)}</span>)
-                      : seatSmallAlef(word)}
-                  </span>
-                </Tooltip>
+                {to > from ? (
+                  pieces.map((text, k) => (
+                    <span key={k} className="tk-cut" style={{ gridColumn: k + 1 }}>
+                      {seatSmallAlef(k < pieces.length - 1 ? joinedOn(text) : text)}
+                      {k < pieces.length - 1 && <span className="tk-join" aria-hidden="true" />}
+                    </span>
+                  ))
+                ) : (
+                  <Tooltip text={missing ? unwritten.note : undefined}>
+                    <span>{seatSmallAlef(word)}</span>
+                  </Tooltip>
+                )}
               </div>
             )
           })}
