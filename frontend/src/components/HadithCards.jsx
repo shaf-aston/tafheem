@@ -9,7 +9,8 @@
  * because the green dot by the collection's name says it once for all of them.
  * Without it (search, Starred) hadiths from several collections meet, so the
  * label names the collection and every card carries its grading.
- * `names` (a book's, from lib/useNarrators) make the narrators in the Arabic tappable;
+ * Narrators come from each card's own book (lib/useNarrators), so names are tappable and the
+ * family fold shows in a book, in search and in Starred alike.
  * `onNarrator` opens one narrator's full page; `onHadith` opens a sibling narration of the same number.
  */
 import { useState } from 'react'
@@ -17,6 +18,7 @@ import { useState } from 'react'
 import { chainLinks, chainOf } from '../lib/hadithWords'
 import { useHadithCollections } from '../lib/useHadithCollections'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
+import { useNarrators } from '../lib/useNarrators'
 
 import ChainSheet from './ui/ChainSheet'
 import CopyButton from './ui/CopyButton'
@@ -26,9 +28,10 @@ import HadithText from './ui/HadithText'
 import NarrationFamily from './ui/NarrationFamily'
 import NarratorSheet from './ui/NarratorSheet'
 
-export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, names = {}, onNarrator, onHadith }) {
+export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, onNarrator, onHadith }) {
   const { isFavorite, toggle } = useHadithFavorites()
   const { of } = useHadithCollections()
+  const namesOf = useNarrators(items.map((h) => ({ collection: h.collection ?? collection, book: h.book })))
   // The hadith whose chain is drawn in the pop-up, if any.
   const [drawn, setDrawn] = useState(null)
   // The narrator whose sheet is open, if any.
@@ -40,6 +43,7 @@ export default function HadithCards({ items, accent, collection, columns = false
         {items.map((item, i) => {
           const h = { ...item, collection: item.collection ?? collection }
           const ref = `${h.number}${h.part ?? ''}`
+          const names = namesOf(h)
           // Narrations of this number with chains placed: the same digits, then letters only.
           const kin = h.part ? Object.keys(names).filter((k) => k.startsWith(`${h.number}`) && /^[a-z]+$/.test(k.slice(`${h.number}`.length))).length : 0
           return (

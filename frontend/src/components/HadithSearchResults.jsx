@@ -30,7 +30,7 @@ import { AnalyzerSkeleton } from './ui/Skeleton'
 import StatusNote, { CorrectedNote, NoteWord } from './ui/StatusNote'
 import HadithCards from './HadithCards'
 
-export default function HadithSearchResults({ accent, onOpenBook, onNarrator, children }) {
+export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, children }) {
   const { collections, of } = useHadithCollections()
   const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
     historyKey: 'hadith-history',
@@ -131,7 +131,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, ch
         </ChipRow>
       )}
 
-      {data && data.hits.length > 0 && <HadithCards items={data.hits} accent={accent} onNarrator={onNarrator} />}
+      {data && data.hits.length > 0 && <HadithCards items={data.hits} accent={accent} onNarrator={onNarrator} onHadith={onHadith} />}
     </div>
   )
 }

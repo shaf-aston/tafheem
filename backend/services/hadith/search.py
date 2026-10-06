@@ -96,7 +96,9 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
             return Result(reference=(collection, "", ""), collections=asked.collections)
         shown, rows = numbered(collection, asked.number, asked.part)
         hits = [Hit(c, b, n, p, a, e, json.loads(g)) for c, b, n, p, a, e, g in rows]
-        return Result(hits, reference=(collection, f"{asked.number}{asked.part}", str(shown)),
+        # One hadith shown is named with its letter, so "1620a" found reads as found.
+        label = f"{shown}{rows[0][3]}" if len(rows) == 1 else str(shown)
+        return Result(hits, reference=(collection, f"{asked.number}{asked.part}", label),
                       collections=asked.collections)
 
     collections = collections or asked.collections
