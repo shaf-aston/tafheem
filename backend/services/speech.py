@@ -51,6 +51,31 @@ class Voice(Retirable, ABC):
         """The spoken text as a WAV file."""
 
 
+MARKS = "ً-ْٰ"
+# The name of Allah, with or without a particle (و ف ب ت ل) in front.
+NAME = re.compile(f"(?<!\\S)([وفبت][{MARKS}]*)?(?:ا[{MARKS}]*)?ل[{MARKS}]*ل[{MARKS}]*ه([{MARKS}]*)(?=\\s|{PAUSE}|$)")
+OPENS = {"و": "َ", "ف": "َ", "ت": "َ", "ب": "ِ"}
+
+
+def name_spelt_out(text: str) -> str:
+    """Write the long aa of Allah as a full alif, the only spelling FastPitch says right.
+
+    Its phonetiser knows the name only as a bare first word; after a particle or
+    another word it says llah short or drops the vowel (لِلَّهِ, وَاللَّهِ, بِسْمِ اللَّهِ).
+    """
+    def one(m: re.Match) -> str:
+        lead, end = m.group(1), m.group(2)
+        letters = re.sub(f"[{MARKS}]", "", m.group(0))
+        if lead is None:
+            if letters == "الله" and m.start() == 0:
+                return m.group(0)  # the engine's own entry, heavy l and all
+            return ("لِلَّاه" if letters == "لله" else "اللَّاه") + end
+        if not re.search(f"[{MARKS}]", lead):
+            lead += OPENS[lead[0]]
+        return lead + ("لِلَّاه" if letters[1:] == "لله" else "اللَّاه") + end
+    return NAME.sub(one, text)
+
+
 class FastPitchVoice(Voice):
     """FastPitch + HiFi-GAN, Modern Standard Arabic (nipponjo/tts_arabic), on the CPU.
 
@@ -71,7 +96,7 @@ class FastPitchVoice(Voice):
 
     @property
     def version(self) -> str:
-        return f"hifigan-speaker{get_settings().speech_fastpitch_speaker}"
+        return f"hifigan-speaker{get_settings().speech_fastpitch_speaker}-name2"
 
     def say(self, text: str) -> bytes:
         # One word at a time: the model is not known to be safe to share between threads.
@@ -80,7 +105,7 @@ class FastPitchVoice(Voice):
                 from tts_arabic import get_model
 
                 self._model = get_model("fastpitch", "hifigan", cuda=None)
-            audio = self._model.infer(text.translate(self.PAUSES), speaker=get_settings().speech_fastpitch_speaker)
+            audio = self._model.infer(name_spelt_out(text).translate(self.PAUSES), speaker=get_settings().speech_fastpitch_speaker)
         out = io.BytesIO()
         with wave.open(out, "wb") as file:
             file.setframerate(22050)
