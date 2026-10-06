@@ -178,7 +178,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                 subject["id"], subject["head"])) for k in drawn):
             continue
         word = {"id": max(by_id) + 1 + len(understood), "form": kept["word"], "head": held["head"],
-                "rel": "PRD", "pos": "NOUN", "pos_camel": ""}
+                "rel": "PRD", "pos": "NOM", "pos_camel": ""}
         # the khabar sits on what the unit hung on, and the unit hangs on it; a subject
         # the unit headed (the لِ of الحمدُ لله) hangs on the khabar beside it instead
         for old in (held, subject) if subject["head"] == held["id"] else (held,):
