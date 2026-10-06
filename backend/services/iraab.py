@@ -53,7 +53,7 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
             elif found["role"]:
                 _named(entry, found)
     words = signs.settle(entries)
-    return rule_engine.mark_condition(words) if rule_engine.opens_condition(tags) else words
+    return rule_engine.mark_condition(words, roles) if len(roles) == len(words) else words
 
 
 def _named(entry: dict, found: dict) -> None:

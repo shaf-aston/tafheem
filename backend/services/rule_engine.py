@@ -93,38 +93,28 @@ def opens_condition(tags: list[dict]) -> dict | None:
     it opens, never إنّ, whose noun must come straight after it. closed_words.json."""
     if len(tags) < 2 or tags[1].get("pos") != "verb":
         return None
-    return condition_of(strip_diacritics(tags[0].get("word", "")))
+    frame = condition_of(strip_diacritics(tags[0].get("word", "")))
+    return frame if frame and not frame["noun"] else None  # مَنْ، ما: syntax.condition decides
 
 
-def mark_condition(cards: list[dict]) -> list[dict]:
-    """فعل الشرط on the first verb after the particle; جواب الشرط on the later verb a tying
-    letter joins to it (فاقبلها، لأمرتُ), else the next one in jazm (إن تدرسْ تنجحْ). Each is
-    in jazm, or in the place its particle gives it when built (كُنْتَ). Runs after signs.settle."""
-    frame = condition_of(strip_diacritics(cards[0]["word"]))
+def mark_condition(cards: list[dict], roles: list[dict]) -> list[dict]:
+    """فعل الشرط and جواب الشرط on the verbs syntax.condition found for each condition, each
+    in jazm or in the place its opener gives it when built (كُنْتَ), with the letter that
+    ties the answer to it (فاقبلها، لأمرتُ); a conditional noun named for its place (مبتدأ)
+    says what it is first. Runs after signs.settle."""
     said = teacher_rules()["case_said"]["condition"]
-    own = said["by_family"][frame["family"]]
-    verbs = [card for card in cards[1:] if card.get("type") == "fi'l"]
-    if not verbs:
-        return cards
-    tie_of = {id(card): tie for card in verbs[1:] if (tie := _tied_by(card, own["ties"]))}
-    answer = next((card for card in verbs[1:] if id(card) in tie_of), None) or next(
-        (card for card in verbs[1:] if card.get("case") == "jazm"), None)
-    for card, part in ((verbs[0], "verb"), (answer, "answer")):
-        if card is None:
+    for card, found in zip(cards, roles):
+        part = found.get("condition") or {}
+        if part.get("kind") and card.get("role") != part["kind"]:
+            card["reason"] = f"{part['kind']}، {card['reason']}"
+        if part.get("part") not in ("verb", "answer") or card.get("type") != "fi'l":
             continue
+        own = said["by_family"][part["family"]]
         where = said["jazm"] if card.get("case") == "jazm" else own["place"]
-        tie = f"{own['ties'][tie_of[id(card)]]}، " if id(card) in tie_of else ""
+        tie = f"{own['ties'][part['tie']]}، " if part["tie"] else ""
         head, dot, rule = card["reason"].partition(". القاعدة")
-        card["reason"] = f"{head}، {tie}{where.format(part=said[part])}{dot}{rule}"
+        card["reason"] = f"{head}، {tie}{where.format(part=said[part['part']])}{dot}{rule}"
     return cards
-
-
-def _tied_by(card: dict, ties: dict) -> str | None:
-    """The tying letter written onto a verb: the typed word opens with it and its own word
-    does not (فَاقْبَلْهَا، لَأَمَرْتُ; not فَتَحَ)."""
-    word = strip_diacritics(card["word"])
-    base = strip_diacritics(card.get("camel", {}).get("base", ""))
-    return next((tie for tie in ties if word.startswith(tie) and not base.startswith(tie)), None)
 
 
 def _card(tag: dict[str, Any], i: int, tags: list[dict]) -> dict:

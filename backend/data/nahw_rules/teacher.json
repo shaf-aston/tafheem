@@ -58,6 +58,7 @@
   "_comment": "The reason a card shows, one per role, so it always explains the role the card wears (rule_engine writes it, iraab.cards rewrites it when the parser renames the word, signs.py writes a verb's). Every name in roles.json has one; the keys after it are the rule engine's own variants.",
   "فعل": "فعل في جملة فعلية",
   "اسم موصول": "اسم موصول مبني، والجملة بعده صلته",
+  "اسم شرط جازم": "اسم شرط جازم مبني، يجزم فعلين: فعل الشرط وجوابه",
   "صلة": "جملة صلة الموصول، لا محل لها من الإعراب",
   "فعل أمر": "القاعدة: فعل الأمر مبني",
   "فعل مضارع": "القاعدة: الفعل المضارع معرب",

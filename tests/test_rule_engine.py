@@ -335,6 +335,23 @@ def test_an_active_participle_takes_its_object_as_its_verb_does(sentence: str, i
     assert _read(sentence)["words"][index]["role"] == role
 
 
+def test_two_conditions_joined_by_waw_are_two_conditions_not_one_verb_governing_another():
+    # مَنْ leads, a verb follows, an answer follows: a conditional noun, not the relative;
+    # the second مَنْ governs أَفْطَرَ, the first answer does not
+    read = _read("مَنْ شَاءَ فَلْيَصُمْهُ وَمَنْ شَاءَ أَفْطَرَ")
+    words = read["words"]
+    assert read["summary"] == term_ar("jumlah_shartiyyah")
+    assert [words[i]["role"] for i in (0, 3)] == ["اسم شرط جازم"] * 2
+    assert [words[i].get("governor") for i in (1, 2, 4, 5)] == [0, 0, 3, 3]
+    assert "جواب الشرط" in words[5]["reason"] and "رابطة" in words[2]["reason"]
+
+
+def test_a_question_noun_with_one_verb_opens_no_condition():
+    # nearest case: مَنْ with a verb but no answer stays the question or the relative
+    words = _read("جَاءَ مَنْ نَجَحَ")["words"]
+    assert words[1]["role"] != "اسم شرط جازم" and "الشرط" not in words[2]["reason"]
+
+
 def test_lawla_before_a_verb_urges_and_opens_no_condition():
     # nearest case to لو: لولا and لوما open a condition only before a noun
     assert _read("لَوْلَا تَسْتَغْفِرُونَ اللَّهَ")["summary"] != term_ar("jumlah_shartiyyah")

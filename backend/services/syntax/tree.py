@@ -110,12 +110,12 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
     return named if role in (NAMED.harf, NAMED.harf_jarr) and named and named.startswith(role) else role
 
 
-def _sentence_label(roles: dict[int, str | None], tokens: list[dict]) -> str:
+def _sentence_label(roles: dict[int, str | None], tokens: list[dict], named: list[dict]) -> str:
+    # مَنْ شاء فليصمه، لو كنتُ ... لأمرتُ: a condition opens it (syntax.condition)
+    if named and named[0].get("condition", {}).get("part") == "opener":
+        return CONDITION
     if any("interrog" in t.get("pos_camel", "") for t in tokens):
         return QUESTION
-    # إن كنتَ ... فاقبلها، لو كنتُ ... لأمرتُ: a conditional particle and its verb, as rule_engine.opens_condition
-    if len(tokens) > 1 and roles[tokens[1]["id"]] == NAMED.fil and condition_of(strip_diacritics(tokens[0]["form"])):
-        return CONDITION
     return VERBAL if opens_with_verb([roles[t["id"]] for t in tokens]) else NOMINAL
 
 
@@ -162,7 +162,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # جاء الذي نجح: the clause after a relative is its صلة, with no place of its own
     for token in drawn:
         up = next((t for t in drawn if t["id"] == token["head"]), None)
-        if up and "rel" in up.get("pos_camel", "") and up["id"] < token["id"] and token["id"] in opens:
+        if up and "rel" in up.get("pos_camel", "") and up["id"] < token["id"] and token["id"] in opens                 and "condition" not in named[typed_at.get(up["id"], 0)]:
             job_of[token["id"]] = NAMED.silah
     # الولدُ يكتبُ: the clause hung on a مبتدأ (or اسم كان) is its khabar, standing in a case;
     # كان الولدُ يكتبُ: so is the one beside it, the khabar (PRD) under their governor
@@ -232,25 +232,42 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     if len(roots) == 1 and role_of[top["id"]] == NAMED.khabar and 0 < len(subjects) < len(children_of[top["id"]]):
         children_of[top["id"]] = [kid for kid in children_of[top["id"]] if kid not in subjects]
         roots = subjects + roots
-    # إن كنتَ ... فاقبلها: the particle, the condition's clause and the answer's side by side
-    # under the sentence, as the books draw it, rather than the condition inside the answer
-    condition = condition_of(strip_diacritics(bases[0]["form"])) if _sentence_label(role_of, bases) == CONDITION else None
-    particle = bases[0] if condition else None
-    verb = next((kid for kid in children_of[particle["id"]] if role_of[kid["id"]] == NAMED.fil), None) if particle else None
-    answer = next((t for t in roots if t["id"] == parent(particle) and role_of[t["id"]] == NAMED.fil), None) if verb else None
-    if answer:
-        name_of[particle["id"]] = condition["particle"]
-        # فاقبلها، لأمرتُ: the letter written onto the answer ties it to the condition
-        name_of.update({p["id"]: condition["ties"][p["form"]] for p in named[typed_at[answer["id"]]].get("attached", [])
-                        if p["id"] in split and p["before"] and p["form"] in condition["ties"]})
+    # مَنْ شاء فليصمه: the opener, the condition's clause and the answer's side by side in
+    # one unit, as the books draw it, wherever the parser hung them (syntax.condition)
+    holder = {kid["id"]: kids for kids in (roots, *children_of.values()) for kid in kids}
+    opened: dict[int, tuple[dict, dict]] = {}  # answer id -> (opener, condition verb)
+    for i, found in enumerate(named):
+        if found.get("condition", {}).get("part") != "opener" or found["condition"]["answer"] is None:
+            continue
+        condition = condition_of(strip_diacritics(bases[i]["form"]))
+        opener, verb, answer = (bases[i], bases[found["condition"]["verb"]], bases[found["condition"]["answer"]])
+        if not condition["noun"]:
+            name_of[opener["id"]] = condition["opener"]  # إن: حرف شرط جازم; a noun keeps its place
+        # فاقبلها، لأمرتُ: the letter written onto the answer ties it to the condition, in its unit
+        for piece in named[typed_at[answer["id"]]].get("attached", []):
+            if piece["id"] in split and piece["before"] and piece["form"] in condition["ties"]:
+                name_of[piece["id"]] = condition["ties"][piece["form"]]
+                _move(holder, by_id[piece["id"]], children_of[answer["id"]])
         for unit, job in ((verb, condition["verb"]), (answer, condition["answer"])):
             job_of[unit["id"]] = job
             place_of[unit["id"]] = in_place(condition["case"]) if condition["case"] else said["no_place"]
             clauses.add(unit["id"])
             framed.add(unit["id"])
-        children_of[answer["id"]].remove(particle)
-        children_of[particle["id"]].remove(verb)
-        roots = [particle, verb] + roots
+        if holder.get(answer["id"]) is None:
+            roots.append(answer)
+            holder[answer["id"]] = roots
+        for unit in (opener, verb):
+            holder[unit["id"]].remove(unit)
+            del holder[unit["id"]]
+        opened[answer["id"]] = (opener, verb)
+    # مَنْ شاء فليصمه ومَن شاء أفطر: a condition has the front of its sentence, so the وَ
+    # bringing a second one joins it beside the first, not inside the first one's answer
+    for answer_id in opened:
+        up = next((t for t in drawn if any(kid["id"] == answer_id for kid in children_of[t["id"]])
+                   and t["pos"] == "PRT"), None)
+        outer = next((a for a in opened if up and _inside(up, by_id[a], children_of)), None)
+        if up and outer is not None and up["id"] in holder:
+            _move(holder, up, holder[outer])
     root = roots[0]
 
     seen: set[int] = set()
@@ -300,13 +317,13 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                     "detail": place_of.get(token["id"]), "children": [leaf]} if token["id"] in clauses else leaf
         kid_roles = [job_of[kid["id"]] for kid in kids if job_of[kid["id"]]]
         seen.update(kid["id"] for kid in kids)
-        inside = [(at[kid["id"]], node(kid)) for kid in kids]
+        inside = [(at[kid["id"]], unit(kid)) for kid in kids]
         role = role_of[token["id"]]
         why = why_of.get(token["id"])
         # a word the teacher dashed stays a dash at the head of its unit: مضاف would name it
         inside.append((index, pieces(token, _leaf(index, role, why, None if why else _unit_role(name_of[token["id"]], kid_roles)))))
         printed[token["id"]] = inside[-1][1]["role"]
-        label = label_of.get(token["id"]) or _label(token, kid_roles) or (_sentence_label(role_of, bases) if token is root
+        label = label_of.get(token["id"]) or _label(token, kid_roles) or (top_label if token is root and token["id"] not in opened
                                              else NOMINAL if token["id"] in clauses & nominal
                                              else VERBAL if token["id"] in clauses or role == NAMED.fil else "")
         # A particle's name is what it is, not a job for the unit it heads: the
@@ -329,14 +346,44 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
 
     # the parser can leave a sentence as two loose halves; they are still one
     # sentence, so they are drawn side by side under it rather than one dropped
-    drawn = sorted(((at[part["id"]], node(part)) for part in roots), key=lambda pair: pair[0])
+    def unit(token: dict) -> dict:
+        """A word's node, or for a condition's answer the whole condition around it."""
+        if token["id"] not in opened:
+            return node(token)
+        opener, verb = opened[token["id"]]
+        seen.update((opener["id"], verb["id"]))
+        parts = sorted(((at[t["id"]], node(t)) for t in (opener, verb)), key=lambda pair: pair[0])
+        inside = parts + [(at[token["id"]], node(token))]
+        return {"role": None, "label": CONDITION, "tone": None, "detail": None,
+                "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
+
+    top_label = _sentence_label(role_of, bases, named)
+    drawn = sorted(((at[part["id"]], unit(part)) for part in roots), key=lambda pair: pair[0])
     tree = drawn[0][1] if len(drawn) == 1 else None
     if tree is None or tree.get("word") is not None or not tree.get("label"):
-        tree = {"label": _sentence_label(role_of, bases),
+        tree = {"label": top_label,
                 "children": [part for _, part in drawn] if tree is None else [tree]}
     covered = sum(1 for found in named if found["role"])
     return {"words": columns, "tree": tree, "coverage": round(covered / len(words), 2),
             "printed": [printed.get(token["id"]) for token in bases]}
+
+
+def _move(holder: dict[int, list[dict]], token: dict, to: list[dict]) -> None:
+    """Hang a word in another unit: off the list that holds it, onto `to`."""
+    holder[token["id"]].remove(token)
+    to.append(token)
+    holder[token["id"]] = to
+
+
+def _inside(token: dict, top: dict, children_of: dict[int, list[dict]]) -> bool:
+    """Whether a word hangs anywhere under `top`."""
+    below = list(children_of[top["id"]])
+    while below:
+        kid = below.pop()
+        if kid["id"] == token["id"]:
+            return True
+        below += children_of[kid["id"]]
+    return False
 
 
 def is_drawable(tree: dict) -> bool:

@@ -114,12 +114,16 @@ def frames() -> dict:
     return _roles()["frames"]
 
 
-def condition_of(particle: str) -> dict | None:
-    """The condition a bare particle opens: its family's entry in the condition frame,
-    found by the family whose `conditional_particles` hold it (إن جازم، لو غير جازم)."""
+def condition_of(word: str) -> dict | None:
+    """The condition a bare word may open: its family's entry in the condition frame, found
+    by the family whose `conditional_particles` (إن جازم، لو غير جازم) or `conditional_nouns`
+    (مَنْ، ما) hold it; `opener` is what the word is called, `noun` whether it is a noun."""
     frame = frames()["condition"]
-    return next(({**frame, **own, "family": family} for family, own in frame["by_family"].items()
-                 if particle in book_words(family, "conditional_particles")), None)
+    return next(({**frame, **own, "family": family, "noun": part == "conditional_nouns",
+                  "opener": own["noun" if part == "conditional_nouns" else "particle"]}
+                 for family, own in frame["by_family"].items()
+                 for part in ("conditional_particles", "conditional_nouns")
+                 if word in _closed()["families"][family].get(part, ())), None)
 
 
 def teacher_rules() -> dict:

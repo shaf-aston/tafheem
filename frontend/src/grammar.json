@@ -102,6 +102,7 @@
     ]},
     { "title": "الأسماء المبنية", "terms": [
       { "arabic": "اسم موصول", "meaning": "A word like الذي or التي that a clause after it describes." },
+      { "arabic": "اسم شرط جازم", "meaning": "A noun like مَنْ or ما that opens a condition: مَنْ here means whoever, not the one who. It leads its clause, a verb comes straight after, and an answer follows, and it makes both verbs مجزوم or puts them in the place of jazm." },
       { "arabic": "صلة", "meaning": "The clause after a اسم موصول that completes it, as in الذي نجحَ." },
       { "arabic": "اسم موصول وصلته", "meaning": "A اسم موصول and its صلة read together as one unit." },
       { "arabic": "اسم الإشارة", "meaning": "A pointing word: هذا, هذه, ذلك, تلك." },
