@@ -609,10 +609,19 @@ dialog::backdrop {
 }
 
 
+/* The reader's player: held to the bottom of the screen while the reader is
+   on it, settling at the reader's end. Above the phone's bottom bar there. */
+.reader-dock {
+  position: sticky;
+  bottom: 0;
+  z-index: var(--layer-sticky);
+}
+
 @media (max-width: 39.99rem) {
   .bottom-nav-room {
     padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
   }
+  .reader-dock { bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
   /* Phones keep the top bar to pen, search and settings; these move into More. */
   .phone-hide {
     display: none;

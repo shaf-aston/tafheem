@@ -145,7 +145,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   )
 
   return (
-    <div {...swipe} style={{ '--c': accent }} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-hidden">
+    <div {...swipe} style={{ '--c': accent }} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-clip">
       <header className="flex items-center gap-3 flex-wrap p-4 border-b border-[var(--border)]">
         <Stepper surah={surah} onChange={changeSurah} name={data?.name_en ?? ''} />
         {data ? (
@@ -399,7 +399,7 @@ function AyahRail({ count, here, open, onPick }) {
 }
 
 /**
- * The one player for the surah, along the bottom of the reader: back, play or
+ * The one player for the surah, held to the bottom of the screen: back, play or
  * stop, on, and who is reciting. Playing runs on through the surah an ayah at a
  * time, and the list follows while the reader is following it.
  *
@@ -445,7 +445,7 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
   const skip = `${round} w-8 h-8 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`
 
   return (
-    <div className="flex items-center gap-2 p-2 pl-3 border-t border-[var(--border)] bg-[var(--surface-hi)]">
+    <div className="reader-dock flex items-center gap-2 p-2 pl-3 border-t border-[var(--border)] bg-[var(--surface-hi)]">
       <button type="button" className={skip}
         onClick={() => skipTo(at - 1)} disabled={at <= 1} aria-label="Previous ayah">
         <Glyph d="M6 5h2v14H6zM20 5v14L9 12z" />
