@@ -211,6 +211,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَبَاح",
+          "transliteration": "Sabaa7",
+          "english": "morning",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَدْرِي",
+          "transliteration": "badri",
+          "english": "early",
+          "category": "Morning"
+        },
+        {
+          "arabic": "نَعْسَان",
+          "transliteration": "na3saan",
+          "english": "sleepy",
+          "category": "Morning"
+        },
+        {
+          "arabic": "وِجِه",
+          "transliteration": "wijih",
+          "english": "face",
+          "category": "Morning"
+        },
+        {
+          "arabic": "أَسْنَان",
+          "transliteration": "asnaan",
+          "english": "teeth",
+          "category": "Morning"
+        },
+        {
+          "arabic": "هْدُوم",
+          "transliteration": "hdoom",
+          "english": "clothes",
+          "category": "Morning"
+        },
+        {
+          "arabic": "دَوَام",
+          "transliteration": "dawaam",
+          "english": "work, working hours",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَارِد",
+          "transliteration": "baarid",
+          "english": "cold",
+          "category": "Morning"
+        }
+      ],
       "culture": "In the Gulf a morning starts with \"صباح الخير\" answered by \"صباح النور\", and a small cup of gahwa (light Arabic coffee, often with dates) before leaving the house is close to universal, even on a rushed morning.",
       "exercises": [
         {
@@ -577,6 +627,56 @@
             "transliteration": "ee, is-saa3a 3ashra",
             "english": "Yes, at ten."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "اِجْتِمَاع",
+          "transliteration": "ijtimaa3",
+          "english": "meeting",
+          "category": "During the day"
+        },
+        {
+          "arabic": "غَدَا",
+          "transliteration": "ghada",
+          "english": "lunch",
+          "category": "During the day"
+        },
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired",
+          "category": "During the day"
+        },
+        {
+          "arabic": "ظُهُر",
+          "transliteration": "Dhuhur",
+          "english": "noon",
+          "category": "During the day"
+        },
+        {
+          "arabic": "اِسْتِرَاحَة",
+          "transliteration": "istiraa7a",
+          "english": "break",
+          "category": "During the day"
+        },
+        {
+          "arabic": "قَلَم",
+          "transliteration": "galam",
+          "english": "pen",
+          "category": "During the day"
+        },
+        {
+          "arabic": "أَخْبَار",
+          "transliteration": "akhbaar",
+          "english": "news",
+          "category": "During the day"
+        },
+        {
+          "arabic": "شُغُل",
+          "transliteration": "shughul",
+          "english": "work",
+          "category": "During the day"
         }
       ],
       "culture": "Gulf offices run on \"دوام\" (working hours), and colleagues often go out for lunch together or have tea and gahwa sent to the desk; a favour is met with \"تسلم\" or \"الله يخليك\".",
@@ -947,6 +1047,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَسَا",
+          "transliteration": "masa",
+          "english": "evening",
+          "category": "Evening"
+        },
+        {
+          "arabic": "بَيْت",
+          "transliteration": "bayt",
+          "english": "home, house",
+          "category": "Evening"
+        },
+        {
+          "arabic": "عَشَا",
+          "transliteration": "3asha",
+          "english": "dinner",
+          "category": "Evening"
+        },
+        {
+          "arabic": "شَاوَر",
+          "transliteration": "shaawar",
+          "english": "shower",
+          "category": "Evening"
+        },
+        {
+          "arabic": "مُسَلْسَل",
+          "transliteration": "musalsal",
+          "english": "TV series",
+          "category": "Evening"
+        },
+        {
+          "arabic": "جَوّ",
+          "transliteration": "jaw",
+          "english": "weather",
+          "category": "Evening"
+        },
+        {
+          "arabic": "لِيل",
+          "transliteration": "leel",
+          "english": "night",
+          "category": "Evening"
+        },
+        {
+          "arabic": "رَبْع",
+          "transliteration": "rab3",
+          "english": "friends",
+          "category": "Evening"
+        }
+      ],
       "culture": "Gulf evenings are the social time: the heat eases, families walk or drive out, and many people visit relatives or a majlis after the sunset prayer. Good night is \"تصبح على خير\" answered \"وإنت من أهله\", and plans are usually followed by \"إن شاء الله\".",
       "exercises": [
         {
@@ -1306,6 +1456,56 @@
             "transliteration": "laa, il-jum3a liS-Salaa wir-raa7a",
             "english": "No, Friday is for prayer and rest."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "الْأَحَد",
+          "transliteration": "il-a7ad",
+          "english": "Sunday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْاِثْنِين",
+          "transliteration": "il-ithneen",
+          "english": "Monday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الثَّلَاثَاء",
+          "transliteration": "ith-thalaathaa",
+          "english": "Tuesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْأَرْبِعَاء",
+          "transliteration": "il-arbi3aa",
+          "english": "Wednesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْخَمِيس",
+          "transliteration": "il-khamees",
+          "english": "Thursday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْجُمْعَة",
+          "transliteration": "il-jum3a",
+          "english": "Friday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "السَّبْت",
+          "transliteration": "is-sabt",
+          "english": "Saturday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "أُسْبُوع",
+          "transliteration": "usboo3",
+          "english": "week",
+          "category": "Days of the week"
         }
       ],
       "culture": "Friday is the day of Jumu'ah prayer and family time across the Gulf. Kuwait keeps Friday and Saturday as its weekend, while the UAE moved to a Saturday and Sunday weekend with a short Friday, so \"الويكند\" (the weekend) is the everyday word for both.",

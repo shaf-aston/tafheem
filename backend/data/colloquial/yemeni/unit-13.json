@@ -199,6 +199,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَرْيُوح",
+          "transliteration": "maryoo7",
+          "english": "happy",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "حَزِين",
+          "transliteration": "7azeen",
+          "english": "sad",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "جَايِع",
+          "transliteration": "jaayi3",
+          "english": "hungry",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "قَلِق",
+          "transliteration": "qaliq",
+          "english": "worried",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "خَايِف",
+          "transliteration": "khaayif",
+          "english": "scared",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "اِمْتِحَان",
+          "transliteration": "imti7aan",
+          "english": "exam",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "وَايِد",
+          "transliteration": "waayid",
+          "english": "very",
+          "category": "Feelings"
+        }
+      ],
       "culture": "In Yemen when asked \"كيفك؟\" people answer with \"الحمد لله\" or \"بخير\" out of habit, whatever they feel, and a close friend or family member will push further with \"شنو فيك؟\" if they seem worried. Saying you're \"حزين\" or \"تعبان\" plainly is normal only with people close to you.",
       "exercises": [
         {
@@ -571,6 +621,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَحِيح",
+          "transliteration": "Sa7ee7",
+          "english": "right, true",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "بِالضَّبْط",
+          "transliteration": "biD-DabT",
+          "english": "exactly",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "مُوَافِق",
+          "transliteration": "muwaafiq",
+          "english": "agreeing",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "رَأْي",
+          "transliteration": "ra2y",
+          "english": "opinion",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "يِمْكِن",
+          "transliteration": "yimkin",
+          "english": "maybe",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "بَسّ",
+          "transliteration": "bass",
+          "english": "but, only",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "هِيك",
+          "transliteration": "heek",
+          "english": "like this",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "تَمَام",
+          "transliteration": "tamaam",
+          "english": "okay",
+          "category": "Agreeing"
+        }
+      ],
       "culture": "In Yemen a flat \"لا\" can sound blunt, so people soften a disagreement with \"يمكن، بس\" or \"تمام، بس\" before giving their view. \"تمام\" and \"تمّ\" are the light way to say OK, and \"أنت صحيح\" is warm enough to use with elders and friends alike.",
       "exercises": [
         {
@@ -935,6 +1035,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "نَصِيحَة",
+          "transliteration": "naSee7a",
+          "english": "advice",
+          "category": "Advice"
+        },
+        {
+          "arabic": "دُكْتُور",
+          "transliteration": "duktoor",
+          "english": "doctor",
+          "category": "Advice"
+        },
+        {
+          "arabic": "دَوَاء",
+          "transliteration": "dawaa2",
+          "english": "medicine",
+          "category": "Advice"
+        },
+        {
+          "arabic": "لَازِم",
+          "transliteration": "laazim",
+          "english": "must, should",
+          "category": "Advice"
+        },
+        {
+          "arabic": "أَحْسَن",
+          "transliteration": "a7san",
+          "english": "better",
+          "category": "Advice"
+        },
+        {
+          "arabic": "بَال",
+          "transliteration": "baal",
+          "english": "mind, attention",
+          "category": "Advice"
+        },
+        {
+          "arabic": "هَادِي",
+          "transliteration": "haadi",
+          "english": "calm",
+          "category": "Advice"
+        },
+        {
+          "arabic": "مَكَان",
+          "transliteration": "makaan",
+          "english": "place",
+          "category": "Advice"
+        }
+      ],
       "culture": "Yemeni friends and relatives give advice openly and warmly with \"لازم\" and \"خد بالك\", and it is taken as care, not criticism. After someone mentions being ill, the usual reply is \"الله يشافيك\", may God heal you.",
       "exercises": [
         {
@@ -1291,6 +1441,56 @@
             "transliteration": "akeed, la7da min fadhlak",
             "english": "Of course, one moment please."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "mushkila",
+          "english": "problem",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "إِزْعَاج",
+          "transliteration": "iz3aaj",
+          "english": "bother, disturbance",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "غَلْطَة",
+          "transliteration": "ghalTa",
+          "english": "mistake",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "مُهِمّ",
+          "transliteration": "muhimm",
+          "english": "important",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "مَوْضُوع",
+          "transliteration": "mawDoo3",
+          "english": "matter, subject",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "صُورَة",
+          "transliteration": "Soora",
+          "english": "picture",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "فُلُوس",
+          "transliteration": "fuloos",
+          "english": "money",
+          "category": "Complaining"
         }
       ],
       "culture": "A complaint in Yemen starts calmly with \"لو سمحت\" or \"آسف على الإزعاج\", and raising your voice is seen as rude. Staff answer with \"آسف\" and fix it, and it is common to thank them with \"الله يعطيك العافية\".",

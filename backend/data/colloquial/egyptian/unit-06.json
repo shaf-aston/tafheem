@@ -236,6 +236,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فُسْتَان",
+          "transliteration": "fostaan",
+          "english": "dress",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قَمِيص",
+          "transliteration": "2ameeS",
+          "english": "shirt",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "مَقَاس",
+          "transliteration": "ma2aas",
+          "english": "size",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "بُرُوفَة",
+          "transliteration": "broofa",
+          "english": "fitting room",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "ضَيِّق",
+          "transliteration": "Dayya2",
+          "english": "tight",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قُمَاش",
+          "transliteration": "2omaash",
+          "english": "fabric",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قُطْن",
+          "transliteration": "2oTn",
+          "english": "cotton",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "كُوتْشِي",
+          "transliteration": "kootshi",
+          "english": "trainers",
+          "category": "Clothes"
+        }
+      ],
       "culture": "In Cairo, clothes shops from Downtown's Talaat Harb Street to the malls call the fitting room \"البروفة\", from the English word \"proof\", and sizes are usually said in English letters. Staff bring other sizes without fuss, and saying something does not fit is never rude.",
       "exercises": [
         {
@@ -649,6 +699,56 @@
             "transliteration": "khod wa2tak",
             "english": "Take your time."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "لُون",
+          "transliteration": "loon",
+          "english": "colour",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَزْرَق",
+          "transliteration": "azra2",
+          "english": "blue",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَحْمَر",
+          "transliteration": "a7mar",
+          "english": "red",
+          "category": "Colours"
+        },
+        {
+          "arabic": "إِسْوِد",
+          "transliteration": "eswed",
+          "english": "black",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَبْيَض",
+          "transliteration": "abyaD",
+          "english": "white",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَخْضَر",
+          "transliteration": "akhDar",
+          "english": "green",
+          "category": "Colours"
+        },
+        {
+          "arabic": "لَايِق",
+          "transliteration": "laaye2",
+          "english": "suiting, fitting",
+          "category": "Colours"
+        },
+        {
+          "arabic": "رَأْي",
+          "transliteration": "ra2y",
+          "english": "opinion",
+          "category": "Colours"
         }
       ],
       "culture": "Cairo shop assistants readily say \"لايق عليك\" (it suits you) and \"ألف مبروك\" when you choose something, and it is common to ask a friend or the seller for an opinion before buying. Saying \"ربنا يبارك لك فيه\" (may God bless it for you) after a purchase is a warm, everyday habit.",
@@ -1096,6 +1196,56 @@
             "transliteration": "ettafa2na, alf mabrook",
             "english": "Agreed, congratulations."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "غَالِي",
+          "transliteration": "ghaali",
+          "english": "expensive",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَرْخَص",
+          "transliteration": "arkhaS",
+          "english": "cheaper",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "سِعْر",
+          "transliteration": "se3r",
+          "english": "price",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "خَصْم",
+          "transliteration": "khaSm",
+          "english": "discount",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "خَامَة",
+          "transliteration": "khaama",
+          "english": "material, quality",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَلْف",
+          "transliteration": "alf",
+          "english": "thousand",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "كِتِير",
+          "transliteration": "keteer",
+          "english": "a lot, too much",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "اِتَّفَقْنَا",
+          "transliteration": "etfa2na",
+          "english": "we agreed",
+          "category": "Bargaining"
         }
       ],
       "culture": "Bargaining is expected at Khan el-Khalili, Ataba, Al-Muski and street markets, where \"يا باشا\" and \"يا حاج\" keep it friendly, while chain stores and malls with price tags usually do not haggle. Sellers often say \"عشان خاطرك\" (for your sake) when they lower a price.",
@@ -1556,6 +1706,56 @@
             "transliteration": "la2, benbaddel bass",
             "english": "No, we only exchange."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عِيب",
+          "transliteration": "3eeb",
+          "english": "defect",
+          "category": "Returns"
+        },
+        {
+          "arabic": "فَاتُورَة",
+          "transliteration": "faatoora",
+          "english": "receipt",
+          "category": "Returns"
+        },
+        {
+          "arabic": "فُلُوس",
+          "transliteration": "feloos",
+          "english": "money",
+          "category": "Returns"
+        },
+        {
+          "arabic": "غَلَط",
+          "transliteration": "ghalaT",
+          "english": "wrong",
+          "category": "Returns"
+        },
+        {
+          "arabic": "تَانِي",
+          "transliteration": "taani",
+          "english": "another, again",
+          "category": "Returns"
+        },
+        {
+          "arabic": "أَكْبَر",
+          "transliteration": "akbar",
+          "english": "bigger",
+          "category": "Returns"
+        },
+        {
+          "arabic": "يُومِين",
+          "transliteration": "yomeen",
+          "english": "two days",
+          "category": "Returns"
+        },
+        {
+          "arabic": "وَاجِب",
+          "transliteration": "waageb",
+          "english": "duty",
+          "category": "Returns"
         }
       ],
       "culture": "Many Cairo shops will exchange an item within a few days if you have the receipt, but often will not refund, and small market stalls may display the sign \"البضاعة المباعة لا ترد ولا تستبدل\" (sold goods are neither returned nor exchanged). Politeness helps, so people say \"معلش\" and \"متشكر على تعاونك\" while sorting it out.",

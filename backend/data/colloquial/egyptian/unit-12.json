@@ -210,6 +210,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "أَلُو",
+          "transliteration": "aloo",
+          "english": "hello (on the phone)",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "خَطّ",
+          "transliteration": "khaTT",
+          "english": "line",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "رَصِيد",
+          "transliteration": "raSeed",
+          "english": "phone credit",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "بَطَّارِيَّة",
+          "transliteration": "baTTaareyya",
+          "english": "battery",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "شَبَكَة",
+          "transliteration": "shabaka",
+          "english": "signal, network",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "مُوبَايِل",
+          "transliteration": "mobaayl",
+          "english": "mobile phone",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "مُكَالْمَة",
+          "transliteration": "mokalma",
+          "english": "phone call",
+          "category": "Answering the phone"
+        }
+      ],
       "culture": "In Cairo people answer with \"ألو\" and the caller says who they are with \"معاك\" plus a name, so \"مين معايا؟\" is what you ask when you do not know. A call usually opens with a few greetings such as \"إزيك، إيه الأخبار\" before the point, and jumping straight to business can sound abrupt.",
       "exercises": [
         {
@@ -594,6 +644,56 @@
             "transliteration": "maashi, yalla beena",
             "english": "Okay, let's go."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "كَافِيه",
+          "transliteration": "kafeeh",
+          "english": "café",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مِيعَاد",
+          "transliteration": "mee3aad",
+          "english": "appointment",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "بَوَّابَة",
+          "transliteration": "bawwaaba",
+          "english": "gate, entrance",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "قُدَّام",
+          "transliteration": "2oddaam",
+          "english": "in front of",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "سَوَا",
+          "transliteration": "sawa",
+          "english": "together",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مَكَان",
+          "transliteration": "makaan",
+          "english": "place",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "بِالظَّبْط",
+          "transliteration": "bez-zabT",
+          "english": "exactly",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "بَدْرِي",
+          "transliteration": "badri",
+          "english": "early",
+          "category": "Arranging to meet"
         }
       ],
       "culture": "In Cairo people usually meet at a cafe or give a landmark such as a mosque or a metro station instead of a street address. Being a few minutes late is common, so a quick call to say you are on your way is normal and not rude.",
@@ -981,6 +1081,56 @@
             "transliteration": "la2, ghayyarna el-makaan",
             "english": "No, we changed the place."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ظُرُوف",
+          "transliteration": "Zoroof",
+          "english": "circumstances",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "moshkela",
+          "english": "problem",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "يُوم",
+          "transliteration": "yoom",
+          "english": "day",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بَدَل",
+          "transliteration": "badal",
+          "english": "instead of",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "فَجْأَة",
+          "transliteration": "fag2a",
+          "english": "suddenly",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بَعْد الضُّهْر",
+          "transliteration": "ba3d eD-Dohr",
+          "english": "afternoon",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "تَأْجِيل",
+          "transliteration": "ta2geel",
+          "english": "postponement",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بُكْرَه",
+          "transliteration": "bokra",
+          "english": "tomorrow",
+          "category": "Changing plans"
         }
       ],
       "culture": "Plans shift often in Cairo, and changing one is accepted when you say \"معلش\" and give a short reason such as \"ظروف\" without going into details. The other person usually answers \"ولا يهمك\" or \"عادي\".",
@@ -1372,6 +1522,56 @@
             "transliteration": "aywa, ra2mak metsaggel 3andi",
             "english": "Yes, I have it saved."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رِسَالَة",
+          "transliteration": "resaala",
+          "english": "message",
+          "category": "Messages"
+        },
+        {
+          "arabic": "رَقَم",
+          "transliteration": "ra2am",
+          "english": "number",
+          "category": "Messages"
+        },
+        {
+          "arabic": "مَوْجُود",
+          "transliteration": "mawgood",
+          "english": "present, in",
+          "category": "Messages"
+        },
+        {
+          "arabic": "خَبَر",
+          "transliteration": "khabar",
+          "english": "news",
+          "category": "Messages"
+        },
+        {
+          "arabic": "إِمْتَى",
+          "transliteration": "emta",
+          "english": "when",
+          "category": "Messages"
+        },
+        {
+          "arabic": "كَمَان",
+          "transliteration": "kamaan",
+          "english": "more, still",
+          "category": "Messages"
+        },
+        {
+          "arabic": "أَكِيد",
+          "transliteration": "akeed",
+          "english": "sure, of course",
+          "category": "Messages"
+        },
+        {
+          "arabic": "شُوَيَّة",
+          "transliteration": "shwayya",
+          "english": "a little",
+          "category": "Messages"
         }
       ],
       "culture": "In Cairo a family member or flatmate will usually pick up for someone who is out and pass on the message, so callers give their name clearly at the start. \"شكراً أوي\" is the common thanks for a favor, and \"العفو\" or \"ولا يهمك\" is the reply.",

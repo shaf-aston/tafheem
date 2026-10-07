@@ -231,6 +231,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "عِيد",
+          "transliteration": "3eed",
+          "english": "Eid, festival",
+          "category": "Eid"
+        },
+        {
+          "arabic": "عِيدِيَّة",
+          "transliteration": "3eediyya",
+          "english": "Eid money",
+          "category": "Eid"
+        },
+        {
+          "arabic": "كْلِيجَا",
+          "transliteration": "kleeja",
+          "english": "Eid biscuits",
+          "category": "Eid"
+        },
+        {
+          "arabic": "مُصَلَّى",
+          "transliteration": "muSalla",
+          "english": "prayer ground",
+          "category": "Eid"
+        },
+        {
+          "arabic": "جَدَّة",
+          "transliteration": "jadda",
+          "english": "grandmother",
+          "category": "Eid"
+        },
+        {
+          "arabic": "ثْيَاب",
+          "transliteration": "thyaab",
+          "english": "clothes",
+          "category": "Eid"
+        },
+        {
+          "arabic": "عَام",
+          "transliteration": "3aam",
+          "english": "year",
+          "category": "Eid"
+        },
+        {
+          "arabic": "مُبَارَك",
+          "transliteration": "mubaarak",
+          "english": "blessed",
+          "category": "Eid"
+        }
+      ],
       "culture": "أول شي في العيد يروحون صلاة العيد الصبح، وبعدين يزورون الأهل والجيران، والعيال ياخذون عيدية من الكبار وأغلبها فلوس جديدة. وفي المجلس يقدمون القهوة والتمر والحلويات.",
       "exercises": [
         {
@@ -621,6 +671,56 @@
             "transliteration": "minna w-minkum",
             "english": "From us and from you"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رَمَضَان",
+          "transliteration": "ramaDaan",
+          "english": "Ramadan",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "صِيَام",
+          "transliteration": "Siyaam",
+          "english": "fasting",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "فْطُور",
+          "transliteration": "fTour",
+          "english": "iftar",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "سْحُور",
+          "transliteration": "s7oor",
+          "english": "pre-dawn meal",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "فَجِر",
+          "transliteration": "fajir",
+          "english": "dawn",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "قَطَايِف",
+          "transliteration": "gaTaayif",
+          "english": "qatayef pastries",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "مِدْفَع",
+          "transliteration": "midfa3",
+          "english": "cannon",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "عَزِيمَة",
+          "transliteration": "3azeema",
+          "english": "invitation",
+          "category": "Ramadan"
         }
       ],
       "culture": "يجتمعون على الفطور، وأول شي يفطرون على تمر وماي أو قهوة قبل الأكل. وفي الكويت القرقيعان في منتصف الشهر، العيال يلبسون ثياب تراثية ويلفون على البيوت يجمعون الحلويات والمكسرات، وفي الإمارات الغبقة وجبة تجمع الأهل بعد التراويح.",
@@ -1016,6 +1116,56 @@
             "transliteration": "yoom il-khamees in shaa allah",
             "english": "On Thursday, God willing"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عِرِس",
+          "transliteration": "3iris",
+          "english": "wedding",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "مِعْرِس",
+          "transliteration": "mi3ris",
+          "english": "groom",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "عَرُوس",
+          "transliteration": "3aroos",
+          "english": "bride",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "زَفَّة",
+          "transliteration": "zaffa",
+          "english": "wedding procession",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "كُوشَة",
+          "transliteration": "koosha",
+          "english": "wedding stage",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "فُسْتَان",
+          "transliteration": "fustaan",
+          "english": "dress",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "عَيَّالَة",
+          "transliteration": "3ayyaala",
+          "english": "traditional group dance",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "هَدِيَّة",
+          "transliteration": "hadiyya",
+          "english": "gift",
+          "category": "Weddings"
         }
       ],
       "culture": "في الخليج أغلب الأعراس يكون فيها قاعة للنساء وقاعة أو مجلس للرجال، والعروس تدخل الزفة بفستان أبيض. الرجال يؤدون العيالة في الإمارات والعرضة في الكويت، والناس تجيب هدية أو عطر أو بخور.",
@@ -1423,6 +1573,56 @@
             "transliteration": "allah ykhallik",
             "english": "God keep you"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عِيد مِيلَاد",
+          "transliteration": "3eed meelaad",
+          "english": "birthday",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "كِيكَة",
+          "transliteration": "keeka",
+          "english": "cake",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "شْمُوع",
+          "transliteration": "shmoo3",
+          "english": "candles",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "حَفْلَة",
+          "transliteration": "7afla",
+          "english": "party",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "نَجَاح",
+          "transliteration": "najaa7",
+          "english": "success",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "تَرْقِيَة",
+          "transliteration": "targiya",
+          "english": "promotion",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "مَوْلُود",
+          "transliteration": "mawlood",
+          "english": "newborn",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "عُمُر",
+          "transliteration": "3umur",
+          "english": "age, life",
+          "category": "Birthdays"
         }
       ],
       "culture": "في الإمارات والكويت كثير من العوايل تسوي حفلة عيد ميلاد بالكيكة والشموع، وبعض العوايل ما تحتفل فيها. وللمولود الجديد يقولون مبروك المولود ويتربى في عزكم، وللبيت الجديد مبروك البيت.",

@@ -233,6 +233,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فُسْتَان",
+          "transliteration": "fustaan",
+          "english": "dress",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قَمِيص",
+          "transliteration": "2ameeS",
+          "english": "shirt",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "مَقَاس",
+          "transliteration": "ma2aas",
+          "english": "size",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "غُرْفِة",
+          "transliteration": "ghurfe",
+          "english": "room",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "ضَيِّق",
+          "transliteration": "Dayye2",
+          "english": "tight",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قْمَاش",
+          "transliteration": "2maash",
+          "english": "fabric",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قُطُن",
+          "transliteration": "2oTon",
+          "english": "cotton",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "صَبَّاط",
+          "transliteration": "Sabbaat",
+          "english": "shoes",
+          "category": "Clothes"
+        }
+      ],
       "culture": "In Beirut, from a boutique in Hamra to a small neighborhood shop, the seller usually greets you with \"ahleen\" and brings a few sizes at once. Size words are often borrowed (large, medium, small), and saying something does not fit is normal, never rude.",
       "exercises": [
         {
@@ -641,6 +691,56 @@
             "transliteration": "l-azra2 a7la bra2yi",
             "english": "Blue is nicer in my opinion."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "لَوْن",
+          "transliteration": "lawn",
+          "english": "colour",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَزْرَق",
+          "transliteration": "azra2",
+          "english": "blue",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَحْمَر",
+          "transliteration": "a7mar",
+          "english": "red",
+          "category": "Colours"
+        },
+        {
+          "arabic": "رَمَادِي",
+          "transliteration": "ramaadi",
+          "english": "grey",
+          "category": "Colours"
+        },
+        {
+          "arabic": "فَاتِح",
+          "transliteration": "faate7",
+          "english": "light (colour)",
+          "category": "Colours"
+        },
+        {
+          "arabic": "غَامِق",
+          "transliteration": "ghaame2",
+          "english": "dark (colour)",
+          "category": "Colours"
+        },
+        {
+          "arabic": "لَايِق",
+          "transliteration": "laaye2",
+          "english": "suiting, fitting",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَحْلَى",
+          "transliteration": "a7la",
+          "english": "nicer",
+          "category": "Colours"
         }
       ],
       "culture": "Sellers in Lebanese shops like to help you choose, often bringing out a few colors unasked and giving an honest opinion. Saying a color does not suit you is heard as useful, not rude.",
@@ -1053,6 +1153,56 @@
             "transliteration": "maashi, mitfa2iin",
             "english": "Fine, we agreed."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "غَالِي",
+          "transliteration": "ghaali",
+          "english": "expensive",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَرْخَص",
+          "transliteration": "arkhaS",
+          "english": "cheaper",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "سِعِر",
+          "transliteration": "se3er",
+          "english": "price",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "خَصِم",
+          "transliteration": "khaSem",
+          "english": "discount",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَلْف",
+          "transliteration": "alf",
+          "english": "thousand",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "مَجْمُوع",
+          "transliteration": "majmoo3",
+          "english": "total",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "خْسَارَة",
+          "transliteration": "khsaara",
+          "english": "loss",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "مِتْفْقِين",
+          "transliteration": "metfa2een",
+          "english": "agreed",
+          "category": "Bargaining"
         }
       ],
       "culture": "Bargaining is normal in Beirut's small shops and street stalls, less so in chain stores where prices are fixed. A first price is often an opening one, and a friendly back and forth is expected. Prices may be quoted in US dollars or in Lebanese lira, so listen for which one.",
@@ -1475,6 +1625,56 @@
             "transliteration": "akiid, wala yhemmak",
             "english": "Sure, don't worry."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عَيْب",
+          "transliteration": "3ayb",
+          "english": "defect",
+          "category": "Returns"
+        },
+        {
+          "arabic": "فَاتُورَة",
+          "transliteration": "faatoora",
+          "english": "receipt",
+          "category": "Returns"
+        },
+        {
+          "arabic": "مَصَارِي",
+          "transliteration": "maSaari",
+          "english": "money",
+          "category": "Returns"
+        },
+        {
+          "arabic": "صَحّ",
+          "transliteration": "Sa77",
+          "english": "right, correct",
+          "category": "Returns"
+        },
+        {
+          "arabic": "مَقَاس",
+          "transliteration": "ma2aas",
+          "english": "size",
+          "category": "Returns"
+        },
+        {
+          "arabic": "أَكْبَر",
+          "transliteration": "akbar",
+          "english": "bigger",
+          "category": "Returns"
+        },
+        {
+          "arabic": "تَعَاوُن",
+          "transliteration": "ta3aawon",
+          "english": "cooperation",
+          "category": "Returns"
+        },
+        {
+          "arabic": "تَبْدِيل",
+          "transliteration": "tabdeel",
+          "english": "exchange",
+          "category": "Returns"
         }
       ],
       "culture": "Many Lebanese shops prefer to exchange an item or give store credit rather than refund cash, especially on sale items, so keep the receipt. A real defect is usually accepted without an argument.",

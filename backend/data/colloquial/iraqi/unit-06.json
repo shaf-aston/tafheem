@@ -242,6 +242,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فُسْتَان",
+          "transliteration": "fustaan",
+          "english": "dress",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "گَمِيص",
+          "transliteration": "gameeS",
+          "english": "shirt",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "گِيَاس",
+          "transliteration": "giyaas",
+          "english": "size",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "غُرْفَة",
+          "transliteration": "ghurfa",
+          "english": "room",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "ضَيِّگ",
+          "transliteration": "Dayyig",
+          "english": "tight",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "گُمَاش",
+          "transliteration": "gumaash",
+          "english": "fabric",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "گُطُن",
+          "transliteration": "guTun",
+          "english": "cotton",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "جُوتِي",
+          "transliteration": "jooti",
+          "english": "trainers",
+          "category": "Clothes"
+        }
+      ],
       "culture": "In Baghdad, a shopkeeper in Karrada or the old Shorja market will call a customer \"عمي\" or \"أخوي\" and bring out several sizes without being asked twice. Trying something on and saying it does not fit is normal and never rude.",
       "exercises": [
         {
@@ -640,6 +690,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "لُون",
+          "transliteration": "loon",
+          "english": "colour",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَزْرَگ",
+          "transliteration": "azrag",
+          "english": "blue",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَحْمَر",
+          "transliteration": "a7mar",
+          "english": "red",
+          "category": "Colours"
+        },
+        {
+          "arabic": "رَصَاصِي",
+          "transliteration": "raSaaSi",
+          "english": "grey",
+          "category": "Colours"
+        },
+        {
+          "arabic": "فَاتِح",
+          "transliteration": "faati7",
+          "english": "light (colour)",
+          "category": "Colours"
+        },
+        {
+          "arabic": "غَامِگ",
+          "transliteration": "ghaamig",
+          "english": "dark (colour)",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَحْلَى",
+          "transliteration": "a7la",
+          "english": "nicer",
+          "category": "Colours"
+        },
+        {
+          "arabic": "رَاي",
+          "transliteration": "raay",
+          "english": "opinion",
+          "category": "Colours"
+        }
+      ],
       "culture": "Friends shopping together in Baghdad ask each other \"شرايچ؟\" before buying, and the seller usually joins in with an opinion. Saying \"بعدني ما قررت\" ends the pressure politely, with no offence taken.",
       "exercises": [
         {
@@ -1031,6 +1131,56 @@
             "transliteration": "aku, haadha b-sab3at aalaaf",
             "english": "There is, this one is seven thousand."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "غَالِي",
+          "transliteration": "ghaali",
+          "english": "expensive",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَرْخَص",
+          "transliteration": "arkhaS",
+          "english": "cheaper",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "سِعِر",
+          "transliteration": "si3ir",
+          "english": "price",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "خَصِم",
+          "transliteration": "khaSim",
+          "english": "discount",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَلِف",
+          "transliteration": "alif",
+          "english": "thousand",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "خَسَارَة",
+          "transliteration": "khasaara",
+          "english": "loss",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "مَاكُو",
+          "transliteration": "maaku",
+          "english": "there isn't",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "اِتِّفَگْنَا",
+          "transliteration": "ittifagna",
+          "english": "we agreed",
+          "category": "Bargaining"
         }
       ],
       "culture": "Bargaining is expected in Baghdad's traditional markets such as Shorja and Bab al-Sharqi, while malls and shops with printed prices are fixed. Prices are said in thousands of dinars with the word \"دينار\" dropped, so \"عشرة آلاف\" is ten thousand.",
@@ -1425,6 +1575,56 @@
             "transliteration": "gabl yomeen",
             "english": "Two days ago."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عَيْب",
+          "transliteration": "3ayb",
+          "english": "defect",
+          "category": "Returns"
+        },
+        {
+          "arabic": "وَصِل",
+          "transliteration": "waSil",
+          "english": "receipt",
+          "category": "Returns"
+        },
+        {
+          "arabic": "فْلُوس",
+          "transliteration": "floos",
+          "english": "money",
+          "category": "Returns"
+        },
+        {
+          "arabic": "غَلَط",
+          "transliteration": "ghalaT",
+          "english": "wrong",
+          "category": "Returns"
+        },
+        {
+          "arabic": "گِيَاس",
+          "transliteration": "giyaas",
+          "english": "size",
+          "category": "Returns"
+        },
+        {
+          "arabic": "أَكْبَر",
+          "transliteration": "akbar",
+          "english": "bigger",
+          "category": "Returns"
+        },
+        {
+          "arabic": "ثَانِي",
+          "transliteration": "thaani",
+          "english": "another",
+          "category": "Returns"
+        },
+        {
+          "arabic": "تَعَاوُن",
+          "transliteration": "ta3aawun",
+          "english": "cooperation",
+          "category": "Returns"
         }
       ],
       "culture": "Many shops in Baghdad will exchange an item within a few days rather than refund it, and they will ask for the receipt, \"الوصل\". Thanking the seller with \"يعطيك العافية\" is the polite way to finish.",

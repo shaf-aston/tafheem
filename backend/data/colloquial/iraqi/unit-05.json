@@ -238,6 +238,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَكْسِي",
+          "transliteration": "taksi",
+          "english": "taxi",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "عَدَّاد",
+          "transliteration": "3addaad",
+          "english": "meter",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "أُجْرَة",
+          "transliteration": "ujra",
+          "english": "fare",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "شَارِع",
+          "transliteration": "shaari3",
+          "english": "street",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "خُرْدَة",
+          "transliteration": "khurda",
+          "english": "small change",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "گَدِيمَة",
+          "transliteration": "gadeema",
+          "english": "old",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "بَاب",
+          "transliteration": "baab",
+          "english": "gate, door",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "آخِر",
+          "transliteration": "aakhir",
+          "english": "end, last",
+          "category": "Taxi"
+        }
+      ],
       "culture": "In Baghdad most taxis have no working meter, so the fare is agreed before you get in, and a little bargaining is normal and not rude. Drivers say the price in thousands of dinars, and leaving the change is a common small thank-you.",
       "exercises": [
         {
@@ -630,6 +680,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَيْدَلِيَّة",
+          "transliteration": "Saydaliyya",
+          "english": "pharmacy",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "إِشَارَة",
+          "transliteration": "ishaara",
+          "english": "traffic light",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "جَامِع",
+          "transliteration": "jaami3",
+          "english": "mosque",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "ضَايِع",
+          "transliteration": "Daayi3",
+          "english": "lost",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "زُگَاگ",
+          "transliteration": "zugaag",
+          "english": "alley",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مَسْدُود",
+          "transliteration": "masdood",
+          "english": "blocked, closed",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "أَوَّل",
+          "transliteration": "awwal",
+          "english": "first",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "يَسَار",
+          "transliteration": "yasaar",
+          "english": "left",
+          "category": "Asking the way"
+        }
+      ],
       "culture": "Baghdadis give directions by landmarks, a mosque, a bridge, a shop or a square, far more than by street names, and a helpful stranger will often walk part of the way with you. Calling a man \"أخي\" (my brother) or \"أستاذ\" (sir) when you stop him keeps it warm and polite.",
       "exercises": [
         {
@@ -1015,6 +1115,56 @@
             "transliteration": "7aadir, hnaa zeen?",
             "english": "Right away, is here fine?"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "بَاص",
+          "transliteration": "baaS",
+          "english": "bus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَوْگِف",
+          "transliteration": "mawgif",
+          "english": "stop",
+          "category": "Buses"
+        },
+        {
+          "arabic": "كِيَا",
+          "transliteration": "kiya",
+          "english": "minibus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "كُرْسِي",
+          "transliteration": "kursi",
+          "english": "seat",
+          "category": "Buses"
+        },
+        {
+          "arabic": "فَاضِي",
+          "transliteration": "faaDi",
+          "english": "empty, free",
+          "category": "Buses"
+        },
+        {
+          "arabic": "زَحْمَة",
+          "transliteration": "za7ma",
+          "english": "crowded",
+          "category": "Buses"
+        },
+        {
+          "arabic": "رَگَم",
+          "transliteration": "ragam",
+          "english": "number",
+          "category": "Buses"
+        },
+        {
+          "arabic": "سَاحَة",
+          "transliteration": "saa7a",
+          "english": "square",
+          "category": "Buses"
         }
       ],
       "culture": "In Baghdad the minibuses (\"كيا\") and larger coaster buses run set routes, are cheap and are paid in cash. A helper usually collects the fare and calls out the destination, and you tell the driver or helper where to let you off.",
@@ -1409,6 +1559,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مُسْتَشْفَى",
+          "transliteration": "mustashfa",
+          "english": "hospital",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَدْرَسَة",
+          "transliteration": "madrasa",
+          "english": "school",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَصْرِف",
+          "transliteration": "maSrif",
+          "english": "bank",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "حَدِيقَة",
+          "transliteration": "7adeega",
+          "english": "park",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "گَرَاج",
+          "transliteration": "garaaj",
+          "english": "bus station",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "كَنِيسَة",
+          "transliteration": "kaneesa",
+          "english": "church",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَنْطِقَة",
+          "transliteration": "manTiga",
+          "english": "area",
+          "category": "Places in town"
+        }
+      ],
       "culture": "Baghdadis usually place things by a neighbouring landmark, a mosque, a school or a well-known shop, rather than a street number, and the area name, such as الكرادة or المنصور, comes first. The intercity bus station is called \"الكراج\", while \"المحطة\" is more often a fuel or train station.",
       "exercises": [
         {
@@ -1799,6 +1999,56 @@
             "transliteration": "rub3 saa3a.",
             "english": "A quarter of an hour."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَرِيگ",
+          "transliteration": "Tareeg",
+          "english": "road, way",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَدِينَة",
+          "transliteration": "madeena",
+          "english": "city",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "فَاضِي",
+          "transliteration": "faaDi",
+          "english": "free, available",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "سَيَّارَة",
+          "transliteration": "sayyaara",
+          "english": "car",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7aTTa",
+          "english": "station",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "شْوَكِت",
+          "transliteration": "shwakit",
+          "english": "when",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "أَمِر",
+          "transliteration": "amir",
+          "english": "order, service",
+          "category": "Getting around"
         }
       ],
       "culture": "Baghdad taxis are usually painted orange and white and mostly have no meter, so the fare is agreed before you get in, and it is normal to bargain it down. Drivers often answer a passenger with تحت أمرك or تدلل, and shared minibuses, called كيا, run set routes for a fixed price.",

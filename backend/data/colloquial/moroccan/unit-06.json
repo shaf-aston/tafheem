@@ -236,6 +236,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "رُوبَّا",
+          "transliteration": "robba",
+          "english": "dress",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قْمِيجَة",
+          "transliteration": "qmeeja",
+          "english": "shirt",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "مْقَاس",
+          "transliteration": "mqaas",
+          "english": "size",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "كَابِين",
+          "transliteration": "kabeen",
+          "english": "fitting room",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "ضَيّْق",
+          "transliteration": "Dayyeq",
+          "english": "tight",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "ثُوب",
+          "transliteration": "thoob",
+          "english": "fabric",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قُطْن",
+          "transliteration": "qoTn",
+          "english": "cotton",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "صْبَّاط",
+          "transliteration": "SebbaaT",
+          "english": "shoes",
+          "category": "Clothes"
+        }
+      ],
       "culture": "In the Habous quarter of Casablanca or the medina of Rabat, a shopkeeper greets you with salaam first and then brings out sizes, and trying something on and saying it does not fit is completely normal. Sizes are often said as small, medium and large, or as French numbers.",
       "exercises": [
         {
@@ -652,6 +702,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "لُون",
+          "transliteration": "loon",
+          "english": "colour",
+          "category": "Colours"
+        },
+        {
+          "arabic": "زْرْق",
+          "transliteration": "zreq",
+          "english": "blue",
+          "category": "Colours"
+        },
+        {
+          "arabic": "حْمْر",
+          "transliteration": "7mer",
+          "english": "red",
+          "category": "Colours"
+        },
+        {
+          "arabic": "رْمَادِي",
+          "transliteration": "rmaadi",
+          "english": "grey",
+          "category": "Colours"
+        },
+        {
+          "arabic": "مْفْتُوح",
+          "transliteration": "mefto7",
+          "english": "light (colour)",
+          "category": "Colours"
+        },
+        {
+          "arabic": "غَامْق",
+          "transliteration": "ghaameq",
+          "english": "dark (colour)",
+          "category": "Colours"
+        },
+        {
+          "arabic": "زْوِين",
+          "transliteration": "zween",
+          "english": "pretty, nice",
+          "category": "Colours"
+        },
+        {
+          "arabic": "كْحْل",
+          "transliteration": "k7el",
+          "english": "black",
+          "category": "Colours"
+        }
+      ],
       "culture": "In Rabat and Casablanca boutiques, color words mix Darija and French, so you will hear \"زرق\" and \"حمر\" next to \"بيج\" and \"روز\". Shop assistants like to give an opinion, so \"شنو كتنصحني؟\" is a normal way to ask for one.",
       "exercises": [
         {
@@ -1061,6 +1161,56 @@
             "transliteration": "miteen dirham",
             "english": "Two hundred dirhams."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "غَالِي",
+          "transliteration": "ghaali",
+          "english": "expensive",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَرْخَص",
+          "transliteration": "arkhaS",
+          "english": "cheaper",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "ثّْمَن",
+          "transliteration": "tmen",
+          "english": "price",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "تْخْفِيض",
+          "transliteration": "tkhfeeD",
+          "english": "discount",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَلْف",
+          "transliteration": "alf",
+          "english": "thousand",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "كُلْشِي",
+          "transliteration": "koolshi",
+          "english": "everything, total",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "خْسْر",
+          "transliteration": "khser",
+          "english": "to lose money",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "تْفَاهْمْنَا",
+          "transliteration": "tfaahemna",
+          "english": "we agreed",
+          "category": "Bargaining"
         }
       ],
       "culture": "In the medina of Rabat, the Habous of Casablanca and the souks in general, the first price is a starting point and haggling politely is expected, often with a smile and a bit of walking away. In fixed-price shops such as malls and chain stores you do not bargain.",
@@ -1477,6 +1627,56 @@
             "transliteration": "akiid, tsenna shwiyya",
             "english": "Sure, wait a moment."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عِيب",
+          "transliteration": "3eeb",
+          "english": "defect",
+          "category": "Returns"
+        },
+        {
+          "arabic": "فَاتُورَة",
+          "transliteration": "faatoora",
+          "english": "receipt",
+          "category": "Returns"
+        },
+        {
+          "arabic": "فْلُوس",
+          "transliteration": "floos",
+          "english": "money",
+          "category": "Returns"
+        },
+        {
+          "arabic": "بْدّْل",
+          "transliteration": "beddel",
+          "english": "to exchange",
+          "category": "Returns"
+        },
+        {
+          "arabic": "مْقَاس",
+          "transliteration": "mqaas",
+          "english": "size",
+          "category": "Returns"
+        },
+        {
+          "arabic": "أَكْبَر",
+          "transliteration": "akbar",
+          "english": "bigger",
+          "category": "Returns"
+        },
+        {
+          "arabic": "فُوقَاش",
+          "transliteration": "fooqaash",
+          "english": "when",
+          "category": "Returns"
+        },
+        {
+          "arabic": "رْجّْع",
+          "transliteration": "rejje3",
+          "english": "to return",
+          "category": "Returns"
         }
       ],
       "culture": "Small shops in Casablanca and Rabat often exchange goods rather than refund money, so keeping the receipt matters, and the request is made politely, starting with salaam. Chain stores are stricter about the receipt and the time limit.",

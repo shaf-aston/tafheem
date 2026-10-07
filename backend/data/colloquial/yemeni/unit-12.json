@@ -212,6 +212,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "آلُو",
+          "transliteration": "aaloo",
+          "english": "hello (on the phone)",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "خَطّ",
+          "transliteration": "khaTT",
+          "english": "line",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "رَصِيد",
+          "transliteration": "raSeed",
+          "english": "phone credit",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "بَطَّارِيَّة",
+          "transliteration": "baTTaariyya",
+          "english": "battery",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "شَبَكَة",
+          "transliteration": "shabaka",
+          "english": "signal, network",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "جَوَّال",
+          "transliteration": "jawwaal",
+          "english": "mobile phone",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "جِهَاز",
+          "transliteration": "jihaaz",
+          "english": "device",
+          "category": "Answering the phone"
+        }
+      ],
       "culture": "In Yemen, a call usually opens with \"آلو\" and the caller introduces themselves. Quick greetings like \"شنو أخبارك\" are common before explaining the reason for the call. Ending with a quick goodbye and \"الله يحفظك\" is polite and keeps the call brief.",
       "exercises": [
         {
@@ -576,6 +626,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَقْهَى",
+          "transliteration": "maqha",
+          "english": "café",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "سَاعَة",
+          "transliteration": "saa3a",
+          "english": "hour, o'clock",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مَكَان",
+          "transliteration": "makaan",
+          "english": "place",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "قَبْل",
+          "transliteration": "qabl",
+          "english": "before",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "جَامِع",
+          "transliteration": "jaami3",
+          "english": "mosque",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "بِالضَّبْط",
+          "transliteration": "biD-DabT",
+          "english": "exactly",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "سَوَا",
+          "transliteration": "sawa",
+          "english": "together",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "زَيْن",
+          "transliteration": "zayn",
+          "english": "good",
+          "category": "Arranging to meet"
+        }
+      ],
       "culture": "In Yemen people usually arrange to meet at markets (bazaars), cafes, or mosques rather than giving street addresses. Confirming the exact spot at the entrance is important. A quick greeting and the time matter more than lengthy planning.",
       "exercises": [
         {
@@ -929,6 +1029,56 @@
             "transliteration": "la, ghayarna l-makaan",
             "english": "No, we changed the place."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مَوْعِد",
+          "transliteration": "maw3id",
+          "english": "appointment",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "تَغْيِير",
+          "transliteration": "taghyeer",
+          "english": "change",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بَدَل",
+          "transliteration": "badal",
+          "english": "instead of",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "صُبْح",
+          "transliteration": "Sub7",
+          "english": "morning",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "ظُهْر",
+          "transliteration": "Zuhr",
+          "english": "noon",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "يَوْم",
+          "transliteration": "yawm",
+          "english": "day",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "الْحِين",
+          "transliteration": "al-7een",
+          "english": "now",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بُكْرَة",
+          "transliteration": "bukra",
+          "english": "tomorrow",
+          "category": "Changing plans"
         }
       ],
       "culture": "In Yemen, plans often change due to family matters, prayer times, and daily needs, and rearranging at short notice is normal and expected. A quick apology like \"آسف عالتغيير\" shows respect, and the response \"ولا يهمك\" indicates there are no hard feelings. Friday is often adjusted around the Friday prayer.",
@@ -1296,6 +1446,56 @@
             "transliteration": "ee, 3indi ma7fuudh",
             "english": "Yes, I have it saved."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رِسَالَة",
+          "transliteration": "risaala",
+          "english": "message",
+          "category": "Messages"
+        },
+        {
+          "arabic": "رَقْم",
+          "transliteration": "raqm",
+          "english": "number",
+          "category": "Messages"
+        },
+        {
+          "arabic": "مَوْجُود",
+          "transliteration": "mawjood",
+          "english": "present, in",
+          "category": "Messages"
+        },
+        {
+          "arabic": "خَبَر",
+          "transliteration": "khabar",
+          "english": "news",
+          "category": "Messages"
+        },
+        {
+          "arabic": "مَتَى",
+          "transliteration": "mata",
+          "english": "when",
+          "category": "Messages"
+        },
+        {
+          "arabic": "وَقْت",
+          "transliteration": "waqt",
+          "english": "time",
+          "category": "Messages"
+        },
+        {
+          "arabic": "شْوَيَّة",
+          "transliteration": "shwayya",
+          "english": "a little",
+          "category": "Messages"
+        },
+        {
+          "arabic": "شُكْرًا",
+          "transliteration": "shukran",
+          "english": "thanks",
+          "category": "Messages"
         }
       ],
       "culture": "In Yemen, a family member often answers the phone and takes messages, and the caller may ask after the family before delivering their message. \"الله يحفظك\" is the standard thank-you for a favor, and \"أيوه\" (yes) is the most common agreement word. Politeness and respect for the messenger is important.",

@@ -212,6 +212,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "أَلُو",
+          "transliteration": "aloo",
+          "english": "hello (on the phone)",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "خَطّ",
+          "transliteration": "khaTT",
+          "english": "line",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "رَصِيد",
+          "transliteration": "raSeed",
+          "english": "phone credit",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "بَطَّارِيِّة",
+          "transliteration": "baTTaariyye",
+          "english": "battery",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "شَبْكِة",
+          "transliteration": "shabke",
+          "english": "signal, network",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "مُوبَايِل",
+          "transliteration": "mobaayl",
+          "english": "mobile phone",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "دَقَّة",
+          "transliteration": "da22a",
+          "english": "ring, call",
+          "category": "Answering the phone"
+        }
+      ],
       "culture": "In Lebanon people say دقّ (da22) for ringing someone, so دقيلي means call me, and a call usually opens with ألو followed by مين معي؟ to find out who is on the line. Ending with يسلمو or مع السلامة rather than hanging up abruptly is the polite habit.",
       "exercises": [
         {
@@ -630,6 +680,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "كَافِيه",
+          "transliteration": "kafeeh",
+          "english": "café",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "سَاعَة",
+          "transliteration": "saa3a",
+          "english": "hour, o'clock",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مَكَان",
+          "transliteration": "makaan",
+          "english": "place",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "قَبْل",
+          "transliteration": "2abl",
+          "english": "before",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "سَوَا",
+          "transliteration": "sawa",
+          "english": "together",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "جَامِع",
+          "transliteration": "jaame3",
+          "english": "mosque",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "بِالضَّبْط",
+          "transliteration": "biD-DabT",
+          "english": "exactly",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "بَكِّير",
+          "transliteration": "bakkeer",
+          "english": "early",
+          "category": "Arranging to meet"
+        }
+      ],
       "culture": "In Beirut a meeting place is usually named by a landmark or a well-known cafe, such as the Raouche rocks or a cafe on Hamra Street, since street addresses are rarely used in daily talk. Arriving ten or fifteen minutes late is common, which is why إذا تأخرت دقلي is a routine thing to say.",
       "exercises": [
         {
@@ -1038,6 +1138,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَوْعَد",
+          "transliteration": "maw3ad",
+          "english": "appointment",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "شَغْلِة",
+          "transliteration": "shaghle",
+          "english": "something to do",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "خُطَّة",
+          "transliteration": "khuTTa",
+          "english": "plan",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بَدَل",
+          "transliteration": "badal",
+          "english": "instead of",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "فَجْأَة",
+          "transliteration": "faj2a",
+          "english": "suddenly",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "صُبُح",
+          "transliteration": "Sobo7",
+          "english": "morning",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "يُوم",
+          "transliteration": "yoom",
+          "english": "day",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بُكْرَا",
+          "transliteration": "bukra",
+          "english": "tomorrow",
+          "category": "Changing plans"
+        }
+      ],
       "culture": "Plans shift often in Lebanon because of traffic and work, and asking to postpone is not rude if you add معليش and a short reason. The other person usually answers ولا يهمك, and a new day is often offered with إن شاء الله.",
       "exercises": [
         {
@@ -1439,6 +1589,56 @@
             "transliteration": "2akiid, b2illo 2awwal ma yuusal",
             "english": "Sure, I'll tell him as soon as he arrives."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رِسَالِة",
+          "transliteration": "risaale",
+          "english": "message",
+          "category": "Messages"
+        },
+        {
+          "arabic": "رَقِم",
+          "transliteration": "ra2em",
+          "english": "number",
+          "category": "Messages"
+        },
+        {
+          "arabic": "مَوْجُود",
+          "transliteration": "mawjood",
+          "english": "present, in",
+          "category": "Messages"
+        },
+        {
+          "arabic": "خَبَر",
+          "transliteration": "khabar",
+          "english": "news",
+          "category": "Messages"
+        },
+        {
+          "arabic": "إِيمْتَى",
+          "transliteration": "eemta",
+          "english": "when",
+          "category": "Messages"
+        },
+        {
+          "arabic": "شْوَيّ",
+          "transliteration": "shwayy",
+          "english": "a little",
+          "category": "Messages"
+        },
+        {
+          "arabic": "أَكِيد",
+          "transliteration": "akeed",
+          "english": "sure, of course",
+          "category": "Messages"
+        },
+        {
+          "arabic": "وَقِت",
+          "transliteration": "wa2et",
+          "english": "time",
+          "category": "Messages"
         }
       ],
       "culture": "In Lebanon a relative often picks up when someone is out, so the caller gives their name at once, and a message is passed on without fuss. يسلمو is the thank-you, ولو is the warm reply, and a call often ends with الله معك or مع السلامة.",

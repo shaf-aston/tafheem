@@ -234,6 +234,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "حَجِز",
+          "transliteration": "7ajiz",
+          "english": "booking",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "غُرْفَة",
+          "transliteration": "ghurfa",
+          "english": "room",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "لِيلَة",
+          "transliteration": "leela",
+          "english": "night",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "فْطُور",
+          "transliteration": "fTour",
+          "english": "breakfast",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "لِيفْت",
+          "transliteration": "lift",
+          "english": "lift",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "مُفْتَاح",
+          "transliteration": "muftaa7",
+          "english": "key",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "فُنْدُق",
+          "transliteration": "funduq",
+          "english": "hotel",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "فَاضْيَة",
+          "transliteration": "faaDya",
+          "english": "free, empty",
+          "category": "Hotel"
+        }
+      ],
       "culture": "Hotel staff in the Gulf come from many countries, so many will answer in English, but a greeting like \"هلا\" or \"حياك الله\" in Arabic is always warmly received. Breakfast is often a buffet, and many locals call the morning meal \"ريوق\".",
       "exercises": [
         {
@@ -639,6 +689,56 @@
             "transliteration": "ee, bas laazim biTaaqat l-jaam3a",
             "english": "Yes, but you need your university card."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "تَذْكَرَة",
+          "transliteration": "tadhkara",
+          "english": "ticket",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "رَايِح",
+          "transliteration": "raayi7",
+          "english": "going, one-way",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "كُرْسِي",
+          "transliteration": "kursi",
+          "english": "seat",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "كَرْت",
+          "transliteration": "kart",
+          "english": "card",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "طُلَّاب",
+          "transliteration": "Tullaab",
+          "english": "students",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "شُبَّاك",
+          "transliteration": "shubbaak",
+          "english": "window, counter",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "خَصِم",
+          "transliteration": "khaSim",
+          "english": "discount",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "بَاص",
+          "transliteration": "baaS",
+          "english": "bus",
+          "category": "Tickets"
         }
       ],
       "culture": "Most people in the UAE and Kuwait travel by car, so intercity buses are mainly used by students and workers. In the UAE a rechargeable Nol card pays for city buses and the metro, and longer trips are booked at the station or by an app.",
@@ -1048,6 +1148,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَوَاز",
+          "transliteration": "jawaaz",
+          "english": "passport",
+          "category": "Airport"
+        },
+        {
+          "arabic": "شَنْطَة",
+          "transliteration": "shanTa",
+          "english": "bag",
+          "category": "Airport"
+        },
+        {
+          "arabic": "وَزِن",
+          "transliteration": "wazin",
+          "english": "weight",
+          "category": "Airport"
+        },
+        {
+          "arabic": "طَيَّارَة",
+          "transliteration": "Tayyaara",
+          "english": "plane",
+          "category": "Airport"
+        },
+        {
+          "arabic": "بَوَّابَة",
+          "transliteration": "bawwaaba",
+          "english": "gate",
+          "category": "Airport"
+        },
+        {
+          "arabic": "مَطَار",
+          "transliteration": "maTaar",
+          "english": "airport",
+          "category": "Airport"
+        },
+        {
+          "arabic": "سِيَاحَة",
+          "transliteration": "siyaa7a",
+          "english": "tourism",
+          "category": "Airport"
+        },
+        {
+          "arabic": "جَمَارِك",
+          "transliteration": "jamaarik",
+          "english": "customs",
+          "category": "Airport"
+        }
+      ],
       "culture": "At UAE and Kuwait airports officers greet visitors with \"حياك الله\", and staff often speak Arabic, English and other languages in the same shift. Say \"إن شاء الله\" when you talk about your plans, for example how long you will stay, as locals do.",
       "exercises": [
         {
@@ -1448,6 +1598,56 @@
             "transliteration": "aasif, il-7een asaa3dak",
             "english": "Sorry, I'll help you now."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ضَيَّع",
+          "transliteration": "Dayya3",
+          "english": "lost",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مِتْأَخِّر",
+          "transliteration": "mit2akhkhir",
+          "english": "delayed",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "mushkila",
+          "english": "problem",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مَكْسُور",
+          "transliteration": "maksoor",
+          "english": "broken",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "شَكْوَى",
+          "transliteration": "shakwa",
+          "english": "complaint",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "حَجِز",
+          "transliteration": "7ajiz",
+          "english": "booking",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مَكْتَب",
+          "transliteration": "maktab",
+          "english": "office",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "رِحْلَة",
+          "transliteration": "ri7la",
+          "english": "flight, trip",
+          "category": "Travel problems"
         }
       ],
       "culture": "When something goes wrong while travelling, Gulf people stay calm and say \"الله يعوّض\" or \"إن شاء الله يصير خير\" instead of complaining. Staff in the UAE and Kuwait usually respond to a polite \"لو سمحت\" and a smile faster than to an angry voice.",

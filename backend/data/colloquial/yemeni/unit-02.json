@@ -221,6 +221,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "عَايْلَة",
+          "transliteration": "3aayla",
+          "english": "family",
+          "category": "Family"
+        },
+        {
+          "arabic": "أُمّ",
+          "transliteration": "umm",
+          "english": "mother",
+          "category": "Family"
+        },
+        {
+          "arabic": "أَبُو",
+          "transliteration": "abu",
+          "english": "father",
+          "category": "Family"
+        },
+        {
+          "arabic": "أَخ",
+          "transliteration": "akh",
+          "english": "brother",
+          "category": "Family"
+        },
+        {
+          "arabic": "أُخْت",
+          "transliteration": "ukht",
+          "english": "sister",
+          "category": "Family"
+        },
+        {
+          "arabic": "وَلَد",
+          "transliteration": "walad",
+          "english": "son, boy",
+          "category": "Family"
+        },
+        {
+          "arabic": "بِنْت",
+          "transliteration": "bint",
+          "english": "daughter, girl",
+          "category": "Family"
+        },
+        {
+          "arabic": "زَوْج",
+          "transliteration": "zawj",
+          "english": "husband",
+          "category": "Family"
+        }
+      ],
       "culture": "Family is central in Yemeni society, and asking about family members is an important part of any greeting. People usually ask directly where relatives live and often discuss family plans. Saying you are still single is a straightforward answer, often followed by \"إن شاء الله\" (God willing).",
       "exercises": [
         {
@@ -635,6 +685,56 @@
             "transliteration": "tafaddal ya sayyidi.",
             "english": "Right away, sir."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "جُوعَان",
+          "transliteration": "joo3aan",
+          "english": "hungry",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "عَطْشَان",
+          "transliteration": "3aTshaan",
+          "english": "thirsty",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "أَكْل",
+          "transliteration": "akl",
+          "english": "food",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "قَهْوَة",
+          "transliteration": "qahwa",
+          "english": "coffee",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "شَاهِي",
+          "transliteration": "shaahi",
+          "english": "tea",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "فَلَافِل",
+          "transliteration": "falaafil",
+          "english": "falafel",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "عَافْيَة",
+          "transliteration": "3aafya",
+          "english": "health",
+          "category": "Food and drink"
         }
       ],
       "culture": "Food and hospitality are central to Yemeni culture. Coffee is always offered to guests, and refusing it can be seen as impolite. \"نُعيماً\" is said after someone finishes eating or drinking, and \"بِالْعَافِيَة\" is said while eating; both receive the blessing \"الله يَعْطِيك الْعَافِيَة\" (May God give you well-being). Meals often last a long time with lots of conversation.",

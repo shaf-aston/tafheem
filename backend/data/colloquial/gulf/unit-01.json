@@ -237,6 +237,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَرْحَبَا",
+          "transliteration": "mar7aba",
+          "english": "hello",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "هَلَا",
+          "transliteration": "hala",
+          "english": "hi, welcome",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "اِسْم",
+          "transliteration": "ism",
+          "english": "name",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "زِين",
+          "transliteration": "zeen",
+          "english": "good, fine",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "تَمَام",
+          "transliteration": "tamaam",
+          "english": "fine, great",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "بَعَد",
+          "transliteration": "ba3ad",
+          "english": "also, too",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "وِين",
+          "transliteration": "ween",
+          "english": "where",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَنَا",
+          "transliteration": "ana",
+          "english": "I",
+          "category": "Greetings"
+        }
+      ],
       "culture": "In the Gulf, greetings are warm and a little long: men often shake hands or touch noses with close friends, and \"هلا\" or \"هلا والله\" is the everyday hello. Alhamdulillah always comes with the answer to \"how are you\", and a man and a woman who are not related usually greet with words only.",
       "exercises": [
         {
@@ -657,6 +707,56 @@
             "transliteration": "ee, yinfa3.",
             "english": "Yes, it's fine."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "شُكْرًا",
+          "transliteration": "shukran",
+          "english": "thank you",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مَشْكُور",
+          "transliteration": "mashkoor",
+          "english": "thanks",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "آسِف",
+          "transliteration": "aasif",
+          "english": "sorry",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مَا عَلَيْه",
+          "transliteration": "maa 3aleyh",
+          "english": "never mind",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "الْعَفْو",
+          "transliteration": "al-3afw",
+          "english": "you're welcome",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "وَايِد",
+          "transliteration": "waayid",
+          "english": "very, a lot",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "إِي",
+          "transliteration": "ee",
+          "english": "yes",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مَاي",
+          "transliteration": "maay",
+          "english": "water",
+          "category": "Politeness"
         }
       ],
       "culture": "Politeness in the Gulf leans on warm, ready phrases: \"أبشر\" (gladly, consider it done) is how you accept a request, and \"مشكور\" or \"يعطيك العافية\" thanks someone for their effort. \"أبي\" is the normal, polite way to say \"I want\", it is not rude.",
@@ -1088,6 +1188,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "وَاحِد",
+          "transliteration": "waa7id",
+          "english": "one",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "ثْنِين",
+          "transliteration": "thneen",
+          "english": "two",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "ثَلَاثَة",
+          "transliteration": "thalaatha",
+          "english": "three",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "خَمْسَة",
+          "transliteration": "khamsa",
+          "english": "five",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "سَاعَة",
+          "transliteration": "saa3a",
+          "english": "hour, clock",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "الْيُوم",
+          "transliteration": "il-yoom",
+          "english": "today",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "بَاچِر",
+          "transliteration": "baachir",
+          "english": "tomorrow",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "الْحِين",
+          "transliteration": "il-7een",
+          "english": "now",
+          "category": "Numbers and time"
+        }
+      ],
       "culture": "Plans in the Gulf almost always carry \"إن شاء الله\", even a simple \"see you tomorrow\". Time is often given by the prayer or by \"بعد العصر\" (after the afternoon prayer) as much as by the clock, and the working week runs Monday to Friday in the UAE and Sunday to Thursday in Kuwait.",
       "exercises": [
         {
@@ -1507,6 +1657,56 @@
             "transliteration": "allah y3aafeek.",
             "english": "You're welcome."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُوق",
+          "transliteration": "soog",
+          "english": "market",
+          "category": "Directions"
+        },
+        {
+          "arabic": "بَقَالَة",
+          "transliteration": "bagaala",
+          "english": "corner shop",
+          "category": "Directions"
+        },
+        {
+          "arabic": "يِمِين",
+          "transliteration": "yimeen",
+          "english": "right",
+          "category": "Directions"
+        },
+        {
+          "arabic": "يَسَار",
+          "transliteration": "yasaar",
+          "english": "left",
+          "category": "Directions"
+        },
+        {
+          "arabic": "قَرِيب",
+          "transliteration": "gareeb",
+          "english": "near",
+          "category": "Directions"
+        },
+        {
+          "arabic": "بَعِيد",
+          "transliteration": "ba3eed",
+          "english": "far",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هِنِي",
+          "transliteration": "hini",
+          "english": "here",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هِنَاك",
+          "transliteration": "hinaak",
+          "english": "there",
+          "category": "Directions"
         }
       ],
       "culture": "Asking directions in the Gulf, people often point out a landmark such as a mall, mosque or roundabout (\"دوار\") more than a street name, and a helper is thanked with \"يعطيك العافية\", to which one answers \"الله يعافيك\". Spoken words like \"مب\" (not) and \"وايد\" (very) mark the Khaleeji way of speaking.",

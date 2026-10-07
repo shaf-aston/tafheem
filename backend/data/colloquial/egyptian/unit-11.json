@@ -241,6 +241,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "ضِيف",
+          "transliteration": "Deef",
+          "english": "guest",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بَاب",
+          "transliteration": "baab",
+          "english": "door",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "جَزْمَة",
+          "transliteration": "gazma",
+          "english": "shoes",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "هِدِيَّة",
+          "transliteration": "hedeyya",
+          "english": "gift",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "عَرَبِيَّة",
+          "transliteration": "3arabeyya",
+          "english": "car",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "مَكَان",
+          "transliteration": "makaan",
+          "english": "place, spot",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "حَمَّام",
+          "transliteration": "7ammaam",
+          "english": "bathroom",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "شَرَف",
+          "transliteration": "sharaf",
+          "english": "honour",
+          "category": "Arriving as a guest"
+        }
+      ],
       "culture": "In Cairo, \"nawwartena\" (you lit up our home) is the everyday welcome to a guest, and the reply \"da nooruk\" is automatic. Taking shoes off varies from family to family, so a guest often waits to see what the host does; a small gift of sweets or fruit is normal.",
       "exercises": [
         {
@@ -656,6 +706,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَرَس",
+          "transliteration": "garas",
+          "english": "doorbell",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "جَاكِت",
+          "transliteration": "gaket",
+          "english": "coat",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "تِرَابِيزَة",
+          "transliteration": "trabeeza",
+          "english": "table",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "تِلِيفِزْيُون",
+          "transliteration": "televezyoon",
+          "english": "television",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "وِلَاد",
+          "transliteration": "welaad",
+          "english": "children",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "قَعْدَة",
+          "transliteration": "2a3da",
+          "english": "gathering",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "ذُوق",
+          "transliteration": "zoo2",
+          "english": "good taste, manners",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "رَاحَة",
+          "transliteration": "raa7a",
+          "english": "ease, rest",
+          "category": "Welcoming guests"
+        }
+      ],
       "culture": "A Cairene host offers tea or coffee within minutes of you sitting down, and the sugar question (plain, medium or sweet) is part of the ritual. Praising the children or the home is expected, and \"el-beet beetak\" is said to put a shy guest at ease.",
       "exercises": [
         {
@@ -1066,6 +1166,56 @@
             "transliteration": "sufra daayma",
             "english": "May your table always be full."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُفْرَة",
+          "transliteration": "sofra",
+          "english": "dining table",
+          "category": "At the table"
+        },
+        {
+          "arabic": "عِيش",
+          "transliteration": "3eesh",
+          "english": "bread",
+          "category": "At the table"
+        },
+        {
+          "arabic": "شَطَّة",
+          "transliteration": "shaTTa",
+          "english": "chilli sauce",
+          "category": "At the table"
+        },
+        {
+          "arabic": "أَكْلَة",
+          "transliteration": "akla",
+          "english": "dish, meal",
+          "category": "At the table"
+        },
+        {
+          "arabic": "حِلْو",
+          "transliteration": "7elw",
+          "english": "dessert",
+          "category": "At the table"
+        },
+        {
+          "arabic": "شَبْعَان",
+          "transliteration": "shab3aan",
+          "english": "full",
+          "category": "At the table"
+        },
+        {
+          "arabic": "كِفَايَة",
+          "transliteration": "kefaaya",
+          "english": "enough",
+          "category": "At the table"
+        },
+        {
+          "arabic": "طَبَق",
+          "transliteration": "Taba2",
+          "english": "plate, dish",
+          "category": "At the table"
         }
       ],
       "culture": "\"Bel-hanna wesh-shifa\" is said to people eating, and after the meal the guest says \"teslam eedik\" to the cook, who answers \"sufra daayma\". In Egypt bread is \"3eesh\" (life), and a host pressing more food on you is showing generosity, so a first refusal is often politely overruled.",
@@ -1483,6 +1633,56 @@
             "transliteration": "allaah yeslemak, rabbena ma3aak",
             "english": "God keep you, may our Lord be with you."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ضِيَافَة",
+          "transliteration": "Deyaafa",
+          "english": "hospitality",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "وَقْت",
+          "transliteration": "wa2t",
+          "english": "time",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "مِتْأَخَّر",
+          "transliteration": "met2akhkhar",
+          "english": "late",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "عُزُومَة",
+          "transliteration": "3ozooma",
+          "english": "invitation",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "أَهْل",
+          "transliteration": "ahl",
+          "english": "family",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Taree2",
+          "english": "road",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "تَانِي",
+          "transliteration": "taani",
+          "english": "again",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "مَعَ السَّلَامَة",
+          "transliteration": "ma3a s-salaama",
+          "english": "goodbye",
+          "category": "Leaving and thanking"
         }
       ],
       "culture": "A Cairene host almost always says \"lessa badri\" (it is still early) when guests get up, and guests often need to say they must go two or three times. Asking guests to \"Tammenoona\" (put our minds at rest) once home is a caring closing habit, and \"in shaa' allaah\" softens any promise to visit.",

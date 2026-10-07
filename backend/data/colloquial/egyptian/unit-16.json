@@ -236,6 +236,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "إِمْبَارِح",
+          "transliteration": "embaare7",
+          "english": "yesterday",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "طَوِيل",
+          "transliteration": "Taweel",
+          "english": "long",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "مِتْأَخَّر",
+          "transliteration": "met2akhkhar",
+          "english": "late",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "قَمِيص",
+          "transliteration": "2ameeS",
+          "english": "shirt",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "مَسَا",
+          "transliteration": "masa",
+          "english": "evening",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "سَهَر",
+          "transliteration": "sahar",
+          "english": "staying up late",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "شُغْل",
+          "transliteration": "shoghl",
+          "english": "work",
+          "category": "Yesterday"
+        }
+      ],
       "culture": "إمبارح is the everyday Cairene word for yesterday; أمس and البارح sound bookish and are heard in news and writing, not in casual talk. Asking إمبارح عملت إيه؟ is a normal way to open a catch-up with a friend or neighbour.",
       "exercises": [
         {
@@ -623,6 +673,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صُغَيَّر",
+          "transliteration": "Soghayyar",
+          "english": "small, young",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "حَيّ",
+          "transliteration": "7ayy",
+          "english": "neighbourhood",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "صَاحِب",
+          "transliteration": "Saa7eb",
+          "english": "friend",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "كُورَة",
+          "transliteration": "koora",
+          "english": "football",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "جِدّ",
+          "transliteration": "gedd",
+          "english": "grandfather",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "حَدُّوتَة",
+          "transliteration": "7addoota",
+          "english": "story",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "عَجَلَة",
+          "transliteration": "3agala",
+          "english": "bicycle",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "ضَلْمَة",
+          "transliteration": "Dalma",
+          "english": "darkness",
+          "category": "Childhood"
+        }
+      ],
       "culture": "When Egyptians tell childhood stories they use كنت or كنا followed by ب and the verb, as in كنا بنلعب. تيتة is grandma and جدو is grandpa, said at home with close family.",
       "exercises": [
         {
@@ -1007,6 +1107,56 @@
             "transliteration": "Daa3it fil-maTaar",
             "english": "It got lost at the airport."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُوبَايِل",
+          "transliteration": "mobaayl",
+          "english": "mobile phone",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مُفْتَاح",
+          "transliteration": "moftaa7",
+          "english": "key",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "سِلِّم",
+          "transliteration": "sellem",
+          "english": "stairs",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مَحْفَظَة",
+          "transliteration": "ma7faZa",
+          "english": "wallet",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "عَرَبِيَّة",
+          "transliteration": "3arabeyya",
+          "english": "car",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "نُور",
+          "transliteration": "noor",
+          "english": "light, electricity",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "لَابْتُوب",
+          "transliteration": "labtob",
+          "english": "laptop",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مُنَبِّه",
+          "transliteration": "monabbeh",
+          "english": "alarm clock",
+          "category": "Something went wrong"
         }
       ],
       "culture": "When something breaks Egyptians say باظ or عطل, and after a mishap the comfort is المهم إنها عدت على خير. Someone who got hurt or had a bad day is told ألف سلامة or سلامتك.",
@@ -1406,6 +1556,56 @@
             "transliteration": "ma3rafsh, mumken yekoon ishaa3a",
             "english": "I don't know, it might be a rumor."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "خَبَر",
+          "transliteration": "khabar",
+          "english": "news",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "إِشَاعَة",
+          "transliteration": "eshaa3a",
+          "english": "rumour",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "حِتَّة",
+          "transliteration": "7etta",
+          "english": "area, place",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "شَهْر",
+          "transliteration": "shahr",
+          "english": "month",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "وَلَد",
+          "transliteration": "walad",
+          "english": "boy",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "كَلَام",
+          "transliteration": "kalaam",
+          "english": "talk",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "نَاس",
+          "transliteration": "naas",
+          "english": "people",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "جِدِيد",
+          "transliteration": "gedeed",
+          "english": "new",
+          "category": "News and gossip"
         }
       ],
       "culture": "For good news such as an engagement, wedding or new baby Egyptians answer ألف مبروك, and for a baby ربنا يخليه لكم. When news is not certain they say كلام ناس, and متقولش لحد keeps gossip from spreading.",

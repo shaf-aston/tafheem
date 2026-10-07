@@ -228,6 +228,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired, ill",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "وَجَع",
+          "transliteration": "waja3",
+          "english": "pain",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "بَطِن",
+          "transliteration": "baTen",
+          "english": "stomach",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "سُخْنِة",
+          "transliteration": "sokhne",
+          "english": "fever",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "دَايِخ",
+          "transliteration": "daayekh",
+          "english": "dizzy",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "مَزْكُوم",
+          "transliteration": "mazkoom",
+          "english": "having a cold",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "نُوم",
+          "transliteration": "noom",
+          "english": "sleep",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "رَاحَة",
+          "transliteration": "raa7a",
+          "english": "rest",
+          "category": "Feeling unwell"
+        }
+      ],
       "culture": "Lebanese people answer \"كيفك\" with a short honest complaint like \"تعبان شوي\" without it counting as moaning. \"سلامتك\" is said as soon as you hear someone is unwell, and the reply is \"الله يسلمك\".",
       "exercises": [
         {
@@ -667,6 +717,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "دَوَا",
+          "transliteration": "dawa",
+          "english": "medicine",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حُبُوب",
+          "transliteration": "7boob",
+          "english": "pills",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "شَرَاب",
+          "transliteration": "sharaab",
+          "english": "syrup",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "كَحَّة",
+          "transliteration": "ka77a",
+          "english": "cough",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "وَصْفِة",
+          "transliteration": "waSfe",
+          "english": "prescription",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حَسَاسِيِّة",
+          "transliteration": "7asaasiyye",
+          "english": "allergy",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "مَعِدِة",
+          "transliteration": "ma3de",
+          "english": "stomach",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "بْلَاسْتِر",
+          "transliteration": "blaaster",
+          "english": "plaster",
+          "category": "Pharmacy"
+        }
+      ],
       "culture": "In Lebanon the pharmacist (الصيدلاني) is often the first stop for a small illness, and many medicines are handed over without a prescription. Prices are said in thousands of lira, and you thank the pharmacist with \"يعطيك العافية\".",
       "exercises": [
         {
@@ -1091,6 +1191,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَوْعَد",
+          "transliteration": "maw3ad",
+          "english": "appointment",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "تَحَالِيل",
+          "transliteration": "ta7aaleel",
+          "english": "medical tests",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "نَفَس",
+          "transliteration": "nafas",
+          "english": "breath",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "ضَغْط",
+          "transliteration": "DaghT",
+          "english": "blood pressure",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "عَالِي",
+          "transliteration": "3aali",
+          "english": "high",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "خَطِير",
+          "transliteration": "khaTeer",
+          "english": "serious, dangerous",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "إِسْبُوع",
+          "transliteration": "2esboo3",
+          "english": "week",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "حَكِيم",
+          "transliteration": "7akeem",
+          "english": "doctor",
+          "category": "Doctor"
+        }
+      ],
       "culture": "At a Lebanese clinic you say \"يعطيك العافية\" to the doctor when you leave, and after any bad news people answer \"الحمدلله\" or \"إن شاء الله خير\". Doctors often write a prescription (وصفة) even for small things, and the pharmacy fills it the same day.",
       "exercises": [
         {
@@ -1491,6 +1641,56 @@
             "transliteration": "ee, ra2bti 3am bet-waj3ni kamaan",
             "english": "Yes, my neck hurts too"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رَاس",
+          "transliteration": "raas",
+          "english": "head",
+          "category": "Body"
+        },
+        {
+          "arabic": "ضَهْر",
+          "transliteration": "Dahr",
+          "english": "back",
+          "category": "Body"
+        },
+        {
+          "arabic": "إِيد",
+          "transliteration": "2eed",
+          "english": "hand, arm",
+          "category": "Body"
+        },
+        {
+          "arabic": "إِجِر",
+          "transliteration": "2ijer",
+          "english": "leg, foot",
+          "category": "Body"
+        },
+        {
+          "arabic": "عَين",
+          "transliteration": "3ayn",
+          "english": "eye",
+          "category": "Body"
+        },
+        {
+          "arabic": "إِدِن",
+          "transliteration": "2eden",
+          "english": "ear",
+          "category": "Body"
+        },
+        {
+          "arabic": "سِنّ",
+          "transliteration": "senn",
+          "english": "tooth",
+          "category": "Body"
+        },
+        {
+          "arabic": "رَقْبِة",
+          "transliteration": "ra2be",
+          "english": "neck",
+          "category": "Body"
         }
       ],
       "culture": "Lebanese people name the sore spot and add \"عم بيوجعني\" or \"وجع\" before it, and family and neighbours answer at once with \"سلامتك\" and a home remedy. Body-part words are the same for men and women, only the ending of the verb or adjective changes.",

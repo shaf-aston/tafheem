@@ -215,6 +215,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "عِيلِة",
+          "transliteration": "3eele",
+          "english": "family",
+          "category": "Family"
+        },
+        {
+          "arabic": "إِمّ",
+          "transliteration": "2imm",
+          "english": "mother",
+          "category": "Family"
+        },
+        {
+          "arabic": "بَيّ",
+          "transliteration": "bayy",
+          "english": "father",
+          "category": "Family"
+        },
+        {
+          "arabic": "خَيّ",
+          "transliteration": "khayy",
+          "english": "brother",
+          "category": "Family"
+        },
+        {
+          "arabic": "إِخْت",
+          "transliteration": "2ekht",
+          "english": "sister",
+          "category": "Family"
+        },
+        {
+          "arabic": "إِبِن",
+          "transliteration": "2ibin",
+          "english": "son",
+          "category": "Family"
+        },
+        {
+          "arabic": "بِنْت",
+          "transliteration": "bint",
+          "english": "daughter, girl",
+          "category": "Family"
+        },
+        {
+          "arabic": "جَوْز",
+          "transliteration": "jawz",
+          "english": "husband",
+          "category": "Family"
+        }
+      ],
       "culture": "In Lebanon people ask about family early and directly, and \"خيّي\" (my brother) is also a friendly way to address a man who is not a relative. Saying you are still single (\"لسّا عازب\" for a man, \"لسّا عازبة\" for a woman) is a plain answer, and it is often met with a kind \"إن شاء الله قريب\".",
       "exercises": [
         {
@@ -657,6 +707,56 @@
             "transliteration": "tfaddal, hayda l7saab.",
             "english": "Here you go, this is the bill."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "جُوعَان",
+          "transliteration": "jou3aan",
+          "english": "hungry",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "عَطْشَان",
+          "transliteration": "3aTshaan",
+          "english": "thirsty",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "أَكِل",
+          "transliteration": "akel",
+          "english": "food",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "قَهْوِة",
+          "transliteration": "2ahwe",
+          "english": "coffee",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "شَاي",
+          "transliteration": "shaay",
+          "english": "tea",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "فَلَافِل",
+          "transliteration": "falaafel",
+          "english": "falafel",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "حْسَاب",
+          "transliteration": "7saab",
+          "english": "bill",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "صَحْتَين",
+          "transliteration": "Sa7tayn",
+          "english": "bon appétit",
+          "category": "Food and drink"
         }
       ],
       "culture": "Lebanese hosts insist that guests eat more, and fighting over who pays the bill is almost a ritual. After a meal a guest often tells the host \"سفرة دايمة\" (may your table always be full), and \"صحتين\" and \"بالهنا والشفا\" are the fixed courtesies at the table.",
