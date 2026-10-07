@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
+import { FIXED, GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
 import { useStrip } from './lib/recent'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { idle } from './lib/warm'
@@ -130,7 +130,7 @@ function AppContent() {
     setHandoff(incoming ? { tab: id, value: incoming, at: ++arrivals } : null)
   }, [])
 
-  const strip = useStrip(LISTED, RECENT, activeTab)
+  const strip = useStrip(LISTED, FIXED, RECENT, activeTab)
 
   useTabShortcuts(strip, switchTab)
 
@@ -233,7 +233,7 @@ function AppContent() {
 
         {/* Phones get the tabs at the bottom instead (BottomNav). */}
         <div className="shell hidden sm:block">
-          <TabStrip tabs={strip} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
+          <TabStrip tabs={strip} fixed={FIXED.length} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
         </div>
       </header>
 
