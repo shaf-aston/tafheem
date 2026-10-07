@@ -25,7 +25,7 @@ from backend.models.schemas import (
     PracticeResponse,
     Source,
 )
-from backend.routers.progress import _USER
+from backend.identity import USER
 from backend.services import ai, iraab, practice_service, progress_store, provenance, sentence_check
 from backend.utils import arabic_sentence
 
@@ -53,7 +53,7 @@ async def kept_practice(sentence: str | None = Query(None, max_length=2000)) -> 
 
 
 @router.post("/checked", response_model=CheckedSentence)
-async def checked_sentence(user: str = _USER) -> CheckedSentence:
+async def checked_sentence(user: str = USER) -> CheckedSentence:
     """A short AI sentence using only words this learner has learnt, every word checked."""
     learnt = [row for row in await asyncio.to_thread(progress_store.summary, "quiz", user) if row["known"]]
     settings = get_settings()
