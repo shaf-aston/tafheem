@@ -246,15 +246,15 @@
           "category": "Taxi"
         },
         {
-          "arabic": "يَمِين",
-          "transliteration": "yameen",
-          "english": "right",
+          "arabic": "سَرْفِيس",
+          "transliteration": "servees",
+          "english": "shared taxi",
           "category": "Taxi"
         },
         {
-          "arabic": "قَدِيم",
-          "transliteration": "2adeem",
-          "english": "old",
+          "arabic": "سَوَّاق",
+          "transliteration": "sawwaa2",
+          "english": "driver",
           "category": "Taxi"
         },
         {
@@ -690,9 +690,9 @@
           "category": "Asking the way"
         },
         {
-          "arabic": "إِيد",
-          "transliteration": "eed",
-          "english": "hand, side",
+          "arabic": "طَرَف",
+          "transliteration": "Taraf",
+          "english": "side, edge",
           "category": "Asking the way"
         },
         {
@@ -1124,9 +1124,9 @@
           "category": "Buses"
         },
         {
-          "arabic": "مَحَلّ",
-          "transliteration": "ma7all",
-          "english": "seat, place",
+          "arabic": "طْلَع",
+          "transliteration": "Tla3",
+          "english": "get on, go up",
           "category": "Buses"
         },
         {
@@ -1998,15 +1998,15 @@
           "category": "Getting around"
         },
         {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
+          "arabic": "زَحْمِة",
+          "transliteration": "za7me",
+          "english": "traffic jam",
           "category": "Getting around"
         },
         {
-          "arabic": "فَاضِي",
-          "transliteration": "faaDi",
-          "english": "free, available",
+          "arabic": "سِكَّة",
+          "transliteration": "sekke",
+          "english": "route, way",
           "category": "Getting around"
         },
         {
@@ -2016,21 +2016,21 @@
           "category": "Getting around"
         },
         {
-          "arabic": "سَاعَة",
-          "transliteration": "saa3a",
-          "english": "hour",
+          "arabic": "دَقِيقَة",
+          "transliteration": "da2ee2a",
+          "english": "minute",
           "category": "Getting around"
         },
         {
-          "arabic": "مَحَطَّة",
-          "transliteration": "ma7aTTa",
-          "english": "station",
+          "arabic": "بَنْزِين",
+          "transliteration": "benzeen",
+          "english": "petrol",
           "category": "Getting around"
         },
         {
-          "arabic": "أُجْرَة",
-          "transliteration": "ojra",
-          "english": "fare",
+          "arabic": "مَسَافِة",
+          "transliteration": "masaafe",
+          "english": "distance",
           "category": "Getting around"
         }
       ],

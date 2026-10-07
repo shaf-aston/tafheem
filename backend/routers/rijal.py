@@ -9,6 +9,7 @@ from backend.config import get_settings
 from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, FamilyPart, FamilyNarrator, RijalHadithRef, RijalSearch
 from backend.services import provenance
 from backend.services.rijal import family, store
+from backend.utils import search_query
 
 router = APIRouter(prefix="/api/rijal", tags=["rijal"])
 
@@ -65,7 +66,7 @@ async def get_narrator_hadith(narrator_id: int) -> list[RijalHadithRef]:
 
 @router.get("/search", response_model=RijalSearch)
 async def search(q: str = Query("", max_length=get_settings().search_max_query_chars)) -> RijalSearch:
-    query = q.strip()
+    query = search_query(q)
     return RijalSearch(
         query=query, ready=await asyncio.to_thread(store.is_built), source=provenance.of("rijal"),
         narrators=await asyncio.to_thread(store.search, query, get_settings().rijal_result_limit),

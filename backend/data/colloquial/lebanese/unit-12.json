@@ -688,9 +688,9 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "سَاعَة",
-          "transliteration": "saa3a",
-          "english": "hour, o'clock",
+          "arabic": "رُبُع",
+          "transliteration": "rob3",
+          "english": "quarter",
           "category": "Arranging to meet"
         },
         {
@@ -712,9 +712,9 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "جَامِع",
-          "transliteration": "jaame3",
-          "english": "mosque",
+          "arabic": "جَنْب",
+          "transliteration": "janb",
+          "english": "next to",
           "category": "Arranging to meet"
         },
         {
@@ -724,9 +724,9 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "بَكِّير",
-          "transliteration": "bakkeer",
-          "english": "early",
+          "arabic": "اِنْطُر",
+          "transliteration": "inTor",
+          "english": "wait",
           "category": "Arranging to meet"
         }
       ],
@@ -1140,15 +1140,15 @@
       ],
       "vocabulary": [
         {
-          "arabic": "مَوْعَد",
-          "transliteration": "maw3ad",
-          "english": "appointment",
+          "arabic": "إِلْغَاء",
+          "transliteration": "ilghaa2",
+          "english": "cancellation",
           "category": "Changing plans"
         },
         {
-          "arabic": "شَغْلِة",
-          "transliteration": "shaghle",
-          "english": "something to do",
+          "arabic": "ظَرْف",
+          "transliteration": "Darf",
+          "english": "circumstance, emergency",
           "category": "Changing plans"
         },
         {
@@ -1182,9 +1182,9 @@
           "category": "Changing plans"
         },
         {
-          "arabic": "بُكْرَا",
-          "transliteration": "bukra",
-          "english": "tomorrow",
+          "arabic": "تَأْجِيل",
+          "transliteration": "ta2jeel",
+          "english": "postponement",
           "category": "Changing plans"
         }
       ],
@@ -1599,9 +1599,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "رَقِم",
-          "transliteration": "ra2em",
-          "english": "number",
+          "arabic": "وَاتْسَاب",
+          "transliteration": "waatsaab",
+          "english": "WhatsApp",
           "category": "Messages"
         },
         {
@@ -1611,9 +1611,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "خَبَر",
-          "transliteration": "khabar",
-          "english": "news",
+          "arabic": "جَوَاب",
+          "transliteration": "jawaab",
+          "english": "reply",
           "category": "Messages"
         },
         {
@@ -1635,9 +1635,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "وَقِت",
-          "transliteration": "wa2et",
-          "english": "time",
+          "arabic": "لَسَّا",
+          "transliteration": "lessa",
+          "english": "not yet, still",
           "category": "Messages"
         }
       ],

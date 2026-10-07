@@ -251,9 +251,9 @@
           "category": "Feeling unwell"
         },
         {
-          "arabic": "بَرْد",
-          "transliteration": "bard",
-          "english": "a cold",
+          "arabic": "رَشْح",
+          "transliteration": "rash7",
+          "english": "a cold, runny nose",
           "category": "Feeling unwell"
         },
         {
@@ -1242,15 +1242,15 @@
           "category": "Doctor"
         },
         {
-          "arabic": "إِمْبَارِح",
-          "transliteration": "embaare7",
-          "english": "yesterday",
+          "arabic": "كَشْف",
+          "transliteration": "kashf",
+          "english": "check-up",
           "category": "Doctor"
         },
         {
-          "arabic": "يُوم",
-          "transliteration": "yoom",
-          "english": "day",
+          "arabic": "عَيَّان",
+          "transliteration": "3ayyaan",
+          "english": "sick",
           "category": "Doctor"
         }
       ],

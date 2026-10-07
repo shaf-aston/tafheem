@@ -669,15 +669,15 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "مَسْجِد",
-          "transliteration": "masjid",
-          "english": "mosque",
+          "arabic": "مَوْقِع",
+          "transliteration": "mawgi3",
+          "english": "location",
           "category": "Arranging to meet"
         },
         {
-          "arabic": "كَبِير",
-          "transliteration": "kabeer",
-          "english": "big",
+          "arabic": "دُوَّار",
+          "transliteration": "dawwaar",
+          "english": "roundabout",
           "category": "Arranging to meet"
         },
         {
@@ -1073,9 +1073,9 @@
       ],
       "vocabulary": [
         {
-          "arabic": "مَوْعِد",
-          "transliteration": "maw3id",
-          "english": "appointment",
+          "arabic": "تَأْجِيل",
+          "transliteration": "ta2jeel",
+          "english": "postponement",
           "category": "Changing plans"
         },
         {
@@ -1103,9 +1103,9 @@
           "category": "Changing plans"
         },
         {
-          "arabic": "ظُهُر",
-          "transliteration": "Dhuhur",
-          "english": "noon",
+          "arabic": "عَصِر",
+          "transliteration": "3aSir",
+          "english": "afternoon",
           "category": "Changing plans"
         },
         {
@@ -1115,9 +1115,9 @@
           "category": "Changing plans"
         },
         {
-          "arabic": "بَاچِر",
-          "transliteration": "baachir",
-          "english": "tomorrow",
+          "arabic": "بَعْد بَاچِر",
+          "transliteration": "ba3d baachir",
+          "english": "day after tomorrow",
           "category": "Changing plans"
         }
       ],
@@ -1510,9 +1510,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "رَقَم",
-          "transliteration": "ragam",
-          "english": "number",
+          "arabic": "وَاتْسَاب",
+          "transliteration": "waatsaab",
+          "english": "WhatsApp",
           "category": "Messages"
         },
         {
@@ -1522,9 +1522,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "خَبَر",
-          "transliteration": "khabar",
-          "english": "news",
+          "arabic": "إِيمِيل",
+          "transliteration": "eemeel",
+          "english": "email",
           "category": "Messages"
         },
         {
@@ -1534,9 +1534,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "وَقْت",
-          "transliteration": "wagt",
-          "english": "time",
+          "arabic": "رَدّ",
+          "transliteration": "radd",
+          "english": "reply",
           "category": "Messages"
         },
         {

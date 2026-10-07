@@ -46,8 +46,21 @@ export const mostlyArabic = (text) =>
 export const bareForm = (text) =>
   (text ?? '').replace(DIACRITICS_ALL, '').replace(ALIF_FORMS, 'ا')
 
-/** One side of a search comparison: no vowel marks, no capitals. Null is empty. */
-export const foldForSearch = (text) => bareForm(text).toLowerCase()
+// Punctuation is a break between words, never part of one, except an apostrophe
+// between two letters (don't, Mu'adh). The same rule as the backend's
+// arabic_text.unpunctuated, which every server search reads its query by.
+const PUNCTUATION = /(?:(?!(?<=\p{L})['’](?=\p{L}))\p{P})+/gu
+// @ and / start a command (lib/commandRoutes) and are never trimmed off.
+const TRAILING = /(?:\s|(?![@/])\p{P})+$/u
+
+/** The text with every punctuation mark a space: "القيامة." is القيامة. */
+export const unpunctuated = (text) => (text ?? '').replace(PUNCTUATION, ' ').replace(/\s+/g, ' ')
+
+/** A typed line without what trails off its end: "2:255." and "2:255؟" are 2:255. */
+export const untrailed = (text) => (text ?? '').trim().replace(TRAILING, '')
+
+/** One side of a search comparison: no vowel marks, no capitals, no punctuation. Null is empty. */
+export const foldForSearch = (text) => bareForm(unpunctuated(text)).toLowerCase()
 
 // Three more things the Qur'anic printing writes that no keyboard offers: the
 // wasla alif ٱ, the dagger-alif ى standing for a long a, and the tatweel ـ used
@@ -141,10 +154,11 @@ const isMark = (c) => (c >= 'ً' && c <= 'ٟ') || c === 'ٰ' || (c >= 'ۖ' && c 
  * A piece cut from the front of a written word, drawn joined on to what follows
  * as the script writes it: فَـ and لْـ take a joining stroke, وَ never joins on.
  */
-export const joinedOn = (piece) => {
+export const joinsOn = (piece) => {
   const last = [...piece].reverse().find(isLetter)
-  return last && !JOINS_NOTHING_ONWARD.includes(last) ? `${piece}ـ` : piece
+  return Boolean(last) && !JOINS_NOTHING_ONWARD.includes(last)
 }
+export const joinedOn = (piece) => (joinsOn(piece) ? `${piece}ـ` : piece)
 
 /**
  * The mushaf's spelling as a font draws it: a small alef between two joined

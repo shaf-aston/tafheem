@@ -278,8 +278,8 @@
           "category": "Yesterday"
         },
         {
-          "arabic": "مَسَاء",
-          "transliteration": "masaa2",
+          "arabic": "مَسَا",
+          "transliteration": "masa",
           "english": "evening",
           "category": "Yesterday"
         }
@@ -671,7 +671,7 @@
         },
         {
           "arabic": "قَرْيَة",
-          "transliteration": "qarya",
+          "transliteration": "garya",
           "english": "village",
           "category": "Childhood"
         },
@@ -682,14 +682,14 @@
           "category": "Childhood"
         },
         {
-          "arabic": "دَرَّاجَة",
-          "transliteration": "darraaja",
+          "arabic": "سِيكَل",
+          "transliteration": "seekal",
           "english": "bicycle",
           "category": "Childhood"
         },
         {
-          "arabic": "ظَلَام",
-          "transliteration": "Zalaam",
+          "arabic": "ظُلْمَة",
+          "transliteration": "Zulma",
           "english": "darkness",
           "category": "Childhood"
         }
@@ -1084,8 +1084,8 @@
           "category": "Something went wrong"
         },
         {
-          "arabic": "كَهْرَبَاء",
-          "transliteration": "kahrabaa2",
+          "arabic": "كَهْرَبَا",
+          "transliteration": "kahraba",
           "english": "electricity",
           "category": "Something went wrong"
         },

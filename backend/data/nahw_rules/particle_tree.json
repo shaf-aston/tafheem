@@ -157,6 +157,21 @@
             "is": "yes",
             "role": "ghair_amila_other",
             "named": "ما المصدرية، حرف مصدري"
+          },
+          {
+            "branch": "ما التعجب",
+            "book": "1.4.2 p8",
+            "is": "no",
+            "split": "wonder",
+            "children": [
+              {
+                "branch": "ما قبل فعل التعجب",
+                "book": "1.4.2 p8",
+                "is": "yes",
+                "role": "wonder",
+                "kind": "ism"
+              }
+            ]
           }
         ]
       },

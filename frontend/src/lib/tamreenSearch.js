@@ -20,11 +20,8 @@ import { foldForSearch as fold } from './arabicText'
 import { editDistance } from './editDistance'
 import settings from '../tamreen.json'
 
-// Punctuation stripped only for the word list the fuzzy match walks: "(state)"
-// is not a typo of "state" away from its own parentheses, it is the same word
-// wearing punctuation that a typed query never carries.
-const PUNCTUATION = /[^\p{L}\p{N}\s]/gu
-const wordsOf = (text) => fold(text).replace(PUNCTUATION, ' ').split(/\s+/).filter(Boolean)
+// fold already turns punctuation into spaces: "(state)" is the word state.
+const wordsOf = (text) => fold(text).split(/\s+/).filter(Boolean)
 
 const allowedDistance = (word) =>
   word.length >= settings['typo-distance-long-min-length']

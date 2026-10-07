@@ -262,9 +262,9 @@
           "category": "Clothes"
         },
         {
-          "arabic": "غُرْفَة",
-          "transliteration": "ghurfa",
-          "english": "room",
+          "arabic": "بِنْطَلُون",
+          "transliteration": "bantaloon",
+          "english": "trousers",
           "category": "Clothes"
         },
         {
@@ -1172,9 +1172,9 @@
           "category": "Bargaining"
         },
         {
-          "arabic": "خَصِم",
-          "transliteration": "khaSim",
-          "english": "discount",
+          "arabic": "فَصَال",
+          "transliteration": "faSaal",
+          "english": "haggling",
           "category": "Bargaining"
         },
         {
@@ -1190,9 +1190,9 @@
           "category": "Bargaining"
         },
         {
-          "arabic": "وَايِد",
-          "transliteration": "waayid",
-          "english": "a lot",
+          "arabic": "نِصّ",
+          "transliteration": "niSS",
+          "english": "half",
           "category": "Bargaining"
         },
         {
@@ -1619,9 +1619,9 @@
           "category": "Returns"
         },
         {
-          "arabic": "فَاتُورَة",
-          "transliteration": "faatoora",
-          "english": "receipt",
+          "arabic": "ضَمَان",
+          "transliteration": "Damaan",
+          "english": "warranty",
           "category": "Returns"
         },
         {
@@ -1637,9 +1637,9 @@
           "category": "Returns"
         },
         {
-          "arabic": "مَقَاس",
-          "transliteration": "magaas",
-          "english": "size",
+          "arabic": "تَبْدِيل",
+          "transliteration": "tabdeel",
+          "english": "exchange",
           "category": "Returns"
         },
         {

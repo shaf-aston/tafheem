@@ -639,8 +639,8 @@
           "category": "During the day"
         },
         {
-          "arabic": "غَدَاء",
-          "transliteration": "ghadaa2",
+          "arabic": "غَدَا",
+          "transliteration": "ghada",
           "english": "lunch",
           "category": "During the day"
         },
@@ -664,7 +664,7 @@
         },
         {
           "arabic": "قَلَم",
-          "transliteration": "qalam",
+          "transliteration": "galam",
           "english": "pen",
           "category": "During the day"
         },
@@ -1055,8 +1055,8 @@
       ],
       "vocabulary": [
         {
-          "arabic": "مَسَاء",
-          "transliteration": "masaa2",
+          "arabic": "مَسَا",
+          "transliteration": "masa",
           "english": "evening",
           "category": "Evening"
         },
@@ -1067,8 +1067,8 @@
           "category": "Evening"
         },
         {
-          "arabic": "عَشَاء",
-          "transliteration": "3ashaa2",
+          "arabic": "عَشَا",
+          "transliteration": "3asha",
           "english": "dinner",
           "category": "Evening"
         },

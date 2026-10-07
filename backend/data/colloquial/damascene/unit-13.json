@@ -234,9 +234,9 @@
           "category": "Feelings"
         },
         {
-          "arabic": "جُوعَان",
-          "transliteration": "joo3aan",
-          "english": "hungry",
+          "arabic": "غَضْبَان",
+          "transliteration": "ghaDbaan",
+          "english": "angry",
           "category": "Feelings"
         },
         {
@@ -252,9 +252,9 @@
           "category": "Feelings"
         },
         {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "imti7aan",
-          "english": "exam",
+          "arabic": "حَزِين",
+          "transliteration": "7azeen",
+          "english": "sad",
           "category": "Feelings"
         },
         {
@@ -1066,9 +1066,9 @@
           "category": "Advice"
         },
         {
-          "arabic": "دَوَا",
-          "transliteration": "dawa",
-          "english": "medicine",
+          "arabic": "عِلَاج",
+          "transliteration": "3ilaaj",
+          "english": "treatment",
           "category": "Advice"
         },
         {
@@ -1084,9 +1084,9 @@
           "category": "Advice"
         },
         {
-          "arabic": "مَحَلّ",
-          "transliteration": "ma7all",
-          "english": "place",
+          "arabic": "اِنْتِبِه",
+          "transliteration": "intebeh",
+          "english": "be careful",
           "category": "Advice"
         },
         {
@@ -1489,9 +1489,9 @@
           "category": "Complaining"
         },
         {
-          "arabic": "فَاتُورَة",
-          "transliteration": "faatoora",
-          "english": "bill",
+          "arabic": "تَعْوِيض",
+          "transliteration": "ta3weeD",
+          "english": "compensation",
           "category": "Complaining"
         },
         {
@@ -1514,7 +1514,7 @@
         },
         {
           "arabic": "فْلُوس",
-          "transliteration": "flous",
+          "transliteration": "fluus",
           "english": "money",
           "category": "Complaining"
         }

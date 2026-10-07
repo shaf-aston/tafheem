@@ -242,13 +242,13 @@
         },
         {
           "arabic": "قَمِيص",
-          "transliteration": "qameeS",
+          "transliteration": "gameeS",
           "english": "shirt",
           "category": "Clothes"
         },
         {
           "arabic": "مَقَاس",
-          "transliteration": "maqaas",
+          "transliteration": "magaas",
           "english": "size",
           "category": "Clothes"
         },
@@ -260,7 +260,7 @@
         },
         {
           "arabic": "ضَيِّق",
-          "transliteration": "Dayyiq",
+          "transliteration": "Dayyig",
           "english": "tight",
           "category": "Clothes"
         },
@@ -272,13 +272,13 @@
         },
         {
           "arabic": "قُمَاش",
-          "transliteration": "qumaash",
+          "transliteration": "gumaash",
           "english": "fabric",
           "category": "Clothes"
         },
         {
           "arabic": "قُطْن",
-          "transliteration": "quTn",
+          "transliteration": "guTn",
           "english": "cotton",
           "category": "Clothes"
         }
@@ -646,7 +646,7 @@
         },
         {
           "arabic": "أَزْرَق",
-          "transliteration": "azraq",
+          "transliteration": "azrag",
           "english": "blue",
           "category": "Colours"
         },
@@ -670,7 +670,7 @@
         },
         {
           "arabic": "غَامِق",
-          "transliteration": "ghaamiq",
+          "transliteration": "ghaamig",
           "english": "dark (colour)",
           "category": "Colours"
         },
@@ -1081,7 +1081,7 @@
         },
         {
           "arabic": "اِتَّفَقْنَا",
-          "transliteration": "ittafaqna",
+          "transliteration": "ittafagna",
           "english": "we agreed",
           "category": "Bargaining"
         }
@@ -1454,8 +1454,8 @@
           "category": "Returns"
         },
         {
-          "arabic": "فُلُوس",
-          "transliteration": "fuloos",
+          "arabic": "زَلَط",
+          "transliteration": "zalaT",
           "english": "money",
           "category": "Returns"
         },
@@ -1467,7 +1467,7 @@
         },
         {
           "arabic": "مَقَاس",
-          "transliteration": "maqaas",
+          "transliteration": "magaas",
           "english": "size",
           "category": "Returns"
         },
@@ -1478,8 +1478,8 @@
           "category": "Returns"
         },
         {
-          "arabic": "إِمْتَى",
-          "transliteration": "imta",
+          "arabic": "مَتَى",
+          "transliteration": "mata",
           "english": "when",
           "category": "Returns"
         },

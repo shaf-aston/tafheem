@@ -249,21 +249,21 @@
           "category": "Yesterday"
         },
         {
-          "arabic": "مِتْأَخِّر",
-          "transliteration": "mit2akhkher",
-          "english": "late",
+          "arabic": "نِمِت",
+          "transliteration": "nimet",
+          "english": "I slept",
           "category": "Yesterday"
         },
         {
-          "arabic": "مَطْعَم",
-          "transliteration": "maT3am",
-          "english": "restaurant",
+          "arabic": "سِينَما",
+          "transliteration": "seenama",
+          "english": "cinema",
           "category": "Yesterday"
         },
         {
-          "arabic": "قَمِيص",
-          "transliteration": "2ameeS",
-          "english": "shirt",
+          "arabic": "اِشْتَرَيْت",
+          "transliteration": "shtarayt",
+          "english": "I bought",
           "category": "Yesterday"
         },
         {
@@ -1044,15 +1044,15 @@
       ],
       "vocabulary": [
         {
-          "arabic": "تَلِفُون",
-          "transliteration": "talifoon",
-          "english": "phone",
+          "arabic": "شَاحِن",
+          "transliteration": "shaa7en",
+          "english": "charger",
           "category": "Something went wrong"
         },
         {
-          "arabic": "مُفْتَاح",
-          "transliteration": "muftaa7",
-          "english": "key",
+          "arabic": "ضَاع",
+          "transliteration": "Daa3",
+          "english": "got lost",
           "category": "Something went wrong"
         },
         {
@@ -1466,15 +1466,15 @@
           "category": "News and gossip"
         },
         {
-          "arabic": "حَارَة",
-          "transliteration": "7aara",
-          "english": "neighbourhood",
+          "arabic": "جَار",
+          "transliteration": "jaar",
+          "english": "neighbour",
           "category": "News and gossip"
         },
         {
-          "arabic": "شَهِر",
-          "transliteration": "shahir",
-          "english": "month",
+          "arabic": "جْرِيدِة",
+          "transliteration": "jreede",
+          "english": "newspaper",
           "category": "News and gossip"
         },
         {

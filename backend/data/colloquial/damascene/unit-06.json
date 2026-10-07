@@ -253,9 +253,9 @@
           "category": "Clothes"
         },
         {
-          "arabic": "غُرْفِة",
-          "transliteration": "ghurfe",
-          "english": "room",
+          "arabic": "بَدْلِة",
+          "transliteration": "badle",
+          "english": "suit",
           "category": "Clothes"
         },
         {
@@ -685,15 +685,15 @@
           "category": "Colours"
         },
         {
-          "arabic": "حِلُو",
-          "transliteration": "7ilu",
-          "english": "nice, pretty",
+          "arabic": "أَصْفَر",
+          "transliteration": "asfar",
+          "english": "yellow",
           "category": "Colours"
         },
         {
-          "arabic": "رَأْي",
-          "transliteration": "ra2y",
-          "english": "opinion",
+          "arabic": "بُرْتُقَالِي",
+          "transliteration": "burtu2aali",
+          "english": "orange",
           "category": "Colours"
         }
       ],
@@ -1065,9 +1065,9 @@
       ],
       "vocabulary": [
         {
-          "arabic": "غَالِي",
-          "transliteration": "ghaali",
-          "english": "expensive",
+          "arabic": "تَمَن",
+          "transliteration": "taman",
+          "english": "price",
           "category": "Bargaining"
         },
         {
@@ -1077,15 +1077,15 @@
           "category": "Bargaining"
         },
         {
-          "arabic": "سِعِر",
-          "transliteration": "si3er",
-          "english": "price",
+          "arabic": "عَرْض",
+          "transliteration": "3arD",
+          "english": "offer",
           "category": "Bargaining"
         },
         {
-          "arabic": "خَصِم",
-          "transliteration": "khaSem",
-          "english": "discount",
+          "arabic": "نُصّ",
+          "transliteration": "nuSS",
+          "english": "half",
           "category": "Bargaining"
         },
         {
@@ -1491,8 +1491,8 @@
           "category": "Returns"
         },
         {
-          "arabic": "فَاتُورَة",
-          "transliteration": "faatoora",
+          "arabic": "وَصِل",
+          "transliteration": "waSel",
           "english": "receipt",
           "category": "Returns"
         },
@@ -1521,15 +1521,15 @@
           "category": "Returns"
         },
         {
-          "arabic": "مِشْكْلِة",
-          "transliteration": "mishkle",
-          "english": "problem",
+          "arabic": "إِرْجَاع",
+          "transliteration": "irjaa3",
+          "english": "return",
           "category": "Returns"
         },
         {
-          "arabic": "أَمْبَارِح",
-          "transliteration": "mbaare7",
-          "english": "yesterday",
+          "arabic": "بَدَّل",
+          "transliteration": "baddel",
+          "english": "exchange",
           "category": "Returns"
         }
       ],

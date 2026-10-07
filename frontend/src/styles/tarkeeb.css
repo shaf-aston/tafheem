@@ -76,7 +76,7 @@
 .tk-word.tk-written {
   display: grid;
   grid-template-columns: subgrid;
-  border-bottom: 1.5px solid color-mix(in srgb, var(--primary) 55%, transparent);
+  border-bottom: 1.5px solid var(--border-hi);
 }
 .tk-word .tk-cut { display: flex; align-items: flex-end; padding: 0 0 0.2rem; border: 0; }
 .tk-word .tk-cut:first-child { padding-inline-start: 0.6rem; }
@@ -91,12 +91,14 @@
 /* A word that is understood but not written. It keeps its column, that a word
    is missing is itself the lesson, but recedes, so what is certainly on the
    page reads first. */
+/* It rides at its verb's top-left, a narrow column, its thread dropping below. */
+.tk-word.tk-unwritten { align-items: flex-start; }
 .tk-word.tk-unwritten span {
   font-size: calc(var(--arabic-small-rem) * 1rem);
   color: var(--text-faint);
   border-bottom-style: dashed;
   border-bottom-color: var(--border);
-  align-self: end;
+  padding-inline: 0.25rem;
 }
 
 /* A word whose role has not been named yet keeps a thread running down. */

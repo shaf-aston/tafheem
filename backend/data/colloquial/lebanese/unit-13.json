@@ -234,9 +234,9 @@
           "category": "Feelings"
         },
         {
-          "arabic": "جُوعَان",
-          "transliteration": "jou3aan",
-          "english": "hungry",
+          "arabic": "زَهْقَان",
+          "transliteration": "zah2aan",
+          "english": "bored",
           "category": "Feelings"
         },
         {
@@ -252,9 +252,9 @@
           "category": "Feelings"
         },
         {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "imte7aan",
-          "english": "exam",
+          "arabic": "فَرْحَان",
+          "transliteration": "far7aan",
+          "english": "glad",
           "category": "Feelings"
         },
         {
@@ -1069,15 +1069,15 @@
           "category": "Advice"
         },
         {
-          "arabic": "دُكْتُور",
-          "transliteration": "doktoor",
-          "english": "doctor",
+          "arabic": "جَرِّب",
+          "transliteration": "jarreb",
+          "english": "try",
           "category": "Advice"
         },
         {
-          "arabic": "دَوَا",
-          "transliteration": "dawa",
-          "english": "medicine",
+          "arabic": "رِيَاضَة",
+          "transliteration": "riyaaDa",
+          "english": "exercise",
           "category": "Advice"
         },
         {
@@ -1105,9 +1105,9 @@
           "category": "Advice"
         },
         {
-          "arabic": "رَاحَة",
-          "transliteration": "raa7a",
-          "english": "rest",
+          "arabic": "صَبِر",
+          "transliteration": "Saber",
+          "english": "patience",
           "category": "Advice"
         }
       ],
@@ -1502,9 +1502,9 @@
           "category": "Complaining"
         },
         {
-          "arabic": "حْسَاب",
-          "transliteration": "7saab",
-          "english": "bill",
+          "arabic": "صَوْت",
+          "transliteration": "Sawt",
+          "english": "noise, voice",
           "category": "Complaining"
         },
         {
@@ -1526,9 +1526,9 @@
           "category": "Complaining"
         },
         {
-          "arabic": "مَصَارِي",
-          "transliteration": "maSaari",
-          "english": "money",
+          "arabic": "عَجْقِة",
+          "transliteration": "3ajqa",
+          "english": "mess, crowd",
           "category": "Complaining"
         }
       ],

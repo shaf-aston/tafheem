@@ -264,15 +264,15 @@
           "category": "Yesterday"
         },
         {
-          "arabic": "مِتْأَخِّر",
-          "transliteration": "mit2akhkhir",
+          "arabic": "مْتَأَخِّر",
+          "transliteration": "mtakhkhir",
           "english": "late",
           "category": "Yesterday"
         },
         {
-          "arabic": "مَطْعَم",
-          "transliteration": "maT3am",
-          "english": "restaurant",
+          "arabic": "طَلَعْت",
+          "transliteration": "Tala3t",
+          "english": "I went out",
           "category": "Yesterday"
         },
         {
@@ -282,15 +282,15 @@
           "category": "Yesterday"
         },
         {
-          "arabic": "شُغُل",
-          "transliteration": "shughul",
-          "english": "work",
+          "arabic": "رِجَعْت",
+          "transliteration": "rija3t",
+          "english": "I came back",
           "category": "Yesterday"
         },
         {
-          "arabic": "مَسَا",
-          "transliteration": "masa",
-          "english": "evening",
+          "arabic": "قَابَلْت",
+          "transliteration": "gaabalt",
+          "english": "I met",
           "category": "Yesterday"
         }
       ],
@@ -1105,14 +1105,14 @@
           "category": "Something went wrong"
         },
         {
-          "arabic": "سَيَّارَة",
-          "transliteration": "sayyaara",
-          "english": "car",
+          "arabic": "شَاحِن",
+          "transliteration": "shaa7in",
+          "english": "charger",
           "category": "Something went wrong"
         },
         {
-          "arabic": "كَهْرَبَاء",
-          "transliteration": "kahrabaa2",
+          "arabic": "كَهْرَبَا",
+          "transliteration": "kahrabaa",
           "english": "electricity",
           "category": "Something went wrong"
         },
@@ -1519,21 +1519,21 @@
           "category": "News and gossip"
         },
         {
-          "arabic": "فْرِيج",
-          "transliteration": "freej",
-          "english": "neighbourhood",
+          "arabic": "جِيرَان",
+          "transliteration": "jeeraan",
+          "english": "neighbours",
           "category": "News and gossip"
         },
         {
-          "arabic": "شَهَر",
-          "transliteration": "shahar",
-          "english": "month",
+          "arabic": "سَمِعْت",
+          "transliteration": "sami3t",
+          "english": "I heard",
           "category": "News and gossip"
         },
         {
-          "arabic": "وَلَد",
-          "transliteration": "walad",
-          "english": "boy",
+          "arabic": "سَالْفَة",
+          "transliteration": "saalfa",
+          "english": "story, chat",
           "category": "News and gossip"
         },
         {

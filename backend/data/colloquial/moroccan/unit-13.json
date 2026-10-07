@@ -254,15 +254,15 @@
           "category": "Feelings"
         },
         {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "imti7aan",
-          "english": "exam",
+          "arabic": "حْزِين",
+          "transliteration": "7zeen",
+          "english": "sad",
           "category": "Feelings"
         },
         {
-          "arabic": "حَاجَة",
-          "transliteration": "7aaja",
-          "english": "thing",
+          "arabic": "مْبْسُوط",
+          "transliteration": "mebsooT",
+          "english": "happy, pleased",
           "category": "Feelings"
         }
       ],
@@ -688,9 +688,9 @@
           "category": "Agreeing"
         },
         {
-          "arabic": "وَلَكِن",
-          "transliteration": "walakin",
-          "english": "but",
+          "arabic": "بَصَّح",
+          "transliteration": "baSSa7",
+          "english": "really, truly",
           "category": "Agreeing"
         },
         {
@@ -700,9 +700,9 @@
           "category": "Agreeing"
         },
         {
-          "arabic": "وَاخَّا",
-          "transliteration": "waakha",
-          "english": "okay",
+          "arabic": "طَبْعًا",
+          "transliteration": "Tab3an",
+          "english": "of course",
           "category": "Agreeing"
         }
       ],
@@ -1111,15 +1111,15 @@
           "category": "Advice"
         },
         {
-          "arabic": "طّْبِيب",
-          "transliteration": "Tbeeb",
-          "english": "doctor",
+          "arabic": "رِيجِيم",
+          "transliteration": "reejeem",
+          "english": "diet",
           "category": "Advice"
         },
         {
-          "arabic": "دْوَا",
-          "transliteration": "dwa",
-          "english": "medicine",
+          "arabic": "حَاوَل",
+          "transliteration": "7aawel",
+          "english": "to try",
           "category": "Advice"
         },
         {
@@ -1147,9 +1147,9 @@
           "category": "Advice"
         },
         {
-          "arabic": "بْلَاصَة",
-          "transliteration": "blaaSa",
-          "english": "place, position",
+          "arabic": "رِيَّاضَة",
+          "transliteration": "riyyaaDa",
+          "english": "sport",
           "category": "Advice"
         }
       ],
@@ -1562,9 +1562,9 @@
           "category": "Complaining"
         },
         {
-          "arabic": "حْسَاب",
-          "transliteration": "7saab",
-          "english": "bill",
+          "arabic": "مَا عْجْبْنِيشْ",
+          "transliteration": "ma 3jebnish",
+          "english": "I didn't like it",
           "category": "Complaining"
         },
         {

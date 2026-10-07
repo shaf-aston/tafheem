@@ -15,6 +15,7 @@ from backend.models.schemas import (
 from backend.services import provenance
 from backend.services.hadith import loader
 from backend.services.hadith import search as hadith_search
+from backend.utils import search_query
 
 router = APIRouter(prefix="/api/hadith", tags=["hadith"])
 
@@ -60,7 +61,7 @@ async def search(
     q: str = Query("", max_length=get_settings().search_max_query_chars),
     collections: list[CollectionName] = Query(default=[]),
 ) -> HadithSearchResponse:
-    query = q.strip()
+    query = search_query(q)
     if not query:
         return HadithSearchResponse(query="", ready=await asyncio.to_thread(loader.is_built),
                                      source=provenance.of("hadith"))

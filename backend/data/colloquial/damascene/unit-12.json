@@ -244,9 +244,9 @@
           "category": "Answering the phone"
         },
         {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
+          "arabic": "مَقْطُوع",
+          "transliteration": "ma2Too3",
+          "english": "cut off",
           "category": "Answering the phone"
         },
         {
@@ -635,9 +635,9 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "مَوْعِد",
-          "transliteration": "maw3id",
-          "english": "appointment",
+          "arabic": "لِقَا",
+          "transliteration": "li2a",
+          "english": "meeting",
           "category": "Arranging to meet"
         },
         {
@@ -659,9 +659,9 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "مَكَان",
-          "transliteration": "makaan",
-          "english": "place",
+          "arabic": "عِنْوَان",
+          "transliteration": "3inwaan",
+          "english": "address",
           "category": "Arranging to meet"
         },
         {
@@ -671,9 +671,9 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "سَاعَة",
-          "transliteration": "saa3a",
-          "english": "hour, o'clock",
+          "arabic": "عَالْوَقِت",
+          "transliteration": "3al-wa2et",
+          "english": "on time",
           "category": "Arranging to meet"
         }
       ],
@@ -1042,15 +1042,15 @@
       ],
       "vocabulary": [
         {
-          "arabic": "شَغْلِة",
-          "transliteration": "shaghle",
-          "english": "something to do",
+          "arabic": "اِرْتِبَاط",
+          "transliteration": "irtibaaT",
+          "english": "commitment",
           "category": "Changing plans"
         },
         {
-          "arabic": "مِشْكْلِة",
-          "transliteration": "mishkle",
-          "english": "problem",
+          "arabic": "تَأْجِيل",
+          "transliteration": "ta2jeel",
+          "english": "postponement",
           "category": "Changing plans"
         },
         {
@@ -1084,9 +1084,9 @@
           "category": "Changing plans"
         },
         {
-          "arabic": "بُكْرَا",
-          "transliteration": "bukra",
-          "english": "tomorrow",
+          "arabic": "تَانِي يَوْم",
+          "transliteration": "taani yoom",
+          "english": "next day",
           "category": "Changing plans"
         }
       ],
@@ -1476,9 +1476,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "خَبَر",
-          "transliteration": "khabar",
-          "english": "news",
+          "arabic": "رَدّ",
+          "transliteration": "radd",
+          "english": "reply",
           "category": "Messages"
         },
         {

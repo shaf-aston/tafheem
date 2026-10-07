@@ -230,9 +230,9 @@
       ],
       "vocabulary": [
         {
-          "arabic": "تَعْبَان",
-          "transliteration": "ta3baan",
-          "english": "tired, ill",
+          "arabic": "مَرِيض",
+          "transliteration": "mareeD",
+          "english": "sick",
           "category": "Feeling unwell"
         },
         {
@@ -743,8 +743,8 @@
           "category": "Pharmacy"
         },
         {
-          "arabic": "وَصْفِة",
-          "transliteration": "waSfe",
+          "arabic": "رُوشِتَّة",
+          "transliteration": "roshetta",
           "english": "prescription",
           "category": "Pharmacy"
         },
@@ -1229,14 +1229,14 @@
           "category": "Doctor"
         },
         {
-          "arabic": "إِسْبُوع",
-          "transliteration": "2esboo3",
-          "english": "week",
+          "arabic": "عِيَادِة",
+          "transliteration": "3iyaade",
+          "english": "clinic",
           "category": "Doctor"
         },
         {
-          "arabic": "حَكِيم",
-          "transliteration": "7akeem",
+          "arabic": "دُكْتُور",
+          "transliteration": "doktoor",
           "english": "doctor",
           "category": "Doctor"
         }
@@ -1664,19 +1664,19 @@
         },
         {
           "arabic": "إِجِر",
-          "transliteration": "2ijer",
+          "transliteration": "ijer",
           "english": "leg, foot",
           "category": "Body"
         },
         {
-          "arabic": "عَين",
+          "arabic": "عَيْن",
           "transliteration": "3ayn",
           "english": "eye",
           "category": "Body"
         },
         {
           "arabic": "إِدِن",
-          "transliteration": "2eden",
+          "transliteration": "eden",
           "english": "ear",
           "category": "Body"
         },

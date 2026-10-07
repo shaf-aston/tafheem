@@ -240,9 +240,9 @@
           "category": "Feelings"
         },
         {
-          "arabic": "جُوعَان",
-          "transliteration": "joo3aan",
-          "english": "hungry",
+          "arabic": "وَحِيد",
+          "transliteration": "wa7eed",
+          "english": "lonely",
           "category": "Feelings"
         },
         {
@@ -258,9 +258,9 @@
           "category": "Feelings"
         },
         {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "imti7aan",
-          "english": "exam",
+          "arabic": "فَرْحَان",
+          "transliteration": "far7aan",
+          "english": "glad",
           "category": "Feelings"
         },
         {
@@ -668,9 +668,9 @@
           "category": "Agreeing"
         },
         {
-          "arabic": "حَقّ",
-          "transliteration": "7agg",
-          "english": "right (being right)",
+          "arabic": "طَبْعًا",
+          "transliteration": "Tab3an",
+          "english": "of course",
           "category": "Agreeing"
         },
         {
@@ -1116,9 +1116,9 @@
           "category": "Advice"
         },
         {
-          "arabic": "دَوَاء",
-          "transliteration": "dawaa2",
-          "english": "medicine",
+          "arabic": "عِلَاج",
+          "transliteration": "3ilaaj",
+          "english": "treatment",
           "category": "Advice"
         },
         {
@@ -1549,15 +1549,15 @@
           "category": "Complaining"
         },
         {
-          "arabic": "غَلَط",
-          "transliteration": "ghalaT",
-          "english": "mistake",
+          "arabic": "مَا يِصِحّ",
+          "transliteration": "maa yiSi77",
+          "english": "not right, unacceptable",
           "category": "Complaining"
         },
         {
-          "arabic": "حِسَاب",
-          "transliteration": "7isaab",
-          "english": "bill",
+          "arabic": "تَأْخِير",
+          "transliteration": "ta2kheer",
+          "english": "delay",
           "category": "Complaining"
         },
         {
@@ -1579,9 +1579,9 @@
           "category": "Complaining"
         },
         {
-          "arabic": "فْلُوس",
-          "transliteration": "floos",
-          "english": "money",
+          "arabic": "زَعَل",
+          "transliteration": "za3al",
+          "english": "anger",
           "category": "Complaining"
         }
       ],

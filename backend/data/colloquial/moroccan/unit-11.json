@@ -262,9 +262,9 @@
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "طُومُوبِيل",
-          "transliteration": "Tomobeel",
-          "english": "car",
+          "arabic": "صَالُون",
+          "transliteration": "saaloon",
+          "english": "living room",
           "category": "Arriving as a guest"
         },
         {
@@ -286,9 +286,9 @@
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "مْرْحْبَا",
-          "transliteration": "mer7ba",
-          "english": "welcome",
+          "arabic": "تْفَضَّل",
+          "transliteration": "tfeDDel",
+          "english": "please, come in",
           "category": "Arriving as a guest"
         }
       ],
@@ -701,9 +701,9 @@
           "category": "Welcoming guests"
         },
         {
-          "arabic": "جَاكِيطَة",
-          "transliteration": "jaakeeTa",
-          "english": "jacket",
+          "arabic": "كُرْسِي",
+          "transliteration": "kursi",
+          "english": "chair",
           "category": "Welcoming guests"
         },
         {
@@ -731,9 +731,9 @@
           "category": "Welcoming guests"
         },
         {
-          "arabic": "سُكَّر",
-          "transliteration": "sukkar",
-          "english": "sugar",
+          "arabic": "صِّينِيَّة",
+          "transliteration": "Seeniyya",
+          "english": "tray",
           "category": "Welcoming guests"
         },
         {
@@ -1605,9 +1605,9 @@
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "عَائِلَة",
-          "transliteration": "3aa2ila",
-          "english": "family",
+          "arabic": "مَرْسِي",
+          "transliteration": "mersi",
+          "english": "thank you",
           "category": "Leaving and thanking"
         },
         {

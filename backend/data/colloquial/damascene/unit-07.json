@@ -246,9 +246,9 @@
           "category": "Morning"
         },
         {
-          "arabic": "بَرْد",
-          "transliteration": "bard",
-          "english": "cold",
+          "arabic": "مَنْشَفِة",
+          "transliteration": "manshafe",
+          "english": "towel",
           "category": "Morning"
         }
       ],
@@ -634,9 +634,9 @@
           "category": "During the day"
         },
         {
-          "arabic": "تَعْبَان",
-          "transliteration": "ta3baan",
-          "english": "tired",
+          "arabic": "مُوَظَّف",
+          "transliteration": "muwaZZaf",
+          "english": "employee",
           "category": "During the day"
         },
         {
@@ -1056,9 +1056,9 @@
           "category": "Evening"
         },
         {
-          "arabic": "حَمَّام",
-          "transliteration": "7ammaam",
-          "english": "bath, shower",
+          "arabic": "دُوش",
+          "transliteration": "doosh",
+          "english": "shower",
           "category": "Evening"
         },
         {
@@ -1068,9 +1068,9 @@
           "category": "Evening"
         },
         {
-          "arabic": "جَوّ",
-          "transliteration": "jaww",
-          "english": "weather",
+          "arabic": "تِلْفِزْيُون",
+          "transliteration": "talfizyoon",
+          "english": "TV",
           "category": "Evening"
         },
         {
@@ -1080,8 +1080,8 @@
           "category": "Evening"
         },
         {
-          "arabic": "رْفِقَات",
-          "transliteration": "rfi2aat",
+          "arabic": "صْحَاب",
+          "transliteration": "Sa7aab",
           "english": "friends",
           "category": "Evening"
         }
@@ -1461,8 +1461,8 @@
           "category": "Days of the week"
         },
         {
-          "arabic": "التَّلَاتَا",
-          "transliteration": "it-talaata",
+          "arabic": "التْلَاتَا",
+          "transliteration": "it-tlaata",
           "english": "Tuesday",
           "category": "Days of the week"
         },

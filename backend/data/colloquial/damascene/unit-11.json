@@ -270,15 +270,15 @@
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "سَيَّارَة",
-          "transliteration": "sayyaara",
-          "english": "car",
+          "arabic": "مَوْقِف",
+          "transliteration": "maw2if",
+          "english": "parking",
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "مَكَان",
-          "transliteration": "makaan",
-          "english": "place, spot",
+          "arabic": "تَرْحِيب",
+          "transliteration": "tar7eeb",
+          "english": "welcome",
           "category": "Arriving as a guest"
         },
         {
@@ -689,9 +689,9 @@
           "category": "Welcoming guests"
         },
         {
-          "arabic": "سُكَّر",
-          "transliteration": "sukkar",
-          "english": "sugar",
+          "arabic": "كَنَبِة",
+          "transliteration": "kanabe",
+          "english": "sofa",
           "category": "Welcoming guests"
         },
         {
@@ -1060,15 +1060,15 @@
           "category": "At the table"
         },
         {
-          "arabic": "خِبِز",
-          "transliteration": "khibiz",
-          "english": "bread",
+          "arabic": "شَوْكِة",
+          "transliteration": "shawke",
+          "english": "fork",
           "category": "At the table"
         },
         {
-          "arabic": "صَحِن",
-          "transliteration": "Sa7en",
-          "english": "plate, dish",
+          "arabic": "سِكِّين",
+          "transliteration": "sikkeen",
+          "english": "knife",
           "category": "At the table"
         },
         {
@@ -1078,9 +1078,9 @@
           "category": "At the table"
         },
         {
-          "arabic": "حَلَوِيَات",
-          "transliteration": "7alawiyyaat",
-          "english": "desserts",
+          "arabic": "تَحْلِيِة",
+          "transliteration": "ta7liye",
+          "english": "dessert",
           "category": "At the table"
         },
         {
@@ -1459,9 +1459,9 @@
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "بَكِّير",
-          "transliteration": "bakkeer",
-          "english": "early",
+          "arabic": "يِسْلَمُو",
+          "transliteration": "yislamu",
+          "english": "thanks (bless you)",
           "category": "Leaving and thanking"
         },
         {
@@ -1477,9 +1477,9 @@
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "طَرِيق",
-          "transliteration": "Taree2",
-          "english": "road",
+          "arabic": "سِكّة",
+          "transliteration": "sikke",
+          "english": "way, road",
           "category": "Leaving and thanking"
         },
         {

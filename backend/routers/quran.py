@@ -31,7 +31,7 @@ from backend.services import arabic_text, provenance, quran_corpus, quran_librar
 from backend.services import mutashabihat, quran_search
 from backend.services import tarkeeb
 from backend.services import tarkeeb_store
-from backend.utils import normalize_text
+from backend.utils import normalize_text, search_query
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/quran", tags=["quran"])
@@ -246,7 +246,7 @@ async def get_ayah(surah: int, ayah: int) -> QuranAyah:
 
 @router.get("/search", response_model=QuranSearchResponse)
 async def search_quran(q: str = Query(..., min_length=1, max_length=get_settings().search_max_query_chars)) -> QuranSearchResponse:
-    query = normalize_text(q, "Search query")
+    query = search_query(q, required=True)
     hits, corrected = await asyncio.to_thread(quran_search.search, query)
     # The badge is per hit, not per response: one search can be answered by the
     # local corpus and the next by Quran.com, and a reader is entitled to know

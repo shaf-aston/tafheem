@@ -254,9 +254,9 @@
           "category": "Hotel"
         },
         {
-          "arabic": "فْطُور",
-          "transliteration": "fTour",
-          "english": "breakfast",
+          "arabic": "حَمَّام",
+          "transliteration": "7ammaam",
+          "english": "bathroom",
           "category": "Hotel"
         },
         {
@@ -711,9 +711,9 @@
           "category": "Tickets"
         },
         {
-          "arabic": "كَرْت",
-          "transliteration": "kart",
-          "english": "card",
+          "arabic": "جَاي",
+          "transliteration": "jaay",
+          "english": "coming back (return leg)",
           "category": "Tickets"
         },
         {
@@ -729,15 +729,15 @@
           "category": "Tickets"
         },
         {
-          "arabic": "خَصِم",
-          "transliteration": "khaSim",
+          "arabic": "تَخْفِيض",
+          "transliteration": "takhfeeD",
           "english": "discount",
           "category": "Tickets"
         },
         {
-          "arabic": "بَاص",
-          "transliteration": "baaS",
-          "english": "bus",
+          "arabic": "دَرَجَة",
+          "transliteration": "daraja",
+          "english": "class",
           "category": "Tickets"
         }
       ],
@@ -1608,9 +1608,9 @@
           "category": "Travel problems"
         },
         {
-          "arabic": "مِتْأَخِّر",
-          "transliteration": "mit2akhkhir",
-          "english": "delayed",
+          "arabic": "كَنْسَل",
+          "transliteration": "kansal",
+          "english": "cancelled",
           "category": "Travel problems"
         },
         {
@@ -1632,15 +1632,15 @@
           "category": "Travel problems"
         },
         {
-          "arabic": "حَجِز",
-          "transliteration": "7ajiz",
-          "english": "booking",
+          "arabic": "فَات",
+          "transliteration": "faat",
+          "english": "missed",
           "category": "Travel problems"
         },
         {
-          "arabic": "مَكْتَب",
-          "transliteration": "maktab",
-          "english": "office",
+          "arabic": "مَفْقُود",
+          "transliteration": "mafgood",
+          "english": "missing",
           "category": "Travel problems"
         },
         {

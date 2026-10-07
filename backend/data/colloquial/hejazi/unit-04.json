@@ -632,14 +632,14 @@
       ],
       "vocabulary": [
         {
-          "arabic": "قَائِمَة",
-          "transliteration": "qaa2ima",
+          "arabic": "مِنْيُو",
+          "transliteration": "menyu",
           "english": "menu",
           "category": "The menu"
         },
         {
-          "arabic": "مَزَّة",
-          "transliteration": "mazza",
+          "arabic": "مُقَبِّلَات",
+          "transliteration": "muqabbilaat",
           "english": "starters",
           "category": "The menu"
         },
@@ -1463,7 +1463,7 @@
         },
         {
           "arabic": "بَاقِي",
-          "transliteration": "baaqi",
+          "transliteration": "baagi",
           "english": "change",
           "category": "Paying"
         },

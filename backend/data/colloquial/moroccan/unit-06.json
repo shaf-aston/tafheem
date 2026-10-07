@@ -268,14 +268,14 @@
           "category": "Clothes"
         },
         {
-          "arabic": "ثُوب",
-          "transliteration": "thoob",
+          "arabic": "قُمَاش",
+          "transliteration": "qmaash",
           "english": "fabric",
           "category": "Clothes"
         },
         {
-          "arabic": "قُطْن",
-          "transliteration": "qoTn",
+          "arabic": "كُوطُون",
+          "transliteration": "kooToon",
           "english": "cotton",
           "category": "Clothes"
         },
@@ -1177,7 +1177,7 @@
           "category": "Bargaining"
         },
         {
-          "arabic": "ثّْمَن",
+          "arabic": "تّْمَن",
           "transliteration": "tmen",
           "english": "price",
           "category": "Bargaining"

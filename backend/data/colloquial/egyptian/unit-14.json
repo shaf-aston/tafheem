@@ -264,15 +264,15 @@
           "category": "Eid"
         },
         {
-          "arabic": "هُدُوم",
-          "transliteration": "hedoom",
-          "english": "clothes",
+          "arabic": "لِبْس",
+          "transliteration": "lebs",
+          "english": "clothes, outfit",
           "category": "Eid"
         },
         {
-          "arabic": "سَنَة",
-          "transliteration": "sana",
-          "english": "year",
+          "arabic": "مَبْرُوك",
+          "transliteration": "mabrook",
+          "english": "congratulations",
           "category": "Eid"
         },
         {
@@ -1179,9 +1179,9 @@
           "category": "Weddings"
         },
         {
-          "arabic": "فُسْتَان",
-          "transliteration": "fostaan",
-          "english": "dress",
+          "arabic": "مَأْذُون",
+          "transliteration": "ma2zoon",
+          "english": "marriage officiant",
           "category": "Weddings"
         },
         {
@@ -1637,9 +1637,9 @@
           "category": "Birthdays"
         },
         {
-          "arabic": "هِدِيَّة",
-          "transliteration": "hedeyya",
-          "english": "gift",
+          "arabic": "بَالُونَة",
+          "transliteration": "balloona",
+          "english": "balloon",
           "category": "Birthdays"
         },
         {
