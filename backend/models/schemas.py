@@ -1180,7 +1180,8 @@ class ItemStats(BaseModel):
     known: bool = False
     dueAt: str | None = None
     words: list[str] = []
-    """The words of this meaning answered right, as the quiz printed them."""
+    """The words of this meaning answered right, as the quiz printed them; ''
+    for right answers saved before the word was."""
 
 
 class ProgressSummary(BaseModel):

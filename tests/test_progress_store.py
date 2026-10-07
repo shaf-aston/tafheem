@@ -202,5 +202,7 @@ def test_the_summary_names_the_words_got_right(store):
     """A meaning can have several words; only the ones answered right are named."""
     for word, correct in [("رَيْب", True), ("لَبْس", False), ("رَيْب", True)]:
         store.record(module="quiz", item="doubt", correct=correct, context={"word": word})
-    store.record(module="quiz", item="doubt", correct=True)  # an answer from before words were saved
     assert stats_for(store, "doubt")["words"] == ["رَيْب"]
+    store.record(module="quiz", item="doubt", correct=True)  # saved before words were
+    store.record(module="quiz", item="doubt", correct=True, context={"word": 5})  # not a word
+    assert stats_for(store, "doubt")["words"] == ["", "رَيْب"]

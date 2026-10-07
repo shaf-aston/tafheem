@@ -7,7 +7,7 @@ const coverage = { total: 10000, lemmas: ['قَالَ', 'كِتاب', 'رَبّ'
 const word = (meaningKey, lemmas, ar = 'كلمة') => ({ ar, en: meaningKey, meaningKey, ...(lemmas && { lemmas }) })
 // A learnt row from the progress summary; `words` are the ones answered right.
 const known = (item, ...words) => ({ item, words })
-const all = (...items) => items.map((item) => known(item))
+const all = (...items) => items.map((item) => known(item, '')) // saved before words were
 
 describe('how much of the Qur\'an the known words cover', () => {
   it('credits only the smaller of two words sharing a meaning', () => {
@@ -41,7 +41,12 @@ describe('how much of the Qur\'an the known words cover', () => {
 
   it('falls back to the smaller word for answers saved without one', () => {
     const words = [word('lord', [0]), word('lord', [2])]
-    expect(coverageOf(words, coverage, [known('lord')])).toBeCloseTo(0.025)
+    expect(coverageOf(words, coverage, [known('lord', '')])).toBeCloseTo(0.025)
+  })
+
+  it('keeps that fallback when a later answer names a word too', () => {
+    const words = [word('lord', [0], 'قال'), word('lord', [2], 'رب'), word('lord', [3], 'نبي')]
+    expect(coverageOf(words, coverage, [known('lord', '', 'قال')])).toBeCloseTo(0.105)
   })
 
   it('credits the Qur\'anic word when an everyday word shares its meaning', () => {

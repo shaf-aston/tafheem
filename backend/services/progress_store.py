@@ -82,10 +82,12 @@ ORDER BY item
 """
 
 # The words a meaning was answered right through, so coverage credits the word
-# asked and not a synonym. Older answers saved no word and add none.
+# asked and not a synonym. '' stands for right answers saved before words were.
 _WORDS = """
-SELECT DISTINCT item, json_extract(context, '$.word') AS word FROM attempts
-WHERE user = ? AND module = ? AND correct = 1 AND word IS NOT NULL
+SELECT DISTINCT item,
+       CASE WHEN json_type(context, '$.word') = 'text' THEN json_extract(context, '$.word') ELSE '' END AS word
+FROM attempts
+WHERE user = ? AND module = ? AND correct = 1
 ORDER BY item, word
 """
 

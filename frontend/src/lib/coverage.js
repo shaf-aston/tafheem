@@ -5,10 +5,10 @@
  * `counts`), `learnt` are the summary rows the store calls known (learntOf).
  *
  * Several words can share a meaningKey, so a learnt meaning credits the words
- * answered right through it (`row.words`). An answer saved before those were
- * kept names none; then it credits ONE word: the one with the fewest Qur'an
- * words behind it, among those in the Qur'an at all. A lemma is counted once
- * however many learnt words use it.
+ * answered right through it (`row.words`). A right answer saved before those
+ * were kept is '' there, and credits ONE more word: the one with the fewest
+ * Qur'an words behind it, among those in the Qur'an at all. A lemma is counted
+ * once however many learnt words use it.
  */
 export function coverageOf(words, coverage, learnt) {
   if (!learnt.length) return null
@@ -57,10 +57,8 @@ function credited(words, coverage, learnt) {
   for (const word of words) {
     const right = asked.get(word.meaningKey)
     if (!right || !word.lemmas) continue
-    if (right.size) {
-      if (right.has(word.ar)) picked.push(word)
-      continue
-    }
+    if (right.has(word.ar)) picked.push(word)
+    if (!right.has('')) continue
     const best = cheapest.get(word.meaningKey)
     if (!best || weight(word) < weight(best)) cheapest.set(word.meaningKey, word)
   }

@@ -55,7 +55,7 @@ def test_the_real_lemma_lookup_finds_the_dictionary_form():
 
 
 def test_learnt_words_bring_their_spellings_and_lemmas():
-    words = sentence_check.learnt_words([{"item": "book", "words": []}])
+    words = sentence_check.learnt_words([{"item": "book", "words": [""]}])
     assert words and all(word["meaningKey"] == "book" for word in words)
     assert "كتاب" in sentence_check.allowed(words)
 
@@ -64,6 +64,11 @@ def test_a_meaning_brings_only_the_words_answered_right():
     # "doubt" has five words; the learner was asked رَيْب.
     words = sentence_check.learnt_words([{"item": "doubt", "words": ["رَيْب"]}])
     assert [word["ar"] for word in words] == ["رَيْب"]
+
+
+def test_an_answer_saved_without_its_word_still_brings_them_all():
+    words = sentence_check.learnt_words([{"item": "doubt", "words": ["", "رَيْب"]}])
+    assert len(words) == 5
 
 
 # ── the AI's narrow job, with the backend faked ──────────────────────────────

@@ -65,12 +65,12 @@ def _table() -> tuple[list[dict], list[str]]:
 def learnt_words(learnt: list[dict]) -> list[dict]:
     """The quiz's words behind these learnt summary rows.
 
-    A meaning brings the words answered right through it (`words`), or all of
-    its words for answers saved before those were kept.
+    A meaning brings the words answered right through it (`words`), and all of
+    its words when a right answer was saved before those were kept ('').
     """
     right = {row["item"]: set(row["words"]) for row in learnt}
     return [word for word in _table()[0]
-            if word["meaningKey"] in right and (not right[word["meaningKey"]] or word["ar"] in right[word["meaningKey"]])]
+            if word["ar"] in right.get(word["meaningKey"], ()) or "" in right.get(word["meaningKey"], ())]
 
 
 def allowed(learnt: list[dict]) -> set[str]:
