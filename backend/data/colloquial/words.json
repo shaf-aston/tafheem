@@ -1492,6 +1492,17 @@
     "to-announce": {"english": "to announce", "group": "actions"},
     "to-cry": {"english": "to cry", "group": "feelings"},
     "folk-dance": {"english": "folk dance", "group": "hobbies"},
-    "local-money": {"english": "local money (pound, riyal…)", "group": "money"}
+    "local-money": {"english": "local money (pound, riyal…)", "group": "money"},
+    "blond": {"english": "blond", "group": "describing"},
+    "dark-skinned": {"english": "dark-skinned", "group": "describing"},
+    "bald": {"english": "bald", "group": "describing"},
+    "hard-working": {"english": "hard-working", "group": "character"},
+    "stubborn": {"english": "stubborn", "group": "character"},
+    "short-tempered": {"english": "short-tempered", "group": "character"},
+    "talkative": {"english": "talkative", "group": "character"},
+    "naughty": {"english": "naughty", "group": "character"},
+    "honest": {"english": "honest", "group": "character"},
+    "brave": {"english": "brave", "group": "character"},
+    "strict": {"english": "strict", "group": "character"}
   }
 }

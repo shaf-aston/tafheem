@@ -51,7 +51,7 @@ function Bank({ rows, onClose, scope, title }) {
               {group.map((r) => (
                 <li key={keyOf(r)} className="flex items-baseline justify-between gap-4 py-2.5 border-b border-[var(--border)]">
                   <span className="min-w-0">
-                    <span className="type-small text-[var(--text)]">{r.english}</span>
+                    <span className="type-body text-[var(--text)]">{r.english}</span>
                     <Spelling className="block">{r.transliteration}</Spelling>
                   </span>
                   <span className="shrink-0 flex items-center gap-2">

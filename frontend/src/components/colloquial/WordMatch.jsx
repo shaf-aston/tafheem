@@ -53,8 +53,8 @@ export default function WordMatch({ words }) {
             ${missed.includes(id) ? 'shake border-[var(--danger)]' : ''}`}
         >
           {side === 'en'
-            ? <span className="type-small font-medium text-[var(--text)]">{word.english}</span>
-            : <ArabicText as="span" size="sm" className="text-[var(--text)]">{word.arabic}</ArabicText>}
+            ? <span className="type-body font-medium text-[var(--text)]">{word.english}</span>
+            : <ArabicText as="span" size="base" className="text-[var(--text)]">{word.arabic}</ArabicText>}
         </button>
       </li>
     )
