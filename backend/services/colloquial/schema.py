@@ -44,6 +44,18 @@ class Drill(BaseModel):
     response: Phrase
 
 
+class VocabWord(BaseModel):
+    """One word on its own, not a phrase: the word bank, grouped by `category`.
+
+    Not a spine slot: a dialect may write this before the others do, so a
+    lesson's `vocabulary` lives only in its own unit file.
+    """
+    arabic: str
+    transliteration: str
+    english: str
+    category: str = ""
+
+
 class ComingLesson(BaseModel):
     """A spine lesson this dialect has not begun: its title, shown as coming."""
     lesson: str
@@ -61,6 +73,7 @@ class Lesson(BaseModel):
     phrases: list[Phrase]
     dialogue: list[DialogueLine]
     de_book: list[Drill] = []
+    vocabulary: list[VocabWord] = []
     culture: str
     exercises: list[AnyExercise]
 

@@ -21,6 +21,16 @@ function rowsOf(lessons) {
   })
 }
 
+// Single vocabulary words, not phrases; a dialect writes these on its own, so most topics have none yet.
+function wordsOf(lessons) {
+  const seen = new Set()
+  return lessons.filter((l) => l.written).flatMap((l) => l.vocabulary || []).filter((r) => {
+    if (seen.has(r.arabic)) return false
+    seen.add(r.arabic)
+    return true
+  })
+}
+
 function Bank({ rows, onClose, scope, title }) {
   return (
     <BottomSheet label={title} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
@@ -55,11 +65,23 @@ export default function WordBank({ unit, at = null }) {
   const [open, setOpen] = useState(false)
   const [whole, setWhole] = useState(at === null)
   const topic = at === null ? null : unit.lessons[at]
-  const rows = rowsOf(whole || !topic ? unit.lessons : [topic])
-  const scope = topic && (
-    <Segmented label="Word bank scope" accent="var(--primary)" value={whole ? 'unit' : 'topic'}
-      onChange={(v) => setWhole(v === 'unit')}
-      options={[{ id: 'topic', label: 'This topic' }, { id: 'unit', label: 'Whole unit' }]} />
+  const lessons = whole || !topic ? unit.lessons : [topic]
+  const words = wordsOf(lessons)
+  const phrases = rowsOf(lessons)
+  const [show, setShow] = useState(words.length > 0 ? 'words' : 'phrases')
+  const rows = show === 'words' && words.length > 0 ? words : phrases
+  const scope = (words.length > 0 || topic) && (
+    <div className="space-y-2">
+      {words.length > 0 && (
+        <Segmented label="Word bank kind" accent="var(--primary)" value={show} onChange={setShow}
+          options={[{ id: 'words', label: 'Words' }, { id: 'phrases', label: 'Phrases' }]} />
+      )}
+      {topic && (
+        <Segmented label="Word bank scope" accent="var(--primary)" value={whole ? 'unit' : 'topic'}
+          onChange={(v) => setWhole(v === 'unit')}
+          options={[{ id: 'topic', label: 'This topic' }, { id: 'unit', label: 'Whole unit' }]} />
+      )}
+    </div>
   )
   return (
     <>

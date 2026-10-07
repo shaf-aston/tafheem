@@ -95,6 +95,8 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     for at, drill in enumerate(lesson.get("de_book") or [], 1):
         said.extend(_phrase_faults(drill.get("pair") or {}, f"{name} pair {at} question"))
         said.extend(_phrase_faults(drill.get("response") or {}, f"{name} pair {at} answer"))
+    for at, word in enumerate(lesson.get("vocabulary") or [], 1):
+        said.extend(_phrase_faults(word, f"{name} vocabulary word {at}"))
     for at, exercise in enumerate(lesson.get("exercises") or [], 1):
         where = f"{name} exercise {at}"
         given = exercise.get("id")

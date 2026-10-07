@@ -238,6 +238,32 @@
           }
         }
       ],
+      "vocabulary": [
+        { "arabic": "مُعَلِّم", "transliteration": "mu3allim", "english": "teacher (male)", "category": "Jobs" },
+        { "arabic": "مُعَلِّمَة", "transliteration": "mu3allima", "english": "teacher (female)", "category": "Jobs" },
+        { "arabic": "طَبِيب", "transliteration": "tabeeb", "english": "doctor (male)", "category": "Jobs" },
+        { "arabic": "طَبِيبَة", "transliteration": "tabeeba", "english": "doctor (female)", "category": "Jobs" },
+        { "arabic": "مُهَنْدِس", "transliteration": "muhandis", "english": "engineer (male)", "category": "Jobs" },
+        { "arabic": "مُهَنْدِسَة", "transliteration": "muhandisa", "english": "engineer (female)", "category": "Jobs" },
+        { "arabic": "مُمَرِّض", "transliteration": "mumarrid", "english": "nurse (male)", "category": "Jobs" },
+        { "arabic": "مُمَرِّضَة", "transliteration": "mumarrida", "english": "nurse (female)", "category": "Jobs" },
+        { "arabic": "مُحَامٍ", "transliteration": "muhaamin", "english": "lawyer (male)", "category": "Jobs" },
+        { "arabic": "مُحَامِيَة", "transliteration": "muhaamiya", "english": "lawyer (female)", "category": "Jobs" },
+        { "arabic": "شُرْطِيّ", "transliteration": "shurtiyy", "english": "police officer (male)", "category": "Jobs" },
+        { "arabic": "شُرْطِيَّة", "transliteration": "shurtiyya", "english": "police officer (female)", "category": "Jobs" },
+        { "arabic": "صَحَفِيّ", "transliteration": "sahafiyy", "english": "journalist (male)", "category": "Jobs" },
+        { "arabic": "صَحَفِيَّة", "transliteration": "sahafiyya", "english": "journalist (female)", "category": "Jobs" },
+        { "arabic": "مُحَاسِب", "transliteration": "muhaasib", "english": "accountant (male)", "category": "Jobs" },
+        { "arabic": "مُحَاسِبَة", "transliteration": "muhaasiba", "english": "accountant (female)", "category": "Jobs" },
+        { "arabic": "مُوَظَّف", "transliteration": "muwazzaf", "english": "employee (male)", "category": "Jobs" },
+        { "arabic": "مُوَظَّفَة", "transliteration": "muwazzafa", "english": "employee (female)", "category": "Jobs" },
+        { "arabic": "سَائِق", "transliteration": "saa2iq", "english": "driver (male)", "category": "Jobs" },
+        { "arabic": "سَائِقَة", "transliteration": "saa2iqa", "english": "driver (female)", "category": "Jobs" },
+        { "arabic": "مُزَارِع", "transliteration": "muzaari3", "english": "farmer (male)", "category": "Jobs" },
+        { "arabic": "مُزَارِعَة", "transliteration": "muzaari3a", "english": "farmer (female)", "category": "Jobs" },
+        { "arabic": "طَبَّاخ", "transliteration": "tabbaakh", "english": "chef / cook (male)", "category": "Jobs" },
+        { "arabic": "طَبَّاخَة", "transliteration": "tabbaakha", "english": "chef / cook (female)", "category": "Jobs" }
+      ],
       "culture": "In Fusha, the usual way to ask about someone's work is مَا عَمَلُكَ؟ or مَا مِهْنَتُكَ؟, and the answer is often given as أَعْمَلُ followed by the job. People ask about work early in a first meeting, and a polite question about it is never rude.",
       "exercises": [
         {

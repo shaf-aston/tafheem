@@ -7,6 +7,7 @@ import Mosaic from './Mosaic'
 import Pairs from './Pairs'
 import Practice from './Practice'
 import Sheet from './Sheet'
+import VocabBank from './VocabBank'
 import WordBank from './WordBank'
 
 function Act({ kicker, title, children }) {
@@ -36,6 +37,12 @@ function Scene({ unit, lesson, number, place }) {
         <Mosaic phrases={lesson.phrases} onOpen={setOpen} />
       </div>
       {open !== null && <Sheet phrases={lesson.phrases} at={open} onAt={setOpen} onClose={() => setOpen(null)} place={place} />}
+
+      {lesson.vocabulary?.length > 0 && (
+        <Act kicker="Word bank" title="Words to know">
+          <VocabBank vocabulary={lesson.vocabulary} />
+        </Act>
+      )}
 
       <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-10 lg:items-start">
         <Act kicker="On stage" title="Hear it said">
