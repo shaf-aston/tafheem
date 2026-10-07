@@ -237,6 +237,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَاكْسِي",
+          "transliteration": "taksi",
+          "english": "taxi",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "عَدَّاد",
+          "transliteration": "3addaad",
+          "english": "meter",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "أُجْرَة",
+          "transliteration": "ujra",
+          "english": "fare",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "شَارِع",
+          "transliteration": "shaari3",
+          "english": "street",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "فَكَّة",
+          "transliteration": "fakka",
+          "english": "small change",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "قَدِيم",
+          "transliteration": "qadeem",
+          "english": "old",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "جَامِع",
+          "transliteration": "jaami3",
+          "english": "grand mosque",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "آخِر",
+          "transliteration": "aakhir",
+          "english": "end, last",
+          "category": "Taxi"
+        }
+      ],
       "culture": "Taxis in Sana'a and other Yemeni cities are usually hailed on the street or through informal networks. Negotiating the fare before getting in is common, and meters are not always used. Drivers often prefer to agree on a fixed price, and it is normal and polite to do so. Addressing the driver respectfully and bargaining over the fare is part of the culture.",
       "exercises": [
         {
@@ -583,6 +633,56 @@
             "transliteration": "7awaali kilo w-niss min hini.",
             "english": "About one and a half kilometers from here."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "صَيْدَلِيَّة",
+          "transliteration": "Saydaliyya",
+          "english": "pharmacy",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "إِشَارَة",
+          "transliteration": "ishaara",
+          "english": "traffic light",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مَسْجِد",
+          "transliteration": "masjid",
+          "english": "mosque",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "زُقَاق",
+          "transliteration": "zuqaaq",
+          "english": "alley",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مَسَافَة",
+          "transliteration": "masaafa",
+          "english": "distance",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مْسَكَّر",
+          "transliteration": "msakkar",
+          "english": "closed",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "نِهَايَة",
+          "transliteration": "nihaaya",
+          "english": "end",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "أَوَّل",
+          "transliteration": "awwal",
+          "english": "first",
+          "category": "Asking the way"
         }
       ],
       "culture": "In Sana'a and other Yemeni cities, people are generally helpful when giving directions. Using respectful language like \"عفواً\" (excuse me) and thanking them is important. Many directions reference mosques, markets, and landmarks rather than street names, as these are more recognizable to locals.",
@@ -950,6 +1050,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "بَاص",
+          "transliteration": "baaS",
+          "english": "bus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7aTTa",
+          "english": "stop, station",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مِيكْرُو",
+          "transliteration": "mikro",
+          "english": "minibus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَقْعَد",
+          "transliteration": "maq3ad",
+          "english": "seat",
+          "category": "Buses"
+        },
+        {
+          "arabic": "فَارِغ",
+          "transliteration": "faarigh",
+          "english": "empty",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَلْيَان",
+          "transliteration": "malyaan",
+          "english": "full, crowded",
+          "category": "Buses"
+        },
+        {
+          "arabic": "رَقْم",
+          "transliteration": "raqm",
+          "english": "number",
+          "category": "Buses"
+        },
+        {
+          "arabic": "سَاحَة",
+          "transliteration": "saa7a",
+          "english": "square",
+          "category": "Buses"
+        }
+      ],
       "culture": "Public buses and microbuses (minibuses) are very common in Yemen for traveling between cities and within towns. Riders typically agree on the fare with the driver before boarding, and buses depart when they are full rather than on a fixed schedule. Microbuses (mikro) are faster, more informal, and cheaper than full-size buses, and they often stop anywhere along the route.",
       "exercises": [
         {
@@ -1298,6 +1448,56 @@
             "transliteration": "el-mahatта 2areeba shwayy, bitigdar timshi laha fi rob3 sa3a.",
             "english": "The station is fairly close, you can walk to it in about fifteen minutes."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُسْتَشْفَى",
+          "transliteration": "mustashfa",
+          "english": "hospital",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَدْرَسَة",
+          "transliteration": "madrasa",
+          "english": "school",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "بَنْك",
+          "transliteration": "bank",
+          "english": "bank",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "حَدِيقَة",
+          "transliteration": "7adeeqa",
+          "english": "park",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "كَنِيسَة",
+          "transliteration": "kaneesa",
+          "english": "church",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "حَيّ",
+          "transliteration": "7ayy",
+          "english": "neighbourhood",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7aTTa",
+          "english": "station",
+          "category": "Places in town"
         }
       ],
       "culture": "In Yemeni cities, important landmarks like mosques, markets, banks, and government buildings serve as reference points for directions. Neighborhoods often have a central square (ساحة) where important buildings are located. Many people know the city by these landmarks rather than by street names or numbers. Visiting restaurants and markets is a social activity where families often gather, especially in the evenings.",
@@ -1669,6 +1869,56 @@
             "transliteration": "khamsa 3ashar daqeeqa ta2reeban.",
             "english": "About fifteen minutes."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Tareeq",
+          "english": "road, way",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَدِينَة",
+          "transliteration": "madeena",
+          "english": "city",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "فَاضِي",
+          "transliteration": "faaDi",
+          "english": "free, available",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "سَيَّارَة",
+          "transliteration": "sayyaara",
+          "english": "car",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "أَمْر",
+          "transliteration": "amr",
+          "english": "order, service",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "أُجْرَة",
+          "transliteration": "ujra",
+          "english": "fare",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "بُكْرَة",
+          "transliteration": "bukra",
+          "english": "tomorrow",
+          "category": "Getting around"
         }
       ],
       "culture": "Taxis are common in Sana'a and other Yemeni cities. It is polite to greet the driver with \"السلام عليكم\" when you enter. Drivers often use \"تحت أمرك\" (at your service) as a respectful reply. Fares are often negotiated before the ride begins or settled afterwards based on the distance. Saying \"وقف هنا\" to tell a driver to stop at a specific place is normal and expected.",
