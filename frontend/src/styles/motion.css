@@ -124,6 +124,18 @@
 .slide-prev { --slide-from: -40px; }
 
 
+/* A wrong answer shaking its head: short, and over before the next tap. */
+@keyframes shake {
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+
+.shake {
+  animation: shake calc(var(--motion-base-ms) * 1.5ms) ease-in-out;
+}
+
+
 /* ============================================================
    Qalam mascot, a reed pen that mirrors what the app is doing.
 
