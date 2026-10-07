@@ -54,7 +54,7 @@ export default function ChooseExercise({ exercise, value, onChange, status }) {
                 ${answered && !tone ? 'opacity-55' : ''}`}
             >
               {pictures && <Picture file={option.image} alt={label} />}
-              <ArabicText as="span" size="sm" className={pictures ? 'mt-2 block text-center' : 'block'}>
+              <ArabicText as="span" size="base" className={pictures ? 'mt-2 block text-center' : 'block'}>
                 {label}
               </ArabicText>
             </button>

@@ -1491,6 +1491,17 @@
     "to-announce": {"arabic": "أَعْلَنَ", "transliteration": "a3lana"},
     "to-cry": {"arabic": "بَكَى", "transliteration": "bakaa"},
     "folk-dance": {"arabic": "دَبْكَة", "transliteration": "dabka"},
-    "local-money": {"arabic": "عُمْلَة", "transliteration": "3umla"}
+    "local-money": {"arabic": "عُمْلَة", "transliteration": "3umla"},
+    "blond": {"arabic": "أَشْقَر / شَقْرَاء", "transliteration": "ashqar / shaqraa2"},
+    "dark-skinned": {"arabic": "أَسْمَر / سَمْرَاء", "transliteration": "asmar / samraa2"},
+    "bald": {"arabic": "أَصْلَع", "transliteration": "asla3"},
+    "hard-working": {"arabic": "مُجْتَهِد / مُجْتَهِدَة", "transliteration": "mujtahid / mujtahida"},
+    "stubborn": {"arabic": "عَنِيد / عَنِيدَة", "transliteration": "3aneed / 3aneeda"},
+    "short-tempered": {"arabic": "عَصَبِيّ / عَصَبِيَّة", "transliteration": "3asabiyy / 3asabiyya"},
+    "talkative": {"arabic": "ثَرْثَار / ثَرْثَارَة", "transliteration": "tharthaar / tharthaara"},
+    "naughty": {"arabic": "شَقِيّ / شَقِيَّة", "transliteration": "shaqiyy / shaqiyya"},
+    "honest": {"arabic": "صَادِق / صَادِقَة", "transliteration": "saadiq / saadiqa"},
+    "brave": {"arabic": "شُجَاع / شُجَاعَة", "transliteration": "shujaa3 / shujaa3a"},
+    "strict": {"arabic": "صَارِم / صَارِمَة", "transliteration": "saarim / saarima"}
   }
 }
