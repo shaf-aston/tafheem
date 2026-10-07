@@ -224,6 +224,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "هَاتِف",
+          "transliteration": "haatif",
+          "english": "phone",
+          "category": "Phone"
+        },
+        {
+          "arabic": "جَوَّال",
+          "transliteration": "jawwaal",
+          "english": "mobile phone",
+          "category": "Phone"
+        },
+        {
+          "arabic": "اِتِّصَال",
+          "transliteration": "ittisaal",
+          "english": "call",
+          "category": "Phone"
+        },
+        {
+          "arabic": "رَقْم",
+          "transliteration": "raqm",
+          "english": "number",
+          "category": "Phone"
+        },
+        {
+          "arabic": "صَوْت",
+          "transliteration": "sawt",
+          "english": "voice, sound",
+          "category": "Phone"
+        },
+        {
+          "arabic": "مُتَّصِل",
+          "transliteration": "muttasil",
+          "english": "caller",
+          "category": "Phone"
+        },
+        {
+          "arabic": "رَنَّ",
+          "transliteration": "ranna",
+          "english": "it rang",
+          "category": "Phone"
+        },
+        {
+          "arabic": "رَدَّ",
+          "transliteration": "radda",
+          "english": "he answered",
+          "category": "Phone"
+        }
+      ],
       "culture": "In Fusha a caller says مَعَكَ followed by their name, and answering with آلُو is normal even in formal settings. A call is kept courteous by greeting first and thanking at the end.",
       "exercises": [
         {
@@ -599,6 +649,56 @@
             "transliteration": "3inda al-jaami3i al-umawee.",
             "english": "At the Umayyad Mosque."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مَكَان",
+          "transliteration": "makaan",
+          "english": "place",
+          "category": "Meeting up"
+        },
+        {
+          "arabic": "وَقْت",
+          "transliteration": "waqt",
+          "english": "time",
+          "category": "Meeting up"
+        },
+        {
+          "arabic": "اِتِّفَاق",
+          "transliteration": "ittifaaq",
+          "english": "agreement",
+          "category": "Meeting up"
+        },
+        {
+          "arabic": "صَبَاحًا",
+          "transliteration": "sabaa7an",
+          "english": "in the morning",
+          "category": "Meeting up"
+        },
+        {
+          "arabic": "مَسَاءً",
+          "transliteration": "masaa2an",
+          "english": "in the evening",
+          "category": "Meeting up"
+        },
+        {
+          "arabic": "بَعْدَ",
+          "transliteration": "ba3da",
+          "english": "after",
+          "category": "Meeting up"
+        },
+        {
+          "arabic": "اِلْتَقَى",
+          "transliteration": "iltaqaa",
+          "english": "he met",
+          "category": "Meeting up"
+        },
+        {
+          "arabic": "اِنْتَظَرَ",
+          "transliteration": "intazara",
+          "english": "he waited",
+          "category": "Meeting up"
         }
       ],
       "culture": "In Damascus and across the Arab world, people often fix a meeting at a landmark such as the Umayyad Mosque. Being on time is appreciated, and a short call if you are late is expected in Fusha and in every dialect.",
@@ -992,6 +1092,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَغْيِير",
+          "transliteration": "taghyeer",
+          "english": "change",
+          "category": "Changes"
+        },
+        {
+          "arabic": "تَأْجِيل",
+          "transliteration": "ta2jeel",
+          "english": "postponement",
+          "category": "Changes"
+        },
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "mushkila",
+          "english": "problem",
+          "category": "Changes"
+        },
+        {
+          "arabic": "ظَرْف",
+          "transliteration": "zarf",
+          "english": "circumstance",
+          "category": "Changes"
+        },
+        {
+          "arabic": "مُتَاح",
+          "transliteration": "mutaa7",
+          "english": "available",
+          "category": "Changes"
+        },
+        {
+          "arabic": "بَدَلًا",
+          "transliteration": "badalan",
+          "english": "instead",
+          "category": "Changes"
+        },
+        {
+          "arabic": "أَلْغَى",
+          "transliteration": "alghaa",
+          "english": "he cancelled",
+          "category": "Changes"
+        },
+        {
+          "arabic": "اِعْتَذَرَ",
+          "transliteration": "i3tadhara",
+          "english": "he apologised",
+          "category": "Changes"
+        }
+      ],
       "culture": "Cancelling is polite when you apologise first and give a short reason, and the other person almost always answers لَا بَأْس. In Fusha حَدَثَ لِي ظَرْفٌ طَارِئ lets you explain without giving details.",
       "exercises": [
         {
@@ -1374,6 +1524,56 @@
             "transliteration": "sa-ukhbiruhu fawra wusoolihi.",
             "english": "I'll tell him as soon as he arrives."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رِسَالَة",
+          "transliteration": "risaala",
+          "english": "message, letter",
+          "category": "Messages"
+        },
+        {
+          "arabic": "مُلَاحَظَة",
+          "transliteration": "mulaa7aza",
+          "english": "note",
+          "category": "Messages"
+        },
+        {
+          "arabic": "عَاجِل",
+          "transliteration": "3aajil",
+          "english": "urgent",
+          "category": "Messages"
+        },
+        {
+          "arabic": "مُهِمّ",
+          "transliteration": "muhimm",
+          "english": "important",
+          "category": "Messages"
+        },
+        {
+          "arabic": "غِيَاب",
+          "transliteration": "ghiyaab",
+          "english": "absence",
+          "category": "Messages"
+        },
+        {
+          "arabic": "لَاحِقًا",
+          "transliteration": "laa7iqan",
+          "english": "later",
+          "category": "Messages"
+        },
+        {
+          "arabic": "تَرَكَ",
+          "transliteration": "taraka",
+          "english": "he left (something)",
+          "category": "Messages"
+        },
+        {
+          "arabic": "بَلَّغَ",
+          "transliteration": "ballagha",
+          "english": "he passed on",
+          "category": "Messages"
         }
       ],
       "culture": "Phone manners in Fusha start with a greeting such as السَّلَامُ عَلَيْكُمْ before asking for someone. Offering to take a message and promising to pass it on the moment the person returns is standard courtesy.",
@@ -1760,6 +1960,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَجْمُوعَة",
+          "transliteration": "majmoo3a",
+          "english": "group",
+          "category": "Apps"
+        },
+        {
+          "arabic": "صُورَة",
+          "transliteration": "soora",
+          "english": "picture",
+          "category": "Apps"
+        },
+        {
+          "arabic": "إِنْتَرْنِت",
+          "transliteration": "internet",
+          "english": "internet",
+          "category": "Apps"
+        },
+        {
+          "arabic": "شَبَكَة",
+          "transliteration": "shabaka",
+          "english": "network",
+          "category": "Apps"
+        },
+        {
+          "arabic": "بَطَّارِيَّة",
+          "transliteration": "battaariyya",
+          "english": "battery",
+          "category": "Apps"
+        },
+        {
+          "arabic": "أَرْسَلَ",
+          "transliteration": "arsala",
+          "english": "he sent",
+          "category": "Apps"
+        },
+        {
+          "arabic": "اِسْتَلَمَ",
+          "transliteration": "istalama",
+          "english": "he received",
+          "category": "Apps"
+        },
+        {
+          "arabic": "شَحَنَ",
+          "transliteration": "sha7ana",
+          "english": "he charged",
+          "category": "Apps"
+        }
+      ],
       "culture": "People in the Arab world send many voice messages instead of typing, and a chat usually opens with a greeting such as السَّلَامُ عَلَيْكُمْ. Friends often type in their own dialect, while Fusha is kept for formal messages to a teacher or a workplace.",
       "exercises": [
         {
@@ -2090,6 +2340,56 @@
             "transliteration": "tajammadati ash-shaasha.",
             "english": "The screen froze."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُكَالَمَة",
+          "transliteration": "mukaalama",
+          "english": "call, conversation",
+          "category": "Video calls"
+        },
+        {
+          "arabic": "فِيدِيُو",
+          "transliteration": "feediyoo",
+          "english": "video",
+          "category": "Video calls"
+        },
+        {
+          "arabic": "كَامِيرَا",
+          "transliteration": "kaameeraa",
+          "english": "camera",
+          "category": "Video calls"
+        },
+        {
+          "arabic": "شَاشَة",
+          "transliteration": "shaasha",
+          "english": "screen",
+          "category": "Video calls"
+        },
+        {
+          "arabic": "سَمَّاعَة",
+          "transliteration": "sammaa3a",
+          "english": "headphones",
+          "category": "Video calls"
+        },
+        {
+          "arabic": "وَاضِح",
+          "transliteration": "waadi7",
+          "english": "clear",
+          "category": "Video calls"
+        },
+        {
+          "arabic": "ضَعِيف",
+          "transliteration": "da3eef",
+          "english": "weak",
+          "category": "Video calls"
+        },
+        {
+          "arabic": "مُنْقَطِع",
+          "transliteration": "munqati3",
+          "english": "cut off",
+          "category": "Video calls"
         }
       ],
       "culture": "Video calls keep families close when relatives live in another country, and people greet and ask about each other's health before sorting out the sound and camera. Asking هَلْ تَسْمَعُنِي؟ at the start of a call is completely normal. Fusha is the language of online classes and meetings, while family calls are usually in dialect.",

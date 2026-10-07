@@ -225,6 +225,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "قَمِيص",
+          "transliteration": "qamees",
+          "english": "shirt",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "بِنْطَال",
+          "transliteration": "bintaal",
+          "english": "trousers",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "فُسْتَان",
+          "transliteration": "fustaan",
+          "english": "dress",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "مِعْطَف",
+          "transliteration": "mi3taf",
+          "english": "coat",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "حِذَاء",
+          "transliteration": "7idhaa2",
+          "english": "shoe",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "جَوْرَب",
+          "transliteration": "jawrab",
+          "english": "sock",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "مَقَاس",
+          "transliteration": "maqaas",
+          "english": "size",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "وَاسِع",
+          "transliteration": "waasi3",
+          "english": "loose, wide",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "ضَيِّق",
+          "transliteration": "dayyiq",
+          "english": "tight",
+          "category": "Clothes"
+        }
+      ],
       "culture": "In shops the seller often asks مَا مَقَاسُكَ؟ first, and a polite customer asks هَلْ أَسْتَطِيعُ أَنْ أُجَرِّبَهُ؟ before buying. Sizes are usually given as letters such as S, M and L, or as European numbers.",
       "exercises": [
         {
@@ -619,6 +675,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "لَوْن",
+          "transliteration": "lawn",
+          "english": "colour",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَحْمَر",
+          "transliteration": "a7mar",
+          "english": "red",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَزْرَق",
+          "transliteration": "azraq",
+          "english": "blue",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَخْضَر",
+          "transliteration": "akhdar",
+          "english": "green",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَصْفَر",
+          "transliteration": "asfar",
+          "english": "yellow",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَسْوَد",
+          "transliteration": "aswad",
+          "english": "black",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَبْيَض",
+          "transliteration": "abyad",
+          "english": "white",
+          "category": "Colours"
+        },
+        {
+          "arabic": "بُنِّيّ",
+          "transliteration": "bunniyy",
+          "english": "brown",
+          "category": "Colours"
+        },
+        {
+          "arabic": "رَمَادِيّ",
+          "transliteration": "ramaadiyy",
+          "english": "grey",
+          "category": "Colours"
+        }
+      ],
       "culture": "Sellers like to ask مَا رَأْيُكَ؟ and to suggest a color, and it is polite to say يُعْجِبُنِي before you say what you dislike. Saying لَمْ أُقَرِّرْ بَعْد is an easy way to keep looking without buying.",
       "exercises": [
         {
@@ -1006,6 +1118,56 @@
             "transliteration": "tafaddal, haadhaa laka.",
             "english": "Here you are, this is yours."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُسَاوَمَة",
+          "transliteration": "musaawama",
+          "english": "bargaining",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "ثَمَن",
+          "transliteration": "thaman",
+          "english": "price, cost",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "تَخْفِيض",
+          "transliteration": "takhfeed",
+          "english": "discount",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "عَرْض",
+          "transliteration": "3ard",
+          "english": "offer",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "نِصْف",
+          "transliteration": "nisf",
+          "english": "half",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "آخِر",
+          "transliteration": "aakhir",
+          "english": "last",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "مُنَاسِب",
+          "transliteration": "munaasib",
+          "english": "reasonable, suitable",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "اِتَّفَقَ",
+          "transliteration": "ittafaqa",
+          "english": "he agreed",
+          "category": "Bargaining"
         }
       ],
       "culture": "Bargaining is expected in markets and small shops but not in big stores with fixed prices. A calm, friendly tone matters more than the number, and اِتَّفَقْنَا closes the deal.",
@@ -1404,6 +1566,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "إِرْجَاع",
+          "transliteration": "irjaa3",
+          "english": "return",
+          "category": "Returns"
+        },
+        {
+          "arabic": "اِسْتِبْدَال",
+          "transliteration": "istibdaal",
+          "english": "exchange",
+          "category": "Returns"
+        },
+        {
+          "arabic": "إِيصَال",
+          "transliteration": "eesaal",
+          "english": "receipt",
+          "category": "Returns"
+        },
+        {
+          "arabic": "ضَمَان",
+          "transliteration": "damaan",
+          "english": "guarantee",
+          "category": "Returns"
+        },
+        {
+          "arabic": "عَيْب",
+          "transliteration": "3ayb",
+          "english": "defect",
+          "category": "Returns"
+        },
+        {
+          "arabic": "مَكْسُور",
+          "transliteration": "maksoor",
+          "english": "broken",
+          "category": "Returns"
+        },
+        {
+          "arabic": "جَدِيد",
+          "transliteration": "jadeed",
+          "english": "new",
+          "category": "Returns"
+        },
+        {
+          "arabic": "اِسْتَرَدَّ",
+          "transliteration": "istaradda",
+          "english": "he got back (a refund)",
+          "category": "Returns"
+        }
+      ],
       "culture": "Most shops accept a return with the receipt within a week or two, and staff usually offer an exchange before a refund. End with شُكْرًا عَلَى تَعَاوُنِكُمْ, where the plural form is polite to the whole shop.",
       "exercises": [
         {
@@ -1778,6 +1990,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَتْجَر",
+          "transliteration": "matjar",
+          "english": "shop",
+          "category": "The mall"
+        },
+        {
+          "arabic": "طَابِق",
+          "transliteration": "taabiq",
+          "english": "floor, storey",
+          "category": "The mall"
+        },
+        {
+          "arabic": "مِصْعَد",
+          "transliteration": "mis3ad",
+          "english": "lift",
+          "category": "The mall"
+        },
+        {
+          "arabic": "دَرَج",
+          "transliteration": "daraj",
+          "english": "stairs",
+          "category": "The mall"
+        },
+        {
+          "arabic": "مَدْخَل",
+          "transliteration": "madkhal",
+          "english": "entrance",
+          "category": "The mall"
+        },
+        {
+          "arabic": "مَخْرَج",
+          "transliteration": "makhraj",
+          "english": "exit",
+          "category": "The mall"
+        },
+        {
+          "arabic": "تَنْزِيلَات",
+          "transliteration": "tanzeelaat",
+          "english": "sales",
+          "category": "The mall"
+        },
+        {
+          "arabic": "مَفْتُوح",
+          "transliteration": "maftoo7",
+          "english": "open",
+          "category": "The mall"
+        },
+        {
+          "arabic": "مُغْلَق",
+          "transliteration": "mughlaq",
+          "english": "closed",
+          "category": "The mall"
+        }
+      ],
       "culture": "Malls in the Arab world stay open late, often until ten or eleven at night, and are busiest in the evening. Most have a prayer room, الْمُصَلَّى, usually near the food court. Prices in mall shops are fixed, so people ask about a sale, تَخْفِيضَات, instead of bargaining.",
       "exercises": [
         {
@@ -2112,6 +2380,62 @@
             "transliteration": "na2asafu jiddan. sanursilu laka aakhar.",
             "english": "We are very sorry. We will send you another one."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مَوْقِع",
+          "transliteration": "mawqi3",
+          "english": "website",
+          "category": "Online"
+        },
+        {
+          "arabic": "تَطْبِيق",
+          "transliteration": "tatbeeq",
+          "english": "app",
+          "category": "Online"
+        },
+        {
+          "arabic": "سَلَّة",
+          "transliteration": "salla",
+          "english": "basket",
+          "category": "Online"
+        },
+        {
+          "arabic": "طَلَبِيَّة",
+          "transliteration": "talabiyya",
+          "english": "order",
+          "category": "Online"
+        },
+        {
+          "arabic": "دَفْع",
+          "transliteration": "daf3",
+          "english": "payment",
+          "category": "Online"
+        },
+        {
+          "arabic": "شَحْن",
+          "transliteration": "sha7n",
+          "english": "shipping",
+          "category": "Online"
+        },
+        {
+          "arabic": "طَرْد",
+          "transliteration": "tard",
+          "english": "parcel",
+          "category": "Online"
+        },
+        {
+          "arabic": "تَقْيِيم",
+          "transliteration": "taqyeem",
+          "english": "rating, review",
+          "category": "Online"
+        },
+        {
+          "arabic": "إِلْغَاء",
+          "transliteration": "ilghaa2",
+          "english": "cancellation",
+          "category": "Online"
         }
       ],
       "culture": "Online shopping is popular across the Arab world, and many people still choose to pay on delivery, عِنْدَ الِاسْتِلَام, when the courier arrives. Couriers often phone before they come, so keep your address and phone number correct. Check the parcel before you sign, and say so at once if it is damaged.",

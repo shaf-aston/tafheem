@@ -216,6 +216,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَوّ",
+          "transliteration": "jaww",
+          "english": "weather, atmosphere",
+          "category": "Weather"
+        },
+        {
+          "arabic": "طَقْس",
+          "transliteration": "taqs",
+          "english": "weather",
+          "category": "Weather"
+        },
+        {
+          "arabic": "شَمْس",
+          "transliteration": "shams",
+          "english": "sun",
+          "category": "Weather"
+        },
+        {
+          "arabic": "مُشْمِس",
+          "transliteration": "mushmis",
+          "english": "sunny",
+          "category": "Weather"
+        },
+        {
+          "arabic": "غَيْم",
+          "transliteration": "ghaym",
+          "english": "clouds",
+          "category": "Weather"
+        },
+        {
+          "arabic": "غَائِم",
+          "transliteration": "ghaa2im",
+          "english": "cloudy",
+          "category": "Weather"
+        },
+        {
+          "arabic": "رِيح",
+          "transliteration": "ree7",
+          "english": "wind",
+          "category": "Weather"
+        },
+        {
+          "arabic": "دَافِئ",
+          "transliteration": "daafi2",
+          "english": "warm",
+          "category": "Weather"
+        },
+        {
+          "arabic": "بَرْد",
+          "transliteration": "bard",
+          "english": "cold (weather)",
+          "category": "Weather"
+        }
+      ],
       "culture": "Fusha has two common words for the weather, الطَّقْسُ and الْجَوُّ, and both are what a forecaster says on the news. In everyday talk people use their own dialect, but a Fusha weather sentence is understood everywhere.",
       "exercises": [
         {
@@ -593,6 +649,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فَصْل",
+          "transliteration": "fasl",
+          "english": "season",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "صَيْف",
+          "transliteration": "sayf",
+          "english": "summer",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "خَرِيف",
+          "transliteration": "khareef",
+          "english": "autumn",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "شِتَاء",
+          "transliteration": "shitaa2",
+          "english": "winter",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "رَبِيع",
+          "transliteration": "rabee3",
+          "english": "spring",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "حَرّ",
+          "transliteration": "7arr",
+          "english": "heat",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "ثَلْج",
+          "transliteration": "thalj",
+          "english": "snow",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "رُطُوبَة",
+          "transliteration": "rutooba",
+          "english": "humidity",
+          "category": "Seasons"
+        }
+      ],
       "culture": "Fusha names the four seasons الشِّتَاء, الرَّبِيع, الصَّيْف and الْخَرِيف, and the word فَصْل means both 'season' and 'chapter'. These are the words in school books and on forecasts, and every Arabic speaker knows them.",
       "exercises": [
         {
@@ -961,6 +1067,56 @@
             "transliteration": "lawnee al-mufaddalu al-azraq.",
             "english": "My favorite color is blue."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مِظَلَّة",
+          "transliteration": "mizalla",
+          "english": "umbrella",
+          "category": "Weather clothes"
+        },
+        {
+          "arabic": "قُبَّعَة",
+          "transliteration": "qubba3a",
+          "english": "hat",
+          "category": "Weather clothes"
+        },
+        {
+          "arabic": "وِشَاح",
+          "transliteration": "wishaa7",
+          "english": "scarf",
+          "category": "Weather clothes"
+        },
+        {
+          "arabic": "قُفَّاز",
+          "transliteration": "quffaaz",
+          "english": "glove",
+          "category": "Weather clothes"
+        },
+        {
+          "arabic": "سُتْرَة",
+          "transliteration": "sutra",
+          "english": "jacket",
+          "category": "Weather clothes"
+        },
+        {
+          "arabic": "نَظَّارَة",
+          "transliteration": "nazzaara",
+          "english": "glasses",
+          "category": "Weather clothes"
+        },
+        {
+          "arabic": "صُوف",
+          "transliteration": "soof",
+          "english": "wool",
+          "category": "Weather clothes"
+        },
+        {
+          "arabic": "قُطْن",
+          "transliteration": "qutn",
+          "english": "cotton",
+          "category": "Weather clothes"
         }
       ],
       "culture": "When someone asks what to wear, the answer in Fusha is a short command: اِلْبَسْ to a man and اِلْبَسِي to a woman. Advising a friend or a child about clothes for the weather is a common way to show care.",
@@ -1339,6 +1495,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "نُزْهَة",
+          "transliteration": "nuzha",
+          "english": "outing, stroll",
+          "category": "Outings"
+        },
+        {
+          "arabic": "بَيْت",
+          "transliteration": "bayt",
+          "english": "house, home",
+          "category": "Outings"
+        },
+        {
+          "arabic": "بَحْر",
+          "transliteration": "ba7r",
+          "english": "sea",
+          "category": "Outings"
+        },
+        {
+          "arabic": "جَبَل",
+          "transliteration": "jabal",
+          "english": "mountain",
+          "category": "Outings"
+        },
+        {
+          "arabic": "رُبَّمَا",
+          "transliteration": "rubbamaa",
+          "english": "perhaps",
+          "category": "Outings"
+        },
+        {
+          "arabic": "خَرَجَ",
+          "transliteration": "kharaja",
+          "english": "he went out",
+          "category": "Outings"
+        },
+        {
+          "arabic": "بَقِيَ",
+          "transliteration": "baqiya",
+          "english": "he stayed",
+          "category": "Outings"
+        },
+        {
+          "arabic": "أَجَّلَ",
+          "transliteration": "ajjala",
+          "english": "he postponed",
+          "category": "Outings"
+        }
+      ],
       "culture": "Fusha plans use إِذَا, 'if', followed by a past-tense verb, and then the future with سَ. نَشْرَةُ الْأَحْوَالِ الْجَوِّيَّة, 'the bulletin of weather conditions', is what news programmes call the forecast.",
       "exercises": [
         {
@@ -1713,6 +1919,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَطَر",
+          "transliteration": "matar",
+          "english": "rain",
+          "category": "Rain"
+        },
+        {
+          "arabic": "عَاصِفَة",
+          "transliteration": "3aasifa",
+          "english": "storm",
+          "category": "Rain"
+        },
+        {
+          "arabic": "رَعْد",
+          "transliteration": "ra3d",
+          "english": "thunder",
+          "category": "Rain"
+        },
+        {
+          "arabic": "بَرْق",
+          "transliteration": "barq",
+          "english": "lightning",
+          "category": "Rain"
+        },
+        {
+          "arabic": "سَيْل",
+          "transliteration": "sayl",
+          "english": "flood, torrent",
+          "category": "Rain"
+        },
+        {
+          "arabic": "ضَبَاب",
+          "transliteration": "dabaab",
+          "english": "fog",
+          "category": "Rain"
+        },
+        {
+          "arabic": "غُبَار",
+          "transliteration": "ghubaar",
+          "english": "dust",
+          "category": "Rain"
+        },
+        {
+          "arabic": "مُبَلَّل",
+          "transliteration": "muballal",
+          "english": "wet",
+          "category": "Rain"
+        }
+      ],
       "culture": "Rain is welcomed in much of the Arab world as a mercy, so people often say الْحَمْدُ لِلَّهِ عَلَى هَذَا الْمَطَر when it falls. Fusha uses غَزِير for heavy rain and عَاصِفَة for a storm, words heard in every news bulletin. لَا قَدَّرَ اللَّه, 'may Allah not decree it', is said after bad news to wish that it does not happen.",
       "exercises": [
         {
@@ -2045,6 +2301,56 @@
             "transliteration": "na3am, tawaala al-usboo3.",
             "english": "Yes, all week."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "نَشْرَة",
+          "transliteration": "nashra",
+          "english": "bulletin",
+          "category": "Forecast"
+        },
+        {
+          "arabic": "تَوَقُّع",
+          "transliteration": "tawaqqu3",
+          "english": "forecast, expectation",
+          "category": "Forecast"
+        },
+        {
+          "arabic": "دَرَجَة",
+          "transliteration": "daraja",
+          "english": "degree",
+          "category": "Forecast"
+        },
+        {
+          "arabic": "حَرَارَة",
+          "transliteration": "7araara",
+          "english": "temperature",
+          "category": "Forecast"
+        },
+        {
+          "arabic": "اِرْتِفَاع",
+          "transliteration": "irtifaa3",
+          "english": "rise",
+          "category": "Forecast"
+        },
+        {
+          "arabic": "اِنْخِفَاض",
+          "transliteration": "inkhifaad",
+          "english": "drop",
+          "category": "Forecast"
+        },
+        {
+          "arabic": "عُظْمَى",
+          "transliteration": "3uzmaa",
+          "english": "highest (temperature)",
+          "category": "Forecast"
+        },
+        {
+          "arabic": "صُغْرَى",
+          "transliteration": "sughraa",
+          "english": "lowest (temperature)",
+          "category": "Forecast"
         }
       ],
       "culture": "News bulletins in Fusha give the forecast in fixed words such as يُتَوَقَّعُ, 'it is expected', and دَرَجَاتُ الْحَرَارَة, 'degrees of heat'. Temperatures in the Arab world are given in Celsius. Because these words are the same on every Arab channel, learning them lets you follow a forecast from Morocco to Iraq.",

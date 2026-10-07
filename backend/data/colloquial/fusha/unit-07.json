@@ -210,6 +210,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فَجْر",
+          "transliteration": "fajr",
+          "english": "dawn",
+          "category": "Morning"
+        },
+        {
+          "arabic": "مُنَبِّه",
+          "transliteration": "munabbih",
+          "english": "alarm clock",
+          "category": "Morning"
+        },
+        {
+          "arabic": "فُرْشَاة",
+          "transliteration": "furshaa",
+          "english": "brush",
+          "category": "Morning"
+        },
+        {
+          "arabic": "مَعْجُون",
+          "transliteration": "ma3joon",
+          "english": "toothpaste",
+          "category": "Morning"
+        },
+        {
+          "arabic": "مُبَكِّرًا",
+          "transliteration": "mubakkiran",
+          "english": "early",
+          "category": "Morning"
+        },
+        {
+          "arabic": "اِسْتَيْقَظَ",
+          "transliteration": "istayqaza",
+          "english": "he woke up",
+          "category": "Morning"
+        },
+        {
+          "arabic": "اِسْتَحَمَّ",
+          "transliteration": "ista7amma",
+          "english": "he showered",
+          "category": "Morning"
+        },
+        {
+          "arabic": "لَبِسَ",
+          "transliteration": "labisa",
+          "english": "he got dressed",
+          "category": "Morning"
+        }
+      ],
       "culture": "A morning greeting is answered with a richer one: صَبَاحُ الْخَيْر is met by صَبَاحُ النُّور. Hours are said with the ordinal number, so السَّاعَةُ السَّابِعَة is literally 'the seventh hour'.",
       "exercises": [
         {
@@ -609,6 +659,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "ظُهْر",
+          "transliteration": "zuhr",
+          "english": "noon",
+          "category": "Daytime"
+        },
+        {
+          "arabic": "عَصْر",
+          "transliteration": "3asr",
+          "english": "afternoon",
+          "category": "Daytime"
+        },
+        {
+          "arabic": "اِسْتِرَاحَة",
+          "transliteration": "istiraa7a",
+          "english": "break",
+          "category": "Daytime"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Daytime"
+        },
+        {
+          "arabic": "ذَهَبَ",
+          "transliteration": "dhahaba",
+          "english": "he went",
+          "category": "Daytime"
+        },
+        {
+          "arabic": "رَجَعَ",
+          "transliteration": "raja3a",
+          "english": "he came back",
+          "category": "Daytime"
+        },
+        {
+          "arabic": "عَمِلَ",
+          "transliteration": "3amila",
+          "english": "he worked",
+          "category": "Daytime"
+        },
+        {
+          "arabic": "دَرَسَ",
+          "transliteration": "darasa",
+          "english": "he studied",
+          "category": "Daytime"
+        }
+      ],
       "culture": "The working day often starts early, and الْغَدَاء, lunch, is the main meal, usually eaten after الظُّهْر, the midday time. Asking مَا أَخْبَارُ الْيَوْم؟ is a friendly way to start talking with a colleague.",
       "exercises": [
         {
@@ -1005,6 +1105,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَغْرِب",
+          "transliteration": "maghrib",
+          "english": "sunset",
+          "category": "Evening"
+        },
+        {
+          "arabic": "لَيْل",
+          "transliteration": "layl",
+          "english": "night",
+          "category": "Evening"
+        },
+        {
+          "arabic": "سَرِير",
+          "transliteration": "sareer",
+          "english": "bed",
+          "category": "Evening"
+        },
+        {
+          "arabic": "تِلْفَاز",
+          "transliteration": "tilfaaz",
+          "english": "television",
+          "category": "Evening"
+        },
+        {
+          "arabic": "مُتْعَب",
+          "transliteration": "mut3ab",
+          "english": "tired",
+          "category": "Evening"
+        },
+        {
+          "arabic": "مُتَأَخِّرًا",
+          "transliteration": "muta2akhkhiran",
+          "english": "late",
+          "category": "Evening"
+        },
+        {
+          "arabic": "قَرَأَ",
+          "transliteration": "qara2a",
+          "english": "he read",
+          "category": "Evening"
+        },
+        {
+          "arabic": "نَامَ",
+          "transliteration": "naama",
+          "english": "he slept",
+          "category": "Evening"
+        }
+      ],
       "culture": "Evening greetings mirror the morning ones: مَسَاءُ الْخَيْر is answered with مَسَاءُ النُّور. At night people say تُصْبِحُ عَلَى خَيْر, literally 'may you wake up well', and the reply wishes the same goodness back.",
       "exercises": [
         {
@@ -1389,6 +1539,62 @@
             "transliteration": "nadhhabu ilaa as-sooq.",
             "english": "We go to the market."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "الْأَحَد",
+          "transliteration": "al-a7ad",
+          "english": "Sunday",
+          "category": "Days"
+        },
+        {
+          "arabic": "الِاثْنَيْن",
+          "transliteration": "al-ithnayn",
+          "english": "Monday",
+          "category": "Days"
+        },
+        {
+          "arabic": "الثُّلَاثَاء",
+          "transliteration": "ath-thulaathaa2",
+          "english": "Tuesday",
+          "category": "Days"
+        },
+        {
+          "arabic": "الْأَرْبِعَاء",
+          "transliteration": "al-arbi3aa2",
+          "english": "Wednesday",
+          "category": "Days"
+        },
+        {
+          "arabic": "الْخَمِيس",
+          "transliteration": "al-khamees",
+          "english": "Thursday",
+          "category": "Days"
+        },
+        {
+          "arabic": "الْجُمُعَة",
+          "transliteration": "al-jumu3a",
+          "english": "Friday",
+          "category": "Days"
+        },
+        {
+          "arabic": "السَّبْت",
+          "transliteration": "as-sabt",
+          "english": "Saturday",
+          "category": "Days"
+        },
+        {
+          "arabic": "أُسْبُوع",
+          "transliteration": "usboo3",
+          "english": "week",
+          "category": "Days"
+        },
+        {
+          "arabic": "عُطْلَة",
+          "transliteration": "3utla",
+          "english": "day off, holiday",
+          "category": "Days"
         }
       ],
       "culture": "In much of the Arab world the working week runs from Sunday to Thursday, with Friday as the day of congregational prayer and rest and Saturday as the second weekend day. Some countries now use a Saturday and Sunday weekend, so it is worth asking.",
@@ -1794,6 +2000,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "هِوَايَة",
+          "transliteration": "hiwaaya",
+          "english": "hobby",
+          "category": "Hobbies"
+        },
+        {
+          "arabic": "فَرَاغ",
+          "transliteration": "faraagh",
+          "english": "free time",
+          "category": "Hobbies"
+        },
+        {
+          "arabic": "قِرَاءَة",
+          "transliteration": "qiraa2a",
+          "english": "reading",
+          "category": "Hobbies"
+        },
+        {
+          "arabic": "رَسْم",
+          "transliteration": "rasm",
+          "english": "drawing",
+          "category": "Hobbies"
+        },
+        {
+          "arabic": "مُوسِيقَى",
+          "transliteration": "mooseeqaa",
+          "english": "music",
+          "category": "Hobbies"
+        },
+        {
+          "arabic": "سِبَاحَة",
+          "transliteration": "sibaa7a",
+          "english": "swimming",
+          "category": "Hobbies"
+        },
+        {
+          "arabic": "طَبْخ",
+          "transliteration": "tabkh",
+          "english": "cooking",
+          "category": "Hobbies"
+        },
+        {
+          "arabic": "تَصْوِير",
+          "transliteration": "tasweer",
+          "english": "photography",
+          "category": "Hobbies"
+        },
+        {
+          "arabic": "سَفَر",
+          "transliteration": "safar",
+          "english": "travel",
+          "category": "Hobbies"
+        }
+      ],
       "culture": "Arabic calligraphy is one of the most loved arts in the Muslim world, because it grew from the care taken to write the Qur'an beautifully. Learners start with simple scripts such as naskh and ruq'a, then move to grand ones such as thuluth and diwani. Many people also enjoy a quiet hobby like reading, cooking for the family or gardening in their free time.",
       "exercises": [
         {
@@ -2131,6 +2393,62 @@
             "transliteration": "bikulli suroor.",
             "english": "With pleasure."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رِيَاضَة",
+          "transliteration": "riyaada",
+          "english": "sport",
+          "category": "Sport"
+        },
+        {
+          "arabic": "كُرَة",
+          "transliteration": "kura",
+          "english": "ball",
+          "category": "Sport"
+        },
+        {
+          "arabic": "مَلْعَب",
+          "transliteration": "mal3ab",
+          "english": "pitch, stadium",
+          "category": "Sport"
+        },
+        {
+          "arabic": "فَرِيق",
+          "transliteration": "fareeq",
+          "english": "team",
+          "category": "Sport"
+        },
+        {
+          "arabic": "لَاعِب",
+          "transliteration": "laa3ib",
+          "english": "player",
+          "category": "Sport"
+        },
+        {
+          "arabic": "مُبَارَاة",
+          "transliteration": "mubaaraa",
+          "english": "match",
+          "category": "Sport"
+        },
+        {
+          "arabic": "تَمْرِين",
+          "transliteration": "tamreen",
+          "english": "training, exercise",
+          "category": "Sport"
+        },
+        {
+          "arabic": "رَكَضَ",
+          "transliteration": "rakada",
+          "english": "he ran",
+          "category": "Sport"
+        },
+        {
+          "arabic": "فَازَ",
+          "transliteration": "faaza",
+          "english": "he won",
+          "category": "Sport"
         }
       ],
       "culture": "Football is the most popular sport across the Arab world, and match nights fill cafes and homes with fans. Archery and horse riding hold a special place in Islamic tradition, and the Prophet, peace be upon him, encouraged them. Many people also walk or run in the cool of the morning, and keep sport separate for men and women in public clubs.",

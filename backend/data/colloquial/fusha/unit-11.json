@@ -213,6 +213,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "ضَيْف",
+          "transliteration": "dayf",
+          "english": "guest",
+          "category": "Arriving"
+        },
+        {
+          "arabic": "هَدِيَّة",
+          "transliteration": "hadiyya",
+          "english": "gift",
+          "category": "Arriving"
+        },
+        {
+          "arabic": "جَرَس",
+          "transliteration": "jaras",
+          "english": "doorbell, bell",
+          "category": "Arriving"
+        },
+        {
+          "arabic": "صَالَة",
+          "transliteration": "saala",
+          "english": "hall, living room",
+          "category": "Arriving"
+        },
+        {
+          "arabic": "طَرَقَ",
+          "transliteration": "taraqa",
+          "english": "he knocked",
+          "category": "Arriving"
+        },
+        {
+          "arabic": "اِسْتَقْبَلَ",
+          "transliteration": "istaqbala",
+          "english": "he welcomed (a guest)",
+          "category": "Arriving"
+        },
+        {
+          "arabic": "جَلَسَ",
+          "transliteration": "jalasa",
+          "english": "he sat",
+          "category": "Arriving"
+        },
+        {
+          "arabic": "تَفَضَّلْ",
+          "transliteration": "tafaddal",
+          "english": "please, come in (to a man)",
+          "category": "Arriving"
+        }
+      ],
       "culture": "A guest is welcomed at the door with أَهْلًا وَسَهْلًا, and the host says أَنْتَ فِي بَيْتِكَ, 'you are in your own house'. Bringing a small gift is polite, and the host will usually say you did not need to.",
       "exercises": [
         {
@@ -590,6 +640,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَرْحِيب",
+          "transliteration": "tar7eeb",
+          "english": "welcome",
+          "category": "Welcoming"
+        },
+        {
+          "arabic": "ضِيَافَة",
+          "transliteration": "diyaafa",
+          "english": "hospitality",
+          "category": "Welcoming"
+        },
+        {
+          "arabic": "مُضِيف",
+          "transliteration": "mudeef",
+          "english": "host",
+          "category": "Welcoming"
+        },
+        {
+          "arabic": "مَجْلِس",
+          "transliteration": "majlis",
+          "english": "sitting room",
+          "category": "Welcoming"
+        },
+        {
+          "arabic": "تَمْر",
+          "transliteration": "tamr",
+          "english": "dates",
+          "category": "Welcoming"
+        },
+        {
+          "arabic": "بَخُور",
+          "transliteration": "bakhoor",
+          "english": "incense",
+          "category": "Welcoming"
+        },
+        {
+          "arabic": "ضَيَّفَ",
+          "transliteration": "dayyafa",
+          "english": "he served (guests)",
+          "category": "Welcoming"
+        },
+        {
+          "arabic": "شَرَّفَ",
+          "transliteration": "sharrafa",
+          "english": "he honoured",
+          "category": "Welcoming"
+        }
+      ],
       "culture": "A Fusha host offers a drink at once, and the guest is expected to accept something. Phrases such as الْبَيْتُ بَيْتُكَ, 'the house is your house', make the guest feel at ease.",
       "exercises": [
         {
@@ -954,6 +1054,56 @@
             "transliteration": "baaraka allaahu feekum.",
             "english": "God bless you."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُفْرَة",
+          "transliteration": "sufra",
+          "english": "dining spread",
+          "category": "Table manners"
+        },
+        {
+          "arabic": "وَلِيمَة",
+          "transliteration": "waleema",
+          "english": "feast",
+          "category": "Table manners"
+        },
+        {
+          "arabic": "مِنْدِيل",
+          "transliteration": "mindeel",
+          "english": "napkin",
+          "category": "Table manners"
+        },
+        {
+          "arabic": "إِبْرِيق",
+          "transliteration": "ibreeq",
+          "english": "jug, pot",
+          "category": "Table manners"
+        },
+        {
+          "arabic": "شَهِيّ",
+          "transliteration": "shahiyy",
+          "english": "appetising",
+          "category": "Table manners"
+        },
+        {
+          "arabic": "زِيَادَة",
+          "transliteration": "ziyaada",
+          "english": "more, extra",
+          "category": "Table manners"
+        },
+        {
+          "arabic": "قَدَّمَ",
+          "transliteration": "qaddama",
+          "english": "he offered, served",
+          "category": "Table manners"
+        },
+        {
+          "arabic": "شَبِعَ",
+          "transliteration": "shabi3a",
+          "english": "he was full",
+          "category": "Table manners"
         }
       ],
       "culture": "Hosts urge guests to eat more, and a guest often refuses once out of politeness before accepting. هَنِيئًا لَكُمْ is said to people who are eating, بَارَكَ اللَّهُ فِيكُمْ is the reply, and ending with الْحَمْدُ لِلَّه shows thanks for the meal.",
@@ -1325,6 +1475,56 @@
             "transliteration": "fee amaani allaah.",
             "english": "In God's safekeeping."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "وَدَاع",
+          "transliteration": "wadaa3",
+          "english": "farewell",
+          "category": "Leaving"
+        },
+        {
+          "arabic": "اِسْتِئْذَان",
+          "transliteration": "isti2dhaan",
+          "english": "asking to leave",
+          "category": "Leaving"
+        },
+        {
+          "arabic": "عَوْدَة",
+          "transliteration": "3awda",
+          "english": "return",
+          "category": "Leaving"
+        },
+        {
+          "arabic": "مُمْتَنّ",
+          "transliteration": "mumtann",
+          "english": "grateful",
+          "category": "Leaving"
+        },
+        {
+          "arabic": "قَرِيبًا",
+          "transliteration": "qareeban",
+          "english": "soon",
+          "category": "Leaving"
+        },
+        {
+          "arabic": "غَادَرَ",
+          "transliteration": "ghaadara",
+          "english": "he left",
+          "category": "Leaving"
+        },
+        {
+          "arabic": "شَكَرَ",
+          "transliteration": "shakara",
+          "english": "he thanked",
+          "category": "Leaving"
+        },
+        {
+          "arabic": "تَأَخَّرَ",
+          "transliteration": "ta2akhkhara",
+          "english": "he was late",
+          "category": "Leaving"
         }
       ],
       "culture": "Leaving a Fusha home takes time: the guest says they must go, the host insists they stay, and both exchange prayers such as فِي أَمَانِ اللَّه, 'in God's safekeeping'. Asking a guest to send word on reaching home shows care.",
@@ -1703,6 +1903,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "رَمَضَان",
+          "transliteration": "ramadaan",
+          "english": "Ramadan",
+          "category": "Iftar"
+        },
+        {
+          "arabic": "صِيَام",
+          "transliteration": "siyaam",
+          "english": "fasting",
+          "category": "Iftar"
+        },
+        {
+          "arabic": "صَائِم",
+          "transliteration": "saa2im",
+          "english": "fasting (person)",
+          "category": "Iftar"
+        },
+        {
+          "arabic": "إِفْطَار",
+          "transliteration": "iftaar",
+          "english": "breaking the fast",
+          "category": "Iftar"
+        },
+        {
+          "arabic": "سُحُور",
+          "transliteration": "su7oor",
+          "english": "pre-dawn meal",
+          "category": "Iftar"
+        },
+        {
+          "arabic": "أَذَان",
+          "transliteration": "adhaan",
+          "english": "call to prayer",
+          "category": "Iftar"
+        },
+        {
+          "arabic": "دُعَاء",
+          "transliteration": "du3aa2",
+          "english": "supplication",
+          "category": "Iftar"
+        },
+        {
+          "arabic": "قَطَايِف",
+          "transliteration": "qataayif",
+          "english": "qatayef (pastry)",
+          "category": "Iftar"
+        }
+      ],
       "culture": "At sunset the fast is broken with dates and water, as the Prophet (peace be upon him) did, and the dua ذَهَبَ الظَّمَأُ is said after the first sip. Feeding a fasting person earns the host the same reward as the one who fasted, so hosts invite gladly and guests answer تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ. Guests thank the family with بَارَكَ اللَّهُ فِيكُمْ.",
       "exercises": [
         {
@@ -2039,6 +2289,56 @@
             "transliteration": "qabla al-fajri biqaleel.",
             "english": "A little before dawn."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مَبِيت",
+          "transliteration": "mabeet",
+          "english": "overnight stay",
+          "category": "Staying over"
+        },
+        {
+          "arabic": "فِرَاش",
+          "transliteration": "firaash",
+          "english": "bedding, mattress",
+          "category": "Staying over"
+        },
+        {
+          "arabic": "وِسَادَة",
+          "transliteration": "wisaada",
+          "english": "pillow",
+          "category": "Staying over"
+        },
+        {
+          "arabic": "بَطَّانِيَّة",
+          "transliteration": "battaaniyya",
+          "english": "blanket",
+          "category": "Staying over"
+        },
+        {
+          "arabic": "مِنْشَفَة",
+          "transliteration": "minshafa",
+          "english": "towel",
+          "category": "Staying over"
+        },
+        {
+          "arabic": "حَمَّام",
+          "transliteration": "7ammaam",
+          "english": "bathroom",
+          "category": "Staying over"
+        },
+        {
+          "arabic": "مِفْتَاح",
+          "transliteration": "miftaa7",
+          "english": "key",
+          "category": "Staying over"
+        },
+        {
+          "arabic": "مُرِيح",
+          "transliteration": "muree7",
+          "english": "comfortable",
+          "category": "Staying over"
         }
       ],
       "culture": "Honouring the guest is part of faith: the Prophet (peace be upon him) taught that whoever believes in Allah and the Last Day should honour his guest. The host gives the best room and bedding and says لَا مُشْكِلَة if the guest worries about being a burden. The guest answers جَزَاكَ اللَّهُ خَيْرًا and prays for the host in the morning.",

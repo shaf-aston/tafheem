@@ -304,6 +304,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "شَقَّة",
+          "transliteration": "shaqqa",
+          "english": "flat",
+          "category": "Renting"
+        },
+        {
+          "arabic": "عِمَارَة",
+          "transliteration": "3imaara",
+          "english": "apartment building",
+          "category": "Renting"
+        },
+        {
+          "arabic": "إِيجَار",
+          "transliteration": "eejaar",
+          "english": "rent",
+          "category": "Renting"
+        },
+        {
+          "arabic": "عَقْد",
+          "transliteration": "3aqd",
+          "english": "contract",
+          "category": "Renting"
+        },
+        {
+          "arabic": "مَالِك",
+          "transliteration": "maalik",
+          "english": "owner, landlord",
+          "category": "Renting"
+        },
+        {
+          "arabic": "مُسْتَأْجِر",
+          "transliteration": "musta2jir",
+          "english": "tenant",
+          "category": "Renting"
+        },
+        {
+          "arabic": "تَأْمِين",
+          "transliteration": "ta2meen",
+          "english": "deposit",
+          "category": "Renting"
+        },
+        {
+          "arabic": "مَفْرُوش",
+          "transliteration": "mafroosh",
+          "english": "furnished",
+          "category": "Renting"
+        }
+      ],
       "culture": "In many Arab cities rent is quoted per month, and a deposit of about one month's rent is common. Flats are often described by their rooms, so ask whether the living room is counted. Always ask whether water and electricity are included, and sign a written lease before paying anything.",
       "exercises": [
         {
@@ -684,6 +734,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَالُون",
+          "transliteration": "saaloon",
+          "english": "sitting room",
+          "category": "Rooms and furniture"
+        },
+        {
+          "arabic": "مَطْبَخ",
+          "transliteration": "matbakh",
+          "english": "kitchen",
+          "category": "Rooms and furniture"
+        },
+        {
+          "arabic": "حَمَّام",
+          "transliteration": "7ammaam",
+          "english": "bathroom",
+          "category": "Rooms and furniture"
+        },
+        {
+          "arabic": "شُرْفَة",
+          "transliteration": "shurfa",
+          "english": "balcony",
+          "category": "Rooms and furniture"
+        },
+        {
+          "arabic": "كُرْسِيّ",
+          "transliteration": "kursiyy",
+          "english": "chair",
+          "category": "Rooms and furniture"
+        },
+        {
+          "arabic": "طَاوِلَة",
+          "transliteration": "taawila",
+          "english": "table",
+          "category": "Rooms and furniture"
+        },
+        {
+          "arabic": "أَرِيكَة",
+          "transliteration": "areeka",
+          "english": "sofa",
+          "category": "Rooms and furniture"
+        },
+        {
+          "arabic": "خِزَانَة",
+          "transliteration": "khizaana",
+          "english": "wardrobe, cupboard",
+          "category": "Rooms and furniture"
+        },
+        {
+          "arabic": "سَتَائِر",
+          "transliteration": "sataa2ir",
+          "english": "curtains",
+          "category": "Rooms and furniture"
+        }
+      ],
       "culture": "A flat is often described by its rooms: the majlis or living room, the bedrooms, the kitchen and the bathrooms. In many Gulf homes the majlis is a separate room for guests. A flat may be rented furnished or empty, so ask exactly what stays, such as the fridge, the wardrobes and the air conditioners.",
       "exercises": [
         {
@@ -1053,6 +1159,56 @@
             "transliteration": "al-Hamdu lillaah",
             "english": "Praise be to Allah."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عُطْل",
+          "transliteration": "3utl",
+          "english": "fault, breakdown",
+          "category": "Repairs"
+        },
+        {
+          "arabic": "تَسَرُّب",
+          "transliteration": "tasarrub",
+          "english": "leak",
+          "category": "Repairs"
+        },
+        {
+          "arabic": "صَنْبُور",
+          "transliteration": "sanboor",
+          "english": "tap",
+          "category": "Repairs"
+        },
+        {
+          "arabic": "كَهْرَبَاء",
+          "transliteration": "kahrabaa2",
+          "english": "electricity",
+          "category": "Repairs"
+        },
+        {
+          "arabic": "مِصْبَاح",
+          "transliteration": "misbaa7",
+          "english": "lamp, bulb",
+          "category": "Repairs"
+        },
+        {
+          "arabic": "سَبَّاك",
+          "transliteration": "sabbaak",
+          "english": "plumber",
+          "category": "Repairs"
+        },
+        {
+          "arabic": "كَهْرَبَائِيّ",
+          "transliteration": "kahrabaa2iyy",
+          "english": "electrician",
+          "category": "Repairs"
+        },
+        {
+          "arabic": "أَصْلَحَ",
+          "transliteration": "asla7a",
+          "english": "he repaired",
+          "category": "Repairs"
         }
       ],
       "culture": "A home repair is often a favour between brothers, relatives or neighbours before anyone is paid, and the helper is thanked with جَزَاكَ اللَّهُ خَيْرًا. People say الْحَمْدُ لِلَّه when a job ends well and إِنْ شَاءَ اللَّه when they promise to try. A professional such as a plumber or electrician is called when the problem is beyond a simple fix, and it is polite to ask the cost before the work starts.",
@@ -1447,6 +1603,56 @@
             "transliteration": "laa 3alayk",
             "english": "Not at all."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "جَار",
+          "transliteration": "jaar",
+          "english": "neighbour (male)",
+          "category": "Neighbours"
+        },
+        {
+          "arabic": "جَارَة",
+          "transliteration": "jaara",
+          "english": "neighbour (female)",
+          "category": "Neighbours"
+        },
+        {
+          "arabic": "بَوَّاب",
+          "transliteration": "bawwaab",
+          "english": "doorman",
+          "category": "Neighbours"
+        },
+        {
+          "arabic": "طَابِق",
+          "transliteration": "taabiq",
+          "english": "floor, storey",
+          "category": "Neighbours"
+        },
+        {
+          "arabic": "ضَجِيج",
+          "transliteration": "dajeej",
+          "english": "noise",
+          "category": "Neighbours"
+        },
+        {
+          "arabic": "اِحْتِرَام",
+          "transliteration": "i7tiraam",
+          "english": "respect",
+          "category": "Neighbours"
+        },
+        {
+          "arabic": "سَاعَدَ",
+          "transliteration": "saa3ada",
+          "english": "he helped",
+          "category": "Neighbours"
+        },
+        {
+          "arabic": "تَعَاوَنَ",
+          "transliteration": "ta3aawana",
+          "english": "he cooperated",
+          "category": "Neighbours"
         }
       ],
       "culture": "In Islam a neighbour has a great right. The Prophet (peace be upon him) said that Jibril kept advising him about the neighbour until he thought the neighbour would be made an heir. Neighbours share food, visit one another when ill, keep an eye on each other's homes and avoid disturbing each other with noise. Sending a dish to the new family next door is a common way to start a friendship.",

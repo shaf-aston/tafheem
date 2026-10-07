@@ -333,6 +333,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "account",
+          "category": "Banking"
+        },
+        {
+          "arabic": "صَرَّاف",
+          "transliteration": "sarraaf",
+          "english": "cashier",
+          "category": "Banking"
+        },
+        {
+          "arabic": "عُمْلَة",
+          "transliteration": "3umla",
+          "english": "currency",
+          "category": "Banking"
+        },
+        {
+          "arabic": "رَصِيد",
+          "transliteration": "raseed",
+          "english": "balance",
+          "category": "Banking"
+        },
+        {
+          "arabic": "قَرْض",
+          "transliteration": "qard",
+          "english": "loan",
+          "category": "Banking"
+        },
+        {
+          "arabic": "تَحْوِيل",
+          "transliteration": "ta7weel",
+          "english": "transfer",
+          "category": "Banking"
+        },
+        {
+          "arabic": "تَوْقِيع",
+          "transliteration": "tawqee3",
+          "english": "signature",
+          "category": "Banking"
+        },
+        {
+          "arabic": "سَحَبَ",
+          "transliteration": "sa7aba",
+          "english": "he withdrew",
+          "category": "Banking"
+        },
+        {
+          "arabic": "أَوْدَعَ",
+          "transliteration": "awda3a",
+          "english": "he deposited",
+          "category": "Banking"
+        }
+      ],
       "culture": "Banks in most Arab countries open in the morning and often close by mid-afternoon, and many are closed on Friday. You need your ID card or passport to open an account, and the clerk will ask you to sign the form. Cash is still common for daily shopping, so ATMs are everywhere and exchange offices often sit near the banks.",
       "exercises": [
         {
@@ -688,6 +744,56 @@
             "transliteration": "na3am, haadha raqmu at-tatabbu3",
             "english": "Yes, this is the tracking number."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "بَرِيد",
+          "transliteration": "bareed",
+          "english": "post",
+          "category": "Post"
+        },
+        {
+          "arabic": "طَابَع",
+          "transliteration": "taabi3",
+          "english": "stamp",
+          "category": "Post"
+        },
+        {
+          "arabic": "ظَرْف",
+          "transliteration": "zarf",
+          "english": "envelope",
+          "category": "Post"
+        },
+        {
+          "arabic": "طَرْد",
+          "transliteration": "tard",
+          "english": "parcel",
+          "category": "Post"
+        },
+        {
+          "arabic": "عُنْوَان",
+          "transliteration": "3unwaan",
+          "english": "address",
+          "category": "Post"
+        },
+        {
+          "arabic": "مُرْسِل",
+          "transliteration": "mursil",
+          "english": "sender",
+          "category": "Post"
+        },
+        {
+          "arabic": "مُسْتَلِم",
+          "transliteration": "mustalim",
+          "english": "recipient",
+          "category": "Post"
+        },
+        {
+          "arabic": "شُبَّاك",
+          "transliteration": "shubbaak",
+          "english": "counter window",
+          "category": "Post"
         }
       ],
       "culture": "Many Arab post offices also take bill payments and sell stamps, and the clerk weighs a parcel at the counter to set the price. Street addresses are not always numbered, so people often use a PO box or add a nearby landmark. Private courier companies are popular for fast international parcels.",
@@ -1061,6 +1167,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "شَرِيحَة",
+          "transliteration": "sharee7a",
+          "english": "SIM card",
+          "category": "Phone shop"
+        },
+        {
+          "arabic": "بَاقَة",
+          "transliteration": "baaqa",
+          "english": "bundle, plan",
+          "category": "Phone shop"
+        },
+        {
+          "arabic": "اِشْتِرَاك",
+          "transliteration": "ishtiraak",
+          "english": "subscription",
+          "category": "Phone shop"
+        },
+        {
+          "arabic": "تَغْطِيَة",
+          "transliteration": "taghtiya",
+          "english": "coverage",
+          "category": "Phone shop"
+        },
+        {
+          "arabic": "شَاحِن",
+          "transliteration": "shaa7in",
+          "english": "charger",
+          "category": "Phone shop"
+        },
+        {
+          "arabic": "غِطَاء",
+          "transliteration": "ghitaa2",
+          "english": "case, cover",
+          "category": "Phone shop"
+        },
+        {
+          "arabic": "شَاشَة",
+          "transliteration": "shaasha",
+          "english": "screen",
+          "category": "Phone shop"
+        },
+        {
+          "arabic": "شَهْرِيّ",
+          "transliteration": "shahriyy",
+          "english": "monthly",
+          "category": "Phone shop"
+        }
+      ],
       "culture": "In many Arab countries you buy a SIM card at a phone shop or a kiosk, and the seller asks for your passport or ID card to register the line. Most people use prepaid balance that they top up with a recharge card or an app, and internet packages are sold by the month. Phone shops also repair screens and sell chargers and cases.",
       "exercises": [
         {
@@ -1423,6 +1579,56 @@
             "transliteration": "naHnu fee aT-Tareeq",
             "english": "We are on the way."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "نَجْدَة",
+          "transliteration": "najda",
+          "english": "help, rescue",
+          "category": "Emergency"
+        },
+        {
+          "arabic": "طَوَارِئ",
+          "transliteration": "tawaari2",
+          "english": "emergency",
+          "category": "Emergency"
+        },
+        {
+          "arabic": "خَطَر",
+          "transliteration": "khatar",
+          "english": "danger",
+          "category": "Emergency"
+        },
+        {
+          "arabic": "حَرِيق",
+          "transliteration": "7areeq",
+          "english": "fire",
+          "category": "Emergency"
+        },
+        {
+          "arabic": "إِطْفَاء",
+          "transliteration": "itfaa2",
+          "english": "fire service",
+          "category": "Emergency"
+        },
+        {
+          "arabic": "إِسْعَاف",
+          "transliteration": "is3aaf",
+          "english": "ambulance",
+          "category": "Emergency"
+        },
+        {
+          "arabic": "شُرْطَة",
+          "transliteration": "shurta",
+          "english": "police",
+          "category": "Emergency"
+        },
+        {
+          "arabic": "اِتَّصَلَ",
+          "transliteration": "ittasala",
+          "english": "he called",
+          "category": "Emergency"
         }
       ],
       "culture": "Emergency numbers differ from country to country, so learn the local ones when you arrive: for example 911 in Jordan, 997 for an ambulance in Saudi Arabia, and 122 for the police in Egypt. Say your location first and speak slowly and clearly, since the operator needs the address before anything else. Staying calm and keeping the line open lets help reach you faster.",
@@ -1800,6 +2006,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "حَادِث",
+          "transliteration": "7aadith",
+          "english": "accident",
+          "category": "Accident"
+        },
+        {
+          "arabic": "اِصْطِدَام",
+          "transliteration": "istidaam",
+          "english": "collision",
+          "category": "Accident"
+        },
+        {
+          "arabic": "سُرْعَة",
+          "transliteration": "sur3a",
+          "english": "speed",
+          "category": "Accident"
+        },
+        {
+          "arabic": "إِصَابَة",
+          "transliteration": "isaaba",
+          "english": "injury",
+          "category": "Accident"
+        },
+        {
+          "arabic": "جَرِيح",
+          "transliteration": "jaree7",
+          "english": "injured (person)",
+          "category": "Accident"
+        },
+        {
+          "arabic": "نَزِيف",
+          "transliteration": "nazeef",
+          "english": "bleeding",
+          "category": "Accident"
+        },
+        {
+          "arabic": "شَاهِد",
+          "transliteration": "shaahid",
+          "english": "witness",
+          "category": "Accident"
+        },
+        {
+          "arabic": "تَأْمِين",
+          "transliteration": "ta2meen",
+          "english": "insurance",
+          "category": "Accident"
+        }
+      ],
       "culture": "After a road accident, do not move the car until the police say so, unless it blocks traffic. In many Arab countries the police must write a report before an insurance company will pay, so ask for it at the scene. Emergency numbers differ by country, for example 997 for an ambulance in Saudi Arabia and 123 in Egypt, so check the local one. Stay calm and help anyone hurt without moving them.",
       "exercises": [
         {
@@ -2174,6 +2430,62 @@
             "transliteration": "laa shukra 3alaa waajib",
             "english": "Don't mention it."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طِفْل",
+          "transliteration": "tifl",
+          "english": "child",
+          "category": "Lost child"
+        },
+        {
+          "arabic": "وَالِد",
+          "transliteration": "waalid",
+          "english": "parent, father",
+          "category": "Lost child"
+        },
+        {
+          "arabic": "ضَائِع",
+          "transliteration": "daa2i3",
+          "english": "lost",
+          "category": "Lost child"
+        },
+        {
+          "arabic": "وَصْف",
+          "transliteration": "wasf",
+          "english": "description",
+          "category": "Lost child"
+        },
+        {
+          "arabic": "حَارِس",
+          "transliteration": "7aaris",
+          "english": "guard",
+          "category": "Lost child"
+        },
+        {
+          "arabic": "خَوْف",
+          "transliteration": "khawf",
+          "english": "fear",
+          "category": "Lost child"
+        },
+        {
+          "arabic": "بُكَاء",
+          "transliteration": "bukaa2",
+          "english": "crying",
+          "category": "Lost child"
+        },
+        {
+          "arabic": "بَحَثَ",
+          "transliteration": "ba7atha",
+          "english": "he searched",
+          "category": "Lost child"
+        },
+        {
+          "arabic": "وَجَدَ",
+          "transliteration": "wajada",
+          "english": "he found",
+          "category": "Lost child"
         }
       ],
       "culture": "In a crowded place, go straight to the information desk or a security guard, who can announce the child's name on the loudspeaker. Teach children early to say their parent's name and phone number, and keep a recent photo on your phone. Emergency numbers differ by country, so learn the local one when you arrive. Stay calm so you can describe the clothes and the last place you saw the child.",

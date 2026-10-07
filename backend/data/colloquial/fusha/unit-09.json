@@ -233,6 +233,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صِحَّة",
+          "transliteration": "si77a",
+          "english": "health",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "مَرِيض",
+          "transliteration": "mareed",
+          "english": "ill",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "أَلَم",
+          "transliteration": "alam",
+          "english": "pain",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "حُمَّى",
+          "transliteration": "7ummaa",
+          "english": "fever",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "زُكَام",
+          "transliteration": "zukaam",
+          "english": "cold (illness)",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "سُعَال",
+          "transliteration": "su3aal",
+          "english": "cough",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "دُوَار",
+          "transliteration": "duwaar",
+          "english": "dizziness",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "أَفْضَل",
+          "transliteration": "afdal",
+          "english": "better",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "شِفَاء",
+          "transliteration": "shifaa2",
+          "english": "recovery",
+          "category": "Feeling unwell"
+        }
+      ],
       "culture": "In Fusha, people answer كَيْفَ حَالُكَ؟ with بِخَيْر, الْحَمْدُ لِلَّه, even when they are not well, and then explain if asked. A sick person is wished سَلَامَتُكَ, and friends often advise rest and water.",
       "exercises": [
         {
@@ -645,6 +701,56 @@
             "transliteration": "laa, laysa lihaadhaa ad-dawaa2.",
             "english": "No, not for this medicine."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "دَوَاء",
+          "transliteration": "dawaa2",
+          "english": "medicine",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "صَيْدَلِيّ",
+          "transliteration": "saydaliyy",
+          "english": "pharmacist",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حَبَّة",
+          "transliteration": "7abba",
+          "english": "pill",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "شَرَاب",
+          "transliteration": "sharaab",
+          "english": "syrup",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "مَرْهَم",
+          "transliteration": "marham",
+          "english": "ointment",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "مُسَكِّن",
+          "transliteration": "musakkin",
+          "english": "painkiller",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "ضِمَادَة",
+          "transliteration": "dimaada",
+          "english": "bandage",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "جُرْعَة",
+          "transliteration": "jur3a",
+          "english": "dose",
+          "category": "Pharmacy"
         }
       ],
       "culture": "A pharmacist in the Arab world often gives advice and sells many medicines without a prescription, and the word الصَّيْدَلِيَّة names the pharmacy. The polite farewell to a sick customer is سَلَامَتُكَ or شَفَاكَ اللَّه.",
@@ -1065,6 +1171,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "عِيَادَة",
+          "transliteration": "3iyaada",
+          "english": "clinic",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "مَوْعِد",
+          "transliteration": "maw3id",
+          "english": "appointment",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "فَحْص",
+          "transliteration": "fa7s",
+          "english": "examination, check-up",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "تَحْلِيل",
+          "transliteration": "ta7leel",
+          "english": "(medical) test",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "ضَغْط",
+          "transliteration": "daght",
+          "english": "blood pressure",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "حَرَارَة",
+          "transliteration": "7araara",
+          "english": "temperature",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "تَشْخِيص",
+          "transliteration": "tashkhees",
+          "english": "diagnosis",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "عِلَاج",
+          "transliteration": "3ilaaj",
+          "english": "treatment",
+          "category": "Doctor"
+        }
+      ],
       "culture": "Doctors in the Arab world speak Fusha or a mix of Fusha and their dialect when they explain an illness, and the polite word to a patient is سَلَامَتُكَ. It is normal to be told to rest and to come back for a check after a week.",
       "exercises": [
         {
@@ -1465,6 +1621,68 @@
             "transliteration": "na3am, udhunee bikhayr.",
             "english": "Yes, my ear is fine."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رَأْس",
+          "transliteration": "ra2s",
+          "english": "head",
+          "category": "Body"
+        },
+        {
+          "arabic": "عَيْن",
+          "transliteration": "3ayn",
+          "english": "eye",
+          "category": "Body"
+        },
+        {
+          "arabic": "أُذُن",
+          "transliteration": "udhun",
+          "english": "ear",
+          "category": "Body"
+        },
+        {
+          "arabic": "أَنْف",
+          "transliteration": "anf",
+          "english": "nose",
+          "category": "Body"
+        },
+        {
+          "arabic": "حَلْق",
+          "transliteration": "7alq",
+          "english": "throat",
+          "category": "Body"
+        },
+        {
+          "arabic": "صَدْر",
+          "transliteration": "sadr",
+          "english": "chest",
+          "category": "Body"
+        },
+        {
+          "arabic": "بَطْن",
+          "transliteration": "batn",
+          "english": "stomach",
+          "category": "Body"
+        },
+        {
+          "arabic": "ظَهْر",
+          "transliteration": "zahr",
+          "english": "back",
+          "category": "Body"
+        },
+        {
+          "arabic": "يَد",
+          "transliteration": "yad",
+          "english": "hand",
+          "category": "Body"
+        },
+        {
+          "arabic": "رِجْل",
+          "transliteration": "rijl",
+          "english": "leg, foot",
+          "category": "Body"
         }
       ],
       "culture": "Body parts are named with the article الـ in Fusha, and pain is usually said with the part first and the verb يُؤْلِمُنِي after it. Many Arabic body words are shared across every dialect, so this lesson is useful anywhere.",
@@ -1879,6 +2097,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فَم",
+          "transliteration": "fam",
+          "english": "mouth",
+          "category": "Dentist"
+        },
+        {
+          "arabic": "سِنّ",
+          "transliteration": "sinn",
+          "english": "tooth",
+          "category": "Dentist"
+        },
+        {
+          "arabic": "أَسْنَان",
+          "transliteration": "asnaan",
+          "english": "teeth",
+          "category": "Dentist"
+        },
+        {
+          "arabic": "ضِرْس",
+          "transliteration": "dirs",
+          "english": "molar",
+          "category": "Dentist"
+        },
+        {
+          "arabic": "لِثَة",
+          "transliteration": "litha",
+          "english": "gum",
+          "category": "Dentist"
+        },
+        {
+          "arabic": "تَسَوُّس",
+          "transliteration": "tasawwus",
+          "english": "tooth decay",
+          "category": "Dentist"
+        },
+        {
+          "arabic": "حَشْوَة",
+          "transliteration": "7ashwa",
+          "english": "filling",
+          "category": "Dentist"
+        },
+        {
+          "arabic": "خَلْع",
+          "transliteration": "khal3",
+          "english": "extraction",
+          "category": "Dentist"
+        }
+      ],
       "culture": "The dentist is called طَبِيبُ الْأَسْنَان, and a woman dentist is addressed as دُكْتُورَة. Many Muslims also clean their teeth with a سِوَاك, a small twig from the arak tree, which the Prophet (peace be upon him) encouraged. Brushing twice a day is the usual advice everywhere.",
       "exercises": [
         {
@@ -2252,6 +2520,62 @@
             "transliteration": "ghadan in shaa2a allaah.",
             "english": "Tomorrow, Allah willing."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَوَارِئ",
+          "transliteration": "tawaari2",
+          "english": "emergency department",
+          "category": "Hospital"
+        },
+        {
+          "arabic": "إِسْعَاف",
+          "transliteration": "is3aaf",
+          "english": "ambulance, first aid",
+          "category": "Hospital"
+        },
+        {
+          "arabic": "غُرْفَة",
+          "transliteration": "ghurfa",
+          "english": "room",
+          "category": "Hospital"
+        },
+        {
+          "arabic": "عَمَلِيَّة",
+          "transliteration": "3amaliyya",
+          "english": "operation",
+          "category": "Hospital"
+        },
+        {
+          "arabic": "جَرَّاح",
+          "transliteration": "jarraa7",
+          "english": "surgeon",
+          "category": "Hospital"
+        },
+        {
+          "arabic": "نَقَّالَة",
+          "transliteration": "naqqaala",
+          "english": "stretcher",
+          "category": "Hospital"
+        },
+        {
+          "arabic": "كَسْر",
+          "transliteration": "kasr",
+          "english": "fracture",
+          "category": "Hospital"
+        },
+        {
+          "arabic": "جُرْح",
+          "transliteration": "jur7",
+          "english": "wound",
+          "category": "Hospital"
+        },
+        {
+          "arabic": "زِيَارَة",
+          "transliteration": "ziyaara",
+          "english": "visit",
+          "category": "Hospital"
         }
       ],
       "culture": "Visiting the sick is highly valued in Islam, so relatives and friends come to see a patient in person, and hospitals set visiting hours to keep the wards calm. People say شَفَاكَ اللَّه to a man and شَفَاكِ اللَّه to a woman, meaning 'may Allah heal you'. To someone who has recovered, they say الْحَمْدُ لِلَّه عَلَى السَّلَامَة.",
