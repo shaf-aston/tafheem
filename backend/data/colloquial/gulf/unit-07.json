@@ -643,9 +643,9 @@
           "category": "During the day"
         },
         {
-          "arabic": "تَعْبَان",
-          "transliteration": "ta3baan",
-          "english": "tired",
+          "arabic": "مُوَظَّف",
+          "transliteration": "muwaDhDhaf",
+          "english": "employee",
           "category": "During the day"
         },
         {
@@ -1079,9 +1079,9 @@
           "category": "Evening"
         },
         {
-          "arabic": "جَوّ",
-          "transliteration": "jaw",
-          "english": "weather",
+          "arabic": "مَغْرِب",
+          "transliteration": "maghrib",
+          "english": "sunset, Maghrib prayer",
           "category": "Evening"
         },
         {
@@ -1472,13 +1472,13 @@
           "category": "Days of the week"
         },
         {
-          "arabic": "الثَّلَاثَاء",
+          "arabic": "الثَّلَاثَا",
           "transliteration": "ith-thalaathaa",
           "english": "Tuesday",
           "category": "Days of the week"
         },
         {
-          "arabic": "الْأَرْبِعَاء",
+          "arabic": "الْأَرْبِعَا",
           "transliteration": "il-arbi3aa",
           "english": "Wednesday",
           "category": "Days of the week"

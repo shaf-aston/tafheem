@@ -247,9 +247,9 @@
           "category": "Coffee and tea"
         },
         {
-          "arabic": "كْبِير",
-          "transliteration": "kbeer",
-          "english": "big",
+          "arabic": "إِبْرِيق",
+          "transliteration": "ibree2",
+          "english": "coffee pot",
           "category": "Coffee and tea"
         },
         {
@@ -1055,15 +1055,15 @@
           "category": "Ordering"
         },
         {
-          "arabic": "بَصَل",
-          "transliteration": "baSal",
-          "english": "onion",
+          "arabic": "تَبُّولِة",
+          "transliteration": "tabbule",
+          "english": "tabbouleh",
           "category": "Ordering"
         },
         {
-          "arabic": "خُبْز",
-          "transliteration": "khubz",
-          "english": "bread",
+          "arabic": "سَلَطَة",
+          "transliteration": "salaTa",
+          "english": "salad",
           "category": "Ordering"
         },
         {
@@ -1457,9 +1457,9 @@
       ],
       "vocabulary": [
         {
-          "arabic": "حْسَاب",
-          "transliteration": "7saab",
-          "english": "bill",
+          "arabic": "دَفْع",
+          "transliteration": "daf3",
+          "english": "payment",
           "category": "Paying"
         },
         {
@@ -1469,8 +1469,8 @@
           "category": "Paying"
         },
         {
-          "arabic": "بِطَاقَة",
-          "transliteration": "biTaa2a",
+          "arabic": "كَرْت",
+          "transliteration": "kart",
           "english": "card",
           "category": "Paying"
         },
@@ -1493,9 +1493,9 @@
           "category": "Paying"
         },
         {
-          "arabic": "أَلْف",
-          "transliteration": "alf",
-          "english": "thousand",
+          "arabic": "مِيِّة",
+          "transliteration": "miyye",
+          "english": "hundred",
           "category": "Paying"
         },
         {

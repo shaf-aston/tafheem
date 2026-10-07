@@ -270,9 +270,9 @@
           "category": "Taxi"
         },
         {
-          "arabic": "ذَهَب",
-          "transliteration": "dhahab",
-          "english": "gold",
+          "arabic": "سَوَّاق",
+          "transliteration": "sawwaag",
+          "english": "driver",
           "category": "Taxi"
         },
         {
@@ -2069,15 +2069,15 @@
           "category": "Getting around"
         },
         {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
+          "arabic": "مَسَافَة",
+          "transliteration": "masaafa",
+          "english": "distance",
           "category": "Getting around"
         },
         {
-          "arabic": "فَاضِي",
-          "transliteration": "faaDi",
-          "english": "free, available",
+          "arabic": "سُرْعَة",
+          "transliteration": "sur3a",
+          "english": "speed",
           "category": "Getting around"
         },
         {
@@ -2087,15 +2087,15 @@
           "category": "Getting around"
         },
         {
-          "arabic": "مَحَطَّة",
-          "transliteration": "ma7aTTa",
-          "english": "station",
+          "arabic": "جِسِر",
+          "transliteration": "jisir",
+          "english": "bridge",
           "category": "Getting around"
         },
         {
-          "arabic": "أُجْرَة",
-          "transliteration": "ujra",
-          "english": "fare",
+          "arabic": "لَفّ",
+          "transliteration": "laff",
+          "english": "turn",
           "category": "Getting around"
         },
         {

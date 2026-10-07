@@ -250,27 +250,27 @@
           "category": "Yesterday"
         },
         {
-          "arabic": "مِتْأَخَّر",
-          "transliteration": "met2akhkhar",
-          "english": "late",
+          "arabic": "نِسِيت",
+          "transliteration": "neseet",
+          "english": "I forgot",
           "category": "Yesterday"
         },
         {
-          "arabic": "مَطْعَم",
-          "transliteration": "maT3am",
-          "english": "restaurant",
+          "arabic": "مَشْوَار",
+          "transliteration": "mashwaar",
+          "english": "errand, outing",
           "category": "Yesterday"
         },
         {
-          "arabic": "قَمِيص",
-          "transliteration": "2ameeS",
-          "english": "shirt",
+          "arabic": "زِيَارَة",
+          "transliteration": "ziyaara",
+          "english": "visit",
           "category": "Yesterday"
         },
         {
-          "arabic": "مَسَا",
-          "transliteration": "masa",
-          "english": "evening",
+          "arabic": "نِمْت",
+          "transliteration": "nemt",
+          "english": "I slept",
           "category": "Yesterday"
         },
         {
@@ -280,9 +280,9 @@
           "category": "Yesterday"
         },
         {
-          "arabic": "شُغْل",
-          "transliteration": "shoghl",
-          "english": "work",
+          "arabic": "مُذَاكْرَة",
+          "transliteration": "mozakra",
+          "english": "studying",
           "category": "Yesterday"
         }
       ],
@@ -1111,15 +1111,15 @@
       ],
       "vocabulary": [
         {
-          "arabic": "مُوبَايِل",
-          "transliteration": "mobaayl",
-          "english": "mobile phone",
+          "arabic": "شَاحِن",
+          "transliteration": "shaa7en",
+          "english": "charger",
           "category": "Something went wrong"
         },
         {
-          "arabic": "مُفْتَاح",
-          "transliteration": "moftaa7",
-          "english": "key",
+          "arabic": "مَفَاتِيح",
+          "transliteration": "mafatee7",
+          "english": "keys",
           "category": "Something went wrong"
         },
         {
@@ -1135,9 +1135,9 @@
           "category": "Something went wrong"
         },
         {
-          "arabic": "عَرَبِيَّة",
-          "transliteration": "3arabeyya",
-          "english": "car",
+          "arabic": "بِطَاقَة",
+          "transliteration": "beTaa2a",
+          "english": "ID card",
           "category": "Something went wrong"
         },
         {
@@ -1578,9 +1578,9 @@
           "category": "News and gossip"
         },
         {
-          "arabic": "شَهْر",
-          "transliteration": "shahr",
-          "english": "month",
+          "arabic": "قِصَّة",
+          "transliteration": "2eSSa",
+          "english": "story",
           "category": "News and gossip"
         },
         {

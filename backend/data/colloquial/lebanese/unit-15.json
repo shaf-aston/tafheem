@@ -218,7 +218,7 @@
         },
         {
           "arabic": "أُوضَة",
-          "transliteration": "2ooDa",
+          "transliteration": "ooDa",
           "english": "room",
           "category": "Hotel"
         },
@@ -248,7 +248,7 @@
         },
         {
           "arabic": "أُوتِيل",
-          "transliteration": "2ooteel",
+          "transliteration": "ooteel",
           "english": "hotel",
           "category": "Hotel"
         },
@@ -664,9 +664,9 @@
           "category": "Tickets"
         },
         {
-          "arabic": "كَارْت",
-          "transliteration": "kart",
-          "english": "card",
+          "arabic": "رَاجِع",
+          "transliteration": "raaje3",
+          "english": "return (ticket)",
           "category": "Tickets"
         },
         {
@@ -682,15 +682,15 @@
           "category": "Tickets"
         },
         {
-          "arabic": "خَصِم",
-          "transliteration": "khaSem",
-          "english": "discount",
+          "arabic": "عَرْض",
+          "transliteration": "3arD",
+          "english": "offer",
           "category": "Tickets"
         },
         {
-          "arabic": "بَاص",
-          "transliteration": "baaS",
-          "english": "bus",
+          "arabic": "بَاخِرَة",
+          "transliteration": "baakhra",
+          "english": "ship",
           "category": "Tickets"
         }
       ],
@@ -1096,9 +1096,9 @@
           "category": "Airport"
         },
         {
-          "arabic": "تْقِيل",
-          "transliteration": "t2eel",
-          "english": "heavy",
+          "arabic": "وَزْن",
+          "transliteration": "wazn",
+          "english": "weight",
           "category": "Airport"
         },
         {
@@ -1523,9 +1523,9 @@
           "category": "Travel problems"
         },
         {
-          "arabic": "مِشْكْلِة",
-          "transliteration": "mishkle",
-          "english": "problem",
+          "arabic": "عُطِل",
+          "transliteration": "3oTol",
+          "english": "breakdown",
           "category": "Travel problems"
         },
         {
@@ -1541,15 +1541,15 @@
           "category": "Travel problems"
         },
         {
-          "arabic": "حَجِز",
-          "transliteration": "7ajez",
-          "english": "booking",
+          "arabic": "تَأْمِين",
+          "transliteration": "ta2meen",
+          "english": "insurance",
           "category": "Travel problems"
         },
         {
-          "arabic": "مَكْتَب",
-          "transliteration": "maktab",
-          "english": "office",
+          "arabic": "وَكَالِة",
+          "transliteration": "wakaale",
+          "english": "agency",
           "category": "Travel problems"
         },
         {

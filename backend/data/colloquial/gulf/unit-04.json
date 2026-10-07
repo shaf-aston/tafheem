@@ -217,9 +217,9 @@
       ],
       "vocabulary": [
         {
-          "arabic": "كُوب",
-          "transliteration": "koob",
-          "english": "cup",
+          "arabic": "فِنْجَال",
+          "transliteration": "finjaal",
+          "english": "coffee cup",
           "category": "Coffee and tea"
         },
         {
@@ -669,21 +669,21 @@
           "category": "The menu"
         },
         {
-          "arabic": "حَارّ",
-          "transliteration": "7aarr",
-          "english": "spicy",
+          "arabic": "مَشْوِي",
+          "transliteration": "mashwi",
+          "english": "grilled",
           "category": "The menu"
         },
         {
-          "arabic": "خَفِيف",
-          "transliteration": "khafeef",
-          "english": "light",
+          "arabic": "مَقْلِي",
+          "transliteration": "maglee",
+          "english": "fried",
           "category": "The menu"
         },
         {
-          "arabic": "حَلَوِيَّات",
-          "transliteration": "7alawiyyaat",
-          "english": "desserts",
+          "arabic": "سَلَطَة",
+          "transliteration": "salaTa",
+          "english": "salad",
           "category": "The menu"
         },
         {
@@ -1084,15 +1084,15 @@
           "category": "Ordering"
         },
         {
-          "arabic": "بَصَل",
-          "transliteration": "baSal",
-          "english": "onion",
+          "arabic": "شَوَرْمَا",
+          "transliteration": "shawarma",
+          "english": "shawarma",
           "category": "Ordering"
         },
         {
-          "arabic": "خُبْز",
-          "transliteration": "khubz",
-          "english": "bread",
+          "arabic": "سَمْبُوسَة",
+          "transliteration": "sambooSa",
+          "english": "samosa",
           "category": "Ordering"
         },
         {
@@ -1534,9 +1534,9 @@
           "category": "Paying"
         },
         {
-          "arabic": "خَصِم",
-          "transliteration": "khaSim",
-          "english": "discount",
+          "arabic": "دَفَع",
+          "transliteration": "dafa3",
+          "english": "to pay",
           "category": "Paying"
         }
       ],

@@ -242,9 +242,9 @@
           "category": "Hotel"
         },
         {
-          "arabic": "فِطَار",
-          "transliteration": "feTaar",
-          "english": "breakfast",
+          "arabic": "سَرِير",
+          "transliteration": "sereer",
+          "english": "bed",
           "category": "Hotel"
         },
         {
@@ -266,9 +266,9 @@
           "category": "Hotel"
         },
         {
-          "arabic": "فَاضِي",
-          "transliteration": "faaDi",
-          "english": "free, empty",
+          "arabic": "اِسْتِقْبَال",
+          "transliteration": "este2baal",
+          "english": "reception",
           "category": "Hotel"
         }
       ],
@@ -683,15 +683,15 @@
           "category": "Tickets"
         },
         {
-          "arabic": "رِحْلَة",
-          "transliteration": "re7la",
-          "english": "trip",
+          "arabic": "قِطَار",
+          "transliteration": "2eTaar",
+          "english": "train",
           "category": "Tickets"
         },
         {
-          "arabic": "كُرْسِي",
-          "transliteration": "korsi",
-          "english": "seat",
+          "arabic": "دُور",
+          "transliteration": "door",
+          "english": "turn, queue",
           "category": "Tickets"
         }
       ],
@@ -1478,15 +1478,15 @@
           "category": "Travel problems"
         },
         {
-          "arabic": "مِتْأَخَّر",
-          "transliteration": "met2akhkhar",
-          "english": "delayed",
+          "arabic": "اِتْلَغَت",
+          "transliteration": "etlaghit",
+          "english": "cancelled",
           "category": "Travel problems"
         },
         {
-          "arabic": "مُشْكِلَة",
-          "transliteration": "moshkela",
-          "english": "problem",
+          "arabic": "عُطْل",
+          "transliteration": "3oTl",
+          "english": "breakdown",
           "category": "Travel problems"
         },
         {
@@ -1502,15 +1502,15 @@
           "category": "Travel problems"
         },
         {
-          "arabic": "حَجْز",
-          "transliteration": "7agz",
-          "english": "booking",
+          "arabic": "اِنْتِظَار",
+          "transliteration": "entiZaar",
+          "english": "waiting",
           "category": "Travel problems"
         },
         {
-          "arabic": "مَكْتَب",
-          "transliteration": "maktab",
-          "english": "office",
+          "arabic": "مَوَظَّف",
+          "transliteration": "mowaZZaf",
+          "english": "employee",
           "category": "Travel problems"
         },
         {

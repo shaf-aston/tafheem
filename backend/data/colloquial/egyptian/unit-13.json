@@ -228,15 +228,15 @@
           "category": "Feelings"
         },
         {
-          "arabic": "تَعْبَان",
-          "transliteration": "ta3baan",
-          "english": "tired",
+          "arabic": "مَضْغُوط",
+          "transliteration": "maDghooT",
+          "english": "stressed",
           "category": "Feelings"
         },
         {
-          "arabic": "جَعَان",
-          "transliteration": "ga3aan",
-          "english": "hungry",
+          "arabic": "غَضْبَان",
+          "transliteration": "ghaDbaan",
+          "english": "angry",
           "category": "Feelings"
         },
         {
@@ -252,9 +252,9 @@
           "category": "Feelings"
         },
         {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "emte7aan",
-          "english": "exam",
+          "arabic": "فَرْحَان",
+          "transliteration": "far7aan",
+          "english": "glad",
           "category": "Feelings"
         },
         {
@@ -662,9 +662,9 @@
           "category": "Agreeing"
         },
         {
-          "arabic": "رَأْي",
-          "transliteration": "ra2y",
-          "english": "opinion",
+          "arabic": "مَعَاك",
+          "transliteration": "ma3aak",
+          "english": "I'm with you",
           "category": "Agreeing"
         },
         {
@@ -686,9 +686,9 @@
           "category": "Agreeing"
         },
         {
-          "arabic": "مَاشِي",
-          "transliteration": "maashi",
-          "english": "okay",
+          "arabic": "طَيِّب",
+          "transliteration": "Tayyeb",
+          "english": "OK, fine",
           "category": "Agreeing"
         }
       ],
@@ -1075,15 +1075,15 @@
           "category": "Advice"
         },
         {
-          "arabic": "دُكْتُور",
-          "transliteration": "doktoor",
-          "english": "doctor",
+          "arabic": "اِسْمَع",
+          "transliteration": "esma3",
+          "english": "listen",
           "category": "Advice"
         },
         {
-          "arabic": "دَوَا",
-          "transliteration": "dawa",
-          "english": "medicine",
+          "arabic": "عِلَاج",
+          "transliteration": "3elaag",
+          "english": "treatment",
           "category": "Advice"
         },
         {
@@ -1093,15 +1093,15 @@
           "category": "Advice"
         },
         {
-          "arabic": "أَحْسَن",
-          "transliteration": "a7san",
-          "english": "better",
+          "arabic": "مَيِنْفَعْش",
+          "transliteration": "meyenfa3sh",
+          "english": "one shouldn't",
           "category": "Advice"
         },
         {
-          "arabic": "مَكَان",
-          "transliteration": "makaan",
-          "english": "place",
+          "arabic": "رِيَاضَة",
+          "transliteration": "reyaaDa",
+          "english": "sport",
           "category": "Advice"
         },
         {
@@ -1513,9 +1513,9 @@
           "category": "Complaining"
         },
         {
-          "arabic": "حِسَاب",
-          "transliteration": "7esaab",
-          "english": "bill",
+          "arabic": "زَهَقْت",
+          "transliteration": "zaha2t",
+          "english": "I'm fed up",
           "category": "Complaining"
         },
         {

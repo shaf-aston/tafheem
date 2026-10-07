@@ -268,27 +268,27 @@
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "صَبَّاط",
-          "transliteration": "Sabbaat",
-          "english": "shoes",
+          "arabic": "مَدْخَل",
+          "transliteration": "madkhal",
+          "english": "entrance",
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "سَيَّارَة",
-          "transliteration": "sayyaara",
-          "english": "car",
+          "arabic": "جِيرَان",
+          "transliteration": "jeeraan",
+          "english": "neighbours",
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "بَيْت",
-          "transliteration": "bayt",
-          "english": "house",
+          "arabic": "زِيَارَة",
+          "transliteration": "ziyaara",
+          "english": "visit",
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "طَرِيق",
-          "transliteration": "Taree2",
-          "english": "road, way",
+          "arabic": "عُنْوَان",
+          "transliteration": "3enwaan",
+          "english": "address",
           "category": "Arriving as a guest"
         },
         {
@@ -743,9 +743,9 @@
           "category": "Welcoming guests"
         },
         {
-          "arabic": "جَاكِيت",
-          "transliteration": "jaakeet",
-          "english": "coat, jacket",
+          "arabic": "كَنَبِة",
+          "transliteration": "kanabe",
+          "english": "sofa",
           "category": "Welcoming guests"
         },
         {
@@ -773,9 +773,9 @@
           "category": "Welcoming guests"
         },
         {
-          "arabic": "سُكَّر",
-          "transliteration": "sukkar",
-          "english": "sugar",
+          "arabic": "ضِيَافِة",
+          "transliteration": "Diyaafe",
+          "english": "hospitality",
           "category": "Welcoming guests"
         },
         {
@@ -1219,9 +1219,9 @@
           "category": "At the table"
         },
         {
-          "arabic": "خِبِز",
-          "transliteration": "khebez",
-          "english": "bread",
+          "arabic": "زَيْتُون",
+          "transliteration": "zaytoon",
+          "english": "olives",
           "category": "At the table"
         },
         {
@@ -1231,14 +1231,14 @@
           "category": "At the table"
         },
         {
-          "arabic": "حَارّ",
-          "transliteration": "7aarr",
-          "english": "spicy",
+          "arabic": "مَشَاوِي",
+          "transliteration": "mshaawi",
+          "english": "grills",
           "category": "At the table"
         },
         {
-          "arabic": "حِلُو",
-          "transliteration": "7ilu",
+          "arabic": "تَحْلِيِة",
+          "transliteration": "ta7liye",
           "english": "dessert",
           "category": "At the table"
         },
@@ -1255,9 +1255,9 @@
           "category": "At the table"
         },
         {
-          "arabic": "كَمَان",
-          "transliteration": "kamaan",
-          "english": "more",
+          "arabic": "عَ رَاحْتَك",
+          "transliteration": "3a raa7tak",
+          "english": "make yourself at home",
           "category": "At the table"
         }
       ],
@@ -1705,9 +1705,9 @@
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "مِتْأَخِّر",
-          "transliteration": "met2akhkher",
-          "english": "late",
+          "arabic": "بَعْدِين",
+          "transliteration": "ba3deen",
+          "english": "later",
           "category": "Leaving and thanking"
         },
         {
@@ -1717,21 +1717,21 @@
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "عِيلِة",
-          "transliteration": "3eele",
-          "english": "family",
+          "arabic": "يِسْلَمُوا",
+          "transliteration": "yislamo",
+          "english": "bless your hands (thanks)",
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "سَهْرَة",
-          "transliteration": "sahra",
-          "english": "evening out",
+          "arabic": "تَعَب",
+          "transliteration": "ta3ab",
+          "english": "trouble, effort",
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "فَاضِي",
-          "transliteration": "faaDi",
-          "english": "clear, empty",
+          "arabic": "اِنْبَسَطْنَا",
+          "transliteration": "inbasaTna",
+          "english": "we had a good time",
           "category": "Leaving and thanking"
         },
         {

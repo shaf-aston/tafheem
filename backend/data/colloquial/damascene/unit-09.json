@@ -230,9 +230,9 @@
       ],
       "vocabulary": [
         {
-          "arabic": "تَعْبَان",
-          "transliteration": "ta3baan",
-          "english": "tired, ill",
+          "arabic": "وَجَع",
+          "transliteration": "waja3",
+          "english": "pain",
           "category": "Feeling unwell"
         },
         {
@@ -695,9 +695,9 @@
           "category": "Pharmacy"
         },
         {
-          "arabic": "مَعِدِة",
-          "transliteration": "ma3ide",
-          "english": "stomach",
+          "arabic": "مُسَكِّن",
+          "transliteration": "musakken",
+          "english": "painkiller",
           "category": "Pharmacy"
         },
         {
@@ -707,9 +707,9 @@
           "category": "Pharmacy"
         },
         {
-          "arabic": "لِيرَة",
-          "transliteration": "leera",
-          "english": "lira",
+          "arabic": "مَرْهَم",
+          "transliteration": "marham",
+          "english": "ointment",
           "category": "Pharmacy"
         }
       ],
@@ -1131,15 +1131,15 @@
           "category": "Doctor"
         },
         {
-          "arabic": "أُسْبُوع",
-          "transliteration": "usboo3",
-          "english": "week",
+          "arabic": "عَمَلِيِّة",
+          "transliteration": "3amaliyye",
+          "english": "surgery",
           "category": "Doctor"
         },
         {
-          "arabic": "دُكْتُور",
-          "transliteration": "doktoor",
-          "english": "doctor",
+          "arabic": "عِيَادِة",
+          "transliteration": "3iyaade",
+          "english": "clinic",
           "category": "Doctor"
         }
       ],

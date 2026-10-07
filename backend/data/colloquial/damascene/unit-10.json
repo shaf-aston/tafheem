@@ -235,8 +235,8 @@
           "category": "Weather"
         },
         {
-          "arabic": "شِتِي",
-          "transliteration": "shiti",
+          "arabic": "مَطَر",
+          "transliteration": "maTar",
           "english": "rain",
           "category": "Weather"
         },
@@ -1096,9 +1096,9 @@
           "category": "Clothes for the weather"
         },
         {
-          "arabic": "خَفِيف",
-          "transliteration": "khafeef",
-          "english": "light",
+          "arabic": "دَافِي",
+          "transliteration": "daafi",
+          "english": "warm",
           "category": "Clothes for the weather"
         },
         {
@@ -1484,8 +1484,8 @@
       ],
       "vocabulary": [
         {
-          "arabic": "حَدِيقَة",
-          "transliteration": "7adee2a",
+          "arabic": "مْتَنَزَّه",
+          "transliteration": "mtanazzah",
           "english": "park",
           "category": "Going out"
         },
@@ -1526,9 +1526,9 @@
           "category": "Going out"
         },
         {
-          "arabic": "بَرَّا",
-          "transliteration": "barra",
-          "english": "outside",
+          "arabic": "نُزْهَة",
+          "transliteration": "nuzha",
+          "english": "picnic",
           "category": "Going out"
         }
       ],

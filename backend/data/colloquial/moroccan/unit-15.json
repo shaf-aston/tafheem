@@ -772,21 +772,21 @@
           "category": "Tickets"
         },
         {
-          "arabic": "ذّْهَاب",
-          "transliteration": "dhehaab",
+          "arabic": "أَلَّار",
+          "transliteration": "allaar",
           "english": "outward trip",
           "category": "Tickets"
         },
         {
-          "arabic": "إِيَاب",
-          "transliteration": "iyaab",
+          "arabic": "رُوطُور",
+          "transliteration": "rotoor",
           "english": "return trip",
           "category": "Tickets"
         },
         {
-          "arabic": "كَارْط",
-          "transliteration": "kaarT",
-          "english": "card",
+          "arabic": "مْسَافَرْ",
+          "transliteration": "msaafer",
+          "english": "traveller",
           "category": "Tickets"
         },
         {
@@ -802,9 +802,9 @@
           "category": "Tickets"
         },
         {
-          "arabic": "طّْرِيق",
-          "transliteration": "Treeq",
-          "english": "journey, road",
+          "arabic": "تَّارِيف",
+          "transliteration": "taareef",
+          "english": "fare",
           "category": "Tickets"
         }
       ],
@@ -1771,9 +1771,9 @@
           "category": "Travel problems"
         },
         {
-          "arabic": "مُشْكِل",
-          "transliteration": "mushkil",
-          "english": "problem",
+          "arabic": "فَاتْنِي",
+          "transliteration": "faatni",
+          "english": "I missed it",
           "category": "Travel problems"
         },
         {
@@ -1789,9 +1789,9 @@
           "category": "Travel problems"
         },
         {
-          "arabic": "حْجْز",
-          "transliteration": "7jez",
-          "english": "booking",
+          "arabic": "رِيتَار",
+          "transliteration": "reetaar",
+          "english": "delay",
           "category": "Travel problems"
         },
         {
