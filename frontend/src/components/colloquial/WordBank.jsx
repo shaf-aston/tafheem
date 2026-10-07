@@ -21,6 +21,16 @@ function unique(rows) {
 const phrasesOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((l) => l.phrases.flatMap((p) => [p, p.reply])))
 const wordsOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((l) => l.vocabulary ?? []))
 
+// Rows under their category heading, in the order written; uncategorised rows sit under none.
+function grouped(rows) {
+  const by = new Map()
+  for (const r of rows) {
+    const key = r.category ?? ''
+    by.set(key, [...(by.get(key) ?? []), r])
+  }
+  return [...by]
+}
+
 function Bank({ rows, onClose, scope, title }) {
   return (
     <BottomSheet label={title} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
@@ -32,20 +42,27 @@ function Bank({ rows, onClose, scope, title }) {
         <CloseButton onClick={onClose} className={`shrink-0 ${FOCUS}`} />
       </header>
       {scope && <div className="px-5 pb-3">{scope}</div>}
-      <ul className="overflow-y-auto px-5 pb-5 grid sm:grid-cols-2 sm:gap-x-8">
-        {rows.map((r) => (
-          <li key={r.arabic} className="flex items-baseline justify-between gap-4 py-2.5 border-b border-[var(--border)]">
-            <span className="min-w-0">
-              <span className="type-small text-[var(--text)]">{r.english}</span>
-              <Spelling className="block">{r.transliteration}</Spelling>
-            </span>
-            <span className="shrink-0 flex items-center gap-2">
-              <SpeakButton text={r.arabic} />
-              <ArabicText as="span" size="base" className="text-[var(--text)]">{r.arabic}</ArabicText>
-            </span>
-          </li>
+      <div className="overflow-y-auto px-5 pb-5 space-y-4">
+        {grouped(rows).map(([category, group]) => (
+          <section key={category}>
+            {category && <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)] pt-2">{category}</h3>}
+            <ul className="grid sm:grid-cols-2 sm:gap-x-8">
+              {group.map((r) => (
+                <li key={r.arabic} className="flex items-baseline justify-between gap-4 py-2.5 border-b border-[var(--border)]">
+                  <span className="min-w-0">
+                    <span className="type-small text-[var(--text)]">{r.english}</span>
+                    <Spelling className="block">{r.transliteration}</Spelling>
+                  </span>
+                  <span className="shrink-0 flex items-center gap-2">
+                    <SpeakButton text={r.arabic} />
+                    <ArabicText as="span" size="base" className="text-[var(--text)]">{r.arabic}</ArabicText>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
         ))}
-      </ul>
+      </div>
     </BottomSheet>
   )
 }
