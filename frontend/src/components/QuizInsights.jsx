@@ -24,11 +24,11 @@
 import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { coverageOf, learntOf, shareOf } from '../lib/coverage'
+import { shareOf } from '../lib/coverage'
 import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../lib/insights'
-import { fetchSummary } from '../lib/progress'
 import { sayIn } from '../lib/say'
-import { allWords, coverage, groupsFor, moduleFor, QUIZ } from '../lib/quizBanks'
+import { allWords, groupsFor, QUIZ } from '../lib/quizBanks'
+import { useQuizCoverage } from '../lib/useQuizCoverage'
 
 import ArabicText from './ui/ArabicText'
 import Disclosure from './ui/Disclosure'
@@ -53,22 +53,12 @@ const seconds = (ms) => `${(ms / 1000).toFixed(1)}s`
 
 export default function QuizInsights({ accent, language }) {
   const say = sayIn(language)
-  // Re-read whenever an answer has been filed. It used to be keyed to the round
-  // instead, on the argument that renumbering mid-round would distract; that was
-  // written when this was a shut drawer with a faint label on it. Now the three
-  // figures are on the bar and always in view, and a figure in view that is not
-  // the truth is worse than a figure that moves. The panel does not ask for
-  // itself: QuizPanel invalidates 'quiz-progress' once an answer is saved, so
-  // the reading follows the store and never the other way round.
-  const stats = useQuery({
-    // Keyed by language as well: each language is counted under its own module,
-    // so the figures on the bar are the ones for the round being played.
-    queryKey: ['quiz-progress', language],
-    queryFn: () => fetchSummary(moduleFor(language)),
-    refetchOnWindowFocus: false,
-  })
+  // Re-read whenever an answer has been filed: QuizPanel invalidates
+  // 'quiz-progress' once an answer is saved, so the figures on the bar follow
+  // the store. Keyed by language, since each language is its own module.
+  const { stats, learnt, covering, share } = useQuizCoverage(language)
+  // The word table always, not only once something is learnt: the open panel lists every word answered.
   const words = useQuery({ queryKey: ['quiz-words', 'all'], queryFn: allWords })
-  const covering = useQuery({ queryKey: ['quiz-coverage'], queryFn: coverage })
   const groups = useQuery({ queryKey: ['quiz-groups', 'quranic'], queryFn: () => groupsFor('quranic') })
 
   // Joined and totalled once per round, not once per render: the bar reads the
@@ -81,12 +71,6 @@ export default function QuizInsights({ accent, language }) {
   const totals = useMemo(
     () => (joined?.rows.length ? overall(joined.rows) : null),
     [joined],
-  )
-
-  const learnt = useMemo(() => learntOf(stats.data), [stats.data])
-  const share = useMemo(
-    () => (words.data && covering.data ? coverageOf(words.data, covering.data, learnt) : null),
-    [learnt, words.data, covering.data],
   )
 
   return (

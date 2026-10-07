@@ -344,10 +344,12 @@ class Settings(BaseSettings):
     progress_learning_hours: int = 24
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
-    # Profiles (services/profile.py): a typed name, no password. Longest name allowed after cleaning.
+    # Accounts (services/profile.py): a username, no password. Longest name allowed after cleaning.
     profile_name_max: int = 40
     # Names nobody may type: "local" is the record of every answer given before names existed.
     profile_reserved: list[str] = ["local"]
+    # How many accounts the leaderboard lists; the asker's own place is always sent too.
+    leaderboard_size: int = 20
     # Checked practice sentences (services/sentence_check.py): AI tries per request,
     # learnt words needed before asking, and particles any sentence may use.
     sentence_max_tries: int = Field(default=3, gt=0)

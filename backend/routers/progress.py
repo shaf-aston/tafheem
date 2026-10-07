@@ -14,12 +14,15 @@ from urllib.parse import unquote
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Query
 
+from backend.config import get_settings
 from backend.models.schemas import (
+    Account,
     AttemptIn,
     AttemptSaved,
     FeedbackIn,
     Forgotten,
     ItemStats,
+    Leaderboard,
     ProfileIn,
     ProfileSaved,
     ProgressSummary,
@@ -30,14 +33,14 @@ from backend.services.profile import clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
-# Who is answering: the name the page sends, percent-encoded because a header
-# cannot carry Arabic. No password, so anyone typing a name reads that record;
-# that is agreed. No header is the record kept before names existed.
+# Who is answering: the username the page sends, percent-encoded because a
+# header cannot carry Arabic. Sign-up and log-in are by username only, no
+# password; that is agreed. No header is the shared guest record.
 UNNAMED = "local"
 
 
-def current_user(x_tafheem_profile: str | None = Header(None)) -> str:
-    """The cleaned name from the header, or the shared record when there is none."""
+def typed_name(x_tafheem_profile: str | None = Header(None)) -> str:
+    """The cleaned name from the header, or the guest record when there is none."""
     if x_tafheem_profile is None:
         return UNNAMED
     try:
@@ -46,7 +49,15 @@ def current_user(x_tafheem_profile: str | None = Header(None)) -> str:
         raise HTTPException(status_code=422, detail=str(error)) from None
 
 
+def current_user(name: str = Depends(typed_name)) -> str:
+    """`typed_name`, refused unless it was signed up, so a deleted account files nothing."""
+    if name != UNNAMED and not progress_store.has_account(name):
+        raise HTTPException(status_code=401, detail="Log in again: no account with that username")
+    return name
+
+
 _USER = Depends(current_user)
+_TYPED = Depends(typed_name)
 _MODULE = Query("quiz", min_length=1, max_length=32, description="Which panel is asking")
 
 
@@ -108,13 +119,49 @@ def get_review(module: str = _MODULE, user: str = _USER) -> ReviewList:
     return ReviewList(module=module, items=progress_store.review_items(module, user))
 
 
-@router.post("/profile", response_model=ProfileSaved)
-async def start_profile(body: ProfileIn, user: str = _USER) -> ProfileSaved:
-    """Check a typed name and hand back its one spelling, which the page keeps.
+@router.post("/signup", response_model=ProfileSaved)
+async def sign_up(body: ProfileIn, user: str = _TYPED) -> ProfileSaved:
+    """Take a free username and hand back its one spelling, which the page keeps.
 
-    The only place the page learns the rules: it stores what comes back rather
-    than cleaning the name itself. `keep` moves the unnamed answers onto it.
+    `keep` moves this device's unnamed answers onto it.
     """
-    if user == UNNAMED:
-        raise HTTPException(status_code=422, detail="Type a name")
+    _named(user)
+    if not progress_store.sign_up(user):
+        raise HTTPException(status_code=409, detail="That username is taken")
     return ProfileSaved(name=user, moved=progress_store.claim_local(user) if body.keep else 0)
+
+
+@router.post("/login", response_model=ProfileSaved)
+async def log_in(user: str = _TYPED) -> ProfileSaved:
+    """Check a username was signed up and hand back its one spelling."""
+    _named(user)
+    if not progress_store.has_account(user):
+        raise HTTPException(status_code=404, detail="No account with that username")
+    return ProfileSaved(name=user, moved=0)
+
+
+@router.get("/account", response_model=Account)
+def get_account(user: str = _USER) -> Account:
+    """The profile page's facts about this username."""
+    _named(user)
+    return Account(**progress_store.account(user))
+
+
+@router.delete("/account", response_model=Forgotten)
+async def delete_account(user: str = _USER) -> Forgotten:
+    """Delete this username and every answer it gave; the name is free again."""
+    _named(user)
+    return Forgotten(deleted=progress_store.delete_account(user))
+
+
+@router.get("/leaderboard", response_model=Leaderboard)
+def get_leaderboard(module: str = _MODULE, user: str = _USER) -> Leaderboard:
+    """The top accounts by words learnt, plus the asker's own place."""
+    rows = progress_store.leaderboard(module)
+    you = next((row for row in rows if row["name"] == user), None)
+    return Leaderboard(rows=rows[: get_settings().leaderboard_size], you=you)
+
+
+def _named(user: str) -> None:
+    if user == UNNAMED:
+        raise HTTPException(status_code=422, detail="Type a username")

@@ -1,47 +1,41 @@
 /**
- * Type a name, get your own record. No password: the line under the box says
- * so. The first name typed on a device may take the answers given before names
- * existed, so nothing answered so far is lost. The server decides what a name
- * is; a refusal shows its reason under the box.
+ * Log in, sign up, or see your profile. Usernames only, no password: the line
+ * under the box says so. A first sign-up on a device may take the guest answers
+ * given so far, so nothing answered is lost. The server decides what a username
+ * is; a refusal (taken, no such username) shows its reason under the box.
  */
 import { useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { smartError } from '../../lib/apiError'
 import { getProfile, readsProgress, setProfile } from '../../lib/profile'
-import { startProfile } from '../../lib/progress'
+import { logIn, signUp } from '../../lib/progress'
 
 import BottomSheet from './BottomSheet'
 import PrimaryButton from './PrimaryButton'
+import ProfileView from './ProfileView'
 import SearchBox from './SearchBox'
+import Segmented from './Segmented'
+
+const MODES = [{ id: 'login', label: 'Log in' }, { id: 'signup', label: 'Sign up' }]
 
 export default function ProfileDialog({ onClose, onSaved }) {
   const client = useQueryClient()
-  const current = getProfile()
-  const [typed, setTyped] = useState(current)
-  const [keep, setKeep] = useState(true)
-  const [error, setError] = useState('')
-  const [busy, setBusy] = useState(false)
+  const name = getProfile()
+  const title = name ? 'Your profile' : 'Log in or sign up'
 
-  const save = async () => {
-    setBusy(true)
-    try {
-      const { name } = await startProfile(typed, !current && keep)
-      setProfile(name)
-      // Every progress answer on screen belonged to the old name.
-      await client.invalidateQueries({ predicate: readsProgress })
-      onSaved(name)
-      onClose()
-    } catch (refused) {
-      setError(smartError(refused, 'Could not save the name. Try again.'))
-      setBusy(false)
-    }
+  // Close first: the profile's own queries would refetch as the wrong user.
+  // Then every progress answer on screen, which belonged to the user before.
+  const switched = (next) => {
+    onSaved(next)
+    onClose()
+    client.invalidateQueries({ predicate: readsProgress })
   }
 
   return (
-    <BottomSheet label={current ? 'Switch name' : "Who's learning?"} onClose={onClose} className="p-5 space-y-4">
+    <BottomSheet label={title} onClose={onClose} className="p-5 space-y-4">
       <div className="flex items-baseline justify-between gap-3">
-        <h2 className="text-base font-bold text-[var(--text)]">{current ? 'Switch name' : "Who's learning?"}</h2>
+        <h2 className="text-base font-bold text-[var(--text)]">{title}</h2>
         <button
           type="button"
           onClick={onClose}
@@ -50,30 +44,58 @@ export default function ProfileDialog({ onClose, onSaved }) {
           Close
         </button>
       </div>
+      {name ? <ProfileView name={name} onLeave={() => switched('')} /> : <SignIn onIn={switched} />}
+    </BottomSheet>
+  )
+}
 
+function SignIn({ onIn }) {
+  const [mode, setMode] = useState('login')
+  const [typed, setTyped] = useState('')
+  const [keep, setKeep] = useState(true)
+  const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
+  const signingUp = mode === 'signup'
+
+  const go = async () => {
+    setBusy(true)
+    try {
+      const { name } = await (signingUp ? signUp(typed, keep) : logIn(typed))
+      setProfile(name)
+      onIn(name)
+    } catch (refused) {
+      setError(smartError(refused, 'Could not reach the server. Try again.'))
+      setBusy(false)
+    }
+  }
+
+  return (
+    <>
+      <Segmented label="Log in or sign up" options={MODES} value={mode} accent="var(--gold)"
+        onChange={(next) => { setMode(next); setError('') }} />
       <SearchBox
         id="profile-name"
-        label="Your name"
-        placeholder="e.g. Amina"
+        label="Username"
+        placeholder="e.g. amina"
         value={typed}
         onChange={(value) => { setTyped(value); setError('') }}
-        onSubmit={save}
+        onSubmit={go}
         onClear={() => setTyped('')}
         busy={busy}
       />
       {error && <p role="alert" className="type-small text-[var(--danger)]">{error}</p>}
-      <p className="type-small text-[var(--text-faint)]">Anyone using this name sees this progress.</p>
-
-      {!current && (
+      <p className="type-small text-[var(--text-faint)]">
+        No password: anyone who knows your username can open your progress.
+      </p>
+      {signingUp && (
         <label className="flex items-center gap-2 type-small text-[var(--text-dim)]">
           <input type="checkbox" checked={keep} onChange={(e) => setKeep(e.target.checked)} />
-          Keep progress from this device
+          Move answers given on this device to my new account
         </label>
       )}
-
-      <PrimaryButton onClick={save} loading={busy} disabled={busy || !typed.trim()}>
-        {current ? 'Switch' : 'Save'}
+      <PrimaryButton onClick={go} loading={busy} disabled={busy || !typed.trim()}>
+        {signingUp ? 'Sign up' : 'Log in'}
       </PrimaryButton>
-    </BottomSheet>
+    </>
   )
 }

@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getProfile, profileHeaders, readsProgress, setProfile } from './profile'
+import { getProfile, logOut, profileHeaders, readsProgress, setProfile } from './profile'
 
 describe('profileHeaders', () => {
   beforeEach(() => {
@@ -30,4 +30,12 @@ describe('profileHeaders', () => {
 it('refetches only queries that read progress', () => {
   expect(readsProgress({ queryKey: ['quiz-review', 'en'] })).toBe(true)
   expect(readsProgress({ queryKey: ['quran-surah', 1] })).toBe(false)
+})
+
+it('logging out goes back to the guest record', () => {
+  const data = new Map([['profile', 'amina']])
+  vi.stubGlobal('localStorage', { getItem: (k) => data.get(k) ?? null, removeItem: (k) => data.delete(k) })
+  logOut()
+  expect(profileHeaders()).toEqual({})
+  vi.unstubAllGlobals()
 })

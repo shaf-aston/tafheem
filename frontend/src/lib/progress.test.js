@@ -1,7 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { api } from '../api'
-import { startProfile, fetchReviewItems, fetchSummary, forgetProgress, leaveFeedback, recordAttempt } from './progress'
+import {
+  deleteAccount, fetchAccount, fetchLeaderboard, fetchReviewItems, fetchSummary, forgetProgress, leaveFeedback, logIn,
+  recordAttempt, signUp,
+} from './progress'
 
 afterEach(() => vi.restoreAllMocks())
 
@@ -73,13 +76,19 @@ describe('whose record', () => {
     await recordAttempt({ module: 'quiz', item: 'train', correct: true })
     await leaveFeedback({ module: 'quiz', message: 'x' })
     await forgetProgress()
-    await startProfile('amina', false)
+    await signUp('amina', false)
+    await logIn('amina')
+    await fetchAccount()
+    await fetchLeaderboard('quiz')
+    await deleteAccount()
     const sent = { headers: { 'X-Tafheem-Profile': 'amina' } }
     for (const call of getting.mock.calls) expect(call[1]).toMatchObject(sent)
     for (const call of posting.mock.calls) expect(call[2]).toEqual(sent)
-    expect(deleting.mock.calls[0][1]).toEqual(sent)
-    expect(getting).toHaveBeenCalledTimes(2)
-    expect(posting).toHaveBeenCalledTimes(3)
-    expect(posting.mock.calls[2]).toEqual(['/progress/profile', { keep: false }, sent])
+    for (const call of deleting.mock.calls) expect(call[1]).toEqual(sent)
+    expect(getting).toHaveBeenCalledTimes(4)
+    expect(posting).toHaveBeenCalledTimes(4)
+    expect(posting.mock.calls[2]).toEqual(['/progress/signup', { keep: false }, sent])
+    expect(posting.mock.calls[3]).toEqual(['/progress/login', {}, sent])
+    expect(deleting.mock.calls[1][0]).toBe('/progress/account')
   })
 })

@@ -1,12 +1,12 @@
 /**
- * Prove a typed name is one record across devices.
+ * Prove a username is one record across devices.
  *
  *   node scripts/probe-profiles.mjs
  *
  * Needs the app on :5173 and the backend on :8000. Two browser contexts stand
- * in for a phone and a laptop: they share nothing but the server. A types a
- * name, answers two quiz questions and reloads; B types the same name. Both
- * must read the same count, and a third name must read none of it.
+ * in for a phone and a laptop: they share nothing but the server. A signs up,
+ * answers two quiz questions and reloads; B logs in with the same username.
+ * Both must read the same count, and a name never signed up must be refused.
  */
 import { chromium } from 'playwright'
 
@@ -33,12 +33,21 @@ async function device(label) {
   return page
 }
 
-async function typeName(page, name, keep = false) {
-  await page.locator('button[title="Switch name"], button:has-text("Who\'s learning?")').first().click()
+const profileButton = (page) => page.locator('button[aria-haspopup="dialog"][title="Your profile"], button[title^="Log in to keep"]').first()
+
+/** `mode` is 'Sign up' or 'Log in'; logs out first when someone is logged in. */
+async function signIn(page, name, mode) {
+  await profileButton(page).click()
+  const out = page.getByRole('button', { name: 'Log out' })
+  if (await out.count()) {
+    await out.click()
+    await profileButton(page).click()
+  }
+  await page.locator('dialog[open]').getByRole('button', { name: mode, exact: true }).first().click()
   await page.locator('#profile-name').fill(name)
-  const box = page.getByLabel('Keep progress from this device')
-  if (await box.count()) await box.setChecked(keep)
-  await page.getByRole('button', { name: /^(Save|Switch)$/ }).click()
+  const box = page.getByLabel(/Move answers given on this device/)
+  if (await box.count()) await box.setChecked(false)
+  await page.locator('dialog[open] button', { hasText: new RegExp(`^${mode}$`) }).last().click()
   await page.waitForTimeout(400)
 }
 
@@ -47,13 +56,14 @@ const attempts = (page, name) => page.evaluate(async (who) => {
   const response = await fetch('/api/progress/summary?module=quiz', {
     headers: who ? { 'X-Tafheem-Profile': encodeURIComponent(who) } : {},
   })
+  if (response.status === 401) return 'refused'
   const { items } = await response.json()
   return items.reduce((sum, row) => sum + row.attempts, 0)
 }, name)
 
-// Device A: name, two answers, reload.
+// Device A: sign up, two answers, reload.
 const a = await device('A')
-await typeName(a, NAME)
+await signIn(a, NAME, 'Sign up')
 for (let i = 0; i < 2; i++) {
   const options = a.locator('[aria-label="Answers"] button')
   await options.first().waitFor({ state: 'visible' })
@@ -69,29 +79,31 @@ check('the name survives a reload', shown > 0)
 const onA = await attempts(a, NAME)
 check('two answers filed under the name', onA === 2, `${onA}`)
 
-// Device B: same name typed by hand, different letter case and spaces.
+// Device B: logs in by hand, different letter case and spaces.
 const b = await device('B')
-await typeName(b, `  ${NAME.toUpperCase()} `)
+await signIn(b, `  ${NAME.toUpperCase()} `, 'Log in')
 const onB = await attempts(b, NAME)
 check('the same name on another device reads the same record', onB === onA, `A ${onA}, B ${onB}`)
 
-// A different name reads nothing of it.
+// A name never signed up is refused, not given an empty record.
 const other = await attempts(b, `${NAME}-other`)
-check('another name reads none of it', other === 0, `${other}`)
+check('a name with no account is refused', other === 'refused', `${other}`)
 
-// Switching name on A refetches progress under the new name, not the old one.
+// Switching user on A refetches progress under the new name, not the old one.
 const asked = []
 a.on('request', (r) => {
   if (r.url().includes('/api/progress/review')) asked.push(decodeURIComponent(r.headers()['x-tafheem-profile'] ?? ''))
 })
-await typeName(a, `${NAME}-b`)
+await signIn(a, `${NAME}-b`, 'Sign up')
 await a.waitForTimeout(800)
-check('switching name refetches under the new name', asked.includes(`${NAME}-b`), asked.join(', ') || 'no refetch')
+check('switching user refetches under the new name', asked.includes(`${NAME}-b`), asked.join(', ') || 'no refetch')
 
-// Clean up the probe's record.
-await a.evaluate((who) => fetch('/api/progress', {
-  method: 'DELETE', headers: { 'X-Tafheem-Profile': encodeURIComponent(who) },
-}), NAME)
+// Clean up the probe's accounts.
+for (const who of [NAME, `${NAME}-b`]) {
+  await a.evaluate((name) => fetch('/api/progress/account', {
+    method: 'DELETE', headers: { 'X-Tafheem-Profile': encodeURIComponent(name) },
+  }), who)
+}
 
 await browser.close()
 console.log(failed ? `${failed} FAILED` : 'ALL PASS')

@@ -1,7 +1,7 @@
-"""One typed name, one learner. No password, so this only decides spelling.
+"""One username, one learner. No password, so this only decides spelling.
 
 The only copy of these rules: the page sends what was typed and keeps the
-spelling the server hands back (POST /api/progress/profile).
+spelling the server hands back (POST /api/progress/signup and /login).
 
 "Amina", " amina " and "AMINA" are one person: spaces are squashed, the text is
 put in one Unicode form, then case is folded. Tashkeel is kept, so a name
@@ -31,11 +31,11 @@ def _kind(ch: str) -> str:
 
 
 def clean_name(raw: str) -> str:
-    """The one spelling of a typed name. Raises ValueError when it is not a name."""
+    """The one spelling of a username. Raises ValueError when it is not a name."""
     settings = get_settings()
     name = unicodedata.normalize("NFC", re.sub(r"\s+", " ", raw).strip()).casefold()
     if not name:
-        raise ValueError("Type a name")
+        raise ValueError("Type a username")
     if len(name) > settings.profile_name_max:
         raise ValueError(f"Names are at most {settings.profile_name_max} characters")
     kinds = {_kind(ch) for ch in name}

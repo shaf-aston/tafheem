@@ -46,12 +46,26 @@ export async function forgetProgress() {
 }
 
 /**
- * Start using a typed name. Resolves `{ name, moved }`: the server's spelling,
- * which is what to keep, and how many unnamed answers `keep` moved onto it.
- * Throws, so the box can say why a name was refused.
+ * Take a free username, or log in to one already taken. Both resolve
+ * `{ name, moved }`: the server's spelling, which is what to keep, and how many
+ * guest answers `keep` moved onto it. Both throw, so the box can say why
+ * (taken, no such username, not a name).
  */
-export const startProfile = (typed, keep) =>
-  api.post(`${BASE}/profile`, { keep }, headers(typed)).then((r) => r.data)
+export const signUp = (typed, keep) =>
+  api.post(`${BASE}/signup`, { keep }, headers(typed)).then((r) => r.data)
+
+export const logIn = (typed) =>
+  api.post(`${BASE}/login`, {}, headers(typed)).then((r) => r.data)
+
+/** The profile page: `{ name, joined, answers }`. Throws, for react-query. */
+export const fetchAccount = () => api.get(`${BASE}/account`, headers()).then((r) => r.data)
+
+/** Delete this username and its answers. Throws, so the button can say it failed. */
+export const deleteAccount = () => api.delete(`${BASE}/account`, headers()).then((r) => r.data)
+
+/** `{ rows, you }`: accounts by words learnt, and this one's place. Throws, for react-query. */
+export const fetchLeaderboard = (module) =>
+  api.get(`${BASE}/leaderboard`, { params: { module }, ...headers() }).then((r) => r.data)
 
 /** Every item answered in this module, with its record. Throws, for react-query. */
 export const fetchSummary = (module) =>
