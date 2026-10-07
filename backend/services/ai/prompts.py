@@ -104,5 +104,19 @@ Return a JSON object with this exact structure, with exactly one number per word
 }}"""
 
 
+CHECKED_SENTENCE_USER = """Write ONE short Arabic sentence (3 to 7 words) using ONLY these words:
+{words}
+
+Rules:
+- Use no other words, except the particles و ب ل ف في من على إلى.
+- Fully voweled.
+
+Return a JSON object with this exact structure:
+{{
+  "ar": "the sentence",
+  "en": "its English meaning"
+}}"""
+
+
 def system_prompt() -> str:
     return SYSTEM_BASE

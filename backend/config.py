@@ -348,6 +348,12 @@ class Settings(BaseSettings):
     profile_name_max: int = 40
     # Names nobody may type: "local" is the record of every answer given before names existed.
     profile_reserved: list[str] = ["local"]
+    # Checked practice sentences (services/sentence_check.py): AI tries per request,
+    # learnt words needed before asking, and particles any sentence may use.
+    sentence_max_tries: int = Field(default=3, gt=0)
+    sentence_min_learnt: int = Field(default=10, gt=0)
+    sentence_prompt_words: int = Field(default=60, gt=0)  # a random few, so prompts stay short and vary
+    sentence_free_words: list[str] = ["و", "ب", "ل", "ف", "في", "من", "على", "إلى"]
 
     # Declared because .env sets PORT and this class forbids unknown keys; dropping it fails startup.
     # The running port comes from the --port flag start.sh passes to uvicorn.

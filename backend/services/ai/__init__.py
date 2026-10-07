@@ -148,3 +148,23 @@ def explain_root_entry_lines(root: str, lines: list[str]) -> dict:
         max_tokens=get_settings().root_entry_max_tokens,
     )
 
+
+
+def checked_sentence(words: list[str], passes) -> dict | None:
+    """One short sentence from `words` that `passes` accepts, or None.
+
+    The model only writes; `passes` is a plain program that checks every word,
+    so nothing it made up reaches the learner. Up to sentence_max_tries tries.
+    """
+    settings = get_settings()
+    prompt = prompts.CHECKED_SENTENCE_USER.format(words="، ".join(words))
+    for _ in range(settings.sentence_max_tries):
+        try:
+            reply = _ask(prompt, max_tokens=settings.sentence_max_tokens)
+        except Exception as exc:  # a failed call is a failed try, not a crash
+            logger.warning("checked sentence try failed: %r", exc)
+            continue
+        ar, en = str(reply.get("ar", "")).strip(), str(reply.get("en", "")).strip()
+        if ar and en and passes(ar):
+            return {"ar": ar, "en": en}
+    return None
