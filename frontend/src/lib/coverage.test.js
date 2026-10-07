@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { coverageOf, surahShares } from './coverage'
+import { coverageOf, learntLemmas, surahShares } from './coverage'
 
 // Four lemmas: 1,000 + 400 + 250 + 50 Qur'an words out of 10,000.
 const coverage = { total: 10000, lemmas: ['قَالَ', 'كِتاب', 'رَبّ', 'نَبِيّ'], counts: [1000, 400, 250, 50] }
@@ -43,5 +43,16 @@ describe('how much of each surah the known words cover', () => {
 
   it('is zero everywhere when nothing is known', () => {
     expect(surahShares([word('book', [1])], coverage, [], bySurah)).toEqual([0, 0])
+  })
+})
+
+describe('which Qur\'an words the reader marks as learnt', () => {
+  it('names the same lemmas the meter credits, as spelled in the corpus', () => {
+    const words = [word('lord', [0]), word('lord', [2]), word('book', [1, 3])]
+    expect(learntLemmas(words, coverage, ['lord', 'book'])).toEqual(new Set(['رَبّ', 'كِتاب', 'نَبِيّ']))
+  })
+
+  it('is empty when nothing is known', () => {
+    expect(learntLemmas([word('book', [1])], coverage, []).size).toBe(0)
   })
 })

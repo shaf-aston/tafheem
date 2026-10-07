@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import quran_corpus, quran_meanings, quran_service
+from backend.services import arabic_text, quran_corpus, quran_meanings, quran_service
 
 pytestmark = pytest.mark.skipif(
     not quran_corpus.is_loaded(),
@@ -128,3 +128,36 @@ def test_glosses_are_in_the_order_the_words_are_printed() -> None:
     first = quran_service.glosses_for_surah(1)[1]
     by_number = quran_meanings.for_ayah(1, 1)
     assert first == [by_number[n] for n in sorted(by_number)]
+
+
+# The learnt-word underline. Same rule as the glosses: one lemma per printed
+# word, or the ayah is left out, so a mark never lands on the wrong word.
+
+
+@pytest.mark.parametrize("surah", SAMPLE)
+def test_one_lemma_per_printed_word(surah: int) -> None:
+    lemmas = quran_corpus.lemmas_for_surah(surah)
+    texts = dict(quran_corpus.ayah_texts(surah))
+    assert lemmas.keys() == texts.keys()
+    for ayah, text in texts.items():
+        assert len(lemmas[ayah]) == len(text.split())
+
+
+def test_a_word_is_known_by_its_stem_not_its_prefix() -> None:
+    # بِسْمِ is بِ + اسْم: the word is اسْم, as the coverage counts have it.
+    bare = [arabic_text.bare_letters(w) for w in quran_corpus.lemmas_for_surah(1)[1]]
+    assert bare == [arabic_text.bare_letters(w) for w in ("اسم", "الله", "رحمن", "رحيم")]
+
+
+def test_the_ayah_printed_with_an_extra_space_has_no_lemmas() -> None:
+    # 37:130, the same ayah the glosses leave out.
+    assert 130 not in quran_corpus.lemmas_for_surah(37)
+
+
+def test_the_glosses_route_carries_the_lemmas() -> None:
+    from fastapi.testclient import TestClient
+
+    from backend.main import app
+
+    body = TestClient(app).get("/api/quran/surah/1/glosses").json()
+    assert body["lemmas"]["1"] == quran_corpus.lemmas_for_surah(1)[1]

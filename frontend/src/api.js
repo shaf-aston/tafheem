@@ -44,7 +44,7 @@ export const quranSurahQuery = (surah) => ({ queryKey: ['quran-surah', surah], q
 // the words are drawn separately, and an ayah the two sources disagree about is
 // simply absent rather than mis-aligned.
 export const getSurahGlosses = (surah) =>
-  api.get(`/quran/surah/${surah}/glosses`).then((r) => r.data.ayahs)
+  api.get(`/quran/surah/${surah}/glosses`).then((r) => r.data)
 
 // How the ayah's words join into one another. Derived from the corpus tags by
 // rule, so it comes back with its own source label; not the corpus's.

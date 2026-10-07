@@ -601,6 +601,8 @@ class SurahGlosses(BaseModel):
     """
     surah: int
     ayahs: dict[int, list[str]]
+    # Each word's dictionary form, same order and same left-out ayahs, for the learnt marks.
+    lemmas: dict[int, list[str]] = {}
 
 
 class Edition(BaseModel):

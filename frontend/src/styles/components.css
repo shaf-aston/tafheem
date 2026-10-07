@@ -271,6 +271,43 @@ dialog::backdrop {
 }
 
 
+
+/* A learnt word: a soft underline, the colour the quiz uses for right. */
+.gloss-word-learnt {
+  text-decoration: underline var(--success-edge) 2px;
+  text-underline-offset: 0.5em;
+}
+
+
+/* "Show all meanings": every gloss sits under its word, always on. After the
+   hover rules, so hovering a word does not float its gloss back up. */
+.gloss-all .gloss-word[data-gloss] {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+}
+.gloss-all .gloss-word[data-gloss]::after {
+  position: static;
+  opacity: 1;
+  transform: none;
+  background: none;
+  box-shadow: none;
+  color: var(--text-dim);
+  white-space: normal;
+  max-width: 7rem;
+  text-align: center;
+  padding: 0.2rem 0 0.6rem;
+}
+/* An underline would run through the English too, so a learnt word's English
+   carries the mark instead. */
+.gloss-all .gloss-word-learnt[data-gloss] {
+  text-decoration: none;
+}
+.gloss-all .gloss-word-learnt[data-gloss]::after {
+  color: var(--success);
+}
+
 .word {
   transition:
     opacity calc(var(--motion-instant-ms) * 1ms) ease,
