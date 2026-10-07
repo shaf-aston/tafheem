@@ -2,7 +2,8 @@
  * The Quran tab's one view: a whole surah, read, with the ayah being studied
  * beside it. Opening one ayah opens its surah scrolled to it, so the ayah is
  * always read in its place, and the study (AyahStudy) sits in a column to the
- * right, or in a sheet on a screen too narrow for two columns.
+ * right. On a screen too narrow for two columns the ayah is only marked, and
+ * the study opens in a sheet when asked for, never over the surah unbidden.
  *
  * One request brings the surah's text and its English, 35ms for al-Baqarah,
  * the longest. The word-by-word grammar is not fetched here: it is ~2MB for a
@@ -118,6 +119,9 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   const [tapped, setTapped] = useState(null)
   const [hereIn, setHereIn] = useState(surah)
   if (hereIn !== surah) { setHereIn(surah); setHere(ayah ?? 1); setTapped(null) }
+  // The phone's study sheet, open for one ayah: another ayah starts it shut.
+  const [studying, setStudying] = useState(null)
+  const sheet = !twoPanes && ayah != null && studying === ayah
   const goTo = useCallback((n) => { showRow(list.current, n); setHere(n) }, [])
   const open = (n) => { setTapped(n); onPlace({ surah, ayah: n }) }
   // Focus goes back to the ayah's row, not lost with the close button.
@@ -146,7 +150,8 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   const slide = useSlide(surah)
 
   const study = ayah && (
-    <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo} onClose={shut} accent={accent} />
+    <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo}
+      onClose={twoPanes ? shut : () => setStudying(null)} accent={accent} />
   )
 
   return (
@@ -222,6 +227,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
                     segments={recitation.segmentsFor(row.ayah)}
                     open={row.ayah === ayah}
                     onOpen={open}
+                    onStudy={twoPanes ? null : setStudying}
                   />
                 )}
               </AyahList>
@@ -240,7 +246,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         )}
       </div>
 
-      {!twoPanes && study && <BottomSheet label={`Study ${surah}:${ayah}`} onClose={shut} className="scroll-pane max-h-[var(--sheet-tall)] p-4">{study}</BottomSheet>}
+      {sheet && <BottomSheet label={`Study ${surah}:${ayah}`} onClose={() => setStudying(null)} className="scroll-pane max-h-[var(--sheet-tall)] p-4">{study}</BottomSheet>}
 
       {data && (
         <RecitationBar
@@ -290,9 +296,10 @@ function GlossedAyah({ arabic, english, learnt, allMeanings, lit = -1, end }) {
  * One ayah of the surah: its line, closed by its numbered medallion, and its
  * English the full width under it. A row of its own because it asks which of
  * its words is being recited; all but the one sounding answer with a single
- * comparison.
+ * comparison. `onStudy`, on a phone, puts a way into the study under the open
+ * ayah, there being no column beside it.
  */
-function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, open, onOpen }) {
+function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, open, onOpen, onStudy }) {
   const lit = useRecitedWord(src, segments)
   return (
     <li className="surah-row">
@@ -311,6 +318,17 @@ function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, o
           </span>
         )}
       </button>
+      {open && onStudy && (
+        <div className="flex justify-end px-4 pb-3 -mt-1">
+          <button
+            type="button"
+            onClick={() => onStudy(ayah.ayah)}
+            className="press tap px-3 py-1.5 rounded-full type-small text-[var(--bg)] bg-[var(--c)]"
+          >
+            Study {ayah.ayah}: grammar, joins, tafsir
+          </button>
+        </div>
+      )}
     </li>
   )
 }
