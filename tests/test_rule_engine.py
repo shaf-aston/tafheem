@@ -476,9 +476,97 @@ def test_the_wonder_form_is_drawn_as_the_books_own_example():
     ("مَا أُكْرِمَ زَيْدٌ", ["حرف", "فعل", "نائب فاعل"]),  # the typed damma says it is not the wonder shape
     ("مَا أَعْطَى الرَّجُلَ كِتَابًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),  # two objects: not the wonder form
     ("ما أنزل الله بها من سلطان", ["حرف", "فعل", "فاعل", "حرف جر", "حرف جر", "مجرور"]),  # أنزل gives no comparative
+    ("مَا أَجْمَلَهَا", ["مبتدأ", "فعل"]),  # the pronoun on the verb is its one object
+    ("مَا أَعْظَمَكَ", ["مبتدأ", "فعل"]),
+    ("ما أحلاها", ["مبتدأ", "فعل"]),
+    ("مَا أَجْمَلَهَا مِنْ لَيْلَةٍ", ["مبتدأ", "فعل", "حرف جر", "مجرور"]),  # a preposition after it is no question word
+    ("مَا أَعْطَاهَا كِتَابًا", ["حرف", "فعل", "مفعول به"]),  # a second object: not the wonder form
 ])
 def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expected: list[str]):
     assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    ("مَا اسْمُكَ", ["خبر", "مبتدأ"]),  # the question word is the khabar brought to the front (Tasheel 2.4.7 p47)
+    ("مَا هَذَا", ["خبر", "مبتدأ"]),
+    ("مَا الْإِيمَانُ", ["خبر", "مبتدأ"]),
+    ("مَنْ أَنْتَ", ["خبر", "مبتدأ"]),
+    ("مَنْ هَذَا؟", ["خبر", "مبتدأ"]),
+    ("مَنْ أَبُوكَ", ["خبر", "مبتدأ"]),
+    ("قَالَ مَا اسْمُكَ", ["فعل", "خبر", "مبتدأ"]),
+    ("يَا أَخِي مَا اسْمُكَ", ["حرف", "منادى", "خبر", "مبتدأ"]),
+    ("وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ", ["مبتدأ", "فعل", "خبر", "مبتدأ", "مضاف إليه"]),  # a verb of informing, its second object a question
+    ("مَا أَجْمَلَ السَّمَاءَ", ["مبتدأ", "فعل", "مفعول به"]),
+    # not a question: ما الحجازية, a negation, a relative before a ظرف or a verb, من before a preposition
+    ("مَا هَذَا بَشَرًا", ["حرف", "اسم كان", "خبر كان"]),
+    ("ما زيدٌ قائمًا", ["حرف", "اسم كان", "خبر كان"]),
+    ("وَمَا زَيْدٌ قَائِمًا", ["حرف", "اسم كان", "خبر كان"]),  # a وَ or فَ before it leaves it ما الحجازية
+    ("فَمَا هَذَا بَشَرًا", ["حرف", "اسم كان", "خبر كان"]),
+    ("مَا جَاءَ إِلَّا زَيْدٌ", ["حرف", "فعل", "حرف", "فاعل"]),
+    ("مَنْ جَاءَ", ["مبتدأ", "فعل"]),
+    ("مَنْ فِي الْبَيْتِ", ["مبتدأ", "حرف جر", "مجرور"]),
+    ("إِنَّ مَا عِنْدَ اللَّهِ هُوَ خَيْرٌ لَكُمْ", ["حرف", "اسم إن", "مفعول فيه", "مضاف إليه", "مبتدأ", "خبر إن", "حرف جر"]),
+])
+def test_a_question_word_before_its_mubtada_is_the_khabar(sentence: str, expected: list[str]):
+    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+
+
+@pytest.mark.parametrize("sentence, negations", [
+    ("مَا أَنْتَ إِلَّا بَشَرٌ", 1),
+    ("قَالُوا مَا أَنْتُمْ إِلَّا بَشَرٌ", 1),  # quoted speech: a verb of saying does not take the ما as its object
+    ("ما قلت لهم إلا ما أمرتني به", 1),  # the first ما negates, the second is the relative
+    ("لَا يَعْلَمُ مَا فِي الْغَيْبِ إِلَّا اللَّهُ", 0),  # the verb takes the ما as its object
+    ("قَرَأْتُ مَا كَتَبَ الطُّلَّابُ إِلَّا زَيْدًا", 0),
+])
+def test_only_a_ma_that_opens_its_clause_is_the_negation_before_illa(sentence: str, negations: int):
+    from backend.services import syntax
+    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    assert shown.count("ما النافية") == negations
+
+
+def test_the_wonder_verbs_noun_after_its_pronoun_is_no_second_object():
+    words = iraab.analyse("مَا أَجْمَلَهَا لَيْلَةً")["words"]
+    assert [w["role"] for w in words[:2]] == ["مبتدأ", "فعل"] and "للتعجب" in words[1]["reason"]
+
+
+def test_a_relative_before_a_zarf_and_its_verb_is_no_question():
+    words = iraab.analyse("مَا عِنْدَكُمْ يَنْفَدُ")["words"]
+    assert words[0]["role"] == "مبتدأ" and words[-1]["role"] == "فعل" and "اسْتِفْهَامِيَّةٌ" not in _sentence_label("مَا عِنْدَكُمْ يَنْفَدُ")
+
+
+def _sentence_label(sentence: str) -> str:
+    from backend.services import syntax
+    return syntax.read(sentence)["tree"]["tree"].get("label") or ""
+
+
+@pytest.mark.parametrize("sentence", ["مَا أَنْتَ إِلَّا بَشَرٌ", "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ", "ما أنت إلا بشر"])
+def test_ma_before_illa_is_the_negation_and_illa_restricts_the_khabar(sentence: str):
+    words = iraab.analyse(sentence)["words"]
+    assert [w["role"] for w in words] == ["حرف", "مبتدأ", "حرف", "خبر"]
+    assert "أداة حصر" in words[2]["reason"]
+
+
+@pytest.mark.parametrize("sentence", ["هَلْ أَنْتَ تَكْتُبُ", "ما أنت إلا بشر", "هَلِ الْوَلَدُ نَائِمٌ", "يَا أَخِي مَا اسْمُكَ",
+                                      "مَنْ أَنْتَ فِي هَذِهِ الْمَدِينَةِ"])
+def test_the_picture_keeps_the_order_the_words_were_typed(sentence: str):
+    from backend.services import syntax
+
+    def leaves(node: dict) -> list[int]:
+        return ([node["word"]] if node.get("word") is not None else []) + [i for kid in node.get("children", []) for i in leaves(kid)]
+    order = leaves(syntax.read(sentence)["tree"]["tree"])
+    assert order == sorted(order)
+
+
+@pytest.mark.parametrize("sentence, name", [
+    ("مَا هَذَا بَشَرًا", "ما الحجازية"),  # a particle that works like ليس is no فعل ناقص
+    ("كَانَ زَيْدٌ قَائِمًا", "فعل ناقص"),
+])
+def test_the_picture_names_the_governor_of_kana(sentence: str, name: str):
+    from backend.services import syntax
+
+    def roles(node: dict) -> list[str]:
+        return [node.get("role")] + [r for kid in node.get("children", []) for r in roles(kid)]
+    assert name in roles(syntax.read(sentence)["tree"]["tree"])
 
 
 @pytest.mark.parametrize("sentence, doer", [

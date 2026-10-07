@@ -104,7 +104,7 @@ def _doer(token: dict, family: str | None, persons: list[str]) -> dict | None:
 def _finer(token: dict, role: str | None, family: str | None) -> str | None:
     """A governor's name in the picture: كان is a فعل ناقص, أنْ a حرف نصب, as its card says;
     a particle read one way of several (particles.stamp) by that reading's name."""
-    if family in FRAMES["leaf_by_family"]:
+    if family in FRAMES["leaf_by_family"] and role != NAMED.harf:
         return FRAMES["leaf_by_family"][family]
     if role == NAMED.harf and (reading := token.get("reading")):
         card = CARDS.get(reading["family"], {})
@@ -357,6 +357,20 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     if len(roots) == 1 and role_of[top["id"]] == NAMED.khabar and 0 < len(subjects) < len(children_of[top["id"]]):
         children_of[top["id"]] = [kid for kid in children_of[top["id"]] if kid not in subjects]
         roots = subjects + roots
+    # هل أنتَ تكتبُ، ما أنتَ إلا بشر، مَنْ أنتَ في المدينة: a unit typed wholly before or after the unit it
+    # hangs in, with a word of another unit between them, cannot sit inside that unit and keep the
+    # order typed, so it goes up to the unit above until no such word stands between
+    for unit_head in drawn:
+        span = [at[t["id"]] for t in drawn if t is unit_head or _inside(t, unit_head, children_of)]
+        while home := next((t for t in drawn if unit_head in children_of[t["id"]]), None):
+            near = at[home["id"]]
+            low, high = (max(span), near) if near > max(span) else (near, min(span))
+            if low >= high or not any(low < at[other["id"]] < high and not _inside(other, home, children_of)
+                                      for other in drawn):
+                break
+            children_of[home["id"]].remove(unit_head)
+            above = next((t for t in drawn if home in children_of[t["id"]]), None)
+            (children_of[above["id"]] if above else roots).append(unit_head)
     # مَنْ شاء فليصمه: the opener, the condition's clause and the answer's side by side in
     # one unit, as the books draw it, wherever the parser hung them (syntax.condition)
     holder = {kid["id"]: kids for kids in (roots, *children_of.values()) for kid in kids}
