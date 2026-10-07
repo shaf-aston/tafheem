@@ -81,6 +81,21 @@ def uthmani_for_ayah(surah: int, ayah: int) -> dict[int, str]:
     return {row["word"]: row["ar"] for row in rows}
 
 
+def uthmani_for_surah(surah: int) -> dict[int, dict[int, str]]:
+    """uthmani_for_ayah for every ayah of a surah, in one query: ayah -> word -> spelling."""
+    db = _db()
+    if db is None:
+        return {}
+    try:
+        rows = db.execute("SELECT ayah, word, ar FROM uthmani WHERE surah = ?", (surah,)).fetchall()
+    except sqlite3.OperationalError:
+        return {}
+    printed: dict[int, dict[int, str]] = {}
+    for row in rows:
+        printed.setdefault(row["ayah"], {})[row["word"]] = row["ar"]
+    return printed
+
+
 def ayah_end_mark(surah: int, ayah: int) -> str | None:
     """The ring-and-number that closes a printed ayah, or None if unbuilt."""
     db = _db()
