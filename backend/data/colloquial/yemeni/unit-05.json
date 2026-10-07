@@ -270,7 +270,7 @@
         },
         {
           "arabic": "قَدِيم",
-          "transliteration": "qadeem",
+          "transliteration": "gadeem",
           "english": "old",
           "category": "Taxi"
         },
@@ -656,7 +656,7 @@
         },
         {
           "arabic": "زُقَاق",
-          "transliteration": "zuqaaq",
+          "transliteration": "zugaag",
           "english": "alley",
           "category": "Asking the way"
         },
@@ -1064,8 +1064,8 @@
           "category": "Buses"
         },
         {
-          "arabic": "مِيكْرُو",
-          "transliteration": "mikro",
+          "arabic": "دَبَّاب",
+          "transliteration": "dabbaab",
           "english": "minibus",
           "category": "Buses"
         },
@@ -1089,7 +1089,7 @@
         },
         {
           "arabic": "رَقْم",
-          "transliteration": "raqm",
+          "transliteration": "ragm",
           "english": "number",
           "category": "Buses"
         },
@@ -1477,7 +1477,7 @@
         },
         {
           "arabic": "حَدِيقَة",
-          "transliteration": "7adeeqa",
+          "transliteration": "7adeega",
           "english": "park",
           "category": "Places in town"
         },
@@ -1874,7 +1874,7 @@
       "vocabulary": [
         {
           "arabic": "طَرِيق",
-          "transliteration": "Tareeq",
+          "transliteration": "Tareeg",
           "english": "road, way",
           "category": "Getting around"
         },

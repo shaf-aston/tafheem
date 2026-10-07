@@ -226,7 +226,7 @@
         },
         {
           "arabic": "قَلِق",
-          "transliteration": "qaliq",
+          "transliteration": "galig",
           "english": "worried",
           "category": "Feelings"
         },
@@ -243,8 +243,8 @@
           "category": "Feelings"
         },
         {
-          "arabic": "وَايِد",
-          "transliteration": "waayid",
+          "arabic": "قَوِي",
+          "transliteration": "gawi",
           "english": "very",
           "category": "Feelings"
         }
@@ -636,7 +636,7 @@
         },
         {
           "arabic": "مُوَافِق",
-          "transliteration": "muwaafiq",
+          "transliteration": "muwaafig",
           "english": "agreeing",
           "category": "Agreeing"
         },
@@ -659,8 +659,8 @@
           "category": "Agreeing"
         },
         {
-          "arabic": "هِيك",
-          "transliteration": "heek",
+          "arabic": "كِذَا",
+          "transliteration": "kidha",
           "english": "like this",
           "category": "Agreeing"
         },
@@ -1049,8 +1049,8 @@
           "category": "Advice"
         },
         {
-          "arabic": "دَوَاء",
-          "transliteration": "dawaa2",
+          "arabic": "دَوَا",
+          "transliteration": "dawa",
           "english": "medicine",
           "category": "Advice"
         },
@@ -1487,8 +1487,8 @@
           "category": "Complaining"
         },
         {
-          "arabic": "فُلُوس",
-          "transliteration": "fuloos",
+          "arabic": "زَلَط",
+          "transliteration": "zalaT",
           "english": "money",
           "category": "Complaining"
         }

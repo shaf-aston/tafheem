@@ -533,7 +533,7 @@
         },
         {
           "arabic": "طَبَق",
-          "transliteration": "Tabaq",
+          "transliteration": "Tabag",
           "english": "dish",
           "category": "The menu"
         },
@@ -978,8 +978,8 @@
           "category": "Paying"
         },
         {
-          "arabic": "نُقُود",
-          "transliteration": "nuqood",
+          "arabic": "كَاش",
+          "transliteration": "kaash",
           "english": "cash",
           "category": "Paying"
         },
@@ -997,7 +997,7 @@
         },
         {
           "arabic": "بَاقِي",
-          "transliteration": "baaqi",
+          "transliteration": "baagi",
           "english": "change",
           "category": "Paying"
         },
