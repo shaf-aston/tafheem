@@ -143,9 +143,6 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
             to be set the right way before it can be read. */}
         {!query && !shown && (
           <>
-            <p className="text-[var(--text-faint)] type-small">
-              Roots work best; كتب finds the whole family of words built on it.
-            </p>
             {/* First visit has nothing to click; these give it something. */}
             <ExampleChips
               examples={config.examples}
