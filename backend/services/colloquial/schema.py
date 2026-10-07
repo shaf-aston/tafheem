@@ -45,11 +45,7 @@ class Drill(BaseModel):
 
 
 class VocabWord(BaseModel):
-    """One word on its own, not a phrase: the word bank, grouped by `category`.
-
-    Not a spine slot: a dialect may write this before the others do, so a
-    lesson's `vocabulary` lives only in its own unit file.
-    """
+    """A single word for the word bank; dialect-owned, not a spine slot."""
     arabic: str
     transliteration: str
     english: str
