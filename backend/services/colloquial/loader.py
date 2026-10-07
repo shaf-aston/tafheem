@@ -7,6 +7,8 @@ dialect's words, dialogue and exercises. So every dialect walks the same course,
 and a slot added to a written lesson is missing, loudly, from every dialect until
 written. A dialect may leave whole units, or whole lessons of a unit, unwritten;
 those are listed as coming. It may not leave half a lesson.
+A topic's word list works the same way through wordlist: English once, in
+words.json, and each dialect's Arabic linked to it by id.
 Nothing here knows the name of any dialect or unit.
 
 Checked when loaded, not trusted. A repeated exercise id would file two
@@ -21,11 +23,11 @@ from __future__ import annotations
 
 import json
 import logging
-import re
 from functools import lru_cache
 
 from backend.config import data_path
 from backend.services import provenance
+from backend.services.colloquial import wordlist
 from backend.services.colloquial.exercises import registry
 
 logger = logging.getLogger(__name__)
@@ -71,36 +73,6 @@ def _say_slots(lesson: dict, phrases: list[dict], where: str) -> tuple[list[dict
     return lines, said
 
 
-WORD_BANK_SIZE = 8  # one round of match pairs, and enough that the words half of a tile is not thin
-_ARABIC = re.compile(r"[\u0600-\u06FF]")
-_NOT_ARABIC = re.compile(r"[^\u0600-\u06FF\s]")
-
-
-def _word_bank_faults(words: list[dict], name: str) -> list[str]:
-    """A lesson's word bank: none, or 8+ distinct Arabic words of one or two pieces each.
-
-    Kept here rather than in an authoring script, so a hand edit to a unit file
-    meets the same rules as a generated one.
-    """
-    if words and len(words) < WORD_BANK_SIZE:
-        return [f"{name} has {len(words)} vocabulary words, fewer than {WORD_BANK_SIZE}"]
-    said, seen = [], set()
-    for at, word in enumerate(words, 1):
-        where = f"{name} vocabulary word {at}"
-        said.extend(_phrase_faults(word, where))
-        arabic = str(word.get("arabic") or "").strip()
-        if arabic in seen:
-            said.append(f"{where} repeats {arabic!r}")
-        seen.add(arabic)
-        if _NOT_ARABIC.search(arabic):
-            said.append(f"{where} has a non-Arabic letter in its Arabic: {arabic!r}")
-        if len(arabic.split()) > 2:
-            said.append(f"{where} is a phrase, not a word: {arabic!r}")
-        if _ARABIC.search(f"{word.get('transliteration', '')}{word.get('english', '')}"):
-            said.append(f"{where} has Arabic letters in its transliteration or English")
-    return said
-
-
 def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     """What is wrong with one lesson. seen_ids is shared across the whole unit."""
     name = f"lesson {lesson.get('lesson')!r}"
@@ -126,7 +98,6 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     for at, drill in enumerate(lesson.get("de_book") or [], 1):
         said.extend(_phrase_faults(drill.get("pair") or {}, f"{name} pair {at} question"))
         said.extend(_phrase_faults(drill.get("response") or {}, f"{name} pair {at} answer"))
-    said.extend(_word_bank_faults(lesson.get("vocabulary") or [], name))
     for at, exercise in enumerate(lesson.get("exercises") or [], 1):
         where = f"{name} exercise {at}"
         given = exercise.get("id")
@@ -137,13 +108,15 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     return said
 
 
-def _fill(outline: dict, written: dict) -> tuple[dict, list[str]]:
+def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tuple[dict, list[str]]:
     """One dialect's unit file laid onto its spine unit: the unit a learner sees.
 
     The spine gives the titles, the sections, the order, each phrase's English and picture; the
     dialect gives everything said. A slot on one side only is a fault, so a change
     to a written lesson can never reach one dialect and quietly miss another. A
     lesson a dialect has not begun is `written: False`, shown as coming.
+    `dialect_words` is the dialect's words by id (wordlist), from which each lesson's
+    `vocabulary` is built in the order the spine lists them.
     """
     said = []
     lessons = {lesson.get("lesson"): lesson for lesson in written.get("lessons") or []}
@@ -167,8 +140,12 @@ def _fill(outline: dict, written: dict) -> tuple[dict, list[str]]:
         phrases = [{**slot, **words[slot["slot"]]} for slot in plan["phrases"] if slot["slot"] in words]
         dialogue, faults = _say_slots(lesson, phrases, f"lesson {plan['lesson']!r}")
         said.extend(faults)
+        if "vocabulary" in lesson:
+            said.append(f"lesson {plan['lesson']!r} lists its own vocabulary; a dialect's words live in {wordlist.FILE}")
+        vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}")
+        said.extend(faults)
         filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases,
-                       "dialogue": dialogue, "written": True})
+                       "dialogue": dialogue, "vocabulary": vocabulary, "written": True})
     return {**written, "title": outline["title"], "lessons": filled}, said
 
 
@@ -207,9 +184,12 @@ def _content() -> dict:
     root = data_path("colloquial_dir")
     manifest = json.loads((root / "dialects.json").read_text(encoding="utf-8"))
     spine = json.loads((root / "spine.json").read_text(encoding="utf-8"))["units"]
-    dialects, broken = [], []
+    meanings = wordlist.meanings()
+    dialects, broken = [], wordlist.outline_faults(spine, meanings)
     for dialect in sorted(manifest["dialects"], key=lambda d: d["order"]):
         folder = root / dialect["folder"]
+        said = wordlist.said_in(dialect["folder"])
+        broken += wordlist.unknown(said, meanings, dialect["folder"])
         written = {}
         for path in sorted(folder.glob("unit-*.json")):
             unit = json.loads(path.read_text(encoding="utf-8"))
@@ -228,7 +208,7 @@ def _content() -> dict:
                                            "section": lesson.get("section"), "written": False}
                                           for lesson in outline["lessons"]]})
                 continue
-            unit, faults = _fill(outline, written[outline["unit"]])
+            unit, faults = _fill(outline, written[outline["unit"]], said)
             if faults := faults + _unit_faults(unit):
                 broken.append(f"{dialect['key']}/{outline['unit']}: " + "; ".join(faults))
             units.append({**unit, "written": True})

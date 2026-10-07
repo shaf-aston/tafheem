@@ -235,56 +235,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "الْبَارْحَة",
-          "transliteration": "il-baar7a",
-          "english": "yesterday",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "گِعَدِت",
-          "transliteration": "ga3adit",
-          "english": "I woke up",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "مِتْأَخِّر",
-          "transliteration": "mit2akhkhir",
-          "english": "late",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "مَطْعَم",
-          "transliteration": "maT3am",
-          "english": "restaurant",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "مَغْرِب",
-          "transliteration": "maghrib",
-          "english": "sunset, evening",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "سَهَر",
-          "transliteration": "sahar",
-          "english": "staying up late",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "شُغُل",
-          "transliteration": "shughul",
-          "english": "work",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "رِحِت",
-          "transliteration": "ri7it",
-          "english": "I went",
-          "category": "Yesterday"
-        }
-      ],
       "culture": "Iraqis open a catch-up with شلونك or شكو ماكو, and البارحة is the everyday word for yesterday. When someone had a hard day you say يا حرام for sympathy or الله يعينك (God help you).",
       "exercises": [
         {
@@ -676,56 +626,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "صَغِير",
-          "transliteration": "Sagheer",
-          "english": "small, young",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "مَحَلَّة",
-          "transliteration": "ma7alla",
-          "english": "neighbourhood",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "رْفِيگ",
-          "transliteration": "rfeeg",
-          "english": "friend",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "طُوبَة",
-          "transliteration": "Tooba",
-          "english": "football",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "رِيف",
-          "transliteration": "reef",
-          "english": "countryside",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "حْچَايَة",
-          "transliteration": "7chaaya",
-          "english": "story",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "بَايْسِكِل",
-          "transliteration": "baaysikil",
-          "english": "bicycle",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "لِعِب",
-          "transliteration": "li3ib",
-          "english": "playing, games",
-          "category": "Childhood"
-        }
-      ],
       "culture": "Iraqis often tell childhood stories about the old محلة, football in the زگاگ and summers at the grandparents' place in the countryside. ستي and جدي are the warm everyday words for grandmother and grandfather, and أيام زمان (the old days) opens most such stories.",
       "exercises": [
         {
@@ -1114,56 +1014,6 @@
             "transliteration": "khirbat b-nis i6-6areeg",
             "english": "It broke down in the middle of the road."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مُوبَايِل",
-          "transliteration": "mobaayil",
-          "english": "mobile phone",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "قُفُل",
-          "transliteration": "guful",
-          "english": "lock",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "دَرَج",
-          "transliteration": "daraj",
-          "english": "stairs",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "جِزْدَان",
-          "transliteration": "jizdaan",
-          "english": "wallet",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "سَيَّارَة",
-          "transliteration": "sayyaara",
-          "english": "car",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "كَهْرَبَا",
-          "transliteration": "kahraba",
-          "english": "electricity",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "لَابْتُوب",
-          "transliteration": "laabtoob",
-          "english": "laptop",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "مُنَبِّه",
-          "transliteration": "munabbih",
-          "english": "alarm clock",
-          "category": "Something went wrong"
         }
       ],
       "culture": "When something goes wrong Iraqis answer with يا ساتر or الله يشافيك and end the story with الحمد لله على كل حال. Power cuts (الكهرباء طفت) are such an ordinary complaint in Iraq that they come up in casual talk all the time.",
@@ -1562,56 +1412,6 @@
             "transliteration": "ma adri, 7chi naas",
             "english": "I don't know, people's talk."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "خَبَر",
-          "transliteration": "khabar",
-          "english": "news",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "إِشَاعَة",
-          "transliteration": "ishaa3a",
-          "english": "rumour",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "مَحَلَّة",
-          "transliteration": "ma7alla",
-          "english": "neighbourhood",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "قِصَّة",
-          "transliteration": "giSSa",
-          "english": "story",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "سِمَعِت",
-          "transliteration": "sima3it",
-          "english": "I heard",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "حِچِي",
-          "transliteration": "7ichi",
-          "english": "talk",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "نَاس",
-          "transliteration": "naas",
-          "english": "people",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "صَحِيح",
-          "transliteration": "Sa7ee7",
-          "english": "true",
-          "category": "News and gossip"
         }
       ],
       "culture": "News in Iraq travels through family and neighbors, and شكو ماكو (what is there, what isn't) is the classic opener. Gossip is softened with هاي حچي ناس, and good news is met with مبروك at engagements, weddings and births.",

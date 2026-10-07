@@ -202,56 +202,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "صَبَاح",
-          "transliteration": "Sabaa7",
-          "english": "morning",
-          "category": "Morning"
-        },
-        {
-          "arabic": "بَكِّير",
-          "transliteration": "bakkeer",
-          "english": "early",
-          "category": "Morning"
-        },
-        {
-          "arabic": "نَعْسَان",
-          "transliteration": "na3saan",
-          "english": "sleepy",
-          "category": "Morning"
-        },
-        {
-          "arabic": "وِجّ",
-          "transliteration": "wijj",
-          "english": "face",
-          "category": "Morning"
-        },
-        {
-          "arabic": "سْنَان",
-          "transliteration": "snaan",
-          "english": "teeth",
-          "category": "Morning"
-        },
-        {
-          "arabic": "تْيَاب",
-          "transliteration": "tyaab",
-          "english": "clothes",
-          "category": "Morning"
-        },
-        {
-          "arabic": "شُغُل",
-          "transliteration": "shughul",
-          "english": "work",
-          "category": "Morning"
-        },
-        {
-          "arabic": "مَنْشَفِة",
-          "transliteration": "manshafe",
-          "english": "towel",
-          "category": "Morning"
-        }
-      ],
       "culture": "Damascenes often greet the morning with \"صباح الخير\" answered by \"صباح النور\", and a short cup of coffee before leaving the house is nearly universal, even on a rushed morning.",
       "exercises": [
         {
@@ -620,56 +570,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "اِجْتِمَاع",
-          "transliteration": "ijtimaa3",
-          "english": "meeting",
-          "category": "During the day"
-        },
-        {
-          "arabic": "غَدَا",
-          "transliteration": "ghada",
-          "english": "lunch",
-          "category": "During the day"
-        },
-        {
-          "arabic": "مُوَظَّف",
-          "transliteration": "muwaZZaf",
-          "english": "employee",
-          "category": "During the day"
-        },
-        {
-          "arabic": "ضُهُر",
-          "transliteration": "Duhur",
-          "english": "noon",
-          "category": "During the day"
-        },
-        {
-          "arabic": "اِسْتِرَاحَة",
-          "transliteration": "istiraa7a",
-          "english": "break",
-          "category": "During the day"
-        },
-        {
-          "arabic": "قَلَم",
-          "transliteration": "2alam",
-          "english": "pen",
-          "category": "During the day"
-        },
-        {
-          "arabic": "شُغْل",
-          "transliteration": "shighl",
-          "english": "work",
-          "category": "During the day"
-        },
-        {
-          "arabic": "شُغْلِة",
-          "transliteration": "shughle",
-          "english": "task, job",
-          "category": "During the day"
-        }
-      ],
       "culture": "The midday break in Damascus is taken seriously: people step away from their desks for lunch and a short rest, and saying \"تعبان\" openly when the afternoon gets heavy is completely normal, not a complaint.",
       "exercises": [
         {
@@ -1036,56 +936,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَسَا",
-          "transliteration": "masa",
-          "english": "evening",
-          "category": "Evening"
-        },
-        {
-          "arabic": "بِيت",
-          "transliteration": "beet",
-          "english": "home, house",
-          "category": "Evening"
-        },
-        {
-          "arabic": "عَشَا",
-          "transliteration": "3asha",
-          "english": "dinner",
-          "category": "Evening"
-        },
-        {
-          "arabic": "دُوش",
-          "transliteration": "doosh",
-          "english": "shower",
-          "category": "Evening"
-        },
-        {
-          "arabic": "مُسَلْسَل",
-          "transliteration": "musalsal",
-          "english": "TV series",
-          "category": "Evening"
-        },
-        {
-          "arabic": "تِلْفِزْيُون",
-          "transliteration": "talfizyoon",
-          "english": "TV",
-          "category": "Evening"
-        },
-        {
-          "arabic": "لِيل",
-          "transliteration": "leel",
-          "english": "night",
-          "category": "Evening"
-        },
-        {
-          "arabic": "صْحَاب",
-          "transliteration": "Sa7aab",
-          "english": "friends",
-          "category": "Evening"
-        }
-      ],
       "culture": "\"تصبح على خير\" is answered with the fixed phrase \"وإنت من أهله\", which does not translate word for word; evenings in Damascus often close with a short walk or family time on the balcony before the streets quiet down.",
       "exercises": [
         {
@@ -1445,56 +1295,6 @@
             "transliteration": "la, ij-jum3a yom raa7a",
             "english": "No, Friday is a day off."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "الْأَحَد",
-          "transliteration": "il-a7ad",
-          "english": "Sunday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "التْنِين",
-          "transliteration": "it-tneen",
-          "english": "Monday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "التْلَاتَا",
-          "transliteration": "it-tlaata",
-          "english": "Tuesday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "الْأَرْبْعَا",
-          "transliteration": "il-arb3a",
-          "english": "Wednesday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "الْخَمِيس",
-          "transliteration": "il-khamees",
-          "english": "Thursday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "الْجُمْعَة",
-          "transliteration": "ij-jum3a",
-          "english": "Friday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "السَّبْت",
-          "transliteration": "is-sabt",
-          "english": "Saturday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "جِمْعَة",
-          "transliteration": "jim3a",
-          "english": "week",
-          "category": "Days of the week"
         }
       ],
       "culture": "The Damascene work week usually runs Sunday through Thursday, with Friday kept for prayer and rest and Saturday often used for errands or the market; asking \"أيمتى؟\" for \"when\" is far more common in speech than the more formal \"متى\".",

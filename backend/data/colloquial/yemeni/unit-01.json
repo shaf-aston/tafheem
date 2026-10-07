@@ -208,56 +208,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَرْحَبًا",
-          "transliteration": "mar7aban",
-          "english": "hello",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "أَهْلًا",
-          "transliteration": "ahlan",
-          "english": "welcome",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "اِسْم",
-          "transliteration": "ism",
-          "english": "name",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "بِخَيْر",
-          "transliteration": "bikhayr",
-          "english": "well, fine",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "تَمَام",
-          "transliteration": "tamaam",
-          "english": "fine, great",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "كَمَان",
-          "transliteration": "kamaan",
-          "english": "also, too",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "فِين",
-          "transliteration": "feen",
-          "english": "where",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "أَنَا",
-          "transliteration": "ana",
-          "english": "I",
-          "category": "Greetings"
-        }
-      ],
       "culture": "In Sana'a, greetings are warm and often repeated when meeting after time apart. Using a person's first name immediately after introduction is friendly and respectful. \"الحمد لله\" (thank God) is always included when answering questions about health or well-being, as it is throughout the Islamic world.",
       "exercises": [
         {
@@ -656,56 +606,6 @@
             "transliteration": "ma3lish.",
             "english": "It's okay."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "شُكْرًا",
-          "transliteration": "shukran",
-          "english": "thank you",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "لَوْ سَمَحْت",
-          "transliteration": "law samaHt",
-          "english": "please, excuse me",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "آسِف",
-          "transliteration": "aasif",
-          "english": "sorry",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "مَعْلِش",
-          "transliteration": "ma3lish",
-          "english": "never mind",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "عَفْوًا",
-          "transliteration": "3afwan",
-          "english": "you're welcome",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "مُمْكِن",
-          "transliteration": "mumkin",
-          "english": "possible, can I",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "أَكِيد",
-          "transliteration": "akeed",
-          "english": "sure, of course",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "تَفَضَّل",
-          "transliteration": "tafaDDal",
-          "english": "please, go ahead",
-          "category": "Politeness"
         }
       ],
       "culture": "In Yemeni speech, polite softeners such as \"لَوْ سَمَحْتَ\" and \"مَعْلِش\" are used frequently in everyday situations. A brief \"شُكْرًا\" followed by \"عَفْوًا\" is completely natural. The phrase \"وَلَا يُهِمَّكَ\" (no worries) is especially warm.",
@@ -1112,56 +1012,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "وَاحِد",
-          "transliteration": "waa7id",
-          "english": "one",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "اِثْنَيْن",
-          "transliteration": "ithnayn",
-          "english": "two",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "ثَلَاثَة",
-          "transliteration": "thalaatha",
-          "english": "three",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "خَمْسَة",
-          "transliteration": "khamsa",
-          "english": "five",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "سَاعَة",
-          "transliteration": "saa3a",
-          "english": "hour, clock",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "الْيَوْم",
-          "transliteration": "al-yawm",
-          "english": "today",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "بُكْرَة",
-          "transliteration": "bukra",
-          "english": "tomorrow",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "دَحِين",
-          "transliteration": "da7een",
-          "english": "now",
-          "category": "Numbers and time"
-        }
-      ],
       "culture": "In Yemeni casual speech, time is often discussed with simple whole-hour expressions rather than a full formal sentence. \"بُكْرَة\" and \"الْآن\" are especially common everyday words for planning and talking about the immediate future and present. Friday is the day of rest, and \"الْجمُعَة\" (Friday) is an important time marker.",
       "exercises": [
         {
@@ -1562,56 +1412,6 @@
             "transliteration": "allah yu3afik.",
             "english": "You're welcome."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "سُوق",
-          "transliteration": "soog",
-          "english": "market",
-          "category": "Directions"
-        },
-        {
-          "arabic": "دُكَّان",
-          "transliteration": "dukkaan",
-          "english": "shop",
-          "category": "Directions"
-        },
-        {
-          "arabic": "يَمِين",
-          "transliteration": "yameen",
-          "english": "right",
-          "category": "Directions"
-        },
-        {
-          "arabic": "شِمَال",
-          "transliteration": "shimaal",
-          "english": "left",
-          "category": "Directions"
-        },
-        {
-          "arabic": "قَرِيب",
-          "transliteration": "gareeb",
-          "english": "near",
-          "category": "Directions"
-        },
-        {
-          "arabic": "بَعِيد",
-          "transliteration": "ba3eed",
-          "english": "far",
-          "category": "Directions"
-        },
-        {
-          "arabic": "هُنَا",
-          "transliteration": "huna",
-          "english": "here",
-          "category": "Directions"
-        },
-        {
-          "arabic": "هُنَاك",
-          "transliteration": "hunaak",
-          "english": "there",
-          "category": "Directions"
         }
       ],
       "culture": "Giving directions in Sana'a is often conversational and incremental: a person may give one turn, wait for the listener to react, and then add the next step. \"يَعْطِيكَ الْعَافِيَة\" is a very common warm expression of thanks, especially after someone helps you. Markets (السُّوق) are central gathering places where people meet, shop, and socialize.",

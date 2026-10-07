@@ -209,56 +209,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "حَجِز",
-          "transliteration": "7ajez",
-          "english": "booking",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "غُرْفِة",
-          "transliteration": "ghurfe",
-          "english": "room",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "لِيلِة",
-          "transliteration": "leele",
-          "english": "night",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "مَسْبَح",
-          "transliteration": "masba7",
-          "english": "pool",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "مَصْعَد",
-          "transliteration": "maS3ad",
-          "english": "lift",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "مُفْتَاح",
-          "transliteration": "muftaa7",
-          "english": "key",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "أُوتِيل",
-          "transliteration": "ooteel",
-          "english": "hotel",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "خِدْمِة",
-          "transliteration": "khidme",
-          "english": "service",
-          "category": "Hotel"
-        }
-      ],
       "culture": "بدمشق كتير فنادق صغيرة عيلية بالبيوت القديمة بالحارات، صاحب الفندق نفسه بيستقبلك وبيسولف معك متل ضيف مش زبون. الفطور غالبا بيكون منزلي: زعتر وجبنة وزيتون.",
       "exercises": [
         {
@@ -584,56 +534,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "تَذْكَرَة",
-          "transliteration": "tazkara",
-          "english": "ticket",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "رَايِح",
-          "transliteration": "raaye7",
-          "english": "going, one-way",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "مَقْعَد",
-          "transliteration": "ma23ad",
-          "english": "seat",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "بِطَاقَة",
-          "transliteration": "biTaa2a",
-          "english": "card",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "طُلَّاب",
-          "transliteration": "Tullaab",
-          "english": "students",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "شِبَّاك",
-          "transliteration": "shibbaak",
-          "english": "window, counter",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "تَخْفِيض",
-          "transliteration": "takhfeeD",
-          "english": "discount",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "تَأْشِيرَة",
-          "transliteration": "ta2sheera",
-          "english": "visa",
-          "category": "Tickets"
-        }
-      ],
       "culture": "بين المدن السورية أشهر وسيلة سفر هي الباصات (كراجات)، وكل مدينة إلها كراج مشترك تطلع منه كل الباصات. الأسعار كتير أرخص من الطيران، وغالبا لازم تحجز مبكر بأيام العيد.",
       "exercises": [
         {
@@ -936,56 +836,6 @@
             "transliteration": "jaay shughel, 3andi mu2tamar",
             "english": "Coming for work, I have a conference."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "جَوَاز سَفَر",
-          "transliteration": "jawaaz safar",
-          "english": "passport",
-          "category": "Airport"
-        },
-        {
-          "arabic": "شَنْطَة",
-          "transliteration": "shanTa",
-          "english": "bag",
-          "category": "Airport"
-        },
-        {
-          "arabic": "وَزِن",
-          "transliteration": "wazen",
-          "english": "weight",
-          "category": "Airport"
-        },
-        {
-          "arabic": "طَيَّارَة",
-          "transliteration": "Tayyaara",
-          "english": "plane",
-          "category": "Airport"
-        },
-        {
-          "arabic": "بَوَّابِة",
-          "transliteration": "bawwaabe",
-          "english": "gate",
-          "category": "Airport"
-        },
-        {
-          "arabic": "مَطَار",
-          "transliteration": "maTaar",
-          "english": "airport",
-          "category": "Airport"
-        },
-        {
-          "arabic": "رِحْلِة",
-          "transliteration": "re7le",
-          "english": "flight",
-          "category": "Airport"
-        },
-        {
-          "arabic": "جُمْرُك",
-          "transliteration": "jumruk",
-          "english": "customs",
-          "category": "Airport"
         }
       ],
       "culture": "عالحدود وبالمطار الموظف عادة بيسألك أسئلة قصيرة وبيتوقع جواب مختصر، ما في داعي تشرح كتير. كلمة 'تكرم' وحدها كافية كجواب مؤدب لطلب زي جواز السفر.",
@@ -1293,56 +1143,6 @@
             "transliteration": "eh mumken, bas fi gharaame taghyiir",
             "english": "Yes it's possible, but there's a change fee."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "ضَيَّع",
-          "transliteration": "Dayya3",
-          "english": "lost",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "مِتْأَخِّر",
-          "transliteration": "mit2akhkher",
-          "english": "delayed",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "عَطْلَان",
-          "transliteration": "3aTlaan",
-          "english": "out of order",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "مَكْسُور",
-          "transliteration": "maksoor",
-          "english": "broken",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "شَكْوَى",
-          "transliteration": "shakwa",
-          "english": "complaint",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "مَفْقُودَات",
-          "transliteration": "mafqoodaat",
-          "english": "lost items",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "وَكَالِة",
-          "transliteration": "wakaale",
-          "english": "agency",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "مُسَاعْدِة",
-          "transliteration": "musaa3de",
-          "english": "help",
-          "category": "Travel problems"
         }
       ],
       "culture": "لما بتصير مشكلة بالسفر، السوري بيعبر عن تعاطفه بجملة 'الله يعوض' قبل ما يحكي عن الحل، هاد أدب اجتماعي أهم من الحل نفسه بالمحادثة الأولى.",

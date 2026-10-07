@@ -246,56 +246,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "حْجْز",
-          "transliteration": "7jez",
-          "english": "booking",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "بِيت",
-          "transliteration": "beet",
-          "english": "room",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "لِيلَة",
-          "transliteration": "leela",
-          "english": "night",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "فْطُور",
-          "transliteration": "fTour",
-          "english": "breakfast",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "أَسَانْسُور",
-          "transliteration": "asansoor",
-          "english": "lift",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "سّْرُوت",
-          "transliteration": "sarut",
-          "english": "key",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "أُوطِيل",
-          "transliteration": "ooTeel",
-          "english": "hotel",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "خَاوْيَة",
-          "transliteration": "khaawya",
-          "english": "free, empty",
-          "category": "Hotel"
-        }
-      ],
       "culture": "In Moroccan hotels and riads in Casablanca, Rabat, Marrakech or Fes the reception often greets you in Darija, French or both, and switching between them is normal. Riads often welcome guests with mint tea, and prices are quoted in dirhams per night.",
       "exercises": [
         {
@@ -758,56 +708,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "بِيِّي",
-          "transliteration": "biyyi",
-          "english": "ticket",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "كَار",
-          "transliteration": "kaar",
-          "english": "coach",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "أَلَّار",
-          "transliteration": "allaar",
-          "english": "outward trip",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "رُوطُور",
-          "transliteration": "rotoor",
-          "english": "return trip",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "مْسَافَرْ",
-          "transliteration": "msaafer",
-          "english": "traveller",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "طّْلْبَة",
-          "transliteration": "Tolba",
-          "english": "students",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "شّْبَّاك",
-          "transliteration": "shebbaak",
-          "english": "window, counter",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "كِيشِي",
-          "transliteration": "geeshi",
-          "english": "ticket window",
-          "category": "Tickets"
-        }
-      ],
       "culture": "Long-distance coaches such as CTM and Supratours, and ONCF trains between Casablanca, Rabat and Marrakech, are the usual ways to travel between cities. You buy at the station window or online, and many small offices still prefer cash. Tickets are called \"بيّي\", from French billet.",
       "exercises": [
         {
@@ -1264,56 +1164,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "بَاسْبُور",
-          "transliteration": "basbor",
-          "english": "passport",
-          "category": "Airport"
-        },
-        {
-          "arabic": "فَالِيزَة",
-          "transliteration": "faaleeza",
-          "english": "suitcase",
-          "category": "Airport"
-        },
-        {
-          "arabic": "وّْزْن",
-          "transliteration": "wezn",
-          "english": "weight",
-          "category": "Airport"
-        },
-        {
-          "arabic": "طَيَّارَة",
-          "transliteration": "Tayyaara",
-          "english": "plane",
-          "category": "Airport"
-        },
-        {
-          "arabic": "بْوَّابَة",
-          "transliteration": "bewwaaba",
-          "english": "gate",
-          "category": "Airport"
-        },
-        {
-          "arabic": "مْطَار",
-          "transliteration": "mTaar",
-          "english": "airport",
-          "category": "Airport"
-        },
-        {
-          "arabic": "رِحْلَة",
-          "transliteration": "ri7la",
-          "english": "flight",
-          "category": "Airport"
-        },
-        {
-          "arabic": "دِّيوَانَة",
-          "transliteration": "diwaana",
-          "english": "customs",
-          "category": "Airport"
-        }
-      ],
       "culture": "At Mohammed V airport in Casablanca or Rabat-Salé, staff and border officers usually use Darija, French or both, and greeting with \"السلام عليكم\" first is polite. Officers commonly ask why you came and how long you will stay, and \"مرحبا بيك فالمغرب\" is the standard welcome.",
       "exercises": [
         {
@@ -1755,56 +1605,6 @@
             "transliteration": "f-T-Taabaq l-awwal",
             "english": "On the first floor."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "ضَاع",
-          "transliteration": "Daa3",
-          "english": "got lost",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "مْعْطّْل",
-          "transliteration": "m3aTTel",
-          "english": "delayed",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "فَاتْنِي",
-          "transliteration": "faatni",
-          "english": "I missed it",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "تّْكْسّْر",
-          "transliteration": "tkesser",
-          "english": "got broken",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "شْكَايَة",
-          "transliteration": "shkaaya",
-          "english": "complaint",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "رِيتَار",
-          "transliteration": "reetaar",
-          "english": "delay",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "مَكْتَب",
-          "transliteration": "maktab",
-          "english": "office",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "رّْحْلَة",
-          "transliteration": "ri7la",
-          "english": "flight, trip",
-          "category": "Travel problems"
         }
       ],
       "culture": "When something goes wrong while travelling in Morocco, people usually stay polite and say \"الله يعوض\" or \"إن شاء الله كلشي يتحل\" rather than complain loudly. Airline and station staff generally respond well to a calm \"عافاك\" and often help with a form at the counter or the complaints office.",

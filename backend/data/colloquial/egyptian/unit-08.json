@@ -230,56 +230,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مُهَنْدِس",
-          "transliteration": "mohandes",
-          "english": "engineer",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مُدَرِّس",
-          "transliteration": "modarres",
-          "english": "teacher",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "شِرْكَة",
-          "transliteration": "sherka",
-          "english": "company",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "طَالِب",
-          "transliteration": "Taaleb",
-          "english": "student",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مَعَاش",
-          "transliteration": "ma3aash",
-          "english": "pension, retirement",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "دُكْتُور",
-          "transliteration": "doktoor",
-          "english": "doctor",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مُمَرِّضَة",
-          "transliteration": "momarreDa",
-          "english": "nurse",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مِهْنَة",
-          "transliteration": "mehna",
-          "english": "profession",
-          "category": "Jobs"
-        }
-      ],
       "culture": "In Cairo, one of the first things people ask a new acquaintance is 'بتشتغل إيه؟', because a person's work says a lot about who they are. Asking about salary straight away is rude except between very close friends.",
       "exercises": [
         {
@@ -657,56 +607,6 @@
             "transliteration": "la shukran, 3aayez aroo7 badri.",
             "english": "No thanks, I want to go home early."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مُدِير",
-          "transliteration": "modeer",
-          "english": "manager",
-          "category": "The office"
-        },
-        {
-          "arabic": "مَكْتَب",
-          "transliteration": "maktab",
-          "english": "office, desk",
-          "category": "The office"
-        },
-        {
-          "arabic": "زَمِيل",
-          "transliteration": "zameel",
-          "english": "colleague",
-          "category": "The office"
-        },
-        {
-          "arabic": "تَقْرِير",
-          "transliteration": "ta2reer",
-          "english": "report",
-          "category": "The office"
-        },
-        {
-          "arabic": "إِجَازَة",
-          "transliteration": "agaaza",
-          "english": "day off, holiday",
-          "category": "The office"
-        },
-        {
-          "arabic": "مُرَتَّب",
-          "transliteration": "morattab",
-          "english": "salary",
-          "category": "The office"
-        },
-        {
-          "arabic": "كُمْبْيُوتَر",
-          "transliteration": "kombyootar",
-          "english": "computer",
-          "category": "The office"
-        },
-        {
-          "arabic": "طَابْعَة",
-          "transliteration": "Tab3a",
-          "english": "printer",
-          "category": "The office"
         }
       ],
       "culture": "Most Cairo offices start around nine and finish around five, with a lunch break in the middle. Colleagues use first names, but add 'أستاذ' or 'دكتور' plus the name for a manager or an older person; 'يا باشمهندس' is also common for engineers.",
@@ -1089,56 +989,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مُحَاضْرَة",
-          "transliteration": "mo7aDra",
-          "english": "lecture",
-          "category": "University"
-        },
-        {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "emte7aan",
-          "english": "exam",
-          "category": "University"
-        },
-        {
-          "arabic": "كُلِّيَّة",
-          "transliteration": "kolleyya",
-          "english": "faculty",
-          "category": "University"
-        },
-        {
-          "arabic": "تِرْم",
-          "transliteration": "term",
-          "english": "semester",
-          "category": "University"
-        },
-        {
-          "arabic": "نَتِيجَة",
-          "transliteration": "nateega",
-          "english": "result",
-          "category": "University"
-        },
-        {
-          "arabic": "مَكْتَبَة",
-          "transliteration": "maktaba",
-          "english": "library",
-          "category": "University"
-        },
-        {
-          "arabic": "مَادَّة",
-          "transliteration": "madda",
-          "english": "subject, course",
-          "category": "University"
-        },
-        {
-          "arabic": "جَامْعَة",
-          "transliteration": "gam3a",
-          "english": "university",
-          "category": "University"
-        }
-      ],
       "culture": "At Cairo University and other Egyptian universities, students call teachers 'دكتور' or 'دكتورة' whatever their age, and 'يا باشمهندس' is what engineering students call each other. Libraries fill up before exams, and many students study together in groups.",
       "exercises": [
         {
@@ -1514,56 +1364,6 @@
             "transliteration": "in sha2 allaah ab2a mustaqirr fi shoghl kwayyis.",
             "english": "God willing I'll be settled in a good job."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مَشْرُوع",
-          "transliteration": "mashroo3",
-          "english": "project",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "مَجَال",
-          "transliteration": "magaal",
-          "english": "field",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "مَاجِسْتِير",
-          "transliteration": "magesteer",
-          "english": "master's degree",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "بَرَّه",
-          "transliteration": "barra",
-          "english": "abroad, outside",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "حِلْم",
-          "transliteration": "7elm",
-          "english": "dream",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "وَظِيفَة",
-          "transliteration": "waZeefa",
-          "english": "job, post",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "طُمُوح",
-          "transliteration": "Tomoo7",
-          "english": "ambition",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "مُرْتَاح",
-          "transliteration": "mertaa7",
-          "english": "comfortable",
-          "category": "Future plans"
         }
       ],
       "culture": "When Egyptians talk about the future they add 'إن شاء الله' after almost every plan, even a sure one, because the future is in God's hands. Opening a small project or a restaurant is a very common dream in Cairo as a way to be independent, and a government job is still seen as the safe choice.",

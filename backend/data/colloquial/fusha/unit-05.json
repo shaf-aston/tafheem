@@ -210,56 +210,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "سَيَّارَة",
-          "transliteration": "sayyaara",
-          "english": "car",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "أُجْرَة",
-          "transliteration": "ujra",
-          "english": "fare",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "عَدَّاد",
-          "transliteration": "3addaad",
-          "english": "meter",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "عُنْوَان",
-          "transliteration": "3unwaan",
-          "english": "address",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "يَمِين",
-          "transliteration": "yameen",
-          "english": "right",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "يَسَار",
-          "transliteration": "yasaar",
-          "english": "left",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "اِزْدِحَام",
-          "transliteration": "izdi7aam",
-          "english": "traffic jam",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "قِفْ",
-          "transliteration": "qif",
-          "english": "stop! (to a man)",
-          "category": "Taxi"
-        }
-      ],
       "culture": "Taxis in Fusha-speaking cities are hailed with a raised hand and the destination is stated before you get in. Agree on the meter or the price first, and round the fare up with الْبَاقِي لَكَ if the ride was good.",
       "exercises": [
         {
@@ -634,62 +584,6 @@
             "transliteration": "3afwan, laa shukra 3alaa waajib.",
             "english": "You're welcome, no thanks needed."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "قَرِيب",
-          "transliteration": "qareeb",
-          "english": "near",
-          "category": "Directions"
-        },
-        {
-          "arabic": "بَعِيد",
-          "transliteration": "ba3eed",
-          "english": "far",
-          "category": "Directions"
-        },
-        {
-          "arabic": "أَمَام",
-          "transliteration": "amaam",
-          "english": "in front of",
-          "category": "Directions"
-        },
-        {
-          "arabic": "خَلْف",
-          "transliteration": "khalf",
-          "english": "behind",
-          "category": "Directions"
-        },
-        {
-          "arabic": "بِجَانِب",
-          "transliteration": "bijaanib",
-          "english": "next to",
-          "category": "Directions"
-        },
-        {
-          "arabic": "مُبَاشَرَةً",
-          "transliteration": "mubaasharatan",
-          "english": "straight ahead",
-          "category": "Directions"
-        },
-        {
-          "arabic": "زَاوِيَة",
-          "transliteration": "zaawiya",
-          "english": "corner",
-          "category": "Directions"
-        },
-        {
-          "arabic": "إِشَارَة",
-          "transliteration": "ishaara",
-          "english": "traffic light, sign",
-          "category": "Directions"
-        },
-        {
-          "arabic": "جِسْر",
-          "transliteration": "jisr",
-          "english": "bridge",
-          "category": "Directions"
         }
       ],
       "culture": "Strangers in Arabic-speaking cities will gladly stop to give directions, and often walk with you part of the way. Landmarks such as a mosque, a traffic light or the market are used more than street names.",
@@ -1068,62 +962,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "حَافِلَة",
-          "transliteration": "7aafila",
-          "english": "bus",
-          "category": "Buses"
-        },
-        {
-          "arabic": "مَوْقِف",
-          "transliteration": "mawqif",
-          "english": "stop",
-          "category": "Buses"
-        },
-        {
-          "arabic": "تَذْكِرَة",
-          "transliteration": "tadhkira",
-          "english": "ticket",
-          "category": "Buses"
-        },
-        {
-          "arabic": "رَاكِب",
-          "transliteration": "raakib",
-          "english": "passenger",
-          "category": "Buses"
-        },
-        {
-          "arabic": "مَقْعَد",
-          "transliteration": "maq3ad",
-          "english": "seat",
-          "category": "Buses"
-        },
-        {
-          "arabic": "خَطّ",
-          "transliteration": "khatt",
-          "english": "route, line",
-          "category": "Buses"
-        },
-        {
-          "arabic": "مُزْدَحِم",
-          "transliteration": "muzda7im",
-          "english": "crowded",
-          "category": "Buses"
-        },
-        {
-          "arabic": "رَكِبَ",
-          "transliteration": "rakiba",
-          "english": "he got on, rode",
-          "category": "Buses"
-        },
-        {
-          "arabic": "نَزَلَ",
-          "transliteration": "nazala",
-          "english": "he got off",
-          "category": "Buses"
-        }
-      ],
       "culture": "City buses and microbuses are cheap, busy and run on calling out your stop, so you tell the driver where to let you off. In the rush hour it is common to wait for the next one, which is almost always emptier.",
       "exercises": [
         {
@@ -1500,62 +1338,6 @@
             "transliteration": "amaama al-7adeeqa.",
             "english": "In front of the park."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مَصْرِف",
-          "transliteration": "masrif",
-          "english": "bank",
-          "category": "Places"
-        },
-        {
-          "arabic": "صَيْدَلِيَّة",
-          "transliteration": "saydaliyya",
-          "english": "pharmacy",
-          "category": "Places"
-        },
-        {
-          "arabic": "مُسْتَشْفًى",
-          "transliteration": "mustashfan",
-          "english": "hospital",
-          "category": "Places"
-        },
-        {
-          "arabic": "مَدْرَسَة",
-          "transliteration": "madrasa",
-          "english": "school",
-          "category": "Places"
-        },
-        {
-          "arabic": "مَكْتَبَة",
-          "transliteration": "maktaba",
-          "english": "library, bookshop",
-          "category": "Places"
-        },
-        {
-          "arabic": "حَدِيقَة",
-          "transliteration": "7adeeqa",
-          "english": "park, garden",
-          "category": "Places"
-        },
-        {
-          "arabic": "فُنْدُق",
-          "transliteration": "funduq",
-          "english": "hotel",
-          "category": "Places"
-        },
-        {
-          "arabic": "بَرِيد",
-          "transliteration": "bareed",
-          "english": "post",
-          "category": "Places"
-        },
-        {
-          "arabic": "مَتْحَف",
-          "transliteration": "mat7af",
-          "english": "museum",
-          "category": "Places"
         }
       ],
       "culture": "When you ask for a place in Fusha, the answer gives a neighbour: next to, near, in front of, behind. Mosques, churches, schools and markets are the landmarks everyone shares.",
@@ -1938,62 +1720,6 @@
             "transliteration": "as-saa3ata ath-thaaminata sabaa7an.",
             "english": "At eight in the morning."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "قِطَار",
-          "transliteration": "qitaar",
-          "english": "train",
-          "category": "Transport"
-        },
-        {
-          "arabic": "طَائِرَة",
-          "transliteration": "taa2ira",
-          "english": "aeroplane",
-          "category": "Transport"
-        },
-        {
-          "arabic": "دَرَّاجَة",
-          "transliteration": "darraaja",
-          "english": "bicycle",
-          "category": "Transport"
-        },
-        {
-          "arabic": "مِتْرُو",
-          "transliteration": "mitroo",
-          "english": "metro",
-          "category": "Transport"
-        },
-        {
-          "arabic": "مَحَطَّة",
-          "transliteration": "ma7atta",
-          "english": "station",
-          "category": "Transport"
-        },
-        {
-          "arabic": "مَطَار",
-          "transliteration": "mataar",
-          "english": "airport",
-          "category": "Transport"
-        },
-        {
-          "arabic": "رِحْلَة",
-          "transliteration": "ri7la",
-          "english": "trip, journey",
-          "category": "Transport"
-        },
-        {
-          "arabic": "مَشْيًا",
-          "transliteration": "mashyan",
-          "english": "on foot",
-          "category": "Transport"
-        },
-        {
-          "arabic": "وَصَلَ",
-          "transliteration": "wasala",
-          "english": "he arrived",
-          "category": "Transport"
         }
       ],
       "culture": "A taxi in a Fusha-speaking city is reached with a short polite question, هَلْ أَنْتَ مُتَاح؟, and the driver answers فِي خِدْمَتِكَ. You name the place, agree the fare with كَمِ الْأُجْرَة؟ and end the ride with تَوَقَّفْ هُنَا، لَوْ سَمَحْتَ.",

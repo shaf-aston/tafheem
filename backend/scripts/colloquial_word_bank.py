@@ -1,80 +1,70 @@
-"""A dialect's word banks as one plain text file, for a reviewer to read and edit.
+"""A dialect's words as one plain text file, for a reviewer to read and edit.
 
     python -m backend.scripts.colloquial_word_bank dump <dialect-folder> > words.txt
     python -m backend.scripts.colloquial_word_bank load <dialect-folder> words.txt
 
-The file is one block per lesson: a `## unit-NN lesson-NN <category>` line, then
-one `arabic | transliteration | english` line per word. A reviewer who knows the
-dialect can go through all of it in one sitting, with no JSON to keep valid.
-`load` writes the banks back into the unit files, then checks every unit the way
-the app does on load, and writes nothing if any of them breaks a rule.
+The file walks the course topic by topic: a `## unit-NN lesson-NN <title>` line,
+then one `id | english | arabic | transliteration` line for each word the topic
+teaches, each word once, where it is first taught. The English is shown, not
+edited: it is shared by every dialect and lives in words.json. A word not said
+yet has its last two columns empty. A reviewer who knows the dialect can go
+through all of it in one sitting, with no JSON to keep valid.
+`load` replaces the dialect's words.json with the file, after checking every unit
+the way the app does on load, and writes nothing if any of them breaks a rule.
 """
 import json
 import sys
 
 from backend.config import data_path
 from backend.scripts.check_colloquial_unit import faults
+from backend.services.colloquial import wordlist
 
 
-def _units(folder: str):
-    for path in sorted((data_path("colloquial_dir") / folder).glob("unit-*.json")):
-        yield path, json.loads(path.read_text(encoding="utf-8"))
+def _spine():
+    return json.loads((data_path("colloquial_dir") / "spine.json").read_text(encoding="utf-8"))["units"]
 
 
 def dump(folder: str) -> str:
-    blocks = []
-    for _, unit in _units(folder):
+    said, meanings, shown, blocks = wordlist.said_in(folder), wordlist.meanings(), set(), []
+    for unit in _spine():
         for lesson in unit["lessons"]:
-            words = lesson.get("vocabulary") or []
-            category = next((w["category"] for w in words if w.get("category")), lesson.get("title", ""))
-            lines = [f"## {unit['unit']} {lesson['lesson']} {category}"]
-            lines += [f"{w['arabic']} | {w['transliteration']} | {w['english']}" for w in words]
+            lines = [f"## {unit['unit']} {lesson['lesson']} {lesson['title']}"]
+            for one in lesson.get("words") or []:
+                if one in shown:
+                    continue
+                shown.add(one)
+                word = said.get(one, {})
+                lines.append(f"{one} | {meanings[one]['english']} | {word.get('arabic', '')} | {word.get('transliteration', '')}")
             blocks.append("\n".join(lines))
     return "\n\n".join(blocks) + "\n"
 
 
 def _read(text: str) -> tuple[dict, list[str]]:
-    banks, said, key = {}, [], None
+    words, said = {}, []
     for at, line in enumerate(text.splitlines(), 1):
         line = line.strip()
-        if line.startswith("## "):
-            unit, lesson, category = (line[3:].split(" ", 2) + [""])[:3]
-            key = (unit, lesson)
-            banks[key] = (category.strip(), [])
-        elif line:
-            parts = [part.strip() for part in line.split("|")]
-            if key is None or len(parts) != 3:
-                said.append(f"line {at} is not `arabic | transliteration | english` under a ## heading")
-                continue
-            arabic, transliteration, english = parts
-            banks[key][1].append({"arabic": arabic, "transliteration": transliteration,
-                                  "english": english, "category": banks[key][0]})
-    return banks, said
+        if not line or line.startswith("## "):
+            continue
+        parts = [part.strip() for part in line.split("|")]
+        if len(parts) != 4:
+            said.append(f"line {at} is not `id | english | arabic | transliteration`")
+            continue
+        one, _, arabic, spelling = parts
+        if one in words:
+            said.append(f"line {at} gives {one!r} a second time")
+        elif arabic or spelling:
+            words[one] = {"arabic": arabic, "transliteration": spelling}
+    return words, said
 
 
 def load(folder: str, text: str) -> list[str]:
-    banks, said = _read(text)
-    units, seen = [], set()
-    for path, unit in _units(folder):
-        for lesson in unit["lessons"]:
-            key = (unit["unit"], lesson["lesson"])
-            if key not in banks:
-                continue
-            seen.add(key)
-            words = banks[key][1]
-            if "vocabulary" in lesson:
-                lesson["vocabulary"] = words
-            else:  # a new bank sits after the drills, where the others do
-                items = list(lesson.items())
-                at = next((i + 1 for i, (name, _) in enumerate(items) if name == "de_book"), len(items))
-                lesson.clear()
-                lesson.update(items[:at] + [("vocabulary", words)] + items[at:])
-        units.append((path, unit))
-    said += [f"{unit} {lesson} is not a lesson of {folder}" for unit, lesson in banks if (unit, lesson) not in seen]
-    said += [f"{unit['unit']}: {why}" for _, unit in units for why in faults(folder, unit["unit"], unit)]
+    words, said = _read(text)
+    said += wordlist.unknown(words, wordlist.meanings(), folder)
+    written = sorted(path.stem for path in (data_path("colloquial_dir") / folder).glob("unit-*.json"))
+    said += [f"{name}: {why}" for name in written for why in faults(folder, name, words=words)]
     if not said:  # all or nothing, so a half-loaded dialect never reaches the app
-        for path, unit in units:
-            path.write_text(json.dumps(unit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        path = data_path("colloquial_dir") / folder / wordlist.FILE
+        path.write_text(wordlist.text(words), encoding="utf-8")
     return said
 
 

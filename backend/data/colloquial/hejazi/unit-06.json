@@ -230,56 +230,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فُسْتَان",
-          "transliteration": "fustaan",
-          "english": "dress",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قَمِيص",
-          "transliteration": "gameeS",
-          "english": "shirt",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "مَقَاس",
-          "transliteration": "magaas",
-          "english": "size",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "بَنْطَلُون",
-          "transliteration": "banTaloon",
-          "english": "trousers",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "ضَيِّق",
-          "transliteration": "Dayyig",
-          "english": "tight",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قُمَاش",
-          "transliteration": "gumaash",
-          "english": "fabric",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قُطْن",
-          "transliteration": "guTn",
-          "english": "cotton",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "جَزْمَة",
-          "transliteration": "jazma",
-          "english": "shoes",
-          "category": "Clothes"
-        }
-      ],
       "culture": "In Jeddah and Makkah, shop assistants know most customers speak different Arabic dialects or English, so they often wait for you to lead. Trying something on and saying it does not fit is completely normal and never rude. Hejazi speakers are known for their warmth and hospitality, so a shopkeeper will usually offer you tea while shopping.",
       "exercises": [
         {
@@ -640,56 +590,6 @@
             "transliteration": "l-azrag a7la bra2yi",
             "english": "Blue is nicer in my opinion."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "لُون",
-          "transliteration": "loon",
-          "english": "colour",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَزْرَق",
-          "transliteration": "azrag",
-          "english": "blue",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَحْمَر",
-          "transliteration": "a7mar",
-          "english": "red",
-          "category": "Colours"
-        },
-        {
-          "arabic": "رَمَادِي",
-          "transliteration": "ramaadi",
-          "english": "grey",
-          "category": "Colours"
-        },
-        {
-          "arabic": "فَاتِح",
-          "transliteration": "faati7",
-          "english": "light (colour)",
-          "category": "Colours"
-        },
-        {
-          "arabic": "غَامِق",
-          "transliteration": "ghaamig",
-          "english": "dark (colour)",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَخْضَر",
-          "transliteration": "akhDar",
-          "english": "green",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَصْفَر",
-          "transliteration": "aSfar",
-          "english": "yellow",
-          "category": "Colours"
         }
       ],
       "culture": "Shopkeepers in Hejazi markets genuinely enjoy the back-and-forth of helping someone choose a color, often bringing out three or four options unasked. Saying a color does not suit you is heard as useful feedback, not rude. This is especially true in the souks of Jeddah and the markets around the holy mosques.",
@@ -1053,56 +953,6 @@
             "transliteration": "tamam, ittafaqna",
             "english": "Ok, we agreed."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "غَالِي",
-          "transliteration": "ghaali",
-          "english": "expensive",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "أَرْخَص",
-          "transliteration": "arkhaS",
-          "english": "cheaper",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "سِعْر",
-          "transliteration": "si3r",
-          "english": "price",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "خَصْم",
-          "transliteration": "khaSm",
-          "english": "discount",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "أَلْف",
-          "transliteration": "alf",
-          "english": "thousand",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "مَجْمُوع",
-          "transliteration": "majmoo3",
-          "english": "total",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "خَسَارَة",
-          "transliteration": "khasaara",
-          "english": "loss",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "اِتَّفَقْنَا",
-          "transliteration": "ittafagna",
-          "english": "we agreed",
-          "category": "Bargaining"
         }
       ],
       "culture": "Bargaining over clothing and textiles is expected and enjoyed in Hejazi markets and souks. A first price is almost always an opening offer, and going back and forth two or three times before agreeing is a friendly ritual, not an argument. The bargaining itself is a sign of respect—it means you value the item enough to negotiate.",
@@ -1471,56 +1321,6 @@
             "transliteration": "hatman, wala yhimak",
             "english": "Sure, don't worry."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عَيْب",
-          "transliteration": "3ayb",
-          "english": "defect",
-          "category": "Returns"
-        },
-        {
-          "arabic": "فَاتُورَة",
-          "transliteration": "faatoora",
-          "english": "receipt",
-          "category": "Returns"
-        },
-        {
-          "arabic": "فُلُوس",
-          "transliteration": "fuloos",
-          "english": "money",
-          "category": "Returns"
-        },
-        {
-          "arabic": "غَلَط",
-          "transliteration": "ghalaT",
-          "english": "wrong",
-          "category": "Returns"
-        },
-        {
-          "arabic": "مَقَاس",
-          "transliteration": "magaas",
-          "english": "size",
-          "category": "Returns"
-        },
-        {
-          "arabic": "أَكْبَر",
-          "transliteration": "akbar",
-          "english": "bigger",
-          "category": "Returns"
-        },
-        {
-          "arabic": "ضَمَان",
-          "transliteration": "Damaan",
-          "english": "warranty",
-          "category": "Returns"
-        },
-        {
-          "arabic": "تَبْدِيل",
-          "transliteration": "tabdeel",
-          "english": "exchange",
-          "category": "Returns"
         }
       ],
       "culture": "Small Hejazi shops and markets usually prefer to exchange an item rather than refund cash, especially in the busy souks of Jeddah and around the holy mosques. Having the receipt makes the whole conversation much shorter and smoother. A genuine defect is almost always accepted without an argument—the shopkeeper's reputation depends on fair dealings.",

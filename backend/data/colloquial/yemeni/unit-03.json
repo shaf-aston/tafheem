@@ -248,56 +248,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "خُضْرَة",
-          "transliteration": "khuDra",
-          "english": "vegetables",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "طَمَاطِيس",
-          "transliteration": "TamaaTees",
-          "english": "tomatoes",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "خِيَار",
-          "transliteration": "khiyaar",
-          "english": "cucumber",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "بَصَل",
-          "transliteration": "baSal",
-          "english": "onions",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "ثُوم",
-          "transliteration": "thoom",
-          "english": "garlic",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "بَطَاط",
-          "transliteration": "baTaaT",
-          "english": "potatoes",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "بَقْدُونِس",
-          "transliteration": "bagdoonis",
-          "english": "parsley",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "فِلْفِل",
-          "transliteration": "filfil",
-          "english": "pepper",
-          "category": "Vegetables"
-        }
-      ],
       "culture": "عِند السَّبّاع بِالسُّوق اليمني بِتَحْكِي السّلام الكامل قَبْل مَا تَسْأَل عَن السِّعْر، وَمِن الأَدَب إِنْ تَسْأَل كَم البِضاعة وَتُبّ تِفَاوِض عَالسِّعْر خَفِيف. لمّا تَدْفَع وتَاخِد غِرَاضَك، بِتَقُول اللَّه يِبَارِك فِيك وهُو بِيّرُدّ عَلَيْك، هَيْك الطّريقة بِتِتحكّى دَايِم بِسُوق الخُضِر اليمني.",
       "exercises": [
         {
@@ -703,56 +653,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "خُبْز",
-          "transliteration": "khubz",
-          "english": "bread",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "تَنُّور",
-          "transliteration": "tannoor",
-          "english": "clay oven",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "لَحْم",
-          "transliteration": "la7m",
-          "english": "meat",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "ضَأْن",
-          "transliteration": "Da2n",
-          "english": "lamb",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "كُفْتَة",
-          "transliteration": "kufta",
-          "english": "kofta",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "صَاج",
-          "transliteration": "Saaj",
-          "english": "griddle bread",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "عَظْم",
-          "transliteration": "3aZm",
-          "english": "bone",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "سَاخِن",
-          "transliteration": "saakhin",
-          "english": "hot",
-          "category": "Bakery and butcher"
-        }
-      ],
       "culture": "الْخُبْز الطَّازّ بِيشْرِي يَوْمِيًّا عِند اليمنيين، والكثير منهم بيحبوا يجيبوا الخبز من التنور وهو للتو طالع. عِند الجَزَّار، الْسُّؤال الأول دايِمًا ضَأْن وِلَّا بَقَر، لَأَنَّ كُلّ نَوع سِعْره وطَعْمه مختلف. الْلَحْمَة الطّازة والخبز الدافي هما من أساسيات الطعام اليمني اليومي.",
       "exercises": [
         {
@@ -1145,56 +1045,6 @@
             "transliteration": "ana ra7 aghaslha ba3d il-akel",
             "english": "I'll after eating"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "رُزّ",
-          "transliteration": "ruzz",
-          "english": "rice",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "مِلْح",
-          "transliteration": "mil7",
-          "english": "salt",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "نَار",
-          "transliteration": "naar",
-          "english": "fire, flame",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "وَصْفَة",
-          "transliteration": "waSfa",
-          "english": "recipe",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "مِلْعَقَة",
-          "transliteration": "mil3aga",
-          "english": "spoon",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "صُحُون",
-          "transliteration": "Su7oon",
-          "english": "dishes",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "جَاهِز",
-          "transliteration": "jaahiz",
-          "english": "ready",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "رِيحَة",
-          "transliteration": "ree7a",
-          "english": "smell",
-          "category": "Cooking"
         }
       ],
       "culture": "الطَّبْخ بِالْبَيْت اليمني عَادَة شَيّ مُشْتَرَك بَيْن الْأُم وَالْبِنَات، وَكُلّ وَاحِدَة إِلَهَا دَوْر. الطَّبْخات اليمنية تُشْتَهِر بِالْبُهَارات وَالطُّعْم الْقَوِي. لَمّا الْأَكْل يِنْتَهِي، تِقُول الْأَم أَو الْبِنَات هَنِيئًا لَك أَو بِالْهَنَا، وهَيْك الطَّرِيقَة الْعَادِيَّة فِي كُلّ الْبُيُوت اليمنية.",
@@ -1596,56 +1446,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فُول",
-          "transliteration": "fool",
-          "english": "fava beans",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حِلْو",
-          "transliteration": "7ilw",
-          "english": "sweet, nice",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "مَالِح",
-          "transliteration": "maali7",
-          "english": "salty",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حَارّ",
-          "transliteration": "7aarr",
-          "english": "spicy",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حَامِض",
-          "transliteration": "7aamiD",
-          "english": "sour",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "دَجَاج",
-          "transliteration": "dajaaj",
-          "english": "chicken",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "سَمَك",
-          "transliteration": "samak",
-          "english": "fish",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حَلَوِيَّات",
-          "transliteration": "7alawiyyaat",
-          "english": "sweets",
-          "category": "Likes and dislikes"
-        }
-      ],
       "culture": "الطَّعَام فِي ثَقَافَة اليمن مِن أَهَمّ جَوَانِب الْحَيَاة الِاجْتِمَاعِيَّة. الْيمنيون يُقَدِّرُون الْفُول وَالْخُبْز كَثِيرًا، وَيَسْتَعْمِلُون الْبُهَارات بِكْثَرَة فِي طَبْخِهِم. لَمّا تِتَحَدَّث عَن الْطَّعَام، يُمْكِنَك أَنْ تَقُول بِالْهَنَا أَوْ هَنِيئًا بَعْد مَا الشَّخْص يِقُول إِنَّه يُحِبّ أَكْلَة مَا.",
       "exercises": [
         {
@@ -2022,56 +1822,6 @@
             "transliteration": "tamaam, aakhir si3r b-thamaaniin.",
             "english": "Okay, final price, eighty."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "غَالِي",
-          "transliteration": "ghaali",
-          "english": "expensive",
-          "category": "At the market"
-        },
-        {
-          "arabic": "رَخِيص",
-          "transliteration": "rakhees",
-          "english": "cheap",
-          "category": "At the market"
-        },
-        {
-          "arabic": "خَصْم",
-          "transliteration": "khaSm",
-          "english": "discount",
-          "category": "At the market"
-        },
-        {
-          "arabic": "سِعْر",
-          "transliteration": "si3r",
-          "english": "price",
-          "category": "At the market"
-        },
-        {
-          "arabic": "كِيس",
-          "transliteration": "kees",
-          "english": "bag",
-          "category": "At the market"
-        },
-        {
-          "arabic": "بِكَم",
-          "transliteration": "bikam",
-          "english": "how much",
-          "category": "At the market"
-        },
-        {
-          "arabic": "بَيَّاع",
-          "transliteration": "bayyaa3",
-          "english": "seller",
-          "category": "At the market"
-        },
-        {
-          "arabic": "كِيلُو",
-          "transliteration": "keelo",
-          "english": "kilo",
-          "category": "At the market"
         }
       ],
       "culture": "Bargaining is common in Yemeni markets and souks, especially in Sana'a, for clothing, household goods, and handicrafts. The back-and-forth haggling is expected and friendly. Greet the seller with \"السلام عليكم\" first, then ask the price. A seller who says \"آخر سعر\" is making a final offer, which is usually worth accepting.",

@@ -224,56 +224,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَرْحَبَا",
-          "transliteration": "mar7aba",
-          "english": "hello",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "هَلَا",
-          "transliteration": "hala",
-          "english": "hi, welcome",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "اِسْم",
-          "transliteration": "ism",
-          "english": "name",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "زِين",
-          "transliteration": "zeen",
-          "english": "good, fine",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "تَمَام",
-          "transliteration": "tamaam",
-          "english": "fine, great",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "بَعَد",
-          "transliteration": "ba3ad",
-          "english": "also, too",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "مْنِين",
-          "transliteration": "mneen",
-          "english": "from where",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "آنِي",
-          "transliteration": "aani",
-          "english": "I",
-          "category": "Greetings"
-        }
-      ],
       "culture": "In Iraq a greeting is rarely a single word: people say \"هلا\" and \"هلا بيك\" back and forth, and friends often add kisses on the cheek. With elders or on first meeting, \"السلام عليكم\" is the safe opening, and \"مرحبا\" and \"هلا\" are the everyday ones between peers.",
       "exercises": [
         {
@@ -685,56 +635,6 @@
             "transliteration": "ee, tfaDDal.",
             "english": "Yes, go ahead."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "شُكْرًا",
-          "transliteration": "shukran",
-          "english": "thank you",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "اللَّه يْخَلِّيك",
-          "transliteration": "allah ykhallik",
-          "english": "please (lit. God keep you)",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "آسِف",
-          "transliteration": "aasif",
-          "english": "sorry",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "عَادِي",
-          "transliteration": "3aadi",
-          "english": "never mind, it's fine",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "عَفْوًا",
-          "transliteration": "3afwan",
-          "english": "you're welcome",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "مُمْكِن",
-          "transliteration": "mumkin",
-          "english": "possible, can I",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "إِي",
-          "transliteration": "ee",
-          "english": "yes",
-          "category": "Politeness"
-        },
-        {
-          "arabic": "تْفَضَّل",
-          "transliteration": "tfaDDal",
-          "english": "please, go ahead",
-          "category": "Politeness"
         }
       ],
       "culture": "Iraqi hospitality shows in the small words: \"تفضل\" is said whenever something is offered, and a guest is often offered tea or water before anything else. A request is softened with \"لو سمحت\" and answered warmly.",
@@ -1157,56 +1057,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "وَاحِد",
-          "transliteration": "waa7id",
-          "english": "one",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "ثْنِين",
-          "transliteration": "thneen",
-          "english": "two",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "ثْلَاثَة",
-          "transliteration": "thlaatha",
-          "english": "three",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "خَمْسَة",
-          "transliteration": "khamsa",
-          "english": "five",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "سَاعَة",
-          "transliteration": "saa3a",
-          "english": "hour, clock",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "الْيُوم",
-          "transliteration": "il-yoom",
-          "english": "today",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "بَاچِر",
-          "transliteration": "baachir",
-          "english": "tomorrow",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "هَسَّه",
-          "transliteration": "hassa",
-          "english": "now",
-          "category": "Numbers and time"
-        }
-      ],
       "culture": "Iraqis add \"إن شاء الله\" to almost any plan for tomorrow; it is a habit of speech, not a sign of doubt. In shops a price said as a bare number usually means thousands of dinars, so \"خمسة\" can mean five thousand.",
       "exercises": [
         {
@@ -1623,56 +1473,6 @@
             "transliteration": "allah y3aafiik.",
             "english": "You're welcome."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "سُوگ",
-          "transliteration": "soog",
-          "english": "market",
-          "category": "Directions"
-        },
-        {
-          "arabic": "دُكَّان",
-          "transliteration": "dukkaan",
-          "english": "shop",
-          "category": "Directions"
-        },
-        {
-          "arabic": "يَمِين",
-          "transliteration": "yameen",
-          "english": "right",
-          "category": "Directions"
-        },
-        {
-          "arabic": "شِمَال",
-          "transliteration": "shimaal",
-          "english": "left",
-          "category": "Directions"
-        },
-        {
-          "arabic": "گْرِيب",
-          "transliteration": "greeb",
-          "english": "near",
-          "category": "Directions"
-        },
-        {
-          "arabic": "بَعِيد",
-          "transliteration": "ba3eed",
-          "english": "far",
-          "category": "Directions"
-        },
-        {
-          "arabic": "هْنَا",
-          "transliteration": "hnaa",
-          "english": "here",
-          "category": "Directions"
-        },
-        {
-          "arabic": "هْنَاك",
-          "transliteration": "hnaak",
-          "english": "there",
-          "category": "Directions"
         }
       ],
       "culture": "In Baghdad people often give directions by landmarks, squares (\"ساحة\") and neighbourhood names rather than street names, and add each turn only after you react. \"شمال\" is a common everyday word for left, and \"يعطيك العافية\" is a warm thanks after anyone helps you.",

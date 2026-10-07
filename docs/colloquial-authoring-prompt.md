@@ -44,7 +44,6 @@ keeping each `slot` name exactly:
       "dialogue": [ { "speaker": "", "arabic": "", "transliteration": "", "english": "" } ],
       "de_book": [ { "pair": { "arabic": "", "transliteration": "", "english": "" },
                      "response": { "arabic": "", "transliteration": "", "english": "" } } ],
-      "vocabulary": [ { "arabic": "", "transliteration": "", "english": "", "category": "" } ],
       "culture": "",
       "exercises": [
         { "id": "unit-01.lesson-01.choose.01", "type": "choose",
@@ -64,12 +63,9 @@ keeping each `slot` name exactly:
 - `phrases`: exactly the outline's slots, each with its `reply` where one exists
 - `dialogue`: 10 or more lines, between named speakers
 - `de_book`: 4 or more pairs
-- `vocabulary`: 8 or more single words related to the topic (not phrases; a
-  fixed two-word name like عيد ميلاد is fine), each with a short `category`
-  (e.g. "jobs"); skip only if the topic has none. Every word is one a learner
-  would need in this topic's scene: never a filler word added to reach 8. No
-  word twice in a lesson. Use this dialect's everyday word, not the MSA one,
-  where they differ
+- no `vocabulary`: a topic's words are not written in the unit. Its English is
+  shared in words.json, and the dialect's Arabic goes in `<dialect>/words.json`
+  (see FORMAT.md, "Words"), usually through `colloquial_word_bank dump` and `load`
 - `culture`: 1 to 3 sentences
 - `exercises`: 10 or more, using at least 4 of the five types
 - every exercise carries `id`, `answer`, 3 or more `accepted` variants, a

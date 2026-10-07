@@ -225,56 +225,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مُهَنْدِس",
-          "transliteration": "muhandis",
-          "english": "engineer",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مُدَرِّس",
-          "transliteration": "mudarris",
-          "english": "teacher",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "شَرِكَة",
-          "transliteration": "sharika",
-          "english": "company",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "طَالِب",
-          "transliteration": "Taalib",
-          "english": "student",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مُتَقَاعِد",
-          "transliteration": "mutaqaa3id",
-          "english": "retired",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "دُكْتُور",
-          "transliteration": "duktoor",
-          "english": "doctor",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "شُغْل",
-          "transliteration": "shughl",
-          "english": "work, job",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مُوَظَّف",
-          "transliteration": "muwaZZaf",
-          "english": "employee",
-          "category": "Jobs"
-        }
-      ],
       "culture": "في اليمن المجتمع يركز على الشغِل والدراسة كجزء مهم من الحياة، والناس بتسأل عن الشغِل بطريقة طبيعية في الحوارات اليومية. السؤال عن الراتب مباشرة بعتبر قلة ذوق، والناس بيفضلوا التحدث عن الشغِل من جهة الاهتمام والمسؤولية.",
       "exercises": [
         {
@@ -638,56 +588,6 @@
             "transliteration": "la shukran, biddi roo7 lil-bait badri.",
             "english": "No thanks, I want to go home early."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مُدِير",
-          "transliteration": "mudeer",
-          "english": "manager",
-          "category": "The office"
-        },
-        {
-          "arabic": "مَكْتَب",
-          "transliteration": "maktab",
-          "english": "office, desk",
-          "category": "The office"
-        },
-        {
-          "arabic": "زَمِيل",
-          "transliteration": "zameel",
-          "english": "colleague",
-          "category": "The office"
-        },
-        {
-          "arabic": "تَقْرِير",
-          "transliteration": "taqreer",
-          "english": "report",
-          "category": "The office"
-        },
-        {
-          "arabic": "إِجَازَة",
-          "transliteration": "ijaaza",
-          "english": "day off, holiday",
-          "category": "The office"
-        },
-        {
-          "arabic": "رَاتِب",
-          "transliteration": "raatib",
-          "english": "salary",
-          "category": "The office"
-        },
-        {
-          "arabic": "إِيمِيل",
-          "transliteration": "eemeel",
-          "english": "email",
-          "category": "The office"
-        },
-        {
-          "arabic": "طَابْعَة",
-          "transliteration": "Taab3a",
-          "english": "printer",
-          "category": "The office"
         }
       ],
       "culture": "في اليمن الموظفين في المكاتب الحكومية والخاصة يعملوا ساعات محددة، والعلاقة بين الموظفين والمدير بتكون احترافية مع قليل من الودية. الناس بيقولوا 'الحمد لله على كل حال' في كل جانب من الحياة اليومية، ويعتبرونها دعاء شاكرين.",
@@ -1061,56 +961,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مُحَاضَرَة",
-          "transliteration": "mu7aaDara",
-          "english": "lecture",
-          "category": "University"
-        },
-        {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "imti7aan",
-          "english": "exam",
-          "category": "University"
-        },
-        {
-          "arabic": "تَخَصُّص",
-          "transliteration": "takhaSSuS",
-          "english": "major",
-          "category": "University"
-        },
-        {
-          "arabic": "فَصْل",
-          "transliteration": "faSl",
-          "english": "semester",
-          "category": "University"
-        },
-        {
-          "arabic": "نَتِيجَة",
-          "transliteration": "nateeja",
-          "english": "result",
-          "category": "University"
-        },
-        {
-          "arabic": "مَكْتَبَة",
-          "transliteration": "maktaba",
-          "english": "library",
-          "category": "University"
-        },
-        {
-          "arabic": "وَاجِب",
-          "transliteration": "waajib",
-          "english": "homework",
-          "category": "University"
-        },
-        {
-          "arabic": "جَامِعَة",
-          "transliteration": "jaami3a",
-          "english": "university",
-          "category": "University"
-        }
-      ],
       "culture": "في جامعات اليمن الطلاب بينادوا الأستاذ 'دكتور' احتراما لمركزه العلمي، والمكتبات بتضل مفتوحة لوقت متأخر أيام الامتحانات، والطلاب بيدرسوا في مجموعات ويساعدوا بعضهم البعض في الاختبارات.",
       "exercises": [
         {
@@ -1477,56 +1327,6 @@
             "transliteration": "bi2amal akoon mustagir bishugli tammaam.",
             "english": "I hope to be settled in good work."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مَشْرُوع",
-          "transliteration": "mashroo3",
-          "english": "project",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "دِرَاسَة",
-          "transliteration": "diraasa",
-          "english": "studies",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "مَاجِسْتِير",
-          "transliteration": "maajisteer",
-          "english": "master's degree",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "بَرَّا",
-          "transliteration": "barra",
-          "english": "abroad, outside",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "حِلْم",
-          "transliteration": "7ilm",
-          "english": "dream",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "وَظِيفَة",
-          "transliteration": "waZeefa",
-          "english": "job, post",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "طُمُوح",
-          "transliteration": "Tumoo7",
-          "english": "ambition",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "مِرْتَاح",
-          "transliteration": "mirtaa7",
-          "english": "comfortable",
-          "category": "Future plans"
         }
       ],
       "culture": "لما حد يمني بيحكي عن مستقبله يقول 'إن شاء الله' بعد كل خطة، حتى لو كانت أكيدة، لأن المستقبل بإيد الله. الحلم بفتح مشروع أو مطعم شايع كتير بين الشباب اليمني للاستقلال والثقة بالنفس. والراتب والفلوس مهمة، لكن الاستقرار والسعادة بالشغِل أهم.",

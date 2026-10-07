@@ -215,56 +215,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عِيلِة",
-          "transliteration": "3eele",
-          "english": "family",
-          "category": "Family"
-        },
-        {
-          "arabic": "إِمّ",
-          "transliteration": "imm",
-          "english": "mother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أَبُو",
-          "transliteration": "abu",
-          "english": "father",
-          "category": "Family"
-        },
-        {
-          "arabic": "أَخ",
-          "transliteration": "akh",
-          "english": "brother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أُخْت",
-          "transliteration": "ukht",
-          "english": "sister",
-          "category": "Family"
-        },
-        {
-          "arabic": "اِبِن",
-          "transliteration": "ibin",
-          "english": "son",
-          "category": "Family"
-        },
-        {
-          "arabic": "بِنْت",
-          "transliteration": "bint",
-          "english": "daughter, girl",
-          "category": "Family"
-        },
-        {
-          "arabic": "مَرَا",
-          "transliteration": "mara",
-          "english": "wife, woman",
-          "category": "Family"
-        }
-      ],
       "culture": "Family comes up early in Damascene conversation, and people often ask directly about its size and where relatives live. Saying you are still single (\"لسا عزوبي\" for a man, \"لسا عزوبة\" for a woman) is a plain, unremarkable answer, not treated as private.",
       "exercises": [
         {
@@ -669,56 +619,6 @@
             "transliteration": "tfaddal, haad il7saab.",
             "english": "Here you go, this is the bill."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "جُوعَان",
-          "transliteration": "joo3aan",
-          "english": "hungry",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَطْشَان",
-          "transliteration": "3aTshaan",
-          "english": "thirsty",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "أَكِل",
-          "transliteration": "akel",
-          "english": "food",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "قَهْوِة",
-          "transliteration": "2ahwe",
-          "english": "coffee",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "شَاي",
-          "transliteration": "shaay",
-          "english": "tea",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "فَلَافِل",
-          "transliteration": "falaafel",
-          "english": "falafel",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "حْسَاب",
-          "transliteration": "7saab",
-          "english": "bill",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "صَحْتَين",
-          "transliteration": "Sa7teen",
-          "english": "bon appétit",
-          "category": "Food and drink"
         }
       ],
       "culture": "Sharing food and insisting on paying the bill are both very common in Damascene life. \"صحتين\" after someone finishes eating or drinking, and \"بالهنا والشفا\" while they are still eating, are fixed courtesies almost always used, and almost always answered with their own fixed reply.",

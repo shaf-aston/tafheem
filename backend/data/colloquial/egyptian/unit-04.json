@@ -209,56 +209,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فِنْجَان",
-          "transliteration": "fengaan",
-          "english": "small cup",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "سُكَّر",
-          "transliteration": "sokkar",
-          "english": "sugar",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "سَادَة",
-          "transliteration": "saada",
-          "english": "plain, no sugar",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "مَظْبُوط",
-          "transliteration": "maZbooT",
-          "english": "medium sweet",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "نَعْنَاع",
-          "transliteration": "na3naa3",
-          "english": "mint",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "زِيَادَة",
-          "transliteration": "ziyaada",
-          "english": "extra",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "مُرّ",
-          "transliteration": "morr",
-          "english": "bitter",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "كِبِير",
-          "transliteration": "kebeer",
-          "english": "big",
-          "category": "Coffee and tea"
-        }
-      ],
       "culture": "In Cairo a cup of coffee or tea is the first gesture of hospitality, at home and at the ahwa (coffee shop). Turkish-style coffee is ordered by sugar level: saada (none), mazbooT (medium) or sukkar ziyaada (extra), and tea often comes in a glass with mint.",
       "exercises": [
         {
@@ -657,56 +607,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَنْيُو",
-          "transliteration": "menyu",
-          "english": "menu",
-          "category": "The menu"
-        },
-        {
-          "arabic": "مَشْوِيَّات",
-          "transliteration": "mashweyyaat",
-          "english": "grills",
-          "category": "The menu"
-        },
-        {
-          "arabic": "مُقَبِّلَات",
-          "transliteration": "mo2abbelaat",
-          "english": "starters",
-          "category": "The menu"
-        },
-        {
-          "arabic": "نَبَاتِي",
-          "transliteration": "nabaati",
-          "english": "vegetarian",
-          "category": "The menu"
-        },
-        {
-          "arabic": "طَبَق",
-          "transliteration": "Taba2",
-          "english": "dish",
-          "category": "The menu"
-        },
-        {
-          "arabic": "حَرَّاق",
-          "transliteration": "7arraa2",
-          "english": "spicy, hot",
-          "category": "The menu"
-        },
-        {
-          "arabic": "خَفِيف",
-          "transliteration": "khafeef",
-          "english": "light",
-          "category": "The menu"
-        },
-        {
-          "arabic": "حَلَوِيَّات",
-          "transliteration": "7alaweyyaat",
-          "english": "desserts",
-          "category": "The menu"
-        }
-      ],
       "culture": "Cairo menus are usually printed in Arabic and English, and waiters happily recommend dishes. Koshari, ful and Ta3meyya (falafel) are everyday Egyptian dishes made without meat, so they are the usual answer to a vegetarian question.",
       "exercises": [
         {
@@ -1097,56 +997,6 @@
             "transliteration": "la2 shukran, kida tamaam",
             "english": "No thanks, that's good."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "طَلَب",
-          "transliteration": "Talab",
-          "english": "order",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "سَلَطَة",
-          "transliteration": "salaTa",
-          "english": "salad",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "حُمُّص",
-          "transliteration": "7ommoS",
-          "english": "hummus",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "مَكَرُونَة",
-          "transliteration": "makarona",
-          "english": "pasta",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "شُورْبَة",
-          "transliteration": "shorba",
-          "english": "soup",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "كُبَّايَة",
-          "transliteration": "kobbaaya",
-          "english": "glass",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "بِسُرْعَة",
-          "transliteration": "be-sor3a",
-          "english": "quickly",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "نَفْس",
-          "transliteration": "nafs",
-          "english": "the same",
-          "category": "Ordering"
         }
       ],
       "culture": "In Cairo bread is called 3eesh, the same word as 'life', and asking for more of it is completely routine. Waiters often ask 'te2mur bi-eeh?' (what is your order?) as well as 'gaahiz tiTlub?', and water is simply mayya.",
@@ -1544,56 +1394,6 @@
             "transliteration": "aywa, momken el-faatoora?",
             "english": "Yes, can I have the receipt?"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "حِسَاب",
-          "transliteration": "7esaab",
-          "english": "bill",
-          "category": "Paying"
-        },
-        {
-          "arabic": "كَاش",
-          "transliteration": "kaash",
-          "english": "cash",
-          "category": "Paying"
-        },
-        {
-          "arabic": "فِيزَا",
-          "transliteration": "feeza",
-          "english": "card",
-          "category": "Paying"
-        },
-        {
-          "arabic": "خِدْمَة",
-          "transliteration": "khedma",
-          "english": "service charge",
-          "category": "Paying"
-        },
-        {
-          "arabic": "بَاقِي",
-          "transliteration": "baa2i",
-          "english": "change",
-          "category": "Paying"
-        },
-        {
-          "arabic": "فَاتُورَة",
-          "transliteration": "faatoora",
-          "english": "receipt",
-          "category": "Paying"
-        },
-        {
-          "arabic": "جِنِيه",
-          "transliteration": "geneeh",
-          "english": "pound",
-          "category": "Paying"
-        },
-        {
-          "arabic": "بَقْشِيش",
-          "transliteration": "ba2sheesh",
-          "english": "tip",
-          "category": "Paying"
         }
       ],
       "culture": "Friends in Cairo often argue over who pays, saying 'el-7isaab 3aleyya' (the bill is on me) with real insistence, and refusing once or twice is polite. Many restaurants add a service charge (khidma) to the bill, and a little extra for the waiter is still common.",

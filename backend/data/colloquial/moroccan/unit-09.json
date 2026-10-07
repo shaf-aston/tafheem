@@ -230,56 +230,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عْيَّان",
-          "transliteration": "3yyaan",
-          "english": "tired, ill",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "صْدَاع",
-          "transliteration": "Sdaa3",
-          "english": "headache",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "كْرْش",
-          "transliteration": "kersh",
-          "english": "stomach",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "سْخَانَة",
-          "transliteration": "skhaana",
-          "english": "fever",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "مْدَوّْخ",
-          "transliteration": "mdewwekh",
-          "english": "dizzy",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "مْزْكّْم",
-          "transliteration": "mzekkem",
-          "english": "having a cold",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "نْعَاس",
-          "transliteration": "n3aas",
-          "english": "sleep, sleepiness",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "رَاحَة",
-          "transliteration": "raa7a",
-          "english": "rest",
-          "category": "Feeling unwell"
-        }
-      ],
       "culture": "Moroccans answer \"كيدايرة\" with \"الحمد لله\" almost automatically, even when they feel unwell, and only then add the complaint with \"ولاكين\". \"الله يشافيك\" (may God heal you) is the standard wish as soon as someone mentions being ill.",
       "exercises": [
         {
@@ -675,56 +625,6 @@
             "transliteration": "mn b3d lmakla",
             "english": "After the meal"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "دْوَا",
-          "transliteration": "dwa",
-          "english": "medicine",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "حْبُوب",
-          "transliteration": "7boob",
-          "english": "pills",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "سِيرُو",
-          "transliteration": "seeroo",
-          "english": "syrup",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "كْحَّة",
-          "transliteration": "k77a",
-          "english": "cough",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "وْصْفَة",
-          "transliteration": "waSfa",
-          "english": "prescription",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "حْسَاسِيَّة",
-          "transliteration": "7saasiyya",
-          "english": "allergy",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "كْرْش",
-          "transliteration": "kersh",
-          "english": "stomach",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "مْرْهَم",
-          "transliteration": "merhem",
-          "english": "ointment",
-          "category": "Pharmacy"
         }
       ],
       "culture": "In Morocco a pharmacist will often give advice and hand over simple medicines for a cold, fever or headache without a prescription, so a short chat at the counter is normal. Pharmacies take turns staying open at night and on Sundays, and the wish \"الله يشافيك\" closes the exchange.",
@@ -1123,56 +1023,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَوْعِد",
-          "transliteration": "maw3id",
-          "english": "appointment",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "تْحَالِيل",
-          "transliteration": "t7aaleel",
-          "english": "medical tests",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "نّْفْس",
-          "transliteration": "nefs",
-          "english": "breath",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "ضّْغْط",
-          "transliteration": "DeghT",
-          "english": "blood pressure",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "طَالْع",
-          "transliteration": "Taale3",
-          "english": "high",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "خْطِير",
-          "transliteration": "khTeer",
-          "english": "serious, dangerous",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "رَادْيُو",
-          "transliteration": "radyo",
-          "english": "X-ray",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "مْرِيض",
-          "transliteration": "mreeD",
-          "english": "patient",
-          "category": "Doctor"
-        }
-      ],
       "culture": "In Morocco you usually book an appointment (many people say \"رونديفو\", from French rendez-vous) and greet the receptionist and the doctor with \"السلام عليكم\" before anything else. Doctors and patients mix Darija with French words such as \"أوردونانس\" (prescription), and patients thank the doctor with \"الله يعطيك الصحة\".",
       "exercises": [
         {
@@ -1551,56 +1401,6 @@
             "transliteration": "la, krshi hiya lli ktDerrni",
             "english": "No, it's my stomach that hurts"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "رَاس",
-          "transliteration": "raas",
-          "english": "head",
-          "category": "Body"
-        },
-        {
-          "arabic": "ضّْهْر",
-          "transliteration": "Dher",
-          "english": "back",
-          "category": "Body"
-        },
-        {
-          "arabic": "يْدّ",
-          "transliteration": "yedd",
-          "english": "hand, arm",
-          "category": "Body"
-        },
-        {
-          "arabic": "رْجْل",
-          "transliteration": "rjel",
-          "english": "leg, foot",
-          "category": "Body"
-        },
-        {
-          "arabic": "عِين",
-          "transliteration": "3een",
-          "english": "eye",
-          "category": "Body"
-        },
-        {
-          "arabic": "وْدْن",
-          "transliteration": "wden",
-          "english": "ear",
-          "category": "Body"
-        },
-        {
-          "arabic": "سْنَّة",
-          "transliteration": "senna",
-          "english": "tooth",
-          "category": "Body"
-        },
-        {
-          "arabic": "رْقْبَة",
-          "transliteration": "rqba",
-          "english": "neck",
-          "category": "Body"
         }
       ],
       "culture": "Moroccans name the part first and the pain after it, as in \"ضهري كيضرني\" or \"كرشي كتضرني\", and the verb follows the gender of the body part. A warm \"الله يشافيك\" or \"ريّح راسك\" from friends and neighbours is expected as soon as someone mentions pain.",

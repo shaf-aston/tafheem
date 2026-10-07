@@ -214,56 +214,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَبْسُوط",
-          "transliteration": "mabsooT",
-          "english": "happy",
-          "category": "Feelings"
-        },
-        {
-          "arabic": "زَعْلَان",
-          "transliteration": "za3laan",
-          "english": "upset",
-          "category": "Feelings"
-        },
-        {
-          "arabic": "تَعْبَان",
-          "transliteration": "ta3baan",
-          "english": "tired",
-          "category": "Feelings"
-        },
-        {
-          "arabic": "غَضْبَان",
-          "transliteration": "ghaDbaan",
-          "english": "angry",
-          "category": "Feelings"
-        },
-        {
-          "arabic": "قَلْقَان",
-          "transliteration": "2al2aan",
-          "english": "worried",
-          "category": "Feelings"
-        },
-        {
-          "arabic": "خَايِف",
-          "transliteration": "khaayef",
-          "english": "scared",
-          "category": "Feelings"
-        },
-        {
-          "arabic": "حَزِين",
-          "transliteration": "7azeen",
-          "english": "sad",
-          "category": "Feelings"
-        },
-        {
-          "arabic": "زَهْقَان",
-          "transliteration": "zah2aan",
-          "english": "bored",
-          "category": "Feelings"
-        }
-      ],
       "culture": "In Damascus people usually answer \"كيفك؟\" with \"الحمد لله\" out of habit, no matter how they really feel, and a close friend will push further with \"شو فيك؟\" if something seems off. Saying \"زعلان\" or \"تعبان\" plainly is normal only with people you're close to.",
       "exercises": [
         {
@@ -634,56 +584,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "صَحّ",
-          "transliteration": "Sa77",
-          "english": "right, correct",
-          "category": "Agreeing"
-        },
-        {
-          "arabic": "مَظْبُوط",
-          "transliteration": "maZbooT",
-          "english": "exactly",
-          "category": "Agreeing"
-        },
-        {
-          "arabic": "حَقّ",
-          "transliteration": "7a22",
-          "english": "right (being right)",
-          "category": "Agreeing"
-        },
-        {
-          "arabic": "مُوَافِق",
-          "transliteration": "muwaafe2",
-          "english": "agreeing",
-          "category": "Agreeing"
-        },
-        {
-          "arabic": "رَأْي",
-          "transliteration": "ra2y",
-          "english": "opinion",
-          "category": "Agreeing"
-        },
-        {
-          "arabic": "يِمْكِن",
-          "transliteration": "yimkin",
-          "english": "maybe",
-          "category": "Agreeing"
-        },
-        {
-          "arabic": "هِيك",
-          "transliteration": "heek",
-          "english": "like this",
-          "category": "Agreeing"
-        },
-        {
-          "arabic": "صَحِيح",
-          "transliteration": "Sa7ee7",
-          "english": "true",
-          "category": "Agreeing"
-        }
-      ],
       "culture": "In Damascus, disagreement is usually softened with \"يمكن\" or \"بس\" before saying no outright, and \"معك حق\" is used generously to keep the conversation smooth, sometimes even when only part of what was said is actually agreed with.",
       "exercises": [
         {
@@ -1052,56 +952,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "نَصِيحَة",
-          "transliteration": "naSee7a",
-          "english": "advice",
-          "category": "Advice"
-        },
-        {
-          "arabic": "دُكْتُور",
-          "transliteration": "doktoor",
-          "english": "doctor",
-          "category": "Advice"
-        },
-        {
-          "arabic": "عِلَاج",
-          "transliteration": "3ilaaj",
-          "english": "treatment",
-          "category": "Advice"
-        },
-        {
-          "arabic": "لَازِم",
-          "transliteration": "laazim",
-          "english": "must, should",
-          "category": "Advice"
-        },
-        {
-          "arabic": "أَحْسَن",
-          "transliteration": "a7san",
-          "english": "better",
-          "category": "Advice"
-        },
-        {
-          "arabic": "اِنْتِبِه",
-          "transliteration": "intebeh",
-          "english": "be careful",
-          "category": "Advice"
-        },
-        {
-          "arabic": "بَال",
-          "transliteration": "baal",
-          "english": "mind, attention",
-          "category": "Advice"
-        },
-        {
-          "arabic": "هَادِي",
-          "transliteration": "haadi",
-          "english": "calm",
-          "category": "Advice"
-        }
-      ],
       "culture": "Advice in Damascus is often given even when nobody asked for it, especially by older relatives and neighbors, and it's polite to answer \"معك حق\" or \"يمكن\" even when there's no plan to actually follow it.",
       "exercises": [
         {
@@ -1467,56 +1317,6 @@
             "transliteration": "la2, bass biddi tsakhkhinuuli lakil",
             "english": "No, but I want you to heat the food for me."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مِشْكْلِة",
-          "transliteration": "mishkle",
-          "english": "problem",
-          "category": "Complaining"
-        },
-        {
-          "arabic": "إِزْعَاج",
-          "transliteration": "iz3aaj",
-          "english": "bother, disturbance",
-          "category": "Complaining"
-        },
-        {
-          "arabic": "غَلْطَة",
-          "transliteration": "ghalTa",
-          "english": "mistake",
-          "category": "Complaining"
-        },
-        {
-          "arabic": "تَعْوِيض",
-          "transliteration": "ta3weeD",
-          "english": "compensation",
-          "category": "Complaining"
-        },
-        {
-          "arabic": "مُهِمّ",
-          "transliteration": "muhimm",
-          "english": "important",
-          "category": "Complaining"
-        },
-        {
-          "arabic": "مَوْضُوع",
-          "transliteration": "mawDoo3",
-          "english": "matter, subject",
-          "category": "Complaining"
-        },
-        {
-          "arabic": "ضَجَّة",
-          "transliteration": "Dajje",
-          "english": "noise",
-          "category": "Complaining"
-        },
-        {
-          "arabic": "فْلُوس",
-          "transliteration": "fluus",
-          "english": "money",
-          "category": "Complaining"
         }
       ],
       "culture": "Damascenes soften a complaint with \"لو سمحت\" and \"آسف عالإزعاج\" before naming the actual problem, and end it with a thank-you phrase like \"يعطيك العافية\" so the complaint never feels like a direct attack on the person listening.",

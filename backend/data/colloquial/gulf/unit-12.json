@@ -217,56 +217,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "أَلُو",
-          "transliteration": "aloo",
-          "english": "hello (on the phone)",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "خَطّ",
-          "transliteration": "khaTT",
-          "english": "line",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "رَصِيد",
-          "transliteration": "raSeed",
-          "english": "phone credit",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "بَطَّارِيَّة",
-          "transliteration": "baTTaariyya",
-          "english": "battery",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "شَبَكَة",
-          "transliteration": "shabaka",
-          "english": "signal, network",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "جَوَّال",
-          "transliteration": "jawwaal",
-          "english": "mobile phone",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "عْلُوم",
-          "transliteration": "3loom",
-          "english": "news",
-          "category": "Answering the phone"
-        }
-      ],
       "culture": "A Gulf call often opens with \"هلا\" or \"ألو\", and \"السلام عليكم\" is common too, especially with someone older; a short warm greeting like \"شو علومك؟\" comes before the reason for the call. Ending with \"الله يعافيك\" or \"في أمان الله\" keeps it polite.",
       "exercises": [
         {
@@ -641,56 +591,6 @@
             "transliteration": "yalla, khudhni wayyaak",
             "english": "Okay, take me with you."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "كَافِيه",
-          "transliteration": "kaafeeh",
-          "english": "café",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "سَاعَة",
-          "transliteration": "saa3a",
-          "english": "hour, o'clock",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "مَكَان",
-          "transliteration": "makaan",
-          "english": "place",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "قَبِل",
-          "transliteration": "gabil",
-          "english": "before",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "مَوْقِع",
-          "transliteration": "mawgi3",
-          "english": "location",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "دُوَّار",
-          "transliteration": "dawwaar",
-          "english": "roundabout",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "بِالضَّبْط",
-          "transliteration": "bid-DabT",
-          "english": "exactly",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "سْوَا",
-          "transliteration": "swa",
-          "english": "together",
-          "category": "Arranging to meet"
         }
       ],
       "culture": "In the UAE and Kuwait people usually arrange to meet at a mall, a well-known cafe or a big mosque rather than giving a street address. The Umayyad Mosque is in Damascus, so the Gulf line names a local landmark instead, such as the Grand Mosque in Kuwait or the Sheikh Zayed Grand Mosque in Abu Dhabi.",
@@ -1069,56 +969,6 @@
             "transliteration": "laa, ghayyarna l-makaan",
             "english": "No, we changed the place."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "تَأْجِيل",
-          "transliteration": "ta2jeel",
-          "english": "postponement",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "ظَرْف",
-          "transliteration": "Dharf",
-          "english": "circumstance",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "تَغْيِير",
-          "transliteration": "taghyeer",
-          "english": "change",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "بَدَل",
-          "transliteration": "badal",
-          "english": "instead of",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "صُبُح",
-          "transliteration": "Subu7",
-          "english": "morning",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "عَصِر",
-          "transliteration": "3aSir",
-          "english": "afternoon",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "يُوم",
-          "transliteration": "yoom",
-          "english": "day",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "بَعْد بَاچِر",
-          "transliteration": "ba3d baachir",
-          "english": "day after tomorrow",
-          "category": "Changing plans"
         }
       ],
       "culture": "Plans shift often around work, family visits and prayer times, and rearranging at short notice is normal as long as it comes with a quick apology like \"آسف على التغيير المفاجئ\". The other person usually answers \"لا عليك\" or \"عادي\", and Friday plans are usually set around the Friday prayer.",
@@ -1500,56 +1350,6 @@
             "transliteration": "ee, ma7fuudh 3indi",
             "english": "Yes, I have it saved."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "رِسَالَة",
-          "transliteration": "risaala",
-          "english": "message",
-          "category": "Messages"
-        },
-        {
-          "arabic": "وَاتْسَاب",
-          "transliteration": "waatsaab",
-          "english": "WhatsApp",
-          "category": "Messages"
-        },
-        {
-          "arabic": "مَوْجُود",
-          "transliteration": "mawjood",
-          "english": "present, in",
-          "category": "Messages"
-        },
-        {
-          "arabic": "إِيمِيل",
-          "transliteration": "eemeel",
-          "english": "email",
-          "category": "Messages"
-        },
-        {
-          "arabic": "صُورَة",
-          "transliteration": "Soora",
-          "english": "photo, picture",
-          "category": "Messages"
-        },
-        {
-          "arabic": "رَدّ",
-          "transliteration": "radd",
-          "english": "reply",
-          "category": "Messages"
-        },
-        {
-          "arabic": "أَكِيد",
-          "transliteration": "akeed",
-          "english": "sure, of course",
-          "category": "Messages"
-        },
-        {
-          "arabic": "فُويْس",
-          "transliteration": "foys",
-          "english": "voice note",
-          "category": "Messages"
         }
       ],
       "culture": "It is normal in the Gulf for a family member to answer the phone and pass on a message, and men often ask after the family before the message itself. \"يعطيك العافية\" is the standard thank-you for a favor, and \"الله يعافيك\" is the usual reply.",

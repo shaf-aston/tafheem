@@ -209,56 +209,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "جَوّ",
-          "transliteration": "jaww",
-          "english": "weather",
-          "category": "Weather"
-        },
-        {
-          "arabic": "شَمْس",
-          "transliteration": "shams",
-          "english": "sun",
-          "category": "Weather"
-        },
-        {
-          "arabic": "حَارّ",
-          "transliteration": "7aarr",
-          "english": "hot",
-          "category": "Weather"
-        },
-        {
-          "arabic": "بَارِد",
-          "transliteration": "baarid",
-          "english": "cold",
-          "category": "Weather"
-        },
-        {
-          "arabic": "مَطَر",
-          "transliteration": "maTar",
-          "english": "rain",
-          "category": "Weather"
-        },
-        {
-          "arabic": "غَيْم",
-          "transliteration": "ghaym",
-          "english": "clouds",
-          "category": "Weather"
-        },
-        {
-          "arabic": "هَوَا",
-          "transliteration": "hawa",
-          "english": "wind, air",
-          "category": "Weather"
-        },
-        {
-          "arabic": "شَمْسِيَّة",
-          "transliteration": "shamsiyya",
-          "english": "umbrella",
-          "category": "Weather"
-        }
-      ],
       "culture": "بِصَنْعَاء النَّاس تِتْحَاكَى عَنِ الْجَوّ كْتِير كِنَوْع مِنَ الْحَدِيث الْخَفِيف، خَاصَّة أَوَّل الصَّبَّاح وَقُبْل مَا تِطْلُع مِنَ الْبَيْت. كَلِمَة \"الدُّنْيَا\" تِنِسْتَخْدَم بِدَل \"الْجَوّ\" كْتِير.",
       "exercises": [
         {
@@ -636,56 +586,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فَصْل",
-          "transliteration": "faSl",
-          "english": "season",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "صَيْف",
-          "transliteration": "Sayf",
-          "english": "summer",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "شِتَا",
-          "transliteration": "shita",
-          "english": "winter",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "رَبِيع",
-          "transliteration": "rabee3",
-          "english": "spring",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "خَرِيف",
-          "transliteration": "khareef",
-          "english": "autumn",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "ثَلْج",
-          "transliteration": "thalj",
-          "english": "snow",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "حَرّ",
-          "transliteration": "7arr",
-          "english": "heat",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "جَافّ",
-          "transliteration": "jaaff",
-          "english": "dry",
-          "category": "Seasons"
-        }
-      ],
       "culture": "بِصَنْعَاء الصَّيْف بِيْكُون طَوِيل وَحَاار وَجَافّ، وَالشِّتَا أَوِ الثَّلْج بِيْصِير غَالِباً مِن دِيسِمْبِر لِفِبْرَايِر. الثَّلْج عَلَى الْجِبْل قَرِيب مِنَ الْمَدِينَة شَيْء يُحِبّ النَّاس يِطْلَعُو يِتْفَرَّجُو عَلَيْهِ.",
       "exercises": [
         {
@@ -1054,56 +954,6 @@
             "transliteration": "la2annu bymTur ktiir w tiSiir il2arD mablula",
             "english": "Because it rains a lot and the ground gets wet."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "سْوِيتَر",
-          "transliteration": "sweetar",
-          "english": "jumper",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "جَاكِيت",
-          "transliteration": "jaakeet",
-          "english": "jacket",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "شُورْت",
-          "transliteration": "short",
-          "english": "shorts",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "نَظَّارَة",
-          "transliteration": "naZZaara",
-          "english": "glasses",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "بُوت",
-          "transliteration": "boot",
-          "english": "boots",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "كُوفِيَّة",
-          "transliteration": "koofiyya",
-          "english": "cap",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "خَفِيف",
-          "transliteration": "khafeef",
-          "english": "light",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "ثَقِيل",
-          "transliteration": "thageel",
-          "english": "heavy",
-          "category": "Clothes for the weather"
         }
       ],
       "culture": "بِصَنْعَاء النَّاس بِتِلْبَس كَذَا طَبَقَة بِالشِّتَا (كِنْزَة تَحْت جَاكِيت) لأَنُّو الْجَوّ بِيْتِغَيَّر بَيْن الصَّبَّاح وَالْلَّيْل. الشَّمْسِيَّة وَالْمِطْرِيَّة شَيْء أَسَاسِي بِالشَّنْطَة أَوِ السَّيَّارَة مِن دِيسِمْبِر لِفِبْرَايِر.",
@@ -1478,56 +1328,6 @@
             "transliteration": "ii, 7aarr ktiir w fi rii7 gawiyyah",
             "english": "Yes, it's very hot and the wind is strong."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "حَدِيقَة",
-          "transliteration": "7adeega",
-          "english": "park",
-          "category": "Going out"
-        },
-        {
-          "arabic": "طَلْعَة",
-          "transliteration": "Tal3a",
-          "english": "outing",
-          "category": "Going out"
-        },
-        {
-          "arabic": "رِحْلَة",
-          "transliteration": "ri7la",
-          "english": "trip",
-          "category": "Going out"
-        },
-        {
-          "arabic": "بَلْكُونَة",
-          "transliteration": "balkoona",
-          "english": "balcony",
-          "category": "Going out"
-        },
-        {
-          "arabic": "سَهْرَة",
-          "transliteration": "sahra",
-          "english": "evening out",
-          "category": "Going out"
-        },
-        {
-          "arabic": "لَطِيف",
-          "transliteration": "laTeef",
-          "english": "pleasant",
-          "category": "Going out"
-        },
-        {
-          "arabic": "نَشْرَة",
-          "transliteration": "nashra",
-          "english": "bulletin, forecast",
-          "category": "Going out"
-        },
-        {
-          "arabic": "بَرَّا",
-          "transliteration": "barra",
-          "english": "outside",
-          "category": "Going out"
         }
       ],
       "culture": "بِصَنْعَاء الطَّقْس يِتِغَيَّر سَرِيع بَيْن الْفُصُول، فَالنَّاس دَائِماً بِتِفْكِّر فِي الْجَوّ قُبْل مَا تِخَطِّط لِأَي طَلْعَة أَوْ رَحْلَة. إِن شَاء الَّلَّه هُوَ تَعْبِير شَائِع جِداً عِنْد الْحَدِيث عَنِ الْمُسْتَقْبَل.",

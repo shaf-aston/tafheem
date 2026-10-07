@@ -209,56 +209,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "جَوّ",
-          "transliteration": "jaww",
-          "english": "weather",
-          "category": "Weather"
-        },
-        {
-          "arabic": "شَمْس",
-          "transliteration": "shams",
-          "english": "sun",
-          "category": "Weather"
-        },
-        {
-          "arabic": "حَرّ",
-          "transliteration": "7arr",
-          "english": "heat, hot",
-          "category": "Weather"
-        },
-        {
-          "arabic": "بَرْد",
-          "transliteration": "bard",
-          "english": "cold",
-          "category": "Weather"
-        },
-        {
-          "arabic": "مَطَر",
-          "transliteration": "maTar",
-          "english": "rain",
-          "category": "Weather"
-        },
-        {
-          "arabic": "سَحَاب",
-          "transliteration": "sa7aab",
-          "english": "clouds",
-          "category": "Weather"
-        },
-        {
-          "arabic": "هَوَا",
-          "transliteration": "hawa",
-          "english": "wind, air",
-          "category": "Weather"
-        },
-        {
-          "arabic": "شَمْسِيَّة",
-          "transliteration": "shamsiyya",
-          "english": "umbrella",
-          "category": "Weather"
-        }
-      ],
       "culture": "في الحجاز الناس بتحكي عن الجو كتير خاصة بالصباح قبل لا تطلع من البيت. كلمة \"هسع\" معناها الحين، و\"إيش\" هي طريقة أهل الحجاز لقول \"ما\" أو \"شنو\".",
       "exercises": [
         {
@@ -614,56 +564,6 @@
             "transliteration": "eeh, jaw mu3tadil w rii7 khafiifa",
             "english": "Yes, mild weather and gentle breeze."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "فَصْل",
-          "transliteration": "faSl",
-          "english": "season",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "صَيْف",
-          "transliteration": "Sayf",
-          "english": "summer",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "شِتَا",
-          "transliteration": "shita",
-          "english": "winter",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "رَبِيع",
-          "transliteration": "rabee3",
-          "english": "spring",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "خَرِيف",
-          "transliteration": "khareef",
-          "english": "autumn",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "ثَلْج",
-          "transliteration": "thalj",
-          "english": "snow",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "حَرّ",
-          "transliteration": "7arr",
-          "english": "heat",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "نَاشِف",
-          "transliteration": "naashif",
-          "english": "dry",
-          "category": "Seasons"
         }
       ],
       "culture": "بالحجاز الصيف طويل وحار من مايو لآخر سبتمبر. الشتا بيكون من ديسمبر لفبراير والجو بيصير معتدل لطيف. الناس بتحب الربيع لأن الجو حلو والأزهار تطلع.",
@@ -1022,56 +922,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "بُلُوفَر",
-          "transliteration": "bulover",
-          "english": "jumper",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "جَاكِيت",
-          "transliteration": "jaakeet",
-          "english": "jacket",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "شُورْت",
-          "transliteration": "short",
-          "english": "shorts",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "نَظَّارَة",
-          "transliteration": "naZZaara",
-          "english": "glasses",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "بُوت",
-          "transliteration": "boot",
-          "english": "boots",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "كَاب",
-          "transliteration": "kaab",
-          "english": "cap",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "خَفِيف",
-          "transliteration": "khafeef",
-          "english": "light",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "تَقِيل",
-          "transliteration": "tageel",
-          "english": "heavy",
-          "category": "Clothes for the weather"
-        }
-      ],
       "culture": "بالحجاز الناس بتلبس طبقات كتيرة بالشتا لأن الجو يتغير بين الصباح والليل. الشمسية والمطرية أساسي من أكتوبر لأبريل. البنات والنساء بيلبسن عبايات وفوق الملابس الخفيفة.",
       "exercises": [
         {
@@ -1425,56 +1275,6 @@
             "transliteration": "eeh, idha shti minaajjilha",
             "english": "Yes, if it rains we'll postpone it."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "حَدِيقَة",
-          "transliteration": "7adeega",
-          "english": "park",
-          "category": "Going out"
-        },
-        {
-          "arabic": "طَلْعَة",
-          "transliteration": "Tal3a",
-          "english": "outing",
-          "category": "Going out"
-        },
-        {
-          "arabic": "رِحْلَة",
-          "transliteration": "ri7la",
-          "english": "trip",
-          "category": "Going out"
-        },
-        {
-          "arabic": "بَلْكُونَة",
-          "transliteration": "balkoona",
-          "english": "balcony",
-          "category": "Going out"
-        },
-        {
-          "arabic": "سَهْرَة",
-          "transliteration": "sahra",
-          "english": "evening out",
-          "category": "Going out"
-        },
-        {
-          "arabic": "حِلْو",
-          "transliteration": "7ilw",
-          "english": "nice",
-          "category": "Going out"
-        },
-        {
-          "arabic": "نَشْرَة",
-          "transliteration": "nashra",
-          "english": "bulletin, forecast",
-          "category": "Going out"
-        },
-        {
-          "arabic": "بَرَّا",
-          "transliteration": "barra",
-          "english": "outside",
-          "category": "Going out"
         }
       ],
       "culture": "في الحجاز الناس محبة الطلعات والجلسات بالهواء الطلق، خاصة بالشتا والربيع. الشرفة مكان محبوب للجلسة خاصة بالمساء لما يصير الجو بارد شوي ولطيف. الناس بتشرب القهوة أو الشاي والعصير بالجلسات.",

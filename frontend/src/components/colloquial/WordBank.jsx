@@ -11,10 +11,11 @@ import SpeakButton from '../ui/SpeakButton'
 import { FOCUS } from './Face'
 import Spelling from './Spelling'
 
-// Repeats across topics show once.
+// Repeats across topics show once: a word by its meaning's id, a phrase by its Arabic.
+const keyOf = (r) => r.id ?? r.arabic
 function unique(rows) {
   const seen = new Set()
-  return rows.filter((r) => r && !seen.has(r.arabic) && seen.add(r.arabic))
+  return rows.filter((r) => r && !seen.has(keyOf(r)) && seen.add(keyOf(r)))
 }
 
 // A phrase and the reply that goes with it are both worth learning.
@@ -48,7 +49,7 @@ function Bank({ rows, onClose, scope, title }) {
             {category && <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)] pt-2">{category}</h3>}
             <ul className="grid sm:grid-cols-2 sm:gap-x-8">
               {group.map((r) => (
-                <li key={r.arabic} className="flex items-baseline justify-between gap-4 py-2.5 border-b border-[var(--border)]">
+                <li key={keyOf(r)} className="flex items-baseline justify-between gap-4 py-2.5 border-b border-[var(--border)]">
                   <span className="min-w-0">
                     <span className="type-small text-[var(--text)]">{r.english}</span>
                     <Spelling className="block">{r.transliteration}</Spelling>

@@ -233,56 +233,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فُسْطَان",
-          "transliteration": "fusTaan",
-          "english": "dress",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قَمِيص",
-          "transliteration": "2ameeS",
-          "english": "shirt",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قْيَاس",
-          "transliteration": "2yaas",
-          "english": "size",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "بَدْلِة",
-          "transliteration": "badle",
-          "english": "suit",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "ضَيِّق",
-          "transliteration": "Dayye2",
-          "english": "tight",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قْمَاش",
-          "transliteration": "2maash",
-          "english": "fabric",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قُطُن",
-          "transliteration": "2uTun",
-          "english": "cotton",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "كْبِير",
-          "transliteration": "kbeer",
-          "english": "big",
-          "category": "Clothes"
-        }
-      ],
       "culture": "In Damascus, a shopkeeper in Souq al-Hamidiyeh or a small neighborhood store will pull several sizes off the rack without being asked twice, and trying something on and saying it does not fit is completely normal, never rude.",
       "exercises": [
         {
@@ -645,56 +595,6 @@
             "transliteration": "l-azra2 a7la bra2yi",
             "english": "Blue is nicer in my opinion."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "لَوْن",
-          "transliteration": "lawn",
-          "english": "colour",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَزْرَق",
-          "transliteration": "azra2",
-          "english": "blue",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَحْمَر",
-          "transliteration": "a7mar",
-          "english": "red",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَسْوَد",
-          "transliteration": "aswad",
-          "english": "black",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَبْيَض",
-          "transliteration": "abyaD",
-          "english": "white",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَخْضَر",
-          "transliteration": "akhDar",
-          "english": "green",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَصْفَر",
-          "transliteration": "asfar",
-          "english": "yellow",
-          "category": "Colours"
-        },
-        {
-          "arabic": "بُرْتُقَالِي",
-          "transliteration": "burtu2aali",
-          "english": "orange",
-          "category": "Colours"
         }
       ],
       "culture": "Shopkeepers genuinely enjoy the back-and-forth of helping someone choose a color, often bringing out three or four options unasked. Saying a color does not suit you is heard as useful, not rude.",
@@ -1061,56 +961,6 @@
             "transliteration": "tamaam, ittafa2na",
             "english": "Ok, we agreed."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "تَمَن",
-          "transliteration": "taman",
-          "english": "price",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "أَرْخَص",
-          "transliteration": "arkhaS",
-          "english": "cheaper",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "عَرْض",
-          "transliteration": "3arD",
-          "english": "offer",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "نُصّ",
-          "transliteration": "nuSS",
-          "english": "half",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "أَلْف",
-          "transliteration": "alf",
-          "english": "thousand",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "مَجْمُوع",
-          "transliteration": "majmoo3",
-          "english": "total",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "كْتِير",
-          "transliteration": "kteer",
-          "english": "a lot, very",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "اِتَّفَقْنَا",
-          "transliteration": "ittafa2na",
-          "english": "we agreed",
-          "category": "Bargaining"
         }
       ],
       "culture": "Bargaining over anything but food is expected in a Damascene souk. A first price is almost always an opening offer, and going back and forth two or three times before agreeing is a friendly ritual, not an argument.",
@@ -1481,56 +1331,6 @@
             "transliteration": "akiid, wala yhemmak",
             "english": "Sure, don't worry."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عِيب",
-          "transliteration": "3eeb",
-          "english": "defect",
-          "category": "Returns"
-        },
-        {
-          "arabic": "وَصِل",
-          "transliteration": "waSel",
-          "english": "receipt",
-          "category": "Returns"
-        },
-        {
-          "arabic": "مَصَارِي",
-          "transliteration": "maSaari",
-          "english": "money",
-          "category": "Returns"
-        },
-        {
-          "arabic": "غَلَط",
-          "transliteration": "ghalaT",
-          "english": "wrong",
-          "category": "Returns"
-        },
-        {
-          "arabic": "مَقَاس",
-          "transliteration": "ma2aas",
-          "english": "size",
-          "category": "Returns"
-        },
-        {
-          "arabic": "أَكْبَر",
-          "transliteration": "akbar",
-          "english": "bigger",
-          "category": "Returns"
-        },
-        {
-          "arabic": "إِرْجَاع",
-          "transliteration": "irjaa3",
-          "english": "return",
-          "category": "Returns"
-        },
-        {
-          "arabic": "بَدَّل",
-          "transliteration": "baddel",
-          "english": "exchange",
-          "category": "Returns"
         }
       ],
       "culture": "Small Damascene shops usually prefer to exchange an item rather than refund cash, and having the receipt makes the whole conversation much shorter. A genuine defect is almost always accepted without an argument.",

@@ -225,56 +225,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عِيلَة",
-          "transliteration": "3eela",
-          "english": "family",
-          "category": "Family"
-        },
-        {
-          "arabic": "أُمّ",
-          "transliteration": "omm",
-          "english": "mother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أَب",
-          "transliteration": "abb",
-          "english": "father",
-          "category": "Family"
-        },
-        {
-          "arabic": "أَخ",
-          "transliteration": "akh",
-          "english": "brother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أُخْت",
-          "transliteration": "okht",
-          "english": "sister",
-          "category": "Family"
-        },
-        {
-          "arabic": "اِبْن",
-          "transliteration": "ebn",
-          "english": "son",
-          "category": "Family"
-        },
-        {
-          "arabic": "بِنْت",
-          "transliteration": "bent",
-          "english": "daughter, girl",
-          "category": "Family"
-        },
-        {
-          "arabic": "جُوز",
-          "transliteration": "gooz",
-          "english": "husband",
-          "category": "Family"
-        }
-      ],
       "culture": "Asking about family is a warm, normal opener in Egypt, and people usually say ماما and بابا for mum and dad rather than the plainer أمي and أبويا. Told someone is unmarried, people often answer with a kind wish such as ربنا يرزقك (may God provide for you), and ما شاء الله is said on hearing about someone's child.",
       "exercises": [
         {
@@ -699,56 +649,6 @@
             "transliteration": "allaah ye3aafeek.",
             "english": "May God give you health."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "جَعَان",
-          "transliteration": "ga3aan",
-          "english": "hungry",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَطْشَان",
-          "transliteration": "3aTshaan",
-          "english": "thirsty",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "أَكْل",
-          "transliteration": "akl",
-          "english": "food",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "قَهْوَة",
-          "transliteration": "2ahwa",
-          "english": "coffee",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "شَاي",
-          "transliteration": "shaay",
-          "english": "tea",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "طَعْمِيَّة",
-          "transliteration": "Ta3meyya",
-          "english": "falafel",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَصِير",
-          "transliteration": "3aSeer",
-          "english": "juice",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "مَيَّة",
-          "transliteration": "mayya",
-          "english": "water",
-          "category": "Food and drink"
         }
       ],
       "culture": "In Egypt, ta3meyya (made from fava beans) is what falafel is called, and it is eaten with fool for breakfast. Diners wish each other بالهنا والشفا, a guest thanks the host with سفرة دايمة (may your table always be full), and friends often argue over who pays the bill.",
