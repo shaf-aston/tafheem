@@ -212,6 +212,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "آلُو",
+          "transliteration": "aaloo",
+          "english": "hello (on the phone)",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "خَطّ",
+          "transliteration": "khaTT",
+          "english": "line",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "رَصِيد",
+          "transliteration": "raSeed",
+          "english": "phone credit",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "بَطَّارِيِّة",
+          "transliteration": "baTTaariyye",
+          "english": "battery",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "تَغْطِيِة",
+          "transliteration": "taghTiye",
+          "english": "signal coverage",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "مُوبَايِل",
+          "transliteration": "mobaayl",
+          "english": "mobile phone",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "تَلِفُون",
+          "transliteration": "talifoon",
+          "english": "telephone",
+          "category": "Answering the phone"
+        }
+      ],
       "culture": "In Damascus a call usually opens with \"آلو؟\" rather than the caller's name, so the person answering asks \"مين معي؟\" to find out who it is. Ending a call abruptly without a short goodbye like \"يسلمو\" or \"بستناك\" can come across as cold.",
       "exercises": [
         {
@@ -577,6 +627,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَقْهَى",
+          "transliteration": "ma2ha",
+          "english": "café",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مَوْعِد",
+          "transliteration": "maw3id",
+          "english": "appointment",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مَدْخَل",
+          "transliteration": "madkhal",
+          "english": "entrance",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "قِدَّام",
+          "transliteration": "2iddaam",
+          "english": "in front of",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "سَوَا",
+          "transliteration": "sawa",
+          "english": "together",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مَكَان",
+          "transliteration": "makaan",
+          "english": "place",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "بِالزَّبْط",
+          "transliteration": "biz-zabT",
+          "english": "exactly",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "سَاعَة",
+          "transliteration": "saa3a",
+          "english": "hour, o'clock",
+          "category": "Arranging to meet"
+        }
+      ],
       "culture": "Cafes are the default place to arrange to meet in Damascus, and a specific landmark like the Umayyad Mosque or a well-known cafe entrance is given instead of a street address. Confirming the time again by a quick text right before the meeting is normal and expected, not a sign of doubt.",
       "exercises": [
         {
@@ -938,6 +1038,56 @@
             "transliteration": "la2, ghayyarna l-makaan",
             "english": "No, we changed the place."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "شَغْلِة",
+          "transliteration": "shaghle",
+          "english": "something to do",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "مِشْكْلِة",
+          "transliteration": "mishkle",
+          "english": "problem",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "يَوْم",
+          "transliteration": "yoom",
+          "english": "day",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بَدَل",
+          "transliteration": "badal",
+          "english": "instead of",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "تَغْيِير",
+          "transliteration": "taghyeer",
+          "english": "change",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "صُبُح",
+          "transliteration": "Subu7",
+          "english": "morning",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بَعِد الضُّهُر",
+          "transliteration": "ba3d iD-Duhur",
+          "english": "afternoon",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "بُكْرَا",
+          "transliteration": "bukra",
+          "english": "tomorrow",
+          "category": "Changing plans"
         }
       ],
       "culture": "Plans change often in daily life in Damascus, and rearranging them on short notice is normal rather than rude, as long as it comes with a quick apology like \"آسف عالتغيير المفاجئ\". The other person almost always answers with \"ولا يهمك\" to show there are no hard feelings.",
@@ -1304,6 +1454,56 @@
             "transliteration": "ee, 3indi ma7fuuz",
             "english": "Yes, I have it saved."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رِسَالِة",
+          "transliteration": "risaale",
+          "english": "message",
+          "category": "Messages"
+        },
+        {
+          "arabic": "رَقِم",
+          "transliteration": "ra2em",
+          "english": "number",
+          "category": "Messages"
+        },
+        {
+          "arabic": "مَوْجُود",
+          "transliteration": "mawjood",
+          "english": "present, in",
+          "category": "Messages"
+        },
+        {
+          "arabic": "خَبَر",
+          "transliteration": "khabar",
+          "english": "news",
+          "category": "Messages"
+        },
+        {
+          "arabic": "إِيمْتَى",
+          "transliteration": "eemta",
+          "english": "when",
+          "category": "Messages"
+        },
+        {
+          "arabic": "مَحْفُوظ",
+          "transliteration": "ma7fooZ",
+          "english": "saved",
+          "category": "Messages"
+        },
+        {
+          "arabic": "أَكِيد",
+          "transliteration": "akeed",
+          "english": "sure, of course",
+          "category": "Messages"
+        },
+        {
+          "arabic": "شْوَيّ",
+          "transliteration": "shwayy",
+          "english": "a little",
+          "category": "Messages"
         }
       ],
       "culture": "It's normal in Damascus for a family member or roommate to answer the phone and take a message for someone who is out, and a caller is expected to give their name clearly the first time so the message makes sense later. \"يسلمو\" and \"عالرحب والسعة\" are the standard thank-you and reply for a favor like taking a message.",

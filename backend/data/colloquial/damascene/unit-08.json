@@ -229,6 +229,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مُهَنْدِس",
+          "transliteration": "muhandis",
+          "english": "engineer",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "مْعَلِّم",
+          "transliteration": "m3allem",
+          "english": "teacher",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "شِرْكِة",
+          "transliteration": "shirke",
+          "english": "company",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "طَالِب",
+          "transliteration": "Taalib",
+          "english": "student",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "مِتْقَاعِد",
+          "transliteration": "mit2aa3id",
+          "english": "retired",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "طَبِيب",
+          "transliteration": "Tabeeb",
+          "english": "doctor",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "سْنِين",
+          "transliteration": "sneen",
+          "english": "years",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "جْدِيد",
+          "transliteration": "jdeed",
+          "english": "new",
+          "category": "Jobs"
+        }
+      ],
       "culture": "بسوريا كتير مرات أول سؤال بتعرف فيه حدا جديد هو 'شو بتشتغل؟' لأنو الشغل جزء كبير من هوية الشخص. السؤال عن المعاش مباشرة بعتبر قلة ذوق إلا مع صحاب كتير مقربين.",
       "exercises": [
         {
@@ -598,6 +648,56 @@
             "transliteration": "la shukran, biddi roo7 3al beit badri.",
             "english": "No thanks, I want to go home early."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُدِير",
+          "transliteration": "mudeer",
+          "english": "manager",
+          "category": "The office"
+        },
+        {
+          "arabic": "مَكْتَب",
+          "transliteration": "maktab",
+          "english": "office, desk",
+          "category": "The office"
+        },
+        {
+          "arabic": "زَمِيل",
+          "transliteration": "zameel",
+          "english": "colleague",
+          "category": "The office"
+        },
+        {
+          "arabic": "تَقْرِير",
+          "transliteration": "ta2reer",
+          "english": "report",
+          "category": "The office"
+        },
+        {
+          "arabic": "إِجَازِة",
+          "transliteration": "ijaaze",
+          "english": "day off, holiday",
+          "category": "The office"
+        },
+        {
+          "arabic": "رَاتِب",
+          "transliteration": "raatib",
+          "english": "salary",
+          "category": "The office"
+        },
+        {
+          "arabic": "شَهِر",
+          "transliteration": "shahir",
+          "english": "month",
+          "category": "The office"
+        },
+        {
+          "arabic": "طَابْعَة",
+          "transliteration": "Taab3a",
+          "english": "printer",
+          "category": "The office"
         }
       ],
       "culture": "بمعظم مكاتب الشام الدوام بيبلش الساعة تسعة وبيخلص الساعة خمسة، وبين نص النهار في وقت قصير للغدا. زملاء الشغل بينادوا بعض بأسماء أول احيانا مع 'أستاذ' أو 'دكتور' احتراما للمدير أو حدا أكبر.",
@@ -971,6 +1071,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مُحَاضَرَة",
+          "transliteration": "mu7aaDara",
+          "english": "lecture",
+          "category": "University"
+        },
+        {
+          "arabic": "اِمْتِحَان",
+          "transliteration": "imti7aan",
+          "english": "exam",
+          "category": "University"
+        },
+        {
+          "arabic": "تَخَصُّص",
+          "transliteration": "takhaSSuS",
+          "english": "major",
+          "category": "University"
+        },
+        {
+          "arabic": "فَصِل",
+          "transliteration": "faSil",
+          "english": "semester",
+          "category": "University"
+        },
+        {
+          "arabic": "نَتِيجِة",
+          "transliteration": "nateeje",
+          "english": "result",
+          "category": "University"
+        },
+        {
+          "arabic": "مَكْتَبِة",
+          "transliteration": "maktabe",
+          "english": "library",
+          "category": "University"
+        },
+        {
+          "arabic": "وَاجِب",
+          "transliteration": "waajib",
+          "english": "homework",
+          "category": "University"
+        },
+        {
+          "arabic": "جَامْعَة",
+          "transliteration": "jaam3a",
+          "english": "university",
+          "category": "University"
+        }
+      ],
       "culture": "بجامعات الشام الطلاب بينادوا الأستاذ 'دكتور' أو 'أستاذ' مهما كان عمرو، احتراما لمركزو العلمي. المكتبات بتضل مفتوحة لوقت متأخر أيام الامتحانات، وكتير طلاب بيدرسوا سوا بمجموعات.",
       "exercises": [
         {
@@ -1337,6 +1487,56 @@
             "transliteration": "bi2amal koon mostaqerr bshughel mnii7.",
             "english": "I hope to be settled in a good job."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مَشْرُوع",
+          "transliteration": "mashroo3",
+          "english": "project",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "مَجَال",
+          "transliteration": "majaal",
+          "english": "field",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "مَاجِسْتِير",
+          "transliteration": "majisteer",
+          "english": "master's degree",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "بَرَّا",
+          "transliteration": "barra",
+          "english": "abroad, outside",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "حِلِم",
+          "transliteration": "7ilim",
+          "english": "dream",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "وَظِيفِة",
+          "transliteration": "waZeefe",
+          "english": "job, post",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "طُمُوح",
+          "transliteration": "Tumoo7",
+          "english": "ambition",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "مِرْتَاح",
+          "transliteration": "mirtaa7",
+          "english": "comfortable",
+          "category": "Future plans"
         }
       ],
       "culture": "لما حدا شامي بيحكي عن مستقبلو بيحب يزيد 'إن شاء الله' بعد كل خطة، حتى لو كانت أكيدة، لأنو المستقبل بإيد الله. الحلم بفتح مشروع خاص أو مطعم منتشر كتير بالشام كطريق للاستقلال المادي.",

@@ -223,6 +223,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "عِيد",
+          "transliteration": "3eed",
+          "english": "Eid, festival",
+          "category": "Eid"
+        },
+        {
+          "arabic": "عِيدِيِّة",
+          "transliteration": "3eediyye",
+          "english": "Eid money",
+          "category": "Eid"
+        },
+        {
+          "arabic": "مَعْمُول",
+          "transliteration": "ma3mool",
+          "english": "date-filled biscuits",
+          "category": "Eid"
+        },
+        {
+          "arabic": "كَعِك",
+          "transliteration": "ka3ek",
+          "english": "Eid biscuits",
+          "category": "Eid"
+        },
+        {
+          "arabic": "صَلَاة",
+          "transliteration": "Salaa",
+          "english": "prayer",
+          "category": "Eid"
+        },
+        {
+          "arabic": "سِتِّي",
+          "transliteration": "sitti",
+          "english": "grandma",
+          "category": "Eid"
+        },
+        {
+          "arabic": "تْيَاب",
+          "transliteration": "tyaab",
+          "english": "clothes",
+          "category": "Eid"
+        },
+        {
+          "arabic": "مْبَارَك",
+          "transliteration": "mbaarak",
+          "english": "blessed",
+          "category": "Eid"
+        }
+      ],
       "culture": "بدمشق أول شي بيصير بالعيد إنو الكل يلبس تياب جديدة ويروح يصلي صلاة العيد الصبح باكر. بعدها الزيارات بين الأهل والجيران بتبلش، وبيكون في كعك ومعمول عالطاولة، والولاد بياخدوا عيدية من الكبار.",
       "exercises": [
         {
@@ -607,6 +657,56 @@
             "transliteration": "w-ento tayybiin",
             "english": "And may you be well too"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رَمَضَان",
+          "transliteration": "ramaDaan",
+          "english": "Ramadan",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "صِيَام",
+          "transliteration": "Siyaam",
+          "english": "fasting",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "فْطُور",
+          "transliteration": "fTour",
+          "english": "iftar, breakfast",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "سُحُور",
+          "transliteration": "su7oor",
+          "english": "pre-dawn meal",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "فَجِر",
+          "transliteration": "fajer",
+          "english": "dawn",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "قْطَايِف",
+          "transliteration": "2Taayef",
+          "english": "qatayef pastries",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "مِدْفَع",
+          "transliteration": "midfa3",
+          "english": "cannon",
+          "category": "Ramadan"
+        },
+        {
+          "arabic": "عَزِيمِة",
+          "transliteration": "3azeeme",
+          "english": "invitation",
+          "category": "Ramadan"
         }
       ],
       "culture": "برمضان الناس بيتجمعوا عالإفطار سوا، وبيصير في عزايم بين الأهل والجيران كل يوم تقريبا. السهرة بتطول لبعد التراويح، وقطايف والعصير بالتمر هني الحلويات يلي ما بتغيب عن السفرة.",
@@ -1001,6 +1101,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "عِرِس",
+          "transliteration": "3iris",
+          "english": "wedding",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "عَرِيس",
+          "transliteration": "3arees",
+          "english": "groom",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "عَرُوس",
+          "transliteration": "3aroos",
+          "english": "bride",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "زَفِّة",
+          "transliteration": "zaffe",
+          "english": "wedding procession",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "كُوشِة",
+          "transliteration": "kooshe",
+          "english": "wedding stage",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "فُسْطَان",
+          "transliteration": "fusTaan",
+          "english": "dress",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "دَبْكِة",
+          "transliteration": "dabke",
+          "english": "dabke dance",
+          "category": "Weddings"
+        },
+        {
+          "arabic": "حَارَة",
+          "transliteration": "7aara",
+          "english": "neighbourhood",
+          "category": "Weddings"
+        }
+      ],
       "culture": "بدمشق العرس مو بس حفلة، هو مناسبة للحارة كلها. الزفة بتطلع من بيت العريس على صوت الطبل والمزمار، والدبكة بتضل مستمرة لآخر الليل. ضيوف كتير بيجيبوا هدايا مصاري بدل الهدايا العينية.",
       "exercises": [
         {
@@ -1385,6 +1535,56 @@
             "transliteration": "3omrak ytawwel",
             "english": "May your life be long"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عِيد مِيلَاد",
+          "transliteration": "3eed meelaad",
+          "english": "birthday",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "كِيك",
+          "transliteration": "keek",
+          "english": "cake",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "شَمْعَات",
+          "transliteration": "sham3aat",
+          "english": "candles",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "هْدِيِّة",
+          "transliteration": "hdiyye",
+          "english": "gift",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "حَفْلِة",
+          "transliteration": "7afle",
+          "english": "party",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "نَجَاح",
+          "transliteration": "najaa7",
+          "english": "success",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "تَرْفِيع",
+          "transliteration": "tarfee3",
+          "english": "promotion",
+          "category": "Birthdays"
+        },
+        {
+          "arabic": "عُمِر",
+          "transliteration": "3umur",
+          "english": "age, life",
+          "category": "Birthdays"
         }
       ],
       "culture": "بدمشق العيد ميلاد بيتحتفل فيه بكيك وشمعات متل بكل مكان، بس التهنئة الأهم بتضل \"الله يطول عمرك\"، وهاي العبارة منقولها كمان لأي حدا منحبه ومنتمناله العمر الطويل مو بس بعيد ميلاده.",
