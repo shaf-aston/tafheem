@@ -427,6 +427,8 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
     // A press that overtakes the last one aborts it; only a refusal is a failure.
     play(url).catch((e) => e.name !== 'AbortError' && setFailed(true))
   }, [count, urlFor])
+  // A skip is the reader moving, so the list and rail go with it.
+  const skipTo = (n) => { start(n); onFollow(n) }
 
   // On to the next ayah when one ends; the list follows only if the reader was
   // still with the one that finished, never pulled away from where they went.
@@ -445,7 +447,7 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
   return (
     <div className="flex items-center gap-2 p-2 pl-3 border-t border-[var(--border)] bg-[var(--surface-hi)]">
       <button type="button" className={skip}
-        onClick={() => start(at - 1)} disabled={at <= 1} aria-label="Previous ayah">
+        onClick={() => skipTo(at - 1)} disabled={at <= 1} aria-label="Previous ayah">
         <Glyph d="M6 5h2v14H6zM20 5v14L9 12z" />
       </button>
       <button type="button" className={`${round} w-10 h-10 text-[var(--bg)] bg-[var(--c)]`}
@@ -454,7 +456,7 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
         <Glyph d={sounding ? 'M6 6h12v12H6z' : 'M7 4.5v15l13-7.5z'} />
       </button>
       <button type="button" className={skip}
-        onClick={() => start(at + 1)} disabled={at >= count} aria-label="Next ayah">
+        onClick={() => skipTo(at + 1)} disabled={at >= count} aria-label="Next ayah">
         <Glyph d="M16 5h2v14h-2zM4 5v14l11-7z" />
       </button>
 
