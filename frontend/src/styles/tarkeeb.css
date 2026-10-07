@@ -202,3 +202,21 @@
   font-family: var(--font-ui);
 }
 
+
+/* The larger view: the same diagram filling the screen, everything scaled up. */
+.tk-max {
+  --tk-max-scale: 1.4;
+  width: calc(100vw - 2rem);
+  max-width: none;
+  height: calc(100dvh - 2rem);
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--text);
+}
+.tk-max-box { position: relative; height: 100%; overflow: auto; padding: 3.5rem 1.5rem 1.5rem; }
+.tk-max-box > div:last-child { zoom: var(--tk-max-scale); }
+.tk-max-close { position: absolute; top: 0.75rem; left: 0.75rem; }
