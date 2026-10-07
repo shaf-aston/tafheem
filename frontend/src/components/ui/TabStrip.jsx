@@ -4,10 +4,10 @@
  */
 import ArabicText from './ArabicText'
 
-// Fixed tabs past row 1, and the recent ones, wait for md. The open tab always shows.
-const tierClass = (tab) => (tab.row === 1 ? '' : 'hidden md:block')
+// The first `fixed` tabs always show; the rest wait for md. The open tab always shows.
+const tierClass = (i, fixed) => (i < fixed ? '' : 'hidden md:block')
 
-export default function TabStrip({ tabs, active, colorOf, onSelect, onAll, onHover }) {
+export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll, onHover }) {
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
     // auto too, and the 1px underline below the strip would then raise a
@@ -43,7 +43,7 @@ export default function TabStrip({ tabs, active, colorOf, onSelect, onAll, onHov
                 // so a half tab really is half of a whole one.
                 flex: tab.half ? '0.5 1 0' : '1 1 0',
               }}
-              className={`tab-btn relative ${selected ? '' : tierClass(tab)} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
+              className={`tab-btn relative ${selected ? '' : tierClass(i, fixed)} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
                 py-1.5 px-0.5 sm:px-2 type-body font-medium ${selected ? '' : 'tab-idle'}`}
             >
               <span className="sm:hidden">{tab.short}</span>
