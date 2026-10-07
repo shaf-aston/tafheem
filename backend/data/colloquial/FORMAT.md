@@ -47,9 +47,14 @@ key in every unit of a dialect.
 | `phrases` | one per spine slot: `slot`, `arabic`, `transliteration`, optionally `english` (only when this dialect's words mean something other than the spine's English; it replaces it for this dialect), and optionally `reply` (the natural answer, with its own `english`) |
 | `dialogue` | one real conversation, in order: `speaker`, `arabic`, `transliteration`, `english`. A line that repeats a phrase of the lesson is written `{"speaker", "slot"}` instead (add `"reply": true` for that phrase's reply) and takes the card's words; this is the preferred form, and a full copy of a phrase is a fault |
 | `de_book` | question and answer drill: `pair` and `response`, each a phrase |
-| `vocabulary` | the word bank: single words, not phrases: `arabic`, `transliteration`, `english`, and `category` (a short group name, e.g. `"jobs"`), optional. Not a spine slot, so one dialect may write it before the rest |
+| `vocabulary` | the word bank: single words, not phrases (a fixed two-word name like عيد ميلاد is fine): `arabic`, `transliteration`, `english`, and `category` (a short group name, e.g. `"jobs"`), optional. None, or 8 or more, none twice, Arabic letters only in `arabic`; the loader stops on a bank that breaks this. Every word belongs to the topic's scene, never a filler to reach 8. Not a spine slot, so one dialect may write it before the rest |
 | `culture` | one or two sentences on when and with whom this is said |
 | `exercises` | the practice, see below |
+
+To review a dialect's words, `python -m backend.scripts.colloquial_word_bank dump <dialect>`
+prints every bank as one plain list, `arabic | transliteration | english` per line
+under a `## unit-NN lesson-NN <category>` heading. Edit it and `load <dialect> <file>`
+puts it back, checked as above, all or nothing.
 
 `search_term`, in the spine, is a short everyday English noun phrase for finding a picture, for
 example `"a glass of tea"`. The English meaning alone is usually too idiomatic to

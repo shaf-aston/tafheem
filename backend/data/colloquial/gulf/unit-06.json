@@ -735,15 +735,15 @@
           "category": "Colours"
         },
         {
-          "arabic": "أَحْلَى",
-          "transliteration": "a7la",
-          "english": "nicer",
+          "arabic": "أَخْضَر",
+          "transliteration": "akhDar",
+          "english": "green",
           "category": "Colours"
         },
         {
-          "arabic": "رَاي",
-          "transliteration": "raay",
-          "english": "opinion",
+          "arabic": "أَصْفَر",
+          "transliteration": "aSfar",
+          "english": "yellow",
           "category": "Colours"
         }
       ],
@@ -1649,9 +1649,9 @@
           "category": "Returns"
         },
         {
-          "arabic": "مِتَى",
-          "transliteration": "mita",
-          "english": "when",
+          "arabic": "فَاتُورَة",
+          "transliteration": "faatoora",
+          "english": "receipt",
           "category": "Returns"
         },
         {

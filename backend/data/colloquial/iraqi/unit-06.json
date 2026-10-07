@@ -262,9 +262,9 @@
           "category": "Clothes"
         },
         {
-          "arabic": "غُرْفَة",
-          "transliteration": "ghurfa",
-          "english": "room",
+          "arabic": "بَنْطَرُون",
+          "transliteration": "banTaroon",
+          "english": "trousers",
           "category": "Clothes"
         },
         {
@@ -728,15 +728,15 @@
           "category": "Colours"
         },
         {
-          "arabic": "أَحْلَى",
-          "transliteration": "a7la",
-          "english": "nicer",
+          "arabic": "أَخْضَر",
+          "transliteration": "akhDar",
+          "english": "green",
           "category": "Colours"
         },
         {
-          "arabic": "رَاي",
-          "transliteration": "raay",
-          "english": "opinion",
+          "arabic": "أَصْفَر",
+          "transliteration": "aSfar",
+          "english": "yellow",
           "category": "Colours"
         }
       ],

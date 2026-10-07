@@ -11,10 +11,12 @@ from backend.config import data_path
 from backend.services.colloquial import loader
 
 
-def faults(folder: str, name: str) -> list[str]:
+def faults(folder: str, name: str, written: dict | None = None) -> list[str]:
+    """written: the unit as it would be saved, to check it before it is; default the file on disk."""
     root = data_path("colloquial_dir")
     spine = json.loads((root / "spine.json").read_text(encoding="utf-8"))["units"]
-    written = json.loads((root / folder / f"{name}.json").read_text(encoding="utf-8"))
+    if written is None:
+        written = json.loads((root / folder / f"{name}.json").read_text(encoding="utf-8"))
     outline = next(one for one in spine if one["unit"] == name)
     unit, said = loader._fill(outline, written)
     return said + loader._unit_faults(unit)

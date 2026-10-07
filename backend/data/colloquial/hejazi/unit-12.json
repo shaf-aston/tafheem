@@ -1424,15 +1424,15 @@
           "category": "Messages"
         },
         {
-          "arabic": "إِمْتَى",
-          "transliteration": "imta",
-          "english": "when",
+          "arabic": "صُورَة",
+          "transliteration": "Soora",
+          "english": "photo, picture",
           "category": "Messages"
         },
         {
-          "arabic": "وَقْت",
-          "transliteration": "wagt",
-          "english": "time",
+          "arabic": "رَدّ",
+          "transliteration": "radd",
+          "english": "reply",
           "category": "Messages"
         },
         {
@@ -1448,9 +1448,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "أَوَّل",
-          "transliteration": "awwal",
-          "english": "first, as soon as",
+          "arabic": "فُويْس",
+          "transliteration": "foys",
+          "english": "voice note",
           "category": "Messages"
         }
       ],

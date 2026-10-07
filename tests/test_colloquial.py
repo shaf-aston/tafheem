@@ -147,6 +147,40 @@ def test_a_reply_is_checked_like_a_phrase():
     assert any("reply has no transliteration" in why for why in said)
 
 
+def bank(*words):
+    return [{"arabic": w, "transliteration": "t", "english": "e"} for w in words]
+
+
+EIGHT = ["بيت", "باب", "شباك", "كرسي", "طاولة", "سرير", "مطبخ", "حمام"]
+
+
+def test_a_sound_word_bank_has_no_faults():
+    assert faults(vocabulary=bank(*EIGHT)) == []
+
+
+def test_a_thin_word_bank_is_caught():
+    assert any("fewer than 8" in why for why in faults(vocabulary=bank(*EIGHT[:5])))
+
+
+def test_a_word_twice_in_one_bank_is_caught():
+    assert any("repeats" in why for why in faults(vocabulary=bank(*EIGHT[:7], "بيت")))
+
+
+def test_a_latin_or_cyrillic_letter_in_a_word_is_caught():
+    for slip in ("بيتa", "бيت"):
+        assert any("non-Arabic letter" in why for why in faults(vocabulary=bank(*EIGHT[:7], slip)))
+
+
+def test_a_phrase_in_the_word_bank_is_caught():
+    assert any("not a word" in why for why in faults(vocabulary=bank(*EIGHT[:7], "انا رايح عالبيت")))
+
+
+def test_arabic_in_a_words_english_is_caught():
+    words = bank(*EIGHT)
+    words[0]["english"] = "house بيت"
+    assert any("Arabic letters" in why for why in faults(vocabulary=words))
+
+
 def test_a_missing_culture_note_is_caught():
     assert any("no culture note" in why for why in faults(culture=" "))
 
@@ -356,3 +390,24 @@ def test_an_unwritten_unit_compares_as_none_and_an_unknown_lesson_404s(monkeypat
     assert got["dialects"][1]["phrases"] is None and got["dialects"][0]["phrases"]
     assert TestClient(app).get("/api/colloquial/compare/unit-03/lesson-99").status_code == 404
     assert TestClient(app).get("/api/colloquial/compare/unit-99/lesson-01").status_code == 404
+
+
+def test_a_word_list_breaking_a_rule_is_refused_and_nothing_is_written():
+    from backend.scripts import colloquial_word_bank as word_bank
+    before = {p: p.read_bytes() for p in (loader.data_path("colloquial_dir") / "damascene").glob("unit-*.json")}
+    thin = "## unit-01 lesson-01 Greetings\nبيت | beet | house\n\nnot a word line\n"
+    said = word_bank.load("damascene", thin)
+    assert any("fewer than 8" in why for why in said) and any("not `arabic" in why for why in said)
+    assert {p: p.read_bytes() for p in before} == before
+
+
+def test_a_dumped_word_list_reads_back_as_the_words_on_disk():
+    from backend.scripts import colloquial_word_bank as word_bank
+    for folder in ("damascene", "fusha"):
+        banks, said = word_bank._read(word_bank.dump(folder))
+        on_disk = {(unit["unit"], lesson["lesson"]): [{k: w[k] for k in ("arabic", "transliteration", "english")}
+                                                      for w in lesson.get("vocabulary") or []]
+                   for _, unit in word_bank._units(folder) for lesson in unit["lessons"]}
+        read = {key: [{k: w[k] for k in ("arabic", "transliteration", "english")} for w in words]
+                for key, (_, words) in banks.items()}
+        assert said == [] and read == on_disk

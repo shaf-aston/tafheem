@@ -277,9 +277,9 @@
           "category": "Taxi"
         },
         {
-          "arabic": "آخِر",
-          "transliteration": "aakher",
-          "english": "end, last",
+          "arabic": "عِنْوَان",
+          "transliteration": "3enwaan",
+          "english": "address",
           "category": "Taxi"
         }
       ],
@@ -2030,15 +2030,15 @@
           "category": "Getting around"
         },
         {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
+          "arabic": "زَحْمَة",
+          "transliteration": "za7ma",
+          "english": "traffic",
           "category": "Getting around"
         },
         {
-          "arabic": "قَدِيم",
-          "transliteration": "2adeem",
-          "english": "old",
+          "arabic": "مِتْرُو",
+          "transliteration": "metro",
+          "english": "metro",
           "category": "Getting around"
         },
         {

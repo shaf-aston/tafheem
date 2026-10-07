@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from functools import lru_cache
 
 from backend.config import data_path
@@ -70,6 +71,36 @@ def _say_slots(lesson: dict, phrases: list[dict], where: str) -> tuple[list[dict
     return lines, said
 
 
+WORD_BANK_SIZE = 8  # one round of match pairs, and enough that the words half of a tile is not thin
+_ARABIC = re.compile(r"[\u0600-\u06FF]")
+_NOT_ARABIC = re.compile(r"[^\u0600-\u06FF\s]")
+
+
+def _word_bank_faults(words: list[dict], name: str) -> list[str]:
+    """A lesson's word bank: none, or 8+ distinct Arabic words of one or two pieces each.
+
+    Kept here rather than in an authoring script, so a hand edit to a unit file
+    meets the same rules as a generated one.
+    """
+    if words and len(words) < WORD_BANK_SIZE:
+        return [f"{name} has {len(words)} vocabulary words, fewer than {WORD_BANK_SIZE}"]
+    said, seen = [], set()
+    for at, word in enumerate(words, 1):
+        where = f"{name} vocabulary word {at}"
+        said.extend(_phrase_faults(word, where))
+        arabic = str(word.get("arabic") or "").strip()
+        if arabic in seen:
+            said.append(f"{where} repeats {arabic!r}")
+        seen.add(arabic)
+        if _NOT_ARABIC.search(arabic):
+            said.append(f"{where} has a non-Arabic letter in its Arabic: {arabic!r}")
+        if len(arabic.split()) > 2:
+            said.append(f"{where} is a phrase, not a word: {arabic!r}")
+        if _ARABIC.search(f"{word.get('transliteration', '')}{word.get('english', '')}"):
+            said.append(f"{where} has Arabic letters in its transliteration or English")
+    return said
+
+
 def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     """What is wrong with one lesson. seen_ids is shared across the whole unit."""
     name = f"lesson {lesson.get('lesson')!r}"
@@ -95,8 +126,7 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     for at, drill in enumerate(lesson.get("de_book") or [], 1):
         said.extend(_phrase_faults(drill.get("pair") or {}, f"{name} pair {at} question"))
         said.extend(_phrase_faults(drill.get("response") or {}, f"{name} pair {at} answer"))
-    for at, word in enumerate(lesson.get("vocabulary") or [], 1):
-        said.extend(_phrase_faults(word, f"{name} vocabulary word {at}"))
+    said.extend(_word_bank_faults(lesson.get("vocabulary") or [], name))
     for at, exercise in enumerate(lesson.get("exercises") or [], 1):
         where = f"{name} exercise {at}"
         given = exercise.get("id")
