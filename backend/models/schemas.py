@@ -1148,6 +1148,20 @@ class Forgotten(BaseModel):
     deleted: int
 
 
+class ProfileIn(BaseModel):
+    """Starting to use the name in the profile header."""
+
+    keep: bool = False
+    """Move the answers given before names existed onto this name."""
+
+
+class ProfileSaved(BaseModel):
+    """The name as the server spells it, and how many unnamed answers moved onto it."""
+
+    name: str
+    moved: int
+
+
 class ItemStats(BaseModel):
     """One item's whole record. `avgMs` is None when nothing was timed honestly."""
     item: str

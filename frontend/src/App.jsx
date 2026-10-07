@@ -15,6 +15,7 @@ import CommandBar from './components/ui/CommandBar'
 import ErrorAlert from './components/ui/ErrorAlert'
 import Mascot from './components/ui/Mascot'
 import MapPanel from './components/ui/MapPanel'
+import ProfileButton from './components/ui/ProfileButton'
 import SettingsPanel from './components/ui/SettingsPanel'
 import { TOOLS } from './lib/tools'
 import SpatialHome from './components/ui/SpatialHome'
@@ -214,6 +215,7 @@ function AppContent() {
           <div className="flex items-center gap-2 min-w-0">
             <CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} />
             <StatusPill status={status} nlpEngine={nlpEngine} aiBackend={aiBackend} ear={ear} />
+            <ProfileButton />
             <button
               type="button"
               onClick={() => setSettingsOpen(true)}

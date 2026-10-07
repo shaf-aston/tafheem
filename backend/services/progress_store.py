@@ -13,9 +13,9 @@ id refers to is the caller's business, and the caller already holds the table
 that says so; copying those tags in here would make a second copy that goes
 stale every time the word list is rebuilt.
 
-`user` is a column, not a feature. There are no accounts yet, so everything is
-filed under 'local'. When there are, the router passes a real name and nothing
-in here changes.
+`user` is the learner's typed name (services/profile.py), or 'local' for answers
+given before names existed. The questions table is a cache of AI answers shared
+by everyone, so it stays under 'local' and claim_local leaves it alone.
 """
 from __future__ import annotations
 
@@ -195,6 +195,15 @@ def forget(user: str = "local") -> int:
     with db:
         cursor = db.execute("DELETE FROM attempts WHERE user = ?", (user,))
     return int(cursor.rowcount)
+
+
+def claim_local(user: str) -> int:
+    """Move the unnamed answers and reports onto `user`. Returns how many answers moved."""
+    db = _db()
+    with db:
+        moved = db.execute("UPDATE attempts SET user = ? WHERE user = 'local'", (user,)).rowcount
+        db.execute("UPDATE feedback SET user = ? WHERE user = 'local'", (user,))
+    return int(moved)
 
 
 def summary(module: str, user: str = "local") -> list[dict]:
