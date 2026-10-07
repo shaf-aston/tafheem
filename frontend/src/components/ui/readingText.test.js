@@ -34,6 +34,14 @@ describe('a word with its English gloss', () => {
   it('draws no gloss where there is none', () => {
     expect(renderToStaticMarkup(h(GlossWord, null, 'هَدَى'))).not.toContain('data-gloss')
   })
+
+  it('marks a learnt word and says so', () => {
+    const learnt = renderToStaticMarkup(h(GlossWord, { gloss: 'guided', learnt: true }, 'هَدَى'))
+    expect(learnt).toContain('gloss-word-learnt')
+    expect(learnt).toContain('title="learnt"')
+    expect(learnt).toContain('aria-description="guided, learnt"')
+    expect(renderToStaticMarkup(h(GlossWord, { gloss: 'guided' }, 'هَدَى'))).not.toContain('learnt')
+  })
 })
 
 describe('a small alef in the mushaf\'s spelling', () => {

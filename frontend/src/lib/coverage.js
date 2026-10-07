@@ -30,6 +30,11 @@ export function surahShares(words, coverage, knownItems, bySurah) {
   })
 }
 
+/** The credited lemmas spelled out, for marking learnt words in the reader. */
+export function learntLemmas(words, coverage, knownItems) {
+  return new Set([...credited(words, coverage, knownItems)].map((at) => coverage.lemmas[at]))
+}
+
 /** The lemmas the known meaningKeys credit, by the rule above. */
 function credited(words, coverage, knownItems) {
   const known = new Set(knownItems)

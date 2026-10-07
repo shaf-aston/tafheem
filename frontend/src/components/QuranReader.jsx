@@ -28,7 +28,8 @@ import { useTranslation } from '../lib/useTranslation'
 import { useRecitation } from '../lib/useRecitation'
 import { useRecitedWord } from '../lib/useRecitedWord'
 import { RECITERS, nowPlaying, play, prefetch, stop, watch, watchEnd } from '../lib/ayahAudio'
-import { useRemembered } from '../lib/useRemembered'
+import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
+import { useLearntLemmas } from '../lib/useLearntLemmas'
 import { useMedia } from '../lib/useMedia'
 import { useWheelX } from '../lib/useWheelX'
 import { useSlide, useSwipe } from '../lib/useSwipe'
@@ -54,6 +55,10 @@ const TWO_PANES = '(min-width: 64rem)'
 /** The English under one ayah: the chosen translation once it has arrived,
  *  the corpus's word-by-word gloss before that, so nothing is credited to a
  *  book it did not come from. */
+// Which words of an ayah are learnt, by lemma; null when none are, so the
+// ayah can still be drawn plain.
+const markLearnt = (lemmas, learnt) =>
+  (learnt.size && lemmas?.some((lemma) => learnt.has(lemma)) ? lemmas.map((lemma) => learnt.has(lemma)) : null)
 const englishFor = (translation, ayah) => (translation.ready ? translation.textFor(ayah.ayah) : ayah.english)
 
 /** The ayah whose row is at the top of the list, counting from 1. Rows are
@@ -93,6 +98,9 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   // The English of each word, for the hover gloss. Its own request so the text
   // is never held up by it, and reads normally for good if it never arrives.
   const { data: glosses } = useQuery({ queryKey: ['surah-glosses', surah], queryFn: () => getSurahGlosses(surah) })
+  const learnt = useLearntLemmas()
+  const [allMeanings, showAllMeanings] = useRememberedFlag('reader-all-meanings', false)
+  const anyGlosses = Object.keys(glosses?.ayahs ?? {}).length > 0
   const recitation = useRecitation(surah, reciter)
   const translation = useTranslation(surah)
 
@@ -160,6 +168,16 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         {/* The Arabic is the corpus's; the English may not be. Both are named. */}
         {translation.ready && translation.book?.source && <SourceBadge source={translation.book.source} />}
         {data?.source && <SourceBadge source={data.source} />}
+        {anyGlosses && (
+          <button
+            type="button"
+            onClick={() => showAllMeanings(!allMeanings)}
+            aria-pressed={allMeanings}
+            className="text-xs text-[var(--text-faint)] hover:text-[var(--text)] aria-pressed:text-[var(--c)] transition-colors px-2 py-1"
+          >
+            {allMeanings ? 'Hide all meanings' : 'Show all meanings'}
+          </button>
+        )}
         <button
           type="button"
           onClick={onClose}
@@ -195,7 +213,9 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
                   key={row.ayah}
                   ayah={row}
                   english={englishFor(translation, row)}
-                  glosses={glosses?.[row.ayah]}
+                  glosses={glosses?.ayahs[row.ayah]}
+                  learnt={markLearnt(glosses?.lemmas[row.ayah], learnt)}
+                  allMeanings={allMeanings}
                   src={recitation.urlFor(row.ayah)}
                   segments={recitation.segmentsFor(row.ayah)}
                   open={row.ayah === ayah}
@@ -243,18 +263,18 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
  * missing means the two sources disagreed about how many words this ayah has;
  * the ayah is then drawn plain, and a gloss is never guessed onto a word.
  */
-function GlossedAyah({ arabic, english, lit = -1, end }) {
+function GlossedAyah({ arabic, english, learnt, allMeanings, lit = -1, end }) {
   const line = 'block text-right leading-loose text-[var(--text)]'
   const mark = <span className="text-[var(--c)]" aria-hidden="true"> {end}</span>
-  if (!english && lit < 0) {
+  if (!english && !learnt && lit < 0) {
     return <ArabicText size="lg" className={line}>{arabic}{mark}</ArabicText>
   }
   return (
-    <ArabicText size="lg" className={`${line} gloss-line`}>
+    <ArabicText size="lg" className={`${line} gloss-line${allMeanings ? ' gloss-all' : ''}`}>
       {arabic.split(' ').map((word, i) => (
         <span key={i}>
           {i > 0 && ' '}
-          <GlossWord gloss={english?.[i]} lit={i === lit}>{word}</GlossWord>
+          <GlossWord gloss={english?.[i]} lit={i === lit} learnt={learnt?.[i]}>{word}</GlossWord>
         </span>
       ))}
       {mark}
@@ -268,7 +288,7 @@ function GlossedAyah({ arabic, english, lit = -1, end }) {
  * its words is being recited; all but the one sounding answer with a single
  * comparison.
  */
-function AyahRow({ ayah, english, glosses, src, segments, open, onOpen }) {
+function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, open, onOpen }) {
   const lit = useRecitedWord(src, segments)
   return (
     <li className="surah-row">
@@ -281,7 +301,7 @@ function AyahRow({ ayah, english, glosses, src, segments, open, onOpen }) {
           focus:outline-none focus-visible:bg-[var(--surface-hi)]
           ${open ? 'bg-[color-mix(in_srgb,var(--c)_8%,transparent)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--c)_35%,transparent)]' : ''}`}
       >
-        <GlossedAyah arabic={ayah.arabic} english={glosses} lit={lit} end={ayahEnd(ayah.ayah)} />
+        <GlossedAyah arabic={ayah.arabic} english={glosses} learnt={learnt} allMeanings={allMeanings} lit={lit} end={ayahEnd(ayah.ayah)} />
         {english && (
           <span className="block type-body text-[var(--text)] leading-relaxed border-t border-[var(--border)] pt-2">
             {english}

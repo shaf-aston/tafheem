@@ -98,7 +98,8 @@ async def get_surah_glosses(surah: int = Path(..., ge=1, le=SURAHS)) -> SurahGlo
     The reader then draws the surah exactly as it did before.
     """
     glosses = await asyncio.to_thread(quran_service.glosses_for_surah, surah)
-    return SurahGlosses(surah=surah, ayahs=glosses)
+    lemmas = await asyncio.to_thread(quran_corpus.lemmas_for_surah, surah)
+    return SurahGlosses(surah=surah, ayahs=glosses, lemmas=lemmas)
 
 
 # Declared before /similar/{surah}/{ayah}: both are three segments, and "surah" is not a number.
