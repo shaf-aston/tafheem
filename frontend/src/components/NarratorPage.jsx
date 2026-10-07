@@ -40,17 +40,13 @@ function FoldedList({ items, lines, accent, children: draw }) {
   )
 }
 
-export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith }) {
+export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
   const { data: who, isPending, isError, error, refetch } = useQuery(narratorQuery(id))
   const { data: hadith = [] } = useQuery(narratorHadithQuery(id))
   const { of } = useHadithCollections()
 
   return (
     <div className="space-y-4">
-      <button type="button" onClick={onBack} className="press type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors">
-        &larr; Back
-      </button>
-
       {isPending && <AnalyzerSkeleton />}
       {isError && <NarratorError error={error} onRetry={refetch} />}
 
@@ -76,7 +72,7 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
           )}
 
           {[['Teachers', who.teachers], ['Students', who.students]].map(([title, list]) => list.length > 0 && (
-            <Section key={title} title={`${title} (${list.length})`}>
+            <Section key={title} title={title}>
               <FoldedList items={list} lines={12} accent={accent}>
                 {(shown) => <NarratorLinks items={shown} onOpen={onNarrator} />}
               </FoldedList>
@@ -85,7 +81,7 @@ export default function NarratorPage({ id, accent, onBack, onNarrator, onHadith 
           </div>
 
           {hadith.length > 0 && (
-            <Section title={`Hadith narrated (${hadith.length})`}>
+            <Section title="Hadith narrated">
               <FoldedList items={hadith} lines={6} accent={accent}>
                 {(shown) => (<ChipRow>
                   {shown.map((h) => (
