@@ -1,5 +1,8 @@
 """One typed name, one learner. No password, so this only decides spelling.
 
+The only copy of these rules: the page sends what was typed and keeps the
+spelling the server hands back (POST /api/progress/profile).
+
 "Amina", " amina " and "AMINA" are one person: spaces are squashed, the text is
 put in one Unicode form, then case is folded. Tashkeel is kept, so a name
 written with vowels is its own name; stripping it would merge names people
@@ -18,13 +21,13 @@ BAD_CHARACTERS = "Names use letters, numbers, spaces, - _ ."
 _EXTRA = set(" -_.\u200c\u200d")
 
 
-def _counts(ch: str) -> bool:
-    return unicodedata.category(ch)[0] == "L" or unicodedata.category(ch) == "Nd"
-
-
-def _allowed(ch: str) -> bool:
-    # Letters and marks of any script (Arabic tashkeel are marks), and digits.
-    return ch in _EXTRA or unicodedata.category(ch)[0] in "LM" or unicodedata.category(ch) == "Nd"
+def _kind(ch: str) -> str:
+    """'name' for a letter or digit, 'mark' for what may sit beside one, else ''."""
+    category = unicodedata.category(ch)
+    if category[0] == "L" or category == "Nd":
+        return "name"
+    # Marks are tashkeel; the extras are the separators people put in names.
+    return "mark" if category[0] == "M" or ch in _EXTRA else ""
 
 
 def clean_name(raw: str) -> str:
@@ -35,7 +38,8 @@ def clean_name(raw: str) -> str:
         raise ValueError("Type a name")
     if len(name) > settings.profile_name_max:
         raise ValueError(f"Names are at most {settings.profile_name_max} characters")
-    if not all(_allowed(ch) for ch in name) or not any(_counts(ch) for ch in name):
+    kinds = {_kind(ch) for ch in name}
+    if "" in kinds or "name" not in kinds:
         raise ValueError(BAD_CHARACTERS)
     if name in settings.profile_reserved:
         raise ValueError("That name is taken by the app, pick another")

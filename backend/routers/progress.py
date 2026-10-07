@@ -17,10 +17,11 @@ from fastapi import APIRouter, Depends, Header, HTTPException, Query
 from backend.models.schemas import (
     AttemptIn,
     AttemptSaved,
-    Claimed,
     FeedbackIn,
     Forgotten,
     ItemStats,
+    ProfileIn,
+    ProfileSaved,
     ProgressSummary,
     ReviewList,
 )
@@ -106,9 +107,13 @@ def get_review(module: str = _MODULE, user: str = _USER) -> ReviewList:
     return ReviewList(module=module, items=progress_store.review_items(module, user))
 
 
-@router.post("/claim", response_model=Claimed)
-async def claim_progress(user: str = _USER) -> Claimed:
-    """Move the answers given before names existed onto the name now typed."""
+@router.post("/profile", response_model=ProfileSaved)
+async def start_profile(body: ProfileIn, user: str = _USER) -> ProfileSaved:
+    """Check a typed name and hand back its one spelling, which the page keeps.
+
+    The only place the page learns the rules: it stores what comes back rather
+    than cleaning the name itself. `keep` moves the unnamed answers onto it.
+    """
     if user == UNNAMED:
-        raise HTTPException(status_code=422, detail="Type a name first")
-    return Claimed(moved=progress_store.claim_local(user))
+        raise HTTPException(status_code=422, detail="Type a name")
+    return ProfileSaved(name=user, moved=progress_store.claim_local(user) if body.keep else 0)

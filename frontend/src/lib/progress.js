@@ -46,11 +46,12 @@ export async function forgetProgress() {
 }
 
 /**
- * Move the answers given before names existed onto `name`. Resolves the number
- * moved, or null when it did not land; never rejects.
+ * Start using a typed name. Resolves `{ name, moved }`: the server's spelling,
+ * which is what to keep, and how many unnamed answers `keep` moved onto it.
+ * Throws, so the box can say why a name was refused.
  */
-export const claimProgress = (name) =>
-  api.post(`${BASE}/claim`, {}, headers(name)).then((r) => r.data.moved, () => null)
+export const startProfile = (typed, keep) =>
+  api.post(`${BASE}/profile`, { keep }, headers(typed)).then((r) => r.data)
 
 /** Every item answered in this module, with its record. Throws, for react-query. */
 export const fetchSummary = (module) =>

@@ -1148,9 +1148,17 @@ class Forgotten(BaseModel):
     deleted: int
 
 
-class Claimed(BaseModel):
-    """How many unnamed answers moved onto a name."""
+class ProfileIn(BaseModel):
+    """Starting to use the name in the profile header."""
 
+    keep: bool = False
+    """Move the answers given before names existed onto this name."""
+
+
+class ProfileSaved(BaseModel):
+    """The name as the server spells it, and how many unnamed answers moved onto it."""
+
+    name: str
     moved: int
 
 

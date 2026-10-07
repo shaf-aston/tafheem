@@ -22,7 +22,7 @@ export default function ProfileButton() {
         {name || "Who's learning?"}
       </button>
       {/* Mounted only while open, so each opening starts from the saved name. */}
-      {open && <ProfileDialog open onClose={() => setOpen(false)} onSaved={setName} />}
+      {open && <ProfileDialog onClose={() => setOpen(false)} onSaved={setName} />}
     </>
   )
 }

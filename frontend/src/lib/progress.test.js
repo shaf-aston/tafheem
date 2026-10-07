@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { api } from '../api'
-import { claimProgress, fetchReviewItems, fetchSummary, forgetProgress, leaveFeedback, recordAttempt } from './progress'
+import { startProfile, fetchReviewItems, fetchSummary, forgetProgress, leaveFeedback, recordAttempt } from './progress'
 
 afterEach(() => vi.restoreAllMocks())
 
@@ -66,19 +66,20 @@ describe('whose record', () => {
   it('every call carries the saved name', async () => {
     vi.stubGlobal('localStorage', { getItem: (k) => (k === 'profile' ? 'amina' : null) })
     const getting = vi.spyOn(api, 'get').mockResolvedValue({ data: { items: [] } })
-    const posting = vi.spyOn(api, 'post').mockResolvedValue({ status: 200, data: { moved: 0 } })
+    const posting = vi.spyOn(api, 'post').mockResolvedValue({ status: 200, data: { name: 'amina', moved: 0 } })
     const deleting = vi.spyOn(api, 'delete').mockResolvedValue({ status: 200 })
     await fetchSummary('quiz')
     await fetchReviewItems('quiz')
     await recordAttempt({ module: 'quiz', item: 'train', correct: true })
     await leaveFeedback({ module: 'quiz', message: 'x' })
     await forgetProgress()
-    await claimProgress('amina')
+    await startProfile('amina', false)
     const sent = { headers: { 'X-Tafheem-Profile': 'amina' } }
     for (const call of getting.mock.calls) expect(call[1]).toMatchObject(sent)
     for (const call of posting.mock.calls) expect(call[2]).toEqual(sent)
     expect(deleting.mock.calls[0][1]).toEqual(sent)
     expect(getting).toHaveBeenCalledTimes(2)
     expect(posting).toHaveBeenCalledTimes(3)
+    expect(posting.mock.calls[2]).toEqual(['/progress/profile', { keep: false }, sent])
   })
 })

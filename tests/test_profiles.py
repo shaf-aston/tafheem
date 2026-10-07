@@ -100,24 +100,43 @@ def test_forget_wipes_only_the_name_asking():
     assert items("Bilal") == ["to-read"]
 
 
-def test_claim_moves_this_devices_old_answers_to_the_name():
+def start(name, keep=False):
+    return client.post("/api/progress/profile", json={"keep": keep}, headers=as_(name))
+
+
+def test_starting_a_name_hands_back_its_one_spelling():
+    response = start("  Amina ")
+    assert response.json() == {"name": "amina", "moved": 0}
+
+
+def test_starting_a_bad_name_says_why():
+    response = start("<x>")
+    assert response.status_code == 422
+    assert response.json()["detail"] == "Names use letters, numbers, spaces, - _ ."
+
+
+def test_keep_moves_this_devices_old_answers_to_the_name():
     answer(None, "to-write")
     answer(None, "to-read", correct=False)
     answer("Bilal", "to-go")
-    response = client.post("/api/progress/claim", json={}, headers=as_("Amina"))
-    assert response.status_code == 200
-    assert response.json() == {"moved": 2}
+    assert start("Amina", keep=True).json() == {"name": "amina", "moved": 2}
     assert items("Amina") == ["to-read", "to-write"]
     assert items(None) == []
     assert items("Bilal") == ["to-go"]
 
 
-def test_claim_leaves_the_shared_ai_question_cache_alone():
+def test_without_keep_old_answers_stay_unnamed():
+    answer(None, "to-write")
+    start("Amina")
+    assert items(None) == ["to-write"]
+
+
+def test_keep_leaves_the_shared_ai_question_cache_alone():
     progress_store.keep_questions(module="meaning", sentence="s", source="ai",
                                   questions=[{"question": "q", "answer": "a"}])
-    client.post("/api/progress/claim", json={}, headers=as_("Amina"))
+    start("Amina", keep=True)
     assert len(progress_store.kept_questions("meaning")) == 1
 
 
-def test_claim_needs_a_name():
-    assert client.post("/api/progress/claim", json={}).status_code == 422
+def test_starting_needs_a_name():
+    assert client.post("/api/progress/profile", json={}).status_code == 422

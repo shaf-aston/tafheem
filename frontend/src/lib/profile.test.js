@@ -1,26 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { cleanName, getProfile, profileHeaders, setProfile } from './profile'
-
-describe('cleanName', () => {
-  it.each([
-    [' Amina ', 'amina'],
-    ['AMINA', 'amina'],
-    ['a  b', 'a b'],
-    ['عائشة', 'عائشة'],
-    ['عَائِشَة', 'عَائِشَة'],
-    ['Amina-2_b.c', 'amina-2_b.c'],
-    ['x'.repeat(40), 'x'.repeat(40)],
-    ['Straße', 'strasse'],
-    ['مهر\u200cناز', 'مهر\u200cناز'],
-  ])('%s is %s', (raw, clean) => {
-    expect(cleanName(raw)).toEqual({ name: clean })
-  })
-
-  it.each(['', '   ', 'x'.repeat(41), 'ß'.repeat(21), '<x>', 'a/b', 'local', ' LOCAL ', '...', '-'])('refuses %j', (raw) => {
-    expect(cleanName(raw).error).toBeTruthy()
-  })
-})
+import { getProfile, profileHeaders, readsProgress, setProfile } from './profile'
 
 describe('profileHeaders', () => {
   beforeEach(() => {
@@ -28,24 +8,26 @@ describe('profileHeaders', () => {
     vi.stubGlobal('localStorage', {
       getItem: (k) => (data.has(k) ? data.get(k) : null),
       setItem: (k, v) => data.set(k, String(v)),
-      removeItem: (k) => data.delete(k),
     })
   })
   afterEach(() => vi.unstubAllGlobals())
 
-  it('sends nothing before a name is typed', () => {
+  it('sends nothing before a name is kept', () => {
     expect(profileHeaders()).toEqual({})
   })
 
-  it('sends the saved name, encoded so Arabic survives a header', () => {
+  it('sends the kept name, encoded so Arabic survives a header', () => {
     setProfile('عائشة')
     expect(getProfile()).toBe('عائشة')
     expect(profileHeaders()).toEqual({ 'X-Tafheem-Profile': encodeURIComponent('عائشة') })
   })
 
-  it('forgets the name when cleared', () => {
-    setProfile('amina')
-    setProfile('')
-    expect(profileHeaders()).toEqual({})
+  it('sends a name being tried before it is kept', () => {
+    expect(profileHeaders(' Amina ')).toEqual({ 'X-Tafheem-Profile': '%20Amina%20' })
   })
+})
+
+it('refetches only queries that read progress', () => {
+  expect(readsProgress({ queryKey: ['quiz-review', 'en'] })).toBe(true)
+  expect(readsProgress({ queryKey: ['quran-surah', 1] })).toBe(false)
 })
