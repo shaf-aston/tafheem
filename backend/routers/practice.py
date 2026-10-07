@@ -55,7 +55,7 @@ async def kept_practice(sentence: str | None = Query(None, max_length=2000)) -> 
 @router.post("/checked", response_model=CheckedSentence)
 async def checked_sentence(user: str = _USER) -> CheckedSentence:
     """A short AI sentence using only words this learner has learnt, every word checked."""
-    learnt = [row["item"] for row in await asyncio.to_thread(progress_store.summary, "quiz", user) if row["known"]]
+    learnt = [row for row in await asyncio.to_thread(progress_store.summary, "quiz", user) if row["known"]]
     settings = get_settings()
     words = sentence_check.learnt_words(learnt)
     if len(words) < settings.sentence_min_learnt:

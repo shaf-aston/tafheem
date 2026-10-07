@@ -29,6 +29,7 @@ import { useRecitation } from '../lib/useRecitation'
 import { useRecitedWord } from '../lib/useRecitedWord'
 import { RECITERS, nowPlaying, play, prefetch, stop, watch, watchEnd } from '../lib/ayahAudio'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
+import { learntWords } from '../lib/coverage'
 import { useLearntLemmas } from '../lib/useLearntLemmas'
 import { useMedia } from '../lib/useMedia'
 import { useWheelX } from '../lib/useWheelX'
@@ -51,11 +52,6 @@ const LAST_SURAH = 114
 const FIRST_PAINT_ROWS = 12
 // Wide enough for the surah and the study side by side; Tailwind's lg.
 const TWO_PANES = '(min-width: 64rem)'
-
-// Which words of an ayah are learnt, by lemma; null when none are, so the
-// ayah can still be drawn plain.
-const markLearnt = (lemmas, learnt) =>
-  (learnt.size && lemmas?.some((lemma) => learnt.has(lemma)) ? lemmas.map((lemma) => learnt.has(lemma)) : null)
 
 /** The English under one ayah: the chosen translation once it has arrived,
  *  the corpus's word-by-word gloss before that, so nothing is credited to a
@@ -215,7 +211,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
                   ayah={row}
                   english={englishFor(translation, row)}
                   glosses={glosses?.ayahs?.[row.ayah]}
-                  learnt={markLearnt(glosses?.lemmas?.[row.ayah], learnt)}
+                  learnt={learntWords(glosses?.lemmas?.[row.ayah], learnt)}
                   allMeanings={allMeanings}
                   src={recitation.urlFor(row.ayah)}
                   segments={recitation.segmentsFor(row.ayah)}

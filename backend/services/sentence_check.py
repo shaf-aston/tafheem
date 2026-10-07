@@ -62,10 +62,15 @@ def _table() -> tuple[list[dict], list[str]]:
             json.loads(COVERAGE.read_text("utf-8"))["lemmas"])
 
 
-def learnt_words(meaning_keys: list[str]) -> list[dict]:
-    """The quiz's words behind these meaningKeys."""
-    keys = set(meaning_keys)
-    return [word for word in _table()[0] if word["meaningKey"] in keys]
+def learnt_words(learnt: list[dict]) -> list[dict]:
+    """The quiz's words behind these learnt summary rows.
+
+    A meaning brings the words answered right through it (`words`), and all of
+    its words when a right answer was saved before those were kept ('').
+    """
+    right = {row["item"]: set(row["words"]) for row in learnt}
+    return [word for word in _table()[0]
+            if word["ar"] in right.get(word["meaningKey"], ()) or "" in right.get(word["meaningKey"], ())]
 
 
 def allowed(learnt: list[dict]) -> set[str]:

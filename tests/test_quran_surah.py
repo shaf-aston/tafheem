@@ -135,7 +135,7 @@ def test_glosses_are_in_the_order_the_words_are_printed() -> None:
 
 
 @pytest.mark.parametrize("surah", SAMPLE)
-def test_one_lemma_per_printed_word(surah: int) -> None:
+def test_one_lemma_list_per_printed_word(surah: int) -> None:
     lemmas = quran_corpus.lemmas_for_surah(surah)
     texts = dict(quran_corpus.ayah_texts(surah))
     assert lemmas.keys() == texts.keys()
@@ -143,10 +143,12 @@ def test_one_lemma_per_printed_word(surah: int) -> None:
         assert len(lemmas[ayah]) == len(text.split())
 
 
-def test_a_word_is_known_by_its_stem_not_its_prefix() -> None:
-    # بِسْمِ is بِ + اسْم: the word is اسْم, as the coverage counts have it.
-    bare = [arabic_text.bare_letters(w) for w in quran_corpus.lemmas_for_surah(1)[1]]
-    assert bare == [arabic_text.bare_letters(w) for w in ("اسم", "الله", "رحمن", "رحيم")]
+def test_a_word_carries_every_piece_it_is_built_from() -> None:
+    # بِسْمِ is بِ + اسْم, and the meter counts a word by any of its pieces.
+    bare = [[arabic_text.bare_letters(w) for w in word] for word in quran_corpus.lemmas_for_surah(1)[1]]
+    assert bare[0] == ["ب", "اسم"]
+    # يَبْنَؤُمَّ (20:94) is two taught words in one: ابْن and أُمّ.
+    assert [arabic_text.bare_letters(w) for w in quran_corpus.lemmas_for_surah(20)[94][1]][-2:] == ["ابن", "ام"]
 
 
 def test_the_ayah_printed_with_an_extra_space_has_no_lemmas() -> None:
