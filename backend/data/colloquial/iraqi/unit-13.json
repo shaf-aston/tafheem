@@ -221,6 +221,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَبْسُوط",
+          "transliteration": "mabsooT",
+          "english": "happy",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "زَعْلَان",
+          "transliteration": "za3laan",
+          "english": "upset",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "جُوعَان",
+          "transliteration": "joo3aan",
+          "english": "hungry",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "گَلْگَان",
+          "transliteration": "galgaan",
+          "english": "worried",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "خَايِف",
+          "transliteration": "khaayif",
+          "english": "scared",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "اِمْتِحَان",
+          "transliteration": "imti7aan",
+          "english": "exam",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "مَرَّة",
+          "transliteration": "marra",
+          "english": "very",
+          "category": "Feelings"
+        }
+      ],
       "culture": "Asked \"شلونك؟\", Iraqis nearly always answer \"الحمد لله\" or \"زين\" whatever they feel, and add \"وإنت؟\" back. Close friends and family then ask \"شبيك؟\" if something looks wrong, and saying \"زعلان\" or \"تعبان\" plainly is normal only with people you trust.",
       "exercises": [
         {
@@ -615,6 +665,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَحّ",
+          "transliteration": "Sa77",
+          "english": "right, correct",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "مَضْبُوط",
+          "transliteration": "maDbooT",
+          "english": "exactly",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "حَگّ",
+          "transliteration": "7agg",
+          "english": "right (being right)",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "مُوَافِگ",
+          "transliteration": "muwaafig",
+          "english": "agreeing",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "رَاي",
+          "transliteration": "raay",
+          "english": "opinion",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "يِمْكِن",
+          "transliteration": "yimkin",
+          "english": "maybe",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "هِيچ",
+          "transliteration": "heech",
+          "english": "like this",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "بَسّ",
+          "transliteration": "bass",
+          "english": "but, only",
+          "category": "Agreeing"
+        }
+      ],
       "culture": "Iraqis say \"عندك حق\" very often, even in the middle of an argument, and soften a \"no\" with \"يمكن، بس\" or \"مو هيچ\". Among friends a plain \"لا\" is fine, but with elders or strangers people add \"بس\" and a smile.",
       "exercises": [
         {
@@ -993,6 +1093,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "نَصِيحَة",
+          "transliteration": "naSee7a",
+          "english": "advice",
+          "category": "Advice"
+        },
+        {
+          "arabic": "دِكْتُور",
+          "transliteration": "diktoor",
+          "english": "doctor",
+          "category": "Advice"
+        },
+        {
+          "arabic": "دَوَا",
+          "transliteration": "dawa",
+          "english": "medicine",
+          "category": "Advice"
+        },
+        {
+          "arabic": "لَازِم",
+          "transliteration": "laazim",
+          "english": "must, should",
+          "category": "Advice"
+        },
+        {
+          "arabic": "أَحْسَن",
+          "transliteration": "a7san",
+          "english": "better",
+          "category": "Advice"
+        },
+        {
+          "arabic": "بَال",
+          "transliteration": "baal",
+          "english": "mind, attention",
+          "category": "Advice"
+        },
+        {
+          "arabic": "هَادِي",
+          "transliteration": "haadi",
+          "english": "calm",
+          "category": "Advice"
+        },
+        {
+          "arabic": "مَكَان",
+          "transliteration": "makaan",
+          "english": "place",
+          "category": "Advice"
+        }
+      ],
       "culture": "Iraqis give advice freely, from family to neighbours to the taxi driver, and it usually comes with \"إن شاء الله\" at the end. \"دير بالك\" means both \"take care of yourself\" and \"watch out\", and it is also a common way to say goodbye.",
       "exercises": [
         {
@@ -1365,6 +1515,56 @@
             "transliteration": "khalli ashuuf, aasif ustaadh",
             "english": "Let me see, sorry sir."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "mushkila",
+          "english": "problem",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "إِزْعَاج",
+          "transliteration": "iz3aaj",
+          "english": "bother, disturbance",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "غَلَط",
+          "transliteration": "ghalaT",
+          "english": "mistake",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "مُهِمّ",
+          "transliteration": "muhimm",
+          "english": "important",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "مَوْضُوع",
+          "transliteration": "mawDoo3",
+          "english": "matter, subject",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "صُورَة",
+          "transliteration": "Soora",
+          "english": "picture",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "فْلُوس",
+          "transliteration": "floos",
+          "english": "money",
+          "category": "Complaining"
         }
       ],
       "culture": "In Iraq you call a waiter or shopkeeper \"أستاذ\" and open a complaint with \"لو سمحت\", and the answer is usually \"ولا يهمك\" or \"تفضل\". Complaints stay gentle, since raising your voice at someone serving you is seen as rude.",

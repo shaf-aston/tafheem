@@ -218,6 +218,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "عَايْلَة",
+          "transliteration": "3aayla",
+          "english": "family",
+          "category": "Family"
+        },
+        {
+          "arabic": "أُمّ",
+          "transliteration": "umm",
+          "english": "mother",
+          "category": "Family"
+        },
+        {
+          "arabic": "أَبُو",
+          "transliteration": "abu",
+          "english": "father",
+          "category": "Family"
+        },
+        {
+          "arabic": "أَخ",
+          "transliteration": "akh",
+          "english": "brother",
+          "category": "Family"
+        },
+        {
+          "arabic": "أُخْت",
+          "transliteration": "ukht",
+          "english": "sister",
+          "category": "Family"
+        },
+        {
+          "arabic": "اِبِن",
+          "transliteration": "ibin",
+          "english": "son",
+          "category": "Family"
+        },
+        {
+          "arabic": "بِنْت",
+          "transliteration": "bint",
+          "english": "daughter, girl",
+          "category": "Family"
+        },
+        {
+          "arabic": "زَوْج",
+          "transliteration": "zawj",
+          "english": "husband",
+          "category": "Family"
+        }
+      ],
       "culture": "People in Iraq ask about family early and directly, its size, and where relatives live, and the answer usually names the city, such as Baghdad, Basra or Mosul. Saying you are still single (\"بعدني أعزب\") is a plain, unremarkable answer, and older relatives will often add \"إن شاء الله قريب\" (soon, God willing).",
       "exercises": [
         {
@@ -645,6 +695,56 @@
             "transliteration": "tfaddal, haadha l-7isaab.",
             "english": "Here you go, this is the bill."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "جُوعَان",
+          "transliteration": "joo3aan",
+          "english": "hungry",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "عَطْشَان",
+          "transliteration": "3aTshaan",
+          "english": "thirsty",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "أَكِل",
+          "transliteration": "akil",
+          "english": "food",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "گَهْوَة",
+          "transliteration": "gahwa",
+          "english": "coffee",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "چَاي",
+          "transliteration": "chaay",
+          "english": "tea",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "فَلَافِل",
+          "transliteration": "falaafil",
+          "english": "falafel",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "عَافْيَة",
+          "transliteration": "3aafya",
+          "english": "health",
+          "category": "Food and drink"
         }
       ],
       "culture": "Sharing food, and arguing over who pays, are both very common in Iraqi life, and tea (\"چاي\", served strong in a small glass) is offered to almost every guest. \"بالعافية\" while someone is eating and \"صحة وعافية\" once they finish are fixed courtesies, each answered with a short blessing such as \"الله يعافيك\".",
