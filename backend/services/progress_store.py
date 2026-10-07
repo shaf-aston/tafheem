@@ -13,7 +13,7 @@ id refers to is the caller's business, and the caller already holds the table
 that says so; copying those tags in here would make a second copy that goes
 stale every time the word list is rebuilt.
 
-`user` is the learner's typed name (services/profile.py), or 'local' for answers
+`user` is the learner's username (services/profile.py), or 'local' for answers
 given before names existed. The questions table is a cache of AI answers shared
 by everyone, so it stays under 'local' and claim_local leaves it alone.
 """
@@ -66,6 +66,14 @@ CREATE TABLE IF NOT EXISTS feedback (
     message TEXT    NOT NULL,
     at      TEXT    NOT NULL DEFAULT (datetime('now'))
 );
+CREATE TABLE IF NOT EXISTS accounts (
+    name TEXT PRIMARY KEY,
+    at   TEXT NOT NULL DEFAULT (datetime('now'))
+);
+-- Names typed before sign-up existed are accounts already, so their owners can log in.
+INSERT OR IGNORE INTO accounts (name, at)
+    SELECT user, MIN(at) FROM (SELECT user, at FROM attempts UNION ALL SELECT user, at FROM feedback)
+    WHERE user <> 'local' GROUP BY user;
 """
 
 # Counts and timing in one pass. Whether an item is due is not here: it is worked
@@ -205,6 +213,56 @@ def forget(user: str = "local") -> int:
     with db:
         cursor = db.execute("DELETE FROM attempts WHERE user = ?", (user,))
     return int(cursor.rowcount)
+
+
+def sign_up(name: str) -> bool:
+    """Make the account. False when the username is taken."""
+    db = _db()
+    with db:
+        return db.execute("INSERT OR IGNORE INTO accounts (name) VALUES (?)", (name,)).rowcount == 1
+
+
+def has_account(name: str) -> bool:
+    return _db().execute("SELECT 1 FROM accounts WHERE name = ?", (name,)).fetchone() is not None
+
+
+def account(name: str) -> dict | None:
+    """Who, since when (UTC ISO), and how many answers given; None when not signed up."""
+    row = _db().execute(
+        "SELECT name, at, (SELECT COUNT(*) FROM attempts WHERE user = name) AS answers "
+        "FROM accounts WHERE name = ?", (name,)).fetchone()
+    if row is None:
+        return None
+    joined = datetime.strptime(row["at"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+    return {"name": row["name"], "joined": joined.isoformat(), "answers": row["answers"]}
+
+
+def delete_account(name: str) -> int:
+    """Wipe the answers and free the username, together. Returns how many answers went.
+
+    Reports about questions are kept, as the plain wipe keeps them, but no longer named.
+    """
+    db = _db()
+    with db:
+        deleted = db.execute("DELETE FROM attempts WHERE user = ?", (name,)).rowcount
+        db.execute("UPDATE feedback SET user = 'local' WHERE user = ?", (name,))
+        db.execute("DELETE FROM accounts WHERE name = ?", (name,))
+    return int(deleted)
+
+
+def leaderboard(module: str) -> list[dict]:
+    """Every account by words learnt in `module`, most first; ties share a rank.
+
+    Replays each account's answers, which is fine at the size this app is.
+    """
+    names = [row["name"] for row in _db().execute("SELECT name FROM accounts")]
+    rows = sorted(
+        ({"name": name, "learnt": sum(row["known"] for row in summary(module, name))} for name in names),
+        key=lambda row: (-row["learnt"], row["name"]),
+    )
+    for row in rows:
+        row["rank"] = 1 + sum(other["learnt"] > row["learnt"] for other in rows)
+    return rows
 
 
 def claim_local(user: str) -> int:

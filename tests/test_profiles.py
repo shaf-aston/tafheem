@@ -1,8 +1,8 @@
-"""Profiles: a learner types a name and gets their own record.
+"""Profiles: a learner signs up with a username and gets their own record.
 
-No password: anyone typing the same name sees the same record, which is agreed.
-What is checked is that two names never mix, that one spelling of a name is one
-person, and that wiping or claiming touches only the name asking.
+No password, which is agreed. What is checked is that a username is signed up
+once, that two names never mix, that one spelling is one person, and that
+wiping or claiming touches only the name asking.
 
 Run: python -m pytest tests/test_profiles.py
 """
@@ -35,11 +35,15 @@ def as_(name):
 
 
 def answer(name, item, correct=True):
+    if name is not None:
+        signup(name)  # a second sign-up of the same name is a harmless 409
     return client.post("/api/progress/attempts", headers=as_(name),
                        json={"module": "quiz", "item": item, "correct": correct})
 
 
 def items(name):
+    if name is not None:
+        signup(name)
     response = client.get("/api/progress/summary", params={"module": "quiz"}, headers=as_(name))
     assert response.status_code == 200
     return [row["item"] for row in response.json()["items"]]
@@ -100,17 +104,51 @@ def test_forget_wipes_only_the_name_asking():
     assert items("Bilal") == ["to-read"]
 
 
-def start(name, keep=False):
-    return client.post("/api/progress/profile", json={"keep": keep}, headers=as_(name))
+def signup(name, keep=False):
+    return client.post("/api/progress/signup", json={"keep": keep}, headers=as_(name))
 
 
-def test_starting_a_name_hands_back_its_one_spelling():
-    response = start("  Amina ")
-    assert response.json() == {"name": "amina", "moved": 0}
+def login(name):
+    return client.post("/api/progress/login", headers=as_(name))
 
 
-def test_starting_a_bad_name_says_why():
-    response = start("<x>")
+def test_signup_hands_back_the_one_spelling():
+    assert signup("  Amina ").json() == {"name": "amina", "moved": 0}
+
+
+def test_a_taken_username_cannot_sign_up_again():
+    signup("Amina")
+    response = signup("AMINA")
+    assert response.status_code == 409
+    assert response.json()["detail"] == "That username is taken"
+
+
+def test_login_finds_a_signed_up_name_only():
+    assert login("Amina").status_code == 404
+    signup("Amina")
+    assert login(" amina ").json() == {"name": "amina", "moved": 0}
+
+
+def test_names_used_before_signup_existed_can_log_in():
+    progress_store.record(module="quiz", item="to-go", correct=True, user="bilal")  # from before accounts
+    progress_store.leave_feedback(module="quiz", message="x", user="cyra")  # reported, never answered
+    progress_store.reset_connection()  # a restart, where the old names become accounts
+    assert login("Bilal").status_code == 200
+    assert login("Cyra").status_code == 200
+    assert signup("Bilal").status_code == 409
+
+
+def test_a_name_without_an_account_cannot_read_or_write():
+    """A deleted account in another tab must not keep filing answers."""
+    body = {"module": "quiz", "item": "to-write", "correct": True}
+    response = client.post("/api/progress/attempts", headers=as_("ghost"), json=body)
+    assert response.status_code == 401
+    assert response.json()["detail"] == "Log in again: no account with that username"
+    assert client.get("/api/progress/summary", headers=as_("ghost")).status_code == 401
+
+
+def test_signup_with_a_bad_name_says_why():
+    response = signup("<x>")
     assert response.status_code == 422
     assert response.json()["detail"] == "Names use letters, numbers, spaces, - _ ."
 
@@ -119,7 +157,7 @@ def test_keep_moves_this_devices_old_answers_to_the_name():
     answer(None, "to-write")
     answer(None, "to-read", correct=False)
     answer("Bilal", "to-go")
-    assert start("Amina", keep=True).json() == {"name": "amina", "moved": 2}
+    assert signup("Amina", keep=True).json() == {"name": "amina", "moved": 2}
     assert items("Amina") == ["to-read", "to-write"]
     assert items(None) == []
     assert items("Bilal") == ["to-go"]
@@ -127,16 +165,59 @@ def test_keep_moves_this_devices_old_answers_to_the_name():
 
 def test_without_keep_old_answers_stay_unnamed():
     answer(None, "to-write")
-    start("Amina")
+    signup("Amina")
     assert items(None) == ["to-write"]
 
 
 def test_keep_leaves_the_shared_ai_question_cache_alone():
     progress_store.keep_questions(module="meaning", sentence="s", source="ai",
                                   questions=[{"question": "q", "answer": "a"}])
-    start("Amina", keep=True)
+    signup("Amina", keep=True)
     assert len(progress_store.kept_questions("meaning")) == 1
 
 
-def test_starting_needs_a_name():
-    assert client.post("/api/progress/profile", json={}).status_code == 422
+def test_signup_and_login_need_a_name():
+    assert client.post("/api/progress/signup", json={}).status_code == 422
+    assert client.post("/api/progress/login").status_code == 422
+
+
+def test_the_account_says_who_since_when_and_how_many_answers():
+    signup("Amina")
+    answer("Amina", "to-write")
+    answer("Amina", "to-read", correct=False)
+    body = client.get("/api/progress/account", headers=as_("Amina")).json()
+    assert (body["name"], body["answers"]) == ("amina", 2)
+    assert body["joined"].endswith("+00:00")
+    assert client.get("/api/progress/account", headers=as_("Bilal")).status_code == 401
+    assert client.get("/api/progress/account").status_code == 422
+
+
+def test_deleting_the_account_frees_the_name_and_wipes_only_its_answers():
+    signup("Amina")
+    answer("Amina", "to-write")
+    answer("Bilal", "to-read")
+    client.post("/api/progress/feedback", headers=as_("Amina"), json={"module": "quiz", "message": "typo"})
+    assert client.delete("/api/progress/account", headers=as_("Amina")).json() == {"deleted": 1}
+    progress_store.reset_connection()  # a restart must not bring the name back from its reports
+    assert login("Amina").status_code == 404
+    assert progress_store.summary("quiz", "amina") == []
+    assert items("Bilal") == ["to-read"]
+    assert signup("Amina").status_code == 200
+
+
+def test_the_leaderboard_ranks_accounts_by_words_learnt_and_finds_you():
+    db_answer = lambda name, item, days: progress_store._db().execute(  # noqa: E731
+        "INSERT INTO attempts (user, module, item, correct, at) VALUES (?, 'quiz', ?, 1, datetime('now', ?))",
+        (name, item, f"-{days} days"))
+    for name in ("Amina", "Bilal", "Cyra"):
+        signup(name)
+    for item in ("a", "b"):  # right on two separate days: learnt
+        db_answer("bilal", item, 3), db_answer("bilal", item, 2)
+    db_answer("amina", "a", 3), db_answer("amina", "a", 2)
+    progress_store._db().commit()
+    answer(None, "a")  # the guest record is nobody's, so it is not ranked
+    body = client.get("/api/progress/leaderboard", params={"module": "quiz"}, headers=as_("Cyra")).json()
+    assert [(r["rank"], r["name"], r["learnt"]) for r in body["rows"]] == [
+        (1, "bilal", 2), (2, "amina", 1), (3, "cyra", 0)]
+    assert body["you"]["rank"] == 3
+    assert client.get("/api/progress/leaderboard").json()["you"] is None

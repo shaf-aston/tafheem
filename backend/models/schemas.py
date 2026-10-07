@@ -1157,7 +1157,7 @@ class Forgotten(BaseModel):
 
 
 class ProfileIn(BaseModel):
-    """Starting to use the name in the profile header."""
+    """Signing up the username in the profile header."""
 
     keep: bool = False
     """Move the answers given before names existed onto this name."""
@@ -1168,6 +1168,27 @@ class ProfileSaved(BaseModel):
 
     name: str
     moved: int
+
+
+class Account(BaseModel):
+    """The profile page: who, since when, and how many answers given."""
+
+    name: str
+    joined: str
+    answers: int
+
+
+class LeaderRow(BaseModel):
+    name: str
+    learnt: int
+    rank: int
+
+
+class Leaderboard(BaseModel):
+    """The top accounts by words learnt, and where the asker stands (None for a guest)."""
+
+    rows: list[LeaderRow]
+    you: LeaderRow | None
 
 
 class ItemStats(BaseModel):
