@@ -42,7 +42,8 @@ const isAyah = ({ surah, ayah }) => ayah >= 1 && ayah <= (surahs[surah - 1]?.aya
 
 export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }) {
   // What arrived from another tab, if it was an ayah address.
-  const arrived = AYAH_REF.exec(incoming ?? '')
+  const address = AYAH_REF.exec(incoming ?? '')
+  const arrived = address && { surah: Number(address[1]), ayah: Number(address[2]) }
 
   // The one box: a place or the words. What it is read as is lib/quranIntent's.
   const [query, setQuery] = useState('')
@@ -56,14 +57,18 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   const [heard, setHeard] = useState(null)
   // The place open in the reader, a surah or an ayah in it, or null for none.
   // The picker follows it too.
-  const [at, setAt] = useState(arrived ? { surah: Number(arrived[1]), ayah: Number(arrived[2]) } : null)
+  const [at, setAt] = useState(arrived)
 
   const { history: recent, push: remember } = useHistory('quran-history')
 
   // An ayah opened is a place reached, written the way every other tab writes
   // one, so the trail and the back arrow can carry it. See lib/journey.js.
-  // Only an ayah asked for: one played or scrolled past is not a visit.
-  const visit = (place) => { remember(place); onVisit?.(`${place.surah}:${place.ayah}`) }
+  // Only an ayah asked for and really there: one played or scrolled past is not a visit.
+  const visit = (place) => {
+    if (!isAyah(place)) return
+    remember(place)
+    onVisit?.(`${place.surah}:${place.ayah}`)
+  }
   const search = useMutation({ mutationFn: searchQuran })
   const rootLookup = useMutation({ mutationFn: getQuranRoot })
   // The root behind a single searched word; a 404 just means there is none to show.
@@ -86,17 +91,14 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   const { arrived: justCame } = useArrival(arrival)
   if (justCame && incoming) {
     setHeard(null)
-    if (arrived) {
-      setShowMatches(false)
-      setAt({ surah: Number(arrived[1]), ayah: Number(arrived[2]) })
-    } else setAt(null)
+    if (arrived) setShowMatches(false)
+    setAt(arrived)
   }
 
   useEffect(() => {
     if (!incoming) return
-    if (!arrived) return lookupRoot(incoming)
-    const place = { surah: Number(arrived[1]), ayah: Number(arrived[2]) }
-    if (isAyah(place)) visit(place)
+    if (arrived) visit(arrived)
+    else lookupRoot(incoming)
     // `arrived` is derived from `incoming` on every render, so the address
     // itself is the dependency worth naming; `visit` is new every render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,10 +131,10 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   }
   const readSurah = (n) => { setShowMatches(false); setAt({ surah: n, ayah: null }) }
 
-  const openResult = ({ surah, ayah }) => {
+  const openResult = (place) => {
     setShowMatches(false)
-    setAt({ surah, ayah })
-    if (isAyah({ surah, ayah })) visit({ surah, ayah })
+    setAt(place)
+    visit(place)
   }
   // The reader moving itself: a surah stepped to, an ayah tapped or shut.
   const onPlace = (place) => (place.ayah ? openResult(place) : setAt(place))

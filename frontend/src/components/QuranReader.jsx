@@ -420,10 +420,11 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
 
   const name = RECITERS.find((one) => one.id === reciter)?.name ?? ''
   const round = 'press shrink-0 grid place-items-center rounded-full transition-colors'
+  const skip = `${round} w-8 h-8 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`
 
   return (
     <div className="flex items-center gap-2 p-2 pl-3 border-t border-[var(--border)] bg-[var(--surface-hi)]">
-      <button type="button" className={`${round} w-8 h-8 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`}
+      <button type="button" className={skip}
         onClick={() => start(at - 1)} disabled={at <= 1} aria-label="Previous ayah">
         <Glyph d="M6 5h2v14H6zM20 5v14L9 12z" />
       </button>
@@ -432,7 +433,7 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
         aria-label={sounding ? `Stop ${surah}:${sounding}` : `Play from ${surah}:${at}`}>
         <Glyph d={sounding ? 'M6 6h12v12H6z' : 'M7 4.5v15l13-7.5z'} />
       </button>
-      <button type="button" className={`${round} w-8 h-8 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`}
+      <button type="button" className={skip}
         onClick={() => start(at + 1)} disabled={at >= count} aria-label="Next ayah">
         <Glyph d="M16 5h2v14h-2zM4 5v14l11-7z" />
       </button>

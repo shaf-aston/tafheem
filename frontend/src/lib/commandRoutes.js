@@ -31,9 +31,6 @@ export const rowId = (name, index) => `${name}-row-${index}`
 /** The four groups, in the order they are shown. */
 export const GROUPS = { ayah: 'Open ayah', go: 'Go to', dict: 'Dictionary', ask: 'Analyse' }
 
-// "2:255." opens the ayah and "كتب." looks up كتب: what trails a line is not part of it.
-const clean = untrailed
-
 /** Does this tab answer to what was typed: its id, its English name, or its Arabic one. */
 function tabMatches(tab, term) {
   if (!term) return true
@@ -71,7 +68,8 @@ export function ghostFor(query, tabs) {
  * answer with nothing while the reader watches.
  */
 export function classify(query, tabs) {
-  const raw = clean(query)
+  // "2:255." opens the ayah and "كتب." looks up كتب: what trails a line is not part of it.
+  const raw = untrailed(query)
   if (!raw) return []
 
   const rows = []
@@ -98,7 +96,7 @@ export function classify(query, tabs) {
   // "@" is the one prefix that means a thing rather than a place: look this
   // root up, do not go looking for a tab called it.
   if (raw.startsWith('@')) {
-    const root = clean(raw.slice(1))
+    const root = untrailed(raw.slice(1))
     if (root) {
       add(GROUPS.dict, 'dict', root, root, "Ibn Faris's origin sense", true)
       add(GROUPS.dict, 'sarf', root, root, 'Every form of this word', true)
@@ -108,7 +106,7 @@ export function classify(query, tabs) {
   }
 
   const slashed = raw.startsWith('/')
-  const term = slashed ? clean(raw.slice(1)) : raw
+  const term = slashed ? untrailed(raw.slice(1)) : raw
 
   for (const tab of tabs) {
     if (tabMatches(tab, term)) add(GROUPS.go, tab.id, null, tab.label, tab.blurb ?? '', false)

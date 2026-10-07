@@ -24,7 +24,7 @@ def normalize_text(text: str, field: str = "input") -> str:
         raise HTTPException(status_code=400, detail=f"{field} cannot be empty")
 
 
-def search_query(text: str, required: bool = False, field: str = "Search query") -> str:
+def search_query(text: str, required: bool = False) -> str:
     """What was typed into a search box, read the one way every search reads it:
     punctuation is a break between words, never part of one (arabic_text.unpunctuated).
     A full stop at the end used to ride into the matching as a letter. A root
@@ -32,7 +32,7 @@ def search_query(text: str, required: bool = False, field: str = "Search query")
     `required` makes an empty query a 400, for the searches that have nothing to
     show for one."""
     query = spelled_out(unpunctuated(text))
-    return normalize_text(query, field) if required else query
+    return normalize_text(query, "Search query") if required else query
 
 
 def arabic_sentence(text: str, field: str = "input") -> str:
