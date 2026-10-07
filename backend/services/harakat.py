@@ -126,8 +126,11 @@ def base_of(word: str, atbtok: str | None) -> str:
 
 def drops_weak(base: str, weak_last: bool) -> bool:
     """The root ends in a weak letter the word no longer ends in (اِسْقِ، لم يَدْعُ): the
-    book's sign of jazm for a present verb. `base` is the word without its joined letters."""
-    return bool(weak_last) and strip_diacritics(base)[-1:] not in WEAK_ENDS
+    book's sign of jazm for a present verb. `base` is the word without its joined letters.
+    Not when the five verbs' nun stands (يُؤْتُونَ): the weak letter went before the plural
+    waw, and the nun kept is the sign of raf'."""
+    bare = strip_diacritics(base)
+    return bool(weak_last) and bare[-1:] not in WEAK_ENDS and not bare.endswith(HIDDEN_CASE)
 
 
 def five_verb_nun(word: str) -> str | None:

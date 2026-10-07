@@ -582,3 +582,30 @@ def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: 
     assert doer in shown
     if sentence.startswith(("أَنْتَ", "هِيَ", "أَنْتِ")):
         assert [w["role"] for w in iraab.analyse(sentence)["words"]][0] == "مبتدأ" and "خبر" in shown
+
+
+@pytest.mark.parametrize("sentence, roles", [
+    # a typed case clash rules out the نعت: the fatha makes الفقير the first object
+    ("أَعْطَى الرَّجُلُ الْفَقِيرَ دِرْهَمًا", ["فعل", "فاعل", "مفعول به", "مفعول به"]),
+    # آتى takes two objects, so the second is never a حال
+    ("لَا يُؤْتُونَ النَّاسَ نَقِيرًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),
+    # nearest case: an indefinite word after one object stays the حال
+    ("جَاءَ الرَّجُلُ ضَاحِكًا", ["فعل", "فاعل", "حال"])])
+def test_two_objects_of_a_verb_of_giving_are_both_objects_and_a_case_clash_is_no_naat(sentence: str, roles: list[str]):
+    assert [w["role"] for w in _read(sentence)["words"]] == roles
+
+
+def test_the_nun_of_the_five_verbs_kept_after_la_is_raf_not_jazm():
+    verb = _read("لَا يُؤْتُونَ النَّاسَ نَقِيرًا")["words"][1]
+    assert (verb["case"], verb["sign"]) == ("raf'", "ثبوت النون")
+
+
+@pytest.mark.parametrize("sentence, index, named, case", [
+    ("فَإِذًا لَا يُؤْتُونَ النَّاسَ نَقِيرًا", 0, "حرف جواب وجزاء", "mabni"),  # a tanween is إذن, not the sudden إذا; the verb shows raf'
+    ("إِذَنْ أُكْرِمَكَ", 0, "حرف جواب وجزاء ونصب", "mabni"),
+    ("إِذَنْ أُكْرِمَكَ", 1, None, "nasb"),  # the present verb right after it is منصوب
+    ("خَرَجْتُ فَإِذَا الأَسَدُ", 1, "حرف مفاجأة", "mabni")])  # nearest case: إذا without a tanween stays the sudden one
+def test_idhan_is_told_from_idha_by_its_spelling_and_works_only_before_a_verb_in_nasb(
+        sentence: str, index: int, named: str | None, case: str):
+    word = _read(sentence)["words"][index]
+    assert (word.get("named"), word["case"]) == (named, case)

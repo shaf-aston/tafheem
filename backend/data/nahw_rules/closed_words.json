@@ -323,6 +323,7 @@
    "_comment": "أدرى (made know, form IV of درى) is listed for وما أدراك ما يوم الدين: its pronoun is the first object and the question clause after it stands for the second. The same letters are the wonder verb (ما أدراه), so what follows the pronoun tells them apart (particles.py, asks and wonder).",
    "words": [
     "أعطى",
+    "آتى",
     "منح",
     "وهب",
     "سأل",
@@ -352,6 +353,7 @@
     "حدث": "'told' (two or three objects) vs 'happened' (intransitive, appears in the same spelling)",
     "خبر": "'informed' (three objects) vs noun 'khabar' (predicate / news)",
     "نبأ": "'informed' vs noun 'news'",
+    "آتى": "'gave' (form IV of أتى, written with a madda: يُؤْتُونَ النَّاسَ نَقِيرًا) vs أتى 'came' (one alef, intransitive)",
     "منع": "'prevented X from Y' (two objects, the second with من) vs ordinary one-object use",
     "أدرى": "'made X know' (a second question clause as its other object) vs the wonder verb 'how knowing' (ما أدراه), told apart by a question word after the pronoun",
     "أعطى": "verb 'gave' vs none; very clean"
@@ -364,6 +366,12 @@
    "before_a_present_verb": ["أن", "لن", "كي", "لكي", "كيلا", "لئلا", "حتى"],
    "merges": {"ألا": {"named": "حرف نصب ومصدر", "tail": "negation"}},
    "_merges": "a word written with a shadda on its lam is أن (this family) with the nun merged into a following لا: أَلَّا = أَنْ + لا. `named` is the name of the head, `tail` the family the piece after it works as (particles.stamp).",
+   "tanween_spells": {"إذا": "إذن"},
+   "_tanween_spells": "إذن is written with a tanween fath (إِذًا) as well as a final nun, while إذا (the time word, the sudden one) never takes a tanween: so the lemma إذا typed with a tanween is إذن (Tasheel 4.1.1 p99). particles.stamp reads the spelling from the typed vowels.",
+   "idhan_after": ["و", "ف"],
+   "idhan_between": ["لا"],
+   "idhan_oath": ["و"],
+   "_idhan": "إذن answers and gives the result (حرف جواب وجزاء); it also puts the present verb in nasb when it opens the answer (only و or ف before it) and the verb follows it directly, a negating لا or an oath (و and the sworn-by noun) allowed between (Tasheel 4.1.1 p99, Alfiyya). After و or ف it may work or not; when the verb shows its raf' (the nun of the five verbs kept, a damma) it has not worked. `idhan_after` is what may stand before it, `idhan_between` what may stand between it and the verb, `idhan_oath` the و of an oath (services/syntax/particles.py, the idhan tree).",
    "_before_a_present_verb": "the ones that settle an unvowelled present verb as منصوب when it comes straight after them; the rest need a reading of the sentence (services/syntax/naming.py)",
    "words": [
     "أن",
