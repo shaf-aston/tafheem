@@ -344,7 +344,7 @@ function AyahList({ listRef, ayahs, target, onScrolled, children: row }) {
     <ol
       ref={listRef}
       onScroll={(e) => onScrolled(rowAt(e.currentTarget))}
-      className="scroll-pane relative h-[var(--layout-pane)] divide-y divide-[var(--border)]"
+      className="scroll-pane h-[var(--layout-pane)] divide-y divide-[var(--border)]"
     >
       {rows.map(row)}
     </ol>
