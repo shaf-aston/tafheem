@@ -250,3 +250,40 @@ def test_ma_before_ada_is_the_masdar_particle_not_a_relative():
     assert (card_of(cards, "عَدَا")["role"], card_of(cards, "خَالِدًا")["role"]) == ("فعل", "مفعول به")
     _, relative = analysed("أَعْجَبَنِي مَا قَرَأْتُ")
     assert relative["مَا"][0][0]["role"] == "اسم موصول"  # control
+
+
+ILLA = "الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا"
+BUKHARI = "أَخْبِرْنِي مَاذَا فَرَضَ اللَّهُ عَلَيَّ مِنَ الصَّلَاةِ فَقَالَ " + ILLA
+
+
+def test_a_noun_with_its_followers_and_no_governor_hangs_on_an_understood_verb():
+    cards, leaves = analysed(ILLA)
+    (verb, above), = leaves["فعل محذوف"]
+    assert verb["hidden"] is True and above["label"] == "جُمْلَةٌ فِعْلِيَّةٌ"
+    unit = next(kid for kid in above["children"] if kid.get("role") == "مفعول به")
+    assert unit["label"] == "مُرَكَّبٌ تَوْصِيْفِيٌّ" and cards[0]["role"] == "مفعول به"
+    # nothing settles who "you or she" is, so the doer is still said both ways
+    assert "ضمير مستتر تقديره أنتَ أو هي" in [p["detail"] for p in leaves["تَطَّوَّعَ"][0][0]["parts"]]
+
+
+def test_the_answer_to_a_question_hangs_on_the_questions_verb_and_is_said_to_the_asker():
+    _, leaves = analysed(BUKHARI)
+    (verb, above), = [pair for pair in leaves["فَرَضَ"] if pair[0].get("hidden")]
+    assert verb["role"] == "فعل محذوف"
+    assert (above["role"], above["detail"]) == ("مقول القول", "في محل نصب")
+    unit = next(kid for kid in above["children"] if kid.get("role") == "مفعول به")
+    assert unit["detail"] == "لـ«فَرَضَ» المحذوف"
+    assert "ضمير مستتر تقديره أنتَ" in [p["detail"] for p in leaves["تَطَّوَّعَ"][0][0]["parts"]]
+    body = client.post("/api/analyze", json={"sentence": BUKHARI}).json()["tree"]
+    assert body["written"].count(-1) == 1
+
+
+def test_the_reply_takes_the_verb_the_question_word_is_the_object_of():
+    _, leaves = analysed("مَاذَا قَرَأْتَ؟ قَالَ الْقُرْآنَ")
+    assert [leaf["hidden"] for leaf, _ in leaves["قَرَأْتَ"] if leaf.get("hidden")] == [True]
+
+
+@pytest.mark.parametrize("sentence", ["قَالَ الْحَقَّ", "قَالَ الصَّلَوَاتِ الْخَمْسَ"])
+def test_a_word_a_verb_of_saying_takes_with_no_question_before_stays_its_object(sentence):
+    _, leaves = analysed(sentence)
+    assert not any(leaf.get("hidden") for pairs in leaves.values() for leaf, _ in pairs)

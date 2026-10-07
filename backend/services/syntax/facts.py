@@ -12,7 +12,7 @@ from __future__ import annotations
 from typing import Callable
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_map, book_words, is_one, is_plain_noun, six_noun_case
+from backend.services.nahw_book import book_map, book_words, is_mabni, is_object_stem, is_one, is_plain_noun, six_noun_case
 from backend.services.harakat import (
     CAMEL_CASE, FEM_PLURAL_END, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, past_passive_shape, typed_case, typed_passive)
 
@@ -317,8 +317,20 @@ def _joins_clauses(token: dict, s: Sentence) -> bool:
 def is_object_pronoun(token: dict) -> bool:
     """إيّاك، إيّاه: the detached pronoun of nasb, only ever an object (Tasheel 2.4.1 p31),
     though the parser tags its إيا a particle."""
-    stem = strip_diacritics(token["form"])
-    return any(stem.startswith(s) for s in book_words("damir_munfasil", "object_stem")) and _listed(token, "damir_munfasil")
+    return is_object_stem(token["form"]) and _listed(token, "damir_munfasil")
+
+
+def asked_verb(s: Sentence) -> dict | None:
+    """ماذا فرض الله: the verb a question word stands as the object of, when it has no object of
+    its own (data: istifham `before_verb`). A reply later in the text answers for that object."""
+    asking = book_map("istifham", "before_verb")
+    for question in s.tokens:
+        if asking.get(strip_diacritics(question["form"])) != "object":
+            continue
+        verb = next((t for t in s.tokens if t["id"] > question["id"] and is_verb(t)), None)
+        if verb and not any(k["rel"] == "OBJ" and k is not question for k in s.kids(verb)):
+            return verb
+    return None
 
 
 def negates(token: dict, s: Sentence) -> bool:
@@ -609,8 +621,8 @@ def _verb_place(token: dict, s: Sentence) -> str:
         asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
         if asked and before and not any(t["rel"] == "OBJ" for t in siblings):
             return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
-        if before and rel in ("SBJ", "TPC") and typed == "a":
-            return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object
+        if before and rel in ("SBJ", "TPC") and typed == "a" and not is_mabni(token):
+            return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object (a built word's is no case: أنتَ)
         if before and rel in ("SBJ", "TPC"):
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
         if head.get("asp") == "c" and rel in ("SBJ", "TPC", "OBJ", "---") and typed != "u":
