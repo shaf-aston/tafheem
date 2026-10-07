@@ -1,0 +1,730 @@
+<title>Tafheem Quran Reader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one surah, read top to bottom. Header pinned on top (where am I),
+   player pinned at the bottom (what is sounding). Tapping an ayah opens its
+   study IN PLACE, under that ayah. No second view. */
+:root {
+  --bg: #0d141c;
+  --bg-glow: #12303a;
+  --surface: #131c26;
+  --surface-hi: #18232f;
+  --border: #233140;
+  --text: #e6edf3;
+  --text-dim: #9fb0c0;
+  --text-faint: #6b7d8f;
+  --accent: #5fd6c0;
+  --accent-ink: #062520;
+  --lit: color-mix(in srgb, var(--accent) 22%, transparent);
+  --pos-noun: #7cb4ff;
+  --pos-verb: #7be0a0;
+  --pos-part: #f0c36b;
+  --pos-pron: #d3a3ff;
+  --font-quran: 'Amiri Quran', 'Amiri', 'Noto Naskh Arabic', serif;
+  --font-arabic: 'Amiri', 'Noto Naskh Arabic', serif;
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --r-lg: 14px;
+  --r-md: 10px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f7f6; --bg-glow: #dcefea; --surface: #ffffff; --surface-hi: #f0f5f3;
+    --border: #d8e1de; --text: #14201c; --text-dim: #4b5d57; --text-faint: #7a8a85;
+    --accent: #0f8a75; --accent-ink: #ffffff;
+    --pos-noun: #2763c4; --pos-verb: #1b8a4b; --pos-part: #a86b00; --pos-pron: #8a3fc7;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f5f7f6; --bg-glow: #dcefea; --surface: #ffffff; --surface-hi: #f0f5f3;
+  --border: #d8e1de; --text: #14201c; --text-dim: #4b5d57; --text-faint: #7a8a85;
+  --accent: #0f8a75; --accent-ink: #ffffff;
+  --pos-noun: #2763c4; --pos-verb: #1b8a4b; --pos-part: #a86b00; --pos-pron: #8a3fc7;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: var(--text);
+  background: radial-gradient(70rem 30rem at 50% -10%, var(--bg-glow) 0%, transparent 60%), var(--bg);
+  background-color: var(--bg);
+}
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 16px; padding-block: 16px 140px; }
+
+.intro { display: grid; gap: 6px; margin-bottom: 14px; }
+.intro h1 { font-size: 18px; font-weight: 600; margin: 0; text-wrap: balance; }
+.intro p { margin: 0; color: var(--text-dim); font-size: 13.5px; line-height: 1.5; max-width: 65ch; }
+.tag { display: inline-block; font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: 999px; padding: 2px 8px; width: max-content; }
+
+/* ---------- The reader card ---------- */
+.reader { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); }
+
+.head {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: 10px 14px;
+  display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center;
+}
+.stepper { display: flex; align-items: center; gap: 8px; }
+.round {
+  width: 30px; height: 30px; border-radius: 999px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); cursor: pointer; display: grid; place-items: center;
+}
+.round:hover:not(:disabled) { color: var(--text); border-color: var(--accent); }
+.round:disabled { opacity: .3; cursor: default; }
+.sname { font-weight: 600; white-space: nowrap; }
+.sname .ar { font-family: var(--font-arabic); font-size: 19px; font-weight: 400; margin-inline-start: 6px; }
+.meta { color: var(--text-faint); font-size: 12.5px; white-space: nowrap; }
+.spacer { flex: 1; }
+.goto { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text-faint); }
+.goto input {
+  width: 64px; padding: 5px 8px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font: inherit; font-variant-numeric: tabular-nums;
+}
+.toggle {
+  font-size: 12.5px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); cursor: pointer;
+}
+.toggle[aria-pressed="true"] { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+
+/* Ayah rail: one dot per ayah, to jump anywhere in a long surah. */
+.rail {
+  display: flex; gap: 4px; padding: 8px 14px; border-bottom: 1px solid var(--border);
+  overflow-x: auto; scrollbar-width: thin;
+}
+.rail button {
+  flex: 0 0 auto; min-width: 28px; height: 24px; padding: 0 6px; border-radius: 6px;
+  border: 1px solid transparent; background: transparent; color: var(--text-faint);
+  font-size: 11.5px; font-variant-numeric: tabular-nums; cursor: pointer;
+}
+.rail button:hover { color: var(--text); border-color: var(--border); }
+.rail button.here { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.rail button.sounding { background: var(--lit); color: var(--text); }
+
+/* ---------- One ayah ---------- */
+ol.ayahs { list-style: none; margin: 0; padding: 0; }
+.ayah { border-bottom: 1px solid var(--border); scroll-margin-top: 120px; transition: background .2s; }
+.ayah:last-child { border-bottom: 0; }
+.ayah.open { background: var(--surface-hi); }
+.ayah.sounding { box-shadow: inset 3px 0 0 var(--accent); }
+
+.ayah-top { display: flex; align-items: center; gap: 10px; padding: 12px 16px 0; }
+.ref { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--text-faint); }
+.mini {
+  width: 28px; height: 28px; border-radius: 999px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); cursor: pointer; display: grid; place-items: center; font-size: 11px;
+}
+.mini:hover { border-color: var(--accent); color: var(--accent); }
+.mini.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.study-btn {
+  margin-inline-start: auto; font-size: 12px; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--border); background: transparent; color: var(--text-dim); cursor: pointer;
+}
+.study-btn:hover, .ayah.open .study-btn { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+
+.line {
+  direction: rtl; text-align: right; font-family: var(--font-quran);
+  font-size: clamp(24px, 4.2vw, 32px); line-height: 2.15; padding: 6px 16px 4px; margin: 0;
+}
+.w {
+  position: relative; display: inline; border: 0; background: transparent; padding: 0 1px;
+  font: inherit; color: inherit; cursor: pointer; border-radius: 6px; transition: background .15s, color .15s;
+}
+.w:hover, .w:focus-visible { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.w.lit { background: var(--lit); color: var(--accent); }
+.w.picked { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 10px; }
+/* Hover gloss, the way the reading line already behaves. */
+.w[data-gloss]:hover::after, .w[data-gloss]:focus-visible::after {
+  content: attr(data-gloss); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+  direction: ltr; white-space: nowrap; font-family: var(--font-ui); font-size: 12px; line-height: 1.3;
+  background: var(--text); color: var(--bg); padding: 4px 8px; border-radius: 6px; pointer-events: none; z-index: 3;
+}
+/* End-of-ayah mark: the mushaf's own ornament with the number inside. */
+.end {
+  display: inline-grid; place-items: center; vertical-align: middle; position: relative;
+  width: 1.45em; height: 1.45em; margin-inline: 4px; border: 0; background: transparent; padding: 0;
+  color: var(--accent); cursor: pointer; font-size: .82em;
+}
+.end svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.end span { position: relative; font-family: var(--font-arabic); font-size: .62em; line-height: 1; color: var(--text); }
+.end:hover svg { filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 60%, transparent)); }
+
+.tr {
+  margin: 0 16px; padding: 10px 0 14px; border-top: 1px solid var(--border);
+  color: var(--text); line-height: 1.6; font-size: 15px; max-width: 75ch;
+}
+
+/* ---------- Study, opened in place ---------- */
+.study { padding: 4px 16px 18px; display: grid; gap: 14px; }
+.study-h { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.study-h h3 { margin: 0; font-size: 13px; font-weight: 600; color: var(--text-dim); }
+.study-h .ar { font-family: var(--font-arabic); font-size: 16px; color: var(--text); }
+.study-h .src { margin-inline-start: auto; font-size: 11px; color: var(--text-faint);
+  border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; direction: rtl; }
+.chip {
+  display: grid; justify-items: center; gap: 3px; padding: 8px 10px; min-width: 64px;
+  border-radius: var(--r-md); border: 1px solid var(--border); background: var(--surface); cursor: pointer;
+  transition: border-color .15s, transform .15s;
+}
+.chip:hover { transform: translateY(-1px); }
+.chip .a { font-family: var(--font-quran); font-size: 22px; line-height: 1.6; }
+.chip .p { font-family: var(--font-arabic); font-size: 12px; }
+.chip .m { direction: ltr; font-size: 11.5px; color: var(--text-dim); max-width: 8.5rem; text-align: center; line-height: 1.3; }
+.chip.picked { border-color: var(--c); box-shadow: 0 0 0 1px var(--c) inset; }
+.chip.lit { background: var(--lit); }
+
+.card {
+  border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface); padding: 14px;
+  display: grid; gap: 10px;
+}
+.card-h { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.card-h .big { font-family: var(--font-quran); font-size: 30px; line-height: 1.5; direction: rtl; }
+.card-h .gl { color: var(--text-dim); }
+.card-h .x { margin-inline-start: auto; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin: 0; }
+.facts div { border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; min-width: 0; }
+.facts dt { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-faint); }
+.facts dd { margin: 3px 0 0; font-size: 14px; }
+.facts .arv { font-family: var(--font-arabic); font-size: 18px; }
+.go-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.go {
+  font-size: 12.5px; padding: 5px 11px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent); background: transparent; cursor: pointer;
+}
+.go:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+
+details.fold { border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface); }
+details.fold summary {
+  cursor: pointer; list-style: none; padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--text-dim);
+}
+details.fold summary::-webkit-details-marker { display: none; }
+details.fold summary::before { content: '▸'; color: var(--text-faint); transition: transform .15s; }
+details.fold[open] summary::before { transform: rotate(90deg); }
+details.fold summary .ar { font-family: var(--font-arabic); font-size: 16px; color: var(--text); }
+.fold-body { padding: 0 14px 14px; color: var(--text-dim); font-size: 13.5px; line-height: 1.6; }
+.placeholder {
+  border: 1px dashed var(--border); border-radius: 8px; padding: 14px; text-align: center;
+  color: var(--text-faint); font-size: 12.5px;
+}
+.seg { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.seg button { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); cursor: pointer; }
+.seg button[aria-pressed="true"] { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+
+.foot-hint { padding: 10px 16px; font-size: 12px; color: var(--text-faint); border-top: 1px solid var(--border); }
+
+/* ---------- Player, pinned at the bottom ---------- */
+.player {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: color-mix(in srgb, var(--surface) 95%, transparent); backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+}
+.player-in { max-width: 860px; margin: 0 auto; display: grid; gap: 8px; }
+.prow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.play {
+  width: 40px; height: 40px; border-radius: 999px; border: 0; background: var(--accent); color: var(--accent-ink);
+  cursor: pointer; display: grid; place-items: center; font-size: 14px;
+}
+.now { display: grid; min-width: 0; flex: 1; }
+.now b { font-weight: 600; font-size: 13.5px; }
+.now small { color: var(--text-faint); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar { height: 3px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s linear; }
+.reciters { display: flex; gap: 6px; flex-wrap: wrap; }
+.reciters button { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); cursor: pointer; }
+.reciters button[aria-pressed="true"] { background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+
+/* ---------- Notes for the decision ---------- */
+.notes { margin-top: 26px; display: grid; gap: 14px; }
+.notes h2 { font-size: 16px; margin: 0; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.note { border: 1px solid var(--border); border-radius: var(--r-md); padding: 12px 14px; background: var(--surface); min-width: 0; }
+.note h3 { margin: 0 0 6px; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+.note.keep h3 { color: var(--pos-verb); }
+.note.merge h3 { color: var(--pos-noun); }
+.note.cut h3 { color: var(--pos-part); }
+.note ul { margin: 0; padding-inline-start: 18px; display: grid; gap: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-dim); }
+.note code { font-size: 12px; color: var(--text); background: var(--surface-hi); padding: 1px 5px; border-radius: 4px; }
+.flow { font-size: 13.5px; color: var(--text-dim); line-height: 1.7; margin: 0; }
+
+.toast { position: fixed; left: 50%; bottom: 120px; transform: translateX(-50%); background: var(--text); color: var(--bg);
+  padding: 8px 14px; border-radius: 999px; font-size: 13px; z-index: 20; }
+
+@media (max-width: 560px) {
+  .head { padding: 8px 12px; }
+  .meta { display: none; }
+  .ayah-top { padding: 10px 12px 0; }
+  .line { padding: 6px 12px 4px; }
+  .tr { margin: 0 12px; }
+  .study { padding: 4px 12px 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <span class="tag">Prototype · one Quran view</span>
+    <h1>Read the whole surah, study any ayah where it stands</h1>
+    <p>The "Read all of surah" view is now the only view. Tap any word, the ayah's end mark, or <b>Study</b>, and that ayah opens its word grammar, word joins and tafsir right under itself. Press play and it keeps going, ayah after ayah, lighting each word. Sample text is Al-Fātiḥah and Al-Baqarah 1–5; audio is simulated.</p>
+  </header>
+
+  <section class="reader" aria-label="Surah reader">
+    <div class="head">
+      <div class="stepper">
+        <button class="round" id="prevS" aria-label="Previous surah">‹</button>
+        <span class="sname" id="sname"></span>
+        <button class="round" id="nextS" aria-label="Next surah">›</button>
+      </div>
+      <span class="meta" id="smeta"></span>
+      <span class="spacer"></span>
+      <label class="goto" for="gotoIn">Ayah
+        <input id="gotoIn" type="number" min="1" inputmode="numeric" placeholder="#">
+      </label>
+      <button class="toggle" id="trToggle" aria-pressed="true">English</button>
+    </div>
+    <nav class="rail" id="rail" aria-label="Jump to ayah"></nav>
+    <ol class="ayahs" id="ayahs"></ol>
+    <p class="foot-hint">Tap a word for its grammar · ← → change surah · J / K next and previous ayah · Space plays</p>
+  </section>
+
+  <section class="notes" aria-label="What this replaces">
+    <h2>What changes in the code if you pick this</h2>
+    <p class="flow">Today → search or jump → <b>AyahStudy</b> card (one ayah) + separate <b>SurahReader</b> card (whole surah, 60vh inner scroll) → two players, two reading lines, two tafsir boxes.<br>
+    Proposed → search or jump → <b>SurahReader</b> scrolled to that ayah → ayah opens its study in place → one player, one reading line, one tafsir box.</p>
+    <div class="cols">
+      <div class="note keep">
+        <h3>Keep as is</h3>
+        <ul>
+          <li><code>WordCard</code>, <code>TarkeebFigure</code>, <code>AyahTafsir</code>: moved under the open ayah, unchanged inside.</li>
+          <li><code>useRecitation</code>, <code>useRecitedWord</code>, <code>useTranslation</code>: called once by the reader instead of once per view.</li>
+          <li>Search box, root view, place picker: they now only choose <i>where</i> the reader opens.</li>
+        </ul>
+      </div>
+      <div class="note merge">
+        <h3>Merge into one</h3>
+        <ul>
+          <li><code>AyahText</code> (AyahStudy) + <code>GlossedAyah</code> (SurahReader): both draw the reading line with hover gloss and lit word → one component.</li>
+          <li>QuranLookup's <code>openSurah</code> + <code>at</code> state → one <code>{surah, ayah}</code> place.</li>
+          <li>Reciter picker (only in AyahStudy today) → the bottom player, for every ayah.</li>
+          <li>AyahStudy body → an <code>AyahStudyPanel</code> rendered inside the open row.</li>
+        </ul>
+      </div>
+      <div class="note cut">
+        <h3>Likely redundant</h3>
+        <ul>
+          <li>AyahStudy's header: its own play button, ref, and the "Read all of surah" button.</li>
+          <li>SurahReader's Close button and Esc-to-close (nothing to close back to).</li>
+          <li><code>AyahList</code>'s 60vh nested scroll box → page scroll.</li>
+          <li>Per-row play + tafsir under every ayah → one player, tafsir only in the open ayah.</li>
+          <li>Rough size: AyahStudy 292 + SurahReader 332 lines → est. ~400 together.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="player" role="region" aria-label="Recitation player">
+  <div class="player-in">
+    <div class="reciters" id="reciters" hidden></div>
+    <div class="prow">
+      <button class="round" id="prevA" aria-label="Previous ayah">⏮</button>
+      <button class="play" id="play" aria-label="Play">▶</button>
+      <button class="round" id="nextA" aria-label="Next ayah">⏭</button>
+      <div class="now"><b id="nowRef">1:1</b><small id="nowWho"></small></div>
+      <button class="toggle" id="contToggle" aria-pressed="true" title="Keep playing into the next ayah">Continue</button>
+      <button class="toggle" id="recToggle" aria-expanded="false">Reciter ▾</button>
+    </div>
+    <div class="bar"><i id="barFill"></i></div>
+  </div>
+</div>
+
+<script>
+/* ---------------- Sample data ----------------
+   Text: Uthmani script (Hafs). English: Saheeh International.
+   Word glosses follow the common word-by-word English. Grammar (pos/root/form)
+   is a sample of what the corpus gives, for the prototype only. */
+const N = 'noun', V = 'verb', P = 'part', PR = 'pron';
+const w = (a, m, pos, root, note) => ({ a, m, pos, root, note });
+const SURAHS = {
+  1: {
+    en: 'Al-Fātiḥah', ar: 'الفاتحة', count: 7, place: 'Meccan',
+    ayahs: [
+      { tr: 'In the name of Allah, the Entirely Merciful, the Especially Merciful.', words: [
+        w('بِسْمِ', 'In (the) name', N, 'س م و', 'Preposition بِ + noun, genitive'),
+        w('ٱللَّهِ', '(of) Allah', N, 'ا ل ه', 'Proper noun, genitive (iḍāfah)'),
+        w('ٱلرَّحْمَٰنِ', 'the Most Gracious', N, 'ر ح م', 'Adjective, pattern فَعْلان'),
+        w('ٱلرَّحِيمِ', 'the Most Merciful', N, 'ر ح م', 'Adjective, pattern فَعِيل')] },
+      { tr: '[All] praise is [due] to Allah, Lord of the worlds -', words: [
+        w('ٱلْحَمْدُ', 'All praise', N, 'ح م د', 'Noun, nominative, subject (mubtadaʾ)'),
+        w('لِلَّهِ', '(is) for Allah', N, 'ا ل ه', 'Preposition لِ + proper noun'),
+        w('رَبِّ', 'the Lord', N, 'ر ب ب', 'Noun, genitive, describes Allah'),
+        w('ٱلْعَٰلَمِينَ', 'of the worlds', N, 'ع ل م', 'Noun, plural, genitive')] },
+      { tr: 'The Entirely Merciful, the Especially Merciful,', words: [
+        w('ٱلرَّحْمَٰنِ', 'the Most Gracious', N, 'ر ح م', 'Adjective, genitive'),
+        w('ٱلرَّحِيمِ', 'the Most Merciful', N, 'ر ح م', 'Adjective, genitive')] },
+      { tr: 'Sovereign of the Day of Recompense.', words: [
+        w('مَٰلِكِ', 'Master', N, 'م ل ك', 'Active participle, genitive'),
+        w('يَوْمِ', '(of the) Day', N, 'ي و م', 'Noun, genitive (iḍāfah)'),
+        w('ٱلدِّينِ', '(of) Judgment', N, 'د ي ن', 'Noun, genitive')] },
+      { tr: 'It is You we worship and You we ask for help.', words: [
+        w('إِيَّاكَ', 'You alone', PR, null, 'Detached object pronoun, put first for emphasis'),
+        w('نَعْبُدُ', 'we worship', V, 'ع ب د', 'Present-tense verb, form I'),
+        w('وَإِيَّاكَ', 'and You alone', PR, null, 'وَ + detached object pronoun'),
+        w('نَسْتَعِينُ', 'we ask for help', V, 'ع و ن', 'Present-tense verb, form X (اِسْتَفْعَلَ)')] },
+      { tr: 'Guide us to the straight path -', words: [
+        w('ٱهْدِنَا', 'Guide us', V, 'ه د ي', 'Imperative verb + object pronoun نا'),
+        w('ٱلصِّرَٰطَ', '(to) the path', N, 'ص ر ط', 'Noun, accusative'),
+        w('ٱلْمُسْتَقِيمَ', 'the straight', N, 'ق و م', 'Active participle, form X, adjective')] },
+      { tr: 'The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.', words: [
+        w('صِرَٰطَ', '(The) path', N, 'ص ر ط', 'Noun, accusative, substitute (badal)'),
+        w('ٱلَّذِينَ', '(of) those', N, null, 'Relative pronoun, plural'),
+        w('أَنْعَمْتَ', 'You bestowed favour', V, 'ن ع م', 'Past-tense verb, form IV (أَفْعَلَ)'),
+        w('عَلَيْهِمْ', 'upon them', P, null, 'Preposition عَلَى + pronoun'),
+        w('غَيْرِ', 'not (of)', N, 'غ ي ر', 'Noun, genitive'),
+        w('ٱلْمَغْضُوبِ', 'those who earned wrath', N, 'غ ض ب', 'Passive participle, genitive'),
+        w('عَلَيْهِمْ', 'on them', P, null, 'Preposition عَلَى + pronoun'),
+        w('وَلَا', 'and not', P, null, 'Conjunction + negative particle'),
+        w('ٱلضَّآلِّينَ', 'those who go astray', N, 'ض ل ل', 'Active participle, plural, genitive')] },
+    ],
+  },
+  2: {
+    en: 'Al-Baqarah', ar: 'البقرة', count: 286, place: 'Medinan', partial: true,
+    ayahs: [
+      { tr: 'Alif, Lām, Meem.', words: [
+        w('الٓمٓ', 'Alif Lām Meem', P, null, 'Disjoined letters (al-ḥurūf al-muqaṭṭaʿah)')] },
+      { tr: 'This is the Book about which there is no doubt, a guidance for those conscious of Allah -', words: [
+        w('ذَٰلِكَ', 'This', N, null, 'Demonstrative pronoun'),
+        w('ٱلْكِتَٰبُ', '(is) the Book', N, 'ك ت ب', 'Noun, nominative'),
+        w('لَا', 'no', P, null, 'Negative particle (lā of total negation)'),
+        w('رَيْبَ ۛ', 'doubt', N, 'ر ي ب', 'Noun, accusative'),
+        w('فِيهِ ۛ', 'in it', P, null, 'Preposition فِي + pronoun'),
+        w('هُدًى', 'a guidance', N, 'ه د ي', 'Noun, indefinite'),
+        w('لِّلْمُتَّقِينَ', 'for the God-conscious', N, 'و ق ي', 'لِ + active participle, form VIII')] },
+      { tr: 'Who believe in the unseen, establish prayer, and spend out of what We have provided for them,', words: [
+        w('ٱلَّذِينَ', 'Those who', N, null, 'Relative pronoun, plural'),
+        w('يُؤْمِنُونَ', 'believe', V, 'ا م ن', 'Present-tense verb, form IV'),
+        w('بِٱلْغَيْبِ', 'in the unseen', N, 'غ ي ب', 'بِ + noun, genitive'),
+        w('وَيُقِيمُونَ', 'and establish', V, 'ق و م', 'وَ + present-tense verb, form IV'),
+        w('ٱلصَّلَوٰةَ', 'the prayer', N, 'ص ل و', 'Noun, accusative'),
+        w('وَمِمَّا', 'and out of what', P, null, 'وَ + مِن + مَا'),
+        w('رَزَقْنَٰهُمْ', 'We have provided them', V, 'ر ز ق', 'Past-tense verb + pronouns'),
+        w('يُنفِقُونَ', 'they spend', V, 'ن ف ق', 'Present-tense verb, form IV')] },
+      { tr: 'And who believe in what has been revealed to you, [O Muhammad], and what was revealed before you, and of the Hereafter they are certain [in faith].', words: [
+        w('وَٱلَّذِينَ', 'And those who', N, null, 'وَ + relative pronoun'),
+        w('يُؤْمِنُونَ', 'believe', V, 'ا م ن', 'Present-tense verb, form IV'),
+        w('بِمَآ', 'in what', P, null, 'بِ + relative مَا'),
+        w('أُنزِلَ', '(is) sent down', V, 'ن ز ل', 'Past-tense passive verb, form IV'),
+        w('إِلَيْكَ', 'to you', P, null, 'Preposition إِلَى + pronoun'),
+        w('وَمَآ', 'and what', P, null, 'وَ + relative مَا'),
+        w('أُنزِلَ', 'was sent down', V, 'ن ز ل', 'Past-tense passive verb, form IV'),
+        w('مِن', 'from', P, null, 'Preposition'),
+        w('قَبْلِكَ', 'before you', N, 'ق ب ل', 'Noun + pronoun, genitive'),
+        w('وَبِٱلْءَاخِرَةِ', 'and in the Hereafter', N, 'ا خ ر', 'وَ + بِ + noun, genitive'),
+        w('هُمْ', 'they', PR, null, 'Detached pronoun'),
+        w('يُوقِنُونَ', 'firmly believe', V, 'ي ق ن', 'Present-tense verb, form IV')] },
+      { tr: 'Those are upon [right] guidance from their Lord, and it is those who are the successful.', words: [
+        w('أُو۟لَٰٓئِكَ', 'Those', N, null, 'Demonstrative pronoun, plural'),
+        w('عَلَىٰ', '(are) on', P, null, 'Preposition'),
+        w('هُدًى', 'guidance', N, 'ه د ي', 'Noun, genitive'),
+        w('مِّن', 'from', P, null, 'Preposition'),
+        w('رَّبِّهِمْ ۖ', 'their Lord', N, 'ر ب ب', 'Noun + pronoun, genitive'),
+        w('وَأُو۟لَٰٓئِكَ', 'and those', N, null, 'وَ + demonstrative pronoun'),
+        w('هُمُ', 'they', PR, null, 'Detached pronoun (separating pronoun)'),
+        w('ٱلْمُفْلِحُونَ', '(are) the successful', N, 'ف ل ح', 'Active participle, form IV, plural')] },
+    ],
+  },
+};
+const POS = {
+  noun: { ar: 'اِسْم', en: 'Noun', c: 'var(--pos-noun)' },
+  verb: { ar: 'فِعْل', en: 'Verb', c: 'var(--pos-verb)' },
+  part: { ar: 'حَرْف', en: 'Particle', c: 'var(--pos-part)' },
+  pron: { ar: 'ضَمِير', en: 'Pronoun', c: 'var(--pos-pron)' },
+};
+const RECITERS = ['Mishary Alafasy', 'Al-Husary', 'Al-Minshawy', 'Abdul Basit', 'As-Sudais', 'Ash-Shuraym'];
+const TAFSIRS = ['Ibn Kathir', 'Maʿāriful Qurʾān', 'Tafheem'];
+
+/* ---------------- State ---------------- */
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('qp-' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem('qp-' + k, JSON.stringify(v)); } catch {} },
+};
+const S = {
+  surah: 1,
+  here: 1,             // the ayah you are at (rail highlight)
+  open: null,          // the ayah whose study is open
+  word: null,          // picked word index in the open ayah
+  playing: false,
+  sounding: null,      // { ayah, word }
+  cont: true,
+  english: store.get('english', true),
+  reciter: store.get('reciter', 'As-Sudais'),
+  tafsir: store.get('tafsir', 'Ibn Kathir'),
+};
+
+const $ = (id) => document.getElementById(id);
+const toArabicDigits = (n) => String(n).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[d]);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function endMark(n) {
+  return `<button class="end" data-study="${n}" title="Study ${S.surah}:${n}" aria-label="Ayah ${n}, open study">
+    <svg viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor">
+      <circle cx="20" cy="20" r="15" stroke-width="1.6"/>
+      <circle cx="20" cy="20" r="12" stroke-width=".8"/>
+      ${Array.from({ length: 8 }, (_, i) => `<circle cx="20" cy="2.6" r="1.6" fill="currentColor" stroke="none" transform="rotate(${i * 45} 20 20)"/>`).join('')}
+    </svg><span>${toArabicDigits(n)}</span></button>`;
+}
+
+/* ---------------- Render ---------------- */
+function render() {
+  const s = SURAHS[S.surah];
+  $('sname').innerHTML = `${S.surah}. ${s.en}<span class="ar">${s.ar}</span>`;
+  $('smeta').textContent = `${s.count} ayahs · ${s.place}${s.partial ? ' · sample shows 1–5' : ''}`;
+  $('prevS').disabled = S.surah <= 1;
+  $('nextS').disabled = S.surah >= 2;
+  $('gotoIn').max = s.ayahs.length;
+  $('trToggle').setAttribute('aria-pressed', S.english);
+
+  $('rail').innerHTML = s.ayahs.map((_, i) => {
+    const n = i + 1;
+    const cls = [n === S.here && 'here', S.sounding?.ayah === n && 'sounding'].filter(Boolean).join(' ');
+    return `<button class="${cls}" data-jump="${n}" aria-label="Ayah ${n}">${n}</button>`;
+  }).join('');
+
+  $('ayahs').innerHTML = s.ayahs.map((a, i) => renderAyah(a, i + 1)).join('');
+  renderPlayer();
+}
+
+function renderAyah(a, n) {
+  const open = S.open === n;
+  const sounding = S.sounding?.ayah === n;
+  const words = a.words.map((wd, i) => {
+    const lit = sounding && S.sounding.word === i;
+    const picked = open && S.word === i;
+    return `<button class="w${lit ? ' lit' : ''}${picked ? ' picked' : ''}" data-gloss="${esc(wd.m)}"
+      data-word="${n}:${i}" style="--c:${POS[wd.pos].c}">${wd.a}</button>`;
+  }).join(' ');
+
+  return `<li class="ayah${open ? ' open' : ''}${sounding ? ' sounding' : ''}" id="a${n}">
+    <div class="ayah-top">
+      <button class="mini${sounding && S.playing ? ' on' : ''}" data-play="${n}" aria-label="Play ${S.surah}:${n}">${sounding && S.playing ? '❚❚' : '▶'}</button>
+      <span class="ref">${S.surah}:${n}</span>
+      <button class="study-btn" data-study="${n}" aria-expanded="${open}">${open ? 'Close study' : 'Study'}</button>
+    </div>
+    <p class="line" lang="ar">${words} ${endMark(n)}</p>
+    ${S.english ? `<p class="tr">${esc(a.tr)}</p>` : ''}
+    ${open ? renderStudy(a, n) : ''}
+  </li>`;
+}
+
+function renderStudy(a, n) {
+  const sounding = S.sounding?.ayah === n;
+  const chips = a.words.map((wd, i) => {
+    const p = POS[wd.pos];
+    return `<button class="chip${S.word === i ? ' picked' : ''}${sounding && S.sounding.word === i ? ' lit' : ''}"
+      data-word="${n}:${i}" style="--c:${p.c}" aria-pressed="${S.word === i}">
+      <span class="a" lang="ar">${wd.a}</span>
+      <span class="p" lang="ar" style="color:${p.c}">${p.ar}</span>
+      <span class="m">${esc(wd.m)}</span></button>`;
+  }).join('');
+
+  const wd = S.word != null ? a.words[S.word] : null;
+  const card = wd ? `<div class="card" id="wordCard">
+      <div class="card-h">
+        <span class="big" lang="ar">${wd.a}</span>
+        <span class="gl">${esc(wd.m)}</span>
+        <button class="round x" data-closeword aria-label="Close word">✕</button>
+      </div>
+      <dl class="facts">
+        <div><dt>Kind</dt><dd style="color:${POS[wd.pos].c}">${POS[wd.pos].en} · <span lang="ar">${POS[wd.pos].ar}</span></dd></div>
+        <div><dt>Root</dt><dd class="arv" lang="ar">${wd.root || '—'}</dd></div>
+        <div><dt>Grammar</dt><dd>${esc(wd.note)}</dd></div>
+      </dl>
+      ${wd.root ? `<div class="go-row">
+        <button class="go" data-toast="Opens the root ${wd.root} in the Dictionary">Root in Dictionary →</button>
+        <button class="go" data-toast="Opens the conjugation table for ${wd.root}">Conjugate →</button>
+        <button class="go" data-toast="Lists every ayah with the root ${wd.root}">Every ayah with this root →</button>
+      </div>` : ''}
+    </div>` : '';
+
+  return `<div class="study" aria-label="Study of ${S.surah}:${n}">
+    <div class="study-h">
+      <h3>Word by word</h3>
+      <span class="src">Quranic Arabic Corpus</span>
+    </div>
+    <div class="chips" dir="rtl">${chips}</div>
+    ${card}
+    <details class="fold">
+      <summary>How the words join <span class="ar" lang="ar">التَّرْكِيب</span></summary>
+      <div class="fold-body"><div class="placeholder">The existing word-join diagram (TarkeebFigure) draws here, unchanged.</div></div>
+    </details>
+    <details class="fold" open>
+      <summary>Tafsir <span class="ar" lang="ar">التَّفْسِير</span></summary>
+      <div class="fold-body">
+        <div class="seg" role="group" aria-label="Tafsir">
+          ${TAFSIRS.map((t) => `<button data-tafsir="${t}" aria-pressed="${S.tafsir === t}">${t}</button>`).join('')}
+        </div>
+        <div class="placeholder">${esc(S.tafsir)} on ${S.surah}:${n} loads here (existing AyahTafsir, opened by default only for the ayah being studied).</div>
+      </div>
+    </details>
+  </div>`;
+}
+
+function renderPlayer() {
+  const n = S.sounding?.ayah ?? S.here;
+  $('nowRef').textContent = `${S.surah}:${n} · ${SURAHS[S.surah].en}`;
+  $('nowWho').textContent = `${S.reciter}${S.cont ? ' · continues to next ayah' : ' · stops after this ayah'}`;
+  $('play').textContent = S.playing ? '❚❚' : '▶';
+  $('play').setAttribute('aria-label', S.playing ? 'Pause' : 'Play');
+  $('contToggle').setAttribute('aria-pressed', S.cont);
+  $('reciters').innerHTML = RECITERS.map((r) =>
+    `<button data-reciter="${r}" aria-pressed="${S.reciter === r}">${r}</button>`).join('');
+  const total = SURAHS[S.surah].ayahs.length;
+  const ayah = SURAHS[S.surah].ayahs[n - 1];
+  const within = S.sounding ? (S.sounding.word + 1) / ayah.words.length : 0;
+  $('barFill').style.width = `${((n - 1 + within) / total) * 100}%`;
+}
+
+/* ---------------- Actions ---------------- */
+function scrollTo(n, block = 'start') {
+  const el = $('a' + n);
+  if (el) el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block });
+}
+function goAyah(n, { study = false } = {}) {
+  const max = SURAHS[S.surah].ayahs.length;
+  n = Math.max(1, Math.min(max, n));
+  S.here = n;
+  if (study) { S.open = n; S.word = null; }
+  render();
+  scrollTo(n);
+}
+function toggleStudy(n) {
+  S.here = n;
+  if (S.open === n) { S.open = null; S.word = null; } else { S.open = n; S.word = null; }
+  render();
+  scrollTo(n);
+}
+function pickWord(n, i) {
+  if (S.open !== n) { S.open = n; S.word = i; }
+  else S.word = S.word === i ? null : i;
+  S.here = n;
+  render();
+  const card = $('wordCard');
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function changeSurah(to) {
+  if (!SURAHS[to]) return;
+  stop();
+  S.surah = to; S.here = 1; S.open = null; S.word = null;
+  render();
+  window.scrollTo({ top: 0 });
+}
+
+/* Simulated recitation: lights each word in turn, then carries on. */
+let timer = null;
+function tick() {
+  const ayahs = SURAHS[S.surah].ayahs;
+  const cur = S.sounding;
+  const a = ayahs[cur.ayah - 1];
+  if (cur.word + 1 < a.words.length) {
+    S.sounding = { ayah: cur.ayah, word: cur.word + 1 };
+  } else if (S.cont && cur.ayah < ayahs.length) {
+    S.sounding = { ayah: cur.ayah + 1, word: 0 };
+    S.here = cur.ayah + 1;
+    render();
+    scrollTo(S.here, 'center');
+    timer = setTimeout(tick, 650);
+    return;
+  } else {
+    stop();
+    return;
+  }
+  render();
+  timer = setTimeout(tick, 650);
+}
+function play(n = S.sounding?.ayah ?? S.here) {
+  clearTimeout(timer);
+  S.playing = true;
+  if (!S.sounding || S.sounding.ayah !== n) S.sounding = { ayah: n, word: 0 };
+  S.here = n;
+  render();
+  scrollTo(n, 'center');
+  timer = setTimeout(tick, 650);
+}
+function pause() { clearTimeout(timer); S.playing = false; render(); }
+function stop() { clearTimeout(timer); S.playing = false; S.sounding = null; render(); }
+
+let toastTimer = null;
+function toast(msg) {
+  let t = document.querySelector('.toast');
+  if (!t) { t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); document.body.append(t); }
+  t.textContent = msg;
+  t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.hidden = true; }, 2200);
+}
+
+/* ---------------- Events ---------------- */
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('button');
+  if (!el) return;
+  const d = el.dataset;
+  if (d.study) return toggleStudy(+d.study);
+  if (d.word) { const [n, i] = d.word.split(':').map(Number); return pickWord(n, i); }
+  if (d.jump) return goAyah(+d.jump);
+  if (d.play) {
+    const n = +d.play;
+    return S.playing && S.sounding?.ayah === n ? pause() : play(n);
+  }
+  if ('closeword' in d) { S.word = null; return render(); }
+  if (d.reciter) { S.reciter = d.reciter; store.set('reciter', d.reciter); if (S.playing) play(); else render(); return; }
+  if (d.tafsir) { S.tafsir = d.tafsir; store.set('tafsir', d.tafsir); return render(); }
+  if (d.toast) return toast(d.toast);
+});
+$('prevS').onclick = () => changeSurah(S.surah - 1);
+$('nextS').onclick = () => changeSurah(S.surah + 1);
+$('trToggle').onclick = () => { S.english = !S.english; store.set('english', S.english); render(); };
+$('play').onclick = () => (S.playing ? pause() : play());
+$('prevA').onclick = () => { const n = Math.max(1, (S.sounding?.ayah ?? S.here) - 1); S.playing ? play(n) : goAyah(n); };
+$('nextA').onclick = () => { const n = Math.min(SURAHS[S.surah].ayahs.length, (S.sounding?.ayah ?? S.here) + 1); S.playing ? play(n) : goAyah(n); };
+$('contToggle').onclick = () => { S.cont = !S.cont; renderPlayer(); };
+$('recToggle').onclick = () => {
+  const box = $('reciters');
+  box.hidden = !box.hidden;
+  $('recToggle').setAttribute('aria-expanded', !box.hidden);
+};
+$('gotoIn').addEventListener('change', (e) => { const n = parseInt(e.target.value, 10); if (n) goAyah(n, { study: true }); });
+
+document.addEventListener('keydown', (e) => {
+  if (e.metaKey || e.ctrlKey || e.altKey || e.target.matches('input, textarea')) return;
+  if (e.key === 'ArrowLeft') changeSurah(S.surah - 1);
+  else if (e.key === 'ArrowRight') changeSurah(S.surah + 1);
+  else if (e.key === 'j') goAyah(S.here + 1);
+  else if (e.key === 'k') goAyah(S.here - 1);
+  else if (e.key === ' ' && !e.target.closest('button')) { e.preventDefault(); S.playing ? pause() : play(); }
+  else if (e.key === 'Escape' && S.open) { S.open = null; S.word = null; render(); }
+});
+
+/* Opens the way a search hit would: at an ayah, with its study open. */
+S.open = 2; S.here = 2; S.word = 0;
+render();
+</script>
