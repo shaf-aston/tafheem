@@ -17,7 +17,7 @@ from backend.routers import (
     rijal, speak, tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
-from backend.services import dictionary_service, provenance, quran_meanings, quran_service, recitation, root_meaning, startup, syntax
+from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, startup, syntax
 from backend.services.morphology import get_engine_name
 
 BACKEND_ROOT = Path(__file__).resolve().parent
@@ -139,9 +139,6 @@ def create_app() -> FastAPI:
             # together; lib/recitingSession.js paces itself by it.
             "listen_per_minute": recitation.ears.per_minute(),
             "corpus_loaded": quran_service.is_loaded(),
-            # False means meanings.db predates the printed spelling: the reader shows
-            # no stop signs until build_quran_meanings.py is run on this machine.
-            "stop_signs_loaded": quran_meanings.has_stop_signs(),
             "dictionary_loaded": dictionary_service.is_loaded(),
             "root_meaning_status": root_meaning.status(),
             "parser": syntax.status(),

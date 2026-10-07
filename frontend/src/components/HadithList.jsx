@@ -12,12 +12,12 @@ import { topicOf } from '../lib/hadithGrade'
 import { useRememberedFlag } from '../lib/useRemembered'
 
 import Chip from './ui/Chip'
-import ChipRow from './ui/ChipRow'
 import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
 import TopicIcon from './ui/TopicIcon'
 import ChainSheet from './ui/ChainSheet'
 import { AnalyzerSkeleton } from './ui/Skeleton'
+import ReadingOptions from './ui/ReadingOptions'
 import HadithCards from './HadithCards'
 
 /** How far down the page you are, drawn into `ref` without re-rendering per scroll. */
@@ -75,7 +75,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
           )}
           <ReadingOptions accent={accent} options={[
             // A phone has room for one hadith a row, so it is not offered there.
-            { label: 'Two columns', on: columns, set: setColumns, wide: true },
+            { label: 'Two columns', on: columns, set: setColumns, only: 'wide' },
             { label: 'Hide the chain', on: hideChain, set: setHideChain },
           ]}>
             <Chip tinted accent={accent} onClick={() => setGuide(true)}>Chain words</Chip>
@@ -110,42 +110,6 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
       {data && (data.hadiths.length === 0
         ? <EmptyState>This book has no hadiths yet.</EmptyState>
         : <HadithCards items={data.hadiths} collection={collection} accent={accent} columns={columns} hideChain={hideChain} onNarrator={onNarrator} onHadith={onHadith} />)}
-    </div>
-  )
-}
-
-/** A small sliders icon; pressed, its on/off chips (and `children`) slide out beside it in the bar. */
-function ReadingOptions({ options, accent, children }) {
-  const [open, setOpen] = useState(false)
-
-  return (
-    <div className="flex items-center gap-3" style={{ '--c': accent }}>
-      {open && (
-        <ChipRow className="fade-in">
-          {options.map(({ label, on, set, wide }) => (
-            <span key={label} className={wide ? 'hidden md:contents' : 'contents'}>
-              <Chip tinted selected={on} accent={accent} onClick={() => set(!on)}>{label}</Chip>
-            </span>
-          ))}
-          {children}
-        </ChipRow>
-      )}
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        aria-label="Reading options"
-        title="Reading options"
-        className={`press tap grid place-items-center w-[var(--layout-chip)] h-[var(--layout-chip)] rounded-full transition-colors ${
-          open ? 'text-[var(--c)]' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
-        }`}
-      >
-        <svg aria-hidden="true" viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          <path d="M4 7h10M18 7h2M4 17h4M12 17h8" />
-          <circle cx="16" cy="7" r="2" />
-          <circle cx="10" cy="17" r="2" />
-        </svg>
-      </button>
     </div>
   )
 }
