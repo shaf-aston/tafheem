@@ -198,6 +198,8 @@ def test_alla_with_a_shadda_is_an_merged_with_la_and_its_verb_is_nasb():
     assert next(c for c in cards if c["word"] == "تَعْبُدُوا")["case"] == "nasb"
     control, _ = analysed("لَا تَذْهَبْ")
     assert control[1]["case"] == "jazm"  # لا الناهية is untouched
+    _, noun_leaves = analysed("أَمَرَ أَلَّا الرَّجُلُ")  # لا before a noun: no merged nasb reading
+    assert all(found[0][0]["role"] != "حرف نصب ومصدر" for found in noun_leaves.values())
 
 
 @pytest.mark.parametrize("sentence, word", [("إِيَّاكَ نَعْبُدُ", "إِيَّاكَ"), ("مَا ضَرَبْتُ إِلَّا إِيَّاهُ", "إِيَّاهُ")])

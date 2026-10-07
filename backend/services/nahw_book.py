@@ -43,6 +43,11 @@ def book_map(family: str, part: str) -> dict[str, str]:
     return _closed()["families"][family][part]
 
 
+def book_merges(family: str) -> dict:
+    """A family's merged words (أَلَّا in nasb_mudari), or none."""
+    return _closed()["families"][family].get("merges", {})
+
+
 def is_one(lemma: str, family: str, part: str = "words") -> bool:
     """True when the parser's lemma (an attached clitic's '+' aside) is on that list."""
     return lemma.strip("+") in book_words(family, part)

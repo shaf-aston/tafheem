@@ -166,9 +166,11 @@ def _exception_word_by_case(toks, heads, rels) -> None:
     its doer. After ما only the verb stands (ما عدا زيدًا). The parser's tags are written over."""
     for d, dep in enumerate(toks[:-1], 1):
         after = toks[d]
-        if dep.get("token_type") != "baseword" or after["pos"] not in ("NOM", "PROP")                 or after.get("form", "").startswith("+") or not is_one(dep.get("form", ""), "istithna_verbs")                 or _above(heads, d, d + 1):
+        if (dep.get("token_type") != "baseword" or after["pos"] not in ("NOM", "PROP")
+                or after.get("form", "").startswith("+") or not is_one(dep.get("form", ""), "istithna_verbs")
+                or _above(heads, d, d + 1)):
             continue
-        case, verb = _case(after), "ما" == strip_diacritics(toks[d - 2].get("form", "")) if d > 1 else False
+        case, verb = _case(after), d > 1 and is_one(strip_diacritics(toks[d - 2].get("form", "")), "istithna_verbs", "masdar_ma")
         if case == "i" and not verb:
             dep.update(pos="PRT", pos_camel="prep")
             heads[d], rels[d] = d, "OBJ"

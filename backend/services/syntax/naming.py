@@ -17,7 +17,7 @@ from __future__ import annotations
 from backend.services import verb_reader
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import (
-    book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
+    book_merges, book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
     CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, merged_prefix, own_letters, paused, typed_case)
@@ -320,10 +320,10 @@ def _mood(typed: str, token: dict, before: dict | None) -> str:
     on (harakat.paused); `before` is the base token before it, its joined letters off."""
     particle = before["base"] if before else ""
     dropped_nun = five_verb_nun(typed) == "dropped"
-    read = ((before or {}).get("reading") or {}).get("family")  # أَلَّا: the nasb أنْ with a لا merged in
+    read = (before or {}).get("reading") or {}  # أَلَّا: the nasb أنْ with a لا merged in
     for family, case in (("jazm", "jazm"), ("nasb_mudari", "nasb")):
         if is_one(particle, family, "before_a_present_verb") or (dropped_nun and is_one(particle, family)) \
-                or (family == "nasb_mudari" and read == family):
+                or (read.get("family") == family and read.get("named") in {m["named"] for m in book_merges(family).values()}):
             return case
     if drops_weak(token["base"], token.get("weak_last")):
         return "jazm"

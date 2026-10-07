@@ -136,6 +136,7 @@
   },
   "istithna_verbs": {
    "ar": "خلا وعدا وحاشا",
+   "masdar_ma": ["ما"],
    "effect": "before a noun in nasb a past verb that never changes (فعل ماضٍ جامد), its doer hidden (هو) and the noun its object; before a noun in jarr a preposition and the noun its majrur; after ما only the verb. Read by services/syntax/mask.py from the noun's typed case",
    "words": [
     "خلا",
@@ -908,6 +909,7 @@
    }
   },
   "damir_munfasil": {
+   "object_stem": ["إيا"],
    "ar": "الضمائر المنفصلة",
    "effect": "stands as its own word: mubtada, khabar, or or a fasl pronoun, a separator between mubtada and khabar that has no i'raab position of its own; in the object slot only إيا plus suffix works",
    "words": [
