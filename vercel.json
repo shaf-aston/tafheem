@@ -12,5 +12,11 @@
       "source": "/api/:path*",
       "destination": "https://132-145-17-56.sslip.io/api/:path*"
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "claude/*": false
+    }
+  },
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- frontend vercel.json"
 }
