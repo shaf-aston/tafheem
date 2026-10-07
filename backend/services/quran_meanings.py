@@ -96,6 +96,12 @@ def uthmani_for_surah(surah: int) -> dict[int, dict[int, str]]:
     return printed
 
 
+def has_stop_signs() -> bool:
+    """Whether the printed spelling was built with its stop signs: 2:2 carries ۛ twice.
+    False on a build that predates the uthmani table, which the reader then can't show."""
+    return any("ۛ" in word for word in uthmani_for_ayah(2, 2).values())
+
+
 def ayah_end_mark(surah: int, ayah: int) -> str | None:
     """The ring-and-number that closes a printed ayah, or None if unbuilt."""
     db = _db()
