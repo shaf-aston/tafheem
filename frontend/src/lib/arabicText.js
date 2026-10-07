@@ -54,7 +54,7 @@ const PUNCTUATION = /(?:(?!(?<=\p{L})['’](?=\p{L}))\p{P})+/gu
 const TRAILING = /(?:\s|(?![@/])\p{P})+$/u
 
 /** The text with every punctuation mark a space: "القيامة." is القيامة. */
-export const unpunctuated = (text) => (text ?? '').replace(PUNCTUATION, ' ')
+export const unpunctuated = (text) => (text ?? '').replace(PUNCTUATION, ' ').replace(/\s+/g, ' ')
 
 /** A typed line without what trails off its end: "2:255." and "2:255؟" are 2:255. */
 export const untrailed = (text) => (text ?? '').trim().replace(TRAILING, '')

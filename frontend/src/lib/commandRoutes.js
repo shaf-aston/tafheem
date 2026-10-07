@@ -53,7 +53,8 @@ function tabMatches(tab, term) {
  * is a real root and guessing past it would be wrong.
  */
 export function ghostFor(query, tabs) {
-  const raw = clean(query)
+  // Trimmed only: Tab appends the ghost to the line as typed, so "Dict." must not complete.
+  const raw = query.trim()
   if (!raw || raw.startsWith('@') || AYAH.test(raw)) return ''
   const bare = raw.startsWith('/') ? raw.slice(1) : raw
   if (!bare || isArabic(bare)) return ''

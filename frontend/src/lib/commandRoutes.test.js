@@ -90,6 +90,11 @@ describe('ghostFor', () => {
     expect(ghostFor('/mem', TABS)).toBe('orise')
   })
 
+  it('completes nothing after a mark, since Tab adds the ghost to the line as typed', () => {
+    expect(ghostFor('Dict.', TABS)).toBe('')
+    expect(ghostFor('Quiz!', TABS)).toBe('')
+  })
+
   it('stops once the name is whole', () => {
     expect(ghostFor('Quiz', TABS)).toBe('')
   })

@@ -17,7 +17,6 @@ from backend.utils import search_query
     ("فالله يحكم بينهم يوم القيامة.", "فالله يحكم بينهم يوم القيامة"),
     ("مالك،يوم الدين؟", "مالك يوم الدين"),
     ("...mercy!", "mercy"),
-    ("ك-ت-ب", "ك ت ب"),
     ("bukhari:52", "bukhari 52"),
     ("ذَٰلِكَ ٱلْكِتَٰبُ ۛ لَا رَيْبَ ۛ", "ذَٰلِكَ ٱلْكِتَٰبُ لَا رَيْبَ"),
     # An apostrophe inside a word is part of it; at its edge, a quote mark.
@@ -27,6 +26,11 @@ from backend.utils import search_query
 def test_punctuation_is_a_break_between_words(typed, read):
     assert unpunctuated(typed) == read
     assert search_query(typed) == read
+
+
+def test_a_root_spelled_out_is_one_word():
+    # Daleel and the Dictionary both look a root up by it: three loose letters find nothing.
+    assert search_query("ك-ت-ب") == search_query("ك ت ب") == "كتب"
 
 
 def test_a_query_of_punctuation_alone_is_empty():

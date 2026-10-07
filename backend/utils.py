@@ -9,7 +9,7 @@ from typing import Any, Callable, TypeVar
 from fastapi import HTTPException
 
 from backend.config import get_settings
-from backend.services.arabic_text import has_arabic, unpunctuated, words
+from backend.services.arabic_text import has_arabic, spelled_out, unpunctuated, words
 
 logger = logging.getLogger(__name__)
 
@@ -27,9 +27,11 @@ def normalize_text(text: str, field: str = "input") -> str:
 def search_query(text: str, required: bool = False, field: str = "Search query") -> str:
     """What was typed into a search box, read the one way every search reads it:
     punctuation is a break between words, never part of one (arabic_text.unpunctuated).
-    A full stop at the end used to ride into the matching as a letter. `required`
-    makes an empty query a 400, for the searches that have nothing to show for one."""
-    query = unpunctuated(text)
+    A full stop at the end used to ride into the matching as a letter. A root
+    spelled out (ك-ت-ب) is joined back into one word (arabic_text.spelled_out).
+    `required` makes an empty query a 400, for the searches that have nothing to
+    show for one."""
+    query = spelled_out(unpunctuated(text))
     return normalize_text(query, field) if required else query
 
 

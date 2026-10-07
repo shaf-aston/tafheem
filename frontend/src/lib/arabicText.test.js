@@ -42,8 +42,9 @@ describe('punctuation in a search', () => {
   it('is a break between words, never part of one', () => {
     expect(unpunctuated('يوم القيامة.')).toBe('يوم القيامة ')
     expect(unpunctuated('مالك،يوم')).toBe('مالك يوم')
-    expect(unpunctuated("don't (state)")).toBe("don't  state ")
+    expect(unpunctuated("don't (state)")).toBe("don't state ")
     expect(foldForSearch('Mercy.')).toBe('mercy ')
+    expect(foldForSearch('mercy. peace')).toBe(foldForSearch('mercy peace'))
   })
 
   it('trails off a typed line, leaving a command prefix alone', () => {
