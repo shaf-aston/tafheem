@@ -20,6 +20,7 @@ const SOURCES = [
   '../components/QuizPanel.jsx',
   '../components/QuizInsights.jsx',
   '../components/PracticeSentence.jsx',
+  '../components/SurahCoverage.jsx',
   '../components/ui/AutoAdvanceToggle.jsx',
   './quizBanks.js',
 ]
