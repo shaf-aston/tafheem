@@ -87,6 +87,20 @@ def get_ayah(surah: int, ayah: int) -> dict | None:
     return {"words": words, "end_mark": quran_meanings.ayah_end_mark(surah, ayah)}
 
 
+def as_printed(text: str, printed: dict[int, str]) -> str:
+    """The ayah in the mushaf's own spelling, stop signs (ۚ ۖ ۗ) included.
+
+    The corpus spells every word but carries no stop signs; the printed spelling
+    does. Word by word, so a word the build never stored keeps the corpus's.
+    A sign set apart from its word is held to it with a no-break space: one word
+    stays one space-separated piece, which the reader's glosses count on.
+    """
+    return " ".join(
+        "\u00a0".join(printed.get(position, word).split())
+        for position, word in enumerate(text.split(" "), 1)
+    )
+
+
 def get_surah(surah: int, with_words: bool = False) -> dict | None:
     """A whole surah in one go, or None if there is no such surah.
 
@@ -112,6 +126,7 @@ def get_surah(surah: int, with_words: bool = False) -> dict | None:
         return None
 
     english = quran_meanings.for_surah(surah)
+    printed = quran_meanings.uthmani_for_surah(surah)
     named = quran_meanings.surah_name(surah) or {}
     # Which printed page each ayah begins on. Empty when the layout was never
     # built, and every ayah's page is then None, a reader that wants real pages
@@ -126,7 +141,7 @@ def get_surah(surah: int, with_words: bool = False) -> dict | None:
         "ayahs": [
             {
                 "ayah": number,
-                "arabic": text,
+                "arabic": as_printed(text, printed.get(number, {})),
                 "page": pages.get(number),
                 "english": " ".join(english.get(number, {}).values()),
                 "words": [
