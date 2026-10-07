@@ -149,13 +149,7 @@ function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }
       {data.tree && (
         // An ayah drawn from its record carries the words the book supplies,
         // (هُوَ) or an elided khabar, and the mark it writes them with.
-        <TarkeebFigure
-          words={data.tree.words}
-          written={data.tree.written}
-          tree={data.tree.tree}
-          unwritten={data.tree.unwritten}
-          coverage={data.tree.coverage}
-        />
+        <TarkeebFigure tarkeeb={data.tree} />
       )}
       <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked}
         corner={linked && (

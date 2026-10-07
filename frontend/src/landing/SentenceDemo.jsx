@@ -66,7 +66,7 @@ export default function SentenceDemo({ demo = loadDemo() }) {
               {words.join(' ')}
             </p>
             <div className="sd-diagram" ref={rootRef} data-shown={stage > 0 || undefined}>
-              <TarkeebDiagram words={words} tree={tree} />
+              <TarkeebDiagram tarkeeb={demo} />
             </div>
           </div>
           <div className="pin-caption">

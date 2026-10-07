@@ -301,9 +301,9 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
             # gives it no relation. It still has a name, and a blank is worse.
             leaf.update(nahw_book.shown(nahw_book.term(lone)), ghair_aamil=True)
         elif joined := word.get("connector"):
-            # The two pieces of فَسَوَّىٰهُنَّ, named separately, so the diagram can
-            # peel them apart on request instead of drawing one fused column.
-            piece = {**nahw_book.shown(nahw_book.term(joined["key"])), "ghair_aamil": True}
+            # The two pieces of فَسَوَّىٰهُنَّ, named separately; tarkeeb.cut gives the
+            # فَ its own column by `prefix_arabic`.
+            piece = nahw_book.shown(nahw_book.term(joined["key"]))
             leaf["prefix_arabic"] = joined["text"]
             leaf["parts"] = [piece, {"role": leaf["role"], "tone": leaf["tone"]}]
 

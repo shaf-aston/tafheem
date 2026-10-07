@@ -12,7 +12,7 @@ The Analyse page and the practice questions both read sentences through here.
 """
 from __future__ import annotations
 
-from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
+from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb, tarkeeb_store
 from backend.services.harakat import CASE_NAME
 from backend.services.nahw_book import case_of, family_cards, reason, teacher_rules
 from backend.services.syntax import teacher
@@ -38,7 +38,7 @@ def analyse(sentence: str) -> dict:
 def _drawn(recorded: dict) -> dict:
     """The recorded tree, in the shape the page draws a typed sentence's in."""
     keep = ("surah", "ayah", "words", "tree", "coverage", "unwritten")
-    return {**{key: recorded[key] for key in keep}, "source": provenance.of("treebank")}
+    return {**tarkeeb.cut({key: recorded[key] for key in keep}), "source": provenance.of("treebank")}
 
 
 def cards(tags: list[dict], roles: list[dict]) -> list[dict]:

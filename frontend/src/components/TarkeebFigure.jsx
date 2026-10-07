@@ -12,14 +12,15 @@ import Tooltip from './ui/Tooltip'
  * `openWhy`, when given, explains in a hover who left it open. The ⤢ button
  * opens the same diagram, larger, filling the screen.
  */
-export default function TarkeebFigure({ words, written, tree, unwritten, coverage, openWhy }) {
+export default function TarkeebFigure({ tarkeeb, openWhy }) {
+  const { coverage } = tarkeeb
   const [big, setBig] = useState(false)
   const dialog = useModal(big)
   const placed = Math.round((coverage ?? 0) * 100)
   const open = openWhy
     ? <Tooltip text={openWhy}><span className="underline decoration-dotted cursor-help">left open</span></Tooltip>
     : 'left open'
-  const diagram = <TarkeebDiagram words={words} written={written} tree={tree} unwritten={unwritten} />
+  const diagram = <TarkeebDiagram tarkeeb={tarkeeb} />
   return (
     <div className="space-y-2">
       <div

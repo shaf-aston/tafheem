@@ -61,27 +61,26 @@
 }
 
 .tk-word { grid-row: 1; display: flex; justify-content: center; }
-.tk-word span {
+/* The word, underlined in its name's colour (--tone, set per column) so each word
+   pairs with its name at a glance. */
+.tk-text {
   /* The chart rung: a sentence read word by word across a row of names. */
   font-size: calc(var(--arabic-chart-rem) * 1rem);
   line-height: 1.5;
   padding: 0 0.6rem 0.2rem;
-  border-bottom: 1.5px solid var(--border-hi);
+  border-bottom: 1.5px solid var(--tone, var(--border-hi));
   white-space: nowrap;
 }
 
 /* One written word cut into pieces (فَـ لْـ يَصُمْهُ) is drawn across its pieces'
-   columns, each piece over its own name, a line joining each to the next as the
-   script joins them, and one underline marking them as one word. */
-.tk-word.tk-written {
-  display: grid;
-  grid-template-columns: subgrid;
-  border-bottom: 1.5px solid var(--border-hi);
-}
-.tk-word .tk-cut { display: flex; align-items: flex-end; padding: 0 0 0.2rem; border: 0; }
-.tk-word .tk-cut:first-child { padding-inline-start: 0.6rem; }
-.tk-word .tk-cut:last-child { padding-inline-end: 0.6rem; }
-.tk-join { flex: 1; min-width: 0.4rem; height: 1.5px; background: currentColor; margin-bottom: 0.55em; }
+   columns, each piece over its own name with its own underline, and a line
+   joining each to the next as the script joins them. */
+.tk-word.tk-written { display: grid; grid-template-columns: subgrid; }
+.tk-cut { display: flex; align-items: flex-end; }
+.tk-cut .tk-text { padding-inline: 0.3rem; }
+.tk-cut:first-child .tk-text { padding-inline-start: 0.6rem; }
+.tk-cut:last-child .tk-text { padding-inline-end: 0.6rem; }
+.tk-join { flex: 1; min-width: 0.4rem; height: 1.5px; background: currentColor; margin-bottom: calc(0.55em + 0.2rem); }
 
 /* A name the Treebank supplied that the app has not checked against a book. It
    still reads, but it must not look as settled as a term that was checked. */
@@ -93,11 +92,10 @@
    page reads first. */
 /* It rides at its verb's top-left, a narrow column, its thread dropping below. */
 .tk-word.tk-unwritten { align-items: flex-start; }
-.tk-word.tk-unwritten span {
+.tk-word.tk-unwritten .tk-text {
   font-size: calc(var(--arabic-small-rem) * 1rem);
   color: var(--text-faint);
   border-bottom-style: dashed;
-  border-bottom-color: var(--border);
   padding-inline: 0.25rem;
 }
 

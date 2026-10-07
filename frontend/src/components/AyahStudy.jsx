@@ -121,7 +121,7 @@ function AyahTarkeeb({ surah, ayah }) {
         <ErrorAlert inline title="Could not load the word joins" error={error} onRetry={() => refetch()} />
       )}
       {data?.tree && (
-        <TarkeebFigure words={data.words} tree={data.tree} unwritten={data.unwritten} coverage={data.coverage} openWhy={openWhy} />
+        <TarkeebFigure tarkeeb={data} openWhy={openWhy} />
       )}
     </section>
   )

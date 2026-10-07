@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cells, hiddenWords, measure, rows, splitConnectors } from './tarkeebLayout'
+import { cells, fold, hiddenWords, measure, rows, tones } from './tarkeebLayout'
 
 /** Shaped exactly as the API sends it: empty arrays, not missing keys. */
 const AYAH = {
@@ -98,69 +98,57 @@ describe('cells', () => {
   })
 })
 
-describe('splitConnectors', () => {
-  // ثُمَّ فَسَوَّىٰهُنَّ سَبْعَ, shaped exactly as the API sends it: ثُمَّ (word 0)
-  // already named itself with no parts at all; فَسَوَّىٰهُنَّ (word 1) glues a
-  // فَ onto a verb that also takes a suffix, so its parts run three deep.
-  const CONNECTOR = {
-    role: 'حَرْفُ عَطْفٍ', tone: 'ghair_aamil', detail: 'joins to what came before', ghair_aamil: true,
+describe('fold, the Merged view', () => {
+  // فَلْيَصُمْهُ زَيْدٌ as the API sends it: one written word cut into three columns
+  const CUT = {
+    words: ['فَ', 'لْ', 'يَصُمْهُ', 'زَيْدٌ'],
+    written: [0, 0, 0, 1],
+    tree: {
+      label: 'جملة',
+      children: [
+        { word: 0, role: 'حرف رابط', tone: 'harf' },
+        {
+          label: 'جواب الشرط', role: 'جواب الشرط',
+          children: [
+            { word: 1, role: 'لام الأمر', tone: 'harf' },
+            { word: 2, role: 'فعل', tone: 'fil', parts: [{ role: 'فعل' }, { role: 'فاعل' }] },
+            { word: 3, role: 'فاعل', tone: 'fail' },
+          ],
+        },
+      ],
+    },
   }
-  const TREE = {
-    label: 'جُمْلَةٌ فِعْلِيَّةٌ', tone: 'fil', parts: [],
-    children: [
-      { word: 0, role: 'حَرْفُ عَطْفٍ', tone: 'ghair_aamil', ghair_aamil: true, parts: [], children: [] },
-      {
-        word: 1, role: 'فِعْلٌ', tone: 'fil', prefix_arabic: 'فَ', children: [],
-        parts: [CONNECTOR, { role: 'فِعْلٌ', tone: 'fil' }, { role: 'مَفْعُوْلٌ بِهِ', tone: 'mafool' }],
-      },
-      { word: 2, role: 'مَفْعُوْلٌ بِهِ', tone: 'mafool', children: [], parts: [] },
-    ],
-  }
-  const WORDS = ['ثُمَّ', 'فَسَوَّىٰهُنَّ', 'سَبْعَ']
+  const merged = fold(CUT)
 
-  it('leaves the tree and words untouched when nothing is glued on', () => {
-    const bare = { ...TREE, children: [TREE.children[0], TREE.children[2]] }
-    const result = splitConnectors(['ثُمَّ', 'سَبْعَ'], bare)
-    expect(result.words).toEqual(['ثُمَّ', 'سَبْعَ'])
-    expect(result.tree).toBe(bare)
-    expect(result.terms).toEqual([])
+  it('puts each written word back in one column', () => {
+    expect(merged.words).toEqual(['فَلْيَصُمْهُ', 'زَيْدٌ'])
   })
 
-  it('slices the connector into its own word column, in front of the rest', () => {
-    const { words } = splitConnectors(WORDS, TREE)
-    expect(words).toEqual(['ثُمَّ', 'فَ', 'سَوَّىٰهُنَّ', 'سَبْعَ'])
+  it('reads the pieces sharing a column as one cell, in order', () => {
+    const answer = measure(merged.tree).children[1]
+    expect(cells(answer).map((c) => [c.from, c.to, c.roles.map((r) => r.role)])).toEqual([
+      [0, 0, ['لام الأمر', 'فعل', 'فاعل']], [1, 1, ['فاعل']]])
+    expect(cells(measure(merged.tree)).map((c) => c.roles.map((r) => r.role))).toEqual([['حرف رابط', 'جواب الشرط']])
   })
 
-  it('renumbers every word after the split, including the ones already fine', () => {
-    const { tree } = splitConnectors(WORDS, TREE)
-    expect(tree.children.map((c) => c.word)).toEqual([0, 1, 2, 3])
+  it('changes nothing when no word was cut', () => {
+    const whole = fold({ words: ['زَيْدٌ', 'قَامَ'], tree: { children: [{ word: 0, role: 'فاعل' }, { word: 1, role: 'فعل' }] } })
+    expect(whole.words).toEqual(['زَيْدٌ', 'قَامَ'])
+  })
+})
+
+describe('cells and tones', () => {
+  it('writes no name, and no "+", for a group named only by its own brace', () => {
+    const tree = measure({ children: [
+      { word: 0, role: 'حرف' },
+      { label: 'متعلق', children: [{ word: 1, role: 'حرف جر' }, { word: 2, role: 'مجرور' }] },
+      { word: 3, role: 'فعل' },
+    ] })
+    expect(cells(tree).map((c) => c.roles.map((r) => r.role))).toEqual([['حرف'], ['فعل']])
   })
 
-  it('keeps the rest of a compound word intact once the connector is pulled out', () => {
-    const { tree } = splitConnectors(WORDS, TREE)
-    const [, connector, remainder] = tree.children
-    expect(connector).toMatchObject({ word: 1, role: 'حَرْفُ عَطْفٍ', tone: 'ghair_aamil', ghair_aamil: true })
-    expect(remainder.word).toBe(2)
-    expect(remainder.parts.map((p) => p.role)).toEqual(['فِعْلٌ', 'مَفْعُوْلٌ بِهِ'])
-    expect(remainder.prefix_arabic).toBeUndefined()
-  })
-
-  it('collapses to a plain role when nothing but the connector was attached', () => {
-    const lone = {
-      ...TREE,
-      children: [{
-        word: 0, role: 'فِعْلٌ', tone: 'fil', prefix_arabic: 'وَ', children: [],
-        parts: [{ ...CONNECTOR, role: 'حَرْفُ اسْتِئْنَافٍ' }, { role: 'فِعْلٌ', tone: 'fil' }],
-      }],
-    }
-    const { tree } = splitConnectors(['وَقَامَ'], lone)
-    const [, remainder] = tree.children
-    expect(remainder).toMatchObject({ word: 1, role: 'فِعْلٌ', tone: 'fil', parts: [] })
-  })
-
-  it('names the toggle by the connective terms actually present', () => {
-    const { terms } = splitConnectors(WORDS, TREE)
-    expect(terms).toEqual(['حَرْفُ عَطْفٍ'])
+  it('gives each column the tone of the word drawn in it, open ones as gaps', () => {
+    expect(tones({ children: [{ word: 0, tone: 'fil' }, { word: 1, gap: true, tone: 'fil' }] })).toEqual(['fil', 'gap'])
   })
 })
 

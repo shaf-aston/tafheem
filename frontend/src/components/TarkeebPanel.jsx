@@ -161,7 +161,7 @@ function Example({ example, topic, showBook, accent, onWordByWord }) {
       </header>
       <div ref={ref} className="p-5 space-y-3">
         {near ? (
-          <TarkeebDiagram words={example.words} tree={example.tree} />
+          <TarkeebDiagram tarkeeb={example} />
         ) : (
           // Holds the card's height so the page does not jump as diagrams arrive.
           <div className="h-32" aria-hidden="true" />
