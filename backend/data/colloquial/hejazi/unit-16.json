@@ -243,9 +243,9 @@
           "category": "Yesterday"
         },
         {
-          "arabic": "طَوِيل",
-          "transliteration": "Taweel",
-          "english": "long",
+          "arabic": "صَحِيت",
+          "transliteration": "Sa7eet",
+          "english": "I woke up",
           "category": "Yesterday"
         },
         {
@@ -695,9 +695,9 @@
           "category": "Childhood"
         },
         {
-          "arabic": "ضَلْمَة",
-          "transliteration": "Dalma",
-          "english": "darkness",
+          "arabic": "لَعِب",
+          "transliteration": "la3ib",
+          "english": "playing, games",
           "category": "Childhood"
         }
       ],
@@ -1490,15 +1490,15 @@
           "category": "News and gossip"
         },
         {
-          "arabic": "شَهْر",
-          "transliteration": "shahr",
-          "english": "month",
+          "arabic": "قِصَّة",
+          "transliteration": "giSSa",
+          "english": "story",
           "category": "News and gossip"
         },
         {
-          "arabic": "وَلَد",
-          "transliteration": "walad",
-          "english": "boy",
+          "arabic": "سِمِعْت",
+          "transliteration": "simi3t",
+          "english": "I heard",
           "category": "News and gossip"
         },
         {
@@ -1514,9 +1514,9 @@
           "category": "News and gossip"
         },
         {
-          "arabic": "جَدِيد",
-          "transliteration": "jadeed",
-          "english": "new",
+          "arabic": "سِرّ",
+          "transliteration": "sirr",
+          "english": "secret",
           "category": "News and gossip"
         }
       ],

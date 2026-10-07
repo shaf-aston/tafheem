@@ -274,15 +274,15 @@
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "طّْرِيق",
-          "transliteration": "Treeq",
-          "english": "road, way",
+          "arabic": "هْدِيَّة",
+          "transliteration": "hdiyya",
+          "english": "gift",
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "يْدِّين",
-          "transliteration": "yeddeen",
-          "english": "hands",
+          "arabic": "عْرْضَة",
+          "transliteration": "3erDa",
+          "english": "invitation",
           "category": "Arriving as a guest"
         },
         {
@@ -737,9 +737,9 @@
           "category": "Welcoming guests"
         },
         {
-          "arabic": "عْجْلَة",
-          "transliteration": "3jla",
-          "english": "hurry",
+          "arabic": "أَتَاي",
+          "transliteration": "ataay",
+          "english": "tea",
           "category": "Welcoming guests"
         }
       ],
@@ -1617,9 +1617,9 @@
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "طّْرِيق",
-          "transliteration": "Treeq",
-          "english": "road",
+          "arabic": "تْهْلَّا",
+          "transliteration": "thella",
+          "english": "take care",
           "category": "Leaving and thanking"
         },
         {
@@ -1629,9 +1629,9 @@
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "قْرِيب",
-          "transliteration": "qreeb",
-          "english": "soon, near",
+          "arabic": "نْتْلَاقَاو",
+          "transliteration": "ntlaqaw",
+          "english": "we'll meet again",
           "category": "Leaving and thanking"
         }
       ],

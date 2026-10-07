@@ -745,9 +745,9 @@
           "category": "Colours"
         },
         {
-          "arabic": "رَأْي",
-          "transliteration": "ra2y",
-          "english": "opinion",
+          "arabic": "رَمَادِي",
+          "transliteration": "ramaadi",
+          "english": "grey",
           "category": "Colours"
         }
       ],
@@ -1746,15 +1746,15 @@
           "category": "Returns"
         },
         {
-          "arabic": "يُومِين",
-          "transliteration": "yomeen",
-          "english": "two days",
+          "arabic": "ضَمَان",
+          "transliteration": "Damaan",
+          "english": "warranty",
           "category": "Returns"
         },
         {
-          "arabic": "وَاجِب",
-          "transliteration": "waageb",
-          "english": "you're welcome (lit. duty)",
+          "arabic": "فَاتُورَة",
+          "transliteration": "fatoora",
+          "english": "receipt",
           "category": "Returns"
         }
       ],

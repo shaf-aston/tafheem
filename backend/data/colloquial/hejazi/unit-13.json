@@ -234,9 +234,9 @@
           "category": "Feelings"
         },
         {
-          "arabic": "جُوعَان",
-          "transliteration": "joo3aan",
-          "english": "hungry",
+          "arabic": "حَزِين",
+          "transliteration": "7azeen",
+          "english": "sad",
           "category": "Feelings"
         },
         {
@@ -252,15 +252,15 @@
           "category": "Feelings"
         },
         {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "imti7aan",
-          "english": "exam",
+          "arabic": "طَفْشَان",
+          "transliteration": "Tafshaan",
+          "english": "bored",
           "category": "Feelings"
         },
         {
-          "arabic": "حَاجَة",
-          "transliteration": "7aaja",
-          "english": "thing",
+          "arabic": "وَحِيد",
+          "transliteration": "wa7eed",
+          "english": "lonely",
           "category": "Feelings"
         }
       ],
@@ -693,9 +693,9 @@
           "category": "Agreeing"
         },
         {
-          "arabic": "صَحِيح",
-          "transliteration": "Sa7ee7",
-          "english": "true",
+          "arabic": "أَكِيد",
+          "transliteration": "akeed",
+          "english": "sure",
           "category": "Agreeing"
         },
         {
@@ -1141,9 +1141,9 @@
           "category": "Advice"
         },
         {
-          "arabic": "مَكَان",
-          "transliteration": "makaan",
-          "english": "place",
+          "arabic": "رَاحَة",
+          "transliteration": "raa7a",
+          "english": "rest",
           "category": "Advice"
         }
       ],
@@ -1569,9 +1569,9 @@
           "category": "Complaining"
         },
         {
-          "arabic": "صُورَة",
-          "transliteration": "Soora",
-          "english": "picture",
+          "arabic": "تَأْخِير",
+          "transliteration": "ta2kheer",
+          "english": "delay",
           "category": "Complaining"
         },
         {

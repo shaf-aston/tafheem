@@ -250,9 +250,9 @@
           "category": "Clothes"
         },
         {
-          "arabic": "غُرْفَة",
-          "transliteration": "ghurfa",
-          "english": "room",
+          "arabic": "بَنْطَلُون",
+          "transliteration": "banTaloon",
+          "english": "trousers",
           "category": "Clothes"
         },
         {
@@ -680,15 +680,15 @@
           "category": "Colours"
         },
         {
-          "arabic": "أَحْلَى",
-          "transliteration": "a7la",
-          "english": "nicer",
+          "arabic": "أَخْضَر",
+          "transliteration": "akhDar",
+          "english": "green",
           "category": "Colours"
         },
         {
-          "arabic": "رَأْي",
-          "transliteration": "ra2y",
-          "english": "opinion",
+          "arabic": "أَصْفَر",
+          "transliteration": "aSfar",
+          "english": "yellow",
           "category": "Colours"
         }
       ],
@@ -1511,15 +1511,15 @@
           "category": "Returns"
         },
         {
-          "arabic": "إِمْتَى",
-          "transliteration": "imta",
-          "english": "when",
+          "arabic": "ضَمَان",
+          "transliteration": "Damaan",
+          "english": "warranty",
           "category": "Returns"
         },
         {
-          "arabic": "تَعَاوُن",
-          "transliteration": "ta3aawun",
-          "english": "cooperation",
+          "arabic": "تَبْدِيل",
+          "transliteration": "tabdeel",
+          "english": "exchange",
           "category": "Returns"
         }
       ],

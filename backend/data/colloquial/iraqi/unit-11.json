@@ -287,15 +287,15 @@
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "طَرِيگ",
-          "transliteration": "Tareeg",
-          "english": "road, way",
+          "arabic": "زِيَارَة",
+          "transliteration": "ziyaara",
+          "english": "visit",
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "أَغْرَاض",
-          "transliteration": "aghraaD",
-          "english": "things",
+          "arabic": "عِنْوَان",
+          "transliteration": "3inwaan",
+          "english": "address",
           "category": "Arriving as a guest"
         },
         {
@@ -784,9 +784,9 @@
           "category": "Welcoming guests"
         },
         {
-          "arabic": "اِسْتِعْجَال",
-          "transliteration": "isti3jaal",
-          "english": "hurry",
+          "arabic": "چَاي",
+          "transliteration": "chaay",
+          "english": "tea",
           "category": "Welcoming guests"
         }
       ],
@@ -1710,15 +1710,15 @@
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "زَحْمَة",
-          "transliteration": "za7ma",
-          "english": "traffic",
+          "arabic": "تِسْلَم",
+          "transliteration": "tislam",
+          "english": "thank you (lit. be safe)",
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "طَرِيگ",
-          "transliteration": "Tareeg",
-          "english": "road",
+          "arabic": "عَاشَت إِيدَك",
+          "transliteration": "3aashat eedak",
+          "english": "thanks (lit. long live your hand)",
           "category": "Leaving and thanking"
         },
         {

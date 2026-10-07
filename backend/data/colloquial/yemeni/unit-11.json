@@ -274,9 +274,9 @@
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "طَرِيق",
-          "transliteration": "Tareeg",
-          "english": "road, way",
+          "arabic": "زِيَارَة",
+          "transliteration": "ziyaara",
+          "english": "visit",
           "category": "Arriving as a guest"
         },
         {
@@ -286,9 +286,9 @@
           "category": "Arriving as a guest"
         },
         {
-          "arabic": "سُهُولَة",
-          "transliteration": "suhoola",
-          "english": "ease",
+          "arabic": "مَجْلِس",
+          "transliteration": "majlis",
+          "english": "sitting room",
           "category": "Arriving as a guest"
         }
       ],
@@ -695,9 +695,9 @@
           "category": "Welcoming guests"
         },
         {
-          "arabic": "عَجَلَة",
-          "transliteration": "3ajala",
-          "english": "hurry",
+          "arabic": "قَهْوَة",
+          "transliteration": "gahwa",
+          "english": "coffee",
           "category": "Welcoming guests"
         }
       ],
@@ -1413,9 +1413,9 @@
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "طَرِيق",
-          "transliteration": "Tareeg",
-          "english": "road",
+          "arabic": "تِسْلَم",
+          "transliteration": "tislam",
+          "english": "thank you (lit. be safe)",
           "category": "Leaving and thanking"
         },
         {

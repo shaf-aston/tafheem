@@ -246,9 +246,9 @@
           "category": "Morning"
         },
         {
-          "arabic": "بَرْد",
-          "transliteration": "bard",
-          "english": "cold",
+          "arabic": "فَطُور",
+          "transliteration": "faToor",
+          "english": "breakfast",
           "category": "Morning"
         }
       ],
@@ -657,15 +657,15 @@
           "category": "During the day"
         },
         {
-          "arabic": "أَخْبَار",
-          "transliteration": "akhbaar",
-          "english": "news",
+          "arabic": "دَوَام",
+          "transliteration": "dawaam",
+          "english": "working hours",
           "category": "During the day"
         },
         {
-          "arabic": "حَاجَة",
-          "transliteration": "7aaja",
-          "english": "thing",
+          "arabic": "مَكْتَب",
+          "transliteration": "maktab",
+          "english": "office",
           "category": "During the day"
         }
       ],
@@ -1066,9 +1066,9 @@
           "category": "Evening"
         },
         {
-          "arabic": "جَوّ",
-          "transliteration": "jaww",
-          "english": "weather",
+          "arabic": "تِلْفِزْيُون",
+          "transliteration": "tilifizyoon",
+          "english": "TV",
           "category": "Evening"
         },
         {

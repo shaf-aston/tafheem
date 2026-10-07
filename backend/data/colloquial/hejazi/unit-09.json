@@ -275,9 +275,9 @@
           "category": "Feeling unwell"
         },
         {
-          "arabic": "مَرَّة",
-          "transliteration": "marra",
-          "english": "very",
+          "arabic": "كُحَّة",
+          "transliteration": "ku77a",
+          "english": "cough",
           "category": "Feeling unwell"
         }
       ],
@@ -711,9 +711,9 @@
           "category": "Pharmacy"
         },
         {
-          "arabic": "سَلَامَة",
-          "transliteration": "salaama",
-          "english": "wellbeing",
+          "arabic": "مُسَكِّن",
+          "transliteration": "musakkin",
+          "english": "painkiller",
           "category": "Pharmacy"
         }
       ],

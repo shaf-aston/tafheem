@@ -265,21 +265,21 @@
           "category": "Taxi"
         },
         {
-          "arabic": "قَدِيم",
-          "transliteration": "gadeem",
-          "english": "old",
+          "arabic": "سَوَّاق",
+          "transliteration": "sawwaag",
+          "english": "driver",
           "category": "Taxi"
         },
         {
-          "arabic": "بَاب",
-          "transliteration": "baab",
-          "english": "gate, door",
+          "arabic": "وَقِّف",
+          "transliteration": "wagguf",
+          "english": "stop (here)",
           "category": "Taxi"
         },
         {
-          "arabic": "آخِر",
-          "transliteration": "aakhir",
-          "english": "end, last",
+          "arabic": "عِنْوَان",
+          "transliteration": "3inwaan",
+          "english": "address",
           "category": "Taxi"
         }
       ],
@@ -1909,15 +1909,15 @@
           "category": "Getting around"
         },
         {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
+          "arabic": "زَحْمَة",
+          "transliteration": "za7ma",
+          "english": "traffic",
           "category": "Getting around"
         },
         {
-          "arabic": "فَاضِي",
-          "transliteration": "faaDi",
-          "english": "free, available",
+          "arabic": "بَنْزِين",
+          "transliteration": "banzeen",
+          "english": "petrol",
           "category": "Getting around"
         },
         {
@@ -1927,9 +1927,9 @@
           "category": "Getting around"
         },
         {
-          "arabic": "حَاضِر",
-          "transliteration": "7aaDir",
-          "english": "at your service",
+          "arabic": "كُوبْرِي",
+          "transliteration": "koobri",
+          "english": "bridge",
           "category": "Getting around"
         },
         {
@@ -1939,9 +1939,9 @@
           "category": "Getting around"
         },
         {
-          "arabic": "كَم",
-          "transliteration": "kam",
-          "english": "how much, how many",
+          "arabic": "دَوَّار",
+          "transliteration": "dawwaar",
+          "english": "roundabout",
           "category": "Getting around"
         }
       ],

@@ -670,9 +670,9 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "زَيْن",
-          "transliteration": "zayn",
-          "english": "good",
+          "arabic": "مَوْعِد",
+          "transliteration": "maw3id",
+          "english": "appointment",
           "category": "Arranging to meet"
         }
       ],
@@ -1474,21 +1474,21 @@
           "category": "Messages"
         },
         {
-          "arabic": "مَتَى",
-          "transliteration": "mata",
-          "english": "when",
+          "arabic": "صُورَة",
+          "transliteration": "Soora",
+          "english": "photo, picture",
           "category": "Messages"
         },
         {
-          "arabic": "وَقْت",
-          "transliteration": "wagt",
-          "english": "time",
+          "arabic": "رَدّ",
+          "transliteration": "radd",
+          "english": "reply",
           "category": "Messages"
         },
         {
-          "arabic": "شْوَيَّة",
-          "transliteration": "shwayya",
-          "english": "a little",
+          "arabic": "رِسَالَة صَوْتِيَّة",
+          "transliteration": "risaala Sawtiyya",
+          "english": "voice message",
           "category": "Messages"
         },
         {

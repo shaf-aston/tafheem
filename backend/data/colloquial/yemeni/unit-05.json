@@ -269,21 +269,21 @@
           "category": "Taxi"
         },
         {
-          "arabic": "قَدِيم",
-          "transliteration": "gadeem",
-          "english": "old",
+          "arabic": "سَوَّاق",
+          "transliteration": "sawwaag",
+          "english": "driver",
           "category": "Taxi"
         },
         {
-          "arabic": "جَامِع",
-          "transliteration": "jaami3",
-          "english": "grand mosque",
+          "arabic": "وَقِّف",
+          "transliteration": "wagguf",
+          "english": "stop (here)",
           "category": "Taxi"
         },
         {
-          "arabic": "آخِر",
-          "transliteration": "aakhir",
-          "english": "end, last",
+          "arabic": "عِنْوَان",
+          "transliteration": "3inwaan",
+          "english": "address",
           "category": "Taxi"
         }
       ],
@@ -1885,15 +1885,15 @@
           "category": "Getting around"
         },
         {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
+          "arabic": "زَحْمَة",
+          "transliteration": "za7ma",
+          "english": "traffic",
           "category": "Getting around"
         },
         {
-          "arabic": "فَاضِي",
-          "transliteration": "faaDi",
-          "english": "free, available",
+          "arabic": "بَاص",
+          "transliteration": "baaS",
+          "english": "bus",
           "category": "Getting around"
         },
         {
@@ -1903,9 +1903,9 @@
           "category": "Getting around"
         },
         {
-          "arabic": "أَمْر",
-          "transliteration": "amr",
-          "english": "order, service",
+          "arabic": "دَبَّاب",
+          "transliteration": "dabbaab",
+          "english": "minibus",
           "category": "Getting around"
         },
         {
@@ -1915,9 +1915,9 @@
           "category": "Getting around"
         },
         {
-          "arabic": "بُكْرَة",
-          "transliteration": "bukra",
-          "english": "tomorrow",
+          "arabic": "بَتْرُول",
+          "transliteration": "batrool",
+          "english": "petrol",
           "category": "Getting around"
         }
       ],

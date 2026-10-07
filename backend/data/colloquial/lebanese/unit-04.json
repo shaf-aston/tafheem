@@ -689,9 +689,9 @@
           "category": "The menu"
         },
         {
-          "arabic": "إِنْكْلِيزِي",
-          "transliteration": "ingleezi",
-          "english": "English",
+          "arabic": "نَبَاتِي",
+          "transliteration": "nabaati",
+          "english": "vegetarian",
           "category": "The menu"
         }
       ],
@@ -1544,9 +1544,9 @@
           "category": "Paying"
         },
         {
-          "arabic": "زَاكِي",
-          "transliteration": "zaaki",
-          "english": "delicious",
+          "arabic": "خِدْمِة",
+          "transliteration": "khidme",
+          "english": "service charge",
           "category": "Paying"
         }
       ],
