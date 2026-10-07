@@ -34,7 +34,7 @@ export default function Segmented({
             style={on
               ? { color: accent, background: `color-mix(in srgb, ${accent} 16%, transparent)` }
               : undefined}
-            className={`press tap inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+            className={`press tap inline-flex items-center px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors ${
               on ? '' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
             }`}
           >

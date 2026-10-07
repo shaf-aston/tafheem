@@ -24,7 +24,7 @@ export default function AnswerSquare({ status = '', number, current, label, onCl
         outline: current && status ? '2px solid var(--warn)' : undefined,
         outlineOffset: 2,
       }}
-      className={`w-7 h-7 grid place-items-center rounded-[var(--radius-sm)] border type-small font-bold
+      className={`shrink-0 w-9 h-9 grid place-items-center rounded-[var(--radius-sm)] border type-ui font-bold
         tabular-nums leading-none transition-opacity hover:opacity-100
         ${current ? '' : 'opacity-80'} ${status ? '' : 'border-dashed'}`}
     >
