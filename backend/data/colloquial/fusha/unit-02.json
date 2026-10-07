@@ -231,62 +231,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عَائِلَة",
-          "transliteration": "3aa2ila",
-          "english": "family",
-          "category": "Family"
-        },
-        {
-          "arabic": "جَدّ",
-          "transliteration": "jadd",
-          "english": "grandfather",
-          "category": "Family"
-        },
-        {
-          "arabic": "جَدَّة",
-          "transliteration": "jadda",
-          "english": "grandmother",
-          "category": "Family"
-        },
-        {
-          "arabic": "عَمّ",
-          "transliteration": "3amm",
-          "english": "uncle (father's side)",
-          "category": "Family"
-        },
-        {
-          "arabic": "عَمَّة",
-          "transliteration": "3amma",
-          "english": "aunt (father's side)",
-          "category": "Family"
-        },
-        {
-          "arabic": "خَال",
-          "transliteration": "khaal",
-          "english": "uncle (mother's side)",
-          "category": "Family"
-        },
-        {
-          "arabic": "خَالَة",
-          "transliteration": "khaala",
-          "english": "aunt (mother's side)",
-          "category": "Family"
-        },
-        {
-          "arabic": "حَفِيد",
-          "transliteration": "7afeed",
-          "english": "grandson",
-          "category": "Family"
-        },
-        {
-          "arabic": "حَفِيدَة",
-          "transliteration": "7afeeda",
-          "english": "granddaughter",
-          "category": "Family"
-        }
-      ],
       "culture": "In Fusha a family member is named with a possessive ending, so the ending ـِي means 'my' and أُمِّي is 'my mother'. Asking whether someone is married changes for a man and a woman, and it is polite to ask only once you know the person a little.",
       "exercises": [
         {
@@ -678,68 +622,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "طَعَام",
-          "transliteration": "ta3aam",
-          "english": "food",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "خُبْز",
-          "transliteration": "khubz",
-          "english": "bread",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "حَلِيب",
-          "transliteration": "7aleeb",
-          "english": "milk",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "قَهْوَة",
-          "transliteration": "qahwa",
-          "english": "coffee",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "شَاي",
-          "transliteration": "shaay",
-          "english": "tea",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَصِير",
-          "transliteration": "3aseer",
-          "english": "juice",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "أَرُزّ",
-          "transliteration": "aruzz",
-          "english": "rice",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "لَحْم",
-          "transliteration": "la7m",
-          "english": "meat",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "جُوع",
-          "transliteration": "joo3",
-          "english": "hunger",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَطَش",
-          "transliteration": "3atash",
-          "english": "thirst",
-          "category": "Food and drink"
-        }
-      ],
       "culture": "In Fusha people say هَنِيئًا مَرِيئًا to someone who is eating and صِحَّةً وَعَافِيَة after a drink, and the host often answers تَفَضَّلْ مَعَنَا, an invitation to join. Sharing food is a sign of hospitality across the Arab world.",
       "exercises": [
         {
@@ -1121,62 +1003,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "طَوِيل",
-          "transliteration": "taweel",
-          "english": "tall",
-          "category": "Describing people"
-        },
-        {
-          "arabic": "قَصِير",
-          "transliteration": "qaseer",
-          "english": "short",
-          "category": "Describing people"
-        },
-        {
-          "arabic": "كَبِير",
-          "transliteration": "kabeer",
-          "english": "big, old",
-          "category": "Describing people"
-        },
-        {
-          "arabic": "صَغِير",
-          "transliteration": "sagheer",
-          "english": "small, young",
-          "category": "Describing people"
-        },
-        {
-          "arabic": "جَمِيل",
-          "transliteration": "jameel",
-          "english": "beautiful",
-          "category": "Describing people"
-        },
-        {
-          "arabic": "لَطِيف",
-          "transliteration": "lateef",
-          "english": "kind",
-          "category": "Describing people"
-        },
-        {
-          "arabic": "ذَكِيّ",
-          "transliteration": "dhakiyy",
-          "english": "clever",
-          "category": "Describing people"
-        },
-        {
-          "arabic": "هَادِئ",
-          "transliteration": "haadi2",
-          "english": "calm",
-          "category": "Describing people"
-        },
-        {
-          "arabic": "مَرِح",
-          "transliteration": "mari7",
-          "english": "cheerful",
-          "category": "Describing people"
-        }
-      ],
       "culture": "Fusha has separate words for each relative: عَمّ is a father's brother and خَال a mother's brother, so اِبْنُ عَمِّي and اِبْنُ خَالِي are different cousins. It is polite to answer a mention of someone's children with مَاشَاءَ اللَّه.",
       "exercises": [
         {
@@ -1544,62 +1370,6 @@
             "transliteration": "laa, laa aakulu al-la7m.",
             "english": "No, I do not eat meat."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "فُطُور",
-          "transliteration": "futoor",
-          "english": "breakfast",
-          "category": "At the table"
-        },
-        {
-          "arabic": "غَدَاء",
-          "transliteration": "ghadaa2",
-          "english": "lunch",
-          "category": "At the table"
-        },
-        {
-          "arabic": "عَشَاء",
-          "transliteration": "3ashaa2",
-          "english": "dinner",
-          "category": "At the table"
-        },
-        {
-          "arabic": "مَائِدَة",
-          "transliteration": "maa2ida",
-          "english": "dining table",
-          "category": "At the table"
-        },
-        {
-          "arabic": "صَحْن",
-          "transliteration": "sa7n",
-          "english": "plate",
-          "category": "At the table"
-        },
-        {
-          "arabic": "مِلْعَقَة",
-          "transliteration": "mil3aqa",
-          "english": "spoon",
-          "category": "At the table"
-        },
-        {
-          "arabic": "شَوْكَة",
-          "transliteration": "shawka",
-          "english": "fork",
-          "category": "At the table"
-        },
-        {
-          "arabic": "سِكِّين",
-          "transliteration": "sikkeen",
-          "english": "knife",
-          "category": "At the table"
-        },
-        {
-          "arabic": "كَأْس",
-          "transliteration": "ka2s",
-          "english": "glass",
-          "category": "At the table"
         }
       ],
       "culture": "A Fusha-speaking host often keeps offering more food, and the guest says أَنَا شَبْعَان, 'I am full', after one or two polite refusals. The family usually eats from shared dishes on one table, so asking someone to pass something uses نَاوِلْنِي.",

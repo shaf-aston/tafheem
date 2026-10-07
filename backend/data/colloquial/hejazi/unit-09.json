@@ -231,56 +231,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "تَعْبَان",
-          "transliteration": "ta3baan",
-          "english": "tired, ill",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "صُدَاع",
-          "transliteration": "Sudaa3",
-          "english": "headache",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "بَطْن",
-          "transliteration": "baTn",
-          "english": "stomach",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "سُخُونَة",
-          "transliteration": "sukhoona",
-          "english": "fever",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "دَايِخ",
-          "transliteration": "daayikh",
-          "english": "dizzy",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "بَرْد",
-          "transliteration": "bard",
-          "english": "a cold",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "نُوم",
-          "transliteration": "noom",
-          "english": "sleep",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "كُحَّة",
-          "transliteration": "ku77a",
-          "english": "cough",
-          "category": "Feeling unwell"
-        }
-      ],
       "culture": "In Hejazi culture, health concerns are always acknowledged with \"الحمد لله على كل حال\" (thank God in all circumstances) even when unwell, and asking about someone's health is a key part of respect. When hearing someone is ill, \"الله يشفيك\" (God heal you) and \"سلامتك\" (take care) are expected responses.",
       "exercises": [
         {
@@ -667,56 +617,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "دَوَا",
-          "transliteration": "dawa",
-          "english": "medicine",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "حُبُوب",
-          "transliteration": "7uboob",
-          "english": "pills",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "شَرَاب",
-          "transliteration": "sharaab",
-          "english": "syrup",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "كُحَّة",
-          "transliteration": "ku77a",
-          "english": "cough",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "وَصْفَة",
-          "transliteration": "waSfa",
-          "english": "prescription",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "حَسَاسِيَّة",
-          "transliteration": "7asaasiyya",
-          "english": "allergy",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "بْلَاسْتَر",
-          "transliteration": "blaastar",
-          "english": "plaster",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "مُسَكِّن",
-          "transliteration": "musakkin",
-          "english": "painkiller",
-          "category": "Pharmacy"
-        }
-      ],
       "culture": "In Hejazi pharmacies, simple medicines like painkillers and cough syrup are sold over the counter without a prescription, and prices are typically quoted in Saudi riyals. A pharmacist is respected like a healthcare professional, and \"سلامتك\" and \"الله يشفيك\" are the expected closing phrases.",
       "exercises": [
         {
@@ -1099,56 +999,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَوْعِد",
-          "transliteration": "maw3id",
-          "english": "appointment",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "تَحَالِيل",
-          "transliteration": "ta7aaleel",
-          "english": "medical tests",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "نَفَس",
-          "transliteration": "nafas",
-          "english": "breath",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "ضَغْط",
-          "transliteration": "DaghT",
-          "english": "blood pressure",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "عَالِي",
-          "transliteration": "3aali",
-          "english": "high",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "خَطِير",
-          "transliteration": "khaTeer",
-          "english": "serious, dangerous",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "أُسْبُوع",
-          "transliteration": "usboo3",
-          "english": "week",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "دُكْتُور",
-          "transliteration": "duktoor",
-          "english": "doctor",
-          "category": "Doctor"
-        }
-      ],
       "culture": "A doctor in Hejazi regions is traditionally addressed as \"يا دكتور\" or \"دكتور\" with respect, and the health-first language means even at the clinic \"الحمد لله\" (praise God) and \"الله يشفيك\" (God heal you) are part of the conversation. A doctor being thanked with \"الله يسلمك\" and \"سلامتك\" is the expected courtesy.",
       "exercises": [
         {
@@ -1508,56 +1358,6 @@
             "transliteration": "dahri aktar",
             "english": "My back more"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "رَاس",
-          "transliteration": "raas",
-          "english": "head",
-          "category": "Body"
-        },
-        {
-          "arabic": "ضَهْر",
-          "transliteration": "Dahr",
-          "english": "back",
-          "category": "Body"
-        },
-        {
-          "arabic": "يَد",
-          "transliteration": "yad",
-          "english": "hand, arm",
-          "category": "Body"
-        },
-        {
-          "arabic": "رِجْل",
-          "transliteration": "rijl",
-          "english": "leg, foot",
-          "category": "Body"
-        },
-        {
-          "arabic": "عَيْن",
-          "transliteration": "3ayn",
-          "english": "eye",
-          "category": "Body"
-        },
-        {
-          "arabic": "أُذُن",
-          "transliteration": "udhun",
-          "english": "ear",
-          "category": "Body"
-        },
-        {
-          "arabic": "سِنّ",
-          "transliteration": "sinn",
-          "english": "tooth",
-          "category": "Body"
-        },
-        {
-          "arabic": "رَقَبَة",
-          "transliteration": "ragaba",
-          "english": "neck",
-          "category": "Body"
         }
       ],
       "culture": "In Hejazi regions, body parts carry deep cultural meanings beyond medicine: \"على عيني\" (on my eye) is a gesture of affection and respect, and \"يا رأسي\" is a term of endearment. A person's health is treated with great seriousness, and showing concern for someone's pain or illness is a fundamental part of social respect.",

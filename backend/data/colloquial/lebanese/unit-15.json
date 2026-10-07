@@ -209,56 +209,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "حَجِز",
-          "transliteration": "7ajez",
-          "english": "booking",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "أُوضَة",
-          "transliteration": "ooDa",
-          "english": "room",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "لَيْلِة",
-          "transliteration": "layle",
-          "english": "night",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "فْطُور",
-          "transliteration": "fTour",
-          "english": "breakfast",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "أَسَانْسُور",
-          "transliteration": "asansoor",
-          "english": "lift",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "مُفْتَاح",
-          "transliteration": "muftaa7",
-          "english": "key",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "أُوتِيل",
-          "transliteration": "ooteel",
-          "english": "hotel",
-          "category": "Hotel"
-        },
-        {
-          "arabic": "فَاضْيِة",
-          "transliteration": "faaDye",
-          "english": "free, empty",
-          "category": "Hotel"
-        }
-      ],
       "culture": "بلبنان أسعار الفنادق غالبا بتنحكى بالدولار، وبالقرى الجبلية في بيوت ضيافة صغيرة صاحبها بيستقبلك بالقهوة. أول شي بيسألوك عادةً \"على اسم مين؟\".",
       "exercises": [
         {
@@ -642,56 +592,6 @@
             "transliteration": "ee, 3ashra bel-miyye",
             "english": "Yes, ten percent."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "تَذْكَرَة",
-          "transliteration": "tazkara",
-          "english": "ticket",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "رَايِح",
-          "transliteration": "raaye7",
-          "english": "going, one-way",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "كِرْسِي",
-          "transliteration": "kersi",
-          "english": "seat",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "رَاجِع",
-          "transliteration": "raaje3",
-          "english": "return (ticket)",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "طُلَّاب",
-          "transliteration": "Tollaab",
-          "english": "students",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "شِبَّاك",
-          "transliteration": "shibbaak",
-          "english": "window, counter",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "عَرْض",
-          "transliteration": "3arD",
-          "english": "offer",
-          "category": "Tickets"
-        },
-        {
-          "arabic": "بَاخِرَة",
-          "transliteration": "baakhra",
-          "english": "ship",
-          "category": "Tickets"
         }
       ],
       "culture": "محطة شارل حلو ببيروت هي محطة الباصات الرئيسية للسفر بين المدن وللخارج. الدفع بالمحطات وعند الباصات غالبا كاش، فخلّي معك كاش.",
@@ -1082,56 +982,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "جَوَاز سَفَر",
-          "transliteration": "jawaaz safar",
-          "english": "passport",
-          "category": "Airport"
-        },
-        {
-          "arabic": "شَنْطَة",
-          "transliteration": "shanTa",
-          "english": "bag",
-          "category": "Airport"
-        },
-        {
-          "arabic": "وَزْن",
-          "transliteration": "wazn",
-          "english": "weight",
-          "category": "Airport"
-        },
-        {
-          "arabic": "طَيَّارَة",
-          "transliteration": "Tayyaara",
-          "english": "plane",
-          "category": "Airport"
-        },
-        {
-          "arabic": "بَوَّابِة",
-          "transliteration": "bawwaabe",
-          "english": "gate",
-          "category": "Airport"
-        },
-        {
-          "arabic": "مَطَار",
-          "transliteration": "maTaar",
-          "english": "airport",
-          "category": "Airport"
-        },
-        {
-          "arabic": "رِحْلِة",
-          "transliteration": "re7le",
-          "english": "flight",
-          "category": "Airport"
-        },
-        {
-          "arabic": "جُمْرُك",
-          "transliteration": "jumrok",
-          "english": "customs",
-          "category": "Airport"
-        }
-      ],
       "culture": "لما بتوصل عمطار بيروت الضابط بيسألك عن سبب الزيارة وقدّيش رح تضل، وغالبا بيقلّك \"أهلا وسهلا\" بالآخر. جاوب بهدوء وبجملة قصيرة.",
       "exercises": [
         {
@@ -1507,56 +1357,6 @@
             "transliteration": "b-aakher l-mamarr 3al-yesaar",
             "english": "At the end of the corridor on the left."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "ضَيَّع",
-          "transliteration": "Dayya3",
-          "english": "lost",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "مِتْأَخِّر",
-          "transliteration": "met2akhkher",
-          "english": "delayed",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "عُطِل",
-          "transliteration": "3oTol",
-          "english": "breakdown",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "مَكْسُور",
-          "transliteration": "maksoor",
-          "english": "broken",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "شَكْوَى",
-          "transliteration": "shakwa",
-          "english": "complaint",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "تَأْمِين",
-          "transliteration": "ta2meen",
-          "english": "insurance",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "وَكَالِة",
-          "transliteration": "wakaale",
-          "english": "agency",
-          "category": "Travel problems"
-        },
-        {
-          "arabic": "رِحْلِة",
-          "transliteration": "re7le",
-          "english": "flight, trip",
-          "category": "Travel problems"
         }
       ],
       "culture": "اللبناني بيهدّي الموقف بكلمة \"ولا يهمّك\" و\"إن شاء الله بتنحل\" حتى لما يكون متضايق. الحكي الهادي مع ابتسامة بيفتح الباب أكتر من الصوت العالي.",

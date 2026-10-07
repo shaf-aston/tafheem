@@ -220,56 +220,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "طَقْس",
-          "transliteration": "Ta2s",
-          "english": "weather",
-          "category": "Weather"
-        },
-        {
-          "arabic": "شَمْس",
-          "transliteration": "shams",
-          "english": "sun",
-          "category": "Weather"
-        },
-        {
-          "arabic": "حَامِي",
-          "transliteration": "7aami",
-          "english": "hot",
-          "category": "Weather"
-        },
-        {
-          "arabic": "بَرْد",
-          "transliteration": "bard",
-          "english": "cold",
-          "category": "Weather"
-        },
-        {
-          "arabic": "مَطَر",
-          "transliteration": "maTar",
-          "english": "rain",
-          "category": "Weather"
-        },
-        {
-          "arabic": "غِيم",
-          "transliteration": "gheem",
-          "english": "clouds",
-          "category": "Weather"
-        },
-        {
-          "arabic": "هَوَا",
-          "transliteration": "hawa",
-          "english": "wind, air",
-          "category": "Weather"
-        },
-        {
-          "arabic": "شَمْسِيِّة",
-          "transliteration": "shamsiyye",
-          "english": "umbrella",
-          "category": "Weather"
-        }
-      ],
       "culture": "In Lebanon people open a conversation with the weather all the time, and \"الدنيا\" is often used for it: \"الدنيا برد\", \"الدنيا حر\". Along the coast the summer is humid, so \"في رطوبة\" comes up almost every day.",
       "exercises": [
         {
@@ -678,56 +628,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فَصِل",
-          "transliteration": "faSel",
-          "english": "season",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "صَيْف",
-          "transliteration": "Sayf",
-          "english": "summer",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "شِتِي",
-          "transliteration": "shiti",
-          "english": "winter",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "رَبِيع",
-          "transliteration": "rabee3",
-          "english": "spring",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "خَرِيف",
-          "transliteration": "khareef",
-          "english": "autumn",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "تَلِج",
-          "transliteration": "talej",
-          "english": "snow",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "شُوب",
-          "transliteration": "shoob",
-          "english": "heat",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "وَرَق",
-          "transliteration": "wara2",
-          "english": "leaves",
-          "category": "Seasons"
-        }
-      ],
       "culture": "In Lebanon you can swim in the sea and ski on the same day in spring, so people are proud of their seasons. The coast is hot and humid in summer, the Bekaa is hot and dry, and the mountains get snow from around December to March.",
       "exercises": [
         {
@@ -1129,56 +1029,6 @@
             "transliteration": "jaakeet khafiif",
             "english": "A light jacket."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "بُولُوفَر",
-          "transliteration": "boolover",
-          "english": "jumper",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "جَاكِيت",
-          "transliteration": "jaakeet",
-          "english": "jacket",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "شُورْت",
-          "transliteration": "short",
-          "english": "shorts",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "نَضَّارَة",
-          "transliteration": "naDDaara",
-          "english": "glasses",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "بُوط",
-          "transliteration": "booT",
-          "english": "boots",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "بَرْنِيطَة",
-          "transliteration": "barneeTa",
-          "english": "hat",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "مَانْطُو",
-          "transliteration": "manTo",
-          "english": "coat",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "تْقِيل",
-          "transliteration": "t2eel",
-          "english": "heavy",
-          "category": "Clothes for the weather"
         }
       ],
       "culture": "In Lebanon the coast is mild while the mountains a short drive away are much colder, so people leave in the morning with a jacket and take it off later. Advice like \"خود شمسية\" or \"إلبس جاكيت\" is said freely between friends and family, and is taken as care, not as bossiness.",
@@ -1585,56 +1435,6 @@
             "transliteration": "mne2ajjel erre7le",
             "english": "We'll postpone the trip."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "جْنِينِة",
-          "transliteration": "jneene",
-          "english": "garden",
-          "category": "Going out"
-        },
-        {
-          "arabic": "طَلْعَة",
-          "transliteration": "Tal3a",
-          "english": "outing",
-          "category": "Going out"
-        },
-        {
-          "arabic": "مَشْوَار",
-          "transliteration": "mashwaar",
-          "english": "errand, trip",
-          "category": "Going out"
-        },
-        {
-          "arabic": "بَلْكُون",
-          "transliteration": "balkoon",
-          "english": "balcony",
-          "category": "Going out"
-        },
-        {
-          "arabic": "سَهْرَة",
-          "transliteration": "sahra",
-          "english": "evening out",
-          "category": "Going out"
-        },
-        {
-          "arabic": "لَطِيف",
-          "transliteration": "laTeef",
-          "english": "pleasant",
-          "category": "Going out"
-        },
-        {
-          "arabic": "نَشْرَة",
-          "transliteration": "nashra",
-          "english": "bulletin, forecast",
-          "category": "Going out"
-        },
-        {
-          "arabic": "فَسْحَة",
-          "transliteration": "fes7a",
-          "english": "stroll",
-          "category": "Going out"
         }
       ],
       "culture": "In Lebanon weekend outings to the mountain, the sea or the Bekaa depend a lot on the weather, and plans are usually left open with \"إن شاء الله\". When the weather turns, people postpone with \"منأجّل\" rather than cancel for good.",

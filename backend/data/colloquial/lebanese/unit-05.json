@@ -214,56 +214,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "تَاكْسِي",
-          "transliteration": "taksi",
-          "english": "taxi",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "عَدَّاد",
-          "transliteration": "3addaad",
-          "english": "meter",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "أُجْرَة",
-          "transliteration": "ojra",
-          "english": "fare",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "شَارِع",
-          "transliteration": "shaare3",
-          "english": "street",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "فْرَاطَة",
-          "transliteration": "fraaTa",
-          "english": "small change",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "سَرْفِيس",
-          "transliteration": "servees",
-          "english": "shared taxi",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "سَوَّاق",
-          "transliteration": "sawwaa2",
-          "english": "driver",
-          "category": "Taxi"
-        },
-        {
-          "arabic": "عِنْوَان",
-          "transliteration": "3enwaan",
-          "english": "address",
-          "category": "Taxi"
-        }
-      ],
       "culture": "In Beirut many taxi meters are off or broken, so the price is agreed before you get in, and a little haggling is normal. Fares are said in thousands of lira, and drivers often drop the word ألف and just say the number (تلاتمية); some quote dollars instead.",
       "exercises": [
         {
@@ -656,56 +606,6 @@
             "transliteration": "la2, hash-shaare3 msakker, irja3 w-khod et-taani.",
             "english": "No, this street is closed, go back and take the other one."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "صَيْدَلِيِّة",
-          "transliteration": "Saydaliyye",
-          "english": "pharmacy",
-          "category": "Asking the way"
-        },
-        {
-          "arabic": "إِشَارَة",
-          "transliteration": "ishaara",
-          "english": "traffic light",
-          "category": "Asking the way"
-        },
-        {
-          "arabic": "جَامِع",
-          "transliteration": "jaame3",
-          "english": "mosque",
-          "category": "Asking the way"
-        },
-        {
-          "arabic": "ضَايِع",
-          "transliteration": "Daaye3",
-          "english": "lost",
-          "category": "Asking the way"
-        },
-        {
-          "arabic": "زَارُوب",
-          "transliteration": "zaaroob",
-          "english": "alley",
-          "category": "Asking the way"
-        },
-        {
-          "arabic": "طَرَف",
-          "transliteration": "Taraf",
-          "english": "side, edge",
-          "category": "Asking the way"
-        },
-        {
-          "arabic": "مْسَكَّر",
-          "transliteration": "msakkar",
-          "english": "closed",
-          "category": "Asking the way"
-        },
-        {
-          "arabic": "أَوَّل",
-          "transliteration": "awwal",
-          "english": "first",
-          "category": "Asking the way"
         }
       ],
       "culture": "People in Beirut give directions by landmarks, a church, a mosque, a pharmacy or a well-known shop, more than by street names, since many streets have no sign or a name nobody uses. It is normal for a stranger who stops to help to walk you part of the way.",
@@ -1104,56 +1004,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "بَاص",
-          "transliteration": "baaS",
-          "english": "bus",
-          "category": "Buses"
-        },
-        {
-          "arabic": "مَوْقِف",
-          "transliteration": "maw2ef",
-          "english": "stop",
-          "category": "Buses"
-        },
-        {
-          "arabic": "فَان",
-          "transliteration": "faan",
-          "english": "minibus",
-          "category": "Buses"
-        },
-        {
-          "arabic": "طْلَع",
-          "transliteration": "Tla3",
-          "english": "get on, go up",
-          "category": "Buses"
-        },
-        {
-          "arabic": "فَاضِي",
-          "transliteration": "faaDi",
-          "english": "empty, free",
-          "category": "Buses"
-        },
-        {
-          "arabic": "مَلْيَان",
-          "transliteration": "malyaan",
-          "english": "full, crowded",
-          "category": "Buses"
-        },
-        {
-          "arabic": "رَقِم",
-          "transliteration": "ra2em",
-          "english": "number",
-          "category": "Buses"
-        },
-        {
-          "arabic": "دَوَّار",
-          "transliteration": "dawwaar",
-          "english": "roundabout",
-          "category": "Buses"
-        }
-      ],
       "culture": "Beirut has few marked bus stops, so buses and shared vans are usually flagged down along the road, and the driver or his helper shouts the destination out loud. Vans and shared taxis charge a set price per seat, paid in cash, and you ask to get off by calling out \"نزّلني هون\".",
       "exercises": [
         {
@@ -1550,56 +1400,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مُسْتَشْفَى",
-          "transliteration": "mustashfa",
-          "english": "hospital",
-          "category": "Places in town"
-        },
-        {
-          "arabic": "مَدْرَسِة",
-          "transliteration": "madrase",
-          "english": "school",
-          "category": "Places in town"
-        },
-        {
-          "arabic": "مَطْعَم",
-          "transliteration": "maT3am",
-          "english": "restaurant",
-          "category": "Places in town"
-        },
-        {
-          "arabic": "بَنْك",
-          "transliteration": "bank",
-          "english": "bank",
-          "category": "Places in town"
-        },
-        {
-          "arabic": "حَدِيقَة",
-          "transliteration": "7adee2a",
-          "english": "park",
-          "category": "Places in town"
-        },
-        {
-          "arabic": "مَحَطَّة",
-          "transliteration": "ma7aTTa",
-          "english": "station",
-          "category": "Places in town"
-        },
-        {
-          "arabic": "كْنِيسِة",
-          "transliteration": "kneese",
-          "english": "church",
-          "category": "Places in town"
-        },
-        {
-          "arabic": "مَنْطِقَة",
-          "transliteration": "manTe2a",
-          "english": "area",
-          "category": "Places in town"
-        }
-      ],
       "culture": "In Lebanon a place is usually described by what is next to it, قدّام الكنيسة or جنب الجامع, because mosques and churches sit close together in many neighbourhoods and both serve as landmarks. People are glad to point the way whatever their own religion.",
       "exercises": [
         {
@@ -1982,56 +1782,6 @@
             "transliteration": "7awaali 3ishriin da2ii2a.",
             "english": "About twenty minutes."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "طَرِيق",
-          "transliteration": "Taree2",
-          "english": "road, way",
-          "category": "Getting around"
-        },
-        {
-          "arabic": "مَدِينِة",
-          "transliteration": "madeene",
-          "english": "city",
-          "category": "Getting around"
-        },
-        {
-          "arabic": "زَحْمِة",
-          "transliteration": "za7me",
-          "english": "traffic jam",
-          "category": "Getting around"
-        },
-        {
-          "arabic": "سِكَّة",
-          "transliteration": "sekke",
-          "english": "route, way",
-          "category": "Getting around"
-        },
-        {
-          "arabic": "سَيَّارَة",
-          "transliteration": "sayyaara",
-          "english": "car",
-          "category": "Getting around"
-        },
-        {
-          "arabic": "دَقِيقَة",
-          "transliteration": "da2ee2a",
-          "english": "minute",
-          "category": "Getting around"
-        },
-        {
-          "arabic": "بَنْزِين",
-          "transliteration": "benzeen",
-          "english": "petrol",
-          "category": "Getting around"
-        },
-        {
-          "arabic": "مَسَافِة",
-          "transliteration": "masaafe",
-          "english": "distance",
-          "category": "Getting around"
         }
       ],
       "culture": "In Beirut many people hail a taxi from the street and agree the fare before getting in, since a price is usually named rather than read from a meter. Drivers often answer a destination with \"تكرم عينك\" (at your service), and a shared taxi is called \"سرفيس\".",

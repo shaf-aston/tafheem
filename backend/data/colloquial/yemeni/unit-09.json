@@ -230,56 +230,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "تَعْبَان",
-          "transliteration": "ta3baan",
-          "english": "tired, ill",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "صُدَاع",
-          "transliteration": "Sudaa3",
-          "english": "headache",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "بَطْن",
-          "transliteration": "baTn",
-          "english": "stomach",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "حَرَارَة",
-          "transliteration": "7araara",
-          "english": "fever",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "دَايِخ",
-          "transliteration": "daayikh",
-          "english": "dizzy",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "زُكَام",
-          "transliteration": "zukaam",
-          "english": "a cold",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "نُوم",
-          "transliteration": "noom",
-          "english": "sleep",
-          "category": "Feeling unwell"
-        },
-        {
-          "arabic": "رَاحَة",
-          "transliteration": "raa7a",
-          "english": "rest",
-          "category": "Feeling unwell"
-        }
-      ],
       "culture": "In Sanaani speech, asking someone \"كيفك\" is common, and the polite answer starts with \"الحمدلله\" even when unwell, before mentioning the complaint briefly. Saying \"سلامتك\" (get well) at once is expected when you hear of someone's illness.",
       "exercises": [
         {
@@ -668,56 +618,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "دَوَا",
-          "transliteration": "dawa",
-          "english": "medicine",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "حُبُوب",
-          "transliteration": "7uboob",
-          "english": "pills",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "شَرَاب",
-          "transliteration": "sharaab",
-          "english": "syrup",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "كُحَّة",
-          "transliteration": "ku77a",
-          "english": "cough",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "وَصْفَة",
-          "transliteration": "waSfa",
-          "english": "prescription",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "حَسَاسِيَّة",
-          "transliteration": "7asaasiyya",
-          "english": "allergy",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "مَعِدَة",
-          "transliteration": "ma3ida",
-          "english": "stomach",
-          "category": "Pharmacy"
-        },
-        {
-          "arabic": "بْلَاسْتَر",
-          "transliteration": "blaastar",
-          "english": "plaster",
-          "category": "Pharmacy"
-        }
-      ],
       "culture": "In Yemen, pharmacies are common and often serve as a first stop for minor illnesses. Many medicines are sold over the counter without a prescription, and pharmacists give advice freely. Prices are stated in Yemeni riyals, and it is not customary to bargain over medicine.",
       "exercises": [
         {
@@ -1103,56 +1003,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَوْعِد",
-          "transliteration": "maw3id",
-          "english": "appointment",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "تَحْلِيلَات",
-          "transliteration": "ta7leelaat",
-          "english": "medical tests",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "نَفَس",
-          "transliteration": "nafas",
-          "english": "breath",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "ضَغْط",
-          "transliteration": "DaghT",
-          "english": "blood pressure",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "عَالِي",
-          "transliteration": "3aali",
-          "english": "high",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "خَطِير",
-          "transliteration": "khaTeer",
-          "english": "serious, dangerous",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "أُسْبُوع",
-          "transliteration": "usboo3",
-          "english": "week",
-          "category": "Doctor"
-        },
-        {
-          "arabic": "دَكْتُور",
-          "transliteration": "daktoor",
-          "english": "doctor",
-          "category": "Doctor"
-        }
-      ],
       "culture": "A Yemeni doctor is usually addressed as \"دكتور\" or \"دكتورة\", often with \"يا\" before it. Patients address them respectfully and doctors give clear instructions. Saying \"سلامتك\" (get well) to a patient is expected and shows care.",
       "exercises": [
         {
@@ -1514,56 +1364,6 @@
             "transliteration": "dahri aktar min rasi",
             "english": "My back more than my head"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "رَاس",
-          "transliteration": "raas",
-          "english": "head",
-          "category": "Body"
-        },
-        {
-          "arabic": "ظَهْر",
-          "transliteration": "Zahr",
-          "english": "back",
-          "category": "Body"
-        },
-        {
-          "arabic": "يَد",
-          "transliteration": "yad",
-          "english": "hand, arm",
-          "category": "Body"
-        },
-        {
-          "arabic": "رِجْل",
-          "transliteration": "rijl",
-          "english": "leg, foot",
-          "category": "Body"
-        },
-        {
-          "arabic": "عَيْن",
-          "transliteration": "3ayn",
-          "english": "eye",
-          "category": "Body"
-        },
-        {
-          "arabic": "أُذُن",
-          "transliteration": "udhun",
-          "english": "ear",
-          "category": "Body"
-        },
-        {
-          "arabic": "سِنّ",
-          "transliteration": "sinn",
-          "english": "tooth",
-          "category": "Body"
-        },
-        {
-          "arabic": "رَقَبَة",
-          "transliteration": "ragaba",
-          "english": "neck",
-          "category": "Body"
         }
       ],
       "culture": "Body-part words in Yemeni speech appear in everyday expressions beyond medicine. People use them in affectionate addresses and in expressions of gratitude and hospitality. Learning them helps you understand both literal and figurative meanings.",

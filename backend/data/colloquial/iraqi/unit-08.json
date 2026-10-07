@@ -231,56 +231,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مُهَنْدِس",
-          "transliteration": "muhandis",
-          "english": "engineer",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مُدَرِّس",
-          "transliteration": "mudarris",
-          "english": "teacher",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "شِرْكَة",
-          "transliteration": "shirka",
-          "english": "company",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "طَالِب",
-          "transliteration": "Taalib",
-          "english": "student",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مِتْگَاعِد",
-          "transliteration": "mitgaa3id",
-          "english": "retired",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "دَكْتُور",
-          "transliteration": "daktoor",
-          "english": "doctor",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "شُغُل",
-          "transliteration": "shughul",
-          "english": "work, job",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مُوَظَّف",
-          "transliteration": "muwaDHDHaf",
-          "english": "employee",
-          "category": "Jobs"
-        }
-      ],
       "culture": "بالعراق سؤال «شتشتغل؟» عادي ويجي بأول التعارف، والواحد يجاوب براحة. بس السؤال عن الراتب محرج، إلا ويا ربعك القريبين.",
       "exercises": [
         {
@@ -663,56 +613,6 @@
             "transliteration": "ba3dani, baachir akhalliSa.",
             "english": "Not yet, I'll finish it tomorrow."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مُدِير",
-          "transliteration": "mudeer",
-          "english": "manager",
-          "category": "The office"
-        },
-        {
-          "arabic": "مَكْتَب",
-          "transliteration": "maktab",
-          "english": "office, desk",
-          "category": "The office"
-        },
-        {
-          "arabic": "زَمِيل",
-          "transliteration": "zameel",
-          "english": "colleague",
-          "category": "The office"
-        },
-        {
-          "arabic": "تَگْرِير",
-          "transliteration": "tagreer",
-          "english": "report",
-          "category": "The office"
-        },
-        {
-          "arabic": "إِجَازَة",
-          "transliteration": "ijaaza",
-          "english": "day off, holiday",
-          "category": "The office"
-        },
-        {
-          "arabic": "رَاتِب",
-          "transliteration": "raatib",
-          "english": "salary",
-          "category": "The office"
-        },
-        {
-          "arabic": "إِيمِيل",
-          "transliteration": "eemeel",
-          "english": "email",
-          "category": "The office"
-        },
-        {
-          "arabic": "طَابْعَة",
-          "transliteration": "Taab3a",
-          "english": "printer",
-          "category": "The office"
         }
       ],
       "culture": "الدوام الحكومي بالعراق يبدي الصبح ويخلص بعد الظهر، والراتب ينزل عادةً آخر الشهر. ومن الطبيعي تشرب چاي وتسولف شوية ويا زملائك قبل الشغل.",
@@ -1101,56 +1001,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مُحَاضَرَة",
-          "transliteration": "mu7aaDara",
-          "english": "lecture",
-          "category": "University"
-        },
-        {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "imti7aan",
-          "english": "exam",
-          "category": "University"
-        },
-        {
-          "arabic": "تَخَصُّص",
-          "transliteration": "takhaSSuS",
-          "english": "major",
-          "category": "University"
-        },
-        {
-          "arabic": "مَرْحَلَة",
-          "transliteration": "mar7ala",
-          "english": "year, stage",
-          "category": "University"
-        },
-        {
-          "arabic": "نَتِيجَة",
-          "transliteration": "nateeja",
-          "english": "result",
-          "category": "University"
-        },
-        {
-          "arabic": "مَكْتَبَة",
-          "transliteration": "maktaba",
-          "english": "library",
-          "category": "University"
-        },
-        {
-          "arabic": "وَاجِب",
-          "transliteration": "waajib",
-          "english": "homework",
-          "category": "University"
-        },
-        {
-          "arabic": "جَامْعَة",
-          "transliteration": "jaam3a",
-          "english": "university",
-          "category": "University"
-        }
-      ],
       "culture": "بالجامعات العراقية يسمون السنة الدراسية «مرحلة» (المرحلة الأولى، الثانية...) والفصل يسمونه «كورس». والطلاب يسمون بعضهم «ربعي» ويسولفون بالكافتيريا.",
       "exercises": [
         {
@@ -1531,56 +1381,6 @@
             "transliteration": "in shaa Allah mudeer bishirka kabeera.",
             "english": "God willing, a manager at a big company."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مَشْرُوع",
-          "transliteration": "mashroo3",
-          "english": "project",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "دِرَاسَة",
-          "transliteration": "diraasa",
-          "english": "studies",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "مَاجِسْتِير",
-          "transliteration": "maajisteer",
-          "english": "master's degree",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "بَرَّه",
-          "transliteration": "barra",
-          "english": "abroad, outside",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "حِلِم",
-          "transliteration": "7ilim",
-          "english": "dream",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "شِرْكَة",
-          "transliteration": "shirka",
-          "english": "company",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "طُمُوح",
-          "transliteration": "Tumoo7",
-          "english": "ambition",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "مِرْتَاح",
-          "transliteration": "mirtaa7",
-          "english": "comfortable",
-          "category": "Future plans"
         }
       ],
       "culture": "لما العراقيين يحچون عن المستقبل يضيفون «إن شاء الله» وهواية مرات «الله كريم» حتى لو الخطة واضحة. وهواية شباب يفكرون بالماجستير أو الشغل برّه، والأهل يشاركون بالقرار.",

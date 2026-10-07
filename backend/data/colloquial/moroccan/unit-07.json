@@ -203,56 +203,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "صْبَاح",
-          "transliteration": "Sbaa7",
-          "english": "morning",
-          "category": "Morning"
-        },
-        {
-          "arabic": "بَكْرِي",
-          "transliteration": "bekri",
-          "english": "early",
-          "category": "Morning"
-        },
-        {
-          "arabic": "نْعْسَان",
-          "transliteration": "n3asaan",
-          "english": "sleepy",
-          "category": "Morning"
-        },
-        {
-          "arabic": "وْجْه",
-          "transliteration": "wejh",
-          "english": "face",
-          "category": "Morning"
-        },
-        {
-          "arabic": "سْنَان",
-          "transliteration": "snaan",
-          "english": "teeth",
-          "category": "Morning"
-        },
-        {
-          "arabic": "حْوَايْج",
-          "transliteration": "7waayej",
-          "english": "clothes",
-          "category": "Morning"
-        },
-        {
-          "arabic": "خْدْمَة",
-          "transliteration": "khedma",
-          "english": "work",
-          "category": "Morning"
-        },
-        {
-          "arabic": "فْطُور",
-          "transliteration": "fTor",
-          "english": "breakfast",
-          "category": "Morning"
-        }
-      ],
       "culture": "In Morocco a morning greeting is \"sba7 l-kheer\" answered \"sba7 n-noor\", usually followed by \"laabas?\", and it is normal to add \"l-7amdulillah\" in the reply. Most people start the day with tea or coffee and bread, often before leaving the house.",
       "exercises": [
         {
@@ -630,56 +580,6 @@
             "transliteration": "ee, f-l3aashra",
             "english": "Yes, at ten."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "رِيُونْيُون",
-          "transliteration": "reyonyon",
-          "english": "meeting",
-          "category": "During the day"
-        },
-        {
-          "arabic": "غْدَا",
-          "transliteration": "ghda",
-          "english": "lunch",
-          "category": "During the day"
-        },
-        {
-          "arabic": "عْيَّان",
-          "transliteration": "3yyaan",
-          "english": "tired",
-          "category": "During the day"
-        },
-        {
-          "arabic": "ضّْهْر",
-          "transliteration": "Dohr",
-          "english": "noon",
-          "category": "During the day"
-        },
-        {
-          "arabic": "رَاحَة",
-          "transliteration": "raa7a",
-          "english": "break, rest",
-          "category": "During the day"
-        },
-        {
-          "arabic": "سْتِيلُو",
-          "transliteration": "steelo",
-          "english": "pen",
-          "category": "During the day"
-        },
-        {
-          "arabic": "خْدْمَة",
-          "transliteration": "khdma",
-          "english": "work, job",
-          "category": "During the day"
-        },
-        {
-          "arabic": "عْشِيَّة",
-          "transliteration": "3shiyya",
-          "english": "afternoon",
-          "category": "During the day"
         }
       ],
       "culture": "In Moroccan workplaces lunch is usually taken between twelve and two, and colleagues say \"bismillah\" before eating. Someone who sees you eating may say \"b-ssa7a w-raa7a\", wishing you health and ease.",
@@ -1060,56 +960,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مْسَا",
-          "transliteration": "msa",
-          "english": "evening",
-          "category": "Evening"
-        },
-        {
-          "arabic": "دَار",
-          "transliteration": "daar",
-          "english": "home, house",
-          "category": "Evening"
-        },
-        {
-          "arabic": "عْشَا",
-          "transliteration": "3sha",
-          "english": "dinner",
-          "category": "Evening"
-        },
-        {
-          "arabic": "دُوش",
-          "transliteration": "doosh",
-          "english": "shower",
-          "category": "Evening"
-        },
-        {
-          "arabic": "مُسَلْسَل",
-          "transliteration": "musalsal",
-          "english": "TV series",
-          "category": "Evening"
-        },
-        {
-          "arabic": "تِلْفَازَة",
-          "transliteration": "tilfaaza",
-          "english": "TV",
-          "category": "Evening"
-        },
-        {
-          "arabic": "لِيل",
-          "transliteration": "leel",
-          "english": "night",
-          "category": "Evening"
-        },
-        {
-          "arabic": "صْحَاب",
-          "transliteration": "S7aab",
-          "english": "friends",
-          "category": "Evening"
-        }
-      ],
       "culture": "Moroccan families usually eat dinner around eight or nine, and in warm weather many people go out for a stroll or to a cafe afterwards. \"tsba7 3la kheer\" is answered \"w-nta men ahlo\", and the same reply works for a woman with \"w-nti men ahlo\".",
       "exercises": [
         {
@@ -1475,56 +1325,6 @@
             "transliteration": "la, ssbt kanerta7",
             "english": "No, on Saturday I rest."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "لْحْدّ",
-          "transliteration": "l7add",
-          "english": "Sunday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "الْتّْنِين",
-          "transliteration": "tneen",
-          "english": "Monday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "التّْلَاتَا",
-          "transliteration": "ttlaata",
-          "english": "Tuesday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "لَارْبْعَا",
-          "transliteration": "larb3a",
-          "english": "Wednesday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "لْخْمِيس",
-          "transliteration": "lkhmees",
-          "english": "Thursday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "الْجّْمْعَة",
-          "transliteration": "jjem3a",
-          "english": "Friday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "السّْبْت",
-          "transliteration": "ssebt",
-          "english": "Saturday",
-          "category": "Days of the week"
-        },
-        {
-          "arabic": "سِيمَانَة",
-          "transliteration": "seemaana",
-          "english": "week",
-          "category": "Days of the week"
         }
       ],
       "culture": "In Morocco most offices work Monday to Friday, with a longer midday break on Friday for the congregational prayer, so \"except Friday and Saturday\" fits only some workers, such as shopkeepers and cafe staff who take their own days off. Many families eat couscous after Friday prayer, and \"nhaar\" (day) is often placed before the day name.",

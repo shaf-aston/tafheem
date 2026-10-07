@@ -212,56 +212,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "أَلُو",
-          "transliteration": "aloo",
-          "english": "hello (on the phone)",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "خَطّ",
-          "transliteration": "khaTT",
-          "english": "line",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "رَصِيد",
-          "transliteration": "raSeed",
-          "english": "phone credit",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "بَطَّارِيَّة",
-          "transliteration": "baTTaariyya",
-          "english": "battery",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "شَبَكَة",
-          "transliteration": "shabaka",
-          "english": "signal, network",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "جَوَّال",
-          "transliteration": "jawwaal",
-          "english": "mobile phone",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "مُكَالَمَة",
-          "transliteration": "mukaalama",
-          "english": "phone call",
-          "category": "Answering the phone"
-        }
-      ],
       "culture": "In Hejazi cities, phone calls often open with السلام عليكم and the person answering asks من هذا. Hejazi speakers value warmth, so كيفك comes before the main reason. Ending with الحمد لله or باستني shows respect.",
       "exercises": [
         {
@@ -613,56 +563,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "كَافِيه",
-          "transliteration": "kaafeeh",
-          "english": "café",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "وَقْت",
-          "transliteration": "wagt",
-          "english": "time",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "مَكَان",
-          "transliteration": "makaan",
-          "english": "place",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "قَبْل",
-          "transliteration": "gabl",
-          "english": "before",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "حَرَم",
-          "transliteration": "7aram",
-          "english": "the Holy Mosque",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "بِالضَّبْط",
-          "transliteration": "biD-DabT",
-          "english": "exactly",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "مَعَ بَعْض",
-          "transliteration": "ma3a ba3D",
-          "english": "together",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "سَاعَة",
-          "transliteration": "saa3a",
-          "english": "hour, o'clock",
-          "category": "Arranging to meet"
-        }
-      ],
       "culture": "In Makkah and Jeddah, meetings are often set at a cafe or near a well known landmark like the Haram. Saying إِنْ شَاءَ اللّٰه after a time is normal and does not mean doubt. Arriving a little late is tolerated, but a quick call to say so is polite.",
       "exercises": [
         {
@@ -1011,56 +911,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَوْعِد",
-          "transliteration": "maw3id",
-          "english": "appointment",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "تَغْيِير",
-          "transliteration": "taghyeer",
-          "english": "change",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "فَجْأَة",
-          "transliteration": "faj2a",
-          "english": "suddenly",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "بَدَل",
-          "transliteration": "badal",
-          "english": "instead of",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "صُبْح",
-          "transliteration": "Sub7",
-          "english": "morning",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "ظُهْر",
-          "transliteration": "Zuhr",
-          "english": "noon",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "يَوْم",
-          "transliteration": "yoom",
-          "english": "day",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "بُكْرَة",
-          "transliteration": "bukra",
-          "english": "tomorrow",
-          "category": "Changing plans"
-        }
-      ],
       "culture": "Hejazis usually apologize first and explain briefly, often with just صَارَت لِي حَاجَة, without giving details. Offering a new day in the same breath keeps the friendship warm. Friday is family and prayer time, so check it suits the other person.",
       "exercises": [
         {
@@ -1402,56 +1252,6 @@
             "transliteration": "il-3afw",
             "english": "You are welcome."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "رِسَالَة",
-          "transliteration": "risaala",
-          "english": "message",
-          "category": "Messages"
-        },
-        {
-          "arabic": "رَقَم",
-          "transliteration": "ragam",
-          "english": "number",
-          "category": "Messages"
-        },
-        {
-          "arabic": "مَوْجُود",
-          "transliteration": "mawjood",
-          "english": "present, in",
-          "category": "Messages"
-        },
-        {
-          "arabic": "صُورَة",
-          "transliteration": "Soora",
-          "english": "photo, picture",
-          "category": "Messages"
-        },
-        {
-          "arabic": "رَدّ",
-          "transliteration": "radd",
-          "english": "reply",
-          "category": "Messages"
-        },
-        {
-          "arabic": "دَحِين",
-          "transliteration": "da7een",
-          "english": "now",
-          "category": "Messages"
-        },
-        {
-          "arabic": "مَشْكُور",
-          "transliteration": "mashkoor",
-          "english": "thanks",
-          "category": "Messages"
-        },
-        {
-          "arabic": "فُويْس",
-          "transliteration": "foys",
-          "english": "voice note",
-          "category": "Messages"
         }
       ],
       "culture": "When the person you want is out, a family member often answers and offers to pass on the message. Asking إِمْتَى بِيِرْجَع and leaving your number is expected, and thanking with مَشْكُور مَرَّة closes the call politely.",

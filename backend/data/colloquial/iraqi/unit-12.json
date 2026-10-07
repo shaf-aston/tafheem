@@ -217,56 +217,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "آلُو",
-          "transliteration": "aaloo",
-          "english": "hello (on the phone)",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "خَطّ",
-          "transliteration": "khaTT",
-          "english": "line",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "رَصِيد",
-          "transliteration": "raSeed",
-          "english": "phone credit",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "بَطَّارِيَّة",
-          "transliteration": "baTTaariyya",
-          "english": "battery",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "شَبَكَة",
-          "transliteration": "shabaka",
-          "english": "signal, network",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "مُوبَايِل",
-          "transliteration": "mobaayil",
-          "english": "mobile phone",
-          "category": "Answering the phone"
-        },
-        {
-          "arabic": "دَگَّة",
-          "transliteration": "dagga",
-          "english": "ring, call",
-          "category": "Answering the phone"
-        }
-      ],
       "culture": "Iraqis usually answer with «آلو» or «هلا» and ask «منو المتكلم؟», and the greeting «شكو ماكو؟» comes before any business, so diving straight in sounds abrupt. Phone credit is topped up with scratch cards from the mobile companies (Zain, Asiacell, Korek), so «رصيدي خلص» is a very common line.",
       "exercises": [
         {
@@ -651,56 +601,6 @@
             "transliteration": "laa tkhaaf, awsal gablak",
             "english": "Don't worry, I'll be there before you."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "كَافِيه",
-          "transliteration": "kaafeeh",
-          "english": "café",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "سَاعَة",
-          "transliteration": "saa3a",
-          "english": "hour, o'clock",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "مَكَان",
-          "transliteration": "makaan",
-          "english": "place",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "گَبُل",
-          "transliteration": "gabul",
-          "english": "before",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "سْوَا",
-          "transliteration": "swa",
-          "english": "together",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "جَامِع",
-          "transliteration": "jaami3",
-          "english": "mosque",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "بِالضَّبُط",
-          "transliteration": "bid-DabuT",
-          "english": "exactly",
-          "category": "Arranging to meet"
-        },
-        {
-          "arabic": "مِتْأَخِّر",
-          "transliteration": "mit2akhkhir",
-          "english": "late",
-          "category": "Arranging to meet"
         }
       ],
       "culture": "In Iraq friends often fix a meeting loosely, «بعد العصر» (after the afternoon prayer) or «بالليل», and a few minutes' lateness is usually shrugged off, which is why «لا تتأخر» is said with a smile. A cafe or a tea house (جايخانة) is the usual place to meet. The Umayyad Mosque is in Damascus, so in Baghdad people would name a local landmark instead, such as the Abu Hanifa Mosque in Adhamiyah.",
@@ -1094,56 +994,6 @@
             "transliteration": "maaku mushkila",
             "english": "No problem."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مَوْعِد",
-          "transliteration": "maw3id",
-          "english": "appointment",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "شُغُل",
-          "transliteration": "shughul",
-          "english": "something to do",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "تَغْيِير",
-          "transliteration": "taghyeer",
-          "english": "change",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "بْدَال",
-          "transliteration": "bdaal",
-          "english": "instead of",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "صُبُح",
-          "transliteration": "Subu7",
-          "english": "morning",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "ظُهُر",
-          "transliteration": "Dhuhur",
-          "english": "noon",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "يُوم",
-          "transliteration": "yoom",
-          "english": "day",
-          "category": "Changing plans"
-        },
-        {
-          "arabic": "بَاچِر",
-          "transliteration": "baachir",
-          "english": "tomorrow",
-          "category": "Changing plans"
         }
       ],
       "culture": "Iraqis soften a cancellation with a reason and an apology, and the expected answer is «ما يخالف» or «ولا يهمك», so refusing an apology would sound cold. A family or work reason is normally accepted without further questions, and «إن شاء الله» is usually added to the new time.",
@@ -1542,56 +1392,6 @@
             "transliteration": "in shaa2 allaah, agul-la awwal ma yoosal",
             "english": "God willing, I'll tell him as soon as he arrives."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "رِسَالَة",
-          "transliteration": "risaala",
-          "english": "message",
-          "category": "Messages"
-        },
-        {
-          "arabic": "رَگَم",
-          "transliteration": "ragam",
-          "english": "number",
-          "category": "Messages"
-        },
-        {
-          "arabic": "مَوْجُود",
-          "transliteration": "mawjood",
-          "english": "present, in",
-          "category": "Messages"
-        },
-        {
-          "arabic": "خَبَر",
-          "transliteration": "khabar",
-          "english": "news",
-          "category": "Messages"
-        },
-        {
-          "arabic": "صُورَة",
-          "transliteration": "Soora",
-          "english": "photo, picture",
-          "category": "Messages"
-        },
-        {
-          "arabic": "فُويْس",
-          "transliteration": "foys",
-          "english": "voice note",
-          "category": "Messages"
-        },
-        {
-          "arabic": "گُول",
-          "transliteration": "gool",
-          "english": "tell, say",
-          "category": "Messages"
-        },
-        {
-          "arabic": "مَشْكُور",
-          "transliteration": "mashkoor",
-          "english": "thanks",
-          "category": "Messages"
         }
       ],
       "culture": "Callers often open with «السلام عليكم» before asking for someone, and whoever answers, often a relative, replies «وعليكم السلام» and asks «منو المتكلم؟». Taking a message is a normal favour, and the answer is usually «إن شاء الله أقله» rather than a fixed promise.",

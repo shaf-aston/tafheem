@@ -245,56 +245,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عِيد",
-          "transliteration": "3eed",
-          "english": "Eid, festival",
-          "category": "Eid"
-        },
-        {
-          "arabic": "عِيدِيَّة",
-          "transliteration": "3eediyya",
-          "english": "Eid money",
-          "category": "Eid"
-        },
-        {
-          "arabic": "كْبَش",
-          "transliteration": "kebsh",
-          "english": "sheep (Eid sacrifice)",
-          "category": "Eid"
-        },
-        {
-          "arabic": "صّْلَاة",
-          "transliteration": "Slaa",
-          "english": "prayer",
-          "category": "Eid"
-        },
-        {
-          "arabic": "جَدَّة",
-          "transliteration": "jedda",
-          "english": "grandmother",
-          "category": "Eid"
-        },
-        {
-          "arabic": "ضْحِيَّة",
-          "transliteration": "D7iyya",
-          "english": "sacrifice",
-          "category": "Eid"
-        },
-        {
-          "arabic": "عَام",
-          "transliteration": "3aam",
-          "english": "year",
-          "category": "Eid"
-        },
-        {
-          "arabic": "مْبَارْك",
-          "transliteration": "mbaarek",
-          "english": "blessed",
-          "category": "Eid"
-        }
-      ],
       "culture": "في المغرب كيتبادلو التهاني بـ \"عيد مبارك سعيد\" وبـ \"الله يعاود علينا وعليكم\"، وفعيد الفطر كتوجد الدار الغريبة وكعب الغزال، وفعيد الأضحى كيتذبح الكبش. الدراري كياخدو العيدية من الكبار.",
       "exercises": [
         {
@@ -709,56 +659,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "رَمَضَان",
-          "transliteration": "ramaDaan",
-          "english": "Ramadan",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "صِيَام",
-          "transliteration": "Siyaam",
-          "english": "fasting",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "فْطُور",
-          "transliteration": "fTour",
-          "english": "iftar, breakfast",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "سْحُور",
-          "transliteration": "s7our",
-          "english": "pre-dawn meal",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "فْجْر",
-          "transliteration": "fejr",
-          "english": "dawn",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "شّْبَّاكِيَّة",
-          "transliteration": "shebbaakiyya",
-          "english": "honey pastry",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "مْدْفْع",
-          "transliteration": "medfa3",
-          "english": "cannon",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "مْعْرُوض",
-          "transliteration": "m3rooD",
-          "english": "invited",
-          "category": "Ramadan"
-        }
-      ],
       "culture": "فرمضان المغاربة كيفطرو على التمر والحليب والحريرة والشباكية، وكيسناو المدفع أو الأذان باش يفطرو. النفار كيدوز فالليل قبل السحور فبزاف د المدن القديمة، وكيتعرضو بزاف على الفطور بين العايلة والجيران.",
       "exercises": [
         {
@@ -1170,56 +1070,6 @@
             "transliteration": "jbt lihum Taqm dyal l-kisan",
             "english": "I brought them a set of glasses"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عْرْس",
-          "transliteration": "3ers",
-          "english": "wedding",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "عْرِيس",
-          "transliteration": "3rees",
-          "english": "groom",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "عْرُوسَة",
-          "transliteration": "3roosa",
-          "english": "bride",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "زّْفَّة",
-          "transliteration": "zeffa",
-          "english": "wedding procession",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "طّْبْل",
-          "transliteration": "Tbel",
-          "english": "drum",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "كَفْطَان",
-          "transliteration": "kaftaan",
-          "english": "kaftan",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "شّْطِيح",
-          "transliteration": "shTee7",
-          "english": "dancing",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "كَادُو",
-          "transliteration": "kaado",
-          "english": "gift",
-          "category": "Weddings"
         }
       ],
       "culture": "العرس المغربي كيدوم بزاف وكتكون فيه النكافة والقفطان والموسيقى الشعبية، والعروسة كتبدل بزاف د اللبسات. المعروضين كيجيبو الكادو أو الظرف وكيقولو للعروسين \"مبروك\" و\"الله يهنيكم\".",
@@ -1650,56 +1500,6 @@
             "transliteration": "amin",
             "english": "Amen"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عِيد مِيلَاد",
-          "transliteration": "3eed meelaad",
-          "english": "birthday",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "كَاطُو",
-          "transliteration": "gaaTo",
-          "english": "cake",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "شّْمْعَات",
-          "transliteration": "shem3aat",
-          "english": "candles",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "حَفْلَة",
-          "transliteration": "7afla",
-          "english": "party",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "نّْجَاح",
-          "transliteration": "njaa7",
-          "english": "success",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "تّْرْقِيَّة",
-          "transliteration": "tarqiyya",
-          "english": "promotion",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "مَوْلُود",
-          "transliteration": "mawlood",
-          "english": "newborn",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "عُمْر",
-          "transliteration": "3omr",
-          "english": "age, life",
-          "category": "Birthdays"
         }
       ],
       "culture": "المغاربة كيحتافلو بعيد الميلاد بالڭاطو والشمع وكيجيبو الكادو، وغالبا كيتقال \"الله يطول عمرك\" و\"كل عام وأنت بخير\". وكيقولو \"مبروك\" فالنجاح والترقية والمولود والدار الجديدة.",

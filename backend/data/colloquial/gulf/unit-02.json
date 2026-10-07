@@ -224,56 +224,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عَايْلَة",
-          "transliteration": "3aayla",
-          "english": "family",
-          "category": "Family"
-        },
-        {
-          "arabic": "أُمّ",
-          "transliteration": "umm",
-          "english": "mother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أَبُو",
-          "transliteration": "abu",
-          "english": "father",
-          "category": "Family"
-        },
-        {
-          "arabic": "خُو",
-          "transliteration": "khu",
-          "english": "brother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أُخْت",
-          "transliteration": "ukht",
-          "english": "sister",
-          "category": "Family"
-        },
-        {
-          "arabic": "وَلَد",
-          "transliteration": "walad",
-          "english": "son, boy",
-          "category": "Family"
-        },
-        {
-          "arabic": "بِنْت",
-          "transliteration": "bint",
-          "english": "daughter, girl",
-          "category": "Family"
-        },
-        {
-          "arabic": "زُوج",
-          "transliteration": "zooj",
-          "english": "husband",
-          "category": "Family"
-        }
-      ],
       "culture": "Asking about family is a normal opener in the Gulf, but it is more polite to ask a man about his children or \"أهله\" than about his wife by name. Saying you are still single is a plain answer, usually followed by \"إن شاء الله\".",
       "exercises": [
         {
@@ -712,56 +662,6 @@
             "transliteration": "khamsa w 3ishreen.",
             "english": "Twenty-five."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "جُوعَان",
-          "transliteration": "joo3aan",
-          "english": "hungry",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَطْشَان",
-          "transliteration": "3aTshaan",
-          "english": "thirsty",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "أَكِل",
-          "transliteration": "akil",
-          "english": "food",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "قَهْوَة",
-          "transliteration": "gahwa",
-          "english": "coffee",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "چَاي",
-          "transliteration": "chaay",
-          "english": "tea",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "فَلَافِل",
-          "transliteration": "falaafil",
-          "english": "falafel",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَصِير",
-          "transliteration": "3aSeer",
-          "english": "juice",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَافْيَة",
-          "transliteration": "3aafya",
-          "english": "health",
-          "category": "Food and drink"
         }
       ],
       "culture": "Guests are served Arabic coffee (gahwa) and dates, and you keep accepting small cups until you shake the cup gently to say you have had enough. Hosts insist on paying, and \"بالعافية\" and \"صحة وعافية\" are fixed courtesies, usually answered with \"الله يعافيك\".",

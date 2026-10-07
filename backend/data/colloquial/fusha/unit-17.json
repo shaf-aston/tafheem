@@ -323,62 +323,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "صَلَاة",
-          "transliteration": "salaa",
-          "english": "prayer",
-          "category": "Prayer"
-        },
-        {
-          "arabic": "أَذَان",
-          "transliteration": "adhaan",
-          "english": "call to prayer",
-          "category": "Prayer"
-        },
-        {
-          "arabic": "إِقَامَة",
-          "transliteration": "iqaama",
-          "english": "call to begin the prayer",
-          "category": "Prayer"
-        },
-        {
-          "arabic": "مُؤَذِّن",
-          "transliteration": "mu2adhdhin",
-          "english": "muezzin",
-          "category": "Prayer"
-        },
-        {
-          "arabic": "إِمَام",
-          "transliteration": "imaam",
-          "english": "imam",
-          "category": "Prayer"
-        },
-        {
-          "arabic": "جَمَاعَة",
-          "transliteration": "jamaa3a",
-          "english": "congregation",
-          "category": "Prayer"
-        },
-        {
-          "arabic": "قِبْلَة",
-          "transliteration": "qibla",
-          "english": "direction of prayer",
-          "category": "Prayer"
-        },
-        {
-          "arabic": "مِئْذَنَة",
-          "transliteration": "mi2dhana",
-          "english": "minaret",
-          "category": "Prayer"
-        },
-        {
-          "arabic": "سَجَّادَة",
-          "transliteration": "sajjaada",
-          "english": "prayer mat",
-          "category": "Prayer"
-        }
-      ],
       "culture": "The adhan calls people to each of the five daily prayers, and the iqamah, said just before the prayer starts, tells everyone to stand in rows. Many masjids have separate entrances and prayer areas for men and women. Someone who joins late prays with the imam, then stands and completes the missed rak'ahs after the imam's salaam.",
       "exercises": [
         {
@@ -772,56 +716,6 @@
             "transliteration": "al-qiblatu ilaa al-yameen",
             "english": "The qibla is to the right."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "وُضُوء",
-          "transliteration": "wudoo2",
-          "english": "ablution",
-          "category": "Wudu"
-        },
-        {
-          "arabic": "طَهَارَة",
-          "transliteration": "tahaara",
-          "english": "purity",
-          "category": "Wudu"
-        },
-        {
-          "arabic": "مِيضَأَة",
-          "transliteration": "meeda2a",
-          "english": "ablution area",
-          "category": "Wudu"
-        },
-        {
-          "arabic": "وَجْه",
-          "transliteration": "wajh",
-          "english": "face",
-          "category": "Wudu"
-        },
-        {
-          "arabic": "مِرْفَق",
-          "transliteration": "mirfaq",
-          "english": "elbow",
-          "category": "Wudu"
-        },
-        {
-          "arabic": "قَدَم",
-          "transliteration": "qadam",
-          "english": "foot",
-          "category": "Wudu"
-        },
-        {
-          "arabic": "نَظِيف",
-          "transliteration": "nazeef",
-          "english": "clean",
-          "category": "Wudu"
-        },
-        {
-          "arabic": "غَسَلَ",
-          "transliteration": "ghasala",
-          "english": "he washed",
-          "category": "Wudu"
         }
       ],
       "culture": "Wudu is the washing done before prayer, and masjids keep a wudu area, usually near the restrooms, with taps and seats. Shoes come off at the entrance, clothes should be clean and modest, and phones are put on silent so nobody's prayer is disturbed. The qibla is the direction of the Kaaba in Makkah, and a niche called the mihrab often marks it.",
@@ -1220,56 +1114,6 @@
             "transliteration": "jumu3atun mubaarakatun laka aydan",
             "english": "A blessed Friday to you too."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "خُطْبَة",
-          "transliteration": "khutba",
-          "english": "sermon",
-          "category": "Friday prayer"
-        },
-        {
-          "arabic": "خَطِيب",
-          "transliteration": "khateeb",
-          "english": "preacher",
-          "category": "Friday prayer"
-        },
-        {
-          "arabic": "مِنْبَر",
-          "transliteration": "minbar",
-          "english": "pulpit",
-          "category": "Friday prayer"
-        },
-        {
-          "arabic": "مَوْعِظَة",
-          "transliteration": "maw3iza",
-          "english": "admonition",
-          "category": "Friday prayer"
-        },
-        {
-          "arabic": "صَفّ",
-          "transliteration": "saff",
-          "english": "row",
-          "category": "Friday prayer"
-        },
-        {
-          "arabic": "مُصَلٍّ",
-          "transliteration": "musallin",
-          "english": "worshipper",
-          "category": "Friday prayer"
-        },
-        {
-          "arabic": "سُنَّة",
-          "transliteration": "sunna",
-          "english": "sunnah",
-          "category": "Friday prayer"
-        },
-        {
-          "arabic": "اِسْتَمَعَ",
-          "transliteration": "istama3a",
-          "english": "he listened",
-          "category": "Friday prayer"
         }
       ],
       "culture": "Jumu'ah replaces the Dhuhr prayer on Friday and is prayed in congregation after a khutbah. Many people bathe (ghusl), wear clean clothes and perfume, and come early, and during the khutbah everyone listens in silence, since even telling a neighbour to be quiet is discouraged. In a crowded mosque the rows are filled by moving closer, and after the prayer people greet each other with جُمُعَةٌ مُبَارَكَة.",
@@ -1684,62 +1528,6 @@
             "transliteration": "fee aT-Taabiqi al-awwal",
             "english": "On the first floor."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عِلْم",
-          "transliteration": "3ilm",
-          "english": "knowledge",
-          "category": "Learning"
-        },
-        {
-          "arabic": "حَلْقَة",
-          "transliteration": "7alqa",
-          "english": "study circle",
-          "category": "Learning"
-        },
-        {
-          "arabic": "شَيْخ",
-          "transliteration": "shaykh",
-          "english": "sheikh, teacher",
-          "category": "Learning"
-        },
-        {
-          "arabic": "مُصْحَف",
-          "transliteration": "mus7af",
-          "english": "copy of the Qur'an",
-          "category": "Learning"
-        },
-        {
-          "arabic": "سُورَة",
-          "transliteration": "soora",
-          "english": "surah",
-          "category": "Learning"
-        },
-        {
-          "arabic": "آيَة",
-          "transliteration": "aaya",
-          "english": "verse",
-          "category": "Learning"
-        },
-        {
-          "arabic": "حِفْظ",
-          "transliteration": "7ifz",
-          "english": "memorisation",
-          "category": "Learning"
-        },
-        {
-          "arabic": "تَجْوِيد",
-          "transliteration": "tajweed",
-          "english": "tajweed",
-          "category": "Learning"
-        },
-        {
-          "arabic": "تَفْسِير",
-          "transliteration": "tafseer",
-          "english": "tafsir, explanation",
-          "category": "Learning"
         }
       ],
       "culture": "Many mosques run Qur'an circles (Halaqaat) for adults and children, often after Maghrib or Fajr, where each student recites from memory to the teacher, who is addressed as أُسْتَاذ or شَيْخ. The mushaf is handled with respect: held with clean hands, kept off the floor, and returned to its shelf after use.",

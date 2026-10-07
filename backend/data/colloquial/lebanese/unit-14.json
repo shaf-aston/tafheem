@@ -230,56 +230,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عِيد",
-          "transliteration": "3eed",
-          "english": "Eid, festival",
-          "category": "Eid"
-        },
-        {
-          "arabic": "عِيدِيِّة",
-          "transliteration": "3eediyye",
-          "english": "Eid money",
-          "category": "Eid"
-        },
-        {
-          "arabic": "مَعْمُول",
-          "transliteration": "ma3mool",
-          "english": "date-filled biscuits",
-          "category": "Eid"
-        },
-        {
-          "arabic": "كَعِك",
-          "transliteration": "ka3ek",
-          "english": "Eid biscuits",
-          "category": "Eid"
-        },
-        {
-          "arabic": "صَلَاة",
-          "transliteration": "Salaa",
-          "english": "prayer",
-          "category": "Eid"
-        },
-        {
-          "arabic": "سِتّ",
-          "transliteration": "sett",
-          "english": "grandma",
-          "category": "Eid"
-        },
-        {
-          "arabic": "عُطْلِة",
-          "transliteration": "3oTle",
-          "english": "holiday",
-          "category": "Eid"
-        },
-        {
-          "arabic": "مْبَارَك",
-          "transliteration": "mbaarak",
-          "english": "blessed",
-          "category": "Eid"
-        }
-      ],
       "culture": "Among Lebanese Muslims Eid starts with the prayer in the morning, then families visit each other, elders first, and the host puts out ma'mool, cookies and sweets. Children are given \"عيدية\" (a little money) by the grown-ups.",
       "exercises": [
         {
@@ -681,56 +631,6 @@
             "transliteration": "3end ahli",
             "english": "At my family's"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "رَمَضَان",
-          "transliteration": "ramaDaan",
-          "english": "Ramadan",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "صَايِم",
-          "transliteration": "Saayem",
-          "english": "fasting",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "إِفْطَار",
-          "transliteration": "2efTaar",
-          "english": "iftar",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "سُحُور",
-          "transliteration": "so7oor",
-          "english": "pre-dawn meal",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "فَجِر",
-          "transliteration": "fajer",
-          "english": "dawn",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "قْطَايِف",
-          "transliteration": "2Taayef",
-          "english": "qatayef pastries",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "مَدْفَع",
-          "transliteration": "madfa3",
-          "english": "cannon",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "مَعْزُوم",
-          "transliteration": "ma3zoom",
-          "english": "invited",
-          "category": "Ramadan"
         }
       ],
       "culture": "In Ramadan Lebanese Muslim families gather for iftar every evening with dishes like fattoush and lentil soup, and sweets such as qatayef come after. In some old neighbourhoods a \"مسحّراتي\" still wakes people for suhoor, and a cannon or the call to prayer marks the moment to break the fast.",
@@ -1137,56 +1037,6 @@
             "transliteration": "kell l-3eele wes-sa7aab",
             "english": "The whole family and friends"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عِرِس",
-          "transliteration": "3eres",
-          "english": "wedding",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "عَرِيس",
-          "transliteration": "3arees",
-          "english": "groom",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "عَرُوس",
-          "transliteration": "3aroos",
-          "english": "bride",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "زَفِّة",
-          "transliteration": "zaffe",
-          "english": "wedding procession",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "مَنَصَّة",
-          "transliteration": "manaSSa",
-          "english": "stage",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "بَدْلِة",
-          "transliteration": "badle",
-          "english": "suit",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "دَبْكِة",
-          "transliteration": "dabke",
-          "english": "dabke dance",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "هْدِيِّة",
-          "transliteration": "hdiyye",
-          "english": "gift",
-          "category": "Weddings"
         }
       ],
       "culture": "Lebanese weddings are big and loud: the \"زفّة\" (procession with drums) opens the party and the dabke follows. Guests bring a gift or money in an envelope, and \"عقبالك\" is said warmly to single guests.",
@@ -1609,56 +1459,6 @@
             "transliteration": "wala shi, bass teji 3al-7afle",
             "english": "Nothing, just come to the party"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عِيد مِيلَاد",
-          "transliteration": "3eed meelaad",
-          "english": "birthday",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "كَاتُو",
-          "transliteration": "kaatoo",
-          "english": "cake",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "شَمْعَات",
-          "transliteration": "sham3aat",
-          "english": "candles",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "حَفْلِة",
-          "transliteration": "7afle",
-          "english": "party",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "نَجَاح",
-          "transliteration": "najaa7",
-          "english": "success",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "تَرْقِيِة",
-          "transliteration": "tar2iye",
-          "english": "promotion",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "مَوْلُود",
-          "transliteration": "mawlood",
-          "english": "newborn",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "عُمِر",
-          "transliteration": "3omor",
-          "english": "age, life",
-          "category": "Birthdays"
         }
       ],
       "culture": "Lebanese wish a birthday with \"كل سنة وإنت طيّب\", and many also say the English \"happy birthday\". A new baby is welcomed with visits, gifts and a bowl of meghli, and people go to see a new house with a gift.",

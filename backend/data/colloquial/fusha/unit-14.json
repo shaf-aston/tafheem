@@ -236,56 +236,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عِيد",
-          "transliteration": "3eed",
-          "english": "Eid, festival",
-          "category": "Eid"
-        },
-        {
-          "arabic": "تَهْنِئَة",
-          "transliteration": "tahni2a",
-          "english": "congratulation",
-          "category": "Eid"
-        },
-        {
-          "arabic": "مُبَارَك",
-          "transliteration": "mubaarak",
-          "english": "blessed",
-          "category": "Eid"
-        },
-        {
-          "arabic": "عِيدِيَّة",
-          "transliteration": "3eediyya",
-          "english": "Eid money gift",
-          "category": "Eid"
-        },
-        {
-          "arabic": "أُضْحِيَة",
-          "transliteration": "ud7iya",
-          "english": "sacrificial animal",
-          "category": "Eid"
-        },
-        {
-          "arabic": "تَكْبِير",
-          "transliteration": "takbeer",
-          "english": "saying Allahu akbar",
-          "category": "Eid"
-        },
-        {
-          "arabic": "أَقَارِب",
-          "transliteration": "aqaarib",
-          "english": "relatives",
-          "category": "Eid"
-        },
-        {
-          "arabic": "مَلَابِس",
-          "transliteration": "malaabis",
-          "english": "clothes",
-          "category": "Eid"
-        }
-      ],
       "culture": "Eid greetings are exchanged in person and by message on the morning of the Eid, and Fusha phrases such as كُلُّ عَامٍ وَأَنْتَ بِخَيْر are understood in every Arab country. Children receive the الْعِيدِيَّة, a small gift of money, from relatives.",
       "exercises": [
         {
@@ -713,56 +663,6 @@
             "transliteration": "wa minkum",
             "english": "And from you."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "شَهْر",
-          "transliteration": "shahr",
-          "english": "month",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "هِلَال",
-          "transliteration": "hilaal",
-          "english": "crescent moon",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "صَوْم",
-          "transliteration": "sawm",
-          "english": "fast",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "تَرَاوِيح",
-          "transliteration": "taraawee7",
-          "english": "tarawih prayers",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "قُرْآن",
-          "transliteration": "qur2aan",
-          "english": "Qur'an",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "صَدَقَة",
-          "transliteration": "sadaqa",
-          "english": "charity",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "زَكَاة",
-          "transliteration": "zakaat",
-          "english": "zakat",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "فَانُوس",
-          "transliteration": "faanoos",
-          "english": "lantern",
-          "category": "Ramadan"
         }
       ],
       "culture": "During Ramadan people greet each other with رَمَضَانُ كَرِيم, and families gather at sunset to break the fast together. The pre-dawn meal, the السُّحُور, is eaten before the call to the dawn prayer.",
@@ -1194,56 +1094,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عُرْس",
-          "transliteration": "3urs",
-          "english": "wedding",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "عَرِيس",
-          "transliteration": "3arees",
-          "english": "groom",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "عَرُوس",
-          "transliteration": "3aroos",
-          "english": "bride",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "خِطْبَة",
-          "transliteration": "khitba",
-          "english": "engagement",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "مَهْر",
-          "transliteration": "mahr",
-          "english": "dowry",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "خَاتَم",
-          "transliteration": "khaatam",
-          "english": "ring",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "زَفَّة",
-          "transliteration": "zaffa",
-          "english": "wedding procession",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "مَدْعُوّ",
-          "transliteration": "mad3uww",
-          "english": "invited guest",
-          "category": "Weddings"
-        }
-      ],
       "culture": "At a wedding guests congratulate both families with phrases like مَبْرُوك and أَسْعَدَكُمُ اللهُ. The dabke is a line dance of the Levant that often opens the celebration, and bringing a gift is customary.",
       "exercises": [
         {
@@ -1671,56 +1521,6 @@
             "transliteration": "aameen",
             "english": "Amen."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مِيلَاد",
-          "transliteration": "meelaad",
-          "english": "birth",
-          "category": "Celebrating"
-        },
-        {
-          "arabic": "عُمْر",
-          "transliteration": "3umr",
-          "english": "age",
-          "category": "Celebrating"
-        },
-        {
-          "arabic": "سَنَة",
-          "transliteration": "sana",
-          "english": "year",
-          "category": "Celebrating"
-        },
-        {
-          "arabic": "اِحْتِفَال",
-          "transliteration": "i7tifaal",
-          "english": "celebration",
-          "category": "Celebrating"
-        },
-        {
-          "arabic": "كَعْكَة",
-          "transliteration": "ka3ka",
-          "english": "cake",
-          "category": "Celebrating"
-        },
-        {
-          "arabic": "شَمْعَة",
-          "transliteration": "sham3a",
-          "english": "candle",
-          "category": "Celebrating"
-        },
-        {
-          "arabic": "مُفَاجَأَة",
-          "transliteration": "mufaaja2a",
-          "english": "surprise",
-          "category": "Celebrating"
-        },
-        {
-          "arabic": "مَبْرُوك",
-          "transliteration": "mabrook",
-          "english": "congratulations",
-          "category": "Celebrating"
         }
       ],
       "culture": "Birthdays are celebrated with a cake, candles and gifts, and the usual wish in Fusha is عِيدُ مِيلَادٍ سَعِيد. Good news such as a success, a promotion or a new baby is met with مَبْرُوكٌ عَلَى followed by the news.",
@@ -2172,56 +1972,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَوْلُود",
-          "transliteration": "mawlood",
-          "english": "newborn",
-          "category": "A new baby"
-        },
-        {
-          "arabic": "طِفْل",
-          "transliteration": "tifl",
-          "english": "child",
-          "category": "A new baby"
-        },
-        {
-          "arabic": "رَضِيع",
-          "transliteration": "radee3",
-          "english": "infant",
-          "category": "A new baby"
-        },
-        {
-          "arabic": "حَامِل",
-          "transliteration": "7aamil",
-          "english": "pregnant",
-          "category": "A new baby"
-        },
-        {
-          "arabic": "وِلَادَة",
-          "transliteration": "wilaada",
-          "english": "birth (delivery)",
-          "category": "A new baby"
-        },
-        {
-          "arabic": "مَهْد",
-          "transliteration": "mahd",
-          "english": "cradle",
-          "category": "A new baby"
-        },
-        {
-          "arabic": "عَقِيقَة",
-          "transliteration": "3aqeeqa",
-          "english": "aqiqah",
-          "category": "A new baby"
-        },
-        {
-          "arabic": "سَلَامَة",
-          "transliteration": "salaama",
-          "english": "safety, wellbeing",
-          "category": "A new baby"
-        }
-      ],
       "culture": "A newborn is welcomed with مَبْرُوكٌ عَلَى الْمَوْلُود and a prayer that he grows up righteous, and the family often names him after a grandfather or a prophet. Visitors bring a small gift and call on the mother and baby in the first days.",
       "exercises": [
         {
@@ -2617,56 +2367,6 @@
             "transliteration": "shukran lak, hadhaa min fadli allaah",
             "english": "Thank you, this is from God's grace."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "نَجَاح",
-          "transliteration": "najaa7",
-          "english": "success",
-          "category": "Success"
-        },
-        {
-          "arabic": "تَفَوُّق",
-          "transliteration": "tafawwuq",
-          "english": "excellence",
-          "category": "Success"
-        },
-        {
-          "arabic": "مُتَفَوِّق",
-          "transliteration": "mutafawwiq",
-          "english": "top student",
-          "category": "Success"
-        },
-        {
-          "arabic": "عَلَامَة",
-          "transliteration": "3alaama",
-          "english": "mark, grade",
-          "category": "Success"
-        },
-        {
-          "arabic": "جَائِزَة",
-          "transliteration": "jaa2iza",
-          "english": "prize",
-          "category": "Success"
-        },
-        {
-          "arabic": "فَخْر",
-          "transliteration": "fakhr",
-          "english": "pride",
-          "category": "Success"
-        },
-        {
-          "arabic": "فَخُور",
-          "transliteration": "fakhoor",
-          "english": "proud",
-          "category": "Success"
-        },
-        {
-          "arabic": "نَجَحَ",
-          "transliteration": "naja7a",
-          "english": "he passed, succeeded",
-          "category": "Success"
         }
       ],
       "culture": "Success is met with مَبْرُوكٌ عَلَى followed by the news, and the usual answer is بَارَكَ اللهُ فِيك or a thanks that credits God. Graduation and a first job are celebrated with the whole family, and a man is often wished وَفَّقَكَ اللهُ in his new work.",
@@ -3070,62 +2770,6 @@
             "transliteration": "aameen yaa rabb",
             "english": "Amen, O Lord."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "حَجّ",
-          "transliteration": "7ajj",
-          "english": "Hajj",
-          "category": "Hajj"
-        },
-        {
-          "arabic": "حَاجّ",
-          "transliteration": "7aajj",
-          "english": "pilgrim",
-          "category": "Hajj"
-        },
-        {
-          "arabic": "مَكَّة",
-          "transliteration": "makka",
-          "english": "Makkah",
-          "category": "Hajj"
-        },
-        {
-          "arabic": "كَعْبَة",
-          "transliteration": "ka3ba",
-          "english": "Kaaba",
-          "category": "Hajj"
-        },
-        {
-          "arabic": "إِحْرَام",
-          "transliteration": "i7raam",
-          "english": "ihram",
-          "category": "Hajj"
-        },
-        {
-          "arabic": "طَوَاف",
-          "transliteration": "tawaaf",
-          "english": "circling the Kaaba",
-          "category": "Hajj"
-        },
-        {
-          "arabic": "عَرَفَة",
-          "transliteration": "3arafa",
-          "english": "Arafah",
-          "category": "Hajj"
-        },
-        {
-          "arabic": "زَمْزَم",
-          "transliteration": "zamzam",
-          "english": "Zamzam water",
-          "category": "Hajj"
-        },
-        {
-          "arabic": "مَبْرُور",
-          "transliteration": "mabroor",
-          "english": "accepted (of Hajj)",
-          "category": "Hajj"
         }
       ],
       "culture": "A returning pilgrim is welcomed at home with حَجٌّ مَبْرُورٌ وَسَعْيٌ مَشْكُورٌ وَذَنْبٌ مَغْفُور and a prayer that God accept the Hajj. The pilgrim shares stories of Makkah and gives visitors zamzam water and dates, and the guest asks to be remembered in his prayers.",
@@ -3537,56 +3181,6 @@
             "transliteration": "ba3da Salaati aZ-Zuhri",
             "english": "After the noon prayer."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عَزَاء",
-          "transliteration": "3azaa2",
-          "english": "condolence",
-          "category": "Condolences"
-        },
-        {
-          "arabic": "وَفَاة",
-          "transliteration": "wafaat",
-          "english": "death",
-          "category": "Condolences"
-        },
-        {
-          "arabic": "مُتَوَفًّى",
-          "transliteration": "mutawaffan",
-          "english": "deceased",
-          "category": "Condolences"
-        },
-        {
-          "arabic": "جَنَازَة",
-          "transliteration": "janaaza",
-          "english": "funeral",
-          "category": "Condolences"
-        },
-        {
-          "arabic": "دَفْن",
-          "transliteration": "dafn",
-          "english": "burial",
-          "category": "Condolences"
-        },
-        {
-          "arabic": "قَبْر",
-          "transliteration": "qabr",
-          "english": "grave",
-          "category": "Condolences"
-        },
-        {
-          "arabic": "صَبْر",
-          "transliteration": "sabr",
-          "english": "patience",
-          "category": "Condolences"
-        },
-        {
-          "arabic": "رَحْمَة",
-          "transliteration": "ra7ma",
-          "english": "mercy",
-          "category": "Condolences"
         }
       ],
       "culture": "Condolences open with إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ and are given at the family's home or after the funeral prayer, where the visitor keeps the words short and gentle. The burial is done quickly, so people attend the prayer and the burial to share the family's grief and are thanked with شَكَرَ اللهُ سَعْيَكُمْ.",
@@ -4004,56 +3598,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَرَض",
-          "transliteration": "marad",
-          "english": "illness",
-          "category": "Visiting the sick"
-        },
-        {
-          "arabic": "عَافِيَة",
-          "transliteration": "3aafiya",
-          "english": "good health",
-          "category": "Visiting the sick"
-        },
-        {
-          "arabic": "رَاحَة",
-          "transliteration": "raa7a",
-          "english": "rest",
-          "category": "Visiting the sick"
-        },
-        {
-          "arabic": "وَرْد",
-          "transliteration": "ward",
-          "english": "flowers",
-          "category": "Visiting the sick"
-        },
-        {
-          "arabic": "اِطْمِئْنَان",
-          "transliteration": "itmi2naan",
-          "english": "reassurance",
-          "category": "Visiting the sick"
-        },
-        {
-          "arabic": "زَارَ",
-          "transliteration": "zaara",
-          "english": "he visited",
-          "category": "Visiting the sick"
-        },
-        {
-          "arabic": "شُفِيَ",
-          "transliteration": "shufiya",
-          "english": "he recovered",
-          "category": "Visiting the sick"
-        },
-        {
-          "arabic": "طَمْأَنَ",
-          "transliteration": "tam2ana",
-          "english": "he reassured",
-          "category": "Visiting the sick"
-        }
-      ],
       "culture": "Visiting the sick is a recommended duty, and the visitor says لَا بَأْسَ، طَهُورٌ إِنْ شَاءَ اللهُ, words reported from the Prophet, peace be upon him, when he visited the ill. The visit is short so the patient can rest, and a gift of fruit or flowers is common.",
       "exercises": [
         {
@@ -4459,56 +4003,6 @@
             "transliteration": "yumkinuka an tu3eeda al-muHaawala",
             "english": "You can try again."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "خَبَر",
-          "transliteration": "khabar",
-          "english": "news item",
-          "category": "Comfort"
-        },
-        {
-          "arabic": "مُصِيبَة",
-          "transliteration": "museeba",
-          "english": "misfortune",
-          "category": "Comfort"
-        },
-        {
-          "arabic": "صَدْمَة",
-          "transliteration": "sadma",
-          "english": "shock",
-          "category": "Comfort"
-        },
-        {
-          "arabic": "حُزْن",
-          "transliteration": "7uzn",
-          "english": "sadness",
-          "category": "Comfort"
-        },
-        {
-          "arabic": "أَمَل",
-          "transliteration": "amal",
-          "english": "hope",
-          "category": "Comfort"
-        },
-        {
-          "arabic": "قَوِيّ",
-          "transliteration": "qawiyy",
-          "english": "strong",
-          "category": "Comfort"
-        },
-        {
-          "arabic": "عَزَّى",
-          "transliteration": "3azzaa",
-          "english": "he consoled",
-          "category": "Comfort"
-        },
-        {
-          "arabic": "وَاسَى",
-          "transliteration": "waasaa",
-          "english": "he comforted",
-          "category": "Comfort"
         }
       ],
       "culture": "Comfort in hard times rests on sabr, patience, and on the belief that all things happen by God's decree, so a friend reminds gently and does not lecture. Offering real help, such as asking about a job opening or simply staying beside him, means more than long speeches.",

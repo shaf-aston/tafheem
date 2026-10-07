@@ -49,7 +49,8 @@ class Drill(BaseModel):
 
 
 class VocabWord(Word):
-    """A single word for the word bank; dialect-owned, not a spine slot."""
+    """A word of a topic's list: its meaning from words.json, its Arabic from the dialect's."""
+    id: str
     category: str = ""
 
 

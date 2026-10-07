@@ -234,56 +234,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "أَمْس",
-          "transliteration": "ams",
-          "english": "yesterday",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "الْبَارِحَة",
-          "transliteration": "al-baari7a",
-          "english": "last night",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "صَحِيت",
-          "transliteration": "Sa7eet",
-          "english": "I woke up",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "مِتْأَخِّر",
-          "transliteration": "mit2akhkhir",
-          "english": "late",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "مَطْعَم",
-          "transliteration": "maT3am",
-          "english": "restaurant",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "سَهَر",
-          "transliteration": "sahar",
-          "english": "staying up late",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "شُغْل",
-          "transliteration": "shughl",
-          "english": "work",
-          "category": "Yesterday"
-        },
-        {
-          "arabic": "مَسَا",
-          "transliteration": "masa",
-          "english": "evening",
-          "category": "Yesterday"
-        }
-      ],
       "culture": "In Yemeni speech, \"أمس\" is the everyday word for yesterday, and \"البارحة\" refers to last night specifically. Asking \"شنو عملت أمس؟\" is a natural way to start a conversation with a friend or family member, and the response usually mentions work, visiting, or market activities.",
       "exercises": [
         {
@@ -644,56 +594,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "صَغِير",
-          "transliteration": "Sagheer",
-          "english": "small, young",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "حَارَة",
-          "transliteration": "7aara",
-          "english": "neighbourhood",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "صَاحِب",
-          "transliteration": "Saa7ib",
-          "english": "friend",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "كُرَة",
-          "transliteration": "kura",
-          "english": "football",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "قَرْيَة",
-          "transliteration": "garya",
-          "english": "village",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "قِصَّة",
-          "transliteration": "qiSSa",
-          "english": "story",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "سِيكَل",
-          "transliteration": "seekal",
-          "english": "bicycle",
-          "category": "Childhood"
-        },
-        {
-          "arabic": "لَعِب",
-          "transliteration": "la3ib",
-          "english": "playing, games",
-          "category": "Childhood"
-        }
-      ],
       "culture": "Yemeni families, especially in Sana'a, place great value on childhood memories and growing up in the old city quarters. Grandparents' stories and summer visits to the village are central to Yemeni family culture. The phrase \"وقت ما كنت صغير\" is the natural way to begin childhood stories.",
       "exercises": [
         {
@@ -1050,56 +950,6 @@
             "transliteration": "la, lsa3 yaftasho 3alayha bil-mataar",
             "english": "No, they're still searching for it at the airport."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "تِلِفُون",
-          "transliteration": "tilifoon",
-          "english": "phone",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "مِفْتَاح",
-          "transliteration": "miftaa7",
-          "english": "key",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "دَرَج",
-          "transliteration": "daraj",
-          "english": "stairs",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "مَحْفَظَة",
-          "transliteration": "ma7faZa",
-          "english": "wallet",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "سَيَّارَة",
-          "transliteration": "sayyaara",
-          "english": "car",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "كَهْرَبَا",
-          "transliteration": "kahraba",
-          "english": "electricity",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "لَابْتُوب",
-          "transliteration": "laabtoob",
-          "english": "laptop",
-          "category": "Something went wrong"
-        },
-        {
-          "arabic": "مُنَبِّه",
-          "transliteration": "munabbih",
-          "english": "alarm clock",
-          "category": "Something went wrong"
         }
       ],
       "culture": "يوم أسود (a black day) describes a day when everything goes wrong. حرام is said as sympathetic expression for someone's bad luck. It's normal to mention الحمد لله (thank God) when describing troubles, acknowledging that things could have been worse.",
@@ -1463,56 +1313,6 @@
             "transliteration": "ma fi jdid, al-7amdilla tamam",
             "english": "Nothing new, thank God everything is fine."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "خَبَر",
-          "transliteration": "khabar",
-          "english": "news",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "إِشَاعَة",
-          "transliteration": "ishaa3a",
-          "english": "rumour",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "حَيّ",
-          "transliteration": "7ayy",
-          "english": "neighbourhood",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "قِصَّة",
-          "transliteration": "qiSSa",
-          "english": "story",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "سَمِعْت",
-          "transliteration": "sami3t",
-          "english": "I heard",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "كَلَام",
-          "transliteration": "kalaam",
-          "english": "talk",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "نَاس",
-          "transliteration": "naas",
-          "english": "people",
-          "category": "News and gossip"
-        },
-        {
-          "arabic": "سِرّ",
-          "transliteration": "sirr",
-          "english": "secret",
-          "category": "News and gossip"
         }
       ],
       "culture": "In Yemeni communities, sharing news is a normal part of daily conversation. Islamic phrases like \"الحمد لله\" and calling someone \"جد\" when surprised show the importance of faith in everyday speech. The phrase \"بيني وبينك بس\" (just between us) shows respect for privacy in sensitive matters.",

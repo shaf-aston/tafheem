@@ -211,56 +211,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عِيد",
-          "transliteration": "3eed",
-          "english": "Eid, festival",
-          "category": "Eid"
-        },
-        {
-          "arabic": "عِيدِيَّة",
-          "transliteration": "3eediyya",
-          "english": "Eid money",
-          "category": "Eid"
-        },
-        {
-          "arabic": "مَعْمُول",
-          "transliteration": "ma3mool",
-          "english": "date-filled biscuits",
-          "category": "Eid"
-        },
-        {
-          "arabic": "صَلَاة",
-          "transliteration": "Salaa",
-          "english": "prayer",
-          "category": "Eid"
-        },
-        {
-          "arabic": "جَدَّة",
-          "transliteration": "jadda",
-          "english": "grandmother",
-          "category": "Eid"
-        },
-        {
-          "arabic": "ثَوْب",
-          "transliteration": "thawb",
-          "english": "garment",
-          "category": "Eid"
-        },
-        {
-          "arabic": "سَنَة",
-          "transliteration": "sana",
-          "english": "year",
-          "category": "Eid"
-        },
-        {
-          "arabic": "مُبَارَك",
-          "transliteration": "mubaarak",
-          "english": "blessed",
-          "category": "Eid"
-        }
-      ],
       "culture": "فِي الْيَمَن، الْعِيد مُنَاسَبَة مُهِمَّة جِدًّا حَيْثُ يَلْبَس الْجَمِيع الثِّيَاب الْجَدِيدَة، خَاصَّة الثَّوْب التَّقْلِيدِي. الْقِنْوِيَّة وَالْمَعْمُول مِن أَهَمّ الْحُلْوِيَّات الْعِيدِيَّة. الْعَائِلَات تَجْتَمِع وَالْأَطْفَال يَأْخُذُون الْعِيدِيَّة مِن الْكِبَار.",
       "exercises": [
         {
@@ -627,56 +577,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "رَمَضَان",
-          "transliteration": "ramaDaan",
-          "english": "Ramadan",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "صِيَام",
-          "transliteration": "Siyaam",
-          "english": "fasting",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "إِفْطَار",
-          "transliteration": "ifTaar",
-          "english": "iftar",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "سُحُور",
-          "transliteration": "su7oor",
-          "english": "pre-dawn meal",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "فَجْر",
-          "transliteration": "fajr",
-          "english": "dawn",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "شَفُوت",
-          "transliteration": "shafoot",
-          "english": "yoghurt bread dish",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "مِدْفَع",
-          "transliteration": "midfa3",
-          "english": "cannon",
-          "category": "Ramadan"
-        },
-        {
-          "arabic": "صَايِم",
-          "transliteration": "Saayim",
-          "english": "fasting (person)",
-          "category": "Ramadan"
-        }
-      ],
       "culture": "رَمَضَان فِي الْيَمَن شَهْر مُهِمّ جِدًّا يَعْتَمِد عَلَى التَّجْمِعَات الْعَائِلِيَّة. السَّحُور يَكُون قَبِل الْفَجْر وَالْإِفْطَار يَكُون بِعَد الْمِدْفَع. الْقَاعِمَة حَلْوَى تَقْلِيدِيَّة يَمَنِيَّة خِلَال شَهْر رَمَضَان.",
       "exercises": [
         {
@@ -1033,56 +933,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عِرْس",
-          "transliteration": "3irs",
-          "english": "wedding",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "عَرِيس",
-          "transliteration": "3arees",
-          "english": "groom",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "عَرُوسَة",
-          "transliteration": "3aroosa",
-          "english": "bride",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "زِينَة",
-          "transliteration": "zeena",
-          "english": "decorations",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "رَقْصَة",
-          "transliteration": "ragSa",
-          "english": "dance",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "فُسْتَان",
-          "transliteration": "fustaan",
-          "english": "dress",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "مَدْعُوّ",
-          "transliteration": "mad3oo",
-          "english": "invited",
-          "category": "Weddings"
-        },
-        {
-          "arabic": "هَدِيَّة",
-          "transliteration": "hadiyya",
-          "english": "gift",
-          "category": "Weddings"
-        }
-      ],
       "culture": "الْعِرْس فِي الْيَمَن مُنَاسَبَة مُهِمَّة جِدًّا تَجْتَمِع فِيهَا الْعَائِلَات وَالْأَصْدِقَاء. الزِّينَة بِتَكُون فِخْمَة وَالْفِسْتَان الْأَبْيَض تِلْبَس الْعَرُوس. الرَّقْصَة وَالْفَرَح جُزْء مِن الْعِرْس الْيَمَنِي.",
       "exercises": [
         {
@@ -1410,56 +1260,6 @@
             "transliteration": "allah yas3idik",
             "english": "May God make you happy"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عِيد مِيلَاد",
-          "transliteration": "3eed meelaad",
-          "english": "birthday",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "تُورْتَة",
-          "transliteration": "toorta",
-          "english": "cake",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "شُمْعَات",
-          "transliteration": "shum3aat",
-          "english": "candles",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "حَفْلَة",
-          "transliteration": "7afla",
-          "english": "party",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "نَجَاح",
-          "transliteration": "najaa7",
-          "english": "success",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "تَرْقِيَة",
-          "transliteration": "targiya",
-          "english": "promotion",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "مَوْلُود",
-          "transliteration": "mawlood",
-          "english": "newborn",
-          "category": "Birthdays"
-        },
-        {
-          "arabic": "عُمْر",
-          "transliteration": "3umr",
-          "english": "age, life",
-          "category": "Birthdays"
         }
       ],
       "culture": "عِيد الْمِيلَاد فِي الْيَمَن يِحْتَفِل فِيهِ بِالْعَائِلَة وَالْأَصْدِقَاء. التُّرْتَة وَالشُّمْعَات تِكُون عَلَامَات شَهِيرَة بِالْحَفْلَة. \"الله يُطَوِّل عُمْرِك\" أَهَمّ عِبَارَة تِنقال فِي هَالْمُنَاسَبَة.",

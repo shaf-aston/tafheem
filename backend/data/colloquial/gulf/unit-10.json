@@ -217,56 +217,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "جَوّ",
-          "transliteration": "jaw",
-          "english": "weather",
-          "category": "Weather"
-        },
-        {
-          "arabic": "شَمْس",
-          "transliteration": "shams",
-          "english": "sun",
-          "category": "Weather"
-        },
-        {
-          "arabic": "حَرّ",
-          "transliteration": "7arr",
-          "english": "heat, hot",
-          "category": "Weather"
-        },
-        {
-          "arabic": "بَرْد",
-          "transliteration": "bard",
-          "english": "cold",
-          "category": "Weather"
-        },
-        {
-          "arabic": "مَطَر",
-          "transliteration": "maTar",
-          "english": "rain",
-          "category": "Weather"
-        },
-        {
-          "arabic": "غِيم",
-          "transliteration": "gheem",
-          "english": "clouds",
-          "category": "Weather"
-        },
-        {
-          "arabic": "هَوَا",
-          "transliteration": "hawa",
-          "english": "wind, air",
-          "category": "Weather"
-        },
-        {
-          "arabic": "رُطُوبَة",
-          "transliteration": "ruTooba",
-          "english": "humidity",
-          "category": "Weather"
-        }
-      ],
       "culture": "In the Gulf rain is rare and welcome, so when it falls people often say اللهم صيباً نافعاً (O God, a beneficial rain). On a scorching day the usual sigh is الله يعين (God help us), and weather talk is a normal way to start a conversation.",
       "exercises": [
         {
@@ -658,56 +608,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَوْسِم",
-          "transliteration": "mawsim",
-          "english": "season",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "صِيف",
-          "transliteration": "Seef",
-          "english": "summer",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "شِتَا",
-          "transliteration": "shita",
-          "english": "winter",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "رَبِيع",
-          "transliteration": "rabee3",
-          "english": "spring",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "خَرِيف",
-          "transliteration": "khareef",
-          "english": "autumn",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "ثَلْج",
-          "transliteration": "thalj",
-          "english": "snow, ice",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "حَرّ",
-          "transliteration": "7arr",
-          "english": "heat",
-          "category": "Seasons"
-        },
-        {
-          "arabic": "نَاشِف",
-          "transliteration": "naashif",
-          "english": "dry",
-          "category": "Seasons"
-        }
-      ],
       "culture": "Summer in the UAE and Kuwait runs roughly from May to October, and the pleasant months from November to March are when families go on a كشتة (a camping outing) in the desert. When the star Suhail rises in late summer, people say the worst of the heat is starting to ease.",
       "exercises": [
         {
@@ -1093,56 +993,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "سْوِيتَر",
-          "transliteration": "sweetar",
-          "english": "jumper",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "جَاكِيت",
-          "transliteration": "jaakeet",
-          "english": "jacket",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "شُورْت",
-          "transliteration": "shoort",
-          "english": "shorts",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "نَظَّارَة",
-          "transliteration": "naDhDhaara",
-          "english": "glasses",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "بُوت",
-          "transliteration": "boot",
-          "english": "boots",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "كَاب",
-          "transliteration": "kaab",
-          "english": "cap",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "خَفِيف",
-          "transliteration": "khafeef",
-          "english": "light",
-          "category": "Clothes for the weather"
-        },
-        {
-          "arabic": "ثَقِيل",
-          "transliteration": "thageel",
-          "english": "heavy",
-          "category": "Clothes for the weather"
-        }
-      ],
       "culture": "Many Emirati and Kuwaiti men wear the white kandura all year, a light one in summer and a heavier wool one in winter, and women usually wear an abaya. Indoor air conditioning is very cold, so people carry a light layer even on a hot day.",
       "exercises": [
         {
@@ -1525,56 +1375,6 @@
             "transliteration": "nu2ajjil iTTal3a w nig3ad filbeet",
             "english": "We postpone the outing and stay home."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "بَحَر",
-          "transliteration": "ba7ar",
-          "english": "sea",
-          "category": "Going out"
-        },
-        {
-          "arabic": "طَلْعَة",
-          "transliteration": "Tal3a",
-          "english": "outing",
-          "category": "Going out"
-        },
-        {
-          "arabic": "مَشْوَار",
-          "transliteration": "mashwaar",
-          "english": "outing, errand",
-          "category": "Going out"
-        },
-        {
-          "arabic": "بَلْكُونَة",
-          "transliteration": "balkoona",
-          "english": "balcony",
-          "category": "Going out"
-        },
-        {
-          "arabic": "سَهْرَة",
-          "transliteration": "sahra",
-          "english": "evening out",
-          "category": "Going out"
-        },
-        {
-          "arabic": "رَايِق",
-          "transliteration": "raayig",
-          "english": "fine, pleasant",
-          "category": "Going out"
-        },
-        {
-          "arabic": "نَشْرَة",
-          "transliteration": "nashra",
-          "english": "bulletin, forecast",
-          "category": "Going out"
-        },
-        {
-          "arabic": "كَشْتَة",
-          "transliteration": "kashta",
-          "english": "picnic",
-          "category": "Going out"
         }
       ],
       "culture": "In the summer Gulf outings move to after sunset, when parks, corniches and malls fill up at night. In winter weekend plans such as the طلعة or the beach depend on the weather, and heavy rain can close schools and roads, with warnings coming from the national weather centre.",

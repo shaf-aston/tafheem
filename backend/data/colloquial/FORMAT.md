@@ -19,6 +19,9 @@ the tab lists them as coming. It may not leave half a lesson.
     "phrases": [ { "slot": "hello", "english": "Hello.", "search_term": "person waving hello" } ] } ] } ] }
 ```
 
+A lesson's `words` lists the ids of the words that topic teaches, in order: every
+common word of the scene, not only those in its phrases. See "Words" below.
+
 `slot` is a short name written out, never a position, unique within its lesson.
 It ties the same phrase together across dialects, so never rename one.
 `image` is added by the picture script, and one picture serves every dialect.
@@ -47,20 +50,47 @@ key in every unit of a dialect.
 | `phrases` | one per spine slot: `slot`, `arabic`, `transliteration`, optionally `english` (only when this dialect's words mean something other than the spine's English; it replaces it for this dialect), and optionally `reply` (the natural answer, with its own `english`) |
 | `dialogue` | one real conversation, in order: `speaker`, `arabic`, `transliteration`, `english`. A line that repeats a phrase of the lesson is written `{"speaker", "slot"}` instead (add `"reply": true` for that phrase's reply) and takes the card's words; this is the preferred form, and a full copy of a phrase is a fault |
 | `de_book` | question and answer drill: `pair` and `response`, each a phrase |
-| `vocabulary` | the word bank: single words, not phrases (a fixed two-word name like عيد ميلاد is fine): `arabic`, `transliteration`, `english`, and `category` (a short group name, e.g. `"jobs"`), optional. None, or 8 or more, none twice, Arabic letters only in `arabic`; the loader stops on a bank that breaks this. Every word belongs to the topic's scene, never a filler to reach 8. Not a spine slot, so one dialect may write it before the rest |
 | `culture` | one or two sentences on when and with whom this is said |
 | `exercises` | the practice, see below |
-
-To review a dialect's words, `python -m backend.scripts.colloquial_word_bank dump <dialect>`
-prints every bank as one plain list, `arabic | transliteration | english` per line
-under a `## unit-NN lesson-NN <category>` heading. Edit it and `load <dialect> <file>`
-puts it back, checked as above, all or nothing.
 
 `search_term`, in the spine, is a short everyday English noun phrase for finding a picture, for
 example `"a glass of tea"`. The English meaning alone is usually too idiomatic to
 search with, so a picture is only ever fetched from `search_term`. Leave it out
 when the phrase has nothing to show. Nothing is guessed on your behalf: a phrase
 with no `search_term` gets no picture.
+
+## Words
+
+Each meaning is written once, in `words.json` beside this file, one line each:
+
+```json
+"tired": {"english": "tired", "group": "feelings"}
+```
+
+`group` is the heading the word sits under in a topic's list (family, food,
+actions, describing ...). The id is named from the English and never renamed, as
+every dialect links to it. A word taught by two topics is one id in both.
+
+A dialect gives its Arabic in its own `<dialect>/words.json`, once per id:
+
+```json
+"tired": {"arabic": "تعبان / تعبانة", "transliteration": "ta3baan / ta3baane"}
+```
+
+- A word whose form only changes for a woman is one meaning, both forms split by
+  ` / `, the man's first, with the same split in the transliteration. Two ids only
+  when the words differ and the difference is the point: brother and sister.
+- A word, not a phrase: at most two pieces a form (a fixed name like عيد ميلاد).
+  Arabic letters only in `arabic`, none in `transliteration`.
+- A topic is all or none: a dialect that has written a lesson says every word of
+  it, or none yet. Two words of one topic never share their Arabic.
+- A topic teaches 8 or more words, and never a filler to reach 8.
+
+The loader checks all of this on start and stops on any fault. To review a
+dialect's words, `python -m backend.scripts.colloquial_word_bank dump <dialect>`
+prints them topic by topic, `id | english | arabic | transliteration`, each word
+once. Edit the last two columns and `load <dialect> <file>` puts it back, checked
+as above, all or nothing.
 
 ## Exercises
 

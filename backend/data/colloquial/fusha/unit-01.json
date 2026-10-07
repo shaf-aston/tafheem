@@ -218,56 +218,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "سَلَام",
-          "transliteration": "salaam",
-          "english": "peace",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "تَحِيَّة",
-          "transliteration": "ta7iyya",
-          "english": "greeting",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "اِسْم",
-          "transliteration": "ism",
-          "english": "name",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "صَبَاح",
-          "transliteration": "sabaa7",
-          "english": "morning",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "مَسَاء",
-          "transliteration": "masaa2",
-          "english": "evening",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "أَهْلًا",
-          "transliteration": "ahlan",
-          "english": "welcome",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "شُكْرًا",
-          "transliteration": "shukran",
-          "english": "thank you",
-          "category": "Greetings"
-        },
-        {
-          "arabic": "لِقَاء",
-          "transliteration": "liqaa2",
-          "english": "meeting",
-          "category": "Greetings"
-        }
-      ],
       "culture": "In Fusha, people greet with a full phrase such as أَهْلًا وَسَهْلًا, and the standard reply to a greeting is to offer an equal or better one. Fusha is what you hear in news broadcasts, speeches and formal meetings, and it is the shared ground between speakers of different dialects.",
       "exercises": [
         {
@@ -658,62 +608,6 @@
             "transliteration": "laa ba2s.",
             "english": "It's okay."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "فَضْل",
-          "transliteration": "fadl",
-          "english": "kindness, favour",
-          "category": "Requests"
-        },
-        {
-          "arabic": "عَفْوًا",
-          "transliteration": "3afwan",
-          "english": "you're welcome, excuse me",
-          "category": "Requests"
-        },
-        {
-          "arabic": "آسِف",
-          "transliteration": "aasif",
-          "english": "sorry (male)",
-          "category": "Requests"
-        },
-        {
-          "arabic": "آسِفَة",
-          "transliteration": "aasifa",
-          "english": "sorry (female)",
-          "category": "Requests"
-        },
-        {
-          "arabic": "مُسَاعَدَة",
-          "transliteration": "musaa3ada",
-          "english": "help",
-          "category": "Requests"
-        },
-        {
-          "arabic": "طَلَب",
-          "transliteration": "talab",
-          "english": "request",
-          "category": "Requests"
-        },
-        {
-          "arabic": "مَمْنُون",
-          "transliteration": "mamnoon",
-          "english": "grateful",
-          "category": "Requests"
-        },
-        {
-          "arabic": "نَعَم",
-          "transliteration": "na3am",
-          "english": "yes",
-          "category": "Requests"
-        },
-        {
-          "arabic": "لَا",
-          "transliteration": "laa",
-          "english": "no",
-          "category": "Requests"
         }
       ],
       "culture": "Fusha has a polite opener for almost every request, and لَوْ سَمَحْتَ or لَوْ سَمَحْتِ is the one you will use most with strangers. A short شُكْرًا followed by عَفْوًا is complete and never rude.",
@@ -1119,68 +1013,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "وَاحِد",
-          "transliteration": "waa7id",
-          "english": "one",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "اِثْنَان",
-          "transliteration": "ithnaan",
-          "english": "two",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "ثَلَاثَة",
-          "transliteration": "thalaatha",
-          "english": "three",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "أَرْبَعَة",
-          "transliteration": "arba3a",
-          "english": "four",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "خَمْسَة",
-          "transliteration": "khamsa",
-          "english": "five",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "عَشَرَة",
-          "transliteration": "3ashara",
-          "english": "ten",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "سَاعَة",
-          "transliteration": "saa3a",
-          "english": "hour, clock",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "دَقِيقَة",
-          "transliteration": "daqeeqa",
-          "english": "minute",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "الْيَوْم",
-          "transliteration": "al-yawm",
-          "english": "today",
-          "category": "Numbers and time"
-        },
-        {
-          "arabic": "غَدًا",
-          "transliteration": "ghadan",
-          "english": "tomorrow",
-          "category": "Numbers and time"
-        }
-      ],
       "culture": "Fusha tells the time with the feminine ordinal: السَّاعَةُ الثَّانِيَة, literally 'the second hour'. Plans are made with غَدًا and الْيَوْم, the same words you hear on the news.",
       "exercises": [
         {
@@ -1578,56 +1410,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مَدِينَة",
-          "transliteration": "madeena",
-          "english": "city",
-          "category": "Places in the city"
-        },
-        {
-          "arabic": "شَارِع",
-          "transliteration": "shaari3",
-          "english": "street",
-          "category": "Places in the city"
-        },
-        {
-          "arabic": "سُوق",
-          "transliteration": "sooq",
-          "english": "market",
-          "category": "Places in the city"
-        },
-        {
-          "arabic": "مَسْجِد",
-          "transliteration": "masjid",
-          "english": "mosque",
-          "category": "Places in the city"
-        },
-        {
-          "arabic": "حَيّ",
-          "transliteration": "7ayy",
-          "english": "neighbourhood",
-          "category": "Places in the city"
-        },
-        {
-          "arabic": "سَاحَة",
-          "transliteration": "saa7a",
-          "english": "square",
-          "category": "Places in the city"
-        },
-        {
-          "arabic": "بَاب",
-          "transliteration": "baab",
-          "english": "gate, door",
-          "category": "Places in the city"
-        },
-        {
-          "arabic": "قَلْعَة",
-          "transliteration": "qal3a",
-          "english": "citadel",
-          "category": "Places in the city"
-        }
-      ],
       "culture": "Fusha directions use the same clear words on road signs, in news reports and in any Arab country, so a traveller is understood even where the dialect is unfamiliar. جَزَاكَ اللَّهُ خَيْرًا is a warm thanks, and the traditional reply is وَإِيَّاكَ.",
       "exercises": [
         {
@@ -2017,62 +1799,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "أَب",
-          "transliteration": "ab",
-          "english": "father",
-          "category": "Family"
-        },
-        {
-          "arabic": "أُمّ",
-          "transliteration": "umm",
-          "english": "mother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أَخ",
-          "transliteration": "akh",
-          "english": "brother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أُخْت",
-          "transliteration": "ukht",
-          "english": "sister",
-          "category": "Family"
-        },
-        {
-          "arabic": "اِبْن",
-          "transliteration": "ibn",
-          "english": "son",
-          "category": "Family"
-        },
-        {
-          "arabic": "اِبْنَة",
-          "transliteration": "ibna",
-          "english": "daughter",
-          "category": "Family"
-        },
-        {
-          "arabic": "زَوْج",
-          "transliteration": "zawj",
-          "english": "husband",
-          "category": "Family"
-        },
-        {
-          "arabic": "زَوْجَة",
-          "transliteration": "zawja",
-          "english": "wife",
-          "category": "Family"
-        },
-        {
-          "arabic": "صَدِيق",
-          "transliteration": "sadeeq",
-          "english": "friend",
-          "category": "Family"
-        }
-      ],
       "culture": "Fusha introduces a male with هَذَا and a female with هَذِهِ, so the word itself tells you who is being presented. Arab families are large and close, and being introduced to someone's father or brother is a sign of trust. The usual reply to an introduction is فُرْصَةٌ سَعِيدَة, 'a happy chance'. مَا شَاءَ اللَّهُ is said to praise something without envy.",
       "exercises": [
         {
@@ -2430,56 +2156,6 @@
             "transliteration": "na3am, hiya al-oolaa.",
             "english": "Yes, it is the first."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "بَلَد",
-          "transliteration": "balad",
-          "english": "country",
-          "category": "Countries"
-        },
-        {
-          "arabic": "جِنْسِيَّة",
-          "transliteration": "jinsiyya",
-          "english": "nationality",
-          "category": "Countries"
-        },
-        {
-          "arabic": "سُورِيَا",
-          "transliteration": "sooriyaa",
-          "english": "Syria",
-          "category": "Countries"
-        },
-        {
-          "arabic": "مِصْر",
-          "transliteration": "misr",
-          "english": "Egypt",
-          "category": "Countries"
-        },
-        {
-          "arabic": "لُبْنَان",
-          "transliteration": "lubnaan",
-          "english": "Lebanon",
-          "category": "Countries"
-        },
-        {
-          "arabic": "الْعِرَاق",
-          "transliteration": "al-3iraaq",
-          "english": "Iraq",
-          "category": "Countries"
-        },
-        {
-          "arabic": "الْمَغْرِب",
-          "transliteration": "al-maghrib",
-          "english": "Morocco",
-          "category": "Countries"
-        },
-        {
-          "arabic": "بَرِيطَانِيَا",
-          "transliteration": "bareetaaniyaa",
-          "english": "Britain",
-          "category": "Countries"
         }
       ],
       "culture": "In Fusha you ask مِنْ أَيِّ مَدِينَةٍ, 'from which city', because Arabs often name their home city or town before the country. جِنْسِيَّة is the official word for nationality on a passport and it is the same in every Arab country. A visitor is greeted with أَهْلًا بِكَ, 'you are among your own family'.",

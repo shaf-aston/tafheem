@@ -230,56 +230,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مُهَنْدِس",
-          "transliteration": "muhandis",
-          "english": "engineer",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "أُسْتَاذ",
-          "transliteration": "ustaad",
-          "english": "teacher",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "شَرِكَة",
-          "transliteration": "sharika",
-          "english": "company",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "طَالِب",
-          "transliteration": "Taalib",
-          "english": "student",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "تْقَاعْد",
-          "transliteration": "tqaa3ed",
-          "english": "retirement",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "طّْبِيب",
-          "transliteration": "Tbeeb",
-          "english": "doctor",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "خْدْمَة",
-          "transliteration": "khedma",
-          "english": "work, job",
-          "category": "Jobs"
-        },
-        {
-          "arabic": "مْعَلِّم",
-          "transliteration": "m3allem",
-          "english": "skilled craftsman, boss",
-          "category": "Jobs"
-        }
-      ],
       "culture": "فالمغرب، من أول الأسئلة اللي كيتطرحو على واحد جديد هو «شنو كتخدم؟»، وكيجاوب بلا حرج. سؤال «شحال كتخلص؟» (شحال الراتب) ما كيتطرحش إلا بين الأصدقاء القريبين.",
       "exercises": [
         {
@@ -653,56 +603,6 @@
             "transliteration": "ah, 3andi juj ayyam.",
             "english": "Yes, I have two days."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مُدِير",
-          "transliteration": "mudeer",
-          "english": "manager",
-          "category": "The office"
-        },
-        {
-          "arabic": "بِيرُو",
-          "transliteration": "beeroo",
-          "english": "office",
-          "category": "The office"
-        },
-        {
-          "arabic": "زْمِيل",
-          "transliteration": "zmeel",
-          "english": "colleague",
-          "category": "The office"
-        },
-        {
-          "arabic": "تّْقْرِير",
-          "transliteration": "taqreer",
-          "english": "report",
-          "category": "The office"
-        },
-        {
-          "arabic": "كُونْجِي",
-          "transliteration": "konji",
-          "english": "leave, holiday",
-          "category": "The office"
-        },
-        {
-          "arabic": "خْلْصَة",
-          "transliteration": "khelSa",
-          "english": "salary",
-          "category": "The office"
-        },
-        {
-          "arabic": "إِيمِيل",
-          "transliteration": "eemeel",
-          "english": "email",
-          "category": "The office"
-        },
-        {
-          "arabic": "طَابْعَة",
-          "transliteration": "Taab3a",
-          "english": "printer",
-          "category": "The office"
         }
       ],
       "culture": "فالمغرب، الخدمة كتبدا عادة على الثامنة والنصف أو التاسعة، وكيتشرب أتاي أو قهوة مع الزملاء قبل الاجتماع. الهضرة فالمكتب كتخلط بين الدارجة والفرنسية، وكلمات بحال «الكونجي» و«الشيف» و«ريونيون» كتتسمع بزاف.",
@@ -1080,56 +980,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "كُور",
-          "transliteration": "koor",
-          "english": "lecture, class",
-          "category": "University"
-        },
-        {
-          "arabic": "اِمْتِحَان",
-          "transliteration": "imti7aan",
-          "english": "exam",
-          "category": "University"
-        },
-        {
-          "arabic": "تّْخْصُّص",
-          "transliteration": "takhaSSuS",
-          "english": "major",
-          "category": "University"
-        },
-        {
-          "arabic": "سِمِسْتْر",
-          "transliteration": "simistr",
-          "english": "semester",
-          "category": "University"
-        },
-        {
-          "arabic": "نّْتِيجَة",
-          "transliteration": "nateeja",
-          "english": "result",
-          "category": "University"
-        },
-        {
-          "arabic": "خْزَانَة",
-          "transliteration": "khzaana",
-          "english": "library",
-          "category": "University"
-        },
-        {
-          "arabic": "فْرْض",
-          "transliteration": "farD",
-          "english": "homework",
-          "category": "University"
-        },
-        {
-          "arabic": "جَامْعَة",
-          "transliteration": "jaam3a",
-          "english": "university",
-          "category": "University"
-        }
-      ],
       "culture": "فالمغرب، التلاميذ والطلبة كيقراو بالعربية حتى الباكالوريا، وفالجامعة بزاف ديال التخصصات (الطب والهندسة والعلوم) بالفرنسية، ولهذا الهضرة بين الطلبة كتخلط الدارجة بالفرنسية. الطالب كيقول «باك» للباكالوريا و«سمستر» للفصل الجامعي.",
       "exercises": [
         {
@@ -1499,56 +1349,6 @@
             "transliteration": "la, mazal.",
             "english": "No, not yet."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "مَشْرُوع",
-          "transliteration": "mashroo3",
-          "english": "project",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "قْرَايَة",
-          "transliteration": "qraaya",
-          "english": "studies",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "مَاسْتَر",
-          "transliteration": "maaster",
-          "english": "master's degree",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "الْخَارِج",
-          "transliteration": "lkhaarij",
-          "english": "abroad",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "حُلْم",
-          "transliteration": "7ulm",
-          "english": "dream",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "فُرْصَة",
-          "transliteration": "furSa",
-          "english": "opportunity",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "طُمُوح",
-          "transliteration": "Tumoo7",
-          "english": "ambition",
-          "category": "Future plans"
-        },
-        {
-          "arabic": "مْرْتَاح",
-          "transliteration": "mertaa7",
-          "english": "comfortable",
-          "category": "Future plans"
         }
       ],
       "culture": "فالمغرب، الحديث على المستقبل كيتبع ديما بـ«إن شاء الله». الشباب بزاف منهم كيحلمو بالخدمة فالخارج (فرنسا، إسبانيا، كندا)، ولكن الوالدين كيفضلو الوظيفة المستقرة.",

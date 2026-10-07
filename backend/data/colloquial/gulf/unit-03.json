@@ -265,56 +265,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "خُضَار",
-          "transliteration": "khuDaar",
-          "english": "vegetables",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "طَمَاطِم",
-          "transliteration": "TamaaTim",
-          "english": "tomatoes",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "خْيَار",
-          "transliteration": "khyaar",
-          "english": "cucumber",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "بَصَل",
-          "transliteration": "baSal",
-          "english": "onions",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "ثُوم",
-          "transliteration": "thoom",
-          "english": "garlic",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "بَطَاط",
-          "transliteration": "baTaaT",
-          "english": "potatoes",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "كِيلُو",
-          "transliteration": "keelo",
-          "english": "kilo",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "طَازَة",
-          "transliteration": "Taaza",
-          "english": "fresh",
-          "category": "Vegetables"
-        }
-      ],
       "culture": "عند البياع تبدأ بالسلام وتقول \"حياك الله\"، ولما تخلص تقول \"الله يعطيك العافية\" ويرد عليك \"الله يعافيك\". في السوق الشعبي عادي تطلب سعر أحسن إذا أخذت كمية وايد، أما في الجمعية والهايبرماركت فالسعر ثابت.",
       "exercises": [
         {
@@ -736,56 +686,6 @@
             "transliteration": "ee, gita3 sagheera law samaht",
             "english": "Yes, small pieces please"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "خُبْز",
-          "transliteration": "khubz",
-          "english": "bread",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "مَخْبَز",
-          "transliteration": "makhbaz",
-          "english": "bakery",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "لَحَم",
-          "transliteration": "la7am",
-          "english": "meat",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "غَنَم",
-          "transliteration": "ghanam",
-          "english": "lamb",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "كُفْتَة",
-          "transliteration": "kufta",
-          "english": "kofta",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "رْقَاق",
-          "transliteration": "rgaag",
-          "english": "thin bread",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "عَظِم",
-          "transliteration": "3aDhim",
-          "english": "bone",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "فَرْن",
-          "transliteration": "farn",
-          "english": "oven",
-          "category": "Bakery and butcher"
         }
       ],
       "culture": "الخبز العربي والرقاق يطلعون طازجين من التنور، والناس تروح المخبز أول الصبح أو العصر. عند الجزار عادي تقول له كيف تبي اللحم ينقطع، ويرد عليك \"أبشر\" يعني أمرك وطلبك مقضي.",
@@ -1216,56 +1116,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "عَيْش",
-          "transliteration": "3aysh",
-          "english": "rice",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "مِلِح",
-          "transliteration": "mili7",
-          "english": "salt",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "نَار",
-          "transliteration": "naar",
-          "english": "fire, flame",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "طَبْخَة",
-          "transliteration": "Tabkha",
-          "english": "dish, recipe",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "مَغْرَفَة",
-          "transliteration": "maghrafa",
-          "english": "ladle",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "صَحِن",
-          "transliteration": "Sa7in",
-          "english": "plate, dish",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "جَاهِز",
-          "transliteration": "jaahiz",
-          "english": "ready",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "كِزْبَرَة",
-          "transliteration": "kizbara",
-          "english": "coriander",
-          "category": "Cooking"
-        }
-      ],
       "culture": "الغدا عادة هو الوجبة الأساسية في البيت الخليجي والرز حاضر فيه تقريبا كل يوم. لما ينحط الأكل يقولون \"تفضلوا\" ويرد الناس \"الله يعطيك العافية\"، وعلى الأكل يقولون \"بالعافية\".",
       "exercises": [
         {
@@ -1693,56 +1543,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فُول",
-          "transliteration": "fool",
-          "english": "fava beans",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حِلُو",
-          "transliteration": "7ilu",
-          "english": "sweet, nice",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "مَالِح",
-          "transliteration": "maali7",
-          "english": "salty",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حَارّ",
-          "transliteration": "7aarr",
-          "english": "spicy",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حَامِض",
-          "transliteration": "7aamiDh",
-          "english": "sour",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "دِجَاج",
-          "transliteration": "dijaaj",
-          "english": "chicken",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "سِمَچ",
-          "transliteration": "simach",
-          "english": "fish",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حَلَوِيَّات",
-          "transliteration": "7alawiyyaat",
-          "english": "sweets",
-          "category": "Likes and dislikes"
-        }
-      ],
       "culture": "لما تكون ضيف عند أحد، ما تقول للمضيّف \"ما يعجبني\"؛ الأدب إنك تقول \"الحمد لله، شبعت\". والكل يسأل عن الحلال أول، وما فيه أحد يستغرب لو قلت إنك ما تاكل لحم الخنزير.",
       "exercises": [
         {
@@ -2166,56 +1966,6 @@
             "transliteration": "ee, 3indi azrag.",
             "english": "Yes, I have blue."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "غَالِي",
-          "transliteration": "ghaali",
-          "english": "expensive",
-          "category": "At the market"
-        },
-        {
-          "arabic": "رَخِيص",
-          "transliteration": "rakhees",
-          "english": "cheap",
-          "category": "At the market"
-        },
-        {
-          "arabic": "خَصِم",
-          "transliteration": "khaSim",
-          "english": "discount",
-          "category": "At the market"
-        },
-        {
-          "arabic": "سِعِر",
-          "transliteration": "si3ir",
-          "english": "price",
-          "category": "At the market"
-        },
-        {
-          "arabic": "عَرْض",
-          "transliteration": "3arD",
-          "english": "offer",
-          "category": "At the market"
-        },
-        {
-          "arabic": "كِيس",
-          "transliteration": "kees",
-          "english": "bag",
-          "category": "At the market"
-        },
-        {
-          "arabic": "مَحَل",
-          "transliteration": "ma7all",
-          "english": "shop",
-          "category": "At the market"
-        },
-        {
-          "arabic": "بِكَم",
-          "transliteration": "bikam",
-          "english": "how much",
-          "category": "At the market"
         }
       ],
       "culture": "Bargaining is normal in the souks, such as the gold and spice souks in Dubai or Souq Mubarakiya in Kuwait, but not in malls or supermarkets with fixed prices. Keep it friendly: greet first, ask nicely for a bit less, and accept the seller's \"آخر سعر\" gracefully.",

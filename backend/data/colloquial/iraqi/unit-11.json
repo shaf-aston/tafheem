@@ -255,56 +255,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "ضِيف",
-          "transliteration": "Deef",
-          "english": "guest",
-          "category": "Arriving as a guest"
-        },
-        {
-          "arabic": "بَاب",
-          "transliteration": "baab",
-          "english": "door",
-          "category": "Arriving as a guest"
-        },
-        {
-          "arabic": "جِزْمَة",
-          "transliteration": "jizma",
-          "english": "shoes",
-          "category": "Arriving as a guest"
-        },
-        {
-          "arabic": "سَيَّارَة",
-          "transliteration": "sayyaara",
-          "english": "car",
-          "category": "Arriving as a guest"
-        },
-        {
-          "arabic": "بَيْت",
-          "transliteration": "beet",
-          "english": "house",
-          "category": "Arriving as a guest"
-        },
-        {
-          "arabic": "زِيَارَة",
-          "transliteration": "ziyaara",
-          "english": "visit",
-          "category": "Arriving as a guest"
-        },
-        {
-          "arabic": "عِنْوَان",
-          "transliteration": "3inwaan",
-          "english": "address",
-          "category": "Arriving as a guest"
-        },
-        {
-          "arabic": "هَدِيَّة",
-          "transliteration": "hadiyya",
-          "english": "gift",
-          "category": "Arriving as a guest"
-        }
-      ],
       "culture": "In Iraqi homes shoes usually come off at the door, and a guest arriving with sweets, fruit or a small box of something is thanking the host quietly. The host answers a compliment or a gift with a warm \"alla ykhalliik\" and never makes the guest feel he owes anything.",
       "exercises": [
         {
@@ -740,56 +690,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "جَرَس",
-          "transliteration": "jaras",
-          "english": "doorbell",
-          "category": "Welcoming guests"
-        },
-        {
-          "arabic": "جَاكِيت",
-          "transliteration": "jaakeet",
-          "english": "jacket",
-          "category": "Welcoming guests"
-        },
-        {
-          "arabic": "مِيز",
-          "transliteration": "meez",
-          "english": "table",
-          "category": "Welcoming guests"
-        },
-        {
-          "arabic": "تِلِفِزْيُون",
-          "transliteration": "tilifizyoon",
-          "english": "television",
-          "category": "Welcoming guests"
-        },
-        {
-          "arabic": "جَهَّال",
-          "transliteration": "jahhaal",
-          "english": "children",
-          "category": "Welcoming guests"
-        },
-        {
-          "arabic": "جَلْسَة",
-          "transliteration": "jalsa",
-          "english": "gathering",
-          "category": "Welcoming guests"
-        },
-        {
-          "arabic": "سُكَّر",
-          "transliteration": "sukkar",
-          "english": "sugar",
-          "category": "Welcoming guests"
-        },
-        {
-          "arabic": "چَاي",
-          "transliteration": "chaay",
-          "english": "tea",
-          "category": "Welcoming guests"
-        }
-      ],
       "culture": "The first thing an Iraqi host offers is tea, poured into small waisted glasses and often sweet, and a guest who says \"no, don't trouble yourself\" once is usually offered again. \"bwujoodkum\" (by your presence) is how the host turns a compliment back onto the guest.",
       "exercises": [
         {
@@ -1208,56 +1108,6 @@
             "transliteration": "sa77tayn w 3aafya",
             "english": "Health and wellness to you."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "سُفْرَة",
-          "transliteration": "sufra",
-          "english": "dining table",
-          "category": "At the table"
-        },
-        {
-          "arabic": "عَشَا",
-          "transliteration": "3asha",
-          "english": "dinner",
-          "category": "At the table"
-        },
-        {
-          "arabic": "أَكْلَة",
-          "transliteration": "akla",
-          "english": "dish, meal",
-          "category": "At the table"
-        },
-        {
-          "arabic": "خُبُز",
-          "transliteration": "khubuz",
-          "english": "bread",
-          "category": "At the table"
-        },
-        {
-          "arabic": "حِلُو",
-          "transliteration": "7ilu",
-          "english": "dessert",
-          "category": "At the table"
-        },
-        {
-          "arabic": "شَبْعَان",
-          "transliteration": "shab3aan",
-          "english": "full",
-          "category": "At the table"
-        },
-        {
-          "arabic": "بَعَد",
-          "transliteration": "ba3ad",
-          "english": "more",
-          "category": "At the table"
-        },
-        {
-          "arabic": "بَارِد",
-          "transliteration": "baarid",
-          "english": "cold",
-          "category": "At the table"
         }
       ],
       "culture": "An Iraqi host presses a guest to take more several times, and a first \"no\" is not taken as final. The standard compliment to the cook is \"tislam iidak\", and \"sa77tayn\" (two healths) is what you say to someone who has just eaten.",
@@ -1682,56 +1532,6 @@
             "transliteration": "akiid, adugg 3aleekum",
             "english": "Of course, I'll call you."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "ضِيَافَة",
-          "transliteration": "Diyaafa",
-          "english": "hospitality",
-          "category": "Leaving and thanking"
-        },
-        {
-          "arabic": "وَكِت",
-          "transliteration": "wakit",
-          "english": "time",
-          "category": "Leaving and thanking"
-        },
-        {
-          "arabic": "عَزِيمَة",
-          "transliteration": "3azeema",
-          "english": "invitation",
-          "category": "Leaving and thanking"
-        },
-        {
-          "arabic": "أَهِل",
-          "transliteration": "ahil",
-          "english": "family",
-          "category": "Leaving and thanking"
-        },
-        {
-          "arabic": "تِسْلَم",
-          "transliteration": "tislam",
-          "english": "thank you (lit. be safe)",
-          "category": "Leaving and thanking"
-        },
-        {
-          "arabic": "عَاشَت إِيدَك",
-          "transliteration": "3aashat eedak",
-          "english": "thanks (lit. long live your hand)",
-          "category": "Leaving and thanking"
-        },
-        {
-          "arabic": "دَايْمًا",
-          "transliteration": "daayman",
-          "english": "always",
-          "category": "Leaving and thanking"
-        },
-        {
-          "arabic": "مَعَ السَّلَامَة",
-          "transliteration": "ma3a s-salaama",
-          "english": "goodbye",
-          "category": "Leaving and thanking"
         }
       ],
       "culture": "An Iraqi host protests when guests say they must go, and pressing them to stay is politeness, not a real attempt to hold them. Thanks go both ways with \"y3atiikum il-3aafya\" and \"bwujoodkum\", and the host often walks the guests to the door or car and waits until they leave.",

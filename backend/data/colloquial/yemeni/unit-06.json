@@ -233,56 +233,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فُسْتَان",
-          "transliteration": "fustaan",
-          "english": "dress",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قَمِيص",
-          "transliteration": "gameeS",
-          "english": "shirt",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "مَقَاس",
-          "transliteration": "magaas",
-          "english": "size",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "بَنْطَلُون",
-          "transliteration": "banTaloon",
-          "english": "trousers",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "ضَيِّق",
-          "transliteration": "Dayyig",
-          "english": "tight",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "وَاسِع",
-          "transliteration": "waasi3",
-          "english": "loose, big",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قُمَاش",
-          "transliteration": "gumaash",
-          "english": "fabric",
-          "category": "Clothes"
-        },
-        {
-          "arabic": "قُطْن",
-          "transliteration": "guTn",
-          "english": "cotton",
-          "category": "Clothes"
-        }
-      ],
       "culture": "In Sana'a markets, shopkeepers take time with customers and trying clothes on is expected; saying something doesn't fit is normal and polite. Islamic greetings and the phrase الحمد لله are used often in daily conversation.",
       "exercises": [
         {
@@ -637,56 +587,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "لَوْن",
-          "transliteration": "lawn",
-          "english": "colour",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَزْرَق",
-          "transliteration": "azrag",
-          "english": "blue",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَحْمَر",
-          "transliteration": "a7mar",
-          "english": "red",
-          "category": "Colours"
-        },
-        {
-          "arabic": "رَمَادِي",
-          "transliteration": "ramaadi",
-          "english": "grey",
-          "category": "Colours"
-        },
-        {
-          "arabic": "فَاتِح",
-          "transliteration": "faati7",
-          "english": "light (colour)",
-          "category": "Colours"
-        },
-        {
-          "arabic": "غَامِق",
-          "transliteration": "ghaamig",
-          "english": "dark (colour)",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَخْضَر",
-          "transliteration": "akhDar",
-          "english": "green",
-          "category": "Colours"
-        },
-        {
-          "arabic": "أَصْفَر",
-          "transliteration": "aSfar",
-          "english": "yellow",
-          "category": "Colours"
-        }
-      ],
       "culture": "In Sana'a, color choice is important and shopkeepers enjoy helping customers decide. Negative comments about appearance are given kindly and taken constructively, never as rudeness.",
       "exercises": [
         {
@@ -1034,56 +934,6 @@
             "transliteration": "ma agdar, ma fi li rib7",
             "english": "I can't, I make no profit."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "غَالِي",
-          "transliteration": "ghaali",
-          "english": "expensive",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "أَرْخَص",
-          "transliteration": "arkhaS",
-          "english": "cheaper",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "سِعْر",
-          "transliteration": "si3r",
-          "english": "price",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "تَخْفِيض",
-          "transliteration": "takhfeeD",
-          "english": "discount",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "أَلْف",
-          "transliteration": "alf",
-          "english": "thousand",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "رِبْح",
-          "transliteration": "rib7",
-          "english": "profit",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "كُلّ شَيْء",
-          "transliteration": "kull shay2",
-          "english": "everything",
-          "category": "Bargaining"
-        },
-        {
-          "arabic": "اِتَّفَقْنَا",
-          "transliteration": "ittafagna",
-          "english": "we agreed",
-          "category": "Bargaining"
         }
       ],
       "culture": "Bargaining in Sana'a markets is a social custom and an expected part of buying; haggling shows respect for the shopkeeper's skill and the goods' value. Multiple rounds of back-and-forth are normal and friendly, not combative.",
@@ -1438,56 +1288,6 @@
             "transliteration": "akiid, tfaddal",
             "english": "Sure, go ahead."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "عَيْب",
-          "transliteration": "3ayb",
-          "english": "defect",
-          "category": "Returns"
-        },
-        {
-          "arabic": "فَاتُورَة",
-          "transliteration": "faatoora",
-          "english": "receipt",
-          "category": "Returns"
-        },
-        {
-          "arabic": "زَلَط",
-          "transliteration": "zalaT",
-          "english": "money",
-          "category": "Returns"
-        },
-        {
-          "arabic": "غَلَط",
-          "transliteration": "ghalaT",
-          "english": "wrong",
-          "category": "Returns"
-        },
-        {
-          "arabic": "مَقَاس",
-          "transliteration": "magaas",
-          "english": "size",
-          "category": "Returns"
-        },
-        {
-          "arabic": "أَكْبَر",
-          "transliteration": "akbar",
-          "english": "bigger",
-          "category": "Returns"
-        },
-        {
-          "arabic": "ضَمَان",
-          "transliteration": "Damaan",
-          "english": "warranty",
-          "category": "Returns"
-        },
-        {
-          "arabic": "تَبْدِيل",
-          "transliteration": "tabdeel",
-          "english": "exchange",
-          "category": "Returns"
         }
       ],
       "culture": "In Sana'a, shopkeepers prefer exchanges to cash refunds, and having the receipt makes everything easier. A genuine manufacturing defect is almost always accepted without argument or hesitation.",

@@ -12,7 +12,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.colloquial import loader
+from backend.services.colloquial import loader, wordlist
 from backend.services.colloquial.exercises import registry
 
 
@@ -147,38 +147,68 @@ def test_a_reply_is_checked_like_a_phrase():
     assert any("reply has no transliteration" in why for why in said)
 
 
-def bank(*words):
-    return [{"arabic": w, "transliteration": "t", "english": "e"} for w in words]
-
-
 EIGHT = ["بيت", "باب", "شباك", "كرسي", "طاولة", "سرير", "مطبخ", "حمام"]
+MEANINGS = {f"w{i}": {"english": f"thing {i}", "group": "home"} for i in range(9)}
 
 
-def test_a_sound_word_bank_has_no_faults():
-    assert faults(vocabulary=bank(*EIGHT)) == []
+def words_said(*arabic):
+    return {f"w{i}": {"arabic": a, "transliteration": "t"} for i, a in enumerate(arabic)}
 
 
-def test_a_thin_word_bank_is_caught():
-    assert any("fewer than 8" in why for why in faults(vocabulary=bank(*EIGHT[:5])))
+def bank_faults(said, ids=None, monkeypatch=None):
+    monkeypatch.setattr(wordlist, "meanings", lambda: MEANINGS)
+    return wordlist.bank(ids or list(said), said, "lesson")
 
 
-def test_a_word_twice_in_one_bank_is_caught():
-    assert any("repeats" in why for why in faults(vocabulary=bank(*EIGHT[:7], "بيت")))
+def test_a_topic_bank_takes_its_english_from_the_shared_list(monkeypatch):
+    words, said = bank_faults(words_said(*EIGHT), monkeypatch=monkeypatch)
+    assert said == [] and words[0] == {"id": "w0", "english": "thing 0", "category": "home",
+                                        "arabic": "بيت", "transliteration": "t"}
 
 
-def test_a_latin_or_cyrillic_letter_in_a_word_is_caught():
+def test_a_topic_with_no_words_said_yet_is_coming_but_half_is_caught(monkeypatch):
+    ids = [f"w{i}" for i in range(8)]
+    assert bank_faults({}, ids, monkeypatch) == ([], [])
+    assert any("no word for w7" in why for why in bank_faults(words_said(*EIGHT[:7]), ids, monkeypatch)[1])
+
+
+def test_a_word_twice_in_one_topic_is_caught(monkeypatch):
+    assert any("repeats" in why for why in bank_faults(words_said(*EIGHT[:7], "بيت"), monkeypatch=monkeypatch)[1])
+
+
+def test_a_latin_or_cyrillic_letter_in_a_word_is_caught(monkeypatch):
     for slip in ("بيتa", "бيت"):
-        assert any("non-Arabic letter" in why for why in faults(vocabulary=bank(*EIGHT[:7], slip)))
+        assert any("non-Arabic letter" in why for why in bank_faults(words_said(*EIGHT[:7], slip), monkeypatch=monkeypatch)[1])
 
 
-def test_a_phrase_in_the_word_bank_is_caught():
-    assert any("not a word" in why for why in faults(vocabulary=bank(*EIGHT[:7], "انا رايح عالبيت")))
+def test_a_phrase_is_caught_but_two_gender_forms_are_one_word(monkeypatch):
+    phrase = words_said(*EIGHT[:7], "انا رايح عالبيت")
+    assert any("not a word" in why for why in bank_faults(phrase, monkeypatch=monkeypatch)[1])
+    paired = words_said(*EIGHT[:7], "تعبان / تعبانة")
+    paired["w7"]["transliteration"] = "ta3baan / ta3baane"
+    assert bank_faults(paired, monkeypatch=monkeypatch)[1] == []
+    paired["w7"]["transliteration"] = "ta3baan"
+    assert any("2 forms" in why for why in bank_faults(paired, monkeypatch=monkeypatch)[1])
 
 
-def test_arabic_in_a_words_english_is_caught():
-    words = bank(*EIGHT)
-    words[0]["english"] = "house بيت"
-    assert any("Arabic letters" in why for why in faults(vocabulary=words))
+def test_arabic_in_a_words_spelling_is_caught(monkeypatch):
+    said = words_said(*EIGHT)
+    said["w0"]["transliteration"] = "beet بيت"
+    assert any("Arabic letters" in why for why in bank_faults(said, monkeypatch=monkeypatch)[1])
+
+
+def test_the_shared_list_and_the_spine_are_checked_against_each_other():
+    spine = [{"unit": "unit-01", "lessons": [{"lesson": "lesson-01", "words": ["w0", "w0", "w9"]}]}]
+    said = wordlist.outline_faults(spine, {**MEANINGS, "w8": {"english": "بيت", "group": "home"}})
+    for fault in ("fewer than 8", "'w0' twice", "'w9', which", "'w1' is taught by no topic", "Arabic letters"):
+        assert any(fault in why for why in said), fault
+
+
+def test_a_unit_file_listing_its_own_words_is_caught():
+    unit = copy.deepcopy(SOUND)
+    unit["lessons"][0]["vocabulary"] = []
+    outline = {"title": "t", "lessons": [{"lesson": "lesson-01", "title": "G", "phrases": []}]}
+    assert any("lists its own vocabulary" in why for why in loader._fill(outline, unit)[1])
 
 
 def test_a_missing_culture_note_is_caught():
@@ -394,20 +424,16 @@ def test_an_unwritten_unit_compares_as_none_and_an_unknown_lesson_404s(monkeypat
 
 def test_a_word_list_breaking_a_rule_is_refused_and_nothing_is_written():
     from backend.scripts import colloquial_word_bank as word_bank
-    before = {p: p.read_bytes() for p in (loader.data_path("colloquial_dir") / "damascene").glob("unit-*.json")}
-    thin = "## unit-01 lesson-01 Greetings\nبيت | beet | house\n\nnot a word line\n"
-    said = word_bank.load("damascene", thin)
-    assert any("fewer than 8" in why for why in said) and any("not `arabic" in why for why in said)
-    assert {p: p.read_bytes() for p in before} == before
+    path = loader.data_path("colloquial_dir") / "damascene" / wordlist.FILE
+    before = path.read_bytes()
+    broken = word_bank.dump("damascene") + "\nnot a word line\nghost | ghost | بيت | beet\n"
+    said = word_bank.load("damascene", broken)
+    assert any("not `id" in why for why in said) and any("'ghost'" in why for why in said)
+    assert path.read_bytes() == before
 
 
 def test_a_dumped_word_list_reads_back_as_the_words_on_disk():
     from backend.scripts import colloquial_word_bank as word_bank
     for folder in ("damascene", "fusha"):
-        banks, said = word_bank._read(word_bank.dump(folder))
-        on_disk = {(unit["unit"], lesson["lesson"]): [{k: w[k] for k in ("arabic", "transliteration", "english")}
-                                                      for w in lesson.get("vocabulary") or []]
-                   for _, unit in word_bank._units(folder) for lesson in unit["lessons"]}
-        read = {key: [{k: w[k] for k in ("arabic", "transliteration", "english")} for w in words]
-                for key, (_, words) in banks.items()}
-        assert said == [] and read == on_disk
+        words, said = word_bank._read(word_bank.dump(folder))
+        assert said == [] and words == wordlist.said_in(folder)

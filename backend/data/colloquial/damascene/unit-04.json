@@ -209,56 +209,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فِنْجَان",
-          "transliteration": "finjaan",
-          "english": "small cup",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "سُكَّر",
-          "transliteration": "sukkar",
-          "english": "sugar",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "سَادَة",
-          "transliteration": "saada",
-          "english": "plain, no sugar",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "مَظْبُوطَة",
-          "transliteration": "maZbooTa",
-          "english": "medium sweet",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "نَعْنَع",
-          "transliteration": "na3na3",
-          "english": "mint",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "مُرّ",
-          "transliteration": "murr",
-          "english": "bitter",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "إِبْرِيق",
-          "transliteration": "ibree2",
-          "english": "teapot, pot",
-          "category": "Coffee and tea"
-        },
-        {
-          "arabic": "حِلْوِة",
-          "transliteration": "7ilwe",
-          "english": "sweet",
-          "category": "Coffee and tea"
-        }
-      ],
       "culture": "Damascene coffee is almost always offered as a first gesture of hospitality, in homes as much as cafes. Ordering it \"mazbuu6a\" (medium-sweet) is the default when you don't specify, and asking for it \"saada\" (no sugar) or \"7elwe\" (sweet) is completely normal too.",
       "exercises": [
         {
@@ -630,56 +580,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "مِنْيُو",
-          "transliteration": "menyu",
-          "english": "menu",
-          "category": "The menu"
-        },
-        {
-          "arabic": "مَشَاوِي",
-          "transliteration": "mashaawi",
-          "english": "grills",
-          "category": "The menu"
-        },
-        {
-          "arabic": "مُقَبِّلَات",
-          "transliteration": "mu2abbilaat",
-          "english": "starters",
-          "category": "The menu"
-        },
-        {
-          "arabic": "نَبَاتِي",
-          "transliteration": "nabaati",
-          "english": "vegetarian",
-          "category": "The menu"
-        },
-        {
-          "arabic": "طَبَق",
-          "transliteration": "Taba2",
-          "english": "dish",
-          "category": "The menu"
-        },
-        {
-          "arabic": "فَتُّوش",
-          "transliteration": "fattoosh",
-          "english": "fattoush",
-          "category": "The menu"
-        },
-        {
-          "arabic": "خَفِيف",
-          "transliteration": "khafeef",
-          "english": "light",
-          "category": "The menu"
-        },
-        {
-          "arabic": "حَلْوَيَات",
-          "transliteration": "7alawiyyaat",
-          "english": "desserts",
-          "category": "The menu"
-        }
-      ],
       "culture": "Menus in Damascus often list only Arabic, so asking \"3andkon menu bl ingliizi\" is a completely normal, non-awkward question. Waiters expect and enjoy being asked \"shoo btinsa7ni\" (what do you recommend), it's seen as trusting their judgment.",
       "exercises": [
         {
@@ -1039,56 +939,6 @@
             "transliteration": "akiid, halla2 bjiiblak",
             "english": "Sure, I'll bring it now."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "طَلَب",
-          "transliteration": "Talab",
-          "english": "order",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "حُمُّص",
-          "transliteration": "7ummuS",
-          "english": "hummus",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "تَبُّولِة",
-          "transliteration": "tabbule",
-          "english": "tabbouleh",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "سَلَطَة",
-          "transliteration": "salaTa",
-          "english": "salad",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "كَاسِة",
-          "transliteration": "kaase",
-          "english": "glass",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "سْرِيع",
-          "transliteration": "sree3",
-          "english": "quick",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "نَفْس",
-          "transliteration": "nafs",
-          "english": "the same",
-          "category": "Ordering"
-        },
-        {
-          "arabic": "جَاهْزِين",
-          "transliteration": "jaahzeen",
-          "english": "ready (plural)",
-          "category": "Ordering"
         }
       ],
       "culture": "Ordering everything at once when the waiter first comes is common, since asking for things one at a time can feel like you're making them run back and forth. Saying \"mnshaan ykuun sarii3\" is a polite, normal way to signal you're in a hurry without being rude.",
@@ -1453,56 +1303,6 @@
             "transliteration": "la2, ma fii khasem lyoom",
             "english": "No, no discount today."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "دَفْع",
-          "transliteration": "daf3",
-          "english": "payment",
-          "category": "Paying"
-        },
-        {
-          "arabic": "كَاش",
-          "transliteration": "kaash",
-          "english": "cash",
-          "category": "Paying"
-        },
-        {
-          "arabic": "كَرْت",
-          "transliteration": "kart",
-          "english": "card",
-          "category": "Paying"
-        },
-        {
-          "arabic": "بَقْشِيش",
-          "transliteration": "ba2sheesh",
-          "english": "tip",
-          "category": "Paying"
-        },
-        {
-          "arabic": "بَاقِي",
-          "transliteration": "baa2i",
-          "english": "change",
-          "category": "Paying"
-        },
-        {
-          "arabic": "فَاتُورَة",
-          "transliteration": "faatoora",
-          "english": "receipt",
-          "category": "Paying"
-        },
-        {
-          "arabic": "مِيِّة",
-          "transliteration": "miyye",
-          "english": "hundred",
-          "category": "Paying"
-        },
-        {
-          "arabic": "حْسَاب",
-          "transliteration": "7saab",
-          "english": "bill",
-          "category": "Paying"
         }
       ],
       "culture": "Insisting on paying, even after someone offers to split, is a common social dance, expect at least one round of polite refusal before the bill actually gets settled. Saying \"tislam iidak\" to whoever cooked or served is a warm, genuine way to end the meal, more personal than a plain thank you.",

@@ -253,56 +253,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "خْضْرَة",
-          "transliteration": "khoDra",
-          "english": "vegetables",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "مْطِيشَة",
-          "transliteration": "mTeesha",
-          "english": "tomatoes",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "خْيَار",
-          "transliteration": "khyaar",
-          "english": "cucumber",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "بْصْلَة",
-          "transliteration": "bSla",
-          "english": "onion",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "تُومَة",
-          "transliteration": "tooma",
-          "english": "garlic",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "بْطَاطَا",
-          "transliteration": "bTaaTa",
-          "english": "potatoes",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "مْعْدْنُوس",
-          "transliteration": "m3adnoos",
-          "english": "parsley",
-          "category": "Vegetables"
-        },
-        {
-          "arabic": "قْزْبْر",
-          "transliteration": "qezbar",
-          "english": "coriander",
-          "category": "Vegetables"
-        }
-      ],
       "culture": "In the neighbourhood souk and at the local vegetable stall in Casablanca or Rabat, people ask the price with bshhal and a little polite bargaining is normal, though less so with a regular seller. Prices are in dirhams per kilo, and allah y3tik s-se77a is the usual thank-you to a seller.",
       "exercises": [
         {
@@ -723,56 +673,6 @@
             "transliteration": "wakha, daba",
             "english": "Okay, right away"
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "خُبْز",
-          "transliteration": "khubz",
-          "english": "bread",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "فْرَّان",
-          "transliteration": "ferraan",
-          "english": "bakery oven",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "لْحْم",
-          "transliteration": "l7em",
-          "english": "meat",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "غْنْمِي",
-          "transliteration": "ghenmi",
-          "english": "lamb",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "كْفْتَة",
-          "transliteration": "kefta",
-          "english": "minced meat",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "بَطْبُوط",
-          "transliteration": "baTbooT",
-          "english": "flatbread",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "عْظْم",
-          "transliteration": "3aDem",
-          "english": "bone",
-          "category": "Bakery and butcher"
-        },
-        {
-          "arabic": "مْشْوِي",
-          "transliteration": "mshwi",
-          "english": "grilled",
-          "category": "Bakery and butcher"
         }
       ],
       "culture": "Almost every Moroccan neighbourhood has its own ferran (bakery or communal oven) and a butcher the family trusts, and khobz is bought fresh several times a day because it is eaten with every meal. Customers often ask the butcher to mince or cut the meat in front of them.",
@@ -1200,56 +1100,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "رُوز",
-          "transliteration": "rooz",
-          "english": "rice",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "مْلْحَة",
-          "transliteration": "mel7a",
-          "english": "salt",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "نَّار",
-          "transliteration": "naar",
-          "english": "fire, flame",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "طْبْخَة",
-          "transliteration": "Tebkha",
-          "english": "dish, recipe",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "مْغْرْفَة",
-          "transliteration": "megherfa",
-          "english": "ladle",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "مْوَاعْن",
-          "transliteration": "mwaa3en",
-          "english": "dishes",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "وَاجْدَة",
-          "transliteration": "waajda",
-          "english": "ready",
-          "category": "Cooking"
-        },
-        {
-          "arabic": "زِيت",
-          "transliteration": "zit",
-          "english": "oil",
-          "category": "Cooking"
-        }
-      ],
       "culture": "Lunch is the main meal in a Moroccan home, and the family often eats from one shared dish, such as tajine or, on Fridays, couscous, scooping it up with bread. People say bismillah before eating, and afterwards al-7amdulillah is said and the cook is thanked with allah y3tik s-se77a. A host says bs-se77a w r-rah7a (to your health and comfort) to guests as they eat.",
       "exercises": [
         {
@@ -1675,56 +1525,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "فُول",
-          "transliteration": "fool",
-          "english": "fava beans",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حْلُو",
-          "transliteration": "7lu",
-          "english": "sweet",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "مَالْح",
-          "transliteration": "maale7",
-          "english": "salty",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حَارّ",
-          "transliteration": "7aarr",
-          "english": "spicy",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حَامْض",
-          "transliteration": "7aameD",
-          "english": "sour",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "دْجَاج",
-          "transliteration": "djaaj",
-          "english": "chicken",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حُوت",
-          "transliteration": "7oot",
-          "english": "fish",
-          "category": "Likes and dislikes"
-        },
-        {
-          "arabic": "حْلْوِيَّات",
-          "transliteration": "7elwiyyaat",
-          "english": "sweets",
-          "category": "Likes and dislikes"
-        }
-      ],
       "culture": "Moroccans say they do not eat pork because they are Muslim, and the question is rarely asked outright when inviting a guest. If you dislike a host's dish, it is more polite to say al-7amdulillah, shb3t (thank God, I'm full) than to say ma kat3jebnish.",
       "exercises": [
         {
@@ -2125,56 +1925,6 @@
             "transliteration": "ah, 3andi zreq.",
             "english": "Yes, I have blue."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "غَالِي",
-          "transliteration": "ghaali",
-          "english": "expensive",
-          "category": "At the market"
-        },
-        {
-          "arabic": "رْخِيص",
-          "transliteration": "rkhees",
-          "english": "cheap",
-          "category": "At the market"
-        },
-        {
-          "arabic": "تْخْفِيض",
-          "transliteration": "tkhfeeD",
-          "english": "discount",
-          "category": "At the market"
-        },
-        {
-          "arabic": "تّْمَن",
-          "transliteration": "tmen",
-          "english": "price",
-          "category": "At the market"
-        },
-        {
-          "arabic": "بْشْحَال",
-          "transliteration": "bsh7al",
-          "english": "how much",
-          "category": "At the market"
-        },
-        {
-          "arabic": "قُفَّة",
-          "transliteration": "quffa",
-          "english": "shopping basket",
-          "category": "At the market"
-        },
-        {
-          "arabic": "كِيلُو",
-          "transliteration": "kilo",
-          "english": "kilo",
-          "category": "At the market"
-        },
-        {
-          "arabic": "وَاخَّا",
-          "transliteration": "waakha",
-          "english": "okay",
-          "category": "At the market"
         }
       ],
       "culture": "In the old medinas of Casablanca and Rabat bargaining is expected: the seller names a high price and both sides meet in the middle, usually with a greeting and a smile first. Supermarkets and shops with printed prices do not bargain.",

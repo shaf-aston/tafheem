@@ -210,56 +210,6 @@
           }
         }
       ],
-      "vocabulary": [
-        {
-          "arabic": "أَهْل",
-          "transliteration": "ahl",
-          "english": "family",
-          "category": "Family"
-        },
-        {
-          "arabic": "أُمّ",
-          "transliteration": "umm",
-          "english": "mother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أَبُو",
-          "transliteration": "abu",
-          "english": "father",
-          "category": "Family"
-        },
-        {
-          "arabic": "أَخ",
-          "transliteration": "akh",
-          "english": "brother",
-          "category": "Family"
-        },
-        {
-          "arabic": "أُخْت",
-          "transliteration": "ukht",
-          "english": "sister",
-          "category": "Family"
-        },
-        {
-          "arabic": "وَلَد",
-          "transliteration": "walad",
-          "english": "son, boy",
-          "category": "Family"
-        },
-        {
-          "arabic": "بِنْت",
-          "transliteration": "bint",
-          "english": "daughter, girl",
-          "category": "Family"
-        },
-        {
-          "arabic": "زَوْج",
-          "transliteration": "zawj",
-          "english": "husband",
-          "category": "Family"
-        }
-      ],
       "culture": "In Hejazi families, asking about relatives is a warm and immediate greeting, and people share family news openly. The greeting \"السّلام عليكم\" is used regularly among locals and visitors alike. Being married or single is discussed openly, and single status followed by \"إن شاء الله\" (God willing) is the respectful way to discuss future marriage prospects, reflecting religious and traditional values.",
       "exercises": [
         {
@@ -687,56 +637,6 @@
             "transliteration": "sitta w thalaathun riyal.",
             "english": "Thirty-six riyals."
           }
-        }
-      ],
-      "vocabulary": [
-        {
-          "arabic": "جُوعَان",
-          "transliteration": "joo3aan",
-          "english": "hungry",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَطْشَان",
-          "transliteration": "3aTshaan",
-          "english": "thirsty",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "أَكْل",
-          "transliteration": "akl",
-          "english": "food",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "قَهْوَة",
-          "transliteration": "gahwa",
-          "english": "coffee",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "شَاهِي",
-          "transliteration": "shaahi",
-          "english": "tea",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "فَلَافِل",
-          "transliteration": "falaafil",
-          "english": "falafel",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "حِسَاب",
-          "transliteration": "7isaab",
-          "english": "bill",
-          "category": "Food and drink"
-        },
-        {
-          "arabic": "عَافْيَة",
-          "transliteration": "3aafya",
-          "english": "health",
-          "category": "Food and drink"
         }
       ],
       "culture": "Hejazi hospitality is generous, and hosts take pride in serving coffee and food to guests. The phrases \"صحة وعافية\" after someone finishes eating, and \"بالعافية\" while they are still eating, are always used and answered with \"الله يعافيك\". In the holy cities, religious phrases like \"الحمد لله\" (thank God) after eating are part of everyday courtesy, and people say \"فوري\" (right away) when serving or responding to requests.",

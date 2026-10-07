@@ -8,17 +8,18 @@ import json
 import sys
 
 from backend.config import data_path
-from backend.services.colloquial import loader
+from backend.services.colloquial import loader, wordlist
 
 
-def faults(folder: str, name: str, written: dict | None = None) -> list[str]:
-    """written: the unit as it would be saved, to check it before it is; default the file on disk."""
+def faults(folder: str, name: str, written: dict | None = None, words: dict | None = None) -> list[str]:
+    """written and words: the unit and the dialect's words as they would be saved, to check
+    them before they are; default the files on disk."""
     root = data_path("colloquial_dir")
     spine = json.loads((root / "spine.json").read_text(encoding="utf-8"))["units"]
     if written is None:
         written = json.loads((root / folder / f"{name}.json").read_text(encoding="utf-8"))
     outline = next(one for one in spine if one["unit"] == name)
-    unit, said = loader._fill(outline, written)
+    unit, said = loader._fill(outline, written, wordlist.said_in(folder) if words is None else words)
     return said + loader._unit_faults(unit)
 
 
