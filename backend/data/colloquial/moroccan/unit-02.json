@@ -217,6 +217,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "عَائِلَة",
+          "transliteration": "3aa2ila",
+          "english": "family",
+          "category": "Family"
+        },
+        {
+          "arabic": "مَامَا",
+          "transliteration": "maama",
+          "english": "mum",
+          "category": "Family"
+        },
+        {
+          "arabic": "بَابَا",
+          "transliteration": "baaba",
+          "english": "dad",
+          "category": "Family"
+        },
+        {
+          "arabic": "خُو",
+          "transliteration": "khu",
+          "english": "brother",
+          "category": "Family"
+        },
+        {
+          "arabic": "أُخْت",
+          "transliteration": "ukht",
+          "english": "sister",
+          "category": "Family"
+        },
+        {
+          "arabic": "وْلْد",
+          "transliteration": "weld",
+          "english": "son, boy",
+          "category": "Family"
+        },
+        {
+          "arabic": "بْنْت",
+          "transliteration": "bent",
+          "english": "daughter, girl",
+          "category": "Family"
+        },
+        {
+          "arabic": "رَاجْل",
+          "transliteration": "raajel",
+          "english": "husband, man",
+          "category": "Family"
+        }
+      ],
       "culture": "In Morocco people often ask about family early on, and the answer usually includes where relatives live, since many families are spread between Casablanca, Rabat and abroad. Saying you are not married yet is an ordinary answer, and \"إن شاء الله\" often follows when the talk turns to marriage.",
       "exercises": [
         {
@@ -644,6 +694,56 @@
             "transliteration": "llaah y3Teek s-Sa77a.",
             "english": "May God give you health."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "جِيعَان",
+          "transliteration": "jee3aan",
+          "english": "hungry",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "عَطْشَان",
+          "transliteration": "3aTshaan",
+          "english": "thirsty",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "مَاكْلَة",
+          "transliteration": "maakla",
+          "english": "food",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "قَهْوَة",
+          "transliteration": "qahwa",
+          "english": "coffee",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "أَتَاي",
+          "transliteration": "ataay",
+          "english": "tea",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "فَلَافِل",
+          "transliteration": "falaafel",
+          "english": "falafel",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "حْسَاب",
+          "transliteration": "7saab",
+          "english": "bill",
+          "category": "Food and drink"
+        },
+        {
+          "arabic": "صَحَّة",
+          "transliteration": "Sa77a",
+          "english": "health, cheers",
+          "category": "Food and drink"
         }
       ],
       "culture": "Moroccans often share food from one plate and say \"بسم الله\" before starting and \"الحمد لله\" after. Mint tea (أتاي) is offered almost everywhere, and refusing it outright can seem cold, so a guest usually accepts at least one glass. Falafel is not a traditional Moroccan dish (people more often eat tajine, couscous or harira), but it is sold as a street snack in some cities.",
