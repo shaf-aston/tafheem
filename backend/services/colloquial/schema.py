@@ -19,13 +19,17 @@ from backend.services.colloquial.exercises.registry import PAYLOADS
 AnyExercise = Annotated[Union[tuple(PAYLOADS.values())], Field(discriminator="type")]
 
 
-class Phrase(BaseModel):
-    # The spine slot a lesson phrase fills, the same in every dialect; empty on
-    # replies and dialogue lines, which fill no slot.
-    slot: str = ""
+class Word(BaseModel):
+    """Anything said: the Arabic, how to say it, what it means."""
     arabic: str
     transliteration: str
     english: str
+
+
+class Phrase(Word):
+    # The spine slot a lesson phrase fills, the same in every dialect; empty on
+    # replies and dialogue lines, which fill no slot.
+    slot: str = ""
     reply: "Phrase | None" = None
     # A short English noun phrase a picture is looked up from. Missing means the
     # phrase has nothing to show, and no picture is invented for it.
@@ -44,11 +48,8 @@ class Drill(BaseModel):
     response: Phrase
 
 
-class VocabWord(BaseModel):
+class VocabWord(Word):
     """A single word for the word bank; dialect-owned, not a spine slot."""
-    arabic: str
-    transliteration: str
-    english: str
     category: str = ""
 
 
