@@ -11,7 +11,7 @@
  * counted once however many known words use it.
  */
 export function coverageOf(words, coverage, knownItems) {
-  if (!new Set(knownItems).size) return null
+  if (!knownItems.length) return null
   let covered = 0
   for (const at of credited(words, coverage, knownItems)) covered += coverage.counts[at]
   return covered / coverage.total
