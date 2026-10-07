@@ -219,6 +219,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "سَلَام",
+          "transliteration": "salaam",
+          "english": "peace",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَهْلاً",
+          "transliteration": "ahlan",
+          "english": "welcome",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "اِسْم",
+          "transliteration": "esm",
+          "english": "name",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "كُوَيِّس",
+          "transliteration": "kwayyis",
+          "english": "good, well",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "تَمَام",
+          "transliteration": "tamaam",
+          "english": "fine, great",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "كَمَان",
+          "transliteration": "kamaan",
+          "english": "also, too",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "مِنِين",
+          "transliteration": "mineen",
+          "english": "from where",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَنَا",
+          "transliteration": "ana",
+          "english": "I",
+          "category": "Greetings"
+        }
+      ],
       "culture": "In Cairo, people often greet with a handshake and a string of blessings and health questions, and \"السلام عليكم\" is used with strangers, shopkeepers and elders alike. Answering \"الحمد لله\" to \"إزيك؟\" is nearly automatic, even on a bad day.",
       "exercises": [
         {
@@ -625,6 +675,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "شُكْراً",
+          "transliteration": "shokran",
+          "english": "thank you",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "آسِف",
+          "transliteration": "aasif",
+          "english": "sorry",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مَعْلِش",
+          "transliteration": "ma3lesh",
+          "english": "never mind, sorry",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مُمْكِن",
+          "transliteration": "momken",
+          "english": "possible, can I",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "أَيْوَه",
+          "transliteration": "aywa",
+          "english": "yes",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "لَأ",
+          "transliteration": "la2",
+          "english": "no",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مَيَّة",
+          "transliteration": "mayya",
+          "english": "water",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "طَبْعاً",
+          "transliteration": "Tab3an",
+          "english": "of course",
+          "category": "Politeness"
+        }
+      ],
       "culture": "\"معلش\" is one of the most used words in Egypt: it softens a small apology, comforts someone, or shrugs off a minor mishap. Cairenes also love to answer thanks with a warm \"ولا يهمك\" or \"العفو\".",
       "exercises": [
         {
@@ -1027,6 +1127,56 @@
             "transliteration": "aywa, akeed.",
             "english": "Yes, definitely."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "وَاحِد",
+          "transliteration": "waa7ed",
+          "english": "one",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "اِتْنِين",
+          "transliteration": "etneen",
+          "english": "two",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "تَلَاتَة",
+          "transliteration": "talaata",
+          "english": "three",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "خَمْسَة",
+          "transliteration": "khamsa",
+          "english": "five",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "سَاعَة",
+          "transliteration": "saa3a",
+          "english": "hour, clock",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "النَّهَارْدَه",
+          "transliteration": "en-nahaarda",
+          "english": "today",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "بُكْرَه",
+          "transliteration": "bokra",
+          "english": "tomorrow",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "دِلْوَقْتِي",
+          "transliteration": "delwa2ti",
+          "english": "now",
+          "category": "Numbers and time"
         }
       ],
       "culture": "In Cairo, plans are often made loosely, and \"إن شاء الله\" is commonly added when talking about tomorrow, as in \"هشوفك بكره إن شاء الله\". \"بكره\" and \"دلوقتي\" are everyday words for planning and for the present moment.",
@@ -1439,6 +1589,56 @@
             "transliteration": "allaah yesallemak.",
             "english": "You're welcome."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُوق",
+          "transliteration": "soo2",
+          "english": "market",
+          "category": "Directions"
+        },
+        {
+          "arabic": "مَحَلّ",
+          "transliteration": "ma7all",
+          "english": "shop",
+          "category": "Directions"
+        },
+        {
+          "arabic": "يَمِين",
+          "transliteration": "yemeen",
+          "english": "right",
+          "category": "Directions"
+        },
+        {
+          "arabic": "شِمَال",
+          "transliteration": "shemaal",
+          "english": "left",
+          "category": "Directions"
+        },
+        {
+          "arabic": "قَرِيب",
+          "transliteration": "2areeb",
+          "english": "near",
+          "category": "Directions"
+        },
+        {
+          "arabic": "بَعِيد",
+          "transliteration": "ba3eed",
+          "english": "far",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هِنَا",
+          "transliteration": "hena",
+          "english": "here",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هِنَاك",
+          "transliteration": "henaak",
+          "english": "there",
+          "category": "Directions"
         }
       ],
       "culture": "Cairenes are generous with directions, and will often walk you to the corner or ask a shopkeeper to confirm. \"تسلم إيدك\" (literally \"may your hand be safe\") is a warm thanks for help or a favour, and the usual answer is \"الله يسلمك\".",

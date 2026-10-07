@@ -200,6 +200,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَبَاح",
+          "transliteration": "Sabaa7",
+          "english": "morning",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَدْرِي",
+          "transliteration": "badri",
+          "english": "early",
+          "category": "Morning"
+        },
+        {
+          "arabic": "نَعْسَان",
+          "transliteration": "na3saan",
+          "english": "sleepy",
+          "category": "Morning"
+        },
+        {
+          "arabic": "وِشّ",
+          "transliteration": "wesh",
+          "english": "face",
+          "category": "Morning"
+        },
+        {
+          "arabic": "سِنَان",
+          "transliteration": "senaan",
+          "english": "teeth",
+          "category": "Morning"
+        },
+        {
+          "arabic": "هُدُوم",
+          "transliteration": "hedoom",
+          "english": "clothes",
+          "category": "Morning"
+        },
+        {
+          "arabic": "شُغْل",
+          "transliteration": "shoghl",
+          "english": "work",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَرْد",
+          "transliteration": "bard",
+          "english": "cold",
+          "category": "Morning"
+        }
+      ],
       "culture": "Egyptians answer صباح الخير with صباح النور, and friends often play with it: صباح الفل, صباح الورد. A quick tea or coffee before leaving the house is close to universal, even on a rushed morning.",
       "exercises": [
         {
@@ -579,6 +629,56 @@
             "transliteration": "el-7amdu lillah, mafeesh gedeed",
             "english": "Praise God, nothing new."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "اِجْتِمَاع",
+          "transliteration": "egtemaa3",
+          "english": "meeting",
+          "category": "During the day"
+        },
+        {
+          "arabic": "غَدَا",
+          "transliteration": "ghada",
+          "english": "lunch",
+          "category": "During the day"
+        },
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired",
+          "category": "During the day"
+        },
+        {
+          "arabic": "ضُهْر",
+          "transliteration": "Dohr",
+          "english": "noon",
+          "category": "During the day"
+        },
+        {
+          "arabic": "اِسْتِرَاحَة",
+          "transliteration": "esteraa7a",
+          "english": "break",
+          "category": "During the day"
+        },
+        {
+          "arabic": "قَلَم",
+          "transliteration": "2alam",
+          "english": "pen",
+          "category": "During the day"
+        },
+        {
+          "arabic": "أَخْبَار",
+          "transliteration": "akhbaar",
+          "english": "news",
+          "category": "During the day"
+        },
+        {
+          "arabic": "جَنْب",
+          "transliteration": "gamb",
+          "english": "next to",
+          "category": "During the day"
         }
       ],
       "culture": "In Egypt lunch (الغدا) is the main meal of the day and is often eaten in the mid-afternoon rather than at noon, so بعد الضهر covers a long stretch. Asking for a short break with ينفع is polite, and خد راحتك is the warm, standard answer.",
@@ -963,6 +1063,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَسَاء",
+          "transliteration": "masaa2",
+          "english": "evening",
+          "category": "Evening"
+        },
+        {
+          "arabic": "بِيت",
+          "transliteration": "beet",
+          "english": "home, house",
+          "category": "Evening"
+        },
+        {
+          "arabic": "عَشَا",
+          "transliteration": "3asha",
+          "english": "dinner",
+          "category": "Evening"
+        },
+        {
+          "arabic": "دُشّ",
+          "transliteration": "dosh",
+          "english": "shower",
+          "category": "Evening"
+        },
+        {
+          "arabic": "مُسَلْسَل",
+          "transliteration": "mosalsal",
+          "english": "TV series",
+          "category": "Evening"
+        },
+        {
+          "arabic": "جَوّ",
+          "transliteration": "gaww",
+          "english": "weather",
+          "category": "Evening"
+        },
+        {
+          "arabic": "لِيل",
+          "transliteration": "leel",
+          "english": "night",
+          "category": "Evening"
+        },
+        {
+          "arabic": "صُحَاب",
+          "transliteration": "So7aab",
+          "english": "friends",
+          "category": "Evening"
+        }
+      ],
       "culture": "The reply to تصبح على خير is وإنت من أهل الخير, which does not translate word for word. Egyptian evenings start late: streets and cafés stay busy well after dinner, and a walk out with family or friends is a common way to end the day.",
       "exercises": [
         {
@@ -1337,6 +1487,56 @@
             "transliteration": "hanzel es-soo2 yoom es-sabt",
             "english": "I'll go to the market on Saturday."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "الْحَدّ",
+          "transliteration": "el-7add",
+          "english": "Sunday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْاِتْنِين",
+          "transliteration": "el-etneen",
+          "english": "Monday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "التَّلَات",
+          "transliteration": "et-talaat",
+          "english": "Tuesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْأَرْبَع",
+          "transliteration": "el-arba3",
+          "english": "Wednesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْخَمِيس",
+          "transliteration": "el-khamees",
+          "english": "Thursday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْجُمْعَة",
+          "transliteration": "el-gom3a",
+          "english": "Friday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "السَّبْت",
+          "transliteration": "es-sabt",
+          "english": "Saturday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "أُسْبُوع",
+          "transliteration": "osboo3",
+          "english": "week",
+          "category": "Days of the week"
         }
       ],
       "culture": "The working week runs Sunday to Thursday, and Friday and Saturday are the weekend for most offices. Friday is the Jumu'a prayer and family day. Sunday is said الحد in everyday speech (الأحد is the fuller form), and إمتى is the everyday word for when.",
