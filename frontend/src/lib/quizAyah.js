@@ -4,13 +4,12 @@
  * The English is Saheeh International in every language: there is no Urdu
  * translation installed.
  */
-import { getAyahEditions, getQuranAyah } from '../api'
+import { getAyahEditions, quranAyahQuery } from '../api'
 
 export const ENGLISH_EDITION = 'saheeh-en'
 
 export const ayahQueries = (surah, ayah) => [
-  // A printed ayah never changes, so once fetched it is never fetched again.
-  { queryKey: ['quran-ayah', surah, ayah], queryFn: () => getQuranAyah(surah, ayah), retry: false, staleTime: Infinity },
+  quranAyahQuery(surah, ayah),
   {
     queryKey: ['ayah-editions', surah, ayah, [ENGLISH_EDITION]],
     queryFn: () => getAyahEditions(surah, ayah, [ENGLISH_EDITION]),

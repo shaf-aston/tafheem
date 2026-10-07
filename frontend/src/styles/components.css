@@ -271,6 +271,43 @@ dialog::backdrop {
 }
 
 
+
+/* A learnt word: a soft underline, the colour the quiz uses for right. */
+.gloss-word-learnt {
+  text-decoration: underline var(--success-edge) 2px;
+  text-underline-offset: 0.5em;
+}
+
+
+/* "Show all meanings": every gloss sits under its word, always on. After the
+   hover rules, so hovering a word does not float its gloss back up. */
+.gloss-all .gloss-word[data-gloss] {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+}
+.gloss-all .gloss-word[data-gloss]::after {
+  position: static;
+  opacity: 1;
+  transform: none;
+  background: none;
+  box-shadow: none;
+  color: var(--text-dim);
+  white-space: normal;
+  max-width: 7rem;
+  text-align: center;
+  padding: 0.2rem 0 0.6rem;
+}
+/* An underline would run through the English too, so a learnt word's English
+   carries the mark instead. */
+.gloss-all .gloss-word-learnt[data-gloss] {
+  text-decoration: none;
+}
+.gloss-all .gloss-word-learnt[data-gloss]::after {
+  color: var(--success);
+}
+
 .word {
   transition:
     opacity calc(var(--motion-instant-ms) * 1ms) ease,
@@ -291,18 +328,6 @@ dialog::backdrop {
    the row; and the word itself comes up a shade, because the one you are
    reading about should be the one your eye returns to. Both are small on
    purpose: the row still has to scan as a row of equals. */
-/* The word being recited, in the word-by-word view. This card cannot be filled
-   the way a word in a line of text is: it already carries a colour for its part
-   of speech, and painting over that trades one piece of information for
-   another. A ring in that same colour instead, so both are readable at once,
-   and it never moves the card, since ten cards nudging in turn is a page that
-   twitches through a whole recitation. */
-.word-lit {
-  border-color: var(--c);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--c) 45%, transparent);
-}
-
-
 .word-open,
 .word-open:hover {
   transform: translateY(-3px) scale(1.06);
@@ -584,10 +609,19 @@ dialog::backdrop {
 }
 
 
+/* The reader's player: held to the bottom of the screen while the reader is
+   on it, settling at the reader's end. Above the phone's bottom bar there. */
+.reader-dock {
+  position: sticky;
+  bottom: 0;
+  z-index: var(--layer-sticky);
+}
+
 @media (max-width: 39.99rem) {
   .bottom-nav-room {
     padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
   }
+  .reader-dock { bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
   /* Phones keep the top bar to pen, search and settings; these move into More. */
   .phone-hide {
     display: none;
@@ -666,3 +700,30 @@ dialog::backdrop {
 .rail-arrow[disabled] { opacity: 0; pointer-events: none; }
 /* A phone swipes; the arrows would cover what they page. */
 @media (max-width: 520px) { .rail-arrow { display: none; } }
+
+
+/* ── scrolling, drawn in the page's own colours ─────────────────
+   .scroll-pane: a pane that scrolls on its own (the Quran reader's surah and
+   study). A thin thumb in the border colour, no track, and scrolling stops at
+   its ends rather than carrying the page with it. Relative, so what is placed
+   absolutely inside (a screen-reader label) is clipped with it, never left
+   hanging below the page.
+   .strip-x: a sideways strip of choices (the ayat rail, the reciters). No bar
+   at all, the ends fade to say there is more, and a wheel turns it sideways
+   (lib/useWheelX). */
+.scroll-pane {
+  position: relative;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hi) transparent;
+}
+.strip-x {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  scroll-padding-inline: 2rem;
+  mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+}
+.strip-x::-webkit-scrollbar { display: none; }

@@ -60,6 +60,8 @@ class Settings(BaseSettings):
     sentence_translation: str = "saheeh-en"
     # Word by word, each piece of a word shows up to this many of CAMeL's senses.
     sentence_senses: int = Field(default=2, gt=0)
+    # Candidate senses the model may pick from per word (CAMeL's readings, then the dictionary's).
+    sentence_candidates: int = Field(default=8, gt=0)
     # One English sentence back, plus a reasoning model's thinking.
     sentence_max_tokens: int = Field(default=1200, gt=0)
 
@@ -342,6 +344,16 @@ class Settings(BaseSettings):
     progress_learning_hours: int = 24
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
+    # Profiles (services/profile.py): a typed name, no password. Longest name allowed after cleaning.
+    profile_name_max: int = 40
+    # Names nobody may type: "local" is the record of every answer given before names existed.
+    profile_reserved: list[str] = ["local"]
+    # Checked practice sentences (services/sentence_check.py): AI tries per request,
+    # learnt words needed before asking, and particles any sentence may use.
+    sentence_max_tries: int = Field(default=3, gt=0)
+    sentence_min_learnt: int = Field(default=10, gt=0)
+    sentence_prompt_words: int = Field(default=60, gt=0)  # a random few, so prompts stay short and vary
+    sentence_free_words: list[str] = ["و", "ب", "ل", "ف", "في", "من", "على", "إلى"]
 
     # Declared because .env sets PORT and this class forbids unknown keys; dropping it fails startup.
     # The running port comes from the --port flag start.sh passes to uvicorn.

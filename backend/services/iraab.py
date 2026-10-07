@@ -15,6 +15,7 @@ from __future__ import annotations
 from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
 from backend.services.harakat import CASE_NAME
 from backend.services.nahw_book import case_of, family_cards, reason, teacher_rules
+from backend.services.syntax import teacher
 from backend.services.syntax.naming import NAMED, role_key
 
 
@@ -52,9 +53,18 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
                              reason=found["gap"]["ar"], notes=found["gap"]["en"])
             elif found["role"]:
                 _named(entry, found)
+            elif found["case"] and entry["type"] not in ("fi'l", "harf", "damir", "punc"):
+                entry["case"] = found["case"]  # no name yet: the vowel the reader typed, not CAMeL's guess
     words = signs.settle(entries)
     if len(roles) != len(words):
         return words
+    for word, found in zip(words, roles):
+        if word.get("role") in found.get("pair", {}):  # لا رجلَ: its governor names the pair, after the sign is settled
+            word["role"] = found["pair"][word["role"]]
+            word["reason"] = reason(word["role"])
+    for word in words:  # غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule
+        if teacher.tool_reason(word):
+            word["reason"] = teacher.tool_reason(word)
     _pieces_said(words, roles)
     return rule_engine.mark_condition(words, roles)
 
@@ -82,6 +92,8 @@ def _named(entry: dict, found: dict) -> None:
         entry.update(type="harf" if found["role"] in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
     elif entry.get("type") == "harf" and found["role"] and found["role"] not in (NAMED.harf, NAMED.harf_jarr):
         entry["type"] = "ism"  # أينما: a particle's card named for a place is a built noun
+    elif entry.get("type") == "ism" and found["role"] == NAMED.harf and found.get("named"):
+        entry["type"] = "harf"  # ما عدا: CAMeL's relative is the particle the reading names
     if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
         found = {**found, "case": CASE_NAME[own]}  # a recorded ayah's name brings its own case
     moved = found["case"] and found["case"] != entry.get("case")

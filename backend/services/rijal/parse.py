@@ -92,6 +92,15 @@ def _people(soup: BeautifulSoup, panel: str) -> list[tuple[int, str, str]]:
     return list(found.values())
 
 
+def _facts(soup: BeautifulSoup) -> list[dict]:
+    """Each labelled fact as the page prints it in both languages: its English and Arabic labels, in page order, paired."""
+    def side(labels):
+        return [(_text(label), _text(label.parent.find(class_=["field", "lineage"]))) for label in labels]
+    en = side(label for label in soup.select("span.label") if "arabic-label" not in label["class"])
+    ar = side(soup.select("span.label.arabic-label"))
+    return [{"label_en": le, "en": ve, "label_ar": la, "ar": va} for (le, ve), (la, va) in zip(en, ar) if ve or va]
+
+
 def narrator(html: str) -> dict:
     """One narrator page: names, grade, the labelled facts, appraisals, teachers, students and the classical texts."""
     # The site joins book and author with an em dash; the app never prints one.
@@ -112,7 +121,9 @@ def narrator(html: str) -> dict:
         "grade_ar": _text(soup.select_one("div.pill-grade .arabic")),
         "grade_rank": int(rank.group(1)) if rank else None,
         "years": _text(soup.select_one("span.pill-secondary:not(.arabic)")),
-        "books_ar": [_text(p) for p in soup.select("span.pill-outline.arabic")],
+        "books": [{"en": _text(en), "ar": _text(ar)} for en, ar in
+                  zip(soup.select("span.pill-outline:not(.arabic)"), soup.select("span.pill-outline.arabic"))],
+        "facts": _facts(soup),
         "verdicts": [(_text(v.select_one(".verdict-scholar")), _text(v.select_one(".critic-quote")))
                      for v in soup.select("div.verdict")],
         "teachers": _people(soup, "teachers"),

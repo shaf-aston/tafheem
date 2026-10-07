@@ -13,7 +13,7 @@ from __future__ import annotations
 import numpy as np
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.nahw_book import is_one, is_plain_noun, vetoes
+from backend.services.nahw_book import is_one, is_plain_noun, is_subject_pronoun, vetoes
 from backend.services.harakat import CAMEL_CASE
 
 
@@ -22,9 +22,10 @@ def _verb_subject_follows(toks, add_rel) -> None:
     mubtada (the parser's topic), so SBJ is ruled out. A noun typed with fatha
     or tanween-fath stays open: it is a fronted object. OBJ and MOD go
     with it, since an untyped noun before its verb is no object either, so
-    what is left is the topic (الطعامَ أكل الولدُ)."""
+    what is left is the topic (الطعامَ أكل الولدُ). A detached pronoun of raf' (أنتَ تكتبُ)
+    is the same, its fatha being no case."""
     for d, dep in enumerate(toks, 1):
-        if not is_plain_noun(dep) or dep.get("case") == "a":
+        if not (is_subject_pronoun(dep) or (is_plain_noun(dep) and dep.get("case") != "a")):
             continue
         for h in range(d + 1, len(toks) + 1):
             if toks[h - 1]["pos"].startswith("VRB"):
@@ -99,11 +100,11 @@ def _topic_carries_its_verb(toks, heads, rels) -> None:
     """الوَلَدُ يَكْتُبُ: a noun before its verb is the mubtada and the verb's clause its
     khabar (Tasheel 1.4.4 p11), so the verb hangs on the noun. The parser, barred from
     making the noun the verb's subject, hangs it under the verb as a bare topic instead.
-    A noun in nasb is left: it is a fronted object."""
+    A noun in nasb is left: it is a fronted object. A detached pronoun of raf' is one too."""
     for d, dep in enumerate(toks, 1):
         h = heads[d - 1]
         if not (h > d and toks[h - 1]["pos"].startswith("VRB") and rels[d - 1] in ("---", "TPC")
-                and is_plain_noun(dep) and _case(dep) not in ("a", "i")):
+                and (is_subject_pronoun(dep) or (is_plain_noun(dep) and _case(dep) not in ("a", "i")))):
             continue
         heads[d - 1], rels[d - 1] = heads[h - 1], rels[h - 1]
         heads[h - 1], rels[h - 1] = d, "---"
@@ -159,10 +160,31 @@ def _ma_cancels_inna(toks, heads, rels) -> None:
         rels[m - 1] = "MOD"
 
 
+def _exception_word_by_case(toks, heads, rels) -> None:
+    """جاء القومُ خلا زيدًا، خلا زيدٍ، خلا البيتُ: خلا، عدا، حاشا with a noun straight after read
+    by that noun's typed vowel (Tasheel 3.8.7). Nasb: a past verb (its doer hidden) and the noun
+    its object. Jarr: a preposition and the noun its majrur. Raf': the ordinary verb and the noun
+    its doer. After ما only the verb stands (ما عدا زيدًا). The parser's tags are written over."""
+    for d, dep in enumerate(toks[:-1], 1):
+        after = toks[d]
+        if (dep.get("token_type") != "baseword" or after["pos"] not in ("NOM", "PROP")
+                or after.get("form", "").startswith("+") or not is_one(dep.get("form", ""), "istithna_verbs")
+                or _above(heads, d, d + 1)):
+            continue
+        case, verb = _case(after), d > 1 and is_one(strip_diacritics(toks[d - 2].get("form", "")), "istithna_verbs", "masdar_ma")
+        if case == "i" and not verb:
+            dep.update(pos="PRT", pos_camel="prep")
+            heads[d], rels[d] = d, "OBJ"
+        elif case in ("a", "u"):
+            dep.update(pos="VRB", pos_camel="verb", asp="p", vox="a", per="3", gen="m", num="s")
+            heads[d], rels[d] = d, "OBJ" if case == "a" else "SBJ"
+
+
 _LINKS = {"pointer_heads_its_noun": _pointer_heads_its_noun,
           "ma_cancels_inna": _ma_cancels_inna,
           "listed_preposition_takes_majrur": _listed_preposition_takes_majrur,
           "topic_carries_its_verb": _topic_carries_its_verb,
+          "exception_word_by_case": _exception_word_by_case,
           "inner_sentence": _inner_sentence}
 
 

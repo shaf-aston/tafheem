@@ -32,7 +32,7 @@ CREATE TABLE narrator (
     grade_rank INTEGER, generation_ar TEXT NOT NULL DEFAULT '', years TEXT NOT NULL DEFAULT '',
     lineage_ar TEXT NOT NULL DEFAULT '', nisba_ar TEXT NOT NULL DEFAULT '', city_ar TEXT NOT NULL DEFAULT '',
     profession_ar TEXT NOT NULL DEFAULT '', school_ar TEXT NOT NULL DEFAULT '',
-    hadith_total INTEGER, books_ar TEXT NOT NULL DEFAULT '[]', texts TEXT NOT NULL DEFAULT '[]'
+    hadith_total INTEGER, books TEXT NOT NULL DEFAULT '[]', facts TEXT NOT NULL DEFAULT '[]', texts TEXT NOT NULL DEFAULT '[]'
 );
 CREATE TABLE verdict (narrator_id INTEGER NOT NULL, ord INTEGER NOT NULL, scholar TEXT NOT NULL, quote TEXT NOT NULL);
 CREATE INDEX verdict_by_narrator ON verdict (narrator_id, ord);
@@ -46,6 +46,7 @@ CREATE INDEX mention_by_book ON mention (collection, book, number, part, ord);
 CREATE INDEX mention_by_narrator ON mention (narrator_id);
 CREATE VIRTUAL TABLE narrator_fts USING fts5(name_ar, name_en, kunya_ar, lineage_ar);
 """
+_JSON = ("books", "facts", "texts")
 _PLAIN = ("name_en", "name_ar", "kunya_ar", "grade_en", "grade_ar", "grade_rank", "generation_ar", "years",
           "lineage_ar", "nisba_ar", "city_ar", "profession_ar", "school_ar", "hadith_total")
 
@@ -54,15 +55,14 @@ def add_narrators(conn: sqlite3.Connection) -> int:
     """A row per cached narrator page, then a bare row (names only) for each teacher or student never fetched."""
     heard: dict[int, tuple[str, str]] = {}
     count = 0
-    columns = ", ".join(("id", "books_ar", "texts", *_PLAIN))
+    columns = ", ".join(("id", *_JSON, *_PLAIN))
     for who, page in cache.narrator_pages():
         html = cache.read(page)
         if not html:
             continue
         found = parse.narrator(html)
-        conn.execute(f"INSERT INTO narrator ({columns}) VALUES ({', '.join('?' * (len(_PLAIN) + 3))})",
-                     (who, json.dumps(found["books_ar"], ensure_ascii=False),
-                      json.dumps(found["texts"], ensure_ascii=False), *(found[f] for f in _PLAIN)))
+        conn.execute(f"INSERT INTO narrator ({columns}) VALUES ({', '.join('?' * (1 + len(_JSON) + len(_PLAIN)))})",
+                     (who, *(json.dumps(found[f], ensure_ascii=False) for f in _JSON), *(found[f] for f in _PLAIN)))
         conn.executemany("INSERT INTO verdict VALUES (?, ?, ?, ?)",
                          [(who, i, *v) for i, v in enumerate(found["verdicts"])])
         for other, name_ar, name_en in found["teachers"]:

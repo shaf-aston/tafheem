@@ -132,7 +132,7 @@ def _verb(card: dict) -> dict:
     # تُطَوَّقَ، كُتِبَ: the vowels show who is not named, so the card says so
     voiced = f"{tense} {said['passive']}" if aspect != "c" and (
         card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i")) else tense
-    told = said["verb_by_family"].format(tense=voiced, state=state, **family) if family else f"{voiced} {state}"
+    told = said["verb_by_family"].format(tense=voiced, state=state, **family).rstrip("، ") if family else f"{voiced} {state}"
     return {"case": case, "sign": shown, "reason": f"{told}. {reason(tense)}"}
 
 

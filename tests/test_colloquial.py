@@ -12,7 +12,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.colloquial import loader
+from backend.services.colloquial import loader, wordlist
 from backend.services.colloquial.exercises import registry
 
 
@@ -145,6 +145,70 @@ def test_an_empty_phrase_field_is_caught():
 def test_a_reply_is_checked_like_a_phrase():
     said = faults(phrases=[{**phrase(), "reply": {"arabic": "أهلا", "transliteration": "", "english": "Hi"}}])
     assert any("reply has no transliteration" in why for why in said)
+
+
+EIGHT = ["بيت", "باب", "شباك", "كرسي", "طاولة", "سرير", "مطبخ", "حمام"]
+MEANINGS = {f"w{i}": {"english": f"thing {i}", "group": "home"} for i in range(9)}
+
+
+def words_said(*arabic):
+    return {f"w{i}": {"arabic": a, "transliteration": "t"} for i, a in enumerate(arabic)}
+
+
+def bank_faults(said, ids=None, monkeypatch=None):
+    monkeypatch.setattr(wordlist, "meanings", lambda: MEANINGS)
+    return wordlist.bank(ids or list(said), said, "lesson")
+
+
+def test_a_topic_bank_takes_its_english_from_the_shared_list(monkeypatch):
+    words, said = bank_faults(words_said(*EIGHT), monkeypatch=monkeypatch)
+    assert said == [] and words[0] == {"id": "w0", "english": "thing 0", "category": "home",
+                                        "arabic": "بيت", "transliteration": "t"}
+
+
+def test_a_topic_with_no_words_said_yet_is_coming_but_half_is_caught(monkeypatch):
+    ids = [f"w{i}" for i in range(8)]
+    assert bank_faults({}, ids, monkeypatch) == ([], [])
+    assert any("no word for w7" in why for why in bank_faults(words_said(*EIGHT[:7]), ids, monkeypatch)[1])
+
+
+def test_a_word_twice_in_one_topic_is_caught(monkeypatch):
+    assert any("repeats" in why for why in bank_faults(words_said(*EIGHT[:7], "بيت"), monkeypatch=monkeypatch)[1])
+
+
+def test_a_latin_or_cyrillic_letter_in_a_word_is_caught(monkeypatch):
+    for slip in ("بيتa", "бيت"):
+        assert any("non-Arabic letter" in why for why in bank_faults(words_said(*EIGHT[:7], slip), monkeypatch=monkeypatch)[1])
+
+
+def test_a_phrase_is_caught_but_two_gender_forms_are_one_word(monkeypatch):
+    phrase = words_said(*EIGHT[:7], "انا رايح عالبيت")
+    assert any("not a word" in why for why in bank_faults(phrase, monkeypatch=monkeypatch)[1])
+    paired = words_said(*EIGHT[:7], "تعبان / تعبانة")
+    paired["w7"]["transliteration"] = "ta3baan / ta3baane"
+    assert bank_faults(paired, monkeypatch=monkeypatch)[1] == []
+    paired["w7"]["transliteration"] = "ta3baan"
+    assert any("2 forms" in why for why in bank_faults(paired, monkeypatch=monkeypatch)[1])
+
+
+def test_arabic_in_a_words_spelling_is_caught(monkeypatch):
+    said = words_said(*EIGHT)
+    said["w0"]["transliteration"] = "beet بيت"
+    assert any("Arabic letters" in why for why in bank_faults(said, monkeypatch=monkeypatch)[1])
+
+
+def test_the_shared_list_and_the_spine_are_checked_against_each_other():
+    spine = [{"unit": "unit-01", "lessons": [{"lesson": "lesson-01", "words": ["w0", "w0", "w9"]}]}]
+    said = wordlist.outline_faults(spine, {**MEANINGS, "w8": {"english": "بيت", "group": "home"}})
+    for fault in ("fewer than 8", "'w0' twice", "'w9', which", "'w1' is taught by no topic", "Arabic letters"):
+        assert any(fault in why for why in said), fault
+
+
+def test_a_unit_file_listing_its_own_words_is_caught():
+    unit = copy.deepcopy(SOUND)
+    unit["lessons"][0]["vocabulary"] = []
+    outline = {"title": "t", "lessons": [{"lesson": "lesson-01", "title": "G", "phrases": []}]}
+    assert any("lists its own vocabulary" in why for why in loader._fill(outline, unit)[1])
 
 
 def test_a_missing_culture_note_is_caught():
@@ -356,3 +420,20 @@ def test_an_unwritten_unit_compares_as_none_and_an_unknown_lesson_404s(monkeypat
     assert got["dialects"][1]["phrases"] is None and got["dialects"][0]["phrases"]
     assert TestClient(app).get("/api/colloquial/compare/unit-03/lesson-99").status_code == 404
     assert TestClient(app).get("/api/colloquial/compare/unit-99/lesson-01").status_code == 404
+
+
+def test_a_word_list_breaking_a_rule_is_refused_and_nothing_is_written():
+    from backend.scripts import colloquial_word_bank as word_bank
+    path = loader.data_path("colloquial_dir") / "damascene" / wordlist.FILE
+    before = path.read_bytes()
+    broken = word_bank.dump("damascene") + "\nnot a word line\nghost | ghost | بيت | beet\n"
+    said = word_bank.load("damascene", broken)
+    assert any("not `id" in why for why in said) and any("'ghost'" in why for why in said)
+    assert path.read_bytes() == before
+
+
+def test_a_dumped_word_list_reads_back_as_the_words_on_disk():
+    from backend.scripts import colloquial_word_bank as word_bank
+    for folder in ("damascene", "fusha"):
+        words, said = word_bank._read(word_bank.dump(folder))
+        assert said == [] and words == wordlist.said_in(folder)

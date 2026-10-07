@@ -70,12 +70,18 @@
   white-space: nowrap;
 }
 
-/* One written word cut into pieces (فَـ لْـ يَصُمْهُ) is drawn once across its
-   pieces' columns: the pieces close, joined as the script joins them, on one
-   line that marks them as one word. */
-.tk-word.tk-written > span { border-bottom-color: color-mix(in srgb, var(--primary) 55%, transparent); }
-.tk-word .tk-cut { padding: 0; border: 0; }
-.tk-cut + .tk-cut { margin-inline-start: 0.12em; }
+/* One written word cut into pieces (فَـ لْـ يَصُمْهُ) is drawn across its pieces'
+   columns, each piece over its own name, a line joining each to the next as the
+   script joins them, and one underline marking them as one word. */
+.tk-word.tk-written {
+  display: grid;
+  grid-template-columns: subgrid;
+  border-bottom: 1.5px solid var(--border-hi);
+}
+.tk-word .tk-cut { display: flex; align-items: flex-end; padding: 0 0 0.2rem; border: 0; }
+.tk-word .tk-cut:first-child { padding-inline-start: 0.6rem; }
+.tk-word .tk-cut:last-child { padding-inline-end: 0.6rem; }
+.tk-join { flex: 1; min-width: 0.4rem; height: 1.5px; background: currentColor; margin-bottom: 0.55em; }
 
 /* A name the Treebank supplied that the app has not checked against a book. It
    still reads, but it must not look as settled as a term that was checked. */
@@ -85,27 +91,42 @@
 /* A word that is understood but not written. It keeps its column, that a word
    is missing is itself the lesson, but recedes, so what is certainly on the
    page reads first. */
+/* It rides at its verb's top-left, a narrow column, its thread dropping below. */
+.tk-word.tk-unwritten { align-items: flex-start; }
 .tk-word.tk-unwritten span {
   font-size: calc(var(--arabic-small-rem) * 1rem);
   color: var(--text-faint);
   border-bottom-style: dashed;
   border-bottom-color: var(--border);
-  align-self: end;
+  padding-inline: 0.25rem;
 }
 
 /* A word whose role has not been named yet keeps a thread running down. */
 .tk-thread { justify-self: center; width: 1.5px; background: var(--border-hi); opacity: 0.7; }
 
+/* A group and its row of names share the chart's columns (subgrid), so each
+   name sits over its own words. */
 .tk-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0 0.35rem;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: subgrid;
+  row-gap: 0.5rem;
+  align-content: end;
 }
-.tk-roles { display: flex; align-items: flex-end; }
+.tk-group > * { grid-column: 1 / -1; }
+.tk-group > .tk-brace { margin-inline: 0.35rem; }  /* two braces side by side never touch */
+.tk-roles { display: grid; grid-template-columns: subgrid; align-items: end; }
+.tk-cell { display: flex; justify-content: center; align-items: flex-end; position: relative; padding: 0 0.35rem; }
+/* the "+" between two names stands in the seam between their columns */
+.tk-cell.tk-after::before {
+  content: '+';
+  position: absolute;
+  inset-inline-start: -0.35em;
+  bottom: 0.2rem;
+  color: var(--text-faint);
+  font-family: var(--font-ui);
+  font-size: var(--type-body);
+}
 .tk-role {
-  flex: 1 1 auto;
   text-align: center;
   font-size: calc(var(--arabic-term-rem) * 1rem);
   line-height: 1.4;
@@ -170,7 +191,7 @@
 .tk-group > .tk-name {
   position: static;
   transform: none;
-  align-self: flex-end;
+  justify-self: end;
   padding-inline-start: 0;
   padding-top: 0.35rem;
 }
@@ -181,3 +202,21 @@
   font-family: var(--font-ui);
 }
 
+
+/* The larger view: the same diagram filling the screen, everything scaled up. */
+.tk-max {
+  --tk-max-scale: 1.4;
+  width: calc(100vw - 2rem);
+  max-width: none;
+  height: calc(100dvh - 2rem);
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--text);
+}
+.tk-max-box { position: relative; height: 100%; overflow: auto; padding: 3.5rem 1.5rem 1.5rem; }
+.tk-max-box > div:last-child { zoom: var(--tk-max-scale); }
+.tk-max-close { position: absolute; top: 0.75rem; left: 0.75rem; }

@@ -1,11 +1,12 @@
 {
  "_comment": "What the teacher checks once a sentence is read (services/syntax/teacher.py). Each check has an on/off switch and the reason shown to the reader when it fires: 'ar' is the book's wording, 'en' the plain one. A word a check flags loses its name and is drawn as a gap, because a dash is better than a confident wrong name. Switch a check off here and rescore with backend/scripts/score_iraab.py.",
  "case_of_role": {
-  "_comment": "The case each role takes (u = raf', a = nasb, i = jarr). A vowel the reader typed that says otherwise contradicts the role. The called noun (منادى) takes nasb only when it is the first word of an idafa.",
+  "_comment": "The case each role takes (u = raf', a = nasb, i = jarr). A vowel the reader typed that says otherwise contradicts the role. The called noun (منادى) takes nasb only when it is the first word of an idafa. `a_when_unseen`: roles that take nasb when the ending shows no case (سِوَى, or the ـِينَ of الْمُجَاهِرِينَ, which is nasb or jarr alike).",
   "u": ["فاعل", "نائب فاعل", "مبتدأ", "خبر", "اسم كان", "خبر إن", "اسم كاد"],
   "a": ["مفعول به", "مفعول مطلق", "مفعول فيه", "مفعول معه", "حال", "تمييز", "اسم إن", "خبر كان"],
   "i": ["مجرور", "مضاف إليه"],
-  "a_when_mudaf": ["منادى"]
+  "a_when_mudaf": ["منادى"],
+  "a_when_unseen": ["مستثنى", "مستثنى منقطع"]
  },
  "signs": {
   "_comment": "The sign a card prints for its case (services/signs.py). A dual, a sound masculine plural, one of the six nouns as a مضاف and one of the five verbs show case by a letter instead of a vowel; a noun before ya al-mutakallim (كِتَابِي) or ending in alef maqsura (الفَتَى), and a present verb ending in a weak letter (يَهْدِي، يَدْعُو، يَسْعَى), have their vowel assumed, not seen; a jazm verb that loses its weak letter (لم يَبْكِ) shows it by the loss. A sound feminine plural shows nasb by the kasra, a diptote (ممنوع من الصرف) jarr by the fatha. The rules in reasons name no sign, so they hold for all of these.",
@@ -42,7 +43,8 @@
   "passive": "مبني للمجهول",
   "_by_family": "A particle or verb named by the family it governs as (closed_words.json card, services/signs.py): its name and what it does, said in place of the plain حرف or after the tense.",
   "harf_by_family": "{named} مبني لا محل له من الإعراب، {does}",
-  "verb_by_family": "{tense} {named} {state}، {does}"
+  "verb_by_family": "{tense} {named} {state}، {does}",
+  "istithna_noun": "اسم منصوب على الاستثناء وعلامة نصبه {sign}، وهو مضاف"
  },
  "book_path": {
   "_comment": "The proof line under a word the book's tree named (syntax/naming.py): the branches walked below كلمة, a branch repeated by its leaf said once, then the leaf's section and page in Tasheel al-Nahw.",
@@ -68,10 +70,12 @@
   "مبتدأ": "مرفوع لأنه مبتدأ. القاعدة: المبتدأ مرفوع",
   "اسم كان": "مرفوع لأنه اسم كان. القاعدة: كان وأخواتها ترفع الاسم",
   "اسم إن": "منصوب لأنه اسم إن. القاعدة: إن وأخواتها تنصب الاسم",
+  "اسم لا": "في محل نصب لأنه اسم لا. القاعدة: لا النافية للجنس تنصب الاسم",
   "اسم كاد": "مرفوع لأنه اسم كاد. القاعدة: كاد وأخواتها ترفع الاسم",
   "خبر": "مرفوع لأنه خبر. القاعدة: الخبر مرفوع",
   "خبر كان": "منصوب لأنه خبر كان. القاعدة: كان وأخواتها تنصب الخبر",
   "خبر إن": "مرفوع لأنه خبر إن. القاعدة: إن وأخواتها ترفع الخبر",
+  "خبر لا": "مرفوع لأنه خبر لا. القاعدة: لا النافية للجنس ترفع الخبر",
   "خبر كاد": "في محل نصب لأنه خبر كاد. القاعدة: كاد وأخواتها تنصب الخبر",
   "مفعول به": "منصوب لأنه مفعول به. القاعدة: المفعول به منصوب",
   "مفعول فيه": "مفعول فيه. القاعدة: ظرف الزمان والمكان منصوب، والمبني منه (إذ، متى، حيث) في محل نصب",
@@ -79,6 +83,7 @@
   "مفعول مطلق": "منصوب لأنه مفعول مطلق. القاعدة: المفعول المطلق منصوب",
   "منادى": "منادى. القاعدة: المنادى المفرد مبني على الضم في محل نصب، والمضاف منصوب",
   "مستثنى": "منصوب لأنه مستثنى. القاعدة: المستثنى بعد إلا منصوب",
+  "مستثنى منقطع": "منصوب لأنه مستثنى منقطع. القاعدة: المستثنى من غير جنس المستثنى منه منصوب",
   "حال": "منصوب لأنه حال. القاعدة: الحال منصوب",
   "تمييز": "منصوب لأنه تمييز. القاعدة: التمييز منصوب",
   "معطوف": "تابع لما قبله لأنه معطوف. القاعدة: المعطوف يتبع المعطوف عليه في إعرابه",

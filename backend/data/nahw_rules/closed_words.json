@@ -1,5 +1,5 @@
 {
- "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word. 'card' on a governing family: what a member is named on its own card (named), what it does (does), and the effect on a word linked to it that proves it governs here (governs: a governor or follower answer of services/syntax/facts.py, or a verb's case), and a member's own name where the book gives one (named_as); read by naming._family and signs.py.",
+ "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word. 'card' on a governing family: what a member is named on its own card (named), what it does (does), and the effect on a word linked to it that proves it governs here (governs: a governor or follower answer of services/syntax/facts.py, or a verb's case), and a member's own name where the book gives one (named_as), shorter on the bracket picture where the book's chart says less (chart, chart_as); read by naming._family and signs.py.",
  "vetoes": {
   "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked, and links it settles outright, written over the parser's tree after (mask.book_links). true = on. Read by services/syntax/mask.py.",
   "verb_subject_follows": true,
@@ -7,7 +7,8 @@
   "listed_preposition_takes_majrur": true,
   "topic_carries_its_verb": true,
   "inner_sentence": true,
-  "ma_cancels_inna": true
+  "ma_cancels_inna": true,
+  "exception_word_by_case": true
  },
  "families": {
   "jarr": {
@@ -117,11 +118,6 @@
     "غير",
     "سوى",
     "سواء",
-    "خلا",
-    "عدا",
-    "حاشا",
-    "ما خلا",
-    "ما عدا",
     "ليس",
     "لا يكون"
    ],
@@ -130,9 +126,6 @@
     "غير": "exception noun vs plain noun meaning 'other than' used as an adjective (صفة), e.g. رجل غير مسلم",
     "سوى": "exception noun vs noun 'equal to / other than' used as an adjective",
     "سواء": "exception noun (rare) vs noun 'equal' in sentences of equality",
-    "خلا": "exception (verb or preposition) vs the ordinary verb 'became empty'; exception only when followed by an excepted noun after a complete sentence",
-    "عدا": "exception (verb or preposition) vs the ordinary verb 'passed beyond'",
-    "حاشا": "exception (verb or preposition) vs interjection 'far be it'",
     "ليس": "verb of kana family vs exception verb; exception only with an implied pronoun subject and a mustathna after it"
    },
    "nouns": [
@@ -140,6 +133,21 @@
     "سوى",
     "سواء"
    ]
+  },
+  "istithna_verbs": {
+   "ar": "خلا وعدا وحاشا",
+   "masdar_ma": ["ما"],
+   "effect": "before a noun in nasb a past verb that never changes (فعل ماضٍ جامد), its doer hidden (هو) and the noun its object; before a noun in jarr a preposition and the noun its majrur; after ما only the verb. Read by services/syntax/mask.py from the noun's typed case",
+   "words": [
+    "خلا",
+    "عدا",
+    "حاشا"
+   ],
+   "ambiguous": {
+    "خلا": "exception verb or preposition vs the ordinary verb 'became empty' (خلا البيتُ: its noun in raf' is its doer)",
+    "عدا": "exception verb or preposition vs the ordinary verb 'passed beyond'",
+    "حاشا": "exception verb or preposition vs interjection 'far be it'"
+   }
   },
   "inna": {
    "ar": "إن وأخواتها",
@@ -176,7 +184,7 @@
   },
   "la_jins": {
    "ar": "لا النافية للجنس",
-   "card": {"named": "لا النافية للجنس", "does": "تعمل عمل إن، تنصب الاسم وترفع الخبر", "governs": "inna"},
+   "card": {"named": "لا النافية للجنس", "does": "تعمل عمل إن، تنصب الاسم وترفع الخبر", "governs": "inna", "pair_named": {"اسم إن": "اسم لا", "خبر إن": "خبر لا"}},
    "effect": "nasb the ism (built on fatha when indefinite and single) and raf' the khabar",
    "words": [
     "لا"
@@ -187,7 +195,7 @@
   },
   "kana": {
    "ar": "كان وأخواتها",
-   "card": {"named": "ناقص", "does": "يرفع الاسم وينصب الخبر", "governs": "kana"},
+   "card": {"named": "ناقص", "does": "يرفع الاسم وينصب الخبر", "governs": "kana", "_chart_as_comment": "A particle of the family is no فعل ناقص in the picture: the ما that works like ليس goes by its own name (Tasheel 1.9 n6 p23).", "chart_as": {"ما": "ما الحجازية"}},
    "effect": "raf' the ism and nasb the khabar; all conjugated forms follow (كانوا، يكون، كن)",
    "words": [
     "كان",
@@ -312,6 +320,7 @@
   "two_objects_give": {
    "ar": "أفعال تنصب مفعولين ليس أصلهما مبتدأ وخبر",
    "effect": "takes two objects that are not mubtada/khabar; the verbs of informing take a third object",
+   "_comment": "أدرى (made know, form IV of درى) is listed for وما أدراك ما يوم الدين: its pronoun is the first object and the question clause after it stands for the second. The same letters are the wonder verb (ما أدراه), so what follows the pronoun tells them apart (particles.py, asks and wonder).",
    "words": [
     "أعطى",
     "منح",
@@ -333,7 +342,8 @@
     "نبأ",
     "أخبر",
     "خبر",
-    "حدث"
+    "حدث",
+    "أدرى"
    ],
    "ambiguous": {
     "علم": "'taught' (two objects) vs zanna-type 'knew' (see family zanna)",
@@ -343,6 +353,7 @@
     "خبر": "'informed' (three objects) vs noun 'khabar' (predicate / news)",
     "نبأ": "'informed' vs noun 'news'",
     "منع": "'prevented X from Y' (two objects, the second with من) vs ordinary one-object use",
+    "أدرى": "'made X know' (a second question clause as its other object) vs the wonder verb 'how knowing' (ما أدراه), told apart by a question word after the pronoun",
     "أعطى": "verb 'gave' vs none; very clean"
    }
   },
@@ -351,6 +362,8 @@
    "card": {"named": "حرف نصب", "does": "ينصب الفعل المضارع", "governs": "nasb"},
    "effect": "puts the present verb after it in nasb (fatha; the nun of the five verbs is dropped)",
    "before_a_present_verb": ["أن", "لن", "كي", "لكي", "كيلا", "لئلا", "حتى"],
+   "merges": {"ألا": {"named": "حرف نصب ومصدر", "tail": "negation"}},
+   "_merges": "a word written with a shadda on its lam is أن (this family) with the nun merged into a following لا: أَلَّا = أَنْ + لا. `named` is the name of the head, `tail` the family the piece after it works as (particles.stamp).",
    "_before_a_present_verb": "the ones that settle an unvowelled present verb as منصوب when it comes straight after them; the rest need a reading of the sentence (services/syntax/naming.py)",
    "words": [
     "أن",
@@ -381,7 +394,7 @@
   },
   "jazm": {
    "ar": "جوازم الفعل المضارع",
-   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"إن": "حرف شرط جازم", "ل": "حرف جزم، لام الأمر", "لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}},
+   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"إن": "حرف شرط جازم", "ل": "حرف جزم، لام الأمر", "لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}, "chart_as": {"ل": "لام الأمر"}},
    "effect": "puts the present verb after it in jazm (sukun; nun of the five verbs dropped; a weak last letter dropped); conditionals govern two verbs, the condition and the result",
    "before_a_present_verb": ["لم", "لما"],
    "conditional_particles": ["إن", "إذما"],
@@ -518,8 +531,6 @@
     "حبذا",
     "لا حبذا",
     "ساء",
-    "ما أحسن",
-    "ما أشد",
     "أحسن بـ"
    ],
    "ambiguous": {
@@ -528,6 +539,17 @@
     "ساء": "verb of blame (as بئس) vs ordinary 'was bad / harmed'",
     "حبذا": "'how lovely it is' fixed phrase; the noun after it is the praised"
    }
+  },
+  "wonder": {
+   "ar": "التعجب: ما أفعلَه",
+   "_comment": "The wonder form (Tasheel 1.4.2 p8): ما, a past verb of the shape أَفْعَلَ / أَفَلَّ (doubled root) / أَفْعَى (weak last letter) and a noun in nasb. The shape is read from the letters, with ف ع ل standing for the root; a vowel the reader typed must be the shape's (أَكْرَمَ fits, أُكْرِمَ does not), a vowel left off is not held against it. Read by services/syntax/particles.py.",
+   "shapes": ["أَفْعَلَ", "أَفَلَّ", "أَفْعَى"],
+   "card": {
+    "named": "جامد للتعجب",
+    "does": ""
+   },
+   "effect": "ما is a noun (مبتدأ), the verb is built, never changes, and says wonder; its doer is hidden and goes back to ما, and the noun after it is its object. The verb's clause is the khabar of ما",
+   "words": []
   },
   "istifham": {
    "ar": "أدوات الاستفهام",
@@ -899,6 +921,7 @@
    }
   },
   "damir_munfasil": {
+   "object_stem": ["إيا"],
    "ar": "الضمائر المنفصلة",
    "effect": "stands as its own word: mubtada, khabar, or or a fasl pronoun, a separator between mubtada and khabar that has no i'raab position of its own; in the object slot only إيا plus suffix works",
    "words": [
@@ -1079,6 +1102,27 @@
     "1َ2ِي3",
     "1َ2ْ3َان"
    ]
+  },
+  "masdar_patterns": {
+   "ar": "أوزان المصدر",
+   "effect": "an indefinite accusative word of one of these shapes is a masdar (شُكْرًا، صَبْرًا، تَسْلِيمًا, إِكْرَامًا). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): the common Form I measures فَعْل، فُعْل، فِعْل، فَعَل، فُعُول، فِعَال، فُعَال، and Forms II and IV تَفْعِيل، إِفْعَال.",
+   "words": [
+    "1َ2ْ3",
+    "1ُ2ْ3",
+    "1ِ2ْ3",
+    "1َ2َ3",
+    "1ُ2ُو3",
+    "1ِ2َا3",
+    "1ُ2َا3",
+    "تَ1ْ2ِي3",
+    "إِ1ْ2َا3"
+   ]
+  },
+  "ta_merges": {
+   "ar": "حروف تدغم فيها تاء المضارعة",
+   "book": "Tasheel al-Sarf, Forms V and VI",
+   "effect": "a present verb of Form V or VI with two ta' (تَتَطَوَّعُ) may merge its second ta' into the stem's first letter when that letter is one of these, and shows it by a shadda on it (تَطَّوَّعُ). A past verb of those forms (تَطَوَّعَ) has no shadda there; a past of two or three letters (تَمَّ) is not of these forms.",
+   "words": ["ت", "ث", "د", "ذ", "ز", "س", "ش", "ص", "ض", "ط", "ظ"]
   },
   "six_nouns": {
    "ar": "الأسماء الستة",

@@ -14,6 +14,7 @@ import { progressKey } from '../lib/stored'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
 
 import QuizAyah from './QuizAyah'
+import PracticeSentence from './PracticeSentence'
 import QuizInsights from './QuizInsights'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
@@ -314,7 +315,7 @@ export default function QuizPanel({ accent, onProgress }) {
       item: question.answerId,
       correct: wasRight,
       ms: askedAt.current === null ? null : Date.now() - askedAt.current,
-      context: { bank: bankId, group: groupId, direction },
+      context: { bank: bankId, group: groupId, direction, word: question.answerWord },
     }).then((result) => {
       setSaving(result.saved)
       // The answer just changed two numbers on screen: what is owed, on the
@@ -717,6 +718,7 @@ export default function QuizPanel({ accent, onProgress }) {
           </div>
 
           <QuizInsights accent={accent} language={language} />
+          <PracticeSentence say={say} />
         </>
       )}
     </div>

@@ -23,6 +23,11 @@ describe('classify', () => {
     expect(row).toMatchObject({ group: GROUPS.ayah, tabId: 'quran', value: '2:255' })
   })
 
+  it('reads an address ended like a sentence, 2:255. or 2:255؟', () => {
+    expect(classify('2:255.', TABS)[0]).toMatchObject({ group: GROUPS.ayah, value: '2:255' })
+    expect(classify('2:255؟', TABS)[0]).toMatchObject({ group: GROUPS.ayah, value: '2:255' })
+  })
+
   it('accepts the Arabic comma a keyboard left in Arabic types', () => {
     expect(classify('2٬255', TABS)[0].value).toBe('2:255')
   })
@@ -83,6 +88,11 @@ describe('ghostFor', () => {
   it('completes a tab name being typed', () => {
     expect(ghostFor('dic', TABS)).toBe('tionary')
     expect(ghostFor('/mem', TABS)).toBe('orise')
+  })
+
+  it('completes nothing after a mark, since Tab adds the ghost to the line as typed', () => {
+    expect(ghostFor('Dict.', TABS)).toBe('')
+    expect(ghostFor('Quiz!', TABS)).toBe('')
   })
 
   it('stops once the name is whole', () => {

@@ -162,6 +162,13 @@ def read_verse(surah: int, verse: dict, into: Harvest, language: str, printed: b
             if printed and (number := (word.get("text_uthmani") or word.get("text") or "").strip()):
                 into.ends.append((surah, ayah, number))
             continue
+        if kind == "pause":
+            # A stop sign printed as its own entry belongs to the word it follows,
+            # which keeps the word count the corpus's and the sign on the page.
+            if printed and into.uthmani and (sign := (word.get("text_uthmani") or "").strip()):
+                *where, before = into.uthmani[-1]
+                into.uthmani[-1] = (*where, before + sign)
+            continue
         if kind != "word":
             continue
         position += 1

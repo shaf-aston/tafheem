@@ -38,7 +38,7 @@ export default function SectionHeader({ title, arabic, subtitle, aside = null, n
           <Trail nameOf={nameOf} />
         </div>
       </div>
-      {subtitle && <p className="text-[var(--text-dim)] text-sm leading-snug mt-1 max-w-prose">{subtitle}</p>}
+      {subtitle && <p className="text-[var(--text-dim)] text-sm leading-snug mt-1">{subtitle}</p>}
     </div>
   )
 }

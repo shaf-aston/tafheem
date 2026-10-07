@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { profileHeaders } from './lib/profile'
+
 export const api = axios.create({
   baseURL: '/api',
   headers: { 'Content-Type': 'application/json' },
@@ -22,8 +24,13 @@ export const analyzeMeaning = ({ word }) =>
 export const conjugateForm = ({ root, form }) =>
   api.post('/morphology/conjugate', { root, form }).then((r) => r.data)
 
-export const getQuranAyah = (surah, ayah) =>
+const getQuranAyah = (surah, ayah) =>
   api.get(`/quran/${surah}/${ayah}`).then((r) => r.data)
+
+// A printed ayah never changes, so once fetched it is never fetched again.
+export const quranAyahQuery = (surah, ayah) => ({
+  queryKey: ['quran-ayah', surah, ayah], queryFn: () => getQuranAyah(surah, ayah), retry: false, staleTime: Infinity,
+})
 
 // The reading view by default: text and English only. The word-by-word grammar
 // is asked for one ayah at a time, because a whole surah of it is ~2MB.
@@ -37,7 +44,7 @@ export const quranSurahQuery = (surah) => ({ queryKey: ['quran-surah', surah], q
 // the words are drawn separately, and an ayah the two sources disagree about is
 // simply absent rather than mis-aligned.
 export const getSurahGlosses = (surah) =>
-  api.get(`/quran/surah/${surah}/glosses`).then((r) => r.data.ayahs)
+  api.get(`/quran/surah/${surah}/glosses`).then((r) => r.data)
 
 // How the ayah's words join into one another. Derived from the corpus tags by
 // rule, so it comes back with its own source label; not the corpus's.
@@ -114,6 +121,10 @@ export const getRootEntryLines = (root) =>
 
 export const generatePractice = (sentence) =>
   api.post('/practice', { sentence }).then((r) => r.data)
+
+// A short AI sentence made only of this learner's learnt words, each one checked.
+export const getCheckedSentence = () =>
+  api.post('/practice/checked', {}, { headers: profileHeaders() }).then((r) => r.data)
 
 // The teacher's exercise library: every tag, every exercise, and a count per
 // tag. Small and fixed, so it is fetched whole once and filtered on the

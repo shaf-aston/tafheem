@@ -1,0 +1,6 @@
+{
+  "_comment": "Profiles: a typed name, no password. The server owns the name rules (backend/services/profile.py) and hands back the spelling kept under 'storageKey'. The name travels on every /api/progress call in 'header', percent-encoded. 'refetch' are the react-query key heads that read progress, refetched when the name changes.",
+  "header": "X-Tafheem-Profile",
+  "storageKey": "profile",
+  "refetch": ["quiz-review", "quiz-progress", "quiz-words", "progress"]
+}

@@ -18,6 +18,7 @@ import { colorFor } from '../theme'
 import { FOCUS } from './colloquial/Face'
 import UnitView from './colloquial/UnitView'
 import WordBank from './colloquial/WordBank'
+import WordsView from './colloquial/WordsView'
 import ErrorAlert from './ui/ErrorAlert'
 import SectionHeader from './ui/SectionHeader'
 import WheelPicker from './ui/WheelPicker'
@@ -28,26 +29,47 @@ const unitNumber = (id) => Number(id.replace(/\D/g, '')) || 0
 
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
 // Without onClick it is a unit or topic this dialect has not written yet: shown, not openable.
-function Card({ hue, index, kicker, title, arabic, note, onClick }) {
-  const tint = (pct) => `color-mix(in oklab, ${hue} ${pct}%, transparent)`
+// With `twin` it is two halves joined, each its own way in: a topic's phrases and its words.
+function Lines({ hue, kicker, title, arabic, note }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={!onClick}
-      style={{
-        '--i': index,
-        background: `linear-gradient(90deg, ${tint(26)}, transparent 38%, transparent 62%, ${tint(26)}), var(--surface)`,
-        borderColor: tint(40),
-      }}
-      className={`rise-in ${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS}`}
-    >
+    <>
       <span className="flex items-baseline justify-between gap-3">
         <span className="type-micro uppercase tracking-[0.18em]" style={{ color: hue }}>{kicker}</span>
         {arabic && <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text-dim)]">{arabic}</span>}
       </span>
       <span className="block type-ui font-semibold text-[var(--text)] mt-1">{title}</span>
       {note && <span className="block type-small text-[var(--text-faint)] mt-1">{note}</span>}
+    </>
+  )
+}
+
+function Card({ hue, index, onClick, twin, ...lines }) {
+  const tint = (pct) => `color-mix(in oklab, ${hue} ${pct}%, transparent)`
+  const look = {
+    '--i': index,
+    background: `linear-gradient(90deg, ${tint(26)}, transparent 38%, transparent 62%, ${tint(26)}), var(--surface)`,
+    borderColor: tint(40),
+  }
+  const half = `lift press group text-start w-full px-5 py-4 ${FOCUS}`
+  if (twin) {
+    return (
+      <div style={look} className="rise-in grid grid-cols-2 rounded-[var(--radius-lg)] border overflow-hidden">
+        <button type="button" onClick={onClick} aria-label={`${lines.title}: ${lines.note}`} className={half}><Lines hue={hue} {...lines} /></button>
+        <button type="button" onClick={twin.onClick} aria-label={`${lines.title}: ${twin.title} ${twin.kicker.toLowerCase()}`} className={`${half} border-s`} style={{ borderColor: tint(40) }}>
+          <Lines hue={hue} {...twin} />
+        </button>
+      </div>
+    )
+  }
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={!onClick}
+      style={look}
+      className={`rise-in ${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS}`}
+    >
+      <Lines hue={hue} {...lines} />
     </button>
   )
 }
@@ -104,11 +126,11 @@ function UnitWordBank({ dialect, unit }) {
   return data ? <WordBank unit={data} /> : null
 }
 
-function Topic({ dialect, unit, at }) {
+function Topic({ dialect, unit, at, words }) {
   const { data, isPending, isError, error, refetch } = useQuery(colloquialUnitQuery(dialect, unit))
   if (isPending) return <AnalyzerSkeleton />
   if (isError) return <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={error} onRetry={refetch} />
-  return <UnitView unit={data} at={at} />
+  return words ? <WordsView unit={data} at={at} /> : <UnitView unit={data} at={at} />
 }
 
 export default function ColloquialPanel({ incoming, arrival, onVisit }) {
@@ -118,6 +140,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   const [picked, setPicked] = useState(false)
   const [unitKey, setUnitKey] = useState(null)
   const [lessonAt, setLessonAt] = useState(null)
+  const [words, setWords] = useState(false)
   const client = useQueryClient()
 
   const dialect = picked ? dialects.find((d) => d.key === dialectKey) : null
@@ -135,11 +158,12 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
     if (there) setDialectKey(there.dialect)
     setUnitKey(there?.unit ?? null)
     setLessonAt(there?.at ?? null)
+    setWords(there?.words ?? false)
   }
-  const go = (dialectK = null, unitK = null, at = null) => {
-    show(dialectK && { dialect: dialectK, unit: unitK, at })
+  const go = (dialectK = null, unitK = null, at = null, wordsToo = false) => {
+    show(dialectK && { dialect: dialectK, unit: unitK, at, words: wordsToo })
     const lessonK = at === null ? null : dialects.find((d) => d.key === dialectK).units.find((u) => u.unit === unitK).lessons[at].lesson
-    onVisit?.(dialectK ? placeOf(dialectK, unitK, lessonK) : null)
+    onVisit?.(dialectK ? placeOf(dialectK, unitK, lessonK, wordsToo) : null)
   }
   // An arrival names a place; followed during render so a reload paints on it, not the top first.
   if (useArrivalWhenReady(arrival, Boolean(catalogue.data))) show(parsePlace(incoming, dialects))
@@ -151,13 +175,14 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   const switchTo = (key) => {
     const there = dialects.find((d) => d.key === key).units.find((u) => u.written && u.unit === unitKey)
     const kept = lessonAt !== null && there?.lessons[lessonAt].written ? lessonAt : null
-    go(key, there ? unitKey : null, there ? kept : null)
+    go(key, there ? unitKey : null, there ? kept : null, kept !== null && words && there.lessons[kept].words > 0)
   }
 
   const steps = [{ label: 'Dialects', go: toTop }]
   if (dialect) steps.push({ label: dialect.label, go: toDialect })
   if (unit) steps.push({ label: `Unit ${unitNumber(unit.unit)}`, go: toUnit })
-  if (unit && lessonAt !== null) steps.push({ label: unit.lessons[lessonAt].title })
+  if (unit && lessonAt !== null) steps.push({ label: unit.lessons[lessonAt].title, go: () => go(dialect.key, unit.unit, lessonAt) })
+  if (unit && lessonAt !== null && words) steps.push({ label: 'Words' })
 
   return (
     <div className="panel">
@@ -165,7 +190,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
       {catalogue.isPending && <AnalyzerSkeleton />}
       {catalogue.isError && <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={catalogue.error} onRetry={catalogue.refetch} />}
       {catalogue.data && (
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 pb-5 border-b border-[var(--border)]">
           <Trail steps={steps} />
           {dialect && dialects.length > 1 && <Switch dialects={dialects} current={dialect.key} onPick={switchTo} />}
         </div>
@@ -204,8 +229,10 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
                 {lessons.map((l, n) => {
                   const i = from + n
                   return (
-                    <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} note={l.written ? undefined : 'Coming'}
-                      onClick={l.written ? () => go(dialect.key, unit.unit, i) : undefined} />
+                    <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title}
+                      note={!l.written ? 'Coming' : l.words ? 'Phrases' : undefined}
+                      onClick={l.written ? () => go(dialect.key, unit.unit, i) : undefined}
+                      twin={l.written && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => go(dialect.key, unit.unit, i, true) }} />
                   )
                 })}
               </Grid>
@@ -215,8 +242,8 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
       )}
 
       {unit && lessonAt !== null && (
-        <div key={`${unit.unit}/${lessonAt}`} className="rise-in">
-          <Topic dialect={dialect.key} unit={unit.unit} at={lessonAt} />
+        <div key={`${unit.unit}/${lessonAt}/${words}`} className="rise-in">
+          <Topic dialect={dialect.key} unit={unit.unit} at={lessonAt} words={words} />
         </div>
       )}
     </div>

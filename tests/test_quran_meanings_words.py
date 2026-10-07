@@ -59,11 +59,24 @@ def test_a_marker_falls_back_to_plain_text_when_it_has_no_uthmani():
     assert found.ends == [(2, 5, "٥")]
 
 
-def test_anything_that_is_neither_a_word_nor_an_end_is_skipped():
+def test_a_stop_sign_joins_the_word_before_it():
+    found = empty()
+    read(2, {
+        "verse_key": "2:2",
+        "words": [
+            word(text_uthmani="رَيْبَ"),
+            {"char_type_name": "pause", "text_uthmani": "ۛ"},
+            word(text_uthmani="فِيهِ"),
+        ],
+    }, found)
+    assert found.uthmani == [(2, 2, 1, "رَيْبَۛ"), (2, 2, 2, "فِيهِ")]
+
+
+def test_anything_else_that_is_not_a_word_is_skipped():
     found = empty()
     read(2, {
         "verse_key": "2:1",
-        "words": [{"char_type_name": "pause", "text_uthmani": "ۖ"}],
+        "words": [{"char_type_name": "pause", "text_uthmani": "ۖ"}, {"char_type_name": "sajdah", "text_uthmani": "۩"}],
     }, found)
     assert found == empty()
 

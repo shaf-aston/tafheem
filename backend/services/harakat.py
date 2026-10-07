@@ -24,6 +24,10 @@ HIDDEN_CASE = ("ين", "ون", "ان")
 # the vowels their nun carries (the plural's fatha, the dual's kasra); any other
 # (الدِّينُ، بَيَانٌ) is the word's own case
 ENDING_NUN = {"ين": {"َ", "ِ"}, "ون": {"َ"}, "ان": {"ِ"}}
+# a sound feminine plural ends so; its kasra also shows nasb (رأيت المعلماتِ)
+FEM_PLURAL_END = "ات"
+# تَفَعَّلَ: the three radicals that follow a Form V or VI verb's opening ت
+FORM_V_STEM = 3
 
 CASE_NAME = {"u": "raf'", "a": "nasb", "i": "jarr"}
 # CAMeL's own case letters, as the vowel each one is
@@ -68,9 +72,21 @@ def typed_case(word: str, stuck_on: int = 0) -> str | None:
     if ending in HIDDEN_CASE and marked[-1][1] & VOWEL.keys() <= ENDING_NUN[ending]:
         return None
     last = marked[-1]
-    if (last[0] in "اى" or (last[0] == "و" and not last[1])) and marked[-2][1] & TANWEEN:
+    if last[0] == "ى" and marked[-2][1] & TANWEEN:
+        return None  # مُعَافًى، هُدًى: a مقصور noun's tanween is written so in every case, which is unseen
+    if (last[0] == "ا" or (last[0] == "و" and not last[1])) and marked[-2][1] & TANWEEN:
         last = marked[-2]  # the alef of رَجُلًا and the written و of عَمْرٌو carry nothing; the tanween is before
     return next((VOWEL[mark] for mark in last[1] if mark in VOWEL), None)
+
+
+def merged_prefix(word: str, merging: frozenset[str]) -> bool:
+    """A present verb whose second ta' merged into the stem's first letter (تَطَّوَّعَ for
+    تَتَطَوَّعَ): a ت with a fatha, then a letter of `merging` doubled, and the whole stem of
+    Form V or VI after the ت. A past verb of those forms has no shadda there (تَطَوَّعَ),
+    and a short doubled past (تَمَّ) has not the stem."""
+    marked = letters(word)
+    return (len(marked) > FORM_V_STEM and marked[0][0] == "ت" and "َ" in marked[0][1]
+            and marked[1][0] in merging and SHADDA in marked[1][1])
 
 
 def has_tanween(word: str) -> bool:
@@ -228,3 +244,24 @@ def past_passive_shape(word: str) -> bool:
     closes = "َ" in last or SUKUN in last or (
         letter == "ت" and marked[-2][0] != "ا" and last <= {"ِ"})
     return any("ِ" in marks for _, marks in marked[1:-1]) and closes
+
+
+ROOT_PLACES = "فعل"  # in a shape (أَفْعَلَ), the letters that stand for the root's
+
+
+def fits_shape(word: str, shape: str, root: str = "") -> bool:
+    """The word has this shape (أَفْعَلَ), by its letters, whatever vowels it was typed with: the
+    letters outside the root are the shape's own (أ may be written ا), a vowel typed on a letter
+    must be one the shape has, one left off is not held against it. A shadda in the shape is the root's
+    doubled letter: typed, or (plain text) the analyser's root has its last two letters alike."""
+    marked, wanted = letters(word), letters(shape)
+    if len(marked) != len(wanted):
+        return False
+    for (letter, marks), (want, want_marks) in zip(marked, wanted):
+        if want not in ROOT_PLACES and bare_letters(letter) != bare_letters(want):
+            return False
+        if not marks <= want_marks:
+            return False
+        if SHADDA in want_marks and SHADDA not in marks and not (len(root) == 3 and root[1] == root[2]):
+            return False
+    return True

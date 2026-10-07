@@ -243,6 +243,8 @@ class TarkeebNode(BaseModel):
     # وَ), so the diagram can slice it into its own column on request instead
     # of always drawing it fused with the word it precedes.
     prefix_arabic: str | None = None
+    # Understood, not written: the diagram dashes the column (ثابت in الحمد لله, an elided khabar).
+    hidden: bool = False
     parts: list["TarkeebNode"] = Field(default_factory=list)
     children: list["TarkeebNode"] = Field(default_factory=list)
 
@@ -599,6 +601,8 @@ class SurahGlosses(BaseModel):
     """
     surah: int
     ayahs: dict[int, list[str]]
+    # Each word's dictionary form, same order and same left-out ayahs, for the learnt marks.
+    lemmas: dict[int, list[list[str]]] = {}
 
 
 class Edition(BaseModel):
@@ -761,15 +765,17 @@ class SentenceResponse(BaseModel):
     """A phrase or sentence asked of the dictionary: its sense, then word by word.
 
     `meaning` is None when nothing could give a sense; the words still stand.
-    `ref` names the ayah when the text was one whole ayah."""
+    `ref` names the ayah when the text was one whole ayah; `left_out` is what was
+    typed as a word but holds no Arabic, so it was not translated."""
 
     query: str
-    kind: str  # phrase | sentence
+    kind: str  # word | phrase | sentence
     meaning: str | None = None
     source: Source | None = None
     ref: str | None = None
     words: list[SentenceWord]
     words_source: Source
+    left_out: list[str] = []
 
 class RootMeaning(BaseModel):
     core_meaning: str
@@ -886,6 +892,12 @@ class PracticeResponse(BaseModel):
     sentence: str
     questions: list[PracticeQuestion]
     source: Source | None = None
+
+
+class CheckedSentence(BaseModel):
+    ar: str
+    en: str
+    words: list[str]  # the learnt words the AI was given
 
 
 class KeptQuestion(PracticeQuestion):
@@ -1144,6 +1156,20 @@ class Forgotten(BaseModel):
     deleted: int
 
 
+class ProfileIn(BaseModel):
+    """Starting to use the name in the profile header."""
+
+    keep: bool = False
+    """Move the answers given before names existed onto this name."""
+
+
+class ProfileSaved(BaseModel):
+    """The name as the server spells it, and how many unnamed answers moved onto it."""
+
+    name: str
+    moved: int
+
+
 class ItemStats(BaseModel):
     """One item's whole record. `avgMs` is None when nothing was timed honestly."""
     item: str
@@ -1153,6 +1179,9 @@ class ItemStats(BaseModel):
     due: bool = False
     known: bool = False
     dueAt: str | None = None
+    words: list[str] = []
+    """The words of this meaning answered right, as the quiz printed them; ''
+    for right answers saved before the word was."""
 
 
 class ProgressSummary(BaseModel):
@@ -1256,6 +1285,20 @@ class RijalText(BaseModel):
     body: str
 
 
+class RijalFact(BaseModel):
+    """One labelled fact as sunnah.com prints it, in English and in Arabic."""
+    label_en: str
+    en: str
+    label_ar: str
+    ar: str
+
+
+class RijalBook(BaseModel):
+    """A book that carries his hadith, named in both languages."""
+    en: str
+    ar: str
+
+
 class Narrator(NarratorSummary):
     """One narrator's sheet. Teachers and students keep their names even where we hold no page of theirs."""
     kunya_ar: str = ""
@@ -1267,7 +1310,8 @@ class Narrator(NarratorSummary):
     city_ar: str = ""
     profession_ar: str = ""
     school_ar: str = ""
-    books_ar: list[str] = []
+    books: list[RijalBook] = []
+    facts: list[RijalFact] = []
     hadith_total: int | None = None
     verdicts: list[RijalVerdict] = []
     teachers: list[NarratorSummary] = []

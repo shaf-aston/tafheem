@@ -1,5 +1,5 @@
 {
-  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف). A word with no branch here is read by its lists as before.",
+  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. `tool_next` the word after it is خلا، عدا or حاشا; `raf` the noun after it typed in raf' (the noun of لا of the genus never is), `told` what stands after that noun: a noun, its khabar (لا رجلٌ أفضلُ منك: لا المشبهة بليس), or anything else (لا خوفٌ عليهم: the noun is a مبتدأ). `wonder` ما before a verb of the wonder shape (closed_words.json wonder). `asks` ما or من asks (Tasheel 2.4.7 p47): a noun, pronoun or pointer follows as its مبتدأ and no verb, ظرف, preposition or إلا comes after it (ما اسمك، من أنت), or a verb of informing with its pronoun is followed by a second question word (وما أدراك ما يوم الدين); ما عندكم ينفد and من في البيت are not it. `restricted` an إلا comes after it in the clause (ما أنت إلا بشر). A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف), `retag` the word class the parser's tag is written over with before the other words are read (ما قبل إلا is a particle, so إلا after it restricts). A word with no branch here is read by its lists as before.",
   "tree": {
     "branch": "الحروف ذات الوجوه",
     "book": "1.2 p3",
@@ -59,10 +59,39 @@
                 "split": "next",
                 "children": [
                   {
-                    "branch": "لا النافية للجنس",
+                    "branch": "لا قبل نكرة",
                     "book": "3.7.4 p69",
                     "is": "indefinite_noun",
-                    "role": "la_jins"
+                    "split": "raf",
+                    "children": [
+                      {
+                        "branch": "لا النافية للجنس",
+                        "book": "3.7.4 p69",
+                        "is": "no",
+                        "role": "la_jins"
+                      },
+                      {
+                        "branch": "لا والاسم المرفوع",
+                        "book": "3.7.3 p69",
+                        "is": "yes",
+                        "split": "told",
+                        "children": [
+                          {
+                            "branch": "لا المشبهة بليس",
+                            "book": "3.7.3 p69",
+                            "is": "noun",
+                            "role": "la_jins",
+                            "named": "لا المشبهة بليس"
+                          },
+                          {
+                            "branch": "لا النافية المهملة",
+                            "book": "3.7.3 p69",
+                            "is": "other",
+                            "role": "negation"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "branch": "لا النافية قبل معرفة",
@@ -117,6 +146,66 @@
         ]
       },
       {
+        "branch": "ما",
+        "book": "3.8.7 p85",
+        "is": "ما",
+        "split": "tool_next",
+        "children": [
+          {
+            "branch": "ما المصدرية قبل خلا وعدا",
+            "book": "3.8.7 p85",
+            "is": "yes",
+            "role": "ghair_amila_other",
+            "named": "ما المصدرية، حرف مصدري"
+          },
+          {
+            "branch": "ما التعجب",
+            "book": "1.4.2 p8",
+            "is": "no",
+            "split": "wonder",
+            "children": [
+              {
+                "branch": "ما قبل فعل التعجب",
+                "book": "1.4.2 p8",
+                "is": "yes",
+                "role": "wonder",
+                "kind": "ism"
+              },
+              {
+                "branch": "ما غير التعجب",
+                "book": "2.4.7 p47",
+                "is": "no",
+                "split": "asks",
+                "children": [
+                  {
+                    "branch": "ما الاستفهامية قبل مبتدئها",
+                    "book": "2.4.7 p47",
+                    "is": "yes",
+                    "role": "istifham",
+                    "kind": "ism"
+                  },
+                  {
+                    "branch": "ما قبل إلا",
+                    "book": "3.8.7 p85",
+                    "is": "no",
+                    "split": "restricted",
+                    "children": [
+                      {
+                        "branch": "ما النافية قبل أداة الحصر",
+                        "book": "3.8.7 p85",
+                        "is": "yes",
+                        "role": "negation",
+                        "retag": {"pos": "PRT", "pos_camel": "part_neg"}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
         "branch": "ألا",
         "book": "1.2 p3",
         "is": "ألا",
@@ -163,6 +252,21 @@
             "else": true,
             "role": "ghair_amila_other",
             "named": "حرف مفاجأة"
+          }
+        ]
+      },
+      {
+        "branch": "من",
+        "book": "2.4.7 p47",
+        "is": "من",
+        "split": "asks",
+        "children": [
+          {
+            "branch": "من الاستفهامية قبل مبتدئها",
+            "book": "2.4.7 p47",
+            "is": "yes",
+            "role": "istifham",
+            "kind": "ism"
           }
         ]
       },

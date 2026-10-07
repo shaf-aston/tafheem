@@ -34,8 +34,8 @@ from backend.services import (
     sentence_meaning,
     verb_forms,
 )
-from backend.services.arabic_text import normalize_root, spelled_out
-from backend.utils import arabic_sentence, call_service, normalize_text, require_arabic
+from backend.services.arabic_text import normalize_root, not_arabic
+from backend.utils import arabic_sentence, call_service, normalize_text, require_arabic, search_query
 
 router = APIRouter(prefix="/api/dictionary", tags=["dictionary"])
 
@@ -72,7 +72,7 @@ async def search_dictionary(
 ) -> DictionaryResponse:
     # The answer carries the joined word, and the two classical cards ask about
     # the query the answer names, so all three read one spelling.
-    query = spelled_out(normalize_text(q, "Search query"))
+    query = search_query(q, required=True)
     language = lang.strip().lower()
 
     searcher = _SEARCHERS.get(language)
@@ -112,6 +112,7 @@ async def translate_sentence(
         ref=found["ref"],
         words=[SentenceWord(**w) for w in found["words"]],
         words_source=Source(**provenance.of(found["words_source"])),
+        left_out=not_arabic(q),
     )
 
 @router.get("/babs", response_model=VerbVerdict)

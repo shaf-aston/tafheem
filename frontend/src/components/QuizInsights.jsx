@@ -24,7 +24,7 @@
 import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { coverageOf } from '../lib/coverage'
+import { coverageOf, learntOf, shareOf } from '../lib/coverage'
 import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../lib/insights'
 import { fetchSummary } from '../lib/progress'
 import { sayIn } from '../lib/say'
@@ -34,6 +34,7 @@ import ArabicText from './ui/ArabicText'
 import Disclosure from './ui/Disclosure'
 import EmptyState from './ui/EmptyState'
 import { Skeleton } from './ui/Skeleton'
+import SurahCoverage from './SurahCoverage'
 
 // What to call a category on screen. The cuts name themselves in the word
 // list, so only these few are named here: the sets, and the types of word.
@@ -48,13 +49,6 @@ const NAMES = {
 }
 
 const percent = (fraction) => `${Math.round(fraction * 100)}%`
-// A whole number from 10% up, one decimal below, where a small share is news.
-// Under a tenth of a percent says so rather than round a known word down to 0%.
-const shareOf = (fraction, language) => {
-  const format = (n, digits) => new Intl.NumberFormat(language, { maximumFractionDigits: digits }).format(n)
-  if (fraction < 0.001) return `<${format(0.1, 1)}`
-  return format(fraction * 100, fraction >= 0.1 ? 0 : 1)
-}
 const seconds = (ms) => `${(ms / 1000).toFixed(1)}s`
 
 export default function QuizInsights({ accent, language }) {
@@ -89,11 +83,10 @@ export default function QuizInsights({ accent, language }) {
     [joined],
   )
 
+  const learnt = useMemo(() => learntOf(stats.data), [stats.data])
   const share = useMemo(
-    () => (stats.data && words.data && covering.data
-      ? coverageOf(words.data, covering.data, stats.data.filter((row) => row.known).map((row) => row.item))
-      : null),
-    [stats.data, words.data, covering.data],
+    () => (words.data && covering.data ? coverageOf(words.data, covering.data, learnt) : null),
+    [learnt, words.data, covering.data],
   )
 
   return (
@@ -103,7 +96,7 @@ export default function QuizInsights({ accent, language }) {
       label={<StatBar totals={totals} share={share} say={say} language={language} />}
     >
       <Body joined={joined} stats={stats} words={words} groups={groups} accent={accent}
-        say={say} language={language} />
+        say={say} language={language} learnt={learnt} covering={covering.data} />
     </Disclosure>
   )
 }
@@ -158,7 +151,7 @@ function Figure({ value, name, tone }) {
   )
 }
 
-function Body({ joined, stats, words, groups, accent, say, language }) {
+function Body({ joined, stats, words, groups, accent, say, language, learnt, covering }) {
   if (stats.isPending || words.isPending) return <Skeleton className="h-24 w-full" />
 
   // A reading nobody can make is said plainly rather than drawn as zeroes,
@@ -195,10 +188,15 @@ function Body({ joined, stats, words, groups, accent, say, language }) {
           answers covered. */}
       <p className="type-body text-[var(--text-dim)]">
         {say(totals.words === 1 ? 'Across {n} word.' : 'Across {n} words.', { n: totals.words })}
+        {learnt.length > 0 && <> {say('{n} learnt.', { n: learnt.length })}</>}
         {totals.due > 0 && (
           <> {say('{n} still waiting in Review.', { n: totals.due })}</>
         )}
       </p>
+
+      {learnt.length > 0 && covering && (
+        <SurahCoverage words={words.data} covering={covering} learnt={learnt} say={say} language={language} />
+      )}
 
       {categories.length > 0 && (
         <Group title={say('What you miss most')}>

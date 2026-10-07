@@ -25,7 +25,7 @@ from backend.scripts.build_lexicon import (
     only_new_words,
     type_of,
 )
-from backend.scripts.export_quiz_words import already_taught
+from backend.scripts.export_quiz_words import already_taught, surah_counts
 
 
 @pytest.mark.parametrize(
@@ -157,6 +157,32 @@ def test_the_shipped_files_came_from_the_table_as_it_stands_now() -> None:
         "frontend/public/words/ is from an older build of lexicon.db, "
         "run: python backend/scripts/export_quiz_words.py"
     )
+
+
+# ── how much of each surah a lemma covers ────────────────────────────────────
+
+WORDS = EXPORT.parent
+
+
+def test_each_surah_counts_its_own_words_and_lemmas() -> None:
+    every = {(1, 1, 1), (1, 1, 2), (2, 1, 1)}
+    positions = {"رَبّ": {(1, 1, 1), (2, 1, 1)}, "كِتاب": {(1, 1, 2)}}
+    assert surah_counts(every, positions, ["رَبّ", "كِتاب"]) == [
+        {"total": 2, "counts": {0: 1, 1: 1}},
+        {"total": 1, "counts": {0: 1}},
+    ]
+
+
+def test_the_surah_counts_add_up_to_the_whole_quran() -> None:
+    whole = json.loads((WORDS / "coverage.json").read_text("utf-8"))
+    surahs = json.loads((WORDS / "surah_coverage.json").read_text("utf-8"))
+    assert len(surahs) == 114
+    assert sum(s["total"] for s in surahs) == whole["total"]
+    added = [0] * len(whole["lemmas"])
+    for surah in surahs:
+        for at, count in surah["counts"].items():
+            added[int(at)] += count
+    assert added == whole["counts"], "surah_coverage.json is stale, run export_quiz_words.py"
 
 
 # ── which words a surah or a juz leaves out ──────────────────────────────────

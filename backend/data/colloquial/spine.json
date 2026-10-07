@@ -81,7 +81,8 @@
               "search_term": "world map pin",
               "image": "unit-01/l01-p14-world-map-pin.jpg"
             }
-          ]
+          ],
+          "words": ["name", "hello", "welcome", "peace", "morning", "evening", "night", "i", "you", "what", "where", "how", "from", "also", "good", "fine", "great", "to-meet", "to-greet"]
         },
         {
           "lesson": "lesson-02",
@@ -156,7 +157,8 @@
               "english": "Sorry, I didn't understand.",
               "search_term": "confused person"
             }
-          ]
+          ],
+          "words": ["please", "thank-you", "sorry", "excuse-me", "yes", "no", "of-course", "okay", "possible", "favour", "request", "grateful", "help", "to-help", "to-want", "to-understand", "to-be-able", "water"]
         },
         {
           "lesson": "lesson-03",
@@ -234,7 +236,8 @@
               "slot": "i-ll-see-you-tomorrow-to-a-man",
               "english": "I'll see you tomorrow. (to a man)"
             }
-          ]
+          ],
+          "words": ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "how-much", "how-many", "time", "hour", "minute", "clock", "now", "today", "tomorrow", "yesterday", "day", "week", "plan", "to-see"]
         },
         {
           "lesson": "lesson-04",
@@ -314,7 +317,8 @@
               "english": "Thanks / May you have strength.",
               "search_term": "thumbs up"
             }
-          ]
+          ],
+          "words": ["city", "street", "market", "shop", "masjid", "neighbourhood", "square", "citadel", "gate", "door", "corner", "here", "there", "near", "far", "right-direction", "left", "straight-ahead", "to-turn", "to-walk"]
         },
         {
           "lesson": "lesson-05",
@@ -373,7 +377,8 @@
               "search_term": "chalkboard",
               "image": "unit-01/l05-p12-chalkboard.jpg"
             }
-          ]
+          ],
+          "words": ["family", "father", "mother", "parents", "brother", "sister", "son", "daughter", "husband", "wife", "child", "friend", "person", "teacher", "year", "married", "to-work", "to-introduce", "big"]
         },
         {
           "lesson": "lesson-06",
@@ -438,7 +443,8 @@
               "slot": "welcome-to-our-city-to-a-man",
               "english": "Welcome to our city. (to a man)"
             }
-          ]
+          ],
+          "words": ["country", "nationality", "language", "visit", "to-visit", "to-live", "to-speak", "arabic", "english", "syria", "egypt", "lebanon", "iraq", "jordan", "palestine", "morocco", "saudi-arabia", "britain", "america"]
         }
       ]
     },
@@ -508,7 +514,8 @@
               "slot": "i-m-still-single-male-speaker",
               "english": "I'm still single. (male speaker)"
             }
-          ]
+          ],
+          "words": ["family", "mother", "father", "parents", "brother", "sister", "son", "daughter", "husband", "wife", "grandfather", "grandmother", "grandson", "granddaughter", "uncle-paternal", "aunt-paternal", "uncle-maternal", "aunt-maternal", "cousin", "nephew", "niece", "father-in-law", "mother-in-law", "brother-in-law", "sister-in-law", "twin", "baby", "child", "married", "single", "to-marry", "wedding"]
         },
         {
           "lesson": "lesson-02",
@@ -581,7 +588,8 @@
               "slot": "enjoy-your-meal-said-to-someone-while-they-are-e",
               "english": "Enjoy your meal. (said to someone while they are eating)"
             }
-          ]
+          ],
+          "words": ["food", "meal", "bread", "rice", "meat", "cheese", "egg", "fruit", "vegetables", "falafel", "sugar", "salt", "water", "coffee", "tea", "juice", "milk", "to-eat", "to-drink", "to-like", "to-want", "hungry", "thirsty", "health", "delicious", "bill"]
         },
         {
           "lesson": "lesson-03",
@@ -640,7 +648,8 @@
               "english": "My grandparents.",
               "search_term": "grandparents with grandchild"
             }
-          ]
+          ],
+          "words": ["tall", "short", "big", "small", "old", "young", "older", "younger", "fat", "thin", "strong", "beautiful", "blond", "dark-skinned", "bald", "weak", "kind", "clever", "calm", "cheerful", "funny", "generous", "shy", "polite", "lazy", "hard-working", "serious", "patient-calm", "stubborn", "short-tempered", "talkative", "naughty", "honest", "brave", "strict", "year", "job", "to-work", "to-live"]
         },
         {
           "lesson": "lesson-04",
@@ -710,7 +719,8 @@
               "english": "Clear the table. (to a man)",
               "search_term": "empty dining table"
             }
-          ]
+          ],
+          "words": ["breakfast", "lunch", "dinner", "meal", "meat", "salt", "bread", "dining-table", "table", "kitchen", "plate", "bowl", "spoon", "fork", "knife", "glass-cup", "napkin", "to-cook", "to-eat", "to-help", "ready", "full-eaten", "delicious", "more"]
         }
       ]
     },
@@ -784,7 +794,8 @@
               "slot": "that-s-enough-like-that-thanks",
               "english": "That's enough like that, thanks"
             }
-          ]
+          ],
+          "words": ["vegetables", "tomato", "cucumber", "onion", "garlic", "potato", "carrot", "aubergine", "bell-pepper", "lettuce", "cabbage", "cauliflower", "courgette", "spinach", "parsley", "coriander", "mint", "lemon", "fruit", "apple", "banana", "orange-fruit", "grapes", "strawberry", "watermelon", "fig", "pomegranate", "bunch", "kilo", "half", "bag", "price", "to-buy", "to-weigh", "fresh", "ripe", "expensive", "cheap", "change"]
         },
         {
           "lesson": "lesson-02",
@@ -844,7 +855,8 @@
               "slot": "god-bless-you-good-night",
               "english": "God bless you, good night"
             }
-          ]
+          ],
+          "words": ["bread", "pita-bread", "thin-bread", "loaf", "pastry", "biscuit", "meat", "minced-meat", "lamb", "beef", "veal", "chicken", "fish", "sheep", "bone", "kofta", "bakery", "butcher", "baker", "oven", "piece", "kilo", "half", "hot", "fresh", "grilled", "to-bake", "to-cut", "to-grill", "open"]
         },
         {
           "lesson": "lesson-03",
@@ -904,7 +916,8 @@
               "slot": "we-need-to-wash-the-dishes-afterward",
               "english": "We need to wash the dishes afterward"
             }
-          ]
+          ],
+          "words": ["to-cook", "to-boil", "to-fry", "to-chop", "to-peel", "to-mix", "to-stir", "to-add", "to-wash", "to-taste", "kitchen", "pot", "frying-pan", "oven", "ladle", "spoon", "knife", "plate", "dish-meal", "dishes", "recipe", "ingredients", "fire", "flame", "salt", "black-pepper", "sugar", "oil", "flour", "butter", "egg", "rice", "water", "garlic", "coriander", "spice", "smell", "tasty", "ready"]
         },
         {
           "lesson": "lesson-04",
@@ -966,7 +979,8 @@
               "slot": "i-don-t-like-this-food",
               "english": "I don't like this food"
             }
-          ]
+          ],
+          "words": ["to-like", "to-prefer", "to-dislike", "to-try", "taste", "favourite", "sweet", "salty", "sour", "spicy", "bitter", "delicious", "raw", "hot", "vegetarian", "halal", "pork", "chicken", "fish", "fava-beans", "sweets", "baklava", "stuffed-vegetables", "tomato"]
         },
         {
           "lesson": "lesson-05",
@@ -1033,7 +1047,8 @@
               "search_term": "red fabric",
               "image": "unit-03/l05-p14-red-fabric.jpg"
             }
-          ]
+          ],
+          "words": ["market", "stall", "shop", "seller", "customer", "price", "how-much", "expensive", "cheap", "discount", "offer", "deal", "okay", "money", "change", "bag", "basket", "scale", "kilo", "fruit", "size", "another", "to-buy", "to-sell", "to-pay", "to-bargain", "colour", "red", "blue", "green", "yellow", "white", "black", "big", "small"]
         }
       ]
     },
@@ -1112,7 +1127,8 @@
               "english": "No sugar at all.",
               "search_term": "unsweetened drink"
             }
-          ]
+          ],
+          "words": ["coffee", "tea", "milk", "water", "juice", "ice", "sugar", "mint", "cardamom", "honey", "lemon", "coffee-beans", "cup", "mug", "glass-cup", "teapot", "cafe", "waiter", "to-order", "to-want", "bitter", "sweet", "hot", "cold", "big", "small", "medium", "plain", "extra"]
         },
         {
           "lesson": "lesson-02",
@@ -1181,7 +1197,8 @@
               "english": "Do you have desserts?",
               "search_term": "dessert display case"
             }
-          ]
+          ],
+          "words": ["menu", "starter", "main-course", "dessert", "sweets", "salad", "soup", "fattoush", "pizza", "dish-meal", "meat", "vegetarian", "grilled", "fried", "cooked", "spicy", "light-weight", "price", "to-recommend", "to-cost", "today"]
         },
         {
           "lesson": "lesson-03",
@@ -1250,7 +1267,8 @@
               "search_term": "two identical meals",
               "image": "unit-04/l03-p12-two-identical-meals.jpg"
             }
-          ]
+          ],
+          "words": ["to-order", "reservation", "table", "meal", "portion", "hummus", "fattoush", "tabbouleh", "shawarma", "pasta", "samosa", "sandwich", "soup", "salad", "bread", "onion", "water", "plate", "dish-meal", "cup", "glass-cup", "ready", "quick", "same", "extra", "enough", "without", "to-repeat", "to-wait"]
         },
         {
           "lesson": "lesson-04",
@@ -1317,7 +1335,8 @@
               "english": "Bless your hands, the food was delicious.",
               "search_term": "chef receiving compliment"
             }
-          ]
+          ],
+          "words": ["bill", "receipt", "total", "money", "cash", "card", "change", "tip", "service-charge", "discount", "price", "local-money", "dollar", "hundred", "thousand", "to-pay", "to-split", "to-include", "expensive", "cheap"]
         },
         {
           "lesson": "lesson-05",
@@ -1382,7 +1401,8 @@
               "english": "Please put it in a bag.",
               "search_term": "paper takeaway bag"
             }
-          ]
+          ],
+          "words": ["restaurant", "shawarma", "falafel", "sandwich", "pizza", "burger", "fries", "chicken", "ice-cream", "sauce", "ketchup", "cola", "ice", "bag", "box", "container", "size", "large", "medium", "small", "fast", "halal", "takeaway", "delivery", "kids-meal", "to-take", "to-eat"]
         },
         {
           "lesson": "lesson-06",
@@ -1444,7 +1464,8 @@
               "slot": "next-time-it-s-on-us",
               "english": "Next time it's on us."
             }
-          ]
+          ],
+          "words": ["invitation", "guest", "host", "party", "occasion", "gift", "honour", "generosity", "generous", "house", "hand", "right-direction", "to-invite", "to-sit", "to-enter", "to-thank", "to-eat", "full-eaten", "delicious", "more", "tea", "dessert", "next-time"]
         }
       ]
     },
@@ -1512,7 +1533,8 @@
               "english": "I don't have change, sorry.",
               "search_term": "coins and small change in a hand"
             }
-          ]
+          ],
+          "words": ["taxi", "shared-taxi", "car", "driver", "meter", "fare", "price", "change", "local-money", "street", "centre", "address", "traffic-jam", "straight-ahead", "right-direction", "left", "to-stop", "to-go", "to-take", "to-wait", "to-arrive", "to-drive"]
         },
         {
           "lesson": "lesson-02",
@@ -1574,7 +1596,8 @@
               "slot": "thanks-a-lot",
               "english": "Thanks a lot."
             }
-          ]
+          ],
+          "words": ["pharmacy", "masjid", "bridge", "road", "street", "alley", "corner", "square", "traffic-light", "sign", "distance", "side", "end", "north", "south", "east", "west", "straight-ahead", "right-direction", "left", "near", "far", "in-front-of", "behind", "next-to", "opposite", "after", "before", "first", "last", "lost", "closed", "open", "to-turn", "to-walk", "to-ask", "to-find"]
         },
         {
           "lesson": "lesson-03",
@@ -1634,7 +1657,8 @@
               "slot": "the-next-bus-is-emptier-better",
               "english": "The next bus is emptier, better."
             }
-          ]
+          ],
+          "words": ["bus", "microbus", "bus-stop", "station", "ticket", "seat", "number", "route", "direction", "roundabout", "passenger", "driver", "fare", "crowded", "empty", "free-available", "next", "to-get-on", "to-get-off", "to-wait", "to-stop"]
         },
         {
           "lesson": "lesson-04",
@@ -1703,7 +1727,8 @@
               "slot": "is-there-a-good-restaurant-in-the-area",
               "english": "Is there a good restaurant in the area?"
             }
-          ]
+          ],
+          "words": ["hospital", "school", "university", "bank", "restaurant", "cafe", "church", "masjid", "market", "shop", "supermarket", "bakery", "pharmacy", "hotel", "library", "bookshop", "museum", "cinema", "post-office", "police-station", "park", "garden", "station", "airport", "old-town", "city", "village", "neighbourhood", "square", "street"]
         },
         {
           "lesson": "lesson-05",
@@ -1768,7 +1793,8 @@
               "slot": "station",
               "english": "Station."
             }
-          ]
+          ],
+          "words": ["taxi", "bus", "microbus", "train", "metro", "tram", "aeroplane", "bicycle", "motorbike", "car", "on-foot", "station", "airport", "ticket", "road", "bridge", "traffic", "traffic-jam", "petrol", "speed", "trip", "journey", "driver", "route", "distance", "fare", "square", "old-town", "free-available", "occupied", "to-stop", "to-arrive", "to-travel", "to-take", "to-wait", "to-drop-off"]
         }
       ]
     },
@@ -1835,7 +1861,8 @@
               "search_term": "pair of sneakers on a shelf",
               "image": "unit-06/l01-p12-pair-of-sneakers-on-a-shelf.jpg"
             }
-          ]
+          ],
+          "words": ["dress", "shirt", "trousers", "coat", "suit", "shoe", "trainers", "sock", "size", "fitting-room", "fabric", "cotton", "to-try-on", "to-fit", "big", "small", "tight", "loose", "wide"]
         },
         {
           "lesson": "lesson-02",
@@ -1893,7 +1920,8 @@
               "slot": "which-is-nicer-red-or-blue",
               "english": "Which is nicer, red or blue?"
             }
-          ]
+          ],
+          "words": ["colour", "red", "blue", "green", "yellow", "orange", "pink", "brown", "black", "white", "grey", "light-colour", "dark-colour", "to-suit", "to-choose", "to-recommend", "to-like", "nice", "pretty"]
         },
         {
           "lesson": "lesson-03",
@@ -1948,7 +1976,8 @@
               "slot": "how-much-did-the-total-come-to",
               "english": "How much did the total come to?"
             }
-          ]
+          ],
+          "words": ["price", "cheap", "expensive", "discount", "offer", "sale", "quality", "total", "profit", "loss", "thousand", "half", "free-of-charge", "reasonable", "final", "to-bargain", "to-agree", "to-pay", "to-cost", "to-lose-money"]
         },
         {
           "lesson": "lesson-04",
@@ -2003,7 +2032,8 @@
               "slot": "thanks-for-your-cooperation",
               "english": "Thanks for your cooperation."
             }
-          ]
+          ],
+          "words": ["receipt", "money", "defect", "warranty", "refund", "to-return", "to-exchange", "to-give-back", "to-buy", "to-order", "bigger", "smaller", "wrong", "broken", "another"]
         },
         {
           "lesson": "lesson-05",
@@ -2070,7 +2100,8 @@
               "slot": "shall-we-meet-at-the-entrance",
               "english": "Shall we meet at the entrance?"
             }
-          ]
+          ],
+          "words": ["mall", "shop", "floor", "lift", "escalator", "stairs", "entrance", "exit", "food-court", "prayer-room", "shopping-bag", "sale", "cashier", "to-park", "open", "closed"]
         },
         {
           "lesson": "lesson-06",
@@ -2135,7 +2166,8 @@
               "search_term": "five stars rating",
               "image": "unit-06/l06-p12-five-stars-rating.jpg"
             }
-          ]
+          ],
+          "words": ["website", "app", "phone", "basket", "order", "payment", "credit-card", "delivery", "shipping", "parcel", "address", "rating", "review", "cancellation", "to-track", "to-arrive", "to-cancel", "damaged"]
         }
       ]
     },
@@ -2206,7 +2238,8 @@
               "slot": "early-morning-is-very-cold",
               "english": "Early morning is very cold."
             }
-          ]
+          ],
+          "words": ["morning", "dawn", "alarm-clock", "to-wake-up", "to-wash", "to-shower", "to-get-dressed", "to-leave", "face", "teeth", "toothbrush", "toothpaste", "soap", "towel", "clothes", "breakfast", "coffee", "work", "working-hours", "early", "sleepy", "cold"]
         },
         {
           "lesson": "lesson-02",
@@ -2267,7 +2300,8 @@
               "slot": "i-finished-my-work-early-today",
               "english": "I finished my work early today."
             }
-          ]
+          ],
+          "words": ["noon", "afternoon", "lunch", "meeting", "office", "employee", "email", "computer", "task", "job", "pen", "break", "to-work", "to-finish", "to-eat", "to-call", "to-rest", "to-study", "to-come-back", "to-go", "tired", "hungry", "busy"]
         },
         {
           "lesson": "lesson-03",
@@ -2329,7 +2363,8 @@
               "slot": "i-saw-my-friends-in-the-evening",
               "english": "I saw my friends in the evening."
             }
-          ]
+          ],
+          "words": ["evening", "night", "sunset", "dinner", "home", "friend", "family", "television", "tv-series", "film", "sofa", "bed", "bath", "shower", "to-sleep", "to-read", "to-watch", "to-go-out", "late"]
         },
         {
           "lesson": "lesson-04",
@@ -2386,7 +2421,8 @@
               "slot": "the-weekend-comes-quickly",
               "english": "The weekend comes quickly."
             }
-          ]
+          ],
+          "words": ["day", "week", "weekend", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "today", "tomorrow", "yesterday", "holiday", "day-off", "next"]
         },
         {
           "lesson": "lesson-05",
@@ -2451,7 +2487,8 @@
               "slot": "time-passes-quickly-when-i-read",
               "english": "Time passes quickly when I read."
             }
-          ]
+          ],
+          "words": ["hobby", "free-time", "reading", "drawing", "music", "swimming", "photography", "travel", "calligraphy", "book", "garden", "flower", "mountain", "to-draw", "to-cook", "to-write", "to-learn", "to-grow", "to-climb", "to-travel"]
         },
         {
           "lesson": "lesson-06",
@@ -2520,7 +2557,8 @@
               "slot": "shall-we-walk-together-after-the-prayer",
               "english": "Shall we walk together after the prayer?"
             }
-          ]
+          ],
+          "words": ["sport", "ball", "football", "pitch", "stadium", "gym", "team", "player", "match", "training", "exercise", "archery", "horse", "bicycle", "park", "to-play", "to-run", "to-win", "to-walk", "to-ride", "to-lift-weights"]
         }
       ]
     },
@@ -2594,7 +2632,8 @@
               "search_term": "stethoscope",
               "image": "unit-08/l01-p12-stethoscope.jpg"
             }
-          ]
+          ],
+          "words": ["job", "profession", "company", "boss", "experience", "pension", "retirement", "student", "teacher", "doctor", "engineer", "nurse", "lawyer", "police-officer", "journalist", "accountant", "employee", "driver", "farmer", "cook", "craftsman", "retired", "to-work", "to-study", "to-look-for"]
         },
         {
           "lesson": "lesson-02",
@@ -2658,7 +2697,8 @@
               "search_term": "office printer",
               "image": "unit-08/l02-p12-office-printer.jpg"
             }
-          ]
+          ],
+          "words": ["office", "manager", "colleague", "meeting", "report", "file", "computer", "printer", "email", "salary", "overtime", "working-hours", "leave", "holiday", "task", "to-receive", "to-finish", "to-break-down", "demanding"]
         },
         {
           "lesson": "lesson-03",
@@ -2720,7 +2760,8 @@
               "slot": "i-want-to-register-more-courses-next-semester",
               "english": "I want to register more courses next semester."
             }
-          ]
+          ],
+          "words": ["university", "faculty", "lecture", "professor", "library", "exam", "result", "semester", "year", "major", "subject", "course", "homework", "assignment", "degree", "certificate", "student", "to-study", "to-understand", "to-register", "to-submit", "absent"]
         },
         {
           "lesson": "lesson-04",
@@ -2782,7 +2823,8 @@
               "slot": "the-most-important-thing-is-to-be-comfortable-in",
               "english": "The most important thing is to be comfortable in my job."
             }
-          ]
+          ],
+          "words": ["future", "plan", "dream", "ambition", "goal", "project", "opportunity", "field", "masters-degree", "phd", "graduation", "marriage", "company", "abroad", "comfortable", "to-graduate", "to-plan", "to-intend", "to-decide", "to-apply", "to-travel", "to-get-married", "to-settle"]
         },
         {
           "lesson": "lesson-05",
@@ -2846,7 +2888,8 @@
               "slot": "my-son-is-a-diligent-student",
               "english": "My son is a diligent student."
             }
-          ]
+          ],
+          "words": ["school", "classroom", "class", "lesson", "pupil", "teacher", "blackboard", "book", "notebook", "pen", "school-bag", "school-uniform", "page", "grade", "homework", "break", "bathroom", "to-write", "to-open", "to-forget", "diligent"]
         },
         {
           "lesson": "lesson-06",
@@ -2910,7 +2953,8 @@
               "slot": "thank-you-for-your-time-to-a-man",
               "english": "Thank you for your time. (to a man)"
             }
-          ]
+          ],
+          "words": ["interview", "cv", "candidate", "job", "company", "experience", "skill", "qualification", "strength", "salary", "team", "language", "to-introduce", "to-graduate", "to-start", "to-accept", "to-speak"]
         }
       ]
     },
@@ -2974,7 +3018,8 @@
               "slot": "take-some-rest-to-a-man",
               "english": "Take some rest (to a man)"
             }
-          ]
+          ],
+          "words": ["health", "sick", "pain", "fever", "headache", "cold-illness", "cough", "runny-nose", "dizzy", "stomach", "rest", "recovery", "tired", "better", "to-sleep", "to-feel", "to-hurt", "to-rest"]
         },
         {
           "lesson": "lesson-02",
@@ -3032,7 +3077,8 @@
               "slot": "get-well-soon-goodnight-to-a-man",
               "english": "Get well soon, goodnight (to a man)"
             }
-          ]
+          ],
+          "words": ["pharmacy", "pharmacist", "medicine", "pill", "syrup", "painkiller", "ointment", "plaster", "bandage", "prescription", "allergy", "dose", "sleepy", "to-take-medicine"]
         },
         {
           "lesson": "lesson-03",
@@ -3087,7 +3133,8 @@
               "slot": "get-well-soon-take-it-easy-to-a-man",
               "english": "Get well soon, take it easy (to a man)"
             }
-          ]
+          ],
+          "words": ["doctor", "nurse", "patient", "clinic", "appointment", "examination", "check-up", "test", "x-ray", "injection", "surgery", "diagnosis", "treatment", "temperature", "blood-pressure", "breath", "week", "serious", "high", "dangerous", "to-breathe", "to-examine", "to-come-back"]
         },
         {
           "lesson": "lesson-04",
@@ -3157,7 +3204,8 @@
               "english": "My leg is swollen",
               "search_term": "a swollen ankle"
             }
-          ]
+          ],
+          "words": ["head", "neck", "eye", "ear", "nose", "mouth", "tooth", "throat", "chest", "stomach", "back", "arm", "hand", "leg", "foot", "swollen"]
         },
         {
           "lesson": "lesson-05",
@@ -3222,7 +3270,8 @@
               "english": "Do I need braces?",
               "search_term": "dental braces model"
             }
-          ]
+          ],
+          "words": ["dentist", "mouth", "tooth", "teeth", "molar", "gum", "cavity", "filling", "extraction", "braces", "x-ray", "injection", "cold", "to-open", "to-rinse", "to-brush"]
         },
         {
           "lesson": "lesson-06",
@@ -3287,7 +3336,8 @@
               "english": "When can he leave the hospital?",
               "search_term": "wheelchair"
             }
-          ]
+          ],
+          "words": ["hospital", "emergency-room", "ambulance", "first-aid", "room", "operation", "surgeon", "stretcher", "fracture", "wound", "accident", "reception-desk", "visit", "visiting-hours", "to-visit", "to-stay", "to-leave", "to-measure", "worried"]
         }
       ]
     },
@@ -3361,7 +3411,8 @@
               "search_term": "bright sun in sky",
               "image": "unit-10/l01-p12-bright-sun-in-sky.jpg"
             }
-          ]
+          ],
+          "words": ["weather", "sun", "cloud", "rain", "wind", "air", "humidity", "umbrella", "hot", "cold-weather", "warm", "sunny", "cloudy", "humid", "windy", "to-rain"]
         },
         {
           "lesson": "lesson-02",
@@ -3425,7 +3476,8 @@
               "slot": "summer-in-damascus-is-long",
               "english": "Summer in Damascus is long."
             }
-          ]
+          ],
+          "words": ["season", "summer", "winter", "spring", "autumn", "snow", "heat", "dry", "tree", "leaf", "mountain", "sea", "to-snow", "to-change"]
         },
         {
           "lesson": "lesson-03",
@@ -3490,7 +3542,8 @@
               "slot": "i-forgot-the-raincoat-at-home",
               "english": "I forgot the raincoat at home."
             }
-          ]
+          ],
+          "words": ["jacket", "coat", "jumper", "shorts", "shirt", "boots", "shoes", "hat", "cap", "scarf", "glove", "sunglasses", "raincoat", "wool", "cotton", "umbrella", "heavy", "light-weight", "warm", "comfortable", "to-wear"]
         },
         {
           "lesson": "lesson-04",
@@ -3549,7 +3602,8 @@
               "english": "Did you see the weather forecast?",
               "search_term": "weather forecast on phone"
             }
-          ]
+          ],
+          "words": ["outing", "trip", "picnic", "walk", "park", "garden", "balcony", "home", "mountain", "river", "sea", "promenade", "forecast", "idea", "errand", "outside", "pleasant", "nice", "to-go-out", "to-stay", "to-postpone", "to-cancel", "to-depend"]
         },
         {
           "lesson": "lesson-05",
@@ -3614,7 +3668,8 @@
               "slot": "thank-allah-for-this-rain",
               "english": "Thank Allah for this rain."
             }
-          ]
+          ],
+          "words": ["storm", "rain", "thunder", "lightning", "flood", "torrent", "fog", "dust", "sky", "electricity", "street", "road", "wet", "slippery", "strong", "heavy", "to-stop", "to-pass"]
         },
         {
           "lesson": "lesson-06",
@@ -3678,7 +3733,8 @@
               "search_term": "old radio",
               "image": "unit-10/l06-p12-old-radio.jpg"
             }
-          ]
+          ],
+          "words": ["forecast", "bulletin", "news", "temperature", "degree-temperature", "tomorrow", "week", "rise", "drop", "highest", "lowest", "accurate", "to-expect", "to-check", "to-rise", "to-drop"]
         }
       ]
     },
@@ -3746,7 +3802,8 @@
               "slot": "you-went-to-trouble-for-us-said-appreciatively-a",
               "english": "You went to trouble for us (said appreciatively about hospitality)."
             }
-          ]
+          ],
+          "words": ["guest", "host", "neighbour", "home", "flat", "door", "doorbell", "entrance", "hall", "living-room", "bathroom", "shoes", "gift", "car", "address", "incense", "invitation", "visit", "to-visit", "to-welcome", "to-enter", "to-sit", "to-knock", "to-park", "to-take-off", "to-wash", "honour"]
         },
         {
           "lesson": "lesson-02",
@@ -3811,7 +3868,8 @@
               "slot": "don-t-be-shy-the-house-is-your-house",
               "english": "Don't be shy, the house is your house."
             }
-          ]
+          ],
+          "words": ["child", "host", "guest", "table", "sofa", "chair", "television", "coat", "jacket", "tea", "coffee", "sugar", "dates", "sweets", "coffee-pot", "tray", "incense", "gathering", "hospitality", "to-sit", "to-serve", "to-hang", "to-rest", "to-grow-up", "shy", "comfortable"]
         },
         {
           "lesson": "lesson-03",
@@ -3873,7 +3931,8 @@
               "english": "Stay a bit, there's still dessert.",
               "search_term": "dessert plate"
             }
-          ]
+          ],
+          "words": ["food", "meal", "dinner", "dish", "bread", "olives", "dessert", "honey-cake", "soup", "spices", "chilli-sauce", "dining-table", "fork", "knife", "spoon", "napkin", "jug", "pot", "feast", "to-eat", "to-offer", "to-serve", "to-try", "tasty", "spicy", "cold", "hot", "full", "enough", "more"]
         },
         {
           "lesson": "lesson-04",
@@ -3934,7 +3993,8 @@
               "english": "Goodbye, God be with you.",
               "search_term": "hands waving goodbye at a doorway"
             }
-          ]
+          ],
+          "words": ["guest", "family", "goodbye", "thanks", "invitation", "hospitality", "generosity", "effort", "trouble", "excuse", "health", "safety", "road", "time", "late", "soon", "later", "always", "to-leave", "to-thank", "to-return", "to-meet", "to-forget", "grateful"]
         },
         {
           "lesson": "lesson-05",
@@ -3996,7 +4056,8 @@
               "slot": "may-allah-bless-you-for-the-invitation-to-iftar",
               "english": "May Allah bless you for the invitation to iftar."
             }
-          ]
+          ],
+          "words": ["ramadan", "fasting", "fasting-person", "iftar", "suhoor", "adhan", "prayer", "maghrib", "supplication", "reward", "to-fast", "to-break-fast", "to-pray", "dates", "water", "soup", "qatayef", "table", "invitation", "thirst", "hungry", "thirsty"]
         },
         {
           "lesson": "lesson-06",
@@ -4058,7 +4119,8 @@
               "slot": "may-allah-honour-you-you-honoured-me-greatly",
               "english": "May Allah honour you, you honoured me greatly."
             }
-          ]
+          ],
+          "words": ["overnight-stay", "night", "room", "bed", "bedding", "mattress", "pillow", "blanket", "towel", "toothbrush", "key", "bathroom", "dawn", "dawn-prayer", "to-sleep", "to-wake-up", "to-wake-someone", "clean", "comfortable", "cold"]
         }
       ]
     },
@@ -4123,7 +4185,8 @@
               "slot": "can-you-call-me-back-in-a-bit",
               "english": "Can you call me back in a bit?"
             }
-          ]
+          ],
+          "words": ["phone", "mobile-phone", "phone-call", "phone-number", "caller", "line", "signal", "network", "battery", "phone-credit", "number", "voice", "news", "to-call", "to-answer", "to-ring", "to-call-back", "to-cut-off", "busy"]
         },
         {
           "lesson": "lesson-02",
@@ -4183,7 +4246,8 @@
               "slot": "if-you-re-late-call-me",
               "english": "If you're late, call me."
             }
-          ]
+          ],
+          "words": ["meeting", "appointment", "place", "cafe", "masjid", "metro", "roundabout", "entrance", "address", "hour", "quarter", "morning", "evening", "before", "after", "late", "on-time", "together", "exactly", "in-front-of", "next-to", "to-meet", "to-wait", "to-go", "to-arrive"]
         },
         {
           "lesson": "lesson-03",
@@ -4239,7 +4303,8 @@
               "slot": "i-ll-meet-you-friday-instead-of-thursday",
               "english": "I'll meet you Friday instead of Thursday."
             }
-          ]
+          ],
+          "words": ["day", "tomorrow", "day-after-tomorrow", "morning", "noon", "afternoon", "now", "later", "next-day", "suddenly", "appointment", "plan", "change-plans", "postponement", "cancellation", "problem", "emergency", "circumstances", "instead-of", "to-change", "to-postpone", "to-cancel", "to-apologise", "available"]
         },
         {
           "lesson": "lesson-04",
@@ -4294,7 +4359,8 @@
               "slot": "i-ll-pass-him-the-news-as-soon-as-he-s-in",
               "english": "I'll pass him the news as soon as he's in."
             }
-          ]
+          ],
+          "words": ["message", "voice-message", "whatsapp", "email", "letter", "note", "phone-number", "number", "news", "photo", "present", "absence", "urgent", "important", "sure", "to-send", "to-answer", "to-call", "to-tell", "to-say", "to-leave-message", "to-pass-on"]
         },
         {
           "lesson": "lesson-05",
@@ -4357,7 +4423,8 @@
               "slot": "i-ll-reply-to-you-later",
               "english": "I'll reply to you later."
             }
-          ]
+          ],
+          "words": ["message", "voice-message", "photo", "location", "group", "app", "internet", "network", "battery", "to-send", "to-receive", "to-write", "to-read", "to-reply", "to-charge", "weak"]
         },
         {
           "lesson": "lesson-06",
@@ -4420,7 +4487,8 @@
               "search_term": "wifi router",
               "image": "unit-12/l06-p12-wifi-router.jpg"
             }
-          ]
+          ],
+          "words": ["video-call", "call", "conversation", "video", "camera", "screen", "microphone", "headphones", "link", "router", "sound", "internet", "to-hear", "to-see", "to-share", "to-turn-on", "to-turn-off", "to-join", "to-leave", "clear", "weak", "choppy", "frozen"]
         }
       ]
     },
@@ -4492,7 +4560,8 @@
               "english": "I'm glad you came. (to a man)",
               "search_term": "friends greeting at door"
             }
-          ]
+          ],
+          "words": ["happy", "sad", "angry", "upset", "worried", "scared", "tired", "bored", "lonely", "stressed", "embarrassed", "shy", "excited", "relaxed", "glad", "hungry", "fed-up", "feeling", "exam"]
         },
         {
           "lesson": "lesson-02",
@@ -4549,7 +4618,8 @@
               "slot": "ok-that-works",
               "english": "OK, that works."
             }
-          ]
+          ],
+          "words": ["right-correct", "wrong", "true", "correct", "possible", "exactly", "maybe", "never", "of-course", "opinion", "discussion", "to-agree", "to-disagree", "ok"]
         },
         {
           "lesson": "lesson-03",
@@ -4604,7 +4674,8 @@
               "slot": "stay-calm-and-don-t-rush",
               "english": "Stay calm and don't rush."
             }
-          ]
+          ],
+          "words": ["advice", "doctor", "medicine", "treatment", "rest", "diet", "sport", "exercise", "patience", "attention", "experience", "decision", "mind", "to-advise", "to-listen", "to-try", "to-rest", "to-be-careful", "calm", "better", "must"]
         },
         {
           "lesson": "lesson-04",
@@ -4662,7 +4733,8 @@
               "slot": "there-s-no-problem-but-i-d-like-to-clarify-m",
               "english": "There's no problem, but I'd like to clarify. (m)"
             }
-          ]
+          ],
+          "words": ["complaint", "problem", "mistake", "matter", "delay", "bill", "money", "refund", "compensation", "service", "manager", "solution", "noise", "mess", "crowd", "anger", "to-complain", "to-bother", "to-order", "to-help", "important", "bad", "unacceptable"]
         },
         {
           "lesson": "lesson-05",
@@ -4724,7 +4796,8 @@
               "slot": "don-t-mention-it-it-was-my-duty",
               "english": "Don't mention it, it was my duty."
             }
-          ]
+          ],
+          "words": ["thanks", "appreciation", "effort", "kindness", "congratulations", "success", "to-thank", "to-praise", "to-do-well", "grateful", "wonderful", "excellent", "creative", "kind"]
         },
         {
           "lesson": "lesson-06",
@@ -4787,7 +4860,8 @@
               "english": "I will be more careful next time.",
               "search_term": "calendar page"
             }
-          ]
+          ],
+          "words": ["apology", "excuse", "fault", "mistake", "intention", "forgiveness", "to-apologise", "to-forgive", "to-pardon", "to-regret", "to-accept", "sorry", "careful"]
         }
       ]
     },
@@ -4856,7 +4930,8 @@
               "english": "May God give you all Eid money (said jokingly)"
             }
           ],
-          "section": "Happy occasions"
+          "section": "Happy occasions",
+          "words": ["eid", "festival", "holiday", "eid-money", "congratulations", "prayer", "prayer-ground", "sacrifice", "sheep", "eid-biscuits", "clothes", "grandmother", "relatives", "year", "blessed", "to-celebrate", "to-visit", "to-give"]
         },
         {
           "lesson": "lesson-02",
@@ -4920,7 +4995,8 @@
               "english": "May God accept your fasting"
             }
           ],
-          "section": "Happy occasions"
+          "section": "Happy occasions",
+          "words": ["ramadan", "fasting", "fasting-person", "suhoor", "iftar", "tarawih", "quran", "charity", "zakat", "crescent-moon", "lantern", "cannon", "qatayef", "honey-pastry", "dawn", "month", "invitation", "to-fast", "to-invite", "to-prepare"]
         },
         {
           "lesson": "lesson-03",
@@ -4982,7 +5058,8 @@
               "english": "What gift did you bring them?"
             }
           ],
-          "section": "Happy occasions"
+          "section": "Happy occasions",
+          "words": ["wedding", "groom", "bride", "guest", "engagement", "dowry", "ring", "veil", "dress", "suit", "kaftan", "gold", "gift", "hall", "stage", "decorations", "drum", "wedding-procession", "marriage-officiant", "dance", "folk-dance", "congratulations", "to-dance", "to-invite", "to-wear"]
         },
         {
           "lesson": "lesson-04",
@@ -5043,7 +5120,8 @@
               "english": "May God lengthen your life"
             }
           ],
-          "section": "Happy occasions"
+          "section": "Happy occasions",
+          "words": ["birthday", "birth", "party", "celebration", "cake", "candle", "balloon", "gift", "surprise", "congratulations", "success", "promotion", "newborn", "age", "life", "year", "to-blow"]
         },
         {
           "lesson": "lesson-05",
@@ -5103,7 +5181,8 @@
               "slot": "i-ask-god-to-keep-him-safe-for-you-both",
               "english": "I ask God to keep him safe for you both"
             }
-          ]
+          ],
+          "words": ["newborn", "baby", "child", "infant", "mother", "father", "grandfather", "cradle", "aqiqah", "birth-delivery", "pregnant", "safety", "gift", "name", "to-name", "to-visit", "to-raise", "safe"]
         },
         {
           "lesson": "lesson-06",
@@ -5165,7 +5244,8 @@
               "slot": "may-god-open-the-doors-of-good-for-you-to-a-man",
               "english": "May God open the doors of good for you (to a man)"
             }
-          ]
+          ],
+          "words": ["graduation", "success", "exam", "result", "grade", "prize", "top-student", "excellence", "graduation-cap", "ceremony", "job", "pride", "proud", "to-pass", "to-succeed", "to-graduate"]
         },
         {
           "lesson": "lesson-07",
@@ -5228,7 +5308,8 @@
               "slot": "pray-for-us-to-a-man",
               "english": "Pray for us (to a man)"
             }
-          ]
+          ],
+          "words": ["hajj", "pilgrim", "makkah", "kaaba", "ihram", "arafah", "zamzam-water", "prophets-mosque", "masjid", "dates", "prayer", "sins", "effort", "to-circle", "to-pray", "to-return", "accepted"]
         },
         {
           "lesson": "lesson-08",
@@ -5283,7 +5364,8 @@
               "slot": "he-was-a-good-man-condolence",
               "english": "He was a good man"
             }
-          ]
+          ],
+          "words": ["condolence", "death", "deceased", "funeral", "funeral-prayer", "burial", "grave", "mercy", "patience", "comfort", "reward", "family", "to-die", "to-attend", "to-forgive"]
         },
         {
           "lesson": "lesson-09",
@@ -5345,7 +5427,8 @@
               "slot": "we-ask-god-to-grant-you-wellbeing",
               "english": "We ask God to grant you wellbeing"
             }
-          ]
+          ],
+          "words": ["illness", "sick-person", "health", "good-health", "hospital", "doctor", "rest", "reassurance", "flowers", "bouquet", "fruit", "to-visit", "to-recover", "to-reassure", "to-rest", "tired"]
         },
         {
           "lesson": "lesson-10",
@@ -5402,7 +5485,8 @@
               "slot": "god-will-make-it-easy-for-you",
               "english": "God will make it easy for you"
             }
-          ]
+          ],
+          "words": ["news", "misfortune", "shock", "sadness", "hope", "patience", "help", "job", "exam", "to-console", "to-comfort", "to-help", "to-lose", "to-fail", "to-try", "sad", "sorry", "patient-calm", "strong"]
         }
       ]
     },
@@ -5470,7 +5554,8 @@
               "image": "unit-15/l02-p12-paper-bus-ticket.jpg"
             }
           ],
-          "section": "Getting there"
+          "section": "Getting there",
+          "words": ["ticket", "booking", "bus", "train", "ship", "seat", "class-travel", "ticket-window", "counter", "queue", "card", "discount", "offer", "refund", "visa", "traveller", "student", "date", "one-way", "round-trip", "outward-trip", "return-trip", "to-book", "to-confirm", "to-pay", "to-leave", "confirmed"]
         },
         {
           "lesson": "lesson-03",
@@ -5530,7 +5615,8 @@
               "english": "Welcome."
             }
           ],
-          "section": "Getting there"
+          "section": "Getting there",
+          "words": ["airport", "plane", "flight", "gate", "check-in", "customs", "border", "passport", "visa", "ticket", "bag", "suitcase", "baggage", "weight", "take-off", "landing", "tourism", "to-declare", "to-depart", "to-stay", "overweight"]
         },
         {
           "lesson": "lesson-01",
@@ -5591,7 +5677,8 @@
               "english": "Thanks, the room is very nice."
             }
           ],
-          "section": "Staying"
+          "section": "Staying",
+          "words": ["hotel", "room", "night", "bed", "bathroom", "lift", "key", "reception", "breakfast", "pool", "service", "room-service", "luggage", "passport", "price", "single", "double", "free-available", "empty", "to-book", "to-stay", "to-check-out"]
         },
         {
           "lesson": "lesson-04",
@@ -5652,7 +5739,8 @@
               "english": "May God make up for it, God willing it'll work out."
             }
           ],
-          "section": "Staying"
+          "section": "Staying",
+          "words": ["problem", "complaint", "help", "delay", "breakdown", "insurance", "police", "embassy", "office", "employee", "agency", "lost-items", "flight", "booking", "bag", "passport", "to-lose", "to-miss", "to-cancel", "to-wait", "to-help", "to-steal", "broken", "lost", "delayed", "missing", "out-of-order"]
         },
         {
           "lesson": "lesson-05",
@@ -5717,7 +5805,8 @@
               "slot": "how-beautiful-this-place-is",
               "english": "How beautiful this place is!"
             }
-          ]
+          ],
+          "words": ["tourist", "guide", "tour", "museum", "castle", "masjid", "old-city", "ruins", "antiquities", "landmark", "view", "map", "photo", "entry-ticket", "opening-hours", "entrance", "to-visit", "to-take-photo", "old", "ancient", "beautiful"]
         },
         {
           "lesson": "lesson-06",
@@ -5785,7 +5874,8 @@
               "search_term": "sandcastle",
               "image": "unit-15/l06-p12-sandcastle.jpg"
             }
-          ]
+          ],
+          "words": ["beach", "sea", "sand", "wave", "shell", "sun", "boat", "sunshade", "sunscreen", "lifeguard", "sandcastle", "water", "weather", "to-swim", "to-rent", "to-build", "to-drink", "hot", "cold", "safe"]
         },
         {
           "lesson": "lesson-07",
@@ -5852,7 +5942,8 @@
               "slot": "this-is-a-gift-for-my-mother",
               "english": "This is a gift for my mother, I hope she likes it"
             }
-          ]
+          ],
+          "words": ["souvenir", "gift", "box", "soap", "silk", "copper", "scarf", "perfume", "oud-oil", "bottle", "prayer-rug", "spices", "dates", "price", "wooden", "handmade", "traditional", "small", "to-buy", "to-wrap"]
         },
         {
           "lesson": "lesson-08",
@@ -5919,7 +6010,8 @@
               "slot": "we-came-back-safe-thank-god",
               "english": "We came back safe, thank God"
             }
-          ]
+          ],
+          "words": ["holiday", "leave", "trip", "plan", "photo", "camera", "memory", "view", "sunset", "sea", "beach", "house", "family", "phone", "to-travel", "to-take-photo", "to-enjoy", "to-send", "to-return", "enjoyable", "calm", "beautiful"]
         }
       ]
     },
@@ -5986,7 +6078,8 @@
               "slot": "why-didn-t-you-come-yesterday",
               "english": "Why didn't you come yesterday?"
             }
-          ]
+          ],
+          "words": ["yesterday", "day-before-yesterday", "last-night", "morning", "afternoon", "evening", "night", "sunset", "late", "early", "before", "after", "then", "suddenly", "finally", "to-wake-up", "to-sleep", "to-stay-up", "to-go", "to-go-out", "to-come-back", "to-arrive", "to-meet", "to-buy", "to-forget", "to-visit", "to-study", "to-eat", "to-see", "to-happen", "restaurant", "cinema", "work", "errand", "tired"]
         },
         {
           "lesson": "lesson-02",
@@ -6049,7 +6142,8 @@
               "slot": "back-then-life-was-much-simpler",
               "english": "Back then life was much simpler."
             }
-          ]
+          ],
+          "words": ["story", "childhood", "memory", "friend", "neighbour", "teacher", "grandfather", "grandmother", "neighbourhood", "alley", "village", "countryside", "school", "toy", "game", "football", "bicycle", "pilot", "to-play", "to-grow-up", "to-walk", "to-dream", "to-tell", "young", "small", "old", "kind", "afraid", "dark"]
         },
         {
           "lesson": "lesson-03",
@@ -6114,7 +6208,8 @@
               "slot": "i-overslept-and-didn-t-hear-the-alarm",
               "english": "I overslept and didn't hear the alarm."
             }
-          ]
+          ],
+          "words": ["phone", "laptop", "charger", "text-message", "key", "lock", "wallet", "bag", "id-card", "car", "tyre", "airport", "stairs", "electricity", "light", "alarm-clock", "accident", "mistake", "leg", "hand", "to-break", "to-lose", "to-fall", "to-hurt", "to-spill", "to-cut", "to-oversleep", "to-break-down", "lost", "unfortunately"]
         },
         {
           "lesson": "lesson-04",
@@ -6172,7 +6267,8 @@
               "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
               "english": "That's all just people's talk, I don't know if it's true or not."
             }
-          ]
+          ],
+          "words": ["news", "rumour", "secret", "truth", "newspaper", "people", "neighbour", "engagement", "wedding", "baby", "to-hear", "to-say", "to-know", "to-find-out", "to-chat", "to-get-engaged", "to-get-married", "to-move", "true", "strange"]
         },
         {
           "lesson": "lesson-05",
@@ -6236,7 +6332,8 @@
               "slot": "i-came-back-tired-but-happy",
               "english": "I came back tired but happy."
             }
-          ]
+          ],
+          "words": ["journey", "road", "distance", "train", "station", "ticket", "suitcase", "hotel", "photo", "city", "country", "sea", "mountain", "field-farm", "window", "arrival", "departure", "to-travel", "to-pack", "to-stay", "to-try", "to-take", "tiring", "local", "green"]
         },
         {
           "lesson": "lesson-06",
@@ -6298,7 +6395,8 @@
               "slot": "let-us-celebrate-together-this-evening",
               "english": "Let us celebrate together this evening."
             }
-          ]
+          ],
+          "words": ["good-news", "joy", "luck", "opportunity", "promotion", "job", "exam", "house", "hospital", "blessing", "congratulations", "to-pass", "to-celebrate", "to-be-glad", "happy", "good", "great"]
         }
       ]
     },
@@ -6367,7 +6465,8 @@
               "slot": "may-allah-accept",
               "english": "May Allah accept it from you"
             }
-          ]
+          ],
+          "words": ["prayer", "masjid", "adhan", "iqamah", "imam", "muezzin", "congregation", "qibla", "minaret", "prayer-mat", "rakah", "entrance", "to-pray", "to-join", "to-miss", "to-complete", "near", "late"]
         },
         {
           "lesson": "lesson-02",
@@ -6434,7 +6533,8 @@
               "english": "Where can I leave my bag?",
               "search_term": "storage lockers"
             }
-          ]
+          ],
+          "words": ["wudu", "purity", "wudu-area", "water", "face", "hand", "elbow", "foot", "head", "shoes", "shoe-rack", "clothes", "bag", "phone", "compass", "silent", "to-wash", "to-put", "to-leave", "clean"]
         },
         {
           "lesson": "lesson-03",
@@ -6495,7 +6595,8 @@
               "english": "I will pray the sunnah after the Friday prayer",
               "search_term": "shoe rack at mosque door"
             }
-          ]
+          ],
+          "words": ["friday", "jumuah", "khutbah", "preacher", "pulpit", "admonition", "row", "worshipper", "sunnah", "to-listen", "to-bathe", "to-move-closer", "to-reward", "to-accept", "empty", "early", "quietly"]
         },
         {
           "lesson": "lesson-04",
@@ -6560,7 +6661,8 @@
               "search_term": "quran stand",
               "image": "unit-17/l04-p12-quran-stand.jpg"
             }
-          ]
+          ],
+          "words": ["quran", "mushaf", "surah", "verse", "tajweed", "tafsir", "explanation", "knowledge", "study-circle", "class", "lesson", "timetable", "library", "sheikh", "teacher", "student", "question", "child", "memorisation", "to-memorise", "to-recite", "to-repeat", "to-ask", "to-borrow", "to-return", "to-sign-up"]
         }
       ]
     },
@@ -6634,7 +6736,8 @@
               "search_term": "house keys",
               "image": "unit-18/l01-p12-house-keys.jpg"
             }
-          ]
+          ],
+          "words": ["flat", "apartment-building", "floor", "lift", "bedroom", "key", "rent", "deposit", "contract", "lease", "landlord", "tenant", "month", "year", "price", "to-rent", "to-move-in", "to-view", "furnished", "included"]
         },
         {
           "lesson": "lesson-02",
@@ -6702,7 +6805,8 @@
               "search_term": "white refrigerator",
               "image": "unit-18/l02-p12-white-refrigerator.jpg"
             }
-          ]
+          ],
+          "words": ["living-room", "kitchen", "bathroom", "balcony", "room", "sofa", "chair", "table", "bed", "wardrobe", "cupboard", "fridge", "curtains", "air-conditioner", "light", "to-work", "spacious", "new"]
         },
         {
           "lesson": "lesson-03",
@@ -6770,7 +6874,8 @@
               "slot": "thanks-it-works-now",
               "english": "Thanks, it works now"
             }
-          ]
+          ],
+          "words": ["fault", "leak", "tap", "bulb", "electricity", "door", "lock", "plumber", "electrician", "toolbox", "screwdriver", "hammer", "nail", "cost", "to-repair", "to-leak", "to-close", "to-call", "broken"]
         },
         {
           "lesson": "lesson-04",
@@ -6838,7 +6943,8 @@
               "slot": "a-neighbour-has-a-right-over-us",
               "english": "A neighbour has a right over us"
             }
-          ]
+          ],
+          "words": ["neighbour", "doorman", "floor", "noise", "respect", "ladder", "mail", "rubbish", "tea", "food", "to-live", "to-borrow", "to-help", "to-cooperate", "to-apologise", "to-receive", "to-visit", "to-move", "ill", "next-door"]
         }
       ]
     },
@@ -6909,7 +7015,8 @@
               "english": "Here's your receipt."
             }
           ],
-          "section": "Errands"
+          "section": "Errands",
+          "words": ["bank", "account", "cash", "atm", "card", "id-card", "currency", "dollar", "balance", "loan", "transfer", "fee", "cashier", "signature", "statement", "receipt", "to-open-account", "to-withdraw", "to-deposit", "to-transfer", "to-exchange", "to-sign"]
         },
         {
           "lesson": "lesson-02",
@@ -6974,7 +7081,8 @@
               "english": "Can I track the parcel?"
             }
           ],
-          "section": "Errands"
+          "section": "Errands",
+          "words": ["post-office", "post", "letter", "envelope", "parcel", "stamp", "address", "sender", "recipient", "counter-window", "mailbox", "shipping", "registered-mail", "to-send", "to-weigh", "to-arrive", "to-track", "to-write"]
         },
         {
           "lesson": "lesson-03",
@@ -7038,7 +7146,8 @@
               "english": "What is my new phone number?"
             }
           ],
-          "section": "Errands"
+          "section": "Errands",
+          "words": ["phone", "sim-card", "internet", "package", "phone-plan", "subscription", "coverage", "signal", "screen", "charger", "case", "phone-number", "balance", "repair", "to-top-up", "to-activate", "to-repair", "valid", "monthly", "weak", "new"]
         },
         {
           "lesson": "lesson-04",
@@ -7105,7 +7214,8 @@
               "image": "unit-19/l04-p12-mobile-phone.jpg"
             }
           ],
-          "section": "Emergencies"
+          "section": "Emergencies",
+          "words": ["help", "rescue", "emergency", "danger", "fire", "fire-service", "ambulance", "police", "doctor", "hospital", "emergency-number", "to-call", "to-help", "to-hurry", "to-wait", "nearest"]
         },
         {
           "lesson": "lesson-05",
@@ -7170,7 +7280,8 @@
               "english": "Did you see what happened?"
             }
           ],
-          "section": "Emergencies"
+          "section": "Emergencies",
+          "words": ["accident", "collision", "speed", "injury", "injured-person", "bleeding", "witness", "insurance", "first-aid-kit", "bandage", "report", "car", "family", "leg", "to-hit", "to-hurt", "to-move", "to-bring", "to-see", "fine"]
         },
         {
           "lesson": "lesson-06",
@@ -7231,7 +7342,8 @@
               "english": "Thank you for your help."
             }
           ],
-          "section": "Emergencies"
+          "section": "Emergencies",
+          "words": ["child", "parent", "father", "mother", "photo", "description", "guard", "fear", "information-desk", "loudspeaker", "shirt", "age", "to-search", "to-find", "to-announce", "to-cry", "to-see", "lost", "small", "red"]
         }
       ]
     }

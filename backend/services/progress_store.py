@@ -13,9 +13,9 @@ id refers to is the caller's business, and the caller already holds the table
 that says so; copying those tags in here would make a second copy that goes
 stale every time the word list is rebuilt.
 
-`user` is a column, not a feature. There are no accounts yet, so everything is
-filed under 'local'. When there are, the router passes a real name and nothing
-in here changes.
+`user` is the learner's typed name (services/profile.py), or 'local' for answers
+given before names existed. The questions table is a cache of AI answers shared
+by everyone, so it stays under 'local' and claim_local leaves it alone.
 """
 from __future__ import annotations
 
@@ -79,6 +79,16 @@ FROM attempts
 WHERE user = ? AND module = ?
 GROUP BY item
 ORDER BY item
+"""
+
+# The words a meaning was answered right through, so coverage credits the word
+# asked and not a synonym. '' stands for right answers saved before words were.
+_WORDS = """
+SELECT DISTINCT item,
+       CASE WHEN json_type(context, '$.word') = 'text' THEN json_extract(context, '$.word') ELSE '' END AS word
+FROM attempts
+WHERE user = ? AND module = ? AND correct = 1
+ORDER BY item, word
 """
 
 _ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ? ORDER BY id"
@@ -197,6 +207,15 @@ def forget(user: str = "local") -> int:
     return int(cursor.rowcount)
 
 
+def claim_local(user: str) -> int:
+    """Move the unnamed answers and reports onto `user`. Returns how many answers moved."""
+    db = _db()
+    with db:
+        moved = db.execute("UPDATE attempts SET user = ? WHERE user = 'local'", (user,)).rowcount
+        db.execute("UPDATE feedback SET user = ? WHERE user = 'local'", (user,))
+    return int(moved)
+
+
 def summary(module: str, user: str = "local") -> list[dict]:
     """Every item this learner has answered in this module, with its record.
 
@@ -208,6 +227,9 @@ def summary(module: str, user: str = "local") -> list[dict]:
     cap = get_settings().progress_timing_cap_ms
     rows = _db().execute(_SUMMARY, (cap, user, module)).fetchall()
     cards = _replay(module, user)
+    words: dict[str, list[str]] = {}
+    for row in _db().execute(_WORDS, (user, module)):
+        words.setdefault(row["item"], []).append(row["word"])
     now = datetime.now(timezone.utc)
 
     return [
@@ -219,6 +241,7 @@ def summary(module: str, user: str = "local") -> list[dict]:
             "due": review_schedule.is_due(cards[row["item"]], now),
             "known": review_schedule.is_known(cards[row["item"]], now),
             "due_at": cards[row["item"]].due.isoformat(),
+            "words": words.get(row["item"], []),
         }
         for row in rows
     ]

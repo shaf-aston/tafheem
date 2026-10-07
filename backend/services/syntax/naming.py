@@ -16,10 +16,11 @@ from __future__ import annotations
 
 from backend.services import verb_reader
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table
+from backend.services.nahw_book import (
+    book_merges, book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, own_letters, paused, typed_case)
+    CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, merged_prefix, own_letters, paused, typed_case)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -99,8 +100,12 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
             if cell:
                 # the person is sarf's: the reading may have taken اقبل for "I accept"
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
+            elif verb and merged_prefix(own, book_words("ta_merges")):
+                # تَطَّوَّعَ: the shadda is the second ta' merged in, so it is present whatever the reading said
+                token["asp"] = "i"
         token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
     particles.stamp(tokens)
+    s = facts.Sentence(tokens)
     found_answers, governed_by = facts.of_sentence(tokens)
     answers = {t["id"]: a for t, a in zip(tokens, found_answers)}
     # the book's tree has no leaf for some answers: that word stays unnamed
@@ -117,7 +122,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
                                      for kid in tokens if kid["head"] == t["id"]):
             role_by_id[t["id"]] = NAMED.harf_jarr
     named = [role_by_id[token["id"]] for token in bases]
-    cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "")
+    cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "",
+                     facts.puts_in_jarr(token, s))
              for i, (role, token) in enumerate(zip(named, bases))]
     _followers_take_their_case(named, cases, bases, tokens)
     # what each word shows: the governor and follower the tree gave it, and its case
@@ -133,7 +139,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
-             "attached": [{"id": t["id"], "role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
+             # إيّاك: the pronoun on إيّا is a letter of the one detached pronoun, not a piece of its own
+             "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
                            "reading": t.get("reading")}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
@@ -141,9 +148,21 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
     before = [[t["form"].strip("+") for t in tokens if t["form"].endswith("+") and word_of.get(t["id"]) == i]
               for i in range(len(bases))]
+    for entry, role in zip(found, named):
+        if (pair := _pair_named(bases, entry.get("governor"))) and role in pair:
+            entry["pair"] = pair  # the role keeps its id; only the printed name follows the governor
     for found_condition in condition.find(bases, named, cases, before):
         _conditioned(found, found_condition)
     return found
+
+
+def _pair_named(bases: list[dict], governor: int | None) -> dict[str, str] | None:
+    """What a governor of the inna family calls its pair, by its own name (لا: اسم لا، خبر لا),
+    from the `pair_named` of its family card (closed_words.json); None for إنّ itself."""
+    if governor is None:
+        return None
+    return next((card["pair_named"] for family, card in family_cards()
+                 if "pair_named" in card and facts.read_as(bases[governor], family)), None)
 
 
 def _conditioned(found: list[dict], c: dict) -> None:
@@ -231,12 +250,15 @@ def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
 
 def _followers_take_their_case(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
     """A صفة، معطوف، توكيد or بدل with no vowel typed wears the case of the word it
-    follows (اليدُ العليا); in order, so a chain follows too."""
+    follows (اليدُ العليا); in order, so a chain follows too. Its kasra on ـات is also
+    nasb, so it wears the nasb of the word it follows (الطالباتِ المجتهداتِ)."""
     for i, (role, token) in enumerate(zip(named, bases)):
-        if cases[i] is not None or role not in FOLLOWERS:
+        if role not in FOLLOWERS:
             continue
         head = _followed(token, bases, tokens)
-        if head is not None and cases[head] != "mabni":
+        if head is None or cases[head] == "mabni":
+            continue
+        if cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token)):
             cases[i] = cases[head]
 
 
@@ -268,9 +290,10 @@ def opens_with_verb(roles: list[str | None]) -> bool:
     return False
 
 
-def _ending(role: str | None, token: dict, before: dict | None, after: str) -> str | None:
+def _ending(role: str | None, token: dict, before: dict | None, after: str, jarred: bool) -> str | None:
     """What to print under the word: a case for a noun or a present verb, else mabni.
-    A noun's case is the vowel typed on it, else its role's own."""
+    A noun's case is the vowel typed on it, else its role's own. A kasra on ـات is nasb when
+    its role takes nasb, or it has no role and nothing puts it in jarr, shown by the kasra (رأيت المعلماتِ)."""
     if role == NAMED.fil:
         present = token["base"][:1] in PRESENT_PREFIX and token.get("asp") == "i"
         return _mood(paused(token["typed"], after), token, before) if present else "mabni"
@@ -281,9 +304,11 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str) -> s
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if is_mabni(token):
+    if is_mabni(token) or facts.is_object_pronoun(token):
         return "mabni"
-    return CASE_NAME.get(facts.typed_case_of(token) or case_of(role or "", token["mudaf"]))
+    if facts.shows_nasb_by_kasra(token) and (case_of(role, token["mudaf"]) == "a" if role else not jarred):
+        return "nasb"
+    return CASE_NAME.get(facts.typed_case_of(token) or case_of(role or "", token["mudaf"]) or unseen_case(role))
 
 
 def _mood(typed: str, token: dict, before: dict | None) -> str:
@@ -295,8 +320,10 @@ def _mood(typed: str, token: dict, before: dict | None) -> str:
     on (harakat.paused); `before` is the base token before it, its joined letters off."""
     particle = before["base"] if before else ""
     dropped_nun = five_verb_nun(typed) == "dropped"
+    read = (before or {}).get("reading") or {}  # أَلَّا: the nasb أنْ with a لا merged in
     for family, case in (("jazm", "jazm"), ("nasb_mudari", "nasb")):
-        if is_one(particle, family, "before_a_present_verb") or (dropped_nun and is_one(particle, family)):
+        if is_one(particle, family, "before_a_present_verb") or (dropped_nun and is_one(particle, family)) \
+                or (read.get("family") == family and read.get("named") in {m["named"] for m in book_merges(family).values()}):
             return case
     if drops_weak(token["base"], token.get("weak_last")):
         return "jazm"

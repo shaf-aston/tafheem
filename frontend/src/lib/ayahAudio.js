@@ -35,6 +35,7 @@ export function ayahAudioUrl(surah, ayah, reciterId) {
 
 let player = null
 let listeners = new Set()
+let enders = new Set()
 let playingUrl = ''
 
 /** The one audio element, made on first use. Never on a server render. */
@@ -50,7 +51,9 @@ function audio() {
     }
     player.addEventListener('play', changed)
     player.addEventListener('pause', changed)
-    player.addEventListener('ended', changed)
+    // By 'ended' the 'pause' before it has already cleared playingUrl, so the
+    // finished recording is named by the element's own src.
+    player.addEventListener('ended', () => { changed(); enders.forEach((tell) => tell(player.src)) })
     player.addEventListener('error', () => { playingUrl = ''; changed() })
   }
   return player
@@ -119,6 +122,12 @@ export function watch(tell) {
   return () => listeners.delete(tell)
 }
 
+/** Told the url of a recording that played to its end, not one stopped early. */
+export function watchEnd(tell) {
+  enders.add(tell)
+  return () => enders.delete(tell)
+}
+
 /**
  * Ask the browser to start fetching a recording before anyone presses play.
  *
@@ -149,5 +158,6 @@ export function reset() {
   fetched.clear()
   player = null
   listeners = new Set()
+  enders = new Set()
   playingUrl = ''
 }

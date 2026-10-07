@@ -6,7 +6,8 @@ import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Request, Response
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 
@@ -16,7 +17,7 @@ from backend.routers import (
     rijal, speak, tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
-from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, startup, syntax
+from backend.services import dictionary_service, provenance, quran_meanings, quran_service, recitation, root_meaning, startup, syntax
 from backend.services.morphology import get_engine_name
 
 BACKEND_ROOT = Path(__file__).resolve().parent
@@ -99,6 +100,15 @@ def create_app() -> FastAPI:
     ):
         app.include_router(router)
 
+    # The access log has the path and status of every request; a crash also says
+    # whose record it was, so one learner's report can be found. Never the body.
+    # The traceback follows from the server's own log.
+    @app.exception_handler(Exception)
+    async def log_crash(request: Request, error: Exception) -> JSONResponse:
+        logger.error("%s %s failed for profile %r: %r", request.method, request.url.path,
+                     request.headers.get("x-tafheem-profile", "local"), error)
+        return JSONResponse(status_code=500, content={"detail": "The server hit an error."})
+
     @app.get("/api/health")
     async def health(response: Response) -> dict:
         # 503 until the background loads finish: see services/startup.py's `loading`.
@@ -129,6 +139,9 @@ def create_app() -> FastAPI:
             # together; lib/recitingSession.js paces itself by it.
             "listen_per_minute": recitation.ears.per_minute(),
             "corpus_loaded": quran_service.is_loaded(),
+            # False means meanings.db predates the printed spelling: the reader shows
+            # no stop signs until build_quran_meanings.py is run on this machine.
+            "stop_signs_loaded": quran_meanings.has_stop_signs(),
             "dictionary_loaded": dictionary_service.is_loaded(),
             "root_meaning_status": root_meaning.status(),
             "parser": syntax.status(),

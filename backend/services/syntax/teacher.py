@@ -12,9 +12,10 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters
-from backend.services.nahw_book import case_of, is_mabni, is_one, named_roles, teacher_rules
-from backend.services.syntax.facts import Sentence, is_called_noun, is_passive, is_verb, takes_tamyeez, typed_case_of
-from backend.services.syntax.naming import FOLLOWERS, base_tokens, roles_keyed
+from backend.services.nahw_book import book_words, case_of, is_mabni, is_one, named_roles, teacher_rules
+from backend.services.syntax.facts import (
+    Sentence, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of)
+from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, roles_keyed
 from backend.services.harakat import CASE_NAME
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
@@ -55,14 +56,14 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
     bare = bare_letters(token.get("typed") or "")
     free = set()
     # a pronoun, pointer, relative or question word keeps one ending whatever its job
-    if is_mabni(token):
+    if is_mabni(token) or is_object_pronoun(token):
         free.add("*")
     # the noun of لا is raf' when the لا works like ليس (لا رجلٌ في الدار), so its ending is open
     if is_one(by_id.get(token["head"], {}).get("lemma", ""), "la_jins"):
         free |= {"au", "ai"}
     # a sound feminine plural takes kasra for nasb too (رأيت المعلماتِ), and a
     # diptote takes fatha for jarr (مررت بأحمدَ): both look like a clash and are not
-    if bare.endswith("ات"):
+    if shows_nasb_by_kasra(token):
         free.add("ai")
     mudaf_ilayh = any(roles[k] == NAMED.mudaf_ilayh for k in _kid_indices(token, bases))
     if token.get("stt") != "d" and not bare.startswith("ال") and not mudaf_ilayh:
@@ -121,6 +122,13 @@ CHECKS = {
     "follower_needs_noun": _follower_needs_noun,
     "tamyeez_needs_number": _tamyeez_needs_number,
 }
+
+
+def tool_reason(word: dict) -> str | None:
+    """غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule."""
+    if word.get("role") == NAMED.mustathna and word.get("case") == "nasb"             and word["camel"]["base"] in book_words("istithna", "nouns"):
+        return teacher_rules()["case_said"]["istithna_noun"].format(sign=word["sign"])
+    return None
 
 
 def review(words: list[str], tokens: list[dict], found: list[dict]) -> list[dict]:

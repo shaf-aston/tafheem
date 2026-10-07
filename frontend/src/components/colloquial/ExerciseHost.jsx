@@ -7,7 +7,8 @@
  * ({correct, value}) puts an answered exercise back as it was left, so coming
  * back to one shows what was written and how it was marked. The attempt itself
  * is filed here under module "colloq", so every place that hosts an exercise
- * records it alike.
+ * records it alike; an exercise naming its own `progress` ({module, item}) is
+ * filed there instead, as a word drill is filed under the word. An exercise with `say` is heard: its prompt gets a speaker.
  */
 import { useRef, useState } from 'react'
 
@@ -16,6 +17,7 @@ import { hasAnswer, judge } from '../../lib/colloquialAnswer'
 import { recordAttempt } from '../../lib/progress'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
+import SpeakButton from '../ui/SpeakButton'
 
 const statusOf = (saved) => (!saved ? '' : saved.correct ? 'right' : 'wrong')
 
@@ -36,7 +38,8 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
   const check = () => {
     const correct = judge(exercise, value)
     setStatus(correct ? 'right' : 'wrong')
-    recordAttempt({ module: 'colloq', item: exercise.id, correct, ms: startedAt.current && Date.now() - startedAt.current })
+    const { module = 'colloq', item = exercise.id } = exercise.progress ?? {}
+    recordAttempt({ module, item, correct, ms: startedAt.current && Date.now() - startedAt.current })
     onDone?.(correct, value)
   }
 
@@ -46,7 +49,10 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
 
   return (
     <div className="space-y-4">
-      <p className="type-body text-[var(--text)]">{exercise.prompt}</p>
+      <p className="type-body text-[var(--text)] flex items-center gap-3">
+        {exercise.say && <SpeakButton text={exercise.say} early />}
+        {exercise.prompt}
+      </p>
       <Renderer exercise={exercise} value={value} onChange={(next) => { startedAt.current ??= Date.now(); setValue(next) }} status={status} />
       {!status && (
         <PrimaryButton accent={accent} disabled={!hasAnswer(value)} onClick={check}>

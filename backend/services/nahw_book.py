@@ -43,6 +43,11 @@ def book_map(family: str, part: str) -> dict[str, str]:
     return _closed()["families"][family][part]
 
 
+def book_merges(family: str) -> dict:
+    """A family's merged words (أَلَّا in nasb_mudari), or none."""
+    return _closed()["families"][family].get("merges", {})
+
+
 def is_one(lemma: str, family: str, part: str = "words") -> bool:
     """True when the parser's lemma (an attached clitic's '+' aside) is on that list."""
     return lemma.strip("+") in book_words(family, part)
@@ -77,6 +82,19 @@ def six_noun_case(base: str, lemma: str) -> str | None:
 def is_mabni(token: dict) -> bool:
     """A pronoun, pointer, relative or question word: its ending is not a case."""
     return any(kind in token.get("pos_camel", "") for kind in MABNI_KINDS)
+
+
+def is_object_stem(form: str) -> bool:
+    """إيّاك، إيّاه: the stem of a detached pronoun of nasb (damir_munfasil `object_stem`)."""
+    return strip_diacritics(form).startswith(tuple(book_words("damir_munfasil", "object_stem")))
+
+
+def is_subject_pronoun(token: dict) -> bool:
+    """أنا، أنتَ، هو: a detached pronoun of raf'. Its fatha or damma is part of the word, never a
+    case; only the إيّا pronouns are objects (damir_munfasil `object_stem`)."""
+    form = strip_diacritics(token.get("form", ""))
+    return ("pron" in token.get("pos_camel", "") and form in book_words("damir_munfasil")
+            and not is_object_stem(form))
 
 
 def is_plain_noun(token: dict) -> bool:
@@ -154,6 +172,11 @@ def case_of(role: str, mudaf: bool = False) -> str | None:
     cases = teacher_rules()["case_of_role"]
     return next((case for case in "uai" if role in cases[case]), None) or (
         "a" if mudaf and role in cases["a_when_mudaf"] else None)
+
+
+def unseen_case(role: str | None) -> str | None:
+    """u / a / i the role takes when the ending shows none (teacher.json a_when_unseen)."""
+    return "a" if role in teacher_rules()["case_of_role"]["a_when_unseen"] else None
 
 
 def reason(role: str, mabni: bool = False) -> str:

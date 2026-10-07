@@ -17,8 +17,15 @@ from __future__ import annotations
 import pytest
 
 from backend.models.schemas import ROLE_KEYS, WordAnalysis
-from backend.services import iraab, rule_engine
+from backend.services import iraab, morphology, rule_engine
 from backend.services.nahw_book import term_ar
+from backend.services.syntax.catib_onnx import files_present
+
+# Reading a sentence needs CAMeL's data and the parser's model files, neither in git.
+pytestmark = pytest.mark.skipif(
+    not (morphology._CAMEL_AVAILABLE and files_present()),
+    reason="CAMeL data or CATiB parser files not present",
+)
 
 # Two sentences, one of each kind, so both branches of the engine are walked.
 VERBAL = "ذهب الولد إلى المدرسة"     # jumlah fi'liyyah
@@ -225,6 +232,15 @@ CARDS = [
     ("رَأَيْتُ أَخًا", 1, "sign", "فتحة"),                   # indefinite: no مضاف, the vowel shows
     ("سَلَّمْتُ عَلَى أَبِي الطَّبِيبِ", 2, "sign", "الياء"),    # CAMeL's name أبي is the noun أب
     ("يَسِّرُوا وَلَا تُعَسِّرُوا", 2, "sign", "حذف النون"),   # لا with a و joined to it
+    # a kasra on ـات with nothing to put it in jarr is nasb; the صفة after it follows
+    ("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا", 0, "sign", "نيابة عن الفتحة"),
+    ("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا", 1, "role", "صفة"),
+    ("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا", 4, "reason", "مضارع منصوب"),                    # the merged ta' (shadda) makes it present
+    ("رَأَيْتُ الطَّالِبَاتِ الْمُجْتَهِدَاتِ", 2, "case", "nasb"),
+    ("مَرَرْتُ بِالطَّالِبَاتِ", 1, "case", "jarr"),         # a preposition keeps the kasra jarr
+    ("أُرِيدُ أَنْ تَطَّوَّعَ", 2, "reason", "مضارع منصوب"),
+    ("تَطَوَّعَ زَيْدٌ", 0, "reason", "ماضٍ"),               # no shadda: a true past
+    ("تَمَّ الأَمْرُ", 0, "reason", "ماضٍ"),                 # a short doubled past is not Form V
 ]
 
 
@@ -254,6 +270,23 @@ def test_summary_and_tree_name_the_sentence_alike(sentence: str, term: str):
     answer = _read(sentence)
     from backend.services import syntax
     assert (answer["summary"], syntax.read(sentence)["tree"]["tree"]["label"]) == (term_ar(term), term_ar(term))
+
+
+def _picture_roles(node: dict) -> list:
+    return [node.get("role"), node.get("detail"), *(r for kid in node.get("children", []) + node.get("parts", [])
+                                                     for r in _picture_roles(kid))]
+
+
+def test_an_action_after_illa_is_a_munqati_excepted_and_its_hidden_doer_is_said_either_way():
+    from backend.services import syntax
+    shown = _picture_roles(syntax.read("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا")["tree"]["tree"])
+    assert "مستثنى منقطع" in shown and "ضمير مستتر تقديره أنتَ أو هي" in shown
+
+
+def test_the_same_masdar_with_no_illa_stays_an_object():
+    from backend.services import syntax
+    shown = _picture_roles(syntax.read("أُرِيدُ أَنْ تَطَّوَّعَ")["tree"]["tree"])
+    assert "مفعول به" in shown and "مستثنى منقطع" not in shown
 
 
 def test_the_summary_is_the_pictures_own_label_never_a_second_guess():
@@ -376,8 +409,8 @@ def test_lawla_before_a_verb_urges_and_opens_no_condition():
 # One reading per small word (particles.stamp): the card names what the word does here.
 PARTICLE_ROLES = [
     ("إِذَا قَالَ الْعَبْدُ لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ",
-     ["مفعول فيه", "فعل", "فاعل", "حرف", "اسم إن", "حرف", "بدل", "مبتدأ", "خبر"]),
-    ("لاَ ضَرَرَ وَلاَ ضِرَارَ", ["حرف", "اسم إن", "حرف", "اسم إن"]),
+     ["مفعول فيه", "فعل", "فاعل", "حرف", "اسم لا", "حرف", "بدل", "مبتدأ", "خبر"]),
+    ("لاَ ضَرَرَ وَلاَ ضِرَارَ", ["حرف", "اسم لا", "حرف", "اسم لا"]),
     ("جَاءَ زَيْدٌ لَا خَالِدٌ", ["فعل", "فاعل", "حرف", "معطوف"]),
     ("جَاءَ زَيْدٌ لَا عَمْرٌو", ["فعل", "فاعل", "حرف", "معطوف"]),  # the written و of عمرو hides no case
     ("الْحَلاَلُ بَيِّنٌ وَالْحَرَامُ بَيِّنٌ", ["مبتدأ", "خبر", "مبتدأ", "خبر"]),
@@ -397,3 +430,155 @@ def test_each_reading_names_the_particle():
     assert "لا النافية للجنس" in words[3]["reason"] and "أداة استثناء" in words[5]["reason"]
     assert "ويجوز أن تكون استئنافية" in words[7]["reason"]
     assert "أداة حصر" in iraab.analyse("مَا جَاءَ إِلَّا زَيْدٌ")["words"][2]["reason"]
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    ("لَا تَعْبُدُوا إِلَّا اللَّهَ", ["حرف", "فعل", "حرف", "مفعول به"]),  # the parser hangs the noun on إلا
+    ("لَا تَضْرِبْ إِلَّا زَيْدًا", ["حرف", "فعل", "حرف", "مفعول به"]),
+    ("لَا تَقُلْ إِلَّا الْحَقَّ", ["حرف", "فعل", "حرف", "مفعول به"]),
+    ("مَا ذَهَبَ إِلَّا إِلَى الْمَدْرَسَةِ", ["حرف", "فعل", "حرف", "حرف جر", "مجرور"]),
+    ("لَا إِلَهَ إِلَّا اللَّهُ", ["حرف", "اسم لا", "حرف", "بدل"]),  # control: after a noun in its case, a بدل
+])
+def test_the_word_after_a_restricting_illa_takes_the_place_the_sentence_leaves(sentence: str, expected: list[str]):
+    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+
+
+def _shape(node: dict) -> tuple:
+    """A picture as the book draws it: each unit's label and job, each leaf's role."""
+    from backend.services.arabic_text import strip_diacritics
+    if node.get("word") is not None:
+        return (strip_diacritics(node["role"]),)
+    return (strip_diacritics(node.get("label") or ""), strip_diacritics(node.get("role") or ""),
+            *(_shape(kid) for kid in node["children"]))
+
+
+def test_the_wonder_form_is_drawn_as_the_books_own_example():
+    """ما أحسن زيدًا (Tasheel 1.4.2 p8): ما the مبتدأ, the verb's clause its khabar, the verb with its hidden doer."""
+    import json
+    from backend.services import syntax
+    from backend.services.nahw_book import RULES
+    book = next(e for e in json.loads((RULES.parent / "tarkeeb" / "examples" / "tasheel-al-nahw.json")
+                                      .read_text(encoding="utf-8"))["examples"] if e["id"] == "1.4.2-taajjub")
+    ours = syntax.read(book["sentence"])
+    assert _shape(ours["tree"]["tree"]) == _shape(book["tree"])
+    assert "ضمير مستتر وجوبًا تقديره هو يعود على ما" in _picture_roles(ours["tree"]["tree"])
+    card = _read(book["sentence"])["words"][1]
+    assert card["role"] == "فعل" and "فعل ماضٍ جامد للتعجب مبني على الفتح" in card["reason"]
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    ("مَا أَجْمَلَ السَّمَاءَ", ["مبتدأ", "فعل", "مفعول به"]),
+    ("ما اجمل السماء", ["مبتدأ", "فعل", "مفعول به"]),  # plain text: the shape is read from the letters
+    ("ما اشد الحر", ["مبتدأ", "فعل", "مفعول به"]),  # the doubled root, from the analyser's root
+    ("مَا أَطْوَلَ اللَّيْلَ", ["مبتدأ", "فعل", "مفعول به"]),
+    ("مَا أَكْرَمَ زَيْدٌ عَمْرًا", ["حرف", "فعل", "فاعل", "مفعول به"]),  # a noun in raf': the ordinary negation
+    ("ما أكرم زيد عمرا", ["حرف", "فعل", "فاعل", "مفعول به"]),
+    ("مَا أُكْرِمَ زَيْدٌ", ["حرف", "فعل", "نائب فاعل"]),  # the typed damma says it is not the wonder shape
+    ("مَا أَعْطَى الرَّجُلَ كِتَابًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),  # two objects: not the wonder form
+    ("ما أنزل الله بها من سلطان", ["حرف", "فعل", "فاعل", "حرف جر", "حرف جر", "مجرور"]),  # أنزل gives no comparative
+    ("مَا أَجْمَلَهَا", ["مبتدأ", "فعل"]),  # the pronoun on the verb is its one object
+    ("مَا أَعْظَمَكَ", ["مبتدأ", "فعل"]),
+    ("ما أحلاها", ["مبتدأ", "فعل"]),
+    ("مَا أَجْمَلَهَا مِنْ لَيْلَةٍ", ["مبتدأ", "فعل", "حرف جر", "مجرور"]),  # a preposition after it is no question word
+    ("مَا أَعْطَاهَا كِتَابًا", ["حرف", "فعل", "مفعول به"]),  # a second object: not the wonder form
+])
+def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expected: list[str]):
+    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    ("مَا اسْمُكَ", ["خبر", "مبتدأ"]),  # the question word is the khabar brought to the front (Tasheel 2.4.7 p47)
+    ("مَا هَذَا", ["خبر", "مبتدأ"]),
+    ("مَا الْإِيمَانُ", ["خبر", "مبتدأ"]),
+    ("مَنْ أَنْتَ", ["خبر", "مبتدأ"]),
+    ("مَنْ هَذَا؟", ["خبر", "مبتدأ"]),
+    ("مَنْ أَبُوكَ", ["خبر", "مبتدأ"]),
+    ("قَالَ مَا اسْمُكَ", ["فعل", "خبر", "مبتدأ"]),
+    ("يَا أَخِي مَا اسْمُكَ", ["حرف", "منادى", "خبر", "مبتدأ"]),
+    ("وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ", ["مبتدأ", "فعل", "خبر", "مبتدأ", "مضاف إليه"]),  # a verb of informing, its second object a question
+    ("مَا أَجْمَلَ السَّمَاءَ", ["مبتدأ", "فعل", "مفعول به"]),
+    # not a question: ما الحجازية, a negation, a relative before a ظرف or a verb, من before a preposition
+    ("مَا هَذَا بَشَرًا", ["حرف", "اسم كان", "خبر كان"]),
+    ("ما زيدٌ قائمًا", ["حرف", "اسم كان", "خبر كان"]),
+    ("وَمَا زَيْدٌ قَائِمًا", ["حرف", "اسم كان", "خبر كان"]),  # a وَ or فَ before it leaves it ما الحجازية
+    ("فَمَا هَذَا بَشَرًا", ["حرف", "اسم كان", "خبر كان"]),
+    ("مَا جَاءَ إِلَّا زَيْدٌ", ["حرف", "فعل", "حرف", "فاعل"]),
+    ("مَنْ جَاءَ", ["مبتدأ", "فعل"]),
+    ("مَنْ فِي الْبَيْتِ", ["مبتدأ", "حرف جر", "مجرور"]),
+    ("إِنَّ مَا عِنْدَ اللَّهِ هُوَ خَيْرٌ لَكُمْ", ["حرف", "اسم إن", "مفعول فيه", "مضاف إليه", "مبتدأ", "خبر إن", "حرف جر"]),
+])
+def test_a_question_word_before_its_mubtada_is_the_khabar(sentence: str, expected: list[str]):
+    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+
+
+@pytest.mark.parametrize("sentence, negations", [
+    ("مَا أَنْتَ إِلَّا بَشَرٌ", 1),
+    ("قَالُوا مَا أَنْتُمْ إِلَّا بَشَرٌ", 1),  # quoted speech: a verb of saying does not take the ما as its object
+    ("ما قلت لهم إلا ما أمرتني به", 1),  # the first ما negates, the second is the relative
+    ("لَا يَعْلَمُ مَا فِي الْغَيْبِ إِلَّا اللَّهُ", 0),  # the verb takes the ما as its object
+    ("قَرَأْتُ مَا كَتَبَ الطُّلَّابُ إِلَّا زَيْدًا", 0),
+])
+def test_only_a_ma_that_opens_its_clause_is_the_negation_before_illa(sentence: str, negations: int):
+    from backend.services import syntax
+    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    assert shown.count("ما النافية") == negations
+
+
+def test_the_wonder_verbs_noun_after_its_pronoun_is_no_second_object():
+    words = iraab.analyse("مَا أَجْمَلَهَا لَيْلَةً")["words"]
+    assert [w["role"] for w in words[:2]] == ["مبتدأ", "فعل"] and "للتعجب" in words[1]["reason"]
+
+
+def test_a_relative_before_a_zarf_and_its_verb_is_no_question():
+    words = iraab.analyse("مَا عِنْدَكُمْ يَنْفَدُ")["words"]
+    assert words[0]["role"] == "مبتدأ" and words[-1]["role"] == "فعل" and "اسْتِفْهَامِيَّةٌ" not in _sentence_label("مَا عِنْدَكُمْ يَنْفَدُ")
+
+
+def _sentence_label(sentence: str) -> str:
+    from backend.services import syntax
+    return syntax.read(sentence)["tree"]["tree"].get("label") or ""
+
+
+@pytest.mark.parametrize("sentence", ["مَا أَنْتَ إِلَّا بَشَرٌ", "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ", "ما أنت إلا بشر"])
+def test_ma_before_illa_is_the_negation_and_illa_restricts_the_khabar(sentence: str):
+    words = iraab.analyse(sentence)["words"]
+    assert [w["role"] for w in words] == ["حرف", "مبتدأ", "حرف", "خبر"]
+    assert "أداة حصر" in words[2]["reason"]
+
+
+@pytest.mark.parametrize("sentence", ["هَلْ أَنْتَ تَكْتُبُ", "ما أنت إلا بشر", "هَلِ الْوَلَدُ نَائِمٌ", "يَا أَخِي مَا اسْمُكَ",
+                                      "مَنْ أَنْتَ فِي هَذِهِ الْمَدِينَةِ"])
+def test_the_picture_keeps_the_order_the_words_were_typed(sentence: str):
+    from backend.services import syntax
+
+    def leaves(node: dict) -> list[int]:
+        return ([node["word"]] if node.get("word") is not None else []) + [i for kid in node.get("children", []) for i in leaves(kid)]
+    order = leaves(syntax.read(sentence)["tree"]["tree"])
+    assert order == sorted(order)
+
+
+@pytest.mark.parametrize("sentence, name", [
+    ("مَا هَذَا بَشَرًا", "ما الحجازية"),  # a particle that works like ليس is no فعل ناقص
+    ("كَانَ زَيْدٌ قَائِمًا", "فعل ناقص"),
+])
+def test_the_picture_names_the_governor_of_kana(sentence: str, name: str):
+    from backend.services import syntax
+
+    def roles(node: dict) -> list[str]:
+        return [node.get("role")] + [r for kid in node.get("children", []) for r in roles(kid)]
+    assert name in roles(syntax.read(sentence)["tree"]["tree"])
+
+
+@pytest.mark.parametrize("sentence, doer", [
+    ("أَنْتَ تَكْتُبُ", "ضمير مستتر تقديره أنتَ"),  # the khabar's pronoun goes back to its mubtada
+    ("هِيَ تَكْتُبُ", "ضمير مستتر تقديره هي"),
+    ("أَنْتِ تَكْتُبِينَ", "ضمير متصل (أنتِ)"),  # the ياء is the doer, not a hidden أنتَ أو هي
+    ("تَكْتُبِينَ", "ضمير متصل (أنتِ)"),
+    ("تَكْتُبُ", "ضمير مستتر تقديره أنتَ أو هي"),  # nothing settles it
+])
+def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: str, doer: str):
+    from backend.services import syntax
+    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    assert doer in shown
+    if sentence.startswith(("أَنْتَ", "هِيَ", "أَنْتِ")):
+        assert [w["role"] for w in iraab.analyse(sentence)["words"]][0] == "مبتدأ" and "خبر" in shown

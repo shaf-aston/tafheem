@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { measure, rows, share, splitConnectors } from './tarkeebLayout'
+import { cells, hiddenWords, measure, rows, splitConnectors } from './tarkeebLayout'
 
 /** Shaped exactly as the API sends it: empty arrays, not missing keys. */
 const AYAH = {
@@ -63,14 +63,38 @@ describe('rows', () => {
   })
 })
 
-describe('share', () => {
-  it('gives a group as many columns as it covers', () => {
-    const tree = measure(AYAH)
-    expect(tree.children.map(share)).toEqual([1, 1, 2])
+describe('a word named as its first piece', () => {
+  // لْـ يَصُمْهُ: the verb's pieces are written in its sentence's row, فعل once
+  const CLAUSE = {
+    label: 'جُمْلَةٌ فِعْلِيَّةٌ',
+    children: [
+      { word: 0, role: 'لام الأمر', children: [], parts: [] },
+      { word: 1, role: 'فعل', children: [], parts: [{ role: 'فعل' }, { role: 'فاعل' }, { role: 'مفعول به' }] },
+    ],
+  }
+
+  it('adds no row of its own', () => {
+    expect(rows(CLAUSE, 2).map((r) => r.level)).toEqual([1])
   })
 
-  it('gives a piece inside one word a single column', () => {
-    expect(share({ role: 'حَرْفُ جَرٍّ' })).toBe(1)
+  it('writes its pieces in its parent row, the word itself once', () => {
+    expect(cells(measure(CLAUSE)).map((c) => [c.from, c.roles.map((r) => r.role)])).toEqual([
+      [0, ['لام الأمر']], [1, ['فعل', 'فاعل', 'مفعول به']]])
+  })
+
+  it('keeps the row of a word whose pieces make another job', () => {
+    expect(measure(AYAH).children[1].level).toBe(1)
+  })
+})
+
+describe('cells', () => {
+  it('puts each name over the columns of its own words', () => {
+    expect(cells(measure(AYAH)).map((c) => [c.from, c.to])).toEqual([[0, 0], [1, 1], [2, 3]])
+  })
+
+  it('puts the pieces of a word over that word', () => {
+    const word = measure(AYAH).children[1]
+    expect(cells(word)).toEqual([{ from: 1, to: 1, roles: word.parts }])
   })
 })
 
@@ -137,5 +161,19 @@ describe('splitConnectors', () => {
   it('names the toggle by the connective terms actually present', () => {
     const { terms } = splitConnectors(WORDS, TREE)
     expect(terms).toEqual(['حَرْفُ عَطْفٍ'])
+  })
+})
+
+describe('hiddenWords', () => {
+  it('finds the leaves marked understood, wherever they sit', () => {
+    const tree = {
+      label: 'x',
+      children: [
+        { word: 0, role: 'a', children: [], parts: [] },
+        { label: 'y', children: [{ word: 1, role: 'b', hidden: true, children: [], parts: [] }], parts: [] },
+      ],
+      parts: [],
+    }
+    expect([...hiddenWords(tree)]).toEqual([1])
   })
 })

@@ -63,6 +63,9 @@ keeping each `slot` name exactly:
 - `phrases`: exactly the outline's slots, each with its `reply` where one exists
 - `dialogue`: 10 or more lines, between named speakers
 - `de_book`: 4 or more pairs
+- no `vocabulary`: a topic's words are not written in the unit. Its English is
+  shared in words.json, and the dialect's Arabic goes in `<dialect>/words.json`
+  (see FORMAT.md, "Words"), usually through `colloquial_word_bank dump` and `load`
 - `culture`: 1 to 3 sentences
 - `exercises`: 10 or more, using at least 4 of the five types
 - every exercise carries `id`, `answer`, 3 or more `accepted` variants, a

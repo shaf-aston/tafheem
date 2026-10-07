@@ -1,42 +1,26 @@
 /**
- * One ayah, studied: its text word by word, what each word is, how the words
- * join, and what the ayah is about.
+ * One ayah, studied: what each word is, how the words join, and what the ayah
+ * is about. QuranReader shows it beside the surah, or in a sheet on a phone;
+ * the ayah's own line and its English are already on the page beside it, and
+ * its recitation is the reader's bar, so neither is drawn again here.
  *
- * Split out of QuranLookup, which owns the other half of the tab: finding an
- * ayah (the two forms, the results, the root view). Finding and studying are
- * different jobs on different data, and holding both in one file meant every
- * change to a search box was made in the same place as the grammar of a word.
- *
- * The reader is shown one word at a time. Which word that is lives here, in
- * `openWord`, because three things read it: the ayah's own line, the grid of
- * word cards, and the one detail panel they both open. Tapping a word in either
- * place opens it in both, so the two views can never disagree about what is
- * being looked at.
+ * It asks for its own ayah, the word-by-word grammar the surah leaves out.
+ * Key it by the ayah where it is used, so the open word starts shut each time.
  */
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getQuranTarkeeb } from '../api'
-import { useTranslation } from '../lib/useTranslation'
-import { useRecitation } from '../lib/useRecitation'
-import { useRecitedWord } from '../lib/useRecitedWord'
+import { getQuranTarkeeb, quranAyahQuery } from '../api'
 import { posLabel } from '../lib/grammarTerms'
 import { posColor } from '../lib/roleColors'
-import { RECITERS, stop as stopAudio } from '../lib/ayahAudio'
-import { useRemembered } from '../lib/useRemembered'
-import { scrollToEl } from '../lib/scrollToEl'
 
 import WordCard from './WordCard'
 import TarkeebFigure from './TarkeebFigure'
-import PlayAyah from './ui/PlayAyah'
-import Segmented from './ui/Segmented'
 import SourceBadge from './ui/SourceBadge'
-import TranslationStrip from './ui/TranslationStrip'
-import { GoButton } from './ui/RootActions'
 import AyahTafsir from './AyahTafsir'
 import { isQuranic } from '../lib/arabicText'
 import ArabicText from './ui/ArabicText'
-import GlossWord from './ui/GlossWord'
+import CloseButton from './ui/CloseButton'
 import ErrorAlert from './ui/ErrorAlert'
 import { Skeleton } from './ui/Skeleton'
 
@@ -44,141 +28,56 @@ import { Skeleton } from './ui/Skeleton'
 const wordByKey = (words, key) =>
   key == null ? undefined : words.find((w, i) => (w.position || i) === key)
 
-export default function AyahStudy({ data, onGo, onReadSurah, accent }) {
-  // One word open at a time. A closed card stays a word you can read; the full
+export default function AyahStudy({ surah, ayah, onGo, onClose, accent }) {
+  const { data, isPending, isError, error, refetch } = useQuery(quranAyahQuery(surah, ayah))
+  // One word open at a time. A closed chip stays a word you can read; the full
   // grammar only appears for the word actually being asked about.
   const [openWord, setOpenWord] = useState(null)
-  const opened = wordByKey(data.words, openWord)
+  const opened = data && wordByKey(data.words, openWord)
   const toggle = (key) => setOpenWord(openWord === key ? null : key)
-  // A chip far below the fold opens silently otherwise; nudge the new detail
-  // into view rather than leaving the tap looking like it did nothing.
-  const detailRef = useRef(null)
-  useEffect(() => {
-    if (opened) scrollToEl(detailRef.current, 'nearest')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [openWord])
-
-  // The same chosen book, and the same cached surah, the reading view uses. A
-  // reader who switched translation there does not have to switch it here.
-  const translation = useTranslation(data.surah)
-  const english = translation.textFor(data.ayah)
-
-  // Remembered where it is chosen, like the commentary and the translation
-  // are. A reader who prefers one voice prefers it on the next ayah too.
-  const [reciter, chooseReciter] = useRemembered('reciter', RECITERS.map((one) => one.id))
-
-  // When each word is recited, so the word being read aloud is lit as it is
-  // read. It also settles which recording is played: word times belong to one
-  // recording, not to the recitation in general.
-  const recitation = useRecitation(data.surah, reciter)
-  const src = recitation.urlFor(data.ayah)
-  const lit = useRecitedWord(src, recitation.segmentsFor(data.ayah))
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <div className="flex items-center gap-2 min-w-0">
-          <PlayAyah surah={data.surah} ayah={data.ayah} reciter={reciter} accent={accent} src={src} eager />
-          <span className="text-[var(--text-faint)] text-sm font-mono">{data.surah}:{data.ayah}</span>
-        </div>
-        <div className="flex items-center gap-3">
-          {/* The way out of one ayah and into the whole surah around it. The
-              same pill a root travels on, so it reads as a place to go. */}
-          <GoButton onClick={() => onReadSurah(data.surah)} title="Open the whole surah, ayah by ayah">
-            Read all of surah {data.surah}
-          </GoButton>
-        </div>
-      </div>
+      <header className="flex items-center justify-between gap-3">
+        <h3 className="font-semibold text-[var(--text)]">
+          Study <span className="ml-2 font-mono type-small text-[var(--text-faint)]">{surah}:{ayah}</span>
+        </h3>
+        <CloseButton onClick={onClose} aria-label="Close the study" />
+      </header>
 
-      {/* Who is reciting. Quiet, and under the ayah's own line rather than
-          beside it: the choice is made once and then never again, while the
-          play button beside the number is pressed on every ayah. */}
-      <Segmented
-        wrap
-        label="Reciter"
-        options={RECITERS.map((one) => ({ id: one.id, label: one.name }))}
-        value={reciter}
-        // Whatever was reciting stops. Changing voice while one is talking and
-        // hearing the old one carry on is the sort of thing that makes a person
-        // press the button again to find out what happened.
-        onChange={(id) => { stopAudio(); chooseReciter(id) }}
-        accent={accent}
-        className="flex-wrap"
-      />
-
-      {/* Arabic and its English are one card. The translation used to sit loose
-          on the page below the card, and a reader could not tell it belonged to
-          the ayah at all; inside, under a hairline, it reads as the same thing
-          said twice. */}
-      <div className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-hidden">
-        <div className="p-5">
-          <AyahText
-            words={data.words}
-            endMark={data.end_mark}
-            accent={accent}
-            lit={lit}
-            openWord={openWord}
-            onToggle={toggle}
-          />
-        </div>
-
-        {/* What it says, before what each word is doing. Full --text, not dim:
-            dim over the raised strip read as washed out rather than quiet. */}
-        {english && (
-          <TranslationStrip source={translation.book?.source}>
-            <p className="type-body text-[var(--text)] leading-relaxed">{english}</p>
-          </TranslationStrip>
-        )}
-      </div>
-
-      {/* The open word's grammar, in the page's own flow rather than floating
-          over it. Floating put it half off the screen for a word at the line's
-          right edge, and laid it across the words on the line below, so the
-          next word could not be tapped. In flow it can do neither, and the
-          reader's eye lands in the same place whichever word they picked. */}
-      {opened && (
-        <div ref={detailRef}>
-          <WordCard word={opened} onGo={onGo} onClose={() => setOpenWord(null)} exclude="quran" />
-        </div>
+      {isPending && <Skeleton className="h-32" />}
+      {isError && (
+        <ErrorAlert inline title="Could not load this ayah's words" error={error} onRetry={() => refetch()} />
       )}
 
-      {/* The corpus credit belongs to the word grammar, so it stands where the
-          words do, not up beside the ayah number where it read as a second
-          credit for the translation. */}
-      <div className="flex items-center justify-center gap-3 flex-wrap">
-        <p className="text-xs text-[var(--text-faint)]">
-          Tap any word for its full grammar and its root
-        </p>
-        <SourceBadge source={data.source} />
-      </div>
+      {data && (
+        <>
+          {/* Every word's English always here; a tap opens its full grammar
+              under the chips, in the flow rather than floating over them. */}
+          <div
+            className="flex flex-wrap gap-2 peer-dim"
+            dir="rtl"
+            lang="ar"
+            data-script={isQuranic(data.words.map((w) => w.arabic).join(' ')) ? 'quran' : undefined}
+          >
+            {data.words.map((w, i) => {
+              const key = w.position || i
+              return <WordChip key={key} word={w} index={i} open={openWord === key} onToggle={() => toggle(key)} />
+            })}
+          </div>
+          {opened && <WordCard word={opened} onGo={onGo} onClose={() => setOpenWord(null)} exclude="quran" />}
+          <div className="flex items-center gap-3 flex-wrap">
+            <p className="text-xs text-[var(--text-faint)]">Tap any word for its full grammar and its root</p>
+            <SourceBadge source={data.source} />
+          </div>
+        </>
+      )}
 
-      <div
-        className="flex flex-wrap justify-center gap-2 peer-dim"
-        dir="rtl"
-        lang="ar"
-        data-script={isQuranic(data.words.map((w) => w.arabic).join(' ')) ? 'quran' : undefined}
-      >
-        {data.words.map((w, i) => {
-          const key = w.position || i
-          return (
-            <WordChip
-              key={key}
-              word={w}
-              index={i}
-              open={openWord === key}
-              lit={i === lit}
-              onToggle={() => toggle(key)}
-            />
-          )
-        })}
-      </div>
+      <AyahTarkeeb surah={surah} ayah={ayah} />
 
-      <AyahTarkeeb surah={data.surah} ayah={data.ayah} />
-
-      {/* Last on the card on purpose. The grammar above answers what the words
-          are and do; this answers what the ayah is about, which is what a
-          reader wants once the first two are settled rather than instead. */}
-      <AyahTafsir surah={data.surah} ayah={data.ayah} accent={accent} defaultOpen />
+      {/* Last on purpose. The grammar above answers what the words are and
+          do; this answers what the ayah is about. */}
+      <AyahTafsir surah={surah} ayah={ayah} accent={accent} defaultOpen />
     </div>
   )
 }
@@ -228,7 +127,7 @@ function AyahTarkeeb({ surah, ayah }) {
   )
 }
 
-function WordChip({ word, index, open, lit, onToggle }) {
+function WordChip({ word, index, open, onToggle }) {
   return (
     <button
       type="button"
@@ -237,8 +136,7 @@ function WordChip({ word, index, open, lit, onToggle }) {
       style={{ '--i': index, '--c': posColor(word.pos) }}
       className={`word rise-in flex flex-col items-center gap-1 p-2.5
         rounded-[var(--radius-md)] bg-[var(--surface)] border transition-colors
-        ${open ? 'word-open border-[var(--c)]' : 'border-[var(--border)]'}
-        ${lit ? 'word-lit' : ''}`}
+        ${open ? 'word-open border-[var(--c)]' : 'border-[var(--border)]'}`}
     >
       <ArabicText className="text-[var(--text)] leading-tight">{word.arabic}</ArabicText>
       {word.pos && (
@@ -250,43 +148,5 @@ function WordChip({ word, index, open, lit, onToggle }) {
         </span>
       )}
     </button>
-  )
-}
-
-/**
- * The ayah itself, word by word: hover or focus a word to see its English, tap
- * it for its full grammar, the way quran.com's reading line behaves. It reads
- * the same `data.words` the grid below does, so the two never disagree about
- * what a word is; they differ only in when they say it, a gloss on hover here,
- * every word's English always in the grid.
- */
-function AyahText({ words, endMark, accent, lit, openWord, onToggle }) {
-  return (
-    <ArabicText as="div" size="lg" className="gloss-line text-right text-[var(--text)]">
-      {words.map((word, i) => {
-        const key = word.position || i
-        return (
-          <span key={key} style={{ '--c': posColor(word.pos) }}>
-            {i > 0 && ' '}
-            <GlossWord
-              as="button"
-              type="button"
-              gloss={word.meaning}
-              lit={i === lit}
-              onClick={() => onToggle(key)}
-              aria-expanded={openWord === key}
-            >
-              {/* The printed spelling, waqf marks included where the mushaf
-                  carries one; falls back to the corpus spelling if a build
-                  predates that data. */}
-              {word.uthmani || word.arabic}
-            </GlossWord>
-          </span>
-        )
-      })}
-      {endMark && (
-        <span style={{ color: accent }} aria-hidden="true"> {endMark}</span>
-      )}
-    </ArabicText>
   )
 }

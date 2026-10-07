@@ -4,9 +4,8 @@ Every other endpoint here computes an answer and forgets it. This one keeps
 what it is given, which makes it the one place where an unbounded or malformed
 request has a lasting cost, so the caps are tested rather than assumed.
 
-The rule that the server, not the page, decides who is answering is checked
-too. It costs nothing today, when there is one learner; it is the whole reason
-adding accounts later does not mean auditing this endpoint again.
+The body can never say whose record it writes: the name travels only in the
+profile header, where the server cleans it (tests/test_profiles.py).
 
 Run: python -m pytest tests/test_progress_api.py
 """
@@ -56,6 +55,7 @@ def test_the_summary_reads_back_what_was_written():
     assert {k: item[k] for k in ("item", "attempts", "wrong", "avgMs", "due", "known")} == {
         "item": "to-write", "attempts": 2, "wrong": 1, "avgMs": 2000, "due": False, "known": False}
     assert item["dueAt"].endswith("+00:00")
+    assert item["words"] == [""]  # right once, with no word saved
 
 
 def test_review_lists_what_is_still_owed():

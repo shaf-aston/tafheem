@@ -10,7 +10,9 @@ is where the "what do I keep getting wrong" reading is made.
 """
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, Query
+from urllib.parse import unquote
+
+from fastapi import APIRouter, Depends, Header, HTTPException, Query
 
 from backend.models.schemas import (
     AttemptIn,
@@ -18,24 +20,38 @@ from backend.models.schemas import (
     FeedbackIn,
     Forgotten,
     ItemStats,
+    ProfileIn,
+    ProfileSaved,
     ProgressSummary,
     ReviewList,
 )
 from backend.services import progress_store
+from backend.services.profile import clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
-# Who is answering. There are no accounts, so there is one learner and the
-# server names them; taking a name from the page would mean anybody could read
-# or write anybody's record the moment accounts did exist. When they do, this
-# becomes an auth dependency and nothing below it changes.
-LOCAL_USER = "local"
+# Who is answering: the name the page sends, percent-encoded because a header
+# cannot carry Arabic. No password, so anyone typing a name reads that record;
+# that is agreed. No header is the record kept before names existed.
+UNNAMED = "local"
 
+
+def current_user(x_tafheem_profile: str | None = Header(None)) -> str:
+    """The cleaned name from the header, or the shared record when there is none."""
+    if x_tafheem_profile is None:
+        return UNNAMED
+    try:
+        return clean_name(unquote(x_tafheem_profile))
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from None
+
+
+_USER = Depends(current_user)
 _MODULE = Query("quiz", min_length=1, max_length=32, description="Which panel is asking")
 
 
 @router.post("/attempts", response_model=AttemptSaved)
-async def record_attempt(attempt: AttemptIn) -> AttemptSaved:
+async def record_attempt(attempt: AttemptIn, user: str = _USER) -> AttemptSaved:
     """File one answer, right or wrong."""
     row_id = progress_store.record(
         module=attempt.module,
@@ -43,30 +59,30 @@ async def record_attempt(attempt: AttemptIn) -> AttemptSaved:
         correct=attempt.correct,
         ms=attempt.ms,
         context=attempt.context,
-        user=LOCAL_USER,
+        user=user,
     )
     return AttemptSaved(id=row_id)
 
 
 @router.post("/feedback", response_model=AttemptSaved)
-async def leave_feedback(note: FeedbackIn) -> AttemptSaved:
+async def leave_feedback(note: FeedbackIn, user: str = _USER) -> AttemptSaved:
     """File a report about a question that looks wrong."""
     message = note.message.strip()
     if not message:
         raise HTTPException(status_code=422, detail="message is empty")
     return AttemptSaved(id=progress_store.leave_feedback(
-        module=note.module, item=note.item, message=message, user=LOCAL_USER,
+        module=note.module, item=note.item, message=message, user=user,
     ))
 
 
 @router.delete("", response_model=Forgotten)
-async def forget_progress() -> Forgotten:
-    """Delete every answer this learner has given. The Settings wipe calls it."""
-    return Forgotten(deleted=progress_store.forget(LOCAL_USER))
+async def forget_progress(user: str = _USER) -> Forgotten:
+    """Delete every answer this name has given. The Settings wipe calls it."""
+    return Forgotten(deleted=progress_store.forget(user))
 
 
 @router.get("/summary", response_model=ProgressSummary)
-def get_summary(module: str = _MODULE) -> ProgressSummary:
+def get_summary(module: str = _MODULE, user: str = _USER) -> ProgressSummary:
     """Every item answered in this module, with its record and whether it is due or known."""
     return ProgressSummary(
         module=module,
@@ -79,13 +95,26 @@ def get_summary(module: str = _MODULE) -> ProgressSummary:
                 due=row["due"],
                 known=row["known"],
                 dueAt=row["due_at"],
+                words=row["words"],
             )
-            for row in progress_store.summary(module, LOCAL_USER)
+            for row in progress_store.summary(module, user)
         ],
     )
 
 
 @router.get("/review", response_model=ReviewList)
-def get_review(module: str = _MODULE) -> ReviewList:
+def get_review(module: str = _MODULE, user: str = _USER) -> ReviewList:
     """Items due for review now, earliest first."""
-    return ReviewList(module=module, items=progress_store.review_items(module, LOCAL_USER))
+    return ReviewList(module=module, items=progress_store.review_items(module, user))
+
+
+@router.post("/profile", response_model=ProfileSaved)
+async def start_profile(body: ProfileIn, user: str = _USER) -> ProfileSaved:
+    """Check a typed name and hand back its one spelling, which the page keeps.
+
+    The only place the page learns the rules: it stores what comes back rather
+    than cleaning the name itself. `keep` moves the unnamed answers onto it.
+    """
+    if user == UNNAMED:
+        raise HTTPException(status_code=422, detail="Type a name")
+    return ProfileSaved(name=user, moved=progress_store.claim_local(user) if body.keep else 0)

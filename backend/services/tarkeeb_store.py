@@ -83,6 +83,15 @@ def _columns(node: dict, found: dict[int, str]) -> None:
         found[node["word"]] = node.get("role")
 
 
+def _hide(node: dict, written: set[int]) -> None:
+    """Mark the leaves of columns the book supplies, (هُوَ) or an elided khabar, `hidden`."""
+    if node.get("children"):
+        for child in node["children"]:
+            _hide(child, written)
+    elif "word" in node and node["word"] not in written:
+        node["hidden"] = True
+
+
 def _named(node: dict, count: list[int]) -> None:
     """Count the words whose job is actually named, so coverage is measured, not claimed."""
     if node.get("children"):
@@ -98,7 +107,7 @@ def for_ayah(surah: int, ayah: int) -> dict | None:
     if db is None:
         return None
     row = db.execute(
-        "SELECT words, tree FROM tarkeeb WHERE surah = ? AND ayah = ?", (surah, ayah)
+        "SELECT words, tree, written FROM tarkeeb WHERE surah = ? AND ayah = ?", (surah, ayah)
     ).fetchone()
     if row is None:
         return None
@@ -106,14 +115,13 @@ def for_ayah(surah: int, ayah: int) -> dict | None:
     settings = nahw_book.tarkeeb_rules()["treebank"]
     words = json.loads(row["words"])
     tree = json.loads(row["tree"])
+    _hide(tree, set(json.loads(row["written"])))
     named = [0]
     _named(tree, named)
     return {
         "words": words,
         "tree": tree,
         "coverage": round(named[0] / len(words), 2) if words else 0.0,
-        # Which text stands for a word that is understood but not written. The
-        # page draws those columns quietly; it is told the mark rather than
-        # knowing it, so the mark stays a single value in the rules file.
+        # The note the page shows on a column marked `hidden` (understood, not written).
         "unwritten": {"mark": settings["unwritten_mark"], "note": settings["unwritten_note"]},
     }

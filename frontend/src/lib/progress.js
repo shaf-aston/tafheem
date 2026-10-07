@@ -15,8 +15,13 @@
  * screen, or the review list is mysteriously empty a week later.
  */
 import { api } from '../api'
+import { profileHeaders } from './profile'
 
 const BASE = '/progress'
+
+// Every call says whose record it is about (lib/profile.js), read at call time
+// so a name switched a moment ago is the one sent.
+const headers = (name) => ({ headers: profileHeaders(name) })
 
 /** Resolves whether the server took it; never rejects (offline or refused is false). */
 const landed = (request) => request.then(() => true, () => false)
@@ -28,7 +33,7 @@ const landed = (request) => request.then(() => true, () => false)
  * timings are honest enough to average is the store's rule, not the page's.
  */
 export async function recordAttempt({ module, item, correct, ms, context }) {
-  return { saved: await landed(api.post(`${BASE}/attempts`, { module, item, correct, ms, context })) }
+  return { saved: await landed(api.post(`${BASE}/attempts`, { module, item, correct, ms, context }, headers())) }
 }
 
 /**
@@ -37,18 +42,26 @@ export async function recordAttempt({ module, item, correct, ms, context }) {
  * backend was there to hear.
  */
 export async function forgetProgress() {
-  return { deleted: await landed(api.delete(BASE)) }
+  return { deleted: await landed(api.delete(BASE, headers())) }
 }
+
+/**
+ * Start using a typed name. Resolves `{ name, moved }`: the server's spelling,
+ * which is what to keep, and how many unnamed answers `keep` moved onto it.
+ * Throws, so the box can say why a name was refused.
+ */
+export const startProfile = (typed, keep) =>
+  api.post(`${BASE}/profile`, { keep }, headers(typed)).then((r) => r.data)
 
 /** Every item answered in this module, with its record. Throws, for react-query. */
 export const fetchSummary = (module) =>
-  api.get(`${BASE}/summary`, { params: { module } }).then((r) => r.data.items)
+  api.get(`${BASE}/summary`, { params: { module }, ...headers() }).then((r) => r.data.items)
 
 /** Just the items due for review now, longest-waiting first. Throws, for react-query. */
 export const fetchReviewItems = (module) =>
-  api.get(`${BASE}/review`, { params: { module } }).then((r) => r.data.items)
+  api.get(`${BASE}/review`, { params: { module }, ...headers() }).then((r) => r.data.items)
 
 /** Report something that looks wrong. Resolves `{ saved }`; never rejects. */
 export async function leaveFeedback({ module, item, message }) {
-  return { saved: await landed(api.post(`${BASE}/feedback`, { module, item, message })) }
+  return { saved: await landed(api.post(`${BASE}/feedback`, { module, item, message }, headers())) }
 }

@@ -64,9 +64,43 @@ def words(text: str) -> list[str]:
     Punctuation is a break between words, spaced or not: مَرْحَبًا، reached CAMeL
     with its comma and came back as an unknown name.
     """
-    spaced = "".join(" " if unicodedata.category(c).startswith("P") else c for c in text)
-    cleaned = (_QURANIC_MARKS_RE.sub("", token) for token in spaced.split())
-    return [w for w in cleaned if any(unicodedata.category(c) == "Lo" and ARABIC_RE.match(c) for c in w)]
+    return [w for w in _tokens(text) if _has_arabic_letter(w)]
+
+
+def not_arabic(text: str) -> list[str]:
+    """What words() drops that a reader typed as a word: letters, none Arabic (hello, x).
+    A mark or a number is not a word, so it is not reported."""
+    return [w for w in _tokens(text) if any(c.isalpha() for c in w) and not _has_arabic_letter(w)]
+
+
+def unpunctuated(text: str) -> str:
+    """The text with every punctuation mark a break between words, spaced or not,
+    and the Qur'an's own marks gone: القيامة. is القيامة, مالك،يوم is two words.
+    The one rule every search box reads its query by (utils.search_query).
+
+    An apostrophe between two letters is part of the word (don't, Mu'adh), not
+    a break, or one word typed in English would be searched as two.
+    """
+    spaced = "".join(" " if _breaks(text, i) else c for i, c in enumerate(text))
+    return " ".join(_QURANIC_MARKS_RE.sub("", spaced).split())
+
+
+def _breaks(text: str, i: int) -> bool:
+    if not unicodedata.category(text[i]).startswith("P"):
+        return False
+    inside = 0 < i < len(text) - 1 and text[i - 1].isalpha() and text[i + 1].isalpha()
+    return not (inside and text[i] in _APOSTROPHES)
+
+
+_APOSTROPHES = "'’"
+
+
+def _tokens(text: str) -> list[str]:
+    return unpunctuated(text).split()
+
+
+def _has_arabic_letter(token: str) -> bool:
+    return any(unicodedata.category(c) == "Lo" and ARABIC_RE.match(c) for c in token)
 
 
 def bare_letters(text: str) -> str:
