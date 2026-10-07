@@ -215,7 +215,8 @@ def catalogue() -> dict:
     """Every dialect and the units in it, without the lessons.
 
     Every spine unit is listed for every dialect; `written` says which can be
-    opened, so an unwritten unit shows as coming instead of vanishing.
+    opened, so an unwritten unit shows as coming instead of vanishing. A lesson's
+    `words` counts its word list, so a topic with one can offer it beside the phrases.
 
     The tab opens on this, so it stays small: a unit's own lessons are about
     sixty kilobytes and there is no reason to send fifteen of them to draw a
@@ -230,7 +231,8 @@ def catalogue() -> dict:
                 "where": dialect["where"],
                 "units": [{"unit": u["unit"], "title": u["title"], "written": u["written"],
                            "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"], "section": lesson["section"],
-                                        "written": lesson["written"]} for lesson in u["lessons"]]}
+                                        "written": lesson["written"], "words": len(lesson.get("vocabulary") or [])}
+                                       for lesson in u["lessons"]]}
                           for u in dialect["units"]],
             }
             for dialect in _content()["dialects"]
