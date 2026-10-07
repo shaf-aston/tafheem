@@ -7,6 +7,8 @@ Writes frontend/public/words/:
   words.json  every word once, in one array
   cuts.json   which words are in each cut, as positions into that array
   index.json  the surah and juz lists, and what to call each set
+  coverage.json          how many Qur'an words each lemma covers
+  surah_coverage.json    the same, one entry per surah
 
 Why positions rather than words
 -------------------------------
@@ -124,8 +126,22 @@ def already_taught(identity: dict[int, tuple[str, str]], book: set[int]) -> set[
     return {word_id for word_id, key in identity.items() if key in taught}
 
 
-def add_coverage(lexicon: sqlite3.Connection, words: list[dict], position: dict[int, int]) -> dict:
-    """Give each word its lemmas and one short ayah, and return coverage.json.
+def surah_counts(every: set, positions: dict[str, set], lemmas: list[str]) -> list[dict]:
+    """Per surah: its word count, and how many of those words each lemma names."""
+    surahs = [{"total": 0, "counts": {}} for _ in range(max(place[0] for place in every))]
+    for surah, _, _ in every:
+        surahs[surah - 1]["total"] += 1
+    for at, lemma in enumerate(lemmas):
+        for surah, _, _ in positions.get(lemma, ()):
+            counts = surahs[surah - 1]["counts"]
+            counts[at] = counts.get(at, 0) + 1
+    return surahs
+
+
+def add_coverage(
+    lexicon: sqlite3.Connection, words: list[dict], position: dict[int, int]
+) -> tuple[dict, list[dict]]:
+    """Give each word its lemmas and one short ayah; return coverage.json and surah_coverage.json.
 
     A lemma's count is the Qur'an's word positions it names, so the browser can
     add up exactly how much of the text the words you know cover. The ayah is
@@ -166,7 +182,8 @@ def add_coverage(lexicon: sqlite3.Connection, words: list[dict], position: dict[
             size = lambda p: length[(p[0], p[1])]  # noqa: E731
             best = min(usable, key=lambda p: (size(p) < CONFIG["ayah-min-words"], size(p), p))
             word["ayah"] = list(best)
-    return {"total": len(every), "lemmas": lemmas, "counts": counts}
+    whole = {"total": len(every), "lemmas": lemmas, "counts": counts}
+    return whole, surah_counts(every, positions, lemmas)
 
 
 def main() -> None:
@@ -269,7 +286,7 @@ def main() -> None:
         "juz": juz,
     }
 
-    coverage = add_coverage(lexicon, words, position)
+    coverage, by_surah = add_coverage(lexicon, words, position)
 
     # Only the files written below are replaced: the folder also holds
     # word_audio.json, which another script builds.
@@ -278,6 +295,7 @@ def main() -> None:
         json.dumps({"words": words}, ensure_ascii=False), "utf-8"
     )
     (OUT_DIR / "coverage.json").write_text(json.dumps(coverage, ensure_ascii=False), "utf-8")
+    (OUT_DIR / "surah_coverage.json").write_text(json.dumps(by_surah, separators=(",", ":")), "utf-8")
     (OUT_DIR / "cuts.json").write_text(json.dumps(cuts, ensure_ascii=False), "utf-8")
     (OUT_DIR / "index.json").write_text(
         json.dumps(index, ensure_ascii=False, indent=2), "utf-8"
