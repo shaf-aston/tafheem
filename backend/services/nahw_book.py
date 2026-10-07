@@ -84,6 +84,19 @@ def is_mabni(token: dict) -> bool:
     return any(kind in token.get("pos_camel", "") for kind in MABNI_KINDS)
 
 
+def is_object_stem(form: str) -> bool:
+    """إيّاك، إيّاه: the stem of a detached pronoun of nasb (damir_munfasil `object_stem`)."""
+    return strip_diacritics(form).startswith(tuple(book_words("damir_munfasil", "object_stem")))
+
+
+def is_subject_pronoun(token: dict) -> bool:
+    """أنا، أنتَ، هو: a detached pronoun of raf'. Its fatha or damma is part of the word, never a
+    case; only the إيّا pronouns are objects (damir_munfasil `object_stem`)."""
+    form = strip_diacritics(token.get("form", ""))
+    return ("pron" in token.get("pos_camel", "") and form in book_words("damir_munfasil")
+            and not is_object_stem(form))
+
+
 def is_plain_noun(token: dict) -> bool:
     """A noun that can take a case ending."""
     return token["pos"] in ("NOM", "PROP") and not is_mabni(token)

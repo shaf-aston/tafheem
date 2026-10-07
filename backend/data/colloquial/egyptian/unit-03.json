@@ -249,6 +249,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "خُضَار",
+          "transliteration": "khoDaar",
+          "english": "vegetables",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "قُوطَة",
+          "transliteration": "2oTa",
+          "english": "tomatoes",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "خِيَار",
+          "transliteration": "khiyaar",
+          "english": "cucumber",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "بَصَل",
+          "transliteration": "baSal",
+          "english": "onions",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "تُوم",
+          "transliteration": "toom",
+          "english": "garlic",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "بَطَاطِس",
+          "transliteration": "baTaaTis",
+          "english": "potatoes",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "كِيلُو",
+          "transliteration": "keelo",
+          "english": "kilo",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "طَازَة",
+          "transliteration": "Taaza",
+          "english": "fresh",
+          "category": "Vegetables"
+        }
+      ],
       "culture": "عند الخضري بتبدأ بالسلام وبعدين تسأل عن السعر، والفصال الخفيف عادي جداً خصوصاً لو الطلب كبير. البياع غالباً بينادي الزبون «يا باشا» أو «يا فندم»، ولما تدفع بتقول «تسلم إيدك» وهو بيرد «الله يسلمك».",
       "exercises": [
         {
@@ -653,6 +703,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "عِيش",
+          "transliteration": "3eesh",
+          "english": "bread",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "فُرْن",
+          "transliteration": "forn",
+          "english": "oven, bakery",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "لَحْمَة",
+          "transliteration": "la7ma",
+          "english": "meat",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "ضَانِي",
+          "transliteration": "Daani",
+          "english": "lamb",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "بِتِلّو",
+          "transliteration": "betello",
+          "english": "veal, beef",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "كُفْتَة",
+          "transliteration": "kofta",
+          "english": "kofta",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "عَضْم",
+          "transliteration": "3aDm",
+          "english": "bone",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "سُخْن",
+          "transliteration": "sokhn",
+          "english": "hot",
+          "category": "Bakery and butcher"
+        }
+      ],
       "culture": "العيش في مصر اسمه عيش، والعيش البلدي بيتباع بالرغيف أو بالربطة، وطابور الفرن الصبح شيء عادي. عند الجزار أول سؤال غالباً بتلو ولا ضاني، وتقدر تطلب منه يفرم اللحمة أو يقطعها قدامك.",
       "exercises": [
         {
@@ -1045,6 +1145,56 @@
             "transliteration": "ana haghsilha ba3d el-akl",
             "english": "I'll wash them after we eat"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رُزّ",
+          "transliteration": "rozz",
+          "english": "rice",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "مِلْح",
+          "transliteration": "mel7",
+          "english": "salt",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "نَار",
+          "transliteration": "naar",
+          "english": "fire, flame",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "وَصْفَة",
+          "transliteration": "waSfa",
+          "english": "recipe",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "مَعْلَقَة",
+          "transliteration": "ma3la2a",
+          "english": "spoon",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "حَلَّة",
+          "transliteration": "7alla",
+          "english": "pot",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "جَاهِز",
+          "transliteration": "gaahiz",
+          "english": "ready",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "كُزْبَرَة",
+          "transliteration": "kozbara",
+          "english": "coriander",
+          "category": "Cooking"
         }
       ],
       "culture": "الطبخ في البيت المصري غالباً شغل مشترك بين الأم وبناتها، والكشري والبامية والملوخية من أكلات البيت المعروفة. بعد الأكل بنقول للي طبخ «تسلم إيدك»، وقبل الأكل «بالهنا والشفا» أو «بالهنا».",
@@ -1446,6 +1596,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فُول",
+          "transliteration": "fool",
+          "english": "fava beans",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "حِلْو",
+          "transliteration": "7elw",
+          "english": "sweet, nice",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "مَالِح",
+          "transliteration": "maale7",
+          "english": "salty",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "حَرِّيف",
+          "transliteration": "7arreef",
+          "english": "spicy",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "حَامِض",
+          "transliteration": "7aameD",
+          "english": "sour",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "فِرَاخ",
+          "transliteration": "feraakh",
+          "english": "chicken",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "سَمَك",
+          "transliteration": "samak",
+          "english": "fish",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "مَحْشِي",
+          "transliteration": "ma7shi",
+          "english": "stuffed vegetables",
+          "category": "Likes and dislikes"
+        }
+      ],
       "culture": "الكلام عن الأكل اللي بتحبه واللي مبتحبوش عادي جداً في المصري، وبيحصل كتير لما حد يعزمك. المضيف المصري كريم وبيصر تاكل أكتر، فالأحسن تقول اللي مبتحبوش بصراحة ولطف قبل ما يحضّر الأكل.",
       "exercises": [
         {
@@ -1843,6 +2043,56 @@
             "transliteration": "Tayyeb, bi-arba3een, aakhir se3r.",
             "english": "Okay, forty, final price."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "غَالِي",
+          "transliteration": "ghaali",
+          "english": "expensive",
+          "category": "At the market"
+        },
+        {
+          "arabic": "رَخِيص",
+          "transliteration": "rekhees",
+          "english": "cheap",
+          "category": "At the market"
+        },
+        {
+          "arabic": "خَصْم",
+          "transliteration": "khaSm",
+          "english": "discount",
+          "category": "At the market"
+        },
+        {
+          "arabic": "سِعْر",
+          "transliteration": "se3r",
+          "english": "price",
+          "category": "At the market"
+        },
+        {
+          "arabic": "لُون",
+          "transliteration": "loon",
+          "english": "colour",
+          "category": "At the market"
+        },
+        {
+          "arabic": "أَزْرَق",
+          "transliteration": "azra2",
+          "english": "blue",
+          "category": "At the market"
+        },
+        {
+          "arabic": "أَحْمَر",
+          "transliteration": "a7mar",
+          "english": "red",
+          "category": "At the market"
+        },
+        {
+          "arabic": "مَاشِي",
+          "transliteration": "maashi",
+          "english": "okay, deal",
+          "category": "At the market"
         }
       ],
       "culture": "Bargaining (الفصال) is normal in Cairo's street markets like Khan el-Khalili and Attaba, but not in supermarkets or shops with fixed price tags. Sellers often start high and expect you to go back and forth; a friendly joke and a smile help more than a hard face.",

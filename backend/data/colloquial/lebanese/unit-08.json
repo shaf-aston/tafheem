@@ -229,6 +229,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مُهَنْدِس",
+          "transliteration": "muhandes",
+          "english": "engineer",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "أُسْتَاذ",
+          "transliteration": "ostaaz",
+          "english": "teacher",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "شِرْكِة",
+          "transliteration": "sherke",
+          "english": "company",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "طَالِب",
+          "transliteration": "Taaleb",
+          "english": "student",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "مِتْقَاعِد",
+          "transliteration": "mit2aa3ed",
+          "english": "retired",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "مُمَرِّض",
+          "transliteration": "mmarreD",
+          "english": "nurse",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "مِهْنِة",
+          "transliteration": "mehne",
+          "english": "profession",
+          "category": "Jobs"
+        },
+        {
+          "arabic": "جْدِيد",
+          "transliteration": "jdeed",
+          "english": "new",
+          "category": "Jobs"
+        }
+      ],
       "culture": "بلبنان أول أسئلة التعارف غالباً 'شو بتشتغل؟' و'وين بتشتغل؟'، وهيدا سؤال عادي كتير. أما السؤال عن المعاش مباشرة فبيعتبروه قلة ذوق، إلا مع الأصحاب القريبين.",
       "exercises": [
         {
@@ -614,6 +664,56 @@
             "transliteration": "ee, la7add es saa3a tmaane.",
             "english": "Yes, until eight."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُدِير",
+          "transliteration": "mudeer",
+          "english": "manager",
+          "category": "The office"
+        },
+        {
+          "arabic": "مَكْتَب",
+          "transliteration": "maktab",
+          "english": "office, desk",
+          "category": "The office"
+        },
+        {
+          "arabic": "زَمِيل",
+          "transliteration": "zameel",
+          "english": "colleague",
+          "category": "The office"
+        },
+        {
+          "arabic": "تَقْرِير",
+          "transliteration": "ta2reer",
+          "english": "report",
+          "category": "The office"
+        },
+        {
+          "arabic": "إِجَازِة",
+          "transliteration": "ijaaze",
+          "english": "day off, holiday",
+          "category": "The office"
+        },
+        {
+          "arabic": "مَعَاش",
+          "transliteration": "ma3aash",
+          "english": "salary",
+          "category": "The office"
+        },
+        {
+          "arabic": "شَهِر",
+          "transliteration": "shaher",
+          "english": "month",
+          "category": "The office"
+        },
+        {
+          "arabic": "طَابْعَة",
+          "transliteration": "Taab3a",
+          "english": "printer",
+          "category": "The office"
         }
       ],
       "culture": "بالمكاتب اللبنانية كتار بيخلطوا عربي مع إنجليزي وفرنساوي، فبتسمع 'meeting' و'إيميل' متل ما هني. و'الله يعطيك العافية' بتنقال للزميل وقت الشغل والتعب.",
@@ -1006,6 +1106,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مُحَاضَرَة",
+          "transliteration": "mo7aaDara",
+          "english": "lecture",
+          "category": "University"
+        },
+        {
+          "arabic": "اِمْتِحَان",
+          "transliteration": "imte7aan",
+          "english": "exam",
+          "category": "University"
+        },
+        {
+          "arabic": "اِخْتِصَاص",
+          "transliteration": "ikhtiSaaS",
+          "english": "major",
+          "category": "University"
+        },
+        {
+          "arabic": "سِمِسْتِر",
+          "transliteration": "semester",
+          "english": "semester",
+          "category": "University"
+        },
+        {
+          "arabic": "نَتِيجِة",
+          "transliteration": "nateeje",
+          "english": "result",
+          "category": "University"
+        },
+        {
+          "arabic": "مَكْتَبِة",
+          "transliteration": "maktabe",
+          "english": "library",
+          "category": "University"
+        },
+        {
+          "arabic": "وَاجِب",
+          "transliteration": "waajeb",
+          "english": "homework",
+          "category": "University"
+        },
+        {
+          "arabic": "جَامْعَة",
+          "transliteration": "jaam3a",
+          "english": "university",
+          "category": "University"
+        }
+      ],
       "culture": "بلبنان كتير جامعات بتدرّس بالإنجليزي أو الفرنساوي، فالطلاب بيحكوا لبناني فيه كلمات متل 'سمستر' و'assignment'. والأستاذ بالجامعة بينقال له 'دكتور'.",
       "exercises": [
         {
@@ -1389,6 +1539,56 @@
             "transliteration": "la, lessa ma 2arrart.",
             "english": "No, not yet."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مَشْرُوع",
+          "transliteration": "mashroo3",
+          "english": "project",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "دِرَاسِة",
+          "transliteration": "diraase",
+          "english": "studies",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "مَاسْتِر",
+          "transliteration": "master",
+          "english": "master's degree",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "بَرَّا",
+          "transliteration": "barra",
+          "english": "abroad, outside",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "حِلِم",
+          "transliteration": "7elem",
+          "english": "dream",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "وَظِيفِة",
+          "transliteration": "waZeefe",
+          "english": "job, post",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "طُمُوح",
+          "transliteration": "Tmoo7",
+          "english": "ambition",
+          "category": "Future plans"
+        },
+        {
+          "arabic": "مِرْتَاح",
+          "transliteration": "mertaa7",
+          "english": "comfortable",
+          "category": "Future plans"
         }
       ],
       "culture": "كتير شباب لبنانيين بيفكّروا يشتغلوا برّا لبنان، بالخليج أو أوروبا أو كندا، وبيحكوا عن خططهم مع 'إن شاء الله'. وبعد الخطة بيقولوا للشخص 'الله يوفّقك' أو 'الله يسهّل'.",

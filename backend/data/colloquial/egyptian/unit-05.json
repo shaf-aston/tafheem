@@ -233,6 +233,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَاكْسِي",
+          "transliteration": "taksi",
+          "english": "taxi",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "عَدَّاد",
+          "transliteration": "3addaad",
+          "english": "meter",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "أُجْرَة",
+          "transliteration": "ogra",
+          "english": "fare",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "شَارِع",
+          "transliteration": "shaare3",
+          "english": "street",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "فَكَّة",
+          "transliteration": "fakka",
+          "english": "small change",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "دِقِيقَة",
+          "transliteration": "de2ee2a",
+          "english": "minute",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "وَسَط",
+          "transliteration": "wesT",
+          "english": "centre",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "آخِر",
+          "transliteration": "aakher",
+          "english": "end, last",
+          "category": "Taxi"
+        }
+      ],
       "culture": "Many Cairo taxi meters are broken or simply not used, so passengers usually agree the price before getting in, or book by app such as Uber or Careem instead. Bargaining a little with the driver is normal and not rude, and drivers are often called \"يا أسطى\" or \"يا باشا\".",
       "exercises": [
         {
@@ -629,6 +679,56 @@
             "transliteration": "aywa, liff min el-7aara illi ganbuh.",
             "english": "Yes, go round through the alley next to it."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "صَيْدَلِيَّة",
+          "transliteration": "Saydaleyya",
+          "english": "pharmacy",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "إِشَارَة",
+          "transliteration": "eshaara",
+          "english": "traffic light",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "جَامِع",
+          "transliteration": "gaame3",
+          "english": "mosque",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "تَايِه",
+          "transliteration": "taayeh",
+          "english": "lost",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "حَارَة",
+          "transliteration": "7aara",
+          "english": "alley",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مَشْي",
+          "transliteration": "mashy",
+          "english": "walking",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مَقْفُول",
+          "transliteration": "ma2fool",
+          "english": "closed",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "أَوِّل",
+          "transliteration": "awwel",
+          "english": "first",
+          "category": "Asking the way"
         }
       ],
       "culture": "Egyptians are generally happy to help a lost stranger, and directions are given by landmarks such as a mosque, a shop or a bridge more than by street names. It is wise to ask two or three people, since someone may point you somewhere rather than admit they do not know.",
@@ -1037,6 +1137,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "أُتُوبِيس",
+          "transliteration": "otobees",
+          "english": "bus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَوْقَف",
+          "transliteration": "maw2af",
+          "english": "stop",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مِيكْرُوبَاص",
+          "transliteration": "mikrobaaS",
+          "english": "microbus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "كُرْسِي",
+          "transliteration": "korsi",
+          "english": "seat",
+          "category": "Buses"
+        },
+        {
+          "arabic": "فَاضِي",
+          "transliteration": "faaDi",
+          "english": "empty, free",
+          "category": "Buses"
+        },
+        {
+          "arabic": "زَحْمَة",
+          "transliteration": "za7ma",
+          "english": "crowded",
+          "category": "Buses"
+        },
+        {
+          "arabic": "نُمْرَة",
+          "transliteration": "nemra",
+          "english": "number",
+          "category": "Buses"
+        },
+        {
+          "arabic": "سَوَّاق",
+          "transliteration": "sawwaa2",
+          "english": "driver",
+          "category": "Buses"
+        }
+      ],
       "culture": "Microbuses in Cairo run fixed routes with no formal stops: you wave one down and the driver or his helper calls out the destination. Fares are passed forward hand to hand, the change comes back the same way, and you ask to get off with \"على جنب يا أسطى\".",
       "exercises": [
         {
@@ -1423,6 +1573,56 @@
             "transliteration": "3ashar de2ayi2 bil-3arabeyya.",
             "english": "Ten minutes away by car."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُسْتَشْفَى",
+          "transliteration": "mostashfa",
+          "english": "hospital",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَدْرَسَة",
+          "transliteration": "madrasa",
+          "english": "school",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "بَنْك",
+          "transliteration": "bank",
+          "english": "bank",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "جِنِينَة",
+          "transliteration": "geneena",
+          "english": "park, garden",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7aTTa",
+          "english": "station",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "كِنِيسَة",
+          "transliteration": "keneesa",
+          "english": "church",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَنْطِقَة",
+          "transliteration": "manTe2a",
+          "english": "area",
+          "category": "Places in town"
         }
       ],
       "culture": "Cairo has both mosques and churches side by side, since Egypt has a large Coptic Christian community, so people often give directions as \"جنب الجامع\" or \"جنب الكنيسة\". Older men are addressed respectfully as \"يا عم\" and older women as \"يا طنط\" or \"يا ماما\" when asking for help.",
@@ -1814,6 +2014,56 @@
             "transliteration": "yakhod 3eshreen de2ee2a.",
             "english": "About twenty minutes."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Taree2",
+          "english": "road, way",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مِيدَان",
+          "transliteration": "meedaan",
+          "english": "square",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "قَدِيم",
+          "transliteration": "2adeem",
+          "english": "old",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "كُوبْرِي",
+          "transliteration": "kobri",
+          "english": "bridge",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "بَلَد",
+          "transliteration": "balad",
+          "english": "town, country",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "عَرَبِيَّة",
+          "transliteration": "3arabeyya",
+          "english": "car",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "نَاصْيَة",
+          "transliteration": "naSya",
+          "english": "corner",
+          "category": "Getting around"
         }
       ],
       "culture": "In Cairo you usually agree the fare with the driver before you get in, or ask him to turn on the meter, because many drivers name a price by look. Drivers call passengers يا باشا, and answering with a friendly greeting makes the whole ride easier; ride apps like Uber are also very common.",

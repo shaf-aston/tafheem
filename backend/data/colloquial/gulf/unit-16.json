@@ -244,6 +244,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "أَمْس",
+          "transliteration": "ams",
+          "english": "yesterday",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "الْبَارْحَة",
+          "transliteration": "il-baar7a",
+          "english": "last night",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "طَوِيل",
+          "transliteration": "Taweel",
+          "english": "long",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "مْتَأَخِّر",
+          "transliteration": "mtakhkhir",
+          "english": "late",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "طَلَعْت",
+          "transliteration": "Tala3t",
+          "english": "I went out",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "سَهَر",
+          "transliteration": "sahar",
+          "english": "staying up late",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "رِجَعْت",
+          "transliteration": "rija3t",
+          "english": "I came back",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "قَابَلْت",
+          "transliteration": "gaabalt",
+          "english": "I met",
+          "category": "Yesterday"
+        }
+      ],
       "culture": "Catching up in the UAE and Kuwait often starts with شو سويت أمس؟ or شخبارك؟, and البارحة is the everyday word for last night. Friends are called ربع (or ربيع for one), and an evening at a friend's place or in the majlis is completely normal.",
       "exercises": [
         {
@@ -608,6 +658,56 @@
             "transliteration": "ee, kint akhaaf min iZ-Zalma",
             "english": "Yes, I was afraid of the dark."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "صَغِير",
+          "transliteration": "Sagheer",
+          "english": "small, young",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "فْرِيج",
+          "transliteration": "freej",
+          "english": "neighbourhood",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "رْبِيع",
+          "transliteration": "rbee3",
+          "english": "friend",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "كُورَة",
+          "transliteration": "koora",
+          "english": "football",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "جِدّ",
+          "transliteration": "jidd",
+          "english": "grandfather",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "قِصَّة",
+          "transliteration": "giSSa",
+          "english": "story",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "سِيكَل",
+          "transliteration": "seekal",
+          "english": "bicycle",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "ظَلْمَة",
+          "transliteration": "Dhalma",
+          "english": "darkness",
+          "category": "Childhood"
         }
       ],
       "culture": "Emiratis and Kuwaitis call the old residential quarter the فريج, and childhood stories usually begin with يوم كنت صغير. Older people remember it fondly: children of the whole فريج played together in the lanes and families knew each other well.",
@@ -977,6 +1077,56 @@
             "transliteration": "inkabbat 3aleeh il-gahwa",
             "english": "Coffee spilled on it."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "جَوَّال",
+          "transliteration": "jawwaal",
+          "english": "mobile phone",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مُفْتَاح",
+          "transliteration": "muftaa7",
+          "english": "key",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "دَرَج",
+          "transliteration": "daraj",
+          "english": "stairs",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "جِزْدَان",
+          "transliteration": "jizdaan",
+          "english": "wallet",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "شَاحِن",
+          "transliteration": "shaa7in",
+          "english": "charger",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "كَهْرَبَا",
+          "transliteration": "kahrabaa",
+          "english": "electricity",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "لَابْتُوب",
+          "transliteration": "laabtoob",
+          "english": "laptop",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مُنَبِّه",
+          "transliteration": "munabbih",
+          "english": "alarm clock",
+          "category": "Something went wrong"
         }
       ],
       "culture": "When someone tells of a mishap, the listener says الله يعينك (God help you) or الحمد لله على السلامة, and often adds الله يعوضك خير. It is normal to add الحمد لله that it was not worse.",
@@ -1353,6 +1503,56 @@
             "transliteration": "ma adri, yimkin bas ishaa3a",
             "english": "I don't know, it might just be a rumor."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "خَبَر",
+          "transliteration": "khabar",
+          "english": "news",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "إِشَاعَة",
+          "transliteration": "ishaa3a",
+          "english": "rumour",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "جِيرَان",
+          "transliteration": "jeeraan",
+          "english": "neighbours",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "سَمِعْت",
+          "transliteration": "sami3t",
+          "english": "I heard",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "سَالْفَة",
+          "transliteration": "saalfa",
+          "english": "story, chat",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "كَلَام",
+          "transliteration": "kalaam",
+          "english": "talk",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "نَاس",
+          "transliteration": "naas",
+          "english": "people",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "صِجّ",
+          "transliteration": "Sij",
+          "english": "true",
+          "category": "News and gossip"
         }
       ],
       "culture": "People soften gossip with يقولون or سمعت and often add الله أعلم instead of stating it as fact. For a wedding or a birth the reply is مبروك or الله يبارك لهم, and a newborn is announced with جاهم ولد (a boy has come to them).",

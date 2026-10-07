@@ -222,6 +222,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "حَجْز",
+          "transliteration": "7agz",
+          "english": "booking",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "أُوضَة",
+          "transliteration": "ooDa",
+          "english": "room",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "لِيلَة",
+          "transliteration": "leela",
+          "english": "night",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "سَرِير",
+          "transliteration": "sereer",
+          "english": "bed",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "أَسَانْسِير",
+          "transliteration": "asanseer",
+          "english": "lift",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "مُفْتَاح",
+          "transliteration": "moftaa7",
+          "english": "key",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "فُنْدُق",
+          "transliteration": "fondo2",
+          "english": "hotel",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "اِسْتِقْبَال",
+          "transliteration": "este2baal",
+          "english": "reception",
+          "category": "Hotel"
+        }
+      ],
       "culture": "في مصر الموظف في الفندق بيقول لك \"حضرتك\" وبيرحب بيك الأول قبل أي كلام عن الحجز. في الفنادق الصغيرة اسأل عن الفطار والأسانسير بصوت هادي، والباقي بيتشرح لك بابتسامة.",
       "exercises": [
         {
@@ -595,6 +645,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَذْكَرَة",
+          "transliteration": "tazkara",
+          "english": "ticket",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "رَايِح",
+          "transliteration": "raaye7",
+          "english": "going, one-way",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "جَاي",
+          "transliteration": "gaay",
+          "english": "coming, return",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "كَارْت",
+          "transliteration": "kart",
+          "english": "card",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "طَلَبَة",
+          "transliteration": "Talaba",
+          "english": "students",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "شِبَّاك",
+          "transliteration": "sheb-baak",
+          "english": "window, counter",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "قِطَار",
+          "transliteration": "2eTaar",
+          "english": "train",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "دُور",
+          "transliteration": "door",
+          "english": "turn, queue",
+          "category": "Tickets"
+        }
+      ],
       "culture": "السفر بين المحافظات في مصر بيتم بالأتوبيس أو بالقطر، وكل شركة أتوبيسات ليها مواقف ومحطات معروفة. التذاكر بتخلص بسرعة قبل الأعياد، فالأحسن تحجز من بدري.",
       "exercises": [
         {
@@ -953,6 +1053,56 @@
             "transliteration": "gayy shoghl, 3andi mu2tamar",
             "english": "Coming for work, I have a conference."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "بَاسْبُور",
+          "transliteration": "basbor",
+          "english": "passport",
+          "category": "Airport"
+        },
+        {
+          "arabic": "شَنْطَة",
+          "transliteration": "shanTa",
+          "english": "bag",
+          "category": "Airport"
+        },
+        {
+          "arabic": "وَزْن",
+          "transliteration": "wazn",
+          "english": "weight",
+          "category": "Airport"
+        },
+        {
+          "arabic": "طَيَّارَة",
+          "transliteration": "Tayyaara",
+          "english": "plane",
+          "category": "Airport"
+        },
+        {
+          "arabic": "بَوَّابَة",
+          "transliteration": "bawwaaba",
+          "english": "gate",
+          "category": "Airport"
+        },
+        {
+          "arabic": "مَطَار",
+          "transliteration": "maTaar",
+          "english": "airport",
+          "category": "Airport"
+        },
+        {
+          "arabic": "سِيَاحَة",
+          "transliteration": "seyaa7a",
+          "english": "tourism",
+          "category": "Airport"
+        },
+        {
+          "arabic": "جُمْرُك",
+          "transliteration": "gomrok",
+          "english": "customs",
+          "category": "Airport"
         }
       ],
       "culture": "في مطار القاهرة الموظف بيسأل أسئلة قصيرة وبيتوقع إجابة قصيرة، مفيش داعي تشرح كتير. كلمة \"اتفضل\" وأنت بتدي الباسبور كفاية، وكتير هتسمع \"نوّرت مصر\" في الآخر.",
@@ -1318,6 +1468,56 @@
             "transliteration": "aywa yenfa3, bass fee gharaama taghyeer",
             "english": "Yes it's possible, but there's a change fee."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ضَاع",
+          "transliteration": "Daa3",
+          "english": "got lost",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "اِتْلَغَت",
+          "transliteration": "etlaghit",
+          "english": "cancelled",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "عُطْل",
+          "transliteration": "3oTl",
+          "english": "breakdown",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مَكْسُور",
+          "transliteration": "maksoor",
+          "english": "broken",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "شَكْوَى",
+          "transliteration": "shakwa",
+          "english": "complaint",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "اِنْتِظَار",
+          "transliteration": "entiZaar",
+          "english": "waiting",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مَوَظَّف",
+          "transliteration": "mowaZZaf",
+          "english": "employee",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مُسَاعْدَة",
+          "transliteration": "mosa3da",
+          "english": "help",
+          "category": "Travel problems"
         }
       ],
       "culture": "لما يحصل تعطيل في السفر، المصري بيقول \"معلش\" و\"ربنا يسهّل\" الأول عشان يهدّي الموقف، وبعدين يدخل في الحل. دي طريقة أدب مش استسلام.",

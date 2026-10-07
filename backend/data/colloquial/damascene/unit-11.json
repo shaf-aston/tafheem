@@ -244,6 +244,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "ضِيف",
+          "transliteration": "Deef",
+          "english": "guest",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بَاب",
+          "transliteration": "baab",
+          "english": "door",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "كِنْدْرَة",
+          "transliteration": "kindra",
+          "english": "shoes",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "غْرَاض",
+          "transliteration": "ghraaD",
+          "english": "things",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "مَوْقِف",
+          "transliteration": "maw2if",
+          "english": "parking",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "تَرْحِيب",
+          "transliteration": "tar7eeb",
+          "english": "welcome",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "حَمَّام",
+          "transliteration": "7ammaam",
+          "english": "bathroom",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "شَرَف",
+          "transliteration": "sharaf",
+          "english": "honour",
+          "category": "Arriving as a guest"
+        }
+      ],
       "culture": "Taking off shoes at the door is standard in most Damascene homes, and a guest who brings a small gift is thanking the host without making a show of it. Saying \"tikram 3eenak\" instead of a plain hello signals real warmth.",
       "exercises": [
         {
@@ -601,6 +651,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَرَس",
+          "transliteration": "jaras",
+          "english": "doorbell",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "مَعْطَف",
+          "transliteration": "ma3Taf",
+          "english": "coat",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "طَاوْلِة",
+          "transliteration": "Taawle",
+          "english": "table",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "تِلِفِزْيُون",
+          "transliteration": "tilifizyoon",
+          "english": "television",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "وْلَاد",
+          "transliteration": "wlaad",
+          "english": "children",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "قَعْدِة",
+          "transliteration": "2a3de",
+          "english": "gathering",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "كَنَبِة",
+          "transliteration": "kanabe",
+          "english": "sofa",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "اِسْتِعْجَال",
+          "transliteration": "isti3jaal",
+          "english": "hurry",
+          "category": "Welcoming guests"
+        }
+      ],
       "culture": "Offering coffee or tea within the first minutes is almost automatic, and asking about sugar shows real attention to the guest. Complimenting a host's children or home is a normal, expected part of settling into a visit, not empty flattery.",
       "exercises": [
         {
@@ -952,6 +1052,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "سُفْرَة",
+          "transliteration": "sufra",
+          "english": "dining table",
+          "category": "At the table"
+        },
+        {
+          "arabic": "شَوْكِة",
+          "transliteration": "shawke",
+          "english": "fork",
+          "category": "At the table"
+        },
+        {
+          "arabic": "سِكِّين",
+          "transliteration": "sikkeen",
+          "english": "knife",
+          "category": "At the table"
+        },
+        {
+          "arabic": "طَبْخَة",
+          "transliteration": "Tabkha",
+          "english": "cooked dish",
+          "category": "At the table"
+        },
+        {
+          "arabic": "تَحْلِيِة",
+          "transliteration": "ta7liye",
+          "english": "dessert",
+          "category": "At the table"
+        },
+        {
+          "arabic": "شَبْعَان",
+          "transliteration": "shab3aan",
+          "english": "full",
+          "category": "At the table"
+        },
+        {
+          "arabic": "كِفَايِة",
+          "transliteration": "kifaaye",
+          "english": "enough",
+          "category": "At the table"
+        },
+        {
+          "arabic": "طَيِّب",
+          "transliteration": "Tayyeb",
+          "english": "tasty",
+          "category": "At the table"
+        }
+      ],
       "culture": "Saying \"bil-3afye\" before people eat and \"se77a w-hana\" after they finish are small fixed exchanges nobody skips. A host who insists you eat more or stay for dessert is being a proper host, and a light refusal the first time is expected before you actually accept.",
       "exercises": [
         {
@@ -1293,6 +1443,56 @@
             "transliteration": "alla ma3ak, salaamtak",
             "english": "God be with you, safe travels."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ضِيَافِة",
+          "transliteration": "Diyaafe",
+          "english": "hospitality",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "وَقِت",
+          "transliteration": "wa2et",
+          "english": "time",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "يِسْلَمُو",
+          "transliteration": "yislamu",
+          "english": "thanks (bless you)",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "دَعْوِة",
+          "transliteration": "da3we",
+          "english": "invitation",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "أَهِل",
+          "transliteration": "ahel",
+          "english": "family",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "سِكّة",
+          "transliteration": "sikke",
+          "english": "way, road",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "مَرَّة",
+          "transliteration": "marra",
+          "english": "time, occasion",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "مَعَ السَّلَامِة",
+          "transliteration": "ma3 is-salaame",
+          "english": "goodbye",
+          "category": "Leaving and thanking"
         }
       ],
       "culture": "A host almost always protests \"lissa badri\" (it's still early) at least once when guests announce they're leaving, and a guest who leaves without this small back-and-forth can seem in a rush to escape. Asking guests to text or call once they're home is a normal closing courtesy, not real worry.",

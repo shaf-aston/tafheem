@@ -202,6 +202,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَبَاح",
+          "transliteration": "Sabaa7",
+          "english": "morning",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَدْرِي",
+          "transliteration": "badri",
+          "english": "early",
+          "category": "Morning"
+        },
+        {
+          "arabic": "نَعْسَان",
+          "transliteration": "na3saan",
+          "english": "sleepy",
+          "category": "Morning"
+        },
+        {
+          "arabic": "وِجْه",
+          "transliteration": "wijh",
+          "english": "face",
+          "category": "Morning"
+        },
+        {
+          "arabic": "أَسْنَان",
+          "transliteration": "asnaan",
+          "english": "teeth",
+          "category": "Morning"
+        },
+        {
+          "arabic": "هُدُوم",
+          "transliteration": "hudoom",
+          "english": "clothes",
+          "category": "Morning"
+        },
+        {
+          "arabic": "شُغْل",
+          "transliteration": "shughl",
+          "english": "work",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَرْد",
+          "transliteration": "bard",
+          "english": "cold",
+          "category": "Morning"
+        }
+      ],
       "culture": "In the Hejaz, mornings start with the greeting \"صباح الخير\" and a small cup of strong Arabic coffee is nearly universal before leaving home, even on a rushed morning. Family names are often used in greetings.",
       "exercises": [
         {
@@ -569,6 +619,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "اِجْتِمَاع",
+          "transliteration": "ijtimaa3",
+          "english": "meeting",
+          "category": "During the day"
+        },
+        {
+          "arabic": "غَدَا",
+          "transliteration": "ghada",
+          "english": "lunch",
+          "category": "During the day"
+        },
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired",
+          "category": "During the day"
+        },
+        {
+          "arabic": "ظُهُر",
+          "transliteration": "Zuhur",
+          "english": "noon",
+          "category": "During the day"
+        },
+        {
+          "arabic": "اِسْتِرَاحَة",
+          "transliteration": "istiraa7a",
+          "english": "break",
+          "category": "During the day"
+        },
+        {
+          "arabic": "قَلَم",
+          "transliteration": "galam",
+          "english": "pen",
+          "category": "During the day"
+        },
+        {
+          "arabic": "أَخْبَار",
+          "transliteration": "akhbaar",
+          "english": "news",
+          "category": "During the day"
+        },
+        {
+          "arabic": "حَاجَة",
+          "transliteration": "7aaja",
+          "english": "thing",
+          "category": "During the day"
+        }
+      ],
       "culture": "In Hejazi offices, colleagues often gather for lunch together and tea breaks are common. Saying \"تِعْبَان\" (tired) openly is natural and not seen as complaining, and people use \"رَح\" for the future tense.",
       "exercises": [
         {
@@ -934,6 +1034,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَسَا",
+          "transliteration": "masa",
+          "english": "evening",
+          "category": "Evening"
+        },
+        {
+          "arabic": "بَيْت",
+          "transliteration": "bayt",
+          "english": "home, house",
+          "category": "Evening"
+        },
+        {
+          "arabic": "عَشَا",
+          "transliteration": "3asha",
+          "english": "dinner",
+          "category": "Evening"
+        },
+        {
+          "arabic": "دُشّ",
+          "transliteration": "dush",
+          "english": "shower",
+          "category": "Evening"
+        },
+        {
+          "arabic": "مُسَلْسَل",
+          "transliteration": "musalsal",
+          "english": "TV series",
+          "category": "Evening"
+        },
+        {
+          "arabic": "جَوّ",
+          "transliteration": "jaww",
+          "english": "weather",
+          "category": "Evening"
+        },
+        {
+          "arabic": "لَيْل",
+          "transliteration": "layl",
+          "english": "night",
+          "category": "Evening"
+        },
+        {
+          "arabic": "أَصْحَاب",
+          "transliteration": "aS7aab",
+          "english": "friends",
+          "category": "Evening"
+        }
+      ],
       "culture": "\"تِصْبَح عَلَى خَيْر\" is answered with the fixed phrase \"وَإِنْتَ مِنْ أَهْلُه\", which does not translate word for word; evenings in the Hejaz are for family time, and many people spend the cool hours after sunset visiting neighbors or taking a short walk.",
       "exercises": [
         {
@@ -1292,6 +1442,56 @@
             "transliteration": "la, ij-jum3a yom raa7a",
             "english": "No, Friday is a day off."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "الْأَحَد",
+          "transliteration": "al-a7ad",
+          "english": "Sunday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْاِتْنِين",
+          "transliteration": "al-itneen",
+          "english": "Monday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الثَّلَاثَا",
+          "transliteration": "at-talaata",
+          "english": "Tuesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْأَرْبَعَا",
+          "transliteration": "al-arba3a",
+          "english": "Wednesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْخَمِيس",
+          "transliteration": "al-khamees",
+          "english": "Thursday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْجُمْعَة",
+          "transliteration": "al-jum3a",
+          "english": "Friday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "السَّبْت",
+          "transliteration": "as-sabt",
+          "english": "Saturday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "أُسْبُوع",
+          "transliteration": "usboo3",
+          "english": "week",
+          "category": "Days of the week"
         }
       ],
       "culture": "The Hejazi work week typically runs Sunday through Thursday, with Friday kept for prayer and rest and Saturday often used for errands or the market. The phrase \"إِيشْ يَوْم\" (which day) is very common in Hejazi speech.",

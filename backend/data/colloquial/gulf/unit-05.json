@@ -238,6 +238,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَاكْسِي",
+          "transliteration": "taksi",
+          "english": "taxi",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "عَدَّاد",
+          "transliteration": "3addaad",
+          "english": "meter",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "أُجْرَة",
+          "transliteration": "ujra",
+          "english": "fare",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "شَارِع",
+          "transliteration": "shaari3",
+          "english": "street",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "فَكَّة",
+          "transliteration": "fakka",
+          "english": "small change",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "سَوَّاق",
+          "transliteration": "sawwaag",
+          "english": "driver",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "قَدِيم",
+          "transliteration": "gadeem",
+          "english": "old",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "آخِر",
+          "transliteration": "aakhir",
+          "english": "end, last",
+          "category": "Taxi"
+        }
+      ],
       "culture": "In the UAE taxis have working meters and are hailed on the street, at ranks or through apps like Careem; you name a landmark, since street addresses are rarely used. In Kuwait it is more common to agree the fare before getting in, and prices are in dinars rather than dirhams.",
       "exercises": [
         {
@@ -639,6 +689,56 @@
             "transliteration": "khudh esh-shaari3 el-3aam, w-dighri leen ed-dawwaar.",
             "english": "Take the main road, and straight to the roundabout."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "صَيْدَلِيَّة",
+          "transliteration": "Saydaliyya",
+          "english": "pharmacy",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "إِشَارَة",
+          "transliteration": "ishaara",
+          "english": "traffic light",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مَسْجِد",
+          "transliteration": "masjid",
+          "english": "mosque",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "ضَايِع",
+          "transliteration": "Daayi3",
+          "english": "lost",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "سِكَّة",
+          "transliteration": "sikka",
+          "english": "lane",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "دَقِيقَة",
+          "transliteration": "dageega",
+          "english": "minute",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مْسَكَّر",
+          "transliteration": "msakkar",
+          "english": "closed",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "جَامِع",
+          "transliteration": "jaami3",
+          "english": "grand mosque",
+          "category": "Asking the way"
         }
       ],
       "culture": "Gulf cities are organised around roundabouts, landmarks and neighbourhoods more than street names, so people give directions by a mosque, a traffic light or a roundabout. \"على طول\" or \"دغري\" both mean straight ahead.",
@@ -1052,6 +1152,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "بَاص",
+          "transliteration": "baaS",
+          "english": "bus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَوْقِف",
+          "transliteration": "mawgif",
+          "english": "stop",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مِينِي بَاص",
+          "transliteration": "meeni baaS",
+          "english": "minibus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "كِرْسِي",
+          "transliteration": "kirsi",
+          "english": "seat",
+          "category": "Buses"
+        },
+        {
+          "arabic": "فَاضِي",
+          "transliteration": "faaDi",
+          "english": "empty, free",
+          "category": "Buses"
+        },
+        {
+          "arabic": "زَحْمَة",
+          "transliteration": "za7ma",
+          "english": "crowded",
+          "category": "Buses"
+        },
+        {
+          "arabic": "رَقَم",
+          "transliteration": "ragam",
+          "english": "number",
+          "category": "Buses"
+        },
+        {
+          "arabic": "دَوَّار",
+          "transliteration": "dawwaar",
+          "english": "roundabout",
+          "category": "Buses"
+        }
+      ],
       "culture": "On Dubai's RTA buses you pay with a prepaid Nol card rather than cash, so \"keep the change\" is mostly a taxi phrase. Women and families have a reserved section at the front, and shared vans like the Levantine microbus are rare in Gulf cities, so \"ميني باص\" here means a small bus.",
       "exercises": [
         {
@@ -1442,6 +1592,56 @@
             "transliteration": "gaddaam el-masjid, w-tshoofha min ba3eed.",
             "english": "In front of the mosque, and you'll see it from far."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُسْتَشْفَى",
+          "transliteration": "mustashfa",
+          "english": "hospital",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَدْرَسَة",
+          "transliteration": "madrasa",
+          "english": "school",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "بَنْك",
+          "transliteration": "bank",
+          "english": "bank",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "حَدِيقَة",
+          "transliteration": "7adeega",
+          "english": "park",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7aTTa",
+          "english": "station",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "كَنِيسَة",
+          "transliteration": "kaneesa",
+          "english": "church",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَنْطِقَة",
+          "transliteration": "manTiga",
+          "english": "area",
+          "category": "Places in town"
         }
       ],
       "culture": "In the Gulf the mosque is the most common landmark in directions, and some shops close briefly at prayer time. Friday midday prayer draws crowds to mosques, so streets around them get busy.",
@@ -1853,6 +2053,56 @@
             "transliteration": "ee, abshir.",
             "english": "Yes, gladly."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Tareeg",
+          "english": "road, way",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "بَلَد",
+          "transliteration": "balad",
+          "english": "town",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَسَافَة",
+          "transliteration": "masaafa",
+          "english": "distance",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "سُرْعَة",
+          "transliteration": "sur3a",
+          "english": "speed",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "سَيَّارَة",
+          "transliteration": "sayyaara",
+          "english": "car",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "جِسِر",
+          "transliteration": "jisir",
+          "english": "bridge",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "لَفّ",
+          "transliteration": "laff",
+          "english": "turn",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "أَبْشِر",
+          "transliteration": "abshir",
+          "english": "at your service",
+          "category": "Getting around"
         }
       ],
       "culture": "Taxis and ride apps are the usual way to get around the Emirates and Kuwait, and many drivers speak Arabic, English, Urdu or Hindi, so simple short Arabic goes a long way. A driver who answers \"أبشر\" is saying \"consider it done\", and you thank him with \"الله يعافيك\" or \"مشكور\".",

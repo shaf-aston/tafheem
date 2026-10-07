@@ -207,6 +207,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَوّ",
+          "transliteration": "gaww",
+          "english": "weather",
+          "category": "Weather"
+        },
+        {
+          "arabic": "شَمْس",
+          "transliteration": "shams",
+          "english": "sun",
+          "category": "Weather"
+        },
+        {
+          "arabic": "حَرّ",
+          "transliteration": "7arr",
+          "english": "hot",
+          "category": "Weather"
+        },
+        {
+          "arabic": "بَرْد",
+          "transliteration": "bard",
+          "english": "cold",
+          "category": "Weather"
+        },
+        {
+          "arabic": "مَطَر",
+          "transliteration": "maTar",
+          "english": "rain",
+          "category": "Weather"
+        },
+        {
+          "arabic": "غِيم",
+          "transliteration": "gheem",
+          "english": "clouds",
+          "category": "Weather"
+        },
+        {
+          "arabic": "هَوَا",
+          "transliteration": "hawa",
+          "english": "wind, air",
+          "category": "Weather"
+        },
+        {
+          "arabic": "شَمْسِيَّة",
+          "transliteration": "shamseyya",
+          "english": "umbrella",
+          "category": "Weather"
+        }
+      ],
       "culture": "Cairenes open small talk with the weather and often say \"ed-donya\" instead of \"el-gaww\", as in \"ed-donya 7arr\". Rain is rare in Cairo, and when it comes people commonly say \"rabbena yeg3elo kheer\" (may God make it good).",
       "exercises": [
         {
@@ -601,6 +651,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فَصْل",
+          "transliteration": "faSl",
+          "english": "season",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "صِيف",
+          "transliteration": "Seef",
+          "english": "summer",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "شِتَا",
+          "transliteration": "sheta",
+          "english": "winter",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "رَبِيع",
+          "transliteration": "rabee3",
+          "english": "spring",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "خَرِيف",
+          "transliteration": "khareef",
+          "english": "autumn",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "بَحْر",
+          "transliteration": "ba7r",
+          "english": "sea",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "تَلْج",
+          "transliteration": "talg",
+          "english": "snow, ice",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "جَبَل",
+          "transliteration": "gabal",
+          "english": "mountain",
+          "category": "Seasons"
+        }
+      ],
       "culture": "In Cairo summer is long and hot, so many families head to Alexandria or the North Coast for the sea. Snow is only seen on the mountains of Sinai, so winter in Cairo means cold nights and rain, not snow.",
       "exercises": [
         {
@@ -989,6 +1089,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "بُلُوفَر",
+          "transliteration": "bolover",
+          "english": "jumper",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "جَاكِت",
+          "transliteration": "gaket",
+          "english": "jacket",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "شُورْت",
+          "transliteration": "short",
+          "english": "shorts",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "نَضَّارَة",
+          "transliteration": "naDDaara",
+          "english": "glasses",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "بُوت",
+          "transliteration": "boot",
+          "english": "boots",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "كَاب",
+          "transliteration": "kaab",
+          "english": "cap",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "إِيشَارْب",
+          "transliteration": "eshaarb",
+          "english": "scarf",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "تِقِيل",
+          "transliteration": "te2eel",
+          "english": "heavy",
+          "category": "Clothes for the weather"
+        }
+      ],
       "culture": "In Cairo people dress for the day: cool mornings, a strong midday sun, and a chilly night in winter, so a light jacket is standard from autumn on. Winter rain is short but heavy and streets flood, which is why people take an umbrella (\"shamsiyya\") seriously.",
       "exercises": [
         {
@@ -1371,6 +1521,56 @@
             "transliteration": "yalla, el-gaww laTeef",
             "english": "Sure, the weather's pleasant."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "كُورْنِيش",
+          "transliteration": "korneesh",
+          "english": "waterfront promenade",
+          "category": "Going out"
+        },
+        {
+          "arabic": "خُرُوجَة",
+          "transliteration": "khorooga",
+          "english": "outing",
+          "category": "Going out"
+        },
+        {
+          "arabic": "فِكْرَة",
+          "transliteration": "fekra",
+          "english": "idea",
+          "category": "Going out"
+        },
+        {
+          "arabic": "رِحْلَة",
+          "transliteration": "re7la",
+          "english": "trip",
+          "category": "Going out"
+        },
+        {
+          "arabic": "بَلَكُونَة",
+          "transliteration": "balakoona",
+          "english": "balcony",
+          "category": "Going out"
+        },
+        {
+          "arabic": "سَهْرَة",
+          "transliteration": "sahra",
+          "english": "evening out",
+          "category": "Going out"
+        },
+        {
+          "arabic": "لَطِيف",
+          "transliteration": "laTeef",
+          "english": "pleasant",
+          "category": "Going out"
+        },
+        {
+          "arabic": "طَقْس",
+          "transliteration": "Ta2s",
+          "english": "weather forecast",
+          "category": "Going out"
         }
       ],
       "culture": "Egyptians love evening outings and the balcony (\"el-balakoona\") is where many families sit on summer nights, so plans in Cairo shift to the evening when the day is too hot. \"3ala 7asab el-gaww\" (depending on the weather) is a common way to leave a plan open.",

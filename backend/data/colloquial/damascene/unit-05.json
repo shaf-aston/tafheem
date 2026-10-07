@@ -235,6 +235,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَكْسِي",
+          "transliteration": "taksi",
+          "english": "taxi",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "عَدَّاد",
+          "transliteration": "3addaad",
+          "english": "meter",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "أُجْرَة",
+          "transliteration": "ujra",
+          "english": "fare",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "شَارِع",
+          "transliteration": "shaare3",
+          "english": "street",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "فَكِّة",
+          "transliteration": "fakke",
+          "english": "small change",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "دَقِيقَة",
+          "transliteration": "da2ee2a",
+          "english": "minute",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "لِيرَة",
+          "transliteration": "leera",
+          "english": "lira",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "آخِر",
+          "transliteration": "aakher",
+          "english": "end, last",
+          "category": "Taxi"
+        }
+      ],
       "culture": "Damascene taxi drivers often prefer a fixed price agreed before the ride over the meter, especially for short old-city trips, since the meter is thought to run slow. Agreeing on the fare before getting in is normal and not rude.",
       "exercises": [
         {
@@ -619,6 +669,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَيْدَلِيِّة",
+          "transliteration": "Saydaliyye",
+          "english": "pharmacy",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "إِشَارَة",
+          "transliteration": "ishaara",
+          "english": "traffic light",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "جَامِع",
+          "transliteration": "jaame3",
+          "english": "mosque",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "تَايِه",
+          "transliteration": "taayeh",
+          "english": "lost",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "زَارُوب",
+          "transliteration": "zaaroob",
+          "english": "alley",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مَسَافِة",
+          "transliteration": "masaafe",
+          "english": "distance",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مْسَكَّر",
+          "transliteration": "msakkar",
+          "english": "closed",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "سَاحَة",
+          "transliteration": "saa7a",
+          "english": "square",
+          "category": "Asking the way"
+        }
+      ],
       "culture": "Damascenes give directions by landmarks, a mosque, a square, or a well-known shop, far more than by street names, since many small streets in the old city have no signs at all. It is normal to be walked partway, or even personally led there, by a stranger who stops to help.",
       "exercises": [
         {
@@ -999,6 +1099,56 @@
             "transliteration": "fi ze7me 2oddam, lazem nestanna shwayy.",
             "english": "There's traffic ahead, we have to wait a bit."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "بَاص",
+          "transliteration": "baaS",
+          "english": "bus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7aTTa",
+          "english": "stop, station",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مِيكْرُو",
+          "transliteration": "mikro",
+          "english": "microbus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَكَان",
+          "transliteration": "makaan",
+          "english": "seat, place",
+          "category": "Buses"
+        },
+        {
+          "arabic": "فَاضِي",
+          "transliteration": "faaDi",
+          "english": "empty, free",
+          "category": "Buses"
+        },
+        {
+          "arabic": "زَحْمِة",
+          "transliteration": "za7me",
+          "english": "crowded",
+          "category": "Buses"
+        },
+        {
+          "arabic": "اِتِّجَاه",
+          "transliteration": "ittijaah",
+          "english": "direction",
+          "category": "Buses"
+        },
+        {
+          "arabic": "دَوَّار",
+          "transliteration": "dawwaar",
+          "english": "roundabout",
+          "category": "Buses"
         }
       ],
       "culture": "City buses in Damascus are cheap and cash-only, paid to the driver or a conductor as you board, while the shared microbus is flagged down anywhere along its route rather than only at marked stops. Exact change is appreciated but not required, since the driver or conductor usually carries some.",
@@ -1386,6 +1536,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مُسْتَشْفَى",
+          "transliteration": "mustashfa",
+          "english": "hospital",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَدْرَسِة",
+          "transliteration": "madrase",
+          "english": "school",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "بَنْك",
+          "transliteration": "bank",
+          "english": "bank",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "حَدِيقَة",
+          "transliteration": "7adee2a",
+          "english": "park",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "كَنِيسِة",
+          "transliteration": "kaneese",
+          "english": "church",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "بَرِيد",
+          "transliteration": "bareed",
+          "english": "post office",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَنْطِقَة",
+          "transliteration": "manTi2a",
+          "english": "area",
+          "category": "Places in town"
+        }
+      ],
       "culture": "Damascenes usually give an address by naming the nearest well-known place, a mosque, a church, or a famous shop, rather than a street number, since old-city streets often share names or have none marked at all. Mosques and churches sit close together in many neighborhoods and both serve as everyday landmarks, regardless of the asker's own religion.",
       "exercises": [
         {
@@ -1758,6 +1958,56 @@
             "transliteration": "3ishriin da2ii2a ta2riiban.",
             "english": "About twenty minutes."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Taree2",
+          "english": "road, way",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "قَدِيم",
+          "transliteration": "2adeem",
+          "english": "old",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَشْوَار",
+          "transliteration": "mashwaar",
+          "english": "trip, errand",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "بَعْدِين",
+          "transliteration": "ba3deen",
+          "english": "later",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "سَوَّاق",
+          "transliteration": "sawwaa2",
+          "english": "driver",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "كَرَاج",
+          "transliteration": "karaaj",
+          "english": "bus garage",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "الشَّام",
+          "transliteration": "ish-shaam",
+          "english": "Damascus",
+          "category": "Getting around"
         }
       ],
       "culture": "Taxis are a very common way to get around Damascus, and drivers often greet a new passenger with \"تحت الأمر\" (at your service). Giving directions one landmark or turn at a time as you go is normal, and saying \"وقف هون\" to end the ride exactly where you want is expected, not rude.",

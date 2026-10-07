@@ -213,6 +213,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فِنْجَان",
+          "transliteration": "fenjaan",
+          "english": "small cup",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "سُكَّر",
+          "transliteration": "sukkar",
+          "english": "sugar",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "سَادَة",
+          "transliteration": "saade",
+          "english": "plain, no sugar",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "وَسَط",
+          "transliteration": "wasaT",
+          "english": "medium",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "نَعْنَع",
+          "transliteration": "na3na3",
+          "english": "mint",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "مُرّ",
+          "transliteration": "murr",
+          "english": "bitter",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "كْبِير",
+          "transliteration": "kbeer",
+          "english": "big",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "حِلْوِة",
+          "transliteration": "7elwe",
+          "english": "sweet",
+          "category": "Coffee and tea"
+        }
+      ],
       "culture": "In Lebanon coffee is the first thing offered to a guest, at home and in cafes, and it comes in small cups. If you skip the sugar say \"saade\", and \"2ahwe bayda\" (white coffee) is a caffeine-free hot drink of water and orange blossom that many order after a meal.",
       "exercises": [
         {
@@ -595,6 +645,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَنْيُو",
+          "transliteration": "menyu",
+          "english": "menu",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مَزَّة",
+          "transliteration": "mazze",
+          "english": "starters",
+          "category": "The menu"
+        },
+        {
+          "arabic": "صَحِن",
+          "transliteration": "Sa7en",
+          "english": "dish, plate",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَارّ",
+          "transliteration": "7aarr",
+          "english": "spicy",
+          "category": "The menu"
+        },
+        {
+          "arabic": "خْفِيف",
+          "transliteration": "khfeef",
+          "english": "light",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَلَوِيَّات",
+          "transliteration": "7alawiyyaat",
+          "english": "desserts",
+          "category": "The menu"
+        },
+        {
+          "arabic": "سَلَطَة",
+          "transliteration": "salaTa",
+          "english": "salad",
+          "category": "The menu"
+        },
+        {
+          "arabic": "إِنْكْلِيزِي",
+          "transliteration": "ingleezi",
+          "english": "English",
+          "category": "The menu"
+        }
+      ],
       "culture": "Many Beirut restaurants print their menus in Arabic, English and French, and waiters often switch languages with you, so asking for an English menu is normal. A table usually starts with several mazze plates put in the middle to share, and asking the waiter \"shoo btensa7ni\" (what do you recommend) is taken as trust in the kitchen.",
       "exercises": [
         {
@@ -967,6 +1067,56 @@
             "transliteration": "akeed, halla2 bjeeblak",
             "english": "Sure, I'll bring it now."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَلَب",
+          "transliteration": "Talab",
+          "english": "order",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "حُمُّص",
+          "transliteration": "7ummuS",
+          "english": "hummus",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "فَتُّوش",
+          "transliteration": "fattoosh",
+          "english": "fattoush",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "تَبُّولِة",
+          "transliteration": "tabbule",
+          "english": "tabbouleh",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "شَاوَرْمَا",
+          "transliteration": "shaawarma",
+          "english": "shawarma",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "كَاسِة",
+          "transliteration": "kaase",
+          "english": "glass",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "زْيَادِة",
+          "transliteration": "zyaade",
+          "english": "extra",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "نَفْس",
+          "transliteration": "nafs",
+          "english": "the same",
+          "category": "Ordering"
         }
       ],
       "culture": "Lebanese diners often order the whole table at once, and the waiter expects mazze and mains to arrive as they are ready. \"mersi\" is used as freely as \"shukran\" in Lebanon, and \"heek mnee7\" or \"heek kfaaye\" is the normal polite way to say that is enough.",
@@ -1348,6 +1498,56 @@
             "transliteration": "la2, ma fee takhfeed l-yoom",
             "english": "No, no discount today."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "حْسَاب",
+          "transliteration": "7saab",
+          "english": "bill",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَاش",
+          "transliteration": "kaash",
+          "english": "cash",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَرْت",
+          "transliteration": "kart",
+          "english": "card",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَقْشِيش",
+          "transliteration": "ba2sheesh",
+          "english": "tip",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَاقِي",
+          "transliteration": "baa2i",
+          "english": "change",
+          "category": "Paying"
+        },
+        {
+          "arabic": "فَاتُورَة",
+          "transliteration": "faatoora",
+          "english": "receipt",
+          "category": "Paying"
+        },
+        {
+          "arabic": "تَخْفِيض",
+          "transliteration": "takhfeeD",
+          "english": "discount",
+          "category": "Paying"
+        },
+        {
+          "arabic": "زَاكِي",
+          "transliteration": "zaaki",
+          "english": "delicious",
+          "category": "Paying"
         }
       ],
       "culture": "Fighting over the bill is a Lebanese ritual, and \"l-yoom 3aleyye\" (today is on me) is often said more than once before anyone gives in. Many Beirut restaurants quote prices in dollars, and a service charge is sometimes already added, so ask \"l-ba2sheesh ma7soob?\" before you tip.",

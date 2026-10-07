@@ -209,6 +209,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَوّ",
+          "transliteration": "jaww",
+          "english": "weather",
+          "category": "Weather"
+        },
+        {
+          "arabic": "شَمِس",
+          "transliteration": "shamis",
+          "english": "sun",
+          "category": "Weather"
+        },
+        {
+          "arabic": "حَرّ",
+          "transliteration": "7arr",
+          "english": "heat, hot",
+          "category": "Weather"
+        },
+        {
+          "arabic": "بَرْد",
+          "transliteration": "bard",
+          "english": "cold",
+          "category": "Weather"
+        },
+        {
+          "arabic": "مَطَر",
+          "transliteration": "maTar",
+          "english": "rain",
+          "category": "Weather"
+        },
+        {
+          "arabic": "غِيم",
+          "transliteration": "gheem",
+          "english": "clouds",
+          "category": "Weather"
+        },
+        {
+          "arabic": "هَوَا",
+          "transliteration": "hawa",
+          "english": "wind, air",
+          "category": "Weather"
+        },
+        {
+          "arabic": "شَمْسِيِّة",
+          "transliteration": "shamsiyye",
+          "english": "umbrella",
+          "category": "Weather"
+        }
+      ],
       "culture": "بدمشق الناس بيحكوا عن الجو كتير كنوع من الحديث الخفيف، خصوصا أول الصباح وقبل ما يطلعوا من البيت. كلمة \"الدنيا\" بتنستخدم بدل \"الجو\" بكتير من العبارات، متل \"الدنيا حر\" أو \"الدنيا برد\".",
       "exercises": [
         {
@@ -581,6 +631,56 @@
             "transliteration": "ii, biSiir iljaw mu3tadil w ilwara2 yuu2a3",
             "english": "Yes, the weather gets mild and the leaves fall."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مَوْسِم",
+          "transliteration": "mawsim",
+          "english": "season",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "صِيف",
+          "transliteration": "Seef",
+          "english": "summer",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "شِتِي",
+          "transliteration": "shiti",
+          "english": "winter",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "رَبِيع",
+          "transliteration": "rabee3",
+          "english": "spring",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "خَرِيف",
+          "transliteration": "khareef",
+          "english": "autumn",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "تَلِج",
+          "transliteration": "talij",
+          "english": "snow",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "جَبَل",
+          "transliteration": "jabal",
+          "english": "mountain",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "شَجَر",
+          "transliteration": "shajar",
+          "english": "trees",
+          "category": "Seasons"
         }
       ],
       "culture": "بدمشق الصيف بيكون طويل وحر وجاف، والشتي أو التلج بيصير غالبا من كانون لآذار. التلج عالجبل قريب من المدينة (متل جبل قاسيون) شي بيحب الناس يطلعوا يتفرجوا عليه.",
@@ -958,6 +1058,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "كِنْزِة",
+          "transliteration": "kanze",
+          "english": "jumper",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "جَاكِيت",
+          "transliteration": "jaakeet",
+          "english": "jacket",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "شُورْت",
+          "transliteration": "short",
+          "english": "shorts",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "نَضَّارَات",
+          "transliteration": "naDDaraat",
+          "english": "glasses",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "بُوط",
+          "transliteration": "booT",
+          "english": "boots",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "قُبَّعَة",
+          "transliteration": "2ubba3a",
+          "english": "hat",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "دَافِي",
+          "transliteration": "daafi",
+          "english": "warm",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "تْقِيل",
+          "transliteration": "t2eel",
+          "english": "heavy",
+          "category": "Clothes for the weather"
+        }
+      ],
       "culture": "بدمشق الناس بتلبس كذا طبقة بالشتا (كنزة تحت جاكيت) لأنو الجو بيتغير بين الصبح والليل. الشمسية والمطرية شي أساسي بالشنطة أو السيارة من كانون لآذار.",
       "exercises": [
         {
@@ -1330,6 +1480,56 @@
             "transliteration": "minu23od bilbeet w minaajjil irri7le",
             "english": "We stay home and postpone the trip."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مْتَنَزَّه",
+          "transliteration": "mtanazzah",
+          "english": "park",
+          "category": "Going out"
+        },
+        {
+          "arabic": "طَلْعَة",
+          "transliteration": "Tal3a",
+          "english": "outing",
+          "category": "Going out"
+        },
+        {
+          "arabic": "رِحْلِة",
+          "transliteration": "ri7le",
+          "english": "trip",
+          "category": "Going out"
+        },
+        {
+          "arabic": "شُرْفِة",
+          "transliteration": "shurfe",
+          "english": "balcony",
+          "category": "Going out"
+        },
+        {
+          "arabic": "سَهْرَة",
+          "transliteration": "sahra",
+          "english": "evening out",
+          "category": "Going out"
+        },
+        {
+          "arabic": "لَطِيف",
+          "transliteration": "laTeef",
+          "english": "pleasant",
+          "category": "Going out"
+        },
+        {
+          "arabic": "نَشْرَة",
+          "transliteration": "nashra",
+          "english": "bulletin, forecast",
+          "category": "Going out"
+        },
+        {
+          "arabic": "نُزْهَة",
+          "transliteration": "nuzha",
+          "english": "picnic",
+          "category": "Going out"
         }
       ],
       "culture": "بدمشق كتير خطط الطلعات، السهرات ورحلات الجبل مرتبطة بالجو، فالناس بتحب تتابع نشرة الجو قبل ما تخطط. لما الجو ما بيسمح، الحل العادي إنو الأهل والأصحاب يأجلوا الطلعة مش يلغوها نهائي.",

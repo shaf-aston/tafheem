@@ -242,6 +242,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "ضَيْف",
+          "transliteration": "Dayf",
+          "english": "guest",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بَاب",
+          "transliteration": "baab",
+          "english": "door",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "جُوتِي",
+          "transliteration": "jooti",
+          "english": "shoes",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "سَيَّارَة",
+          "transliteration": "sayyaara",
+          "english": "car",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بَيْت",
+          "transliteration": "bayt",
+          "english": "house",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Tareeg",
+          "english": "road, way",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "هَدِيَّة",
+          "transliteration": "hadiyya",
+          "english": "gift",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "سُهُولَة",
+          "transliteration": "suhoola",
+          "english": "ease",
+          "category": "Arriving as a guest"
+        }
+      ],
       "culture": "In Sanaani homes, greeting guests warmly with \"7ayyak allah\" is customary. Removing shoes at the door shows respect and maintains cleanliness; this is normal in most Yemeni households. Bringing a small gift when visiting is thoughtful but not obligatory. The phrase \"sharraft il-bayt\" (you honored the house) is a warm way to welcome guests and acknowledge their visit.",
       "exercises": [
         {
@@ -601,6 +651,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَرَس",
+          "transliteration": "jaras",
+          "english": "doorbell",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "جَاكِيت",
+          "transliteration": "jaakeet",
+          "english": "jacket",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "طَاوِلَة",
+          "transliteration": "Taawila",
+          "english": "table",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "تِلِفِزْيُون",
+          "transliteration": "tilifizyoon",
+          "english": "television",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "عِيَال",
+          "transliteration": "3iyaal",
+          "english": "children",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "جَلْسَة",
+          "transliteration": "jalsa",
+          "english": "gathering",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "سُكَّر",
+          "transliteration": "sukkar",
+          "english": "sugar",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "عَجَلَة",
+          "transliteration": "3ajala",
+          "english": "hurry",
+          "category": "Welcoming guests"
+        }
+      ],
       "culture": "Sanaani hosts take pride in offering guests refreshments. Coffee is the traditional welcome drink, though tea is also common. Asking about sugar preference is polite. The phrase \"tislam iidak\" (bless your hands) is a warm compliment for hospitality or cooking.",
       "exercises": [
         {
@@ -913,6 +1013,56 @@
             "transliteration": "tamam, 2iff shawayyah, fi 7alwiyyat",
             "english": "Good, stay a bit, there's dessert."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُفْرَة",
+          "transliteration": "sufra",
+          "english": "dining table",
+          "category": "At the table"
+        },
+        {
+          "arabic": "عَشَا",
+          "transliteration": "3asha",
+          "english": "dinner",
+          "category": "At the table"
+        },
+        {
+          "arabic": "طَبْخَة",
+          "transliteration": "Tabkha",
+          "english": "dish",
+          "category": "At the table"
+        },
+        {
+          "arabic": "عَيْش",
+          "transliteration": "3aysh",
+          "english": "bread",
+          "category": "At the table"
+        },
+        {
+          "arabic": "حَلَوِيَّات",
+          "transliteration": "7alawiyyaat",
+          "english": "desserts",
+          "category": "At the table"
+        },
+        {
+          "arabic": "شَبْعَان",
+          "transliteration": "shab3aan",
+          "english": "full",
+          "category": "At the table"
+        },
+        {
+          "arabic": "بِنْت الصَّحْن",
+          "transliteration": "bint aS-Sa7n",
+          "english": "honey cake",
+          "category": "At the table"
+        },
+        {
+          "arabic": "حَوِيج",
+          "transliteration": "7aweej",
+          "english": "spices",
+          "category": "At the table"
         }
       ],
       "culture": "Sanaani meals are communal and hospitable. The phrase \"bil-hana w ash-shifa\" (enjoy your meal) is always said. Offering extra food shows warmth; turning it down politely is normal and acceptable. Spicy food is common in Yemeni cooking, and warning guests kindly is respectful. Desserts (halwiyyat) are always served after the main meal.",
@@ -1229,6 +1379,56 @@
             "transliteration": "allah yakun ma3ak",
             "english": "God be with you."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ضِيَافَة",
+          "transliteration": "Diyaafa",
+          "english": "hospitality",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "وَقْت",
+          "transliteration": "wagt",
+          "english": "time",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "دَعْوَة",
+          "transliteration": "da3wa",
+          "english": "invitation",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "أَهْل",
+          "transliteration": "ahl",
+          "english": "family",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "عُذْر",
+          "transliteration": "3udhr",
+          "english": "excuse",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Tareeg",
+          "english": "road",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "دَوْم",
+          "transliteration": "dawm",
+          "english": "always",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "مَعَ السَّلَامَة",
+          "transliteration": "ma3a s-salaama",
+          "english": "goodbye",
+          "category": "Leaving and thanking"
         }
       ],
       "culture": "In Sanaani culture, parting with guests is as warm as welcoming them. Saying goodbye never happens abruptly; there are always expressions of thanks and wishes for safe travels. \"Tisbih 3ala khair\" (sleep on goodness) is said to those leaving in the evening. Inviting guests to return soon is customary and sincere. Islamic expressions like \"in shaa allah\" (God willing) are natural in everyday speech.",

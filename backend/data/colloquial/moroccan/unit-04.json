@@ -211,6 +211,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "طَاسَة",
+          "transliteration": "Taasa",
+          "english": "cup, bowl",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "سُكَّر",
+          "transliteration": "sukkar",
+          "english": "sugar",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "نّْعْنَاع",
+          "transliteration": "na3naa3",
+          "english": "mint",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "مْرَّة",
+          "transliteration": "mrra",
+          "english": "bitter",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "كْبِيرَة",
+          "transliteration": "kbeera",
+          "english": "big",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "حْلْوَة",
+          "transliteration": "7lwa",
+          "english": "sweet",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "شْوِيَّة",
+          "transliteration": "shwiyya",
+          "english": "a little",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "كَاس",
+          "transliteration": "kaas",
+          "english": "glass",
+          "category": "Coffee and tea"
+        }
+      ],
       "culture": "Mint tea (atay) is the drink of hospitality in Morocco: it is brewed sweet, poured from a height, and refusing the first glass can feel cold. In cafes, coffee is often ordered as nuss nuss (half coffee, half milk), and asking for less sugar is completely normal.",
       "exercises": [
         {
@@ -609,6 +659,56 @@
             "transliteration": "bkhamsiin dirham",
             "english": "Fifty dirhams."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "لَاكَارْط",
+          "transliteration": "lakaarT",
+          "english": "menu",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مُقَبِّلَات",
+          "transliteration": "muqabbilaat",
+          "english": "starters",
+          "category": "The menu"
+        },
+        {
+          "arabic": "طْبْق",
+          "transliteration": "Tbeq",
+          "english": "dish",
+          "category": "The menu"
+        },
+        {
+          "arabic": "سَلَاطَة",
+          "transliteration": "salaaTa",
+          "english": "salad",
+          "category": "The menu"
+        },
+        {
+          "arabic": "خْفِيف",
+          "transliteration": "khfeef",
+          "english": "light",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَلْوِيَّات",
+          "transliteration": "7alwiyyaat",
+          "english": "desserts",
+          "category": "The menu"
+        },
+        {
+          "arabic": "بِيتْزَا",
+          "transliteration": "beetza",
+          "english": "pizza",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَاجَة",
+          "transliteration": "7aaja",
+          "english": "thing",
+          "category": "The menu"
         }
       ],
       "culture": "Many Casablanca menus are in French or Arabic, and words like lakart come straight from French, so asking for another language is ordinary. Harira soup is eaten all year and is especially central at the Ramadan iftar, and prices are always said in dirhams.",
@@ -1012,6 +1112,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "طّْلَب",
+          "transliteration": "Talab",
+          "english": "order",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "حُمُّص",
+          "transliteration": "7ummuS",
+          "english": "hummus",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "بْغِيتْ",
+          "transliteration": "bghit",
+          "english": "I want",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "سَنْدْوِيتْش",
+          "transliteration": "sandwitsh",
+          "english": "sandwich",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "عَطِينِي",
+          "transliteration": "3Teeni",
+          "english": "give me",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "بِالْعْجْل",
+          "transliteration": "bel3jel",
+          "english": "quickly",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "دْيَالِي",
+          "transliteration": "dyaali",
+          "english": "mine",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "نْفْس",
+          "transliteration": "nafs",
+          "english": "the same",
+          "category": "Ordering"
+        }
+      ],
       "culture": "Many people say bismillah before the first bite and al-hamdu lillah at the end, and the host or waiter answers bsa77tek (to your health). Bread comes with the meal and is used to scoop the food, and diners often call the waiter with a khuya (my brother) or by a polite raised hand rather than waiting to be visited.",
       "exercises": [
         {
@@ -1396,6 +1546,56 @@
             "transliteration": "bniina bzaf, Allah y3tiik ssa77a",
             "english": "Really delicious, thank you."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "حْسَاب",
+          "transliteration": "7saab",
+          "english": "bill",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَاش",
+          "transliteration": "kaash",
+          "english": "cash",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَارْط",
+          "transliteration": "kaarT",
+          "english": "card",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بُورْبْوَار",
+          "transliteration": "boorbwaar",
+          "english": "tip",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَاقِي",
+          "transliteration": "baaqi",
+          "english": "change",
+          "category": "Paying"
+        },
+        {
+          "arabic": "فَاكْتُورَة",
+          "transliteration": "faktoora",
+          "english": "receipt",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بْنِينَة",
+          "transliteration": "bneena",
+          "english": "delicious",
+          "category": "Paying"
+        },
+        {
+          "arabic": "خْلَّص",
+          "transliteration": "khalleS",
+          "english": "to pay",
+          "category": "Paying"
         }
       ],
       "culture": "Friends often argue affectionately over who pays, and haadi 3liya (this one is on me) is the usual line, so expect a round of polite refusal. Cards are widely taken in Casablanca and Rabat restaurants but small cafes still prefer cash, and leaving a few dirhams of change as a tip is customary.",

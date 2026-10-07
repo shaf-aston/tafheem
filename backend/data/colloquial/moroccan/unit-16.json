@@ -234,6 +234,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "الْبَارْح",
+          "transliteration": "lbaare7",
+          "english": "yesterday",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "طْوِيل",
+          "transliteration": "Tweel",
+          "english": "long",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "مْشِيتْ",
+          "transliteration": "mshit",
+          "english": "I went",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "فَايْق",
+          "transliteration": "faayeq",
+          "english": "awake",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "عْشِيَّة",
+          "transliteration": "3shiyya",
+          "english": "afternoon",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "خْدْمَة",
+          "transliteration": "khedma",
+          "english": "work",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "جّْوّ",
+          "transliteration": "jaww",
+          "english": "weather",
+          "category": "Yesterday"
+        }
+      ],
       "culture": "البارح is the everyday word for yesterday and أول البارح the day before; the MSA أمس is not used in speech. شنو درتي؟ is a normal opener among friends and neighbours, and the form درتي is the same for a man and a woman.",
       "exercises": [
         {
@@ -591,6 +641,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صْغِير",
+          "transliteration": "Sgheer",
+          "english": "small, young",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "دْرْب",
+          "transliteration": "derb",
+          "english": "neighbourhood lane",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "صَاحْب",
+          "transliteration": "Saa7eb",
+          "english": "friend",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "كُورَة",
+          "transliteration": "koora",
+          "english": "football",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "بَادِيَة",
+          "transliteration": "baadiya",
+          "english": "countryside",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "حْكَايَة",
+          "transliteration": "7kaaya",
+          "english": "story",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "بِيسْكْلِيت",
+          "transliteration": "beeskleet",
+          "english": "bicycle",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "ضّْلْمَة",
+          "transliteration": "Dlma",
+          "english": "darkness",
+          "category": "Childhood"
+        }
+      ],
       "culture": "Many Casablanca and Rabat families still have roots in the countryside, so summers at the grandparents' house in the البادية (or the بلاد, as people also say) are a familiar childhood memory. Playing football in the درب, the neighbourhood alley, is just as typical.",
       "exercises": [
         {
@@ -943,6 +1043,56 @@
             "transliteration": "la, n3est bzzaf",
             "english": "No, I overslept."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "تِيلِيفُون",
+          "transliteration": "teleefoon",
+          "english": "phone",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "سّْرُوت",
+          "transliteration": "sarut",
+          "english": "key",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "دْرُوج",
+          "transliteration": "drooj",
+          "english": "stairs",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "بُورْطْفُوي",
+          "transliteration": "borTfoy",
+          "english": "wallet",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "سَاك",
+          "transliteration": "saak",
+          "english": "bag",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "ضّْوّ",
+          "transliteration": "Doww",
+          "english": "electricity, light",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مِيسَاج",
+          "transliteration": "meesaaj",
+          "english": "text message",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مْنَبِّه",
+          "transliteration": "mnebbeh",
+          "english": "alarm clock",
+          "category": "Something went wrong"
         }
       ],
       "culture": "When someone tells you their bad luck, the usual answers are الله يعوض (may God compensate you) and, for an injury, سلامتك. Moroccans also add الحمد لله على كل حال even when things went wrong.",
@@ -1306,6 +1456,56 @@
             "transliteration": "mabruk! Allah ybaarek liha",
             "english": "Congratulations! May God bless her."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "خْبْر",
+          "transliteration": "khber",
+          "english": "news",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "إِشَاعَة",
+          "transliteration": "ishaa3a",
+          "english": "rumour",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "حُومَة",
+          "transliteration": "7ooma",
+          "english": "neighbourhood",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "سِّرّ",
+          "transliteration": "sirr",
+          "english": "secret",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "جَارْ",
+          "transliteration": "jaar",
+          "english": "neighbour",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "هْدْرَة",
+          "transliteration": "hedra",
+          "english": "talk",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "نَّاس",
+          "transliteration": "naas",
+          "english": "people",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "جْدِيد",
+          "transliteration": "jdeed",
+          "english": "new",
+          "category": "News and gossip"
         }
       ],
       "culture": "Congratulations on an engagement, wedding or birth are مبروك followed by الله يبارك ليه or ليها. Moroccans often hedge gossip with يمكن or كيقولو and end with الله أعلم, since repeating what is not certain is frowned on.",

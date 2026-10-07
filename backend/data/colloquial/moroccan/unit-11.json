@@ -242,6 +242,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "ضِيف",
+          "transliteration": "Deef",
+          "english": "guest",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بَاب",
+          "transliteration": "baab",
+          "english": "door",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "صّْبَّاط",
+          "transliteration": "SebbaaT",
+          "english": "shoes",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "صَالُون",
+          "transliteration": "saaloon",
+          "english": "living room",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "دَار",
+          "transliteration": "daar",
+          "english": "house, home",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "طّْرِيق",
+          "transliteration": "Treeq",
+          "english": "road, way",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "يْدِّين",
+          "transliteration": "yeddeen",
+          "english": "hands",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "تْفَضَّل",
+          "transliteration": "tfeDDel",
+          "english": "please, come in",
+          "category": "Arriving as a guest"
+        }
+      ],
       "culture": "In many Moroccan homes shoes come off at the door, and a guest usually brings sweets, pastries or dates rather than anything expensive. The host answers the gift with a modest \"maakaansh khaaSSek\" (you shouldn't have) and the guest is told he is in his own home.",
       "exercises": [
         {
@@ -643,6 +693,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جّْرْس",
+          "transliteration": "jers",
+          "english": "doorbell",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "كُرْسِي",
+          "transliteration": "kursi",
+          "english": "chair",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "طّْبْلَة",
+          "transliteration": "Tebla",
+          "english": "table",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "تِّلْفَازَة",
+          "transliteration": "tilfaaza",
+          "english": "television",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "وْلِيدَات",
+          "transliteration": "wleedaat",
+          "english": "children",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "جّْلْسَة",
+          "transliteration": "jelsa",
+          "english": "gathering",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "صِّينِيَّة",
+          "transliteration": "Seeniyya",
+          "english": "tray",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "عْجْلَة",
+          "transliteration": "3jla",
+          "english": "hurry",
+          "category": "Welcoming guests"
+        }
+      ],
       "culture": "Moroccan hospitality nearly always starts with mint tea (ataay), often with a plate of sweets and pastries called l-7elwa. Refusing outright can seem cold, so guests take at least a glass and compliment the house and the children.",
       "exercises": [
         {
@@ -1032,6 +1132,56 @@
             "transliteration": "iyyeh, 3aafaak",
             "english": "Yes please."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مَاكْلَة",
+          "transliteration": "maakla",
+          "english": "food",
+          "category": "At the table"
+        },
+        {
+          "arabic": "طْبْق",
+          "transliteration": "Tbeq",
+          "english": "dish",
+          "category": "At the table"
+        },
+        {
+          "arabic": "خُبْز",
+          "transliteration": "khubz",
+          "english": "bread",
+          "category": "At the table"
+        },
+        {
+          "arabic": "حَرِّيف",
+          "transliteration": "7arreef",
+          "english": "spicy",
+          "category": "At the table"
+        },
+        {
+          "arabic": "حْلْوَة",
+          "transliteration": "7elwa",
+          "english": "dessert, sweets",
+          "category": "At the table"
+        },
+        {
+          "arabic": "شْبْعَان",
+          "transliteration": "shb3aan",
+          "english": "full",
+          "category": "At the table"
+        },
+        {
+          "arabic": "بَارْد",
+          "transliteration": "baared",
+          "english": "cold",
+          "category": "At the table"
+        },
+        {
+          "arabic": "زِيد",
+          "transliteration": "zeed",
+          "english": "have more",
+          "category": "At the table"
         }
       ],
       "culture": "A Moroccan meal is often eaten from one shared dish, with bread used as the spoon and each person eating from the part nearest to them. The host keeps urging more food; guests say \"bismillah\" to start and \"l-7amdu lillaah\" at the end, and the host says \"b-l-hna w sh-shfaa\" as they eat.",
@@ -1433,6 +1583,56 @@
             "transliteration": "in shaa2 Allaah",
             "english": "God willing."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "صّْحَّة",
+          "transliteration": "SSa77a",
+          "english": "health",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "وْقْت",
+          "transliteration": "weqt",
+          "english": "time",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "دَعْوَة",
+          "transliteration": "da3wa",
+          "english": "invitation",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "مَرْسِي",
+          "transliteration": "mersi",
+          "english": "thank you",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "عْذْر",
+          "transliteration": "3dher",
+          "english": "excuse",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "طّْرِيق",
+          "transliteration": "Treeq",
+          "english": "road",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "بْسْلَامَة",
+          "transliteration": "bslaama",
+          "english": "goodbye",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "قْرِيب",
+          "transliteration": "qreeb",
+          "english": "soon, near",
+          "category": "Leaving and thanking"
         }
       ],
       "culture": "Leaving a Moroccan home takes a while: the guest announces they must go, the host insists they stay, and this can repeat several times. Guests say \"Allaah y3Tiik S-S7a\" for the hospitality and hosts often walk them to the door or the car.",

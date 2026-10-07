@@ -209,6 +209,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جّْوّ",
+          "transliteration": "jaww",
+          "english": "weather",
+          "category": "Weather"
+        },
+        {
+          "arabic": "شّْمْس",
+          "transliteration": "shems",
+          "english": "sun",
+          "category": "Weather"
+        },
+        {
+          "arabic": "سْخُون",
+          "transliteration": "skhoon",
+          "english": "hot",
+          "category": "Weather"
+        },
+        {
+          "arabic": "بْرْد",
+          "transliteration": "berd",
+          "english": "cold",
+          "category": "Weather"
+        },
+        {
+          "arabic": "شّْتَا",
+          "transliteration": "shta",
+          "english": "rain",
+          "category": "Weather"
+        },
+        {
+          "arabic": "غَايْم",
+          "transliteration": "ghaaym",
+          "english": "cloudy",
+          "category": "Weather"
+        },
+        {
+          "arabic": "رِّيح",
+          "transliteration": "ree7",
+          "english": "wind",
+          "category": "Weather"
+        },
+        {
+          "arabic": "شَمْسِيَّة",
+          "transliteration": "shamsiyya",
+          "english": "umbrella",
+          "category": "Weather"
+        }
+      ],
       "culture": "In Morocco the weather is an easy opener with anyone, and rain is usually welcomed with \"الحمد لله\" or \"الله يجعلها شتا خير\" because water matters. In Casablanca and Rabat the Atlantic brings damp air and cloud, so \"غايم\" and \"الرطوبة\" come up often.",
       "exercises": [
         {
@@ -601,6 +651,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فْصْل",
+          "transliteration": "feSl",
+          "english": "season",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "صِّيف",
+          "transliteration": "Seef",
+          "english": "summer",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "شّْتَا",
+          "transliteration": "shta",
+          "english": "winter",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "رّْبِيع",
+          "transliteration": "rbee3",
+          "english": "spring",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "خْرِيف",
+          "transliteration": "khreef",
+          "english": "autumn",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "تّْلْج",
+          "transliteration": "telj",
+          "english": "snow",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "جْبْل",
+          "transliteration": "jbel",
+          "english": "mountain",
+          "category": "Seasons"
+        },
+        {
+          "arabic": "نَاشْف",
+          "transliteration": "naashef",
+          "english": "dry",
+          "category": "Seasons"
+        }
+      ],
       "culture": "In Darija \"الشتا\" means both rain and winter, so context tells you which. Snow is not something Casablanca or Rabat see, so families drive to Ifrane or the Middle Atlas to see it, and in summer the beaches and the corniche fill up.",
       "exercises": [
         {
@@ -987,6 +1087,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تْرِيكُو",
+          "transliteration": "treeko",
+          "english": "jumper",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "جَاكِيطَة",
+          "transliteration": "jaakeeTa",
+          "english": "jacket",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "شُورْت",
+          "transliteration": "short",
+          "english": "shorts",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "نّْظَّارَات",
+          "transliteration": "nDDaraat",
+          "english": "glasses",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "بُوط",
+          "transliteration": "booT",
+          "english": "boots",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "طَاقِيَّة",
+          "transliteration": "Taaqiyya",
+          "english": "hat, cap",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "خْفِيف",
+          "transliteration": "khfeef",
+          "english": "light",
+          "category": "Clothes for the weather"
+        },
+        {
+          "arabic": "تْقِيل",
+          "transliteration": "tqeel",
+          "english": "heavy",
+          "category": "Clothes for the weather"
+        }
+      ],
       "culture": "Casablanca and Rabat winters are damp and cool, so people dress in layers, and the djellaba with its hood is a warm everyday outer layer for many, men and women alike. In summer the strong Atlantic sun makes hats and sunglasses common.",
       "exercises": [
         {
@@ -1366,6 +1516,56 @@
             "transliteration": "eeh, 7ta yte7ssen ljaw",
             "english": "Yes, until the weather gets better."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "حْدِيقَة",
+          "transliteration": "7deeqa",
+          "english": "park",
+          "category": "Going out"
+        },
+        {
+          "arabic": "خْرْجَة",
+          "transliteration": "kherja",
+          "english": "outing",
+          "category": "Going out"
+        },
+        {
+          "arabic": "رّْحْلَة",
+          "transliteration": "ri7la",
+          "english": "trip",
+          "category": "Going out"
+        },
+        {
+          "arabic": "بَالْكُون",
+          "transliteration": "balkoon",
+          "english": "balcony",
+          "category": "Going out"
+        },
+        {
+          "arabic": "سّْهْرَة",
+          "transliteration": "sahra",
+          "english": "evening out",
+          "category": "Going out"
+        },
+        {
+          "arabic": "زْوِين",
+          "transliteration": "zween",
+          "english": "nice",
+          "category": "Going out"
+        },
+        {
+          "arabic": "مِيتِيُو",
+          "transliteration": "meetyo",
+          "english": "weather forecast",
+          "category": "Going out"
+        },
+        {
+          "arabic": "بْرَّا",
+          "transliteration": "berra",
+          "english": "outside",
+          "category": "Going out"
         }
       ],
       "culture": "Plans in Morocco lean on the weather, and \"إن شاء الله\" is added to almost any plan for tomorrow. In Rabat people walk along the Bouregreg and the Oudayas, and in Casablanca along the corniche, but a rainy or foggy day usually means postponing, not cancelling, and many check \"الميتيو\" on their phone first.",

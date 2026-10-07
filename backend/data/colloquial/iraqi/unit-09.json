@@ -229,6 +229,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired, ill",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "صُدَاع",
+          "transliteration": "Sudaa3",
+          "english": "headache",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "بَطِن",
+          "transliteration": "baTin",
+          "english": "stomach",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "حَرَارَة",
+          "transliteration": "7araara",
+          "english": "fever",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "دَايِخ",
+          "transliteration": "daayikh",
+          "english": "dizzy",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "نَزْلَة بَرِد",
+          "transliteration": "nazlat barid",
+          "english": "a cold",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "نُوم",
+          "transliteration": "noom",
+          "english": "sleep",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "شْوَيَّة",
+          "transliteration": "shwayya",
+          "english": "a little",
+          "category": "Feeling unwell"
+        }
+      ],
       "culture": "In Iraq the reflex answer to شلونك is الحمدلله, even on a bad day, and the complaint follows after. Hearing that someone is unwell, you say سلامتك at once, and they answer الله يسلمك.",
       "exercises": [
         {
@@ -668,6 +718,56 @@
             "transliteration": "ba3d il-akil, marrteen bil-yoom",
             "english": "After eating, twice a day"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "دَوَا",
+          "transliteration": "dawa",
+          "english": "medicine",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حُبُوب",
+          "transliteration": "7uboob",
+          "english": "pills",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "شَرَاب",
+          "transliteration": "sharaab",
+          "english": "syrup",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "كُحَّة",
+          "transliteration": "ku77a",
+          "english": "cough",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "رَاشِتَة",
+          "transliteration": "raashita",
+          "english": "prescription",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حَسَاسِيَّة",
+          "transliteration": "7asaasiyya",
+          "english": "allergy",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "بْلَاسْتِر",
+          "transliteration": "blaaster",
+          "english": "plaster",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "نَعْسَان",
+          "transliteration": "na3saan",
+          "english": "sleepy",
+          "category": "Pharmacy"
         }
       ],
       "culture": "Many medicines in Iraq are sold at the pharmacy without a prescription, and the pharmacist will usually ask what is wrong and suggest something on the spot. Thanking him with تسلم إيدك is normal and warm.",
@@ -1114,6 +1214,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَوْعِد",
+          "transliteration": "maw3id",
+          "english": "appointment",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "تَحَالِيل",
+          "transliteration": "ta7aaleel",
+          "english": "medical tests",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "نَفَس",
+          "transliteration": "nafas",
+          "english": "breath",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "ضَغُط",
+          "transliteration": "DaghuT",
+          "english": "blood pressure",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "عَالِي",
+          "transliteration": "3aali",
+          "english": "high",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "خَطِير",
+          "transliteration": "khaTeer",
+          "english": "serious, dangerous",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "أُسْبُوع",
+          "transliteration": "usboo3",
+          "english": "week",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "دُكْتُور",
+          "transliteration": "duktoor",
+          "english": "doctor",
+          "category": "Doctor"
+        }
+      ],
       "culture": "Doctors are simply called دكتور, and a patient leaves with الله يخليك دكتور or الله يسلمك. Talk about health is wrapped in الحمدلله and إن شاء الله, and the doctor's parting wish is سلامتك.",
       "exercises": [
         {
@@ -1507,6 +1657,56 @@
             "transliteration": "la, eedi waarma shwayya",
             "english": "No, my hand is a bit swollen"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رَاس",
+          "transliteration": "raas",
+          "english": "head",
+          "category": "Body"
+        },
+        {
+          "arabic": "ظَهَر",
+          "transliteration": "Dhahar",
+          "english": "back",
+          "category": "Body"
+        },
+        {
+          "arabic": "إِيد",
+          "transliteration": "eed",
+          "english": "hand, arm",
+          "category": "Body"
+        },
+        {
+          "arabic": "رِجِل",
+          "transliteration": "rijil",
+          "english": "leg, foot",
+          "category": "Body"
+        },
+        {
+          "arabic": "عِين",
+          "transliteration": "3een",
+          "english": "eye",
+          "category": "Body"
+        },
+        {
+          "arabic": "وُدُن",
+          "transliteration": "wudun",
+          "english": "ear",
+          "category": "Body"
+        },
+        {
+          "arabic": "سِنّ",
+          "transliteration": "sinn",
+          "english": "tooth",
+          "category": "Body"
+        },
+        {
+          "arabic": "رَگْبَة",
+          "transliteration": "ragba",
+          "english": "neck",
+          "category": "Body"
         }
       ],
       "culture": "Iraqis name the sore spot and add هواية to say it hurts a lot. A friend who hears this says سلامتك straight away and often offers to go with you to the doctor. إيد covers both the hand and the arm.",

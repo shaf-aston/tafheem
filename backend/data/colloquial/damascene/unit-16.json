@@ -235,6 +235,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مْبَارِح",
+          "transliteration": "mbaare7",
+          "english": "yesterday",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "طَوِيل",
+          "transliteration": "Taweel",
+          "english": "long",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "نِمِت",
+          "transliteration": "nimet",
+          "english": "I slept",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "سِينَما",
+          "transliteration": "seenama",
+          "english": "cinema",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "اِشْتَرَيْت",
+          "transliteration": "shtarayt",
+          "english": "I bought",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "صُدْفِة",
+          "transliteration": "Sudfe",
+          "english": "chance",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "دَوَام",
+          "transliteration": "dawaam",
+          "english": "working hours",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "سَهَر",
+          "transliteration": "sahar",
+          "english": "staying up late",
+          "category": "Yesterday"
+        }
+      ],
       "culture": "مبارح is the everyday Damascene word for yesterday; the MSA أمس sounds bookish and is rarely heard in casual talk. Asking شو عملت مبارح؟ is a normal way to open a catch-up conversation with a friend or neighbor.",
       "exercises": [
         {
@@ -590,6 +640,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "زْغِير",
+          "transliteration": "zgheer",
+          "english": "small, young",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "حَيّ",
+          "transliteration": "7ayy",
+          "english": "neighbourhood",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "صَدِيق",
+          "transliteration": "Sadee2",
+          "english": "friend",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "كُرَة قَدَم",
+          "transliteration": "kurat 2adam",
+          "english": "football",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "جِدّ",
+          "transliteration": "jidd",
+          "english": "grandfather",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "حِكَايِة",
+          "transliteration": "7ikaaye",
+          "english": "story",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "بِسْكْلِيت",
+          "transliteration": "bisklet",
+          "english": "bicycle",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "عَتْمِة",
+          "transliteration": "3atme",
+          "english": "darkness",
+          "category": "Childhood"
+        }
+      ],
       "culture": "Grandparents' houses, especially in villages outside Damascus, are where extended families still gather in the summer. Children of that generation played in the street or alley (الحارة) rather than indoors, and adults often speak of that time as simpler and safer.",
       "exercises": [
         {
@@ -940,6 +1040,56 @@
             "transliteration": "la2, lissa 3am yfattshu 3aleeha bel-maTaar",
             "english": "No, they're still searching for it at the airport."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "شَاحِن",
+          "transliteration": "shaa7en",
+          "english": "charger",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "ضَاع",
+          "transliteration": "Daa3",
+          "english": "got lost",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "دَرَج",
+          "transliteration": "daraj",
+          "english": "stairs",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مَحْفَظَة",
+          "transliteration": "ma7faZa",
+          "english": "wallet",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "سَيَّارَة",
+          "transliteration": "sayyaara",
+          "english": "car",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "كَهْرَبَا",
+          "transliteration": "kahraba",
+          "english": "electricity",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "لَابْتُوب",
+          "transliteration": "laabtob",
+          "english": "laptop",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مْنَبِّه",
+          "transliteration": "mnabbeh",
+          "english": "alarm clock",
+          "category": "Something went wrong"
         }
       ],
       "culture": "يوم أسود (a black day) is how Damascenes describe a day where everything goes wrong, and حرام is said as a sympathetic exclamation, not a religious judgment, when someone tells you their bad news.",
@@ -1300,6 +1450,56 @@
             "transliteration": "wala shi muhimm, kell shi 3aadi",
             "english": "Nothing important, everything's normal."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "خَبَر",
+          "transliteration": "khabar",
+          "english": "news",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "إِشَاعَة",
+          "transliteration": "ishaa3a",
+          "english": "rumour",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "جَار",
+          "transliteration": "jaar",
+          "english": "neighbour",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "جْرِيدِة",
+          "transliteration": "jreede",
+          "english": "newspaper",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "صَبِي",
+          "transliteration": "Sabi",
+          "english": "boy",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "حَكِي",
+          "transliteration": "7aki",
+          "english": "talk",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "نَاس",
+          "transliteration": "naas",
+          "english": "people",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "جْدِيد",
+          "transliteration": "jdeed",
+          "english": "new",
+          "category": "News and gossip"
         }
       ],
       "culture": "Neighborhood news travels fast by word of mouth in Damascus, and a phrase like لا تحكيلحدا (don't tell anyone) is said as a normal part of sharing gossip, not really expected to be kept secret. An unconfirmed rumor is often softened with هاد كلام ناس, that's just people talking.",

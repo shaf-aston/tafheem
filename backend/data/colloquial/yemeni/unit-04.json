@@ -210,6 +210,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "كُوب",
+          "transliteration": "koob",
+          "english": "cup",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "سُكَّر",
+          "transliteration": "sukkar",
+          "english": "sugar",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "وَسَط",
+          "transliteration": "wasaT",
+          "english": "medium",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "نَعْنَاع",
+          "transliteration": "na3naa3",
+          "english": "mint",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "مُرّ",
+          "transliteration": "murr",
+          "english": "bitter",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "كَبِير",
+          "transliteration": "kabeer",
+          "english": "big",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "حِلْوَة",
+          "transliteration": "7ilwa",
+          "english": "sweet",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "قِشْر",
+          "transliteration": "qishr",
+          "english": "coffee-husk drink",
+          "category": "Coffee and tea"
+        }
+      ],
       "culture": "Coffee in Yemen is part of Sanaani tradition, typically served in small cups without sugar, or with measured sugar. Mint tea is also common and offered as a gesture of welcome.",
       "exercises": [
         {
@@ -462,6 +512,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مِنْيُو",
+          "transliteration": "menyu",
+          "english": "menu",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مُقَبِّلَات",
+          "transliteration": "muqabbilaat",
+          "english": "starters",
+          "category": "The menu"
+        },
+        {
+          "arabic": "نَبَاتِي",
+          "transliteration": "nabaati",
+          "english": "vegetarian",
+          "category": "The menu"
+        },
+        {
+          "arabic": "طَبَق",
+          "transliteration": "Tabag",
+          "english": "dish",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَارّ",
+          "transliteration": "7aarr",
+          "english": "spicy",
+          "category": "The menu"
+        },
+        {
+          "arabic": "خَفِيف",
+          "transliteration": "khafeef",
+          "english": "light",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَلَوِيَّات",
+          "transliteration": "7alawiyyaat",
+          "english": "desserts",
+          "category": "The menu"
+        },
+        {
+          "arabic": "سَلْتَة",
+          "transliteration": "salta",
+          "english": "saltah stew",
+          "category": "The menu"
+        }
+      ],
       "culture": "Yemeni restaurants specialize in traditional dishes: mandi, saltah, fahsa, and zurbiyan.",
       "exercises": [
         {
@@ -641,6 +741,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "طَلَب",
+          "transliteration": "Talab",
+          "english": "order",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "بَصَل",
+          "transliteration": "baSal",
+          "english": "onion",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "خُبْز",
+          "transliteration": "khubz",
+          "english": "bread",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "كُوب",
+          "transliteration": "koob",
+          "english": "glass",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "إِضَافِي",
+          "transliteration": "iDaafi",
+          "english": "extra",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "كِفَايَة",
+          "transliteration": "kifaaya",
+          "english": "enough",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "نَفْس",
+          "transliteration": "nafs",
+          "english": "the same",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "جَاهِز",
+          "transliteration": "jaahiz",
+          "english": "ready",
+          "category": "Ordering"
+        }
+      ],
       "culture": "Ordering in Yemen is quick and direct. Bread is essential with every meal.",
       "exercises": [
         {
@@ -818,6 +968,56 @@
             "transliteration": "tfaddal",
             "english": "Here"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَاش",
+          "transliteration": "kaash",
+          "english": "cash",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَرْت",
+          "transliteration": "kart",
+          "english": "card",
+          "category": "Paying"
+        },
+        {
+          "arabic": "خِدْمَة",
+          "transliteration": "khidma",
+          "english": "service charge",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَاقِي",
+          "transliteration": "baagi",
+          "english": "change",
+          "category": "Paying"
+        },
+        {
+          "arabic": "إِيصَال",
+          "transliteration": "eeSaal",
+          "english": "receipt",
+          "category": "Paying"
+        },
+        {
+          "arabic": "طَيِّب",
+          "transliteration": "Tayyib",
+          "english": "tasty",
+          "category": "Paying"
+        },
+        {
+          "arabic": "خَصْم",
+          "transliteration": "khaSm",
+          "english": "discount",
+          "category": "Paying"
         }
       ],
       "culture": "Settling the bill is straightforward. Tips are appreciated but not mandatory.",

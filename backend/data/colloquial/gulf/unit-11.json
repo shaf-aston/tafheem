@@ -237,6 +237,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "ضِيف",
+          "transliteration": "Deef",
+          "english": "guest",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بَاب",
+          "transliteration": "baab",
+          "english": "door",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "مَدْخَل",
+          "transliteration": "madkhal",
+          "english": "entrance",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "مَجْلِس",
+          "transliteration": "majlis",
+          "english": "sitting room",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بِيت",
+          "transliteration": "beet",
+          "english": "house",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "عُود",
+          "transliteration": "3ood",
+          "english": "oud incense",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "سَلَام",
+          "transliteration": "salaam",
+          "english": "greeting",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "شَرَف",
+          "transliteration": "sharaf",
+          "english": "honour",
+          "category": "Arriving as a guest"
+        }
+      ],
       "culture": "In many Gulf homes shoes come off at the door, and the host often serves coffee and dates before anything else. In traditional families the majlis (guest room) may receive men and women separately, so the host tells you where to go. \"7ayyaak allah\" is the warm everyday way to welcome someone.",
       "exercises": [
         {
@@ -623,6 +673,56 @@
             "transliteration": "allah y3ammirah",
             "english": "May God keep it full of life."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "جَرَس",
+          "transliteration": "jaras",
+          "english": "doorbell",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "كَنَبَة",
+          "transliteration": "kanaba",
+          "english": "sofa",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "طَاوْلَة",
+          "transliteration": "Taawla",
+          "english": "table",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "تِلِفِزْيُون",
+          "transliteration": "tilifizyoon",
+          "english": "television",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "عْيَال",
+          "transliteration": "3yaal",
+          "english": "children",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "جَلْسَة",
+          "transliteration": "jalsa",
+          "english": "gathering",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "دَلَّة",
+          "transliteration": "dalla",
+          "english": "coffee pot",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "اِسْتِعْجَال",
+          "transliteration": "isti3jaal",
+          "english": "hurry",
+          "category": "Welcoming guests"
         }
       ],
       "culture": "In the Gulf, Arabic coffee (gahwa) is poured in small cups without sugar, usually with dates or sweets, and the host serves the guest first. To say you have had enough, gently shake the empty cup from side to side. \"Khudh raa7tak\" and \"il-beet beetak\" tell a guest to relax completely. \"What\" is \"shnu\" in Kuwait and \"shu\" in the UAE.",
@@ -1020,6 +1120,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "سُفْرَة",
+          "transliteration": "sufra",
+          "english": "dining table",
+          "category": "At the table"
+        },
+        {
+          "arabic": "مَرَق",
+          "transliteration": "marag",
+          "english": "broth",
+          "category": "At the table"
+        },
+        {
+          "arabic": "أَكْلَة",
+          "transliteration": "akla",
+          "english": "dish, meal",
+          "category": "At the table"
+        },
+        {
+          "arabic": "مَلْعَقَة",
+          "transliteration": "mal3aga",
+          "english": "spoon",
+          "category": "At the table"
+        },
+        {
+          "arabic": "حَلَا",
+          "transliteration": "7ala",
+          "english": "dessert",
+          "category": "At the table"
+        },
+        {
+          "arabic": "شَبْعَان",
+          "transliteration": "shab3aan",
+          "english": "full",
+          "category": "At the table"
+        },
+        {
+          "arabic": "زِيَادَة",
+          "transliteration": "ziyaada",
+          "english": "more, extra",
+          "category": "At the table"
+        },
+        {
+          "arabic": "كِيف",
+          "transliteration": "keef",
+          "english": "as you like",
+          "category": "At the table"
+        }
+      ],
       "culture": "Meals are often served on a sufra (a spread laid on the floor or a big table), and guests eat with the right hand or a spoon. A Gulf host will press you to take more more than once, so a polite \"shabi3naa, al-7amdu lillah\" is the honest way to say you are full. \"Bil-3aafya\" is said to people who are eating, and \"tislam iidik\" thanks the cook.",
       "exercises": [
         {
@@ -1414,6 +1564,56 @@
             "transliteration": "allah y7fazak",
             "english": "God protect you."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ضِيَافَة",
+          "transliteration": "Diyaafa",
+          "english": "hospitality",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "وَقْت",
+          "transliteration": "wagt",
+          "english": "time",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "عَزِيمَة",
+          "transliteration": "3azeema",
+          "english": "invitation",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "أَهِل",
+          "transliteration": "ahil",
+          "english": "family",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "عَجَلَة",
+          "transliteration": "3ajala",
+          "english": "hurry",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "سَلَامَة",
+          "transliteration": "salaama",
+          "english": "goodbye (safe journey)",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "أَمَان",
+          "transliteration": "amaan",
+          "english": "safety",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "دَايِم",
+          "transliteration": "daayim",
+          "english": "always",
+          "category": "Leaving and thanking"
         }
       ],
       "culture": "Guests in the Gulf are pressed to stay longer, so leaving takes a few rounds of \"maa nagbal a3dhaar\" and polite refusals. In many homes the host passes around an incense burner (mabkhara) with oud at the end, which signals the visit is ending, and the guest wafts the smoke toward themselves. \"Fii amaan allah\" is the standard goodbye, and \"inshaa allah\" is used for anything about the future.",

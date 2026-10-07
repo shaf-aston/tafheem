@@ -423,3 +423,67 @@ def test_each_reading_names_the_particle():
     assert "لا النافية للجنس" in words[3]["reason"] and "أداة استثناء" in words[5]["reason"]
     assert "ويجوز أن تكون استئنافية" in words[7]["reason"]
     assert "أداة حصر" in iraab.analyse("مَا جَاءَ إِلَّا زَيْدٌ")["words"][2]["reason"]
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    ("لَا تَعْبُدُوا إِلَّا اللَّهَ", ["حرف", "فعل", "حرف", "مفعول به"]),  # the parser hangs the noun on إلا
+    ("لَا تَضْرِبْ إِلَّا زَيْدًا", ["حرف", "فعل", "حرف", "مفعول به"]),
+    ("لَا تَقُلْ إِلَّا الْحَقَّ", ["حرف", "فعل", "حرف", "مفعول به"]),
+    ("مَا ذَهَبَ إِلَّا إِلَى الْمَدْرَسَةِ", ["حرف", "فعل", "حرف", "حرف جر", "مجرور"]),
+    ("لَا إِلَهَ إِلَّا اللَّهُ", ["حرف", "اسم لا", "حرف", "بدل"]),  # control: after a noun in its case, a بدل
+])
+def test_the_word_after_a_restricting_illa_takes_the_place_the_sentence_leaves(sentence: str, expected: list[str]):
+    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+
+
+def _shape(node: dict) -> tuple:
+    """A picture as the book draws it: each unit's label and job, each leaf's role."""
+    from backend.services.arabic_text import strip_diacritics
+    if node.get("word") is not None:
+        return (strip_diacritics(node["role"]),)
+    return (strip_diacritics(node.get("label") or ""), strip_diacritics(node.get("role") or ""),
+            *(_shape(kid) for kid in node["children"]))
+
+
+def test_the_wonder_form_is_drawn_as_the_books_own_example():
+    """ما أحسن زيدًا (Tasheel 1.4.2 p8): ما the مبتدأ, the verb's clause its khabar, the verb with its hidden doer."""
+    import json
+    from backend.services import syntax
+    from backend.services.nahw_book import RULES
+    book = next(e for e in json.loads((RULES.parent / "tarkeeb" / "examples" / "tasheel-al-nahw.json")
+                                      .read_text(encoding="utf-8"))["examples"] if e["id"] == "1.4.2-taajjub")
+    ours = syntax.read(book["sentence"])
+    assert _shape(ours["tree"]["tree"]) == _shape(book["tree"])
+    assert "ضمير مستتر وجوبًا تقديره هو يعود على ما" in _picture_roles(ours["tree"]["tree"])
+    card = _read(book["sentence"])["words"][1]
+    assert card["role"] == "فعل" and "فعل ماضٍ جامد للتعجب مبني على الفتح" in card["reason"]
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    ("مَا أَجْمَلَ السَّمَاءَ", ["مبتدأ", "فعل", "مفعول به"]),
+    ("ما اجمل السماء", ["مبتدأ", "فعل", "مفعول به"]),  # plain text: the shape is read from the letters
+    ("ما اشد الحر", ["مبتدأ", "فعل", "مفعول به"]),  # the doubled root, from the analyser's root
+    ("مَا أَطْوَلَ اللَّيْلَ", ["مبتدأ", "فعل", "مفعول به"]),
+    ("مَا أَكْرَمَ زَيْدٌ عَمْرًا", ["حرف", "فعل", "فاعل", "مفعول به"]),  # a noun in raf': the ordinary negation
+    ("ما أكرم زيد عمرا", ["حرف", "فعل", "فاعل", "مفعول به"]),
+    ("مَا أُكْرِمَ زَيْدٌ", ["حرف", "فعل", "نائب فاعل"]),  # the typed damma says it is not the wonder shape
+    ("مَا أَعْطَى الرَّجُلَ كِتَابًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),  # two objects: not the wonder form
+    ("ما أنزل الله بها من سلطان", ["حرف", "فعل", "فاعل", "حرف جر", "حرف جر", "مجرور"]),  # أنزل gives no comparative
+])
+def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expected: list[str]):
+    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+
+
+@pytest.mark.parametrize("sentence, doer", [
+    ("أَنْتَ تَكْتُبُ", "ضمير مستتر تقديره أنتَ"),  # the khabar's pronoun goes back to its mubtada
+    ("هِيَ تَكْتُبُ", "ضمير مستتر تقديره هي"),
+    ("أَنْتِ تَكْتُبِينَ", "ضمير متصل (أنتِ)"),  # the ياء is the doer, not a hidden أنتَ أو هي
+    ("تَكْتُبِينَ", "ضمير متصل (أنتِ)"),
+    ("تَكْتُبُ", "ضمير مستتر تقديره أنتَ أو هي"),  # nothing settles it
+])
+def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: str, doer: str):
+    from backend.services import syntax
+    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    assert doer in shown
+    if sentence.startswith(("أَنْتَ", "هِيَ", "أَنْتِ")):
+        assert [w["role"] for w in iraab.analyse(sentence)["words"]][0] == "مبتدأ" and "خبر" in shown

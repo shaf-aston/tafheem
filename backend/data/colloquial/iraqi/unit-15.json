@@ -208,6 +208,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "حَجِز",
+          "transliteration": "7ajiz",
+          "english": "booking",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "غُرْفَة",
+          "transliteration": "ghurfa",
+          "english": "room",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "لَيْلَة",
+          "transliteration": "leela",
+          "english": "night",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "فْطُور",
+          "transliteration": "fTuur",
+          "english": "breakfast",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "مَصْعَد",
+          "transliteration": "maS3ad",
+          "english": "lift",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "مُفْتَاح",
+          "transliteration": "muftaa7",
+          "english": "key",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "فُنْدُگ",
+          "transliteration": "fundug",
+          "english": "hotel",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "اِسْتِقْبَال",
+          "transliteration": "istigbaal",
+          "english": "reception",
+          "category": "Hotel"
+        }
+      ],
       "culture": "In Iraqi hotels the clerk usually welcomes you with 'hala beek' and offers tea while the papers are done. Prices are often quoted in dinars, and asking to see the room first is normal and not rude.",
       "exercises": [
         {
@@ -591,6 +641,56 @@
             "transliteration": "arba3 saa3aat tagreeban",
             "english": "About four hours."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "تَذْكِرَة",
+          "transliteration": "tadhkira",
+          "english": "ticket",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "ذَهَاب",
+          "transliteration": "dhahaab",
+          "english": "one-way, outward",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "إِيَاب",
+          "transliteration": "iyaab",
+          "english": "return",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "كُرْسِي",
+          "transliteration": "kursi",
+          "english": "seat",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "كَارْت",
+          "transliteration": "kaart",
+          "english": "card",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "طُلَّاب",
+          "transliteration": "Tullaab",
+          "english": "students",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "شُبَّاك",
+          "transliteration": "shubbaak",
+          "english": "window, counter",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "بَاص",
+          "transliteration": "baaS",
+          "english": "bus",
+          "category": "Tickets"
         }
       ],
       "culture": "Intercity buses in Iraq leave from the karaaj (bus station), and many counters still take cash in dinars only, so ask before counting on a card. Students often get a discount if they show a university ID.",
@@ -977,6 +1077,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَوَاز",
+          "transliteration": "jawaaz",
+          "english": "passport",
+          "category": "Airport"
+        },
+        {
+          "arabic": "جُنْطَة",
+          "transliteration": "junTa",
+          "english": "bag",
+          "category": "Airport"
+        },
+        {
+          "arabic": "وَزِن",
+          "transliteration": "wazin",
+          "english": "weight",
+          "category": "Airport"
+        },
+        {
+          "arabic": "طَيَّارَة",
+          "transliteration": "Tayyaara",
+          "english": "plane",
+          "category": "Airport"
+        },
+        {
+          "arabic": "بَوَّابَة",
+          "transliteration": "bawwaaba",
+          "english": "gate",
+          "category": "Airport"
+        },
+        {
+          "arabic": "مَطَار",
+          "transliteration": "maTaar",
+          "english": "airport",
+          "category": "Airport"
+        },
+        {
+          "arabic": "سِيَاحَة",
+          "transliteration": "siyaa7a",
+          "english": "tourism",
+          "category": "Airport"
+        },
+        {
+          "arabic": "گُمْرُگ",
+          "transliteration": "gumrug",
+          "english": "customs",
+          "category": "Airport"
+        }
+      ],
       "culture": "Officers at Baghdad airport are usually brisk but polite, and 'hala beek bil-3iraag' is a genuine welcome, often followed by a question about why you came. Answering plainly with 'siyaa7a' or 'shughul' is enough.",
       "exercises": [
         {
@@ -1349,6 +1499,56 @@
             "transliteration": "iSbur shwayya, hassa atSil biihum",
             "english": "Wait a little, I'll call them now."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ضَيَّع",
+          "transliteration": "Dayya3",
+          "english": "lost",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مِتْأَخِّر",
+          "transliteration": "mit2akhkhir",
+          "english": "delayed",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "mushkila",
+          "english": "problem",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مَكْسُور",
+          "transliteration": "maksoor",
+          "english": "broken",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "شَكْوَى",
+          "transliteration": "shakwa",
+          "english": "complaint",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "حَجِز",
+          "transliteration": "7ajiz",
+          "english": "booking",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مَكْتَب",
+          "transliteration": "maktab",
+          "english": "office",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "رِحْلَة",
+          "transliteration": "ri7la",
+          "english": "flight, trip",
+          "category": "Travel problems"
         }
       ],
       "culture": "When something goes wrong, Iraqis say 'allah kareem' (God is generous) or 'in shaa2 allah tin7all' to stay calm and hopeful, and staff will often say 'laa tkhaaf' (don't worry). Speaking politely with 'law sama7t' gets help faster than raising your voice.",

@@ -217,6 +217,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "أَلُو",
+          "transliteration": "aloo",
+          "english": "hello (on the phone)",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "خّْطّ",
+          "transliteration": "khaTT",
+          "english": "line",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "صُولْد",
+          "transliteration": "Sold",
+          "english": "phone credit",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "بَطَّارِيَّة",
+          "transliteration": "baTTaariyya",
+          "english": "battery",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "رِيزُو",
+          "transliteration": "reezo",
+          "english": "network, signal",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "مْشْغُول",
+          "transliteration": "mshghool",
+          "english": "busy",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "تِيلِيفُون",
+          "transliteration": "teleefoon",
+          "english": "phone",
+          "category": "Answering the phone"
+        },
+        {
+          "arabic": "خْبَار",
+          "transliteration": "khbaar",
+          "english": "news",
+          "category": "Answering the phone"
+        }
+      ],
       "culture": "Moroccans usually answer with \"ألو\" and then ask \"شكون معايا؟\", and often open with \"السلام عليكم\" when the caller is older or unknown. Phone credit is topped up in small amounts, so \"سالا ليا الصولد\" is a very common reason a call stops, and calls end with \"بسلامة\".",
       "exercises": [
         {
@@ -592,6 +642,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "كَافِي",
+          "transliteration": "kaafi",
+          "english": "café",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "سَاعَة",
+          "transliteration": "saa3a",
+          "english": "hour, o'clock",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "نْتْلَاقَاو",
+          "transliteration": "ntlaaqaw",
+          "english": "we'll meet",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "قْبْل",
+          "transliteration": "qbel",
+          "english": "before",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مَسْجِد",
+          "transliteration": "masjid",
+          "english": "mosque",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "بِالضَّبْط",
+          "transliteration": "beDDabT",
+          "english": "exactly",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مْعْطّْل",
+          "transliteration": "m3aTTel",
+          "english": "late",
+          "category": "Arranging to meet"
+        },
+        {
+          "arabic": "مْعَ بْعْضْنَا",
+          "transliteration": "m3a ba3Dna",
+          "english": "together",
+          "category": "Arranging to meet"
+        }
+      ],
       "culture": "Friends usually settle on a cafe, or on a well-known landmark or square. \"ما تعطلش\" is said even between close friends, and \"إن شاء الله\" often follows a time to promise it.",
       "exercises": [
         {
@@ -961,6 +1061,56 @@
             "transliteration": "ma 3lik",
             "english": "Never mind."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مَوْعِد",
+          "transliteration": "maw3id",
+          "english": "appointment",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "نْهَار",
+          "transliteration": "nhaar",
+          "english": "day",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "فْجْأَة",
+          "transliteration": "fej2a",
+          "english": "suddenly",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "عُوض",
+          "transliteration": "3awD",
+          "english": "instead of",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "مْنْ بَعْد",
+          "transliteration": "men b3ed",
+          "english": "later",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "عْشِيَّة",
+          "transliteration": "3shiyya",
+          "english": "afternoon",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "أَجَّل",
+          "transliteration": "ajjel",
+          "english": "to postpone",
+          "category": "Changing plans"
+        },
+        {
+          "arabic": "مْكَان",
+          "transliteration": "mkaan",
+          "english": "place",
+          "category": "Changing plans"
         }
       ],
       "culture": "Postponing is accepted as long as you say so early and apologise with \"سمح ليا\"; a vague \"وقعات ليا شي حاجة\" is a full reason and nobody asks for more. Friday midday is the prayer and the family couscous lunch, so plans on that day are set for after the prayer.",
@@ -1335,6 +1485,56 @@
             "transliteration": "ma kayn mushkil",
             "english": "No problem."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رِسَالَة",
+          "transliteration": "risaala",
+          "english": "message",
+          "category": "Messages"
+        },
+        {
+          "arabic": "نِيمِيرُو",
+          "transliteration": "neemeero",
+          "english": "phone number",
+          "category": "Messages"
+        },
+        {
+          "arabic": "كَايْن",
+          "transliteration": "kaayen",
+          "english": "present, there",
+          "category": "Messages"
+        },
+        {
+          "arabic": "جَاوَب",
+          "transliteration": "jaweb",
+          "english": "to answer",
+          "category": "Messages"
+        },
+        {
+          "arabic": "إِمْتَا",
+          "transliteration": "imta",
+          "english": "when",
+          "category": "Messages"
+        },
+        {
+          "arabic": "صِيفْط",
+          "transliteration": "sifeT",
+          "english": "to send",
+          "category": "Messages"
+        },
+        {
+          "arabic": "عَيَّط",
+          "transliteration": "3ayyeT",
+          "english": "to call",
+          "category": "Messages"
+        },
+        {
+          "arabic": "بْلِي",
+          "transliteration": "blli",
+          "english": "that",
+          "category": "Messages"
         }
       ],
       "culture": "A family member often picks up the home phone, so the caller greets first with \"السلام عليكم\" and only then asks for the person. Messages are passed on by word of mouth with \"قول ليه\", and thanks are often followed by a short prayer such as \"الله يخليك\".",

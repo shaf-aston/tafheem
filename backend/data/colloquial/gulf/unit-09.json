@@ -231,6 +231,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَرِيض",
+          "transliteration": "mareeD",
+          "english": "sick",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "صُدَاع",
+          "transliteration": "Sudaa3",
+          "english": "headache",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "بَطِن",
+          "transliteration": "baTin",
+          "english": "stomach",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "حَرَارَة",
+          "transliteration": "7araara",
+          "english": "fever",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "دَايِخ",
+          "transliteration": "daayikh",
+          "english": "dizzy",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "مِزْكُوم",
+          "transliteration": "mizkoom",
+          "english": "having a cold",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "نُوم",
+          "transliteration": "noom",
+          "english": "sleep",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "شْوَيّ",
+          "transliteration": "shwayy",
+          "english": "a little",
+          "category": "Feeling unwell"
+        }
+      ],
       "culture": "Asked \"شلونك\", a Gulf speaker usually starts with \"الحمدلله\" even when unwell, and only then mentions the complaint, in a few soft words. When you hear someone is ill, \"ألف سلامة\" or \"سلامتك\" comes straight away.",
       "exercises": [
         {
@@ -631,6 +681,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "دَوَا",
+          "transliteration": "dawa",
+          "english": "medicine",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حُبُوب",
+          "transliteration": "7uboob",
+          "english": "pills",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "شَرَاب",
+          "transliteration": "sharaab",
+          "english": "syrup",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "كُحَّة",
+          "transliteration": "ku77a",
+          "english": "cough",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "وَصْفَة",
+          "transliteration": "waSfa",
+          "english": "prescription",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حَسَاسِيَّة",
+          "transliteration": "7asaasiyya",
+          "english": "allergy",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "مُسَكِّن",
+          "transliteration": "musakkin",
+          "english": "painkiller",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "بْلَاسْتَر",
+          "transliteration": "blaastar",
+          "english": "plaster",
+          "category": "Pharmacy"
+        }
+      ],
       "culture": "In the UAE and Kuwait, pharmacies are easy to find and many stay open late or all night; simple painkillers and cough syrup are sold over the counter, while antibiotics and stronger medicine need a prescription. Prices are said in dirhams in the UAE and in dinars in Kuwait, and nobody bargains over medicine.",
       "exercises": [
         {
@@ -1029,6 +1129,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَوْعِد",
+          "transliteration": "maw3id",
+          "english": "appointment",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "تَحَالِيل",
+          "transliteration": "ta7aaleel",
+          "english": "medical tests",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "نَفَس",
+          "transliteration": "nafas",
+          "english": "breath",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "ضَغْط",
+          "transliteration": "DaghT",
+          "english": "blood pressure",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "عَالِي",
+          "transliteration": "3aali",
+          "english": "high",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "خَطِير",
+          "transliteration": "khaTeer",
+          "english": "serious, dangerous",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "إِبْرَة",
+          "transliteration": "ibra",
+          "english": "injection",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "مُمَرِّض",
+          "transliteration": "mumarriD",
+          "english": "nurse",
+          "category": "Doctor"
+        }
+      ],
       "culture": "A Gulf doctor is addressed as \"دكتور\" or \"دكتورة\", often with \"يا\" before it, and in many clinics and hospitals staff come from abroad, so a visit may switch between Arabic and English. \"ألف سلامة\" to the patient, and \"الله يعطيك العافية\" to the doctor, are the expected polite words.",
       "exercises": [
         {
@@ -1409,6 +1559,56 @@
             "transliteration": "dhahri akthar min raasi",
             "english": "My back more than my head"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رَاس",
+          "transliteration": "raas",
+          "english": "head",
+          "category": "Body"
+        },
+        {
+          "arabic": "ظَهَر",
+          "transliteration": "Dhahar",
+          "english": "back",
+          "category": "Body"
+        },
+        {
+          "arabic": "إِيد",
+          "transliteration": "eed",
+          "english": "hand, arm",
+          "category": "Body"
+        },
+        {
+          "arabic": "رِجِل",
+          "transliteration": "rijil",
+          "english": "leg, foot",
+          "category": "Body"
+        },
+        {
+          "arabic": "عِين",
+          "transliteration": "3een",
+          "english": "eye",
+          "category": "Body"
+        },
+        {
+          "arabic": "إِذِن",
+          "transliteration": "idhin",
+          "english": "ear",
+          "category": "Body"
+        },
+        {
+          "arabic": "سِنّ",
+          "transliteration": "sinn",
+          "english": "tooth",
+          "category": "Body"
+        },
+        {
+          "arabic": "رَقْبَة",
+          "transliteration": "ragba",
+          "english": "neck",
+          "category": "Body"
         }
       ],
       "culture": "Body-part words turn up in everyday Gulf courtesy well beyond medicine: \"على عيني وراسي\" (on my eye and my head) means \"gladly, with pleasure\", and \"يا بعد راسي\" is an affectionate address to someone dear.",

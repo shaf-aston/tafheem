@@ -250,6 +250,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "خُضْرَة",
+          "transliteration": "khuDra",
+          "english": "vegetables",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "بَنَدُورَة",
+          "transliteration": "banadoora",
+          "english": "tomatoes",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "خْيَار",
+          "transliteration": "khyaar",
+          "english": "cucumber",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "بَصَل",
+          "transliteration": "baSal",
+          "english": "onions",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "تُوم",
+          "transliteration": "toom",
+          "english": "garlic",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "بَطَاطَا",
+          "transliteration": "baTaaTa",
+          "english": "potatoes",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "كِيلُو",
+          "transliteration": "keelo",
+          "english": "kilo",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "فْلَيْفْلِة",
+          "transliteration": "fleefle",
+          "english": "pepper",
+          "category": "Vegetables"
+        }
+      ],
       "culture": "عند الخضرجي بتحكي سلام قبل ما تسأل عن السعر، وما حدا بستنكف من المساومة الخفيفة على السعر إذا كان الطلب كبير. لما تاخد غراضك وتدفع، بتقول للبياع \"الله يعطيك العافية\" وهو بيردها \"الله يعافيك\"، هيك بتتحكى دايما بسوق الخضرة الشامي.",
       "exercises": [
         {
@@ -655,6 +705,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "خُبْز",
+          "transliteration": "khubz",
+          "english": "bread",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "فُرْن",
+          "transliteration": "furn",
+          "english": "oven, bakery",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "لَحْمِة",
+          "transliteration": "la7me",
+          "english": "meat",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "غَنَم",
+          "transliteration": "ghanam",
+          "english": "lamb",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "بَقَر",
+          "transliteration": "ba2ar",
+          "english": "beef",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "كَفْتَة",
+          "transliteration": "kafta",
+          "english": "kofta",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "كِبِّة",
+          "transliteration": "kibbe",
+          "english": "kibbeh",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "سُخْن",
+          "transliteration": "sukhn",
+          "english": "hot",
+          "category": "Bakery and butcher"
+        }
+      ],
       "culture": "الخبز الطازة بينشرى كل يوم بالشام، والناس بتحب توصل عالفرن وهو هلق طالع من التنور. عند الجزار، السؤال الأول دايما غنم ولا بقر، لأنو كل نوع سعره وطعمه مختلف، وبتقدر تطلب من الجزار يفرمها أو يقطعها قدامك.",
       "exercises": [
         {
@@ -1047,6 +1147,56 @@
             "transliteration": "ana ra7 aghsilon ba3d el-akel",
             "english": "I'll wash them after we eat"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رِزّ",
+          "transliteration": "rizz",
+          "english": "rice",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "مِلِح",
+          "transliteration": "mile7",
+          "english": "salt",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "نَار",
+          "transliteration": "naar",
+          "english": "fire, flame",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "مَقَادِير",
+          "transliteration": "ma2aadeer",
+          "english": "ingredients",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "مَعْلَقَة",
+          "transliteration": "ma3la2a",
+          "english": "spoon",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "صَحِن",
+          "transliteration": "Sa7en",
+          "english": "plate, dish",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "جَاهِز",
+          "transliteration": "jaahez",
+          "english": "ready",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "كِزْبَرَة",
+          "transliteration": "kizbara",
+          "english": "coriander",
+          "category": "Cooking"
         }
       ],
       "culture": "الطبخ بالبيت الشامي عادة شغلة مشتركة بين الأم وبناتها، وكل وحدة إلها دور من غسيل الخضرة لتحضير السلطة. لما الأكل يخلص، منقول \"صحتين وعافية\" لحدا بيحكي عن طبخة زاكية، وهاي الجملة ما بتنقال إلا بعد ما الأكل يجهز أو وقت الأكل.",
@@ -1446,6 +1596,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فُول",
+          "transliteration": "fool",
+          "english": "fava beans",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "حِلُو",
+          "transliteration": "7ilu",
+          "english": "sweet, nice",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "مَالِح",
+          "transliteration": "maale7",
+          "english": "salty",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "حَارّ",
+          "transliteration": "7aarr",
+          "english": "spicy",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "حَامِض",
+          "transliteration": "7aameD",
+          "english": "sour",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "جَاج",
+          "transliteration": "jaaj",
+          "english": "chicken",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "سَمَك",
+          "transliteration": "samak",
+          "english": "fish",
+          "category": "Likes and dislikes"
+        },
+        {
+          "arabic": "مَقْلُوبِة",
+          "transliteration": "ma2loobe",
+          "english": "maqluba",
+          "category": "Likes and dislikes"
+        }
+      ],
       "culture": "الحكي عن الأكل المفضل والمكروه شي عادي كتير بالحكي اليومي الشامي، وبيصير غالبا لما حدا يعزمك عالأكل. لما حدا يسألك ما بتحب شو، منيح تحكي بصراحة بس بلطف، لأنو المضيف الشامي بيحب يعرف قبل ما يحضرلك الطبخة.",
       "exercises": [
         {
@@ -1814,6 +2014,56 @@
             "transliteration": "tayyeb, aakhir se3r b-arba3miyye.",
             "english": "Okay, final price, four hundred."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "غَالِي",
+          "transliteration": "ghaali",
+          "english": "expensive",
+          "category": "At the market"
+        },
+        {
+          "arabic": "رْخِيص",
+          "transliteration": "rkhees",
+          "english": "cheap",
+          "category": "At the market"
+        },
+        {
+          "arabic": "خَصِم",
+          "transliteration": "khaSem",
+          "english": "discount",
+          "category": "At the market"
+        },
+        {
+          "arabic": "سِعِر",
+          "transliteration": "si3er",
+          "english": "price",
+          "category": "At the market"
+        },
+        {
+          "arabic": "بَسْطَة",
+          "transliteration": "basTa",
+          "english": "stall",
+          "category": "At the market"
+        },
+        {
+          "arabic": "مِيزَان",
+          "transliteration": "meezaan",
+          "english": "scale",
+          "category": "At the market"
+        },
+        {
+          "arabic": "كِيس",
+          "transliteration": "kees",
+          "english": "bag",
+          "category": "At the market"
+        },
+        {
+          "arabic": "مَاشِي",
+          "transliteration": "maashi",
+          "english": "okay, deal",
+          "category": "At the market"
         }
       ],
       "culture": "Bargaining is a normal, expected part of shopping in Damascene markets, especially for clothes, souvenirs, and household goods, though not usually in supermarkets with printed prices. A shopper who never tries to lower the price is unusual, and sellers expect the back-and-forth as part of the exchange.",

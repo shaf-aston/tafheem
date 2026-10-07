@@ -215,6 +215,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فِنْجَال",
+          "transliteration": "finjaal",
+          "english": "coffee cup",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "سُكَّر",
+          "transliteration": "sukkar",
+          "english": "sugar",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "وَسَط",
+          "transliteration": "wasaT",
+          "english": "medium",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "نَعْنَاع",
+          "transliteration": "na3naa3",
+          "english": "mint",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "مُرّ",
+          "transliteration": "murr",
+          "english": "bitter",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "كَبِير",
+          "transliteration": "kabeer",
+          "english": "big",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "حِلْوَة",
+          "transliteration": "7ilwa",
+          "english": "sweet",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "أَبَد",
+          "transliteration": "abad",
+          "english": "at all",
+          "category": "Coffee and tea"
+        }
+      ],
       "culture": "Gulf coffee (gahwa) is lightly roasted Arabic coffee with cardamom, poured in tiny cups by the host, usually unsweetened and served with dates; you shake the cup gently to say you have had enough. In cafes, sweet milky karak chai is just as common an order.",
       "exercises": [
         {
@@ -593,6 +643,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مِنْيُو",
+          "transliteration": "menyu",
+          "english": "menu",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مُقَبِّلَات",
+          "transliteration": "mugabbilaat",
+          "english": "starters",
+          "category": "The menu"
+        },
+        {
+          "arabic": "نَبَاتِي",
+          "transliteration": "nabaati",
+          "english": "vegetarian",
+          "category": "The menu"
+        },
+        {
+          "arabic": "طَبَق",
+          "transliteration": "Tabag",
+          "english": "dish",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مَشْوِي",
+          "transliteration": "mashwi",
+          "english": "grilled",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مَقْلِي",
+          "transliteration": "maglee",
+          "english": "fried",
+          "category": "The menu"
+        },
+        {
+          "arabic": "سَلَطَة",
+          "transliteration": "salaTa",
+          "english": "salad",
+          "category": "The menu"
+        },
+        {
+          "arabic": "إِنْجِلِيزِي",
+          "transliteration": "ingleezi",
+          "english": "English",
+          "category": "The menu"
+        }
+      ],
       "culture": "Restaurant menus in the UAE and Kuwait are almost always bilingual, and many staff speak English, Hindi or Urdu as well, so asking for an English menu is completely normal. Machboos (spiced rice with chicken or meat) is the classic Gulf dish, and luqaimat (fried sweet dumplings) is a favourite dessert.",
       "exercises": [
         {
@@ -962,6 +1062,56 @@
             "transliteration": "aasif, il7een yoo9alik",
             "english": "Sorry, it will reach you now."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَلَب",
+          "transliteration": "Talab",
+          "english": "order",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "حُمُّص",
+          "transliteration": "7ummuS",
+          "english": "hummus",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "فَتُّوش",
+          "transliteration": "fattoosh",
+          "english": "fattoush",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "شَوَرْمَا",
+          "transliteration": "shawarma",
+          "english": "shawarma",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "سَمْبُوسَة",
+          "transliteration": "sambooSa",
+          "english": "samosa",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "كَاس",
+          "transliteration": "kaas",
+          "english": "glass",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "مُوْيَة",
+          "transliteration": "mooya",
+          "english": "water",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "حَقّ",
+          "transliteration": "7agg",
+          "english": "for, belonging to",
+          "category": "Ordering"
         }
       ],
       "culture": "Gulf diners often order several dishes to share, and ordering plenty is a sign of generosity rather than greed. A waiter's abshir (\"consider it done\") is the standard warm way of saying yes to any request.",
@@ -1338,6 +1488,56 @@
             "transliteration": "laa, moo ma7soob",
             "english": "No, it isn't included."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَاش",
+          "transliteration": "kaash",
+          "english": "cash",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَرْت",
+          "transliteration": "kart",
+          "english": "card",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَخْشِيش",
+          "transliteration": "bakhsheesh",
+          "english": "tip",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَاقِي",
+          "transliteration": "baagi",
+          "english": "change",
+          "category": "Paying"
+        },
+        {
+          "arabic": "فَاتُورَة",
+          "transliteration": "faatoora",
+          "english": "receipt",
+          "category": "Paying"
+        },
+        {
+          "arabic": "لَذِيذ",
+          "transliteration": "ladheedh",
+          "english": "delicious",
+          "category": "Paying"
+        },
+        {
+          "arabic": "دَفَع",
+          "transliteration": "dafa3",
+          "english": "to pay",
+          "category": "Paying"
         }
       ],
       "culture": "Arguing warmly over who pays is normal among Gulf friends, and the offer is 3alay (on me), often refused once before someone gives in. A small tip is common in restaurants but is not always added to the bill, so it is fine to ask.",

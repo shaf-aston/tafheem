@@ -254,6 +254,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "ضَيْف",
+          "transliteration": "Dayf",
+          "english": "guest",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بَاب",
+          "transliteration": "baab",
+          "english": "door",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "مَدْخَل",
+          "transliteration": "madkhal",
+          "english": "entrance",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "جِيرَان",
+          "transliteration": "jeeraan",
+          "english": "neighbours",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "زِيَارَة",
+          "transliteration": "ziyaara",
+          "english": "visit",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "عُنْوَان",
+          "transliteration": "3enwaan",
+          "english": "address",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "إِيدَين",
+          "transliteration": "2eedayn",
+          "english": "hands",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "شَرَف",
+          "transliteration": "sharaf",
+          "english": "honour",
+          "category": "Arriving as a guest"
+        }
+      ],
       "culture": "In Lebanese homes the host insists on offering, and guests often bring sweets, chocolates or flowers. Many families ask guests to take off their shoes at the door, especially in apartments, and \"tikram 3eenak\" and \"sharraftoona\" are warm, set greetings.",
       "exercises": [
         {
@@ -685,6 +735,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَرَس",
+          "transliteration": "jaras",
+          "english": "doorbell",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "كَنَبِة",
+          "transliteration": "kanabe",
+          "english": "sofa",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "طَاوْلِة",
+          "transliteration": "Taawle",
+          "english": "table",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "تِلِفِزْيُون",
+          "transliteration": "televizyon",
+          "english": "television",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "وْلَاد",
+          "transliteration": "wlaad",
+          "english": "children",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "قَعْدِة",
+          "transliteration": "2a3de",
+          "english": "gathering",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "ضِيَافِة",
+          "transliteration": "Diyaafe",
+          "english": "hospitality",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "اِسْتِعْجَال",
+          "transliteration": "ista3jaal",
+          "english": "hurry",
+          "category": "Welcoming guests"
+        }
+      ],
       "culture": "A Lebanese host offers coffee, tea or a cold drink at once, and a plate of sweets, fruit or nuts is put out even for a short visit. Refusing three times politely is normal, but guests usually end up taking something.",
       "exercises": [
         {
@@ -1109,6 +1209,56 @@
             "transliteration": "daayme 2in shaa2 alla",
             "english": "May it always be so, God willing."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُفْرَة",
+          "transliteration": "sufra",
+          "english": "dining table",
+          "category": "At the table"
+        },
+        {
+          "arabic": "زَيْتُون",
+          "transliteration": "zaytoon",
+          "english": "olives",
+          "category": "At the table"
+        },
+        {
+          "arabic": "أَكْلِة",
+          "transliteration": "akle",
+          "english": "dish, meal",
+          "category": "At the table"
+        },
+        {
+          "arabic": "مَشَاوِي",
+          "transliteration": "mshaawi",
+          "english": "grills",
+          "category": "At the table"
+        },
+        {
+          "arabic": "تَحْلِيِة",
+          "transliteration": "ta7liye",
+          "english": "dessert",
+          "category": "At the table"
+        },
+        {
+          "arabic": "شَبْعَان",
+          "transliteration": "shab3aan",
+          "english": "full",
+          "category": "At the table"
+        },
+        {
+          "arabic": "كْفَايِة",
+          "transliteration": "kfaaye",
+          "english": "enough",
+          "category": "At the table"
+        },
+        {
+          "arabic": "عَ رَاحْتَك",
+          "transliteration": "3a raa7tak",
+          "english": "make yourself at home",
+          "category": "At the table"
         }
       ],
       "culture": "Lebanese hosts serve generously and keep urging guests to take more, and refusing once or twice is polite. Guests praise the food with \"yislamo 2iideiki\" and the host answers \"sa77tein\" or \"daayme\".",
@@ -1539,6 +1689,56 @@
             "transliteration": "2in shaa2 alla, id-door 3aleikon",
             "english": "God willing, it's your turn."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عَافْيِة",
+          "transliteration": "3aafye",
+          "english": "strength, health",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "وَقِت",
+          "transliteration": "wa2et",
+          "english": "time",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "بَعْدِين",
+          "transliteration": "ba3deen",
+          "english": "later",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "دَعْوِة",
+          "transliteration": "da3we",
+          "english": "invitation",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "يِسْلَمُوا",
+          "transliteration": "yislamo",
+          "english": "bless your hands (thanks)",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "تَعَب",
+          "transliteration": "ta3ab",
+          "english": "trouble, effort",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "اِنْبَسَطْنَا",
+          "transliteration": "inbasaTna",
+          "english": "we had a good time",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "مَعَ السَّلَامِة",
+          "transliteration": "ma3 es-salaame",
+          "english": "goodbye",
+          "category": "Leaving and thanking"
         }
       ],
       "culture": "Leaving in Lebanon takes a while: the host protests that it is too early, and the guest promises to come again. Lebanese say \"ya3tiik il-3aafye\" for thanks and \"tsba7o 3ala khair\" at night, and guests are often asked to send a message once home.",

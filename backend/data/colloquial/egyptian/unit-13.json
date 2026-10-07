@@ -214,6 +214,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَبْسُوط",
+          "transliteration": "mabsooT",
+          "english": "happy",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "زَعْلَان",
+          "transliteration": "za3laan",
+          "english": "upset",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "مَضْغُوط",
+          "transliteration": "maDghooT",
+          "english": "stressed",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "غَضْبَان",
+          "transliteration": "ghaDbaan",
+          "english": "angry",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "قَلْقَان",
+          "transliteration": "2al2aan",
+          "english": "worried",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "خَايِف",
+          "transliteration": "khaayef",
+          "english": "scared",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "فَرْحَان",
+          "transliteration": "far7aan",
+          "english": "glad",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "حَاجَة",
+          "transliteration": "7aaga",
+          "english": "thing",
+          "category": "Feelings"
+        }
+      ],
       "culture": "In Cairo \"الحمد لله\" is the automatic answer to \"إزيك؟\" whatever your mood, and a close friend who senses something off will follow with \"مالك؟\". Saying \"زعلان\" or \"تعبان\" outright is normal only with people you trust.",
       "exercises": [
         {
@@ -592,6 +642,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَحّ",
+          "transliteration": "Sa77",
+          "english": "right, correct",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "حَقّ",
+          "transliteration": "7a22",
+          "english": "right (being right)",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "مُوَافِق",
+          "transliteration": "mewaafe2",
+          "english": "agreeing",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "مَعَاك",
+          "transliteration": "ma3aak",
+          "english": "I'm with you",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "جَايِز",
+          "transliteration": "gaayez",
+          "english": "maybe",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "بَسّ",
+          "transliteration": "bass",
+          "english": "but, only",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "كِدَه",
+          "transliteration": "keda",
+          "english": "like this",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "طَيِّب",
+          "transliteration": "Tayyeb",
+          "english": "OK, fine",
+          "category": "Agreeing"
+        }
+      ],
       "culture": "Egyptians disagree warmly and often with humour; \"عندك حق\" and \"بالظبط\" keep a talk friendly, while a soft \"جايز، بس...\" is the usual way to push back on an elder or a boss. A flat \"لا\" with no softener can sound blunt.",
       "exercises": [
         {
@@ -965,6 +1065,56 @@
             "transliteration": "laazem tetkallem ma3aah, mish hayeDorrak",
             "english": "You should talk to him, it won't hurt you."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "نَصِيحَة",
+          "transliteration": "naSee7a",
+          "english": "advice",
+          "category": "Advice"
+        },
+        {
+          "arabic": "اِسْمَع",
+          "transliteration": "esma3",
+          "english": "listen",
+          "category": "Advice"
+        },
+        {
+          "arabic": "عِلَاج",
+          "transliteration": "3elaag",
+          "english": "treatment",
+          "category": "Advice"
+        },
+        {
+          "arabic": "لَازِم",
+          "transliteration": "laazem",
+          "english": "must, should",
+          "category": "Advice"
+        },
+        {
+          "arabic": "مَيِنْفَعْش",
+          "transliteration": "meyenfa3sh",
+          "english": "one shouldn't",
+          "category": "Advice"
+        },
+        {
+          "arabic": "رِيَاضَة",
+          "transliteration": "reyaaDa",
+          "english": "sport",
+          "category": "Advice"
+        },
+        {
+          "arabic": "بَال",
+          "transliteration": "baal",
+          "english": "mind, attention",
+          "category": "Advice"
+        },
+        {
+          "arabic": "هَادِي",
+          "transliteration": "haadi",
+          "english": "calm",
+          "category": "Advice"
         }
       ],
       "culture": "In Egypt advice is given freely and warmly, even by strangers, usually wrapped in \"لازم\" or \"أحسن\", and the sick are met with \"ألف سلامة\". Answering \"حاضر\" is the polite way to take advice.",
@@ -1341,6 +1491,56 @@
             "transliteration": "7aaDer, itfaDDal",
             "english": "Certainly, here you are."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "moshkela",
+          "english": "problem",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "إِزْعَاج",
+          "transliteration": "ez3aag",
+          "english": "bother, disturbance",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "غَلْطَة",
+          "transliteration": "ghalTa",
+          "english": "mistake",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "زَهَقْت",
+          "transliteration": "zaha2t",
+          "english": "I'm fed up",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "مُهِمّ",
+          "transliteration": "mohemm",
+          "english": "important",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "مَوْضُوع",
+          "transliteration": "mawDoo3",
+          "english": "matter, subject",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "صُورَة",
+          "transliteration": "Soora",
+          "english": "picture",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "فُلُوس",
+          "transliteration": "feloos",
+          "english": "money",
+          "category": "Complaining"
         }
       ],
       "culture": "In Cairo a complaint lands best after \"لو سمحت\" and a smile, and staff answer with \"خير يا فندم؟\" and \"معلش\" for a delay. Raising your voice is more likely to start an argument than to fix the bill.",

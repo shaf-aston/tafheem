@@ -216,6 +216,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَرْحَبَا",
+          "transliteration": "mar7aba",
+          "english": "hello",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَهْلِين",
+          "transliteration": "ahleen",
+          "english": "welcome",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "اِسْم",
+          "transliteration": "ism",
+          "english": "name",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "مْنِيح",
+          "transliteration": "mnee7",
+          "english": "good, well",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "تَمَام",
+          "transliteration": "tamaam",
+          "english": "fine, great",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "كَمَان",
+          "transliteration": "kamaan",
+          "english": "also, too",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "وِين",
+          "transliteration": "ween",
+          "english": "where",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَنَا",
+          "transliteration": "ana",
+          "english": "I",
+          "category": "Greetings"
+        }
+      ],
       "culture": "In Damascus, greetings are often warm and repeated, especially when people meet after some time apart. Using a person's first name after an initial greeting is natural and friendly.",
       "exercises": [
         {
@@ -622,6 +672,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "شُكْرًا",
+          "transliteration": "shukran",
+          "english": "thank you",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "آسِف",
+          "transliteration": "aasif",
+          "english": "sorry",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مَعْلِش",
+          "transliteration": "ma3lesh",
+          "english": "never mind, sorry",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "عَفْوًا",
+          "transliteration": "3afwan",
+          "english": "you're welcome",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مِمْكِن",
+          "transliteration": "mumken",
+          "english": "possible, can I",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "إِي",
+          "transliteration": "ee",
+          "english": "yes",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "لَأ",
+          "transliteration": "la2",
+          "english": "no",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مَيّ",
+          "transliteration": "mayy",
+          "english": "water",
+          "category": "Politeness"
+        }
+      ],
       "culture": "In Damascene conversation, polite softeners such as \"لو سمحت\" and \"معلش\" are used very frequently, including in very ordinary situations. A brief \"شكرا\" followed by \"عفوا\" is completely natural.",
       "exercises": [
         {
@@ -1024,6 +1124,56 @@
             "transliteration": "ee, akeed.",
             "english": "Yes, definitely."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "وَاحِد",
+          "transliteration": "waa7ad",
+          "english": "one",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "تْنِين",
+          "transliteration": "tneen",
+          "english": "two",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "تْلَاتِة",
+          "transliteration": "tlaate",
+          "english": "three",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "خَمْسِة",
+          "transliteration": "khamse",
+          "english": "five",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "سَاعَة",
+          "transliteration": "saa3a",
+          "english": "hour, clock",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "الْيَوْم",
+          "transliteration": "il-yoom",
+          "english": "today",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "بُكْرَا",
+          "transliteration": "bukra",
+          "english": "tomorrow",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "هَلَّق",
+          "transliteration": "halla2",
+          "english": "now",
+          "category": "Numbers and time"
         }
       ],
       "culture": "In casual Damascene speech, time is often discussed with simple whole-hour expressions rather than a full formal sentence. \"بكرا\" and \"هلق\" are especially common everyday words for planning and talking about the immediate future and present.",
@@ -1430,6 +1580,56 @@
             "transliteration": "alla y3aafiik.",
             "english": "You're welcome."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُوق",
+          "transliteration": "soo2",
+          "english": "market",
+          "category": "Directions"
+        },
+        {
+          "arabic": "مَحَلّ",
+          "transliteration": "ma7all",
+          "english": "shop",
+          "category": "Directions"
+        },
+        {
+          "arabic": "يَمِين",
+          "transliteration": "yameen",
+          "english": "right",
+          "category": "Directions"
+        },
+        {
+          "arabic": "شْمَال",
+          "transliteration": "shmaal",
+          "english": "left",
+          "category": "Directions"
+        },
+        {
+          "arabic": "قَرِيب",
+          "transliteration": "2areeb",
+          "english": "near",
+          "category": "Directions"
+        },
+        {
+          "arabic": "بْعِيد",
+          "transliteration": "b3eed",
+          "english": "far",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هُون",
+          "transliteration": "hoon",
+          "english": "here",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هْنِيك",
+          "transliteration": "hneek",
+          "english": "there",
+          "category": "Directions"
         }
       ],
       "culture": "Giving directions in Damascus is often conversational and incremental: a person may give one turn, wait for the listener to react, and then add the next step. \"يعطيك العافية\" is a very common warm expression of thanks, especially after someone helps you.",

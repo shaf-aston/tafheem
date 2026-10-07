@@ -219,6 +219,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired, ill",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "صُدَاع",
+          "transliteration": "Soda3",
+          "english": "headache",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "بَطْن",
+          "transliteration": "baTn",
+          "english": "stomach",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "سُخُونِيَّة",
+          "transliteration": "sokhoneyya",
+          "english": "fever",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "دَايِخ",
+          "transliteration": "daayekh",
+          "english": "dizzy",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "رَشْح",
+          "transliteration": "rash7",
+          "english": "a cold, runny nose",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "نُوم",
+          "transliteration": "noom",
+          "english": "sleep",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "أَحْسَن",
+          "transliteration": "a7san",
+          "english": "better",
+          "category": "Feeling unwell"
+        }
+      ],
       "culture": "In Egypt people answer 'how are you' with el-7amdu lillah even when unwell, and only then name the complaint. To someone who is ill you say alf salaama (a thousand wellbeing), and they answer Allah yesallemak.",
       "exercises": [
         {
@@ -655,6 +705,56 @@
             "transliteration": "ba3d el-akl",
             "english": "After eating"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "دَوَا",
+          "transliteration": "dawa",
+          "english": "medicine",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حَبَّايَة",
+          "transliteration": "7abbaaya",
+          "english": "pill",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "شَرَاب",
+          "transliteration": "sharaab",
+          "english": "syrup",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "كُحَّة",
+          "transliteration": "ko77a",
+          "english": "cough",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "رُوشِتَّة",
+          "transliteration": "roshetta",
+          "english": "prescription",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حَسَاسِيَّة",
+          "transliteration": "7asaseyya",
+          "english": "allergy",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "مِعْدَة",
+          "transliteration": "me3da",
+          "english": "stomach",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "بْلَاسْتَر",
+          "transliteration": "blaaster",
+          "english": "plaster",
+          "category": "Pharmacy"
         }
       ],
       "culture": "In Egypt the pharmacy (es-Saydaleyya) is often the first stop for a small complaint, and many medicines are sold without a prescription, which people call roshetta. The pharmacist usually adds salaamtak when handing you the medicine.",
@@ -1104,6 +1204,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مِيعَاد",
+          "transliteration": "mee3aad",
+          "english": "appointment",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "تَحَالِيل",
+          "transliteration": "ta7aleel",
+          "english": "medical tests",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "نَفَس",
+          "transliteration": "nafas",
+          "english": "breath",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "ضَغْط",
+          "transliteration": "DaghT",
+          "english": "blood pressure",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "عَالِي",
+          "transliteration": "3aali",
+          "english": "high",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "خَطِير",
+          "transliteration": "khaTeer",
+          "english": "serious, dangerous",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "كَشْف",
+          "transliteration": "kashf",
+          "english": "check-up",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "عَيَّان",
+          "transliteration": "3ayyaan",
+          "english": "sick",
+          "category": "Doctor"
+        }
+      ],
       "culture": "In Egypt patients call the doctor ya doktoor whatever the age, and say alf salaama when leaving. Private clinics work by a booked mee3aad, while public hospitals often work by queue.",
       "exercises": [
         {
@@ -1503,6 +1653,56 @@
             "transliteration": "aah, men embaare7",
             "english": "Yes, since yesterday"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رَاس",
+          "transliteration": "raas",
+          "english": "head",
+          "category": "Body"
+        },
+        {
+          "arabic": "ضَهْر",
+          "transliteration": "Dahr",
+          "english": "back",
+          "category": "Body"
+        },
+        {
+          "arabic": "إِيد",
+          "transliteration": "eed",
+          "english": "hand, arm",
+          "category": "Body"
+        },
+        {
+          "arabic": "رِجْل",
+          "transliteration": "regl",
+          "english": "leg, foot",
+          "category": "Body"
+        },
+        {
+          "arabic": "عِين",
+          "transliteration": "3een",
+          "english": "eye",
+          "category": "Body"
+        },
+        {
+          "arabic": "وِدْن",
+          "transliteration": "wedn",
+          "english": "ear",
+          "category": "Body"
+        },
+        {
+          "arabic": "سِنَّة",
+          "transliteration": "senna",
+          "english": "tooth",
+          "category": "Body"
+        },
+        {
+          "arabic": "رَقَبَة",
+          "transliteration": "ra2aba",
+          "english": "neck",
+          "category": "Body"
         }
       ],
       "culture": "Egyptian body words are short and differ from the written ones: eed (hand), widn (ear), sinna (tooth), Dahr (back). Pain is named with waga3 plus the part, or with the verb biywga3ni, and listeners answer salaamtak.",

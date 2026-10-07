@@ -228,6 +228,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "وَجَع",
+          "transliteration": "waja3",
+          "english": "pain",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "صُدَاع",
+          "transliteration": "Sudaa3",
+          "english": "headache",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "بَطِن",
+          "transliteration": "baTen",
+          "english": "stomach",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "حَرَارَة",
+          "transliteration": "7araara",
+          "english": "fever",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "دَايِخ",
+          "transliteration": "daayekh",
+          "english": "dizzy",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "رَشِح",
+          "transliteration": "rashe7",
+          "english": "a cold",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "سُعَال",
+          "transliteration": "su3aal",
+          "english": "cough",
+          "category": "Feeling unwell"
+        },
+        {
+          "arabic": "رَاحَة",
+          "transliteration": "raa7a",
+          "english": "rest",
+          "category": "Feeling unwell"
+        }
+      ],
       "culture": "Damascenes rarely answer \"كيفك\" with a flat \"good\" or \"bad\"; a short health complaint like \"تعبان شوي\" is a normal, expected answer and not seen as complaining. Wishing someone \"سلامتك\" (get well) is said the moment you hear they feel unwell, even before you know what is wrong.",
       "exercises": [
         {
@@ -613,6 +663,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "دَوَا",
+          "transliteration": "dawa",
+          "english": "medicine",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حُبُوب",
+          "transliteration": "7uboob",
+          "english": "pills",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "شَرَاب",
+          "transliteration": "sharaab",
+          "english": "syrup",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "وَصْفِة",
+          "transliteration": "waSfe",
+          "english": "prescription",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "حَسَاسِيِّة",
+          "transliteration": "7asaasiyye",
+          "english": "allergy",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "مُسَكِّن",
+          "transliteration": "musakken",
+          "english": "painkiller",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "بْلَاسْتِر",
+          "transliteration": "blaaster",
+          "english": "plaster",
+          "category": "Pharmacy"
+        },
+        {
+          "arabic": "مَرْهَم",
+          "transliteration": "marham",
+          "english": "ointment",
+          "category": "Pharmacy"
+        }
+      ],
       "culture": "A Damascene pharmacist (الصيدلي) is often the first stop for a minor illness, and many medicines that need a prescription elsewhere are sold over the counter without one. Prices are usually said as a round number in Syrian lira, and haggling over medicine is not done.",
       "exercises": [
         {
@@ -993,6 +1093,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَوْعِد",
+          "transliteration": "maw3id",
+          "english": "appointment",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "تَحَالِيل",
+          "transliteration": "ta7aaleel",
+          "english": "medical tests",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "نَفَس",
+          "transliteration": "nafas",
+          "english": "breath",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "ضَغْط",
+          "transliteration": "DaghT",
+          "english": "blood pressure",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "عَالِي",
+          "transliteration": "3aali",
+          "english": "high",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "خَطِير",
+          "transliteration": "khaTeer",
+          "english": "serious, dangerous",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "عَمَلِيِّة",
+          "transliteration": "3amaliyye",
+          "english": "surgery",
+          "category": "Doctor"
+        },
+        {
+          "arabic": "عِيَادِة",
+          "transliteration": "3iyaade",
+          "english": "clinic",
+          "category": "Doctor"
+        }
+      ],
       "culture": "A Damascene doctor is usually addressed as \"دكتور\" or \"دكتورة\" rather than by their first name, even by patients they know well. Saying \"سلامتك\" (get well) to someone who is sick, or has just left the doctor, is expected and its absence would be noticed.",
       "exercises": [
         {
@@ -1353,6 +1503,56 @@
             "transliteration": "dahri aktar min raasi",
             "english": "My back more than my head"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "رَاس",
+          "transliteration": "raas",
+          "english": "head",
+          "category": "Body"
+        },
+        {
+          "arabic": "ضَهِر",
+          "transliteration": "Dahir",
+          "english": "back",
+          "category": "Body"
+        },
+        {
+          "arabic": "إِيد",
+          "transliteration": "eed",
+          "english": "hand, arm",
+          "category": "Body"
+        },
+        {
+          "arabic": "إِجِر",
+          "transliteration": "ijir",
+          "english": "leg, foot",
+          "category": "Body"
+        },
+        {
+          "arabic": "عِين",
+          "transliteration": "3een",
+          "english": "eye",
+          "category": "Body"
+        },
+        {
+          "arabic": "دِينِة",
+          "transliteration": "deene",
+          "english": "ear",
+          "category": "Body"
+        },
+        {
+          "arabic": "سِنّ",
+          "transliteration": "sinn",
+          "english": "tooth",
+          "category": "Body"
+        },
+        {
+          "arabic": "رَقْبِة",
+          "transliteration": "ra2be",
+          "english": "neck",
+          "category": "Body"
         }
       ],
       "culture": "Body-part words like \"عين\" (eye) and \"إيد\" (hand) show up constantly in everyday Damascene expressions well beyond medicine, such as \"عيني عليك\" (a term of affection) or \"إيدك بيضا\" (well done, literally \"your hand is white\"), so learning them pays off outside the doctor's office too.",

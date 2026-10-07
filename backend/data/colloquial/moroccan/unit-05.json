@@ -236,6 +236,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "طَاكْسِي",
+          "transliteration": "Taksi",
+          "english": "taxi",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "كُونْطُور",
+          "transliteration": "koonToor",
+          "english": "meter",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "تّْمَن",
+          "transliteration": "tmen",
+          "english": "fare, price",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "زْنْقَة",
+          "transliteration": "zenqa",
+          "english": "street",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "صّْرْف",
+          "transliteration": "Sarf",
+          "english": "small change",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "نِيشَان",
+          "transliteration": "neeshaan",
+          "english": "straight",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "قْدِيمَة",
+          "transliteration": "qdeema",
+          "english": "old",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "آخِر",
+          "transliteration": "aakhir",
+          "english": "end, last",
+          "category": "Taxi"
+        }
+      ],
       "culture": "In Casablanca and Rabat the small red or blue petit taxis are metered, but drivers sometimes claim the meter is broken, so asking for the kontor first is normal. Say 3afak (please) and wakha (okay) and greet with s-salamu 3alaykum before asking.",
       "exercises": [
         {
@@ -641,6 +691,56 @@
             "transliteration": "iyeh, khasek tdoor 3la sh-shmal.",
             "english": "Yes, you have to turn left."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "فَارْمَاسِي",
+          "transliteration": "farmaasi",
+          "english": "pharmacy",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "ضَّوّ",
+          "transliteration": "Daww",
+          "english": "traffic light",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "جَامْع",
+          "transliteration": "jaame3",
+          "english": "mosque",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "طّْرِيق",
+          "transliteration": "Treeq",
+          "english": "road, way",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مْسْدُودَة",
+          "transliteration": "msdooda",
+          "english": "blocked, closed",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "أَوَّل",
+          "transliteration": "awwel",
+          "english": "first",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "دُور",
+          "transliteration": "door",
+          "english": "turn",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "بْعْد",
+          "transliteration": "b3ed",
+          "english": "after",
+          "category": "Asking the way"
         }
       ],
       "culture": "People give directions by landmarks (the mosque, the light, the market) and nishan for straight on, and a stranger will usually stop and help. Start with sme7 liya, and thank with shukran bzaf or llah y3tik s-se77a.",
@@ -1054,6 +1154,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "طُوبِيس",
+          "transliteration": "Toobees",
+          "english": "bus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مْحَطَّة",
+          "transliteration": "m7aTTa",
+          "english": "stop, station",
+          "category": "Buses"
+        },
+        {
+          "arabic": "بْلَاصَة",
+          "transliteration": "blaaSa",
+          "english": "seat, place",
+          "category": "Buses"
+        },
+        {
+          "arabic": "خَاوِي",
+          "transliteration": "khaawi",
+          "english": "empty",
+          "category": "Buses"
+        },
+        {
+          "arabic": "عَامْر",
+          "transliteration": "3aamer",
+          "english": "full",
+          "category": "Buses"
+        },
+        {
+          "arabic": "نِمْرَة",
+          "transliteration": "nimra",
+          "english": "number",
+          "category": "Buses"
+        },
+        {
+          "arabic": "شُوفِير",
+          "transliteration": "shofeer",
+          "english": "driver",
+          "category": "Buses"
+        },
+        {
+          "arabic": "طَاكْسِي كْبِير",
+          "transliteration": "Taksi kbeer",
+          "english": "shared taxi",
+          "category": "Buses"
+        }
+      ],
       "culture": "In Casablanca the city bus is called t-tobis, and the tram is another common way to travel; between towns and across the city people also share big white grand taxis, which leave when full. Drivers and passengers are courteous, and a bslama on stepping off is common.",
       "exercises": [
         {
@@ -1448,6 +1598,56 @@
             "transliteration": "men wra s-sooq.",
             "english": "Behind the market."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سْبِيطَار",
+          "transliteration": "sbeeTaar",
+          "english": "hospital",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مْدْرْسَة",
+          "transliteration": "mdersa",
+          "english": "school",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "بَانْكَة",
+          "transliteration": "baanka",
+          "english": "bank",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "جْرْدَة",
+          "transliteration": "jerda",
+          "english": "park, garden",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "كْنِيسَة",
+          "transliteration": "kneesa",
+          "english": "church",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "سِينِيمَا",
+          "transliteration": "seeneema",
+          "english": "cinema",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَدِينَة",
+          "transliteration": "madeena",
+          "english": "old town, city",
+          "category": "Places in town"
         }
       ],
       "culture": "Locals name places by the landmark beside them, like the mosque or the station, more than by street name. Say sme7 liya before asking, and expect a friendly answer ending in bslama or llah y7fdek.",
@@ -1849,6 +2049,56 @@
             "transliteration": "3la t-tmanya d s-sbah.",
             "english": "At eight in the morning."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طْرِيق",
+          "transliteration": "Treeq",
+          "english": "road, way",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مْعْمّْر",
+          "transliteration": "m3ammer",
+          "english": "full, taken",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "خَاوِي",
+          "transliteration": "khaawi",
+          "english": "free, empty",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "سْطُوب",
+          "transliteration": "sTop",
+          "english": "stop",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "طُومُوبِيل",
+          "transliteration": "Tomobeel",
+          "english": "car",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مْحَطَّة",
+          "transliteration": "m7aTTa",
+          "english": "station",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "عْلَى رَاسِي",
+          "transliteration": "3la raasi",
+          "english": "with pleasure",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "وَقَّف",
+          "transliteration": "waqqef",
+          "english": "to stop",
+          "category": "Getting around"
         }
       ],
       "culture": "In Casablanca (red) and Rabat (blue) the petit taxi is metered and drivers are asked to \"شعل العداد\" (turn on the meter); grand taxis run fixed routes and fill up with shared passengers. Drivers may reply \"على راسي\" (on my head) as a warm yes to a request.",

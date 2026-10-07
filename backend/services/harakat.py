@@ -244,3 +244,24 @@ def past_passive_shape(word: str) -> bool:
     closes = "َ" in last or SUKUN in last or (
         letter == "ت" and marked[-2][0] != "ا" and last <= {"ِ"})
     return any("ِ" in marks for _, marks in marked[1:-1]) and closes
+
+
+ROOT_PLACES = "فعل"  # in a shape (أَفْعَلَ), the letters that stand for the root's
+
+
+def fits_shape(word: str, shape: str, root: str = "") -> bool:
+    """The word has this shape (أَفْعَلَ), by its letters, whatever vowels it was typed with: the
+    letters outside the root are the shape's own (أ may be written ا), a vowel typed on a letter
+    must be one the shape has, one left off is not held against it. A shadda in the shape is the root's
+    doubled letter: typed, or (plain text) the analyser's root has its last two letters alike."""
+    marked, wanted = letters(word), letters(shape)
+    if len(marked) != len(wanted):
+        return False
+    for (letter, marks), (want, want_marks) in zip(marked, wanted):
+        if want not in ROOT_PLACES and bare_letters(letter) != bare_letters(want):
+            return False
+        if not marks <= want_marks:
+            return False
+        if SHADDA in want_marks and SHADDA not in marks and not (len(root) == 3 and root[1] == root[2]):
+            return False
+    return True

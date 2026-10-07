@@ -222,6 +222,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَبَاح",
+          "transliteration": "Sabaa7",
+          "english": "morning",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَدْرِي",
+          "transliteration": "badri",
+          "english": "early",
+          "category": "Morning"
+        },
+        {
+          "arabic": "نَعْسَان",
+          "transliteration": "na3saan",
+          "english": "sleepy",
+          "category": "Morning"
+        },
+        {
+          "arabic": "وِجِه",
+          "transliteration": "wijih",
+          "english": "face",
+          "category": "Morning"
+        },
+        {
+          "arabic": "أَسْنَان",
+          "transliteration": "asnaan",
+          "english": "teeth",
+          "category": "Morning"
+        },
+        {
+          "arabic": "هْدُوم",
+          "transliteration": "hdoom",
+          "english": "clothes",
+          "category": "Morning"
+        },
+        {
+          "arabic": "شُغُل",
+          "transliteration": "shughul",
+          "english": "work",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَرِد",
+          "transliteration": "barid",
+          "english": "cold",
+          "category": "Morning"
+        }
+      ],
       "culture": "Iraqis answer \"صباح الخير\" with \"صباح النور\" (or \"صباح الورد\"), and most people start the day with a glass of strong sweet چاي, while گهوة is more the drink for guests and gatherings. Someone leaving the house is often sent off with \"الله وياك\".",
       "exercises": [
         {
@@ -604,6 +654,56 @@
             "transliteration": "ee, is-saa3a 3ashra",
             "english": "Yes, at ten."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "اِجْتِمَاع",
+          "transliteration": "ijtimaa3",
+          "english": "meeting",
+          "category": "During the day"
+        },
+        {
+          "arabic": "غَدَا",
+          "transliteration": "ghada",
+          "english": "lunch",
+          "category": "During the day"
+        },
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired",
+          "category": "During the day"
+        },
+        {
+          "arabic": "ظُهُر",
+          "transliteration": "Dhuhur",
+          "english": "noon",
+          "category": "During the day"
+        },
+        {
+          "arabic": "اِسْتِرَاحَة",
+          "transliteration": "istiraa7a",
+          "english": "break",
+          "category": "During the day"
+        },
+        {
+          "arabic": "گَلَم",
+          "transliteration": "galam",
+          "english": "pen",
+          "category": "During the day"
+        },
+        {
+          "arabic": "أَخْبَار",
+          "transliteration": "akhbaar",
+          "english": "news",
+          "category": "During the day"
+        },
+        {
+          "arabic": "عَصِر",
+          "transliteration": "3aSir",
+          "english": "afternoon",
+          "category": "During the day"
         }
       ],
       "culture": "In Iraq lunch (الغدا) is the main meal of the day, usually eaten in the early afternoon, and a break at work almost always comes with a glass of چاي. Colleagues often open a chat with \"شكو ماكو؟\" before getting to work.",
@@ -1000,6 +1100,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَسَا",
+          "transliteration": "masa",
+          "english": "evening",
+          "category": "Evening"
+        },
+        {
+          "arabic": "بَيْت",
+          "transliteration": "beet",
+          "english": "home, house",
+          "category": "Evening"
+        },
+        {
+          "arabic": "عَشَا",
+          "transliteration": "3asha",
+          "english": "dinner",
+          "category": "Evening"
+        },
+        {
+          "arabic": "حَمَّام",
+          "transliteration": "7ammaam",
+          "english": "bath, shower",
+          "category": "Evening"
+        },
+        {
+          "arabic": "مُسَلْسَل",
+          "transliteration": "musalsal",
+          "english": "TV series",
+          "category": "Evening"
+        },
+        {
+          "arabic": "جَوّ",
+          "transliteration": "jaww",
+          "english": "weather",
+          "category": "Evening"
+        },
+        {
+          "arabic": "لَيْل",
+          "transliteration": "leel",
+          "english": "night",
+          "category": "Evening"
+        },
+        {
+          "arabic": "رَبِع",
+          "transliteration": "rabi3",
+          "english": "friends",
+          "category": "Evening"
+        }
+      ],
       "culture": "Iraqi evenings start late: dinner (العشا) is usually light, and cooler nights are for sitting outside, walking, or visiting relatives and friends. \"ربعي\" (my circle of friends) is the everyday Iraqi word for your friends, and good night is \"تصبح على خير\" answered \"وانت من أهله\".",
       "exercises": [
         {
@@ -1378,6 +1528,56 @@
             "transliteration": "ashoof rab3i",
             "english": "I see my friends."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "الْأَحَد",
+          "transliteration": "il-a7ad",
+          "english": "Sunday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْاِثْنِين",
+          "transliteration": "il-ithneen",
+          "english": "Monday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الثَّلَاثَاء",
+          "transliteration": "ith-thalaathaa",
+          "english": "Tuesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْأَرْبِعَاء",
+          "transliteration": "il-arbi3aa",
+          "english": "Wednesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْخَمِيس",
+          "transliteration": "il-khamees",
+          "english": "Thursday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْجُمْعَة",
+          "transliteration": "ij-jum3a",
+          "english": "Friday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "السَّبِت",
+          "transliteration": "is-sabit",
+          "english": "Saturday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "عُطْلَة",
+          "transliteration": "3uTla",
+          "english": "weekend, holiday",
+          "category": "Days of the week"
         }
       ],
       "culture": "Iraq's working week runs Sunday to Thursday, and the weekend is Friday and Saturday. Friday is the day of the congregational prayer and of family time, and Saturday is a common day for the market (السوگ) and visiting relatives; \"باچر\" is tomorrow and \"شوكت\" is when.",

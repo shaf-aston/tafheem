@@ -242,6 +242,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فُسْتَان",
+          "transliteration": "fustaan",
+          "english": "dress",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قَمِيص",
+          "transliteration": "gameeS",
+          "english": "shirt",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "مَقَاس",
+          "transliteration": "magaas",
+          "english": "size",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "بِنْطَلُون",
+          "transliteration": "bantaloon",
+          "english": "trousers",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "ضَيِّق",
+          "transliteration": "Dayyig",
+          "english": "tight",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قْمَاش",
+          "transliteration": "gmaash",
+          "english": "fabric",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "قُطِن",
+          "transliteration": "guTin",
+          "english": "cotton",
+          "category": "Clothes"
+        },
+        {
+          "arabic": "جُوتِي",
+          "transliteration": "jooti",
+          "english": "shoes",
+          "category": "Clothes"
+        }
+      ],
       "culture": "In Gulf malls the assistants often come from South Asia or elsewhere and may answer in English, so greeting with السلام عليكم and using the borrowed sizes لارج, ميديم and سمول gets you served fastest. Trying something on and saying it does not fit is normal and never rude.",
       "exercises": [
         {
@@ -647,6 +697,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "لُون",
+          "transliteration": "loon",
+          "english": "colour",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَزْرَق",
+          "transliteration": "azrag",
+          "english": "blue",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَحْمَر",
+          "transliteration": "a7mar",
+          "english": "red",
+          "category": "Colours"
+        },
+        {
+          "arabic": "رَصَاصِي",
+          "transliteration": "raSaaSi",
+          "english": "grey",
+          "category": "Colours"
+        },
+        {
+          "arabic": "فَاتِح",
+          "transliteration": "faati7",
+          "english": "light (colour)",
+          "category": "Colours"
+        },
+        {
+          "arabic": "غَامِق",
+          "transliteration": "ghaamig",
+          "english": "dark (colour)",
+          "category": "Colours"
+        },
+        {
+          "arabic": "أَحْلَى",
+          "transliteration": "a7la",
+          "english": "nicer",
+          "category": "Colours"
+        },
+        {
+          "arabic": "رَاي",
+          "transliteration": "raay",
+          "english": "opinion",
+          "category": "Colours"
+        }
+      ],
       "culture": "Assistants in the Gulf enjoy helping you choose and will often bring out several options; saying a color does not suit you is heard as useful, not rude. Color words follow the Gulf sound of ق as g, so blue is أزرق, said azrag.",
       "exercises": [
         {
@@ -1050,6 +1150,56 @@
             "transliteration": "ma agdar, bakhsar",
             "english": "I can't, I'll lose money."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "غَالِي",
+          "transliteration": "ghaali",
+          "english": "expensive",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَرْخَص",
+          "transliteration": "arkhaS",
+          "english": "cheaper",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "سِعِر",
+          "transliteration": "si3ir",
+          "english": "price",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "فَصَال",
+          "transliteration": "faSaal",
+          "english": "haggling",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "أَلْف",
+          "transliteration": "alf",
+          "english": "thousand",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "خَسَارَة",
+          "transliteration": "khasaara",
+          "english": "loss",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "نِصّ",
+          "transliteration": "niSS",
+          "english": "half",
+          "category": "Bargaining"
+        },
+        {
+          "arabic": "اِتَّفَقْنَا",
+          "transliteration": "ittafagna",
+          "english": "we agreed",
+          "category": "Bargaining"
         }
       ],
       "culture": "In the Gulf, bargaining is expected in a souq, at a gold or textile stall or over something large, but prices in malls and brand shops are fixed. A friendly عشانك, \"for your sake\", is the shopkeeper's usual way of dropping the price.",
@@ -1459,6 +1609,56 @@
             "transliteration": "akiid, tfaDDal",
             "english": "Sure, go ahead."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "عَيْب",
+          "transliteration": "3ayb",
+          "english": "defect",
+          "category": "Returns"
+        },
+        {
+          "arabic": "ضَمَان",
+          "transliteration": "Damaan",
+          "english": "warranty",
+          "category": "Returns"
+        },
+        {
+          "arabic": "فْلُوس",
+          "transliteration": "floos",
+          "english": "money",
+          "category": "Returns"
+        },
+        {
+          "arabic": "غَلَط",
+          "transliteration": "ghalaT",
+          "english": "wrong",
+          "category": "Returns"
+        },
+        {
+          "arabic": "تَبْدِيل",
+          "transliteration": "tabdeel",
+          "english": "exchange",
+          "category": "Returns"
+        },
+        {
+          "arabic": "أَكْبَر",
+          "transliteration": "akbar",
+          "english": "bigger",
+          "category": "Returns"
+        },
+        {
+          "arabic": "مِتَى",
+          "transliteration": "mita",
+          "english": "when",
+          "category": "Returns"
+        },
+        {
+          "arabic": "ثَانِي",
+          "transliteration": "thaani",
+          "english": "another",
+          "category": "Returns"
         }
       ],
       "culture": "Many Gulf shops prefer an exchange or store credit to a cash refund, and the receipt makes the conversation short. A genuine defect is normally accepted without argument, and ما قصّرت, \"you did not fall short\", is the usual warm thanks for good service.",

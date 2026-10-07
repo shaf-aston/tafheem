@@ -209,6 +209,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فِنْجَان",
+          "transliteration": "finjaan",
+          "english": "small cup",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "سُكَّر",
+          "transliteration": "sukkar",
+          "english": "sugar",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "سَادَة",
+          "transliteration": "saada",
+          "english": "plain, no sugar",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "وَسَط",
+          "transliteration": "wasaT",
+          "english": "medium",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "نَعْنَاع",
+          "transliteration": "na3naa3",
+          "english": "mint",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "مُرَّة",
+          "transliteration": "murra",
+          "english": "bitter",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "كْبِير",
+          "transliteration": "kbeer",
+          "english": "big",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "حِلْوَة",
+          "transliteration": "7ilwa",
+          "english": "sweet",
+          "category": "Coffee and tea"
+        }
+      ],
       "culture": "Offering tea to a guest is the first move of Iraqi hospitality, and chaay (strong, sweet, in a small waisted glass called an istikaan) is far more common than coffee in most homes and cafes. Iraqi coffee, gahwa, is the small bitter cup served at gatherings and after meals.",
       "exercises": [
         {
@@ -594,6 +644,56 @@
             "transliteration": "bikhamsat aalaaf",
             "english": "Five thousand."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مِنْيُو",
+          "transliteration": "menyu",
+          "english": "menu",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مُقَبِّلَات",
+          "transliteration": "mugabbilaat",
+          "english": "starters",
+          "category": "The menu"
+        },
+        {
+          "arabic": "نَبَاتِي",
+          "transliteration": "nabaati",
+          "english": "vegetarian",
+          "category": "The menu"
+        },
+        {
+          "arabic": "أَكْلَة",
+          "transliteration": "akla",
+          "english": "dish",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَارّ",
+          "transliteration": "7aarr",
+          "english": "spicy",
+          "category": "The menu"
+        },
+        {
+          "arabic": "خَفِيف",
+          "transliteration": "khafeef",
+          "english": "light",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَلَوِيَّات",
+          "transliteration": "7alawiyyaat",
+          "english": "desserts",
+          "category": "The menu"
+        },
+        {
+          "arabic": "أَكُو",
+          "transliteration": "aku",
+          "english": "there is",
+          "category": "The menu"
         }
       ],
       "culture": "Masgouf, river fish split open and grilled beside an open fire, is Baghdad's signature restaurant meal, and it is usually ordered by weight. Prices are quoted in dinars, and people often say only the thousands, so five means five thousand.",
@@ -984,6 +1084,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "طَلَب",
+          "transliteration": "Talab",
+          "english": "order",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "حُمُّص",
+          "transliteration": "7ummuS",
+          "english": "hummus",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "فَتُّوش",
+          "transliteration": "fattoosh",
+          "english": "fattoush",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "بَصَل",
+          "transliteration": "baSal",
+          "english": "onion",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "خُبُز",
+          "transliteration": "khubuz",
+          "english": "bread",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "گْلَاص",
+          "transliteration": "glaaS",
+          "english": "glass",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "صَحِن",
+          "transliteration": "Sa7in",
+          "english": "plate, dish",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "بِسُرْعَة",
+          "transliteration": "bisur3a",
+          "english": "quickly",
+          "category": "Ordering"
+        }
+      ],
       "culture": "Iraqi tables fill up with shared plates and stacks of samoon or khubz, so asking for zaayid (extra) bread is normal and never rude. Water is called maay, and a polite no-more is tislam, yikfi (thank you, that's enough).",
       "exercises": [
         {
@@ -1370,6 +1520,56 @@
             "transliteration": "alla ysallmak, bil 3aafya",
             "english": "God keep you safe, enjoy it."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَاش",
+          "transliteration": "kaash",
+          "english": "cash",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَارْت",
+          "transliteration": "kaart",
+          "english": "card",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَخْشِيش",
+          "transliteration": "bakhsheesh",
+          "english": "tip",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَاگِي",
+          "transliteration": "baagi",
+          "english": "change",
+          "category": "Paying"
+        },
+        {
+          "arabic": "وَصِل",
+          "transliteration": "waSil",
+          "english": "receipt",
+          "category": "Paying"
+        },
+        {
+          "arabic": "زَاكِي",
+          "transliteration": "zaaki",
+          "english": "delicious",
+          "category": "Paying"
+        },
+        {
+          "arabic": "تَخْفِيض",
+          "transliteration": "takhfeeD",
+          "english": "discount",
+          "category": "Paying"
         }
       ],
       "culture": "Arguing warmly over who pays is a normal Iraqi ritual, and insisting aani adfa3 (I'm paying) is a sign of generosity, so expect the other person to protest too. Tislam eedak (bless your hands) is the compliment to whoever cooked, and the answer is bil 3aafya or alla ysallmak.",

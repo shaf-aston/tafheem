@@ -216,6 +216,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَبَاح",
+          "transliteration": "Sabaa7",
+          "english": "morning",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَدْرِي",
+          "transliteration": "badri",
+          "english": "early",
+          "category": "Morning"
+        },
+        {
+          "arabic": "نَعْسَان",
+          "transliteration": "na3saan",
+          "english": "sleepy",
+          "category": "Morning"
+        },
+        {
+          "arabic": "وَجْه",
+          "transliteration": "wajh",
+          "english": "face",
+          "category": "Morning"
+        },
+        {
+          "arabic": "أَسْنَان",
+          "transliteration": "asnaan",
+          "english": "teeth",
+          "category": "Morning"
+        },
+        {
+          "arabic": "هُدُوم",
+          "transliteration": "hudoom",
+          "english": "clothes",
+          "category": "Morning"
+        },
+        {
+          "arabic": "شُغْل",
+          "transliteration": "shughl",
+          "english": "work",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَارِد",
+          "transliteration": "baarid",
+          "english": "cold",
+          "category": "Morning"
+        }
+      ],
       "culture": "Sanaani mornings start with \"صباح الخير\" answered by \"صباح النور\". A small cup of coffee before leaving the house is nearly universal, even on a rushed morning. The greeting and coffee ritual are central to Yemeni hospitality and morning customs.",
       "exercises": [
         {
@@ -579,6 +629,56 @@
             "transliteration": "tamaam, bi-intizaarik",
             "english": "Okay, I'll be waiting for you."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "اِجْتِمَاع",
+          "transliteration": "ijtimaa3",
+          "english": "meeting",
+          "category": "During the day"
+        },
+        {
+          "arabic": "غَدَا",
+          "transliteration": "ghada",
+          "english": "lunch",
+          "category": "During the day"
+        },
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired",
+          "category": "During the day"
+        },
+        {
+          "arabic": "ظُهْر",
+          "transliteration": "Zuhr",
+          "english": "noon",
+          "category": "During the day"
+        },
+        {
+          "arabic": "رَاحَة",
+          "transliteration": "raa7a",
+          "english": "rest, break",
+          "category": "During the day"
+        },
+        {
+          "arabic": "قَلَم",
+          "transliteration": "galam",
+          "english": "pen",
+          "category": "During the day"
+        },
+        {
+          "arabic": "أَخْبَار",
+          "transliteration": "akhbaar",
+          "english": "news",
+          "category": "During the day"
+        },
+        {
+          "arabic": "عَصْر",
+          "transliteration": "3aSr",
+          "english": "afternoon",
+          "category": "During the day"
         }
       ],
       "culture": "In Yemeni workplaces, greetings and small talk about arrival are important. A midday break for lunch with colleagues is common. Yemenis often use the phrase \"دحين\" (now) when talking about current situations or pressing tasks.",
@@ -953,6 +1053,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَسَا",
+          "transliteration": "masa",
+          "english": "evening",
+          "category": "Evening"
+        },
+        {
+          "arabic": "بَيْت",
+          "transliteration": "bayt",
+          "english": "home, house",
+          "category": "Evening"
+        },
+        {
+          "arabic": "عَشَا",
+          "transliteration": "3asha",
+          "english": "dinner",
+          "category": "Evening"
+        },
+        {
+          "arabic": "حَمَّام",
+          "transliteration": "7ammaam",
+          "english": "bath, shower",
+          "category": "Evening"
+        },
+        {
+          "arabic": "مُسَلْسَل",
+          "transliteration": "musalsal",
+          "english": "TV series",
+          "category": "Evening"
+        },
+        {
+          "arabic": "جَوّ",
+          "transliteration": "jaww",
+          "english": "weather",
+          "category": "Evening"
+        },
+        {
+          "arabic": "لَيْلَة",
+          "transliteration": "layla",
+          "english": "night",
+          "category": "Evening"
+        },
+        {
+          "arabic": "أَصْحَاب",
+          "transliteration": "aS7aab",
+          "english": "friends",
+          "category": "Evening"
+        }
+      ],
       "culture": "Yemeni evenings often begin with \"مساء الخير\" (good evening). After a tiring day, Yemenis relax at home, socialize with family, and may watch TV together. An evening walk to enjoy the cooler temperature is common in Yemeni culture. Calling family in the evening is an important tradition.",
       "exercises": [
         {
@@ -1320,6 +1470,56 @@
             "transliteration": "ee, il-3uTla taj bisur3a katheer",
             "english": "Yes, the weekend comes very quickly."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "الْأَحَد",
+          "transliteration": "al-a7ad",
+          "english": "Sunday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْاِثْنَيْن",
+          "transliteration": "al-ithnayn",
+          "english": "Monday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الثَّلُوث",
+          "transliteration": "ath-thaloot",
+          "english": "Tuesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْأَرْبُوع",
+          "transliteration": "al-arboo3",
+          "english": "Wednesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْخَمِيس",
+          "transliteration": "al-khamees",
+          "english": "Thursday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْجُمْعَة",
+          "transliteration": "al-jum3a",
+          "english": "Friday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "السَّبْت",
+          "transliteration": "as-sabt",
+          "english": "Saturday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "أُسْبُوع",
+          "transliteration": "usboo3",
+          "english": "week",
+          "category": "Days of the week"
         }
       ],
       "culture": "In Yemen, as in most Islamic countries, Friday is the holy day, dedicated to prayer and rest. Saturday is often a market day for shopping and socializing. The weekend (Friday and Saturday) is valued as a time for family, prayer, and recovery from the week's work.",

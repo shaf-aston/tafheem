@@ -230,6 +230,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَرْحَبَا",
+          "transliteration": "mar7aba",
+          "english": "hello",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَهْلَا",
+          "transliteration": "ahla",
+          "english": "welcome",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "اِسْم",
+          "transliteration": "esm",
+          "english": "name",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "مْنِيح",
+          "transliteration": "mnee7",
+          "english": "good, well",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "تَمَام",
+          "transliteration": "tamaam",
+          "english": "fine, great",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "كَمَان",
+          "transliteration": "kamaan",
+          "english": "also, too",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "مْنِين",
+          "transliteration": "mneen",
+          "english": "from where",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَنَا",
+          "transliteration": "ana",
+          "english": "I",
+          "category": "Greetings"
+        }
+      ],
       "culture": "In Beirut people often mix greetings, so \"hi, keefak\" and \"marhaba\" both sound completely normal, and friends kiss on the cheek. Asking \"where are you from?\" is a very common way to start a chat, because most families name a village or town of origin even if they live in the city.",
       "exercises": [
         {
@@ -656,6 +706,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "شُكْرًا",
+          "transliteration": "shukran",
+          "english": "thank you",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مِرْسِي",
+          "transliteration": "mersi",
+          "english": "thanks",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "آسِف",
+          "transliteration": "aasef",
+          "english": "sorry",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مَعْلِيش",
+          "transliteration": "ma3leesh",
+          "english": "never mind, sorry",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "عَفْوًا",
+          "transliteration": "3afwan",
+          "english": "you're welcome",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مُمْكِن",
+          "transliteration": "mumken",
+          "english": "possible, can I",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "إِي",
+          "transliteration": "ee",
+          "english": "yes",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مَيّ",
+          "transliteration": "mayy",
+          "english": "water",
+          "category": "Politeness"
+        }
+      ],
       "culture": "Beirutis sprinkle \"merci\" and sometimes \"sorry\" into Arabic without thinking, so \"mersi ktiir\" is as normal as \"shukran\". \"Tekram 3eenak\" is a warm way to accept a request, and being generous when someone asks for help or a glass of water is a point of pride.",
       "exercises": [
         {
@@ -1070,6 +1170,56 @@
             "transliteration": "la2, lissa wa7de.",
             "english": "No, it's still one."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "وَاحِد",
+          "transliteration": "waa7ed",
+          "english": "one",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "تْنِين",
+          "transliteration": "tneen",
+          "english": "two",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "تْلَاتِة",
+          "transliteration": "tlete",
+          "english": "three",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "خَمْسِة",
+          "transliteration": "khamse",
+          "english": "five",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "سَاعَة",
+          "transliteration": "saa3a",
+          "english": "hour, clock",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "الْيَوْم",
+          "transliteration": "el-yoom",
+          "english": "today",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "بُكْرَا",
+          "transliteration": "bukra",
+          "english": "tomorrow",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "هَلَّق",
+          "transliteration": "halla2",
+          "english": "now",
+          "category": "Numbers and time"
         }
       ],
       "culture": "Plans are almost always followed by \"in shaa Allah\", and Christian Lebanese say it too as an ordinary habit of speech. Casual plans are relaxed, so \"bukra\" (tomorrow) can be loose unless an hour is named.",
@@ -1491,6 +1641,56 @@
             "transliteration": "allah y3aafeek.",
             "english": "May God keep you well."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُوق",
+          "transliteration": "soo2",
+          "english": "market",
+          "category": "Directions"
+        },
+        {
+          "arabic": "مَحَلّ",
+          "transliteration": "ma7all",
+          "english": "shop",
+          "category": "Directions"
+        },
+        {
+          "arabic": "يَمِين",
+          "transliteration": "yameen",
+          "english": "right",
+          "category": "Directions"
+        },
+        {
+          "arabic": "شْمَال",
+          "transliteration": "shmaal",
+          "english": "left",
+          "category": "Directions"
+        },
+        {
+          "arabic": "قْرِيب",
+          "transliteration": "2reeb",
+          "english": "near",
+          "category": "Directions"
+        },
+        {
+          "arabic": "بْعِيد",
+          "transliteration": "b3eed",
+          "english": "far",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هُون",
+          "transliteration": "hoon",
+          "english": "here",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هُونِيك",
+          "transliteration": "hooneek",
+          "english": "there",
+          "category": "Directions"
         }
       ],
       "culture": "Beirut streets often have no visible names, so people give directions by landmarks such as a bakery, a pharmacy or a roundabout (\"dawwar\") rather than by street name. \"Ya3Teek el-3aafye\" is said to anyone who has helped you or is working, and the usual reply is \"allah y3aafeek\".",

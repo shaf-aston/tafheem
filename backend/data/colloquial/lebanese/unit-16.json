@@ -235,6 +235,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مْبَارِح",
+          "transliteration": "mbaare7",
+          "english": "yesterday",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "طَوِيل",
+          "transliteration": "Taweel",
+          "english": "long",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "وَصَلِت",
+          "transliteration": "waSalet",
+          "english": "I arrived",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "سِينَما",
+          "transliteration": "sinama",
+          "english": "cinema",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "عَشِيِّة",
+          "transliteration": "3ashiyye",
+          "english": "evening",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "سَهَر",
+          "transliteration": "sahar",
+          "english": "staying up late",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "نَهَار",
+          "transliteration": "nhaar",
+          "english": "daytime",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "نِمِت",
+          "transliteration": "nimet",
+          "english": "I slept",
+          "category": "Yesterday"
+        }
+      ],
       "culture": "مبارح is the everyday Lebanese word for yesterday, and أول مبارح is the day before; the MSA أمس sounds like the news, not like a chat. Asking شو عملت مبارح؟ is a normal way to open a catch-up over coffee with a friend or neighbor.",
       "exercises": [
         {
@@ -625,6 +675,56 @@
             "transliteration": "kaan 7elmi Siir Tayyaar",
             "english": "I dreamed of becoming a pilot."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "زْغِير",
+          "transliteration": "zgheer",
+          "english": "small, young",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "حَيّ",
+          "transliteration": "7ayy",
+          "english": "neighbourhood",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "صَاحِب",
+          "transliteration": "Saa7eb",
+          "english": "friend",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "كُورَة",
+          "transliteration": "koora",
+          "english": "football",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "ضَيْعَة",
+          "transliteration": "Day3a",
+          "english": "village",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "قِصَّة",
+          "transliteration": "2iSSa",
+          "english": "story",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "بِسْكْلِيت",
+          "transliteration": "biskleet",
+          "english": "bicycle",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "عَتْمِة",
+          "transliteration": "3atme",
+          "english": "darkness",
+          "category": "Childhood"
         }
       ],
       "culture": "Many Lebanese families spend the summer in the family's village (الضيعة) with the grandparents, and old Beirut neighborhoods are full of narrow alleys called زواريب where children played football. Talking about الأيام الحلوة, the good old days, is a favorite way to bond.",
@@ -1019,6 +1119,56 @@
             "transliteration": "khirbet b-nuSS eT-Tarii2",
             "english": "It broke down in the middle of the road."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "تَلِفُون",
+          "transliteration": "talifoon",
+          "english": "phone",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "قِفِل",
+          "transliteration": "2efel",
+          "english": "lock",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "دَرَج",
+          "transliteration": "daraj",
+          "english": "stairs",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "جِزْدَان",
+          "transliteration": "jezdaan",
+          "english": "wallet",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "دُولَاب",
+          "transliteration": "doolaab",
+          "english": "tyre",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "كَهْرَبَا",
+          "transliteration": "kahraba",
+          "english": "electricity",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "لَابْتُوب",
+          "transliteration": "laptop",
+          "english": "laptop",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مْنَبِّه",
+          "transliteration": "mnabbeh",
+          "english": "alarm clock",
+          "category": "Something went wrong"
         }
       ],
       "culture": "قطعت الكهربا, the power going off, is a very real part of daily life in Lebanon, so people say it with a shrug and a joke rather than a complaint. When someone tells you about a mishap the usual replies are سلامتك, يي حرام, and الله يعينك.",
@@ -1417,6 +1567,56 @@
             "transliteration": "ma ba3ref, 3am ye2uulu heik",
             "english": "I don't know, that's what they're saying."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "خَبَر",
+          "transliteration": "khabar",
+          "english": "news",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "إِشَاعَة",
+          "transliteration": "2ishaa3a",
+          "english": "rumour",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "جَار",
+          "transliteration": "jaar",
+          "english": "neighbour",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "سَنِة",
+          "transliteration": "sene",
+          "english": "year",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "صَبِي",
+          "transliteration": "Sabi",
+          "english": "boy",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "حْكِي",
+          "transliteration": "7ki",
+          "english": "talk",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "نَاس",
+          "transliteration": "naas",
+          "english": "people",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "عَجِيب",
+          "transliteration": "3ajeeb",
+          "english": "strange",
+          "category": "News and gossip"
         }
       ],
       "culture": "Neighbors and relatives in Lebanon share news constantly, and good news is met with مبروك or الله يتمّملو بالخير. Before repeating gossip people often protect themselves with عم يقولوا, they are saying, or ما بعرف إذا صحيح.",

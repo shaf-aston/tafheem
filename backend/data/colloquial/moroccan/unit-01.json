@@ -225,6 +225,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "سَلَام",
+          "transliteration": "salaam",
+          "english": "hello, peace",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "مَرْحْبَا",
+          "transliteration": "mar7ba",
+          "english": "welcome",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "سْمِيَة",
+          "transliteration": "smiya",
+          "english": "name",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "مْزْيَان",
+          "transliteration": "mzyaan",
+          "english": "good, fine",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "لَابَاس",
+          "transliteration": "labaas",
+          "english": "fine, well",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "كِي دَايِر",
+          "transliteration": "kee daayer",
+          "english": "how are you",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "مْنِين",
+          "transliteration": "mneen",
+          "english": "from where",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَنَا",
+          "transliteration": "ana",
+          "english": "I",
+          "category": "Greetings"
+        }
+      ],
       "culture": "In Morocco a greeting is a small ritual: a handshake, often a hand touched to the chest, and among friends of the same sex a cheek kiss or two. People ask several questions in a row (labaas? kidayr? l-ahl?) and the answers are short and warm, usually ending in l7amdu lillah.",
       "exercises": [
         {
@@ -641,6 +691,56 @@
             "transliteration": "maashi mushkil.",
             "english": "It's okay."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "شُكْرًا",
+          "transliteration": "shukran",
+          "english": "thank you",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "بْزَّاف",
+          "transliteration": "bzzaaf",
+          "english": "a lot, very",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "آسِف",
+          "transliteration": "aasif",
+          "english": "sorry",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مُشْكِل",
+          "transliteration": "mushkil",
+          "english": "problem",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "الْعَفْو",
+          "transliteration": "l3afw",
+          "english": "you're welcome",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "عَافَاك",
+          "transliteration": "3afaak",
+          "english": "please",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "إِيه",
+          "transliteration": "eeh",
+          "english": "yes",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "الْمَا",
+          "transliteration": "lma",
+          "english": "water",
+          "category": "Politeness"
         }
       ],
       "culture": "Moroccans soften every request: \"عفاك\" (please) goes on almost anything, and \"سمح ليا\" gets a stranger's attention. Thanks are answered with \"العفو\" or \"لا شكر على واجب\", and in shops and cafes a friendly \"بسلامة\" closes the exchange.",
@@ -1066,6 +1166,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "وَاحَد",
+          "transliteration": "waa7ed",
+          "english": "one",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "جُوج",
+          "transliteration": "jooj",
+          "english": "two",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "تْلَاتَة",
+          "transliteration": "tlaata",
+          "english": "three",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "خْمْسَة",
+          "transliteration": "khamsa",
+          "english": "five",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "السَّاعَة",
+          "transliteration": "ssaa3a",
+          "english": "hour, clock",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "الْيُوم",
+          "transliteration": "lyoom",
+          "english": "today",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "غَدَّا",
+          "transliteration": "ghedda",
+          "english": "tomorrow",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "دَابَا",
+          "transliteration": "daaba",
+          "english": "now",
+          "category": "Numbers and time"
+        }
+      ],
       "culture": "Moroccans attach \"إن شاء الله\" to any plan for tomorrow, as a habit of humility more than doubt. Prices in the market are in dirhams, and many older people in Casablanca still count in \"ريال\" (a twentieth of a dirham); bargaining is normal.",
       "exercises": [
         {
@@ -1479,6 +1629,56 @@
             "transliteration": "llaah ybaarek feek.",
             "english": "God bless you."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُوق",
+          "transliteration": "sooq",
+          "english": "market",
+          "category": "Directions"
+        },
+        {
+          "arabic": "حَانُوت",
+          "transliteration": "7aanoot",
+          "english": "shop",
+          "category": "Directions"
+        },
+        {
+          "arabic": "لِيمَن",
+          "transliteration": "leemen",
+          "english": "right",
+          "category": "Directions"
+        },
+        {
+          "arabic": "الشّْمَال",
+          "transliteration": "shmaal",
+          "english": "left",
+          "category": "Directions"
+        },
+        {
+          "arabic": "قْرِيب",
+          "transliteration": "qreeb",
+          "english": "near",
+          "category": "Directions"
+        },
+        {
+          "arabic": "بْعِيد",
+          "transliteration": "b3eed",
+          "english": "far",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هْنَا",
+          "transliteration": "hna",
+          "english": "here",
+          "category": "Directions"
+        },
+        {
+          "arabic": "تْمَّا",
+          "transliteration": "tmma",
+          "english": "there",
+          "category": "Directions"
         }
       ],
       "culture": "In Casablanca and Rabat people give directions by landmarks and short steps rather than street names, and often walk you a few metres to show. Petit taxis are red in Casablanca and blue in Rabat, and \"الله يعطيك الصحة\" is the warm thank-you for help.",

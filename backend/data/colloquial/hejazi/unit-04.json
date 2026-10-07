@@ -209,6 +209,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فِنْجَال",
+          "transliteration": "finjaal",
+          "english": "small cup",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "سُكَّر",
+          "transliteration": "sukkar",
+          "english": "sugar",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "وَسَط",
+          "transliteration": "wasaT",
+          "english": "medium",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "نَعْنَاع",
+          "transliteration": "na3naa3",
+          "english": "mint",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "مُرّ",
+          "transliteration": "murr",
+          "english": "bitter",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "كَبِير",
+          "transliteration": "kabeer",
+          "english": "big",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "حِلْوَة",
+          "transliteration": "7ilwa",
+          "english": "sweet",
+          "category": "Coffee and tea"
+        },
+        {
+          "arabic": "خَالِص",
+          "transliteration": "khaaliS",
+          "english": "at all",
+          "category": "Coffee and tea"
+        }
+      ],
       "culture": "In Hejazi homes and cafes, coffee is offered as the first gesture of hospitality. Ordering it \"sukkar wa wasi6\" (medium-sweet) is the default, while asking for it \"7ilwa\" (sweet) or \"murra\" (bitter) is equally common. The Arabic word for coffee, \"2ahwa,\" comes from the Hejaz's historic role as a crossroads for coffee trade.",
       "exercises": [
         {
@@ -580,6 +630,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مِنْيُو",
+          "transliteration": "menyu",
+          "english": "menu",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مُقَبِّلَات",
+          "transliteration": "muqabbilaat",
+          "english": "starters",
+          "category": "The menu"
+        },
+        {
+          "arabic": "أَكْلَة",
+          "transliteration": "akla",
+          "english": "dish",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَارّ",
+          "transliteration": "7aarr",
+          "english": "spicy",
+          "category": "The menu"
+        },
+        {
+          "arabic": "خَفِيف",
+          "transliteration": "khafeef",
+          "english": "light",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَلَوِيَّات",
+          "transliteration": "7alawiyyaat",
+          "english": "desserts",
+          "category": "The menu"
+        },
+        {
+          "arabic": "لَحْمَة",
+          "transliteration": "la7ma",
+          "english": "meat",
+          "category": "The menu"
+        },
+        {
+          "arabic": "طَبْخَة",
+          "transliteration": "Tabkha",
+          "english": "cooked dish",
+          "category": "The menu"
+        }
+      ],
       "culture": "Hejazi restaurants feature dishes influenced by trade routes and migration: mandi (slow-cooked rice and meat), kabsa (spiced rice with meat), and shawarma (wrapped grilled meat). Many cafes and restaurants serve both traditional and modern Hejazi dishes. It's common to ask for spice adjustments (7arr) to suit your taste.",
       "exercises": [
         {
@@ -926,6 +1026,56 @@
             "transliteration": "haza la-ha, wa haza li",
             "english": "This is for her and this is for me."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَلَب",
+          "transliteration": "Talab",
+          "english": "order",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "حُمُّص",
+          "transliteration": "7ummuS",
+          "english": "hummus",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "فَتُّوش",
+          "transliteration": "fattoosh",
+          "english": "fattoush",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "بَصَل",
+          "transliteration": "baSal",
+          "english": "onion",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "عِيش",
+          "transliteration": "3eesh",
+          "english": "bread",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "كُوب",
+          "transliteration": "koob",
+          "english": "cup, glass",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "زِيَادَة",
+          "transliteration": "ziyaada",
+          "english": "extra",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "كِفَايَة",
+          "transliteration": "kifaaya",
+          "english": "enough",
+          "category": "Ordering"
         }
       ],
       "culture": "In Hejazi restaurants, it's common to order directly by pointing and naming the dish, or asking the waiter for recommendations. Bread (khubz) is always offered and readily available. Requests for modifications (no onion, extra seasoning) are normal and easily accommodated. The meal typically includes tea or coffee after the main course.",
@@ -1284,6 +1434,56 @@
             "transliteration": "aywah, tfaddali",
             "english": "Yes, here you go."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَاش",
+          "transliteration": "kaash",
+          "english": "cash",
+          "category": "Paying"
+        },
+        {
+          "arabic": "كَرْت",
+          "transliteration": "kart",
+          "english": "card",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَخْشِيش",
+          "transliteration": "bakhsheesh",
+          "english": "tip",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بَاقِي",
+          "transliteration": "baagi",
+          "english": "change",
+          "category": "Paying"
+        },
+        {
+          "arabic": "فَاتُورَة",
+          "transliteration": "faatoora",
+          "english": "receipt",
+          "category": "Paying"
+        },
+        {
+          "arabic": "لَذِيذ",
+          "transliteration": "laDheeD",
+          "english": "delicious",
+          "category": "Paying"
+        },
+        {
+          "arabic": "خَصْم",
+          "transliteration": "khaSm",
+          "english": "discount",
+          "category": "Paying"
         }
       ],
       "culture": "In Hejazi restaurants and cafes, tipping (bakhsheesh) is optional and typically given as loose change or a percentage if service is exceptional. Cash is still widely used, but card payment is increasingly common. After paying, it's customary to exchange gratitude and blessings; visitors often thank the establishment with \"yetik l3aafya\" (may God give you wellness).",

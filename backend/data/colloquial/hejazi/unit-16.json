@@ -235,6 +235,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "أَمْس",
+          "transliteration": "ams",
+          "english": "yesterday",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "طَوِيل",
+          "transliteration": "Taweel",
+          "english": "long",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "مِتْأَخِّر",
+          "transliteration": "mit2akhkhir",
+          "english": "late",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "لَيْل",
+          "transliteration": "layl",
+          "english": "night",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "سَهَر",
+          "transliteration": "sahar",
+          "english": "staying up late",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "شُغْل",
+          "transliteration": "shughl",
+          "english": "work",
+          "category": "Yesterday"
+        },
+        {
+          "arabic": "مَسَا",
+          "transliteration": "masa",
+          "english": "evening",
+          "category": "Yesterday"
+        }
+      ],
       "culture": "In Hejazi communities, أمس is the everyday word for yesterday; the MSA أمس is also used and understood. Asking شُو سَوَّيْتِ أَمْس؟ is a natural way to catch up with a friend or family member, especially after work or school. The culture values family time and visiting friends, so it is common to ask about what someone did yesterday.",
       "exercises": [
         {
@@ -601,6 +651,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَغِير",
+          "transliteration": "Sagheer",
+          "english": "small, young",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "حَيّ",
+          "transliteration": "7ayy",
+          "english": "neighbourhood",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "صَاحِب",
+          "transliteration": "Saa7ib",
+          "english": "friend",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "كُورَة",
+          "transliteration": "koora",
+          "english": "football",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "قَرْيَة",
+          "transliteration": "garya",
+          "english": "village",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "قِصَّة",
+          "transliteration": "qiSSa",
+          "english": "story",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "سِيكَل",
+          "transliteration": "seekal",
+          "english": "bicycle",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "ضَلْمَة",
+          "transliteration": "Dalma",
+          "english": "darkness",
+          "category": "Childhood"
+        }
+      ],
       "culture": "In Hejazi families, talking about childhood memories is a cherished way to bond across generations. References to old neighborhoods, playing in streets, and summer visits to family in villages reflect the lifestyle of past decades. The phrase \"فِي هَاتِ الْأَيَّامِ\" (back then) often carries affection for simpler times. Family gatherings often include grandparents telling stories, which is considered a vital part of cultural transmission.",
       "exercises": [
         {
@@ -961,6 +1061,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَوَّال",
+          "transliteration": "jawwaal",
+          "english": "mobile phone",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مِفْتَاح",
+          "transliteration": "miftaa7",
+          "english": "key",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "دَرَج",
+          "transliteration": "daraj",
+          "english": "stairs",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مَحْفَظَة",
+          "transliteration": "ma7faZa",
+          "english": "wallet",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "سَيَّارَة",
+          "transliteration": "sayyaara",
+          "english": "car",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "كَهْرَبَا",
+          "transliteration": "kahraba",
+          "english": "electricity",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "لَابْتُوب",
+          "transliteration": "laabtoob",
+          "english": "laptop",
+          "category": "Something went wrong"
+        },
+        {
+          "arabic": "مُنَبِّه",
+          "transliteration": "munabbih",
+          "english": "alarm clock",
+          "category": "Something went wrong"
+        }
+      ],
       "culture": "When someone shares bad news about something going wrong, the listener says الله يعينك (God help you) or الحمد الله على السلامة. It is culturally appropriate to add الله يعوضك خير (May God repay you with good). It is also common to add الحمد الله that it was not worse or to express gratitude that no one was harmed.",
       "exercises": [
         {
@@ -1318,6 +1468,56 @@
             "transliteration": "muu muta2akkida, yimkin bas isha3a",
             "english": "I'm not sure, it might just be a rumor."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "خَبَر",
+          "transliteration": "khabar",
+          "english": "news",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "إِشَاعَة",
+          "transliteration": "ishaa3a",
+          "english": "rumour",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "حَارَة",
+          "transliteration": "7aara",
+          "english": "neighbourhood",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "شَهْر",
+          "transliteration": "shahr",
+          "english": "month",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "وَلَد",
+          "transliteration": "walad",
+          "english": "boy",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "كَلَام",
+          "transliteration": "kalaam",
+          "english": "talk",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "نَاس",
+          "transliteration": "naas",
+          "english": "people",
+          "category": "News and gossip"
+        },
+        {
+          "arabic": "جَدِيد",
+          "transliteration": "jadeed",
+          "english": "new",
+          "category": "News and gossip"
         }
       ],
       "culture": "Sharing news and gossip is a normal part of social bonding in Hejazi communities. The phrase \"سِمِعْتِ إِنِّ\" (I heard that) is commonly used to introduce news, whether certain or not. It is polite to qualify uncertain information with phrases like \"مُوّ مِتَأَكِّدِ\" (I'm not sure) or \"يِمْكِنِ بَسِ إِشَاعَةِ\" (it might just be a rumor) to show honesty. The phrase \"يَا حَرَامِ\" (poor, how sad) is used sympathetically when hearing about someone's misfortune.",
