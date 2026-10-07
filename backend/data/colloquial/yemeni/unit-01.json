@@ -246,8 +246,8 @@
           "category": "Greetings"
         },
         {
-          "arabic": "وَيْن",
-          "transliteration": "wayn",
+          "arabic": "فِين",
+          "transliteration": "feen",
           "english": "where",
           "category": "Greetings"
         },
@@ -666,9 +666,9 @@
           "category": "Politeness"
         },
         {
-          "arabic": "كَتِير",
-          "transliteration": "kateer",
-          "english": "a lot, very",
+          "arabic": "قَوِي",
+          "transliteration": "gawi",
+          "english": "very, a lot",
           "category": "Politeness"
         },
         {
@@ -1567,7 +1567,7 @@
       "vocabulary": [
         {
           "arabic": "سُوق",
-          "transliteration": "sooq",
+          "transliteration": "soog",
           "english": "market",
           "category": "Directions"
         },
@@ -1591,7 +1591,7 @@
         },
         {
           "arabic": "قَرِيب",
-          "transliteration": "qareeb",
+          "transliteration": "gareeb",
           "english": "near",
           "category": "Directions"
         },

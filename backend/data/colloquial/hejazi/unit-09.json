@@ -251,8 +251,8 @@
           "category": "Feeling unwell"
         },
         {
-          "arabic": "حُمَّى",
-          "transliteration": "7umma",
+          "arabic": "سُخُونَة",
+          "transliteration": "sukhoona",
           "english": "fever",
           "category": "Feeling unwell"
         },
@@ -1555,7 +1555,7 @@
         },
         {
           "arabic": "رَقَبَة",
-          "transliteration": "raqaba",
+          "transliteration": "ragaba",
           "english": "neck",
           "category": "Body"
         }

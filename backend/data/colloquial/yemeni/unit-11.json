@@ -275,7 +275,7 @@
         },
         {
           "arabic": "طَرِيق",
-          "transliteration": "Tareeq",
+          "transliteration": "Tareeg",
           "english": "road, way",
           "category": "Arriving as a guest"
         },
@@ -665,8 +665,8 @@
           "category": "Welcoming guests"
         },
         {
-          "arabic": "مَائِدَة",
-          "transliteration": "maa2ida",
+          "arabic": "طَاوِلَة",
+          "transliteration": "Taawila",
           "english": "table",
           "category": "Welcoming guests"
         },
@@ -1023,8 +1023,8 @@
           "category": "At the table"
         },
         {
-          "arabic": "عَشَاء",
-          "transliteration": "3ashaa2",
+          "arabic": "عَشَا",
+          "transliteration": "3asha",
           "english": "dinner",
           "category": "At the table"
         },
@@ -1390,7 +1390,7 @@
         },
         {
           "arabic": "وَقْت",
-          "transliteration": "waqt",
+          "transliteration": "wagt",
           "english": "time",
           "category": "Leaving and thanking"
         },
@@ -1414,13 +1414,13 @@
         },
         {
           "arabic": "طَرِيق",
-          "transliteration": "Tareeq",
+          "transliteration": "Tareeg",
           "english": "road",
           "category": "Leaving and thanking"
         },
         {
-          "arabic": "دَائِمًا",
-          "transliteration": "daa2iman",
+          "arabic": "دَوْم",
+          "transliteration": "dawm",
           "english": "always",
           "category": "Leaving and thanking"
         },

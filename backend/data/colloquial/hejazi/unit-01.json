@@ -248,8 +248,8 @@
           "category": "Greetings"
         },
         {
-          "arabic": "وَيْن",
-          "transliteration": "wayn",
+          "arabic": "فِين",
+          "transliteration": "feen",
           "english": "where",
           "category": "Greetings"
         },
@@ -665,9 +665,9 @@
           "category": "Politeness"
         },
         {
-          "arabic": "كَتِير",
-          "transliteration": "kateer",
-          "english": "a lot, very",
+          "arabic": "مَرَّة",
+          "transliteration": "marra",
+          "english": "very, a lot",
           "category": "Politeness"
         },
         {
@@ -695,8 +695,8 @@
           "category": "Politeness"
         },
         {
-          "arabic": "إِي",
-          "transliteration": "ee",
+          "arabic": "أَيْوَه",
+          "transliteration": "aywa",
           "english": "yes",
           "category": "Politeness"
         },
@@ -1571,7 +1571,7 @@
         },
         {
           "arabic": "قَرِيب",
-          "transliteration": "qareeb",
+          "transliteration": "gareeb",
           "english": "near",
           "category": "Directions"
         },
