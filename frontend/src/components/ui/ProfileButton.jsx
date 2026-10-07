@@ -13,13 +13,13 @@ export default function ProfileButton() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        title={name ? 'Switch name' : 'Type a name to keep your own progress'}
+        title={name ? 'Change progress name' : 'Pick a name to keep your progress separate and use it on any device'}
         aria-haspopup="dialog"
         dir="auto"
         className="type-small px-2 py-1 rounded-[var(--radius-sm)] border border-[var(--border)]
           text-[var(--text-dim)] hover:text-[var(--text)] max-w-[8rem] truncate shrink-0"
       >
-        {name || "Who's learning?"}
+        {name || 'Progress name'}
       </button>
       {/* Mounted only while open, so each opening starts from the saved name. */}
       {open && <ProfileDialog onClose={() => setOpen(false)} onSaved={setName} />}

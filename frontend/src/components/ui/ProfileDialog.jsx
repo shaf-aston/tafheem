@@ -1,6 +1,6 @@
 /**
- * Type a name, get your own record. No password: the line under the box says
- * so. The first name typed on a device may take the answers given before names
+ * Type a name, get your own record. It is a name tag, not a login: the lines
+ * under the box say what it does and that it has no password. The first name typed on a device may take the answers given before names
  * existed, so nothing answered so far is lost. The server decides what a name
  * is; a refusal shows its reason under the box.
  */
@@ -18,6 +18,7 @@ import SearchBox from './SearchBox'
 export default function ProfileDialog({ onClose, onSaved }) {
   const client = useQueryClient()
   const current = getProfile()
+  const title = current ? 'Change progress name' : 'Progress name'
   const [typed, setTyped] = useState(current)
   const [keep, setKeep] = useState(true)
   const [error, setError] = useState('')
@@ -39,9 +40,9 @@ export default function ProfileDialog({ onClose, onSaved }) {
   }
 
   return (
-    <BottomSheet label={current ? 'Switch name' : "Who's learning?"} onClose={onClose} className="p-5 space-y-4">
+    <BottomSheet label={title} onClose={onClose} className="p-5 space-y-4">
       <div className="flex items-baseline justify-between gap-3">
-        <h2 className="text-base font-bold text-[var(--text)]">{current ? 'Switch name' : "Who's learning?"}</h2>
+        <h2 className="text-base font-bold text-[var(--text)]">{title}</h2>
         <button
           type="button"
           onClick={onClose}
@@ -53,8 +54,8 @@ export default function ProfileDialog({ onClose, onSaved }) {
 
       <SearchBox
         id="profile-name"
-        label="Your name"
-        placeholder="e.g. Amina"
+        label="Progress name"
+        placeholder="e.g. amina-quran"
         value={typed}
         onChange={(value) => { setTyped(value); setError('') }}
         onSubmit={save}
@@ -62,17 +63,21 @@ export default function ProfileDialog({ onClose, onSaved }) {
         busy={busy}
       />
       {error && <p role="alert" className="type-small text-[var(--danger)]">{error}</p>}
-      <p className="type-small text-[var(--text-faint)]">Anyone using this name sees this progress.</p>
+      <ul className="type-small text-[var(--text-dim)] space-y-1 list-disc ps-5">
+        <li>Your answers are saved under this name, apart from everyone else's.</li>
+        <li>Type the same name on another device to carry on there.</li>
+        <li>It is not a password: anyone who types this name sees this progress, so pick one only you would use.</li>
+      </ul>
 
       {!current && (
         <label className="flex items-center gap-2 type-small text-[var(--text-dim)]">
           <input type="checkbox" checked={keep} onChange={(e) => setKeep(e.target.checked)} />
-          Keep progress from this device
+          Move answers already given on this device to this name
         </label>
       )}
 
       <PrimaryButton onClick={save} loading={busy} disabled={busy || !typed.trim()}>
-        {current ? 'Switch' : 'Save'}
+        {current ? 'Change' : 'Save'}
       </PrimaryButton>
     </BottomSheet>
   )
