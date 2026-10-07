@@ -1,7 +1,7 @@
 // Flash cards: the English first, a tap turns it to the Arabic; swipe or prev/next for the next word.
 import { useState } from 'react'
 
-import { useSwipe } from '../../lib/useSwipe'
+import { useSlide, useSwipe } from '../../lib/useSwipe'
 import ArabicText from '../ui/ArabicText'
 import SmallButton from '../ui/SmallButton'
 import SpeakButton from '../ui/SpeakButton'
@@ -13,26 +13,33 @@ export default function WordCards({ words }) {
   const [turned, setTurned] = useState(false)
   const step = (to) => { setAt(to); setTurned(false) }
   const swipe = useSwipe(at > 0 && (() => step(at - 1)), at < words.length - 1 && (() => step(at + 1)))
+  const slide = useSlide(at)
   const word = words[at]
 
+  // Clipped sideways so a dragged card never scrolls the page; the inset keeps focus rings whole.
   return (
-    <div className="space-y-4" {...swipe}>
-      <button
-        type="button"
-        onClick={() => setTurned(!turned)}
-        aria-label={turned ? `${word.arabic}, show the English` : `${word.english}, show the Arabic`}
-        className={`press w-full min-h-48 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)]
-          hover:border-[var(--border-hi)] flex flex-col items-center justify-center gap-2 p-6 ${FOCUS}`}
-      >
-        {word.category && <span className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{word.category}</span>}
-        {turned
-          ? <ArabicText as="span" size="lg" className="text-[var(--text)]">{word.arabic}</ArabicText>
-          : <span className="type-figure font-semibold text-[var(--text)]">{word.english}</span>}
-        <span className="type-small text-[var(--text-faint)]">{turned ? word.english : 'Tap to see the Arabic'}</span>
-      </button>
-      <div className="flex items-center justify-center gap-2 min-h-8">
-        {turned && <Spelling size="body">{word.transliteration}</Spelling>}
-        <SpeakButton key={word.arabic} early text={word.arabic} />
+    <div className="space-y-4 overflow-x-hidden -mx-1 px-1" {...swipe}>
+      <div key={at} {...slide} className={`space-y-4 ${slide.className}`}>
+        <button
+          type="button"
+          onClick={() => setTurned(!turned)}
+          aria-label={turned ? `${word.arabic}, show the English` : `${word.english}, show the Arabic`}
+          className={`press w-full min-h-48 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)]
+            hover:border-[var(--border-hi)] flex flex-col items-center justify-center gap-2 p-6 ${FOCUS}`}
+        >
+          {word.category && <span className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{word.category}</span>}
+          {/* Keyed by side, so turning the card fades the other side in rather than snapping. */}
+          <span key={String(turned)} className="fade-in flex flex-col items-center gap-2">
+            {turned
+              ? <ArabicText as="span" size="lg" className="text-[var(--text)]">{word.arabic}</ArabicText>
+              : <span className="type-figure font-semibold text-[var(--text)]">{word.english}</span>}
+            <span className="type-small text-[var(--text-faint)]">{turned ? word.english : 'Tap to see the Arabic'}</span>
+          </span>
+        </button>
+        <div className="flex items-center justify-center gap-2 min-h-8">
+          {turned && <Spelling size="body">{word.transliteration}</Spelling>}
+          <SpeakButton key={word.arabic} early text={word.arabic} />
+        </div>
       </div>
       <div className="flex items-center justify-between gap-3">
         <SmallButton onClick={() => step(at - 1)} disabled={at === 0} aria-label="Previous word">← Prev</SmallButton>

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { swipeOf } from './useSwipe'
+import { slideWay, swipeOf } from './useSwipe'
 
 describe('swipeOf', () => {
   it('goes next on a swipe left and back on a swipe right', () => {
@@ -17,5 +17,13 @@ describe('swipeOf', () => {
     expect(swipeOf({ dx: -100, dy: 0, ms: 150, mouse: true })).toBe(1)
     expect(swipeOf({ dx: -100, dy: 0, ms: 600, mouse: true })).toBe(0)
     expect(swipeOf({ dx: -100, dy: 0, ms: 600 })).toBe(1)
+  })
+})
+
+describe('slideWay', () => {
+  it('comes in from the side stepped to, and stays still without a step', () => {
+    expect(slideWay(3, 4)).toBe('slide-next')
+    expect(slideWay(4, 2)).toBe('slide-prev')
+    expect(slideWay(2, 2)).toBe('')
   })
 })

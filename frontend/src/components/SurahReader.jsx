@@ -26,7 +26,7 @@ import { useRecitation } from '../lib/useRecitation'
 import { useRecitedWord } from '../lib/useRecitedWord'
 import { RECITERS } from '../lib/ayahAudio'
 import { useRemembered } from '../lib/useRemembered'
-import { useSwipe } from '../lib/useSwipe'
+import { useSlide, useSwipe } from '../lib/useSwipe'
 
 import AyahTafsir from './AyahTafsir'
 import ArabicText from './ui/ArabicText'
@@ -206,6 +206,7 @@ function SurahReader({ surah, accent, onOpenAyah, onChangeSurah, onClose }) {
   }, [surah, onChangeSurah, onClose])
   const swipe = useSwipe(surah > FIRST_SURAH && (() => onChangeSurah(surah - 1)),
     surah < LAST_SURAH && (() => onChangeSurah(surah + 1)))
+  const slide = useSlide(surah)
 
   return (
     <div {...swipe} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-hidden">
@@ -261,47 +262,50 @@ function SurahReader({ surah, accent, onOpenAyah, onChangeSurah, onClose }) {
         </button>
       </header>
 
-      {translation.isError && (
-        <div className="p-4" aria-live="assertive">
-          <ErrorAlert title="The translation could not be read" error={translation.error} fallback="The Arabic and its word-by-word English are unaffected." onRetry={() => translation.refetch()} />
-        </div>
-      )}
+      {/* The surah under the header slides in from the side it was stepped to. */}
+      <div key={surah} {...slide}>
+        {translation.isError && (
+          <div className="p-4" aria-live="assertive">
+            <ErrorAlert title="The translation could not be read" error={translation.error} fallback="The Arabic and its word-by-word English are unaffected." onRetry={() => translation.refetch()} />
+          </div>
+        )}
 
-      {isError && (
-        <div className="p-4" aria-live="assertive">
-          <ErrorAlert title="Could not open that surah" error={error} fallback="The surah could not be loaded." onRetry={() => refetch()} />
-        </div>
-      )}
+        {isError && (
+          <div className="p-4" aria-live="assertive">
+            <ErrorAlert title="Could not open that surah" error={error} fallback="The surah could not be loaded." onRetry={() => refetch()} />
+          </div>
+        )}
 
-      {isPending && (
-        <div className="p-4 space-y-3">
-          {Array.from({ length: 6 }, (_, i) => <Skeleton key={i} className="h-12 w-full" />)}
-        </div>
-      )}
+        {isPending && (
+          <div className="p-4 space-y-3">
+            {Array.from({ length: 6 }, (_, i) => <Skeleton key={i} className="h-12 w-full" />)}
+          </div>
+        )}
 
-      {data && (
-        <>
-          <AyahList key={surah} ayahs={data.ayahs}>
-            {(ayah) => (
-              <AyahRow
-                key={ayah.ayah}
-                surah={data.surah}
-                ayah={ayah}
-                english={englishFor(translation, ayah)}
-                glosses={glosses?.[ayah.ayah]}
-                src={recitation.urlFor(ayah.ayah)}
-                segments={recitation.segmentsFor(ayah.ayah)}
-                reciter={reciter}
-                accent={accent}
-                onOpen={onOpenAyah}
-              />
-            )}
-          </AyahList>
-          <p className="px-4 py-2 type-small text-[var(--text-faint)] border-t border-[var(--border)]">
-            Tap an ayah for its grammar · swipe or ← → change surah · Esc closes
-          </p>
-        </>
-      )}
+        {data && (
+          <>
+            <AyahList key={surah} ayahs={data.ayahs}>
+              {(ayah) => (
+                <AyahRow
+                  key={ayah.ayah}
+                  surah={data.surah}
+                  ayah={ayah}
+                  english={englishFor(translation, ayah)}
+                  glosses={glosses?.[ayah.ayah]}
+                  src={recitation.urlFor(ayah.ayah)}
+                  segments={recitation.segmentsFor(ayah.ayah)}
+                  reciter={reciter}
+                  accent={accent}
+                  onOpen={onOpenAyah}
+                />
+              )}
+            </AyahList>
+            <p className="px-4 py-2 type-small text-[var(--text-faint)] border-t border-[var(--border)]">
+              Tap an ayah for its grammar · swipe or ← → change surah · Esc closes
+            </p>
+          </>
+        )}
+      </div>
     </div>
   )
 }
