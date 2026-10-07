@@ -1139,9 +1139,9 @@
           "category": "Buses"
         },
         {
-          "arabic": "رَقِم",
-          "transliteration": "ra2em",
-          "english": "number",
+          "arabic": "اِتِّجَاه",
+          "transliteration": "ittijaah",
+          "english": "direction",
           "category": "Buses"
         },
         {
@@ -1980,27 +1980,27 @@
           "category": "Getting around"
         },
         {
-          "arabic": "فَاضِي",
-          "transliteration": "faaDi",
-          "english": "free, available",
+          "arabic": "مَشْوَار",
+          "transliteration": "mashwaar",
+          "english": "trip, errand",
           "category": "Getting around"
         },
         {
-          "arabic": "بُكْرَا",
-          "transliteration": "bukra",
-          "english": "tomorrow",
+          "arabic": "بَعْدِين",
+          "transliteration": "ba3deen",
+          "english": "later",
           "category": "Getting around"
         },
         {
-          "arabic": "سَيَّارَة",
-          "transliteration": "sayyaara",
-          "english": "car",
+          "arabic": "سَوَّاق",
+          "transliteration": "sawwaa2",
+          "english": "driver",
           "category": "Getting around"
         },
         {
-          "arabic": "مَحَطَّة",
-          "transliteration": "ma7aTTa",
-          "english": "station",
+          "arabic": "كَرَاج",
+          "transliteration": "karaaj",
+          "english": "bus garage",
           "category": "Getting around"
         },
         {

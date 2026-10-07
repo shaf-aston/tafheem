@@ -681,9 +681,9 @@
           "category": "The menu"
         },
         {
-          "arabic": "حَرِّيف",
-          "transliteration": "7arreef",
-          "english": "spicy",
+          "arabic": "سَلَاطَة",
+          "transliteration": "salaaTa",
+          "english": "salad",
           "category": "The menu"
         },
         {
@@ -699,9 +699,9 @@
           "category": "The menu"
         },
         {
-          "arabic": "لْحْم",
-          "transliteration": "l7em",
-          "english": "meat",
+          "arabic": "بِيتْزَا",
+          "transliteration": "beetza",
+          "english": "pizza",
           "category": "The menu"
         },
         {
@@ -1126,21 +1126,21 @@
           "category": "Ordering"
         },
         {
-          "arabic": "بْصْلَة",
-          "transliteration": "bSla",
-          "english": "onion",
+          "arabic": "بْغِيتْ",
+          "transliteration": "bghit",
+          "english": "I want",
           "category": "Ordering"
         },
         {
-          "arabic": "خُبْز",
-          "transliteration": "khubz",
-          "english": "bread",
+          "arabic": "سَنْدْوِيتْش",
+          "transliteration": "sandwitsh",
+          "english": "sandwich",
           "category": "Ordering"
         },
         {
-          "arabic": "كَاس",
-          "transliteration": "kaas",
-          "english": "glass",
+          "arabic": "عَطِينِي",
+          "transliteration": "3Teeni",
+          "english": "give me",
           "category": "Ordering"
         },
         {

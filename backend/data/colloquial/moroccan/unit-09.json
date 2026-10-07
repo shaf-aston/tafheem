@@ -721,9 +721,9 @@
           "category": "Pharmacy"
         },
         {
-          "arabic": "بْلَاسْتِر",
-          "transliteration": "plaster",
-          "english": "plaster",
+          "arabic": "مْرْهَم",
+          "transliteration": "merhem",
+          "english": "ointment",
           "category": "Pharmacy"
         }
       ],
@@ -1161,15 +1161,15 @@
           "category": "Doctor"
         },
         {
-          "arabic": "سِيمَانَة",
-          "transliteration": "seemaana",
-          "english": "week",
+          "arabic": "رَادْيُو",
+          "transliteration": "radyo",
+          "english": "X-ray",
           "category": "Doctor"
         },
         {
-          "arabic": "طّْبِيب",
-          "transliteration": "Tbeeb",
-          "english": "doctor",
+          "arabic": "مْرِيض",
+          "transliteration": "mreeD",
+          "english": "patient",
           "category": "Doctor"
         }
       ],

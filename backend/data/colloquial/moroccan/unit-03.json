@@ -769,9 +769,9 @@
           "category": "Bakery and butcher"
         },
         {
-          "arabic": "سْخُون",
-          "transliteration": "skhoon",
-          "english": "hot",
+          "arabic": "مْشْوِي",
+          "transliteration": "mshwi",
+          "english": "grilled",
           "category": "Bakery and butcher"
         }
       ],
@@ -1202,8 +1202,8 @@
       ],
       "vocabulary": [
         {
-          "arabic": "رُوز",
-          "transliteration": "rooz",
+          "arabic": "رِّزّ",
+          "transliteration": "rezz",
           "english": "rice",
           "category": "Cooking"
         },
@@ -1228,7 +1228,7 @@
         {
           "arabic": "مْغْرْفَة",
           "transliteration": "megherfa",
-          "english": "spoon, ladle",
+          "english": "ladle",
           "category": "Cooking"
         },
         {
@@ -1244,9 +1244,9 @@
           "category": "Cooking"
         },
         {
-          "arabic": "تُّوم",
-          "transliteration": "toom",
-          "english": "garlic",
+          "arabic": "زِيت",
+          "transliteration": "zit",
+          "english": "oil",
           "category": "Cooking"
         }
       ],
@@ -2147,7 +2147,7 @@
           "category": "At the market"
         },
         {
-          "arabic": "ثّْمَن",
+          "arabic": "تّْمَن",
           "transliteration": "tmen",
           "english": "price",
           "category": "At the market"

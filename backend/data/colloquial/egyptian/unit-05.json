@@ -1175,15 +1175,15 @@
           "category": "Buses"
         },
         {
-          "arabic": "رَقَم",
-          "transliteration": "ra2am",
+          "arabic": "نُمْرَة",
+          "transliteration": "nemra",
           "english": "number",
           "category": "Buses"
         },
         {
-          "arabic": "جَامْعَة",
-          "transliteration": "gam3a",
-          "english": "university",
+          "arabic": "سَوَّاق",
+          "transliteration": "sawwaa2",
+          "english": "driver",
           "category": "Buses"
         }
       ],
@@ -2042,9 +2042,9 @@
           "category": "Getting around"
         },
         {
-          "arabic": "فَاضِي",
-          "transliteration": "faaDi",
-          "english": "free, available",
+          "arabic": "كُوبْرِي",
+          "transliteration": "kobri",
+          "english": "bridge",
           "category": "Getting around"
         },
         {
@@ -2060,9 +2060,9 @@
           "category": "Getting around"
         },
         {
-          "arabic": "مَحَطَّة",
-          "transliteration": "ma7aTTa",
-          "english": "station",
+          "arabic": "نَاصْيَة",
+          "transliteration": "naSya",
+          "english": "corner",
           "category": "Getting around"
         }
       ],

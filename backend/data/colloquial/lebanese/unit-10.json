@@ -246,8 +246,8 @@
           "category": "Weather"
         },
         {
-          "arabic": "شِتِي",
-          "transliteration": "shiti",
+          "arabic": "مَطَر",
+          "transliteration": "maTar",
           "english": "rain",
           "category": "Weather"
         },
@@ -1169,8 +1169,8 @@
           "category": "Clothes for the weather"
         },
         {
-          "arabic": "مِعْطَف",
-          "transliteration": "me3Taf",
+          "arabic": "مَانْطُو",
+          "transliteration": "manTo",
           "english": "coat",
           "category": "Clothes for the weather"
         },
@@ -1589,9 +1589,9 @@
       ],
       "vocabulary": [
         {
-          "arabic": "حَدِيقَة",
-          "transliteration": "7adee2a",
-          "english": "park",
+          "arabic": "جْنِينِة",
+          "transliteration": "jneene",
+          "english": "garden",
           "category": "Going out"
         },
         {
@@ -1601,9 +1601,9 @@
           "category": "Going out"
         },
         {
-          "arabic": "رِحْلِة",
-          "transliteration": "re7le",
-          "english": "trip",
+          "arabic": "مَشْوَار",
+          "transliteration": "mashwaar",
+          "english": "errand, trip",
           "category": "Going out"
         },
         {
@@ -1631,9 +1631,9 @@
           "category": "Going out"
         },
         {
-          "arabic": "بَرَّا",
-          "transliteration": "barra",
-          "english": "outside",
+          "arabic": "فَسْحَة",
+          "transliteration": "fes7a",
+          "english": "stroll",
           "category": "Going out"
         }
       ],

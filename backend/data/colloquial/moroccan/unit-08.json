@@ -239,7 +239,7 @@
         },
         {
           "arabic": "أُسْتَاذ",
-          "transliteration": "ustaadh",
+          "transliteration": "ustaad",
           "english": "teacher",
           "category": "Jobs"
         },
@@ -274,9 +274,9 @@
           "category": "Jobs"
         },
         {
-          "arabic": "جْدِيدَة",
-          "transliteration": "jdeeda",
-          "english": "new",
+          "arabic": "مْعَلِّم",
+          "transliteration": "m3allem",
+          "english": "skilled craftsman, boss",
           "category": "Jobs"
         }
       ],
@@ -1082,9 +1082,9 @@
       ],
       "vocabulary": [
         {
-          "arabic": "مُحَاضَرَة",
-          "transliteration": "mu7aaDara",
-          "english": "lecture",
+          "arabic": "كُور",
+          "transliteration": "koor",
+          "english": "lecture, class",
           "category": "University"
         },
         {
@@ -1533,9 +1533,9 @@
           "category": "Future plans"
         },
         {
-          "arabic": "خْدْمَة",
-          "transliteration": "khedma",
-          "english": "job",
+          "arabic": "فُرْصَة",
+          "transliteration": "furSa",
+          "english": "opportunity",
           "category": "Future plans"
         },
         {

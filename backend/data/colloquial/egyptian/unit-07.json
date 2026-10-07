@@ -244,9 +244,9 @@
           "category": "Morning"
         },
         {
-          "arabic": "بَرْد",
-          "transliteration": "bard",
-          "english": "cold",
+          "arabic": "صَابُون",
+          "transliteration": "Saaboon",
+          "english": "soap",
           "category": "Morning"
         }
       ],
@@ -645,9 +645,9 @@
           "category": "During the day"
         },
         {
-          "arabic": "تَعْبَان",
-          "transliteration": "ta3baan",
-          "english": "tired",
+          "arabic": "إِيمِيل",
+          "transliteration": "eemeel",
+          "english": "email",
           "category": "During the day"
         },
         {
@@ -1065,8 +1065,8 @@
       ],
       "vocabulary": [
         {
-          "arabic": "مَسَاء",
-          "transliteration": "masaa2",
+          "arabic": "مَسَا",
+          "transliteration": "masa",
           "english": "evening",
           "category": "Evening"
         },
@@ -1095,9 +1095,9 @@
           "category": "Evening"
         },
         {
-          "arabic": "جَوّ",
-          "transliteration": "gaww",
-          "english": "weather",
+          "arabic": "كَنَبَة",
+          "transliteration": "kanaba",
+          "english": "sofa",
           "category": "Evening"
         },
         {

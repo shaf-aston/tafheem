@@ -242,9 +242,9 @@
           "category": "Answering the phone"
         },
         {
-          "arabic": "مَشْغُول",
-          "transliteration": "mashghool",
-          "english": "busy",
+          "arabic": "رَنّ",
+          "transliteration": "rann",
+          "english": "rang",
           "category": "Answering the phone"
         },
         {
@@ -654,15 +654,15 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "مِيعَاد",
-          "transliteration": "mee3aad",
-          "english": "appointment",
+          "arabic": "اِتِّفَاق",
+          "transliteration": "ettefaa2",
+          "english": "agreement",
           "category": "Arranging to meet"
         },
         {
-          "arabic": "بَوَّابَة",
-          "transliteration": "bawwaaba",
-          "english": "gate, entrance",
+          "arabic": "مِتْرُو",
+          "transliteration": "metro",
+          "english": "metro",
           "category": "Arranging to meet"
         },
         {
@@ -678,9 +678,9 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "مَكَان",
-          "transliteration": "makaan",
-          "english": "place",
+          "arabic": "عُنْوَان",
+          "transliteration": "3enwaan",
+          "english": "address",
           "category": "Arranging to meet"
         },
         {
@@ -690,9 +690,9 @@
           "category": "Arranging to meet"
         },
         {
-          "arabic": "بَدْرِي",
-          "transliteration": "badri",
-          "english": "early",
+          "arabic": "عَلَى طُول",
+          "transliteration": "3ala Tool",
+          "english": "straight away",
           "category": "Arranging to meet"
         }
       ],
@@ -1091,9 +1091,9 @@
           "category": "Changing plans"
         },
         {
-          "arabic": "مُشْكِلَة",
-          "transliteration": "moshkela",
-          "english": "problem",
+          "arabic": "تَغْيِير",
+          "transliteration": "taghyeer",
+          "english": "change",
           "category": "Changing plans"
         },
         {
@@ -1127,9 +1127,9 @@
           "category": "Changing plans"
         },
         {
-          "arabic": "بُكْرَه",
-          "transliteration": "bokra",
-          "english": "tomorrow",
+          "arabic": "بَعْدِين",
+          "transliteration": "ba3dein",
+          "english": "later",
           "category": "Changing plans"
         }
       ],
@@ -1532,9 +1532,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "رَقَم",
-          "transliteration": "ra2am",
-          "english": "number",
+          "arabic": "وَاتْسَاب",
+          "transliteration": "watsaab",
+          "english": "WhatsApp",
           "category": "Messages"
         },
         {
@@ -1544,9 +1544,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "خَبَر",
-          "transliteration": "khabar",
-          "english": "news",
+          "arabic": "رَدّ",
+          "transliteration": "radd",
+          "english": "reply",
           "category": "Messages"
         },
         {
@@ -1556,9 +1556,9 @@
           "category": "Messages"
         },
         {
-          "arabic": "كَمَان",
-          "transliteration": "kamaan",
-          "english": "more, still",
+          "arabic": "لِسَّه",
+          "transliteration": "lessa",
+          "english": "still, yet",
           "category": "Messages"
         },
         {

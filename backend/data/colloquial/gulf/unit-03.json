@@ -782,9 +782,9 @@
           "category": "Bakery and butcher"
         },
         {
-          "arabic": "حَارّ",
-          "transliteration": "7aarr",
-          "english": "hot",
+          "arabic": "فَرْن",
+          "transliteration": "farn",
+          "english": "oven",
           "category": "Bakery and butcher"
         }
       ],
@@ -2194,27 +2194,27 @@
           "category": "At the market"
         },
         {
-          "arabic": "لُون",
-          "transliteration": "loon",
-          "english": "colour",
+          "arabic": "عَرْض",
+          "transliteration": "3arD",
+          "english": "offer",
           "category": "At the market"
         },
         {
-          "arabic": "أَزْرَق",
-          "transliteration": "azrag",
-          "english": "blue",
+          "arabic": "كِيس",
+          "transliteration": "kees",
+          "english": "bag",
           "category": "At the market"
         },
         {
-          "arabic": "أَحْمَر",
-          "transliteration": "a7mar",
-          "english": "red",
+          "arabic": "مَحَل",
+          "transliteration": "ma7all",
+          "english": "shop",
           "category": "At the market"
         },
         {
-          "arabic": "زِين",
-          "transliteration": "zeen",
-          "english": "okay, fine",
+          "arabic": "بِكَم",
+          "transliteration": "bikam",
+          "english": "how much",
           "category": "At the market"
         }
       ],

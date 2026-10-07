@@ -250,7 +250,7 @@
           "category": "Taxi"
         },
         {
-          "arabic": "ثّْمَن",
+          "arabic": "تّْمَن",
           "transliteration": "tmen",
           "english": "fare, price",
           "category": "Taxi"
@@ -695,8 +695,8 @@
       ],
       "vocabulary": [
         {
-          "arabic": "صِّيدْلِيَّة",
-          "transliteration": "Saydaliyya",
+          "arabic": "فَارْمَاسِي",
+          "transliteration": "farmaasi",
           "english": "pharmacy",
           "category": "Asking the way"
         },
@@ -1192,9 +1192,9 @@
           "category": "Buses"
         },
         {
-          "arabic": "جَامْعَة",
-          "transliteration": "jaam3a",
-          "english": "university",
+          "arabic": "شُوفِير",
+          "transliteration": "shofeer",
+          "english": "driver",
           "category": "Buses"
         },
         {
@@ -1638,9 +1638,9 @@
           "category": "Places in town"
         },
         {
-          "arabic": "حِيّ",
-          "transliteration": "7ayy",
-          "english": "neighbourhood",
+          "arabic": "سِينِيمَا",
+          "transliteration": "seeneema",
+          "english": "cinema",
           "category": "Places in town"
         },
         {
@@ -2077,7 +2077,7 @@
           "category": "Getting around"
         },
         {
-          "arabic": "طُوبُوبِيل",
+          "arabic": "طُومُوبِيل",
           "transliteration": "Tomobeel",
           "english": "car",
           "category": "Getting around"
@@ -2095,9 +2095,9 @@
           "category": "Getting around"
         },
         {
-          "arabic": "غْدَّا",
-          "transliteration": "ghedda",
-          "english": "tomorrow",
+          "arabic": "وَقَّف",
+          "transliteration": "waqqef",
+          "english": "to stop",
           "category": "Getting around"
         }
       ],

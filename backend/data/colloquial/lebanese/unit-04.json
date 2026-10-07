@@ -653,7 +653,7 @@
           "category": "The menu"
         },
         {
-          "arabic": "مَازَة",
+          "arabic": "مَزَّة",
           "transliteration": "mazze",
           "english": "starters",
           "category": "The menu"
@@ -683,9 +683,9 @@
           "category": "The menu"
         },
         {
-          "arabic": "لَحْمِة",
-          "transliteration": "la7me",
-          "english": "meat",
+          "arabic": "سَلَطَة",
+          "transliteration": "salaTa",
+          "english": "salad",
           "category": "The menu"
         },
         {
@@ -1089,15 +1089,15 @@
           "category": "Ordering"
         },
         {
-          "arabic": "بَصَل",
-          "transliteration": "baSal",
-          "english": "onion",
+          "arabic": "تَبُّولِة",
+          "transliteration": "tabbule",
+          "english": "tabbouleh",
           "category": "Ordering"
         },
         {
-          "arabic": "خِبِز",
-          "transliteration": "khebez",
-          "english": "bread",
+          "arabic": "شَاوَرْمَا",
+          "transliteration": "shaawarma",
+          "english": "shawarma",
           "category": "Ordering"
         },
         {

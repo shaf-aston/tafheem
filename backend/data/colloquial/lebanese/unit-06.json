@@ -1157,9 +1157,9 @@
       ],
       "vocabulary": [
         {
-          "arabic": "غَالِي",
-          "transliteration": "ghaali",
-          "english": "expensive",
+          "arabic": "بَلَاش",
+          "transliteration": "balaash",
+          "english": "free of charge",
           "category": "Bargaining"
         },
         {
@@ -1169,15 +1169,15 @@
           "category": "Bargaining"
         },
         {
-          "arabic": "سِعِر",
-          "transliteration": "se3er",
-          "english": "price",
+          "arabic": "نُص",
+          "transliteration": "nuSS",
+          "english": "half",
           "category": "Bargaining"
         },
         {
-          "arabic": "خَصِم",
-          "transliteration": "khaSem",
-          "english": "discount",
+          "arabic": "تَنْزِيلَات",
+          "transliteration": "tanzeelaat",
+          "english": "sales",
           "category": "Bargaining"
         },
         {
@@ -1635,9 +1635,9 @@
           "category": "Returns"
         },
         {
-          "arabic": "فَاتُورَة",
-          "transliteration": "faatoora",
-          "english": "receipt",
+          "arabic": "ضْمَان",
+          "transliteration": "Dmaan",
+          "english": "warranty",
           "category": "Returns"
         },
         {
@@ -1647,15 +1647,15 @@
           "category": "Returns"
         },
         {
-          "arabic": "صَحّ",
-          "transliteration": "Sa77",
-          "english": "right, correct",
+          "arabic": "رَجَّع",
+          "transliteration": "rajja3",
+          "english": "return, give back",
           "category": "Returns"
         },
         {
-          "arabic": "مَقَاس",
-          "transliteration": "ma2aas",
-          "english": "size",
+          "arabic": "تَانِي",
+          "transliteration": "taani",
+          "english": "another",
           "category": "Returns"
         },
         {
@@ -1665,9 +1665,9 @@
           "category": "Returns"
         },
         {
-          "arabic": "تَعَاوُن",
-          "transliteration": "ta3aawon",
-          "english": "cooperation",
+          "arabic": "أَصْغَر",
+          "transliteration": "aSghar",
+          "english": "smaller",
           "category": "Returns"
         },
         {
