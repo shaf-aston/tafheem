@@ -231,6 +231,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "أَمْسِ",
+          "transliteration": "amsi",
+          "english": "yesterday",
+          "category": "Time words"
+        },
+        {
+          "arabic": "مَاضٍ",
+          "transliteration": "maadin",
+          "english": "past",
+          "category": "Time words"
+        },
+        {
+          "arabic": "قَبْلَ",
+          "transliteration": "qabla",
+          "english": "before",
+          "category": "Time words"
+        },
+        {
+          "arabic": "ثُمَّ",
+          "transliteration": "thumma",
+          "english": "then",
+          "category": "Time words"
+        },
+        {
+          "arabic": "فَجْأَةً",
+          "transliteration": "faj2atan",
+          "english": "suddenly",
+          "category": "Time words"
+        },
+        {
+          "arabic": "بَعْدَئِذٍ",
+          "transliteration": "ba3da2idhin",
+          "english": "afterwards",
+          "category": "Time words"
+        },
+        {
+          "arabic": "أَخِيرًا",
+          "transliteration": "akheeran",
+          "english": "finally",
+          "category": "Time words"
+        },
+        {
+          "arabic": "حَدَثَ",
+          "transliteration": "7adatha",
+          "english": "it happened",
+          "category": "Time words"
+        }
+      ],
       "culture": "In Fusha the past is told with the past-tense verb and أَمْسِ for yesterday, the same words a news reader uses for the day before. Friends ask about last night with a full question such as أَيْنَ كُنْتَ؟ and answer in one short past-tense sentence.",
       "exercises": [
         {
@@ -618,6 +668,56 @@
             "transliteration": "kaana sadeeqee Kareem.",
             "english": "My friend was Kareem."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طُفُولَة",
+          "transliteration": "tufoola",
+          "english": "childhood",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "ذِكْرَيَات",
+          "transliteration": "dhikrayaat",
+          "english": "memories",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "حِكَايَة",
+          "transliteration": "7ikaaya",
+          "english": "story",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "لُعْبَة",
+          "transliteration": "lu3ba",
+          "english": "toy, game",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "قَرْيَة",
+          "transliteration": "qarya",
+          "english": "village",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "جِيرَان",
+          "transliteration": "jeeraan",
+          "english": "neighbours",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "كَانَ",
+          "transliteration": "kaana",
+          "english": "he was",
+          "category": "Childhood"
+        },
+        {
+          "arabic": "لَعِبَ",
+          "transliteration": "la3iba",
+          "english": "he played",
+          "category": "Childhood"
         }
       ],
       "culture": "Fusha tells childhood memories with كَانَ plus a present-tense verb, which means 'used to', so كُنْتُ أَلْعَبُ is 'I used to play'. Grandparents and the village summer are a common shared memory in stories told across the Arab world.",
@@ -1015,6 +1115,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "حَادِث",
+          "transliteration": "7aadith",
+          "english": "accident",
+          "category": "Mishaps"
+        },
+        {
+          "arabic": "لِلْأَسَف",
+          "transliteration": "lil-asaf",
+          "english": "unfortunately",
+          "category": "Mishaps"
+        },
+        {
+          "arabic": "وَقَعَ",
+          "transliteration": "waqa3a",
+          "english": "he fell",
+          "category": "Mishaps"
+        },
+        {
+          "arabic": "كَسَرَ",
+          "transliteration": "kasara",
+          "english": "he broke",
+          "category": "Mishaps"
+        },
+        {
+          "arabic": "اِنْكَسَرَ",
+          "transliteration": "inkasara",
+          "english": "it broke",
+          "category": "Mishaps"
+        },
+        {
+          "arabic": "نَسِيَ",
+          "transliteration": "nasiya",
+          "english": "he forgot",
+          "category": "Mishaps"
+        },
+        {
+          "arabic": "أَضَاعَ",
+          "transliteration": "adaa3a",
+          "english": "he lost",
+          "category": "Mishaps"
+        },
+        {
+          "arabic": "خَسِرَ",
+          "transliteration": "khasira",
+          "english": "he lost (a game, money)",
+          "category": "Mishaps"
+        }
+      ],
       "culture": "When something goes wrong, Fusha speakers name what happened in a short past-tense sentence and often add الْحَمْدُ لِلَّه if it was not worse. Things that happen to you, such as a broken phone, are said about the object: اِنْكَسَرَ هَاتِفِي, 'my phone broke', not 'I broke'.",
       "exercises": [
         {
@@ -1400,6 +1550,56 @@
             "transliteration": "tazawwajat fee ash-shahri al-maadee.",
             "english": "She got married last month."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "أَخْبَار",
+          "transliteration": "akhbaar",
+          "english": "news",
+          "category": "News"
+        },
+        {
+          "arabic": "صَحِيفَة",
+          "transliteration": "sa7eefa",
+          "english": "newspaper",
+          "category": "News"
+        },
+        {
+          "arabic": "إِشَاعَة",
+          "transliteration": "ishaa3a",
+          "english": "rumour",
+          "category": "News"
+        },
+        {
+          "arabic": "سِرّ",
+          "transliteration": "sirr",
+          "english": "secret",
+          "category": "News"
+        },
+        {
+          "arabic": "حَقِيقَة",
+          "transliteration": "7aqeeqa",
+          "english": "truth",
+          "category": "News"
+        },
+        {
+          "arabic": "سَمِعَ",
+          "transliteration": "sami3a",
+          "english": "he heard",
+          "category": "News"
+        },
+        {
+          "arabic": "قَالَ",
+          "transliteration": "qaala",
+          "english": "he said",
+          "category": "News"
+        },
+        {
+          "arabic": "عَرَفَ",
+          "transliteration": "3arafa",
+          "english": "he knew, found out",
+          "category": "News"
         }
       ],
       "culture": "News travels by word of mouth, so Fusha has careful ways to say how sure you are: سَمِعْتُ أَنَّ is 'I heard that', يَقُولُونَ is 'they say', and رُبَّمَا is 'maybe'. On good news people answer مَا شَاءَ اللَّه, and on passing on a secret they add لَا تُخْبِرْ أَحَدًا.",
@@ -1789,6 +1989,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "tareeq",
+          "english": "road, way",
+          "category": "Journey"
+        },
+        {
+          "arabic": "مَسَافَة",
+          "transliteration": "masaafa",
+          "english": "distance",
+          "category": "Journey"
+        },
+        {
+          "arabic": "بِلَاد",
+          "transliteration": "bilaad",
+          "english": "lands, country",
+          "category": "Journey"
+        },
+        {
+          "arabic": "وُصُول",
+          "transliteration": "wusool",
+          "english": "arrival",
+          "category": "Journey"
+        },
+        {
+          "arabic": "مُغَادَرَة",
+          "transliteration": "mughaadara",
+          "english": "departure",
+          "category": "Journey"
+        },
+        {
+          "arabic": "مُتْعِب",
+          "transliteration": "mut3ib",
+          "english": "tiring",
+          "category": "Journey"
+        },
+        {
+          "arabic": "سَافَرَ",
+          "transliteration": "saafara",
+          "english": "he travelled",
+          "category": "Journey"
+        },
+        {
+          "arabic": "رَافَقَ",
+          "transliteration": "raafaqa",
+          "english": "he went along with",
+          "category": "Journey"
+        }
+      ],
       "culture": "A person returning from a journey is welcomed with الْحَمْدُ لِلَّهِ عَلَى السَّلَامَة, 'praise be to Allah for your safety'. Travelers ask Allah for a safe trip before leaving, and tell the story of the trip afterwards with الْحَمْدُ لِلَّه. Past events use the verb in its past form: سَافَرْتُ, رَكِبْتُ, وَصَلْنَا.",
       "exercises": [
         {
@@ -2126,6 +2376,56 @@
             "transliteration": "jazaaka allaahu khayran.",
             "english": "May Allah reward you with good."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "بُشْرَى",
+          "transliteration": "bushraa",
+          "english": "good news",
+          "category": "Good news"
+        },
+        {
+          "arabic": "فَرَح",
+          "transliteration": "fara7",
+          "english": "joy",
+          "category": "Good news"
+        },
+        {
+          "arabic": "خَيْر",
+          "transliteration": "khayr",
+          "english": "good",
+          "category": "Good news"
+        },
+        {
+          "arabic": "حَظّ",
+          "transliteration": "7azz",
+          "english": "luck",
+          "category": "Good news"
+        },
+        {
+          "arabic": "فُرْصَة",
+          "transliteration": "fursa",
+          "english": "opportunity",
+          "category": "Good news"
+        },
+        {
+          "arabic": "تَرْقِيَة",
+          "transliteration": "tarqiya",
+          "english": "promotion",
+          "category": "Good news"
+        },
+        {
+          "arabic": "قُبُول",
+          "transliteration": "qubool",
+          "english": "acceptance",
+          "category": "Good news"
+        },
+        {
+          "arabic": "فَرِحَ",
+          "transliteration": "fari7a",
+          "english": "he was glad",
+          "category": "Good news"
         }
       ],
       "culture": "Sharing good news and rejoicing for others is encouraged in Islam, and the first answer is مَبْرُوك or بَارَكَ اللَّهُ لَكَ فِيه. The person who has the news credits Allah with الْحَمْدُ لِلَّه, and says إِنْ شَاءَ اللَّه for good things still to come. Friends then plan to celebrate together.",

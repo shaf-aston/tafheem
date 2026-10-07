@@ -208,6 +208,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "سَعِيد",
+          "transliteration": "sa3eed",
+          "english": "happy",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "حَزِين",
+          "transliteration": "7azeen",
+          "english": "sad",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "غَاضِب",
+          "transliteration": "ghaadib",
+          "english": "angry",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "خَائِف",
+          "transliteration": "khaa2if",
+          "english": "afraid",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "قَلِق",
+          "transliteration": "qaliq",
+          "english": "worried",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "مُتَحَمِّس",
+          "transliteration": "muta7ammis",
+          "english": "excited",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "مُرْتَاح",
+          "transliteration": "murtaa7",
+          "english": "relaxed",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "وَحِيد",
+          "transliteration": "wa7eed",
+          "english": "lonely",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "مَلَل",
+          "transliteration": "malal",
+          "english": "boredom",
+          "category": "Feelings"
+        }
+      ],
       "culture": "Asking مَا بِكَ؟ shows care, and a friend usually answers honestly but briefly. Feeling words change with the speaker: add ة for a woman, as in سَعِيد and سَعِيدَة.",
       "exercises": [
         {
@@ -591,6 +647,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "رَأْي",
+          "transliteration": "ra2y",
+          "english": "opinion",
+          "category": "Opinions"
+        },
+        {
+          "arabic": "نِقَاش",
+          "transliteration": "niqaash",
+          "english": "discussion",
+          "category": "Opinions"
+        },
+        {
+          "arabic": "صَحِيح",
+          "transliteration": "sa7ee7",
+          "english": "correct",
+          "category": "Opinions"
+        },
+        {
+          "arabic": "خَطَأ",
+          "transliteration": "khata2",
+          "english": "mistake, wrong",
+          "category": "Opinions"
+        },
+        {
+          "arabic": "مُمْكِن",
+          "transliteration": "mumkin",
+          "english": "possible",
+          "category": "Opinions"
+        },
+        {
+          "arabic": "طَبْعًا",
+          "transliteration": "tab3an",
+          "english": "of course",
+          "category": "Opinions"
+        },
+        {
+          "arabic": "أَبَدًا",
+          "transliteration": "abadan",
+          "english": "never, not at all",
+          "category": "Opinions"
+        },
+        {
+          "arabic": "وَافَقَ",
+          "transliteration": "waafaqa",
+          "english": "he agreed",
+          "category": "Opinions"
+        },
+        {
+          "arabic": "خَالَفَ",
+          "transliteration": "khaalafa",
+          "english": "he disagreed",
+          "category": "Opinions"
+        }
+      ],
       "culture": "Disagreeing gently is valued: people soften a no with رُبَّمَا، وَلَكِنْ or فِي رَأْيِي before giving their view. أَنْتَ عَلَى حَقّ is a generous way to concede a point.",
       "exercises": [
         {
@@ -964,6 +1076,56 @@
             "transliteration": "ibqa haadi2an wa laa tata3ajjal.",
             "english": "Stay calm and don't rush."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "نَصِيحَة",
+          "transliteration": "nasee7a",
+          "english": "advice",
+          "category": "Advice"
+        },
+        {
+          "arabic": "قَرَار",
+          "transliteration": "qaraar",
+          "english": "decision",
+          "category": "Advice"
+        },
+        {
+          "arabic": "تَجْرِبَة",
+          "transliteration": "tajriba",
+          "english": "experience, trial",
+          "category": "Advice"
+        },
+        {
+          "arabic": "أَفْضَل",
+          "transliteration": "afdal",
+          "english": "better",
+          "category": "Advice"
+        },
+        {
+          "arabic": "يَجِبُ",
+          "transliteration": "yajibu",
+          "english": "must",
+          "category": "Advice"
+        },
+        {
+          "arabic": "نَصَحَ",
+          "transliteration": "nasa7a",
+          "english": "he advised",
+          "category": "Advice"
+        },
+        {
+          "arabic": "حَاوَلَ",
+          "transliteration": "7aawala",
+          "english": "he tried",
+          "category": "Advice"
+        },
+        {
+          "arabic": "اِنْتَبَهَ",
+          "transliteration": "intabaha",
+          "english": "he paid attention",
+          "category": "Advice"
         }
       ],
       "culture": "Advice between friends is often softened with لِمَاذَا لَا or لَوْ كُنْتُ مَكَانَكَ instead of a flat command. Verbs change for a woman, so يَنْبَغِي أَنْ تَرْتَاحِي is for her and تَرْتَاحَ is for him.",
@@ -1349,6 +1511,56 @@
             "transliteration": "i3dhurnaa, sanughayyiruhu.",
             "english": "Forgive us, we'll change it."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "شَكْوَى",
+          "transliteration": "shakwaa",
+          "english": "complaint",
+          "category": "Complaints"
+        },
+        {
+          "arabic": "خِدْمَة",
+          "transliteration": "khidma",
+          "english": "service",
+          "category": "Complaints"
+        },
+        {
+          "arabic": "إِزْعَاج",
+          "transliteration": "iz3aaj",
+          "english": "disturbance, noise",
+          "category": "Complaints"
+        },
+        {
+          "arabic": "تَأْخِير",
+          "transliteration": "ta2kheer",
+          "english": "delay",
+          "category": "Complaints"
+        },
+        {
+          "arabic": "سَيِّئ",
+          "transliteration": "sayyi2",
+          "english": "bad",
+          "category": "Complaints"
+        },
+        {
+          "arabic": "مَسْؤُول",
+          "transliteration": "mas2ool",
+          "english": "person in charge",
+          "category": "Complaints"
+        },
+        {
+          "arabic": "حَلّ",
+          "transliteration": "7all",
+          "english": "solution",
+          "category": "Complaints"
+        },
+        {
+          "arabic": "اِشْتَكَى",
+          "transliteration": "ishtakaa",
+          "english": "he complained",
+          "category": "Complaints"
         }
       ],
       "culture": "Complaints stay polite when you begin with عَفْوًا or آسِف عَلَى الْإِزْعَاج and name the problem without blame. Staff usually answer with an apology such as اِعْذُرْنَا and fix it on the spot.",
@@ -1745,6 +1957,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "شُكْر",
+          "transliteration": "shukr",
+          "english": "thanks",
+          "category": "Praise"
+        },
+        {
+          "arabic": "تَقْدِير",
+          "transliteration": "taqdeer",
+          "english": "appreciation",
+          "category": "Praise"
+        },
+        {
+          "arabic": "جُهْد",
+          "transliteration": "juhd",
+          "english": "effort",
+          "category": "Praise"
+        },
+        {
+          "arabic": "رَائِع",
+          "transliteration": "raa2i3",
+          "english": "wonderful",
+          "category": "Praise"
+        },
+        {
+          "arabic": "مُمْتَاز",
+          "transliteration": "mumtaaz",
+          "english": "excellent",
+          "category": "Praise"
+        },
+        {
+          "arabic": "مُبْدِع",
+          "transliteration": "mubdi3",
+          "english": "creative",
+          "category": "Praise"
+        },
+        {
+          "arabic": "مَدَحَ",
+          "transliteration": "mada7a",
+          "english": "he praised",
+          "category": "Praise"
+        },
+        {
+          "arabic": "أَحْسَنَ",
+          "transliteration": "a7sana",
+          "english": "he did well",
+          "category": "Praise"
+        }
+      ],
       "culture": "The Muslim way to thank is جَزَاكَ اللَّهُ خَيْرًا, 'may Allah reward you with good', and the usual answer is وَإِيَّاكَ. When someone congratulates you with مَبْرُوك, answer بَارَكَ اللَّهُ فِيكَ, and credit Allah first with الْحَمْدُ لِلَّه. Say it to a woman with the ending كِ: جَزَاكِ اللَّهُ خَيْرًا.",
       "exercises": [
         {
@@ -2077,6 +2339,56 @@
             "transliteration": "saama7aka allaah.",
             "english": "May Allah forgive you."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "اِعْتِذَار",
+          "transliteration": "i3tidhaar",
+          "english": "apology",
+          "category": "Apologies"
+        },
+        {
+          "arabic": "عُذْر",
+          "transliteration": "3udhr",
+          "english": "excuse",
+          "category": "Apologies"
+        },
+        {
+          "arabic": "ذَنْب",
+          "transliteration": "dhanb",
+          "english": "fault",
+          "category": "Apologies"
+        },
+        {
+          "arabic": "قَصْد",
+          "transliteration": "qasd",
+          "english": "intention",
+          "category": "Apologies"
+        },
+        {
+          "arabic": "مُسَامَحَة",
+          "transliteration": "musaama7a",
+          "english": "forgiveness",
+          "category": "Apologies"
+        },
+        {
+          "arabic": "سَامَحَ",
+          "transliteration": "saama7a",
+          "english": "he forgave",
+          "category": "Apologies"
+        },
+        {
+          "arabic": "عَفَا",
+          "transliteration": "3afaa",
+          "english": "he pardoned",
+          "category": "Apologies"
+        },
+        {
+          "arabic": "نَدِمَ",
+          "transliteration": "nadima",
+          "english": "he regretted",
+          "category": "Apologies"
         }
       ],
       "culture": "Apologizing quickly is a sign of good character, and forgiving is rewarded by Allah. The wronged person answers لَا بَأْس or سَامَحَكَ اللَّه, and both sides can add غَفَرَ اللَّهُ لَنَا جَمِيعًا. Women say أَنَا آسِفَة, men say أَنَا آسِف.",

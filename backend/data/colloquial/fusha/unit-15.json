@@ -214,6 +214,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "فُنْدُق",
+          "transliteration": "funduq",
+          "english": "hotel",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "اِسْتِقْبَال",
+          "transliteration": "istiqbaal",
+          "english": "reception",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "غُرْفَة",
+          "transliteration": "ghurfa",
+          "english": "room",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "جَوَاز",
+          "transliteration": "jawaaz",
+          "english": "passport",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "لَيْلَة",
+          "transliteration": "layla",
+          "english": "night (stay)",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "مُفْرَد",
+          "transliteration": "mufrad",
+          "english": "single",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "مُزْدَوِج",
+          "transliteration": "muzdawij",
+          "english": "double",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "إِقَامَة",
+          "transliteration": "iqaama",
+          "english": "stay",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "حَقَائِب",
+          "transliteration": "7aqaa2ib",
+          "english": "luggage",
+          "category": "Hotel"
+        }
+      ],
       "culture": "At a hotel reception in any Arab country, staff speak Fusha or a mix with the local dialect, and a polite مِنْ فَضْلِك goes a long way. Breakfast is often included, and check-out is usually around noon.",
       "exercises": [
         {
@@ -652,6 +708,56 @@
             "transliteration": "na7wa khamsi saa3aat",
             "english": "About five hours."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "حَجْز",
+          "transliteration": "7ajz",
+          "english": "booking",
+          "category": "Booking"
+        },
+        {
+          "arabic": "تَذْكِرَة",
+          "transliteration": "tadhkira",
+          "english": "ticket",
+          "category": "Booking"
+        },
+        {
+          "arabic": "ذَهَاب",
+          "transliteration": "dhahaab",
+          "english": "outward (journey)",
+          "category": "Booking"
+        },
+        {
+          "arabic": "إِيَاب",
+          "transliteration": "iyaab",
+          "english": "return (journey)",
+          "category": "Booking"
+        },
+        {
+          "arabic": "تَارِيخ",
+          "transliteration": "taareekh",
+          "english": "date",
+          "category": "Booking"
+        },
+        {
+          "arabic": "مُؤَكَّد",
+          "transliteration": "mu2akkad",
+          "english": "confirmed",
+          "category": "Booking"
+        },
+        {
+          "arabic": "اِسْتِرْدَاد",
+          "transliteration": "istirdaad",
+          "english": "refund",
+          "category": "Booking"
+        },
+        {
+          "arabic": "مَقْعَد",
+          "transliteration": "maq3ad",
+          "english": "seat",
+          "category": "Booking"
         }
       ],
       "culture": "Intercity buses and coaches are the usual way to travel between Arab cities, and tickets are bought at the ticket window or online. Students often get a discount if they show a card, so asking is normal.",
@@ -1096,6 +1202,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَطَار",
+          "transliteration": "mataar",
+          "english": "airport",
+          "category": "Airport"
+        },
+        {
+          "arabic": "تَأْشِيرَة",
+          "transliteration": "ta2sheera",
+          "english": "visa",
+          "category": "Airport"
+        },
+        {
+          "arabic": "جُمْرُك",
+          "transliteration": "jumruk",
+          "english": "customs",
+          "category": "Airport"
+        },
+        {
+          "arabic": "حُدُود",
+          "transliteration": "7udood",
+          "english": "border",
+          "category": "Airport"
+        },
+        {
+          "arabic": "بَوَّابَة",
+          "transliteration": "bawwaaba",
+          "english": "gate",
+          "category": "Airport"
+        },
+        {
+          "arabic": "أَمْتِعَة",
+          "transliteration": "amti3a",
+          "english": "baggage",
+          "category": "Airport"
+        },
+        {
+          "arabic": "وَزْن",
+          "transliteration": "wazn",
+          "english": "weight",
+          "category": "Airport"
+        },
+        {
+          "arabic": "إِقْلَاع",
+          "transliteration": "iqlaa3",
+          "english": "take-off",
+          "category": "Airport"
+        },
+        {
+          "arabic": "هُبُوط",
+          "transliteration": "huboot",
+          "english": "landing",
+          "category": "Airport"
+        }
+      ],
       "culture": "At the airport the border officer usually asks short questions in Fusha or the local dialect: purpose of the visit, length of stay, anything to declare. A calm, polite answer and a greeting like أَهْلًا وَسَهْلًا from the officer mark a smooth arrival.",
       "exercises": [
         {
@@ -1531,6 +1693,56 @@
             "transliteration": "7aadir, maadha 7adath?",
             "english": "Certainly, what happened?"
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "mushkila",
+          "english": "problem",
+          "category": "Problems"
+        },
+        {
+          "arabic": "تَأْخِير",
+          "transliteration": "ta2kheer",
+          "english": "delay",
+          "category": "Problems"
+        },
+        {
+          "arabic": "مَفْقُود",
+          "transliteration": "mafqood",
+          "english": "lost (item)",
+          "category": "Problems"
+        },
+        {
+          "arabic": "شُرْطَة",
+          "transliteration": "shurta",
+          "english": "police",
+          "category": "Problems"
+        },
+        {
+          "arabic": "سِفَارَة",
+          "transliteration": "sifaara",
+          "english": "embassy",
+          "category": "Problems"
+        },
+        {
+          "arabic": "ضَاعَ",
+          "transliteration": "daa3a",
+          "english": "it got lost",
+          "category": "Problems"
+        },
+        {
+          "arabic": "سُرِقَ",
+          "transliteration": "suriqa",
+          "english": "it was stolen",
+          "category": "Problems"
+        },
+        {
+          "arabic": "فَاتَ",
+          "transliteration": "faata",
+          "english": "it was missed",
+          "category": "Problems"
         }
       ],
       "culture": "When something goes wrong while travelling, people ask for help politely with مِنْ فَضْلِك and explain the problem in a short sentence. A common thing to say to someone facing a setback is عَوَّضَ اللهُ عَلَيْكَ, and the usual answer is آمِين.",
@@ -1974,6 +2186,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "سَائِح",
+          "transliteration": "saa2i7",
+          "english": "tourist",
+          "category": "Sightseeing"
+        },
+        {
+          "arabic": "مُرْشِد",
+          "transliteration": "murshid",
+          "english": "guide",
+          "category": "Sightseeing"
+        },
+        {
+          "arabic": "جَوْلَة",
+          "transliteration": "jawla",
+          "english": "tour",
+          "category": "Sightseeing"
+        },
+        {
+          "arabic": "مَتْحَف",
+          "transliteration": "mat7af",
+          "english": "museum",
+          "category": "Sightseeing"
+        },
+        {
+          "arabic": "آثَار",
+          "transliteration": "aathaar",
+          "english": "ruins, antiquities",
+          "category": "Sightseeing"
+        },
+        {
+          "arabic": "مَعْلَم",
+          "transliteration": "ma3lam",
+          "english": "landmark",
+          "category": "Sightseeing"
+        },
+        {
+          "arabic": "مَنْظَر",
+          "transliteration": "manzar",
+          "english": "view",
+          "category": "Sightseeing"
+        },
+        {
+          "arabic": "خَرِيطَة",
+          "transliteration": "khareeta",
+          "english": "map",
+          "category": "Sightseeing"
+        },
+        {
+          "arabic": "قَدِيم",
+          "transliteration": "qadeem",
+          "english": "old, ancient",
+          "category": "Sightseeing"
+        }
+      ],
       "culture": "Mosques are open to visitors outside prayer times in many places. Visitors take off their shoes at the entrance, dress modestly and speak quietly, and women usually cover their hair. Museums and old cities are often closed one day a week, so ask يَوْمَ الْإِغْلَاق (the closing day) before you go.",
       "exercises": [
         {
@@ -2355,6 +2623,56 @@
             "transliteration": "ishrabi al-maa2a katheeran",
             "english": "Drink plenty of water."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "شَاطِئ",
+          "transliteration": "shaati2",
+          "english": "beach",
+          "category": "Beach"
+        },
+        {
+          "arabic": "بَحْر",
+          "transliteration": "ba7r",
+          "english": "sea",
+          "category": "Beach"
+        },
+        {
+          "arabic": "رَمْل",
+          "transliteration": "raml",
+          "english": "sand",
+          "category": "Beach"
+        },
+        {
+          "arabic": "مَوْج",
+          "transliteration": "mawj",
+          "english": "waves",
+          "category": "Beach"
+        },
+        {
+          "arabic": "صَدَف",
+          "transliteration": "sadaf",
+          "english": "shells",
+          "category": "Beach"
+        },
+        {
+          "arabic": "قَارِب",
+          "transliteration": "qaarib",
+          "english": "boat",
+          "category": "Beach"
+        },
+        {
+          "arabic": "شَمْسِيَّة",
+          "transliteration": "shamsiyya",
+          "english": "sunshade",
+          "category": "Beach"
+        },
+        {
+          "arabic": "سَبَحَ",
+          "transliteration": "saba7a",
+          "english": "he swam",
+          "category": "Beach"
         }
       ],
       "culture": "Families usually go to a family beach and wear modest swimwear, and many keep out of the midday sun and bring plenty of water. Swim near the lifeguard and obey the flag colours, because sea conditions in summer can change quickly.",
@@ -2753,6 +3071,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تِذْكَار",
+          "transliteration": "tidhkaar",
+          "english": "souvenir",
+          "category": "Souvenirs"
+        },
+        {
+          "arabic": "هَدِيَّة",
+          "transliteration": "hadiyya",
+          "english": "gift",
+          "category": "Souvenirs"
+        },
+        {
+          "arabic": "صُنْدُوق",
+          "transliteration": "sundooq",
+          "english": "box",
+          "category": "Souvenirs"
+        },
+        {
+          "arabic": "صَابُون",
+          "transliteration": "saaboon",
+          "english": "soap",
+          "category": "Souvenirs"
+        },
+        {
+          "arabic": "حَرِير",
+          "transliteration": "7areer",
+          "english": "silk",
+          "category": "Souvenirs"
+        },
+        {
+          "arabic": "نُحَاس",
+          "transliteration": "nu7aas",
+          "english": "copper",
+          "category": "Souvenirs"
+        },
+        {
+          "arabic": "يَدَوِيّ",
+          "transliteration": "yadawiyy",
+          "english": "handmade",
+          "category": "Souvenirs"
+        },
+        {
+          "arabic": "تَقْلِيدِيّ",
+          "transliteration": "taqleediyy",
+          "english": "traditional",
+          "category": "Souvenirs"
+        }
+      ],
       "culture": "Dates, oud and a prayer rug are the classic gifts carried home from a trip, and a gift is chosen for each person by name. Bargaining is gentle: ask for a better price once, politely, and a seller often offers a taste or a small discount in return.",
       "exercises": [
         {
@@ -3148,6 +3516,56 @@
             "transliteration": "al-Hamdu lillaahi 3alaa as-salaama",
             "english": "Welcome back, thank God for your safety."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "إِجَازَة",
+          "transliteration": "ijaaza",
+          "english": "holiday, leave",
+          "category": "Holidays"
+        },
+        {
+          "arabic": "رِحْلَة",
+          "transliteration": "ri7la",
+          "english": "trip",
+          "category": "Holidays"
+        },
+        {
+          "arabic": "خُطَّة",
+          "transliteration": "khutta",
+          "english": "plan",
+          "category": "Holidays"
+        },
+        {
+          "arabic": "صُورَة",
+          "transliteration": "soora",
+          "english": "photo",
+          "category": "Holidays"
+        },
+        {
+          "arabic": "ذِكْرَى",
+          "transliteration": "dhikraa",
+          "english": "memory",
+          "category": "Holidays"
+        },
+        {
+          "arabic": "مُمْتِع",
+          "transliteration": "mumti3",
+          "english": "enjoyable",
+          "category": "Holidays"
+        },
+        {
+          "arabic": "اِلْتَقَطَ",
+          "transliteration": "iltaqata",
+          "english": "he took (a photo)",
+          "category": "Holidays"
+        },
+        {
+          "arabic": "اِسْتَمْتَعَ",
+          "transliteration": "istamta3a",
+          "english": "he enjoyed",
+          "category": "Holidays"
         }
       ],
       "culture": "Holiday plans are shared openly with friends and family, and a person back from a trip is greeted with al-Hamdu lillaahi 3alaa as-salaama, thanks to God for a safe return. Asking a passer-by to take a photo of the group is polite and common; photographing strangers without asking is not.",

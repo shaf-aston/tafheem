@@ -230,6 +230,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "خُضَار",
+          "transliteration": "khudaar",
+          "english": "vegetables",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "طَمَاطِم",
+          "transliteration": "tamaatim",
+          "english": "tomatoes",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "بَصَل",
+          "transliteration": "basal",
+          "english": "onions",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "بَطَاطَا",
+          "transliteration": "bataataa",
+          "english": "potatoes",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "خِيَار",
+          "transliteration": "khiyaar",
+          "english": "cucumber",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "جَزَر",
+          "transliteration": "jazar",
+          "english": "carrots",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "ثُوم",
+          "transliteration": "thoom",
+          "english": "garlic",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "بَاذِنْجَان",
+          "transliteration": "baadhinjaan",
+          "english": "aubergine",
+          "category": "Vegetables"
+        },
+        {
+          "arabic": "كِيلُو",
+          "transliteration": "keeloo",
+          "english": "kilo",
+          "category": "Vegetables"
+        }
+      ],
       "culture": "At a market stall you ask the price with بِكَمْ and may bargain a little, and saying الْبَاقِي لَكَ leaves the change as a tip. A polite customer says مِنْ فَضْلِكَ and شُكْرًا with every request.",
       "exercises": [
         {
@@ -632,6 +688,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَخْبَز",
+          "transliteration": "makhbaz",
+          "english": "bakery",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "خَبَّاز",
+          "transliteration": "khabbaaz",
+          "english": "baker",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "رَغِيف",
+          "transliteration": "ragheef",
+          "english": "loaf",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "مُعَجَّنَات",
+          "transliteration": "mu3ajjanaat",
+          "english": "pastries",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "كَعْك",
+          "transliteration": "ka3k",
+          "english": "ring bread, biscuits",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "جَزَّار",
+          "transliteration": "jazzaar",
+          "english": "butcher",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "دَجَاج",
+          "transliteration": "dajaaj",
+          "english": "chicken",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "خَرُوف",
+          "transliteration": "kharoof",
+          "english": "lamb, sheep",
+          "category": "Bakery and butcher"
+        },
+        {
+          "arabic": "سَمَك",
+          "transliteration": "samak",
+          "english": "fish",
+          "category": "Bakery and butcher"
+        }
+      ],
       "culture": "Bakeries sell bread by the bundle and butchers sell meat by the kilo, and the butcher cuts the meat the way you ask. Parting words such as بَارَكَ اللَّهُ فِيكَ are a warm way to thank a shopkeeper you see often.",
       "exercises": [
         {
@@ -1017,6 +1129,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَطْبَخ",
+          "transliteration": "matbakh",
+          "english": "kitchen",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "قِدْر",
+          "transliteration": "qidr",
+          "english": "cooking pot",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "فُرْن",
+          "transliteration": "furn",
+          "english": "oven",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "مِلْح",
+          "transliteration": "mil7",
+          "english": "salt",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "زَيْت",
+          "transliteration": "zayt",
+          "english": "oil",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "سُكَّر",
+          "transliteration": "sukkar",
+          "english": "sugar",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "وَصْفَة",
+          "transliteration": "wasfa",
+          "english": "recipe",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "طَبَخَ",
+          "transliteration": "tabakha",
+          "english": "he cooked",
+          "category": "Cooking"
+        },
+        {
+          "arabic": "قَطَّعَ",
+          "transliteration": "qatta3a",
+          "english": "he chopped",
+          "category": "Cooking"
+        }
+      ],
       "culture": "When people cook together the cook gives short orders such as أَبْقِ النَّارَ خَفِيفَة, and يَجِبُ أَنْ means 'we need to'. A guest praises the smell of the dish first, and the cook answers with modest thanks.",
       "exercises": [
         {
@@ -1390,6 +1558,62 @@
             "transliteration": "laa yu3jibunee haathaa at-ta3aam.",
             "english": "I don't like this food."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَعْم",
+          "transliteration": "ta3m",
+          "english": "taste",
+          "category": "Tastes"
+        },
+        {
+          "arabic": "لَذِيذ",
+          "transliteration": "ladheedh",
+          "english": "delicious",
+          "category": "Tastes"
+        },
+        {
+          "arabic": "حُلْو",
+          "transliteration": "7ulw",
+          "english": "sweet",
+          "category": "Tastes"
+        },
+        {
+          "arabic": "مَالِح",
+          "transliteration": "maali7",
+          "english": "salty",
+          "category": "Tastes"
+        },
+        {
+          "arabic": "حَارّ",
+          "transliteration": "7aarr",
+          "english": "spicy, hot",
+          "category": "Tastes"
+        },
+        {
+          "arabic": "حَامِض",
+          "transliteration": "7aamid",
+          "english": "sour",
+          "category": "Tastes"
+        },
+        {
+          "arabic": "مُرّ",
+          "transliteration": "murr",
+          "english": "bitter",
+          "category": "Tastes"
+        },
+        {
+          "arabic": "أَحَبَّ",
+          "transliteration": "a7abba",
+          "english": "he liked, loved",
+          "category": "Tastes"
+        },
+        {
+          "arabic": "كَرِهَ",
+          "transliteration": "kariha",
+          "english": "he disliked",
+          "category": "Tastes"
         }
       ],
       "culture": "To refuse a food politely, say لَا يُعْجِبُنِي ('it does not please me') rather than a blunt no. A guest may also say he does not eat a food, as in لَا آكُلُ لَحْمَ الْخِنْزِير, and the host accepts this without offence.",
@@ -1770,6 +1994,62 @@
             "transliteration": "as-si3ru an-nihaa2eeyu sittata 3ashara deenaran.",
             "english": "The final price is sixteen dinars."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سِعْر",
+          "transliteration": "si3r",
+          "english": "price",
+          "category": "Buying"
+        },
+        {
+          "arabic": "بَائِع",
+          "transliteration": "baa2i3",
+          "english": "seller",
+          "category": "Buying"
+        },
+        {
+          "arabic": "زَبُون",
+          "transliteration": "zaboon",
+          "english": "customer",
+          "category": "Buying"
+        },
+        {
+          "arabic": "رَخِيص",
+          "transliteration": "rakhees",
+          "english": "cheap",
+          "category": "Buying"
+        },
+        {
+          "arabic": "غَالٍ",
+          "transliteration": "ghaalin",
+          "english": "expensive",
+          "category": "Buying"
+        },
+        {
+          "arabic": "نُقُود",
+          "transliteration": "nuqood",
+          "english": "money",
+          "category": "Buying"
+        },
+        {
+          "arabic": "كِيس",
+          "transliteration": "kees",
+          "english": "bag",
+          "category": "Buying"
+        },
+        {
+          "arabic": "مِيزَان",
+          "transliteration": "meezaan",
+          "english": "scales",
+          "category": "Buying"
+        },
+        {
+          "arabic": "فَاكِهَة",
+          "transliteration": "faakiha",
+          "english": "fruit",
+          "category": "Buying"
         }
       ],
       "culture": "In a Fusha-speaking market, prices are asked with بِكَمْ and bargaining is polite: هَلْ يُوجَدُ خَصْم؟ is the standard way to ask for a reduction. Once both sides say اِتَّفَقْنَا, the deal is closed and it is not reopened.",

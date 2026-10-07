@@ -223,6 +223,62 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَقْهًى",
+          "transliteration": "maqhan",
+          "english": "café",
+          "category": "At the café"
+        },
+        {
+          "arabic": "فِنْجَان",
+          "transliteration": "finjaan",
+          "english": "small coffee cup",
+          "category": "At the café"
+        },
+        {
+          "arabic": "كُوب",
+          "transliteration": "koob",
+          "english": "cup, mug",
+          "category": "At the café"
+        },
+        {
+          "arabic": "بُنّ",
+          "transliteration": "bunn",
+          "english": "coffee beans",
+          "category": "At the café"
+        },
+        {
+          "arabic": "هَيْل",
+          "transliteration": "hayl",
+          "english": "cardamom",
+          "category": "At the café"
+        },
+        {
+          "arabic": "نَادِل",
+          "transliteration": "naadil",
+          "english": "waiter",
+          "category": "At the café"
+        },
+        {
+          "arabic": "مَشْرُوب",
+          "transliteration": "mashroob",
+          "english": "drink",
+          "category": "At the café"
+        },
+        {
+          "arabic": "سَاخِن",
+          "transliteration": "saakhin",
+          "english": "hot",
+          "category": "At the café"
+        },
+        {
+          "arabic": "بَارِد",
+          "transliteration": "baarid",
+          "english": "cold",
+          "category": "At the café"
+        }
+      ],
       "culture": "In a Fusha-speaking café the order is polite and short: the drink, then مِنْ فَضْلِكَ. Coffee is usually served in a small cup and offered bitter or sweet, and tea often comes with mint.",
       "exercises": [
         {
@@ -601,6 +657,62 @@
             "transliteration": "bikhamseena leera.",
             "english": "Fifty pounds."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "قَائِمَة",
+          "transliteration": "qaa2ima",
+          "english": "menu, list",
+          "category": "The menu"
+        },
+        {
+          "arabic": "طَبَق",
+          "transliteration": "tabaq",
+          "english": "dish",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مُقَبِّلَات",
+          "transliteration": "muqabbilaat",
+          "english": "starters",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَسَاء",
+          "transliteration": "7asaa2",
+          "english": "soup",
+          "category": "The menu"
+        },
+        {
+          "arabic": "سَلَطَة",
+          "transliteration": "salata",
+          "english": "salad",
+          "category": "The menu"
+        },
+        {
+          "arabic": "حَلْوَى",
+          "transliteration": "7alwaa",
+          "english": "dessert, sweets",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مَشْوِيّ",
+          "transliteration": "mashwiyy",
+          "english": "grilled",
+          "category": "The menu"
+        },
+        {
+          "arabic": "مَقْلِيّ",
+          "transliteration": "maqliyy",
+          "english": "fried",
+          "category": "The menu"
+        },
+        {
+          "arabic": "نَبَاتِيّ",
+          "transliteration": "nabaatiyy",
+          "english": "vegetarian",
+          "category": "The menu"
         }
       ],
       "culture": "In Fusha the waiter is asked directly and politely, often with هَلْ عِنْدَكُمْ. A request for a recommendation, مَاذَا تَنْصَحُنِي, is welcome in any restaurant.",
@@ -984,6 +1096,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "طَاوِلَة",
+          "transliteration": "taawila",
+          "english": "table",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "حَجْز",
+          "transliteration": "7ajz",
+          "english": "reservation",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "وَجْبَة",
+          "transliteration": "wajba",
+          "english": "meal",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "كَمِّيَّة",
+          "transliteration": "kammiyya",
+          "english": "amount, portion",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "إِضَافِيّ",
+          "transliteration": "idaafiyy",
+          "english": "extra",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "شَهِيَّة",
+          "transliteration": "shahiyya",
+          "english": "appetite",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "طَلَبَ",
+          "transliteration": "talaba",
+          "english": "he ordered",
+          "category": "Ordering"
+        },
+        {
+          "arabic": "أَرَادَ",
+          "transliteration": "araada",
+          "english": "he wanted",
+          "category": "Ordering"
+        }
+      ],
       "culture": "Ordering in Fusha is done with the future سَآخُذُ and wish words like أُرِيدُ, never with a bare command. Saying مِنْ فَضْلِكَ and شُكْرًا with every request keeps the meal friendly.",
       "exercises": [
         {
@@ -1357,6 +1519,56 @@
             "transliteration": "bil-hanaa2i wash-shifaa2.",
             "english": "Enjoy it and be well."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Paying"
+        },
+        {
+          "arabic": "فَاتُورَة",
+          "transliteration": "faatoora",
+          "english": "invoice, receipt",
+          "category": "Paying"
+        },
+        {
+          "arabic": "مَجْمُوع",
+          "transliteration": "majmoo3",
+          "english": "total",
+          "category": "Paying"
+        },
+        {
+          "arabic": "مَبْلَغ",
+          "transliteration": "mablagh",
+          "english": "amount (of money)",
+          "category": "Paying"
+        },
+        {
+          "arabic": "نَقْدًا",
+          "transliteration": "naqdan",
+          "english": "in cash",
+          "category": "Paying"
+        },
+        {
+          "arabic": "بِطَاقَة",
+          "transliteration": "bitaaqa",
+          "english": "card",
+          "category": "Paying"
+        },
+        {
+          "arabic": "إِكْرَامِيَّة",
+          "transliteration": "ikraamiyya",
+          "english": "tip",
+          "category": "Paying"
+        },
+        {
+          "arabic": "دَفَعَ",
+          "transliteration": "dafa3a",
+          "english": "he paid",
+          "category": "Paying"
         }
       ],
       "culture": "Insisting on paying is part of Arab hospitality, so a polite tug-of-war over the bill is normal. تُسْلَمُ يَدَاكَ, 'may your hands be safe', is the warm way to praise the cook.",
@@ -1733,6 +1945,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "mat3am",
+          "english": "restaurant",
+          "category": "Fast food"
+        },
+        {
+          "arabic": "شَاوِرْمَا",
+          "transliteration": "shaawirmaa",
+          "english": "shawarma",
+          "category": "Fast food"
+        },
+        {
+          "arabic": "فَلَافِل",
+          "transliteration": "falaafil",
+          "english": "falafel",
+          "category": "Fast food"
+        },
+        {
+          "arabic": "شَطِيرَة",
+          "transliteration": "shateera",
+          "english": "sandwich",
+          "category": "Fast food"
+        },
+        {
+          "arabic": "بِيتْزَا",
+          "transliteration": "beetzaa",
+          "english": "pizza",
+          "category": "Fast food"
+        },
+        {
+          "arabic": "تَوْصِيل",
+          "transliteration": "tawseel",
+          "english": "delivery",
+          "category": "Fast food"
+        },
+        {
+          "arabic": "عُلْبَة",
+          "transliteration": "3ulba",
+          "english": "box, container",
+          "category": "Fast food"
+        },
+        {
+          "arabic": "سَرِيع",
+          "transliteration": "saree3",
+          "english": "fast",
+          "category": "Fast food"
+        }
+      ],
       "culture": "Fast-food counters in the Arab world are quick and friendly, and the first question is usually whether the order is to eat in or to take away. Many chains are fully halal, but asking هَلِ اللَّحْم حَلَال؟ is normal and never rude. A meal, وَجْبَة, usually comes as a set with fries and a drink.",
       "exercises": [
         {
@@ -2069,6 +2331,56 @@
             "transliteration": "bi-kulli suroor.",
             "english": "With pleasure."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "دَعْوَة",
+          "transliteration": "da3wa",
+          "english": "invitation",
+          "category": "Invitations"
+        },
+        {
+          "arabic": "ضَيْف",
+          "transliteration": "dayf",
+          "english": "guest",
+          "category": "Invitations"
+        },
+        {
+          "arabic": "مُضِيف",
+          "transliteration": "mudeef",
+          "english": "host",
+          "category": "Invitations"
+        },
+        {
+          "arabic": "حَفْلَة",
+          "transliteration": "7afla",
+          "english": "party",
+          "category": "Invitations"
+        },
+        {
+          "arabic": "مُنَاسَبَة",
+          "transliteration": "munaasaba",
+          "english": "occasion",
+          "category": "Invitations"
+        },
+        {
+          "arabic": "كَرَم",
+          "transliteration": "karam",
+          "english": "generosity",
+          "category": "Invitations"
+        },
+        {
+          "arabic": "كَرِيم",
+          "transliteration": "kareem",
+          "english": "generous",
+          "category": "Invitations"
+        },
+        {
+          "arabic": "عَزَمَ",
+          "transliteration": "3azama",
+          "english": "he invited",
+          "category": "Invitations"
         }
       ],
       "culture": "A guest says بِسْمِ اللهِ before the first bite and eats with the right hand. The host will urge you to take more, so refusing once and then accepting a little is polite. Thank the host with جَزَاكُمُ اللهُ خَيْرًا, and the answer is وَإِيَّاكُمْ.",
