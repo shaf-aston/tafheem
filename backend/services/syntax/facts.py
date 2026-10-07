@@ -317,7 +317,8 @@ def _joins_clauses(token: dict, s: Sentence) -> bool:
 def is_object_pronoun(token: dict) -> bool:
     """إيّاك، إيّاه: the detached pronoun of nasb, only ever an object (Tasheel 2.4.1 p31),
     though the parser tags its إيا a particle."""
-    return strip_diacritics(token["form"]).startswith("إيا") and _listed(token, "damir_munfasil")
+    stem = strip_diacritics(token["form"])
+    return any(stem.startswith(s) for s in book_words("damir_munfasil", "object_stem")) and _listed(token, "damir_munfasil")
 
 
 def negates(token: dict, s: Sentence) -> bool:

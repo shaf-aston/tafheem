@@ -133,12 +133,14 @@ def _judged(word: str) -> frozenset[str]:
     return frozenset(roles(next(c for c in _tree()["children"] if c["is"] == word)))
 
 
-def _merged(tokens: list[dict]) -> None:
+def _merged(tokens: list[dict], s: facts.Sentence) -> None:
     """أَلَّا (shadda on the lam) is أنْ with its nun merged into لا (data: nasb_mudari `merges`):
-    the word is the nasb particle, and the لا the parser split off it a plain negation."""
+    the word is the nasb particle, and the لا the parser split off it a plain negation.
+    Only before a present verb (أنّ + لا before a noun is not this)."""
     for word, merged in book_map("nasb_mudari", "merges").items():
         for token, tail in zip(tokens, tokens[1:]):
-            if strip_diacritics(token["lemma"]) == word and SHADDA in (token.get("typed") or "") and _attached(tail):
+            if strip_diacritics(token["lemma"]) == word and SHADDA in (token.get("typed") or "") and _attached(tail) \
+                    and (after := _next(tail, s)) and facts.is_verb(after) and after.get("asp") == "i":
                 token["reading"] = {"family": "nasb_mudari", "named": merged["named"], "kind": "harf", "book": None}
                 tail["reading"] = {"family": merged["tail"], "named": None, "kind": "harf", "book": None}
 
@@ -158,4 +160,4 @@ def stamp(tokens: list[dict]) -> None:
         if found := walker.walk(values, _tree()):
             token["reading"] = {"family": found.role, "named": found.leaf.get("named"),
                                 "kind": found.leaf.get("kind", "harf"), "book": found.book}
-    _merged(tokens)
+    _merged(tokens, s)

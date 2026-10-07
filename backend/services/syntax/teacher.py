@@ -12,10 +12,10 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters
-from backend.services.nahw_book import case_of, is_mabni, is_one, named_roles, teacher_rules
+from backend.services.nahw_book import book_words, case_of, is_mabni, is_one, named_roles, teacher_rules
 from backend.services.syntax.facts import (
     Sentence, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of)
-from backend.services.syntax.naming import FOLLOWERS, base_tokens, roles_keyed
+from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, roles_keyed
 from backend.services.harakat import CASE_NAME
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
@@ -122,6 +122,13 @@ CHECKS = {
     "follower_needs_noun": _follower_needs_noun,
     "tamyeez_needs_number": _tamyeez_needs_number,
 }
+
+
+def tool_reason(word: dict) -> str | None:
+    """غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule."""
+    if word.get("role") == NAMED.mustathna and word.get("case") == "nasb"             and word["camel"]["base"] in book_words("istithna", "nouns"):
+        return teacher_rules()["case_said"]["istithna_noun"].format(sign=word["sign"])
+    return None
 
 
 def review(words: list[str], tokens: list[dict], found: list[dict]) -> list[dict]:

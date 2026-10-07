@@ -14,7 +14,8 @@ from __future__ import annotations
 
 from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
 from backend.services.harakat import CASE_NAME
-from backend.services.nahw_book import book_words, case_of, family_cards, reason, teacher_rules
+from backend.services.nahw_book import case_of, family_cards, reason, teacher_rules
+from backend.services.syntax import teacher
 from backend.services.syntax.naming import NAMED, role_key
 
 
@@ -62,8 +63,8 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
             word["role"] = found["pair"][word["role"]]
             word["reason"] = reason(word["role"])
     for word in words:  # غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule
-        if word.get("role") == NAMED.mustathna and word.get("case") == "nasb"                 and word["camel"]["base"] in book_words("istithna", "nouns"):
-            word["reason"] = teacher_rules()["case_said"]["istithna_noun"].format(sign=word["sign"])
+        if teacher.tool_reason(word):
+            word["reason"] = teacher.tool_reason(word)
     _pieces_said(words, roles)
     return rule_engine.mark_condition(words, roles)
 
