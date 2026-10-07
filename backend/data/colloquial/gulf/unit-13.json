@@ -220,6 +220,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَبْسُوط",
+          "transliteration": "mabsooT",
+          "english": "happy",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "زَعْلَان",
+          "transliteration": "za3laan",
+          "english": "upset",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "جُوعَان",
+          "transliteration": "joo3aan",
+          "english": "hungry",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "قَلْقَان",
+          "transliteration": "galgaan",
+          "english": "worried",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "خَايِف",
+          "transliteration": "khaayif",
+          "english": "scared",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "اِمْتِحَان",
+          "transliteration": "imti7aan",
+          "english": "exam",
+          "category": "Feelings"
+        },
+        {
+          "arabic": "مَرَّة",
+          "transliteration": "marra",
+          "english": "very",
+          "category": "Feelings"
+        }
+      ],
       "culture": "In the UAE and Kuwait a greeting like \"شلونك؟\" or \"شخبارك؟\" is met with \"الحمد لله\" and a few blessings, whatever the mood. You say \"تعبان\" or \"زعلان\" plainly only to close friends and family, who will then ask \"شفيك؟\".",
       "exercises": [
         {
@@ -608,6 +658,56 @@
             "transliteration": "zeen, maashi",
             "english": "OK, that works."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "صَحّ",
+          "transliteration": "Sa77",
+          "english": "right, correct",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "حَقّ",
+          "transliteration": "7agg",
+          "english": "right (being right)",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "مُوَافِق",
+          "transliteration": "muwaafig",
+          "english": "agreeing",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "رَاي",
+          "transliteration": "raay",
+          "english": "opinion",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "يِمْكِن",
+          "transliteration": "yimkin",
+          "english": "maybe",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "جِذِي",
+          "transliteration": "jidhi",
+          "english": "like this",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "صَحِيح",
+          "transliteration": "Sa7ee7",
+          "english": "true",
+          "category": "Agreeing"
+        },
+        {
+          "arabic": "بَسّ",
+          "transliteration": "bass",
+          "english": "but, only",
+          "category": "Agreeing"
         }
       ],
       "culture": "In the Gulf a flat \"لا\" can sound blunt, so people soften a disagreement with \"يمكن، بس\" or \"زين، بس\" before giving their view. \"زين\" and \"ماشي\" are the light way to say OK, and \"معاك حق\" is warm enough to use with elders and friends alike.",
@@ -1002,6 +1102,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "نَصِيحَة",
+          "transliteration": "naSee7a",
+          "english": "advice",
+          "category": "Advice"
+        },
+        {
+          "arabic": "دُكْتُور",
+          "transliteration": "doktoor",
+          "english": "doctor",
+          "category": "Advice"
+        },
+        {
+          "arabic": "دَوَاء",
+          "transliteration": "dawaa2",
+          "english": "medicine",
+          "category": "Advice"
+        },
+        {
+          "arabic": "لَازِم",
+          "transliteration": "laazim",
+          "english": "must, should",
+          "category": "Advice"
+        },
+        {
+          "arabic": "أَحْسَن",
+          "transliteration": "a7san",
+          "english": "better",
+          "category": "Advice"
+        },
+        {
+          "arabic": "بَال",
+          "transliteration": "baal",
+          "english": "mind, attention",
+          "category": "Advice"
+        },
+        {
+          "arabic": "هَادِي",
+          "transliteration": "haadi",
+          "english": "calm",
+          "category": "Advice"
+        },
+        {
+          "arabic": "رَاحَة",
+          "transliteration": "raa7a",
+          "english": "rest",
+          "category": "Advice"
+        }
+      ],
       "culture": "Gulf friends and relatives give advice openly and warmly with \"لازم\" and \"دير بالك\", and it is taken as care, not criticism. After someone mentions being ill, the usual reply is \"الله يشافيك\", may God heal you.",
       "exercises": [
         {
@@ -1383,6 +1533,56 @@
             "transliteration": "akeed, la7dha min fadhlak",
             "english": "Of course, one moment please."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "mushkila",
+          "english": "problem",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "إِزْعَاج",
+          "transliteration": "iz3aaj",
+          "english": "bother, disturbance",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "غَلَط",
+          "transliteration": "ghalaT",
+          "english": "mistake",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "حِسَاب",
+          "transliteration": "7isaab",
+          "english": "bill",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "مُهِمّ",
+          "transliteration": "muhimm",
+          "english": "important",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "مَوْضُوع",
+          "transliteration": "mawDoo3",
+          "english": "matter, subject",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "صُورَة",
+          "transliteration": "Soora",
+          "english": "picture",
+          "category": "Complaining"
+        },
+        {
+          "arabic": "فْلُوس",
+          "transliteration": "floos",
+          "english": "money",
+          "category": "Complaining"
         }
       ],
       "culture": "A complaint in the UAE and Kuwait starts calmly with \"لو سمحت\" or \"آسف على الإزعاج\", and raising your voice is seen as rude. Staff answer with \"آسفين\" and fix it, and it is common to thank them with \"الله يعطيك العافية\".",
