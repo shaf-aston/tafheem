@@ -1846,5 +1846,59 @@
    "`take-me-to-to-a-man` and `will-you-drop-me-at-to-a-man`: \"ديني للمحطة\" and \"واش تنزلني حدا المحطة\" are correct Darija but concrete examples, not open \"...\" forms; kept as written",
    "\"واش خاوي\" for a free taxi and \"معمر\" for an occupied one are believable Moroccan usage but were not confirmed by search"
   ]
+ },
+ "yemeni/words": {
+  "writer_note": "Model-written, no speaker has checked these. Words its writer was least sure are really said this way in this dialect: nose, mouth, living-room, chilli-sauce, honey-pastry, bad, to-oversleep, to-call-back, to-take-medicine, bottle, boat, tyre, to-chat, old-city, sunshade, tarawih, to-want, to-speak, sock, baklava, motorbike, shared-taxi, microbus, ripe, bowl, nephew, niece, brother-in-law, sister-in-law, cousin, tasty, fries, floor, strength. Review with: python -m backend.scripts.colloquial_word_bank dump yemeni",
+  "valid": true,
+  "fixes": 0,
+  "examples": []
+ },
+ "gulf/words": {
+  "writer_note": "Model-written, no speaker has checked these. Words its writer was least sure are really said this way in this dialect: honey-cake, honey-pastry, chilli-sauce, sunshade, to-oversleep, fed-up, windy, mouth, kaftan, to-find-out, slippery, to-rinse, brother-in-law, sister-in-law, father-in-law, mother-in-law, cousin, nephew, niece, microbus, to-bargain, wife, baby, fries, trainers, sock, clock, shoe, straight-ahead. Review with: python -m backend.scripts.colloquial_word_bank dump gulf",
+  "valid": true,
+  "fixes": 0,
+  "examples": []
+ },
+ "fusha/words": {
+  "writer_note": "Model-written, no speaker has checked these. Words its writer was least sure are really said this way in this dialect: dizzy, to-snow, to-get-engaged, to-oversleep, to-hurt, to-examine, to-expect, to-top-up, to-grow-up, to-be-glad, to-memorise, to-leak, to-book, honey-pastry, counter, router, windy, bored, fed-up, outing, eid-biscuits, honey-cake, comfort, to-comfort, father-in-law, brother-in-law, sister-in-law, to-brush, shared-taxi, takeaway, bath, ice-cream, bell-pepper, cashier, stall, change, old, stadium, mall. Review with: python -m backend.scripts.colloquial_word_bank dump fusha",
+  "valid": true,
+  "fixes": 0,
+  "examples": []
+ },
+ "iraqi/words": {
+  "writer_note": "Model-written, no speaker has checked these. Words its writer was least sure are really said this way in this dialect: windy, slippery, to-hurt, to-oversleep, to-find-out, toy, to-pack, to-depend, to-comfort, to-join, choppy, sunshade, sunglasses, grandmother, brother-in-law, sister-in-law, frying-pan, to-fit, sale, demanding, to-want, shared-taxi, microbus, mug, village, calligraphy. Review with: python -m backend.scripts.colloquial_word_bank dump iraqi",
+  "valid": true,
+  "fixes": 0,
+  "examples": []
+ },
+ "egyptian/words": {
+  "writer_note": "Model-written, no speaker has checked these. Words its writer was least sure are really said this way in this dialect: mouth, windy, choppy, frozen, handmade, to-do-well, top-student, fed-up, graduation-cap, to-comfort, sunshade, one-way, round-trip, to-rinse, to-breathe, to-check, to-join, to-pass-on, prayer-rug, to-oversleep, forecast, to-depend, bunch, to-intend, to-fit, to-try-on, cold, cheerful, container, cousin, nephew, niece, brother-in-law, sister-in-law, dark-colour, orange, old-town, craftsman, professor, degree, demanding, to-track, to-bargain, to-like. Review with: python -m backend.scripts.colloquial_word_bank dump egyptian",
+  "valid": true,
+  "fixes": 0,
+  "examples": []
+ },
+ "damascene/words": {
+  "writer_note": "Model-written, no speaker has checked these. Words its writer was least sure are really said this way in this dialect: week, grandmother, brother-in-law, sister-in-law, boss, waiter, container, thin-bread, phd, to-intend, to-bargain, to-get-on, to-be-able, cheerful, fresh, ripe, crowded, gum, honey-cake, to-rain, to-snow, fed-up, bad, to-join, frozen, choppy, to-do-well, tarawih, deceased, good-health, reassurance, cradle, souvenir, bottle. Review with: python -m backend.scripts.colloquial_word_bank dump damascene",
+  "valid": true,
+  "fixes": 0,
+  "examples": []
+ },
+ "lebanese/words": {
+  "writer_note": "Model-written, no speaker has checked these. Words its writer was least sure are really said this way in this dialect: to-depend, handmade, honey-pastry, honey-cake, game, toy, caller, fed-up, to-oversleep, to-call-back, choppy, frozen, old-city, opening-hours, bedding, bandage, arafah, to-comfort, to-console, wooden, prophets-mosque, outward-trip, return-trip, waiter, trainers, fitting-room, food-court, escalator, crowded, microbus, bookshop, mug, cousin, nephew, niece, brother-in-law, sister-in-law, archery, to-grow, to-lift-weights, kids-meal, takeaway. Review with: python -m backend.scripts.colloquial_word_bank dump lebanese",
+  "valid": true,
+  "fixes": 0,
+  "examples": []
+ },
+ "hejazi/words": {
+  "writer_note": "Model-written, no speaker has checked these. Words its writer was least sure are really said this way in this dialect: game, toy, to-rain, to-snow, to-oversleep, to-find-out, honey-cake, honey-pastry, chilli-sauce, hat, glove, to-take-medicine, to-rinse, throat, slippery, frozen, comfort, brother-in-law, sister-in-law, shared-taxi, child, to-like, tasty, to-grow, credit-card, trainers, food-court, opposite, microbus, stall, to-add, to-recommend. Review with: python -m backend.scripts.colloquial_word_bank dump hejazi",
+  "valid": true,
+  "fixes": 0,
+  "examples": []
+ },
+ "moroccan/words": {
+  "writer_note": "Model-written, no speaker has checked these. Words its writer was least sure are really said this way in this dialect: also, another, microbus, to-cost, to-recommend, horse, boss, craftsman, cousin, nephew, niece, takeaway, kids-meal, dining-table, shopping-bag, cashier, to-park, police-officer, photography, to-brush, thin-bread, to-fit, to-rain, to-snow, glove, tyre, to-book, entry-ticket, bored, fed-up, frozen, to-oversleep, to-bother, lifeguard, honey-cake, to-be-careful, choppy, injection, to-celebrate. Review with: python -m backend.scripts.colloquial_word_bank dump moroccan",
+  "valid": true,
+  "fixes": 0,
+  "examples": []
  }
 }
