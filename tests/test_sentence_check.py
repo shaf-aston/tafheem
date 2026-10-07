@@ -41,6 +41,15 @@ def test_tashkeel_is_ignored_for_lookup():
     assert check("كَتَبَ الوَلَدُ", ALLOWED, fake_lemma) == []
 
 
+@pytest.mark.parametrize("sentence", ["", "   ", "hello world", "كتب hello", "كتب 3", "كتب\u200cزززز"])
+def test_empty_or_non_arabic_or_glued_text_never_passes(sentence):
+    assert check(sentence, ALLOWED, fake_lemma)
+
+
+def test_a_free_particle_does_not_open_a_lookalike():
+    assert check("كتب علي", ALLOWED, fake_lemma) == ["علي"]
+
+
 def test_the_real_lemma_lookup_finds_the_dictionary_form():
     assert sentence_check.fold(sentence_check.lemma_of("الكتاب")) == "كتاب"
 
@@ -125,7 +134,7 @@ def test_a_checked_sentence_comes_back_with_its_words(monkeypatch):
     assert response.status_code == 200
     body = response.json()
     assert body["ar"] == "الكِتَابُ" and body["en"] == "the book"
-    assert "book" in body["words"]
+    assert "كِتَاب" in body["words"]
 
 
 def test_no_passing_sentence_is_a_503(monkeypatch):

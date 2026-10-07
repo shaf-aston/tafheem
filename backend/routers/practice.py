@@ -57,21 +57,19 @@ async def checked_sentence(user: str = _USER) -> CheckedSentence:
     """A short AI sentence using only words this learner has learnt, every word checked."""
     learnt = [row["item"] for row in await asyncio.to_thread(progress_store.summary, "quiz", user) if row["known"]]
     settings = get_settings()
-    need = settings.sentence_min_learnt
-    if len(learnt) < need:
-        raise HTTPException(409, f"Learn {need} words first")
+    words = sentence_check.learnt_words(learnt)
+    if len(words) < settings.sentence_min_learnt:
+        raise HTTPException(409, f"Learn {settings.sentence_min_learnt} words first")
     if not ai.is_ai_available():
         raise HTTPException(503, "No AI is set up on this server")
-    words = sentence_check.learnt_words(learnt)
     allowed = sentence_check.allowed(words)
+    given = random.sample([word["ar"] for word in words], min(len(words), settings.sentence_prompt_words))
     made = await asyncio.to_thread(
-        ai.checked_sentence,
-        random.sample([word["ar"] for word in words], min(len(words), settings.sentence_prompt_words)),
-        lambda ar: not sentence_check.check(ar, allowed),
+        ai.checked_sentence, given, lambda ar: not sentence_check.check(ar, allowed),
     )
     if made is None:
         raise HTTPException(503, "Could not make a checked sentence, try again")
-    return CheckedSentence(**made, words=learnt)
+    return CheckedSentence(**made, words=given)
 
 
 async def _answer(sentence: str, questions: list[PracticeQuestion], source_key: str) -> PracticeResponse:

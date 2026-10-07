@@ -149,7 +149,6 @@ def explain_root_entry_lines(root: str, lines: list[str]) -> dict:
     )
 
 
-
 def checked_sentence(words: list[str], passes) -> dict | None:
     """One short sentence from `words` that `passes` accepts, or None.
 
@@ -157,7 +156,8 @@ def checked_sentence(words: list[str], passes) -> dict | None:
     so nothing it made up reaches the learner. Up to sentence_max_tries tries.
     """
     settings = get_settings()
-    prompt = prompts.CHECKED_SENTENCE_USER.format(words="، ".join(words))
+    prompt = prompts.CHECKED_SENTENCE_USER.format(
+        words="، ".join(words), free=" ".join(settings.sentence_free_words))
     for _ in range(settings.sentence_max_tries):
         try:
             reply = _ask(prompt, max_tokens=settings.sentence_max_tokens)

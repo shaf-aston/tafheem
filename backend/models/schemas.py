@@ -895,7 +895,7 @@ class PracticeResponse(BaseModel):
 class CheckedSentence(BaseModel):
     ar: str
     en: str
-    words: list[str]  # the learnt meaningKeys the AI was given
+    words: list[str]  # the learnt words the AI was given
 
 
 class KeptQuestion(PracticeQuestion):
