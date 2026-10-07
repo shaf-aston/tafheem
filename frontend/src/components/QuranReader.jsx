@@ -18,7 +18,7 @@
  * by them and every row lights its words by them, so the two cannot disagree
  * about which recording is sounding.
  */
-import { memo, useCallback, useDeferredValue, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { getSurahGlosses, quranSurahQuery } from '../api'
@@ -79,7 +79,7 @@ function showRow(list, ayah) {
 // What the reader does to take over the scrolling from the page.
 const TAKE_OVER = ['pointerdown', 'wheel', 'touchstart', 'keydown']
 
-function QuranReader({ place, accent, onGo, onPlace, onClose }) {
+export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   const { surah, ayah } = place
   const twoPanes = useMedia(TWO_PANES)
   const [reciter, chooseReciter] = useRemembered('reciter', RECITERS.map((one) => one.id))
@@ -99,19 +99,27 @@ function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   const list = useRef(null)
   // The ayah at the top of the list as it is scrolled: the rail follows it.
   const [here, setHere] = useState(ayah ?? 1)
+  // A row tapped is already in view; only an ayah opened from elsewhere is
+  // scrolled to.
+  const [tapped, setTapped] = useState(null)
   const [hereIn, setHereIn] = useState(surah)
-  if (hereIn !== surah) { setHereIn(surah); setHere(ayah ?? 1) }
+  if (hereIn !== surah) { setHereIn(surah); setHere(ayah ?? 1); setTapped(null) }
   const goTo = useCallback((n) => { showRow(list.current, n); setHere(n) }, [])
-  const open = (n) => onPlace({ surah, ayah: n })
-  const shut = useCallback(() => onPlace({ surah, ayah: null }), [onPlace, surah])
+  const open = (n) => { setTapped(n); onPlace({ surah, ayah: n }) }
+  // Focus goes back to the ayah's row, not lost with the close button.
+  const shut = useCallback(() => {
+    onPlace({ surah, ayah: null })
+    list.current?.children[ayah - 1]?.querySelector('button')?.focus({ preventScroll: true })
+  }, [onPlace, surah, ayah])
   const changeSurah = useCallback((n) => onPlace({ surah: n, ayah: null }), [onPlace])
 
   // ← → change surah and Esc shuts the study, then the reader. Not while typing,
   // and not while a sheet is open: it handles its own Esc.
   useEffect(() => {
     const onKeyDown = (e) => {
-      if (e.metaKey || e.ctrlKey || e.altKey || e.target.matches('input, textarea')) return
-      if (document.querySelector('dialog[open]')) return
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return
+      // Arrows belong to whatever has its own: a field, a strip, a row of choices.
+      if (e.target.closest('input, textarea, select, .strip-x, [role="group"]') || document.querySelector('dialog[open]')) return
       if (e.key === 'ArrowLeft' && surah > FIRST_SURAH) changeSurah(surah - 1)
       if (e.key === 'ArrowRight' && surah < LAST_SURAH) changeSurah(surah + 1)
       if (e.key === 'Escape') (ayah ? shut : onClose)()
@@ -181,7 +189,7 @@ function QuranReader({ place, accent, onGo, onPlace, onClose }) {
             </div>
           )}
           {data && (
-            <AyahList listRef={list} ayahs={data.ayahs} target={ayah} onScrolled={setHere}>
+            <AyahList listRef={list} ayahs={data.ayahs} target={ayah === tapped ? null : ayah} onScrolled={setHere}>
               {(row) => (
                 <AyahRow
                   key={row.ayah}
@@ -208,10 +216,11 @@ function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         )}
       </div>
 
-      {!twoPanes && study && <BottomSheet label={`Study ${surah}:${ayah}`} onClose={shut} className="scroll-pane max-h-[85dvh] p-4">{study}</BottomSheet>}
+      {!twoPanes && study && <BottomSheet label={`Study ${surah}:${ayah}`} onClose={shut} className="scroll-pane max-h-[var(--sheet-tall)] p-4">{study}</BottomSheet>}
 
       {data && (
         <RecitationBar
+          key={surah}
           surah={surah}
           count={data.ayah_count}
           from={ayah ?? here}
@@ -325,7 +334,8 @@ function AyahList({ listRef, ayahs, target, onScrolled, children: row }) {
 /**
  * Every ayah's number in one sideways strip, to jump straight to one. It
  * follows the reading: the ayah at the top of the list is marked and kept in
- * view, and the one being studied wears the accent.
+ * view, and the one being studied wears the accent. One stop for Tab, the
+ * arrows walk it, so a long surah is not 286 presses to get past.
  */
 function AyahRail({ count, here, open, onPick }) {
   const rail = useWheelX()
@@ -334,10 +344,16 @@ function AyahRail({ count, here, open, onPick }) {
     const chip = strip?.children[here - 1]
     if (chip) strip.scrollTo({ left: chip.offsetLeft - (strip.clientWidth - chip.offsetWidth) / 2 })
   }, [rail, here])
+  // Right is the next number, as the strip reads left to right.
+  const walk = (e) => {
+    const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key]
+    const n = Number(e.target.textContent) + (step ?? 0)
+    if (step && n >= 1 && n <= count) rail.current.children[n - 1].focus()
+  }
 
   return (
     <nav aria-label="Ayat" className="border-b border-[var(--border)]">
-      <div ref={rail} className="strip-x relative gap-1 px-3 py-2">
+      <div ref={rail} onKeyDown={walk} className="strip-x relative gap-1 px-3 py-2">
         {Array.from({ length: count }, (_, i) => {
           const n = i + 1
           return (
@@ -345,8 +361,10 @@ function AyahRail({ count, here, open, onPick }) {
               key={n}
               type="button"
               onClick={() => onPick(n)}
+              tabIndex={n === here ? 0 : -1}
               aria-current={n === here ? 'location' : undefined}
-              className={`press shrink-0 min-w-9 px-2 py-1 rounded-full type-small tabular-nums transition-colors
+              aria-label={n === open ? `${n}, being studied` : undefined}
+              className={`press tap shrink-0 min-w-9 px-2 py-1 rounded-full type-small tabular-nums transition-colors
                 ${n === open ? 'text-[var(--bg)] bg-[var(--c)]'
                   : n === here ? 'text-[var(--text)] bg-[var(--surface-hi)]'
                     : 'text-[var(--text-faint)] hover:text-[var(--text)]'}`}
@@ -373,29 +391,32 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
   const now = useSyncExternalStore(watch, nowPlaying, () => '')
   const [failed, setFailed] = useState(false)
   const [choosing, setChoosing] = useState(false)
-  const ayahOf = useCallback((url) => {
-    for (let n = 1; n <= count; n++) if (recitation.urlFor(n) === url) return n
-    return 0
-  }, [count, recitation])
-  const sounding = now ? ayahOf(now) : 0
+  // The ayah last started and the address it was started on. Matched by that
+  // address, not by asking the recitation again: the measured recording can
+  // arrive mid-ayah and change what urlFor answers, but not what is playing.
+  const [cue, setCue] = useState(null)
+  const sounding = now && now === cue?.url ? cue.n : 0
   const at = sounding || from
+  const { urlFor } = recitation
 
   const start = useCallback((n) => {
     if (n < 1 || n > count) return
+    const url = urlFor(n)
     setFailed(false)
-    play(recitation.urlFor(n)).catch(() => setFailed(true))
-  }, [count, recitation])
+    setCue({ n, url })
+    // A press that overtakes the last one aborts it; only a refusal is a failure.
+    play(url).catch((e) => e.name !== 'AbortError' && setFailed(true))
+  }, [count, urlFor])
 
   // On to the next ayah when one ends; the list follows only if the reader was
   // still with the one that finished, never pulled away from where they went.
   useEffect(() => watchEnd((url) => {
-    const done = ayahOf(url)
-    if (!done || done >= count) return
-    start(done + 1)
-    if (Math.abs(here - done) <= 1) onFollow(done + 1)
-  }), [ayahOf, start, onFollow, here, count])
-  // Stop when the surah goes, so a recording never plays on under another one.
-  useEffect(() => () => stop(), [surah])
+    if (url !== cue?.url || cue.n >= count) return
+    start(cue.n + 1)
+    if (Math.abs(here - cue.n) <= 1) onFollow(cue.n + 1)
+  }), [cue, start, onFollow, here, count])
+  // Stop when the bar goes with its surah, so nothing plays on under another.
+  useEffect(() => () => stop(), [])
 
   const name = RECITERS.find((one) => one.id === reciter)?.name ?? ''
   const round = 'press shrink-0 grid place-items-center rounded-full transition-colors'
@@ -407,7 +428,7 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
         <Glyph d="M6 5h2v14H6zM20 5v14L9 12z" />
       </button>
       <button type="button" className={`${round} w-10 h-10 text-[var(--bg)] bg-[var(--c)]`}
-        onClick={() => (sounding ? stop() : start(at))} onPointerEnter={() => prefetch(recitation.urlFor(at))}
+        onClick={() => (sounding ? stop() : start(at))} onPointerEnter={() => prefetch(urlFor(at))}
         aria-label={sounding ? `Stop ${surah}:${sounding}` : `Play from ${surah}:${at}`}>
         <Glyph d={sounding ? 'M6 6h12v12H6z' : 'M7 4.5v15l13-7.5z'} />
       </button>
@@ -457,7 +478,7 @@ function ReciterStrip({ reciter, onPick }) {
             type="button"
             onClick={() => onPick(one.id)}
             aria-pressed={on}
-            className={`press shrink-0 px-3 py-1.5 rounded-full type-small whitespace-nowrap border transition-colors
+            className={`press tap shrink-0 px-3 py-1.5 rounded-full type-small whitespace-nowrap border transition-colors
               ${on ? 'text-[var(--bg)] bg-[var(--c)] border-[var(--c)]' : 'text-[var(--text-dim)] border-[var(--border)] hover:text-[var(--text)]'}`}
           >
             {one.name}
@@ -489,4 +510,3 @@ function Stepper({ surah, onChange, name }) {
   )
 }
 
-export default memo(QuranReader)

@@ -89,7 +89,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
     if (arrived) {
       setShowMatches(false)
       setAt({ surah: Number(arrived[1]), ayah: Number(arrived[2]) })
-    }
+    } else setAt(null)
   }
 
   useEffect(() => {

@@ -34,7 +34,8 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
   useEffect(() => {
     if (!word) return
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') onClose()
+      // Claimed, so a view around the card does not close on the same press.
+      if (e.key === 'Escape') { e.preventDefault(); onClose() }
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)

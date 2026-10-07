@@ -22,7 +22,7 @@ export const analyzeMeaning = ({ word }) =>
 export const conjugateForm = ({ root, form }) =>
   api.post('/morphology/conjugate', { root, form }).then((r) => r.data)
 
-export const getQuranAyah = (surah, ayah) =>
+const getQuranAyah = (surah, ayah) =>
   api.get(`/quran/${surah}/${ayah}`).then((r) => r.data)
 
 // A printed ayah never changes, so once fetched it is never fetched again.

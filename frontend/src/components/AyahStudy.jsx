@@ -8,7 +8,7 @@
  * Key it by the ayah where it is used, so the open word starts shut each time.
  */
 import { useState } from 'react'
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import { getQuranTarkeeb, quranAyahQuery } from '../api'
 import { posLabel } from '../lib/grammarTerms'
@@ -29,7 +29,7 @@ const wordByKey = (words, key) =>
   key == null ? undefined : words.find((w, i) => (w.position || i) === key)
 
 export default function AyahStudy({ surah, ayah, onGo, onClose, accent }) {
-  const { data, isPending, isError, error, refetch } = useQuery({ ...quranAyahQuery(surah, ayah), placeholderData: keepPreviousData })
+  const { data, isPending, isError, error, refetch } = useQuery(quranAyahQuery(surah, ayah))
   // One word open at a time. A closed chip stays a word you can read; the full
   // grammar only appears for the word actually being asked about.
   const [openWord, setOpenWord] = useState(null)

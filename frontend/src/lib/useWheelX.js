@@ -12,7 +12,10 @@ export function useWheelX() {
     const strip = ref.current
     if (!strip) return undefined
     const turn = (e) => {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX) || strip.scrollWidth <= strip.clientWidth) return
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return
+      // At an end the wheel goes back to the page, or the strip traps it.
+      const room = e.deltaY < 0 ? strip.scrollLeft : strip.scrollWidth - strip.clientWidth - strip.scrollLeft
+      if (room < 1) return
       e.preventDefault()
       strip.scrollLeft += e.deltaY
     }
