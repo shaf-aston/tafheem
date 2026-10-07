@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
-import { parsePlace, placeOf } from './colloquialPlace'
+import { nameOfPlace, parsePlace, placeOf } from './colloquialPlace'
 
 const dialects = [{
   key: 'fusha',
+  label: 'Fusha',
   units: [
-    { unit: 'unit-01', written: true, lessons: [{ lesson: 'lesson-01', written: true, words: 3 }, { lesson: 'lesson-02', written: false }, { lesson: 'lesson-03', written: true, words: 0 }] },
+    { unit: 'unit-01', title: 'Meeting', written: true, lessons: [{ lesson: 'lesson-01', title: 'Greetings', written: true, words: 3 }, { lesson: 'lesson-02', written: false }, { lesson: 'lesson-03', written: true, words: 0 }] },
     { unit: 'unit-02', written: false, lessons: [] },
   ],
 }]
@@ -30,5 +31,15 @@ describe('parsePlace', () => {
     expect(parsePlace(placeOf('fusha', 'unit-01'), dialects)?.unit).toBe('unit-01')
     expect(parsePlace(placeOf('fusha', 'unit-01', 'lesson-01'), dialects)?.at).toBe(0)
     expect(parsePlace(placeOf('fusha', 'unit-01', 'lesson-01', true), dialects)?.words).toBe(true)
+  })
+})
+
+describe('nameOfPlace', () => {
+  it('names a place in words, and leaves a stale one as it was', () => {
+    expect(nameOfPlace('fusha', dialects)).toBe('Fusha')
+    expect(nameOfPlace('fusha/unit-01', dialects)).toBe('Meeting')
+    expect(nameOfPlace('fusha/unit-01/lesson-01', dialects)).toBe('Greetings')
+    expect(nameOfPlace('fusha/unit-01/lesson-01/words', dialects)).toBe('Greetings: words')
+    expect(nameOfPlace('gulf/unit-01', dialects)).toBe('gulf/unit-01')
   })
 })

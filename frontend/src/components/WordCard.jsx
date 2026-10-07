@@ -5,10 +5,15 @@
  * Not a dialog: an overlay put half the card off screen at the line's right edge
  * and covered the next line's words. Escape closes it and opening moves focus and
  * scroll to it; there is no backdrop or focus trap.
+ *
+ * It opens right under the chip that was tapped, and both callers' chips
+ * already carry the word, its part of speech, its meaning and its role, so the
+ * card does not draw them again: it starts at what the chip could not hold.
+ * The word stays in its label for a screen reader.
  */
 import { useEffect, useRef } from 'react'
 
-import { caseLabel, isUnnamed, posLabel, typeLabel } from '../lib/grammarTerms'
+import { caseLabel, isUnnamed, typeLabel } from '../lib/grammarTerms'
 import { roleVar } from '../lib/roleColors'
 import { scrollToEl } from '../lib/scrollToEl'
 import ArabicText from './ui/ArabicText'
@@ -20,15 +25,15 @@ import RootActions from './ui/RootActions'
 const ROOTLESS = new Set(['harf', 'damir'])
 
 export default function WordCard({ word, onClose, onGo, exclude }) {
-  const headingRef = useRef(null)
+  const cardRef = useRef(null)
   const key = word?.role_key
   const hasPieces = word?.segments?.length > 1
   const unsure = isUnnamed(word)
 
   useEffect(() => {
     if (!word) return
-    headingRef.current?.focus()
-    scrollToEl(headingRef.current, 'nearest')
+    cardRef.current?.focus()
+    scrollToEl(cardRef.current, 'nearest')
   }, [word])
 
   useEffect(() => {
@@ -45,22 +50,15 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
 
   return (
     <div
+      ref={cardRef}
+      tabIndex={-1}
+      role="group"
+      aria-label={`${word.word || word.arabic}: grammar`}
       style={{ '--c': roleVar(key) }}
       className="fade-in role glow rounded-[var(--radius-lg)] p-4
-        bg-[var(--surface)] border space-y-2.5"
+        bg-[var(--surface)] border space-y-2.5 outline-none"
     >
-      <div className="flex items-start justify-between gap-3 flex-wrap">
-        <div ref={headingRef} tabIndex={-1} className="flex items-baseline gap-2.5 flex-wrap outline-none">
-          <ArabicText as="span" size="lg" className="text-glow">
-            {word.word || word.arabic}
-          </ArabicText>
-          {word.pos && (
-            <ArabicText size="tiny" style={{ color: 'var(--c)' }}>{posLabel(word.pos)}</ArabicText>
-          )}
-          {word.meaning && (
-            <span className="type-small text-[var(--text-dim)]">{word.meaning}</span>
-          )}
-        </div>
+      <div className="flex justify-end">
         <button
           type="button"
           onClick={onClose}
@@ -70,12 +68,6 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
           Close
         </button>
       </div>
-
-      {word.role && (
-        <span className="block w-fit mx-auto px-3 py-1 rounded-full type-small font-medium role-tag">
-          {word.role}
-        </span>
-      )}
 
       {/* Only when the source speaks in sentences (segments/lemma) rather than
           case/sign pairs; a corpus word with no grammar array still says so. */}

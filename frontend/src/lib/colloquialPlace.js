@@ -24,3 +24,15 @@ export function parsePlace(q, dialects) {
 }
 
 export const placeOf = (dialect, unit, lesson, words = false) => [dialect, unit, lesson, words && 'words'].filter(Boolean).join('/')
+
+/** A place in words, for the way back: its topic's title, or its unit's, or the dialect. */
+export function nameOfPlace(q, dialects) {
+  const place = parsePlace(q, dialects)
+  if (!place) return q
+  const dialect = dialects.find((d) => d.key === place.dialect)
+  const unit = dialect.units.find((u) => u.unit === place.unit)
+  if (!unit) return dialect.label
+  if (place.at === null) return unit.title
+  const { title } = unit.lessons[place.at]
+  return place.words ? `${title}: words` : title
+}

@@ -10,7 +10,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { colloquialQuery, colloquialUnitQuery } from '../api'
-import { parsePlace, placeOf } from '../lib/colloquialPlace'
+import { nameOfPlace, parsePlace, placeOf } from '../lib/colloquialPlace'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
 import { useRemembered } from '../lib/useRemembered'
@@ -186,7 +186,8 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
 
   return (
     <div className="panel">
-      <SectionHeader title="Colloquial" arabic="عامية" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'} />
+      <SectionHeader title="Colloquial" arabic="عامية" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'}
+        nameOf={(q) => nameOfPlace(q, dialects)} />
       {catalogue.isPending && <AnalyzerSkeleton />}
       {catalogue.isError && <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={catalogue.error} onRetry={catalogue.refetch} />}
       {catalogue.data && (

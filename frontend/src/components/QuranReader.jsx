@@ -151,7 +151,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
 
   const study = ayah && (
     <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo}
-      onClose={twoPanes ? shut : () => setStudying(null)} accent={accent} />
+      onClose={twoPanes ? shut : () => setStudying(null)} accent={accent} sourceShown={twoPanes && !!data?.source} />
   )
 
   return (

@@ -26,11 +26,9 @@ function Scene({ unit, lesson, number, place }) {
   return (
     <article className="space-y-12">
       <div className="space-y-5">
+        {/* The topic's title is the last step of the trail just above, so it is not said again here. */}
         <header className="flex flex-wrap items-end justify-between gap-3">
-          <div className="space-y-1">
-            <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {number}</p>
-            <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
-          </div>
+          <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {number}</p>
           <WordBank unit={unit} at={number - 1} />
         </header>
         <Mosaic phrases={lesson.phrases} onOpen={setOpen} />

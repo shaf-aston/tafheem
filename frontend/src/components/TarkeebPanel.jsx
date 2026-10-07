@@ -66,12 +66,14 @@ export default function TarkeebPanel({ accent, onWordByWord }) {
       {books.length > 0 && (
         <>
           <div className="flex items-center justify-between gap-3 flex-wrap">
+            {/* One book is named by its badge beside the count; the line saying
+                it too printed the same name twice on one row. */}
             <p className="text-sm text-[var(--text-dim)]">
-              {all.length} worked examples from{' '}
-              {books.length === 1 ? (
-                <span className="text-[var(--text)]">{books[0].title}</span>
-              ) : (
-                <span className="text-[var(--text)]">{books.length} books</span>
+              {all.length} worked examples
+              {books.length > 1 && (
+                <>
+                  {' '}from <span className="text-[var(--text)]">{books.length} books</span>
+                </>
               )}
             </p>
             {books.length === 1 && <SourceBadge source={books[0].source} />}

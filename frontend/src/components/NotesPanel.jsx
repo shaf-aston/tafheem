@@ -98,6 +98,12 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
 
   const offered = data.roles.filter((role) => used.has(role.key))
   const firstOfPage = new Set()
+  // A note that opens on the topic's own name (الحال, المفعول به) says again
+  // what the header just above says, so that first heading is left off.
+  const [opening] = topic.blocks
+  const named = (text) => text && [topic.arabic, topic.title].includes(text.trim())
+  const repeatsTitle = opening?.kind === 'heading' && (opening.ar ? named(opening.ar) : named(opening.en))
+  const blocks = repeatsTitle ? topic.blocks.slice(1) : topic.blocks
 
   return (
     <div className="space-y-4" style={{ '--c': accent }}>
@@ -150,7 +156,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
         <NoteCards key={`${topic.id}:${hiddenKey}`} cards={cards} accent={accent} onPage={goToPage} />
       ) : (
         <div className="space-y-5">
-          {topic.blocks.map((block) => {
+          {blocks.map((block) => {
             const anchor = firstOfPage.has(block.page) ? undefined : `note-page-${block.page}`
             firstOfPage.add(block.page)
             return (
