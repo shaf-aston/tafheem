@@ -157,7 +157,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   return (
     <div {...swipe} style={{ '--c': accent }} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-clip">
       <header className="flex items-center gap-3 flex-wrap p-4 border-b border-[var(--border)]">
-        <Stepper surah={surah} onChange={changeSurah} name={data?.name_en ?? ''} />
+        <Stepper surah={surah} onChange={changeSurah} />
         {data ? (
           <ArabicText size="sm" className="text-[var(--c)]">{data.name_ar}</ArabicText>
         ) : (
@@ -540,7 +540,8 @@ function Glyph({ d }) {
   )
 }
 
-function Stepper({ surah, onChange, name }) {
+/** Back and on a surah. Its name is the picker's, just above, so not said twice. */
+function Stepper({ surah, onChange }) {
   const arrow = `w-7 h-7 rounded-full border border-[var(--border)] text-[var(--text-dim)]
     hover:text-[var(--text)] hover:border-[var(--c)] disabled:opacity-30
     disabled:hover:border-[var(--border)] transition-colors shrink-0`
@@ -548,7 +549,6 @@ function Stepper({ surah, onChange, name }) {
     <div className="flex items-center gap-2">
       <button type="button" className={arrow} onClick={() => onChange(surah - 1)}
         disabled={surah <= FIRST_SURAH} aria-label="Previous surah">‹</button>
-      <span className="font-semibold text-[var(--text)] whitespace-nowrap">{surah}. {name || '…'}</span>
       <button type="button" className={arrow} onClick={() => onChange(surah + 1)}
         disabled={surah >= LAST_SURAH} aria-label="Next surah">›</button>
     </div>
