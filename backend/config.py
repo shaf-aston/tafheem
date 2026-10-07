@@ -344,6 +344,10 @@ class Settings(BaseSettings):
     progress_learning_hours: int = 24
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
+    # Profiles (services/profile.py): a typed name, no password. Longest name allowed after cleaning.
+    profile_name_max: int = 40
+    # Names nobody may type: "local" is the record of every answer given before names existed.
+    profile_reserved: list[str] = ["local"]
 
     # Declared because .env sets PORT and this class forbids unknown keys; dropping it fails startup.
     # The running port comes from the --port flag start.sh passes to uvicorn.

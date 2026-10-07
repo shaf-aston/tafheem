@@ -1148,6 +1148,12 @@ class Forgotten(BaseModel):
     deleted: int
 
 
+class Claimed(BaseModel):
+    """How many unnamed answers moved onto a name."""
+
+    moved: int
+
+
 class ItemStats(BaseModel):
     """One item's whole record. `avgMs` is None when nothing was timed honestly."""
     item: str

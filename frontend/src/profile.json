@@ -1,0 +1,7 @@
+{
+  "_comment": "Profiles: a typed name, no password. 'max' must match PROFILE_NAME_MAX in backend/config.py, 'reserved' must match PROFILE_RESERVED. The name travels on every /api/progress call in 'header', percent-encoded.",
+  "max": 40,
+  "reserved": ["local"],
+  "header": "X-Tafheem-Profile",
+  "storageKey": "profile"
+}
