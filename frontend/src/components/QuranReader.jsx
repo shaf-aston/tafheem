@@ -36,9 +36,11 @@ import { useWheelX } from '../lib/useWheelX'
 import { useSlide, useSwipe } from '../lib/useSwipe'
 
 import AyahStudy from './AyahStudy'
+import { NoTouchButton, ScrollPad } from './NoTouchReading'
 import ArabicText from './ui/ArabicText'
 import BottomSheet from './ui/BottomSheet'
 import GlossWord from './ui/GlossWord'
+import ReadingOptions from './ui/ReadingOptions'
 import ErrorAlert from './ui/ErrorAlert'
 import Segmented from './ui/Segmented'
 import { Skeleton } from './ui/Skeleton'
@@ -52,6 +54,7 @@ const LAST_SURAH = 114
 const FIRST_PAINT_ROWS = 12
 // Wide enough for the surah and the study side by side; Tailwind's lg.
 const TWO_PANES = '(min-width: 64rem)'
+const TOUCH = '(pointer: coarse)'
 
 /** The English under one ayah: the chosen translation once it has arrived,
  *  the corpus's word-by-word gloss before that, so nothing is credited to a
@@ -98,6 +101,12 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   const learnt = useLearntLemmas()
   const [allMeanings, showAllMeanings] = useRememberedFlag('reader-all-meanings', false)
   const anyGlosses = Object.keys(glosses?.ayahs ?? {}).length > 0
+  // Reading without touching the words: a switch in the bar, which the reader
+  // may take out of the bar, and which is off whenever it is out of reach.
+  const touch = useMedia(TOUCH)
+  const [noTouchButton, showNoTouchButton] = useRememberedFlag('reader-no-touch-button', true)
+  const [noTouchOn, setNoTouch] = useRememberedFlag('reader-no-touch', false)
+  const noTouch = touch && noTouchButton && noTouchOn
   const recitation = useRecitation(surah, reciter)
   const translation = useTranslation(surah)
 
@@ -165,16 +174,11 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         {/* The Arabic is the corpus's; the English may not be. Both are named. */}
         {translation.ready && translation.book?.source && <SourceBadge source={translation.book.source} />}
         {data?.source && <SourceBadge source={data.source} />}
-        {anyGlosses && (
-          <button
-            type="button"
-            onClick={() => showAllMeanings(!allMeanings)}
-            aria-pressed={allMeanings}
-            className="text-xs text-[var(--text-faint)] hover:text-[var(--text)] aria-pressed:text-[var(--c)] transition-colors px-2 py-1"
-          >
-            {allMeanings ? 'Hide all meanings' : 'Show all meanings'}
-          </button>
-        )}
+        {touch && noTouchButton && <NoTouchButton on={noTouchOn} onChange={setNoTouch} />}
+        <ReadingOptions accent={accent} options={[
+          ...(anyGlosses ? [{ label: 'Every word\'s meaning', on: allMeanings, set: showAllMeanings }] : []),
+          { label: 'Without-wudu button', on: noTouchButton, set: showNoTouchButton, only: 'touch' },
+        ]} />
         <button
           type="button"
           onClick={onClose}
@@ -204,22 +208,25 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
             </div>
           )}
           {data && (
-            <AyahList listRef={list} ayahs={data.ayahs} target={ayah === tapped ? null : ayah} onScrolled={setHere}>
-              {(row) => (
-                <AyahRow
-                  key={row.ayah}
-                  ayah={row}
-                  english={englishFor(translation, row)}
-                  glosses={glosses?.ayahs?.[row.ayah]}
-                  learnt={learntWords(glosses?.lemmas?.[row.ayah], learnt)}
-                  allMeanings={allMeanings}
-                  src={recitation.urlFor(row.ayah)}
-                  segments={recitation.segmentsFor(row.ayah)}
-                  open={row.ayah === ayah}
-                  onOpen={open}
-                />
-              )}
-            </AyahList>
+            <div className="flex">
+              <AyahList listRef={list} ayahs={data.ayahs} target={ayah === tapped ? null : ayah} still={noTouch} onScrolled={setHere}>
+                {(row) => (
+                  <AyahRow
+                    key={row.ayah}
+                    ayah={row}
+                    english={englishFor(translation, row)}
+                    glosses={glosses?.ayahs?.[row.ayah]}
+                    learnt={learntWords(glosses?.lemmas?.[row.ayah], learnt)}
+                    allMeanings={allMeanings}
+                    src={recitation.urlFor(row.ayah)}
+                    segments={recitation.segmentsFor(row.ayah)}
+                    open={row.ayah === ayah}
+                    onOpen={open}
+                  />
+                )}
+              </AyahList>
+              {noTouch && <ScrollPad list={list} />}
+            </div>
           )}
         </div>
         {twoPanes && (
@@ -316,9 +323,10 @@ function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, o
  * its row exists. Rows off the screen are laid out at a guessed height
  * (.surah-row) and the Quran face arrives late, so the row moves as the rows
  * around it take their real size: it is held in place through every such
- * change until the reader scrolls or taps for themselves.
+ * change until the reader scrolls or taps for themselves. `still` is reading
+ * without touching the words: a finger on them scrolls, opens and shows nothing.
  */
-function AyahList({ listRef, ayahs, target, onScrolled, children: row }) {
+function AyahList({ listRef, ayahs, target, still, onScrolled, children: row }) {
   const rows = useDeferredValue(ayahs, ayahs.slice(0, FIRST_PAINT_ROWS))
   const reached = target && rows.length >= target
   useLayoutEffect(() => {
@@ -340,7 +348,7 @@ function AyahList({ listRef, ayahs, target, onScrolled, children: row }) {
     <ol
       ref={listRef}
       onScroll={(e) => onScrolled(rowAt(e.currentTarget))}
-      className="scroll-pane h-[var(--layout-pane)] divide-y divide-[var(--border)]"
+      className={`scroll-pane flex-1 min-w-0 h-[var(--layout-pane)] divide-y divide-[var(--border)] ${still ? 'touch-none [&>li]:pointer-events-none' : ''}`}
     >
       {rows.map(row)}
     </ol>
