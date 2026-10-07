@@ -11,25 +11,15 @@ import SpeakButton from '../ui/SpeakButton'
 import { FOCUS } from './Face'
 import Spelling from './Spelling'
 
-// A phrase and the reply that goes with it are both worth learning; repeats across topics show once.
-function rowsOf(lessons) {
+// Repeats across topics show once.
+function unique(rows) {
   const seen = new Set()
-  return lessons.filter((l) => l.written).flatMap((l) => l.phrases.flatMap((p) => [p, p.reply])).filter((r) => {
-    if (!r || seen.has(r.arabic)) return false
-    seen.add(r.arabic)
-    return true
-  })
+  return rows.filter((r) => r && !seen.has(r.arabic) && seen.add(r.arabic))
 }
 
-// Single vocabulary words, not phrases; a dialect writes these on its own, so most topics have none yet.
-function wordsOf(lessons) {
-  const seen = new Set()
-  return lessons.filter((l) => l.written).flatMap((l) => l.vocabulary || []).filter((r) => {
-    if (seen.has(r.arabic)) return false
-    seen.add(r.arabic)
-    return true
-  })
-}
+// A phrase and the reply that goes with it are both worth learning.
+const phrasesOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((l) => l.phrases.flatMap((p) => [p, p.reply])))
+const wordsOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((l) => l.vocabulary ?? []))
 
 function Bank({ rows, onClose, scope, title }) {
   return (
@@ -67,9 +57,8 @@ export default function WordBank({ unit, at = null }) {
   const topic = at === null ? null : unit.lessons[at]
   const lessons = whole || !topic ? unit.lessons : [topic]
   const words = wordsOf(lessons)
-  const phrases = rowsOf(lessons)
-  const [show, setShow] = useState(words.length > 0 ? 'words' : 'phrases')
-  const rows = show === 'words' && words.length > 0 ? words : phrases
+  const [show, setShow] = useState('words')
+  const rows = show === 'words' && words.length > 0 ? words : phrasesOf(lessons)
   const scope = (words.length > 0 || topic) && (
     <div className="space-y-2">
       {words.length > 0 && (
