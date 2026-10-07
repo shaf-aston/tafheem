@@ -105,6 +105,18 @@ export function coverage() {
   return covering
 }
 
+/** The same per surah, only fetched when the surah list is opened. */
+let bySurah = null
+export function surahCoverage() {
+  bySurah ??= fetchJson(`${WORDS_DIR}/surah_coverage.json`)
+  return bySurah
+}
+
+/** Each surah's number and names, from the word table already loaded. */
+export async function surahList() {
+  return (await table()).index.surahs
+}
+
 /** Which cut a bank and a group id name between them. */
 const cutFor = (bankId, groupId) => {
   const bank = BANKS[bankId]
