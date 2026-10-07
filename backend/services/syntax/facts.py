@@ -88,6 +88,8 @@ class Sentence:
         """(ما, its ism, its khabar) of ما الحجازية, which works like ليس (Tasheel 1.9 n6
         p23): a verbless sentence opening ما, a noun, then an indefinite noun in nasb."""
         words = [t for t in self.tokens if not t["form"].startswith("+")]
+        while words and words[0]["form"].endswith("+"):
+            words.pop(0)  # وَما زيدٌ قائمًا: a وَ or فَ written onto it opens nothing else
         # its ism is marfu': ما أحسنَ زيدًا is the ما of wonder
         if not (self.verbless and len(words) >= 3 and words[0]["lemma"] == "ما"
                 and words[1]["pos"] in ("NOM", "PROP") and typed_or_parsed_case(words[1]) != "a"):
@@ -126,7 +128,8 @@ class Sentence:
         if (is_one(lemma, "inna") and not is_light(word)) or read_as(word, "la_jins"):
             return "inna"
         if is_one(lemma, "kana", "like_laysa"):
-            return "kana"
+            # ما alone works as ليس only as ما الحجازية; any other ما (ما اسمك) governs nothing
+            return "kana" if self.hijazi and word is self.hijazi[0] else None
         # the other families are verbs: the noun عِلْمُهُ shares a lemma with عَلِمَ and governs nothing
         if not is_verb(word):
             return None
@@ -190,10 +193,12 @@ def puts_in_jarr(token: dict, s: "Sentence") -> bool:
     """Something puts the word in jarr: a مضاف before it, or a preposition hung over it
     or written onto it (بِ، لِ)."""
     head = s.head(token)
-    def preposition(t: dict) -> bool:
-        return t["pos"] == "PRT" and (t.get("pos_camel") == "prep" or read_as(t, "jarr"))
+    return token["rel"] == "IDF" or bool(head and is_preposition(head)) or any(is_preposition(k) for k in s.kids(token))
 
-    return token["rel"] == "IDF" or bool(head and preposition(head)) or any(preposition(k) for k in s.kids(token))
+
+def is_preposition(token: dict) -> bool:
+    """A particle of the book's list of حروف الجر, or one the parser tags a preposition."""
+    return token["pos"] == "PRT" and (token.get("pos_camel") == "prep" or read_as(token, "jarr"))
 
 
 def typed_or_parsed_case(token: dict) -> str | None:
@@ -545,7 +550,7 @@ def _listed(token: dict, family: str, part: str = "words") -> bool:
     return any(is_one(spelling, family, part) for spelling in (token["lemma"], form, bare))
 
 
-def _is_zarf(token: dict, s: Sentence) -> bool:
+def is_zarf(token: dict, s: Sentence) -> bool:
     """A listed time or place word, or كل/بعض added to one (كلَّ يومٍ)."""
     if token["pos"] == "PRT":
         return False
@@ -558,7 +563,7 @@ def _is_zarf(token: dict, s: Sentence) -> bool:
 def zarf_of_khabar(token: dict, s: Sentence) -> bool:
     """الأستاذُ عندَ البابِ: in a verbless sentence a place or time word with its mudaf ilayh
     is the khabar's maf'ul fihi (the khabar itself is understood, Tasheel 1.4.4 p13)."""
-    return (s.verbless and _is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
+    return (s.verbless and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
             and token["rel"] in ("---", "MOD", "PRD")
             and typed_or_parsed_case(token) in (None, "a") and any(k["rel"] == "IDF" for k in s.kids(token)))
 
@@ -567,7 +572,7 @@ def _place_time(token: dict, s: Sentence) -> bool:
     """A listed time or place word that is a verb's مفعول فيه (Tasheel 3.2 p67): it
     modifies the verb with no vowel or fatha (the parser may draw that as idafa), or it
     stands before its verb with the verb hanging off it (مَتَى سافر)."""
-    if not _is_zarf(token, s):
+    if not is_zarf(token, s):
         return False
     head = s.head(token)
     # مسافرٌ غدًا: a participle works like its verb

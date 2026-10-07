@@ -195,7 +195,7 @@
   },
   "kana": {
    "ar": "كان وأخواتها",
-   "card": {"named": "ناقص", "does": "يرفع الاسم وينصب الخبر", "governs": "kana"},
+   "card": {"named": "ناقص", "does": "يرفع الاسم وينصب الخبر", "governs": "kana", "_chart_as_comment": "A particle of the family is no فعل ناقص in the picture: the ما that works like ليس goes by its own name (Tasheel 1.9 n6 p23).", "chart_as": {"ما": "ما الحجازية"}},
    "effect": "raf' the ism and nasb the khabar; all conjugated forms follow (كانوا، يكون، كن)",
    "words": [
     "كان",
@@ -320,6 +320,7 @@
   "two_objects_give": {
    "ar": "أفعال تنصب مفعولين ليس أصلهما مبتدأ وخبر",
    "effect": "takes two objects that are not mubtada/khabar; the verbs of informing take a third object",
+   "_comment": "أدرى (made know, form IV of درى) is listed for وما أدراك ما يوم الدين: its pronoun is the first object and the question clause after it stands for the second. The same letters are the wonder verb (ما أدراه), so what follows the pronoun tells them apart (particles.py, asks and wonder).",
    "words": [
     "أعطى",
     "منح",
@@ -341,7 +342,8 @@
     "نبأ",
     "أخبر",
     "خبر",
-    "حدث"
+    "حدث",
+    "أدرى"
    ],
    "ambiguous": {
     "علم": "'taught' (two objects) vs zanna-type 'knew' (see family zanna)",
@@ -351,6 +353,7 @@
     "خبر": "'informed' (three objects) vs noun 'khabar' (predicate / news)",
     "نبأ": "'informed' vs noun 'news'",
     "منع": "'prevented X from Y' (two objects, the second with من) vs ordinary one-object use",
+    "أدرى": "'made X know' (a second question clause as its other object) vs the wonder verb 'how knowing' (ما أدراه), told apart by a question word after the pronoun",
     "أعطى": "verb 'gave' vs none; very clean"
    }
   },
