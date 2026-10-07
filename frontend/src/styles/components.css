@@ -696,11 +696,14 @@ dialog::backdrop {
 /* ── scrolling, drawn in the page's own colours ─────────────────
    .scroll-pane: a pane that scrolls on its own (the Quran reader's surah and
    study). A thin thumb in the border colour, no track, and scrolling stops at
-   its ends rather than carrying the page with it.
+   its ends rather than carrying the page with it. Relative, so what is placed
+   absolutely inside (a screen-reader label) is clipped with it, never left
+   hanging below the page.
    .strip-x: a sideways strip of choices (the ayat rail, the reciters). No bar
    at all, the ends fade to say there is more, and a wheel turns it sideways
    (lib/useWheelX). */
 .scroll-pane {
+  position: relative;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
