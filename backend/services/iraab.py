@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
 from backend.services.harakat import CASE_NAME
-from backend.services.nahw_book import case_of, family_cards, reason, teacher_rules
+from backend.services.nahw_book import book_words, case_of, family_cards, reason, teacher_rules
 from backend.services.syntax.naming import NAMED, role_key
 
 
@@ -61,6 +61,9 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
         if word.get("role") in found.get("pair", {}):  # لا رجلَ: its governor names the pair, after the sign is settled
             word["role"] = found["pair"][word["role"]]
             word["reason"] = reason(word["role"])
+    for word in words:  # غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule
+        if word.get("role") == NAMED.mustathna and word.get("case") == "nasb"                 and word["camel"]["base"] in book_words("istithna", "nouns"):
+            word["reason"] = teacher_rules()["case_said"]["istithna_noun"].format(sign=word["sign"])
     _pieces_said(words, roles)
     return rule_engine.mark_condition(words, roles)
 
@@ -88,6 +91,8 @@ def _named(entry: dict, found: dict) -> None:
         entry.update(type="harf" if found["role"] in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
     elif entry.get("type") == "harf" and found["role"] and found["role"] not in (NAMED.harf, NAMED.harf_jarr):
         entry["type"] = "ism"  # أينما: a particle's card named for a place is a built noun
+    elif entry.get("type") == "ism" and found["role"] == NAMED.harf and found.get("named"):
+        entry["type"] = "harf"  # ما عدا: CAMeL's relative is the particle the reading names
     if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
         found = {**found, "case": CASE_NAME[own]}  # a recorded ayah's name brings its own case
     moved = found["case"] and found["case"] != entry.get("case")

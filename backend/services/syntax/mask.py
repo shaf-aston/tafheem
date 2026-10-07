@@ -159,10 +159,29 @@ def _ma_cancels_inna(toks, heads, rels) -> None:
         rels[m - 1] = "MOD"
 
 
+def _exception_word_by_case(toks, heads, rels) -> None:
+    """جاء القومُ خلا زيدًا، خلا زيدٍ، خلا البيتُ: خلا، عدا، حاشا with a noun straight after read
+    by that noun's typed vowel (Tasheel 3.8.7). Nasb: a past verb (its doer hidden) and the noun
+    its object. Jarr: a preposition and the noun its majrur. Raf': the ordinary verb and the noun
+    its doer. After ما only the verb stands (ما عدا زيدًا). The parser's tags are written over."""
+    for d, dep in enumerate(toks[:-1], 1):
+        after = toks[d]
+        if dep.get("token_type") != "baseword" or after["pos"] not in ("NOM", "PROP")                 or after.get("form", "").startswith("+") or not is_one(dep.get("form", ""), "istithna_verbs")                 or _above(heads, d, d + 1):
+            continue
+        case, verb = _case(after), "ما" == strip_diacritics(toks[d - 2].get("form", "")) if d > 1 else False
+        if case == "i" and not verb:
+            dep.update(pos="PRT", pos_camel="prep")
+            heads[d], rels[d] = d, "OBJ"
+        elif case in ("a", "u"):
+            dep.update(pos="VRB", pos_camel="verb", asp="p", vox="a", per="3", gen="m", num="s")
+            heads[d], rels[d] = d, "OBJ" if case == "a" else "SBJ"
+
+
 _LINKS = {"pointer_heads_its_noun": _pointer_heads_its_noun,
           "ma_cancels_inna": _ma_cancels_inna,
           "listed_preposition_takes_majrur": _listed_preposition_takes_majrur,
           "topic_carries_its_verb": _topic_carries_its_verb,
+          "exception_word_by_case": _exception_word_by_case,
           "inner_sentence": _inner_sentence}
 
 

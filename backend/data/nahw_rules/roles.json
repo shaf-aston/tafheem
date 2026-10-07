@@ -39,7 +39,7 @@
  },
  "named": {
   "fil": "فعل", "fail": "فاعل", "harf": "حرف", "harf_jarr": "حرف جر", "majroor": "مجرور",
-  "munada": "منادى", "mubtada": "مبتدأ", "khabar": "خبر", "khabar_kaada": "خبر كاد",
+  "munada": "منادى", "mustathna": "مستثنى", "mubtada": "مبتدأ", "khabar": "خبر", "khabar_kaada": "خبر كاد",
   "ism_inna": "اسم إن", "tamyeez": "تمييز", "mudaf_ilayh": "مضاف إليه", "sifah": "صفة", "silah": "صلة"
  },
  "units": [
