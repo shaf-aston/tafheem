@@ -24,6 +24,7 @@ import {
 
 import { closestSpans, flagsOnPage, twinKeys } from '../lib/similar'
 import { readViewParam, writeViewParams } from '../lib/tabUrl'
+import { useSwipe } from '../lib/useSwipe'
 import { scrollToEl } from '../lib/scrollToEl'
 import { useReciting } from '../lib/useReciting'
 import { useSetting } from '../lib/settings'
@@ -384,6 +385,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   }
   const atStart = pageNumber === 0 && !partBy(-1)
   const atEnd = pageNumber >= pages.length - 1 && !partBy(1)
+  const swipe = useSwipe(!atStart && (() => stepPage(-1)), !atEnd && (() => stepPage(1)))
 
   // Each page opened is a step the back arrow returns to; a step returned to,
   // or handed over from another tab, opens its page here.
@@ -447,7 +449,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   )
 
   return (
-    <div className="panel">
+    <div className="panel" {...swipe}>
       <SectionHeader
         title="Memorise"
         arabic="حفظ"

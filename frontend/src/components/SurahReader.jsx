@@ -26,6 +26,7 @@ import { useRecitation } from '../lib/useRecitation'
 import { useRecitedWord } from '../lib/useRecitedWord'
 import { RECITERS } from '../lib/ayahAudio'
 import { useRemembered } from '../lib/useRemembered'
+import { useSwipe } from '../lib/useSwipe'
 
 import AyahTafsir from './AyahTafsir'
 import ArabicText from './ui/ArabicText'
@@ -203,9 +204,11 @@ function SurahReader({ surah, accent, onOpenAyah, onChangeSurah, onClose }) {
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [surah, onChangeSurah, onClose])
+  const swipe = useSwipe(surah > FIRST_SURAH && (() => onChangeSurah(surah - 1)),
+    surah < LAST_SURAH && (() => onChangeSurah(surah + 1)))
 
   return (
-    <div className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-hidden">
+    <div {...swipe} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-hidden">
       <header className="flex items-center gap-3 flex-wrap p-4 border-b border-[var(--border)]">
         <Stepper
           surah={surah}
@@ -295,7 +298,7 @@ function SurahReader({ surah, accent, onOpenAyah, onChangeSurah, onClose }) {
             )}
           </AyahList>
           <p className="px-4 py-2 type-small text-[var(--text-faint)] border-t border-[var(--border)]">
-            Tap an ayah for its grammar · ← → change surah · Esc closes
+            Tap an ayah for its grammar · swipe or ← → change surah · Esc closes
           </p>
         </>
       )}
