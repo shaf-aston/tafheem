@@ -291,18 +291,6 @@ dialog::backdrop {
    the row; and the word itself comes up a shade, because the one you are
    reading about should be the one your eye returns to. Both are small on
    purpose: the row still has to scan as a row of equals. */
-/* The word being recited, in the word-by-word view. This card cannot be filled
-   the way a word in a line of text is: it already carries a colour for its part
-   of speech, and painting over that trades one piece of information for
-   another. A ring in that same colour instead, so both are readable at once,
-   and it never moves the card, since ten cards nudging in turn is a page that
-   twitches through a whole recitation. */
-.word-lit {
-  border-color: var(--c);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--c) 45%, transparent);
-}
-
-
 .word-open,
 .word-open:hover {
   transform: translateY(-3px) scale(1.06);
@@ -666,3 +654,27 @@ dialog::backdrop {
 .rail-arrow[disabled] { opacity: 0; pointer-events: none; }
 /* A phone swipes; the arrows would cover what they page. */
 @media (max-width: 520px) { .rail-arrow { display: none; } }
+
+
+/* ── scrolling, drawn in the page's own colours ─────────────────
+   .scroll-pane: a pane that scrolls on its own (the Quran reader's surah and
+   study). A thin thumb in the border colour, no track, and scrolling stops at
+   its ends rather than carrying the page with it.
+   .strip-x: a sideways strip of choices (the ayat rail, the reciters). No bar
+   at all, the ends fade to say there is more, and a wheel turns it sideways
+   (lib/useWheelX). */
+.scroll-pane {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hi) transparent;
+}
+.strip-x {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  scroll-padding-inline: 2rem;
+  mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+}
+.strip-x::-webkit-scrollbar { display: none; }

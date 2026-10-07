@@ -2,8 +2,8 @@
  * Finding an ayah: by its reference, by its Arabic text, or by a root and every
  * place that root occurs.
  *
- * Finding only. What one ayah then says, word by word, is AyahStudy's job, and
- * this hands the found ayah straight to it.
+ * Finding only. What is found opens in QuranReader: an ayah opens its whole
+ * surah, scrolled to it, with the ayah studied beside it.
  *
  * The grammar shown there is read from the hand-tagged Quranic Arabic Corpus,
  * not worked out on the fly, so each word's root, case and verb pattern are the
@@ -13,17 +13,17 @@
 import { useEffect, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
-import { getQuranAyah, getQuranRoot, searchQuran } from '../api'
+import { getQuranRoot, searchQuran } from '../api'
+import surahs from '../data/surahs.json'
 import { useArrival } from '../lib/useArrival'
 import { useHistory } from '../lib/useHistory'
 import { isArabic } from '../lib/arabicText'
 
-import AyahStudy from './AyahStudy'
 import QuranSeal from './ui/QuranSeal'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import RootActions from './ui/RootActions'
-import SurahReader from './SurahReader'
+import QuranReader from './QuranReader'
 import QuranPlacePicker from './QuranPlacePicker'
 import QuranSearchBar from './QuranSearchBar'
 import SectionHeader from './ui/SectionHeader'
@@ -36,6 +36,9 @@ import { CorrectedNote } from './ui/StatusNote'
 
 // "1:3" as another tab writes it. Anything else arriving is a root.
 const AYAH_REF = /^(\d+):(\d+)$/
+
+/** An ayah that is really in the Qur'an, so a mistyped one is never remembered. */
+const isAyah = ({ surah, ayah }) => ayah >= 1 && ayah <= (surahs[surah - 1]?.ayahs ?? 0)
 
 export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }) {
   // What arrived from another tab, if it was an ayah address.
@@ -51,22 +54,16 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   // recitation was guessed at twice over, once by the listening and once by the
   // matching. Only one of the two lists is ever on screen.
   const [heard, setHeard] = useState(null)
-  // Which surah is open for reading, or null. Separate from the ayah lookup so
-  // closing the reader leaves the ayah you were on untouched.
-  const [openSurah, setOpenSurah] = useState(null)
-  // The place last opened, a surah or an ayah in it, for the picker to follow.
-  // Neither of the two above says it alone: an ayah opened from the reader
-  // leaves the reader open.
+  // The place open in the reader, a surah or an ayah in it, or null for none.
+  // The picker follows it too.
   const [at, setAt] = useState(arrived ? { surah: Number(arrived[1]), ayah: Number(arrived[2]) } : null)
 
   const { history: recent, push: remember } = useHistory('quran-history')
 
-  // An ayah that came back is a place reached, written the way every other tab
-  // writes one, so the trail and the back arrow can carry it. See lib/journey.js.
-  const ayahLookup = useMutation({
-    mutationFn: ({ s, a }) => getQuranAyah(s, a),
-    onSuccess: (_, { s, a }) => { remember({ surah: s, ayah: a }); onVisit?.(`${s}:${a}`) },
-  })
+  // An ayah opened is a place reached, written the way every other tab writes
+  // one, so the trail and the back arrow can carry it. See lib/journey.js.
+  // Only an ayah asked for: one played or scrolled past is not a visit.
+  const visit = (place) => { remember(place); onVisit?.(`${place.surah}:${place.ayah}`) }
   const search = useMutation({ mutationFn: searchQuran })
   const rootLookup = useMutation({ mutationFn: getQuranRoot })
   // The root behind a single searched word; a 404 just means there is none to show.
@@ -78,7 +75,6 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   // root. An ayah address is not a root, so "Open the ayah" answered "the root
   // does not occur in the Qur'an" for an ayah sitting in the Qur'an.
   const { mutate: lookupRoot } = rootLookup
-  const { mutate: lookupAyahRef } = ayahLookup
 
   // The page follows an arrival during the render. App no longer remounts this
   // panel for one, that remount faded the whole page back in and read as a
@@ -89,7 +85,6 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   // whether it has just come in.
   const { arrived: justCame } = useArrival(arrival)
   if (justCame && incoming) {
-    setOpenSurah(null)
     setHeard(null)
     if (arrived) {
       setShowMatches(false)
@@ -99,14 +94,13 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
 
   useEffect(() => {
     if (!incoming) return
-    if (arrived) lookupAyahRef({ s: Number(arrived[1]), a: Number(arrived[2]) })
-    else lookupRoot(incoming)
+    if (!arrived) return lookupRoot(incoming)
+    const place = { surah: Number(arrived[1]), ayah: Number(arrived[2]) }
+    if (isAyah(place)) visit(place)
     // `arrived` is derived from `incoming` on every render, so the address
-    // itself is the dependency worth naming.
+    // itself is the dependency worth naming; `visit` is new every render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [arrival, incoming, lookupRoot, lookupAyahRef])
-
-  const retryAyah = () => ayahLookup.variables && ayahLookup.mutate(ayahLookup.variables)
+  }, [arrival, incoming, lookupRoot])
   const runSearch = (text = query.trim()) => {
     setHeard(null)
     if (!text) return
@@ -133,19 +127,21 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
       })),
     )
   }
-  const readSurah = (n) => { setShowMatches(false); setOpenSurah(n); setAt({ surah: n, ayah: null }) }
+  const readSurah = (n) => { setShowMatches(false); setAt({ surah: n, ayah: null }) }
 
-  const openResult = (r) => {
+  const openResult = ({ surah, ayah }) => {
     setShowMatches(false)
-    setAt({ surah: r.surah, ayah: r.ayah })
-    ayahLookup.mutate({ s: r.surah, a: r.ayah })
+    setAt({ surah, ayah })
+    if (isAyah({ surah, ayah })) visit({ surah, ayah })
   }
+  // The reader moving itself: a surah stepped to, an ayah tapped or shut.
+  const onPlace = (place) => (place.ayah ? openResult(place) : setAt(place))
 
-  const busy = ayahLookup.isPending || search.isPending
+  const busy = search.isPending
 
   return (
     <div className="panel">
-      <QuranSeal wide={Boolean(search.data || ayahLookup.data || rootLookup.data)} />
+      <QuranSeal wide={Boolean(search.data || at || rootLookup.data)} />
       <SectionHeader title="Quran" arabic="القرآن" />
 
       <RecentRow
@@ -177,15 +173,14 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
         onOpenAyah={(surah, ayah) => openResult({ surah, ayah })}
       />
 
-      {(ayahLookup.isError || search.isError) && (
-        // Not "could not reach Quran.com" any more: a search that cannot reach it
-        // falls back to the local index and never errors here, so reaching this
-        // line means the app's own backend did not answer.
+      {search.isError && (
+        // A search that cannot reach Quran.com falls back to the local index
+        // and never errors here, so this means the app's own backend did not answer.
         <ErrorAlert
           title="Lookup failed"
-          error={ayahLookup.error || search.error}
+          error={search.error}
           fallback="Could not reach the backend. Check that it is running."
-          onRetry={ayahLookup.isError ? retryAyah : () => runSearch()}
+          onRetry={() => runSearch()}
         />
       )}
 
@@ -199,16 +194,6 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
           onGo={onGo}
           onOpenAyah={openResult}
           onClose={() => rootLookup.reset()}
-        />
-      )}
-
-      {openSurah && (
-        <SurahReader
-          surah={openSurah}
-          accent={accent}
-          onChangeSurah={readSurah}
-          onClose={() => setOpenSurah(null)}
-          onOpenAyah={openResult}
         />
       )}
 
@@ -231,16 +216,9 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
           search.isPending && <AnalyzerSkeleton />
         )
       )}
-      {/* A lookup in flight keeps the previous answer on screen, dimmed, rather
-          than blanking it: swapping to the skeleton for every keystroke-driven
-          retry read as the tool losing what it just found. Only a first-ever
-          lookup with nothing to hold onto shows the skeleton. */}
-      {ayahLookup.data ? (
-        <div aria-busy={ayahLookup.isPending} className={`transition-opacity ${ayahLookup.isPending ? 'opacity-60' : ''}`}>
-          <AyahStudy data={ayahLookup.data} onGo={onGo} onReadSurah={readSurah} accent={accent} />
-        </div>
-      ) : (
-        ayahLookup.isPending && <AnalyzerSkeleton />
+      {/* Last, so the matches above stay directly under the box. */}
+      {at && (
+        <QuranReader place={at} accent={accent} onGo={onGo} onPlace={onPlace} onClose={() => setAt(null)} />
       )}
     </div>
   )

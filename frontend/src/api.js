@@ -25,6 +25,11 @@ export const conjugateForm = ({ root, form }) =>
 export const getQuranAyah = (surah, ayah) =>
   api.get(`/quran/${surah}/${ayah}`).then((r) => r.data)
 
+// A printed ayah never changes, so once fetched it is never fetched again.
+export const quranAyahQuery = (surah, ayah) => ({
+  queryKey: ['quran-ayah', surah, ayah], queryFn: () => getQuranAyah(surah, ayah), retry: false, staleTime: Infinity,
+})
+
 // The reading view by default: text and English only. The word-by-word grammar
 // is asked for one ayah at a time, because a whole surah of it is ~2MB.
 export const getQuranSurah = (surah) =>
