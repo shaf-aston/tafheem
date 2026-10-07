@@ -573,3 +573,57 @@ def for_ayah(surah: int, ayah: int) -> dict:
     and nothing to precompute, the answer is worked out per request.
     """
     return tree_for(quran_corpus.tags_for_ayah(surah, ayah))
+
+
+def cut(result: dict) -> dict:
+    """An ayah's tree in the shape every chart is drawn from: a connector glued onto
+    a word (فَ / وَ, marked `prefix_arabic`) cut into its own column, and `written`
+    naming the written word each column came from, as the typed sentence already has.
+
+    The chart only ever folds columns back together (its Merged view), so a word is
+    cut in one place only. Runs at the API edge: the scorers keep whole words.
+    """
+    words, tree = result["words"], result.get("tree")
+    cuts: dict[int, tuple[str, dict]] = {}  # word -> (connector text, its piece)
+
+    def find(node: dict) -> None:
+        for child in node.get("children") or ():
+            find(child)
+        text, word = node.get("prefix_arabic"), node.get("word")
+        piece = next((p for p in node.get("parts") or () if p.get("ghair_aamil")), None)
+        if not node.get("children") and text and piece and word is not None \
+                and words[word].startswith(text) and len(text) < len(words[word]):
+            cuts[word] = (text, piece)
+
+    if tree:
+        find(tree)
+    columns, written, own = [], [], {}  # own: old word -> the column of what is left of it
+    for i, full in enumerate(words):
+        text = cuts[i][0] if i in cuts else ""
+        if text:
+            columns.append(text)
+            written.append(i)
+        own[i] = len(columns)
+        columns.append(full[len(text):])
+        written.append(i)
+
+    def renumber(node: dict) -> list[dict]:
+        if node.get("children"):
+            return [{**node, "children": [n for child in node["children"] for n in renumber(child)]}]
+        if node.get("word") is None:
+            return [node]
+        word = node["word"]
+        if word not in cuts:
+            return [{**node, "word": own[word]}]
+        piece = cuts[word][1]
+        rest = [p for p in node["parts"] if p is not piece]
+        remainder = {k: v for k, v in node.items() if k != "prefix_arabic"}
+        # a word left with one piece is named by it alone (وَ + قَامَ: just فعل)
+        remainder.update(word=own[word], parts=rest if len(rest) > 1 else [],
+                         **({} if len(rest) > 1 else {"role": rest[0]["role"], "tone": rest[0]["tone"]}))
+        connector = {"word": own[word] - 1, "role": piece["role"], "tone": piece["tone"],
+                     "detail": piece.get("detail"), "ghair_aamil": True}
+        return [connector, remainder]
+
+    return {**result, "words": columns, "written": written,
+            "tree": renumber(tree)[0] if tree else tree}

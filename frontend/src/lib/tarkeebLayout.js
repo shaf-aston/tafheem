@@ -19,7 +19,7 @@ export const pieces = (node) => (node.parts?.length ? node.parts : null)
  * لْـ + فعل + فاعل + مفعول به. A word whose pieces make up another job (خبر =
  * حرف جر + مجرور) keeps its own row.
  */
-export const flat = (node) => pieces(node)?.[0].role === node.role
+export const flat = (node) => !!pieces(node) && node.parts[0].role === node.role
 const joins = (node) => kids(node) || (pieces(node) && !flat(node))
 
 /**
@@ -53,7 +53,8 @@ function byLevel(node, into = new Map()) {
 
 /** The level a word's role is written on, its parent's. Until then it threads. */
 function roleLevels(node, parentLevel, into = {}) {
-  if (!kids(node)) into[node.word] = Math.max(parentLevel, node.level)
+  // folded, several leaves share a column: it threads down to the last one named
+  if (!kids(node)) into[node.word] = Math.max(into[node.word] ?? 0, parentLevel, node.level)
   kids(node)?.forEach((child) => roleLevels(child, node.level, into))
   return into
 }
@@ -84,88 +85,47 @@ export function rows(tree, wordCount) {
   })
 }
 
+/** A name to write: a group named only by its own brace (= متعلق بـ...) has none here. */
+const named = (piece) => piece.role || piece.gap
+
 /**
  * The names written on a group's row, each over the columns of its own words:
  * [{ from, to, roles }]. A flat word's pieces share its one column (لْـ | فعل + فاعل),
- * and a word's own pieces all sit over that word.
+ * and a word's own pieces all sit over that word. Names that land on one column
+ * (a folded word's pieces) share one cell, read in order with a "+" between.
  */
 export const cells = (node) =>
-  kids(node)?.map((kid) => ({ from: kid.from, to: kid.to, roles: flat(kid) ? kid.parts : [kid] })) ??
-  [{ from: node.from, to: node.to, roles: pieces(node) }]
+  (kids(node)?.map((kid) => ({ from: kid.from, to: kid.to, roles: flat(kid) ? kid.parts : [kid] })) ??
+    [{ from: node.from, to: node.to, roles: pieces(node) }])
+    .map((cell) => ({ ...cell, roles: cell.roles.filter(named) }))
+    .filter((cell) => cell.roles.length)
+    .reduce((row, cell) => {
+      const last = row.at(-1)
+      if (last && cell.from <= last.to) Object.assign(last, { to: Math.max(last.to, cell.to), roles: [...last.roles, ...cell.roles] })
+      else row.push(cell)
+      return row
+    }, [])
+
+/** The tone of the word drawn in each column, so its underline is its name's colour. */
+export function tones(node, into = []) {
+  if (kids(node)) kids(node).forEach((kid) => tones(kid, into))
+  else if (node.word != null) into[node.word] = node.gap ? 'gap' : node.tone
+  return into
+}
 
 /**
- * Split a ghair-عامل connector (فَ / وَ) off the word it is glued to, so it
- * draws as its own labelled column instead of a "+" fused into the word
- * after it. Off by default, a reader who wants to see it separately asks.
- *
- * The backend never splits a written word itself; it only marks which piece
- * of a compound is the connector (`ghair_aamil: true`) and, on that word,
- * the connector's own exact text (`prefix_arabic`). Turning that into two
- * grid columns is display policy, so it happens here rather than in the API.
- * `written` is the written word each column was cut from (a typed sentence
- * comes already cut, فَـ لْـ يَصُمْهُ); both pieces of a split keep their word's.
+ * The Merged view: every written word back in one column (فَـ إِذًا → فَإِذًا), its
+ * pieces' names side by side in that column. The API always sends words cut into
+ * pieces with `written` naming each piece's word; this is the only way back.
  */
-export function splitConnectors(words, tree, written = words.map((_, i) => i)) {
-  const splits = new Map() // original word index -> { text, piece }
-  const find = (node) => {
-    const children = kids(node)
-    if (children) return children.forEach(find)
-    if (node.word == null || !node.prefix_arabic || !pieces(node)) return
-    const piece = node.parts.find((p) => p.ghair_aamil)
-    if (piece) splits.set(node.word, { text: node.prefix_arabic, piece })
-  }
-  find(tree)
-  if (splits.size === 0) return { words, written, tree, terms: [] }
-
-  const newWords = []
-  const newWritten = [] // the written word each new column was cut from
-  const wordAt = []       // original index -> new index of the word's own remainder
-  const connectorAt = []  // original index -> new index of the connector, when split
-  words.forEach((full, i) => {
-    const split = splits.get(i)
-    if (split && full.startsWith(split.text) && split.text.length < full.length) {
-      connectorAt[i] = newWords.length
-      newWords.push(split.text)
-      newWritten.push(written[i])
-    }
-    wordAt[i] = newWords.length
-    newWords.push(connectorAt[i] === undefined ? full : full.slice(split.text.length))
-    newWritten.push(written[i])
+export function fold({ words, written, tree }) {
+  const folded = []
+  const column = written.map((word, i) => {
+    if (i > 0 && written[i - 1] === word) folded[folded.length - 1] += words[i]
+    else folded.push(words[i])
+    return folded.length - 1
   })
-
-  const rewrite = (node) => {
-    const children = kids(node)
-    if (children) return [{ ...node, children: children.flatMap(rewrite) }]
-    if (node.word == null) return [node]
-    const split = splits.get(node.word)
-    if (!split || connectorAt[node.word] === undefined) return [{ ...node, word: wordAt[node.word] }]
-
-    const rest = node.parts.filter((p) => p !== split.piece)
-    const remainder = { ...node, word: wordAt[node.word] }
-    delete remainder.prefix_arabic
-    if (rest.length > 1) {
-      remainder.parts = rest
-    } else {
-      remainder.role = rest[0].role
-      remainder.tone = rest[0].tone
-      remainder.parts = []
-    }
-    const connector = {
-      word: connectorAt[node.word],
-      role: split.piece.role,
-      tone: split.piece.tone,
-      detail: split.piece.detail,
-      ghair_aamil: true,
-      parts: [],
-      children: [],
-    }
-    return [connector, remainder]
-  }
-
-  return {
-    words: newWords,
-    written: newWritten,
-    tree: { ...tree, children: tree.children.flatMap(rewrite) },
-    terms: [...new Set([...splits.values()].map((s) => s.piece.role))],
-  }
+  const renumber = (node) =>
+    kids(node) ? { ...node, children: node.children.map(renumber) } : node.word == null ? node : { ...node, word: column[node.word] }
+  return { words: folded, written: folded.map((_, i) => i), tree: renumber(tree) }
 }

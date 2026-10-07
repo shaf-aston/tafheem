@@ -240,8 +240,7 @@ class TarkeebNode(BaseModel):
     # needs one. Most roles need none, so this stays unset for them.
     detail: str | None = None
     # The exact Arabic of a connector glued onto the front of this word (فَ /
-    # وَ), so the diagram can slice it into its own column on request instead
-    # of always drawing it fused with the word it precedes.
+    # وَ), so tarkeeb.cut can give it its own column before the chart sees it.
     prefix_arabic: str | None = None
     # Understood, not written: the diagram dashes the column (ثابت in الحمد لله, an elided khabar).
     hidden: bool = False
@@ -260,8 +259,8 @@ class TarkeebTree(BaseModel):
     surah: int | None = None
     ayah: int | None = None
     words: list[str]
-    # The typed word each column was cut from (فَـ لْـ يَصُمْهُ share one), so the
-    # chart sets one word's pieces close. Unset for an ayah, whose words are whole.
+    # The written word each column was cut from (فَـ لْـ يَصُمْهُ share one), so the
+    # chart sets one word's pieces close and its Merged view can fold them back.
     written: list[int] | None = None
     tree: TarkeebNode | None = None
     # The share of words the rules placed in a named unit. The rest are gaps, and

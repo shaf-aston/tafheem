@@ -13,11 +13,10 @@ import { Fragment, useCallback, useLayoutEffect, useMemo, useState } from 'react
 
 import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
-import { cells, hiddenWords, rows, splitConnectors } from '../lib/tarkeebLayout'
+import { cells, fold, hiddenWords, rows, tones } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
 import { colorFor } from '../theme'
 
-import ArabicText from './ui/ArabicText'
 import Segmented from './ui/Segmented'
 import Tooltip from './ui/Tooltip'
 
@@ -100,14 +99,17 @@ const writtenWords = (written) =>
     return runs
   }, [])
 
-export default function TarkeebDiagram({ words, written, tree, unwritten }) {
+/**
+ * `tarkeeb` is the API's chart, as every tab gets it: { words, written, tree, unwritten },
+ * the words already cut into their pieces (فَـ إِذًا), `written` naming each piece's word.
+ */
+export default function TarkeebDiagram({ tarkeeb }) {
+  const { words, tree, unwritten } = tarkeeb
+  const written = tarkeeb.written ?? words.map((_, i) => i)
   const [mode, setMode] = useState('split')
   const [dots, setDots] = useState([])
-  const { strip, ends, measure, page } = useRail(`${words?.join(' ')}|${mode}`)
-  const split = useMemo(
-    () => (tree && words?.length ? splitConnectors(words, tree, written) : null),
-    [words, written, tree],
-  )
+  const { strip, ends, measure, page } = useRail(`${words.join(' ')}|${mode}`)
+  const merged = useMemo(() => (tree ? fold({ words, written, tree }) : null), [words, written, tree])
   const settle = useCallback(() => {
     measure()
     if (strip.current) setDots(placeDots(strip.current))
@@ -122,13 +124,15 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
     settle()
     document.fonts?.ready.then(settle)
   }, [words, tree, mode, strip, settle])
-  if (!tree || !words?.length) return null
+  if (!tree || !words.length) return null
 
-  const canSplit = split.words.length > words.length
-  const shown = mode === 'split' && canSplit ? split : { words, written: written ?? words.map((_, i) => i), tree }
+  const canSplit = merged.words.length < words.length
+  const shown = mode === 'merged' ? merged : { words, written, tree }
   const levels = rows(shown.tree, shown.words.length)
   const spans = writtenWords(shown.written)
   const hidden = hiddenWords(shown.tree)
+  // each word's underline in its own name's colour, so the eye pairs them
+  const tone = tones(shown.tree)
   // the columns of a written word cut into pieces
   const cut = new Set(spans.flatMap(({ from, to }) => (to > from ? Array.from({ length: to - from + 1 }, (_, k) => from + k) : [])))
   const goTo = (index) => {
@@ -140,12 +144,9 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
   return (
     <div>
       {canSplit && (
-        <div className="flex items-center justify-end gap-2 pb-3 flex-wrap">
-          {/* The caption reuses the connective's own term text from the tree
-              instead of a wording invented here, no new Arabic in this file. */}
-          <ArabicText size="sm" className="text-[var(--text-faint)]">{split.terms.join(' / ')}</ArabicText>
+        <div className="flex justify-end pb-3">
           <Segmented
-            label="Show the connective as its own column, or merged with the word after it"
+            label="Show each piece written onto a word in its own column, or the written word whole"
             value={mode}
             onChange={setMode}
             accent={GHAIR_AAMIL_ACCENT}
@@ -196,22 +197,23 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
               <div
                 className={`tk-word${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
                 key={`word-${from}`}
-                style={{ gridColumn: `${from + 1} / ${to + 2}` }}
+                style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone[from]) }}
               >
                 {to > from ? (
                   pieces.map((text, k) => {
-                    // وَ joins nothing after it, so it stands apart; فَـ and لْـ carry a joining line
+                    // each piece underlined in its own name's colour; وَ joins nothing after it,
+                    // so it stands apart, فَـ and لْـ carry a line to the piece they are written onto
                     const joins = k < pieces.length - 1 && joinsOn(text)
                     return (
-                      <span key={k} className="tk-cut" style={{ gridColumn: k + 1 }}>
-                        {seatSmallAlef(joins ? joinedOn(text) : text)}
+                      <span key={k} className="tk-cut" style={{ gridColumn: k + 1, '--tone': roleVar(tone[from + k]) }}>
+                        <span className="tk-text">{seatSmallAlef(joins ? joinedOn(text) : text)}</span>
                         {joins && <span className="tk-join" aria-hidden="true" />}
                       </span>
                     )
                   })
                 ) : (
                   <Tooltip text={missing ? unwritten?.note : undefined}>
-                    <span>{seatSmallAlef(word)}</span>
+                    <span className="tk-text">{seatSmallAlef(word)}</span>
                   </Tooltip>
                 )}
               </div>

@@ -220,7 +220,7 @@ async def get_tarkeeb(surah: int, ayah: int) -> TarkeebTree:
     out what they can from the corpus tags and leave the rest as open brackets.
     """
     recorded = await asyncio.to_thread(tarkeeb_store.for_ayah, surah, ayah)
-    result = recorded or await asyncio.to_thread(tarkeeb.for_ayah, surah, ayah)
+    result = tarkeeb.cut(recorded or await asyncio.to_thread(tarkeeb.for_ayah, surah, ayah))
     if not result["words"]:
         raise HTTPException(status_code=404, detail=f"There is no ayah {surah}:{ayah}")
     source = provenance.of("treebank" if recorded else "tarkeeb")
