@@ -206,6 +206,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَبَاح",
+          "transliteration": "Sabaa7",
+          "english": "morning",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَكِّير",
+          "transliteration": "bakkeer",
+          "english": "early",
+          "category": "Morning"
+        },
+        {
+          "arabic": "نَعْسَان",
+          "transliteration": "na3saan",
+          "english": "sleepy",
+          "category": "Morning"
+        },
+        {
+          "arabic": "وِجّ",
+          "transliteration": "wijj",
+          "english": "face",
+          "category": "Morning"
+        },
+        {
+          "arabic": "سْنَان",
+          "transliteration": "snaan",
+          "english": "teeth",
+          "category": "Morning"
+        },
+        {
+          "arabic": "تْيَاب",
+          "transliteration": "tyaab",
+          "english": "clothes",
+          "category": "Morning"
+        },
+        {
+          "arabic": "شُغِل",
+          "transliteration": "shughel",
+          "english": "work",
+          "category": "Morning"
+        },
+        {
+          "arabic": "بَرْد",
+          "transliteration": "bard",
+          "english": "cold",
+          "category": "Morning"
+        }
+      ],
       "culture": "A Lebanese morning greeting is \"صباح الخير\" answered with \"صباح النور\", or the warmer \"صباح الورد\". A small cup of coffee at home before leaving is close to universal, and Beirut morning traffic is heavy enough that people leave early.",
       "exercises": [
         {
@@ -583,6 +633,56 @@
             "transliteration": "es-saa3a 3ashra",
             "english": "At ten o'clock."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "اِجْتِمَاع",
+          "transliteration": "ijtimaa3",
+          "english": "meeting",
+          "category": "During the day"
+        },
+        {
+          "arabic": "غَدَا",
+          "transliteration": "ghada",
+          "english": "lunch",
+          "category": "During the day"
+        },
+        {
+          "arabic": "تَعْبَان",
+          "transliteration": "ta3baan",
+          "english": "tired",
+          "category": "During the day"
+        },
+        {
+          "arabic": "ضُهُر",
+          "transliteration": "Dohor",
+          "english": "noon",
+          "category": "During the day"
+        },
+        {
+          "arabic": "اِسْتِرَاحَة",
+          "transliteration": "isteraa7a",
+          "english": "break",
+          "category": "During the day"
+        },
+        {
+          "arabic": "قَلَم",
+          "transliteration": "2alam",
+          "english": "pen",
+          "category": "During the day"
+        },
+        {
+          "arabic": "أَخْبَار",
+          "transliteration": "akhbaar",
+          "english": "news",
+          "category": "During the day"
+        },
+        {
+          "arabic": "شَغْلِة",
+          "transliteration": "shaghle",
+          "english": "task",
+          "category": "During the day"
         }
       ],
       "culture": "In Lebanon lunch is often the biggest meal of the day, and many people still eat it at home or with colleagues in the early afternoon. \"شو الأخبار؟\" is a routine greeting between colleagues, and the usual answer is \"الحمدلله\" rather than real news.",
@@ -965,6 +1065,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَسَا",
+          "transliteration": "masa",
+          "english": "evening",
+          "category": "Evening"
+        },
+        {
+          "arabic": "بَيْت",
+          "transliteration": "bayt",
+          "english": "home, house",
+          "category": "Evening"
+        },
+        {
+          "arabic": "عَشَا",
+          "transliteration": "3asha",
+          "english": "dinner",
+          "category": "Evening"
+        },
+        {
+          "arabic": "حَمَّام",
+          "transliteration": "7ammaam",
+          "english": "bath, shower",
+          "category": "Evening"
+        },
+        {
+          "arabic": "مُسَلْسَل",
+          "transliteration": "musalsal",
+          "english": "TV series",
+          "category": "Evening"
+        },
+        {
+          "arabic": "جَوّ",
+          "transliteration": "jaww",
+          "english": "weather",
+          "category": "Evening"
+        },
+        {
+          "arabic": "لَيْل",
+          "transliteration": "layl",
+          "english": "night",
+          "category": "Evening"
+        },
+        {
+          "arabic": "أَصْحَاب",
+          "transliteration": "aS7aab",
+          "english": "friends",
+          "category": "Evening"
+        }
+      ],
       "culture": "\"تصبح على خير\" is answered with the fixed phrase \"وإنت من أهله\" (literally: you are of its people), so it is learned whole rather than word by word. Lebanese evenings start late, with dinner often at eight or nine and a walk or a coffee with friends before or after.",
       "exercises": [
         {
@@ -1335,6 +1485,56 @@
             "transliteration": "la2, es-sabt ijaaze",
             "english": "No, Saturday is a day off."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "الْأَحَد",
+          "transliteration": "el-a7ad",
+          "english": "Sunday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "التْنِين",
+          "transliteration": "et-tneen",
+          "english": "Monday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "التْلَاتَا",
+          "transliteration": "et-tlaata",
+          "english": "Tuesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْأَرْبْعَا",
+          "transliteration": "el-arb3a",
+          "english": "Wednesday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْخَمِيس",
+          "transliteration": "el-khamees",
+          "english": "Thursday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "الْجِمْعَة",
+          "transliteration": "ej-jem3a",
+          "english": "Friday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "السَّبِت",
+          "transliteration": "es-sabet",
+          "english": "Saturday",
+          "category": "Days of the week"
+        },
+        {
+          "arabic": "أُسْبُوع",
+          "transliteration": "osboo3",
+          "english": "week",
+          "category": "Days of the week"
         }
       ],
       "culture": "The Lebanese work week usually runs Monday to Friday, with Sunday the common day off and many shops and some offices open on Saturday morning. Friday is the midday prayer day for Muslims and Sunday is church day for Christians; the pattern \"except Friday and Saturday\" belongs to places with that weekend, in Lebanon people more often say Saturday and Sunday. \"إيمتى؟\" is the everyday word for when.",
