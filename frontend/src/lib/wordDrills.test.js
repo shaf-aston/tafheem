@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { judge } from './colloquialAnswer'
-import { wordDrills } from './wordDrills'
+import { WORDS_MODULE, wordDrills, wordKey } from './wordDrills'
 
 const w = (arabic, english) => ({ arabic, english, transliteration: english })
 const words = [w('سلام', 'peace'), w('اسم', 'name'), w('بيت', 'house'), w('باب', 'door'), w('قلم', 'pen')]
@@ -27,5 +27,13 @@ describe('wordDrills', () => {
     expect(judge(write, 'بيت')).toBe(true)
     expect(judge(write, 'house')).toBe(true)
     expect(wordDrills([words[0]], 'l1')[0].type).toBe('translate_to_arabic')
+  })
+
+  it('files each drill under its word, and draws wrong options from the pool', () => {
+    const [one] = wordDrills([words[3]], 'r', { pool: words, dialect: 'fusha' })
+    expect(one.progress).toEqual({ module: WORDS_MODULE, item: wordKey('fusha', words[3]) })
+    expect(one.type).toBe('choose')
+    expect(one.options).toHaveLength(4)
+    expect(wordDrills(words, 'l1')[0].progress).toBeUndefined()
   })
 })

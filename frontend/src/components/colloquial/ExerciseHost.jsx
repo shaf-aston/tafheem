@@ -7,7 +7,8 @@
  * ({correct, value}) puts an answered exercise back as it was left, so coming
  * back to one shows what was written and how it was marked. The attempt itself
  * is filed here under module "colloq", so every place that hosts an exercise
- * records it alike. An exercise with `say` is heard: its prompt gets a speaker.
+ * records it alike; an exercise naming its own `progress` ({module, item}) is
+ * filed there instead, as a word drill is filed under the word. An exercise with `say` is heard: its prompt gets a speaker.
  */
 import { useRef, useState } from 'react'
 
@@ -37,7 +38,8 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
   const check = () => {
     const correct = judge(exercise, value)
     setStatus(correct ? 'right' : 'wrong')
-    recordAttempt({ module: 'colloq', item: exercise.id, correct, ms: startedAt.current && Date.now() - startedAt.current })
+    const { module = 'colloq', item = exercise.id } = exercise.progress ?? {}
+    recordAttempt({ module, item, correct, ms: startedAt.current && Date.now() - startedAt.current })
     onDone?.(correct, value)
   }
 
