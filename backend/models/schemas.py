@@ -894,6 +894,12 @@ class PracticeResponse(BaseModel):
     source: Source | None = None
 
 
+class CheckedSentence(BaseModel):
+    ar: str
+    en: str
+    words: list[str]  # the learnt words the AI was given
+
+
 class KeptQuestion(PracticeQuestion):
     """A generated question as it was filed in progress.db."""
     sentence: str

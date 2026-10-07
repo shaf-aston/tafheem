@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { profileHeaders } from './lib/profile'
+
 export const api = axios.create({
   baseURL: '/api',
   headers: { 'Content-Type': 'application/json' },
@@ -119,6 +121,10 @@ export const getRootEntryLines = (root) =>
 
 export const generatePractice = (sentence) =>
   api.post('/practice', { sentence }).then((r) => r.data)
+
+// A short AI sentence made only of this learner's learnt words, each one checked.
+export const getCheckedSentence = () =>
+  api.post('/practice/checked', {}, { headers: profileHeaders() }).then((r) => r.data)
 
 // The teacher's exercise library: every tag, every exercise, and a count per
 // tag. Small and fixed, so it is fetched whole once and filtered on the

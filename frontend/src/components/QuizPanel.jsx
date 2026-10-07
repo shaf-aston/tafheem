@@ -14,6 +14,7 @@ import { progressKey } from '../lib/stored'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
 
 import QuizAyah from './QuizAyah'
+import PracticeSentence from './PracticeSentence'
 import QuizInsights from './QuizInsights'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
@@ -717,6 +718,7 @@ export default function QuizPanel({ accent, onProgress }) {
           </div>
 
           <QuizInsights accent={accent} language={language} />
+          <PracticeSentence say={say} />
         </>
       )}
     </div>
