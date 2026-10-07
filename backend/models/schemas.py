@@ -231,17 +231,13 @@ class TarkeebNode(BaseModel):
     gap: bool = False
     # A ghair-`aamil` particle, و / ف that opens a new clause, or a bare
     # connective like ثم, governs nothing. It still gets its own name and
-    # colour, so this is how the diagram tells it apart from a real gap
-    # without having to compare against a colour string.
+    # colour; the rules read this to tell it apart from a real gap.
     ghair_aamil: bool = False
     # True when the wording is the Treebank's own, not one the app checked.
     raw_wording: bool = False
     # A short, plain-language note for the hover/click detail on a role that
     # needs one. Most roles need none, so this stays unset for them.
     detail: str | None = None
-    # The exact Arabic of a connector glued onto the front of this word (فَ /
-    # وَ), so tarkeeb.cut can give it its own column before the chart sees it.
-    prefix_arabic: str | None = None
     # Understood, not written: the diagram dashes the column (ثابت in الحمد لله, an elided khabar).
     hidden: bool = False
     parts: list["TarkeebNode"] = Field(default_factory=list)

@@ -122,7 +122,6 @@ describe('fold, the Merged view', () => {
 
   it('puts each written word back in one column', () => {
     expect(merged.words).toEqual(['فَلْيَصُمْهُ', 'زَيْدٌ'])
-    expect(merged.written).toEqual([0, 1])
   })
 
   it('reads the pieces sharing a column as one cell, in order', () => {
@@ -133,8 +132,8 @@ describe('fold, the Merged view', () => {
   })
 
   it('changes nothing when no word was cut', () => {
-    const whole = fold({ words: ['زَيْدٌ'], written: [0], tree: { children: [{ word: 0, role: 'فاعل' }] } })
-    expect(whole.words).toEqual(['زَيْدٌ'])
+    const whole = fold({ words: ['زَيْدٌ', 'قَامَ'], tree: { children: [{ word: 0, role: 'فاعل' }, { word: 1, role: 'فعل' }] } })
+    expect(whole.words).toEqual(['زَيْدٌ', 'قَامَ'])
   })
 })
 

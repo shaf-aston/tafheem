@@ -13,7 +13,7 @@ import { Fragment, useCallback, useLayoutEffect, useMemo, useState } from 'react
 
 import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
-import { cells, fold, hiddenWords, rows, tones } from '../lib/tarkeebLayout'
+import { cells, fold, hiddenWords, rows, runs, tones } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
 import { colorFor } from '../theme'
 
@@ -90,22 +90,12 @@ function placeDots(view) {
   })
 }
 
-/** The written words, each as the run of columns cut from it: [{ from, to }], in column order. */
-const writtenWords = (written) =>
-  written.reduce((runs, word, index) => {
-    const last = runs.at(-1)
-    if (last && written[last.from] === word) last.to = index
-    else runs.push({ from: index, to: index })
-    return runs
-  }, [])
-
 /**
  * `tarkeeb` is the API's chart, as every tab gets it: { words, written, tree, unwritten },
  * the words already cut into their pieces (فَـ إِذًا), `written` naming each piece's word.
  */
 export default function TarkeebDiagram({ tarkeeb }) {
-  const { words, tree, unwritten } = tarkeeb
-  const written = tarkeeb.written ?? words.map((_, i) => i)
+  const { words, written, tree, unwritten } = tarkeeb
   const [mode, setMode] = useState('split')
   const [dots, setDots] = useState([])
   const { strip, ends, measure, page } = useRail(`${words.join(' ')}|${mode}`)
@@ -127,9 +117,9 @@ export default function TarkeebDiagram({ tarkeeb }) {
   if (!tree || !words.length) return null
 
   const canSplit = merged.words.length < words.length
-  const shown = mode === 'merged' ? merged : { words, written, tree }
+  const shown = mode === 'merged' ? merged : tarkeeb
   const levels = rows(shown.tree, shown.words.length)
-  const spans = writtenWords(shown.written)
+  const spans = runs(shown.words, shown.written)
   const hidden = hiddenWords(shown.tree)
   // each word's underline in its own name's colour, so the eye pairs them
   const tone = tones(shown.tree)

@@ -46,4 +46,11 @@ describe('buildIraabExportText', () => {
     const text = buildIraabExportText({ sentence: 'أمس', words: [], tree: { words: ['أمس'], tree } })
     expect(text).toContain('  أمس = ؟')
   })
+
+  it('prints the pieces of one written word joined, as it is written', () => {
+    const tree = { label: 'جملة', children: [
+      { word: 0, role: 'حرف عطف', children: [] }, { word: 1, role: 'فعل', children: [] }, { word: 2, role: 'فاعل', children: [] }] }
+    const text = buildIraabExportText({ sentence: '', words: [], tree: { words: ['فَ', 'قَامَ', 'زَيْدٌ'], written: [0, 0, 1], tree } })
+    expect(text).toContain('فَقَامَ زَيْدٌ = جملة')
+  })
 })

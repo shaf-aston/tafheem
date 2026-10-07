@@ -114,18 +114,26 @@ export function tones(node, into = []) {
 }
 
 /**
+ * The written words, each as the run of columns cut from it: [{ from, to }], in
+ * column order. `written` names each column's word; without it every column is whole.
+ */
+export const runs = (words, written) =>
+  words.reduce((found, _, index) => {
+    const last = found.at(-1)
+    if (last && written && written[last.from] === written[index]) last.to = index
+    else found.push({ from: index, to: index })
+    return found
+  }, [])
+
+/**
  * The Merged view: every written word back in one column (فَـ إِذًا → فَإِذًا), its
- * pieces' names side by side in that column. The API always sends words cut into
- * pieces with `written` naming each piece's word; this is the only way back.
+ * pieces' names side by side in that column. The API sends words cut into pieces,
+ * `written` naming each piece's word; this is the only way back.
  */
 export function fold({ words, written, tree }) {
-  const folded = []
-  const column = written.map((word, i) => {
-    if (i > 0 && written[i - 1] === word) folded[folded.length - 1] += words[i]
-    else folded.push(words[i])
-    return folded.length - 1
-  })
+  const whole = runs(words, written)
+  const column = whole.flatMap(({ from, to }, at) => Array(to - from + 1).fill(at))
   const renumber = (node) =>
     kids(node) ? { ...node, children: node.children.map(renumber) } : node.word == null ? node : { ...node, word: column[node.word] }
-  return { words: folded, written: folded.map((_, i) => i), tree: renumber(tree) }
+  return { words: whole.map(({ from, to }) => words.slice(from, to + 1).join('')), tree: renumber(tree) }
 }
