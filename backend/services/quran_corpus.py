@@ -286,19 +286,19 @@ def words_for_surah(surah: int) -> list[tuple[int, list[dict]]]:
     ]
 
 
-def lemmas_for_surah(surah: int) -> dict[int, list[str]]:
-    """Each ayah's words as their dictionary forms, in printed order.
+def lemmas_for_surah(surah: int) -> dict[int, list[list[str]]]:
+    """Each ayah's words, in printed order, as the dictionary forms they are built from.
 
-    The stem's lemma, so the reader can mark the words a learner has learnt.
-    A glued-on prefix (the وَ of وَقَالَ) is not marked, though the meter counts it. An ayah whose printed words do not match the
+    Every piece's lemma (بِسْمِ is ب and اسْم), as the coverage meter counts a
+    word learnt by any of them. An ayah whose printed words do not match the
     corpus words one to one (37:130) is left out, as the glosses are.
     """
     rows = _db().execute(
-        "SELECT * FROM segment WHERE surah = ? ORDER BY ayah, word, segment", (surah,)
+        "SELECT ayah, word, lemma FROM segment WHERE surah = ? ORDER BY ayah, word, segment", (surah,)
     ).fetchall()
     texts = dict(ayah_texts(surah))
     lemmas = {
-        ayah: [_stem_of(list(segments))["lemma"]
+        ayah: [[s["lemma"] for s in segments if s["lemma"]]
                for _, segments in groupby(ayah_rows, key=lambda r: r["word"])]
         for ayah, ayah_rows in groupby(rows, key=lambda r: r["ayah"])
     }

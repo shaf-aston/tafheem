@@ -2,18 +2,18 @@
  * How much of the Qur'an the known words add up to.
  *
  * `words` is the word table, `coverage` is coverage.json (`total`, `lemmas`,
- * `counts`), `knownItems` are the meaningKeys the store calls known.
+ * `counts`), `learnt` are the summary rows the store calls known (learntOf).
  *
- * Several words can share a meaningKey and an answer does not say which of them
- * was asked, so a known meaningKey credits ONE of its words: the one with the
- * fewest Qur'an words behind it, among those that are in the Qur'an at all (an
- * everyday word sharing the meaning would otherwise credit nothing). A lemma is
- * counted once however many known words use it.
+ * Several words can share a meaningKey, so a learnt meaning credits the words
+ * answered right through it (`row.words`). An answer saved before those were
+ * kept names none; then it credits ONE word: the one with the fewest Qur'an
+ * words behind it, among those in the Qur'an at all. A lemma is counted once
+ * however many learnt words use it.
  */
-export function coverageOf(words, coverage, knownItems) {
-  if (!knownItems.length) return null
+export function coverageOf(words, coverage, learnt) {
+  if (!learnt.length) return null
   let covered = 0
-  for (const at of credited(words, coverage, knownItems)) covered += coverage.counts[at]
+  for (const at of credited(words, coverage, learnt)) covered += coverage.counts[at]
   return covered / coverage.total
 }
 
@@ -21,8 +21,8 @@ export function coverageOf(words, coverage, knownItems) {
  * The same share per surah, from surah_coverage.json (`total`, `counts` keyed
  * by lemma index). Credits the same lemmas as the whole meter, so the two agree.
  */
-export function surahShares(words, coverage, knownItems, bySurah) {
-  const lemmas = credited(words, coverage, knownItems)
+export function surahShares(words, coverage, learnt, bySurah) {
+  const lemmas = credited(words, coverage, learnt)
   return bySurah.map(({ total, counts }) => {
     let covered = 0
     for (const at of lemmas) covered += counts[at] ?? 0
@@ -30,22 +30,41 @@ export function surahShares(words, coverage, knownItems, bySurah) {
   })
 }
 
+/** The progress summary's learnt rows, which every function here takes. */
+export const learntOf = (summary) => summary?.filter((row) => row.known) ?? []
+
 /** The credited lemmas spelled out, for marking learnt words in the reader. */
-export function learntLemmas(words, coverage, knownItems) {
-  return new Set([...credited(words, coverage, knownItems)].map((at) => coverage.lemmas[at]))
+export function learntLemmas(words, coverage, learnt) {
+  return new Set([...credited(words, coverage, learnt)].map((at) => coverage.lemmas[at]))
 }
 
-/** The lemmas the known meaningKeys credit, by the rule above. */
-function credited(words, coverage, knownItems) {
-  const known = new Set(knownItems)
-  const weight = (word) => (word.lemmas ?? []).reduce((sum, at) => sum + coverage.counts[at], 0)
+/**
+ * Which printed words of an ayah are learnt: any piece's lemma will do, as the
+ * meter counts it. `ayah` is one entry of the glosses' `lemmas`. Null when none
+ * is, so the reader keeps its plain text.
+ */
+export function learntWords(ayah, lemmas) {
+  const marks = ayah?.map((pieces) => pieces.some((lemma) => lemmas.has(lemma)))
+  return marks?.some(Boolean) ? marks : null
+}
+
+/** The lemmas the learnt rows credit, by the rule above. */
+function credited(words, coverage, learnt) {
+  const asked = new Map(learnt.map((row) => [row.item, new Set(row.words ?? [])]))
+  const weight = (word) => word.lemmas.reduce((sum, at) => sum + coverage.counts[at], 0)
+  const picked = []
   const cheapest = new Map()
   for (const word of words) {
-    if (!known.has(word.meaningKey) || !word.lemmas) continue
+    const right = asked.get(word.meaningKey)
+    if (!right || !word.lemmas) continue
+    if (right.size) {
+      if (right.has(word.ar)) picked.push(word)
+      continue
+    }
     const best = cheapest.get(word.meaningKey)
     if (!best || weight(word) < weight(best)) cheapest.set(word.meaningKey, word)
   }
-  return new Set([...cheapest.values()].flatMap((word) => word.lemmas))
+  return new Set([...picked, ...cheapest.values()].flatMap((word) => word.lemmas))
 }
 
 /**

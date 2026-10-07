@@ -81,6 +81,14 @@ GROUP BY item
 ORDER BY item
 """
 
+# The words a meaning was answered right through, so coverage credits the word
+# asked and not a synonym. Older answers saved no word and add none.
+_WORDS = """
+SELECT DISTINCT item, json_extract(context, '$.word') AS word FROM attempts
+WHERE user = ? AND module = ? AND correct = 1 AND word IS NOT NULL
+ORDER BY item, word
+"""
+
 _ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ? ORDER BY id"
 
 
@@ -217,6 +225,9 @@ def summary(module: str, user: str = "local") -> list[dict]:
     cap = get_settings().progress_timing_cap_ms
     rows = _db().execute(_SUMMARY, (cap, user, module)).fetchall()
     cards = _replay(module, user)
+    words: dict[str, list[str]] = {}
+    for row in _db().execute(_WORDS, (user, module)):
+        words.setdefault(row["item"], []).append(row["word"])
     now = datetime.now(timezone.utc)
 
     return [
@@ -228,6 +239,7 @@ def summary(module: str, user: str = "local") -> list[dict]:
             "due": review_schedule.is_due(cards[row["item"]], now),
             "known": review_schedule.is_known(cards[row["item"]], now),
             "due_at": cards[row["item"]].due.isoformat(),
+            "words": words.get(row["item"], []),
         }
         for row in rows
     ]

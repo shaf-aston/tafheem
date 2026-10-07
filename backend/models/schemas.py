@@ -602,7 +602,7 @@ class SurahGlosses(BaseModel):
     surah: int
     ayahs: dict[int, list[str]]
     # Each word's dictionary form, same order and same left-out ayahs, for the learnt marks.
-    lemmas: dict[int, list[str]] = {}
+    lemmas: dict[int, list[list[str]]] = {}
 
 
 class Edition(BaseModel):
@@ -1179,6 +1179,8 @@ class ItemStats(BaseModel):
     due: bool = False
     known: bool = False
     dueAt: str | None = None
+    words: list[str] = []
+    """The words of this meaning answered right, as the quiz printed them."""
 
 
 class ProgressSummary(BaseModel):

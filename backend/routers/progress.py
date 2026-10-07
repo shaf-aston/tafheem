@@ -95,6 +95,7 @@ def get_summary(module: str = _MODULE, user: str = _USER) -> ProgressSummary:
                 due=row["due"],
                 known=row["known"],
                 dueAt=row["due_at"],
+                words=row["words"],
             )
             for row in progress_store.summary(module, user)
         ],

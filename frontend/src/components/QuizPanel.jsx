@@ -315,7 +315,7 @@ export default function QuizPanel({ accent, onProgress }) {
       item: question.answerId,
       correct: wasRight,
       ms: askedAt.current === null ? null : Date.now() - askedAt.current,
-      context: { bank: bankId, group: groupId, direction },
+      context: { bank: bankId, group: groupId, direction, word: question.answerWord },
     }).then((result) => {
       setSaving(result.saved)
       // The answer just changed two numbers on screen: what is owed, on the

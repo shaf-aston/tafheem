@@ -24,7 +24,7 @@
 import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { coverageOf, shareOf } from '../lib/coverage'
+import { coverageOf, learntOf, shareOf } from '../lib/coverage'
 import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../lib/insights'
 import { fetchSummary } from '../lib/progress'
 import { sayIn } from '../lib/say'
@@ -83,10 +83,7 @@ export default function QuizInsights({ accent, language }) {
     [joined],
   )
 
-  const learnt = useMemo(
-    () => stats.data?.filter((row) => row.known).map((row) => row.item) ?? [],
-    [stats.data],
-  )
+  const learnt = useMemo(() => learntOf(stats.data), [stats.data])
   const share = useMemo(
     () => (words.data && covering.data ? coverageOf(words.data, covering.data, learnt) : null),
     [learnt, words.data, covering.data],

@@ -234,6 +234,8 @@ describe('working through the bank', () => {
     const exclude = new Set(BANK.slice(0, BANK.length - 1).map((w) => w.meaningKey))
     const q = buildQuestion(BANK, { exclude, random: makeRandom(2) })
     expect(q.answerId).toBe(BANK[BANK.length - 1].meaningKey)
+    // The very word asked, so learning it credits that word and not a synonym.
+    expect(q.answerWord).toBe(BANK[BANK.length - 1].ar)
   })
 
   it('starts again once every word has been asked', () => {

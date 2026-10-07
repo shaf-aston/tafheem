@@ -55,6 +55,7 @@ def test_the_summary_reads_back_what_was_written():
     assert {k: item[k] for k in ("item", "attempts", "wrong", "avgMs", "due", "known")} == {
         "item": "to-write", "attempts": 2, "wrong": 1, "avgMs": 2000, "due": False, "known": False}
     assert item["dueAt"].endswith("+00:00")
+    assert item["words"] == []
 
 
 def test_review_lists_what_is_still_owed():
