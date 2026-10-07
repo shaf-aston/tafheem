@@ -93,3 +93,12 @@ describe('readQuranQuery', () => {
     }
   })
 })
+
+describe('a line ended the way a sentence ends', () => {
+  it('reads the same as without its last mark', () => {
+    for (const end of ['.', '?', '؟', '!', '۔']) {
+      expect(readQuranQuery(`2:255${end}`).kind).toBe(KIND.ayah)
+      expect(readQuranQuery(`فالله يحكم بينهم يوم القيامة${end}`)).toEqual(readQuranQuery('فالله يحكم بينهم يوم القيامة'))
+    }
+  })
+})

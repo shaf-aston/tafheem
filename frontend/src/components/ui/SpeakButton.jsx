@@ -1,8 +1,5 @@
 /**
  * Hear this word. A small speaker icon; lib/speak.js picks the voice.
- *
- * Styled like PlayAyah, its sibling, so the two sound buttons read as one
- * family.
  */
 import { useEffect, useRef, useState } from 'react'
 

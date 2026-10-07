@@ -12,6 +12,7 @@ from backend.models.schemas import DaleelBook, DaleelHit, DaleelResponse, Source
 from backend.services import provenance
 from backend.services.daleel import search as daleel_search
 from backend.services.daleel import titles
+from backend.utils import search_query
 
 router = APIRouter(prefix="/api/daleel", tags=["daleel"])
 
@@ -62,7 +63,7 @@ async def find(
     Runs off a prebuilt index, so this is a read, not a search of the books
     themselves. Nothing here calls an AI: this endpoint quotes and stops.
     """
-    query = q.strip()
+    query = search_query(q)
     if not query:
         return DaleelResponse(query="", hits=[], ready=daleel_search.is_built())
 

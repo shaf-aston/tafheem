@@ -1,6 +1,6 @@
 /**
  * One word's full grammar and root, shown inline. Shared by Nahw's word grid and
- * AyahStudy's reading line so the two cannot show different facts.
+ * AyahStudy's word chips so the two cannot show different facts.
  *
  * Not a dialog: an overlay put half the card off screen at the line's right edge
  * and covered the next line's words. Escape closes it and opening moves focus and
@@ -34,7 +34,8 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
   useEffect(() => {
     if (!word) return
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') onClose()
+      // Claimed, so a view around the card does not close on the same press.
+      if (e.key === 'Escape') { e.preventDefault(); onClose() }
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)

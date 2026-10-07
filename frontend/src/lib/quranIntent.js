@@ -16,7 +16,7 @@
  *     ("النساء ٤٥", "سورة الكهف")
  * Diacritics always mean a quote: nobody vowels a surah's name to find it.
  */
-import { hasDiacritics, isArabic } from './arabicText'
+import { hasDiacritics, isArabic, untrailed } from './arabicText'
 import { CLOSE, ayahProblem, readSurahRef, surahsNamed } from './surahRef'
 
 /** The kinds of question; `none` is an empty box. */
@@ -40,9 +40,9 @@ const place = (matches, ayah) => ({
  * by Enter. `problem` is set when Enter can do nothing and says why.
  */
 export function readQuranQuery(text) {
-  // A separator left at the end is a reference still being typed ("2:"), not
-  // a mistake to flag.
-  const line = (text ?? '').trim().replace(/[\s:.,،٬-]+$/, '')
+  // A separator left at the end is a reference still being typed ("2:"), and a
+  // full stop or question mark is how a sentence ends, neither a mistake to flag.
+  const line = untrailed(text)
   if (!line) return { kind: KIND.none, surahs: [], ayah: null, problem: null }
 
   if (NUMBERS_ONLY.test(line) && HAS_NUMBER.test(line)) {
