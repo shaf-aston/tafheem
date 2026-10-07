@@ -209,6 +209,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "حَجْز",
+          "transliteration": "7ajz",
+          "english": "booking",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "غُرْفَة",
+          "transliteration": "ghurfa",
+          "english": "room",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "لَيْلَة",
+          "transliteration": "layla",
+          "english": "night",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "فُطُور",
+          "transliteration": "fuToor",
+          "english": "breakfast",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "مَصْعَد",
+          "transliteration": "maS3ad",
+          "english": "lift",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "مِفْتَاح",
+          "transliteration": "miftaa7",
+          "english": "key",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "فُنْدُق",
+          "transliteration": "funduq",
+          "english": "hotel",
+          "category": "Hotel"
+        },
+        {
+          "arabic": "خِدْمَة",
+          "transliteration": "khidma",
+          "english": "service",
+          "category": "Hotel"
+        }
+      ],
       "culture": "في جدة تلاقي فنادق كويسة كتير، والموظفين بيرحبوا فيك بكل لطف. الإفطار بالفندق غالباً فيه تمر وقهوة سعودية وخبز ومرتديلا وجبن.",
       "exercises": [
         {
@@ -534,6 +584,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَذْكَرَة",
+          "transliteration": "tazkara",
+          "english": "ticket",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "رَايِح",
+          "transliteration": "raayi7",
+          "english": "going, one-way",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "جَاي",
+          "transliteration": "jaay",
+          "english": "coming, return",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "مَقْعَد",
+          "transliteration": "maq3ad",
+          "english": "seat",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "بِطَاقَة",
+          "transliteration": "biTaaqa",
+          "english": "card",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "طُلَّاب",
+          "transliteration": "Tullaab",
+          "english": "students",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "شُبَّاك",
+          "transliteration": "shubbaak",
+          "english": "window, counter",
+          "category": "Tickets"
+        },
+        {
+          "arabic": "بَاص",
+          "transliteration": "baaS",
+          "english": "bus",
+          "category": "Tickets"
+        }
+      ],
       "culture": "بين المدن السعودية البسافرة هي الطريقة الشهيرة، والموقف بجدة أو الرياض فيه باصات كتيرة كل يوم. الأسعار رخيصة وأرخص من الطيران.",
       "exercises": [
         {
@@ -836,6 +936,56 @@
             "transliteration": "jaay shughel, ma3i mu2tamar",
             "english": "Coming for work, I have a conference."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "جَوَاز",
+          "transliteration": "jawaaz",
+          "english": "passport",
+          "category": "Airport"
+        },
+        {
+          "arabic": "شَنْطَة",
+          "transliteration": "shanTa",
+          "english": "bag",
+          "category": "Airport"
+        },
+        {
+          "arabic": "وَزْن",
+          "transliteration": "wazn",
+          "english": "weight",
+          "category": "Airport"
+        },
+        {
+          "arabic": "طَيَّارَة",
+          "transliteration": "Tayyaara",
+          "english": "plane",
+          "category": "Airport"
+        },
+        {
+          "arabic": "بَوَّابَة",
+          "transliteration": "bawwaaba",
+          "english": "gate",
+          "category": "Airport"
+        },
+        {
+          "arabic": "مَطَار",
+          "transliteration": "maTaar",
+          "english": "airport",
+          "category": "Airport"
+        },
+        {
+          "arabic": "سِيَاحَة",
+          "transliteration": "siyaa7a",
+          "english": "tourism",
+          "category": "Airport"
+        },
+        {
+          "arabic": "جُمْرُك",
+          "transliteration": "jumruk",
+          "english": "customs",
+          "category": "Airport"
         }
       ],
       "culture": "في مطار جدة الموظفين بيرحبوا بك بلطف، والأسئلة عادة قصيرة والجواب يكون قصير بدون شرح كتير. قول 'أهلا وسهلا' على الترحيب يكون جميل.",
@@ -1165,6 +1315,56 @@
             "transliteration": "ee mumkin, bas fi rususm taghyeer",
             "english": "Yes it's possible, but there's a change fee."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ضَيَّع",
+          "transliteration": "Dayya3",
+          "english": "lost",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مِتْأَخِّر",
+          "transliteration": "mit2akhkhir",
+          "english": "delayed",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مُشْكِلَة",
+          "transliteration": "mushkila",
+          "english": "problem",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مَكْسُور",
+          "transliteration": "maksoor",
+          "english": "broken",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "شَكْوَى",
+          "transliteration": "shakwa",
+          "english": "complaint",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "حَجْز",
+          "transliteration": "7ajz",
+          "english": "booking",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "مَكْتَب",
+          "transliteration": "maktab",
+          "english": "office",
+          "category": "Travel problems"
+        },
+        {
+          "arabic": "رِحْلَة",
+          "transliteration": "ri7la",
+          "english": "flight, trip",
+          "category": "Travel problems"
         }
       ],
       "culture": "لما تصير مشكلة في السفر، الحجازي بيقول الله يعوض قبل ما يحكي عن الحل. هاد إحترام وتعاطف أهم من الحل نفسه بأول حديث.",

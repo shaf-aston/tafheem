@@ -210,6 +210,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "مَرْحَبَا",
+          "transliteration": "mar7aba",
+          "english": "hello",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَهْلَا",
+          "transliteration": "ahla",
+          "english": "welcome",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "اِسْم",
+          "transliteration": "ism",
+          "english": "name",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "تَمَام",
+          "transliteration": "tamaam",
+          "english": "fine, great",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "كَيْف",
+          "transliteration": "kayf",
+          "english": "how",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "كَمَان",
+          "transliteration": "kamaan",
+          "english": "also, too",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "وَيْن",
+          "transliteration": "wayn",
+          "english": "where",
+          "category": "Greetings"
+        },
+        {
+          "arabic": "أَنَا",
+          "transliteration": "ana",
+          "english": "I",
+          "category": "Greetings"
+        }
+      ],
       "culture": "In Hejazi greetings, people are warm and can repeat the greeting a few times, especially with those they haven't seen for a while. Using a person's first name after greeting is natural and friendly. Hejazi people often add \"الحمد لله\" to most good news.",
       "exercises": [
         {
@@ -607,6 +657,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "شُكْرًا",
+          "transliteration": "shukran",
+          "english": "thank you",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "كَتِير",
+          "transliteration": "kateer",
+          "english": "a lot, very",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "آسِف",
+          "transliteration": "aasif",
+          "english": "sorry",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "عَفْوًا",
+          "transliteration": "3afwan",
+          "english": "you're welcome",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مُمْكِن",
+          "transliteration": "mumkin",
+          "english": "possible, can I",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "طَبْعًا",
+          "transliteration": "Tab3an",
+          "english": "of course",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "إِي",
+          "transliteration": "ee",
+          "english": "yes",
+          "category": "Politeness"
+        },
+        {
+          "arabic": "مُوَيَّة",
+          "transliteration": "moyya",
+          "english": "water",
+          "category": "Politeness"
+        }
+      ],
       "culture": "In Hejazi conversation, polite softeners such as \"لَوْ سَمَحْتَ\" are used frequently, even in very ordinary situations. A brief \"شُكْرًا\" followed by \"عَفْوًا\" is completely natural. Hejazi speakers use \"طَيِّب\" (okay) very often to acknowledge a request.",
       "exercises": [
         {
@@ -1001,6 +1101,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "وَاحِد",
+          "transliteration": "waa7id",
+          "english": "one",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "اِتْنِين",
+          "transliteration": "itneen",
+          "english": "two",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "تَلَاتَة",
+          "transliteration": "talaata",
+          "english": "three",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "خَمْسَة",
+          "transliteration": "khamsa",
+          "english": "five",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "سَاعَة",
+          "transliteration": "saa3a",
+          "english": "hour, clock",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "الْيَوْم",
+          "transliteration": "al-yoom",
+          "english": "today",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "بُكْرَة",
+          "transliteration": "bukra",
+          "english": "tomorrow",
+          "category": "Numbers and time"
+        },
+        {
+          "arabic": "دَحِين",
+          "transliteration": "da7een",
+          "english": "now",
+          "category": "Numbers and time"
+        }
+      ],
       "culture": "In casual Hejazi speech, time is often discussed with simple whole-hour expressions rather than a full formal sentence. \"بَكْرَة\" and \"هَسَّع\" are especially common everyday words for planning and talking about the immediate future and present.",
       "exercises": [
         {
@@ -1392,6 +1542,56 @@
             "transliteration": "3afwan.",
             "english": "You're welcome."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "سُوق",
+          "transliteration": "soo2",
+          "english": "market",
+          "category": "Directions"
+        },
+        {
+          "arabic": "مَحَلّ",
+          "transliteration": "ma7all",
+          "english": "shop",
+          "category": "Directions"
+        },
+        {
+          "arabic": "يِمِين",
+          "transliteration": "yimeen",
+          "english": "right",
+          "category": "Directions"
+        },
+        {
+          "arabic": "يِسَار",
+          "transliteration": "yisaar",
+          "english": "left",
+          "category": "Directions"
+        },
+        {
+          "arabic": "قَرِيب",
+          "transliteration": "qareeb",
+          "english": "near",
+          "category": "Directions"
+        },
+        {
+          "arabic": "بَعِيد",
+          "transliteration": "ba3eed",
+          "english": "far",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هِنَا",
+          "transliteration": "hina",
+          "english": "here",
+          "category": "Directions"
+        },
+        {
+          "arabic": "هِنَاك",
+          "transliteration": "hinaak",
+          "english": "there",
+          "category": "Directions"
         }
       ],
       "culture": "Giving directions in Hejazi is often conversational and incremental: a person may give one turn, wait for the listener to react, and then add the next step. \"يَعْطِيك الْعَافِيَة\" is a very common warm expression of thanks, especially after someone helps you.",

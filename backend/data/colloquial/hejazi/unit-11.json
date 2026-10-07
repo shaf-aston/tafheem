@@ -231,6 +231,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "ضَيْف",
+          "transliteration": "Dayf",
+          "english": "guest",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بَاب",
+          "transliteration": "baab",
+          "english": "door",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "جَزْمَة",
+          "transliteration": "jazma",
+          "english": "shoes",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "سَيَّارَة",
+          "transliteration": "sayyaara",
+          "english": "car",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "بَيْت",
+          "transliteration": "bayt",
+          "english": "house",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Tareeq",
+          "english": "road, way",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "هَدِيَّة",
+          "transliteration": "hadiyya",
+          "english": "gift",
+          "category": "Arriving as a guest"
+        },
+        {
+          "arabic": "سُهُولَة",
+          "transliteration": "suhoola",
+          "english": "ease",
+          "category": "Arriving as a guest"
+        }
+      ],
       "culture": "In Hejazi homes, removing shoes at the door is standard practice, especially in more traditional settings. Bringing a small gift when visiting shows respect without being ostentatious. Welcoming guests warmly with \"hayyak allah\" reflects the Hijaz's strong hosting tradition shaped by centuries of pilgrimage and trade. The phrase \"laa takallaf\" (don't trouble yourself) puts guests at ease and emphasizes the host's pleasure in their presence.",
       "exercises": [
         {
@@ -584,6 +634,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "جَرَس",
+          "transliteration": "jaras",
+          "english": "doorbell",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "مِعْطَف",
+          "transliteration": "mi3Taf",
+          "english": "coat",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "طَاوْلَة",
+          "transliteration": "Taawla",
+          "english": "table",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "تِلِفِزْيُون",
+          "transliteration": "tilifizyoon",
+          "english": "television",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "عْيَال",
+          "transliteration": "3yaal",
+          "english": "children",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "جَلْسَة",
+          "transliteration": "jalsa",
+          "english": "gathering",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "سُكَّر",
+          "transliteration": "sukkar",
+          "english": "sugar",
+          "category": "Welcoming guests"
+        },
+        {
+          "arabic": "عَجَلَة",
+          "transliteration": "3ajala",
+          "english": "hurry",
+          "category": "Welcoming guests"
+        }
+      ],
       "culture": "Offering coffee and tea is a cornerstone of Hejazi hospitality, often served with dates or sweets. The Hejazi custom of asking \"shinnu bitabgha tashrab\" shows warm interest in the guest's preferences. Comments about children growing up are common and well-received in family visits. The phrase \"al-jilsah\" (gathering) reflects the importance of social time in Hejazi culture, where family and friends gather regularly.",
       "exercises": [
         {
@@ -910,6 +1010,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "سُفْرَة",
+          "transliteration": "sufra",
+          "english": "dining table",
+          "category": "At the table"
+        },
+        {
+          "arabic": "طَبْخ",
+          "transliteration": "Tabkh",
+          "english": "cooking, dish",
+          "category": "At the table"
+        },
+        {
+          "arabic": "عِيش",
+          "transliteration": "3eesh",
+          "english": "bread",
+          "category": "At the table"
+        },
+        {
+          "arabic": "حَلَوِيَّات",
+          "transliteration": "7alawiyyaat",
+          "english": "desserts",
+          "category": "At the table"
+        },
+        {
+          "arabic": "شَبْعَان",
+          "transliteration": "shab3aan",
+          "english": "full",
+          "category": "At the table"
+        },
+        {
+          "arabic": "بَارِد",
+          "transliteration": "baarid",
+          "english": "cold",
+          "category": "At the table"
+        },
+        {
+          "arabic": "أَكْتَر",
+          "transliteration": "aktar",
+          "english": "more",
+          "category": "At the table"
+        },
+        {
+          "arabic": "كِيف",
+          "transliteration": "keef",
+          "english": "as you like",
+          "category": "At the table"
+        }
+      ],
       "culture": "In Hejazi homes, food preparation is a point of pride and sharing recipes is common among women. The phrase \"bil-hana wa-ash-shifa\" (with happiness and healing) is the standard way to wish diners to enjoy their meal. Hejazi cooks often emphasize that dishes were made fresh that day, showing respect for guests. Generous portions are a sign of hospitality, and refusing politely without offense is an art in Hejazi culture.",
       "exercises": [
         {
@@ -1208,6 +1358,56 @@
             "transliteration": "wa anta 3ala khair",
             "english": "And you too."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "ضِيَافَة",
+          "transliteration": "Diyaafa",
+          "english": "hospitality",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "وَقْت",
+          "transliteration": "waqt",
+          "english": "time",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "دَعْوَة",
+          "transliteration": "da3wa",
+          "english": "invitation",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "أَهْل",
+          "transliteration": "ahl",
+          "english": "family",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "سَلَام",
+          "transliteration": "salaam",
+          "english": "greetings",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Tareeq",
+          "english": "road",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "دَايِم",
+          "transliteration": "daayim",
+          "english": "always",
+          "category": "Leaving and thanking"
+        },
+        {
+          "arabic": "مَعَ السَّلَامَة",
+          "transliteration": "ma3a s-salaama",
+          "english": "goodbye",
+          "category": "Leaving and thanking"
         }
       ],
       "culture": "In Hejazi culture, goodbyes at the door often take a long time because hosts don't want guests to leave quickly. The phrase \"don't forget, the house is always yours\" expresses genuine warmth and an open-door policy. Checking on guests after they leave is considered caring behavior. Using \"God willing\" (inshallah) reflects both religious practice and practical acceptance that plans depend on circumstances.",

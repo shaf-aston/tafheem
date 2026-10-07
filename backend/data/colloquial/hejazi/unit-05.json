@@ -233,6 +233,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "تَاكْسِي",
+          "transliteration": "taksi",
+          "english": "taxi",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "عَدَّاد",
+          "transliteration": "3addaad",
+          "english": "meter",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "أُجْرَة",
+          "transliteration": "ujra",
+          "english": "fare",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "شَارِع",
+          "transliteration": "shaari3",
+          "english": "street",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "فَكَّة",
+          "transliteration": "fakka",
+          "english": "small change",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "قَدِيم",
+          "transliteration": "qadeem",
+          "english": "old",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "بَاب",
+          "transliteration": "baab",
+          "english": "gate, door",
+          "category": "Taxi"
+        },
+        {
+          "arabic": "آخِر",
+          "transliteration": "aakhir",
+          "english": "end, last",
+          "category": "Taxi"
+        }
+      ],
       "culture": "In Jeddah, Makkah and Madinah, taxis are the main way to get around in the city. Meters are standard, and you can hail taxis on the street or call for one. Most drivers know the major landmarks well, so it helps to name a neighborhood or famous building rather than a street address.",
       "exercises": [
         {
@@ -611,6 +661,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "صَيْدَلِيَّة",
+          "transliteration": "Saydaliyya",
+          "english": "pharmacy",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "إِشَارَة",
+          "transliteration": "ishaara",
+          "english": "traffic light",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مَسْجِد",
+          "transliteration": "masjid",
+          "english": "mosque",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "تَايِه",
+          "transliteration": "taayih",
+          "english": "lost",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "سِكَّة",
+          "transliteration": "sikka",
+          "english": "lane",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "مَسْدُود",
+          "transliteration": "masdood",
+          "english": "blocked, closed",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "دَقِيقَة",
+          "transliteration": "daqeeqa",
+          "english": "minute",
+          "category": "Asking the way"
+        },
+        {
+          "arabic": "أَوَّل",
+          "transliteration": "awwal",
+          "english": "first",
+          "category": "Asking the way"
+        }
+      ],
       "culture": "In Jeddah, Makkah and Madinah, most neighborhoods are built around narrow streets and alleys. People often give directions using landmarks like mosques, shops, or squares rather than street names. It is common for locals to be very helpful with lost travelers, especially near the holy sites.",
       "exercises": [
         {
@@ -963,6 +1063,56 @@
           }
         }
       ],
+      "vocabulary": [
+        {
+          "arabic": "بَاص",
+          "transliteration": "baaS",
+          "english": "bus",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7aTTa",
+          "english": "stop, station",
+          "category": "Buses"
+        },
+        {
+          "arabic": "تَذْكَرَة",
+          "transliteration": "tazkara",
+          "english": "ticket",
+          "category": "Buses"
+        },
+        {
+          "arabic": "مَقْعَد",
+          "transliteration": "maq3ad",
+          "english": "seat",
+          "category": "Buses"
+        },
+        {
+          "arabic": "فَاضِي",
+          "transliteration": "faaDi",
+          "english": "empty, free",
+          "category": "Buses"
+        },
+        {
+          "arabic": "زَحْمَة",
+          "transliteration": "za7ma",
+          "english": "crowded",
+          "category": "Buses"
+        },
+        {
+          "arabic": "رَقَم",
+          "transliteration": "raqam",
+          "english": "number",
+          "category": "Buses"
+        },
+        {
+          "arabic": "دَوَّار",
+          "transliteration": "dawwaar",
+          "english": "roundabout",
+          "category": "Buses"
+        }
+      ],
       "culture": "Buses in Hejazi cities like Jeddah are the main form of public transport. Small minibuses (microbuses) operate specific routes and are faster for short trips. Long-distance buses connect Jeddah to Makkah and Madinah. The buses run frequently, especially during daylight hours, and are quite affordable.",
       "exercises": [
         {
@@ -1311,6 +1461,56 @@
             "transliteration": "i, bank ar-riyad 3ala tool ash-shaari3.",
             "english": "Yes, Riyadh Bank is right down the street."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "مُسْتَشْفَى",
+          "transliteration": "mustashfa",
+          "english": "hospital",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَدْرَسَة",
+          "transliteration": "madrasa",
+          "english": "school",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَطْعَم",
+          "transliteration": "maT3am",
+          "english": "restaurant",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "بَنْك",
+          "transliteration": "bank",
+          "english": "bank",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "حَدِيقَة",
+          "transliteration": "7adeeqa",
+          "english": "park",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "كَنِيسَة",
+          "transliteration": "kaneesa",
+          "english": "church",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَنْطِقَة",
+          "transliteration": "manTiqa",
+          "english": "area",
+          "category": "Places in town"
+        },
+        {
+          "arabic": "مَحَطَّة",
+          "transliteration": "ma7aTTa",
+          "english": "station",
+          "category": "Places in town"
         }
       ],
       "culture": "Jeddah has both old and new neighborhoods with modern facilities mixed in with traditional markets. The main shopping district near the Red Sea corniche has restaurants, banks, and shops. Makkah and Madinah are spiritual centers with the Sacred Mosque (Masjid al-Haram) in Makkah and the Prophet's Mosque (Masjid an-Nabawi) in Madinah being the most important landmarks.",
@@ -1693,6 +1893,56 @@
             "transliteration": "ee, hadir",
             "english": "Yes, right away."
           }
+        }
+      ],
+      "vocabulary": [
+        {
+          "arabic": "طَرِيق",
+          "transliteration": "Tareeq",
+          "english": "road, way",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "بَلَد",
+          "transliteration": "balad",
+          "english": "old town",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "مَشْغُول",
+          "transliteration": "mashghool",
+          "english": "busy",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "فَاضِي",
+          "transliteration": "faaDi",
+          "english": "free, available",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "سَيَّارَة",
+          "transliteration": "sayyaara",
+          "english": "car",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "حَاضِر",
+          "transliteration": "7aaDir",
+          "english": "at your service",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "أُجْرَة",
+          "transliteration": "ujra",
+          "english": "fare",
+          "category": "Getting around"
+        },
+        {
+          "arabic": "كَم",
+          "transliteration": "kam",
+          "english": "how much, how many",
+          "category": "Getting around"
         }
       ],
       "culture": "Taxis are the primary way to get around in Jeddah and the cities of Makkah and Madinah. Drivers usually respond to requests with \"حَاضِرْ\" (at your service), and you can thank them with \"الله يُعَافِيكْ\" (God keep you well) or \"شُكْرًا\" (thank you). Saying where you want to go directly, and then \"وَقِّفْ هِنِّ\" to stop at your destination, is the normal way to ride.",
