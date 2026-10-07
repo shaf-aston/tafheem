@@ -1,7 +1,15 @@
 {
-  "_comment": "Profiles: a typed name, no password. 'max' must match PROFILE_NAME_MAX in backend/config.py, 'reserved' must match PROFILE_RESERVED. The name travels on every /api/progress call in 'header', percent-encoded.",
+  "_comment": "Profiles: a typed name, no password. 'max' must match PROFILE_NAME_MAX in backend/config.py, 'reserved' must match PROFILE_RESERVED. The name travels on every /api/progress call in 'header', percent-encoded. 'refetch' are the react-query key heads that read progress, refetched when the name changes.",
   "max": 40,
-  "reserved": ["local"],
+  "reserved": [
+    "local"
+  ],
   "header": "X-Tafheem-Profile",
-  "storageKey": "profile"
+  "storageKey": "profile",
+  "refetch": [
+    "quiz-review",
+    "quiz-progress",
+    "quiz-words",
+    "progress"
+  ]
 }

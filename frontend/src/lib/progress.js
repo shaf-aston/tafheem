@@ -21,7 +21,7 @@ const BASE = '/progress'
 
 // Every call says whose record it is about (lib/profile.js), read at call time
 // so a name switched a moment ago is the one sent.
-const headers = () => ({ headers: profileHeaders() })
+const headers = (name) => ({ headers: profileHeaders(name) })
 
 /** Resolves whether the server took it; never rejects (offline or refused is false). */
 const landed = (request) => request.then(() => true, () => false)
@@ -46,11 +46,11 @@ export async function forgetProgress() {
 }
 
 /**
- * Move the answers given before names existed onto the name now saved.
- * Resolves the number moved, or null when it did not land; never rejects.
+ * Move the answers given before names existed onto `name`. Resolves the number
+ * moved, or null when it did not land; never rejects.
  */
-export const claimProgress = () =>
-  api.post(`${BASE}/claim`, {}, headers()).then((r) => r.data.moved, () => null)
+export const claimProgress = (name) =>
+  api.post(`${BASE}/claim`, {}, headers(name)).then((r) => r.data.moved, () => null)
 
 /** Every item answered in this module, with its record. Throws, for react-query. */
 export const fetchSummary = (module) =>

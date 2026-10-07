@@ -34,7 +34,7 @@ async function device(label) {
 }
 
 async function typeName(page, name, keep = false) {
-  await page.getByRole('button', { name: /Who's learning\?|Switch name/ }).first().click()
+  await page.locator('button[title="Switch name"], button:has-text("Who\'s learning?")').first().click()
   await page.locator('#profile-name').fill(name)
   const box = page.getByLabel('Keep progress from this device')
   if (await box.count()) await box.setChecked(keep)
@@ -78,6 +78,15 @@ check('the same name on another device reads the same record', onB === onA, `A $
 // A different name reads nothing of it.
 const other = await attempts(b, `${NAME}-other`)
 check('another name reads none of it', other === 0, `${other}`)
+
+// Switching name on A refetches progress under the new name, not the old one.
+const asked = []
+a.on('request', (r) => {
+  if (r.url().includes('/api/progress/review')) asked.push(decodeURIComponent(r.headers()['x-tafheem-profile'] ?? ''))
+})
+await typeName(a, `${NAME}-b`)
+await a.waitForTimeout(800)
+check('switching name refetches under the new name', asked.includes(`${NAME}-b`), asked.join(', ') || 'no refetch')
 
 // Clean up the probe's record.
 await a.evaluate((who) => fetch('/api/progress', {

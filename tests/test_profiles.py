@@ -53,12 +53,14 @@ def items(name):
     ("عَائِشَة", "عَائِشَة"),          # tashkeel kept: a different spelling is a different name
     ("Amina-2_b.c", "amina-2_b.c"),
     ("x" * 40, "x" * 40),
+    ("Straße", "strasse"),
+    ("مهر\u200cناز", "مهر\u200cناز"),
 ])
 def test_clean_name_folds_one_person_to_one_spelling(raw, clean):
     assert clean_name(raw) == clean
 
 
-@pytest.mark.parametrize("raw", ["", "   ", "x" * 41, "<x>", "a/b", "local", " LOCAL "])
+@pytest.mark.parametrize("raw", ["", "   ", "x" * 41, "ß" * 21, "<x>", "a/b", "local", " LOCAL ", "...", "-"])
 def test_clean_name_refuses_what_is_not_a_name(raw):
     with pytest.raises(ValueError):
         clean_name(raw)

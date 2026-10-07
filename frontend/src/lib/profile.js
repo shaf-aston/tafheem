@@ -9,14 +9,17 @@ import { forgetKey, readRaw, writeRaw } from './stored'
 
 export const PROFILE = CONFIG
 
-const ALLOWED = /^[\p{L}\p{M}\p{Nd} ._-]+$/u
+// Zero-width joiners stay: Persian and Urdu names need them.
+const ALLOWED = /^(?:[\p{L}\p{M}\p{Nd} ._-]|\u200c|\u200d)+$/u
+const SOMETHING = /[\p{L}\p{Nd}]/u
 
 /** `{ name }` in its one spelling, or `{ error }` saying what to change. */
 export function cleanName(raw) {
-  const name = raw.replace(/\s+/g, ' ').trim().normalize('NFC').toLowerCase()
+  // ß folds to ss as the server's casefold does, so both count the same length.
+  const name = raw.replace(/\s+/g, ' ').trim().normalize('NFC').toLowerCase().replace(/ß/g, 'ss')
   if (!name) return { error: 'Type a name' }
   if ([...name].length > CONFIG.max) return { error: `Names are at most ${CONFIG.max} characters` }
-  if (!ALLOWED.test(name)) return { error: 'Names use letters, numbers, spaces, - _ .' }
+  if (!ALLOWED.test(name) || !SOMETHING.test(name)) return { error: 'Names use letters, numbers, spaces, - _ .' }
   if (CONFIG.reserved.includes(name)) return { error: 'That name is taken by the app, pick another' }
   return { name }
 }
@@ -30,7 +33,9 @@ export function setProfile(name) {
 }
 
 /** The header that says whose record a call is about; empty for the unnamed record. */
-export function profileHeaders() {
-  const name = getProfile()
+export function profileHeaders(name = getProfile()) {
   return name ? { [CONFIG.header]: encodeURIComponent(name) } : {}
 }
+
+/** Whether a react-query key reads progress, so a name change refetches it. */
+export const readsProgress = (query) => CONFIG.refetch.includes(query.queryKey[0])

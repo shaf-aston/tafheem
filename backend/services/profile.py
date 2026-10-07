@@ -14,7 +14,12 @@ from backend.config import get_settings
 
 BAD_CHARACTERS = "Names use letters, numbers, spaces, - _ ."
 
-_EXTRA = set(" -_.")
+# Zero-width non-joiner and joiner stay: Persian and Urdu names need them.
+_EXTRA = set(" -_.\u200c\u200d")
+
+
+def _counts(ch: str) -> bool:
+    return unicodedata.category(ch)[0] == "L" or unicodedata.category(ch) == "Nd"
 
 
 def _allowed(ch: str) -> bool:
@@ -30,7 +35,7 @@ def clean_name(raw: str) -> str:
         raise ValueError("Type a name")
     if len(name) > settings.profile_name_max:
         raise ValueError(f"Names are at most {settings.profile_name_max} characters")
-    if not all(_allowed(ch) for ch in name):
+    if not all(_allowed(ch) for ch in name) or not any(_counts(ch) for ch in name):
         raise ValueError(BAD_CHARACTERS)
     if name in settings.profile_reserved:
         raise ValueError("That name is taken by the app, pick another")

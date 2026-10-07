@@ -11,11 +11,13 @@ describe('cleanName', () => {
     ['عَائِشَة', 'عَائِشَة'],
     ['Amina-2_b.c', 'amina-2_b.c'],
     ['x'.repeat(40), 'x'.repeat(40)],
+    ['Straße', 'strasse'],
+    ['مهر\u200cناز', 'مهر\u200cناز'],
   ])('%s is %s', (raw, clean) => {
     expect(cleanName(raw)).toEqual({ name: clean })
   })
 
-  it.each(['', '   ', 'x'.repeat(41), '<x>', 'a/b', 'local', ' LOCAL '])('refuses %j', (raw) => {
+  it.each(['', '   ', 'x'.repeat(41), 'ß'.repeat(21), '<x>', 'a/b', 'local', ' LOCAL ', '...', '-'])('refuses %j', (raw) => {
     expect(cleanName(raw).error).toBeTruthy()
   })
 })

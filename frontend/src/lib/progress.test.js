@@ -73,7 +73,7 @@ describe('whose record', () => {
     await recordAttempt({ module: 'quiz', item: 'train', correct: true })
     await leaveFeedback({ module: 'quiz', message: 'x' })
     await forgetProgress()
-    await claimProgress()
+    await claimProgress('amina')
     const sent = { headers: { 'X-Tafheem-Profile': 'amina' } }
     for (const call of getting.mock.calls) expect(call[1]).toMatchObject(sent)
     for (const call of posting.mock.calls) expect(call[2]).toEqual(sent)

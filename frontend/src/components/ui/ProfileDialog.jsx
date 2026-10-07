@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { useModal } from '../../lib/useModal'
-import { cleanName, getProfile, setProfile } from '../../lib/profile'
+import { cleanName, getProfile, readsProgress, setProfile } from '../../lib/profile'
 import { claimProgress } from '../../lib/progress'
 
 import PrimaryButton from './PrimaryButton'
@@ -26,10 +26,15 @@ export default function ProfileDialog({ open, onClose, onSaved }) {
     const { name, error: wrong } = cleanName(typed)
     if (wrong) return setError(wrong)
     setBusy(true)
+    // Claimed before the name is kept: once a name is saved the offer is gone,
+    // so a claim that failed must leave the dialog as it was, to try again.
+    if (!current && keep && (await claimProgress(name)) === null) {
+      setBusy(false)
+      return setError('Could not move this device\'s progress. Try again, or untick the box.')
+    }
     setProfile(name)
-    if (!current && keep) await claimProgress()
     // Every progress answer on screen belonged to the old name.
-    await client.invalidateQueries()
+    await client.invalidateQueries({ predicate: readsProgress })
     setBusy(false)
     setError('')
     onSaved(name)
