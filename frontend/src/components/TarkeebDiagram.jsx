@@ -11,7 +11,7 @@
  */
 import { Fragment, useCallback, useLayoutEffect, useMemo, useState } from 'react'
 
-import { isQuranic, joinedOn, seatSmallAlef } from '../lib/arabicText'
+import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
 import { cells, hiddenWords, rows, splitConnectors } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
@@ -181,8 +181,8 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
         <div
           className="tk-grid"
           style={{
-            // a piece of a written word is only as wide as it needs, so the word's pieces sit close
-            gridTemplateColumns: `${shown.words.map((_, index) => (cut.has(index) ? 'max-content' : 'minmax(max-content, 1fr)')).join(' ')} ${NAME_COLUMN}`,
+            // a piece of a written word, and an unwritten word tucked by its verb, take only the width they need
+            gridTemplateColumns: `${shown.words.map((_, index) => (cut.has(index) || hidden.has(index) ? 'max-content' : 'minmax(max-content, 1fr)')).join(' ')} ${NAME_COLUMN}`,
           }}
         >
           {spans.map(({ from, to }) => {
@@ -199,12 +199,16 @@ export default function TarkeebDiagram({ words, written, tree, unwritten }) {
                 style={{ gridColumn: `${from + 1} / ${to + 2}` }}
               >
                 {to > from ? (
-                  pieces.map((text, k) => (
-                    <span key={k} className="tk-cut" style={{ gridColumn: k + 1 }}>
-                      {seatSmallAlef(k < pieces.length - 1 ? joinedOn(text) : text)}
-                      {k < pieces.length - 1 && <span className="tk-join" aria-hidden="true" />}
-                    </span>
-                  ))
+                  pieces.map((text, k) => {
+                    // وَ joins nothing after it, so it stands apart; فَـ and لْـ carry a joining line
+                    const joins = k < pieces.length - 1 && joinsOn(text)
+                    return (
+                      <span key={k} className="tk-cut" style={{ gridColumn: k + 1 }}>
+                        {seatSmallAlef(joins ? joinedOn(text) : text)}
+                        {joins && <span className="tk-join" aria-hidden="true" />}
+                      </span>
+                    )
+                  })
                 ) : (
                   <Tooltip text={missing ? unwritten?.note : undefined}>
                     <span>{seatSmallAlef(word)}</span>

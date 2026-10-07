@@ -141,10 +141,11 @@ const isMark = (c) => (c >= 'ً' && c <= 'ٟ') || c === 'ٰ' || (c >= 'ۖ' && c 
  * A piece cut from the front of a written word, drawn joined on to what follows
  * as the script writes it: فَـ and لْـ take a joining stroke, وَ never joins on.
  */
-export const joinedOn = (piece) => {
+export const joinsOn = (piece) => {
   const last = [...piece].reverse().find(isLetter)
-  return last && !JOINS_NOTHING_ONWARD.includes(last) ? `${piece}ـ` : piece
+  return Boolean(last) && !JOINS_NOTHING_ONWARD.includes(last)
 }
+export const joinedOn = (piece) => (joinsOn(piece) ? `${piece}ـ` : piece)
 
 /**
  * The mushaf's spelling as a font draws it: a small alef between two joined
