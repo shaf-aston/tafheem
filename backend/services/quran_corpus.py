@@ -289,8 +289,8 @@ def words_for_surah(surah: int) -> list[tuple[int, list[dict]]]:
 def lemmas_for_surah(surah: int) -> dict[int, list[str]]:
     """Each ayah's words as their dictionary forms, in printed order.
 
-    The stem's lemma, as coverage.json counts it, so the reader can mark the
-    words a learner has learnt. An ayah whose printed words do not match the
+    The stem's lemma, so the reader can mark the words a learner has learnt.
+    A glued-on prefix (the وَ of وَقَالَ) is not marked, though the meter counts it. An ayah whose printed words do not match the
     corpus words one to one (37:130) is left out, as the glosses are.
     """
     rows = _db().execute(

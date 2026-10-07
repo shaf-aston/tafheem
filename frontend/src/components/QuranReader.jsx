@@ -52,13 +52,14 @@ const FIRST_PAINT_ROWS = 12
 // Wide enough for the surah and the study side by side; Tailwind's lg.
 const TWO_PANES = '(min-width: 64rem)'
 
-/** The English under one ayah: the chosen translation once it has arrived,
- *  the corpus's word-by-word gloss before that, so nothing is credited to a
- *  book it did not come from. */
 // Which words of an ayah are learnt, by lemma; null when none are, so the
 // ayah can still be drawn plain.
 const markLearnt = (lemmas, learnt) =>
   (learnt.size && lemmas?.some((lemma) => learnt.has(lemma)) ? lemmas.map((lemma) => learnt.has(lemma)) : null)
+
+/** The English under one ayah: the chosen translation once it has arrived,
+ *  the corpus's word-by-word gloss before that, so nothing is credited to a
+ *  book it did not come from. */
 const englishFor = (translation, ayah) => (translation.ready ? translation.textFor(ayah.ayah) : ayah.english)
 
 /** The ayah whose row is at the top of the list, counting from 1. Rows are
@@ -213,8 +214,8 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
                   key={row.ayah}
                   ayah={row}
                   english={englishFor(translation, row)}
-                  glosses={glosses?.ayahs[row.ayah]}
-                  learnt={markLearnt(glosses?.lemmas[row.ayah], learnt)}
+                  glosses={glosses?.ayahs?.[row.ayah]}
+                  learnt={markLearnt(glosses?.lemmas?.[row.ayah], learnt)}
                   allMeanings={allMeanings}
                   src={recitation.urlFor(row.ayah)}
                   segments={recitation.segmentsFor(row.ayah)}
