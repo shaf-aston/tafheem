@@ -297,7 +297,6 @@ function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, o
         type="button"
         onClick={() => onOpen(ayah.ayah)}
         aria-pressed={open}
-        title={`Study ${ayah.ayah} word by word`}
         className={`w-full text-left p-4 space-y-2 transition-colors hover:bg-[var(--surface-hi)]
           focus:outline-none focus-visible:bg-[var(--surface-hi)]
           ${open ? 'bg-[color-mix(in_srgb,var(--c)_8%,transparent)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--c)_35%,transparent)]' : ''}`}
