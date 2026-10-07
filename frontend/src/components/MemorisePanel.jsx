@@ -24,7 +24,7 @@ import {
 
 import { closestSpans, flagsOnPage, twinKeys } from '../lib/similar'
 import { readViewParam, writeViewParams } from '../lib/tabUrl'
-import { useSwipe } from '../lib/useSwipe'
+import { useSlide, useSwipe } from '../lib/useSwipe'
 import { scrollToEl } from '../lib/scrollToEl'
 import { useReciting } from '../lib/useReciting'
 import { useSetting } from '../lib/settings'
@@ -386,6 +386,8 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const atStart = pageNumber === 0 && !partBy(-1)
   const atEnd = pageNumber >= pages.length - 1 && !partBy(1)
   const swipe = useSwipe(!atStart && (() => stepPage(-1)), !atEnd && (() => stepPage(1)))
+  // Where the page falls in the book, so a step either way slides in from its own side.
+  const slide = useSlide((parts?.findIndex((p) => p.id === part) ?? 0) * 10000 + pageNumber)
 
   // Each page opened is a step the back arrow returns to; a step returned to,
   // or handed over from another tab, opens its page here.
@@ -576,7 +578,8 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             )}
           </div>
 
-          <div ref={card} className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4">
+          <div ref={card} key={`${bookId}/${part}/${pageNumber}`} {...slide}
+            className={`rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4 ${slide.className}`}>
             {/* A flowing book runs its lines on as a printed mushaf does: one
                 block, justified, each ayah ending in its number, and never a
                 new row per ayah, which left short ayahs a gutter of empty space.
