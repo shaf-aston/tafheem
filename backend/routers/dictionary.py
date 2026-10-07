@@ -35,7 +35,7 @@ from backend.services import (
     verb_forms,
 )
 from backend.services.arabic_text import normalize_root, not_arabic, spelled_out
-from backend.utils import arabic_sentence, call_service, normalize_text, require_arabic
+from backend.utils import arabic_sentence, call_service, normalize_text, require_arabic, search_query
 
 router = APIRouter(prefix="/api/dictionary", tags=["dictionary"])
 
@@ -72,7 +72,7 @@ async def search_dictionary(
 ) -> DictionaryResponse:
     # The answer carries the joined word, and the two classical cards ask about
     # the query the answer names, so all three read one spelling.
-    query = spelled_out(normalize_text(q, "Search query"))
+    query = spelled_out(search_query(q, required=True))
     language = lang.strip().lower()
 
     searcher = _SEARCHERS.get(language)

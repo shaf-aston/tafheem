@@ -11,7 +11,7 @@
  * already takes, so nothing new had to be invented to carry a query across.
  */
 
-import { isArabic } from './arabicText'
+import { isArabic, untrailed } from './arabicText'
 import { placesNamed } from './surahRef'
 
 /** "2:255", with the Arabic comma allowed because a keyboard left in Arabic types it. */
@@ -31,7 +31,8 @@ export const rowId = (name, index) => `${name}-row-${index}`
 /** The four groups, in the order they are shown. */
 export const GROUPS = { ayah: 'Open ayah', go: 'Go to', dict: 'Dictionary', ask: 'Analyse' }
 
-const clean = (text) => (text ?? '').trim()
+// "2:255." opens the ayah and "كتب." looks up كتب: what trails a line is not part of it.
+const clean = untrailed
 
 /** Does this tab answer to what was typed: its id, its English name, or its Arabic one. */
 function tabMatches(tab, term) {

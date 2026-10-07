@@ -227,3 +227,12 @@ def test_the_online_source_is_a_known_badge() -> None:
 
     assert provenance.of(local._SOURCE)["label"]
     assert provenance.of(remote._SOURCE)["label"]
+
+
+def test_punctuation_typed_around_the_words_finds_the_same_ayah(index):
+    # Read through the route's own helper, as a typed query is.
+    from backend.utils import search_query
+    for typed in ("مالك يوم الدين.", "مالك،يوم الدين؟", "...الدين"):
+        hits, swaps = quran_search.search(search_query(typed))
+        assert _keys(hits)[0] == (5, 5)
+        assert swaps == []

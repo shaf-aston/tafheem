@@ -9,7 +9,7 @@ from typing import Any, Callable, TypeVar
 from fastapi import HTTPException
 
 from backend.config import get_settings
-from backend.services.arabic_text import has_arabic, words
+from backend.services.arabic_text import has_arabic, unpunctuated, words
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +22,15 @@ def normalize_text(text: str, field: str = "input") -> str:
         return cleaned
     else:
         raise HTTPException(status_code=400, detail=f"{field} cannot be empty")
+
+
+def search_query(text: str, required: bool = False, field: str = "Search query") -> str:
+    """What was typed into a search box, read the one way every search reads it:
+    punctuation is a break between words, never part of one (arabic_text.unpunctuated).
+    A full stop at the end used to ride into the matching as a letter. `required`
+    makes an empty query a 400, for the searches that have nothing to show for one."""
+    query = unpunctuated(text)
+    return normalize_text(query, field) if required else query
 
 
 def arabic_sentence(text: str, field: str = "input") -> str:

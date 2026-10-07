@@ -46,8 +46,21 @@ export const mostlyArabic = (text) =>
 export const bareForm = (text) =>
   (text ?? '').replace(DIACRITICS_ALL, '').replace(ALIF_FORMS, 'ا')
 
-/** One side of a search comparison: no vowel marks, no capitals. Null is empty. */
-export const foldForSearch = (text) => bareForm(text).toLowerCase()
+// Punctuation is a break between words, never part of one, except an apostrophe
+// between two letters (don't, Mu'adh). The same rule as the backend's
+// arabic_text.unpunctuated, which every server search reads its query by.
+const PUNCTUATION = /(?:(?!(?<=\p{L})['’](?=\p{L}))\p{P})+/gu
+// @ and / start a command (lib/commandRoutes) and are never trimmed off.
+const TRAILING = /(?:\s|(?![@/])\p{P})+$/u
+
+/** The text with every punctuation mark a space: "القيامة." is القيامة. */
+export const unpunctuated = (text) => (text ?? '').replace(PUNCTUATION, ' ')
+
+/** A typed line without what trails off its end: "2:255." and "2:255؟" are 2:255. */
+export const untrailed = (text) => (text ?? '').trim().replace(TRAILING, '')
+
+/** One side of a search comparison: no vowel marks, no capitals, no punctuation. Null is empty. */
+export const foldForSearch = (text) => bareForm(unpunctuated(text)).toLowerCase()
 
 // Three more things the Qur'anic printing writes that no keyboard offers: the
 // wasla alif ٱ, the dagger-alif ى standing for a long a, and the tatweel ـ used
