@@ -20,6 +20,9 @@ venv/Scripts/python -m backend.scripts.score_mutashabihat  # similar-verse finde
 venv/Scripts/python -m backend.scripts.analyse "جملة" [--api URL] [--json]  # one sentence's cards and tree; stdin takes one per line
 ```
 
+CI (`.github/workflows/ci.yml`) runs both suites on every PR and push to master. Tests that
+need data not in git skip themselves when it is absent (`skipif` on what they need).
+
 Data is built once by the scripts in `backend/scripts/`, each explained in its own
 docstring, and never committed. The Qur'an builds come first: `build_quran_corpus.py`, then
 `build_quran_meanings.py`. Rebuild the Daleel index whole: `build_daleel_index.py`, never `--only`.
@@ -139,7 +142,10 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   rebuilt, never hand-edited (see `backend/data/maqayees/README.md`).
 - `backend/data/progress.db`: learners' answers, and every Nahw practice question as it was
   generated (from `data/practice/templates.json`, filed under its badge's source; `GET /api/practice/kept`). The
-  one database written while running, opened only by `services/progress_store.py`.
+  one database written while running, opened only by `services/progress_store.py`. Rows are
+  filed under the learner's typed name: the page sends it in the `X-Tafheem-Profile` header,
+  `routers/progress.py` `current_user()` cleans it (rules only in `services/profile.py`), and
+  `POST /api/progress/profile` returns the kept spelling and can move the unnamed `local` rows onto it.
 - `backend/data/nahw_notes/`: the teacher's theory notes, one file per topic, read only by
   `services/nahw_notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as
   `{{role|text}}`; the Notes view in Nahw hides them or turns them into flashcards

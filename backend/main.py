@@ -6,7 +6,8 @@ import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Request, Response
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 
@@ -98,6 +99,15 @@ def create_app() -> FastAPI:
         speak.router,
     ):
         app.include_router(router)
+
+    # The access log has the path and status of every request; a crash also says
+    # whose record it was, so one learner's report can be found. Never the body.
+    # The traceback follows from the server's own log.
+    @app.exception_handler(Exception)
+    async def log_crash(request: Request, error: Exception) -> JSONResponse:
+        logger.error("%s %s failed for profile %r: %r", request.method, request.url.path,
+                     request.headers.get("x-tafheem-profile", "local"), error)
+        return JSONResponse(status_code=500, content={"detail": "The server hit an error."})
 
     @app.get("/api/health")
     async def health(response: Response) -> dict:
