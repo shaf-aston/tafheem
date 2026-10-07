@@ -407,6 +407,21 @@ def glosses_of(word: str) -> list[str]:
         return []
 
 
+def has_comparative(word: str) -> bool:
+    """CAMeL lists a bare noun with the same letters (أجمل: أَجْمَل, more beautiful); a verb
+    with no such twin (أنزل, أظن) gives no comparative. False when CAMeL is not there."""
+    if _camel_analyzer is None:
+        return False
+    bare = strip_diacritics(word)
+    try:
+        return any(a["pos"] in NOUNISH and strip_diacritics(a["lex"]) == bare
+                   and all(a.get(c, "0") in ("0", "na") for c in ("prc0", "prc1", "prc2", "enc0"))
+                   for a in _camel_analyzer.analyze(bare))
+    except Exception as exc:
+        logger.debug("CAMeL analyze error for '%s': %s", word, exc)
+        return False
+
+
 def _analyze_qalsadi(word: str) -> dict[str, Any]:
     try:
         result = _lemmatizer.lemmatize(word)  # type: ignore[union-attr]

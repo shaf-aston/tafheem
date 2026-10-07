@@ -528,8 +528,6 @@
     "حبذا",
     "لا حبذا",
     "ساء",
-    "ما أحسن",
-    "ما أشد",
     "أحسن بـ"
    ],
    "ambiguous": {
@@ -538,6 +536,17 @@
     "ساء": "verb of blame (as بئس) vs ordinary 'was bad / harmed'",
     "حبذا": "'how lovely it is' fixed phrase; the noun after it is the praised"
    }
+  },
+  "wonder": {
+   "ar": "التعجب: ما أفعلَه",
+   "_comment": "The wonder form (Tasheel 1.4.2 p8): ما, a past verb of the shape أَفْعَلَ / أَفَلَّ (doubled root) / أَفْعَى (weak last letter) and a noun in nasb. The shape is read from the letters, with ف ع ل standing for the root; a vowel the reader typed must be the shape's (أَكْرَمَ fits, أُكْرِمَ does not), a vowel left off is not held against it. Read by services/syntax/particles.py.",
+   "shapes": ["أَفْعَلَ", "أَفَلَّ", "أَفْعَى"],
+   "card": {
+    "named": "جامد للتعجب",
+    "does": ""
+   },
+   "effect": "ما is a noun (مبتدأ), the verb is built, never changes, and says wonder; its doer is hidden and goes back to ما, and the noun after it is its object. The verb's clause is the khabar of ما",
+   "words": []
   },
   "istifham": {
    "ar": "أدوات الاستفهام",

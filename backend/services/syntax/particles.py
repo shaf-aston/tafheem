@@ -13,8 +13,9 @@ from functools import lru_cache
 from typing import Callable
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SHADDA, SUKUN, five_verb_nun, has_tanween, letters
-from backend.services.nahw_book import book_file, book_map, is_one
+from backend.services.harakat import SHADDA, SUKUN, fits_shape, five_verb_nun, has_tanween, letters
+from backend.services.morphology import has_comparative
+from backend.services.nahw_book import book_file, book_map, book_words, is_one
 from backend.services.syntax import facts, walker
 
 
@@ -101,6 +102,34 @@ def _opens(token: dict, s: facts.Sentence) -> str:
         and facts.typed_or_parsed_case(told) == "u" and told.get("stt") != "d" else "no"
 
 
+def _wonder_parts(token: dict, s: facts.Sentence) -> tuple[dict, dict] | None:
+    """ما أجمل السماء: (the verb, its object) when ما is followed by a verb of the wonder shape
+    (data: wonder `shapes`, read from the letters) and a noun that is not raf' (Tasheel 1.4.2 p8).
+    A typed case is held to nasb; plain text only has the analyser's, so a noun it reads raf'
+    (ما أكرم زيدٌ) makes the verb an ordinary one. A second indefinite nasb noun (ما أعطى الرجل كتابًا)
+    or a pronoun on the verb (ما أدراك) is no wonder, nor a verb whose root gives no comparative
+    أفعل (ما أنزل الله: a negation), the wonder being built only where the comparative is."""
+    verb = _next(token, s)
+    noun = _next(verb, s) if verb else None
+    if not (verb and noun and verb["pos"] != "PRT" and noun["pos"] in ("NOM", "PROP") and not facts.is_verb(noun)
+            and not any(t["id"] == verb["id"] + 1 and _attached(t) for t in s.tokens)):
+        return None
+    typed = facts.typed_case_of(noun)
+    case = facts.typed_or_parsed_case(noun)
+    if case == "u" or (typed == "i" and not facts.shows_nasb_by_kasra(noun)) or not any(
+            fits_shape(verb.get("typed") or "", shape, verb.get("root") or "") for shape in book_words("wonder", "shapes")) \
+            or not has_comparative(verb["form"]):
+        return None
+    more = _next(noun, s)
+    second = bool(more) and more["pos"] in ("NOM", "PROP") and more.get("stt") == "i" and not facts.is_verb(more) \
+        and facts.typed_or_parsed_case(more) == "a"
+    return None if second else (verb, noun)
+
+
+def _wonder(token: dict, s: facts.Sentence) -> str:
+    return "yes" if _wonder_parts(token, s) else "no"
+
+
 AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] = {
     "next": (("verb_jazm", "verb", "indefinite_noun", "noun", "particle", "none"), _what_follows),
     "negated": (("yes", "no"), _negated),
@@ -109,6 +138,7 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "raf": (("yes", "no"), _raf),
     "tool_next": (("yes", "no"), _tool_next),
     "told": (("noun", "other"), _told),
+    "wonder": (("yes", "no"), _wonder),
 }
 
 
@@ -145,6 +175,37 @@ def _merged(tokens: list[dict], s: facts.Sentence) -> None:
                 tail["reading"] = {"family": merged["tail"], "named": None, "kind": "harf", "book": None}
 
 
+def _hasr_frees_its_words(tokens: list[dict]) -> None:
+    """لا تعبدوا إلا الله: the إلا of restriction excepts nothing, so the word the parser hung on
+    it belongs to the verb above it, as in ما ضربتُ إلا زيدًا (Tasheel 3.8.7 p85)."""
+    by_id = {t["id"]: t for t in tokens}
+    for particle in tokens:
+        verb = by_id.get(particle["head"])
+        if (particle.get("reading") or {}).get("family") == "hasr" and verb and facts.is_verb(verb):
+            for kid in tokens:
+                if kid["head"] == particle["id"]:
+                    kid["head"] = verb["id"]
+
+
+def _wonder_settles_its_words(tokens: list[dict]) -> None:
+    """ما أجمل السماء: a ما read as the wonder ما is the مبتدأ, the verb after it a built past verb
+    (its hidden doer goes back to ما) and its clause the khabar, the noun its object. The parser
+    tags and hangs these differently from one sentence to the next, so they are written over."""
+    s = facts.Sentence(tokens)
+    for ma in tokens:
+        if (ma.get("reading") or {}).get("family") != "wonder" or not (parts := _wonder_parts(ma, s)):
+            continue
+        verb, noun = parts
+        ma.update(pos="NOM", pos_camel="pron_rel")
+        verb.update(pos="VRB", pos_camel="verb", asp="p", vox="a", per="3", gen="m", num="s",
+                    reading={"family": "wonder", "named": None, "kind": "fil", "book": ma["reading"]["book"]})
+        three = {ma["id"], verb["id"], noun["id"]}
+        outer = next((t for t in (verb, ma, noun) if t["head"] not in three), None)
+        ma["head"], ma["rel"] = (outer["head"], outer["rel"]) if outer else (0, "---")
+        verb["head"], verb["rel"] = ma["id"], "---"
+        noun["head"], noun["rel"] = verb["id"], "OBJ"
+
+
 def stamp(tokens: list[dict]) -> None:
     """Stamp each listed word's reading on its token: {family, named, kind, book}, and the
     families the tree judges for it as `judged`. A word no leaf took (a و that opens no
@@ -161,3 +222,5 @@ def stamp(tokens: list[dict]) -> None:
             token["reading"] = {"family": found.role, "named": found.leaf.get("named"),
                                 "kind": found.leaf.get("kind", "harf"), "book": found.book}
     _merged(tokens, s)
+    _hasr_frees_its_words(tokens)
+    _wonder_settles_its_words(tokens)
