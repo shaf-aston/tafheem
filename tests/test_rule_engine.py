@@ -618,3 +618,20 @@ def test_a_pronoun_on_a_present_verb_is_not_read_as_its_passive_vowel():
     # the fatha before كَ in أُكْرِمَكَ is the verb's nasb; يُكْرَمُ is the passive
     assert "مجهول" not in _read("إِذَنْ أُكْرِمَكَ")["words"][1]["reason"]
     assert "مجهول" in _read("يُكْرَمُ الضَّيْفُ")["words"][0]["reason"]
+
+@pytest.mark.parametrize("sentence, particle, verb", [
+    ("وَلَا تَأْكُلُوهَا", "لا الناهية", "فعل مضارع للنهي"),
+    ("وَلَا تَأْكُلُوهَآ", "لا الناهية", "فعل مضارع للنهي"),  # the Qur'an's spelling of the same ending
+    ("لِيَكْتُبْ زَيْدٌ", "لام الأمر", "فعل مضارع للأمر"),
+    ("اكْتُبِ الدَّرْسَ", None, "فعل أمر"),
+])
+def test_a_verb_that_gives_an_order_is_named_for_it_in_the_picture(sentence: str, particle: str | None, verb: str):
+    from backend.services import syntax
+    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    assert verb in shown and (particle is None or particle in shown)
+
+
+def test_the_pronoun_on_a_verb_is_no_nun_of_the_five_verbs():
+    # لا يَدْعُوهُ keeps its root و (not the dropped nun), لا تَأْكُلُونَهَا keeps its nun: neither is jussive
+    assert [w["case"] for w in analysed("لَا يَدْعُوهُ زَيْدٌ")][1] == "raf'"
+    assert [w["case"] for w in analysed("لَا تَأْكُلُونَهَا")][1] == "raf'"

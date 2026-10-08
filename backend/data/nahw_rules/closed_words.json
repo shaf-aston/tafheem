@@ -402,7 +402,7 @@
   },
   "jazm": {
    "ar": "جوازم الفعل المضارع",
-   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"إن": "حرف شرط جازم", "ل": "حرف جزم، لام الأمر", "لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}, "chart_as": {"ل": "لام الأمر"}},
+   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"إن": "حرف شرط جازم", "ل": "حرف جزم، لام الأمر", "لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}, "chart_as": {"ل": "لام الأمر", "لا": "لا الناهية"}, "verb_as": {"ل": "فعل مضارع للأمر", "لا": "فعل مضارع للنهي"}},
    "effect": "puts the present verb after it in jazm (sukun; nun of the five verbs dropped; a weak last letter dropped); conditionals govern two verbs, the condition and the result",
    "before_a_present_verb": ["لم", "لما"],
    "conditional_particles": ["إن", "إذما"],

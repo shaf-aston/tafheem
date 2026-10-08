@@ -82,7 +82,7 @@ def _persons(token: dict, owner: list[str] | None) -> list[str]:
     if token.get("asp") == "i" and token.get("per", "na") not in DOER["prefix_person"].get(letter, token.get("per", "na")):
         return []  # the reading's person is not one its letter allows
     # تَكْتُبِينَ: the ياء is the doer (أنتِ), so the reading's own person stands, not the bare ت that is أنتَ or هي
-    if token.get("asp") == "i" and token.get("num") == "s" and letter == "ت" and not five_verb_nun(token.get("typed") or ""):
+    if token.get("asp") == "i" and token.get("num") == "s" and letter == "ت" and not five_verb_nun(token.get("typed") or "", token.get("stuck_on", 0), token.get("weak_last")):
         both = DOER["ta_prefix"]
         # the subject's person settles it: a ت said of a third person is هي (هِنْدٌ تَكْتُبُ)
         return [key for key in both if key[0] in {o[0] for o in owner or []}] or both
@@ -108,8 +108,9 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
         return FRAMES["leaf_by_family"][family]
     if role == NAMED.harf and (reading := token.get("reading")):
         card = CARDS.get(reading["family"], {})
-        return reading["named"] or card.get("chart") or card.get("named_as", {}).get(
-            strip_diacritics(token["form"]).strip("+"), card.get("named", role))
+        word = strip_diacritics(token["form"]).strip("+")
+        return reading["named"] or card.get("chart") or card.get("chart_as", {}).get(word) or card.get("named_as", {}).get(
+            word, card.get("named", role))
     if family is None and role == NAMED.harf and token["form"].endswith("+") and is_one(strip_diacritics(token["form"]), "atf"):
         family = "atf"  # وَمَنْ شاء: a وَ written onto a new sentence is named by its letters, as its card is
     card = CARDS.get(family) or {}
@@ -119,6 +120,17 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
     named = card and card.get("named_as", {}).get(word, card["named"])
     # only a finer name for the same role (حرف نصب for حرف), so card and picture still agree
     return named if role in (NAMED.harf, NAMED.harf_jarr) and named and named.startswith(role) else role
+
+
+def _command_name(token: dict, drawn: list[dict], family_of: dict) -> str | None:
+    """A verb that gives an order says so: اكتبْ is a فعل أمر, and a present verb the jazm
+    particle before it makes a command or a prohibition (لِيَكتبْ، لا تأكلْ) is named for it."""
+    if token.get("asp") == "c":
+        return FRAMES["command"]["verb"]
+    for before in drawn:
+        if before["head"] == token["id"] and before["id"] < token["id"] and family_of[before["id"]] == "jazm":
+            return CARDS["jazm"].get("verb_as", {}).get(strip_diacritics(before["form"]).strip("+"))
+    return None
 
 
 def _read(token: dict) -> str | None:
@@ -266,6 +278,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     family_of = {token["id"]: found.get("family") for token, found in zip(bases, named)} | {
         key: piece["family"] for key, piece in split.items()} | dict.fromkeys(understood)
     name_of = {token["id"]: _finer(token, role_of[token["id"]], family_of[token["id"]]) for token in drawn}
+    for token in drawn:
+        if name_of[token["id"]] == NAMED.fil:
+            name_of[token["id"]] = _command_name(token, drawn, family_of) or NAMED.fil
     for key, pair in {**pair_of, **understood_pair}.items():
         name_of[key] = pair.get(role_of[key], name_of[key])
     name_of.update(dict.fromkeys(replies, said_verb["word"]))  # the question's verb, said no more than it is: unwritten

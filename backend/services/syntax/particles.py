@@ -53,7 +53,7 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
     if facts.is_verb(after):
         own = letters(typed)
         stilled = bool(own) and SUKUN in own[-1][1]
-        return "verb_jazm" if stilled or five_verb_nun(typed) == "dropped" else "verb"
+        return "verb_jazm" if stilled or five_verb_nun(typed, after.get("stuck_on", 0), after.get("weak_last")) == "dropped" else "verb"
     if after["pos"] == "PRT":
         return "particle"
     bare = strip_diacritics(typed or after["form"])
