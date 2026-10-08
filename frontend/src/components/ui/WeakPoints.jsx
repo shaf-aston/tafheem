@@ -3,12 +3,12 @@
  * (lib/weak weakPoints): his rank, name and grade as the data words it, where
  * the level sits on Ibn Hajar's twelve, what it means in plain English, and the
  * book it comes from. The lift line is there only where a source speaks of
- * support lifting that weakness, and quotes it. No legend: each row carries
+ * support lifting that weakness; its quote waits behind the book's name. No legend: each row carries
  * its own words.
  */
 import ArabicText from './ArabicText'
+import Disclosure from './Disclosure'
 import NarratorLink from './NarratorLink'
-import ShowRest from './ShowRest'
 
 /** The twelve levels as steps: the narrator's filled, the levels too strong to be a weak point muted. */
 function Scale({ level, scale }) {
@@ -47,10 +47,9 @@ export default function WeakPoints({ points, scale, onNarrator }) {
               {p.lift && (
                 <div className="ps-3 border-s border-[var(--border-hi)] space-y-1">
                   <p className="type-small m-0 text-[var(--text-dim)]">{p.lift.en}</p>
-                  <ShowRest lines={2} more="Show the rest" less="Show less">
+                  <Disclosure label={p.lift.source}>
                     <ArabicText as="p" size="sm" className="block m-0 leading-loose text-[var(--text-faint)]">{p.lift.quote}</ArabicText>
-                  </ShowRest>
-                  <p className="type-tiny m-0 text-[var(--text-faint)]">{p.lift.source}</p>
+                  </Disclosure>
                 </div>
               )}
               <p className="type-tiny m-0 text-[var(--text-faint)]">{p.source}</p>

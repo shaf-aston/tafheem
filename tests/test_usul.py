@@ -32,7 +32,9 @@ LEVELS = rule()["levels"]
     ("ثقة ثقة", 2),
     ("متروك متهم بالكذب", 11),
     ("صدوق حسن الحديث", 4),
-    ("ثقة رمي بالتشيع", 5),
+    ("صدوق رمي بالقدر", 5),
+    ("ثقة رمي بالتشيع", 3),  # level 5 falls short of صدوق; a ثقة stays a ثقة
+    ("ثقة ثبت قد يخطئ في حديث الثوري", 3),
     ("انفرد بتوثيقه ابن حبان", None),
 ])
 def test_a_grade_reads_to_the_highest_level_its_words_name(grade, level):

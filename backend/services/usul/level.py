@@ -5,7 +5,9 @@ there (data/usul/usul.json). The grade and the terms are folded the same way,
 so سيء and سيئ, يخطىء and يخطئ are one word. Terms match whole words, longest
 first, and a matched span is taken out before a shorter term looks, so
 مجهول الحال is level 7 and not 9. The level is the highest matched; the words
-no term took come back as they are, never guessed at.
+no term took come back as they are, never guessed at. A level with `under`
+falls short of that level (Ibn Hajar's fifth: "من قصر عن الرابعة قليلا"), so its
+terms count only where nothing above `under` was said: ثقة رمي بالتشيع stays 3.
 """
 from __future__ import annotations
 
@@ -45,7 +47,10 @@ def level_of(grade_ar: str, levels: list[dict]) -> tuple[int | None, list[str], 
             else:
                 i += 1
     hits.sort()
-    return (max((level for _, level, _ in hits), default=None),
+    under = {row["level"]: row["under"] for row in levels if "under" in row}
+    top = min((level for _, level, _ in hits), default=None)
+    counted = [level for _, level, _ in hits if level not in under or top >= under[level]]
+    return (max(counted, default=None),
             [term for _, _, term in hits],
             " ".join(w for w, kept in zip(shown, left) if kept is not None))
 

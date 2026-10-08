@@ -1,7 +1,7 @@
 {
   "_about": [
     "Weak points on a hadith's chain. Read by services/usul/rule.py; the build (scripts/build_usul.py) and the endpoint both use it.",
-    "levels: Ibn Hajar's twelve ranks of narrators, Taqrib al-Tahdhib preface. terms are his words for each level, plus the data's spelling (صحابي, رمي). Matched whole words, longest term first, on text folded the same way (letters only, one alef, one hamza seat). The level of a narrator is the highest matched; words no term takes are listed in usul.db's gap table and never guessed.",
+    "levels: Ibn Hajar's twelve ranks of narrators, Taqrib al-Tahdhib preface. terms are his words for each level, plus the data's spelling (صحابي, رمي). Matched whole words, longest term first, on text folded the same way (letters only, one alef, one hamza seat). The level of a narrator is the highest matched, except that under: N marks a level defined as falling short of level N, whose terms count only when no term above N was matched (Ibn Hajar: level 5 is من قصر عن الرابعة قليلا, so a ثقة with رمي stays 3). Words no term takes are listed in usul.db's gap table and never guessed.",
     "kind: what sort of weakness the level is. kinds: a term that is a different sort inside its level (رمي in level 5 is an innovation, the rest of 5 are memory).",
     "weak_from: the lowest level that counts as a weak point. Below it nothing is marked.",
     "max_change_ratio: the build stops if the number of notes moves more than this against the file it would replace, so a broken rule cannot ship quietly.",
@@ -20,7 +20,7 @@
     { "level": 3, "ar": "ثقة", "en": "Reliable", "kind": "praise", "terms": ["ثقة", "متقن", "ثبت", "عدل"] },
     { "level": 4, "ar": "صدوق", "en": "Truthful", "kind": "praise", "terms": ["صدوق", "لا بأس به", "ليس به بأس"] },
     {
-      "level": 5, "ar": "صدوق سيء الحفظ", "en": "Truthful, with a fault", "kind": "memory",
+      "level": 5, "ar": "صدوق سيء الحفظ", "en": "Truthful, with a fault", "kind": "memory", "under": 4,
       "terms": ["صدوق سيء الحفظ", "صدوق يهم", "له أوهام", "يخطىء", "تغير بأخرة", "رمي"],
       "kinds": { "رمي": "innovation" }
     },
