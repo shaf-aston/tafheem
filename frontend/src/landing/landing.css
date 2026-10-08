@@ -116,7 +116,6 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .eyebrow::before { content: "\2022\a0"; color: var(--gold); }
 .landing-page .headline { font-size: clamp(2.5rem, 6.4vw, 5.6rem); color: var(--text); }
 .landing-page .headline .accent { font-family: var(--font-arabic); font-style: italic; font-weight: 700; color: var(--gold-hi); }
-.landing-page .sub { font-size: clamp(1rem, 1.5vw, 1.2rem); color: var(--muted); max-width: 42ch; margin-top: 1.6rem; }
 .landing-page .cta-row { margin-top: 2.25rem; display: flex; gap: 1rem; flex-wrap: wrap; }
 .landing-page .cta {
   display: inline-block; font-family: var(--font-label); font-weight: 700; font-size: .98rem;
