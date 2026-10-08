@@ -4,18 +4,19 @@ import TarkeebDiagram from '../components/TarkeebDiagram'
 import { rows } from '../lib/tarkeebLayout'
 import { loadDemo } from './loadDemo.js'
 import { reducedMotion } from './motion.js'
-import useScrollProgress from './useScrollProgress.js'
+import useScrollProgress, { riseProgress } from './useScrollProgress.js'
 
-const GROW_END = 0.14
 const PHONE = '(max-width: 600px)'
 
 // Scrolling breaks one sentence down: the whole line, then its words, then each
-// join of words into phrases, until the full tarkeeb tree is on screen.
+// join of words into phrases, until the full tarkeeb tree is on screen. The
+// card opens out while the section scrolls in, so pinned scrolling is all breakdown.
 export default function SentenceDemo({ demo = loadDemo() }) {
   const { words, tree } = demo
   const trackRef = useRef(null)
   const rootRef = useRef(null)
   const progress = useScrollProgress(trackRef)
+  const open = useScrollProgress(trackRef, riseProgress)
   const [reduced] = useState(reducedMotion)
   const [phone, setPhone] = useState(() => matchMedia(PHONE).matches)
 
@@ -28,10 +29,7 @@ export default function SentenceDemo({ demo = loadDemo() }) {
 
   const maxLevel = useMemo(() => Math.max(...rows(tree, words.length).map((r) => r.level)), [tree, words])
   const stages = maxLevel + 2
-  const stage = reduced
-    ? stages - 1
-    : Math.min(stages - 1, Math.floor(Math.max(0, (progress - GROW_END) / (1 - GROW_END)) * stages))
-  const grow = reduced ? 1 : Math.min(1, progress / GROW_END)
+  const stage = reduced ? stages - 1 : Math.min(stages - 1, Math.floor(progress * stages))
 
   useEffect(() => {
     rootRef.current.querySelectorAll('[data-level]').forEach((el) => {
@@ -44,8 +42,7 @@ export default function SentenceDemo({ demo = loadDemo() }) {
   useEffect(() => {
     const view = rootRef.current.querySelector('.tk-scroller')
     if (!phone || !view) return
-    const t = Math.min(1, Math.max(0, (progress - GROW_END) / (1 - GROW_END)))
-    view.scrollLeft = (view.scrollWidth - view.clientWidth) * (1 - t)
+    view.scrollLeft = (view.scrollWidth - view.clientWidth) * (1 - progress)
   }, [progress, phone])
 
   const caption = stage === 0
@@ -58,10 +55,10 @@ export default function SentenceDemo({ demo = loadDemo() }) {
 
   return (
     <section className="pin" id="deep-dive">
-      <div className="pin-track" ref={trackRef}>
+      <div className="pin-track" ref={trackRef} style={{ '--stages': stages }}>
         <div className="pin-sticky">
           <p className="pin-label label">Scroll to expand</p>
-          <div className="sd-frame" style={{ '--grow': grow }}>
+          <div className="sd-frame" style={{ '--open': reduced ? 1 : open }}>
             <p className="sd-sentence arabic" lang="ar" dir="rtl" data-hidden={stage > 0 || undefined}>
               {words.join(' ')}
             </p>
