@@ -290,3 +290,19 @@ def test_the_same_letters_as_a_qur_anic_adjective_is_not_a_new_noun() -> None:
     kept, dropped = only_new_words(lexicon, [a_word("رَبٌّ", "master, lord", wordType="noun")])
     assert kept == []
     assert dropped == {"already in book": 1}
+
+
+# ── no name is ever an option ────────────────────────────────────────────────
+# A name among four meanings is a giveaway: it is dismissed without reading the
+# question. The build drops the ones word_kinds.json lists and re-glosses the
+# ones that also have an ordinary meaning; this checks the shipped words did.
+
+CHECKED = Path(__file__).parent.parent / "backend" / "data" / "word_kinds.json"
+
+
+def test_the_shipped_words_hold_no_name_and_every_checked_meaning() -> None:
+    checked = json.loads(CHECKED.read_text("utf-8"))
+    shipped = {word["ar"]: word for word in json.loads((WORDS / "words.json").read_text("utf-8"))["words"]}
+    assert sorted(set(checked["names"]) & set(shipped)) == []
+    wrong = {ar: shipped[ar]["en"] for ar, m in checked["meanings"].items() if ar in shipped and shipped[ar]["en"] != m["en"]}
+    assert wrong == {}

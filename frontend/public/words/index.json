@@ -174,7 +174,7 @@
       "id": 2,
       "name": "Al-Baqarah",
       "arabic": "البقرة",
-      "words": 646
+      "words": 645
     },
     {
       "id": 3,
@@ -186,13 +186,13 @@
       "id": 4,
       "name": "An-Nisa",
       "arabic": "النساء",
-      "words": 433
+      "words": 432
     },
     {
       "id": 5,
       "name": "Al-Ma'idah",
       "arabic": "المائدة",
-      "words": 333
+      "words": 329
     },
     {
       "id": 6,
@@ -282,7 +282,7 @@
       "id": 20,
       "name": "Taha",
       "arabic": "طه",
-      "words": 222
+      "words": 221
     },
     {
       "id": 21,
@@ -636,7 +636,7 @@
       "id": 79,
       "name": "An-Nazi'at",
       "arabic": "النازعات",
-      "words": 52
+      "words": 51
     },
     {
       "id": 80,
@@ -660,7 +660,7 @@
       "id": 83,
       "name": "Al-Mutaffifin",
       "arabic": "المطففين",
-      "words": 34
+      "words": 31
     },
     {
       "id": 84,
@@ -852,7 +852,7 @@
   "juz": [
     {
       "id": 1,
-      "words": 309
+      "words": 308
     },
     {
       "id": 2,
@@ -868,7 +868,7 @@
     },
     {
       "id": 5,
-      "words": 328
+      "words": 327
     },
     {
       "id": 6,
@@ -876,7 +876,7 @@
     },
     {
       "id": 7,
-      "words": 340
+      "words": 336
     },
     {
       "id": 8,
@@ -912,7 +912,7 @@
     },
     {
       "id": 16,
-      "words": 399
+      "words": 398
     },
     {
       "id": 17,
@@ -968,7 +968,7 @@
     },
     {
       "id": 30,
-      "words": 476
+      "words": 472
     }
   ]
 }

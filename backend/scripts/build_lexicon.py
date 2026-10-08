@@ -812,6 +812,11 @@ def main() -> None:
     for spelling, meaning in meanings.items():
         word = by_spelling[spelling]
         word.en, word.ur, word.meaningKey = meaning["en"], meaning["ur"], meaning["en"].lower()
+    # Names the corpus tags as ordinary words, or that came from a list: dropped
+    # for the same reason the corpus's own names are, see corpus_words.
+    if unknown := sorted(set(checked["names"]) - set(by_spelling)):
+        raise SystemExit(f"word_kinds.json names words that are not in any list: {unknown}")
+    lexicon.words = [word for word in lexicon.words if word.ar not in checked["names"]]
     link_book_lemmas(lexicon.words, corpus, checked["lemmas"])
 
     # What the picker needs to name each set on screen. Kept with the words
