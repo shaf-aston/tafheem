@@ -9,10 +9,11 @@
  * every panel reads the new person's at once.
  */
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 import { smartError } from '../../lib/apiError'
 import { getProfile, setProfile } from '../../lib/profile'
-import { logIn, signUp } from '../../lib/progress'
+import { fetchAccountNames, logIn, signUp } from '../../lib/progress'
 import { copyGuestShelf, pullShelf } from '../../lib/shelf'
 
 import BottomSheet from './BottomSheet'
@@ -20,6 +21,7 @@ import PrimaryButton from './PrimaryButton'
 import ProfileView from './ProfileView'
 import SearchBox from './SearchBox'
 import Segmented from './Segmented'
+import SmallButton from './SmallButton'
 
 const MODES = [{ id: 'login', label: 'Log in' }, { id: 'signup', label: 'Sign up' }]
 
@@ -55,10 +57,13 @@ function SignIn({ onIn }) {
   const [busy, setBusy] = useState(false)
   const signingUp = mode === 'signup'
 
-  const go = async () => {
+  // Beta only: the server stops answering once beta_list_accounts is off, and the list goes.
+  const names = useQuery({ queryKey: ['account-names'], queryFn: fetchAccountNames, retry: false })
+
+  const go = async (chosen = typed) => {
     setBusy(true)
     try {
-      const { name } = await (signingUp ? signUp(typed, keep) : logIn(typed))
+      const { name } = await (signingUp ? signUp(chosen, keep) : logIn(chosen))
       setProfile(name)
       // A new name starts from the guest's shelf only if it kept the guest's answers.
       await (signingUp ? (keep ? copyGuestShelf(name) : null) : pullShelf(name))
@@ -79,7 +84,7 @@ function SignIn({ onIn }) {
         placeholder="e.g. amina"
         value={typed}
         onChange={(value) => { setTyped(value); setError('') }}
-        onSubmit={go}
+        onSubmit={() => go()}
         onClear={() => setTyped('')}
         busy={busy}
       />
@@ -93,9 +98,22 @@ function SignIn({ onIn }) {
           Move answers given on this device to my new account
         </label>
       )}
-      <PrimaryButton onClick={go} loading={busy} disabled={busy || !typed.trim()}>
+      <PrimaryButton onClick={() => go()} loading={busy} disabled={busy || !typed.trim()}>
         {signingUp ? 'Sign up' : 'Log in'}
       </PrimaryButton>
+      {!signingUp && names.data?.length > 0 && (
+        <div className="space-y-2">
+          <p className="type-small text-[var(--text-faint)]">Beta: tap a username to log in as it.</p>
+          <div className="flex flex-wrap gap-2">
+            {names.data.map((one) => (
+              <SmallButton key={one} dir="auto" disabled={busy} onClick={() => go(one)}
+                className="text-[var(--text-dim)]">
+                {one}
+              </SmallButton>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   )
 }

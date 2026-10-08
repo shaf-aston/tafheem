@@ -79,3 +79,18 @@ export const fetchReviewItems = (module) =>
 export async function leaveFeedback({ module, item, message }) {
   return { saved: await landed(api.post(`${BASE}/feedback`, { module, item, message }, headers())) }
 }
+
+/** Every username, for the log-in box while in beta. Throws (404 once beta is over), for react-query. */
+export const fetchAccountNames = () => api.get(`${BASE}/accounts`).then((r) => r.data.names)
+
+/** `{ tree, teams }`: everyone under this account with their progress, and the teams it is in. */
+export const fetchTeam = (module) =>
+  api.get(`${BASE}/team`, { params: { module }, ...headers() }).then((r) => r.data)
+
+/** Put a username in this account's team. Resolves the new team; throws, so the box can say why. */
+export const addMember = (member, module) =>
+  api.post(`${BASE}/team`, { member }, { params: { module }, ...headers() }).then((r) => r.data)
+
+/** Part a member from a team; the team or the member may. Resolves the new team. */
+export const removeMember = (team, member, module) =>
+  api.delete(`${BASE}/team`, { params: { team, member, module }, ...headers() }).then((r) => r.data)

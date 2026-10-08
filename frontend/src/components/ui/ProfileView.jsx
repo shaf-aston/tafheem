@@ -15,6 +15,7 @@ import { useQuizCoverage } from '../../lib/useQuizCoverage'
 
 import { Skeleton } from './Skeleton'
 import SmallButton from './SmallButton'
+import TeamView from './TeamView'
 
 export default function ProfileView({ name, onLeave }) {
   const language = QUIZ.language
@@ -37,6 +38,7 @@ export default function ProfileView({ name, onLeave }) {
         <Fact name="Words learnt" value={stats.data && learnt.length} />
         <Fact name="Of the Qur’an" value={covered} />
       </dl>
+      <TeamView name={name} module={module} />
       <Board board={board} name={name} />
       <Leave onLeave={onLeave} />
     </div>

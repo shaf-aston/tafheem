@@ -265,3 +265,63 @@ def test_start_over_and_delete_empty_the_shelf():
     client.delete("/api/progress/account", headers=as_("Amina"))
     signup("Amina")
     assert shelf("Amina").json() == {"data": {}}
+
+
+# Beta: the log-in box lists every username, so testers can pick one.
+
+def test_while_in_beta_every_username_is_listed(monkeypatch):
+    from backend.config import get_settings
+    signup("Bilal"), signup("Amina")
+    assert client.get("/api/progress/accounts").json() == {"names": ["amina", "bilal"]}
+    monkeypatch.setattr(get_settings(), "beta_list_accounts", False)
+    assert client.get("/api/progress/accounts").status_code == 404
+
+
+# Teams: an account with members. It sees who is under it, branching down, with their progress.
+
+def team(name, module="quiz"):
+    return client.get("/api/progress/team", params={"module": module}, headers=as_(name))
+
+
+def add(team_name, member):
+    return client.post("/api/progress/team", headers=as_(team_name), json={"member": member})
+
+
+def test_a_team_sees_its_members_branching_down_with_their_progress():
+    for name in ("Coach", "Amina", "Bilal", "Cyra"):
+        signup(name)
+    answer("Amina", "a")
+    assert add("Coach", " AMINA ").status_code == 200
+    add("Coach", "Bilal")
+    add("Bilal", "Cyra")
+    body = team("Coach").json()
+    tree = body["tree"]
+    assert tree["name"] == "coach"
+    assert [m["name"] for m in tree["members"]] == ["amina", "bilal"]
+    assert tree["members"][0]["answers"] == 1
+    assert [m["name"] for m in tree["members"][1]["members"]] == ["cyra"]
+    assert team("Cyra").json()["teams"] == ["bilal"]
+
+
+def test_a_team_cannot_hold_itself_a_stranger_or_a_loop():
+    for name in ("Coach", "Amina"):
+        signup(name)
+    assert add("Coach", "Coach").status_code == 422
+    assert add("Coach", "Nobody").status_code == 404
+    add("Coach", "Amina")
+    assert add("Amina", "Coach").status_code == 422  # would make a loop
+    assert add(None, "Amina").status_code == 422     # the guest has no team
+
+
+def test_the_team_or_the_member_can_part_them_and_nobody_else():
+    for name in ("Coach", "Amina", "Bilal"):
+        signup(name)
+    add("Coach", "Amina")
+    leave = lambda who: client.delete(  # noqa: E731
+        "/api/progress/team", params={"team": "coach", "member": "amina"}, headers=as_(who))
+    assert leave("Bilal").status_code == 403
+    assert leave("Amina").status_code == 200
+    assert team("Coach").json()["tree"]["members"] == []
+    add("Coach", "Amina")
+    client.delete("/api/progress/account", headers=as_("Amina"))
+    assert team("Coach").json()["tree"]["members"] == []

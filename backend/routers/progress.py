@@ -17,20 +17,24 @@ from fastapi import APIRouter, HTTPException, Query
 from backend.config import get_settings
 from backend.models.schemas import (
     Account,
+    AccountNames,
     AttemptIn,
     AttemptSaved,
     FeedbackIn,
     Forgotten,
     ItemStats,
     Leaderboard,
+    MemberIn,
     ProfileIn,
     ProfileSaved,
     ProgressSummary,
     ReviewList,
     Shelf,
+    Team,
 )
 from backend.identity import GUEST, NAMED, TYPED, USER
 from backend.services import progress_store
+from backend.services.profile import clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
@@ -149,6 +153,49 @@ def get_leaderboard(module: str = _MODULE, user: str = USER) -> Leaderboard:
     rows = progress_store.leaderboard(module)
     you = next((row for row in rows if row["name"] == user), None)
     return Leaderboard(rows=rows[: get_settings().leaderboard_size], you=you)
+
+
+@router.get("/accounts", response_model=AccountNames)
+def list_accounts() -> AccountNames:
+    """Every username, for the log-in box while in beta; not found once that is switched off."""
+    if not get_settings().beta_list_accounts:
+        raise HTTPException(status_code=404, detail="Not found")
+    return AccountNames(names=progress_store.account_names())
+
+
+@router.get("/team", response_model=Team)
+def get_team(module: str = _MODULE, user: str = NAMED) -> Team:
+    """Everyone under this account, branching down, with their progress."""
+    return _team(user, module)
+
+
+@router.post("/team", response_model=Team)
+async def add_member(body: MemberIn, module: str = _MODULE, user: str = NAMED) -> Team:
+    """Put a signed-up username in this account's team."""
+    try:
+        member = clean_name(body.member)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from None
+    if not progress_store.has_account(member):
+        raise HTTPException(status_code=404, detail="No account with that username")
+    try:
+        progress_store.add_member(user, member)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from None
+    return _team(user, module)
+
+
+@router.delete("/team", response_model=Team)
+async def remove_member(team: str, member: str, module: str = _MODULE, user: str = NAMED) -> Team:
+    """Part a member from a team. Only the team or the member may."""
+    if user not in (team, member):
+        raise HTTPException(status_code=403, detail="Only the team or the member can do that")
+    progress_store.remove_member(team, member)
+    return _team(user, module)
+
+
+def _team(user: str, module: str) -> Team:
+    return Team(tree=progress_store.team_tree(user, module), teams=progress_store.teams_of(user))
 
 
 def _typed_a_name(user: str) -> None:

@@ -350,6 +350,8 @@ class Settings(BaseSettings):
     profile_reserved: list[str] = ["local"]
     # Largest shelf (everything the page keeps for one account) the server takes, in bytes.
     saved_max_bytes: int = Field(default=512_000, gt=0)
+    # Beta testing: the log-in box lists every username so a tester can pick one. Off before launch.
+    beta_list_accounts: bool = True
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20
     # Checked practice sentences (services/sentence_check.py): AI tries per request,

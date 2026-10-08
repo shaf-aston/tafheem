@@ -2,8 +2,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { api } from '../api'
 import {
-  deleteAccount, fetchAccount, fetchLeaderboard, fetchReviewItems, fetchSummary, forgetProgress, leaveFeedback, logIn,
-  recordAttempt, signUp,
+  addMember, deleteAccount, fetchAccount, fetchAccountNames, fetchLeaderboard, fetchReviewItems, fetchSummary, forgetProgress, leaveFeedback, logIn,
+  recordAttempt, removeMember, signUp,
 } from './progress'
 
 afterEach(() => vi.restoreAllMocks())
@@ -90,5 +90,25 @@ describe('whose record', () => {
     expect(posting.mock.calls[2]).toEqual(['/progress/signup', { keep: false }, sent])
     expect(posting.mock.calls[3]).toEqual(['/progress/login', {}, sent])
     expect(deleting.mock.calls[1][0]).toBe('/progress/account')
+  })
+})
+
+describe('teams', () => {
+  it('adds a member as the logged-in name and hands back the new team', async () => {
+    const post = vi.spyOn(api, 'post').mockResolvedValue({ data: { tree: { name: 'coach' }, teams: [] } })
+    await expect(addMember('amina', 'quiz')).resolves.toEqual({ tree: { name: 'coach' }, teams: [] })
+    expect(post.mock.calls[0][1]).toEqual({ member: 'amina' })
+    expect(post.mock.calls[0][2].params).toEqual({ module: 'quiz' })
+  })
+
+  it('says who parts from whom', async () => {
+    const del = vi.spyOn(api, 'delete').mockResolvedValue({ data: {} })
+    await removeMember('coach', 'amina', 'quiz')
+    expect(del.mock.calls[0][1].params).toEqual({ team: 'coach', member: 'amina', module: 'quiz' })
+  })
+
+  it('throws when beta is over, so the log-in list just goes', async () => {
+    vi.spyOn(api, 'get').mockRejectedValue(refused(404))
+    await expect(fetchAccountNames()).rejects.toThrow()
   })
 })
