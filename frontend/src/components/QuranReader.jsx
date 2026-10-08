@@ -227,9 +227,13 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         <CloseButton onClick={onClose} aria-label="Close the surah" className="shrink-0" />
       </header>
 
-      {data && <AyahRail key={surah} count={data.ayah_count} here={here} open={ayah} onPick={goTo} />}
+      {/* Not on a phone: the Surah, Ayah and Juz pickers above already jump to an
+          ayah, and the strip cost the reading a row. */}
+      {data && !phone && <AyahRail key={`rail ${surah}`} count={data.ayah_count} here={here} open={ayah} onPick={goTo} />}
 
-      <div key={surah} ref={panes} {...slide}
+      {/* Each keyed by the surah to start afresh with it, and each key its own:
+          siblings sharing one drew the panes three times on a phone. */}
+      <div key={`panes ${surah}`} ref={panes} {...slide}
         className={twoPanes ? 'grid grid-cols-[minmax(0,1fr)_minmax(19rem,26rem)]' : stacked ? 'flex flex-col h-[var(--layout-split)] scroll-mt-14' : ''}>
         <div className={stacked ? 'min-w-0 min-h-0 shrink-0' : 'min-w-0'} style={stacked ? { height: `${share * 100}%` } : undefined}>
           {translation.isError && (
@@ -288,7 +292,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
 
       {data && (
         <RecitationBar
-          key={surah}
+          key={`bar ${surah}`}
           surah={surah}
           count={data.ayah_count}
           from={ayah ?? here}

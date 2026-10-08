@@ -6,14 +6,15 @@ import { keyAction, typingElsewhere } from '../lib/answerKeys'
 import { fetchReviewItems, recordAttempt } from '../lib/progress'
 import { buildQuestion, DIRECTIONS, makeRandom, MEANINGS } from '../lib/quiz'
 import {
-  allWords, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, WHOLE_SET_SCOPES, wordsFor,
+  allWords, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, sentencesQuery, WHOLE_SET_SCOPES, wordsFor,
 } from '../lib/quizBanks'
 import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
-import { progressKey } from '../lib/stored'
+import { progressKey, readSaved, writeSaved } from '../lib/stored'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
 
 import QuizAyah from './QuizAyah'
+import QuizExample from './QuizExample'
 import PracticeSentence from './PracticeSentence'
 import QuizInsights from './QuizInsights'
 import EmptyState from './ui/EmptyState'
@@ -35,6 +36,9 @@ import WheelPicker from './ui/WheelPicker'
 const BANK_IDS = Object.keys(BANKS)
 const DIRECTION_IDS = Object.keys(DIRECTIONS)
 const LANGUAGE_IDS = Object.keys(MEANINGS)
+// The running tally, under the learner's own record like the best streak.
+const SCORE_KEY = progressKey('quiz-score')
+const NO_SCORE = { right: 0, total: 0, streak: 0 }
 
 // The two ways round a language can be asked. Derived rather than remembered, so
 // there is no such thing as a language holding a direction from another one.
@@ -93,7 +97,10 @@ export default function QuizPanel({ accent, onProgress }) {
   const [history, setHistory] = useState([])
   // Index into history while reviewing an earlier question, or null for the live one.
   const [reviewing, setReviewing] = useState(null)
-  const [score, setScore] = useState({ right: 0, total: 0, streak: 0 })
+  // Kept like the best streak below, so a reload does not wipe the tally; only
+  // Start over (or a new word set) does, and Start over in settings forgets it.
+  const [score, setScore] = useState(() => ({ ...NO_SCORE, ...readSaved(SCORE_KEY, NO_SCORE) }))
+  useEffect(() => writeSaved(SCORE_KEY, score), [score])
   // The one thing a round leaves behind. Stored as what it is, a number written
   // out, so nothing has to interpret it years later.
   const [best, rememberBest] = useRemembered(progressKey('quiz-best-streak'))
@@ -209,11 +216,14 @@ export default function QuizPanel({ accent, onProgress }) {
   // Fetch the answer word's ayah the moment its question appears, so it is
   // ready when the answer lands. Failures here are silent; QuizAyah reads the
   // same cache and draws nothing without data.
+  // A word with no ayah shows an everyday sentence instead, from one file.
   const ayahAt = question?.ayah
+  const asked = Boolean(question)
   useEffect(() => {
-    if (!ayahAt) return
-    for (const query of ayahQueries(ayahAt[0], ayahAt[1])) client.prefetchQuery(query)
-  }, [client, ayahAt])
+    if (!asked) return
+    if (!ayahAt) client.prefetchQuery(sentencesQuery)
+    else for (const query of ayahQueries(ayahAt[0], ayahAt[1])) client.prefetchQuery(query)
+  }, [client, asked, ayahAt])
 
   // One pair of values feeds the whole card, whether it is the live question or
   // one being looked at again, so nothing below has to know which it is.
@@ -273,7 +283,7 @@ export default function QuizPanel({ accent, onProgress }) {
     setReviewing(null)
     setHistory([])
     setRound(freshRound)
-    setScore({ right: 0, total: 0, streak: 0 })
+    setScore(NO_SCORE)
   }
 
   // Changing what is being tested starts a fresh round: a score carried across
@@ -666,6 +676,7 @@ export default function QuizPanel({ accent, onProgress }) {
           </div>
 
           {answered && shown.ayah && <QuizAyah key={shown.ayah.join(':')} ayah={shown.ayah} accent={accent} />}
+          {answered && !shown.ayah && <QuizExample word={shown.answerWord} accent={accent} say={say} />}
         </div>
       )}
 
