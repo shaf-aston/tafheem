@@ -1554,31 +1554,24 @@ class FamilyPart(BaseModel):
     marks: list[FamilyMark] = []
 
 
-class FamilyCite(BaseModel):
-    quote: str
-    source: str
-    page: str = ""
-    say: str = ""
+class FamilyPlace(BaseModel):
+    """One place of the chains (the Companion first): how many narrators stand there; `alone` words it where one carries every narration."""
+    label: str
+    count: int
+    alone: str = ""
 
 
-class FamilyRoutes(BaseModel):
-    """Our count of the narrators at each place of the chains (Companion first), not a scholar's verdict: the term
-    is Ibn Hajar's word for the thinnest place, within the books the app holds."""
-    term: str
-    ar: str
-    say: str
-    thinnest: int
-    layers: list[int]
-    scope: str
-    place_note: str
-    definition: FamilyCite
-    layer_rule: FamilyCite
+class FamilyPlaces(BaseModel):
+    """The narrators at each place of the chains one book gives under one number. A count of this book's narrations, not a name for the hadith."""
+    heading: str
+    note: str
+    places: list[FamilyPlace]
 
 
 class RijalFamily(BaseModel):
     viewed: str
     parts: list[FamilyPart]
-    routes: FamilyRoutes | None = None
+    places: FamilyPlaces | None = None
 
 
 class NarratorListItem(NarratorSummary):

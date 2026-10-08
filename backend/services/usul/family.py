@@ -1,21 +1,25 @@
 """Versions of one hadith number compared: the narrators at each place of the chains, and the words one telling alone has.
 
-Pure: no I/O. Knobs are usul.json `routes`; the build (scripts/build_usul.py) writes the results to usul.db and
+Pure: no I/O. Knobs are usul.json `family`; the build (scripts/build_usul.py) writes the results to usul.db and
 store.py reads them back.
 
-Routes: chains are lined up from the Companion end, because they differ in length at the compiler end. A place
+Places: chains are lined up from the Companion end, because they differ in length at the compiler end. A place
 is a position in the chain, which is not always a generation (two Companions in one chain, a Successor from a
-Successor). The places counted are those every telling reaches; the shortest chain's last place is its compiler's
-teacher, and the compiler himself is not a place. The term is set by the place with the fewest distinct narrators
-(Nuzhat al-Nazar), never tawatur, which needs conditions we cannot check.
+Successor). The places counted are those every telling reaches. The count is the narrators one book gives under
+one number, never a name for the hadith (mashhur, 'aziz and gharib are about every route it has). A chain with two
+names at one place is no single line (the split is never guessed), so the family has no places.
 
-Words: each telling's matn (chain.chain_of) folded to its letters. A word found in exactly one telling is marked
-there. A word that differs from another telling's only by a clitic or the app's spelling folds is no difference;
-one that matches only once the dots are gone is marked as a dot difference. Never labelled better or worse.
+Words: each telling's matn (chain.chain_of) folded to its letters. Tellings are set against each other only where
+they share enough of their text to be one report; a word found in exactly one of them is marked there. A word that
+differs from another telling's only by a clitic or the app's spelling folds is no difference; one that matches only
+once the dots are gone is marked as a dot difference. Never labelled better or worse.
 """
 from __future__ import annotations
 
+import itertools
+import math
 import re
+from collections import Counter
 from typing import NamedTuple
 
 from backend.services.hadith.chain import chain_of, passed_on, without_asides
@@ -23,7 +27,7 @@ from backend.services.spelling import fold
 
 _LETTERS = re.compile("[^ء-ي]")
 # The hadith.json chain rule hides a ح (a new strand) among its marks; passed_on names it.
-_BREAKS = {"strand", "unnamed"}
+_BREAKS = {"strand": "strand", "unnamed": "unplaced_name", "no_link": "names_joined"}
 
 
 class Mark(NamedTuple):
@@ -57,8 +61,10 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
 
     `mentions` are (start, end, narrator id) in text order, one per start. why: no_chain (the Arabic has no plain
     chain, or rijal placed no name in it), strand (a ح starts another strand), unplaced_name (words between two names
-    that no name of rijal's explains), companion_end_unplaced / companion_end_other (the last name is not a Companion
-    for rijal, or is not placed in a generation at all), two_companions (the last two names are both Companions)."""
+    that no name of rijal's explains), names_joined (no passing-on or saying word between two names: two men at one
+    place, the same reading rung.rungs makes of such a pair), companion_end_unplaced / companion_end_other (the last
+    name is not a Companion for rijal, or is not placed in a generation at all), two_companions (the last two names
+    are both Companions)."""
     chain, _ = chain_of(arabic)
     if not chain:
         return [], "no_chain"
@@ -68,8 +74,8 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
         return [], "no_chain"
     for (_, end, _), (start, _, _) in zip(named, named[1:]):
         _, why = passed_on(without_asides(arabic[end:start]))
-        if why in _BREAKS:
-            return [], why if why == "strand" else "unplaced_name"
+        if why:
+            return [], _BREAKS[why]
     ids = [who for *_, who in named]
     last = generation.get(ids[-1], "")
     if last not in companions:
@@ -79,7 +85,7 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
     return ids, ""
 
 
-def layers(chains: list[list[int]]) -> list[set[int]]:
+def places(chains: list[list[int]]) -> list[set[int]]:
     """The distinct narrators at each place counted from the Companion end (chains are in text order, Companion last),
     for the places every chain reaches. A chain given twice counts once, as a narrator at a place counts once."""
     if not chains:
@@ -88,33 +94,66 @@ def layers(chains: list[list[int]]) -> list[set[int]]:
     return [{c[-1 - i] for c in chains} for i in range(reach)]
 
 
-def term_of(thinnest: int, terms: list[dict]) -> dict:
-    """The term whose min is the highest the count reaches."""
-    return max((t for t in terms if t["min"] <= thinnest), key=lambda t: t["min"])
+def weights(tellings: list[set[str]]) -> dict[str, float]:
+    """ln(tellings / tellings holding the word) for every word key: a word most tellings hold weighs little."""
+    held = Counter(key for keys in tellings for key in keys)
+    return {key: math.log(len(tellings) / n) for key, n in held.items()}
 
 
-def marks(matns: dict[str, list[str]], cfg: dict) -> tuple[dict[str, list[Mark]], dict[str, str]]:
+def shares(keys: dict[str, set[str]], weight: dict[str, float]) -> dict[tuple[str, str], float]:
+    """{(p, q): the weight of the words the shorter telling shares with the other, over its own weight} per pair.
+
+    The shorter is the one with less weight, so a telling that is only part of another still scores high; a
+    telling none of whose weight is held scores 0."""
+    mass = {p: sum(weight[k] for k in ks) for p, ks in keys.items()}
+    out = {}
+    for p, q in itertools.combinations(sorted(keys), 2):
+        low = min(mass[p], mass[q])
+        out[p, q] = sum(weight[k] for k in keys[p] & keys[q]) / low if low else 0.0
+    return out
+
+
+def one_report(keys: dict[str, set[str]], weight: dict[str, float], cfg: dict) -> list[list[str]]:
+    """The tellings grouped so that each is set against the ones it shares `same_text_min` of its text with (a pair
+    that reaches it joins both; a group is every telling linked to one another through such pairs)."""
+    group = {p: {p} for p in keys}
+    for (p, q), share in shares(keys, weight).items():
+        if share >= cfg["same_text_min"] and group[p] is not group[q]:
+            group[p] |= group[q]
+            for r in group[q]:
+                group[r] = group[p]
+    return [sorted(g) for g in {id(g): g for g in group.values()}.values()]
+
+
+def marks(matns: dict[str, list[str]], cfg: dict, weight: dict[str, float]) -> tuple[dict[str, list[Mark]], dict[str, str]]:
     """({part: its marked words}, {part: why it was not compared}) for the tellings' matn words.
 
-    A telling of fewer than `min_words` words (marks and numbers are no words) is not compared (short_matn); with fewer than two compared there is nothing to
-    set against and nothing is marked. A word counts once however often a telling says it."""
+    A telling of fewer than `min_words` words (marks and numbers are no words) is not compared (short_matn); with
+    fewer than two left there is nothing to set against. Of the rest, one that shares enough of its text with no
+    other is not compared either (different_text); the others are compared within their group. A word counts once
+    however often a telling says it."""
     keys = {p: [word_key(w, cfg) for w in words] for p, words in matns.items()}
     kept = {p: matns[p] for p, row in keys.items() if sum(map(bool, row)) >= cfg["min_words"]}
     left = {p: "short_matn" for p in matns if p not in kept}
     if len(kept) < 2:
         return {}, left
-    holders: dict[str, set[str]] = {}
-    rasms: dict[str, dict[str, str]] = {}   # rasm of a key -> {part: a written word with it}
-    for p in kept:
-        for key, word in zip(keys[p], kept[p]):
-            if key:
-                holders.setdefault(key, set()).add(p)
-                rasms.setdefault(rasm(key, cfg["rasm"]), {}).setdefault(p, word)
-    found: dict[str, list[Mark]] = {p: [] for p in kept}
-    for p in kept:
-        for at, (key, word) in enumerate(zip(keys[p], kept[p])):
-            if not key or len(holders[key]) != 1:
-                continue
-            twin = next((w for q, w in rasms[rasm(key, cfg["rasm"])].items() if q != p), "") if len(key) >= cfg["dot_min"] else ""
-            found[p].append(Mark(at, word, "dots" if twin else "only", twin))
-    return {p: m for p, m in found.items() if m}, left
+    sets = {p: {k for k in keys[p] if k} for p in kept}
+    found: dict[str, list[Mark]] = {}
+    for group in one_report(sets, weight, cfg):
+        if len(group) < 2:
+            left[group[0]] = "different_text"
+            continue
+        holders: dict[str, set[str]] = {}
+        rasms: dict[str, dict[str, str]] = {}   # rasm of a key -> {part: a written word with it}
+        for p in group:
+            for key, word in zip(keys[p], kept[p]):
+                if key:
+                    holders.setdefault(key, set()).add(p)
+                    rasms.setdefault(rasm(key, cfg["rasm"]), {}).setdefault(p, word)
+        for p in group:
+            for at, (key, word) in enumerate(zip(keys[p], kept[p])):
+                if not key or len(holders[key]) != 1:
+                    continue
+                twin = next((w for q, w in rasms[rasm(key, cfg["rasm"])].items() if q != p), "") if len(key) >= cfg["dot_min"] else ""
+                found.setdefault(p, []).append(Mark(at, word, "dots" if twin else "only", twin))
+    return found, left

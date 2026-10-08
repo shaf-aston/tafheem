@@ -3,7 +3,7 @@
  * a row per narration (its own narrators, where it meets this chain, what it borrows
  * from it, then its own wording) or, under "Tree", one drawing of every chain together, or,
  * under "Words", each telling's text with the words only it has marked. Above them, how many
- * narrators carry the number at each place of the chains (FamilyRoutes).
+ * narrators stand at each place of the chains (FamilyPlaces).
  * Tapping a row or a leaf opens that hadith.
  */
 import { useState } from 'react'
@@ -14,7 +14,7 @@ import { familyTree } from '../../lib/familyTree'
 
 import ArabicText from './ArabicText'
 import Disclosure from './Disclosure'
-import FamilyRoutes from './FamilyRoutes'
+import FamilyPlaces from './FamilyPlaces'
 import FamilyWords from './FamilyWords'
 import Segmented from './Segmented'
 
@@ -124,7 +124,7 @@ export default function NarrationFamily({ collection, number, part, count, accen
     <Disclosure label={`${count} narrations`} onToggle={(open) => open && setAsked(true)} className="mt-3 pt-3 border-t border-[var(--border)]">
       {data && (
         <div className="space-y-2">
-          <FamilyRoutes routes={data.routes} tellings={data.parts.length} accent={accent} />
+          <FamilyPlaces places={data.places} accent={accent} />
           <Segmented label="View" options={views} value={view} onChange={setView} accent={accent} />
           {view === 'rows' && <ul className="list-none m-0 p-0">{others.map((p) => <Row key={p.part} part={p} accent={accent} onOpen={onOpen} onNarrator={onNarrator} />)}</ul>}
           {view === 'tree' && <Tree parts={data.parts} accent={accent} onOpen={onOpen} />}

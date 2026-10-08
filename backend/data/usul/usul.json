@@ -10,7 +10,7 @@
     "lift: the one place a source says support lifts, or does not lift, a weakness. Keyed by level, or by kind where the level has several. A level with no entry has no line. lifts: false is a source saying it is not lifted. book is a key of sources.",
     "sources: where each rule is written. openiti is the text id of the one edition the build reads (books, below, fetches it). Each quote carries its own page.",
     "verify: the build finds every quote that names a book and a page (a dict with quote, book and page, anywhere in this file) in that book's text, and stops where the page it derives, the one a page marker closes (OpenITI marks the END of a page), is not the page written here. elision: inside a quote it splits the quote into parts, each found after the one before it, within gap letters. strip: an editor's folio mark that holds letters ([6 / ظ]), taken out of the book before the quote is looked for.",
-    "routes: the versions fold of a hadith number. Per family the narrators at each place of the chain, counted from the Companion end (services/usul/family.py); the thinnest place sets the term, Nuzhat al-Nazar. Never tawatur (its conditions cannot be checked) and never shadh or munkar (a contradiction cannot be told by a word diff). companion_group: the rijal.json generation group of Companions. terms: the highest min the count reaches wins; quote and page are Ibn Hajar's own words (page is the marker of the page the sentence stands on). min_words: a telling shorter than this is not set against the others (the books write 'like it'). clitics: letters that join the front of a word and are no difference, each with the fewest letters the word must keep (a ب off a four-letter word like بيني takes a root letter; stripped at most clitic_max times). rasm: letters that differ only by their dots, one string per group. dot_min: the shortest word (in letters) whose dot pairs are looked for; three-letter words (ابن and أني) match by dots by chance. gap reasons are counted in the gap table as family_term and family_word."
+    "family: the versions fold of a hadith number (services/usul/family.py, built into usul.db). Places: the narrators at each place of the chains counted from the Companion end, across the narrations one book gives under one number; a place one narrator carries in every narration is marked (alone). Never a name for the number (mashhur, aziz, gharib are about every route a hadith has; one book's narrations of one number are not that). companion_group: the rijal.json generation group of Companions. reasons: why a family is left out, as written in the gap table (family_place for the picture, family_word for the words). A chain with two names at one place (no passing-on word between them) is no single line, so no picture. min_words: a telling shorter than this is not set against the others (the books write 'like it'). same_text_min: two tellings are set against each other only when the rarity-weighted share of the shorter one's words found in the other reaches this (a word's weight is ln(tellings / tellings holding it), so common words count little); measured on the 5,540 pairs of the books, the pairs read as different reports under one number sit at 0.14 and below, the paraphrased same report at 0.21 and above. clitics: letters that join the front of a word and are no difference, each with the fewest letters the word must keep (a ب off a four-letter word like بيني takes a root letter; stripped at most clitic_max times). rasm: letters that differ only by their dots, one string per group. dot_min: the shortest word (in letters) whose dot pairs are looked for; three-letter words (ابن and أني) match by dots by chance. sample, sample_seed, sample_gap, sample_text: the families (sample_text: letters of a telling printed where it has no plain chain) the build writes for checking by hand (--sample)."
   ],
   "weak_from": 5,
   "max_change_ratio": 0.05,
@@ -300,29 +300,38 @@
       "name_run": 5
     }
   },
-  "routes": {
-    "scope": "within these six books",
-    "place_note": "Counted by place in the chain from the Companion, which is not always a generation.",
+  "family": {
     "companion_group": "companions",
-    "book": "nuzha",
-    "terms": [
-      { "key": "gharib", "ar": "غريب", "min": 1, "say": "one narrator alone at the thinnest place",
-        "quote": "ما يتفرد بروايته شخص واحد في أي موضع وقع التفرد به من السند", "page": "PageV01P049" },
-      { "key": "aziz", "ar": "عزيز", "min": 2, "say": "never fewer than two narrators from two",
-        "quote": "أن لا يرويه أقل من اثنين عن اثنين", "page": "PageV01P046" },
-      { "key": "mashhur", "ar": "مشهور", "min": 3, "say": "routes counted, more than two",
-        "quote": "ما له طرق محصورة بأكثر من اثنين", "page": "PageV01P045" }
-    ],
-    "layer_rule": {
-      "say": "A place with more narrators does not matter when another place has fewer: the fewest sets the term.",
-      "quote": "فإن ورد بأكثر في بعض المواضع من السند الواحد لا يضر، إذ الأقل في هذا يقضي على الأكثر", "page": "PageV01P043"
+    "places": {
+      "heading": "Narrators at each place, across {book}'s {n} narrations of no. {number}",
+      "note": "Counted by place in the chain from the Companion, which is not always a generation.",
+      "first": "Companion",
+      "next": "Place {n}",
+      "alone": "one narrator here in all {n} narrations"
+    },
+    "reasons": {
+      "no_chain": "no plain chain",
+      "strand": "a second strand",
+      "unplaced_name": "a name rijal does not place",
+      "names_joined": "names joined at one place",
+      "companion_end_unplaced": "last name not placed in a generation",
+      "companion_end_other": "last name not a Companion",
+      "two_companions": "two Companions in one chain",
+      "no_chain_cut": "no plain chain to cut",
+      "short_matn": "text too short to compare",
+      "different_text": "different text under one number",
+      "fewer_than_two_to_compare": "fewer than two to compare"
     },
     "min_words": 8,
+    "same_text_min": 0.2,
     "clitics": { "و": 3, "ف": 3, "ب": 4 },
     "clitic_max": 2,
     "rasm": ["بتثني", "جحخ", "دذ", "رز", "سش", "صض", "طظ", "عغ", "فق"],
     "dot_min": 4,
-    "sample": 10
+    "sample": 10,
+    "sample_seed": 20261009,
+    "sample_gap": 5,
+    "sample_text": 160
   },
   "sources": {
     "taqrib": {
