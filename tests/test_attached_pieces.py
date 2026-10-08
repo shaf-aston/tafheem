@@ -41,6 +41,7 @@ def test_the_answer_shows_its_fa_its_doer_and_its_object():
     answer = leaves["اقْبَلْهَا"][0][0]
     assert parts(answer) == ["فعل أمر", "فاعل", "مفعول به"]  # اقْبَلْهَا is a command, so it says so
     assert "أنتَ" in answer["parts"][1]["detail"]
+    assert answer["parts"][1]["pronoun"] == "أنتَ"  # the chart writes it under the doer
     assert parts(leaves["كُنْتَ"][0][0]) == ["فعل ناقص", "اسم كان"]
 
 

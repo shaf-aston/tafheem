@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cells, fold, hiddenWords, measure, rows, tones } from './tarkeebLayout'
+import { cells, fold, hiddenWords, measure, rows, threadSpans, tones } from './tarkeebLayout'
 
 /** Shaped exactly as the API sends it: empty arrays, not missing keys. */
 const AYAH = {
@@ -60,6 +60,22 @@ describe('rows', () => {
     // الْحَمْدُ is only named at the top, so it threads through the row below it.
     expect(laid[0].threads).toEqual([0])
     expect(laid[1].threads).toEqual([])
+  })
+})
+
+describe('threadSpans', () => {
+  it('draws a thread passing several rows as one line from the word to its name', () => {
+    const levels = [
+      { level: 1, threads: [0, 2] },
+      { level: 2, threads: [0] },
+      { level: 3, threads: [0, 2] },
+    ]
+    // word 2 is not threaded on level 2 (a group covers it there), so its two stretches are two lines
+    expect(threadSpans(levels)).toEqual([
+      { word: 0, from: 1, to: 3 },
+      { word: 2, from: 1, to: 1 },
+      { word: 2, from: 3, to: 3 },
+    ])
   })
 })
 

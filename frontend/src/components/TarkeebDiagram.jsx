@@ -13,7 +13,7 @@ import { Fragment, useCallback, useLayoutEffect, useMemo, useState } from 'react
 
 import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
-import { cells, fold, hiddenWords, rows, runs, tones } from '../lib/tarkeebLayout'
+import { cells, fold, hiddenWords, rows, runs, threadSpans, tones } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
 import { colorFor } from '../theme'
 
@@ -49,27 +49,36 @@ function Bracket({ node, atEdge, style }) {
     <div className="tk-group" data-level={node.level} style={style}>
       {/* each name over its own words' columns: the row is a subgrid of the chart's */}
       <div className="tk-roles">
-        {cells(node).map((cell, index) => (
-          <div
-            key={index}
-            className={`tk-cell${index > 0 ? ' tk-after' : ''}`}
-            style={{ gridColumn: `${cell.from - node.from + 1} / ${cell.to - node.from + 2}` }}
-          >
-            {cell.roles.map((piece, k) => (
-              <Fragment key={k}>
-                {k > 0 && <span className="tk-plus" aria-hidden="true">+</span>}
-                <div
-                  className={`tk-role${piece.gap ? ' tk-gap' : ''}${piece.raw_wording ? ' tk-raw' : ''}`}
-                  style={{ '--tone': roleVar(piece.tone) }}
-                >
-                  {/* Tooltip is a no-op without text, so every role can pass through
-                      it, only the roles with a `detail` end up hoverable. */}
-                  <Tooltip text={piece.detail}>{piece.role}</Tooltip>
-                </div>
-              </Fragment>
-            ))}
-          </div>
-        ))}
+        {cells(node).map((cell, index) => {
+          // one word holding several names (فعل + فاعل) forks to them, one line to each;
+          // names sharing several columns (فَ and the answer it ties) are read in order with a "+"
+          const forked = cell.roles.length > 1 && cell.from === cell.to
+          return (
+            <div
+              key={index}
+              className={`tk-cell${index > 0 ? ' tk-after' : ''}${forked ? ' tk-forked' : ''}`}
+              style={{ gridColumn: `${cell.from - node.from + 1} / ${cell.to - node.from + 2}` }}
+            >
+              {cell.roles.map((piece, k) => (
+                <Fragment key={k}>
+                  {k > 0 && !forked && <span className="tk-plus" aria-hidden="true">+</span>}
+                  <div className="tk-branch">
+                    <div
+                      className={`tk-role${piece.gap ? ' tk-gap' : ''}${piece.raw_wording ? ' tk-raw' : ''}`}
+                      style={{ '--tone': roleVar(piece.tone) }}
+                    >
+                      {/* Tooltip is a no-op without text, so every role can pass through
+                          it, only the roles with a `detail` end up hoverable. */}
+                      <Tooltip text={piece.detail}>{piece.role}</Tooltip>
+                    </div>
+                    {/* the pronoun a doer stands for, which is not written anywhere */}
+                    {piece.pronoun && <div className="tk-says">{piece.pronoun}</div>}
+                  </div>
+                </Fragment>
+              ))}
+            </div>
+          )
+        })}
       </div>
       <div className="tk-brace" style={{ '--tone': roleVar(node.tone) }}>{atEdge && name}</div>
       {!atEdge && name}
@@ -192,12 +201,16 @@ export default function TarkeebDiagram({ tarkeeb }) {
                 {to > from ? (
                   pieces.map((text, k) => {
                     // each piece underlined in its own name's colour; وَ joins nothing after it,
-                    // so it stands apart, فَـ and لْـ carry a line to the piece they are written onto
+                    // so it stands apart, فَـ and لْـ carry a line to the piece they are written onto.
+                    // The text is centred in its column, a line either side, so its thread
+                    // and its name sit right under it.
                     const joins = k < pieces.length - 1 && joinsOn(text)
+                    const joined = k > 0 && joinsOn(pieces[k - 1])
                     return (
                       <span key={k} className="tk-cut" style={{ gridColumn: k + 1, '--tone': roleVar(tone[from + k]) }}>
+                        <span className="tk-join" data-line={joined || undefined} aria-hidden="true" />
                         <span className="tk-text">{seatSmallAlef(joins ? joinedOn(text) : text)}</span>
-                        {joins && <span className="tk-join" aria-hidden="true" />}
+                        <span className="tk-join" data-line={joins || undefined} aria-hidden="true" />
                       </span>
                     )
                   })
@@ -210,7 +223,7 @@ export default function TarkeebDiagram({ tarkeeb }) {
             )
           })}
 
-          {levels.map(({ level, groups, threads }) => (
+          {levels.map(({ level, groups }) => (
             <Fragment key={level}>
               {groups.map((node) => (
                 <Bracket
@@ -220,17 +233,16 @@ export default function TarkeebDiagram({ tarkeeb }) {
                   style={{ gridRow: level + 1, gridColumn: `${node.from + 1} / ${node.to + 2}` }}
                 />
               ))}
-              {/* a piece of a joined word has no thread: the word is drawn across its columns, not over each */}
-              {threads.filter((word) => !cut.has(word)).map((word) => (
-                <div
-                  className="tk-thread"
-                  data-level={level}
-                  key={`thread-${level}-${word}`}
-                  style={{ gridRow: level + 1, gridColumn: word + 1 }}
-                  aria-hidden="true"
-                />
-              ))}
             </Fragment>
+          ))}
+          {/* a word named further down than the row under it has a line running down to its name */}
+          {threadSpans(levels).map(({ word, from, to }) => (
+            <div
+              className="tk-thread"
+              key={`thread-${word}-${from}`}
+              style={{ gridRow: `${from + 1} / ${to + 2}`, gridColumn: word + 1 }}
+              aria-hidden="true"
+            />
           ))}
         </div>
       </div>

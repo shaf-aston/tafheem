@@ -85,6 +85,26 @@ export function rows(tree, wordCount) {
   })
 }
 
+/**
+ * Each word's thread as unbroken runs of levels, [{ word, from, to }]: a line passing
+ * three rows is one line from the word to its name, not three with a gap between.
+ */
+export function threadSpans(levels) {
+  const open = new Map()
+  return levels.flatMap(({ level, threads }) =>
+    threads.flatMap((word) => {
+      const run = open.get(word)
+      if (run?.to === level - 1) {
+        run.to = level
+        return []
+      }
+      const fresh = { word, from: level, to: level }
+      open.set(word, fresh)
+      return [fresh]
+    }),
+  )
+}
+
 /** A name to write: a group named only by its own brace (= متعلق بـ...) has none here. */
 const named = (piece) => piece.role || piece.gap
 

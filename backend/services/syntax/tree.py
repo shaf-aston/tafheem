@@ -98,7 +98,7 @@ def _doer(token: dict, family: str | None, persons: list[str]) -> dict | None:
     name = DOER["by_family"].get(family) or DOER["passive" if is_passive(token) else "active"]
     said = DOER["hidden_said_by_family"].get(family, DOER["hidden_said"]) if persons[0] in DOER["hidden"][token["asp"]]         else DOER["attached_said"]
     pronoun = pronouns[0] if len(pronouns) == 1 else DOER["either"].format(one=pronouns[0], other=pronouns[1])
-    return {"role": name, "tone": tone(name), "detail": said.format(pronoun=pronoun)}
+    return {"role": name, "tone": tone(name), "detail": said.format(pronoun=pronoun), "pronoun": pronoun}
 
 
 def _finer(token: dict, role: str | None, family: str | None) -> str | None:

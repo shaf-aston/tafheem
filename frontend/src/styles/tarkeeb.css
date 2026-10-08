@@ -56,8 +56,12 @@
   display: grid;
   width: 100%;
   min-width: max-content;
-  row-gap: 0.85rem;
+  row-gap: var(--tk-gap);
   font-family: var(--font-arabic);
+  /* One faint line for everything that only leads the eye: a word's thread down to its name,
+     and the fork from a word to the names inside it. Opaque, so two lines meeting do not darken. */
+  --tk-gap: 0.85rem;
+  --tk-line: color-mix(in srgb, var(--border-hi) 70%, var(--surface));
 }
 
 .tk-word { grid-row: 1; display: flex; justify-content: center; }
@@ -78,9 +82,10 @@
 .tk-word.tk-written { display: grid; grid-template-columns: subgrid; }
 .tk-cut { display: flex; align-items: flex-end; }
 .tk-cut .tk-text { padding-inline: 0.3rem; }
-.tk-cut:first-child .tk-text { padding-inline-start: 0.6rem; }
-.tk-cut:last-child .tk-text { padding-inline-end: 0.6rem; }
-.tk-join { flex: 1; min-width: 0.4rem; height: 1.5px; background: currentColor; margin-bottom: calc(0.55em + 0.2rem); }
+/* A piece is centred in its column, a space or a joining line either side of it, so the
+   thread that leaves it and the name under it are on its middle. */
+.tk-join { flex: 1; min-width: 0.15rem; height: 1.5px; margin-bottom: calc(0.55em + 0.2rem); }
+.tk-join[data-line] { background: currentColor; }
 
 /* A name the Treebank supplied that the app has not checked against a book. It
    still reads, but it must not look as settled as a term that was checked. */
@@ -100,7 +105,13 @@
 }
 
 /* A word whose role has not been named yet keeps a thread running down. */
-.tk-thread { justify-self: center; width: 1.5px; background: var(--border-hi); opacity: 0.7; }
+/* It spans the gap above and below its rows, so it meets the word and the name it joins. */
+.tk-thread {
+  justify-self: center;
+  width: 1.5px;
+  margin-block: calc(var(--tk-gap) * -1);
+  background: var(--tk-line);
+}
 
 /* A group and its row of names share the chart's columns (subgrid), so each
    name sits over its own words. */
@@ -124,6 +135,47 @@
   font-family: var(--font-ui);
   font-size: var(--type-body);
 }
+/* A word holding several names (فعل + فاعل) forks to them: one line down from the word,
+   split across the names, one drop to each. The names share the width equally so the
+   split sits under the word. */
+.tk-cell.tk-forked {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: start;
+  padding-top: 1.1rem;
+}
+.tk-forked::after,
+.tk-forked > .tk-branch::before,
+.tk-forked > .tk-branch::after { content: ''; position: absolute; background: var(--tk-line); }
+.tk-forked::after { left: 50%; width: 1.5px; margin-left: -0.75px; top: calc(var(--tk-gap) * -1); height: calc(var(--tk-gap) + 0.55rem); }
+.tk-branch { position: relative; }
+.tk-forked > .tk-branch::before { left: 50%; width: 1.5px; margin-left: -0.75px; top: -0.55rem; height: 0.55rem; }
+.tk-forked > .tk-branch::after { top: -0.55rem; height: 1.5px; inset-inline: 0; }
+.tk-forked > .tk-branch:first-child::after { inset-inline: 50% 0; }
+.tk-forked > .tk-branch:last-child::after { inset-inline: 0 50%; }
+/* What the doer is, under its name: faint like the lines, since nothing writes it. It hangs
+   below the name, inside the brace, so the names of a row stay level. */
+.tk-says {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  text-align: center;
+  font-size: calc(var(--arabic-small-rem) * 1rem);
+  line-height: 1.4;
+  color: var(--text-faint);
+}
+.tk-plus {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 0 0.2rem;
+  color: var(--text-faint);
+  font-family: var(--font-ui);
+  /* A "+" is not Arabic, so it takes the English body size rather than a size
+     of its own. It had two, one for the outer row, a smaller one for a nested
+     one, and at that scale the difference was under a pixel. */
+  font-size: var(--type-body);
+}
 .tk-role {
   text-align: center;
   font-size: calc(var(--arabic-term-rem) * 1rem);
@@ -137,17 +189,6 @@
 }
 /* A join the rules could not make: named as open, and drawn as open. */
 .tk-role.tk-gap { color: var(--role-gap); border-bottom: 1px dashed var(--role-gap); }
-.tk-plus {
-  flex: 0 0 auto;
-  align-self: center;
-  padding: 0 0.2rem;
-  color: var(--text-faint);
-  font-family: var(--font-ui);
-  /* A "+" is not Arabic, so it takes the English body size rather than a size
-     of its own. It had two, one for the outer row, a smaller one for a nested
-     one, and at that scale the difference was under a pixel. */
-  font-size: var(--type-body);
-}
 
 /* The brace: a rounded bottom edge plus a centre stem, so it stretches to any
    span without the curl distorting the way a scaled glyph would. */
