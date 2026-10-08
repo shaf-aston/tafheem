@@ -21,7 +21,8 @@ async def get_chains(collection: str, book: int) -> RijalChains:
     return RijalChains(
         collection=collection, book=book, chains=chains,
         notes=await asyncio.to_thread(usul.notes, collection, book, chains), scale=await asyncio.to_thread(usul.scale),
-        links=await asyncio.to_thread(usul.links, collection, book, chains), link_rules=await asyncio.to_thread(usul.link_rules) or None,
+        links=await asyncio.to_thread(usul.links, collection, book, chains), rulings=await asyncio.to_thread(usul.rulings, collection, book),
+        link_rules=await asyncio.to_thread(usul.link_rules) or None,
         ready=await asyncio.to_thread(store.is_built), source=provenance.of("rijal"),
     )
 

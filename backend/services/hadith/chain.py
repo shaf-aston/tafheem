@@ -110,3 +110,9 @@ def chain_of(arabic: str | None) -> tuple[str, str]:
             continue
         return text[:words[i][0]].strip(), text[words[i][0]:]
     return whole
+
+
+def name_tokens(chain: str) -> list[str]:
+    """The words of a chain that are not its passing-on or saying words, letters only: the names, run together."""
+    return [plain for word in chain.split()
+            if (plain := _NOT_LETTER.sub("", word)) and _bare(word) not in _LINKS | _SAYS]

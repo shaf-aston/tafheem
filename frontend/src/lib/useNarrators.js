@@ -11,7 +11,7 @@ import { useQueries, useQuery } from '@tanstack/react-query'
 import { rijalChainsQuery, rijalSearchQuery } from '../api'
 
 const NONE = {}
-const NO_WEAK = { notes: [], links: [], rules: null, scale: [] }
+const NO_WEAK = { notes: [], links: [], rulings: [], rules: null, scale: [] }
 
 /** Each book's chains reply as `(hadith) => reply`, once per book; undefined until it arrives or while rijal.db is not built. */
 function useChains(hadiths) {
@@ -29,8 +29,8 @@ export function useNarrators(hadiths) {
 /**
  * The weak narrators of a hadith ("1620a" is its key in the book), the links of
  * its chain a source puts in doubt (`links`, with `rules`: what each kind says,
- * quoted) and the twelve levels the narrators sit on:
- * `(hadith, ref) => {notes, links, rules, scale}`. Same request as
+ * quoted), what classical books say of it (`rulings`) and the twelve levels the narrators sit on:
+ * `(hadith, ref) => {notes, links, rulings, rules, scale}`. Same request as
  * useNarrators. All empty when usul.db is not built, and the hadith reads as it
  * did before weak points.
  */
@@ -40,7 +40,8 @@ export function useWeakNotes(hadiths) {
     const found = chainsOf(h)
     const notes = found?.notes?.[ref] ?? []
     const links = found?.links?.[ref] ?? []
-    return notes.length || links.length ? { notes, links, rules: found.link_rules, scale: found.scale } : NO_WEAK
+    const rulings = found?.rulings?.[ref] ?? []
+    return notes.length || links.length || rulings.length ? { notes, links, rulings, rules: found.link_rules, scale: found.scale } : NO_WEAK
   }
 }
 

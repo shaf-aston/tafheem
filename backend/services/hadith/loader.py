@@ -107,6 +107,13 @@ def hadiths(collection_id: str, book_number: int) -> list[dict]:
     ]
 
 
+def every_hadith() -> list[tuple[str, int, int, str, str]]:
+    """(collection, book number, number, part, arabic) of every hadith, in every book or none."""
+    if not is_built():
+        return []
+    return db().execute("SELECT collection_id, book_number, number, part, arabic FROM hadith").fetchall()
+
+
 def numbered(collection_id: str, number: int, part: str = "") -> tuple[int, list[tuple]]:
     """The hadith carrying this number (every lettered part, unless one letter is asked).
 
