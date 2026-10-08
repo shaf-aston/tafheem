@@ -126,6 +126,8 @@ credentials.json
 # so a host cannot rebuild it. Rebuild with backend/scripts/build_usul.py whenever
 # usul.json or rijal.db changes.
 !backend/data/usul/usul.db
+# The narrator books it is built from: downloaded by backend/scripts/fetch_usul.py.
+backend/data/usul/books/
 
 # Large datasets / media
 # Project-specific large folders (ignore if you don't want to track large books/datasets)

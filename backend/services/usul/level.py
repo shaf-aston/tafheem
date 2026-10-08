@@ -21,21 +21,21 @@ _SEATS = str.maketrans({"ئ": "ء", "ؤ": "ء"})
 
 
 @lru_cache(maxsize=None)
-def _fold(word: str) -> str:
+def fold_word(word: str) -> str:
     """Letters only, one alef, one hamza: a hamza on a yeh seat is a bare hamza (سيئ, سيء, يخطىء, يخطئ)."""
     return bare_letters(word.strip(_EDGE)).translate(_SEATS).replace("يء", "ء")
 
 
 def _terms(levels: list[dict]) -> list[tuple[int, str, tuple[str, ...]]]:
     """(level, term, its folded words) for every term, the longest first."""
-    found = [(row["level"], term, tuple(_fold(w) for w in term.split())) for row in levels for term in row["terms"]]
+    found = [(row["level"], term, tuple(fold_word(w) for w in term.split())) for row in levels for term in row["terms"]]
     return sorted(found, key=lambda t: (-len(t[2]), -sum(map(len, t[2]))))
 
 
 def level_of(grade_ar: str, levels: list[dict]) -> tuple[int | None, list[str], str]:
     """(highest level matched or None, the terms matched in the order said, the words left over)."""
-    shown = [w for w in grade_ar.split() if _fold(w)]
-    left: list[str | None] = [_fold(w) for w in shown]
+    shown = [w for w in grade_ar.split() if fold_word(w)]
+    left: list[str | None] = [fold_word(w) for w in shown]
     hits: list[tuple[int, int, str]] = []
     for level, term, words in _terms(levels):
         i = 0

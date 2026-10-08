@@ -6,7 +6,7 @@ import asyncio
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, FamilyPart, FamilyNarrator, RijalHadithRef, RijalSearch
+from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, UsulFacts, FamilyPart, FamilyNarrator, RijalHadithRef, RijalSearch
 from backend.services import provenance
 from backend.services.rijal import family, store
 from backend.services.usul import store as usul
@@ -21,6 +21,7 @@ async def get_chains(collection: str, book: int) -> RijalChains:
     return RijalChains(
         collection=collection, book=book, chains=chains,
         notes=await asyncio.to_thread(usul.notes, collection, book, chains), scale=await asyncio.to_thread(usul.scale),
+        links=await asyncio.to_thread(usul.links, collection, book, chains), link_rules=await asyncio.to_thread(usul.link_rules) or None,
         ready=await asyncio.to_thread(store.is_built), source=provenance.of("rijal"),
     )
 
@@ -58,7 +59,7 @@ async def get_narrator(narrator_id: int) -> Narrator:
     found = await asyncio.to_thread(store.narrator, narrator_id)
     if found is None:
         raise HTTPException(status_code=404, detail=f"No narrator {narrator_id}")
-    return Narrator(**found, source=provenance.of("rijal"))
+    return Narrator(**found, usul=UsulFacts(**await asyncio.to_thread(usul.facts, narrator_id), source=provenance.of("usul")), source=provenance.of("rijal"))
 
 
 @router.get("/narrators/{narrator_id}/hadith", response_model=list[RijalHadithRef])

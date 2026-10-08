@@ -1349,6 +1349,32 @@ class RijalBook(BaseModel):
     ar: str
 
 
+class UsulRule(BaseModel):
+    say: str
+    quote: str
+    book: str
+    page: str = ""
+
+
+class UsulFact(BaseModel):
+    """One line on a narrator's page: `text` in English, `ar` the Arabic it names, `quote` the book's words, `rule` the
+    rule the line rests on, and the book and page."""
+    text: str
+    ar: str = ""
+    quote: str = ""
+    rule: UsulRule | None = None
+    book: str
+    page: str = ""
+
+
+class UsulFacts(BaseModel):
+    reliability: list[UsulFact] = []
+    habits: list[UsulFact] = []
+    life: list[UsulFact] = []
+    books: list[UsulFact] = []
+    source: Source | None = None
+
+
 class Narrator(NarratorSummary):
     """One narrator's sheet. Teachers and students keep their names even where we hold no page of theirs."""
     kunya_ar: str = ""
@@ -1367,6 +1393,8 @@ class Narrator(NarratorSummary):
     teachers: list[NarratorSummary] = []
     students: list[NarratorSummary] = []
     texts: list[RijalText] = []
+    # What the narrator books say of him; empty while usul.db is not built.
+    usul: UsulFacts = UsulFacts()
     source: Source
 
 
@@ -1405,14 +1433,50 @@ class WeakLevel(BaseModel):
     lift: dict[str, WeakLift] = {}
 
 
+class WeakLink(BaseModel):
+    """A link of a chain a source puts in doubt: `student` says `word` before `teacher`, whose name starts at `at`.
+
+    kind is tadlis, tadlis_unclear or not_heard; sub is the sort of statement for not_heard. level is the Ta'rif level
+    of a tadlis teller. quote, scholar, source and page are a scholar's statement (not_heard only)."""
+    at: int
+    student: int
+    teacher: int
+    kind: str
+    sub: str = ""
+    word: str
+    level: int = 0
+    quote: str = ""
+    scholar: str = ""
+    source: str = ""
+    page: str = ""
+
+
+class WeakRule(BaseModel):
+    """A rule a link note rests on, quoted from its book with the page."""
+    label: str = ""
+    say: str
+    quote: str = ""
+    source: str = ""
+    page: str = ""
+
+
+class WeakLinkRules(BaseModel):
+    """kinds: by link kind (and by sub for a scholar's statement); levels: by the teller's Ta'rif level; skip: the Sahihs."""
+    kinds: dict[str, WeakRule] = {}
+    levels: dict[str, WeakRule] = {}
+    skip: WeakRule | None = None
+
+
 class RijalChains(BaseModel):
     """Where each narrator is named in a book's Arabic: hadith number and letter ("1620a") to [start, end, narrator id] slices.
 
-    notes and scale are the weak points on those chains; both are empty while usul.db is not built."""
+    notes, links, link_rules and scale are the weak points on those chains; all are empty while usul.db is not built."""
     collection: str
     book: int
     chains: dict[str, list[list[int]]] = {}
     notes: dict[str, list[WeakNote]] = {}
+    links: dict[str, list[WeakLink]] = {}
+    link_rules: WeakLinkRules | None = None
     scale: list[WeakLevel] = []
     # False when rijal.db has not been built, same as HadithSearchResponse.ready.
     ready: bool = True

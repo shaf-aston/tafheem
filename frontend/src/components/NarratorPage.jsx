@@ -1,7 +1,8 @@
 /**
  * One narrator on his own page: who he was, what scholars said of him, who he
  * learnt from and taught (each a tap to that narrator's page), and the hadith
- * he narrates in the six books, each a tap into the reader.
+ * he narrates in the six books, each a tap into the reader. Under his header, what the
+ * narrator books say of him in four groups (ui/BookFacts).
  *
  * A 404 means this machine holds no page for him (rijal.db unbuilt, or he was
  * never fetched), said in a line, as on his pop-up.
@@ -13,6 +14,7 @@ import { narratorHadithQuery, narratorQuery } from '../api'
 import { useHadithCollections } from '../lib/useHadithCollections'
 
 import ArabicText from './ui/ArabicText'
+import BookFacts from './ui/BookFacts'
 import Chip from './ui/Chip'
 import ChipRow from './ui/ChipRow'
 import { NarratorError, NarratorHead, NarratorLinks } from './ui/NarratorParts'
@@ -53,6 +55,8 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
       {who && (
         <>
           <NarratorHead who={who} />
+
+          <BookFacts usul={who.usul} accent={accent} />
 
           {/* The three side by side where the width allows, one column on a phone. */}
           <div className="grid gap-x-6 gap-y-4 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))] [&>*]:min-w-0">
