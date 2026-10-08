@@ -255,7 +255,9 @@
     "_pane_comment": "How tall the Quran reader's two panes stand, the surah and the ayah being studied. Each scrolls on its own inside it, so the header, the ayat rail and the recitation bar never leave the screen.",
     "pane": "min(70dvh, 46rem)",
     "_split_comment": "How tall the reader stands on a phone while an ayah is studied: the surah over the study, sharing it. Brought up under the top bar, it ends where the recitation bar and the tab bar begin.",
-    "split": "calc(100dvh - 11rem - env(safe-area-inset-bottom, 0px))"
+    "split": "calc(100dvh - 7rem - var(--layout-nav) - env(safe-area-inset-bottom, 0px))",
+    "_nav_comment": "How tall the phone's tab bar stands, above the home indicator. The bar is drawn at exactly this and everything that sits clear of it reads the same number: the room kept under the page, the recitation bar resting on it, the reader's split. Left to its own contents the bar came out a few pixels short of the room kept for it, and the page showed through the slit.",
+    "nav": "4rem"
   },
   "sheet": {
     "_comment": "How big a pop-up may get on a wide screen. Maximums, not widths: a phone stays full width. narrow is a short list of choices (settings, a Grow step), standard a pop-up with reading in it (the chain, a phrase, the word bank), wide a pop-up laid out in columns (the sections menu). tall is how much of the screen height any of them may take. narrator is the widest a name box grows in the chain drawing before it wraps.",
