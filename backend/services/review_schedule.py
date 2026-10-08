@@ -34,7 +34,10 @@ def card_of(answers: Iterable[tuple[datetime, bool]]) -> Card:
     A right answer before the word was due proves only short-term memory, so it
     does not move the word on; a wrong answer always counts."""
     scheduler = _scheduler()
-    card = Card()
+    # A fixed id: without one the library makes an id from the clock and sleeps
+    # a millisecond so the next differs. Cards here are rebuilt on every read and
+    # never stored, so the id is never used.
+    card = Card(card_id=0)
     for at, correct in answers:
         if correct and card.last_review is not None and at < card.due:
             continue
