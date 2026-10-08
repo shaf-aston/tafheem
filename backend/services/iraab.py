@@ -92,7 +92,7 @@ def _named(entry: dict, found: dict) -> None:
         entry.update(type="harf" if found["role"] in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
     elif entry.get("type") == "harf" and found["role"] and found["role"] not in (NAMED.harf, NAMED.harf_jarr):
         entry["type"] = "ism"  # أينما: a particle's card named for a place is a built noun
-    elif entry.get("type") == "ism" and found["role"] == NAMED.harf and found.get("named"):
+    elif entry.get("type") in ("ism", "zarf") and found["role"] == NAMED.harf and found.get("named"):
         entry["type"] = "harf"  # ما عدا: CAMeL's relative is the particle the reading names
     if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
         found = {**found, "case": CASE_NAME[own]}  # a recorded ayah's name brings its own case

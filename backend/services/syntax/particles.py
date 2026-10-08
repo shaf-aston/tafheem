@@ -13,7 +13,8 @@ from functools import lru_cache
 from typing import Callable
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SHADDA, SUKUN, fits_shape, five_verb_nun, has_tanween, letters, own_letters
+from backend.services.harakat import (
+    PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, has_tanween, letters, own_letters, typed_case)
 from backend.services.morphology import has_comparative
 from backend.services.nahw_book import book_file, book_map, book_words, frames, is_mabni, is_one
 from backend.services.syntax import facts, walker
@@ -28,8 +29,16 @@ def _next(token: dict, s: facts.Sentence) -> dict | None:
     return next((t for t in s.tokens if t["id"] > token["id"] and not _attached(t)), None)
 
 
-def _word(token: dict, s: facts.Sentence) -> str:
+def _lemma(token: dict) -> str:
+    """The word's lemma, spelled as the reader typed it: إِذًا (a tanween) is the spelling of
+    إذن, which the time word إذا never takes (data: nasb_mudari `tanween_spells`)."""
     lemma = strip_diacritics(token["lemma"]).strip("+")
+    spelled = book_map("nasb_mudari", "tanween_spells").get(lemma)
+    return spelled if spelled and has_tanween(token.get("typed") or "") else lemma
+
+
+def _word(token: dict, s: facts.Sentence) -> str:
+    lemma = _lemma(token)
     return lemma if lemma in _words() else "other"
 
 
@@ -206,6 +215,59 @@ def _restricted(token: dict, s: facts.Sentence) -> str:
         t["id"] > token["id"] and not _attached(t) and is_one(t["lemma"], "hasr") for t in s.tokens) else "no"
 
 
+def _starts(token: dict, s: facts.Sentence) -> str:
+    """It opens its clause: nothing before it, or a و or ف written onto it (data: nasb_mudari
+    `idhan_after`), as in فَإِذًا after the sentence it answers; زيدٌ إذن يَنجحُ is not."""
+    before = next((t for t in reversed(s.tokens) if t["id"] < token["id"]), None)
+    return "yes" if before is None or (
+        _attached_before(before) and before["form"].strip("+") in book_words("nasb_mudari", "idhan_after")) else "no"
+
+
+def _attached_before(token: dict) -> bool:
+    """A letter written onto the word after it (ف+, و+)."""
+    return token["form"].endswith("+")
+
+
+def _verb_after(token: dict, s: facts.Sentence) -> dict | None:
+    """The verb that follows it directly, a negating لا or an oath (و and the noun sworn by)
+    allowed between (data: nasb_mudari `idhan_between`, `idhan_oath`)."""
+    rest = [t for t in s.tokens if t["id"] > token["id"] and not _attached(t)]
+    at = 0
+    while at < len(rest):
+        word = rest[at]
+        if facts.is_verb(word):
+            return word
+        if is_one(word["lemma"], "nasb_mudari", "idhan_between") and word["pos"] == "PRT":
+            at += 1
+        elif is_one(word["lemma"], "nasb_mudari", "idhan_oath") and at + 1 < len(rest) \
+                and facts.typed_case_of(rest[at + 1]) == "i":
+            at += 2
+        else:
+            return None
+    return None
+
+
+def _is_present(verb: dict) -> bool:
+    """A present verb by the parser, or by its shape when the parser took it for a past one
+    (أُكْرِمَكَ): a present prefix with a damma, or followed by a letter at rest (أَذْهَبَ)."""
+    if verb.get("asp") == "i":
+        return True
+    marked = letters(verb.get("typed") or "")
+    return verb["base"][:1] in PRESENT_PREFIX and len(marked) > 2 and (
+        "ُ" in marked[0][1] or SUKUN in marked[1][1])
+
+
+def _shows(token: dict, s: facts.Sentence) -> str:
+    """The mood the present verb after it shows: nasb (a fatha, or the nun of the five verbs
+    dropped), raf' (a damma, or the nun kept), else other; none where no such verb follows."""
+    verb = _verb_after(token, s)
+    if verb is None or not _is_present(verb):
+        return "none"
+    nun = five_verb_nun(verb.get("typed") or "")
+    shown = typed_case(verb.get("typed") or "", verb.get("stuck_on", 0))
+    return "nasb" if nun == "dropped" or shown == "a" else "raf" if nun == "kept" or shown == "u" else "other"
+
+
 AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] = {
     "next": (("verb_jazm", "verb", "indefinite_noun", "noun", "particle", "none"), _what_follows),
     "negated": (("yes", "no"), _negated),
@@ -217,6 +279,8 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "wonder": (("yes", "no"), _wonder),
     "asks": (("yes", "no"), _asks),
     "restricted": (("yes", "no"), _restricted),
+    "starts": (("yes", "no"), _starts),
+    "shows": (("nasb", "raf", "other", "none"), _shows),
 }
 
 
@@ -307,6 +371,20 @@ def _asks_settles_its_words(tokens: list[dict]) -> None:
         ma["head"], ma["rel"] = (before["id"], "---") if before and facts.is_verb(before) else (0, "---")
 
 
+def _idhan_settles_its_words(tokens: list[dict]) -> None:
+    """إِذَنْ أُكْرِمَكَ: an إذن read as the particle stands over its verb, as لن does, and the verb
+    is the present one it works on. The parser took it for a noun with a past verb under it,
+    so both are written over."""
+    s = facts.Sentence(tokens)
+    for idhan in tokens:
+        if not idhan.get("reading") or _word(idhan, s) != "إذن" or not (verb := _verb_after(idhan, s)):
+            continue
+        if verb["head"] == idhan["id"]:
+            verb["head"], verb["rel"] = idhan["head"], idhan["rel"]
+        idhan["head"], idhan["rel"] = verb["id"], "MOD"
+        verb["asp"] = "i"
+
+
 @lru_cache(maxsize=1)
 def _retagged() -> frozenset[str]:
     """The words with a leaf that writes a new word class over the parser's (data: `retag`)."""
@@ -327,6 +405,8 @@ def stamp(tokens: list[dict]) -> None:
         if (word := _word(token, s)) == "other":
             continue
         token["judged"] = _judged(word)
+        if word != strip_diacritics(token["lemma"]).strip("+"):
+            token["lemma"] = word  # إِذًا is إذن, to every list
         values = {"word": word, **{axis: answer(token, s) for axis, (_, answer) in AXES.items()}}
         if found := walker.walk(values, _tree()):
             token["reading"] = {"family": found.role, "named": found.leaf.get("named"),
@@ -336,3 +416,4 @@ def stamp(tokens: list[dict]) -> None:
     _hasr_frees_its_words(tokens)
     _wonder_settles_its_words(tokens)
     _asks_settles_its_words(tokens)
+    _idhan_settles_its_words(tokens)
