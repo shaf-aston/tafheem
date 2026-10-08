@@ -6,7 +6,7 @@ import asyncio
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, UsulFacts, FamilyPart, FamilyNarrator, RijalHadithRef, RijalSearch
+from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, UsulFacts, FamilyPart, FamilyNarrator, FamilyRoutes, RijalHadithRef, RijalSearch
 from backend.services import provenance
 from backend.services.rijal import family, store
 from backend.services.usul import store as usul
@@ -37,13 +37,16 @@ async def get_family(collection: str, number: int, part: str = Query("", max_len
     ids = [n["id"] for n in viewed["narrators"]]
     by_id = {n["id"]: n for f in found for n in f["narrators"]}
     named = lambda seq: [FamilyNarrator(**by_id[i]) for i in seq]  # noqa: E731
+    marks = await asyncio.to_thread(usul.family_words, collection, number, {f["part"]: f["matn"] for f in found})
+    routes = await asyncio.to_thread(usul.family_routes, collection, number)
     parts = []
     for f in found:
         own, met, borrowed = family.meet([n["id"] for n in f["narrators"]], ids)
         parts.append(FamilyPart(
             part=f["part"], book=f["book"], own=named(own), meet=named([met])[0] if met is not None else None,
-            borrowed=named(borrowed), narrators=named([n["id"] for n in f["narrators"]]), said=f["said"]))
-    return RijalFamily(viewed=viewed["part"], parts=parts)
+            borrowed=named(borrowed), narrators=named([n["id"] for n in f["narrators"]]), said=f["said"],
+            matn=f["matn"] if marks.get(f["part"]) else "", marks=marks.get(f["part"], [])))
+    return RijalFamily(viewed=viewed["part"], parts=parts, routes=FamilyRoutes(**routes) if routes else None)
 
 
 @router.get("/narrators", response_model=NarratorList)

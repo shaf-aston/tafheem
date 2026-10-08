@@ -15,6 +15,11 @@ over, so what the rule cannot read is seen and never guessed.
 Every quote in usul.json that names a book and a page is first found in that book and its page checked
 against the one the book's markers give (check_pages); any mismatch stops the build.
 
+For each hadith number told more than once it counts the narrators at each place of the chains and
+compares the words of the tellings (services/usul/family.py), and prints the term distribution and
+the families left without a term, by reason. `--sample FILE` also writes ten families laid out for
+checking by hand.
+
 Rebuilding is safe at any time: it writes a fresh file beside the old one and
 moves it into place at the end, like build_rijal.py. It stops, leaving the old
 file, if the number of notes moves more than `max_change_ratio` against it.
@@ -24,6 +29,8 @@ from __future__ import annotations
 import json
 import sqlite3
 import sys
+import argparse
+import difflib
 from collections import Counter
 from pathlib import Path
 
@@ -31,7 +38,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.hadith import chain, loader  # noqa: E402
-from backend.services.usul import books, facts, jami, match, mukhtalitin, names, ruling, rung, taqrib, tarif  # noqa: E402
+from backend.services.hadith.chain import chain_of  # noqa: E402
+from backend.services.usul import books, facts, family, jami, match, mukhtalitin, names, ruling, rung, taqrib, tarif  # noqa: E402
 from backend.services.usul.level import kind_of, level_of  # noqa: E402
 from backend.services.usul.rule import rule  # noqa: E402
 
@@ -67,6 +75,15 @@ CREATE TABLE ruling (
 ) WITHOUT ROWID;
 CREATE INDEX ruling_by_kind ON ruling (kind, collection, number, part);
 CREATE INDEX ruling_by_book ON ruling (collection, hbook);
+CREATE TABLE family_layer (
+    collection TEXT NOT NULL, number INTEGER NOT NULL, layer INTEGER NOT NULL, count INTEGER NOT NULL, ids TEXT NOT NULL,
+    PRIMARY KEY (collection, number, layer)
+) WITHOUT ROWID;
+CREATE TABLE family_word (
+    collection TEXT NOT NULL, number INTEGER NOT NULL, part TEXT NOT NULL, at INTEGER NOT NULL, word TEXT NOT NULL,
+    kind TEXT NOT NULL, other TEXT NOT NULL,
+    PRIMARY KEY (collection, number, part, at)
+) WITHOUT ROWID;
 """
 
 
@@ -315,7 +332,122 @@ def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], h
     return report
 
 
-def build() -> None:
+def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: list[tuple[tuple, str, int]],
+                 rows: dict[int, dict], cfg: dict) -> tuple[list[str], list[dict]]:
+    """family_layer and family_word for every hadith number told more than once (the parts rijal.db names).
+
+    Returns (the report, one dict per family for the sample: parts, chains, layer sets, term, marks, why)."""
+    rc = cfg["routes"]
+    generations = json.loads((data_path("rijal_dir") / "rijal.json").read_text(encoding="utf-8"))["generations"]
+    companions = set(next(g["tabaqat"] for g in generations if g["key"] == rc["companion_group"]))
+    generation = {who: row["generation_ar"] for who, row in rows.items()}
+    arabic = {key: text for key, text, _ in hadith}
+    mentions: dict[tuple, dict[str, dict[int, tuple]]] = {}   # a mention written twice at one start is one
+    for collection, number, part, start, end, who in rijal.execute(
+            "SELECT collection, number, part, start, end, narrator_id FROM mention ORDER BY collection, number, part, ord"):
+        mentions.setdefault((collection, number), {}).setdefault(part, {}).setdefault(start, (start, end, who))
+    why_term, why_word, term_count = Counter(), Counter(), Counter()
+    told, compared_n, marked_n, mark_kinds = 0, 0, 0, Counter()
+    results = []
+    for (collection, number), by_part in mentions.items():
+        if len(by_part) < 2:
+            continue
+        told += 1
+        parts = sorted(by_part)
+        chains, why = {}, ""
+        for part in parts:
+            ids, reason = family.chain_ids(arabic.get((collection, number, part), ""), list(by_part[part].values()),
+                                           generation, companions)
+            chains[part] = ids
+            why = why or reason
+        shown = {"collection": collection, "number": number, "parts": parts, "chains": chains, "why": why, "layers": [],
+                 "term": None, "marks": {}, "matns": {}}
+        if why:
+            why_term[why] += 1
+        else:
+            sets = family.layers(list(chains.values()))
+            term = family.term_of(min(len(s) for s in sets), rc["terms"])
+            term_count[term["key"]] += 1
+            shown.update(layers=sets, term=term["key"])
+            conn.executemany("INSERT INTO family_layer VALUES (?, ?, ?, ?, ?)",
+                             [(collection, number, i, len(s), json.dumps(sorted(s))) for i, s in enumerate(sets)])
+        matns = {}
+        for part in parts:
+            cut, matn = chain_of(arabic.get((collection, number, part), ""))
+            if cut:
+                matns[part] = matn.split()
+            else:
+                why_word["no_chain_cut"] += 1
+        found, left = family.marks(matns, rc)
+        why_word.update(left.values())
+        compared = len(matns) - len(left)
+        compared_n += compared >= 2
+        if compared < 2:
+            why_word["fewer_than_two_to_compare"] += 1
+        for part, row in found.items():
+            marked_n += 1
+            mark_kinds.update(m.kind for m in row)
+            conn.executemany("INSERT INTO family_word VALUES (?, ?, ?, ?, ?, ?, ?)",
+                             [(collection, number, part, m.at, m.word, m.kind, m.other) for m in row])
+        shown.update(marks=found, matns=matns)
+        results.append(shown)
+    conn.executemany("INSERT INTO gap VALUES ('family_term', ?, ?)", list(why_term.items()))
+    conn.executemany("INSERT INTO gap VALUES ('family_word', ?, ?)", list(why_word.items()))
+    report = [f"families (a number told more than once): {told:,}; with a term: {sum(term_count.values()):,}",
+              "term distribution: " + ", ".join(f"{t['key']} {term_count[t['key']]:,}" for t in rc["terms"]),
+              "families left without a term (gap family_term): "
+              + ", ".join(f"{k} {v:,}" for k, v in sorted(why_term.items(), key=lambda kv: -kv[1])),
+              f"word differences: {compared_n:,} families compared; {marked_n:,} tellings marked; "
+              + ", ".join(f"{k} {v:,}" for k, v in sorted(mark_kinds.items())),
+              "word differences left out (gap family_word): "
+              + ", ".join(f"{k} {v:,}" for k, v in sorted(why_word.items(), key=lambda kv: -kv[1]))]
+    return report, results
+
+
+def write_sample(path: Path, results: list[dict], rows: dict[int, dict], cfg: dict) -> None:
+    """Ten families (some of each term, those with marks first) as text: every telling's chain by place, the counts, the
+    term, and each marked word in its sentence beside what the closest other telling says there."""
+    rc = cfg["routes"]
+    ranked = lambda pool: sorted(pool, key=lambda r: (-bool(r["marks"]), r["collection"], r["number"]))  # noqa: E731
+    pick: list[dict] = []
+    for term in [t["key"] for t in rc["terms"]]:
+        pool = ranked(r for r in results if r["term"] == term and len(r["parts"]) >= 3)
+        pick += pool[::max(1, len(pool) // 4)][: -(-rc["sample"] // len(rc["terms"]))]
+    pick += [r for r in ranked(r for r in results if r["term"] and len(r["parts"]) >= 3) if r not in pick]
+    pick = pick[: rc["sample"]]
+    out = ["# Usul phase 3: ten families, to check by hand", ""]
+    for r in pick:
+        out.append(f"## {r['collection']} {r['number']}: {r['term']} (thinnest place {min(len(s) for s in r['layers'])})")
+        out.append("Places counted from the Companion (place 1 = Companion), narrator ids with names:")
+        for i, s in enumerate(r["layers"], 1):
+            out.append(f"- place {i}: {len(s)} = " + "; ".join(f"{w} {rows[w]['name_ar']}" for w in sorted(s)))
+        for part in r["parts"]:
+            out.append(f"- {r['collection']} {r['number']}{part} chain (Companion first): "
+                       + " > ".join(str(w) for w in reversed(r["chains"][part])))
+        for part in r["parts"]:
+            words = r["matns"].get(part)
+            if words is None:
+                out.append(f"- {part}: no chain cut, not compared")
+                continue
+            row = r["marks"].get(part, [])
+            out.append(f"- {part}: {len(words)} words, {len(row)} marked")
+            others = {q: w for q, w in r["matns"].items() if q != part}
+            keys = [family.word_key(w, rc) for w in words]
+            theirs = {q: [family.word_key(w, rc) for w in ws] for q, ws in others.items()}
+            best = max(others, key=lambda q: difflib.SequenceMatcher(None, keys, theirs[q], autojunk=False).ratio(),
+                       default=None)
+            ops = difflib.SequenceMatcher(None, keys, theirs[best], autojunk=False).get_opcodes() if best else []
+            for m in row:
+                op = next((o for o in ops if o[1] <= m.at < o[2] or o[1] == o[2] == m.at), None)
+                there = " ".join(others[best][op[3]:op[4]]) if op and op[0] != "equal" else ""
+                around = " ".join(words[max(0, m.at - 2): m.at]) + f" [{m.word}] " + " ".join(words[m.at + 1: m.at + 3])
+                out.append(f"    - {m.kind}: {around}" + (f"   (no dots: {m.other})" if m.other else "")
+                           + f"   | {best} says: {there or '(nothing there)'}")
+        out.append("")
+    path.write_text("\n".join(out), encoding="utf-8")
+
+
+def build(sample: Path | None = None) -> None:
     source = data_path("rijal_index_path")
     if not source.exists():
         raise SystemExit(f"no {source.name}. Run: python backend/scripts/build_rijal.py")
@@ -425,6 +557,11 @@ def build() -> None:
                                        [match.forms(row) for row in rows.values()], cfg)
             guard_change(target, "ruling", conn.execute("SELECT COUNT(*) FROM ruling").fetchone()[0], cfg["max_change_ratio"])
 
+        # The versions fold: routes counted at each place of a number's chains, and words one telling alone has.
+        family_report, family_results = add_families(conn, rijal, our_hadith(), rows, cfg)
+        for table in ("family_layer", "family_word"):
+            guard_change(target, table, conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], cfg["max_change_ratio"])
+
         # What the page counts of him in our books.
         weak: dict[int, set] = {}
         for who, collection, number, part in conn.execute("SELECT narrator_id, collection, number, part FROM note"):
@@ -452,6 +589,10 @@ def build() -> None:
     scratch.replace(target)
 
     print("\n".join(ruling_report))
+    print("\n".join(family_report))
+    if sample:
+        write_sample(sample, family_results, rows, cfg)
+        print(f"sample written to {sample}")
     print(f"narrators levelled: {len(found):,}")
     print(f"notes: {notes:,}")
     for level, n in per_level:
@@ -469,4 +610,6 @@ def build() -> None:
 
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")  # the wordings are Arabic
-    build()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--sample", type=Path, help="also write ten families here, laid out for checking by hand")
+    build(ap.parse_args().sample)

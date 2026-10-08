@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from backend.config import data_path, get_settings
 from backend.services.readonly_db import ReadOnlyDb
+from backend.services.usul import family
 from backend.services.usul.books import page_label
 from backend.services.usul.rule import rule
 
@@ -191,3 +192,35 @@ def facts(narrator_id: int) -> dict[str, list[dict]]:
             line["text"] = cfg["facts"][kind].format(value=value)
         groups[group].append(line)
     return groups
+
+
+def family_routes(collection: str, number: int) -> dict | None:
+    """The narrators counted at each place of one number's chains and the term the thinnest place gives, with the
+    sentences of Ibn Hajar it rests on. None while usul.db is not built or when the build could not line the chains up."""
+    db = _db()
+    counts = [r[0] for r in db.execute(
+        "SELECT count FROM family_layer WHERE collection = ? AND number = ? ORDER BY layer", (collection, number))] if db else []
+    if not counts:
+        return None
+    rc = rule()["routes"]
+    term = family.term_of(min(counts), rc["terms"])
+    cite = lambda row: {"quote": row["quote"], "source": _source(rc["book"]), "page": page_label(row["page"])}  # noqa: E731
+    return {"term": term["key"], "ar": term["ar"], "say": term["say"], "thinnest": min(counts), "layers": counts,
+            "scope": rc["scope"], "place_note": rc["place_note"], "definition": cite(term),
+            "layer_rule": {"say": rc["layer_rule"]["say"], **cite(rc["layer_rule"])}}
+
+
+def family_words(collection: str, number: int, matns: dict[str, str]) -> dict[str, list[dict]]:
+    """{"b": [{at, kind, other}, ...]}: the words of each telling the build marked, in text order.
+
+    `matns` are the tellings' matn as served now; a mark stays only where that matn still has its word at `at`, like `notes`."""
+    db = _db()
+    found: dict[str, list[dict]] = {}
+    if db:
+        for part, at, word, kind, other in db.execute(
+                "SELECT part, at, word, kind, other FROM family_word WHERE collection = ? AND number = ? ORDER BY part, at",
+                (collection, number)):
+            tokens = matns.get(part, "").split()
+            if at < len(tokens) and tokens[at] == word:
+                found.setdefault(part, []).append({"at": at, "kind": kind, "other": other})
+    return found

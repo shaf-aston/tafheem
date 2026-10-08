@@ -70,9 +70,11 @@ export default function ShowRest({
         if (bottom <= target + 1 && bottom > whole) whole = bottom
       }
     }
-    const next = whole > 0 ? Math.ceil(whole) + 2 : null
-    setSnap(next)
-    setCut(node.scrollHeight > (next ?? target) + 1)
+    // Cut only when the content is taller than the limit itself. The snapped height is a glyph box, shorter than the
+    // line it sits in, so a one-line passage would read as overflowing it and be clipped under a button that reveals nothing.
+    const hidden = node.scrollHeight > target + 1
+    setSnap(hidden && whole > 0 ? Math.ceil(whole) + 2 : null)
+    setCut(hidden)
   }, [open, limit])
 
   useEffect(() => {

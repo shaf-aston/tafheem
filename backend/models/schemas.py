@@ -1533,6 +1533,13 @@ class FamilyNarrator(BaseModel):
     name: str
 
 
+class FamilyMark(BaseModel):
+    """The word at index `at` of the matn split on whitespace: "only" in this telling, or a "dots" difference from `other`."""
+    at: int
+    kind: str
+    other: str = ""
+
+
 class FamilyPart(BaseModel):
     """One narration of a number against the viewed one: its own narrators, where it meets that chain, what it borrows."""
     part: str
@@ -1542,11 +1549,36 @@ class FamilyPart(BaseModel):
     borrowed: list[FamilyNarrator] = []
     narrators: list[FamilyNarrator]
     said: str = ""
+    # The telling's matn and the words in it only this telling has; the matn only where some are marked.
+    matn: str = ""
+    marks: list[FamilyMark] = []
+
+
+class FamilyCite(BaseModel):
+    quote: str
+    source: str
+    page: str = ""
+    say: str = ""
+
+
+class FamilyRoutes(BaseModel):
+    """Our count of the narrators at each place of the chains (Companion first), not a scholar's verdict: the term
+    is Ibn Hajar's word for the thinnest place, within the books the app holds."""
+    term: str
+    ar: str
+    say: str
+    thinnest: int
+    layers: list[int]
+    scope: str
+    place_note: str
+    definition: FamilyCite
+    layer_rule: FamilyCite
 
 
 class RijalFamily(BaseModel):
     viewed: str
     parts: list[FamilyPart]
+    routes: FamilyRoutes | None = None
 
 
 class NarratorListItem(NarratorSummary):

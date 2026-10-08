@@ -11,6 +11,7 @@ import re
 
 from backend.config import data_path
 from backend.services.hadith import loader, words
+from backend.services.hadith.chain import chain_of
 from backend.services.readonly_db import ReadOnlyDb
 
 _db = ReadOnlyDb(lambda: data_path("rijal_index_path"))
@@ -117,7 +118,8 @@ def search(query: str, limit: int) -> list[dict]:
 
 
 def family(collection: str, number: int) -> list[dict]:
-    """Every lettered part of one number: its narrators in text order and the Arabic said after the last of them."""
+    """Every lettered part of one number: its narrators in text order, the Arabic said after the last of them and
+    its matn (the Arabic after the chain's own cut, chain.chain_of, which is what the word differences are marked on)."""
     db = _db()
     rows = db.execute(
         "SELECT m.book, m.part, m.end, n.id, n.name_ar FROM mention m JOIN narrator n ON n.id = m.narrator_id "
@@ -127,8 +129,11 @@ def family(collection: str, number: int) -> list[dict]:
         found = parts.setdefault(part, {"part": part, "book": book, "narrators": [], "end": 0})
         found["narrators"].append({"id": who, "name": name})
         found["end"] = max(found["end"], end)
+    arabic: dict[int, dict[tuple[int, str], str]] = {}   # a book is read once, however many of its parts are told
     for found in parts.values():
-        text = next((h["arabic"] for h in loader.hadiths(collection, found["book"])
-                     if h["number"] == number and h["part"] == found["part"]), "")
+        if found["book"] not in arabic:
+            arabic[found["book"]] = {(h["number"], h["part"]): h["arabic"] for h in loader.hadiths(collection, found["book"])}
+        text = arabic[found["book"]].get((number, found["part"]), "")
         found["said"] = re.sub(r"^[\s\W_]+", "", text[found.pop("end"):])
+        found["matn"] = chain_of(text)[1]
     return list(parts.values())
