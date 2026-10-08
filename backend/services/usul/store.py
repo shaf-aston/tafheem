@@ -17,8 +17,12 @@ def is_built() -> bool:
     return _db() is not None
 
 
-def notes(collection: str, book: int) -> dict[str, list[dict]]:
-    """{"1620a": [{at, id, level, kind, grade}, ...]}: each weak narrator named in a book's hadith, in text order."""
+def notes(collection: str, book: int, chains: dict[str, list[list[int]]]) -> dict[str, list[dict]]:
+    """{"1620a": [{at, id, level, kind, grade}, ...]}: each weak narrator named in a book's hadith, in text order.
+
+    Kept only where `chains` (rijal.store.chains of the same book) still names that
+    narrator at that place, so a rijal.db rebuilt after usul.db shows no stale note."""
+    placed = {(key, start, who) for key, names in chains.items() for start, _, who in names}
     db = _db()
     found: dict[str, list[dict]] = {}
     if db:
@@ -27,6 +31,8 @@ def notes(collection: str, book: int) -> dict[str, list[dict]]:
             "FROM note JOIN narrator_level ON narrator_level.narrator_id = note.narrator_id "
             "WHERE note.collection = ? AND note.book = ? ORDER BY note.number, note.part, note.at", (collection, book)
         ):
+            if (f"{number}{part}", at, who) not in placed:
+                continue
             found.setdefault(f"{number}{part}", []).append(
                 {"at": at, "id": who, "level": level, "kind": kind, "grade": grade})
     return found

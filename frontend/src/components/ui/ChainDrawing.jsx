@@ -35,13 +35,13 @@ function Rung({ link, grow = false }) {
 }
 
 function Narrator({ link, weak, onNarrator }) {
-  const point = link.note && weak.find((p) => p.at === link.note.at)
+  const point = link.note && weak.find((p) => p.id === link.note.id)
   return (
     <div className="relative max-w-[var(--sheet-narrator)]">
       {point && (
         <span
           aria-hidden="true"
-          className="absolute -top-2 start-2 px-1 leading-none type-micro tabular-nums bg-[var(--surface-hi)] text-[var(--hadith-weak)]"
+          className="absolute -top-2 start-2 px-1 leading-none type-tiny tabular-nums bg-[var(--surface-hi)] text-[var(--hadith-weak)]"
         >
           <bdi dir="ltr">{point.label}</bdi>
         </span>
@@ -53,6 +53,7 @@ function Narrator({ link, weak, onNarrator }) {
         style={point ? { borderColor: 'var(--hadith-weak)' } : undefined}
       >
         <NarratorLink id={link.id} onOpen={onNarrator}>{link.name}</NarratorLink>
+        {point && <span className="sr-only">, weak point {point.label}: {point.en}</span>}
       </ArabicText>
     </div>
   )

@@ -70,15 +70,26 @@ def paths(tmp_path, monkeypatch):
     return where
 
 
+# The chains rijal.db would send for muslim book 24, built from the same mentions.
+CHAINS = {f"{n}{p}": [[start, start + 5, who] for n2, p2, start, who, _ in MENTIONS if (n2, p2) == (n, p)]
+          for n, p, *_ in MENTIONS}
+
+
 def test_notes_are_keyed_by_hadith_and_placed_by_where_the_name_starts(paths):
     build_usul.build()
-    found = usul_store.notes("muslim", 24)
+    found = usul_store.notes("muslim", 24, CHAINS)
     assert found == {
         "1": [{"at": 10, "id": 2, "level": 8, "kind": "weak", "grade": "ضعيف"},
               {"at": 20, "id": 3, "level": 5, "kind": "memory", "grade": "صدوق سيئ الحفظ"}],
         "2a": [{"at": 8, "id": 2, "level": 8, "kind": "weak", "grade": "ضعيف"}],
     }
-    assert usul_store.notes("muslim", 25) == {}
+    assert usul_store.notes("muslim", 25, {}) == {}
+
+
+def test_a_note_rijal_no_longer_places_there_is_dropped(paths):
+    build_usul.build()
+    moved = {**CHAINS, "1": [[11, 16, 2], [20, 25, 3]]}  # rijal.db rebuilt: narrator 2 now starts at 11
+    assert [n["id"] for n in usul_store.notes("muslim", 24, moved)["1"]] == [3]
 
 
 def test_a_grade_no_term_reads_is_listed_never_marked(paths):

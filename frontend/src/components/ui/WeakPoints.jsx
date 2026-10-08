@@ -13,7 +13,7 @@ import NarratorLink from './NarratorLink'
 /** The twelve levels as steps: the narrator's filled, the levels too strong to be a weak point muted. */
 function Scale({ level, scale }) {
   return (
-    <div role="img" aria-label={`level ${level} of ${scale.length}`} dir="ltr" className="flex gap-0.5">
+    <div role="img" aria-label={`level ${level} of ${scale.length}, ${scale.length} is the weakest`} dir="ltr" className="flex gap-0.5">
       {scale.map((row) => (
         <span
           key={row.level}
@@ -30,10 +30,11 @@ export default function WeakPoints({ points, scale, onNarrator }) {
   if (!points.length) return null
   return (
     <section aria-labelledby="weak-points" className="mt-4 pt-4 border-t border-[var(--border)]">
-      <h3 id="weak-points" className="type-small font-semibold text-[var(--text-dim)] mb-3">Weak points</h3>
+      <h3 id="weak-points" className="type-small font-semibold text-[var(--text-dim)] m-0">Weak points</h3>
+      <p className="type-tiny m-0 mb-3 text-[var(--text-faint)]">1 is the weakest. Levels from {points[0].source}.</p>
       <ol className="list-none m-0 p-0 space-y-4">
         {points.map((p) => (
-          <li key={p.at} className="flex gap-3">
+          <li key={p.id} className="flex gap-3">
             <span className="type-ui tabular-nums w-7 shrink-0 text-[var(--hadith-weak)]">{p.label}</span>
             <div className="min-w-0 flex-1 space-y-1.5">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
@@ -47,12 +48,11 @@ export default function WeakPoints({ points, scale, onNarrator }) {
               {p.lift && (
                 <div className="ps-3 border-s border-[var(--border-hi)] space-y-1">
                   <p className="type-small m-0 text-[var(--text-dim)]">{p.lift.en}</p>
-                  <Disclosure label={p.lift.source}>
+                  <Disclosure label={`Quote: ${p.lift.source}`}>
                     <ArabicText as="p" size="sm" className="block m-0 leading-loose text-[var(--text-faint)]">{p.lift.quote}</ArabicText>
                   </Disclosure>
                 </div>
               )}
-              <p className="type-tiny m-0 text-[var(--text-faint)]">{p.source}</p>
             </div>
           </li>
         ))}

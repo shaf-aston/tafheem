@@ -13,16 +13,16 @@ const drawn = ({ main, branches }) => [...main, ...branches.flatMap((b) => [...b
 /**
  * The weak narrators of a drawn chain, weakest first and, among equals, in the
  * order the chain is read. Equal levels share a rank (1, 2, 2, 4) and print as
- * `label`: "2=". A narrator drawn twice (a branch's join) counts once.
+ * `label`: "2=". A narrator named twice (a branch's join, or two strands) counts once.
  */
 export function weakPoints(links, scale) {
   const levels = new Map(scale.map((row) => [row.level, row]))
   const seen = new Set()
   const found = drawn(links).filter((link) => {
-    if (!link.note || !levels.has(link.note.level) || seen.has(link.note.at)) return false
-    seen.add(link.note.at)
+    if (!link.note || !levels.has(link.note.level) || seen.has(link.note.id)) return false
+    seen.add(link.note.id)
     return true
-  }).map((link) => ({ ...link.note, name: link.name, id: link.id ?? link.note.id }))
+  }).map((link) => ({ ...link.note, name: link.name, id: link.note.id }))
   found.sort((a, b) => b.level - a.level || a.at - b.at)
   return found.map((point) => {
     const row = levels.get(point.level)

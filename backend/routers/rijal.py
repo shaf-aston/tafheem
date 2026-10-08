@@ -17,9 +17,10 @@ router = APIRouter(prefix="/api/rijal", tags=["rijal"])
 
 @router.get("/chains/{collection}/{book}", response_model=RijalChains)
 async def get_chains(collection: str, book: int) -> RijalChains:
+    chains = await asyncio.to_thread(store.chains, collection, book)
     return RijalChains(
-        collection=collection, book=book, chains=await asyncio.to_thread(store.chains, collection, book),
-        notes=await asyncio.to_thread(usul.notes, collection, book), scale=await asyncio.to_thread(usul.scale),
+        collection=collection, book=book, chains=chains,
+        notes=await asyncio.to_thread(usul.notes, collection, book, chains), scale=await asyncio.to_thread(usul.scale),
         ready=await asyncio.to_thread(store.is_built), source=provenance.of("rijal"),
     )
 

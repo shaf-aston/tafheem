@@ -21,6 +21,11 @@ describe('weakPoints', () => {
     expect(weakPoints(chain(link('a', note(1, 8))), [])).toEqual([])
   })
 
+  it('counts a narrator once where two strands both name him', () => {
+    const out = weakPoints({ main: [link('a', note(1, 8))], branches: [{ links: [link('a', { ...note(9, 8), id: 1 })], join: null }] }, scale)
+    expect(out.map((p) => p.label)).toEqual(['1'])
+  })
+
   it('counts a narrator once where a branch joins the main strand, and finds weak ones on a branch', () => {
     const joined = link('a', note(1, 8))
     const out = weakPoints({ main: [joined], branches: [{ links: [link('b', note(2, 5, 'memory'))], join: { ...joined } }] }, scale)
