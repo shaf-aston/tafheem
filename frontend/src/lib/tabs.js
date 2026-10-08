@@ -4,26 +4,31 @@
  * Everything that needs to know the tabs reads this file: the strip under the
  * header, All sections, the command bar, the orbit launcher, the URL. Adding a tab is one
  * entry here; nothing else is edited.
+ *
+ * Each panel is fetched the first time it opens (React lazy), so the first
+ * load carries the shell and not all thirteen tabs.
  */
+import { lazy } from 'react'
+
 import { colorFor } from '../theme'
 import { colloquialQuery, dawahQuery, daleelBooksQuery, growPathsQuery, hadithOpen, timelinesQuery } from '../api'
 import { load } from './warm'
 import { memoriseOpen } from './books'
 import { table } from './quizBanks'
 
-import Dictionary from '../components/Dictionary'
-import QuizPanel from '../components/QuizPanel'
-import QuranLookup from '../components/QuranLookup'
-import MemorisePanel from '../components/MemorisePanel'
-import SarfPanel from '../components/SarfPanel'
-import NahwPanel from '../components/NahwPanel'
-import DaleelPanel from '../components/DaleelPanel'
-import HadithPanel from '../components/HadithPanel'
-import TimelinesPanel from '../components/TimelinesPanel'
-import DawahPanel from '../components/DawahPanel'
-import ColloquialPanel from '../components/ColloquialPanel'
-import GrowPanel from '../components/GrowPanel'
-import KitPanel from '../components/KitPanel'
+const Dictionary = lazy(() => import('../components/Dictionary'))
+const QuizPanel = lazy(() => import('../components/QuizPanel'))
+const QuranLookup = lazy(() => import('../components/QuranLookup'))
+const MemorisePanel = lazy(() => import('../components/MemorisePanel'))
+const SarfPanel = lazy(() => import('../components/SarfPanel'))
+const NahwPanel = lazy(() => import('../components/NahwPanel'))
+const DaleelPanel = lazy(() => import('../components/DaleelPanel'))
+const HadithPanel = lazy(() => import('../components/HadithPanel'))
+const TimelinesPanel = lazy(() => import('../components/TimelinesPanel'))
+const DawahPanel = lazy(() => import('../components/DawahPanel'))
+const ColloquialPanel = lazy(() => import('../components/ColloquialPanel'))
+const GrowPanel = lazy(() => import('../components/GrowPanel'))
+const KitPanel = lazy(() => import('../components/KitPanel'))
 
 // `study`: read closely, so the text-size setting applies.
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together.

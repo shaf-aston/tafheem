@@ -9,6 +9,10 @@ import { applyTheme } from './theme'
 
 // The account's shelf first (lib/shelf.js), so settings and every panel start
 // from what this name last chose on any device.
+// A deploy replaces the hashed files, so a page open from before it asks for a
+// tab file that is gone. Loading the page again picks up the new ones.
+window.addEventListener('vite:preloadError', () => location.reload())
+
 applyTheme()
 pullBeforeStart().then(() => {
   keepShelfInStep()

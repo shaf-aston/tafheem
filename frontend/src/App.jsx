@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { FIXED, GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
@@ -284,14 +284,16 @@ function AppContent() {
               as the screen blinking. The panels follow the word themselves
               now; see each one's "a word arriving" block. */}
           <div key={activeTab} className={`fade-in${active.study ? ' study' : ''}`}>
-            <ActiveTab
-              accent={accent}
-              incoming={handoff?.tab === activeTab ? handoff.value : null}
-              arrival={handoff?.tab === activeTab ? handoff.at : null}
-              onGo={switchTab}
-              onVisit={recordVisit}
-              onProgress={setQuiz}
-            />
+            <Suspense fallback={null}>
+              <ActiveTab
+                accent={accent}
+                incoming={handoff?.tab === activeTab ? handoff.value : null}
+                arrival={handoff?.tab === activeTab ? handoff.at : null}
+                onGo={switchTab}
+                onVisit={recordVisit}
+                onProgress={setQuiz}
+              />
+            </Suspense>
           </div>
         </div>
       </main>
