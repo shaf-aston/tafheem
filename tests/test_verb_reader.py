@@ -61,3 +61,20 @@ def test_the_dropped_ta_of_forms_v_and_vi_is_read():
 
 def test_the_dictionary_form_is_sarfs_own_past():
     assert verb_reader.past(verb_reader.command("أَقِمْ")) == "أَقَامَ"
+
+
+@pytest.mark.parametrize("word, root, form", [
+    ("يَسْتَعْفِفْ", "عفف", "X"),        # the pair written apart, as the Qur'an writes it
+    ("يَرْتَدِدْ", "ردد", "VIII"),
+    ("يَمْدُدْ", "مدد", "I-nasara"),
+    ("يَمُدِّ", "مدد", "I-nasara"),      # the kasra the book also allows
+    ("يَمُدُّ", "مدد", "I-nasara"),      # the damma, where the letter before carries one
+])
+def test_a_doubled_verb_ending_a_jussive_is_read_in_every_spelling_the_book_allows(word: str, root: str, form: str):
+    assert any(c.root == root and c.form == form and c.column == "jussive" for c in verb_reader.read(word))
+
+
+def test_a_word_the_dictionary_lacks_is_spelled_as_the_table_prints_it_with_its_joined_letters_kept():
+    assert verb_reader.known_as("فَلْيَسْتَعْفِفْ") == "فَلْيَسْتَعِفَّ"
+    assert verb_reader.known_as("الكتاب") is None  # without its vowels a word fits too much
+

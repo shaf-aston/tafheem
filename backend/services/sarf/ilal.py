@@ -39,6 +39,7 @@ class Context(NamedTuple):
     kind: str        # the root's category: sahih, ajwaf, naqis, mithal, ...
     radicals: str    # the root letters as typed
     past_middle: str # the vowel the باب puts on the middle letter in the past
+    pause: str = ""  # how a doubled pair ending a word is written: "" the printed way, a vowel the book also allows, or "apart"
 
 
 class Shaped(NamedTuple):
@@ -395,11 +396,13 @@ def doubled_letters_merge(letters: list[W.Letter], rule: dict, context: Context)
         # `apply` does not record this rule as having fired.
         return letters, None
 
+    if pausing and context.pause == rule["pause-apart"]:
+        return letters, None  # the other reading: the two letters left apart (لَمْ يَمْدُدْ)
     letters = list(letters)
     if pausing:
         # The word ends here, so the book merges the pair after all and gives
         # the letter a فتحة, naming the other readings it allows.
-        letters[second] = letters[second].with_vowel(W.FATHAH)
+        letters[second] = letters[second].with_vowel(context.pause or W.FATHAH)
         note = rule["pause-note"]
 
     before = letters[first - 1] if first else None

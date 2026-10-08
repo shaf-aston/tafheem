@@ -400,11 +400,14 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         # فَلْيَصُمْهُ، لأمرتُ: the letter written onto the answer ties it to the condition, so it
         # stands beside the answer's sentence in the condition's unit, not inside that sentence
         ties = []
-        for piece in named[typed_at[answer["id"]]].get("attached", []):
+        for piece in named[found["condition"]["tie_at"]].get("attached", []):
             if piece["id"] in split and piece["before"] and piece["form"] in condition["ties"]:
                 name_of[piece["id"]] = condition["ties"][piece["form"]]
-                holder[piece["id"]].remove(by_id[piece["id"]])
-                ties.append(by_id[piece["id"]])
+                tied = by_id[piece["id"]]
+                for under in list(children_of[tied["id"]]):  # a فَ the parser made the head of its clause: the clause takes its place
+                    _move(holder, under, holder[tied["id"]])
+                holder[tied["id"]].remove(tied)
+                ties.append(tied)
         for unit, job in ((verb, condition["verb"]), (answer, condition["answer"])):
             job_of[unit["id"]] = job
             place_of[unit["id"]] = in_place(condition["case"]) if condition["case"] else said["no_place"]

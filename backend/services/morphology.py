@@ -20,7 +20,7 @@ from typing import Any
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
 from backend.services import verb_reader
 from backend.services.nahw_book import is_one
-from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, base_of, best_reading, weak_last, moved_for_wasl, paused, typed_case
+from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, base_of, best_reading, weak_last, moved_for_wasl, paused, typed_case, unread
 
 logger = logging.getLogger(__name__)
 
@@ -499,6 +499,9 @@ def _analyze_sentence_camel_mle(tokens: list[str]) -> list[dict[str, Any]] | Non
         after = tokens[i + 1] if i + 1 < len(tokens) else ""
         # a kasra that may be a moved sukun is no evidence for the reading
         evidence = token[:-1] if moved_for_wasl(token, after) else token
+        if unread(ranked) and (twin := verb_reader.known_as(token)):
+            # a verb the dictionary lacks but sarf's table has: it reads the table's spelling of it
+            ranked, evidence = [scored.analysis for scored in _camel_mle.disambiguate([twin])[0].analyses], twin
         out.append(_analysis_dict_from_camel(token, best_reading(evidence, ranked) or ranked[0], before, after))
     return out
 

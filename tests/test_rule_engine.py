@@ -655,3 +655,31 @@ def test_a_command_the_word_list_lacks_is_read_by_sarf_under_its_joined_fa(sente
 def test_a_small_word_before_a_clause_is_named_by_what_it_does_there(sentence: str, word: str, named: str):
     assert named in {w["word"]: w for w in analysed(sentence)}[word]["reason"]
 
+
+def test_the_qurans_uncontracted_jussive_is_a_verb_and_its_fa_proves_the_condition():
+    # the dictionary has only فَلْيَسْتَعِفَّ; sarf's table also writes the doubled pair apart (p.289)
+    got = {w["word"]: w for w in analysed("وَمَنْ كَانَ غَنِيًّا فَلْيَسْتَعْفِفْ")}
+    assert "اسم شرط جازم" in got["وَمَنْ"]["reason"]
+    assert got["فَلْيَسْتَعْفِفْ"]["role"] == "فعل" and "مجزوم" in got["فَلْيَسْتَعْفِفْ"]["reason"]
+
+
+@pytest.mark.parametrize("sentence", [
+    "مَنْ عَمِلَ صَالِحًا فَلِنَفْسِهِ",             # a noun sentence ties its answer with فَ
+    "وَمَنْ كَفَرَ فَإِنَّ اللَّهَ غَنِيٌّ",           # إنّ
+    "مَنْ جَاءَ بِالْحَسَنَةِ فَلَهُ خَيْرٌ مِنْهَا",
+    "مَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",  # the jussive after مَنْ alone is no relative's
+    "مَنْ جَاءَ فَلَا تُكْرِمْهُ",                   # a prohibition could not stand as a condition
+    "مَنْ جَاءَ فَقَدْ فَازَ",
+])
+def test_a_fa_on_an_answer_that_could_not_stand_alone_makes_man_a_condition(sentence: str):
+    assert "اسم شرط جازم" in analysed(sentence)[0]["reason"]
+
+
+def test_a_plain_past_verb_after_fa_is_no_proof_of_a_condition():
+    # a past verb could stand as an answer with no فَ at all, so this is a relative and its عطف
+    assert "اسم شرط" not in analysed("مَنْ جَاءَ فَقَامَ زَيْدٌ")[0]["reason"]
+
+
+def test_la_before_a_jussive_with_a_pronoun_on_it_is_the_prohibition():
+    assert "الناهية" in analysed("لَا تُكْرِمْهُ")[0]["reason"]
+
