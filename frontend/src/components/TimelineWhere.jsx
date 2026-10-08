@@ -4,6 +4,10 @@
  * Not the app's Trail (ui/Trail), which is the way back through what was read;
  * this is the level being read now, and each rung above is a press away. Drawn
  * in the Trail's quiet weights so the two read as one family.
+ *
+ * The event's own rung shows only once a step is being read: until then the
+ * title right under this line already says it, and the line is just the way
+ * back to the section.
  */
 import { readingOrder } from '../lib/timelineLayout'
 
@@ -11,8 +15,12 @@ export default function TimelineWhere({ section, event, here, onHere, onPick }) 
   const at = readingOrder(event.steps).find((r) => r.step.id === here)
   const rungs = [
     { key: 'section', text: section.name, go: () => onPick(null) },
-    { key: 'event', text: event.title, go: () => onHere(null) },
-    ...(at ? [...at.above, at.step].map((s) => ({ key: s.id, text: s.title, go: () => onHere(s.id) })) : []),
+    ...(at
+      ? [
+          { key: 'event', text: event.title, go: () => onHere(null) },
+          ...[...at.above, at.step].map((s) => ({ key: s.id, text: s.title, go: () => onHere(s.id) })),
+        ]
+      : []),
   ]
 
   return (
@@ -20,7 +28,7 @@ export default function TimelineWhere({ section, event, here, onHere, onPick }) 
       {rungs.map((rung, i) => (
         <span key={rung.key} className="flex items-center gap-1.5 min-w-0">
           {i > 0 && <span aria-hidden="true" className="opacity-40">›</span>}
-          {i === rungs.length - 1
+          {at && i === rungs.length - 1
             ? <span aria-current="location" className="text-[var(--text-dim)]">{rung.text}</span>
             : (
               <button

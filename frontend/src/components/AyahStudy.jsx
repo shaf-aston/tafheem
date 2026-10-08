@@ -1,8 +1,9 @@
 /**
  * One ayah, studied: what each word is, how the words join, and what the ayah
- * is about. QuranReader shows it beside the surah, or in a sheet on a phone;
- * the ayah's own line and its English are already on the page beside it, and
- * its recitation is the reader's bar, so neither is drawn again here.
+ * is about. QuranReader shows it beside the surah, or under it on a phone;
+ * the ayah's own line and its English are already on the page beside it, its
+ * recitation is the reader's bar and its source the reader's header, so none
+ * of them is drawn again here.
  *
  * It asks for its own ayah, the word-by-word grammar the surah leaves out.
  * Key it by the ayah where it is used, so the open word starts shut each time.
@@ -68,7 +69,6 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent }) {
           {opened && <WordCard word={opened} onGo={onGo} onClose={() => setOpenWord(null)} exclude="quran" />}
           <div className="flex items-center gap-3 flex-wrap">
             <p className="text-xs text-[var(--text-faint)]">Tap any word for its full grammar and its root</p>
-            <SourceBadge source={data.source} />
           </div>
         </>
       )}

@@ -119,9 +119,11 @@ function BookEntry({ entry, root, accent }) {
   return (
     <article className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden">
       <header className="px-3 py-2 bg-[var(--surface)] flex items-baseline gap-2 flex-wrap">
-        {arabic
+        {/* Left off where the badge at the foot already names the book (Lane):
+            the same name at the top and the bottom of one card reads as two. */}
+        {entry.title !== entry.source?.label && (arabic
           ? <ArabicText size="sm">{entry.title}</ArabicText>
-          : <span className="type-body text-[var(--text)]">{entry.title}</span>}
+          : <span className="type-body text-[var(--text)]">{entry.title}</span>)}
         <span className="type-small text-[var(--text-faint)]">
           {entry.author}{entry.died ? `, d. ${entry.died}` : ''}
           {arabic ? '' : ' · in English'}

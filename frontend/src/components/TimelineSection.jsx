@@ -8,7 +8,6 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
 import TimelineRail from './TimelineRail'
 import TimelineEvent from './TimelineEvent'
@@ -41,10 +40,10 @@ export default function TimelineSection({ section, library, chosen, report, onPi
     <section className="tl-hue space-y-3" style={{ '--h': hue }}>
       <div className="flex items-end justify-between gap-3 flex-wrap">
         <div className="min-w-0">
-          <div className="flex items-baseline gap-2 flex-wrap">
-            <h3 className="text-lg font-semibold text-[var(--text)]">{section.name}</h3>
-            <ArabicText className="arabic-inline text-[var(--text-faint)]">{section.arabic}</ArabicText>
-          </div>
+          {/* The chosen tile above already names it, English and Arabic. On a
+              phone the tiles keep only the Arabic, so the name is shown here
+              there alone; wider, it stays for screen readers. */}
+          <h3 className="text-lg font-semibold text-[var(--text)] min-[521px]:sr-only">{section.name}</h3>
           <p className="type-small text-[var(--text-dim)]">{section.sub}</p>
         </div>
         {section.map && (

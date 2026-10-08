@@ -346,7 +346,7 @@ export default function KitPanel({ accent }) {
       <h2 className="text-sm font-semibold text-[var(--text-dim)]">Elements</h2>
       <Elements accent={accent} />
 
-      <h2 className="text-sm font-semibold text-[var(--text-dim)]">Motion</h2>
+      {/* No "Motion" heading: the card's own title says it. */}
       <Motion />
     </div>
   )

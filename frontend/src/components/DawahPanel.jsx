@@ -84,6 +84,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
         title={copy.title}
         arabic={copy.arabic}
         subtitle={copy.subtitle}
+        nameOf={(id) => all.find(({ question }) => question.id === id)?.question.q ?? id}
       />
 
       <SearchBox
@@ -111,7 +112,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
           <nav aria-label={copy.questions}>
             <QuestionList rows={rows} current={open.question.id} onPick={read} />
           </nav>
-          <Answer {...open} library={data} accent={accent} onGo={onGo} step={step} mode={mode} modes={knobs.modes} onMode={setMode} copy={copy} />
+          <Answer {...open} library={data} accent={accent} onGo={onGo} step={step} searching={searching} mode={mode} modes={knobs.modes} onMode={setMode} copy={copy} />
         </div>
       )}
     </div>

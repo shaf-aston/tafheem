@@ -22,7 +22,8 @@ const MODES = [{ id: 'login', label: 'Log in' }, { id: 'signup', label: 'Sign up
 export default function ProfileDialog({ onClose, onSaved }) {
   const client = useQueryClient()
   const name = getProfile()
-  const title = name ? 'Your profile' : 'Log in or sign up'
+  // Not "Log in or sign up": the switch right under the title says that.
+  const title = name ? 'Your profile' : 'Your account'
 
   // Close first: the profile's own queries would refetch as the wrong user.
   // Then every progress answer on screen, which belonged to the user before.

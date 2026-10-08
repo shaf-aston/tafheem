@@ -21,11 +21,9 @@ export default function WordsView({ unit, at }) {
 
   return (
     <article className="max-w-xl mx-auto space-y-6">
+      {/* The topic's title is already on the trail above, one step before Words. */}
       <header className="flex flex-wrap items-end justify-between gap-3">
-        <div className="space-y-1">
-          <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
-          <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
-        </div>
+        <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
         <Segmented label="How to learn the words" accent="var(--primary)" value={mode} onChange={setMode} options={MODES} />
       </header>
       {mode === 'cards' && <WordCards words={words} />}

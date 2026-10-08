@@ -434,7 +434,7 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
           <p>
             <span className="text-[var(--text)] font-medium tabular-nums">{counts.right}/{done}</span>
             {done > 0 && <> · {Math.round((counts.right / done) * 100)}%</>}
-            {' · '}{done} of {counts.all} answered
+            {' · '}{done} answered
           </p>
           {done > 0 && (
             <button type="button" onClick={startOver}
@@ -445,8 +445,10 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
         </div>
       </div>
 
-      {/* Answered squares plus the one you are on: press one to go back to it. */}
-      {done > 0 && (
+      {/* Answered squares plus the one you are on: press one to go back to it.
+          Only for a long round, where the full set below starts shut; a short
+          one opens it already, and the same squares twice is one too many. */}
+      {done > 0 && list.length > 40 && (
         <div className="flex flex-wrap items-start justify-center gap-1.5" role="group" aria-label="Answered questions">
           {list.map((q, n) => (statusOf(q, answers) || n === i ? square(q, n) : null))}
         </div>

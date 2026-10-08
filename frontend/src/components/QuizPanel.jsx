@@ -607,7 +607,10 @@ export default function QuizPanel({ accent, onProgress }) {
             <div aria-live="polite">
               {answered && (
                 <p className="text-sm" style={{ color: correct ? 'var(--success)' : 'var(--danger)' }}>
-                  {correct ? say('Correct.') : fill('{word} means {meaning}', {
+                  {/* A right answer already says so on the option it was; the
+                      words are kept here for screen readers only, since this is
+                      the line that gets announced. */}
+                  {correct ? <span className="sr-only">{say('Correct.')}</span> : fill('{word} means {meaning}', {
                     // Whichever side is Arabic gets the Arabic face, otherwise the
                     // correction renders the word smaller than the question. The
                     // meaning half carries its own language too: in an Urdu round
@@ -825,7 +828,7 @@ function MissedList({ history, reviewing, say, onReview }) {
   return (
     <div className="flex flex-col gap-2 min-h-0 flex-1">
       <h3 className="eyebrow">
-        {say('Got wrong')}{missed.length > 0 && <span className="tabular-nums"> · {missed.length}</span>}
+        {say('Got wrong')}
       </h3>
       {missed.length === 0 ? (
         <p className="type-small text-[var(--text-faint)]">{say('Nothing yet.')}</p>

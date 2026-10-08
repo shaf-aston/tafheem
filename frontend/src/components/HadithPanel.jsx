@@ -12,7 +12,6 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithCollectionsQuery } from '../api'
 import { bookOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, narratorsOf, parsePlace, placeOf } from '../lib/hadithPlace'
-import { goBack } from '../lib/journey'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -112,7 +111,6 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         <NarratorPage
           id={narrator}
           accent={accent}
-          onBack={goBack}
           onNarrator={openNarrator}
           onHadith={openHadith}
         />
@@ -137,8 +135,9 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
           <Chip selected={listing} tinted accent={accent} onClick={() => (listing ? go(place) : onGo('hadith', NARRATORS_PLACE))}>
             Narrators
           </Chip>
-          {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this collection. */}
-          {!starred && !listing && source && <SourceBadge source={{ ...source, label: open.name }} className="ml-auto" />}
+          {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this
+              collection, unless the picker beside it already names it. */}
+          {!starred && !listing && source && <SourceBadge source={collections.length > 1 ? source : { ...source, label: open.name }} className="ml-auto" />}
         </ChipRow>
         {listing ? (
           <NarratorList accent={accent} onOpen={openNarrator} />

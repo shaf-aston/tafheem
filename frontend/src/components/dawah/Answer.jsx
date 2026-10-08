@@ -7,12 +7,13 @@ import Argument from './Argument'
 import Discussion from './Discussion'
 
 // One answer: the reply in short, the reasoning point by point, the discussion in depth, then further reading.
-export default function Answer({ topic, question, library, accent, onGo, step, mode, modes, onMode, copy }) {
+export default function Answer({ topic, question, library, accent, onGo, step, mode, modes, onMode, copy, searching }) {
   const fatwa = question.islamqa
   return (
     <article key={question.id} className="fade-in rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-5 space-y-5">
       <div className="space-y-2">
-        <p className="eyebrow" style={{ color: accent }}>{topic.title}</p>
+        {/* Only a search mixes topics; otherwise the lit tile above already names it. */}
+        {searching && <p className="eyebrow" style={{ color: accent }}>{topic.title}</p>}
         <h3 className="text-xl font-semibold leading-snug text-[var(--text)]">{question.q}</h3>
       </div>
 
