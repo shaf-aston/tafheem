@@ -44,8 +44,12 @@ import GlossWord from './ui/GlossWord'
 import ReadingOptions from './ui/ReadingOptions'
 import ErrorAlert from './ui/ErrorAlert'
 import Segmented from './ui/Segmented'
+import WheelPicker from './ui/WheelPicker'
 import { Skeleton } from './ui/Skeleton'
 import SourceBadge from './ui/SourceBadge'
+
+// The reciters as the dropdown's choices, each with its Arabic name beside it.
+const VOICES = RECITERS.map((one) => ({ id: one.id, label: one.name, hint: one.arabic }))
 
 const FIRST_SURAH = 1
 const LAST_SURAH = 114
@@ -463,14 +467,13 @@ function AyahRail({ count, here, open, onPick }) {
  * stop, on, and who is reciting. Playing runs on through the surah an ayah at a
  * time, and the list follows while the reader is following it.
  *
- * The reciters open sideways in the bar itself rather than as a list that
- * grows the page, and stay open after one is picked, so voices can be tried
- * one after another.
+ * Who is reciting is the app's one dropdown (ui/WheelPicker), opening upwards
+ * from the bar; its pill already names the voice, so the line beside the
+ * buttons says only where the recitation is.
  */
 function RecitationBar({ surah, count, from, here, recitation, reciter, onReciter, onFollow }) {
   const now = useSyncExternalStore(watch, nowPlaying, () => '')
   const [failed, setFailed] = useState(false)
-  const [choosing, setChoosing] = useState(false)
   // The ayah last started and the address it was started on. Matched by that
   // address, not by asking the recitation again: the measured recording can
   // arrive mid-ayah and change what urlFor answers, but not what is playing.
@@ -500,7 +503,6 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
   // Stop when the bar goes with its surah, so nothing plays on under another.
   useEffect(() => () => stop(), [])
 
-  const name = RECITERS.find((one) => one.id === reciter)?.name ?? ''
   const round = 'press shrink-0 grid place-items-center rounded-full transition-colors'
   const skip = `${round} w-8 h-8 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`
 
@@ -520,54 +522,15 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
         <Glyph d="M16 5h2v14h-2zM4 5v14l11-7z" />
       </button>
 
-      {choosing ? (
-        <ReciterStrip reciter={reciter} onPick={onReciter} />
-      ) : (
-        <p className="min-w-0 flex-1 truncate type-small" aria-live="polite">
-          {failed ? (
-            <span className="text-[var(--warn)]">That recitation could not be reached</span>
-          ) : (
-            <>
-              <span className="font-mono text-[var(--text)]">{surah}:{at}</span>
-              <span className="text-[var(--text-faint)]"> · {name}</span>
-            </>
-          )}
-        </p>
-      )}
+      <p className="min-w-0 flex-1 truncate type-small" aria-live="polite">
+        {failed ? (
+          <span className="text-[var(--warn)]">That recitation could not be reached</span>
+        ) : (
+          <span className="font-mono text-[var(--text)]">{surah}:{at}</span>
+        )}
+      </p>
 
-      <button
-        type="button"
-        onClick={() => setChoosing(!choosing)}
-        aria-expanded={choosing}
-        className={`press shrink-0 px-3 py-1.5 rounded-full type-small border transition-colors
-          ${choosing ? 'text-[var(--c)] border-[var(--c)]' : 'text-[var(--text-dim)] border-[var(--border-hi)] hover:text-[var(--text)]'}`}
-      >
-        {choosing ? 'Done' : 'Reciter'}
-      </button>
-    </div>
-  )
-}
-
-/** The reciters in one sideways row, the chosen one filled. */
-function ReciterStrip({ reciter, onPick }) {
-  const strip = useWheelX()
-  return (
-    <div ref={strip} role="group" aria-label="Reciter" className="strip-x min-w-0 flex-1 gap-1.5 px-2">
-      {RECITERS.map((one) => {
-        const on = one.id === reciter
-        return (
-          <button
-            key={one.id}
-            type="button"
-            onClick={() => onPick(one.id)}
-            aria-pressed={on}
-            className={`press tap shrink-0 px-3 py-1.5 rounded-full type-small whitespace-nowrap border transition-colors
-              ${on ? 'text-[var(--bg)] bg-[var(--c)] border-[var(--c)]' : 'text-[var(--text-dim)] border-[var(--border)] hover:text-[var(--text)]'}`}
-          >
-            {one.name}
-          </button>
-        )
-      })}
+      <WheelPicker label="Reciter" options={VOICES} value={reciter} onChange={onReciter} className="shrink-0" />
     </div>
   )
 }
