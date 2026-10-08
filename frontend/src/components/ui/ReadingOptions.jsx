@@ -1,7 +1,8 @@
 /**
  * A small sliders icon for how a page is read; pressed, its on/off chips (and
  * `children`) slide out beside it in the bar. Shared by the hadith books and
- * the Quran reader, so the two set their options the same way.
+ * the Quran reader, so the two set their options the same way. Worn inside a
+ * wrapping flex row, whose last line the chips take on a phone.
  *
  * An option marked `wide` is left off a phone, `touch` is offered only on a
  * touch screen: the choice is not hidden, it means nothing there.
@@ -17,9 +18,11 @@ export default function ReadingOptions({ options, accent, children }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="flex items-center gap-3" style={{ '--c': accent }}>
+    // On a phone the chips drop to a full row of their own under the bar, so
+    // opening them never pushes the bar's last buttons onto a line alone.
+    <div className="contents sm:flex sm:items-center sm:gap-3" style={{ '--c': accent }}>
       {open && (
-        <ChipRow className="fade-in">
+        <ChipRow className="fade-in order-last basis-full sm:order-none sm:basis-auto">
           {options.map(({ label, on, set, only }) => (
             <span key={label} className={ONLY[only] ?? 'contents'}>
               <Chip tinted selected={on} accent={accent} onClick={() => set(!on)}>{label}</Chip>

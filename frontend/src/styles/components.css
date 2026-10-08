@@ -587,6 +587,8 @@ dialog::backdrop {
 /* The phone tab bar (ui/BottomNav): pinned at the bottom, clear of the home
    indicator, and the page keeps room under it so nothing hides behind. */
 .bottom-nav {
+  box-sizing: border-box;
+  height: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
   border-top: 1px solid var(--border);
   background: color-mix(in srgb, var(--bg) 96%, transparent);
@@ -621,9 +623,9 @@ dialog::backdrop {
 
 @media (max-width: 39.99rem) {
   .bottom-nav-room {
-    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px));
   }
-  .reader-dock { bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
+  .reader-dock { bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px)); }
   /* Phones keep the top bar to pen, search and settings; these move into More. */
   .phone-hide {
     display: none;
