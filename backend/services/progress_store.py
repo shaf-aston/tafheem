@@ -73,6 +73,15 @@ CREATE TABLE IF NOT EXISTS accounts (
 -- The shelf: everything the page keeps for one account (settings, Grow steps,
 -- favourites), as the page's own key -> text, one JSON object per name. Opaque
 -- here on purpose: the page owns those keys, so a new one needs no change here.
+-- Teams: an account with members is a team. A member may have members of its
+-- own, so a team reads as a tree; add_member refuses anything that would loop.
+CREATE TABLE IF NOT EXISTS teams (
+    team   TEXT NOT NULL,
+    member TEXT NOT NULL,
+    at     TEXT NOT NULL DEFAULT (datetime('now')),
+    PRIMARY KEY (team, member)
+);
+CREATE INDEX IF NOT EXISTS ix_teams_member ON teams (member);
 CREATE TABLE IF NOT EXISTS saved (
     user TEXT PRIMARY KEY,
     data TEXT NOT NULL,
@@ -247,7 +256,7 @@ def account(name: str) -> dict | None:
 
 
 def delete_account(name: str) -> int:
-    """Wipe the answers, the shelf and the username, together. Returns how many answers went.
+    """Wipe the answers, the shelf, the team places and the username, together. Returns how many answers went.
 
     Reports about questions are kept, as the plain wipe keeps them, but no longer named.
     """
@@ -256,6 +265,7 @@ def delete_account(name: str) -> int:
         deleted = db.execute("DELETE FROM attempts WHERE user = ?", (name,)).rowcount
         db.execute("UPDATE feedback SET user = 'local' WHERE user = ?", (name,))
         db.execute("DELETE FROM saved WHERE user = ?", (name,))
+        db.execute("DELETE FROM teams WHERE team = ? OR member = ?", (name, name))
         db.execute("DELETE FROM accounts WHERE name = ?", (name,))
     return int(deleted)
 
@@ -277,19 +287,87 @@ def keep_shelf(user: str, data: dict[str, str]) -> None:
         )
 
 
+def account_names() -> list[str]:
+    """Every username, A to Z."""
+    return [row["name"] for row in _db().execute("SELECT name FROM accounts ORDER BY name")]
+
+
+def learnt(module: str, name: str) -> int:
+    """How many items this name has learnt in `module`: the leaderboard's measure."""
+    return sum(row["known"] for row in summary(module, name))
+
+
 def leaderboard(module: str) -> list[dict]:
     """Every account by words learnt in `module`, most first; ties share a rank.
 
     Replays each account's answers, which is fine at the size this app is.
     """
-    names = [row["name"] for row in _db().execute("SELECT name FROM accounts")]
     rows = sorted(
-        ({"name": name, "learnt": sum(row["known"] for row in summary(module, name))} for name in names),
+        ({"name": name, "learnt": learnt(module, name)} for name in account_names()),
         key=lambda row: (-row["learnt"], row["name"]),
     )
     for row in rows:
         row["rank"] = 1 + sum(other["learnt"] > row["learnt"] for other in rows)
     return rows
+
+
+def members(team: str) -> list[str]:
+    return [row["member"] for row in _db().execute(
+        "SELECT member FROM teams WHERE team = ? ORDER BY member", (team,))]
+
+
+def teams_of(member: str) -> list[str]:
+    """The teams this name is directly in."""
+    return [row["team"] for row in _db().execute(
+        "SELECT team FROM teams WHERE member = ? ORDER BY team", (member,))]
+
+
+def under(team: str) -> set[str]:
+    """Everyone below `team`, at any depth."""
+    found: set[str] = set()
+    todo = [team]
+    while todo:
+        for member in members(todo.pop()):
+            if member not in found:
+                found.add(member)
+                todo.append(member)
+    return found
+
+
+def add_member(team: str, member: str) -> None:
+    """Put `member` in `team`. Raises ValueError for itself or a loop; both must be accounts."""
+    if member == team:
+        raise ValueError("A team cannot be its own member")
+    if team in under(member):
+        raise ValueError(f"{member} is already above you, so that would make a loop")
+    db = _db()
+    with db:
+        db.execute("INSERT OR IGNORE INTO teams (team, member) VALUES (?, ?)", (team, member))
+
+
+def remove_member(team: str, member: str) -> None:
+    db = _db()
+    with db:
+        db.execute("DELETE FROM teams WHERE team = ? AND member = ?", (team, member))
+
+
+def team_tree(team: str, module: str) -> dict:
+    """This name, its progress, and every member below it, each with theirs.
+
+    add_member keeps loops out; `seen` is the second guard, so a bad row can
+    only shorten the tree, never make it endless.
+    """
+    def node(name: str, seen: frozenset) -> dict:
+        row = account(name) or {"answers": 0}
+        below = [m for m in members(name) if m not in seen]
+        return {
+            "name": name,
+            "answers": row["answers"],
+            "learnt": learnt(module, name),
+            "members": [node(m, seen | {m}) for m in below],
+        }
+
+    return node(team, frozenset({team}))
 
 
 def claim_local(user: str) -> int:

@@ -1179,6 +1179,34 @@ class Account(BaseModel):
     answers: int
 
 
+class AccountNames(BaseModel):
+    """Every username, for the beta log-in list."""
+
+    names: list[str]
+
+
+class MemberIn(BaseModel):
+    """A username to put in the asker's team, as typed."""
+
+    member: str
+
+
+class TeamNode(BaseModel):
+    """One person in a team tree, their progress, and who is under them."""
+
+    name: str
+    answers: int
+    learnt: int
+    members: list[TeamNode]
+
+
+class Team(BaseModel):
+    """The asker's own tree, and the teams the asker is in."""
+
+    tree: TeamNode
+    teams: list[str]
+
+
 class LeaderRow(BaseModel):
     name: str
     learnt: int

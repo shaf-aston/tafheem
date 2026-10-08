@@ -152,6 +152,10 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   keys are bare). That one account's keys are its shelf: `lib/shelf.js` pulls it from
   `GET /api/progress/saved` at start-up and log-in and `PUT`s it back a moment after any change,
   so it follows the name to any device. Log-in and log-out reload the page.
+  Teams: any account that adds a member (`POST /api/progress/team`) is a team; `GET /team`
+  returns the tree below it with each person's words learnt and answers (`progress_store.team_tree`,
+  loops refused). While `beta_list_accounts` is on, `GET /accounts` lists every username for the
+  log-in box.
 - `backend/data/nahw_notes/`: the teacher's theory notes, one file per topic, read only by
   `services/nahw_notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as
   `{{role|text}}`; the Notes view in Nahw hides them or turns them into flashcards
