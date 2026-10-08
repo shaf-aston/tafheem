@@ -11,7 +11,7 @@
       "_comment": "Synthetic voice on this app's backend, for words not in the Qur'an.",
       "url": "/api/speak",
       "_version": "Words are kept by the browser for a year. Change this whenever the server's voice changes, or a word already heard plays the old voice.",
-      "version": "fastpitch-5"
+      "version": "fastpitch-6"
     },
     "browser": {
       "_comment": "The device's own voice, the last resort. Varies by phone and may ignore harakat.",
