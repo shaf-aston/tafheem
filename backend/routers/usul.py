@@ -5,10 +5,8 @@ import asyncio
 
 from fastapi import APIRouter, HTTPException, Query
 
-from backend.config import get_settings
 from backend.models.schemas import UsulTerm, UsulTermHadith
 from backend.services.usul import store
-from backend.services.usul.rule import rule
 
 router = APIRouter(prefix="/api/usul", tags=["usul"])
 
@@ -22,8 +20,7 @@ async def list_terms() -> list[UsulTerm]:
 @router.get("/terms/{kind}", response_model=UsulTermHadith)
 async def get_term(kind: str, offset: int = Query(0, ge=0), limit: int = Query(0, ge=0)) -> UsulTermHadith:
     """A page of the hadith carrying this sort of ruling; limit 0 is the configured page, capped at its maximum."""
-    if kind not in rule()["rulings"]["kinds"]:
+    found = await asyncio.to_thread(store.term, kind, offset, limit)
+    if found is None:
         raise HTTPException(status_code=404, detail=f"No sort of ruling {kind}")
-    cfg = get_settings()
-    total, items = await asyncio.to_thread(store.term, kind, offset, min(limit or cfg.usul_term_page, cfg.usul_term_max))
-    return UsulTermHadith(kind=kind, total=total, items=items)
+    return UsulTermHadith(kind=kind, total=found[0], items=found[1])

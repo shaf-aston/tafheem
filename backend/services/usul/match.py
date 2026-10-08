@@ -86,18 +86,17 @@ def forms(row: dict) -> list[tuple[str, ...]]:
 class Names:
     """Whether a unit's chain names a man a hadith's chain names (c2)."""
 
-    _MAX_RUN = 5
-
-    def __init__(self, narrators: Iterable[Sequence[tuple[str, ...]]], min_words: int, rare: int, stop: Iterable[str]):
+    def __init__(self, narrators: Iterable[Sequence[tuple[str, ...]]], min_words: int, rare: int, stop: Iterable[str],
+                 max_run: int):
         """narrators: each narrator's forms. A run of `min_words` name words in common is a shared man; so is one
-        word that no more than `rare` narrators carry."""
-        self.min_words, self.rare, self.stop = min_words, rare, frozenset(names.word(s) for s in stop)
+        word that no more than `rare` narrators carry. Runs are compared up to `max_run` words."""
+        self.min_words, self.rare, self.stop, self.max_run = min_words, rare, frozenset(names.word(s) for s in stop), max_run
         self.carriers: Counter = Counter()
         for narrator_forms in narrators:
             self.carriers.update({w for f in narrator_forms for w in f if w not in self.stop})
 
     def _runs(self, words: Sequence[str]) -> set[tuple[str, ...]]:
-        return {tuple(words[i:i + n]) for n in range(1, self._MAX_RUN + 1) for i in range(len(words) - n + 1)}
+        return {tuple(words[i:i + n]) for n in range(1, self.max_run + 1) for i in range(len(words) - n + 1)}
 
     def evidence(self, unit: Sequence[str], ours: Iterable[Sequence[str]]) -> tuple[int, int]:
         """(the most name words one run has in common between the unit's chain and `ours` (name forms), the fewest

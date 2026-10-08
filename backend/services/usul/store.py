@@ -6,7 +6,7 @@ weak points, with no notes and no scale.
 """
 from __future__ import annotations
 
-from backend.config import data_path
+from backend.config import data_path, get_settings
 from backend.services.readonly_db import ReadOnlyDb
 from backend.services.usul.books import page_label
 from backend.services.usul.rule import rule
@@ -92,20 +92,24 @@ def links(collection: str, book: int, chains: dict[str, list[list[int]]]) -> dic
 
 
 def rulings(collection: str, book: int) -> dict[str, list[dict]]:
-    """{"1620a": [{kind, label, scholar, quote, chapter, source, page}, ...]}: what a classical ruling book says of each
-    hadith of a book of ours, in the order of usul.json `rulings.kinds`. The quote is the scholar's own sentence."""
+    """{"1620a": [{kind, label, quote_label, scholar, quote, asked, chapter, source, page}, ...]}: what a classical ruling
+    book says of each hadith of a book of ours, in the order of usul.json `rulings.kinds`. The quote is the scholar's own
+    sentence. A row of a kind the config no longer names is left out."""
     db = _db()
     found: dict[str, list[dict]] = {}
     if db:
         kinds = rule()["rulings"]["kinds"]
-        for number, part, kind, scholar, quote, chapter, source, page in db.execute(
-            "SELECT number, part, kind, scholar, quote, chapter, book, page FROM ruling "
+        for number, part, kind, scholar, quote, asked, chapter, source, page in db.execute(
+            "SELECT number, part, kind, scholar, quote, asked, chapter, book, page FROM ruling "
             "WHERE collection = ? AND hbook = ? ORDER BY number, part, page", (collection, book)
         ):
-            found.setdefault(f"{number}{part}", []).append({
-                "kind": kind, "label": kinds[kind]["label"], "scholar": scholar, "quote": quote, "chapter": chapter, "source": _source(source), "page": page})
+            if kind in kinds:
+                found.setdefault(f"{number}{part}", []).append({
+                    "kind": kind, "label": kinds[kind]["label"], "quote_label": kinds[kind].get("quote_label", ""),
+                    "scholar": scholar, "quote": quote, "asked": asked, "chapter": chapter, "source": _source(source), "page": page})
+        order = list(kinds)
         for rows in found.values():
-            rows.sort(key=lambda row: list(kinds).index(row["kind"]))
+            rows.sort(key=lambda row: order.index(row["kind"]))
     return found
 
 
@@ -121,11 +125,16 @@ def terms() -> list[dict]:
             for kind, row in rule()["rulings"]["kinds"].items() if kind in count]
 
 
-def term(kind: str, offset: int, limit: int) -> tuple[int, list[dict]]:
-    """(how many hadith carry a ruling of this kind, a page of them as {collection, book, number, part})."""
+def term(kind: str, offset: int, limit: int) -> tuple[int, list[dict]] | None:
+    """(how many hadith carry a ruling of this kind, a page of them as {collection, book, number, part}), or None where
+    the config names no such kind. A limit of 0 is the configured page; none goes past the configured maximum."""
+    if kind not in rule()["rulings"]["kinds"]:
+        return None
     db = _db()
     if not db:
         return 0, []
+    settings = get_settings()
+    limit = min(limit or settings.usul_term_page, settings.usul_term_max)
     total = db.execute("SELECT COUNT(*) FROM (SELECT DISTINCT collection, number, part FROM ruling WHERE kind = ?)",
                        (kind,)).fetchone()[0]
     return total, [{"collection": collection, "book": book, "number": number, "part": part} for collection, book, number, part in db.execute(

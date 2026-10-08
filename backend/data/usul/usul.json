@@ -44,7 +44,7 @@
     },
     "mawduat": {
       "path": "0600AH/master/data/0597IbnJawzi/0597IbnJawzi.Mawducat/0597IbnJawzi.Mawducat.Shamela0000882-ara1",
-      "entry": "^# (?P<text>باب .*)$", "stop": "آخر كتاب الموضوعات"
+      "entry": "^# (?P<text>باب(?: .*)?)$", "stop": "آخر كتاب الموضوعات"
     }
   },
   "taqrib": {
@@ -202,15 +202,19 @@
   "rulings": {
     "_about": [
       "Rulings: what a classical ruling book says of one hadith, quoted and never inferred. Read by services/usul/ruling.py (what a unit says), services/usul/match.py (which of our hadith it is) and scripts/build_usul.py.",
-      "shared.strip: the editors' footnote numbers, taken out of every quote. stop: where a sentence ends. qualifier: a word that opens the next sentence and takes it back in (إلا, لكن ...), so a quote goes on through it.",
-      "kinds: one per book, in the book's own terms. label and say are what the term list prints. The other keys are the patterns that cut the ruling out of a unit (see ruling.py).",
+      "shared.strip: the editors' footnote numbers, taken out of every quote. strip also takes the editor's lone 0 between sentences (Ibn Shahin). stop: where a sentence ends; soft_stop (!) ends one only at a paragraph end or before another speaker. speaker_join and title_join: how two scholars' names and a chapter and its title are written together. dangling: a last word no sentence ends on (a relative, conjunction, preposition, colon): a remark ending so runs on into the next unit and is cut back to its last full stop. qualifier: a word that opens the next sentence and takes it back in (إلا, لكن ...), so a quote goes on through it.",
+      "kinds: one per book, in the book's own terms. label and say are what the term list prints; quote_label what the sheet calls the quote; asked: keep the question before each answer. ordinal: the grammar of Arabic ordinals, built into `another` where it says {ordinal}. chain_start: the first word of a chain, which ends a bab's title (a روى after ما is part of the title). The other keys are the patterns that cut the ruling out of a unit (see ruling.py).",
       "match: set on scratchpad/usul2-tune.md, hand-labelled pairs kept apart from the sample that was reviewed. df_max: a 3-gram in more of our hadith than this is too common to count. floor: the least summed rarity of shared 3-grams for a match. whole_floor and whole: a short matn may match on this lower score when the hadith holds this share of all the rarity the unit's matn could score. tie_ratio: another hadith within this share of the best score also gets the ruling (the same text in two collections).",
-      "match.min_name_words: the fewest words of a narrator's name that must agree for a name in the unit's chain to be one in ours. rare_name: or one shared name word that no more than this many narrators carry."
+      "match.min_name_words: the fewest words of a narrator's name that must agree for a name in the unit's chain to be one in ours. rare_name: or one shared name word that no more than this many narrators carry. name_run: the longest run of name words compared."
     ],
     "shared": {
-      "strip": "\\s*\\((?:\\d+|\\*)\\)",
-      "stop": "[.؟!](?=\\s|$)",
+      "strip": "\\s*\\((?:\\d+|\\*)\\)|\\s+0(?=\\s|$)",
+      "stop": "[.؟](?=\\s|$)",
+      "soft_stop": "!",
       "speaker": "(?:و|ف)?قال(?![ء-ي])",
+      "speaker_join": " و",
+      "title_join": "، ",
+      "dangling": "(?:[:،]|(?<![ء-ي])(?:ما|الذي|التي|الذين|أن|إن|أنه|لأن|لأنه|و|ف|ثم|أو|في|من|عن|على|إلى|حتى|إذا|لو|كما|حيث|مما|بما|فيما)(?![ء-ي]))\\s*$",
       "matn_quote": ["[«\"“]", "[»\"”]"],
       "qualifier": "^\\s*(?:و|ف)?(?:إلا|لكن|غير أن|بيد أن|سوى|على أن|إنما)(?![ء-ي])"
     },
@@ -219,19 +223,21 @@
         "book": "shahin", "numbered": true,
         "scholar": "ابن شاهين",
         "label": "In a book of abrogation",
-        "say": "Ibn Shahin placed this hadith in his book of abrogating and abrogated hadith, under the chapter heading shown, and sometimes added a remark.",
-        "remark": "[»\\\"]\\s*(?:0\\s+)?((?:و?قال الشيخ|و?هذا حديث|و?هذا الحديث)(?![ء-ي]).*)$",
+        "say": "Ibn Shahin placed this hadith in his book of abrogating and abrogated hadith, under the chapter heading shown. A remark is his, made at this point in the chapter; it may speak of other hadith there.",
+        "quote_label": "His remark at this point in the chapter",
+        "remark": "[»\\\"]\\s*((?:و?قال الشيخ|و?هذا حديث|و?هذا الحديث)(?![ء-ي]).*)$",
         "another": "^(?:و?(?:حدثنا|أخبرنا|حدثني|أخبرني|نا|أنا))(?![ء-ي])"
       },
       "ilal": {
         "book": "ilal_ah", "numbered": true,
         "scholar": "",
+        "asked": true,
         "label": "Asked of Abu Hatim or Abu Zur'a",
         "say": "Ibn Abi Hatim asked his father Abu Hatim, or Abu Zur'a, about this hadith. The answer is quoted.",
-        "question": "^\\[?(?:(?:أخبرنا|أنا) أبو محمد[^:؛]*[:؛]\\s*قال\\s*:?\\s*)?(?:(?:و|ف)?(?:سألت|سئل)\\]?|و?سمعت(?= أبي| أبا))\\s*(?P<who>(?:و?(?:أبي|أبا|أبو|زرعة|حاتم)\\s*)+)(?!\\s*يقول)",
-        "answer": "(?:^|\\s)(?:و|ف)?(?:قالا?|سمعت)\\s*(?P<who>(?:و?(?:أبي|أبا|أبو|زرعة|حاتم)\\s*)+)(?:جميعا\\s*)?(?:يقول\\s*)?:(?!\\s*(?:حدثنا|حدثني|أخبرنا|أخبرني))",
-        "bare_answer": "؟\\s*(?P<open>(?:و|ف)?(?P<dual>قالا?))\\s*:",
-        "followup": "(?:^|\\s)(?:و|ف)?(?:قلت|قلنا|قيل|ذكرت)\\s+ل\\s*(?P<who>(?:و?(?:أبي|أبا|أبو|زرعة|حاتم)\\s*)+)",
+        "question": "^\\[?(?:(?:أخبرنا|أنا) أبو محمد[^:؛]*[:؛]\\s*قال\\s*:?\\s*)?(?:(?:و|ف)?(?:سألت|سئل)\\]?|و?سمعت(?= أبي| أبا))\\s*(?P<who>(?:و?(?:أبي|أبا|أبو|زرعة|حاتم)\\s*)+)(?!\\s*يقول)(?P<lead>(?:\\s*(?:و?ذكر|و?سئل|عن|(?:ال)?حديث(?:ا|ين)?|أحاديث|هذا|الذي|رواه(?:ما)?|رواها|رووه)(?![ء-ي]))*)",
+        "answer": "(?:^|\\s)(?:و|ف)?(?:قالا?|سمعت)\\s*(?P<who>(?:و?(?:أبي|أبا|أبو|زرعة|حاتم)\\s*)+)(?:جميعا\\s*)?(?:يقول\\s*)?:(?!\\s*و?(?:حدثنا|حدثني|أخبرنا|أخبرني))",
+        "bare_answer": "؟\\s*(?P<open>(?:و|ف)?(?:(?P<dual>قالا)|قال))\\s*:",
+        "followup": "(?:^|(?<=\\s))(?:و|ف)?(?:قلت|قلنا|قيل|ذكرت)\\s+ل\\s*(?P<who>(?:و?(?:أبي|أبا|أبو|زرعة|حاتم)\\s*)+)",
         "author": "^(?:قال أبو محمد|(?:أخبرنا|أنا) أبو محمد)",
         "speakers": [
           [
@@ -255,8 +261,16 @@
         "say": "Ibn al-Jawzi listed this hadith in his book of fabricated hadith. The sentence quoted judges it, by him or by a critic he cites.",
         "verdict": "(?:^|[\\\"»”]\\s*|[.؟]\\s+|\\s(?=و?قال\\s+[ء-ي ]{2,30}?\\s*:\\s))((?:و?قال\\s+(?P<who>[ء-ي ]{2,30}?)\\s*:?\\s+)?(?:(?:هذا|وهذا)\\s+(?:حديث|الحديث|خبر|الخبر|موضوع|باطل|لا\\s+يصح|لا\\s+يثبت|ليس|منكر|إسناد|غير\\s+صحيح|من\\s+عمل)(?![ء-ي])|لا\\s+أصل\\s+(?:له|لهذا)(?![ء-ي])|لا\\s+(?:يصح|يثبت)\\s+هذا\\s+(?:الحديث|الخبر)(?![ء-ي])).*)$",
         "together": "(?:^|[\\\"»”]\\s*|[.؟]\\s+)((?:هذان\\s+حديثان|هذه\\s+ال[أا]حاديث|ليس\\s+في\\s+هذه\\s+ال[أا]حاديث\\s+شئ)(?![ء-ي]).*)$",
-        "another": "^(?:حديث آخر|الحديث (?:الثاني|الثالث|الرابع|الخامس)|وأما حديث|فأما حديث|أما حديث)",
-        "chain_start": "(?:أنبأنا|أخبرنا|حدثنا|أخبرني|حدثني|روى)(?![ء-ي])"
+        "another": "^(?:حديث آخر|الحديث\\s+{ordinal}|{ordinal}\\s*:|وأما حديث|فأما حديث|أما حديث)",
+        "ordinal": {
+          "article": "ال",
+          "ones": ["أول", "ثاني", "ثالث", "رابع", "خامس", "سادس", "سابع", "ثامن", "تاسع", "عاشر"],
+          "teen_ones": ["حادي", "ثاني", "ثالث", "رابع", "خامس", "سادس", "سابع", "ثامن", "تاسع"],
+          "teen": "عشر",
+          "and": "و",
+          "tens": ["عشرون", "ثلاثون", "أربعون"]
+        },
+        "chain_start": "(?:أنبأنا|أخبرنا|حدثنا|أخبرني|حدثني|(?<!ما )روى)(?![ء-ي])"
       }
     },
     "match": {
@@ -268,7 +282,8 @@
       "tie_ratio": 0.9,
       "min_name_words": 2,
       "rare_name": 300,
-      "name_stop": ["بن", "ابن"]
+      "name_stop": ["بن", "ابن"],
+      "name_run": 5
     }
   },
   "sources": {

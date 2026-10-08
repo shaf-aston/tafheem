@@ -58,8 +58,8 @@ CREATE TABLE link (
 CREATE TABLE ruling (
     collection TEXT NOT NULL, hbook INTEGER NOT NULL, number INTEGER NOT NULL, part TEXT NOT NULL, book TEXT NOT NULL,
     kind TEXT NOT NULL,
-    scholar TEXT NOT NULL, quote TEXT NOT NULL, chapter TEXT NOT NULL, page TEXT NOT NULL, unit INTEGER NOT NULL,
-    score REAL NOT NULL,
+    scholar TEXT NOT NULL, quote TEXT NOT NULL, asked TEXT NOT NULL, chapter TEXT NOT NULL, page TEXT NOT NULL,
+    unit INTEGER NOT NULL, score REAL NOT NULL,
     PRIMARY KEY (collection, number, part, book, kind, scholar, quote)
 ) WITHOUT ROWID;
 CREATE INDEX ruling_by_kind ON ruling (kind, collection, number, part);
@@ -93,6 +93,21 @@ def add_notes(conn: sqlite3.Connection, rijal: sqlite3.Connection, found: dict, 
             conn.execute("INSERT OR IGNORE INTO note VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                          (collection, book, number, part, start, who, level, kind))
     return conn.execute("SELECT COUNT(*) FROM note").fetchone()[0]
+
+
+def guard_change(target: Path, table: str, now: int, ratio: float) -> None:
+    """Stop the build when `table` of the built file `target` would change by more than `ratio` of its rows."""
+    if not target.exists():
+        return
+    before = sqlite3.connect(f"file:{target}?mode=ro", uri=True)
+    try:
+        was = before.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+    except sqlite3.OperationalError:   # a file built before this table existed
+        was = 0
+    before.close()
+    if was and abs(now - was) / was > ratio:
+        raise SystemExit(f"{table} rows went {was:,} to {now:,}, more than {ratio:.0%}. Old file kept; "
+                         "delete it to accept the new count.")
 
 
 def read_books(cfg: dict) -> dict[str, list[books.Entry]]:
@@ -229,7 +244,7 @@ def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], h
     index = match.Index({key: match.tokens(chain.chain_of(arabic)[1]) for key, arabic, _ in hadith}, knobs["gram"], wanted)
     book_of = {key: number for key, _, number in hadith}
     men = match.Names([f for forms in narrators_of.values() for f in forms], knobs["min_name_words"],
-                      knobs["rare_name"], knobs["name_stop"])
+                      knobs["rare_name"], knobs["name_stop"], knobs["name_run"])
     fate: dict[str, Counter] = {book: Counter() for book in units}
     for kind, book, entry, r, unit_names, words in todo:
         chosen, how = match.choose(
@@ -239,9 +254,9 @@ def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], h
         fate[book]["tied"] += len(chosen) > 1
         where = entry.where(r.at) if rl["kinds"][kind]["numbered"] else books.page_label(entry.page_at(r.at))
         for (collection, number, part), score in chosen:
-            conn.execute("INSERT OR IGNORE INTO ruling VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            conn.execute("INSERT OR IGNORE INTO ruling VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                          (collection, book_of[collection, number, part], number, part, book, kind, r.scholar, r.quote,
-                          r.chapter, where, entry.n, round(score, 1)))
+                          r.asked, r.chapter, where, entry.n, round(score, 1)))
     conn.executemany("INSERT INTO gap VALUES ('ruling_unit', ?, ?)",
                      [(f"{book}: {why}", n) for (book, why), n in unread.items() if n])
     conn.executemany("INSERT INTO gap VALUES ('ruling_no_matn', ?, ?)", list(thin.items()))
@@ -359,13 +374,7 @@ def build() -> None:
                           for who, (level, terms, kind, grade) in found.items()])
         conn.executemany("INSERT INTO gap VALUES (?, ?, ?)", [(what, text, n) for (what, text), n in gaps.items()])
         notes = add_notes(conn, rijal, found, cfg["weak_from"])
-        if target.exists():
-            before = sqlite3.connect(f"file:{target}?mode=ro", uri=True)
-            was = before.execute("SELECT COUNT(*) FROM note").fetchone()[0]
-            before.close()
-            if was and abs(notes - was) / was > cfg["max_change_ratio"]:
-                raise SystemExit(f"notes went {was:,} to {notes:,}, more than {cfg['max_change_ratio']:.0%}. Old file kept; "
-                                 "delete it to accept the new count.")
+        guard_change(target, "note", notes, cfg["max_change_ratio"])
 
         pairs_by: dict[tuple[int, int], list] = {}
         for p in pair_list:
@@ -377,6 +386,7 @@ def build() -> None:
         ruling_report = []
         if any(entries[kc["book"]] for kc in cfg["rulings"]["kinds"].values()):
             ruling_report = add_rulings(conn, entries, our_hadith(), narrators_by_hadith(rijal, rows), cfg)
+            guard_change(target, "ruling", conn.execute("SELECT COUNT(*) FROM ruling").fetchone()[0], cfg["max_change_ratio"])
 
         # What the page counts of him in our books.
         weak: dict[int, set] = {}

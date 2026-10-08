@@ -26,4 +26,13 @@ describe('ScholarRulings', () => {
     expect(html).toContain('ذكر زيارة القبور')
     expect(html).toContain('Ibn Shahin, no. 5')
   })
+
+  it('shows the question above an Ilal answer and names a remark as made at that point in the chapter', () => {
+    const asked = renderToStaticMarkup(<ScholarRulings rulings={[{ ...ilal, asked: 'سألت أبي عن حديث رواه سعيد؟' }]} />)
+    expect(asked).toContain('The question')
+    expect(asked.indexOf('سألت أبي')).toBeLessThan(asked.indexOf('قال أبي'))
+    const remark = renderToStaticMarkup(<ScholarRulings rulings={[{ ...chapterOnly, quote: 'قال الشيخ: هذا ناسخ للأول.', quote_label: 'His remark at this point in the chapter' }]} />)
+    expect(remark).toContain('His remark at this point in the chapter')
+    expect(renderToStaticMarkup(<ScholarRulings rulings={[chapterOnly]} />)).not.toContain('The question')
+  })
 })

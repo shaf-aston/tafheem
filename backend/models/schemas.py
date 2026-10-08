@@ -1471,11 +1471,14 @@ class WeakLinkRules(BaseModel):
 
 class Ruling(BaseModel):
     """What a classical ruling book says of a hadith, quoted: `quote` is the scholar's own sentence (empty for a chapter
-    heading alone, which `chapter` then holds), `page` where the book prints it. Matched by text and chain, so possible."""
+    heading alone, which `chapter` then holds), `quote_label` what to call it where the book's remark needs
+    saying, `asked` the question an 'Ilal answer answers, `page` where the book prints it. Matched by text and chain, so possible."""
     kind: str
     label: str
+    quote_label: str = ""
     scholar: str = ""
     quote: str = ""
+    asked: str = ""
     chapter: str = ""
     source: str
     page: str = ""

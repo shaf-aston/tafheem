@@ -26,6 +26,7 @@ function TermHadith({ kind, accent, onOpen }) {
     <div className="space-y-3">
       {isPending && <AnalyzerSkeleton />}
       {isError && <ErrorAlert title="Could not load these hadith" error={error} fallback="The hadith could not be reached." onRetry={refetch} />}
+      {!isPending && !isError && !items.length && <EmptyState>No hadith carry this ruling.</EmptyState>}
       {items.length > 0 && (
         <>
           <ChipRow>

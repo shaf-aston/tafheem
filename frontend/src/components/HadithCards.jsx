@@ -49,6 +49,8 @@ export default function HadithCards({ items, accent, collection, columns = false
   const drawing = (h) => {
     const ref = `${h.number}${h.part ?? ''}`
     const { notes, links: ties, rulings, rules, scale } = weakOf(h, ref)
+    // A hadith with no chain to draw still has what scholars said of it.
+    if (!chainOf(h.arabic).chain) return { links: [], scale, rulings, weak: [], linkPoints: [], chainless: true }
     const links = drawnChain(h.arabic, namesOf(h)[ref] ?? [], notes, ties)
     return { links, scale, rulings, weak: weakPoints(links, scale), linkPoints: weakLinks(links, rules) }
   }
@@ -61,7 +63,7 @@ export default function HadithCards({ items, accent, collection, columns = false
           const ref = `${h.number}${h.part ?? ''}`
           const names = namesOf(h)
           const found = weakOf(h, ref)
-          const { weak, linkPoints, rulings } = found.notes.length + found.links.length + found.rulings.length && chainOf(h.arabic).chain ? drawing(h) : { weak: [], linkPoints: [], rulings: [] }
+          const { weak, linkPoints, rulings } = found.notes.length + found.links.length + found.rulings.length ? drawing(h) : { weak: [], linkPoints: [], rulings: [] }
           const points = weak.length + linkPoints.length
           // Narrations of this number with chains placed: the same digits, then letters only.
           const kin = h.part ? Object.keys(names).filter((k) => k.startsWith(`${h.number}`) && /^[a-z]+$/.test(k.slice(`${h.number}`.length))).length : 0
