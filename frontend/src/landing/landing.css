@@ -55,8 +55,6 @@ body { margin: 0; overflow-x: hidden; }
   transition: opacity var(--slow) var(--smooth), transform var(--slow) var(--smooth);
 }
 .landing-page .reveal.in { opacity: 1; transform: translateY(0); }
-.landing-page.js .mask-word { overflow: hidden; display: inline-block; vertical-align: top; }
-.landing-page .mask-word span { display: inline-block; }
 /* The one reduced-motion block: nothing animates or transitions, and the
    things that start hidden show at once. */
 @media (prefers-reduced-motion: reduce) {

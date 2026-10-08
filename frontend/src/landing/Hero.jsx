@@ -91,9 +91,9 @@ export default function Hero() {
         <div>
           <p className="eyebrow label">Tafheem</p>
           <h1 className="headline">
-            <span className="mask-word"><span>Read the Qur&apos;an.</span></span><br />
-            <span className="mask-word"><span className="accent">Understand</span></span><br />
-            <span className="mask-word"><span>every word.</span></span>
+            Read the Qur&apos;an.<br />
+            <span className="accent">Understand</span><br />
+            every word.
           </h1>
           <div className="cta-row">
             <a href={links.tool} className="cta">See it in action</a>
