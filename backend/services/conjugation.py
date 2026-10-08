@@ -324,8 +324,10 @@ def row_cells(radicals: str, form: str, row: int) -> tuple[tuple[str, str], ...]
     if radicals[-2] == radicals[-1]:
         for also in rule["pause-also"]:
             for column, word in _row(Shaper(radicals, form, also["reading"]), shape, row).items():
-                # a ضمة on the merged letter only where the letter before it carries one
-                allowed = "after" not in also or also["after"] in marked_letters(printed[column])[-2][1]
+                # a ضمة on the merged letter only where the letter before it carries one; a word shaped down to
+                # one letter (an unattested root like شأأ) has none before it
+                letters = marked_letters(printed[column])
+                allowed = "after" not in also or (len(letters) > 1 and also["after"] in letters[-2][1])
                 if column in rule["pause-also-slots"] and word != printed[column] and allowed:
                     found.append((column, word))
     return tuple(found)
