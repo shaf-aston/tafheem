@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { api } from '../api'
 import {
-  addMember, deleteAccount, fetchAccount, fetchAccountNames, fetchLeaderboard, fetchReviewItems, fetchSummary, forgetProgress, leaveFeedback, logIn,
+  addMember, deleteAccount, fetchAccount, fetchAccountNames, fetchLeaderboard, fetchReviewItems, fetchSummary, fetchTeam, forgetProgress, leaveFeedback, logIn,
   recordAttempt, removeMember, signUp,
 } from './progress'
 
@@ -59,37 +59,59 @@ describe('reading it back', () => {
   it('passes the module name as a parameter, so it is escaped', async () => {
     const getting = vi.spyOn(api, 'get').mockResolvedValue({ data: { items: [] } })
     await fetchReviewItems('a b&c')
-    expect(getting).toHaveBeenCalledWith('/progress/review', { params: { module: 'a b&c' }, headers: {} })
+    expect(getting).toHaveBeenCalledWith('/progress/review', { params: { module: 'a b&c' } })
   })
 })
 
 describe('whose record', () => {
-  afterEach(() => vi.unstubAllGlobals())
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    delete api.defaults.adapter
+  })
+
+  // Through axios itself, not a spy on api.get: the name is added on the way
+  // out (api.js), so only a real request shows it.
+  const sending = () => {
+    const sent = []
+    api.defaults.adapter = async (config) => {
+      sent.push(config)
+      return { data: { items: [], names: [] }, status: 200, statusText: 'OK', headers: {}, config }
+    }
+    return sent
+  }
 
   it('every call carries the saved name', async () => {
     vi.stubGlobal('localStorage', { getItem: (k) => (k === 'profile' ? 'amina' : null) })
-    const getting = vi.spyOn(api, 'get').mockResolvedValue({ data: { items: [] } })
-    const posting = vi.spyOn(api, 'post').mockResolvedValue({ status: 200, data: { name: 'amina', moved: 0 } })
-    const deleting = vi.spyOn(api, 'delete').mockResolvedValue({ status: 200 })
+    const sent = sending()
     await fetchSummary('quiz')
     await fetchReviewItems('quiz')
     await recordAttempt({ module: 'quiz', item: 'train', correct: true })
     await leaveFeedback({ module: 'quiz', message: 'x' })
     await forgetProgress()
-    await signUp('amina', false)
-    await logIn('amina')
     await fetchAccount()
     await fetchLeaderboard('quiz')
     await deleteAccount()
-    const sent = { headers: { 'X-Tafheem-Profile': 'amina' } }
-    for (const call of getting.mock.calls) expect(call[1]).toMatchObject(sent)
-    for (const call of posting.mock.calls) expect(call[2]).toEqual(sent)
-    for (const call of deleting.mock.calls) expect(call[1]).toEqual(sent)
-    expect(getting).toHaveBeenCalledTimes(4)
-    expect(posting).toHaveBeenCalledTimes(4)
-    expect(posting.mock.calls[2]).toEqual(['/progress/signup', { keep: false }, sent])
-    expect(posting.mock.calls[3]).toEqual(['/progress/login', {}, sent])
-    expect(deleting.mock.calls[1][0]).toBe('/progress/account')
+    await fetchTeam('quiz')
+    await addMember('bilal', 'quiz')
+    await removeMember('amina', 'bilal', 'quiz')
+    expect(sent).toHaveLength(11)
+    for (const config of sent) expect(config.headers.get('X-Tafheem-Profile')).toBe('amina')
+  })
+
+  it('sign-up and log-in send the name typed, not the one saved', async () => {
+    vi.stubGlobal('localStorage', { getItem: (k) => (k === 'profile' ? 'amina' : null) })
+    const sent = sending()
+    await signUp('bilal', false)
+    await logIn('bilal')
+    expect(sent.map((config) => config.headers.get('X-Tafheem-Profile'))).toEqual(['bilal', 'bilal'])
+    expect(JSON.parse(sent[0].data)).toEqual({ keep: false })
+  })
+
+  it('a guest sends no name', async () => {
+    vi.stubGlobal('localStorage', { getItem: () => null })
+    const sent = sending()
+    await fetchSummary('quiz')
+    expect(sent[0].headers.has('X-Tafheem-Profile')).toBe(false)
   })
 })
 

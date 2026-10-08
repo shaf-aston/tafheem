@@ -143,7 +143,7 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
 - `backend/data/progress.db`: learners' answers, and every Nahw practice question as it was
   generated (from `data/practice/templates.json`, filed under its badge's source; `GET /api/practice/kept`). The
   one database written while running, opened only by `services/progress_store.py`. Rows are
-  filed under the learner's username (no password): the page sends it in the `X-Tafheem-Profile`
+  filed under the learner's username (no password): the page sends it on every request (`api.js` interceptor) in the `X-Tafheem-Profile`
   header, `identity.py` `current_user()` cleans it (rules only in `services/profile.py`) and
   refuses a name with no account. `POST /api/progress/signup` and `/login` return the kept spelling
   (sign-up can move the guest `local` rows onto it); `/account` and `/leaderboard` feed the profile.
