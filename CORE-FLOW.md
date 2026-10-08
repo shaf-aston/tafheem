@@ -144,9 +144,14 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   generated (from `data/practice/templates.json`, filed under its badge's source; `GET /api/practice/kept`). The
   one database written while running, opened only by `services/progress_store.py`. Rows are
   filed under the learner's username (no password): the page sends it in the `X-Tafheem-Profile`
-  header, `routers/progress.py` `current_user()` cleans it (rules only in `services/profile.py`) and
+  header, `identity.py` `current_user()` cleans it (rules only in `services/profile.py`) and
   refuses a name with no account. `POST /api/progress/signup` and `/login` return the kept spelling
   (sign-up can move the guest `local` rows onto it); `/account` and `/leaderboard` feed the profile.
+  Everything else a person keeps (settings, Grow steps, favourites, history) is in the browser,
+  filed by `frontend/src/lib/stored.js` under the logged-in name (`@amina/settings`; the guest's
+  keys are bare). That one account's keys are its shelf: `lib/shelf.js` pulls it from
+  `GET /api/progress/saved` at start-up and log-in and `PUT`s it back a moment after any change,
+  so it follows the name to any device. Log-in and log-out reload the page.
 - `backend/data/nahw_notes/`: the teacher's theory notes, one file per topic, read only by
   `services/nahw_notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as
   `{{role|text}}`; the Notes view in Nahw hides them or turns them into flashcards

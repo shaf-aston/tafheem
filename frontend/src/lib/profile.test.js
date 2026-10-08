@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getProfile, logOut, profileHeaders, readsProgress, setProfile } from './profile'
+import { getProfile, logOut, profileHeaders, setProfile } from './profile'
 
 describe('profileHeaders', () => {
   beforeEach(() => {
@@ -25,11 +25,6 @@ describe('profileHeaders', () => {
   it('sends a name being tried before it is kept', () => {
     expect(profileHeaders(' Amina ')).toEqual({ 'X-Tafheem-Profile': '%20Amina%20' })
   })
-})
-
-it('refetches only queries that read progress', () => {
-  expect(readsProgress({ queryKey: ['quiz-review', 'en'] })).toBe(true)
-  expect(readsProgress({ queryKey: ['quran-surah', 1] })).toBe(false)
 })
 
 it('logging out goes back to the guest record', () => {

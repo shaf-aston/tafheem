@@ -10,9 +10,9 @@ is where the "what do I keep getting wrong" reading is made.
 """
 from __future__ import annotations
 
-from urllib.parse import unquote
+import json
 
-from fastapi import APIRouter, Depends, Header, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
 from backend.models.schemas import (
@@ -27,42 +27,18 @@ from backend.models.schemas import (
     ProfileSaved,
     ProgressSummary,
     ReviewList,
+    Shelf,
 )
+from backend.identity import GUEST, NAMED, TYPED, USER
 from backend.services import progress_store
-from backend.services.profile import clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
-# Who is answering: the username the page sends, percent-encoded because a
-# header cannot carry Arabic. Sign-up and log-in are by username only, no
-# password; that is agreed. No header is the shared guest record.
-UNNAMED = "local"
-
-
-def typed_name(x_tafheem_profile: str | None = Header(None)) -> str:
-    """The cleaned name from the header, or the guest record when there is none."""
-    if x_tafheem_profile is None:
-        return UNNAMED
-    try:
-        return clean_name(unquote(x_tafheem_profile))
-    except ValueError as error:
-        raise HTTPException(status_code=422, detail=str(error)) from None
-
-
-def current_user(name: str = Depends(typed_name)) -> str:
-    """`typed_name`, refused unless it was signed up, so a deleted account files nothing."""
-    if name != UNNAMED and not progress_store.has_account(name):
-        raise HTTPException(status_code=401, detail="Log in again: no account with that username")
-    return name
-
-
-_USER = Depends(current_user)
-_TYPED = Depends(typed_name)
 _MODULE = Query("quiz", min_length=1, max_length=32, description="Which panel is asking")
 
 
 @router.post("/attempts", response_model=AttemptSaved)
-async def record_attempt(attempt: AttemptIn, user: str = _USER) -> AttemptSaved:
+async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
     """File one answer, right or wrong."""
     row_id = progress_store.record(
         module=attempt.module,
@@ -76,7 +52,7 @@ async def record_attempt(attempt: AttemptIn, user: str = _USER) -> AttemptSaved:
 
 
 @router.post("/feedback", response_model=AttemptSaved)
-async def leave_feedback(note: FeedbackIn, user: str = _USER) -> AttemptSaved:
+async def leave_feedback(note: FeedbackIn, user: str = USER) -> AttemptSaved:
     """File a report about a question that looks wrong."""
     message = note.message.strip()
     if not message:
@@ -87,13 +63,13 @@ async def leave_feedback(note: FeedbackIn, user: str = _USER) -> AttemptSaved:
 
 
 @router.delete("", response_model=Forgotten)
-async def forget_progress(user: str = _USER) -> Forgotten:
-    """Delete every answer this name has given. The Settings wipe calls it."""
+async def forget_progress(user: str = USER) -> Forgotten:
+    """Delete every answer and the shelf of this name. The Settings wipe calls it."""
     return Forgotten(deleted=progress_store.forget(user))
 
 
 @router.get("/summary", response_model=ProgressSummary)
-def get_summary(module: str = _MODULE, user: str = _USER) -> ProgressSummary:
+def get_summary(module: str = _MODULE, user: str = USER) -> ProgressSummary:
     """Every item answered in this module, with its record and whether it is due or known."""
     return ProgressSummary(
         module=module,
@@ -114,54 +90,68 @@ def get_summary(module: str = _MODULE, user: str = _USER) -> ProgressSummary:
 
 
 @router.get("/review", response_model=ReviewList)
-def get_review(module: str = _MODULE, user: str = _USER) -> ReviewList:
+def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
     """Items due for review now, earliest first."""
     return ReviewList(module=module, items=progress_store.review_items(module, user))
 
 
 @router.post("/signup", response_model=ProfileSaved)
-async def sign_up(body: ProfileIn, user: str = _TYPED) -> ProfileSaved:
+async def sign_up(body: ProfileIn, user: str = TYPED) -> ProfileSaved:
     """Take a free username and hand back its one spelling, which the page keeps.
 
     `keep` moves this device's unnamed answers onto it.
     """
-    _named(user)
+    _typed_a_name(user)
     if not progress_store.sign_up(user):
         raise HTTPException(status_code=409, detail="That username is taken")
     return ProfileSaved(name=user, moved=progress_store.claim_local(user) if body.keep else 0)
 
 
 @router.post("/login", response_model=ProfileSaved)
-async def log_in(user: str = _TYPED) -> ProfileSaved:
+async def log_in(user: str = TYPED) -> ProfileSaved:
     """Check a username was signed up and hand back its one spelling."""
-    _named(user)
+    _typed_a_name(user)
     if not progress_store.has_account(user):
         raise HTTPException(status_code=404, detail="No account with that username")
     return ProfileSaved(name=user, moved=0)
 
 
 @router.get("/account", response_model=Account)
-def get_account(user: str = _USER) -> Account:
+def get_account(user: str = NAMED) -> Account:
     """The profile page's facts about this username."""
-    _named(user)
     return Account(**progress_store.account(user))
 
 
 @router.delete("/account", response_model=Forgotten)
-async def delete_account(user: str = _USER) -> Forgotten:
-    """Delete this username and every answer it gave; the name is free again."""
-    _named(user)
+async def delete_account(user: str = NAMED) -> Forgotten:
+    """Delete this username, every answer it gave and its shelf; the name is free again."""
     return Forgotten(deleted=progress_store.delete_account(user))
 
 
+@router.get("/saved", response_model=Shelf)
+def get_shelf(user: str = NAMED) -> Shelf:
+    """What the page kept for this account, so it follows the name to another device."""
+    return Shelf(data=progress_store.shelf(user))
+
+
+@router.put("/saved", response_model=Shelf)
+async def put_shelf(body: Shelf, user: str = NAMED) -> Shelf:
+    """Replace this account's shelf whole with what the page holds now."""
+    if len(json.dumps(body.data, ensure_ascii=False).encode()) > get_settings().saved_max_bytes:
+        raise HTTPException(status_code=413, detail="Too much saved for one account")
+    progress_store.keep_shelf(user, body.data)
+    return body
+
+
 @router.get("/leaderboard", response_model=Leaderboard)
-def get_leaderboard(module: str = _MODULE, user: str = _USER) -> Leaderboard:
+def get_leaderboard(module: str = _MODULE, user: str = USER) -> Leaderboard:
     """The top accounts by words learnt, plus the asker's own place."""
     rows = progress_store.leaderboard(module)
     you = next((row for row in rows if row["name"] == user), None)
     return Leaderboard(rows=rows[: get_settings().leaderboard_size], you=you)
 
 
-def _named(user: str) -> None:
-    if user == UNNAMED:
+def _typed_a_name(user: str) -> None:
+    """Sign-up and log-in need a name typed; the account check would be circular."""
+    if user == GUEST:
         raise HTTPException(status_code=422, detail="Type a username")

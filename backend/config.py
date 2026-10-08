@@ -348,6 +348,8 @@ class Settings(BaseSettings):
     profile_name_max: int = 40
     # Names nobody may type: "local" is the record of every answer given before names existed.
     profile_reserved: list[str] = ["local"]
+    # Largest shelf (everything the page keeps for one account) the server takes, in bytes.
+    saved_max_bytes: int = Field(default=512_000, gt=0)
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20
     # Checked practice sentences (services/sentence_check.py): AI tries per request,

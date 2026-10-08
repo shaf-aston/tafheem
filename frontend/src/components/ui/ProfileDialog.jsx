@@ -3,13 +3,17 @@
  * under the box says so. A first sign-up on a device may take the guest answers
  * given so far, so nothing answered is lost. The server decides what a username
  * is; a refusal (taken, no such username) shows its reason under the box.
+ *
+ * Logging in, out or signing up reloads the page: every setting and remembered
+ * choice is filed under the name (lib/stored.js), and a reload is the one way
+ * every panel reads the new person's at once.
  */
 import { useState } from 'react'
-import { useQueryClient } from '@tanstack/react-query'
 
 import { smartError } from '../../lib/apiError'
-import { getProfile, readsProgress, setProfile } from '../../lib/profile'
+import { getProfile, setProfile } from '../../lib/profile'
 import { logIn, signUp } from '../../lib/progress'
+import { copyGuestShelf, pullShelf } from '../../lib/shelf'
 
 import BottomSheet from './BottomSheet'
 import PrimaryButton from './PrimaryButton'
@@ -19,19 +23,12 @@ import Segmented from './Segmented'
 
 const MODES = [{ id: 'login', label: 'Log in' }, { id: 'signup', label: 'Sign up' }]
 
-export default function ProfileDialog({ onClose, onSaved }) {
-  const client = useQueryClient()
+const switched = () => globalThis.location.reload()
+
+export default function ProfileDialog({ onClose }) {
   const name = getProfile()
   // Not "Log in or sign up": the switch right under the title says that.
   const title = name ? 'Your profile' : 'Your account'
-
-  // Close first: the profile's own queries would refetch as the wrong user.
-  // Then every progress answer on screen, which belonged to the user before.
-  const switched = (next) => {
-    onSaved(next)
-    onClose()
-    client.invalidateQueries({ predicate: readsProgress })
-  }
 
   return (
     <BottomSheet label={title} onClose={onClose} className="p-5 space-y-4">
@@ -45,7 +42,7 @@ export default function ProfileDialog({ onClose, onSaved }) {
           Close
         </button>
       </div>
-      {name ? <ProfileView name={name} onLeave={() => switched('')} /> : <SignIn onIn={switched} />}
+      {name ? <ProfileView name={name} onLeave={switched} /> : <SignIn onIn={switched} />}
     </BottomSheet>
   )
 }
@@ -63,7 +60,9 @@ function SignIn({ onIn }) {
     try {
       const { name } = await (signingUp ? signUp(typed, keep) : logIn(typed))
       setProfile(name)
-      onIn(name)
+      // A new name starts from the guest's shelf only if it kept the guest's answers.
+      await (signingUp ? (keep ? copyGuestShelf(name) : null) : pullShelf(name))
+      onIn()
     } catch (refused) {
       setError(smartError(refused, 'Could not reach the server. Try again.'))
       setBusy(false)
