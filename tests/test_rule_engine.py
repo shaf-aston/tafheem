@@ -604,8 +604,17 @@ def test_the_nun_of_the_five_verbs_kept_after_la_is_raf_not_jazm():
     ("فَإِذًا لَا يُؤْتُونَ النَّاسَ نَقِيرًا", 0, "حرف جواب وجزاء", "mabni"),  # a tanween is إذن, not the sudden إذا; the verb shows raf'
     ("إِذَنْ أُكْرِمَكَ", 0, "حرف جواب وجزاء ونصب", "mabni"),
     ("إِذَنْ أُكْرِمَكَ", 1, None, "nasb"),  # the present verb right after it is منصوب
-    ("خَرَجْتُ فَإِذَا الأَسَدُ", 1, "حرف مفاجأة", "mabni")])  # nearest case: إذا without a tanween stays the sudden one
+    ("خَرَجْتُ فَإِذَا الأَسَدُ", 1, "حرف مفاجأة", "mabni"),  # nearest case: إذا without a tanween stays the sudden one
+    # after the sentence it answers, فَإِذًا still opens its own clause (4:53)
+    ("قَالَ زَيْدٌ فَإِذًا لَا يُؤْتُونَ النَّاسَ نَقِيرًا", 2, "حرف جواب وجزاء", "mabni"),
+    ("زَيْدٌ إِذَنْ يَنْجَحُ", 1, "حرف جواب وجزاء", "mabni")])  # inside its clause it never works
 def test_idhan_is_told_from_idha_by_its_spelling_and_works_only_before_a_verb_in_nasb(
         sentence: str, index: int, named: str | None, case: str):
     word = _read(sentence)["words"][index]
     assert (word.get("named"), word["case"]) == (named, case)
+
+
+def test_a_pronoun_on_a_present_verb_is_not_read_as_its_passive_vowel():
+    # the fatha before كَ in أُكْرِمَكَ is the verb's nasb; يُكْرَمُ is the passive
+    assert "مجهول" not in _read("إِذَنْ أُكْرِمَكَ")["words"][1]["reason"]
+    assert "مجهول" in _read("يُكْرَمُ الضَّيْفُ")["words"][0]["reason"]

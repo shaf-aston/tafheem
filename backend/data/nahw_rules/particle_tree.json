@@ -276,14 +276,22 @@
                 "retag": {"pos": "PRT", "pos_camel": "part"}
               },
               {
-                "branch": "إذن المهملة قبل المضارع المرفوع",
+                "branch": "إذن المهملة في أول الجواب",
                 "book": "4.1.1 p99",
-                "is": "raf",
+                "else": true,
                 "role": "ghair_amila_other",
                 "named": "حرف جواب وجزاء",
                 "retag": {"pos": "PRT", "pos_camel": "part"}
               }
             ]
+          },
+          {
+            "branch": "إذن المهملة في حشو الكلام",
+            "book": "4.1.1 p99",
+            "else": true,
+            "role": "ghair_amila_other",
+            "named": "حرف جواب وجزاء",
+            "retag": {"pos": "PRT", "pos_camel": "part"}
           }
         ]
       },

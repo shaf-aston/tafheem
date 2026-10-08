@@ -45,7 +45,7 @@ def is_verb(token: dict) -> bool:
     if token.get("asp") == "c" and strip_diacritics(typed)[:1] != "أ":
         return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
     return token.get("pos_camel") == "noun_prop" and (
-        (token["base"][:1] in PRESENT_PREFIX and typed_passive(typed, True))
+        (token["base"][:1] in PRESENT_PREFIX and typed_passive(typed, True, token.get("stuck_on", 0)))
         or past_passive_shape(typed))
 
 
@@ -63,7 +63,7 @@ def is_passive(token: dict) -> bool:
         return True
     typed = token.get("typed")
     present = token.get("asp") == "i" or not (token["pos"].startswith("VRB") or past_passive_shape(typed))
-    return typed_passive(typed, present)
+    return typed_passive(typed, present, token.get("stuck_on", 0))
 
 
 class Sentence:

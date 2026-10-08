@@ -216,11 +216,16 @@ def _restricted(token: dict, s: facts.Sentence) -> str:
 
 
 def _starts(token: dict, s: facts.Sentence) -> str:
-    """Only a و or ف written onto it stands before it (data: nasb_mudari `idhan_after`): it
-    opens the answer."""
-    before = [t for t in s.tokens if t["id"] < token["id"]]
-    return "yes" if all(t["form"].endswith("+") and t["form"].strip("+") in book_words("nasb_mudari", "idhan_after")
-                        for t in before) else "no"
+    """It opens its clause: nothing before it, or a و or ف written onto it (data: nasb_mudari
+    `idhan_after`), as in فَإِذًا after the sentence it answers; زيدٌ إذن يَنجحُ is not."""
+    before = next((t for t in reversed(s.tokens) if t["id"] < token["id"]), None)
+    return "yes" if before is None or (
+        _attached_before(before) and before["form"].strip("+") in book_words("nasb_mudari", "idhan_after")) else "no"
+
+
+def _attached_before(token: dict) -> bool:
+    """A letter written onto the word after it (ف+, و+)."""
+    return token["form"].endswith("+")
 
 
 def _verb_after(token: dict, s: facts.Sentence) -> dict | None:

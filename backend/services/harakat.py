@@ -203,7 +203,7 @@ def _without_ending(marked: list[tuple[str, set]]) -> list[tuple[str, set]]:
     return marked
 
 
-def typed_passive(word: str, present: bool) -> bool:
+def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     """فُعِلَ and يُفْعَلُ by their vowels.
 
     A past verb's opening damma is passive only with the kasra of فُعِلَ inside it:
@@ -219,7 +219,8 @@ def typed_passive(word: str, present: bool) -> bool:
     if not present:
         # or a doubled verb's shadda (حُفَّتْ، رُدَّ), not a ن's: كُنَّا is كان meeting نا
         return any("ِ" in marks or (SHADDA in marks and letter != "ن") for letter, marks in marked[1:-1])
-    stem = _without_ending(marked)
+    # an attached pronoun (stuck_on letters) is read past: the fatha of أُكْرِمَكَ is its nasb
+    stem = _without_ending(marked[:len(marked) - stuck_on])
     return len(stem) >= 3 and "َ" in stem[-2][1]
 
 
