@@ -82,26 +82,31 @@ function Card({ hue, index, onClick, twin, ...lines }) {
 }
 
 // A written unit opens on its cover phrase: said aloud, its picture filling the card's
-// whole empty lower left, out to the border, so no word sits on it. It takes the height
-// the words make and never adds its own (contain: size). The whole card opens the unit; the speaker is
+// whole empty lower left, out to the border and across to the words, so no word sits
+// on it. It takes the height the words make and never adds its own (contain: size).
+// The speaker faces left, off the start of the Arabic. The whole card opens the unit; the speaker is
 // drawn above that and only speaks, the words beside it letting a click through.
 function UnitCard({ hue, index, unit, onClick }) {
   const { cover } = unit
   const number = unitNumber(unit.unit)
   return (
-    <div style={lookOf(hue, index)} className="rise-in lift press relative grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] grid-rows-[auto_auto_1fr_auto] gap-x-3.5 px-5 py-4 rounded-[var(--radius-lg)] border">
+    <div style={lookOf(hue, index)} className="rise-in lift press relative grid grid-rows-[auto_auto_1fr] px-5 py-4 rounded-[var(--radius-lg)] border">
       <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`stretch absolute inset-0 rounded-[var(--radius-lg)] ${FOCUS}`} />
-      <span className="col-span-2 flex items-baseline justify-between gap-3 type-micro uppercase tracking-[0.18em]">
+      <span className="flex items-baseline justify-between gap-3 type-micro uppercase tracking-[0.18em]">
         <span style={{ color: hue }}>Unit {number}</span>
         <span className="text-[var(--text-faint)]">{unit.lessons.length} topics</span>
       </span>
-      <span className="col-span-2 type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
-      <PhrasePicture phrase={cover} alt="" className="soft-edge pointer-events-none row-span-2 self-stretch [contain:size] mt-2 -ms-5 -mb-4 rounded-es-[calc(var(--radius-lg)-1px)] w-[calc(100%+1.25rem)] max-w-none" />
-      <span className="relative pointer-events-none self-end flex items-center gap-3 mt-2">
-        <SpeakButton text={cover.arabic} className="pointer-events-auto" />
-        <ArabicText className="flex-1 min-w-0 text-start [overflow-wrap:anywhere]">{cover.arabic}</ArabicText>
+      <span className="type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
+      <span className="flex gap-3.5 mt-2">
+        <PhrasePicture phrase={cover} alt="" className="soft-edge pointer-events-none flex-1 min-w-0 [contain:size] -ms-5 -mb-4 rounded-es-[calc(var(--radius-lg)-1px)]" />
+        <span className="relative pointer-events-none self-end flex flex-col items-end max-w-[70%]">
+          <span className="flex items-center gap-2">
+            <SpeakButton text={cover.arabic} className="pointer-events-auto -scale-x-100" />
+            <ArabicText className="min-w-0 text-start [overflow-wrap:anywhere]">{cover.arabic}</ArabicText>
+          </span>
+          <span className="type-small text-[var(--text-faint)] text-end">{cover.english}</span>
+        </span>
       </span>
-      <span className="type-small text-[var(--text-faint)] text-end">{cover.english}</span>
     </div>
   )
 }

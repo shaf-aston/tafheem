@@ -371,6 +371,15 @@ def test_the_catalogue_carries_each_topic_section_so_the_unit_page_can_head_it()
     assert cards and all("section" in lesson for lesson in cards)
 
 
+def test_a_unit_card_fronts_its_named_cover_or_else_its_first_picture():
+    said = lambda slot, image="": {"slot": slot, "arabic": slot, "english": slot, "image": image}
+    unit = {"lessons": [{"phrases": [said("plain"), said("first", "a.jpg"), said("named", "b.jpg")]}]}
+    assert loader._cover(unit)["image"] == "a.jpg"
+    assert loader._cover(unit | {"cover": "named"})["image"] == "b.jpg"
+    assert loader._cover(unit | {"cover": "not-written-here"})["image"] == "a.jpg"  # this dialect lacks it
+    assert loader._cover({"lessons": [{"phrases": [said("plain")]}]}) is None
+
+
 def test_a_repeated_slot_in_one_lesson_is_caught():
     written = copy.deepcopy(WRITTEN)
     written["lessons"][0]["phrases"].append({"slot": "hello", "arabic": "هاي", "transliteration": "hi"})

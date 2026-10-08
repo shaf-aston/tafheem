@@ -451,6 +451,7 @@
     {
       "unit": "unit-02",
       "title": "Family and a Meal",
+      "cover": "what-do-you-like-to-eat",
       "lessons": [
         {
           "lesson": "lesson-01",
@@ -551,7 +552,8 @@
             {
               "slot": "what-do-you-like-to-eat",
               "english": "What do you like to eat?",
-              "search_term": "plate of food"
+              "search_term": "mezze table",
+              "image": "unit-02/l02-p06-mezze-table.jpg"
             },
             {
               "slot": "i-like-falafel",
@@ -1472,6 +1474,7 @@
     {
       "unit": "unit-05",
       "title": "Getting Around",
+      "cover": "taxi",
       "lessons": [
         {
           "lesson": "lesson-01",
@@ -1480,7 +1483,8 @@
             {
               "slot": "taxi",
               "english": "Taxi!",
-              "search_term": "hailing a taxi on a street"
+              "search_term": "taxi car on a city street",
+              "image": "unit-05/l01-p01-taxi-car-on-a-city-street.jpg"
             },
             {
               "slot": "please-i-want-to-go-to-old-damascus",
@@ -6403,6 +6407,7 @@
     {
       "unit": "unit-17",
       "title": "At the Masjid",
+      "cover": "where-is-the-masjid",
       "lessons": [
         {
           "lesson": "lesson-01",
@@ -6422,7 +6427,8 @@
             {
               "slot": "where-is-the-masjid",
               "english": "Where is the nearest masjid?",
-              "search_term": "mosque minaret"
+              "search_term": "Sultan Qaboos Grand Mosque",
+              "image": "unit-17/l01-p03-sultan-qaboos-grand-mosque.jpg"
             },
             {
               "slot": "where-is-the-mens-entrance",
