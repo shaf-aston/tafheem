@@ -503,6 +503,10 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
   // Stop when the bar goes with its surah, so nothing plays on under another.
   useEffect(() => () => stop(), [])
 
+  // Reading somewhere else while it recites: the place it is at becomes a way
+  // back there, pointing up or down to it. Same reach as the follow above.
+  const away = sounding && Math.abs(here - sounding) > 1
+
   const round = 'press shrink-0 grid place-items-center rounded-full transition-colors'
   const skip = `${round} w-8 h-8 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`
 
@@ -525,6 +529,14 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
       <p className="min-w-0 flex-1 truncate type-small" aria-live="polite">
         {failed ? (
           <span className="text-[var(--warn)]">That recitation could not be reached</span>
+        ) : away ? (
+          <button type="button" onClick={() => onFollow(sounding)}
+            aria-label={`Go to ${surah}:${sounding}, being recited`}
+            className="fade-in press inline-flex items-center gap-0.5 py-1.5 font-mono text-[var(--c)] hover:underline">
+            <Glyph d={sounding < here ? 'M12 5l7 8h-5v6h-4v-6H5z' : 'M12 19l7-8h-5V5h-4v6H5z'} />
+            {/* The ayah alone: the bar only plays its own surah, and 2:255 in full would not fit a phone. */}
+            {sounding}
+          </button>
         ) : (
           <span className="font-mono text-[var(--text)]">{surah}:{at}</span>
         )}
