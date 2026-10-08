@@ -744,6 +744,13 @@ class VerbVerdict(BaseModel):
         )
 
 
+class ReadAs(BaseModel):
+    """A typed word that is no headword, and the word and root it was read as (services/morphology.py)."""
+    typed: str
+    lemma: str  # "" when only its root was found
+    root: str
+
+
 class DictionaryResponse(BaseModel):
     query: str
     lang: str
@@ -751,6 +758,10 @@ class DictionaryResponse(BaseModel):
     source: Source | None = None
     # Set when the word as typed found nothing and its likeliest meant word was looked up instead.
     corrected: list[Correction] = []
+    # Set when the word as typed is a form of another (مُنْتَصِرًا of مُنْتَصِر), found that way.
+    read_as: ReadAs | None = None
+    # The root of the word as typed, when the search knows it: what the root cards ask about.
+    root: str = ""
 
 
 class SentenceWord(BaseModel):

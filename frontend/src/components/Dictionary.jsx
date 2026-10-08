@@ -31,7 +31,7 @@ import SectionHeader from './ui/SectionHeader'
 import SenseBands from './ui/SenseBands'
 import VerbFormTag from './ui/VerbFormTag'
 import { AnalyzerSkeleton } from './ui/Skeleton'
-import { CorrectedNote } from './ui/StatusNote'
+import StatusNote, { CorrectedNote, NoteWord } from './ui/StatusNote'
 import SourceBadge from './ui/SourceBadge'
 import WordGrid from './ui/WordGrid'
 import Code from './ui/Code'
@@ -161,6 +161,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
       {mutation.isPending && !shown && <AnalyzerSkeleton />}
 
       <CorrectedNote corrected={shown?.corrected} />
+      <ReadAsNote readAs={shown?.read_as} />
 
       {shown?.words && <SentenceMeaning data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
       {shown?.results && <Results data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
@@ -185,7 +186,8 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
  * chips sit above both, not inside one, for the same reason.
  */
 function ClassicalRoot({ found, accent }) {
-  const { primary, alternates } = pickRoots(found.query, found.results)
+  // The root the search worked out, when it did (مُنْتَصِرًا is نصر); the word as typed otherwise.
+  const { primary, alternates } = pickRoots(found.root || found.query, found.results)
   const [root, setRoot] = useState(primary)
   const hasAlternates = alternates.length > 0
   return (
@@ -210,6 +212,19 @@ function ClassicalRoot({ found, accent }) {
           wants more than a sentence. */}
       <LexiconShelf root={root} hasAlternates={hasAlternates} accent={accent} />
     </>
+  )
+}
+
+/** A word that is no headword, found as the word it is a form of, or by its root. */
+function ReadAsNote({ readAs }) {
+  if (!readAs) return null
+  const { typed, lemma, root } = readAs
+  return (
+    <StatusNote>
+      <NoteWord text={typed} /> is not a headword
+      {lemma && <>; read as a form of <NoteWord text={lemma} /></>}
+      {root && <>, root <NoteWord text={[...root].join(' ')} /></>}
+    </StatusNote>
   )
 }
 

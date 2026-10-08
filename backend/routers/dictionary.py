@@ -14,6 +14,7 @@ from backend.models.schemas import (
     EntryLine,
     LexiconEntry,
     LexiconsResponse,
+    ReadAs,
     RootEntryEnglishResponse,
     RootEntryLinesResponse,
     RootMeaning,
@@ -80,7 +81,11 @@ async def search_dictionary(
         raise HTTPException(status_code=400, detail="lang must be 'ar' or 'en'")
 
     # A worker thread: an uncached fuzzy search scans every headword.
-    found = await asyncio.to_thread(searcher, query)
+    reading = None
+    if language == "ar":
+        found, reading = await asyncio.to_thread(dictionary_service.search_arabic_read, query)
+    else:
+        found = await asyncio.to_thread(searcher, query)
     corrected = []
     # Nothing at all, not even inside a longer word: most likely a slip, so the
     # word it was likeliest meant to be is looked up, and the page says so.
@@ -93,7 +98,15 @@ async def search_dictionary(
         results=[DictionaryEntry(**entry) for entry in found],
         source=Source(**provenance.of("wiktionary")),
         corrected=corrected,
+        read_as=ReadAs(typed=query, lemma=reading[0], root=reading[1]) if reading else None,
+        root=reading[1] if reading else (_root_as_typed(query, found) if language == "ar" else ""),
     )
+
+
+def _root_as_typed(query: str, found: list[dict]) -> str:
+    """The root of the entry spelled as typed, or "": a result found only by sharing letters says nothing about it."""
+    typed = dictionary_service.folded(query)
+    return next((e.get("root") or "" for e in found if dictionary_service.folded(e.get("arabic", "")) == typed), "")
 
 
 

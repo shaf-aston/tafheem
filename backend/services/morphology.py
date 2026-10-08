@@ -20,7 +20,7 @@ from typing import Any
 from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
 from backend.services import verb_reader
 from backend.services.nahw_book import is_one
-from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, base_of, best_reading, weak_last, moved_for_wasl, paused, typed_case, unread
+from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, base_of, best_reading, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -394,6 +394,53 @@ def _analyze_word_camel_only(word: str) -> dict[str, Any] | None:
         return None
     best = _pick_best_analysis(word, analyses)
     return None if best is None else _analysis_dict_from_camel(word, best)
+
+
+def readings(word: str) -> list[tuple[str, str]]:
+    """Every way `word` can be read alone, as (lemma, root) pairs, likeliest first.
+
+    For looking a word up rather than parsing it, so nothing is chosen away: a
+    dictionary shows فَرّ (flee) and فَرْو (fur) for فروا and lets the reader see
+    which. The root keeps CAMeL's # for a weak radical it could not pin down
+    (ق#ل for قالوا), where root_in_arabic would give up on it: the caller may
+    know which root is real. A harf has no root. Without CAMeL, the lemma alone.
+    """
+    word = word.strip()
+    if not word or not has_arabic(word):
+        return []
+    if _camel_analyzer is None:
+        return [(_analyze_qalsadi(word)["lemma"], "")] if _QALSADI_AVAILABLE else []
+    try:
+        analyses = _camel_analyzer.analyze(word)
+    except Exception as exc:
+        logger.debug("CAMeL analyze error for '%s': %s", word, exc)
+        return []
+    # The typed vowels choose first, as they do for a sentence; the readings they allow come
+    # next, then the rest by how many typed marks they share: CAMeL has no command فِرُّوا,
+    # and the shadda typed on its ر is what puts فَرّ (flee) before فَرْو (fur).
+    best = best_reading(word, analyses) or _pick_best_analysis(word, analyses)
+    typed = letters(word)
+
+    def shared(a: dict) -> int:
+        return sum(len(mine & theirs) for (_, mine), (_, theirs) in zip(typed, letters(a.get("diac", ""))))
+
+    if not any(marks for _, marks in typed):
+        ranked = analyses
+    else:
+        ranked = sorted(analyses, key=lambda a: (vowel_agreement(word, a.get("diac", "")) is None, -shared(a)))
+        best = best if best is not None and vowel_agreement(word, best.get("diac", "")) is not None else None
+    out: list[tuple[str, str]] = []
+    for a in ([best] if best else []) + ranked:
+        root = "" if _pos_type((a.get("pos") or "").lower()) == "harf" or a.get("root") in _NO_ROOT \
+            else a["root"].replace(".", "")
+        if root and not _BUCKWALTER_RE.fullmatch(root.replace(_UNKNOWN_RADICAL, "")) and not has_arabic(root):
+            root = ""
+        if root and not has_arabic(root):
+            root = "".join(c if c == _UNKNOWN_RADICAL else _bw_to_ar(c) for c in root)
+        reading = (strip_diacritics(a.get("lex") or ""), root)
+        if reading[0] and reading not in out:
+            out.append(reading)
+    return out
 
 
 def glosses_of(word: str) -> list[str]:
