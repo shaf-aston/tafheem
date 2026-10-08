@@ -7,6 +7,8 @@ weak points, with no notes and no scale.
 from __future__ import annotations
 
 from backend.config import data_path, get_settings
+from backend.services.hadith import loader
+from backend.services.hadith.chain import chain_of
 from backend.services.readonly_db import ReadOnlyDb
 from backend.services.usul.books import page_label
 from backend.services.usul.rule import rule
@@ -191,3 +193,46 @@ def facts(narrator_id: int) -> dict[str, list[dict]]:
             line["text"] = cfg["facts"][kind].format(value=value)
         groups[group].append(line)
     return groups
+
+
+def family_places(collection: str, number: int, narrations: int) -> dict | None:
+    """{heading, note, places: [{label, count, alone}]}: the narrators at each place of the chains the book gives under
+    this number, the Companion first, as usul.json `family.places` words it. `alone` is set where one narrator carries
+    all `narrations`. None while usul.db is not built or when the build left the family without a picture."""
+    db = _db()
+    counts = [r[0] for r in db.execute(
+        "SELECT count FROM family_place WHERE collection = ? AND number = ? ORDER BY place", (collection, number))] if db else []
+    if not counts:
+        return None
+    words = rule()["family"]["places"]
+    book = loader.collection_name(collection) or collection
+    return {"heading": words["heading"].format(book=book, n=narrations, number=number), "note": words["note"],
+            "places": [{"label": words["first"] if i == 0 else words["next"].format(n=i + 1), "count": count,
+                        "alone": words["alone"].format(n=narrations) if count == 1 else ""}
+                       for i, count in enumerate(counts)]}
+
+
+def family_words(collection: str, number: int) -> dict[str, dict]:
+    """{"b": {matn, marks: [{at, kind, other}, ...]}}: each telling the build marked words in, with its matn (the Arabic
+    after the chain's own cut, chain.chain_of) as served now.
+
+    A mark stays only where that matn still has its word at `at`, like `notes`; a telling left with none is not given."""
+    db = _db()
+    marked: dict[str, list[tuple]] = {}
+    if db:
+        for part, at, word, kind, other in db.execute(
+                "SELECT part, at, word, kind, other FROM family_word WHERE collection = ? AND number = ? ORDER BY part, at",
+                (collection, number)):
+            marked.setdefault(part, []).append((at, word, kind, other))
+    if not marked:
+        return {}
+    arabic = {row[3]: row[4] for row in loader.numbered(collection, number)[1]}
+    found: dict[str, dict] = {}
+    for part, row in marked.items():
+        matn = chain_of(arabic.get(part, ""))[1]
+        tokens = matn.split()
+        kept = [{"at": at, "kind": kind, "other": other} for at, word, kind, other in row
+                if at < len(tokens) and tokens[at] == word]
+        if kept:
+            found[part] = {"matn": matn, "marks": kept}
+    return found
