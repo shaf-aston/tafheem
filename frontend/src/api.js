@@ -7,6 +7,18 @@ export const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
+// Whose record a request is about goes on every request, read at send time so
+// a name switched a moment ago is the one sent. A route that does not care
+// ignores it; one that does can no longer be called without it by mistake and
+// file a learner's answers under the guest. A call that names someone else
+// (sign-up, log-in) keeps its own.
+api.interceptors.request.use((config) => {
+  for (const [key, value] of Object.entries(profileHeaders())) {
+    if (!config.headers.has(key)) config.headers.set(key, value)
+  }
+  return config
+})
+
 export const analyzeIraab = (sentence) =>
   api.post('/analyze', { sentence }).then((r) => r.data)
 
@@ -124,7 +136,7 @@ export const generatePractice = (sentence) =>
 
 // A short AI sentence made only of this learner's learnt words, each one checked.
 export const getCheckedSentence = () =>
-  api.post('/practice/checked', {}, { headers: profileHeaders() }).then((r) => r.data)
+  api.post('/practice/checked', {}).then((r) => r.data)
 
 // The teacher's exercise library: every tag, every exercise, and a count per
 // tag. Small and fixed, so it is fetched whole once and filtered on the

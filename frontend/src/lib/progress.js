@@ -19,8 +19,8 @@ import { profileHeaders } from './profile'
 
 const BASE = '/progress'
 
-// Every call says whose record it is about (lib/profile.js), read at call time
-// so a name switched a moment ago is the one sent.
+// Every call says whose record it is about: api.js adds the logged-in name to
+// every request. Sign-up and log-in send the name typed instead.
 const headers = (name) => ({ headers: profileHeaders(name) })
 
 /** Resolves whether the server took it; never rejects (offline or refused is false). */
@@ -33,7 +33,7 @@ const landed = (request) => request.then(() => true, () => false)
  * timings are honest enough to average is the store's rule, not the page's.
  */
 export async function recordAttempt({ module, item, correct, ms, context }) {
-  return { saved: await landed(api.post(`${BASE}/attempts`, { module, item, correct, ms, context }, headers())) }
+  return { saved: await landed(api.post(`${BASE}/attempts`, { module, item, correct, ms, context })) }
 }
 
 /**
@@ -42,7 +42,7 @@ export async function recordAttempt({ module, item, correct, ms, context }) {
  * backend was there to hear.
  */
 export async function forgetProgress() {
-  return { deleted: await landed(api.delete(BASE, headers())) }
+  return { deleted: await landed(api.delete(BASE)) }
 }
 
 /**
@@ -58,26 +58,26 @@ export const logIn = (typed) =>
   api.post(`${BASE}/login`, {}, headers(typed)).then((r) => r.data)
 
 /** The profile page: `{ name, joined, answers }`. Throws, for react-query. */
-export const fetchAccount = () => api.get(`${BASE}/account`, headers()).then((r) => r.data)
+export const fetchAccount = () => api.get(`${BASE}/account`).then((r) => r.data)
 
 /** Delete this username and its answers. Throws, so the button can say it failed. */
-export const deleteAccount = () => api.delete(`${BASE}/account`, headers()).then((r) => r.data)
+export const deleteAccount = () => api.delete(`${BASE}/account`).then((r) => r.data)
 
 /** `{ rows, you }`: accounts by words learnt, and this one's place. Throws, for react-query. */
 export const fetchLeaderboard = (module) =>
-  api.get(`${BASE}/leaderboard`, { params: { module }, ...headers() }).then((r) => r.data)
+  api.get(`${BASE}/leaderboard`, { params: { module } }).then((r) => r.data)
 
 /** Every item answered in this module, with its record. Throws, for react-query. */
 export const fetchSummary = (module) =>
-  api.get(`${BASE}/summary`, { params: { module }, ...headers() }).then((r) => r.data.items)
+  api.get(`${BASE}/summary`, { params: { module } }).then((r) => r.data.items)
 
 /** Just the items due for review now, longest-waiting first. Throws, for react-query. */
 export const fetchReviewItems = (module) =>
-  api.get(`${BASE}/review`, { params: { module }, ...headers() }).then((r) => r.data.items)
+  api.get(`${BASE}/review`, { params: { module } }).then((r) => r.data.items)
 
 /** Report something that looks wrong. Resolves `{ saved }`; never rejects. */
 export async function leaveFeedback({ module, item, message }) {
-  return { saved: await landed(api.post(`${BASE}/feedback`, { module, item, message }, headers())) }
+  return { saved: await landed(api.post(`${BASE}/feedback`, { module, item, message })) }
 }
 
 /** Every username, for the log-in box while in beta. Throws (404 once beta is over), for react-query. */
@@ -85,12 +85,12 @@ export const fetchAccountNames = () => api.get(`${BASE}/accounts`).then((r) => r
 
 /** `{ tree, teams }`: everyone under this account with their progress, and the teams it is in. */
 export const fetchTeam = (module) =>
-  api.get(`${BASE}/team`, { params: { module }, ...headers() }).then((r) => r.data)
+  api.get(`${BASE}/team`, { params: { module } }).then((r) => r.data)
 
 /** Put a username in this account's team. Resolves the new team; throws, so the box can say why. */
 export const addMember = (member, module) =>
-  api.post(`${BASE}/team`, { member }, { params: { module }, ...headers() }).then((r) => r.data)
+  api.post(`${BASE}/team`, { member }, { params: { module } }).then((r) => r.data)
 
 /** Part a member from a team; the team or the member may. Resolves the new team. */
 export const removeMember = (team, member, module) =>
-  api.delete(`${BASE}/team`, { params: { team, member, module }, ...headers() }).then((r) => r.data)
+  api.delete(`${BASE}/team`, { params: { team, member, module } }).then((r) => r.data)
