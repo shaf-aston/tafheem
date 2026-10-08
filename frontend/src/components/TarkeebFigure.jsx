@@ -13,10 +13,11 @@ import Tooltip from './ui/Tooltip'
  * opens the same diagram, larger, filling the screen.
  */
 export default function TarkeebFigure({ tarkeeb, openWhy }) {
-  const { coverage } = tarkeeb
+  // A book's own worked example carries no coverage: the book placed every word.
+  const { coverage = 1 } = tarkeeb
   const [big, setBig] = useState(false)
   const dialog = useModal(big)
-  const placed = Math.round((coverage ?? 0) * 100)
+  const placed = Math.round(coverage * 100)
   const open = openWhy
     ? <Tooltip text={openWhy}><span className="underline decoration-dotted cursor-help">left open</span></Tooltip>
     : 'left open'
@@ -38,7 +39,7 @@ export default function TarkeebFigure({ tarkeeb, openWhy }) {
         </button>
         {diagram}
       </div>
-      {(coverage ?? 0) < 1 && (
+      {coverage < 1 && (
         <p className="text-center type-small text-[var(--text-faint)]">
           {placed}% of the words placed, the rest {open}
         </p>
