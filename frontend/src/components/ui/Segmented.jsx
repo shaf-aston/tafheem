@@ -10,11 +10,13 @@
  * rows sit side by side and you would otherwise have to work out what each is
  * for, then the same words are shown, rather than a second set written twice.
  *
+ * `compact` is the size of a small button beside it (the Copy button), for a row that sits in a header.
+ *
  * `fill` spreads the choices across the full width, equally, for a row that is
  * the main switch of a screen (log in or sign up) rather than a small filter.
  */
 export default function Segmented({
-  label, options, value, onChange, accent, captioned = false, wrap = false, fill = false, className = '',
+  label, options, value, onChange, accent, captioned = false, wrap = false, fill = false, compact = false, className = '',
 }) {
   // A pill is the right shape for a row that stays one row. Where there are
   // enough choices to spill onto a second line, a pill's ends curve around two
@@ -37,7 +39,7 @@ export default function Segmented({
             style={on
               ? { color: accent, background: `color-mix(in srgb, ${accent} 16%, transparent)` }
               : undefined}
-            className={`press tap inline-flex items-center ${fill ? 'flex-1 justify-center py-2.5' : 'px-3.5 py-1.5'} rounded-full text-sm font-medium transition-colors ${
+            className={`press tap inline-flex items-center ${fill ? 'flex-1 justify-center py-2.5' : compact ? 'px-3 py-1.5' : 'px-3.5 py-1.5'} rounded-full ${compact ? 'text-xs' : 'text-sm'} font-medium transition-colors ${
               on ? '' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
             }`}
           >

@@ -238,6 +238,9 @@ class TarkeebNode(BaseModel):
     # A short, plain-language note for the hover/click detail on a role that
     # needs one. Most roles need none, so this stays unset for them.
     detail: str | None = None
+    # The pronoun a doer stands for (هو inside كان), which no word writes: the diagram
+    # shows it under the doer's name.
+    pronoun: str | None = None
     # Understood, not written: the diagram dashes the column (ثابت in الحمد لله, an elided khabar).
     hidden: bool = False
     parts: list["TarkeebNode"] = Field(default_factory=list)

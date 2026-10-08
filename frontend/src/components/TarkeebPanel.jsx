@@ -11,6 +11,7 @@ import { exampleMatches } from '../lib/exampleSearch'
 import { buildIraabExportText } from '../lib/iraabExport'
 import { useInView } from '../lib/useInView'
 import { useRemembered } from '../lib/useRemembered'
+import { useTarkeebView } from '../lib/useTarkeebView'
 
 import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
@@ -22,6 +23,7 @@ import { GoButton } from './ui/RootActions'
 import SourceBadge from './ui/SourceBadge'
 import { Skeleton } from './ui/Skeleton'
 import TarkeebFigure from './TarkeebFigure'
+import TarkeebTools from './TarkeebTools'
 
 // Browsed by grammar topic, shared by every book, so a second book teaching kana
 // lands under the same chip. The book chips appear only with more than one book.
@@ -152,6 +154,7 @@ function Example({ example, topic, showBook, accent, onWordByWord }) {
   // Building them all on open cost a fifth of a second of frozen tab; each one
   // now waits until its card is nearly on screen.
   const [ref, near] = useInView({ margin: '600px' })
+  const view = useTarkeebView(example)
 
   // Laid out as the Analyse page lays out a sentence: the line naming it and the
   // Copy button above, then the same figure card (enlarge, coverage line).
@@ -167,10 +170,13 @@ function Example({ example, topic, showBook, accent, onWordByWord }) {
           {/* The badge already names the book, so the title is not repeated. */}
           {showBook && <SourceBadge source={example.book.source} />}
         </div>
-        <CopyButton text={buildIraabExportText({ sentence: example.sentence, words: [], tree: example })} />
+        <div className="flex items-center gap-2">
+          {near && <TarkeebTools view={view} />}
+          <CopyButton text={buildIraabExportText({ sentence: example.sentence, words: [], tree: example })} />
+        </div>
       </div>
       {near ? (
-        <TarkeebFigure tarkeeb={example} />
+        <TarkeebFigure tarkeeb={example} view={view} />
       ) : (
         // Holds the card's height so the page does not jump as diagrams arrive.
         <div className="h-32" aria-hidden="true" />
