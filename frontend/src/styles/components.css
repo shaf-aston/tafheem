@@ -212,8 +212,17 @@ dialog::backdrop {
 }
 
 
+/* A box of its own, not the inline span the glyphs sit in: an inline span is as
+   tall as its font's ascent plus descent (2em for the mushaf faces, far above
+   the letters), so a gloss hung off it floated away from its word, and the lit
+   highlight covered twice the word's height. Here the height is the one number
+   below, whatever the face. The line itself keeps its own, taller, line-height,
+   so nothing about the spacing between lines moves. */
 .gloss-word {
+  --gloss-box: 1.5;
   position: relative;
+  display: inline-block;
+  line-height: var(--gloss-box);
   border-radius: var(--radius-sm);
   transition:
     color calc(var(--motion-instant-ms) * 1ms) ease,
@@ -246,18 +255,19 @@ dialog::backdrop {
 }
 
 
-/* Isolated left to right, or "(is) for Allah" has its bracket flipped. */
+/* Isolated left to right, or "(is) for Allah" has its bracket flipped.
+   Under its word, where "Show all meanings" puts the same English. Above it, a
+   gloss on a first line went under the sticky header, and on every row it was
+   clipped by the row's paint containment (.surah-row); under the last line it
+   lands in the row's own translation, which is never clipped. */
 .gloss-word[data-gloss]::after {
   content: attr(data-gloss);
   direction: ltr;
   unicode-bidi: isolate;
   position: absolute;
-  /* Pulled into the line's own leading rather than clear above it: at this
-     line-height a gloss that clears the glyphs entirely lands nearer the line
-     above than the word it belongs to. */
-  bottom: calc(100% - 0.35em);
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(4px);
+  transform: translateX(-50%) translateY(-4px);
   opacity: 0;
   pointer-events: none;
   z-index: var(--layer-raised);
@@ -296,6 +306,9 @@ dialog::backdrop {
 
 /* "Show all meanings": every gloss sits under its word, always on. After the
    hover rules, so hovering a word does not float its gloss back up. */
+.gloss-all .gloss-word {
+  line-height: inherit;
+}
 .gloss-all .gloss-word[data-gloss] {
   display: inline-flex;
   flex-direction: column;
