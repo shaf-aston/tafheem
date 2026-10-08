@@ -107,6 +107,9 @@ def weak_last(analysis: dict) -> bool:
     return weak_radical(analysis.get("root"), -1) and strip_diacritics(analysis.get("lex") or "")[-1:] in WEAK_ENDS
 
 
+NO_ANALYSIS = "NOAN"  # what CAMeL files as a word's stem when its list has no reading for it
+
+
 def base_of(word: str, atbtok: str | None) -> str:
     """The typed word's bare letters less the ones CAMeL's split (atbtok, "وَ+_سَ+_يَكْتُب_+هُ")
     files as joined before ("+" after) or as an attached pronoun ("+" before). The letters
@@ -121,7 +124,8 @@ def base_of(word: str, atbtok: str | None) -> str:
     # opens with CAMeL's stem (أَخ for أخي); a letter written once (لِ+ال as لل, عَلَى+يَ
     # as عليّ) fails and the word stays whole
     fits = bare.startswith(joined) and bare.endswith(pronoun)
-    return middle if stem and fits and bare_letters(middle).startswith(bare_letters(stem)) else bare
+    opens_with_stem = stem == NO_ANALYSIS or bare_letters(middle).startswith(bare_letters(stem))  # no stem to check: فَادْفَعُوا
+    return middle if stem and fits and opens_with_stem else bare
 
 
 def drops_weak(base: str, weak_last: bool) -> bool:

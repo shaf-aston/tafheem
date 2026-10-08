@@ -636,3 +636,22 @@ def test_the_pronoun_on_a_verb_is_no_nun_of_the_five_verbs():
     # لا يَدْعُوهُ keeps its root و (not the dropped nun), لا تَأْكُلُونَهَا keeps its nun: neither is jussive
     assert [w["case"] for w in analysed("لَا يَدْعُوهُ زَيْدٌ")][1] == "raf'"
     assert [w["case"] for w in analysed("لَا تَأْكُلُونَهَا")][1] == "raf'"
+
+
+@pytest.mark.parametrize("sentence, word, role", [
+    ("فَإِنْ آنَسْتُمْ مِنْهُمْ رُشْدًا فَادْفَعُوا إِلَيْهِمْ أَمْوَالَهُمْ", "فَادْفَعُوا", "فعل"),  # the word list has no such command
+    ("فَإِنْ آنَسْتُمْ مِنْهُمْ رُشْدًا فَادْفَعُوا إِلَيْهِمْ أَمْوَالَهُمْ", "أَمْوَالَهُمْ", "مفعول به"),
+])
+def test_a_command_the_word_list_lacks_is_read_by_sarf_under_its_joined_fa(sentence: str, word: str, role: str):
+    got = {w["word"]: w for w in analysed(sentence)}
+    assert got[word]["role"] == role
+
+
+@pytest.mark.parametrize("sentence, word, named", [
+    ("وَابْتَلُوا الْيَتَامَى حَتَّى إِذَا بَلَغُوا النِّكَاحَ", "حَتَّى", "حرف ابتداء"),  # before إذا it works on nothing
+    ("فَإِنْ آنَسْتُمْ مِنْهُمْ رُشْدًا", "فَإِنْ", "حرف شرط جازم"),
+    ("وَبِدَارًا أَنْ يَكْبَرُوا", "أَنْ", "حرف نصب"),
+])
+def test_a_small_word_before_a_clause_is_named_by_what_it_does_there(sentence: str, word: str, named: str):
+    assert named in {w["word"]: w for w in analysed(sentence)}[word]["reason"]
+

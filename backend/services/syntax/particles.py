@@ -263,7 +263,7 @@ def _shows(token: dict, s: facts.Sentence) -> str:
     verb = _verb_after(token, s)
     if verb is None or not _is_present(verb):
         return "none"
-    nun = five_verb_nun(verb.get("typed") or "")
+    nun = five_verb_nun(verb.get("typed") or "", verb.get("stuck_on", 0), verb.get("weak_last"))
     shown = typed_case(verb.get("typed") or "", verb.get("stuck_on", 0))
     return "nasb" if nun == "dropped" or shown == "a" else "raf" if nun == "kept" or shown == "u" else "other"
 

@@ -197,8 +197,10 @@ def puts_in_jarr(token: dict, s: "Sentence") -> bool:
 
 
 def is_preposition(token: dict) -> bool:
-    """A particle of the book's list of حروف الجر, or one the parser tags a preposition."""
-    return token["pos"] == "PRT" and (token.get("pos_camel") == "prep" or read_as(token, "jarr"))
+    """A particle of the book's list of حروف الجر, or one the parser tags a preposition; a word
+    particles.stamp read one way (حتى before إذا is no جر) is what that reading says."""
+    reading = token.get("reading")
+    return token["pos"] == "PRT" and (reading["family"] == "jarr" if reading else token.get("pos_camel") == "prep" or read_as(token, "jarr"))
 
 
 def typed_or_parsed_case(token: dict) -> str | None:
@@ -418,8 +420,7 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
     """A preposition works only on the noun straight after it (Tasheel 1.7 p18): a second
     noun the parser hung on it (لله الحمدُ) is not its majrur."""
     head = s.head(token)
-    if not (token["rel"] == "OBJ" and head and head["pos"] == "PRT" and not is_called_noun(head)
-            and (head.get("pos_camel") == "prep" or read_as(head, "jarr"))):
+    if not (token["rel"] == "OBJ" and head and not is_called_noun(head) and is_preposition(head)):
         return False  # إلا، و: a particle that is no preposition takes no majrur
     return not any(t["pos"] in ("NOM", "PROP") and head["id"] < t["id"] < token["id"] for t in s.tokens)
 

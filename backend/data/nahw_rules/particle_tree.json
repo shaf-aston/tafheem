@@ -231,6 +231,55 @@
         ]
       },
       {
+        "branch": "حتى",
+        "book": "1.2 p3",
+        "is": "حتى",
+        "split": "next",
+        "children": [
+          {
+            "branch": "حتى قبل أداة تبدأ جملة",
+            "book": "1.2 p3",
+            "is": "particle",
+            "role": "ghair_amila_other",
+            "named": "حرف ابتداء"
+          }
+        ]
+      },
+      {
+        "branch": "أن",
+        "book": "4.1.1 p99",
+        "is": "أن",
+        "split": "next",
+        "children": [
+          {
+            "branch": "أن الناصبة قبل فعل",
+            "book": "4.1.1 p99",
+            "is": [
+              "verb",
+              "verb_jazm"
+            ],
+            "role": "nasb_mudari"
+          }
+        ]
+      },
+      {
+        "branch": "إن",
+        "book": "4.1.2 p102",
+        "is": "إن",
+        "split": "next",
+        "children": [
+          {
+            "branch": "إن الشرطية قبل فعل",
+            "book": "4.1.2 p102",
+            "is": [
+              "verb",
+              "verb_jazm"
+            ],
+            "role": "jazm"
+          }
+        ]
+      },
+      {
         "branch": "إذا",
         "book": "4.3.1 p112",
         "is": "إذا",

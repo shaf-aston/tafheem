@@ -86,7 +86,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever reading the parser had;
         # a verb's reading (فَاقْبَلْهَا) is also tried on its own letters, the ف and ها aside;
-        # a noun's never is, or the يَدِ of وَيَدِهِ would be a command
+        # a noun's never is, or the يَدِ of وَيَدِهِ would be a command; a name the list could
+        # only guess (فَادْفَعُوا) is no noun the reader knew, so its own letters are tried too
         after = words[i + 1] if i + 1 < len(words) else ""
         verb = token["pos"].startswith("VRB")
         if verb or token.get("pos_camel") in ("noun", "noun_prop"):
@@ -94,7 +95,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
                                      for family in ("jazm", "nasb_mudari"))
             root = token.get("root", "")
             joined = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
-            own = own_letters(word, joined, token["stuck_on"]) if verb else word
+            own = own_letters(word, joined, token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
             cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
                          if (found := verb_reader.command(form, governed, root))), None)
             if cell:

@@ -46,3 +46,10 @@ def test_anything_else_is_left_alone():
     assert spelled_out("و ب") == "و ب"                    # two letters: two words
     assert spelled_out("a b c") == "a b c"
     assert spelled_out("1 2 3") == "1 2 3"
+
+
+def test_the_qurans_hamza_alef_is_alef_madda_only_where_the_hamza_opens_the_word():
+    assert words("ءَانَسْتُم وَءَامَنُوا بِءَايَاتِنَا") == ["آنَسْتُم", "وَآمَنُوا", "بِآيَاتِنَا"]
+    # a hamza inside the word keeps itself: a tanween alef and a dual ending are not a madda
+    assert words("جُزْءَا شَيْءَانِ") == ["جُزْءَا", "شَيْءَانِ"]
+

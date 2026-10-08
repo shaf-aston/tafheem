@@ -39,7 +39,7 @@ def test_the_answer_shows_its_fa_its_doer_and_its_object():
     _, leaves = analysed(CONDITION)
     assert leaves["فَ"][0][0]["role"] == "حرف رابط"
     answer = leaves["اقْبَلْهَا"][0][0]
-    assert parts(answer) == ["فعل", "فاعل", "مفعول به"]
+    assert parts(answer) == ["فعل أمر", "فاعل", "مفعول به"]  # اقْبَلْهَا is a command, so it says so
     assert "أنتَ" in answer["parts"][1]["detail"]
     assert parts(leaves["كُنْتَ"][0][0]) == ["فعل ناقص", "اسم كان"]
 

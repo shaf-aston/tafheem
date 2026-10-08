@@ -64,7 +64,7 @@ def words(text: str) -> list[str]:
     Punctuation is a break between words, spaced or not: مَرْحَبًا، reached CAMeL
     with its comma and came back as an unknown name.
     """
-    return [w for w in _tokens(text) if _has_arabic_letter(w)]
+    return [_MADDA_RE.sub(lambda found: found.group(1) + "آ", w) for w in _tokens(text) if _has_arabic_letter(w)]
 
 
 def not_arabic(text: str) -> list[str]:
@@ -93,6 +93,11 @@ def _breaks(text: str, i: int) -> bool:
 
 
 _APOSTROPHES = "'’"
+
+
+# The Qur'an's spelling of آ: ءَامَنُوا is آمَنُوا. Only where the hamza opens the word (or follows
+# a one-letter prefix) and more follows the alef: جُزْءَا and شَيْءَانِ keep their hamza.
+_MADDA_RE = re.compile("^((?:[وفبلكس][ً-ْ]?)?)ءَا(?=.)")
 
 
 def _tokens(text: str) -> list[str]:

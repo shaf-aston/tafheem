@@ -28,7 +28,7 @@ from backend.config import data_path, get_settings
 from backend.services.syntax import decode
 from backend.services.syntax.mask import book_links, book_mask
 from backend.services.morphology import root_in_arabic
-from backend.services.harakat import best_reading, past_passive_shape, typed_case, weak_last, base_of
+from backend.services.harakat import NO_ANALYSIS, base_of, best_reading, past_passive_shape, typed_case, weak_last
 
 logger = logging.getLogger(__name__)
 
@@ -265,7 +265,7 @@ def _reading(word: str, readings: list[dict]) -> dict:
     """
     if not readings:
         return {"pos": "", "lex": word}
-    real = [r for r in readings if "NOAN" not in r.get("atbtok", "")]
+    real = [r for r in readings if NO_ANALYSIS not in r.get("atbtok", "")]
     verbs = [r for r in readings
              if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
     if past_passive_shape(word) and verbs:
