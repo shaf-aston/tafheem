@@ -42,6 +42,7 @@ import { NoTouchButton, ScrollPad } from './NoTouchReading'
 import ArabicText from './ui/ArabicText'
 import GlossWord from './ui/GlossWord'
 import ReadingOptions from './ui/ReadingOptions'
+import CloseButton from './ui/CloseButton'
 import ErrorAlert from './ui/ErrorAlert'
 import Segmented from './ui/Segmented'
 import WheelPicker from './ui/WheelPicker'
@@ -60,6 +61,8 @@ const FIRST_PAINT_ROWS = 12
 // Wide enough for the surah and the study side by side; Tailwind's lg.
 const TWO_PANES = '(min-width: 64rem)'
 const TOUCH = '(pointer: coarse)'
+// The phone width the stylesheet's bottom bar goes by.
+const PHONE = '(max-width: 39.99rem)'
 
 /** The English under one ayah: the chosen translation once it has arrived,
  *  the corpus's word-by-word gloss before that, so nothing is credited to a
@@ -109,6 +112,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   // Reading without touching the words: a switch in the bar, which the reader
   // may take out of the bar, and which is off whenever it is out of reach.
   const touch = useMedia(TOUCH)
+  const phone = useMedia(PHONE)
   const [noTouchButton, showNoTouchButton] = useRememberedFlag('reader-no-touch-button', true)
   const [noTouchOn, setNoTouch] = useRememberedFlag('reader-no-touch', false)
   const noTouch = touch && noTouchButton && noTouchOn
@@ -169,16 +173,28 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
     <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo} onClose={shut} accent={accent} />
   )
 
+  // How long the surah is and whose words these are. Beside the name where
+  // there is room; a phone keeps its one row of controls and finds these
+  // behind the options, so the reading starts higher.
+  const about = (
+    <>
+      {data && <span className="type-small text-[var(--text-faint)] tabular-nums">{data.ayah_count} ayahs</span>}
+      {/* The Arabic is the corpus's; the English may not be. Both are named. */}
+      {translation.ready && translation.book?.source && <SourceBadge source={translation.book.source} />}
+      {data?.source && <SourceBadge source={data.source} />}
+    </>
+  )
+
   return (
     <div {...swipe} style={{ '--c': accent }} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-clip">
-      <header className="flex items-center gap-3 flex-wrap p-4 border-b border-[var(--border)]">
+      <header className="flex items-center gap-2 sm:gap-3 flex-wrap p-3 sm:p-4 border-b border-[var(--border)]">
         <Stepper surah={surah} onChange={changeSurah} />
         {data ? (
           <ArabicText size="sm" className="text-[var(--c)]">{data.name_ar}</ArabicText>
         ) : (
           <Skeleton className="h-4 w-24" />
         )}
-        {data && <span className="type-small text-[var(--text-faint)] tabular-nums">{data.ayah_count} ayahs</span>}
+        {!phone && about}
         <span className="flex-1" />
         {/* Only where there is a choice to make. */}
         {translation.books.length > 1 && (
@@ -191,21 +207,14 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
             className="flex-wrap"
           />
         )}
-        {/* The Arabic is the corpus's; the English may not be. Both are named. */}
-        {translation.ready && translation.book?.source && <SourceBadge source={translation.book.source} />}
-        {data?.source && <SourceBadge source={data.source} />}
         {touch && noTouchButton && <NoTouchButton on={noTouchOn} onChange={setNoTouch} />}
         <ReadingOptions accent={accent} options={[
           ...(anyGlosses ? [{ label: 'Every word\'s meaning', on: allMeanings, set: showAllMeanings }] : []),
           { label: 'Without-wudu button', on: noTouchButton, set: showNoTouchButton, only: 'touch' },
-        ]} />
-        <button
-          type="button"
-          onClick={onClose}
-          className="text-xs text-[var(--text-faint)] hover:text-[var(--text)] transition-colors px-2 py-1"
-        >
-          Close
-        </button>
+        ]}>
+          {phone && about}
+        </ReadingOptions>
+        <CloseButton onClick={onClose} aria-label="Close the surah" className="shrink-0" />
       </header>
 
       {data && <AyahRail key={surah} count={data.ayah_count} here={here} open={ayah} onPick={goTo} />}
