@@ -361,9 +361,9 @@
   "usul": {
     "label": "Narrator levels (Ibn Hajar)",
     "confidence": "derived",
-    "detail": "Each narrator's grade read against Ibn Hajar's twelve levels in the preface of Taqrib al-Tahdhib; where support lifts a weakness, Ibn Hajar's Nuzhat al-Nazar and Ibn al-Salah's Muqaddima are quoted. Texts from OpenITI",
+    "detail": "Each narrator's grade read against Ibn Hajar's twelve levels in the preface of Taqrib al-Tahdhib; where support lifts a weakness, Ibn Hajar's Nuzhat al-Nazar and Ibn al-Salah's Muqaddima are quoted. Narrator pages and chain links also quote Ibn Hajar's Taqrib entries and Ta'rif, al-'Ala'i's Jami' al-Tahsil and Mukhtalitin, and al-Nawawi's Taqrib, each joined to a narrator by name only where the match is one-to-one. Texts from OpenITI",
     "url": "@openiti",
-    "where": "A fixed rule over the narrator grades, built once and stored locally.",
+    "where": "A fixed rule over the narrator grades and the narrator books, built once and stored locally.",
     "used_in": [
       "hadith"
     ]

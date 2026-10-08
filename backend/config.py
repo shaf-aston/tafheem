@@ -290,6 +290,8 @@ class Settings(BaseSettings):
     # Weak points on the chains: the rule and its words, and the file built from rijal.db with them (scripts/build_usul.py).
     usul_dir: str = "data/usul"
     usul_index_path: str = "data/usul/usul.db"
+    # The narrator books (Taqrib, Ta'rif, Jami', Mukhtalitin) scripts/fetch_usul.py downloads; build_usul.py reads them, the app never does.
+    usul_books_dir: str = "data/usul/books"
     # A hadith is read in full, so a long results page stops being read.
     hadith_result_limit: int = 20
     # A typed word no search knows is swapped for the likeliest meant word

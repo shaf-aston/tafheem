@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from backend.config import data_path
 from backend.services.readonly_db import ReadOnlyDb
+from backend.services.usul.books import page_label
 from backend.services.usul.rule import rule
 
 _db = ReadOnlyDb(lambda: data_path("usul_index_path"))
@@ -17,12 +18,16 @@ def is_built() -> bool:
     return _db() is not None
 
 
+def _placed(chains: dict[str, list[list[int]]], key: str, start: int, who: int) -> bool:
+    """True when `chains` (rijal.store.chains) names narrator `who` at `start` in hadith `key`."""
+    return any(at == start and name == who for at, _, name in chains.get(key, ()))
+
+
 def notes(collection: str, book: int, chains: dict[str, list[list[int]]]) -> dict[str, list[dict]]:
     """{"1620a": [{at, id, level, kind, grade}, ...]}: each weak narrator named in a book's hadith, in text order.
 
     Kept only where `chains` (rijal.store.chains of the same book) still names that
     narrator at that place, so a rijal.db rebuilt after usul.db shows no stale note."""
-    placed = {(key, start, who) for key, names in chains.items() for start, _, who in names}
     db = _db()
     found: dict[str, list[dict]] = {}
     if db:
@@ -31,7 +36,7 @@ def notes(collection: str, book: int, chains: dict[str, list[list[int]]]) -> dic
             "FROM note JOIN narrator_level ON narrator_level.narrator_id = note.narrator_id "
             "WHERE note.collection = ? AND note.book = ? ORDER BY note.number, note.part, note.at", (collection, book)
         ):
-            if (f"{number}{part}", at, who) not in placed:
+            if not _placed(chains, f"{number}{part}", at, who):
                 continue
             found.setdefault(f"{number}{part}", []).append(
                 {"at": at, "id": who, "level": level, "kind": kind, "grade": grade})
@@ -57,3 +62,81 @@ def scale() -> list[dict]:
                             "source": books[found["book"]]} for kind, found in lifts.items()},
         })
     return out
+
+
+def _source(key: str) -> str:
+    return rule()["sources"][key]["label"]
+
+
+def links(collection: str, book: int, chains: dict[str, list[list[int]]]) -> dict[str, list[dict]]:
+    """{"1620a": [{at, student, teacher, kind, sub, word, level, quote, scholar, source, page}, ...]}: each link of a
+    book's chains a source puts in doubt, in text order.
+
+    Kept only where `chains` still names the teacher at `at` with the student just before him, like `notes`."""
+    db = _db()
+    found: dict[str, list[dict]] = {}
+    if db:
+        for number, part, at, kind, sub, student, teacher, word, level, quote, scholar, source, page in db.execute(
+            "SELECT number, part, at, kind, sub, student_id, teacher_id, word, level, quote, scholar, source, page "
+            "FROM link WHERE collection = ? AND book = ? ORDER BY number, part, at, level DESC", (collection, book)
+        ):
+            key = f"{number}{part}"
+            named = chains.get(key, ())
+            i = next((i for i, (start, _, who) in enumerate(named) if start == at and who == teacher), 0)
+            if not i or named[i - 1][2] != student:   # the student must be the name just before his teacher
+                continue
+            found.setdefault(key, []).append({
+                "at": at, "student": student, "teacher": teacher, "kind": kind, "sub": sub, "word": word, "level": level,
+                "quote": quote, "scholar": scholar, "source": _source(source) if source else "", "page": page})
+    return found
+
+
+def link_rules() -> dict:
+    """What the links say, from usul.json: by kind (a tadlis kind, or the sort of statement a scholar made) and, for
+    tadlis, by the Ta'rif level of the one who says the word. Empty while usul.db is not built."""
+    if not is_built():
+        return {}
+    cfg = rule()
+    cite = lambda row: {"source": _source(row["book"]), "page": page_label(row["page"])}  # noqa: E731
+    return {
+        "kinds": {**{kind: {"label": row["label"], "say": row["say"], "quote": row["quote"], **cite(row)}
+                     for kind, row in cfg["tadlis"]["kinds"].items()},
+                  **{kind: {"label": row["label"], "say": row["say"]} for kind, row in cfg["jami"]["kinds"].items()}},
+        "levels": {level: {"say": row["say"], "quote": row["quote"], **cite(row)}
+                   for level, row in cfg["tadlis"]["levels"].items() if row["notes"]},
+    }
+
+
+def facts(narrator_id: int) -> dict[str, list[dict]]:
+    """{"reliability": [{text, ar, quote, rule, book, page}, ...], "habits": ..., "life": ..., "books": ...}
+
+    The lines the narrator books and our hadith give for one narrator. Empty while usul.db is not built."""
+    groups: dict[str, list[dict]] = {name: [] for name in rule()["fact_groups"]}
+    db = _db()
+    if not db:
+        return groups
+    cfg = rule()
+    level = db.execute("SELECT level, grade FROM narrator_level WHERE narrator_id = ?", (narrator_id,)).fetchone()
+    for group, kind, value, quote, book, page in db.execute(
+            "SELECT grp, kind, value, quote, book, page FROM narrator_fact WHERE narrator_id = ? ORDER BY rowid",
+            (narrator_id,)):
+        line = {"text": "", "ar": "", "quote": quote, "rule": None, "book": _source(book), "page": page}
+        if kind == "level":
+            line["text"] = cfg["facts"][kind].format(value=value, en=next(r["en"] for r in cfg["levels"] if r["level"] == int(value)))
+            line["ar"] = level[1] if level else ""
+        elif kind == "generation":
+            line["text"], line["ar"] = cfg["facts"][kind].format(value=value), cfg["taqrib"]["generations"][int(value) - 1]
+        elif kind == "death_hundreds":
+            death = cfg["taqrib"]["death"]
+            line["text"] = cfg["facts"][kind].format(value=value)
+            line["rule"] = {"say": death["bands_say"], "quote": death["quote"], "book": _source("taqrib"), "page": page_label(death["page"])}
+        elif kind == "tadlis":
+            row = cfg["tadlis"]["levels"][value]
+            line["text"] = cfg["facts"][kind].format(value=value)
+            line["rule"] = {"say": row["say"], "quote": row["quote"], "book": _source(row["book"]), "page": page_label(row["page"])}
+        elif kind in cfg["jami"]["kinds"]:
+            line["text"], line["ar"] = cfg["facts"][kind], value
+        else:
+            line["text"] = cfg["facts"][kind].format(value=value)
+        groups[group].append(line)
+    return groups

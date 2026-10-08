@@ -4,7 +4,8 @@
  * drawing from a hadith card, where a link turns it to the guide and back;
  * opened from the reading options with no hadith, it is the guide alone.
  * Where the chain has weak narrators (`weak`, from lib/weak) their boxes are
- * marked in the drawing and a ranked list (ui/WeakPoints) follows it.
+ * marked in the drawing and a ranked list (ui/WeakPoints) follows it; doubtful
+ * links (`linkPoints`) are marked on their rungs and listed after the narrators.
  */
 import { useState } from 'react'
 
@@ -14,7 +15,7 @@ import ChainWords from './ChainWords'
 import CloseButton from './CloseButton'
 import WeakPoints from './WeakPoints'
 
-export default function ChainSheet({ links = null, author = '', weak = [], scale = [], onClose, accent, onNarrator }) {
+export default function ChainSheet({ links = null, author = '', weak = [], linkPoints = [], scale = [], onClose, accent, onNarrator }) {
   const [words, setWords] = useState(!links)
   const title = words ? 'Chain words' : 'The chain'
 
@@ -39,8 +40,8 @@ export default function ChainSheet({ links = null, author = '', weak = [], scale
       <div className="overflow-y-auto px-5 pb-5">
         {words ? <ChainWords /> : (
           <>
-            <ChainDrawing links={links} author={author} weak={weak} onNarrator={onNarrator} />
-            <WeakPoints points={weak} scale={scale} onNarrator={onNarrator} />
+            <ChainDrawing links={links} author={author} weak={weak} linkPoints={linkPoints} onNarrator={onNarrator} />
+            <WeakPoints points={weak} linkPoints={linkPoints} scale={scale} onNarrator={onNarrator} />
           </>
         )}
       </div>

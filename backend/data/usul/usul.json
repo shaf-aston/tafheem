@@ -12,8 +12,141 @@
   ],
   "weak_from": 5,
   "max_change_ratio": 0.05,
+  "fetch_timeout_seconds": 120,
   "gap_print": 15,
   "levels_source": "taqrib",
+  "join": { "name_words": 3, "nisba_window": 12, "bound": ["عبد", "أبو", "أم"] },
+  "books": {
+    "base": "https://raw.githubusercontent.com/OpenITI/",
+    "taqrib": {
+      "path": "0875AH/master/data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.TaqribTahdhib/0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1.completed",
+      "entry": "^### \\$ (?P<n>\\d+) ?(?P<text>.*)$"
+    },
+    "tarif": {
+      "path": "0875AH/master/data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.TacrifAhlTaqdis/0852IbnHajarCasqalani.TacrifAhlTaqdis.Shamela0001186BK1-ara1",
+      "entry": "^# \\((?P<n>[1-9]\\d*)\\) ?(?P<text>.*)$", "end": "^# \\(0\\)", "inline": "\\((?P<n>[1-9]\\d*)\\)"
+    },
+    "jami": {
+      "path": "0775AH/master/data/0761IbnKaykaldiCalai/0761IbnKaykaldiCalai.JamicTahsil/0761IbnKaykaldiCalai.JamicTahsil.Shamela0025864-ara1.completed",
+      "entry": "^### \\$ (?P<n>\\d+)(?: ms\\d+)? ?-", "in_heading": "الباب السادس", "stop": "هذا آخر ما يسر الله"
+    },
+    "mukhtalitin": {
+      "path": "0775AH/master/data/0761IbnKaykaldiCalai/0761IbnKaykaldiCalai.Mukhtalitin/0761IbnKaykaldiCalai.Mukhtalitin.Shamela0025846-ara1.completed",
+      "entry": "^### \\$ (?P<n>\\d+) - (?P<head>.*?):?\\s*$"
+    }
+  },
+  "taqrib": {
+    "generations": ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة", "السادسة", "السابعة", "الثامنة", "التاسعة", "العاشرة", "الحادية عشرة", "الثانية عشرة"],
+    "death": {
+      "doubt": ["أو", "وقيل", "ويقال", "قيل", "يقال"],
+      "bands": [{ "from": 1, "to": 2, "add": 0 }, { "from": 3, "to": 4, "add": null }, { "from": 5, "to": 8, "add": 100 }, { "from": 9, "to": 12, "add": 200 }],
+      "bands_say": "A year written without its hundreds takes the hundreds of his generation from the preface. Generations 3 and 4 are left out: the third and fourth hold men who died before the 100th year as well as after it (of 42 checked against sunnah.com's years, 12 read as written and 28 take the hundred), so their year is not read.",
+      "quote": "وذكرت وفاة من عرفت سنة وفاته منهم، فإن كان من الأولى والثانية: فهم قبل المائة، وإن كان من الثالثة إلى آخر الثامنة: فهم بعد المائة، وإن كان من التاسعة إلى آخر الطبقات: فهم بعد المائتين، ومن ندر عن ذلك بينته",
+      "page": "PageV01P074"
+    }
+  },
+  "tarif": {
+    "levels": ["الاولى", "الثانية", "الثالثة", "الرابعة", "الخامسة"],
+    "marks": ["ع", "4", "خ", "خت", "بخ", "عخ", "ر", "ي", "م", "د", "مد", "صد", "خد", "قد", "ف", "ل", "كد", "ت", "تم", "س", "عس", "كن", "ق", "فق", "ه", "ز", "ح", "ن", "مقرونا"]
+  },
+  "tadlis": {
+    "levels": {
+      "1": {
+        "notes": false, "say": "Level 1 of 5 in tadlis: he is hardly ever described as doing it.",
+        "quote": "من لم يوصف بذلك الا نادرا كيحيى بن سعيد الانصاري",
+        "book": "tarif", "page": "PageV01P011"
+      },
+      "2": {
+        "notes": false, "say": "Level 2 of 5 in tadlis: the imams put up with it and took his hadith into the Sahih.",
+        "quote": "من احتمل الائمة تدليسه وأخرجوا له في الصحيح لامامته وقلة تدليسه في جنب ما روى كالثوري أو كان لا يدلس الا عن ثقة كإبن عيينة",
+        "book": "tarif", "page": "PageV01P011"
+      },
+      "3": {
+        "notes": true, "say": "Level 3 of 5 in tadlis: the imams took his hadith only where he states hearing.",
+        "quote": "من أكثر من التدليس فلم يحتج الائمة من أحاديثهم الا بما صرحوا فيه بالسماع ومنهم من رد حديثهم مطلقا ومنهم من قبلهم",
+        "book": "tarif", "page": "PageV01P011"
+      },
+      "4": {
+        "notes": true, "say": "Level 4 of 5 in tadlis: agreed that none of his hadith is used unless he states hearing.",
+        "quote": "اتفق على أنه لا يحتج بشئ من حديثهم الا بما صرحوا فيه بالسماع",
+        "book": "tarif", "page": "PageV01P013"
+      },
+      "5": {
+        "notes": false, "say": "Level 5 of 5 in tadlis: weak for another reason, so his hadith is rejected even where he states hearing.",
+        "quote": "من ضعف بأمر آخر سوى التدليس فحديثهم مردود ولو صرحوا بالسماع الا أن يوثق من كان ضعفه يسيرا كابن لهيعة",
+        "book": "tarif", "page": "PageV01P013"
+      }
+    },
+    "ways": { "عن": "tadlis", "قال": "tadlis", "أن": "tadlis_unclear" },
+    "kinds": {
+      "tadlis": {
+        "label": "Possible tadlis", "say": "This link does not state hearing, and Ibn al-Salah gives it the ruling of a mursal.",
+        "quote": "وأن ما رواه المدلس بلفظ محتمل لم يبين فيه السماع والاتصال، حكمه حكم المرسل وأنواعه",
+        "book": "salah", "page": "PageV01P234"
+      },
+      "tadlis_unclear": {
+        "label": "Tadlis, unclear", "say": "This link says anna (that). Scholars differ on whether that counts like an (from).",
+        "quote": "اختلفوا في قول الراوي: أن فلانا قال كذا وكذا؛ هل هو بمنزلة عن في الحمل على الاتصال إذا ثبت التلاقي بينهما، حتى يتبين فيه الانقطاع؟ ... فروينا عن مالك رضي الله عنه أنه كان يرى عن فلان و أن فلانا سواء. وعن أحمد بن حنبل رضي الله عنه أنهما ليسا سواء",
+        "book": "salah", "page": "PageV01P219"
+      }
+    },
+    "skip": {
+      "collections": ["bukhari", "muslim"],
+      "say": "In the two Sahihs the scholars take hearing as established from another route, so no note is made there.",
+      "quote": "وما كان في الصحيحين وشبههما عن المدلسين بعن محمول على ثبوت السماع من جهة أخرى",
+      "book": "nawawi", "page": "PageV01P038"
+    },
+    "unless": [
+      {
+        "tellers": ["سليمان بن مهران الأعمش الكوفي", "عمرو بن عبد الله بن عبيد السبيعي", "قتادة بن دعامة السدوسي"],
+        "via": "شعبة بن الحجاج العتكي", "teacher": null,
+        "say": "Shu'ba stands below him in this strand: his hadith through Shu'ba shows hearing even when worded عن.",
+        "quote": "فهذه قاعدة جيدة في أحاديث هؤلاء الثلاثة أنها إذا جاءت من طريق شعبة دلت على السماع ولو كانت معنعنة",
+        "book": "tarif", "page": "PageV01P058"
+      },
+      {
+        "tellers": ["محمد بن مسلم بن تدرس المكي"],
+        "via": "الليث بن سعد الفهمي", "teacher": "جابر بن عبد الله الأنصاري",
+        "say": "al-Layth stands below him, and what he took from Jabir through al-Layth is what he heard from Jabir.",
+        "quote": "ونظيره ثنا الليث عن أبي الزبير عن جابر فإنه لم يسمع منه الا مسموعة من جابر",
+        "book": "tarif", "page": "PageV01P058"
+      }
+    ]
+  },
+  "fact_groups": ["reliability", "habits", "life", "books"],
+  "facts": {
+    "level": "Level {value} of 12, {en}",
+    "generation": "Generation {value} of 12",
+    "death": "Died {value} AH",
+    "death_hundreds": "Died {value} AH. The book writes the year without its hundred; the preface gives his generation's.",
+    "tadlis": "Tadlis, level {value} of 5",
+    "not_heard": "A scholar says he did not hear from",
+    "not_reached": "A scholar says he did not reach",
+    "not_met": "A scholar says he did not meet",
+    "mursal": "A scholar calls what he took from this teacher mursal",
+    "mukhtalit": "Memory changed late in life",
+    "hadith_count": "Named in {value} of our hadith",
+    "weak_points": "Part of {value} hadith with a weak point on the chain"
+  },
+  "jami": {
+    "statements": [
+      { "kind": "not_heard", "words": "لم يسمع من" },
+      { "kind": "not_reached", "words": "لم يدرك" },
+      { "kind": "not_met", "words": "لم يلق" }
+    ],
+    "mursal": { "from": "عن", "word": "مرسل", "between": 4 },
+    "name_words_max": 8,
+    "lone": ["أبو", "بن", "أم"],
+    "scholar": { "says": ["قال", "قالا", "قالوا"], "before_max": 6, "after": ["قاله"], "after_max": 4, "after_stop": ["في", "وفي"] },
+    "qualified": ["إلا", "الا"],
+    "kinds": {
+      "not_heard": { "label": "Possible break", "say": "A scholar says he did not hear from this teacher." },
+      "not_reached": { "label": "Possible break", "say": "A scholar says he did not reach this teacher." },
+      "not_met": { "label": "Possible break", "say": "A scholar says he did not meet this teacher." },
+      "mursal": { "label": "Possible break", "say": "A scholar calls his hadith from this teacher mursal." }
+    },
+    "book": "jami"
+  },
   "levels": [
     { "level": 1, "ar": "الصحابة", "en": "Companion", "kind": "praise", "terms": ["الصحابة", "صحابي", "صحابية"] },
     { "level": 2, "ar": "ثقة ثقة", "en": "Most reliable", "kind": "praise", "terms": ["أوثق الناس", "ثقة ثقة", "ثقة حافظ"] },
@@ -56,7 +189,7 @@
   },
   "sources": {
     "taqrib": {
-      "label": "Ibn Hajar, Taqrib, preface", "openiti": "0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1",
+      "label": "Ibn Hajar, Taqrib al-Tahdhib", "openiti": "0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1",
       "page": "PageV01P073-74"
     },
     "nuzha": {
@@ -66,6 +199,28 @@
     "salah": {
       "label": "Ibn al-Salah, Muqaddima", "openiti": "0643IbnSalahShahrazuri.MuqaddimatCulumHadith.JK000537-ara1",
       "page": "PageV01P032"
-    }
+    },
+    "tarif": {
+      "label": "Ibn Hajar, Ta'rif Ahl al-Taqdis",
+      "openiti": "0852IbnHajarCasqalani.TacrifAhlTaqdis.Shamela0001186BK1-ara1",
+      "page": "PageV01P011"
+    },
+    "jami": {
+      "label": "al-'Ala'i, Jami' al-Tahsil",
+      "openiti": "0761IbnKaykaldiCalai.JamicTahsil.Shamela0025864-ara1",
+      "page": "PageV01P011"
+    },
+    "mukhtalitin": {
+      "label": "al-'Ala'i, al-Mukhtalitin",
+      "openiti": "0761IbnKaykaldiCalai.Mukhtalitin.Shamela0025846-ara1",
+      "page": "PageV01P011"
+    },
+    "nawawi": {
+      "label": "al-Nawawi, al-Taqrib wa-l-Taysir",
+      "openiti": "0676Nawawi.Taqrib.Shamela0005586-ara1",
+      "page": "PageV01P038"
+    },
+    "ours": { "label": "Hadith in this app (sunnah.com)", "openiti": "", "page": "" },
+    "grade": { "label": "Grade on sunnah.com, on Ibn Hajar's twelve levels", "openiti": "", "page": "" }
   }
 }

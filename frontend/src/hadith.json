@@ -101,7 +101,10 @@
     "_teller": "Fewest narrators linked before the speech for the last of them to count as its teller when the chain words cannot place him; one alone may be the speaker himself.",
     "teller": 2,
     "_generations": "Ibn Hajar's twelve generations (tabaqat) as sunnah.com names them, first (the Companions) to last.",
-    "generations": ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة", "السادسة", "السابعة", "الثامنة", "التاسعة", "العاشرة", "الحادية عشرة", "الثانية عشرة"]
+    "generations": ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة", "السادسة", "السابعة", "الثامنة", "التاسعة", "العاشرة", "الحادية عشرة", "الثانية عشرة"],
+    "_quote": "A book's quote on a narrator's page shows whole up to this many letters; a longer one is cut to quoteLines lines with \"Show the rest\".",
+    "quoteLetters": 100,
+    "quoteLines": 2
   },
   "topics": [
     { "id": "funeral", "words": ["funeral", "jana"] },
