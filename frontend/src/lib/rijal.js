@@ -63,11 +63,14 @@ export function told(arabic, names) {
  * A drawn chain (lib/hadithWords chainLinks of chainOf(arabic).chain) with each
  * narrator's id where sunnah.com linked his name in this hadith: the slice
  * overlapping the place his name stands. A name it did not link stays plain.
+ * A `note` (a weak narrator, from usul.db) starting where that slice starts
+ * rides on the link, for lib/weak.
  */
-export function linked(links, names) {
-  const add = (link) => link && {
-    ...link,
-    id: names.find(([start, end]) => link.span && start < link.span[1] && end > link.span[0])?.[2] ?? null,
+export function linked(links, names, notes = []) {
+  const add = (link) => {
+    if (!link) return link
+    const slice = names.find(([start, end]) => link.span && start < link.span[1] && end > link.span[0])
+    return { ...link, id: slice?.[2] ?? null, note: (slice && notes.find((n) => n.at === slice[0])) || null }
   }
   return {
     main: links.main.map(add),
@@ -75,9 +78,10 @@ export function linked(links, names) {
   }
 }
 
-/** The chain drawing for one hadith, its names linked: `names` are its own slices. */
-export function drawnChain(arabic, names) {
+/** The chain drawing for one hadith, its names linked: `names` are its own slices, `notes` its weak narrators. */
+export function drawnChain(arabic, names, notes = []) {
   const { chain } = chainOf(arabic)
   const at = arabic.indexOf(chain)
-  return linked(chainLinks(chain), names.map(([start, end, id]) => [start - at, end - at, id]))
+  return linked(chainLinks(chain), names.map(([start, end, id]) => [start - at, end - at, id]),
+    notes.map((n) => ({ ...n, at: n.at - at })))
 }

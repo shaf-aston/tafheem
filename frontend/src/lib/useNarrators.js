@@ -11,12 +11,33 @@ import { useQueries, useQuery } from '@tanstack/react-query'
 import { rijalChainsQuery, rijalSearchQuery } from '../api'
 
 const NONE = {}
+const NO_WEAK = { notes: [], scale: [] }
 
-export function useNarrators(hadiths) {
+/** Each book's chains reply as `(hadith) => reply`, once per book; undefined until it arrives or while rijal.db is not built. */
+function useChains(hadiths) {
   const books = [...new Set(hadiths.filter((h) => h.book != null).map((h) => `${h.collection}/${h.book}`))]
   const found = useQueries({ queries: books.map((b) => rijalChainsQuery(...b.split('/'))) })
-  const byBook = Object.fromEntries(books.map((b, i) => [b, found[i].data?.ready ? found[i].data.chains : NONE]))
-  return (h) => byBook[`${h.collection}/${h.book}`] ?? NONE
+  const byBook = Object.fromEntries(books.map((b, i) => [b, found[i].data?.ready ? found[i].data : undefined]))
+  return (h) => byBook[`${h.collection}/${h.book}`]
+}
+
+export function useNarrators(hadiths) {
+  const chainsOf = useChains(hadiths)
+  return (h) => chainsOf(h)?.chains ?? NONE
+}
+
+/**
+ * The weak narrators of a hadith ("1620a" is its key in the book) and the
+ * twelve levels they sit on: `(hadith, ref) => {notes, scale}`. Same request
+ * as useNarrators. Both empty when usul.db is not built, and the hadith
+ * reads as it did before weak points.
+ */
+export function useWeakNotes(hadiths) {
+  const chainsOf = useChains(hadiths)
+  return (h, ref) => {
+    const found = chainsOf(h)
+    return found?.notes?.[ref] ? { notes: found.notes[ref], scale: found.scale } : NO_WEAK
+  }
 }
 
 /** Narrators whose name starts with what was searched; none when rijal.db is not built or nothing matches. */

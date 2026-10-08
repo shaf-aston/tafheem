@@ -9,6 +9,7 @@ from backend.config import get_settings
 from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, FamilyPart, FamilyNarrator, RijalHadithRef, RijalSearch
 from backend.services import provenance
 from backend.services.rijal import family, store
+from backend.services.usul import store as usul
 from backend.utils import search_query
 
 router = APIRouter(prefix="/api/rijal", tags=["rijal"])
@@ -18,6 +19,7 @@ router = APIRouter(prefix="/api/rijal", tags=["rijal"])
 async def get_chains(collection: str, book: int) -> RijalChains:
     return RijalChains(
         collection=collection, book=book, chains=await asyncio.to_thread(store.chains, collection, book),
+        notes=await asyncio.to_thread(usul.notes, collection, book), scale=await asyncio.to_thread(usul.scale),
         ready=await asyncio.to_thread(store.is_built), source=provenance.of("rijal"),
     )
 

@@ -122,6 +122,11 @@ credentials.json
 # backend/scripts/build_tarkeeb.py whenever that script or tarkeeb.json changes.
 !backend/data/tarkeeb/tarkeeb.db
 
+# The weak-points file is small (under 1 MB) and built from rijal.db, which stays off GitHub,
+# so a host cannot rebuild it. Rebuild with backend/scripts/build_usul.py whenever
+# usul.json or rijal.db changes.
+!backend/data/usul/usul.db
+
 # Large datasets / media
 # Project-specific large folders (ignore if you don't want to track large books/datasets)
 /Islamic books/

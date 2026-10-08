@@ -10,7 +10,9 @@
  * Without it (search, Starred) hadiths from several collections meet, so the
  * label names the collection and every card carries its grading.
  * Narrators come from each card's own book (lib/useNarrators), so names are tappable and the
- * family fold shows in a book, in search and in Starred alike.
+ * family fold shows in a book, in search and in Starred alike. So do the weak points: a hadith
+ * whose chain has any carries one quiet "2 weak points" chip that opens the drawing, where each
+ * weak narrator is marked and ranked (lib/weak).
  * `onNarrator` opens one narrator's full page; `onHadith` opens a sibling narration of the same number.
  */
 import { useState } from 'react'
@@ -18,10 +20,12 @@ import { useState } from 'react'
 import { chainOf } from '../lib/hadithWords'
 import { useHadithCollections } from '../lib/useHadithCollections'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
-import { useNarrators } from '../lib/useNarrators'
+import { useNarrators, useWeakNotes } from '../lib/useNarrators'
 import { drawnChain } from '../lib/rijal'
+import { weakPoints } from '../lib/weak'
 
 import ChainSheet from './ui/ChainSheet'
+import Chip from './ui/Chip'
 import CopyButton from './ui/CopyButton'
 import FavoriteStar from './ui/FavoriteStar'
 import GradeMark from './ui/GradeMark'
@@ -32,11 +36,21 @@ import NarratorSheet from './ui/NarratorSheet'
 export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, onNarrator, onHadith }) {
   const { isFavorite, toggle } = useHadithFavorites()
   const { of } = useHadithCollections()
-  const namesOf = useNarrators(items.map((h) => ({ collection: h.collection ?? collection, book: h.book })))
+  const books = items.map((h) => ({ collection: h.collection ?? collection, book: h.book }))
+  const namesOf = useNarrators(books)
+  const weakOf = useWeakNotes(books)
   // The hadith whose chain is drawn in the pop-up, if any.
   const [drawn, setDrawn] = useState(null)
   // The narrator whose sheet is open, if any.
   const [who, setWho] = useState(null)
+
+  /** One hadith's drawn chain with its weak narrators ranked, and the scale they sit on. */
+  const drawing = (h) => {
+    const ref = `${h.number}${h.part ?? ''}`
+    const { notes, scale } = weakOf(h, ref)
+    const links = drawnChain(h.arabic, namesOf(h)[ref] ?? [], notes)
+    return { links, scale, weak: weakPoints(links, scale) }
+  }
 
   return (
     <>
@@ -45,6 +59,7 @@ export default function HadithCards({ items, accent, collection, columns = false
           const h = { ...item, collection: item.collection ?? collection }
           const ref = `${h.number}${h.part ?? ''}`
           const names = namesOf(h)
+          const weak = weakOf(h, ref).notes.length && chainOf(h.arabic).chain ? drawing(h).weak : []
           // Narrations of this number with chains placed: the same digits, then letters only.
           const kin = h.part ? Object.keys(names).filter((k) => k.startsWith(`${h.number}`) && /^[a-z]+$/.test(k.slice(`${h.number}`.length))).length : 0
           return (
@@ -70,6 +85,11 @@ export default function HadithCards({ items, accent, collection, columns = false
                 <span className="flex items-center gap-2">
                   {!(collection && of(collection).sahih) && (
                     <GradeMark grades={h.grades} sahihBy={of(h.collection).sahih ? of(h.collection).name : null} cite={h.cite} />
+                  )}
+                  {weak.length > 0 && (
+                    <Chip quiet tinted accent={accent} onClick={() => setDrawn(h)}>
+                      {weak.length} weak point{weak.length > 1 && 's'}
+                    </Chip>
                   )}
                   {chainOf(h.arabic).chain && (
                     <button
@@ -98,7 +118,7 @@ export default function HadithCards({ items, accent, collection, columns = false
       {who != null && <NarratorSheet id={who} onClose={() => setWho(null)} onOpenPage={onNarrator} />}
       {drawn && (
         <ChainSheet
-          links={drawnChain(drawn.arabic, namesOf(drawn)[`${drawn.number}${drawn.part ?? ''}`] ?? [])}
+          {...drawing(drawn)}
           onNarrator={(id) => { setDrawn(null); setWho(id) }}
           author={of(drawn.collection).short}
           accent={accent}

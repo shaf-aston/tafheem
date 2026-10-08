@@ -9,7 +9,8 @@
  * the books do not join anywhere stands on its own beside them, reaching only
  * the author, since that is all the text says. lib/hadithWords chainLinks
  * reads the chain; this only draws it. A name sunnah.com linked (lib/rijal
- * linked) is a ui/NarratorLink.
+ * linked) is a ui/NarratorLink. A weak narrator (lib/weak, in `weak`) has his box
+ * edged in the hadith.weak colour and his rank at its start corner.
  */
 import { Fragment } from 'react'
 
@@ -33,26 +34,38 @@ function Rung({ link, grow = false }) {
   )
 }
 
-function Narrator({ link, onNarrator }) {
+function Narrator({ link, weak, onNarrator }) {
+  const point = link.note && weak.find((p) => p.at === link.note.at)
   return (
-    <ArabicText
-      size="base"
-      className="block max-w-[var(--sheet-narrator)] text-center leading-relaxed px-3 py-1 rounded-[var(--radius-md)]
-        border border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text)]"
-    >
-      <NarratorLink id={link.id} onOpen={onNarrator}>{link.name}</NarratorLink>
-    </ArabicText>
+    <div className="relative max-w-[var(--sheet-narrator)]">
+      {point && (
+        <span
+          aria-hidden="true"
+          className="absolute -top-2 start-2 px-1 leading-none type-micro tabular-nums bg-[var(--surface-hi)] text-[var(--hadith-weak)]"
+        >
+          <bdi dir="ltr">{point.label}</bdi>
+        </span>
+      )}
+      <ArabicText
+        size="base"
+        className="block text-center leading-relaxed px-3 py-1 rounded-[var(--radius-md)]
+          border border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text)]"
+        style={point ? { borderColor: 'var(--hadith-weak)' } : undefined}
+      >
+        <NarratorLink id={link.id} onOpen={onNarrator}>{link.name}</NarratorLink>
+      </ArabicText>
+    </div>
   )
 }
 
 /** Narrators top down, each with the rung below it; the last rung reaches the foot. */
-function Strand({ links, top = null, onNarrator }) {
+function Strand({ links, top = null, weak, onNarrator }) {
   return (
     <div className="flex flex-col items-center px-3">
       {top}
       {[...links].reverse().map((link, i, all) => (
         <Fragment key={`${link.name}-${i}`}>
-          <Narrator link={link} onNarrator={onNarrator} />
+          <Narrator link={link} weak={weak} onNarrator={onNarrator} />
           <Rung link={link} grow={i === all.length - 1} />
         </Fragment>
       ))}
@@ -60,7 +73,7 @@ function Strand({ links, top = null, onNarrator }) {
   )
 }
 
-export default function ChainDrawing({ links, author, onNarrator }) {
+export default function ChainDrawing({ links, author, weak = [], onNarrator }) {
   const { main, branches } = links
   // Where the branches join: the highest narrator any of them meets.
   const fork = Math.max(0, ...branches.map((b) => b.at ?? 0))
@@ -70,13 +83,13 @@ export default function ChainDrawing({ links, author, onNarrator }) {
 
   const tree = (
     <div className="flex flex-col items-center">
-      <Strand links={fork ? trunk.slice(1) : trunk} onNarrator={onNarrator} />
+      <Strand links={fork ? trunk.slice(1) : trunk} weak={weak} onNarrator={onNarrator} />
       {fork > 0 && (
         <>
-          <Narrator link={main[fork]} onNarrator={onNarrator} />
+          <Narrator link={main[fork]} weak={weak} onNarrator={onNarrator} />
           <div className="chain-split chain-merge flex items-stretch">
-            {joined.map((b, i) => <Strand key={i} links={b.links} top={<Rung link={b.join} />} onNarrator={onNarrator} />)}
-            <Strand links={main.slice(0, fork)} top={<Rung link={main[fork]} />} onNarrator={onNarrator} />
+            {joined.map((b, i) => <Strand key={i} links={b.links} top={<Rung link={b.join} />} weak={weak} onNarrator={onNarrator} />)}
+            <Strand links={main.slice(0, fork)} top={<Rung link={main[fork]} />} weak={weak} onNarrator={onNarrator} />
           </div>
         </>
       )}
@@ -91,6 +104,7 @@ export default function ChainDrawing({ links, author, onNarrator }) {
             <Strand
               key={i}
               links={b.links}
+              weak={weak}
               onNarrator={onNarrator}
               top={b.at !== null && <span className="type-tiny text-[var(--text-faint)] mb-1" dir="ltr">joins at <ArabicText size="tiny">{main[b.at].name}</ArabicText></span>}
             />

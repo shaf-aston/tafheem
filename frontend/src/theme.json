@@ -305,6 +305,8 @@
     "_way_comment": "The chain drawing colours the word between two narrators by how it was received: heard (سمعت، حدّثنا، أخبرنا) and loose (عن, which does not say how). The chain words guide wears the same two.",
     "heard": "#6cc495",
     "loose": "#e09a6a",
+    "_weak_comment": "The edge and rank numeral on a narrator in the chain drawing, and the filled step on a weak point's scale. One colour for every weak narrator: how weak is said by the rank and the words beside it, never by a shade.",
+    "weak": "#fb7185",
     "lines": "14",
     "stagger-cap": "5"
   },
