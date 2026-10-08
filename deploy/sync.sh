@@ -48,8 +48,13 @@ if [ -n "$OLD" ] && git cat-file -e "$OLD^{commit}" 2>/dev/null; then
 fi
 # Colloquial lessons are all in git, so the server copy is mirrored exactly.
 rsync -a --delete backend/data/colloquial/ /home/ubuntu/tafheem/backend/data/colloquial/
-# The hadith index reads the chain rule from the app's own file (backend/services/hadith/chain.py).
-mkdir -p /home/ubuntu/tafheem/frontend/src && cp frontend/src/hadith.json /home/ubuntu/tafheem/frontend/src/
+# The few frontend files the backend reads at runtime, kept at the same paths:
+# the hadith chain rule (services/hadith/chain.py), the quiz's words for checked
+# practice sentences (services/sentence_check.py) and the Jazariyya poem
+# (services/daleel/sources/jazariyya.py). Without the words, Make one was a 500.
+# tests/test_deploy_files.py fails if the backend starts reading another.
+rsync -aR frontend/src/hadith.json frontend/public/words/words.json frontend/public/words/coverage.json \
+	frontend/public/jazariyya/poem.json /home/ubuntu/tafheem/
 cp requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q --no-deps -r requirements-nodeps.txt
