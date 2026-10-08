@@ -129,7 +129,7 @@ class Settings(BaseSettings):
     speech_max_chars: int = Field(default=120, gt=0)
     speech_rest_s: float = Field(default=60.0, gt=0)
     # A word is ~25 KB, a dialogue line a few hundred; the oldest go first past this.
-    # Every Colloquial line made ahead (scripts/premake_speech.py) is ~1.5 GB, so this leaves room past it.
+    # Every line made ahead (scripts/premake_speech.py: Colloquial, quiz words, example sentences) is ~1.9 GB, so this leaves room past it.
     speech_cache_max_mb: float = Field(default=3000.0, gt=0)
     # Asks a minute per visitor; a phrase counts one ask per speech_chars_per_ask letters.
     speech_per_minute: int = Field(default=60, gt=0)

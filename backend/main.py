@@ -17,7 +17,7 @@ from backend.routers import (
     rijal, speak, tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
-from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, startup, syntax
+from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, speech, startup, syntax
 from backend.services.morphology import get_engine_name
 
 BACKEND_ROOT = Path(__file__).resolve().parent
@@ -128,6 +128,8 @@ def create_app() -> FastAPI:
             # for it (its Qur'an model rather than its general one, when the
             # answering ear is the one on this machine).
             "recite_ear": recitation.ears.active(reciting=True),
+            # Which voice would say a new word (GET /api/speak), or why none would.
+            "voice": speech.active(),
             # How sure the ear is of each word is always scored by the model on
             # this machine (see services/recitation/ears.py's "Word sureness"),
             # whichever ear wrote the words down, so it is named on its own.
