@@ -588,7 +588,7 @@ export default function QuizPanel({ accent, onProgress }) {
                   <div className="text-3xl font-semibold text-[var(--text)]">{shown.prompt}</div>
                 )}
                 {/* Only the Arabic prompt: speaking an Arabic answer option would give it away. */}
-                {shown.promptLang === 'ar' && <SpeakButton key={shown.prompt} ref={speakRef} shortcut="S" text={shown.prompt} />}
+                {shown.promptLang === 'ar' && <SpeakButton key={shown.prompt} ref={speakRef} shortcut="S" early text={shown.prompt} />}
               </div>
             </div>
           </div>
