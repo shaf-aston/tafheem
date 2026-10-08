@@ -230,11 +230,12 @@ def test_a_bab_title_runs_to_the_chain_so_a_rawa_inside_it_stays():
 
 def test_a_shahin_remark_is_paged_where_it_stands_and_loses_the_editors_zeros_and_a_cut_tail():
     markup = ("### | ذكر زيارة القبور\n### | 5 -\n# PageV01P010\n# حدثنا أحمد، عن أبي هريرة قال: «نهيتكم عن زيارة القبور»\n"
-              "# PageV01P011\n# قال الشيخ هذا ناسخ للأول 0 وهذا أصح سندا.\n")
+              "# PageV01P011\n# قال الشيخ هذا ناسخ للأول 0 وهذا أصح سندا.\n# PageV01P012\n")
     [entry] = _book("shahin", markup)
     [found], _ = ruling.read(entry, "nasikh_chapter", RULINGS)
     assert found.quote == "قال الشيخ هذا ناسخ للأول وهذا أصح سندا."   # the 0 between the two is gone
-    assert entry.where(found.at) == "p. 11"   # the remark's page, not the page the unit opens on
+    # A marker ends its page: the hadith is on p. 11, the remark on p. 12, and the remark is cited where it stands.
+    assert (entry.where(0), entry.where(found.at)) == ("p. 11", "p. 12")
     cut = "قال الشيخ هذا حديث صحيح. ومما يدل على ذلك: ما"
     [entry] = _book("shahin", f"### | ذكر زيارة القبور\n### | 6 -\n# حدثنا أحمد، عن أبي هريرة قال: «نهيتكم» {cut}\n")
     assert ruling.read(entry, "nasikh_chapter", RULINGS)[0][0].quote == "قال الشيخ هذا حديث صحيح."   # back to the last full stop
