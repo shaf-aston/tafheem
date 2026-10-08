@@ -1377,11 +1377,43 @@ class RijalHadithRef(BaseModel):
     part: str = ""
 
 
+class WeakNote(BaseModel):
+    """A weak narrator named in a hadith: `at` is where his name starts in the hadith's Arabic, `grade` his wording as the data has it."""
+    at: int
+    id: int
+    level: int
+    kind: str
+    grade: str
+
+
+class WeakLift(BaseModel):
+    """What a source says about support lifting a weakness, quoted. lifts is false where the source says it does not."""
+    en: str
+    lifts: bool = True
+    quote: str
+    source: str
+
+
+class WeakLevel(BaseModel):
+    """One of Ibn Hajar's twelve levels. lift is keyed by kind of weakness, empty where no source speaks."""
+    level: int
+    ar: str
+    en: str
+    kind: str
+    weak: bool
+    source: str
+    lift: dict[str, WeakLift] = {}
+
+
 class RijalChains(BaseModel):
-    """Where each narrator is named in a book's Arabic: hadith number and letter ("1620a") to [start, end, narrator id] slices."""
+    """Where each narrator is named in a book's Arabic: hadith number and letter ("1620a") to [start, end, narrator id] slices.
+
+    notes and scale are the weak points on those chains; both are empty while usul.db is not built."""
     collection: str
     book: int
     chains: dict[str, list[list[int]]] = {}
+    notes: dict[str, list[WeakNote]] = {}
+    scale: list[WeakLevel] = []
     # False when rijal.db has not been built, same as HadithSearchResponse.ready.
     ready: bool = True
     source: Source

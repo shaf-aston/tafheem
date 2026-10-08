@@ -70,4 +70,12 @@ describe('drawnChain', () => {
     const out = drawnChain(arabic, [[first, first + 'عَبْدُ اللَّهِ'.length, 5]])
     expect(out.main.map((l) => l.id)).toEqual([5, null])
   })
+
+  it('hangs a weak note on the narrator whose name starts where the note says', () => {
+    const arabic = 'حَدَّثَنَا زَيْدٌ، عَنْ عَمْرٍو، قَالَ "‏ صَلُّوا ‏"'
+    const at = (s) => arabic.indexOf(s)
+    const names = [[at('زَيْدٌ'), at('زَيْدٌ') + 6, 1], [at('عَمْرٍو'), at('عَمْرٍو') + 6, 2]]
+    const out = drawnChain(arabic, names, [{ at: at('عَمْرٍو'), id: 2, level: 8 }])
+    expect(out.main.map((l) => l.note?.level ?? null)).toEqual([null, 8])
+  })
 })

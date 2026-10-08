@@ -1,0 +1,71 @@
+{
+  "_about": [
+    "Weak points on a hadith's chain. Read by services/usul/rule.py; the build (scripts/build_usul.py) and the endpoint both use it.",
+    "levels: Ibn Hajar's twelve ranks of narrators, Taqrib al-Tahdhib preface. terms are his words for each level, plus the data's spelling (صحابي, رمي). Matched whole words, longest term first, on text folded the same way (letters only, one alef, one hamza seat). The level of a narrator is the highest matched, except that under: N marks a level defined as falling short of level N, whose terms count only when no term above N was matched (Ibn Hajar: level 5 is من قصر عن الرابعة قليلا, so a ثقة with رمي stays 3). Words no term takes are listed in usul.db's gap table and never guessed.",
+    "kind: what sort of weakness the level is. kinds: a term that is a different sort inside its level (رمي in level 5 is an innovation, the rest of 5 are memory).",
+    "weak_from: the lowest level that counts as a weak point. Below it nothing is marked.",
+    "max_change_ratio: the build stops if the number of notes moves more than this against the file it would replace, so a broken rule cannot ship quietly.",
+    "gap_print: how many of the commonest unmatched wordings the build prints.",
+    "levels_source: the sources key the twelve levels come from, printed under each weak point.",
+    "lift: the one place a source says support lifts, or does not lift, a weakness. Keyed by level, or by kind where the level has several. A level with no entry has no line. lifts: false is a source saying it is not lifted. book is a key of sources.",
+    "sources: where each rule is written. openiti is the text id; page is its page marker."
+  ],
+  "weak_from": 5,
+  "max_change_ratio": 0.05,
+  "gap_print": 15,
+  "levels_source": "taqrib",
+  "levels": [
+    { "level": 1, "ar": "الصحابة", "en": "Companion", "kind": "praise", "terms": ["الصحابة", "صحابي", "صحابية"] },
+    { "level": 2, "ar": "ثقة ثقة", "en": "Most reliable", "kind": "praise", "terms": ["أوثق الناس", "ثقة ثقة", "ثقة حافظ"] },
+    { "level": 3, "ar": "ثقة", "en": "Reliable", "kind": "praise", "terms": ["ثقة", "متقن", "ثبت", "عدل"] },
+    { "level": 4, "ar": "صدوق", "en": "Truthful", "kind": "praise", "terms": ["صدوق", "لا بأس به", "ليس به بأس"] },
+    {
+      "level": 5, "ar": "صدوق سيء الحفظ", "en": "Truthful, with a fault", "kind": "memory", "under": 4,
+      "terms": ["صدوق سيء الحفظ", "صدوق يهم", "له أوهام", "يخطىء", "تغير بأخرة", "رمي"],
+      "kinds": { "رمي": "innovation" }
+    },
+    { "level": 6, "ar": "مقبول", "en": "Accepted only with support", "kind": "unknown", "terms": ["مقبول", "لين الحديث"] },
+    { "level": 7, "ar": "مستور", "en": "Condition not known", "kind": "unknown", "terms": ["مستور", "مجهول الحال"] },
+    { "level": 8, "ar": "ضعيف", "en": "Weak", "kind": "weak", "terms": ["ضعيف"] },
+    { "level": 9, "ar": "مجهول", "en": "Unknown man", "kind": "unknown", "terms": ["مجهول"] },
+    { "level": 10, "ar": "متروك", "en": "Abandoned", "kind": "abandoned", "terms": ["متروك", "متروك الحديث", "واهي الحديث", "ساقط"] },
+    { "level": 11, "ar": "متهم بالكذب", "en": "Accused of lying", "kind": "lying", "terms": ["متهم بالكذب"] },
+    { "level": 12, "ar": "كذاب", "en": "Liar or forger", "kind": "lying", "terms": ["كذاب", "وضاع"] }
+  ],
+  "lift": {
+    "6": {
+      "en": "Accepted when another narrator supports him; otherwise his hadith is soft.",
+      "quote": "مقبول، حيث يتابع، وإلا فلين الحديث", "book": "taqrib", "page": "PageV01P073"
+    },
+    "memory": {
+      "en": "A memory fault is lifted when a sound narrator supports him; the hadith becomes good (hasan), though not on its own strength.",
+      "quote": "ومتى توبع السيء الحفظ بمعتبر ... وكذا المختلط الذي لم يتميز وكذا المستور والإسناد المرسل وكذا المدلس إذا لم يعرف المحذوف منه صار حديثهم حسنا لا لذاته",
+      "book": "nuzha", "page": "PageV01P104"
+    },
+    "7": {
+      "en": "Lifted when a sound narrator supports him; the hadith becomes good (hasan), though not on its own strength.",
+      "quote": "ومتى توبع السيء الحفظ بمعتبر ... وكذا المختلط الذي لم يتميز وكذا المستور والإسناد المرسل وكذا المدلس إذا لم يعرف المحذوف منه صار حديثهم حسنا لا لذاته",
+      "book": "nuzha", "page": "PageV01P104"
+    },
+    "11": {
+      "en": "Support does not lift this weakness.",
+      "lifts": false,
+      "quote": "ومن ذلك ضعف لا يزول بنحو ذلك لقوة الضعف ... كالضعف الذي ينشأ من كون الراوي متهما بالكذب",
+      "book": "salah", "page": "PageV01P032"
+    }
+  },
+  "sources": {
+    "taqrib": {
+      "label": "Ibn Hajar, Taqrib, preface", "openiti": "0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1",
+      "page": "PageV01P073-74"
+    },
+    "nuzha": {
+      "label": "Ibn Hajar, Nuzhat al-Nazar", "openiti": "0852IbnHajarCasqalani.NuzhatNazar.Shamela0001565-ara1",
+      "page": "PageV01P104"
+    },
+    "salah": {
+      "label": "Ibn al-Salah, Muqaddima", "openiti": "0643IbnSalahShahrazuri.MuqaddimatCulumHadith.JK000537-ara1",
+      "page": "PageV01P032"
+    }
+  }
+}

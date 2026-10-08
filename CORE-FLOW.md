@@ -135,6 +135,10 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   Scored by `scripts/score_hadith_search.py` against `data/hadith/search_yardstick.json`.
 - `services/mushkil_split.py` cuts al-Tahawi's Mushkil al-Athar into issues (hadith that seem to
   conflict); `scripts/build_mushkil.py` writes `data/hadith/mushkil-tahawi.json`. No tab reads it yet.
+- Weak points on a chain: `scripts/build_usul.py` levels each narrator's grade in `rijal.db` against Ibn Hajar's
+  twelve (`services/usul/level.py`, words in `data/usul/usul.json`) and writes the small, git-tracked `data/usul/usul.db`.
+  `services/usul/store.py` reads it; `GET /api/rijal/chains/...` carries `notes` and `scale`; `lib/weak.js` ranks them and
+  `ui/ChainDrawing` and `ui/WeakPoints` show them. A grade no term reads is listed in the gap table, never guessed.
 - `backend/services/sarf/`: the pure core of morphology. `word.py` holds a word as letters
   that know their job, and names the alphabet once; `ilal.py` the rules. `conjugation.py`
   is the only caller. Every label, column and template is in `data/sarf/`, never in code.
