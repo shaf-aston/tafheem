@@ -163,11 +163,21 @@ def test_entries_keep_the_page_each_stands_on_and_drop_the_markers():
     found = books.entries(SAMPLE_BOOK, {"entry": r"^### \$ (?P<n>\d+) ?(?P<text>.*)$"})
     assert [e.n for e in found] == [1, 2, 3, 4]
     assert found[0].text == "أحمد بن إبراهيم صدوق من العاشرة مات سنة ست وثلاثين د"
-    assert found[0].page_at(0) == "PageV01P010" and found[0].page_at(found[0].text.rindex("د")) == "PageV01P011"
-    assert found[1].text == "أحمد بن علي ثقة من الثامنة" and found[1].start_page == "PageV01P011"
-    assert found[2].start_page == "" and found[2].text == "زيد بن عمرو ثقة"   # PageV00P000 is a page the book lost
+    # A marker ends its page: entry 1's words before PageV01P011 are on p. 11 (the P010 before them closed the
+    # page before); its last word, and entry 2, end at PageV00P000, a page the book lost.
+    assert found[0].page_at(0) == "PageV01P011" and found[0].page_at(found[0].text.rindex("د")) == ""
+    assert found[1].text == "أحمد بن علي ثقة من الثامنة" and found[1].page_at(0) == ""
+    assert found[2].text == "زيد بن عمرو ثقة" and found[2].end_page == ""   # no marker closes it: no page known
     assert found[3].heading == "باب الثاني"
     assert books.page_label("PageV01P073") == "p. 73" and books.page_label("") == ""
+
+
+def test_a_marker_in_a_heading_or_on_the_next_entrys_line_ends_the_page_of_the_entry_before():
+    raw = ("#META#Header#End#\n### $ 1 أول\n### | باب PageV01P020\n### $ 2 ثان\n### $ 3 PageV01P021 ثالث\n"
+           "# تتمة PageV02P005\n")
+    first, second, third = books.entries(raw, {"entry": r"^### \$ (?P<n>\d+) ?(?P<text>.*)$"})
+    assert first.where() == "p. 20" and second.where() == "p. 21"
+    assert third.where() == "v2 p. 5" and third.page_at(len(third.text) - 1) == "PageV02P005"
 
 
 def test_entries_can_be_kept_to_a_chapter_and_cut_where_the_list_ends():
@@ -348,7 +358,7 @@ def test_a_ruling_name_must_stand_for_exactly_one_narrator():
 
 
 ANAS_FORMS = (names.flat("أنس بن مالك"), names.flat("أنس"))
-JAMI_ENTRY = Entry(n=1, start_page="PageV01P150",
+JAMI_ENTRY = Entry(n=1, end_page="PageV01P150",
                    text="قتادة بن دعامة السدوسي قال أبو حاتم لم يسمع من أنس بن مالك وقال شعبة لم يسمع من أنس إلا حديثا "
                         "وقال أحمد لم يسمع من سعيد بن المسيب")
 
