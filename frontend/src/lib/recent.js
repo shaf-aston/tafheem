@@ -18,8 +18,8 @@ export const addRecent = (recent, id, tabs, fixed) =>
 export function readRecent(text, tabs, fixed, seed) {
   try {
     const recent = JSON.parse(text)
-    const known = recent.every((id) => tabs.some((t) => t.id === id) && !fixed.includes(id))
-    if (known && recent.length === seed.length && new Set(recent).size === recent.length) return recent
+    const ids = [...fixed, ...recent]  // one Set: no repeats, and no fixed tab among the recent
+    if (recent.length === seed.length && new Set(ids).size === ids.length && recent.every((id) => tabs.some((t) => t.id === id))) return recent
   } catch {
     /* nothing saved yet */
   }
