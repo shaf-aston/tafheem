@@ -1,8 +1,7 @@
 /** Vocabulary quiz, one word, four meanings, both directions. */
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { keyAction, typingElsewhere } from '../lib/answerKeys'
 import { fetchReviewItems, recordAttempt } from '../lib/progress'
 import { buildQuestion, DIRECTIONS, makeRandom, MEANINGS } from '../lib/quiz'
 import {
@@ -11,11 +10,13 @@ import {
 import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
 import { progressKey, readSaved, writeSaved } from '../lib/stored'
+import { useQuizRound } from '../lib/useQuizRound'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
 
 import QuizAyah from './QuizAyah'
 import QuizExample from './QuizExample'
 import PracticeSentence from './PracticeSentence'
+import QuizBoard from './QuizBoard'
 import QuizInsights from './QuizInsights'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
@@ -24,10 +25,6 @@ import Popover from './ui/Popover'
 import FeedbackButton from './ui/FeedbackButton'
 import Segmented from './ui/Segmented'
 import { Skeleton } from './ui/Skeleton'
-import AnswerSquare from './ui/AnswerSquare'
-import ArabicText from './ui/ArabicText'
-import AutoAdvanceToggle from './ui/AutoAdvanceToggle'
-import SpeakButton from './ui/SpeakButton'
 import WheelPicker from './ui/WheelPicker'
 
 // What each remembered control is allowed to be, taken from the same tables the
@@ -76,27 +73,9 @@ export default function QuizPanel({ accent, onProgress }) {
   // Seed and seen-list travel together: the question is derived from them, so
   // moving on is one state change and the question is never stale.
   const [round, setRound] = useState(freshRound)
-  // When the question on screen was first shown, so an answer can be timed.
-  // A ref, not state: nothing on screen depends on it, and re-rendering the
-  // question in order to time it would be the render that resets the clock.
-  // Null until the first question is actually on screen; the effect below
-  // starts it. An initial Date.now() here would be the moment the panel
-  // mounted, which is before the words have even been fetched.
-  const askedAt = useRef(null)
-  const speakRef = useRef(null)
   // Set once if the store cannot be reached, so a session is never silently
   // saved to nowhere: without it the review list is mysteriously empty later.
   const [saving, setSaving] = useState(true)
-  const [picked, setPicked] = useState(null)
-  // Whether the "why" behind the phrase/dialect badge is expanded. Reset per
-  // question below, so an explanation left open does not follow onto the next word.
-  const [noteOpen, setNoteOpen] = useState(false)
-  // Every question already answered, in the order they were asked, so the strip
-  // at the bottom can send you back to one. The live question is not in here, 
-  // it has not been answered yet, so the strip shows it as the trailing chip.
-  const [history, setHistory] = useState([])
-  // Index into history while reviewing an earlier question, or null for the live one.
-  const [reviewing, setReviewing] = useState(null)
   // Kept like the best streak below, so a reload does not wipe the tally; only
   // Start over (or a new word set) does, and Start over in settings forgets it.
   const [score, setScore] = useState(() => ({ ...NO_SCORE, ...readSaved(SCORE_KEY, NO_SCORE) }))
@@ -225,20 +204,48 @@ export default function QuizPanel({ accent, onProgress }) {
     else for (const query of ayahQueries(ayahAt[0], ayahAt[1])) client.prefetchQuery(query)
   }, [client, asked, ayahAt])
 
-  // One pair of values feeds the whole card, whether it is the live question or
-  // one being looked at again, so nothing below has to know which it is.
-  const past = reviewing === null ? null : history[reviewing]
-  // The answered squares: a column on the far right until the round outgrows it.
-  const railSide = enough && history.length > 0 && history.length < QUIZ.stripSideMax
-  const strip = {
-    history, reviewing, liveAnswered: picked !== null, say,
-    onReview: (i) => { setReviewing(i); setNoteOpen(false) },
-  }
-  const shown = past ? past.question : question
-  const shownPick = past ? past.picked : picked
+  // Everything one answer sets going. Filed and forgotten: the round never waits
+  // for the store, and one that is not there costs a row of history rather than
+  // the question in front of you. Sent as measured, however long; which timings
+  // are honest enough to average is the store's rule, not this panel's.
+  const onAnswer = ({ question: asked, correct: wasRight, ms }) => {
+    recordAttempt({
+      module: moduleFor(language),
+      item: asked.answerId,
+      correct: wasRight,
+      ms,
+      context: { bank: bankId, group: groupId, direction, word: asked.answerWord },
+    }).then((result) => {
+      setSaving(result.saved)
+      // The answer just changed two numbers on screen: what is owed, on the
+      // Review control, and the reading at the foot of the page. Both are
+      // re-read; the words of the round being played are not, so the question
+      // in front of you cannot change underneath your hand.
+      if (result.saved) {
+        client.invalidateQueries({ queryKey: ['quiz-review'] })
+        client.invalidateQueries({ queryKey: ['quiz-progress'] })
+      }
+    })
 
-  const answered = shownPick !== null
-  const correct = answered && shown && shownPick === shown.answerId
+    // One answer, one streak, worked out here rather than inside the state
+    // update so that the record it might beat is written once and in the open.
+    const streak = wasRight ? score.streak + 1 : 0
+    if (streak > bestStreak) rememberBest(String(streak))
+    setScore((s) => ({ right: s.right + (wasRight ? 1 : 0), total: s.total + 1, streak }))
+  }
+
+  const play = useQuizRound({
+    question,
+    onAnswer,
+    onNext: (asked) => setRound((r) => ({
+      at: r.at,
+      seed: r.seed + 1,
+      asked: asked ? new Set(r.asked).add(asked.answerId) : r.asked,
+    })),
+    autoNext,
+    setAutoNext,
+  })
+  const { shown, answered, correct, reviewing } = play
 
   // Tell the header pen how the round is going. Reported, not decided: what the
   // pen does with a streak or a wrong answer is `moodFrom`'s business. Reviewing
@@ -252,36 +259,10 @@ export default function QuizPanel({ accent, onProgress }) {
     })
   }, [onProgress, score.streak, answered, correct, reviewing])
 
-  // The clock for the answer in front of you: started when a new live question
-  // appears, and restarted on coming back from an earlier one in the strip,
-  // because time spent re-reading an old correction is not time spent on this
-  // word. Started here rather than in the handlers because a question also
-  // appears on its own, the moment the words finish loading. It writes a ref
-  // and no state: nothing on screen depends on the clock, and re-rendering the
-  // question to time it would be the render that resets it.
-  useEffect(() => {
-    if (reviewing === null) askedAt.current = Date.now()
-  }, [question, reviewing])
-
-  const nextQuestion = () => {
-    setReviewing(null)
-    setNoteOpen(false)
-    if (past) return
-    setPicked(null)
-    setRound((r) => ({
-      at: r.at,
-      seed: r.seed + 1,
-      asked: question ? new Set(r.asked).add(question.answerId) : r.asked,
-    }))
-  }
-
   // Everything a round owns, cleared in one place; the score, the seen-list,
   // the answer on screen and the strip of questions behind it.
   const resetRound = () => {
-    setPicked(null)
-    setNoteOpen(false)
-    setReviewing(null)
-    setHistory([])
+    play.reset()
     setRound(freshRound)
     setScore(NO_SCORE)
   }
@@ -308,85 +289,6 @@ export default function QuizPanel({ accent, onProgress }) {
   }
 
   const restart = () => resetRound()
-
-  const choose = (optionId) => {
-    if (answered || !question || past) return
-    setPicked(optionId)
-    setHistory((h) => [...h, { question, picked: optionId }])
-
-    const wasRight = optionId === question.answerId
-
-    // Filed and forgotten: the round never waits for it, and a store that is
-    // not there costs a row of history rather than the question in front of
-    // you. Sent as measured, however long; which timings are honest enough to
-    // average is the store's rule, not this panel's.
-    recordAttempt({
-      module: moduleFor(language),
-      item: question.answerId,
-      correct: wasRight,
-      ms: askedAt.current === null ? null : Date.now() - askedAt.current,
-      context: { bank: bankId, group: groupId, direction, word: question.answerWord },
-    }).then((result) => {
-      setSaving(result.saved)
-      // The answer just changed two numbers on screen: what is owed, on the
-      // Review control, and the reading at the foot of the page. Both are
-      // re-read; the words of the round being played are not, so the question
-      // in front of you cannot change underneath your hand.
-      if (result.saved) {
-        client.invalidateQueries({ queryKey: ['quiz-review'] })
-        client.invalidateQueries({ queryKey: ['quiz-progress'] })
-      }
-    })
-
-    // One answer, one streak, worked out here rather than inside the state
-    // update so that the record it might beat is written once and in the open.
-    const streak = wasRight ? score.streak + 1 : 0
-    if (streak > bestStreak) rememberBest(String(streak))
-    setScore((s) => ({ right: s.right + (wasRight ? 1 : 0), total: s.total + 1, streak }))
-  }
-
-  // Auto-advance carries the whole round, not only the right answers. A wrong
-  // one moves on by itself too, just later: the correction underneath has to be
-  // readable first. A question being looked at again never moves on by itself.
-  useEffect(() => {
-    if (!autoNext || !answered || past) return
-    const timer = setTimeout(nextQuestion, correct ? QUIZ.autoNextMs : QUIZ.autoNextWrongMs)
-    return () => clearTimeout(timer)
-  })
-
-  // Answer without reaching for the mouse. The app's own 1–5 tab shortcuts are
-  // suppressed while this panel is open so the digits mean answers here.
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (typingElsewhere(e) || !question) return
-      const action = keyAction(e.key, { checked: answered, optionCount: question.options.length })
-      if (!action) return
-      // Immediate, not plain stopPropagation: the app's tab shortcut listens on
-      // window too, and plain stopPropagation does not stop a second listener on
-      // the same target, so 2 would answer the question AND open Quran, and a 2
-      // pressed with an answer already on screen would leave the quiz outright.
-      if (action.do !== 'check' && action.do !== 'next') e.stopImmediatePropagation()
-      // 'auto' before anything else, so the switch can be flipped at any point in
-      // a round, including while an answer is on screen and about to take itself
-      // away. One press answers here, so 'check' is nothing to do.
-      if (action.do === 'auto') setAutoNext(!autoNext)
-      if (action.do === 'speak') speakRef.current?.click()
-      if (action.do === 'toggle') choose(question.options[action.index].id)
-      if (action.do === 'next') {
-        // Enter on a focused button would also click it, on the next question.
-        e.preventDefault()
-        nextQuestion()
-      }
-    }
-    window.addEventListener('keydown', onKeyDown, true)
-    return () => window.removeEventListener('keydown', onKeyDown, true)
-  })
-
-  const arabicPrompt = shown?.promptLang === 'ar'
-  // Arabic and Urdu are both read right to left and both go through ArabicText;
-  // English is the only side that is plain Latin text. So what each side needs
-  // is its language, not a yes-or-no about Arabic.
-  const rtl = (code) => code !== 'en'
 
   // What has to be said about this question before it is answered. A word that
   // never stands on its own in the Qur'an is the one thing that outranks the
@@ -540,180 +442,23 @@ export default function QuizPanel({ accent, onProgress }) {
         </EmptyState>
       )}
 
-      {/* Three columns of one height: the question, how the round is going, and
-          every answer so far on the far right. Stacked on phones. The answers
-          move under the quiz as a row once there are too many for the column. */}
-      <div className={`grid gap-4 ${railSide ? 'lg:grid-cols-[minmax(0,1fr)_17rem_auto]' : 'lg:grid-cols-[minmax(0,1fr)_17rem]'}`}>
-      {shown && (
-        <div
-          key={shown.prompt}
-          className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-5 space-y-4"
-        >
-          <div className="relative flex items-center justify-center">
-            {/* One note slot, for whatever this question needs said before you
-                answer rather than after you get it wrong: which Arabic is being
-                asked for, or that its English came from a phrase. A button, not
-                a span: the "why" was title-only tooltip before, unreachable on
-                touch. Tapping reveals the same text inline, title stays for mouse. */}
-            {note && (
-              <div className="absolute end-0 top-0 flex flex-col items-end gap-1">
-                <button
-                  type="button"
-                  title={note.why}
-                  aria-expanded={noteOpen}
-                  onClick={() => setNoteOpen((o) => !o)}
-                  className="type-tiny text-[var(--text-faint)] hover:text-[var(--text-dim)]
-                    px-2 py-0.5 rounded-full border border-[var(--border)] transition-colors"
-                >
-                  {note.text}
-                </button>
-                {noteOpen && (
-                  <p className="type-small text-[var(--text-faint)] max-w-[14rem] text-end">
-                    {note.why}
-                  </p>
-                )}
-              </div>
-            )}
-            <div className="text-center space-y-1">
-              <div className="eyebrow">
-                {say(arabicPrompt ? 'What does this mean?' : 'Which word is this?')}
-              </div>
-              {/* The speaker sits beside the word, not under it, so it costs no row. */}
-              <div className="inline-flex items-center gap-3">
-                {rtl(shown.promptLang) ? (
-                  <ArabicText as="div" size="lg" lang={shown.promptLang} className="text-[var(--text)]">
-                    {shown.prompt}
-                  </ArabicText>
-                ) : (
-                  <div className="text-3xl font-semibold text-[var(--text)]">{shown.prompt}</div>
-                )}
-                {/* Only the Arabic prompt: speaking an Arabic answer option would give it away. */}
-                {shown.promptLang === 'ar' && <SpeakButton key={shown.prompt} ref={speakRef} shortcut="S" early text={shown.prompt} />}
-              </div>
-            </div>
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-2.5" role="group" aria-label={say('Answers')}>
-            {shown.options.map((option, i) => (
-              <Option
-                key={option.id}
-                option={option}
-                index={i}
-                lang={shown.answerLang}
-                say={say}
-                answered={answered}
-                picked={shownPick}
-                answerId={shown.answerId}
-                accent={accent}
-                onChoose={choose}
-              />
-            ))}
-          </div>
-
-          {/* One row under the answers, always there so the card never changes
-              height: what the word meant on the left, auto-advance and the way
-              on at the right. */}
-          <div className="flex items-center justify-between gap-3 flex-wrap min-h-9">
-            <div aria-live="polite">
-              {answered && (
-                <p className="text-sm" style={{ color: correct ? 'var(--success)' : 'var(--danger)' }}>
-                  {/* A right answer already says so on the option it was; the
-                      words are kept here for screen readers only, since this is
-                      the line that gets announced. */}
-                  {correct ? <span className="sr-only">{say('Correct.')}</span> : fill('{word} means {meaning}', {
-                    // Whichever side is Arabic gets the Arabic face, otherwise the
-                    // correction renders the word smaller than the question. The
-                    // meaning half carries its own language too: in an Urdu round
-                    // both halves read right to left, in two scripts. Where the
-                    // two land in the sentence is the language's business, which
-                    // is why fill() places them rather than this file.
-                    word: (
-                      <ArabicText lang="ar">
-                        {arabicPrompt ? shown.prompt : shown.answerText}
-                      </ArabicText>
-                    ),
-                    meaning: rtl(arabicPrompt ? shown.answerLang : shown.promptLang) ? (
-                      <ArabicText
-                        lang={arabicPrompt ? shown.answerLang : shown.promptLang}
-                        className="text-[var(--text)] font-semibold"
-                      >
-                        {arabicPrompt ? shown.answerText : shown.prompt}
-                      </ArabicText>
-                    ) : (
-                      <strong className="text-[var(--text)]">
-                        {arabicPrompt ? shown.answerText : shown.prompt}
-                      </strong>
-                    ),
-                  })}
-                </p>
-              )}
-            </div>
-            <div className="flex items-center gap-3 ms-auto">
-              <AutoAdvanceToggle value={autoNext} onChange={setAutoNext} accent={accent} say={say} />
-              {answered && (
-                <button
-                  type="button"
-                  onClick={nextQuestion}
-                  autoFocus
-                  style={{ background: accent, color: 'var(--bg)', '--c': accent }}
-                  className="flex items-center gap-2 ps-5 pe-3 py-2 rounded-[var(--radius-md)]
-                    text-sm font-semibold glow hover:brightness-110 active:translate-y-px
-                    transition-[filter,transform]"
-                >
-                  {say(past ? 'Back to the question' : 'Next word')}
-                  {/* The key printed on the button it fires, so the shortcut is
-                      learnt where it is used rather than from a line of hints. */}
-                  <kbd
-                    aria-hidden="true"
-                    className="px-1.5 py-0.5 rounded type-tiny font-semibold leading-none
-                      bg-[var(--bg)]/25 border border-current/30"
-                  >
-                    Enter ↵
-                  </kbd>
-                </button>
-              )}
-            </div>
-          </div>
-
-          {answered && shown.ayah && <QuizAyah key={shown.ayah.join(':')} ayah={shown.ayah} accent={accent} />}
-          {answered && !shown.ayah && <QuizExample word={shown.answerWord} accent={accent} say={say} />}
-        </div>
-      )}
-
-      {/* Its contents sit absolutely on wide screens, so a long list scrolls
-          inside the column instead of making the row taller than the question. */}
-      {enough && (
-        <aside
-          aria-label={say('This round')}
-          className="relative rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] min-h-0"
-        >
-          <div className="p-4 flex flex-col gap-4 lg:absolute lg:inset-0">
-          <Scoreboard score={score} bestStreak={bestStreak} say={say} onRestart={restart} />
-          <MissedList
-            history={history}
-            reviewing={reviewing}
-            say={say}
-            onReview={strip.onReview}
-          />
-          </div>
-        </aside>
-      )}
-
-      {railSide && (
-        <aside
-          aria-label={say('Questions answered so far')}
-          className="hidden lg:block rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-3"
-        >
-          <QuestionStrip side {...strip} />
-        </aside>
-      )}
-      </div>
-
-      {/* Phones, or a round too long for the column: the same squares as a row. */}
-      {enough && <div className={railSide ? 'lg:hidden' : ''}><QuestionStrip {...strip} /></div>}
-
       {enough && (
         <>
+          <QuizBoard
+            round={play}
+            accent={accent}
+            say={say}
+            fill={fill}
+            autoNext={autoNext}
+            setAutoNext={setAutoNext}
+            score={score}
+            bestStreak={bestStreak}
+            onRestart={restart}
+            note={note}
+            afterAnswer={(word) => (word.ayah
+              ? <QuizAyah key={word.ayah.join(':')} ayah={word.ayah} accent={accent} />
+              : <QuizExample word={word.answerWord} accent={accent} say={say} />)}
+          />
 
           {/* Said once, quietly, and only when it is true. A whole session
               saved to nowhere is worth knowing about while it is happening,
@@ -734,188 +479,6 @@ export default function QuizPanel({ accent, onProgress }) {
           <QuizInsights accent={accent} language={language} />
           <PracticeSentence say={say} />
         </>
-      )}
-    </div>
-  )
-}
-
-function Option({ option, index, lang, say, answered, picked, answerId, accent, onChoose }) {
-  const isAnswer = option.id === answerId
-  const isPicked = option.id === picked
-
-  // Before answering the accent guides; after, only right and wrong matter.
-  let border = 'var(--border)'
-  let color = 'var(--text)'
-  if (answered && isAnswer) {
-    border = 'var(--success)'
-    color = 'var(--success)'
-  } else if (answered && isPicked) {
-    border = 'var(--danger)'
-    color = 'var(--danger)'
-  }
-
-  // The verdict rides on the option itself. That keeps the answer and the word
-  // it belongs to in one place, and saves a whole row below the grid.
-  let verdict = null
-  if (answered && isAnswer) verdict = say(isPicked ? 'Correct' : 'Answer')
-  else if (answered && isPicked) verdict = say('Not this')
-
-  return (
-    <button
-      type="button"
-      onClick={() => onChoose(option.id)}
-      disabled={answered}
-      style={{ '--i': index, '--c': accent, borderColor: border, color }}
-      className={`rise-in option flex items-center gap-3 px-4 py-3 rounded-[var(--radius-md)] text-start
-        bg-[var(--surface-hi)] border
-        ${answered ? 'cursor-default' : ''}
-        ${answered && !isAnswer && !isPicked ? 'opacity-50' : ''}`}
-    >
-      <span
-        className="shrink-0 w-6 h-6 grid place-items-center rounded-full type-small
-          bg-[var(--surface)] text-[var(--text-faint)]"
-        aria-hidden="true"
-      >
-        {index + 1}
-      </span>
-      {lang === 'en' ? (
-        <span className="text-sm">{option.text}</span>
-      ) : (
-        <ArabicText lang={lang} className="leading-tight">{option.text}</ArabicText>
-      )}
-      {verdict && <span className="ms-auto type-small font-medium shrink-0">{verdict}</span>}
-    </button>
-  )
-}
-
-function Scoreboard({ score, bestStreak, say, onRestart }) {
-  const wrong = score.total - score.right
-  const right = score.total ? (score.right / score.total) * 100 : 0
-  // Right runs green from the top, wrong takes the rest; before any answer it is an empty ring.
-  const ring = score.total
-    ? `conic-gradient(var(--success) 0 ${right}%, var(--danger) 0)`
-    : 'var(--border)'
-
-  return (
-    <div className="flex items-center gap-4">
-      <div
-        role="img"
-        aria-label={say('{n}% right', { n: Math.round(right) })}
-        className="shrink-0 w-14 h-14 rounded-full grid place-items-center"
-        style={{ background: ring }}
-      >
-        <span className="w-11 h-11 rounded-full bg-[var(--surface)] grid place-items-center type-small font-semibold tabular-nums">
-          {score.total ? `${Math.round(right)}%` : '–'}
-        </span>
-      </div>
-      <div className="type-small text-[var(--text-faint)] space-y-0.5 min-w-0">
-        <p><span className="text-[var(--success)] font-medium tabular-nums">{score.right}</span> {say('right')}</p>
-        <p><span className="text-[var(--danger)] font-medium tabular-nums">{wrong}</span> {say('wrong')}</p>
-        {bestStreak > 1 && <p>{say('streak {n}', { n: score.streak })} · {say('best {n}', { n: bestStreak })}</p>}
-        {score.total > 0 && (
-          <button
-            type="button"
-            onClick={onRestart}
-            className="hover:text-[var(--text)] underline underline-offset-2 transition-colors"
-          >
-            {say('Start over')}
-          </button>
-        )}
-      </div>
-    </div>
-  )
-}
-
-/**
- * The words got wrong this round, newest first: the Arabic and what it means.
- * Pressing one puts that question back on screen.
- */
-function MissedList({ history, reviewing, say, onReview }) {
-  const missed = history
-    .map((entry, i) => ({ ...entry, i }))
-    .filter((entry) => entry.picked !== entry.question.answerId)
-    .reverse()
-
-  return (
-    <div className="flex flex-col gap-2 min-h-0 flex-1">
-      <h3 className="eyebrow">
-        {say('Got wrong')}
-      </h3>
-      {missed.length === 0 ? (
-        <p className="type-small text-[var(--text-faint)]">{say('Nothing yet.')}</p>
-      ) : (
-        <ul className="space-y-1.5 max-h-72 lg:max-h-none overflow-y-auto">
-          {missed.map(({ question, i }) => {
-            const arabicFirst = question.promptLang === 'ar'
-            const word = arabicFirst ? question.prompt : question.answerText
-            const meaning = arabicFirst ? question.answerText : question.prompt
-            const meaningLang = arabicFirst ? question.answerLang : question.promptLang
-            return (
-              <li key={i}>
-                <button
-                  type="button"
-                  onClick={() => onReview(reviewing === i ? null : i)}
-                  aria-current={reviewing === i || undefined}
-                  className={`w-full flex items-center justify-between gap-3 px-3 py-1 rounded-[var(--radius-md)]
-                    border text-start transition-colors hover:border-[var(--danger)]
-                    ${reviewing === i ? 'border-[var(--danger)] bg-[var(--surface-hi)]' : 'border-[var(--border)]'}`}
-                >
-                  {meaningLang === 'en'
-                    ? <span className="type-small text-[var(--text-dim)] truncate">{meaning}</span>
-                    : <ArabicText size="sm" lang={meaningLang} className="text-[var(--text-dim)] truncate">{meaning}</ArabicText>}
-                  <ArabicText size="sm" lang="ar" className="text-[var(--text)] shrink-0 leading-normal">{word}</ArabicText>
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-      )}
-    </div>
-  )
-}
-
-/**
- * Every question of the round so far, one small square each, newest last: a tick
- * for right, a cross for wrong, and the question's number under it. Clicking one
- * puts that question back on screen exactly as it was answered.
- *
- * It earns its place by being the only way back to a word you got wrong, the
- * round otherwise moves on and the correction is gone in a second or two.
- */
-function QuestionStrip({ history, reviewing, liveAnswered, say, onReview, side = false }) {
-  if (!history.length) return null
-
-  return (
-    <div
-      role="group"
-      // Down the column first, then a new column beside it.
-      style={side ? { gridTemplateRows: `repeat(${QUIZ.stripRows}, auto)` } : undefined}
-      className={side ? 'grid grid-flow-col gap-x-2 gap-y-1.5 justify-center' : 'flex flex-wrap items-start justify-center gap-1.5'}
-      aria-label={say('Questions answered so far')}>
-      {history.map((entry, i) => {
-        const right = entry.picked === entry.question.answerId
-        const open = reviewing === i
-        return (
-          <AnswerSquare
-            key={i}
-            status={right ? 'right' : 'wrong'}
-            number={i + 1}
-            current={open}
-            label={`Question ${i + 1}, ${right ? 'correct' : 'wrong'}`}
-            onClick={() => onReview(open ? null : i)}
-          />
-        )
-      })}
-
-      {/* The question you are on, so the strip does not stop short of where you
-          actually are, and so there is a way back from reviewing an old one. */}
-      {!liveAnswered && (
-        <AnswerSquare
-          number={history.length + 1}
-          current={reviewing === null}
-          label={`Question ${history.length + 1}, the one you are on`}
-          onClick={() => onReview(null)}
-        />
       )}
     </div>
   )

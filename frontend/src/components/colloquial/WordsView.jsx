@@ -20,7 +20,7 @@ export default function WordsView({ unit, at }) {
   const drills = useMemo(() => wordDrills(words, `${unit.unit}.${lesson.lesson}`, { dialect }), [words, unit.unit, lesson.lesson, dialect])
 
   return (
-    <article className="max-w-xl mx-auto space-y-6">
+    <article className={`${mode === 'review' ? 'max-w-5xl' : 'max-w-xl'} mx-auto space-y-6`}>
       {/* The topic's title is already on the trail above, one step before Words. */}
       <header className="flex flex-wrap items-end justify-between gap-3">
         <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
