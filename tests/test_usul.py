@@ -23,6 +23,7 @@ from backend.services.usul.level import level_of  # noqa: E402
 from backend.services.usul.rule import rule  # noqa: E402
 
 LEVELS = rule()["levels"]
+CHECK_PAGES = build_usul.check_pages   # the fixture below turns the check off; the tests of it turn it back on
 
 
 @pytest.mark.parametrize("grade, level", [
@@ -62,6 +63,7 @@ def paths(tmp_path, monkeypatch):
     where = {"rijal_index_path": tmp_path / "rijal.db", "usul_index_path": tmp_path / "usul.db", "usul_books_dir": books_dir,
              "usul_dir": build_usul.data_path("usul_dir"), "rijal_dir": build_usul.data_path("rijal_dir")}
     # The exemptions name real narrators (al-A'mash, Shu'ba ...), none of whom the four here are.
+    monkeypatch.setattr(build_usul, "check_pages", lambda cfg, texts: [])   # the four books here hold none of the quotes
     monkeypatch.setattr(build_usul, "rule", lambda: {**rule(), "tadlis": {**rule()["tadlis"], "unless": []}})
     for module in (rijal_store, usul_store, build_usul):
         monkeypatch.setattr(module, "data_path", where.__getitem__)
@@ -420,7 +422,7 @@ def test_the_chains_endpoint_carries_links_where_rijal_still_places_them(paths):
     db.close()
     reply = TestClient(app).get("/api/rijal/chains/muslim/24").json()
     assert [(link["at"], link["student"], link["teacher"]) for link in reply["links"]["1"]] == [(10, 1, 2)]   # 11 and 9 are placed nowhere
-    assert reply["link_rules"]["levels"]["3"]["page"] == "p. 11" and "tadlis_unclear" in reply["link_rules"]["kinds"]
+    assert reply["link_rules"]["levels"]["3"]["page"] == books.page_label(rule()["tadlis"]["levels"]["3"]["page"]) and "tadlis_unclear" in reply["link_rules"]["kinds"]
     assert "skip" not in reply["link_rules"]   # no note is ever shown in the Sahihs, so their reason is not sent
 
 
@@ -436,7 +438,7 @@ def test_a_narrators_page_carries_what_the_books_say_grouped_with_their_book(pat
     reply = TestClient(app).get("/api/rijal/narrators/2").json()["usul"]
     assert reply["source"]["confidence"] == "derived"
     assert reply["habits"][0]["ar"] == "راو 3" and reply["habits"][0]["book"] == rule()["sources"]["jami"]["label"]
-    assert reply["habits"][1]["rule"]["page"] == "p. 11" and reply["life"][0]["rule"]["quote"] == rule()["taqrib"]["death"]["quote"]
+    assert reply["habits"][1]["rule"]["page"] == books.page_label(rule()["tadlis"]["levels"]["3"]["page"]) and reply["life"][0]["rule"]["quote"] == rule()["taqrib"]["death"]["quote"]
     assert [(line["text"], line["ar"], line["page"]) for line in reply["reliability"]] == [
         ("Level 8 of 12, Weak", "ضعيف", "")]   # no entry joined: his sunnah.com grade, not a Taqrib page
     assert [line["text"] for line in reply["books"]] == [   # narrator 2 is named once in hadith 1 (twice at one place) and in 2a
@@ -446,3 +448,48 @@ def test_a_narrators_page_carries_what_the_books_say_grouped_with_their_book(pat
 def test_a_narrator_page_has_empty_groups_where_usul_db_is_missing(paths):
     reply = TestClient(app).get("/api/rijal/narrators/2").json()["usul"]
     assert {k: v for k, v in reply.items() if k != "source"} == {"reliability": [], "habits": [], "life": [], "books": []}
+
+
+# Page 10 ends at the first marker, 11 at the second: the quote's words stand on the page whose marker follows them.
+PAGED = ("#META#Header#End#\n# وقال المصنف ثقة\n~~ثبت ms004 حافظ PageV01P010\n# ومن بعد ذلك مسألة أخرى PageV01P011\n"
+         "# تتمة النص كله PageV01P012\n")
+VERIFY = rule()["verify"]
+
+
+@pytest.mark.parametrize("quote, page", [
+    ("وَقَالَ المصنف ثقة ثبت", "PageV01P010"),   # across a line wrap, a word-count marker and a diacritic
+    ("حافظ ومن بعد ذلك مسألة", "PageV01P010-11"),   # across a page marker: both pages
+    ("وقال ... مسألة أخرى", "PageV01P010-11"),   # an elision: each part found in order
+    ("تتمة النص", "PageV01P012"),
+    ("ليس في الكتاب", None),
+])
+def test_a_quote_is_located_by_its_letters_and_gets_the_page_or_pages_whose_markers_close_it(quote, page):
+    assert books.locate(PAGED, quote, VERIFY) == page
+
+
+def test_an_elisions_parts_must_lie_close_together_and_a_page_the_book_lost_is_empty_not_missing():
+    assert books.locate(PAGED, "وقال ... تتمة", VERIFY) == "PageV01P010-12"
+    assert books.locate(PAGED, "وقال ... تتمة", {**VERIFY, "gap": 5}) is None
+    assert books.locate("#META#Header#End#\n# نص ضائع PageV00P000\n", "نص ضائع", VERIFY) == ""
+
+
+def test_the_check_names_each_quote_whose_config_page_is_not_the_books_with_the_page_the_book_gives():
+    cfg = {"verify": VERIFY, "sources": {"k": {"page": "PageV01P010"}, "other": {"page": ""}},
+           "rule": {"quote": "ثقة ثبت", "book": "k", "page": "PageV01P011"},
+           "kept": {"quote": "تتمة النص", "book": "k", "page": "PageV01P012"},
+           "gone": {"quote": "ليس في الكتاب", "book": "k", "page": "PageV01P012"}}
+    assert CHECK_PAGES(cfg, {"k": PAGED}) == [
+        "rule: book k, config 'PageV01P011', derived 'PageV01P010'",
+        "gone: book k, config 'PageV01P012', derived not found",
+        "sources.k.page: config 'PageV01P010', derived 'PageV01P010-12'"]   # the span of the pages of "rule" and "kept"
+    cfg["rule"]["page"], cfg["sources"]["k"]["page"], cfg["gone"]["page"] = "PageV01P010", "PageV01P010-12", "PageV01P011"
+    cfg["gone"]["quote"] = "ومن بعد ذلك"
+    assert CHECK_PAGES(cfg, {"k": PAGED}) == []
+
+
+def test_a_build_whose_books_do_not_hold_the_configs_quotes_stops_before_building(paths, monkeypatch):
+    monkeypatch.setattr(build_usul, "check_pages", CHECK_PAGES)
+    with pytest.raises(SystemExit, match=r"taqrib\.death: book taqrib, config 'PageV01P0\d+', derived not found"):
+        build_usul.build()
+    assert not paths["usul_index_path"].exists()
+

@@ -14,6 +14,9 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from functools import lru_cache
+
+from backend.services.arabic_text import bare_letters
 
 _HEADER_END = "#META#Header#End#"
 _HEADING = re.compile(r"^### \|(?: (.*))?$")
@@ -34,12 +37,17 @@ class Entry:
 
     def page_at(self, offset: int) -> str:
         """The page marker the text at `offset` stands on: the first marker after it. "" where the book lost it."""
-        return next((marker for at, marker in self.pages if at > offset), self.end_page)
+        return page_after(self.pages, offset, self.end_page)
 
     def where(self, offset: int = 0) -> str:
         """Where the text at `offset` is printed: "p. 73", or "no. 322" (the entry's number in its book's list)
         where the digitised book lost its pages, as al-'Ala'i's Jami' al-Tahsil did for its narrator list."""
         return page_label(self.page_at(offset)) or f"no. {self.n}"
+
+
+def page_after(pages: list[tuple[int, str]], offset: int, default: str = "") -> str:
+    """The page rule: the text at `offset` stands on the first marker after it, `default` where none follows."""
+    return next((marker for at, marker in pages if at > offset), default)
 
 
 def page_label(marker: str) -> str:
@@ -157,3 +165,59 @@ def _join(text: str, pieces: list[str]) -> str:
     """The pieces as words to add to `text`: single-spaced, with a space first where text already has words."""
     added = " ".join(" ".join(p.split()) for p in pieces if p.strip())
     return (" " + added if text and added else added)
+
+
+def span(markers: list[str]) -> str:
+    """The one marker covering every page in `markers` (each a marker or a range): PageV01P129, or PageV01P129-130.
+    "" for none; a ValueError where they sit in two volumes."""
+    found = [(m[1], int(m[2]), int(m[3] or m[2])) for m in map(_PAGE.fullmatch, markers) if m]
+    if not found:
+        return ""
+    if len({volume for volume, *_ in found}) > 1:
+        raise ValueError(f"{markers} run across two volumes")
+    first, last = min(a for _, a, _ in found), max(b for *_, b in found)
+    return f"PageV{found[0][0]}P{first:03d}" + (f"-{last}" if last != first else "")
+
+
+def fold(text: str) -> str:
+    """Letters only, spelling variants folded: how a quote and a book are compared."""
+    return "".join(re.findall(r"[^\W\d_]+", bare_letters(text)))
+
+
+@lru_cache(maxsize=8)
+def _letters(raw: str, strip: str) -> tuple[str, list[tuple[int, str]]]:
+    """A book as one run of folded letters, and its page markers as (letters before it, marker).
+    `strip` is a regex for an editor's mark that holds letters (a folio mark, [6 / ظ]), taken out first."""
+    body, pieces, pages, count, pos = re.sub(strip, " ", raw.split(_HEADER_END, 1)[-1]), [], [], 0, 0
+    for mark in _MARKS.finditer(body):
+        pieces.append(fold(body[pos:mark.start()]))
+        count += len(pieces[-1])
+        pos = mark.end()
+        if mark[1]:
+            pages.append((count, "" if mark[1] == _NO_PAGE else mark[1]))
+    pieces.append(fold(body[pos:]))
+    return "".join(pieces), pages
+
+
+def locate(raw: str, quote: str, verify: dict) -> str | None:
+    """The marker of the page (or PageV01P129-130, the pages) a quote stands on in the book `raw`; "" where the book
+    lost that page, None where the quote is not in it.
+
+    Found by its folded letters, across line wraps and page markers. `verify` is usul.json's: `strip` (see _letters),
+    and `elision`, which inside a quote splits it into parts, each found after the one before it and within `gap`
+    letters of it."""
+    text, pages = _letters(raw, verify["strip"])
+    parts = [p for p in map(fold, quote.split(verify["elision"])) if p]
+    start = text.find(parts[0]) if parts else -1
+    while start >= 0:
+        end = start + len(parts[0])
+        for part in parts[1:]:
+            at = text.find(part, end, end + verify["gap"] + len(part))
+            if at < 0:
+                break
+            end = at + len(part)
+        else:
+            first, last = page_after(pages, start), page_after(pages, end - 1)
+            return span([first, last]) if first and last else ""
+        start = text.find(parts[0], start + 1)
+    return None

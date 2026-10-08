@@ -12,6 +12,9 @@ hear from" (services/usul/rung.py, jami.py). Prints the narrators levelled, the
 notes per level, the wordings no term took and every join with the rows it left
 over, so what the rule cannot read is seen and never guessed.
 
+Every quote in usul.json that names a book and a page is first found in that book and its page checked
+against the one the book's markers give (check_pages); any mismatch stops the build.
+
 Rebuilding is safe at any time: it writes a fresh file beside the old one and
 moves it into place at the end, like build_rijal.py. It stops, leaving the old
 file, if the number of notes moves more than `max_change_ratio` against it.
@@ -110,18 +113,52 @@ def guard_change(target: Path, table: str, now: int, ratio: float) -> None:
                          "delete it to accept the new count.")
 
 
-def read_books(cfg: dict) -> dict[str, list[books.Entry]]:
-    """Every entry of each narrator book fetch_usul.py saved."""
+def read_texts(cfg: dict) -> dict[str, str]:
+    """The text of each book fetch_usul.py saved; a missing file stops the build."""
     folder = data_path("usul_books_dir")
     found = {}
-    for key, spec in cfg["books"].items():
+    for key in cfg["books"]:
         if key == "base":
             continue
         path = folder / f"{key}.txt"
         if not path.exists():
             raise SystemExit(f"no {path.name}. Run: python backend/scripts/fetch_usul.py")
-        found[key] = books.entries(path.read_text(encoding="utf-8"), spec)
+        found[key] = path.read_text(encoding="utf-8")
     return found
+
+
+def read_books(cfg: dict, texts: dict[str, str]) -> dict[str, list[books.Entry]]:
+    """Every entry of each book whose config says how its entries open; the rest are only quoted from."""
+    return {key: books.entries(texts[key], spec) for key, spec in cfg["books"].items() if "entry" in spec}
+
+
+def cited(node, path: str = ""):
+    """(path, dict) for every dict in the config that quotes a book and names its page."""
+    if isinstance(node, dict):
+        if all(isinstance(node.get(key), str) for key in ("quote", "book", "page")):
+            yield path, node
+        for key, value in node.items():
+            yield from cited(value, f"{path}.{key}" if path else key)
+    elif isinstance(node, list):
+        for i, value in enumerate(node):
+            yield from cited(value, f"{path}[{i}]")
+
+
+def check_pages(cfg: dict, texts: dict[str, str]) -> list[str]:
+    """One line per quote the books do not bear out: its path, the page the config gives and the one the book gives.
+    Each sources page is held to the span of its quotes' pages."""
+    problems, pages = [], {}
+    for path, node in cited(cfg):
+        found = books.locate(texts[node["book"]], node["quote"], cfg["verify"])
+        pages.setdefault(node["book"], []).append(found or "")
+        if found != node["page"]:
+            problems.append(f"{path}: book {node['book']}, config {node['page']!r}, derived "
+                            + ("not found" if found is None else repr(found)))
+    for key, source in cfg["sources"].items():
+        found = books.span(pages.get(key, []))
+        if found != source["page"]:
+            problems.append(f"sources.{key}.page: config {source['page']!r}, derived {found!r}")
+    return problems
 
 
 def narrator_rows(rijal: sqlite3.Connection) -> dict[int, dict]:
@@ -289,7 +326,10 @@ def build() -> None:
     if not source.exists():
         raise SystemExit(f"no {source.name}. Run: python backend/scripts/build_rijal.py")
     cfg = rule()
-    entries = read_books(cfg)
+    texts = read_texts(cfg)
+    if problems := check_pages(cfg, texts):
+        raise SystemExit("usul.json pages the books do not bear out:\n  " + "\n  ".join(problems))
+    entries = read_books(cfg, texts)
     size, window = cfg["join"]["name_words"], cfg["join"]["nisba_window"]
     target = data_path("usul_index_path")
     scratch = target.with_suffix(".building.db")

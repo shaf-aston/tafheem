@@ -8,13 +8,15 @@
     "gap_print: how many of the commonest unmatched wordings the build prints.",
     "levels_source: the sources key the twelve levels come from, printed under each weak point.",
     "lift: the one place a source says support lifts, or does not lift, a weakness. Keyed by level, or by kind where the level has several. A level with no entry has no line. lifts: false is a source saying it is not lifted. book is a key of sources.",
-    "sources: where each rule is written. openiti is the text id; page is its page marker."
+    "sources: where each rule is written. openiti is the text id of the one edition the build reads (books, below, fetches it); page is the page marker of the rules cited from it, a range where they run over more than one page, empty where the source is cited per entry.",
+    "verify: the build finds every quote that names a book and a page (a dict with quote, book and page, anywhere in this file) in that book's text, and stops where the page it derives, the one a page marker closes (OpenITI marks the END of a page), is not the page written here. The same check holds each sources page to the span of its quotes' pages. elision: inside a quote it splits the quote into parts, each found after the one before it, within gap letters. strip: an editor's folio mark that holds letters ([6 / ظ]), taken out of the book before the quote is looked for."
   ],
   "weak_from": 5,
   "max_change_ratio": 0.05,
   "fetch_timeout_seconds": 120,
   "gap_print": 15,
   "levels_source": "taqrib",
+  "verify": { "elision": "...", "gap": 600, "strip": "\\[[^\\]\\n]*\\d[^\\]\\n]*\\]" },
   "join": { "name_words": 3, "nisba_window": 12, "bound": ["عبد", "أبو", "أم"] },
   "books": {
     "base": "https://raw.githubusercontent.com/OpenITI/",
@@ -45,6 +47,15 @@
     "mawduat": {
       "path": "0600AH/master/data/0597IbnJawzi/0597IbnJawzi.Mawducat/0597IbnJawzi.Mawducat.Shamela0000882-ara1",
       "entry": "^# (?P<text>باب(?: .*)?)$", "stop": "آخر كتاب الموضوعات"
+    },
+    "nuzha": {
+      "path": "0875AH/master/data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.NuzhatNazar/0852IbnHajarCasqalani.NuzhatNazar.Shamela0012115-ara1"
+    },
+    "salah": {
+      "path": "0650AH/master/data/0643IbnSalahShahrazuri/0643IbnSalahShahrazuri.MuqaddimatCulumHadith/0643IbnSalahShahrazuri.MuqaddimatCulumHadith.Shamela0029878BK1-ara1.completed"
+    },
+    "nawawi": {
+      "path": "0700AH/master/data/0676Nawawi/0676Nawawi.Taqrib/0676Nawawi.Taqrib.Shamela0005586-ara1"
     }
   },
   "taqrib": {
@@ -53,8 +64,9 @@
       "doubt": ["أو", "وقيل", "ويقال", "قيل", "يقال"],
       "bands": [{ "from": 1, "to": 2, "add": 0 }, { "from": 3, "to": 4, "add": null }, { "from": 5, "to": 8, "add": 100 }, { "from": 9, "to": 12, "add": 200 }],
       "bands_say": "A year written without its hundreds takes the hundreds of his generation from the preface. Generations 3 and 4 are left out: the third and fourth hold men who died before the 100th year as well as after it (of 42 checked against sunnah.com's years, 12 read as written and 28 take the hundred), so their year is not read.",
+      "book": "taqrib",
       "quote": "وذكرت وفاة من عرفت سنة وفاته منهم، فإن كان من الأولى والثانية: فهم قبل المائة، وإن كان من الثالثة إلى آخر الثامنة: فهم بعد المائة، وإن كان من التاسعة إلى آخر الطبقات: فهم بعد المائتين، ومن ندر عن ذلك بينته",
-      "page": "PageV01P074"
+      "page": "PageV01P075"
     }
   },
   "tarif": {
@@ -66,27 +78,27 @@
       "1": {
         "notes": false, "say": "Level 1 of 5 in tadlis: he is hardly ever described as doing it.",
         "quote": "من لم يوصف بذلك الا نادرا كيحيى بن سعيد الانصاري",
-        "book": "tarif", "page": "PageV01P011"
+        "book": "tarif", "page": "PageV01P013"
       },
       "2": {
         "notes": false, "say": "Level 2 of 5 in tadlis: the imams put up with it and took his hadith into the Sahih.",
         "quote": "من احتمل الائمة تدليسه وأخرجوا له في الصحيح لامامته وقلة تدليسه في جنب ما روى كالثوري أو كان لا يدلس الا عن ثقة كإبن عيينة",
-        "book": "tarif", "page": "PageV01P011"
+        "book": "tarif", "page": "PageV01P013"
       },
       "3": {
         "notes": true, "say": "Level 3 of 5 in tadlis: the imams took his hadith only where he states hearing.",
         "quote": "من أكثر من التدليس فلم يحتج الائمة من أحاديثهم الا بما صرحوا فيه بالسماع ومنهم من رد حديثهم مطلقا ومنهم من قبلهم",
-        "book": "tarif", "page": "PageV01P011"
+        "book": "tarif", "page": "PageV01P013"
       },
       "4": {
         "notes": true, "say": "Level 4 of 5 in tadlis: agreed that none of his hadith is used unless he states hearing.",
         "quote": "اتفق على أنه لا يحتج بشئ من حديثهم الا بما صرحوا فيه بالسماع",
-        "book": "tarif", "page": "PageV01P013"
+        "book": "tarif", "page": "PageV01P014"
       },
       "5": {
         "notes": false, "say": "Level 5 of 5 in tadlis: weak for another reason, so his hadith is rejected even where he states hearing.",
         "quote": "من ضعف بأمر آخر سوى التدليس فحديثهم مردود ولو صرحوا بالسماع الا أن يوثق من كان ضعفه يسيرا كابن لهيعة",
-        "book": "tarif", "page": "PageV01P013"
+        "book": "tarif", "page": "PageV01P014"
       }
     },
     "ways": { "عن": "tadlis", "قال": "tadlis", "أن": "tadlis_unclear" },
@@ -94,19 +106,19 @@
       "tadlis": {
         "label": "Possible tadlis", "say": "This link does not state hearing, and Ibn al-Salah gives it the ruling of a mursal.",
         "quote": "وأن ما رواه المدلس بلفظ محتمل لم يبين فيه السماع والاتصال، حكمه حكم المرسل وأنواعه",
-        "book": "salah", "page": "PageV01P234"
+        "book": "salah", "page": "PageV01P235"
       },
       "tadlis_unclear": {
         "label": "Tadlis, unclear", "say": "This link says anna (that). Scholars differ on whether that counts like an (from).",
         "quote": "اختلفوا في قول الراوي: أن فلانا قال كذا وكذا؛ هل هو بمنزلة عن في الحمل على الاتصال إذا ثبت التلاقي بينهما، حتى يتبين فيه الانقطاع؟ ... فروينا عن مالك رضي الله عنه أنه كان يرى عن فلان و أن فلانا سواء. وعن أحمد بن حنبل رضي الله عنه أنهما ليسا سواء",
-        "book": "salah", "page": "PageV01P219"
+        "book": "salah", "page": "PageV01P220-221"
       }
     },
     "skip": {
       "collections": ["bukhari", "muslim"],
       "say": "In the two Sahihs the scholars take hearing as established from another route, so no note is made there.",
       "quote": "وما كان في الصحيحين وشبههما عن المدلسين بعن محمول على ثبوت السماع من جهة أخرى",
-      "book": "nawawi", "page": "PageV01P038"
+      "book": "nawawi", "page": "PageV01P039"
     },
     "unless": [
       {
@@ -114,14 +126,14 @@
         "via": "شعبة بن الحجاج العتكي", "teacher": null,
         "say": "Shu'ba stands below him in this strand: his hadith through Shu'ba shows hearing even when worded عن.",
         "quote": "فهذه قاعدة جيدة في أحاديث هؤلاء الثلاثة أنها إذا جاءت من طريق شعبة دلت على السماع ولو كانت معنعنة",
-        "book": "tarif", "page": "PageV01P058"
+        "book": "tarif", "page": "PageV01P059"
       },
       {
         "tellers": ["محمد بن مسلم بن تدرس المكي"],
         "via": "الليث بن سعد الفهمي", "teacher": "جابر بن عبد الله الأنصاري",
         "say": "al-Layth stands below him, and what he took from Jabir through al-Layth is what he heard from Jabir.",
         "quote": "ونظيره ثنا الليث عن أبي الزبير عن جابر فإنه لم يسمع منه الا مسموعة من جابر",
-        "book": "tarif", "page": "PageV01P058"
+        "book": "tarif", "page": "PageV01P059"
       }
     ]
   },
@@ -180,23 +192,23 @@
   "lift": {
     "6": {
       "en": "Accepted when another narrator supports him; otherwise his hadith is soft.",
-      "quote": "مقبول، حيث يتابع، وإلا فلين الحديث", "book": "taqrib", "page": "PageV01P073"
+      "quote": "مقبول، حيث يتابع، وإلا فلين الحديث", "book": "taqrib", "page": "PageV01P074"
     },
     "memory": {
       "en": "A memory fault is lifted when a sound narrator supports him; the hadith becomes good (hasan), though not on its own strength.",
-      "quote": "ومتى توبع السيء الحفظ بمعتبر ... وكذا المختلط الذي لم يتميز وكذا المستور والإسناد المرسل وكذا المدلس إذا لم يعرف المحذوف منه صار حديثهم حسنا لا لذاته",
-      "book": "nuzha", "page": "PageV01P104"
+      "quote": "ومتى توبع السيء الحفظ بمعتبر ... وكذا المختلط الذي لم يتميز، والمستور، والإسناد المرسل، وكذا المدلس إذا لم يعرف المحذوف منه = صار حديثهم حسنا، لا لذاته",
+      "book": "nuzha", "page": "PageV01P129-130"
     },
     "7": {
       "en": "Lifted when a sound narrator supports him; the hadith becomes good (hasan), though not on its own strength.",
-      "quote": "ومتى توبع السيء الحفظ بمعتبر ... وكذا المختلط الذي لم يتميز وكذا المستور والإسناد المرسل وكذا المدلس إذا لم يعرف المحذوف منه صار حديثهم حسنا لا لذاته",
-      "book": "nuzha", "page": "PageV01P104"
+      "quote": "ومتى توبع السيء الحفظ بمعتبر ... وكذا المختلط الذي لم يتميز، والمستور، والإسناد المرسل، وكذا المدلس إذا لم يعرف المحذوف منه = صار حديثهم حسنا، لا لذاته",
+      "book": "nuzha", "page": "PageV01P129-130"
     },
     "11": {
       "en": "Support does not lift this weakness.",
       "lifts": false,
       "quote": "ومن ذلك ضعف لا يزول بنحو ذلك لقوة الضعف ... كالضعف الذي ينشأ من كون الراوي متهما بالكذب",
-      "book": "salah", "page": "PageV01P032"
+      "book": "salah", "page": "PageV01P178"
     }
   },
   "rulings": {
@@ -290,35 +302,35 @@
   "sources": {
     "taqrib": {
       "label": "Ibn Hajar, Taqrib al-Tahdhib", "openiti": "0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1",
-      "page": "PageV01P073-74"
+      "page": "PageV01P074-75"
     },
     "nuzha": {
-      "label": "Ibn Hajar, Nuzhat al-Nazar", "openiti": "0852IbnHajarCasqalani.NuzhatNazar.Shamela0001565-ara1",
-      "page": "PageV01P104"
+      "label": "Ibn Hajar, Nuzhat al-Nazar (ed. al-Rahili)", "openiti": "0852IbnHajarCasqalani.NuzhatNazar.Shamela0012115-ara1",
+      "page": "PageV01P129-130"
     },
     "salah": {
-      "label": "Ibn al-Salah, Muqaddima", "openiti": "0643IbnSalahShahrazuri.MuqaddimatCulumHadith.JK000537-ara1",
-      "page": "PageV01P032"
+      "label": "Ibn al-Salah, Muqaddima (ed. with al-Bulqini's Mahasin al-Istilah)", "openiti": "0643IbnSalahShahrazuri.MuqaddimatCulumHadith.Shamela0029878BK1-ara1",
+      "page": "PageV01P178-235"
     },
     "tarif": {
       "label": "Ibn Hajar, Ta'rif Ahl al-Taqdis",
       "openiti": "0852IbnHajarCasqalani.TacrifAhlTaqdis.Shamela0001186BK1-ara1",
-      "page": "PageV01P011"
+      "page": "PageV01P013-59"
     },
     "jami": {
       "label": "al-'Ala'i, Jami' al-Tahsil",
       "openiti": "0761IbnKaykaldiCalai.JamicTahsil.Shamela0025864-ara1",
-      "page": "PageV01P011"
+      "page": ""
     },
     "mukhtalitin": {
       "label": "al-'Ala'i, al-Mukhtalitin",
       "openiti": "0761IbnKaykaldiCalai.Mukhtalitin.Shamela0025846-ara1",
-      "page": "PageV01P011"
+      "page": ""
     },
     "nawawi": {
       "label": "al-Nawawi, al-Taqrib wa-l-Taysir",
       "openiti": "0676Nawawi.Taqrib.Shamela0005586-ara1",
-      "page": "PageV01P038"
+      "page": "PageV01P039"
     },
     "shahin": {
       "label": "Ibn Shahin, al-Nasikh wa-l-Mansukh min al-Hadith",
