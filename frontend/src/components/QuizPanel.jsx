@@ -6,7 +6,7 @@ import { keyAction, typingElsewhere } from '../lib/answerKeys'
 import { fetchReviewItems, recordAttempt } from '../lib/progress'
 import { buildQuestion, DIRECTIONS, makeRandom, MEANINGS } from '../lib/quiz'
 import {
-  allWords, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, WHOLE_SET_SCOPES, wordsFor,
+  allWords, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, sentencesQuery, WHOLE_SET_SCOPES, wordsFor,
 } from '../lib/quizBanks'
 import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
@@ -14,6 +14,7 @@ import { progressKey, readSaved, writeSaved } from '../lib/stored'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
 
 import QuizAyah from './QuizAyah'
+import QuizExample from './QuizExample'
 import PracticeSentence from './PracticeSentence'
 import QuizInsights from './QuizInsights'
 import EmptyState from './ui/EmptyState'
@@ -215,11 +216,14 @@ export default function QuizPanel({ accent, onProgress }) {
   // Fetch the answer word's ayah the moment its question appears, so it is
   // ready when the answer lands. Failures here are silent; QuizAyah reads the
   // same cache and draws nothing without data.
+  // A word with no ayah shows an everyday sentence instead, from one file.
   const ayahAt = question?.ayah
+  const asked = Boolean(question)
   useEffect(() => {
-    if (!ayahAt) return
-    for (const query of ayahQueries(ayahAt[0], ayahAt[1])) client.prefetchQuery(query)
-  }, [client, ayahAt])
+    if (!asked) return
+    if (!ayahAt) client.prefetchQuery(sentencesQuery)
+    else for (const query of ayahQueries(ayahAt[0], ayahAt[1])) client.prefetchQuery(query)
+  }, [client, asked, ayahAt])
 
   // One pair of values feeds the whole card, whether it is the live question or
   // one being looked at again, so nothing below has to know which it is.
@@ -672,6 +676,7 @@ export default function QuizPanel({ accent, onProgress }) {
           </div>
 
           {answered && shown.ayah && <QuizAyah key={shown.ayah.join(':')} ayah={shown.ayah} accent={accent} />}
+          {answered && !shown.ayah && <QuizExample word={shown.answerWord} accent={accent} say={say} />}
         </div>
       )}
 
