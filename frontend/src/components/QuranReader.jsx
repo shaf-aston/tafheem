@@ -2,8 +2,8 @@
  * The Quran tab's one view: a whole surah, read, with the ayah being studied
  * beside it. Opening one ayah opens its surah scrolled to it, so the ayah is
  * always read in its place, and the study (AyahStudy) sits in a column to the
- * right. On a screen too narrow for two columns the ayah is only marked, and
- * the study opens in a sheet when asked for, never over the surah unbidden.
+ * right, or under it on a screen too narrow for two columns: the surah above,
+ * the study below, and a bar between them to drag either one bigger.
  *
  * One request brings the surah's text and its English, 35ms for al-Baqarah,
  * the longest. The word-by-word grammar is not fetched here: it is ~2MB for a
@@ -34,12 +34,12 @@ import { learntWords } from '../lib/coverage'
 import { useLearntLemmas } from '../lib/useLearntLemmas'
 import { useMedia } from '../lib/useMedia'
 import { useWheelX } from '../lib/useWheelX'
+import { scrollToEl } from '../lib/scrollToEl'
 import { useSlide, useSwipe } from '../lib/useSwipe'
 
 import AyahStudy from './AyahStudy'
 import { NoTouchButton, ScrollPad } from './NoTouchReading'
 import ArabicText from './ui/ArabicText'
-import BottomSheet from './ui/BottomSheet'
 import GlossWord from './ui/GlossWord'
 import ReadingOptions from './ui/ReadingOptions'
 import ErrorAlert from './ui/ErrorAlert'
@@ -119,9 +119,21 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   const [tapped, setTapped] = useState(null)
   const [hereIn, setHereIn] = useState(surah)
   if (hereIn !== surah) { setHereIn(surah); setHere(ayah ?? 1); setTapped(null) }
-  // The phone's study sheet, open for one ayah: another ayah starts it shut.
-  const [studying, setStudying] = useState(null)
-  const sheet = !twoPanes && ayah != null && studying === ayah
+  // Narrow, an ayah studied splits the reader in two, one over the other;
+  // `share` is how much of it the surah keeps.
+  const stacked = !twoPanes && Boolean(ayah)
+  const panes = useRef(null)
+  const [share, setShare] = useState(0.5)
+  // Splitting brings the two panes up to fill the screen, the ayah at the top
+  // of its half: the half it was in may end above it.
+  const wasStacked = useRef(false)
+  useEffect(() => {
+    if (!stacked) wasStacked.current = false
+    if (!stacked || !data || wasStacked.current) return
+    wasStacked.current = true
+    scrollToEl(panes.current, 'top')
+    showRow(list.current, ayah)
+  }, [stacked, ayah, data])
   const goTo = useCallback((n) => { showRow(list.current, n); setHere(n) }, [])
   const open = (n) => { setTapped(n); onPlace({ surah, ayah: n }) }
   // Focus goes back to the ayah's row, not lost with the close button.
@@ -150,8 +162,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   const slide = useSlide(surah)
 
   const study = ayah && (
-    <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo}
-      onClose={twoPanes ? shut : () => setStudying(null)} accent={accent} sourceShown={twoPanes && !!data?.source} />
+    <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo} onClose={shut} accent={accent} />
   )
 
   return (
@@ -195,8 +206,9 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
 
       {data && <AyahRail key={surah} count={data.ayah_count} here={here} open={ayah} onPick={goTo} />}
 
-      <div key={surah} {...slide} className={twoPanes ? 'grid grid-cols-[minmax(0,1fr)_minmax(19rem,26rem)]' : ''}>
-        <div className="min-w-0">
+      <div key={surah} ref={panes} {...slide}
+        className={twoPanes ? 'grid grid-cols-[minmax(0,1fr)_minmax(19rem,26rem)]' : stacked ? 'flex flex-col h-[var(--layout-split)] scroll-mt-14' : ''}>
+        <div className={stacked ? 'min-w-0 min-h-0 shrink-0' : 'min-w-0'} style={stacked ? { height: `${share * 100}%` } : undefined}>
           {translation.isError && (
             <div className="p-4" aria-live="assertive">
               <ErrorAlert title="The translation could not be read" error={translation.error} fallback="The Arabic and its word-by-word English are unaffected." onRetry={() => translation.refetch()} />
@@ -213,7 +225,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
             </div>
           )}
           {data && (
-            <div className="flex">
+            <div className={`flex ${stacked ? 'h-full' : 'h-[var(--layout-pane)]'}`}>
               <AyahList listRef={list} ayahs={data.ayahs} target={ayah === tapped ? null : ayah} still={noTouch} onScrolled={setHere}>
                 {(row) => (
                   <AyahRow
@@ -227,7 +239,6 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
                     segments={recitation.segmentsFor(row.ayah)}
                     open={row.ayah === ayah}
                     onOpen={open}
-                    onStudy={twoPanes ? null : setStudying}
                   />
                 )}
               </AyahList>
@@ -244,9 +255,13 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
             )}
           </aside>
         )}
+        {stacked && (
+          <>
+            <SplitBar panes={panes} share={share} onShare={setShare} />
+            <aside aria-label="Study" className="scroll-pane flex-1 min-h-0 p-4">{study}</aside>
+          </>
+        )}
       </div>
-
-      {sheet && <BottomSheet label={`Study ${surah}:${ayah}`} onClose={() => setStudying(null)} className="scroll-pane max-h-[var(--sheet-tall)] p-4">{study}</BottomSheet>}
 
       {data && (
         <RecitationBar
@@ -296,10 +311,9 @@ function GlossedAyah({ arabic, english, learnt, allMeanings, lit = -1, end }) {
  * One ayah of the surah: its line, closed by its numbered medallion, and its
  * English the full width under it. A row of its own because it asks which of
  * its words is being recited; all but the one sounding answer with a single
- * comparison. `onStudy`, on a phone, puts a way into the study under the open
- * ayah, there being no column beside it.
+ * comparison.
  */
-function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, open, onOpen, onStudy }) {
+function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, open, onOpen }) {
   const lit = useRecitedWord(src, segments)
   return (
     <li className="surah-row">
@@ -318,17 +332,6 @@ function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, o
           </span>
         )}
       </button>
-      {open && onStudy && (
-        <div className="flex justify-end px-4 pb-3 -mt-1">
-          <button
-            type="button"
-            onClick={() => onStudy(ayah.ayah)}
-            className="press tap px-3 py-1.5 rounded-full type-small text-[var(--bg)] bg-[var(--c)]"
-          >
-            Study {ayah.ayah}: grammar, joins, tafsir
-          </button>
-        </div>
-      )}
     </li>
   )
 }
@@ -366,10 +369,45 @@ function AyahList({ listRef, ayahs, target, still, onScrolled, children: row }) 
     <ol
       ref={listRef}
       onScroll={(e) => onScrolled(rowAt(e.currentTarget))}
-      className={`scroll-pane flex-1 min-w-0 h-[var(--layout-pane)] divide-y divide-[var(--border)] ${still ? 'touch-none [&>li]:pointer-events-none' : ''}`}
+      className={`scroll-pane flex-1 min-w-0 h-full divide-y divide-[var(--border)] ${still ? 'touch-none [&>li]:pointer-events-none' : ''}`}
     >
       {rows.map(row)}
     </ol>
+  )
+}
+
+// The least either pane keeps of the split, so neither can be dragged shut.
+const LEAST = 0.2
+const clampShare = (n) => Math.min(1 - LEAST, Math.max(LEAST, n))
+
+/**
+ * The bar between the surah and the study on a phone: drag it, or press the
+ * arrows on it, to give one more room and the other less.
+ */
+function SplitBar({ panes, share, onShare }) {
+  const drag = (e) => {
+    if (!e.currentTarget.hasPointerCapture(e.pointerId)) return
+    const box = panes.current.getBoundingClientRect()
+    onShare(clampShare((e.clientY - box.top) / box.height))
+  }
+  const step = { ArrowUp: -0.1, ArrowDown: 0.1 }
+  return (
+    <div
+      role="separator"
+      aria-orientation="horizontal"
+      aria-label="Resize the surah and the study"
+      aria-valuenow={Math.round(share * 100)}
+      aria-valuemin={LEAST * 100}
+      aria-valuemax={(1 - LEAST) * 100}
+      tabIndex={0}
+      onPointerDown={(e) => e.currentTarget.setPointerCapture(e.pointerId)}
+      onPointerMove={drag}
+      onKeyDown={(e) => step[e.key] && (e.preventDefault(), onShare(clampShare(share + step[e.key])))}
+      className="touch-none select-none shrink-0 grid place-items-center h-6 cursor-row-resize
+        border-y border-[var(--border)] bg-[var(--surface-hi)] focus:outline-none focus-visible:bg-[var(--surface)]"
+    >
+      <span aria-hidden="true" className="w-10 h-1 rounded-full bg-[var(--border-hi)]" />
+    </div>
   )
 }
 

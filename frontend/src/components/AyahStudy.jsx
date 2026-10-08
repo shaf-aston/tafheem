@@ -1,10 +1,9 @@
 /**
  * One ayah, studied: what each word is, how the words join, and what the ayah
- * is about. QuranReader shows it beside the surah, or in a sheet on a phone;
- * the ayah's own line and its English are already on the page beside it, and
- * its recitation is the reader's bar, so neither is drawn again here. Beside
- * the surah its header already names the corpus (`sourceShown`); a sheet
- * covers that header, so there the badge is drawn here.
+ * is about. QuranReader shows it beside the surah, or under it on a phone;
+ * the ayah's own line and its English are already on the page beside it, its
+ * recitation is the reader's bar and its source the reader's header, so none
+ * of them is drawn again here.
  *
  * It asks for its own ayah, the word-by-word grammar the surah leaves out.
  * Key it by the ayah where it is used, so the open word starts shut each time.
@@ -30,7 +29,7 @@ import { Skeleton } from './ui/Skeleton'
 const wordByKey = (words, key) =>
   key == null ? undefined : words.find((w, i) => (w.position || i) === key)
 
-export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sourceShown = false }) {
+export default function AyahStudy({ surah, ayah, onGo, onClose, accent }) {
   const { data, isPending, isError, error, refetch } = useQuery(quranAyahQuery(surah, ayah))
   // One word open at a time. A closed chip stays a word you can read; the full
   // grammar only appears for the word actually being asked about.
@@ -70,7 +69,6 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sourceSh
           {opened && <WordCard word={opened} onGo={onGo} onClose={() => setOpenWord(null)} exclude="quran" />}
           <div className="flex items-center gap-3 flex-wrap">
             <p className="text-xs text-[var(--text-faint)]">Tap any word for its full grammar and its root</p>
-            {!sourceShown && <SourceBadge source={data.source} />}
           </div>
         </>
       )}
