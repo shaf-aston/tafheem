@@ -133,12 +133,19 @@ def drops_weak(base: str, weak_last: bool) -> bool:
     return bool(weak_last) and bare[-1:] not in WEAK_ENDS and not bare.endswith(HIDDEN_CASE)
 
 
-def five_verb_nun(word: str) -> str | None:
+def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str | None:
     """"kept" or "dropped": the nun of one of the five verbs, which shows the case in place
     of a vowel (يكتبون، تكتبين، يكتبان raf'; يكتبوا، يكتبا، تكتبي nasb or jazm), else None.
     A damma typed on the nun makes it the verb's own letter (يَبِينُ), and a fatha on a
-    last ي makes it a weak root letter (لن يَمْشِيَ), not the ya of تكتبي."""
-    bare, shown = strip_diacritics(word), typed_case(word)  # not bare_letters: it folds يقرأ's أ into an alef
+    last ي makes it a weak root letter (لن يَمْشِيَ), not the ya of تكتبي.
+
+    `stuck_on` letters at the end are an attached pronoun's, not the verb's (لن يَكْتُبَهَا
+    ends in the pronoun's ا). The group's silent ا goes before a pronoun, so a verb left
+    ending in و is the dropped nun (لا تَأْكُلُوهَا) unless its root ends in و (يَدْعُوهُ)."""
+    stem = own_letters(word, 0, stuck_on)
+    bare, shown = strip_diacritics(stem), typed_case(word, stuck_on)  # not bare_letters: it folds يقرأ's أ into an alef
+    if stuck_on and bare.endswith("و") and len(bare) >= 4 and not weak_last:
+        return "dropped"
     if shown == "u" or len(bare) < 4:
         return None
     if bare.endswith(HIDDEN_CASE):

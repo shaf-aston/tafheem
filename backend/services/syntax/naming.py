@@ -320,15 +320,15 @@ def _mood(typed: str, token: dict, before: dict | None) -> str:
     on the verb's own last letter (يُفَقِّهْهُ), else raf'. `typed` is the word as paused
     on (harakat.paused); `before` is the base token before it, its joined letters off."""
     particle = before["base"] if before else ""
-    dropped_nun = five_verb_nun(typed) == "dropped"
+    dropped_nun = five_verb_nun(typed, token.get("stuck_on", 0), token.get("weak_last")) == "dropped"
     read = (before or {}).get("reading") or {}  # أَلَّا: the nasb أنْ with a لا merged in
     for family, case in (("jazm", "jazm"), ("nasb_mudari", "nasb")):
         if is_one(particle, family, "before_a_present_verb") or (dropped_nun and is_one(particle, family)) \
                 or (read.get("family") == family and read.get("named") in {m["named"] for m in book_merges(family).values()}):
             return case
-    if drops_weak(token["base"], token.get("weak_last")):
-        return "jazm"
     stuck_on = token.get("stuck_on", 0)
+    if drops_weak(token["base"][:len(token["base"]) - stuck_on], token.get("weak_last")):  # يَدْعُوهُ keeps its و
+        return "jazm"
     own = letters(typed)[:len(letters(typed)) - stuck_on]
     if own and SUKUN in own[-1][1]:
         return "jazm"
