@@ -525,12 +525,12 @@ dialog::backdrop {
 .wheel-list::-webkit-scrollbar { display: none; }
 
 
-/* A picture set into a card: all four edges dissolve into the card, so photos of
-   any kind sit together in one soft rectangle. */
+/* A picture set into a card's lower-left corner: it meets the border solid and
+   dissolves only where it faces the card, at its top and right. */
 .soft-edge {
   --soft-edge-fade: 22%;
-  --soft-edge-x: linear-gradient(to right, transparent, #000 var(--soft-edge-fade), #000 calc(100% - var(--soft-edge-fade)), transparent);
-  --soft-edge-y: linear-gradient(to bottom, transparent, #000 var(--soft-edge-fade), #000 calc(100% - var(--soft-edge-fade)), transparent);
+  --soft-edge-x: linear-gradient(to right, #000 calc(100% - var(--soft-edge-fade)), transparent);
+  --soft-edge-y: linear-gradient(to bottom, transparent, #000 var(--soft-edge-fade));
   -webkit-mask-image: var(--soft-edge-x), var(--soft-edge-y);
   -webkit-mask-composite: source-in;
   mask-image: var(--soft-edge-x), var(--soft-edge-y);

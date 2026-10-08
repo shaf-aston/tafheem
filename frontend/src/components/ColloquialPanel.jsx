@@ -96,7 +96,7 @@ function UnitCard({ hue, index, unit, onClick }) {
         <span className="text-[var(--text-faint)]">{unit.lessons.length} topics</span>
       </span>
       <span className="col-span-2 type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
-      <PhrasePicture phrase={cover} alt="" className="soft-edge pointer-events-none row-span-2 self-stretch [contain:size] mt-2 -ms-5 -mb-4 w-[calc(100%+1.25rem)] max-w-none" />
+      <PhrasePicture phrase={cover} alt="" className="soft-edge pointer-events-none row-span-2 self-stretch [contain:size] mt-2 -ms-5 -mb-4 rounded-es-[calc(var(--radius-lg)-1px)] w-[calc(100%+1.25rem)] max-w-none" />
       <span className="relative pointer-events-none self-end flex items-center gap-3 mt-2">
         <SpeakButton text={cover.arabic} className="pointer-events-auto" />
         <ArabicText className="flex-1 min-w-0 text-start [overflow-wrap:anywhere]">{cover.arabic}</ArabicText>
