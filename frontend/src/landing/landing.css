@@ -435,17 +435,19 @@ body { margin: 0; overflow-x: hidden; }
 /* ================= FINALE: rise ================= */
 /* --e (0 to 1) is how far the section has risen into view, set by Finale.jsx. */
 .landing-page .finale { --e: 0; background: var(--ink) radial-gradient(80% 60% at 50% 100%, #211a10 0%, var(--ink) 70%); text-align: center; overflow: hidden; }
-.landing-page .finale .wrap { display: grid; justify-items: center; gap: 1.4rem; }
+.landing-page .finale .wrap { display: grid; justify-items: center; }
+.landing-page .finale-link { display: grid; justify-items: center; gap: 2rem; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 .landing-page .finale-mark {
   font-family: var(--font-ui); font-weight: 800; font-size: var(--landing-finale-mark-size); line-height: .95; letter-spacing: -.04em;
-  color: transparent; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+  color: transparent;
   background: linear-gradient(var(--gold-hi), var(--gold-hi)) 0 100% / 100% 0% no-repeat, linear-gradient(rgb(var(--gold-hi-rgb) / .14), rgb(var(--gold-hi-rgb) / .14)) 0 0 / 100% 100% no-repeat;
   -webkit-background-clip: text; background-clip: text;
   transition: background-size var(--slow) var(--smooth);
   transform: translateY(calc((1 - var(--e)) * var(--landing-finale-rise) * 1px)); opacity: calc(.2 + var(--e) * .8);
 }
-.landing-page .finale-mark:hover, .landing-page .finale-mark.flood { background-size: 100% 100%, 100% 100%; }
-.landing-page .finale .cta { margin-top: .6rem; opacity: calc(.15 + var(--e) * .85); }
+.landing-page .finale-link:is(:hover, :focus-visible) .finale-mark { background-size: 100% 100%, 100% 100%; }
+.landing-page .finale-link:hover .cta { transform: translateY(-3px); background: var(--gold); }
+.landing-page .finale .cta { opacity: calc(.15 + var(--e) * .85); }
 .landing-page footer.legal { padding: 1.5rem var(--landing-gutter); text-align: center; color: var(--muted); font-size: .8rem; background: var(--ink); }
 
 @media (max-width: 600px) {
