@@ -25,6 +25,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from backend.services.arabic_text import normalize_root
+from backend.services.harakat import letters as marked_letters
 from backend.services.sarf import ilal
 from backend.services.sarf import word as W
 
@@ -77,8 +78,8 @@ class Shaper:
     first letter of a past tense takes a vowel that no other cell takes.
     """
 
-    def __init__(self, radicals: str, form: str) -> None:
-        self.radicals, self.form, self.notes = radicals, form, []
+    def __init__(self, radicals: str, form: str, pause: str = "") -> None:
+        self.radicals, self.form, self.pause, self.notes = radicals, form, pause, []
         self.kind = kind(radicals)
         # The vowel this باب puts on the middle letter of its past tense. Read
         # off the template rather than stored twice, and it is what decides
@@ -88,7 +89,7 @@ class Shaper:
         self.past_middle = built[middle].vowel if middle is not None else ""
 
     def __call__(self, slot: str, *segments: tuple[str, str]) -> str:
-        context = ilal.Context(self.form, slot, self.kind, self.radicals, self.past_middle)
+        context = ilal.Context(self.form, slot, self.kind, self.radicals, self.past_middle, self.pause)
         shaped = ilal.apply(W.build(list(segments), self.radicals), _ilal_rules(), context)
         for note in shaped.notes:
             if note not in self.notes:
@@ -312,10 +313,22 @@ def _refusal(radicals: str, form: str) -> str:
 @lru_cache(maxsize=16384)
 def row_cells(radicals: str, form: str, row: int) -> tuple[tuple[str, str], ...]:
     """One person's (column, word) cells alone, a fourteenth of the table's cost:
-    what verb_reader checks a typed word against. ValueError as conjugate()."""
+    what verb_reader checks a typed word against, with the other ways the book lets a
+    word ending on a doubled pair be written (لَمْ يَمُدِّ، لَمْ يَمْدُدْ). ValueError as conjugate()."""
     if why := _refusal(radicals, form):
         raise ValueError(why)
-    return tuple(_row(Shaper(radicals, form), _check(radicals, form), row).items())
+    shape = _check(radicals, form)
+    printed = _row(Shaper(radicals, form), shape, row)
+    found = list(printed.items())
+    rule = _ilal_rules()["doubled-letters-merge"]
+    if radicals[-2] == radicals[-1]:
+        for also in rule["pause-also"]:
+            for column, word in _row(Shaper(radicals, form, also["reading"]), shape, row).items():
+                # a ضمة on the merged letter only where the letter before it carries one
+                allowed = "after" not in also or also["after"] in marked_letters(printed[column])[-2][1]
+                if column in rule["pause-also-slots"] and word != printed[column] and allowed:
+                    found.append((column, word))
+    return tuple(found)
 
 
 def person_features(row: int) -> tuple[str, str, str]:

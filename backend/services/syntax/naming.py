@@ -20,7 +20,7 @@ from backend.services.nahw_book import (
     book_merges, book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, merged_prefix, own_letters, paused, typed_case)
+    CASE_NAME, PRESENT_PREFIX, five_verb_nun, letters, merged_prefix, own_letters, paused, stilled, typed_case)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -179,16 +179,17 @@ def _conditioned(found: list[dict], c: dict) -> None:
         opener.update(role=_noun_place(frame, c["verb"], found), book=None)
     if frame["built"]:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
-    opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"],
+    opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"],
                            "kind": frame["opener"] if frame["noun"] else None}
     for part in ("verb", "answer"):
         if c[part] is None:
             continue
         word = found[c[part]]
-        word.pop("follows", None)
-        word.pop("governor", None)
-        if frame["case"]:
-            word["governor"] = c["opener"]
+        if word["role"] == NAMED.fil:  # a noun sentence or a particle keeps the links it has
+            word.pop("follows", None)
+            word.pop("governor", None)
+            if frame["case"]:
+                word["governor"] = c["opener"]
         word["condition"] = {"part": part, "opener": c["opener"], "family": frame["family"],
                              "tie": c["tie"] if part == "answer" else None}
 
@@ -328,10 +329,7 @@ def _mood(typed: str, token: dict, before: dict | None) -> str:
                 or (read.get("family") == family and read.get("named") in {m["named"] for m in book_merges(family).values()}):
             return case
     stuck_on = token.get("stuck_on", 0)
-    if drops_weak(token["base"][:len(token["base"]) - stuck_on], token.get("weak_last")):  # يَدْعُوهُ keeps its و
-        return "jazm"
-    own = letters(typed)[:len(letters(typed)) - stuck_on]
-    if own and SUKUN in own[-1][1]:
+    if stilled(typed, token["base"], stuck_on, token.get("weak_last")):
         return "jazm"
     shown = typed_case(typed, stuck_on)
     return CASE_NAME[shown] if shown in ("u", "a") else "raf'"

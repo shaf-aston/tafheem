@@ -14,7 +14,7 @@ from typing import Callable
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import (
-    PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, has_tanween, letters, own_letters, typed_case)
+    PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, has_tanween, letters, own_letters, stilled, typed_case)
 from backend.services.morphology import has_comparative
 from backend.services.nahw_book import book_file, book_map, book_words, frames, is_mabni, is_one
 from backend.services.syntax import facts, walker
@@ -51,9 +51,8 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
         return "none"
     typed = after.get("typed") or ""
     if facts.is_verb(after):
-        own = letters(typed)
-        stilled = bool(own) and SUKUN in own[-1][1]
-        return "verb_jazm" if stilled or five_verb_nun(typed, after.get("stuck_on", 0), after.get("weak_last")) == "dropped" else "verb"
+        stuck_on, weak = after.get("stuck_on", 0), after.get("weak_last")
+        return "verb_jazm" if stilled(typed, after["base"], stuck_on, weak) or five_verb_nun(typed, stuck_on, weak) == "dropped" else "verb"
     if after["pos"] == "PRT":
         return "particle"
     bare = strip_diacritics(typed or after["form"])

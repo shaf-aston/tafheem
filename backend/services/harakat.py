@@ -110,6 +110,11 @@ def weak_last(analysis: dict) -> bool:
 NO_ANALYSIS = "NOAN"  # what CAMeL files as a word's stem when its list has no reading for it
 
 
+def unread(readings: list[dict]) -> bool:
+    """True when every reading CAMeL offers for a word is the no-analysis guess, or it offers none."""
+    return all(NO_ANALYSIS in r.get("atbtok", "") for r in readings)
+
+
 def base_of(word: str, atbtok: str | None) -> str:
     """The typed word's bare letters less the ones CAMeL's split (atbtok, "وَ+_سَ+_يَكْتُب_+هُ")
     files as joined before ("+" after) or as an attached pronoun ("+" before). The letters
@@ -135,6 +140,14 @@ def drops_weak(base: str, weak_last: bool) -> bool:
     waw, and the nun kept is the sign of raf'."""
     bare = strip_diacritics(base)
     return bool(weak_last) and bare[-1:] not in WEAK_ENDS and not bare.endswith(HIDDEN_CASE)
+
+
+def stilled(word: str, base: str, stuck_on: int = 0, weak_last: bool = False) -> bool:
+    """A present verb that shows jazm by its own ending: its last letter stilled (an attached
+    pronoun after it aside: تُكْرِمْهُ) or a weak last letter gone (لم يَدْعُ). `base` is the word
+    without its joined letters; the nun of the five verbs is five_verb_nun's."""
+    own = letters(word)[:len(letters(word)) - stuck_on]
+    return bool(own) and SUKUN in own[-1][1] or drops_weak(base[:len(base) - stuck_on], weak_last)
 
 
 def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str | None:

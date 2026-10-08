@@ -129,6 +129,11 @@
       "_pause-note": "What rule 5 allows where the word ends on the doubled letter. The app prints the first of them.",
       "_pause-slots": "Rule 5 is about a word ending on the doubled letter in the أمر or the جزم. A noun keeps the two letters apart.",
       "pause-slots": ["amr", "nahy"],
+      "_pause-also": "The readings the note names, as the sarf reader takes them (the table prints only the فتحة): the letter under a كسرة, under a ضمة where the letter before carries one (`after`), and the two letters apart (`apart` in `pause-apart`).",
+      "pause-also": [{"reading": "ِ"}, {"reading": "ُ", "after": "ُ"}, {"reading": "apart"}],
+      "_pause-also-slots": "Only the جزم: the أمر read in these spellings collides with other roots' commands (سَمِّ of سمّى is also the kasra reading of a doubled سمم, كُلُّ the damma one of كلل), so the reader keeps the أمر as the table prints it.",
+      "pause-also-slots": ["nahy"],
+      "pause-apart": "apart",
       "pause-note": "On a word ending here the book also allows a كسرة (لَمْ يَمُدِّ) and writing the two letters apart (لَمْ يَمْدُدْ); a ضمة too when the letter before carries one (p.289)."
     },
 
