@@ -86,35 +86,47 @@ def forms(row: dict) -> list[tuple[str, ...]]:
 class Names:
     """Whether a unit's chain names a man a hadith's chain names (c2)."""
 
-    def __init__(self, narrators: Iterable[Sequence[tuple[str, ...]]], min_words: int, rare: int, stop: Iterable[str],
-                 max_run: int):
-        """narrators: each narrator's forms. A run of `min_words` name words in common is a shared man; so is one
-        word that no more than `rare` narrators carry. Runs are compared up to `max_run` words."""
-        self.min_words, self.rare, self.stop, self.max_run = min_words, rare, frozenset(names.word(s) for s in stop), max_run
-        self.carriers: Counter = Counter()
-        for narrator_forms in narrators:
-            self.carriers.update({w for f in narrator_forms for w in f if w not in self.stop})
+    def __init__(self, places: Iterable[Sequence[tuple[str, ...]]], everyone: Iterable[Sequence[tuple[str, ...]]],
+                 min_words: int, rare_word: int, rare_men: int, stop: Iterable[str], max_run: int):
+        """places: a narrator's forms for each place our chains name him; everyone: each narrator's forms once.
+
+        A shared man is a run of `min_words` name words or more that no more than `rare_men` men carry (حماد بن سلمة,
+        not أبو عبد الرحمن), or one word our chains name in no more than `rare_word` places (a Companion named in
+        thousands of chains is no evidence alone). Runs of up to `max_run` name words are compared."""
+        self.min_words, self.rare_word, self.rare_men = min_words, rare_word, rare_men
+        self.stop, self.max_run = frozenset(names.word(s) for s in stop), max_run
+        self.mentions: Counter = Counter()
+        for narrator_forms in places:
+            self.mentions.update({w for f in narrator_forms for w in f if w not in self.stop})
+        self.men: Counter = Counter()
+        for narrator_forms in everyone:
+            self.men.update({run for f in narrator_forms for run in self._runs(f)})
 
     def _runs(self, words: Sequence[str]) -> set[tuple[str, ...]]:
-        return {tuple(words[i:i + n]) for n in range(1, self.max_run + 1) for i in range(len(words) - n + 1)}
+        """Every run of up to max_run words, trimmed of ابن/بن at its ends; none that is only those."""
+        found = set()
+        for n in range(1, self.max_run + 1):
+            for i in range(len(words) - n + 1):
+                run = list(words[i:i + n])
+                while run and run[0] in self.stop:
+                    run.pop(0)
+                while run and run[-1] in self.stop:
+                    run.pop()
+                if run:
+                    found.add(tuple(run))
+        return found
 
-    def evidence(self, unit: Sequence[str], ours: Iterable[Sequence[str]]) -> tuple[int, int]:
-        """(the most name words one run has in common between the unit's chain and `ours` (name forms), the fewest
-        narrators carrying a single word they share): how much the two chains have in common."""
+    def shares(self, unit: Sequence[str], ours: Iterable[Sequence[str]]) -> bool:
+        """True when the unit's chain and `ours` (name forms) share a man by the rules above."""
         mine = self._runs(unit)
-        longest, rarest = 0, 10 ** 9
         for form in ours:
             for run in self._runs(form) & mine:
                 real = [w for w in run if w not in self.stop]
-                longest = max(longest, len(real))
-                if len(real) == 1:
-                    rarest = min(rarest, self.carriers[real[0]])
-        return longest, rarest
-
-    def shares(self, unit: Sequence[str], ours: Iterable[Sequence[str]]) -> bool:
-        """True when the chains share a run of `min_words` name words, or one word few narrators carry."""
-        longest, rarest = self.evidence(unit, ours)
-        return longest >= self.min_words or rarest <= self.rare
+                if len(real) >= self.min_words and self.men[run] <= self.rare_men:
+                    return True
+                if len(real) == 1 and self.mentions[real[0]] <= self.rare_word:
+                    return True
+        return False
 
 
 def choose(scores: Mapping[Hashable, float], possible: float, passes: Callable[[Hashable], bool], knobs: Mapping

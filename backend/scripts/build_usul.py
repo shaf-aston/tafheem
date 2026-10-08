@@ -231,11 +231,13 @@ def read_rulings(units: dict[str, list[books.Entry]], cfg: dict) -> tuple[list[t
 
 
 def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], hadith: list[tuple[tuple, str, int]],
-                narrators_of: dict[tuple, list[list[tuple[str, ...]]]], cfg: dict) -> list[str]:
+                narrators_of: dict[tuple, list[list[tuple[str, ...]]]], everyone: list[list[tuple[str, ...]]], cfg: dict
+                ) -> list[str]:
     """A row of `ruling` for each hadith of ours a ruling book's unit is about (services/usul/ruling.py reads the unit,
     match.py finds the hadith). Returns the report: per book the units, what was read and what became of it.
 
-    hadith: ((collection, number, part), its Arabic, its book number); narrators_of: the name forms of each hadith's narrators, by key."""
+    hadith: ((collection, number, part), its Arabic, its book number); narrators_of: the name forms of each hadith's narrators, by key;
+    everyone: every narrator's name forms, once each, for how many men carry a name."""
     rl, knobs = cfg["rulings"], cfg["rulings"]["match"]
     todo, unread, thin = read_rulings(units, cfg)
     if not todo:
@@ -243,8 +245,8 @@ def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], h
     wanted = set().union(*(match.grams(words, knobs["gram"]) for *_, words in todo))
     index = match.Index({key: match.tokens(chain.chain_of(arabic)[1]) for key, arabic, _ in hadith}, knobs["gram"], wanted)
     book_of = {key: number for key, _, number in hadith}
-    men = match.Names([f for forms in narrators_of.values() for f in forms], knobs["min_name_words"],
-                      knobs["rare_name"], knobs["name_stop"], knobs["name_run"])
+    men = match.Names([f for forms in narrators_of.values() for f in forms], everyone, knobs["min_name_words"],
+                      knobs["rare_name"], knobs["rare_men"], knobs["name_stop"], knobs["name_run"])
     fate: dict[str, Counter] = {book: Counter() for book in units}
     for kind, book, entry, r, unit_names, words in todo:
         chosen, how = match.choose(
@@ -385,7 +387,8 @@ def build() -> None:
         # The ruling books: what a classical book says of a hadith, quoted, for each hadith of ours it is about.
         ruling_report = []
         if any(entries[kc["book"]] for kc in cfg["rulings"]["kinds"].values()):
-            ruling_report = add_rulings(conn, entries, our_hadith(), narrators_by_hadith(rijal, rows), cfg)
+            ruling_report = add_rulings(conn, entries, our_hadith(), narrators_by_hadith(rijal, rows),
+                                       [match.forms(row) for row in rows.values()], cfg)
             guard_change(target, "ruling", conn.execute("SELECT COUNT(*) FROM ruling").fetchone()[0], cfg["max_change_ratio"])
 
         # What the page counts of him in our books.

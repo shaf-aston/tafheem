@@ -205,7 +205,7 @@
       "shared.strip: the editors' footnote numbers, taken out of every quote. strip also takes the editor's lone 0 between sentences (Ibn Shahin). stop: where a sentence ends; soft_stop (!) ends one only at a paragraph end or before another speaker. speaker_join and title_join: how two scholars' names and a chapter and its title are written together. dangling: a last word no sentence ends on (a relative, conjunction, preposition, colon): a remark ending so runs on into the next unit and is cut back to its last full stop. qualifier: a word that opens the next sentence and takes it back in (إلا, لكن ...), so a quote goes on through it.",
       "kinds: one per book, in the book's own terms. label and say are what the term list prints; quote_label what the sheet calls the quote; asked: keep the question before each answer. ordinal: the grammar of Arabic ordinals, built into `another` where it says {ordinal}. chain_start: the first word of a chain, which ends a bab's title (a روى after ما is part of the title). The other keys are the patterns that cut the ruling out of a unit (see ruling.py).",
       "match: set on scratchpad/usul2-tune.md, hand-labelled pairs kept apart from the sample that was reviewed. df_max: a 3-gram in more of our hadith than this is too common to count. floor: the least summed rarity of shared 3-grams for a match. whole_floor and whole: a short matn may match on this lower score when the hadith holds this share of all the rarity the unit's matn could score. tie_ratio: another hadith within this share of the best score also gets the ruling (the same text in two collections).",
-      "match.min_name_words: the fewest words of a narrator's name that must agree for a name in the unit's chain to be one in ours. rare_name: or one shared name word that no more than this many narrators carry. name_run: the longest run of name words compared."
+      "match.min_name_words and rare_men: a run of at least this many name words the unit's chain shares with ours is the same man when no more than rare_men narrators carry it, so a common kunya like أبو عبد الرحمن is never enough. rare_name: or one shared name word our chains name in no more than this many places (a Companion named in thousands of chains is no evidence alone). name_run: the longest run of name words compared."
     ],
     "shared": {
       "strip": "\\s*\\((?:\\d+|\\*)\\)|\\s+0(?=\\s|$)",
@@ -282,6 +282,7 @@
       "tie_ratio": 0.9,
       "min_name_words": 2,
       "rare_name": 300,
+      "rare_men": 100,
       "name_stop": ["بن", "ابن"],
       "name_run": 5
     }

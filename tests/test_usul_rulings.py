@@ -66,11 +66,15 @@ def _unit(n: int, chain_text: str = CHAIN) -> Entry:
     return Entry(n, f"{chain_text} قال: «{MATN}» قال الشيخ والحديث ناسخ.", heading="ذكر زيارة القبور")
 
 
-def _rulings_for(units, hadith, narrators_of):
+def _rulings_for(units, hadith, narrators_of, others=(), **knobs):
+    """others: the name forms of narrators no chain here names, who still count for how many men carry a name;
+    knobs: match knobs to set."""
     conn = sqlite3.connect(":memory:")
     conn.executescript(build_usul._SCHEMA)
     units_of = {kc["book"]: [] for kc in RULINGS["kinds"].values()} | {"shahin": units}
-    build_usul.add_rulings(conn, units_of, hadith, narrators_of, SMALL)
+    everyone = list({tuple(f): f for men in narrators_of.values() for f in men}.values()) + list(others)
+    cfg = {**SMALL, "rulings": {**SMALL["rulings"], "match": {**SMALL["rulings"]["match"], **knobs}}}
+    build_usul.add_rulings(conn, units_of, hadith, narrators_of, everyone, cfg)
     return conn.execute("SELECT collection, number, part, unit FROM ruling ORDER BY collection, number").fetchall(), conn
 
 
@@ -84,6 +88,18 @@ def test_a_text_match_with_no_narrator_in_common_gets_no_ruling_and_is_listed_as
     found, conn = _rulings_for([_unit(7)], hadith[1:] + OTHERS, narrators_of)
     assert found == []
     assert ("ruling_match", "shahin: rejected", 1) in conn.execute("SELECT * FROM gap").fetchall()
+
+
+def test_a_shared_kunya_that_many_men_carry_is_not_a_shared_man():
+    kunya = "حدثنا أبو عبد الرحمن"   # its words alone are named in thousands of our chains, so only the run counts
+    common = {"rare_name": 0}
+    hadith = [(("muslim", 2, ""), _ours(kunya), 1)]
+    narrators_of = {("muslim", 2, ""): [[names.words("أبو عبد الرحمن السلمي")]]}
+    found, _ = _rulings_for([_unit(7, kunya)], hadith + OTHERS, narrators_of, **common)
+    assert found == [("muslim", 2, "", 7)]   # one man carries it here
+    many = [[names.words(f"أبو عبد الرحمن {n}")] for n in ("الحبلي", "المقرئ", "العمري") * 40]
+    found, _ = _rulings_for([_unit(7, kunya)], hadith + OTHERS, narrators_of, many, **common)
+    assert found == []   # a hundred and more men are called so
 
 
 def test_the_same_report_in_two_collections_gets_the_ruling_in_both_and_a_repeated_unit_counts_once():
