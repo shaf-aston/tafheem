@@ -3,8 +3,8 @@
 The books and sunnah.com write the same man a little differently (الحسين and
 حسين, سيئ and سيء), so every name is folded the way a grade is (level.fold_word)
 and its article is dropped. A name written in a book joins a narrator when its
-first `size` words equal the first `size` words of his lineage (his name when
-he has no lineage) and, where `window` is given, a nisba of his stands among
+first `size` words equal the first `size` words of his lineage or of his name
+(books write him either way: حبيب بن أبي ثابت is حبيب بن قيس) and, where `window` is given, a nisba of his stands among
 the next `window` words. It is a join only when it is one-to-one: one narrator
 for the name and one name for the narrator. Anything else goes to the gap table.
 """
@@ -52,9 +52,9 @@ def words(text: str) -> tuple[str, ...]:
 
 
 class Person(NamedTuple):
-    """A narrator as the joins see him: `key` is his lineage words, or his name's when he has no lineage."""
+    """A narrator as the joins see him: `keys` are his lineage words and his name's."""
     id: int
-    key: tuple[str, ...]
+    keys: tuple[tuple[str, ...], ...]
     nisba: frozenset[str]
     names: tuple[tuple[str, ...], ...]   # his name, lineage and each kunya, word by word (flat)
     generation: str
@@ -65,21 +65,21 @@ def person(row: dict) -> Person:
     """A narrator row of rijal.db as a Person."""
     kunyas = [k for k in re.split(r"\s*،\s*", row["kunya_ar"]) if k.strip()]
     return Person(
-        id=row["id"], key=words(row["lineage_ar"] or row["name_ar"]), nisba=frozenset(words(row["nisba_ar"])),
+        id=row["id"], keys=tuple(dict.fromkeys(w for w in (words(row["lineage_ar"]), words(row["name_ar"])) if w)), nisba=frozenset(words(row["nisba_ar"])),
         names=tuple(w for w in (flat(row["name_ar"]), flat(row["lineage_ar"]), *map(flat, kunyas)) if w),
         generation=row["generation_ar"], grade=words(row["grade_ar"]),
     )
 
 
 class Index:
-    """The narrators by the first `size` words of their key."""
+    """The narrators by the first `size` words of each of their keys."""
 
     def __init__(self, people: list[Person], size: int):
         self.size = size
         self._by_key: dict[tuple[str, ...], list[Person]] = defaultdict(list)
         for p in people:
-            if len(p.key) >= size:
-                self._by_key[p.key[:size]].append(p)
+            for head in {k[:size] for k in p.keys if len(k) >= size}:
+                self._by_key[head].append(p)
 
     def named(self, written: tuple[str, ...], window: int = 0) -> list[Person]:
         """Narrators the written name matches: its first `size` words equal theirs and, with a `window`, a nisba of

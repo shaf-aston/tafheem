@@ -175,6 +175,14 @@ def test_entries_can_be_kept_to_a_chapter_and_cut_where_the_list_ends():
     assert [(e.n, e.text) for e in books.entries(SAMPLE_BOOK, spec)] == [(4, "خالد بن سعد")]
 
 
+def test_a_numbered_entry_printed_mid_line_opens_only_when_it_is_the_next_number():
+    # The Ta'rif prints "(81)" inside entry 80's last line; "(5)" there is not the next number and stays text.
+    raw = "#META#Header#End#\n# (80) المحاربي وصفه (5) العقيلي\n~~بالتدليس (81) عبد العزيز القرشي (82) الجدعاني\n"
+    spec = {"entry": r"^# \((?P<n>[1-9]\d*)\) ?(?P<text>.*)$", "inline": r"\((?P<n>[1-9]\d*)\)"}
+    assert [(e.n, e.text) for e in books.entries(raw, spec)] == [
+        (80, "المحاربي وصفه (5) العقيلي بالتدليس"), (81, "عبد العزيز القرشي"), (82, "الجدعاني")]
+
+
 @pytest.mark.parametrize("text, year, why", [
     ("ثقة من الثالثة مات سنة تسع وعشرين ومائة د", 129, ""),
     ("ثقة من العاشرة مات سنة ثلاث عشرة خ", 13, ""),

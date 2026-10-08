@@ -59,7 +59,8 @@ def entries(raw: str, spec: dict) -> list[Entry]:
 
     spec: `entry`, a regex for the line that opens one, with groups n and, optionally, head (kept apart) and text
     (the first words of the entry); `end`, a regex for a line that closes one without opening another; `in_heading`,
-    keep only entries under a chapter whose title holds this; `stop`, a phrase where the last entry ends."""
+    keep only entries under a chapter whose title holds this; `stop`, a phrase where the last entry ends; `inline`, a
+    regex (group n) for an entry number printed mid-line, which opens a new entry only when it is the next number."""
     entry_re = re.compile(spec["entry"])
     end_re = re.compile(spec["end"]) if spec.get("end") else None
     found: list[Entry] = []
@@ -90,9 +91,19 @@ def entries(raw: str, spec: dict) -> list[Entry]:
         if cur is not None:
             cur.text += _join(cur.text, pieces)
 
-    body = raw.split(_HEADER_END, 1)[-1]
-    for line in body.split("\n"):
-        line = line.rstrip()
+    inline_re = re.compile(spec["inline"]) if spec.get("inline") else None
+    lines = raw.split(_HEADER_END, 1)[-1].split("\n")[::-1]   # a stack, so a split line's rest is read next
+    while lines:
+        line = lines.pop().rstrip()
+        if inline_re:
+            # A book numbered in sequence can open the next entry mid-line: "(81)" right after entry 80.
+            opening = entry_re.match(line)
+            at = int(opening["n"]) if opening else state["cur"].n if state["cur"] else None
+            nxt = at and next((m for m in inline_re.finditer(line) if line[:m.start()].strip(" #~")
+                               and int(m["n"]) == at + 1), None)
+            if nxt:
+                lines.append("# " + line[nxt.start():])
+                line = line[:nxt.start()].rstrip()
         if heading := _HEADING.match(line):
             close()
             state["heading"] = (heading[1] or "").strip()

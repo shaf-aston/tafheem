@@ -23,7 +23,7 @@
     },
     "tarif": {
       "path": "0875AH/master/data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.TacrifAhlTaqdis/0852IbnHajarCasqalani.TacrifAhlTaqdis.Shamela0001186BK1-ara1",
-      "entry": "^# \\((?P<n>[1-9]\\d*)\\) ?(?P<text>.*)$", "end": "^# \\(0\\)"
+      "entry": "^# \\((?P<n>[1-9]\\d*)\\) ?(?P<text>.*)$", "end": "^# \\(0\\)", "inline": "\\((?P<n>[1-9]\\d*)\\)"
     },
     "jami": {
       "path": "0775AH/master/data/0761IbnKaykaldiCalai/0761IbnKaykaldiCalai.JamicTahsil/0761IbnKaykaldiCalai.JamicTahsil.Shamela0025864-ara1.completed",
