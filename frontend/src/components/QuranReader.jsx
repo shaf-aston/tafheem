@@ -150,7 +150,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   // Focus goes back to the ayah's row, not lost with the close button.
   const shut = useCallback(() => {
     onPlace({ surah, ayah: null })
-    list.current?.children[ayah - 1]?.querySelector('button')?.focus({ preventScroll: true })
+    list.current?.children[ayah - 1]?.querySelector('[role="button"]')?.focus({ preventScroll: true })
   }, [onPlace, surah, ayah])
   const changeSurah = useCallback((n) => onPlace({ surah: n, ayah: null }), [onPlace])
 
@@ -345,9 +345,18 @@ function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, o
   const lit = useRecitedWord(src, segments)
   return (
     <li className="surah-row">
-      <button
-        type="button"
-        onClick={() => onOpen(ayah.ayah)}
+      {/* Not a <button>: text inside a button cannot be dragged over to select. The
+          row still opens on a click and on Enter or Space, but a click that ends a
+          drag-select (some text is selected) is the end of the selection, not a tap. */}
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => { if (window.getSelection()?.isCollapsed ?? true) onOpen(ayah.ayah) }}
+        onKeyDown={(e) => {
+          if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return
+          e.preventDefault()
+          onOpen(ayah.ayah)
+        }}
         aria-pressed={open}
         className={`w-full text-left p-4 space-y-2 transition-colors hover:bg-[var(--surface-hi)]
           focus:outline-none focus-visible:bg-[var(--surface-hi)]
@@ -359,7 +368,7 @@ function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, o
             {english}
           </span>
         )}
-      </button>
+      </div>
     </li>
   )
 }

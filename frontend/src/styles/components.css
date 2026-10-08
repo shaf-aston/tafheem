@@ -194,9 +194,11 @@ dialog::backdrop {
    being studied; here, a surah is being read, and a page that reacts loudly to
    every word the pointer crosses is a page nobody can read.
    Only while a word is under the pointer: the line is the row's full width, so
-   resting in the empty space beside a short ayah dimmed it with nothing to show. */
-.gloss-line:has(.gloss-word:hover) .gloss-word:not(:hover),
-.gloss-line:has(.gloss-word:focus-visible) .gloss-word:not(:focus-visible) {
+   resting in the empty space beside a short ayah dimmed it with nothing to show.
+   Not while the button is down in the row: that is a drag-select across words,
+   and a gloss or a dimming on every word it crosses is noise over the selection. */
+.surah-row:not(:active) .gloss-line:has(.gloss-word:hover) .gloss-word:not(:hover),
+.surah-row:not(:active) .gloss-line:has(.gloss-word:focus-visible) .gloss-word:not(:focus-visible) {
   color: var(--text-dim);
 }
 
@@ -242,8 +244,8 @@ dialog::backdrop {
    inspecting one word. The transition is short on purpose, at three or four
    words a second a slow fade never finishes before the next word starts. */
 .gloss-word-lit,
-.gloss-line:has(.gloss-word:hover) .gloss-word-lit:not(:hover),
-.gloss-line:has(.gloss-word:focus-visible) .gloss-word-lit:not(:focus-visible) {
+.surah-row:not(:active) .gloss-line:has(.gloss-word:hover) .gloss-word-lit:not(:hover),
+.surah-row:not(:active) .gloss-line:has(.gloss-word:focus-visible) .gloss-word-lit:not(:focus-visible) {
   color: var(--bg);
   background: var(--c);
 }
@@ -289,8 +291,8 @@ dialog::backdrop {
 /* Focus reveals the gloss exactly as the pointer does. The words are buttons, so
    a keyboard reaches every one of them; without this it reached them and was
    shown nothing. */
-.gloss-word[data-gloss]:hover::after,
-.gloss-word[data-gloss]:focus-visible::after {
+.surah-row:not(:active) .gloss-word[data-gloss]:hover::after,
+.surah-row:not(:active) .gloss-word[data-gloss]:focus-visible::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
