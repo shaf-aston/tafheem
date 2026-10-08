@@ -417,10 +417,6 @@ body { margin: 0; overflow-x: hidden; }
 /* --e (0 to 1) is how far the section has risen into view, set by Finale.jsx. */
 .landing-page .finale { --e: 0; background: var(--ink) radial-gradient(80% 60% at 50% 100%, #211a10 0%, var(--ink) 70%); text-align: center; overflow: hidden; }
 .landing-page .finale .wrap { display: grid; justify-items: center; gap: 1.4rem; }
-.landing-page .finale-lines { display: grid; gap: var(--landing-finale-line-gap); font-family: var(--font-ui); font-weight: 800; font-size: clamp(1.7rem, 6vw, 3.6rem); line-height: 1.05; letter-spacing: -.03em; }
-.landing-page .finale-lines > span { display: block; overflow: hidden; padding-bottom: .08em; }
-.landing-page .finale-lines > span > span { display: block; transform: translateY(calc((1 - var(--e)) * (112% + var(--i) * 14%))); }
-.landing-page .finale-lines > span:last-child { color: var(--gold-hi); }
 .landing-page .finale-mark {
   font-family: var(--font-ui); font-weight: 800; font-size: var(--landing-finale-mark-size); line-height: .95; letter-spacing: -.04em;
   color: transparent; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
