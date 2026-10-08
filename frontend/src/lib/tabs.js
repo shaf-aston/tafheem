@@ -5,8 +5,10 @@
  * header, All sections, the command bar, the orbit launcher, the URL. Adding a tab is one
  * entry here; nothing else is edited.
  *
- * Each panel is fetched the first time it opens (React lazy), so the first
- * load carries the shell and not all thirteen tabs.
+ * Each panel's code is its own file (React lazy), so the first load carries the
+ * shell and not all thirteen tabs. The code is fetched with the tab's opening
+ * data (App.jsx openTab: idle, hover), so a tab opens at once and still opens
+ * after the network drops.
  */
 import { lazy } from 'react'
 
@@ -16,19 +18,22 @@ import { load } from './warm'
 import { memoriseOpen } from './books'
 import { table } from './quizBanks'
 
-const Dictionary = lazy(() => import('../components/Dictionary'))
-const QuizPanel = lazy(() => import('../components/QuizPanel'))
-const QuranLookup = lazy(() => import('../components/QuranLookup'))
-const MemorisePanel = lazy(() => import('../components/MemorisePanel'))
-const SarfPanel = lazy(() => import('../components/SarfPanel'))
-const NahwPanel = lazy(() => import('../components/NahwPanel'))
-const DaleelPanel = lazy(() => import('../components/DaleelPanel'))
-const HadithPanel = lazy(() => import('../components/HadithPanel'))
-const TimelinesPanel = lazy(() => import('../components/TimelinesPanel'))
-const DawahPanel = lazy(() => import('../components/DawahPanel'))
-const ColloquialPanel = lazy(() => import('../components/ColloquialPanel'))
-const GrowPanel = lazy(() => import('../components/GrowPanel'))
-const KitPanel = lazy(() => import('../components/KitPanel'))
+// A lazy panel that can also be fetched ahead: `preload` is its import.
+const panel = (preload) => Object.assign(lazy(preload), { preload })
+
+const Dictionary = panel(() => import('../components/Dictionary'))
+const QuizPanel = panel(() => import('../components/QuizPanel'))
+const QuranLookup = panel(() => import('../components/QuranLookup'))
+const MemorisePanel = panel(() => import('../components/MemorisePanel'))
+const SarfPanel = panel(() => import('../components/SarfPanel'))
+const NahwPanel = panel(() => import('../components/NahwPanel'))
+const DaleelPanel = panel(() => import('../components/DaleelPanel'))
+const HadithPanel = panel(() => import('../components/HadithPanel'))
+const TimelinesPanel = panel(() => import('../components/TimelinesPanel'))
+const DawahPanel = panel(() => import('../components/DawahPanel'))
+const ColloquialPanel = panel(() => import('../components/ColloquialPanel'))
+const GrowPanel = panel(() => import('../components/GrowPanel'))
+const KitPanel = panel(() => import('../components/KitPanel'))
 
 // `study`: read closely, so the text-size setting applies.
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together.

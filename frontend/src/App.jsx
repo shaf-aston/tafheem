@@ -32,8 +32,11 @@ const queryClient = new QueryClient({
 })
 
 // Logs how long each tab's opening data took, `[open] hadith 212ms`; 0ms = already cached.
+// The tab's code comes too (lib/tabs.js `panel`); a failed fetch is tried again on opening.
 const openTab = (id) => {
-  const open = TABS.find((t) => t.id === id)?.open
+  const tab = TABS.find((t) => t.id === id)
+  tab?.Component.preload?.().catch(() => {})
+  const open = tab?.open
   if (!open) return
   const at = performance.now()
   Promise.resolve(open(queryClient)).then(() => console.debug(`[open] ${id} ${Math.round(performance.now() - at)}ms`))
