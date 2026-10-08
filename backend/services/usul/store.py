@@ -72,7 +72,7 @@ def links(collection: str, book: int, chains: dict[str, list[list[int]]]) -> dic
     """{"1620a": [{at, student, teacher, kind, sub, word, level, quote, scholar, source, page}, ...]}: each link of a
     book's chains a source puts in doubt, in text order.
 
-    Kept only where `chains` still names the teacher at `at` and the student in the same hadith, like `notes`."""
+    Kept only where `chains` still names the teacher at `at` with the student just before him, like `notes`."""
     db = _db()
     found: dict[str, list[dict]] = {}
     if db:
@@ -81,7 +81,9 @@ def links(collection: str, book: int, chains: dict[str, list[list[int]]]) -> dic
             "FROM link WHERE collection = ? AND book = ? ORDER BY number, part, at, level DESC", (collection, book)
         ):
             key = f"{number}{part}"
-            if not _placed(chains, key, at, teacher) or not any(name == student for _, _, name in chains.get(key, ())):
+            named = chains.get(key, ())
+            i = next((i for i, (start, _, who) in enumerate(named) if start == at and who == teacher), 0)
+            if not i or named[i - 1][2] != student:   # the student must be the name just before his teacher
                 continue
             found.setdefault(key, []).append({
                 "at": at, "student": student, "teacher": teacher, "kind": kind, "sub": sub, "word": word, "level": level,
@@ -102,7 +104,6 @@ def link_rules() -> dict:
                   **{kind: {"label": row["label"], "say": row["say"]} for kind, row in cfg["jami"]["kinds"].items()}},
         "levels": {level: {"say": row["say"], "quote": row["quote"], **cite(row)}
                    for level, row in cfg["tadlis"]["levels"].items() if row["notes"]},
-        "skip": {"say": cfg["tadlis"]["skip"]["say"], "quote": cfg["tadlis"]["skip"]["quote"], **cite(cfg["tadlis"]["skip"])},
     }
 
 

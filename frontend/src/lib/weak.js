@@ -66,7 +66,7 @@ export function weakLinks(links, rules) {
       found.push({
         ...tie, key, label: kind.label, teller: student.name, teacherName: teacher.name,
         says: tadlis ? [kind.say, rules.levels[tie.level]?.say].filter(Boolean) : [kind.say],
-        quotes: (tadlis ? [rules.levels[tie.level], kind, rules.skip] : [{ quote: tie.quote, source: tie.source, page: tie.page }])
+        quotes: (tadlis ? [rules.levels[tie.level], kind] : [{ quote: tie.quote, source: tie.source, page: tie.page }])
           .filter((q) => q?.quote),
       })
     }

@@ -12,6 +12,7 @@
   ],
   "weak_from": 5,
   "max_change_ratio": 0.05,
+  "fetch_timeout_seconds": 120,
   "gap_print": 15,
   "levels_source": "taqrib",
   "join": { "name_words": 3, "nisba_window": 12, "bound": ["عبد", "أبو", "أم"] },
@@ -136,7 +137,8 @@
     "mursal": { "from": "عن", "word": "مرسل", "between": 4 },
     "name_words_max": 8,
     "lone": ["أبو", "بن", "أم"],
-    "scholar": { "says": ["قال", "قالا", "قالوا"], "before_max": 6, "after": ["قاله"], "after_max": 4 },
+    "scholar": { "says": ["قال", "قالا", "قالوا"], "before_max": 6, "after": ["قاله"], "after_max": 4, "after_stop": ["في", "وفي"] },
+    "qualified": ["إلا", "الا"],
     "kinds": {
       "not_heard": { "label": "Possible break", "say": "A scholar says he did not hear from this teacher." },
       "not_reached": { "label": "Possible break", "say": "A scholar says he did not reach this teacher." },
@@ -218,6 +220,7 @@
       "openiti": "0676Nawawi.Taqrib.Shamela0005586-ara1",
       "page": "PageV01P038"
     },
-    "ours": { "label": "Hadith in this app (sunnah.com)", "openiti": "", "page": "" }
+    "ours": { "label": "Hadith in this app (sunnah.com)", "openiti": "", "page": "" },
+    "grade": { "label": "Grade on sunnah.com, on Ibn Hajar's twelve levels", "openiti": "", "page": "" }
   }
 }

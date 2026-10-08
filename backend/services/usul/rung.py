@@ -21,7 +21,7 @@ class Rung(NamedTuple):
     teacher: int
     at: int             # where the teacher's name starts in the hadith's Arabic
     word: str
-    below: frozenset[int]   # the narrators named before the student in this strand: his own students, nearest first
+    below: frozenset[int]   # the narrator who took it from the student in this strand (none at its start)
 
 
 def rungs(arabic: str, mentions: list[tuple[int, int, int]]) -> tuple[list[Rung], Counter]:
@@ -44,7 +44,7 @@ def rungs(arabic: str, mentions: list[tuple[int, int, int]]) -> tuple[list[Rung]
         if why or student == teacher:
             skipped[why or "same"] += 1
         else:
-            found.append(Rung(student, teacher, start, word, frozenset(strand[:-1])))
+            found.append(Rung(student, teacher, start, word, frozenset(strand[-2:-1])))
         strand.append(teacher)
     return found, skipped
 

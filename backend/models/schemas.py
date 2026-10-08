@@ -1461,10 +1461,9 @@ class WeakRule(BaseModel):
 
 
 class WeakLinkRules(BaseModel):
-    """kinds: by link kind (and by sub for a scholar's statement); levels: by the teller's Ta'rif level; skip: the Sahihs."""
+    """kinds: by link kind (and by sub for a scholar's statement); levels: by the teller's Ta'rif level."""
     kinds: dict[str, WeakRule] = {}
     levels: dict[str, WeakRule] = {}
-    skip: WeakRule | None = None
 
 
 class RijalChains(BaseModel):

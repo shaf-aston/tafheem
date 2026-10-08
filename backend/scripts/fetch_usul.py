@@ -20,8 +20,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.usul.rule import rule  # noqa: E402
 
-_TIMEOUT_SECONDS = 120.0
-
 
 def fetch(again: bool = False) -> list[Path]:
     """The path of each book, downloading those not on disk (all of them with `again`)."""
@@ -36,7 +34,7 @@ def fetch(again: bool = False) -> list[Path]:
         if again or not target.exists():
             url = cfg["base"] + book["path"]
             print(f"  downloading {key}: {url}")
-            reply = httpx.get(url, timeout=_TIMEOUT_SECONDS, follow_redirects=True)
+            reply = httpx.get(url, timeout=rule()["fetch_timeout_seconds"], follow_redirects=True)
             reply.raise_for_status()
             scratch = target.with_suffix(".part")
             scratch.write_bytes(reply.content)

@@ -61,6 +61,8 @@ def statements(text: str, teachers: Teachers, cfg: dict, vocab: frozenset[str] =
     lone = {names.word(w) for w in cfg["lone"]}
     cfg = {**cfg, "lone": lone}
     says = {fold_word(w) for w in cfg["scholar"]["says"]}
+    qualified = {fold_word(w) for w in cfg["qualified"]}   # "لم يسمع من جابر إلا أربعة أحاديث" is not a plain no
+    after_stop = {fold_word(w) for w in cfg["scholar"]["after_stop"]}
     out: list[Statement] = []
 
     named = {w for w in ident[:next((i for i, t in enumerate(plain) if t.lstrip("و") in says), len(plain))]
@@ -82,7 +84,7 @@ def statements(text: str, teachers: Teachers, cfg: dict, vocab: frozenset[str] =
         if end < len(shown) and plain[end] in {fold_word(w) for w in after}:
             tail = []
             for token in shown[end + 1:end + 1 + cfg["scholar"]["after_max"]]:
-                if fold_word(token) in {"في", "وفي"}:
+                if fold_word(token) in after_stop:
                     break
                 tail.append(token)
             return " ".join(tail), start
@@ -93,6 +95,8 @@ def statements(text: str, teachers: Teachers, cfg: dict, vocab: frozenset[str] =
         end of X or to word `reach` if that is later."""
         used, teacher, why = found
         end = max(at + used, reach)
+        if end < len(plain) and plain[end] in qualified:
+            why = why or "qualified"
         scholar, begin = scholar_of(start, end)
         out.append(Statement(kind, " ".join(shown[begin:end]), scholar, teacher, why))
 

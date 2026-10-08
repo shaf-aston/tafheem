@@ -349,14 +349,16 @@ def test_a_ruling_name_must_stand_for_exactly_one_narrator():
 
 ANAS_FORMS = (names.flat("أنس بن مالك"), names.flat("أنس"))
 JAMI_ENTRY = Entry(n=1, start_page="PageV01P150",
-                   text="قتادة بن دعامة السدوسي قال أبو حاتم لم يسمع من أنس بن مالك إلا حديثا وقال أحمد لم يسمع من سعيد بن المسيب")
+                   text="قتادة بن دعامة السدوسي قال أبو حاتم لم يسمع من أنس بن مالك وقال شعبة لم يسمع من أنس إلا حديثا "
+                        "وقال أحمد لم يسمع من سعيد بن المسيب")
 
 
 def test_a_not_heard_pair_is_made_only_from_the_narrators_own_teachers():
     found, left = jami.pairs([(QATADA, JAMI_ENTRY, [(ANAS, ANAS_FORMS)])], JAMI)
     assert [(p.student, p.teacher, p.kind, p.scholar, p.quote, p.page) for p in found] == [
         (QATADA, ANAS, "not_heard", "أبو حاتم", "قال أبو حاتم لم يسمع من أنس بن مالك", "p. 150")]
-    assert left == {("not_heard", "none"): 1}   # سعيد is no teacher of his in tie: listed, not guessed
+    # "إلا حديثا" qualifies the no, so it is left out; سعيد is no teacher of his in tie: listed, not guessed.
+    assert left == {("not_heard", "qualified"): 1, ("not_heard", "none"): 1}
 
 
 def test_a_name_that_goes_on_past_the_teachers_is_another_man_not_a_prefix_of_him():
@@ -409,7 +411,7 @@ def test_the_chains_endpoint_carries_links_where_rijal_still_places_them(paths):
     reply = TestClient(app).get("/api/rijal/chains/muslim/24").json()
     assert [(link["at"], link["student"], link["teacher"]) for link in reply["links"]["1"]] == [(10, 1, 2)]   # 11 and 9 are placed nowhere
     assert reply["link_rules"]["levels"]["3"]["page"] == "p. 11" and "tadlis_unclear" in reply["link_rules"]["kinds"]
-    assert reply["link_rules"]["skip"]["source"] == rule()["sources"]["nawawi"]["label"]
+    assert "skip" not in reply["link_rules"]   # no note is ever shown in the Sahihs, so their reason is not sent
 
 
 def test_a_narrators_page_carries_what_the_books_say_grouped_with_their_book(paths):
@@ -426,7 +428,7 @@ def test_a_narrators_page_carries_what_the_books_say_grouped_with_their_book(pat
     assert reply["habits"][0]["ar"] == "راو 3" and reply["habits"][0]["book"] == rule()["sources"]["jami"]["label"]
     assert reply["habits"][1]["rule"]["page"] == "p. 11" and reply["life"][0]["rule"]["quote"] == rule()["taqrib"]["death"]["quote"]
     assert [(line["text"], line["ar"], line["page"]) for line in reply["reliability"]] == [
-        ("Level 8 of 12, Weak", "ضعيف", "p. 73-74")]   # no entry joined: the preface's words place him
+        ("Level 8 of 12, Weak", "ضعيف", "")]   # no entry joined: his sunnah.com grade, not a Taqrib page
     assert [line["text"] for line in reply["books"]] == [   # narrator 2 is named once in hadith 1 (twice at one place) and in 2a
         "Named in 2 of our hadith", "Part of 2 hadith with a weak point on the chain"]
 

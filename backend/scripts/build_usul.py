@@ -48,11 +48,6 @@ CREATE TABLE narrator_fact (
     book TEXT NOT NULL, page TEXT NOT NULL
 );
 CREATE INDEX narrator_fact_by_narrator ON narrator_fact (narrator_id);
-CREATE TABLE pair (
-    student_id INTEGER NOT NULL, teacher_id INTEGER NOT NULL, kind TEXT NOT NULL, quote TEXT NOT NULL,
-    scholar TEXT NOT NULL, book TEXT NOT NULL, page TEXT NOT NULL
-);
-CREATE INDEX pair_by_students ON pair (student_id, teacher_id);
 CREATE TABLE link (
     collection TEXT NOT NULL, book INTEGER NOT NULL, number INTEGER NOT NULL, part TEXT NOT NULL,
     at INTEGER NOT NULL, kind TEXT NOT NULL, sub TEXT NOT NULL, student_id INTEGER NOT NULL, teacher_id INTEGER NOT NULL,
@@ -214,9 +209,8 @@ def build() -> None:
                 fact_rows += facts.taqrib_facts(who, taqrib_entries[n], parsed[n], found[who][0] if who in found else None,
                                                 cfg["taqrib"])
                 unread += facts.died_unread(parsed[n], cfg["taqrib"])
-            else:   # no entry of his own was joined: the preface's words place his level
-                fact_rows.append(facts.Fact(who, "reliability", "level", str(found[who][0]), "", "taqrib",
-                                            books.page_label(cfg["sources"]["taqrib"]["page"])))
+            else:   # no entry of his own was joined: his sunnah.com grade, placed on the preface's levels
+                fact_rows.append(facts.Fact(who, "reliability", "level", str(found[who][0]), "", "grade", ""))
         dead = Counter(parsed[n].death_why or "read" for n in taqrib_joined)
         conn.executemany("INSERT INTO gap VALUES ('taqrib_death', ?, ?)",
                          [(k, v) for k, v in {**dead, "hundreds unknown": unread}.items() if k != "read" and v])
@@ -250,9 +244,6 @@ def build() -> None:
                                      cfg["jami"], vocab)
         add_gaps(conn, "jami_join", jami_why)
         conn.executemany("INSERT INTO gap VALUES ('jami_statement', ?, ?)", [(f"{k} {w}", n) for (k, w), n in left.items()])
-        conn.executemany("INSERT INTO pair VALUES (?, ?, ?, ?, ?, ?, ?)",
-                         [(p.student, p.teacher, p.kind, p.quote, p.scholar, cfg["jami"]["book"], p.page)
-                          for p in pair_list])
         fact_rows += [facts.pair_fact(p, rows[p.teacher]["name_ar"], cfg["jami"]["book"]) for p in pair_list]
         print(f"Jami' entries joined: {len(jami_joined):,} of {len(jami_entries):,} (left out: "
               f"{', '.join(f'{k} {v:,}' for k, v in sorted(Counter(jami_why.values()).items()))})")
