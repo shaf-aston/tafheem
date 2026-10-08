@@ -146,7 +146,7 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
         said.extend(faults)
         filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases,
                        "dialogue": dialogue, "vocabulary": vocabulary, "written": True})
-    return {**written, "title": outline["title"], "lessons": filled}, said
+    return {**written, "title": outline["title"], "cover": outline.get("cover"), "lessons": filled}, said
 
 
 def _unit_faults(unit: dict) -> list[str]:
@@ -222,13 +222,12 @@ def _content() -> dict:
 
 
 def _cover(unit: dict) -> dict | None:
-    """The unit's first phrase with a picture. Every dialect fills the same spine
-    slots, so the same unit opens on the same phrase in each, said its own way."""
-    for lesson in unit["lessons"]:
-        for phrase in lesson.get("phrases") or []:
-            if phrase.get("image"):
-                return {"arabic": phrase["arabic"], "english": phrase["english"], "image": phrase["image"]}
-    return None
+    """The phrase the spine names as the unit's `cover`, else (not named, or not yet
+    written in this dialect) its first phrase with a picture. Every dialect fills the
+    same spine slots, so the same unit opens on the same phrase in each, said its own way."""
+    pictured = [p for lesson in unit["lessons"] for p in lesson.get("phrases") or [] if p.get("image")]
+    phrase = next((p for p in pictured if p["slot"] == unit.get("cover")), pictured[0] if pictured else None)
+    return phrase and {"arabic": phrase["arabic"], "english": phrase["english"], "image": phrase["image"]}
 
 
 def catalogue() -> dict:
