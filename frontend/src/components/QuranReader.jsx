@@ -246,7 +246,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
                   />
                 )}
               </AyahList>
-              {noTouch && <ScrollPad list={list} />}
+              {touch && <ScrollPad list={list} on={noTouch} />}
             </div>
           )}
         </div>

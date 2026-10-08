@@ -124,6 +124,19 @@
 .slide-prev { --slide-from: -40px; }
 
 
+/* The same step backwards: going the way it came. Its own name, since the
+   browser does not replay a running animation only turned round. `forwards`
+   holds it gone until whatever wears it takes it away. */
+@keyframes slide-out {
+  to { opacity: 0; transform: translateX(var(--slide-from)); }
+}
+
+
+.slide-away {
+  animation: slide-out calc(var(--motion-base-ms) * 1ms) cubic-bezier(0.8, 0, 0.8, 0.2) forwards;
+}
+
+
 /* A wrong answer shaking its head: short, and over before the next tap. */
 @keyframes shake {
   25% { transform: translateX(-4px); }

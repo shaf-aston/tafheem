@@ -80,9 +80,13 @@ const STILL = 0.02
 
 /**
  * The strip that scrolls `list` while its words are not to be touched: drag
- * it as you would the page, flick it and it carries on.
+ * it as you would the page, flick it and it carries on. `on` slides it in from
+ * the edge and back out again, the same step sideways the pages take.
  */
-export function ScrollPad({ list }) {
+export function ScrollPad({ list, on }) {
+  // Still drawn while it slides out; gone once that is over.
+  const [shown, setShown] = useState(on)
+  if (on && !shown) setShown(true)
   const last = useRef(null)
   const speed = useRef(0)
   const coast = useRef(0)
@@ -116,14 +120,17 @@ export function ScrollPad({ list }) {
     coast.current = requestAnimationFrame(glide)
   }
 
+  if (!shown) return null
   return (
     <div
       aria-hidden="true"
+      onAnimationEnd={() => !on && setShown(false)}
       onPointerDown={down}
       onPointerMove={move}
       onPointerUp={up}
       onPointerCancel={up}
-      className="touch-none select-none w-11 shrink-0 grid place-items-center border-l border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text-faint)]"
+      className={`${on ? 'slide-prev' : 'slide-away'} touch-none select-none w-11 shrink-0 grid place-items-center border-l border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text-faint)]`}
+      style={{ '--slide-from': '100%' }}
     >
       <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="m7 9 5-5 5 5M7 15l5 5 5-5" />
