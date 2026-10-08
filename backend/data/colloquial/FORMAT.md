@@ -25,6 +25,8 @@ common word of the scene, not only those in its phrases. See "Words" below.
 `slot` is a short name written out, never a position, unique within its lesson.
 It ties the same phrase together across dialects, so never rename one.
 `image` is added by the picture script, and one picture serves every dialect.
+A unit's optional `cover` names the slot whose phrase and picture front its card on
+the unit list; without one, the unit's first pictured phrase does.
 
 ## A dialect's unit
 
