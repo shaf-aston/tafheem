@@ -1,4 +1,4 @@
-"""Read usul.db: where a chain's weak narrators are named, and the scale they sit on.
+"""Read usul.db: where a chain's weak narrators are named, the scale they sit on, and what scholars said of a hadith.
 
 The only reader of usul.db. Built by scripts/build_usul.py, never written
 while serving. Missing is a valid state: a hadith then looks as it did before
@@ -89,6 +89,48 @@ def links(collection: str, book: int, chains: dict[str, list[list[int]]]) -> dic
                 "at": at, "student": student, "teacher": teacher, "kind": kind, "sub": sub, "word": word, "level": level,
                 "quote": quote, "scholar": scholar, "source": _source(source) if source else "", "page": page})
     return found
+
+
+def rulings(collection: str, book: int) -> dict[str, list[dict]]:
+    """{"1620a": [{kind, label, scholar, quote, chapter, source, page}, ...]}: what a classical ruling book says of each
+    hadith of a book of ours, in the order of usul.json `rulings.kinds`. The quote is the scholar's own sentence."""
+    db = _db()
+    found: dict[str, list[dict]] = {}
+    if db:
+        kinds = rule()["rulings"]["kinds"]
+        for number, part, kind, scholar, quote, chapter, source, page in db.execute(
+            "SELECT number, part, kind, scholar, quote, chapter, book, page FROM ruling "
+            "WHERE collection = ? AND hbook = ? ORDER BY number, part, page", (collection, book)
+        ):
+            found.setdefault(f"{number}{part}", []).append({
+                "kind": kind, "label": kinds[kind]["label"], "scholar": scholar, "quote": quote, "chapter": chapter, "source": _source(source), "page": page})
+        for rows in found.values():
+            rows.sort(key=lambda row: list(kinds).index(row["kind"]))
+    return found
+
+
+def terms() -> list[dict]:
+    """[{kind, label, say, count}]: each sort of ruling in usul.db with how many of our hadith carry it. Empty while
+    usul.db is not built."""
+    db = _db()
+    if not db:
+        return []
+    count = dict(db.execute("SELECT kind, COUNT(*) FROM (SELECT DISTINCT kind, collection, number, part FROM ruling) "
+                            "GROUP BY kind"))
+    return [{"kind": kind, "label": row["label"], "say": row["say"], "count": count[kind]}
+            for kind, row in rule()["rulings"]["kinds"].items() if kind in count]
+
+
+def term(kind: str, offset: int, limit: int) -> tuple[int, list[dict]]:
+    """(how many hadith carry a ruling of this kind, a page of them as {collection, book, number, part})."""
+    db = _db()
+    if not db:
+        return 0, []
+    total = db.execute("SELECT COUNT(*) FROM (SELECT DISTINCT collection, number, part FROM ruling WHERE kind = ?)",
+                       (kind,)).fetchone()[0]
+    return total, [{"collection": collection, "book": book, "number": number, "part": part} for collection, book, number, part in db.execute(
+        "SELECT DISTINCT collection, hbook, number, part FROM ruling WHERE kind = ? "
+        "ORDER BY collection, number, part LIMIT ? OFFSET ?", (kind, limit, offset))]
 
 
 def link_rules() -> dict:

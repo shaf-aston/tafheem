@@ -1469,15 +1469,44 @@ class WeakLinkRules(BaseModel):
     levels: dict[str, WeakRule] = {}
 
 
+class Ruling(BaseModel):
+    """What a classical ruling book says of a hadith, quoted: `quote` is the scholar's own sentence (empty for a chapter
+    heading alone, which `chapter` then holds), `page` where the book prints it. Matched by text and chain, so possible."""
+    kind: str
+    label: str
+    scholar: str = ""
+    quote: str = ""
+    chapter: str = ""
+    source: str
+    page: str = ""
+
+
+class UsulTerm(BaseModel):
+    """One sort of ruling: `say` is its plain meaning, `count` how many of our hadith carry one."""
+    kind: str
+    label: str
+    say: str
+    count: int
+
+
+class UsulTermHadith(BaseModel):
+    """A page of the hadith carrying one sort of ruling; total counts them all."""
+    kind: str
+    total: int
+    items: list[RijalHadithRef] = []
+
+
 class RijalChains(BaseModel):
     """Where each narrator is named in a book's Arabic: hadith number and letter ("1620a") to [start, end, narrator id] slices.
 
-    notes, links, link_rules and scale are the weak points on those chains; all are empty while usul.db is not built."""
+    notes, links, link_rules and scale are the weak points on those chains, rulings what scholars said of each hadith;
+    all are empty while usul.db is not built."""
     collection: str
     book: int
     chains: dict[str, list[list[int]]] = {}
     notes: dict[str, list[WeakNote]] = {}
     links: dict[str, list[WeakLink]] = {}
+    rulings: dict[str, list[Ruling]] = {}
     link_rules: WeakLinkRules | None = None
     scale: list[WeakLevel] = []
     # False when rijal.db has not been built, same as HadithSearchResponse.ready.

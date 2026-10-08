@@ -27,8 +27,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services.hadith import loader  # noqa: E402
-from backend.services.usul import books, facts, jami, mukhtalitin, names, rung, taqrib, tarif  # noqa: E402
+from backend.services.hadith import chain, loader  # noqa: E402
+from backend.services.usul import books, facts, jami, match, mukhtalitin, names, ruling, rung, taqrib, tarif  # noqa: E402
 from backend.services.usul.level import kind_of, level_of  # noqa: E402
 from backend.services.usul.rule import rule  # noqa: E402
 
@@ -55,6 +55,15 @@ CREATE TABLE link (
     page TEXT NOT NULL,
     PRIMARY KEY (collection, book, number, part, at, kind, quote)
 ) WITHOUT ROWID;
+CREATE TABLE ruling (
+    collection TEXT NOT NULL, hbook INTEGER NOT NULL, number INTEGER NOT NULL, part TEXT NOT NULL, book TEXT NOT NULL,
+    kind TEXT NOT NULL,
+    scholar TEXT NOT NULL, quote TEXT NOT NULL, chapter TEXT NOT NULL, page TEXT NOT NULL, unit INTEGER NOT NULL,
+    score REAL NOT NULL,
+    PRIMARY KEY (collection, number, part, book, kind, scholar, quote)
+) WITHOUT ROWID;
+CREATE INDEX ruling_by_kind ON ruling (kind, collection, number, part);
+CREATE INDEX ruling_by_book ON ruling (collection, hbook);
 """
 
 
@@ -141,6 +150,20 @@ def tarif_report(entries: list[books.Entry], level: dict, joined: dict, why: dic
     return report
 
 
+def our_hadith() -> list[tuple[tuple, str, int]]:
+    """((collection, number, part), Arabic, book number) for every hadith in hadith.db."""
+    return [((collection, number, part), arabic, book) for collection, book, number, part, arabic in loader.every_hadith()]
+
+
+def narrators_by_hadith(rijal: sqlite3.Connection, rows: dict[int, dict]) -> dict[tuple, list[list[tuple[str, ...]]]]:
+    """{(collection, number, part): the name forms (match.forms) of each narrator its chain names}."""
+    forms = {who: match.forms(row) for who, row in rows.items()}
+    found: dict[tuple, dict[int, list]] = {}
+    for collection, number, part, who in rijal.execute("SELECT collection, number, part, narrator_id FROM mention"):
+        found.setdefault((collection, number, part), {})[who] = forms.get(who, [])
+    return {key: list(men.values()) for key, men in found.items()}
+
+
 def add_links(conn: sqlite3.Connection, rijal: sqlite3.Connection, cfg: dict, tarif_level: dict[int, int],
               pairs_by: dict[tuple[int, int], list], exempt: list[dict]) -> tuple[Counter, Counter]:
     """Link notes for every rung of every chain: (what each rung got or why not, why two names were no rung)."""
@@ -171,6 +194,77 @@ def add_links(conn: sqlite3.Connection, rijal: sqlite3.Connection, cfg: dict, ta
                                   pair.quote, pair.scholar, cfg["jami"]["book"], pair.page))
                     outcomes["not_heard"] += 1
     return outcomes, skipped
+
+
+def read_rulings(units: dict[str, list[books.Entry]], cfg: dict) -> tuple[list[tuple], Counter, Counter]:
+    """([(kind, book, entry, ruling, the unit's chain words, its matn words)], units unread by (book, why), rulings
+    with no matn by book): what each unit of each ruling book says and the hadith it says it of, as words."""
+    rl, knobs = cfg["rulings"], cfg["rulings"]["match"]
+    todo, unread, thin = [], Counter(), Counter()
+    for kind, kc in rl["kinds"].items():
+        for entry in units[kc["book"]]:
+            found, why = ruling.read(entry, kind, rl)
+            unread[kc["book"], why] += not found
+            for r in found:
+                chain_text, matn = match.split_hadith(r.head, {**rl["shared"], **kc}, rl["shared"]["matn_quote"])
+                words = match.tokens(matn)
+                if len(words) < knobs["gram"]:
+                    thin[kc["book"]] += 1
+                    continue
+                todo.append((kind, kc["book"], entry, r, names.words(" ".join(chain.name_tokens(chain_text))), words))
+    return todo, unread, thin
+
+
+def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], hadith: list[tuple[tuple, str, int]],
+                narrators_of: dict[tuple, list[list[tuple[str, ...]]]], cfg: dict) -> list[str]:
+    """A row of `ruling` for each hadith of ours a ruling book's unit is about (services/usul/ruling.py reads the unit,
+    match.py finds the hadith). Returns the report: per book the units, what was read and what became of it.
+
+    hadith: ((collection, number, part), its Arabic, its book number); narrators_of: the name forms of each hadith's narrators, by key."""
+    rl, knobs = cfg["rulings"], cfg["rulings"]["match"]
+    todo, unread, thin = read_rulings(units, cfg)
+    if not todo:
+        return []
+    wanted = set().union(*(match.grams(words, knobs["gram"]) for *_, words in todo))
+    index = match.Index({key: match.tokens(chain.chain_of(arabic)[1]) for key, arabic, _ in hadith}, knobs["gram"], wanted)
+    book_of = {key: number for key, _, number in hadith}
+    men = match.Names([f for forms in narrators_of.values() for f in forms], knobs["min_name_words"],
+                      knobs["rare_name"], knobs["name_stop"])
+    fate: dict[str, Counter] = {book: Counter() for book in units}
+    for kind, book, entry, r, unit_names, words in todo:
+        chosen, how = match.choose(
+            index.scores(words, knobs["df_max"]), index.possible(words, knobs["df_max"]),
+            lambda key: men.shares(unit_names, [f for forms in narrators_of.get(key, ()) for f in forms]), knobs)
+        fate[book][how] += 1
+        fate[book]["tied"] += len(chosen) > 1
+        where = entry.where(r.at) if rl["kinds"][kind]["numbered"] else books.page_label(entry.page_at(r.at))
+        for (collection, number, part), score in chosen:
+            conn.execute("INSERT OR IGNORE INTO ruling VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                         (collection, book_of[collection, number, part], number, part, book, kind, r.scholar, r.quote,
+                          r.chapter, where, entry.n, round(score, 1)))
+    conn.executemany("INSERT INTO gap VALUES ('ruling_unit', ?, ?)",
+                     [(f"{book}: {why}", n) for (book, why), n in unread.items() if n])
+    conn.executemany("INSERT INTO gap VALUES ('ruling_no_matn', ?, ?)", list(thin.items()))
+    for book, counts in fate.items():
+        conn.executemany("INSERT INTO gap VALUES ('ruling_match', ?, ?)",
+                         [(f"{book}: {how}", counts[how]) for how in ("below_floor", "rejected") if counts[how]])
+    by_kind = dict(conn.execute("SELECT kind, COUNT(*) FROM ruling GROUP BY kind"))
+    report = []
+    for kind, kc in rl["kinds"].items():
+        book, entries = kc["book"], units[kc["book"]]
+        numbers = {e.n for e in entries}
+        absent = [n for n in range(1, max(numbers, default=0) + 1) if n not in numbers] if kc["numbered"] else []
+        counts = fate[book]
+        why_not = ", ".join(f"{why} {n}" for (b, why), n in sorted(unread.items()) if b == book and n)
+        report.append(
+            f"{book}: {len(entries):,} units"
+            + (f", {len(absent)} numbers of the book's own sequence missing {absent[:10]}" if absent else "")
+            + f"; {sum(1 for _ in entries) - sum(n for (b, _), n in unread.items() if b == book):,} read"
+            + (f" (unread: {why_not})" if why_not else "")
+            + f"; of {sum(counts[h] for h in ('matched', 'rejected', 'below_floor')) + thin[book]:,} rulings read: "
+            f"matched {counts['matched']:,} (tied {counts['tied']:,}), rejected by c2 {counts['rejected']:,}, "
+            f"below floor {counts['below_floor']:,}, no matn {thin[book]:,}; {by_kind.get(kind, 0):,} {kind} rows")
+    return report
 
 
 def build() -> None:
@@ -279,6 +373,11 @@ def build() -> None:
         outcomes, skipped = add_links(conn, rijal, cfg, tarif_level, pairs_by, exempt)
         conn.executemany("INSERT INTO gap VALUES ('not_a_rung', ?, ?)", list(skipped.items()))
 
+        # The ruling books: what a classical book says of a hadith, quoted, for each hadith of ours it is about.
+        ruling_report = []
+        if any(entries[kc["book"]] for kc in cfg["rulings"]["kinds"].values()):
+            ruling_report = add_rulings(conn, entries, our_hadith(), narrators_by_hadith(rijal, rows), cfg)
+
         # What the page counts of him in our books.
         weak: dict[int, set] = {}
         for who, collection, number, part in conn.execute("SELECT narrator_id, collection, number, part FROM note"):
@@ -305,6 +404,7 @@ def build() -> None:
     conn.close()
     scratch.replace(target)
 
+    print("\n".join(ruling_report))
     print(f"narrators levelled: {len(found):,}")
     print(f"notes: {notes:,}")
     for level, n in per_level:
