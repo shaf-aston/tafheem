@@ -619,6 +619,7 @@ def test_a_pronoun_on_a_present_verb_is_not_read_as_its_passive_vowel():
     assert "مجهول" not in _read("إِذَنْ أُكْرِمَكَ")["words"][1]["reason"]
     assert "مجهول" in _read("يُكْرَمُ الضَّيْفُ")["words"][0]["reason"]
 
+
 @pytest.mark.parametrize("sentence, particle, verb", [
     ("وَلَا تَأْكُلُوهَا", "لا الناهية", "فعل مضارع للنهي"),
     ("وَلَا تَأْكُلُوهَآ", "لا الناهية", "فعل مضارع للنهي"),  # the Qur'an's spelling of the same ending
