@@ -150,7 +150,7 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   Everything else a person keeps (settings, Grow steps, favourites, history) is in the browser,
   filed by `frontend/src/lib/stored.js` under the logged-in name (`@amina/settings`; the guest's
   keys are bare). That one account's keys are its shelf: `lib/shelf.js` pulls it from
-  `GET /api/progress/saved` at start-up and log-in and `PUT`s it back a moment after any change,
+  `GET /api/progress/saved` at start-up and log-in and `PUT`s it back a moment after any change (at once when the page is hidden),
   so it follows the name to any device. Log-in and log-out reload the page.
   Teams: any account that adds a member (`POST /api/progress/team`) is a team; `GET /team`
   returns the tree below it with each person's words learnt and answers (`progress_store.team_tree`,
