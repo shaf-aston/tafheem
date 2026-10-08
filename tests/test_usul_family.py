@@ -243,4 +243,23 @@ def test_a_name_after_the_chains_cut_leaves_the_telling_without_places_or_marks(
     text, spans = _chain([NAMES[101], NAMES[10]])
     second = text + "وَقَالَ "
     mentions = [(s, e, w) for (s, e), w in zip(spans, (101, 10))] + [(len(second), len(second) + len(NAMES[106]), 106)]
-    assert family.chain_ids(second + NAMES[106] + " " + BASE_TEXT, mentions, {10: "الأولى"}, {"الأولى"}) == ([], "name_after_cut")
+    assert family.chain_ids(second + NAMES[106] + " " + BASE_TEXT, mentions, {10: "الأولى"}, {"الأولى"}, FC["joiner"]) == ([], "name_after_cut")
+
+
+def test_a_chain_of_the_compilers_teachers_alone_has_no_places_and_does_not_stop_the_build():
+    text, spans = _chain([NAMES[101], NAMES[104]], joins=(1,))
+    mentions = [(s, e, w) for (s, e), w in zip(spans, (101, 104))]
+    assert family.chain_ids(text, mentions, {}, {"الأولى"}, FC["joiner"]) == ([], "no_chain")
+
+
+def test_two_names_with_nothing_between_them_are_not_taken_for_the_compilers_teachers():
+    # "عن أبيه، محمد": one man named twice, or a name rijal split; no joiner, so the split is not guessed
+    text = "حَدَّثَنَا " + NAMES[101] + "، " + NAMES[105] + " عَنْ " + NAMES[10] + TAIL
+    mentions = [(text.find(NAMES[w]), text.find(NAMES[w]) + len(NAMES[w]), w) for w in (101, 105, 10)]
+    assert family.chain_ids(text, mentions, {10: "الأولى"}, {"الأولى"}, FC["joiner"]) == ([], "names_joined")
+
+
+def test_a_word_whose_dotted_twin_the_same_telling_also_says_is_its_own_not_a_dot_difference():
+    a = " ".join(BASE[:-3]) + " يَقُولُ تَقُولُ"
+    b = " ".join(BASE[:-3]) + " تَقُولُ"
+    assert _marks(a=a, b=b)[0] == {"a": [(7, "يَقُولُ", "only", "")]}

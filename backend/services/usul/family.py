@@ -57,11 +57,12 @@ def rasm(word: str, groups: list[str]) -> str:
 
 
 def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dict[int, str],
-              companions: set[str]) -> tuple[list[int], str]:
+              companions: set[str], joiner: str) -> tuple[list[int], str]:
     """(narrator ids of the chain in text order, "") or ([], why the places cannot be trusted).
 
-    `mentions` are (start, end, narrator id) in text order, one per start. why: no_chain (the Arabic has no plain
-    chain, or rijal placed no name in it), strand (a ح starts another strand), unplaced_name (words between two names
+    `mentions` are (start, end, narrator id) in text order, one per start; `joiner` is the letter that joins two names
+    (usul.json `family.joiner`). why: no_chain (the Arabic has no plain chain, or rijal placed no name in it past the
+    compiler's own teachers), strand (a ح starts another strand), unplaced_name (words between two names
     that no name of rijal's explains), name_after_cut (rijal places a name after the chain's cut: a second chain or
     the chain's end sits in what the app shows as the text), names_joined (no passing-on or saying word between two
     names past the compiler's own teachers: two men at one place, whose next link may differ, as in "عن العلاء وسهيل
@@ -79,12 +80,17 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
         return [], "name_after_cut"
     teachers = 0   # how many names open the chain joined together: the compiler's own teachers (حدثنا A وB)
     for at, ((_, end, _), (start, _, _)) in enumerate(zip(named, named[1:])):
-        _, why = passed_on(without_asides(arabic[end:start]))
-        if why == "no_link" and at == max(teachers - 1, 0):
+        gap = without_asides(arabic[end:start])
+        _, why = passed_on(gap)
+        # joined: the joiner stands alone in the gap or opens the next name (rijal's span often takes it in)
+        joined = arabic.startswith(joiner, start) or joiner in (_LETTERS.sub("", w) for w in gap.split())
+        if why == "no_link" and joined and at == max(teachers - 1, 0):
             teachers = at + 2
         elif why:
             return [], _BREAKS[why]
     ids = [who for *_, who in named[teachers:]]   # they stand before the chain, so their place is not counted
+    if not ids:
+        return [], "no_chain"
     last = generation.get(ids[-1], "")
     if last not in companions:
         return [], "companion_end_other" if last else "companion_end_unplaced"
@@ -136,15 +142,15 @@ def one_report(keys: dict[str, set[str]], weight: dict[str, float], cfg: dict) -
 def marks(matns: dict[str, list[str]], cfg: dict, weight: dict[str, float]) -> tuple[dict[str, list[Mark]], dict[str, str]]:
     """({part: its marked words}, {part: why it was not compared}) for the tellings' matn words.
 
-    A telling of fewer than `min_words` words (marks and numbers are no words) is not compared (short_matn); with
-    fewer than two left there is nothing to set against. Of the rest, one that shares enough of its text with no
+    A telling of fewer than `min_words` words (marks and numbers are no words) is not compared (short_matn); one left
+    on its own has nothing to set against (alone). Of the rest, one that shares enough of its text with no
     other is not compared either (different_text); the others are compared within their group. A word counts once
     however often a telling says it."""
     keys = {p: [word_key(w, cfg) for w in words] for p, words in matns.items()}
     kept = {p: matns[p] for p, row in keys.items() if sum(map(bool, row)) >= cfg["min_words"]}
     left = {p: "short_matn" for p in matns if p not in kept}
     if len(kept) < 2:
-        return {}, left
+        return {}, {**left, **{p: "alone" for p in kept}}
     sets = {p: {k for k in keys[p] if k} for p in kept}
     found: dict[str, list[Mark]] = {}
     for group in one_report(sets, weight, cfg):
@@ -152,16 +158,18 @@ def marks(matns: dict[str, list[str]], cfg: dict, weight: dict[str, float]) -> t
             left[group[0]] = "different_text"
             continue
         holders: dict[str, set[str]] = {}
-        rasms: dict[str, dict[str, str]] = {}   # rasm of a key -> {part: a written word with it}
+        rasms: dict[str, dict[str, str]] = {}   # rasm of a key -> {key: a written word with it}
         for p in group:
             for key, word in zip(keys[p], kept[p]):
                 if key:
                     holders.setdefault(key, set()).add(p)
-                    rasms.setdefault(rasm(key, cfg["rasm"]), {}).setdefault(p, word)
+                    rasms.setdefault(rasm(key, cfg["rasm"]), {}).setdefault(key, word)
         for p in group:
             for at, (key, word) in enumerate(zip(keys[p], kept[p])):
                 if not key or len(holders[key]) != 1:
                     continue
-                twin = next((w for q, w in rasms[rasm(key, cfg["rasm"])].items() if q != p), "") if len(key) >= cfg["dot_min"] else ""
+                # a twin is another telling's word p itself lacks; one p also says leaves this word p's own
+                twin = next((w for k, w in rasms[rasm(key, cfg["rasm"])].items() if p not in holders[k]),
+                            "") if len(key) >= cfg["dot_min"] else ""
                 found.setdefault(p, []).append(Mark(at, word, "dots" if twin else "only", twin))
     return found, left

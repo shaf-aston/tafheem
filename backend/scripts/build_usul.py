@@ -359,7 +359,7 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
         chains, reasons = {}, {}
         for part in parts:
             chains[part], reasons[part] = family.chain_ids(arabic.get((collection, number, part), ""),
-                                                           list(by_part[part].values()), generation, companions)
+                                                           list(by_part[part].values()), generation, companions, fc["joiner"])
         why = next((r for r in reasons.values() if r), "")
         shown = {"collection": collection, "number": number, "parts": parts, "chains": chains, "why": why, "places": [],
                  "marks": {}, "matns": {}, "left": {}, "shares": {},
@@ -385,8 +385,6 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
         found, left = family.marks(matns, fc, weight)
         why_word.update(left.values())
         compared_n += len(matns) - len(left) >= 2
-        if len(matns) - sum(v == "short_matn" for v in left.values()) < 2:
-            why_word["fewer_than_two_to_compare"] += 1
         if "different_text" in left.values():
             shown["shares"] = family.shares({p: keys_of(matns[p]) for p in matns if left.get(p) != "short_matn"}, weight)
         for part, row in found.items():

@@ -302,6 +302,7 @@
   },
   "family": {
     "companion_group": "companions",
+    "joiner": "و",
     "places": {
       "heading": "Narrators at each place, across {book}'s {n} narrations of no. {number}",
       "note": "Counted by place in the chain from the Companion, which is not always a generation.",
@@ -321,7 +322,7 @@
       "no_chain_cut": "no plain chain to cut",
       "short_matn": "text too short to compare",
       "different_text": "different text under one number",
-      "fewer_than_two_to_compare": "fewer than two to compare"
+      "alone": "no other telling to set it against"
     },
     "min_words": 8,
     "same_text_min": 0.2,
