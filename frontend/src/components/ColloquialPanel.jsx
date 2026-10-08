@@ -89,13 +89,13 @@ function UnitCard({ hue, index, unit, onClick }) {
   const number = unitNumber(unit.unit)
   return (
     <div style={lookOf(hue, index)} className="rise-in lift press relative grid grid-cols-[7rem_minmax(0,1fr)] grid-rows-[auto_auto_1fr_auto] gap-x-3.5 px-5 py-4 rounded-[var(--radius-lg)] border">
-      <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`absolute inset-0 rounded-[var(--radius-lg)] ${FOCUS}`} />
+      <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`stretch absolute inset-0 rounded-[var(--radius-lg)] ${FOCUS}`} />
       <span className="col-span-2 flex items-baseline justify-between gap-3 type-micro uppercase tracking-[0.18em]">
         <span style={{ color: hue }}>Unit {number}</span>
         <span className="text-[var(--text-faint)]">{unit.lessons.length} topics</span>
       </span>
       <span className="col-span-2 type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
-      <PhrasePicture phrase={cover} className="soft-edge row-span-2 self-end mt-3 w-28 aspect-[4/3]" />
+      <PhrasePicture phrase={cover} alt="" className="soft-edge pointer-events-none row-span-2 self-end mt-3 w-28 aspect-[4/3]" />
       <span className="relative pointer-events-none self-end flex items-center gap-3 mt-2">
         <SpeakButton text={cover.arabic} className="pointer-events-auto" />
         <ArabicText className="flex-1 min-w-0 text-start [overflow-wrap:anywhere]">{cover.arabic}</ArabicText>

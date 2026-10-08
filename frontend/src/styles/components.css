@@ -67,9 +67,18 @@
 
 
 .lift:hover,
-.lift:focus-visible {
+.lift:focus-visible,
+.lift:has(> .stretch:focus-visible) {
   transform: translateY(-2px);
   box-shadow: var(--shadow-pop);
+}
+
+
+/* A card opened by a button stretched over it moves only with that button: a
+   speaker drawn above it neither lifts nor presses the card it does not open. */
+.lift:has(> .stretch):hover:not(:has(> .stretch:hover)) {
+  transform: none;
+  box-shadow: none;
 }
 
 
@@ -82,6 +91,10 @@
 
 .press:active {
   transform: scale(0.98);
+}
+
+.press:has(> .stretch):active:not(:has(> .stretch:active)) {
+  transform: none;
 }
 
 

@@ -9,14 +9,15 @@ import { useState } from 'react'
 
 import { colloquialImageUrl } from '../../api'
 
-export default function PhrasePicture({ phrase, className = '' }) {
+// `alt` is empty where the English is already printed beside the picture.
+export default function PhrasePicture({ phrase, alt = phrase.english, className = '' }) {
   const [gone, setGone] = useState(false)
   const box = `overflow-hidden bg-[var(--surface-hi)] ${className}`
   if (!phrase.image || gone) return <div aria-hidden="true" className={box} />
   return (
     <img
       src={colloquialImageUrl(phrase.image)}
-      alt={phrase.english}
+      alt={alt}
       loading="lazy"
       onError={() => setGone(true)}
       className={`${box} object-cover`}
