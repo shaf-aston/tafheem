@@ -13,9 +13,11 @@ import { caseLabel, isUnnamed } from '../lib/grammarTerms'
 import { arc } from '../lib/govArc'
 import { roleVar } from '../lib/roleColors'
 import { useRemembered } from '../lib/useRemembered'
+import { useTarkeebView } from '../lib/useTarkeebView'
 
 import SourceBadge from './ui/SourceBadge'
 import TarkeebFigure from './TarkeebFigure'
+import TarkeebTools from './TarkeebTools'
 import PracticePanel from './PracticePanel'
 import WordCard from './WordCard'
 import ArabicText from './ui/ArabicText'
@@ -130,6 +132,7 @@ function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }
   const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
   const linked = data.words.some((w) => source(w) !== undefined)
   const governs = linked && lens === 'governs'
+  const view = useTarkeebView(data.tree)
   return (
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -143,13 +146,16 @@ function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }
             <SourceBadge source={data.source} />
           </div>
         )}
-        <CopyButton text={buildIraabExportText(data)} />
+        <div className="flex items-center gap-2">
+          {data.tree && <TarkeebTools view={view} />}
+          <CopyButton text={buildIraabExportText(data)} />
+        </div>
       </div>
 
       {data.tree && (
         // An ayah drawn from its record carries the words the book supplies,
         // (هُوَ) or an elided khabar, and the mark it writes them with.
-        <TarkeebFigure tarkeeb={data.tree} />
+        <TarkeebFigure tarkeeb={data.tree} view={view} />
       )}
       <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked}
         corner={linked && (
