@@ -28,7 +28,7 @@ from backend.services.arabic_text import bare_letters
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
 from backend.services.syntax.mask import book_links, book_mask
-from backend.services.morphology import root_in_arabic
+from backend.services.morphology import ROOTED_POS, root_in_arabic
 from backend.services.harakat import NO_ANALYSIS, base_of, best_reading, past_passive_shape, typed_case, unread, weak_last
 
 logger = logging.getLogger(__name__)
@@ -201,7 +201,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
             "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
             "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
             "per": a.get("per", "na"), "gen": a.get("gen", "na"),
-            "root": root_in_arabic(a.get("root") or ""),
+            "root": root_in_arabic(a.get("root") or "", (a.get("lex") or "") if a.get("pos") in ROOTED_POS else ""),
             "weak_last": weak_last(a), "base": base_of(word, a.get("atbtok")), **extra, "token_type": "baseword",
         }
 

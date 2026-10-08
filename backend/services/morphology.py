@@ -154,29 +154,46 @@ def _bw_to_ar(bw: str) -> str:
     return "".join(_BW_MAP.get(c, c) for c in bw)
 
 
-def root_in_arabic(root: str) -> str:
-    """'ktb' → 'كتب'  (handles already-Arabic roots too).
+# The tags whose # is settled to a root. A particle or pronoun CAMeL files with a
+# # (إنّ as verb_pseudo, الذي, سوف) has no root a reader is looking for.
+ROOTED_POS = {"verb", "noun", "noun_prop", "adj"}
 
-    The radicals used to be joined with hyphens, which read as three letters
-    rather than a word. It was decoration, never data: the same string is what
-    the Define and In-the-Qur'an buttons search with, and "ك-ت-ب" is not a word
-    any index holds, so a root was unsearchable the moment it was shown.
 
-    The morphology database writes ``#`` for a radical it cannot pin down
-    (typically an elided weak letter). Showing that to a reader is a guess
-    dressed as an answer, so an incomplete root is reported as no root.
+def root_pattern(root: str) -> str:
+    """CAMeL's root in Arabic letters, keeping its # for a radical it could not pin down; "" for none.
 
-    Particles carry the placeholder ``NTWS`` instead of a root. Mapped letter
-    by letter it came out as "NطWص" on the Nahw table, so a root is only
-    Buckwalter-converted when it is wholly Buckwalter, and shown_root drops
-    anything that still holds a code letter afterwards.
+    'ktb' and 'ك-ت-ب' both give كتب. Particles carry the placeholder NTWS
+    instead of a root; mapped letter by letter it came out as "NطWص", so a root
+    is only Buckwalter-converted when it is wholly Buckwalter.
     """
-    if not root or root in _NO_ROOT or _UNKNOWN_RADICAL in root:
+    if not root or root in _NO_ROOT:
         return ""
     clean = root.replace("-", "").replace(".", "").strip()
-    if not has_arabic(clean) and _BUCKWALTER_RE.fullmatch(clean):
-        clean = "".join(_bw_to_ar(c) for c in clean)
-    return shown_root(clean)
+    if not has_arabic(clean):
+        if not _BUCKWALTER_RE.fullmatch(clean.replace(_UNKNOWN_RADICAL, "")):
+            return ""
+        clean = "".join(c if c == _UNKNOWN_RADICAL else _bw_to_ar(c) for c in clean)
+    return clean
+
+
+def root_in_arabic(root: str, lemma: str = "") -> str:
+    """'ktb' → 'كتب', a root as every tab shows and searches it.
+
+    The radicals used to be joined with hyphens, which read as three letters
+    rather than a word: "ك-ت-ب" is not a word any index holds, so a root was
+    unsearchable the moment it was shown.
+
+    A # (typically an elided weak letter, ق#ل for قالوا) is settled by
+    services/roots.py against the roots the books really file, `lemma`
+    choosing between two that fit; one no book files stays no root, never a
+    guess dressed as an answer. Without a lemma it is not settled.
+    """
+    pattern = root_pattern(root)
+    if _UNKNOWN_RADICAL in pattern and lemma:
+        from backend.services import roots  # it reads with this module
+
+        pattern = roots.settle(pattern, lemma)
+    return shown_root(pattern)
 
 
 def _build_features(a: dict) -> str:
@@ -224,7 +241,7 @@ def _as_command(word: str, a: dict, before: str, after: str) -> dict:
     if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop"):
         return a
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
-    root = root_in_arabic(a.get("root") or "")
+    root = root_in_arabic(a.get("root") or "", a.get("lex") or "")  # a verb or a noun, so rooted
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
     cell = verb_reader.command(word, governed, root) or verb_reader.command(paused(word, after), governed, root)
     if cell is None:
@@ -242,7 +259,7 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
     pos = (a.get("pos") or "").lower()
     word_type = _pos_type(pos)
     # A harf has no root in nahw; CAMeL still files one for لم and its kind.
-    root_ar = "" if word_type == "harf" else root_in_arabic(a.get("root") or "")
+    root_ar = "" if word_type == "harf" else root_in_arabic(a.get("root") or "", (a.get("lex") or "") if pos in ROOTED_POS else "")
 
     lex = a.get("lex") or a.get("diac") or word
     lemma = strip_diacritics(lex)
@@ -402,8 +419,7 @@ def readings(word: str) -> list[tuple[str, str]]:
     For looking a word up rather than parsing it, so nothing is chosen away: a
     dictionary shows فَرّ (flee) and فَرْو (fur) for فروا and lets the reader see
     which. The root keeps CAMeL's # for a weak radical it could not pin down
-    (ق#ل for قالوا), where root_in_arabic would give up on it: the caller may
-    know which root is real. A harf has no root. Without CAMeL, the lemma alone.
+    (ق#ل for قالوا): services/roots.py settles it, knowing which roots are real. A harf has no root. Without CAMeL, the lemma alone.
     """
     word = word.strip()
     if not word or not has_arabic(word):
@@ -431,12 +447,10 @@ def readings(word: str) -> list[tuple[str, str]]:
         best = best if best is not None and vowel_agreement(word, best.get("diac", "")) is not None else None
     out: list[tuple[str, str]] = []
     for a in ([best] if best else []) + ranked:
-        root = "" if _pos_type((a.get("pos") or "").lower()) == "harf" or a.get("root") in _NO_ROOT \
-            else a["root"].replace(".", "")
-        if root and not _BUCKWALTER_RE.fullmatch(root.replace(_UNKNOWN_RADICAL, "")) and not has_arabic(root):
+        pos = (a.get("pos") or "").lower()
+        root = "" if _pos_type(pos) == "harf" else root_pattern(a.get("root") or "")
+        if _UNKNOWN_RADICAL in root and pos not in ROOTED_POS:
             root = ""
-        if root and not has_arabic(root):
-            root = "".join(c if c == _UNKNOWN_RADICAL else _bw_to_ar(c) for c in root)
         reading = (strip_diacritics(a.get("lex") or ""), root)
         if reading[0] and reading not in out:
             out.append(reading)
