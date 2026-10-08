@@ -238,10 +238,9 @@
     "pan-dim": "0.38",
     "pan-tick-w": "1.6rem",
     "pan-fade": "14%",
-    "_finale_comment": "The closing section. finale-mark-size is the outlined Tafheem wordmark, finale-rise is how many pixels the wordmark climbs while the section scrolls in (the lines climb a third as far), finale-line-gap the space between the short lines.",
+    "_finale_comment": "The closing section. finale-mark-size is the outlined Tafheem wordmark, finale-rise is how many pixels the wordmark climbs while the section scrolls in.",
     "finale-mark-size": "clamp(4rem, 19vw, 15rem)",
-    "finale-rise": "160",
-    "finale-line-gap": "0.4rem"
+    "finale-rise": "160"
   },
   "layout": {
     "_comment": "How wide the page is allowed to get. Everything down the middle of the app reads this one number through the .shell class, so the header, the tab strip, the banner and the panels can never disagree about where the edges are. It is a maximum, not a width: on any screen narrower than this the page simply fills it, which is what keeps the phone view working.",
