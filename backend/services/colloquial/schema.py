@@ -97,6 +97,13 @@ class Unit(BaseModel):
     source: Source
 
 
+class Cover(BaseModel):
+    """The phrase a unit's card opens with: said aloud, with its picture."""
+    arabic: str
+    english: str
+    image: str
+
+
 class UnitCard(BaseModel):
     """A unit as the list shows it, before it is opened."""
     unit: str
@@ -104,6 +111,8 @@ class UnitCard(BaseModel):
     # False while the dialect has not written this spine unit yet: shown as coming.
     written: bool
     lessons: list[dict]
+    # None while no phrase in the unit has a picture: the card shows its title only.
+    cover: Cover | None = None
 
 
 class DialectCard(BaseModel):

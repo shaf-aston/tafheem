@@ -96,7 +96,8 @@ class FastPitchVoice(Voice):
 
     @property
     def version(self) -> str:
-        return f"hifigan-speaker{get_settings().speech_fastpitch_speaker}-name2"
+        settings = get_settings()
+        return f"hifigan-speaker{settings.speech_fastpitch_speaker}-pace{settings.speech_fastpitch_pace}-name2"
 
     def say(self, text: str) -> bytes:
         # One word at a time: the model is not known to be safe to share between threads.
@@ -105,7 +106,9 @@ class FastPitchVoice(Voice):
                 from tts_arabic import get_model
 
                 self._model = get_model("fastpitch", "hifigan", cuda=None)
-            audio = self._model.infer(name_spelt_out(text).translate(self.PAUSES), speaker=get_settings().speech_fastpitch_speaker)
+            settings = get_settings()
+            audio = self._model.infer(name_spelt_out(text).translate(self.PAUSES),
+                                      speaker=settings.speech_fastpitch_speaker, pace=settings.speech_fastpitch_pace)
         out = io.BytesIO()
         with wave.open(out, "wb") as file:
             file.setframerate(22050)

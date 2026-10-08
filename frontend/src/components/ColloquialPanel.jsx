@@ -16,11 +16,14 @@ import { warm } from '../lib/warm'
 import { useRemembered } from '../lib/useRemembered'
 import { colorFor } from '../theme'
 import { FOCUS } from './colloquial/Face'
+import PhrasePicture from './colloquial/PhrasePicture'
 import UnitView from './colloquial/UnitView'
 import WordBank from './colloquial/WordBank'
 import WordsView from './colloquial/WordsView'
+import ArabicText from './ui/ArabicText'
 import ErrorAlert from './ui/ErrorAlert'
 import SectionHeader from './ui/SectionHeader'
+import SpeakButton from './ui/SpeakButton'
 import WheelPicker from './ui/WheelPicker'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
@@ -43,19 +46,23 @@ function Lines({ hue, kicker, title, arabic, note }) {
   )
 }
 
-function Card({ hue, index, onClick, twin, ...lines }) {
+const lookOf = (hue, index) => {
   const tint = (pct) => `color-mix(in oklab, ${hue} ${pct}%, transparent)`
-  const look = {
+  return {
     '--i': index,
     background: `linear-gradient(90deg, ${tint(26)}, transparent 38%, transparent 62%, ${tint(26)}), var(--surface)`,
     borderColor: tint(40),
   }
+}
+
+function Card({ hue, index, onClick, twin, ...lines }) {
+  const look = lookOf(hue, index)
   const half = `lift press group text-start w-full px-5 py-4 ${FOCUS}`
   if (twin) {
     return (
       <div style={look} className="rise-in grid grid-cols-2 rounded-[var(--radius-lg)] border overflow-hidden">
         <button type="button" onClick={onClick} aria-label={`${lines.title}: ${lines.note}`} className={half}><Lines hue={hue} {...lines} /></button>
-        <button type="button" onClick={twin.onClick} aria-label={`${lines.title}: ${twin.title} ${twin.kicker.toLowerCase()}`} className={`${half} border-s`} style={{ borderColor: tint(40) }}>
+        <button type="button" onClick={twin.onClick} aria-label={`${lines.title}: ${twin.title} ${twin.kicker.toLowerCase()}`} className={`${half} border-s`} style={{ borderColor: look.borderColor }}>
           <Lines hue={hue} {...twin} />
         </button>
       </div>
@@ -71,6 +78,30 @@ function Card({ hue, index, onClick, twin, ...lines }) {
     >
       <Lines hue={hue} {...lines} />
     </button>
+  )
+}
+
+// A written unit opens on its cover phrase: said aloud, its picture in the card's empty
+// lower corner so no word sits on it. The whole card opens the unit; the speaker is
+// drawn above that and only speaks, the words beside it letting a click through.
+function UnitCard({ hue, index, unit, onClick }) {
+  const { cover } = unit
+  const number = unitNumber(unit.unit)
+  return (
+    <div style={lookOf(hue, index)} className="rise-in lift press relative grid grid-cols-[7rem_minmax(0,1fr)] grid-rows-[auto_auto_1fr_auto] gap-x-3.5 px-5 py-4 rounded-[var(--radius-lg)] border">
+      <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`absolute inset-0 rounded-[var(--radius-lg)] ${FOCUS}`} />
+      <span className="col-span-2 flex items-baseline justify-between gap-3 type-micro uppercase tracking-[0.18em]">
+        <span style={{ color: hue }}>Unit {number}</span>
+        <span className="text-[var(--text-faint)]">{unit.lessons.length} topics</span>
+      </span>
+      <span className="col-span-2 type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
+      <PhrasePicture phrase={cover} className="soft-edge row-span-2 self-end mt-3 w-28 aspect-[4/3]" />
+      <span className="relative pointer-events-none self-end flex items-center gap-3 mt-2">
+        <SpeakButton text={cover.arabic} className="pointer-events-auto" />
+        <ArabicText className="flex-1 min-w-0 text-start [overflow-wrap:anywhere]">{cover.arabic}</ArabicText>
+      </span>
+      <span className="type-small text-[var(--text-faint)] text-end">{cover.english}</span>
+    </div>
   )
 }
 
@@ -208,12 +239,14 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
 
       {dialect && !unit && (
         <Grid key={dialect.key}>
-          {dialect.units.map((u, i) => (
-            <Card key={u.unit} index={i} hue={colorFor('unit', unitNumber(u.unit) % HUES)}
-              kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}
-              note={u.written ? u.lessons.map((l) => l.title).join(' · ') : 'Coming'}
-              onClick={u.written ? () => go(dialect.key, u.unit) : undefined} />
-          ))}
+          {dialect.units.map((u, i) => {
+            const unitHue = colorFor('unit', unitNumber(u.unit) % HUES)
+            return u.written && u.cover
+              ? <UnitCard key={u.unit} index={i} hue={unitHue} unit={u} onClick={() => go(dialect.key, u.unit)} />
+              : <Card key={u.unit} index={i} hue={unitHue} kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}
+                  note={u.written ? `${u.lessons.length} topics` : 'Coming'}
+                  onClick={u.written ? () => go(dialect.key, u.unit) : undefined} />
+          })}
         </Grid>
       )}
 

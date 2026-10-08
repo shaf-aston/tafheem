@@ -512,6 +512,14 @@ dialog::backdrop {
 .wheel-list::-webkit-scrollbar { display: none; }
 
 
+/* A picture set into a card: every edge fades into the card, so photos of any
+   kind sit together in one shape. */
+.soft-edge {
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 40%, transparent 100%);
+}
+
+
 .wheel-item {
   display: flex;
   align-items: center;

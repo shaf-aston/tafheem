@@ -88,19 +88,21 @@ class _Model:
 
     heard = []
 
-    def infer(self, text, speaker):
+    def infer(self, text, speaker, pace):
         import numpy as np
         self.heard.append(text)
+        self.pace = pace
         return np.zeros(22050 // 4, dtype="float32")
 
 
 def test_the_voice_hands_back_a_playable_wav(monkeypatch):
     import io, wave
-    voice = speech.FastPitchVoice()
-    monkeypatch.setattr(voice, "_model", _Model())
+    voice, model = speech.FastPitchVoice(), _Model()
+    monkeypatch.setattr(voice, "_model", model)
     with wave.open(io.BytesIO(voice.say("كِتَاب"))) as file:
         assert (file.getframerate(), file.getsampwidth(), file.getnchannels()) == (22050, 2, 1)
         assert file.getnframes() == 22050 // 4
+    assert model.pace == get_settings().speech_fastpitch_pace  # the slower pace reaches the engine
 
 
 def test_arabic_marks_reach_the_engine_as_pauses(monkeypatch):
