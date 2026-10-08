@@ -114,26 +114,27 @@
 
 .slide-next,
 .slide-prev {
-  animation: slide-in calc(var(--motion-base-ms) * 1ms) cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  animation: slide-in calc(var(--motion-base-ms) * 1ms) var(--motion-slide-ease) backwards;
 }
 
 
-.slide-next { --slide-from: 40px; }
+.slide-next { --slide-from: calc(var(--motion-slide-px) * 1px); }
 
 
-.slide-prev { --slide-from: -40px; }
+.slide-prev { --slide-from: calc(var(--motion-slide-px) * -1px); }
 
 
-/* The same step backwards: going the way it came. Its own name, since the
-   browser does not replay a running animation only turned round. `forwards`
-   holds it gone until whatever wears it takes it away. */
+/* The same step backwards, going the way it came: worn beside .slide-next or
+   .slide-prev, which say the side. Its own keyframes, since the browser does
+   not replay a running animation only turned round. `forwards` holds it gone
+   until whatever wears it takes it away. */
 @keyframes slide-out {
   to { opacity: 0; transform: translateX(var(--slide-from)); }
 }
 
 
 .slide-away {
-  animation: slide-out calc(var(--motion-base-ms) * 1ms) cubic-bezier(0.8, 0, 0.8, 0.2) forwards;
+  animation: slide-out calc(var(--motion-base-ms) * 1ms) var(--motion-slide-ease) forwards;
 }
 
 

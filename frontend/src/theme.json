@@ -183,6 +183,9 @@
     "spring-ms": 420,
     "stagger-ms": 25,
     "spring-ease": "cubic-bezier(.34,1.56,.64,1)",
+    "_slide_comment": "A step sideways: the next page, or a strip arriving from the edge, and the same step back as it leaves. slide-px is how far it travels, slide-ease how it settles.",
+    "slide-px": 40,
+    "slide-ease": "cubic-bezier(.2,.8,.2,1)",
     "_patience_comment": "Not an animation: how a wait is announced. Nothing is said for the first patience-ms, because an answer that arrives sooner than that has arrived at once as far as the eye is concerned, and a spinner shown and taken away inside a fifth of a second reads as a flash rather than as news. Once something has been said it stays for patience-hold-ms, so an answer landing just after the wait was announced does not snatch it away again. Read in JavaScript by lib/useSlowPending.js, not by the stylesheet, so the Animations setting leaves it alone.",
     "patience-ms": 250,
     "patience-hold-ms": 400

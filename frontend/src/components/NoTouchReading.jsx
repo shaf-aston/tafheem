@@ -129,8 +129,7 @@ export function ScrollPad({ list, on }) {
       onPointerMove={move}
       onPointerUp={up}
       onPointerCancel={up}
-      className={`${on ? 'slide-prev' : 'slide-away'} touch-none select-none w-11 shrink-0 grid place-items-center border-l border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text-faint)]`}
-      style={{ '--slide-from': '100%' }}
+      className={`slide-next ${on ? '' : 'slide-away'} touch-none select-none w-11 shrink-0 grid place-items-center border-l border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text-faint)]`}
     >
       <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="m7 9 5-5 5 5M7 15l5 5 5-5" />
