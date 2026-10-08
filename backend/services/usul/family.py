@@ -6,8 +6,9 @@ store.py reads them back.
 Places: chains are lined up from the Companion end, because they differ in length at the compiler end. A place
 is a position in the chain, which is not always a generation (two Companions in one chain, a Successor from a
 Successor). The places counted are those every telling reaches. The count is the narrators one book gives under
-one number, never a name for the hadith (mashhur, 'aziz and gharib are about every route it has). A chain with two
-names at one place is no single line (the split is never guessed), so the family has no places.
+one number, never a name for the hadith (mashhur, 'aziz and gharib are about every route it has). The compiler's own
+teachers named together (حدثنا A وB) stand before the chain and are left out; two names at one place further up are
+no single line (the split is never guessed), so the family has no places.
 
 Words: each telling's matn (chain.chain_of) folded to its letters. Tellings are set against each other only where
 they share enough of their text to be one report; a word found in exactly one of them is marked there. A word that
@@ -61,8 +62,10 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
 
     `mentions` are (start, end, narrator id) in text order, one per start. why: no_chain (the Arabic has no plain
     chain, or rijal placed no name in it), strand (a ح starts another strand), unplaced_name (words between two names
-    that no name of rijal's explains), names_joined (no passing-on or saying word between two names: two men at one
-    place, the same reading rung.rungs makes of such a pair), companion_end_unplaced / companion_end_other (the last
+    that no name of rijal's explains), name_after_cut (rijal places a name after the chain's cut: a second chain or
+    the chain's end sits in what the app shows as the text), names_joined (no passing-on or saying word between two
+    names past the compiler's own teachers: two men at one place, whose next link may differ, as in "عن العلاء وسهيل
+    عن أبيهما"), companion_end_unplaced / companion_end_other (the last
     name is not a Companion for rijal, or is not placed in a generation at all), two_companions (the last two names
     are both Companions)."""
     chain, _ = chain_of(arabic)
@@ -72,11 +75,16 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
     named = [m for m in mentions if m[1] <= limit]
     if not named:
         return [], "no_chain"
-    for (_, end, _), (start, _, _) in zip(named, named[1:]):
+    if len(named) < len(mentions):
+        return [], "name_after_cut"
+    teachers = 0   # how many names open the chain joined together: the compiler's own teachers (حدثنا A وB)
+    for at, ((_, end, _), (start, _, _)) in enumerate(zip(named, named[1:])):
         _, why = passed_on(without_asides(arabic[end:start]))
-        if why:
+        if why == "no_link" and at == max(teachers - 1, 0):
+            teachers = at + 2
+        elif why:
             return [], _BREAKS[why]
-    ids = [who for *_, who in named]
+    ids = [who for *_, who in named[teachers:]]   # they stand before the chain, so their place is not counted
     last = generation.get(ids[-1], "")
     if last not in companions:
         return [], "companion_end_other" if last else "companion_end_unplaced"

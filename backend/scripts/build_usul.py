@@ -356,12 +356,11 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
     results = []
     for (collection, number), parts in families.items():
         by_part = mentions[collection, number]
-        chains, why = {}, ""
+        chains, reasons = {}, {}
         for part in parts:
-            ids, reason = family.chain_ids(arabic.get((collection, number, part), ""), list(by_part[part].values()),
-                                           generation, companions)
-            chains[part] = ids
-            why = why or reason
+            chains[part], reasons[part] = family.chain_ids(arabic.get((collection, number, part), ""),
+                                                           list(by_part[part].values()), generation, companions)
+        why = next((r for r in reasons.values() if r), "")
         shown = {"collection": collection, "number": number, "parts": parts, "chains": chains, "why": why, "places": [],
                  "marks": {}, "matns": {}, "left": {}, "shares": {},
                  "arabic": {p: arabic.get((collection, number, p), "") for p in parts}}
@@ -377,10 +376,12 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
         matns = {}
         for part in parts:
             cut, matn = matn_of[collection, number, part]
-            if cut:
-                matns[part] = matn.split()
-            else:
+            if not cut:
                 why_word["no_chain_cut"] += 1
+            elif reasons[part] == "name_after_cut":   # chain words in the text would be marked as its own
+                why_word["name_after_cut"] += 1
+            else:
+                matns[part] = matn.split()
         found, left = family.marks(matns, fc, weight)
         why_word.update(left.values())
         compared_n += len(matns) - len(left) >= 2

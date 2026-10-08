@@ -121,7 +121,7 @@ export default function NarrationFamily({ collection, number, part, count, accen
   const views = data?.parts.some((p) => p.marks.length) ? [...VIEWS, WORDS_VIEW] : VIEWS
 
   return (
-    <Disclosure label={`${count} narrations`} onToggle={(open) => open && setAsked(true)} className="mt-3 pt-3 border-t border-[var(--border)]">
+    <Disclosure label={`${data?.parts.length ?? count} narrations`} onToggle={(open) => open && setAsked(true)} className="mt-3 pt-3 border-t border-[var(--border)]">
       {data && (
         <div className="space-y-2">
           <FamilyPlaces places={data.places} accent={accent} />

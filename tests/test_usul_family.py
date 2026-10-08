@@ -229,3 +229,18 @@ def test_the_store_words_each_place_from_config_and_drops_a_mark_the_text_no_lon
     assert [m["kind"] for m in words["b"]["marks"]] == ["only"] and words["b"]["matn"] == " ".join(results[1]["matns"]["b"])
     text["arabic"] = text["arabic"].replace("لِيَسْكُتْ", "غَيْرُهُ")
     assert store.family_words("muslim", 1) == {}
+
+
+def test_the_compilers_own_teachers_named_together_stand_before_the_chain_and_leave_the_picture_whole():
+    # b: Qutayba and Yahya, both the compiler's teachers (حدثنا A وB), then al-Layth and the Companion.
+    _, _, results = _run({3: {"a": ((101, 102, 10), BASE_TEXT, ()), "b": ((101, 104, 102, 10), BASE_TEXT, (1,))}})
+    assert results[3]["why"] == "" and results[3]["chains"]["b"] == [102, 10]
+    assert results[3]["places"] == [{10}, {102}]
+
+
+def test_a_name_after_the_chains_cut_leaves_the_telling_without_places_or_marks():
+    # a second chain in what the app shows as the text: its names would be counted short and its words marked as text
+    text, spans = _chain([NAMES[101], NAMES[10]])
+    second = text + "وَقَالَ "
+    mentions = [(s, e, w) for (s, e), w in zip(spans, (101, 10))] + [(len(second), len(second) + len(NAMES[106]), 106)]
+    assert family.chain_ids(second + NAMES[106] + " " + BASE_TEXT, mentions, {10: "الأولى"}, {"الأولى"}) == ([], "name_after_cut")
