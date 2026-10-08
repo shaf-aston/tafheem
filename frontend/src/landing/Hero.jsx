@@ -91,14 +91,10 @@ export default function Hero() {
         <div>
           <p className="eyebrow label">Tafheem</p>
           <h1 className="headline">
-            <span className="mask-word"><span>Read the</span></span><br />
-            <span className="mask-word"><span>Qur&apos;an. Know</span></span><br />
-            <span className="mask-word"><span><span className="accent">every</span> word.</span></span>
+            <span className="mask-word"><span>Read the Qur&apos;an.</span></span><br />
+            <span className="mask-word"><span className="accent">Understand</span></span><br />
+            <span className="mask-word"><span>every word.</span></span>
           </h1>
-          <p className="sub">
-            One root opens four classical dictionaries. One sentence unfolds into full i&apos;raab. One
-            recitation gets heard, word by word. This is the app, running, right now.
-          </p>
           <div className="cta-row">
             <a href={links.tool} className="cta">See it in action</a>
             <button
