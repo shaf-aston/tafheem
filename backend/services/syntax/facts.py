@@ -45,7 +45,7 @@ def is_verb(token: dict) -> bool:
     if token.get("asp") == "c" and strip_diacritics(typed)[:1] != "أ":
         return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
     return token.get("pos_camel") == "noun_prop" and (
-        (token["base"][:1] in PRESENT_PREFIX and typed_passive(typed, True))
+        (token["base"][:1] in PRESENT_PREFIX and typed_passive(typed, True, token.get("stuck_on", 0)))
         or past_passive_shape(typed))
 
 
@@ -63,7 +63,7 @@ def is_passive(token: dict) -> bool:
         return True
     typed = token.get("typed")
     present = token.get("asp") == "i" or not (token["pos"].startswith("VRB") or past_passive_shape(typed))
-    return typed_passive(typed, present)
+    return typed_passive(typed, present, token.get("stuck_on", 0))
 
 
 class Sentence:
@@ -285,6 +285,21 @@ def verb_above(token: dict, s: Sentence) -> dict | None:
         return head
     up = s.head(head) if head else None
     return up if up and is_verb(up) else None
+
+
+def free_clashing_modifiers(tokens: list[dict]) -> None:
+    """أَعْطَى الرَّجُلُ الْفَقِيرَ دِرْهَمًا: a نعت wears its noun's case (Tasheel 3.10.1), so a
+    definite noun the parser hung on a verb's subject in nasb, against the subject's damma, is
+    no نعت: it is the verb's object. Written over before the words are read."""
+    s = Sentence(tokens)
+    for token in tokens:
+        head = s.head(token)
+        verb = s.head(head) if head else None
+        if (verb and is_verb(verb) and token["rel"] == "MOD" and token["pos"] in ("NOM", "PROP")
+                and token["id"] > head["id"] and head["rel"] in ("SBJ", "TPC") and not is_verb(token)
+                and typed_case_of(head) == "u" and typed_case_of(token) == "a" and not indefinite_nasb(token)
+                and not is_mabni(token) and not is_zarf(token, s)):
+            token["head"], token["rel"] = verb["id"], "OBJ"
 
 
 def calling_head(token: dict, s: Sentence) -> str | None:
@@ -632,13 +647,17 @@ def _verb_place(token: dict, s: Sentence) -> str:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
         if head.get("asp") == "c" and rel in ("SBJ", "TPC", "OBJ", "---") and typed != "u":
             return "object"  # قل الحق: a command's doer is always the hidden أنت (Tasheel 2.4.1 p30)
+        after_first = rel == "OBJ" and typed in (None, "a") and any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)
+        # لا يُؤْتُونَ النَّاسَ نَقِيرًا: a verb of two objects keeps its second OBJ, so no state or tamyeez
+        if after_first and (s.family(head) == "zanna" or is_one(head["lemma"], "two_objects_give")):
+            return "second_object"
         if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
                 and token.get("stt") == "i" and any(t["rel"] in ("SBJ", "TPC", "OBJ") for t in siblings):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
                 return "specification"
             if is_participle(token):
                 return "state"
-        if rel == "OBJ" and typed in (None, "a") and any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings):
+        if after_first:
             return "second_object"  # ظن الولد الأمر سهلا, أعطى الولد الكتاب
         if (rel in ("SBJ", "TPC", "OBJ") or (rel == "IDF" and typed != "i")
                 or (rel == "MOD" and typed == "u" and is_plain_noun(token))

@@ -104,6 +104,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
                 # تَطَّوَّعَ: the shadda is the second ta' merged in, so it is present whatever the reading said
                 token["asp"] = "i"
         token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
+    facts.free_clashing_modifiers(tokens)
     particles.stamp(tokens)
     s = facts.Sentence(tokens)
     found_answers, governed_by = facts.of_sentence(tokens)

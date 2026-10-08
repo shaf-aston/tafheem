@@ -126,8 +126,11 @@ def base_of(word: str, atbtok: str | None) -> str:
 
 def drops_weak(base: str, weak_last: bool) -> bool:
     """The root ends in a weak letter the word no longer ends in (اِسْقِ، لم يَدْعُ): the
-    book's sign of jazm for a present verb. `base` is the word without its joined letters."""
-    return bool(weak_last) and strip_diacritics(base)[-1:] not in WEAK_ENDS
+    book's sign of jazm for a present verb. `base` is the word without its joined letters.
+    Not when the five verbs' nun stands (يُؤْتُونَ): the weak letter went before the plural
+    waw, and the nun kept is the sign of raf'."""
+    bare = strip_diacritics(base)
+    return bool(weak_last) and bare[-1:] not in WEAK_ENDS and not bare.endswith(HIDDEN_CASE)
 
 
 def five_verb_nun(word: str) -> str | None:
@@ -200,7 +203,7 @@ def _without_ending(marked: list[tuple[str, set]]) -> list[tuple[str, set]]:
     return marked
 
 
-def typed_passive(word: str, present: bool) -> bool:
+def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     """فُعِلَ and يُفْعَلُ by their vowels.
 
     A past verb's opening damma is passive only with the kasra of فُعِلَ inside it:
@@ -216,7 +219,8 @@ def typed_passive(word: str, present: bool) -> bool:
     if not present:
         # or a doubled verb's shadda (حُفَّتْ، رُدَّ), not a ن's: كُنَّا is كان meeting نا
         return any("ِ" in marks or (SHADDA in marks and letter != "ن") for letter, marks in marked[1:-1])
-    stem = _without_ending(marked)
+    # an attached pronoun (stuck_on letters) is read past: the fatha of أُكْرِمَكَ is its nasb
+    stem = _without_ending(marked[:len(marked) - stuck_on])
     return len(stem) >= 3 and "َ" in stem[-2][1]
 
 

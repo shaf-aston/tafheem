@@ -129,9 +129,12 @@ def _verb(card: dict) -> dict:
     shown = _built(built_on) if built_on else _present_sign(card, case)
     state = shown if built_on else said["word"][case]
     family = _family_said(card)
-    # تُطَوَّقَ، كُتِبَ: the vowels show who is not named, so the card says so
+    # تُطَوَّقَ، كُتِبَ: the vowels show who is not named, so the card says so; the letters
+    # after the base are an attached pronoun (أُكْرِمَكَ), not the verb's
+    bare, base = strip_diacritics(card["word"]), card["camel"]["base"]
+    stuck_on = len(bare) - bare.rfind(base) - len(base) if base and base in bare else 0
     voiced = f"{tense} {said['passive']}" if aspect != "c" and (
-        card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i")) else tense
+        card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i", stuck_on)) else tense
     told = said["verb_by_family"].format(tense=voiced, state=state, **family).rstrip("، ") if family else f"{voiced} {state}"
     return {"case": case, "sign": shown, "reason": f"{told}. {reason(tense)}"}
 
