@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { FIXED, GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
@@ -32,8 +32,11 @@ const queryClient = new QueryClient({
 })
 
 // Logs how long each tab's opening data took, `[open] hadith 212ms`; 0ms = already cached.
+// The tab's code comes too (lib/tabs.js `panel`); a failed fetch is tried again on opening.
 const openTab = (id) => {
-  const open = TABS.find((t) => t.id === id)?.open
+  const tab = TABS.find((t) => t.id === id)
+  tab?.Component.preload?.().catch(() => {})
+  const open = tab?.open
   if (!open) return
   const at = performance.now()
   Promise.resolve(open(queryClient)).then(() => console.debug(`[open] ${id} ${Math.round(performance.now() - at)}ms`))
@@ -284,14 +287,16 @@ function AppContent() {
               as the screen blinking. The panels follow the word themselves
               now; see each one's "a word arriving" block. */}
           <div key={activeTab} className={`fade-in${active.study ? ' study' : ''}`}>
-            <ActiveTab
-              accent={accent}
-              incoming={handoff?.tab === activeTab ? handoff.value : null}
-              arrival={handoff?.tab === activeTab ? handoff.at : null}
-              onGo={switchTab}
-              onVisit={recordVisit}
-              onProgress={setQuiz}
-            />
+            <Suspense fallback={null}>
+              <ActiveTab
+                accent={accent}
+                incoming={handoff?.tab === activeTab ? handoff.value : null}
+                arrival={handoff?.tab === activeTab ? handoff.at : null}
+                onGo={switchTab}
+                onVisit={recordVisit}
+                onProgress={setQuiz}
+              />
+            </Suspense>
           </div>
         </div>
       </main>
