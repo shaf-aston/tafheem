@@ -10,7 +10,7 @@ import {
 } from '../lib/quizBanks'
 import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
-import { progressKey } from '../lib/stored'
+import { progressKey, readSaved, writeSaved } from '../lib/stored'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
 
 import QuizAyah from './QuizAyah'
@@ -35,6 +35,9 @@ import WheelPicker from './ui/WheelPicker'
 const BANK_IDS = Object.keys(BANKS)
 const DIRECTION_IDS = Object.keys(DIRECTIONS)
 const LANGUAGE_IDS = Object.keys(MEANINGS)
+// The running tally, under the learner's own record like the best streak.
+const SCORE_KEY = progressKey('quiz-score')
+const NO_SCORE = { right: 0, total: 0, streak: 0 }
 
 // The two ways round a language can be asked. Derived rather than remembered, so
 // there is no such thing as a language holding a direction from another one.
@@ -93,7 +96,10 @@ export default function QuizPanel({ accent, onProgress }) {
   const [history, setHistory] = useState([])
   // Index into history while reviewing an earlier question, or null for the live one.
   const [reviewing, setReviewing] = useState(null)
-  const [score, setScore] = useState({ right: 0, total: 0, streak: 0 })
+  // Kept like the best streak below, so a reload does not wipe the tally; only
+  // Start over (or a new word set) does, and Start over in settings forgets it.
+  const [score, setScore] = useState(() => ({ ...NO_SCORE, ...readSaved(SCORE_KEY, NO_SCORE) }))
+  useEffect(() => writeSaved(SCORE_KEY, score), [score])
   // The one thing a round leaves behind. Stored as what it is, a number written
   // out, so nothing has to interpret it years later.
   const [best, rememberBest] = useRemembered(progressKey('quiz-best-streak'))
@@ -273,7 +279,7 @@ export default function QuizPanel({ accent, onProgress }) {
     setReviewing(null)
     setHistory([])
     setRound(freshRound)
-    setScore({ right: 0, total: 0, streak: 0 })
+    setScore(NO_SCORE)
   }
 
   // Changing what is being tested starts a fresh round: a score carried across
