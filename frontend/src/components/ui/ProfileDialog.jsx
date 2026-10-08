@@ -76,7 +76,7 @@ function SignIn({ onIn }) {
 
   return (
     <>
-      <Segmented label="Log in or sign up" options={MODES} value={mode} accent="var(--gold)"
+      <Segmented fill label="Log in or sign up" options={MODES} value={mode} accent="var(--primary)"
         onChange={(next) => { setMode(next); setError('') }} />
       <SearchBox
         id="profile-name"
