@@ -190,7 +190,7 @@ export default function TarkeebDiagram({ tarkeeb }) {
             // The tree marks the leaves not written, so no text stands for "not written" here.
             const missing = hidden.has(from)
             // فَـ لْـ يَصُمْهُ: one written word drawn across its pieces' columns, each piece
-            // over its own name, joined to the next by a line as the script joins them
+            // over its own name, the joining written as the tatweel in the text
             const pieces = shown.words.slice(from, to + 1)
             return (
               <div
@@ -201,16 +201,11 @@ export default function TarkeebDiagram({ tarkeeb }) {
                 {to > from ? (
                   pieces.map((text, k) => {
                     // each piece underlined in its own name's colour; وَ joins nothing after it,
-                    // so it stands apart, فَـ and لْـ carry a line to the piece they are written onto.
-                    // The text is centred in its column, a line either side, so its thread
-                    // and its name sit right under it.
+                    // so it stands apart, فَـ and لْـ end in the tatweel that joins them to the next piece.
                     const joins = k < pieces.length - 1 && joinsOn(text)
-                    const joined = k > 0 && joinsOn(pieces[k - 1])
                     return (
                       <span key={k} className="tk-cut" style={{ gridColumn: k + 1, '--tone': roleVar(tone[from + k]) }}>
-                        <span className="tk-join" data-line={joined || undefined} aria-hidden="true" />
                         <span className="tk-text">{seatSmallAlef(joins ? joinedOn(text) : text)}</span>
-                        <span className="tk-join" data-line={joins || undefined} aria-hidden="true" />
                       </span>
                     )
                   })

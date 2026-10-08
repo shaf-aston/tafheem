@@ -77,15 +77,12 @@
 }
 
 /* One written word cut into pieces (فَـ لْـ يَصُمْهُ) is drawn across its pieces'
-   columns, each piece over its own name with its own underline, and a line
-   joining each to the next as the script joins them. */
+   columns, each piece over its own name with its own underline. */
 .tk-word.tk-written { display: grid; grid-template-columns: subgrid; }
-.tk-cut { display: flex; align-items: flex-end; }
+/* A piece is centred in its column, so the thread that leaves it and the name under it
+   are on its middle. */
+.tk-cut { display: flex; align-items: flex-end; justify-content: center; }
 .tk-cut .tk-text { padding-inline: 0.3rem; }
-/* A piece is centred in its column, a space or a joining line either side of it, so the
-   thread that leaves it and the name under it are on its middle. */
-.tk-join { flex: 1; min-width: 0.15rem; height: 1.5px; margin-bottom: calc(0.55em + 0.2rem); }
-.tk-join[data-line] { background: currentColor; }
 
 /* A name the Treebank supplied that the app has not checked against a book. It
    still reads, but it must not look as settled as a term that was checked. */
