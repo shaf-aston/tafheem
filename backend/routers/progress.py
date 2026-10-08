@@ -10,6 +10,8 @@ is where the "what do I keep getting wrong" reading is made.
 """
 from __future__ import annotations
 
+import json
+
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
@@ -25,6 +27,7 @@ from backend.models.schemas import (
     ProfileSaved,
     ProgressSummary,
     ReviewList,
+    Shelf,
 )
 from backend.identity import GUEST, NAMED, TYPED, USER
 from backend.services import progress_store
@@ -61,7 +64,7 @@ async def leave_feedback(note: FeedbackIn, user: str = USER) -> AttemptSaved:
 
 @router.delete("", response_model=Forgotten)
 async def forget_progress(user: str = USER) -> Forgotten:
-    """Delete every answer this name has given. The Settings wipe calls it."""
+    """Delete every answer and the shelf of this name. The Settings wipe calls it."""
     return Forgotten(deleted=progress_store.forget(user))
 
 
@@ -121,8 +124,23 @@ def get_account(user: str = NAMED) -> Account:
 
 @router.delete("/account", response_model=Forgotten)
 async def delete_account(user: str = NAMED) -> Forgotten:
-    """Delete this username and every answer it gave; the name is free again."""
+    """Delete this username, every answer it gave and its shelf; the name is free again."""
     return Forgotten(deleted=progress_store.delete_account(user))
+
+
+@router.get("/saved", response_model=Shelf)
+def get_shelf(user: str = NAMED) -> Shelf:
+    """What the page kept for this account, so it follows the name to another device."""
+    return Shelf(data=progress_store.shelf(user))
+
+
+@router.put("/saved", response_model=Shelf)
+async def put_shelf(body: Shelf, user: str = NAMED) -> Shelf:
+    """Replace this account's shelf whole with what the page holds now."""
+    if len(json.dumps(body.data, ensure_ascii=False).encode()) > get_settings().saved_max_bytes:
+        raise HTTPException(status_code=413, detail="Too much saved for one account")
+    progress_store.keep_shelf(user, body.data)
+    return body
 
 
 @router.get("/leaderboard", response_model=Leaderboard)
