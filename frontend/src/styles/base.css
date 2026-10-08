@@ -16,8 +16,11 @@
 
 
 /* The mushaf's marks: Naskh squeezes a small alef and its madda onto the letter
-   below; Amiri Quran was drawn for them. */
-@import "@fontsource/amiri-quran/400.css";
+   below, so the Qur'an has its own face. Scheherazade New draws every mark the
+   text uses (checked against all 73 characters of the 114 surahs) and keeps them
+   close to their letters; Amiri Quran lifted them up to 1.3em above the letter
+   and tangled the lines (measured over every distinct word: scripts/probe-quran-script.mjs). */
+@import "@fontsource/scheherazade-new/400.css";
 
 
 @import "@fontsource-variable/inter/index.css";
@@ -28,7 +31,7 @@
 :root {
   --font-arabic: 'Noto Naskh Arabic', serif;
   --font-urdu: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif;
-  --font-quran: 'Amiri Quran', 'Noto Naskh Arabic', serif;
+  --font-quran: 'Scheherazade New', 'Noto Naskh Arabic', serif;
   --font-ui: 'Inter Variable', 'Inter', system-ui, sans-serif;
   /* Tone tints: the edge and the wash of a danger, warn or success box, one pair
      of strengths for all three so no box drifts to its own. */
