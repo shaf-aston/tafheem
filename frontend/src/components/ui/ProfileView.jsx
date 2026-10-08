@@ -9,16 +9,20 @@ import { useQuery } from '@tanstack/react-query'
 import { shareOf } from '../../lib/coverage'
 import { logOut } from '../../lib/profile'
 import { deleteAccount, fetchAccount, fetchLeaderboard } from '../../lib/progress'
+import { MEANINGS } from '../../lib/quiz'
 import { moduleFor, QUIZ } from '../../lib/quizBanks'
 import { forgetShelf } from '../../lib/shelf'
 import { useQuizCoverage } from '../../lib/useQuizCoverage'
+import { useRemembered } from '../../lib/useRemembered'
 
 import { Skeleton } from './Skeleton'
 import SmallButton from './SmallButton'
 import TeamView from './TeamView'
 
 export default function ProfileView({ name, onLeave }) {
-  const language = QUIZ.language
+  // The language the quiz was last set to, as the quiz reads it: an Urdu
+  // learner's words are filed under the Urdu module, not the default's.
+  const [language] = useRemembered('quiz-language', Object.keys(MEANINGS), QUIZ.language)
   const module = moduleFor(language)
   const account = useQuery({ queryKey: ['account', name], queryFn: fetchAccount })
   const { stats, learnt, share } = useQuizCoverage(language)

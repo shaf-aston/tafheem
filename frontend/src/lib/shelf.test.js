@@ -1,7 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { api } from '../api'
-import { copyGuestShelf, pullShelf } from './shelf'
+import { copyGuestShelf, keepShelfInStep, pullShelf } from './shelf'
+import { writeRaw } from './stored'
 
 let data
 beforeEach(() => {
@@ -49,5 +50,22 @@ describe('the shelf on the server', () => {
     await copyGuestShelf('amina')
     expect(data.get('@amina/settings')).toBe('guest')
     expect(put.mock.calls[0][1]).toEqual({ data: { settings: 'guest' } })
+  })
+})
+
+describe('keeping in step', () => {
+  it('sends a waiting change at once when the page is hidden, so closing it loses nothing', () => {
+    const page = new EventTarget()
+    page.visibilityState = 'visible'
+    vi.stubGlobal('document', page)
+    data.set('profile', 'amina')
+    const put = vi.spyOn(api, 'put').mockResolvedValue({})
+    const stop = keepShelfInStep()
+    writeRaw('settings', 'new')
+    expect(put).not.toHaveBeenCalled()
+    page.visibilityState = 'hidden'
+    page.dispatchEvent(new Event('visibilitychange'))
+    expect(put.mock.calls[0][1]).toEqual({ data: { settings: 'new' } })
+    stop()
   })
 })

@@ -205,6 +205,18 @@ def test_deleting_the_account_frees_the_name_and_wipes_only_its_answers():
     assert signup("Amina").status_code == 200
 
 
+def test_a_deleted_accounts_reports_go_to_nobody():
+    """Kept, but not handed to whoever signs up next and keeps the guest's things."""
+    signup("Amina")
+    client.post("/api/progress/feedback", headers=as_("Amina"), json={"module": "quiz", "message": "typo"})
+    client.delete("/api/progress/account", headers=as_("Amina"))
+    client.post("/api/progress/signup", headers=as_("Bilal"), json={"keep": True})
+    progress_store.reset_connection()
+    users = [row[0] for row in progress_store._db().execute("SELECT user FROM feedback")]
+    assert users == [""]
+    assert client.get("/api/progress/accounts").json() == {"names": ["bilal"]}
+
+
 def test_the_leaderboard_ranks_accounts_by_words_learnt_and_finds_you():
     db_answer = lambda name, item, days: progress_store._db().execute(  # noqa: E731
         "INSERT INTO attempts (user, module, item, correct, at) VALUES (?, 'quiz', ?, 1, datetime('now', ?))",

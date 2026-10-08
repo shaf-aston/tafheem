@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS saved (
 -- Names typed before sign-up existed are accounts already, so their owners can log in.
 INSERT OR IGNORE INTO accounts (name, at)
     SELECT user, MIN(at) FROM (SELECT user, at FROM attempts UNION ALL SELECT user, at FROM feedback)
-    WHERE user <> 'local' GROUP BY user;
+    WHERE user NOT IN ('local', '') GROUP BY user;
 """
 
 # Counts and timing in one pass. Whether an item is due is not here: it is worked
@@ -258,12 +258,13 @@ def account(name: str) -> dict | None:
 def delete_account(name: str) -> int:
     """Wipe the answers, the shelf, the team places and the username, together. Returns how many answers went.
 
-    Reports about questions are kept, as the plain wipe keeps them, but no longer named.
+    Reports about questions are kept, as the plain wipe keeps them, but filed under
+    nobody (''): under the guest they would pass to whoever signs up next.
     """
     db = _db()
     with db:
         deleted = db.execute("DELETE FROM attempts WHERE user = ?", (name,)).rowcount
-        db.execute("UPDATE feedback SET user = 'local' WHERE user = ?", (name,))
+        db.execute("UPDATE feedback SET user = '' WHERE user = ?", (name,))
         db.execute("DELETE FROM saved WHERE user = ?", (name,))
         db.execute("DELETE FROM teams WHERE team = ? OR member = ?", (name, name))
         db.execute("DELETE FROM accounts WHERE name = ?", (name,))

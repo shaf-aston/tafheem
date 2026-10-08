@@ -40,15 +40,33 @@ export const pullBeforeStart = () =>
   Promise.race([pullShelf(), new Promise((done) => setTimeout(done, CONFIG.pullWaitMs))])
 
 let timer = null
+let waiting = null
 
-/** Push every change to a logged-in shelf, a burst of changes as one. Returns the way to stop. */
+/** Send the change still waiting out its pushAfterMs, now. */
+function sendWaiting() {
+  clearTimeout(timer)
+  if (waiting) pushShelf(waiting)
+  waiting = null
+}
+
+/**
+ * Push every change to a logged-in shelf, a burst of changes as one. Returns
+ * the way to stop. A page being hidden (tab closed, phone locked) sends what is
+ * still waiting at once: the next device pulls this copy and the server's wins.
+ */
 export function keepShelfInStep() {
-  return onChange(() => {
-    const name = getProfile()
-    if (!name) return
+  const hidden = () => document.visibilityState === 'hidden' && sendWaiting()
+  document.addEventListener('visibilitychange', hidden)
+  const stop = onChange(() => {
+    waiting = getProfile()
+    if (!waiting) return
     clearTimeout(timer)
-    timer = setTimeout(() => pushShelf(name), CONFIG.pushAfterMs)
+    timer = setTimeout(sendWaiting, CONFIG.pushAfterMs)
   })
+  return () => {
+    stop()
+    document.removeEventListener('visibilitychange', hidden)
+  }
 }
 
 /** Sign-up that kept the guest's answers keeps the guest's shelf too. */
