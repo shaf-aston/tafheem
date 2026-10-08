@@ -144,7 +144,7 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   generated (from `data/practice/templates.json`, filed under its badge's source; `GET /api/practice/kept`). The
   one database written while running, opened only by `services/progress_store.py`. Rows are
   filed under the learner's username (no password): the page sends it in the `X-Tafheem-Profile`
-  header, `routers/progress.py` `current_user()` cleans it (rules only in `services/profile.py`) and
+  header, `identity.py` `current_user()` cleans it (rules only in `services/profile.py`) and
   refuses a name with no account. `POST /api/progress/signup` and `/login` return the kept spelling
   (sign-up can move the guest `local` rows onto it); `/account` and `/leaderboard` feed the profile.
 - `backend/data/nahw_notes/`: the teacher's theory notes, one file per topic, read only by
