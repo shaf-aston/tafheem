@@ -191,9 +191,9 @@
     "patience-hold-ms": 400
   },
   "landing": {
-    "_comment": "The welcome page's one vertical rhythm: the top and bottom breathing room of every section (hero, manuscript band, tools, shift, finale). Fluid between 64px on a phone and 112px on a wide screen. Change it here and every section moves together.",
+    "_comment": "The welcome page's one vertical rhythm: the top and bottom breathing room of every section (hero, manuscript band, tools, finale). Fluid between 64px on a phone and 112px on a wide screen. Change it here and every section moves together.",
     "section-pad": "clamp(64px, 8vw, 112px)",
-    "_band_comment": "The slim strips between big sections (the trusted-sources banner). Small on purpose, so the strip sits snug against the section above and below it instead of floating in space.",
+    "_band_comment": "The slim strips between big sections (the trusted-sources banner, the understand band). Small on purpose, so the strip sits snug against the section above and below it instead of floating in space.",
     "band-pad": "clamp(20px, 2.4vw, 32px)",
     "_gutter_comment": "The side margin every landing section shares, so text and cards line up down the whole page instead of each section picking its own.",
     "gutter": "1.25rem",
@@ -240,7 +240,13 @@
     "pan-fade": "14%",
     "_finale_comment": "The closing section. finale-mark-size is the outlined Tafheem wordmark, finale-rise is how many pixels the wordmark climbs while the section scrolls in.",
     "finale-mark-size": "clamp(4rem, 19vw, 15rem)",
-    "finale-rise": "160"
+    "finale-rise": "160",
+    "_understand_comment": "The 'Are you ready to understand?' band: its letters start scattered and settle as it scrolls up, with three gold rings orbiting behind. understand-rings is the rings' size, understand-scatter how many pixels a letter can start from its place, understand-blur how blurred (px) a fully scattered letter is, understand-spin the seconds the quickest ring takes per turn (the others take a third and two thirds longer), understand-tilt the most the rings lean toward the pointer, in degrees.",
+    "understand-rings": "clamp(140px, 14vw, 170px)",
+    "understand-scatter": "520",
+    "understand-blur": "6",
+    "understand-spin": "9",
+    "understand-tilt": "25"
   },
   "layout": {
     "_comment": "How wide the page is allowed to get. Everything down the middle of the app reads this one number through the .shell class, so the header, the tab strip, the banner and the panels can never disagree about where the edges are. It is a maximum, not a width: on any screen narrower than this the page simply fills it, which is what keeps the phone view working.",
