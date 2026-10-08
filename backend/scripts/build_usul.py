@@ -145,19 +145,13 @@ def cited(node, path: str = ""):
 
 
 def check_pages(cfg: dict, texts: dict[str, str]) -> list[str]:
-    """One line per quote the books do not bear out: its path, the page the config gives and the one the book gives.
-    Each sources page is held to the span of its quotes' pages."""
-    problems, pages = [], {}
+    """One line per quote the books do not bear out: its path, the page the config gives and the one the book gives."""
+    problems = []
     for path, node in cited(cfg):
         found = books.locate(texts[node["book"]], node["quote"], cfg["verify"])
-        pages.setdefault(node["book"], []).append(found or "")
         if found != node["page"]:
             problems.append(f"{path}: book {node['book']}, config {node['page']!r}, derived "
                             + ("not found" if found is None else repr(found)))
-    for key, source in cfg["sources"].items():
-        found = books.span(pages.get(key, []))
-        if found != source["page"]:
-            problems.append(f"sources.{key}.page: config {source['page']!r}, derived {found!r}")
     return problems
 
 

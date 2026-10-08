@@ -474,15 +474,14 @@ def test_an_elisions_parts_must_lie_close_together_and_a_page_the_book_lost_is_e
 
 
 def test_the_check_names_each_quote_whose_config_page_is_not_the_books_with_the_page_the_book_gives():
-    cfg = {"verify": VERIFY, "sources": {"k": {"page": "PageV01P010"}, "other": {"page": ""}},
+    cfg = {"verify": VERIFY,
            "rule": {"quote": "ثقة ثبت", "book": "k", "page": "PageV01P011"},
            "kept": {"quote": "تتمة النص", "book": "k", "page": "PageV01P012"},
            "gone": {"quote": "ليس في الكتاب", "book": "k", "page": "PageV01P012"}}
     assert CHECK_PAGES(cfg, {"k": PAGED}) == [
         "rule: book k, config 'PageV01P011', derived 'PageV01P010'",
-        "gone: book k, config 'PageV01P012', derived not found",
-        "sources.k.page: config 'PageV01P010', derived 'PageV01P010-12'"]   # the span of the pages of "rule" and "kept"
-    cfg["rule"]["page"], cfg["sources"]["k"]["page"], cfg["gone"]["page"] = "PageV01P010", "PageV01P010-12", "PageV01P011"
+        "gone: book k, config 'PageV01P012', derived not found"]
+    cfg["rule"]["page"], cfg["gone"]["page"] = "PageV01P010", "PageV01P011"
     cfg["gone"]["quote"] = "ومن بعد ذلك"
     assert CHECK_PAGES(cfg, {"k": PAGED}) == []
 

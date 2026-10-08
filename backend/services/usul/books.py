@@ -167,16 +167,12 @@ def _join(text: str, pieces: list[str]) -> str:
     return (" " + added if text and added else added)
 
 
-def span(markers: list[str]) -> str:
-    """The one marker covering every page in `markers` (each a marker or a range): PageV01P129, or PageV01P129-130.
-    "" for none; a ValueError where they sit in two volumes."""
-    found = [(m[1], int(m[2]), int(m[3] or m[2])) for m in map(_PAGE.fullmatch, markers) if m]
-    if not found:
-        return ""
-    if len({volume for volume, *_ in found}) > 1:
-        raise ValueError(f"{markers} run across two volumes")
-    first, last = min(a for _, a, _ in found), max(b for *_, b in found)
-    return f"PageV{found[0][0]}P{first:03d}" + (f"-{last}" if last != first else "")
+def span(first: str, last: str) -> str:
+    """The pages from marker `first` to marker `last`: PageV01P129, or PageV01P129-130. A ValueError across volumes."""
+    (volume, start, _), (other, end, _) = _PAGE.fullmatch(first).groups(), _PAGE.fullmatch(last).groups()
+    if volume != other:
+        raise ValueError(f"{first} and {last} sit in two volumes")
+    return first if start == end else f"{first}-{int(end)}"
 
 
 def fold(text: str) -> str:
@@ -218,6 +214,6 @@ def locate(raw: str, quote: str, verify: dict) -> str | None:
             end = at + len(part)
         else:
             first, last = page_after(pages, start), page_after(pages, end - 1)
-            return span([first, last]) if first and last else ""
+            return span(first, last) if first and last else ""
         start = text.find(parts[0], start + 1)
     return None
