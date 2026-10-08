@@ -70,6 +70,14 @@ CREATE TABLE IF NOT EXISTS accounts (
     name TEXT PRIMARY KEY,
     at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
+-- The shelf: everything the page keeps for one account (settings, Grow steps,
+-- favourites), as the page's own key -> text, one JSON object per name. Opaque
+-- here on purpose: the page owns those keys, so a new one needs no change here.
+CREATE TABLE IF NOT EXISTS saved (
+    user TEXT PRIMARY KEY,
+    data TEXT NOT NULL,
+    at   TEXT NOT NULL DEFAULT (datetime('now'))
+);
 -- Names typed before sign-up existed are accounts already, so their owners can log in.
 INSERT OR IGNORE INTO accounts (name, at)
     SELECT user, MIN(at) FROM (SELECT user, at FROM attempts UNION ALL SELECT user, at FROM feedback)
@@ -212,6 +220,7 @@ def forget(user: str = "local") -> int:
     db = _db()
     with db:
         cursor = db.execute("DELETE FROM attempts WHERE user = ?", (user,))
+        db.execute("DELETE FROM saved WHERE user = ?", (user,))
     return int(cursor.rowcount)
 
 
@@ -238,7 +247,7 @@ def account(name: str) -> dict | None:
 
 
 def delete_account(name: str) -> int:
-    """Wipe the answers and free the username, together. Returns how many answers went.
+    """Wipe the answers, the shelf and the username, together. Returns how many answers went.
 
     Reports about questions are kept, as the plain wipe keeps them, but no longer named.
     """
@@ -246,8 +255,26 @@ def delete_account(name: str) -> int:
     with db:
         deleted = db.execute("DELETE FROM attempts WHERE user = ?", (name,)).rowcount
         db.execute("UPDATE feedback SET user = 'local' WHERE user = ?", (name,))
+        db.execute("DELETE FROM saved WHERE user = ?", (name,))
         db.execute("DELETE FROM accounts WHERE name = ?", (name,))
     return int(deleted)
+
+
+def shelf(user: str) -> dict[str, str]:
+    """What the page last kept for this name; empty when nothing was."""
+    row = _db().execute("SELECT data FROM saved WHERE user = ?", (user,)).fetchone()
+    return json.loads(row["data"]) if row else {}
+
+
+def keep_shelf(user: str, data: dict[str, str]) -> None:
+    """Replace this name's shelf whole: the page always sends all of it."""
+    db = _db()
+    with db:
+        db.execute(
+            "INSERT INTO saved (user, data) VALUES (?, ?) "
+            "ON CONFLICT (user) DO UPDATE SET data = excluded.data, at = datetime('now')",
+            (user, json.dumps(data, ensure_ascii=False)),
+        )
 
 
 def leaderboard(module: str) -> list[dict]:

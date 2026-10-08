@@ -10,6 +10,7 @@ import { shareOf } from '../../lib/coverage'
 import { logOut } from '../../lib/profile'
 import { deleteAccount, fetchAccount, fetchLeaderboard } from '../../lib/progress'
 import { moduleFor, QUIZ } from '../../lib/quizBanks'
+import { forgetShelf } from '../../lib/shelf'
 import { useQuizCoverage } from '../../lib/useQuizCoverage'
 
 import { Skeleton } from './Skeleton'
@@ -94,6 +95,7 @@ function Leave({ onLeave }) {
       setFailed(true)
       return
     }
+    forgetShelf()
     logOut()
     onLeave()
   }
@@ -111,7 +113,7 @@ function Leave({ onLeave }) {
       </div>
       {asking && (
         <p aria-live="polite" className="type-small text-[var(--text-faint)]">
-          {failed ? 'Could not delete. Try again.' : 'Deletes your username and every answer you gave.'}
+          {failed ? 'Could not delete. Try again.' : 'Deletes your username, every answer you gave and your saved settings.'}
         </p>
       )}
     </div>

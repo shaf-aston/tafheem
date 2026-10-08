@@ -221,3 +221,47 @@ def test_the_leaderboard_ranks_accounts_by_words_learnt_and_finds_you():
         (1, "bilal", 2), (2, "amina", 1), (3, "cyra", 0)]
     assert body["you"]["rank"] == 3
     assert client.get("/api/progress/leaderboard").json()["you"] is None
+
+
+# The shelf: what the page keeps for one account (settings, Grow steps, favourites),
+# saved whole on the server so it follows the name to another device.
+
+def shelf(name, data=None):
+    if data is None:
+        return client.get("/api/progress/saved", headers=as_(name))
+    return client.put("/api/progress/saved", headers=as_(name), json={"data": data})
+
+
+def test_the_shelf_is_kept_per_account_and_replaced_whole():
+    signup("Amina"), signup("Bilal")
+    assert shelf("Amina").json() == {"data": {}}
+    assert shelf("Amina", {"settings": '{"size":"large"}', "progress:grow": "{}"}).status_code == 200
+    shelf("Bilal", {"settings": '{"size":"small"}'})
+    shelf("Amina", {"settings": '{"size":"medium"}'})
+    assert shelf("Amina").json() == {"data": {"settings": '{"size":"medium"}'}}
+    assert shelf("Bilal").json() == {"data": {"settings": '{"size":"small"}'}}
+
+
+def test_the_guest_and_strangers_have_no_shelf():
+    assert shelf(None).status_code == 422
+    assert shelf(None, {"k": "v"}).status_code == 422
+    assert shelf("Nobody").status_code == 401
+
+
+def test_a_shelf_too_big_is_refused(monkeypatch):
+    from backend.config import get_settings
+    monkeypatch.setattr(get_settings(), "saved_max_bytes", 50)
+    signup("Amina")
+    assert shelf("Amina", {"k": "x" * 100}).status_code == 413
+    assert shelf("Amina").json() == {"data": {}}
+
+
+def test_start_over_and_delete_empty_the_shelf():
+    signup("Amina")
+    shelf("Amina", {"k": "v"})
+    client.delete("/api/progress", headers=as_("Amina"))
+    assert shelf("Amina").json() == {"data": {}}
+    shelf("Amina", {"k": "v"})
+    client.delete("/api/progress/account", headers=as_("Amina"))
+    signup("Amina")
+    assert shelf("Amina").json() == {"data": {}}

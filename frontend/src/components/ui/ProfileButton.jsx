@@ -4,22 +4,21 @@
  * than every answer silently failing to save.
  */
 import { useState } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
-import { getProfile, logOut, readsProgress } from '../../lib/profile'
+import { getProfile, logOut } from '../../lib/profile'
 import { fetchAccount } from '../../lib/progress'
 
 import ProfileDialog from './ProfileDialog'
 
 export default function ProfileButton() {
-  const client = useQueryClient()
-  const [name, setName] = useState(getProfile)
+  const [name] = useState(getProfile)
   const [open, setOpen] = useState(false)
+  // Reload as the guest, the way every log-out does (ProfileDialog).
   const check = () => fetchAccount().catch((error) => {
     if (error.response?.status !== 401) throw error
     logOut()
-    setName('')
-    client.invalidateQueries({ predicate: readsProgress })
+    globalThis.location.reload()
     return null
   })
   useQuery({ queryKey: ['account-check', name], queryFn: check, enabled: !!name, retry: false })
@@ -38,7 +37,7 @@ export default function ProfileButton() {
         {name || 'Log in'}
       </button>
       {/* Mounted only while open, so each opening starts from who is logged in. */}
-      {open && <ProfileDialog onClose={() => setOpen(false)} onSaved={setName} />}
+      {open && <ProfileDialog onClose={() => setOpen(false)} />}
     </>
   )
 }

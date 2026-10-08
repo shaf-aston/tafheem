@@ -148,7 +148,7 @@ function StorageFooter() {
         {asking
           ? 'Settings, what you last chose on each tab, recent searches, your best '
             + 'streak, and every quiz answer, so Review empties too.'
-          : 'Kept on this device.'}
+          : 'Kept on this device, and with your account when logged in.'}
       </p>
     </div>
   )
