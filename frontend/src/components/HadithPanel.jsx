@@ -11,7 +11,7 @@ import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithCollectionsQuery } from '../api'
-import { bookOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, narratorsOf, parsePlace, placeOf } from '../lib/hadithPlace'
+import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -28,6 +28,7 @@ import HadithList from './HadithList'
 import HadithSearchResults from './HadithSearchResults'
 import NarratorList from './NarratorList'
 import NarratorPage from './NarratorPage'
+import ScholarTerms from './ScholarTerms'
 import Code from './ui/Code'
 import SourceBadge from './ui/SourceBadge'
 import { useSources } from '../lib/useSources'
@@ -37,7 +38,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
   const [narrator, setNarrator] = useState(null)   // the narrator whose page is open, if any
   const [starred, setStarred] = useState(false)
-  const [listing, setListing] = useState(false)   // the narrator list is showing
+  const [listing, setListing] = useState(null)   // the list showing, narrators or scholars, if any
   const { favorites } = useHadithFavorites()
   const source = useSources().sources.find((s) => s.key === 'hadith')
 
@@ -54,10 +55,10 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (useArrivalWhenReady(arrival, Boolean(collections))) {
     const asked = parsePlace(incoming, collections)
     setNarrator(narratorOf(incoming))
-    setListing(narratorsOf(incoming))
+    setListing(listOf(incoming))
     if (asked) setPlace(asked)
     else if (collections.length) setPlace({ collection: collections[0].id, book: null, number: null, part: '' })
-    setMissed(Boolean(incoming) && !asked && !narratorOf(incoming) && !narratorsOf(incoming))
+    setMissed(Boolean(incoming) && !asked && !narratorOf(incoming) && !listOf(incoming))
   }
 
   if (isPending) return <AnalyzerSkeleton />
@@ -92,7 +93,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   const go = (next) => {
     setMissed(false)
     setStarred(false)
-    setListing(false)
+    setListing(null)
     setNarrator(null)
     setPlace(next)
     onVisit?.(placeOf(next.collection, next.book, next.number, next.part))
@@ -132,15 +133,20 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
           <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
             &#9733; Starred {favorites.length > 0 && favorites.length}
           </Chip>
-          <Chip selected={listing} tinted accent={accent} onClick={() => (listing ? go(place) : onGo('hadith', NARRATORS_PLACE))}>
+          <Chip selected={listing === NARRATORS_PLACE} tinted accent={accent} onClick={() => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE))}>
             Narrators
+          </Chip>
+          <Chip selected={listing === SCHOLARS_PLACE} tinted accent={accent} onClick={() => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE))}>
+            Scholars
           </Chip>
           {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this
               collection, unless the picker beside it already names it. */}
           {!starred && !listing && source && <SourceBadge source={collections.length > 1 ? source : { ...source, label: open.name }} className="ml-auto" />}
         </ChipRow>
-        {listing ? (
+        {listing === NARRATORS_PLACE ? (
           <NarratorList accent={accent} onOpen={openNarrator} />
+        ) : listing === SCHOLARS_PLACE ? (
+          <ScholarTerms accent={accent} onOpen={openHadith} />
         ) : starred ? (
           favorites.length
             ? <HadithCards items={favorites} accent={accent} onNarrator={openNarrator} onHadith={openHadith} />

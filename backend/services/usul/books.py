@@ -29,6 +29,7 @@ class Entry:
     heading: str = ""
     start_page: str = ""
     pages: list[tuple[int, str]] = field(default_factory=list)   # (offset in text, page from there on)
+    breaks: list[int] = field(default_factory=list)   # offsets in text where the book starts a new paragraph
 
     def page_at(self, offset: int) -> str:
         """The page marker the text at `offset` stands on, "" where the book lost it."""
@@ -57,19 +58,28 @@ def page_label(marker: str) -> str:
 def entries(raw: str, spec: dict) -> list[Entry]:
     """Every entry of a book in order.
 
-    spec: `entry`, a regex for the line that opens one, with groups n and, optionally, head (kept apart) and text
-    (the first words of the entry); `end`, a regex for a line that closes one without opening another; `in_heading`,
-    keep only entries under a chapter whose title holds this; `stop`, a phrase where the last entry ends; `inline`, a
-    regex (group n) for an entry number printed mid-line, which opens a new entry only when it is the next number."""
+    spec keys:
+      entry        a regex for the line that opens one, with groups n (a book that numbers nothing leaves it out and
+                   its entries are numbered 1, 2 ... as they come), head (kept apart) and text (the entry's first
+                   words). It is tested before the chapter heading, for a book that numbers its entries `### | N -`.
+      end          a regex for a line that closes one without opening another.
+      skip         a regex for a line that is neither (a page printed as a sub-heading, `### | [ص: 37]`): dropped,
+                   the entry runs on.
+      in_heading   keep only entries under a chapter whose title holds this.
+      from_heading drop every entry before the first chapter whose title holds this (an editor's introduction
+                   numbered the same way).
+      stop         a phrase where the last entry ends.
+      inline       a regex (group n) for an entry number printed mid-line, which opens a new entry only when it is
+                   the next number."""
     entry_re = re.compile(spec["entry"])
     end_re = re.compile(spec["end"]) if spec.get("end") else None
     found: list[Entry] = []
-    state = {"page": "", "heading": "", "cur": None}
+    state = {"page": "", "heading": "", "cur": None, "seq": 0, "started": not spec.get("from_heading")}
 
     def close() -> None:
         cur = state["cur"]
         state["cur"] = None
-        if cur is None or (spec.get("in_heading") and spec["in_heading"] not in cur.heading):
+        if cur is None or not state["started"] or (spec.get("in_heading") and spec["in_heading"] not in cur.heading):
             return
         if spec.get("stop") and spec["stop"] in cur.text:
             cur.text = cur.text[:cur.text.index(spec["stop"])].strip()
@@ -92,6 +102,7 @@ def entries(raw: str, spec: dict) -> list[Entry]:
             cur.text += _join(cur.text, pieces)
 
     inline_re = re.compile(spec["inline"]) if spec.get("inline") else None
+    skip_re = re.compile(spec["skip"]) if spec.get("skip") else None
     lines = raw.split(_HEADER_END, 1)[-1].split("\n")[::-1]   # a stack, so a split line's rest is read next
     while lines:
         line = lines.pop().rstrip()
@@ -104,18 +115,24 @@ def entries(raw: str, spec: dict) -> list[Entry]:
             if nxt:
                 lines.append("# " + line[nxt.start():])
                 line = line[:nxt.start()].rstrip()
-        if heading := _HEADING.match(line):
-            close()
-            state["heading"] = (heading[1] or "").strip()
-        elif opens := entry_re.match(line):
+        if skip_re and skip_re.match(line):
+            continue
+        if opens := entry_re.match(line):
             close()
             fields = opens.groupdict()
-            state["cur"] = Entry(n=int(opens["n"]), text="", head=(fields.get("head") or "").strip(),
+            state["seq"] += 1
+            state["cur"] = Entry(n=int(fields["n"]) if "n" in fields else state["seq"], text="", head=(fields.get("head") or "").strip(),
                                  heading=state["heading"], start_page=state["page"])
             feed(fields.get("text") or "")
+        elif heading := _HEADING.match(line):
+            close()
+            state["heading"] = " ".join(_MARKS.sub("", heading[1] or "").split())
+            state["started"] = state["started"] or spec["from_heading"] in state["heading"]
         elif line.startswith("###") or (end_re and end_re.match(line)):
             close()
         else:
+            if line.startswith("#") and state["cur"] is not None:
+                state["cur"].breaks.append(len(state["cur"].text))
             feed(re.sub(r"^(?:#|~~)\s?", "", line))
     close()
     return found

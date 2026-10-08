@@ -290,6 +290,9 @@ class Settings(BaseSettings):
     # Weak points on the chains: the rule and its words, and the file built from rijal.db with them (scripts/build_usul.py).
     usul_dir: str = "data/usul"
     usul_index_path: str = "data/usul/usul.db"
+    # Hadith one page of a ruling's list shows, and the most a request may ask for.
+    usul_term_page: int = Field(default=60, gt=0)
+    usul_term_max: int = Field(default=200, gt=0)
     # The narrator books (Taqrib, Ta'rif, Jami', Mukhtalitin) scripts/fetch_usul.py downloads; build_usul.py reads them, the app never does.
     usul_books_dir: str = "data/usul/books"
     # A hadith is read in full, so a long results page stops being read.

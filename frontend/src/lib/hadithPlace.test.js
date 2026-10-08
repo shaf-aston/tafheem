@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { bookOf, narratorOf, narratorPlaceOf, parsePlace, placeOf } from './hadithPlace'
+import { bookOf, listOf, narratorOf, narratorPlaceOf, parsePlace, placeOf } from './hadithPlace'
 
 const collections = [{ id: 'bukhari', name: 'Sahih al-Bukhari' }]
 
@@ -34,5 +34,16 @@ describe('narrator places', () => {
   it('is not mistaken for a book to prefetch', () => {
     expect(bookOf('narrator/6659')).toBeNull()
     expect(bookOf('muslim/24')).toEqual(['muslim', 24])
+  })
+})
+
+describe('list places', () => {
+  it('knows the narrators and scholars lists, and no other place is one', () => {
+    expect(['narrators', 'scholars'].map(listOf)).toEqual(['narrators', 'scholars'])
+    expect(['bukhari', 'narrator/1', '', null].map(listOf)).toEqual([null, null, null, null])
+  })
+
+  it('is not mistaken for a book to prefetch', () => {
+    expect(bookOf('scholars/2')).toBeNull()
   })
 })

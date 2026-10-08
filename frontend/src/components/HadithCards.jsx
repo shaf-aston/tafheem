@@ -12,7 +12,8 @@
  * Narrators come from each card's own book (lib/useNarrators), so names are tappable and the
  * family fold shows in a book, in search and in Starred alike. So do the weak points: a hadith
  * whose chain has any carries one quiet "2 weak points" chip that opens the drawing, where each
- * weak narrator is marked and ranked and each doubtful link lettered (lib/weak).
+ * weak narrator is marked and ranked and each doubtful link lettered (lib/weak); a hadith that classical
+ * books speak of carries a "Scholars" chip to the same drawing, where their words are quoted.
  * `onNarrator` opens one narrator's full page; `onHadith` opens a sibling narration of the same number.
  */
 import { useState } from 'react'
@@ -47,9 +48,11 @@ export default function HadithCards({ items, accent, collection, columns = false
   /** One hadith's drawn chain with its weak narrators ranked, its doubtful links lettered, and the scale they sit on. */
   const drawing = (h) => {
     const ref = `${h.number}${h.part ?? ''}`
-    const { notes, links: ties, rules, scale } = weakOf(h, ref)
+    const { notes, links: ties, rulings, rules, scale } = weakOf(h, ref)
+    // A hadith with no chain to draw still has what scholars said of it.
+    if (!chainOf(h.arabic).chain) return { links: [], scale, rulings, weak: [], linkPoints: [], chainless: true }
     const links = drawnChain(h.arabic, namesOf(h)[ref] ?? [], notes, ties)
-    return { links, scale, weak: weakPoints(links, scale), linkPoints: weakLinks(links, rules) }
+    return { links, scale, rulings, weak: weakPoints(links, scale), linkPoints: weakLinks(links, rules) }
   }
 
   return (
@@ -60,7 +63,7 @@ export default function HadithCards({ items, accent, collection, columns = false
           const ref = `${h.number}${h.part ?? ''}`
           const names = namesOf(h)
           const found = weakOf(h, ref)
-          const { weak, linkPoints } = found.notes.length + found.links.length && chainOf(h.arabic).chain ? drawing(h) : { weak: [], linkPoints: [] }
+          const { weak, linkPoints, rulings } = found.notes.length + found.links.length + found.rulings.length ? drawing(h) : { weak: [], linkPoints: [], rulings: [] }
           const points = weak.length + linkPoints.length
           // Narrations of this number with chains placed: the same digits, then letters only.
           const kin = h.part ? Object.keys(names).filter((k) => k.startsWith(`${h.number}`) && /^[a-z]+$/.test(k.slice(`${h.number}`.length))).length : 0
@@ -84,13 +87,18 @@ export default function HadithCards({ items, accent, collection, columns = false
                 />
               )}
               action={(
-                <span className="flex items-center gap-2">
+                <span className="flex flex-wrap items-center justify-end gap-2">
                   {!(collection && of(collection).sahih) && (
                     <GradeMark grades={h.grades} sahihBy={of(h.collection).sahih ? of(h.collection).name : null} cite={h.cite} />
                   )}
                   {points > 0 && (
                     <Chip quiet tinted accent={accent} onClick={() => setDrawn(h)}>
                       {points} weak point{points > 1 && 's'}
+                    </Chip>
+                  )}
+                  {rulings.length > 0 && (
+                    <Chip quiet tinted accent={accent} onClick={() => setDrawn(h)}>
+                      Scholars
                     </Chip>
                   )}
                   {chainOf(h.arabic).chain && (

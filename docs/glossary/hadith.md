@@ -12,3 +12,5 @@ One word per idea, the same in the backend, the API and the frontend. Main gloss
 | **rank** | where a weak point stands among its hadith's, weakest first; equal levels share one and print as `2=` | none, worked out in the page | `rank`, `label` |
 | **lift** | a line a source gives on whether support from another narration lifts a level's weakness, quoted; only a few levels have one | `lift` (usul.json, `scale`) | `p.lift` |
 | **gap** | a grade wording no term reads (حسن الحديث, منكر الحديث); listed, never given a level | `gap` table | none |
+| **ruling** | what a classical book says of one hadith, as the scholar's own sentence with book and page, found by matching its text and narrators; shown as "possible" | `ruling`, `rulings`, `store.rulings()` | `rulings`, `ScholarRulings` |
+| **term** | one sort of ruling (`nasikh_chapter`, `ilal`, `mawdu_listed`) with its plain meaning and how many hadith carry it | `kind`, `store.terms()` | `ScholarTerms` |

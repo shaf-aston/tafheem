@@ -25,14 +25,16 @@ export function parsePlace(q, collections) {
 export const narratorOf = (q) => /^narrator\/(\d+)$/.exec(q ?? '')?.[1] ?? null
 export const narratorPlaceOf = (id) => `narrator/${id}`
 
-// The narrator list is the place "narrators", apart from "narrator/<id>" and every collection.
+// The lists are the places "narrators" and "scholars", apart from "narrator/<id>" and every collection.
 export const NARRATORS_PLACE = 'narrators'
-export const narratorsOf = (q) => q === NARRATORS_PLACE
+export const SCHOLARS_PLACE = 'scholars'
+const LISTS = [NARRATORS_PLACE, SCHOLARS_PLACE]
+export const listOf = (q) => (LISTS.includes(q) ? q : null)
 
 // The (collection, book) a place string names, before the collections are known to check it; null if none.
 export function bookOf(q) {
   const [collection, book] = (q ?? '').split('/')
-  return collection !== 'narrator' && collection !== NARRATORS_PLACE && /^\d+$/.test(book ?? '') ? [collection, Number(book)] : null
+  return collection !== 'narrator' && !LISTS.includes(collection) && /^\d+$/.test(book ?? '') ? [collection, Number(book)] : null
 }
 
 export const placeOf = (collection, book, number, part = '') => (
