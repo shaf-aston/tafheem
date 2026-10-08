@@ -170,7 +170,7 @@ def get_team(module: str = _MODULE, user: str = NAMED) -> Team:
 
 
 @router.post("/team", response_model=Team)
-async def add_member(body: MemberIn, module: str = _MODULE, user: str = NAMED) -> Team:
+def add_member(body: MemberIn, module: str = _MODULE, user: str = NAMED) -> Team:
     """Put a signed-up username in this account's team."""
     try:
         member = clean_name(body.member)
@@ -186,7 +186,7 @@ async def add_member(body: MemberIn, module: str = _MODULE, user: str = NAMED) -
 
 
 @router.delete("/team", response_model=Team)
-async def remove_member(team: str, member: str, module: str = _MODULE, user: str = NAMED) -> Team:
+def remove_member(team: str, member: str, module: str = _MODULE, user: str = NAMED) -> Team:
     """Part a member from a team. Only the team or the member may."""
     if user not in (team, member):
         raise HTTPException(status_code=403, detail="Only the team or the member can do that")
