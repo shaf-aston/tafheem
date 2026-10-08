@@ -117,6 +117,9 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   const [noTouchOn, setNoTouch] = useRememberedFlag('reader-no-touch', false)
   const noTouch = touch && noTouchButton && noTouchOn
   const recitation = useRecitation(surah, reciter)
+  // The bar stays away until something is recited; the header's play starts it.
+  const reciting = useSyncExternalStore(watch, nowPlaying, () => '') !== ''
+  const recite = useRef(null)
   const translation = useTranslation(surah)
 
   const list = useRef(null)
@@ -207,6 +210,13 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
             className="flex-wrap"
           />
         )}
+        {data && !reciting && (
+          <button type="button" onClick={() => recite.current?.(ayah ?? here)}
+            aria-label={`Recite from ${surah}:${ayah ?? here}`} title="Recite"
+            className="press tap grid place-items-center w-[var(--layout-chip)] h-[var(--layout-chip)] rounded-full text-[var(--c)] hover:bg-[var(--surface-hi)] transition-colors">
+            <Glyph d="M7 4.5v15l13-7.5z" />
+          </button>
+        )}
         {touch && noTouchButton && <NoTouchButton on={noTouchOn} onChange={setNoTouch} />}
         <ReadingOptions accent={accent} options={[
           ...(anyGlosses ? [{ label: 'Every word\'s meaning', on: allMeanings, set: showAllMeanings }] : []),
@@ -285,8 +295,9 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
           here={here}
           recitation={recitation}
           reciter={reciter}
-          onReciter={(id) => { stop(); chooseReciter(id) }}
+          onReciter={chooseReciter}
           onFollow={goTo}
+          startRef={recite}
         />
       )}
     </div>
@@ -480,7 +491,7 @@ function AyahRail({ count, here, open, onPick }) {
  * from the bar; its pill already names the voice, so the line beside the
  * buttons says only where the recitation is.
  */
-function RecitationBar({ surah, count, from, here, recitation, reciter, onReciter, onFollow }) {
+function RecitationBar({ surah, count, from, here, recitation, reciter, onReciter, onFollow, startRef }) {
   const now = useSyncExternalStore(watch, nowPlaying, () => '')
   const [failed, setFailed] = useState(false)
   // The ayah last started and the address it was started on. Matched by that
@@ -499,6 +510,17 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
     // A press that overtakes the last one aborts it; only a refusal is a failure.
     play(url).catch((e) => e.name !== 'AbortError' && setFailed(true))
   }, [count, urlFor])
+  // The header starts it from outside; a new voice picks up the same ayah
+  // rather than stopping, so the bar is not gone from under the choice.
+  const playing = useRef({ start, sounding })
+  useEffect(() => {
+    playing.current = { start, sounding }
+    startRef.current = start
+  })
+  useEffect(() => {
+    const { start: again, sounding: n } = playing.current
+    if (n) again(n)
+  }, [reciter])
   // A skip is the reader moving, so the list and rail go with it.
   const skipTo = (n) => { start(n); onFollow(n) }
 
@@ -517,10 +539,12 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
   const away = sounding && Math.abs(here - sounding) > 1
 
   const round = 'press shrink-0 grid place-items-center rounded-full transition-colors'
+  // Only while it recites, or to say why it could not.
+  if (!sounding && !failed) return null
   const skip = `${round} w-8 h-8 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`
 
   return (
-    <div className="reader-dock flex items-center gap-2 p-2 pl-3 border-t border-[var(--border)] bg-[var(--surface-hi)]">
+    <div className="reader-dock rise-in flex items-center gap-2 p-2 pl-3 border-t border-[var(--border)] bg-[var(--surface-hi)]">
       <button type="button" className={skip}
         onClick={() => skipTo(at - 1)} disabled={at <= 1} aria-label="Previous ayah">
         <Glyph d="M6 5h2v14H6zM20 5v14L9 12z" />
