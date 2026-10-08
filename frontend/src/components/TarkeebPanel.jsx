@@ -8,18 +8,20 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getTarkeebExamples } from '../api'
 import { exampleMatches } from '../lib/exampleSearch'
+import { buildIraabExportText } from '../lib/iraabExport'
 import { useInView } from '../lib/useInView'
 import { useRemembered } from '../lib/useRemembered'
 
 import ArabicText from './ui/ArabicText'
 import Chip from './ui/Chip'
+import CopyButton from './ui/CopyButton'
 import SearchBox from './ui/SearchBox'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import { GoButton } from './ui/RootActions'
 import SourceBadge from './ui/SourceBadge'
 import { Skeleton } from './ui/Skeleton'
-import TarkeebDiagram from './TarkeebDiagram'
+import TarkeebFigure from './TarkeebFigure'
 
 // Browsed by grammar topic, shared by every book, so a second book teaching kana
 // lands under the same chip. The book chips appear only with more than one book.
@@ -151,30 +153,34 @@ function Example({ example, topic, showBook, accent, onWordByWord }) {
   // now waits until its card is nearly on screen.
   const [ref, near] = useInView({ margin: '600px' })
 
+  // Laid out as the Analyse page lays out a sentence: the line naming it and the
+  // Copy button above, then the same figure card (enlarge, coverage line).
   return (
-    <article className="lift rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-hidden">
-      <header className="px-5 py-3 flex items-baseline justify-between gap-3 flex-wrap border-b border-[var(--border)]">
-        <p className="text-sm text-[var(--text-dim)]">{example.translation}</p>
-        <span className="type-small text-[var(--text-faint)] shrink-0">
-          {topic && <ArabicText size="sm" className="me-2">{topic.ar}</ArabicText>}
+    <article ref={ref} className="space-y-3">
+      <div className="flex items-start justify-between gap-3 flex-wrap">
+        <div
+          className="flex items-center gap-2 text-sm px-3 py-2 rounded-[var(--radius-md)]
+            bg-[var(--surface)] border border-[var(--border)]"
+        >
+          <span className="text-[var(--text)]">{example.translation}</span>
+          {topic && <ArabicText size="sm" className="text-[var(--text-faint)]">{topic.ar}</ArabicText>}
           {/* The badge already names the book, so the title is not repeated. */}
           {showBook && <SourceBadge source={example.book.source} />}
-        </span>
-      </header>
-      <div ref={ref} className="p-5 space-y-3">
-        {near ? (
-          <TarkeebDiagram tarkeeb={example} />
-        ) : (
-          // Holds the card's height so the page does not jump as diagrams arrive.
-          <div className="h-32" aria-hidden="true" />
-        )}
-        {onWordByWord && (
-          // Same pill as every other hand-off between tabs, not a bespoke link.
-          <GoButton style={{ '--c': accent }} onClick={() => onWordByWord(example.sentence)}>
-            Word by word →
-          </GoButton>
-        )}
+        </div>
+        <CopyButton text={buildIraabExportText({ sentence: example.sentence, words: [], tree: example })} />
       </div>
+      {near ? (
+        <TarkeebFigure tarkeeb={example} />
+      ) : (
+        // Holds the card's height so the page does not jump as diagrams arrive.
+        <div className="h-32" aria-hidden="true" />
+      )}
+      {onWordByWord && (
+        // Same pill as every other hand-off between tabs, not a bespoke link.
+        <GoButton style={{ '--c': accent }} onClick={() => onWordByWord(example.sentence)}>
+          Word by word →
+        </GoButton>
+      )}
     </article>
   )
 }

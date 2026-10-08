@@ -122,9 +122,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
               <div className="text-3xl font-semibold text-[var(--text)]">{shown.prompt}</div>
             ))}
             {/* Only the Arabic prompt: speaking an Arabic answer option would give it away. */}
-            {shown.listen
-              ? <SpeakButton key={shown.answerId} ref={speakRef} shortcut="S" text={shown.say} early />
-              : arabicPrompt && <SpeakButton key={shown.answerId} ref={speakRef} shortcut="S" text={shown.prompt} />}
+            {(shown.listen || arabicPrompt) && <SpeakButton key={shown.answerId} ref={speakRef} shortcut="S" early text={shown.listen ? shown.say : shown.prompt} />}
           </div>
         </div>
       </div>
