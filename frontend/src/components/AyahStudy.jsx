@@ -17,9 +17,11 @@ import { posColor } from '../lib/roleColors'
 
 import WordCard from './WordCard'
 import TarkeebFigure from './TarkeebFigure'
+import TarkeebTools from './TarkeebTools'
 import SourceBadge from './ui/SourceBadge'
 import AyahTafsir from './AyahTafsir'
 import { isQuranic } from '../lib/arabicText'
+import { useTarkeebView } from '../lib/useTarkeebView'
 import ArabicText from './ui/ArabicText'
 import CloseButton from './ui/CloseButton'
 import ErrorAlert from './ui/ErrorAlert'
@@ -98,6 +100,8 @@ function AyahTarkeeb({ surah, ayah }) {
     queryFn: () => getQuranTarkeeb(surah, ayah),
   })
 
+  const view = useTarkeebView(data)
+
   // A failed fetch used to return null here, the same as an ayah with no tree,
   // so a dropped connection read as "this ayah has no joins". Now it says so.
   if (!isPending && !isError && !data?.tree) return null
@@ -113,7 +117,10 @@ function AyahTarkeeb({ surah, ayah }) {
         <h3 className="text-sm text-[var(--text-dim)]">
           How the words join <ArabicText size="sm" className="text-[var(--text)]">التَّرْكِيْب</ArabicText>
         </h3>
-        {data && <SourceBadge source={data.source} />}
+        <div className="flex items-center gap-2">
+          {data?.tree && <TarkeebTools view={view} />}
+          {data && <SourceBadge source={data.source} />}
+        </div>
       </div>
 
       {isPending && <Skeleton className="h-40" />}
@@ -121,7 +128,7 @@ function AyahTarkeeb({ surah, ayah }) {
         <ErrorAlert inline title="Could not load the word joins" error={error} onRetry={() => refetch()} />
       )}
       {data?.tree && (
-        <TarkeebFigure tarkeeb={data} openWhy={openWhy} />
+        <TarkeebFigure tarkeeb={data} openWhy={openWhy} view={view} />
       )}
     </section>
   )

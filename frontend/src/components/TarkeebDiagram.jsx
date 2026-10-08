@@ -15,17 +15,10 @@ import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
 import { cells, fold, hiddenWords, rows, runs, threadSpans, tones } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
-import { colorFor } from '../theme'
 
-import Segmented from './ui/Segmented'
 import Tooltip from './ui/Tooltip'
 
 const NAME_COLUMN = '11rem'
-const GHAIR_AAMIL_ACCENT = colorFor('role', 'ghair_aamil')
-const MODES = [
-  { id: 'merged', label: 'Merged' },
-  { id: 'split', label: 'Split' },
-]
 
 /**
  * One brace, the row of names above it, and the name of the unit itself.
@@ -102,10 +95,11 @@ function placeDots(view) {
 /**
  * `tarkeeb` is the API's chart, as every tab gets it: { words, written, tree, unwritten },
  * the words already cut into their pieces (فَـ إِذًا), `written` naming each piece's word.
+ * `mode` is 'split' (a column per piece) or 'merged' (each written word whole); the
+ * choice is made beside the chart's header (TarkeebTools), not on the chart.
  */
-export default function TarkeebDiagram({ tarkeeb }) {
+export default function TarkeebDiagram({ tarkeeb, mode = 'split' }) {
   const { words, written, tree, unwritten } = tarkeeb
-  const [mode, setMode] = useState('split')
   const [dots, setDots] = useState([])
   const { strip, ends, measure, page } = useRail(`${words.join(' ')}|${mode}`)
   const merged = useMemo(() => (tree ? fold({ words, written, tree }) : null), [words, written, tree])
@@ -125,7 +119,6 @@ export default function TarkeebDiagram({ tarkeeb }) {
   }, [words, tree, mode, strip, settle])
   if (!tree || !words.length) return null
 
-  const canSplit = merged.words.length < words.length
   const shown = mode === 'merged' ? merged : tarkeeb
   const levels = rows(shown.tree, shown.words.length)
   const spans = runs(shown.words, shown.written)
@@ -142,17 +135,6 @@ export default function TarkeebDiagram({ tarkeeb }) {
 
   return (
     <div>
-      {canSplit && (
-        <div className="flex justify-end pb-3">
-          <Segmented
-            label="Show each piece written onto a word in its own column, or the written word whole"
-            value={mode}
-            onChange={setMode}
-            accent={GHAIR_AAMIL_ACCENT}
-            options={MODES}
-          />
-        </div>
-      )}
       {/* Horizontal scroll region: keyboard-focusable so a non-mouse user can
           reach it. The focus ring comes from the global focus-visible rule
           in styles/base.css, which already covers [tabindex]. */}
