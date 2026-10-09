@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { hadithBookQuery } from '../api'
-import { scrollToEl } from '../lib/scrollToEl'
+import { holdAtTop, scrollToEl } from '../lib/scrollToEl'
 import { topicOf } from '../lib/hadithGrade'
 import { useRememberedFlag } from '../lib/useRemembered'
 
@@ -42,9 +42,9 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
   const [hideChain, setHideChain] = useRememberedFlag('hadith-hide-chain', false)
   const [guide, setGuide] = useState(false)
 
-  // A link to one hadith lands on it, once its book has arrived.
+  // A link to one hadith lands on it, once its book has arrived, and stays there while the cards above fill in.
   useEffect(() => {
-    if (data && focus) scrollToEl(document.getElementById(`hadith-${focus}`), 'top')
+    return data && focus ? holdAtTop(document.getElementById(`hadith-${focus}`)) : undefined
   }, [data, focus])
 
   const jump = (event) => {

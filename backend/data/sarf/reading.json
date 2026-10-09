@@ -52,6 +52,15 @@
     "madi-passive": "madi-passive",
     "mudari-passive": "mudari-passive"
   },
+  "_camel": "Each column read as the dictionary's own features (asp: p past, i present, c command; vox: a active, p passive), for a verb only the table knows (verb_reader.reading_of).",
+  "camel": {
+    "madi": {"asp": "p", "vox": "a"},
+    "mudari": {"asp": "i", "vox": "a"},
+    "amr": {"asp": "c", "vox": "a"},
+    "jussive": {"asp": "i", "vox": "a"},
+    "madi-passive": {"asp": "p", "vox": "p"},
+    "mudari-passive": {"asp": "i", "vox": "p"}
+  },
   "_spellings": "Spellings the book also allows that the table does not print. In Forms V and VI a present verb starting تَتَ may drop one of its two ت (تَنَزَّلُ for تَتَنَزَّلُ, لا تَحَاسَدُوا).",
   "spellings": [
     {

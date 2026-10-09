@@ -73,6 +73,12 @@ def _outside_asides(words: list, marks: list[bool]) -> list:
     return [w for i, w in enumerate(words) if i not in inside]
 
 
+def without_asides(text: str) -> str:
+    """The text with each remark set between two aside marks (- يعنيان ابن علية -) gone."""
+    words = text.split()
+    return " ".join(_outside_asides(words, [w == _RULE["aside"] for w in words]))
+
+
 def chain_of(arabic: str | None) -> tuple[str, str]:
     """(chain, body). Where the end of the chain is not plain: ("", the whole text)."""
     text = arabic or ""

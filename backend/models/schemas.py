@@ -1518,6 +1518,7 @@ class RijalChains(BaseModel):
     collection: str
     book: int
     chains: dict[str, list[list[int]]] = {}
+    kin: dict[str, int] = {}   # hadith number to its lettered narrations across the collection, where more than one
     notes: dict[str, list[WeakNote]] = {}
     links: dict[str, list[WeakLink]] = {}
     rulings: dict[str, list[Ruling]] = {}
@@ -1533,6 +1534,13 @@ class FamilyNarrator(BaseModel):
     name: str
 
 
+class FamilyMark(BaseModel):
+    """The word at index `at` of the matn split on whitespace: "only" in this telling, or a "dots" difference from `other`."""
+    at: int
+    kind: str
+    other: str = ""
+
+
 class FamilyPart(BaseModel):
     """One narration of a number against the viewed one: its own narrators, where it meets that chain, what it borrows."""
     part: str
@@ -1542,11 +1550,36 @@ class FamilyPart(BaseModel):
     borrowed: list[FamilyNarrator] = []
     narrators: list[FamilyNarrator]
     said: str = ""
+    # The telling's matn as the build split it into words, and the words only this telling has; only where some are marked.
+    words: list[str] = []
+    marks: list[FamilyMark] = []
+
+
+class FamilyPlace(BaseModel):
+    """One place of the chains (the Companion first): how many narrators stand there; `alone` words it where one carries every narration."""
+    label: str
+    count: int
+    alone: str = ""
+
+
+class FamilyPlaces(BaseModel):
+    """The narrators at each place of the chains one book gives under one number. A count of this book's narrations, not a name for the hadith."""
+    heading: str
+    note: str
+    places: list[FamilyPlace]
+
+
+class FamilyWordsView(BaseModel):
+    """What the words view is called and what its marks mean (usul.json `family.words`)."""
+    label: str
+    legend: str
 
 
 class RijalFamily(BaseModel):
     viewed: str
     parts: list[FamilyPart]
+    places: FamilyPlaces | None = None
+    words: FamilyWordsView | None = None   # set only when some telling has marked words
 
 
 class NarratorListItem(NarratorSummary):

@@ -78,3 +78,10 @@ def test_a_word_the_dictionary_lacks_is_spelled_as_the_table_prints_it_with_its_
     assert verb_reader.known_as("فَلْيَسْتَعْفِفْ") == "فَلْيَسْتَعِفَّ"
     assert verb_reader.known_as("الكتاب") is None  # without its vowels a word fits too much
 
+
+
+@pytest.mark.parametrize("word", ["تَشَأْ", "تَطَأَ", "تَجِئُ", "تَطَأُ"])
+def test_a_hamzated_verb_tried_against_a_doubled_hamza_root_is_read_without_failing(word: str):
+    # The reader tries roots like شأأ, which sarf shapes down to one letter; the hadith index reads every word of
+    # every matn, so one failure here stops the server's whole deploy.
+    verb_reader.command(word)

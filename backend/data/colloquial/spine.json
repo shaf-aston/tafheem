@@ -450,7 +450,7 @@
     },
     {
       "unit": "unit-02",
-      "title": "Family and a Meal",
+      "title": "Family, Meals and Home",
       "cover": "what-do-you-like-to-eat",
       "lessons": [
         {
@@ -723,6 +723,292 @@
             }
           ],
           "words": ["breakfast", "lunch", "dinner", "meal", "meat", "salt", "bread", "dining-table", "table", "kitchen", "plate", "bowl", "spoon", "fork", "knife", "glass-cup", "napkin", "to-cook", "to-eat", "to-help", "ready", "full-eaten", "delicious", "more"]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Where I Live",
+          "phrases": [
+            {
+              "slot": "where-do-you-live-to-a-man",
+              "english": "Where do you live? (to a man)",
+              "search_term": "city skyline",
+              "image": "unit-02/l05-p01-city-skyline.jpg"
+            },
+            {
+              "slot": "i-live-in-a-flat",
+              "english": "I live in a flat.",
+              "search_term": "apartment building",
+              "image": "unit-02/l05-p02-apartment-building.jpg"
+            },
+            {
+              "slot": "i-live-in-a-house",
+              "english": "I live in a house.",
+              "search_term": "family house",
+              "image": "unit-02/l05-p03-family-house.jpg"
+            },
+            {
+              "slot": "we-live-near-the-mosque",
+              "english": "We live near the mosque.",
+              "search_term": "mosque",
+              "image": "unit-02/l05-p04-mosque.jpg"
+            },
+            {
+              "slot": "i-live-in-a-village",
+              "english": "I live in a village.",
+              "search_term": "village",
+              "image": "unit-02/l05-p05-village.jpg"
+            },
+            {
+              "slot": "what-is-your-address-to-a-man",
+              "english": "What is your address? (to a man)",
+              "search_term": "street sign",
+              "image": "unit-02/l05-p06-street-sign.jpg"
+            },
+            {
+              "slot": "how-long-have-you-lived-here-to-a-man",
+              "english": "How long have you lived here? (to a man)"
+            },
+            {
+              "slot": "is-it-far-from-here",
+              "english": "Is it far from here?"
+            },
+            {
+              "slot": "do-you-like-your-neighbourhood-to-a-man",
+              "english": "Do you like your neighbourhood? (to a man)"
+            },
+            {
+              "slot": "i-moved-here-from-the-village",
+              "english": "I moved here from the village."
+            },
+            {
+              "slot": "my-neighbour-is-nice-male-neighbour",
+              "english": "My neighbour is nice. (a male neighbour)"
+            },
+            {
+              "slot": "which-city-are-you-from-to-a-man",
+              "english": "Which city are you from? (to a man)"
+            }
+          ],
+          "words": ["city", "village", "countryside", "neighbourhood", "street", "address", "house", "flat", "apartment-building", "masjid", "market", "neighbour", "near", "far", "to-reside", "to-move", "to-like", "calm", "year"]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Describing My House",
+          "phrases": [
+            {
+              "slot": "my-house-is-big",
+              "english": "My house is big.",
+              "search_term": "big house",
+              "image": "unit-02/l06-p01-big-house.jpg"
+            },
+            {
+              "slot": "our-house-is-old",
+              "english": "Our house is old.",
+              "search_term": "old house",
+              "image": "unit-02/l06-p02-old-house.jpg"
+            },
+            {
+              "slot": "the-flat-is-new",
+              "english": "The flat is new.",
+              "search_term": "new apartment building",
+              "image": "unit-02/l06-p03-new-apartment-building.jpg"
+            },
+            {
+              "slot": "the-house-is-beautiful",
+              "english": "The house is beautiful."
+            },
+            {
+              "slot": "the-living-room-is-spacious",
+              "english": "The living room is spacious.",
+              "search_term": "living room",
+              "image": "unit-02/l06-p05-living-room.jpg"
+            },
+            {
+              "slot": "the-flat-is-bright",
+              "english": "The flat is bright.",
+              "search_term": "sunlit room"
+            },
+            {
+              "slot": "the-street-is-quiet",
+              "english": "The street is quiet.",
+              "search_term": "quiet street"
+            },
+            {
+              "slot": "how-many-floors-does-your-house-have-to-a-man",
+              "english": "How many floors does your house have? (to a man)"
+            },
+            {
+              "slot": "how-many-rooms-does-the-flat-have",
+              "english": "How many rooms does the flat have?"
+            },
+            {
+              "slot": "we-have-a-small-garden",
+              "english": "We have a small garden.",
+              "search_term": "small garden",
+              "image": "unit-02/l06-p10-small-garden.jpg"
+            },
+            {
+              "slot": "we-sit-on-the-roof",
+              "english": "We sit on the roof.",
+              "search_term": "house roof",
+              "image": "unit-02/l06-p11-house-roof.jpg"
+            },
+            {
+              "slot": "the-market-is-near-my-house",
+              "english": "The market is near my house.",
+              "search_term": "market stalls",
+              "image": "unit-02/l06-p12-market-stalls.jpg"
+            }
+          ],
+          "words": ["house", "room", "floor", "kitchen", "bathroom", "bedroom", "living-room", "balcony", "garden", "roof", "window", "door", "big", "small", "old-not-new", "new", "beautiful", "spacious", "bright", "calm", "comfortable", "clean", "near", "far", "market"]
+        },
+        {
+          "lesson": "lesson-07",
+          "title": "Rooms of the House",
+          "phrases": [
+            {
+              "slot": "this-is-the-living-room",
+              "english": "This is the living room.",
+              "search_term": "living room",
+              "image": "unit-02/l07-p01-living-room.jpg"
+            },
+            {
+              "slot": "where-is-the-kitchen",
+              "english": "Where is the kitchen?",
+              "search_term": "kitchen",
+              "image": "unit-02/l07-p02-kitchen.jpg"
+            },
+            {
+              "slot": "this-is-my-bedroom",
+              "english": "This is my bedroom.",
+              "search_term": "bedroom",
+              "image": "unit-02/l07-p03-bedroom.jpg"
+            },
+            {
+              "slot": "where-is-the-bathroom",
+              "english": "Where is the bathroom?",
+              "search_term": "bathroom",
+              "image": "unit-02/l07-p04-bathroom.jpg"
+            },
+            {
+              "slot": "go-to-the-garden-to-a-man",
+              "english": "Go to the garden. (to a man)",
+              "search_term": "garden",
+              "image": "unit-02/l07-p05-garden.jpg"
+            },
+            {
+              "slot": "the-guest-room-is-ready",
+              "english": "The guest room is ready.",
+              "search_term": "guest bedroom",
+              "image": "unit-02/l07-p06-guest-bedroom.jpg"
+            },
+            {
+              "slot": "the-bedrooms-are-upstairs",
+              "english": "The bedrooms are upstairs."
+            },
+            {
+              "slot": "where-are-the-stairs",
+              "english": "Where are the stairs?",
+              "search_term": "staircase",
+              "image": "unit-02/l07-p08-staircase.jpg"
+            },
+            {
+              "slot": "the-living-room-is-downstairs",
+              "english": "The living room is downstairs."
+            },
+            {
+              "slot": "the-balcony-is-next-to-the-bedroom",
+              "english": "The balcony is next to the bedroom.",
+              "search_term": "balcony",
+              "image": "unit-02/l07-p10-balcony.jpg"
+            },
+            {
+              "slot": "lets-go-up-to-the-roof",
+              "english": "Let us go up to the roof.",
+              "search_term": "flat roof terrace"
+            },
+            {
+              "slot": "the-door-is-closed",
+              "english": "The door is closed.",
+              "search_term": "closed door",
+              "image": "unit-02/l07-p12-closed-door.jpg"
+            }
+          ],
+          "words": ["room", "living-room", "bedroom", "kitchen", "bathroom", "guest-room", "balcony", "hall", "corridor", "garden", "roof", "stairs", "door", "window", "floor", "upper-floor", "ground-floor", "house", "to-go-up", "next-to", "behind", "in-front-of", "where"]
+        },
+        {
+          "lesson": "lesson-08",
+          "title": "Things in the House",
+          "phrases": [
+            {
+              "slot": "there-is-a-bed-in-the-room",
+              "english": "There is a bed in the room.",
+              "search_term": "bed",
+              "image": "unit-02/l08-p01-bed.jpg"
+            },
+            {
+              "slot": "the-sofa-is-comfortable",
+              "english": "The sofa is comfortable.",
+              "search_term": "sofa",
+              "image": "unit-02/l08-p02-sofa.jpg"
+            },
+            {
+              "slot": "where-is-the-remote-control",
+              "english": "Where is the remote control?",
+              "search_term": "tv remote control",
+              "image": "unit-02/l08-p03-tv-remote-control.jpg"
+            },
+            {
+              "slot": "where-is-the-key",
+              "english": "Where is the key?",
+              "search_term": "house key",
+              "image": "unit-02/l08-p04-house-key.jpg"
+            },
+            {
+              "slot": "switch-on-the-light-to-a-man",
+              "english": "Switch on the light. (to a man)",
+              "search_term": "ceiling light",
+              "image": "unit-02/l08-p05-ceiling-light.jpg"
+            },
+            {
+              "slot": "switch-off-the-light-to-a-man",
+              "english": "Switch off the light. (to a man)"
+            },
+            {
+              "slot": "open-the-window-to-a-man",
+              "english": "Open the window. (to a man)",
+              "search_term": "open window",
+              "image": "unit-02/l08-p07-open-window.jpg"
+            },
+            {
+              "slot": "close-the-window-to-a-man",
+              "english": "Close the window. (to a man)"
+            },
+            {
+              "slot": "i-need-a-blanket",
+              "english": "I need a blanket.",
+              "search_term": "folded blanket"
+            },
+            {
+              "slot": "the-washing-machine-does-not-work",
+              "english": "The washing machine does not work.",
+              "search_term": "washing machine",
+              "image": "unit-02/l08-p10-washing-machine.jpg"
+            },
+            {
+              "slot": "switch-on-the-fan-to-a-man",
+              "english": "Switch on the fan. (to a man)",
+              "search_term": "electric fan",
+              "image": "unit-02/l08-p11-electric-fan.jpg"
+            },
+            {
+              "slot": "the-mirror-is-next-to-the-door",
+              "english": "The mirror is next to the door.",
+              "search_term": "mirror",
+              "image": "unit-02/l08-p12-mirror.jpg"
+            }
+          ],
+          "words": ["bed", "sofa", "chair", "table", "wardrobe", "carpet", "mirror", "lamp", "fridge", "television", "fan", "curtains", "clock", "pillow", "blanket", "washing-machine", "cooker", "remote-control", "key", "light", "window", "to-turn-on", "to-turn-off", "to-open", "to-close", "to-need"]
         }
       ]
     },

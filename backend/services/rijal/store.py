@@ -18,6 +18,7 @@ _SUMMARY = "n.id, n.name_ar, n.name_en, n.grade_ar, n.grade_rank"
 
 
 _counts: tuple | None = None  # (db stamp, [(narrator id, hadith named in), ...] most first)
+_kin: tuple | None = None     # (db stamp, {(collection, number): lettered narrations}) where more than one
 
 
 def _generations() -> list[dict]:
@@ -70,6 +71,20 @@ def chains(collection: str, book: int) -> dict[str, list[list[int]]]:
         ):
             found.setdefault(f"{number}{part}", []).append([start, end, who])
     return found
+
+
+def kin(collection: str, book: int) -> dict[str, int]:
+    """{"782": 3}: the lettered narrations each number of this book has across the whole collection, where more than
+    one (a number's letters can sit in two books). One scan per build of the file."""
+    global _kin
+    db = _db()
+    if not db:
+        return {}
+    if _kin is None or _kin[0] != _db.stamp():
+        _kin = (_db.stamp(), {(c, n): k for c, n, k in db.execute(
+            "SELECT collection, number, COUNT(DISTINCT part) k FROM mention GROUP BY collection, number HAVING k > 1")})
+    numbers = {n for (n,) in db.execute("SELECT DISTINCT number FROM mention WHERE collection = ? AND book = ?", (collection, book))}
+    return {str(n): _kin[1][collection, n] for n in numbers if (collection, n) in _kin[1]}
 
 
 def _ties(db, narrator_id: int, side: str, other: str) -> list[dict]:

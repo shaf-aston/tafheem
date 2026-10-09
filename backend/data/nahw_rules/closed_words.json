@@ -15,6 +15,8 @@
    "ar": "حروف الجر",
    "card": {"named": "حرف جر", "does": "يجر الاسم بعده", "governs": "harf_jarr"},
    "effect": "puts the noun after it in the genitive (majroor); the pair is jar-wa-majroor",
+   "_oath_only": "jarr only as the oath, which opens its clause: no verb or noun before it in the sentence (والله، تالله); after one, و joins (فَفَرِيقًا كَذَّبْتُمْ وَفَرِيقًا تَقْتُلُونَ)",
+   "oath_only": ["و", "ت"],
    "words": [
     "ب",
     "ت",
@@ -57,6 +59,8 @@
    "ar": "حروف العطف",
    "card": {"named": "حرف عطف", "does": "يتبع ما بعده ما قبله في إعرابه", "governs": "atf"},
    "effect": "makes the next word follow the case of the word before it (معطوف on معطوف عليه); governs nothing itself",
+   "_joins_mood": "a present verb joined by these to one in nasb or jazm takes that mood (أن تبرّوا وتتّقوا، إن تبدوا أو تخفوه). Not ف: after a request or negation it is فاء السببية, nasb by a hidden أن (nasb_mudari)",
+   "joins_mood": ["و", "أو", "ثم"],
    "words": [
     "و",
     "ف",
@@ -480,8 +484,9 @@
   },
   "ghair_amila_other": {
    "ar": "حروف غير عاملة أخرى",
-   "card": {"named": "حرف", "does": ""},
+   "card": {"named": "حرف", "does": "", "named_as": {"ل": "لام التوكيد"}},
    "effect": "draws attention, answers, explains, urges, or adds a nuance; governs nothing",
+   "_fatha_lam": "a لام written onto a word with a fatha is the لام of emphasis (لَيَقُولَنَّ، إِنَّ زَيْدًا لَجَالِسٌ: اللام المزحلقة), governing nothing; the jarr لام takes a kasra, a fatha only before an attached pronoun (لَهُ), which the parser keeps as its own word (particles._emphasis_lam)",
    "words": [
     "أما",
     "ألا",

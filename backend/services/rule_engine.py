@@ -13,7 +13,7 @@ from __future__ import annotations
 from typing import Any
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import PRESENT_PREFIX, SUKUN
+from backend.services.harakat import PRESENT_PREFIX, SUKUN, has_tanween
 from backend.services.nahw_book import MABNI_KINDS, book_words, condition_of, named_roles, reason, teacher_rules
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
@@ -143,6 +143,9 @@ def _card(tag: dict[str, Any], i: int, tags: list[dict]) -> dict:
     if pos == "pron":
         return _entry(tag, "damir", UNNAMED, None, "mabni", reason("ضمير"))
     if pos == "verb":
-        return _verb_entry(tag)
+        if not has_tanween(tag["word"]):
+            return _verb_entry(tag)
+        # لَسِحْرًا: a verb never carries tanween (facts.is_verb), so it is a noun whose case is still to come
+        return _entry(tag, "ism", UNNAMED, None, None, reason(UNNAMED))
     case = tag.get("case")
     return _entry(tag, tag.get("type") or "ism", UNNAMED, None, case, reason(UNNAMED, mabni=case == "mabni"))

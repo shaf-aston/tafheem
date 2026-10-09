@@ -12,6 +12,13 @@ hear from" (services/usul/rung.py, jami.py). Prints the narrators levelled, the
 notes per level, the wordings no term took and every join with the rows it left
 over, so what the rule cannot read is seen and never guessed.
 
+Every quote in usul.json that names a book and a page is first found in that book and its page checked
+against the one the book's markers give (check_pages); any mismatch stops the build.
+
+For each hadith number told more than once it counts the narrators at each place of the chains and
+compares the words of the tellings (services/usul/family.py), and prints the families with a picture
+and those left without one, by reason. `--sample FILE` also writes families laid out for checking by hand.
+
 Rebuilding is safe at any time: it writes a fresh file beside the old one and
 moves it into place at the end, like build_rijal.py. It stops, leaving the old
 file, if the number of notes moves more than `max_change_ratio` against it.
@@ -21,6 +28,9 @@ from __future__ import annotations
 import json
 import sqlite3
 import sys
+import argparse
+import difflib
+import random
 from collections import Counter
 from pathlib import Path
 
@@ -28,7 +38,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.hadith import chain, loader  # noqa: E402
-from backend.services.usul import books, facts, jami, match, mukhtalitin, names, ruling, rung, taqrib, tarif  # noqa: E402
+from backend.services.hadith.chain import chain_of  # noqa: E402
+from backend.services.usul import books, facts, family, jami, match, mukhtalitin, names, ruling, rung, taqrib, tarif  # noqa: E402
 from backend.services.usul.level import kind_of, level_of  # noqa: E402
 from backend.services.usul.rule import rule  # noqa: E402
 
@@ -64,6 +75,15 @@ CREATE TABLE ruling (
 ) WITHOUT ROWID;
 CREATE INDEX ruling_by_kind ON ruling (kind, collection, number, part);
 CREATE INDEX ruling_by_book ON ruling (collection, hbook);
+CREATE TABLE family_place (
+    collection TEXT NOT NULL, number INTEGER NOT NULL, place INTEGER NOT NULL, count INTEGER NOT NULL, ids TEXT NOT NULL,
+    PRIMARY KEY (collection, number, place)
+) WITHOUT ROWID;
+CREATE TABLE family_word (
+    collection TEXT NOT NULL, number INTEGER NOT NULL, part TEXT NOT NULL, at INTEGER NOT NULL, word TEXT NOT NULL,
+    kind TEXT NOT NULL, other TEXT NOT NULL,
+    PRIMARY KEY (collection, number, part, at)
+) WITHOUT ROWID;
 """
 
 
@@ -110,18 +130,46 @@ def guard_change(target: Path, table: str, now: int, ratio: float) -> None:
                          "delete it to accept the new count.")
 
 
-def read_books(cfg: dict) -> dict[str, list[books.Entry]]:
-    """Every entry of each narrator book fetch_usul.py saved."""
+def read_texts(cfg: dict) -> dict[str, str]:
+    """The text of each book fetch_usul.py saved; a missing file stops the build."""
     folder = data_path("usul_books_dir")
     found = {}
-    for key, spec in cfg["books"].items():
+    for key in cfg["books"]:
         if key == "base":
             continue
         path = folder / f"{key}.txt"
         if not path.exists():
             raise SystemExit(f"no {path.name}. Run: python backend/scripts/fetch_usul.py")
-        found[key] = books.entries(path.read_text(encoding="utf-8"), spec)
+        found[key] = path.read_text(encoding="utf-8")
     return found
+
+
+def read_books(cfg: dict, texts: dict[str, str]) -> dict[str, list[books.Entry]]:
+    """Every entry of each book whose config says how its entries open; the rest are only quoted from."""
+    return {key: books.entries(texts[key], spec) for key, spec in cfg["books"].items() if "entry" in spec}
+
+
+def cited(node, path: str = ""):
+    """(path, dict) for every dict in the config that quotes a book and names its page."""
+    if isinstance(node, dict):
+        if all(isinstance(node.get(key), str) for key in ("quote", "book", "page")):
+            yield path, node
+        for key, value in node.items():
+            yield from cited(value, f"{path}.{key}" if path else key)
+    elif isinstance(node, list):
+        for i, value in enumerate(node):
+            yield from cited(value, f"{path}[{i}]")
+
+
+def check_pages(cfg: dict, texts: dict[str, str]) -> list[str]:
+    """One line per quote the books do not bear out: its path, the page the config gives and the one the book gives."""
+    problems = []
+    for path, node in cited(cfg):
+        found = books.locate(texts[node["book"]], node["quote"], cfg["verify"])
+        if found != node["page"]:
+            problems.append(f"{path}: book {node['book']}, config {node['page']!r}, derived "
+                            + ("not found" if found is None else repr(found)))
+    return problems
 
 
 def narrator_rows(rijal: sqlite3.Connection) -> dict[int, dict]:
@@ -284,12 +332,151 @@ def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], h
     return report
 
 
-def build() -> None:
+def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: list[tuple[tuple, str, int]],
+                 rows: dict[int, dict], cfg: dict) -> tuple[list[str], list[dict]]:
+    """family_place and family_word for every hadith number told more than once (the parts rijal.db names).
+
+    Returns (the report, one dict per family for the sample: parts, chains, places, marks, why)."""
+    fc = cfg["family"]
+    generations = json.loads((data_path("rijal_dir") / "rijal.json").read_text(encoding="utf-8"))["generations"]
+    companions = set(next(g["tabaqat"] for g in generations if g["key"] == fc["companion_group"]))
+    generation = {who: row["generation_ar"] for who, row in rows.items()}
+    arabic = {key: text for key, text, _ in hadith}
+    mentions: dict[tuple, dict[str, dict[int, tuple]]] = {}   # a mention written twice at one start is one
+    for collection, number, part, start, end, who in rijal.execute(
+            "SELECT collection, number, part, start, end, narrator_id FROM mention ORDER BY collection, number, part, ord"):
+        mentions.setdefault((collection, number), {}).setdefault(part, {}).setdefault(start, (start, end, who))
+    families = {key: sorted(by_part) for key, by_part in mentions.items() if len(by_part) >= 2}
+    # Every telling's matn words, cut like the app cuts them; the weight of a word is read off all of them.
+    matn_of = {(c, n, p): chain_of(arabic.get((c, n, p), "")) for (c, n), parts in families.items() for p in parts}
+    keys_of = lambda words: {k for w in words if (k := family.word_key(w, fc))}  # noqa: E731
+    weight = family.weights([keys_of(matn.split()) for _, matn in matn_of.values()])
+    why_place, why_word, mark_kinds = Counter(), Counter(), Counter()
+    picture_n = alone_n = compared_n = marked_n = 0
+    results = []
+    for (collection, number), parts in families.items():
+        by_part = mentions[collection, number]
+        chains, reasons = {}, {}
+        for part in parts:
+            chains[part], reasons[part] = family.chain_ids(arabic.get((collection, number, part), ""),
+                                                           list(by_part[part].values()), generation, companions, fc["joiner"])
+        why = next((r for r in reasons.values() if r), "")
+        shown = {"collection": collection, "number": number, "parts": parts, "chains": chains, "why": why, "places": [],
+                 "marks": {}, "matns": {}, "left": {}, "shares": {},
+                 "arabic": {p: arabic.get((collection, number, p), "") for p in parts}}
+        if why:
+            why_place[why] += 1
+        else:
+            sets = family.places(list(chains.values()))
+            picture_n += 1
+            alone_n += sum(len(s) == 1 for s in sets)
+            shown["places"] = sets
+            conn.executemany("INSERT INTO family_place VALUES (?, ?, ?, ?, ?)",
+                             [(collection, number, i, len(s), json.dumps(sorted(s))) for i, s in enumerate(sets)])
+        matns = {}
+        for part in parts:
+            cut, matn = matn_of[collection, number, part]
+            if not cut:
+                why_word["no_chain_cut"] += 1
+            elif reasons[part] == "name_after_cut":   # chain words in the text would be marked as its own
+                why_word["name_after_cut"] += 1
+            else:
+                matns[part] = matn.split()
+        found, left = family.marks(matns, fc, weight)
+        why_word.update(left.values())
+        compared_n += len(matns) - len(left) >= 2
+        if "different_text" in left.values():
+            shown["shares"] = family.shares({p: keys_of(matns[p]) for p in matns if left.get(p) != "short_matn"}, weight)
+        for part, row in found.items():
+            marked_n += 1
+            mark_kinds.update(m.kind for m in row)
+            conn.executemany("INSERT INTO family_word VALUES (?, ?, ?, ?, ?, ?, ?)",
+                             [(collection, number, part, m.at, m.word, m.kind, m.other) for m in row])
+        shown.update(marks=found, matns=matns, left=left)
+        results.append(shown)
+    say = fc["reasons"]
+    conn.executemany("INSERT INTO gap VALUES ('family_place', ?, ?)", [(say[k], n) for k, n in why_place.items()])
+    conn.executemany("INSERT INTO gap VALUES ('family_word', ?, ?)", [(say[k], n) for k, n in why_word.items()])
+    ranked = lambda counts: ", ".join(f"{say[k]} {v:,}" for k, v in sorted(counts.items(), key=lambda kv: -kv[1]))  # noqa: E731
+    report = [f"families (a number told more than once): {len(families):,}; with a picture of its places: {picture_n:,} "
+              f"({alone_n:,} places held by one narrator in every narration)",
+              "families left without a picture (gap family_place): " + ranked(why_place),
+              f"word differences: {compared_n:,} families compared; {marked_n:,} tellings marked; "
+              + ", ".join(f"{k} {v:,}" for k, v in sorted(mark_kinds.items())),
+              "word differences left out (gap family_word, tellings): " + ranked(why_word)]
+    return report, results
+
+
+def write_sample(path: Path, results: list[dict], rows: dict[int, dict], cfg: dict) -> None:
+    """Text to check by hand: `sample` seeded random families that got a picture (each telling's chain by place with
+    ids and names, the Arabic chain, the counts per place, each marked word in its sentence beside what the closest
+    other telling says there), then `sample_gap` families sent to each reason that is a family's own (names joined, a
+    telling of different text) with their chain text."""
+    fc = cfg["family"]
+    rng = random.Random(fc["sample_seed"])
+    name = lambda who: f"{who} {rows[who]['name_ar']}"  # noqa: E731
+    chain_text = lambda text: chain_of(text)[0] or f"(no plain chain) {text[:fc['sample_text']]}"  # noqa: E731
+    out = ["# Usul: families checked by hand", "",
+           f"Seed {fc['sample_seed']}. Places count from the Companion (place 1). A word is marked when no other telling "
+           "of its group of one report has it.", ""]
+    pictured = [r for r in results if r["places"]]
+    for r in rng.sample(pictured, min(fc["sample"], len(pictured))):
+        n = len(r["parts"])
+        out.append(f"## {r['collection']} {r['number']}: {n} narrations")
+        for i, s in enumerate(r["places"], 1):
+            alone = f" (one narrator in all {n} narrations)" if len(s) == 1 else ""
+            out.append(f"- place {i}: {len(s)}{alone} = " + "; ".join(name(w) for w in sorted(s)))
+        for part in r["parts"]:
+            out.append(f"- {r['number']}{part} by place: " + " > ".join(name(w) for w in reversed(r["chains"][part])))
+            out.append(f"  chain text: {chain_text(r['arabic'][part])}")
+        for part in r["parts"]:
+            words = r["matns"].get(part)
+            if words is None:
+                out.append(f"- {part}: no chain cut, not compared")
+                continue
+            if part in r["left"]:
+                out.append(f"- {part}: {fc['reasons'][r['left'][part]]}, not compared")
+                continue
+            row = r["marks"].get(part, [])
+            out.append(f"- {part}: {len(words)} words, {len(row)} marked")
+            others = {q: w for q, w in r["matns"].items() if q != part and q not in r["left"]}
+            keys = [family.word_key(w, fc) for w in words]
+            theirs = {q: [family.word_key(w, fc) for w in ws] for q, ws in others.items()}
+            best = max(others, key=lambda q: difflib.SequenceMatcher(None, keys, theirs[q], autojunk=False).ratio(),
+                       default=None)
+            ops = difflib.SequenceMatcher(None, keys, theirs[best], autojunk=False).get_opcodes() if best else []
+            for m in row:
+                op = next((o for o in ops if o[1] <= m.at < o[2] or o[1] == o[2] == m.at), None)
+                there = " ".join(others[best][op[3]:op[4]]) if op and op[0] != "equal" else ""
+                around = " ".join(words[max(0, m.at - 2): m.at]) + f" [{m.word}] " + " ".join(words[m.at + 1: m.at + 3])
+                out.append(f"    - {m.kind}: {around}" + (f"   (no dots: {m.other})" if m.other else "")
+                           + f"   | {best} says: {there or '(nothing there)'}")
+        out.append("")
+    for reason, held in (("names_joined", lambda r: r["why"] == "names_joined"),
+                         ("different_text", lambda r: "different_text" in r["left"].values())):
+        pool = [r for r in results if held(r)]
+        out.append(f"## Sent to a gap: {fc['reasons'][reason]} ({len(pool)} families; {min(fc['sample_gap'], len(pool))} below)")
+        for r in rng.sample(pool, min(fc["sample_gap"], len(pool))):
+            out.append(f"- {r['collection']} {r['number']}")
+            for part in r["parts"]:
+                tag = f" [{fc['reasons'][r['left'][part]]}]" if part in r["left"] else ""
+                out.append(f"  - {part}{tag}: {chain_text(r['arabic'][part])}")
+            if reason == "different_text":
+                out.append("  - share of the shorter telling's weighted words the other holds: "
+                           + ", ".join(f"{p}/{q} {v:.2f}" for (p, q), v in sorted(r["shares"].items())))
+        out.append("")
+    path.write_text("\n".join(out), encoding="utf-8")
+
+
+def build(sample: Path | None = None) -> None:
     source = data_path("rijal_index_path")
     if not source.exists():
         raise SystemExit(f"no {source.name}. Run: python backend/scripts/build_rijal.py")
     cfg = rule()
-    entries = read_books(cfg)
+    texts = read_texts(cfg)
+    if problems := check_pages(cfg, texts):
+        raise SystemExit("usul.json pages the books do not bear out:\n  " + "\n  ".join(problems))
+    entries = read_books(cfg, texts)
     size, window = cfg["join"]["name_words"], cfg["join"]["nisba_window"]
     target = data_path("usul_index_path")
     scratch = target.with_suffix(".building.db")
@@ -391,6 +578,11 @@ def build() -> None:
                                        [match.forms(row) for row in rows.values()], cfg)
             guard_change(target, "ruling", conn.execute("SELECT COUNT(*) FROM ruling").fetchone()[0], cfg["max_change_ratio"])
 
+        # The versions fold: narrators counted at each place of a number's chains, and words one telling alone has.
+        family_report, family_results = add_families(conn, rijal, our_hadith(), rows, cfg)
+        for table in ("family_place", "family_word"):
+            guard_change(target, table, conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], cfg["max_change_ratio"])
+
         # What the page counts of him in our books.
         weak: dict[int, set] = {}
         for who, collection, number, part in conn.execute("SELECT narrator_id, collection, number, part FROM note"):
@@ -418,6 +610,10 @@ def build() -> None:
     scratch.replace(target)
 
     print("\n".join(ruling_report))
+    print("\n".join(family_report))
+    if sample:
+        write_sample(sample, family_results, rows, cfg)
+        print(f"sample written to {sample}")
     print(f"narrators levelled: {len(found):,}")
     print(f"notes: {notes:,}")
     for level, n in per_level:
@@ -435,4 +631,6 @@ def build() -> None:
 
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")  # the wordings are Arabic
-    build()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--sample", type=Path, help="also write families here, laid out for checking by hand")
+    build(ap.parse_args().sample)

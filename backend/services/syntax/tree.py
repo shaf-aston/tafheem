@@ -406,8 +406,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                 tied = by_id[piece["id"]]
                 for under in list(children_of[tied["id"]]):  # a فَ the parser made the head of its clause: the clause takes its place
                     _move(holder, under, holder[tied["id"]])
-                holder[tied["id"]].remove(tied)
-                ties.append(tied)
+                ties.append(_take(holder, tied))
         for unit, job in ((verb, condition["verb"]), (answer, condition["answer"])):
             job_of[unit["id"]] = job
             place_of[unit["id"]] = in_place(condition["case"]) if condition["case"] else said["no_place"]
@@ -419,7 +418,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             holder.setdefault(answer["id"], [answer])
             _move(holder, answer, roots)
         for unit in (opener, verb):
-            holder[unit["id"]].remove(unit)
+            _take(holder, unit)
             del holder[unit["id"]]
         opened[answer["id"]] = (opener, verb, *ties)
     # مَنْ شاء فليصمه ومَن شاء أفطر: a condition has the front of its sentence, so the وَ
@@ -537,9 +536,15 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
 
 def _move(holder: dict[int, list[dict]], token: dict, to: list[dict]) -> None:
     """Hang a word in another unit: off the list that holds it, onto `to`."""
-    holder[token["id"]].remove(token)
-    to.append(token)
+    to.append(_take(holder, token))
     holder[token["id"]] = to
+
+
+def _take(holder: dict[int, list[dict]], token: dict) -> dict:
+    """Off the list that holds it, by its id: the picture's own token, which may carry more
+    than the one asked with (6:139's answer هم did, and a list.remove of it failed)."""
+    kids = holder[token["id"]]
+    return kids.pop(next(i for i, kid in enumerate(kids) if kid["id"] == token["id"]))
 
 
 def _inside(token: dict, top: dict, children_of: dict[int, list[dict]]) -> bool:

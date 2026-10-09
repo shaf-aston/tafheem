@@ -1,7 +1,9 @@
 /**
  * The other narrations of a hadith number (Muslim 1620a, b, c...) in one closed fold:
  * a row per narration (its own narrators, where it meets this chain, what it borrows
- * from it, then its own wording) or, under "Tree", one drawing of every chain together.
+ * from it, then its own wording) or, under "Tree", one drawing of every chain together, or,
+ * under "Words", each telling's text with the words only it has marked. Above them, how many
+ * narrators stand at each place of the chains (FamilyPlaces).
  * Tapping a row or a leaf opens that hadith.
  */
 import { useState } from 'react'
@@ -12,6 +14,9 @@ import { familyTree } from '../../lib/familyTree'
 
 import ArabicText from './ArabicText'
 import Disclosure from './Disclosure'
+import FamilyPlaces from './FamilyPlaces'
+import FamilyWords from './FamilyWords'
+import PartLetter from './PartLetter'
 import Segmented from './Segmented'
 
 const VIEWS = [{ id: 'rows', label: 'Rows' }, { id: 'tree', label: 'Tree' }]
@@ -34,15 +39,7 @@ function Row({ part, accent, onOpen, onNarrator }) {
   return (
     <li className="py-2 border-t border-[var(--border)] first:border-t-0">
       <div className="flex items-start gap-2">
-        <button
-          type="button"
-          onClick={() => onOpen(part)}
-          aria-label={`Open ${part.part}`}
-          style={{ color: accent, borderColor: accent }}
-          className="press type-tiny shrink-0 w-7 h-7 grid place-items-center rounded-full border"
-        >
-          {part.part}
-        </button>
+        <PartLetter part={part.part} accent={accent} onOpen={() => onOpen(part)} />
         <div dir="rtl" className="flex flex-wrap items-center gap-1 min-w-0">
           {pills.map((n, i) => (
             <span key={`${n.id}-${i}`} className="flex items-center gap-1">
@@ -113,15 +110,17 @@ export default function NarrationFamily({ collection, number, part, count, accen
   const [view, setView] = useState('rows')
   const { data } = useQuery({ ...narrationFamilyQuery(collection, number, part), enabled: asked })
   const others = data?.parts.filter((p) => p.part !== data.viewed) ?? []
+  const views = data?.words ? [...VIEWS, { id: 'words', label: data.words.label }] : VIEWS
 
   return (
-    <Disclosure label={`${count} narrations`} onToggle={(open) => open && setAsked(true)} className="mt-3 pt-3 border-t border-[var(--border)]">
+    <Disclosure label={`${data?.parts.length ?? count} narrations`} onToggle={(open) => open && setAsked(true)} className="mt-3 pt-3 border-t border-[var(--border)]">
       {data && (
         <div className="space-y-2">
-          <Segmented label="View" options={VIEWS} value={view} onChange={setView} accent={accent} />
-          {view === 'rows'
-            ? <ul className="list-none m-0 p-0">{others.map((p) => <Row key={p.part} part={p} accent={accent} onOpen={onOpen} onNarrator={onNarrator} />)}</ul>
-            : <Tree parts={data.parts} accent={accent} onOpen={onOpen} />}
+          <FamilyPlaces places={data.places} accent={accent} />
+          <Segmented label="View" options={views} value={view} onChange={setView} accent={accent} />
+          {view === 'rows' && <ul className="list-none m-0 p-0">{others.map((p) => <Row key={p.part} part={p} accent={accent} onOpen={onOpen} onNarrator={onNarrator} />)}</ul>}
+          {view === 'tree' && <Tree parts={data.parts} accent={accent} onOpen={onOpen} />}
+          {view === 'words' && <FamilyWords parts={data.parts} legend={data.words.legend} accent={accent} onOpen={onOpen} />}
         </div>
       )}
     </Disclosure>

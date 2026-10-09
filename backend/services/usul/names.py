@@ -5,8 +5,9 @@ The books and sunnah.com write the same man a little differently (الحسين a
 and its article is dropped. A name written in a book joins a narrator when its
 first `size` words equal the first `size` words of his lineage or of his name
 (books write him either way: حبيب بن أبي ثابت is حبيب بن قيس) and, where `window` is given, a nisba of his stands among
-the next `window` words. It is a join only when it is one-to-one: one narrator
-for the name and one name for the narrator. Anything else goes to the gap table.
+the next `window` words. A book that writes the man out (`written`) is also held to all it writes: every ancestor
+it names is in his lineage, in order, and every nisba it puts beside the name is his. It is a join only when it is
+one-to-one: one narrator for the name and one name for the narrator. Anything else goes to the gap table.
 """
 from __future__ import annotations
 
@@ -76,6 +77,7 @@ class Index:
 
     def __init__(self, people: list[Person], size: int):
         self.size = size
+        self._nisbas = frozenset(w for p in people for w in p.nisba)
         self._by_key: dict[tuple[str, ...], list[Person]] = defaultdict(list)
         for p in people:
             for head in {k[:size] for k in p.keys if len(k) >= size}:
@@ -91,6 +93,30 @@ class Index:
             return list(found)
         near = set(written[self.size:self.size + window])
         return [p for p in found if p.nisba & near]
+
+    def written(self, written: tuple[str, ...], window: int) -> list[Person]:
+        """Narrators a book that writes the man out names. Where `named` finds several, those whose lineage (or name)
+        carries all the ancestors written, each after the one before it (a book may skip one: عبيد الله بن شهاب for
+        عبيد الله بن عبد الله بن شهاب), with none written that his lacks (a trailing بن means one more), and whose nisbas
+        include every nisba word written straight after the lineage. Words after those are the book's description of
+        him, and are not read. Where none carries it, or `named` finds one, that is what it found."""
+        found = self.named(written, window)
+        if len(found) < 2:
+            return found
+        fits = [p for p in found if any(k[:self.size] == written[:self.size] and self._carries(p, k, written) for k in p.keys)]
+        return fits or found
+
+    def _carries(self, p: Person, key: tuple[str, ...], written: tuple[str, ...]) -> bool:
+        at = used = 0
+        for w in written:
+            if w not in key[at:]:
+                break
+            at, used = key.index(w, at) + 1, used + 1
+        if "بن" in (written[used - 1], *written[used:used + 1]):
+            return False
+        rest = written[used:]
+        shown = next((i for i, w in enumerate(rest) if w not in self._nisbas), len(rest))
+        return set(rest[:shown]) <= p.nisba
 
     def headed(self, written: tuple[str, ...], window: int) -> list[Person]:
         """Narrators a heading names: its key, and where it goes on past the key, a nisba of his among those words

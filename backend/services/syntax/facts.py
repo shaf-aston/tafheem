@@ -182,6 +182,18 @@ def shows_nasb_by_kasra(token: dict) -> bool:
     return typed_case_of(token) == "i" and bare_letters(token.get("typed") or "").endswith(FEM_PLURAL_END)
 
 
+def shows_jarr(token: dict) -> bool:
+    """The typed ending can be jarr: a kasra, or the fatha of a diptote, which is jarr with no
+    ال and no مضاف إليه after it (طَرِيقَ جَهَنَّمَ، بَنِي إِسْرَائِيلَ), so a fatha with no tanween there.
+    A number or measure is never a diptote: the fatha of ثَلَاثَةَ عَشَرَ is its build."""
+    typed = token.get("typed") or ""
+    if typed_case_of(token) == "i":
+        return True
+    return (typed_case_of(token) == "a" and not has_tanween(typed) and not token.get("stuck_on")
+            and not bare_letters(typed).startswith("ال") and not token.get("mudaf") and not is_mabni(token)
+            and not is_one(token["lemma"], "tamyeez_head"))
+
+
 def shown_cases(token: dict) -> set[str]:
     """Every case the word's ending can mean: the one typed or parsed, and nasb too for a
     ـات word typed with a kasra."""
@@ -412,8 +424,12 @@ def with_waw(token: dict, s: Sentence) -> bool:
     if not (head and head["pos"] == "PRT" and head["lemma"].strip("+") == "و"
             and typed_case_of(token) == "a" and verb_above(head, s) is not None):
         return False
-    joined = previous_noun(head, s)
-    return joined is None or typed_or_parsed_case(joined) != "a"
+    # the noun straight before, and every noun on the verb before the و: جَعَلْنَا الْبَيْتَ مَثَابَةً
+    # ... وَأَمْنًا joins مثابة; a ـات kasra is nasb too (خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ)
+    verb = verb_above(head, s)
+    joinable = [previous_noun(head, s)] + [k for k in s.kids(verb) if k["id"] < head["id"]
+                                           and k["pos"] in ("NOM", "PROP") and not is_verb(k)]
+    return not any(k and "a" in shown_cases(k) for k in joinable)
 
 
 def jarr_takes(token: dict, s: Sentence) -> bool:
@@ -422,6 +438,9 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
     head = s.head(token)
     if not (token["rel"] == "OBJ" and head and not is_called_noun(head) and is_preposition(head)):
         return False  # إلا، و: a particle that is no preposition takes no majrur
+    if is_one(head["lemma"], "jarr", "oath_only") and not head.get("reading") and any(
+            t["pos"] in ("NOM", "PROP", "VRB", "VRB-PASS") and t["id"] < head["id"] for t in s.tokens):
+        return False  # the و of an oath opens its clause; after a word it joins
     return not any(t["pos"] in ("NOM", "PROP") and head["id"] < t["id"] < token["id"] for t in s.tokens)
 
 
@@ -602,11 +621,12 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
     """A word hung on a participle that is its object: linked as one in nasb, or in the
     nasb the reader typed where the link cannot hold it, since a مضاف إليه is never منصوب
     (فاهمٌ الدرسَ) and a نعت has its noun's case (ضاربٌ بكرًا). An indefinite state word
-    stays a حال (قادمٌ مسرعًا), and the participle's own root a مفعول مطلق."""
+    stays a حال (قادمٌ مسرعًا), and the participle's own root a مفعول مطلق. A diptote's fatha
+    is its jarr, so it stays the مضاف إليه (طَرِيقَ جَهَنَّمَ)."""
     rel, typed = token["rel"], typed_case_of(token)
     if rel == "OBJ":
         return typed_or_parsed_case(token) == "a"
-    return typed == "a" and (rel == "IDF" or (
+    return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
         rel == "MOD" and typed_or_parsed_case(head) != "a" and not is_state_word(token)
         and _skeleton(token["lemma"]) != _skeleton(head["lemma"])))
 
@@ -731,7 +751,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     if head and head.get("stt") == "c" and head["id"] == token["id"] - 1 and typed == "i" and not under_verb:
         return "idafa", head
     if rel == "---" and head and is_plain_noun(head) and head["id"] == token["id"] - 1 \
-            and typed_or_parsed_case(token) == "i" and not any(c["rel"] in ("SBJ", "TPC") for c in s.kids(token)) \
+            and (typed_or_parsed_case(token) == "i" or shows_jarr(token)) and not any(c["rel"] in ("SBJ", "TPC") for c in s.kids(token)) \
             and not ("dem" in token.get("pos_camel", "") and s.verbless):
         return "idafa", head
     # ظن الولد الأمر سهلا: a modifier after the first object is the verb's second

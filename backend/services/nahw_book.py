@@ -66,6 +66,18 @@ def in_family(lemma: str, family: str) -> bool:
     return any(is_one(lemma, family, part) for part, words in kept.items() if isinstance(words, list))
 
 
+ADVERB_FAMILIES = ("zarf_zaman", "zarf_makan")
+
+
+def only_adverb(lemma: str) -> bool:
+    """On the book's time or place list and on no other family's: إذ، قبل، مع are nouns
+    (ظروف) whatever a parser tags them; لمّا, also a particle of jazm, is not settled here."""
+    families = _closed()["families"]
+    word = lemma.strip("+")
+    return any(word in families[f]["words"] for f in ADVERB_FAMILIES) and not any(
+        word in kept.get("words", []) for name, kept in families.items() if name not in ADVERB_FAMILIES)
+
+
 def six_noun_case(base: str, lemma: str) -> str | None:
     """The case one of the six nouns shows by its long letter as a مضاف (أَخُو، أَبَا،
     لِأَخِيهِ), from the bare base word (joined letters and pronoun off) and its lemma.
