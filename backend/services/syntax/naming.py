@@ -21,8 +21,8 @@ from backend.services.nahw_book import (
     role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, SUKUN, five_verb_nun, letters, merged_prefix, own_letters, paused, stilled, typed_case,
-    vowel_agreement)
+    CASE_NAME, PRESENT_PREFIX, SUKUN, five_verb_nun, has_tanween, letters, merged_prefix, own_letters, paused, stilled,
+    typed_case, vowel_agreement)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -89,6 +89,12 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
+        # and letters at the front that are joined words (وَ، فَ، لِـ), not the word's own
+        token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
+        # نِعْمَ الْوَكِيلُ، وَلَبِئْسَ الْمِهَادُ: a verb of praise or blame typed as the past verb it is
+        # (its fatha), whatever the reading (the noun نِعْمَة، the "yes" نَعَمْ)
+        if is_one(token["lemma"], "praise_blame") and typed_case(word, token["stuck_on"]) == "a" and not has_tanween(word):
+            token.update(pos="VRB", asp="p")
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever reading the parser had;
         # a verb's reading (فَاقْبَلْهَا) is also tried on its own letters, the ف and ها aside;
         # a noun's never is, or the يَدِ of وَيَدِهِ would be a command; a name the list could
@@ -102,8 +108,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
             root = token.get("root", "")
-            joined = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
-            own = own_letters(word, joined, token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
+            own = own_letters(word, token["front"], token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
             cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
                          if (found := verb_reader.command(form, governed, root))
                          and (not read_noun or verb_reader.typed_fully(form, found))), None)
@@ -343,8 +348,9 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return _mood(paused(token["typed"], after), token, before, lam) if present else "mabni"
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
-    # يَا وَلَدُ، يا أيها: a single called noun is built on the damma (in the place of nasb)
-    if role == NAMED.munada and (typed_case(token["typed"]) == "u" or facts.is_called_noun(token)):
+    # يَا وَلَدُ، يا أيها: a single called noun is built on the damma (in the place of nasb), as is اللهمّ
+    if role == NAMED.munada and (typed_case(token["typed"]) == "u" or facts.is_called_noun(token)
+                                 or facts.is_called_alone(token)):
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case

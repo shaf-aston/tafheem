@@ -150,6 +150,9 @@ _POS_TO_CATIB6 = {
     "punc": "PNX", "digit": "NOM", "abbrev": "NOM",
 }
 
+# CAMeL's part of speech -> the UD tag a word takes when CAMeL gives none of its own
+_UD_OF = {"verb": "VERB", "noun_prop": "PROPN", "adj": "ADJ", "adj_comp": "ADJ"}
+
 
 def _is_clitic(token: str) -> bool:
     return (token.startswith("+") or token.endswith("+")) and token.strip("+") != ""
@@ -224,8 +227,17 @@ def _split_word(word: str, a: dict) -> list[dict]:
     # left whole its pronoun is lost to the sentence (the بدل's pronoun back to its noun).
     # Only a trailing pronoun is split untagged: it is a noun as the padding below makes it.
     pieces = a["atbtok"].split("_")
-    if len(pieces) == 1 or ("+" not in a["catib6"] and not all(p.startswith("+") for p in pieces[1:])):
+    if len(pieces) == 1:
         toks, catib6s, uds = [a["atbtok"]], [a["catib6"]], [a["ud"]]
+    elif "+" not in a["catib6"] and not all(p.startswith("+") for p in pieces[1:]):
+        # فَلَيْسَتِ، بِأَرْبَعَةِ: one tag for a word with a word joined in front, and it is the
+        # front word's; each piece takes its own kind: the joined word a particle, a pronoun
+        # a noun, the word itself the dictionary's part of speech
+        toks = pieces
+        catib6s = ["PRT" if p.endswith("+") else "NOM" if p.startswith("+") else _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
+                   for p in pieces]
+        uds = [a["ud"] if p.endswith("+") else "PRON" if p.startswith("+") else _UD_OF.get(a.get("pos", ""), "NOUN")
+               for p in pieces]
     else:
         toks = pieces
         catib6s = a["catib6"].split("+")

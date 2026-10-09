@@ -92,6 +92,8 @@
    "effect": "calls the noun after it (munada); a single definite munada is built on damma, else nasb",
    "_called_nouns": "أيّ (أيّة) with the ها of attention is the munada itself, built on damma; the noun with ال after it is its صفة (Tasheel, al-nida)",
    "called_nouns": ["أيها", "أيتها"],
+   "_called_alone": "اللهمّ is يا الله: يا dropped from the front and the ميم put at the end in its place, so it is the called noun with no particle before it (Ibn Jinni, al-Luma' p113)",
+   "called_alone": ["اللهم"],
    "words": [
     "يا",
     "أيا",

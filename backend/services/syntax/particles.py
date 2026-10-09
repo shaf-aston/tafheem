@@ -39,7 +39,15 @@ def _lemma(token: dict) -> str:
 
 def _word(token: dict, s: facts.Sentence) -> str:
     lemma = _lemma(token)
-    return lemma if lemma in _words() else "other"
+    return lemma if lemma in _words() and not _jarred_noun(token, s) else "other"
+
+
+def _jarred_noun(token: dict, s: facts.Sentence) -> bool:
+    """بِإِذْنِ اللَّهِ: a preposition written onto it and a kasra typed on its end is a noun in
+    jarr, never the particle it is spelled like (إِذَنْ); بِأَنَّ، لِكَيْ end on no kasra."""
+    before = s.by_id.get(token["id"] - 1)
+    return bool(before and before["form"].endswith("+") and before.get("pos_camel") == "prep"
+                and facts.typed_case_of(token) == "i")
 
 
 def _what_follows(token: dict, s: facts.Sentence) -> str:

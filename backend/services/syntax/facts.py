@@ -14,7 +14,8 @@ from typing import Callable
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import book_map, book_words, is_mabni, is_object_stem, is_one, is_plain_noun, six_noun_case
 from backend.services.harakat import (
-    CAMEL_CASE, FEM_PLURAL_END, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, past_passive_shape, typed_case, typed_passive)
+    CAMEL_CASE, FEM_PLURAL_END, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, letters, own_letters, past_passive_shape,
+    typed_case, typed_passive)
 
 # a root letter is what is left once the letters that come and go are removed
 WEAK = set("اويىءأإآئؤة")
@@ -61,7 +62,7 @@ def is_passive(token: dict) -> bool:
         return False  # a command is never passive; اُكْتُبُوا opens with a damma all the same
     if token.get("vox") == "p":
         return True
-    typed = token.get("typed")
+    typed = own_letters(token.get("typed") or "", token.get("front", 0), 0)  # وَيُغْسَلُ opens with the و's fatha
     present = token.get("asp") == "i" or not (token["pos"].startswith("VRB") or past_passive_shape(typed))
     return typed_passive(typed, present, token.get("stuck_on", 0))
 
@@ -178,8 +179,10 @@ def typed_case_of(token: dict) -> str | None:
 
 
 def shows_nasb_by_kasra(token: dict) -> bool:
-    """A sound feminine plural (ـات) whose typed kasra is also its nasb (رأيت المعلماتِ)."""
-    return typed_case_of(token) == "i" and bare_letters(token.get("typed") or "").endswith(FEM_PLURAL_END)
+    """A sound feminine plural (ـات) whose typed kasra is also its nasb (رأيت المعلماتِ، آتَيْنَاهُمْ آيَاتِنَا:
+    the ـنا is a pronoun's, so the plural's own letters are read)."""
+    own = own_letters(token.get("typed") or "", 0, token.get("stuck_on", 0))
+    return typed_case_of(token) == "i" and bare_letters(own).endswith(FEM_PLURAL_END)
 
 
 def shows_jarr(token: dict) -> bool:
@@ -317,9 +320,11 @@ def free_clashing_modifiers(tokens: list[dict]) -> None:
 
 
 def calling_head(token: dict, s: Sentence) -> str | None:
-    """nida or istithna when the word is called or excepted: it hangs on the listed
-    particle (the excepting one only when no negation came before it), or it is a listed
+    """nida or istithna when the word is called or excepted: it is a noun called alone
+    (اللهمّ), or it hangs on the listed particle (the excepting one only when no negation came before it), or it is a listed
     excepting noun (غير، سوى) under a verb."""
+    if is_called_alone(token):
+        return "nida"
     head = s.head(token)
     if head and head["pos"] == "PRT":
         if is_one(head["lemma"], "nida") and "interrog" not in head.get("pos_camel", ""):
@@ -338,9 +343,12 @@ def calling_head(token: dict, s: Sentence) -> str | None:
 
 def _joins_clauses(token: dict, s: Sentence) -> bool:
     """ثم is a noun to the parser, but a listed joining word between two nouns, or bare
-    before a verb, is the particle (the place-word ثَمَّ wears its shadda)."""
+    before a verb, is the particle, as is any typed with its damma: the place-word is ثَمَّ."""
     if not read_as(token, "atf"):
         return False
+    marked = letters(token.get("typed") or "")
+    if marked and "ُ" in marked[0][1]:
+        return True
     if s.noun_before(token) and any(k["rel"] == "OBJ" for k in s.kids(token)):
         return True
     typed = token.get("typed") or ""
@@ -376,6 +384,11 @@ def negates(token: dict, s: Sentence) -> bool:
         return False
     return bool(token["lemma"] == "ما" and token["pos"] != "PRT" and verb and is_verb(verb)
                 and any(k["rel"] == "OBJ" for k in s.kids(verb)))
+
+
+def is_called_alone(token: dict) -> bool:
+    """اللهمّ: the called noun with the ميم in the place of يا, so no particle before it."""
+    return _listed(token, "nida", "called_alone")
 
 
 def is_called_noun(token: dict) -> bool:
@@ -547,6 +560,14 @@ def _skeleton(word: str) -> list[str]:
     return [letter for letter in bare_letters(word) if letter not in WEAK]
 
 
+def same_root(token: dict, other: dict) -> bool:
+    """فَرِحَ فَرَحًا، يُطَهِّرَكُمْ تَطْهِيرًا: one root, the analyser's where both have one,
+    else the lemma's letters less the weak ones (the ت of تَفْعِيل is not a weak letter)."""
+    if token.get("root") and other.get("root"):
+        return token["root"] == other["root"]
+    return _skeleton(token["lemma"]) == _skeleton(other["lemma"])
+
+
 def is_participle(token: dict) -> bool:
     """An active or passive participle, or an adjective: what a hal is made of.
     A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا."""
@@ -628,7 +649,7 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
         return typed_or_parsed_case(token) == "a"
     return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
         rel == "MOD" and typed_or_parsed_case(head) != "a" and not is_state_word(token)
-        and _skeleton(token["lemma"]) != _skeleton(head["lemma"])))
+        and not same_root(token, head)))
 
 
 def _verb_place(token: dict, s: Sentence) -> str:
@@ -668,6 +689,9 @@ def _verb_place(token: dict, s: Sentence) -> str:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
         if head.get("asp") == "c" and rel in ("SBJ", "TPC", "OBJ", "---") and typed != "u":
             return "object"  # قل الحق: a command's doer is always the hidden أنت (Tasheel 2.4.1 p30)
+        if (not before and typed in (None, "a") and token.get("stt") in ("i", "c") and is_masdar(token)
+                and same_root(token, head)):
+            return "absolute"  # يُطَهِّرَكُمْ تَطْهِيرًا: the verb's own masdar
         after_first = rel == "OBJ" and typed in (None, "a") and any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)
         # لا يُؤْتُونَ النَّاسَ نَقِيرًا: a verb of two objects keeps its second OBJ, so no state or tamyeez
         if after_first and (s.family(head) == "zanna" or is_one(head["lemma"], "two_objects_give")):
@@ -685,7 +709,7 @@ def _verb_place(token: dict, s: Sentence) -> str:
                 # بِعْ الكِتَابَ: hung on the verb as a modifier, but a definite word is never a
                 # hal or tamyeez, so its fatha makes it the object (unless it is the verb's own masdar)
                 or (rel == "MOD" and typed == "a" and token.get("stt") in ("d", "c") and is_plain_noun(token)
-                    and _skeleton(token["lemma"]) != _skeleton(head["lemma"]))):
+                    and not same_root(token, head))):
             if typed in ("u", "a"):  # damma stands for the doer (or its deputy), fatha is the done-to
                 # طُوِّقَ طَوْقًا: under a passive verb the first object became the deputy, so
                 # a fatha left is the second (أُعْطِيَ الولدُ الكتابَ)
@@ -703,7 +727,7 @@ def _verb_place(token: dict, s: Sentence) -> str:
         if indefinite_nasb(token) and not unlike(token, head):
             verb = verb_above(token, s)
             if verb:
-                if _skeleton(token["lemma"]) == _skeleton(verb["lemma"]):
+                if same_root(token, verb):
                     return "absolute"  # same root as its verb: فَرِحَ فَرَحًا
                 return state_or_specification(token, head)
     return "none"
