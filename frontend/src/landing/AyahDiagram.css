@@ -1,0 +1,98 @@
+/* The ayah diagram (AyahDiagram.jsx): a self-contained card that fills its box.
+   Colours are the landing palette and the theme's role tokens; sizes are rungs
+   of the Arabic ladder. The JS shrinks .dg to fit, so nothing here needs a
+   breakpoint to stay inside the card. */
+.ayah-dg {
+  --faint: rgb(var(--text-rgb) / .38);
+  position: relative; min-width: 0; min-height: 0; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: .8rem;
+  padding: 1.4rem 1.2rem 1.3rem; border-radius: 18px;
+  border: 1px solid rgb(var(--gold-rgb) / .25); box-shadow: 0 30px 70px rgb(0 0 0 / .5);
+  background:
+    radial-gradient(40% 50% at 22% 24%, rgb(var(--gold-hi-rgb) / .22), transparent 70%),
+    radial-gradient(30% 40% at 82% 16%, rgb(var(--gold-hi-rgb) / .16), transparent 70%),
+    radial-gradient(45% 55% at 60% 95%, rgb(var(--gold-rgb) / .18), transparent 70%),
+    var(--ink);
+}
+.ayah-dg .orb {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgb(var(--gold-hi-rgb) / .4), transparent 70%);
+  animation: ayah-drift 9s ease-in-out infinite alternate;
+}
+.ayah-dg .orb:nth-of-type(1) { width: 90px; height: 90px; left: 4%; top: 8%; }
+.ayah-dg .orb:nth-of-type(2) { width: 60px; height: 60px; right: 6%; top: 6%; animation-delay: -3s; }
+.ayah-dg .orb:nth-of-type(3) { width: 130px; height: 130px; right: 22%; bottom: 2%; animation-delay: -6s; }
+@keyframes ayah-drift { to { transform: translate(22px, -16px) scale(1.15); } }
+.ayah-dg .fit { min-height: 0; display: grid; place-items: center; position: relative; z-index: 1; }
+
+/* One grid, a column per word. Rows: the word, its meaning, its name, then one per joining. */
+.ayah-dg .dg { display: grid; column-gap: .15rem; row-gap: .55rem; width: max-content; font-family: var(--font-arabic); }
+.ayah-dg .dg > * { transition: opacity var(--slow) ease; }
+.ayah-dg .wd { grid-row: 1; display: flex; justify-content: center; align-items: end; }
+.ayah-dg .wd .ar {
+  font-size: calc(var(--arabic-display-rem) * 1rem); line-height: 1.6; padding: 0 .55rem .1rem;
+  border-bottom: 1.5px solid var(--tone, var(--faint)); white-space: nowrap;
+}
+.ayah-dg .wd.ghost { align-items: center; }
+.ayah-dg .wd.ghost .ar {
+  font-size: calc(var(--arabic-term-rem) * 1rem); line-height: 1.5; color: var(--muted);
+  border: 1.5px dashed rgb(var(--text-rgb) / .35); border-radius: 10px; padding: 0 .4rem .1rem;
+}
+.ayah-dg .gl { grid-row: 2; unicode-bidi: isolate; text-align: center; font-family: var(--font-ui); font-size: .74rem; color: var(--muted); white-space: nowrap; padding-inline: .25rem; }
+.ayah-dg .tg { grid-row: 3; display: flex; justify-content: center; }
+.ayah-dg .term { font-size: calc(var(--arabic-small-rem) * 1rem); line-height: 1.5; color: var(--tone); white-space: nowrap; padding: 0 .25rem; }
+.ayah-dg .tg .term { animation: ayah-rise var(--slow) ease both; }
+@keyframes ayah-rise { from { opacity: 0; transform: translateY(4px); } }
+
+/* A word's line down to the brace that joins it: drawn only when that brace is. */
+.ayah-dg .thread { justify-self: center; width: 1.5px; background: var(--faint); transform: scaleY(0); transform-origin: top; transition: transform var(--slow) ease, opacity var(--slow) ease; }
+.ayah-dg .thread.on { transform: none; }
+
+.ayah-dg .br { display: grid; grid-template-columns: subgrid; row-gap: .3rem; align-content: start; opacity: 0; }
+.ayah-dg .br.on { opacity: 1; }
+.ayah-dg .br > * { grid-column: 1 / -1; }
+.ayah-dg .brace {
+  position: relative; height: .8rem; margin-inline: .35rem; border: 1.75px solid var(--tone); border-top: 0; border-radius: 0 0 1rem 1rem;
+  transform: scaleX(0); transition: transform var(--slow) ease .2s;
+}
+.ayah-dg .br.on .brace { transform: none; }
+.ayah-dg .brace::after { content: ""; position: absolute; top: 100%; left: 50%; translate: -50% 0; width: 1.75px; height: .55rem; background: var(--tone); }
+.ayah-dg .nm {
+  justify-self: center; display: flex; gap: .35rem; align-items: baseline; margin-top: .4rem; white-space: nowrap;
+  color: var(--tone); font-size: calc(var(--arabic-small-rem) * 1rem); line-height: 1.5; transition: opacity var(--slow);
+}
+.ayah-dg .nm .eq { color: var(--faint); font-family: var(--font-ui); font-size: .9rem; }
+.ayah-dg .nm.gold { background: var(--gold-hi); color: var(--ink); font-weight: 700; padding: .05rem .85rem .2rem; border-radius: 999px; box-shadow: 0 0 22px rgb(var(--gold-hi-rgb) / .45); }
+.ayah-dg .nm.gold .eq { color: rgb(var(--ink-rgb) / .55); }
+/* The beat after a phrase forms: an arrow drops from its name to what it becomes. */
+.ayah-dg .then { justify-self: center; display: grid; justify-items: center; opacity: 0; transform: translateY(-6px); transition: opacity var(--slow), transform var(--slow); }
+.ayah-dg .br.turned .then { opacity: 1; transform: none; }
+.ayah-dg .br.turned .nm:not(.gold) { opacity: .75; }
+.ayah-dg .then .arrow { position: relative; width: 1.5px; height: .9rem; margin-bottom: .15rem; background: var(--tone); }
+.ayah-dg .then .arrow::after { content: ""; position: absolute; left: 50%; bottom: -1px; translate: -50% 0; border: 4px solid transparent; border-top: 5px solid var(--tone); border-bottom: 0; }
+.ayah-dg .then .term { font-weight: 700; }
+
+/* The spotlight: everything outside the newest brace waits in shadow. */
+.ayah-dg .dg [data-dim] { opacity: .22; }
+
+.ayah-dg .tr {
+  position: relative; z-index: 1; padding-inline: 3rem; text-align: center;
+  font-family: var(--font-serif); font-size: clamp(1rem, 1.6vw, 1.25rem); color: var(--gold-hi);
+  opacity: 0; transform: translateY(6px); transition: opacity var(--slow), transform var(--slow);
+}
+.ayah-dg .tr.on { opacity: 1; transform: none; }
+.ayah-dg .ayah-play {
+  position: absolute; z-index: 2; right: .8rem; bottom: .8rem; width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: .9rem; cursor: pointer;
+  border: 1.5px solid rgb(var(--text-rgb) / .5); background: rgb(var(--ink-rgb) / .82); color: var(--text);
+  transition: transform var(--med) var(--spring);
+}
+.ayah-dg .ayah-play:hover { transform: scale(1.06); }
+
+@media (max-width: 600px) {
+  .ayah-dg { padding: 1rem .5rem; }
+  .ayah-dg .dg { column-gap: 0; }
+  .ayah-dg .wd .ar { font-size: calc(var(--arabic-chart-rem) * 1rem); padding-inline: .3rem; }
+  .ayah-dg .gl { white-space: normal; max-width: 5.5em; margin-inline: auto; font-size: .62rem; }
+  .ayah-dg .tr { padding-inline: 2.8rem; }
+}

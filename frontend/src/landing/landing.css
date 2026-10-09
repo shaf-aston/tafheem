@@ -79,15 +79,10 @@ body { margin: 0; overflow-x: hidden; }
 .cursor-blob.grow { width: 56px; height: 56px; }
 
 /* ================= HERO ================= */
-.landing-page .hero { min-height: 100svh; display: flex; align-items: center; overflow: hidden; background: var(--ink); }
-/* Capped on wide viewports only, where the two-column layout is short
-   relative to the screen: fixed height (not min-height) plus flex centering
-   means the eyebrow always lands near the top instead of being pushed down
-   by dead space. Left as min-height on narrow/stacked layouts, where the
-   content itself is often taller than 860px and a hard cap would clip it. */
-@media (min-width: 861px) {
-  .landing-page .hero { min-height: min(100svh, 860px); }
-}
+/* Exactly one screen: scrolling down leaves it and the next section starts.
+   The copy sits centred on the left; the stage on the right is whatever room
+   is left, and the ayah diagram inside it shrinks to fit. */
+.landing-page .hero { height: 100svh; min-height: 30rem; overflow: hidden; background: var(--ink); }
 .landing-page .hero::before {
   content: ""; position: absolute; inset: 0; z-index: 0;
   background:
@@ -95,26 +90,16 @@ body { margin: 0; overflow-x: hidden; }
     linear-gradient(180deg, var(--ink) 0%, #14100a 100%);
 }
 .landing-page .hero-grid {
-  /* align-items:start (not center): the arch-frame column is much taller
-     than the text column, and centering them against each other used to
-     push the eyebrow ~150px down from the top. Top-aligning both, with only
-     the arch-frame nudged down a touch to clear the eyebrow line, keeps the
-     eyebrow near the section's own top padding instead. */
-  position: relative; z-index: 2; display: grid; grid-template-columns: 1.15fr .85fr; gap: 2.5rem;
-  align-items: start; width: 100%; max-width: 1240px; margin: 0 auto;
-  padding: var(--landing-section-pad) var(--landing-gutter);
+  position: relative; z-index: 2; display: grid; grid-template-columns: .8fr 1.2fr; gap: 2.5rem;
+  height: 100%; max-width: 1320px; margin: 0 auto; padding: var(--landing-hero-pad) var(--landing-gutter);
 }
-.landing-page .hero-grid > :last-child { margin-top: .5rem; }
-.landing-page .hero-ghost {
-  position: absolute; z-index: 1; right: -4vw; top: 50%; transform: translateY(-50%);
-  font-size: clamp(9rem, 26vw, 26rem); color: transparent; -webkit-text-stroke: 1.5px rgb(var(--gold-rgb) / .35);
-  line-height: 1; pointer-events: none; user-select: none;
-}
+.landing-page .hero-copy { align-self: center; }
+.landing-page .hero-stage { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; min-height: 0; }
 .landing-page .eyebrow { color: var(--gold-hi); font-size: .78rem; margin-bottom: 1.2rem; }
 .landing-page .eyebrow::before { content: "\2022\a0"; color: var(--gold); }
-.landing-page .headline { font-size: clamp(2.5rem, 6.4vw, 5.6rem); color: var(--text); }
+.landing-page .headline { font-size: clamp(2.2rem, 4.1vw, 4rem); color: var(--text); }
 .landing-page .headline .accent { font-family: var(--font-arabic); font-style: italic; font-weight: 700; color: var(--gold-hi); }
-.landing-page .cta-row { margin-top: 2.25rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+.landing-page .cta-row { margin-top: clamp(2.5rem, 9vh, 5rem); display: flex; gap: 1rem; flex-wrap: wrap; }
 .landing-page .cta {
   display: inline-block; font-family: var(--font-label); font-weight: 700; font-size: .98rem;
   background: var(--gold-hi); color: #181209; padding: 1rem 2rem; border-radius: 999px; border: none;
@@ -123,26 +108,10 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .cta:hover { transform: translateY(-3px); background: var(--gold); }
 .landing-page .cta.ghost { background: transparent; color: var(--text); border: 1px solid rgb(var(--text-rgb) / .35); }
 
-.landing-page .arch-frame {
-  position: relative; aspect-ratio: 3 / 4; width: 100%; overflow: hidden; background: #000;
-  border-radius: 52% 52% 6px 6px / 34% 34% 6px 6px;
-  border: 1px solid rgb(var(--gold-rgb) / .4); box-shadow: 0 30px 80px rgba(0, 0, 0, .55), 0 0 0 10px rgb(var(--gold-rgb) / .05);
-}
-.landing-page .arch-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 900ms ease; }
-.landing-page .arch-frame video.active { opacity: 1; }
-.landing-page .arch-frame::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 60px rgba(0, 0, 0, .5); pointer-events: none; }
-.landing-page .hero-controls { position: absolute; z-index: 2; bottom: 1rem; right: 1rem; display: flex; gap: .6rem; }
-.landing-page .vid-btn {
-  width: 44px; height: 44px; min-width: 44px; min-height: 44px; border-radius: 50%; border: 1.5px solid rgb(var(--text-rgb) / .5);
-  background: rgb(var(--ink-rgb) / .82); backdrop-filter: blur(6px); color: var(--text); cursor: pointer;
-  display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: transform var(--med) var(--spring);
-}
-.landing-page .vid-btn:hover { transform: scale(1.06); }
-
 @media (max-width: 860px) {
-  .landing-page .hero-grid { grid-template-columns: 1fr; }
-  .landing-page .arch-frame { max-width: var(--landing-arch-max-w); margin: 0 auto; }
-  .landing-page .hero-ghost { display: none; }
+  .landing-page .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 1.2rem; }
+  .landing-page .headline { font-size: clamp(2rem, 9vw, 3rem); }
+  .landing-page .cta-row { margin-top: 1.6rem; }
 }
 
 /* ================= MARQUEE ================= */
