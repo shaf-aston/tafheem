@@ -10,7 +10,7 @@ one number, never a name for the hadith (mashhur, 'aziz and gharib are about eve
 teachers named together (حدثنا A وB) stand before the chain and are left out; two names at one place further up are
 no single line (the split is never guessed), so the family has no places.
 
-Words: each telling's matn (chain.chain_of) folded to its letters. Tellings are set against each other only where
+Words: each telling's matn (chain.chain_of, split on whitespace here and nowhere else) folded to its letters. Tellings are set against each other only where
 they share enough of their text to be one report; a word found in exactly one of them is marked there. A word that
 differs from another telling's only by a clitic or the app's spelling folds is no difference; one that matches only
 once the dots are gone is marked as a dot difference. Never labelled better or worse.
@@ -23,7 +23,8 @@ import re
 from collections import Counter
 from typing import NamedTuple
 
-from backend.services.hadith.chain import chain_of, passed_on, without_asides
+from backend.services.hadith.chain import passed_on, without_asides
+from backend.services.usul.rung import in_chain
 from backend.services.spelling import fold
 
 _LETTERS = re.compile("[^ء-ي]")
@@ -69,11 +70,7 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
     عن أبيهما"), companion_end_unplaced / companion_end_other (the last
     name is not a Companion for rijal, or is not placed in a generation at all), two_companions (the last two names
     are both Companions)."""
-    chain, _ = chain_of(arabic)
-    if not chain:
-        return [], "no_chain"
-    limit = arabic.find(chain) + len(chain)
-    named = [m for m in mentions if m[1] <= limit]
+    named = in_chain(arabic, mentions)
     if not named:
         return [], "no_chain"
     if len(named) < len(mentions):

@@ -303,6 +303,10 @@
   "family": {
     "companion_group": "companions",
     "joiner": "و",
+    "words": {
+      "label": "Words",
+      "legend": "Underlined: only in this telling. Dotted: matches a word of another telling once the dots are taken off."
+    },
     "places": {
       "heading": "Narrators at each place, across {book}'s {n} narrations of no. {number}",
       "note": "Counted by place in the chain from the Companion, which is not always a generation.",

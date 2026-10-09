@@ -6,29 +6,20 @@
 import { markedRuns } from '../../lib/familyWords'
 
 import ArabicText from './ArabicText'
+import PartLetter from './PartLetter'
 import ShowRest from './ShowRest'
 
-export default function FamilyWords({ parts, accent, onOpen }) {
+export default function FamilyWords({ parts, legend, accent, onOpen }) {
   return (
     <div className="space-y-2">
-      <p className="type-tiny m-0 text-[var(--text-faint)]">
-        Underlined: only in this telling. Dotted: matches a word of another telling once the dots are taken off.
-      </p>
+      <p className="type-tiny m-0 text-[var(--text-faint)]">{legend}</p>
       <ul className="list-none m-0 p-0">
         {parts.filter((p) => p.marks.length).map((p) => (
           <li key={p.part} className="py-2 border-t border-[var(--border)] first:border-t-0 flex items-start gap-2">
-            <button
-              type="button"
-              onClick={() => onOpen(p)}
-              aria-label={`Open ${p.part}`}
-              style={{ color: accent, borderColor: accent }}
-              className="press type-tiny shrink-0 w-7 h-7 grid place-items-center rounded-full border"
-            >
-              {p.part}
-            </button>
+            <PartLetter part={p.part} accent={accent} onOpen={() => onOpen(p)} />
             <ShowRest lines={4} accent={accent} className="min-w-0 flex-1">
               <ArabicText as="p" size="sm" className="block m-0 text-[var(--text-dim)]">
-                {markedRuns(p.matn, p.marks).map((run, i) => {
+                {markedRuns(p.words, p.marks).map((run, i) => {
                   if (!run.kind) return <span key={i}>{run.text} </span>
                   return (
                     <span key={i}>
