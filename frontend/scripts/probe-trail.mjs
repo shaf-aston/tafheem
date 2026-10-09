@@ -19,7 +19,7 @@ const search = async (page, word) => {
   await page.fill('#dict-input', word)
   await page.press('#dict-input', 'Enter')
   await page.waitForFunction(
-    (w) => new URL(location.href).searchParams.get('q') === w,
+    (w) => (history.state?.value ?? null) === w,
     word,
     { timeout: 10000 },
   )
@@ -30,7 +30,7 @@ const search = async (page, word) => {
 const ready = (page) => page.getByText('Backend Ready').waitFor({ timeout: 20000 })
 
 const onWord = (page, word) =>
-  page.waitForFunction((w) => new URL(location.href).searchParams.get('q') === w, word)
+  page.waitForFunction((w) => (history.state?.value ?? null) === w, word)
 
 const trail = (page) => page.locator('nav[aria-label="Where you have been"]')
 
@@ -49,12 +49,12 @@ const page = await (await chromium.launch()).newPage()
 const errors = []
 page.on('pageerror', (e) => errors.push(e.message))
 
-await page.goto(`${APP}/?tab=dict`, { waitUntil: 'networkidle' })
+await page.goto(`${APP}/app/dict`, { waitUntil: 'networkidle' })
 await ready(page)
 check('nothing walked yet, no trail', await trail(page).count(), 0)
 
 await search(page, 'كتب')
-check('the word is in the address', new URL(page.url()).searchParams.get('q'), 'كتب')
+check('the word is on the history entry', await page.evaluate(() => history.state?.value ?? null), 'كتب')
 check('one step, and it is where we are', await steps(page), 'كتب:here')
 
 await search(page, 'book')
@@ -74,14 +74,14 @@ await onWord(page, 'كتب')
 check('clicking a step behind goes back to it', await steps(page), 'كتب:here book:ahead')
 
 await trail(page).locator('button[aria-label="Back"]').click()
-await page.waitForFunction(() => !new URL(location.href).searchParams.get('q'))
+await page.waitForFunction(() => !history.state?.value)
 check('the arrow leaves the last word', await steps(page), 'كتب:ahead book:ahead')
 check('and there is no arrow left to press', await trail(page).locator('button[aria-label="Back"]').count(), 0)
 
 // A pasted link opens on the word it names, as a new step on the saved path
 // (probe-session.mjs covers the path itself). We were on the blank first step,
 // so the link is the only word, one step back from nothing.
-await page.goto(`${APP}/?tab=dict&q=%D8%B3%D8%B7%D8%B1`, { waitUntil: 'networkidle' })
+await page.goto(`${APP}/app/dict?q=%D8%B3%D8%B7%D8%B1`, { waitUntil: 'networkidle' })
 await ready(page)
 check('a shared link opens on that word', await page.locator('#dict-input').inputValue(), 'سطر')
 check('as a step on the path', await steps(page), 'سطر:here')
@@ -104,13 +104,13 @@ for (const [tab, field, first, second] of [
   ['daleel', '#daleel-input', 'patience', 'الصبر'],
   ['sarf', '#sarf-input', 'كتب', 'درس'],
 ]) {
-  await page.goto(`${APP}/?tab=${tab}`, { waitUntil: 'networkidle' })
+  await page.goto(`${APP}/app/${tab}`, { waitUntil: 'networkidle' })
   await ready(page)
   for (const word of [first, second]) {
     await page.fill(field, word)
     await page.press(field, 'Enter')
     await page.waitForFunction(
-      (w) => new URL(location.href).searchParams.get('q') === w, word, { timeout: 20000 },
+      (w) => (history.state?.value ?? null) === w, word, { timeout: 20000 },
     )
   }
   check(`${tab} has the same line`, await steps(page), `${first}:past ${second}:here`)

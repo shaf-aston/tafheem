@@ -21,7 +21,7 @@ const MEASURE_PX = 100 // big enough that canvas measures whole pixels of ink
 
 const browser = await chromium.launch()
 const page = await browser.newPage()
-await page.goto(`${BASE}/app?tab=quran`, { waitUntil: 'networkidle' })
+await page.goto(`${BASE}/app/quran`, { waitUntil: 'networkidle' })
 
 const { family, lineHeight, heights } = await page.evaluate(async ({ SURAHS, MEASURE_PX }) => {
   const root = getComputedStyle(document.documentElement)

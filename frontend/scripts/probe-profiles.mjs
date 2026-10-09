@@ -10,7 +10,7 @@
  */
 import { chromium } from 'playwright'
 
-const APP = 'http://localhost:5173/app?tab=quiz'
+const APP = 'http://localhost:5173/app/quiz'
 const NAME = `probe-${Date.now()}`
 
 let failed = 0
