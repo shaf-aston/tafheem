@@ -424,8 +424,12 @@ def with_waw(token: dict, s: Sentence) -> bool:
     if not (head and head["pos"] == "PRT" and head["lemma"].strip("+") == "و"
             and typed_case_of(token) == "a" and verb_above(head, s) is not None):
         return False
-    joined = previous_noun(head, s)
-    return joined is None or typed_or_parsed_case(joined) != "a"
+    # the noun straight before, and every noun on the verb before the و: جَعَلْنَا الْبَيْتَ مَثَابَةً
+    # ... وَأَمْنًا joins مثابة; a ـات kasra is nasb too (خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ)
+    verb = verb_above(head, s)
+    joinable = [previous_noun(head, s)] + [k for k in s.kids(verb) if k["id"] < head["id"]
+                                           and k["pos"] in ("NOM", "PROP") and not is_verb(k)]
+    return not any(k and "a" in shown_cases(k) for k in joinable)
 
 
 def jarr_takes(token: dict, s: Sentence) -> bool:
@@ -434,6 +438,9 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
     head = s.head(token)
     if not (token["rel"] == "OBJ" and head and not is_called_noun(head) and is_preposition(head)):
         return False  # إلا، و: a particle that is no preposition takes no majrur
+    if is_one(head["lemma"], "jarr", "oath_only") and not head.get("reading") and any(
+            t["pos"] in ("NOM", "PROP", "VRB", "VRB-PASS") and t["id"] < head["id"] for t in s.tokens):
+        return False  # the و of an oath opens its clause; after a word it joins
     return not any(t["pos"] in ("NOM", "PROP") and head["id"] < t["id"] < token["id"] for t in s.tokens)
 
 
