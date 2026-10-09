@@ -330,3 +330,36 @@ def test_a_word_is_split_where_its_tokenisation_splits_it(monkeypatch):
     reading = {"atbtok": "ثُلْثَ_+هُ", "catib6": "NOM", "ud": "NOUN", "pos": "noun", "lex": "ثُلْث",
                "enc0": "3ms_poss", "stt": "c", "cas": "a"}
     assert [t["form"] for t in _split_word("ثُلُثَهُ", reading)] == ["ثلث", "+ه"]
+
+
+def test_a_word_joined_in_front_is_split_with_its_own_tag(monkeypatch):
+    # ف+_ليست comes tagged PRT alone, the فاء's tag; ليست is still a verb
+    from backend.services.syntax import catib_onnx
+    monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
+        ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
+    reading = {"atbtok": "فَ+_لَيْسَتِ", "catib6": "PRT", "ud": "CCONJ", "pos": "verb", "lex": "لَيْس", "asp": "p"}
+    pieces = catib_onnx._split_word("فَلَيْسَتِ", reading)
+    assert [(t["form"], t["pos"]) for t in pieces] == [("ف+", "PRT"), ("ليست", "VRB")]
+
+
+@pytest.mark.parametrize("front, passive", [(1, True), (0, False)])
+def test_a_passive_verb_is_read_past_the_waw_joined_in_front(front, passive):
+    # وَيُغْسَلُ: the و's fatha is not the verb's first vowel; read as one word it hides the damma
+    verb = token(1, "يغسل", "غسل", "VRB", 0, "---", asp="i", vox="a", typed="وَيُغْسَلُ", front=front)
+    assert facts.is_passive(verb) is passive
+
+
+def test_allahumma_is_called_with_no_particle_before_it():
+    toks = [token(1, "اللهم", "اللهم", "PROP", 2, "MOD"),
+            token(2, "اغفر", "غفر", "VRB", 0, "---", vox="a", asp="c")]
+    found = named(["اللَّهُمَّ", "اغْفِرْ"], toks)
+    assert (found[0]["role"], found[0]["case"]) == ("منادى", "mabni")
+
+
+@pytest.mark.parametrize("typed, verb", [("نِعْمَ", True), ("نَعَمْ", False)])
+def test_the_praise_verb_is_told_from_yes_by_its_fatha(typed, verb):
+    toks = [token(1, "نعم", "نعم", "NOM", 0, "---", pos_camel="noun", stt="c"),
+            token(2, "العبد", "عبد", "NOM", 1, "SBJ", stt="d", cas="n")]
+    found = roles([typed, "الْعَبْدُ"], toks)
+    assert (found[0] == "فعل") is verb
+    assert found[1] == "فاعل" or not verb  # the praised word after the verb is its doer
