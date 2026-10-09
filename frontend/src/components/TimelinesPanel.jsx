@@ -6,7 +6,7 @@
  * of sections) and which event is read. Where each of those goes on the screen is lib/timelineLayout's job,
  * and what they say is the backend's.
  *
- * The place in the tab is written as "section/event", so ?tab=timelines&q=
+ * The place in the tab is written as "section/event", so /app/timelines?q=
  * seerah/hijrah opens that event, and the back arrow steps through the events
  * read rather than leaving the app.
  */

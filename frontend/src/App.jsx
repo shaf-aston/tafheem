@@ -18,6 +18,8 @@ import MapPanel from './components/ui/MapPanel'
 import ProfileButton from './components/ui/ProfileButton'
 import SettingsPanel from './components/ui/SettingsPanel'
 import { TOOLS } from './lib/tools'
+import { shareLink } from './lib/tabUrl'
+import { COPY_RESET_MS } from './components/ui/CopyButton'
 import SpatialHome from './components/ui/SpatialHome'
 import SourceFooter from './components/ui/SourceFooter'
 import TabStrip from './components/ui/TabStrip'
@@ -96,7 +98,19 @@ function AppContent() {
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
-  const runTool = { startOver, map: () => setMapOpen(true) }
+  // The tool that just worked, shown in its `done` look for a moment.
+  const [doneTool, setDoneTool] = useState(null)
+  useEffect(() => {
+    if (!doneTool) return undefined
+    const timer = setTimeout(() => setDoneTool(null), COPY_RESET_MS)
+    return () => clearTimeout(timer)
+  }, [doneTool])
+  const runTool = {
+    startOver,
+    copyLink: () => navigator.clipboard.writeText(shareLink()).then(() => setDoneTool('copyLink'), () => {}),
+    map: () => setMapOpen(true),
+  }
+  const toolNow = (tool) => (doneTool === tool.id ? { ...tool, ...tool.done } : tool)
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
   // A root handed from one tab to another. Held here because it is the only
@@ -195,7 +209,7 @@ function AppContent() {
           </button>
           {/* Tools from lib/tools.js. Start over is one click, no arming; the wipe
               with real cost, settings and streak, stays two clicks deep in Settings. */}
-          {TOOLS.map((tool) => (
+          {TOOLS.map(toolNow).map((tool) => (
             <button
               key={tool.id}
               type="button"
@@ -210,6 +224,7 @@ function AppContent() {
               </svg>
             </button>
           ))}
+          <span className="sr-only" aria-live="polite">{doneTool && toolNow(TOOLS.find((tool) => tool.id === doneTool)).label}</span>
           </div>
 
           {/* Sits midway between the tools and the search, matching the colophon at the foot. */}
@@ -345,13 +360,13 @@ function AppContent() {
         <section className="sm:hidden space-y-2">
           <h3 className="type-small text-[var(--text-faint)]">Tools</h3>
           <div className="grid grid-cols-2 gap-2">
-            {TOOLS.filter((tool) => tool.phone === 'more').map((tool) => (
+            {TOOLS.filter((tool) => tool.phone === 'more').map(toolNow).map((tool) => (
               <button
                 key={tool.id}
                 type="button"
                 aria-haspopup={tool.dialog ? 'dialog' : undefined}
                 aria-describedby={tool.hint ? `${tool.id}-hint` : undefined}
-                onClick={() => { setSectionsOpen(false); runTool[tool.id]() }}
+                onClick={() => { if (!tool.done) setSectionsOpen(false); runTool[tool.id]() }}
                 className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium"
               >
                 {tool.label}

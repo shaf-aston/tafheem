@@ -9,6 +9,10 @@
       "destination": "/app.html"
     },
     {
+      "source": "/app/:tab",
+      "destination": "/app.html"
+    },
+    {
       "source": "/api/:path*",
       "destination": "https://132-145-17-56.sslip.io/api/:path*"
     }

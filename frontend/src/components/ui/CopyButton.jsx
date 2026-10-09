@@ -3,7 +3,7 @@
  * it instead of growing its own timeout/flag pair. */
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-const COPY_RESET_MS = 2000
+export const COPY_RESET_MS = 2000
 
 export default function CopyButton({ text, label = 'Copy analysis', small = false }) {
   const [copied, setCopied] = useState(false)
