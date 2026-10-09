@@ -1,14 +1,14 @@
-"""The Arabic of a hadith as two parts: the chain of narrators, and the hadith it carries.
+"""The Arabic of a hadith as parts: the chain of narrators, the one who tells it, and the hadith it carries.
 
-A port of chainOf in frontend/src/lib/hadithWords.js, reading the same rule from
-frontend/src/hadith.json (key `chain`), so the app hides the chain and the index
-leaves it out by one definition. Pure but for that one read.
+The one cutter: the app, the index and the usul build all take the cut from chain_of, by the rule in
+frontend/src/hadith.json (key `chain`). Pure but for that one read.
 """
 from __future__ import annotations
 
 import json
 import re
 from pathlib import Path
+from typing import NamedTuple
 
 _RULE = json.loads((Path(__file__).resolve().parents[3] / "frontend" / "src" / "hadith.json")
                    .read_text(encoding="utf-8"))["chain"]
@@ -17,6 +17,9 @@ _LINKS = {*_RULE["links"]["words"],
 _SAYS = set(_RULE["says"])
 _ABOUT = set(_RULE["about"])
 _FREE = set(_RULE["free"])
+_PROPHET = set(_RULE["prophet"])
+_KIN = set(_RULE["kin"])
+_HANDS = set(_RULE["hands"])
 # Two spellings of one word in a name (أبا, أبي and أبو), read as one when two names are matched.
 SPELLINGS: dict[str, str] = _RULE["spellings"]
 # The chain-words guide: each word it explains, by the stem a form of it starts with (حدثتني is حدث).
@@ -33,6 +36,23 @@ _STOP = re.compile("[.\u061f!]")
 _ATTACHED = re.compile("^[وف][ً-ٰٟ]*")
 # A word as printed: its letters and vowels, with commas and direction marks gone.
 _SHOWN = re.compile("[^\u0621-\u063a\u0641-\u065f\u0670\u0671]")
+
+
+class Cut(NamedTuple):
+    """chain: the text before the body. teller: from the latest teller's link up to the body. body: the hadith, from
+    its saying word on. at: (teller_at, body_at), where teller and body start in the text. When the end of the chain
+    is not plain: chain and teller are empty, body is the whole text and at is None."""
+    chain: str
+    teller: str
+    body: str
+    at: tuple[int, int] | None
+
+
+class _Word(NamedTuple):
+    at: int
+    word: str
+    quoted: bool
+    stop: bool
 
 
 def _bare(word: str) -> str:
@@ -79,42 +99,79 @@ def without_asides(text: str) -> str:
     return " ".join(_outside_asides(words, [w == _RULE["aside"] for w in words]))
 
 
-def chain_of(arabic: str | None) -> tuple[str, str]:
-    """(chain, body). Where the end of the chain is not plain: ("", the whole text)."""
+def chain_of(arabic: str | None) -> Cut:
+    """The text cut into chain, teller and body.
+
+    The books do not mark where the chain ends, so it is walked, link by link: a passing-on word (حدثنا، عن) then a
+    name, until a saying word (قال، أنها) that no further link follows. The body starts at that last saying word,
+    so "قالت النساء" keeps its verb. A name past `name` words, running on past a full stop, or holding a quote, a
+    bracket or the chain's note on itself (بهذا الإسناد), or a text that does not open with a link, means the end is
+    not plain: the whole text comes back as the body."""
     text = arabic or ""
-    whole = ("", text)
-    words = [(m.start(), _bare(m.group()), bool(_QUOTED.search(m.group())), bool(_STOP.search(m.group())))
-             for m in re.finditer(r"\S+", text)]
-    words = _outside_asides(words, [m.group() == _RULE["aside"] for m in re.finditer(r"\S+", text)])
-    words = [w for w in words if w[1] or w[2] or w[3]]
-    if not words or words[0][1] not in _LINKS:
+    whole = Cut("", "", text, None)
+    tokens = list(re.finditer(r"\S+", text))
+    words = [_Word(m.start(), _bare(m.group()), bool(_QUOTED.search(m.group())), bool(_STOP.search(m.group())))
+             for m in _outside_asides(tokens, [m.group() == _RULE["aside"] for m in tokens])]
+    words = [w for w in words if w.word or w.quoted or w.stop]
+    if not words or words[0].word not in _LINKS:
         return whole
+
+    last = 0   # the latest link: from it on is the one who tells the hadith
+
+    def word(k: int) -> str | None:
+        return words[k].word if k < len(words) else None
+
+    # A kin word counts only standing alone: أبي ذر is a name, عن أبيه، قال is not.
+    def alone(k: int) -> bool:
+        return word(k + 1) is None or word(k + 1) in _LINKS or word(k + 1) in _SAYS
+
+    # A link to the Prophet, to a kin word, or straight to a saying word (حدثه أنه) names no new teller.
+    def before(k: int) -> bool:
+        return word(k) in _PROPHET or (word(k) in _KIN and alone(k))
+
+    def teller(k: int) -> int:
+        return last if before(k + 1) or word(k + 1) in _SAYS else k
+
+    # After a hands word (أن), the next link within one name: the narrator named before it hands the hadith on.
+    def handed(k: int) -> int:
+        if words[k].word not in _HANDS:
+            return -1
+        nxt = next((j for j in range(k + 1, len(words))
+                    if words[j].word in _LINKS or words[j].word in _SAYS or words[j].quoted or words[j].stop), -1)
+        return nxt if nxt > k + 1 and nxt - k - 1 <= _RULE["name"] and words[nxt].word in _LINKS else -1
 
     i = 1
     while i < len(words):
         name = 0
         ended = False   # past a full stop only a link or a saying word may come
-        while i < len(words) and words[i][1] not in _LINKS and words[i][1] not in _SAYS:
-            _, word, quoted, stop = words[i]
-            if quoted or word in _ABOUT or (ended and word):
+        while i < len(words) and words[i].word not in _LINKS and words[i].word not in _SAYS:
+            if words[i].quoted or words[i].word in _ABOUT or (ended and words[i].word):
                 return whole
-            if word and word not in _FREE:
+            if words[i].word and words[i].word not in _FREE:
                 name += 1
                 if name > _RULE["name"]:
                     return whole
-            ended = ended or stop
+            ended = ended or words[i].stop
             i += 1
         if i == len(words):
             return whole
-        if words[i][1] in _LINKS:
+        if words[i].word in _LINKS:
+            last = teller(i)
             i += 1
             continue
-        while i + 1 < len(words) and words[i + 1][1] in _SAYS:
+        while i + 1 < len(words) and words[i + 1].word in _SAYS:
             i += 1
-        if i + 1 < len(words) and words[i + 1][1] in _LINKS:
+        if i + 1 < len(words) and words[i + 1].word in _LINKS:
+            last = teller(i + 1)
             i += 2
             continue
-        return text[:words[i][0]].strip(), text[words[i][0]:]
+        link = handed(i)
+        if link > 0:
+            last = last if before(i + 1) else i
+            i = link + 1
+            continue
+        teller_at, body_at = words[last].at, words[i].at
+        return Cut(text[:body_at].strip(), text[teller_at:body_at].strip(), text[body_at:], (teller_at, body_at))
     return whole
 
 

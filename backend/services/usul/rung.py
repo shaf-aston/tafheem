@@ -27,7 +27,7 @@ class Rung(NamedTuple):
 def in_chain(arabic: str, mentions: list[tuple[int, int, int]]) -> list[tuple[int, int, int]] | None:
     """The mentions (start, end, narrator id) that end inside the hadith's plain chain (chain.chain_of), in text order;
     None when the chain is not plain."""
-    chain, _ = chain_of(arabic)
+    chain = chain_of(arabic).chain
     if not chain:
         return None
     limit = arabic.find(chain) + len(chain)

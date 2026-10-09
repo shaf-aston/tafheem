@@ -1,6 +1,7 @@
-"""chain_of must agree with chainOf in frontend/src/lib/hadithWords.test.js, case for case."""
+"""chain_of must agree, case for case, with the chainOf cases in frontend/src/lib/hadithWords.test.js."""
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -43,13 +44,50 @@ _WHOLE = [
 ]
 
 
+# (opening, a pattern the teller, from the latest link up to the body, must match whole)
+_TELLERS = [
+    ('حَدَّثَنَا يَحْيَى بْنُ بُكَيْرٍ، قَالَ حَدَّثَنَا اللَّيْثُ، عَنْ عَائِشَةَ، أَنَّهَا قَالَتْ أَوَّلُ',
+     'عَنْ عَائِشَةَ، أَنَّهَا'),
+    # The Prophet is never the teller: it stays with the companion who heard him.
+    ('حَدَّثَنَا سُفْيَانُ ، قَالَ : سَمِعْتُ عُمَرَ رَضِيَ اللَّهُ عَنْهُ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا',
+     r'سَمِعْتُ عُمَرَ.*'),
+    # "his father" names no new teller: the son stays in.
+    ('حَدَّثَنَا مُحَمَّدٌ، عَنْ جَعْفَرِ بْنِ عَمْرٍو، عَنْ أَبِيهِ، قَالَ رَأَيْتُ',
+     'عَنْ جَعْفَرِ بْنِ عَمْرٍو، عَنْ أَبِيهِ،'),
+    # أبي ذر is a name, not kin.
+    ('حَدَّثَنَا مَهْدِيٌّ، عَنِ الْمَعْرُورِ بْنِ سُوَيْدٍ، عَنْ أَبِي ذَرٍّ ـ رضى الله عنه ـ قَالَ قَالَ',
+     r'عَنْ أَبِي ذَرٍّ.*'),
+    # After "أن X" and a link within one name, the chain walks on to Ibn Abbas.
+    ('أَخْبَرَنِي سُلَيْمَانُ الأَحْوَلُ، أَنَّ طَاوُسًا، أَخْبَرَهُ عَنِ ابْنِ عَبَّاسٍ، أَنَّ النَّبِيَّ مَرَّ',
+     'عَنِ ابْنِ عَبَّاسٍ،'),
+]
+_HANDED = ('أَخْبَرَنِي سُلَيْمَانُ الأَحْوَلُ، أَنَّ طَاوُسًا، أَخْبَرَهُ عَنِ ابْنِ عَبَّاسٍ، أَنَّ النَّبِيَّ مَرَّ',
+           'أَنَّ النَّبِيَّ مَرَّ')
+
+
 @pytest.mark.parametrize("text, body", _CASES)
 def test_the_chain_ends_where_the_app_ends_it(text, body):
-    chain, rest = chain_of(text)
-    assert rest == body
-    assert chain == text[:len(text) - len(body)].strip()
+    cut = chain_of(text)
+    assert cut.body == body
+    assert cut.chain == text[:len(text) - len(body)].strip()
+    teller_at, body_at = cut.at
+    assert text[body_at:] == body and text[teller_at:body_at].strip() == cut.teller
+
+
+def test_a_companion_who_heard_the_prophet_is_walked_through_to_the_words():
+    assert chain_of(_CASES[1][0]).chain.startswith('حَدَّثَنَا')
+
+
+@pytest.mark.parametrize("text, teller", _TELLERS)
+def test_the_teller_is_the_one_who_tells_never_the_prophet_or_a_bare_kin_word(text, teller):
+    assert re.fullmatch(teller, chain_of(text).teller)
+
+
+def test_a_name_handed_on_by_an_an_is_walked_through():
+    text, body = _HANDED
+    assert chain_of(text).body == body
 
 
 @pytest.mark.parametrize("text", _WHOLE)
 def test_an_unclear_end_leaves_the_hadith_whole(text):
-    assert chain_of(text) == ("", text)
+    assert chain_of(text) == ("", "", text, None)

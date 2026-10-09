@@ -73,8 +73,8 @@ def split_hadith(head: str, kind_cfg: dict, quote: Sequence[str]) -> tuple[str, 
     if opened := re.search(quote[0], head):
         closed = re.search(quote[1], head[opened.end():])
         return head[:opened.start()], head[opened.end():opened.end() + closed.start()] if closed else head[opened.end():]
-    chain_text, body = chain.chain_of(head)
-    return (chain_text, body) if chain_text else ("", "")
+    cut = chain.chain_of(head)
+    return (cut.chain, cut.body) if cut.chain else ("", "")
 
 
 def forms(row: dict) -> list[tuple[str, ...]]:

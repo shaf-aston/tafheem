@@ -291,7 +291,7 @@ def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], h
     if not todo:
         return []
     wanted = set().union(*(match.grams(words, knobs["gram"]) for *_, words in todo))
-    index = match.Index({key: match.tokens(chain.chain_of(arabic)[1]) for key, arabic, _ in hadith}, knobs["gram"], wanted)
+    index = match.Index({key: match.tokens(chain.chain_of(arabic).body) for key, arabic, _ in hadith}, knobs["gram"], wanted)
     book_of = {key: number for key, _, number in hadith}
     men = match.Names([f for forms in narrators_of.values() for f in forms], everyone, knobs["min_name_words"],
                       knobs["rare_name"], knobs["rare_men"], knobs["name_stop"], knobs["name_run"])
@@ -350,7 +350,7 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
     # Every telling's matn words, cut like the app cuts them; the weight of a word is read off all of them.
     matn_of = {(c, n, p): chain_of(arabic.get((c, n, p), "")) for (c, n), parts in families.items() for p in parts}
     keys_of = lambda words: {k for w in words if (k := family.word_key(w, fc))}  # noqa: E731
-    weight = family.weights([keys_of(matn.split()) for _, matn in matn_of.values()])
+    weight = family.weights([keys_of(cut.body.split()) for cut in matn_of.values()])
     why_place, why_word, mark_kinds = Counter(), Counter(), Counter()
     picture_n = alone_n = compared_n = marked_n = 0
     results = []
@@ -375,13 +375,13 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
                              [(collection, number, i, len(s), json.dumps(sorted(s))) for i, s in enumerate(sets)])
         matns = {}
         for part in parts:
-            cut, matn = matn_of[collection, number, part]
-            if not cut:
+            cut = matn_of[collection, number, part]
+            if not cut.chain:
                 why_word["no_chain_cut"] += 1
             elif reasons[part] == "name_after_cut":   # chain words in the text would be marked as its own
                 why_word["name_after_cut"] += 1
             else:
-                matns[part] = matn.split()
+                matns[part] = cut.body.split()
         found, left = family.marks(matns, fc, weight)
         why_word.update(left.values())
         compared_n += len(matns) - len(left) >= 2
@@ -415,7 +415,7 @@ def write_sample(path: Path, results: list[dict], rows: dict[int, dict], cfg: di
     fc = cfg["family"]
     rng = random.Random(fc["sample_seed"])
     name = lambda who: f"{who} {rows[who]['name_ar']}"  # noqa: E731
-    chain_text = lambda text: chain_of(text)[0] or f"(no plain chain) {text[:fc['sample_text']]}"  # noqa: E731
+    chain_text = lambda text: chain_of(text).chain or f"(no plain chain) {text[:fc['sample_text']]}"  # noqa: E731
     out = ["# Usul: families checked by hand", "",
            f"Seed {fc['sample_seed']}. Places count from the Companion (place 1). A word is marked when no other telling "
            "of its group of one report has it.", ""]
