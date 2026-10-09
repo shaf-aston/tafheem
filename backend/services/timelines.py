@@ -18,6 +18,7 @@ from functools import lru_cache
 
 from backend.config import data_path
 from backend.services import provenance, quran_library, quran_meanings
+from backend.services.hadith.chain import cut_of
 
 logger = logging.getLogger(__name__)
 
@@ -252,7 +253,8 @@ def _hadith() -> dict[str, dict]:
     if not path.exists():
         logger.warning("Timelines: hadith.json is not fetched, so events print their numbers alone")
         return {}
-    return json.loads(path.read_text(encoding="utf-8"))["hadith"]
+    found = json.loads(path.read_text(encoding="utf-8"))["hadith"]
+    return {key: {**row, "cut": cut_of(row["arabic"])} for key, row in found.items()}
 
 
 @lru_cache(maxsize=1)

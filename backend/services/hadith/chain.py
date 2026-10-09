@@ -175,6 +175,12 @@ def chain_of(arabic: str | None) -> Cut:
     return whole
 
 
+def cut_of(arabic: str | None) -> list[int] | None:
+    """chain_of's `at` as the page reads it: [teller_at, body_at], or None where the cut is not plain."""
+    at = chain_of(arabic).at
+    return list(at) if at else None
+
+
 def name_tokens(chain: str) -> list[str]:
     """The words of a chain that are not its passing-on or saying words, letters only: the names, run together."""
     return [plain for word in chain.split()

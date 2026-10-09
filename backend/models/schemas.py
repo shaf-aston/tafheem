@@ -495,9 +495,10 @@ class TimelineSection(BaseModel):
 
 
 class TimelineHadith(BaseModel):
-    """One hadith's own words, Arabic and English, as sunnah.com has them."""
+    """One hadith's own words, Arabic and English, as sunnah.com has them. `cut` is HadithEntry's."""
     arabic: str
     english: str = ""
+    cut: list[int] | None = None
 
 
 class TimelineLibrary(BaseModel):
@@ -1281,7 +1282,8 @@ class HadithBook(BaseModel):
 
 
 class HadithEntry(BaseModel):
-    """One hadith's own words. `cite` is where it is checked, sunnah.com's page."""
+    """One hadith's own words. `cite` is where it is checked, sunnah.com's page.
+    `cut` is [teller_at, body_at], offsets into `arabic` (services/hadith/chain); None where the end of the chain is not plain."""
     collection: str
     book: int
     number: int
@@ -1290,6 +1292,7 @@ class HadithEntry(BaseModel):
     english: str = ""
     grades: list[HadithGrade] = []
     cite: str = ""
+    cut: list[int] | None = None
 
 
 class HadithBookResponse(BaseModel):

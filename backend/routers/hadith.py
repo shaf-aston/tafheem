@@ -14,6 +14,7 @@ from backend.models.schemas import (
 )
 from backend.services import provenance
 from backend.services.hadith import loader
+from backend.services.hadith.chain import cut_of
 from backend.services.hadith import search as hadith_search
 from backend.utils import search_query
 
@@ -51,7 +52,7 @@ async def get_book(collection: str, number: int) -> HadithBookResponse:
     return HadithBookResponse(
         collection=HadithCollection(id=collection, name=name),
         book=HadithBook(**book),
-        hadiths=[HadithEntry(**h) for h in hadiths],
+        hadiths=[HadithEntry(**h, cut=cut_of(h["arabic"])) for h in hadiths],
         source=provenance.of("hadith"),
     )
 
@@ -87,7 +88,7 @@ async def search(
             HadithEntry(
                 collection=h.collection, book=h.book, number=h.number, part=h.part,
                 arabic=h.arabic, english=h.english, grades=h.grades,
-                cite=loader.cite_url(loader.cite_of(h.collection), h.number, h.part),
+                cite=loader.cite_url(loader.cite_of(h.collection), h.number, h.part), cut=cut_of(h.arabic),
             )
             for h in found.hits
         ],

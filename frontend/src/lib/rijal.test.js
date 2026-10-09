@@ -45,7 +45,7 @@ describe('told', () => {
   const names = [[...at('ابْنُ شِهَابٍ'), 1], [...at('أَبُو سَلَمَةَ'), 2], [...at('جَابِرَ بْنَ عَبْدِ اللَّهِ'), 3], [...at('يُونُسُ'), 4]]
 
   it('cuts at the last narrator named before the speech, and keeps his link and later ones', () => {
-    const out = told(arabic, names)
+    const out = told(arabic, null, names)
     expect(out.text.startsWith('جَابِرَ')).toBe(true)
     expect(out.names.map((n) => n[2])).toEqual([3, 4])
     expect(out.text.slice(out.names[1][0], out.names[1][1])).toBe('يُونُسُ')
@@ -53,12 +53,13 @@ describe('told', () => {
 
   it('keeps the hadith whole, links and all, when nothing marks the cut', () => {
     const plain = 'قَالَ "‏ بَيْنَا ‏"'
-    expect(told(plain, [])).toEqual({ text: plain, names: [] })
-    expect(told(arabic, [names[2]]).text).toBe(arabic)
+    expect(told(plain, null, [])).toEqual({ text: plain, names: [] })
+    expect(told(arabic, null, [names[2]]).text).toBe(arabic)
   })
 
-  it('still uses the chain words where they read', () => {
-    const out = told('حَدَّثَنَا زَيْدٌ عَنْ عَمْرٍو قَالَ "‏ صَلُّوا ‏"', [])
+  it('uses the cut the server sent where there is one', () => {
+    const text = 'حَدَّثَنَا زَيْدٌ عَنْ عَمْرٍو قَالَ "‏ صَلُّوا ‏"'
+    const out = told(text, [text.indexOf('عَنْ'), text.indexOf('قَالَ')], [])
     expect(out.text.startsWith('عَنْ عَمْرٍو')).toBe(true)
   })
 })
@@ -67,7 +68,7 @@ describe('drawnChain', () => {
   it('links each drawn name by where it stands, so a longer unlinked name never borrows a shorter one', () => {
     const arabic = 'حَدَّثَنَا عَبْدُ اللَّهِ، قَالَ حَدَّثَنَا عَبْدُ اللَّهِ بْنُ مَسْعُودٍ، قَالَ "‏ صَلُّوا ‏"'
     const first = arabic.indexOf('عَبْدُ اللَّهِ')
-    const out = drawnChain(arabic, [[first, first + 'عَبْدُ اللَّهِ'.length, 5]])
+    const out = drawnChain(arabic, [0, arabic.lastIndexOf('قَالَ')], [[first, first + 'عَبْدُ اللَّهِ'.length, 5]])
     expect(out.main.map((l) => l.id)).toEqual([5, null])
   })
 
@@ -75,7 +76,7 @@ describe('drawnChain', () => {
     const arabic = 'حَدَّثَنَا زَيْدٌ، عَنْ عَمْرٍو، قَالَ "‏ صَلُّوا ‏"'
     const at = (s) => arabic.indexOf(s)
     const names = [[at('زَيْدٌ'), at('زَيْدٌ') + 6, 1], [at('عَمْرٍو'), at('عَمْرٍو') + 6, 2]]
-    const out = drawnChain(arabic, names, [{ at: at('عَمْرٍو'), id: 2, level: 8 }])
+    const out = drawnChain(arabic, [0, arabic.lastIndexOf('قَالَ')], names, [{ at: at('عَمْرٍو'), id: 2, level: 8 }])
     expect(out.main.map((l) => l.note?.level ?? null)).toEqual([null, 8])
   })
 })
