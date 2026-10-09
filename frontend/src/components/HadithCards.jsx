@@ -21,7 +21,7 @@ import { useState } from 'react'
 import { chainOf } from '../lib/hadithWords'
 import { useHadithCollections } from '../lib/useHadithCollections'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
-import { useNarrators, useWeakNotes } from '../lib/useNarrators'
+import { useKin, useNarrators, useWeakNotes } from '../lib/useNarrators'
 import { drawnChain } from '../lib/rijal'
 import { weakLinks, weakPoints } from '../lib/weak'
 
@@ -40,6 +40,7 @@ export default function HadithCards({ items, accent, collection, columns = false
   const books = items.map((h) => ({ collection: h.collection ?? collection, book: h.book }))
   const namesOf = useNarrators(books)
   const weakOf = useWeakNotes(books)
+  const kinOf = useKin(books)
   // The hadith whose chain is drawn in the pop-up, if any.
   const [drawn, setDrawn] = useState(null)
   // The narrator whose sheet is open, if any.
@@ -65,8 +66,7 @@ export default function HadithCards({ items, accent, collection, columns = false
           const found = weakOf(h, ref)
           const { weak, linkPoints, rulings } = found.notes.length + found.links.length + found.rulings.length ? drawing(h) : { weak: [], linkPoints: [], rulings: [] }
           const points = weak.length + linkPoints.length
-          // Narrations of this number with chains placed: the same digits, then letters only.
-          const kin = h.part ? Object.keys(names).filter((k) => k.startsWith(`${h.number}`) && /^[a-z]+$/.test(k.slice(`${h.number}`.length))).length : 0
+          const kin = kinOf(h)
           return (
             <HadithText
               key={`${h.collection}:${ref}`}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { bookOf, listOf, narratorOf, narratorPlaceOf, parsePlace, placeOf } from './hadithPlace'
+import { bookOf, listOf, narratorOf, narratorPlaceOf, parsePlace, placeOf, shortOf } from './hadithPlace'
 
 const collections = [{ id: 'bukhari', name: 'Sahih al-Bukhari' }]
 
@@ -22,6 +22,20 @@ describe('parsePlace', () => {
     expect(parsePlace(placeOf('bukhari'), collections)).toEqual({ collection: 'bukhari', book: null, number: null, part: '' })
     expect(parsePlace(placeOf('bukhari', 1), collections)).toEqual({ collection: 'bukhari', book: 1, number: null, part: '' })
     expect(parsePlace(placeOf('bukhari', 1, 2, 'a'), collections)).toEqual({ collection: 'bukhari', book: 1, number: 2, part: 'a' })
+  })
+})
+
+describe('shortOf', () => {
+  const books = [{ number: 1 }, { number: 54 }]
+  it('reads a number with no book of that number, or with a letter, as a hadith', () => {
+    expect(shortOf('muslim/2927', books)).toBe('muslim')
+    expect(shortOf('muslim/2927a', books)).toBe('muslim')
+    expect(shortOf('muslim/54a', books)).toBe('muslim')
+  })
+  it.each([
+    ['muslim/54', books], ['muslim/2927', undefined], ['muslim/54/2927a', books], ['muslim', books], ['muslim/x', books],
+  ])('leaves %j to parsePlace', (q, b) => {
+    expect(shortOf(q, b)).toBeNull()
   })
 })
 

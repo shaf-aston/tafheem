@@ -19,7 +19,7 @@ router = APIRouter(prefix="/api/rijal", tags=["rijal"])
 async def get_chains(collection: str, book: int) -> RijalChains:
     chains = await asyncio.to_thread(store.chains, collection, book)
     return RijalChains(
-        collection=collection, book=book, chains=chains,
+        collection=collection, book=book, chains=chains, kin=await asyncio.to_thread(store.kin, collection, book),
         notes=await asyncio.to_thread(usul.notes, collection, book, chains), scale=await asyncio.to_thread(usul.scale),
         links=await asyncio.to_thread(usul.links, collection, book, chains), rulings=await asyncio.to_thread(usul.rulings, collection, book),
         link_rules=await asyncio.to_thread(usul.link_rules) or None,

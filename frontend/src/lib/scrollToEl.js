@@ -13,6 +13,28 @@ export function scrollToEl(el, align = 'nearest') {
   el.scrollIntoView({ block: ALIGN[align], behavior: reduce ? 'auto' : 'smooth' })
 }
 
+const MOVES = ['wheel', 'touchstart', 'keydown', 'pointerdown']
+
+/**
+ * A link landing on `el`: at the top at once (an arrival, not a glide), kept there while the page grows above it,
+ * until the reader moves or motion['hold-ms'] passes. Returns the stop.
+ */
+export function holdAtTop(el) {
+  if (!el) return () => {}
+  const land = () => el.scrollIntoView({ block: 'start', behavior: 'instant' })
+  land()
+  const watch = new ResizeObserver(land)
+  const stop = () => {
+    watch.disconnect()
+    clearTimeout(timer)
+    MOVES.forEach((m) => removeEventListener(m, stop))
+  }
+  const timer = setTimeout(stop, theme.motion['hold-ms'])
+  watch.observe(document.body)
+  MOVES.forEach((m) => addEventListener(m, stop, { passive: true }))
+  return stop
+}
+
 /** Back to the top of the page at once, as a fresh page would open. */
 export function scrollToTop() {
   globalThis.scrollTo?.({ top: 0, behavior: 'instant' })
