@@ -218,7 +218,8 @@ body { margin: 0; overflow-x: hidden; }
   font-size: clamp(1.25rem, 2.6vw, 1.9rem); line-height: 1.5; border-bottom: 2px solid transparent;
   transition: color var(--med) ease;
 }
-.landing-page .story-word .story-role { font-size: .85rem; color: var(--tone); --rise: -6px; }
+/* A role name under its word: the same Arabic rung the app's tarkeeb chart uses. */
+.landing-page .story-word .story-role { font-size: calc(var(--arabic-term-rem) * 1rem); white-space: nowrap; color: var(--tone); --rise: -6px; }
 .landing-page .story-word.on .arabic:not(.story-role) { color: var(--tone); border-color: var(--tone); }
 .landing-page .story-word.cur { filter: drop-shadow(0 0 10px var(--tone)); }
 
@@ -254,8 +255,9 @@ body { margin: 0; overflow-x: hidden; }
 }
 .landing-page .story-ticks i.act { opacity: 1; transform: scaleY(1.7); }
 .landing-page .story-pair { margin-top: -.5rem; color: var(--muted); font: 700 .7rem var(--font-label); letter-spacing: .06em; text-transform: uppercase; }
+.landing-page .story-whys { display: grid; }
 .landing-page .story-why {
-  background: rgba(255, 255, 255, .04); border: 1px solid var(--line); border-radius: 12px; padding: .8rem 1rem; max-width: 420px;
+  grid-area: 1 / 1; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); border-radius: 12px; padding: .8rem 1rem; max-width: 420px;
   font-size: .9rem; color: var(--muted);
 }
 .landing-page .story-why b { color: var(--text); font-weight: 600; }
@@ -341,6 +343,7 @@ body { margin: 0; overflow-x: hidden; }
   .landing-page .story-stage { min-height: var(--landing-story-stage-h-sm); }
   .landing-page .story-panel { --story-pad: 1rem; gap: 1rem; }
   .landing-page .story-word .arabic:not(.story-role) { font-size: 1.25rem; }
+  .landing-page .story-word .story-role { font-size: calc(var(--arabic-small-rem) * 1rem); }
 }
 
 /* ================= MANUSCRIPT BAND ================= */
