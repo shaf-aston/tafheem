@@ -1503,6 +1503,23 @@
     "naughty": {"english": "naughty", "group": "character"},
     "honest": {"english": "honest", "group": "character"},
     "brave": {"english": "brave", "group": "character"},
-    "strict": {"english": "strict", "group": "character"}
+    "strict": {"english": "strict", "group": "character"},
+    "roof": {"english": "roof", "group": "home"},
+    "old-not-new": {"english": "old (not new)", "group": "describing"},
+    "bright": {"english": "bright", "group": "describing"},
+    "to-reside": {"english": "to reside", "group": "actions"},
+    "guest-room": {"english": "guest room", "group": "home"},
+    "corridor": {"english": "corridor", "group": "home"},
+    "upper-floor": {"english": "upper floor", "group": "home"},
+    "ground-floor": {"english": "ground floor", "group": "home"},
+    "to-go-up": {"english": "to go up", "group": "actions"},
+    "carpet": {"english": "carpet", "group": "furniture"},
+    "mirror": {"english": "mirror", "group": "furniture"},
+    "lamp": {"english": "lamp", "group": "home"},
+    "fan": {"english": "fan", "group": "home"},
+    "washing-machine": {"english": "washing machine", "group": "home"},
+    "cooker": {"english": "gas cooker", "group": "home"},
+    "remote-control": {"english": "remote control", "group": "home"},
+    "to-need": {"english": "to need", "group": "actions"}
   }
 }
