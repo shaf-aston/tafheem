@@ -48,7 +48,25 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
     }
   }
 
-  if (isPending) return <AnalyzerSkeleton />
+  if (isPending) {
+    return (
+      <div className="panel" style={{ '--c': accent }}>
+        <SectionHeader title={copy.title} arabic={copy.arabic} subtitle={copy.subtitle} />
+        <div inert>
+          <SearchBox
+            id="dawah-search"
+            label={copy.search}
+            placeholder={copy['search-hint']}
+            value=""
+            onChange={() => {}}
+            disabled
+            accent={accent}
+          />
+        </div>
+        <AnalyzerSkeleton />
+      </div>
+    )
+  }
   if (isError) {
     return (
       <ErrorAlert title={copy['load-failed']} error={error} fallback={copy.unreachable} onRetry={refetch} />

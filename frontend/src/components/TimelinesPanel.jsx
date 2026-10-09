@@ -46,7 +46,20 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
     setMissed(Boolean(incoming) && !asked)
   }
 
-  if (isPending) return <AnalyzerSkeleton />
+  // The header keeps its place while the library loads; the science filter has
+  // nothing to list yet, so it waits with only "All".
+  if (isPending) {
+    return (
+      <div className="panel">
+        <SectionHeader
+          title="Timelines"
+          arabic="التاريخ"
+          aside={<div inert><Segmented label="Science" options={[{ id: ALL, label: 'All' }]} value={ALL} onChange={() => {}} accent={accent} wrap /></div>}
+        />
+        <AnalyzerSkeleton />
+      </div>
+    )
+  }
 
   if (isError) {
     return (

@@ -15,8 +15,13 @@ export function useWidth() {
   const ref = useRef(null)
   const [width, setWidth] = useState(0)
   useLayoutEffect(() => {
+    // Read once now, before the first paint, so the vine is there when its tab
+    // is shown (TabPane settles it) rather than growing a frame later.
+    const box = ref.current
+    const pad = getComputedStyle(box)
+    setWidth(Math.floor(box.clientWidth - parseFloat(pad.paddingLeft) - parseFloat(pad.paddingRight)))
     const watch = new ResizeObserver(([entry]) => setWidth(Math.floor(entry.contentRect.width)))
-    watch.observe(ref.current)
+    watch.observe(box)
     return () => watch.disconnect()
   }, [])
   return [ref, width]

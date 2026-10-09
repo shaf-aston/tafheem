@@ -33,6 +33,8 @@ import Code from './ui/Code'
 import SourceBadge from './ui/SourceBadge'
 import { useSources } from '../lib/useSources'
 
+const noop = () => {}
+
 export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }) {
   const { data: collections, isPending, isError, error, refetch } = useQuery(hadithCollectionsQuery)
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
@@ -74,7 +76,20 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
     setMissed(Boolean(incoming) && !asked && !narratorOf(incoming) && !listOf(incoming))
   }
 
-  if (isPending) return <AnalyzerSkeleton />
+  // The header and the search box are the loaded page's own, inert until the
+  // collections arrive, so only the skeleton below them is replaced.
+  if (isPending) {
+    return (
+      <div className="panel">
+        <SectionHeader title="Hadith" arabic="الحديث" />
+        <div inert>
+          <HadithSearchResults accent={accent} onNarrator={noop} onHadith={noop} onOpenBook={noop}>
+            <AnalyzerSkeleton />
+          </HadithSearchResults>
+        </div>
+      </div>
+    )
+  }
 
   if (isError) {
     return (

@@ -12,6 +12,9 @@ export function useModal(open) {
     if (!element) return
     if (open && !element.open) element.showModal()
     if (!open && element.open) element.close()
+    // Closed when its tab is hidden (App keeps the panel alive) and shown again
+    // on return: a modal left open in a hidden tab would leave the page inert.
+    return () => { if (element.open) element.close() }
   }, [open])
   return ref
 }

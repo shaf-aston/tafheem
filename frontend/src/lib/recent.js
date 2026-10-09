@@ -36,3 +36,6 @@ export function useStrip(tabs, fixed, seed, active) {
   }, [recent, active, tabs, fixed, save])
   return useMemo(() => stripOf(tabs, fixed, recent), [tabs, fixed, recent])
 }
+
+/** The tabs kept alive: `id` last, the oldest dropped past `max`. Pure, so it can be tested. */
+export const keepRecent = (alive, id, max) => [...alive.filter((t) => t !== id), id].slice(-max)

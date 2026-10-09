@@ -22,7 +22,7 @@
 import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { getSurahGlosses, quranSurahQuery } from '../api'
+import { quranSurahQuery, surahGlossesQuery } from '../api'
 import { warm } from '../lib/warm'
 import { ayahEnd } from '../lib/ayahEnd'
 import { useTranslation } from '../lib/useTranslation'
@@ -105,7 +105,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
 
   // The English of each word, for the hover gloss. Its own request so the text
   // is never held up by it, and reads normally for good if it never arrives.
-  const { data: glosses } = useQuery({ queryKey: ['surah-glosses', surah], queryFn: () => getSurahGlosses(surah) })
+  const { data: glosses } = useQuery(surahGlossesQuery(surah))
   const learnt = useLearntLemmas()
   const [allMeanings, showAllMeanings] = useRememberedFlag('reader-all-meanings', false)
   const anyGlosses = Object.keys(glosses?.ayahs ?? {}).length > 0

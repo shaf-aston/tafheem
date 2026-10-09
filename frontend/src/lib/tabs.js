@@ -5,21 +5,18 @@
  * header, All sections, the command bar, the orbit launcher, the URL. Adding a tab is one
  * entry here; nothing else is edited.
  *
- * Each panel's code is its own file (React lazy), so the first load carries the
+ * Each panel's code is its own file (lib/panel.js), so the first load carries the
  * shell and not all thirteen tabs. The code is fetched with the tab's opening
  * data (App.jsx openTab: idle, hover), so a tab opens at once and still opens
  * after the network drops.
  */
-import { lazy } from 'react'
-
 import { colorFor } from '../theme'
 import { colloquialQuery, dawahQuery, daleelBooksQuery, growPathsQuery, hadithOpen, timelinesQuery } from '../api'
 import { load } from './warm'
 import { memoriseOpen } from './books'
 import { table } from './quizBanks'
-
-// A lazy panel that can also be fetched ahead: `preload` is its import.
-const panel = (preload) => Object.assign(lazy(preload), { preload })
+import { panel } from './panel'
+import { quranOpen } from './quranOpen'
 
 const Dictionary = panel(() => import('../components/Dictionary'))
 const QuizPanel = panel(() => import('../components/QuizPanel'))
@@ -53,7 +50,7 @@ export const GROUPS = [
 export const TABS = [
   { id: 'nahw',   label: 'Nahw',       short: 'Nahw',   arabic: 'نحو',    mark: 'ن', Component: NahwPanel,   study: true, half: true, group: 'language' },
   { id: 'sarf',   label: 'Sarf',       short: 'Sarf',   arabic: 'صرف',    mark: 'ص', Component: SarfPanel,   study: true, half: true, group: 'language' },
-  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', mark: 'ق', Component: QuranLookup, study: true, dock: true, group: 'quran' },
+  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', mark: 'ق', Component: QuranLookup, open: quranOpen, study: true, dock: true, group: 'quran' },
   // Daleel finds a passage, Dictionary a word: reached for together.
   { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   mark: 'د', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, group: 'quran' },
   { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', mark: 'ث', Component: HadithPanel, open: hadithOpen, study: true, group: 'quran' },

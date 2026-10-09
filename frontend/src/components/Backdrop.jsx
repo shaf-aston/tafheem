@@ -9,12 +9,15 @@
  * is lib/bokeh.js and every knob is theme.json's lights group; this file only
  * draws. It stops, leaving the last frame, when the Animations setting drives
  * --motion-scale to 0, under prefers-reduced-motion, or while the tab is
- * hidden, so it costs nothing when nobody can see it move. data-frames counts
+ * hidden, so it costs nothing when nobody can see it move. It also holds
+ * still, tint change included, for the moment a tab switches (lib/backdropHold).
+ * data-frames counts
  * drawn frames, which is how a probe proves it stopped.
  */
 import { useEffect, useRef } from 'react'
 
 import { pickColor, seed, seedMarks, step, stepMarks } from '../lib/bokeh'
+import { heldFor } from '../lib/backdropHold'
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -76,6 +79,7 @@ export default function Backdrop() {
     let marksKnobs = readMarks(getComputedStyle(root))
     let raf = 0
     let frames = 0
+    let held = 0
 
     const scale = () => parseFloat(getComputedStyle(root).getPropertyValue('--motion-scale'))
     const moving = () => !document.hidden && !reduced() && scale() > 0
@@ -121,9 +125,19 @@ export default function Backdrop() {
       paint()
     }
 
+    // Through a hold: one timer for its end, which repaints (the tint may have
+    // changed meanwhile) and wakes the loop. True while one is pending.
+    const waitOut = () => {
+      const wait = heldFor()
+      if (!wait) return false
+      clearTimeout(held)
+      held = setTimeout(() => { held = 0; paint(); run() }, wait)
+      return true
+    }
+
     const tick = () => {
       raf = 0
-      if (!moving()) return
+      if (!moving() || waitOut()) return
       step(lights, w, h, { ...knobs, speed: knobs.speed * scale() })
       stepMarks(marks, { ...marksKnobs, speed: knobs.speed * scale() })
       paint()
@@ -136,6 +150,7 @@ export default function Backdrop() {
     // change: repaint in the new tint and wake the loop if it was stopped.
     const watch = new MutationObserver(() => {
       tab = readTab()
+      if (waitOut()) return
       paint()
       run()
     })
@@ -155,6 +170,7 @@ export default function Backdrop() {
     document.addEventListener('visibilitychange', run)
     return () => {
       cancelAnimationFrame(raf)
+      clearTimeout(held)
       watch.disconnect()
       window.removeEventListener('resize', resize)
       document.removeEventListener('visibilitychange', run)

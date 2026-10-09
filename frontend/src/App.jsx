@@ -1,15 +1,17 @@
-import { Suspense, useCallback, useEffect, useState } from 'react'
+import { Activity, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { FIXED, GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
-import { useStrip } from './lib/recent'
+import { keepRecent, useStrip } from './lib/recent'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { idle } from './lib/warm'
+import { holdBackdrop } from './lib/backdropHold'
 import { useTabShortcuts } from './lib/useTabShortcuts'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
 
 import Backdrop from './components/Backdrop'
+import TabPane from './components/TabPane'
 import CursorLight from './components/CursorLight'
 import CommandBar from './components/ui/CommandBar'
 import ErrorAlert from './components/ui/ErrorAlert'
@@ -54,6 +56,15 @@ const QUIET = { streak: 0, answer: null }
 // can: two arrivals can share a millisecond.
 let arrivals = 0
 
+// Tabs kept alive while hidden, the most recently opened: going back to one
+// shows it as it was left, what was typed, read and scrolled. Each costs its
+// page's memory, nothing while hidden; more would be paying for tabs that are
+// not coming back.
+const KEEP = 4
+
+// How long the backdrop holds still for a switch (lib/backdropHold).
+const SWITCH_MS = 400
+
 const STATUS = {
   checking: { color: 'var(--tab-dict)',  label: 'Connecting…', pulse: true },
   ok:       { color: 'var(--success)',   label: 'Backend Ready' },
@@ -95,6 +106,10 @@ function AppContent() {
   // the panel is born on that word rather than remounted onto it.
   const [opened] = useState(() => startJourney(TABS) ?? { tab: TABS[0].id, value: null })
   const [activeTab, setActiveTab] = useState(opened.tab)
+  const [alive, setAlive] = useState([opened.tab])
+  // The same two, for the callbacks below to read without being remade.
+  const activeRef = useRef(opened.tab)
+  const aliveRef = useRef(alive)
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
@@ -113,10 +128,10 @@ function AppContent() {
   const toolNow = (tool) => (doneTool === tool.id ? { ...tool, ...tool.done } : tool)
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
-  // A root handed from one tab to another. Held here because it is the only
-  // thing the panels share; each one reads it once and then owns its own state.
-  const [handoff, setHandoff] = useState(
-    opened.value ? { tab: opened.tab, value: opened.value, at: 0 } : null,
+  // A root handed from one tab to another, per tab. Held here because it is the
+  // only thing the panels share; each one reads it once and then owns its own state.
+  const [handoffs, setHandoffs] = useState(
+    opened.value ? { [opened.tab]: { value: opened.value, at: 0 } } : {},
   )
   const { status, nlpEngine, aiBackend, ear } = useHealth()
   // Dismissing hides this outage only. Once the backend is back, the next drop
@@ -125,27 +140,37 @@ function AppContent() {
     if (status === 'ok') setBannerDismissed(false)
   }, [status])
 
-  const active = TABS.find((t) => t.id === activeTab) ?? TABS[0]
-  const ActiveTab = active.Component
-
   // The practice tabs (Quiz, Tamreen) say how it is going.
   // They report; `moodFrom` below is still the only thing that decides.
   const [quiz, setQuiz] = useState(QUIET)
   const accent = accentOf(activeTab)
 
-  // A tab chosen with nothing in hand opens on the word it was last on, from
-  // the journey, so glancing at another tab and coming back costs nothing.
-  // Already there (the active tab clicked again): not a step, and the panel
-  // is left exactly as it is.
-  const switchTab = useCallback((id, handed = null) => {
-    const incoming = handed ?? lastPlaceOn(id)
-    if (!visit(id, incoming)) return
+  // Every way onto a tab. `arrive`: the word it brings is one for the panel to
+  // follow; without, a tab still alive is shown exactly as it was left.
+  const show = useCallback((id, value, arrive) => {
+    holdBackdrop(SWITCH_MS)
+    activeRef.current = id
     setActiveTab(id)
     // Leaving the quiz ends the round as far as the pen is concerned, a streak
     // face still on while reading the Qur'an is describing nothing.
     setQuiz(QUIET)
-    setHandoff(incoming ? { tab: id, value: incoming, at: ++arrivals } : null)
+    const kept = aliveRef.current.includes(id)
+    aliveRef.current = keepRecent(aliveRef.current, id, KEEP)
+    setAlive(aliveRef.current)
+    if (!arrive && kept) return
+    const handoff = value ? { value, at: ++arrivals } : null
+    setHandoffs((all) => ({ ...all, [id]: handoff }))
   }, [])
+
+  // A tab chosen with nothing in hand opens on the word it was last on, from
+  // the journey, so glancing at another tab and coming back costs nothing; one
+  // still alive is simply shown again. Already there (the active tab clicked
+  // again): not a step, and the panel is left exactly as it is.
+  const switchTab = useCallback((id, handed = null) => {
+    const value = handed ?? lastPlaceOn(id)
+    if (!visit(id, value)) return
+    show(id, value, handed != null)
+  }, [show])
 
   const strip = useStrip(LISTED, FIXED, RECENT, activeTab)
 
@@ -158,15 +183,16 @@ function AppContent() {
   // arrow: a step returned to is handed back to its panel exactly like a
   // hand-off, which is what makes it load that word again.
   useEffect(() => {
-    return onJump((step) => {
-      setActiveTab(step.tab)
-      setQuiz(QUIET)
-      setHandoff(step.value ? { tab: step.tab, value: step.value, at: ++arrivals } : null)
-    })
-  }, [])
+    return onJump((step) => show(step.tab, step.value, step.value != null))
+  }, [show])
 
-  // Panels report where they got to; which tab that is, is App's to know.
-  const recordVisit = useCallback((value) => visit(activeTab, value), [activeTab])
+  // Each panel's own way to report where it got to, and how a round is going:
+  // made once, so a hidden panel is not rendered again for a switch. Only the
+  // tab on screen is heard; a hidden one finishing a search is not a step.
+  const said = useMemo(() => Object.fromEntries(TABS.map(({ id }) => [id, {
+    onVisit: (value) => activeRef.current === id && visit(id, value),
+    onProgress: (round) => { if (activeRef.current === id) setQuiz(round) },
+  }])), [])
 
   // The header is pinned, so anything else pinned sits under it: its height is
   // published as --app-header-h, kept true as it wraps on a narrow screen.
@@ -293,26 +319,26 @@ function AppContent() {
           main's own role would leave the page with no main landmark to skip to. */}
       <main className="shell py-8 glass rounded-[var(--radius-lg)]">
         <div role="tabpanel" id="tabpanel" aria-labelledby={`tab-${activeTab}`}>
-          {/* Keyed by the tab and nothing else. Remounting on tab change is
-              what replays each panel's entrance animation; a word arriving on
-              the tab already open is NOT a new panel, and it used to be keyed
-              that way. Every back press then tore the whole column down, faded
-              it in from nothing over 220ms and left the page collapsed to an
-              empty panel's height while the word was fetched again, which read
-              as the screen blinking. The panels follow the word themselves
-              now; see each one's "a word arriving" block. */}
-          <div key={activeTab} className={`fade-in${active.study ? ' study' : ''}`}>
-            <Suspense fallback={null}>
-              <ActiveTab
-                accent={accent}
-                incoming={handoff?.tab === activeTab ? handoff.value : null}
-                arrival={handoff?.tab === activeTab ? handoff.at : null}
+          {/* The last few tabs stay alive, hidden (React's Activity): a switch
+              back shows the panel as it was, with no fetch, no fade and no
+              cards rising again (TabPane). A switch used to tear the panel down
+              and build it again, blank until its code and data came and then
+              animated in. A word arriving on a tab is NOT a new panel: the
+              panels follow the word themselves; see each one's "a word
+              arriving" block. In TABS order, so a switch never moves a panel
+              in the page and loses its scroll. */}
+          {TABS.filter((tab) => alive.includes(tab.id)).map((tab) => (
+            <Activity key={tab.id} mode={tab.id === activeTab ? 'visible' : 'hidden'}>
+              <TabPane
+                tab={tab}
+                handoff={handoffs[tab.id]}
+                accent={accentOf(tab.id)}
                 onGo={switchTab}
-                onVisit={recordVisit}
-                onProgress={setQuiz}
+                onVisit={said[tab.id].onVisit}
+                onProgress={said[tab.id].onProgress}
               />
-            </Suspense>
-          </div>
+            </Activity>
+          ))}
         </div>
       </main>
 

@@ -1,7 +1,25 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { getQuranEditions, getSurahEdition } from '../api'
+import { surahEditionQuery, translationsQuery } from '../api'
 import { useRemembered } from './useRemembered'
+
+// The first translation in backend/data/quran/editions.json, which is what the
+// list would fall back to: asked for before the list lands, so the English
+// comes with the Arabic instead of a round trip after it. A test holds the two
+// in step; out of step it costs one wasted fetch, not a wrong book.
+export const DEFAULT_TRANSLATION = 'saheeh-en'
+
+const KEY = 'translation-edition'
+
+/**
+ * Which book to show. Before the list of books has come (`ids` null) the
+ * reader's saved choice is trusted, so its fetch can start at once; after, a
+ * book no longer installed falls back to the first one.
+ */
+export function editionFor(stored, ids) {
+  if (!ids) return stored || DEFAULT_TRANSLATION
+  return ids.includes(stored) ? stored : (ids[0] ?? '')
+}
 
 /**
  * The reader's chosen English translation, for a whole surah at once.
@@ -18,16 +36,14 @@ import { useRemembered } from './useRemembered'
  * caller can fall back to what it had rather than print a blank.
  */
 export function useTranslation(surah) {
-  const { data: books = [] } = useQuery({
-    queryKey: ['quran-editions', 'translation'],
-    queryFn: () => getQuranEditions('translation'),
-  })
+  const { data: list } = useQuery(translationsQuery)
+  const books = list ?? []
 
-  const [chosen, choose] = useRemembered('translation-edition', books.map((book) => book.id))
+  const [stored, choose] = useRemembered(KEY)
+  const chosen = editionFor(stored, list?.map((book) => book.id))
 
   const { data, isError, error, refetch } = useQuery({
-    queryKey: ['surah-edition', surah, chosen],
-    queryFn: () => getSurahEdition(surah, chosen),
+    ...surahEditionQuery(surah, chosen),
     enabled: Boolean(surah && chosen),
   })
 
