@@ -6,7 +6,7 @@
  * conversation is found without knowing where it is filed.
  *
  * The place in the tab is the question's id (ids are unique across topics), so
- * ?tab=dawah&q=who-made-god opens that answer and the back arrow steps through
+ * /app/dawah?q=who-made-god opens that answer and the back arrow steps through
  * the answers read. Each point carries its own evidence underneath, reusing the
  * timelines' reference row (pieces in components/dawah, wording in dawah.json): a Qur'an reference opens the ayah itself. A matching
  * IslamQA fatwa is linked at the foot as further reading.

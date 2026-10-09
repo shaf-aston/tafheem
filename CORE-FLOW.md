@@ -175,6 +175,6 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   (`lib/notes.js`), so the stored note stays the reference. Tamreen questions link to it.
 - `frontend/src/components/`: one component per tab, shared parts in `ui/`.
   `frontend/src/lib/`: helpers, and `journey.js` for where the reader has been.
-  `frontend/src/components/Backdrop.jsx`: the drifting-lights canvas behind every tab, tinted by the tab colour; it exists so the dark page has depth, and it stops when Animations is off. Maths in `lib/bokeh.js`, knobs in theme.json `lights` and `marks` (the faint drifting letters under the lights). The kit page (`/app?tab=kit`, hidden from every menu) is where every element and token is seen.
+  `frontend/src/components/Backdrop.jsx`: the drifting-lights canvas behind every tab, tinted by the tab colour; it exists so the dark page has depth, and it stops when Animations is off. Maths in `lib/bokeh.js`, knobs in theme.json `lights` and `marks` (the faint drifting letters under the lights). The kit page (`/app/kit`, hidden from every menu) is where every element and token is seen.
 - Styles live in `frontend/src/styles/`, one file per job (base, layers, motion, text, components, ...); `index.css` there imports them in cascade order.
 - `logs/recite-journal.jsonl`: the reciting log, rolled over at 5 MB, last 3 kept.

@@ -22,7 +22,7 @@ import { forgetProgress } from './progress'
 import { scrollToTop } from './scrollToEl'
 import { forgetSession, loadSession, samePlace, saveSession } from './session'
 import { forgetProgressKeys } from './stored'
-import { readRouteFromUrl, readStateFromHistory, writeTabToUrl } from './tabUrl'
+import { readRouteFromUrl, readStateFromHistory, tabAddress, writeTabToUrl } from './tabUrl'
 
 const listeners = new Set()
 const jumpListeners = new Set()
@@ -156,7 +156,7 @@ export async function startOver() {
   forgetProgressKeys()
   scrollToTop()
   await forgetProgress()
-  globalThis.location?.assign(`${globalThis.location.pathname}?tab=${tab}`)
+  globalThis.location?.assign(tabAddress(tab))
 }
 
 /** Back one step, through the browser so its own arrow stays in step. */

@@ -6,7 +6,9 @@ import tailwindcss from '@tailwindcss/vite'
 // The tool's public address is /app; app.html is only the file behind it. A host
 // serves a real file before it consults a rewrite, which is why the front door is
 // a filename and not a rule. One rewrite for the dev server and preview both.
+// /app/<tab> is the same page; the tab is read from the path (lib/tabUrl.js).
 const PRETTY = { '/app': '/app.html' }
+const TAB_PAGE = /^\/app\/[^/.]+$/
 const prettyUrls = {
   name: 'pretty-urls',
   configureServer(server) { server.middlewares.use(rewrite) },
@@ -14,7 +16,8 @@ const prettyUrls = {
 }
 function rewrite(req, _res, next) {
   const [path, query] = req.url.split('?')
-  const to = PRETTY[path.replace(/(.)\/$/, '$1')]
+  const bare = path.replace(/(.)\/$/, '$1')
+  const to = PRETTY[bare] ?? (TAB_PAGE.test(bare) ? PRETTY['/app'] : null)
   if (to) req.url = query ? `${to}?${query}` : to
   next()
 }
