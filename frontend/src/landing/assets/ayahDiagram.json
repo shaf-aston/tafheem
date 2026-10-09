@@ -1,0 +1,27 @@
+{
+  "_comment": "The hero's ayah (al-'Alaq 96:1) and how it is built. words: one column each, right to left; gl is its meaning, own its name and colour, ghost a doer that is understood but not written. braces: innermost first; from/to are word columns, row the joining row under the words, name what the joined phrase is, then what it becomes one step later. Tones are theme.json role keys, plus gold (the one the sentence hangs on) and whole (the finished sentence). stepMs is each step, endMs how long the finished diagram stays.",
+  "label": "Surah al-'Alaq, ayah 1, joined word by word into one sentence",
+  "translation": "Read in the name of your Lord, the One Who created",
+  "stepMs": 1300,
+  "endMs": 2600,
+  "words": [
+    { "ar": "ٱقْرَأْ", "gl": "Read", "own": ["فِعْلُ أَمْرٍ", "fil"] },
+    { "ar": "أَنْتَ", "gl": "(you)", "ghost": true, "own": ["فَاعِلٌ", "fail"] },
+    { "ar": "بِـ", "gl": "in", "own": ["حَرْفُ جَرٍّ", "harf"] },
+    { "ar": "ٱسْمِ", "gl": "(the) name", "own": ["مُضَافٌ", "mudaf"] },
+    { "ar": "رَبِّ", "gl": "(of) Lord", "own": ["مُضَافٌ", "mudaf"] },
+    { "ar": "كَ", "gl": "your", "own": ["مُضَافٌ إِلَيْهِ", "fail"] },
+    { "ar": "ٱلَّذِى", "gl": "the One Who", "own": ["اِسْمٌ مَوْصُولٌ", "rel"] },
+    { "ar": "خَلَقَ", "gl": "created", "own": ["فِعْلٌ", "fil"] },
+    { "ar": "هُوَ", "gl": "(He)", "ghost": true, "own": ["فَاعِلٌ", "fail"] }
+  ],
+  "braces": [
+    { "from": 4, "to": 5, "row": 0, "tone": "sifah", "name": "مَوْصُوفٌ" },
+    { "from": 7, "to": 8, "row": 0, "tone": "fil", "name": "جُمْلَةٌ فِعْلِيَّةٌ", "then": ["صِلَةٌ", "rel"] },
+    { "from": 6, "to": 8, "row": 1, "tone": "sifah", "name": "صِفَةٌ" },
+    { "from": 4, "to": 8, "row": 2, "tone": "mudaf", "name": "مُضَافٌ إِلَيْهِ" },
+    { "from": 3, "to": 8, "row": 3, "tone": "mafool", "name": "مَجْرُورٌ" },
+    { "from": 2, "to": 8, "row": 4, "tone": "gold", "name": "مُتَعَلِّقٌ بِـ ٱقْرَأْ" },
+    { "from": 0, "to": 8, "row": 5, "tone": "whole", "name": "جُمْلَةٌ فِعْلِيَّةٌ إِنْشَائِيَّةٌ" }
+  ]
+}
