@@ -24,7 +24,7 @@ import EmptyState from './ui/EmptyState'
 import FlagButton from './ui/FlagButton'
 import ErrorAlert from './ui/ErrorAlert'
 import Segmented from './ui/Segmented'
-import { AnalyzerSkeleton } from './ui/Skeleton'
+import { AnalyzerSkeleton, Skeleton } from './ui/Skeleton'
 import SmallButton from './ui/SmallButton'
 
 const MODES = [
@@ -76,7 +76,26 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
   const used = useMemo(() => (topic ? rolesUsed(topic) : new Set()), [topic])
   const cards = useMemo(() => (topic ? cardsOf(topic, [...hidden]) : []), [topic, hidden])
 
-  if (isPending) return <AnalyzerSkeleton />
+  // Everything that needs no data is drawn as it will be, and the topic chips
+  // are held open by blanks, so nothing moves when the notes arrive.
+  if (isPending) {
+    return (
+      <div className="space-y-4" style={{ '--c': accent }}>
+        <div className="flex flex-wrap gap-1.5" aria-hidden="true">
+          {[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-[var(--layout-chip)] w-14 rounded-full" />)}
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <Segmented label="How to use the notes" options={MODES} value={mode} onChange={setMode} accent={accent} />
+          {mode !== 'cards' && (
+            <FlagButton value={english} onChange={setEnglish} accent={accent} title="Show the English under each line">
+              English
+            </FlagButton>
+          )}
+        </div>
+        <AnalyzerSkeleton />
+      </div>
+    )
+  }
   if (isError) {
     return (
       <ErrorAlert title="Could not load the notes" error={error} fallback="The notes could not be reached." onRetry={refetch} />

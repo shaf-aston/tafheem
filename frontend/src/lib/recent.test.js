@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { addRecent, readRecent, stripOf } from './recent'
+import { addRecent, keepRecent, readRecent, stripOf } from './recent'
 
 // The registry's ids, in its order.
 const TABS = [
@@ -44,5 +44,15 @@ describe('recent tabs', () => {
       '["dict","mem","quiz","grow"]', '["mem","mem","quiz","grow"]']) {
       expect(readRecent(text, TABS, FIXED, SEED)).toEqual(SEED)
     }
+  })
+})
+
+describe('keepRecent', () => {
+  it('puts the tab last, without a repeat', () => {
+    expect(keepRecent(['a', 'b', 'c'], 'a', 4)).toEqual(['b', 'c', 'a'])
+  })
+
+  it('drops the oldest past the limit', () => {
+    expect(keepRecent(['a', 'b', 'c', 'd'], 'e', 4)).toEqual(['b', 'c', 'd', 'e'])
   })
 })

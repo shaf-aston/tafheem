@@ -18,7 +18,7 @@
  * skeleton rather than leaving stale ones under a spinner, Sarf says nothing
  * for a wait too short to be news. Nothing here changes that.
  */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 /**
  * Two things about an arrival: `arrived` is true on the one render it comes in,
@@ -86,4 +86,23 @@ export function useHeld(data, returning) {
   const shown = nextHeld(held, data, returning)
   if (shown !== held) setHeld(shown)
   return shown
+}
+
+// Nothing has been run yet: an arrival of null still counts as the first.
+const NONE = Symbol('none')
+
+/**
+ * `run` once per arrival, after the render that brings it: the fetch an arrival
+ * starts. App keeps a panel alive while it is hidden, and React tears a hidden
+ * panel's effects down and runs them again when it is shown, so a plain effect
+ * would fetch the same word again on every return to the tab. The ref survives
+ * hiding, so a return is not taken for an arrival.
+ */
+export function useArrivalEffect(arrival, run) {
+  const done = useRef(NONE)
+  useEffect(() => {
+    if (done.current === arrival) return
+    done.current = arrival
+    run()
+  })
 }

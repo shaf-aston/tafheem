@@ -3,7 +3,7 @@
  * a card for each word. One `/api/analyze` request returns both, so they are the
  * same reading. The picture is left out when nothing could be joined.
  */
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { analyzeIraab, generatePractice } from '../api'
@@ -14,6 +14,7 @@ import { arc } from '../lib/govArc'
 import { roleVar } from '../lib/roleColors'
 import { useRemembered } from '../lib/useRemembered'
 import { useTarkeebView } from '../lib/useTarkeebView'
+import { useArrivalEffect } from '../lib/useArrival'
 
 import SourceBadge from './ui/SourceBadge'
 import TarkeebFigure from './TarkeebFigure'
@@ -62,11 +63,10 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
   }
 
   // A sentence handed over from the wide view is analysed on arrival; the box
-  // is already filled from the same prop.
-  useEffect(() => {
+  // is already filled from the same prop. Once per sentence, not per return to the tab.
+  useArrivalEffect(analyse, () => {
     if (analyse) analyze.mutate(analyse)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [analyse])
+  })
 
   return (
     <div className="space-y-6">

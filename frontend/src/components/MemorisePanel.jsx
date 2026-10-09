@@ -29,6 +29,7 @@ import { scrollToEl } from '../lib/scrollToEl'
 import { useReciting } from '../lib/useReciting'
 import { useSetting } from '../lib/settings'
 import { warm } from '../lib/warm'
+import { useArrivalEffect } from '../lib/useArrival'
 import recite from '../recite.json'
 
 import { LOOK, SHOWN } from '../lib/reciteColors'
@@ -396,7 +397,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   // push a new step and trap the back arrow there.
   const arriving = useRef(false)
   const landed = useRef(null)
-  useEffect(() => {
+  useArrivalEffect(arrival, () => {
     const [, b = DEFAULT_BOOK, p, line] = PLACE.exec(incoming ?? '') ?? []
     if (!p || !BOOKS[b]) return
     arriving.current = true
@@ -406,7 +407,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
       if (b !== bookId) openBook(b)
       openPart(Number(p), at)
     }).catch(() => {}).finally(() => { arriving.current = false })
-  }, [arrival])  // eslint-disable-line react-hooks/exhaustive-deps
+  })
   const here = page && placeOf(bookId, part, page[0])
   useEffect(() => {
     if (!here || arriving.current || here === landed.current) return

@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
+import { preloadFont } from './vite/preloadFont'
+
 // The landing page is the front door, so it is index.html and needs no rewrite.
 // The tool's public address is /app; app.html is only the file behind it. A host
 // serves a real file before it consults a rewrite, which is why the front door is
@@ -20,7 +22,7 @@ function rewrite(req, _res, next) {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), prettyUrls],
+  plugins: [react(), tailwindcss(), prettyUrls, preloadFont],
   build: {
     rollupOptions: {
       // A second real page, not a route: the app has no router, and the

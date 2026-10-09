@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 
 import { analyzeMorphology, analyzeMeaning, conjugateForm } from '../api'
 import { errorMessage } from '../lib/apiError'
-import { useArrival, useHeld } from '../lib/useArrival'
+import { useArrival, useArrivalEffect, useHeld } from '../lib/useArrival'
 import { useSlowPending } from '../lib/useSlowPending'
 
 import ArabicText from './ui/ArabicText'
@@ -95,16 +95,13 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
 
   // And it is conjugated, so the journey ends in an answer rather than in a
   // filled-in box. The previous word's swap and meaning go with it.
-  const { mutate: analyze, reset: resetWord } = mutation
-  const { reset: resetSwap } = swap
-  const { reset: resetMeaning } = meaning
-  useEffect(() => {
+  useArrivalEffect(arrival, () => {
     if (!incoming) return
-    resetWord()
-    resetSwap()
-    resetMeaning()
-    analyze({ word: incoming })
-  }, [arrival, incoming, analyze, resetWord, resetSwap, resetMeaning])
+    mutation.reset()
+    swap.reset()
+    meaning.reset()
+    mutation.mutate({ word: incoming })
+  })
 
   const submit = (text, nextForm = form) => {
     const trimmed = (text ?? word).trim()

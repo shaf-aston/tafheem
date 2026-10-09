@@ -34,7 +34,15 @@ export default function TamreenPanel({ accent, onProgress, onNotes }) {
     queryFn: getTamreen,
   })
 
-  if (isPending) return <AnalyzerSkeleton />
+  // The mode switch needs no data, so it is there from the first paint.
+  if (isPending) {
+    return (
+      <div className="space-y-3">
+        <Segmented value={mode} onChange={setMode} accent={accent} options={MODES} className="w-fit" />
+        <AnalyzerSkeleton />
+      </div>
+    )
+  }
 
   if (isError) {
     return (

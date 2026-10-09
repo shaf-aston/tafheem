@@ -57,6 +57,7 @@ export const quranSurahQuery = (surah) => ({ queryKey: ['quran-surah', surah], q
 // simply absent rather than mis-aligned.
 export const getSurahGlosses = (surah) =>
   api.get(`/quran/surah/${surah}/glosses`).then((r) => r.data)
+export const surahGlossesQuery = (surah) => ({ queryKey: ['surah-glosses', surah], queryFn: () => getSurahGlosses(surah) })
 
 // How the ayah's words join into one another. Derived from the corpus tags by
 // rule, so it comes back with its own source label; not the corpus's.
@@ -67,6 +68,7 @@ export const getSurahGlosses = (surah) =>
  */
 export const getQuranEditions = (kind = '') =>
   api.get('/quran/editions', { params: kind ? { kind } : {} }).then((r) => r.data)
+export const translationsQuery = { queryKey: ['quran-editions', 'translation'], queryFn: () => getQuranEditions('translation') }
 
 /**
  * What the named books say about one ayah. `ids` blank means every book, which
@@ -76,6 +78,7 @@ export const getQuranEditions = (kind = '') =>
  */
 export const getSurahEdition = (surah, id) =>
   api.get(`/quran/editions/surah/${surah}`, { params: { id } }).then((r) => r.data)
+export const surahEditionQuery = (surah, id) => ({ queryKey: ['surah-edition', surah, id], queryFn: () => getSurahEdition(surah, id) })
 
 export const getAyahEditions = (surah, ayah, ids = []) =>
   api
