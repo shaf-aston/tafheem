@@ -167,7 +167,8 @@ def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str 
         return None
     if bare.endswith(HIDDEN_CASE):
         return "kept"
-    if bare.endswith(("وا", "ا")) or (bare.startswith("ت") and bare.endswith("ي") and shown != "a"):
+    # تَجْزِي، تَأْتِي: on a root whose last letter is weak the ي is that letter, kept in raf'
+    if bare.endswith(("وا", "ا")) or (bare.startswith("ت") and bare.endswith("ي") and shown != "a" and not weak_last):
         return "dropped"
     return None
 
