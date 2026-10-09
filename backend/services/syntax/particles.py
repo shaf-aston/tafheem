@@ -267,7 +267,13 @@ def _shows(token: dict, s: facts.Sentence) -> str:
     return "nasb" if nun == "dropped" or shown == "a" else "raf" if nun == "kept" or shown == "u" else "other"
 
 
+def _doubled(token: dict, s: facts.Sentence) -> str:
+    """The reader typed a shadda on it: إِنَّا is إنّ, never the إنْ of a condition."""
+    return "yes" if SHADDA in (token.get("typed") or "") else "no"
+
+
 AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] = {
+    "doubled": (("yes", "no"), _doubled),
     "next": (("verb_jazm", "verb", "indefinite_noun", "noun", "particle", "none"), _what_follows),
     "negated": (("yes", "no"), _negated),
     "joins": (("yes", "no"), _joins),

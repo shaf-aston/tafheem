@@ -39,7 +39,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         if not frame or i + 1 >= len(bases) or named[i + 1] != NAMED.fil or (i and not joined(i)):
             return None
         # ما النافية is a particle; إذا before a verb is a ظرف, whatever the parser tagged it
-        kind = (bases[i].get("reading") or {}).get("kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
+        reading = bases[i].get("reading") or {}
+        kind = reading.get("kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
+        if not frame["noun"] and reading and reading["family"] != "jazm":
+            return None  # إِنَّا جَعَلْنَا: the particle's one reading is إنّ, no condition
         return None if frame["noun"] and kind == "harf" else frame
 
     def needs_the_tie(frame: dict, k: int) -> bool:
