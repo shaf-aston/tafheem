@@ -133,17 +133,20 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
                                      for kid in tokens if kid["head"] == t["id"]):
             role_by_id[t["id"]] = NAMED.harf_jarr
     named = [role_by_id[token["id"]] for token in bases]
+    word_of = _typed_word_of(bases, tokens)
+    before = [[t["form"].strip("+") for t in tokens if t["form"].endswith("+") and word_of.get(t["id"]) == i]
+              for i in range(len(bases))]
     cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "",
-                     facts.puts_in_jarr(token, s))
+                     facts.puts_in_jarr(token, s), _lam_mood(token, before[i], i == 0))
              for i, (role, token) in enumerate(zip(named, bases))]
     _followers_take_their_case(named, cases, bases, tokens)
+    _joined_verbs_take_their_mood(named, cases, bases, tokens)
     # what each word shows: the governor and follower the tree gave it, and its case
     shown = [{answers[token["id"]]["governor"], answers[token["id"]]["follows"], case}
              for token, case in zip(bases, cases)]
     # a piece written onto a تابع joins it, it does not govern it: وَإِيمَانٌ shows عطف first
     joined = [{answers[token["id"]]["follows"]} if answers[token["id"]]["follows"] not in (None, "none") else said
               for token, said in zip(bases, shown)]
-    word_of = _typed_word_of(bases, tokens)
     # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
     found = [{"role": role, "case": case,
              "aspect": token.get("asp") if role == NAMED.fil else None,
@@ -157,8 +160,6 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
              **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]])}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
-    before = [[t["form"].strip("+") for t in tokens if t["form"].endswith("+") and word_of.get(t["id"]) == i]
-              for i in range(len(bases))]
     for entry, role in zip(found, named):
         if (pair := _pair_named(bases, entry.get("governor"))) and role in pair:
             entry["pair"] = pair  # the role keeps its id; only the printed name follows the governor
@@ -276,6 +277,21 @@ def _followers_take_their_case(named: list, cases: list, bases: list[dict], toke
             cases[i] = cases[head]
 
 
+def _joined_verbs_take_their_mood(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
+    """A present verb whose ending shows nothing, hung on a joining particle (atf `joins_mood`)
+    that hangs on a present verb in nasb or jazm, is in that mood too (أَنْ تَبَرُّوا وَتَتَّقُوا،
+    إِنْ تُبْدُوا أَوْ تُخْفُوهُ); in order, so a chain follows too. Any other is in raf', the mood
+    a present verb has with no governor."""
+    by_id = {t["id"]: t for t in tokens}
+    for i, role in enumerate(named):
+        if role != NAMED.fil or cases[i] is not None:
+            continue
+        joiner = by_id.get(bases[i]["head"])
+        joined = joiner and joiner["pos"] == "PRT" and is_one(joiner["lemma"], "atf", "joins_mood")
+        head = _followed(bases[i], bases, tokens) if joined else None
+        cases[i] = cases[head] if head is not None and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm") else "raf'"
+
+
 def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None = None) -> str | None:
     """The family a particle or verb is named by (كان فعل ماضٍ ناقص، إنّ حرف مشبه بالفعل):
     one whose list holds it and whose effect shows on a word linked to it, the noun hung
@@ -304,13 +320,27 @@ def opens_with_verb(roles: list[str | None]) -> bool:
     return False
 
 
-def _ending(role: str | None, token: dict, before: dict | None, after: str, jarred: bool) -> str | None:
+def _lam_mood(token: dict, front: list[str], opens: bool) -> str | None:
+    """The mood a لام written onto a present verb gives it (Tasheel; closed_words ل): with a
+    sukun (فَلْيَصُمْهُ) or opening the sentence (لِيُنْفِقْ) it is لام الأمر, jazm; with a kasra
+    after a clause it is لام التعليل, nasb by a hidden أن (لِيُضِلُّوا). A fatha is the لام of
+    emphasis (لَيَقُولَنَّ), which settles nothing; so does a لام left bare."""
+    if "ل" not in front:
+        return None
+    marks = letters(token["typed"])[front.index("ل")][1]
+    if SUKUN in marks or (opens and "ِ" in marks):
+        return "jazm"
+    return "nasb" if "ِ" in marks else None
+
+
+def _ending(role: str | None, token: dict, before: dict | None, after: str, jarred: bool,
+            lam: str | None = None) -> str | None:
     """What to print under the word: a case for a noun or a present verb, else mabni.
     A noun's case is the vowel typed on it, else its role's own. A kasra on ـات is nasb when
     its role takes nasb, or it has no role and nothing puts it in jarr, shown by the kasra (رأيت المعلماتِ)."""
     if role == NAMED.fil:
         present = token["base"][:1] in PRESENT_PREFIX and token.get("asp") == "i"
-        return _mood(paused(token["typed"], after), token, before) if present else "mabni"
+        return _mood(paused(token["typed"], after), token, before, lam) if present else "mabni"
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
     # يَا وَلَدُ، يا أيها: a single called noun is built on the damma (in the place of nasb)
@@ -331,13 +361,15 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     return CASE_NAME.get(facts.typed_case_of(token) or case_of(role or "", token["mudaf"]) or unseen_case(role))
 
 
-def _mood(typed: str, token: dict, before: dict | None) -> str:
+def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) -> str | None:
     """A present verb's case, the governor first (the book's عامل): a particle that
     settles it by itself (لم يكتب، لن يذهب), or one of the shapes only jazm or nasb
     leaves, a weak last letter gone (لم يَدْعُ، لا تَنْسَ) or the five verbs' nun gone
     with a jazm or nasb particle before (لا تَسُبُّوا). Then the ending the reader typed,
-    on the verb's own last letter (يُفَقِّهْهُ), else raf'. `typed` is the word as paused
-    on (harakat.paused); `before` is the base token before it, its joined letters off."""
+    on the verb's own last letter (يُفَقِّهْهُ), else the mood of a لام written onto it
+    (_lam_mood), else None: nothing shows, and the verb it is joined to decides, else raf'.
+    `typed` is the word as paused on (harakat.paused); `before` is the base token before it,
+    its joined letters off."""
     particle = before["base"] if before else ""
     dropped_nun = five_verb_nun(typed, token.get("stuck_on", 0), token.get("weak_last")) == "dropped"
     read = (before or {}).get("reading") or {}  # أَلَّا: the nasb أنْ with a لا merged in
@@ -349,4 +381,4 @@ def _mood(typed: str, token: dict, before: dict | None) -> str:
     if stilled(typed, token["base"], stuck_on, token.get("weak_last")):
         return "jazm"
     shown = typed_case(typed, stuck_on)
-    return CASE_NAME[shown] if shown in ("u", "a") else "raf'"
+    return CASE_NAME[shown] if shown in ("u", "a") else lam  # None: nothing shows (_joined_verbs_take_their_mood)
