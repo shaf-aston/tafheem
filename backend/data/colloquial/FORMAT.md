@@ -87,6 +87,8 @@ A dialect gives its Arabic in its own `<dialect>/words.json`, once per id:
 - A topic is all or none: a dialect that has written a lesson says every word of
   it, or none yet. Two words of one topic never share their Arabic.
 - A topic teaches 8 or more words, and never a filler to reach 8.
+- A topic with `"phrases": []` in the spine is a word list: no phrases, conversation or exercises, only its words,
+  learnt as cards, match, quiz and review. A unit made only of word lists (unit-20, Word Banks) needs no challenge.
 
 The loader checks all of this on start and stops on any fault. To review a
 dialect's words, `python -m backend.scripts.colloquial_word_bank dump <dialect>`

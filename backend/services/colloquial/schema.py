@@ -68,12 +68,13 @@ class Lesson(BaseModel):
     # A heading shared with its neighbours, only in units long enough to need one.
     section: str | None = None
     written: Literal[True] = True
-    phrases: list[Phrase]
-    dialogue: list[DialogueLine]
+    # A topic that is only a word list has just its vocabulary.
+    phrases: list[Phrase] = []
+    dialogue: list[DialogueLine] = []
     de_book: list[Drill] = []
     vocabulary: list[VocabWord] = []
-    culture: str
-    exercises: list[AnyExercise]
+    culture: str = ""
+    exercises: list[AnyExercise] = []
 
 
 class Challenge(BaseModel):
@@ -93,7 +94,7 @@ class Unit(BaseModel):
     # for, so the spelling is never a mystery.
     transliteration_key: dict[str, str]
     lessons: list[Lesson | ComingLesson]
-    challenge: Challenge
+    challenge: Challenge | None = None
     source: Source
 
 

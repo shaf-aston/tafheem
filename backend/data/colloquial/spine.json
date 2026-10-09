@@ -7638,6 +7638,152 @@
           "words": ["child", "parent", "father", "mother", "photo", "description", "guard", "fear", "information-desk", "loudspeaker", "shirt", "age", "to-search", "to-find", "to-announce", "to-cry", "to-see", "lost", "small", "red"]
         }
       ]
+    },
+    {
+      "unit": "unit-20",
+      "title": "Word Banks",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Little Words",
+          "section": "Small words",
+          "phrases": [],
+          "words": ["i", "you", "he", "she", "we", "you-two", "you-plural", "they-two", "they", "this", "that", "these", "those", "who-relative", "that-conjunction", "here", "there", "who", "what", "where", "when", "why", "how", "which", "whose", "how-many", "how-much", "from-where", "yes-no-question", "is-not", "o-calling"]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Joining and Placing",
+          "section": "Small words",
+          "phrases": [],
+          "words": ["in", "on", "under", "above", "between", "around", "inside", "middle", "in-front-of", "behind", "next-to", "opposite", "outside", "to", "from", "with", "without", "at", "for", "with-using", "about", "until", "since", "during", "before", "after", "like-as", "except", "and", "but", "or", "because", "if", "so-therefore", "then", "when-in-sentence", "while", "despite", "in-order-to"]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "How Often, How Much",
+          "section": "Small words",
+          "phrases": [],
+          "words": ["always", "often", "sometimes", "usually", "rarely", "never", "once", "twice", "again", "already", "still", "immediately", "every-day", "only", "very", "extremely", "almost", "a-little", "a-lot", "more", "less", "enough", "exactly", "completely", "partly", "especially", "at-least", "also", "all", "some", "most", "several", "whole", "something", "nothing", "everything", "everyone", "no-one", "half"]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Numbers Beyond Ten",
+          "section": "Numbers and dates",
+          "phrases": [],
+          "words": ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "two-hundred", "thousand", "million", "billion", "first", "second-2nd", "third-3rd", "fourth-4th", "fifth-5th", "sixth-6th", "seventh-7th", "eighth-8th", "ninth-9th", "tenth-10th", "last", "half", "quarter", "one-third", "two-thirds", "three-quarters", "plus", "minus", "to-count", "per-cent"]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Months of the Year",
+          "section": "Numbers and dates",
+          "phrases": [],
+          "words": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "muharram", "safar", "rabi-al-awwal", "rabi-al-akhir", "jumada-al-ula", "jumada-al-akhira", "rajab", "shaban", "ramadan", "shawwal", "dhu-al-qadah", "dhu-al-hijjah", "month", "year", "date", "calendar", "gregorian", "hijri", "century", "date-of-birth", "daily", "weekly", "monthly", "yearly", "last-month", "this-month", "next-month", "last-year", "this-year", "next-year"]
+        },
+        {
+          "lesson": "lesson-06",
+          "title": "Farm and Pet Animals",
+          "section": "The living world",
+          "phrases": [],
+          "words": ["animal", "cow", "bull", "sheep", "goat", "horse", "donkey", "mule", "camel", "buffalo", "hen", "rooster", "duck", "goose", "turkey-bird", "pet", "cat", "dog", "rabbit", "cage", "calf", "lamb", "kid-young-goat", "foal", "puppy", "chick", "farm", "stable", "flock", "shepherd", "to-feed", "to-milk", "tail", "horn", "hoof"]
+        },
+        {
+          "lesson": "lesson-07",
+          "title": "Wild Animals",
+          "section": "The living world",
+          "phrases": [],
+          "words": ["lion", "lioness", "tiger", "cheetah", "wolf", "fox", "bear", "elephant", "monkey", "deer", "gazelle", "giraffe", "zebra", "hippopotamus", "rhinoceros", "kangaroo", "squirrel", "hedgehog", "mouse-animal", "bat-animal", "hyena", "frog", "snake", "crocodile", "lizard", "chameleon", "venom", "wild-animal", "zoo", "predator", "prey", "hunter", "to-hunt"]
+        },
+        {
+          "lesson": "lesson-08",
+          "title": "Birds, Insects and Sea Life",
+          "section": "The living world",
+          "phrases": [],
+          "words": ["bird", "eagle", "falcon", "pigeon", "parrot", "sparrow", "owl", "crow", "peacock", "ostrich", "seagull", "wing", "feather", "beak", "nest", "to-fly", "egg", "fly-insect", "mosquito", "bee", "ant", "butterfly", "spider", "locust", "cockroach", "wasp", "scorpion", "to-bite", "sea", "fish", "whale", "dolphin", "shark", "crab", "turtle", "octopus", "jellyfish", "squid", "coral", "pearl", "fin", "shell"]
+        },
+        {
+          "lesson": "lesson-09",
+          "title": "Land and Sky",
+          "section": "Nature and body",
+          "phrases": [],
+          "words": ["sky", "sun", "moon", "star", "planet", "cloud", "rainbow", "horizon", "sunrise", "earth", "world", "continent", "mountain", "hill", "valley", "desert", "oasis", "island", "forest", "cave", "volcano", "earthquake", "rock", "stone", "soil", "sand", "grass", "plant", "tree", "sea", "river", "lake", "ocean", "waterfall", "spring-water", "well-water", "gulf", "coast", "beach", "wave"]
+        },
+        {
+          "lesson": "lesson-10",
+          "title": "The Body, Head to Toe",
+          "section": "Nature and body",
+          "phrases": [],
+          "words": ["head", "face", "hair", "forehead", "eyebrow", "eye", "ear", "nose", "cheek", "mouth", "lip", "tongue", "tooth", "chin", "beard", "shoulder", "arm", "elbow", "wrist", "hand", "palm-hand", "finger", "thumb", "fingernail", "thigh", "knee", "leg", "ankle", "foot", "heel", "body", "skin", "neck", "chest", "back", "stomach", "bone", "heart", "lung", "liver", "kidney", "brain", "blood", "vein", "muscle"]
+        },
+        {
+          "lesson": "lesson-11",
+          "title": "Countries and Nationalities",
+          "section": "The wider world",
+          "phrases": [],
+          "words": ["country", "syria", "lebanon", "jordan", "palestine", "iraq", "saudi-arabia", "egypt", "morocco", "britain", "america", "kuwait", "qatar", "bahrain", "uae", "oman", "yemen", "libya", "tunisia", "algeria", "sudan", "turkey", "pakistan", "india", "indonesia", "germany", "france", "china", "japan", "nationality", "arab-nationality", "syrian", "egyptian", "palestinian", "saudi", "iraqi", "moroccan", "yemeni", "pakistani", "turkish", "indian", "indonesian", "british", "american", "french"]
+        },
+        {
+          "lesson": "lesson-12",
+          "title": "Colours, Shapes and Materials",
+          "section": "Things and shapes",
+          "phrases": [],
+          "words": ["red", "blue", "orange", "pink", "brown", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "thick", "thin-not-thick", "sharp", "smooth", "rough", "hard", "soft", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric"]
+        },
+        {
+          "lesson": "lesson-13",
+          "title": "School and Office Things",
+          "section": "Things and shapes",
+          "phrases": [],
+          "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "encyclopedia", "paper", "envelope", "school-bag", "ruler", "scissors", "glue", "adhesive-tape", "stapler", "paper-clip", "folder", "calculator", "calendar", "printer", "bell", "desk", "chair", "table", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket"]
+        },
+        {
+          "lesson": "lesson-14",
+          "title": "Fruit",
+          "section": "Food and drink",
+          "phrases": [],
+          "words": ["fruit", "apple", "banana", "orange-fruit", "mandarin", "lemon", "pear", "peach", "apricot", "plum", "cherry", "grapes", "strawberry", "blueberry", "mulberry", "watermelon", "melon", "mango", "pineapple", "kiwi", "papaya", "guava", "avocado", "coconut", "quince", "fig", "pomegranate", "dates", "dried-fruit", "raisins", "dried-figs", "dried-apricots", "peel", "stone-of-fruit", "seed", "fruit-salad", "orchard", "rotten"]
+        },
+        {
+          "lesson": "lesson-15",
+          "title": "Vegetables and Herbs",
+          "section": "Food and drink",
+          "phrases": [],
+          "words": ["vegetables", "tomato", "cucumber", "onion", "spring-onion", "garlic", "potato", "sweet-potato", "carrot", "radish", "beetroot", "turnip", "pumpkin", "courgette", "aubergine", "bell-pepper", "chilli-pepper", "okra", "mushroom", "sweet-corn", "lettuce", "cabbage", "cauliflower", "broccoli", "spinach", "celery", "leek", "herbs", "parsley", "coriander", "mint", "dill", "thyme", "basil", "rocket", "ginger", "peas", "beans", "fava-beans", "lentils", "chickpeas"]
+        },
+        {
+          "lesson": "lesson-16",
+          "title": "Pantry, Grains and Dairy",
+          "section": "Food and drink",
+          "phrases": [],
+          "words": ["grains", "wheat", "barley", "oats", "rice", "flour", "semolina", "bulgur", "freekeh", "couscous", "vermicelli", "nuts", "almond", "walnut", "pistachio", "peanut", "hazelnut", "cashew", "pine-nuts", "seed", "sesame", "black-seed", "milk", "yoghurt", "labneh", "cheese", "cream", "butter", "ghee", "vinegar", "yeast", "jam", "honey", "tahini", "molasses", "olive-oil", "pickles", "chocolate", "cinnamon", "cumin", "turmeric", "sumac"]
+        },
+        {
+          "lesson": "lesson-17",
+          "title": "Faith and Worship",
+          "section": "Faith",
+          "phrases": [],
+          "words": ["islam", "muslim", "faith", "believer", "god", "oneness-of-god", "angel", "prophet", "messenger", "revelation", "quran", "soul", "destiny", "day-of-judgement", "hereafter", "paradise", "hellfire", "worship", "to-worship", "shahada", "pillar", "prayer", "to-pray", "bowing", "prostration", "fasting", "zakat", "hajj", "remembrance", "repentance", "to-repent", "seeking-forgiveness", "trust-in-god", "piety", "patience", "ruling", "sharia", "obligatory", "recommended", "permissible", "disliked", "forbidden-by-religion", "halal", "sunnah", "sins"]
+        },
+        {
+          "lesson": "lesson-18",
+          "title": "More Doing Words",
+          "section": "Doing words",
+          "phrases": [],
+          "words": ["to-carry", "to-lift", "to-hold", "to-pick-up", "to-push", "to-pull", "to-throw", "to-tie", "to-fold", "to-pour", "to-fill", "to-empty", "to-cut", "to-draw", "to-clean", "to-sweep", "to-wipe", "to-collect", "to-hide", "to-stand-up", "to-jump", "to-run", "to-climb", "to-bend", "to-kick", "to-clap", "to-wave", "to-sneeze", "to-laugh", "to-smile", "to-look-at", "to-notice", "to-touch", "to-smell", "to-taste", "to-listen", "to-hear", "to-shout", "to-whisper", "to-call-out", "to-sing", "to-count"]
+        },
+        {
+          "lesson": "lesson-19",
+          "title": "Doing Words for Work and Study",
+          "section": "Doing words",
+          "phrases": [],
+          "words": ["to-study", "to-learn", "to-teach", "to-explain", "to-practise", "to-translate", "to-revise", "to-correct", "to-summarise", "to-discuss", "to-concentrate", "to-submit", "to-print", "to-save", "to-delete", "to-organise", "to-arrange", "to-attach", "to-download", "to-update", "to-manage", "to-hand-in", "to-sign", "to-apply", "to-cooperate", "to-hire", "to-resign", "to-earn", "to-invest", "to-think", "to-remember", "to-imagine", "to-realise", "to-compare", "to-calculate", "to-analyse", "to-solve", "to-conclude", "to-invent", "to-improve"]
+        },
+        {
+          "lesson": "lesson-20",
+          "title": "Opposites",
+          "section": "Opposites",
+          "phrases": [],
+          "words": ["easy", "difficult", "rich", "poor", "clean", "dirty", "fast", "slow", "high", "low", "beautiful", "ugly", "soft", "hard", "thick", "thin-not-thick", "alive", "dead", "same", "different", "possible", "impossible", "allowed", "forbidden", "noisy", "calm", "generous", "stingy", "brave", "cowardly", "polite", "rude", "clever", "stupid", "top", "bottom", "inside", "outside", "early", "late", "war", "peace", "male", "female"]
+        }
+      ]
     }
   ]
 }

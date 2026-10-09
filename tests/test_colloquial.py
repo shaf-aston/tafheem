@@ -216,8 +216,14 @@ def test_a_missing_culture_note_is_caught():
 
 
 def test_every_fault_is_named_at_once_rather_than_the_first():
-    said = faults(culture="", phrases=[], dialogue=[])
+    said = faults(culture="", dialogue=[], exercises=[])
     assert len(said) >= 3
+
+
+def test_a_unit_of_word_lists_needs_no_phrases_conversation_or_challenge():
+    unit = {**copy.deepcopy(SOUND), "lessons": [{"lesson": "lesson-01", "title": "Animals", "phrases": []}]}
+    del unit["challenge"]
+    assert loader._unit_faults(unit) == []
 
 
 def test_two_lessons_with_one_number_are_caught():

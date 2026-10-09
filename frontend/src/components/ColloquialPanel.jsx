@@ -167,7 +167,7 @@ function Topic({ dialect, unit, at, words }) {
   const { data, isPending, isError, error, refetch } = useQuery(colloquialUnitQuery(dialect, unit))
   if (isPending) return <AnalyzerSkeleton />
   if (isError) return <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={error} onRetry={refetch} />
-  return words ? <WordsView unit={data} at={at} /> : <UnitView unit={data} at={at} />
+  return words || !data.lessons[at].phrases.length ? <WordsView unit={data} at={at} /> : <UnitView unit={data} at={at} />
 }
 
 export default function ColloquialPanel({ incoming, arrival, onVisit }) {
@@ -270,9 +270,9 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
                   const i = from + n
                   return (
                     <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title}
-                      note={!l.written ? 'Coming' : l.words ? 'Phrases' : undefined}
-                      onClick={l.written ? () => go(dialect.key, unit.unit, i) : undefined}
-                      twin={l.written && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => go(dialect.key, unit.unit, i, true) }} />
+                      note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words` : l.words ? 'Phrases' : undefined}
+                      onClick={l.written ? () => go(dialect.key, unit.unit, i, !l.phrases) : undefined}
+                      twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => go(dialect.key, unit.unit, i, true) }} />
                   )
                 })}
               </Grid>
