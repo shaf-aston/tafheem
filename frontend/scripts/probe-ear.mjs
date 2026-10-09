@@ -148,7 +148,7 @@ await page.route('**/api/listen**', async (route) => {
 
 // Not networkidle: the page keeps asking the backend how it is, so it never
 // falls idle, and waiting for that timed the probe out instead of running it.
-await page.goto(`${APP}/app?tab=mem`, { waitUntil: 'domcontentloaded' })
+await page.goto(`${APP}/app/mem`, { waitUntil: 'domcontentloaded' })
 await page.getByRole('button', { name: 'Recite it' }).click({ timeout: 30000 })
 await page.waitForTimeout(500)
 await page.getByRole('button', { name: 'Start reciting', exact: true }).click()

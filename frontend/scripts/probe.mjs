@@ -31,7 +31,7 @@ page.on('response', async (r) => {
   console.log('HTTP', r.status(), r.url(), (await r.text().catch(() => '')).slice(0, 400))
 })
 
-await page.goto(`http://localhost:5173/?tab=${tab === 'back' || tab === 'bab' ? 'sarf' : tab}`, { waitUntil: 'networkidle' })
+await page.goto(`http://localhost:5173/app/${tab === 'back' || tab === 'bab' ? 'sarf' : tab}`, { waitUntil: 'networkidle' })
 
 // The back arrow, watched rather than trusted. Going back is a return to a page
 // already read, so the panel must stay put: no node replaced under #tabpanel

@@ -44,7 +44,7 @@ await page.route('**/api/listen*', async (route) => {
   })
 })
 
-await page.goto('http://localhost:5173/?tab=mem', { waitUntil: 'networkidle' })
+await page.goto('http://localhost:5173/app/mem', { waitUntil: 'networkidle' })
 await page.getByRole('button', { name: 'Recite it' }).click()
 await page.waitForTimeout(500)
 
