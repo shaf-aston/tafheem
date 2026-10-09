@@ -123,6 +123,13 @@ describe('chainLinks', () => {
   // The chain is what comes before `body`, as the server cuts it.
   const links = (text, body) => chainLinks(text.slice(0, text.lastIndexOf(body)).trim())
 
+  it('gives the verb after a name handed on by أن to that name, as the weak points read it', () => {
+    const { main } = links('حَدَّثَنَا أَبَانُ، حَدَّثَنَا قَتَادَةُ، أَنَّ مُحَمَّدَ بْنَ سِيرِينَ، حَدَّثَهُ عَنْ أَبِي هُرَيْرَةَ، قَالَ كَانَ', 'قَالَ كَانَ')
+    expect(main.map(({ term, name }) => [term, name])).toEqual([
+      ['حَدَّثَنَا', 'أَبَانُ'], ['حَدَّثَنَا', 'قَتَادَةُ'], ['حَدَّثَهُ', 'مُحَمَّدَ بْنَ سِيرِينَ'], ['عَنْ', 'أَبِي هُرَيْرَةَ'],
+    ])
+  })
+
   it('names each narrator with the word that passed it on', () => {
     const { main, branches } = links('حَدَّثَنَا الْحُمَيْدِيُّ، قَالَ حَدَّثَنَا سُفْيَانُ، عَنْ يَحْيَى بْنِ سَعِيدٍ، قَالَ سَمِعْتُ عُمَرَ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا', 'يَقُولُ')
     expect(main.map(({ term, way, name }) => [term, way, name])).toEqual([

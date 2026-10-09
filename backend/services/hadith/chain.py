@@ -12,8 +12,9 @@ from typing import NamedTuple
 
 _RULE = json.loads((Path(__file__).resolve().parents[3] / "frontend" / "src" / "hadith.json")
                    .read_text(encoding="utf-8"))["chain"]
-_LINKS = {*_RULE["links"]["words"],
-          *(verb + ending for verb in _RULE["links"]["verbs"] for ending in _RULE["links"]["endings"])}
+# A passing-on verb with its ending (حدثه); only one hands a chain on past أن.
+_VERBS = {verb + ending for verb in _RULE["links"]["verbs"] for ending in _RULE["links"]["endings"]}
+_LINKS = {*_RULE["links"]["words"], *_VERBS}
 _SAYS = set(_RULE["says"])
 _ABOUT = set(_RULE["about"])
 _FREE = set(_RULE["free"])
@@ -67,8 +68,10 @@ def term_of(word: str) -> dict | None:
     return _TERMS.get(next((stem for stem in _STEMS if plain.startswith(stem)), plain))
 
 
-def passed_on(gap: str) -> tuple[str, str]:
+def passed_on(gap: str, then: str = "") -> tuple[str, str]:
     """(the word that passed the hadith on, "") from the text between two narrators the chain names, as it is written.
+    `then` is the text after the upper narrator's name: a gap ending on a hands word (أن طاوسا أخبره) is passed on by
+    the link that opens it, as chain_of reads it.
 
     ("", why) when there is no such rung: strand (a ح starts another strand there), unnamed (words that are neither a
     passing-on word, a saying word nor a blessing: a name left unplaced, say) or no_link (no passing-on or saying word)."""
@@ -81,6 +84,9 @@ def passed_on(gap: str) -> tuple[str, str]:
     last = next((t for t, b in zip(reversed(tokens), reversed(bare)) if b in _LINKS or b in _SAYS), None)
     if last is None:
         return "", "no_link"
+    if _bare(last) in _HANDS:
+        opener = next((t for t in then.split() if _bare(t)), "")
+        last = opener if _bare(opener) in _VERBS else last
     shown = _SHOWN.sub("", last)
     # An attached wa or fa is not part of the word it joins.
     return (_ATTACHED.sub("", shown) if _bare(last) != _NOT_LETTER.sub("", last) else shown), ""
@@ -106,7 +112,8 @@ def chain_of(arabic: str | None) -> Cut:
     name, until a saying word (قال، أنها) that no further link follows. The body starts at that last saying word,
     so "قالت النساء" keeps its verb. A name past `name` words, running on past a full stop, or holding a quote, a
     bracket or the chain's note on itself (بهذا الإسناد), or a text that does not open with a link, means the end is
-    not plain: the whole text comes back as the body."""
+    not plain: the whole text comes back as the body, or the cut made before the latest hands word (أن طاوسا
+    أخبره reads on; أن النبي نهى عن reads on and fails, so the cut at أن stands)."""
     text = arabic or ""
     whole = Cut("", "", text, None)
     tokens = list(re.finditer(r"\S+", text))
@@ -132,29 +139,35 @@ def chain_of(arabic: str | None) -> Cut:
     def teller(k: int) -> int:
         return last if before(k + 1) or word(k + 1) in _SAYS else k
 
-    # After a hands word (أن), the next link within one name: the narrator named before it hands the hadith on.
+    # After a hands word (أن), a passing-on verb within one name: the narrator named before it hands the hadith on.
+    # A bare link word is the hadith's own (أن النبي نهى عن), never this.
     def handed(k: int) -> int:
         if words[k].word not in _HANDS:
             return -1
         nxt = next((j for j in range(k + 1, len(words))
                     if words[j].word in _LINKS or words[j].word in _SAYS or words[j].quoted or words[j].stop), -1)
-        return nxt if nxt > k + 1 and nxt - k - 1 <= _RULE["name"] and words[nxt].word in _LINKS else -1
+        return nxt if nxt > k + 1 and nxt - k - 1 <= _RULE["name"] and words[nxt].word in _VERBS else -1
 
+    def cut(t: int, b: int) -> Cut:
+        teller_at, body_at = words[t].at, words[b].at
+        return Cut(text[:body_at].strip(), text[teller_at:body_at].strip(), text[body_at:], (teller_at, body_at))
+
+    held = whole   # the plain cut before the latest hands word: where reading on from it fails, it stands
     i = 1
     while i < len(words):
         name = 0
         ended = False   # past a full stop only a link or a saying word may come
         while i < len(words) and words[i].word not in _LINKS and words[i].word not in _SAYS:
             if words[i].quoted or words[i].word in _ABOUT or (ended and words[i].word):
-                return whole
+                return held
             if words[i].word and words[i].word not in _FREE:
                 name += 1
                 if name > _RULE["name"]:
-                    return whole
+                    return held
             ended = ended or words[i].stop
             i += 1
         if i == len(words):
-            return whole
+            return held
         if words[i].word in _LINKS:
             last = teller(i)
             i += 1
@@ -167,12 +180,12 @@ def chain_of(arabic: str | None) -> Cut:
             continue
         link = handed(i)
         if link > 0:
+            held = cut(last, i)
             last = last if before(i + 1) else i
             i = link + 1
             continue
-        teller_at, body_at = words[last].at, words[i].at
-        return Cut(text[:body_at].strip(), text[teller_at:body_at].strip(), text[body_at:], (teller_at, body_at))
-    return whole
+        return cut(last, i)
+    return held
 
 
 def cut_of(arabic: str | None) -> list[int] | None:

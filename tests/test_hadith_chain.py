@@ -88,6 +88,23 @@ def test_a_name_handed_on_by_an_an_is_walked_through():
     assert chain_of(text).body == body
 
 
+# Abu Dawud 3356 and 810: reading on past أن fails (نهى عن is the Prophet's words; سمعته starts a story), so the cut at أن stands.
+@pytest.mark.parametrize("text, body", [
+    ("حَدَّثَنَا حَمَّادٌ، عَنْ قَتَادَةَ، عَنِ الْحَسَنِ، عَنْ سَمُرَةَ، أَنَّ النَّبِيَّ صلى الله عليه وسلم نَهَى عَنْ بَيْعِ الْحَيَوَانِ بِالْحَيَوَانِ نَسِيئَةً ‏.‏",
+     "أَنَّ النَّبِيَّ صلى الله عليه وسلم نَهَى عَنْ بَيْعِ الْحَيَوَانِ بِالْحَيَوَانِ نَسِيئَةً ‏.‏"),
+    ("حَدَّثَنَا الْقَعْنَبِيُّ، عَنْ مَالِكٍ، عَنِ ابْنِ عَبَّاسٍ، أَنَّ أُمَّ الْفَضْلِ بِنْتَ الْحَارِثِ، سَمِعَتْهُ وَهُوَ، يَقْرَأُ ‏{‏ وَالْمُرْسَلاَتِ عُرْفًا ‏}‏ فَقَالَتْ",
+     "أَنَّ أُمَّ الْفَضْلِ بِنْتَ الْحَارِثِ، سَمِعَتْهُ وَهُوَ، يَقْرَأُ ‏{‏ وَالْمُرْسَلاَتِ عُرْفًا ‏}‏ فَقَالَتْ"),
+])
+def test_an_an_that_does_not_read_on_keeps_the_cut_before_it(text, body):
+    assert chain_of(text).body == body
+
+
+def test_a_bare_link_word_after_an_is_the_hadiths_own():
+    # Muslim 1987a: عن in نهى عن is the Prophet's words, so no chain reads on to the second أن.
+    text = "حَدَّثَنَا يَحْيَى، عَنْ جَابِرٍ، أَنَّ النَّبِيَّ صلى الله عليه وسلم نَهَى عَنِ التَّمْرِ وَالزَّبِيبِ أَنْ يُخْلَطَ بَيْنَهُمَا ‏.‏"
+    assert chain_of(text).body.startswith("أَنَّ النَّبِيَّ")
+
+
 @pytest.mark.parametrize("text", _WHOLE)
 def test_an_unclear_end_leaves_the_hadith_whole(text):
     assert chain_of(text) == ("", "", text, None)

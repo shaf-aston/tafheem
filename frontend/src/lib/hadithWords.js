@@ -128,8 +128,11 @@ export const hadithKey = (ref) => (ref?.hadith ? `${ref.hadith}:${ref.number}${r
 
 // The chain words from hadith.json, read without vowels or punctuation.
 const { verbs, endings, words: linkWords } = HADITH.chain.links
-const LINKS = new Set([...linkWords, ...verbs.flatMap((verb) => endings.map((ending) => verb + ending))])
+// A passing-on verb with its ending (حدثه); only one hands a chain on past أن.
+const VERBS = new Set(verbs.flatMap((verb) => endings.map((ending) => verb + ending)))
+const LINKS = new Set([...linkWords, ...VERBS])
 const SAYS = new Set(HADITH.chain.says)
+const HANDS = new Set(HADITH.chain.hands)
 const KIN = new Set(HADITH.chain.kin)
 // Anything but a letter goes: vowels, tatweel, direction marks, commas, colons.
 const BARE = /[^\u0621-\u063A\u0641-\u064A\u0671]/g
@@ -187,11 +190,13 @@ export function chainLinks(chain) {
   let term = null
   let name = []
   let span = null   // where the name stands in `chain`: [start, end]
+  let handing = false   // the name follows أن: its verb comes after it (أن طاوسا أخبره)
   const close = () => {
     if (name.length) strands.at(-1).push({ term: term?.word ?? '', way: term?.way ?? '', name: name.join(' '), span })
     name = []
     span = null
     term = null
+    handing = false
   }
   for (const { 0: raw, index } of String(chain ?? '').matchAll(/\S+/g)) {
     const word = bare(raw)
@@ -202,8 +207,15 @@ export function chainLinks(chain) {
       if (last) last.together = true
       continue
     }
-    if (LINKS.has(word)) { close(); term = { word: shown(raw), way: termOf(raw)?.way ?? '' }; continue }
-    if (SAYS.has(word)) { close(); continue }
+    if (LINKS.has(word)) {
+      const said = { word: shown(raw), way: termOf(raw)?.way ?? '' }
+      const handed = handing && name.length && VERBS.has(word)
+      if (handed) term = said
+      close()
+      term = handed ? null : said
+      continue
+    }
+    if (SAYS.has(word)) { close(); handing = HANDS.has(word); continue }
     if (word) { name.push(shown(raw)); span = [span?.[0] ?? index, index + raw.length] }
   }
   close()
