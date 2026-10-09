@@ -1518,6 +1518,7 @@ class RijalChains(BaseModel):
     collection: str
     book: int
     chains: dict[str, list[list[int]]] = {}
+    kin: dict[str, int] = {}   # hadith number to its lettered narrations across the collection, where more than one
     notes: dict[str, list[WeakNote]] = {}
     links: dict[str, list[WeakLink]] = {}
     rulings: dict[str, list[Ruling]] = {}

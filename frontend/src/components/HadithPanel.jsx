@@ -10,8 +10,8 @@ import { useEffect, useState } from 'react'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { hadithBookQuery, hadithCollectionsQuery } from '../api'
-import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE } from '../lib/hadithPlace'
+import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, searchHadith } from '../api'
+import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -49,11 +49,24 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
     if (named) client.prefetchQuery(hadithBookQuery(...named))
   }, [client, incoming])
 
+  // A link with no book (muslim/2927) is read once its collection's books say the number is no book, and
+  // search, which already reads "muslim 2927", has found which book holds it.
+  const pair = /^[^/]+\/\d+[a-z]?$/.test(incoming ?? '') && !narratorOf(incoming) ? incoming.split('/') : null
+  const books = useQuery({ ...hadithBooksQuery(pair?.[0]), enabled: Boolean(pair) })
+  const short = shortOf(incoming, books.data)
+  const found = useQuery({
+    queryKey: ['hadith-short', incoming],
+    queryFn: () => searchHadith({ q: pair.join(' '), collections: [short] }),
+    enabled: Boolean(short),
+  })
+  const hit = found.data?.reference && found.data.reference.asked === found.data.reference.shown ? found.data.hits[0] : null
+  const known = !pair || books.isFetched && (!short || found.isFetched)
+
   // A deep link, a link from another tab, or the back arrow landing here: all
   // three read the same way, once per arrival (see lib/useArrival).
   const [missed, setMissed] = useState(false)
-  if (useArrivalWhenReady(arrival, Boolean(collections))) {
-    const asked = parsePlace(incoming, collections)
+  if (useArrivalWhenReady(arrival, Boolean(collections) && known)) {
+    const asked = hit ? { collection: hit.collection, book: hit.book, number: hit.number, part: hit.part } : short ? null : parsePlace(incoming, collections)
     setNarrator(narratorOf(incoming))
     setListing(listOf(incoming))
     if (asked) setPlace(asked)

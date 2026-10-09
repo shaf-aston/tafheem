@@ -26,6 +26,12 @@ export function useNarrators(hadiths) {
   return (h) => chainsOf(h)?.chains ?? NONE
 }
 
+/** How many lettered narrations share a hadith's number across its collection: `(hadith) => n`, 0 for one or not yet known. */
+export function useKin(hadiths) {
+  const chainsOf = useChains(hadiths)
+  return (h) => chainsOf(h)?.kin?.[h.number] ?? 0
+}
+
 /**
  * The weak narrators of a hadith ("1620a" is its key in the book), the links of
  * its chain a source puts in doubt (`links`, with `rules`: what each kind says,

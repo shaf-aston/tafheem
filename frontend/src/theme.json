@@ -178,6 +178,8 @@
     "scale": 1,
     "_glide_comment": "How many screens away a scroll may glide; further jumps go straight there, since a long smooth scroll stops partway (Go to # in a 300-hadith book landed 9,600px short).",
     "glide-screens": 2,
+    "_hold_comment": "A link to one card keeps it at the top while what is above it is still arriving (names, folds), until the reader scrolls or touches, or hold-ms passes. Without it a deep link to Muslim 2927 left the card 4,000px below the screen.",
+    "hold-ms": 6000,
     "instant-ms": 120,
     "base-ms": 220,
     "spring-ms": 420,
