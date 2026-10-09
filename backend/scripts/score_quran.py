@@ -13,7 +13,8 @@ Two answer keys, both scholars' work the rules never read:
   role   the Quranic Treebank's role for each word's own column, compared by
          family (answer_key.json) or by name. Not scored where it names a whole
          phrase and a card names the word's own particle: its مُتَعَلِّقٌ, or عَلَيْهِمْ
-         filed as نائب فاعل where the card says حرف جر.
+         filed as نائب فاعل where the card says حرف جر; nor its صلة, the relative's
+         clause on its verb. Its ظرف زمان / ظرف مكان is the book's مفعول فيه.
 A fifth of the ayahs (by a fixed hash) is "hold": look at "tune" while fixing rules,
 and read "hold" only to check the fix carried over.
 
@@ -43,7 +44,10 @@ PAUSE = re.compile("[ۖ-ۭ]")
 JOINED_ON = {"يا", "ويا", "ها"}
 NOUN_CASE = {"NOM": "raf'", "ACC": "nasb", "GEN": "jarr"}
 MOOD = {"MOOD:IND": "raf'", "MOOD:SUBJ": "nasb", "MOOD:JUS": "jazm"}
-UNSCORED_ROLES = {"متعلق"}
+# the treebank names a phrase here, not the word's own job: a جار ومجرور's attachment, a relative's clause
+UNSCORED_ROLES = {"متعلق", "صلة"}
+# the treebank's name for a role the book calls otherwise
+SAME_ROLE = {"ظرف زمان": "مفعول فيه", "ظرف مكان": "مفعول فيه"}
 
 
 def case_key(tag: dict) -> str | None:
@@ -139,6 +143,7 @@ def score(ayahs: list[tuple[int, int]], out_path: str | None) -> None:
                     case_mix[(kind, want, card.get("case"))] += 1
                     wrong.append(f"{word}: case {card.get('case')} (corpus {want})")
             want_role = plain_role(roles[at]) if roles else ""
+            want_role = SAME_ROLE.get(want_role, want_role)
             if not want_role or want_role in UNSCORED_ROLES:
                 continue
             if tags[at]["pos"] == "P" and family(want_role) != "harf":
