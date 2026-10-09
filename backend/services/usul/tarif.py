@@ -7,7 +7,8 @@ tadlis. The level is the heading the entry stands under.
 
 A narrator joins an entry by the Taqrib's name rule (names.Index) and, since the
 Ta'rif gives no generation or grade to check, one of his nisba words must also
-stand among the next `nisba_window` words. Anything not one-to-one goes to the gap.
+stand among the next `nisba_window` words, and all the lineage and nisba the entry
+writes must be his (names.Index.written). Anything not one-to-one goes to the gap.
 """
 from __future__ import annotations
 
@@ -35,13 +36,13 @@ def written_name(entry: Entry, cfg: dict) -> tuple[str, ...]:
 def join(entries: dict[int, tuple[str, ...]], people: list[names.Person], size: int, window: int) -> tuple[dict[int, int], dict[int, str]]:
     """({entry key: narrator id}, {entry key: why not}) for entries given as their written name words."""
     index = names.Index(people, size)
-    return names.one_to_one({key: [p.id for p in index.named(written, window)] for key, written in entries.items()})
+    return names.one_to_one({key: [p.id for p in index.written(written, window)] for key, written in entries.items()})
 
 
 def resolve(written: str, people: list[names.Person], size: int, window: int) -> int:
     """The one narrator a name written in usul.json stands for, by the same rule as the join. Stops, saying why, when
     it stands for none or for several: the name is then written more fully."""
-    found = {p.id for p in names.Index(people, size).named(names.words(written), window)}
+    found = {p.id for p in names.Index(people, size).written(names.words(written), window)}
     if len(found) != 1:
         raise ValueError(f"the name {written!r} stands for {len(found)} narrators ({sorted(found)}); write it more fully")
     return found.pop()
