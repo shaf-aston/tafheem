@@ -484,8 +484,9 @@
   },
   "ghair_amila_other": {
    "ar": "حروف غير عاملة أخرى",
-   "card": {"named": "حرف", "does": ""},
+   "card": {"named": "حرف", "does": "", "named_as": {"ل": "لام التوكيد"}},
    "effect": "draws attention, answers, explains, urges, or adds a nuance; governs nothing",
+   "_fatha_lam": "a لام written onto a word with a fatha is the لام of emphasis (لَيَقُولَنَّ، إِنَّ زَيْدًا لَجَالِسٌ: اللام المزحلقة), governing nothing; the jarr لام takes a kasra, a fatha only before an attached pronoun (لَهُ), which the parser keeps as its own word (particles._emphasis_lam)",
    "words": [
     "أما",
     "ألا",

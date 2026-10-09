@@ -219,16 +219,36 @@ def known_as(word: str) -> str | None:
     letters (وَ، فَ، لْ) kept as typed: فَلْيَسْتَعْفِفْ is فَلْيَسْتَعِفَّ, which the dictionary reads.
     None where no verb of the table fits, or the fit is not one word: the vowels typed are the
     evidence, so a bare word (الله) fits too much, and a command has its own reading (command)."""
+    for front, closest in _cuts(word):
+        closest = [cell for cell in closest if cell.column != "amr"]
+        if closest and len({cell.spelled for cell in closest}) == 1:
+            return _spell(front) + closest[0].spelled
+    return None
+
+
+def reading_of(word: str) -> dict | None:
+    """A verb the dictionary cannot read even as the table spells it (يَسْتَعْتِبُوا), read off
+    the table in the dictionary's own features (reading.json `camel`): {pos, asp, vox, per, gen,
+    num, root}. None unless the closest cells agree on its tense, voice, person and root."""
+    for _, closest in _cuts(word):
+        read = {(tuple(_config()["camel"][c.column].items()), c.person, c.gender, c.number, c.root) for c in closest}
+        if len(read) == 1:
+            (features, person, gender, number, root), = read
+            return {"pos": "verb", **dict(features), "per": person, "gen": gender, "num": number, "root": root}
+    return None
+
+
+def _cuts(word: str):
+    """(the letters written onto its front, the table's closest cells for the rest), fewest
+    joined letters (وَ، فَ، لْ) first; only the vowels typed are evidence, so a bare word yields none."""
     marked = letters(word)
     for cut in range(min(len(marked), _JOINED_MOST) + 1):
         front, rest = marked[:cut], marked[cut:]
         if not all(letter in _joined() for letter, _ in front) or not any(marks for _, marks in rest[:-1]):
             continue
         found = dict(_scored(_spell(rest)))
-        closest = [cell for cell, score in found.items() if score == min(found.values()) and cell.column != "amr"] if found else []
-        if closest and len({cell.spelled for cell in closest}) == 1:
-            return _spell(front) + closest[0].spelled
-    return None
+        if found:
+            yield front, [cell for cell, score in found.items() if score == min(found.values())]
 
 
 # a verb takes at most two letters in front: وَ or فَ, then لْ
