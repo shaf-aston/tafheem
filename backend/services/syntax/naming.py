@@ -20,7 +20,8 @@ from backend.services.nahw_book import (
     book_merges, book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, five_verb_nun, letters, merged_prefix, own_letters, paused, stilled, typed_case)
+    CASE_NAME, PRESENT_PREFIX, five_verb_nun, letters, merged_prefix, own_letters, paused, stilled, typed_case,
+    vowel_agreement)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -87,9 +88,12 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever reading the parser had;
         # a verb's reading (فَاقْبَلْهَا) is also tried on its own letters, the ف and ها aside;
         # a noun's never is, or the يَدِ of وَيَدِهِ would be a command; a name the list could
-        # only guess (فَادْفَعُوا) is no noun the reader knew, so its own letters are tried too
+        # only guess (فَادْفَعُوا) is no noun the reader knew, so its own letters are tried too.
+        # A noun the dictionary read with the vowels typed stays that noun unless the command
+        # is typed in full too (سَمِّ): ابْنُ is no اُبْنُ, nor بَنِي a بَنِّي, with a mark left off
         after = words[i + 1] if i + 1 < len(words) else ""
         verb = token["pos"].startswith("VRB")
+        read_noun = token.get("pos_camel") == "noun" and vowel_agreement(word, token.get("diac", "")) is not None
         if verb or token.get("pos_camel") in ("noun", "noun_prop"):
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
@@ -97,7 +101,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
             joined = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
             own = own_letters(word, joined, token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
             cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
-                         if (found := verb_reader.command(form, governed, root))), None)
+                         if (found := verb_reader.command(form, governed, root))
+                         and (not read_noun or verb_reader.typed_fully(form, found))), None)
             if cell:
                 # the person is sarf's: the reading may have taken اقبل for "I accept"
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
@@ -254,14 +259,16 @@ def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
 def _followers_take_their_case(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
     """A صفة، معطوف، توكيد or بدل with no vowel typed wears the case of the word it
     follows (اليدُ العليا); in order, so a chain follows too. Its kasra on ـات is also
-    nasb, so it wears the nasb of the word it follows (الطالباتِ المجتهداتِ)."""
+    nasb, so it wears the nasb of the word it follows (الطالباتِ المجتهداتِ), and a diptote's
+    fatha is also jarr (إِلَى إِبْرَاهِيمَ وَإِسْمَاعِيلَ)."""
     for i, (role, token) in enumerate(zip(named, bases)):
         if role not in FOLLOWERS:
             continue
         head = _followed(token, bases, tokens)
         if head is None or cases[head] == "mabni":
             continue
-        if cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token)):
+        if cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token)) \
+                or (cases[head] == "jarr" and facts.shows_jarr(token)):
             cases[i] = cases[head]
 
 
@@ -311,6 +318,8 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     if facts.shows_nasb_by_kasra(token) and (case_of(role, token["mudaf"]) == "a" if role else not jarred):
         return "nasb"
+    if facts.shows_jarr(token) and (case_of(role, token["mudaf"]) == "i" if role else jarred):
+        return "jarr"  # إِلَى إِبْرَاهِيمَ: a diptote's fatha is its jarr
     return CASE_NAME.get(facts.typed_case_of(token) or case_of(role or "", token["mudaf"]) or unseen_case(role))
 
 

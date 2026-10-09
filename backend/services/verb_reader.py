@@ -208,6 +208,12 @@ def command(word: str, governed: bool = False, root: str = "") -> Cell | None:
     return None
 
 
+def typed_fully(word: str, cell: Cell) -> bool:
+    """The reader typed every mark of the cell's spelling (سَمِّ), so no mark of it is a guess
+    (ابْنُ as اُبْنُ wants a damma the reader left off)."""
+    return _untyped(letters(_fold(word)), cell.spelled) == 0
+
+
 def known_as(word: str) -> str | None:
     """A word the dictionary has no reading for, written as sarf's table prints it, its joined
     letters (وَ، فَ، لْ) kept as typed: فَلْيَسْتَعْفِفْ is فَلْيَسْتَعِفَّ, which the dictionary reads.
