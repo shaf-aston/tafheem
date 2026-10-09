@@ -1550,8 +1550,8 @@ class FamilyPart(BaseModel):
     borrowed: list[FamilyNarrator] = []
     narrators: list[FamilyNarrator]
     said: str = ""
-    # The telling's matn and the words in it only this telling has; the matn only where some are marked.
-    matn: str = ""
+    # The telling's matn as the build split it into words, and the words only this telling has; only where some are marked.
+    words: list[str] = []
     marks: list[FamilyMark] = []
 
 
@@ -1569,10 +1569,17 @@ class FamilyPlaces(BaseModel):
     places: list[FamilyPlace]
 
 
+class FamilyWordsView(BaseModel):
+    """What the words view is called and what its marks mean (usul.json `family.words`)."""
+    label: str
+    legend: str
+
+
 class RijalFamily(BaseModel):
     viewed: str
     parts: list[FamilyPart]
     places: FamilyPlaces | None = None
+    words: FamilyWordsView | None = None   # set only when some telling has marked words
 
 
 class NarratorListItem(NarratorSummary):

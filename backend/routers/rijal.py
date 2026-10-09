@@ -6,7 +6,7 @@ import asyncio
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, UsulFacts, FamilyPart, FamilyNarrator, FamilyPlaces, RijalHadithRef, RijalSearch
+from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, UsulFacts, FamilyPart, FamilyNarrator, FamilyPlaces, FamilyWordsView, RijalHadithRef, RijalSearch
 from backend.services import provenance
 from backend.services.rijal import family, store
 from backend.services.usul import store as usul
@@ -45,8 +45,9 @@ async def get_family(collection: str, number: int, part: str = Query("", max_len
         parts.append(FamilyPart(
             part=f["part"], book=f["book"], own=named(own), meet=named([met])[0] if met is not None else None,
             borrowed=named(borrowed), narrators=named([n["id"] for n in f["narrators"]]), said=f["said"],
-            **words.get(f["part"], {})))
-    return RijalFamily(viewed=viewed["part"], parts=parts, places=FamilyPlaces(**places) if places else None)
+            **(words["parts"].get(f["part"], {}) if words else {})))
+    return RijalFamily(viewed=viewed["part"], parts=parts, places=FamilyPlaces(**places) if places else None,
+                       words=FamilyWordsView(label=words["label"], legend=words["legend"]) if words else None)
 
 
 @router.get("/narrators", response_model=NarratorList)

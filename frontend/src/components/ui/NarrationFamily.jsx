@@ -16,10 +16,10 @@ import ArabicText from './ArabicText'
 import Disclosure from './Disclosure'
 import FamilyPlaces from './FamilyPlaces'
 import FamilyWords from './FamilyWords'
+import PartLetter from './PartLetter'
 import Segmented from './Segmented'
 
 const VIEWS = [{ id: 'rows', label: 'Rows' }, { id: 'tree', label: 'Tree' }]
-const WORDS_VIEW = { id: 'words', label: 'Words' }
 
 // Tree grid, in px: one column and one row of the layout, and a narrator's box in it.
 const CELL = { w: 112, h: 52, pill: { w: 100, h: 26 } }
@@ -39,15 +39,7 @@ function Row({ part, accent, onOpen, onNarrator }) {
   return (
     <li className="py-2 border-t border-[var(--border)] first:border-t-0">
       <div className="flex items-start gap-2">
-        <button
-          type="button"
-          onClick={() => onOpen(part)}
-          aria-label={`Open ${part.part}`}
-          style={{ color: accent, borderColor: accent }}
-          className="press type-tiny shrink-0 w-7 h-7 grid place-items-center rounded-full border"
-        >
-          {part.part}
-        </button>
+        <PartLetter part={part.part} accent={accent} onOpen={() => onOpen(part)} />
         <div dir="rtl" className="flex flex-wrap items-center gap-1 min-w-0">
           {pills.map((n, i) => (
             <span key={`${n.id}-${i}`} className="flex items-center gap-1">
@@ -118,7 +110,7 @@ export default function NarrationFamily({ collection, number, part, count, accen
   const [view, setView] = useState('rows')
   const { data } = useQuery({ ...narrationFamilyQuery(collection, number, part), enabled: asked })
   const others = data?.parts.filter((p) => p.part !== data.viewed) ?? []
-  const views = data?.parts.some((p) => p.marks.length) ? [...VIEWS, WORDS_VIEW] : VIEWS
+  const views = data?.words ? [...VIEWS, { id: 'words', label: data.words.label }] : VIEWS
 
   return (
     <Disclosure label={`${data?.parts.length ?? count} narrations`} onToggle={(open) => open && setAsked(true)} className="mt-3 pt-3 border-t border-[var(--border)]">
@@ -128,7 +120,7 @@ export default function NarrationFamily({ collection, number, part, count, accen
           <Segmented label="View" options={views} value={view} onChange={setView} accent={accent} />
           {view === 'rows' && <ul className="list-none m-0 p-0">{others.map((p) => <Row key={p.part} part={p} accent={accent} onOpen={onOpen} onNarrator={onNarrator} />)}</ul>}
           {view === 'tree' && <Tree parts={data.parts} accent={accent} onOpen={onOpen} />}
-          {view === 'words' && <FamilyWords parts={data.parts} accent={accent} onOpen={onOpen} />}
+          {view === 'words' && <FamilyWords parts={data.parts} legend={data.words.legend} accent={accent} onOpen={onOpen} />}
         </div>
       )}
     </Disclosure>

@@ -226,9 +226,10 @@ def test_the_store_words_each_place_from_config_and_drops_a_mark_the_text_no_lon
     text = {"arabic": _chain([NAMES[104], NAMES[11]])[0] + THREE["b"][1]}
     monkeypatch.setattr(store.loader, "numbered", lambda collection, number: (number, [("muslim", 1, number, "b", text["arabic"], "", "")]))
     words = store.family_words("muslim", 1)
-    assert [m["kind"] for m in words["b"]["marks"]] == ["only"] and words["b"]["matn"] == " ".join(results[1]["matns"]["b"])
+    assert [m["kind"] for m in words["parts"]["b"]["marks"]] == ["only"] and words["parts"]["b"]["words"] == results[1]["matns"]["b"]
+    assert words["label"] == FC["words"]["label"]
     text["arabic"] = text["arabic"].replace("لِيَسْكُتْ", "غَيْرُهُ")
-    assert store.family_words("muslim", 1) == {}
+    assert store.family_words("muslim", 1) is None
 
 
 def test_the_compilers_own_teachers_named_together_stand_before_the_chain_and_leave_the_picture_whole():

@@ -212,9 +212,10 @@ def family_places(collection: str, number: int, narrations: int) -> dict | None:
                        for i, count in enumerate(counts)]}
 
 
-def family_words(collection: str, number: int) -> dict[str, dict]:
-    """{"b": {matn, marks: [{at, kind, other}, ...]}}: each telling the build marked words in, with its matn (the Arabic
-    after the chain's own cut, chain.chain_of) as served now.
+def family_words(collection: str, number: int) -> dict | None:
+    """{label, legend, parts: {"b": {words, marks: [{at, kind, other}, ...]}}}: each telling the build marked words in,
+    with its matn's words (the Arabic after the chain's own cut, chain.chain_of, split as the build split it) as served
+    now, and usul.json `family.words` naming the view. None while no telling has a mark.
 
     A mark stays only where that matn still has its word at `at`, like `notes`; a telling left with none is not given."""
     db = _db()
@@ -225,14 +226,13 @@ def family_words(collection: str, number: int) -> dict[str, dict]:
                 (collection, number)):
             marked.setdefault(part, []).append((at, word, kind, other))
     if not marked:
-        return {}
+        return None
     arabic = {row[3]: row[4] for row in loader.numbered(collection, number)[1]}
     found: dict[str, dict] = {}
     for part, row in marked.items():
-        matn = chain_of(arabic.get(part, ""))[1]
-        tokens = matn.split()
+        tokens = chain_of(arabic.get(part, ""))[1].split()
         kept = [{"at": at, "kind": kind, "other": other} for at, word, kind, other in row
                 if at < len(tokens) and tokens[at] == word]
         if kept:
-            found[part] = {"matn": matn, "marks": kept}
-    return found
+            found[part] = {"words": tokens, "marks": kept}
+    return {**rule()["family"]["words"], "parts": found} if found else None
