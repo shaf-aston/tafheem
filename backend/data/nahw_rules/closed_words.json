@@ -15,6 +15,8 @@
    "ar": "حروف الجر",
    "card": {"named": "حرف جر", "does": "يجر الاسم بعده", "governs": "harf_jarr"},
    "effect": "puts the noun after it in the genitive (majroor); the pair is jar-wa-majroor",
+   "_oath_only": "jarr only as the oath, which opens its clause: no verb or noun before it in the sentence (والله، تالله); after one, و joins (فَفَرِيقًا كَذَّبْتُمْ وَفَرِيقًا تَقْتُلُونَ)",
+   "oath_only": ["و", "ت"],
    "words": [
     "ب",
     "ت",
