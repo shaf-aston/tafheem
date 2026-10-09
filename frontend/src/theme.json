@@ -215,7 +215,7 @@
     "strip-aspect": "16 / 10",
     "arch-max-w": "420px",
     "edge": "3rem",
-    "_story_comment": "The scroll story: four demo steps on one centred stage. story-track-h is how much scrolling the whole story takes (about a screen per step), story-col-w the width of the column, story-stage-h the stage (story-stage-h-sm on a phone). story-panel-bg is the dark glass each demo sits on, story-panel-r its corner. step-dim is how faint the steps not yet reached are in the pill row. star-size is the turning geometric star behind the stage, star-turn how far it has turned by the end, star-opacity how strong its lines are. wave-ms is one swell of the recitation waveform, wave-bars how many bars it has, cap-w the widest a caption gets.",
+    "_story_comment": "The scroll story: four demo steps on one centred stage. story-track-h is how much scrolling the whole story takes (about a screen per step), story-col-w the width of the column, story-stage-h the least height of the stage, which grows to fit its tallest panel (story-stage-h-sm on a phone). story-panel-bg is the dark glass each demo sits on, story-panel-r its corner. step-dim is how faint the steps not yet reached are in the pill row. star-size is the turning geometric star behind the stage, star-turn how far it has turned by the end, star-opacity how strong its lines are. wave-ms is one swell of the recitation waveform, wave-bars how many bars it has, cap-w the widest a caption gets.",
     "story-track-h": "480svh",
     "story-col-w": "860px",
     "story-stage-h": "min(500px, 60svh)",
