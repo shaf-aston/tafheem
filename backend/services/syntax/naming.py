@@ -17,10 +17,11 @@ from __future__ import annotations
 from backend.services import verb_reader
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.nahw_book import (
-    book_merges, book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
+    book_merges, book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, only_adverb,
+    role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, five_verb_nun, letters, merged_prefix, own_letters, paused, stilled, typed_case,
+    CASE_NAME, PRESENT_PREFIX, SUKUN, five_verb_nun, letters, merged_prefix, own_letters, paused, stilled, typed_case,
     vowel_agreement)
 
 # Every role this module can name, with its card colour key and bracket tone
@@ -81,6 +82,9 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         # a "verb" with no tense that CAMeL reads as a noun or an adjective is that noun
         # (اللهُ أكبرُ: the elative, never the verb أَكْبَرَ)
         if token["pos"].startswith("VRB") and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"):
+            token["pos"] = "NOM"
+        # وَإِذْ قَالَ، مَعَ الصَّابِرِينَ: a word the book lists only as a ظرف is a noun, whatever the tag
+        if token["pos"] == "PRT" and only_adverb(token["lemma"]):
             token["pos"] = "NOM"
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
@@ -315,6 +319,10 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
     if is_mabni(token) or facts.is_object_pronoun(token):
+        return "mabni"
+    # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built
+    marked = letters(token["typed"])
+    if after and not token.get("stuck_on") and marked and SUKUN in marked[-1][1]:
         return "mabni"
     if facts.shows_nasb_by_kasra(token) and (case_of(role, token["mudaf"]) == "a" if role else not jarred):
         return "nasb"
