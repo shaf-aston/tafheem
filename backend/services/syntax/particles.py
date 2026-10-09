@@ -16,7 +16,7 @@ from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import (
     PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, has_tanween, letters, own_letters, stilled, typed_case)
 from backend.services.morphology import has_comparative
-from backend.services.nahw_book import book_file, book_map, book_words, frames, is_mabni, is_one
+from backend.services.nahw_book import book_file, book_map, book_words, family_cards, frames, is_mabni, is_one
 from backend.services.syntax import facts, walker
 
 
@@ -316,6 +316,23 @@ def _merged(tokens: list[dict], s: facts.Sentence) -> None:
                 tail["reading"] = {"family": merged["tail"], "named": None, "kind": "harf", "book": None}
 
 
+def _emphasis_lam(tokens: list[dict], s: facts.Sentence) -> None:
+    """لَيَقُولَنَّ، لَلْحُسْنَى، لَآيَاتٍ: a لام written onto a word with a fatha typed on it is the
+    لام of emphasis, governing nothing (closed_words ghair_amila_other `_fatha_lam`); لَهُ keeps
+    its jarr, since the parser leaves that لام a word of its own before the pronoun."""
+    named = dict(family_cards())["ghair_amila_other"]["named_as"]
+    for i, token in enumerate(tokens):
+        base = tokens[i + 1] if i + 1 < len(tokens) else None
+        if token["form"] != "ل+" or base is None or _attached_before(base):
+            continue
+        at = 0  # the لام's letter in the typed word: after the pieces written in front of it (وَلَـ، فَلَـ)
+        while at < i and _attached_before(tokens[i - 1 - at]):
+            at += 1
+        marked = letters(base.get("typed") or "")
+        if at < len(marked) and "َ" in marked[at][1]:
+            token["reading"] = {"family": "ghair_amila_other", "named": named["ل"], "kind": "harf", "book": None}
+
+
 def _hasr_frees_its_words(tokens: list[dict]) -> None:
     """لا تعبدوا إلا الله: the إلا of restriction excepts nothing, so the word the parser hung on
     it belongs to the verb above it, as in ما ضربتُ إلا زيدًا (Tasheel 3.8.7 p85)."""
@@ -412,6 +429,7 @@ def stamp(tokens: list[dict]) -> None:
                                 "kind": found.leaf.get("kind", "harf"), "book": found.book}
             token.update(found.leaf.get("retag", {}))
     _merged(tokens, s)
+    _emphasis_lam(tokens, s)
     _hasr_frees_its_words(tokens)
     _wonder_settles_its_words(tokens)
     _asks_settles_its_words(tokens)

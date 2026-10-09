@@ -352,6 +352,9 @@ def parse(words: list[str]) -> list[dict]:
             # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): the dictionary reads
             # the table's own spelling of it (فَلْيَسْتَعِفَّ), and its pieces and tense stand for the typed one
             readings = [scored.analysis for scored in _parser.disambiguator.disambiguate([twin])[0].analyses]
+            if unread(readings) and (sarf := verb_reader.reading_of(word)):
+                # يَسْتَعْتِبُوا: the dictionary has not even the table's spelling, so the table's reading is the word's
+                readings = [{**sarf, "diac": twin, "lex": twin}]
             pieces = _split_word(word, _reading(twin, readings))
         else:
             pieces = _split_word(word, _reading(word, readings))
