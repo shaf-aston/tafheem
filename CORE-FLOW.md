@@ -47,7 +47,10 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
    `quran_library.py` and named only in `data/quran/editions.json`.
    Verses that read alike: `data/quran/mutashabihat.json` (built by `scripts/build_mutashabihat.py`),
    read by `services/mutashabihat.py`, which also proposes pairs the books missed.
-4. **The root is the spine.** One click sends a word's root to Sarf
+4. **The root is the spine.** Which root a word comes from has one answer, `services/roots.py`,
+   asked by Sarf, Nahw, the dictionary, the Qur'an's root search and Daleel alike: the corpus,
+   then the dictionary's headword, then CAMeL's reading of any form, a weak radical CAMeL
+   leaves as # (ق#ل for قالوا) settled against the roots the books file. One click sends a word's root to Sarf
    (`services/conjugation.py`), the dictionary, or every place it occurs. A verb's bab
    comes only from a dictionary that states it (`services/verb_forms.py`), never a guess.
    Conjugation fills a template from `data/sarf/patterns.json`, then runs the book's rules
@@ -88,7 +91,7 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   hamzah or a doubled one, one per entry in `data/sarf/ilal.json`.
 - **Colloquial**: spoken Arabic by dialect. `data/colloquial/spine.json` is the one course outline (units, lessons, phrase slots with English and pictures); a dialect is a folder filling it, a unit one JSON file, an exercise kind one file per end (`services/colloquial/exercises`, `lib/exercises/registry.js`); pictures are fetched by `scripts/fetch_colloquial_images.py` and approved one by one.
 - **Root**: the three letters most Arabic words are built from; the one link every tab
-  shares.
+  shares, and worked out in one place (`services/roots.py`).
 - **Bab**: which vowel pattern (or which form, II to X) a verb follows, read from Lane's
   Lexicon or Wiktionary, never worked out from a bare root.
 - **Entry / book root**: what one book prints under one headword. A word's entry comes from

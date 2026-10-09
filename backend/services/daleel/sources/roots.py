@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from typing import Iterable
 
-from backend.services import dictionary_service
+from backend.services import roots as root_finder
 from backend.services.arabic_text import bare_letters, normalize_root
 
 
@@ -24,8 +24,7 @@ def roots_in(words: Iterable[str]) -> str:
         bare = bare_letters(word)
         if not bare:
             continue
-        for entry in dictionary_service.search_arabic(bare, limit=1):
-            root = normalize_root(entry.get("root") or "")
-            if root and root not in found:
-                found.append(root)
+        root = normalize_root(root_finder.root_of(bare))
+        if root and root not in found:
+            found.append(root)
     return " ".join(found)

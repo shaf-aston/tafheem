@@ -14,15 +14,12 @@ from __future__ import annotations
 
 from functools import lru_cache
 
-from backend.services import dictionary_service
+from backend.services import dictionary_service, roots
 from backend.services.arabic_text import bare_letters
 
 
-@lru_cache(maxsize=2048)
 def _root_of(word: str) -> str:
-    for entry in dictionary_service.search_arabic(word, limit=1):
-        return entry.get("root") or ""
-    return ""
+    return roots.root_of(word)  # the one place every tab asks, cached there
 
 
 @lru_cache(maxsize=2048)

@@ -11,7 +11,6 @@ import logging
 import re
 import time
 from functools import lru_cache
-from itertools import product
 from pathlib import Path
 
 from backend.config import get_settings
@@ -233,52 +232,39 @@ def is_loaded() -> bool:
 # handed over by another tab, from simply searching twice. A second search cannot
 # find anything a first did not, so it is not searched a second time.
 #
-# Both fallbacks below test every key in the index and stop once they hold more
-# candidates than the answer can use. A one-letter query matches thousands of
-# keys, and collecting them all spent a fifth of a second choosing the same ten
-# entries. The loops are written out rather than shared: passing the test in as a
-# function costs a call on each of 26,000 keys, which measured slower than the
-# duplication saves.
-# What CAMeL's # stands for: a weak radical (و ي) or a hamza it could not pin down.
-_WEAK = ("و", "ي", "ء")
-
-
-def _is_root(letters: str) -> bool:
+def is_root(letters: str) -> bool:
+    """Whether the dictionary files any entry under the root `letters`."""
+    load_dictionary()
     key = _folded(letters)
-    return any(_folded(entry.get("root") or "") == key for entry in _arabic_index.get(key, ()))
+    return bool(key) and any(_folded(entry.get("root") or "") == key for entry in _arabic_index.get(key, ()))
 
 
-def _roots_meant(root: str) -> list[str]:
-    """The dictionary's roots a reading's root can be: ق#ل is قول, ب#ت is بيت.
-
-    Each # tried as و, ي and ء, and kept only where the dictionary files a root
-    by those letters, so a guess never reaches the page as a root.
-    """
-    options = [_WEAK if letter == "#" else (letter,) for letter in root]
-    return [letters for letters in map("".join, product(*options)) if _is_root(letters)]
+def headword_roots(word: str) -> list[str]:
+    """The roots the headwords spelled like `word` are filed under; [] when it is no headword."""
+    load_dictionary()
+    key = _folded(strip_diacritics(word.strip()))
+    return list(dict.fromkeys(entry["root"] for entry in _arabic_index.get(key, ())
+                              if entry.get("root") and _folded(entry.get("arabic", "")) == key))
 
 
 def _by_reading(word: str) -> tuple[list[dict], tuple[str, str] | None]:
     """Entries for the words `word` is a form of, then for their roots, likeliest reading first.
 
-    The same reader the Nahw and Sarf tabs use (services/morphology.py), so a
-    word the grammar table can place is a word the dictionary can find.
+    The readings come from services/roots.py, the one place every tab asks for
+    a root, so a word the grammar tabs can place is a word the dictionary finds.
     """
-    from backend.services import morphology  # imports this module's neighbours; asked only on a miss
+    from backend.services import roots as root_finder  # it asks this module back
 
-    read = morphology.readings(word)
+    read = root_finder.readings(word)
     spelt = [lemma for lemma, _ in read]  # as written: آتى (give) before أتى (come), which fold alike
     lemmas: list[str] = []
     for lemma in spelt:
         if (folded := _folded(lemma)) not in lemmas:
             lemmas.append(folded)
     found = [entry for lemma in lemmas for entry in _arabic_index.get(lemma, ())]
-    # The roots of the words found are the surest; only when none was found is a
-    # weak radical guessed, so قالوا, found as قال of قول, does not also bring قيل (siesta).
+    # The roots of the words found first, then the readings' own.
     roots = list(dict.fromkeys(r for e in found if (r := e.get("root") or "")))
-    for _, root in read:
-        if "#" not in root or not found:
-            roots += [r for r in _roots_meant(root) if r not in roots]
+    roots += [r for _, r in read if r and _folded(r) not in {_folded(x) for x in roots}]
     found += [entry for root in roots for entry in _arabic_index.get(_folded(root), ())]
     if not found:
         return [], None
@@ -295,6 +281,12 @@ def _by_reading(word: str) -> tuple[list[dict], tuple[str, str] | None]:
     return ordered, (shown, lead.get("root") or (roots[0] if roots else ""))
 
 
+# Both fallbacks below test every key in the index and stop once they hold more
+# candidates than the answer can use. A one-letter query matches thousands of
+# keys, and collecting them all spent a fifth of a second choosing the same ten
+# entries. The loops are written out rather than shared: passing the test in as a
+# function costs a call on each of 26,000 keys, which measured slower than the
+# duplication saves.
 @lru_cache(maxsize=_CACHE_SIZE)
 def _arabic_matches(typed: str, limit: int) -> tuple[tuple[dict, ...], tuple[str, str] | None]:
     # Looked up folded, so أخذ and اخذ are one search and both answer with the

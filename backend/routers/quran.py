@@ -27,7 +27,7 @@ from backend.models.schemas import (
     SurahGlosses,
     TarkeebTree,
 )
-from backend.services import arabic_text, provenance, quran_corpus, quran_library, quran_service
+from backend.services import arabic_text, provenance, quran_corpus, quran_library, quran_service, roots
 from backend.services import mutashabihat, quran_search
 from backend.services import tarkeeb
 from backend.services import tarkeeb_store
@@ -61,12 +61,14 @@ async def get_root(root: str) -> RootResponse:
         quran_corpus.occurrences_of_root, root, get_settings().root_occurrence_limit
     )
     if not found["total"]:
-        # Not a root: it may be a word, so answer for the root it comes from.
-        word_root = await asyncio.to_thread(quran_corpus.root_of, root)
-        if word_root:
+        # Not a root: it may be a word, so answer for the root it comes from
+        # (services/roots.py, which every tab asks), the first the Qur'an has.
+        for word_root in await asyncio.to_thread(roots.roots_of, root):
             found = await asyncio.to_thread(
                 quran_corpus.occurrences_of_root, word_root, get_settings().root_occurrence_limit
             )
+            if found["total"]:
+                break
     if not found["total"]:
         raise HTTPException(status_code=404, detail=f"The root {root} does not occur in the Qur'an")
     return RootResponse(**found, source=Source(**provenance.of("corpus")))
