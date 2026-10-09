@@ -141,20 +141,6 @@ const bare = (word) => {
   return LINKS.has(unjoined) || SAYS.has(unjoined) ? unjoined : plain
 }
 
-/**
- * The Arabic as chain, teller and body, cut where the server says (`cut`:
- * [teller_at, body_at], offsets into `arabic`; backend/services/hadith/chain
- * is the one cutter). The chain is what comes before the body, the teller runs
- * from the latest teller's link up to it. No cut: the whole is the body.
- * The offsets assume no characters outside the BMP (Python counts code points,
- * these slice UTF-16 units).
- */
-export function parts(arabic, cut) {
-  if (!cut) return { chain: '', teller: '', body: arabic }
-  const [teller, body] = cut
-  return { chain: arabic.slice(0, body).trim(), teller: arabic.slice(teller, body).trim(), body: arabic.slice(body) }
-}
-
 // Each chain word's entry in the guide (hadith.json chain.terms): a verb by its
 // stem (حدثتني is حدث), any other word whole.
 const TERMS = new Map(HADITH.chain.terms.groups.flatMap(({ way, terms }) =>
@@ -188,7 +174,7 @@ const same = (a, b) => {
 const shown = (raw) => raw.replace(/[^\u0621-\u063A\u0641-\u065F\u0670\u0671]/g, '')
 
 /**
- * A chain (from chainOf) as narrators and the word that passed it between
+ * A chain (the Arabic before the server's cut, lib/rijal drawnChain) as narrators and the word that passed it between
  * each two: [{ term, way, name }], in the book's order, teacher of the author
  * first, with `span`, where its name stands in `chain`. ح starts another strand; each one but the last becomes a branch of
  * `main` (the last): `at` is the place in `main` it joins, the first narrator

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import HADITH from '../hadith.json'
-import { chainLinks, hadithKey, narrated, parts, printedBy, saying, termOf } from './hadithWords'
+import { chainLinks, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
 
 describe('saying', () => {
   it('marks a quoted stretch as said and the rest as told', () => {
@@ -106,21 +106,6 @@ describe('printedBy', () => {
   })
 })
 
-describe('parts', () => {
-  // The cut is the server's: [teller_at, body_at] (backend/services/hadith/chain owns the cases).
-  const text = 'حَدَّثَنَا زَيْدٌ، عَنْ عَمْرٍو، قَالَ كَانَ'
-  const cut = [text.indexOf('عَنْ'), text.indexOf('قَالَ')]
-
-  it('reads the chain, the teller and the body off the cut', () => {
-    expect(parts(text, cut)).toEqual({ chain: 'حَدَّثَنَا زَيْدٌ، عَنْ عَمْرٍو،', teller: 'عَنْ عَمْرٍو،', body: 'قَالَ كَانَ' })
-  })
-
-  it('leaves the hadith whole where there is no cut', () => {
-    expect(parts(text, null)).toEqual({ chain: '', teller: '', body: text })
-    expect(parts(text, undefined)).toEqual({ chain: '', teller: '', body: text })
-  })
-})
-
 describe('termOf', () => {
   it('has a guide entry for every word the chain walker reads', () => {
     const { verbs, endings, words } = HADITH.chain.links
@@ -136,7 +121,7 @@ describe('termOf', () => {
 
 describe('chainLinks', () => {
   // The chain is what comes before `body`, as the server cuts it.
-  const links = (text, body) => chainLinks(parts(text, [0, text.lastIndexOf(body)]).chain)
+  const links = (text, body) => chainLinks(text.slice(0, text.lastIndexOf(body)).trim())
 
   it('names each narrator with the word that passed it on', () => {
     const { main, branches } = links('حَدَّثَنَا الْحُمَيْدِيُّ، قَالَ حَدَّثَنَا سُفْيَانُ، عَنْ يَحْيَى بْنِ سَعِيدٍ، قَالَ سَمِعْتُ عُمَرَ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا', 'يَقُولُ')
