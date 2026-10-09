@@ -281,6 +281,19 @@ def test_the_tarif_join_wants_a_nisba_and_one_narrator():
     assert tarif.join({13: names.words("عمرو بن عبد الله سبيعي")}, people, 3, 12)[0] == {13: 2}
 
 
+def test_the_tarif_lineage_it_writes_tells_men_of_one_short_name_apart():
+    people = _people(_row(1, "محمد بن مسلم بن عبيد الله بن عبد الله بن شهاب", "الرابعة", "ثقة", nisba="الزهري، المدني", name="ابن شهاب"),
+                     _row(2, "محمد بن مسلم بن السائب بن خباب", "الخامسة", "مقبول", nisba="المدني"),
+                     _row(3, "محمد بن مسلم بن السائب بن أبي بكر", "الخامسة", "مقبول", nisba="المدني"),
+                     _row(4, "محمد بن مسلم بن تدرس", "الرابعة", "صدوق", nisba="المدني"))
+    one = {10: names.words("محمد بن مسلم بن عبيد الله بن شهاب الزهري المدني الفقيه")}   # one man's lineage (a book may skip an ancestor)
+    assert tarif.join(one, people, 3, 12) == ({10: 1}, {})
+    assert tarif.join({13: names.words("محمد بن مسلم بن السائب بن خباب المدني")}, people, 3, 12)[0] == {13: 2}
+    # the nearest case: the lineage written fits two men, or none is written, so nothing tells them apart
+    assert tarif.join({11: names.words("محمد بن مسلم بن السائب المدني مشهور")}, people, 3, 12) == ({}, {11: "many"})
+    assert tarif.join({12: names.words("محمد بن مسلم المدني مشهور")}, people, 3, 12) == ({}, {12: "many"})
+
+
 # ---- a chain's links: a possible tadlis, a scholar's "did not hear" ------------------------------------------------
 
 MUSADDAD, YAHYA, QATADA, ANAS, SHUBA, LAYTH, ABU_ZUBAIR, JABIR = range(1, 9)
