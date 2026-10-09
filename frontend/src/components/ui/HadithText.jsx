@@ -59,15 +59,15 @@ function Spans({ text, marks, names = [], onNarrator }) {
 /**
  * `action` is a slot beside the number: a favorite star or a collection badge.
  * `hideChain` drops the chain of narrators but the one who tells the hadith:
- * lib/rijal told finds where the chain ends. The English
+ * lib/rijal told finds where the chain ends, from `cut` (the server's [teller_at, body_at]). The English
  * "Narrated X:" line already names only that one, so it stays.
  * `names` are the narrators named in the Arabic (lib/rijal); with the chain
  * hidden, the teller and anyone named after him keep theirs.
  * `footer` sits under the text: the other narrations of this number.
  */
-export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator, footer = null }) {
+export default function HadithText({ label, arabic, cut = null, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator, footer = null }) {
   const { narrator, body } = narrated(english)
-  const shown = hideChain ? told(arabic, names) : { text: arabic, names }
+  const shown = hideChain ? told(arabic, cut, names) : { text: arabic, names }
   const rise = useFirstSight(`hadith:${arabic.slice(0, 30)}`)
 
   return (

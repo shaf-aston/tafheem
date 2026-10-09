@@ -31,6 +31,7 @@ export default function TimelineHadith({ refs = [], only, library, accent, class
           key={key}
           label={`${library.collections[ref.hadith].name} ${ref.number}${ref.part ?? ''}`}
           arabic={library.hadith[key].arabic}
+          cut={library.hadith[key].cut}
           english={library.hadith[key].english}
           accent={accent}
           hideChain

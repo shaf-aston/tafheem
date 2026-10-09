@@ -230,7 +230,7 @@ def family_words(collection: str, number: int) -> dict | None:
     arabic = {row[3]: row[4] for row in loader.numbered(collection, number)[1]}
     found: dict[str, dict] = {}
     for part, row in marked.items():
-        tokens = chain_of(arabic.get(part, ""))[1].split()
+        tokens = chain_of(arabic.get(part, "")).body.split()
         kept = [{"at": at, "kind": kind, "other": other} for at, word, kind, other in row
                 if at < len(tokens) and tokens[at] == word]
         if kept:

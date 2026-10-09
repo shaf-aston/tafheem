@@ -8,7 +8,7 @@
  */
 import HADITH from '../hadith.json'
 
-import { MARKS, QUOTED, chainLinks, chainOf } from './hadithWords'
+import { MARKS, QUOTED, chainLinks } from './hadithWords'
 
 const { tones: TONES, teller: TELLER } = HADITH.narrator
 
@@ -43,16 +43,13 @@ export const withoutMarks = (text, names) =>
 
 /**
  * The hadith from the one who tells it on, with the chain before him dropped,
- * and `names` moved to match. The chain walker (chainOf) finds the cut by its
- * words; where it cannot, sunnah.com's own name links do: the last narrator
- * named before the speech opens is the teller. Neither finds one: whole.
+ * and `names` moved to match. The server's `cut` (hadith.json chain rule) finds
+ * the teller by the chain's words; with none, sunnah.com's own name links do:
+ * the last narrator named before the speech opens is the teller. Neither: whole.
  */
-export function told(arabic, names) {
-  const cut = chainOf(arabic)
+export function told(arabic, cut, names) {
   const before = names.filter(([, end]) => end <= arabic.search(QUOTED))
-  const at = cut.chain
-    ? arabic.lastIndexOf(cut.teller, arabic.length - cut.body.length)
-    : (before.length >= TELLER ? Math.max(...before.map(([start]) => start)) : 0)
+  const at = cut ? cut[0] : (before.length >= TELLER ? Math.max(...before.map(([start]) => start)) : 0)
   return {
     text: arabic.slice(at),
     names: names.filter(([start]) => start >= at).map(([start, end, id]) => [start - at, end - at, id]),
@@ -60,7 +57,7 @@ export function told(arabic, names) {
 }
 
 /**
- * A drawn chain (lib/hadithWords chainLinks of chainOf(arabic).chain) with each
+ * A drawn chain (lib/hadithWords chainLinks of the Arabic before `cut`) with each
  * narrator's id where sunnah.com linked his name in this hadith: the slice
  * overlapping the place his name stands. A name it did not link stays plain.
  * A `note` (a weak narrator, from usul.db) starting where that slice starts
@@ -83,9 +80,13 @@ export function linked(links, names, notes = [], ties = []) {
   }
 }
 
-/** The chain drawing for one hadith, its names linked: `names` are its own slices, `notes` its weak narrators, `ties` its doubtful links. */
-export function drawnChain(arabic, names, notes = [], ties = []) {
-  const { chain } = chainOf(arabic)
+/**
+ * The chain drawing for one hadith, its names linked. `cut` is the server's [teller_at, body_at]
+ * (backend/services/hadith/chain, the one cutter; offsets assume no character outside the BMP),
+ * `names` its own slices, `notes` its weak narrators, `ties` its doubtful links.
+ */
+export function drawnChain(arabic, cut, names, notes = [], ties = []) {
+  const chain = arabic.slice(0, cut[1]).trim()
   const at = arabic.indexOf(chain)
   const moved = (list) => list.map((n) => ({ ...n, at: n.at - at }))
   return linked(chainLinks(chain), names.map(([start, end, id]) => [start - at, end - at, id]), moved(notes), moved(ties))

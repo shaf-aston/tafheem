@@ -336,6 +336,14 @@ def test_a_level_3_teller_saying_anna_gets_the_unclear_note_and_qala_the_same_as
     assert rung.tadlis(_said("قال"), "abudawud", 4, TADLIS, []) == ("tadlis", "")
 
 
+def test_anna_then_a_word_of_hearing_after_the_name_is_hearing():
+    # Abu Dawud 73: قتادة أن محمد بن سيرين حدثه عن أبي هريرة. حدثه is Ibn Sirin telling Qatada; أن is no rung word.
+    text = "حدثنا مسدد حدثنا يحيى عن قتادة أن أنس حدثه عن جابر قال قال رسول الله صلى الله عليه وسلم كذا"
+    found = _rungs(text, ("مسدد", MUSADDAD), ("يحيى", YAHYA), ("قتادة", QATADA), ("أنس", ANAS), ("جابر", JABIR))
+    assert [(r.student, r.teacher, r.word) for r in found[-2:]] == [(QATADA, ANAS, "حدثه"), (ANAS, JABIR, "عن")]
+    assert rung.tadlis(found[-2], "abudawud", 3, TADLIS, []) == (None, "heard")
+
+
 @pytest.mark.parametrize("word", ["حدثنا", "أخبرنا", "سمعت"])
 def test_a_word_of_hearing_gets_no_note(word):
     assert _tadlis_of(word) == (None, "heard")

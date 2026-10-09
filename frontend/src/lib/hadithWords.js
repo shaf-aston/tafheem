@@ -128,89 +128,20 @@ export const hadithKey = (ref) => (ref?.hadith ? `${ref.hadith}:${ref.number}${r
 
 // The chain words from hadith.json, read without vowels or punctuation.
 const { verbs, endings, words: linkWords } = HADITH.chain.links
-const LINKS = new Set([...linkWords, ...verbs.flatMap((verb) => endings.map((ending) => verb + ending))])
+// A passing-on verb with its ending (حدثه); only one hands a chain on past أن.
+const VERBS = new Set(verbs.flatMap((verb) => endings.map((ending) => verb + ending)))
+const LINKS = new Set([...linkWords, ...VERBS])
 const SAYS = new Set(HADITH.chain.says)
-const ABOUT = new Set(HADITH.chain.about)
-const FREE = new Set(HADITH.chain.free)
-const PROPHET = new Set(HADITH.chain.prophet)
-const KIN = new Set(HADITH.chain.kin)
 const HANDS = new Set(HADITH.chain.hands)
+const KIN = new Set(HADITH.chain.kin)
 // Anything but a letter goes: vowels, tatweel, direction marks, commas, colons.
 const BARE = /[^\u0621-\u063A\u0641-\u064A\u0671]/g
 // A quote or a bracket is the hadith's own words or a verse, never a name.
 export const QUOTED = /["“”«»{}()]/
-// A full stop ends a sentence; a name never runs on past one.
-const STOP = /[.؟!]/
 const bare = (word) => {
   const plain = word.replace(BARE, '')
   const unjoined = /^[وف]/.test(plain) ? plain.slice(1) : ''
   return LINKS.has(unjoined) || SAYS.has(unjoined) ? unjoined : plain
-}
-
-/**
- * The Arabic as two parts: the chain of narrators, and the hadith it carries.
- *
- * The books do not mark where the chain ends, so it is walked, link by link:
- * a passing-on word (حدثنا، عن) then a name, until a saying word (قال، أنها)
- * that no further link follows. The hadith starts at that last saying word,
- * so "قالت النساء" keeps its verb. A name past `name` words, running on past
- * a full stop, or holding a quote, a bracket or the chain's note on itself
- * (بهذا الإسناد), or a text that does not open with a link, means the end is
- * not plain: the hadith comes back whole with an empty chain, never cut into.
- */
-/** The words not set between a pair of aside marks; a mark with no partner is ignored. */
-function outsideAsides(words, marks) {
-  const at = marks.flatMap((mark, i) => (mark ? [i] : []))
-  const inside = new Set(at.flatMap((start, k) => (k % 2 || k + 1 >= at.length ? [] : range(start, at[k + 1]))))
-  return words.filter((_, i) => !inside.has(i))
-}
-const range = (start, end) => Array.from({ length: end - start + 1 }, (_, k) => start + k)
-
-export function chainOf(arabic) {
-  const text = String(arabic ?? '')
-  const whole = { chain: '', teller: '', body: text }
-  const tokens = [...text.matchAll(/\S+/g)]
-  const words = outsideAsides(tokens, tokens.map((m) => m[0] === HADITH.chain.aside))
-    .map((m) => ({ at: m.index, word: bare(m[0]), quoted: QUOTED.test(m[0]), stop: STOP.test(m[0]) }))
-    .filter((w) => w.word || w.quoted || w.stop)
-  if (!LINKS.has(words[0]?.word)) return whole
-
-  let i = 1
-  let last = 0   // the latest link: from it on is the one who tells the hadith
-  // A link to the Prophet, to a kin word, or straight to a saying word (حدثه أنه) names no new teller.
-  // A kin word counts only standing alone: أبي ذر is a name, عن أبيه، قال is not.
-  const alone = (k) => !words[k + 1] || LINKS.has(words[k + 1].word) || SAYS.has(words[k + 1].word)
-  const before = (k) => PROPHET.has(words[k]?.word) || (KIN.has(words[k]?.word) && alone(k))
-  const teller = (at) => (before(at + 1) || SAYS.has(words[at + 1]?.word) ? last : at)
-  // After "أن", the next link within one name: the narrator named before it hands the hadith on.
-  const handed = (at) => {
-    if (!HANDS.has(words[at].word)) return -1
-    const next = words.findIndex((w, k) => k > at && (LINKS.has(w.word) || SAYS.has(w.word) || w.quoted || w.stop))
-    return next > at + 1 && next - at - 1 <= HADITH.chain.name && LINKS.has(words[next].word) ? next : -1
-  }
-  while (i < words.length) {
-    let name = 0
-    let ended = false   // past a full stop only a link or a saying word may come
-    while (i < words.length && !LINKS.has(words[i].word) && !SAYS.has(words[i].word)) {
-      const { word, quoted, stop } = words[i]
-      if (quoted || ABOUT.has(word) || (ended && word)) return whole
-      if (word && !FREE.has(word) && ++name > HADITH.chain.name) return whole
-      ended = ended || stop
-      i += 1
-    }
-    if (i === words.length) return whole
-    if (LINKS.has(words[i].word)) { last = teller(i); i += 1; continue }
-    while (i + 1 < words.length && SAYS.has(words[i + 1].word)) i += 1
-    if (i + 1 < words.length && LINKS.has(words[i + 1].word)) { last = teller(i + 1); i += 2; continue }
-    const link = handed(i)
-    if (link > 0) { last = before(i + 1) ? last : i; i = link + 1; continue }
-    return {
-      chain: text.slice(0, words[i].at).trim(),
-      teller: text.slice(words[last].at, words[i].at).trim(),
-      body: text.slice(words[i].at),
-    }
-  }
-  return whole
 }
 
 // Each chain word's entry in the guide (hadith.json chain.terms): a verb by its
@@ -246,7 +177,7 @@ const same = (a, b) => {
 const shown = (raw) => raw.replace(/[^\u0621-\u063A\u0641-\u065F\u0670\u0671]/g, '')
 
 /**
- * A chain (from chainOf) as narrators and the word that passed it between
+ * A chain (the Arabic before the server's cut, lib/rijal drawnChain) as narrators and the word that passed it between
  * each two: [{ term, way, name }], in the book's order, teacher of the author
  * first, with `span`, where its name stands in `chain`. ح starts another strand; each one but the last becomes a branch of
  * `main` (the last): `at` is the place in `main` it joins, the first narrator
@@ -259,11 +190,13 @@ export function chainLinks(chain) {
   let term = null
   let name = []
   let span = null   // where the name stands in `chain`: [start, end]
+  let handing = false   // the name follows أن: its verb comes after it (أن طاوسا أخبره)
   const close = () => {
     if (name.length) strands.at(-1).push({ term: term?.word ?? '', way: term?.way ?? '', name: name.join(' '), span })
     name = []
     span = null
     term = null
+    handing = false
   }
   for (const { 0: raw, index } of String(chain ?? '').matchAll(/\S+/g)) {
     const word = bare(raw)
@@ -274,8 +207,15 @@ export function chainLinks(chain) {
       if (last) last.together = true
       continue
     }
-    if (LINKS.has(word)) { close(); term = { word: shown(raw), way: termOf(raw)?.way ?? '' }; continue }
-    if (SAYS.has(word)) { close(); continue }
+    if (LINKS.has(word)) {
+      const said = { word: shown(raw), way: termOf(raw)?.way ?? '' }
+      const handed = handing && name.length && VERBS.has(word)
+      if (handed) term = said
+      close()
+      term = handed ? null : said
+      continue
+    }
+    if (SAYS.has(word)) { close(); handing = HANDS.has(word); continue }
     if (word) { name.push(shown(raw)); span = [span?.[0] ?? index, index + raw.length] }
   }
   close()

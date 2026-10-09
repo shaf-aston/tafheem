@@ -95,7 +95,7 @@ def index_text(conn: sqlite3.Connection) -> None:
     vocabulary: Counter[tuple[str, str]] = Counter()
     for rowid, arabic, english in rows:
         # Only the hadith, never its chain: a narrator's name is not what the hadith says.
-        _, matn = chain_of(arabic)
+        matn = chain_of(arabic).body
         folded = spelling.fold(matn)
         # Analysed as written, marks and all: the marks are what tell صَبْرَة the name from الصَّبْر.
         lemmas = " ".join(filter(None, (lemma(t) for t in words.ARABIC_TOKEN.findall(matn))))

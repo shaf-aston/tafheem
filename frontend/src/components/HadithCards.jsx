@@ -18,7 +18,6 @@
  */
 import { useState } from 'react'
 
-import { chainOf } from '../lib/hadithWords'
 import { useHadithCollections } from '../lib/useHadithCollections'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 import { useKin, useNarrators, useWeakNotes } from '../lib/useNarrators'
@@ -51,8 +50,8 @@ export default function HadithCards({ items, accent, collection, columns = false
     const ref = `${h.number}${h.part ?? ''}`
     const { notes, links: ties, rulings, rules, scale } = weakOf(h, ref)
     // A hadith with no chain to draw still has what scholars said of it.
-    if (!chainOf(h.arabic).chain) return { links: [], scale, rulings, weak: [], linkPoints: [], chainless: true }
-    const links = drawnChain(h.arabic, namesOf(h)[ref] ?? [], notes, ties)
+    if (!h.cut) return { links: [], scale, rulings, weak: [], linkPoints: [], chainless: true }
+    const links = drawnChain(h.arabic, h.cut, namesOf(h)[ref] ?? [], notes, ties)
     return { links, scale, rulings, weak: weakPoints(links, scale), linkPoints: weakLinks(links, rules) }
   }
 
@@ -74,6 +73,7 @@ export default function HadithCards({ items, accent, collection, columns = false
               index={i}
               label={collection ? ref : `${of(h.collection).short} ${ref}`}
               arabic={h.arabic}
+              cut={h.cut}
               english={h.english}
               accent={accent}
               hideChain={hideChain}
@@ -101,7 +101,7 @@ export default function HadithCards({ items, accent, collection, columns = false
                       Scholars
                     </Chip>
                   )}
-                  {chainOf(h.arabic).chain && (
+                  {h.cut && (
                     <button
                       type="button"
                       onClick={() => setDrawn(h)}

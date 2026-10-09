@@ -148,6 +148,17 @@ def test_router_returns_a_books_hadiths(db, client):
     assert body["hadiths"][0]["arabic"].startswith("الصَّلَاةُ")
 
 
+def test_a_books_hadith_carries_where_its_chain_is_cut(db, client):
+    chained = "حَدَّثَنَا مُحَمَّدٌ، عَنْ عَائِشَةَ، قَالَتْ إِنَّ الصَّلَاةَ نُورٌ"
+    with sqlite3.connect(db) as conn:
+        conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
+                     "VALUES ('bukhari', 2, 9, '', ?, '')", (chained,))
+    by_number = {h["number"]: h for h in client.get("/api/hadith/bukhari/books/2").json()["hadiths"]}
+    teller_at, body_at = by_number[9]["cut"]
+    assert chained[body_at:].startswith("قَالَتْ") and chained[teller_at:].startswith("عَنْ عَائِشَةَ")
+    assert by_number[3]["cut"] is None
+
+
 def test_router_search(db, client):
     resp = client.get("/api/hadith/search", params={"q": "light"})
     assert resp.status_code == 200

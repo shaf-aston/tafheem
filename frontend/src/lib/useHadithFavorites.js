@@ -36,10 +36,10 @@ function save(next) {
 /** Star or unstar; a newly starred hadith goes first. Exported for the test. */
 export function toggleFavorite(hadith) {
   const key = favoriteKey(hadith)
-  const { collection, book, number, part = '', arabic, english = '', grades = [], cite = '' } = hadith
+  const { collection, book, number, part = '', arabic, english = '', grades = [], cite = '', cut = null } = hadith
   save(items.some((h) => favoriteKey(h) === key)
     ? items.filter((h) => favoriteKey(h) !== key)
-    : [{ collection, book, number, part, arabic, english, grades, cite }, ...items])
+    : [{ collection, book, number, part, arabic, english, grades, cite, cut }, ...items])
 }
 
 export function useHadithFavorites() {

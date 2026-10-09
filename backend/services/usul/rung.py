@@ -27,7 +27,7 @@ class Rung(NamedTuple):
 def in_chain(arabic: str, mentions: list[tuple[int, int, int]]) -> list[tuple[int, int, int]] | None:
     """The mentions (start, end, narrator id) that end inside the hadith's plain chain (chain.chain_of), in text order;
     None when the chain is not plain."""
-    chain, _ = chain_of(arabic)
+    chain = chain_of(arabic).chain
     if not chain:
         return None
     limit = arabic.find(chain) + len(chain)
@@ -44,8 +44,8 @@ def rungs(arabic: str, mentions: list[tuple[int, int, int]]) -> tuple[list[Rung]
     found: list[Rung] = []
     skipped: Counter = Counter()
     strand = [named[0][2]] if named else []   # the narrators of the strand being read, in text order
-    for (_, end, student), (start, _, teacher) in zip(named, named[1:]):
-        word, why = passed_on(arabic[end:start])
+    for k, ((_, end, student), (start, stop, teacher)) in enumerate(zip(named, named[1:])):
+        word, why = passed_on(arabic[end:start], arabic[stop:named[k + 2][0] if k + 2 < len(named) else len(arabic)])
         if why == "strand":
             strand = [teacher]
             continue
