@@ -1,0 +1,84 @@
+{
+  "unit": "unit-20",
+  "dialect": "Fusha (Modern Standard Arabic)",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01"
+    },
+    {
+      "lesson": "lesson-02"
+    },
+    {
+      "lesson": "lesson-03"
+    },
+    {
+      "lesson": "lesson-04"
+    },
+    {
+      "lesson": "lesson-05"
+    },
+    {
+      "lesson": "lesson-06"
+    },
+    {
+      "lesson": "lesson-07"
+    },
+    {
+      "lesson": "lesson-08"
+    },
+    {
+      "lesson": "lesson-09"
+    },
+    {
+      "lesson": "lesson-10"
+    },
+    {
+      "lesson": "lesson-11"
+    },
+    {
+      "lesson": "lesson-12"
+    },
+    {
+      "lesson": "lesson-13"
+    },
+    {
+      "lesson": "lesson-14"
+    },
+    {
+      "lesson": "lesson-15"
+    },
+    {
+      "lesson": "lesson-16"
+    },
+    {
+      "lesson": "lesson-17"
+    },
+    {
+      "lesson": "lesson-18"
+    },
+    {
+      "lesson": "lesson-19"
+    },
+    {
+      "lesson": "lesson-20"
+    }
+  ]
+}

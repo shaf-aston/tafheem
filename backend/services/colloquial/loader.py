@@ -79,6 +79,8 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     said = []
     if not str(lesson.get("title") or "").strip():
         said.append(f"{name} has no title")
+    if not lesson.get("phrases"):  # a word list: its words are all it teaches
+        return said
     for part in ("phrases", "dialogue", "exercises"):
         if not lesson.get(part):
             said.append(f"{name} has no {part}")
@@ -165,6 +167,8 @@ def _unit_faults(unit: dict) -> list[str]:
     seen_ids: set[str] = set()
     for lesson in lessons:
         said.extend(_lesson_faults(lesson, seen_ids))
+    if not any(lesson.get("phrases") for lesson in lessons):
+        return said  # a unit of word lists has nothing to challenge
     challenge = unit.get("challenge")
     if not challenge:
         said.append("has no challenge")
@@ -251,7 +255,8 @@ def catalogue() -> dict:
                 "where": dialect["where"],
                 "units": [{"unit": u["unit"], "title": u["title"], "written": u["written"],
                            "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"], "section": lesson["section"],
-                                        "written": lesson["written"], "words": len(lesson.get("vocabulary") or [])}
+                                        "written": lesson["written"], "words": len(lesson.get("vocabulary") or []),
+                                        "phrases": len(lesson.get("phrases") or [])}
                                        for lesson in u["lessons"]],
                            "cover": _cover(u)}
                           for u in dialect["units"]],

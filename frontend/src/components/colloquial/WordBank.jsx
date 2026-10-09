@@ -75,11 +75,12 @@ export default function WordBank({ unit, at = null }) {
   const topic = at === null ? null : unit.lessons[at]
   const lessons = whole || !topic ? unit.lessons : [topic]
   const words = wordsOf(lessons)
+  const phrases = phrasesOf(lessons)
   const [show, setShow] = useState('words')
-  const rows = show === 'words' && words.length > 0 ? words : phrasesOf(lessons)
+  const rows = show === 'words' && words.length > 0 ? words : phrases
   const scope = (words.length > 0 || topic) && (
     <div className="space-y-2">
-      {words.length > 0 && (
+      {words.length > 0 && phrases.length > 0 && (
         <Segmented label="Word bank kind" accent="var(--primary)" value={show} onChange={setShow}
           options={[{ id: 'words', label: 'Words' }, { id: 'phrases', label: 'Phrases' }]} />
       )}
