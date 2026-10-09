@@ -1502,6 +1502,23 @@
     "naughty": {"arabic": "شَقِيّ / شَقِيَّة", "transliteration": "shaqiyy / shaqiyya"},
     "honest": {"arabic": "صَادِق / صَادِقَة", "transliteration": "saadiq / saadiqa"},
     "brave": {"arabic": "شُجَاع / شُجَاعَة", "transliteration": "shujaa3 / shujaa3a"},
-    "strict": {"arabic": "صَارِم / صَارِمَة", "transliteration": "saarim / saarima"}
+    "strict": {"arabic": "صَارِم / صَارِمَة", "transliteration": "saarim / saarima"},
+    "roof": {"arabic": "سَطْح", "transliteration": "sat7"},
+    "old-not-new": {"arabic": "قَدِيم / قَدِيمَة", "transliteration": "qadeem / qadeema"},
+    "bright": {"arabic": "مُضِيء / مُضِيئَة", "transliteration": "mudee2 / mudee2a"},
+    "to-reside": {"arabic": "سَكَنَ", "transliteration": "sakana"},
+    "guest-room": {"arabic": "غُرْفَة الضُّيُوف", "transliteration": "ghurfat ad-duyoof"},
+    "corridor": {"arabic": "مَمَرّ", "transliteration": "mamarr"},
+    "upper-floor": {"arabic": "الطَّابِق الْعُلْوِيّ", "transliteration": "at-taabiq al-3ulwiyy"},
+    "ground-floor": {"arabic": "الطَّابِق الْأَرْضِيّ", "transliteration": "at-taabiq al-ardiyy"},
+    "to-go-up": {"arabic": "صَعِدَ", "transliteration": "sa3ida"},
+    "carpet": {"arabic": "سَجَّادَة", "transliteration": "sajjaada"},
+    "mirror": {"arabic": "مِرْآة", "transliteration": "mir2aa"},
+    "lamp": {"arabic": "مِصْبَاح", "transliteration": "misbaa7"},
+    "fan": {"arabic": "مِرْوَحَة", "transliteration": "mirwa7a"},
+    "washing-machine": {"arabic": "غَسَّالَة", "transliteration": "ghassaala"},
+    "cooker": {"arabic": "مَوْقِد غَاز", "transliteration": "mawqid ghaaz"},
+    "remote-control": {"arabic": "جِهَاز التَّحَكُّم", "transliteration": "jihaaz at-ta7akkum"},
+    "to-need": {"arabic": "اِحْتَاجَ إِلَى", "transliteration": "i7taaja ilaa"}
   }
 }

@@ -148,5 +148,315 @@
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "foreign_landing_url": "https://www.flickr.com/photos/22446827@N02/3667739610",
     "search_term": "mezze table"
+  },
+  "l05-p01-city-skyline.jpg": {
+    "id": "ffc50946-335c-4f4e-a644-a4804d2c4da1",
+    "title": "City Skyline",
+    "creator": "Joe deSousa",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/city-skyline-KFA0ZJHD66",
+    "search_term": "city skyline"
+  },
+  "l05-p02-apartment-building.jpg": {
+    "id": "99ef0260-1680-4960-9d7e-d1555fe950ab",
+    "title": "Apartment Building",
+    "creator": "Matt Bango",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/apartment-building-2T9NFO4RNI",
+    "search_term": "apartment building"
+  },
+  "l05-p03-family-house.jpg": {
+    "id": "8f16dde4-7851-43fb-b195-25e871bed223",
+    "title": "Free suburban family house photo",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5914459/photo-image-public-domain-house-family",
+    "search_term": "family house"
+  },
+  "l05-p04-mosque.jpg": {
+    "id": "5ee493a2-cfea-4e1a-9d41-661e7a70b74d",
+    "title": "Mosque Muslim",
+    "creator": "Pavlo Luchkovski",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/mosque-muslim-7VCERNS38E",
+    "search_term": "mosque"
+  },
+  "l05-p05-village.jpg": {
+    "id": "2b2e6877-9d5e-4bcf-9c95-f55248237f6e",
+    "title": "Houses Village",
+    "creator": "David Marcu",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/houses-village-42F752642A",
+    "search_term": "village"
+  },
+  "l05-p06-street-sign.jpg": {
+    "id": "49ea5a04-5f4e-48eb-825a-de07ef18723f",
+    "title": "Street Sign",
+    "creator": "Candace McDaniel",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/street-sign-BFO6I0XZMH",
+    "search_term": "street sign"
+  },
+  "l06-p01-big-house.jpg": {
+    "id": "d246321f-055c-45b9-88a3-8a71f78a67b5",
+    "title": "Big house clipart, real estate",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6481749/vector-sticker-public-domain-icon",
+    "search_term": "big house"
+  },
+  "l06-p02-old-house.jpg": {
+    "id": "b541af77-6b96-42d8-a02e-fb17055fff20",
+    "title": "Old house windows",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6038568/old-house-windows-free-public-domain-cc0-photo",
+    "search_term": "old house"
+  },
+  "l06-p03-new-apartment-building.jpg": {
+    "id": "e23d229d-4acb-4368-a217-75ea8141007c",
+    "title": "New Apartment Buildings 02/1973. Photographer:",
+    "creator": "U.S. National Archives",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/8803154/photo-image-nature-landscape-vintage",
+    "search_term": "new apartment building"
+  },
+  "l06-p05-living-room.jpg": {
+    "id": "52eceae4-f5cd-4b50-ad23-53648d022d0a",
+    "title": "Living Room",
+    "creator": "Dan Gold",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/living-room-BI0P6D3WL9",
+    "search_term": "living room"
+  },
+  "l06-p10-small-garden.jpg": {
+    "id": "bdb1a5fa-9b55-44a2-adb6-437ab6117341",
+    "title": "Picturesque Small Garden Backstreet Netherlands",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5966008/photo-image-flowers-public-domain-plant",
+    "search_term": "small garden"
+  },
+  "l06-p11-house-roof.jpg": {
+    "id": "eb7955da-6bee-4a3c-be4e-3ba440733412",
+    "title": "House Roof",
+    "creator": "Oliur Rahman",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/house-roof-KJMQM11A8G",
+    "search_term": "house roof"
+  },
+  "l06-p12-market-stalls.jpg": {
+    "id": "add0c467-e441-4643-8054-8c46ca6c614d",
+    "title": "Free spice market stall image",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5921616/photo-image-public-domain-food-free",
+    "search_term": "market stalls"
+  },
+  "l07-p01-living-room.jpg": {
+    "id": "52eceae4-f5cd-4b50-ad23-53648d022d0a",
+    "title": "Living Room",
+    "creator": "Dan Gold",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/living-room-BI0P6D3WL9",
+    "search_term": "living room"
+  },
+  "l07-p02-kitchen.jpg": {
+    "id": "b66d8faf-eae3-476d-afee-dfb8fb2a03e4",
+    "title": "Kitchen Stove",
+    "creator": "Jordan Sanchez",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/kitchen-stove-T79SNT9MGV",
+    "search_term": "kitchen"
+  },
+  "l07-p03-bedroom.jpg": {
+    "id": "ec36e194-3b62-43da-996e-d06206dd2160",
+    "title": "Bedroom Clean",
+    "creator": "Burst",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/bedroom-clean-OE0F9BHXJQ",
+    "search_term": "bedroom"
+  },
+  "l07-p04-bathroom.jpg": {
+    "id": "da357e55-8712-4e39-8f85-1164c2460feb",
+    "title": "Bathroom Sink",
+    "creator": "Dan Watson",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/bathroom-sink-D3901L7G93",
+    "search_term": "bathroom"
+  },
+  "l07-p05-garden.jpg": {
+    "id": "981469f8-4bf7-430c-b150-6610059dfdd6",
+    "title": "Garden Park",
+    "creator": "Suzy Hazelwood",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/garden-park-SJKYD4OJQB",
+    "search_term": "garden"
+  },
+  "l07-p06-guest-bedroom.jpg": {
+    "id": "1eb01dab-dbdd-424a-87c3-e4420eac5b54",
+    "title": "Classic guest bedroom",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/3297160/free-photo-image-bedroom-bed-cc0",
+    "search_term": "guest bedroom"
+  },
+  "l07-p08-staircase.jpg": {
+    "id": "88db6723-0d25-40c0-8a26-e70463ec0b65",
+    "title": "Stairs Staircase",
+    "creator": "Huney Co",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/stairs-staircase-O1SC8XTWTL",
+    "search_term": "staircase"
+  },
+  "l07-p10-balcony.jpg": {
+    "id": "16568826-ca00-47c8-9cd3-82dffb920cc3",
+    "title": "Building Balconies",
+    "creator": "The Building Envelope",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/building-balconies-LXXPA2QMXW",
+    "search_term": "balcony"
+  },
+  "l07-p12-closed-door.jpg": {
+    "id": "b0547372-76ee-4c8b-9e5e-da758a872f84",
+    "title": "Closed Door",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6073347/closed-door",
+    "search_term": "closed door"
+  },
+  "l08-p01-bed.jpg": {
+    "id": "ca6a0a14-04d0-44e6-99ee-153d47dfe802",
+    "title": "Hotelroom Bed",
+    "creator": "Markus Spiske",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/hotelroom-bed-C26E1DKA02",
+    "search_term": "bed"
+  },
+  "l08-p02-sofa.jpg": {
+    "id": "7e0feb67-4369-4051-86c8-cb7447cf6554",
+    "title": "Art Sofa",
+    "creator": "Dan Gold",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/art-sofa-1955WV3GCP",
+    "search_term": "sofa"
+  },
+  "l08-p03-tv-remote-control.jpg": {
+    "id": "274c0827-8c5e-4092-a473-a583606bf8b4",
+    "title": "Remote Control",
+    "creator": "50Fish",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/remote-control-XXNJAOGTCN",
+    "search_term": "tv remote control"
+  },
+  "l08-p04-house-key.jpg": {
+    "id": "d02070cd-81a9-4afb-9197-7ec5b68866f5",
+    "title": "House Keys",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5969541/house-keys",
+    "search_term": "house key"
+  },
+  "l08-p05-ceiling-light.jpg": {
+    "id": "9865490b-8bbd-4d44-9847-19f6d6b8f72c",
+    "title": "Ceiling Light",
+    "creator": "Steve Halama",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/ceiling-light-4BNCZ46MPE",
+    "search_term": "ceiling light"
+  },
+  "l08-p07-open-window.jpg": {
+    "id": "1fd05119-9bf2-4cf8-be52-6d36b9994da6",
+    "title": "Open window",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6030735/open-window-free-public-domain-cc0-photo",
+    "search_term": "open window"
+  },
+  "l08-p10-washing-machine.jpg": {
+    "id": "a778753f-380e-45b9-8987-5f4b9fb0fbde",
+    "title": "Washing Machine",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5927124/washing-machine-free-public-domain-cc0-photo",
+    "search_term": "washing machine"
+  },
+  "l08-p11-electric-fan.jpg": {
+    "id": "e78472d3-4797-403b-b276-63b9cfe2410d",
+    "title": "Isolated electrical fan",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5901123/photo-image-public-domain-table-free",
+    "search_term": "electric fan"
+  },
+  "l08-p12-mirror.jpg": {
+    "id": "119ba4ed-e701-4607-a8a3-7294d31b3d32",
+    "title": "Mirror Livingroom",
+    "creator": "Studio 7042",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/mirror-livingroom-JRHSFSKQZQ",
+    "search_term": "mirror"
   }
 }
