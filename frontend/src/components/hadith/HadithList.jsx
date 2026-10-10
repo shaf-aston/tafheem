@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { hadithBookQuery } from '../../api'
-import { holdAtTop, scrollToEl } from '../../lib/scrollToEl'
+import { holdAtTop, scrollToEl, useOpenAtTop } from '../../lib/scrollToEl'
 import { topicOf } from '../../lib/hadithGrade'
 import { useRememberedFlag } from '../../lib/useRemembered'
 
@@ -35,6 +35,7 @@ function useReadingRail(ref) {
 
 export default function HadithList({ collection, book, focus, onBack, accent, onNarrator, onHadith }) {
   const { data, isPending, isError, error, refetch } = useQuery(hadithBookQuery(collection, book))
+  useOpenAtTop(collection, book)
   const rail = useRef(null)
   useReadingRail(rail)
   const [missing, setMissing] = useState(false)

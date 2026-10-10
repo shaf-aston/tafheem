@@ -12,6 +12,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { narratorHadithQuery, narratorQuery } from '../../api'
 import { useHadithCollections } from '../../lib/useHadithCollections'
+import { useOpenAtTop } from '../../lib/scrollToEl'
 
 import ArabicText from '../ui/ArabicText'
 import BookFacts from '../ui/BookFacts'
@@ -43,6 +44,7 @@ function FoldedList({ items, lines, accent, children: draw }) {
 }
 
 export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
+  useOpenAtTop(id)
   const { data: who, isPending, isError, error, refetch } = useQuery(narratorQuery(id))
   const { data: hadith = [] } = useQuery(narratorHadithQuery(id))
   const { of } = useHadithCollections()

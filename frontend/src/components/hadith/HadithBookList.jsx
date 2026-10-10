@@ -9,6 +9,7 @@ import { themeVariable } from '../../theme'
 import { onHover, warm } from '../../lib/warm'
 import { useFirstSight } from '../../lib/firstSight'
 import { topicOf } from '../../lib/hadithGrade'
+import { useOpenAtTop } from '../../lib/scrollToEl'
 
 import ErrorAlert from '../ui/ErrorAlert'
 import EmptyState from '../ui/EmptyState'
@@ -19,6 +20,7 @@ const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
 
 export default function HadithBookList({ collection, onPick, accent }) {
   const { data, isPending, isError, error, refetch } = useQuery(hadithBooksQuery(collection))
+  useOpenAtTop()
   const client = useQueryClient()
   const rise = useFirstSight(`hadith-books:${collection}`)
   const first = data?.[0]?.number

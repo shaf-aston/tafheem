@@ -9,6 +9,7 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 
 import { usulTermQuery, usulTermsQuery } from '../../api'
 import { useHadithCollections } from '../../lib/useHadithCollections'
+import { useOpenAtTop } from '../../lib/scrollToEl'
 
 import Chip from '../ui/Chip'
 import ChipRow from '../ui/ChipRow'
@@ -53,6 +54,7 @@ function TermHadith({ kind, accent, onOpen }) {
 }
 
 export default function ScholarTerms({ accent, onOpen }) {
+  useOpenAtTop()
   const { data: terms, isPending, isError, error, refetch } = useQuery(usulTermsQuery)
   const [picked, setPicked] = useState(null)
   const term = terms?.find((t) => t.kind === picked) ?? terms?.[0]

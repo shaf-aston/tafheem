@@ -2,6 +2,8 @@
  * The one way the app scrolls something into view: always a glide, unless the
  * reader asked for reduced motion or the target is far (motion.glide-screens). Presets name the intent, not the browser flag.
  */
+import { useEffect } from 'react'
+
 import theme from '../theme.json'
 
 const ALIGN = { nearest: 'nearest', top: 'start', center: 'center' }
@@ -38,4 +40,13 @@ export function holdAtTop(el) {
 /** Back to the top of the page at once, as a fresh page would open. */
 export function scrollToTop() {
   globalThis.scrollTo?.({ top: 0, behavior: 'instant' })
+}
+
+/**
+ * A screen that replaces another inside a tab (a book's list after the books, a narrator's page) opens at
+ * the top, as a fresh page would: the address does not change (lib/tabUrl), so the browser does not do it.
+ * `keys` are what makes it a new screen (the book, the narrator); none means once, on mount.
+ */
+export function useOpenAtTop(...keys) {
+  useEffect(scrollToTop, keys)
 }
