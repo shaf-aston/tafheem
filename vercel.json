@@ -33,5 +33,5 @@
       "claude/*": false
     }
   },
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- frontend vercel.json"
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- frontend vercel.json backend/data/hadith/chain.json"
 }

@@ -40,10 +40,11 @@ git ls-files -z backend/data | rsync -a --from0 --files-from=- ./ /home/ubuntu/t
 rsync -a deploy/ /home/ubuntu/tafheem/deploy/
 # rsync only adds and updates, so a file git deleted would live on here: a
 # removed Colloquial unit then fails the whole tab. Remove what git removed
-# since the last deploy; untracked databases are never in this list.
+# since the last deploy; untracked databases are never in this list. --no-renames, or a moved
+# file shows as renamed, not deleted, and its old copy lives on here.
 OLD=$(cat /home/ubuntu/.deployed-sha 2>/dev/null || true)
 if [ -n "$OLD" ] && git cat-file -e "$OLD^{commit}" 2>/dev/null; then
-	git diff --name-only --diff-filter=D -z "$OLD" "$NEW" -- backend/ deploy/ \
+	git diff --no-renames --name-only --diff-filter=D -z "$OLD" "$NEW" -- backend/ deploy/ \
 		| (cd /home/ubuntu/tafheem && xargs -0 -r rm -fv)
 fi
 # Colloquial lessons are all in git, so the server copy is mirrored exactly.
