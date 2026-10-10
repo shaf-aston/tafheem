@@ -24,7 +24,7 @@ from backend.services.morphology import get_engine_name
 # Answers that are the same for everyone and change only when the app does, so
 # a browser or Vercel's edge may keep them for a day. An allow-list, not a
 # default: anything per-learner (progress, journal), anything typed (search,
-# analyse) or anything that reports on the server (health) must never be here.
+# analyze) or anything that reports on the server (health) must never be here.
 # Nor the list of installed translations: an import adds to it.
 CACHEABLE = re.compile(
     r"/api/(?:"
@@ -84,7 +84,7 @@ async def lifespan(_: FastAPI):
 
 
 def create_app() -> FastAPI:
-    settings = get_settings()  # validates .env; warns on bad key, never crashes
+    settings = get_settings()  # validates .env; a bad or unknown key stops startup
 
     app = FastAPI(
         title="Tafheem",

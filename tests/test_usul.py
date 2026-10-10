@@ -16,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.main import app  # noqa: E402
 from backend.scripts import build_rijal, build_usul  # noqa: E402
+from backend.services.hadith import loader  # noqa: E402
 from backend.services.hadith.rijal import store as rijal_store  # noqa: E402
 from backend.services.hadith.usul import store as usul_store  # noqa: E402
 from backend.services.hadith.usul.level import level_of  # noqa: E402
@@ -66,6 +67,7 @@ def paths(tmp_path, monkeypatch):
     monkeypatch.setattr(build_usul, "rule", lambda: {**rule(), "tadlis": {**rule()["tadlis"], "unless": []}})
     for module in (rijal_store, usul_store, build_usul):
         monkeypatch.setattr(module, "data_path", where.__getitem__)
+    monkeypatch.setattr(loader, "collection_name", {"muslim": "Sahih Muslim"}.get)
     conn = sqlite3.connect(where["rijal_index_path"])
     conn.executescript(build_rijal._SCHEMA)
     conn.executemany("INSERT INTO narrator (id, name_ar, grade_ar) VALUES (?, ?, ?)",

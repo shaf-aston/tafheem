@@ -28,12 +28,6 @@ def rule() -> dict:
     return json.loads((data_path("rijal_dir") / "rijal.json").read_text(encoding="utf-8"))
 
 
-def knows(collection: str) -> bool:
-    """True when rijal.db names anyone in this collection, or is not built (the reply then says so itself)."""
-    db = _db()
-    return not db or db.execute("SELECT 1 FROM mention WHERE collection = ? LIMIT 1", (collection,)).fetchone() is not None
-
-
 def _ranked(db) -> list[tuple[int, int]]:
     """Every narrator named in a hadith with how many hadith name him, most first. One ~1 s scan per build of the file."""
     global _counts
