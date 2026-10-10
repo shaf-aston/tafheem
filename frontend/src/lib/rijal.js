@@ -8,9 +8,28 @@
  */
 import HADITH from '../hadith.json'
 
-import { MARKS, QUOTED, chainLinks } from './hadithWords'
+import { CHAIN, MARKS, QUOTED, chainLinks } from './hadithWords'
 
 const { tones: TONES, teller: TELLER } = HADITH.narrator
+// A name's own words: letter first, letter or vowel last, spaces between.
+const WORDS = /\p{L}(?:[\p{L}\p{M}\s]*[\p{L}\p{M}])?/u
+
+/**
+ * `[from, to]` cut to the name where sunnah.com's link took in the collector's
+ * aside (عبد العزيز، - يعني ابن محمد; - وكيع): the first stretch between aside
+ * marks with a letter in it. A link with no mark stays as it is.
+ */
+function own(text, from, to) {
+  const linked = text.slice(from, to)
+  if (!linked.includes(CHAIN.aside)) return [from, to]
+  let at = from
+  for (const piece of linked.split(CHAIN.aside)) {
+    const words = piece.match(WORDS)
+    if (words) return [at + words.index, at + words.index + words[0].length]
+    at += piece.length + CHAIN.aside.length
+  }
+  return [from, to]
+}
 
 /** The tone a grade wears: the first whose highest rank covers it, else danger. */
 export const toneOf = (rank) => Object.entries(TONES).find(([, top]) => rank != null && rank <= top)?.[0] ?? 'danger'
@@ -23,9 +42,8 @@ export function runs(text, names, offset = 0) {
   const out = []
   let at = 0
   for (const [start, end, id] of [...names].sort((a, b) => a[0] - b[0])) {
-    const from = start - offset
-    const to = end - offset
-    if (from < at || to <= from || to > text.length) continue
+    if (start - offset < at || end <= start || end - offset > text.length) continue
+    const [from, to] = own(text, start - offset, end - offset)
     if (from > at) out.push({ text: text.slice(at, from) })
     out.push({ text: text.slice(from, to), id })
     at = to

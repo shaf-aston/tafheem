@@ -24,6 +24,24 @@ describe('runs', () => {
   it('counts slices from the piece start when it begins mid-hadith', () => {
     expect(runs('cd ef', [[13, 15, 9]], 10)).toEqual([{ text: 'cd ' }, { text: 'ef', id: 9 }])
   })
+
+  it("marks the name alone where sunnah.com's link takes in the collector's aside (Abu Dawud 1, Muslim 126)", () => {
+    const linked = (text, shown) => [[text.indexOf(shown), text.indexOf(shown) + shown.length, 4]]
+    const first = 'حَدَّثَنَا عَبْدُ الْعَزِيزِ، - يَعْنِي ابْنَ مُحَمَّدٍ - عَنْ'
+    expect(runs(first, linked(first, 'عَبْدُ الْعَزِيزِ، - يَعْنِي ابْنَ مُحَمَّدٍ'))).toEqual([
+      { text: 'حَدَّثَنَا ' }, { text: 'عَبْدُ الْعَزِيزِ', id: 4 }, { text: '، - يَعْنِي ابْنَ مُحَمَّدٍ - عَنْ' },
+    ])
+    const after = 'حَدَّثَنَا - وَكِيعٌ، عَنْ'
+    expect(runs(after, linked(after, '- وَكِيعٌ'))).toEqual([
+      { text: 'حَدَّثَنَا - ' }, { text: 'وَكِيعٌ', id: 4 }, { text: '، عَنْ' },
+    ])
+  })
+
+  it('leaves a name with no aside mark as linked, comma and all', () => {
+    const text = 'عَنْ أَبِيهِ، قَالَ'
+    const at = text.indexOf('أَبِيهِ،')
+    expect(runs(text, [[at, at + 'أَبِيهِ،'.length, 2]])).toEqual([{ text: 'عَنْ ' }, { text: 'أَبِيهِ،', id: 2 }, { text: ' قَالَ' }])
+  })
 })
 
 describe('withoutMarks', () => {
