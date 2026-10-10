@@ -3,7 +3,7 @@
 // and a component beside this one.
 import { useMemo, useState } from 'react'
 
-import { wordDrills } from '../../lib/wordDrills'
+import { wordDrills } from '../../lib/wordPractice'
 import Segmented from '../ui/Segmented'
 import Practice from './Practice'
 import WordCards from './WordCards'
