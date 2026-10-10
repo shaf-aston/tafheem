@@ -11,6 +11,7 @@ that copy's link and the store stays as it was until you `keep` the result.
     python -m backend.scripts.worktree new NAME   # ../_wt-NAME on origin/master, data linked
     python -m backend.scripts.worktree keep [DIR] # this copy's (or DIR's) newer data into the store
     python -m backend.scripts.worktree ci         # backend tests on HEAD with no data, as on GitHub
+    python -m backend.scripts.worktree remove NAME # ../_wt-NAME gone, the shared install kept
 """
 from __future__ import annotations
 
@@ -92,7 +93,22 @@ def new(name: str, store: Path) -> None:
     python = MAIN / ("venv/Scripts/python.exe" if os.name == "nt" else "venv/bin/python")
     print(f"backend:  cd {target} && {python} -m uvicorn backend.main:app --port 8001")
     print(f"frontend: cd {target / 'frontend'} && node node_modules/vite/bin/vite.js --port 5174")
-    print("remove:   stop both, rmdir frontend/node_modules, then git worktree remove")
+    print(f"remove:   stop both, then python -m backend.scripts.worktree remove {name}")
+
+
+def remove(name: str) -> None:
+    """Drop the shared-install link first: removing a copy with the link still in
+    place deletes the main install through it. git refuses a copy with unsaved edits."""
+    target = ROOT.parent / f"_wt-{name}"
+    nm = target / "frontend/node_modules"
+    if nm.is_junction():
+        os.rmdir(nm)  # removes the junction, not what it points at
+    elif nm.is_symlink():
+        nm.unlink()
+    elif nm.exists():
+        sys.exit(f"{nm} is a real folder, not the shared link: remove it yourself")
+    git("worktree", "remove", str(target))
+    print(f"{target} removed")
 
 
 def ci() -> int:
@@ -114,9 +130,13 @@ def main() -> int:
     sub.add_parser("new").add_argument("name")
     sub.add_parser("keep").add_argument("checkout", type=Path, nargs="?", default=ROOT)
     sub.add_parser("ci")
+    sub.add_parser("remove").add_argument("name")
     a = ap.parse_args()
     if a.cmd == "ci":
         return ci()
+    if a.cmd == "remove":
+        remove(a.name)
+        return 0
     if a.cmd == "keep":
         print(f"{keep(a.checkout.resolve(), a.store)} files taken into {a.store}")
     else:
