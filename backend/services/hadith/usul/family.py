@@ -23,11 +23,11 @@ import re
 from collections import Counter
 from typing import NamedTuple
 
-from backend.services.usul.rung import in_chain, walk
+from backend.services.hadith.usul.rung import in_chain, walk
 from backend.services.spelling import fold
 
 _LETTERS = re.compile("[^ء-ي]")
-# The hadith.json chain rule hides a ح (a new strand) among its marks; passed_on names it.
+# The chain rule (data/hadith/chain.json) hides a ح (a new strand) among its marks; passed_on names it.
 _BREAKS = {"strand": "strand", "unnamed": "unplaced_name", "no_link": "names_joined"}
 
 

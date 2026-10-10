@@ -2,13 +2,13 @@
 
     python backend/scripts/build_usul.py
 
-Levels every narrator from his grade (services/usul/level.py), then keeps a
+Levels every narrator from his grade (services/hadith/usul/level.py), then keeps a
 note for each place a narrator at or below `weak_from` is named in a chain.
 A narrator whose name, generation and grade all agree with one Taqrib entry is
 levelled from the entry's own wording instead. The narrator books that
 fetch_usul.py downloaded add: what each says of a narrator (facts), and the
 links of a chain they put in doubt, a possible tadlis and a scholar's "did not
-hear from" (services/usul/rung.py, jami.py). Prints the narrators levelled, the
+hear from" (services/hadith/usul/rung.py, jami.py). Prints the narrators levelled, the
 notes per level, the wordings no term took and every join with the rows it left
 over, so what the rule cannot read is seen and never guessed.
 
@@ -16,7 +16,7 @@ Every quote in usul.json that names a book and a page is first found in that boo
 against the one the book's markers give (check_pages); any mismatch stops the build.
 
 For each hadith number told more than once it counts the narrators at each place of the chains and
-compares the words of the tellings (services/usul/family.py), and prints the families with a picture
+compares the words of the tellings (services/hadith/usul/family.py), and prints the families with a picture
 and those left without one, by reason. `--sample FILE` also writes families laid out for checking by hand.
 
 Rebuilding is safe at any time: it writes a fresh file beside the old one and
@@ -40,9 +40,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.hadith import chain, loader  # noqa: E402
 from backend.services.hadith.chain import chain_of  # noqa: E402
-from backend.services.usul import books, facts, family, jami, match, mukhtalitin, names, ruling, rung, taqrib, tarif  # noqa: E402
-from backend.services.usul.level import kind_of, level_of  # noqa: E402
-from backend.services.usul.rule import rule  # noqa: E402
+from backend.services.hadith.usul import books, facts, family, jami, match, mukhtalitin, names, ruling, rung, taqrib, tarif  # noqa: E402
+from backend.services.hadith.usul.level import kind_of, level_of  # noqa: E402
+from backend.services.hadith.usul.rule import rule  # noqa: E402
 
 # Lists are JSON. A note is keyed by where its narrator's name starts in the hadith's Arabic.
 _SCHEMA = """
@@ -286,7 +286,7 @@ def read_rulings(units: dict[str, list[books.Entry]], cfg: dict) -> tuple[list[t
 def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], hadith: list[tuple[tuple, str, int]],
                 narrators_of: dict[tuple, list[list[tuple[str, ...]]]], everyone: list[list[tuple[str, ...]]], cfg: dict
                 ) -> list[str]:
-    """A row of `ruling` for each hadith of ours a ruling book's unit is about (services/usul/ruling.py reads the unit,
+    """A row of `ruling` for each hadith of ours a ruling book's unit is about (services/hadith/usul/ruling.py reads the unit,
     match.py finds the hadith). Returns the report: per book the units, what was read and what became of it.
 
     hadith: ((collection, number, part), its Arabic, its book number); narrators_of: the name forms of each hadith's narrators, by key;

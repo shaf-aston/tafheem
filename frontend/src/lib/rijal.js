@@ -43,7 +43,7 @@ export const withoutMarks = (text, names) =>
 
 /**
  * The hadith from the one who tells it on, with the chain before him dropped,
- * and `names` moved to match. The server's `cut` (hadith.json chain rule) finds
+ * and `names` moved to match. The server's `cut` (data/hadith/chain.json) finds
  * the teller by the chain's words; with none, sunnah.com's own name links do:
  * the last narrator named before the speech opens is the teller. Neither: whole.
  */

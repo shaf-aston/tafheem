@@ -32,7 +32,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | sarf | `components/SarfPanel.jsx` | `analyzeMorphology`, `conjugateForm` | `routers/morphology.py` | `services/conjugation.py`, `services/sarf/` | `data/sarf/` |
 | quran | `components/QuranLookup.jsx` | `quranSurahQuery` (`lib/quranOpen.js`), `searchQuran` | `routers/quran.py` | `services/quran_service.py`, `services/quran_corpus.py` | `data/quran/corpus.db`, `data/quran/library.db` |
 | daleel | `components/DaleelPanel.jsx` | `findDaleel`, `daleelBooksQuery` | `routers/daleel.py` | `services/daleel/search.py` | `data/daleel.db` |
-| hadith | `components/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `lib/useNarrators.js` | `routers/hadith.py`, `routers/rijal.py`, `routers/usul.py` | `services/hadith/`, `services/rijal/`, `services/usul/` | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
+| hadith | `components/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `lib/useNarrators.js` | `routers/hadith.py` | `services/hadith/` (`rijal/`, `usul/` inside) | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
 | dict | `components/Dictionary.jsx` | `searchDictionary` | `routers/dictionary.py` | `services/dictionary_service.py` | `data/arabic_dictionary.json`, `data/lexicons.db` |
 | mem | `components/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/books.js`) | `routers/quran.py` | `services/mutashabihat.py`, `services/quran_service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
 | grow | `components/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow.js` steps | `data/grow/paths.json` |
@@ -46,7 +46,7 @@ Nahw has more views: Tamreen (`getTamreen`, `routers/tamreen.py`, `services/tamr
 (`getNotes`, `routers/nahw_notes.py`, `services/nahw_notes.py`) and Tarkeeb examples
 (`getTarkeebExamples`, `routers/tarkeeb.py`, `services/tarkeeb_examples.py`). Reciting (Mem, Grow)
 is step 5 below. Hadith weak points, in order: `components/HadithCards.jsx`, `lib/useNarrators.js`,
-`rijalChainsQuery`, `routers/rijal.py` `get_chains`, `services/usul/store.py`, usul.db tables
+`rijalChainsQuery`, `routers/hadith.py` `get_chains`, `services/hadith/usul/store.py`, usul.db tables
 `note` and `link` (built by `scripts/build_usul.py`); `lib/weak.js` ranks and counts them in the page.
 
 ## Core flow

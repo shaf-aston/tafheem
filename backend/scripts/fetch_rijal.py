@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.hadith import loader  # noqa: E402
-from backend.services.rijal import cache, parse  # noqa: E402
+from backend.services.hadith.rijal import cache, parse  # noqa: E402
 
 
 class Fetcher:

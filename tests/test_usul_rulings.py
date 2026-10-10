@@ -11,9 +11,9 @@ from fastapi.testclient import TestClient
 
 from backend.main import app
 from backend.scripts import build_usul
-from backend.services.usul import books, match, names, ruling
-from backend.services.usul.books import Entry
-from backend.services.usul.rule import rule
+from backend.services.hadith.usul import books, match, names, ruling
+from backend.services.hadith.usul.books import Entry
+from backend.services.hadith.usul.rule import rule
 from tests.test_usul import paths  # noqa: F401  (the fixture: temporary rijal.db and usul.db)
 
 RULINGS = rule()["rulings"]

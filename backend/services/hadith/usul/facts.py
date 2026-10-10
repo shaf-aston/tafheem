@@ -9,8 +9,8 @@ from __future__ import annotations
 
 from typing import NamedTuple
 
-from backend.services.usul import mukhtalitin, taqrib
-from backend.services.usul.books import Entry
+from backend.services.hadith.usul import mukhtalitin, taqrib
+from backend.services.hadith.usul.books import Entry
 
 
 class Fact(NamedTuple):

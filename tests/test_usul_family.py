@@ -17,8 +17,8 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.scripts import build_rijal, build_usul  # noqa: E402
-from backend.services.usul import family  # noqa: E402
-from backend.services.usul.rule import rule  # noqa: E402
+from backend.services.hadith.usul import family  # noqa: E402
+from backend.services.hadith.usul.rule import rule  # noqa: E402
 
 FC = rule()["family"]
 REASONS = FC["reasons"]
@@ -207,7 +207,7 @@ def test_the_build_leaves_a_telling_of_another_text_out_of_the_marks_and_counts_
 
 
 def test_the_store_words_each_place_from_config_and_drops_a_mark_the_text_no_longer_holds(built, tmp_path, monkeypatch):
-    from backend.services.usul import store
+    from backend.services.hadith.usul import store
 
     conn, _, results = built
     conn.commit()

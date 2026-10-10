@@ -1,10 +1,10 @@
 /**
  * What the words between the narrators of a chain mean: how each one says the
  * hadith was received. Laid out as GrammarGlossary lays out the grammar terms;
- * every word and meaning comes from hadith.json chain.terms, and the two ways
+ * every word and meaning comes from the chain words' terms (lib/hadithWords CHAIN), and the two ways
  * the chain drawing colours (heard, did not say how) wear their colour here.
  */
-import HADITH from '../../hadith.json'
+import { CHAIN } from '../../lib/hadithWords'
 import { themeVariable } from '../../theme'
 
 import ArabicText from './ArabicText'
@@ -12,7 +12,7 @@ import ArabicText from './ArabicText'
 export default function ChainWords() {
   return (
     <div className="grid gap-y-5 sm:grid-cols-[auto_1fr]">
-      {HADITH.chain.terms.groups.map(({ way, title, name, terms }) => (
+      {CHAIN.terms.groups.map(({ way, title, name, terms }) => (
         <section key={way} className="col-span-full grid grid-cols-subgrid">
           <h3 className="col-span-full flex items-center gap-2 type-tiny uppercase tracking-[0.14em] text-[var(--text-faint)] mb-2">
             {themeVariable(`--hadith-${way}`) && <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full" style={{ background: `var(--hadith-${way})` }} />}

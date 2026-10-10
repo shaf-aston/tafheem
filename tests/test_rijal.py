@@ -21,7 +21,7 @@ from backend.main import app  # noqa: E402
 from backend.scripts import build_rijal  # noqa: E402
 from backend.services.arabic_text import strip_diacritics  # noqa: E402
 from backend.services.hadith import loader  # noqa: E402
-from backend.services.rijal import cache, parse, store  # noqa: E402
+from backend.services.hadith.rijal import cache, parse, store  # noqa: E402
 
 FIXTURES = Path(__file__).parent / "fixtures" / "rijal"
 OURS = json.loads((FIXTURES / "arabic.json").read_text(encoding="utf-8"))
@@ -115,7 +115,7 @@ def test_a_name_said_again_in_the_story_lands_where_sunnah_links_it():
 
 
 def test_family_meets_the_viewed_chain():
-    from backend.services.rijal.family import meet
+    from backend.services.hadith.rijal.family import meet
     viewed = [1, 2, 3, 4]
     assert meet([9, 2], viewed) == ([9], 2, [3, 4])  # stops early, borrows the rest
     assert meet([7, 8], viewed) == ([7, 8], None, [])  # fully its own

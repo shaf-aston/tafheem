@@ -1,8 +1,8 @@
 """The narrations of one hadith number (Muslim 1620a, 1620b...) laid against the one being read."""
 from __future__ import annotations
 
-from backend.services.rijal import store
-from backend.services.usul import store as usul
+from backend.services.hadith.rijal import store
+from backend.services.hadith.usul import store as usul
 
 
 def meet(theirs: list[int], viewed: list[int]) -> tuple[list[int], int | None, list[int]]:

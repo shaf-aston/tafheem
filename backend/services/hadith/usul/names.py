@@ -16,8 +16,8 @@ from collections import defaultdict
 from typing import Hashable, NamedTuple
 
 from backend.services.hadith.chain import SPELLINGS
-from backend.services.usul.level import fold_word
-from backend.services.usul.rule import rule
+from backend.services.hadith.usul.level import fold_word
+from backend.services.hadith.usul.rule import rule
 
 _SPLIT = re.compile(r"[\s،,]+")
 _SPELLINGS = {fold_word(was): fold_word(now) for was, now in SPELLINGS.items()}
@@ -34,7 +34,7 @@ def word(token: str) -> str:
 
 
 def flat(text: str) -> tuple[str, ...]:
-    """The name's words one by one, عبد and الله apart: how running text is read word by word (services/usul/jami)."""
+    """The name's words one by one, عبد and الله apart: how running text is read word by word (services/hadith/usul/jami)."""
     return tuple(w for w in map(word, _SPLIT.split(text)) if w)
 
 
