@@ -7641,7 +7641,7 @@
     },
     {
       "unit": "unit-20",
-      "title": "Word Banks",
+      "title": "Small Words, Numbers and Amounts",
       "lessons": [
         {
           "lesson": "lesson-01",
@@ -7673,115 +7673,276 @@
         },
         {
           "lesson": "lesson-05",
+          "title": "Amounts and Measures",
+          "section": "Numbers and dates",
+          "phrases": [],
+          "words": ["all", "some", "most", "several", "whole", "everything", "nothing", "many", "few", "both", "each", "part", "zero", "half", "pair", "dozen", "per-cent", "fraction", "one-third", "only", "a-lot", "a-little", "less", "too-much", "somewhat", "at-least", "litre", "metre", "kilometre", "centimetre", "gram", "tonne", "length", "width", "height", "enough", "double", "extra", "previous", "kilo", "piece", "bottle"]
+        },
+        {
+          "lesson": "lesson-06",
           "title": "Months of the Year",
           "section": "Numbers and dates",
           "phrases": [],
           "words": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "muharram", "safar", "rabi-al-awwal", "rabi-al-akhir", "jumada-al-ula", "jumada-al-akhira", "rajab", "shaban", "ramadan", "shawwal", "dhu-al-qadah", "dhu-al-hijjah", "month", "year", "date", "calendar", "gregorian", "hijri", "century", "date-of-birth", "daily", "weekly", "monthly", "yearly", "last-month", "this-month", "next-month", "last-year", "this-year", "next-year"]
-        },
+        }
+      ]
+    },
+    {
+      "unit": "unit-21",
+      "title": "Doing Words",
+      "lessons": [
         {
-          "lesson": "lesson-06",
-          "title": "Farm and Pet Animals",
-          "section": "The living world",
+          "lesson": "lesson-01",
+          "title": "More Doing Words",
+          "section": "Everyday actions",
           "phrases": [],
-          "words": ["animal", "cow", "bull", "sheep", "goat", "horse", "donkey", "mule", "camel", "buffalo", "hen", "rooster", "duck", "goose", "turkey-bird", "pet", "cat", "dog", "rabbit", "cage", "calf", "lamb", "kid-young-goat", "foal", "puppy", "chick", "farm", "stable", "flock", "shepherd", "to-feed", "to-milk", "tail", "horn", "hoof"]
+          "words": ["to-carry", "to-lift", "to-hold", "to-pick-up", "to-push", "to-pull", "to-throw", "to-tie", "to-fold", "to-pour", "to-fill", "to-empty", "to-cut", "to-draw", "to-clean", "to-sweep", "to-wipe", "to-collect", "to-hide", "to-stand-up", "to-jump", "to-run", "to-climb", "to-bend", "to-kick", "to-clap", "to-wave", "to-sneeze", "to-laugh", "to-smile", "to-look-at", "to-notice", "to-touch", "to-smell", "to-taste", "to-listen", "to-hear", "to-shout", "to-whisper", "to-call-out", "to-sing", "to-count"]
         },
         {
-          "lesson": "lesson-07",
-          "title": "Wild Animals",
-          "section": "The living world",
+          "lesson": "lesson-02",
+          "title": "Doing Words for Work and Study",
+          "section": "Everyday actions",
           "phrases": [],
-          "words": ["lion", "lioness", "tiger", "cheetah", "wolf", "fox", "bear", "elephant", "monkey", "deer", "gazelle", "giraffe", "zebra", "hippopotamus", "rhinoceros", "kangaroo", "squirrel", "hedgehog", "mouse-animal", "bat-animal", "hyena", "frog", "snake", "crocodile", "lizard", "chameleon", "venom", "wild-animal", "zoo", "predator", "prey", "hunter", "to-hunt"]
+          "words": ["to-study", "to-learn", "to-teach", "to-explain", "to-practise", "to-translate", "to-revise", "to-correct", "to-summarise", "to-discuss", "to-concentrate", "to-submit", "to-print", "to-save", "to-delete", "to-organise", "to-arrange", "to-attach", "to-download", "to-update", "to-manage", "to-hand-in", "to-sign", "to-apply", "to-cooperate", "to-hire", "to-resign", "to-earn", "to-invest", "to-think", "to-remember", "to-imagine", "to-realise", "to-compare", "to-calculate", "to-analyse", "to-solve", "to-conclude", "to-invent", "to-improve"]
         },
         {
-          "lesson": "lesson-08",
-          "title": "Birds, Insects and Sea Life",
-          "section": "The living world",
+          "lesson": "lesson-03",
+          "title": "Making, Moving and Handling",
+          "section": "Handling and feeling",
           "phrases": [],
-          "words": ["bird", "eagle", "falcon", "pigeon", "parrot", "sparrow", "owl", "crow", "peacock", "ostrich", "seagull", "wing", "feather", "beak", "nest", "to-fly", "egg", "fly-insect", "mosquito", "bee", "ant", "butterfly", "spider", "locust", "cockroach", "wasp", "scorpion", "to-bite", "sea", "fish", "whale", "dolphin", "shark", "crab", "turtle", "octopus", "jellyfish", "squid", "coral", "pearl", "fin", "shell"]
+          "words": ["to-come", "to-make", "to-do", "to-start", "to-use", "to-follow", "to-lead", "to-show", "to-gather", "to-spend", "to-lend", "to-repair", "to-build", "to-lift", "to-push", "to-pull", "to-throw", "to-hold", "to-catch", "to-shake", "to-squeeze", "to-press", "to-tear", "to-stretch", "to-separate", "to-fix-fasten", "to-dig", "to-saw", "to-paint", "to-sew", "to-glue", "to-lock", "to-harvest", "to-plant", "to-water", "to-protect", "to-warn", "to-escape", "to-burn", "to-destroy"]
         },
         {
-          "lesson": "lesson-09",
-          "title": "Land and Sky",
-          "section": "Nature and body",
+          "lesson": "lesson-04",
+          "title": "Mind and Heart Verbs",
+          "section": "Handling and feeling",
           "phrases": [],
-          "words": ["sky", "sun", "moon", "star", "planet", "cloud", "rainbow", "horizon", "sunrise", "earth", "world", "continent", "mountain", "hill", "valley", "desert", "oasis", "island", "forest", "cave", "volcano", "earthquake", "rock", "stone", "soil", "sand", "grass", "plant", "tree", "sea", "river", "lake", "ocean", "waterfall", "spring-water", "well-water", "gulf", "coast", "beach", "wave"]
+          "words": ["to-feel", "to-love", "to-hate", "to-fear", "to-worry", "to-envy", "to-wish", "to-think", "to-remember", "to-realise", "to-believe", "to-doubt", "to-suppose", "to-guess", "to-wonder", "to-seem", "to-become", "to-remain", "to-belong", "to-contain", "to-deserve", "to-promise", "to-lie-untruth", "to-trust", "to-betray", "to-refuse", "to-admit", "to-deny", "to-obey", "to-fight", "to-defend", "to-attack", "to-quarrel", "to-punish", "to-blame", "to-threaten", "to-congratulate", "to-support", "to-care", "to-respect", "to-hug", "to-kiss"]
+        }
+      ]
+    },
+    {
+      "unit": "unit-22",
+      "title": "Describing Words",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Describing Words",
+          "section": "Describing",
+          "phrases": [],
+          "words": ["long", "round", "straight", "sharp", "smooth", "rough", "deep", "shallow", "narrow", "quiet", "loud", "audible", "faint", "awake", "asleep", "healthy", "tidy", "messy", "hidden", "temporary", "permanent", "famous", "popular", "common", "rare", "special", "normal", "modern", "public", "private", "general", "main", "official", "personal", "international", "foreign", "false", "fake", "simple", "complicated", "necessary", "useful", "similar"]
         },
         {
-          "lesson": "lesson-10",
+          "lesson": "lesson-02",
+          "title": "Opposites",
+          "section": "Describing",
+          "phrases": [],
+          "words": ["easy", "difficult", "rich", "poor", "clean", "dirty", "fast", "slow", "high", "low", "beautiful", "ugly", "soft", "hard", "thick", "thin-not-thick", "alive", "dead", "same", "different", "possible", "impossible", "allowed", "forbidden", "noisy", "calm", "generous", "stingy", "brave", "cowardly", "polite", "rude", "clever", "stupid", "top", "bottom", "inside", "outside", "early", "late", "war", "peace", "male", "female"]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Feelings",
+          "section": "Feelings and character",
+          "phrases": [],
+          "words": ["happy", "sad", "angry", "upset", "scared", "worried", "bored", "lonely", "embarrassed", "excited", "proud", "shy", "relaxed", "jealous", "surprised", "amazed", "shocked", "nervous", "confused", "curious", "hopeful", "optimistic", "disappointed", "desperate", "confident", "satisfied", "love", "hate", "sorrow", "pity", "envy", "shame", "regret", "longing", "relief", "to-smile", "to-laugh", "tears", "to-sigh", "to-tremble"]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Character and Manners",
+          "section": "Feelings and character",
+          "phrases": [],
+          "words": ["kind", "generous", "polite", "honest", "brave", "patient-calm", "stubborn", "hard-working", "patience", "respect", "generosity", "loyal", "humble", "wise", "trustworthy", "helpful", "gentle", "sincere", "fair", "merciful", "noble", "liar", "coward", "fool", "arrogant", "selfish", "greedy", "envious", "cruel", "unjust", "cunning", "manners", "morals", "honesty", "loyalty", "humility", "justice", "wisdom", "dignity", "modesty"]
+        }
+      ]
+    },
+    {
+      "unit": "unit-23",
+      "title": "People and the Body",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
           "title": "The Body, Head to Toe",
-          "section": "Nature and body",
+          "section": "The body",
           "phrases": [],
           "words": ["head", "face", "hair", "forehead", "eyebrow", "eye", "ear", "nose", "cheek", "mouth", "lip", "tongue", "tooth", "chin", "beard", "shoulder", "arm", "elbow", "wrist", "hand", "palm-hand", "finger", "thumb", "fingernail", "thigh", "knee", "leg", "ankle", "foot", "heel", "body", "skin", "neck", "chest", "back", "stomach", "bone", "heart", "lung", "liver", "kidney", "brain", "blood", "vein", "muscle"]
         },
         {
-          "lesson": "lesson-11",
-          "title": "Countries and Nationalities",
-          "section": "The wider world",
+          "lesson": "lesson-02",
+          "title": "Men, Women and Relatives",
+          "section": "People",
           "phrases": [],
-          "words": ["country", "syria", "lebanon", "jordan", "palestine", "iraq", "saudi-arabia", "egypt", "morocco", "britain", "america", "kuwait", "qatar", "bahrain", "uae", "oman", "yemen", "libya", "tunisia", "algeria", "sudan", "turkey", "pakistan", "india", "indonesia", "germany", "france", "china", "japan", "nationality", "arab-nationality", "syrian", "egyptian", "palestinian", "saudi", "iraqi", "moroccan", "yemeni", "pakistani", "turkish", "indian", "indonesian", "british", "american", "french"]
+          "words": ["man", "woman", "boy", "girl", "teenager", "adult", "old-man", "old-woman", "child", "baby", "father", "mother", "parents", "son", "daughter", "brother", "sister", "grandfather", "grandmother", "uncle-paternal", "aunt-paternal", "uncle-maternal", "aunt-maternal", "cousin", "married", "single", "stepfather", "stepmother", "son-in-law", "daughter-in-law", "fiance", "widow", "widower", "divorced", "orphan", "friend", "neighbour", "guest", "stranger", "enemy", "foreigner", "visitor", "citizen", "companion"]
         },
         {
-          "lesson": "lesson-12",
+          "lesson": "lesson-03",
+          "title": "Jobs and Trades",
+          "section": "People",
+          "phrases": [],
+          "words": ["teacher", "engineer", "nurse", "lawyer", "accountant", "journalist", "manager", "cook", "baker", "police-officer", "secretary", "merchant", "worker", "tailor", "carpenter", "mechanic", "builder", "house-painter", "barber", "cleaner", "blacksmith", "gardener", "singer", "writer", "artist", "actor", "poet", "photographer", "soldier", "judge", "firefighter", "minister", "ambassador", "student", "professor", "researcher", "scientist", "doctor", "veterinarian", "midwife", "paramedic", "guide", "flight-attendant", "porter"]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Countries and Nationalities",
+          "section": "People",
+          "phrases": [],
+          "words": ["country", "syria", "lebanon", "jordan", "palestine", "iraq", "saudi-arabia", "egypt", "morocco", "britain", "america", "kuwait", "qatar", "bahrain", "uae", "oman", "yemen", "libya", "tunisia", "algeria", "sudan", "turkey", "pakistan", "india", "indonesia", "germany", "france", "china", "japan", "nationality", "arab-nationality", "syrian", "egyptian", "palestinian", "saudi", "iraqi", "moroccan", "yemeni", "pakistani", "turkish", "indian", "indonesian", "british", "american", "french"]
+        }
+      ]
+    },
+    {
+      "unit": "unit-24",
+      "title": "Animals, Plants and Land",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
+          "title": "Farm and Pet Animals",
+          "section": "Animals",
+          "phrases": [],
+          "words": ["animal", "cow", "bull", "sheep", "goat", "horse", "donkey", "mule", "camel", "buffalo", "hen", "rooster", "duck", "goose", "turkey-bird", "pet", "cat", "dog", "rabbit", "cage", "calf", "lamb", "kid-young-goat", "foal", "puppy", "chick", "farm", "stable", "flock", "shepherd", "to-feed", "to-milk", "tail", "horn", "hoof"]
+        },
+        {
+          "lesson": "lesson-02",
+          "title": "Wild Animals",
+          "section": "Animals",
+          "phrases": [],
+          "words": ["lion", "lioness", "tiger", "cheetah", "wolf", "fox", "bear", "elephant", "monkey", "deer", "gazelle", "giraffe", "zebra", "hippopotamus", "rhinoceros", "kangaroo", "squirrel", "hedgehog", "mouse-animal", "bat-animal", "hyena", "frog", "snake", "crocodile", "lizard", "chameleon", "venom", "wild-animal", "zoo", "predator", "prey", "hunter", "to-hunt"]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Birds, Insects and Sea Life",
+          "section": "Animals",
+          "phrases": [],
+          "words": ["bird", "eagle", "falcon", "pigeon", "parrot", "sparrow", "owl", "crow", "peacock", "ostrich", "seagull", "wing", "feather", "beak", "nest", "to-fly", "egg", "fly-insect", "mosquito", "bee", "ant", "butterfly", "spider", "locust", "cockroach", "wasp", "scorpion", "to-bite", "sea", "fish", "whale", "dolphin", "shark", "crab", "turtle", "octopus", "jellyfish", "squid", "coral", "pearl", "fin", "shell"]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Plants and Trees",
+          "section": "Plants and land",
+          "phrases": [],
+          "words": ["tree", "leaf", "flower", "flowers", "garden", "field-farm", "root", "branch", "trunk", "bud", "thorn", "petal", "bark", "palm-tree", "cedar", "olive-tree", "oak", "pine", "cypress", "willow", "rose", "jasmine", "lily", "violet", "sunflower", "carnation", "cactus", "bush", "reed", "vine", "bamboo", "grass", "plant", "seed", "to-plant", "to-water", "to-pick-fruit", "to-prune", "to-bloom", "to-wither", "fertiliser", "greenhouse", "flowerpot", "fruit", "orchard", "stone-of-fruit"]
+        },
+        {
+          "lesson": "lesson-05",
+          "title": "Land and Sky",
+          "section": "Plants and land",
+          "phrases": [],
+          "words": ["sky", "sun", "moon", "star", "planet", "cloud", "rainbow", "horizon", "sunrise", "earth", "world", "continent", "mountain", "hill", "valley", "desert", "oasis", "island", "forest", "cave", "volcano", "earthquake", "rock", "stone", "soil", "sand", "grass", "plant", "tree", "sea", "river", "lake", "ocean", "waterfall", "spring-water", "well-water", "gulf", "coast", "beach", "wave"]
+        }
+      ]
+    },
+    {
+      "unit": "unit-25",
+      "title": "Things We Use",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
           "title": "Colours, Shapes and Materials",
-          "section": "Things and shapes",
+          "section": "Looks",
           "phrases": [],
           "words": ["red", "blue", "orange", "pink", "brown", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "thick", "thin-not-thick", "sharp", "smooth", "rough", "hard", "soft", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric"]
         },
         {
-          "lesson": "lesson-13",
+          "lesson": "lesson-02",
+          "title": "Clothes and Accessories",
+          "section": "Looks",
+          "phrases": [],
+          "words": ["dress", "shirt", "trousers", "jeans", "skirt", "shorts", "jacket", "jumper", "coat", "suit", "uniform", "hat", "scarf", "glove", "sock", "shoe", "boots", "pocket", "button", "zip", "sleeve", "collar", "pyjamas", "underwear", "vest", "nightgown", "slippers", "sandals", "shoelace", "robe", "abaya", "thobe", "turban", "keffiyeh", "headscarf", "belt", "glasses", "necklace", "bracelet", "earring", "watch", "handbag", "tie"]
+        },
+        {
+          "lesson": "lesson-03",
+          "title": "Kitchen and Tableware",
+          "section": "At home",
+          "phrases": [],
+          "words": ["pot", "frying-pan", "ladle", "plate", "bowl", "spoon", "fork", "knife", "glass-cup", "cup", "oven", "kitchen", "tap", "cooker", "dishes", "fridge", "cupboard", "table", "cutting-board", "colander", "grater", "peeler", "whisk", "tongs", "lid", "can-opener", "kettle", "stove", "blender", "microwave", "toaster", "freezer", "dishwasher", "tablecloth", "teaspoon", "straw", "toothpick", "salt-shaker", "sugar-bowl", "jar", "tin", "lunch-box", "water-bottle"]
+        },
+        {
+          "lesson": "lesson-04",
+          "title": "Tools and Hardware",
+          "section": "At home",
+          "phrases": [],
+          "words": ["scissors", "adhesive-tape", "saw", "drill", "spanner", "axe", "shovel", "pliers", "measuring-tape", "chisel", "screw", "hammer", "nail", "screwdriver", "ladder", "toolbox", "bulb", "rope", "chain", "wire", "thread", "needle", "hook", "bucket", "broom", "mop", "sponge", "hose", "wood", "iron", "metal", "paint", "cement", "brick", "wall", "ceiling", "garage", "heater", "toilet", "fence", "socket", "plug", "switch", "cable"]
+        },
+        {
+          "lesson": "lesson-05",
           "title": "School and Office Things",
-          "section": "Things and shapes",
+          "section": "Out and about",
           "phrases": [],
           "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "encyclopedia", "paper", "envelope", "school-bag", "ruler", "scissors", "glue", "adhesive-tape", "stapler", "paper-clip", "folder", "calculator", "calendar", "printer", "bell", "desk", "chair", "table", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket"]
         },
         {
-          "lesson": "lesson-14",
+          "lesson": "lesson-06",
+          "title": "City, Roads and Vehicles",
+          "section": "Out and about",
+          "phrases": [],
+          "words": ["car", "bus", "taxi", "motorbike", "bicycle", "truck", "helicopter", "tractor", "train", "ship", "tyre", "road", "traffic-light", "roundabout", "engine", "wheel", "steering-wheel", "brake", "seatbelt", "car-horn", "windscreen", "headlight", "fuel", "tunnel", "highway", "pavement", "junction", "pedestrian-crossing", "parking", "driving-licence", "city", "street", "bridge", "port", "capital", "building", "tower", "skyscraper", "factory", "fountain", "court", "prison", "cemetery"]
+        },
+        {
+          "lesson": "lesson-07",
+          "title": "Sport and Games",
+          "section": "Out and about",
+          "phrases": [],
+          "words": ["sport", "football", "team", "player", "match", "stadium", "pitch", "ball", "race", "to-run", "to-win", "tennis", "basketball", "volleyball", "wrestling", "boxing", "karate", "running", "gymnastics", "coach", "referee", "champion", "goalkeeper", "captain", "supporter", "medal", "trophy", "points", "tournament", "victory", "defeat", "to-throw", "to-catch", "to-lift", "to-push", "to-pull", "to-hit", "to-score", "to-lose", "chess", "backgammon", "cards", "domino", "puzzle"]
+        }
+      ]
+    },
+    {
+      "unit": "unit-26",
+      "title": "Food and Drink Words",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
           "title": "Fruit",
-          "section": "Food and drink",
+          "section": "Fresh",
           "phrases": [],
           "words": ["fruit", "apple", "banana", "orange-fruit", "mandarin", "lemon", "pear", "peach", "apricot", "plum", "cherry", "grapes", "strawberry", "blueberry", "mulberry", "watermelon", "melon", "mango", "pineapple", "kiwi", "papaya", "guava", "avocado", "coconut", "quince", "fig", "pomegranate", "dates", "dried-fruit", "raisins", "dried-figs", "dried-apricots", "peel", "stone-of-fruit", "seed", "fruit-salad", "orchard", "rotten"]
         },
         {
-          "lesson": "lesson-15",
+          "lesson": "lesson-02",
           "title": "Vegetables and Herbs",
-          "section": "Food and drink",
+          "section": "Fresh",
           "phrases": [],
           "words": ["vegetables", "tomato", "cucumber", "onion", "spring-onion", "garlic", "potato", "sweet-potato", "carrot", "radish", "beetroot", "turnip", "pumpkin", "courgette", "aubergine", "bell-pepper", "chilli-pepper", "okra", "mushroom", "sweet-corn", "lettuce", "cabbage", "cauliflower", "broccoli", "spinach", "celery", "leek", "herbs", "parsley", "coriander", "mint", "dill", "thyme", "basil", "rocket", "ginger", "peas", "beans", "fava-beans", "lentils", "chickpeas"]
         },
         {
-          "lesson": "lesson-16",
+          "lesson": "lesson-03",
           "title": "Pantry, Grains and Dairy",
-          "section": "Food and drink",
+          "section": "Pantry and plate",
           "phrases": [],
           "words": ["grains", "wheat", "barley", "oats", "rice", "flour", "semolina", "bulgur", "freekeh", "couscous", "vermicelli", "nuts", "almond", "walnut", "pistachio", "peanut", "hazelnut", "cashew", "pine-nuts", "seed", "sesame", "black-seed", "milk", "yoghurt", "labneh", "cheese", "cream", "butter", "ghee", "vinegar", "yeast", "jam", "honey", "tahini", "molasses", "olive-oil", "pickles", "chocolate", "cinnamon", "cumin", "turmeric", "sumac"]
         },
         {
-          "lesson": "lesson-17",
+          "lesson": "lesson-04",
+          "title": "Meat, Fish and Dishes",
+          "section": "Pantry and plate",
+          "phrases": [],
+          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "meatballs", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "cumin", "cinnamon", "turmeric", "sumac", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding"]
+        }
+      ]
+    },
+    {
+      "unit": "unit-27",
+      "title": "Faith, Law and Society",
+      "lessons": [
+        {
+          "lesson": "lesson-01",
           "title": "Faith and Worship",
           "section": "Faith",
           "phrases": [],
           "words": ["islam", "muslim", "faith", "believer", "god", "oneness-of-god", "angel", "prophet", "messenger", "revelation", "quran", "soul", "destiny", "day-of-judgement", "hereafter", "paradise", "hellfire", "worship", "to-worship", "shahada", "pillar", "prayer", "to-pray", "bowing", "prostration", "fasting", "zakat", "hajj", "remembrance", "repentance", "to-repent", "seeking-forgiveness", "trust-in-god", "piety", "patience", "ruling", "sharia", "obligatory", "recommended", "permissible", "disliked", "forbidden-by-religion", "halal", "sunnah", "sins"]
         },
         {
-          "lesson": "lesson-18",
-          "title": "More Doing Words",
-          "section": "Doing words",
+          "lesson": "lesson-02",
+          "title": "Government and Law",
+          "section": "Society",
           "phrases": [],
-          "words": ["to-carry", "to-lift", "to-hold", "to-pick-up", "to-push", "to-pull", "to-throw", "to-tie", "to-fold", "to-pour", "to-fill", "to-empty", "to-cut", "to-draw", "to-clean", "to-sweep", "to-wipe", "to-collect", "to-hide", "to-stand-up", "to-jump", "to-run", "to-climb", "to-bend", "to-kick", "to-clap", "to-wave", "to-sneeze", "to-laugh", "to-smile", "to-look-at", "to-notice", "to-touch", "to-smell", "to-taste", "to-listen", "to-hear", "to-shout", "to-whisper", "to-call-out", "to-sing", "to-count"]
+          "words": ["government", "state", "republic", "parliament", "constitution", "politics", "president", "prime-minister", "minister", "king", "ambassador", "judge", "law", "lawsuit", "verdict", "sentence", "crime", "guilty", "innocent", "to-arrest", "justice", "citizen", "foreigner", "refugee", "homeland", "nation", "flag", "anthem", "freedom", "duty", "entitlement", "tax", "responsibility", "election", "vote", "political-party", "majority", "campaign", "ballot-box", "army", "soldier", "officer", "security", "weapon"]
         },
         {
-          "lesson": "lesson-19",
-          "title": "Doing Words for Work and Study",
-          "section": "Doing words",
+          "lesson": "lesson-03",
+          "title": "Knowledge, Culture and Media",
+          "section": "Society",
           "phrases": [],
-          "words": ["to-study", "to-learn", "to-teach", "to-explain", "to-practise", "to-translate", "to-revise", "to-correct", "to-summarise", "to-discuss", "to-concentrate", "to-submit", "to-print", "to-save", "to-delete", "to-organise", "to-arrange", "to-attach", "to-download", "to-update", "to-manage", "to-hand-in", "to-sign", "to-apply", "to-cooperate", "to-hire", "to-resign", "to-earn", "to-invest", "to-think", "to-remember", "to-imagine", "to-realise", "to-compare", "to-calculate", "to-analyse", "to-solve", "to-conclude", "to-invent", "to-improve"]
-        },
-        {
-          "lesson": "lesson-20",
-          "title": "Opposites",
-          "section": "Opposites",
-          "phrases": [],
-          "words": ["easy", "difficult", "rich", "poor", "clean", "dirty", "fast", "slow", "high", "low", "beautiful", "ugly", "soft", "hard", "thick", "thin-not-thick", "alive", "dead", "same", "different", "possible", "impossible", "allowed", "forbidden", "noisy", "calm", "generous", "stingy", "brave", "cowardly", "polite", "rude", "clever", "stupid", "top", "bottom", "inside", "outside", "early", "late", "war", "peace", "male", "female"]
+          "words": ["history", "geography", "mathematics", "science", "physics", "chemistry", "biology", "art", "knowledge", "encyclopedia", "principal", "thesis", "research", "experiment", "laboratory", "discovery", "invention", "scientist", "culture", "tradition", "custom", "heritage", "society", "community", "tribe", "literature", "poetry", "poet", "novel", "writer", "theatre", "media", "radio", "advert", "broadcast", "channel", "magazine", "business", "trade", "economy", "debt", "industry", "import", "export"]
         }
       ]
     }
