@@ -204,6 +204,12 @@ def test_the_shared_list_and_the_spine_are_checked_against_each_other():
         assert any(fault in why for why in said), fault
 
 
+def test_a_word_in_a_group_nobody_listed_is_caught():
+    spine = [{"unit": "unit-01", "lessons": [{"lesson": "lesson-01", "words": list(MEANINGS)}]}]
+    said = wordlist.outline_faults(spine, {**MEANINGS, "w8": {"english": "thing", "group": "hoem"}})
+    assert any("'w8' has the group 'hoem'" in why for why in said)
+
+
 def test_a_unit_file_listing_its_own_words_is_caught():
     unit = copy.deepcopy(SOUND)
     unit["lessons"][0]["vocabulary"] = []

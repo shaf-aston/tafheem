@@ -70,7 +70,11 @@ Each meaning is written once, in `words.json` beside this file, one line each:
 ```
 
 `group` is the heading the word sits under in a topic's list (family, food,
-actions, describing ...). The id is named from the English and never renamed, as
+actions, describing ...). It must be one of the headings in `groups.json` beside
+this file; add a heading there first, so a typo cannot start a stray one. A group
+names what the words are, never "other"; a heading with only a few words is fine
+when a topic shows them as their own run (young animals, legs and feet).
+The id is named from the English and never renamed, as
 every dialect links to it. A word taught by two topics is one id in both.
 
 A dialect gives its Arabic in its own `<dialect>/words.json`, once per id:
@@ -88,7 +92,12 @@ A dialect gives its Arabic in its own `<dialect>/words.json`, once per id:
   it, or none yet. Two words of one topic never share their Arabic.
 - A topic teaches 8 or more words, and never a filler to reach 8.
 - A topic with `"phrases": []` in the spine is a word list: no phrases, conversation or exercises, only its words,
-  learnt as cards, match, quiz and review. A unit made only of word lists (unit-20, Word Banks) needs no challenge.
+  learnt as cards, match, quiz and review. A unit made only of word lists needs no challenge.
+- Units 20 to 27 are word units: one theme each, its topics in `section`s that read as
+  its sub-themes (small words, numbers and dates; animals, plants and land ...). Put a new
+  word topic in the unit of its theme, and start a new unit only for a new theme. The
+  phrase units keep their own word lists: a word taught by a phrase topic and by a word
+  unit is one id in both.
 
 The loader checks all of this on start and stops on any fault. To review a
 dialect's words, `python -m backend.scripts.colloquial_word_bank dump <dialect>`

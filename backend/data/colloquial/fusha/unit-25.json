@@ -1,5 +1,5 @@
 {
-  "unit": "unit-20",
+  "unit": "unit-25",
   "dialect": "Fusha (Modern Standard Arabic)",
   "transliteration_key": {
     "sh": "ش",
@@ -37,6 +37,9 @@
     },
     {
       "lesson": "lesson-06"
+    },
+    {
+      "lesson": "lesson-07"
     }
   ]
 }

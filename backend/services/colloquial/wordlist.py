@@ -21,6 +21,7 @@ from functools import lru_cache
 from backend.config import data_path
 
 FILE = "words.json"
+GROUPS = "groups.json"
 SIZE = 8  # one round of match pairs, and enough that the words half of a tile is not thin
 _ARABIC = re.compile(r"[؀-ۿ]")
 _NOT_ARABIC = re.compile(r"[^؀-ۿ\s/]")
@@ -34,6 +35,12 @@ def _read(path) -> dict:
 def meanings() -> dict:
     """Every meaning by id: {"english", "group"}."""
     return _read(data_path("colloquial_dir") / FILE)
+
+
+@lru_cache(maxsize=1)
+def groups() -> set[str]:
+    """Every heading a word may sit under; a word naming any other is a typo or a new heading to list first."""
+    return set(json.loads((data_path("colloquial_dir") / GROUPS).read_text(encoding="utf-8"))["groups"])
 
 
 def said_in(folder: str) -> dict:
@@ -65,6 +72,8 @@ def outline_faults(spine: list[dict], known: dict) -> list[str]:
             said.append(f"{FILE} {one!r} has no english or no group")
         elif _ARABIC.search(meaning["english"]):
             said.append(f"{FILE} {one!r} has Arabic letters in its English")
+        elif meaning["group"] not in groups():
+            said.append(f"{FILE} {one!r} has the group {meaning['group']!r}, which {GROUPS} does not list")
         if one not in used:
             said.append(f"{FILE} {one!r} is taught by no topic")
     return said
