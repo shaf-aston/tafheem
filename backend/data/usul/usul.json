@@ -75,7 +75,8 @@
       "bands_say": "A year written without its hundreds takes the hundreds of his generation from the preface. Generations 3 and 4 are left out: the third and fourth hold men who died before the 100th year as well as after it (of 42 checked against sunnah.com's years, 12 read as written and 28 take the hundred), so their year is not read.",
       "book": "taqrib",
       "quote": "وذكرت وفاة من عرفت سنة وفاته منهم، فإن كان من الأولى والثانية: فهم قبل المائة، وإن كان من الثالثة إلى آخر الثامنة: فهم بعد المائة، وإن كان من التاسعة إلى آخر الطبقات: فهم بعد المائتين، ومن ندر عن ذلك بينته",
-      "page": "PageV01P075"
+      "page": "PageV01P075",
+      "numbers": { "unit": {"1": "واحد احد احدى واحدة", "2": "اثنين اثنتين اثنان اثنتان اثنا اثنتا اثني اثنتي ثنتين ثنتان ثنتي", "3": "ثلاث ثلاثة", "4": "أربع أربعة", "5": "خمس خمسة", "6": "ست ستة", "7": "سبع سبعة", "8": "ثمان ثماني ثمانية", "9": "تسع تسعة"}, "ten": {"10": "عشر عشرة"}, "tens": {"20": "عشرين عشرون", "30": "ثلاثين ثلاثون", "40": "أربعين أربعون", "50": "خمسين خمسون", "60": "ستين ستون", "70": "سبعين سبعون", "80": "ثمانين ثمانون", "90": "تسعين تسعون"}, "hundred": {"100": "مائة مئة", "200": "مائتين مائتان مئتين مئتان", "300": "ثلاثمائة", "400": "أربعمائة", "500": "خمسمائة", "600": "ستمائة", "700": "سبعمائة", "800": "ثمانمائة", "900": "تسعمائة"} }
     }
   },
   "tarif": {
@@ -325,9 +326,9 @@
     "reasons": {
       "no_chain": "no plain chain",
       "strand": "a second strand",
-      "unplaced_name": "a name rijal does not place",
+      "unnamed": "a name rijal does not place",
       "name_after_cut": "a name after the chain's end",
-      "names_joined": "names joined at one place",
+      "no_link": "names joined at one place",
       "companion_end_unplaced": "last name not placed in a generation",
       "companion_end_other": "last name not a Companion",
       "two_companions": "two Companions in one chain",

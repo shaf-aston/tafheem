@@ -45,6 +45,14 @@ _MAX_COLLECTIONS = 10
 CollectionName = Annotated[str, StringConstraints(max_length=60)]
 
 
+async def _collection_name(collection: str) -> str:
+    """The collection's name, or 404 when there is no such collection."""
+    name = await asyncio.to_thread(loader.collection_name, collection)
+    if name is None:
+        raise HTTPException(status_code=404, detail=f"No hadith collection called {collection!r}")
+    return name
+
+
 @texts.get("/collections", response_model=list[HadithCollection])
 async def get_collections() -> list[HadithCollection]:
     found = await asyncio.to_thread(loader.collections)
@@ -53,17 +61,14 @@ async def get_collections() -> list[HadithCollection]:
 
 @texts.get("/{collection}/books", response_model=list[HadithBook])
 async def get_books(collection: str) -> list[HadithBook]:
-    if await asyncio.to_thread(loader.collection_name, collection) is None:
-        raise HTTPException(status_code=404, detail=f"No hadith collection called {collection!r}")
+    await _collection_name(collection)
     found = await asyncio.to_thread(loader.books, collection)
     return [HadithBook(**b) for b in found]
 
 
 @texts.get("/{collection}/books/{number}", response_model=HadithBookResponse)
 async def get_book(collection: str, number: int) -> HadithBookResponse:
-    name = await asyncio.to_thread(loader.collection_name, collection)
-    if name is None:
-        raise HTTPException(status_code=404, detail=f"No hadith collection called {collection!r}")
+    name = await _collection_name(collection)
     books = await asyncio.to_thread(loader.books, collection)
     book = next((b for b in books if b["number"] == number), None)
     if book is None:

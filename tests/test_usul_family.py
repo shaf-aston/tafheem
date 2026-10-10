@@ -174,9 +174,9 @@ def test_the_build_writes_the_word_marked_in_one_telling_with_its_place_in_the_m
 def test_a_chain_with_two_names_at_one_place_gets_no_picture_and_is_counted_with_its_reason():
     # b: Qutayba, then Abu Salih and Layth joined by a bare وَ, then the Companion. Which of them narrates from whom is not written.
     conn, _, results = _run({2: {"a": ((101, 102, 10), BASE_TEXT, ()), "b": ((101, 107, 102, 10), BASE_TEXT, (2,))}})
-    assert results[2]["why"] == "names_joined" and results[2]["places"] == []
+    assert results[2]["why"] == "no_link" and results[2]["places"] == []
     assert conn.execute("SELECT COUNT(*) FROM family_place WHERE number = 2").fetchone()[0] == 0
-    assert (REASONS["names_joined"], 1) in conn.execute("SELECT text, count FROM gap WHERE what = 'family_place'").fetchall()
+    assert (REASONS["no_link"], 1) in conn.execute("SELECT text, count FROM gap WHERE what = 'family_place'").fetchall()
 
 
 def test_a_family_whose_chain_has_two_companions_gets_no_picture_and_is_counted_with_its_reason():
@@ -256,7 +256,7 @@ def test_two_names_with_nothing_between_them_are_not_taken_for_the_compilers_tea
     # "عن أبيه، محمد": one man named twice, or a name rijal split; no joiner, so the split is not guessed
     text = "حَدَّثَنَا " + NAMES[101] + "، " + NAMES[105] + " عَنْ " + NAMES[10] + TAIL
     mentions = [(text.find(NAMES[w]), text.find(NAMES[w]) + len(NAMES[w]), w) for w in (101, 105, 10)]
-    assert family.chain_ids(text, mentions, {10: "الأولى"}, {"الأولى"}, FC["joiner"]) == ([], "names_joined")
+    assert family.chain_ids(text, mentions, {10: "الأولى"}, {"الأولى"}, FC["joiner"]) == ([], "no_link")
 
 
 def test_a_word_whose_dotted_twin_the_same_telling_also_says_is_its_own_not_a_dot_difference():

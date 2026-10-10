@@ -27,8 +27,6 @@ from backend.services.hadith.usul.rung import in_chain, walk
 from backend.services.spelling import fold
 
 _LETTERS = re.compile("[^ء-ي]")
-# The chain rule (data/hadith/chain.json) hides a ح (a new strand) among its marks; passed_on names it.
-_BREAKS = {"strand": "strand", "unnamed": "unplaced_name", "no_link": "names_joined"}
 
 
 class Mark(NamedTuple):
@@ -62,9 +60,9 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
 
     `mentions` are (start, end, narrator id) in text order, one per start; `joiner` is the letter that joins two names
     (usul.json `family.joiner`). why: no_chain (the Arabic has no plain chain, or rijal placed no name in it past the
-    compiler's own teachers), strand (a ح starts another strand), unplaced_name (words between two names
+    compiler's own teachers), strand (a ح starts another strand), unnamed (words between two names
     that no name of rijal's explains), name_after_cut (rijal places a name after the chain's cut: a second chain or
-    the chain's end sits in what the app shows as the text), names_joined (no passing-on or saying word between two
+    the chain's end sits in what the app shows as the text), no_link (no passing-on or saying word between two
     names past the compiler's own teachers: two men at one place, whose next link may differ, as in "عن العلاء وسهيل
     عن أبيهما"), companion_end_unplaced / companion_end_other (the last
     name is not a Companion for rijal, or is not placed in a generation at all), two_companions (the last two names
@@ -81,7 +79,7 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
         if pair.why == "no_link" and joined and at == max(teachers - 1, 0):
             teachers = at + 2
         elif pair.why:
-            return [], _BREAKS[pair.why]
+            return [], pair.why   # passed_on's strand, unnamed or no_link
     ids = [who for *_, who in named[teachers:]]   # they stand before the chain, so their place is not counted
     if not ids:
         return [], "no_chain"
