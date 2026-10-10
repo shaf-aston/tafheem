@@ -1551,7 +1551,6 @@ class FamilyPart(BaseModel):
     own: list[FamilyNarrator]
     meet: FamilyNarrator | None = None
     borrowed: list[FamilyNarrator] = []
-    narrators: list[FamilyNarrator]
     said: str = ""
     # The telling's matn as the build split it into words, and the words only this telling has; only where some are marked.
     words: list[str] = []

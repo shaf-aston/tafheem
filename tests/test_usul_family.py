@@ -162,7 +162,6 @@ def built():
 def test_the_build_counts_each_place_once_and_marks_the_place_one_narrator_carries(built):
     conn, _, results = built
     assert conn.execute("SELECT place, count FROM family_place WHERE number = 1 ORDER BY place").fetchall() == [(0, 3), (1, 1), (2, 2), (3, 3)]
-    assert json.loads(conn.execute("SELECT ids FROM family_place WHERE number = 1 AND place = 2").fetchone()[0]) == [102, 106]
     assert [len(s) for s in results[1]["places"]] == [3, 1, 2, 3]
 
 

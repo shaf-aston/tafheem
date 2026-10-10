@@ -77,7 +77,7 @@ CREATE TABLE ruling (
 CREATE INDEX ruling_by_kind ON ruling (kind, collection, number, part);
 CREATE INDEX ruling_by_book ON ruling (collection, hbook);
 CREATE TABLE family_place (
-    collection TEXT NOT NULL, number INTEGER NOT NULL, place INTEGER NOT NULL, count INTEGER NOT NULL, ids TEXT NOT NULL,
+    collection TEXT NOT NULL, number INTEGER NOT NULL, place INTEGER NOT NULL, count INTEGER NOT NULL,
     PRIMARY KEY (collection, number, place)
 ) WITHOUT ROWID;
 CREATE TABLE family_word (
@@ -375,8 +375,8 @@ def add_families(conn: sqlite3.Connection, mentions: dict[tuple, list], hadith: 
             picture_n += 1
             alone_n += sum(len(s) == 1 for s in sets)
             shown["places"] = sets
-            conn.executemany("INSERT INTO family_place VALUES (?, ?, ?, ?, ?)",
-                             [(collection, number, i, len(s), json.dumps(sorted(s))) for i, s in enumerate(sets)])
+            conn.executemany("INSERT INTO family_place VALUES (?, ?, ?, ?)",
+                             [(collection, number, i, len(s)) for i, s in enumerate(sets)])
         matns = {}
         for part in parts:
             cut = matn_of[collection, number, part]
