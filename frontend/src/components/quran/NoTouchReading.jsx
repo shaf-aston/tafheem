@@ -8,9 +8,9 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-// Long enough that a tap never reads as a hold.
-const HOLD_MS = 450
-const HINT_MS = 4000
+import QURAN from '../../quran.json'
+
+const { 'hold-ms': HOLD_MS, 'hint-ms': HINT_MS, drag: DRAG, still: STILL } = QURAN['no-touch']
 const SAY = 'Scroll by the side strip only, so your finger never touches the Qur\'an\'s words. '
   + 'For reading without wudu, or during menstruation.'
 
@@ -73,10 +73,6 @@ export function NoTouchButton({ on, onChange }) {
     </>
   )
 }
-
-// How fast a flick slows, per millisecond, and when it has stopped.
-const DRAG = 0.996
-const STILL = 0.02
 
 /**
  * The strip that scrolls `list` while its words are not to be touched: drag

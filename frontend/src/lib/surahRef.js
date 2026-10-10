@@ -14,6 +14,15 @@ import surahs from '../data/surahs.json'
 import { bareForm, isArabic } from './arabicText'
 import { editDistance } from './editDistance'
 
+/** The last surah's number. */
+export const LAST_SURAH = surahs.length
+
+/** "1:3" as every tab writes an ayah. */
+export const AYAH_REF = /^(\d+):(\d+)$/
+
+/** An ayah that is really in the Qur'an, so a mistyped one is never remembered. */
+export const isAyah = ({ surah, ayah }) => ayah >= 1 && ayah <= (surahs[surah - 1]?.ayahs ?? 0)
+
 /** The 114 surahs as wheel choices (ui/WheelPicker), for every wheel that picks a surah. */
 export const SURAH_CHOICES = surahs.map((s) => ({ id: s.n, label: `${s.n}. ${s.en}`, hint: s.ar, keys: [s.ar] }))
 
