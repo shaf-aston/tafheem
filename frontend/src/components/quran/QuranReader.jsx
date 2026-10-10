@@ -578,7 +578,7 @@ function RecitationBar({ surah, count, from, here, recitation, reciter, onRecite
         ) : away ? (
           <button type="button" onClick={() => onFollow(sounding)}
             aria-label={`Go to ${surah}:${sounding}, being recited`}
-            className="fade-in press inline-flex items-center gap-0.5 py-1.5 font-mono text-[var(--c)] hover:underline">
+            className="fade-in press inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-mono text-[var(--bg)] bg-[var(--c)]">
             <Glyph d={sounding < here ? 'M12 5l7 8h-5v6h-4v-6H5z' : 'M12 19l7-8h-5V5h-4v6H5z'} />
             {/* The ayah alone: the bar only plays its own surah, and 2:255 in full would not fit a phone. */}
             {sounding}
