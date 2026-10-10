@@ -57,5 +57,11 @@ export function colorFor(group, key) {
   return table[key] ?? table.default ?? theme.color['text-dim']
 }
 
+/** The nth colour of a theme group, wrapping round, e.g. colorAt('unit', 9) is the unit group's second. */
+export function colorAt(group, n) {
+  const colors = Object.entries(theme[group] ?? {}).filter(([key]) => !key.startsWith(PRIVATE_KEY))
+  return colors[n % colors.length][1]
+}
+
 export const { motion } = theme
 export default theme

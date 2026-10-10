@@ -7,12 +7,13 @@ loaded as they are, which is the only check that the content on disk is sound.
 Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 import copy
+import json
 
 import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.colloquial import loader, wordlist
+from backend.services.colloquial import knobs, loader, wordlist
 from backend.services.colloquial.exercises import registry
 
 
@@ -458,3 +459,11 @@ def test_a_dumped_word_list_reads_back_as_the_words_on_disk():
     for folder in ("damascene", "fusha"):
         words, said = word_bank._read(word_bank.dump(folder))
         assert said == [] and words == wordlist.said_in(folder)
+
+
+@pytest.mark.parametrize("value", [0, 2.5, "3", True])
+def test_a_rule_that_is_not_a_whole_number_above_zero_is_refused(tmp_path, value):
+    path = tmp_path / "colloquial.json"
+    path.write_text(json.dumps({"_comment": "x", "least-options": value}), encoding="utf-8")
+    with pytest.raises(ValueError, match="least-options"):
+        knobs.read(path)

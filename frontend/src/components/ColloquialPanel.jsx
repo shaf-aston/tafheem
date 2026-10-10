@@ -14,7 +14,7 @@ import { nameOfPlace, parsePlace, placeOf } from '../lib/colloquialPlace'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
 import { useRemembered } from '../lib/useRemembered'
-import { colorFor } from '../theme'
+import { colorAt, colorFor } from '../theme'
 import { FOCUS } from './colloquial/Face'
 import PhrasePicture from './colloquial/PhrasePicture'
 import UnitView from './colloquial/UnitView'
@@ -27,7 +27,6 @@ import SpeakButton from './ui/SpeakButton'
 import WheelPicker from './ui/WheelPicker'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
-const HUES = 8
 const unitNumber = (id) => Number(id.replace(/\D/g, '')) || 0
 
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
@@ -186,7 +185,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   useEffect(() => {
     if (dialect && unit) warm(client, colloquialUnitQuery(dialect.key, unit.unit))
   }, [client, dialect, unit])
-  const hue = unit ? colorFor('unit', unitNumber(unit.unit) % HUES) : null
+  const hue = unit ? colorAt('unit', unitNumber(unit.unit)) : null
 
   // One way to move: every step down or up the tree is a place on the journey,
   // so a reload, a pasted link and the back arrow all land where the reader was.
@@ -246,7 +245,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
       {dialect && !unit && (
         <Grid key={dialect.key}>
           {dialect.units.map((u, i) => {
-            const unitHue = colorFor('unit', unitNumber(u.unit) % HUES)
+            const unitHue = colorAt('unit', unitNumber(u.unit))
             return u.written && u.cover
               ? <UnitCard key={u.unit} index={i} hue={unitHue} unit={u} onClick={() => go(dialect.key, u.unit)} />
               : <Card key={u.unit} index={i} hue={unitHue} kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}

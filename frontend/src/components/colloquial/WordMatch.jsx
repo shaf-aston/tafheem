@@ -5,12 +5,13 @@
 // easier than recalling it.
 import { useState } from 'react'
 
+import settings from '../../colloquial.json'
 import { shuffled } from '../../lib/shuffle'
 import ArabicText from '../ui/ArabicText'
 import SmallButton from '../ui/SmallButton'
 import { FOCUS } from './Face'
 
-const BOARD = 5
+const BOARD = settings['match-board']
 const SHAKE_MS = 360
 
 const boardOf = (words, round) => {

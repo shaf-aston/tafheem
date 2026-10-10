@@ -2,6 +2,7 @@
 // Built from the unit already loaded, so it adds no request.
 import { useState } from 'react'
 
+import settings from '../../colloquial.json'
 import ArabicText from '../ui/ArabicText'
 import BottomSheet from '../ui/BottomSheet'
 import CloseButton from '../ui/CloseButton'
@@ -23,7 +24,7 @@ const phrasesOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((
 const wordsOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((l) => l.vocabulary ?? []))
 
 // A heading needs this many words in the list; a word whose category has fewer joins the heading before it.
-const MIN_UNDER_HEADING = 3
+const MIN_UNDER_HEADING = settings['least-under-heading']
 
 // Rows under their category heading, in the order written; uncategorised rows sit under none.
 function grouped(rows) {

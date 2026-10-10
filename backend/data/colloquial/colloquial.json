@@ -1,0 +1,9 @@
+{
+  "_comment": "Content rules the loader checks every unit and word list against, so a rule is changed here, not in code.",
+
+  "_comment-least-options": "Fewer than this and the guess is half right by chance, which teaches nothing.",
+  "least-options": 3,
+
+  "_comment-least-topic-words": "One round of match pairs, and enough that the words half of a tile is not thin.",
+  "least-topic-words": 8
+}

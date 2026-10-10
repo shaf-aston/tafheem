@@ -12,10 +12,9 @@ from typing import Literal
 from pydantic import BaseModel
 
 from backend.services.colloquial.exercises import base
+from backend.services.colloquial.knobs import knob
 
 TYPES = ("choose",)
-# Fewer than this and the guess is half right by chance, which teaches nothing.
-LEAST_OPTIONS = 3
 
 
 class PictureOption(BaseModel):
@@ -42,8 +41,9 @@ PAYLOADS = {"choose": Choose}
 
 def faults(exercise: dict) -> list[str]:
     options = exercise.get("options")
-    if not isinstance(options, list) or len(options) < LEAST_OPTIONS:
-        return [f"offers fewer than {LEAST_OPTIONS} options"]
+    least = knob("least-options")
+    if not isinstance(options, list) or len(options) < least:
+        return [f"offers fewer than {least} options"]
     said = []
     labels = [one["label"] if isinstance(one, dict) else one for one in options]
     if any(not str(label or "").strip() for label in labels):

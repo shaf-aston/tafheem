@@ -19,10 +19,10 @@ import re
 from functools import lru_cache
 
 from backend.config import data_path
+from backend.services.colloquial.knobs import knob
 
 FILE = "words.json"
 GROUPS = "groups.json"
-SIZE = 8  # one round of match pairs, and enough that the words half of a tile is not thin
 _ARABIC = re.compile(r"[؀-ۿ]")
 _NOT_ARABIC = re.compile(r"[^؀-ۿ\s/]")
 
@@ -58,12 +58,13 @@ def text(words: dict, about: str = "") -> str:
 def outline_faults(spine: list[dict], known: dict) -> list[str]:
     """The meanings and the spine's word lists, checked against each other."""
     said, used = [], set()
+    least = knob("least-topic-words")
     for unit in spine:
         for lesson in unit["lessons"]:
             ids = lesson.get("words") or []
             where = f"spine {unit['unit']} {lesson['lesson']}"
-            if ids and len(ids) < SIZE:
-                said.append(f"{where} teaches {len(ids)} words, fewer than {SIZE}")
+            if ids and len(ids) < least:
+                said.append(f"{where} teaches {len(ids)} words, fewer than {least}")
             said += [f"{where} teaches {one!r} twice" for one in sorted({i for i in ids if ids.count(i) > 1})]
             said += [f"{where} teaches {one!r}, which {FILE} does not have" for one in ids if one not in known]
             used.update(ids)
