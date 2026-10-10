@@ -105,14 +105,13 @@ def level_narrators(rijal: sqlite3.Connection, levels: list[dict]) -> tuple[dict
     return found, gaps
 
 
-def add_notes(conn: sqlite3.Connection, rijal: sqlite3.Connection, found: dict, weak_from: int) -> int:
-    """One note per place a weak narrator is named; a mention placed twice at the same start is one note."""
-    for collection, book, number, part, start, who in rijal.execute(
-            "SELECT collection, book, number, part, start, narrator_id FROM mention ORDER BY collection, book, number, part, ord"):
-        level, _, kind, _ = found.get(who, (0, None, None, None))
-        if level >= weak_from:
-            conn.execute("INSERT OR IGNORE INTO note VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                         (collection, book, number, part, start, who, level, kind))
+def add_notes(conn: sqlite3.Connection, mentions: dict[tuple, list], found: dict, weak_from: int) -> int:
+    """One note per place a weak narrator is named."""
+    for key, men in mentions.items():
+        for start, _, who in men:
+            level, _, kind, _ = found.get(who, (0, None, None, None))
+            if level >= weak_from:
+                conn.execute("INSERT OR IGNORE INTO note VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (*key, start, who, level, kind))
     return conn.execute("SELECT COUNT(*) FROM note").fetchone()[0]
 
 
@@ -229,8 +228,7 @@ def narrators_by_hadith(rijal: sqlite3.Connection, rows: dict[int, dict]) -> dic
 
 
 def mentions_by_hadith(rijal: sqlite3.Connection) -> dict[tuple, list[tuple[int, int, int]]]:
-    """{(collection, book, number, part): its mentions (start, end, narrator id) in text order}; a mention written
-    twice at one start is one."""
+    """{(collection, book, number, part): its mentions (start, end, narrator id) in text order, one per start}."""
     found: dict[tuple, dict[int, tuple]] = {}
     for collection, book, number, part, start, end, who in rijal.execute(
             "SELECT collection, book, number, part, start, end, narrator_id FROM mention "
@@ -239,17 +237,17 @@ def mentions_by_hadith(rijal: sqlite3.Connection) -> dict[tuple, list[tuple[int,
     return {key: list(men.values()) for key, men in found.items()}
 
 
-def add_links(conn: sqlite3.Connection, rijal: sqlite3.Connection, cfg: dict, tarif_level: dict[int, int],
+def add_links(conn: sqlite3.Connection, mentions: dict[tuple, list], cfg: dict, tarif_level: dict[int, int],
               pairs_by: dict[tuple[int, int], list], exempt: list[dict]) -> tuple[Counter, Counter]:
     """Link notes for every rung of every chain: (what each rung got or why not, why two names were no rung)."""
     outcomes: Counter = Counter()
     skipped: Counter = Counter()
-    for (collection, book), hadith in itertools.groupby(mentions_by_hadith(rijal).items(), key=lambda kv: kv[0][:2]):
+    for (collection, book), hadith in itertools.groupby(mentions.items(), key=lambda kv: kv[0][:2]):
         arabic = {(h["number"], h["part"]): h["arabic"] for h in loader.hadiths(collection, book)}
-        for (_, _, number, part), mentions in hadith:
+        for (_, _, number, part), men in hadith:
             if (number, part) not in arabic:
                 continue
-            found, left = rung.rungs(arabic[number, part], mentions)
+            found, left = rung.rungs(arabic[number, part], men)
             skipped.update(left)
             for r in found:
                 kind, why = rung.tadlis(r, collection, tarif_level.get(r.student), cfg["tadlis"], exempt)
@@ -339,7 +337,7 @@ def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], h
     return report
 
 
-def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: list[tuple[tuple, str, int]],
+def add_families(conn: sqlite3.Connection, mentions: dict[tuple, list], hadith: list[tuple[tuple, str, int]],
                  rows: dict[int, dict], cfg: dict) -> tuple[list[str], list[dict]]:
     """family_place and family_word for every hadith number told more than once (the parts rijal.db names).
 
@@ -349,10 +347,10 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
     companions = set(next(g["tabaqat"] for g in generations if g["key"] == fc["companion_group"]))
     generation = {who: row["generation_ar"] for who, row in rows.items()}
     arabic = {key: text for key, text, _ in hadith}
-    mentions: dict[tuple, dict[str, list[tuple[int, int, int]]]] = {}
-    for (collection, _, number, part), men in mentions_by_hadith(rijal).items():
-        mentions.setdefault((collection, number), {})[part] = men
-    families = {key: sorted(by_part) for key, by_part in mentions.items() if len(by_part) >= 2}
+    told: dict[tuple, dict[str, list[tuple[int, int, int]]]] = {}
+    for (collection, _, number, part), men in mentions.items():
+        told.setdefault((collection, number), {})[part] = men
+    families = {key: sorted(by_part) for key, by_part in told.items() if len(by_part) >= 2}
     # Every telling's matn words, cut like the app cuts them; the weight of a word is read off all of them.
     matn_of = {(c, n, p): chain_of(arabic.get((c, n, p), "")) for (c, n), parts in families.items() for p in parts}
     keys_of = lambda words: {k for w in words if (k := family.word_key(w, fc))}  # noqa: E731
@@ -361,7 +359,7 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
     picture_n = alone_n = compared_n = marked_n = 0
     results = []
     for (collection, number), parts in families.items():
-        by_part = mentions[collection, number]
+        by_part = told[collection, number]
         chains, reasons = {}, {}
         for part in parts:
             chains[part], reasons[part] = family.chain_ids(arabic.get((collection, number, part), ""),
@@ -492,6 +490,7 @@ def build(sample: Path | None = None) -> None:
     try:
         conn.executescript(_SCHEMA)
         rows = narrator_rows(rijal)
+        mentions = mentions_by_hadith(rijal)
         people = [names.person(row) for row in rows.values()]
         by_id = {p.id: p for p in people}
         found, gaps = level_narrators(rijal, cfg["levels"])
@@ -568,13 +567,13 @@ def build(sample: Path | None = None) -> None:
                          [(who, level, json.dumps(terms, ensure_ascii=False), kind, grade)
                           for who, (level, terms, kind, grade) in found.items()])
         conn.executemany("INSERT INTO gap VALUES (?, ?, ?)", [(what, text, n) for (what, text), n in gaps.items()])
-        notes = add_notes(conn, rijal, found, cfg["weak_from"])
+        notes = add_notes(conn, mentions, found, cfg["weak_from"])
         guard_change(target, "note", notes, cfg["max_change_ratio"])
 
         pairs_by: dict[tuple[int, int], list] = {}
         for p in pair_list:
             pairs_by.setdefault((p.student, p.teacher), []).append(p)
-        outcomes, skipped = add_links(conn, rijal, cfg, tarif_level, pairs_by, exempt)
+        outcomes, skipped = add_links(conn, mentions, cfg, tarif_level, pairs_by, exempt)
         conn.executemany("INSERT INTO gap VALUES ('not_a_rung', ?, ?)", list(skipped.items()))
 
         # The ruling books: what a classical book says of a hadith, quoted, for each hadith of ours it is about.
@@ -585,7 +584,7 @@ def build(sample: Path | None = None) -> None:
             guard_change(target, "ruling", conn.execute("SELECT COUNT(*) FROM ruling").fetchone()[0], cfg["max_change_ratio"])
 
         # The versions fold: narrators counted at each place of a number's chains, and words one telling alone has.
-        family_report, family_results = add_families(conn, rijal, our_hadith(), rows, cfg)
+        family_report, family_results = add_families(conn, mentions, our_hadith(), rows, cfg)
         for table in ("family_place", "family_word"):
             guard_change(target, table, conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], cfg["max_change_ratio"])
 
