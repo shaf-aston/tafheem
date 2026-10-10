@@ -77,6 +77,6 @@ describe('drawnChain', () => {
     const at = (s) => arabic.indexOf(s)
     const names = [[at('زَيْدٌ'), at('زَيْدٌ') + 6, 1], [at('عَمْرٍو'), at('عَمْرٍو') + 6, 2]]
     const out = drawnChain(arabic, [0, arabic.lastIndexOf('قَالَ')], names, [{ at: at('عَمْرٍو'), id: 2, level: 8 }])
-    expect(out.main.map((l) => l.note?.level ?? null)).toEqual([null, 8])
+    expect(out.main.map((l) => l.members[0].note?.level ?? null)).toEqual([null, 8])
   })
 })

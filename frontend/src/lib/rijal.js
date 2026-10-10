@@ -60,23 +60,23 @@ export function told(arabic, cut, names) {
  * A drawn chain (lib/hadithWords chainLinks of the Arabic before `cut`) with each
  * narrator's id where sunnah.com linked his name in this hadith: the slice
  * overlapping the place his name stands. A name it did not link stays plain.
- * A box that joins names (أيوب، ويونس) lists each in `members` with its own
- * words, cut to the box's name so an aside after it stays out. A `note` (a weak narrator,
- * from usul.db) starting where the first slice starts
- * rides on the link, for lib/weak. So do the `ties` that start there: the links
- * of the chain a source puts in doubt, each saying who said the word before
- * this narrator's name.
+ * Each name in the box is a `member` (a box may join several: أيوب، ويونس) with
+ * its own words, cut to the box so an aside after it stays out, and its `note`
+ * (a weak narrator, from usul.db, starting where his slice starts), for lib/weak.
+ * The box carries the `ties` that start at any member: the links of the chain a
+ * source puts in doubt, each saying who said the word before that name.
  */
 export function linked(links, names, chain, notes = [], ties = []) {
   const add = (link) => {
     if (!link) return link
     const [from, to] = link.span ?? [0, 0]
     const slices = names.filter(([start, end]) => start < to && end > from)
-    const slice = slices[0]
     return {
-      ...link, id: slice?.[2] ?? null, note: (slice && notes.find((n) => n.at === slice[0])) || null,
-      members: slices.map(([start, end, id]) => ({ id, name: chain.slice(Math.max(start, from), Math.min(end, to)) })),
-      ties: slice ? ties.filter((t) => t.at === slice[0]) : [],
+      ...link, id: slices[0]?.[2] ?? null,
+      members: slices.map(([start, end, id]) => ({
+        id, name: chain.slice(Math.max(start, from), Math.min(end, to)), note: notes.find((n) => n.at === start) ?? null,
+      })),
+      ties: ties.filter((t) => slices.some(([start]) => t.at === start)),
     }
   }
   return {
