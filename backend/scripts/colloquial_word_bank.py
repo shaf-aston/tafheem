@@ -12,21 +12,15 @@ through all of it in one sitting, with no JSON to keep valid.
 `load` replaces the dialect's words.json with the file, after checking every unit
 the way the app does on load, and writes nothing if any of them breaks a rule.
 """
-import json
 import sys
 
 from backend.config import data_path
-from backend.scripts.check_colloquial_unit import faults
-from backend.services.colloquial import wordlist
-
-
-def _spine():
-    return json.loads((data_path("colloquial_dir") / "spine.json").read_text(encoding="utf-8"))["units"]
+from backend.services.colloquial import loader, wordlist
 
 
 def dump(folder: str) -> str:
     said, meanings, shown, blocks = wordlist.said_in(folder), wordlist.meanings(), set(), []
-    for unit in _spine():
+    for unit in loader.spine():
         for lesson in unit["lessons"]:
             lines = [f"## {unit['unit']} {lesson['lesson']} {lesson['title']}"]
             for one in lesson.get("words") or []:
@@ -61,7 +55,7 @@ def load(folder: str, text: str) -> list[str]:
     words, said = _read(text)
     said += wordlist.unknown(words, wordlist.meanings(), folder)
     written = sorted(path.stem for path in (data_path("colloquial_dir") / folder).glob("unit-*.json"))
-    said += [f"{name}: {why}" for name in written for why in faults(folder, name, words=words)]
+    said += [f"{name}: {why}" for name in written for why in loader.unit_faults(folder, name, words=words)]
     if not said:  # all or nothing, so a half-loaded dialect never reaches the app
         path = data_path("colloquial_dir") / folder / wordlist.FILE
         path.write_text(wordlist.text(words), encoding="utf-8")

@@ -24,7 +24,7 @@ def main():
 
     unit_file = data_path("colloquial_dir") / args.dialect / f"unit-{args.unit:02d}.json"
     unit = json.loads(unit_file.read_text(encoding="utf8"))
-    phrases = [p for lesson in unit["lessons"] for p in lesson["phrases"]]
+    phrases = [p for lesson in unit["lessons"] for p in lesson.get("phrases") or []]  # a word-list lesson has none
     words = {w for p in phrases for w in re.findall(r"[A-Za-z0-9']+", p["transliteration"])}
     lost = set(wordcheck.missing(sorted(words), args.source))
 
