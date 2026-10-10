@@ -239,6 +239,16 @@ def test_two_lessons_with_one_number_are_caught():
     assert any("two lessons numbered" in why for why in loader._unit_faults(unit))
 
 
+def test_all_three_typed_types_are_sound_through_the_one_model():
+    for kind in ("reply", "fill_blank", "translate_to_arabic"):
+        assert registry.faults(exercise("a.1", kind)) == []
+
+
+def test_a_field_fault_is_reported_beside_a_wrong_option_set():
+    said = faults(exercises=[exercise("a.1", "choose", prompt=" ", options=["one", "two"])])
+    assert any("has no prompt" in why for why in said)
+
+
 def test_the_registry_owns_the_five_types_the_content_uses():
     assert registry.TYPES == {"reply", "fill_blank", "translate_to_arabic", "choose", "reorder"}
 

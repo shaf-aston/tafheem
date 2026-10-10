@@ -1,13 +1,15 @@
 """What every exercise has, whatever its type.
 
 A type module adds only what its own type needs on top of this: `choose` adds
-options, `reorder` adds the words to arrange, and the three typed types add
-nothing at all. Keeping the shared half here means a field added to every
-exercise is added once.
+options, `reorder` adds the words to arrange, and the typed types add nothing
+at all. Keeping the shared half here means a field added to every exercise is
+added once, and so is the rule that checks it: a model is the one description
+of an exercise, and a rule it breaks is a ValueError the registry turns into a
+sentence.
 """
 from __future__ import annotations
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator, model_validator
 
 
 class TooFormal(BaseModel):
@@ -18,6 +20,12 @@ class TooFormal(BaseModel):
     """
     item: str
     feedback: str
+
+    @model_validator(mode="after")
+    def _both_said(self):
+        if not (self.item.strip() and self.feedback.strip()):
+            raise ValueError("has a too_formal without both an item and its feedback")
+        return self
 
 
 class Exercise(BaseModel):
@@ -34,23 +42,21 @@ class Exercise(BaseModel):
     too_formal: TooFormal | None = None
     tip: str = ""
 
+    @field_validator("id", "prompt", "answer", mode="before")
+    @classmethod
+    def _not_blank(cls, value, info):
+        if not str(value or "").strip():
+            raise ValueError(f"has no {info.field_name}")
+        return value
 
-def faults(exercise: dict) -> list[str]:
-    """What is wrong with the shared half of one exercise. Empty means sound."""
-    said = []
-    for field in ("id", "prompt", "answer"):
-        if not str(exercise.get(field) or "").strip():
-            said.append(f"has no {field}")
-    accepted = exercise.get("accepted")
-    if not isinstance(accepted, list) or not accepted:
-        # Without it the only right answer is the one exact string, so every
-        # other spelling of the same sentence is marked wrong.
-        said.append("has no accepted answers")
-    elif any(not str(one or "").strip() for one in accepted):
-        said.append("has an empty accepted answer, which would match a blank reply")
-    elif exercise.get("answer") not in accepted:
-        said.append("does not list its own answer among the accepted ones")
-    formal = exercise.get("too_formal")
-    if formal is not None and not (formal.get("item") and formal.get("feedback")):
-        said.append("has a too_formal without both an item and its feedback")
-    return said
+    @model_validator(mode="after")
+    def _accepted_answers(self):
+        if not self.accepted:
+            # Without it the only right answer is the one exact string, so every
+            # other spelling of the same sentence is marked wrong.
+            raise ValueError("has no accepted answers")
+        if any(not one.strip() for one in self.accepted):
+            raise ValueError("has an empty accepted answer, which would match a blank reply")
+        if self.answer not in self.accepted:
+            raise ValueError("does not list its own answer among the accepted ones")
+        return self
