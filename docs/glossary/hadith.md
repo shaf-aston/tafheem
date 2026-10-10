@@ -15,4 +15,4 @@ One word per idea, the same in the backend, the API and the frontend. Main gloss
 | **gap** | a grade wording no term reads (حسن الحديث, منكر الحديث); listed, never given a level | `gap` table | none |
 | **ruling** | what a classical book says of one hadith, as the scholar's own sentence with book and page, found by matching its text and narrators; shown as "possible" | `ruling`, `rulings`, `store.rulings()` | `rulings`, `ScholarRulings` |
 | **term** | one sort of ruling (`nasikh_chapter`, `ilal`, `mawdu_listed`) with its plain meaning and how many hadith carry it | `kind`, `store.terms()` | `ScholarTerms` |
-| **cut** | where the chain ends and the hadith begins, and where its teller starts; found only by the server, walking the chain words in `hadith.json`; null where the end is not plain | `cut` [teller_at, body_at], `chain.chain_of` | `h.cut` (`drawnChain`, `told`) |
+| **cut** | where the chain ends and the hadith begins, and where its teller starts; found only by the server, walking the chain words in `backend/data/hadith/chain.json`; null where the end is not plain | `cut` [teller_at, body_at], `chain.chain_of` | `h.cut` (`drawnChain`, `told`) |

@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import HADITH from '../hadith.json'
-import { chainLinks, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
+import { CHAIN, chainLinks, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
 
 describe('saying', () => {
   it('marks a quoted stretch as said and the rest as told', () => {
@@ -108,8 +107,8 @@ describe('printedBy', () => {
 
 describe('termOf', () => {
   it('has a guide entry for every word the chain walker reads', () => {
-    const { verbs, endings, words } = HADITH.chain.links
-    const all = [...words, ...HADITH.chain.says, ...verbs.flatMap((v) => endings.map((e) => v + e))]
+    const { verbs, endings, words } = CHAIN.links
+    const all = [...words, ...CHAIN.says, ...verbs.flatMap((v) => endings.map((e) => v + e))]
     expect(all.filter((word) => !termOf(word))).toEqual([])
   })
 

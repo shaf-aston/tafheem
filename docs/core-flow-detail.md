@@ -416,14 +416,14 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
 - `services/mushkil_split.py` cuts al-Tahawi's Mushkil al-Athar into issues (hadith that seem to
   conflict); `scripts/build_mushkil.py` writes `data/hadith/mushkil-tahawi.json`. No tab reads it yet.
 - Weak points on a chain: `scripts/build_usul.py` levels each narrator's grade in `rijal.db` against Ibn Hajar's
-  twelve (`services/usul/level.py`, words in `data/usul/usul.json`) and writes the small, git-tracked `data/usul/usul.db`.
-  `services/usul/store.py` reads it; `GET /api/rijal/chains/...` carries `notes` and `scale`; `lib/weak.js` ranks them and
+  twelve (`services/hadith/usul/level.py`, words in `data/usul/usul.json`) and writes the small, git-tracked `data/usul/usul.db`.
+  `services/hadith/usul/store.py` reads it; `GET /api/rijal/chains/...` carries `notes` and `scale`; `lib/weak.js` ranks them and
   `ui/ChainDrawing` and `ui/WeakPoints` show them. A grade no term reads is listed in the gap table, never guessed.
 - What scholars said of a hadith: the same build reads three ruling books (Ibn Shahin, Ibn Abi Hatim's 'Ilal, Ibn al-Jawzi's
-  Mawdu'at). `services/usul/ruling.py` cuts out the scholar's own sentence, `services/usul/match.py` finds which of our hadith
+  Mawdu'at). `services/hadith/usul/ruling.py` cuts out the scholar's own sentence, `services/hadith/usul/match.py` finds which of our hadith
   it is about (rare shared word 3-grams, then a shared narrator), knobs in `usul.json` `rulings.match`. The `ruling` table is
   quoted with book and page and never inferred; what no sentence or hadith fits goes to the gap table.
-  `GET /api/rijal/chains/...` carries `rulings`; `GET /api/usul/terms[/{kind}]` (`routers/usul.py`) feeds the Hadith tab's
+  `GET /api/rijal/chains/...` carries `rulings`; `GET /api/usul/terms[/{kind}]` (`routers/hadith.py`) feeds the Hadith tab's
   Scholars list (`ScholarTerms`); `ui/ScholarRulings` quotes them under "Possible".
 - `backend/services/sarf/`: the pure core of morphology. `word.py` holds a word as letters
   that know their job, and names the alphabet once; `ilal.py` the rules. `conjugation.py`

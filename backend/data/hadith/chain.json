@@ -1,0 +1,86 @@
+{
+  "_comment": "How the chain of narrators is found, so it can be hidden (backend/services/hadith/chain.py chain_of; the page reads its cut). links pass the hadith on from one narrator to the next: each verb with each ending (he, she, they, with us or me or it as object: حدثتني، حدثناه، سمعته), plus the bare words; قرأت (I read to him) is left out, since it as often means reciting Qur'an to the Prophet, which is the hadith itself; second person (أخبركم) is left out: in a hadith it is mostly a speaker asking his listeners 'shall I tell you', and would read his words as chain; says end a link and start the hadith unless another link follows. about are words a chain uses to speak of itself (with this chain, the same as it): the hadith that holds one stays whole, since that note is what it says. name is how many words one narrator's name may run, free words (the blessings said after a name, and the son of/daughter of that join its parts) not counted, before the chain counts as unclear and the hadith stays whole. Written without vowels; a leading wa or fa is read off.",
+  "links": {
+    "verbs": ["حدث", "يحدث", "أخبر", "أنبأ", "سمع"],
+    "endings": ["", "نا", "ني", "ه", "هم", "ت", "تني", "تنا", "ناه", "نيه", "ته", "اه"],
+    "words": ["عن", "ح"]
+  },
+  "says": ["قال", "قالا", "قالوا", "قالت", "أن", "أنه", "أنها", "أنهم", "يقول", "تقول"],
+  "about": ["الإسناد", "بإسناد", "بإسناده", "إسناده", "الحديث", "حديث", "حديثه", "مثله", "بمثله", "بمثل", "مثل", "نحوه", "بنحوه", "نحو", "بمعناه", "غير"],
+  "free": ["رضي", "رضى", "الله", "عنه", "عنها", "عنهما", "عنهم", "صلى", "عليه", "وسلم", "بن", "ابن", "بنت"],
+  "name": 6,
+  "_aside_comment": "aside is the mark set either side of a narrator's own note inside the chain (Muslim: - وهذا حديثه -, - واللفظ لعثمان -). What stands between a pair is passed over, so its words are neither a name nor the chain speaking of itself. A mark with no partner is ignored.",
+  "aside": "-",
+  "_kin_comment": "kin name a narrator by the one before him (his father, his grandfather), so they are never matched as a name of their own when two strands are joined.",
+  "kin": ["أبي", "أبيه", "أبيها", "جده", "جدي", "أمه", "أمي", "عمه", "أخيه"],
+  "_together_comment": "together say the narrators just named both or all passed it on (Muslim: حدثنا أبو بكر وزهير قالا حدثنا وكيع; ... كلاهما عن). Where a strand after ح names no narrator the main one names, it joins the main strand at the narrator after such a word.",
+  "_spellings_comment": "Two spellings of one word in a name, read as one when two strands are matched (lib/hadithWords keyOf): the case forms of abu, and ibn with or without its alef. strand is the mark that starts another strand of the chain.",
+  "spellings": { "أبا": "أبو", "أبي": "أبو", "ابن": "بن" },
+  "strand": "ح",
+  "_prophet_comment": "prophet opens a link that reaches the Prophet himself (عن النبي، سمع رسول الله). With the chain hidden, the narrator kept is the one before such a link, the one who tells it; the same for a link to a kin word (عن أبيه), which names no one without the link before it. hands is the saying word that can name the next narrator before his link (أن طاوسا أخبره عن ابن عباس), so the chain walks on through it.",
+  "prophet": ["النبي", "رسول"],
+  "hands": ["أن"],
+  "together": ["قالا", "قالوا", "كلاهما", "كلهم", "جميعا"],
+  "terms": {
+    "_comment": "The chain words guide (ui/ChainWords) and the colour of each link in the chain drawing. Meanings from Ibn al-Salah's Muqaddima (types 11, 12, 24, 25). way is how the narration was received: heard and loose colour the drawing (theme hadith-heard, hadith-loose). match is each word without vowels, a verb by its stem, so lib/hadithWords termOf finds the entry for حدثتني or وأخبرنا; a test checks every word the chain walker reads has an entry.",
+    "groups": [
+      {
+        "way": "heard", "title": "Heard from the teacher", "name": "سماع",
+        "terms": [
+          { "arabic": "سمعت، سمع", "match": ["سمع"], "meaning": "I heard, he heard: from the teacher's own mouth. The strongest wording of all." },
+          { "arabic": "حدّثنا، حدّثني", "match": ["حدث"], "meaning": "He told us, told me. Next after I heard. Muslim and al-Shafi'i's school keep it for hearing only." },
+          { "arabic": "يحدّث", "match": ["يحدث"], "meaning": "Telling it, as in سمعته يحدّث: I heard him telling it." },
+          { "arabic": "أخبرنا، أخبرني", "match": ["أخبر"], "meaning": "He informed us. Heard, a step below told us. Muslim and al-Shafi'i's school use it for a hadith read out to the teacher instead; al-Bukhari treats it as told us." },
+          { "arabic": "أنبأنا", "match": ["أنبأ"], "meaning": "He informed us. Rarer, a step below informed us; later scholars kept it for permission (إجازة)." },
+          { "arabic": "قال لنا، قال لي، ذكر لنا", "meaning": "He said to us. Heard, but often in a passing talk (مذاكرة) rather than a teaching session." }
+        ]
+      },
+      {
+        "way": "read", "title": "Read out to the teacher", "name": "عرض",
+        "terms": [
+          { "arabic": "قرأت على فلان", "meaning": "I read it to him, and he listened and confirmed it. Malik and the scholars of Hijaz and Kufa count it equal to hearing." },
+          { "arabic": "قُرئ عليه وأنا أسمع", "meaning": "It was read to him while I listened." },
+          { "arabic": "قراءةً عليه", "meaning": "By reading to him: added after أخبرنا to say how. Ahmad and al-Nasa'i would not let it be told as plain told us." }
+        ]
+      },
+      {
+        "way": "loose", "title": "Did not say how",
+        "terms": [
+          { "arabic": "عن", "match": ["عن"], "meaning": "From. The most common link. Counted as heard when the two met and the narrator is not known to hide a gap (تدليس); Muslim held living at the same time enough." },
+          { "arabic": "أنّ", "match": ["أن", "أنه", "أنها", "أنهم"], "meaning": "That so-and-so... Malik held it equal to عن; Ahmad held they differ." },
+          { "arabic": "قال، يقول", "match": ["قال", "قالت", "يقول", "تقول"], "meaning": "Said, says. Without to us it does not claim he was there. Where no other link follows, the hadith begins." },
+          { "arabic": "تدليس", "meaning": "Hiding a gap: saying عن or قال for a teacher's teacher. From a narrator known for it, only سمعت, حدّثنا or أخبرنا count as heard." }
+        ]
+      },
+      {
+        "way": "written", "title": "In writing or by permission",
+        "terms": [
+          { "arabic": "كتب إليّ", "meaning": "He wrote to me (مكاتبة)." },
+          { "arabic": "أجاز لي", "meaning": "He gave me permission to pass on his hadith (إجازة)." },
+          { "arabic": "ناولني", "meaning": "He handed me his written copy (مناولة)." },
+          { "arabic": "وجدت في كتاب فلان", "meaning": "I found it in his book (وجادة). Not heard at all." }
+        ]
+      },
+      {
+        "way": "who", "title": "Who passed it on",
+        "terms": [
+          { "arabic": "قالا، قالوا", "match": ["قالا", "قالوا"], "meaning": "The two said, they said: teachers named together, who both passed it on." },
+          { "arabic": "كلاهما، جميعا", "meaning": "Both, all of them: the narrators just named, together." },
+          { "arabic": "يعني", "meaning": "Meaning: a later narrator adding who a name is, words his teacher did not say." },
+          { "arabic": "عن أبيه، عن جده", "meaning": "From his father, his grandfather: the narrator just named, not a new name." },
+          { "arabic": "رضي الله عنه", "meaning": "Said after a Companion, usually the last narrator before the Prophet ﷺ." },
+          { "arabic": "يرفعه، يبلغ به", "meaning": "Raises it to the Prophet ﷺ: counted as his words though not said outright." }
+        ]
+      },
+      {
+        "way": "mark", "title": "Marks in a chain",
+        "terms": [
+          { "arabic": "ح", "match": ["ح"], "meaning": "Switch to a second chain that joins the first further up. Ibn al-Salah: say ḥā and read on." },
+          { "arabic": "بهذا الإسناد", "meaning": "With this same chain, given with the hadith before. Such a hadith shows whole when the chain is hidden." },
+          { "arabic": "مثله، نحوه، بمعناه", "meaning": "Like it word for word; similar, in other words; in its meaning: pointing at the hadith before." },
+          { "arabic": "ثنا، نا، أنا", "meaning": "Short for حدّثنا and أخبرنا in manuscripts. These books write them out in full." }
+        ]
+      }
+    ]
+  }
+}

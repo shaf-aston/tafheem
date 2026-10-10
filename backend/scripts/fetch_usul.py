@@ -18,7 +18,7 @@ import httpx
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services.usul.rule import rule  # noqa: E402
+from backend.services.hadith.usul.rule import rule  # noqa: E402
 
 
 def fetch(again: bool = False) -> list[Path]:

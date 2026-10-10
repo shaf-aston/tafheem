@@ -49,11 +49,10 @@ fi
 # Colloquial lessons are all in git, so the server copy is mirrored exactly.
 rsync -a --delete backend/data/colloquial/ /home/ubuntu/tafheem/backend/data/colloquial/
 # The few frontend files the backend reads at runtime, kept at the same paths:
-# the hadith chain rule (services/hadith/chain.py), the quiz's words for checked
-# practice sentences (services/sentence_check.py) and the Jazariyya poem
+# the quiz's words for checked practice sentences (services/sentence_check.py) and the Jazariyya poem
 # (services/daleel/sources/jazariyya.py). Without the words, Make one was a 500.
 # tests/test_deploy_files.py fails if the backend starts reading another.
-rsync -aR frontend/src/hadith.json frontend/public/words/words.json frontend/public/words/coverage.json \
+rsync -aR frontend/public/words/words.json frontend/public/words/coverage.json \
 	frontend/public/jazariyya/poem.json /home/ubuntu/tafheem/
 cp requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt
@@ -61,7 +60,7 @@ cp requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
 # The hadith collections are fetched here from the public CDN and indexed here,
 # never copied from anyone's machine. Each step reruns only when its input is
 # newer than its output, so a quiet sync costs nothing. The index also reads
-# the chain rule (frontend/src/hadith.json) and the word helpers it imports.
+# the chain rule (data/hadith/chain.json, inside $HD) and the word helpers it imports.
 H=/home/ubuntu/tafheem
 HD=$H/backend/data/hadith
 for key in $("$H/venv/bin/python" -c "import json;print(' '.join(k for k in json.load(open('$HD/collections.json')) if not k.startswith('_')))"); do
@@ -69,7 +68,7 @@ for key in $("$H/venv/bin/python" -c "import json;print(' '.join(k for k in json
 		(cd "$H" && venv/bin/python backend/scripts/fetch_hadith_collections.py "$key") || echo "hadith: fetching $key failed, kept the old copy"
 	fi
 done
-if [ ! -f "$H/backend/data/hadith.db" ] || [ -n "$(find "$HD" "$H/backend/scripts/build_hadith_index.py" "$H"/backend/services/hadith/{chain,words,lemma}.py "$H/frontend/src/hadith.json" -newer "$H/backend/data/hadith.db" -print -quit)" ]; then
+if [ ! -f "$H/backend/data/hadith.db" ] || [ -n "$(find "$HD" "$H/backend/scripts/build_hadith_index.py" "$H"/backend/services/hadith/{chain,words,lemma}.py -newer "$H/backend/data/hadith.db" -print -quit)" ]; then
 	(cd "$H" && venv/bin/python backend/scripts/build_hadith_index.py)
 fi
 # Meaning vectors: the build itself knows what changed (text, model, length), re-encodes only

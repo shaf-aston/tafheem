@@ -16,9 +16,9 @@ from __future__ import annotations
 from collections import Counter
 from typing import NamedTuple
 
-from backend.services.usul import names
-from backend.services.usul.books import Entry
-from backend.services.usul.level import fold_word
+from backend.services.hadith.usul import names
+from backend.services.hadith.usul.books import Entry
+from backend.services.hadith.usul.level import fold_word
 
 Teachers = list[tuple[int, tuple[tuple[str, ...], ...]]]   # (narrator id, his name, lineage and kunyas as words)
 

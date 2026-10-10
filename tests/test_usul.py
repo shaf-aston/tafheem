@@ -17,10 +17,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.main import app  # noqa: E402
 from backend.scripts import build_rijal, build_usul  # noqa: E402
-from backend.services.rijal import store as rijal_store  # noqa: E402
-from backend.services.usul import store as usul_store  # noqa: E402
-from backend.services.usul.level import level_of  # noqa: E402
-from backend.services.usul.rule import rule  # noqa: E402
+from backend.services.hadith.rijal import store as rijal_store  # noqa: E402
+from backend.services.hadith.usul import store as usul_store  # noqa: E402
+from backend.services.hadith.usul.level import level_of  # noqa: E402
+from backend.services.hadith.usul.rule import rule  # noqa: E402
 
 LEVELS = rule()["levels"]
 CHECK_PAGES = build_usul.check_pages   # the fixture below turns the check off; the tests of it turn it back on
@@ -138,8 +138,8 @@ def test_the_chains_endpoint_is_as_before_where_usul_db_is_missing(paths):
 
 # ---- the narrator books: entries, the year, and the join to a narrator ---------------------------------------------
 
-from backend.services.usul import books, family, jami, mukhtalitin, names, rung, taqrib, tarif  # noqa: E402
-from backend.services.usul.books import Entry  # noqa: E402
+from backend.services.hadith.usul import books, family, jami, mukhtalitin, names, rung, taqrib, tarif  # noqa: E402
+from backend.services.hadith.usul.books import Entry  # noqa: E402
 
 TAQRIB = rule()["taqrib"]
 

@@ -10,8 +10,8 @@ from __future__ import annotations
 
 import re
 
-from backend.services.usul import names
-from backend.services.usul.books import Entry
+from backend.services.hadith.usul import names
+from backend.services.hadith.usul.books import Entry
 
 # The digitiser's row of dots where a page of the edition has no text.
 _BLANK = re.compile(r"(?:\.\s){3,}\.?")

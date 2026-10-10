@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.hadith import loader, words  # noqa: E402
-from backend.services.rijal import cache, parse  # noqa: E402
+from backend.services.hadith.rijal import cache, parse  # noqa: E402
 
 # Lists are JSON. Search reads the Arabic columns folded the way the hadith index folds Arabic.
 _SCHEMA = """

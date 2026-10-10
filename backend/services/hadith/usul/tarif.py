@@ -12,9 +12,9 @@ writes must be his (names.Index.written). Anything not one-to-one goes to the ga
 """
 from __future__ import annotations
 
-from backend.services.usul import names
-from backend.services.usul.books import Entry
-from backend.services.usul.level import fold_word
+from backend.services.hadith.usul import names
+from backend.services.hadith.usul.books import Entry
+from backend.services.hadith.usul.level import fold_word
 
 
 def level_of(entry: Entry, cfg: dict) -> int | None:

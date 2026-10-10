@@ -16,8 +16,8 @@ from __future__ import annotations
 import re
 from typing import NamedTuple
 
-from backend.services.usul import names
-from backend.services.usul.level import fold_word
+from backend.services.hadith.usul import names
+from backend.services.hadith.usul.level import fold_word
 
 # The words a year is written in. Folded like everything else, so the spelling is the book's.
 _UNITS = {
