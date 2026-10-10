@@ -11,7 +11,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 logger = logging.getLogger(__name__)
 
 
-class Settings(BaseSettings):
+class Ai(BaseSettings):
+    """The AI backends: which one answers, its key, model, budget and temperature."""
+
     # ai_backend blank: groq if a key is present, else probe ollama, else none.
     ai_backend: str = ""
 
@@ -27,8 +29,6 @@ class Settings(BaseSettings):
     ollama_url: str = "http://localhost:11434"
     ollama_model: str = "qwen2.5:3b"
 
-    # Longer sentences are refused (422): the parser and the rules grow with length.
-    max_sentence_words: int = Field(default=160, gt=0)  # the longest ayah (2:282) is about 130 words
     # Low so grammar answers repeat. Every AI backend reads this one.
     ai_temperature: float = 0.1
     sarf_max_tokens: int = 1500
@@ -38,6 +38,36 @@ class Settings(BaseSettings):
     root_entry_max_tokens: int = 3500
     # Longest Maqayees entry is ~15,000 chars; 6000 is what the smallest local model can hold.
     root_entry_truncate_chars: int = 6000
+
+    @property
+    def effective_backend(self) -> str:
+        """Resolve which AI backend to use: groq | ollama | auto | none."""
+        explicit = self.ai_backend.strip().lower()
+        if explicit in {"groq", "ollama", "none"}:
+            return explicit
+        return "groq" if self.groq_api_key.strip() else "auto"
+
+    @property
+    def has_groq(self) -> bool:
+        return bool(self.groq_api_key.strip())
+
+
+class Nahw(BaseSettings):
+    """The i'raab reading: longest sentence, and the CATiB parser."""
+
+    # Longer sentences are refused (422): the parser and the rules grow with length.
+    max_sentence_words: int = Field(default=160, gt=0)  # the longest ayah (2:282) is about 130 words
+    catib_parser_enabled: bool = True
+    # The top disambiguator reading comes from bare letters and can contradict typed vowels (آفِلًا for typed أَفَلَا);
+    # the first of these that agrees is used. Scoring all costs nothing extra. 40 because a rare passive (أُكِلَ) can rank below the 20th.
+    catib_readings: int = 40
+    # Holds encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json, config.json, clitic_feats.csv.
+    # See catib_onnx.py's docstring for sources. Relative paths resolve inside backend/.
+    catib_parser_dir: str = "data/parser"
+
+
+class Quran(BaseSettings):
+    """Qur'an search, the library of editions and tafsirs, mutashabihat and the asbab files."""
 
     quran_timeout_seconds: float = 15.0
     quran_search_limit: int = 20
@@ -50,25 +80,6 @@ class Settings(BaseSettings):
     quran_search_index_path: str = "data/quran/search.db"
     # Some roots occur over a thousand times; list is capped, true total still shown.
     root_occurrence_limit: int = 50
-
-    dictionary_cache_size: int = 256
-    # Fuzzy scan covers every indexed key, so a one-letter query matches thousands; past this cap extra candidates cannot change what is shown.
-    dictionary_fuzzy_candidates: int = 200
-    # Without a minimum, single letters match inside every query: a search for اخذ returned alif, khaa and dhal.
-    dictionary_fuzzy_min_key: int = 3
-    # The book whose English is the sense of a whole ayah typed into the dictionary (data/quran/editions.json).
-    sentence_translation: str = "saheeh-en"
-    # Word by word, each piece of a word shows up to this many of CAMeL's senses.
-    sentence_senses: int = Field(default=2, gt=0)
-    # Candidate senses the model may pick from per word (CAMeL's readings, then the dictionary's).
-    sentence_candidates: int = Field(default=8, gt=0)
-    # One English sentence back, plus a reasoning model's thinking.
-    sentence_max_tokens: int = Field(default=1200, gt=0)
-
-    # Ibn Faris's Maqayees as {"ك ت ب": {"core_meaning", "sarf_pattern", "variances": [...]}}.
-    # Not shipped; panel says so until the file exists. Relative paths resolve inside backend/.
-    root_meaning_path: str = "data/maqayees/roots.json"
-
     # Built by backend/scripts/import_quran_editions.py, never written while serving.
     # The manifest is the only place a book is named; adding one needs no code change.
     quran_library_path: str = "data/quran/library.db"
@@ -91,6 +102,47 @@ class Settings(BaseSettings):
     # Floor, not exact count: tafsirs skip ayahs (Ibn Kathir, the fullest, reaches 6,011 of 6,236).
     # Below it the download broke. A partial-coverage book (juz-thirty commentary) is added by lowering this.
     quran_tafsir_ayah_floor: int = 3000
+    # Fetched once by backend/scripts/build_asbab.py; timelines use it to place reports that name no event.
+    quran_surah_type_path: str = "data/quran/surah-type.json"
+    # Written by the same script; lets the panel say how many reports are not shown.
+    asbab_unmatched_path: str = "data/quran/asbab-unmatched.json"
+
+    @field_validator("quran_search_source", mode="after")
+    @classmethod
+    def _check_search_source(cls, value: str) -> str:
+        """A typo would silently pin search to the last branch, so it stops startup."""
+        allowed = {"auto", "online", "local"}
+        if (cleaned := value.strip().lower()) not in allowed:
+            raise ValueError(
+                f"QURAN_SEARCH_SOURCE must be one of {', '.join(sorted(allowed))}, got {value!r}"
+            )
+        return cleaned
+
+
+class Dictionary(BaseSettings):
+    """Dictionary lookups, a typed sentence's meaning, and Ibn Faris's roots."""
+
+    dictionary_cache_size: int = 256
+    # Fuzzy scan covers every indexed key, so a one-letter query matches thousands; past this cap extra candidates cannot change what is shown.
+    dictionary_fuzzy_candidates: int = 200
+    # Without a minimum, single letters match inside every query: a search for اخذ returned alif, khaa and dhal.
+    dictionary_fuzzy_min_key: int = 3
+    # The book whose English is the sense of a whole ayah typed into the dictionary (data/quran/editions.json).
+    sentence_translation: str = "saheeh-en"
+    # Word by word, each piece of a word shows up to this many of CAMeL's senses.
+    sentence_senses: int = Field(default=2, gt=0)
+    # Candidate senses the model may pick from per word (CAMeL's readings, then the dictionary's).
+    sentence_candidates: int = Field(default=8, gt=0)
+    # One English sentence back, plus a reasoning model's thinking.
+    sentence_max_tokens: int = Field(default=1200, gt=0)
+
+    # Ibn Faris's Maqayees as {"ك ت ب": {"core_meaning", "sarf_pattern", "variances": [...]}}.
+    # Not shipped; panel says so until the file exists. Relative paths resolve inside backend/.
+    root_meaning_path: str = "data/maqayees/roots.json"
+
+
+class Listening(BaseSettings):
+    """Hearing speech and recitation: the ears, the Qur'an model, placing and judging words."""
 
     # Hear on Groq's machines when a key exists: the model is several sizes bigger than what fits here.
     # Measured on one English word: 450ms with no local CPU vs 2,700ms with eight cores busy.
@@ -118,22 +170,6 @@ class Settings(BaseSettings):
     listening_rpm_per_key: int = Field(default=20, gt=0)
     # Read only by the frontend ears benchmark via process.env; declared so a shared .env validates.
     recitation_deepgram_api_key: str = ""
-
-    # Real reciters are played by the page, not listed here.
-    speech_voices: str = "fastpitch"
-    # FastPitch has four speakers; 3 was heard best by Whisper (21% letters wrong, speaker 0 41%).
-    speech_fastpitch_speaker: int = Field(default=3, ge=0, le=3)
-    # Below 1 speaks slower at the same pitch; 0.8 matches the device voice, so every voice keeps one pace.
-    speech_fastpitch_pace: float = Field(default=0.8, gt=0.5, le=1.5)
-    # Whole colloquial dialogue lines; the longest is 104.
-    speech_max_chars: int = Field(default=120, gt=0)
-    speech_rest_s: float = Field(default=60.0, gt=0)
-    # A word is ~25 KB, a dialogue line a few hundred; the oldest go first past this.
-    # Every line made ahead (scripts/premake_speech.py: Colloquial, quiz words, example sentences) is ~1.9 GB, so this leaves room past it.
-    speech_cache_max_mb: float = Field(default=3000.0, gt=0)
-    # Asks a minute per visitor; a phrase counts one ask per speech_chars_per_ask letters.
-    speech_per_minute: int = Field(default=60, gt=0)
-    speech_chars_per_ask: int = Field(default=40, gt=0)
 
     # Chosen over plain "base" on 36 mid-surah ayahs (310 words, frontend/scripts/ears.test.js):
     # this scored 8.1% error at 2050ms/ayah on this CPU; base 42.6% at 1504ms. Groq whisper-large-v3-turbo also 8.1%.
@@ -220,13 +256,36 @@ class Settings(BaseSettings):
     # No default-book setting on purpose: the panel opens on the manifest's first book, then the reader's last choice.
     # A setting would be a second source that could disagree.
 
-    catib_parser_enabled: bool = True
-    # The top disambiguator reading comes from bare letters and can contradict typed vowels (آفِلًا for typed أَفَلَا);
-    # the first of these that agrees is used. Scoring all costs nothing extra. 40 because a rare passive (أُكِلَ) can rank below the 20th.
-    catib_readings: int = 40
-    # Holds encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json, config.json, clitic_feats.csv.
-    # See catib_onnx.py's docstring for sources. Relative paths resolve inside backend/.
-    catib_parser_dir: str = "data/parser"
+    @property
+    def listening_keys(self) -> list[str]:
+        """Own listening keys, else the shared one, else none. Deduplicated."""
+        own = list(dict.fromkeys(key.strip() for key in self.listening_groq_api_keys.split(",") if key.strip()))
+        shared = self.groq_api_key.strip()
+        return own or ([shared] if shared else [])
+
+
+class Speech(BaseSettings):
+    """Speaking Arabic aloud: voices, pace, limits and the cache."""
+
+    # Real reciters are played by the page, not listed here.
+    speech_voices: str = "fastpitch"
+    # FastPitch has four speakers; 3 was heard best by Whisper (21% letters wrong, speaker 0 41%).
+    speech_fastpitch_speaker: int = Field(default=3, ge=0, le=3)
+    # Below 1 speaks slower at the same pitch; 0.8 matches the device voice, so every voice keeps one pace.
+    speech_fastpitch_pace: float = Field(default=0.8, gt=0.5, le=1.5)
+    # Whole colloquial dialogue lines; the longest is 104.
+    speech_max_chars: int = Field(default=120, gt=0)
+    speech_rest_s: float = Field(default=60.0, gt=0)
+    # A word is ~25 KB, a dialogue line a few hundred; the oldest go first past this.
+    # Every line made ahead (scripts/premake_speech.py: Colloquial, quiz words, example sentences) is ~1.9 GB, so this leaves room past it.
+    speech_cache_max_mb: float = Field(default=3000.0, gt=0)
+    # Asks a minute per visitor; a phrase counts one ask per speech_chars_per_ask letters.
+    speech_per_minute: int = Field(default=60, gt=0)
+    speech_chars_per_ask: int = Field(default=40, gt=0)
+
+
+class Journal(BaseSettings):
+    """The recitation journal file and its limits."""
 
     # See services/journal.py. Relative to the project root (folder holding backend/), unlike data_path's paths: it sits beside backend.log.
     journal_path: str = "logs/recite-journal.jsonl"
@@ -236,6 +295,10 @@ class Settings(BaseSettings):
     # Page batches are capped by event count and wire size so one runaway session cannot fill the journal with an unbounded POST.
     journal_page_events_max: int = Field(default=50, gt=0)
     journal_page_bytes_max: int = Field(default=65536, gt=0)
+
+
+class Daleel(BaseSettings):
+    """Daleel search, Grow's paths, and the longest query any search box takes."""
 
     # Rebuilt by backend/scripts/build_daleel_index.py, never written while serving.
     daleel_index_path: str = "data/daleel.db"
@@ -253,15 +316,9 @@ class Settings(BaseSettings):
     # No minimum-word-length setting here on purpose: it is a property of SQLite's trigram tokenizer and lives in services/fts.py.
     # A duplicate here once switched off typo tolerance silently when only one copy changed.
 
-    # Fetched once by backend/scripts/build_asbab.py; timelines use it to place reports that name no event.
-    quran_surah_type_path: str = "data/quran/surah-type.json"
-    # Written by the same script; lets the panel say how many reports are not shown.
-    asbab_unmatched_path: str = "data/quran/asbab-unmatched.json"
 
-    # Hadith that seem to conflict, grouped by al-Tahawi's own chapters, and the
-    # paragraphs the cutter could not place. Both written by build_mushkil.py.
-    mushkil_path: str = "data/hadith/mushkil-tahawi.json"
-    mushkil_unplaced_path: str = "data/hadith/mushkil-unplaced.json"
+class Content(BaseSettings):
+    """Timelines, Dawah and Colloquial data folders."""
 
     # library.json plus one file per section under sections/; checked on load by services/timelines.py.
     timelines_dir: str = "data/timelines"
@@ -270,6 +327,14 @@ class Settings(BaseSettings):
     # Model-written, checked on load by services/colloquial/loader.py.
     colloquial_dir: str = "data/colloquial"
 
+
+class Hadith(BaseSettings):
+    """Hadith books, search, meaning, narrators, weak points and the spelling repair."""
+
+    # Hadith that seem to conflict, grouped by al-Tahawi's own chapters, and the
+    # paragraphs the cutter could not place. Both written by build_mushkil.py.
+    mushkil_path: str = "data/hadith/mushkil-tahawi.json"
+    mushkil_unplaced_path: str = "data/hadith/mushkil-unplaced.json"
     # Written by scripts/fetch_hadith_collections.py.
     hadith_dir: str = "data/hadith"
     # Built from hadith_dir by scripts/build_hadith_index.py. Never written while serving.
@@ -338,6 +403,10 @@ class Settings(BaseSettings):
     # answer by words alone for this long before loading is tried again.
     hadith_meaning_retry_seconds: float = 300.0
 
+
+class Progress(BaseSettings):
+    """Answers, review schedule, accounts and checked practice sentences."""
+
     # The only database written while serving. Created on first use; deleting the file forgets everything.
     progress_db_path: str = "data/progress.db"
     # Slower answers keep right/wrong but skip timing averages: past two minutes the question likely sat open,
@@ -371,6 +440,26 @@ class Settings(BaseSettings):
     sentence_prompt_words: int = Field(default=60, gt=0)  # a random few, so prompts stay short and vary
     sentence_free_words: list[str] = ["و", "ب", "ل", "ف", "في", "من", "على", "إلى"]
 
+    @field_validator("progress_review_retention", "progress_known_retrievability", mode="after")
+    @classmethod
+    def _check_probability(cls, value: float, info: ValidationInfo) -> float:
+        """A chance of 0 or 1 breaks the schedule maths, so startup stops."""
+        if not 0 < value < 1:
+            raise ValueError(f"{info.field_name.upper()} must be between 0 and 1 (exclusive), got {value!r}")
+        return value
+
+    @field_validator("progress_learning_hours", mode="after")
+    @classmethod
+    def _check_learning_hours(cls, value: int) -> int:
+        """No wait would let one lucky guess count as learnt, so startup stops."""
+        if value <= 0:
+            raise ValueError(f"PROGRESS_LEARNING_HOURS must be above 0, got {value!r}")
+        return value
+
+
+class Server(BaseSettings):
+    """The port, what loads at startup, and which pages may call."""
+
     # Declared because .env sets PORT and this class forbids unknown keys; dropping it fails startup.
     # The running port comes from the --port flag start.sh passes to uvicorn.
     port: int = 8000
@@ -391,6 +480,10 @@ class Settings(BaseSettings):
         ]
     )
 
+
+class Settings(Ai, Nahw, Quran, Dictionary, Listening, Speech, Journal, Daleel, Content, Hadith, Progress, Server):
+    """Every setting, one per line in the groups above. Env names are the field names: grouping changes none."""
+
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
     @field_validator("groq_api_key", "listening_groq_api_keys", mode="after")
@@ -405,52 +498,6 @@ class Settings(BaseSettings):
                 f"Example: {name}=your_key_here"
             )
         return value
-
-    @field_validator("progress_review_retention", "progress_known_retrievability", mode="after")
-    @classmethod
-    def _check_probability(cls, value: float, info: ValidationInfo) -> float:
-        """A chance of 0 or 1 breaks the schedule maths, so startup stops."""
-        if not 0 < value < 1:
-            raise ValueError(f"{info.field_name.upper()} must be between 0 and 1 (exclusive), got {value!r}")
-        return value
-
-    @field_validator("progress_learning_hours", mode="after")
-    @classmethod
-    def _check_learning_hours(cls, value: int) -> int:
-        """No wait would let one lucky guess count as learnt, so startup stops."""
-        if value <= 0:
-            raise ValueError(f"PROGRESS_LEARNING_HOURS must be above 0, got {value!r}")
-        return value
-
-    @field_validator("quran_search_source", mode="after")
-    @classmethod
-    def _check_search_source(cls, value: str) -> str:
-        """A typo would silently pin search to the last branch, so it stops startup."""
-        allowed = {"auto", "online", "local"}
-        if (cleaned := value.strip().lower()) not in allowed:
-            raise ValueError(
-                f"QURAN_SEARCH_SOURCE must be one of {', '.join(sorted(allowed))}, got {value!r}"
-            )
-        return cleaned
-
-    @property
-    def effective_backend(self) -> str:
-        """Resolve which AI backend to use: groq | ollama | auto | none."""
-        explicit = self.ai_backend.strip().lower()
-        if explicit in {"groq", "ollama", "none"}:
-            return explicit
-        return "groq" if self.groq_api_key.strip() else "auto"
-
-    @property
-    def has_groq(self) -> bool:
-        return bool(self.groq_api_key.strip())
-
-    @property
-    def listening_keys(self) -> list[str]:
-        """Own listening keys, else the shared one, else none. Deduplicated."""
-        own = list(dict.fromkeys(key.strip() for key in self.listening_groq_api_keys.split(",") if key.strip()))
-        shared = self.groq_api_key.strip()
-        return own or ([shared] if shared else [])
 
 
 @lru_cache()
