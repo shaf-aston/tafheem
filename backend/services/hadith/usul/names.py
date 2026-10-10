@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
-from typing import Hashable, NamedTuple
+from typing import Callable, Hashable, NamedTuple
 
 from backend.services.hadith.chain import SPELLINGS
 from backend.services.hadith.usul.level import fold_word
@@ -62,13 +62,17 @@ class Person(NamedTuple):
     grade: tuple[str, ...]
 
 
+def forms(row: dict, split: Callable[[str], tuple[str, ...]]) -> tuple[tuple[str, ...], ...]:
+    """A narrator row's name, lineage and each kunya, split by `words` or `flat`: the ways a book may call him."""
+    kunyas = [k for k in re.split(r"\s*،\s*", row["kunya_ar"]) if k.strip()]
+    return tuple(f for f in map(split, (row["name_ar"], row["lineage_ar"], *kunyas)) if f)
+
+
 def person(row: dict) -> Person:
     """A narrator row of rijal.db as a Person."""
-    kunyas = [k for k in re.split(r"\s*،\s*", row["kunya_ar"]) if k.strip()]
     return Person(
         id=row["id"], keys=tuple(dict.fromkeys(w for w in (words(row["lineage_ar"]), words(row["name_ar"])) if w)), nisba=frozenset(words(row["nisba_ar"])),
-        names=tuple(w for w in (flat(row["name_ar"]), flat(row["lineage_ar"]), *map(flat, kunyas)) if w),
-        generation=row["generation_ar"], grade=words(row["grade_ar"]),
+        names=forms(row, flat), generation=row["generation_ar"], grade=words(row["grade_ar"]),
     )
 
 
@@ -128,6 +132,15 @@ class Index:
         words after it. The text goes on past his name, so a name with no nisba is not held against him."""
         found = self.named(written)
         return found if len(found) < 2 else self.named(written, window)
+
+
+def join(written: dict[Hashable, tuple[str, ...]], people: list[Person], size: int, window: int, by: str,
+         repeats: bool) -> tuple[dict[Hashable, int], dict[Hashable, str]]:
+    """({entry: narrator id}, {entry: why not}) for a book's entries given as name words. `by` is how the book writes
+    the man (an Index lookup: written, headed, opened); `repeats` when it may give one man two entries. Both are set
+    per book in usul.json `join.books`."""
+    find = getattr(Index(people, size), by)
+    return one_to_one({key: [p.id for p in find(name, window)] for key, name in written.items()}, exclusive=not repeats)
 
 
 def one_to_one(matches: dict[Hashable, list[int]], exclusive: bool = True) -> tuple[dict[Hashable, int], dict[Hashable, str]]:

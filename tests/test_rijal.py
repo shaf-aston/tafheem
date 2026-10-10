@@ -81,6 +81,8 @@ def test_the_book_endpoint_gives_slices_that_read_as_names(built):
     assert reply["ready"] is True and reply["source"]["key"] == "rijal"
     text = OURS["1620a"]
     assert [(strip_diacritics(text[a:b]), who) for a, b, who in reply["chains"]["1620a"]][3] == ("أبيه", 549)
+    assert built.get("/api/rijal/chains/nosuchbook/1").status_code == 404
+    assert built.get("/api/rijal/chains/muslim/999").json()["chains"] == {}   # a book of a known collection with no chains
 
 
 def test_a_narrator_sheet_carries_grade_generation_and_his_circle(built):

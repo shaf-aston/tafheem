@@ -119,6 +119,8 @@ async def search(
 
 @narrators.get("/chains/{collection}/{book}", response_model=RijalChains)
 async def get_chains(collection: str, book: int) -> RijalChains:
+    if not await asyncio.to_thread(rijal.knows, collection):
+        raise HTTPException(status_code=404, detail=f"no collection {collection}")
     chains = await asyncio.to_thread(rijal.chains, collection, book)
     return RijalChains(
         collection=collection, book=book, chains=chains, kin=await asyncio.to_thread(rijal.kin, collection, book),

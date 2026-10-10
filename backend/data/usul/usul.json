@@ -9,6 +9,7 @@
     "levels_source: the sources key the twelve levels come from, printed under each weak point.",
     "lift: the one place a source says support lifts, or does not lift, a weakness. Keyed by level, or by kind where the level has several. A level with no entry has no line. lifts: false is a source saying it is not lifted. book is a key of sources.",
     "sources: where each rule is written. openiti is the text id of the one edition the build reads (books, below, fetches it). Each quote carries its own page.",
+    "join: how a book's name joins a narrator (services/hadith/usul/names.py). name_words: how many of the name's first words must equal his; nisba_window: how many words after them a nisba of his may stand in; bound: words that begin a compound name. books: for each book read by name alone, by is how it writes the man (written: his name and lineage written out, held to all it writes; opened: running text that opens with him; headed: a heading that names him) and repeats is whether it may give one man two entries. The Taqrib also checks generation and grade (taqrib.join).",
     "verify: the build finds every quote that names a book and a page (a dict with quote, book and page, anywhere in this file) in that book's text, and stops where the page it derives, the one a page marker closes (OpenITI marks the END of a page), is not the page written here. elision: inside a quote it splits the quote into parts, each found after the one before it, within gap letters. strip: an editor's folio mark that holds letters ([6 / ظ]), taken out of the book before the quote is looked for.",
     "family: the versions fold of a hadith number (services/hadith/usul/family.py, built into usul.db). Places: the narrators at each place of the chains counted from the Companion end, across the narrations one book gives under one number; a place one narrator carries in every narration is marked (alone). Never a name for the number (mashhur, aziz, gharib are about every route a hadith has; one book's narrations of one number are not that). companion_group: the rijal.json generation group of Companions. reasons: why a family is left out, as written in the gap table (family_place for the picture, family_word for the words). The compiler's own teachers named together (حدثنا A وB) stand before the chain and are left out; two names at one place further up (no passing-on word between them) are no single line, so no picture. A telling where rijal places a name after the chain's cut (a second chain, or the chain's end, in the text) has no picture and is not compared. min_words: a telling shorter than this is not set against the others (the books write 'like it'). same_text_min: two tellings are set against each other only when the rarity-weighted share of the shorter one's words found in the other reaches this (a word's weight is ln(tellings / tellings holding it), so common words count little); measured on the 5,540 pairs of the books, the pairs read as different reports under one number sit at 0.14 and below, the paraphrased same report at 0.21 and above. clitics: letters that join the front of a word and are no difference, each with the fewest letters the word must keep (a ب off a four-letter word like بيني takes a root letter; stripped at most clitic_max times). rasm: letters that differ only by their dots, one string per group. dot_min: the shortest word (in letters) whose dot pairs are looked for; three-letter words (ابن and أني) match by dots by chance. sample, sample_seed, sample_gap, sample_text: the families (sample_text: letters of a telling printed where it has no plain chain) the build writes for checking by hand (--sample)."
   ],
@@ -18,7 +19,14 @@
   "gap_print": 15,
   "levels_source": "taqrib",
   "verify": { "elision": "...", "gap": 600, "strip": "\\[[^\\]\\n]*\\d[^\\]\\n]*\\]" },
-  "join": { "name_words": 3, "nisba_window": 12, "bound": ["عبد", "أبو", "أم"] },
+  "join": {
+    "name_words": 3, "nisba_window": 12, "bound": ["عبد", "أبو", "أم"],
+    "books": {
+      "tarif": { "by": "written", "repeats": false },
+      "jami": { "by": "opened", "repeats": true },
+      "mukhtalitin": { "by": "headed", "repeats": true }
+    }
+  },
   "books": {
     "base": "https://raw.githubusercontent.com/OpenITI/",
     "taqrib": {
