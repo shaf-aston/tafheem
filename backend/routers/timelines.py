@@ -6,7 +6,7 @@ import asyncio
 from fastapi import APIRouter, HTTPException
 
 from backend.models.timelines import TimelineAsbab, TimelineLibrary
-from backend.services import timelines
+from backend.services import asbab, timelines
 
 router = APIRouter(prefix="/api/timelines", tags=["timelines"])
 
@@ -25,6 +25,7 @@ async def get_asbab(section: str, event: str) -> TimelineAsbab:
     would read as "nothing was revealed about this", which is a different answer.
     """
     try:
-        return TimelineAsbab(**await asyncio.to_thread(timelines.asbab, section, event))
+        found = await asyncio.to_thread(timelines.find, section, event)
+        return TimelineAsbab(**await asyncio.to_thread(asbab.listing, *found))
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
