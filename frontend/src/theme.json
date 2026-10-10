@@ -184,6 +184,8 @@
     "base-ms": 220,
     "spring-ms": 420,
     "stagger-ms": 25,
+    "_shake_comment": "How long a wrong answer shakes its head. The .shake class in styles/motion.css lasts this long, and the code that clears a shaking tile after it waits this long too, so the two cannot drift apart.",
+    "shake-ms": 330,
     "spring-ease": "cubic-bezier(.34,1.56,.64,1)",
     "_slide_comment": "A step sideways: the next page, or a strip arriving from the edge, and the same step back as it leaves. slide-px is how far it travels, slide-ease how it settles.",
     "slide-px": 40,

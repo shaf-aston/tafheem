@@ -368,7 +368,7 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
 - **Sarf**: a word's root and pattern. The **gardaan** is the full table of 14 persons.
   **I'lal** is the rules that reshape a filled pattern when the root holds a weak letter, a
   hamzah or a doubled one, one per entry in `data/sarf/ilal.json`.
-- **Colloquial**: spoken Arabic by dialect. `data/colloquial/spine.json` is the one course outline (units, lessons, phrase slots with English and pictures); a dialect is a folder filling it, a unit one JSON file, an exercise kind one file per end (`services/colloquial/exercises`, `lib/exercises/registry.js`); pictures are fetched by `scripts/fetch_colloquial_images.py` and approved one by one.
+- **Colloquial**: spoken Arabic by dialect. `data/colloquial/spine.json` is the one course outline (units, lessons, phrase slots with English and pictures); a dialect is a folder filling it, a unit one JSON file, an exercise kind one file per end (`services/colloquial/exercises`, `components/colloquial/exercises/registry.js`); pictures are fetched by `scripts/fetch_colloquial_images.py` and approved one by one.
 - **Root**: the three letters most Arabic words are built from; the one link every tab
   shares, and worked out in one place (`services/roots.py`).
 - **Bab**: which vowel pattern (or which form, II to X) a verb follows, read from Lane's

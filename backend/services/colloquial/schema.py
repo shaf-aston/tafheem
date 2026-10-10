@@ -1,22 +1,18 @@
 """What the colloquial routes return.
 
 Here rather than in backend/models/ because an exercise's shape is defined by
-its own type module, and the union below is assembled from the registry: a new
+its own type module, and the union (AnyExercise) is assembled in the exercise registry: a new
 exercise type must not mean editing a shared types file, or the promise that a
 type is one file and one registry line is not true.
 """
 from __future__ import annotations
 
-from typing import Annotated, Literal, Union
+from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from backend.models.common import Source
-from backend.services.colloquial.exercises.registry import PAYLOADS
-
-# One model per exercise type, told apart by the `type` field, so every kind
-# keeps its real shape in the response and in the docs instead of a loose dict.
-AnyExercise = Annotated[Union[tuple(PAYLOADS.values())], Field(discriminator="type")]
+from backend.services.colloquial.exercises.registry import AnyExercise
 
 
 class Word(BaseModel):

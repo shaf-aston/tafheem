@@ -90,7 +90,7 @@ A dialect gives its Arabic in its own `<dialect>/words.json`, once per id:
   Arabic letters only in `arabic`, none in `transliteration`.
 - A topic is all or none: a dialect that has written a lesson says every word of
   it, or none yet. Two words of one topic never share their Arabic.
-- A topic teaches 8 or more words, and never a filler to reach 8.
+- A topic teaches 8 or more words (`least-topic-words` in `colloquial.json`), and never a filler to reach 8.
 - A topic with `"phrases": []` in the spine is a word list: no phrases, conversation or exercises, only its words,
   learnt as cards, match, quiz and review. A unit made only of word lists needs no challenge.
 - Units 20 to 27 are word units: one theme each, its topics in `section`s that read as

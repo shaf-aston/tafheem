@@ -1,19 +1,22 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { blankValue, rendererFor } from '../../../lib/exercises/registry'
 import ExerciseHost from '../ExerciseHost'
+import { exerciseOf } from './registry'
 
 const base = { id: 'u.l.x.01', prompt: 'Say hello', answer: 'مرحبا', accepted: ['مرحبا'] }
 const draw = (exercise) => renderToStaticMarkup(<ExerciseHost exercise={exercise} />)
 
 describe('exercise registry', () => {
-  it('has a renderer for each of the five types and none for a stranger', () => {
+  it('describes each of the five types and none for a stranger', () => {
     for (const type of ['reply', 'fill_blank', 'translate_to_arabic', 'choose', 'reorder']) {
-      expect(rendererFor(type)).toBeTruthy()
+      const kind = exerciseOf(type)
+      expect(kind.Renderer).toBeTruthy()
+      expect(kind.judge).toBeTypeOf('function')
     }
-    expect(rendererFor('telepathy')).toBeNull()
-    expect(blankValue('reorder')).toEqual([])
-    expect(blankValue('reply')).toBe('')
+    expect(exerciseOf('telepathy')).toBeNull()
+    expect(exerciseOf('reorder').blank).toEqual([])
+    expect(exerciseOf('reply').blank).toBe('')
+    expect(exerciseOf('choose').blank).toBe('')
   })
 })
 
@@ -40,6 +43,17 @@ describe('ExerciseHost', () => {
     expect(html).toContain('value="هلا"')
     expect(html).toContain('The natural answer is')
     expect(html).not.toContain('Check')
+  })
+  it('a bookish note shows on a correct pick, and on a typed bookish form', () => {
+    const too_formal = { item: 'كيف حالك', feedback: 'that is the bookish way' }
+    const picked = renderToStaticMarkup(
+      <ExerciseHost exercise={{ ...base, type: 'choose', options: ['مرحبا', 'شكرا', 'يلا'], too_formal }} saved={{ correct: true, value: 'مرحبا' }} />,
+    )
+    expect(picked).toContain('that is the bookish way')
+    const typed = renderToStaticMarkup(
+      <ExerciseHost exercise={{ ...base, type: 'reply', too_formal }} saved={{ correct: true, value: 'كيف حالك' }} />,
+    )
+    expect(typed).toContain('that is the bookish way')
   })
   it('picture options draw their labels', () => {
     const html = draw({ ...base, type: 'choose', options: [{ label: 'قهوة', image: 'a/b.jpg' }, 'شاي', 'ماء'] })

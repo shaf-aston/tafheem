@@ -1,0 +1,12 @@
+{
+  "_comment": "Colloquial tab behaviour knobs. The units and words are built in backend/data/colloquial/; this file is only how the tab shows them.",
+
+  "_comment-match-board": "The most pairs one Match board shows. More words than this split into several evenly sized rounds.",
+  "match-board": 5,
+
+  "_comment-least-under-heading": "A heading in a word bank needs this many words; a smaller group joins the heading before it.",
+  "least-under-heading": 3,
+
+  "_comment-feature-every": "In a lesson's phrase mosaic, every this-many-th tile is drawn large, so the grid is not a wall of equal squares.",
+  "feature-every": 7
+}

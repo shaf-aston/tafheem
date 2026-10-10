@@ -1,7 +1,8 @@
 // The lesson's phrases as a mosaic; every FEATURE_EVERY-th tile is a large one.
+import settings from '../../colloquial.json'
 import Face, { FOCUS } from './Face'
 
-const FEATURE_EVERY = 7
+const FEATURE_EVERY = settings['feature-every']
 
 export default function Mosaic({ phrases, onOpen }) {
   return (
