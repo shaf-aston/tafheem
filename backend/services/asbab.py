@@ -12,7 +12,7 @@ import logging
 from functools import lru_cache
 
 from backend.config import data_path
-from backend.services import provenance, quran_library, quran_meanings
+from backend.services import provenance, quran_library, quran_meanings, refs
 
 logger = logging.getLogger(__name__)
 
@@ -97,6 +97,7 @@ def listing(section: dict, event: dict) -> dict:
     book on that ayah (`/api/quran/editions/{surah}/{ayah}`).
     """
     names = quran_meanings.surah_names()
+    cut = refs.declared()["asbab"]["opening_chars"]
     reports = []
     for row in reports_on(section, event):
         passage = _passages()[row["ref"]]
@@ -106,8 +107,7 @@ def listing(section: dict, event: dict) -> dict:
             # The name travels with the report so the list can group by surah
             # without the tab holding a second copy of the 114 names.
             "surah_name": names.get(surah, {}).get("name_en", f"Surah {surah}"),
-            "opening": passage["english"][:200] or passage["arabic"][:200],
-            "arabic_opening": passage["arabic"][:120],
+            "opening": passage["english"][:cut] or passage["arabic"][:cut],
         })
     return {"section": section["id"], "event": event["id"], "reports": reports,
             "unplaced": _unplaced(), "books": {"arabic": ASBAB_ARABIC, "english": ASBAB_ENGLISH},
