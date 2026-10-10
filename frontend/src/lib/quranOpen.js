@@ -8,9 +8,8 @@
 import { quranSurahQuery, surahEditionQuery, surahGlossesQuery, translationsQuery } from '../api'
 import { lastPlaceOn } from './journey'
 import { readRaw } from './stored'
+import { AYAH_REF } from './surahRef'
 import { editionFor } from './useTranslation'
-
-const AYAH_REF = /^(\d+):(\d+)$/
 
 export function quranOpen(client, place = lastPlaceOn('quran')) {
   const address = AYAH_REF.exec(place ?? '')

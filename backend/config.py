@@ -304,6 +304,19 @@ class Daleel(BaseSettings):
     # Lower than the cap above because each translation also brings its root: six made a twelve-term search vs one to three for Arabic.
     # Measured over twelve English questions: three kept as many exact matches (more on six) and made most searches twice as fast.
     daleel_english_expand_max: int = 3
+    # Terms one question may put to the trigram index. 24 to 12 kept the same twelve passages on 8 of 10
+    # questions and cut "the mercy of god" from 1.7 s to 0.35 s; six lost half the passages on long questions.
+    daleel_max_terms: int = Field(default=12, gt=0)
+    # Two-letter words one question may put to the word index; each is an indexed lookup.
+    daleel_max_short_terms: int = Field(default=6, gt=0)
+    # Rows ranked per passage kept; stops a common root dragging thousands of rows into memory.
+    daleel_candidate_factor: int = Field(default=20, gt=0)
+    # The least each source may bring, however small the cap.
+    daleel_per_source_least: int = Field(default=8, gt=0)
+    # Books one search may name; a request naming hundreds is not a reader choosing.
+    daleel_max_books: int = Field(default=40, gt=0)
+    # Longer than the longest book name with room to spare; a longer one matches nothing.
+    daleel_max_book_chars: int = Field(default=120, gt=0)
     # Longest question any search box sends (Daleel, Hadith, Dictionary, Qur'an); past it, a paste, not a search.
     search_max_query_chars: int = 200
     # No minimum-word-length setting here on purpose: it is a property of SQLite's trigram tokenizer and lives in services/fts.py.

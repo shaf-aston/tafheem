@@ -4,6 +4,7 @@
  * Pure: no DOM, no React, no fetching. The components only draw this.
  */
 import settings from '../timelines.json'
+import { AYAH_REF } from './surahRef'
 
 const { map: MAP, steps: STEPS, sections: LOOKS, 'event-icons': EVENT_ICONS } = settings
 
@@ -191,7 +192,6 @@ export function parsePlace(q, sections) {
   return { section: section.id, event: eventId, report: ref }
 }
 
-const AYAH_REF = /^\d+:\d+$/
 
 /** The address of a place, the inverse of parsePlace. */
 export const placeOf = (section, event, report) => (
@@ -209,7 +209,7 @@ export function nameOfPlace(q, sections) {
 
 /**
  * The ayah a Qur'an reference opens on: the first of its range, or the first of
- * the surah. The Qur'an tab reads one ayah at a time (QuranLookup's AYAH_REF).
+ * the surah. The Qur'an tab reads one ayah at a time (surahRef's AYAH_REF).
  */
 export function firstAyah(ref) {
   const [surah, ayahs = '1'] = ref.split(':')
