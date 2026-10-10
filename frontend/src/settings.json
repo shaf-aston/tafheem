@@ -16,6 +16,7 @@
         "--motion-base-ms": 0,
         "--motion-spring-ms": 0,
         "--motion-stagger-ms": 0,
+        "--motion-shake-ms": 0,
         "--motion-scale": 0
       }
     },
