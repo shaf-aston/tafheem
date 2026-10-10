@@ -28,7 +28,8 @@ import { ayahEnd } from '../../lib/ayahEnd'
 import { useTranslation } from '../../lib/useTranslation'
 import { useRecitation } from '../../lib/useRecitation'
 import { useRecitedWord } from '../../lib/useRecitedWord'
-import { RECITERS, nowPlaying, play, prefetch, stop, watch, watchEnd } from '../../lib/ayahAudio'
+import { RECITERS, nowPlaying, watch } from '../../lib/ayahAudio'
+import { LAST_SURAH } from '../../lib/surahRef'
 import { useRemembered, useRememberedFlag } from '../../lib/useRemembered'
 import { learntWords } from '../../lib/coverage'
 import { useLearntLemmas } from '../../lib/useLearntLemmas'
@@ -38,6 +39,8 @@ import { scrollToEl } from '../../lib/scrollToEl'
 import { useSlide, useSwipe } from '../../lib/useSwipe'
 
 import AyahStudy from './AyahStudy'
+import RecitationBar, { Glyph, PLAY } from './RecitationBar'
+import QURAN from '../../quran.json'
 import { NoTouchButton, ScrollPad } from './NoTouchReading'
 import ArabicText from '../ui/ArabicText'
 import GlossWord from '../ui/GlossWord'
@@ -45,19 +48,11 @@ import ReadingOptions from '../ui/ReadingOptions'
 import CloseButton from '../ui/CloseButton'
 import ErrorAlert from '../ui/ErrorAlert'
 import Segmented from '../ui/Segmented'
-import WheelPicker from '../ui/WheelPicker'
 import { Skeleton } from '../ui/Skeleton'
 import SourceBadge from '../ui/SourceBadge'
 
-// The reciters as the dropdown's choices, each with its Arabic name beside it.
-const VOICES = RECITERS.map((one) => ({ id: one.id, label: one.name, hint: one.arabic }))
-
 const FIRST_SURAH = 1
-const LAST_SURAH = 114
-// Rows drawn before the surah is shown; more than fill the list's first screen.
-// The rest are drawn after it is on screen, in a render the browser may
-// interrupt, so a long surah appears as fast as a short one.
-const FIRST_PAINT_ROWS = 12
+const { 'first-paint-rows': FIRST_PAINT_ROWS, split: SPLIT } = QURAN
 // Wide enough for the surah and the study side by side; Tailwind's lg.
 const TWO_PANES = '(min-width: 64rem)'
 const TOUCH = '(pointer: coarse)'
@@ -134,7 +129,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   // `share` is how much of it the surah keeps.
   const stacked = !twoPanes && Boolean(ayah)
   const panes = useRef(null)
-  const [share, setShare] = useState(0.5)
+  const [share, setShare] = useState(SPLIT.share)
   // Splitting brings the two panes up to fill the screen, the ayah at the top
   // of its half: the half it was in may end above it.
   const wasStacked = useRef(false)
@@ -214,7 +209,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
           <button type="button" onClick={() => recite.current?.(ayah ?? here)}
             aria-label={`Recite from ${surah}:${ayah ?? here}`} title="Recite"
             className="press tap grid place-items-center w-[var(--layout-chip)] h-[var(--layout-chip)] rounded-full text-[var(--c)] hover:bg-[var(--surface-hi)] transition-colors">
-            <Glyph d="M7 4.5v15l13-7.5z" />
+            <Glyph d={PLAY} />
           </button>
         )}
         {touch && noTouchButton && <NoTouchButton on={noTouchOn} onChange={setNoTouch} />}
@@ -413,8 +408,7 @@ function AyahList({ listRef, ayahs, target, still, onScrolled, children: row }) 
   )
 }
 
-// The least either pane keeps of the split, so neither can be dragged shut.
-const LEAST = 0.2
+const { least: LEAST } = SPLIT
 const clampShare = (n) => Math.min(1 - LEAST, Math.max(LEAST, n))
 
 /**
@@ -427,7 +421,7 @@ function SplitBar({ panes, share, onShare }) {
     const box = panes.current.getBoundingClientRect()
     onShare(clampShare((e.clientY - box.top) / box.height))
   }
-  const step = { ArrowUp: -0.1, ArrowDown: 0.1 }
+  const step = { ArrowUp: -SPLIT.step, ArrowDown: SPLIT.step }
   return (
     <div
       role="separator"
@@ -495,110 +489,6 @@ function AyahRail({ count, here, open, onPick }) {
   )
 }
 
-/**
- * The one player for the surah, held to the bottom of the screen: back, play or
- * stop, on, and who is reciting. Playing runs on through the surah an ayah at a
- * time, and the list follows while the reader is following it.
- *
- * Who is reciting is the app's one dropdown (ui/WheelPicker), opening upwards
- * from the bar; its pill already names the voice, so the line beside the
- * buttons says only where the recitation is.
- */
-function RecitationBar({ surah, count, from, here, recitation, reciter, onReciter, onFollow, startRef }) {
-  const now = useSyncExternalStore(watch, nowPlaying, () => '')
-  const [failed, setFailed] = useState(false)
-  // The ayah last started and the address it was started on. Matched by that
-  // address, not by asking the recitation again: the measured recording can
-  // arrive mid-ayah and change what urlFor answers, but not what is playing.
-  const [cue, setCue] = useState(null)
-  const sounding = now && now === cue?.url ? cue.n : 0
-  const at = sounding || from
-  const { urlFor } = recitation
-
-  const start = useCallback((n) => {
-    if (n < 1 || n > count) return
-    const url = urlFor(n)
-    setFailed(false)
-    setCue({ n, url })
-    // A press that overtakes the last one aborts it; only a refusal is a failure.
-    play(url).catch((e) => e.name !== 'AbortError' && setFailed(true))
-  }, [count, urlFor])
-  // The header starts it from outside; a new voice picks up the same ayah
-  // rather than stopping, so the bar is not gone from under the choice.
-  const playing = useRef({ start, sounding })
-  useEffect(() => {
-    playing.current = { start, sounding }
-    startRef.current = start
-  })
-  useEffect(() => {
-    const { start: again, sounding: n } = playing.current
-    if (n) again(n)
-  }, [reciter])
-  // A skip is the reader moving, so the list and rail go with it.
-  const skipTo = (n) => { start(n); onFollow(n) }
-
-  // On to the next ayah when one ends; the list follows only if the reader was
-  // still with the one that finished, never pulled away from where they went.
-  useEffect(() => watchEnd((url) => {
-    if (url !== cue?.url || cue.n >= count) return
-    start(cue.n + 1)
-    if (Math.abs(here - cue.n) <= 1) onFollow(cue.n + 1)
-  }), [cue, start, onFollow, here, count])
-  // Stop when the bar goes with its surah, so nothing plays on under another.
-  useEffect(() => () => stop(), [])
-
-  // Reading somewhere else while it recites: the place it is at becomes a way
-  // back there, pointing up or down to it. Same reach as the follow above.
-  const away = sounding && Math.abs(here - sounding) > 1
-
-  const round = 'press shrink-0 grid place-items-center rounded-full transition-colors'
-  // Only while it recites, or to say why it could not.
-  if (!sounding && !failed) return null
-  const skip = `${round} w-8 h-8 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`
-
-  return (
-    <div className="reader-dock rise-in flex items-center gap-2 p-2 pl-3 border-t border-[var(--border)] bg-[var(--surface-hi)]">
-      <button type="button" className={skip}
-        onClick={() => skipTo(at - 1)} disabled={at <= 1} aria-label="Previous ayah">
-        <Glyph d="M6 5h2v14H6zM20 5v14L9 12z" />
-      </button>
-      <button type="button" className={`${round} w-10 h-10 text-[var(--bg)] bg-[var(--c)]`}
-        onClick={() => (sounding ? stop() : start(at))} onPointerEnter={() => prefetch(urlFor(at))}
-        aria-label={sounding ? `Stop ${surah}:${sounding}` : `Play from ${surah}:${at}`}>
-        <Glyph d={sounding ? 'M6 6h12v12H6z' : 'M7 4.5v15l13-7.5z'} />
-      </button>
-      <button type="button" className={skip}
-        onClick={() => skipTo(at + 1)} disabled={at >= count} aria-label="Next ayah">
-        <Glyph d="M16 5h2v14h-2zM4 5v14l11-7z" />
-      </button>
-
-      <p className="min-w-0 flex-1 truncate type-small" aria-live="polite">
-        {failed ? (
-          <span className="text-[var(--warn)]">That recitation could not be reached</span>
-        ) : away ? (
-          <button type="button" onClick={() => onFollow(sounding)}
-            aria-label={`Go to ${surah}:${sounding}, being recited`}
-            className="fade-in press inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-mono text-[var(--bg)] bg-[var(--c)]">
-            <Glyph d={sounding < here ? 'M12 5l7 8h-5v6h-4v-6H5z' : 'M12 19l7-8h-5V5h-4v6H5z'} />
-            {/* The ayah alone: the bar only plays its own surah, and 2:255 in full would not fit a phone. */}
-            {sounding}
-          </button>
-        ) : (
-          <span className="font-mono text-[var(--text)]">{surah}:{at}</span>
-        )}
-      </p>
-
-      <WheelPicker label="Reciter" options={VOICES} value={reciter} onChange={onReciter} className="shrink-0" />
-    </div>
-  )
-}
-
-function Glyph({ d }) {
-  return (
-    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d={d} /></svg>
-  )
-}
-
 /** Back and on a surah. Its name is the picker's, just above, so not said twice. */
 function Stepper({ surah, onChange }) {
   const arrow = `w-7 h-7 rounded-full border border-[var(--border)] text-[var(--text-dim)]
@@ -613,4 +503,3 @@ function Stepper({ surah, onChange }) {
     </div>
   )
 }
-
