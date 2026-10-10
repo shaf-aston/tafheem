@@ -24,6 +24,7 @@ from __future__ import annotations
 import logging
 import sqlite3
 from dataclasses import dataclass
+from typing import NamedTuple
 
 from backend.config import data_path, get_settings
 from backend.services import fts
@@ -37,34 +38,27 @@ log = logging.getLogger(__name__)
 # This thread's read-only connection to the index, reopened when a build replaces it.
 _db = ReadOnlyDb(lambda: data_path("daleel_index_path"))
 
-# How many two-letter words one question may put to the word index. It was a
-# cap on full scans, which is why the number is small; each one is now an
-# indexed lookup of a millisecond or two, so it is only a bound on how many
-# queries one request may fire and could safely be raised.
-_MAX_SHORT_TERMS = 6
-
-# How many words in total may be put to the index at once. A seven-word English
-# question expands into roughly forty and took three seconds to answer; past
-# this many, more terms stop narrowing the search and start widening it.
-#
-# Twelve, not the twenty-four it was, because the second twelve were not
-# earning their keep. Measured over ten questions against the real index: eight
-# of them showed exactly the same twelve passages either way, and the other two
-# changed one or two of the twelve. What it cost was the whole tail of the
-# search: "the mercy of god" fell from 1.7 seconds to 0.35. Six was tried too
-# and is too few, losing half the passages on the longer questions.
-_MAX_TERMS = 12
-
-# How many rows are ranked before the best are kept. Ranking is cheap and the
-# index is small; this only stops a very common root from dragging thousands of
-# rows into memory.
-_CANDIDATE_FACTOR = 20
-
 _MATCH_ALL = "exact"
 _MATCH_SOME = "partial"
 _MATCH_RELATED = "related"
 _MATCH_ROOT = "root"
 _MATCH_LOOSE = "loose"
+
+
+class Passage(NamedTuple):
+    """One row of the index, as every query here reads it."""
+
+    source: str
+    book: str
+    locator: str
+    arabic: str
+    english: str
+    roots: str
+    fold: str
+
+
+# The passage columns, read through the FTS table's alias `p`.
+_COLUMNS = ", ".join(f"p.{name}" for name in Passage._fields)
 
 
 @dataclass(frozen=True)
@@ -87,9 +81,7 @@ def search(query: str, limit: int | None = None, books: tuple[str, ...] = ()) ->
     """Passages worth showing for what was typed, best first.
 
     `books` narrows the search to those books by name. Empty means every book,
-    which is the ordinary case. The caller drops names no book has before
-    getting here, so a stale bookmark searches everything rather than finding
-    nothing and reading as "no book says this".
+    which is the ordinary case. The router passes them through known_books first.
     """
     settings = get_settings()
     limit = limit or settings.daleel_result_limit
@@ -107,19 +99,12 @@ def search(query: str, limit: int | None = None, books: tuple[str, ...] = ()) ->
     conn = _db()
     if conn is None:
         return []
-    rows = _candidates(conn, expansion, limit * _CANDIDATE_FACTOR, tuple(books))
+    rows = _candidates(conn, expansion, limit * settings.daleel_candidate_factor, tuple(books))
 
     ranked = sorted(((rank_of(row, expansion), row) for row in rows), key=lambda i: i[0])
 
     return [
-        Hit(
-            source=row[0],
-            book=row[1],
-            locator=row[2],
-            arabic=row[3],
-            english=row[4],
-            match=_MATCH_BY_TIER[rank[0]],
-        )
+        Hit(row.source, row.book, row.locator, row.arabic, row.english, _MATCH_BY_TIER[rank[0]])
         for rank, row in _spread(ranked, limit)
     ]
 
@@ -135,19 +120,24 @@ def _spread(ranked: list[tuple], limit: int) -> list[tuple]:
     """
     best_of: dict[str, tuple] = {}
     for item in ranked:
-        best_of.setdefault(item[1][0], item)
+        best_of.setdefault(item[1].source, item)
 
     chosen = list(best_of.values())[:limit]
-    taken = {(item[1][0], item[1][2]) for item in chosen}
+    taken = {_key(item[1]) for item in chosen}
 
     for item in ranked:
         if len(chosen) >= limit:
             break
-        if (item[1][0], item[1][2]) not in taken:
+        if _key(item[1]) not in taken:
             chosen.append(item)
-            taken.add((item[1][0], item[1][2]))
+            taken.add(_key(item[1]))
 
     return sorted(chosen, key=lambda i: i[0])
+
+
+def _key(row: Passage) -> tuple[str, str]:
+    """One passage, however many queries found it."""
+    return row.source, row.locator
 
 
 _MATCH_BY_TIER = {
@@ -159,7 +149,7 @@ _MATCH_BY_TIER = {
 }
 
 
-def rank_of(row: tuple, expansion: Expansion) -> tuple[int, int, int, int]:
+def rank_of(row: Passage, expansion: Expansion) -> tuple[int, int, int, int]:
     """How good a match this row is. Pure, so it can be argued with in a test.
 
     Returns four numbers, all smaller-is-better: the tier, then a strength
@@ -225,7 +215,7 @@ def _has_root(roots: str, root: str) -> bool:
 
 def _candidates(
     conn: sqlite3.Connection, expansion: Expansion, cap: int, books: tuple[str, ...] = ()
-) -> list[tuple]:
+) -> list[Passage]:
     """Rows that could match, with every source getting a share of the places.
 
     Each source gets its own share rather than the best matches being taken as
@@ -240,9 +230,9 @@ def _candidates(
     source: a question of a few words took nineteen seconds. It now takes a
     third of one.
     """
-    columns = "source, book, locator, arabic, english, roots, fold"
-    per_source = max(cap // max(len(registry.SOURCES), 1), 8)
-    found: dict[tuple[str, str], tuple] = {}
+    settings = get_settings()
+    per_source = max(cap // max(len(registry.SOURCES), 1), settings.daleel_per_source_least)
+    found: dict[tuple[str, str], Passage] = {}
 
     # Capped, and the strongest terms come first, so what is dropped is always
     # the weakest end: the typed words survive, then the synonyms, then the
@@ -250,7 +240,7 @@ def _candidates(
     # Deduplicated before the cap: a translation is often its own root (صبر),
     # and each repeat spent one of the twelve places on nothing.
     long_terms = list(dict.fromkeys(t for t in (*expansion.all_terms, *expansion.roots)
-                                    if len(t) >= fts.TRIGRAM_MIN))[:_MAX_TERMS]
+                                    if len(t) >= fts.TRIGRAM_MIN))[:settings.daleel_max_terms]
 
     # The words the trigram index cannot see, because it cannot match anything
     # shorter than three characters. They go to the `word` index, which holds
@@ -260,7 +250,7 @@ def _candidates(
     # The terms past the cap are not lost; they are still matched by the
     # trigram path when they are long enough.
     short_terms = [t for t in expansion.all_terms
-                   if len(t) < fts.TRIGRAM_MIN and _is_a_word(t)][:_MAX_SHORT_TERMS]
+                   if len(t) < fts.TRIGRAM_MIN and _is_a_word(t)][:settings.daleel_max_short_terms]
 
     # An index built before the word table existed still opens and still
     # answers every long word, so it must not turn a short one into a 500.
@@ -274,8 +264,8 @@ def _candidates(
 
     if long_terms:
         match = " OR ".join(fts.quoted(term) for term in long_terms)
-        for row in _fairly(conn, columns, match, per_source, books):
-            found[(row[0], row[2])] = row
+        for row in _fairly(conn, match, per_source, books):
+            found[_key(row)] = row
 
     # Matched as whole words, which is what the word index holds, so a
     # two-letter query does not match the inside of every longer one. The
@@ -285,28 +275,26 @@ def _candidates(
     # Asked a source at a time, unlike the long terms above, because here the
     # narrowing is free: source and book are indexed columns of the word table,
     # so it is part of the same lookup rather than a filter over its answers.
-    passage_columns = ", ".join(f"p.{name}" for name in columns.split(", "))
     for source in registry.SOURCES:
         for term in short_terms:
-            for row in conn.execute(
-                f"SELECT {passage_columns} FROM word JOIN passage p ON p.rowid = word.rowid "
+            for row in map(Passage._make, conn.execute(
+                f"SELECT {_COLUMNS} FROM word JOIN passage p ON p.rowid = word.rowid "
                 f"WHERE word MATCH ? LIMIT ?",
                 (_word_match(term, source.id, books), per_source),
-            ):
-                found.setdefault((row[0], row[2]), row)
+            )):
+                found.setdefault(_key(row), row)
 
     # Only now, and only if nothing was found spelled the way it was typed.
     if not found:
-        for row in _loosely(conn, columns, expansion, per_source, books):
-            found.setdefault((row[0], row[2]), row)
+        for row in _loosely(conn, expansion, per_source, books):
+            found.setdefault(_key(row), row)
 
     return list(found.values())
 
 
 def _fairly(
-    conn: sqlite3.Connection, columns: str, match: str, per_source: int,
-    books: tuple[str, ...] = (),
-) -> list[tuple]:
+    conn: sqlite3.Connection, match: str, per_source: int, books: tuple[str, ...] = (),
+) -> list[Passage]:
     """The best `per_source` passages each source has for that match, in one question.
 
     The matching is left to the trigram index, which answers in rowids and
@@ -322,24 +310,19 @@ def _fairly(
     passages holding every typed word first was tried too and kept only 121.
     """
     only, chosen = fts.only_in("book", books)
-    passage_columns = ", ".join(f"p.{name}" for name in columns.split(", "))
-    return list(conn.execute(
-        f"SELECT {passage_columns} FROM ("
+    return list(map(Passage._make, conn.execute(
+        f"SELECT {_COLUMNS} FROM ("
         f" SELECT m.id, row_number() OVER (PARTITION BY m.source ORDER BY f.rank, m.id) AS place"
         f" FROM (SELECT rowid AS id, rank FROM passage WHERE passage MATCH ?) f"
         f" JOIN passage_meta m ON m.id = f.id{only}"
         f") share JOIN passage p ON p.rowid = share.id WHERE share.place <= ?",
         (match, *chosen, per_source),
-    ))
+    )))
 
 
 def _loosely(
-    conn: sqlite3.Connection,
-    columns: str,
-    expansion: Expansion,
-    per_source: int,
-    books: tuple[str, ...] = (),
-) -> list[tuple]:
+    conn: sqlite3.Connection, expansion: Expansion, per_source: int, books: tuple[str, ...] = (),
+) -> list[Passage]:
     """Passages sharing most of a term's three-letter runs. The "did you mean".
 
     A misspelling keeps nearly all of the runs of the word intended: الرحييم
@@ -351,7 +334,7 @@ def _loosely(
         return []
 
     match = " OR ".join(fts.quoted(run) for run in sorted(runs))
-    return _fairly(conn, columns, match, per_source, books)
+    return _fairly(conn, match, per_source, books)
 
 
 def _runs(term: str, size: int) -> set[str]:
@@ -414,7 +397,6 @@ def _word_match(term: str, source: str, books: tuple[str, ...]) -> str:
     return query
 
 
-
 def books() -> list[tuple[str, str]]:
     """Every book in the index and the source it is credited to.
 
@@ -432,6 +414,17 @@ def books() -> list[tuple[str, str]]:
     # Ordered by source first so the list arrives grouped the way the page
     # already groups its results, one shape for the reader to learn.
     return [tuple(row) for row in conn.execute("SELECT name, source FROM book ORDER BY source, name")]
+
+
+def known_books(asked: list[str]) -> tuple[str, ...]:
+    """The asked books the index holds, once each, at most daleel_max_books.
+
+    Unknown names are dropped, not refused: a bookmark naming a removed book
+    searches the rest of the library instead of reading as "no book says this".
+    """
+    known = {name for name, _ in books()}
+    most = get_settings().daleel_max_books
+    return tuple(dict.fromkeys(b for b in asked[:most] if b in known))
 
 
 def is_built() -> bool:
