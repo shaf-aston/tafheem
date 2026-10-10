@@ -12,10 +12,10 @@ venv\Scripts\Activate
 python -m uvicorn backend.main:app --reload --port 8000   # backend, project root
 cd frontend && npm run dev                                 # frontend, open http://localhost:5173
 venv/Scripts/python -m pytest tests -q                     # backend tests
+venv/Scripts/python -m backend.scripts.worktree new NAME|ci  # ready copy, data linked from ../tafheem-data; or tests with no data, as CI
 cd frontend && npm test && npm run lint                    # frontend tests
 EAR=http://127.0.0.1:8000 node frontend/scripts/probe-ear.mjs  # reciting, end to end
-venv/Scripts/python -m backend.scripts.score_iraab             # i'raab roles vs the books, as a score
-venv/Scripts/python -m backend.scripts.score_iraab --set checked  # and vs the 72 checked sentences
+venv/Scripts/python -m backend.scripts.score_iraab [--set checked]  # i'raab roles vs the books, or the 72 checked sentences
 venv/Scripts/python -m backend.scripts.score_mutashabihat  # similar-verse finder vs the benchmark
 venv/Scripts/python -m backend.scripts.analyse "جملة" [--api URL] [--json]  # one sentence's cards and tree; stdin takes one per line
 ```
