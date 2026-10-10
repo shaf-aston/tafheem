@@ -39,7 +39,7 @@ MODULE = "nahw"
 @router.post("", response_model=PracticeResponse)
 async def generate_practice(request: PracticeRequest) -> PracticeResponse:
     sentence = arabic_sentence(request.sentence, "Sentence")
-    read = await asyncio.to_thread(iraab.analyse, sentence)
+    read = await asyncio.to_thread(iraab.analyze, sentence)
     questions = practice_service.from_analysis(sentence, read)
     return await _answer(sentence, [PracticeQuestion(**q) for q in questions], "nahw")
 

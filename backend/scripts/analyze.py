@@ -4,9 +4,9 @@ Sentences come from the command line, or one per line on stdin (safer for
 Arabic in a Windows shell). Offline it runs the route itself; --api asks a
 running app instead, e.g. the live one.
 
-    venv/Scripts/python -m backend.scripts.analyse "لَمْ يَكْتُبْ الوَلَدُ"
-    venv/Scripts/python -m backend.scripts.analyse --api https://tafheem-app.vercel.app < sentences.txt
-    venv/Scripts/python -m backend.scripts.analyse --json "قُمْ"
+    venv/Scripts/python -m backend.scripts.analyze "لَمْ يَكْتُبْ الوَلَدُ"
+    venv/Scripts/python -m backend.scripts.analyze --api https://tafheem-app.vercel.app < sentences.txt
+    venv/Scripts/python -m backend.scripts.analyze --json "قُمْ"
 
 The raw route with curl, the sentence in a UTF-8 file so the shell cannot mangle it:
 

@@ -46,7 +46,7 @@ def typed(monkeypatch, tmp_path):
     monkeypatch.setattr(morphology, "glosses_of", lambda w: {"كبير": ["large;great", "old;aged"]}.get(w, []))
     monkeypatch.setattr(dictionary_service, "meanings_of", lambda w: {"البيت": ["home"]}.get(w, []))
     monkeypatch.setattr(local, "whole_ayah", lambda text: None)
-    monkeypatch.setattr(iraab, "analyse", lambda text: {"summary": "جُمْلَةٌ اِسْمِيَّةٌ"})
+    monkeypatch.setattr(iraab, "analyze", lambda text: {"summary": "جُمْلَةٌ اِسْمِيَّةٌ"})
     monkeypatch.setattr(progress_store, "data_path", lambda _name: tmp_path / "progress.db")
     progress_store.reset_connection()
     asked = []

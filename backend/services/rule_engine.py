@@ -18,7 +18,7 @@ from backend.services.nahw_book import MABNI_KINDS, book_words, condition_of, na
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
-# themselves are the contract's, `models/analysis.py ROLE_KEYS`, and
+# themselves are the contract's, `models/analyze.py ROLE_KEYS`, and
 # tests/test_rule_engine.py holds the two lists together.
 
 # CAMeL's tags for each particle family; a word on the family's list counts too

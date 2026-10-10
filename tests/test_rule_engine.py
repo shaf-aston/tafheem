@@ -7,7 +7,7 @@ default grey.
 
 So these check the two halves of the seam that replaced it: every entry the
 engine builds carries a `role_key`, and every key it uses is one the contract
-allows, because a key that is not in `models/analysis.py ROLE_KEYS` is dropped at the
+allows, because a key that is not in `models/analyze.py ROLE_KEYS` is dropped at the
 router and the colour is silently lost again.
 
 Run: python -m pytest tests/test_rule_engine.py
@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.models.analysis import ROLE_KEYS, WordAnalysis
+from backend.models.analyze import ROLE_KEYS, WordAnalysis
 from backend.services import iraab, morphology, rule_engine
 from backend.services.nahw_book import term_ar
 from backend.services.syntax.catib_onnx import files_present
@@ -53,7 +53,7 @@ def test_every_word_carries_a_role_key_field(sentence: str):
 
 @pytest.mark.parametrize("sentence", [VERBAL, NOMINAL])
 def test_keys_are_ones_the_contract_allows(sentence: str):
-    """The list here and the list in models/analysis.py are the same list.
+    """The list here and the list in models/analyze.py are the same list.
 
     Anything else is dropped to None by `WordAnalysis.from_raw`, so a typo in a
     key would not fail, it would just quietly go grey, which is the exact bug
@@ -103,7 +103,7 @@ def test_every_role_has_a_reason():
 
 @pytest.mark.parametrize("sentence", REASON_SENTENCES)
 def test_each_reason_explains_its_own_role(sentence: str):
-    words = iraab.analyse(sentence)["words"]
+    words = iraab.analyze(sentence)["words"]
     for word in words:
         role = word["role"]
         if word["type"] == "punc" or role == "–":
@@ -132,7 +132,7 @@ VERB_CARDS = [
 
 @pytest.mark.parametrize("sentence, index, case, said", VERB_CARDS)
 def test_verb_card_case_and_reason_agree(sentence: str, index: int, case: str, said: str):
-    word = iraab.analyse(sentence)["words"][index]
+    word = iraab.analyze(sentence)["words"][index]
     assert (word["case"], said in word["reason"]) == (case, True), word
 
 
@@ -148,15 +148,15 @@ def test_a_command_is_described_as_one(sentence: str, lemma: str):
     ("لَمْ يَكْتُبْ الطَّالِبُ", True), ("قَدْ نَجَحَ الطَّالِبُ", True), ("لَنْ يَذْهَبَ زَيْدٌ", True),
     ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", False)])  # nearest case: a particle before a noun
 def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, verbal: bool):
-    summary = iraab.analyse(sentence)["summary"]
+    summary = iraab.analyze(sentence)["summary"]
     assert (summary == term_ar("jumlah_filiyyah")) is verbal, summary
 
 
 def _read(sentence: str) -> dict:
-    return iraab.analyse(sentence)
+    return iraab.analyze(sentence)
 
 
-# One card field each, found by typing the sentence in (backend/scripts/analyse.py).
+# One card field each, found by typing the sentence in (backend/scripts/analyze.py).
 CARDS = [
     ("الدِّينُ النَّصِيحَةُ", 1, "role", "خبر"),           # nothing else is said of the mubtada
     ("الكِتَابُ الجَدِيدُ مُفِيدٌ", 1, "role", "صفة"),       # nearest case: a khabar follows, so a صفة
@@ -308,7 +308,7 @@ def test_word_types_are_the_pages():
     """The types a card may carry are the ones grammar.json labels, and the rules use no other."""
     import json
     from pathlib import Path
-    from backend.models.analysis import WORD_TYPES
+    from backend.models.analyze import WORD_TYPES
     labelled = json.loads((Path(__file__).parent.parent / "frontend/src/grammar.json").read_text(encoding="utf-8"))["types"]
     assert WORD_TYPES - {"punc"} == set(labelled)
     for sentence in (VERBAL, NOMINAL, "جَاءَ الَّذِي نَجَحَ، هُوَ فِي البَيْتِ"):
@@ -421,15 +421,15 @@ PARTICLE_ROLES = [
 
 @pytest.mark.parametrize("sentence, expected", PARTICLE_ROLES)
 def test_a_small_word_is_read_once_by_what_surrounds_it(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
 
 
 def test_each_reading_names_the_particle():
-    words = iraab.analyse("إِذَا قَالَ الْعَبْدُ لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ")["words"]
+    words = iraab.analyze("إِذَا قَالَ الْعَبْدُ لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ")["words"]
     assert "ظرف شرط غير جازم" in words[0]["reason"]
     assert "لا النافية للجنس" in words[3]["reason"] and "أداة استثناء" in words[5]["reason"]
     assert "ويجوز أن تكون استئنافية" in words[7]["reason"]
-    assert "أداة حصر" in iraab.analyse("مَا جَاءَ إِلَّا زَيْدٌ")["words"][2]["reason"]
+    assert "أداة حصر" in iraab.analyze("مَا جَاءَ إِلَّا زَيْدٌ")["words"][2]["reason"]
 
 
 @pytest.mark.parametrize("sentence, expected", [
@@ -440,7 +440,7 @@ def test_each_reading_names_the_particle():
     ("لَا إِلَهَ إِلَّا اللَّهُ", ["حرف", "اسم لا", "حرف", "بدل"]),  # control: after a noun in its case, a بدل
 ])
 def test_the_word_after_a_restricting_illa_takes_the_place_the_sentence_leaves(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
 
 
 def _shape(node: dict) -> tuple:
@@ -483,7 +483,7 @@ def test_the_wonder_form_is_drawn_as_the_books_own_example():
     ("مَا أَعْطَاهَا كِتَابًا", ["حرف", "فعل", "مفعول به"]),  # a second object: not the wonder form
 ])
 def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
 
 
 @pytest.mark.parametrize("sentence, expected", [
@@ -508,7 +508,7 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("إِنَّ مَا عِنْدَ اللَّهِ هُوَ خَيْرٌ لَكُمْ", ["حرف", "اسم إن", "مفعول فيه", "مضاف إليه", "مبتدأ", "خبر إن", "حرف جر"]),
 ])
 def test_a_question_word_before_its_mubtada_is_the_khabar(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
 
 
 @pytest.mark.parametrize("sentence, negations", [
@@ -525,12 +525,12 @@ def test_only_a_ma_that_opens_its_clause_is_the_negation_before_illa(sentence: s
 
 
 def test_the_wonder_verbs_noun_after_its_pronoun_is_no_second_object():
-    words = iraab.analyse("مَا أَجْمَلَهَا لَيْلَةً")["words"]
+    words = iraab.analyze("مَا أَجْمَلَهَا لَيْلَةً")["words"]
     assert [w["role"] for w in words[:2]] == ["مبتدأ", "فعل"] and "للتعجب" in words[1]["reason"]
 
 
 def test_a_relative_before_a_zarf_and_its_verb_is_no_question():
-    words = iraab.analyse("مَا عِنْدَكُمْ يَنْفَدُ")["words"]
+    words = iraab.analyze("مَا عِنْدَكُمْ يَنْفَدُ")["words"]
     assert words[0]["role"] == "مبتدأ" and words[-1]["role"] == "فعل" and "اسْتِفْهَامِيَّةٌ" not in _sentence_label("مَا عِنْدَكُمْ يَنْفَدُ")
 
 
@@ -541,7 +541,7 @@ def _sentence_label(sentence: str) -> str:
 
 @pytest.mark.parametrize("sentence", ["مَا أَنْتَ إِلَّا بَشَرٌ", "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ", "ما أنت إلا بشر"])
 def test_ma_before_illa_is_the_negation_and_illa_restricts_the_khabar(sentence: str):
-    words = iraab.analyse(sentence)["words"]
+    words = iraab.analyze(sentence)["words"]
     assert [w["role"] for w in words] == ["حرف", "مبتدأ", "حرف", "خبر"]
     assert "أداة حصر" in words[2]["reason"]
 
@@ -581,7 +581,7 @@ def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: 
     shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
     assert doer in shown
     if sentence.startswith(("أَنْتَ", "هِيَ", "أَنْتِ")):
-        assert [w["role"] for w in iraab.analyse(sentence)["words"]][0] == "مبتدأ" and "خبر" in shown
+        assert [w["role"] for w in iraab.analyze(sentence)["words"]][0] == "مبتدأ" and "خبر" in shown
 
 
 @pytest.mark.parametrize("sentence, roles", [

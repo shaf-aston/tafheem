@@ -19,7 +19,7 @@ from backend.services.syntax import teacher
 from backend.services.syntax.naming import NAMED, role_key
 
 
-def analyse(sentence: str) -> dict:
+def analyze(sentence: str) -> dict:
     """{words, summary, source, tree} for one sentence; `tree` is None when nothing joins.
     The summary is the picture's own top label, so the line above the cards and the
     picture can never name the sentence apart; with no picture there is no summary."""
