@@ -3,7 +3,7 @@
  *
  * The server sends a note for each weak narrator in a hadith (`at`, `level`,
  * `kind`, `grade`) and the twelve levels once (`scale`). lib/rijal linked pins
- * each note to the narrator it names in the drawn chain, as `link.note`; this
+ * each note to the narrator it names in the drawn chain, as a member's `note`; this
  * turns those into a ranked list. It also sends the links a source puts in
  * doubt (`ties`, pinned the same way) with what each kind says (`rules`); those
  * are listed in chain order and never ranked against the narrators. Pure: no React.
@@ -20,11 +20,11 @@ const drawn = ({ main, branches }) => [...main, ...branches.flatMap((b) => [...b
 export function weakPoints(links, scale) {
   const levels = new Map(scale.map((row) => [row.level, row]))
   const seen = new Set()
-  const found = drawn(links).filter((link) => {
-    if (!link.note || !levels.has(link.note.level) || seen.has(link.note.id)) return false
-    seen.add(link.note.id)
+  const found = drawn(links).flatMap((link) => link.members).filter(({ note }) => {
+    if (!note || !levels.has(note.level) || seen.has(note.id)) return false
+    seen.add(note.id)
     return true
-  }).map((link) => ({ ...link.note, name: link.name, id: link.note.id }))
+  }).map(({ note, name }) => ({ ...note, name }))
   found.sort((a, b) => b.level - a.level || a.at - b.at)
   return found.map((point) => {
     const row = levels.get(point.level)
@@ -44,15 +44,16 @@ export function weakPoints(links, scale) {
  * on its rung in the drawing, and the lines the list prints: its kind, the
  * condition it meets and the quotes with their book and page.
  *
- * A tie is kept only if the teller (`student`) is also drawn, so both names can
- * be printed. Points are keyed by who said it to whom, never by position: a
- * narrator named in two strands is one point (like weakPoints), but the same
- * two men in two places in one chain are one link too.
+ * A tie is kept only if the teller (`student`) is also drawn, alone or among the
+ * names a box joins, so both names can be printed. Points are keyed by who
+ * said it to whom, never by position: a narrator named in two strands is one
+ * point (like weakPoints), but the same two men in two places in one chain are
+ * one link too.
  */
 export function weakLinks(links, rules) {
   if (!rules) return []
   const all = drawn(links)
-  const named = new Map(all.filter((link) => link.id != null).map((link) => [link.id, link]))
+  const named = new Map(all.flatMap((link) => link.members.map((who) => [who.id, who])))
   const seen = new Set()
   const found = []
   for (const teacher of all) {

@@ -60,18 +60,23 @@ export function told(arabic, cut, names) {
  * A drawn chain (lib/hadithWords chainLinks of the Arabic before `cut`) with each
  * narrator's id where sunnah.com linked his name in this hadith: the slice
  * overlapping the place his name stands. A name it did not link stays plain.
- * A `note` (a weak narrator, from usul.db) starting where that slice starts
- * rides on the link, for lib/weak. So do the `ties` that start there: the links
- * of the chain a source puts in doubt, each saying who said the word before
- * this narrator's name.
+ * Each name in the box is a `member` (a box may join several: أيوب، ويونس) with
+ * its own words, cut to the box so an aside after it stays out, and its `note`
+ * (a weak narrator, from usul.db, starting where his slice starts), for lib/weak.
+ * The box carries the `ties` that start at any member: the links of the chain a
+ * source puts in doubt, each saying who said the word before that name.
  */
-export function linked(links, names, notes = [], ties = []) {
+export function linked(links, names, chain, notes = [], ties = []) {
   const add = (link) => {
     if (!link) return link
-    const slice = names.find(([start, end]) => link.span && start < link.span[1] && end > link.span[0])
+    const [from, to] = link.span ?? [0, 0]
+    const slices = names.filter(([start, end]) => start < to && end > from)
     return {
-      ...link, id: slice?.[2] ?? null, note: (slice && notes.find((n) => n.at === slice[0])) || null,
-      ties: slice ? ties.filter((t) => t.at === slice[0]) : [],
+      ...link, id: slices[0]?.[2] ?? null,
+      members: slices.map(([start, end, id]) => ({
+        id, name: chain.slice(Math.max(start, from), Math.min(end, to)), note: notes.find((n) => n.at === start) ?? null,
+      })),
+      ties: ties.filter((t) => slices.some(([start]) => t.at === start)),
     }
   }
   return {
@@ -89,5 +94,5 @@ export function drawnChain(arabic, cut, names, notes = [], ties = []) {
   const chain = arabic.slice(0, cut[1]).trim()
   const at = arabic.indexOf(chain)
   const moved = (list) => list.map((n) => ({ ...n, at: n.at - at }))
-  return linked(chainLinks(chain), names.map(([start, end, id]) => [start - at, end - at, id]), moved(notes), moved(ties))
+  return linked(chainLinks(chain), names.map(([start, end, id]) => [start - at, end - at, id]), chain, moved(notes), moved(ties))
 }

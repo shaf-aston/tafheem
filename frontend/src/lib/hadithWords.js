@@ -202,7 +202,11 @@ export function chainLinks(chain) {
     term = null
     handing = false
   }
-  for (const { 0: raw, index } of String(chain ?? '').matchAll(/\S+/g)) {
+  const found = [...String(chain ?? '').matchAll(/\S+/g)]
+  // A remark set between two aside marks (- يعني ابن علية -) is no name; a mark with no partner is ignored.
+  const marks = found.flatMap((m, i) => (m[0] === CHAIN.aside ? [i] : []))
+  const inside = (i) => marks.some((from, k) => k % 2 === 0 && k + 1 < marks.length && i >= from && i <= marks[k + 1])
+  for (const { 0: raw, index } of found.filter((_, i) => !inside(i))) {
     const word = bare(raw)
     if (word === CHAIN.strand) { close(); strands.push([]); continue }
     if (TOGETHER.has(word)) {
