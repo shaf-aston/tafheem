@@ -10,10 +10,9 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { colloquialQuery, colloquialUnitQuery } from '../api'
-import { nameOfPlace, parsePlace, placeOf } from '../lib/colloquialPlace'
+import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf, unitNumber } from '../lib/colloquialPlace'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
-import { useRemembered } from '../lib/useRemembered'
 import { colorAt, colorFor } from '../theme'
 import { FOCUS } from './colloquial/Face'
 import PhrasePicture from './colloquial/PhrasePicture'
@@ -26,8 +25,6 @@ import SectionHeader from './ui/SectionHeader'
 import SpeakButton from './ui/SpeakButton'
 import WheelPicker from './ui/WheelPicker'
 import { AnalyzerSkeleton } from './ui/Skeleton'
-
-const unitNumber = (id) => Number(id.replace(/\D/g, '')) || 0
 
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
 // Without onClick it is a unit or topic this dialect has not written yet: shown, not openable.
@@ -172,15 +169,13 @@ function Topic({ dialect, unit, at, words }) {
 export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   const catalogue = useQuery(colloquialQuery)
   const dialects = catalogue.data?.dialects ?? []
-  const [dialectKey, setDialectKey] = useRemembered('colloq-dialect', dialects.map((d) => d.key))
-  const [picked, setPicked] = useState(false)
-  const [unitKey, setUnitKey] = useState(null)
-  const [lessonAt, setLessonAt] = useState(null)
-  const [words, setWords] = useState(false)
+  const [place, setPlace] = useState(null)
   const client = useQueryClient()
 
-  const dialect = picked ? dialects.find((d) => d.key === dialectKey) : null
-  const unit = dialect?.units.find((u) => u.written && u.unit === unitKey)
+  const dialect = place && dialects.find((d) => d.key === place.dialect)
+  const unit = dialect?.units.find((u) => u.written && u.unit === place.unit)
+  const lessonAt = place?.at ?? null
+  const words = place?.words ?? false
   // Opening a unit shows its topics; the unit's words are what a topic click needs.
   useEffect(() => {
     if (dialect && unit) warm(client, colloquialUnitQuery(dialect.key, unit.unit))
@@ -189,36 +184,14 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
 
   // One way to move: every step down or up the tree is a place on the journey,
   // so a reload, a pasted link and the back arrow all land where the reader was.
-  const show = (there) => {
-    setPicked(Boolean(there))
-    if (there) setDialectKey(there.dialect)
-    setUnitKey(there?.unit ?? null)
-    setLessonAt(there?.at ?? null)
-    setWords(there?.words ?? false)
-  }
-  const go = (dialectK = null, unitK = null, at = null, wordsToo = false) => {
-    show(dialectK && { dialect: dialectK, unit: unitK, at, words: wordsToo })
-    const lessonK = at === null ? null : dialects.find((d) => d.key === dialectK).units.find((u) => u.unit === unitK).lessons[at].lesson
-    onVisit?.(dialectK ? placeOf(dialectK, unitK, lessonK, wordsToo) : null)
+  const go = (there) => {
+    setPlace(there)
+    onVisit?.(placeOf(there, dialects))
   }
   // An arrival names a place; followed during render so a reload paints on it, not the top first.
-  if (useArrivalWhenReady(arrival, Boolean(catalogue.data))) show(parsePlace(incoming, dialects))
+  if (useArrivalWhenReady(arrival, Boolean(catalogue.data))) setPlace(parsePlace(incoming, dialects))
 
-  const toTop = () => go()
-  const toDialect = () => go(dialect.key)
-  const toUnit = () => go(dialect.key, unit.unit)
-  // The same unit and topic in the other dialect, if that one has written them.
-  const switchTo = (key) => {
-    const there = dialects.find((d) => d.key === key).units.find((u) => u.written && u.unit === unitKey)
-    const kept = lessonAt !== null && there?.lessons[lessonAt].written ? lessonAt : null
-    go(key, there ? unitKey : null, there ? kept : null, kept !== null && words && there.lessons[kept].words > 0)
-  }
-
-  const steps = [{ label: 'Dialects', go: toTop }]
-  if (dialect) steps.push({ label: dialect.label, go: toDialect })
-  if (unit) steps.push({ label: `Unit ${unitNumber(unit.unit)}`, go: toUnit })
-  if (unit && lessonAt !== null) steps.push({ label: unit.lessons[lessonAt].title, go: () => go(dialect.key, unit.unit, lessonAt) })
-  if (unit && lessonAt !== null && words) steps.push({ label: 'Words' })
+  const steps = trailOf(place, dialects).map((step) => ({ label: step.label, go: () => go(step.place) }))
 
   return (
     <div className="panel">
@@ -229,7 +202,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
       {catalogue.data && (
         <div className="flex flex-wrap items-center gap-3 pb-5 border-b border-[var(--border)]">
           <Trail steps={steps} />
-          {dialect && dialects.length > 1 && <Switch dialects={dialects} current={dialect.key} onPick={switchTo} />}
+          {dialect && dialects.length > 1 && <Switch dialects={dialects} current={dialect.key} onPick={(key) => go(switchPlace(place, key, dialects))} />}
         </div>
       )}
 
@@ -237,7 +210,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
         <Grid>
           {dialects.map((d, i) => (
             <Card key={d.key} index={i} hue={colorFor('tab', 'colloq')} kicker={d.where} title={d.label} arabic={d.arabic}
-              note={`${d.units.filter((u) => u.written).length} units`} onClick={() => go(d.key)} />
+              note={`${d.units.filter((u) => u.written).length} units`} onClick={() => go({ dialect: d.key })} />
           ))}
         </Grid>
       )}
@@ -247,10 +220,10 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
           {dialect.units.map((u, i) => {
             const unitHue = colorAt('unit', unitNumber(u.unit))
             return u.written && u.cover
-              ? <UnitCard key={u.unit} index={i} hue={unitHue} unit={u} onClick={() => go(dialect.key, u.unit)} />
+              ? <UnitCard key={u.unit} index={i} hue={unitHue} unit={u} onClick={() => go({ dialect: dialect.key, unit: u.unit })} />
               : <Card key={u.unit} index={i} hue={unitHue} kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}
                   note={u.written ? `${u.lessons.length} topics` : 'Coming'}
-                  onClick={u.written ? () => go(dialect.key, u.unit) : undefined} />
+                  onClick={u.written ? () => go({ dialect: dialect.key, unit: u.unit }) : undefined} />
           })}
         </Grid>
       )}
@@ -270,8 +243,8 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
                   return (
                     <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title}
                       note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words` : l.words ? 'Phrases' : undefined}
-                      onClick={l.written ? () => go(dialect.key, unit.unit, i, !l.phrases) : undefined}
-                      twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => go(dialect.key, unit.unit, i, true) }} />
+                      onClick={l.written ? () => go({ dialect: dialect.key, unit: unit.unit, at: i, words: !l.phrases }) : undefined}
+                      twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => go({ dialect: dialect.key, unit: unit.unit, at: i, words: true }) }} />
                   )
                 })}
               </Grid>
