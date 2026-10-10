@@ -7,9 +7,12 @@ import pytest
 
 from backend.services.syntax.catib_onnx import _files_present, parse
 
-pytestmark = pytest.mark.skipif(
-    not _files_present(), reason="CATiB parser model files not present under backend/data/parser/"
-)
+pytestmark = [
+    pytest.mark.heavy,
+    pytest.mark.skipif(
+        not _files_present(), reason="CATiB parser model files not present under backend/data/parser/"
+    ),
+]
 
 
 def test_verb_subject_object():
