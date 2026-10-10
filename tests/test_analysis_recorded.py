@@ -42,7 +42,7 @@ def recorded(tmp_path, monkeypatch):
 
 
 def test_a_typed_ayah_is_read_from_its_record_not_the_parser(monkeypatch):
-    def parser(_):
+    def parser(*_):
         raise AssertionError("the parser was asked about a recorded ayah")
     monkeypatch.setattr(syntax, "read", parser)
 
@@ -72,7 +72,7 @@ def test_the_same_ayah_typed_without_vowels_finds_the_same_record():
 
 def test_a_sentence_that_is_no_ayah_goes_to_the_parser(monkeypatch):
     asked = []
-    monkeypatch.setattr(syntax, "read", lambda sentence: asked.append(sentence) or
+    monkeypatch.setattr(syntax, "read", lambda sentence, picks: asked.append(sentence) or
                         {"roles": [{"role": None, "case": None}] * 3, "tree": None})
     client.post("/api/analyze", json={"sentence": "ذَهَبَ الطَّالِبُ مُسْرِعًا"})
     assert asked

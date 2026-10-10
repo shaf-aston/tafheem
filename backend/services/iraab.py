@@ -12,6 +12,7 @@ The Analyse page and the practice questions both read sentences through here.
 """
 from __future__ import annotations
 
+from backend.services.arabic_text import words
 from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb, tarkeeb_store
 from backend.services.harakat import CASE_NAME
 from backend.services.nahw_book import case_of, family_cards, reason, teacher_rules
@@ -23,9 +24,10 @@ def analyze(sentence: str) -> dict:
     """{words, summary, source, tree} for one sentence; `tree` is None when nothing joins.
     The summary is the picture's own top label, so the line above the cards and the
     picture can never name the sentence apart; with no picture there is no summary."""
-    tags = morphology.analyze_sentence(sentence)
+    picks = morphology.pick(words(sentence), syntax.disambiguator())  # the one reading, cards and parser alike
+    tags = morphology.analyze_sentence(sentence, picks)
     recorded = tarkeeb_store.for_sentence(sentence)
-    parsed = recorded or syntax.read(sentence)
+    parsed = recorded or syntax.read(sentence, picks)
     tree = _drawn(recorded) if recorded else parsed["tree"]
     return {
         "words": cards(tags, parsed["roles"]),

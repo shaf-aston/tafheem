@@ -5,6 +5,8 @@ dropped into backend/data/parser/ (see catib_onnx.py's docstring).
 """
 import pytest
 
+from backend.services import morphology
+from backend.services.syntax import catib_onnx
 from backend.services.syntax.catib_onnx import files_present, parse
 
 pytestmark = pytest.mark.skipif(
@@ -13,7 +15,9 @@ pytestmark = pytest.mark.skipif(
 
 
 def test_verb_subject_object():
-    tokens = parse(["كَتَبَ", "الطَّالِبُ", "رِسَالَةً"])
+    typed = ["كَتَبَ", "الطَّالِبُ", "رِسَالَةً"]
+    catib_onnx.warm()
+    tokens = parse(typed, morphology.pick(typed, catib_onnx.disambiguator()))
     by_form = {t["form"]: t for t in tokens}
 
     verb = by_form["كتب"]
@@ -29,4 +33,4 @@ def test_verb_subject_object():
 
 
 def test_empty_input_returns_empty_list():
-    assert parse([]) == []
+    assert parse([], []) == []
