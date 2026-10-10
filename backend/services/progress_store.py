@@ -19,10 +19,13 @@ by everyone, so it stays under 'local' and claim_local leaves it alone.
 """
 from __future__ import annotations
 
+import hashlib
+import hmac
 import json
+import secrets
 import sqlite3
 import threading
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from backend.config import data_path, get_settings
 from backend.services import review_schedule
@@ -93,6 +96,13 @@ INSERT OR IGNORE INTO accounts (name, at)
     WHERE user NOT IN ('local', '') GROUP BY user;
 """
 
+# Changes to tables that already exist, in order; PRAGMA user_version counts how many ran.
+# Append only: a step that has run on a learner's file never runs again.
+MIGRATIONS = (
+    # Passphrase as "iterations$salt$hash" and the sign-in key's SHA-256; NULL until the first sign-in.
+    "ALTER TABLE accounts ADD COLUMN pass TEXT; ALTER TABLE accounts ADD COLUMN key TEXT;",
+)
+
 # Counts and timing in one pass. Whether an item is due is not here: it is worked
 # out by replaying the item's answers (see _replay), so nothing extra is stored.
 _SUMMARY = """
@@ -116,6 +126,17 @@ WHERE user = ? AND module = ? AND correct = 1
 ORDER BY item, word
 """
 
+# One learner's every module in one pass, for the overview.
+_MODULES = """
+SELECT module, COUNT(*) AS attempts, SUM(correct) AS correct, MAX(at) AS last_at
+FROM attempts
+WHERE user = ?
+GROUP BY module
+ORDER BY module
+"""
+
+_DAYS = "SELECT DISTINCT date(at) AS day FROM attempts WHERE user = ? ORDER BY day DESC"
+
 _ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ? ORDER BY id"
 
 
@@ -134,6 +155,9 @@ def _db() -> sqlite3.Connection:
         db.execute("PRAGMA journal_mode=WAL")
         db.execute(f"PRAGMA busy_timeout={get_settings().progress_busy_timeout_ms}")
         db.executescript(SCHEMA)
+        done = db.execute("PRAGMA user_version").fetchone()[0]
+        for step, script in enumerate(MIGRATIONS[done:], start=done + 1):
+            db.executescript(f"BEGIN; {script} PRAGMA user_version = {step}; COMMIT;")
         db.commit()
         _local.db = db
     return _local.db
@@ -233,11 +257,62 @@ def forget(user: str = "local") -> int:
     return int(cursor.rowcount)
 
 
-def sign_up(name: str) -> bool:
-    """Make the account. False when the username is taken."""
+def _hash_pass(passphrase: str, salt: bytes, iterations: int) -> str:
+    digest = hashlib.pbkdf2_hmac("sha256", passphrase.encode(), salt, iterations)
+    return f"{iterations}${salt.hex()}${digest.hex()}"
+
+
+def _pass_matches(passphrase: str, stored: str) -> bool:
+    iterations, salt, _ = stored.split("$")
+    return hmac.compare_digest(_hash_pass(passphrase, bytes.fromhex(salt), int(iterations)), stored)
+
+
+def _key_hash(key: str) -> str:
+    # The key is random, so one SHA-256 is enough; a database leak still hands out no key.
+    return hashlib.sha256(key.encode()).hexdigest()
+
+
+def _new_key(db: sqlite3.Connection, name: str) -> str:
+    """A fresh sign-in key for `name`; the one before it stops working."""
+    key = secrets.token_urlsafe(get_settings().signin_key_bytes)
+    db.execute("UPDATE accounts SET key = ? WHERE name = ?", (_key_hash(key), name))
+    return key
+
+
+def _new_pass(passphrase: str) -> str:
+    settings = get_settings()
+    return _hash_pass(passphrase, secrets.token_bytes(settings.passphrase_salt_bytes), settings.passphrase_iterations)
+
+
+def sign_up(name: str, passphrase: str) -> str | None:
+    """Make the account with its passphrase. Its sign-in key, or None when the username is taken."""
     db = _db()
     with db:
-        return db.execute("INSERT OR IGNORE INTO accounts (name) VALUES (?)", (name,)).rowcount == 1
+        if db.execute("INSERT OR IGNORE INTO accounts (name, pass) VALUES (?, ?)",
+                      (name, _new_pass(passphrase))).rowcount == 0:
+            return None
+        return _new_key(db, name)
+
+
+def sign_in(name: str, passphrase: str) -> str | None:
+    """A new sign-in key, or None for a wrong passphrase. An account with none yet takes this one."""
+    db = _db()
+    stored = lambda: db.execute("SELECT pass FROM accounts WHERE name = ?", (name,)).fetchone()  # noqa: E731
+    with db:
+        row = stored()
+        if row is not None and row["pass"] is None:
+            # Re-read after: when two first sign-ins race, both are checked against the winner.
+            db.execute("UPDATE accounts SET pass = ? WHERE name = ? AND pass IS NULL", (_new_pass(passphrase), name))
+            row = stored()
+        if row is None or not _pass_matches(passphrase, row["pass"]):
+            return None
+        return _new_key(db, name)
+
+
+def signed_in(name: str, key: str | None) -> bool:
+    """Whether `key` is this account's current sign-in key."""
+    row = _db().execute("SELECT key FROM accounts WHERE name = ?", (name,)).fetchone()
+    return bool(key and row and row["key"]) and hmac.compare_digest(row["key"], _key_hash(key))
 
 
 def has_account(name: str) -> bool:
@@ -296,6 +371,34 @@ def account_names() -> list[str]:
 def learnt(module: str, name: str) -> int:
     """How many items this name has learnt in `module`: the leaderboard's measure."""
     return sum(row["known"] for row in summary(module, name))
+
+
+def overview(user: str) -> dict:
+    """Every module this learner answered in, the totals, and the streak of days.
+
+    Learnt is the leaderboard's own measure, so the two never disagree.
+    """
+    modules = [
+        {**dict(row), "learnt": learnt(row["module"], user),
+         "last_at": datetime.fromisoformat(row["last_at"]).replace(tzinfo=timezone.utc).isoformat()}
+        for row in _db().execute(_MODULES, (user,))
+    ]
+    totals = {key: sum(row[key] for row in modules) for key in ("attempts", "correct", "learnt")}
+    days = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_DAYS, (user,))]
+    return {"modules": modules, **totals, "streak": _streak(days, datetime.now(timezone.utc).date())}
+
+
+def _streak(days: list, today) -> int:
+    """Days in a row with an answer, newest first in `days` (UTC). Today counts;
+    a day not yet answered in leaves yesterday's streak standing."""
+    day = today if days and days[0] == today else today - timedelta(days=1)
+    streak = 0
+    for answered in days:
+        if answered != day:
+            break
+        streak += 1
+        day -= timedelta(days=1)
+    return streak
 
 
 def leaderboard(module: str) -> list[dict]:

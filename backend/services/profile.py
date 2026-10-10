@@ -1,7 +1,7 @@
-"""One username, one learner. No password, so this only decides spelling.
+"""One username, one learner: the spelling of a name and the length of a passphrase.
 
 The only copy of these rules: the page sends what was typed and keeps the
-spelling the server hands back (POST /api/progress/signup and /login).
+spelling the server hands back (POST /api/progress/signup and /account/signin).
 
 "Amina", " amina " and "AMINA" are one person: spaces are squashed, the text is
 put in one Unicode form, then case is folded. Tashkeel is kept, so a name
@@ -44,3 +44,11 @@ def clean_name(raw: str) -> str:
     if name in settings.profile_reserved:
         raise ValueError("That name is taken by the app, pick another")
     return name
+
+
+def check_passphrase(raw: str) -> str:
+    """The passphrase as typed. Raises ValueError when it is too short."""
+    shortest = get_settings().passphrase_min
+    if len(raw) < shortest:
+        raise ValueError(f"Passphrases are at least {shortest} characters")
+    return raw
