@@ -96,7 +96,7 @@ python backend/scripts/build_daleel_index.py --meta  # just the source/book tabl
 6. **A surah is read whole, an ayah is studied**: `GET /api/quran/surah/{n}` returns a surah's
    text and English in two local queries (~35ms for al-Baqarah's 286 ayahs, which used to mean 286
    network calls). The word-by-word grammar is ~2MB a surah, so it is left out of the reading view
-   and fetched for the one ayah you open, `frontend/src/components/SurahReader.jsx`. What the ayah
+   and fetched for the one ayah you open, `frontend/src/components/quran/QuranReader.jsx`. What the ayah
    is *about* is a third question, and many books answer it: an **edition** is one book hung on
    the ayahs, a tafsir or a translation, and because they all have one shape they all live in
    `data/quran/library.db` with `quran_library.py` as its only reader. `data/quran/editions.json`
@@ -267,7 +267,7 @@ it is the term that is wrong.
   address bar; `lib/session.js` the only reader and writer of the saved path, with its knobs
   (shelf life, size caps, record version) in `frontend/src/session.json`. A place is a tab
   plus what it was opened with, never a result, so a reload refetches and cannot show stale.
-- `frontend/src/components/`, one component per tab, plus shared `ui/`.
+- `frontend/src/components/`: each tab's main screen; its own parts in `components/<tab>/`; parts two tabs share at the root and in `ui/`.
 - `frontend/src/lib/`, client helpers (errors, export, history, colour, quiz generation).
   The vocabularies shared with the backend live here as one file each, so a name is written
   down once rather than retyped: `roleColors.js` (role → colour token),
@@ -452,7 +452,7 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   `services/nahw_notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as
   `{{role|text}}`; the Notes view in Nahw hides them or turns them into flashcards
   (`lib/notes.js`), so the stored note stays the reference. Tamreen questions link to it.
-- `frontend/src/components/`: one component per tab, shared parts in `ui/`.
+- `frontend/src/components/`: each tab's main screen; its own parts in `components/<tab>/`; parts two tabs share at the root and in `ui/`.
   `frontend/src/lib/`: helpers, and `journey.js` for where the reader has been.
   `frontend/src/components/Backdrop.jsx`: the drifting-lights canvas behind every tab, tinted by the tab colour; it exists so the dark page has depth, and it stops when Animations is off. Maths in `lib/bokeh.js`, knobs in theme.json `lights` and `marks` (the faint drifting letters under the lights). The kit page (`/app/kit`, hidden from every menu) is where every element and token is seen.
 - Styles live in `frontend/src/styles/`, one file per job (base, layers, motion, text, components, ...); `index.css` there imports them in cascade order.

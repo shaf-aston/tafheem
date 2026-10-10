@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -100,6 +101,8 @@ def remove(name: str) -> None:
     """Drop the shared-install link first: removing a copy with the link still in
     place deletes the main install through it. git refuses a copy with unsaved edits."""
     target = ROOT.parent / f"_wt-{name}"
+    if git("status", "--porcelain", cwd=target).strip():
+        sys.exit(f"{target} has unsaved edits: commit or drop them first")
     nm = target / "frontend/node_modules"
     if nm.is_junction():
         os.rmdir(nm)  # removes the junction, not what it points at
@@ -132,6 +135,8 @@ def main() -> int:
     sub.add_parser("ci")
     sub.add_parser("remove").add_argument("name")
     a = ap.parse_args()
+    if getattr(a, "name", None) is not None and not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*", a.name):
+        sys.exit(f"bad name {a.name!r}: letters, digits, - and _ only")
     if a.cmd == "ci":
         return ci()
     if a.cmd == "remove":

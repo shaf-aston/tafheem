@@ -256,13 +256,6 @@ class Listening(BaseSettings):
     # No default-book setting on purpose: the panel opens on the manifest's first book, then the reader's last choice.
     # A setting would be a second source that could disagree.
 
-    @property
-    def listening_keys(self) -> list[str]:
-        """Own listening keys, else the shared one, else none. Deduplicated."""
-        own = list(dict.fromkeys(key.strip() for key in self.listening_groq_api_keys.split(",") if key.strip()))
-        shared = self.groq_api_key.strip()
-        return own or ([shared] if shared else [])
-
 
 class Speech(BaseSettings):
     """Speaking Arabic aloud: voices, pace, limits and the cache."""
@@ -498,6 +491,13 @@ class Settings(Ai, Nahw, Quran, Dictionary, Listening, Speech, Journal, Daleel, 
                 f"Example: {name}=your_key_here"
             )
         return value
+
+    @property
+    def listening_keys(self) -> list[str]:
+        """Own listening keys, else the shared one, else none. Deduplicated."""
+        own = list(dict.fromkeys(key.strip() for key in self.listening_groq_api_keys.split(",") if key.strip()))
+        shared = self.groq_api_key.strip()
+        return own or ([shared] if shared else [])
 
 
 @lru_cache()

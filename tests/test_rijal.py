@@ -70,6 +70,7 @@ def built(tmp_path, monkeypatch):
         monkeypatch.setattr(module, "data_path", paths.__getitem__)
     monkeypatch.setattr(loader, "hadiths", lambda *_: [
         {"number": int(ref[:-1]), "part": ref[-1], "arabic": arabic} for ref, arabic in OURS.items()])
+    monkeypatch.setattr(loader, "collection_name", {"muslim": "Sahih Muslim"}.get)
     cache.write(cache.book_path("muslim", 24), BOOK)
     cache.write(cache.narrator_path(6659), MALIK)
     build_rijal.build()
