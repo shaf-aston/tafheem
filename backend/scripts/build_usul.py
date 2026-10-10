@@ -457,7 +457,7 @@ def write_sample(path: Path, results: list[dict], rows: dict[int, dict], cfg: di
                 out.append(f"    - {m.kind}: {around}" + (f"   (no dots: {m.other})" if m.other else "")
                            + f"   | {best} says: {there or '(nothing there)'}")
         out.append("")
-    for reason, held in (("names_joined", lambda r: r["why"] == "names_joined"),
+    for reason, held in (("no_link", lambda r: r["why"] == "no_link"),
                          ("different_text", lambda r: "different_text" in r["left"].values())):
         pool = [r for r in results if held(r)]
         out.append(f"## Sent to a gap: {fc['reasons'][reason]} ({len(pool)} families; {min(fc['sample_gap'], len(pool))} below)")
