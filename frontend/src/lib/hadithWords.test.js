@@ -167,6 +167,11 @@ describe('chainLinks', () => {
     expect(branches[0].at).toBeNull()
   })
 
+  it('leaves a remark set between aside marks out of the name, and ignores a mark with no partner', () => {
+    const { main } = links('حَدَّثَنَا عَبْدُ اللَّهِ، حَدَّثَنَا عَبْدُ الْعَزِيزِ، - يَعْنِي ابْنَ مُحَمَّدٍ - عَنْ مُحَمَّدٍ، - يَعْنِي ابْنَ عَمْرٍو - عَنْ أَبِي سَلَمَةَ، - عَنِ الْمُغِيرَةِ، أَنَّ النَّبِيَّ', 'أَنَّ النَّبِيَّ')
+    expect(main.map(({ name }) => name)).toEqual(['عَبْدُ اللَّهِ', 'عَبْدُ الْعَزِيزِ', 'مُحَمَّدٍ', 'أَبِي سَلَمَةَ', 'الْمُغِيرَةِ'])
+  })
+
   it('has nothing to draw for no chain', () => {
     expect(chainLinks('')).toEqual({ main: [], branches: [] })
   })

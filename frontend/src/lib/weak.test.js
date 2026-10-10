@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { drawnChain } from './rijal'
 import { weakLinks, weakPoints } from './weak'
 
 const scale = [5, 6, 8, 11].map((level) => ({
@@ -39,7 +40,7 @@ const rules = {
   kinds: { tadlis: { label: 'Possible tadlis', say: 'no hearing', quote: 'q1', source: 'Salah', page: 'p. 2' }, not_heard: { label: 'Possible break', say: 'did not hear' } },
   levels: { 3: { say: 'level three', quote: 'q3', source: 'Tarif', page: 'p. 1' } },
 }
-const person = (id, name, ...ties) => ({ id, name, note: null, ties })
+const person = (id, name, ...ties) => ({ id, name, members: [{ id, name }], note: null, ties })
 const tie = (at, student, teacher, kind = 'tadlis', extra = {}) => ({ at, student, teacher, kind, sub: '', word: 'عن', level: 3, quote: '', source: '', page: '', ...extra })
 
 describe('weakLinks', () => {
@@ -49,6 +50,16 @@ describe('weakLinks', () => {
     expect(out.map((p) => [p.letter, p.teller, p.teacherName, p.label])).toEqual([['a', 'b', 'c', 'Possible break'], ['b', 'a', 'b', 'Possible tadlis']])
     expect(out[1].quotes.map((q) => q.quote)).toEqual(['q3', 'q1'])   // the teller's level, the link's wording
     expect(out[0].quotes).toEqual([{ quote: 'ql', source: 'Jami', page: 'no. 4' }])
+  })
+
+  it('draws a doubted link whose teller is one of the names a box joins (abudawud 2/1136)', () => {
+    const arabic = 'حَدَّثَنَا مُوسَى بْنُ إِسْمَاعِيلَ، حَدَّثَنَا حَمَّادٌ، عَنْ أَيُّوبَ، وَيُونُسَ، وَحَبِيبٍ، وَيَحْيَى بْنِ عَتِيقٍ، وَهِشَامٍ، - فِي آخَرِينَ - عَنْ مُحَمَّدٍ، أَنَّ أُمَّ عَطِيَّةَ، قَالَتْ أَمَرَنَا'
+    const names = [[11, 35, 7721], [48, 56, 2492], [63, 71, 746], [73, 82, 8616], [84, 93, 2257], [95, 117, 8309], [119, 128, 8042], [152, 161, 7016], [169, 184, 7882]]
+    const ties = [tie(152, 8042, 7016)]
+    const chain = drawnChain(arabic, [0, arabic.indexOf('قَالَتْ')], names, [], ties)
+    expect(chain.main.map((l) => l.name)).toContain('أَيُّوبَ وَيُونُسَ وَحَبِيبٍ وَيَحْيَى بْنِ عَتِيقٍ وَهِشَامٍ')   // one box, the aside gone
+    const out = weakLinks(chain, rules)
+    expect(out.map((p) => [p.teller, p.teacherName])).toEqual([['وَهِشَامٍ', 'مُحَمَّدٍ']])
   })
 
   it('leaves out a link whose teller is not drawn, one with no rule, and counts a pair once', () => {

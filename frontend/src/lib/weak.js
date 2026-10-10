@@ -44,15 +44,16 @@ export function weakPoints(links, scale) {
  * on its rung in the drawing, and the lines the list prints: its kind, the
  * condition it meets and the quotes with their book and page.
  *
- * A tie is kept only if the teller (`student`) is also drawn, so both names can
- * be printed. Points are keyed by who said it to whom, never by position: a
- * narrator named in two strands is one point (like weakPoints), but the same
- * two men in two places in one chain are one link too.
+ * A tie is kept only if the teller (`student`) is also drawn, alone or among the
+ * names a box joins, so both names can be printed. Points are keyed by who
+ * said it to whom, never by position: a narrator named in two strands is one
+ * point (like weakPoints), but the same two men in two places in one chain are
+ * one link too.
  */
 export function weakLinks(links, rules) {
   if (!rules) return []
   const all = drawn(links)
-  const named = new Map(all.filter((link) => link.id != null).map((link) => [link.id, link]))
+  const named = new Map(all.flatMap((link) => link.members.map((who) => [who.id, who])))
   const seen = new Set()
   const found = []
   for (const teacher of all) {
