@@ -13,7 +13,7 @@ from __future__ import annotations
 from collections import Counter
 from typing import NamedTuple
 
-from backend.services.hadith.chain import chain_of, passed_on, term_of
+from backend.services.hadith.chain import chain_of, passed_on, term_of, without_asides
 
 
 class Rung(NamedTuple):
@@ -34,6 +34,26 @@ def in_chain(arabic: str, mentions: list[tuple[int, int, int]]) -> list[tuple[in
     return [m for m in mentions if m[1] <= limit]
 
 
+class Pair(NamedTuple):
+    student: int
+    teacher: int
+    at: int             # where the teacher's name starts in the hadith's Arabic
+    gap: str            # the words between the two names, remarks set between aside marks gone
+    word: str           # what passed it on; "" when `why`
+    why: str            # "" for a link, else chain.passed_on's strand, unnamed or no_link
+
+
+def walk(arabic: str, named: list[tuple[int, int, int]]) -> list[Pair]:
+    """Each two names `in_chain` gives one after the other, the gap between them read once. The one place the
+    words between two narrators are read: rungs and the family's chains both take their pairs from here."""
+    out = []
+    for k, ((_, end, student), (start, stop, teacher)) in enumerate(zip(named, named[1:])):
+        gap = without_asides(arabic[end:start])
+        word, why = passed_on(gap, arabic[stop:named[k + 2][0] if k + 2 < len(named) else len(arabic)])
+        out.append(Pair(student, teacher, start, gap, word, why))
+    return out
+
+
 def rungs(arabic: str, mentions: list[tuple[int, int, int]]) -> tuple[list[Rung], Counter]:
     """(the rungs of the hadith's chain in text order, why each other pair of names was not one).
 
@@ -44,16 +64,15 @@ def rungs(arabic: str, mentions: list[tuple[int, int, int]]) -> tuple[list[Rung]
     found: list[Rung] = []
     skipped: Counter = Counter()
     strand = [named[0][2]] if named else []   # the narrators of the strand being read, in text order
-    for k, ((_, end, student), (start, stop, teacher)) in enumerate(zip(named, named[1:])):
-        word, why = passed_on(arabic[end:start], arabic[stop:named[k + 2][0] if k + 2 < len(named) else len(arabic)])
-        if why == "strand":
-            strand = [teacher]
+    for pair in walk(arabic, named):
+        if pair.why == "strand":
+            strand = [pair.teacher]
             continue
-        if why or student == teacher:
-            skipped[why or "same"] += 1
+        if pair.why or pair.student == pair.teacher:
+            skipped[pair.why or "same"] += 1
         else:
-            found.append(Rung(student, teacher, start, word, frozenset(strand[-2:-1])))
-        strand.append(teacher)
+            found.append(Rung(pair.student, pair.teacher, pair.at, pair.word, frozenset(strand[-2:-1])))
+        strand.append(pair.teacher)
     return found, skipped
 
 
