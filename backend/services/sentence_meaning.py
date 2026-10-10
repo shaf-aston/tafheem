@@ -47,7 +47,7 @@ def kind_of(summary: str | None, read: list[dict]) -> str:
     """"sentence" when it says something, else "phrase"; "word" when one Arabic word
     is all there is, as when the rest of what was typed is not Arabic.
 
-    `summary` is the grammar's name for the whole (iraab.analyse, as the Analyse
+    `summary` is the grammar's name for the whole (iraab.analyze, as the Analyse
     page shows it), and every clause it names is a جُمْلَةٌ: the verbal, nominal,
     question and call clauses alike. It reads البيت الكبير as a described noun and
     هل أنت جائع as a question. It does not yet see a definite noun told about by
@@ -67,7 +67,7 @@ def translate(text: str) -> dict:
     read = morphology.analyze_sentence(text)
     pairs = [{"arabic": w["word"], "english": literal(w["gloss"]), "base": w.get("base") or w["word"]} for w in read]
     found = _whole_ayah(text, pairs) or _model_sense(text, pairs)
-    return {"kind": kind_of(iraab.analyse(text)["summary"], read), **found}
+    return {"kind": kind_of(iraab.analyze(text)["summary"], read), **found}
 
 
 def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:

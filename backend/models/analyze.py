@@ -1,4 +1,4 @@
-"""Request and reply types for routers/analysis.py."""
+"""Request and reply types for routers/analyze.py."""
 
 from __future__ import annotations
 
