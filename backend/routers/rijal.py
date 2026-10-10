@@ -8,7 +8,6 @@ from fastapi import APIRouter, HTTPException, Query
 from backend.config import get_settings
 from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, UsulFacts, RijalHadithRef, RijalSearch
 from backend.services import provenance
-from backend.services.hadith import loader
 from backend.services.rijal import family, store
 from backend.services.usul import store as usul
 from backend.utils import search_query
@@ -18,8 +17,6 @@ router = APIRouter(prefix="/api/rijal", tags=["rijal"])
 
 @router.get("/chains/{collection}/{book}", response_model=RijalChains)
 async def get_chains(collection: str, book: int) -> RijalChains:
-    if not any(b["number"] == book for b in await asyncio.to_thread(loader.books, collection)):
-        raise HTTPException(status_code=404, detail=f"{collection} has no book {book}")
     chains = await asyncio.to_thread(store.chains, collection, book)
     return RijalChains(
         collection=collection, book=book, chains=chains, kin=await asyncio.to_thread(store.kin, collection, book),
@@ -35,8 +32,7 @@ async def get_family(collection: str, number: int, part: str = Query("", max_len
     """The narrations sharing this number, each laid against `part` (the first when not given or unknown)."""
     found = await asyncio.to_thread(family.versions, collection, number, part)
     if found is None:
-        shown, rows = await asyncio.to_thread(loader.numbered, collection, number)
-        raise HTTPException(status_code=404, detail=f"{collection} {number} has one narration" if rows and shown == number else f"No hadith {number} in {collection}")
+        raise HTTPException(status_code=404, detail=f"{collection} {number} has fewer than two narrations")
     return RijalFamily(**found)
 
 
