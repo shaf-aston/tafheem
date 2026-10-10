@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { bankOf, hasAnswer, isRight, judge } from './colloquialAnswer'
+import { bankOf, hasAnswer, isRight, ARRANGED, PICKED, TYPED } from './colloquialAnswer'
 
 const accepted = ['كيفك؟', 'keefak']
 
@@ -16,15 +16,19 @@ describe('isRight', () => {
   })
 })
 
-describe('judge', () => {
+describe('how an answer is judged', () => {
+  it('a typed answer goes through isRight', () => {
+    expect(TYPED.judge({ accepted }, 'Keefak?')).toBe(true)
+    expect(TYPED.judge({ accepted }, 'هلا')).toBe(false)
+  })
   it('a picked option must match exactly', () => {
-    expect(judge({ type: 'choose', answer: 'مرحبا' }, 'مرحبا')).toBe(true)
-    expect(judge({ type: 'choose', answer: 'مرحبا' }, 'مرحبًا')).toBe(false)
+    expect(PICKED.judge({ answer: 'مرحبا' }, 'مرحبا')).toBe(true)
+    expect(PICKED.judge({ answer: 'مرحبا' }, 'مرحبًا')).toBe(false)
   })
   it('an arranged sentence is its words joined', () => {
-    const ex = { type: 'reorder', accepted: ['شو اسمك'] }
-    expect(judge(ex, ['شو', 'اسمك'])).toBe(true)
-    expect(judge(ex, ['اسمك', 'شو'])).toBe(false)
+    const ex = { accepted: ['شو اسمك'] }
+    expect(ARRANGED.judge(ex, ['شو', 'اسمك'])).toBe(true)
+    expect(ARRANGED.judge(ex, ['اسمك', 'شو'])).toBe(false)
   })
 })
 

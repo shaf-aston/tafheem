@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { judge } from './colloquialAnswer'
+import { exerciseOf } from '../components/colloquial/exercises/registry'
 import { WORDS_MODULE, reviewOf, reviewQuestions, wordDrills, wordKey } from './wordPractice'
 
 const w = (arabic, english = arabic) => ({ arabic, english, transliteration: english })
@@ -32,8 +32,8 @@ describe('wordDrills', () => {
 
   it('marks the Arabic or its sound right, and a lone word is written', () => {
     const [write] = wordDrills(words, 'l1').filter((d) => d.type === 'translate_to_arabic')
-    expect(judge(write, 'بيت')).toBe(true)
-    expect(judge(write, 'house')).toBe(true)
+    expect(exerciseOf(write.type).judge(write, 'بيت')).toBe(true)
+    expect(exerciseOf(write.type).judge(write, 'house')).toBe(true)
     expect(wordDrills([words[0]], 'l1')[0].type).toBe('translate_to_arabic')
   })
 

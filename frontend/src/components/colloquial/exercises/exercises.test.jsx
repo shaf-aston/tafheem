@@ -1,19 +1,22 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { blankValue, rendererFor } from '../../../lib/exercises/registry'
 import ExerciseHost from '../ExerciseHost'
+import { exerciseOf } from './registry'
 
 const base = { id: 'u.l.x.01', prompt: 'Say hello', answer: 'مرحبا', accepted: ['مرحبا'] }
 const draw = (exercise) => renderToStaticMarkup(<ExerciseHost exercise={exercise} />)
 
 describe('exercise registry', () => {
-  it('has a renderer for each of the five types and none for a stranger', () => {
+  it('describes each of the five types and none for a stranger', () => {
     for (const type of ['reply', 'fill_blank', 'translate_to_arabic', 'choose', 'reorder']) {
-      expect(rendererFor(type)).toBeTruthy()
+      const kind = exerciseOf(type)
+      expect(kind.Renderer).toBeTruthy()
+      expect(kind.judge).toBeTypeOf('function')
     }
-    expect(rendererFor('telepathy')).toBeNull()
-    expect(blankValue('reorder')).toEqual([])
-    expect(blankValue('reply')).toBe('')
+    expect(exerciseOf('telepathy')).toBeNull()
+    expect(exerciseOf('reorder').blank).toEqual([])
+    expect(exerciseOf('reply').blank).toBe('')
+    expect(exerciseOf('choose').blank).toBe('')
   })
 })
 
