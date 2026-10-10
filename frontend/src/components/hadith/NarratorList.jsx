@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { narratorListQuery } from '../../api'
+import { useOpenAtTop } from '../../lib/scrollToEl'
 
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
@@ -16,6 +17,7 @@ import ErrorAlert from '../ui/ErrorAlert'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 
 export default function NarratorList({ accent, onOpen }) {
+  useOpenAtTop()
   const [generation, setGeneration] = useState('')
   const { data, isPending, isError, error, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(narratorListQuery(generation))
   const first = data?.pages[0]
