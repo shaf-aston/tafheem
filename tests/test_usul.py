@@ -138,7 +138,7 @@ def test_the_chains_endpoint_is_as_before_where_usul_db_is_missing(paths):
 
 # ---- the narrator books: entries, the year, and the join to a narrator ---------------------------------------------
 
-from backend.services.usul import books, jami, mukhtalitin, names, rung, taqrib, tarif  # noqa: E402
+from backend.services.usul import books, family, jami, mukhtalitin, names, rung, taqrib, tarif  # noqa: E402
 from backend.services.usul.books import Entry  # noqa: E402
 
 TAQRIB = rule()["taqrib"]
@@ -370,6 +370,19 @@ def test_no_note_when_al_layth_is_below_abu_al_zubair_and_the_teacher_is_jabir()
     assert rung.tadlis(last, "abudawud", 3, TADLIS, layth) == (None, "exempt")
     other = [{"tellers": {ABU_ZUBAIR}, "via": LAYTH, "teacher": ANAS}]   # the same man below, a different teacher
     assert rung.tadlis(last, "abudawud", 3, TADLIS, other) == ("tadlis", "")
+
+
+def test_a_remark_set_between_two_names_does_not_stop_the_pair_being_a_rung_or_a_place():
+    # Muslim: حدثنا يحيى - يعني ابن سعيد - عن قتادة. The remark is read past once, so the rungs and the family both link the pair.
+    text = "حدثنا مسدد حدثنا يحيى - يعني ابن سعيد - عن قتادة عن أنس قال قال رسول الله صلى الله عليه وسلم كذا"
+    who = [("مسدد", MUSADDAD), ("يحيى", YAHYA), ("قتادة", QATADA), ("أنس", ANAS)]
+    assert [(r.student, r.teacher, r.word) for r in _rungs(text, *who)] == [
+        (MUSADDAD, YAHYA, "حدثنا"), (YAHYA, QATADA, "عن"), (QATADA, ANAS, "عن")]
+    found, at = [], 0
+    for name, narrator in who:
+        found.append((text.index(name, at), text.index(name, at) + len(name), narrator))
+        at = found[-1][1]
+    assert family.chain_ids(text, found, {ANAS: "الأولى"}, {"الأولى"}, "و") == ([MUSADDAD, YAHYA, QATADA, ANAS], "")
 
 
 def test_a_ruling_name_must_stand_for_exactly_one_narrator():

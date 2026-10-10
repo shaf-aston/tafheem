@@ -23,8 +23,7 @@ import re
 from collections import Counter
 from typing import NamedTuple
 
-from backend.services.hadith.chain import passed_on, without_asides
-from backend.services.usul.rung import in_chain
+from backend.services.usul.rung import in_chain, walk
 from backend.services.spelling import fold
 
 _LETTERS = re.compile("[^ء-ي]")
@@ -76,15 +75,13 @@ def chain_ids(arabic: str, mentions: list[tuple[int, int, int]], generation: dic
     if len(named) < len(mentions):
         return [], "name_after_cut"
     teachers = 0   # how many names open the chain joined together: the compiler's own teachers (حدثنا A وB)
-    for at, ((_, end, _), (start, _, _)) in enumerate(zip(named, named[1:])):
-        gap = without_asides(arabic[end:start])
-        _, why = passed_on(gap)
+    for at, pair in enumerate(walk(arabic, named)):
         # joined: the joiner stands alone in the gap or opens the next name (rijal's span often takes it in)
-        joined = arabic.startswith(joiner, start) or joiner in (_LETTERS.sub("", w) for w in gap.split())
-        if why == "no_link" and joined and at == max(teachers - 1, 0):
+        joined = arabic.startswith(joiner, pair.at) or joiner in (_LETTERS.sub("", w) for w in pair.gap.split())
+        if pair.why == "no_link" and joined and at == max(teachers - 1, 0):
             teachers = at + 2
-        elif why:
-            return [], _BREAKS[why]
+        elif pair.why:
+            return [], _BREAKS[pair.why]
     ids = [who for *_, who in named[teachers:]]   # they stand before the chain, so their place is not counted
     if not ids:
         return [], "no_chain"

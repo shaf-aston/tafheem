@@ -144,7 +144,7 @@ def _run(families: dict[int, dict[str, tuple[tuple, str, tuple]]]):
             for i, (who, (start, end)) in enumerate(zip(ids, spans)):
                 for _ in range(2):   # every mention written twice at its start, as rijal.db sometimes does
                     rijal.execute("INSERT INTO mention VALUES ('muslim', 1, ?, ?, ?, ?, ?, ?)", (number, part, start, end, who, i))
-    report, results = build_usul.add_families(conn, rijal, hadith, rows, rule())
+    report, results = build_usul.add_families(conn, build_usul.mentions_by_hadith(rijal), hadith, rows, rule())
     return conn, report, {r["number"]: r for r in results}
 
 
@@ -192,7 +192,7 @@ def test_a_family_whose_chain_has_two_companions_gets_no_picture_and_is_counted_
         hadith.append((("muslim", 2, part), text + BASE_TEXT, 1))
         for i, (who, (start, end)) in enumerate(zip((11, 10), spans)):
             rijal.execute("INSERT INTO mention VALUES ('muslim', 1, 2, ?, ?, ?, ?, ?)", (part, start, end, who, i))
-    _, results = build_usul.add_families(conn, rijal, hadith, rows, rule())
+    _, results = build_usul.add_families(conn, build_usul.mentions_by_hadith(rijal), hadith, rows, rule())
     assert results[0]["places"] == [] and results[0]["why"] == "two_companions"
     assert conn.execute("SELECT text, count FROM gap WHERE what = 'family_place'").fetchall() == [(REASONS["two_companions"], 1)]
     assert conn.execute("SELECT COUNT(*) FROM family_place").fetchone()[0] == 0

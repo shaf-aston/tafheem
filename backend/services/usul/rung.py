@@ -13,15 +13,17 @@ from __future__ import annotations
 from collections import Counter
 from typing import NamedTuple
 
-from backend.services.hadith.chain import chain_of, passed_on, term_of
+from backend.services.hadith.chain import chain_of, passed_on, term_of, without_asides
 
 
 class Rung(NamedTuple):
     student: int        # the narrator who says `word`
     teacher: int
     at: int             # where the teacher's name starts in the hadith's Arabic
-    word: str
+    word: str           # what passed it on; "" when `why`
     below: frozenset[int]   # the narrator who took it from the student in this strand (none at its start)
+    gap: str = ""       # the words between the two names, remarks set between aside marks gone
+    why: str = ""       # "" for a rung, else chain.passed_on's strand, unnamed or no_link
 
 
 def in_chain(arabic: str, mentions: list[tuple[int, int, int]]) -> list[tuple[int, int, int]] | None:
@@ -34,27 +36,26 @@ def in_chain(arabic: str, mentions: list[tuple[int, int, int]]) -> list[tuple[in
     return [m for m in mentions if m[1] <= limit]
 
 
+def walk(arabic: str, named: list[tuple[int, int, int]]) -> list[Rung]:
+    """Each two names `in_chain` gives one after the other, the words between them read once: the one place they are
+    read, for the rungs and the family's chains alike."""
+    out = []
+    strand = [named[0][2]] if named else []   # the narrators of the strand being read, in text order
+    for k, ((_, end, student), (start, stop, teacher)) in enumerate(zip(named, named[1:])):
+        gap = without_asides(arabic[end:start])
+        word, why = passed_on(gap, arabic[stop:named[k + 2][0] if k + 2 < len(named) else len(arabic)])
+        out.append(Rung(student, teacher, start, word, frozenset(strand[-2:-1]), gap, why))
+        strand = [teacher] if why == "strand" else strand + [teacher]
+    return out
+
+
 def rungs(arabic: str, mentions: list[tuple[int, int, int]]) -> tuple[list[Rung], Counter]:
     """(the rungs of the hadith's chain in text order, why each other pair of names was not one).
 
     `mentions` are (start, end, narrator id) in text order. A hadith whose chain is not plain (chain.chain_of) has none."""
-    named = in_chain(arabic, mentions)
-    if named is None:
-        return [], Counter()
-    found: list[Rung] = []
-    skipped: Counter = Counter()
-    strand = [named[0][2]] if named else []   # the narrators of the strand being read, in text order
-    for k, ((_, end, student), (start, stop, teacher)) in enumerate(zip(named, named[1:])):
-        word, why = passed_on(arabic[end:start], arabic[stop:named[k + 2][0] if k + 2 < len(named) else len(arabic)])
-        if why == "strand":
-            strand = [teacher]
-            continue
-        if why or student == teacher:
-            skipped[why or "same"] += 1
-        else:
-            found.append(Rung(student, teacher, start, word, frozenset(strand[-2:-1])))
-        strand.append(teacher)
-    return found, skipped
+    pairs = walk(arabic, in_chain(arabic, mentions) or [])
+    skipped = Counter(p.why or "same" for p in pairs if p.why != "strand" and (p.why or p.student == p.teacher))
+    return [p for p in pairs if not p.why and p.student != p.teacher], skipped
 
 
 def tadlis(rung: Rung, collection: str, level: int | None, cfg: dict, exempt: list[dict]) -> tuple[str | None, str]:
