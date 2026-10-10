@@ -20,7 +20,11 @@
  * Pure: a string in, spans out. No React.
  */
 
-import HADITH from '../hadith.json'
+// The chain words, owned by the server's cutter (backend/services/hadith/chain.py) and built
+// into the page from the same file. This module is the page's one reader of it.
+import CHAIN from '../../../backend/data/hadith/chain.json'
+
+export { CHAIN }
 
 // The books' own speech mark, with the direction marks sunnah.com sets around
 // it. Those marks are invisible and would otherwise be printed inside the words.
@@ -126,14 +130,14 @@ export function narrated(english) {
  */
 export const hadithKey = (ref) => (ref?.hadith ? `${ref.hadith}:${ref.number}${ref.part ?? ''}` : '')
 
-// The chain words from hadith.json, read without vowels or punctuation.
-const { verbs, endings, words: linkWords } = HADITH.chain.links
+// The chain words, read without vowels or punctuation.
+const { verbs, endings, words: linkWords } = CHAIN.links
 // A passing-on verb with its ending (حدثه); only one hands a chain on past أن.
 const VERBS = new Set(verbs.flatMap((verb) => endings.map((ending) => verb + ending)))
 const LINKS = new Set([...linkWords, ...VERBS])
-const SAYS = new Set(HADITH.chain.says)
-const HANDS = new Set(HADITH.chain.hands)
-const KIN = new Set(HADITH.chain.kin)
+const SAYS = new Set(CHAIN.says)
+const HANDS = new Set(CHAIN.hands)
+const KIN = new Set(CHAIN.kin)
 // Anything but a letter goes: vowels, tatweel, direction marks, commas, colons.
 const BARE = /[^\u0621-\u063A\u0641-\u064A\u0671]/g
 // A quote or a bracket is the hadith's own words or a verse, never a name.
@@ -144,9 +148,9 @@ const bare = (word) => {
   return LINKS.has(unjoined) || SAYS.has(unjoined) ? unjoined : plain
 }
 
-// Each chain word's entry in the guide (hadith.json chain.terms): a verb by its
+// Each chain word's entry in the guide (CHAIN.terms): a verb by its
 // stem (حدثتني is حدث), any other word whole.
-const TERMS = new Map(HADITH.chain.terms.groups.flatMap(({ way, terms }) =>
+const TERMS = new Map(CHAIN.terms.groups.flatMap(({ way, terms }) =>
   terms.flatMap((term) => (term.match ?? []).map((m) => [m, { ...term, way }]))))
 const STEMS = [...verbs].sort((a, b) => b.length - a.length)
 
@@ -160,10 +164,10 @@ export function termOf(word) {
 // the article and أبو/أبا/أبي as one word (alone, أبي is "my father"). Blessings
 // stay: they trail the name, so the prefix rule below reads past them, while
 // dropping الله would leave عبد الله as عبد.
-const SPELLINGS = HADITH.chain.spellings
+const SPELLINGS = CHAIN.spellings
 export const keyOf = (name) => name.split(/\s+/).map(bare).filter(Boolean)
   .map((w, _, all) => (all.length > 1 && SPELLINGS[w]) || w.replace(/^ال/, '').replace(/(.{3,})ا$/, '$1').replace(/ة$/, 'ه').replace(/ى$/, 'ي'))
-const TOGETHER = new Set(HADITH.chain.together)
+const TOGETHER = new Set(CHAIN.together)
 // One narrator when the shorter key opens the longer (سليمان is سليمان بن يسار):
 // inside one hadith's chain a name is rarely shared by two men. "My father" in
 // two strands is two fathers, so it never joins them.
@@ -198,9 +202,13 @@ export function chainLinks(chain) {
     term = null
     handing = false
   }
-  for (const { 0: raw, index } of String(chain ?? '').matchAll(/\S+/g)) {
+  const found = [...String(chain ?? '').matchAll(/\S+/g)]
+  // A remark set between two aside marks (- يعني ابن علية -) is no name; a mark with no partner is ignored.
+  const marks = found.flatMap((m, i) => (m[0] === CHAIN.aside ? [i] : []))
+  const inside = (i) => marks.some((from, k) => k % 2 === 0 && k + 1 < marks.length && i >= from && i <= marks[k + 1])
+  for (const { 0: raw, index } of found.filter((_, i) => !inside(i))) {
     const word = bare(raw)
-    if (word === HADITH.chain.strand) { close(); strands.push([]); continue }
+    if (word === CHAIN.strand) { close(); strands.push([]); continue }
     if (TOGETHER.has(word)) {
       close()
       const last = strands.at(-1).at(-1)

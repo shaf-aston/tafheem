@@ -3,7 +3,7 @@
 
   "max_questions": 4,
 
-  "_key_roles_comment": "Which words the second question prefers to ask about, by the role key every card carries (roles.json, models/analysis.py ROLE_KEYS): the doer or the subject is the most useful thing to name first. A word the analysis left unnamed is never asked about.",
+  "_key_roles_comment": "Which words the second question prefers to ask about, by the role key every card carries (roles.json, models/analyze.py ROLE_KEYS): the doer or the subject is the most useful thing to name first. A word the analysis left unnamed is never asked about.",
   "key_roles": ["fail", "mubtada"],
 
   "questions": {

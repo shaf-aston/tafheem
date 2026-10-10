@@ -124,8 +124,8 @@ def routed(sentence: str, api: str | None) -> dict:
     """The whole /api/analyze answer; offline, from the router itself."""
     if api:
         return post(api, sentence)
-    from backend.models.analysis import AnalyzeRequest
-    from backend.routers.analysis import analyze_sentence
+    from backend.models.analyze import AnalyzeRequest
+    from backend.routers.analyze import analyze_sentence
     return asyncio.run(analyze_sentence(AnalyzeRequest(sentence=sentence))).model_dump()
 
 

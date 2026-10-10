@@ -43,7 +43,7 @@ function Rung({ link, marks = [], grow = false }) {
 }
 
 function Narrator({ link, weak, onNarrator }) {
-  const point = link.note && weak.find((p) => p.id === link.note.id)
+  const point = weak.find((p) => link.members.some((m) => m.note?.id === p.id))   // weak is weakest first
   return (
     <div className="relative max-w-[var(--sheet-narrator)]">
       {point && (

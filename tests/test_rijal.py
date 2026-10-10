@@ -21,7 +21,7 @@ from backend.main import app  # noqa: E402
 from backend.scripts import build_rijal  # noqa: E402
 from backend.services.arabic_text import strip_diacritics  # noqa: E402
 from backend.services.hadith import loader  # noqa: E402
-from backend.services.rijal import cache, parse, store  # noqa: E402
+from backend.services.hadith.rijal import cache, parse, store  # noqa: E402
 
 FIXTURES = Path(__file__).parent / "fixtures" / "rijal"
 OURS = json.loads((FIXTURES / "arabic.json").read_text(encoding="utf-8"))
@@ -81,6 +81,8 @@ def test_the_book_endpoint_gives_slices_that_read_as_names(built):
     assert reply["ready"] is True and reply["source"]["key"] == "rijal"
     text = OURS["1620a"]
     assert [(strip_diacritics(text[a:b]), who) for a, b, who in reply["chains"]["1620a"]][3] == ("أبيه", 549)
+    assert built.get("/api/rijal/chains/nosuchbook/1").status_code == 404
+    assert built.get("/api/rijal/chains/muslim/999").json()["chains"] == {}   # a book of a known collection with no chains
 
 
 def test_a_narrator_sheet_carries_grade_generation_and_his_circle(built):
@@ -115,7 +117,7 @@ def test_a_name_said_again_in_the_story_lands_where_sunnah_links_it():
 
 
 def test_family_meets_the_viewed_chain():
-    from backend.services.rijal.family import meet
+    from backend.services.hadith.rijal.family import meet
     viewed = [1, 2, 3, 4]
     assert meet([9, 2], viewed) == ([9], 2, [3, 4])  # stops early, borrows the rest
     assert meet([7, 8], viewed) == ([7, 8], None, [])  # fully its own

@@ -16,36 +16,19 @@ from __future__ import annotations
 import re
 from typing import NamedTuple
 
-from backend.services.usul import names
-from backend.services.usul.level import fold_word
-
-# The words a year is written in. Folded like everything else, so the spelling is the book's.
-_UNITS = {
-    1: "واحد احد احدى واحدة", 2: "اثنين اثنتين اثنان اثنتان اثنا اثنتا اثني اثنتي ثنتين ثنتان ثنتي", 3: "ثلاث ثلاثة",
-    4: "أربع أربعة", 5: "خمس خمسة", 6: "ست ستة", 7: "سبع سبعة", 8: "ثمان ثماني ثمانية", 9: "تسع تسعة",
-}
-_TENS = {
-    20: "عشرين عشرون", 30: "ثلاثين ثلاثون", 40: "أربعين أربعون", 50: "خمسين خمسون", 60: "ستين ستون",
-    70: "سبعين سبعون", 80: "ثمانين ثمانون", 90: "تسعين تسعون",
-}
-_TEN = "عشر عشرة"
-_HUNDREDS = {
-    100: "مائة مئة", 200: "مائتين مائتان مئتين مئتان", 300: "ثلاثمائة", 400: "أربعمائة", 500: "خمسمائة",
-    600: "ستمائة", 700: "سبعمائة", 800: "ثمانمائة", 900: "تسعمائة",
-}
+from backend.services.hadith.usul import names
+from backend.services.hadith.usul.level import fold_word
+from backend.services.hadith.usul.rule import rule
 
 
-def _table() -> dict[str, tuple[int, str]]:
-    """{folded word: (value, class)} for every number word; class is unit, ten (the 10 of 13), tens or hundred."""
-    out = {}
-    for group, kind in ((_UNITS, "unit"), (_TENS, "tens"), (_HUNDREDS, "hundred")):
-        for value, spelled in group.items():
-            out.update({fold_word(w): (value, kind) for w in spelled.split()})
-    out.update({fold_word(w): (10, "ten") for w in _TEN.split()})
-    return out
+def _table(numbers: dict) -> dict[str, tuple[int, str]]:
+    """{folded word: (value, class)} for the words a year is written in (usul.json `taqrib.death.numbers`), folded like
+    everything else so the spelling is the book's; class is unit, ten (the 10 of 13), tens or hundred."""
+    return {fold_word(w): (int(value), kind) for kind, group in numbers.items() for value, spelled in group.items()
+            for w in spelled.split()}
 
 
-_NUMBER = _table()
+_NUMBER = _table(rule()["taqrib"]["death"]["numbers"])
 _WAW = "و"
 
 

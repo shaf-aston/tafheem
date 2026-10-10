@@ -1,17 +1,17 @@
 """The Arabic of a hadith as parts: the chain of narrators, the one who tells it, and the hadith it carries.
 
 The one cutter: the app, the index and the usul build all take the cut from chain_of, by the rule in
-frontend/src/hadith.json (key `chain`). Pure but for that one read.
+data/hadith/chain.json, which the page also builds in (lib/hadithWords.js). Pure but for that one read.
 """
 from __future__ import annotations
 
 import json
 import re
-from pathlib import Path
 from typing import NamedTuple
 
-_RULE = json.loads((Path(__file__).resolve().parents[3] / "frontend" / "src" / "hadith.json")
-                   .read_text(encoding="utf-8"))["chain"]
+from backend.config import data_path
+
+_RULE = json.loads((data_path("hadith_dir") / "chain.json").read_text(encoding="utf-8"))
 # A passing-on verb with its ending (حدثه); only one hands a chain on past أن.
 _VERBS = {verb + ending for verb in _RULE["links"]["verbs"] for ending in _RULE["links"]["endings"]}
 _LINKS = {*_RULE["links"]["words"], *_VERBS}

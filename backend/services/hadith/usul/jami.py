@@ -16,9 +16,9 @@ from __future__ import annotations
 from collections import Counter
 from typing import NamedTuple
 
-from backend.services.usul import names
-from backend.services.usul.books import Entry
-from backend.services.usul.level import fold_word
+from backend.services.hadith.usul import names
+from backend.services.hadith.usul.books import Entry
+from backend.services.hadith.usul.level import fold_word
 
 Teachers = list[tuple[int, tuple[tuple[str, ...], ...]]]   # (narrator id, his name, lineage and kunyas as words)
 
@@ -115,14 +115,6 @@ def statements(text: str, teachers: Teachers, cfg: dict, vocab: frozenset[str] =
             if word in after and not stops & set(after[:after.index(word)]):
                 add("mursal", i, i + 1, found, reach=i + 1 + found[0] + after.index(word) + 1)
     return out
-
-
-def join(entries: dict[int, Entry], people: list[names.Person], size: int, window: int) -> tuple[dict[int, int], dict[int, str]]:
-    """({entry key: narrator id}, {entry key: why not}): the man the entry opens with, by names.Index.opened.
-    Two entries may be about one man (a repeat), so a narrator need not be unique to an entry."""
-    index = names.Index(people, size)
-    return names.one_to_one({key: [p.id for p in index.opened(names.words(entry.text), window)] for key, entry in entries.items()},
-                            exclusive=False)
 
 
 class Pair(NamedTuple):

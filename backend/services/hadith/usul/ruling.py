@@ -15,7 +15,7 @@ from __future__ import annotations
 import re
 from typing import NamedTuple
 
-from backend.services.usul.books import Entry
+from backend.services.hadith.usul.books import Entry
 
 # Paragraphs are joined by this where a text runs on across them; `sentence` reads it.
 PARAGRAPH = "\n"

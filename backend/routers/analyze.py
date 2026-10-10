@@ -10,7 +10,7 @@ import logging
 
 from fastapi import APIRouter
 
-from backend.models.analysis import AnalyzeRequest, AnalyzeResponse, WordAnalysis
+from backend.models.analyze import AnalyzeRequest, AnalyzeResponse, WordAnalysis
 
 from backend.models.common import Source
 from backend.services import iraab
@@ -23,7 +23,7 @@ router = APIRouter(prefix="/api/analyze", tags=["analysis"])
 @router.post("", response_model=AnalyzeResponse)
 async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
     sentence = arabic_sentence(request.sentence, "Sentence")
-    read = await asyncio.to_thread(iraab.analyse, sentence)
+    read = await asyncio.to_thread(iraab.analyze, sentence)
     logger.info("Analysed a %d-word sentence from %s", len(read["words"]), read["source"]["label"])
     return AnalyzeResponse(
         sentence=sentence,

@@ -102,7 +102,7 @@ def score(ayahs: list[tuple[int, int]], out_path: str | None) -> None:
     stats = {"tune": Counter(), "hold": Counter()}
     case_mix, role_mix, misses, slow = Counter(), Counter(), [], []
     texts: dict[int, dict[int, str]] = {}
-    iraab.analyse("بِسْمِ اللَّهِ")  # load the models before anything is timed
+    iraab.analyze("بِسْمِ اللَّهِ")  # load the models before anything is timed
     failed = _Failures()
     logging.getLogger("backend.services.syntax").addHandler(failed)
     for surah, ayah in ayahs:
@@ -120,7 +120,7 @@ def score(ayahs: list[tuple[int, int]], out_path: str | None) -> None:
         failed.ayah = f"{surah}:{ayah}"
         started = time.perf_counter()
         with mock.patch.object(tarkeeb_store, "for_sentence", lambda _sentence: None):
-            cards = iraab.analyse(" ".join(typed))["words"]
+            cards = iraab.analyze(" ".join(typed))["words"]
         seconds = time.perf_counter() - started
         slow.append((seconds, f"{surah}:{ayah}", len(typed)))
         if len(cards) != len(typed):

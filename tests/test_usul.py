@@ -5,7 +5,6 @@ written twice at the same place (the case that must not double a note).
 """
 from __future__ import annotations
 
-import json
 import sqlite3
 import sys
 from pathlib import Path
@@ -17,10 +16,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.main import app  # noqa: E402
 from backend.scripts import build_rijal, build_usul  # noqa: E402
-from backend.services.rijal import store as rijal_store  # noqa: E402
-from backend.services.usul import store as usul_store  # noqa: E402
-from backend.services.usul.level import level_of  # noqa: E402
-from backend.services.usul.rule import rule  # noqa: E402
+from backend.services.hadith.rijal import store as rijal_store  # noqa: E402
+from backend.services.hadith.usul import store as usul_store  # noqa: E402
+from backend.services.hadith.usul.level import level_of  # noqa: E402
+from backend.services.hadith.usul.rule import rule  # noqa: E402
 
 LEVELS = rule()["levels"]
 CHECK_PAGES = build_usul.check_pages   # the fixture below turns the check off; the tests of it turn it back on
@@ -138,10 +137,11 @@ def test_the_chains_endpoint_is_as_before_where_usul_db_is_missing(paths):
 
 # ---- the narrator books: entries, the year, and the join to a narrator ---------------------------------------------
 
-from backend.services.usul import books, family, jami, mukhtalitin, names, rung, taqrib, tarif  # noqa: E402
-from backend.services.usul.books import Entry  # noqa: E402
+from backend.services.hadith.usul import books, family, jami, names, rung, taqrib, tarif  # noqa: E402
+from backend.services.hadith.usul.books import Entry  # noqa: E402
 
 TAQRIB = rule()["taqrib"]
+BOOKS = rule()["join"]["books"]
 
 SAMPLE_BOOK = """#META# header line
 #META#Header#End#
@@ -271,14 +271,14 @@ def test_the_tarif_join_wants_a_nisba_and_one_narrator():
     people = _people(_row(1, "قتادة بن دعامة", "الرابعة", "ثقة", nisba="السدوسي، البصري"),
                      _row(2, "عمرو بن عبد الله", "الثالثة", "ثقة", nisba="السبيعي، الكوفي"),
                      _row(3, "عمرو بن عبد الله", "السادسة", "ثقة", nisba="النخعي، الكوفي"))
-    joined, gaps = tarif.join({
+    joined, gaps = names.join({
         10: names.words("قتادة بن دعامة السدوسي تابعي مشهور"),   # joins narrator 1
         11: names.words("قتادة بن دعامة تابعي مشهور"),           # no nisba of his beside it
         12: names.words("عمرو بن عبد الله كوفي"),                # the nisba كوفي is shared by two men
         13: names.words("عمرو بن عبد الله سبيعي"),               # would be narrator 2, but entry 12 also reached him
-    }, people, 3, 12)
+    }, people, 3, 12, **BOOKS["tarif"])
     assert joined == {10: 1} and gaps == {11: "none", 12: "many", 13: "shared"}
-    assert tarif.join({13: names.words("عمرو بن عبد الله سبيعي")}, people, 3, 12)[0] == {13: 2}
+    assert names.join({13: names.words("عمرو بن عبد الله سبيعي")}, people, 3, 12, **BOOKS["tarif"])[0] == {13: 2}
 
 
 def test_the_tarif_lineage_it_writes_tells_men_of_one_short_name_apart():
@@ -287,11 +287,11 @@ def test_the_tarif_lineage_it_writes_tells_men_of_one_short_name_apart():
                      _row(3, "محمد بن مسلم بن السائب بن أبي بكر", "الخامسة", "مقبول", nisba="المدني"),
                      _row(4, "محمد بن مسلم بن تدرس", "الرابعة", "صدوق", nisba="المدني"))
     one = {10: names.words("محمد بن مسلم بن عبيد الله بن شهاب الزهري المدني الفقيه")}   # one man's lineage (a book may skip an ancestor)
-    assert tarif.join(one, people, 3, 12) == ({10: 1}, {})
-    assert tarif.join({13: names.words("محمد بن مسلم بن السائب بن خباب المدني")}, people, 3, 12)[0] == {13: 2}
+    assert names.join(one, people, 3, 12, **BOOKS["tarif"]) == ({10: 1}, {})
+    assert names.join({13: names.words("محمد بن مسلم بن السائب بن خباب المدني")}, people, 3, 12, **BOOKS["tarif"])[0] == {13: 2}
     # the nearest case: the lineage written fits two men, or none is written, so nothing tells them apart
-    assert tarif.join({11: names.words("محمد بن مسلم بن السائب المدني مشهور")}, people, 3, 12) == ({}, {11: "many"})
-    assert tarif.join({12: names.words("محمد بن مسلم المدني مشهور")}, people, 3, 12) == ({}, {12: "many"})
+    assert names.join({11: names.words("محمد بن مسلم بن السائب المدني مشهور")}, people, 3, 12, **BOOKS["tarif"]) == ({}, {11: "many"})
+    assert names.join({12: names.words("محمد بن مسلم المدني مشهور")}, people, 3, 12, **BOOKS["tarif"]) == ({}, {12: "many"})
 
 
 # ---- a chain's links: a possible tadlis, a scholar's "did not hear" ------------------------------------------------
@@ -442,7 +442,7 @@ def test_a_mukhtalitin_heading_must_agree_in_nisba_where_it_goes_past_the_name()
     people = _people(_row(1, "إبراهيم بن العباس", "العاشرة", "ثقة", nisba="الحجازي"),
                      _row(2, "أبان بن صمعة", "السابعة", "صدوق", nisba="الأنصاري"))
     entries = {1: Entry(n=1, text="x", head="إبراهيم بن العباس السامري"), 2: Entry(n=2, text="y", head="أبان بن صمعة")}
-    assert mukhtalitin.join(entries, people, 3, 12) == ({2: 2}, {1: "none"})
+    assert names.join({n: names.words(e.head) for n, e in entries.items()}, people, 3, 12, **BOOKS["mukhtalitin"]) == ({2: 2}, {1: "none"})
 
 
 # ---- the endpoints --------------------------------------------------------------------------------------------------

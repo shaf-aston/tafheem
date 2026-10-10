@@ -2,13 +2,13 @@
 
     python backend/scripts/build_usul.py
 
-Levels every narrator from his grade (services/usul/level.py), then keeps a
+Levels every narrator from his grade (services/hadith/usul/level.py), then keeps a
 note for each place a narrator at or below `weak_from` is named in a chain.
 A narrator whose name, generation and grade all agree with one Taqrib entry is
 levelled from the entry's own wording instead. The narrator books that
 fetch_usul.py downloaded add: what each says of a narrator (facts), and the
 links of a chain they put in doubt, a possible tadlis and a scholar's "did not
-hear from" (services/usul/rung.py, jami.py). Prints the narrators levelled, the
+hear from" (services/hadith/usul/rung.py, jami.py). Prints the narrators levelled, the
 notes per level, the wordings no term took and every join with the rows it left
 over, so what the rule cannot read is seen and never guessed.
 
@@ -16,7 +16,7 @@ Every quote in usul.json that names a book and a page is first found in that boo
 against the one the book's markers give (check_pages); any mismatch stops the build.
 
 For each hadith number told more than once it counts the narrators at each place of the chains and
-compares the words of the tellings (services/usul/family.py), and prints the families with a picture
+compares the words of the tellings (services/hadith/usul/family.py), and prints the families with a picture
 and those left without one, by reason. `--sample FILE` also writes families laid out for checking by hand.
 
 Rebuilding is safe at any time: it writes a fresh file beside the old one and
@@ -40,9 +40,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.hadith import chain, loader  # noqa: E402
 from backend.services.hadith.chain import chain_of  # noqa: E402
-from backend.services.usul import books, facts, family, jami, match, mukhtalitin, names, ruling, rung, taqrib, tarif  # noqa: E402
-from backend.services.usul.level import kind_of, level_of  # noqa: E402
-from backend.services.usul.rule import rule  # noqa: E402
+from backend.services.hadith.rijal import store as rijal_store  # noqa: E402
+from backend.services.hadith.usul import books, facts, family, jami, match, names, ruling, rung, taqrib, tarif  # noqa: E402
+from backend.services.hadith.usul.level import kind_of, level_of  # noqa: E402
+from backend.services.hadith.usul.rule import rule  # noqa: E402
 
 # Lists are JSON. A note is keyed by where its narrator's name starts in the hadith's Arabic.
 _SCHEMA = """
@@ -219,8 +220,8 @@ def our_hadith() -> list[tuple[tuple, str, int]]:
 
 
 def narrators_by_hadith(rijal: sqlite3.Connection, rows: dict[int, dict]) -> dict[tuple, list[list[tuple[str, ...]]]]:
-    """{(collection, number, part): the name forms (match.forms) of each narrator its chain names}."""
-    forms = {who: match.forms(row) for who, row in rows.items()}
+    """{(collection, number, part): the name forms (names.forms) of each narrator its chain names}."""
+    forms = {who: names.forms(row, names.words) for who, row in rows.items()}
     found: dict[tuple, dict[int, list]] = {}
     for collection, number, part, who in rijal.execute("SELECT collection, number, part, narrator_id FROM mention"):
         found.setdefault((collection, number, part), {})[who] = forms.get(who, [])
@@ -286,7 +287,7 @@ def read_rulings(units: dict[str, list[books.Entry]], cfg: dict) -> tuple[list[t
 def add_rulings(conn: sqlite3.Connection, units: dict[str, list[books.Entry]], hadith: list[tuple[tuple, str, int]],
                 narrators_of: dict[tuple, list[list[tuple[str, ...]]]], everyone: list[list[tuple[str, ...]]], cfg: dict
                 ) -> list[str]:
-    """A row of `ruling` for each hadith of ours a ruling book's unit is about (services/usul/ruling.py reads the unit,
+    """A row of `ruling` for each hadith of ours a ruling book's unit is about (services/hadith/usul/ruling.py reads the unit,
     match.py finds the hadith). Returns the report: per book the units, what was read and what became of it.
 
     hadith: ((collection, number, part), its Arabic, its book number); narrators_of: the name forms of each hadith's narrators, by key;
@@ -343,7 +344,7 @@ def add_families(conn: sqlite3.Connection, mentions: dict[tuple, list], hadith: 
 
     Returns (the report, one dict per family for the sample: parts, chains, places, marks, why)."""
     fc = cfg["family"]
-    generations = json.loads((data_path("rijal_dir") / "rijal.json").read_text(encoding="utf-8"))["generations"]
+    generations = rijal_store.rule()["generations"]
     companions = set(next(g["tabaqat"] for g in generations if g["key"] == fc["companion_group"]))
     generation = {who: row["generation_ar"] for who, row in rows.items()}
     arabic = {key: text for key, text, _ in hadith}
@@ -456,7 +457,7 @@ def write_sample(path: Path, results: list[dict], rows: dict[int, dict], cfg: di
                 out.append(f"    - {m.kind}: {around}" + (f"   (no dots: {m.other})" if m.other else "")
                            + f"   | {best} says: {there or '(nothing there)'}")
         out.append("")
-    for reason, held in (("names_joined", lambda r: r["why"] == "names_joined"),
+    for reason, held in (("no_link", lambda r: r["why"] == "no_link"),
                          ("different_text", lambda r: "different_text" in r["left"].values())):
         pool = [r for r in results if held(r)]
         out.append(f"## Sent to a gap: {fc['reasons'][reason]} ({len(pool)} families; {min(fc['sample_gap'], len(pool))} below)")
@@ -523,8 +524,8 @@ def build(sample: Path | None = None) -> None:
         # Ta'rif: a mudallis's level; only 3 and 4 put a rung in doubt.
         tarif_entries = entries["tarif"]
         level_of_entry = {e.n: tarif.level_of(e, cfg["tarif"]) for e in tarif_entries}
-        tarif_joined, tarif_why = tarif.join({e.n: tarif.written_name(e, cfg["tarif"]) for e in tarif_entries},
-                                             people, size, window)
+        tarif_joined, tarif_why = names.join({e.n: tarif.written_name(e, cfg["tarif"]) for e in tarif_entries},
+                                             people, size, window, **cfg["join"]["books"]["tarif"])
         tarif_level = {who: level_of_entry[n] for n, who in tarif_joined.items()}
         print("\n".join(tarif_report(tarif_entries, level_of_entry, tarif_joined, tarif_why, rows)))
         add_gaps(conn, "tarif_join", tarif_why)
@@ -541,7 +542,8 @@ def build(sample: Path | None = None) -> None:
             if teacher in by_id:
                 teachers.setdefault(student, []).append((teacher, by_id[teacher].names))
         jami_entries = {e.n: e for e in entries["jami"]}
-        jami_joined, jami_why = jami.join(jami_entries, people, size, window)
+        jami_joined, jami_why = names.join({n: names.words(e.text) for n, e in jami_entries.items()}, people, size, window,
+                                         **cfg["join"]["books"]["jami"])
         vocab = frozenset(w for p in people for form in p.names for w in form)
         pair_list, left = jami.pairs([(who, jami_entries[n], teachers.get(who, [])) for n, who in jami_joined.items()],
                                      cfg["jami"], vocab)
@@ -556,7 +558,8 @@ def build(sample: Path | None = None) -> None:
 
         # Mukhtalitin: memory changed late in life, his entry's own sentences.
         mukh_entries = {e.n: e for e in entries["mukhtalitin"]}
-        mukh_joined, mukh_why = mukhtalitin.join(mukh_entries, people, size, window)
+        mukh_joined, mukh_why = names.join({n: names.words(e.head) for n, e in mukh_entries.items()}, people, size, window,
+                                         **cfg["join"]["books"]["mukhtalitin"])
         add_gaps(conn, "mukhtalitin_join", mukh_why)
         fact_rows += [facts.mukhtalit_fact(who, mukh_entries[n]) for n, who in mukh_joined.items()]
         print(f"Mukhtalitin entries joined: {len(mukh_joined)} of {len(mukh_entries)}")
@@ -580,7 +583,7 @@ def build(sample: Path | None = None) -> None:
         ruling_report = []
         if any(entries[kc["book"]] for kc in cfg["rulings"]["kinds"].values()):
             ruling_report = add_rulings(conn, entries, our_hadith(), narrators_by_hadith(rijal, rows),
-                                       [match.forms(row) for row in rows.values()], cfg)
+                                       [names.forms(row, names.words) for row in rows.values()], cfg)
             guard_change(target, "ruling", conn.execute("SELECT COUNT(*) FROM ruling").fetchone()[0], cfg["max_change_ratio"])
 
         # The versions fold: narrators counted at each place of a number's chains, and words one telling alone has.

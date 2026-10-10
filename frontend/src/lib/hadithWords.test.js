@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import HADITH from '../hadith.json'
-import { chainLinks, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
+import { CHAIN, chainLinks, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
 
 describe('saying', () => {
   it('marks a quoted stretch as said and the rest as told', () => {
@@ -108,8 +107,8 @@ describe('printedBy', () => {
 
 describe('termOf', () => {
   it('has a guide entry for every word the chain walker reads', () => {
-    const { verbs, endings, words } = HADITH.chain.links
-    const all = [...words, ...HADITH.chain.says, ...verbs.flatMap((v) => endings.map((e) => v + e))]
+    const { verbs, endings, words } = CHAIN.links
+    const all = [...words, ...CHAIN.says, ...verbs.flatMap((v) => endings.map((e) => v + e))]
     expect(all.filter((word) => !termOf(word))).toEqual([])
   })
 
@@ -166,6 +165,11 @@ describe('chainLinks', () => {
   it('keeps الله in a name, so عبد الله never joins عبد الرحمن', () => {
     const { branches } = links('حَدَّثَنَا قُتَيْبَةُ، حَدَّثَنَا عَبْدُ اللَّهِ، ح وَحَدَّثَنَا مُسَدَّدٌ، حَدَّثَنَا عَبْدُ الرَّحْمَنِ بْنُ مَهْدِيٍّ، عَنْ سُفْيَانَ، قَالَ كَانَ', 'قَالَ كَانَ')
     expect(branches[0].at).toBeNull()
+  })
+
+  it('leaves a remark set between aside marks out of the name, and ignores a mark with no partner', () => {
+    const { main } = links('حَدَّثَنَا عَبْدُ اللَّهِ، حَدَّثَنَا عَبْدُ الْعَزِيزِ، - يَعْنِي ابْنَ مُحَمَّدٍ - عَنْ مُحَمَّدٍ، - يَعْنِي ابْنَ عَمْرٍو - عَنْ أَبِي سَلَمَةَ، - عَنِ الْمُغِيرَةِ، أَنَّ النَّبِيَّ', 'أَنَّ النَّبِيَّ')
+    expect(main.map(({ name }) => name)).toEqual(['عَبْدُ اللَّهِ', 'عَبْدُ الْعَزِيزِ', 'مُحَمَّدٍ', 'أَبِي سَلَمَةَ', 'الْمُغِيرَةِ'])
   })
 
   it('has nothing to draw for no chain', () => {

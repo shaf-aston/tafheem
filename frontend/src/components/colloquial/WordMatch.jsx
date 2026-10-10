@@ -5,6 +5,7 @@
 // easier than recalling it.
 import { useState } from 'react'
 
+import { shuffled } from '../../lib/shuffle'
 import ArabicText from '../ui/ArabicText'
 import SmallButton from '../ui/SmallButton'
 import { FOCUS } from './Face'
@@ -12,11 +13,10 @@ import { FOCUS } from './Face'
 const BOARD = 5
 const SHAKE_MS = 360
 
-const shuffled = (list) => list.map((x) => [Math.random(), x]).sort((a, b) => a[0] - b[0]).map(([, x]) => x)
 const boardOf = (words, round) => {
   const size = Math.ceil(words.length / Math.ceil(words.length / BOARD))
   const these = words.slice(round * size, round * size + size)
-  return { round, left: shuffled(these), right: shuffled(these), found: [], slips: 0 }
+  return { round, left: shuffled(these, Math.random), right: shuffled(these, Math.random), found: [], slips: 0 }
 }
 
 export default function WordMatch({ words }) {
