@@ -23,8 +23,8 @@ import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import StatusNote from './ui/StatusNote'
-import TimelineBoard from './TimelineBoard'
-import TimelineSection from './TimelineSection'
+import TimelineBoard from './timelines/TimelineBoard'
+import TimelineSection from './timelines/TimelineSection'
 
 const ALL = 'all'
 
