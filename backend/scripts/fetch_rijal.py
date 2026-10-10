@@ -15,7 +15,6 @@ keeps failing stops the run loudly; run it again and it resumes from the cache.
 from __future__ import annotations
 
 import argparse
-import json
 import sys
 import time
 from pathlib import Path
@@ -24,14 +23,13 @@ from curl_cffi import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.hadith import loader  # noqa: E402
-from backend.services.hadith.rijal import cache, parse  # noqa: E402
+from backend.services.hadith.rijal import cache, parse, store  # noqa: E402
 
 
 class Fetcher:
     def __init__(self) -> None:
-        self.knobs = json.loads((data_path("rijal_dir") / "rijal.json").read_text(encoding="utf-8"))
+        self.knobs = store.rule()
         self.session = requests.Session(impersonate=self.knobs["impersonate"])
         self.fetched = 0
 

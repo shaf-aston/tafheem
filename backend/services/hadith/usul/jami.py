@@ -117,14 +117,6 @@ def statements(text: str, teachers: Teachers, cfg: dict, vocab: frozenset[str] =
     return out
 
 
-def join(entries: dict[int, Entry], people: list[names.Person], size: int, window: int) -> tuple[dict[int, int], dict[int, str]]:
-    """({entry key: narrator id}, {entry key: why not}): the man the entry opens with, by names.Index.opened.
-    Two entries may be about one man (a repeat), so a narrator need not be unique to an entry."""
-    index = names.Index(people, size)
-    return names.one_to_one({key: [p.id for p in index.opened(names.words(entry.text), window)] for key, entry in entries.items()},
-                            exclusive=False)
-
-
 class Pair(NamedTuple):
     student: int        # the narrator the entry is about, who is said not to have heard
     teacher: int

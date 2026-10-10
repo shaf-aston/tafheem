@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import re
+from functools import lru_cache
 
 from backend.config import data_path
 from backend.services.hadith import loader, words
@@ -21,8 +22,16 @@ _counts: tuple | None = None  # (db stamp, [(narrator id, hadith named in), ...]
 _kin: tuple | None = None     # (db stamp, {(collection, number): lettered narrations}) where more than one
 
 
-def _generations() -> list[dict]:
-    return json.loads((data_path("rijal_dir") / "rijal.json").read_text(encoding="utf-8"))["generations"]
+@lru_cache(maxsize=1)
+def rule() -> dict:
+    """rijal.json, read once: the only reader of it."""
+    return json.loads((data_path("rijal_dir") / "rijal.json").read_text(encoding="utf-8"))
+
+
+def knows(collection: str) -> bool:
+    """True when rijal.db names anyone in this collection, or is not built (the reply then says so itself)."""
+    db = _db()
+    return not db or db.execute("SELECT 1 FROM mention WHERE collection = ? LIMIT 1", (collection,)).fetchone() is not None
 
 
 def _ranked(db) -> list[tuple[int, int]]:
@@ -39,7 +48,7 @@ def _ranked(db) -> list[tuple[int, int]]:
 def narrators(generation: str, offset: int, limit: int) -> dict:
     """A page of narrators by how many hadith name them; `generation` is a key of rijal.json's groups, "" for all."""
     db = _db()
-    groups = _generations()
+    groups = rule()["generations"]
     if not db:
         return {"items": [], "total": 0, "generations": groups}
     ranked = _ranked(db)

@@ -33,12 +33,6 @@ def written_name(entry: Entry, cfg: dict) -> tuple[str, ...]:
     return names.words(" ".join(shown))
 
 
-def join(entries: dict[int, tuple[str, ...]], people: list[names.Person], size: int, window: int) -> tuple[dict[int, int], dict[int, str]]:
-    """({entry key: narrator id}, {entry key: why not}) for entries given as their written name words."""
-    index = names.Index(people, size)
-    return names.one_to_one({key: [p.id for p in index.written(written, window)] for key, written in entries.items()})
-
-
 def resolve(written: str, people: list[names.Person], size: int, window: int) -> int:
     """The one narrator a name written in usul.json stands for, by the same rule as the join. Stops, saying why, when
     it stands for none or for several: the name is then written more fully."""

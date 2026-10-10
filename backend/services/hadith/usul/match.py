@@ -77,12 +77,6 @@ def split_hadith(head: str, kind_cfg: dict, quote: Sequence[str]) -> tuple[str, 
     return (cut.chain, cut.body) if cut.chain else ("", "")
 
 
-def forms(row: dict) -> list[tuple[str, ...]]:
-    """A narrator's name, lineage and kunyas as folded name words (names.words), the ways a book may call him."""
-    kunyas = [k for k in re.split(r"\s*،\s*", row["kunya_ar"]) if k.strip()]
-    return [f for f in (names.words(row["name_ar"]), names.words(row["lineage_ar"]), *map(names.words, kunyas)) if f]
-
-
 class Names:
     """Whether a unit's chain names a man a hadith's chain names (c2)."""
 
