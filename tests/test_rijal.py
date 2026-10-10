@@ -122,6 +122,26 @@ def test_family_meets_the_viewed_chain():
     assert meet([5, 5, 3], [1, 3, 3, 4]) == ([5, 5], 3, [3, 4])  # a repeated narrator
 
 
+def test_the_family_endpoint_lays_each_narration_against_the_viewed_one_and_missing_things_are_404(built, monkeypatch):
+    chain = lambda *ids: [{"id": i, "name": f"n{i}"} for i in ids]  # noqa: E731
+    monkeypatch.setattr(store, "family", lambda c, n: [
+        {"part": "a", "book": 24, "narrators": chain(5085, 6659, 3122, 549, 5913), "said": "x"},
+        {"part": "b", "book": 24, "narrators": chain(777, 3122, 5913), "said": "y"}] if n == 1620 else chain(1)[:0])
+    reply = built.get("/api/rijal/family/muslim/1620", params={"part": "a"}).json()
+    ids = lambda people: [p["id"] for p in people]  # noqa: E731
+    a, b = reply["parts"]
+    assert reply["viewed"] == "a" and (ids(a["own"]), a["meet"]["id"], ids(a["borrowed"])) == ([], 5085, [6659, 3122, 549, 5913])
+    assert (ids(b["own"]), b["meet"]["id"], ids(b["borrowed"])) == ([777], 3122, [549, 5913])
+    assert "narrators" not in b
+    assert built.get("/api/rijal/family/muslim/99999999").status_code == 404
+    assert "no hadith" in built.get("/api/rijal/family/muslim/99999999").json()["detail"].lower()
+    monkeypatch.setattr(store, "family", lambda c, n: [{"part": "", "book": 24, "narrators": chain(1), "said": ""}])
+    assert "one narration" in built.get("/api/rijal/family/muslim/1620").json()["detail"]
+    assert built.get("/api/rijal/chains/muslim/24").status_code == 200
+    assert built.get("/api/rijal/chains/muslim/9999").status_code == 404
+    assert built.get("/api/rijal/chains/nosuchbook/24").status_code == 404
+
+
 def test_the_narrator_list_ranks_by_hadith_and_filters_by_generation(built):
     page = built.get("/api/rijal/narrators").json()
     counts = [n["hadith_count"] for n in page["items"]]
