@@ -30,6 +30,7 @@ import sqlite3
 import sys
 import argparse
 import difflib
+import itertools
 import random
 from collections import Counter
 from pathlib import Path
@@ -227,22 +228,28 @@ def narrators_by_hadith(rijal: sqlite3.Connection, rows: dict[int, dict]) -> dic
     return {key: list(men.values()) for key, men in found.items()}
 
 
+def mentions_by_hadith(rijal: sqlite3.Connection) -> dict[tuple, list[tuple[int, int, int]]]:
+    """{(collection, book, number, part): its mentions (start, end, narrator id) in text order}; a mention written
+    twice at one start is one."""
+    found: dict[tuple, dict[int, tuple]] = {}
+    for collection, book, number, part, start, end, who in rijal.execute(
+            "SELECT collection, book, number, part, start, end, narrator_id FROM mention "
+            "ORDER BY collection, book, number, part, ord"):
+        found.setdefault((collection, book, number, part), {}).setdefault(start, (start, end, who))
+    return {key: list(men.values()) for key, men in found.items()}
+
+
 def add_links(conn: sqlite3.Connection, rijal: sqlite3.Connection, cfg: dict, tarif_level: dict[int, int],
               pairs_by: dict[tuple[int, int], list], exempt: list[dict]) -> tuple[Counter, Counter]:
     """Link notes for every rung of every chain: (what each rung got or why not, why two names were no rung)."""
     outcomes: Counter = Counter()
     skipped: Counter = Counter()
-    places: dict[tuple, dict[tuple, dict[int, tuple]]] = {}   # a mention written twice at one start is one
-    for collection, book, number, part, start, end, who in rijal.execute(
-            "SELECT collection, book, number, part, start, end, narrator_id FROM mention "
-            "ORDER BY collection, book, number, part, ord"):
-        places.setdefault((collection, book), {}).setdefault((number, part), {}).setdefault(start, (start, end, who))
-    for (collection, book), hadith in places.items():
+    for (collection, book), hadith in itertools.groupby(mentions_by_hadith(rijal).items(), key=lambda kv: kv[0][:2]):
         arabic = {(h["number"], h["part"]): h["arabic"] for h in loader.hadiths(collection, book)}
-        for (number, part), mentions in hadith.items():
+        for (_, _, number, part), mentions in hadith:
             if (number, part) not in arabic:
                 continue
-            found, left = rung.rungs(arabic[number, part], list(mentions.values()))
+            found, left = rung.rungs(arabic[number, part], mentions)
             skipped.update(left)
             for r in found:
                 kind, why = rung.tadlis(r, collection, tarif_level.get(r.student), cfg["tadlis"], exempt)
@@ -342,10 +349,9 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
     companions = set(next(g["tabaqat"] for g in generations if g["key"] == fc["companion_group"]))
     generation = {who: row["generation_ar"] for who, row in rows.items()}
     arabic = {key: text for key, text, _ in hadith}
-    mentions: dict[tuple, dict[str, dict[int, tuple]]] = {}   # a mention written twice at one start is one
-    for collection, number, part, start, end, who in rijal.execute(
-            "SELECT collection, number, part, start, end, narrator_id FROM mention ORDER BY collection, number, part, ord"):
-        mentions.setdefault((collection, number), {}).setdefault(part, {}).setdefault(start, (start, end, who))
+    mentions: dict[tuple, dict[str, list[tuple[int, int, int]]]] = {}
+    for (collection, _, number, part), men in mentions_by_hadith(rijal).items():
+        mentions.setdefault((collection, number), {})[part] = men
     families = {key: sorted(by_part) for key, by_part in mentions.items() if len(by_part) >= 2}
     # Every telling's matn words, cut like the app cuts them; the weight of a word is read off all of them.
     matn_of = {(c, n, p): chain_of(arabic.get((c, n, p), "")) for (c, n), parts in families.items() for p in parts}
@@ -359,7 +365,7 @@ def add_families(conn: sqlite3.Connection, rijal: sqlite3.Connection, hadith: li
         chains, reasons = {}, {}
         for part in parts:
             chains[part], reasons[part] = family.chain_ids(arabic.get((collection, number, part), ""),
-                                                           list(by_part[part].values()), generation, companions, fc["joiner"])
+                                                           by_part[part], generation, companions, fc["joiner"])
         why = next((r for r in reasons.values() if r), "")
         shown = {"collection": collection, "number": number, "parts": parts, "chains": chains, "why": why, "places": [],
                  "marks": {}, "matns": {}, "left": {}, "shares": {},
