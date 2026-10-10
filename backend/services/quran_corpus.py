@@ -260,49 +260,21 @@ def ayah_texts(surah: int) -> list[tuple[int, str]]:
     return [(row["ayah"], row["text"]) for row in rows]
 
 
-def words_for_surah(surah: int) -> list[tuple[int, list[dict]]]:
-    """Every ayah of one surah, in order, as (ayah number, its words).
-
-    One query for the whole surah rather than one per ayah. The difference is not
-    small: al-Baqarah's 10,374 segments come back in about 30ms this way, where
-    286 separate calls spend most of their time on overhead.
-    """
-    rows = _db().execute(
-        "SELECT * FROM segment WHERE surah = ? ORDER BY ayah, word, segment", (surah,)
-    ).fetchall()
-
-    # The rows arrive sorted, so each ayah is one run and each word a run inside
-    # it, exactly what groupby consumes. Segments stay in their original order
-    # within a word, which is what _word_from relies on to glue them together.
-    return [
-        (
-            ayah,
-            [
-                _word_from(list(segments))
-                for _, segments in groupby(ayah_rows, key=lambda r: r["word"])
-            ],
-        )
-        for ayah, ayah_rows in groupby(rows, key=lambda r: r["ayah"])
-    ]
-
-
 def lemmas_for_surah(surah: int) -> dict[int, list[list[str]]]:
     """Each ayah's words, in printed order, as the dictionary forms they are built from.
 
     Every piece's lemma (بِسْمِ is ب and اسْم), as the coverage meter counts a
-    word learnt by any of them. An ayah whose printed words do not match the
-    corpus words one to one (37:130) is left out, as the glosses are.
+    word learnt by any of them. Not checked against the printed text: that rule
+    lives in quran_service.aligned_for_surah.
     """
     rows = _db().execute(
         "SELECT ayah, word, lemma FROM segment WHERE surah = ? ORDER BY ayah, word, segment", (surah,)
     ).fetchall()
-    texts = dict(ayah_texts(surah))
-    lemmas = {
+    return {
         ayah: [[s["lemma"] for s in segments if s["lemma"]]
                for _, segments in groupby(ayah_rows, key=lambda r: r["word"])]
         for ayah, ayah_rows in groupby(rows, key=lambda r: r["ayah"])
     }
-    return {ayah: found for ayah, found in lemmas.items() if len(found) == len(texts[ayah].split())}
 
 
 @lru_cache(maxsize=1)

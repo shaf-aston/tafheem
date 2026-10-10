@@ -26,7 +26,7 @@ from backend.models.quran import (
     SurahGlosses,
 )
 from backend.models.tarkeeb import TarkeebTree
-from backend.services import arabic_text, provenance, quran_corpus, quran_library, quran_service, roots
+from backend.services import arabic_text, provenance, quran_library, quran_service
 from backend.services import mutashabihat, quran_search
 from backend.services import tarkeeb
 from backend.services import tarkeeb_store
@@ -56,18 +56,7 @@ async def get_root(root: str) -> RootResponse:
     # The tagger writes a root as ك-ت-ب and the corpus stores كتب; accept either
     # so a link from another tab always lands.
     root = arabic_text.normalize_root(normalize_text(root, "Root"))
-    found = await asyncio.to_thread(
-        quran_corpus.occurrences_of_root, root, get_settings().root_occurrence_limit
-    )
-    if not found["total"]:
-        # Not a root: it may be a word, so answer for the root it comes from
-        # (services/roots.py, which every tab asks), the first the Qur'an has.
-        for word_root in await asyncio.to_thread(roots.roots_of, root):
-            found = await asyncio.to_thread(
-                quran_corpus.occurrences_of_root, word_root, get_settings().root_occurrence_limit
-            )
-            if found["total"]:
-                break
+    found = await asyncio.to_thread(quran_service.occurrences, root)
     if not found["total"]:
         raise HTTPException(status_code=404, detail=f"The root {root} does not occur in the Qur'an")
     return RootResponse(**found, source=Source(**provenance.of("corpus")))
@@ -76,15 +65,10 @@ async def get_root(root: str) -> RootResponse:
 # Declared before /{surah}/{ayah} for the same reason /root/ is: both are two
 # segments, and the first route that matches wins.
 @router.get("/surah/{surah}", response_model=QuranSurah)
-async def get_surah(surah: int, words: bool = False) -> QuranSurah:
-    """A whole surah at once, for reading it end to end.
-
-    `words=false` (the default) is the reading view: the text and its English,
-    which is two local queries however long the surah is. `words=true` adds the
-    word-by-word grammar, and is meant for one ayah being studied rather than a
-    whole surah being skimmed.
-    """
-    data = await asyncio.to_thread(quran_service.get_surah, surah, words)
+async def get_surah(surah: int = Path(..., ge=1, le=SURAHS)) -> QuranSurah:
+    """A whole surah at once, for reading it end to end: the text and its English,
+    two local queries however long the surah is."""
+    data = await asyncio.to_thread(quran_service.get_surah, surah)
     if data is None:
         raise HTTPException(status_code=404, detail=f"There is no surah {surah}")
     return QuranSurah(**data, source=Source(**provenance.of("corpus")))
@@ -98,8 +82,7 @@ async def get_surah_glosses(surah: int = Path(..., ge=1, le=SURAHS)) -> SurahGlo
     An empty answer is valid and means the meanings database was never built.
     The reader then draws the surah exactly as it did before.
     """
-    glosses = await asyncio.to_thread(quran_service.glosses_for_surah, surah)
-    lemmas = await asyncio.to_thread(quran_corpus.lemmas_for_surah, surah)
+    glosses, lemmas = await asyncio.to_thread(quran_service.aligned_for_surah, surah)
     return SurahGlosses(surah=surah, ayahs=glosses, lemmas=lemmas)
 
 
@@ -213,7 +196,10 @@ async def get_ayah_editions(
 
 
 @router.get("/{surah}/{ayah}/tarkeeb", response_model=TarkeebTree)
-async def get_tarkeeb(surah: int, ayah: int) -> TarkeebTree:
+async def get_tarkeeb(
+    surah: int = Path(..., ge=1, le=SURAHS),
+    ayah: int = Path(..., ge=1, le=LONGEST_SURAH),
+) -> TarkeebTree:
     """How the ayah's words assemble, the bracket tree, not the case endings.
 
     Two sources, and the badge always says which. The treebank is what scholars
@@ -229,7 +215,10 @@ async def get_tarkeeb(surah: int, ayah: int) -> TarkeebTree:
 
 
 @router.get("/{surah}/{ayah}", response_model=QuranAyah)
-async def get_ayah(surah: int, ayah: int) -> QuranAyah:
+async def get_ayah(
+    surah: int = Path(..., ge=1, le=SURAHS),
+    ayah: int = Path(..., ge=1, le=LONGEST_SURAH),
+) -> QuranAyah:
     """Return an ayah's word-by-word grammar from the corpus."""
     result = await asyncio.to_thread(quran_service.get_ayah, surah, ayah)
     if result is None:

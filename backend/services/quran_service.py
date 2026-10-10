@@ -19,11 +19,10 @@ from pathlib import Path
 import httpx
 
 from backend.config import get_settings
-from backend.services import quran_corpus, quran_layout, quran_meanings
+from backend.services import quran_corpus, quran_layout, quran_meanings, roots
 
 logger = logging.getLogger(__name__)
 
-API = "https://api.quran.com/api/v4"
 _CACHE_DIR = Path(__file__).parent.parent / "data" / "quran_cache"
 
 
@@ -36,7 +35,8 @@ def _get(path: str, cache_as: str | None = None) -> dict:
     if cache_as and (file := _cached(cache_as)).exists():
         return json.loads(file.read_text(encoding="utf-8"))
 
-    response = httpx.get(f"{API}{path}", timeout=get_settings().quran_timeout_seconds)
+    settings = get_settings()
+    response = httpx.get(f"{settings.quran_api_base}{path}", timeout=settings.quran_timeout_seconds)
     response.raise_for_status()
     payload = response.json()
 
@@ -87,6 +87,21 @@ def get_ayah(surah: int, ayah: int) -> dict | None:
     return {"words": words, "end_mark": quran_meanings.ayah_end_mark(surah, ayah)}
 
 
+def occurrences(root: str) -> dict:
+    """Where a root appears in the Qur'an; a word is answered for the first root
+    it comes from (services/roots.py, which every tab asks) that the Qur'an has.
+    `total` is 0 when neither the root nor any root of the word occurs."""
+    limit = get_settings().root_occurrence_limit
+    found = quran_corpus.occurrences_of_root(root, limit)
+    if found["total"]:
+        return found
+    for word_root in roots.roots_of(root):
+        found = quran_corpus.occurrences_of_root(word_root, limit)
+        if found["total"]:
+            break
+    return found
+
+
 def as_printed(text: str, printed: dict[int, str]) -> str:
     """The ayah in the mushaf's own spelling, stop signs (ۚ ۖ ۗ) included.
 
@@ -101,27 +116,16 @@ def as_printed(text: str, printed: dict[int, str]) -> str:
     )
 
 
-def get_surah(surah: int, with_words: bool = False) -> dict | None:
+def get_surah(surah: int) -> dict | None:
     """A whole surah in one go, or None if there is no such surah.
 
-    Two local queries, whatever the surah's length, the grammar in one, the
+    Two local queries, whatever the surah's length, the text in one, the
     English in another, instead of one round trip per ayah. That is what makes
     reading al-Baqarah's 286 ayahs the same cost as reading al-Fatiha's seven.
-
-    `with_words` is the difference between reading and studying. Reading wants the
-    text and nothing else; the segment-by-segment grammar is roughly fifty times
-    the payload and is only fetched for the ayah actually being examined.
+    The segment-by-segment grammar is roughly fifty times the payload and is
+    only fetched for the ayah actually being examined (get_ayah).
     """
-    # Reading takes the cheap query; only studying pays for the grammar.
-    ayahs: list[tuple[int, list[dict] | None, str]]
-    if with_words:
-        ayahs = [
-            (number, words, " ".join(word["arabic"] for word in words))
-            for number, words in quran_corpus.words_for_surah(surah)
-        ]
-    else:
-        ayahs = [(number, None, text) for number, text in quran_corpus.ayah_texts(surah)]
-
+    ayahs = quran_corpus.ayah_texts(surah)
     if not ayahs:
         return None
 
@@ -144,40 +148,39 @@ def get_surah(surah: int, with_words: bool = False) -> dict | None:
                 "arabic": as_printed(text, printed.get(number, {})),
                 "page": pages.get(number),
                 "english": " ".join(english.get(number, {}).values()),
-                "words": [
-                    {**word, "meaning": english.get(number, {}).get(position, "")}
-                    for position, word in enumerate(words, 1)
-                ]
-                if words is not None
-                else None,
             }
-            for number, words, text in ayahs
+            for number, text in ayahs
         ],
     }
 
 
-def glosses_for_surah(surah: int) -> dict[int, list[str]]:
-    """Each ayah's English word by word, in the order the words are printed.
+def aligned_for_surah(surah: int) -> tuple[dict[int, list[str]], dict[int, list[list[str]]]]:
+    """A surah's word-by-word English and lemmas, each in the order the words are printed.
 
-    For showing a reader what one word means without leaving the page. Cheap
-    enough to fetch for a whole surah: al-Baqarah, the longest, is 121KB, where
-    its grammar is nearly a megabyte.
+    For showing a reader what one word means, and marking the words they have
+    learnt, without leaving the page. Cheap enough to fetch for a whole surah:
+    al-Baqarah, the longest, is 121KB of English, where its grammar is nearly a
+    megabyte.
 
-    An ayah is included only when the corpus has exactly as many words as the
-    printed text does. They agree on 6,235 of the Qur'an's 6,236 ayahs; the
-    exception is 37:130, where إل ياسين is printed as two words and counted as
-    one. Handing that ayah out anyway would shift every gloss after it by one
+    An ayah is included in each only when the corpus has exactly as many words
+    as the printed text does. They agree on 6,235 of the Qur'an's 6,236 ayahs;
+    the exception is 37:130, where إل ياسين is printed as two words and counted
+    as one. Handing that ayah out anyway would shift everything after it by one
     and quietly put the wrong English on the wrong word, which is the one thing
     this feature must never do. Left out, the reader shows the ayah plain.
     """
     english = quran_meanings.for_surah(surah)
+    lemmas = quran_corpus.lemmas_for_surah(surah)
     glosses: dict[int, list[str]] = {}
+    kept: dict[int, list[list[str]]] = {}
     for number, text in quran_corpus.ayah_texts(surah):
+        printed = len(text.split())
         words = english.get(number, {})
-        if len(words) != len(text.split()):
-            continue
-        glosses[number] = [words[position] for position in sorted(words)]
-    return glosses
+        if len(words) == printed:
+            glosses[number] = [words[position] for position in sorted(words)]
+        if len(lemmas.get(number, ())) == printed:
+            kept[number] = lemmas[number]
+    return glosses, kept
 
 
 def is_loaded() -> bool:
