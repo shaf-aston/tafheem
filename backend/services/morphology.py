@@ -17,10 +17,10 @@ import logging
 import re
 from typing import Any
 
-from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
+from backend.services.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services import verb_reader
-from backend.services.nahw_book import is_one
-from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, base_of, best_reading, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
+from backend.services.nahw_book import is_one, six_noun_case
+from backend.services.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -359,20 +359,15 @@ def _handle_exact_match(word: str, exact: list[dict]) -> dict:
     ):
         return part
 
-    if word.endswith(_FATHA):
-        if verb := next(
-            (
-                a
-                for a in exact
-                if (a.get("pos") or "").lower() == "verb"
-                and (a.get("asp") or "") == "p"
-            ),
-            None,
-        ):
-            return verb
+    if word.endswith(_FATHA) and (verb := _perfect_verb(exact)):
+        return verb
 
     noun = _find_by_pos_preference(exact, ("noun_prop", "noun", "adj", "verb"))
     return noun or exact[0]
+
+
+def _perfect_verb(items: list[dict]) -> dict | None:
+    return next((a for a in items if (a.get("pos") or "").lower() == "verb" and (a.get("asp") or "") == "p"), None)
 
 
 def _handle_tanwin_bias(items: list[dict]) -> dict | None:
@@ -388,12 +383,7 @@ def _handle_fatha_bias(items: list[dict]) -> dict | None:
     ]:
         return parts[0]
 
-    verbs = [
-        a
-        for a in items
-        if (a.get("pos") or "").lower() == "verb" and (a.get("asp") or "") == "p"
-    ]
-    return verbs[0] if verbs else None
+    return _perfect_verb(items)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -534,54 +524,75 @@ def analyze_word(word: str) -> dict[str, Any]:
     return _analyze_qalsadi(word) if _QALSADI_AVAILABLE else _analyze_bare(word)
 
 
-def _analyze_sentence_camel_mle(tokens: list[str]) -> list[dict[str, Any]] | None:
-    """
-    Sentence-level analysis: neighbouring words decide each word's reading.
+def _reading(word: str, readings: list[dict]) -> dict:
+    """The best reading of a word that does not contradict its typed vowels.
 
-    Evidence order per token: a fully-diacritised input matches exactly one
-    analysis and settles it outright; otherwise the disambiguator's own ranking
-    decides, so no fixed part-of-speech preference is imposed here.
+    The disambiguator reads bare letters, so its favourite may not be the word
+    written. The typed vowels win: the reading sharing most of them is used
+    (harakat.best_reading), never the guessed proper noun. When no real reading
+    agrees the favourite is kept; naming still reads the vowels (a passive بُعْثِرَ).
     """
-    if _camel_mle is None:
-        return None
-    try:
-        disambiguated = _camel_mle.disambiguate(tokens)
-    except Exception as exc:
-        logger.debug("CAMeL MLE disambiguation failed: %s", exc)
-        return None
+    if not readings:
+        return {}
+    real = [r for r in readings if NO_ANALYSIS not in r.get("atbtok", "")]
+    verbs = [r for r in readings
+             if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
+    if past_passive_shape(word) and verbs:
+        return verbs[0]
+    return best_reading(word, real) or readings[0]
 
-    out: list[dict[str, Any]] = []
-    for i, (token, word_disambig) in enumerate(zip(tokens, disambiguated)):
-        ranked = [scored.analysis for scored in word_disambig.analyses]
-        if not ranked:
-            out.append(_analyze_bare(token))
-            continue
-        before = strip_diacritics(tokens[i - 1]) if i else ""
-        after = tokens[i + 1] if i + 1 < len(tokens) else ""
+
+def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:
+    """Each word's CAMeL readings, best first, from the disambiguator (BERT) and, if it fails,
+    the MLE; None when neither reads."""
+    for engine in filter(None, (disambiguator, _camel_mle)):
+        try:
+            return [[scored.analysis for scored in word.analyses] for word in engine.disambiguate(tokens)]
+        except Exception as exc:
+            logger.warning("CAMeL disambiguation failed: %s", exc)
+    return None
+
+
+def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
+    """One raw CAMeL reading per word ({} where none is read), shared by the cards and
+    the parser. Neighbours rank the readings (MLE, or the parser's BERT), the typed vowels choose."""
+    if (all_ranked := _ranked(tokens, disambiguator)) is None:
+        return [{} for _ in tokens]
+
+    steps = []  # each word's vowels as evidence, and its ranked readings
+    for token, ranked, after in zip(tokens, all_ranked, [*tokens[1:], ""], strict=True):
         # a kasra that may be a moved sukun is no evidence for the reading
         evidence = token[:-1] if moved_for_wasl(token, after) else token
-        if unread(ranked) and (twin := verb_reader.known_as(token)):
-            # a verb the dictionary lacks but sarf's table has: it reads the table's spelling of it
-            ranked, evidence = [scored.analysis for scored in _camel_mle.disambiguate([twin])[0].analyses], twin
-        out.append(_analysis_dict_from_camel(token, best_reading(evidence, ranked) or ranked[0], before, after))
+        if unread(ranked) and (twin := verb_reader.known_as(token)) and (twin_ranked := _ranked([twin], disambiguator)):
+            # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
+            ranked, evidence = twin_ranked[0], twin
+            if unread(ranked) and (sarf := verb_reader.reading_of(token)):
+                # يَسْتَعْتِبُوا: the dictionary has not even the table's spelling, so the table's reading is the word's
+                ranked = [{**sarf, "diac": twin, "lex": twin}]
+        steps.append((evidence, ranked))
+    out = [_reading(*step) for step in steps]
+    # a noun already joined to "my" takes no second mudaf ilayh: before a genitive noun
+    # أَبِي is the six nouns' jarr (أَبِي الطَّبِيبِ), not "my father"
+    for i in range(len(out) - 1):
+        if out[i].get("enc0") == "1s_poss" and out[i + 1].get("pos") == "noun" and out[i + 1].get("cas") == "g":
+            word, ranked = steps[i]
+            out[i] = best_reading(word, [r for r in ranked if r.get("enc0") != "1s_poss"
+                                         and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
     return out
 
 
-def analyze_sentence(sentence: str) -> list[dict[str, Any]]:
-    """
-    Tokenise and morphologically analyse a sentence.
-
-    Uses sentence context (MLE disambiguator) when available, falling back to
-    independent word-level analysis when it is not.
-    """
+def analyze_sentence(sentence: str, picks: list[dict] | None = None) -> list[dict[str, Any]]:
+    """Tokenise and analyse a sentence from `picks` (see `pick`; read here by MLE when
+    absent), falling back to word-level analysis when CAMeL gives none."""
     tokens = words(sentence)
     if not tokens:
         return []
 
     if _CAMEL_AVAILABLE:
-        if result := _analyze_sentence_camel_mle(tokens):
-            return result
-        return [analyze_word(t) for t in tokens]
+        picks = picks or pick(tokens)
+        before = ["", *map(strip_diacritics, tokens[:-1])]
+        return [_analysis_dict_from_camel(t, a, b, n) if a else analyze_word(t)
+                for t, a, b, n in zip(tokens, picks, before, [*tokens[1:], ""], strict=True)]
 
     if _QALSADI_AVAILABLE:
         return [_analyze_qalsadi(t) for t in tokens]

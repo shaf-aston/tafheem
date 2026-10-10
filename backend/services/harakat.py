@@ -2,7 +2,7 @@
 
 The parser is fed letters only, so the harakat are the one place case and a
 passive verb can be read from. `naming` and `teacher` judge with these; the
-parser layer (`catib_onnx`) uses them to pick among readings.
+reading picker (`morphology.pick`) uses them to choose among readings.
 """
 from __future__ import annotations
 

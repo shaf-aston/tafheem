@@ -61,7 +61,9 @@ python backend/scripts/build_daleel_index.py --meta  # just the source/book tabl
    is (a token with an Arabic letter, the Qur'an's reading marks taken off), so a pause sign or
    an ayah number never gets a card. Then `backend/services/morphology.py` runs CAMeL
    Tools (falling back to Qalsadi, then PyArabic) for root, POS, case and diacritics. Neighbouring
-   words disambiguate homographs (ذهب = "gold" or "he went"). This is a guess and is labelled as one.
+   words disambiguate homographs (ذهب = "gold" or "he went"): `morphology.pick` takes one reading
+   per word, by the parser's BERT when it is loaded and the MLE otherwise, and the cards and the
+   parser share it. This is a guess and is labelled as one.
 3. **The book's rules name every role, with no network**: `backend/services/iraab.py` is the
    one reader. `rule_engine.py` gives each word a card (type, case, sign, reason) from its tags
    and typed vowels. Then `services/syntax/` reads the sentence: `catib_onnx.py` links the

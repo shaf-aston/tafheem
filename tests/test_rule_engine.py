@@ -17,7 +17,8 @@ from __future__ import annotations
 import pytest
 
 from backend.models.analysis import ROLE_KEYS, WordAnalysis
-from backend.services import iraab, morphology, rule_engine
+from backend.services import iraab, morphology, rule_engine, syntax
+from backend.services.arabic_text import words
 from backend.services.nahw_book import term_ar
 from backend.services.syntax.catib_onnx import files_present
 
@@ -152,6 +153,10 @@ def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, ver
     assert (summary == term_ar("jumlah_filiyyah")) is verbal, summary
 
 
+def _syntax_read(sentence: str) -> dict:
+    return syntax.read(sentence, morphology.pick(words(sentence), syntax.disambiguator()))
+
+
 def _read(sentence: str) -> dict:
     return iraab.analyse(sentence)
 
@@ -268,8 +273,7 @@ def test_card_field(sentence: str, index: int, field: str, expected: str):
     ("مَتَى سَافَرَ الرَّجُلُ", "jumlah_istifhamiyyah")])  # a question, in the picture and above it
 def test_summary_and_tree_name_the_sentence_alike(sentence: str, term: str):
     answer = _read(sentence)
-    from backend.services import syntax
-    assert (answer["summary"], syntax.read(sentence)["tree"]["tree"]["label"]) == (term_ar(term), term_ar(term))
+    assert (answer["summary"], _syntax_read(sentence)["tree"]["tree"]["label"]) == (term_ar(term), term_ar(term))
 
 
 def _picture_roles(node: dict) -> list:
@@ -278,14 +282,12 @@ def _picture_roles(node: dict) -> list:
 
 
 def test_an_action_after_illa_is_a_munqati_excepted_and_its_hidden_doer_is_said_either_way():
-    from backend.services import syntax
-    shown = _picture_roles(syntax.read("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا")["tree"]["tree"])
+    shown = _picture_roles(_syntax_read("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا")["tree"]["tree"])
     assert "مستثنى منقطع" in shown and "ضمير مستتر تقديره أنتَ أو هي" in shown
 
 
 def test_the_same_masdar_with_no_illa_stays_an_object():
-    from backend.services import syntax
-    shown = _picture_roles(syntax.read("أُرِيدُ أَنْ تَطَّوَّعَ")["tree"]["tree"])
+    shown = _picture_roles(_syntax_read("أُرِيدُ أَنْ تَطَّوَّعَ")["tree"]["tree"])
     assert "مفعول به" in shown and "مستثنى منقطع" not in shown
 
 
@@ -297,8 +299,7 @@ def test_the_summary_is_the_pictures_own_label_never_a_second_guess():
 
 def test_a_relative_and_its_silah_are_one_unit():
     """جاء الذي نجح: the الذي unit does the فاعل's job, made of the relative and its صلة."""
-    from backend.services import syntax
-    doer = syntax.read("جَاءَ الَّذِي نَجَحَ")["tree"]["tree"]["children"][1]
+    doer = _syntax_read("جَاءَ الَّذِي نَجَحَ")["tree"]["tree"]["children"][1]
     inside = [(kid.get("role"), kid.get("label")) for kid in doer["children"]]
     assert (doer["role"], doer["label"], inside) == (
         "فاعل", term_ar("mawsool_silah"), [("اسم موصول", None), ("صلة", term_ar("jumlah_filiyyah"))])
@@ -455,11 +456,10 @@ def _shape(node: dict) -> tuple:
 def test_the_wonder_form_is_drawn_as_the_books_own_example():
     """ما أحسن زيدًا (Tasheel 1.4.2 p8): ما the مبتدأ, the verb's clause its khabar, the verb with its hidden doer."""
     import json
-    from backend.services import syntax
     from backend.services.nahw_book import RULES
     book = next(e for e in json.loads((RULES.parent / "tarkeeb" / "examples" / "tasheel-al-nahw.json")
                                       .read_text(encoding="utf-8"))["examples"] if e["id"] == "1.4.2-taajjub")
-    ours = syntax.read(book["sentence"])
+    ours = _syntax_read(book["sentence"])
     assert _shape(ours["tree"]["tree"]) == _shape(book["tree"])
     assert "ضمير مستتر وجوبًا تقديره هو يعود على ما" in _picture_roles(ours["tree"]["tree"])
     card = _read(book["sentence"])["words"][1]
@@ -519,8 +519,7 @@ def test_a_question_word_before_its_mubtada_is_the_khabar(sentence: str, expecte
     ("قَرَأْتُ مَا كَتَبَ الطُّلَّابُ إِلَّا زَيْدًا", 0),
 ])
 def test_only_a_ma_that_opens_its_clause_is_the_negation_before_illa(sentence: str, negations: int):
-    from backend.services import syntax
-    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    shown = _picture_roles(_syntax_read(sentence)["tree"]["tree"])
     assert shown.count("ما النافية") == negations
 
 
@@ -535,8 +534,7 @@ def test_a_relative_before_a_zarf_and_its_verb_is_no_question():
 
 
 def _sentence_label(sentence: str) -> str:
-    from backend.services import syntax
-    return syntax.read(sentence)["tree"]["tree"].get("label") or ""
+    return _syntax_read(sentence)["tree"]["tree"].get("label") or ""
 
 
 @pytest.mark.parametrize("sentence", ["مَا أَنْتَ إِلَّا بَشَرٌ", "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ", "ما أنت إلا بشر"])
@@ -549,11 +547,10 @@ def test_ma_before_illa_is_the_negation_and_illa_restricts_the_khabar(sentence: 
 @pytest.mark.parametrize("sentence", ["هَلْ أَنْتَ تَكْتُبُ", "ما أنت إلا بشر", "هَلِ الْوَلَدُ نَائِمٌ", "يَا أَخِي مَا اسْمُكَ",
                                       "مَنْ أَنْتَ فِي هَذِهِ الْمَدِينَةِ"])
 def test_the_picture_keeps_the_order_the_words_were_typed(sentence: str):
-    from backend.services import syntax
 
     def leaves(node: dict) -> list[int]:
         return ([node["word"]] if node.get("word") is not None else []) + [i for kid in node.get("children", []) for i in leaves(kid)]
-    order = leaves(syntax.read(sentence)["tree"]["tree"])
+    order = leaves(_syntax_read(sentence)["tree"]["tree"])
     assert order == sorted(order)
 
 
@@ -562,11 +559,10 @@ def test_the_picture_keeps_the_order_the_words_were_typed(sentence: str):
     ("كَانَ زَيْدٌ قَائِمًا", "فعل ناقص"),
 ])
 def test_the_picture_names_the_governor_of_kana(sentence: str, name: str):
-    from backend.services import syntax
 
     def roles(node: dict) -> list[str]:
         return [node.get("role")] + [r for kid in node.get("children", []) for r in roles(kid)]
-    assert name in roles(syntax.read(sentence)["tree"]["tree"])
+    assert name in roles(_syntax_read(sentence)["tree"]["tree"])
 
 
 @pytest.mark.parametrize("sentence, doer", [
@@ -577,8 +573,7 @@ def test_the_picture_names_the_governor_of_kana(sentence: str, name: str):
     ("تَكْتُبُ", "ضمير مستتر تقديره أنتَ أو هي"),  # nothing settles it
 ])
 def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: str, doer: str):
-    from backend.services import syntax
-    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    shown = _picture_roles(_syntax_read(sentence)["tree"]["tree"])
     assert doer in shown
     if sentence.startswith(("أَنْتَ", "هِيَ", "أَنْتِ")):
         assert [w["role"] for w in iraab.analyse(sentence)["words"]][0] == "مبتدأ" and "خبر" in shown
@@ -627,8 +622,7 @@ def test_a_pronoun_on_a_present_verb_is_not_read_as_its_passive_vowel():
     ("اكْتُبِ الدَّرْسَ", None, "فعل أمر"),
 ])
 def test_a_verb_that_gives_an_order_is_named_for_it_in_the_picture(sentence: str, particle: str | None, verb: str):
-    from backend.services import syntax
-    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    shown = _picture_roles(_syntax_read(sentence)["tree"]["tree"])
     assert verb in shown and (particle is None or particle in shown)
 
 

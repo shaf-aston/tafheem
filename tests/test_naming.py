@@ -101,7 +101,7 @@ def test_a_reading_that_contradicts_the_typed_vowels_does_not_agree():
 
 
 def test_the_parser_keeps_the_best_reading_that_agrees_with_the_vowels():
-    from backend.services.syntax.catib_onnx import _reading
+    from backend.services.morphology import _reading
     readings = [{"diac": "آفِلاً", "atbtok": "آفِلاً", "pos": "noun"},
                 {"diac": "افلا", "atbtok": "NOAN", "pos": "noun_prop"},
                 {"diac": "أَفَلا", "atbtok": "أَفَلا", "pos": "verb"}]

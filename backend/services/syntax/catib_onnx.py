@@ -1,8 +1,8 @@
 """Torch-free CATiB dependency parser: whitespace-split words -> a head/rel link
 for each word, over the light clitic split those links assume.
 
-CAMeL Tools' BERT disambiguator picks one reading per word; its atbtok/catib6/ud
-fields say whether the word is one token or several (CATiB splits off
+The reading picked for each word (morphology.pick, by BERT's ranking) has atbtok/catib6/ud
+fields that say whether the word is one token or several (CATiB splits off
 conjunctions, prepositions and pronoun suffixes, but folds the determiner ال into
 a feature). The split forms go to an ONNX biaffine parser (onnxruntime and numpy
 only) for head/rel. onnxruntime must be imported before camel_tools (Windows DLL
@@ -23,13 +23,12 @@ import onnxruntime as ort  # must precede camel_tools (see module docstring)
 import numpy as np
 from tokenizers import Tokenizer
 
-from backend.services import verb_reader
 from backend.services.arabic_text import bare_letters
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
 from backend.services.syntax.mask import book_links, book_mask
 from backend.services.morphology import ROOTED_POS, root_in_arabic
-from backend.services.harakat import NO_ANALYSIS, base_of, best_reading, past_passive_shape, typed_case, unread, weak_last
+from backend.services.harakat import base_of, typed_case, weak_last
 
 logger = logging.getLogger(__name__)
 
@@ -97,6 +96,7 @@ def warm() -> None:
             _parser = loaded
         except Exception as exc:
             _load_error = f"{type(exc).__name__}: {exc}"
+            logger.warning("CATiB parser failed to load, the cards read by the MLE: %s", _load_error)
             raise
 
 
@@ -139,7 +139,7 @@ def _load() -> _Parser:
 
 # CATiB folds the ال determiner into a feature (prc0=Al_det) rather than a
 # token, so only these clitic slots ever produce a separate token.
-# A word the analyzer could not read at all: BERT's own prediction has no
+# A word the analyzer could not read at all: its pick has no
 # atbtok/catib6/ud (those come from the morphology DB, not the tagger), so it
 # is reported as one unsplit token with a coarse guess at its CATiB tag.
 _POS_TO_CATIB6 = {
@@ -210,7 +210,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
         }
 
     if not a.get("catib6") or "atbtok" not in a:
-        # The analyzer found nothing for this word; BERT's own tag is all
+        # The analyzer found nothing for this word; its pick's own tag is all
         # there is, so it is reported as a single unsplit token.
         catib6 = _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
         base = baseword(clean(word, word), word, catib6, catib6)
@@ -267,26 +267,6 @@ def _split_word(word: str, a: dict) -> list[dict]:
     return out
 
 
-def _reading(word: str, readings: list[dict]) -> dict:
-    """The best reading of a word that does not contradict its typed vowels.
-
-    The disambiguator reads bare letters, so its favourite may be a word the
-    reader plainly did not write. The vowels typed are the reader's own evidence
-    and win: the reading sharing most of them is used (harakat.best_reading). The
-    analyser's guessed proper noun has no vowels to disagree with, so it never
-    wins that way. When no real reading agrees the favourite is kept, since the
-    naming layer still reads the vowels itself (a passive بُعْثِرَ).
-    """
-    if not readings:
-        return {"pos": "", "lex": word}
-    real = [r for r in readings if NO_ANALYSIS not in r.get("atbtok", "")]
-    verbs = [r for r in readings
-             if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
-    if past_passive_shape(word) and verbs:
-        return verbs[0]
-    return best_reading(word, real) or readings[0]
-
-
 # ─────────────────────────────────────────────────────────────────────────────
 # ONNX biaffine parser: subtoken forms -> heads + rel labels
 # (decoding lives in decode.py)
@@ -341,11 +321,17 @@ def _parse_forms(toks: list[dict]) -> tuple[list[int], list[str]]:
 # Public API
 # ─────────────────────────────────────────────────────────────────────────────
 
-def parse(words: list[str]) -> list[dict]:
+def disambiguator():
+    """The loaded BERT disambiguator, or None while it is not loaded."""
+    return _parser.disambiguator if _parser else None
+
+
+def parse(words: list[str], picks: list[dict]) -> list[dict]:
     """Dependency-parse one sentence's already-split words.
 
     words: the sentence split on whitespace/punctuation (not on clitics --
     that split happens inside this function).
+    picks: one CAMeL reading per word (morphology.pick), none read here.
 
     Returns one dict per output token (a clitic may add tokens beyond
     len(words)), each with: id (1-based), form, lemma, pos (CATiB6 tag),
@@ -357,20 +343,9 @@ def parse(words: list[str]) -> list[dict]:
 
     warm()
 
-    disambiguated = _parser.disambiguator.disambiguate(words)
     subtokens: list[dict] = []
-    for word, dw in zip(words, disambiguated):
-        readings = [scored.analysis for scored in dw.analyses]
-        if unread(readings) and (twin := verb_reader.known_as(word)):
-            # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): the dictionary reads
-            # the table's own spelling of it (فَلْيَسْتَعِفَّ), and its pieces and tense stand for the typed one
-            readings = [scored.analysis for scored in _parser.disambiguator.disambiguate([twin])[0].analyses]
-            if unread(readings) and (sarf := verb_reader.reading_of(word)):
-                # يَسْتَعْتِبُوا: the dictionary has not even the table's spelling, so the table's reading is the word's
-                readings = [{**sarf, "diac": twin, "lex": twin}]
-            pieces = _split_word(word, _reading(twin, readings))
-        else:
-            pieces = _split_word(word, _reading(word, readings))
+    for word, pick in zip(words, picks, strict=True):
+        pieces = _split_word(word, pick)
         # the vowel of an attached pronoun is the pronoun's: عِلْمَهُ is in nasb, not raf'
         stuck_on = sum(len(bare_letters(t["form"].strip("+"))) for t in pieces if t["form"].startswith("+"))
         subtokens.extend({**t, "case": typed_case(word, stuck_on)} for t in pieces)
