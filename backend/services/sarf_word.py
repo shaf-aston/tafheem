@@ -9,12 +9,18 @@ is a separate request.
 """
 from __future__ import annotations
 
-from backend.models.schemas import (
+from backend.models.common import Source
+
+from backend.models.morphology import (
+
     ConjugationResponse,
+
     ConjugationTable,
+
     MorphologyResponse,
-    Source,
+
     VerbVerdict,
+
 )
 from backend.services import conjugation, dictionary_service, morphology, provenance, roots, verb_forms
 

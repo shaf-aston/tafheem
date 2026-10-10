@@ -6,7 +6,15 @@ import asyncio
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import Narrator, NarratorList, RijalChains, RijalFamily, UsulFacts, RijalHadithRef, RijalSearch
+from backend.models.hadith import (
+    Narrator,
+    NarratorList,
+    RijalChains,
+    RijalFamily,
+    RijalHadithRef,
+    RijalSearch,
+    UsulFacts,
+)
 from backend.services import provenance
 from backend.services.rijal import family, store
 from backend.services.usul import store as usul

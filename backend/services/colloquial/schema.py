@@ -1,8 +1,8 @@
 """What the colloquial routes return.
 
-Here rather than in models/schemas.py because an exercise's shape is defined by
+Here rather than in backend/models/ because an exercise's shape is defined by
 its own type module, and the union below is assembled from the registry: a new
-exercise type must not mean editing a shared schemas file, or the promise that a
+exercise type must not mean editing a shared types file, or the promise that a
 type is one file and one registry line is not true.
 """
 from __future__ import annotations
@@ -11,7 +11,7 @@ from typing import Annotated, Literal, Union
 
 from pydantic import BaseModel, Field
 
-from backend.models.schemas import Source
+from backend.models.common import Source
 from backend.services.colloquial.exercises.registry import PAYLOADS
 
 # One model per exercise type, told apart by the `type` field, so every kind

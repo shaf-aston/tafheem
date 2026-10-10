@@ -9,14 +9,22 @@ import logging
 
 from fastapi import APIRouter, HTTPException
 
-from backend.models.schemas import (
+from backend.models.common import Source
+
+from backend.models.morphology import (
+
     ConjugationRequest,
+
     ConjugationResponse,
+
     MeaningRequest,
+
     MeaningResponse,
+
     MorphologyRequest,
+
     MorphologyResponse,
-    Source,
+
 )
 from backend.services import ai as ai_service
 from backend.services import conjugation, morphology, provenance, sarf_word

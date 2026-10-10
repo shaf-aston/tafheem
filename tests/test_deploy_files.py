@@ -25,7 +25,7 @@ def frontend_paths_read():
         for parts in PATH.findall(source.read_text("utf-8")):
             found.add("/".join(["frontend", *re.findall(r'"([^"]+)"', parts)]))
     # Built from WORDS rather than spelled out, so the pattern above misses it.
-    found.add(str(sentence_check.COVERAGE.relative_to(ROOT)))
+    found.add(sentence_check.COVERAGE.relative_to(ROOT).as_posix())
     return found
 
 

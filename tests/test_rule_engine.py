@@ -7,7 +7,7 @@ default grey.
 
 So these check the two halves of the seam that replaced it: every entry the
 engine builds carries a `role_key`, and every key it uses is one the contract
-allows, because a key that is not in `schemas.ROLE_KEYS` is dropped at the
+allows, because a key that is not in `models/analysis.py ROLE_KEYS` is dropped at the
 router and the colour is silently lost again.
 
 Run: python -m pytest tests/test_rule_engine.py
@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.models.schemas import ROLE_KEYS, WordAnalysis
+from backend.models.analysis import ROLE_KEYS, WordAnalysis
 from backend.services import iraab, morphology, rule_engine
 from backend.services.nahw_book import term_ar
 from backend.services.syntax.catib_onnx import files_present
@@ -53,7 +53,7 @@ def test_every_word_carries_a_role_key_field(sentence: str):
 
 @pytest.mark.parametrize("sentence", [VERBAL, NOMINAL])
 def test_keys_are_ones_the_contract_allows(sentence: str):
-    """The list here and the list in schemas.py are the same list.
+    """The list here and the list in models/analysis.py are the same list.
 
     Anything else is dropped to None by `WordAnalysis.from_raw`, so a typo in a
     key would not fail, it would just quietly go grey, which is the exact bug
@@ -308,7 +308,7 @@ def test_word_types_are_the_pages():
     """The types a card may carry are the ones grammar.json labels, and the rules use no other."""
     import json
     from pathlib import Path
-    from backend.models.schemas import WORD_TYPES
+    from backend.models.analysis import WORD_TYPES
     labelled = json.loads((Path(__file__).parent.parent / "frontend/src/grammar.json").read_text(encoding="utf-8"))["types"]
     assert WORD_TYPES - {"punc"} == set(labelled)
     for sentence in (VERBAL, NOMINAL, "جَاءَ الَّذِي نَجَحَ، هُوَ فِي البَيْتِ"):

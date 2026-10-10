@@ -1,13 +1,13 @@
 /**
  * A word's colour comes from the key the backend sends and from nothing else.
- * Role keys are copied from schemas.ROLE_KEYS.
+ * Role keys are copied from models/analysis.py ROLE_KEYS.
  */
 import { describe, expect, it } from 'vitest'
 
 import { GLOSSARY, caseLabel, typeLabel } from './grammarTerms'
 import { roleVar } from './roleColors'
 
-// The role names the backend can send, schemas.ROLE_KEYS.
+// The role names the backend can send, models/analysis.py ROLE_KEYS.
 const KEYS = ['fil', 'fail', 'mubtada', 'khabar', 'mafool', 'sifah', 'haal', 'mudaf', 'harf', 'mansub', 'tabi']
 
 describe('roleVar', () => {

@@ -8,9 +8,15 @@ from fastapi import APIRouter, HTTPException, Query
 from pydantic import StringConstraints
 
 from backend.config import get_settings
-from backend.models.schemas import (
-    Correction, HadithBook, HadithBookResponse, HadithChapter, HadithCollection, HadithEntry,
-    HadithReference, HadithSearchResponse,
+from backend.models.common import Correction
+from backend.models.hadith import (
+    HadithBook,
+    HadithBookResponse,
+    HadithChapter,
+    HadithCollection,
+    HadithEntry,
+    HadithReference,
+    HadithSearchResponse,
 )
 from backend.services import provenance
 from backend.services.hadith import loader

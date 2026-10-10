@@ -10,7 +10,9 @@ import logging
 
 from fastapi import APIRouter
 
-from backend.models.schemas import AnalyzeRequest, AnalyzeResponse, Source, WordAnalysis
+from backend.models.analysis import AnalyzeRequest, AnalyzeResponse, WordAnalysis
+
+from backend.models.common import Source
 from backend.services import iraab
 from backend.utils import arabic_sentence
 

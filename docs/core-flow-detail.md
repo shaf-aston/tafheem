@@ -71,7 +71,7 @@ python backend/scripts/build_daleel_index.py --meta  # just the source/book tabl
    page. `teacher.py` re-reads the set and dashes a name that breaks a stated rule. Those
    names replace the cards' first guess (`iraab.with_parser_roles`); a word no rule names
    stays a gap. Every word carries a `role_key` beside the Arabic role, checked against
-   `schemas.ROLE_KEYS`; `lib/roleColors.js` turns it into a theme token and reads nothing else.
+   `models/analysis.py ROLE_KEYS`; `lib/roleColors.js` turns it into a theme token and reads nothing else.
 4. **Tarkeeb is a tree, and a separate question**: which words join into a unit, and what that
    unit then does. Two sources, and the badge always says which: `tarkeeb_store.py` reads what
    scholars recorded (`data/tarkeeb/tarkeeb.db`, 5,023 of the 6,236 ayahs), and where that has
@@ -255,7 +255,8 @@ it is the term that is wrong.
   touching anything in there; that file owns its config knobs, its spelling rules, its
   English, and what the book does not cover.
 - `backend/scripts/`, one-time builders for the data above.
-- `backend/models/schemas.py`, Pydantic request/response shapes.
+- `backend/models/`, Pydantic request/response shapes, one file per router (`models/quran.py` for
+  `routers/quran.py`) and `common.py` for the two every feature shares (`Source`, `Correction`).
 - `frontend/src/theme.json` + `settings.json`, every visual token, and every setting a
   reader can change. `theme.js` and `lib/settings.js` are their only readers; both write
   CSS variables onto `:root`, which is why no component holds a colour or a size.
