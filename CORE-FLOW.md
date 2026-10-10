@@ -45,7 +45,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 Nahw has more views: Tamreen (`getTamreen`, `routers/tamreen.py`, `services/tamreen.py`), Notes
 (`getNotes`, `routers/nahw_notes.py`, `services/nahw_notes.py`) and Tarkeeb examples
 (`getTarkeebExamples`, `routers/tarkeeb.py`, `services/tarkeeb_examples.py`). Reciting (Mem, Grow)
-is step 5 below. Hadith weak points, in order: `components/HadithCards.jsx`, `lib/useNarrators.js`,
+is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.jsx`, `lib/useNarrators.js`,
 `rijalChainsQuery`, `routers/hadith.py` `get_chains`, `services/hadith/usul/store.py`, usul.db tables
 `note` and `link` (built by `scripts/build_usul.py`); `lib/weak.js` ranks and counts them in the page.
 

@@ -21,7 +21,7 @@ import { LOOK, SHOWN } from '../lib/reciteColors'
 
 import ArabicText from './ui/ArabicText'
 import AyahNumber from './ui/AyahNumber'
-import ReciteStrip from './ReciteStrip'
+import ReciteStrip from './memorise/ReciteStrip'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import PrimaryButton from './ui/PrimaryButton'
