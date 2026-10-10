@@ -50,7 +50,7 @@ python backend/scripts/build_daleel_index.py --words # just the word table, adde
 python backend/scripts/build_daleel_index.py --meta  # just the source/book table, added to the index already there
 ```
 
-## Core flow
+## Core flow (older notes, partly stale: the current one is below)
 
 1. **A tab picks the tool**: `frontend/src/App.jsx` holds the tabs and one `/api/health`
    check, so the user knows the backend is up before trying anything. It also carries a root
@@ -141,7 +141,7 @@ python backend/scripts/build_daleel_index.py --meta  # just the source/book tabl
    `data/sources.json` and attaches a `source` to each response; `ui/SourceBadge.jsx` shows it.
    This is the app's core honesty rule: verified, derived and guessed never look alike.
 
-## Glossary
+## Glossary (older; current one below and in `docs/glossary/`)
 
 The words this app uses, in plain terms. A check, not a gate: if a term here reads unclearly,
 it is the term that is wrong.
@@ -240,7 +240,7 @@ it is the term that is wrong.
 - **Token**: a colour, timing or size value in `frontend/src/theme.json`. `theme.js` is its
   only reader; components use `var(--…)` and never a literal.
 
-## Where things live
+## Where things live (older; current one below)
 
 - `backend/routers/`, API endpoints; thin, delegate to services.
 - `backend/services/`, the logic: morphology, rule engine, conjugation, corpus, dictionary,

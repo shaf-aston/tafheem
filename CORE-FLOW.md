@@ -3,8 +3,7 @@
 Study Arabic and the Qur'an in one app: grammar of a typed sentence, the Qur'an with checked
 grammar and tafsir, roots and conjugation, a dictionary, quizzes, timelines, and reciting
 checked word by word. Offline by default, and every answer says where it came from.
-More: `docs/core-flow-detail.md` (long notes, glossary, where things live) and
-`docs/glossary/` (one word per idea, per module).
+More: `docs/core-flow-detail.md` (long notes, where things live), `docs/glossary/` (per module).
 
 ## Run it
 
@@ -88,3 +87,13 @@ is step 5 below. Hadith weak points, in order: `components/HadithCards.jsx`, `li
 7. **Every answer says where it came from.** `services/provenance.py` attaches a `source` from
    `data/sources.json`; `ui/SourceBadge.jsx` shows it. Verified, derived and guessed never
    look alike.
+
+## Glossary
+
+- **I'raab**: one word's case and why. **Tarkeeb**: which words join into a unit, as a bracket tree.
+- **Root**: the three letters a word is built from; the link every tab shares (`services/roots.py`).
+- **Bab**: a verb's vowel pattern or form, read from Lane or Wiktionary, never worked out.
+- **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound.
+- **Source**: `verified`, `derived` or `guessed`, carried by every answer.
+- **Weak point**: a flagged narrator or link in a chain; `notes` and `links` in code (`docs/glossary/hadith.md`).
+- **Token**: a theme value in `frontend/src/theme.json`; components use `var(--...)`, never a literal.
