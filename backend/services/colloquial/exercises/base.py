@@ -49,14 +49,20 @@ class Exercise(BaseModel):
             raise ValueError(f"has no {info.field_name}")
         return value
 
-    @model_validator(mode="after")
-    def _accepted_answers(self):
+    def rules(self) -> list[str]:
+        """Every rule this exercise breaks beyond its fields; a type adds its own by extending this."""
         if not self.accepted:
             # Without it the only right answer is the one exact string, so every
             # other spelling of the same sentence is marked wrong.
-            raise ValueError("has no accepted answers")
+            return ["has no accepted answers"]
         if any(not one.strip() for one in self.accepted):
-            raise ValueError("has an empty accepted answer, which would match a blank reply")
+            return ["has an empty accepted answer, which would match a blank reply"]
         if self.answer not in self.accepted:
-            raise ValueError("does not list its own answer among the accepted ones")
+            return ["does not list its own answer among the accepted ones"]
+        return []
+
+    @model_validator(mode="after")
+    def _keeps_its_rules(self):
+        if said := self.rules():
+            raise ValueError("; ".join(said))
         return self

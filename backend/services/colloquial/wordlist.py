@@ -92,7 +92,7 @@ def _word_faults(word: dict, where: str) -> list[str]:
     if _NOT_ARABIC.search(arabic):
         said.append(f"{where} has a non-Arabic letter in its Arabic: {arabic!r}")
     forms = arabic.split("/")
-    if any(len(form.split()) > 2 for form in forms):
+    if any(len(form.split()) > knob("most-word-parts") for form in forms):
         said.append(f"{where} is a phrase, not a word: {arabic!r}")
     if len(spelling.split("/")) != len(forms):
         said.append(f"{where} has {len(forms)} forms in Arabic but not in its transliteration")

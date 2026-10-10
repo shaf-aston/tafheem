@@ -45,7 +45,7 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
 
   // A correct-but-bookish answer is a note, never a mark against the learner.
   const bookish = exercise.too_formal
-  const wasBookish = bookish && status && kind.judge({ ...exercise, answer: bookish.item, accepted: [bookish.item] }, value)
+  const wasBookish = bookish && status && kind.judge({ ...exercise, accepted: [bookish.item] }, value)
 
   return (
     <div className="space-y-4">

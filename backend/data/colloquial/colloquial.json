@@ -5,5 +5,8 @@
   "least-options": 3,
 
   "_comment-least-topic-words": "One round of match pairs, and enough that the words half of a tile is not thin.",
-  "least-topic-words": 8
+  "least-topic-words": 8,
+
+  "_comment-most-word-parts": "A bank word is at most this many words long; more is a phrase, which belongs in the lesson, not the word list.",
+  "most-word-parts": 2
 }

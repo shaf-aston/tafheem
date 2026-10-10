@@ -38,8 +38,8 @@ def _said(error: dict, exercise: dict) -> str:
 def faults(exercise: dict) -> list[str]:
     """What is wrong with one exercise. Empty means sound.
 
-    A rule that looks at the whole model runs only once every field is sound, so an
-    exercise with a blank prompt reports that first and the rest after it is fixed.
+    Field faults (a missing or blank field, the wrong kind of value) come first and alone:
+    the rules between fields, which report all of theirs at once, run once every field is sound.
     """
     try:
         _EXERCISE.validate_python(exercise)

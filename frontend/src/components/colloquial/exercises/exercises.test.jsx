@@ -44,6 +44,17 @@ describe('ExerciseHost', () => {
     expect(html).toContain('The natural answer is')
     expect(html).not.toContain('Check')
   })
+  it('a bookish note shows on a correct pick, and on a typed bookish form', () => {
+    const too_formal = { item: 'كيف حالك', feedback: 'that is the bookish way' }
+    const picked = renderToStaticMarkup(
+      <ExerciseHost exercise={{ ...base, type: 'choose', options: ['مرحبا', 'شكرا', 'يلا'], too_formal }} saved={{ correct: true, value: 'مرحبا' }} />,
+    )
+    expect(picked).toContain('that is the bookish way')
+    const typed = renderToStaticMarkup(
+      <ExerciseHost exercise={{ ...base, type: 'reply', too_formal }} saved={{ correct: true, value: 'كيف حالك' }} />,
+    )
+    expect(typed).toContain('that is the bookish way')
+  })
   it('picture options draw their labels', () => {
     const html = draw({ ...base, type: 'choose', options: [{ label: 'قهوة', image: 'a/b.jpg' }, 'شاي', 'ماء'] })
     expect(html).toContain('قهوة')

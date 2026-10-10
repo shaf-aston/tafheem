@@ -5,5 +5,8 @@
   "match-board": 5,
 
   "_comment-least-under-heading": "A heading in a word bank needs this many words; a smaller group joins the heading before it.",
-  "least-under-heading": 3
+  "least-under-heading": 3,
+
+  "_comment-feature-every": "In a lesson's phrase mosaic, every this-many-th tile is drawn large, so the grid is not a wall of equal squares.",
+  "feature-every": 7
 }

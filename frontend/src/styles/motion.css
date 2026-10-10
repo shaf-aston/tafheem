@@ -146,7 +146,7 @@
 
 
 .shake {
-  animation: shake calc(var(--motion-base-ms) * 1.5ms) ease-in-out;
+  animation: shake calc(var(--motion-shake-ms) * 1ms) ease-in-out;
 }
 
 

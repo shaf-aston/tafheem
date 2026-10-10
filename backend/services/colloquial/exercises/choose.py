@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel
 
 from backend.services.colloquial.exercises import base
 from backend.services.colloquial.knobs import knob
@@ -35,12 +35,11 @@ class Choose(base.Exercise):
     # the other and the renderer asks which once.
     options: list[str | PictureOption]
 
-    @model_validator(mode="after")
-    def _options_fit(self):
+    def rules(self) -> list[str]:
+        said = super().rules()
         least = knob("least-options")
         if len(self.options) < least:
-            raise ValueError(f"offers fewer than {least} options")
-        said = []
+            return said + [f"offers fewer than {least} options"]
         labels = [one.label if isinstance(one, PictureOption) else one for one in self.options]
         if any(not label.strip() for label in labels):
             said.append("has an empty option, which cannot be chosen")
@@ -50,9 +49,7 @@ class Choose(base.Exercise):
             said.append(f"offers the option {dup!r} twice")
         if self.answer not in labels:
             said.append("has an answer that is not one of its options")
-        if said:
-            raise ValueError("; ".join(said))
-        return self
+        return said
 
 
 MODELS = (Choose,)
