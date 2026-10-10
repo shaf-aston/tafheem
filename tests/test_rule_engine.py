@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.models.schemas import ROLE_KEYS, WordAnalysis
+from backend.models.analysis import ROLE_KEYS, WordAnalysis
 from backend.services import iraab, morphology, rule_engine
 from backend.services.nahw_book import term_ar
 from backend.services.syntax.catib_onnx import files_present
@@ -308,7 +308,7 @@ def test_word_types_are_the_pages():
     """The types a card may carry are the ones grammar.json labels, and the rules use no other."""
     import json
     from pathlib import Path
-    from backend.models.schemas import WORD_TYPES
+    from backend.models.analysis import WORD_TYPES
     labelled = json.loads((Path(__file__).parent.parent / "frontend/src/grammar.json").read_text(encoding="utf-8"))["types"]
     assert WORD_TYPES - {"punc"} == set(labelled)
     for sentence in (VERBAL, NOMINAL, "جَاءَ الَّذِي نَجَحَ، هُوَ فِي البَيْتِ"):

@@ -7,8 +7,8 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import (
-    Correction,
+from backend.models.common import Correction, Source
+from backend.models.dictionary import (
     DictionaryEntry,
     DictionaryResponse,
     EntryLine,
@@ -21,9 +21,8 @@ from backend.models.schemas import (
     RootMeaningResponse,
     SentenceResponse,
     SentenceWord,
-    Source,
-    VerbVerdict,
 )
+from backend.models.morphology import VerbVerdict
 from backend.services import ai as ai_service
 from backend.services import (
     dictionary_service,

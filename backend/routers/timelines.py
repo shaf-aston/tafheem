@@ -5,7 +5,7 @@ import asyncio
 
 from fastapi import APIRouter, HTTPException
 
-from backend.models.schemas import TimelineAsbab, TimelineLibrary
+from backend.models.timelines import TimelineAsbab, TimelineLibrary
 from backend.services import timelines
 
 router = APIRouter(prefix="/api/timelines", tags=["timelines"])

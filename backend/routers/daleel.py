@@ -8,7 +8,8 @@ from fastapi import APIRouter, Query
 from pydantic import StringConstraints
 
 from backend.config import get_settings
-from backend.models.schemas import DaleelBook, DaleelHit, DaleelResponse, Source
+from backend.models.common import Source
+from backend.models.daleel import DaleelBook, DaleelHit, DaleelResponse
 from backend.services import provenance
 from backend.services.daleel import search as daleel_search
 from backend.services.daleel import titles

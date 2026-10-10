@@ -15,7 +15,7 @@ import json
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import (
+from backend.models.progress import (
     Account,
     AccountNames,
     AttemptIn,

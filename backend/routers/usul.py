@@ -5,7 +5,7 @@ import asyncio
 
 from fastapi import APIRouter, HTTPException, Query
 
-from backend.models.schemas import UsulTerm, UsulTermHadith
+from backend.models.hadith import UsulTerm, UsulTermHadith
 from backend.services.usul import store
 
 router = APIRouter(prefix="/api/usul", tags=["usul"])

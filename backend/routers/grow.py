@@ -12,7 +12,7 @@ from functools import lru_cache
 from fastapi import APIRouter
 
 from backend.config import data_path
-from backend.models.schemas import GrowPath
+from backend.models.grow import GrowPath
 
 router = APIRouter(prefix="/api/grow", tags=["grow"])
 

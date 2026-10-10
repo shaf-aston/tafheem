@@ -16,14 +16,14 @@ import random
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import (
+from backend.models.common import Source
+from backend.models.practice import (
     CheckedSentence,
     KeptQuestion,
     KeptQuestions,
     PracticeQuestion,
     PracticeRequest,
     PracticeResponse,
-    Source,
 )
 from backend.identity import USER
 from backend.services import ai, iraab, practice_service, progress_store, provenance, sentence_check

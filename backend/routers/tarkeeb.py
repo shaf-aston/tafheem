@@ -5,7 +5,9 @@ import asyncio
 
 from fastapi import APIRouter
 
-from backend.models.schemas import Source, TarkeebExampleBook, TarkeebExamples
+from backend.models.common import Source
+
+from backend.models.tarkeeb import TarkeebExampleBook, TarkeebExamples
 from backend.services import provenance, tarkeeb_examples
 
 router = APIRouter(prefix="/api/tarkeeb", tags=["tarkeeb"])

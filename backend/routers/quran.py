@@ -7,9 +7,9 @@ import logging
 from fastapi import APIRouter, HTTPException, Path, Query
 
 from backend.config import get_settings
-from backend.models.schemas import (
+from backend.models.common import Correction, Source
+from backend.models.quran import (
     AyahEditions,
-    Correction,
     Edition,
     Passage,
     QuranAyah,
@@ -22,11 +22,10 @@ from backend.models.schemas import (
     SimilarGroup,
     SimilarPartner,
     SimilarSurah,
-    Source,
     SurahEdition,
     SurahGlosses,
-    TarkeebTree,
 )
+from backend.models.tarkeeb import TarkeebTree
 from backend.services import arabic_text, provenance, quran_corpus, quran_library, quran_service, roots
 from backend.services import mutashabihat, quran_search
 from backend.services import tarkeeb

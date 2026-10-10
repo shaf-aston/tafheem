@@ -31,7 +31,7 @@ from fastapi import APIRouter, File, HTTPException, Query, Request, Response, Up
 from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
-from backend.models.schemas import Heard, HeardAyah, HeardPlace, Sureness, TextSureness
+from backend.models.listen import Heard, HeardAyah, HeardPlace, Sureness, TextSureness
 from backend.services import journal, recitation
 from backend.services.recitation import NotInstalled, Unreadable
 from backend.services.recitation.recording import kind_of

@@ -255,7 +255,8 @@ it is the term that is wrong.
   touching anything in there; that file owns its config knobs, its spelling rules, its
   English, and what the book does not cover.
 - `backend/scripts/`, one-time builders for the data above.
-- `backend/models/schemas.py`, Pydantic request/response shapes.
+- `backend/models/`, Pydantic request/response shapes, one file per router (`models/quran.py` for
+  `routers/quran.py`) and `common.py` for the two every feature shares (`Source`, `Correction`).
 - `frontend/src/theme.json` + `settings.json`, every visual token, and every setting a
   reader can change. `theme.js` and `lib/settings.js` are their only readers; both write
   CSS variables onto `:root`, which is why no component holds a colour or a size.
