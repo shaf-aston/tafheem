@@ -17,6 +17,7 @@ backend/data/lexicons.db
 backend/data/lexicon.db
 backend/data/books/openiti.db
 backend/data/parser/encoder.onnx
+backend/data/disambig/model.onnx
 backend/data/quran/library.db
 backend/data/quran/corpus.db
 backend/data/quran/meanings.db

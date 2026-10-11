@@ -214,6 +214,8 @@ backend/data/quran/imlaei.json
 
 # Over GitHub's 100 MB per-file limit; a push containing it is rejected outright
 backend/data/parser/encoder.onnx
+# The disambiguator's ONNX export (backend/scripts/build_disambig_onnx.py); rebuilt, never committed
+backend/data/disambig/model.onnx
 
 # Screenshots and scratch output from probing the running app
 frontend/*.png

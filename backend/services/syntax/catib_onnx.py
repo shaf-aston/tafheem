@@ -1,9 +1,9 @@
 """Torch-free CATiB dependency parser: whitespace-split words -> a head/rel
 link for each word plus the light clitic split those links assume.
 
-Pipeline: CAMeL Tools' BERT disambiguator (camel_tools.disambig.bert) picks
-one morphological reading per word -- this pulls in torch itself, but that
-import happens inside camel_tools, never in this file. Each reading's own
+Pipeline: CAMeL Tools' BERT disambiguator picks one morphological reading per
+word -- run here as an ONNX export (disambiguator_onnx.py, built by
+scripts/build_disambig_onnx.py), so torch is never imported. Each reading's own
 'atbtok'/'catib6'/'ud' fields say whether it is one token or several (CATiB
 splits off conjunctions, prepositions and pronoun suffixes as their own
 tokens, but folds the determiner ال into a feature instead of a token). Those
@@ -58,17 +58,18 @@ _ar2bw = None
 
 
 def _files_present() -> bool:
-    d = data_path("catib_parser_dir")
-    names = ("encoder.onnx", "scorer.onnx", "tokenizer.json", "labels.json",
-              "config.json", "clitic_feats.csv")
-    return all((d / n).exists() for n in names)
+    parser, disambig = data_path("catib_parser_dir"), data_path("catib_disambig_dir")
+    return (all((parser / n).exists() for n in ("encoder.onnx", "scorer.onnx", "tokenizer.json",
+                                                "labels.json", "config.json", "clitic_feats.csv"))
+            and all((disambig / n).exists() for n in ("model.onnx", "tokenizer.json", "labels.json",
+                                                      "config.json", "mle_model.json")))
 
 
 def _ensure_loaded() -> None:
-    """Load the ONNX sessions, tokenizer and BERT disambiguator once, and
-    keep them in the module globals above. Heavy (a ~110MB int8 encoder plus
-    CAMeL's BERT disambiguator), so this only runs on the first parse() call
-    rather than at import time.
+    """Load the ONNX sessions, tokenizer and disambiguator once, and keep them
+    in the module globals above. Heavy (two BERT models and CAMeL's morphology
+    database), so this only runs on the first parse() call rather than at
+    import time.
     """
     global _enc_sess, _scorer_sess, _bpe, _cfg, _rel_labels, _clitic_table, _disambiguator, _ar2bw
     if _enc_sess is not None:
@@ -80,7 +81,7 @@ def _ensure_loaded() -> None:
 
     d = data_path("catib_parser_dir")
     if not _files_present():
-        raise RuntimeError(f"CATiB parser model files missing under {d}")
+        raise RuntimeError(f"CATiB parser model files missing under {d} or {data_path('catib_disambig_dir')}")
 
     with (d / "config.json").open(encoding="utf-8") as f:
         _cfg = json.load(f)
@@ -93,12 +94,12 @@ def _ensure_loaded() -> None:
     _enc_sess = ort.InferenceSession(str(d / "encoder.onnx"), providers=["CPUExecutionProvider"])
     _scorer_sess = ort.InferenceSession(str(d / "scorer.onnx"), providers=["CPUExecutionProvider"])
 
-    # Imported here, not at module top: camel_tools pulls in pandas/torch,
-    # which must load after onnxruntime (see module docstring).
-    from camel_tools.disambig.bert import BERTUnfactoredDisambiguator
+    # Imported here, not at module top: camel_tools pulls in pandas, which
+    # must load after onnxruntime (see module docstring).
     from camel_tools.utils.charmap import CharMapper
+    from backend.services.syntax.disambiguator_onnx import OnnxDisambiguator
 
-    _disambiguator = BERTUnfactoredDisambiguator.pretrained("msa", top=1, use_gpu=False)
+    _disambiguator = OnnxDisambiguator(data_path("catib_disambig_dir"), settings.catib_analyzer_cache)
     _ar2bw = CharMapper.builtin_mapper("ar2bw")
     logger.info("CATiB ONNX parser ready (%s)", d)
 
@@ -330,10 +331,8 @@ def parse(words: list[str]) -> list[dict]:
 
     _ensure_loaded()
 
-    disambiguated = _disambiguator.disambiguate(words)
     subtokens: list[dict] = []
-    for word, dw in zip(words, disambiguated):
-        analysis = dw.analyses[0].analysis if dw.analyses else {"pos": "", "lex": word}
+    for word, analysis in zip(words, _disambiguator.best_analyses(words)):
         subtokens.extend(_split_word(word, analysis))
 
     heads, rels = _parse_forms([t["form"] for t in subtokens])

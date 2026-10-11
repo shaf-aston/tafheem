@@ -368,14 +368,21 @@ class Settings(BaseSettings):
 
     # ── Syntax parser (CATiB dependency links) ───────────────────────────────
     # Whether backend/services/syntax/catib_onnx.py runs at all. Off by
-    # default costs nothing; on, the first parse() call loads a ~110MB ONNX
-    # encoder plus CAMeL's BERT disambiguator, so it stays off until a caller
-    # actually wants dependency links.
+    # default costs nothing; on, the first parse() call loads two ONNX BERT
+    # models (the parser and CAMeL's disambiguator), so it stays off until a
+    # caller actually wants dependency links.
     catib_parser_enabled: bool = True
     # encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json,
     # config.json, clitic_feats.csv. See catib_onnx.py's docstring for where
     # each one comes from. Relative paths resolve inside backend/.
     catib_parser_dir: str = "data/parser"
+    # CAMeL's BERT disambiguator exported to ONNX, so the parser needs no torch:
+    # model.onnx, tokenizer.json, labels.json, config.json, mle_model.json.
+    # Built once by backend/scripts/build_disambig_onnx.py.
+    catib_disambig_dir: str = "data/disambig"
+    # How many words' analyses the morphology analyzer remembers (CAMeL's own
+    # default for its pretrained disambiguator).
+    catib_analyzer_cache: int = Field(default=10000, gt=0)
 
     # ── Recite journal ────────────────────────────────────────────────────────
     # A second, narrower log beside backend.log: one JSON line per event, server

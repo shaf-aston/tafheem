@@ -1,0 +1,9 @@
+{
+    "description": "MSA unfactored model based on Inoue et al., 2022 with calima-msa-r13 analyzer.",
+    "db_name": "calima-msa-r13",
+    "scorer": "uniform",
+    "tie_breaker": "tag",
+    "feature": "feats_14",
+    "backoff": "ADD_PROP",
+    "ranking_cache": "calima-msa-r13"
+}
