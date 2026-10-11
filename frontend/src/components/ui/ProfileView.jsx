@@ -1,23 +1,26 @@
 /**
  * The logged-in profile: who, since when, how far along, the streak and each
- * module's record, and where that puts you among everyone else. Words learnt is the leaderboard's measure because
- * it is the one figure that cannot be bought by answering a lot.
+ * module's record, your circles, and where that puts you among everyone else.
+ * Words learnt is the ranking's measure because it is the one figure that
+ * cannot be bought by answering a lot.
  */
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { shareOf } from '../../lib/coverage'
 import { logOut } from '../../lib/profile'
-import { deleteAccount, fetchAccount, fetchLeaderboard, fetchOverview } from '../../lib/progress'
+import { deleteAccount, fetchAccount, fetchLeaderboard, fetchOverview, setPublic } from '../../lib/progress'
 import { MEANINGS } from '../../lib/quiz'
 import { moduleFor, QUIZ } from '../../lib/quizBanks'
 import { forgetShelf } from '../../lib/shelf'
 import { useQuizCoverage } from '../../lib/useQuizCoverage'
 import { useRemembered } from '../../lib/useRemembered'
 
+import CirclesView from './CirclesView'
+import ModuleRows from './ModuleRows'
+import Ranking from './Ranking'
 import { Skeleton } from './Skeleton'
 import SmallButton from './SmallButton'
-import TeamView from './TeamView'
 
 export default function ProfileView({ name, onLeave }) {
   // The language the quiz was last set to, as the quiz reads it: an Urdu
@@ -27,7 +30,6 @@ export default function ProfileView({ name, onLeave }) {
   const account = useQuery({ queryKey: ['account', name], queryFn: fetchAccount })
   const { stats, learnt, share } = useQuizCoverage(language)
   const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview })
-  const board = useQuery({ queryKey: ['leaderboard', module], queryFn: () => fetchLeaderboard(module) })
   // Nothing learnt covers nothing; something learnt waits for the word table.
   const covered = !stats.data ? null : learnt.length === 0 ? '0%' : share === null ? null : `${shareOf(share, language)}%`
 
@@ -45,9 +47,9 @@ export default function ProfileView({ name, onLeave }) {
         <Fact className="col-span-2" name="Streak"
           value={overview.data && `${overview.data.streak} ${overview.data.streak === 1 ? 'day' : 'days'} in a row`} />
       </dl>
-      <Modules overview={overview} />
-      <TeamView name={name} module={module} />
-      <Board board={board} name={name} />
+      <ModuleRows overview={overview} />
+      <CirclesView name={name} module={module} />
+      <Global name={name} module={module} account={account} />
       <Leave onLeave={onLeave} />
     </div>
   )
@@ -64,56 +66,24 @@ function Fact({ name, value, className = '' }) {
   )
 }
 
-/** One row per module answered in: words learnt, answers given, the last day. */
-function Modules({ overview }) {
-  if (overview.isPending) return <Skeleton className="h-16 w-full" />
-  if (overview.isError) return <p className="type-small text-[var(--danger)]">Could not load your modules.</p>
-  const { modules } = overview.data
-  if (modules.length === 0) return <p className="type-small text-[var(--text-faint)]">No answers yet.</p>
+/** The global ranking, with the switch that takes you out of it (you still see your own row). */
+function Global({ name, module, account }) {
+  const client = useQueryClient()
+  const board = useQuery({ queryKey: ['leaderboard', module], queryFn: () => fetchLeaderboard(module) })
+  const toggle = async (shown) => {
+    await setPublic(shown)
+    await client.invalidateQueries({ queryKey: ['account', name] })
+    await client.invalidateQueries({ queryKey: ['leaderboard'] })
+  }
   return (
-    <section className="space-y-2">
-      <h3 className="type-small font-bold text-[var(--text-dim)]">Modules</h3>
-      <ul className="space-y-1">
-        {modules.map((row) => (
-          <li key={row.module}
-            className="flex flex-wrap items-baseline gap-x-3 px-3 py-1.5 rounded-[var(--radius-sm)] type-small text-[var(--text-dim)]">
-            <span dir="auto" className="flex-1 min-w-[6rem] truncate font-bold text-[var(--text)]">{row.module}</span>
-            <span className="tabular-nums">{row.learnt} learnt</span>
-            <span className="tabular-nums">{row.attempts} {row.attempts === 1 ? 'answer' : 'answers'}</span>
-            <span className="tabular-nums text-[var(--text-faint)]">{new Date(row.lastAt).toLocaleDateString()}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
-}
-
-/** The top accounts by words learnt; your row stands out, and is added below when not in the top. */
-function Board({ board, name }) {
-  if (board.isPending) return <Skeleton className="h-24 w-full" />
-  if (board.isError) return <p className="type-small text-[var(--danger)]">Could not load the leaderboard.</p>
-  const { rows, you } = board.data
-  const shown = you && !rows.some((row) => row.name === name) ? [...rows, you] : rows
-  return (
-    <section className="space-y-2">
-      <h3 className="type-small font-bold text-[var(--text-dim)]">Leaderboard: words learnt</h3>
-      <ol className="space-y-1">
-        {shown.map((row) => {
-          const mine = row.name === name
-          return (
-            <li
-              key={row.name}
-              className={`flex items-center gap-3 px-3 py-1.5 rounded-[var(--radius-sm)] type-small ${
-                mine ? 'bg-[var(--surface-hi)] font-bold text-[var(--gold)]' : 'text-[var(--text-dim)]'}`}
-            >
-              <span className="w-6 tabular-nums">{row.rank}</span>
-              <span dir="auto" className="flex-1 truncate">{mine ? `${row.name} (you)` : row.name}</span>
-              <span className="tabular-nums">{row.learnt}</span>
-            </li>
-          )
-        })}
-      </ol>
-    </section>
+    <div className="space-y-2">
+      <Ranking board={board} name={name} title="Global ranking: words learnt" />
+      <label className="flex items-center gap-2 type-small text-[var(--text-dim)]">
+        <input type="checkbox" checked={account.data?.public ?? true} disabled={!account.data}
+          onChange={(e) => toggle(e.target.checked)} />
+        Show me in the global ranking
+      </label>
+    </div>
   )
 }
 
