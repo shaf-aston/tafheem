@@ -445,9 +445,13 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   keys are bare). That one account's keys are its shelf: `lib/shelf.js` pulls it from
   `GET /api/progress/saved` at start-up and log-in and `PUT`s it back a moment after any change (at once when the page is hidden),
   so it follows the name to any device. Log-in and log-out reload the page.
-  Teams: any account that adds a member (`POST /api/progress/team`) is a team; `GET /team`
-  returns the tree below it with each person's words learnt and answers (`progress_store.team_tree`,
-  loops refused). While `beta_list_accounts` is on, `GET /accounts` lists every username for the
+  Circles (`/api/progress/circles...`, rules all in `progress_store`): a circle has a kind (config `circle_kinds`, each with
+  `members_see_details`) and may sit inside one its creator administers. An admin invites an existing username, who sees
+  nothing until they accept; admins invite, remove, change roles and delete; the last admin cannot leave while others are in.
+  Joined members see the circle's ranking (`/leaderboard?circle=`). A member's overview is visible to themselves, admins of
+  a circle they are in or of any circle above it, and fellow members where the kind shows details (`can_see`); else 403.
+  `/leaderboard` alone is the global ranking of accounts with `public` on, plus your own row; `PUT /account/public` hides you.
+  Old `teams` became circles (migration 2), their members invited. While `beta_list_accounts` is on, `GET /accounts` lists every username for the
   sign-in box.
 - `backend/data/nahw_notes/`: the teacher's theory notes, one file per topic, read only by
   `services/nahw_notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as
