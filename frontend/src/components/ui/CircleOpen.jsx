@@ -117,6 +117,7 @@ function MemberOverview({ id, member }) {
   const streak = overview.data?.streak
   return (
     <div className="space-y-2 py-2">
+      <h4 dir="auto" className="type-small font-bold text-[var(--text)]">Progress of {member}</h4>
       {streak != null && (
         <p className="type-small text-[var(--text-dim)]">{streak} {streak === 1 ? 'day' : 'days'} in a row</p>
       )}
