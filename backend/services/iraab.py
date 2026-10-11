@@ -118,8 +118,8 @@ def _named(entry: dict, found: dict, annexed: bool) -> None:
 
 
 def _stands_for_own(entry: dict, found: dict, annexed: bool) -> bool:
-    """The typed vowel is the sign of the role's own case for this kind of word (a sound
-    feminine plural's kasra in nasb, a diptote's fatha in jarr), so the role's case stands."""
+    """The typed vowel is the sign of the role's own case for this kind of word (a sound plural's kasra in nasb, a diptote's fatha in jarr): mirrors
+    facts.shows_jarr / shows_nasb_by_kasra on the card's reading, so the role's case stands."""
     own = case_of(found["role"])
     typed = next((letter for letter, name in CASE_NAME.items() if name == found["case"]), None)
     stands = teacher_rules()["signs"]["stands_for"].get(signs.kind_of(entry["camel"], annexed), {})
