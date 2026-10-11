@@ -271,14 +271,14 @@ def _followers_take_their_ending(named: list, cases: list, bases: list[dict], to
     diptote's fatha also jarr (إِلَى إِبْرَاهِيمَ وَإِسْمَاعِيلَ). A present verb whose ending shows nothing, hung
     on a joining particle (atf `joins_mood`) that hangs on a verb in nasb or jazm, is in that mood too
     (أَنْ تَبَرُّوا وَتَتَّقُوا); any other is in raf', the mood a present verb has with no governor."""
-    by_id = {t["id"]: t for t in tokens}
     for i, (role, token) in enumerate(zip(named, bases)):
-        if role in FOLLOWERS:
-            head = _followed(token, bases, tokens)
-            if head is not None and cases[head] != "mabni" and (cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token))
-                                                                 or (cases[head] == "jarr" and facts.shows_jarr(token))):
-                cases[i] = cases[head]
-        elif role == NAMED.fil and cases[i] is None:
+        head = _followed(token, bases, tokens) if role in FOLLOWERS else None
+        if head is not None and cases[head] != "mabni" and (cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token))
+                                                             or (cases[head] == "jarr" and facts.shows_jarr(token))):
+            cases[i] = cases[head]
+    by_id = {t["id"]: t for t in tokens}
+    for i, (role, token) in enumerate(zip(named, bases)):  # the verbs after every noun, as they were two passes
+        if role == NAMED.fil and cases[i] is None:
             joiner = by_id.get(token["head"])
             head = _followed(token, bases, tokens) if joiner and joiner["pos"] == "PRT" and is_one(joiner["lemma"], "atf", "joins_mood") else None
             cases[i] = cases[head] if head is not None and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm") else "raf'"
