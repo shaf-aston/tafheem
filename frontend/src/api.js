@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+import CONFIG from './profile.json'
 import { profileHeaders } from './lib/profile'
 
 export const api = axios.create({
@@ -11,8 +12,9 @@ export const api = axios.create({
 // a name switched a moment ago is the one sent. A route that does not care
 // ignores it; one that does can no longer be called without it by mistake and
 // file a learner's answers under the guest. A call that names someone else
-// (sign-up, log-in) keeps its own.
+// (sign-up, sign-in) keeps its own and sends none of the saved key.
 api.interceptors.request.use((config) => {
+  if (config.headers.has(CONFIG.header)) return config
   for (const [key, value] of Object.entries(profileHeaders())) {
     if (!config.headers.has(key)) config.headers.set(key, value)
   }
@@ -230,6 +232,11 @@ export const narratorQuery = (id) => ({
   retry: (count, error) => error?.response?.status !== 404 && count < 1,
 })
 
+// What every chain is read against, fetched once: the twelve levels, what each doubtful link says, the terms of the science.
+export const usulGuideQuery = {
+  queryKey: ['usul-guide'],
+  queryFn: () => api.get('/usul/guide').then((r) => r.data),
+}
 // The sorts of ruling the classical books give (with their plain meaning and count), and the hadith carrying one, a page at a time.
 export const usulTermsQuery = {
   queryKey: ['usul-terms'],

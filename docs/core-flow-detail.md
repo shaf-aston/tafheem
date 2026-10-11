@@ -435,19 +435,24 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
 - `backend/data/progress.db`: learners' answers, and every Nahw practice question as it was
   generated (from `data/practice/templates.json`, filed under its badge's source; `GET /api/practice/kept`). The
   one database written while running, opened only by `services/progress_store.py`. Rows are
-  filed under the learner's username (no password): the page sends it on every request (`api.js` interceptor) in the `X-Tafheem-Profile`
-  header, `identity.py` `current_user()` cleans it (rules only in `services/profile.py`) and
-  refuses a name with no account. `POST /api/progress/signup` and `/login` return the kept spelling
-  (sign-up can move the guest `local` rows onto it); `/account` and `/leaderboard` feed the profile.
+  filed under the learner's username: the page sends it on every request (`api.js` interceptor) in the `X-Tafheem-Profile`
+  header with its sign-in key in `X-Tafheem-Key`; `identity.py` `current_user()` cleans the name (rules only in `services/profile.py`) and
+  refuses it without its current key. `POST /api/progress/signup` and `/account/signin` take a passphrase (PBKDF2, salted; the first
+  sign-in to an older account sets it) and return the kept spelling and a new key (sign-up can move the guest `local` rows onto it);
+  `/account`, `/overview` (every module, totals, streak) and `/leaderboard` feed the profile.
   Everything else a person keeps (settings, Grow steps, favourites, history) is in the browser,
   filed by `frontend/src/lib/stored.js` under the logged-in name (`@amina/settings`; the guest's
   keys are bare). That one account's keys are its shelf: `lib/shelf.js` pulls it from
   `GET /api/progress/saved` at start-up and log-in and `PUT`s it back a moment after any change (at once when the page is hidden),
   so it follows the name to any device. Log-in and log-out reload the page.
-  Teams: any account that adds a member (`POST /api/progress/team`) is a team; `GET /team`
-  returns the tree below it with each person's words learnt and answers (`progress_store.team_tree`,
-  loops refused). While `beta_list_accounts` is on, `GET /accounts` lists every username for the
-  log-in box.
+  Circles (`/api/progress/circles...`, rules all in `progress_store`): a circle has a kind (config `circle_kinds`, each with
+  `members_see_details`) and may sit inside one its creator administers. An admin invites an existing username, who sees
+  nothing until they accept; admins invite, remove, change roles and delete; the last admin cannot leave while others are in.
+  Joined members see the circle's ranking (`/leaderboard?circle=`). A member's overview is visible to themselves, admins of
+  a circle they are in or of any circle above it, and fellow members where the kind shows details (`can_see`); else 403.
+  `/leaderboard` alone is the global ranking of accounts with `public` on, plus your own row; `PUT /account/public` hides you.
+  Old `teams` became circles (migration 2), their members invited. While `beta_list_accounts` is on, `GET /accounts` lists every username for the
+  sign-in box.
 - `backend/data/nahw_notes/`: the teacher's theory notes, one file per topic, read only by
   `services/nahw_notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as
   `{{role|text}}`; the Notes view in Nahw hides them or turns them into flashcards

@@ -31,7 +31,7 @@ class GroqBackend(AIBackend):
     def _get_client(self):
         if self._client is None:
             from groq import Groq  # lazy import, groq SDK is optional
-            api_key = get_settings().groq_api_key
+            api_key = get_settings().groq_api_key.get_secret_value()
             if not api_key.strip():
                 raise ValueError("GROQ_API_KEY not configured")
             # max_retries=0: the SDK would otherwise retry inside our retry,

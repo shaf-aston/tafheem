@@ -32,7 +32,7 @@ import WheelPicker from './ui/WheelPicker'
 import { Skeleton } from './ui/Skeleton'
 import {
   difficultyOf, HIDDEN, useAnswers, useArrivedPage, useBookPage, useGaps, useHowYouAnswer,
-  usePageSteps, useReciteState, useReciteTurns, WAYS, withinPart,
+  usePageSteps, useReciteState, useReciteTurns, waysOf, withinPart,
 } from './memorise/hooks'
 
 export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
@@ -96,7 +96,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
 
         <Segmented
           label="How you answer"
-          options={WAYS.filter((w) => !w.onlyIf || w.onlyIf(book))}
+          options={waysOf(book)}
           value={way}
           onChange={chooseWay}
           accent={accent}

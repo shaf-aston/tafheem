@@ -247,6 +247,7 @@ tunnel/cloudflared.exe
 backend/data/hadith/*.json
 !backend/data/hadith/collections.json
 !backend/data/hadith/chain.json
+!backend/data/hadith/book_names.json
 !backend/data/hadith/search_yardstick.json
 
 # Raw sunnah.com pages the rijal fetch caches. rijal.db is covered by *.db above.

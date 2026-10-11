@@ -2,8 +2,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { api } from '../api'
 import {
-  addMember, deleteAccount, fetchAccount, fetchAccountNames, fetchLeaderboard, fetchReviewItems, fetchSummary, fetchTeam, forgetProgress, leaveFeedback, logIn,
-  recordAttempt, removeMember, signUp,
+  answerInvite, deleteAccount, fetchAccount, fetchAccountNames, fetchCircle, fetchLeaderboard, fetchMemberOverview, fetchOverview,
+  fetchReviewItems, fetchSummary, forgetProgress, inviteMember, leaveFeedback, moveCircle, recordAttempt, removeMember, signIn, signUp,
 } from './progress'
 
 afterEach(() => vi.restoreAllMocks())
@@ -91,20 +91,33 @@ describe('whose record', () => {
     await fetchAccount()
     await fetchLeaderboard('quiz')
     await deleteAccount()
-    await fetchTeam('quiz')
-    await addMember('bilal', 'quiz')
-    await removeMember('amina', 'bilal', 'quiz')
+    await fetchCircle(3)
+    await inviteMember(3, 'bilal', 'member')
+    await removeMember(3, 'bilal')
     expect(sent).toHaveLength(11)
     for (const config of sent) expect(config.headers.get('X-Tafheem-Profile')).toBe('amina')
   })
 
-  it('sign-up and log-in send the name typed, not the one saved', async () => {
-    vi.stubGlobal('localStorage', { getItem: (k) => (k === 'profile' ? 'amina' : null) })
+  it('sign-up and sign-in send the name typed, not the one saved, and no key', async () => {
+    vi.stubGlobal('localStorage', {
+      getItem: (k) => ({ profile: 'amina', 'profile-key': 'k1' })[k] ?? null,
+    })
     const sent = sending()
-    await signUp('bilal', false)
-    await logIn('bilal')
+    await signUp('bilal', 'open sesame', false)
+    await signIn('bilal', 'open sesame')
     expect(sent.map((config) => config.headers.get('X-Tafheem-Profile'))).toEqual(['bilal', 'bilal'])
-    expect(JSON.parse(sent[0].data)).toEqual({ keep: false })
+    for (const config of sent) expect(config.headers.has('X-Tafheem-Key')).toBe(false)
+    expect(JSON.parse(sent[0].data)).toEqual({ passphrase: 'open sesame', keep: false })
+    expect(JSON.parse(sent[1].data)).toEqual({ passphrase: 'open sesame' })
+  })
+
+  it('the key goes with the saved name on every call', async () => {
+    vi.stubGlobal('localStorage', {
+      getItem: (k) => ({ profile: 'amina', 'profile-key': 'k1' })[k] ?? null,
+    })
+    const sent = sending()
+    await fetchOverview()
+    expect(sent[0].headers.get('X-Tafheem-Key')).toBe('k1')
   })
 
   it('a guest sends no name', async () => {
@@ -115,18 +128,43 @@ describe('whose record', () => {
   })
 })
 
-describe('teams', () => {
-  it('adds a member as the logged-in name and hands back the new team', async () => {
-    const post = vi.spyOn(api, 'post').mockResolvedValue({ data: { tree: { name: 'coach' }, teams: [] } })
-    await expect(addMember('amina', 'quiz')).resolves.toEqual({ tree: { name: 'coach' }, teams: [] })
-    expect(post.mock.calls[0][1]).toEqual({ member: 'amina' })
-    expect(post.mock.calls[0][2].params).toEqual({ module: 'quiz' })
+describe('circles, and the log-in list', () => {
+  it('invites by name in the body, in the circle named in the address', async () => {
+    const post = vi.spyOn(api, 'post').mockResolvedValue({ data: { id: 3 } })
+    await inviteMember(3, 'amina', 'admin')
+    expect(post.mock.calls[0][0]).toBe('/progress/circles/3/members')
+    expect(post.mock.calls[0][1]).toEqual({ member: 'amina', role: 'admin' })
   })
 
-  it('says who parts from whom', async () => {
+  it('moves a circle by putting its new parent, or null, at its parent address', async () => {
+    const put = vi.spyOn(api, 'put').mockResolvedValue({ data: {} })
+    await moveCircle(3, 7)
+    await moveCircle(3, null)
+    expect(put.mock.calls.map((call) => call[0])).toEqual(['/progress/circles/3/parent', '/progress/circles/3/parent'])
+    expect(put.mock.calls.map((call) => call[1])).toEqual([{ parent: 7 }, { parent: null }])
+  })
+
+  it('answers an invite with accept or decline', async () => {
+    const post = vi.spyOn(api, 'post').mockResolvedValue({ data: {} })
+    await answerInvite(3, true)
+    await answerInvite(3, false)
+    expect(post.mock.calls.map((call) => call[0])).toEqual(['/progress/circles/3/accept', '/progress/circles/3/decline'])
+  })
+
+  it('escapes a member name that is Arabic or has spaces, in the address', async () => {
+    const get = vi.spyOn(api, 'get').mockResolvedValue({ data: {} })
     const del = vi.spyOn(api, 'delete').mockResolvedValue({ data: {} })
-    await removeMember('coach', 'amina', 'quiz')
-    expect(del.mock.calls[0][1].params).toEqual({ team: 'coach', member: 'amina', module: 'quiz' })
+    await fetchMemberOverview(3, 'عائشة b')
+    await removeMember(3, 'عائشة b')
+    const encoded = encodeURIComponent('عائشة b')
+    expect(get.mock.calls[0][0]).toBe(`/progress/circles/3/members/${encoded}/overview`)
+    expect(del.mock.calls[0][0]).toBe(`/progress/circles/3/members/${encoded}`)
+  })
+
+  it('asks for a circle ranking by circle', async () => {
+    const get = vi.spyOn(api, 'get').mockResolvedValue({ data: {} })
+    await fetchLeaderboard('quiz', 3)
+    expect(get.mock.calls[0][1].params).toEqual({ module: 'quiz', circle: 3 })
   })
 
   it('throws when beta is over, so the log-in list just goes', async () => {

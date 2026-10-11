@@ -46,16 +46,17 @@ export async function forgetProgress() {
 }
 
 /**
- * Take a free username, or log in to one already taken. Both resolve
- * `{ name, moved }`: the server's spelling, which is what to keep, and how many
- * guest answers `keep` moved onto it. Both throw, so the box can say why
- * (taken, no such username, not a name).
+ * Take a free username, or sign in to one already taken; the first sign-in to
+ * an older account sets its passphrase. Both resolve `{ name, moved, key }`:
+ * the server's spelling and key, which are what to keep, and how many guest
+ * answers `keep` moved onto it. Both throw, so the box can say why (taken,
+ * wrong passphrase, no such username, not a name).
  */
-export const signUp = (typed, keep) =>
-  api.post(`${BASE}/signup`, { keep }, headers(typed)).then((r) => r.data)
+export const signUp = (typed, passphrase, keep) =>
+  api.post(`${BASE}/signup`, { passphrase, keep }, headers(typed)).then((r) => r.data)
 
-export const logIn = (typed) =>
-  api.post(`${BASE}/login`, {}, headers(typed)).then((r) => r.data)
+export const signIn = (typed, passphrase) =>
+  api.post(`${BASE}/account/signin`, { passphrase }, headers(typed)).then((r) => r.data)
 
 /** The profile page: `{ name, joined, answers }`. Throws, for react-query. */
 export const fetchAccount = () => api.get(`${BASE}/account`).then((r) => r.data)
@@ -63,9 +64,17 @@ export const fetchAccount = () => api.get(`${BASE}/account`).then((r) => r.data)
 /** Delete this username and its answers. Throws, so the button can say it failed. */
 export const deleteAccount = () => api.delete(`${BASE}/account`).then((r) => r.data)
 
-/** `{ rows, you }`: accounts by words learnt, and this one's place. Throws, for react-query. */
-export const fetchLeaderboard = (module) =>
-  api.get(`${BASE}/leaderboard`, { params: { module } }).then((r) => r.data)
+/** `{ modules, attempts, correct, learnt, streak }`: every module answered in. Throws, for react-query. */
+export const fetchOverview = () => api.get(`${BASE}/overview`).then((r) => r.data)
+
+/** `{ rows, you }`: a circle's joined members (when `circle` is given) or the public accounts, by words learnt,
+ *  and this one's place. Throws, for react-query. */
+export const fetchLeaderboard = (module, circle) =>
+  api.get(`${BASE}/leaderboard`, { params: { module, circle } }).then((r) => r.data)
+
+/** Show in (true) or hide from the global ranking. Resolves the account; throws. */
+export const setPublic = (isPublic) =>
+  api.put(`${BASE}/account/public`, { public: isPublic }).then((r) => r.data)
 
 /** Every item answered in this module, with its record. Throws, for react-query. */
 export const fetchSummary = (module) =>
@@ -83,14 +92,39 @@ export async function leaveFeedback({ module, item, message }) {
 /** Every username, for the log-in box while in beta. Throws (404 once beta is over), for react-query. */
 export const fetchAccountNames = () => api.get(`${BASE}/accounts`).then((r) => r.data.names)
 
-/** `{ tree, teams }`: everyone under this account with their progress, and the teams it is in. */
-export const fetchTeam = (module) =>
-  api.get(`${BASE}/team`, { params: { module } }).then((r) => r.data)
+// Circles: everything about who may do or see what is the server's (services/progress_store.py);
+// these only call it. Each one throws, so the box can say why.
+const circlePath = (id) => `${BASE}/circles/${id}`
+const memberPath = (id, member) => `${circlePath(id)}/members/${encodeURIComponent(member)}`
 
-/** Put a username in this account's team. Resolves the new team; throws, so the box can say why. */
-export const addMember = (member, module) =>
-  api.post(`${BASE}/team`, { member }, { params: { module } }).then((r) => r.data)
+/** `{ kinds, circles }`: every circle I am in, invites included (status "invited"), and the kinds a new one may take. */
+export const fetchCircles = () => api.get(`${BASE}/circles`).then((r) => r.data)
 
-/** Part a member from a team; the team or the member may. Resolves the new team. */
-export const removeMember = (team, member, module) =>
-  api.delete(`${BASE}/team`, { params: { team, member, module } }).then((r) => r.data)
+/** Make a circle, optionally inside one I administer. Resolves it as `fetchCircle` does. */
+export const createCircle = (circle) => api.post(`${BASE}/circles`, circle).then((r) => r.data)
+
+/** `{ id, name, kind, parent, role, members, inside }`: the people I may see in it, each with `seeable`. */
+export const fetchCircle = (id) => api.get(circlePath(id)).then((r) => r.data)
+
+export const deleteCircle = (id) => api.delete(circlePath(id)).then((r) => r.data)
+
+/** Resolves the circle; the person sees nothing until they accept. */
+export const inviteMember = (id, member, role) =>
+  api.post(`${circlePath(id)}/members`, { member, role }).then((r) => r.data)
+
+/** Accept (true) or decline (false) an invite. Resolves my circles. */
+export const answerInvite = (id, accept) =>
+  api.post(`${circlePath(id)}/${accept ? 'accept' : 'decline'}`).then((r) => r.data)
+
+export const leaveCircle = (id) => api.post(`${circlePath(id)}/leave`).then((r) => r.data)
+
+export const removeMember = (id, member) => api.delete(memberPath(id, member)).then((r) => r.data)
+
+export const setRole = (id, member, role) => api.put(memberPath(id, member), { role }).then((r) => r.data)
+
+/** Move a circle inside another I administer (`parent` an id), or out on its own (null). Resolves the circle. */
+export const moveCircle = (id, parent) => api.put(`${circlePath(id)}/parent`, { parent }).then((r) => r.data)
+
+/** A member's `fetchOverview`, if the circles' rules let me see it. */
+export const fetchMemberOverview = (id, member) =>
+  api.get(`${memberPath(id, member)}/overview`).then((r) => r.data)

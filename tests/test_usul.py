@@ -120,11 +120,12 @@ def test_a_rebuild_that_swings_the_notes_keeps_the_old_file(paths):
     assert paths["usul_index_path"].read_bytes() == before
 
 
-def test_the_chains_endpoint_carries_notes_and_the_scale(paths):
+def test_the_chains_carry_notes_and_the_guide_carries_the_scale_once(paths):
     build_usul.build()
     reply = TestClient(app).get("/api/rijal/chains/muslim/24").json()
     assert [n["id"] for n in reply["notes"]["1"]] == [2, 3]
-    scale = reply["scale"]
+    assert "scale" not in reply and "link_rules" not in reply   # the same for every book: sent once, by /guide
+    scale = TestClient(app).get("/api/usul/guide").json()["scale"]
     assert [row["level"] for row in scale] == list(range(1, 13))
     assert [row["weak"] for row in scale] == [False] * 4 + [True] * 8
     assert scale[10]["lift"]["lying"]["lifts"] is False and scale[4]["lift"].keys() == {"memory"}
@@ -133,7 +134,9 @@ def test_the_chains_endpoint_carries_notes_and_the_scale(paths):
 
 def test_the_chains_endpoint_is_as_before_where_usul_db_is_missing(paths):
     reply = TestClient(app).get("/api/rijal/chains/muslim/24").json()
-    assert reply["notes"] == {} and reply["scale"] == [] and reply["ready"] is True
+    assert reply["notes"] == {} and reply["ready"] is True
+    guide = TestClient(app).get("/api/usul/guide").json()
+    assert guide["scale"] == [] and guide["link_rules"] is None and guide["glossary"]   # the terms need only usul.json
     assert reply["chains"]["1"][1] == [10, 15, 2]
 
 
@@ -458,8 +461,9 @@ def test_the_chains_endpoint_carries_links_where_rijal_still_places_them(paths):
     db.close()
     reply = TestClient(app).get("/api/rijal/chains/muslim/24").json()
     assert [(link["at"], link["student"], link["teacher"]) for link in reply["links"]["1"]] == [(10, 1, 2)]   # 11 and 9 are placed nowhere
-    assert reply["link_rules"]["levels"]["3"]["page"] == books.page_label(rule()["tadlis"]["levels"]["3"]["page"]) and "tadlis_unclear" in reply["link_rules"]["kinds"]
-    assert "skip" not in reply["link_rules"]   # no note is ever shown in the Sahihs, so their reason is not sent
+    rules = TestClient(app).get("/api/usul/guide").json()["link_rules"]
+    assert rules["levels"]["3"]["page"] == books.page_label(rule()["tadlis"]["levels"]["3"]["page"]) and "tadlis_unclear" in rules["kinds"]
+    assert "skip" not in rules   # no note is ever shown in the Sahihs, so their reason is not sent
 
 
 def test_a_narrators_page_carries_what_the_books_say_grouped_with_their_book(paths):
