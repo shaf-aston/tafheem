@@ -46,22 +46,26 @@ export async function forgetProgress() {
 }
 
 /**
- * Take a free username, or log in to one already taken. Both resolve
- * `{ name, moved }`: the server's spelling, which is what to keep, and how many
- * guest answers `keep` moved onto it. Both throw, so the box can say why
- * (taken, no such username, not a name).
+ * Take a free username, or sign in to one already taken; the first sign-in to
+ * an older account sets its passphrase. Both resolve `{ name, moved, key }`:
+ * the server's spelling and key, which are what to keep, and how many guest
+ * answers `keep` moved onto it. Both throw, so the box can say why (taken,
+ * wrong passphrase, no such username, not a name).
  */
-export const signUp = (typed, keep) =>
-  api.post(`${BASE}/signup`, { keep }, headers(typed)).then((r) => r.data)
+export const signUp = (typed, passphrase, keep) =>
+  api.post(`${BASE}/signup`, { passphrase, keep }, headers(typed)).then((r) => r.data)
 
-export const logIn = (typed) =>
-  api.post(`${BASE}/login`, {}, headers(typed)).then((r) => r.data)
+export const signIn = (typed, passphrase) =>
+  api.post(`${BASE}/account/signin`, { passphrase }, headers(typed)).then((r) => r.data)
 
 /** The profile page: `{ name, joined, answers }`. Throws, for react-query. */
 export const fetchAccount = () => api.get(`${BASE}/account`).then((r) => r.data)
 
 /** Delete this username and its answers. Throws, so the button can say it failed. */
 export const deleteAccount = () => api.delete(`${BASE}/account`).then((r) => r.data)
+
+/** `{ modules, attempts, correct, learnt, streak }`: every module answered in. Throws, for react-query. */
+export const fetchOverview = () => api.get(`${BASE}/overview`).then((r) => r.data)
 
 /** `{ rows, you }`: accounts by words learnt, and this one's place. Throws, for react-query. */
 export const fetchLeaderboard = (module) =>

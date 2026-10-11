@@ -68,7 +68,7 @@ function ownKeys(name = owner()) {
       const head = filed('', name)
       return all.filter((key) => key?.startsWith(head)).map((key) => key.slice(head.length))
     }
-    return all.filter((key) => key && !key.startsWith(MARK) && key !== PROFILE.storageKey)
+    return all.filter((key) => key && !key.startsWith(MARK) && key !== PROFILE.storageKey && key !== PROFILE.keyStorageKey)
   } catch {
     return []
   }
