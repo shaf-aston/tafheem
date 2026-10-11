@@ -79,7 +79,7 @@ function Modules({ overview }) {
             className="flex flex-wrap items-baseline gap-x-3 px-3 py-1.5 rounded-[var(--radius-sm)] type-small text-[var(--text-dim)]">
             <span dir="auto" className="flex-1 min-w-[6rem] truncate font-bold text-[var(--text)]">{row.module}</span>
             <span className="tabular-nums">{row.learnt} learnt</span>
-            <span className="tabular-nums">{row.attempts} answers</span>
+            <span className="tabular-nums">{row.attempts} {row.attempts === 1 ? 'answer' : 'answers'}</span>
             <span className="tabular-nums text-[var(--text-faint)]">{new Date(row.lastAt).toLocaleDateString()}</span>
           </li>
         ))}
