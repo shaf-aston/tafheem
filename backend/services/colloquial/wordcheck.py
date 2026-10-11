@@ -14,6 +14,7 @@ reference is one entry there plus, for a new file format, one reader in READERS.
 import json
 import re
 import unicodedata
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from functools import lru_cache
@@ -62,7 +63,8 @@ def _read_tei(path):
     return {skeleton(o.text or "") for o in ET.parse(path).getroot().iter(_TEI + "orth")} - {""}
 
 
-READERS = {"tei": _read_tei}
+# Each file format's reader, and the media type a download of it must carry.
+READERS = {"tei": (_read_tei, "xml")}
 
 
 @lru_cache(maxsize=None)
@@ -70,9 +72,14 @@ def known_forms(name):
     """The skeletons one reference holds; the file is downloaded on first use."""
     source = next(s for s in config()["sources"] if s["name"] == name)
     path = config()["folder"] / source["file"]
+    read, media = READERS[source["format"]]
     if not path.exists():
-        urllib.request.urlretrieve(source["url"], path)
-    return frozenset(READERS[source["format"]](path))
+        with urllib.request.urlopen(source["url"]) as reply:
+            # The publisher may answer with a page about the file instead of the file; never cache that.
+            if media not in (sent := reply.headers.get_content_type()):
+                raise urllib.error.URLError(f"{name} sent {sent}, not the {source['format']} file")
+            path.write_bytes(reply.read())
+    return frozenset(read(path))
 
 
 def missing(words, names=None):
