@@ -5,7 +5,7 @@ import logging
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field, ValidationInfo, field_validator
+from pydantic import Field, SecretStr, ValidationError, ValidationInfo, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 logger = logging.getLogger(__name__)
@@ -17,7 +17,7 @@ class Ai(BaseSettings):
     # ai_backend blank: groq if a key is present, else probe ollama, else none.
     ai_backend: str = ""
 
-    groq_api_key: str = ""
+    groq_api_key: SecretStr = SecretStr("")
     groq_model: str = "openai/gpt-oss-120b"
     # gpt-oss thinks and answers out of one token budget; unset, it can spend it all thinking and return nothing.
     # Blank sends no setting (for models without the knob).
@@ -45,11 +45,11 @@ class Ai(BaseSettings):
         explicit = self.ai_backend.strip().lower()
         if explicit in {"groq", "ollama", "none"}:
             return explicit
-        return "groq" if self.groq_api_key.strip() else "auto"
+        return "groq" if self.groq_api_key.get_secret_value().strip() else "auto"
 
     @property
     def has_groq(self) -> bool:
-        return bool(self.groq_api_key.strip())
+        return bool(self.groq_api_key.get_secret_value().strip())
 
 
 class Nahw(BaseSettings):
@@ -57,6 +57,8 @@ class Nahw(BaseSettings):
 
     # Longer sentences are refused (422): the parser and the rules grow with length.
     max_sentence_words: int = Field(default=160, gt=0)  # the longest ayah (2:282) is about 130 words
+    # Analyses a minute per visitor (POST /api/analyze); the parser costs far more than a page's own clicks.
+    analyze_per_minute: int = Field(default=60, gt=0)
     catib_parser_enabled: bool = True
     # The top disambiguator reading comes from bare letters and can contradict typed vowels (آفِلًا for typed أَفَلَا);
     # the first of these that agrees is used. Scoring all costs nothing extra. 40 because a rare passive (أُكِلَ) can rank below the 20th.
@@ -165,11 +167,11 @@ class Listening(BaseSettings):
     listening_rest_s: float = Field(default=60.0, gt=0)
     # Comma separated, one key per Groq account: Groq counts allowance per account, so two keys from one account buy nothing.
     # Separate from GROQ_API_KEY so a long recitation cannot exhaust grammar explanations. Blank falls back to the shared key.
-    listening_groq_api_keys: str = ""
+    listening_groq_api_keys: SecretStr = SecretStr("")
     # Groq free tier: 20/min for whisper-large-v3-turbo. Times the keys, it is the pace /api/health gives the page.
     listening_rpm_per_key: int = Field(default=20, gt=0)
     # Read only by the frontend ears benchmark via process.env; declared so a shared .env validates.
-    recitation_deepgram_api_key: str = ""
+    recitation_deepgram_api_key: SecretStr = SecretStr("")
 
     # Chosen over plain "base" on 36 mid-surah ayahs (310 words, frontend/scripts/ears.test.js):
     # this scored 8.1% error at 2050ms/ayah on this CPU; base 42.6% at 1504ms. Groq whisper-large-v3-turbo also 8.1%.
@@ -291,7 +293,7 @@ class Journal(BaseSettings):
 
 
 class Daleel(BaseSettings):
-    """Daleel search, Grow's paths, and the longest query any search box takes."""
+    """Daleel search and Grow's paths."""
 
     # Rebuilt by backend/scripts/build_daleel_index.py, never written while serving.
     daleel_index_path: str = "data/daleel.db"
@@ -304,8 +306,6 @@ class Daleel(BaseSettings):
     # Lower than the cap above because each translation also brings its root: six made a twelve-term search vs one to three for Arabic.
     # Measured over twelve English questions: three kept as many exact matches (more on six) and made most searches twice as fast.
     daleel_english_expand_max: int = 3
-    # Longest question any search box sends (Daleel, Hadith, Dictionary, Qur'an); past it, a paste, not a search.
-    search_max_query_chars: int = 200
     # No minimum-word-length setting here on purpose: it is a property of SQLite's trigram tokenizer and lives in services/fts.py.
     # A duplicate here once switched off typo tolerance silently when only one copy changed.
 
@@ -462,7 +462,7 @@ class Progress(BaseSettings):
 
 
 class Server(BaseSettings):
-    """The port, what loads at startup, and which pages may call."""
+    """The port, what loads at startup, which pages may call, and the longest search query."""
 
     # Declared because .env sets PORT and this class forbids unknown keys; dropping it fails startup.
     # The running port comes from the --port flag start.sh passes to uvicorn.
@@ -475,6 +475,9 @@ class Server(BaseSettings):
     # hadith_meaning ~2s, ~150MB model + 50MB vectors, which the first hadith search waited out;
     # sarf_reader ~4s building the verb shapes the Nahw tab reads commands with.
     startup_background: list[str] = ["recitation", "speech", "colloquial", "nahw_parser", "sarf_reader", "hadith_meaning"]
+
+    # Longest question any search box sends (Daleel, Hadith, Dictionary, Qur'an); past it, a paste, not a search.
+    search_max_query_chars: int = 200
 
     cors_origins: list[str] = Field(
         default_factory=lambda: [
@@ -492,9 +495,9 @@ class Settings(Ai, Nahw, Quran, Dictionary, Listening, Speech, Journal, Daleel, 
 
     @field_validator("groq_api_key", "listening_groq_api_keys", mode="after")
     @classmethod
-    def _check_key_format(cls, value: str, info: ValidationInfo) -> str:
+    def _check_key_format(cls, value: SecretStr, info: ValidationInfo) -> SecretStr:
         """Refuse a malformed key (an inline comment, a space inside it) at startup."""
-        if any(" " in key.strip() or "#" in key for key in value.split(",")):
+        if any(" " in key.strip() or "#" in key for key in value.get_secret_value().split(",")):
             name = info.field_name.upper()
             raise ValueError(
                 f"{name} appears malformed (contains spaces or '#'). "
@@ -506,14 +509,19 @@ class Settings(Ai, Nahw, Quran, Dictionary, Listening, Speech, Journal, Daleel, 
     @property
     def listening_keys(self) -> list[str]:
         """Own listening keys, else the shared one, else none. Deduplicated."""
-        own = list(dict.fromkeys(key.strip() for key in self.listening_groq_api_keys.split(",") if key.strip()))
-        shared = self.groq_api_key.strip()
+        own = list(dict.fromkeys(key.strip() for key in self.listening_groq_api_keys.get_secret_value().split(",") if key.strip()))
+        shared = self.groq_api_key.get_secret_value().strip()
         return own or ([shared] if shared else [])
 
 
 @lru_cache()
 def get_settings() -> Settings:
-    return Settings()
+    try:
+        return Settings()
+    except ValidationError as err:
+        # Pydantic's own message prints each rejected value, and a rejected value can be a key.
+        named = ", ".join(f"{'.'.join(map(str, e['loc']))} ({e['type']})" for e in err.errors())
+        raise SystemExit(f"Invalid settings in .env or the environment (values not shown): {named}") from None
 
 
 @lru_cache()

@@ -12,6 +12,8 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
+from pydantic import SecretStr
+
 from backend.config import get_settings
 from backend.services import recitation
 from backend.services.recitation import hosted, listen
@@ -67,7 +69,7 @@ class FakeGroq:
 def groq(monkeypatch):
     """Install a stand-in Groq, with a key present so hosted hearing is on."""
     settings = get_settings()
-    monkeypatch.setattr(settings, "listening_groq_api_keys", KEY)
+    monkeypatch.setattr(settings, "listening_groq_api_keys", SecretStr(KEY))
     monkeypatch.setattr(settings, "listening_hosted", True)
 
     def install(replies=(("قل هو الله أحد", "Arabic"),), fail=None):
@@ -102,7 +104,7 @@ def test_a_recitation_is_heard_on_groq_when_it_is_available_too(monkeypatch):
     separate question now, asked of this machine's model directly (see
     services/recitation/__init__.py's `check`), so a recitation takes the
     normal ear order, quick one first, same as a search."""
-    monkeypatch.setattr(get_settings(), "listening_groq_api_keys", KEY)
+    monkeypatch.setattr(get_settings(), "listening_groq_api_keys", SecretStr(KEY))
     monkeypatch.setattr(hosted, "is_available", lambda key: True)
     asked = []
     monkeypatch.setattr(hosted, "transcribe", lambda *a, **k: asked.append("groq") or "x")
@@ -190,16 +192,16 @@ def test_listening_spends_its_own_keys(monkeypatch):
     """The whole point of the separate keys: an hour of reciting must not spend
     the allowance the grammar explanations run on. Repeats collapse."""
     settings = get_settings()
-    monkeypatch.setattr(settings, "groq_api_key", "gsk_explanations")
-    monkeypatch.setattr(settings, "listening_groq_api_keys", "gsk_a, gsk_b,gsk_a")
+    monkeypatch.setattr(settings, "groq_api_key", SecretStr("gsk_explanations"))
+    monkeypatch.setattr(settings, "listening_groq_api_keys", SecretStr("gsk_a, gsk_b,gsk_a"))
     assert settings.listening_keys == ["gsk_a", "gsk_b"]
 
 
 def test_without_its_own_key_listening_falls_back_to_the_shared_one(monkeypatch):
     """A machine that never set a listening key listens exactly as it did before."""
     settings = get_settings()
-    monkeypatch.setattr(settings, "groq_api_key", "gsk_explanations")
-    monkeypatch.setattr(settings, "listening_groq_api_keys", "")
+    monkeypatch.setattr(settings, "groq_api_key", SecretStr("gsk_explanations"))
+    monkeypatch.setattr(settings, "listening_groq_api_keys", SecretStr(""))
     assert settings.listening_keys == ["gsk_explanations"]
     assert hosted.is_available(settings.listening_keys[0])
 
@@ -207,7 +209,7 @@ def test_without_its_own_key_listening_falls_back_to_the_shared_one(monkeypatch)
 def test_switching_it_off_keeps_every_recording_on_this_machine(monkeypatch):
     """The privacy switch: off means no sound leaves, key or no key."""
     settings = get_settings()
-    monkeypatch.setattr(settings, "listening_groq_api_keys", KEY)
+    monkeypatch.setattr(settings, "listening_groq_api_keys", SecretStr(KEY))
     monkeypatch.setattr(settings, "listening_hosted", False)
     assert not hosted.is_available(KEY)
 

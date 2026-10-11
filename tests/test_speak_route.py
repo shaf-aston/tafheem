@@ -9,7 +9,7 @@ from backend.services import speech
 
 def client(monkeypatch, tmp_path):
     calls = []
-    speak_route._asks.clear()
+    speak_route._limit.asks.clear()
     monkeypatch.setattr(speech, "CACHE", tmp_path)
     monkeypatch.setattr(speech, "_stored", None)
     monkeypatch.setattr(speech.FastPitchVoice, "say", lambda self, text: calls.append(text) or b"RIFF-fake")
