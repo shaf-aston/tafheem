@@ -12,7 +12,7 @@ from __future__ import annotations
 import pytest
 
 from backend.services import ai, dictionary_service, iraab, morphology, progress_store, sentence_meaning
-from backend.services.quran_search import local
+from backend.services import quran_search
 
 
 def _word(word, pos, state="na", gloss=""):
@@ -45,7 +45,7 @@ def typed(monkeypatch, tmp_path):
         _word("البيت", "noun", "d", "the+house"), _word("كبير", "adj", "i", "large;great")])
     monkeypatch.setattr(morphology, "glosses_of", lambda w: {"كبير": ["large;great", "old;aged"]}.get(w, []))
     monkeypatch.setattr(dictionary_service, "meanings_of", lambda w: {"البيت": ["home"]}.get(w, []))
-    monkeypatch.setattr(local, "whole_ayah", lambda text: None)
+    monkeypatch.setattr(quran_search, "whole_ayah", lambda text: None)
     monkeypatch.setattr(iraab, "analyze", lambda text: {"summary": "جُمْلَةٌ اِسْمِيَّةٌ"})
     monkeypatch.setattr(progress_store, "data_path", lambda _name: tmp_path / "progress.db")
     progress_store.reset_connection()

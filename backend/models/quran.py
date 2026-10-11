@@ -57,13 +57,10 @@ class RootResponse(BaseModel):
 
 
 class SurahAyah(BaseModel):
-    """One ayah as the reader sees it. `words` is filled only when the full
-    grammar was asked for, reading a surah does not need it, and it is roughly
-    fifty times the payload."""
+    """One ayah as the reader sees it: text and English, no word grammar."""
     ayah: int
     arabic: str
     english: str = ""
-    words: list[QuranWord] | None = None
     # The page of the 604-page Madani mushaf this ayah begins on. None where the
     # layout has never been built, which is what tells a reader to fall back to
     # sizing a page by word count rather than printing a page number that is a

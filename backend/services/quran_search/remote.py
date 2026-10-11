@@ -21,8 +21,6 @@ from backend.services.quran_search.hit import Hit
 
 NAME = "remote"
 
-API = "https://api.quran.com/api/v4"
-
 # What Quran.com returns is its own text of the ayah, credited to it rather than
 # to the hand-tagged corpus. Same ayah, different book.
 _SOURCE = "translation"
@@ -31,10 +29,11 @@ _SOURCE = "translation"
 def search(query: str, limit: int) -> list[Hit]:
     """Ayahs Quran.com matches. Raises on any network trouble, so the caller
     can move on to the other way of answering rather than guessing why."""
+    settings = get_settings()
     response = httpx.get(
-        f"{API}/search",
+        f"{settings.quran_api_base}/search",
         params={"q": query, "size": limit},
-        timeout=get_settings().quran_search_timeout_seconds,
+        timeout=settings.quran_search_timeout_seconds,
     )
     response.raise_for_status()
     results = response.json().get("search", {}).get("results", [])

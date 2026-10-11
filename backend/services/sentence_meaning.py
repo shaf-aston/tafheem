@@ -18,10 +18,9 @@ import re
 from itertools import pairwise
 
 from backend.config import get_settings
-from backend.services import ai, dictionary_service, iraab, morphology, progress_store, quran_library, quran_meanings
+from backend.services import ai, dictionary_service, iraab, morphology, progress_store, quran_library, quran_meanings, quran_search
 from backend.services.arabic_text import words
 from backend.services.nahw_book import term_ar
-from backend.services.quran_search import local
 
 logger = logging.getLogger(__name__)
 
@@ -74,7 +73,7 @@ def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:
     """The ayah's published sense, when the text is one whole ayah and nothing more,
     and its published words too unless their count disagrees with the ayah's own,
     when CAMeL's stand rather than English landing under the wrong word."""
-    if (hit := local.whole_ayah(text)) is None:
+    if (hit := quran_search.whole_ayah(text)) is None:
         return None
     books = quran_library.for_ayah(hit.surah, hit.ayah, [get_settings().sentence_translation])
     if not books:

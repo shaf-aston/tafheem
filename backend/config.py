@@ -71,6 +71,8 @@ class Nahw(BaseSettings):
 class Quran(BaseSettings):
     """Qur'an search, the library of editions and tafsirs, mutashabihat and the asbab files."""
 
+    # Quran.com's free, keyless API: ayah lookups (quran_service) and search (quran_search/remote.py).
+    quran_api_base: str = "https://api.quran.com/api/v4"
     quran_timeout_seconds: float = 15.0
     quran_search_limit: int = 20
     # "auto" tries Quran.com then the local index; "online"/"local" pin one.
