@@ -79,7 +79,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
             { label: 'Two columns', on: columns, set: setColumns, only: 'wide' },
             { label: 'Hide the chain', on: hideChain, set: setHideChain },
           ]}>
-            <Chip tinted accent={accent} onClick={() => setGuide(true)}>Chain words</Chip>
+            <Chip tinted accent={accent} onClick={() => setGuide(true)}>Words and terms</Chip>
           </ReadingOptions>
           {guide && <ChainSheet accent={accent} onClose={() => setGuide(false)} />}
           <form onSubmit={jump} className="flex items-center gap-2">

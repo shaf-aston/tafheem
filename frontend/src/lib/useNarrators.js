@@ -8,7 +8,7 @@
  */
 import { useQueries, useQuery } from '@tanstack/react-query'
 
-import { rijalChainsQuery, rijalSearchQuery } from '../api'
+import { rijalChainsQuery, rijalSearchQuery, usulGuideQuery } from '../api'
 
 const NONE = {}
 const NO_WEAK = { notes: [], links: [], rulings: [], rules: null, scale: [] }
@@ -36,18 +36,19 @@ export function useKin(hadiths) {
  * The weak narrators of a hadith ("1620a" is its key in the book), the links of
  * its chain a source puts in doubt (`links`, with `rules`: what each kind says,
  * quoted), what classical books say of it (`rulings`) and the twelve levels the narrators sit on:
- * `(hadith, ref) => {notes, links, rulings, rules, scale}`. Same request as
- * useNarrators. All empty when usul.db is not built, and the hadith reads as it
- * did before weak points.
+ * `(hadith, ref) => {notes, links, rulings, rules, scale}`. Same request as useNarrators, plus the
+ * guide (`rules`, `scale`) once for every book. All empty when usul.db is not built, and the hadith
+ * reads as it did before weak points.
  */
 export function useWeakNotes(hadiths) {
   const chainsOf = useChains(hadiths)
+  const { data: guide } = useQuery(usulGuideQuery)
   return (h, ref) => {
     const found = chainsOf(h)
     const notes = found?.notes?.[ref] ?? []
     const links = found?.links?.[ref] ?? []
     const rulings = found?.rulings?.[ref] ?? []
-    return notes.length || links.length || rulings.length ? { notes, links, rulings, rules: found.link_rules, scale: found.scale } : NO_WEAK
+    return notes.length || links.length || rulings.length ? { notes, links, rulings, rules: guide?.link_rules ?? null, scale: guide?.scale ?? [] } : NO_WEAK
   }
 }
 

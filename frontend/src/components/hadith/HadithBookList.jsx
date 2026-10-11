@@ -1,5 +1,6 @@
 /**
- * One collection's books (chapters), to pick which one to read.
+ * One collection's books (chapters), to pick which one to read. Each tile: number, picture, English name,
+ * and under it the count with the book's own Arabic name faint at the far edge (on its own line when long).
  */
 import { useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
@@ -11,6 +12,7 @@ import { useFirstSight } from '../../lib/firstSight'
 import { topicOf } from '../../lib/hadithGrade'
 import { useOpenAtTop } from '../../lib/scrollToEl'
 
+import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'
 import EmptyState from '../ui/EmptyState'
 import TopicIcon from '../ui/TopicIcon'
@@ -53,9 +55,12 @@ export default function HadithBookList({ collection, onPick, accent }) {
               {book.number}
             </span>
             <TopicIcon topic={topicOf(book.name)} className="text-[var(--text-faint)] group-hover:text-[var(--c)] transition-colors" />
-            <span className="flex-1 type-ui text-[var(--text)] leading-snug">
+            <span className="flex-1 min-w-0 type-ui text-[var(--text)] leading-snug">
               {book.name}
-              <span className="block type-small text-[var(--text-faint)] tabular-nums">{book.count} hadiths</span>
+              <span className="flex flex-wrap items-baseline gap-x-3 type-small text-[var(--text-faint)]">
+                <span className="tabular-nums">{book.count} hadiths</span>
+                {book.arabic && <ArabicText size="sm" className="ms-auto">{book.arabic}</ArabicText>}
+              </span>
             </span>
           </button>
         </li>

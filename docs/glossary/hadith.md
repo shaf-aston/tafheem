@@ -6,7 +6,8 @@ One word per idea, the same in the backend, the API and the frontend. Main gloss
 | Word | Means | Backend / API field | Frontend |
 |---|---|---|---|
 | **level** | one of Ibn Hajar's twelve ranks of narrators (Taqrib preface); 1 is the Companions, 12 the liars | `level`, `narrator_level` | `level`, `p.level` |
-| **scale** | the twelve levels with their Arabic, plain English, kind and the book each comes from; sent with the chains | `scale`, `store.scale()` | `scale` |
+| **scale** | the twelve levels with their Arabic, plain English, kind and the book each comes from; sent once in the guide (`GET /api/usul/guide`), not with each book's chains | `scale`, `store.scale()` | `scale`, `usulGuideQuery` |
+| **glossary** | the words of the science (sahih, mursal, tadlis ...) in groups, each with its plain meaning and the sentence defining it, quoted with book and page; shown after the chain words | `glossary` (usul.json, `store.glossary()`, guide) | `TermGuide` in `ChainSheet` |
 | **weak point** | a narrator at or below `weak_from` (level 5) named in a hadith's chain | `note`, `notes` | `weakPoints()` (`lib/weak.js`), `WeakPoints` |
 | **weak point (by layer)** | one thing, four names: the screen says weak point; the API (`GET /api/rijal/chains/...`) says `notes`, and `links` for a doubtful link; usul.db stores them in the tables `note` and `link`; the types are `WeakNote` and `WeakLink` (`backend/models/hadith.py`) | `notes`, `links`, tables `note`, `link`, `WeakNote`, `WeakLink` | `weakPoints()` (`lib/weak.js`), `useWeakNotes` (`lib/useNarrators.js`) |
 | **kind** | the sort of weakness: `memory`, `innovation`, `unknown`, `weak`, `abandoned`, `lying`; level 5 holds two (رمي is an innovation) | `kind` | `p.kind` |
