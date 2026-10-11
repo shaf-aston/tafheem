@@ -13,6 +13,7 @@
  */
 import { useState } from 'react'
 import { useArrivalWhenReady } from '../lib/useArrival'
+import { useSettled } from '../lib/settle'
 import { useQuery } from '@tanstack/react-query'
 
 import { dawahQuery } from '../api'
@@ -36,6 +37,8 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
   const [topicId, setTopicId] = useState(null)
   const [questionId, setQuestionId] = useState(null)
   const [query, setQuery] = useState('')
+  // A topic or a question picked is moved to, not new (lib/settle); search results still rise.
+  useSettled(topicId, questionId)
   const [mode, setMode] = useRemembered('dawah-mode', knobs.modes.map((m) => m.id), knobs['reading-mode'])
 
   // An arrival names a question; followed during render, so a deep link paints
