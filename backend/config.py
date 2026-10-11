@@ -433,6 +433,10 @@ class Progress(BaseSettings):
     beta_list_accounts: bool = True
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20
+    # Circle kinds (services/progress_store.py): each kind's members_see_details flag. True: every joined
+    # member sees every other member's full overview; False: only admins (and admins of circles above) do.
+    circle_kinds: dict[str, bool] = {"friends": True, "family": False, "class": False, "team": False}
+    circle_name_max: int = Field(default=60, gt=0)
     # Checked practice sentences (services/sentence_check.py): AI tries per request,
     # learnt words needed before asking, and particles any sentence may use.
     sentence_max_tries: int = Field(default=3, gt=0)
