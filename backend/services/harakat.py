@@ -171,6 +171,18 @@ def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str 
     return None
 
 
+def build_nun(word: str) -> str | None:
+    """The nun of emphasis (لَيَنْصُرَنَّ: doubled, a fatha on it and on the letter before)
+    or of women (يَرْسُمْنَ: a sukun on the consonant before it), as typed; a bare nun,
+    a root's doubled nun (يَظُنُّ) or a long vowel's sukun (يَكُوْنَ) says neither."""
+    marked = letters(word)
+    if len(marked) < 3 or marked[-1][0] != "ن" or "َ" not in marked[-1][1]:
+        return None
+    if SHADDA in marked[-1][1]:
+        return "emphasis" if "َ" in marked[-2][1] else None
+    return "women" if SUKUN in marked[-2][1] and marked[-2][0] not in "اوي" else None
+
+
 # The vowel a mark writes, so a fatha and a fathatan on the same letter still
 # disagree (one is definite, one is not) while a missing mark agrees with anything.
 # The dagger alef is a fatha said long: لٰكِنْ is what a reader types as لَكِنْ.

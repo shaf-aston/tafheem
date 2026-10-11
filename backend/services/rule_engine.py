@@ -13,7 +13,7 @@ from __future__ import annotations
 from typing import Any
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SUKUN, has_tanween
+from backend.services.harakat import SUKUN, build_nun, has_tanween
 from backend.services.nahw_book import book_words, is_mabni, verb_aspect, condition_of, named_roles, reason, teacher_rules
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
@@ -37,7 +37,7 @@ def verb_card(base: str, aspect: str | None, case: str | None = None) -> dict:
     as a verb or the particle before a present verb settles its mood; signs.settle
     writes the sign and the reason from these."""
     aspect = verb_aspect(aspect, base)
-    if aspect == "i":
+    if aspect == "i" and case != "mabni":
         return {"aspect": aspect, "case": case if case in ("raf'", "nasb", "jazm") else "raf'"}
     return {"aspect": aspect, "case": "mabni"}
 
@@ -73,7 +73,7 @@ def _harf_entry(tag: dict, role: str, why: str) -> dict:
 
 
 def _verb_entry(tag: dict) -> dict:
-    mood = {"s": "nasb", "j": "jazm"}.get(tag.get("mood"), "raf'")
+    mood = "mabni" if not tag.get("enclitic") and build_nun(tag["word"]) else {"s": "nasb", "j": "jazm"}.get(tag.get("mood"), "raf'")
     return {**_entry(tag, "fi'l", NAMED.fil, "fil", None, reason(NAMED.fil)),
             **verb_card(tag["base"], tag.get("aspect"), mood)}
 

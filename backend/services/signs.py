@@ -9,7 +9,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SHADDA, SUKUN, TANWEEN, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
+from backend.services.harakat import SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
 from backend.services.nahw_book import book_words, family_cards, is_diptote, is_fem_plural, is_mabni, is_one, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
@@ -124,7 +124,7 @@ def _verb(card: dict) -> dict:
     if not tense:
         return {"case": "mabni", "sign": sign("mabni"), "reason": reason(NAMED.fil)}
     built_on = _built_on(card, aspect)
-    case = "mabni" if built_on else card["case"]  # rule_engine.verb_card settled the mood
+    case = card["case"]  # rule_engine.verb_card settled the mood, a nun of women or emphasis builds it too
     shown = _built(built_on) if built_on else _present_sign(card, case)
     state = shown if built_on else said["word"][case]
     family = _family_said(card)
@@ -144,7 +144,7 @@ def _built_on(card: dict, aspect: str) -> str | None:
     word = card["word"]
     if aspect == "p":
         return _past_ending(word)
-    nun = _nun(word)
+    nun = build_nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show
         if not _has_pronoun(card["camel"]) and strip_diacritics(word).endswith(("وا", "ا", "ي")):
@@ -171,18 +171,6 @@ def _present_sign(card: dict, case: str) -> str | None:
 
 def _dropped_weak(card: dict) -> bool:
     return drops_weak(card["camel"]["base"], card["camel"].get("weak_last"))
-
-
-def _nun(word: str) -> str | None:
-    """The nun of emphasis (لَيَنْصُرَنَّ: doubled, a fatha on it and on the letter before)
-    or of women (يَرْسُمْنَ: a sukun on the consonant before it), as typed; a bare nun,
-    a root's doubled nun (يَظُنُّ) or a long vowel's sukun (يَكُوْنَ) says neither."""
-    marked = letters(word)
-    if len(marked) < 3 or marked[-1][0] != "ن" or "َ" not in marked[-1][1]:
-        return None
-    if SHADDA in marked[-1][1]:
-        return "emphasis" if "َ" in marked[-2][1] else None
-    return "women" if SUKUN in marked[-2][1] and marked[-2][0] not in "اوي" else None
 
 
 def _past_ending(word: str) -> str:
