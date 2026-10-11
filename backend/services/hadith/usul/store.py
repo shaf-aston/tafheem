@@ -160,6 +160,15 @@ def link_rules() -> dict:
     }
 
 
+def glossary() -> list[dict]:
+    """The terms of the science by group, each quoted from the book that defines it. Needs only usul.json.
+    Shaped as the chain words are (data/hadith/chain.json terms: name, arabic, meaning), so one list shows both."""
+    return [{"title": group["title"], "name": group["ar"],
+             "terms": [{"arabic": t["ar"], "en": t["en"], "meaning": t["say"], "quote": t["quote"],
+                        "source": _source(t["book"]), "page": page_label(t["page"])} for t in group["terms"]]}
+            for group in rule()["glossary"]]
+
+
 def facts(narrator_id: int) -> dict[str, list[dict]]:
     """{"reliability": [{text, ar, quote, rule, book, page}, ...], "habits": ..., "life": ..., "books": ...}
 

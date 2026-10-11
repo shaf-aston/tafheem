@@ -74,11 +74,11 @@ def cite_url(template: str, number: int, part: str) -> str:
 
 @_per_build([])
 def books(collection_id: str) -> list[dict]:
-    """Every book of a collection, each with how many hadiths it holds."""
+    """Every book of a collection, its English and Arabic names, and how many hadiths it holds."""
     return [
-        {"number": number, "name": name, "count": count}
-        for number, name, count in db().execute(
-            "SELECT b.number, b.name, count(h.rowid) "
+        {"number": number, "name": name, "arabic": arabic, "count": count}
+        for number, name, arabic, count in db().execute(
+            "SELECT b.number, b.name, b.arabic, count(h.rowid) "
             "FROM book b LEFT JOIN hadith h "
             "  ON h.collection_id = b.collection_id AND h.book_number = b.number "
             "WHERE b.collection_id = ? GROUP BY b.number ORDER BY b.number",

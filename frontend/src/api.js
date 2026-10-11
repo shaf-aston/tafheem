@@ -230,6 +230,11 @@ export const narratorQuery = (id) => ({
   retry: (count, error) => error?.response?.status !== 404 && count < 1,
 })
 
+// What every chain is read against, fetched once: the twelve levels, what each doubtful link says, the terms of the science.
+export const usulGuideQuery = {
+  queryKey: ['usul-guide'],
+  queryFn: () => api.get('/usul/guide').then((r) => r.data),
+}
 // The sorts of ruling the classical books give (with their plain meaning and count), and the hadith carrying one, a page at a time.
 export const usulTermsQuery = {
   queryKey: ['usul-terms'],

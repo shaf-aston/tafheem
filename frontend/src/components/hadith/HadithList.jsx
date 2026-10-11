@@ -11,6 +11,7 @@ import { holdAtTop, scrollToEl, useOpenAtTop } from '../../lib/scrollToEl'
 import { topicOf } from '../../lib/hadithGrade'
 import { useRememberedFlag } from '../../lib/useRemembered'
 
+import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
 import ErrorAlert from '../ui/ErrorAlert'
 import EmptyState from '../ui/EmptyState'
@@ -72,6 +73,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
               <TopicIcon topic={topicOf(data.book.name)} className="w-4 h-4" />
               {data.book.number}. {data.book.name}
               <span className="ms-2 type-small font-normal text-[var(--text-faint)]">{data.hadiths.length} hadiths</span>
+              {data.book.arabic && <ArabicText size="sm" className="font-normal text-[var(--text-faint)]">{data.book.arabic}</ArabicText>}
             </h3>
           )}
           <ReadingOptions accent={accent} options={[
@@ -79,7 +81,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
             { label: 'Two columns', on: columns, set: setColumns, only: 'wide' },
             { label: 'Hide the chain', on: hideChain, set: setHideChain },
           ]}>
-            <Chip tinted accent={accent} onClick={() => setGuide(true)}>Chain words</Chip>
+            <Chip tinted accent={accent} onClick={() => setGuide(true)}>Words and terms</Chip>
           </ReadingOptions>
           {guide && <ChainSheet accent={accent} onClose={() => setGuide(false)} />}
           <form onSubmit={jump} className="flex items-center gap-2">

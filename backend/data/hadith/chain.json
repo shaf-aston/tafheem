@@ -22,7 +22,7 @@
   "hands": ["أن"],
   "together": ["قالا", "قالوا", "كلاهما", "كلهم", "جميعا"],
   "terms": {
-    "_comment": "The chain words guide (ui/ChainWords) and the colour of each link in the chain drawing. Meanings from Ibn al-Salah's Muqaddima (types 11, 12, 24, 25). way is how the narration was received: heard and loose colour the drawing (theme hadith-heard, hadith-loose). match is each word without vowels, a verb by its stem, so lib/hadithWords termOf finds the entry for حدثتني or وأخبرنا; a test checks every word the chain walker reads has an entry.",
+    "_comment": "The chain words guide (ui/TermGuide) and the colour of each link in the chain drawing. Meanings from Ibn al-Salah's Muqaddima (types 11, 12, 24, 25). way is how the narration was received: heard and loose colour the drawing (theme hadith-heard, hadith-loose). match is each word without vowels, a verb by its stem, so lib/hadithWords termOf finds the entry for حدثتني or وأخبرنا; a test checks every word the chain walker reads has an entry.",
     "groups": [
       {
         "way": "heard", "title": "Heard from the teacher", "name": "سماع",
