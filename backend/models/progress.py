@@ -106,6 +106,12 @@ class CircleIn(BaseModel):
     parent: int | None = None
 
 
+class ParentIn(BaseModel):
+    """The circle to move a circle inside, or None to stand it on its own."""
+
+    parent: int | None = None
+
+
 class InviteIn(BaseModel):
     """A username to invite, as typed, and the role on offer."""
 

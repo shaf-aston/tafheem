@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { api } from '../api'
 import {
   answerInvite, deleteAccount, fetchAccount, fetchAccountNames, fetchCircle, fetchLeaderboard, fetchMemberOverview, fetchOverview,
-  fetchReviewItems, fetchSummary, forgetProgress, inviteMember, leaveFeedback, recordAttempt, removeMember, signIn, signUp,
+  fetchReviewItems, fetchSummary, forgetProgress, inviteMember, leaveFeedback, moveCircle, recordAttempt, removeMember, signIn, signUp,
 } from './progress'
 
 afterEach(() => vi.restoreAllMocks())
@@ -134,6 +134,14 @@ describe('circles, and the log-in list', () => {
     await inviteMember(3, 'amina', 'admin')
     expect(post.mock.calls[0][0]).toBe('/progress/circles/3/members')
     expect(post.mock.calls[0][1]).toEqual({ member: 'amina', role: 'admin' })
+  })
+
+  it('moves a circle by putting its new parent, or null, at its parent address', async () => {
+    const put = vi.spyOn(api, 'put').mockResolvedValue({ data: {} })
+    await moveCircle(3, 7)
+    await moveCircle(3, null)
+    expect(put.mock.calls.map((call) => call[0])).toEqual(['/progress/circles/3/parent', '/progress/circles/3/parent'])
+    expect(put.mock.calls.map((call) => call[1])).toEqual([{ parent: 7 }, { parent: null }])
   })
 
   it('answers an invite with accept or decline', async () => {

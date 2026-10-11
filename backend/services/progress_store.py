@@ -533,6 +533,18 @@ def create_circle(user: str, name: str, kind: str, parent: int | None = None) ->
     return int(made)
 
 
+def move_circle(circle: int, admin: str, parent: int | None) -> None:
+    """Put a circle inside another (None: on its own). Needs admin of both; never inside itself or what it holds."""
+    _need_admin(circle, admin)
+    if parent is not None:
+        _need_admin(parent, admin)
+        if parent == circle or circle in _above(parent):
+            raise ValueError("A circle cannot go inside itself or a circle inside it")
+    db = _db()
+    with db:
+        db.execute("UPDATE circles SET parent = ? WHERE id = ?", (parent, circle))
+
+
 def my_circles(user: str) -> list[dict]:
     """Every circle `user` is in or invited to, the invites marked by status."""
     return [dict(row) for row in _db().execute(
