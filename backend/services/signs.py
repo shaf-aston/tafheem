@@ -122,7 +122,7 @@ def _verb(card: dict) -> dict:
     aspect = card.get("aspect")
     tense = said["tense"].get(aspect)
     if not tense:
-        return {"case": "mabni", "sign": sign("mabni"), "reason": reason(NAMED.fil)}
+        return {"sign": sign("mabni"), "reason": reason(NAMED.fil)}
     built_on = _built_on(card, aspect)
     case = card["case"]  # rule_engine.verb_card settled the mood, a nun of women or emphasis builds it too
     shown = _built(built_on) if built_on else _present_sign(card, case)
@@ -135,7 +135,7 @@ def _verb(card: dict) -> dict:
     voiced = f"{tense} {said['passive']}" if aspect != "c" and (
         card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i", stuck_on)) else tense
     told = said["verb_by_family"].format(tense=voiced, state=state, **family).rstrip("، ") if family else f"{voiced} {state}"
-    return {"case": case, "sign": shown, "reason": f"{told}. {reason(tense)}"}
+    return {"sign": shown, "reason": f"{told}. {reason(tense)}"}
 
 
 def _built_on(card: dict, aspect: str) -> str | None:
