@@ -431,15 +431,8 @@ class Progress(BaseSettings):
     progress_learning_hours: int = 24
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
-    # Accounts (services/profile.py): a username and a passphrase. Longest name allowed after cleaning.
+    # Accounts (services/profile.py): a username, no password. Longest name allowed after cleaning.
     profile_name_max: int = 40
-    # Shortest passphrase taken. The first sign-in to an account sets it.
-    passphrase_min: int = Field(default=8, gt=0)
-    # PBKDF2-SHA256 rounds per passphrase hash (OWASP 2023: 600k). Kept in each hash, so raising it spares old ones.
-    passphrase_iterations: int = Field(default=600_000, gt=0)
-    # Random bytes in a passphrase salt and in a sign-in key.
-    passphrase_salt_bytes: int = Field(default=16, gt=0)
-    signin_key_bytes: int = Field(default=32, gt=0)
     # Names nobody may type: "local" is the record of every answer given before names existed.
     profile_reserved: list[str] = ["local"]
     # Largest shelf (everything the page keeps for one account) the server takes, in bytes.

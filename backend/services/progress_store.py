@@ -19,10 +19,7 @@ by everyone, so it stays under 'local' and claim_local leaves it alone.
 """
 from __future__ import annotations
 
-import hashlib
-import hmac
 import json
-import secrets
 import sqlite3
 import threading
 from datetime import datetime, timedelta, timezone
@@ -90,7 +87,7 @@ INSERT OR IGNORE INTO accounts (name, at)
 # Changes to tables that already exist, in order; PRAGMA user_version counts how many ran.
 # Append only: a step that has run on a learner's file never runs again.
 MIGRATIONS = (
-    # Passphrase as "iterations$salt$hash" and the sign-in key's SHA-256; NULL until the first sign-in.
+    # Passphrase and sign-in key columns, dropped by step 3; kept so a fresh file runs the same steps as an old one.
     "ALTER TABLE accounts ADD COLUMN pass TEXT; ALTER TABLE accounts ADD COLUMN key TEXT;",
     # Circles replace teams. `public` is whether the account shows in the global ranking. Every old team
     # becomes a circle named for its owner (admin, joined); its members are INVITED, since they never agreed.
@@ -122,6 +119,8 @@ MIGRATIONS = (
         SELECT c.id, t.member, 'member', 'invited', t.team FROM teams t JOIN circles c ON c.name = t.team;
     DROP TABLE teams;
     """,
+    # Accounts are by username alone again: the passphrase and sign-in key go.
+    "ALTER TABLE accounts DROP COLUMN pass; ALTER TABLE accounts DROP COLUMN key;",
 )
 
 # Counts and timing in one pass. Whether an item is due is not here: it is worked
@@ -278,62 +277,11 @@ def forget(user: str = "local") -> int:
     return int(cursor.rowcount)
 
 
-def _hash_pass(passphrase: str, salt: bytes, iterations: int) -> str:
-    digest = hashlib.pbkdf2_hmac("sha256", passphrase.encode(), salt, iterations)
-    return f"{iterations}${salt.hex()}${digest.hex()}"
-
-
-def _pass_matches(passphrase: str, stored: str) -> bool:
-    iterations, salt, _ = stored.split("$")
-    return hmac.compare_digest(_hash_pass(passphrase, bytes.fromhex(salt), int(iterations)), stored)
-
-
-def _key_hash(key: str) -> str:
-    # The key is random, so one SHA-256 is enough; a database leak still hands out no key.
-    return hashlib.sha256(key.encode()).hexdigest()
-
-
-def _new_key(db: sqlite3.Connection, name: str) -> str:
-    """A fresh sign-in key for `name`; the one before it stops working."""
-    key = secrets.token_urlsafe(get_settings().signin_key_bytes)
-    db.execute("UPDATE accounts SET key = ? WHERE name = ?", (_key_hash(key), name))
-    return key
-
-
-def _new_pass(passphrase: str) -> str:
-    settings = get_settings()
-    return _hash_pass(passphrase, secrets.token_bytes(settings.passphrase_salt_bytes), settings.passphrase_iterations)
-
-
-def sign_up(name: str, passphrase: str) -> str | None:
-    """Make the account with its passphrase. Its sign-in key, or None when the username is taken."""
+def sign_up(name: str) -> bool:
+    """Make the account. False when the username is taken."""
     db = _db()
     with db:
-        if db.execute("INSERT OR IGNORE INTO accounts (name, pass) VALUES (?, ?)",
-                      (name, _new_pass(passphrase))).rowcount == 0:
-            return None
-        return _new_key(db, name)
-
-
-def sign_in(name: str, passphrase: str) -> str | None:
-    """A new sign-in key, or None for a wrong passphrase. An account with none yet takes this one."""
-    db = _db()
-    stored = lambda: db.execute("SELECT pass FROM accounts WHERE name = ?", (name,)).fetchone()  # noqa: E731
-    with db:
-        row = stored()
-        if row is not None and row["pass"] is None:
-            # Re-read after: when two first sign-ins race, both are checked against the winner.
-            db.execute("UPDATE accounts SET pass = ? WHERE name = ? AND pass IS NULL", (_new_pass(passphrase), name))
-            row = stored()
-        if row is None or not _pass_matches(passphrase, row["pass"]):
-            return None
-        return _new_key(db, name)
-
-
-def signed_in(name: str, key: str | None) -> bool:
-    """Whether `key` is this account's current sign-in key."""
-    row = _db().execute("SELECT key FROM accounts WHERE name = ?", (name,)).fetchone()
-    return bool(key and row and row["key"]) and hmac.compare_digest(row["key"], _key_hash(key))
+        return db.execute("INSERT OR IGNORE INTO accounts (name) VALUES (?)", (name,)).rowcount == 1
 
 
 def has_account(name: str) -> bool:
