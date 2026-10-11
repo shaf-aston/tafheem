@@ -18,3 +18,9 @@ def _journal_writes_to_tmp(tmp_path, monkeypatch):
     monkeypatch.setattr(get_settings(), "journal_path", str(tmp_path / "journal.jsonl"))
     monkeypatch.setattr(journal, "_built_from", None)
     yield
+
+
+@pytest.fixture(autouse=True)
+def _analyze_unlimited(monkeypatch):
+    """Suites that analyse hundreds of sentences from one client are not one hammering visitor."""
+    monkeypatch.setattr(get_settings(), "analyze_per_minute", 10**9)

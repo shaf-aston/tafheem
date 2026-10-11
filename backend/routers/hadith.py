@@ -25,6 +25,7 @@ from backend.models.hadith import (
     RijalHadithRef,
     RijalSearch,
     UsulFacts,
+    UsulGuide,
     UsulTerm,
     UsulTermHadith,
 )
@@ -128,9 +129,8 @@ async def get_chains(collection: str, book: int) -> RijalChains:
     chains = await asyncio.to_thread(rijal.chains, collection, book)
     return RijalChains(
         collection=collection, book=book, chains=chains, kin=await asyncio.to_thread(rijal.kin, collection, book),
-        notes=await asyncio.to_thread(usul.notes, collection, book, chains), scale=await asyncio.to_thread(usul.scale),
+        notes=await asyncio.to_thread(usul.notes, collection, book, chains),
         links=await asyncio.to_thread(usul.links, collection, book, chains), rulings=await asyncio.to_thread(usul.rulings, collection, book),
-        link_rules=await asyncio.to_thread(usul.link_rules) or None,
         ready=await asyncio.to_thread(rijal.is_built), source=provenance.of("rijal"),
     )
 
@@ -174,6 +174,13 @@ async def search_narrators(q: str = Query("", max_length=get_settings().search_m
         query=query, ready=await asyncio.to_thread(rijal.is_built), source=provenance.of("rijal"),
         narrators=await asyncio.to_thread(rijal.search, query, get_settings().rijal_result_limit),
     )
+
+
+@rulings.get("/guide", response_model=UsulGuide)
+async def get_guide() -> UsulGuide:
+    """The twelve levels, what each doubtful link says and the terms of the science: the same for every chain."""
+    return UsulGuide(scale=await asyncio.to_thread(usul.scale), link_rules=await asyncio.to_thread(usul.link_rules) or None,
+                     glossary=usul.glossary())
 
 
 @rulings.get("/terms", response_model=list[UsulTerm])

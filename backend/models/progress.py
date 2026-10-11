@@ -54,7 +54,14 @@ class Forgotten(BaseModel):
     deleted: int
 
 
-class ProfileIn(BaseModel):
+class PassphraseIn(BaseModel):
+    """Signing in to the username in the profile header."""
+
+    passphrase: str = Field(max_length=256)
+    """Capped: every sign-in hashes it many thousand times."""
+
+
+class ProfileIn(PassphraseIn):
     """Signing up the username in the profile header."""
 
     keep: bool = False
@@ -68,10 +75,12 @@ class Shelf(BaseModel):
 
 
 class ProfileSaved(BaseModel):
-    """The name as the server spells it, and how many unnamed answers moved onto it."""
+    """The name as the server spells it, how many unnamed answers moved onto it, and the
+    sign-in key every later call sends."""
 
     name: str
     moved: int
+    key: str
 
 
 class Account(BaseModel):
@@ -80,6 +89,7 @@ class Account(BaseModel):
     name: str
     joined: str
     answers: int
+    public: bool
 
 
 class AccountNames(BaseModel):
@@ -88,31 +98,87 @@ class AccountNames(BaseModel):
     names: list[str]
 
 
-class MemberIn(BaseModel):
-    """A username to put in the asker's team, as typed."""
+class CircleIn(BaseModel):
+    """A new circle: its name, one of the configured kinds, and optionally the circle it sits inside."""
 
-    member: str
+    name: str = Field(min_length=1, max_length=200)
+    kind: str = Field(min_length=1, max_length=32)
+    parent: int | None = None
 
 
-class TeamNode(BaseModel):
-    """One person in a team tree, their progress, and who is under them."""
+class ParentIn(BaseModel):
+    """The circle to move a circle inside, or None to stand it on its own."""
+
+    parent: int | None = None
+
+
+class InviteIn(BaseModel):
+    """A username to invite, as typed, and the role on offer."""
+
+    member: str = Field(min_length=1, max_length=200)
+    role: str = "member"
+
+
+class RoleIn(BaseModel):
+    role: str
+
+
+class PublicIn(BaseModel):
+    """Whether the account shows in the global ranking."""
+
+    public: bool
+
+
+class CircleItem(BaseModel):
+    """A circle in my list: my role in it, and (while status is "invited") who invited me."""
+
+    id: int
+    name: str
+    kind: str
+    parent: int | None
+    role: str
+    status: str
+    invitedBy: str
+
+
+class CircleList(BaseModel):
+    """Every circle I am in or invited to, and the kinds a new one may take."""
+
+    kinds: list[str]
+    circles: list[CircleItem]
+
+
+class CircleMember(BaseModel):
+    """A person in a circle; `seeable` says whether the asker may open their overview."""
 
     name: str
-    answers: int
-    learnt: int
-    members: list[TeamNode]
+    role: str
+    status: str
+    seeable: bool
 
 
-class Team(BaseModel):
-    """The asker's own tree, and the teams the asker is in."""
+class CircleInside(BaseModel):
+    id: int
+    name: str
+    kind: str
 
-    tree: TeamNode
-    teams: list[str]
+
+class CircleDetail(BaseModel):
+    """One circle. `role` is the asker's own (None for an admin of a circle above)."""
+
+    id: int
+    name: str
+    kind: str
+    parent: int | None
+    role: str | None
+    members: list[CircleMember]
+    inside: list[CircleInside]
 
 
 class LeaderRow(BaseModel):
     name: str
     learnt: int
+    answers: int
     rank: int
 
 
@@ -140,6 +206,24 @@ class ItemStats(BaseModel):
 class ProgressSummary(BaseModel):
     module: str
     items: list[ItemStats] = []
+
+
+class ModuleOverview(BaseModel):
+    module: str
+    attempts: int
+    correct: int
+    learnt: int
+    lastAt: str
+
+
+class Overview(BaseModel):
+    """One learner across every module: each one, the totals, and days in a row."""
+
+    modules: list[ModuleOverview]
+    attempts: int
+    correct: int
+    learnt: int
+    streak: int
 
 
 class ReviewList(BaseModel):

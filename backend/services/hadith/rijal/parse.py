@@ -47,6 +47,11 @@ def _names(full) -> list[tuple[int, str, int]]:
     return names
 
 
+def book_name(html: str) -> str:
+    """The book's Arabic name as its page heads it; "" where the page has none."""
+    return _text(_soup(html).select_one("div.book_page_arabic_name"))
+
+
 def book_chains(html: str) -> list[dict]:
     """Every hadith on a book page: its number and letter, and each narrator in its Arabic, in order."""
     out = []

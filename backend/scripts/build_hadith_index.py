@@ -42,6 +42,7 @@ CREATE TABLE book (
     collection_id TEXT NOT NULL,
     number        INTEGER NOT NULL,
     name          TEXT NOT NULL,
+    arabic        TEXT NOT NULL DEFAULT '',  -- from book_names.json (scripts/build_book_names.py)
     PRIMARY KEY (collection_id, number)
 );
 
@@ -119,6 +120,7 @@ def build() -> dict[str, int]:
     try:
         conn.executescript(_SCHEMA)
 
+        arabic_names = json.loads((data_path("hadith_dir") / "book_names.json").read_text(encoding="utf-8"))
         for key, meta in _collections().items():
             raw_path = data_path("hadith_dir") / f"{key}.json"
             if not raw_path.exists():
@@ -131,9 +133,10 @@ def build() -> dict[str, int]:
                 (key, meta["name"], meta.get("short", meta["name"]), meta.get("arabic", ""), meta.get("arabic_short", ""),
                  meta.get("cite", ""), int(bool(meta.get("sahih")))),
             )
+            arabic = arabic_names.get(key, {})
             conn.executemany(
-                "INSERT INTO book (collection_id, number, name) VALUES (?, ?, ?)",
-                [(key, b["number"], b["name"]) for b in raw.get("books", [])],
+                "INSERT INTO book (collection_id, number, name, arabic) VALUES (?, ?, ?, ?)",
+                [(key, b["number"], b["name"], arabic.get(str(b["number"]), "")) for b in raw.get("books", [])],
             )
             conn.executemany(
                 "INSERT INTO hadith (collection_id, book_number, number, part, arabic, english, grades) "

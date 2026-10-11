@@ -1,0 +1,44 @@
+/**
+ * Words and what they mean, in groups, laid out as GrammarGlossary lays out the grammar terms.
+ * Fed the chain words (lib/hadithWords CHAIN: how each one says the hadith was received, a group's
+ * `way` wearing the colour the chain drawing gives it) and the terms of the science (the usul guide:
+ * each also has its English name and the sentence that defines it, behind its book and page).
+ */
+import { themeVariable } from '../../theme'
+
+import ArabicText from './ArabicText'
+import Disclosure from './Disclosure'
+
+export default function TermGuide({ groups }) {
+  return (
+    <div className="grid gap-y-5 sm:grid-cols-[auto_1fr]">
+      {groups.map(({ way, title, name, terms }) => (
+        <section key={title} className="col-span-full grid grid-cols-subgrid">
+          <h3 className="col-span-full flex items-center gap-2 type-tiny uppercase tracking-[0.14em] text-[var(--text-faint)] mb-2">
+            {way && themeVariable(`--hadith-${way}`) && <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full" style={{ background: `var(--hadith-${way})` }} />}
+            {title}
+            {name && <ArabicText size="tiny" className="normal-case tracking-normal">{name}</ArabicText>}
+          </h3>
+          <dl className="col-span-full grid grid-cols-subgrid gap-x-4 gap-y-2 items-baseline m-0">
+            {terms.map(({ arabic, en, meaning, quote, source, page }) => (
+              <div key={arabic} className="contents">
+                <dt>
+                  <ArabicText className="whitespace-nowrap">{arabic}</ArabicText>
+                </dt>
+                <dd className="type-body text-[var(--text-dim)] leading-relaxed m-0">
+                  {en && <span className="block type-ui font-medium text-[var(--text)]">{en}</span>}
+                  {meaning}
+                  {quote && (
+                    <Disclosure label={`Quote: ${[source, page].filter(Boolean).join(', ')}`}>
+                      <ArabicText as="p" size="sm" className="block m-0 leading-loose text-[var(--text-faint)]">{quote}</ArabicText>
+                    </Disclosure>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ))}
+    </div>
+  )
+}

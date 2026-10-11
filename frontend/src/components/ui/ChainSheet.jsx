@@ -1,6 +1,6 @@
 /**
  * The pop-up for chains: one hadith's chain drawn (ui/ChainDrawing), or the
- * guide to the words between its narrators (ui/ChainWords). Opened on the
+ * guide (ui/TermGuide) to the words between its narrators and then the terms of the science. Opened on the
  * drawing from a hadith card, where a link turns it to the guide and back;
  * opened from the reading options with no hadith, it is the guide alone.
  * Where the chain has weak narrators (`weak`, from lib/weak) their boxes are
@@ -10,17 +10,22 @@
  * that alone.
  */
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+
+import { usulGuideQuery } from '../../api'
+import { CHAIN } from '../../lib/hadithWords'
 
 import BottomSheet from './BottomSheet'
 import ChainDrawing from './ChainDrawing'
-import ChainWords from './ChainWords'
 import CloseButton from './CloseButton'
 import ScholarRulings from './ScholarRulings'
+import TermGuide from './TermGuide'
 import WeakPoints from './WeakPoints'
 
 export default function ChainSheet({ links = null, author = '', weak = [], linkPoints = [], rulings = [], scale = [], chainless = false, onClose, accent, onNarrator }) {
   const [words, setWords] = useState(!links)
-  const title = words ? 'Chain words' : chainless ? 'This hadith' : 'The chain'
+  const { data: guide } = useQuery(usulGuideQuery)
+  const title = words ? 'Words and terms' : chainless ? 'This hadith' : 'The chain'
 
   return (
     <BottomSheet label={title} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
@@ -41,7 +46,7 @@ export default function ChainSheet({ links = null, author = '', weak = [], linkP
         </span>
       </header>
       <div className="overflow-y-auto px-5 pb-5">
-        {words ? <ChainWords /> : (
+        {words ? <TermGuide groups={[...CHAIN.terms.groups, ...(guide?.glossary ?? [])]} /> : (
           <>
             {!chainless && <ChainDrawing links={links} author={author} weak={weak} linkPoints={linkPoints} onNarrator={onNarrator} />}
             {!chainless && <WeakPoints points={weak} linkPoints={linkPoints} scale={scale} onNarrator={onNarrator} />}
