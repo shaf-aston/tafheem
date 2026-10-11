@@ -59,7 +59,8 @@ export default function HadithBookList({ collection, onPick, accent }) {
               {book.name}
               <span className="flex flex-wrap items-baseline gap-x-3 type-small text-[var(--text-faint)]">
                 <span className="tabular-nums">{book.count} hadiths</span>
-                {book.arabic && <ArabicText size="sm" className="ms-auto">{book.arabic}</ArabicText>}
+                {/* ml, not ms: the Arabic is right-to-left, so its own start is its right */}
+                {book.arabic && <ArabicText size="sm" className="ml-auto">{book.arabic}</ArabicText>}
               </span>
             </span>
           </button>
