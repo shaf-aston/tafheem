@@ -1,12 +1,12 @@
 """The bracket picture for a typed sentence, built from the parser's links."""
 from backend.services.nahw_book import role_units
-from backend.services.syntax import naming, tree
+from backend.services.syntax import tree
 from backend.services.nahw_book import condition_of, term_ar
-from tests.test_naming import token
+from tests.test_naming import named, token
 
 
 def built(words, toks):
-    return tree.build(words, toks, naming.roles(words, toks))
+    return tree.build(words, toks, named(words, toks))
 
 
 def roles_in(node):

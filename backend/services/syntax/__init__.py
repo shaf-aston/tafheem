@@ -18,6 +18,7 @@ from backend.config import get_settings
 from backend.services import provenance
 from backend.services.arabic_text import words as split_words
 from backend.services.syntax import teacher, tree
+from backend.services.syntax.correct import correct
 from backend.services.syntax.naming import roles as name_roles
 
 logger = logging.getLogger(__name__)
@@ -67,6 +68,7 @@ def read(sentence: str, picks: list[dict]) -> dict:
         from backend.services.syntax import catib_onnx
 
         tokens = catib_onnx.parse(typed, picks)
+        tokens, _ = correct(typed, tokens)
         found = teacher.review(typed, tokens, name_roles(typed, tokens))
         drawn = tree.build(typed, tokens, found)
         # a word with no job of its own is called by what the picture calls it (مَنْ heading

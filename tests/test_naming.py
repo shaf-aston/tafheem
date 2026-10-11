@@ -2,8 +2,13 @@
 import pytest
 
 from backend.services.syntax import facts, naming
-from backend.services.syntax.naming import roles as named
+from backend.services.syntax.correct import correct
 from backend.services.harakat import typed_case, typed_passive
+
+
+def named(words, tokens):
+    """What the reader sees: the parser's tokens corrected, then named."""
+    return naming.roles(words, correct(words, tokens)[0])
 
 
 def roles(words, tokens):
@@ -256,9 +261,9 @@ def test_a_bare_name_after_a_noun_with_al_is_badal():
 
 def test_noun_before_its_verb_is_mubtada_but_a_typed_fatha_makes_it_the_fronted_object():
     verb = token(2, "كتب", "كتب", "VRB", 0, "---", vox="a", asp="p")
-    opening = [token(1, "الطالب", "طالب", "NOM", 2, "TPC", stt="d"), verb]
+    opening = [token(1, "الطالب", "طالب", "NOM", 2, "TPC", stt="d"), dict(verb)]
     assert roles(["الطالب", "كتب"], opening) == ["مبتدأ", "فعل"]
-    assert roles(["الدرسَ", "كتب"], [token(1, "الدرس", "درس", "NOM", 2, "TPC", stt="d"), verb]) \
+    assert roles(["الدرسَ", "كتب"], [token(1, "الدرس", "درس", "NOM", 2, "TPC", stt="d", case="a"), dict(verb)]) \
         == ["مفعول به", "فعل"]
     # the nearest case it must not touch: the subject after its verb
     after = [token(1, "كتب", "كتب", "VRB", 0, "---", vox="a", asp="p"),
