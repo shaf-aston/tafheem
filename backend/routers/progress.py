@@ -32,6 +32,7 @@ from backend.models.progress import (
     Leaderboard,
     ModuleOverview,
     Overview,
+    ParentIn,
     PassphraseIn,
     ProfileIn,
     ProfileSaved,
@@ -290,6 +291,14 @@ def set_member_role(circle: int, member: str, body: RoleIn, user: str = NAMED) -
     name = _member_name(member)
     with _refused():
         progress_store.set_role(circle, user, name, body.role)
+        return CircleDetail(**progress_store.circle_detail(circle, user))
+
+
+@router.put("/circles/{circle}/parent", response_model=CircleDetail)
+def set_circle_parent(circle: int, body: ParentIn, user: str = NAMED) -> CircleDetail:
+    """An admin moves a circle inside another circle they admin, or out to stand on its own."""
+    with _refused():
+        progress_store.move_circle(circle, user, body.parent)
         return CircleDetail(**progress_store.circle_detail(circle, user))
 
 

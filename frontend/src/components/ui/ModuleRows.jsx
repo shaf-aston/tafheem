@@ -1,13 +1,17 @@
 /** One row per module someone answered in: words learnt, answers given, the last day. */
+import { MEANINGS } from '../../lib/quiz'
 import { TABS } from '../../lib/tabs'
 
 import { Skeleton } from './Skeleton'
 
-// A module id is a tab's id, optionally with a language ("quiz:ur"); anything else shows as it is.
+// A module id is a tab's id, or one of the names a tab files under (its `modules`),
+// optionally with a meaning language ("quiz:ur"); anything else shows as it is.
 const nameOf = (module) => {
-  const [base, ...rest] = module.split(':')
-  const tab = TABS.find((one) => one.id === base)
-  return tab ? [tab.label, ...rest].join(' · ') : module
+  const [base, language] = module.split(':')
+  const tab = TABS.find((one) => one.id === base || one.modules?.includes(base))
+  if (!tab) return module
+  return [tab.label, base !== tab.id && base, language && (MEANINGS[language]?.name ?? language)]
+    .filter(Boolean).join(' · ')
 }
 
 export default function ModuleRows({ overview }) {

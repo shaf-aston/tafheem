@@ -398,6 +398,49 @@ def test_an_ancestor_circles_admin_sees_down_and_only_an_admin_may_nest():
     assert detail("Dana", child).json()["parent"] is None                 # children lose their parent
 
 
+def move(who, cid, parent):
+    return client.put(f"/api/progress/circles/{cid}/parent", headers=as_(who), json={"parent": parent})
+
+
+def test_moving_a_circle_inside_another_lets_that_circles_admin_see_it_and_moving_out_takes_it_back():
+    top = make("Dana", "School", "class").json()["id"]
+    join("Dana", top, "Amina", "admin")
+    room = make("Amina", "Room", "class").json()["id"]
+    join("Amina", room, "Bilal")
+    answer("Bilal", "a")
+    assert seen_overview("Dana", room, "Bilal").status_code == 403         # apart, so unseen
+    moved = move("Amina", room, top)
+    assert moved.status_code == 200 and moved.json()["parent"] == top
+    assert move("Amina", room, top).status_code == 200                     # same parent: no-op
+    assert seen_overview("Dana", room, "Bilal").json()["attempts"] == 1
+    assert [c["id"] for c in detail("Dana", top).json()["inside"]] == [room]
+    out = move("Amina", room, None)
+    assert out.status_code == 200 and out.json()["parent"] is None
+    assert seen_overview("Dana", room, "Bilal").status_code == 403
+    assert detail("Dana", top).json()["inside"] == []
+
+
+def test_a_circle_cannot_go_inside_itself_or_a_circle_inside_it():
+    top = make("Dana", "School", "class").json()["id"]
+    mid = make("Dana", "Wing", "class", parent=top).json()["id"]
+    low = make("Dana", "Room", "class", parent=mid).json()["id"]
+    for target in (top, mid, low):
+        assert move("Dana", top, target).status_code == 422
+    assert move("Dana", mid, low).status_code == 422
+    assert [detail("Dana", c).json()["parent"] for c in (top, mid, low)] == [None, top, mid]
+
+
+def test_only_an_admin_of_both_circles_may_move_one():
+    top = make("Dana", "School", "class").json()["id"]
+    join("Dana", top, "Eli")                                               # a plain member of the target
+    room = make("Amina", "Room", "class").json()["id"]
+    join("Amina", room, "Eli", "admin")
+    assert move("Amina", room, top).status_code == 403                     # not in the target
+    assert move("Eli", room, top).status_code == 403                       # member, not admin, of the target
+    assert move("Dana", room, top).status_code == 403                      # admin of the target only
+    assert detail("Amina", room).json()["parent"] is None
+
+
 def test_a_hidden_account_is_absent_from_the_global_ranking_but_sees_its_own_row():
     answer("Amina", "a")
     answer("Bilal", "b")

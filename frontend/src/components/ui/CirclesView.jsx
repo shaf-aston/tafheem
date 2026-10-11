@@ -91,7 +91,7 @@ export default function CirclesView({ name, module }) {
         </ul>
       </div>
       {open !== null && (
-        <CircleOpen key={open} id={open} name={name} module={module} run={run} busy={busy}
+        <CircleOpen key={open} id={open} name={name} module={module} run={run} busy={busy} circles={joined}
           onOpen={setOpen} onGone={() => setOpen(null)} />
       )}
       <NewCircle kinds={kinds} admin={joined.filter((one) => one.role === 'admin')} run={run} busy={busy} onMade={setOpen} />

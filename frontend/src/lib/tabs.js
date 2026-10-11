@@ -15,6 +15,7 @@ import { colloquialQuery, dawahQuery, daleelBooksQuery, growPathsQuery, hadithOp
 import { load } from './warm'
 import { memoriseOpen } from './books'
 import { table } from './quizBanks'
+import { WORDS_MODULE } from './wordPractice'
 import { panel } from './panel'
 import { quranOpen } from './quranOpen'
 
@@ -38,6 +39,8 @@ const KitPanel = panel(() => import('../components/KitPanel'))
 // `mark`: one Arabic letter for where only a letter fits (search rail, launcher
 //   ring). Taken from the tab's own name, unique across tabs.
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
+// `modules`: other names its answers are filed under in the progress store, so a
+//   progress row can say which tab it came from.
 // `hidden`: reachable by URL only (journey and the panel mapping read TABS), left out of
 //   everything a person browses; those read LISTED.
 // Order = All sections order; the strip is FIXED then RECENT, below. Related tabs sit together.
@@ -61,7 +64,7 @@ export const TABS = [
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel, open: table, dock: true, group: 'tools' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, open: load(timelinesQuery), study: true, group: 'tools' },
   { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   mark: 'و', Component: DawahPanel, open: load(dawahQuery), study: true, group: 'tools' },
-  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, open: load(colloquialQuery), group: 'language', study: true },
+  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, open: load(colloquialQuery), group: 'language', study: true, modules: [WORDS_MODULE] },
   { id: 'kit',    label: 'Kit',        short: 'Kit',    arabic: 'عدة',    mark: 'ك', Component: KitPanel, hidden: true, group: 'tools' },
 ]
 

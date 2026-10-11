@@ -122,6 +122,9 @@ export const removeMember = (id, member) => api.delete(memberPath(id, member)).t
 
 export const setRole = (id, member, role) => api.put(memberPath(id, member), { role }).then((r) => r.data)
 
+/** Move a circle inside another I administer (`parent` an id), or out on its own (null). Resolves the circle. */
+export const moveCircle = (id, parent) => api.put(`${circlePath(id)}/parent`, { parent }).then((r) => r.data)
+
 /** A member's `fetchOverview`, if the circles' rules let me see it. */
 export const fetchMemberOverview = (id, member) =>
   api.get(`${memberPath(id, member)}/overview`).then((r) => r.data)

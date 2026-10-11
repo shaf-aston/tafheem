@@ -8,7 +8,8 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import {
-  deleteCircle, fetchCircle, fetchLeaderboard, fetchMemberOverview, inviteMember, leaveCircle, removeMember, setRole,
+  deleteCircle, fetchCircle, fetchLeaderboard, fetchMemberOverview, inviteMember, leaveCircle, moveCircle, removeMember,
+  setRole,
 } from '../../lib/progress'
 
 import ModuleRows from './ModuleRows'
@@ -17,10 +18,14 @@ import SearchBox from './SearchBox'
 import Segmented from './Segmented'
 import { Skeleton } from './Skeleton'
 import SmallButton from './SmallButton'
+import WheelPicker from './WheelPicker'
 
 const ROLES = [{ id: 'member', label: 'Member' }, { id: 'admin', label: 'Admin' }]
 
-export default function CircleOpen({ id, name, module, run, busy, onOpen, onGone }) {
+const ALONE = ''
+
+/** `circles` is every circle I have joined (CirclesView's list), which is where "Inside" gets its choices. */
+export default function CircleOpen({ id, name, module, run, busy, circles, onOpen, onGone }) {
   const detail = useQuery({ queryKey: ['circles', 'one', id], queryFn: () => fetchCircle(id), retry: false })
   const joined = !!detail.data?.role
   const board = useQuery({
@@ -33,8 +38,20 @@ export default function CircleOpen({ id, name, module, run, busy, onOpen, onGone
 
   if (detail.isPending) return <Skeleton className="h-24 w-full" />
   if (detail.isError) return <p className="type-small text-[var(--danger)]">Could not open this circle.</p>
-  const { members, inside, kind } = detail.data
+  const { members, inside, kind, parent } = detail.data
   const admin = detail.data.role === 'admin'
+
+  // Where it may go: on its own, or in a circle I admin that is not this one nor, as far as I know, inside it.
+  const shut = new Set([id, ...inside.map((one) => one.id)])
+  for (let grew = true; grew;) {
+    grew = false
+    for (const one of circles) if (shut.has(one.parent) && !shut.has(one.id)) { shut.add(one.id); grew = true }
+  }
+  const homes = [
+    { id: ALONE, label: 'On its own' },
+    ...circles.filter((one) => one.role === 'admin' && !shut.has(one.id)).map((one) => ({ id: String(one.id), label: one.name })),
+  ]
+  if (parent != null && !homes.some((one) => one.id === String(parent))) homes.push({ id: String(parent), label: 'Another circle' })
 
   const invite = async () => {
     if (await run(() => inviteMember(id, typed, role))) setTyped('')
@@ -91,6 +108,11 @@ export default function CircleOpen({ id, name, module, run, busy, onOpen, onGone
           <SearchBox id={`circle-invite-${id}`} label="Invite" placeholder="Invite by username" value={typed}
             onChange={setTyped} onSubmit={invite} onClear={() => setTyped('')} busy={busy} />
           <Segmented label="Invite as" options={ROLES} value={role} onChange={setInviteRole} compact />
+          <div className="flex items-center gap-3">
+            <span className="type-small text-[var(--text-faint)]">Inside</span>
+            <WheelPicker label="Inside" value={parent == null ? ALONE : String(parent)} disabled={busy} className="flex-1"
+              onChange={(to) => run(() => moveCircle(id, to === ALONE ? null : Number(to)))} options={homes} />
+          </div>
         </div>
       )}
       {joined && (
@@ -117,6 +139,7 @@ function MemberOverview({ id, member }) {
   const streak = overview.data?.streak
   return (
     <div className="space-y-2 py-2">
+      <h4 dir="auto" className="type-small font-bold text-[var(--text)]">Progress of {member}</h4>
       {streak != null && (
         <p className="type-small text-[var(--text-dim)]">{streak} {streak === 1 ? 'day' : 'days'} in a row</p>
       )}
