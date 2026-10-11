@@ -19,22 +19,24 @@ const shown = (page) => page.href.slice(ORIGIN.length)
 
 afterEach(() => { delete globalThis.window })
 
-describe('the address shows only the tab', () => {
+const at = (tab, value) => `/app/${tab}/${encodeURIComponent(value)}`
+
+describe('the address shows the tab and the place in it', () => {
   it('an old link opens its word and view, then the address is tidied and a reload keeps both', () => {
     const page = openAt('/app?tab=nahw&q=%D8%B0%D9%87%D8%A8&view=analyse')
     expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: 'ذهب' })
     writeTabToUrl('nahw', 'ذهب', { replace: true, state: { step: 0 } })
-    expect(shown(page)).toBe('/app/nahw')
+    expect(shown(page)).toBe(at('nahw', 'ذهب'))
     // A reload keeps the address and the entry's state, nothing else.
     openAt(shown(page), page.state)
     expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: 'ذهب' })
     expect(readViewParam('view', ['analyse', 'tree'])).toBe('analyse')
   })
 
-  it('a word searched is a new back step with a clean address', () => {
+  it('a word searched is a new back step with the word in the address', () => {
     const page = openAt('/app/dict', { step: 0, value: null, view: {} })
     writeTabToUrl('dict', 'كتب', { state: { step: 1 } })
-    expect(shown(page)).toBe('/app/dict')
+    expect(shown(page)).toBe(at('dict', 'كتب'))
     expect(page.state).toEqual({ step: 1, value: 'كتب', view: {} })
   })
 
@@ -43,6 +45,9 @@ describe('the address shows only the tab', () => {
     writeViewParams({ mode: 'recite' })
     expect(shown(page)).toBe('/app/mem')
     writeTabToUrl('mem', '1:1', { state: { step: 1 } })
+    expect(shown(page)).toBe('/app/mem/1:1')
+    writeViewParams({ mode: 'recite' })
+    expect(shown(page)).toBe('/app/mem/1:1')
     expect(readViewParam('mode')).toBe('recite')
     writeTabToUrl('dict', null, { state: { step: 2 } })
     expect(readViewParam('mode')).toBe(null)
@@ -54,10 +59,18 @@ describe('the address shows only the tab', () => {
   it('Copy link writes the place out, and that link opens the same place', () => {
     openAt('/app/nahw', { step: 3, value: 'ذهب الولد', view: { view: 'tree' } })
     const link = shareLink()
-    expect(link).toBe(`${ORIGIN}/app/nahw?q=${encodeURIComponent('ذهب الولد').replace(/%20/g, '+')}&view=tree`)
+    expect(link).toBe(`${ORIGIN}${at('nahw', 'ذهب الولد')}?view=tree`)
     openAt(link.slice(ORIGIN.length))
     expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: 'ذهب الولد' })
     expect(readViewParam('view')).toBe('tree')
+  })
+
+  it('a pasted address opens its place: pieces stay pieces, and "?" or "#" inside a place survive', () => {
+    const page = openAt('/app/hadith/bukhari/1/2a')
+    expect(readRouteFromUrl([{ id: 'hadith' }])).toEqual({ tab: 'hadith', value: 'bukhari/1/2a' })
+    writeTabToUrl('daleel', 'why? #1', { state: { step: 0 } })
+    openAt(shown(page))
+    expect(readRouteFromUrl([{ id: 'daleel' }])).toEqual({ tab: 'daleel', value: 'why? #1' })
   })
 
   it('old tab names, unknown tabs and the bare app', () => {

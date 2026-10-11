@@ -1,15 +1,16 @@
 /**
  * The one place that knows how a place in the app is written into the address.
  *
- * The address bar shows only the tab: /app/nahw. What the tab was opened with
- * (a word, an ayah address) and the choices inside it (which view, topic,
- * question) ride on the history entry instead, out of sight. The browser keeps
- * that across a reload and gives each back-arrow step its own, so back still
- * walks searches inside a tab. See lib/journey.js, the only caller that writes.
+ * The address bar shows the tab and the place in it: /app/hadith/bukhari/1,
+ * /app/dict/كتب. Each "/" piece of the place is one path piece, so a place
+ * that is already a path (lib/hadithPlace) reads as one. The choices inside a
+ * tab (which view, topic, question) ride on the history entry, out of sight.
+ * The browser keeps that across a reload and gives each back-arrow step its own.
+ * See lib/journey.js, the only caller that writes.
  *
- * A link carries the same things as a query, /app/nahw?q=...&view=..., and so
- * does the old form, /app?tab=nahw&q=... Both are read once on arrival, then
- * the address is tidied. `shareLink` writes that form back out.
+ * `shareLink` adds those choices as a query, /app/nahw/ذهب?view=tree. Older
+ * links, /app/nahw?q=... and /app?tab=nahw&q=..., are read once on arrival,
+ * then the address is tidied.
  */
 
 // I'raab and tarkeeb were two tabs before they became two views of one.
@@ -17,11 +18,16 @@
 const LEGACY = { iraab: 'nahw', tarkeeb: 'nahw' }
 
 const APP = '/app'
-const TAB_IN_PATH = /^\/app\/([^/]+)\/?$/
+const TAB_IN_PATH = /^\/app\/([^/]+)(?:\/(.*))?$/
 const VALUE = 'q'
 
-/** Where a tab lives: /app/nahw. */
-export const tabAddress = (tab) => `${APP}/${tab}`
+// One piece of a place in the path: "2:255" stays readable, only "?" and "#" need escaping beyond encodeURI.
+const inPath = (piece) => encodeURI(piece).replace(/[?#]/g, encodeURIComponent)
+
+/** Where a place lives: /app/nahw, or /app/hadith/bukhari/1 with its place. */
+export const tabAddress = (tab, value = null) => (
+  value ? `${APP}/${tab}/${value.split('/').map(inPath).join('/')}` : `${APP}/${tab}`
+)
 
 /**
  * The place as the current entry holds it: `{tab, value, view}`, tab as written
@@ -31,13 +37,13 @@ export const tabAddress = (tab) => `${APP}/${tab}`
 function current() {
   const url = new URL(window.location.href)
   const query = Object.fromEntries(url.searchParams)
-  const tab = url.pathname.match(TAB_IN_PATH)?.[1] ?? query.tab ?? null
+  const [, tab = query.tab ?? null, place] = url.pathname.match(TAB_IN_PATH) ?? []
   const state = window.history.state
   if (state && typeof state.view === 'object' && state.view) return { tab, value: state.value ?? null, view: state.view }
   const view = { ...query }
   delete view.tab
   delete view[VALUE]
-  return { tab, value: query[VALUE] || null, view }
+  return { tab, value: place?.split('/').map(decodeURIComponent).join('/') || query[VALUE] || null, view }
 }
 
 /**
@@ -76,7 +82,7 @@ export function writeTabToUrl(id, value = null, { replace = false, state = {} } 
     const now = current()
     // Choices inside a tab (which view, topic, question) belong to that tab only.
     const view = now.tab === id ? now.view : {}
-    window.history[replace ? 'replaceState' : 'pushState']({ ...state, value, view }, '', tabAddress(id))
+    window.history[replace ? 'replaceState' : 'pushState']({ ...state, value, view }, '', tabAddress(id, value))
   } catch {
     /* URL sync is a convenience; the tab still switches without it */
   }
@@ -101,18 +107,17 @@ export function writeViewParams(values) {
       if (value) view[key] = value
       else delete view[key]
     }
-    const path = now.tab ? tabAddress(now.tab) : window.location.pathname
+    const path = now.tab ? tabAddress(now.tab, now.value) : window.location.pathname
     window.history.replaceState({ ...window.history.state, value: now.value, view }, '', path)
   } catch {
     /* a convenience; the choice still holds on screen */
   }
 }
 
-/** A link to exactly this place: the tab in the path, the rest as a query. */
+/** A link to exactly this place: the address plus the in-tab choices as a query. */
 export function shareLink() {
   const { tab, value, view } = current()
-  const url = new URL(tab ? tabAddress(tab) : APP, window.location.origin)
-  if (value) url.searchParams.set(VALUE, value)
+  const url = new URL(tab ? tabAddress(tab, value) : APP, window.location.origin)
   for (const [key, one] of Object.entries(view)) url.searchParams.set(key, one)
   return url.href
 }

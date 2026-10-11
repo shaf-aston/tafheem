@@ -9,7 +9,7 @@
       "destination": "/app.html"
     },
     {
-      "source": "/app/:tab",
+      "source": "/app/:tab/:place*",
       "destination": "/app.html"
     },
     {

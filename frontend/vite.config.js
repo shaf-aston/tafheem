@@ -8,9 +8,9 @@ import { preloadFont } from './vite/preloadFont'
 // The tool's public address is /app; app.html is only the file behind it. A host
 // serves a real file before it consults a rewrite, which is why the front door is
 // a filename and not a rule. One rewrite for the dev server and preview both.
-// /app/<tab> is the same page; the tab is read from the path (lib/tabUrl.js).
+// /app/<tab> and /app/<tab>/<place> are the same page; lib/tabUrl.js reads the path.
 const PRETTY = { '/app': '/app.html' }
-const TAB_PAGE = /^\/app\/[^/.]+$/
+const TAB_PAGE = /^\/app\/[^/.]+(\/.*)?$/
 const prettyUrls = {
   name: 'pretty-urls',
   configureServer(server) { server.middlewares.use(rewrite) },
