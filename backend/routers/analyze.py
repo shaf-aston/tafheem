@@ -8,19 +8,26 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from backend.models.analyze import AnalyzeRequest, AnalyzeResponse, WordAnalysis
 
 from backend.models.common import Source
 from backend.services import iraab
+from backend.services.ratelimit import PerMinute, visitor
 from backend.utils import arabic_sentence
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/analyze", tags=["analysis"])
+_limit = PerMinute("analyze_per_minute")
 
 
-@router.post("", response_model=AnalyzeResponse)
+def _within_limit(http: Request) -> None:
+    if _limit.too_many(visitor(http)):
+        raise HTTPException(429, "Too many analyses at once; try again in a minute")
+
+
+@router.post("", response_model=AnalyzeResponse, dependencies=[Depends(_within_limit)])
 async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
     sentence = arabic_sentence(request.sentence, "Sentence")
     read = await asyncio.to_thread(iraab.analyze, sentence)

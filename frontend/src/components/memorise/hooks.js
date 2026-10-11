@@ -55,6 +55,8 @@ export const WAYS = [
   // any other gap. Offered only by a book that has twins to show.
   { id: 'similar', label: 'Similar verses', onlyIf: (book) => book.similar },
 ]
+/** The ways this book offers. */
+export const waysOf = (book) => WAYS.filter((w) => !w.onlyIf || w.onlyIf(book))
 
 /** What has been answered, whether the page is marked, and the words shown. */
 export function useAnswers() {
@@ -154,7 +156,7 @@ export function useBookPage({ fresh, setWay }) {
     setPageNumber(0)
     setPinned(null)
     setMeaning(BOOKS[id].meaningDefault ?? false)
-    if (!BOOKS[id].similar) setWay((was) => (was === 'similar' ? 'type' : was))
+    setWay((was) => (waysOf(BOOKS[id]).some((w) => w.id === was) ? was : 'type'))
     fresh()
   }
   // The pages of a part, fetched (or cached), and which holds a line (-1 for none).
