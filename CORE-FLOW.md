@@ -29,7 +29,7 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 2. **A typed sentence is tagged, parsed, then named.** `services/morphology.py` (CAMeL)
    gives each word's root and features; `services/rule_engine.py` works out the i'raab with
    no network; then `services/syntax/` reads which word hangs off which
-   (`catib_onnx.py`, offline), names the role (`naming.py`), which is right far
+   (`catib_onnx.py`, offline, no torch: its BERT models are ONNX files built by `scripts/build_disambig_onnx.py`), names the role (`naming.py`), which is right far
    more often, so its name wins and the rules fill the gaps, and draws the same
    reading as brackets (`tree.py`), so the cards and the picture cannot disagree.
    Only below the confidence in `backend/config.py` does

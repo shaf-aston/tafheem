@@ -1,18 +1,30 @@
 """Smoke tests for the torch-free CATiB parser (backend/services/syntax/catib_onnx.py).
 
 Skips cleanly, rather than failing, when the model files have not been
-dropped into backend/data/parser/ (see catib_onnx.py's docstring).
+built into backend/data/parser/ and backend/data/disambig/ (see catib_onnx.py's
+docstring and backend/scripts/build_disambig_onnx.py).
 """
+import subprocess
+import sys
+from pathlib import Path
+
 import pytest
 
 from backend.services.syntax.catib_onnx import _files_present, parse
 
-pytestmark = [
-    pytest.mark.heavy,
-    pytest.mark.skipif(
-        not _files_present(), reason="CATiB parser model files not present under backend/data/parser/"
-    ),
-]
+pytestmark = pytest.mark.skipif(
+    not _files_present(), reason="CATiB parser model files not present under backend/data/parser/ and backend/data/disambig/"
+)
+
+
+def test_parsing_never_loads_torch():
+    # A fresh process: other tests in this run may have imported torch already.
+    # First in the file, so it ends before this process loads the models itself.
+    code = ("import sys; from backend.services.syntax.catib_onnx import parse; "
+            "parse(['كَتَبَ', 'الطَّالِبُ', 'رِسَالَةً']); "
+            "sys.exit(1 if {'torch', 'transformers'} & set(sys.modules) else 0)")
+    root = Path(__file__).resolve().parent.parent
+    assert subprocess.run([sys.executable, "-c", code], cwd=root).returncode == 0
 
 
 def test_verb_subject_object():
@@ -33,3 +45,4 @@ def test_verb_subject_object():
 
 def test_empty_input_returns_empty_list():
     assert parse([]) == []
+
