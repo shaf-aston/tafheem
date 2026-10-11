@@ -53,9 +53,6 @@ export default function SearchBox({
   arabic = false,
   // A sentence, not a word: Shift+Enter for a new line, and room to grow.
   multiline = false,
-  // A secret (type="password") and the hint a password manager reads.
-  type = 'text',
-  autoComplete,
   children,
 }) {
   const rtl = arabic || isArabic(value)
@@ -76,7 +73,7 @@ export default function SearchBox({
         <div className="relative flex-1">
           <Field
             id={id}
-            {...(multiline ? { rows: 1 } : { type, autoComplete })}
+            {...(multiline ? { rows: 1 } : { type: 'text' })}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             onKeyDown={(e) => {

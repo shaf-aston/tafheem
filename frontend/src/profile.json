@@ -1,9 +1,7 @@
 {
-  "_comment": "Profiles: sign up and sign in with a username and a passphrase. The server owns the name rules (backend/services/profile.py) and hands back the spelling kept under 'storageKey' and a sign-in key kept under 'keyStorageKey'. Both travel on every /api/progress call, the name percent-encoded in 'header', the key in 'keyHeader'. 'pushAfterMs': how long after a change to wait before sending the account's shelf (lib/shelf.js), so a burst of changes goes as one. 'pullWaitMs': at start-up, how long to wait for the shelf from the server before showing what this device has.",
+  "_comment": "Profiles: sign up and log in with a username, no password. The server owns the name rules (backend/services/profile.py) and hands back the spelling kept under 'storageKey'. The name travels on every /api/progress call in 'header', percent-encoded. 'pushAfterMs': how long after a change to wait before sending the account's shelf (lib/shelf.js), so a burst of changes goes as one. 'pullWaitMs': at start-up, how long to wait for the shelf from the server before showing what this device has.",
   "header": "X-Tafheem-Profile",
-  "keyHeader": "X-Tafheem-Key",
   "storageKey": "profile",
-  "keyStorageKey": "profile-key",
   "pushAfterMs": 2000,
   "pullWaitMs": 1500
 }

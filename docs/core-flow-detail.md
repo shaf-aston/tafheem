@@ -435,10 +435,10 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
 - `backend/data/progress.db`: learners' answers, and every Nahw practice question as it was
   generated (from `data/practice/templates.json`, filed under its badge's source; `GET /api/practice/kept`). The
   one database written while running, opened only by `services/progress_store.py`. Rows are
-  filed under the learner's username: the page sends it on every request (`api.js` interceptor) in the `X-Tafheem-Profile`
-  header with its sign-in key in `X-Tafheem-Key`; `identity.py` `current_user()` cleans the name (rules only in `services/profile.py`) and
-  refuses it without its current key. `POST /api/progress/signup` and `/account/signin` take a passphrase (PBKDF2, salted; the first
-  sign-in to an older account sets it) and return the kept spelling and a new key (sign-up can move the guest `local` rows onto it);
+  filed under the learner's username (no password): the page sends it on every request (`api.js` interceptor) in the `X-Tafheem-Profile`
+  header, `identity.py` `current_user()` cleans it (rules only in `services/profile.py`) and
+  refuses a name with no account. `POST /api/progress/signup` and `/login` return the kept spelling
+  (sign-up can move the guest `local` rows onto it);
   `/account`, `/overview` (every module, totals, streak) and `/leaderboard` feed the profile.
   Everything else a person keeps (settings, Grow steps, favourites, history) is in the browser,
   filed by `frontend/src/lib/stored.js` under the logged-in name (`@amina/settings`; the guest's

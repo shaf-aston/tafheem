@@ -1,7 +1,6 @@
 /**
- * Log in, sign up, or see your profile. A username and a passphrase; the line
- * under the passphrase says what the first log-in to an older username does.
- * A first sign-up on a device may take the guest answers
+ * Log in, sign up, or see your profile. Usernames only, no password: the line
+ * under the box says so. A first sign-up on a device may take the guest answers
  * given so far, so nothing answered is lost. The server decides what a username
  * is; a refusal (taken, no such username) shows its reason under the box.
  *
@@ -14,7 +13,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { smartError } from '../../lib/apiError'
 import { getProfile, setProfile } from '../../lib/profile'
-import { fetchAccountNames, signIn, signUp } from '../../lib/progress'
+import { fetchAccountNames, logIn, signUp } from '../../lib/progress'
 import { copyGuestShelf, pullShelf } from '../../lib/shelf'
 
 import BottomSheet from './BottomSheet'
@@ -53,7 +52,6 @@ export default function ProfileDialog({ onClose }) {
 function SignIn({ onIn }) {
   const [mode, setMode] = useState('login')
   const [typed, setTyped] = useState('')
-  const [passphrase, setPassphrase] = useState('')
   const [keep, setKeep] = useState(true)
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
@@ -62,12 +60,11 @@ function SignIn({ onIn }) {
   // Beta only: the server stops answering once beta_list_accounts is off, and the list goes.
   const names = useQuery({ queryKey: ['account-names'], queryFn: fetchAccountNames, retry: false })
 
-  const go = async () => {
-    if (!typed.trim() || !passphrase) return
+  const go = async (chosen = typed) => {
     setBusy(true)
     try {
-      const { name, key } = await (signingUp ? signUp(typed, passphrase, keep) : signIn(typed, passphrase))
-      setProfile(name, key)
+      const { name } = await (signingUp ? signUp(chosen, keep) : logIn(chosen))
+      setProfile(name)
       // A new name starts from the guest's shelf only if it kept the guest's answers.
       await (signingUp ? (keep ? copyGuestShelf(name) : null) : pullShelf(name))
       onIn()
@@ -87,24 +84,13 @@ function SignIn({ onIn }) {
         placeholder="e.g. amina"
         value={typed}
         onChange={(value) => { setTyped(value); setError('') }}
-        onSubmit={go}
+        onSubmit={() => go()}
         onClear={() => setTyped('')}
-        busy={busy}
-      />
-      <SearchBox
-        id="profile-passphrase"
-        label="Passphrase"
-        type="password"
-        autoComplete={signingUp ? 'new-password' : 'current-password'}
-        value={passphrase}
-        onChange={(value) => { setPassphrase(value); setError('') }}
-        onSubmit={go}
-        onClear={() => setPassphrase('')}
         busy={busy}
       />
       {error && <p role="alert" className="type-small text-[var(--danger)]">{error}</p>}
       <p className="type-small text-[var(--text-faint)]">
-        Logging in to a username made before passphrases sets its passphrase: the one you type now.
+        No password: anyone who knows your username can open your progress.
       </p>
       {signingUp && (
         <label className="flex items-center gap-2 type-small text-[var(--text-dim)]">
@@ -112,15 +98,15 @@ function SignIn({ onIn }) {
           Move answers given on this device to my new account
         </label>
       )}
-      <PrimaryButton onClick={go} loading={busy} disabled={busy || !typed.trim() || !passphrase}>
+      <PrimaryButton onClick={() => go()} loading={busy} disabled={busy || !typed.trim()}>
         {signingUp ? 'Sign up' : 'Log in'}
       </PrimaryButton>
       {!signingUp && names.data?.length > 0 && (
         <div className="space-y-2">
-          <p className="type-small text-[var(--text-faint)]">Beta: tap a username to fill the box.</p>
+          <p className="type-small text-[var(--text-faint)]">Beta: tap a username to log in as it.</p>
           <div className="flex flex-wrap gap-2">
             {names.data.map((one) => (
-              <SmallButton key={one} dir="auto" disabled={busy} onClick={() => { setTyped(one); setError('') }}
+              <SmallButton key={one} dir="auto" disabled={busy} onClick={() => go(one)}
                 className="text-[var(--text-dim)]">
                 {one}
               </SmallButton>

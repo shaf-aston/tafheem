@@ -10,7 +10,6 @@ from urllib.parse import quote
 import pytest
 from fastapi.testclient import TestClient
 
-from backend.config import get_settings
 from backend.main import app
 from backend.services import ai, progress_store, sentence_check
 from backend.services.sentence_check import check
@@ -100,7 +99,7 @@ def test_three_bad_tries_give_nothing(monkeypatch):
 # ── the endpoint ─────────────────────────────────────────────────────────────
 
 client = TestClient(app)
-NAME = {"X-Tafheem-Profile": quote("amina")}  # the key is added by the fixture
+NAME = {"X-Tafheem-Profile": quote("amina")}
 
 
 @pytest.fixture(autouse=True)
@@ -108,8 +107,7 @@ def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
     monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
     progress_store.reset_connection()
-    monkeypatch.setattr(get_settings(), "passphrase_iterations", 1000)
-    monkeypatch.setitem(NAME, "X-Tafheem-Key", progress_store.sign_up("amina", "open sesame"))
+    progress_store.sign_up("amina")
     yield
     progress_store.reset_connection()
 

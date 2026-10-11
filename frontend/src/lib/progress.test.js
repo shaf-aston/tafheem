@@ -2,8 +2,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { api } from '../api'
 import {
-  answerInvite, deleteAccount, fetchAccount, fetchAccountNames, fetchCircle, fetchLeaderboard, fetchMemberOverview, fetchOverview,
-  fetchReviewItems, fetchSummary, forgetProgress, inviteMember, leaveFeedback, moveCircle, recordAttempt, removeMember, signIn, signUp,
+  answerInvite, deleteAccount, fetchAccount, fetchAccountNames, fetchCircle, fetchLeaderboard, fetchMemberOverview,
+  fetchReviewItems, fetchSummary, forgetProgress, inviteMember, leaveFeedback, moveCircle, recordAttempt, removeMember, logIn, signUp,
 } from './progress'
 
 afterEach(() => vi.restoreAllMocks())
@@ -98,26 +98,13 @@ describe('whose record', () => {
     for (const config of sent) expect(config.headers.get('X-Tafheem-Profile')).toBe('amina')
   })
 
-  it('sign-up and sign-in send the name typed, not the one saved, and no key', async () => {
-    vi.stubGlobal('localStorage', {
-      getItem: (k) => ({ profile: 'amina', 'profile-key': 'k1' })[k] ?? null,
-    })
+  it('sign-up and log-in send the name typed, not the one saved', async () => {
+    vi.stubGlobal('localStorage', { getItem: (k) => (k === 'profile' ? 'amina' : null) })
     const sent = sending()
-    await signUp('bilal', 'open sesame', false)
-    await signIn('bilal', 'open sesame')
+    await signUp('bilal', false)
+    await logIn('bilal')
     expect(sent.map((config) => config.headers.get('X-Tafheem-Profile'))).toEqual(['bilal', 'bilal'])
-    for (const config of sent) expect(config.headers.has('X-Tafheem-Key')).toBe(false)
-    expect(JSON.parse(sent[0].data)).toEqual({ passphrase: 'open sesame', keep: false })
-    expect(JSON.parse(sent[1].data)).toEqual({ passphrase: 'open sesame' })
-  })
-
-  it('the key goes with the saved name on every call', async () => {
-    vi.stubGlobal('localStorage', {
-      getItem: (k) => ({ profile: 'amina', 'profile-key': 'k1' })[k] ?? null,
-    })
-    const sent = sending()
-    await fetchOverview()
-    expect(sent[0].headers.get('X-Tafheem-Key')).toBe('k1')
+    expect(JSON.parse(sent[0].data)).toEqual({ keep: false })
   })
 
   it('a guest sends no name', async () => {

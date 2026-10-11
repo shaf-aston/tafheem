@@ -33,7 +33,6 @@ from backend.models.progress import (
     ModuleOverview,
     Overview,
     ParentIn,
-    PassphraseIn,
     ProfileIn,
     ProfileSaved,
     ProgressSummary,
@@ -44,7 +43,7 @@ from backend.models.progress import (
 )
 from backend.identity import GUEST, NAMED, TYPED, USER
 from backend.services import progress_store
-from backend.services.profile import check_passphrase, clean_name
+from backend.services.profile import clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
@@ -121,28 +120,24 @@ def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
 
 
 @router.post("/signup", response_model=ProfileSaved)
-def sign_up(body: ProfileIn, user: str = TYPED) -> ProfileSaved:
-    """Take a free username with its passphrase; hand back its one spelling and a sign-in key.
+async def sign_up(body: ProfileIn, user: str = TYPED) -> ProfileSaved:
+    """Take a free username and hand back its one spelling, which the page keeps.
 
     `keep` moves this device's unnamed answers onto it.
     """
-    passphrase = _typed_a_name(user, body)
-    key = progress_store.sign_up(user, passphrase)
-    if key is None:
+    _typed_a_name(user)
+    if not progress_store.sign_up(user):
         raise HTTPException(status_code=409, detail="That username is taken")
-    return ProfileSaved(name=user, moved=progress_store.claim_local(user) if body.keep else 0, key=key)
+    return ProfileSaved(name=user, moved=progress_store.claim_local(user) if body.keep else 0)
 
 
-@router.post("/account/signin", response_model=ProfileSaved)
-def sign_in(body: PassphraseIn, user: str = TYPED) -> ProfileSaved:
-    """Check the passphrase and hand back a new sign-in key. The first sign-in sets the passphrase."""
-    passphrase = _typed_a_name(user, body)
+@router.post("/login", response_model=ProfileSaved)
+async def log_in(user: str = TYPED) -> ProfileSaved:
+    """Check a username was signed up and hand back its one spelling."""
+    _typed_a_name(user)
     if not progress_store.has_account(user):
         raise HTTPException(status_code=404, detail="No account with that username")
-    key = progress_store.sign_in(user, passphrase)
-    if key is None:
-        raise HTTPException(status_code=401, detail="Wrong passphrase")
-    return ProfileSaved(name=user, moved=0, key=key)
+    return ProfileSaved(name=user, moved=0)
 
 
 @router.get("/account", response_model=Account)
@@ -310,11 +305,7 @@ def get_member_overview(circle: int, member: str, user: str = NAMED) -> Overview
         return _overview(progress_store.member_overview(circle, user, name))
 
 
-def _typed_a_name(user: str, body: PassphraseIn) -> str:
-    """Sign-up and sign-in need a name and a long enough passphrase; the account check would be circular."""
+def _typed_a_name(user: str) -> None:
+    """Sign-up and log-in need a name typed; the account check would be circular."""
     if user == GUEST:
         raise HTTPException(status_code=422, detail="Type a username")
-    try:
-        return check_passphrase(body.passphrase)
-    except ValueError as error:
-        raise HTTPException(status_code=422, detail=str(error)) from None

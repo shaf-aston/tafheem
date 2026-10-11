@@ -54,14 +54,7 @@ class Forgotten(BaseModel):
     deleted: int
 
 
-class PassphraseIn(BaseModel):
-    """Signing in to the username in the profile header."""
-
-    passphrase: str = Field(max_length=256)
-    """Capped: every sign-in hashes it many thousand times."""
-
-
-class ProfileIn(PassphraseIn):
+class ProfileIn(BaseModel):
     """Signing up the username in the profile header."""
 
     keep: bool = False
@@ -75,12 +68,10 @@ class Shelf(BaseModel):
 
 
 class ProfileSaved(BaseModel):
-    """The name as the server spells it, how many unnamed answers moved onto it, and the
-    sign-in key every later call sends."""
+    """The name as the server spells it, and how many unnamed answers moved onto it."""
 
     name: str
     moved: int
-    key: str
 
 
 class Account(BaseModel):
