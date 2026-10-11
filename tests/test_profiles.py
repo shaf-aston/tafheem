@@ -467,7 +467,7 @@ def test_the_last_admin_cannot_leave_while_others_are_in_the_circle():
     assert detail("Bilal", cid).status_code == 404
 
 
-def test_passphrase_columns_go_from_a_fresh_file_and_from_one_already_at_step_two():
+def test_the_password_columns_go_from_a_fresh_file_and_from_one_already_at_step_two():
     accounts = lambda: [r[1] for r in progress_store._db().execute("PRAGMA table_info(accounts)")]  # noqa: E731
     assert accounts() == ["name", "at", "public"]                                   # fresh file
     progress_store.reset_connection()

@@ -17,16 +17,9 @@ describe('profileHeaders', () => {
   })
 
   it('sends the kept name, encoded so Arabic survives a header', () => {
-    setProfile('عائشة', 'k1')
+    setProfile('عائشة')
     expect(getProfile()).toBe('عائشة')
-    expect(profileHeaders()).toEqual({
-      'X-Tafheem-Profile': encodeURIComponent('عائشة'), 'X-Tafheem-Key': 'k1',
-    })
-  })
-
-  it('sends the key only with the signed-in name, never with one being tried', () => {
-    setProfile('amina', 'k1')
-    expect(profileHeaders('bilal')).toEqual({ 'X-Tafheem-Profile': 'bilal' })
+    expect(profileHeaders()).toEqual({ 'X-Tafheem-Profile': encodeURIComponent('عائشة') })
   })
 
   it('sends a name being tried before it is kept', () => {
@@ -35,10 +28,9 @@ describe('profileHeaders', () => {
 })
 
 it('logging out goes back to the guest record', () => {
-  const data = new Map([['profile', 'amina'], ['profile-key', 'k1']])
+  const data = new Map([['profile', 'amina']])
   vi.stubGlobal('localStorage', { getItem: (k) => data.get(k) ?? null, removeItem: (k) => data.delete(k) })
   logOut()
   expect(profileHeaders()).toEqual({})
-  expect(data.size).toBe(0)
   vi.unstubAllGlobals()
 })

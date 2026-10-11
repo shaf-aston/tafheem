@@ -119,7 +119,7 @@ MIGRATIONS = (
         SELECT c.id, t.member, 'member', 'invited', t.team FROM teams t JOIN circles c ON c.name = t.team;
     DROP TABLE teams;
     """,
-    # Accounts are by username alone again: the passphrase and sign-in key go.
+    # Accounts are by username alone again: the two columns step 1 added go.
     "ALTER TABLE accounts DROP COLUMN pass; ALTER TABLE accounts DROP COLUMN key;",
 )
 
