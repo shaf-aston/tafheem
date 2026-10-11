@@ -14,7 +14,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { getQuranRoot, searchQuran } from '../api'
-import surahs from '../data/surahs.json'
+import { AYAH_REF, isAyah } from '../lib/surahRef'
 import { useArrival, useArrivalEffect } from '../lib/useArrival'
 import { useHistory } from '../lib/useHistory'
 import { isArabic } from '../lib/arabicText'
@@ -34,14 +34,8 @@ import RecentRow from './ui/RecentRow'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import { CorrectedNote } from './ui/StatusNote'
 
-// "1:3" as another tab writes it. Anything else arriving is a root.
-const AYAH_REF = /^(\d+):(\d+)$/
-
-/** An ayah that is really in the Qur'an, so a mistyped one is never remembered. */
-const isAyah = ({ surah, ayah }) => ayah >= 1 && ayah <= (surahs[surah - 1]?.ayahs ?? 0)
-
 export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }) {
-  // What arrived from another tab, if it was an ayah address.
+  // What arrived from another tab, if it was an ayah address; anything else is a root.
   const address = AYAH_REF.exec(incoming ?? '')
   const arrived = address && { surah: Number(address[1]), ayah: Number(address[2]) }
 

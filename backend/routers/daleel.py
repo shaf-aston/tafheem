@@ -17,21 +17,8 @@ from backend.utils import search_query
 
 router = APIRouter(prefix="/api/daleel", tags=["daleel"])
 
-# How many books one search may be narrowed to. There are twenty-three, and a
-# request naming hundreds is not a reader choosing; it is a boundary worth
-# holding. Naming every book is the same search as naming none.
-_MAX_BOOKS = 40
-
-# The longest book name the index holds, with room to spare. A name longer
-# than this matches no book, so the only thing a longer one can do is make the
-# query bigger.
-_MAX_BOOK_CHARS = 120
-
-# The cap has to sit on the name, not on the list of them. Written as
-# max_length on the list itself it capped how many names could be sent and
-# said nothing at all about their length, which is not what the line above
-# describes: a five-hundred-letter book name was accepted.
-BookName = Annotated[str, StringConstraints(max_length=_MAX_BOOK_CHARS)]
+# On each name, not the list: max_length on the list capped how many, not how long.
+BookName = Annotated[str, StringConstraints(max_length=get_settings().daleel_max_book_chars)]
 
 
 @router.get("/books", response_model=list[DaleelBook])
@@ -71,12 +58,7 @@ async def find(
     if not daleel_search.is_built():
         return DaleelResponse(query=query, hits=[], ready=False)
 
-    # Names no book has are dropped rather than refused. A bookmarked search
-    # naming a book that has since been removed should show what the rest of
-    # the library says, not an error, and certainly not an empty page that
-    # reads as "nothing in any book says this".
-    known = {name for name, _ in await asyncio.to_thread(daleel_search.books)}
-    chosen = tuple(dict.fromkeys(b for b in books[:_MAX_BOOKS] if b in known))
+    chosen = await asyncio.to_thread(daleel_search.known_books, books)
 
     limit = get_settings().daleel_result_limit
     hits = await asyncio.to_thread(daleel_search.search, query, limit, chosen)
