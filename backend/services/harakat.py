@@ -24,8 +24,6 @@ HIDDEN_CASE = ("ين", "ون", "ان")
 # the vowels their nun carries (the plural's fatha, the dual's kasra); any other
 # (الدِّينُ، بَيَانٌ) is the word's own case
 ENDING_NUN = {"ين": {"َ", "ِ"}, "ون": {"َ"}, "ان": {"ِ"}}
-# a sound feminine plural ends so; its kasra also shows nasb (رأيت المعلماتِ)
-FEM_PLURAL_END = "ات"
 # تَفَعَّلَ: the three radicals that follow a Form V or VI verb's opening ت
 FORM_V_STEM = 3
 

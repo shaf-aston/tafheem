@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import SHADDA, SUKUN, TANWEEN, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
-from backend.services.nahw_book import book_words, family_cards, named_roles, reason, six_noun_case, teacher_rules
+from backend.services.nahw_book import book_words, family_cards, is_diptote, is_fem_plural, is_mabni, is_one, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
@@ -24,7 +24,7 @@ def sign(case: str | None, kind: str = "vowel") -> str | None:
     return tables[kind].get(case) or tables["vowel"].get(case)
 
 
-def kind_of(tag: dict) -> str:
+def kind_of(tag: dict, annexed: bool) -> str:
     """Which sign table a noun's case is read from. CAMeL's number names a dual or a
     plural, unless the reader typed a tanween, which neither ever carries (غَافِلًا)."""
     word = tag.get("word", "")
@@ -35,12 +35,11 @@ def kind_of(tag: dict) -> str:
             return "sound_plural"
         if tag.get("number") == "d":
             return "dual"
-        if tag.get("number") == "p" and tag.get("gender") == "f" and tag["base"].endswith("ات"):
+        if tag.get("gender") == "f" and is_fem_plural(tag["base"], tag.get("number") or "na"):  # a masculine plural keeps its fatha (أَصْوَاتَهُمْ)
             return "fem_plural"  # المعلماتِ: nasb shows by the kasra
-        # بِمَسَاجِدَ: an indefinite word typed with a bare fatha takes no tanween, a diptote
-        # (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
-        if marked and marked[-1][1] & {"َ"} and not bare.startswith("ال") and not _has_pronoun(tag) \
-                and tag.get("case") in ("jarr", "nasb"):
+        # بِمَسَاجِدَ: a diptote, unless a مضاف إليه follows (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
+        if tag.get("case") in ("jarr", "nasb") and is_diptote(word, attached=_has_pronoun(tag),
+                annexed=annexed, built=is_mabni(tag.get("pos", "")) or is_one(tag.get("lemma") or "", "tamyeez_head")):
             return "diptote"
         if tag.get("enclitic") != "1s_poss" and six_noun_case(tag["base"], tag.get("lemma") or ""):
             return "six_nouns"  # أَخًا has a tanween: not a مضاف, so the vowels show
@@ -96,7 +95,7 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         return None
     if card.get("type") in ("harf", "damir"):
         return sign("mabni")  # a particle or a pronoun never shows a case of its own
-    kind = kind_of(card["camel"])
+    kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
         on = teacher_rules()["case_said"]["la_jins_on"]

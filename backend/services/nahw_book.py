@@ -10,11 +10,11 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
+from backend.services.harakat import PRESENT_PREFIX, has_tanween, letters
 
 RULES = Path(__file__).parent.parent / "data" / "nahw_rules"
 
-# a pronoun, pointer, relative or question word keeps one ending whatever its job
-MABNI_KINDS = ("pron", "dem", "rel", "interrog")
+MABNI_KINDS = ("pron", "dem", "rel", "interrog")  # a pronoun, pointer, relative or question word: one ending whatever its job
 
 
 @lru_cache(maxsize=None)
@@ -91,9 +91,29 @@ def six_noun_case(base: str, lemma: str) -> str | None:
     return by_letter.get(base[-1:])
 
 
-def is_mabni(token: dict) -> bool:
-    """A pronoun, pointer, relative or question word: its ending is not a case."""
-    return any(kind in token.get("pos_camel", "") for kind in MABNI_KINDS)
+def verb_aspect(aspect: str, base: str) -> str:
+    """A "present" verb with no present prefix is a command (اِتَّقِ, which CAMeL reads as يتقي's mood)."""
+    return "c" if aspect == "i" and base[:1] not in PRESENT_PREFIX else aspect
+
+
+def is_mabni(pos: str, aspect: str | None = None, base: str = "") -> bool:
+    """A pronoun, pointer, relative or question word; given a verb's `aspect` and `base`, a past verb or command too (المبني من الأفعال)."""
+    if pos == "verb":
+        return aspect is not None and verb_aspect(aspect, base) != "i"
+    return any(kind in pos for kind in MABNI_KINDS)
+
+
+def is_diptote(typed: str, *, attached: bool, annexed: bool, built: bool) -> bool:
+    """A fatha for the kasra (الممنوع من الصرف): no tanween, ال, pronoun, مضاف إليه (طَرِيقَ جَهَنَّمَ) or build (ثَلَاثَةَ عَشَرَ)."""
+    bare, marked = strip_diacritics(typed), letters(typed)
+    return (bool(marked) and "َ" in marked[-1][1] and not has_tanween(typed) and not bare.startswith(("ال", "ٱل"))
+            and not (attached or annexed or built))
+
+
+def is_fem_plural(base: str, number: str) -> bool:
+    """A sound feminine plural ends ـات (ـآت: سَوْآتِ keeps its alef in the madda) on a word CAMeL reads as a plural.
+    A word it could not read (number "-", the word for its lemma: مرضات) is never judged one."""
+    return base.endswith(("ات", "آت")) and number not in ("s", "-")
 
 
 def is_object_stem(form: str) -> bool:
@@ -111,7 +131,7 @@ def is_subject_pronoun(token: dict) -> bool:
 
 def is_plain_noun(token: dict) -> bool:
     """A noun that can take a case ending."""
-    return token["pos"] in ("NOM", "PROP") and not is_mabni(token)
+    return token["pos"] in ("NOM", "PROP") and not is_mabni(token.get("pos_camel", ""))
 
 
 def _roles() -> dict:

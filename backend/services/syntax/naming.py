@@ -21,7 +21,7 @@ from backend.services.nahw_book import (
     role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, SUKUN, five_verb_nun, has_tanween, letters, merged_prefix, own_letters, paused, stilled,
+    CASE_NAME, SUKUN, five_verb_nun, has_tanween, letters, merged_prefix, own_letters, paused, stilled,
     typed_case, vowel_agreement)
 
 # Every role this module can name, with its card colour key and bracket tone
@@ -344,8 +344,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     A noun's case is the vowel typed on it, else its role's own. A kasra on ـات is nasb when
     its role takes nasb, or it has no role and nothing puts it in jarr, shown by the kasra (رأيت المعلماتِ)."""
     if role == NAMED.fil:
-        present = token["base"][:1] in PRESENT_PREFIX and token.get("asp") == "i"
-        return _mood(paused(token["typed"], after), token, before, lam) if present else "mabni"
+        return "mabni" if is_mabni("verb", token.get("asp", "na"), token["base"]) else _mood(paused(token["typed"], after), token, before, lam)
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
     # يَا وَلَدُ، يا أيها: a single called noun is built on the damma (in the place of nasb), as is اللهمّ
@@ -354,7 +353,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if is_mabni(token) or facts.is_object_pronoun(token):
+    if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token):
         return "mabni"
     # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built
     marked = letters(token["typed"])

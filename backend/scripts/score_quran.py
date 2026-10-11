@@ -66,6 +66,7 @@ def sign_only(tag: dict, typed: str) -> bool:
     if any("SUFF" in seg["features"] for seg in tag["segments"]):
         return False
     bare, shown = strip_diacritics(typed), typed_case(typed)
+    # its own copy on purpose: the scorer must not share the code it checks
     return (shown == "i" and bare.endswith("ات")) or (shown == "a" and not has_tanween(typed) and not bare.startswith("ال"))
 
 

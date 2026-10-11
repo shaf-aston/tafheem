@@ -13,8 +13,8 @@ from __future__ import annotations
 from typing import Any
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import PRESENT_PREFIX, SUKUN, has_tanween
-from backend.services.nahw_book import MABNI_KINDS, book_words, condition_of, named_roles, reason, teacher_rules
+from backend.services.harakat import SUKUN, has_tanween
+from backend.services.nahw_book import book_words, is_mabni, verb_aspect, condition_of, named_roles, reason, teacher_rules
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
@@ -35,11 +35,8 @@ def verb_card(base: str, aspect: str | None, case: str | None = None) -> dict:
     """A verb's tense and case: built for a past verb or a command, by its mood for a
     present one. iraab.cards calls it again when the parser reads a word
     as a verb or the particle before a present verb settles its mood; signs.settle
-    writes the sign and the reason from these. A "present" verb whose base word (its
-    joined letters off) has no present prefix is a command (اِتَّقِ، read by CAMeL as
-    يتقي's mood)."""
-    if aspect == "i" and base[:1] not in PRESENT_PREFIX:
-        aspect = "c"
+    writes the sign and the reason from these."""
+    aspect = verb_aspect(aspect, base)
     if aspect == "i":
         return {"aspect": aspect, "case": case if case in ("raf'", "nasb", "jazm") else "raf'"}
     return {"aspect": aspect, "case": "mabni"}
@@ -56,7 +53,7 @@ def _is(tag: dict, family: str) -> bool:
     list names a particle by its letters, never a word the reader read as a pronoun,
     pointer, relative or question word: مَنْ the relative is not مِنْ, though they share letters."""
     return _pos(tag) in _FAMILY_POS[family] or (
-        not any(kind in _pos(tag) for kind in MABNI_KINDS) and strip_diacritics(tag.get("word", "")) in book_words(family))
+        not is_mabni(_pos(tag)) and strip_diacritics(tag.get("word", "")) in book_words(family))
 
 
 # ── Entry builders ────────────────────────────────────────────────────────────
