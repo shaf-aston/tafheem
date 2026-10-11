@@ -91,8 +91,7 @@ def six_noun_case(base: str, lemma: str) -> str | None:
     return by_letter.get(base[-1:])
 
 
-def verb_aspect(aspect: str, base: str) -> str:
-    """A "present" verb with no present prefix is a command (اِتَّقِ, which CAMeL reads as يتقي's mood)."""
+def verb_aspect(aspect: str, base: str) -> str:  # a "present" verb with no present prefix is a command (اِتَّقِ)
     return "c" if aspect == "i" and base[:1] not in PRESENT_PREFIX else aspect
 
 
@@ -105,14 +104,13 @@ def is_mabni(pos: str, aspect: str | None = None, base: str = "") -> bool:
 
 def is_diptote(typed: str, *, attached: bool, annexed: bool, built: bool) -> bool:
     """A fatha for the kasra (الممنوع من الصرف): no tanween, ال, pronoun, مضاف إليه (طَرِيقَ جَهَنَّمَ) or build (ثَلَاثَةَ عَشَرَ)."""
-    bare, marked = strip_diacritics(typed), letters(typed)
-    return (bool(marked) and "َ" in marked[-1][1] and not has_tanween(typed) and not bare.startswith(("ال", "ٱل"))
+    marked = letters(typed)
+    return (bool(marked) and "َ" in marked[-1][1] and not has_tanween(typed) and not strip_diacritics(typed).startswith(("ال", "ٱل"))
             and not (attached or annexed or built))
 
 
 def is_fem_plural(base: str, number: str) -> bool:
-    """A sound feminine plural ends ـات (ـآت: سَوْآتِ keeps its alef in the madda) on a word CAMeL reads as a plural.
-    A word it could not read (number "-", the word for its lemma: مرضات) is never judged one."""
+    """A sound feminine plural: ـات (ـآت: سَوْآتِ) on a word CAMeL reads as a plural, never one it could not read (number "-": مرضات)."""
     return base.endswith(("ات", "آت")) and number not in ("s", "-")
 
 

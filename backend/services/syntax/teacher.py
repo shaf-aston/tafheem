@@ -60,10 +60,8 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
     # the noun of لا is raf' when the لا works like ليس (لا رجلٌ في الدار), so its ending is open
     if is_one(by_id.get(token["head"], {}).get("lemma", ""), "la_jins"):
         free |= {"au", "ai"}
-    # a sound plural's kasra is nasb too (رأيت المعلماتِ), a diptote's fatha jarr (مررت بأحمدَ): no clash
     if shows_nasb_by_kasra(token):
         free.add("ai")
-    # an indefinite word with no ال and no مضاف إليه under it may be a diptote: the role annexes it, not the parser's idafa link
     mudaf_ilayh = any(roles[k] == NAMED.mudaf_ilayh for k in _kid_indices(token, bases))
     if token.get("stt") != "d" and not bare.startswith("ال") and not mudaf_ilayh:
         free.add("ia")
