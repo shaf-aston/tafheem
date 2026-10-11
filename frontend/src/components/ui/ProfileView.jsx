@@ -71,8 +71,7 @@ function Global({ name, module, account }) {
   const client = useQueryClient()
   const board = useQuery({ queryKey: ['leaderboard', module], queryFn: () => fetchLeaderboard(module) })
   const toggle = async (shown) => {
-    await setPublic(shown)
-    await client.invalidateQueries({ queryKey: ['account', name] })
+    client.setQueryData(['account', name], await setPublic(shown))
     await client.invalidateQueries({ queryKey: ['leaderboard'] })
   }
   return (

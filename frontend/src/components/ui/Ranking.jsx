@@ -24,7 +24,7 @@ export default function Ranking({ board, name, title }) {
               <span className="w-6 tabular-nums">{row.rank}</span>
               <span dir="auto" className="flex-1 truncate">{mine ? `${row.name} (you)` : row.name}</span>
               <span className="tabular-nums">{row.learnt} learnt</span>
-              <span className="tabular-nums text-[var(--text-faint)]">{row.answers} answers</span>
+              <span className="tabular-nums text-[var(--text-faint)]">{row.answers} {row.answers === 1 ? 'answer' : 'answers'}</span>
             </li>
           )
         })}
