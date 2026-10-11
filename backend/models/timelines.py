@@ -118,7 +118,6 @@ class TimelineReport(BaseModel):
     ayah: int
     how: str                        # named | period: how it came to this event
     opening: str
-    arabic_opening: str
 
 
 class TimelineAsbab(BaseModel):

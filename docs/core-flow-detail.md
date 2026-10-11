@@ -129,7 +129,7 @@ python backend/scripts/build_daleel_index.py --meta  # just the source/book tabl
    `backend/data/timelines/library.json` declares everything a section may point at (a
    science, a place, a caution flag, a hadith collection, the map's shapes) and one file per
    section under `sections/` holds its events, so adding an event is an edit to a JSON file.
-   `services/timelines.py` is that folder's only reader and checks it on load, an event out of
+   `services/timelines.py` (reference rules in `services/refs.py`, shared with Dawah) reads that folder and checks it on load, an event out of
    order, an `until` pointing backwards or a Qur'an reference past the end of its surah stops
    the app and names the event. `lib/timelineLayout.js` works out rows, gaps, gutter lanes and
    map pins from `at` and `until` alone, and the components only draw it. Every Qur'an
@@ -138,7 +138,7 @@ python backend/scripts/build_daleel_index.py --meta  # just the source/book tabl
    **asbab al-nuzul** reports for its ayahs: al-Suyuti's Lubab, cut into reports by
    `services/asbab_split.py`, stored as two editions (`asbab-lubab-ar` and the English
    Claude wrote beside it) and linked to an event either by the wording that names it or,
-   failing that, by whether its surah came down at Makkah or at Madinah.
+   failing that, by whether its surah came down at Makkah or at Madinah (`services/asbab.py`).
 9. **Every answer says where it came from**: `backend/services/provenance.py` reads
    `data/sources.json` and attaches a `source` to each response; `ui/SourceBadge.jsx` shows it.
    This is the app's core honesty rule: verified, derived and guessed never look alike.

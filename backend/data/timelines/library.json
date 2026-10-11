@@ -14,6 +14,10 @@
     "An event may carry hijri, its Hijri year as '5 AH' or '13 BH', shown beside the common-era year.",
     "  map          land (lon, lat rings, Natural Earth 1:50m, public domain) and one view per map, as a lon/lat box."
   ],
+  "asbab": {
+    "_comment": "How many characters of a report the asbab list shows before it is opened.",
+    "opening_chars": 200
+  },
   "sciences": [
     {
       "key": "qasas",
