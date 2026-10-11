@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
-from backend.services.nahw_book import book_words, family_cards, is_diptote, is_fem_plural, is_mabni, is_one, named_roles, reason, six_noun_case, teacher_rules
+from backend.services.nahw_book import book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
@@ -38,8 +38,7 @@ def kind_of(tag: dict, annexed: bool) -> str:
         if tag.get("gender") == "f" and is_fem_plural(tag["base"], tag.get("number") or "na"):  # a masculine plural keeps its fatha (أَصْوَاتَهُمْ)
             return "fem_plural"  # المعلماتِ: nasb shows by the kasra
         # بِمَسَاجِدَ: a diptote, unless a مضاف إليه follows (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
-        if tag.get("case") in ("jarr", "nasb") and is_diptote(word, attached=_has_pronoun(tag),
-                annexed=annexed, built=is_mabni(tag.get("pos", "")) or is_one(tag.get("lemma") or "", "tamyeez_head")):
+        if tag.get("case") in ("jarr", "nasb") and is_diptote(word, tag.get("pos", ""), tag.get("lemma") or "", attached=_has_pronoun(tag), annexed=annexed):
             return "diptote"
         if tag.get("enclitic") != "1s_poss" and six_noun_case(tag["base"], tag.get("lemma") or ""):
             return "six_nouns"  # أَخًا has a tanween: not a مضاف, so the vowels show

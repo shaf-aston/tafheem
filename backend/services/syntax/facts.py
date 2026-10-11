@@ -186,8 +186,8 @@ def shows_nasb_by_kasra(token: dict) -> bool:
 def shows_jarr(token: dict) -> bool:
     """The typed ending can be jarr: a kasra, or a diptote's fatha (طَرِيقَ جَهَنَّمَ، بَنِي إِسْرَائِيلَ)."""
     shown = typed_case_of(token)
-    return shown == "i" or shown == "a" and is_diptote(token.get("typed") or "", attached=bool(token.get("stuck_on")),
-        annexed=bool(token.get("mudaf")), built=is_mabni(token.get("pos_camel", "")) or is_one(token["lemma"], "tamyeez_head"))
+    return shown == "i" or shown == "a" and is_diptote(token.get("typed") or "", token.get("pos_camel", ""), token["lemma"],
+                                         attached=bool(token.get("stuck_on")), annexed=bool(token.get("mudaf")))
 
 
 def shown_cases(token: dict) -> set[str]:

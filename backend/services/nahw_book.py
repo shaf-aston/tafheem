@@ -102,11 +102,11 @@ def is_mabni(pos: str, aspect: str | None = None, base: str = "") -> bool:
     return any(kind in pos for kind in MABNI_KINDS)
 
 
-def is_diptote(typed: str, *, attached: bool, annexed: bool, built: bool) -> bool:
+def is_diptote(typed: str, pos: str, lemma: str, *, attached: bool, annexed: bool) -> bool:
     """A fatha for the kasra (الممنوع من الصرف): no tanween, ال, pronoun, مضاف إليه (طَرِيقَ جَهَنَّمَ) or build (ثَلَاثَةَ عَشَرَ)."""
     marked = letters(typed)
     return (bool(marked) and "َ" in marked[-1][1] and not has_tanween(typed) and not strip_diacritics(typed).startswith(("ال", "ٱل"))
-            and not (attached or annexed or built))
+            and not (attached or annexed or is_mabni(pos) or is_one(lemma, "tamyeez_head")))
 
 
 def is_fem_plural(base: str, number: str) -> bool:

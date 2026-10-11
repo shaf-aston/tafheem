@@ -7,7 +7,7 @@ import pytest
 
 from backend.services.nahw_book import is_diptote, is_fem_plural, is_mabni
 
-PLAIN = dict(attached=False, annexed=False, built=False)
+PLAIN = dict(pos="noun", lemma="x", attached=False, annexed=False)
 
 
 @pytest.mark.parametrize("base, number, plural", [
@@ -36,7 +36,8 @@ def test_sound_feminine_plural_ends_in_alef_ta(base, number, plural):
     ("ٱلْمَسَاجِدَ", {}, False),                    # wasla alef
     ("مَسَاجِدًا", {}, False),                      # tanween
     ("مَسَاجِدِ", {}, False),                       # a kasra is jarr itself
-    ("ثَلَاثَةَ", {"built": True}, False),          # a number's build
+    ("ثَلَاثَةَ", {"lemma": "عشرين"}, False),         # a number's build
+    ("هَذَا", {"pos": "pron_dem"}, False),            # a pointer is built
 ])
 def test_diptote_fatha_stands_for_the_kasra(typed, flags, diptote):
     assert is_diptote(typed, **{**PLAIN, **flags}) is diptote
