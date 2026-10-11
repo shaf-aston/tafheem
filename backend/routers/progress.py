@@ -11,6 +11,7 @@ is where the "what do I keep getting wrong" reading is made.
 from __future__ import annotations
 
 import json
+from contextlib import contextmanager
 
 from fastapi import APIRouter, HTTPException, Query
 
@@ -20,21 +21,29 @@ from backend.models.progress import (
     AccountNames,
     AttemptIn,
     AttemptSaved,
+    CircleDetail,
+    CircleIn,
+    CircleItem,
+    CircleList,
     FeedbackIn,
     Forgotten,
+    InviteIn,
     ItemStats,
     Leaderboard,
-    MemberIn,
+    ModuleOverview,
+    Overview,
+    PassphraseIn,
     ProfileIn,
     ProfileSaved,
     ProgressSummary,
+    PublicIn,
     ReviewList,
+    RoleIn,
     Shelf,
-    Team,
 )
 from backend.identity import GUEST, NAMED, TYPED, USER
 from backend.services import progress_store
-from backend.services.profile import clean_name
+from backend.services.profile import check_passphrase, clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
@@ -93,6 +102,17 @@ def get_summary(module: str = _MODULE, user: str = USER) -> ProgressSummary:
     )
 
 
+@router.get("/overview", response_model=Overview)
+def get_overview(user: str = USER) -> Overview:
+    """Every module this learner answered in, with totals and the streak of days."""
+    return _overview(progress_store.overview(user))
+
+
+def _overview(found: dict) -> Overview:
+    modules = [ModuleOverview(**{**row, "lastAt": row["last_at"]}) for row in found.pop("modules")]
+    return Overview(modules=modules, **found)
+
+
 @router.get("/review", response_model=ReviewList)
 def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
     """Items due for review now, earliest first."""
@@ -100,24 +120,28 @@ def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
 
 
 @router.post("/signup", response_model=ProfileSaved)
-async def sign_up(body: ProfileIn, user: str = TYPED) -> ProfileSaved:
-    """Take a free username and hand back its one spelling, which the page keeps.
+def sign_up(body: ProfileIn, user: str = TYPED) -> ProfileSaved:
+    """Take a free username with its passphrase; hand back its one spelling and a sign-in key.
 
     `keep` moves this device's unnamed answers onto it.
     """
-    _typed_a_name(user)
-    if not progress_store.sign_up(user):
+    passphrase = _typed_a_name(user, body)
+    key = progress_store.sign_up(user, passphrase)
+    if key is None:
         raise HTTPException(status_code=409, detail="That username is taken")
-    return ProfileSaved(name=user, moved=progress_store.claim_local(user) if body.keep else 0)
+    return ProfileSaved(name=user, moved=progress_store.claim_local(user) if body.keep else 0, key=key)
 
 
-@router.post("/login", response_model=ProfileSaved)
-async def log_in(user: str = TYPED) -> ProfileSaved:
-    """Check a username was signed up and hand back its one spelling."""
-    _typed_a_name(user)
+@router.post("/account/signin", response_model=ProfileSaved)
+def sign_in(body: PassphraseIn, user: str = TYPED) -> ProfileSaved:
+    """Check the passphrase and hand back a new sign-in key. The first sign-in sets the passphrase."""
+    passphrase = _typed_a_name(user, body)
     if not progress_store.has_account(user):
         raise HTTPException(status_code=404, detail="No account with that username")
-    return ProfileSaved(name=user, moved=0)
+    key = progress_store.sign_in(user, passphrase)
+    if key is None:
+        raise HTTPException(status_code=401, detail="Wrong passphrase")
+    return ProfileSaved(name=user, moved=0, key=key)
 
 
 @router.get("/account", response_model=Account)
@@ -147,11 +171,20 @@ async def put_shelf(body: Shelf, user: str = NAMED) -> Shelf:
     return body
 
 
+@router.put("/account/public", response_model=Account)
+def put_public(body: PublicIn, user: str = NAMED) -> Account:
+    """Show in, or hide from, the global ranking."""
+    progress_store.set_public(user, body.public)
+    return Account(**progress_store.account(user))
+
+
 @router.get("/leaderboard", response_model=Leaderboard)
-def get_leaderboard(module: str = _MODULE, user: str = USER) -> Leaderboard:
-    """The top accounts by words learnt, plus the asker's own place."""
-    rows = progress_store.leaderboard(module)
-    you = next((row for row in rows if row["name"] == user), None)
+def get_leaderboard(module: str = _MODULE, circle: int | None = None, user: str = USER) -> Leaderboard:
+    """A circle's joined members by words learnt, or the global top accounts plus the asker's own place."""
+    if circle is not None:
+        with _refused():
+            return Leaderboard(rows=progress_store.circle_ranking(circle, module, user), you=None)
+    rows, you = progress_store.leaderboard(module, user)
     return Leaderboard(rows=rows[: get_settings().leaderboard_size], you=you)
 
 
@@ -163,42 +196,116 @@ def list_accounts() -> AccountNames:
     return AccountNames(names=progress_store.account_names())
 
 
-@router.get("/team", response_model=Team)
-def get_team(module: str = _MODULE, user: str = NAMED) -> Team:
-    """Everyone under this account, branching down, with their progress."""
-    return _team(user, module)
-
-
-@router.post("/team", response_model=Team)
-def add_member(body: MemberIn, module: str = _MODULE, user: str = NAMED) -> Team:
-    """Put a signed-up username in this account's team."""
+@contextmanager
+def _refused():
+    """The store's rules as the answers a page expects: unknown 404, not allowed 403, not valid 422."""
     try:
-        member = clean_name(body.member)
+        yield
+    except LookupError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from None
+    except PermissionError as error:
+        raise HTTPException(status_code=403, detail=str(error)) from None
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from None
-    if not progress_store.has_account(member):
-        raise HTTPException(status_code=404, detail="No account with that username")
-    try:
-        progress_store.add_member(user, member)
-    except ValueError as error:
-        raise HTTPException(status_code=422, detail=str(error)) from None
-    return _team(user, module)
 
 
-@router.delete("/team", response_model=Team)
-def remove_member(team: str, member: str, module: str = _MODULE, user: str = NAMED) -> Team:
-    """Part a member from a team. Only the team or the member may."""
-    if user not in (team, member):
-        raise HTTPException(status_code=403, detail="Only the team or the member can do that")
-    progress_store.remove_member(team, member)
-    return _team(user, module)
+def _circles(user: str) -> CircleList:
+    mine = [CircleItem(**{**row, "invitedBy": row.pop("invited_by")}) for row in progress_store.my_circles(user)]
+    return CircleList(kinds=progress_store.circle_kinds(), circles=mine)
 
 
-def _team(user: str, module: str) -> Team:
-    return Team(tree=progress_store.team_tree(user, module), teams=progress_store.teams_of(user))
+def _member_name(typed: str) -> str:
+    with _refused():
+        return clean_name(typed)
 
 
-def _typed_a_name(user: str) -> None:
-    """Sign-up and log-in need a name typed; the account check would be circular."""
+@router.get("/circles", response_model=CircleList)
+def list_circles(user: str = NAMED) -> CircleList:
+    """Every circle I am in, and every invite waiting for me."""
+    return _circles(user)
+
+
+@router.post("/circles", response_model=CircleDetail)
+def create_circle(body: CircleIn, user: str = NAMED) -> CircleDetail:
+    """Make a circle, with me as its admin."""
+    with _refused():
+        return CircleDetail(**progress_store.circle_detail(
+            progress_store.create_circle(user, body.name, body.kind, body.parent), user))
+
+
+@router.get("/circles/{circle}", response_model=CircleDetail)
+def get_circle(circle: int, user: str = NAMED) -> CircleDetail:
+    """One circle and the people the asker may see in it."""
+    with _refused():
+        return CircleDetail(**progress_store.circle_detail(circle, user))
+
+
+@router.delete("/circles/{circle}", response_model=CircleList)
+def delete_circle(circle: int, user: str = NAMED) -> CircleList:
+    with _refused():
+        progress_store.delete_circle(circle, user)
+    return _circles(user)
+
+
+@router.post("/circles/{circle}/members", response_model=CircleDetail)
+def invite_member(circle: int, body: InviteIn, user: str = NAMED) -> CircleDetail:
+    """An admin invites an existing username; they see nothing until they accept."""
+    member = _member_name(body.member)
+    with _refused():
+        progress_store.invite(circle, user, member, body.role)
+        return CircleDetail(**progress_store.circle_detail(circle, user))
+
+
+@router.post("/circles/{circle}/accept", response_model=CircleList)
+def accept_invite(circle: int, user: str = NAMED) -> CircleList:
+    with _refused():
+        progress_store.accept(circle, user)
+    return _circles(user)
+
+
+@router.post("/circles/{circle}/decline", response_model=CircleList)
+def decline_invite(circle: int, user: str = NAMED) -> CircleList:
+    with _refused():
+        progress_store.decline(circle, user)
+    return _circles(user)
+
+
+@router.post("/circles/{circle}/leave", response_model=CircleList)
+def leave_circle(circle: int, user: str = NAMED) -> CircleList:
+    with _refused():
+        progress_store.leave(circle, user)
+    return _circles(user)
+
+
+@router.delete("/circles/{circle}/members/{member}", response_model=CircleDetail)
+def remove_member(circle: int, member: str, user: str = NAMED) -> CircleDetail:
+    name = _member_name(member)
+    with _refused():
+        progress_store.remove(circle, user, name)
+        return CircleDetail(**progress_store.circle_detail(circle, user))
+
+
+@router.put("/circles/{circle}/members/{member}", response_model=CircleDetail)
+def set_member_role(circle: int, member: str, body: RoleIn, user: str = NAMED) -> CircleDetail:
+    name = _member_name(member)
+    with _refused():
+        progress_store.set_role(circle, user, name, body.role)
+        return CircleDetail(**progress_store.circle_detail(circle, user))
+
+
+@router.get("/circles/{circle}/members/{member}/overview", response_model=Overview)
+def get_member_overview(circle: int, member: str, user: str = NAMED) -> Overview:
+    """A joined member's overview, for whoever the circles' rules let see it."""
+    name = _member_name(member)
+    with _refused():
+        return _overview(progress_store.member_overview(circle, user, name))
+
+
+def _typed_a_name(user: str, body: PassphraseIn) -> str:
+    """Sign-up and sign-in need a name and a long enough passphrase; the account check would be circular."""
     if user == GUEST:
         raise HTTPException(status_code=422, detail="Type a username")
+    try:
+        return check_passphrase(body.passphrase)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from None

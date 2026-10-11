@@ -1,8 +1,9 @@
 """Who is asking: the username a request carries, for any router that needs it.
 
 The page sends the username in the X-Tafheem-Profile header, percent-encoded
-because a header cannot carry Arabic. Sign-up and log-in are by username only,
-no password; that is agreed. No header is the shared guest record.
+because a header cannot carry Arabic, and the key its sign-in handed back in
+X-Tafheem-Key. A name without its current key is refused. No header is the
+shared guest record, which needs no key.
 
 A FastAPI dependency, not middleware: only the routes that read or write one
 learner's record ask for it, so the Qur'an, dictionary and the rest never pay
@@ -31,10 +32,10 @@ def typed_name(x_tafheem_profile: str | None = Header(None)) -> str:
         raise HTTPException(status_code=422, detail=str(error)) from None
 
 
-def current_user(name: str = Depends(typed_name)) -> str:
-    """`typed_name`, refused unless it was signed up, so a deleted account files nothing."""
-    if name != GUEST and not progress_store.has_account(name):
-        raise HTTPException(status_code=401, detail="Log in again: no account with that username")
+def current_user(name: str = Depends(typed_name), x_tafheem_key: str | None = Header(None)) -> str:
+    """`typed_name`, refused unless the key is that account's current one."""
+    if name != GUEST and not progress_store.signed_in(name, x_tafheem_key):
+        raise HTTPException(status_code=401, detail="Sign in again")
     return name
 
 

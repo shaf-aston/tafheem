@@ -416,8 +416,15 @@ class Progress(BaseSettings):
     progress_learning_hours: int = 24
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
-    # Accounts (services/profile.py): a username, no password. Longest name allowed after cleaning.
+    # Accounts (services/profile.py): a username and a passphrase. Longest name allowed after cleaning.
     profile_name_max: int = 40
+    # Shortest passphrase taken. The first sign-in to an account sets it.
+    passphrase_min: int = Field(default=8, gt=0)
+    # PBKDF2-SHA256 rounds per passphrase hash (OWASP 2023: 600k). Kept in each hash, so raising it spares old ones.
+    passphrase_iterations: int = Field(default=600_000, gt=0)
+    # Random bytes in a passphrase salt and in a sign-in key.
+    passphrase_salt_bytes: int = Field(default=16, gt=0)
+    signin_key_bytes: int = Field(default=32, gt=0)
     # Names nobody may type: "local" is the record of every answer given before names existed.
     profile_reserved: list[str] = ["local"]
     # Largest shelf (everything the page keeps for one account) the server takes, in bytes.
@@ -426,6 +433,10 @@ class Progress(BaseSettings):
     beta_list_accounts: bool = True
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20
+    # Circle kinds (services/progress_store.py): each kind's members_see_details flag. True: every joined
+    # member sees every other member's full overview; False: only admins (and admins of circles above) do.
+    circle_kinds: dict[str, bool] = {"friends": True, "family": False, "class": False, "team": False}
+    circle_name_max: int = Field(default=60, gt=0)
     # Checked practice sentences (services/sentence_check.py): AI tries per request,
     # learnt words needed before asking, and particles any sentence may use.
     sentence_max_tries: int = Field(default=3, gt=0)

@@ -1,8 +1,8 @@
 """Profiles: a learner signs up with a username and gets their own record.
 
-No password, which is agreed. What is checked is that a username is signed up
-once, that two names never mix, that one spelling is one person, and that
-wiping or claiming touches only the name asking.
+What is checked is that a username is signed up once, that two names never
+mix, that one spelling is one person, that a name opens nothing without its
+sign-in key, and that wiping or claiming touches only the name asking.
 
 Run: python -m pytest tests/test_profiles.py
 """
@@ -13,25 +13,39 @@ from urllib.parse import quote
 import pytest
 from fastapi.testclient import TestClient
 
+from backend.config import get_settings
 from backend.main import app
 from backend.services import progress_store
 from backend.services.profile import clean_name
 
 client = TestClient(app)
+PASS = "open sesame"
+KEYS: dict[str, str] = {}  # each name's latest sign-in key, as the page keeps it
 
 
 @pytest.fixture(autouse=True)
 def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
     monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
+    monkeypatch.setattr(get_settings(), "passphrase_iterations", 1000)  # speed; the rounds are not under test
+    KEYS.clear()
     progress_store.reset_connection()
     yield
     progress_store.reset_connection()
 
 
 def as_(name):
-    """The header the page sends: percent-encoded, since headers cannot carry Arabic."""
-    return {"X-Tafheem-Profile": quote(name)} if name is not None else {}
+    """The headers the page sends: the name percent-encoded, since headers cannot carry Arabic, and its key."""
+    if name is None:
+        return {}
+    key = KEYS.get(name.strip().casefold())
+    return {"X-Tafheem-Profile": quote(name), **({"X-Tafheem-Key": key} if key else {})}
+
+
+def keep_key(response):
+    if response.status_code == 200:
+        KEYS[response.json()["name"]] = response.json()["key"]
+    return response
 
 
 def answer(name, item, correct=True):
@@ -105,15 +119,16 @@ def test_forget_wipes_only_the_name_asking():
 
 
 def signup(name, keep=False):
-    return client.post("/api/progress/signup", json={"keep": keep}, headers=as_(name))
+    return keep_key(client.post("/api/progress/signup", json={"keep": keep, "passphrase": PASS}, headers=as_(name)))
 
 
-def login(name):
-    return client.post("/api/progress/login", headers=as_(name))
+def login(name, passphrase=PASS):
+    return keep_key(client.post("/api/progress/account/signin", json={"passphrase": passphrase}, headers=as_(name)))
 
 
 def test_signup_hands_back_the_one_spelling():
-    assert signup("  Amina ").json() == {"name": "amina", "moved": 0}
+    body = signup("  Amina ").json()
+    assert (body["name"], body["moved"]) == ("amina", 0)
 
 
 def test_a_taken_username_cannot_sign_up_again():
@@ -126,7 +141,9 @@ def test_a_taken_username_cannot_sign_up_again():
 def test_login_finds_a_signed_up_name_only():
     assert login("Amina").status_code == 404
     signup("Amina")
-    assert login(" amina ").json() == {"name": "amina", "moved": 0}
+    assert login(" amina ").json()["name"] == "amina"
+    assert login("amina", "not the one").status_code == 401
+    assert signup("Bilal").status_code == 200 and login("bilal", "short").status_code == 422
 
 
 def test_names_used_before_signup_existed_can_log_in():
@@ -143,7 +160,7 @@ def test_a_name_without_an_account_cannot_read_or_write():
     body = {"module": "quiz", "item": "to-write", "correct": True}
     response = client.post("/api/progress/attempts", headers=as_("ghost"), json=body)
     assert response.status_code == 401
-    assert response.json()["detail"] == "Log in again: no account with that username"
+    assert response.json()["detail"] == "Sign in again"
     assert client.get("/api/progress/summary", headers=as_("ghost")).status_code == 401
 
 
@@ -157,7 +174,7 @@ def test_keep_moves_this_devices_old_answers_to_the_name():
     answer(None, "to-write")
     answer(None, "to-read", correct=False)
     answer("Bilal", "to-go")
-    assert signup("Amina", keep=True).json() == {"name": "amina", "moved": 2}
+    assert signup("Amina", keep=True).json()["moved"] == 2
     assert items("Amina") == ["to-read", "to-write"]
     assert items(None) == []
     assert items("Bilal") == ["to-go"]
@@ -177,8 +194,8 @@ def test_keep_leaves_the_shared_ai_question_cache_alone():
 
 
 def test_signup_and_login_need_a_name():
-    assert client.post("/api/progress/signup", json={}).status_code == 422
-    assert client.post("/api/progress/login").status_code == 422
+    assert client.post("/api/progress/signup", json={"passphrase": PASS}).status_code == 422
+    assert client.post("/api/progress/account/signin", json={"passphrase": PASS}).status_code == 422
 
 
 def test_the_account_says_who_since_when_and_how_many_answers():
@@ -210,7 +227,7 @@ def test_a_deleted_accounts_reports_go_to_nobody():
     signup("Amina")
     client.post("/api/progress/feedback", headers=as_("Amina"), json={"module": "quiz", "message": "typo"})
     client.delete("/api/progress/account", headers=as_("Amina"))
-    client.post("/api/progress/signup", headers=as_("Bilal"), json={"keep": True})
+    signup("Bilal", keep=True)
     progress_store.reset_connection()
     users = [row[0] for row in progress_store._db().execute("SELECT user FROM feedback")]
     assert users == [""]
@@ -289,51 +306,168 @@ def test_while_in_beta_every_username_is_listed(monkeypatch):
     assert client.get("/api/progress/accounts").status_code == 404
 
 
-# Teams: an account with members. It sees who is under it, branching down, with their progress.
+# Circles: invited people are invisible until they accept; what a viewer may see of a member follows the roles.
 
-def team(name, module="quiz"):
-    return client.get("/api/progress/team", params={"module": module}, headers=as_(name))
+def make(name, circle="Crew", kind="team", parent=None):
+    """Sign `name` up if needed and have it create a circle; returns the response."""
+    signup(name)
+    return client.post("/api/progress/circles", headers=as_(name),
+                       json={"name": circle, "kind": kind, **({"parent": parent} if parent else {})})
 
 
-def add(team_name, member):
-    return client.post("/api/progress/team", headers=as_(team_name), json={"member": member})
+def invite(admin, cid, member, role="member"):
+    signup(member)
+    return client.post(f"/api/progress/circles/{cid}/members", headers=as_(admin),
+                       json={"member": member, "role": role})
 
 
-def test_a_team_sees_its_members_branching_down_with_their_progress():
-    for name in ("Coach", "Amina", "Bilal", "Cyra"):
-        signup(name)
+def join(admin, cid, member, role="member"):
+    assert invite(admin, cid, member, role).status_code == 200
+    assert client.post(f"/api/progress/circles/{cid}/accept", headers=as_(member)).status_code == 200
+
+
+def detail(who, cid):
+    return client.get(f"/api/progress/circles/{cid}", headers=as_(who))
+
+
+def seen_overview(viewer, cid, member):
+    return client.get(f"/api/progress/circles/{cid}/members/{quote(member)}/overview", headers=as_(viewer))
+
+
+def ranked(who, cid):
+    response = client.get("/api/progress/leaderboard", params={"module": "quiz", "circle": cid}, headers=as_(who))
+    return response.status_code, [row["name"] for row in response.json().get("rows", [])]
+
+
+def test_an_invite_shows_nothing_until_accepted():
+    cid = make("Amina").json()["id"]
+    join("Amina", cid, "Cyra")
+    invite("Amina", cid, "Bilal")
+    pending = client.get("/api/progress/circles", headers=as_("Bilal")).json()["circles"]
+    assert [(c["id"], c["status"], c["invitedBy"]) for c in pending] == [(cid, "invited", "amina")]
+    assert detail("Bilal", cid).status_code == 403
+    assert ranked("Bilal", cid)[0] == 403
+    assert ranked("Cyra", cid) == (200, ["amina", "cyra"])
+    assert [m["name"] for m in detail("Cyra", cid).json()["members"]] == ["amina", "cyra"]
+    members = detail("Amina", cid).json()["members"]
+    assert [(m["name"], m["status"]) for m in members] == [("amina", "joined"), ("bilal", "invited"), ("cyra", "joined")]
+    client.post(f"/api/progress/circles/{cid}/accept", headers=as_("Bilal"))
+    assert ranked("Cyra", cid) == (200, ["amina", "bilal", "cyra"])
+
+
+def test_declining_an_invite_deletes_it_and_a_stranger_cannot_invite():
+    cid = make("Amina").json()["id"]
+    invite("Amina", cid, "Bilal")
+    assert client.post(f"/api/progress/circles/{cid}/decline", headers=as_("Bilal")).status_code == 200
+    assert client.get("/api/progress/circles", headers=as_("Bilal")).json()["circles"] == []
+    assert invite("Bilal", cid, "Cyra").status_code == 403
+
+
+def test_an_admin_sees_a_joined_members_overview_but_a_plain_member_does_not():
+    cid = make("Amina").json()["id"]
+    join("Amina", cid, "Bilal")
+    join("Amina", cid, "Cyra")
+    invite("Amina", cid, "Dana")
+    answer("Bilal", "a")
+    assert seen_overview("Amina", cid, "Bilal").json()["attempts"] == 1
+    assert seen_overview("Bilal", cid, "Bilal").status_code == 200       # your own
+    assert seen_overview("Cyra", cid, "Bilal").status_code == 403         # a team shows no details
+    assert seen_overview("Amina", cid, "Dana").status_code == 403         # invited, not joined
+
+
+def test_in_a_friends_circle_every_member_sees_every_overview():
+    cid = make("Amina", kind="friends").json()["id"]
+    join("Amina", cid, "Bilal")
+    join("Amina", cid, "Cyra")
+    answer("Bilal", "a")
+    assert seen_overview("Cyra", cid, "Bilal").json()["attempts"] == 1
+
+
+def test_an_ancestor_circles_admin_sees_down_and_only_an_admin_may_nest():
+    top = make("Dana", "School", "class").json()["id"]
+    join("Dana", top, "Eli")                                              # a plain member of the parent
+    assert make("Eli", "Room", "class", parent=top).status_code == 403
+    assert make("Amina", "Room", "class", parent=top).status_code == 403  # not in the parent at all
+    child = make("Dana", "Room 1", "class", parent=top).json()["id"]
+    join("Dana", child, "Bilal")
+    answer("Bilal", "a")
+    assert seen_overview("Dana", child, "Bilal").status_code == 200
+    assert seen_overview("Eli", child, "Bilal").status_code == 403
+    assert detail("Eli", child).status_code == 403
+    client.delete(f"/api/progress/circles/{top}", headers=as_("Dana"))
+    assert detail("Dana", child).json()["parent"] is None                 # children lose their parent
+
+
+def test_a_hidden_account_is_absent_from_the_global_ranking_but_sees_its_own_row():
     answer("Amina", "a")
-    assert add("Coach", " AMINA ").status_code == 200
-    add("Coach", "Bilal")
-    add("Bilal", "Cyra")
-    body = team("Coach").json()
-    tree = body["tree"]
-    assert tree["name"] == "coach"
-    assert [m["name"] for m in tree["members"]] == ["amina", "bilal"]
-    assert tree["members"][0]["answers"] == 1
-    assert [m["name"] for m in tree["members"][1]["members"]] == ["cyra"]
-    assert team("Cyra").json()["teams"] == ["bilal"]
+    answer("Bilal", "b")
+    assert client.put("/api/progress/account/public", json={"public": False}, headers=as_("Bilal")).status_code == 200
+    board = lambda who: client.get(  # noqa: E731
+        "/api/progress/leaderboard", params={"module": "quiz"}, headers=as_(who)).json()
+    assert [row["name"] for row in board("Amina")["rows"]] == ["amina"]
+    assert board("Bilal")["you"]["name"] == "bilal"
+    assert "bilal" not in [row["name"] for row in board("Bilal")["rows"]]
 
 
-def test_a_team_cannot_hold_itself_a_stranger_or_a_loop():
-    for name in ("Coach", "Amina"):
-        signup(name)
-    assert add("Coach", "Coach").status_code == 422
-    assert add("Coach", "Nobody").status_code == 404
-    add("Coach", "Amina")
-    assert add("Amina", "Coach").status_code == 422  # would make a loop
-    assert add(None, "Amina").status_code == 422     # the guest has no team
+def test_the_old_teams_become_circles_with_their_members_invited(tmp_path):
+    import sqlite3
+    old = sqlite3.connect(tmp_path / "progress.db")
+    old.executescript("""
+        CREATE TABLE accounts (name TEXT PRIMARY KEY, at TEXT NOT NULL DEFAULT (datetime('now')));
+        CREATE TABLE teams (team TEXT NOT NULL, member TEXT NOT NULL, at TEXT NOT NULL DEFAULT (datetime('now')),
+                            PRIMARY KEY (team, member));
+        INSERT INTO accounts (name) VALUES ('coach'), ('amina');
+        INSERT INTO teams (team, member) VALUES ('coach', 'amina');
+    """)
+    old.commit(), old.close()
+    progress_store.reset_connection()
+    mine = progress_store.my_circles("amina")
+    assert [(c["name"], c["kind"], c["role"], c["status"]) for c in mine] == [("coach", "team", "member", "invited")]
+    coach = progress_store.my_circles("coach")
+    assert [(c["role"], c["status"]) for c in coach] == [("admin", "joined")]
+    assert not progress_store._db().execute("SELECT 1 FROM sqlite_master WHERE name = 'teams'").fetchone()
 
 
-def test_the_team_or_the_member_can_part_them_and_nobody_else():
-    for name in ("Coach", "Amina", "Bilal"):
-        signup(name)
-    add("Coach", "Amina")
-    leave = lambda who: client.delete(  # noqa: E731
-        "/api/progress/team", params={"team": "coach", "member": "amina"}, headers=as_(who))
-    assert leave("Bilal").status_code == 403
+def test_the_last_admin_cannot_leave_while_others_are_in_the_circle():
+    cid = make("Amina").json()["id"]
+    join("Amina", cid, "Bilal")
+    leave = lambda who: client.post(f"/api/progress/circles/{cid}/leave", headers=as_(who))  # noqa: E731
+    assert leave("Amina").status_code == 422
+    client.put(f"/api/progress/circles/{cid}/members/bilal", json={"role": "admin"}, headers=as_("Amina"))
     assert leave("Amina").status_code == 200
-    assert team("Coach").json()["tree"]["members"] == []
-    add("Coach", "Amina")
-    client.delete("/api/progress/account", headers=as_("Amina"))
-    assert team("Coach").json()["tree"]["members"] == []
+    assert leave("Bilal").status_code == 200                              # alone now: the circle goes with them
+    assert detail("Bilal", cid).status_code == 404
+
+
+# Passphrases: a name alone no longer opens an account.
+
+def test_a_passphrase_guards_the_account():
+    progress_store._db().execute("INSERT INTO accounts (name) VALUES ('amina')")  # made before passphrases
+    progress_store._db().commit()
+    signin = lambda phrase: client.post(  # noqa: E731
+        "/api/progress/account/signin", headers=as_("Amina"), json={"passphrase": phrase})
+    claimed = signin("open sesame")
+    assert claimed.status_code == 200
+    key = claimed.json()["key"]
+    assert signin("wrong guess").status_code == 401
+    body = {"module": "quiz", "item": "to-write", "correct": True}
+    with_key = lambda k: {**as_("Amina"), "X-Tafheem-Key": k}  # noqa: E731
+    saved = client.post("/api/progress/attempts", headers=with_key(key), json=body)
+    assert saved.status_code == 200
+    row = progress_store._db().execute("SELECT user FROM attempts WHERE id = ?", (saved.json()["id"],)).fetchone()
+    assert row["user"] == "amina"
+    assert client.post("/api/progress/attempts", headers=with_key("forged"), json=body).status_code == 401
+    assert client.post("/api/progress/attempts", headers=as_("Amina"), json=body).status_code == 401
+
+
+def test_the_overview_counts_every_module_and_the_days_in_a_row():
+    signup("Amina")
+    db = progress_store._db()
+    with db:
+        for module, correct, days in [("quiz", 1, 0), ("quiz", 0, 1), ("quiz:ur", 1, 1), ("quiz", 1, 3)]:
+            db.execute("INSERT INTO attempts (user, module, item, correct, at) VALUES ('amina', ?, 'a', ?, "
+                       "datetime('now', ?))", (module, correct, f"-{days} days"))
+    body = client.get("/api/progress/overview", headers=as_("Amina")).json()
+    assert [(m["module"], m["attempts"], m["correct"]) for m in body["modules"]] == [("quiz", 3, 2), ("quiz:ur", 1, 1)]
+    assert (body["attempts"], body["correct"], body["streak"]) == (4, 3, 2)  # today and yesterday; day 3 is past a gap
+    assert client.get("/api/progress/overview").json()["streak"] == 0

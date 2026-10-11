@@ -19,10 +19,13 @@ by everyone, so it stays under 'local' and claim_local leaves it alone.
 """
 from __future__ import annotations
 
+import hashlib
+import hmac
 import json
+import secrets
 import sqlite3
 import threading
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from backend.config import data_path, get_settings
 from backend.services import review_schedule
@@ -73,15 +76,6 @@ CREATE TABLE IF NOT EXISTS accounts (
 -- The shelf: everything the page keeps for one account (settings, Grow steps,
 -- favourites), as the page's own key -> text, one JSON object per name. Opaque
 -- here on purpose: the page owns those keys, so a new one needs no change here.
--- Teams: an account with members is a team. A member may have members of its
--- own, so a team reads as a tree; add_member refuses anything that would loop.
-CREATE TABLE IF NOT EXISTS teams (
-    team   TEXT NOT NULL,
-    member TEXT NOT NULL,
-    at     TEXT NOT NULL DEFAULT (datetime('now')),
-    PRIMARY KEY (team, member)
-);
-CREATE INDEX IF NOT EXISTS ix_teams_member ON teams (member);
 CREATE TABLE IF NOT EXISTS saved (
     user TEXT PRIMARY KEY,
     data TEXT NOT NULL,
@@ -92,6 +86,43 @@ INSERT OR IGNORE INTO accounts (name, at)
     SELECT user, MIN(at) FROM (SELECT user, at FROM attempts UNION ALL SELECT user, at FROM feedback)
     WHERE user NOT IN ('local', '') GROUP BY user;
 """
+
+# Changes to tables that already exist, in order; PRAGMA user_version counts how many ran.
+# Append only: a step that has run on a learner's file never runs again.
+MIGRATIONS = (
+    # Passphrase as "iterations$salt$hash" and the sign-in key's SHA-256; NULL until the first sign-in.
+    "ALTER TABLE accounts ADD COLUMN pass TEXT; ALTER TABLE accounts ADD COLUMN key TEXT;",
+    # Circles replace teams. `public` is whether the account shows in the global ranking. Every old team
+    # becomes a circle named for its owner (admin, joined); its members are INVITED, since they never agreed.
+    # `teams` is made first only so a file that never had one runs the same moves.
+    """
+    ALTER TABLE accounts ADD COLUMN public INTEGER NOT NULL DEFAULT 1;
+    CREATE TABLE circles (
+        id     INTEGER PRIMARY KEY,
+        name   TEXT NOT NULL,
+        kind   TEXT NOT NULL,
+        parent INTEGER,
+        at     TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE TABLE circle_members (
+        circle     INTEGER NOT NULL,
+        member     TEXT    NOT NULL,
+        role       TEXT    NOT NULL CHECK (role IN ('admin', 'member')),
+        status     TEXT    NOT NULL CHECK (status IN ('invited', 'joined')),
+        invited_by TEXT    NOT NULL,
+        at         TEXT    NOT NULL DEFAULT (datetime('now')),
+        PRIMARY KEY (circle, member)
+    );
+    CREATE INDEX ix_circle_members_member ON circle_members (member);
+    CREATE TABLE IF NOT EXISTS teams (team TEXT NOT NULL, member TEXT NOT NULL);
+    INSERT INTO circles (name, kind) SELECT DISTINCT team, 'team' FROM teams;
+    INSERT INTO circle_members (circle, member, role, status, invited_by)
+        SELECT id, name, 'admin', 'joined', name FROM circles;
+    INSERT OR IGNORE INTO circle_members (circle, member, role, status, invited_by)
+        SELECT c.id, t.member, 'member', 'invited', t.team FROM teams t JOIN circles c ON c.name = t.team;
+    DROP TABLE teams;
+    """,
+)
 
 # Counts and timing in one pass. Whether an item is due is not here: it is worked
 # out by replaying the item's answers (see _replay), so nothing extra is stored.
@@ -116,6 +147,17 @@ WHERE user = ? AND module = ? AND correct = 1
 ORDER BY item, word
 """
 
+# One learner's every module in one pass, for the overview.
+_MODULES = """
+SELECT module, COUNT(*) AS attempts, SUM(correct) AS correct, MAX(at) AS last_at
+FROM attempts
+WHERE user = ?
+GROUP BY module
+ORDER BY module
+"""
+
+_DAYS = "SELECT DISTINCT date(at) AS day FROM attempts WHERE user = ? ORDER BY day DESC"
+
 _ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ? ORDER BY id"
 
 
@@ -134,6 +176,9 @@ def _db() -> sqlite3.Connection:
         db.execute("PRAGMA journal_mode=WAL")
         db.execute(f"PRAGMA busy_timeout={get_settings().progress_busy_timeout_ms}")
         db.executescript(SCHEMA)
+        done = db.execute("PRAGMA user_version").fetchone()[0]
+        for step, script in enumerate(MIGRATIONS[done:], start=done + 1):
+            db.executescript(f"BEGIN; {script} PRAGMA user_version = {step}; COMMIT;")
         db.commit()
         _local.db = db
     return _local.db
@@ -233,11 +278,62 @@ def forget(user: str = "local") -> int:
     return int(cursor.rowcount)
 
 
-def sign_up(name: str) -> bool:
-    """Make the account. False when the username is taken."""
+def _hash_pass(passphrase: str, salt: bytes, iterations: int) -> str:
+    digest = hashlib.pbkdf2_hmac("sha256", passphrase.encode(), salt, iterations)
+    return f"{iterations}${salt.hex()}${digest.hex()}"
+
+
+def _pass_matches(passphrase: str, stored: str) -> bool:
+    iterations, salt, _ = stored.split("$")
+    return hmac.compare_digest(_hash_pass(passphrase, bytes.fromhex(salt), int(iterations)), stored)
+
+
+def _key_hash(key: str) -> str:
+    # The key is random, so one SHA-256 is enough; a database leak still hands out no key.
+    return hashlib.sha256(key.encode()).hexdigest()
+
+
+def _new_key(db: sqlite3.Connection, name: str) -> str:
+    """A fresh sign-in key for `name`; the one before it stops working."""
+    key = secrets.token_urlsafe(get_settings().signin_key_bytes)
+    db.execute("UPDATE accounts SET key = ? WHERE name = ?", (_key_hash(key), name))
+    return key
+
+
+def _new_pass(passphrase: str) -> str:
+    settings = get_settings()
+    return _hash_pass(passphrase, secrets.token_bytes(settings.passphrase_salt_bytes), settings.passphrase_iterations)
+
+
+def sign_up(name: str, passphrase: str) -> str | None:
+    """Make the account with its passphrase. Its sign-in key, or None when the username is taken."""
     db = _db()
     with db:
-        return db.execute("INSERT OR IGNORE INTO accounts (name) VALUES (?)", (name,)).rowcount == 1
+        if db.execute("INSERT OR IGNORE INTO accounts (name, pass) VALUES (?, ?)",
+                      (name, _new_pass(passphrase))).rowcount == 0:
+            return None
+        return _new_key(db, name)
+
+
+def sign_in(name: str, passphrase: str) -> str | None:
+    """A new sign-in key, or None for a wrong passphrase. An account with none yet takes this one."""
+    db = _db()
+    stored = lambda: db.execute("SELECT pass FROM accounts WHERE name = ?", (name,)).fetchone()  # noqa: E731
+    with db:
+        row = stored()
+        if row is not None and row["pass"] is None:
+            # Re-read after: when two first sign-ins race, both are checked against the winner.
+            db.execute("UPDATE accounts SET pass = ? WHERE name = ? AND pass IS NULL", (_new_pass(passphrase), name))
+            row = stored()
+        if row is None or not _pass_matches(passphrase, row["pass"]):
+            return None
+        return _new_key(db, name)
+
+
+def signed_in(name: str, key: str | None) -> bool:
+    """Whether `key` is this account's current sign-in key."""
+    row = _db().execute("SELECT key FROM accounts WHERE name = ?", (name,)).fetchone()
+    return bool(key and row and row["key"]) and hmac.compare_digest(row["key"], _key_hash(key))
 
 
 def has_account(name: str) -> bool:
@@ -245,18 +341,18 @@ def has_account(name: str) -> bool:
 
 
 def account(name: str) -> dict | None:
-    """Who, since when (UTC ISO), and how many answers given; None when not signed up."""
+    """Who, since when (UTC ISO), how many answers given and whether in the global ranking; None when not signed up."""
     row = _db().execute(
-        "SELECT name, at, (SELECT COUNT(*) FROM attempts WHERE user = name) AS answers "
+        "SELECT name, at, public, (SELECT COUNT(*) FROM attempts WHERE user = name) AS answers "
         "FROM accounts WHERE name = ?", (name,)).fetchone()
     if row is None:
         return None
     joined = datetime.strptime(row["at"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-    return {"name": row["name"], "joined": joined.isoformat(), "answers": row["answers"]}
+    return {"name": row["name"], "joined": joined.isoformat(), "answers": row["answers"], "public": bool(row["public"])}
 
 
 def delete_account(name: str) -> int:
-    """Wipe the answers, the shelf, the team places and the username, together. Returns how many answers went.
+    """Wipe the answers, the shelf, the circle places and the username, together. Returns how many answers went.
 
     Reports about questions are kept, as the plain wipe keeps them, but filed under
     nobody (''): under the guest they would pass to whoever signs up next.
@@ -266,7 +362,10 @@ def delete_account(name: str) -> int:
         deleted = db.execute("DELETE FROM attempts WHERE user = ?", (name,)).rowcount
         db.execute("UPDATE feedback SET user = '' WHERE user = ?", (name,))
         db.execute("DELETE FROM saved WHERE user = ?", (name,))
-        db.execute("DELETE FROM teams WHERE team = ? OR member = ?", (name, name))
+        affected = [row["circle"] for row in db.execute("SELECT circle FROM circle_members WHERE member = ?", (name,))]
+        db.execute("DELETE FROM circle_members WHERE member = ?", (name,))
+        for circle in affected:
+            _tidy(db, circle)
         db.execute("DELETE FROM accounts WHERE name = ?", (name,))
     return int(deleted)
 
@@ -298,13 +397,45 @@ def learnt(module: str, name: str) -> int:
     return sum(row["known"] for row in summary(module, name))
 
 
-def leaderboard(module: str) -> list[dict]:
-    """Every account by words learnt in `module`, most first; ties share a rank.
+def overview(user: str) -> dict:
+    """Every module this learner answered in, the totals, and the streak of days.
+
+    Learnt is the leaderboard's own measure, so the two never disagree.
+    """
+    modules = [
+        {**dict(row), "learnt": learnt(row["module"], user),
+         "last_at": datetime.fromisoformat(row["last_at"]).replace(tzinfo=timezone.utc).isoformat()}
+        for row in _db().execute(_MODULES, (user,))
+    ]
+    totals = {key: sum(row[key] for row in modules) for key in ("attempts", "correct", "learnt")}
+    days = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_DAYS, (user,))]
+    return {"modules": modules, **totals, "streak": _streak(days, datetime.now(timezone.utc).date())}
+
+
+def _streak(days: list, today) -> int:
+    """Days in a row with an answer, newest first in `days` (UTC). Today counts;
+    a day not yet answered in leaves yesterday's streak standing."""
+    day = today if days and days[0] == today else today - timedelta(days=1)
+    streak = 0
+    for answered in days:
+        if answered != day:
+            break
+        streak += 1
+        day -= timedelta(days=1)
+    return streak
+
+
+def _answers(module: str, name: str) -> int:
+    return _db().execute("SELECT COUNT(*) FROM attempts WHERE user = ? AND module = ?", (name, module)).fetchone()[0]
+
+
+def _ranked(names: list[str], module: str) -> list[dict]:
+    """These accounts by words learnt in `module`, most first; ties share a rank.
 
     Replays each account's answers, which is fine at the size this app is.
     """
     rows = sorted(
-        ({"name": name, "learnt": learnt(module, name)} for name in account_names()),
+        ({"name": name, "learnt": learnt(module, name), "answers": _answers(module, name)} for name in names),
         key=lambda row: (-row["learnt"], row["name"]),
     )
     for row in rows:
@@ -312,63 +443,249 @@ def leaderboard(module: str) -> list[dict]:
     return rows
 
 
-def members(team: str) -> list[str]:
-    return [row["member"] for row in _db().execute(
-        "SELECT member FROM teams WHERE team = ? ORDER BY member", (team,))]
+def leaderboard(module: str, user: str) -> tuple[list[dict], dict | None]:
+    """The global ranking: accounts that show in it, and `user`'s own row, ranked among them even when hidden."""
+    shown = [row["name"] for row in _db().execute("SELECT name FROM accounts WHERE public = 1 ORDER BY name")]
+    ranked = _ranked(shown if user in shown or not has_account(user) else [*shown, user], module)
+    return [row for row in ranked if row["name"] in shown], next((row for row in ranked if row["name"] == user), None)
 
 
-def teams_of(member: str) -> list[str]:
-    """The teams this name is directly in."""
-    return [row["team"] for row in _db().execute(
-        "SELECT team FROM teams WHERE member = ? ORDER BY team", (member,))]
+def set_public(user: str, public: bool) -> None:
+    db = _db()
+    with db:
+        db.execute("UPDATE accounts SET public = ? WHERE name = ?", (int(public), user))
 
 
-def under(team: str) -> set[str]:
-    """Everyone below `team`, at any depth."""
-    found: set[str] = set()
-    todo = [team]
-    while todo:
-        for member in members(todo.pop()):
-            if member not in found:
-                found.add(member)
-                todo.append(member)
+# Circles: people grouped by kind (config circle_kinds), nestable. A member is invited first and sees
+# nothing until they accept; an invited row shows only to admins and to the invited person.
+
+ROLES = ("admin", "member")
+
+
+def _circle(circle: int) -> sqlite3.Row:
+    row = _db().execute("SELECT * FROM circles WHERE id = ?", (circle,)).fetchone()
+    if row is None:
+        raise LookupError("No such circle")
+    return row
+
+
+def _member(circle: int, name: str) -> sqlite3.Row | None:
+    return _db().execute("SELECT * FROM circle_members WHERE circle = ? AND member = ?", (circle, name)).fetchone()
+
+
+def _joined(circle: int, name: str) -> bool:
+    row = _member(circle, name)
+    return bool(row and row["status"] == "joined")
+
+
+def _admin(circle: int, name: str) -> bool:
+    row = _member(circle, name)
+    return bool(row and row["status"] == "joined" and row["role"] == "admin")
+
+
+def _need_admin(circle: int, name: str) -> None:
+    _circle(circle)
+    if not _admin(circle, name):
+        raise PermissionError("Only an admin of this circle can do that")
+
+
+def _above(circle: int) -> list[int]:
+    """The circles this one sits inside, nearest first; a bad row cannot make it loop."""
+    found: list[int] = []
+    parent = _circle(circle)["parent"]
+    while parent is not None and parent not in found:
+        found.append(parent)
+        parent = _db().execute("SELECT parent FROM circles WHERE id = ?", (parent,)).fetchone()["parent"]
     return found
 
 
-def add_member(team: str, member: str) -> None:
-    """Put `member` in `team`. Raises ValueError for itself or a loop; both must be accounts."""
-    if member == team:
-        raise ValueError("A team cannot be its own member")
-    if team in under(member):
-        raise ValueError(f"{member} is already above you, so that would make a loop")
+def _others(circle: int, name: str) -> tuple[bool, bool]:
+    """Whether anyone else is in the circle, and whether another joined admin is."""
+    rows = _db().execute("SELECT member, role, status FROM circle_members WHERE circle = ? AND member != ?",
+                         (circle, name)).fetchall()
+    return bool(rows), any(r["role"] == "admin" and r["status"] == "joined" for r in rows)
+
+
+def _drop(db: sqlite3.Connection, circle: int) -> None:
+    db.execute("UPDATE circles SET parent = NULL WHERE parent = ?", (circle,))
+    db.execute("DELETE FROM circle_members WHERE circle = ?", (circle,))
+    db.execute("DELETE FROM circles WHERE id = ?", (circle,))
+
+
+def circle_kinds() -> list[str]:
+    return list(get_settings().circle_kinds)
+
+
+def create_circle(user: str, name: str, kind: str, parent: int | None = None) -> int:
+    """Make a circle with `user` as its joined admin. A parent needs `user` to be its admin."""
+    name = name.strip()
+    if not name or len(name) > get_settings().circle_name_max:
+        raise ValueError(f"A circle name is 1 to {get_settings().circle_name_max} characters")
+    if kind not in get_settings().circle_kinds:
+        raise ValueError(f"Kind must be one of: {', '.join(circle_kinds())}")
+    if parent is not None:
+        _need_admin(parent, user)
     db = _db()
     with db:
-        db.execute("INSERT OR IGNORE INTO teams (team, member) VALUES (?, ?)", (team, member))
+        made = db.execute("INSERT INTO circles (name, kind, parent) VALUES (?, ?, ?)", (name, kind, parent)).lastrowid
+        db.execute("INSERT INTO circle_members (circle, member, role, status, invited_by) "
+                   "VALUES (?, ?, 'admin', 'joined', ?)", (made, user, user))
+    return int(made)
 
 
-def remove_member(team: str, member: str) -> None:
+def my_circles(user: str) -> list[dict]:
+    """Every circle `user` is in or invited to, the invites marked by status."""
+    return [dict(row) for row in _db().execute(
+        "SELECT c.id, c.name, c.kind, c.parent, m.role, m.status, m.invited_by FROM circle_members m "
+        "JOIN circles c ON c.id = m.circle WHERE m.member = ? ORDER BY m.status DESC, c.name", (user,))]
+
+
+def can_see(viewer: str, target: str) -> bool:
+    """Whether `viewer` may open `target`'s full overview: themselves; an admin of a circle `target` is joined
+    in or of any circle above it; or a fellow member of a circle whose kind shows members' details."""
+    if viewer == target:
+        return True
+    kinds = get_settings().circle_kinds
+    mine = {row["circle"]: row for row in _db().execute(
+        "SELECT m.circle, m.role, c.kind FROM circle_members m JOIN circles c ON c.id = m.circle "
+        "WHERE m.member = ? AND m.status = 'joined'", (viewer,))}
+    for row in _db().execute("SELECT circle FROM circle_members WHERE member = ? AND status = 'joined'", (target,)):
+        if any(c in mine and mine[c]["role"] == "admin" for c in (row["circle"], *_above(row["circle"]))):
+            return True
+        if row["circle"] in mine and kinds.get(mine[row["circle"]]["kind"]):
+            return True
+    return False
+
+
+def circle_detail(circle: int, user: str) -> dict:
+    """One circle for a joined member (joined people only) or admin (invited people too), or for an admin of a
+    circle above it (joined people only, and the circles inside it)."""
+    found = _circle(circle)
+    me = _member(circle, user)
+    admin = _admin(circle, user)
+    above = any(_admin(parent, user) for parent in _above(circle))
+    if not (_joined(circle, user) or above):
+        raise PermissionError("You are not in this circle")
+    rows = _db().execute("SELECT member, role, status FROM circle_members WHERE circle = ? ORDER BY member", (circle,))
+    members = [
+        {"name": row["member"], "role": row["role"], "status": row["status"],
+         "seeable": row["status"] == "joined" and can_see(user, row["member"])}
+        for row in rows if admin or row["status"] == "joined"
+    ]
+    inside = [dict(row) for row in _db().execute(
+        "SELECT id, name, kind FROM circles WHERE parent = ? ORDER BY name", (circle,))] if admin or above else []
+    return {"id": found["id"], "name": found["name"], "kind": found["kind"], "parent": found["parent"],
+            "role": me["role"] if me and me["status"] == "joined" else None, "members": members, "inside": inside}
+
+
+def circle_ranking(circle: int, module: str, user: str) -> list[dict]:
+    """The joined members of a circle by words learnt, for a joined member."""
+    _circle(circle)
+    if not _joined(circle, user):
+        raise PermissionError("You are not in this circle")
+    names = [row["member"] for row in _db().execute(
+        "SELECT member FROM circle_members WHERE circle = ? AND status = 'joined' ORDER BY member", (circle,))]
+    return _ranked(names, module)
+
+
+def member_overview(circle: int, viewer: str, member: str) -> dict:
+    """A joined member's overview, if `viewer` may see it (can_see)."""
+    _circle(circle)
+    if not _joined(circle, member) or not can_see(viewer, member):
+        raise PermissionError("You cannot see that member's progress")
+    return overview(member)
+
+
+def invite(circle: int, admin: str, member: str, role: str) -> None:
+    _need_admin(circle, admin)
+    if role not in ROLES:
+        raise ValueError("A role is admin or member")
+    if not has_account(member):
+        raise LookupError("No account with that username")
+    if _member(circle, member):
+        raise ValueError(f"{member} is already in this circle or invited to it")
     db = _db()
     with db:
-        db.execute("DELETE FROM teams WHERE team = ? AND member = ?", (team, member))
+        db.execute("INSERT INTO circle_members (circle, member, role, status, invited_by) "
+                   "VALUES (?, ?, ?, 'invited', ?)", (circle, member, role, admin))
 
 
-def team_tree(team: str, module: str) -> dict:
-    """This name, its progress, and every member below it, each with theirs.
+def accept(circle: int, user: str) -> None:
+    db = _db()
+    with db:
+        changed = db.execute("UPDATE circle_members SET status = 'joined' "
+                             "WHERE circle = ? AND member = ? AND status = 'invited'", (circle, user)).rowcount
+    if not changed:
+        raise LookupError("No invite to accept")
 
-    add_member keeps loops out; `seen` is the second guard, so a bad row can
-    only shorten the tree, never make it endless.
-    """
-    def node(name: str, seen: frozenset) -> dict:
-        row = account(name) or {"answers": 0}
-        below = [m for m in members(name) if m not in seen]
-        return {
-            "name": name,
-            "answers": row["answers"],
-            "learnt": learnt(module, name),
-            "members": [node(m, seen | {m}) for m in below],
-        }
 
-    return node(team, frozenset({team}))
+def decline(circle: int, user: str) -> None:
+    db = _db()
+    with db:
+        changed = db.execute("DELETE FROM circle_members WHERE circle = ? AND member = ? AND status = 'invited'",
+                             (circle, user)).rowcount
+    if not changed:
+        raise LookupError("No invite to decline")
+
+
+def leave(circle: int, user: str) -> None:
+    """Leave a circle. The last admin may not while anyone else is in it; alone, leaving ends the circle."""
+    _circle(circle)
+    if not _joined(circle, user):
+        raise LookupError("You are not in this circle")
+    others, other_admin = _others(circle, user)
+    if _admin(circle, user) and others and not other_admin:
+        raise ValueError("You are the only admin: make someone else an admin first")
+    db = _db()
+    with db:
+        db.execute("DELETE FROM circle_members WHERE circle = ? AND member = ?", (circle, user))
+        if not others:
+            _drop(db, circle)
+
+
+def remove(circle: int, admin: str, member: str) -> None:
+    _need_admin(circle, admin)
+    if member == admin:
+        raise ValueError("Use leave to go yourself")
+    db = _db()
+    with db:
+        gone = db.execute("DELETE FROM circle_members WHERE circle = ? AND member = ?", (circle, member)).rowcount
+    if not gone:
+        raise LookupError("Not in this circle")
+
+
+def set_role(circle: int, admin: str, member: str, role: str) -> None:
+    _need_admin(circle, admin)
+    if role not in ROLES:
+        raise ValueError("A role is admin or member")
+    if not _joined(circle, member):
+        raise LookupError("Not a joined member of this circle")
+    if member == admin and role != "admin" and not _others(circle, admin)[1]:
+        raise ValueError("You are the only admin: make someone else an admin first")
+    db = _db()
+    with db:
+        db.execute("UPDATE circle_members SET role = ? WHERE circle = ? AND member = ?", (role, circle, member))
+
+
+def delete_circle(circle: int, admin: str) -> None:
+    """End a circle; the circles inside it lose their parent."""
+    _need_admin(circle, admin)
+    db = _db()
+    with db:
+        _drop(db, circle)
+
+
+def _tidy(db: sqlite3.Connection, circle: int) -> None:
+    """After someone goes, a circle with no admin hands it to its longest-joined member, or ends if empty."""
+    if db.execute("SELECT 1 FROM circle_members WHERE circle = ? AND role = 'admin' AND status = 'joined'",
+                  (circle,)).fetchone():
+        return
+    heir = db.execute("SELECT member FROM circle_members WHERE circle = ? AND status = 'joined' "
+                      "ORDER BY at, member LIMIT 1", (circle,)).fetchone()
+    if heir:
+        db.execute("UPDATE circle_members SET role = 'admin' WHERE circle = ? AND member = ?", (circle, heir["member"]))
+    else:
+        _drop(db, circle)
 
 
 def claim_local(user: str) -> int:
