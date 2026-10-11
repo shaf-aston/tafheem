@@ -38,8 +38,7 @@ export default function CircleOpen({ id, name, module, run, busy, circles, onOpe
 
   if (detail.isPending) return <Skeleton className="h-24 w-full" />
   if (detail.isError) return <p className="type-small text-[var(--danger)]">Could not open this circle.</p>
-  const { members, inside, kind } = detail.data
-  const { parent } = detail.data
+  const { members, inside, kind, parent } = detail.data
   const admin = detail.data.role === 'admin'
 
   // Where it may go: on its own, or in a circle I admin that is not this one nor, as far as I know, inside it.
@@ -109,8 +108,11 @@ export default function CircleOpen({ id, name, module, run, busy, circles, onOpe
           <SearchBox id={`circle-invite-${id}`} label="Invite" placeholder="Invite by username" value={typed}
             onChange={setTyped} onSubmit={invite} onClear={() => setTyped('')} busy={busy} />
           <Segmented label="Invite as" options={ROLES} value={role} onChange={setInviteRole} compact />
-          <WheelPicker label="Inside" value={parent == null ? ALONE : String(parent)} disabled={busy}
-            onChange={(to) => run(() => moveCircle(id, to === ALONE ? null : Number(to)))} options={homes} />
+          <div className="flex items-center gap-3">
+            <span className="type-small text-[var(--text-faint)]">Inside</span>
+            <WheelPicker label="Inside" value={parent == null ? ALONE : String(parent)} disabled={busy} className="flex-1"
+              onChange={(to) => run(() => moveCircle(id, to === ALONE ? null : Number(to)))} options={homes} />
+          </div>
         </div>
       )}
       {joined && (

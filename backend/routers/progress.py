@@ -302,7 +302,7 @@ def set_circle_parent(circle: int, body: ParentIn, user: str = NAMED) -> CircleD
         return CircleDetail(**progress_store.circle_detail(circle, user))
 
 
-@router.get("/circles/{circle}/members/{member}/overview",response_model=Overview)
+@router.get("/circles/{circle}/members/{member}/overview", response_model=Overview)
 def get_member_overview(circle: int, member: str, user: str = NAMED) -> Overview:
     """A joined member's overview, for whoever the circles' rules let see it."""
     name = _member_name(member)
