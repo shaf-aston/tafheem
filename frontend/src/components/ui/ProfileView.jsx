@@ -1,6 +1,6 @@
 /**
- * The logged-in profile: who, since when, how far along, and where that puts
- * you among everyone else. Words learnt is the leaderboard's measure because
+ * The logged-in profile: who, since when, how far along, the streak and each
+ * module's record, and where that puts you among everyone else. Words learnt is the leaderboard's measure because
  * it is the one figure that cannot be bought by answering a lot.
  */
 import { useState } from 'react'
@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { shareOf } from '../../lib/coverage'
 import { logOut } from '../../lib/profile'
-import { deleteAccount, fetchAccount, fetchLeaderboard } from '../../lib/progress'
+import { deleteAccount, fetchAccount, fetchLeaderboard, fetchOverview } from '../../lib/progress'
 import { MEANINGS } from '../../lib/quiz'
 import { moduleFor, QUIZ } from '../../lib/quizBanks'
 import { forgetShelf } from '../../lib/shelf'
@@ -26,6 +26,7 @@ export default function ProfileView({ name, onLeave }) {
   const module = moduleFor(language)
   const account = useQuery({ queryKey: ['account', name], queryFn: fetchAccount })
   const { stats, learnt, share } = useQuizCoverage(language)
+  const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview })
   const board = useQuery({ queryKey: ['leaderboard', module], queryFn: () => fetchLeaderboard(module) })
   // Nothing learnt covers nothing; something learnt waits for the word table.
   const covered = !stats.data ? null : learnt.length === 0 ? '0%' : share === null ? null : `${shareOf(share, language)}%`
@@ -41,7 +42,10 @@ export default function ProfileView({ name, onLeave }) {
         <Fact name="Answers given" value={account.data?.answers} />
         <Fact name="Words learnt" value={stats.data && learnt.length} />
         <Fact name="Of the Qur’an" value={covered} />
+        <Fact className="col-span-2" name="Streak"
+          value={overview.data && `${overview.data.streak} ${overview.data.streak === 1 ? 'day' : 'days'} in a row`} />
       </dl>
+      <Modules overview={overview} />
       <TeamView name={name} module={module} />
       <Board board={board} name={name} />
       <Leave onLeave={onLeave} />
@@ -49,14 +53,38 @@ export default function ProfileView({ name, onLeave }) {
   )
 }
 
-function Fact({ name, value }) {
+function Fact({ name, value, className = '' }) {
   return (
-    <div className="rounded-[var(--radius-sm)] border border-[var(--border)] p-3">
+    <div className={`rounded-[var(--radius-sm)] border border-[var(--border)] p-3 ${className}`}>
       <dt className="type-small text-[var(--text-faint)]">{name}</dt>
       <dd className="text-lg font-bold text-[var(--text)]">
         {value ?? <Skeleton className="h-6 w-12" />}
       </dd>
     </div>
+  )
+}
+
+/** One row per module answered in: words learnt, answers given, the last day. */
+function Modules({ overview }) {
+  if (overview.isPending) return <Skeleton className="h-16 w-full" />
+  if (overview.isError) return <p className="type-small text-[var(--danger)]">Could not load your modules.</p>
+  const { modules } = overview.data
+  if (modules.length === 0) return <p className="type-small text-[var(--text-faint)]">No answers yet.</p>
+  return (
+    <section className="space-y-2">
+      <h3 className="type-small font-bold text-[var(--text-dim)]">Modules</h3>
+      <ul className="space-y-1">
+        {modules.map((row) => (
+          <li key={row.module}
+            className="flex flex-wrap items-baseline gap-x-3 px-3 py-1.5 rounded-[var(--radius-sm)] type-small text-[var(--text-dim)]">
+            <span dir="auto" className="flex-1 min-w-[6rem] truncate font-bold text-[var(--text)]">{row.module}</span>
+            <span className="tabular-nums">{row.learnt} learnt</span>
+            <span className="tabular-nums">{row.attempts} answers</span>
+            <span className="tabular-nums text-[var(--text-faint)]">{new Date(row.lastAt).toLocaleDateString()}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }
 
