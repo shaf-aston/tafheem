@@ -31,7 +31,6 @@ import sys
 import time
 import zlib
 from collections import Counter
-from unittest import mock
 
 from backend.config import data_path
 from backend.scripts.score_iraab import family, plain_role
@@ -119,8 +118,7 @@ def score(ayahs: list[tuple[int, int]], out_path: str | None) -> None:
         roles = [r["role"] for r in record["roles"]] if record and len(record["roles"]) == len(tags) else None
         failed.ayah = f"{surah}:{ayah}"
         started = time.perf_counter()
-        with mock.patch.object(tarkeeb_store, "for_sentence", lambda _sentence: None):
-            cards = iraab.analyze(" ".join(typed))["words"]
+        cards = iraab.analyze(" ".join(typed), recorded=False)["words"]
         seconds = time.perf_counter() - started
         slow.append((seconds, f"{surah}:{ayah}", len(typed)))
         if len(cards) != len(typed):

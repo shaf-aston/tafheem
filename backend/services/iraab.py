@@ -20,19 +20,19 @@ from backend.services.syntax import teacher
 from backend.services.syntax.naming import NAMED, role_key
 
 
-def analyze(sentence: str) -> dict:
+def analyze(sentence: str, recorded: bool = True) -> dict:
     """{words, summary, source, tree} for one sentence; `tree` is None when nothing joins.
-    The summary is the picture's own top label, so the line above the cards and the
+    `recorded=False` skips the treebank and always works the sentence out. The summary is the picture's own top label, so the line above the cards and the
     picture can never name the sentence apart; with no picture there is no summary."""
     picks = morphology.pick(words(sentence), syntax.disambiguator())  # the one reading, cards and parser alike
     tags = morphology.analyze_sentence(sentence, picks)
-    recorded = tarkeeb_store.for_sentence(sentence)
-    parsed = recorded or syntax.read(sentence, picks)
-    tree = _drawn(recorded) if recorded else parsed["tree"]
+    record = tarkeeb_store.for_sentence(sentence) if recorded else None
+    parsed = record or syntax.read(sentence, picks)
+    tree = _drawn(record) if record else parsed["tree"]
     return {
         "words": cards(tags, parsed["roles"]),
         "summary": tree["tree"].get("label") if tree else None,
-        "source": provenance.of("treebank" if recorded else "nahw"),
+        "source": provenance.of("treebank" if record else "nahw"),
         "tree": tree,
     }
 
