@@ -4,7 +4,6 @@ import Hero from './Hero.jsx'
 import SourcesMarquee from './SourcesMarquee.jsx'
 import StoryScroll from './StoryScroll.jsx'
 import FolioBand from './FolioBand.jsx'
-import SentenceDemo from './SentenceDemo.jsx'
 import ClipStrip from './ClipStrip.jsx'
 import Understand from './Understand.jsx'
 import Finale from './Finale.jsx'
@@ -19,7 +18,6 @@ export default function Landing() {
       <SourcesMarquee />
       <StoryScroll />
       <FolioBand />
-      <SentenceDemo />
       <ClipStrip />
       <Understand />
       <Finale />
