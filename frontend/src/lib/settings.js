@@ -17,7 +17,7 @@
 import { useSyncExternalStore } from 'react'
 
 import config from '../settings.json'
-import { themeVariable } from '../theme'
+import { applyTheme, followDevice, rememberTheme, resolveTheme, themeVariable } from '../theme'
 import { forgetKey, onReplaced, readSaved, writeSaved } from './stored'
 
 /** Every setting, in the order the panel shows them. */
@@ -37,6 +37,8 @@ function clean(setting, value) {
   if (setting.type === 'switch') return typeof value === 'boolean' ? value : setting.default
   return setting.options.some((one) => one.id === value) ? value : setting.default
 }
+
+const THEME_SETTING = SETTINGS.find((one) => one.theme)
 
 /** What a setting puts in its CSS variable, or null if it drives no CSS. */
 function cssValue(setting, value) {
@@ -65,6 +67,12 @@ function values() {
 export function applySettings(root = rootElement()) {
   if (!root) return
   const chosen = values()
+  // The look first: it writes every theme variable, so the settings below
+  // land on top of it instead of being overwritten by it.
+  if (THEME_SETTING) {
+    applyTheme(root, resolveTheme(chosen[THEME_SETTING.key]))
+    rememberTheme(chosen[THEME_SETTING.key])
+  }
   for (const setting of SETTINGS) {
     const value = chosen[setting.key]
     const css = cssValue(setting, value)
@@ -110,6 +118,9 @@ onReplaced(() => {
   applySettings()
   for (const listener of listeners) listener()
 })
+
+// Device means whatever the device says now, including after it changes.
+if (THEME_SETTING) followDevice(() => values()[THEME_SETTING.key] === 'system' && applySettings())
 
 /** One setting's current value, kept in step across every component showing it. */
 export function useSetting(key) {

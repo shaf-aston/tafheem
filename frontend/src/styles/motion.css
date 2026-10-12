@@ -177,7 +177,7 @@
 
 
 .qalam-shine {
-  stroke: #fff;
+  stroke: var(--text);
   stroke-width: 3;
   stroke-linecap: round;
   opacity: 0.28;

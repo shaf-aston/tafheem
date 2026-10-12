@@ -366,7 +366,26 @@ export default function QuizPanel({ accent, onProgress }) {
       )}
     </>
   )
+  // Which set of words. Wide screens keep it on the line; a phone has no room
+  // for four options and a count beside the pill, so it goes behind the pill too.
+  const bankControl = (
+    <Segmented
+      captioned
+      wrap={phone}
+      label={say('Words')}
+      options={Object.entries(BANKS).map(([id, b]) => ({
+        id,
+        // The count rides on the control that goes there: a number sitting
+        // anywhere else is a badge nobody connects to the button.
+        label: b.live && owed > 0 ? `${say(b.label)} · ${owed}` : say(b.label),
+      }))}
+      value={bankId}
+      accent={accent}
+      onChange={(id) => startRound({ bank: id })}
+    />
+  )
   const pillWords = [
+    ...(phone ? [say(bank.label)] : []),
     ...(phone && bank.grouped
       ? [section?.options.find((o) => o.id === groupId)?.label ?? scopeOptions.find((o) => o.id === scope)?.label]
       : []),
@@ -385,28 +404,17 @@ export default function QuizPanel({ accent, onProgress }) {
       {/* One quiet line of setup, so the question is the first thing you see
           rather than something you scroll past three panels to reach. */}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <Segmented
-          captioned
-          label={say('Words')}
-          options={Object.entries(BANKS).map(([id, b]) => ({
-            id,
-            // The count rides on the control that goes there: a number sitting
-            // anywhere else is a badge nobody connects to the button.
-            label: b.live && owed > 0 ? `${say(b.label)} · ${owed}` : say(b.label),
-          }))}
-          value={bankId}
-          accent={accent}
-          onChange={(id) => startRound({ bank: id })}
-        />
+        {!phone && bankControl}
         {!phone && scopeControls}
         {/* The two settings chosen once and left, folded behind one pill that
             says what they are. All four controls on the line needed 1,170px of
             a 1,120px column, so English wrapped on every screen. */}
         <SettingsPill
           label={pillWords.join(' · ')}
-          title={`${say('Meaning in')}, ${say('Direction')}`}
+          title={`${say('Words')}, ${say('Meaning in')}, ${say('Direction')}`}
           align={phone ? 'start' : 'end'}
         >
+          {phone && bankControl}
           {phone && scopeControls}
           <Segmented
             captioned

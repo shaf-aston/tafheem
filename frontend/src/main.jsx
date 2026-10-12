@@ -6,7 +6,6 @@ import App from './App.jsx'
 import { applySettings } from './lib/settings'
 import { keepShelfInStep, pullShelf } from './lib/shelf'
 import { watchInstall } from './lib/install'
-import { applyTheme } from './theme'
 
 // A deploy replaces the hashed files, so a page open from before it asks for a
 // tab file that is gone. Loading the page again picks up the new ones. Not when
@@ -25,7 +24,6 @@ window.addEventListener('vite:preloadError', (event) => {
   location.reload()
 })
 
-applyTheme()
 applySettings()
 watchInstall()
 keepShelfInStep()

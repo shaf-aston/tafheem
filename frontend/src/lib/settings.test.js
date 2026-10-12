@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
+import theme from '../theme.json'
 import { themeVariable } from '../theme'
 import { SETTINGS, applySettings, resetSettings, setSetting } from './settings'
 
@@ -59,6 +60,29 @@ describe('settings', () => {
     setSetting('motion', true)
     expect(applied().get('--motion-base-ms')).toBe(themeVariable('--motion-base-ms'))
     expect(applied().get('--motion-base-ms')).not.toBe(undefined)
+  })
+
+  it('puts the chosen look on :root, and the dark one back', () => {
+    setSetting('theme', 'light')
+    expect(applied().get('--bg')).toBe(theme.themes.light.color.bg)
+    expect(applied().get('--palette-violet')).toBe(theme.themes.light.palette.violet)
+
+    setSetting('theme', 'dark')
+    expect(applied().get('--bg')).toBe(theme.color.bg)
+  })
+
+  it('lays the other settings over the look, not under it', () => {
+    setSetting('theme', 'light')
+    setSetting('motion', false)
+    expect(applied().get('--motion-base-ms')).toBe('0')
+    // Switched back on, it is the light look's own value, not a stale dark one.
+    setSetting('motion', true)
+    expect(applied().get('--motion-base-ms')).toBe(themeVariable('--motion-base-ms'))
+  })
+
+  it('ignores a look that does not exist', () => {
+    setSetting('theme', 'neon')
+    expect(applied().get('--bg')).toBe(theme.color.bg)
   })
 
   it('keeps a switch out of the CSS when it has no variables to write', () => {

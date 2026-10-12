@@ -1,6 +1,6 @@
 /**
- * The lantern backdrop: soft out-of-focus lights drifting on a dark warm
- * ground behind every tab, a share of them in the tab's colour (--c, set by
+ * The lantern backdrop: soft out-of-focus lights drifting on a warm ground
+ * (dark, or pale in the light look) behind every tab, a share of them in the tab's colour (--c, set by
  * App). Under the lights, a few large faint Arabic letters drift in that same
  * colour (theme.json's marks group), drawn on this canvas so there is one
  * surface and one loop.
@@ -33,6 +33,7 @@ function readKnobs(style) {
     tint: num('tint'),
     groundTop: text('ground-top'),
     groundBottom: text('ground-bottom'),
+    blend: text('blend'),
     colors: text('colors').split(',').map((c) => c.trim()),
   }
 }
@@ -71,6 +72,7 @@ export default function Backdrop() {
     const wrapper = node.parentElement
 
     let knobs = readKnobs(getComputedStyle(root))
+    let look = root.dataset.theme
     let tab = knobs.colors[0]
     let w = 0
     let h = 0
@@ -99,7 +101,7 @@ export default function Backdrop() {
         ctx.fillStyle = withAlpha(tab, m.alpha)
         ctx.fillText(m.letter, m.x, m.y)
       })
-      ctx.globalCompositeOperation = 'lighter'
+      ctx.globalCompositeOperation = knobs.blend
       lights.forEach((l, i) => {
         const colour = pickColor(i, knobs, tab)
         const g = ctx.createRadialGradient(l.x, l.y, 0, l.x, l.y, l.r)
@@ -149,12 +151,18 @@ export default function Backdrop() {
     // A style write on :root or the wrapper is a tab change or a setting
     // change: repaint in the new tint and wake the loop if it was stopped.
     const watch = new MutationObserver(() => {
+      // A different look has different lights and ground: read them again.
+      if (root.dataset.theme !== look) {
+        look = root.dataset.theme
+        knobs = readKnobs(getComputedStyle(root))
+        marksKnobs = { ...marksKnobs, alpha: readMarks(getComputedStyle(root)).alpha }
+      }
       tab = readTab()
       if (waitOut()) return
       paint()
       run()
     })
-    watch.observe(root, { attributes: true, attributeFilter: ['style'] })
+    watch.observe(root, { attributes: true, attributeFilter: ['style', 'data-theme'] })
     watch.observe(wrapper, { attributes: true, attributeFilter: ['style'] })
 
     tab = readTab()
