@@ -10,6 +10,13 @@ describe('fontPreloadTag', () => {
     )
   })
 
+  it('links the interface face too', () => {
+    const bundle = { 'assets/inter-latin-wght-normal-Zz9.woff2': {}, 'assets/inter-cyrillic-wght-normal-q.woff2': {} }
+    expect(fontPreloadTag(bundle)).toBe(
+      '<link rel="preload" as="font" type="font/woff2" href="/assets/inter-latin-wght-normal-Zz9.woff2" crossorigin>',
+    )
+  })
+
   it('nothing for a bold weight or another face', () => {
     expect(fontPreloadTag({ 'assets/noto-naskh-arabic-arabic-700-normal-x.woff2': {} })).toBe('')
     expect(fontPreloadTag({})).toBe('')

@@ -5,6 +5,7 @@
  */
 import { Suspense, memo } from 'react'
 
+import { AnalyzerSkeleton } from '../ui/Skeleton'
 import { useSettled } from '../../lib/settle'
 
 export default memo(function TabPane({ tab, handoff, accent, onGo, onVisit, onProgress }) {
@@ -14,7 +15,7 @@ export default memo(function TabPane({ tab, handoff, accent, onGo, onVisit, onPr
   const Panel = tab.Component
   return (
     <div className={tab.study ? 'study' : undefined}>
-      <Suspense fallback={null}>
+      <Suspense fallback={<div className="late p-4"><AnalyzerSkeleton /></div>}>
         <Panel
           accent={accent}
           incoming={handoff?.value ?? null}
