@@ -18,7 +18,7 @@ import { useSyncExternalStore } from 'react'
 
 import config from '../settings.json'
 import { themeVariable } from '../theme'
-import { forgetKey, readSaved, writeSaved } from './stored'
+import { forgetKey, onReplaced, readSaved, writeSaved } from './stored'
 
 /** Every setting, in the order the panel shows them. */
 export const SETTINGS = config.settings
@@ -103,6 +103,13 @@ export function resetSettings() {
   applySettings()
   for (const listener of listeners) listener()
 }
+
+// The server's shelf landed after the page showed: read it again and put it on screen.
+onReplaced(() => {
+  current = null
+  applySettings()
+  for (const listener of listeners) listener()
+})
 
 /** One setting's current value, kept in step across every component showing it. */
 export function useSetting(key) {

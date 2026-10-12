@@ -10,7 +10,7 @@ import {
 import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
 import { useSettled } from '../lib/settle'
-import { progressKey, readSaved, writeSaved } from '../lib/stored'
+import { progressKey, useSavedState } from '../lib/stored'
 import { PHONE, useMedia } from '../lib/useMedia'
 import { useQuizRound } from '../lib/useQuizRound'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
@@ -80,8 +80,8 @@ export default function QuizPanel({ accent, onProgress }) {
   const [saving, setSaving] = useState(true)
   // Kept like the best streak below, so a reload does not wipe the tally; only
   // Start over (or a new word set) does, and Start over in settings forgets it.
-  const [score, setScore] = useState(() => ({ ...NO_SCORE, ...readSaved(SCORE_KEY, NO_SCORE) }))
-  useEffect(() => writeSaved(SCORE_KEY, score), [score])
+  const [saved, setScore] = useSavedState(SCORE_KEY, NO_SCORE)
+  const score = useMemo(() => ({ ...NO_SCORE, ...saved }), [saved])
   // The one thing a round leaves behind. Stored as what it is, a number written
   // out, so nothing has to interpret it years later.
   const [best, rememberBest] = useRemembered(progressKey('quiz-best-streak'))

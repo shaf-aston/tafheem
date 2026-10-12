@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import {
-  fillShelf, forgetKey, forgetProgressKeys, onChange, progressKey, readRaw, readSaved, shelfOf, writeRaw, writeSaved,
+  fillShelf, forgetKey, forgetProgressKeys, onChange, onReplaced, progressKey, readRaw, readSaved, shelfOf, writeRaw, writeSaved,
 } from './stored'
 
 let data
@@ -105,5 +105,18 @@ describe('filed under who is logged in', () => {
     data.set('@bilal/progress:grow', '{}')
     forgetProgressKeys()
     expect([...data.keys()]).toEqual(['profile', '@bilal/progress:grow'])
+  })
+})
+
+describe('the server shelf landing after the page shows', () => {
+  it('tells readers, not the pusher: that copy came from the server', () => {
+    const pushed = vi.fn()
+    const reread = vi.fn()
+    const stops = [onChange(pushed), onReplaced(reread)]
+    fillShelf('', { settings: '{}' })
+    stops.forEach((stop) => stop())
+    expect(reread).toHaveBeenCalledOnce()
+    expect(pushed).not.toHaveBeenCalled()
+    expect(readRaw('settings')).toBe('{}')
   })
 })

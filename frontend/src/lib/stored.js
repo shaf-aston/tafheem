@@ -14,6 +14,8 @@
  * they go through lib/progress.js first; "clear it all" has to mean Review
  * as well, or the button says more than it does.
  */
+import { useCallback, useMemo, useSyncExternalStore } from 'react'
+
 import PROFILE from '../profile.json'
 import { forgetProgress } from './progress'
 
@@ -89,10 +91,51 @@ export function shelfOf(name = owner()) {
   return Object.fromEntries(ownKeys(name).map((key) => [key, readDevice(filed(key, name))]))
 }
 
+// Told when the whole shelf is swapped from outside (the server's copy landed).
+// Kept apart from `listeners`: that copy came from the server, so it is not sent back.
+const replacedListeners = new Set()
+
+/** Hear the whole shelf being replaced. Returns the way to stop. */
+export function onReplaced(listener) {
+  replacedListeners.add(listener)
+  return () => replacedListeners.delete(listener)
+}
+
 /** Replace one account's shelf with `data`, as lib/shelf.js got it from the server. */
 export function fillShelf(name, data) {
   ownKeys(name).forEach((key) => forgetDevice(filed(key, name)))
   Object.entries(data).forEach(([key, text]) => writeDevice(filed(key, name), text))
+  replacedListeners.forEach((listener) => listener())
+}
+
+/**
+ * The one way a component reads the store: live. The page never waits for the
+ * server's shelf before showing; it shows this device's copy, and when the
+ * server's lands every reader picks it up here, with no panel knowing.
+ */
+const subscribe = (notify) => {
+  const stops = [onChange(notify), onReplaced(notify)]
+  return () => stops.forEach((stop) => stop())
+}
+
+/** The stored string, kept live. */
+export const useStoredRaw = (key) => useSyncExternalStore(subscribe, () => readRaw(key))
+
+/** The stored JSON value, kept live; the fallback as readSaved gives it. */
+export function useStoredSaved(key, fallback) {
+  const text = useStoredRaw(key)
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- parsed once per stored text
+  return useMemo(() => readSaved(key, fallback), [key, text])
+}
+
+/** Like useState, but the value lives in the store: [value, set], set taking a value or an updater. */
+export function useSavedState(key, fallback) {
+  const value = useStoredSaved(key, fallback)
+  const set = useCallback((next) => {
+    writeSaved(key, typeof next === 'function' ? next(readSaved(key, fallback)) : next)
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- the fallback is a literal at each call site
+  }, [key])
+  return [value, set]
 }
 
 // Every browser-store read and write in lib/ goes through these. Storage can
