@@ -12,21 +12,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="color-scheme" content="dark" />
     <title>Tafheem: Nahw &amp; Sarf</title>
-    <!-- First paint is the app's own dark before any script runs: without it the page
-         is blank or white until the shelf pull and theme.js land, then jumps. The
-         splash is inside #root, so React replaces it on mount. -->
-    <style>
-      html, body { background: #0c1018; margin: 0; }
-      #root > .boot { min-height: 100vh; display: grid; place-items: center; }
-      .boot i { width: 28px; height: 28px; border-radius: 50%; border: 3px solid #ffffff22;
-        border-top-color: #ffffff88; animation: boot-spin 0.9s linear infinite;
-        opacity: 0; animation-delay: 0.25s; animation-fill-mode: forwards; }
-      @keyframes boot-spin { 0% { transform: rotate(0); opacity: 1 } 100% { transform: rotate(360deg); opacity: 1 } }
-    </style>
     <!-- Fonts are bundled (see src/index.css), so there is no network request to block on. -->
   </head>
   <body>
-    <div id="root"><div class="boot" aria-hidden="true"><i></i></div></div>
+    <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

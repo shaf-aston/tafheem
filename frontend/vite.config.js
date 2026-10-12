@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
+import { bootShellPlugin } from './vite/bootShell'
 import { preloadFont } from './vite/preloadFont'
 
 // The landing page is the front door, so it is index.html and needs no rewrite.
@@ -25,7 +26,7 @@ function rewrite(req, _res, next) {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), prettyUrls, preloadFont],
+  plugins: [react(), tailwindcss(), prettyUrls, preloadFont, bootShellPlugin],
   build: {
     rollupOptions: {
       // A second real page, not a route: the app has no router, and the
