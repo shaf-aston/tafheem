@@ -9,7 +9,6 @@ import {
 } from '../lib/quizBanks'
 import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
-import { useSettled } from '../lib/settle'
 import { progressKey, useSavedState } from '../lib/stored'
 import { PHONE, useMedia } from '../lib/useMedia'
 import { useQuizRound } from '../lib/useQuizRound'
@@ -120,7 +119,6 @@ export default function QuizPanel({ accent, onProgress }) {
   const [scope, setScope] = useRemembered('quiz-scope', scopeIds)
   const [groupId, setGroupId] = useRemembered('quiz-group', groupIds)
   // Another set or cut is a new screen: its first question arrives still.
-  useSettled(bankId, groupId)
 
   // A surah's words are fetched, the bundled sets are not; react-query hides
   // the difference and remembers what has already been loaded.

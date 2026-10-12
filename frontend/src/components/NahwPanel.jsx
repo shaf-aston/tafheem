@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react'
 import { useArrival } from '../lib/useArrival'
 import { readViewParam, writeViewParams } from '../lib/tabUrl'
 import { useRemembered } from '../lib/useRemembered'
-import { useSettled } from '../lib/settle'
 
 import IraabAnalyzer from './nahw/IraabAnalyzer'
 import NotesPanel from './nahw/NotesPanel'
@@ -47,7 +46,6 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
   // than a choice made.
   const asked = readViewParam('view', [...VIEW_IDS, ...Object.keys(MERGED)])
   const [view, setView] = useState(incoming ? 'analyse' : MERGED[asked] ?? asked ?? lastChosen)
-  useSettled(view)
   useEffect(() => {
     const others = Object.entries(VIEW_PARAMS).filter(([id]) => id !== view).flatMap(([, keys]) => keys)
     writeViewParams({ view, ...Object.fromEntries(others.map((key) => [key, ''])) })

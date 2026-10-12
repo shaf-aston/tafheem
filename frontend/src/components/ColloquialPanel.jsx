@@ -11,7 +11,6 @@ import { useEffect, useState } from 'react'
 
 import { colloquialQuery, colloquialUnitQuery } from '../api'
 import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf, unitNumber } from '../lib/colloquialPlace'
-import { useSettled } from '../lib/settle'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
 import { colorAt, colorFor } from '../theme'
@@ -178,7 +177,6 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   const lessonAt = place?.at ?? null
   const words = place?.words ?? false
   // A dialect, unit or word list arrives finished; a lesson's next step still moves.
-  useSettled(place?.dialect, place?.unit, words)
   // Opening a unit shows its topics; the unit's words are what a topic click needs.
   useEffect(() => {
     if (dialect && unit) warm(client, colloquialUnitQuery(dialect.key, unit.unit))
