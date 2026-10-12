@@ -26,6 +26,7 @@ import SpatialHome from './components/shell/SpatialHome'
 import SourceFooter from './components/shell/SourceFooter'
 import TabStrip from './components/shell/TabStrip'
 import BottomNav from './components/shell/BottomNav'
+import InstallBanner from './components/shell/InstallBanner'
 import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
 
@@ -280,6 +281,8 @@ function AppContent() {
           <TabStrip tabs={strip} fixed={FIXED.length} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
         </div>
       </header>
+
+      <InstallBanner />
 
       {status === 'error' && !bannerDismissed && (
         <div className="shell pt-4 relative">

@@ -5,6 +5,7 @@ import './styles/index.css'
 import App from './App.jsx'
 import { applySettings } from './lib/settings'
 import { keepShelfInStep, pullShelf } from './lib/shelf'
+import { watchInstall } from './lib/install'
 import { applyTheme } from './theme'
 
 // A deploy replaces the hashed files, so a page open from before it asks for a
@@ -26,6 +27,7 @@ window.addEventListener('vite:preloadError', (event) => {
 
 applyTheme()
 applySettings()
+watchInstall()
 keepShelfInStep()
 
 // Never wait on the server to show: this device's copy draws at once, and the
