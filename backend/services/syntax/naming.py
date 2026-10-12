@@ -1,16 +1,9 @@
-"""Names each word's i'raab role from the links the parser drew.
+"""Names each word's i'raab role from the links the parser drew and the vowels the reader typed
+(the only evidence for case and for a passive verb), in the words a nahw book uses.
 
-The parser says which word hangs off which and how (subject, object, idafa
-and so on), but it says it in CATiB's short tags and it never sees the harakat,
-because it is fed the letters alone. This module turns those links into the
-words a nahw book uses. Two things decide a name: the link, and the vowels the
-reader typed, which are the only evidence for case and for a passive verb.
-
-Nothing here reaches the network or a model. Given the same tokens it always
-answers the same, which is why the roles it writes may be shown as derived.
-
-Scored by `backend/scripts/score_iraab.py`; the numbers are quoted once, in this
-package's `__init__.py`.
+Reads the tokens `correct` has already corrected; reaches no network or model, so the same
+tokens always give the same roles. Scored by `backend/scripts/score_iraab.py`; the numbers are
+quoted once, in this package's `__init__.py`.
 """
 from __future__ import annotations
 
@@ -220,11 +213,9 @@ def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
 
 
 def _followers_take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
-    """In order, so a chain follows too. A صفة، معطوف، توكيد or بدل with no vowel typed wears the case of
-    the word it follows (اليدُ العليا); its kasra on ـات is also nasb (الطالباتِ المجتهداتِ), and a
-    diptote's fatha also jarr (إِلَى إِبْرَاهِيمَ وَإِسْمَاعِيلَ). A present verb whose ending shows nothing, hung
-    on a joining particle (atf `joins_mood`) that hangs on a verb in nasb or jazm, is in that mood too
-    (أَنْ تَبَرُّوا وَتَتَّقُوا); any other is in raf', the mood a present verb has with no governor."""
+    """In order, so a chain follows too. A follower with no vowel typed wears the case of the word it follows
+    (اليدُ العليا); its kasra on ـات is also nasb, a diptote's fatha also jarr. A present verb showing nothing,
+    joined (atf `joins_mood`) to a verb in nasb or jazm, is in that mood too (أَنْ تَبَرُّوا وَتَتَّقُوا); any other is raf'."""
     for i, (role, token) in enumerate(zip(named, bases)):
         head = _followed(token, bases, tokens) if role in FOLLOWERS else None
         if head is not None and cases[head] != "mabni" and (cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token))
@@ -239,13 +230,10 @@ def _followers_take_their_ending(named: list, cases: list, bases: list[dict], to
 
 
 def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None = None) -> str | None:
-    """The family a particle or verb is named by (كان فعل ماضٍ ناقص، إنّ حرف مشبه بالفعل):
-    one whose list holds it and whose effect shows on a word linked to it, the noun hung
-    on إنّ or كان, or the verb لم hangs on. A listed word that governs nothing here (the
-    لا of a plain negation) keeps its plain name, unless particles.stamp read it (لا النافية).
-    A piece written onto a word (وَ، بِـ، لْـ)
-    works only on that word (`onto`, what it shows) and the words hung below it: the وَ of
-    وَإِيمَانٌ hangs on a مجرور's neighbour, and the لْ of فَلْيَصُمْهُ on nothing at all."""
+    """The family a particle or verb is named by (كان، إنّ): one whose list holds it and whose effect
+    shows on a word linked to it. A listed word that governs nothing here (the لا of a plain negation)
+    keeps its plain name, unless particles.stamp read it. A piece written onto a word (وَ، بِـ، لْـ)
+    works only on that word (`onto`, what it shows) and the words hung below it."""
     if token.get("reading"):
         return token["reading"]["family"]
     linked = set().union(onto or set(), *(said for other, said in zip(bases, shown)
@@ -267,10 +255,8 @@ def opens_with_verb(roles: list[str | None]) -> bool:
 
 
 def _lam_mood(token: dict, front: list[str], opens: bool) -> str | None:
-    """The mood a لام written onto a present verb gives it (Tasheel; closed_words ل): with a
-    sukun (فَلْيَصُمْهُ) or opening the sentence (لِيُنْفِقْ) it is لام الأمر, jazm; with a kasra
-    after a clause it is لام التعليل, nasb by a hidden أن (لِيُضِلُّوا). A fatha is the لام of
-    emphasis (لَيَقُولَنَّ), which settles nothing; so does a لام left bare."""
+    """The mood a لام written onto a present verb gives it: a sukun (فَلْيَصُمْهُ) or opening the sentence
+    (لِيُنْفِقْ) is لام الأمر, jazm; a kasra after a clause is لام التعليل, nasb (لِيُضِلُّوا). A fatha or a bare لام settles nothing."""
     if "ل" not in front:
         return None
     marks = letters(token["typed"])[front.index("ل")][1]
@@ -314,8 +300,7 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
     with a jazm or nasb particle before (لا تَسُبُّوا). Then the ending the reader typed,
     on the verb's own last letter (يُفَقِّهْهُ), else the mood of a لام written onto it
     (_lam_mood), else None: nothing shows, and the verb it is joined to decides, else raf'.
-    `typed` is the word as paused on (harakat.paused); `before` is the base token before it,
-    its joined letters off."""
+    `typed` is the word as paused on (harakat.paused); `before` the base token before it."""
     particle = before["base"] if before else ""
     dropped_nun = five_verb_nun(typed, token.get("stuck_on", 0), token.get("weak_last")) == "dropped"
     read = (before or {}).get("reading") or {}  # أَلَّا: the nasb أنْ with a لا merged in

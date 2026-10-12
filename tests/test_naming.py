@@ -8,7 +8,8 @@ from backend.services.harakat import typed_case, typed_passive
 
 def named(words, tokens):
     """What the reader sees: the parser's tokens corrected, then named."""
-    return naming.roles(words, correct(words, tokens)[0])
+    correct(words, tokens)
+    return naming.roles(words, tokens)
 
 
 def roles(words, tokens):
