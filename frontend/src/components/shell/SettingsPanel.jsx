@@ -17,8 +17,8 @@ import { levelOf } from '../../lib/confidence'
 import { forgetSaved } from '../../lib/stored'
 import { useSources } from '../../lib/useSources'
 
-import Disclosure from './Disclosure'
-import Segmented from './Segmented'
+import Disclosure from '../ui/Disclosure'
+import Segmented from '../ui/Segmented'
 
 // Settings grouped by the module they change, in the order settings.json first names each.
 const SECTIONS = Object.entries(Object.groupBy(SETTINGS, (setting) => setting.section))

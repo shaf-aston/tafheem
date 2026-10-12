@@ -11,9 +11,9 @@
  * weakLinks): who said which word to whom, what the source says of it, and the
  * quotes with their book and page. Links are never ranked against narrators.
  */
-import ArabicText from './ArabicText'
-import Disclosure from './Disclosure'
-import NarratorLink from './NarratorLink'
+import ArabicText from '../ui/ArabicText'
+import Disclosure from '../ui/Disclosure'
+import NarratorLink from '../ui/NarratorLink'
 
 /** The twelve levels as steps: the narrator's filled, the levels too strong to be a weak point muted. */
 function Scale({ level, scale }) {

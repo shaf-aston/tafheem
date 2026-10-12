@@ -4,8 +4,8 @@
  */
 import { SARF_PRESETS } from '../../data/sarfPresets'
 
-import ArabicText from './ArabicText'
-import Disclosure from './Disclosure'
+import ArabicText from '../ui/ArabicText'
+import Disclosure from '../ui/Disclosure'
 
 const TOTAL = SARF_PRESETS.reduce((n, g) => n + g.words.length, 0)
 

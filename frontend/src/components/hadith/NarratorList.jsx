@@ -12,7 +12,7 @@ import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
 import ChipRow from '../ui/ChipRow'
 import EmptyState from '../ui/EmptyState'
-import { NarratorWhen } from '../ui/NarratorParts'
+import { NarratorWhen } from './NarratorParts'
 import ErrorAlert from '../ui/ErrorAlert'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 

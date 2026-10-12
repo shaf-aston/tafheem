@@ -16,10 +16,10 @@ import { useCommandLine } from '../../lib/useCommandLine'
 import { useModal } from '../../lib/useModal'
 import { isArabic } from '../../lib/arabicText'
 import { moodFrom } from '../../lib/mood'
-import ArabicText from './ArabicText'
+import ArabicText from '../ui/ArabicText'
 import CommandField from './CommandField'
 import CommandResults from './CommandResults'
-import Mascot from './Mascot'
+import Mascot from '../ui/Mascot'
 
 const NAME = 'sh'
 

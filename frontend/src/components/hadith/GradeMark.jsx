@@ -6,7 +6,7 @@
  */
 import { familyOf, leadGrade } from '../../lib/hadithGrade'
 
-import Popover from './Popover'
+import Popover from '../ui/Popover'
 
 const TONE = { success: 'var(--success)', warn: 'var(--warn)', danger: 'var(--danger)' }
 

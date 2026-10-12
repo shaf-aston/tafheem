@@ -16,8 +16,8 @@
  */
 import { useEffect, useRef } from 'react'
 
-import { pickColor, seed, seedMarks, step, stepMarks } from '../lib/bokeh'
-import { heldFor } from '../lib/backdropHold'
+import { pickColor, seed, seedMarks, step, stepMarks } from '../../lib/bokeh'
+import { heldFor } from '../../lib/backdropHold'
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 

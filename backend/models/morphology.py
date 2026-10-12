@@ -105,7 +105,7 @@ class VerbVerdict(BaseModel):
             readings=[
                 VerbReading(
                     label=r["label"],
-                    sources=[Source(**provenance.of(k)) for k in r["source_keys"]],
+                    sources=[provenance.of(k) for k in r["source_keys"]],
                 )
                 for r in verdict["readings"]
             ],

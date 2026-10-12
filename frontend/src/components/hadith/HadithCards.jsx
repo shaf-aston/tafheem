@@ -24,14 +24,14 @@ import { useKin, useNarrators, useWeakNotes } from '../../lib/useNarrators'
 import { drawnChain } from '../../lib/rijal'
 import { weakLinks, weakPoints } from '../../lib/weak'
 
-import ChainSheet from '../ui/ChainSheet'
+import ChainSheet from './ChainSheet'
 import Chip from '../ui/Chip'
 import CopyButton from '../ui/CopyButton'
-import FavoriteStar from '../ui/FavoriteStar'
-import GradeMark from '../ui/GradeMark'
+import FavoriteStar from './FavoriteStar'
+import GradeMark from './GradeMark'
 import HadithText from '../ui/HadithText'
-import NarrationFamily from '../ui/NarrationFamily'
-import NarratorSheet from '../ui/NarratorSheet'
+import NarrationFamily from './NarrationFamily'
+import NarratorSheet from './NarratorSheet'
 
 export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, onNarrator, onHadith }) {
   const { isFavorite, toggle } = useHadithFavorites()

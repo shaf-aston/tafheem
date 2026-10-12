@@ -2,7 +2,7 @@
  * One narrator on his own page: who he was, what scholars said of him, who he
  * learnt from and taught (each a tap to that narrator's page), and the hadith
  * he narrates in the six books, each a tap into the reader. Under his header, what the
- * narrator books say of him in four groups (ui/BookFacts).
+ * narrator books say of him in four groups (hadith/BookFacts).
  *
  * A 404 means this machine holds no page for him (rijal.db unbuilt, or he was
  * never fetched), said in a line, as on his pop-up.
@@ -15,10 +15,10 @@ import { useHadithCollections } from '../../lib/useHadithCollections'
 import { useOpenAtTop } from '../../lib/scrollToEl'
 
 import ArabicText from '../ui/ArabicText'
-import BookFacts from '../ui/BookFacts'
+import BookFacts from './BookFacts'
 import Chip from '../ui/Chip'
 import ChipRow from '../ui/ChipRow'
-import { NarratorError, NarratorHead, NarratorLinks } from '../ui/NarratorParts'
+import { NarratorError, NarratorHead, NarratorLinks } from './NarratorParts'
 import ShowRest from '../ui/ShowRest'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 

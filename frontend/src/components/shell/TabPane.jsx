@@ -5,7 +5,7 @@
  */
 import { Suspense, memo } from 'react'
 
-import { useSettled } from '../lib/settle'
+import { useSettled } from '../../lib/settle'
 
 export default memo(function TabPane({ tab, handoff, accent, onGo, onVisit, onProgress }) {
   // Arriving on the first showing and again on every return, a hidden panel's

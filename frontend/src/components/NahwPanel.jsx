@@ -16,7 +16,7 @@ import NotesPanel from './nahw/NotesPanel'
 import TamreenPanel from './nahw/TamreenPanel'
 import TarkeebPanel from './nahw/TarkeebPanel'
 import Disclosure from './ui/Disclosure'
-import GrammarGlossary from './ui/GrammarGlossary'
+import GrammarGlossary from './nahw/GrammarGlossary'
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
 

@@ -16,7 +16,6 @@ import random
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.common import Source
 from backend.models.practice import (
     CheckedSentence,
     KeptQuestion,
@@ -89,4 +88,4 @@ async def _answer(sentence: str, questions: list[PracticeQuestion], source_key: 
         logger.info("Kept %d new practice question(s) for '%s' (%s)", added, sentence[:40], source_key)
     except Exception as exc:
         logger.warning("Could not keep practice questions: %s", exc)
-    return PracticeResponse(sentence=sentence, questions=questions, source=Source(**provenance.of(source_key)))
+    return PracticeResponse(sentence=sentence, questions=questions, source=provenance.of(source_key))

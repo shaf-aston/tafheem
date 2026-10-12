@@ -625,7 +625,7 @@ dialog::backdrop {
 }
 
 
-/* The phone tab bar (ui/BottomNav): pinned at the bottom, clear of the home
+/* The phone tab bar (shell/BottomNav): pinned at the bottom, clear of the home
    indicator, and the page keeps room under it so nothing hides behind. */
 .bottom-nav {
   box-sizing: border-box;
@@ -684,7 +684,7 @@ dialog::backdrop {
 
 
 /* ── Chain drawing ─────────────────────────────────────────────────────────
-   ui/ChainDrawing. A rung is a one-pixel line; a row of strands that split
+   hadith/ChainDrawing. A rung is a one-pixel line; a row of strands that split
    from one narrator (chain-split) or meet at one (chain-merge) gets a bar
    across the tops or feet of its columns, from the middle of the first to the
    middle of the last, so the lines read as one tree. */

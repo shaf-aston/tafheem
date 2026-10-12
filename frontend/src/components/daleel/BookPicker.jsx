@@ -38,9 +38,9 @@ import { nameMatches } from '../../lib/bookSearch'
 import { isArabic } from '../../lib/arabicText'
 import { useRememberedFlag } from '../../lib/useRemembered'
 
-import ArabicText from './ArabicText'
-import Chip from './Chip'
-import Disclosure from './Disclosure'
+import ArabicText from '../ui/ArabicText'
+import Chip from '../ui/Chip'
+import Disclosure from '../ui/Disclosure'
 
 // Not a shelf, the absence of one. A name no category can have, so a shelf
 // called "All books" could never collide with it.
