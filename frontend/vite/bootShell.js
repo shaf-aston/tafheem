@@ -12,25 +12,20 @@ import { readFileSync } from 'node:fs'
 
 const { color } = JSON.parse(readFileSync(new URL('../src/theme.json', import.meta.url), 'utf8'))
 
-/** The page's <style> and the spinner for #root, for the ground `bg`. */
-export function bootShell(bg = color.bg) {
-  const style = `<style>
-      html, body { background: ${bg}; margin: 0; }
+const STYLE = `<style>
+      html, body { background: ${color.bg}; margin: 0; }
       .boot { min-height: 100vh; display: grid; place-items: center; }
       .boot i { width: 28px; height: 28px; border-radius: 50%; border: 3px solid #ffffff22;
         border-top-color: #ffffff88; opacity: 0; animation: boot-spin 0.9s linear 0.25s infinite; }
       @keyframes boot-spin { from { transform: rotate(0); opacity: 1 } to { transform: rotate(360deg); opacity: 1 } }
     </style>`
-  return { style, spinner: '<div class="boot" aria-hidden="true"><i></i></div>' }
-}
+const SPINNER = '<div class="boot" aria-hidden="true"><i></i></div>'
 
 export const bootShellPlugin = {
   name: 'boot-shell',
   transformIndexHtml: {
     order: 'pre',
-    handler(html) {
-      const { style, spinner } = bootShell()
-      return html.replace('</head>', `${style}\n  </head>`).replace('<div id="root"></div>', `<div id="root">${spinner}</div>`)
-    },
+    handler: (html) =>
+      html.replace('</head>', `${STYLE}\n  </head>`).replace('<div id="root"></div>', `<div id="root">${SPINNER}</div>`),
   },
 }
