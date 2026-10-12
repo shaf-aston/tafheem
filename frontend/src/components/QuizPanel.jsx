@@ -11,6 +11,7 @@ import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
 import { useSettled } from '../lib/settle'
 import { progressKey, readSaved, writeSaved } from '../lib/stored'
+import { PHONE, useMedia } from '../lib/useMedia'
 import { useQuizRound } from '../lib/useQuizRound'
 import { useRemembered, useRememberedFlag } from '../lib/useRemembered'
 
@@ -87,6 +88,7 @@ export default function QuizPanel({ accent, onProgress }) {
   const bestStreak = Number(best) || 0
 
   const bank = BANKS[bankId]
+  const phone = useMedia(PHONE)
   const client = useQueryClient()
   // Every English sentence on this tab goes through say(); fill() is for the
   // one sentence whose two halves are elements rather than text.
@@ -325,6 +327,55 @@ export default function QuizPanel({ accent, onProgress }) {
       ? { text: info.data.dialect, why: say('Which Arabic this word is.') }
       : null
 
+  // A phone has no room for the narrowing beside the words, so it goes behind
+  // the same pill as the other two settings, and the pill names what it holds.
+  const scopeOptions = [
+    ...WHOLE_SET_SCOPES.map(({ id, label }) => ({ id, label: say(label) })),
+    ...(groups.data ?? []).map((s) => ({ id: s.id, label: say(s.label) })),
+  ]
+  const scopeControls = bank.grouped && (
+    <>
+      {/* Which kind of cut, then which one; two short controls instead of
+          one dropdown holding 28 topics, 114 surahs and 30 juz at once. */}
+      <Segmented
+        captioned={phone}
+        wrap={phone}
+        label={say('Narrow by')}
+        options={scopeOptions}
+        value={scope}
+        accent={accent}
+        onChange={chooseScope}
+      />
+      {section && (
+        <>
+          {/* Behind the pill every control wears its caption, as its neighbours do. */}
+          {phone && <span className="eyebrow">{say('Which {kind}', { kind: say(section.label).toLowerCase() })}</span>}
+          <span className="block">
+            <WheelPicker
+              label={say('Which {kind}', { kind: say(section.label).toLowerCase() })}
+              options={section.options.map((option) => ({
+                id: option.id,
+                label: `${option.label} (${option.size})`,
+                disabled: option.size < QUIZ.optionCount,
+              }))}
+              value={groupId}
+              onChange={(group) => startRound({ group })}
+              accent={accent}
+              className="max-w-[13rem]"
+            />
+          </span>
+        </>
+      )}
+    </>
+  )
+  const pillWords = [
+    ...(phone && bank.grouped
+      ? [section?.options.find((o) => o.id === groupId)?.label ?? scopeOptions.find((o) => o.id === scope)?.label]
+      : []),
+    MEANINGS[language].label,
+    DIRECTIONS[direction].short,
+  ].filter(Boolean)
+
   return (
     // The tab reads the way its language reads. Urdu in a left-to-right page is
     // not merely untidy: a sentence built from two Urdu pieces with an element
@@ -349,46 +400,19 @@ export default function QuizPanel({ accent, onProgress }) {
           accent={accent}
           onChange={(id) => startRound({ bank: id })}
         />
-        {bank.grouped && (
-          <>
-            {/* Which kind of cut, then which one; two short controls instead of
-                one dropdown holding 28 topics, 114 surahs and 30 juz at once. */}
-            <Segmented
-              label={say('Narrow by')}
-              options={[
-                ...WHOLE_SET_SCOPES.map(({ id, label }) => ({ id, label: say(label) })),
-                ...(groups.data ?? []).map((s) => ({ id: s.id, label: say(s.label) })),
-              ]}
-              value={scope}
-              accent={accent}
-              onChange={chooseScope}
-            />
-            {section && (
-              <WheelPicker
-                label={say('Which {kind}', { kind: say(section.label).toLowerCase() })}
-                options={section.options.map((option) => ({
-                  id: option.id,
-                  label: `${option.label} (${option.size})`,
-                  disabled: option.size < QUIZ.optionCount,
-                }))}
-                value={groupId}
-                onChange={(group) => startRound({ group })}
-                accent={accent}
-                className="max-w-[13rem]"
-              />
-            )}
-          </>
-        )}
+        {!phone && scopeControls}
         {/* The two settings chosen once and left, folded behind one pill that
             says what they are. All four controls on the line needed 1,170px of
             a 1,120px column, so English wrapped on every screen. */}
         <Popover
-          label={`${MEANINGS[language].label} · ${DIRECTIONS[direction].short}`}
+          label={pillWords.join(' · ')}
           title={`${say('Meaning in')}, ${say('Direction')}`}
+          align={phone ? 'start' : 'end'}
         >
           {/* A grid with each Segmented's own wrapper dissolved, so the two
               captions share one column and the two rows start level. */}
           <div className="grid grid-cols-[auto_auto] items-center gap-x-2 gap-y-2.5 [&>div]:contents">
+            {phone && scopeControls}
             <Segmented
               captioned
               label={say('Meaning in')}

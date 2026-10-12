@@ -2,8 +2,8 @@
  * The Quran tab's one view: a whole surah, read, with the ayah being studied
  * beside it. Opening one ayah opens its surah scrolled to it, so the ayah is
  * always read in its place, and the study (AyahStudy) sits in a column to the
- * right, or under it on a screen too narrow for two columns: the surah above,
- * the study below, and a bar between them to drag either one bigger.
+ * right, or on a screen too narrow for two columns as a sheet docked under the
+ * surah: its handle drags it up to the whole screen or back down.
  *
  * One request brings the surah's text and its English, 35ms for al-Baqarah,
  * the longest. The word-by-word grammar is not fetched here: it is ~2MB for a
@@ -33,7 +33,7 @@ import { LAST_SURAH } from '../../lib/surahRef'
 import { useRemembered, useRememberedFlag } from '../../lib/useRemembered'
 import { learntWords } from '../../lib/coverage'
 import { useLearntLemmas } from '../../lib/useLearntLemmas'
-import { useMedia } from '../../lib/useMedia'
+import { PHONE, useMedia } from '../../lib/useMedia'
 import { useWheelX } from '../../lib/useWheelX'
 import { scrollToEl } from '../../lib/scrollToEl'
 import { useSlide, useSwipe } from '../../lib/useSwipe'
@@ -56,8 +56,8 @@ const { 'first-paint-rows': FIRST_PAINT_ROWS, split: SPLIT } = QURAN
 // Wide enough for the surah and the study side by side; Tailwind's lg.
 const TWO_PANES = '(min-width: 64rem)'
 const TOUCH = '(pointer: coarse)'
-// The phone width the stylesheet's bottom bar goes by.
-const PHONE = '(max-width: 39.99rem)'
+// How far a press may move and still be a tap on the sheet's handle, in px.
+const TAP_SLOP = 6
 
 /** The English under one ayah: the chosen translation once it has arrived,
  *  the corpus's word-by-word gloss before that, so nothing is credited to a
@@ -167,8 +167,15 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
     surah < LAST_SURAH && (() => changeSurah(surah + 1)))
   const slide = useSlide(surah)
 
+  // On a phone the study is a sheet: its tabs, and a word or a tab that needs
+  // room, ask the sheet for the whole screen. Stepping scrolls the surah to the ayah.
+  const sheet = stacked && {
+    onFull: () => setShare(FULL),
+    onPrev: ayah > 1 ? () => onPlace({ surah, ayah: ayah - 1 }) : null,
+    onNext: ayah < data?.ayah_count ? () => onPlace({ surah, ayah: ayah + 1 }) : null,
+  }
   const study = ayah && (
-    <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo} onClose={shut} accent={accent} />
+    <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo} onClose={shut} accent={accent} sheet={sheet || undefined} />
   )
 
   // How long the surah is and whose words these are. Beside the name where
@@ -280,7 +287,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         {stacked && (
           <>
             <SplitBar panes={panes} share={share} onShare={setShare} />
-            <aside aria-label="Study" className="scroll-pane flex-1 min-h-0 p-4">{study}</aside>
+            <aside aria-label="Study" className="scroll-pane flex-1 min-h-0 px-4 pb-4 bg-[var(--surface)]">{study}</aside>
           </>
         )}
       </div>
@@ -408,18 +415,25 @@ function AyahList({ listRef, ayahs, target, still, onScrolled, children: row }) 
   )
 }
 
-const { least: LEAST } = SPLIT
-const clampShare = (n) => Math.min(1 - LEAST, Math.max(LEAST, n))
+const { least: LEAST, full: FULL } = SPLIT
+const clampShare = (n) => Math.min(1 - LEAST, Math.max(FULL, n))
 
 /**
- * The bar between the surah and the study on a phone: drag it, or press the
- * arrows on it, to give one more room and the other less.
+ * The sheet's handle on a phone: drag it, press the arrows on it, or tap it,
+ * to give the surah or the study more room. A tap swaps between the sheet
+ * opening size and the whole screen, and a drag that ends near the top snaps
+ * to the whole screen so no sliver of surah is left.
  */
 function SplitBar({ panes, share, onShare }) {
+  const from = useRef(null)
   const drag = (e) => {
     if (!e.currentTarget.hasPointerCapture(e.pointerId)) return
     const box = panes.current.getBoundingClientRect()
     onShare(clampShare((e.clientY - box.top) / box.height))
+  }
+  const release = (e) => {
+    if (Math.abs(e.clientY - from.current) < TAP_SLOP) onShare(share > FULL ? FULL : SPLIT.share)
+    else if (share < SPLIT.step) onShare(FULL)
   }
   const step = { ArrowUp: -SPLIT.step, ArrowDown: SPLIT.step }
   return (
@@ -428,14 +442,15 @@ function SplitBar({ panes, share, onShare }) {
       aria-orientation="horizontal"
       aria-label="Resize the surah and the study"
       aria-valuenow={Math.round(share * 100)}
-      aria-valuemin={LEAST * 100}
+      aria-valuemin={FULL * 100}
       aria-valuemax={(1 - LEAST) * 100}
       tabIndex={0}
-      onPointerDown={(e) => e.currentTarget.setPointerCapture(e.pointerId)}
+      onPointerDown={(e) => { from.current = e.clientY; e.currentTarget.setPointerCapture(e.pointerId) }}
       onPointerMove={drag}
+      onPointerUp={release}
       onKeyDown={(e) => step[e.key] && (e.preventDefault(), onShare(clampShare(share + step[e.key])))}
-      className="touch-none select-none shrink-0 grid place-items-center h-6 cursor-row-resize
-        border-y border-[var(--border)] bg-[var(--surface-hi)] focus:outline-none focus-visible:bg-[var(--surface)]"
+      className="touch-none select-none shrink-0 grid place-items-center h-6 cursor-row-resize rounded-t-[var(--radius-lg)]
+        border-t border-[var(--border-hi)] bg-[var(--surface)] shadow-[var(--shadow-pop)] focus:outline-none focus-visible:bg-[var(--surface-hi)]"
     >
       <span aria-hidden="true" className="w-10 h-1 rounded-full bg-[var(--border-hi)]" />
     </div>
