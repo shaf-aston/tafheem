@@ -6,7 +6,8 @@
  *              prompt (beforeinstallprompt); a button shows it.
  *  - 'ios'     iPhone and iPad have no prompt at all: the only way is Share →
  *              Add to Home Screen, so the user is told the steps.
- *  - 'none'    already installed, a laptop, or a browser that cannot.
+ *  - 'none'    already installed, a laptop or desktop (never offered: the app
+ *              is for the phone), or a browser that cannot.
  * What shows it (components/shell/InstallBanner.jsx) draws the answer and decides nothing.
  */
 import { useSyncExternalStore } from 'react'
@@ -22,9 +23,12 @@ export const isIos = (ua, touchPoints = 0) =>
 /** Chrome on iOS, Firefox on iOS and the like cannot add to the home screen: only Safari can. */
 export const isIosSafari = (ua) => !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|FBAN|FBAV|Instagram/.test(ua)
 
+/** A phone: Android's own word for it, or an iPhone. Tablets count; a laptop does not. */
+export const isPhone = (ua, touchPoints = 0) => /Android/.test(ua) || isIos(ua, touchPoints)
+
 /** Pure: the answer for what the page knows. */
 export function installKind({ ua = '', touchPoints = 0, standalone = false, prompt = null }) {
-  if (standalone) return 'none'
+  if (standalone || !isPhone(ua, touchPoints)) return 'none'
   if (prompt) return 'prompt'
   if (isIos(ua, touchPoints)) return isIosSafari(ua) ? 'ios' : 'ios-other'
   return 'none'

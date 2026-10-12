@@ -25,6 +25,10 @@ describe('installKind', () => {
     expect(isIos(IPAD_AS_MAC, 5)).toBe(true)
     expect(installKind({ ua: LAPTOP, touchPoints: 0 })).toBe('none')
   })
+  it('a laptop is never offered it, even when its browser offers a prompt', () => {
+    expect(installKind({ ua: LAPTOP, prompt: {} })).toBe('none')
+    expect(installKind({ ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0', prompt: {} })).toBe('none')
+  })
   it('already installed: nothing, on any phone', () => {
     expect(installKind({ ua: IPHONE_SAFARI, standalone: true })).toBe('none')
     expect(installKind({ ua: ANDROID, standalone: true, prompt: {} })).toBe('none')
