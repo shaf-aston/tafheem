@@ -16,7 +16,8 @@ from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import (
     PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, has_tanween, letters, own_letters, stilled, typed_case)
 from backend.services.morphology import has_comparative
-from backend.services.nahw_book import book_file, book_map, book_words, family_cards, frames, is_mabni, is_one
+from backend.services.nahw_book import (
+    book_file, book_map, book_words, condition_of, family_cards, frames, is_mabni, is_one)
 from backend.services.syntax import facts, walker
 
 
@@ -53,7 +54,7 @@ def _jarred_noun(token: dict, s: facts.Sentence) -> bool:
 def _what_follows(token: dict, s: facts.Sentence) -> str:
     """A verb in jazm (its last letter stilled or the nun of the five verbs gone), any other
     verb, an indefinite noun (no ال, no name, no pronoun on it: رجلَ، عدوى), a definite one,
-    a particle, or nothing."""
+    a tool (a particle, or a word only a condition opens with: إذا is a ظرف, a noun), or nothing."""
     after = _next(token, s)
     if after is None:
         return "none"
@@ -61,8 +62,8 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
     if facts.is_verb(after):
         stuck_on, weak = after.get("stuck_on", 0), after.get("weak_last")
         return "verb_jazm" if stilled(typed, after["base"], stuck_on, weak) or five_verb_nun(typed, stuck_on, weak) == "dropped" else "verb"
-    if after["pos"] == "PRT":
-        return "particle"
+    if after["pos"] == "PRT" or ((cond := condition_of(_lemma(after))) and not cond["shared"]):
+        return "tool"
     bare = strip_diacritics(typed or after["form"])
     pronoun = any(t["head"] == after["id"] and _attached(t) for t in s.tokens)
     # a name is definite unless CAMeL itself read it indefinite (ضِرَارَ of لا ضرارَ, tagged a name)
@@ -282,7 +283,7 @@ def _doubled(token: dict, s: facts.Sentence) -> str:
 
 AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] = {
     "doubled": (("yes", "no"), _doubled),
-    "next": (("verb_jazm", "verb", "indefinite_noun", "noun", "particle", "none"), _what_follows),
+    "next": (("verb_jazm", "verb", "indefinite_noun", "noun", "tool", "none"), _what_follows),
     "negated": (("yes", "no"), _negated),
     "joins": (("yes", "no"), _joins),
     "opens": (("yes", "no"), _opens),
