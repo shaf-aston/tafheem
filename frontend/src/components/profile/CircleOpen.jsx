@@ -2,7 +2,7 @@
  * One circle, opened: its ranking, its people (as many as the server shows
  * you), and for an admin the invite box, role changes and removal. Tapping a
  * person the server marks `seeable` opens their overview; the same rows the
- * profile shows for you (ui/ModuleRows).
+ * profile shows for you (profile/ModuleRows).
  */
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -14,11 +14,11 @@ import {
 
 import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
-import SearchBox from './SearchBox'
-import Segmented from './Segmented'
-import { Skeleton } from './Skeleton'
-import SmallButton from './SmallButton'
-import WheelPicker from './WheelPicker'
+import SearchBox from '../ui/SearchBox'
+import Segmented from '../ui/Segmented'
+import { Skeleton } from '../ui/Skeleton'
+import SmallButton from '../ui/SmallButton'
+import WheelPicker from '../ui/WheelPicker'
 
 const ROLES = [{ id: 'member', label: 'Member' }, { id: 'admin', label: 'Admin' }]
 

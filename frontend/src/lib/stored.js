@@ -17,7 +17,7 @@
 import PROFILE from '../profile.json'
 import { forgetProgress } from './progress'
 
-// Usernames never hold "@" (services/profile.py), and no bare key starts with it.
+// Usernames never hold "@" (services/username.py), and no bare key starts with it.
 const MARK = '@'
 
 /** The store itself, or null where there is none or it throws on touch. */

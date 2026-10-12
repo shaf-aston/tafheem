@@ -14,11 +14,9 @@ import ProfileDialog from './ProfileDialog'
 export default function ProfileButton() {
   const [name] = useState(getProfile)
   const [open, setOpen] = useState(false)
-  // Reload as the guest, the way every log-out does (ProfileDialog).
   const check = () => fetchAccount().catch((error) => {
     if (error.response?.status !== 401) throw error
     logOut()
-    globalThis.location.reload()
     return null
   })
   useQuery({ queryKey: ['account-check', name], queryFn: check, enabled: !!name, retry: false })

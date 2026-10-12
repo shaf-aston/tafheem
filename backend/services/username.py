@@ -15,6 +15,9 @@ import unicodedata
 
 from backend.config import get_settings
 
+# Whose record an answer is when nobody is logged in, so never a username.
+GUEST = "local"
+
 BAD_CHARACTERS = "Names use letters, numbers, spaces, - _ ."
 
 # Zero-width non-joiner and joiner stay: Persian and Urdu names need them.
@@ -32,15 +35,15 @@ def _kind(ch: str) -> str:
 
 def clean_name(raw: str) -> str:
     """The one spelling of a username. Raises ValueError when it is not a name."""
-    settings = get_settings()
+    max_length = get_settings().username_max
     name = unicodedata.normalize("NFC", re.sub(r"\s+", " ", raw).strip()).casefold()
     if not name:
         raise ValueError("Type a username")
-    if len(name) > settings.profile_name_max:
-        raise ValueError(f"Names are at most {settings.profile_name_max} characters")
+    if len(name) > max_length:
+        raise ValueError(f"Names are at most {max_length} characters")
     kinds = {_kind(ch) for ch in name}
     if "" in kinds or "name" not in kinds:
         raise ValueError(BAD_CHARACTERS)
-    if name in settings.profile_reserved:
+    if name == GUEST:
         raise ValueError("That name is taken by the app, pick another")
     return name

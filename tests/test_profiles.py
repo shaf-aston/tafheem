@@ -16,7 +16,7 @@ from fastapi.testclient import TestClient
 
 from backend.main import app
 from backend.services import progress_store
-from backend.services.profile import clean_name
+from backend.services.username import clean_name
 
 client = TestClient(app)
 
@@ -115,7 +115,7 @@ def login(name):
 
 def test_signup_hands_back_the_one_spelling():
     body = signup("  Amina ").json()
-    assert (body["name"], body["moved"]) == ("amina", 0)
+    assert (body["name"], body["answers"]) == ("amina", 0)
 
 
 def test_a_taken_username_cannot_sign_up_again():
@@ -159,7 +159,7 @@ def test_keep_moves_this_devices_old_answers_to_the_name():
     answer(None, "to-write")
     answer(None, "to-read", correct=False)
     answer("Bilal", "to-go")
-    assert signup("Amina", keep=True).json()["moved"] == 2
+    assert signup("Amina", keep=True).json()["answers"] == 2
     assert items("Amina") == ["to-read", "to-write"]
     assert items(None) == []
     assert items("Bilal") == ["to-go"]

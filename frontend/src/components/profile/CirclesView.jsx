@@ -1,7 +1,7 @@
 /**
  * Your circles: invites waiting for you, the circles you are in, and a form to
  * make one. Every rule (who may invite, who sees whom, what an invite shows) is
- * the server's; this lists what it returns. Opening a circle is ui/CircleOpen.
+ * the server's; this lists what it returns. Opening a circle is profile/CircleOpen.
  *
  * `run` is the one way a change goes out: it calls, then refreshes every
  * circle query, so a list never shows what the server has already changed.
@@ -13,10 +13,10 @@ import { smartError } from '../../lib/apiError'
 import { answerInvite, createCircle, fetchCircles } from '../../lib/progress'
 
 import CircleOpen from './CircleOpen'
-import SearchBox from './SearchBox'
-import { Skeleton } from './Skeleton'
-import SmallButton from './SmallButton'
-import WheelPicker from './WheelPicker'
+import SearchBox from '../ui/SearchBox'
+import { Skeleton } from '../ui/Skeleton'
+import SmallButton from '../ui/SmallButton'
+import WheelPicker from '../ui/WheelPicker'
 
 const ALONE = ''
 

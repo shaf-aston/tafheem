@@ -13,9 +13,9 @@ id refers to is the caller's business, and the caller already holds the table
 that says so; copying those tags in here would make a second copy that goes
 stale every time the word list is rebuilt.
 
-`user` is the learner's username (services/profile.py), or 'local' for answers
-given before names existed. The questions table is a cache of AI answers shared
-by everyone, so it stays under 'local' and claim_local leaves it alone.
+`user` is the learner's username (services/username.py), or GUEST for answers
+given while nobody is logged in. The questions table is a cache of AI answers
+shared by everyone, so it stays under GUEST and claim_guest leaves it alone.
 """
 from __future__ import annotations
 
@@ -26,13 +26,14 @@ from datetime import datetime, timedelta, timezone
 
 from backend.config import data_path, get_settings
 from backend.services import review_schedule
+from backend.services.username import GUEST
 
 _local = threading.local()
 
-SCHEMA = """
+SCHEMA = f"""
 CREATE TABLE IF NOT EXISTS attempts (
     id      INTEGER PRIMARY KEY,
-    user    TEXT    NOT NULL DEFAULT 'local',
+    user    TEXT    NOT NULL DEFAULT '{GUEST}',
     module  TEXT    NOT NULL,
     item    TEXT    NOT NULL,
     correct INTEGER NOT NULL CHECK (correct IN (0, 1)),
@@ -47,7 +48,7 @@ CREATE INDEX IF NOT EXISTS ix_attempts ON attempts (user, module, item, id);
 -- badge did. The same question for the same sentence is kept once.
 CREATE TABLE IF NOT EXISTS questions (
     id       INTEGER PRIMARY KEY,
-    user     TEXT    NOT NULL DEFAULT 'local',
+    user     TEXT    NOT NULL DEFAULT '{GUEST}',
     module   TEXT    NOT NULL,
     sentence TEXT    NOT NULL,
     question TEXT    NOT NULL,
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS questions (
 CREATE INDEX IF NOT EXISTS ix_questions ON questions (user, module, sentence, id);
 CREATE TABLE IF NOT EXISTS feedback (
     id      INTEGER PRIMARY KEY,
-    user    TEXT    NOT NULL DEFAULT 'local',
+    user    TEXT    NOT NULL DEFAULT '{GUEST}',
     module  TEXT    NOT NULL,
     item    TEXT,
     message TEXT    NOT NULL,
@@ -81,7 +82,7 @@ CREATE TABLE IF NOT EXISTS saved (
 -- Names typed before sign-up existed are accounts already, so their owners can log in.
 INSERT OR IGNORE INTO accounts (name, at)
     SELECT user, MIN(at) FROM (SELECT user, at FROM attempts UNION ALL SELECT user, at FROM feedback)
-    WHERE user NOT IN ('local', '') GROUP BY user;
+    WHERE user NOT IN ('{GUEST}', '') GROUP BY user;
 """
 
 # Changes to tables that already exist, in order; PRAGMA user_version counts how many ran.
@@ -198,7 +199,7 @@ def record(
     correct: bool,
     ms: int | None = None,
     context: dict | None = None,
-    user: str = "local",
+    user: str = GUEST,
 ) -> int:
     """File one answer. Returns the row id, so a caller can prove it landed."""
     db = _db()
@@ -218,7 +219,7 @@ def record(
     return int(cursor.lastrowid)
 
 
-def leave_feedback(*, module: str, message: str, item: str | None = None, user: str = "local") -> int:
+def leave_feedback(*, module: str, message: str, item: str | None = None, user: str = GUEST) -> int:
     """File a note about something that looks wrong. Kept apart from answers, so
     the Settings wipe clears a learner's record without losing their reports."""
     db = _db()
@@ -231,7 +232,7 @@ def leave_feedback(*, module: str, message: str, item: str | None = None, user: 
 
 
 def keep_questions(
-    *, module: str, sentence: str, questions: list[dict], source: str, user: str = "local",
+    *, module: str, sentence: str, questions: list[dict], source: str, user: str = GUEST,
 ) -> int:
     """File generated questions as they were shown. Returns how many were new.
 
@@ -254,7 +255,7 @@ def keep_questions(
         return db.total_changes - before
 
 
-def kept_questions(module: str, sentence: str | None = None, user: str = "local") -> list[dict]:
+def kept_questions(module: str, sentence: str | None = None, user: str = GUEST) -> list[dict]:
     """Questions filed by keep_questions, oldest first; for one sentence when given."""
     sql = "SELECT sentence, question, answer, hint, source, at FROM questions WHERE user = ? AND module = ?"
     args: list = [user, module]
@@ -264,7 +265,7 @@ def kept_questions(module: str, sentence: str | None = None, user: str = "local"
     return [dict(row) for row in _db().execute(sql + " ORDER BY id", args).fetchall()]
 
 
-def forget(user: str = "local") -> int:
+def forget(user: str = GUEST) -> int:
     """Delete every answer this learner has given, in every module. Returns how many.
 
     Whole learner, not per module: the button that calls it says "clear it all",
@@ -648,16 +649,15 @@ def _tidy(db: sqlite3.Connection, circle: int) -> None:
         _drop(db, circle)
 
 
-def claim_local(user: str) -> int:
-    """Move the unnamed answers and reports onto `user`. Returns how many answers moved."""
+def claim_guest(user: str) -> None:
+    """Move the guest's answers and reports onto `user`."""
     db = _db()
     with db:
-        moved = db.execute("UPDATE attempts SET user = ? WHERE user = 'local'", (user,)).rowcount
-        db.execute("UPDATE feedback SET user = ? WHERE user = 'local'", (user,))
-    return int(moved)
+        db.execute("UPDATE attempts SET user = ? WHERE user = ?", (user, GUEST))
+        db.execute("UPDATE feedback SET user = ? WHERE user = ?", (user, GUEST))
 
 
-def summary(module: str, user: str = "local") -> list[dict]:
+def summary(module: str, user: str = GUEST) -> list[dict]:
     """Every item this learner has answered in this module, with its record.
 
     `avg_ms` is measured only over answers quicker than the cap. A question left
@@ -698,7 +698,7 @@ def _replay(module: str, user: str) -> dict:
     return {item: review_schedule.card_of(rows) for item, rows in answers.items()}
 
 
-def review_items(module: str, user: str = "local") -> list[str]:
+def review_items(module: str, user: str = GUEST) -> list[str]:
     """Items due now, earliest due first."""
     due = [row for row in summary(module, user) if row["due"]]
     return [row["item"] for row in sorted(due, key=lambda row: datetime.fromisoformat(row["due_at"]))]

@@ -3,29 +3,23 @@
  * under the box says so. A first sign-up on a device may take the guest answers
  * given so far, so nothing answered is lost. The server decides what a username
  * is; a refusal (taken, no such username) shows its reason under the box.
- *
- * Logging in, out or signing up reloads the page: every setting and remembered
- * choice is filed under the name (lib/stored.js), and a reload is the one way
- * every panel reads the new person's at once.
  */
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { smartError } from '../../lib/apiError'
-import { getProfile, setProfile } from '../../lib/profile'
+import { getProfile, logInAs } from '../../lib/profile'
 import { fetchAccountNames, logIn, signUp } from '../../lib/progress'
 import { copyGuestShelf, pullShelf } from '../../lib/shelf'
 
-import BottomSheet from './BottomSheet'
-import PrimaryButton from './PrimaryButton'
+import BottomSheet from '../ui/BottomSheet'
+import PrimaryButton from '../ui/PrimaryButton'
 import ProfileView from './ProfileView'
-import SearchBox from './SearchBox'
-import Segmented from './Segmented'
-import SmallButton from './SmallButton'
+import SearchBox from '../ui/SearchBox'
+import Segmented from '../ui/Segmented'
+import SmallButton from '../ui/SmallButton'
 
 const MODES = [{ id: 'login', label: 'Log in' }, { id: 'signup', label: 'Sign up' }]
-
-const switched = () => globalThis.location.reload()
 
 export default function ProfileDialog({ onClose }) {
   const name = getProfile()
@@ -44,12 +38,12 @@ export default function ProfileDialog({ onClose }) {
           Close
         </button>
       </div>
-      {name ? <ProfileView name={name} onLeave={switched} /> : <SignIn onIn={switched} />}
+      {name ? <ProfileView name={name} /> : <SignIn />}
     </BottomSheet>
   )
 }
 
-function SignIn({ onIn }) {
+function SignIn() {
   const [mode, setMode] = useState('login')
   const [typed, setTyped] = useState('')
   const [keep, setKeep] = useState(true)
@@ -64,10 +58,9 @@ function SignIn({ onIn }) {
     setBusy(true)
     try {
       const { name } = await (signingUp ? signUp(chosen, keep) : logIn(chosen))
-      setProfile(name)
       // A new name starts from the guest's shelf only if it kept the guest's answers.
       await (signingUp ? (keep ? copyGuestShelf(name) : null) : pullShelf(name))
-      onIn()
+      logInAs(name)
     } catch (refused) {
       setError(smartError(refused, 'Could not reach the server. Try again.'))
       setBusy(false)
