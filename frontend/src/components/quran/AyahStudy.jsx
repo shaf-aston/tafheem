@@ -7,6 +7,13 @@
  *
  * It asks for its own ayah, the word-by-word grammar the surah leaves out.
  * Key it by the ayah where it is used, so the open word starts shut each time.
+ *
+ * As a `sheet` (a phone) the three parts are tabs and the head stays put while
+ * they scroll: the words you can tap, how they join, the tafsir. Joins, Tafsir
+ * and an open word need room, so they ask the sheet for the whole screen with
+ * `sheet.onFull`; the open word then shrinks the chips to one strip so its
+ * grammar has the page. `sheet.onPrev` and `onNext` step to the ayah either
+ * side, null where there is none.
  */
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -25,40 +32,71 @@ import { useTarkeebView } from '../../lib/useTarkeebView'
 import ArabicText from '../ui/ArabicText'
 import CloseButton from '../ui/CloseButton'
 import ErrorAlert from '../ui/ErrorAlert'
+import Segmented from '../ui/Segmented'
 import { Skeleton } from '../ui/Skeleton'
+
+const TABS = [
+  { id: 'words', label: 'Words' },
+  { id: 'joins', label: 'Joins' },
+  { id: 'tafsir', label: 'Tafsir' },
+]
 
 /** The word a key names, or undefined. Keys are the word's own `position`. */
 const wordByKey = (words, key) =>
   key == null ? undefined : words.find((w, i) => (w.position || i) === key)
 
-export default function AyahStudy({ surah, ayah, onGo, onClose, accent }) {
+export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet }) {
   const { data, isPending, isError, error, refetch } = useQuery(quranAyahQuery(surah, ayah))
   // One word open at a time. A closed chip stays a word you can read; the full
   // grammar only appears for the word actually being asked about.
   const [openWord, setOpenWord] = useState(null)
   const opened = data && wordByKey(data.words, openWord)
-  const toggle = (key) => setOpenWord(openWord === key ? null : key)
+  const [tab, setTab] = useState('words')
+  const toggle = (key) => {
+    if (openWord !== key) sheet?.onFull()
+    setOpenWord(openWord === key ? null : key)
+  }
+  const choose = (id) => { if (id !== 'words') sheet?.onFull(); setTab(id) }
+  // A sheet shows one part at a time; the side column shows all three.
+  const shows = (id) => !sheet || tab === id
+
+  const head = (
+    <header className="flex items-center justify-between gap-3">
+      <h3 className="font-semibold text-[var(--text)]">
+        Study <span className="ml-2 font-mono type-small text-[var(--text-faint)]">{surah}:{ayah}</span>
+      </h3>
+      <div className="flex items-center gap-2">
+        {sheet && (
+          <>
+            <StepButton onClick={sheet.onPrev} label="Previous ayah">‹</StepButton>
+            <StepButton onClick={sheet.onNext} label="Next ayah">›</StepButton>
+          </>
+        )}
+        <CloseButton onClick={onClose} aria-label="Close the study" />
+      </div>
+    </header>
+  )
 
   return (
     <div className="space-y-4">
-      <header className="flex items-center justify-between gap-3">
-        <h3 className="font-semibold text-[var(--text)]">
-          Study <span className="ml-2 font-mono type-small text-[var(--text-faint)]">{surah}:{ayah}</span>
-        </h3>
-        <CloseButton onClick={onClose} aria-label="Close the study" />
-      </header>
+      {sheet ? (
+        <div className="sticky top-0 z-[var(--layer-sticky)] -mx-4 px-4 pt-1 pb-3 space-y-3 bg-[var(--surface)]">
+          {head}
+          <Segmented label="Study" fill options={TABS} value={tab} onChange={choose} accent={accent} />
+        </div>
+      ) : head}
 
       {isPending && <Skeleton className="h-32" />}
       {isError && (
         <ErrorAlert inline title="Could not load this ayah's words" error={error} onRetry={() => refetch()} />
       )}
 
-      {data && (
+      {data && shows('words') && (
         <>
           {/* Every word's English always here; a tap opens its full grammar
               under the chips, in the flow rather than floating over them. */}
           <div
-            className="flex flex-wrap gap-2 peer-dim"
+            className={`flex gap-2 peer-dim ${sheet && opened ? 'strip-x' : 'flex-wrap'}`}
             dir="rtl"
             lang="ar"
             data-script={isQuranic(data.words.map((w) => w.arabic).join(' ')) ? 'quran' : undefined}
@@ -75,12 +113,22 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent }) {
         </>
       )}
 
-      <AyahTarkeeb surah={surah} ayah={ayah} />
+      {shows('joins') && <AyahTarkeeb surah={surah} ayah={ayah} />}
 
       {/* Last on purpose. The grammar above answers what the words are and
           do; this answers what the ayah is about. */}
-      <AyahTafsir surah={surah} ayah={ayah} accent={accent} defaultOpen />
+      {shows('tafsir') && <AyahTafsir surah={surah} ayah={ayah} accent={accent} defaultOpen />}
     </div>
+  )
+}
+
+/** Back or on an ayah; absent (disabled) where there is none. */
+function StepButton({ onClick, label, children }) {
+  return (
+    <button type="button" onClick={onClick} disabled={!onClick} aria-label={label}
+      className="press w-9 h-9 rounded-full border border-[var(--border-hi)] text-[var(--text)] disabled:opacity-30">
+      {children}
+    </button>
   )
 }
 
@@ -141,7 +189,7 @@ function WordChip({ word, index, open, onToggle }) {
       onClick={onToggle}
       aria-expanded={open}
       style={{ '--i': index, '--c': posColor(word.pos) }}
-      className={`word rise-in flex flex-col items-center gap-1 p-2.5
+      className={`word rise-in shrink-0 flex flex-col items-center gap-1 p-2.5
         rounded-[var(--radius-md)] bg-[var(--surface)] border transition-colors
         ${open ? 'word-open border-[var(--c)]' : 'border-[var(--border)]'}`}
     >
