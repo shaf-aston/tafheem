@@ -1,5 +1,25 @@
 {
   "_comment": "Every colour, timing and size knob in the UI lives here. Nothing visual is hard-coded in a component. Edit this file, reload, done.",
+  "palette": {
+    "_comment": "The colours the app is drawn from, named once. Tab, role, pos, unit, science and the tones all point here as \"@name\", so a new look is these lines and nothing else. Each is written as --palette-<name>; a token that points at one is written as var(--palette-<name>), so it follows a palette swap on the page, not only at build.",
+    "violet": "#a78bfa",
+    "violet-hi": "#c4b5fd",
+    "rose": "#fb7185",
+    "teal": "#5eead4",
+    "amber": "#fbbf24",
+    "pink": "#f472b6",
+    "sky": "#38bdf8",
+    "green": "#4ade80",
+    "orange": "#fb923c",
+    "slate": "#94a3b8",
+    "blue": "#93c5fd",
+    "cream": "#f2e7d3",
+    "lime": "#a3e635",
+    "fuchsia": "#e879f9",
+    "blue-deep": "#60a5fa",
+    "orange-deep": "#f97316",
+    "lilac": "#d8b4fe"
+  },
   "color": {
     "bg": "#0c1018",
     "bg-glow": "#161d2b",
@@ -10,37 +30,37 @@
     "text": "#e7ecf5",
     "text-dim": "#9aa7bd",
     "text-faint": "#808da3",
-    "primary": "#a78bfa",
-    "primary-hi": "#c4b5fd",
-    "danger": "#fb7185",
-    "success": "#5eead4",
-    "warn": "#fbbf24"
+    "primary": "@violet",
+    "primary-hi": "@violet-hi",
+    "danger": "@rose",
+    "success": "@teal",
+    "warn": "@amber"
   },
   "unit": {
     "_comment": "Colloquial unit cards cycle through these; a unit's number picks one, so the same unit keeps its colour.",
-    "0": "#fb923c", "1": "#5eead4", "2": "#a78bfa", "3": "#fbbf24",
-    "4": "#f472b6", "5": "#38bdf8", "6": "#4ade80", "7": "#fb7185"
+    "0": "@orange", "1": "@teal", "2": "@violet", "3": "@amber",
+    "4": "@pink", "5": "@sky", "6": "@green", "7": "@rose"
   },
   "tab": {
-    "nahw": "#a78bfa",
-    "quran": "#5eead4",
-    "mem": "#93c5fd",
-    "sarf": "#fb7185",
-    "dict": "#fbbf24",
-    "quiz": "#f472b6",
-    "timelines": "#38bdf8",
-    "dawah": "#e879f9",
-    "daleel": "#4ade80",
-    "hadith": "#f2e7d3",
-    "colloq": "#fb923c",
-    "grow": "#a3e635",
+    "nahw": "@violet",
+    "quran": "@teal",
+    "mem": "@blue",
+    "sarf": "@rose",
+    "dict": "@amber",
+    "quiz": "@pink",
+    "timelines": "@sky",
+    "dawah": "@fuchsia",
+    "daleel": "@green",
+    "hadith": "@cream",
+    "colloq": "@orange",
+    "grow": "@lime",
     "_comment": "default is what an unknown id wears, the primary purple, so colorFor('tab', id) is the one rule for tab colour everywhere.",
-    "default": "#a78bfa"
+    "default": "@violet"
   },
   "science": {
     "_comment": "Card colour of each map science (shell/MapPanel), keyed by chart id. One hue each, all readable on the raised surface, borrowed from the tab palette.",
-    "01": "#fbbf24", "02": "#fb923c", "03": "#fb7185", "04": "#5eead4", "05": "#4ade80",
-    "06": "#38bdf8", "07": "#a78bfa", "08": "#93c5fd", "09": "#f472b6"
+    "01": "@amber", "02": "@orange", "03": "@rose", "04": "@teal", "05": "@green",
+    "06": "@sky", "07": "@violet", "08": "@blue", "09": "@pink"
   },
   "space": {
     "_comment": "Gaps shared across tabs. panel is the gap between the blocks of every tab, header included (the .panel class). card and tile are the insides of .card and .card-tile.",
@@ -104,7 +124,7 @@
     "acc-s": "52%",
     "acc-l": "66%",
     "ink-l": "80%",
-    "map-land": "#1c2434",
+    "map-land": "var(--surface-hi)",
     "map-water": "#0f2c38"
   },
   "cursor-light": {
@@ -115,31 +135,31 @@
   },
   "tamreen": {
     "_comment": "The two underline colours on a Tamreen picture question: blue for a possible حال, green for a possible ذو الحال. Their own group, not 'role', because they mark a candidate in the picture rather than a settled grammatical role.",
-    "haal": "#60a5fa",
-    "zulhaal": "#4ade80"
+    "haal": "@blue-deep",
+    "zulhaal": "@green"
   },
   "role": {
-    "mubtada": "#5eead4",
-    "khabar": "#fb7185",
-    "fail": "#5eead4",
-    "mafool": "#fb7185",
-    "harf": "#fbbf24",
-    "sifah": "#a78bfa",
-    "haal": "#a78bfa",
-    "mudaf": "#f472b6",
-    "fil": "#c4b5fd",
-    "mansub": "#f97316",
-    "tabi": "#a3e635",
-    "rel": "#d8b4fe",
-    "gap": "#94a3b8",
-    "ghair_aamil": "#38bdf8",
-    "default": "#94a3b8"
+    "mubtada": "@teal",
+    "khabar": "@rose",
+    "fail": "@teal",
+    "mafool": "@rose",
+    "harf": "@amber",
+    "sifah": "@violet",
+    "haal": "@violet",
+    "mudaf": "@pink",
+    "fil": "@violet-hi",
+    "mansub": "@orange-deep",
+    "tabi": "@lime",
+    "rel": "@lilac",
+    "gap": "@slate",
+    "ghair_aamil": "@sky",
+    "default": "@slate"
   },
   "pos": {
-    "V": "#a78bfa",
-    "N": "#5eead4",
-    "P": "#fbbf24",
-    "default": "#94a3b8"
+    "V": "@violet",
+    "N": "@teal",
+    "P": "@amber",
+    "default": "@slate"
   },
   "mic": {
     "_comment": "The capsule microphone, the mark that means dictation: capsule, three grille slits, cradle arc, stem. weight is the stroke on the mark's own 24-grid, so it scales with wherever it is drawn. pulse-ms is one beat of the grille level-meter while recording; hover-pulse-ms is that same beat run slowly on hover, a preview of what pressing does. chase-ms is one lap of the arc's chasing dash while thinking.",
@@ -298,13 +318,13 @@
   },
   "hadith": {
     "_comment": "The words of a hadith, printed under an event in the timelines. said is what was actually said, which the books mark with quote marks; told is the telling around it, the chain of narrators and what happened between the sayings, drawn back because it is read past rather than read; one step under text-faint, the darkest that still reads at 4.5:1 on the surface. lines is how much of one hadith shows before the rest waits behind Show the rest.",
-    "said": "#f2e7d3",
+    "said": "@cream",
     "told": "#76839a",
     "_way_comment": "The chain drawing colours the word between two narrators by how it was received: heard (سمعت، حدّثنا، أخبرنا) and loose (عن, which does not say how). The chain words guide wears the same two.",
     "heard": "#6cc495",
     "loose": "#e09a6a",
     "_weak_comment": "The edge and rank numeral on a narrator in the chain drawing, and the filled step on a weak point's scale. One colour for every weak narrator: how weak is said by the rank and the words beside it, never by a shade.",
-    "weak": "#fb7185",
+    "weak": "@rose",
     "lines": "14",
     "stagger-cap": "5"
   },
