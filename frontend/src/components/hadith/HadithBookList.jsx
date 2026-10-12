@@ -21,7 +21,7 @@ const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
 
 export default function HadithBookList({ collection, onPick, accent }) {
   const { data, isPending, isError, error, refetch } = useQuery(hadithBooksQuery(collection))
-  useOpenAtTop()
+  useOpenAtTop(collection)
   const client = useQueryClient()
   const first = data?.[0]?.number
   useEffect(() => {

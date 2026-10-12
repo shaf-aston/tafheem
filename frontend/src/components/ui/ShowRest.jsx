@@ -79,12 +79,13 @@ export default function ShowRest({
     setCut(hidden)
   }, [open, limit])
 
-  // Before paint, so the cut and its button arrive with the text rather than a frame later.
+  // Watching from a layout effect: the observer's first report, which is the first measure,
+  // then lands before paint, so the cut and its button arrive with the text, not a frame later.
   useLayoutEffect(() => {
-    measure()
     if (!globalThis.ResizeObserver) {
+      const first = requestAnimationFrame(measure)
       globalThis.addEventListener('resize', measure)
-      return () => globalThis.removeEventListener('resize', measure)
+      return () => { cancelAnimationFrame(first); globalThis.removeEventListener('resize', measure) }
     }
     const observer = new ResizeObserver(measure)
     observer.observe(body.current)
