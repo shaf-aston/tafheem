@@ -20,6 +20,7 @@ from backend.routers import (
 from backend.services import ai as ai_service
 from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, speech, startup, syntax
 from backend.services.morphology import get_engine_name
+from backend.services.username import GUEST
 
 # Answers that are the same for everyone and change only when the app does, so
 # a browser or Vercel's edge may keep them for a day. An allow-list, not a
@@ -142,7 +143,7 @@ def create_app() -> FastAPI:
     @app.exception_handler(Exception)
     async def log_crash(request: Request, error: Exception) -> JSONResponse:
         logger.error("%s %s failed for profile %r: %r", request.method, request.url.path,
-                     request.headers.get("x-tafheem-profile", "local"), error)
+                     request.headers.get("x-tafheem-profile", GUEST), error)
         return JSONResponse(status_code=500, content={"detail": "The server hit an error."})
 
     @app.get("/api/health")
