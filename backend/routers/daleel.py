@@ -8,7 +8,6 @@ from fastapi import APIRouter, Query
 from pydantic import StringConstraints
 
 from backend.config import get_settings
-from backend.models.common import Source
 from backend.models.daleel import DaleelBook, DaleelHit, DaleelResponse
 from backend.services import provenance
 from backend.services.daleel import search as daleel_search
@@ -73,7 +72,7 @@ async def find(
                 english=hit.english,
                 match=hit.match,
                 book=hit.book,
-                source=Source(**provenance.of(hit.source)),
+                source=provenance.of(hit.source),
             )
             for hit in hits
         ],

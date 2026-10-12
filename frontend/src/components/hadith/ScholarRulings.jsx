@@ -5,8 +5,8 @@
  * A book that gives only a chapter heading shows that. The hadith is matched to the book's entry by its wording
  * and its narrators, so the group says "possible".
  */
-import ArabicText from './ArabicText'
-import ShowRest from './ShowRest'
+import ArabicText from '../ui/ArabicText'
+import ShowRest from '../ui/ShowRest'
 
 export default function ScholarRulings({ rulings, accent }) {
   if (!rulings.length) return null

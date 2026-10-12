@@ -9,7 +9,7 @@ import { describe, expect, it } from 'vitest'
 
 import { isQuranic, seatSmallAlef } from '../../lib/arabicText'
 import ArabicText from './ArabicText'
-import GlossWord from './GlossWord'
+import GlossWord from '../quran/GlossWord'
 import Tooltip from './Tooltip'
 
 // The text a selection of this markup would copy: every text node, no attributes.

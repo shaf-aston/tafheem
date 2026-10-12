@@ -8,11 +8,11 @@ import { useQuery } from '@tanstack/react-query'
 
 import { narratorQuery } from '../../api'
 
-import BottomSheet from './BottomSheet'
-import CloseButton from './CloseButton'
+import BottomSheet from '../ui/BottomSheet'
+import CloseButton from '../ui/CloseButton'
 import { NarratorError, NarratorFacts, NarratorName } from './NarratorParts'
-import { Skeleton } from './Skeleton'
-import SmallButton from './SmallButton'
+import { Skeleton } from '../ui/Skeleton'
+import SmallButton from '../ui/SmallButton'
 
 export default function NarratorSheet({ id, onClose, onOpenPage }) {
   const { data: who, isPending, isError, error, refetch } = useQuery(narratorQuery(id))

@@ -20,7 +20,7 @@ import { DIFFICULTIES, isRight, printedPageOf, score, wordsOf } from '../lib/mem
 import { LOOK, SHOWN } from '../lib/reciteColors'
 
 import ArabicText from './ui/ArabicText'
-import AyahNumber from './ui/AyahNumber'
+import AyahNumber from './memorise/AyahNumber'
 import ReciteStrip from './memorise/ReciteStrip'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'

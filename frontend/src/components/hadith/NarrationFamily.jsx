@@ -12,12 +12,12 @@ import { useQuery } from '@tanstack/react-query'
 import { narrationFamilyQuery } from '../../api'
 import { familyTree } from '../../lib/familyTree'
 
-import ArabicText from './ArabicText'
-import Disclosure from './Disclosure'
+import ArabicText from '../ui/ArabicText'
+import Disclosure from '../ui/Disclosure'
 import FamilyPlaces from './FamilyPlaces'
 import FamilyWords from './FamilyWords'
 import PartLetter from './PartLetter'
-import Segmented from './Segmented'
+import Segmented from '../ui/Segmented'
 
 const VIEWS = [{ id: 'rows', label: 'Rows' }, { id: 'tree', label: 'Tree' }]
 

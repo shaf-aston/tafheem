@@ -12,14 +12,10 @@ same pass rather than worked out again later.
 from __future__ import annotations
 
 import sqlite3
-from pathlib import Path
 from typing import Iterable
 
+from backend.services import quran_corpus, quran_meanings
 from backend.services.daleel.model import Passage
-
-_DATA_DIR = Path(__file__).resolve().parents[3] / "data"
-_CORPUS_DB = _DATA_DIR / "quran" / "corpus.db"
-_MEANINGS_DB = _DATA_DIR / "quran" / "meanings.db"
 
 
 class QuranSource:
@@ -28,12 +24,12 @@ class QuranSource:
     id = "corpus"
 
     def passages(self) -> Iterable[Passage]:
-        if not _CORPUS_DB.exists():
+        if not quran_corpus.DATABASE.exists():
             return
 
         english = _english_by_ayah()
 
-        conn = sqlite3.connect(f"file:{_CORPUS_DB}?mode=ro", uri=True)
+        conn = sqlite3.connect(f"file:{quran_corpus.DATABASE}?mode=ro", uri=True)
         try:
             rows = conn.execute(
                 "SELECT surah, ayah, word, form, root FROM segment "
@@ -90,10 +86,10 @@ def _english_by_ayah() -> dict[tuple[int, int], str]:
     Read in one go rather than per ayah: it is 77,429 short strings, and one
     query beats 6,236 of them by enough to matter on every rebuild.
     """
-    if not _MEANINGS_DB.exists():
+    if not quran_meanings.DATABASE.exists():
         return {}
 
-    conn = sqlite3.connect(f"file:{_MEANINGS_DB}?mode=ro", uri=True)
+    conn = sqlite3.connect(f"file:{quran_meanings.DATABASE}?mode=ro", uri=True)
     try:
         out: dict[tuple[int, int], list[str]] = {}
         for surah, ayah, en in conn.execute(

@@ -3,7 +3,7 @@
  * Native <dialog>, as in SettingsPanel: Esc, backdrop and focus trap come free.
  */
 import { useModal } from '../../lib/useModal'
-import ArabicText from './ArabicText'
+import ArabicText from '../ui/ArabicText'
 
 export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, children }) {
   const dialog = useModal(open)

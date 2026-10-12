@@ -1,12 +1,12 @@
 /**
- * The pop-up for chains: one hadith's chain drawn (ui/ChainDrawing), or the
- * guide (ui/TermGuide) to the words between its narrators and then the terms of the science. Opened on the
+ * The pop-up for chains: one hadith's chain drawn (hadith/ChainDrawing), or the
+ * guide (hadith/TermGuide) to the words between its narrators and then the terms of the science. Opened on the
  * drawing from a hadith card, where a link turns it to the guide and back;
  * opened from the reading options with no hadith, it is the guide alone.
  * Where the chain has weak narrators (`weak`, from lib/weak) their boxes are
- * marked in the drawing and a ranked list (ui/WeakPoints) follows it; doubtful
+ * marked in the drawing and a ranked list (hadith/WeakPoints) follows it; doubtful
  * links (`linkPoints`) are marked on their rungs and listed after the narrators. What classical books say of
- * the hadith (`rulings`) comes last (ui/ScholarRulings). A hadith with no chain to draw (`chainless`) gets
+ * the hadith (`rulings`) comes last (hadith/ScholarRulings). A hadith with no chain to draw (`chainless`) gets
  * that alone.
  */
 import { useState } from 'react'
@@ -15,9 +15,9 @@ import { useQuery } from '@tanstack/react-query'
 import { usulGuideQuery } from '../../api'
 import { CHAIN } from '../../lib/hadithWords'
 
-import BottomSheet from './BottomSheet'
+import BottomSheet from '../ui/BottomSheet'
 import ChainDrawing from './ChainDrawing'
-import CloseButton from './CloseButton'
+import CloseButton from '../ui/CloseButton'
 import ScholarRulings from './ScholarRulings'
 import TermGuide from './TermGuide'
 import WeakPoints from './WeakPoints'

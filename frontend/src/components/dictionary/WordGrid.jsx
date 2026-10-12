@@ -25,9 +25,9 @@ import { useRef, useState } from 'react'
 
 import { plainPronunciation } from '../../lib/pronounce'
 
-import ArabicText from './ArabicText'
-import Pronunciation from './Pronunciation'
-import RootActions from './RootActions'
+import ArabicText from '../ui/ArabicText'
+import Pronunciation from '../ui/Pronunciation'
+import RootActions from '../ui/RootActions'
 
 /** The sense that answered the search, and the rest of them. */
 function splitSenses(definitions, query) {

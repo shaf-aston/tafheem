@@ -16,8 +16,8 @@
  */
 import { Fragment } from 'react'
 
-import ArabicText from './ArabicText'
-import NarratorLink from './NarratorLink'
+import ArabicText from '../ui/ArabicText'
+import NarratorLink from '../ui/NarratorLink'
 
 /** A rung: a short line with the word that passed the hadith down it. `marks` are the letters of its doubtful links. */
 function Rung({ link, marks = [], grow = false }) {

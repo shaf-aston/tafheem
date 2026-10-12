@@ -18,7 +18,7 @@
  */
 import { useMemo, useState } from 'react'
 
-import ArabicText from './ArabicText'
+import ArabicText from '../ui/ArabicText'
 import PbsChart from './PbsChart'
 import { useModal } from '../../lib/useModal'
 import { CHARTS } from '../../lib/pbsData'

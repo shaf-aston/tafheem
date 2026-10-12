@@ -76,8 +76,8 @@
 }
 
 
-/* The Quran tab's faint seal (ui/QuranSeal). Behind the page, so search
-   results sit over it: clicks pass through, and ui/QuranSeal lights it when the
+/* The Quran tab's faint seal (quran/QuranSeal). Behind the page, so search
+   results sit over it: clicks pass through, and quran/QuranSeal lights it when the
    pointer is over it. Fixed, so after a search it can glide to the middle and
    grow to cover the whole page; every property it moves by is one it animates. */
 .quran-seal {

@@ -21,7 +21,7 @@ import { Fragment } from 'react'
 import { plainPronunciation } from '../../lib/pronounce'
 import { synonymGloss } from '../../lib/synonymGloss'
 
-import ArabicText from './ArabicText'
+import ArabicText from '../ui/ArabicText'
 
 /** Consecutive senses whose synonym lists are identical, in the entry's order. */
 function band(definitions, synonyms = []) {

@@ -267,7 +267,7 @@ it is the term that is wrong.
   address bar; `lib/session.js` the only reader and writer of the saved path, with its knobs
   (shelf life, size caps, record version) in `frontend/src/session.json`. A place is a tab
   plus what it was opened with, never a result, so a reload refetches and cannot show stale.
-- `frontend/src/components/`: each tab's main screen; its own parts in `components/<tab>/`; parts two tabs share at the root and in `ui/`.
+- `frontend/src/components/`: each tab's main screen; its own parts in `components/<tab>/`; parts two tabs share at the root; the app frame (tab bar, map, settings) in `shell/`; shared building blocks only in `ui/`.
 - `frontend/src/lib/`, client helpers (errors, export, history, colour, quiz generation).
   The vocabularies shared with the backend live here as one file each, so a name is written
   down once rather than retyped: `roleColors.js` (role → colour token),
@@ -420,13 +420,13 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
 - Weak points on a chain: `scripts/build_usul.py` levels each narrator's grade in `rijal.db` against Ibn Hajar's
   twelve (`services/hadith/usul/level.py`, words in `data/usul/usul.json`) and writes the small, git-tracked `data/usul/usul.db`.
   `services/hadith/usul/store.py` reads it; `GET /api/rijal/chains/...` carries `notes` and `scale`; `lib/weak.js` ranks them and
-  `ui/ChainDrawing` and `ui/WeakPoints` show them. A grade no term reads is listed in the gap table, never guessed.
+  `hadith/ChainDrawing` and `hadith/WeakPoints` show them. A grade no term reads is listed in the gap table, never guessed.
 - What scholars said of a hadith: the same build reads three ruling books (Ibn Shahin, Ibn Abi Hatim's 'Ilal, Ibn al-Jawzi's
   Mawdu'at). `services/hadith/usul/ruling.py` cuts out the scholar's own sentence, `services/hadith/usul/match.py` finds which of our hadith
   it is about (rare shared word 3-grams, then a shared narrator), knobs in `usul.json` `rulings.match`. The `ruling` table is
   quoted with book and page and never inferred; what no sentence or hadith fits goes to the gap table.
   `GET /api/rijal/chains/...` carries `rulings`; `GET /api/usul/terms[/{kind}]` (`routers/hadith.py`) feeds the Hadith tab's
-  Scholars list (`ScholarTerms`); `ui/ScholarRulings` quotes them under "Possible".
+  Scholars list (`ScholarTerms`); `hadith/ScholarRulings` quotes them under "Possible".
 - `backend/services/sarf/`: the pure core of morphology. `word.py` holds a word as letters
   that know their job, and names the alphabet once; `ilal.py` the rules. `conjugation.py`
   is the only caller. Every label, column and template is in `data/sarf/`, never in code.
@@ -457,7 +457,7 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
   `services/nahw_notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as
   `{{role|text}}`; the Notes view in Nahw hides them or turns them into flashcards
   (`lib/notes.js`), so the stored note stays the reference. Tamreen questions link to it.
-- `frontend/src/components/`: each tab's main screen; its own parts in `components/<tab>/`; parts two tabs share at the root and in `ui/`.
+- `frontend/src/components/`: each tab's main screen; its own parts in `components/<tab>/`; parts two tabs share at the root; the app frame (tab bar, map, settings) in `shell/`; shared building blocks only in `ui/`.
   `frontend/src/lib/`: helpers, and `journey.js` for where the reader has been.
   `frontend/src/components/Backdrop.jsx`: the drifting-lights canvas behind every tab, tinted by the tab colour; it exists so the dark page has depth, and it stops when Animations is off. Maths in `lib/bokeh.js`, knobs in theme.json `lights` and `marks` (the faint drifting letters under the lights). The kit page (`/app/kit`, hidden from every menu) is where every element and token is seen.
 - Styles live in `frontend/src/styles/`, one file per job (base, layers, motion, text, components, ...); `index.css` there imports them in cascade order.

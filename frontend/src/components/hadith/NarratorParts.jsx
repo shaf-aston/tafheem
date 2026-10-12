@@ -8,10 +8,10 @@ import { toneOf } from '../../lib/rijal'
 
 import { errorStatus } from '../../lib/apiError'
 
-import ArabicText from './ArabicText'
-import ErrorAlert from './ErrorAlert'
-import SourceBadge from './SourceBadge'
-import StatusNote from './StatusNote'
+import ArabicText from '../ui/ArabicText'
+import ErrorAlert from '../ui/ErrorAlert'
+import SourceBadge from '../ui/SourceBadge'
+import StatusNote from '../ui/StatusNote'
 
 const { site: SITE, generations: GENERATIONS } = HADITH.narrator
 

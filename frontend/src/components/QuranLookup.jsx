@@ -19,7 +19,7 @@ import { useArrival, useArrivalEffect } from '../lib/useArrival'
 import { useHistory } from '../lib/useHistory'
 import { isArabic } from '../lib/arabicText'
 
-import QuranSeal from './ui/QuranSeal'
+import QuranSeal from './quran/QuranSeal'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import RootActions from './ui/RootActions'

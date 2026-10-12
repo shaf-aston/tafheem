@@ -6,8 +6,8 @@
  */
 import { themeVariable } from '../../theme'
 
-import ArabicText from './ArabicText'
-import Disclosure from './Disclosure'
+import ArabicText from '../ui/ArabicText'
+import Disclosure from '../ui/Disclosure'
 
 export default function TermGuide({ groups }) {
   return (

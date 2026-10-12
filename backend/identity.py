@@ -19,12 +19,15 @@ from backend.services import progress_store
 from backend.services.username import GUEST, clean_name
 
 
-def typed_name(x_tafheem_profile: str | None = Header(None)) -> str:
+PROFILE_HEADER = "X-Tafheem-Profile"
+
+
+def typed_name(sent: str | None = Header(None, alias=PROFILE_HEADER)) -> str:
     """The cleaned name from the header, or the guest record when there is none."""
-    if x_tafheem_profile is None:
+    if sent is None:
         return GUEST
     try:
-        return clean_name(unquote(x_tafheem_profile))
+        return clean_name(unquote(sent))
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from None
 

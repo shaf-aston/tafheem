@@ -28,12 +28,12 @@ import RecentRow from './ui/RecentRow'
 import RootActions from './ui/RootActions'
 import SearchBox from './ui/SearchBox'
 import SectionHeader from './ui/SectionHeader'
-import SenseBands from './ui/SenseBands'
+import SenseBands from './dictionary/SenseBands'
 import VerbFormTag from './ui/VerbFormTag'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import StatusNote, { CorrectedNote, NoteWord } from './ui/StatusNote'
 import SourceBadge from './ui/SourceBadge'
-import WordGrid from './ui/WordGrid'
+import WordGrid from './dictionary/WordGrid'
 import Code from './ui/Code'
 
 // Tailwind needs the literal class names present in source to keep them in the
@@ -260,7 +260,7 @@ function Results({ data, accent, onGo, onLookup }) {
           answer is one entry read in full. An English word asks which words
           carry that meaning, and the answer is the candidates side by side; the
           same full entries were a page and a half of scrolling to compare two
-          of them. See ui/WordGrid.jsx. */}
+          of them. See dictionary/WordGrid.jsx. */}
       {data.lang === 'en' ? (
         <WordGrid results={data.results} query={data.query} accent={accent} onGo={onGo} />
       ) : (

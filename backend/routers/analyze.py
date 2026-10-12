@@ -12,7 +12,6 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 
 from backend.models.analyze import AnalyzeRequest, AnalyzeResponse, WordAnalysis
 
-from backend.models.common import Source
 from backend.services import iraab
 from backend.services.ratelimit import PerMinute, visitor
 from backend.utils import arabic_sentence
@@ -36,6 +35,6 @@ async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
         sentence=sentence,
         words=[WordAnalysis.from_raw(w) for w in read["words"]],
         summary=read["summary"],
-        source=Source(**read["source"]),
+        source=read["source"],
         tree=read["tree"],
     )

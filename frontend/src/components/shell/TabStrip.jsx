@@ -2,7 +2,7 @@
  * The row of tabs under the header. Draws the list it is given, decides nothing:
  * which tab is active and what switching does belong to the caller.
  */
-import ArabicText from './ArabicText'
+import ArabicText from '../ui/ArabicText'
 
 // The first `fixed` tabs always show; the rest wait for md. The open tab always shows.
 const tierClass = (i, fixed) => (i < fixed ? '' : 'hidden md:block')
