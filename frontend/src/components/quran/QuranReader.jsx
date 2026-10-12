@@ -48,6 +48,7 @@ import ReadingOptions from '../ui/ReadingOptions'
 import CloseButton from '../ui/CloseButton'
 import ErrorAlert from '../ui/ErrorAlert'
 import Segmented from '../ui/Segmented'
+import Stepper from '../ui/Stepper'
 import { Skeleton } from '../ui/Skeleton'
 import SourceBadge from '../ui/SourceBadge'
 
@@ -193,7 +194,9 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   return (
     <div {...swipe} style={{ '--c': accent }} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-clip">
       <header className="flex items-center gap-2 sm:gap-3 flex-wrap p-3 sm:p-4 border-b border-[var(--border)]">
-        <Stepper surah={surah} onChange={changeSurah} />
+        <Stepper label="surah"
+          onPrev={surah > FIRST_SURAH ? () => changeSurah(surah - 1) : null}
+          onNext={surah < LAST_SURAH ? () => changeSurah(surah + 1) : null} />
         {data ? (
           <ArabicText size="sm" className="text-[var(--c)]">{data.name_ar}</ArabicText>
         ) : (
@@ -501,20 +504,5 @@ function AyahRail({ count, here, open, onPick }) {
         })}
       </div>
     </nav>
-  )
-}
-
-/** Back and on a surah. Its name is the picker's, just above, so not said twice. */
-function Stepper({ surah, onChange }) {
-  const arrow = `w-7 h-7 rounded-full border border-[var(--border)] text-[var(--text-dim)]
-    hover:text-[var(--text)] hover:border-[var(--c)] disabled:opacity-30
-    disabled:hover:border-[var(--border)] transition-colors shrink-0`
-  return (
-    <div className="flex items-center gap-2">
-      <button type="button" className={arrow} onClick={() => onChange(surah - 1)}
-        disabled={surah <= FIRST_SURAH} aria-label="Previous surah">‹</button>
-      <button type="button" className={arrow} onClick={() => onChange(surah + 1)}
-        disabled={surah >= LAST_SURAH} aria-label="Next surah">›</button>
-    </div>
   )
 }

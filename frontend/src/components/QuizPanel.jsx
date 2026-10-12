@@ -23,7 +23,7 @@ import QuizInsights from './quiz/QuizInsights'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import SectionHeader from './ui/SectionHeader'
-import Popover from './ui/Popover'
+import SettingsPill from './ui/SettingsPill'
 import FeedbackButton from './ui/FeedbackButton'
 import Segmented from './ui/Segmented'
 import { Skeleton } from './ui/Skeleton'
@@ -404,36 +404,32 @@ export default function QuizPanel({ accent, onProgress }) {
         {/* The two settings chosen once and left, folded behind one pill that
             says what they are. All four controls on the line needed 1,170px of
             a 1,120px column, so English wrapped on every screen. */}
-        <Popover
+        <SettingsPill
           label={pillWords.join(' · ')}
           title={`${say('Meaning in')}, ${say('Direction')}`}
           align={phone ? 'start' : 'end'}
         >
-          {/* A grid with each Segmented's own wrapper dissolved, so the two
-              captions share one column and the two rows start level. */}
-          <div className="grid grid-cols-[auto_auto] items-center gap-x-2 gap-y-2.5 [&>div]:contents">
-            {phone && scopeControls}
-            <Segmented
-              captioned
-              label={say('Meaning in')}
-              options={Object.entries(MEANINGS).map(([id, meaning]) => ({ id, label: meaning.label }))}
-              value={language}
-              accent={accent}
-              onChange={(id) => startRound({ language: id })}
-            />
-            <Segmented
-              captioned
-              label={say('Direction')}
-              // AR → UR stays as it is in every language: it is a pair of codes, not a
-              // sentence, and an arrow glyph flips its own direction inside
-              // right-to-left text, which would make the label say the opposite.
-              options={directions.map((id) => ({ id, label: DIRECTIONS[id].short }))}
-              value={direction}
-              accent={accent}
-              onChange={(id) => startRound({ direction: id })}
-            />
-          </div>
-        </Popover>
+          {phone && scopeControls}
+          <Segmented
+            captioned
+            label={say('Meaning in')}
+            options={Object.entries(MEANINGS).map(([id, meaning]) => ({ id, label: meaning.label }))}
+            value={language}
+            accent={accent}
+            onChange={(id) => startRound({ language: id })}
+          />
+          <Segmented
+            captioned
+            label={say('Direction')}
+            // AR → UR stays as it is in every language: it is a pair of codes, not a
+            // sentence, and an arrow glyph flips its own direction inside
+            // right-to-left text, which would make the label say the opposite.
+            options={directions.map((id) => ({ id, label: DIRECTIONS[id].short }))}
+            value={direction}
+            accent={accent}
+            onChange={(id) => startRound({ direction: id })}
+          />
+        </SettingsPill>
       </div>
 
       {words.isError && (
