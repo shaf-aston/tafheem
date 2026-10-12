@@ -21,7 +21,7 @@ from backend.services.nahw_book import (
     role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, SUKUN, five_verb_nun, has_tanween, letters, merged_prefix, own_letters, paused, stilled,
+    CASE_NAME, SUKUN, build_nun, five_verb_nun, has_tanween, letters, merged_prefix, own_letters, paused, stilled,
     typed_case, vowel_agreement)
 
 # Every role this module can name, with its card colour key and bracket tone
@@ -144,8 +144,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "",
                      facts.puts_in_jarr(token, s), _lam_mood(token, before[i], i == 0))
              for i, (role, token) in enumerate(zip(named, bases))]
-    _followers_take_their_case(named, cases, bases, tokens)
-    _joined_verbs_take_their_mood(named, cases, bases, tokens)
+    _followers_take_their_ending(named, cases, bases, tokens)
     # what each word shows: the governor and follower the tree gave it, and its case
     shown = [{answers[token["id"]]["governor"], answers[token["id"]]["follows"], case}
              for token, case in zip(bases, cases)]
@@ -266,35 +265,23 @@ def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
     return at[head["id"]] if head else None
 
 
-def _followers_take_their_case(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
-    """A صفة، معطوف، توكيد or بدل with no vowel typed wears the case of the word it
-    follows (اليدُ العليا); in order, so a chain follows too. Its kasra on ـات is also
-    nasb, so it wears the nasb of the word it follows (الطالباتِ المجتهداتِ), and a diptote's
-    fatha is also jarr (إِلَى إِبْرَاهِيمَ وَإِسْمَاعِيلَ)."""
+def _followers_take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
+    """In order, so a chain follows too. A صفة، معطوف، توكيد or بدل with no vowel typed wears the case of
+    the word it follows (اليدُ العليا); its kasra on ـات is also nasb (الطالباتِ المجتهداتِ), and a
+    diptote's fatha also jarr (إِلَى إِبْرَاهِيمَ وَإِسْمَاعِيلَ). A present verb whose ending shows nothing, hung
+    on a joining particle (atf `joins_mood`) that hangs on a verb in nasb or jazm, is in that mood too
+    (أَنْ تَبَرُّوا وَتَتَّقُوا); any other is in raf', the mood a present verb has with no governor."""
     for i, (role, token) in enumerate(zip(named, bases)):
-        if role not in FOLLOWERS:
-            continue
-        head = _followed(token, bases, tokens)
-        if head is None or cases[head] == "mabni":
-            continue
-        if cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token)) \
-                or (cases[head] == "jarr" and facts.shows_jarr(token)):
+        head = _followed(token, bases, tokens) if role in FOLLOWERS else None
+        if head is not None and cases[head] != "mabni" and (cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token))
+                                                             or (cases[head] == "jarr" and facts.shows_jarr(token))):
             cases[i] = cases[head]
-
-
-def _joined_verbs_take_their_mood(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
-    """A present verb whose ending shows nothing, hung on a joining particle (atf `joins_mood`)
-    that hangs on a present verb in nasb or jazm, is in that mood too (أَنْ تَبَرُّوا وَتَتَّقُوا،
-    إِنْ تُبْدُوا أَوْ تُخْفُوهُ); in order, so a chain follows too. Any other is in raf', the mood
-    a present verb has with no governor."""
     by_id = {t["id"]: t for t in tokens}
-    for i, role in enumerate(named):
-        if role != NAMED.fil or cases[i] is not None:
-            continue
-        joiner = by_id.get(bases[i]["head"])
-        joined = joiner and joiner["pos"] == "PRT" and is_one(joiner["lemma"], "atf", "joins_mood")
-        head = _followed(bases[i], bases, tokens) if joined else None
-        cases[i] = cases[head] if head is not None and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm") else "raf'"
+    for i, (role, token) in enumerate(zip(named, bases)):  # the verbs after every noun, as they were two passes
+        if role == NAMED.fil and cases[i] is None:
+            joiner = by_id.get(token["head"])
+            head = _followed(token, bases, tokens) if joiner and joiner["pos"] == "PRT" and is_one(joiner["lemma"], "atf", "joins_mood") else None
+            cases[i] = cases[head] if head is not None and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm") else "raf'"
 
 
 def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None = None) -> str | None:
@@ -344,8 +331,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     A noun's case is the vowel typed on it, else its role's own. A kasra on ـات is nasb when
     its role takes nasb, or it has no role and nothing puts it in jarr, shown by the kasra (رأيت المعلماتِ)."""
     if role == NAMED.fil:
-        present = token["base"][:1] in PRESENT_PREFIX and token.get("asp") == "i"
-        return _mood(paused(token["typed"], after), token, before, lam) if present else "mabni"
+        return "mabni" if is_mabni("verb", token.get("asp", "na"), token["base"]) or (not token.get("stuck_on") and build_nun(token["typed"])) else _mood(paused(token["typed"], after), token, before, lam)
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
     # يَا وَلَدُ، يا أيها: a single called noun is built on the damma (in the place of nasb), as is اللهمّ
@@ -354,7 +340,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if is_mabni(token) or facts.is_object_pronoun(token):
+    if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token):
         return "mabni"
     # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built
     marked = letters(token["typed"])
@@ -387,4 +373,4 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
     if stilled(typed, token["base"], stuck_on, token.get("weak_last")):
         return "jazm"
     shown = typed_case(typed, stuck_on)
-    return CASE_NAME[shown] if shown in ("u", "a") else lam  # None: nothing shows (_joined_verbs_take_their_mood)
+    return CASE_NAME[shown] if shown in ("u", "a") else lam  # None: nothing shows (_followers_take_their_ending)

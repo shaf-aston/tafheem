@@ -49,12 +49,12 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     left unnamed keeps the no-role dash; a name the teacher took back shows why."""
     entries = rule_engine.cards(tags)
     if len(roles) == len(entries):
-        for entry, found in zip(entries, roles):
+        for i, (entry, found) in enumerate(zip(entries, roles)):
             if found.get("gap"):
                 entry.update(role=rule_engine.UNNAMED, role_key=None, case=found["case"], sign=None, gap=True,
                              reason=found["gap"]["ar"], notes=found["gap"]["en"])
             elif found["role"]:
-                _named(entry, found)
+                _named(entry, found, i + 1 < len(roles) and roles[i + 1]["role"] == NAMED.mudaf_ilayh)
             elif found["case"] and entry["type"] not in ("fi'l", "harf", "damir", "punc"):
                 entry["case"] = found["case"]  # no name yet: the vowel the reader typed, not CAMeL's guess
     words = signs.settle(entries)
@@ -82,7 +82,7 @@ def _pieces_said(cards: list[dict], roles: list[dict]) -> None:
                 card["reason"] = f"{line}، {card['reason']}"
 
 
-def _named(entry: dict, found: dict) -> None:
+def _named(entry: dict, found: dict, annexed: bool) -> None:
     """One card takes the tree's name; the case is naming's (syntax.naming._ending)."""
     renamed = found["role"] != entry.get("role")
     entry.update(role=found["role"], book=found.get("book"), role_key=role_key(found["role"]),
@@ -111,18 +111,18 @@ def _named(entry: dict, found: dict) -> None:
         return
     if renamed:
         entry["reason"] = reason(found["role"])  # the reason must explain the new name
-    if not _stands_for_own(entry, found) and moved:
+    if not _stands_for_own(entry, found, annexed) and moved:
         entry["case"] = found["case"]  # signs.settle writes the sign for it
     if entry["case"] == "mabni" and entry.get("type") != "harf":
         entry["reason"] = reason(found["role"], mabni=True)  # الذي، هذا: in the place of a case
 
 
-def _stands_for_own(entry: dict, found: dict) -> bool:
-    """The typed vowel is the sign of the role's own case for this kind of word (a sound
-    feminine plural's kasra in nasb, a diptote's fatha in jarr), so the role's case stands."""
+def _stands_for_own(entry: dict, found: dict, annexed: bool) -> bool:
+    """The typed vowel is the sign of the role's own case for this kind of word (a sound plural's kasra in nasb, a diptote's fatha in jarr): mirrors
+    facts.shows_jarr / shows_nasb_by_kasra on the card's reading, so the role's case stands."""
     own = case_of(found["role"])
     typed = next((letter for letter, name in CASE_NAME.items() if name == found["case"]), None)
-    stands = teacher_rules()["signs"]["stands_for"].get(signs.kind_of(entry["camel"]), {})
+    stands = teacher_rules()["signs"]["stands_for"].get(signs.kind_of(entry["camel"], annexed), {})
     if own and stands.get(typed) == own:
         entry["case"] = CASE_NAME[own]
         return True

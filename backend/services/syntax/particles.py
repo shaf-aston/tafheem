@@ -195,7 +195,7 @@ def _asks_nominal(token: dict, s: facts.Sentence) -> bool:
     after = _next(token, s)
     if token["pos"] == "PRT" or s.hijazi or not after or after["pos"] not in ("NOM", "PROP") or facts.is_verb(after) \
             or (facts.is_zarf(after, s) and facts.typed_case_of(after) != "u") \
-            or not (is_mabni(after) or facts.typed_case_of(after) in (None, "u")):
+            or not (is_mabni(after.get("pos_camel", "")) or facts.typed_case_of(after) in (None, "u")):
         return False
     later = [t for t in s.tokens if t["id"] > token["id"] and not _attached(t)]
     return not any(facts.is_verb(t) or facts.is_preposition(t) or (t["pos"] == "PRT" and is_one(t["lemma"], "hasr"))

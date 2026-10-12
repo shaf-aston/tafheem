@@ -19,7 +19,7 @@ from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services import verb_reader
-from backend.services.nahw_book import is_one, six_noun_case
+from backend.services.nahw_book import is_mabni, is_one, six_noun_case
 from backend.services.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -265,9 +265,8 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
     lemma = strip_diacritics(lex)
 
     cas = a.get("cas", "na") or "na"
-    # A past or imperative verb is mabni: its last vowel is not a case.
-    mabni = pos == "verb" and a.get("asp") in ("p", "c")
-    case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if mabni else CASE_NAME.get(typed_case(word)))
+    # A built word (a past verb, a pronoun) has no case: its last vowel is not one.
+    case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if is_mabni(pos, a.get("asp"), base_of(word, a.get("atbtok"))) else CASE_NAME.get(typed_case(word)))
 
     return {
         "word": word,

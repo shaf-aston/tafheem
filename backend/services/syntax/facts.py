@@ -12,9 +12,9 @@ from __future__ import annotations
 from typing import Callable
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.nahw_book import book_map, book_words, is_mabni, is_object_stem, is_one, is_plain_noun, six_noun_case
+from backend.services.nahw_book import book_map, book_words, is_diptote, is_fem_plural, is_mabni, is_object_stem, is_one, is_plain_noun, six_noun_case
 from backend.services.harakat import (
-    CAMEL_CASE, FEM_PLURAL_END, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, letters, own_letters, past_passive_shape,
+    CAMEL_CASE, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, letters, own_letters, past_passive_shape,
     typed_case, typed_passive)
 
 # a root letter is what is left once the letters that come and go are removed
@@ -179,22 +179,15 @@ def typed_case_of(token: dict) -> str | None:
 
 
 def shows_nasb_by_kasra(token: dict) -> bool:
-    """A sound feminine plural (ـات) whose typed kasra is also its nasb (رأيت المعلماتِ، آتَيْنَاهُمْ آيَاتِنَا:
-    the ـنا is a pronoun's, so the plural's own letters are read)."""
-    own = own_letters(token.get("typed") or "", 0, token.get("stuck_on", 0))
-    return typed_case_of(token) == "i" and bare_letters(own).endswith(FEM_PLURAL_END)
+    """A sound feminine plural (ـات) whose typed kasra is also its nasb (رأيت المعلماتِ، آتَيْنَاهُمْ آيَاتِنَا)."""
+    return typed_case_of(token) == "i" and is_fem_plural(token["base"], token.get("num", "na"))
 
 
 def shows_jarr(token: dict) -> bool:
-    """The typed ending can be jarr: a kasra, or the fatha of a diptote, which is jarr with no
-    ال and no مضاف إليه after it (طَرِيقَ جَهَنَّمَ، بَنِي إِسْرَائِيلَ), so a fatha with no tanween there.
-    A number or measure is never a diptote: the fatha of ثَلَاثَةَ عَشَرَ is its build."""
-    typed = token.get("typed") or ""
-    if typed_case_of(token) == "i":
-        return True
-    return (typed_case_of(token) == "a" and not has_tanween(typed) and not token.get("stuck_on")
-            and not bare_letters(typed).startswith("ال") and not token.get("mudaf") and not is_mabni(token)
-            and not is_one(token["lemma"], "tamyeez_head"))
+    """The typed ending can be jarr: a kasra, or a diptote's fatha (طَرِيقَ جَهَنَّمَ، بَنِي إِسْرَائِيلَ)."""
+    shown = typed_case_of(token)
+    return shown == "i" or shown == "a" and is_diptote(token.get("typed") or "", token.get("pos_camel", ""), token["lemma"],
+                                         attached=bool(token.get("stuck_on")), annexed=bool(token.get("mudaf")))
 
 
 def shown_cases(token: dict) -> set[str]:
@@ -315,7 +308,7 @@ def free_clashing_modifiers(tokens: list[dict]) -> None:
         if (verb and is_verb(verb) and token["rel"] == "MOD" and token["pos"] in ("NOM", "PROP")
                 and token["id"] > head["id"] and head["rel"] in ("SBJ", "TPC") and not is_verb(token)
                 and typed_case_of(head) == "u" and typed_case_of(token) == "a" and not indefinite_nasb(token)
-                and not is_mabni(token) and not is_zarf(token, s)):
+                and not is_mabni(token.get("pos_camel", "")) and not is_zarf(token, s)):
             token["head"], token["rel"] = verb["id"], "OBJ"
 
 
@@ -683,7 +676,7 @@ def _verb_place(token: dict, s: Sentence) -> str:
         asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
         if asked and before and not any(t["rel"] == "OBJ" for t in siblings):
             return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
-        if before and rel in ("SBJ", "TPC") and typed == "a" and not is_mabni(token):
+        if before and rel in ("SBJ", "TPC") and typed == "a" and not is_mabni(token.get("pos_camel", "")):
             return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object (a built word's is no case: أنتَ)
         if before and rel in ("SBJ", "TPC"):
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence

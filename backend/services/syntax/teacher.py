@@ -55,14 +55,11 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
     wanted nasb, typed damma); "*" frees all of them."""
     bare = bare_letters(token.get("typed") or "")
     free = set()
-    # a pronoun, pointer, relative or question word keeps one ending whatever its job
-    if is_mabni(token) or is_object_pronoun(token):
+    if is_mabni(token.get("pos_camel", "")) or is_object_pronoun(token):
         free.add("*")
     # the noun of لا is raf' when the لا works like ليس (لا رجلٌ في الدار), so its ending is open
     if is_one(by_id.get(token["head"], {}).get("lemma", ""), "la_jins"):
         free |= {"au", "ai"}
-    # a sound feminine plural takes kasra for nasb too (رأيت المعلماتِ), and a
-    # diptote takes fatha for jarr (مررت بأحمدَ): both look like a clash and are not
     if shows_nasb_by_kasra(token):
         free.add("ai")
     mudaf_ilayh = any(roles[k] == NAMED.mudaf_ilayh for k in _kid_indices(token, bases))
