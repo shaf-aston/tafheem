@@ -29,9 +29,12 @@ export default function QuizBoard({
   return (
     <>
       {/* Three columns of one height: the question, how the round is going, and
-          every answer so far on the far right. Stacked on phones. The answers
-          move under the quiz as a row once there are too many for the column. */}
-      <div className={`grid gap-4 ${railSide ? 'lg:grid-cols-[minmax(0,1fr)_17rem_auto]' : 'lg:grid-cols-[minmax(0,1fr)_17rem]'}`}>
+          every answer so far on the far right. Stacked on phones, in one column
+          that cannot outgrow the page: left to size itself, a wide ayah or
+          correction under an answer stretched the card past the screen edge.
+          The answers move under the quiz as a row once there are too many for
+          the column. */}
+      <div className={`grid grid-cols-1 gap-4 ${railSide ? 'lg:grid-cols-[minmax(0,1fr)_17rem_auto]' : 'lg:grid-cols-[minmax(0,1fr)_17rem]'}`}>
         {shown ? (
           <QuestionCard
             key={shown.answerId}
@@ -170,7 +173,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
             </p>
           )}
         </div>
-        <div className="flex items-center gap-3 ms-auto">
+        <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-2 ms-auto max-w-full">
           <AutoAdvanceToggle value={autoNext} onChange={setAutoNext} accent={accent} say={say} />
           {answered && (
             <button
