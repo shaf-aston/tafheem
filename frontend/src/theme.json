@@ -88,7 +88,7 @@
     "glow": "10px"
   },
   "lights": {
-    "_comment": "The lantern backdrop: soft out-of-focus lights drifting slowly on a dark warm ground, behind every tab. count is how many lights, size-min-px and size-max-px how wide the smallest and largest are, speed how far one drifts per frame at motion.scale 1 (so the Animations setting slows it, and 0 stops it), alpha how bright a light is at its middle. tint is the share of lights that wear the tab's own colour instead of one of the warm lights, so the tab changes the room without painting it. Kept faint on purpose: the words on top are the point, and lights that compete with them are a distraction rather than a mood. ground-top and ground-bottom are the dark the lights float on. colors is the warm lights, comma separated, that the rest of the lights are drawn from.",
+    "_comment": "The lantern backdrop: soft out-of-focus lights drifting slowly on a dark warm ground, behind every tab. count is how many lights, size-min-px and size-max-px how wide the smallest and largest are, speed how far one drifts per frame at motion.scale 1 (so the Animations setting slows it, and 0 stops it), alpha how bright a light is at its middle. tint is the share of lights that wear the tab's own colour instead of one of the warm lights, so the tab changes the room without painting it. Kept faint on purpose: the words on top are the point, and lights that compete with them are a distraction rather than a mood. ground-top and ground-bottom are the dark the lights float on. colors is the warm lights, comma separated, that the rest of the lights are drawn from. blend is how a light meets the ground: lighter adds glow to a dark ground, multiply stains a light one.",
     "count": 34,
     "size-min-px": 30,
     "size-max-px": 110,
@@ -97,6 +97,7 @@
     "tint": 0.25,
     "ground-top": "#120f0d",
     "ground-bottom": "#0c0a09",
+    "blend": "lighter",
     "colors": "#e9b85a,#c0563a,#6b8fb8,#8a6b3a"
   },
   "marks": {
@@ -128,7 +129,7 @@
     "map-water": "#0f2c38"
   },
   "cursor-light": {
-    "_comment": "The cursor light: one faint circle that follows the pointer on every tab, tinted by the tab's own colour, so the page points at what is being read without a word of instruction. size-px is how wide it reaches, white how much white sits in the middle, and tint how much of the tab's colour bleeds out from it. Small and faint on purpose: at full strength it reads as a torch and the text under it stops being the point. The Animations setting turns it off with everything else.",
+    "_comment": "The cursor light: one faint circle that follows the pointer on every tab, tinted by the tab's own colour, so the page points at what is being read without a word of instruction. size-px is how wide it reaches, white how much of the page's text colour (white on dark, ink on light) sits in the middle, and tint how much of the tab's colour bleeds out from it. Small and faint on purpose: at full strength it reads as a torch and the text under it stops being the point. The Animations setting turns it off with everything else.",
     "size-px": 210,
     "white": "2%",
     "tint": "3%"
@@ -346,6 +347,56 @@
     "display": "1.875rem"
   },
   "_tarkeeb_comment": "The diagram has no sizes of its own any more. Its sentence is the arabic 'chart' rung, its role names 'term', a name inside another name 'small', and its + signs the English type 'body' size. Depth still reads as size, the steps are just shared with the rest of the app instead of being a second private ladder. Its colours are the 'role' group.",
+  "themes": {
+    "_comment": "The looks a reader can pick. Every group above is the dark look; a theme here names only what it changes, group by group and key by key, and the rest stays as above. palette is the usual place to start: tab, role, unit, science and the tones all point at it, so a new look is mostly colours there plus the ground and text in color. scheme tells the browser which its own controls (scrollbars, inputs) should match. hint-key is the one localStorage entry that lets the page paint the right ground before any script runs (vite/bootShell.js reads it); base-scheme is the scheme of the dark look above.",
+    "hint-key": "theme-hint",
+    "base-scheme": "dark",
+    "light": {
+      "_comment": "Paper-bright ground, ink text. Accents are the dark look's hues pulled to the 600-700 weight so each still reads as text and as a border on white (4.5:1 or better on the surface); lights stain the ground (multiply) instead of glowing on it.",
+      "scheme": "light",
+      "palette": {
+        "violet": "#6d3fd8",
+        "violet-hi": "#5b21b6",
+        "rose": "#d6204a",
+        "teal": "#0f766e",
+        "amber": "#a85a06",
+        "pink": "#c4206e",
+        "sky": "#0369a1",
+        "green": "#15803d",
+        "orange": "#c2410c",
+        "slate": "#5b6b82",
+        "blue": "#2457c5",
+        "cream": "#7a5a2a",
+        "lime": "#4d7c0f",
+        "fuchsia": "#a21caf",
+        "blue-deep": "#1d4ed8",
+        "orange-deep": "#9a3412",
+        "lilac": "#7e22ce"
+      },
+      "color": {
+        "bg": "#f4f6fb",
+        "bg-glow": "#ffffff",
+        "surface": "#ffffff",
+        "surface-hi": "#eceff6",
+        "border": "#d5dbe8",
+        "border-hi": "#b3bcd0",
+        "text": "#141a2a",
+        "text-dim": "#465069",
+        "text-faint": "#5f6b85"
+      },
+      "lights": {
+        "ground-top": "#f6f1e8",
+        "ground-bottom": "#efe8da",
+        "colors": "#e9b85a,#d9825f,#7fa6d6,#c2a06a",
+        "alpha": 0.3,
+        "blend": "multiply"
+      },
+      "marks": { "alpha": 0.07 },
+      "shadow": { "pop": "0 6px 18px rgba(30, 41, 80, 0.18)" },
+      "timeline": { "acc-l": "36%", "ink-l": "26%", "map-water": "#cfe6ef" },
+      "hadith": { "told": "#5b6881", "heard": "#1d7d4b", "loose": "#a8501a" }
+    }
+  },
   "glow": {
     "strength": "0.55",
     "blur": "18px"

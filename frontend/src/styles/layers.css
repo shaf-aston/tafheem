@@ -57,7 +57,7 @@
   margin: calc(var(--cursor-light-size-px) * -0.5px) 0 0 calc(var(--cursor-light-size-px) * -0.5px);
   border-radius: 50%;
   background: radial-gradient(closest-side,
-    color-mix(in srgb, #fff var(--cursor-light-white), transparent),
+    color-mix(in srgb, var(--text) var(--cursor-light-white), transparent),
     color-mix(in srgb, var(--c, var(--primary)) var(--cursor-light-tint), transparent) 40%,
     transparent 70%);
   transition: opacity calc(var(--motion-base-ms) * 1ms) ease,
