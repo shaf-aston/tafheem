@@ -464,8 +464,6 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         own = {key: leaf[key] for key in ("role", "tone", "gap", "detail") if key in leaf}
         return {**leaf, "parts": [own] + ([doer] if doer else []) + attached}
 
-    printed: dict[int, str | None] = {}  # what each word's own leaf is called
-
     def node(token: dict) -> dict:
         # the parser can hand back two words pointing at each other; a word already
         # drawn is left as a leaf rather than followed round the circle again
@@ -474,7 +472,6 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         index = at[token["id"]]
         if not kids:
             leaf = pieces(token, _leaf(index, role_of[token["id"]], why_of.get(token["id"]), name_of[token["id"]]))
-            printed[token["id"]] = leaf["role"]
             # a صلة of one verb is still a clause, its doer the pronoun hidden in it
             return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]) or leaf["tone"],
                     "detail": place_of.get(token["id"]), "children": [leaf]} if token["id"] in clauses else leaf
@@ -485,7 +482,6 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         why = why_of.get(token["id"])
         # a word the teacher dashed stays a dash at the head of its unit: مضاف would name it
         inside.append((index, pieces(token, _leaf(index, role, why, None if why else _unit_role(name_of[token["id"]], kid_roles)))))
-        printed[token["id"]] = inside[-1][1]["role"]
         label = label_of.get(token["id"]) or _label(token, kid_roles) or (top_label if token is root and token["id"] not in opened
                                              else NOMINAL if token["id"] in clauses & nominal
                                              else VERBAL if token["id"] in clauses or role == NAMED.fil else "")
@@ -527,10 +523,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     if tree is None or tree.get("word") is not None or not tree.get("label"):
         tree = {"label": top_label,
                 "children": [part for _, part in drawn] if tree is None else [tree]}
-    printed.update({key: role_of[key] for key in unsaid_objects})  # the card says the job, not the head's name in its unit
     covered = sum(1 for found in named if found["role"])
     return {"words": columns, "written": written, "tree": tree, "coverage": round(covered / len(words), 2),
-            "printed": [printed.get(token["id"]) for token in bases],
+            "unsaid": [role_of[token["id"]] if token["id"] in unsaid_objects else None for token in bases],  # the job on the card too
             **({"unwritten": {"mark": columns[written.index(-1)], "note": tarkeeb_rules()["treebank"]["unwritten_note"]}} if understood else {})}
 
 
