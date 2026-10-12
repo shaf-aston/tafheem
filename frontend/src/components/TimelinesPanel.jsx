@@ -12,7 +12,6 @@
  */
 import { useState } from 'react'
 import { useArrivalWhenReady } from '../lib/useArrival'
-import { useSettled } from '../lib/settle'
 import { useQuery } from '@tanstack/react-query'
 
 import { timelinesQuery } from '../api'
@@ -33,8 +32,6 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
   const { data, isPending, isError, error, refetch } = useQuery(timelinesQuery)
   const [science, setScience] = useState(ALL)
   const [place, setPlace] = useState(null)   // { section, event, report }
-  // Picking a science or a section moves to it; nothing on it is new (lib/settle).
-  useSettled(science, place?.section)
 
   // An arrival is a deep link, a link from another tab, or the back arrow
   // landing here. All three name a place in the same words the journey was

@@ -162,6 +162,9 @@ dialog::backdrop {
 }
 
 
+.late { opacity: 0; animation: late-in 0s 200ms forwards; }
+@keyframes late-in { to { opacity: 1; } }
+
 .skeleton {
   background: linear-gradient(
     90deg,

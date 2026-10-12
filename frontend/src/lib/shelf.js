@@ -35,10 +35,6 @@ export async function pullShelf(name = getProfile()) {
   }
 }
 
-/** Pull, but give up waiting after pullWaitMs, so a slow server never holds the page. */
-export const pullBeforeStart = () =>
-  Promise.race([pullShelf(), new Promise((done) => setTimeout(done, CONFIG.pullWaitMs))])
-
 let timer = null
 let waiting = null
 

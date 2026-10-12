@@ -5,16 +5,13 @@
  */
 import { Suspense, memo } from 'react'
 
-import { useSettled } from '../../lib/settle'
+import { AnalyzerSkeleton } from '../ui/Skeleton'
 
 export default memo(function TabPane({ tab, handoff, accent, onGo, onVisit, onProgress }) {
-  // Arriving on the first showing and again on every return, a hidden panel's
-  // effects being torn down: its data landing after a reload arrives finished too (lib/settle).
-  useSettled()
   const Panel = tab.Component
   return (
     <div className={tab.study ? 'study' : undefined}>
-      <Suspense fallback={null}>
+      <Suspense fallback={<div className="late p-4"><AnalyzerSkeleton /></div>}>
         <Panel
           accent={accent}
           incoming={handoff?.value ?? null}

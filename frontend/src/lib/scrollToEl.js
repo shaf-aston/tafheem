@@ -2,9 +2,7 @@
  * The one way the app scrolls something into view: always a glide, unless the
  * reader asked for reduced motion or the target is far (motion.glide-screens). Presets name the intent, not the browser flag.
  */
-import { useLayoutEffect } from 'react'
-
-import { arrive } from './settle'
+import { useEffect } from 'react'
 
 import theme from '../theme.json'
 
@@ -47,11 +45,8 @@ export function scrollToTop() {
 /**
  * A screen that replaces another inside a tab (a book's list after the books, a narrator's page) opens at
  * the top, as a fresh page would: the address does not change (lib/tabUrl), so the browser does not do it,
- * and arrives finished (lib/settle). `keys` are what makes it a new screen (the book, the narrator); none means once, on mount.
+ * `keys` are what makes it a new screen (the book, the narrator); none means once, on mount.
  */
 export function useOpenAtTop(...keys) {
-  useLayoutEffect(() => {
-    arrive()
-    scrollToTop()
-  }, keys) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(scrollToTop, keys)
 }

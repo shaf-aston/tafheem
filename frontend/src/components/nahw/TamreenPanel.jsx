@@ -9,7 +9,6 @@ import { useQuery } from '@tanstack/react-query'
 import { getTamreen } from '../../api'
 import { readViewParam, writeViewParams } from '../../lib/tabUrl'
 import { useRemembered } from '../../lib/useRemembered'
-import { useSettled } from '../../lib/settle'
 
 import Segmented from '../ui/Segmented'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -34,8 +33,6 @@ export default function TamreenPanel({ accent, onProgress, onNotes }) {
     queryKey: ['tamreen'],
     queryFn: getTamreen,
   })
-  // Switching mode is moving, not new (lib/settle).
-  useSettled(mode)
 
   // The mode switch needs no data, so it is there from the first paint.
   if (isPending) {

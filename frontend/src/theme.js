@@ -10,14 +10,27 @@ import theme from './theme.json'
 
 const UNPREFIXED_GROUP = 'color'
 const PRIVATE_KEY = '_'
+const PALETTE_GROUP = 'palette'
+const REFERENCE = '@'
 
-/** The groups and keys that become variables, in file order: [group, [[key, value]...]]. */
+const isReference = (value) => typeof value === 'string' && value.startsWith(REFERENCE)
+
+/** The palette colour a token points at, as the colour itself (for script and canvas). */
+const resolve = (value) => (isReference(value) ? theme[PALETTE_GROUP][value.slice(1)] : value)
+
+/** What a token is written as in CSS: a pointer at a palette colour stays a pointer. */
+const cssValue = (value) =>
+  isReference(value) ? `var(${variableName(PALETTE_GROUP, value.slice(1))})` : String(value)
+
+/** The groups and keys that become variables, in file order: [group, [[key, cssValue]...]]. */
 export function tokenGroups() {
   return Object.entries(theme)
     .filter(([group, values]) => !group.startsWith(PRIVATE_KEY) && typeof values === 'object')
     .map(([group, values]) => [
       group,
-      Object.entries(values).filter(([key]) => !key.startsWith(PRIVATE_KEY)),
+      Object.entries(values)
+        .filter(([key]) => !key.startsWith(PRIVATE_KEY))
+        .map(([key, value]) => [key, cssValue(value)]),
     ])
 }
 
@@ -28,7 +41,7 @@ export const variableName = (group, key) =>
 function cssVariables() {
   const vars = {}
   for (const [group, entries] of tokenGroups()) {
-    for (const [key, value] of entries) vars[variableName(group, key)] = String(value)
+    for (const [key, value] of entries) vars[variableName(group, key)] = value
   }
   return vars
 }
@@ -54,13 +67,13 @@ export const themeVariable = (name) => VARIABLES[name]
 /** Look up a themed colour with a guaranteed fallback, e.g. colorFor('role', 'fail'). */
 export function colorFor(group, key) {
   const table = theme[group] ?? {}
-  return table[key] ?? table.default ?? theme.color['text-dim']
+  return resolve(table[key] ?? table.default ?? theme.color['text-dim'])
 }
 
 /** The nth colour of a theme group, wrapping round (colorFor's fallback if it has none), e.g. colorAt('unit', 9) is the unit group's second. */
 export function colorAt(group, n) {
   const colors = Object.entries(theme[group] ?? {}).filter(([key]) => !key.startsWith(PRIVATE_KEY))
-  return colors.length ? colors[n % colors.length][1] : colorFor(group, n)
+  return colors.length ? resolve(colors[n % colors.length][1]) : colorFor(group, n)
 }
 
 export const { motion } = theme

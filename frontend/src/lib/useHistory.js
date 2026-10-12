@@ -1,7 +1,7 @@
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 
 import { RECENT_KEPT } from './session'
-import { forgetKey, progressKey, readSaved, writeSaved } from './stored'
+import { forgetKey, progressKey, readSaved, useStoredSaved, writeSaved } from './stored'
 
 /**
  * Persistent lookup history backed by localStorage. Kept under progressKey, so
@@ -17,21 +17,14 @@ import { forgetKey, progressKey, readSaved, writeSaved } from './stored'
  */
 export function useHistory(name, max = RECENT_KEPT) {
   const key = progressKey(name)
-  const [history, setHistory] = useState(() => readSaved(key, []))
+  const history = useStoredSaved(key, [])
 
   const push = useCallback((item) => {
-    setHistory((prev) => {
-      const serial = JSON.stringify(item)
-      const next = [item, ...prev.filter((x) => JSON.stringify(x) !== serial)].slice(0, max)
-      writeSaved(key, next)
-      return next
-    })
+    const serial = JSON.stringify(item)
+    writeSaved(key, [item, ...readSaved(key, []).filter((x) => JSON.stringify(x) !== serial)].slice(0, max))
   }, [key, max])
 
-  const clear = useCallback(() => {
-    forgetKey(key)
-    setHistory([])
-  }, [key])
+  const clear = useCallback(() => forgetKey(key), [key])
 
   return { history, push, clear }
 }

@@ -1,6 +1,6 @@
 import { useCallback, useSyncExternalStore } from 'react'
 
-import { readSaved, writeSaved } from './stored'
+import { onReplaced, readSaved, writeSaved } from './stored'
 
 /**
  * The hadiths a reader has starred, kept in this browser only.
@@ -27,11 +27,17 @@ const subscribe = (fn) => {
   return () => listeners.delete(fn)
 }
 
-function save(next) {
+function show(next) {
   items = next
-  writeSaved(KEY, next)
   listeners.forEach((fn) => fn())
 }
+
+function save(next) {
+  writeSaved(KEY, next)
+  show(next)
+}
+
+onReplaced(() => show(read()))
 
 /** Star or unstar; a newly starred hadith goes first. Exported for the test. */
 export function toggleFavorite(hadith) {

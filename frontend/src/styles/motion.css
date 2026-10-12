@@ -52,13 +52,13 @@
    Everything here is triggered by something the reader did. Nothing loops
    forever except the loading shimmer, which stops when the answer arrives. */
 @keyframes rise-in {
-  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  from { opacity: var(--motion-arrive-from); transform: translateY(6px) scale(0.98); }
   to   { opacity: 1; transform: none; }
 }
 
 
 @keyframes fade-in {
-  from { opacity: 0; }
+  from { opacity: var(--motion-arrive-from); }
   to   { opacity: 1; }
 }
 
@@ -107,7 +107,7 @@
    useSlide in lib/useSwipe.js, which picks the side; base-ms is the length, so
    the Animations setting stops this with everything else. */
 @keyframes slide-in {
-  from { opacity: 0; transform: translateX(var(--slide-from)); }
+  from { opacity: var(--motion-arrive-from); transform: translateX(var(--slide-from)); }
   to   { opacity: 1; transform: none; }
 }
 
