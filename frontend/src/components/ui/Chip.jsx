@@ -36,7 +36,7 @@ import ArabicText from './ArabicText'
 
 export default function Chip({
   children, onClick, accent, arabic = false, selected, title, tinted = false,
-  quiet = false, cite = false, href,
+  quiet = false, cite = false, href, disabled,
 }) {
   const Tag = href ? 'a' : 'button'
   // `cite` is a reference under a story: small, in its accent, with a dot, so a
@@ -70,6 +70,7 @@ export default function Chip({
         : { type: 'button', onClick })}
       title={title}
       aria-pressed={selected}
+      disabled={disabled}
       style={{
         '--c': accent,
         ...(selected ? { borderColor: accent, color: accent } : null),
@@ -79,8 +80,8 @@ export default function Chip({
       }}
       className={`press tap type-small leading-none rounded-full transition-colors
         inline-flex items-center justify-center shrink-0 whitespace-nowrap max-w-full
-        h-[var(--layout-chip)]
-        hover:border-[var(--c)] hover:text-[var(--text)]
+        h-[var(--layout-chip)] disabled:opacity-40
+        hover:border-[var(--c)] hover:text-[var(--text)] disabled:hover:border-[var(--border)]
         ${quiet
           ? 'px-2 border border-[var(--border)] text-[var(--text-faint)] opacity-75 hover:opacity-100'
           : 'px-2.5 border border-[var(--border)] text-[var(--text-dim)]'}

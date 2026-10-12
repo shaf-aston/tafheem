@@ -16,6 +16,7 @@ import { Fragment } from 'react'
 import { isQuranic, recitedForm } from '../lib/arabicText'
 import { BOOKS } from '../lib/books'
 import { DIFFICULTIES, isRight, printedPageOf, score, wordsOf } from '../lib/memorise'
+import { PHONE, useMedia } from '../lib/useMedia'
 
 import { LOOK, SHOWN } from '../lib/reciteColors'
 
@@ -23,10 +24,12 @@ import ArabicText from './ui/ArabicText'
 import AyahNumber from './memorise/AyahNumber'
 import ReciteStrip from './memorise/ReciteStrip'
 import EmptyState from './ui/EmptyState'
+import Chip from './ui/Chip'
 import ErrorAlert from './ui/ErrorAlert'
 import PrimaryButton from './ui/PrimaryButton'
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
+import SettingsPill from './ui/SettingsPill'
 import TwinCards from './ui/TwinCard'
 import WheelPicker from './ui/WheelPicker'
 import { Skeleton } from './ui/Skeleton'
@@ -57,11 +60,49 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   })
   useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart })
 
+  // How you practise, chosen once and left: beside the pickers on a wide screen,
+  // behind one pill on a phone, where the pickers and both of these were three
+  // rows before the page began.
+  const phone = useMedia(PHONE)
+  const ways = waysOf(book)
+  const missing = way === 'recite'
+    ? [{ id: 'none', label: 'Show all' }, { id: HIDDEN, label: 'Hidden' }]
+    : DIFFICULTIES.map((d) => ({ id: d.id, label: d.label }))
+  const missingNow = way === 'recite' && difficulty !== 'none' ? HIDDEN : difficulty
+  const practise = (
+    <>
+      <Segmented
+        captioned={phone}
+        wrap={phone}
+        label="How you answer"
+        options={ways}
+        value={way}
+        onChange={chooseWay}
+        accent={accent}
+      />
+      {/* Reciting has two states worth choosing between, not five: the page
+          read from, or the page said from memory. */}
+      {!similar && (
+        <Segmented
+          captioned={phone}
+          wrap={phone}
+          label={way === 'recite' ? 'Words to say from memory' : 'How much is missing'}
+          title={way === 'recite' ? undefined : difficultyOf(difficulty).title}
+          options={missing}
+          value={missingNow}
+          onChange={chooseDifficulty}
+          accent={accent}
+        />
+      )}
+    </>
+  )
+  const pillWords = [ways.find((o) => o.id === way)?.label, !similar && missing.find((o) => o.id === missingNow)?.label].filter(Boolean)
+
   // Above the page and again under it, so a page read to its end turns from there.
   const pageSteps = (
     <span className="flex items-center gap-2">
-      <StepButton onClick={() => stepPage(-1)} disabled={atStart}>Previous</StepButton>
-      <StepButton onClick={() => stepPage(1)} disabled={atEnd}>Next</StepButton>
+      <Chip accent={accent} onClick={() => stepPage(-1)} disabled={atStart}>Previous</Chip>
+      <Chip accent={accent} onClick={() => stepPage(1)} disabled={atEnd}>Next</Chip>
     </span>
   )
 
@@ -94,27 +135,9 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
           className="max-w-[18rem]"
         />
 
-        <Segmented
-          label="How you answer"
-          options={waysOf(book)}
-          value={way}
-          onChange={chooseWay}
-          accent={accent}
-        />
-
-        {/* Reciting has two states worth choosing between, not five: the page
-            read from, or the page said from memory. */}
-        {!similar && <div title={way === 'recite' ? undefined : difficultyOf(difficulty).title}>
-          <Segmented
-            label={way === 'recite' ? 'Words to say from memory' : 'How much is missing'}
-            options={way === 'recite'
-              ? [{ id: 'none', label: 'Show all' }, { id: HIDDEN, label: 'Hidden' }]
-              : DIFFICULTIES.map((d) => ({ id: d.id, label: d.label }))}
-            value={way === 'recite' && difficulty !== 'none' ? HIDDEN : difficulty}
-            onChange={chooseDifficulty}
-            accent={accent}
-          />
-        </div>}
+        {phone
+          ? <SettingsPill label={pillWords.join(' · ')} title="How you answer" align="end">{practise}</SettingsPill>
+          : practise}
       </div>
 
       {isPending && <Skeleton className="h-40 w-full" />}
@@ -166,18 +189,18 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                   give is marked as given, never as recited. */}
               {hidden && way === 'recite' ? (
                 <>
-                  <StepButton onClick={() => show(false)}>Show a word</StepButton>
-                  <StepButton onClick={() => show(true)}>Show this ayah</StepButton>
+                  <Chip accent={accent} onClick={() => show(false)}>Show a word</Chip>
+                  <Chip accent={accent} onClick={() => show(true)}>Show this ayah</Chip>
                 </>
               ) : !similar && (
-                <StepButton onClick={reDeal}>New gaps</StepButton>
+                <Chip accent={accent} onClick={reDeal}>New gaps</Chip>
               )}
               {/* Off to start with, and that is the point: "Say He (is) Allah
                   the One" names both words missing from 112:1. It is here for
                   when you are stuck, not for while you are trying. */}
-              <StepButton onClick={() => setMeaning((on) => !on)}>
+              <Chip accent={accent} onClick={() => setMeaning((on) => !on)}>
                 {meaning ? 'Hide translation' : 'Show translation'}
-              </StepButton>
+              </Chip>
             </div>
           </div>
 
@@ -187,8 +210,8 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             {askToGo && (
               <div className="flex items-center gap-3 flex-wrap">
                 <span className="type-small text-[var(--text-dim)]">You seem to be reciting {where}.</span>
-                <StepButton onClick={goElsewhere}>Go there</StepButton>
-                <StepButton onClick={() => setStayed(elsewhere.surah)}>Stay</StepButton>
+                <Chip accent={accent} onClick={goElsewhere}>Go there</Chip>
+                <Chip accent={accent} onClick={() => setStayed(elsewhere.surah)}>Stay</Chip>
               </div>
             )}
           </div>
@@ -314,21 +337,6 @@ function SimilarCards({ lines, queries, surah, accent }) {
         <TwinCards key={line.label} mine={{ key: line.label, text: line.arabic }} query={queries[i]} accent={accent} />
       ))}
     </div>
-  )
-}
-
-function StepButton({ onClick, disabled, children }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className="px-3 py-1.5 rounded-full text-xs font-medium border border-[var(--border)]
-        text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-40
-        disabled:hover:text-[var(--text-dim)] transition-colors"
-    >
-      {children}
-    </button>
   )
 }
 

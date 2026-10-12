@@ -33,6 +33,7 @@ import ArabicText from '../ui/ArabicText'
 import CloseButton from '../ui/CloseButton'
 import ErrorAlert from '../ui/ErrorAlert'
 import Segmented from '../ui/Segmented'
+import Stepper from '../ui/Stepper'
 import { Skeleton } from '../ui/Skeleton'
 
 const TABS = [
@@ -66,12 +67,7 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet })
         Study <span className="ml-2 font-mono type-small text-[var(--text-faint)]">{surah}:{ayah}</span>
       </h3>
       <div className="flex items-center gap-2">
-        {sheet && (
-          <>
-            <StepButton onClick={sheet.onPrev} label="Previous ayah">‹</StepButton>
-            <StepButton onClick={sheet.onNext} label="Next ayah">›</StepButton>
-          </>
-        )}
+        {sheet && <Stepper label="ayah" onPrev={sheet.onPrev} onNext={sheet.onNext} />}
         <CloseButton onClick={onClose} aria-label="Close the study" />
       </div>
     </header>
@@ -119,16 +115,6 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet })
           do; this answers what the ayah is about. */}
       {shows('tafsir') && <AyahTafsir surah={surah} ayah={ayah} accent={accent} defaultOpen />}
     </div>
-  )
-}
-
-/** Back or on an ayah; absent (disabled) where there is none. */
-function StepButton({ onClick, label, children }) {
-  return (
-    <button type="button" onClick={onClick} disabled={!onClick} aria-label={label}
-      className="press w-9 h-9 rounded-full border border-[var(--border-hi)] text-[var(--text)] disabled:opacity-30">
-      {children}
-    </button>
   )
 }
 
