@@ -2,7 +2,7 @@
  * A ranking by words learnt, the global one or one circle's: your row stands
  * out, and is added below when you are not among the rows shown.
  */
-import { Skeleton } from './Skeleton'
+import { Skeleton } from '../ui/Skeleton'
 
 export default function Ranking({ board, name, title }) {
   if (board.isPending) return <Skeleton className="h-24 w-full" />

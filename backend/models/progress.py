@@ -54,24 +54,17 @@ class Forgotten(BaseModel):
     deleted: int
 
 
-class ProfileIn(BaseModel):
+class SignUpIn(BaseModel):
     """Signing up the username in the profile header."""
 
     keep: bool = False
-    """Move the answers given before names existed onto this name."""
+    """Move the guest's answers onto this name."""
 
 
 class Shelf(BaseModel):
     """Everything the page keeps for one account: its own key -> stored text."""
 
     data: dict[str, str]
-
-
-class ProfileSaved(BaseModel):
-    """The name as the server spells it, and how many unnamed answers moved onto it."""
-
-    name: str
-    moved: int
 
 
 class Account(BaseModel):

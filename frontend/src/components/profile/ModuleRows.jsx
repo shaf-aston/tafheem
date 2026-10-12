@@ -2,7 +2,7 @@
 import { MEANINGS } from '../../lib/quiz'
 import { TABS } from '../../lib/tabs'
 
-import { Skeleton } from './Skeleton'
+import { Skeleton } from '../ui/Skeleton'
 
 // A module id is a tab's id, or one of the names a tab files under (its `modules`),
 // optionally with a meaning language ("quiz:ur"); anything else shows as it is.

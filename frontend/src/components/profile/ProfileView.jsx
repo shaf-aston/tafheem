@@ -19,10 +19,10 @@ import { useRemembered } from '../../lib/useRemembered'
 import CirclesView from './CirclesView'
 import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
-import { Skeleton } from './Skeleton'
-import SmallButton from './SmallButton'
+import { Skeleton } from '../ui/Skeleton'
+import SmallButton from '../ui/SmallButton'
 
-export default function ProfileView({ name, onLeave }) {
+export default function ProfileView({ name }) {
   // The language the quiz was last set to, as the quiz reads it: an Urdu
   // learner's words are filed under the Urdu module, not the default's.
   const [language] = useRemembered('quiz-language', Object.keys(MEANINGS), QUIZ.language)
@@ -50,7 +50,7 @@ export default function ProfileView({ name, onLeave }) {
       <ModuleRows overview={overview} />
       <CirclesView name={name} module={module} />
       <Global name={name} module={module} account={account} />
-      <Leave onLeave={onLeave} />
+      <Leave />
     </div>
   )
 }
@@ -87,7 +87,7 @@ function Global({ name, module, account }) {
 }
 
 /** Log out, or delete the account: the second asks twice, since it cannot be undone. */
-function Leave({ onLeave }) {
+function Leave() {
   const [asking, setAsking] = useState(false)
   const [failed, setFailed] = useState(false)
 
@@ -100,13 +100,12 @@ function Leave({ onLeave }) {
     }
     forgetShelf()
     logOut()
-    onLeave()
   }
 
   return (
     <div className="pt-2 border-t border-[var(--border)] space-y-2">
       <div className="flex items-center justify-end gap-2">
-        <SmallButton onClick={() => { logOut(); onLeave() }}>Log out</SmallButton>
+        <SmallButton onClick={logOut}>Log out</SmallButton>
         <SmallButton
           className={asking ? 'text-[var(--danger)] border-[var(--danger)]' : ''}
           onClick={() => (asking ? remove() : setAsking(true))}

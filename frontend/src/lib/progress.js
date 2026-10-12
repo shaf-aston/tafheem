@@ -46,10 +46,10 @@ export async function forgetProgress() {
 }
 
 /**
- * Take a free username, or log in to one already taken. Both resolve
- * `{ name, moved }`: the server's spelling, which is what to keep, and how many
- * guest answers `keep` moved onto it. Both throw, so the box can say why
- * (taken, no such username, not a name).
+ * Take a free username (`keep` moves the guest's answers onto it), or log in to
+ * one already taken. Both resolve the account, whose `name` is the server's
+ * spelling, the one to keep. Both throw, so the box can say why (taken, no such
+ * username, not a name).
  */
 export const signUp = (typed, keep) =>
   api.post(`${BASE}/signup`, { keep }, headers(typed)).then((r) => r.data)

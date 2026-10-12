@@ -33,17 +33,16 @@ from backend.models.progress import (
     ModuleOverview,
     Overview,
     ParentIn,
-    ProfileIn,
-    ProfileSaved,
     ProgressSummary,
     PublicIn,
     ReviewList,
     RoleIn,
     Shelf,
+    SignUpIn,
 )
-from backend.identity import GUEST, NAMED, TYPED, USER
+from backend.identity import NAMED, TYPED, USER
 from backend.services import progress_store
-from backend.services.profile import clean_name
+from backend.services.username import clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
@@ -119,25 +118,26 @@ def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
     return ReviewList(module=module, items=progress_store.review_items(module, user))
 
 
-@router.post("/signup", response_model=ProfileSaved)
-async def sign_up(body: ProfileIn, user: str = TYPED) -> ProfileSaved:
-    """Take a free username and hand back its one spelling, which the page keeps.
+@router.post("/signup", response_model=Account)
+async def sign_up(body: SignUpIn, user: str = TYPED) -> Account:
+    """Take a free username; the account handed back holds its one spelling, which the page keeps.
 
-    `keep` moves this device's unnamed answers onto it.
+    `keep` moves the guest's answers onto it.
     """
-    _typed_a_name(user)
     if not progress_store.sign_up(user):
         raise HTTPException(status_code=409, detail="That username is taken")
-    return ProfileSaved(name=user, moved=progress_store.claim_local(user) if body.keep else 0)
+    if body.keep:
+        progress_store.claim_guest(user)
+    return Account(**progress_store.account(user))
 
 
-@router.post("/login", response_model=ProfileSaved)
-async def log_in(user: str = TYPED) -> ProfileSaved:
-    """Check a username was signed up and hand back its one spelling."""
-    _typed_a_name(user)
-    if not progress_store.has_account(user):
+@router.post("/login", response_model=Account)
+async def log_in(user: str = TYPED) -> Account:
+    """The account of a signed-up username, holding its one spelling."""
+    found = progress_store.account(user)
+    if found is None:
         raise HTTPException(status_code=404, detail="No account with that username")
-    return ProfileSaved(name=user, moved=0)
+    return Account(**found)
 
 
 @router.get("/account", response_model=Account)
@@ -303,9 +303,3 @@ def get_member_overview(circle: int, member: str, user: str = NAMED) -> Overview
     name = _member_name(member)
     with _refused():
         return _overview(progress_store.member_overview(circle, user, name))
-
-
-def _typed_a_name(user: str) -> None:
-    """Sign-up and log-in need a name typed; the account check would be circular."""
-    if user == GUEST:
-        raise HTTPException(status_code=422, detail="Type a username")

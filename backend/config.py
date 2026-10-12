@@ -431,10 +431,8 @@ class Progress(BaseSettings):
     progress_learning_hours: int = 24
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
-    # Accounts (services/profile.py): a username, no password. Longest name allowed after cleaning.
-    profile_name_max: int = 40
-    # Names nobody may type: "local" is the record of every answer given before names existed.
-    profile_reserved: list[str] = ["local"]
+    # Accounts (services/username.py): a username, no password. Longest name allowed after cleaning.
+    username_max: int = 40
     # Largest shelf (everything the page keeps for one account) the server takes, in bytes.
     saved_max_bytes: int = Field(default=512_000, gt=0)
     # Beta testing: the log-in box lists every username so a tester can pick one. Off before launch.
