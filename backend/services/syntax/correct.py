@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 from backend.services import verb_reader
-from backend.services.arabic_text import bare_letters
 from backend.services.harakat import (
-    has_tanween, letters, merged_prefix, own_letters, paused, typed_case, vowel_agreement)
+    has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement)
 from backend.services.nahw_book import book_words, is_one, only_adverb
 from backend.services.syntax import facts, particles
 from backend.services.syntax.mask import book_links
@@ -21,8 +20,7 @@ def _typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> Non
                 or (token["pos"] == "PRT" and only_adverb(token["lemma"]))):
             token["pos"] = "NOM"
         # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
-        token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
-                                if t["head"] == token["id"] and t["form"].startswith("+"))
+        token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
         token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
         # نِعْمَ الْوَكِيلُ: a verb of praise or blame typed with its fatha is that past verb, whatever the reading
         if is_one(token["lemma"], "praise_blame") and typed_case(word, token["stuck_on"]) == "a" and not has_tanween(word):

@@ -5,7 +5,7 @@ prohibition) used to be read by whichever list a caller asked first, so the card
 picture and the case rules could each read it apart. Here the book's tests decide it
 once (data/nahw_rules/particle_tree.json, walked like the naming tree) and the answer is
 stamped on the token as `reading`; facts, naming, the picture and the card all read that.
-Pure: tokens in, readings stamped.
+`stamp` works in place: it writes the readings on the tokens and corrects the few word classes and links they settle.
 """
 from __future__ import annotations
 

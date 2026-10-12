@@ -1,10 +1,10 @@
 """Links the book rules out, as masks over the parser's scores, and the few links it
 settles outright, written over the parser's tree.
 
-Pure: takes the words' tags and returns which (dependent, head, relation) labels
-are impossible, so the decoder picks the best reading the book allows instead of
-the best reading full stop; `book_links` then fixes a structure the book states
-whatever the scores say. Which rules are on lives in
+`book_mask` is pure: it takes the words' tags and returns which (dependent, head, relation)
+labels are impossible, so the decoder picks the best reading the book allows instead of
+the best reading full stop; `book_links` then fixes, in place on the tokens, a structure
+the book states whatever the scores say. Which rules are on lives in
 data/nahw_rules/closed_words.json ("vetoes"). Index 0 is the root, word i is
 index i, as in the score matrices.
 """
