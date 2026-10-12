@@ -8,7 +8,6 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { hadithBookQuery, hadithBooksQuery } from '../../api'
 import { themeVariable } from '../../theme'
 import { onHover, warm } from '../../lib/warm'
-import { useFirstSight } from '../../lib/firstSight'
 import { topicOf } from '../../lib/hadithGrade'
 import { useOpenAtTop } from '../../lib/scrollToEl'
 
@@ -22,9 +21,8 @@ const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
 
 export default function HadithBookList({ collection, onPick, accent }) {
   const { data, isPending, isError, error, refetch } = useQuery(hadithBooksQuery(collection))
-  useOpenAtTop()
+  useOpenAtTop(collection)
   const client = useQueryClient()
-  const rise = useFirstSight(`hadith-books:${collection}`)
   const first = data?.[0]?.number
   useEffect(() => {
     if (first != null) warm(client, hadithBookQuery(collection, first))
@@ -43,7 +41,7 @@ export default function HadithBookList({ collection, onPick, accent }) {
   return (
     <ul className="m-0 p-0 list-none grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
       {data.map((book, i) => (
-        <li key={book.number} className={rise ? 'rise-in' : undefined} style={{ '--i': Math.min(i, STAGGER_CAP) }}>
+        <li key={book.number} className="rise-in" style={{ '--i': Math.min(i, STAGGER_CAP) }}>
           <button
             type="button"
             onClick={() => onPick(book.number)}

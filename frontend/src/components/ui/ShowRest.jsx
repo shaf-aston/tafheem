@@ -17,7 +17,7 @@
  * or to everything. A height in lines holds either kind, and the fade at the
  * bottom edge says "there is more" before the button is read.
  */
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 
 export default function ShowRest({
   lines = 4,
@@ -42,8 +42,10 @@ export default function ShowRest({
   const [cut, setCut] = useState(false)
   // The clamp pulled up to the bottom of the last whole line, px; null until measured.
   const [snap, setSnap] = useState(null)
-  // Open and done gliding: no cap, so a long list never spills over what follows.
-  const [settled, setSettled] = useState(false)
+  // The full height, px, while opening on a press glides to it; null otherwise. Only a
+  // press glides: a glide on the first measure, or on a resize, made the page below
+  // wobble on every arrival. Open and not gliding is no cap, so nothing spills over what follows.
+  const [gliding, setGliding] = useState(null)
   const limit = height ?? `${lines * 1.75}em`
 
   const measure = useCallback(() => {
@@ -77,8 +79,9 @@ export default function ShowRest({
     setCut(hidden)
   }, [open, limit])
 
-  useEffect(() => {
-    // The observer reports once on observe(), which is the first measure.
+  // Watching from a layout effect: the observer's first report, which is the first measure,
+  // then lands before paint, so the cut and its button arrive with the text, not a frame later.
+  useLayoutEffect(() => {
     if (!globalThis.ResizeObserver) {
       const first = requestAnimationFrame(measure)
       globalThis.addEventListener('resize', measure)
@@ -91,7 +94,9 @@ export default function ShowRest({
 
   const reveal = () => {
     const next = !open
-    setSettled(false)
+    // No glide when Animations is off: a 0ms transition never ends, and the cap would stay.
+    const still = !parseFloat(getComputedStyle(body.current).getPropertyValue('--motion-base-ms'))
+    setGliding(next && !still ? body.current.scrollHeight : null)
     setOpen(next)
     // Told on the way open only. A panel that pays for its content, a model
     // retelling say, waits for this rather than for the page.
@@ -102,14 +107,16 @@ export default function ShowRest({
     <div className={`space-y-2 ${className}`}>
       <div
         ref={body}
-        onTransitionEnd={() => open && setSettled(true)}
+        // Its own glide only: a hover fading inside it bubbles up here too. Cancelled when the tab is hidden mid-glide.
+        onTransitionEnd={(event) => event.target === event.currentTarget && setGliding(null)}
+        onTransitionCancel={(event) => event.target === event.currentTarget && setGliding(null)}
         // The same glide the rest of the app opens with, on the one property
         // that actually changes here, since maxHeight and overflow are not
         // grid-template-rows: the mask fade above already told the eye there
         // was more, and a snap once pressed would contradict that.
         style={{
-          transition: 'max-height calc(var(--motion-base-ms) * 1ms) ease',
-          ...(open ? { maxHeight: settled ? 'none' : '100em' } : {
+          ...(gliding !== null && { transition: 'max-height calc(var(--motion-base-ms) * 1ms) ease' }),
+          ...(open ? { maxHeight: gliding ?? 'none' } : {
           maxHeight: snap ?? limit,
           overflow: 'hidden',
           // The last line fades out rather than being sliced through, which is

@@ -20,7 +20,6 @@ import { MARKS, narrated, saying } from '../../lib/hadithWords'
 import { runs, told, withoutMarks } from '../../lib/rijal'
 
 import NarratorLink from './NarratorLink'
-import { useFirstSight } from '../../lib/firstSight'
 import { themeVariable } from '../../theme'
 
 const TONE = {
@@ -68,13 +67,12 @@ function Spans({ text, marks, names = [], onNarrator }) {
 export default function HadithText({ label, arabic, cut = null, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator, footer = null }) {
   const { narrator, body } = narrated(english)
   const shown = hideChain ? told(arabic, cut, names) : { text: arabic, names }
-  const rise = useFirstSight(`hadith:${arabic.slice(0, 30)}`)
 
   return (
     <li
       id={id}
       style={{ '--i': Math.min(index, STAGGER_CAP) }}
-      className={`${rise ? 'rise-in ' : ''}rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 scroll-mt-[calc(var(--app-header-h,0px)+6rem)] ${className}`.trim()}
+      className={`rise-in rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 scroll-mt-[calc(var(--app-header-h,0px)+6rem)] ${className}`.trim()}
     >
       <div className="flex items-center justify-between gap-2 mb-3">
         <span

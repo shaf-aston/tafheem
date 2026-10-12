@@ -37,7 +37,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | mem | `components/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/books.js`) | `routers/quran.py` | `services/mutashabihat.py`, `services/quran_service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
 | grow | `components/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow.js` steps | `data/grow/paths.json` |
 | quiz | `components/QuizPanel.jsx` | `lib/quizBanks.js`, `fetchReviewItems` (`lib/progress.js`) | `routers/progress.py` | `services/progress_store.py` | `frontend/public/words/`, `data/progress.db` |
-| timelines | `components/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py` | `data/timelines/` |
+| timelines | `components/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py`, `services/refs.py`, `services/asbab.py` | `data/timelines/` |
 | dawah | `components/DawahPanel.jsx` | `dawahQuery` | `routers/dawah.py` | `services/dawah.py` | `data/dawah/dawah.json` |
 | colloq | `components/ColloquialPanel.jsx` | `colloquialQuery`, `colloquialUnitQuery` | `routers/colloquial.py` | `services/colloquial/loader.py` | `data/colloquial/` |
 | kit | `components/KitPanel.jsx` | none (hidden, `/app/kit`) | none | none | none |
