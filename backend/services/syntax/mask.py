@@ -188,10 +188,11 @@ _LINKS = {"pointer_heads_its_noun": _pointer_heads_its_noun,
           "inner_sentence": _inner_sentence}
 
 
-def book_links(toks: list[dict], heads: list[int], rels: list[str]) -> tuple[list[int], list[str]]:
-    """The parser's heads and labels with every link the book settles written over them
+def book_links(toks: list[dict]) -> None:
+    """Every link the book settles written over the parser's heads and labels on the tokens
     (a listed preposition's word class is corrected on its token too)."""
-    heads, rels = list(heads), list(rels)
+    heads, rels = [t["head"] for t in toks], [t["rel"] for t in toks]
     for rule in _switched_on(_LINKS):
         rule(toks, heads, rels)
-    return heads, rels
+    for tok, head, rel in zip(toks, heads, rels):
+        tok["head"], tok["rel"] = head, rel

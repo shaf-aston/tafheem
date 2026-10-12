@@ -1,28 +1,19 @@
-"""Names each word's i'raab role from the links the parser drew.
+"""Names each word's i'raab role from the links the parser drew and the vowels the reader typed
+(the only evidence for case and for a passive verb), in the words a nahw book uses.
 
-The parser says which word hangs off which and how (subject, object, idafa
-and so on), but it says it in CATiB's short tags and it never sees the harakat,
-because it is fed the letters alone. This module turns those links into the
-words a nahw book uses. Two things decide a name: the link, and the vowels the
-reader typed, which are the only evidence for case and for a passive verb.
-
-Nothing here reaches the network or a model. Given the same tokens it always
-answers the same, which is why the roles it writes may be shown as derived.
-
-Scored by `backend/scripts/score_iraab.py`; the numbers are quoted once, in this
-package's `__init__.py`.
+Reads the tokens `correct` has already corrected; reaches no network or model, so the same
+tokens always give the same roles. Scored by `backend/scripts/score_iraab.py`; the numbers are
+quoted once, in this package's `__init__.py`.
 """
 from __future__ import annotations
 
-from backend.services import verb_reader
-from backend.services.arabic_text import bare_letters, strip_diacritics
+from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import (
-    book_merges, book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, only_adverb,
-    role_table, unseen_case)
-from backend.services.syntax import condition, facts, particles, walker
+    book_merges, book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
+from backend.services.syntax import condition, facts, walker
 from backend.services.harakat import (
-    CASE_NAME, SUKUN, build_nun, five_verb_nun, has_tanween, letters, merged_prefix, own_letters, paused, stilled,
-    typed_case, vowel_agreement)
+    CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
+    typed_case)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -77,50 +68,6 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     bases = base_tokens(words, tokens)
     if len(bases) != len(words):
         return [{"role": None, "case": None} for _ in words]  # the split does not line up
-    for i, (word, token) in enumerate(zip(words, bases)):
-        token["typed"] = word
-        # a "verb" with no tense that CAMeL reads as a noun or an adjective is that noun
-        # (اللهُ أكبرُ: the elative, never the verb أَكْبَرَ)
-        if token["pos"].startswith("VRB") and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"):
-            token["pos"] = "NOM"
-        # وَإِذْ قَالَ، مَعَ الصَّابِرِينَ: a word the book lists only as a ظرف is a noun, whatever the tag
-        if token["pos"] == "PRT" and only_adverb(token["lemma"]):
-            token["pos"] = "NOM"
-        # letters at the end that belong to an attached pronoun, not to the word
-        token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
-                                if t["head"] == token["id"] and t["form"].startswith("+"))
-        # and letters at the front that are joined words (وَ، فَ، لِـ), not the word's own
-        token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
-        # نِعْمَ الْوَكِيلُ، وَلَبِئْسَ الْمِهَادُ: a verb of praise or blame typed as the past verb it is
-        # (its fatha), whatever the reading (the noun نِعْمَة، the "yes" نَعَمْ)
-        if is_one(token["lemma"], "praise_blame") and typed_case(word, token["stuck_on"]) == "a" and not has_tanween(word):
-            token.update(pos="VRB", asp="p")
-        # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever reading the parser had;
-        # a verb's reading (فَاقْبَلْهَا) is also tried on its own letters, the ف and ها aside;
-        # a noun's never is, or the يَدِ of وَيَدِهِ would be a command; a name the list could
-        # only guess (فَادْفَعُوا) is no noun the reader knew, so its own letters are tried too.
-        # A noun the dictionary read with the vowels typed stays that noun unless the command
-        # is typed in full too (سَمِّ): ابْنُ is no اُبْنُ, nor بَنِي a بَنِّي, with a mark left off
-        after = words[i + 1] if i + 1 < len(words) else ""
-        verb = token["pos"].startswith("VRB")
-        read_noun = token.get("pos_camel") == "noun" and vowel_agreement(word, token.get("diac", "")) is not None
-        if verb or token.get("pos_camel") in ("noun", "noun_prop"):
-            governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
-                                     for family in ("jazm", "nasb_mudari"))
-            root = token.get("root", "")
-            own = own_letters(word, token["front"], token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
-            cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
-                         if (found := verb_reader.command(form, governed, root))
-                         and (not read_noun or verb_reader.typed_fully(form, found))), None)
-            if cell:
-                # the person is sarf's: the reading may have taken اقبل for "I accept"
-                token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
-            elif verb and merged_prefix(own, book_words("ta_merges")):
-                # تَطَّوَّعَ: the shadda is the second ta' merged in, so it is present whatever the reading said
-                token["asp"] = "i"
-        token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
-    facts.free_clashing_modifiers(tokens)
-    particles.stamp(tokens)
     s = facts.Sentence(tokens)
     found_answers, governed_by = facts.of_sentence(tokens)
     answers = {t["id"]: a for t, a in zip(tokens, found_answers)}
@@ -266,11 +213,9 @@ def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
 
 
 def _followers_take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
-    """In order, so a chain follows too. A صفة، معطوف، توكيد or بدل with no vowel typed wears the case of
-    the word it follows (اليدُ العليا); its kasra on ـات is also nasb (الطالباتِ المجتهداتِ), and a
-    diptote's fatha also jarr (إِلَى إِبْرَاهِيمَ وَإِسْمَاعِيلَ). A present verb whose ending shows nothing, hung
-    on a joining particle (atf `joins_mood`) that hangs on a verb in nasb or jazm, is in that mood too
-    (أَنْ تَبَرُّوا وَتَتَّقُوا); any other is in raf', the mood a present verb has with no governor."""
+    """In order, so a chain follows too. A follower with no vowel typed wears the case of the word it follows
+    (اليدُ العليا); its kasra on ـات is also nasb, a diptote's fatha also jarr. A present verb showing nothing,
+    joined (atf `joins_mood`) to a verb in nasb or jazm, is in that mood too (أَنْ تَبَرُّوا وَتَتَّقُوا); any other is raf'."""
     for i, (role, token) in enumerate(zip(named, bases)):
         head = _followed(token, bases, tokens) if role in FOLLOWERS else None
         if head is not None and cases[head] != "mabni" and (cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token))
@@ -285,13 +230,10 @@ def _followers_take_their_ending(named: list, cases: list, bases: list[dict], to
 
 
 def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None = None) -> str | None:
-    """The family a particle or verb is named by (كان فعل ماضٍ ناقص، إنّ حرف مشبه بالفعل):
-    one whose list holds it and whose effect shows on a word linked to it, the noun hung
-    on إنّ or كان, or the verb لم hangs on. A listed word that governs nothing here (the
-    لا of a plain negation) keeps its plain name, unless particles.stamp read it (لا النافية).
-    A piece written onto a word (وَ، بِـ، لْـ)
-    works only on that word (`onto`, what it shows) and the words hung below it: the وَ of
-    وَإِيمَانٌ hangs on a مجرور's neighbour, and the لْ of فَلْيَصُمْهُ on nothing at all."""
+    """The family a particle or verb is named by (كان، إنّ): one whose list holds it and whose effect
+    shows on a word linked to it. A listed word that governs nothing here (the لا of a plain negation)
+    keeps its plain name, unless particles.stamp read it. A piece written onto a word (وَ، بِـ، لْـ)
+    works only on that word (`onto`, what it shows) and the words hung below it."""
     if token.get("reading"):
         return token["reading"]["family"]
     linked = set().union(onto or set(), *(said for other, said in zip(bases, shown)
@@ -313,10 +255,8 @@ def opens_with_verb(roles: list[str | None]) -> bool:
 
 
 def _lam_mood(token: dict, front: list[str], opens: bool) -> str | None:
-    """The mood a لام written onto a present verb gives it (Tasheel; closed_words ل): with a
-    sukun (فَلْيَصُمْهُ) or opening the sentence (لِيُنْفِقْ) it is لام الأمر, jazm; with a kasra
-    after a clause it is لام التعليل, nasb by a hidden أن (لِيُضِلُّوا). A fatha is the لام of
-    emphasis (لَيَقُولَنَّ), which settles nothing; so does a لام left bare."""
+    """The mood a لام written onto a present verb gives it: a sukun (فَلْيَصُمْهُ) or opening the sentence
+    (لِيُنْفِقْ) is لام الأمر, jazm; a kasra after a clause is لام التعليل, nasb (لِيُضِلُّوا). A fatha or a bare لام settles nothing."""
     if "ل" not in front:
         return None
     marks = letters(token["typed"])[front.index("ل")][1]
@@ -360,8 +300,7 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
     with a jazm or nasb particle before (لا تَسُبُّوا). Then the ending the reader typed,
     on the verb's own last letter (يُفَقِّهْهُ), else the mood of a لام written onto it
     (_lam_mood), else None: nothing shows, and the verb it is joined to decides, else raf'.
-    `typed` is the word as paused on (harakat.paused); `before` is the base token before it,
-    its joined letters off."""
+    `typed` is the word as paused on (harakat.paused); `before` the base token before it."""
     particle = before["base"] if before else ""
     dropped_nun = five_verb_nun(typed, token.get("stuck_on", 0), token.get("weak_last")) == "dropped"
     read = (before or {}).get("reading") or {}  # أَلَّا: the nasb أنْ with a لا merged in

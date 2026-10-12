@@ -3,9 +3,9 @@ import pytest
 from fastapi import HTTPException
 
 from backend.config import get_settings
-from backend.services.syntax import naming, teacher, tree
+from backend.services.syntax import teacher, tree
 from backend.utils import arabic_sentence
-from tests.test_naming import token
+from tests.test_naming import named, token
 
 
 def test_a_sentence_over_the_word_limit_is_refused_and_the_limit_itself_is_allowed():
@@ -24,6 +24,6 @@ def test_a_single_thousand_letter_word_passes_the_gate_and_is_named_a_gap_not_a_
     word = "ك" * 1000
     assert arabic_sentence(word) == word
     toks = [token(1, word, word, "NOM", 0, "---", stt="i", cas="n")]
-    found = teacher.review([word], toks, naming.roles([word], toks))
+    found = teacher.review([word], toks, named([word], toks))
     drawn = tree.build([word], toks, found)
     assert len(found) == 1 and drawn["words"] == [word]

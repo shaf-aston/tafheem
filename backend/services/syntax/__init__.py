@@ -1,8 +1,8 @@
 """Roles for a typed sentence, worked out from the links between its words.
 
-Three steps, each in its own file: `catib_onnx` draws the links (which word hangs
-off which), `naming` turns a link into the word a nahw book uses, and `teacher`
-re-reads the finished sentence and dashes any word whose name breaks a rule. This file is
+Four steps, each in its own file: `catib_onnx` draws the links, `correct` is the one
+place they and the words' kinds are corrected, `naming` turns a link into the word a nahw
+book uses, and `teacher` re-reads the finished sentence and dashes any word whose name breaks a rule. This file is
 the seam the rest of the app talks to, so a different parser can be put behind
 it without anything else changing.
 
@@ -18,6 +18,7 @@ from backend.config import get_settings
 from backend.services import provenance
 from backend.services.arabic_text import words as split_words
 from backend.services.syntax import teacher, tree
+from backend.services.syntax.correct import correct
 from backend.services.syntax.naming import roles as name_roles
 
 logger = logging.getLogger(__name__)
@@ -67,6 +68,7 @@ def read(sentence: str, picks: list[dict]) -> dict:
         from backend.services.syntax import catib_onnx
 
         tokens = catib_onnx.parse(typed, picks)
+        correct(typed, tokens)
         found = teacher.review(typed, tokens, name_roles(typed, tokens))
         drawn = tree.build(typed, tokens, found)
         # a word with no job of its own is called by what the picture calls it (مَنْ heading

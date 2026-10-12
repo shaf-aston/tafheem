@@ -6,14 +6,14 @@ last tests follow a gap all the way to the card and the picture.
 from backend.services import iraab, morphology
 from backend.services.nahw_book import teacher_rules as config
 from backend.services.syntax import naming, teacher, tree
-from tests.test_naming import token
+from tests.test_naming import named, token
 
 VERB = dict(vox="a", asp="p")
 
 
 def review(words, toks):
     """What the route does: name the words, then let the teacher re-read them."""
-    return teacher.review(words, toks, naming.roles(words, toks))
+    return teacher.review(words, toks, named(words, toks))
 
 
 def gapped(found):
