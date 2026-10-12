@@ -71,12 +71,11 @@ def read(sentence: str, picks: list[dict]) -> dict:
         correct(typed, tokens)
         found = teacher.review(typed, tokens, name_roles(typed, tokens))
         drawn = tree.build(typed, tokens, found)
-        # a word with no job of its own is called by what the picture calls it (مَنْ heading
-        # its صلة is the اسم موصول; شكرًا is the object of an understood verb), so its card
-        # says the same and never guesses apart
-        for word, name in zip(found, drawn.pop("printed", [])):
-            if not word["role"] and name:
-                word["role"] = name
+        # شكرًا is the object of an understood verb: the card says the job the picture
+        # gives it. Only that; a picture's unit name (مضاف, اسم موصول) is not a job.
+        for word, job in zip(found, drawn.pop("unsaid", [])):
+            if job and not word["role"]:
+                word["role"] = job
                 word.pop("gap", None)
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         return {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
