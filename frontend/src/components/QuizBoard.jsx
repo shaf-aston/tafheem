@@ -1,5 +1,5 @@
 /** The Quiz's round board: the question card, how the round is going, and every answer so far. */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { QUIZ } from '../lib/quizBanks'
 
@@ -78,6 +78,13 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
   const { shown, shownPick, answered, correct, past, choose, next, speakRef } = round
   // Whether the "why" behind the phrase/dialect badge is expanded.
   const [noteOpen, setNoteOpen] = useState(false)
+  // Focus Next once the answer is in, so Enter moves on, but without scrolling:
+  // autoFocus brought the button into view, which on a phone threw the page
+  // ~400px down and the question off the top after every answer.
+  const nextButton = useRef(null)
+  useEffect(() => {
+    if (answered) nextButton.current?.focus({ preventScroll: true })
+  }, [answered])
   const arabicPrompt = shown.promptLang === 'ar'
 
   return (
@@ -187,19 +194,20 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
           {answered && (
             <button
               type="button"
+              ref={nextButton}
               onClick={next}
-              autoFocus
               style={{ background: accent, color: 'var(--bg)', '--c': accent }}
-              className="flex items-center gap-2 ps-5 pe-3 py-2 rounded-[var(--radius-md)]
+              className="flex items-center gap-2 ps-5 pe-3 py-2 rounded-[var(--radius-md)] whitespace-nowrap
                 text-sm font-semibold glow hover:brightness-110 active:translate-y-px
                 transition-[filter,transform]"
             >
               {say(past ? 'Back to the question' : 'Next word')}
               {/* The key printed on the button it fires, so the shortcut is
-                  learnt where it is used rather than from a line of hints. */}
+                  learnt where it is used rather than from a line of hints.
+                  Not on a touch screen: a phone has no Enter key. */}
               <kbd
                 aria-hidden="true"
-                className="px-1.5 py-0.5 rounded type-tiny font-semibold leading-none
+                className="pointer-coarse:hidden px-1.5 py-0.5 rounded type-tiny font-semibold leading-none
                   bg-[var(--bg)]/25 border border-current/30"
               >
                 Enter ↵

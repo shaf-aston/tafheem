@@ -18,7 +18,7 @@ export default function AutoAdvanceToggle({ value, onChange, accent, say = (s) =
       accent={accent}
       title={say('Move on by itself after an answer (A)')}
     >
-      {say('auto-advance')}
+      <span className="whitespace-nowrap">{say('auto-advance')}</span>
       {/* A bare letter beside a word reads as a typo. Drawn as a key, the way
           the four answers draw their numbers, so it is plainly the key to press.
           Quieter by size (type-micro), not opacity, so contrast stays readable. */}
