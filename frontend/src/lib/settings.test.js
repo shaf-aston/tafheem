@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import theme from '../theme.json'
-import { themeVariable } from '../theme'
+import { themeChoices, themeVariable } from '../theme'
 import { SETTINGS, applySettings, resetSettings, setSetting } from './settings'
 
 // A fake :root that records what was written to it, so the CSS side can be
@@ -64,8 +64,8 @@ describe('settings', () => {
 
   it('puts the chosen look on :root, and the dark one back', () => {
     setSetting('theme', 'light')
-    expect(applied().get('--bg')).toBe(theme.themes.light.color.bg)
-    expect(applied().get('--palette-violet')).toBe(theme.themes.light.palette.violet)
+    expect(applied().get('--bg')).toBe(theme.themes.looks.light.color.bg)
+    expect(applied().get('--palette-violet')).toBe(theme.themes.looks.light.palette.violet)
 
     setSetting('theme', 'dark')
     expect(applied().get('--bg')).toBe(theme.color.bg)
@@ -78,6 +78,11 @@ describe('settings', () => {
     // Switched back on, it is the light look's own value, not a stale dark one.
     setSetting('motion', true)
     expect(applied().get('--motion-base-ms')).toBe(themeVariable('--motion-base-ms'))
+  })
+
+  it('offers exactly the looks theme.json has, then the device', () => {
+    expect(setting('theme').options.map((one) => one.id)).toEqual(themeChoices().map((one) => one.id))
+    expect(setting('theme').default).toBe(theme.themes.base)
   })
 
   it('ignores a look that does not exist', () => {

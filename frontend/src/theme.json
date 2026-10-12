@@ -299,8 +299,10 @@
     "lg": "1.25rem"
   },
   "shadow": {
-    "_comment": "Depth, for the few things that float over the page rather than sit in it: a tooltip, a popover. Only one so far, on purpose, one lift reads as one layer.",
-    "pop": "0 6px 18px rgba(0, 0, 0, 0.45)"
+    "_comment": "Depth, for the few things that float over the page rather than sit in it. pop is a tooltip or popover, lift a card raised under the pointer, scrim the dim behind a modal. One of each, on purpose: one lift reads as one layer.",
+    "pop": "0 6px 18px rgba(0, 0, 0, 0.45)",
+    "lift": "0 14px 34px rgba(0, 0, 0, 0.35)",
+    "scrim": "rgb(0 0 0 / 60%)"
   },
   "arabic": {
     "_comment": "One ladder for every piece of Arabic in the app, in rem. Smallest first; tiny, small, reading and display are ui/ArabicText's sizes: tiny is a name inside another name; small is a term or a table cell, and a name inside another name in the tarkeeb chart; term is a name read under its word in the chart; reading is Arabic being read: an ayah, a memorise page, a dictionary entry, chart is the sentence the tarkeeb chart is drawn under, read across a row of names rather than as a line; display is a word on its own, in a search box or as an answer. The diagram used to keep a ladder of its own, and then a rung of its own, and both times its words drifted a third bigger than the same sentence in the word cards under it. Anything Arabic picks a rung here; nothing sets a size of its own.",
@@ -348,53 +350,80 @@
   },
   "_tarkeeb_comment": "The diagram has no sizes of its own any more. Its sentence is the arabic 'chart' rung, its role names 'term', a name inside another name 'small', and its + signs the English type 'body' size. Depth still reads as size, the steps are just shared with the rest of the app instead of being a second private ladder. Its colours are the 'role' group.",
   "themes": {
-    "_comment": "The looks a reader can pick. Every group above is the dark look; a theme here names only what it changes, group by group and key by key, and the rest stays as above. palette is the usual place to start: tab, role, unit, science and the tones all point at it, so a new look is mostly colours there plus the ground and text in color. scheme tells the browser which its own controls (scrollbars, inputs) should match. hint-key is the one localStorage entry that lets the page paint the right ground before any script runs (vite/bootShell.js reads it); base-scheme is the scheme of the dark look above.",
+    "_comment": "The looks a reader can pick, and everything the code knows about them: it names none. base is the look the groups above describe. Each entry in looks has a label (what Settings calls it), a scheme (which the browser's own controls, scrollbars and inputs, should match) and then only what it changes, group by group and key by key; the rest stays as above. palette is the usual place to start: tab, role, unit, science and the tones all point at it, so a new look is mostly colours there plus the ground and text in color. Adding a look is adding an entry here and nothing else: Settings lists it, the page paints its ground before any script runs, and the tests hold it to contrast. device is the reader's \"follow my phone or computer\" choice: its id and label, and which look a light device and a dark one each get. hint-key is the one localStorage entry that lets the page paint the right ground early (vite/bootShell.js reads it).",
+    "base": "dark",
     "hint-key": "theme-hint",
-    "base-scheme": "dark",
-    "light": {
-      "_comment": "Paper-bright ground, ink text. Accents are the dark look's hues pulled to the 600-700 weight so each still reads as text and as a border on white (4.5:1 or better on the surface); lights stain the ground (multiply) instead of glowing on it.",
-      "scheme": "light",
-      "palette": {
-        "violet": "#6d3fd8",
-        "violet-hi": "#5b21b6",
-        "rose": "#d6204a",
-        "teal": "#0f766e",
-        "amber": "#a85a06",
-        "pink": "#c4206e",
-        "sky": "#0369a1",
-        "green": "#15803d",
-        "orange": "#c2410c",
-        "slate": "#5b6b82",
-        "blue": "#2457c5",
-        "cream": "#7a5a2a",
-        "lime": "#4d7c0f",
-        "fuchsia": "#a21caf",
-        "blue-deep": "#1d4ed8",
-        "orange-deep": "#9a3412",
-        "lilac": "#7e22ce"
+    "device": {
+      "choice": "system",
+      "label": "Device",
+      "light": "light",
+      "dark": "dark"
+    },
+    "looks": {
+      "dark": {
+        "label": "Dark",
+        "scheme": "dark"
       },
-      "color": {
-        "bg": "#f4f6fb",
-        "bg-glow": "#ffffff",
-        "surface": "#ffffff",
-        "surface-hi": "#eceff6",
-        "border": "#d5dbe8",
-        "border-hi": "#b3bcd0",
-        "text": "#141a2a",
-        "text-dim": "#465069",
-        "text-faint": "#5f6b85"
-      },
-      "lights": {
-        "ground-top": "#f6f1e8",
-        "ground-bottom": "#efe8da",
-        "colors": "#e9b85a,#d9825f,#7fa6d6,#c2a06a",
-        "alpha": 0.3,
-        "blend": "multiply"
-      },
-      "marks": { "alpha": 0.07 },
-      "shadow": { "pop": "0 6px 18px rgba(30, 41, 80, 0.18)" },
-      "timeline": { "acc-l": "36%", "ink-l": "26%", "map-water": "#cfe6ef" },
-      "hadith": { "told": "#5b6881", "heard": "#1d7d4b", "loose": "#a8501a" }
+      "light": {
+        "label": "Light",
+        "scheme": "light",
+        "_comment": "Paper-bright ground, ink text. Accents are the dark look's hues pulled to the 600-700 weight so each still reads as text and as a border on white (4.5:1 or better on the surface); lights stain the ground (multiply) instead of glowing on it.",
+        "palette": {
+          "violet": "#6d3fd8",
+          "violet-hi": "#5b21b6",
+          "rose": "#d6204a",
+          "teal": "#0f766e",
+          "amber": "#a85a06",
+          "pink": "#c4206e",
+          "sky": "#0369a1",
+          "green": "#15803d",
+          "orange": "#c2410c",
+          "slate": "#5b6b82",
+          "blue": "#2457c5",
+          "cream": "#7a5a2a",
+          "lime": "#4d7c0f",
+          "fuchsia": "#a21caf",
+          "blue-deep": "#1d4ed8",
+          "orange-deep": "#9a3412",
+          "lilac": "#7e22ce"
+        },
+        "color": {
+          "bg": "#f4f6fb",
+          "bg-glow": "#ffffff",
+          "surface": "#ffffff",
+          "surface-hi": "#eceff6",
+          "border": "#d5dbe8",
+          "border-hi": "#b3bcd0",
+          "text": "#141a2a",
+          "text-dim": "#465069",
+          "text-faint": "#5f6b85"
+        },
+        "lights": {
+          "ground-top": "#f6f1e8",
+          "ground-bottom": "#efe8da",
+          "colors": "#e9b85a,#d9825f,#7fa6d6,#c2a06a",
+          "alpha": 0.3,
+          "blend": "multiply"
+        },
+        "marks": {
+          "alpha": 0.07
+        },
+        "shadow": {
+          "pop": "0 6px 18px rgba(30, 41, 80, 0.18)",
+          "lift": "0 14px 34px rgba(30, 41, 80, 0.18)",
+          "scrim": "rgb(20 28 50 / 45%)"
+        },
+        "timeline": {
+          "acc-l": "36%",
+          "ink-l": "26%",
+          "map-water": "#cfe6ef"
+        },
+        "hadith": {
+          "told": "#5b6881",
+          "heard": "#1d7d4b",
+          "loose": "#a8501a"
+        }
+      }
     }
   },
   "glow": {

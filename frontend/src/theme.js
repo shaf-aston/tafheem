@@ -6,8 +6,8 @@
  * then reference `var(--role-fail)` and never a literal colour, which is what
  * makes the whole look editable from one file.
  *
- * A look is the groups as written (the dark one) with a named theme's overrides
- * laid over, key by key. Switching looks rewrites the same variables on :root, so
+ * A look is the groups as written with a named theme's overrides laid over,
+ * key by key. Switching looks rewrites the same variables on :root, so
  * nothing downstream knows there is more than one.
  */
 import theme from './theme.json'
@@ -18,18 +18,19 @@ const PALETTE_GROUP = 'palette'
 const THEMES_GROUP = 'themes'
 const REFERENCE = '@'
 
+const { base: BASE_THEME, 'hint-key': HINT_KEY, device: DEVICE, looks: LOOKS } = theme[THEMES_GROUP]
+
 /** The look the groups in theme.json describe, and what the landing page always wears. */
-export const BASE_THEME = 'dark'
-/** Not a look: the reader's setting that follows the device's own light or dark. */
-export const DEVICE_THEME = 'system'
+export { BASE_THEME }
 
-const { 'hint-key': HINT_KEY, 'base-scheme': BASE_SCHEME, ...named } = theme[THEMES_GROUP]
-const OVERRIDES = Object.fromEntries(
-  Object.entries(named).filter(([name, values]) => !name.startsWith(PRIVATE_KEY) && typeof values === 'object'),
-)
+/** Every look there is, in file order. Nothing else in the code names one. */
+export const THEME_NAMES = Object.keys(LOOKS)
 
-/** Every look there is, the base first. */
-export const THEME_NAMES = [BASE_THEME, ...Object.keys(OVERRIDES)]
+/** The reader's choices for Settings: each look, then "follow the device". */
+export const themeChoices = () => [
+  ...THEME_NAMES.map((id) => ({ id, label: LOOKS[id].label })),
+  { id: DEVICE.choice, label: DEVICE.label },
+]
 
 const isPrivate = (key) => key.startsWith(PRIVATE_KEY)
 const isReference = (value) => typeof value === 'string' && value.startsWith(REFERENCE)
@@ -44,7 +45,7 @@ function groupsOf(name) {
     .filter(([group, values]) => !isPrivate(group) && group !== THEMES_GROUP && typeof values === 'object')
     .map(([group, values]) => [
       group,
-      Object.entries({ ...values, ...OVERRIDES[name]?.[group] })
+      Object.entries({ ...values, ...LOOKS[name]?.[group] })
         .filter(([key]) => !isPrivate(key))
         .map(([key, value]) => [key, cssValue(value)]),
     ])
@@ -69,13 +70,16 @@ function variablesOf(name) {
   return variablesByTheme[name]
 }
 
-const schemeOf = (name) => OVERRIDES[name]?.scheme ?? BASE_SCHEME
+const schemeOf = (name) => LOOKS[name].scheme
 
-/** Which look a reader's choice means right now: 'system' asks the device. */
+/** Which look a reader's choice means right now: the device choice asks the device. */
 export function resolveTheme(choice, prefersLight = globalThis.matchMedia?.('(prefers-color-scheme: light)').matches) {
-  if (choice === DEVICE_THEME) return prefersLight && 'light' in OVERRIDES ? 'light' : BASE_THEME
-  return choice in OVERRIDES ? choice : BASE_THEME
+  if (choice === DEVICE.choice) return prefersLight ? DEVICE.light : DEVICE.dark
+  return choice in LOOKS ? choice : BASE_THEME
 }
+
+/** Whether a stored choice is the device one, which has to be re-asked when the device changes. */
+export const followsDevice = (choice) => choice === DEVICE.choice
 
 /** Run `listener` whenever the device switches between light and dark. */
 export function followDevice(listener) {
@@ -90,7 +94,7 @@ export function followDevice(listener) {
  * address-bar colour.
  */
 export function applyTheme(root = document.documentElement, name = BASE_THEME) {
-  active = name in OVERRIDES ? name : BASE_THEME
+  active = name in LOOKS ? name : BASE_THEME
   const variables = variablesOf(active)
   for (const [property, value] of Object.entries(variables)) root.style.setProperty(property, value)
 

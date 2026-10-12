@@ -6,6 +6,7 @@ import { QUIZ } from '../lib/quizBanks'
 import AnswerSquare from './ui/AnswerSquare'
 import ArabicText from './ui/ArabicText'
 import AutoAdvanceToggle from './ui/AutoAdvanceToggle'
+import NoteBadge, { NoteReason } from './ui/NoteBadge'
 import SpeakButton from './ui/SpeakButton'
 
 // Arabic and Urdu are both read right to left and both go through ArabicText;
@@ -76,12 +77,13 @@ export default function QuizBoard({
 // Keyed by the answer, so the "why" note closes by itself on the next question.
 function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, afterAnswer }) {
   const { shown, shownPick, answered, correct, past, choose, next, speakRef } = round
-  // Whether the "why" behind the phrase/dialect badge is expanded.
-  const [noteOpen, setNoteOpen] = useState(false)
   // Focus Next once the answer is in, so Enter moves on, but without scrolling:
   // autoFocus brought the button into view, which on a phone threw the page
   // ~400px down and the question off the top after every answer.
   const nextButton = useRef(null)
+  // Whether the reason behind the note is showing. This card is keyed by the
+  // question, so the next one starts closed.
+  const [noteOpen, setNoteOpen] = useState(false)
   useEffect(() => {
     if (answered) nextButton.current?.focus({ preventScroll: true })
   }, [answered])
@@ -90,30 +92,8 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
   return (
     <div className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-5 space-y-4">
       <div className="relative flex items-center justify-center">
-        {/* One note slot, for whatever this question needs said before you
-            answer rather than after you get it wrong: which Arabic is being
-            asked for, or that its English came from a phrase. A button, not
-            a span: the "why" was title-only tooltip before, unreachable on
-            touch. Tapping reveals the same text inline, title stays for mouse. */}
-        {note && (
-          <div className="absolute end-0 top-0 flex flex-col items-end gap-1">
-            <button
-              type="button"
-              title={note.why}
-              aria-expanded={noteOpen}
-              onClick={() => setNoteOpen((o) => !o)}
-              className="type-tiny text-[var(--text-faint)] hover:text-[var(--text-dim)]
-                px-2 py-0.5 rounded-full border border-[var(--border)] transition-colors"
-            >
-              {note.text}
-            </button>
-            {noteOpen && (
-              <p className="type-small text-[var(--text-faint)] max-w-[14rem] text-end">
-                {note.why}
-              </p>
-            )}
-          </div>
-        )}
+        {/* Whatever this question needs said before you answer (ui/NoteBadge). */}
+        {note && <NoteBadge note={note} open={noteOpen} onToggle={() => setNoteOpen((o) => !o)} />}
         <div className="text-center space-y-1">
           <div className="eyebrow">
             {say(shown.listen ? 'Which word did you hear?' : arabicPrompt ? 'What does this mean?' : 'Which word is this?')}
@@ -133,6 +113,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
           </div>
         </div>
       </div>
+      {note && <NoteReason note={note} open={noteOpen} />}
 
       <div className="grid sm:grid-cols-2 gap-2.5" role="group" aria-label={say('Answers')}>
         {shown.options.map((option, i) => (
