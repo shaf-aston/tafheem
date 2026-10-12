@@ -44,6 +44,11 @@ def letters(word: str) -> list[tuple[str, set]]:
     return out
 
 
+def stuck_letters(pieces) -> int:
+    """How many letters of an attached pronoun (ـها) the `+` pieces among these tokens hold."""
+    return sum(len(bare_letters(t["form"].strip("+"))) for t in pieces if t["form"].startswith("+"))
+
+
 def own_letters(word: str, before: int, after: int) -> str:
     """The typed word less `before` letters joined in front (فـ) and `after` of an attached
     pronoun (ـها), its own vowels kept: فَاقْبَلْهَا is اقْبَلْ."""

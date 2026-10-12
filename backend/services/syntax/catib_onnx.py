@@ -23,12 +23,11 @@ import onnxruntime as ort  # must precede camel_tools (see module docstring)
 import numpy as np
 from tokenizers import Tokenizer
 
-from backend.services.arabic_text import bare_letters
 from backend.config import data_path, get_settings
 from backend.services.syntax import decode
 from backend.services.syntax.mask import book_mask
 from backend.services.morphology import ROOTED_POS, root_in_arabic
-from backend.services.harakat import base_of, typed_case, weak_last
+from backend.services.harakat import base_of, stuck_letters, typed_case, weak_last
 
 logger = logging.getLogger(__name__)
 
@@ -347,7 +346,7 @@ def parse(words: list[str], picks: list[dict]) -> list[dict]:
     for word, pick in zip(words, picks, strict=True):
         pieces = _split_word(word, pick)
         # the vowel of an attached pronoun is the pronoun's: عِلْمَهُ is in nasb, not raf'
-        stuck_on = sum(len(bare_letters(t["form"].strip("+"))) for t in pieces if t["form"].startswith("+"))
+        stuck_on = stuck_letters(pieces)
         subtokens.extend({**t, "case": typed_case(word, stuck_on)} for t in pieces)
 
     heads, rels = _parse_forms(subtokens)
