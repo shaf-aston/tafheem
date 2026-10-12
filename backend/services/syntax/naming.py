@@ -282,9 +282,11 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     # ending, so the vowel on it is part of the word and not a case
     if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token):
         return "mabni"
-    # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built
+    # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built;
+    # a name is never built, so a sukun on one is the reader pausing (أَحْمَدْ جَاءَ)
     marked = letters(token["typed"])
-    if after and not token.get("stuck_on") and marked and SUKUN in marked[-1][1]:
+    if (after and not token.get("stuck_on") and marked and SUKUN in marked[-1][1]
+            and token.get("pos_camel") != "noun_prop"):
         return "mabni"
     if facts.shows_nasb_by_kasra(token) and (case_of(role, token["mudaf"]) == "a" if role else not jarred):
         return "nasb"
