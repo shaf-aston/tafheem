@@ -32,11 +32,13 @@ class HadithBook(BaseModel):
 
 class HadithEntry(BaseModel):
     """One hadith's own words. `cite` is where it is checked, sunnah.com's page.
-    `cut` is [teller_at, body_at], offsets into `arabic` (services/hadith/chain); None where the end of the chain is not plain."""
+    `cut` is [teller_at, body_at], offsets into `arabic` (services/hadith/chain); None where the end of the chain is not plain.
+    `in_book` is its place in its book (sunnah.com's in-book reference), 0 where not known."""
     collection: str
     book: int
     number: int
     part: str = ""
+    in_book: int = 0
     arabic: str
     english: str = ""
     grades: list[HadithGrade] = []

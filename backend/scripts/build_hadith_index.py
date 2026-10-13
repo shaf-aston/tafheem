@@ -51,6 +51,7 @@ CREATE TABLE hadith (
     book_number   INTEGER NOT NULL,
     number        INTEGER NOT NULL,
     part          TEXT NOT NULL DEFAULT '',
+    in_book       INTEGER NOT NULL DEFAULT 0,  -- its place in its book, 0 where the fetch had none
     arabic        TEXT NOT NULL,
     english       TEXT NOT NULL DEFAULT '',
     grades        TEXT NOT NULL DEFAULT '[]',  -- JSON list of {by, grade}
@@ -139,9 +140,9 @@ def build() -> dict[str, int]:
                 [(key, b["number"], b["name"], arabic.get(str(b["number"]), "")) for b in raw.get("books", [])],
             )
             conn.executemany(
-                "INSERT INTO hadith (collection_id, book_number, number, part, arabic, english, grades) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?)",
-                [(key, h["book"], h["number"], h.get("part", ""), h["arabic"], h.get("english", ""),
+                "INSERT INTO hadith (collection_id, book_number, number, part, in_book, arabic, english, grades) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                [(key, h["book"], h["number"], h.get("part", ""), h.get("in_book", 0), h["arabic"], h.get("english", ""),
                   json.dumps(h.get("grades", []), ensure_ascii=False))
                  for h in raw.get("hadith", [])],
             )

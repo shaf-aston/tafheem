@@ -97,6 +97,8 @@ def hadiths_of(arabic: dict, english: dict, collection: str) -> list[dict]:
         match = by_number.get((number, part)) or {}
         out.append({
             "book": (item.get("reference") or {}).get("book", 0),
+            # Its place in that book, sunnah.com's "In-book reference: Book 12, Hadith 6".
+            "in_book": (item.get("reference") or {}).get("hadith", 0),
             "number": number,
             "part": letter,
             "arabic": text,

@@ -87,20 +87,27 @@ def books(collection_id: str) -> list[dict]:
     ]
 
 
+@_per_build(False, maxsize=1)
+def _keeps_in_book() -> bool:
+    """Whether this build of hadith.db holds each hadith's place in its book; one built before it was kept does not."""
+    return any(column[1] == "in_book" for column in db().execute("PRAGMA table_info(hadith)"))
+
+
 def hadiths(collection_id: str, book_number: int) -> list[dict]:
-    """Every hadith in one book, in the order sunnah.com prints them."""
+    """Every hadith in one book, in the order sunnah.com prints them. `in_book` is 0 where the build has no place for it."""
     if not is_built():
         return []
     conn = db()
     cite = cite_of(collection_id)
+    in_book = "in_book" if _keeps_in_book() else "0"
     return [
         {
             "collection": collection_id, "book": book_number, "number": number,
-            "part": part, "arabic": arabic, "english": english,
+            "part": part, "in_book": place, "arabic": arabic, "english": english,
             "grades": json.loads(grades), "cite": cite_url(cite, number, part),
         }
-        for number, part, arabic, english, grades in conn.execute(
-            "SELECT number, part, arabic, english, grades FROM hadith "
+        for number, part, place, arabic, english, grades in conn.execute(
+            f"SELECT number, part, {in_book}, arabic, english, grades FROM hadith "
             "WHERE collection_id = ? AND book_number = ? ORDER BY number, part",
             (collection_id, book_number),
         )

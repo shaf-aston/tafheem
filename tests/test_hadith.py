@@ -76,6 +76,22 @@ def test_hadiths_of_a_book_carry_their_cite_link(db):
     assert found[0]["arabic"].startswith("إِنَّمَا")
 
 
+def test_hadiths_of_a_book_carry_their_place_in_it(db):
+    conn = sqlite3.connect(db)
+    conn.execute("UPDATE hadith SET in_book = number")
+    conn.commit()
+    conn.close()
+    assert [h["in_book"] for h in loader.hadiths("bukhari", 1)] == [1, 2]
+
+
+def test_a_build_from_before_the_place_was_kept_still_reads(db):
+    conn = sqlite3.connect(db)
+    conn.execute("ALTER TABLE hadith DROP COLUMN in_book")
+    conn.commit()
+    conn.close()
+    assert [h["in_book"] for h in loader.hadiths("bukhari", 1)] == [0, 0]
+
+
 def test_an_unknown_book_is_empty_not_an_error(db):
     assert loader.hadiths("bukhari", 99) == []
 

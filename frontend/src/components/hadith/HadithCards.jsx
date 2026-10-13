@@ -14,6 +14,7 @@
  * whose chain has any carries one quiet "2 weak points" chip that opens the drawing, where each
  * weak narrator is marked and ranked and each doubtful link lettered (lib/weak); a hadith that classical
  * books speak of carries a "Scholars" chip to the same drawing, where their words are quoted.
+ * Under each one's words, its reference as sunnah.com prints it (hadith/HadithReference).
  * `onNarrator` opens one narrator's full page; `onHadith` opens a sibling narration of the same number.
  */
 import { useState } from 'react'
@@ -29,6 +30,7 @@ import Chip from '../ui/Chip'
 import CopyButton from '../ui/CopyButton'
 import FavoriteStar from './FavoriteStar'
 import GradeMark from './GradeMark'
+import HadithReference from './HadithReference'
 import HadithText from '../ui/HadithText'
 import NarrationFamily from './NarrationFamily'
 import NarratorSheet from './NarratorSheet'
@@ -79,12 +81,17 @@ export default function HadithCards({ items, accent, collection, columns = false
               hideChain={hideChain}
               names={names[ref]}
               onNarrator={setWho}
-              footer={kin > 1 && !hideChain && (
-                <NarrationFamily
-                  collection={h.collection} number={h.number} part={h.part} count={kin} accent={accent}
-                  onOpen={(p) => onHadith?.({ collection: h.collection, book: p.book, number: h.number, part: p.part })}
-                  onNarrator={setWho}
-                />
+              footer={(
+                <>
+                  <HadithReference name={of(h.collection).name} number={h.number} part={h.part} book={h.book} inBook={h.in_book} cite={h.cite} />
+                  {kin > 1 && !hideChain && (
+                    <NarrationFamily
+                      collection={h.collection} number={h.number} part={h.part} count={kin} accent={accent}
+                      onOpen={(p) => onHadith?.({ collection: h.collection, book: p.book, number: h.number, part: p.part })}
+                      onNarrator={setWho}
+                    />
+                  )}
+                </>
               )}
               action={(
                 <span className="flex flex-wrap items-center justify-end gap-2">
