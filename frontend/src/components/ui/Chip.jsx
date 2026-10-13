@@ -83,7 +83,7 @@ export default function Chip({
         h-[var(--layout-chip)] disabled:opacity-40
         hover:border-[var(--c)] hover:text-[var(--text)] disabled:hover:border-[var(--border)]
         ${quiet
-          ? 'px-2 border border-[var(--border)] text-[var(--text-faint)] opacity-75 hover:opacity-100'
+          ? 'px-2 border border-[var(--border)] text-[var(--text-faint)]'
           : 'px-2.5 border border-[var(--border)] text-[var(--text-dim)]'}
         ${tinted ? 'bg-transparent' : 'bg-[var(--surface)]'}`}
     >

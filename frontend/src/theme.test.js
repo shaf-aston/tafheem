@@ -91,7 +91,7 @@ describe('the looks', () => {
 
 // Contrast is the one thing a colour swap breaks without anything crashing, so
 // each look is held to it. Text tokens and every palette colour (worn as text,
-// on the page and on a card) need 4.5:1; borders only 3:1.
+// on the page, on a card, and on its own tint) need 4.5:1; borders only 3:1.
 const channel = (c) => ((c /= 255) <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
 const luminance = (hex) => {
   const n = parseInt(hex.slice(1), 16)
@@ -100,6 +100,15 @@ const luminance = (hex) => {
 const contrast = (a, b) => {
   const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x)
   return (hi + 0.05) / (lo + 0.05)
+}
+// A palette colour is also worn as text on a wash of itself (an error box, a
+// tinted chip), which is a ground nearer to the text than the card is. The
+// strongest wash in use is 14% (ui/Chip), so that is the one held to.
+const WASH = 0.14
+const washed = (hex, ground) => {
+  const [a, b] = [hex, ground].map((value) => parseInt(value.slice(1), 16))
+  const mixed = [16, 8, 0].map((shift) => Math.round(((a >> shift) & 255) * WASH + ((b >> shift) & 255) * (1 - WASH)))
+  return `#${mixed.map((v) => v.toString(16).padStart(2, '0')).join('')}`
 }
 const lookOf = (name) => ({
   palette: Object.fromEntries(
@@ -111,6 +120,8 @@ const lookOf = (name) => ({
 describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
   const { palette, color } = lookOf(name)
   const grounds = { page: color.bg, card: color.surface }
+  // Pills and chips also sit on a raised card (a word in the i'raab view).
+  const washGrounds = { ...grounds, raised: color['surface-hi'] }
 
   it.each(['text', 'text-dim', 'text-faint'])('%s reads on the page and a card', (token) => {
     for (const [where, ground] of Object.entries(grounds)) {
@@ -125,6 +136,28 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
         .map(([where, ground]) => `${colour} on ${where}: ${contrast(hex, ground).toFixed(2)}`),
     )
     expect(weak).toEqual([])
+  })
+
+  it('has palette colours that read on a wash of themselves', () => {
+    const weak = Object.entries(palette).flatMap(([colour, hex]) =>
+      Object.entries(washGrounds)
+        .filter(([, ground]) => contrast(hex, washed(hex, ground)) < 4.5)
+        .map(([where, ground]) => `${colour} on its wash over the ${where}: ${contrast(hex, washed(hex, ground)).toFixed(2)}`),
+    )
+    expect(weak).toEqual([])
+  })
+
+  // Words sit on tinted boxes too (an error, a role pill, a tinted chip), so a
+  // text token has to read on the palette's washes over the page, a card and a
+  // raised card. The dark base predates this check, so its two quieter tokens
+  // are held at what they measure today (they can only get better); a new look
+  // gets the full 4.5.
+  const BASE_FLOOR = { 'text-dim': 4.3, 'text-faint': 3.1 }
+  it.each(['text', 'text-dim', 'text-faint'])('%s reads on a tinted card', (token) => {
+    const floor = name === base ? BASE_FLOOR[token] ?? 4.5 : 4.5
+    const worst = Math.min(...Object.values(palette).flatMap((hex) =>
+      Object.values(washGrounds).map((ground) => contrast(color[token], washed(hex, ground)))))
+    expect(worst).toBeGreaterThanOrEqual(floor)
   })
 
   it('has a border that can be seen on a card', () => {
