@@ -8,35 +8,37 @@
  * A page that wears more than one look says so with `data-themed` on <html>.
  * It also gets each look's ground and a short script that reads the hint
  * theme.js left behind, so a reader who chose light is not shown dark first.
- * The landing page does not, and is always dark.
+ * The landing page does not, and is always the base look.
  */
 import { readFileSync } from 'node:fs'
 
 const theme = JSON.parse(readFileSync(new URL('../src/theme.json', import.meta.url), 'utf8'))
-const { 'hint-key': HINT_KEY, 'base-scheme': BASE_SCHEME, ...looks } = theme.themes
+const { base, 'hint-key': HINT_KEY, device, looks } = theme.themes
 
 const ground = (selector, bg) => `${selector} { background: ${bg}; }`
 
-const LOOKS = Object.entries(looks).filter(([name, values]) => !name.startsWith('_') && typeof values === 'object')
-// look name -> the colour-scheme it asks the browser for
-const SCHEMES = Object.fromEntries(LOOKS.map(([name, values]) => [name, values.scheme]))
-
+// The base look's ground is the page's own; every look gets one for its data-theme.
 const GROUNDS = [
   ground('html, body', theme.color.bg),
-  ...LOOKS.map(([name, values]) => ground(`html[data-theme="${name}"], html[data-theme="${name}"] body`, values.color.bg)),
+  ...Object.entries(looks).map(([name, look]) =>
+    ground(`html[data-theme="${name}"], html[data-theme="${name}"] body`, look.color?.bg ?? theme.color.bg)),
 ]
+
+// look name -> the colour-scheme it asks the browser for
+const SCHEMES = Object.fromEntries(Object.entries(looks).map(([name, look]) => [name, look.scheme]))
 
 const STYLE = (themed) =>
   `<style>html, body { margin: 0; }\n    ${(themed ? GROUNDS : GROUNDS.slice(0, 1)).join('\n    ')}</style>`
 
-// The choice is one of the look names or `system` (the device's light look is
-// the one named `light`, as in theme.js); anything else is the base look.
+// The same decision as theme.js's resolveTheme, from the same theme.json: a
+// look's name, or the device choice, which asks the device; anything else is
+// the base look and is left alone.
 const SCRIPT = `<script>
     try {
       var c = localStorage.getItem('${HINT_KEY}');
-      if (c === 'system') c = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : '${BASE_SCHEME}';
+      if (c === '${device.choice}') c = matchMedia('(prefers-color-scheme: light)').matches ? '${device.light}' : '${device.dark}';
       var scheme = ${JSON.stringify(SCHEMES)}[c];
-      if (scheme) { document.documentElement.dataset.theme = c; document.documentElement.style.colorScheme = scheme; }
+      if (scheme && c !== '${base}') { document.documentElement.dataset.theme = c; document.documentElement.style.colorScheme = scheme; }
     } catch (e) {}
   </script>`
 

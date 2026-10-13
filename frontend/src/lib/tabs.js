@@ -53,15 +53,15 @@ export const GROUPS = [
 export const TABS = [
   { id: 'nahw',   label: 'Nahw',       short: 'Nahw',   arabic: 'نحو',    mark: 'ن', Component: NahwPanel,   study: true, half: true, group: 'language' },
   { id: 'sarf',   label: 'Sarf',       short: 'Sarf',   arabic: 'صرف',    mark: 'ص', Component: SarfPanel,   study: true, half: true, group: 'language' },
-  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', mark: 'ق', Component: QuranLookup, open: quranOpen, study: true, dock: true, group: 'quran' },
+  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', mark: 'ق', Component: QuranLookup, open: quranOpen, study: true, group: 'quran' },
   // Daleel finds a passage, Dictionary a word: reached for together.
   { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   mark: 'د', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, group: 'quran' },
   { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', mark: 'ث', Component: HadithPanel, open: hadithOpen, study: true, group: 'quran' },
-  { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  mark: 'م', Component: Dictionary,  dock: true, group: 'tools' },
+  { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  mark: 'م', Component: Dictionary,  group: 'tools' },
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    mark: 'ح', Component: MemorisePanel, open: memoriseOpen, study: true, group: 'quran' },
   // Grow, نبات (3:37): a learning path, reciting what is said in prayer.
-  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   mark: 'ب', Component: GrowPanel, open: load(growPathsQuery), study: true, dock: true, group: 'quran' },
-  { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel, open: table, dock: true, group: 'tools' },
+  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   mark: 'ب', Component: GrowPanel, open: load(growPathsQuery), study: true, group: 'quran' },
+  { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel, open: table, group: 'tools' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, open: load(timelinesQuery), study: true, group: 'tools' },
   { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   mark: 'و', Component: DawahPanel, open: load(dawahQuery), study: true, group: 'tools' },
   { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, open: load(colloquialQuery), group: 'language', study: true, modules: [WORDS_MODULE] },
@@ -76,6 +76,9 @@ export const LISTED = TABS.filter((tab) => !tab.hidden)
 // opening another tab drops the oldest (lib/recent.js).
 export const FIXED = ['quran', 'nahw', 'sarf', 'dict']
 export const RECENT = ['daleel', 'mem', 'quiz', 'grow']
+
+// The phone's bar until the reader changes it (lib/dock.js): these, in this order, then More.
+export const DOCK = ['quran', 'dict', 'grow', 'quiz']
 
 /** A tab's colour, with the theme's own fallback rule. */
 export const accentOf = (id) => colorFor('tab', id)

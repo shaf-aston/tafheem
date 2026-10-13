@@ -17,11 +17,17 @@
 import { useSyncExternalStore } from 'react'
 
 import config from '../settings.json'
-import { applyTheme, followDevice, rememberTheme, resolveTheme, themeVariable } from '../theme'
+import {
+  BASE_THEME, applyTheme, followDevice, followsDevice, rememberTheme, resolveTheme, themeChoices, themeVariable,
+} from '../theme'
 import { forgetKey, onReplaced, readSaved, writeSaved } from './stored'
 
 /** Every setting, in the order the panel shows them. */
-export const SETTINGS = config.settings
+// The look setting is the one whose options are not written here: they are
+// whatever looks theme.json has, so adding a look touches one file.
+export const SETTINGS = config.settings.map((one) =>
+  one.theme ? { ...one, default: BASE_THEME, options: themeChoices() } : one,
+)
 
 const STORAGE_KEY = config['storage-key']
 const BY_KEY = Object.fromEntries(SETTINGS.map((one) => [one.key, one]))
@@ -120,7 +126,7 @@ onReplaced(() => {
 })
 
 // Device means whatever the device says now, including after it changes.
-if (THEME_SETTING) followDevice(() => values()[THEME_SETTING.key] === 'system' && applySettings())
+if (THEME_SETTING) followDevice(() => followsDevice(values()[THEME_SETTING.key]) && applySettings())
 
 /** One setting's current value, kept in step across every component showing it. */
 export function useSetting(key) {

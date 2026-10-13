@@ -3,7 +3,7 @@ import { join, relative } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 import theme from './theme.json'
-import { THEME_NAMES, colorAt, colorFor, resolveTheme, tokenGroups } from './theme'
+import { THEME_NAMES, colorAt, colorFor, resolveTheme, themeChoices, tokenGroups } from './theme'
 
 const SRC = new URL('.', import.meta.url).pathname
 const HEX = /^#[0-9a-f]{6}$/i
@@ -42,41 +42,50 @@ describe('the palette', () => {
   })
 })
 
-describe('the looks', () => {
-  const overrides = Object.entries(theme.themes).filter(([name, v]) => !name.startsWith('_') && typeof v === 'object')
+const { looks, device, base } = theme.themes
+const groupsOf = (look) => Object.entries(look).filter(([key, value]) => !key.startsWith('_') && typeof value === 'object')
 
-  it('are the base plus a name', () => {
-    expect(THEME_NAMES).toEqual(['dark', ...overrides.map(([name]) => name)])
+describe('the looks', () => {
+  it('are the ones theme.json lists, and include the base', () => {
+    expect(THEME_NAMES).toEqual(Object.keys(looks))
+    expect(THEME_NAMES).toContain(base)
   })
 
-  it.each(overrides)('%s only changes tokens that exist', (name, look) => {
-    const unknown = Object.entries(look)
-      .filter(([group, values]) => !group.startsWith('_') && typeof values === 'object')
-      .flatMap(([group, values]) =>
-        Object.keys(values).filter((key) => !(key in (theme[group] ?? {}))).map((key) => `${group}.${key}`),
-      )
+  it.each(Object.entries(looks))('%s says what Settings calls it and which scheme it is', (name, look) => {
+    expect(look.label).toBeTruthy()
+    expect(['light', 'dark']).toContain(look.scheme)
+  })
+
+  it.each(Object.entries(looks))('%s only changes tokens that exist', (name, look) => {
+    const unknown = groupsOf(look).flatMap(([group, values]) =>
+      Object.keys(values).filter((key) => !(key in (theme[group] ?? {}))).map((key) => `${group}.${key}`),
+    )
     expect(unknown).toEqual([])
   })
 
-  it.each(overrides)('%s repaints the whole palette', (name, look) => {
+  it('repaint the whole palette whenever they touch it', () => {
     const names = (palette) => Object.keys(palette).filter((key) => !key.startsWith('_')).sort()
-    expect(names(look.palette)).toEqual(names(theme.palette))
-  })
-
-  it.each(overrides)('%s names the scheme the browser should match', (name, look) => {
-    expect(['light', 'dark']).toContain(look.scheme)
+    for (const [, look] of Object.entries(looks).filter(([, look]) => look.palette)) {
+      expect(names(look.palette)).toEqual(names(theme.palette))
+    }
   })
 
   it('write the same variables, only different values', () => {
     const names = (look) => tokenGroups(look).flatMap(([group, e]) => e.map(([key]) => `${group}.${key}`))
-    expect(names('light')).toEqual(names('dark'))
+    for (const name of THEME_NAMES) expect(names(name)).toEqual(names(base))
   })
 
-  it('send the device to light only when it says so', () => {
-    expect(resolveTheme('system', true)).toBe('light')
-    expect(resolveTheme('system', false)).toBe('dark')
-    expect(resolveTheme('light')).toBe('light')
-    expect(resolveTheme('nonsense')).toBe('dark')
+  it('are all offered to the reader, then the device', () => {
+    expect(themeChoices().map(({ id }) => id)).toEqual([...THEME_NAMES, device.choice])
+    expect(themeChoices().every(({ label }) => label)).toBe(true)
+  })
+
+  it('send the device to a look by its own answer, and anything unknown to the base', () => {
+    expect(resolveTheme(device.choice, true)).toBe(device.light)
+    expect(resolveTheme(device.choice, false)).toBe(device.dark)
+    expect([device.light, device.dark]).toSatisfy((names) => names.every((name) => name in looks))
+    expect(resolveTheme(THEME_NAMES.at(-1))).toBe(THEME_NAMES.at(-1))
+    expect(resolveTheme('nonsense')).toBe(base)
   })
 })
 
@@ -94,9 +103,9 @@ const contrast = (a, b) => {
 }
 const lookOf = (name) => ({
   palette: Object.fromEntries(
-    Object.entries({ ...theme.palette, ...theme.themes[name]?.palette }).filter(([key]) => !key.startsWith('_')),
+    Object.entries({ ...theme.palette, ...looks[name]?.palette }).filter(([key]) => !key.startsWith('_')),
   ),
-  color: { ...theme.color, ...theme.themes[name]?.color },
+  color: { ...theme.color, ...looks[name]?.color },
 })
 
 describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
@@ -126,17 +135,16 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
 // A look is one file. A new colour literal in a stylesheet or a component is the
 // look leaking out of it again, so the count of lines carrying one may only fall.
 // Lower a number when a file is cleaned; never raise one, add a token instead.
+// A mask only reads the alpha of its colour (#000 there means "opaque"), so a
+// line that is a mask is not a colour.
 const LITERAL = /#[0-9a-f]{3}\b|#[0-9a-f]{6}\b|\brgba?\(|\bhsla?\(/i
+const isMask = (line) => /mask|soft-edge/i.test(line)
 const ALLOWED = {
-  'landing/landing.css': 20,
+  'landing/landing.css': 18,
   'landing/AyahDiagram.css': 10,
   'lib/pbsData.js': 10,
-  'styles/components.css': 5,
-  'styles/timelines.css': 3,
+  'styles/timelines.css': 2,
   'styles/motion.css': 1,
-  'components/ui/ShowRest.jsx': 2,
-  'styles/pbs.css': 1,
-  'styles/command.css': 1,
   'components/shell/Backdrop.jsx': 1,
 }
 
@@ -153,7 +161,7 @@ describe('colour literals outside theme.json', () => {
     sources(SRC)
       .map((path) => [
         relative(SRC, path),
-        readFileSync(path, 'utf8').split('\n').filter((line) => LITERAL.test(line)).length,
+        readFileSync(path, 'utf8').split('\n').filter((line) => LITERAL.test(line) && !isMask(line)).length,
       ])
       .filter(([, count]) => count > 0),
   )

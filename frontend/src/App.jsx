@@ -1,7 +1,8 @@
 import { Activity, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { FIXED, GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
+import { DOCK, FIXED, GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
+import { useDock } from './lib/dock'
 import { keepRecent, useStrip } from './lib/recent'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { idle } from './lib/warm'
@@ -174,6 +175,7 @@ function AppContent() {
   }, [show])
 
   const strip = useStrip(LISTED, FIXED, RECENT, activeTab)
+  const [dock, placeInDock] = useDock(LISTED, DOCK)
 
   useTabShortcuts(strip, switchTab)
 
@@ -384,6 +386,8 @@ function AppContent() {
         colorOf={accentOf}
         onGo={switchTab}
         here={activeTab}
+        dock={dock}
+        onDock={placeInDock}
       >
         {/* The tools phones hide from the top bar, kept one tap inside More. */}
         <section className="sm:hidden space-y-2">
@@ -407,7 +411,7 @@ function AppContent() {
           ))}
         </section>
       </SectionsMenu>
-      <BottomNav tabs={LISTED} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
+      <BottomNav tabs={LISTED} dock={dock} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
       {/* Drawn last so it sits over the page, and once for the whole app. */}
       <CursorLight />
     </div>

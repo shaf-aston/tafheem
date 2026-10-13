@@ -18,7 +18,7 @@
   overflow: hidden;
   transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
 }
-.pbs-card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(0, 0, 0, .35); }
+.pbs-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
 .pbs-card .pbs-ghost {
   position: absolute; right: 6px; bottom: -20px;
   font-size: 4.5rem; font-weight: 900; line-height: 1;
