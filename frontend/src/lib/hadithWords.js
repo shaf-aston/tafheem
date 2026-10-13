@@ -59,11 +59,31 @@ function quoteMarks(text) {
     const after = text[at + 1] ?? ' '
     // A single mark between letters is an apostrophe: Allah's, Buda'ah.
     if (family === 'single' && LETTER.test(before) && LETTER.test(after)) continue
-    // A straight double mark closes the open one or opens; a straight single
-    // one opens before a word ("said: 'Indeed") and closes after one ("man.' So").
-    const opens = OPENS[ch] || (ch === '"' ? open.at(-1)?.family !== family
+    // A straight double mark faces the way its place says: a space before and a word after
+    // opens (a quote inside a quote: asked, "What is), text before and no word after closes.
+    // Only where its place says neither (said:" We) does it close the open one or else open.
+    const placed = ch !== '"' ? ''
+      : /\s/.test(before) && LETTER.test(after) ? 'open'
+      : /[^\s:]/.test(before) && !LETTER.test(after) ? 'close' : ''
+    // One that closes with a single quote innermost ends that one: the book opened with ' and
+    // closed with " (bukhari 947: said, 'Allahu Akbar! ... warned." The people). Not where the
+    // single was a name's ʿayn, which closes the double instead: one bare word since it
+    // ("Go to 'Ali."), or, inside a double, one not opened after a colon or comma as speech
+    // is ("Wa 'alaihi-s-Salam." against replied, 'He has been bewitched").
+    const top = open.at(-1)
+    const speech = (mark) => !open.some((o) => o.family === 'double') || /[:,]\s*$/.test(text.slice(0, mark.at))
+    if (placed === 'close' && top?.family === 'single' && speech(top.mark) && !/^[\p{L}-]+\p{P}*$/u.test(text.slice(top.mark.at + 1, at))) {
+      open.pop()
+      marks.push({ at, step: -1 })
+      continue
+    }
+    // A straight single mark opens before a word ("said: 'Indeed") and closes after one ("man.' So").
+    const opens = OPENS[ch] || (ch === '"' ? (placed ? placed === 'open' : top?.family !== family)
       : ch === "'" && !LETTER.test(before) && LETTER.test(after))
     if (opens && family === 'single' && nests && !open.length && !/[:,]\s*$/.test(text.slice(0, at))) continue
+    // A book with double quotes never sets a single straight inside another, so one opening
+    // there is a name's ʿayn: He said: 'We paid in the time of Abu Bakr and 'Umar."
+    if (opens && ch === "'" && nests && top?.family === 'single') continue
     if (opens) {
       const mark = { at, step: 1 }
       open.push({ family, mark })
