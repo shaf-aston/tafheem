@@ -12,13 +12,13 @@ import { topicOf } from '../../lib/hadithGrade'
 import { useRememberedFlag } from '../../lib/useRemembered'
 
 import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
 import ErrorAlert from '../ui/ErrorAlert'
 import EmptyState from '../ui/EmptyState'
 import TopicIcon from '../ui/TopicIcon'
 import ChainSheet from './ChainSheet'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 import ReadingOptions from '../ui/ReadingOptions'
+import SheetLink from '../ui/SheetLink'
 import HadithCards from './HadithCards'
 
 /** How far down the page you are, drawn into `ref` without re-rendering per scroll. */
@@ -80,9 +80,8 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
             // A phone has room for one hadith a row, so it is not offered there.
             { label: 'Two columns', on: columns, set: setColumns, only: 'wide' },
             { label: 'Hide the chain', on: hideChain, set: setHideChain },
-          ]}>
-            <Chip tinted accent={accent} onClick={() => setGuide(true)}>Words and terms</Chip>
-          </ReadingOptions>
+          ]} />
+          <SheetLink accent={accent} onClick={() => setGuide(true)}>Words and terms</SheetLink>
           {guide && <ChainSheet accent={accent} onClose={() => setGuide(false)} />}
           <form onSubmit={jump} className="flex items-center gap-2">
             {missing && <span role="status" className="type-small text-[var(--text-faint)]">Not in this book</span>}
