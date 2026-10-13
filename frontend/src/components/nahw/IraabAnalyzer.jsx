@@ -278,6 +278,11 @@ function WordGrid({ words, onClick, governs, picked, corner }) {
  */
 const NONE = '–'
 
+// The full table's columns: the ones every screen shows side by side, then the proof,
+// which a phone moves under its row.
+const BESIDE = [['الكلمة', 'Word'], ['الإعراب', 'Role · case · sign'], ['الجذر', 'Root'], ['العامل', 'Governed by']]
+const PROOF = ['الدليل', 'Proof']
+
 function FullIraabTable({ words, onRowClick }) {
   const pick = (e) => {
     const row = e.target.closest('tr[data-i]')
@@ -292,9 +297,8 @@ function FullIraabTable({ words, onRowClick }) {
         <table dir="rtl" className="w-full type-small border-collapse">
           <thead>
             <tr className="type-micro text-[var(--text-faint)] border-b border-[var(--border)] align-bottom">
-              {[['الكلمة', 'Word'], ['الإعراب', 'Role · case · sign'], ['الجذر', 'Root'], ['العامل', 'Governed by'],
-                ['الدليل', 'Proof']].map(([ar, en], col, all) => (
-                <th key={en} className={`text-right font-normal py-2 px-3 ${col === all.length - 1 ? 'hidden md:table-cell' : ''}`}>
+              {[...BESIDE, PROOF].map(([ar, en]) => (
+                <th key={en} className={`text-right font-normal py-2 px-3 ${en === PROOF[1] ? 'hidden md:table-cell' : ''}`}>
                   <ArabicText size="sm" className="block text-[var(--text-dim)]">{ar}</ArabicText>
                   <span dir="ltr" className="block">{en}</span>
                 </th>
@@ -332,10 +336,10 @@ function FullIraabTable({ words, onRowClick }) {
                   <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">
                     {source(w) === undefined ? NONE : <>{w.governor == null && 'تابع لـ '}{words[source(w)].word}</>}
                   </ArabicText>
-                  <td className="hidden md:table-cell py-3 px-3 text-[var(--text-dim)] min-w-[18rem]">{proof}</td>
+                  <td className="hidden md:table-cell py-3 px-3 text-[var(--text-dim)] min-w-[var(--layout-proof)]">{proof}</td>
                 </tr>
                 <tr data-i={i} className="md:hidden border-b border-[var(--border)] cursor-pointer">
-                  <td colSpan={4} className="pb-3 px-3 text-[var(--text-dim)]">{proof}</td>
+                  <td colSpan={BESIDE.length} className="pb-3 px-3 text-[var(--text-dim)]">{proof}</td>
                 </tr>
                 </Fragment>
               )
