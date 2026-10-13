@@ -369,3 +369,26 @@ def test_the_praise_verb_is_told_from_yes_by_its_fatha(typed, verb):
     found = roles([typed, "الْعَبْدُ"], toks)
     assert (found[0] == "فعل") is verb
     assert found[1] == "فاعل" or not verb  # the praised word after the verb is its doer
+
+
+def _hit(second, rel, **feats):
+    return [token(1, "ضرب", "ضرب", "VRB", 0, "---", **VERB),
+            token(2, "زيد", "زيد", "PROP", 1, "SBJ", pos_camel="noun_prop"),
+            token(3, second, second, "PROP", 2, rel, pos_camel="noun_prop", **feats)]
+
+
+@pytest.mark.parametrize("words, rel", [
+    (["ضَرَبَ", "زَيْدٌ", "عَمْرًا"], "MOD"),    # nasb after the subject's damma: no نعت, though indefinite
+    (["ضَرَبَ", "زَيْدٌ", "عمراً"], "MOD"),
+    (["ضَرَبَ", "زَيْدٌ", "مريم"], "IDF"),      # زيدٌ has tanween, so nothing is its مضاف إليه
+    (["ضَرَبَ", "زَيْدٌ", "مَرْيَمَ"], "IDF"),
+])
+def test_a_word_the_vowels_forbid_under_the_subject_is_the_verbs_object(words, rel):
+    assert roles(words, _hit(words[2], rel)) == ["فعل", "فاعل", "مفعول به"]
+
+
+def test_a_state_word_and_a_real_idafa_stay():
+    # جاء زيدٌ راكبًا: a hal is not taken for an object here
+    assert roles(["جَاءَ", "زَيْدٌ", "رَاكِبًا"], _hit("راكبا", "MOD", ud="ADJ"))[2] != "مفعول به"
+    # ضَرَبَ غُلَامُ زَيْدٍ: no tanween on the مضاف, the إضافة stands
+    assert roles(["ضَرَبَ", "غُلَامُ", "زَيْدٍ"], _hit("زيد", "IDF"))[2] == "مضاف إليه"
