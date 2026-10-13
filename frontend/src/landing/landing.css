@@ -79,10 +79,10 @@ body { margin: 0; overflow-x: hidden; }
 .cursor-blob.grow { width: 56px; height: 56px; }
 
 /* ================= HERO ================= */
-/* Exactly one screen: scrolling down leaves it and the next section starts.
-   The copy sits centred on the left; the stage on the right is whatever room
-   is left, and the ayah diagram inside it shrinks to fit. */
-.landing-page .hero { height: 100svh; min-height: 30rem; overflow: hidden; background: var(--ink); }
+/* One screen at most (--landing-hero-h): scrolling down leaves it and the next
+   section starts. The copy sits centred on the left; the stage on the right is
+   whatever room is left, and the ayah diagram inside it shrinks to fit. */
+.landing-page .hero { height: var(--landing-hero-h); min-height: 30rem; overflow: hidden; background: var(--ink); }
 .landing-page .hero::before {
   content: ""; position: absolute; inset: 0; z-index: 0;
   background:
@@ -97,7 +97,7 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .hero-stage { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; min-height: 0; }
 .landing-page .eyebrow { color: var(--gold-hi); font-size: .78rem; margin-bottom: 1.2rem; }
 .landing-page .eyebrow::before { content: "\2022\a0"; color: var(--gold); }
-.landing-page .headline { font-size: clamp(2.2rem, 4.1vw, 4rem); color: var(--text); }
+.landing-page .headline { font-size: var(--landing-hero-title); color: var(--text); }
 .landing-page .headline .accent { font-family: var(--font-arabic); font-style: italic; font-weight: 700; color: var(--gold-hi); }
 .landing-page .cta-row { margin-top: clamp(2.5rem, 9vh, 5rem); display: flex; gap: 1rem; flex-wrap: wrap; }
 .landing-page .cta {
@@ -109,8 +109,9 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .cta.ghost { background: transparent; color: var(--text); border: 1px solid rgb(var(--text-rgb) / .35); }
 
 @media (max-width: 860px) {
+  .landing-page .hero { height: var(--landing-hero-h-sm); }
   .landing-page .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 1.2rem; }
-  .landing-page .headline { font-size: clamp(2rem, 9vw, 3rem); }
+  .landing-page .headline { font-size: var(--landing-hero-title-sm); }
   .landing-page .cta-row { margin-top: 1.6rem; }
 }
 

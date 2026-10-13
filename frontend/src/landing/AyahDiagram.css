@@ -30,7 +30,7 @@
 .ayah-dg .dg > * { transition: opacity var(--slow) ease; }
 .ayah-dg .wd { grid-row: 1; display: flex; justify-content: center; align-items: end; }
 .ayah-dg .wd .ar {
-  font-size: calc(var(--arabic-display-rem) * 1rem); line-height: 1.6; padding: 0 .55rem .1rem;
+  font-size: calc(var(--arabic-stage-rem) * 1rem); line-height: 1.6; padding: 0 .55rem .1rem;
   border-bottom: 1.5px solid var(--tone, var(--faint)); white-space: nowrap;
 }
 .ayah-dg .wd.ghost { align-items: center; }
