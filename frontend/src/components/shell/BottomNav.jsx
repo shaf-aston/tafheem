@@ -1,12 +1,12 @@
 /**
- * The phone's tab bar: the `dock` tabs from tabs.js plus More, pinned where the
+ * The phone's tab bar: the reader's dock (lib/dock.js) plus More, pinned where the
  * thumb rests. Phones only; a wider screen keeps the TabStrip in the header.
  * Draws the registry, decides nothing, like TabStrip.
  */
 const MORE = 'M6 12h.01M12 12h.01M18 12h.01'
 
-export default function BottomNav({ tabs, active, colorOf, onSelect, onAll, onHover }) {
-  const dock = tabs.filter((tab) => tab.dock)
+export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, onAll, onHover }) {
+  const dock = ids.map((id) => tabs.find((tab) => tab.id === id))
   // A tab not on the bar lights More, so the bar always says where you are.
   const elsewhere = !dock.some((tab) => tab.id === active)
   const here = elsewhere && tabs.find((tab) => tab.id === active)
