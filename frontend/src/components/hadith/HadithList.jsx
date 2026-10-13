@@ -10,6 +10,7 @@ import { hadithBookQuery } from '../../api'
 import { holdAtTop, scrollToEl, useOpenAtTop } from '../../lib/scrollToEl'
 import { topicOf } from '../../lib/hadithGrade'
 import { useRememberedFlag } from '../../lib/useRemembered'
+import { useSideBySide } from '../../lib/useSideBySide'
 
 import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -41,6 +42,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
   useReadingRail(rail)
   const [missing, setMissing] = useState(false)
   const [columns, setColumns] = useRememberedFlag('hadith-two-columns', false)
+  const [sideBySide, setSideBySide] = useSideBySide()
   const [hideChain, setHideChain] = useRememberedFlag('hadith-hide-chain', false)
   const [guide, setGuide] = useState(false)
 
@@ -78,7 +80,9 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
           )}
           <ReadingOptions accent={accent} options={[
             // A phone has room for one hadith a row, so it is not offered there.
-            { label: 'Two columns', on: columns, set: setColumns, only: 'wide' },
+            // Two hadiths a row, each split in two, leaves too little of either: one turns the other off.
+            { label: 'Side by side', on: sideBySide && !columns, set: (on) => { setSideBySide(on); if (on) setColumns(false) }, only: 'wide' },
+            { label: 'Two columns', on: columns, set: (on) => { setColumns(on); if (on) setSideBySide(false) }, only: 'wide' },
             { label: 'Hide the chain', on: hideChain, set: setHideChain },
           ]} />
           <SheetLink accent={accent} onClick={() => setGuide(true)}>Words and terms</SheetLink>

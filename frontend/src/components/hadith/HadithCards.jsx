@@ -15,6 +15,8 @@
  * weak narrator is marked and ranked and each doubtful link lettered (lib/weak); a hadith that classical
  * books speak of carries a "Scholars" chip to the same drawing, where their words are quoted.
  * Under each one's words, its reference as sunnah.com prints it (hadith/HadithReference).
+ * Side by side (English left, Arabic right, as sunnah.com sets them) unless the reader turned it
+ * off; a book in two columns, or a phone, stacks them.
  * `onNarrator` opens one narrator's full page; `onHadith` opens a sibling narration of the same number.
  */
 import { useState } from 'react'
@@ -22,6 +24,7 @@ import { useState } from 'react'
 import { useHadithCollections } from '../../lib/useHadithCollections'
 import { useHadithFavorites } from '../../lib/useHadithFavorites'
 import { useKin, useNarrators, useWeakNotes } from '../../lib/useNarrators'
+import { useSideBySide } from '../../lib/useSideBySide'
 import { drawnChain } from '../../lib/rijal'
 import { weakLinks, weakPoints } from '../../lib/weak'
 
@@ -38,6 +41,7 @@ import NarratorSheet from './NarratorSheet'
 export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, onNarrator, onHadith }) {
   const { isFavorite, toggle } = useHadithFavorites()
   const { of } = useHadithCollections()
+  const [sideBySide] = useSideBySide()
   const books = items.map((h) => ({ collection: h.collection ?? collection, book: h.book }))
   const namesOf = useNarrators(books)
   const weakOf = useWeakNotes(books)
@@ -79,6 +83,7 @@ export default function HadithCards({ items, accent, collection, columns = false
               english={h.english}
               accent={accent}
               hideChain={hideChain}
+              split={sideBySide && !columns}
               names={names[ref]}
               onNarrator={setWho}
               footer={(
