@@ -10,6 +10,7 @@ import { colorFor } from '../theme'
 import { getProfile } from '../lib/profile'
 import { useHadithWorld } from '../lib/useHadithWorld'
 import { usePrayerRecord } from '../lib/usePrayerRecord'
+import { useQuranWorld } from '../lib/useQuranWorld'
 import { useRewards } from '../lib/useRewards'
 import { useWordsWorld } from '../lib/useWordsWorld'
 import GrowHome from './grow/GrowHome'
@@ -32,7 +33,11 @@ const SCREENS = {
 export default function GrowPanel({ onGo }) {
   const [name] = useState(getProfile)
   const { rewards } = useRewards(name)
-  const lessons = { words: useWordsWorld(worldOf('words')), hadith: useHadithWorld(worldOf('hadith')) }
+  const lessons = {
+    words: useWordsWorld(worldOf('words')),
+    quran: useQuranWorld(worldOf('quran')),
+    hadith: useHadithWorld(worldOf('hadith')),
+  }
   const prayer = usePrayerRecord()
   // { at: 'home' } | { at: 'world', id } | { at: 'lesson', id, cards, back }
   const [view, setView] = useState({ at: 'home' })

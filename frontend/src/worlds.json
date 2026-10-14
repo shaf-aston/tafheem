@@ -1,6 +1,6 @@
 {
-  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js), `prayer` = the step map. Colour: theme.json `world` by id.",
-  "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called.",
+  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `prayer` = the step map. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
+  "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called. `surahs` (Quran): the surahs the items come from, in order.",
   "worlds": [
     {
       "id": "words",
@@ -29,7 +29,13 @@
       "arabic": "قرآن",
       "scene": "The Night Sky",
       "idea": "Each ayah you fill in lights a star.",
-      "live": false
+      "live": true,
+      "kind": "lessons",
+      "view": "sky",
+      "unit": "ayat",
+      "lesson": { "new": 2, "most-new": 3, "size": 6 },
+      "surahs": [1, 112, 113, 114, 103, 108, 110, 109, 107, 106, 105],
+      "stages": [7, 15, 25, 40, 53]
     },
     {
       "id": "hadith",
@@ -39,6 +45,7 @@
       "idea": "An-Nawawi's Forty, one hadith at a time.",
       "live": true,
       "kind": "lessons",
+      "view": "shelf",
       "unit": "hadith",
       "lesson": { "new": 1, "most-new": 2, "size": 4 },
       "stages": [5, 10, 20, 30, 42]

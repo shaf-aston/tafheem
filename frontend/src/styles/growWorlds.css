@@ -115,3 +115,28 @@
 .grow-gap-line { font-size: 1.9rem; line-height: 2; }
 .grow-gap { display: inline-block; min-width: 3em; padding: 0 6px; border-bottom: 3px solid var(--w); color: var(--w); }
 .grow-options-ar .grow-option { text-align: center; font-size: 1.4rem; }
+
+/* ── a world's picture: the stage line, the shelf, the sky (components/grow/scenes) ── */
+.grow-world-body[data-scene] { max-width: 760px; }
+.grow-stage-line { display: grid; gap: 6px; font-size: var(--type-ui); color: var(--text); font-weight: 700; }
+
+.grow-shelf { display: grid; gap: 12px; }
+.grow-spines { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 4px; padding: 10px 8px 0; border-bottom: 6px solid var(--border-hi); }
+.grow-spine { aspect-ratio: 1 / 2.4; display: grid; place-items: center; font-size: var(--type-micro); font-weight: 800; border-radius: 3px 3px 0 0; border: 1.5px solid var(--border-hi); color: var(--text-dim); background: transparent; transition: transform calc(var(--motion-instant-ms) * 1ms) ease; }
+.grow-spine[data-s='learning'] { border-color: var(--w); color: var(--text); background: color-mix(in srgb, var(--w) 16%, transparent); }
+.grow-spine[data-s='known'] { border-color: var(--w); color: var(--bg); background: var(--w); }
+.grow-spine[aria-pressed='true'] { transform: translateY(-6px); outline: 2px solid var(--text); outline-offset: 1px; }
+.grow-shelf-line { display: grid; gap: 8px; padding: 12px 14px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); font-size: var(--type-ui); line-height: 1.5; }
+@media (min-width: 640px) { .grow-spines { grid-template-columns: repeat(21, minmax(0, 1fr)); } }
+
+.grow-sky { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+.grow-constellation { margin: 0; display: grid; gap: 2px; padding: 6px 10px 8px; border-radius: var(--radius-md); background: var(--sky-bg); border: 1px solid var(--sky-edge); color: var(--sky-text); font-size: var(--type-small); }
+.grow-constellation svg { width: 100%; height: auto; display: block; }
+.grow-constellation figcaption { display: flex; align-items: baseline; gap: 6px; }
+.grow-constellation figcaption > :last-child { margin-inline-start: auto; }
+.grow-constellation figcaption span:first-child { font-weight: 700; }
+.grow-star-line { fill: none; stroke: var(--sky-line); stroke-width: 0.5; }
+.grow-star { fill: var(--sky-star-off); }
+.grow-star[data-s='learning'] { fill: var(--sky-star-learning); }
+.grow-star[data-s='known'] { fill: var(--sky-star-on); filter: drop-shadow(0 0 2.5px var(--sky-star-on)); }
+@media (prefers-reduced-motion: reduce) { .grow-spine { transition: none; } }
