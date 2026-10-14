@@ -428,3 +428,18 @@ def test_after_a_name_with_tanween_ibn_is_what_is_told_of_it():
             token(2, "ابن", "ابن", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
             _name(3, "عمرو", 2, "IDF")]
     assert roles(words, toks) == ["مبتدأ", "خبر", "مضاف إليه"]
+
+
+def test_a_second_ibn_describes_the_whole_name_before_it():
+    # بن عبد المطلب is the صفة of عبد الله, so it hangs on عبد, the name's مضاف
+    words = ["محمد", "بن", "عبد", "الله", "بن", "عبد", "المطلب"]
+    toks = [_name(1, "محمد", 0, "---"),
+            token(2, "بن", "ابن", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
+            token(3, "عبد", "عبد", "NOM", 2, "IDF", pos_camel="noun", stt="c"),
+            _name(4, "الله", 3, "IDF", stt="d"),
+            token(5, "بن", "ابن", "NOM", 4, "PRD", pos_camel="noun", stt="c"),
+            token(6, "عبد", "عبد", "NOM", 5, "IDF", pos_camel="noun", stt="c"),
+            _name(7, "المطلب", 6, "IDF", stt="d")]
+    found = named(words, toks)
+    assert toks[4]["head"] == 3 and toks[4]["rel"] == "MOD"
+    assert [w["role"] for w in found] == [None, "صفة", "مضاف إليه", "مضاف إليه", "صفة", "مضاف إليه", "مضاف إليه"]

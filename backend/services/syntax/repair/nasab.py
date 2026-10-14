@@ -29,6 +29,11 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
         if not (_is_name(name) and listed(son, "nasab") and after["pos"] in ("NOM", "PROP")
                 and not has_tanween(name.get("typed") or "")):
             continue
+        # محمدُ بنُ عبدِ اللهِ بنِ عبدِ المطلبِ: the second ابن describes the whole name عبد الله,
+        # so it hangs on that name's first word, the مضاف
+        while name["rel"] == "IDF" and (head := by_id.get(name["head"])) and head["id"] < name["id"] \
+                and not listed(head, "nasab"):
+            name = head
         # climb the name out from under the ابن and its noun into the place they held
         while (over := next((w for w in (son, after) if _under(name, w, by_id)), None)):
             name["head"], name["rel"] = over["head"], over["rel"]
