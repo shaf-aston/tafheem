@@ -40,3 +40,17 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
         son["head"], son["rel"] = name["id"], "MOD"
         after["head"], after["rel"] = son["id"], "IDF"
         son["mudaf"] = True
+        _name_goes_on(after, bases, by_id)
+
+
+def _name_goes_on(word: dict, bases: list[dict], by_id: dict) -> None:
+    """عبدِ اللهِ، عبدِ المطلبِ: the father's name is itself a مضاف (CAMeL's construct state)
+    and the noun after it its مضاف إليه, wherever the parser hung that noun (as a khabar)."""
+    at = bases.index(word)
+    while word.get("stt") == "c" and at + 1 < len(bases):
+        nxt = bases[at + 1]
+        if nxt["pos"] not in ("NOM", "PROP") or listed(nxt, "nasab") or _under(word, nxt, by_id):
+            return
+        nxt["head"], nxt["rel"] = word["id"], "IDF"
+        word["mudaf"] = True
+        word, at = nxt, at + 1
