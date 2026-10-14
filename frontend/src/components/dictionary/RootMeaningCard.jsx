@@ -380,7 +380,7 @@ function EntryEnglish({ view, root, accent }) {
       {view === 'lines' && <LinePage lines={data.lines} accent={accent} />}
       {view === 'one' && <LineSpotlight lines={data.lines} accent={accent} />}
       {view === 'together' && (
-        <p className="type-body text-[var(--text-dim)] whitespace-pre-line">
+        <p className="type-body text-[var(--text)] whitespace-pre-line">
           {data.english}
         </p>
       )}
