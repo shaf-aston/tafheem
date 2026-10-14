@@ -13,7 +13,7 @@ import { kindOf } from './exercises'
 
 const say = sayIn('en')
 
-export default function LessonRunner({ cards: first, module, accent, rewards, onLeave }) {
+export default function LessonRunner({ cards: first, accent, rewards, onLeave }) {
   const [cards, setCards] = useState(first)
   const [at, setAt] = useState(0)
   const [value, setValue] = useState(null)
@@ -37,7 +37,7 @@ export default function LessonRunner({ cards: first, module, accent, rewards, on
     if (!card.again) setTally((was) => ({ ...was, asked: was.asked + 1, right: was.right + (right ? 1 : 0) }))
     if (!right) setCards(requeue(cards, at))
     const ms = Math.max(0, Math.round(event.timeStamp - started.current))
-    recordAttempt({ ...kind.record(card, module), correct: right, ms }).then(({ earned = 0 }) => {
+    recordAttempt({ ...card.record, correct: right, ms }).then(({ earned = 0 }) => {
       if (earned) setTally((was) => ({ ...was, earned: was.earned + earned }))
     })
   }
@@ -68,7 +68,7 @@ export default function LessonRunner({ cards: first, module, accent, rewards, on
           <p role="status" className="grow-lesson-say">
             {result === 'right'
               ? say('Right!')
-              : say('Not quite: it means “{answer}”. It comes back at the end.', { answer: card.question.answerText })}
+              : `${kind.correction(card)} ${say('It comes back at the end.')}`}
           </p>
         )}
         {asks && !result

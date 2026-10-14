@@ -375,7 +375,8 @@
     "url": "https://github.com/fawazahmed0/hadith-api",
     "where": "Every book and hadith. Stored locally.",
     "used_in": [
-      "hadith"
+      "hadith",
+      "grow"
     ]
   },
   "mushkil-tahawi": {

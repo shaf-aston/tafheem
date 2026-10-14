@@ -1,19 +1,18 @@
 /**
- * One Grow lesson: which words, as which cards. Pure.
- * Questions are the quiz's own (buildQuestion), filed under the quiz's module, so Grow and Quiz share progress.
- * A lesson = a few new words (taught, then asked) + words due for review; with little due, more new words up to `most`.
+ * Any lesson world's picking and pacing. Pure. A world's own cards: lib/wordLesson.js, lib/hadithLesson.js.
+ * A lesson = a few new items (taught, then asked) + items due for review; with little due, more new items up to `most`.
  */
-import { buildQuestion } from './quiz'
 
 /**
- * The words of one lesson. `order`: the set, in order; `all`: every word; `seen`: ids answered;
- * `due`: ids due, most overdue first; `fresh`/`most`: new words wanted / allowed; `size`: words in all.
+ * The items of one lesson. `order`: the set, in order; `all`: every item; `seen`: ids answered;
+ * `due`: ids due, most overdue first; `fresh`/`most`: new items wanted / allowed; `size`: items in all;
+ * `keyOf`: an item's progress id.
  */
-export function lessonWords({ order, all, seen, due, fresh, most = fresh, size }) {
-  const byId = new Map(all.map((word) => [word.meaningKey, word]))
-  const unseen = order.filter((word) => !seen.has(word.meaningKey))
+export function lessonItems({ order, all, seen, due, fresh, most = fresh, size, keyOf }) {
+  const byId = new Map(all.map((item) => [keyOf(item), item]))
+  const unseen = order.filter((item) => !seen.has(keyOf(item)))
   const taught = unseen.slice(0, Math.min(fresh, size))
-  const teaching = new Set(taught.map((word) => word.meaningKey))
+  const teaching = new Set(taught.map(keyOf))
   const reviews = due
     .filter((id) => !teaching.has(id))
     .map((id) => byId.get(id))
@@ -24,20 +23,15 @@ export function lessonWords({ order, all, seen, due, fresh, most = fresh, size }
   return { fresh: [...taught, ...more], reviews }
 }
 
-/** The cards, woven: teach a word, ask it, a review, the next word. `all` supplies wrong options. */
-export function cardsOf({ fresh, reviews }, all, random = Math.random) {
-  const ask = (word, isNew) => ({
-    kind: 'meaning',
-    id: `ask:${word.meaningKey}`,
-    word,
-    isNew,
-    question: buildQuestion([word], { distractorBank: all, random }),
-  })
+/**
+ * Cards for the picked items, woven: a new item's `teach` card then its `asks`, a review's `asks`,
+ * the next new item... `asks(item, isNew)` returns that item's question cards.
+ */
+export function weave({ fresh, reviews }, { teach, asks }) {
   const cards = []
-  const longest = Math.max(fresh.length, reviews.length)
-  for (let i = 0; i < longest; i += 1) {
-    if (fresh[i]) cards.push({ kind: 'teach', id: `teach:${fresh[i].meaningKey}`, word: fresh[i] }, ask(fresh[i], true))
-    if (reviews[i]) cards.push(ask(reviews[i], false))
+  for (let i = 0; i < Math.max(fresh.length, reviews.length); i += 1) {
+    if (fresh[i]) cards.push(teach(fresh[i]), ...asks(fresh[i], true))
+    if (reviews[i]) cards.push(...asks(reviews[i], false))
   }
   return cards
 }
@@ -49,7 +43,7 @@ export function requeue(cards, at) {
   return [...cards, { ...card, id: `${card.id}:again`, again: true }]
 }
 
-/** The current stage (0-based) for `learnt` words, how far into it, and its size; `done` past the last. */
+/** The current stage (0-based) for `learnt` items, how far into it, and its size; `done` past the last. */
 export function stageOf(learnt, stages) {
   let from = 0
   for (let i = 0; i < stages.length; i += 1) {

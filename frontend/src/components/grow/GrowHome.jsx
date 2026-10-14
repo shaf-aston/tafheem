@@ -59,9 +59,10 @@ function Goal({ xpToday }) {
   )
 }
 
-/** Today's lesson, plus a link to the next prayer step. */
-function Today({ words, prayer, accent, onToday, onPrayer }) {
+/** Today's words lesson, with the next hadith and prayer step beside it. */
+function Today({ words, hadith, prayer, accent, onStart, onPrayer }) {
   const empty = words.ready && !words.fresh && !words.dueCount
+  const nextHadith = hadith.ready && (hadith.next.fresh[0] ?? hadith.next.reviews[0])
   return (
     <section className="grow-today" style={{ '--w': accent }} aria-labelledby="grow-today-h">
       <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
@@ -71,9 +72,14 @@ function Today({ words, prayer, accent, onToday, onPrayer }) {
           {say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length })}
         </p>
       )}
-      <PrimaryButton accent={accent} disabled={!words.ready || empty} onClick={onToday}>
+      <PrimaryButton accent={accent} disabled={!words.ready || empty} onClick={() => onStart('words')}>
         {empty ? say('Every word learnt and nothing due') : say('Start')}
       </PrimaryButton>
+      {nextHadith && (
+        <button type="button" className="grow-today-side" onClick={() => onStart('hadith')}>
+          {say('Hadith {n} of 42: {line}', { n: nextHadith.n, line: nextHadith.key.en })}
+        </button>
+      )}
       {prayer.next && (
         <button type="button" className="grow-today-side" onClick={onPrayer}>
           {say('Next prayer step: {title}', { title: prayer.next.title })}
@@ -102,11 +108,13 @@ function WorldTile({ world, status, share, onOpen }) {
   )
 }
 
-export default function GrowHome({ worlds, rewards, words, prayer, onOpen, onToday }) {
+const stageStatus = (state) => (state.ready
+  ? { status: say('Stage {n} · {into} of {need}', { n: state.stage.stage + 1, ...state.stage }), share: state.stage.into / state.stage.need }
+  : { status: say('Loading…'), share: 0 })
+
+export default function GrowHome({ worlds, rewards, lessons, prayer, onOpen, onStart }) {
   const statusOf = {
-    words: words.ready
-      ? { status: say('Stage {n} · {into} of {need}', { n: words.stage.stage + 1, ...words.stage }), share: words.stage.into / words.stage.need }
-      : { status: say('Loading…'), share: 0 },
+    ...Object.fromEntries(Object.entries(lessons).map(([id, state]) => [id, stageStatus(state)])),
     prayer: prayer.done.total
       ? { status: say('{learnt} of {total} steps learnt', prayer.done), share: prayer.done.learnt / prayer.done.total }
       : { status: say('Loading…'), share: 0 },
@@ -116,7 +124,8 @@ export default function GrowHome({ worlds, rewards, words, prayer, onOpen, onTod
     <div className="grow-home">
       <SectionHeader title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')} />
       <Growth rewards={rewards} />
-      <Today words={words} prayer={prayer} accent={accentOf('words')} onToday={onToday} onPrayer={() => onOpen('prayer')} />
+      <Today words={lessons.words} hadith={lessons.hadith} prayer={prayer} accent={accentOf('words')} onStart={onStart}
+        onPrayer={() => onOpen('prayer')} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>
       <div className="grow-worlds">
         {worlds.map((world) => (

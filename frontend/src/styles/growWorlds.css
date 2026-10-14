@@ -108,3 +108,10 @@
 .grow-goal { min-width: 36px; min-height: 28px; padding: 0 8px; border-radius: 999px; font-size: var(--type-small); font-weight: 700; color: var(--text-dim); border: 1px solid var(--border); }
 .grow-goal[aria-checked='true'] { color: var(--bg); background: var(--c); border-color: var(--c); }
 .grow-stat[data-met] { border-color: color-mix(in srgb, var(--c) 55%, var(--border)); }
+
+/* ── hadith: teach line, whole text, the gap ── */
+.grow-teach-line { font-size: var(--type-body); font-weight: 600; line-height: 1.5; }
+.grow-whole { display: grid; gap: 10px; padding-top: 8px; color: var(--text-dim); font-size: var(--type-ui); line-height: 1.6; }
+.grow-gap-line { font-size: 1.9rem; line-height: 2; }
+.grow-gap { display: inline-block; min-width: 3em; padding: 0 6px; border-bottom: 3px solid var(--w); color: var(--w); }
+.grow-options-ar .grow-option { text-align: center; font-size: 1.4rem; }

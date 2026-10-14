@@ -7,7 +7,7 @@ import { sayIn } from '../../../lib/say'
 const say = sayIn('en')
 
 export default function MeaningCard({ card, value, setValue, result }) {
-  const { question, isNew } = card
+  const { question } = card
   const markOf = (option) => {
     if (!result) return option.id === value ? 'picked' : undefined
     if (option.id === question.answerId) return 'right'
@@ -15,8 +15,8 @@ export default function MeaningCard({ card, value, setValue, result }) {
   }
   return (
     <div className="grow-card">
-      <span className="grow-card-tag">{isNew ? say('New word') : say('Review')}</span>
-      <p className="grow-card-ask">{say('What does this mean?')}</p>
+      <span className="grow-card-tag">{say(card.tag)}</span>
+      <p className="grow-card-ask">{say(card.ask ?? 'What does this mean?')}</p>
       <ArabicText as="p" size="lg" className="grow-card-word">{question.prompt}</ArabicText>
       <div className="grow-options" role="radiogroup" aria-label={say('Meanings')}>
         {question.options.map((option) => (
