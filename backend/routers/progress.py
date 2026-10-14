@@ -36,22 +36,30 @@ from backend.models.progress import (
     ProgressSummary,
     PublicIn,
     ReviewList,
+    Rewards,
     RoleIn,
     Shelf,
     SignUpIn,
 )
 from backend.identity import NAMED, TYPED, USER
 from backend.services import progress_store
-from backend.services.username import clean_name
+from backend.services.username import GUEST, clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
 _MODULE = Query("quiz", min_length=1, max_length=32, description="Which panel is asking")
+_TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner's clock")
 
 
 @router.post("/attempts", response_model=AttemptSaved)
 async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
-    """File one answer, right or wrong."""
+    """File one answer, right or wrong, and what it earned.
+
+    The guest record is shared by everyone not logged in, so it earns no XP:
+    a total made of strangers' answers would be nobody's.
+    """
+    named = user != GUEST
+    earns = named and attempt.correct and progress_store.earns(attempt.module, attempt.item, user, attempt.tz)
     row_id = progress_store.record(
         module=attempt.module,
         item=attempt.item,
@@ -60,7 +68,11 @@ async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
         context=attempt.context,
         user=user,
     )
-    return AttemptSaved(id=row_id)
+    return AttemptSaved(
+        id=row_id,
+        earned=get_settings().rewards_xp_per_answer if earns else 0,
+        rewards=Rewards(**progress_store.rewards(user, attempt.tz)) if named else None,
+    )
 
 
 @router.post("/feedback", response_model=AttemptSaved)
@@ -102,9 +114,15 @@ def get_summary(module: str = _MODULE, user: str = USER) -> ProgressSummary:
 
 
 @router.get("/overview", response_model=Overview)
-def get_overview(user: str = USER) -> Overview:
+def get_overview(tz: int = _TZ, user: str = USER) -> Overview:
     """Every module this learner answered in, with totals and the streak of days."""
-    return _overview(progress_store.overview(user))
+    return _overview(progress_store.overview(user, tz))
+
+
+@router.get("/rewards", response_model=Rewards)
+def get_rewards(tz: int = _TZ, user: str = NAMED) -> Rewards:
+    """XP and level alone: cheap, since nothing is replayed, so the header can ask on every page."""
+    return Rewards(**progress_store.rewards(user, tz))
 
 
 def _overview(found: dict) -> Overview:

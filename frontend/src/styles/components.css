@@ -775,3 +775,27 @@ dialog::backdrop {
   mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
 }
 .strip-x::-webkit-scrollbar { display: none; }
+
+/* The level on the profile button (components/profile/LevelRing.jsx): small
+   and quiet on purpose. The ring eases as it fills; a "+10" rises off it and
+   fades. Both carry --motion-scale, so the Animations switch stills them. */
+.level-ring { position: relative; display: inline-flex; width: 20px; height: 20px; flex-shrink: 0; }
+.level-ring-n {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; color: var(--text-dim); font-variant-numeric: tabular-nums;
+}
+.level-ring-fill { transition: stroke-dasharray calc(600ms * var(--motion-scale)) ease-out; }
+.level-ring-gain {
+  position: absolute; left: 50%; bottom: 100%; pointer-events: none;
+  font-size: 10px; font-weight: 700; color: var(--palette-lime); white-space: nowrap;
+  animation: level-gain calc(1100ms * var(--motion-scale)) ease-out both;
+}
+@keyframes level-gain {
+  from { opacity: 0; transform: translate(-50%, 6px); }
+  25% { opacity: 1; }
+  to { opacity: 0; transform: translate(-50%, -10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .level-ring-fill { transition: none; }
+  .level-ring-gain { animation: none; opacity: 0; }
+}

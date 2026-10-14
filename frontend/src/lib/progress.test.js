@@ -38,7 +38,7 @@ describe('filing an answer', () => {
     })
     const sent = posting.mock.calls[0][1]
     expect(sent).toEqual({
-      module: 'quiz', item: 'train', correct: false, ms: 1200, context: { bank: 'everyday' },
+      module: 'quiz', item: 'train', correct: false, ms: 1200, context: { bank: 'everyday' }, tz: expect.any(Number),
     })
     expect(sent).not.toHaveProperty('user')
   })

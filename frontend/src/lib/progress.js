@@ -16,6 +16,7 @@
  */
 import { api } from '../api'
 import { profileHeaders } from './profile'
+import { announce, tz } from './rewards'
 
 const BASE = '/progress'
 
@@ -33,7 +34,15 @@ const landed = (request) => request.then(() => true, () => false)
  * timings are honest enough to average is the store's rule, not the page's.
  */
 export async function recordAttempt({ module, item, correct, ms, context }) {
-  return { saved: await landed(api.post(`${BASE}/attempts`, { module, item, correct, ms, context })) }
+  let response
+  try {
+    response = await api.post(`${BASE}/attempts`, { module, item, correct, ms, context, tz: tz() })
+  } catch {
+    return { saved: false }
+  }
+  // What it earned goes to whoever shows XP (lib/rewards.js); the caller only needs to know it landed.
+  announce(response.data)
+  return { saved: true }
 }
 
 /**
@@ -64,7 +73,10 @@ export const fetchAccount = () => api.get(`${BASE}/account`).then((r) => r.data)
 export const deleteAccount = () => api.delete(`${BASE}/account`).then((r) => r.data)
 
 /** `{ modules, attempts, correct, learnt, streak }`: every module answered in. Throws, for react-query. */
-export const fetchOverview = () => api.get(`${BASE}/overview`).then((r) => r.data)
+export const fetchOverview = () => api.get(`${BASE}/overview`, { params: { tz: tz() } }).then((r) => r.data)
+
+/** `{ xp, xpToday, level, into, need }` for the logged-in name (services/rewards.py). Throws, for react-query. */
+export const fetchRewards = () => api.get(`${BASE}/rewards`, { params: { tz: tz() } }).then((r) => r.data)
 
 /** `{ rows, you }`: a circle's joined members (when `circle` is given) or the public accounts, by words learnt,
  *  and this one's place. Throws, for react-query. */

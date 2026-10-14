@@ -1,0 +1,15 @@
+{
+  "_comment": "XP and level on the page. The counting is the server's (backend/services/rewards.py): a right answer earns once per item per day, and level n takes 100 x n XP to pass. This file only names the levels and times the little '+10' that rises from the profile button.",
+
+  "_ranks": "What a level is called, as a plant grows (Grow, نبات). Each rank starts at level `from`; ranks must stay in rising order.",
+  "ranks": [
+    { "from": 1, "en": "Seed", "ar": "بذرة" },
+    { "from": 2, "en": "Sprout", "ar": "نبتة" },
+    { "from": 4, "en": "Branch", "ar": "غصن" },
+    { "from": 7, "en": "Tree", "ar": "شجرة" },
+    { "from": 10, "en": "Fruit", "ar": "ثمرة" }
+  ],
+
+  "_float-ms": "How long the '+10' stays before it has faded away. Read in JavaScript; the rise itself is scaled by the Animations setting like every other motion.",
+  "float-ms": 1100
+}

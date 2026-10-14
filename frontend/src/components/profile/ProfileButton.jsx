@@ -1,5 +1,6 @@
 /**
- * The header's "who is logged in": the username, or Log in. A username the
+ * The header's "who is logged in": the username, or Log in, with the level
+ * worn quietly beside it (LevelRing). A username the
  * server no longer knows (deleted in another tab) logs out by itself, rather
  * than every answer silently failing to save.
  */
@@ -9,6 +10,8 @@ import { useQuery } from '@tanstack/react-query'
 import { getProfile, logOut } from '../../lib/profile'
 import { fetchAccount } from '../../lib/progress'
 
+import { useRewards } from '../../lib/useRewards'
+import LevelRing from './LevelRing'
 import ProfileDialog from './ProfileDialog'
 
 export default function ProfileButton() {
@@ -20,6 +23,7 @@ export default function ProfileButton() {
     return null
   })
   useQuery({ queryKey: ['account-check', name], queryFn: check, enabled: !!name, retry: false })
+  const { rewards, gain } = useRewards(name)
 
   return (
     <>
@@ -30,9 +34,10 @@ export default function ProfileButton() {
         aria-haspopup="dialog"
         dir="auto"
         className="type-small px-2 py-1 rounded-[var(--radius-sm)] border border-[var(--border)]
-          text-[var(--text-dim)] hover:text-[var(--text)] max-w-[8rem] truncate shrink-0"
+          text-[var(--text-dim)] hover:text-[var(--text)] max-w-[10rem] shrink-0 flex items-center gap-1.5"
       >
-        {name || 'Log in'}
+        <LevelRing rewards={rewards} gain={gain} />
+        <span className="truncate">{name || 'Log in'}</span>
       </button>
       {/* Mounted only while open, so each opening starts from who is logged in. */}
       {open && <ProfileDialog onClose={() => setOpen(false)} />}
