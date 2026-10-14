@@ -13,7 +13,7 @@ The Analyse page and the practice questions both read sentences through here.
 from __future__ import annotations
 
 from backend.services.arabic_text import words
-from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store, tree_columns
+from backend.services import morphology, provenance, quran_corpus, rule_engine, signs, syntax, tarkeeb_store, tree_columns
 from backend.services.harakat import CASE_NAME
 from backend.services.nahw_book import case_of, family_cards, reason, teacher_rules
 from backend.services.syntax import teacher
@@ -35,6 +35,16 @@ def analyze(sentence: str, recorded: bool = True) -> dict:
         "source": provenance.of("treebank" if record else "nahw"),
         "tree": tree,
     }
+
+
+def ayah_tree(surah: int, ayah: int) -> dict:
+    """An ayah the treebank has no record of, read as a typed sentence is: one engine,
+    one set of rules, so an ayah and the same words typed are named alike."""
+    text = dict(quran_corpus.ayah_texts(surah)).get(ayah)
+    if not text:
+        return {"words": [], "tree": None, "coverage": 0.0}
+    drawn = syntax.read(text, morphology.pick(words(text), syntax.disambiguator()))["tree"]
+    return drawn or {"words": words(text), "tree": None, "coverage": 0.0}
 
 
 def _drawn(recorded: dict) -> dict:

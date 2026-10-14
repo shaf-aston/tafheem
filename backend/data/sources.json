@@ -126,17 +126,6 @@
       "nahw"
     ]
   },
-  "tarkeeb": {
-    "label": "Tarkeeb rules",
-    "confidence": "derived",
-    "detail": "The corpus's word tags, joined into a bracket tree by rule",
-    "url": "@corpus",
-    "where": "Tree from corpus tags by rule, where Treebank has none. Gaps left visible.",
-    "used_in": [
-      "quran",
-      "nahw"
-    ]
-  },
   "camel": {
     "label": "CAMeL Tools",
     "confidence": "derived",
