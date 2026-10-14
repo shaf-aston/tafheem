@@ -106,3 +106,9 @@
   .grow-card { animation: none; }
   .grow-world-tile, .grow-option, .grow-lesson-bar i { transition: none; }
 }
+
+/* ── home: the daily goal and its three choices ── */
+.grow-goals { display: flex; gap: 4px; }
+.grow-goal { min-width: 36px; min-height: 28px; padding: 0 8px; border-radius: 999px; font-size: var(--type-small); font-weight: 700; color: var(--text-dim); border: 1px solid var(--border); }
+.grow-goal[aria-checked='true'] { color: var(--bg); background: var(--c); border-color: var(--c); }
+.grow-stat[data-met] { border-color: color-mix(in srgb, var(--c) 55%, var(--border)); }

@@ -10,6 +10,10 @@
     { "from": 10, "en": "Fruit", "ar": "ثمرة" }
   ],
 
+  "_goals": "The daily goal: how much XP a day the learner sets out to earn, picked on Grow's home from these. `goal` is where it starts. Remembered per learner in this browser (and on their account's shelf).",
+  "goals": [20, 50, 100],
+  "goal": 50,
+
   "_float-ms": "How long the '+10' stays before it has faded away. Read in JavaScript; the rise itself is scaled by the Animations setting like every other motion.",
   "float-ms": 1100
 }

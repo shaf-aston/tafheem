@@ -33,3 +33,7 @@ export const rankOf = (level) => config.ranks.findLast((rank) => level >= rank.f
 export const shareOf = ({ into, need }) => (need > 0 ? Math.min(1, into / need) : 0)
 
 export const FLOAT_MS = config['float-ms']
+
+/** The daily goals offered, as the strings they are remembered by, and the one a learner starts on. */
+export const GOALS = config.goals.map(String)
+export const GOAL = String(config.goal)

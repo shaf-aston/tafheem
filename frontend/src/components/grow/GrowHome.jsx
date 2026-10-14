@@ -6,8 +6,9 @@
  * Presentation only. XP and the streak are lib/useRewards.js, each world's
  * progress its own hook, the list of worlds worlds.json.
  */
-import { rankOf, shareOf } from '../../lib/rewards'
+import { GOAL, GOALS, rankOf, shareOf } from '../../lib/rewards'
 import { sayIn } from '../../lib/say'
+import { useRemembered } from '../../lib/useRemembered'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
 import SectionHeader from '../ui/SectionHeader'
@@ -34,11 +35,32 @@ function Growth({ rewards }) {
         <dt>{say('Streak')}</dt>
         <dd className="tabular-nums">{rewards.streak === 1 ? say('1 day') : say('{n} days', { n: rewards.streak })}</dd>
       </div>
-      <div className="grow-stat">
-        <dt>{say('Today')}</dt>
-        <dd className="tabular-nums">{say('{xp} XP', { xp: rewards.xpToday })}</dd>
-      </div>
+      <Goal xpToday={rewards.xpToday} />
     </dl>
+  )
+}
+
+/** Today's XP against the goal the learner picked, and the three goals to pick from. */
+function Goal({ xpToday }) {
+  const [picked, pick] = useRemembered('grow-goal', GOALS, GOAL)
+  const goal = Number(picked)
+  const met = xpToday >= goal
+  return (
+    <div className="grow-stat" data-met={met ? '' : undefined}>
+      <dt>{say('Daily goal')}</dt>
+      <dd>
+        <span className="tabular-nums">{met ? say('Met · {xp} XP', { xp: xpToday }) : say('{xp} / {goal} XP', { xp: xpToday, goal })}</span>
+        <span className="grow-lesson-bar" aria-hidden="true"><i style={{ width: `${100 * Math.min(1, xpToday / goal)}%` }} /></span>
+        <span className="grow-goals" role="radiogroup" aria-label={say('Daily goal')}>
+          {GOALS.map((each) => (
+            <button key={each} type="button" role="radio" aria-checked={each === picked} className="grow-goal"
+              onClick={() => pick(each)}>
+              {each}
+            </button>
+          ))}
+        </span>
+      </dd>
+    </div>
   )
 }
 
