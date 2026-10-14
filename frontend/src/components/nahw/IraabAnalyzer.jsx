@@ -141,7 +141,7 @@ function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }
             className="rise-in flex items-center gap-2 text-sm px-3 py-2 rounded-[var(--radius-md)]
               bg-[var(--surface)] border border-[var(--border)]"
           >
-            <span className="text-[var(--text-faint)] text-xs uppercase tracking-wide">Sentence</span>
+            <span className="text-[var(--text-faint)] text-xs uppercase tracking-wide">Structure</span>
             <span className="text-[var(--text)]">{data.summary}</span>
             <SourceBadge source={data.source} />
           </div>
