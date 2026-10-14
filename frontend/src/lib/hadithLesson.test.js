@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
-import { bare, gapOf, hadithCards } from './hadithLesson'
+import { bare, gapOf } from './gap'
+import { hadithCards } from './hadithLesson'
 import { makeRandom } from './quiz'
 
 const { hadiths } = JSON.parse(readFileSync(new URL('../../public/grow/nawawi40.json', import.meta.url), 'utf8'))
@@ -13,10 +14,10 @@ describe('the built file', () => {
   })
 })
 
-describe('gapOf', () => {
+describe('gapOf on key lines', () => {
   it('blanks a word of the key line, offers it among three others, none the same word', () => {
     for (const h of hadiths) {
-      const gap = gapOf(h, hadiths, makeRandom(h.n))
+      const gap = gapOf(h.key.ar, hadiths.filter((o) => o !== h).map((o) => o.key.ar), makeRandom(h.n))
       expect(gap.words[gap.at].startsWith(gap.answer)).toBe(true)
       expect(gap.options.map((o) => o.text)).toContain(gap.answer)
       expect(gap.options).toHaveLength(4)

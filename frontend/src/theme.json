@@ -51,6 +51,16 @@
     "nahw": "@rose",
     "default": "@lime"
   },
+  "sky": {
+    "_comment": "Grow's Night Sky (components/grow/scenes/Sky.jsx): dark navy in every look, since it is a night, not a surface. bg and edge the card, line joins the known stars, text its caption; star-on a known ayah, star-learning one met but not known yet, star-off one not met.",
+    "bg": "#0b1230",
+    "edge": "#1b2650",
+    "line": "#5b6fa8",
+    "text": "#cfd8f0",
+    "star-on": "#fff3b0",
+    "star-learning": "#b08d3a",
+    "star-off": "#5a6a8f"
+  },
   "tab": {
     "nahw": "@violet",
     "quran": "@teal",

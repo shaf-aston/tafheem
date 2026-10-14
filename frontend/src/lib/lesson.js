@@ -1,5 +1,5 @@
 /**
- * Any lesson world's picking and pacing. Pure. A world's own cards: lib/wordLesson.js, lib/hadithLesson.js.
+ * Any lesson world's picking and pacing. Pure. A world's own cards: lib/wordLesson.js, lib/hadithLesson.js, lib/quranLesson.js.
  * A lesson = a few new items (taught, then asked) + items due for review; with little due, more new items up to `most`.
  */
 
@@ -53,4 +53,10 @@ export function stageOf(learnt, stages) {
   const last = stages.length - 1
   const start = last > 0 ? stages[last - 1] : 0
   return { stage: last, into: stages[last] - start, need: stages[last] - start, done: true }
+}
+
+/** The set's items with the learner's status: 'known', 'learning' (met, not known yet) or 'new'. `rows`: the server summary. */
+export function itemsOf(order, keyOf, rows) {
+  const met = new Map(rows.map((row) => [row.item, row.known ? 'known' : 'learning']))
+  return order.map((item) => ({ key: keyOf(item), item, status: met.get(keyOf(item)) ?? 'new' }))
 }

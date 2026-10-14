@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { lessonItems, requeue, stageOf, weave } from './lesson'
+import { itemsOf, lessonItems, requeue, stageOf, weave } from './lesson'
 
 const word = (id, en = id) => ({ meaningKey: id, ar: `ar-${id}`, en, wordType: 'noun' })
 const ORDER = ['a', 'b', 'c', 'd', 'e', 'f'].map((id) => word(id))
@@ -65,5 +65,14 @@ describe('stageOf', () => {
   })
   it('reads full past the last stage', () => {
     expect(stageOf(500, STAGES)).toEqual({ stage: 2, into: 50, need: 50, done: true })
+  })
+})
+
+describe('itemsOf', () => {
+  it('marks each item known, learning (met, not known) or new, in the set order', () => {
+    const rows = [{ item: 'b', known: true }, { item: 'a', known: false }, { item: 'z', known: true }]
+    const got = itemsOf(ORDER.slice(0, 3), (w) => w.meaningKey, rows)
+    expect(got.map((one) => [one.key, one.status])).toEqual([['a', 'learning'], ['b', 'known'], ['c', 'new']])
+    expect(got[0].item).toBe(ORDER[0])
   })
 })
