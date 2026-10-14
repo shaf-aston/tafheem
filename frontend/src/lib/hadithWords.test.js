@@ -32,6 +32,28 @@ describe('saying', () => {
     expect(said).toEqual(['Let him in.', 'It is only the woman.', 'Indeed he is your uncle.'])
   })
 
+  it('closes a quote opened with \' and closed with ", as the books sometimes mix them', () => {
+    // bukhari 947 as sunnah.com prints it.
+    const said = saying('He rode and said, \'Allahu Akbar! Khaibar is ruined." The people came out into the streets saying, "Muhammad and his army." Allah\'s Messenger vanquished them')
+      .filter((s) => s.kind === 'said').map((s) => s.text)
+    expect(said).toEqual(['Allahu Akbar! Khaibar is ruined.', 'Muhammad and his army.'])
+  })
+
+  it('reads a straight " by its place: a quote inside a quote opens, a mark after the words closes', () => {
+    // bukhari 3268, its mismatched marks and all.
+    const said = saying('He said, "Two persons came to me. One of them asked the other, "What is the ailment of this man?" The other replied, \'He has been bewitched" The first asked, \'Who has bewitched him?\' " So, the Prophet went out')
+      .filter((s) => s.kind === 'said').map((s) => s.text)
+    expect(said).toEqual(['What is the ailment of this man?', 'He has been bewitched', 'Who has bewitched him?'])
+  })
+
+  it('does not take a name\'s ʿayn for a quote that " then closes', () => {
+    const said = (text) => saying(text).filter((s) => s.kind === 'said').map((s) => s.text)
+    expect(said('He said, "Go to \'Ali." Then he left.')).toEqual(["Go to 'Ali."])
+    // bukhari 6253 and nasai 4615.
+    expect(said('She replied, "Wa \'alaihi-s- Salam." (Peace be on him)')).toEqual(["Wa 'alaihi-s- Salam."])
+    expect(said('He said: \'We paid in the time of Abu Bakr and \'Umar, for wheat." And I asked')).toEqual(["We paid in the time of Abu Bakr and 'Umar, for wheat."])
+  })
+
   it('reads ʿayn, hamza and apostrophes as letters, not quotes', () => {
     expect(saying("Ibn 'Abbas met 'Ata' at Allah's house").map((s) => s.kind)).toEqual(['plain'])
     expect(saying('Ibn ‘Abbas said: “Pray.” Aqra’ left.').filter((s) => s.kind === 'said')).toEqual([{ kind: 'said', text: 'Pray.' }])

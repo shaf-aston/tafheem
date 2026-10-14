@@ -41,12 +41,18 @@ export function NarratorName({ who, as = 'h2' }) {
   )
 }
 
+/** "Generation 4 of 12" for his generation's Arabic name, "" for one not among the twelve. */
+const generationLabel = (name) => {
+  const at = GENERATIONS.indexOf(name)
+  return at < 0 ? '' : `Generation ${at + 1} of ${GENERATIONS.length}`
+}
+
 /** His generation as one lit dot among Ibn Hajar's twelve, first on the right. */
 function GenerationDots({ name }) {
   const at = GENERATIONS.indexOf(name)
   if (at < 0) return null
   return (
-    <div dir="rtl" role="img" aria-label={`Generation ${at + 1} of ${GENERATIONS.length}`} className="flex justify-end gap-1">
+    <div dir="rtl" role="img" aria-label={generationLabel(name)} className="flex justify-end gap-1">
       {GENERATIONS.map((g, i) => (
         <span
           key={g}
@@ -59,9 +65,9 @@ function GenerationDots({ name }) {
   )
 }
 
-/** Generation, years and city, each its own piece so Arabic never reorders the years; `also` adds plain pieces after. */
-export function NarratorWhen({ who, also = [] }) {
-  const pieces = [[who.generation_ar, true], [who.years], [who.city_ar, true], ...also.map((t) => [t])].filter(([text]) => text)
+/** Generation, years and city, each its own piece so Arabic never reorders the years; `also` adds plain pieces after, `generation={false}` leaves the generation to NarratorTerms. */
+export function NarratorWhen({ who, also = [], generation = true }) {
+  const pieces = [[generation && who.generation_ar, true], [who.years], [who.city_ar, true], ...also.map((t) => [t])].filter(([text]) => text)
   if (!pieces.length) return null
   return (
     <span className="type-small text-[var(--text-dim)] flex flex-wrap items-baseline gap-x-2">
@@ -75,6 +81,35 @@ export function NarratorWhen({ who, also = [] }) {
   )
 }
 
+/**
+ * The two terms he is placed by, his grade and his generation, each Arabic with its English beside it
+ * and set as the guide sets a term (hadith/TermGuide): Arabic first, then the English in the text colour.
+ */
+function NarratorTerms({ who }) {
+  const generation = generationLabel(who.generation_ar)
+  if (!who.grade_ar && !generation) return null
+  const english = 'm-0 type-ui font-medium text-[var(--text)]'
+  return (
+    <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 items-baseline m-0">
+      {who.grade_ar && (
+        <>
+          <dt><GradePill rank={who.grade_rank}>{who.grade_ar}</GradePill></dt>
+          <dd className={english}>{who.grade_en}</dd>
+        </>
+      )}
+      {generation && (
+        <>
+          <dt><ArabicText size="sm" className="whitespace-nowrap">{who.generation_ar}</ArabicText></dt>
+          <dd className={english}>
+            {generation}
+            <span className="block mt-1.5"><GenerationDots name={who.generation_ar} /></span>
+          </dd>
+        </>
+      )}
+    </dl>
+  )
+}
+
 export function NarratorFacts({ who }) {
   const facts = [
     count(who.teachers.length, 'teacher'),
@@ -84,10 +119,13 @@ export function NarratorFacts({ who }) {
 
   return (
     <>
-      {who.grade_ar && <div><GradePill rank={who.grade_rank}>{who.grade_ar}</GradePill></div>}
-      <GenerationDots name={who.generation_ar} />
-      <NarratorWhen who={who} />
-      <p className="type-small text-[var(--text-dim)]">{facts.join(' · ')}</p>
+      <div className={PAIR}>
+        <NarratorTerms who={who} />
+        <div className="space-y-3">
+          <NarratorWhen who={who} generation={false} />
+          <p className="type-small text-[var(--text-dim)]">{facts.join(' · ')}</p>
+        </div>
+      </div>
       <div className="flex flex-wrap items-center gap-3">
         <SourceBadge source={who.source} />
         <a href={`${SITE}${who.id}`} target="_blank" rel="noreferrer" className="type-small text-[var(--text-dim)] hover:text-[var(--text)] underline underline-offset-2">

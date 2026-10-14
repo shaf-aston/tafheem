@@ -11,11 +11,11 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, named_roles, role_units,
+from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar)
-from backend.services.syntax.facts import (Sentence, asked_verb, completes_kaada, is_masdar, is_passive, previous_noun,
+from backend.services.syntax.facts import (Sentence, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
                                           read_as, shown_cases)
-from backend.services.syntax.naming import FOLLOWERS, base_tokens, opens_with_verb, tone
+from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import SHADDA, five_verb_nun, has_tanween, letters, own_letters
 
@@ -26,7 +26,6 @@ VERBAL = term_ar("jumlah_filiyyah")
 NOMINAL = term_ar("jumlah_ismiyyah")
 QUESTION = term_ar("jumlah_istifhamiyyah")
 CONDITION = term_ar("jumlah_shartiyyah")
-NAMED = named_roles()
 FRAMES = frames()
 CARDS = dict(family_cards())
 JAR_MAJROOR = term_ar("jar_majroor")
@@ -111,7 +110,7 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
         word = strip_diacritics(token["form"]).strip("+")
         return reading["named"] or card.get("chart") or card.get("chart_as", {}).get(word) or card.get("named_as", {}).get(
             word, card.get("named", role))
-    if family is None and role == NAMED.harf and token["form"].endswith("+") and is_one(strip_diacritics(token["form"]), "atf"):
+    if family is None and role == NAMED.harf and is_prefix(token) and is_one(strip_diacritics(token["form"]), "atf"):
         family = "atf"  # وَمَنْ شاء: a وَ written onto a new sentence is named by its letters, as its card is
     card = CARDS.get(family) or {}
     word = strip_diacritics(token["form"]).strip("+")

@@ -52,7 +52,7 @@ def base_tokens(words: list[str], tokens: list[dict]) -> list[dict]:
     bases = [t for t in tokens if t.get("token_type") == "baseword"]
     if len(bases) != len(words):
         # a reader who writes بِ or وَ apart types as many words as the parser splits
-        bases = [t for t in tokens if not t["form"].startswith("+")]
+        bases = [t for t in tokens if not facts.is_suffix(t)]
     return bases
 
 
@@ -86,7 +86,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
             role_by_id[t["id"]] = NAMED.harf_jarr
     named = [role_by_id[token["id"]] for token in bases]
     word_of = _typed_word_of(bases, tokens)
-    before = [[t["form"].strip("+") for t in tokens if t["form"].endswith("+") and word_of.get(t["id"]) == i]
+    before = [[t["form"].strip("+") for t in tokens if facts.is_prefix(t) and word_of.get(t["id"]) == i]
               for i in range(len(bases))]
     cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "",
                      facts.puts_in_jarr(token, s), _lam_mood(token, before[i], i == 0))
@@ -105,7 +105,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
              "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
              # إيّاك: the pronoun on إيّا is a letter of the one detached pronoun, not a piece of its own
-             "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": t["form"].endswith("+"), "form": t["form"].strip("+"),
+             "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": facts.is_prefix(t), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
                            "reading": t.get("reading")}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
@@ -178,7 +178,7 @@ def _typed_word_of(bases: list[dict], tokens: list[dict]) -> dict[int, int]:
             word = base_ids[t["id"]]
             at.update(dict.fromkeys(pending, word))
             pending = []
-        elif t["form"].endswith("+"):
+        elif facts.is_prefix(t):
             pending.append(t["id"])
             continue
         at[t["id"]] = word

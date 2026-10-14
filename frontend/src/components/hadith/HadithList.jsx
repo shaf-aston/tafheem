@@ -10,15 +10,16 @@ import { hadithBookQuery } from '../../api'
 import { holdAtTop, scrollToEl, useOpenAtTop } from '../../lib/scrollToEl'
 import { topicOf } from '../../lib/hadithGrade'
 import { useRememberedFlag } from '../../lib/useRemembered'
+import { useSideBySide } from '../../lib/useSideBySide'
 
 import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
 import ErrorAlert from '../ui/ErrorAlert'
 import EmptyState from '../ui/EmptyState'
 import TopicIcon from '../ui/TopicIcon'
 import ChainSheet from './ChainSheet'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 import ReadingOptions from '../ui/ReadingOptions'
+import SheetLink from '../ui/SheetLink'
 import HadithCards from './HadithCards'
 
 /** How far down the page you are, drawn into `ref` without re-rendering per scroll. */
@@ -41,6 +42,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
   useReadingRail(rail)
   const [missing, setMissing] = useState(false)
   const [columns, setColumns] = useRememberedFlag('hadith-two-columns', false)
+  const [sideBySide, setSideBySide] = useSideBySide()
   const [hideChain, setHideChain] = useRememberedFlag('hadith-hide-chain', false)
   const [guide, setGuide] = useState(false)
 
@@ -78,11 +80,12 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
           )}
           <ReadingOptions accent={accent} options={[
             // A phone has room for one hadith a row, so it is not offered there.
-            { label: 'Two columns', on: columns, set: setColumns, only: 'wide' },
+            // Two hadiths a row, each split in two, leaves too little of either: one turns the other off.
+            { label: 'Side by side', on: sideBySide && !columns, set: (on) => { setSideBySide(on); if (on) setColumns(false) }, only: 'wide' },
+            { label: 'Two columns', on: columns, set: (on) => { setColumns(on); if (on) setSideBySide(false) }, only: 'wide' },
             { label: 'Hide the chain', on: hideChain, set: setHideChain },
-          ]}>
-            <Chip tinted accent={accent} onClick={() => setGuide(true)}>Words and terms</Chip>
-          </ReadingOptions>
+          ]} />
+          <SheetLink accent={accent} onClick={() => setGuide(true)}>Words and terms</SheetLink>
           {guide && <ChainSheet accent={accent} onClose={() => setGuide(false)} />}
           <form onSubmit={jump} className="flex items-center gap-2">
             {missing && <span role="status" className="type-small text-[var(--text-faint)]">Not in this book</span>}

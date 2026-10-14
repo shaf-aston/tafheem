@@ -1,6 +1,6 @@
-"""Score the tarkeeb rules against the scholars' treebank, role by role.
+"""Score the Nahw engine, on ayahs, against the scholars' treebank, role by role.
 
-The rules only run where the treebank is silent, so the treebank is the one
+The engine only reads an ayah where the treebank is silent, so the treebank is the one
 answer key there is for them. A claim is right when the treebank has a unit
 with the same kind of role starting at the same word; spans are not compared,
 because the two disagree about where attachments end. A jar-majroor the rules
@@ -19,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import nahw_book, quran_corpus, tarkeeb, tarkeeb_store  # noqa: E402
+from backend.services import iraab, nahw_book, quran_corpus, tarkeeb_store  # noqa: E402
 
 TERMS = nahw_book.tarkeeb_rules()["terms"]
 EXACT = {TERMS[k]["ar"]: k for k in ("fail", "naib_fail", "mafool", "mubtada", "khabar")}
@@ -78,7 +78,9 @@ def main() -> None:
         units(tree["tree"], dict(zip(written, range(len(words)))).get, gold, gold_raw)
         recorded.update(k for _, k in gold)
         claims: set = set()
-        units(tarkeeb.tree_for(words)["tree"], lambda i: i, claims)
+        mine = iraab.ayah_tree(surah, number)
+        if mine.get("tree"):
+            units(mine["tree"], (lambda i: mine["written"][i]) if mine.get("written") else (lambda i: i), claims)
         for first, k in claims:
             claimed[k] += 1
             if (first, k) in gold:

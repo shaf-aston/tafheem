@@ -63,8 +63,9 @@ function Spans({ text, marks, names = [], onNarrator }) {
  * `names` are the narrators named in the Arabic (lib/rijal); with the chain
  * hidden, the teller and anyone named after him keep theirs.
  * `footer` sits under the text: the other narrations of this number.
+ * `split` sets English left and Arabic right on a wide screen, as sunnah.com does; a phone stacks them.
  */
-export default function HadithText({ label, arabic, cut = null, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator, footer = null }) {
+export default function HadithText({ label, arabic, cut = null, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, split = false, names = [], onNarrator, footer = null }) {
   const { narrator, body } = narrated(english)
   const shown = hideChain ? told(arabic, cut, names) : { text: arabic, names }
 
@@ -85,16 +86,18 @@ export default function HadithText({ label, arabic, cut = null, english = '', ac
       </div>
 
       <ShowRest lines={LINES} accent={accent} more="Show the rest" less="Show less">
+        <div className={split && english ? 'md:grid md:grid-cols-2 md:gap-x-8 md:items-start' : ''}>
         <ArabicText as="p" size="base" className="block leading-loose m-0">
           <Spans text={shown.text} marks={['«', '»']} names={shown.names} onNarrator={onNarrator} />
         </ArabicText>
 
         {english && (
-          <p className="type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)]">
+          <p className={`type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)] ${split ? 'md:order-first md:m-0 md:p-0 md:border-t-0' : ''}`}>
             {narrator && <span style={TONE.told}>{narrator} </span>}
             <Spans text={body} marks={['“', '”']} />
           </p>
         )}
+        </div>
       </ShowRest>
       {footer}
     </li>

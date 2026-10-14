@@ -2,7 +2,7 @@
 import pytest
 
 from backend.services.syntax import facts, naming
-from backend.services.syntax.correct import correct
+from backend.services.syntax.repair import correct
 from backend.services.harakat import typed_case, typed_passive
 
 
@@ -369,3 +369,77 @@ def test_the_praise_verb_is_told_from_yes_by_its_fatha(typed, verb):
     found = roles([typed, "الْعَبْدُ"], toks)
     assert (found[0] == "فعل") is verb
     assert found[1] == "فاعل" or not verb  # the praised word after the verb is its doer
+
+
+def _hit(second, rel, **feats):
+    return [token(1, "ضرب", "ضرب", "VRB", 0, "---", **VERB),
+            token(2, "زيد", "زيد", "PROP", 1, "SBJ", pos_camel="noun_prop"),
+            token(3, second, second, "PROP", 2, rel, pos_camel="noun_prop", **feats)]
+
+
+@pytest.mark.parametrize("words, rel", [
+    (["ضَرَبَ", "زَيْدٌ", "عَمْرًا"], "MOD"),    # nasb after the subject's damma: no نعت, though indefinite
+    (["ضَرَبَ", "زَيْدٌ", "عمراً"], "MOD"),
+    (["ضَرَبَ", "زَيْدٌ", "مريم"], "IDF"),      # زيدٌ has tanween, so nothing is its مضاف إليه
+    (["ضَرَبَ", "زَيْدٌ", "مَرْيَمَ"], "IDF"),
+])
+def test_a_word_the_vowels_forbid_under_the_subject_is_the_verbs_object(words, rel):
+    assert roles(words, _hit(words[2], rel)) == ["فعل", "فاعل", "مفعول به"]
+
+
+def test_a_state_word_and_a_real_idafa_stay():
+    # جاء زيدٌ راكبًا: a hal is not taken for an object here
+    assert roles(["جَاءَ", "زَيْدٌ", "رَاكِبًا"], _hit("راكبا", "MOD", ud="ADJ"))[2] != "مفعول به"
+    # ضَرَبَ غُلَامُ زَيْدٍ: no tanween on the مضاف, the إضافة stands
+    assert roles(["ضَرَبَ", "غُلَامُ", "زَيْدٍ"], _hit("زيد", "IDF"))[2] == "مضاف إليه"
+
+
+def _name(id, form, head, rel, **feats):
+    return token(id, form, form, "PROP", head, rel, pos_camel="noun_prop", **feats)
+
+
+def test_ibn_between_names_is_the_names_sifah_and_mudaf_to_the_next():
+    # the parser read the chain as mubtada and a row of khabars: the name is one unit
+    words = ["محمد", "بن", "عبد", "الله"]
+    toks = [_name(1, "محمد", 0, "---"),
+            token(2, "بن", "ابن", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
+            token(3, "عبد", "عبد", "NOM", 2, "PRD", pos_camel="noun", stt="c"),
+            _name(4, "الله", 3, "IDF", stt="d")]
+    found = named(words, toks)
+    assert [w["role"] for w in found] == [None, "صفة", "مضاف إليه", "مضاف إليه"]  # a phrase: no mubtada
+    assert [w["case"] for w in found] == [None, None, "jarr", "jarr"]  # untyped, the name and its صفة show no case
+
+
+def test_the_name_with_its_ibn_keeps_its_place_in_the_sentence():
+    # محمدٌ hung under the ابن climbs back to the place the ابن held, the sentence's head
+    words = ["مُحَمَّدُ", "بْنُ", "عَبْدِ", "اللهِ", "رَسُولُ", "اللهِ"]
+    toks = [_name(1, "محمد", 2, "SBJ"),
+            token(2, "بن", "ابن", "NOM", 0, "---", pos_camel="noun", stt="c"),
+            token(3, "عبد", "عبد", "NOM", 2, "IDF", pos_camel="noun", stt="c"),
+            _name(4, "الله", 3, "IDF", stt="d"),
+            token(5, "رسول", "رسول", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
+            _name(6, "الله", 5, "IDF", stt="d")]
+    assert roles(words, toks) == ["مبتدأ", "صفة", "مضاف إليه", "مضاف إليه", "خبر", "مضاف إليه"]
+
+
+def test_after_a_name_with_tanween_ibn_is_what_is_told_of_it():
+    words = ["زَيْدٌ", "ابْنُ", "عَمْرٍو"]
+    toks = [_name(1, "زيد", 0, "---"),
+            token(2, "ابن", "ابن", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
+            _name(3, "عمرو", 2, "IDF")]
+    assert roles(words, toks) == ["مبتدأ", "خبر", "مضاف إليه"]
+
+
+def test_a_second_ibn_describes_the_whole_name_before_it():
+    # بن عبد المطلب is the صفة of عبد الله, so it hangs on عبد, the name's مضاف
+    words = ["محمد", "بن", "عبد", "الله", "بن", "عبد", "المطلب"]
+    toks = [_name(1, "محمد", 0, "---"),
+            token(2, "بن", "ابن", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
+            token(3, "عبد", "عبد", "NOM", 2, "IDF", pos_camel="noun", stt="c"),
+            _name(4, "الله", 3, "IDF", stt="d"),
+            token(5, "بن", "ابن", "NOM", 4, "PRD", pos_camel="noun", stt="c"),
+            token(6, "عبد", "عبد", "NOM", 5, "IDF", pos_camel="noun", stt="c"),
+            _name(7, "المطلب", 6, "IDF", stt="d")]
+    found = named(words, toks)
+    assert toks[4]["head"] == 3 and toks[4]["rel"] == "MOD"
+    assert [w["role"] for w in found] == [None, "صفة", "مضاف إليه", "مضاف إليه", "صفة", "مضاف إليه", "مضاف إليه"]

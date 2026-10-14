@@ -18,7 +18,7 @@ from backend.config import get_settings
 from backend.services import provenance
 from backend.services.arabic_text import words as split_words
 from backend.services.syntax import teacher, tree
-from backend.services.syntax.correct import correct
+from backend.services.syntax.repair import correct
 from backend.services.syntax.naming import roles as name_roles
 
 logger = logging.getLogger(__name__)

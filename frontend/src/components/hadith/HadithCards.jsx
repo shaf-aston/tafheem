@@ -14,6 +14,9 @@
  * whose chain has any carries one quiet "2 weak points" chip that opens the drawing, where each
  * weak narrator is marked and ranked and each doubtful link lettered (lib/weak); a hadith that classical
  * books speak of carries a "Scholars" chip to the same drawing, where their words are quoted.
+ * Under each one's words, its reference as sunnah.com prints it (hadith/HadithReference).
+ * Side by side (English left, Arabic right, as sunnah.com sets them) unless the reader turned it
+ * off; a book in two columns, or a phone, stacks them.
  * `onNarrator` opens one narrator's full page; `onHadith` opens a sibling narration of the same number.
  */
 import { useState } from 'react'
@@ -21,6 +24,7 @@ import { useState } from 'react'
 import { useHadithCollections } from '../../lib/useHadithCollections'
 import { useHadithFavorites } from '../../lib/useHadithFavorites'
 import { useKin, useNarrators, useWeakNotes } from '../../lib/useNarrators'
+import { useSideBySide } from '../../lib/useSideBySide'
 import { drawnChain } from '../../lib/rijal'
 import { weakLinks, weakPoints } from '../../lib/weak'
 
@@ -29,6 +33,7 @@ import Chip from '../ui/Chip'
 import CopyButton from '../ui/CopyButton'
 import FavoriteStar from './FavoriteStar'
 import GradeMark from './GradeMark'
+import HadithReference from './HadithReference'
 import HadithText from '../ui/HadithText'
 import NarrationFamily from './NarrationFamily'
 import NarratorSheet from './NarratorSheet'
@@ -36,6 +41,7 @@ import NarratorSheet from './NarratorSheet'
 export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, onNarrator, onHadith }) {
   const { isFavorite, toggle } = useHadithFavorites()
   const { of } = useHadithCollections()
+  const [sideBySide] = useSideBySide()
   const books = items.map((h) => ({ collection: h.collection ?? collection, book: h.book }))
   const namesOf = useNarrators(books)
   const weakOf = useWeakNotes(books)
@@ -77,14 +83,20 @@ export default function HadithCards({ items, accent, collection, columns = false
               english={h.english}
               accent={accent}
               hideChain={hideChain}
+              split={sideBySide && !columns}
               names={names[ref]}
               onNarrator={setWho}
-              footer={kin > 1 && !hideChain && (
-                <NarrationFamily
-                  collection={h.collection} number={h.number} part={h.part} count={kin} accent={accent}
-                  onOpen={(p) => onHadith?.({ collection: h.collection, book: p.book, number: h.number, part: p.part })}
-                  onNarrator={setWho}
-                />
+              footer={(
+                <>
+                  <HadithReference name={of(h.collection).name} number={h.number} part={h.part} book={h.book} inBook={h.in_book} cite={h.cite} />
+                  {kin > 1 && !hideChain && (
+                    <NarrationFamily
+                      collection={h.collection} number={h.number} part={h.part} count={kin} accent={accent}
+                      onOpen={(p) => onHadith?.({ collection: h.collection, book: p.book, number: h.number, part: p.part })}
+                      onNarrator={setWho}
+                    />
+                  )}
+                </>
               )}
               action={(
                 <span className="flex flex-wrap items-center justify-end gap-2">

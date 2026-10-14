@@ -28,8 +28,8 @@ from backend.models.quran import (
 from backend.models.tarkeeb import TarkeebTree
 from backend.services import arabic_text, provenance, quran_library, quran_service
 from backend.services import mutashabihat, quran_search
-from backend.services import tarkeeb
-from backend.services import tarkeeb_store
+from backend.services import iraab
+from backend.services import tarkeeb_store, tree_columns
 from backend.services.refs import SURAHS
 from backend.utils import normalize_text, search_query
 
@@ -203,14 +203,14 @@ async def get_tarkeeb(
     """How the ayah's words assemble, the bracket tree, not the case endings.
 
     Two sources, and the badge always says which. The treebank is what scholars
-    recorded and covers most of the Qur'an; where it has nothing, the rules work
-    out what they can from the corpus tags and leave the rest as open brackets.
+    recorded and covers most of the Qur'an; where it has nothing, the Nahw engine reads
+    the ayah as it reads a typed sentence and leaves what it cannot name as gaps.
     """
     recorded = await asyncio.to_thread(tarkeeb_store.for_ayah, surah, ayah)
-    result = tarkeeb.cut(recorded or await asyncio.to_thread(tarkeeb.for_ayah, surah, ayah))
+    result = tree_columns.cut(recorded) if recorded else await asyncio.to_thread(iraab.ayah_tree, surah, ayah)
     if not result["words"]:
         raise HTTPException(status_code=404, detail=f"There is no ayah {surah}:{ayah}")
-    source = provenance.of("treebank" if recorded else "tarkeeb")
+    source = provenance.of("treebank" if recorded else "nahw")
     return TarkeebTree(surah=surah, ayah=ayah, **result, source=source)
 
 

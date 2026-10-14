@@ -19,6 +19,7 @@ import BottomSheet from '../ui/BottomSheet'
 import ChainDrawing from './ChainDrawing'
 import CloseButton from '../ui/CloseButton'
 import ScholarRulings from './ScholarRulings'
+import SheetLink from '../ui/SheetLink'
 import TermGuide from './TermGuide'
 import WeakPoints from './WeakPoints'
 
@@ -33,14 +34,9 @@ export default function ChainSheet({ links = null, author = '', weak = [], linkP
         <h2 aria-live="polite" className="type-ui font-semibold text-[var(--text)]">{title}</h2>
         <span className="flex items-center gap-3">
           {links && !chainless && (
-            <button
-              type="button"
-              onClick={() => setWords(!words)}
-              className="press type-small text-[var(--text-dim)] hover:text-[var(--c)] underline underline-offset-4 decoration-dotted"
-              style={{ '--c': accent }}
-            >
+            <SheetLink accent={accent} onClick={() => setWords(!words)}>
               {words ? 'Back to the chain' : 'What the words mean'}
-            </button>
+            </SheetLink>
           )}
           <CloseButton onClick={onClose} className="shrink-0" />
         </span>
