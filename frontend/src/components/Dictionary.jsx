@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { rootBabsQuery, searchDictionary, translateSentence } from '../api'
 import config from '../dictionary.json'
 import { isArabic } from '../lib/arabicText'
-import { entrySpan } from '../lib/entrySpan'
+import { entrySpans } from '../lib/entrySpan'
 import { plainPronunciation } from '../lib/pronounce'
 import { pickRoots } from '../lib/rootKey'
 import { useSetting } from '../lib/settings'
@@ -38,7 +38,8 @@ import Code from './ui/Code'
 
 // Tailwind needs the literal class names present in source to keep them in the
 // build; a computed string like `sm:col-span-${n}` would be purged.
-const SPAN_CLASS = { 2: 'sm:col-span-2', 3: 'sm:col-span-2 lg:col-span-3' }
+const SM_SPAN = { 1: 'sm:col-span-1', 2: 'sm:col-span-2' }
+const LG_SPAN = { 1: 'lg:col-span-1', 2: 'lg:col-span-2', 3: 'lg:col-span-3' }
 
 /**
  * Which way round a search is, worked out from the writing itself.
@@ -276,12 +277,14 @@ function Results({ data, accent, onGo, onLookup }) {
  * The first result is the word asked about (the service puts the exact word
  * first), and it is read the way a dictionary entry is read. The rest are
  * there to be compared, أطلع against استطلع against اطلاع, so they sit side by
- * side in a grid, each card as wide as its senses need (lib/entrySpan.js) and
- * the gaps filled by whatever fits, so the eye moves across rather than down.
+ * side in a grid, each row full and a card wide only where its lines wrap
+ * (lib/entrySpan.js), so the eye moves across rather than down.
  * A drop-down would have hidden the very thing worth comparing.
  */
 function Forms({ results, accent, onGo, onLookup, refs }) {
   const [lead, ...others] = results
+  const sm = entrySpans(others, 2)
+  const lg = entrySpans(others, 3)
   return (
     <>
       <Entry entry={lead} accent={accent} i={0} onGo={onGo} onLookup={onLookup} refs={refs} />
@@ -293,7 +296,7 @@ function Forms({ results, accent, onGo, onLookup, refs }) {
           {/* Grid default (stretch) so every card in a row shares that row's
               height; a short card beside a tall one used to end early and read
               as a mismatched row rather than one grid. */}
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 grid-flow-dense">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((entry, i) => (
               <Entry
                 key={`${entry.arabic}-${entry.root || i}`}
@@ -303,6 +306,8 @@ function Forms({ results, accent, onGo, onLookup, refs }) {
                 onGo={onGo}
                 onLookup={onLookup}
                 compact
+                span={`${SM_SPAN[sm[i]]} ${LG_SPAN[lg[i]]}`}
+                wide={lg[i] >= 2}
                 sameRoot={entry.root === lead.root}
               />
             ))}
@@ -322,24 +327,22 @@ function RootBabs({ root, refs }) {
 /**
  * One dictionary entry. Full for the word searched; compact for the words
  * beside it, where the root is left off when it is the same one printed
- * above, and the card spans more columns when it holds more than a glance.
+ * above, and its columns (`span`) come from the whole set (lib/entrySpan.js).
  * One type scale throughout (styles/text.css tokens): a card holding eight senses
  * reads at the same size as one holding a single line, only its footprint
  * differs.
  */
-function Entry({ entry, accent, i, onGo, onLookup, refs = false, compact = false, sameRoot = false }) {
+function Entry({ entry, accent, i, onGo, onLookup, refs = false, compact = false, span = '', wide = false, sameRoot = false }) {
   // Off by default for nobody, but one switch away for anyone who finds the
   // extra words distracting. Read here rather than passed down, so the switch
   // reaches the one place that draws them.
   const showSynonyms = useSetting('synonyms')
-  const span = compact ? entrySpan(entry) : 1
-  const wide = span >= 2
 
   return (
     <div
       style={{ '--i': i }}
       className={`rise-in rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)]
-        ${compact ? 'p-3 space-y-2' : 'p-4 space-y-3'} ${SPAN_CLASS[span] ?? ''}`}
+        ${compact ? 'p-3 space-y-2' : 'p-4 space-y-3'} ${span}`}
     >
       {/* Two rows: word beside its sound, root beside its bab (from the books, never typed in). */}
       <div className="grid grid-cols-[auto_auto] justify-between items-baseline gap-x-3 gap-y-0.5" dir="rtl">

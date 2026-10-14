@@ -249,7 +249,7 @@ function Body({
           of the stronger. */}
       {english && (
         <div className="space-y-1.5">
-          <p className="type-body text-[var(--text-dim)] max-w-prose">{english}</p>
+          <p className="type-body text-[var(--text-dim)]">{english}</p>
           {/* Pushed to the same edge the card's own badge sits on, so the two
               read as one column of sources rather than one label adrift in the
               middle of the card. */}
@@ -380,7 +380,7 @@ function EntryEnglish({ view, root, accent }) {
       {view === 'lines' && <LinePage lines={data.lines} accent={accent} />}
       {view === 'one' && <LineSpotlight lines={data.lines} accent={accent} />}
       {view === 'together' && (
-        <p className="type-body text-[var(--text-dim)] max-w-prose whitespace-pre-line">
+        <p className="type-body text-[var(--text)] whitespace-pre-line">
           {data.english}
         </p>
       )}

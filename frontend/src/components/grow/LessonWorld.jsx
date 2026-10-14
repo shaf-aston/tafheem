@@ -1,6 +1,7 @@
 /**
  * A lessons world (Words, Hadith, Quran): its picture if worlds.json gives it a `view` (./scenes), else a row per stage;
- * the stage by items learnt (the server's "known") and a lesson button. `state` from lib/useLessonWorld.js.
+ * beside it on a wide screen (first on a phone) the stage by items learnt (the server's "known") and the lesson button,
+ * held in view. `state` from lib/useLessonWorld.js.
  */
 import { sayIn } from '../../lib/say'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -59,19 +60,23 @@ export default function LessonWorld({ world, accent, state: lessons, onBack, onS
     <div style={{ '--w': accent }}>
       <WorldHeader world={world} onBack={onBack} />
       {lessons.error && <ErrorAlert title={say('Could not load this world')} error={lessons.error} onRetry={lessons.retry} />}
-      {!lessons.ready && !lessons.error && <Skeleton className="h-40 w-full" />}
+      {/* About the picture's height, so the page does not jump when it lands. */}
+      {!lessons.ready && !lessons.error && <Skeleton className={Scene ? 'h-[32rem] w-full' : 'h-80 w-full'} />}
       {lessons.ready && (
-        <div className="grow-world-body" data-scene={Scene ? '' : undefined}>
-          {Scene
-            ? <><Scene items={lessons.items} world={world} /><StageLine world={world} lessons={lessons} /></>
-            : <Stages world={world} lessons={lessons} />}
-          <p className="grow-hint tabular-nums">
-            {say('{learnt} learnt · {due} due for review · {fresh} not met yet', { learnt: lessons.learnt, due: lessons.dueCount, fresh: lessons.fresh })}
-          </p>
-          <p className="grow-hint">{say('Learnt means right again on another day.')}</p>
-          <PrimaryButton accent={accent} disabled={!lessons.fresh && !lessons.dueCount} onClick={onStart}>
-            {say('Start a lesson')}
-          </PrimaryButton>
+        <div className="grow-world-body">
+          <div className="grow-world-main">
+            {Scene ? <Scene items={lessons.items} world={world} /> : <Stages world={world} lessons={lessons} />}
+          </div>
+          <aside className="grow-world-side" aria-label={say('Your progress')}>
+            {Scene && <StageLine world={world} lessons={lessons} />}
+            <p className="grow-hint tabular-nums">
+              {say('{learnt} learnt · {due} due for review · {fresh} not met yet', { learnt: lessons.learnt, due: lessons.dueCount, fresh: lessons.fresh })}
+            </p>
+            <PrimaryButton accent={accent} disabled={!lessons.fresh && !lessons.dueCount} onClick={onStart}>
+              {say('Start a lesson')}
+            </PrimaryButton>
+            <p className="grow-hint">{say('Learnt means right again on another day.')}</p>
+          </aside>
         </div>
       )}
     </div>

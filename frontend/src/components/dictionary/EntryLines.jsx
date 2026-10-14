@@ -74,9 +74,9 @@ export function LinePage({ lines, accent }) {
               <div className="entry-row-body" {...tap}>
                 <span className="entry-num type-tiny" aria-hidden="true">{arabicNumber(n + 1)}</span>
                 <div className="flex-1 min-w-0 space-y-0.5">
-                  <Line line={entryLines(pair.arabic)[0]} />
+                  <Line line={entryLines(pair.arabic)[0]} size="lg" />
                   {shown && (
-                    <p dir="ltr" className={`type-small text-[var(--text-faint)] ${tapToShow ? 'entry-rise' : ''}`}>
+                    <p dir="ltr" className={`type-body text-[var(--text)] ${tapToShow ? 'entry-rise' : ''}`}>
                       {pair.english}
                     </p>
                   )}

@@ -44,6 +44,13 @@
 }
 
 
+/* Room for the scrollbar is kept even when a page is short, so pages do not
+   shift sideways when one grows a scrollbar. */
+html {
+  scrollbar-gutter: stable;
+}
+
+
 html,
 body,
 #root {

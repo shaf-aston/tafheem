@@ -1,20 +1,35 @@
 /**
- * Grow's home: level, streak, daily goal, today's lesson, every world (unbuilt ones shown as coming).
+ * Grow's home: level, streak, daily goal, today's lesson with each world's next step, every world (unbuilt ones shown as coming).
+ * A guest's log-in nudge rides on the title line (SectionHeader `aside`).
  */
+import { useState } from 'react'
+
 import { GOAL, GOALS, rankOf, shareOf } from '../../lib/rewards'
 import { sayIn } from '../../lib/say'
 import { useRemembered } from '../../lib/useRemembered'
+import ProfileDialog from '../profile/ProfileDialog'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
 import SectionHeader from '../ui/SectionHeader'
 
 const say = sayIn('en')
 
-/** Level, streak and goal; for a guest, a log-in hint. */
+/** For a guest: one line offering the log-in, which opens the profile dialog. */
+function LogInNudge() {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <button type="button" className="grow-login" onClick={() => setOpen(true)}>
+        {say('Log in to keep your XP')}
+      </button>
+      {open && <ProfileDialog onClose={() => setOpen(false)} />}
+    </>
+  )
+}
+
+/** Level, streak and goal; nothing for a guest (the nudge is on the title line). */
 function Growth({ rewards }) {
-  if (!rewards) {
-    return <p className="grow-hint">{say('Log in to keep your XP, level and streak on any device.')}</p>
-  }
+  if (!rewards) return null
   const rank = rankOf(rewards.level)
   return (
     <dl className="grow-stats">
@@ -59,32 +74,56 @@ function Goal({ xpToday }) {
   )
 }
 
-/** Today's words lesson, with the next hadith and prayer step beside it. */
-function Today({ words, hadith, prayer, accent, onStart, onPrayer }) {
-  const empty = words.ready && !words.fresh && !words.dueCount
-  const nextHadith = hadith.ready && (hadith.next.fresh[0] ?? hadith.next.reviews[0])
+/** One world's next step, under today's lesson: its name, where it is up to, the item itself. */
+function NextStep({ world, where, line, onGo }) {
   return (
-    <section className="grow-today" style={{ '--w': accent }} aria-labelledby="grow-today-h">
+    <button type="button" className="grow-next" style={{ '--w': world.accent }} onClick={onGo}>
+      <ArabicText className="grow-next-ar">{world.arabic}</ArabicText>
+      <span className="grow-next-text">
+        <b>{world.name} · {where}</b>
+        <span>{line}</span>
+      </span>
+      <span className="grow-next-go" aria-hidden="true">›</span>
+    </button>
+  )
+}
+
+const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.reviews[0])
+
+/** A next-step card's room while its world loads, so nothing below jumps when it lands. */
+const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
+
+/** Today's words lesson, then the next step in Hadith, Quran and Prayer. */
+function Today({ worldOf, lessons, prayer, onStart, onOpen }) {
+  const { words } = lessons
+  const empty = words.ready && !words.fresh && !words.dueCount
+  const hadith = nextOf(lessons.hadith)
+  const ayah = nextOf(lessons.quran)
+  return (
+    <section className="grow-today" style={{ '--w': worldOf('words').accent }} aria-labelledby="grow-today-h">
       <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
       <h3 id="grow-today-h">{say('Keep your garden growing')}</h3>
-      {words.ready && (
-        <p className="grow-today-holds tabular-nums">
-          {say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length })}
-        </p>
-      )}
-      <PrimaryButton accent={accent} disabled={!words.ready || empty} onClick={() => onStart('words')}>
+      <p className="grow-today-holds tabular-nums">
+        {words.ready ? say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length }) : '\u00a0'}
+      </p>
+      <PrimaryButton accent={worldOf('words').accent} disabled={!words.ready || empty} onClick={() => onStart('words')}>
         {empty ? say('Every word learnt and nothing due') : say('Start')}
       </PrimaryButton>
-      {nextHadith && (
-        <button type="button" className="grow-today-side" onClick={() => onStart('hadith')}>
-          {say('Hadith {n} of 42: {line}', { n: nextHadith.n, line: nextHadith.key.en })}
-        </button>
-      )}
-      {prayer.next && (
-        <button type="button" className="grow-today-side" onClick={onPrayer}>
-          {say('Next prayer step: {title}', { title: prayer.next.title })}
-        </button>
-      )}
+      <div className="grow-nexts">
+        {!lessons.hadith.ready && <NextSlot />}
+        {hadith && (
+          <NextStep world={worldOf('hadith')} where={say('{n} of 42', { n: hadith.n })} line={hadith.key.en} onGo={() => onStart('hadith')} />
+        )}
+        {!lessons.quran.ready && <NextSlot />}
+        {ayah && (
+          <NextStep world={worldOf('quran')} where={say('{surah}, ayah {n}', { surah: ayah.name_en, n: ayah.ayah })} line={ayah.english}
+            onGo={() => onStart('quran')} />
+        )}
+        {!prayer.done.total && <NextSlot />}
+        {prayer.next && (
+          <NextStep world={worldOf('prayer')} where={say('next step')} line={prayer.next.title} onGo={() => onOpen('prayer')} />
+        )}
+      </div>
     </section>
   )
 }
@@ -119,13 +158,13 @@ export default function GrowHome({ worlds, rewards, lessons, prayer, onOpen, onS
       ? { status: say('{learnt} of {total} steps learnt', prayer.done), share: prayer.done.learnt / prayer.done.total }
       : { status: say('Loading…'), share: 0 },
   }
-  const accentOf = (id) => worlds.find((world) => world.id === id)?.accent
+  const worldOf = (id) => worlds.find((world) => world.id === id)
   return (
     <div className="grow-home">
-      <SectionHeader title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')} />
+      <SectionHeader title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')}
+        aside={rewards ? null : <LogInNudge />} />
       <Growth rewards={rewards} />
-      <Today words={lessons.words} hadith={lessons.hadith} prayer={prayer} accent={accentOf('words')} onStart={onStart}
-        onPrayer={() => onOpen('prayer')} />
+      <Today worldOf={worldOf} lessons={lessons} prayer={prayer} onStart={onStart} onOpen={onOpen} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>
       <div className="grow-worlds">
         {worlds.map((world) => (

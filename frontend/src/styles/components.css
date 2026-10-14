@@ -151,9 +151,11 @@ details:not([open]) > .glide {
 /* The dialog's dimmed backing. ::backdrop sits in the browser's top layer and
    cannot be relied on to read the :root tokens, so this one scrim is written
    directly, it is a shade over the page, not a colour of the design. */
-/* The page behind any open pop-up holds still, for every dialog at once. */
-html:has(dialog:modal) {
-  overflow: hidden;
+/* The page behind an open pop-up still scrolls (wheel off the pop-up), so the
+   scrollbar never leaves and nothing jumps sideways. A pop-up's own scroll
+   stops at its ends instead of carrying on into the page. */
+dialog {
+  overscroll-behavior: contain;
 }
 
 

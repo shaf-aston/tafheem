@@ -27,12 +27,29 @@
 .grow-today-kicker { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--w); }
 .grow-today h3 { font-size: var(--type-title); font-weight: 800; color: var(--text); text-wrap: balance; }
 .grow-today-holds { font-size: var(--type-ui); color: var(--text-dim); }
-.grow-today-side { justify-self: start; min-height: 44px; font-size: var(--type-ui); color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px; }
-.grow-today-side:hover { color: var(--text); }
+.grow-nexts:empty { display: none; }
+.grow-nexts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-top: 4px; }
+.grow-next {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; text-align: start;
+  border-radius: var(--radius-md); background: var(--surface); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
+  transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease;
+}
+.grow-next-slot { border-color: var(--border); background: var(--surface-hi); opacity: 0.5; }
+.grow-next:hover { border-color: var(--w); background: color-mix(in srgb, var(--w) 8%, var(--surface)); }
+.grow-next-ar { font-size: 1.15rem; line-height: 1; color: var(--w); }
+.grow-next-text { display: grid; min-width: 0; font-size: var(--type-small); color: var(--text-dim); }
+.grow-next-text b { font-weight: 700; color: var(--text); }
+.grow-next-text span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.grow-next-go { font-size: 1.3rem; color: var(--w); }
+@media (prefers-reduced-motion: reduce) { .grow-next { transition: none; } }
+
+/* a guest's log-in offer, on the title line */
+.grow-login { font-size: var(--type-small); color: var(--text-dim); padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.grow-login:hover { color: var(--text); border-color: var(--border-hi); }
 
 /* ── home: the worlds ── */
 .grow-worlds-h { font-size: var(--type-body); font-weight: 800; color: var(--text); }
-.grow-worlds { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.grow-worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 .grow-world-tile {
   display: grid; gap: 6px; align-content: end; min-height: 150px; padding: 14px; text-align: start;
   border-radius: var(--radius-lg); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
@@ -56,7 +73,14 @@
 .grow-world-ar { font-size: 3rem; line-height: 1; color: var(--w, var(--c)); }
 
 /* ── the Words world: its stages ── */
-.grow-world-body { display: grid; gap: 14px; max-width: 560px; }
+.grow-world-body { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+.grow-world-main { min-width: 0; }
+/* the stage and Start: first on a phone, so the one thing to press is never a scroll away; beside the picture on a wide screen, held in view */
+.grow-world-side { order: -1; display: grid; gap: 10px; padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); }
+@media (min-width: 880px) {
+  .grow-world-body { grid-template-columns: minmax(0, 1fr) minmax(260px, 320px); gap: 20px; }
+  .grow-world-side { order: 0; position: sticky; top: 16px; }
+}
 .grow-stages { display: grid; gap: 8px; }
 .grow-stage-row { display: grid; grid-template-columns: 36px minmax(0, 1fr); align-items: center; gap: 4px 12px; padding: 10px 12px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
 .grow-stage-row .grow-lesson-bar { grid-column: 2; }
@@ -117,7 +141,6 @@
 .grow-options-ar .grow-option { text-align: center; font-size: 1.4rem; }
 
 /* ── a world's picture: the stage line, the shelf, the sky (components/grow/scenes) ── */
-.grow-world-body[data-scene] { max-width: 760px; }
 .grow-stage-line { display: grid; gap: 6px; font-size: var(--type-ui); color: var(--text); font-weight: 700; }
 
 .grow-shelf { display: grid; gap: 12px; }
