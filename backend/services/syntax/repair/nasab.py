@@ -47,9 +47,14 @@ def _name_goes_on(word: dict, bases: list[dict], by_id: dict) -> None:
     """عبدِ اللهِ، عبدِ المطلبِ: the father's name is itself a مضاف (CAMeL's construct state)
     and the noun after it its مضاف إليه, wherever the parser hung that noun (as a khabar)."""
     at = bases.index(word)
-    while word.get("stt") == "c" and at + 1 < len(bases):
+    while at + 1 < len(bases):
         nxt = bases[at + 1]
         if nxt["pos"] not in ("NOM", "PROP") or listed(nxt, "nasab") or _under(word, nxt, by_id):
+            return
+        # untyped, the reading may miss the construct state: a bare noun (no ال, no tanween)
+        # before a name or a noun with ال is that noun's مضاف all the same
+        bare = not word["form"].startswith("ال") and not has_tanween(word.get("typed") or "")
+        if word.get("stt") != "c" and not (bare and (_is_name(nxt) or nxt.get("stt") == "d")):
             return
         nxt["head"], nxt["rel"] = word["id"], "IDF"
         word["mudaf"] = True
