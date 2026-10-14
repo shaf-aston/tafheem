@@ -27,12 +27,14 @@
 .grow-today-kicker { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--w); }
 .grow-today h3 { font-size: var(--type-title); font-weight: 800; color: var(--text); text-wrap: balance; }
 .grow-today-holds { font-size: var(--type-ui); color: var(--text-dim); }
+.grow-nexts:empty { display: none; }
 .grow-nexts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-top: 4px; }
 .grow-next {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; text-align: start;
   border-radius: var(--radius-md); background: var(--surface); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
   transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease;
 }
+.grow-next-slot { border-color: var(--border); background: var(--surface-hi); opacity: 0.5; }
 .grow-next:hover { border-color: var(--w); background: color-mix(in srgb, var(--w) 8%, var(--surface)); }
 .grow-next-ar { font-size: 1.15rem; line-height: 1; color: var(--w); }
 .grow-next-text { display: grid; min-width: 0; font-size: var(--type-small); color: var(--text-dim); }

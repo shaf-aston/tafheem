@@ -90,6 +90,9 @@ function NextStep({ world, where, line, onGo }) {
 
 const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.reviews[0])
 
+/** A next-step card's room while its world loads, so nothing below jumps when it lands. */
+const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
+
 /** Today's words lesson, then the next step in Hadith, Quran and Prayer. */
 function Today({ worldOf, lessons, prayer, onStart, onOpen }) {
   const { words } = lessons
@@ -100,28 +103,27 @@ function Today({ worldOf, lessons, prayer, onStart, onOpen }) {
     <section className="grow-today" style={{ '--w': worldOf('words').accent }} aria-labelledby="grow-today-h">
       <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
       <h3 id="grow-today-h">{say('Keep your garden growing')}</h3>
-      {words.ready && (
-        <p className="grow-today-holds tabular-nums">
-          {say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length })}
-        </p>
-      )}
+      <p className="grow-today-holds tabular-nums">
+        {words.ready ? say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length }) : '\u00a0'}
+      </p>
       <PrimaryButton accent={worldOf('words').accent} disabled={!words.ready || empty} onClick={() => onStart('words')}>
         {empty ? say('Every word learnt and nothing due') : say('Start')}
       </PrimaryButton>
-      {(hadith || ayah || prayer.next) && (
-        <div className="grow-nexts">
-          {hadith && (
-            <NextStep world={worldOf('hadith')} where={say('{n} of 42', { n: hadith.n })} line={hadith.key.en} onGo={() => onStart('hadith')} />
-          )}
-          {ayah && (
-            <NextStep world={worldOf('quran')} where={say('{surah}, ayah {n}', { surah: ayah.name_en, n: ayah.ayah })} line={ayah.english}
-              onGo={() => onStart('quran')} />
-          )}
-          {prayer.next && (
-            <NextStep world={worldOf('prayer')} where={say('next step')} line={prayer.next.title} onGo={() => onOpen('prayer')} />
-          )}
-        </div>
-      )}
+      <div className="grow-nexts">
+        {!lessons.hadith.ready && <NextSlot />}
+        {hadith && (
+          <NextStep world={worldOf('hadith')} where={say('{n} of 42', { n: hadith.n })} line={hadith.key.en} onGo={() => onStart('hadith')} />
+        )}
+        {!lessons.quran.ready && <NextSlot />}
+        {ayah && (
+          <NextStep world={worldOf('quran')} where={say('{surah}, ayah {n}', { surah: ayah.name_en, n: ayah.ayah })} line={ayah.english}
+            onGo={() => onStart('quran')} />
+        )}
+        {!prayer.done.total && <NextSlot />}
+        {prayer.next && (
+          <NextStep world={worldOf('prayer')} where={say('next step')} line={prayer.next.title} onGo={() => onOpen('prayer')} />
+        )}
+      </div>
     </section>
   )
 }

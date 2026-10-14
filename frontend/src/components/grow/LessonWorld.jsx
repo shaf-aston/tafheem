@@ -59,7 +59,8 @@ export default function LessonWorld({ world, accent, state: lessons, onBack, onS
     <div style={{ '--w': accent }}>
       <WorldHeader world={world} onBack={onBack} />
       {lessons.error && <ErrorAlert title={say('Could not load this world')} error={lessons.error} onRetry={lessons.retry} />}
-      {!lessons.ready && !lessons.error && <Skeleton className="h-40 w-full" />}
+      {/* About the picture's height, so the page does not jump when it lands. */}
+      {!lessons.ready && !lessons.error && <Skeleton className={Scene ? 'h-[32rem] w-full max-w-[760px]' : 'h-40 w-full'} />}
       {lessons.ready && (
         <div className="grow-world-body" data-scene={Scene ? '' : undefined}>
           {Scene
