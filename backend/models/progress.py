@@ -48,6 +48,8 @@ class Rewards(BaseModel):
     """XP gained inside the current level."""
     need: int
     """XP the current level takes in all, so into / need is how far along it is."""
+    streak: int
+    """Days in a row with an answer, the same count the profile shows."""
 
 
 class AttemptSaved(BaseModel):

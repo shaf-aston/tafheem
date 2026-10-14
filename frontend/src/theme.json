@@ -41,6 +41,16 @@
     "0": "@orange", "1": "@teal", "2": "@violet", "3": "@amber",
     "4": "@pink", "5": "@sky", "6": "@green", "7": "@rose"
   },
+  "world": {
+    "_comment": "Each Grow world's own colour (worlds.json), so a world reads as its own place. colorFor('world', id).",
+    "words": "@green",
+    "prayer": "@teal",
+    "quran": "@sky",
+    "hadith": "@amber",
+    "sarf": "@violet",
+    "nahw": "@rose",
+    "default": "@lime"
+  },
   "tab": {
     "nahw": "@violet",
     "quran": "@teal",

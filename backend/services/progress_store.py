@@ -372,10 +372,15 @@ def earns(module: str, item: str, user: str, minutes: int = 0) -> bool:
 
 
 def rewards(user: str, minutes: int = 0) -> dict:
-    """XP, XP today and the level (services/rewards.py), each day counted on the learner's own calendar."""
+    """XP, XP today, the level (services/rewards.py) and the streak, each day counted on the learner's own calendar."""
     settings = get_settings()
+    today = local_today(minutes)
     days = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_EARNED, (_shift(minutes), user))]
-    return reward_rules.rewards_of(days, local_today(minutes), settings.rewards_xp_per_answer, settings.rewards_level_step)
+    answered = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_DAYS, (_shift(minutes), user))]
+    return {
+        **reward_rules.rewards_of(days, today, settings.rewards_xp_per_answer, settings.rewards_level_step),
+        "streak": _streak(answered, today),
+    }
 
 
 def overview(user: str, minutes: int = 0) -> dict:

@@ -1,0 +1,41 @@
+/**
+ * Which meaning is this word? The quiz's own question (lib/quiz.js), so the
+ * options follow every rule the Quiz tab's do. `value` is the option picked;
+ * once `result` is set the right option is marked, and the wrong pick too.
+ */
+import ArabicText from '../../ui/ArabicText'
+import { sayIn } from '../../../lib/say'
+
+const say = sayIn('en')
+
+export default function MeaningCard({ card, value, setValue, result }) {
+  const { question, isNew } = card
+  const markOf = (option) => {
+    if (!result) return option.id === value ? 'picked' : undefined
+    if (option.id === question.answerId) return 'right'
+    return option.id === value ? 'wrong' : undefined
+  }
+  return (
+    <div className="grow-card">
+      <span className="grow-card-tag">{isNew ? say('New word') : say('Review')}</span>
+      <p className="grow-card-ask">{say('What does this mean?')}</p>
+      <ArabicText as="p" size="lg" className="grow-card-word">{question.prompt}</ArabicText>
+      <div className="grow-options" role="radiogroup" aria-label={say('Meanings')}>
+        {question.options.map((option) => (
+          <button
+            key={option.id}
+            type="button"
+            role="radio"
+            aria-checked={option.id === value}
+            className="grow-option"
+            data-mark={markOf(option)}
+            disabled={Boolean(result)}
+            onClick={() => setValue(option.id)}
+          >
+            {option.text}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}

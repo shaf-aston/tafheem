@@ -1,0 +1,42 @@
+{
+  "_comment": "Grow's worlds: each part of the app as its own place to grow. The order here is the order on Grow's home. A world is `live` once it has lessons; one that is not shows on the map as coming, so the road ahead is visible. `kind` says which screen a live world opens (GrowPanel.jsx SCREENS): `words` runs lessons through the quiz's own word list, `prayer` is the step map of what is said in prayer. Its colour is theme.json's `world` group, by id.",
+
+  "worlds": [
+    {
+      "id": "words", "name": "Words", "arabic": "كلمات", "scene": "The Meadow",
+      "idea": "Every word you learn is a seed planted.",
+      "live": true, "kind": "words"
+    },
+    {
+      "id": "prayer", "name": "Prayer", "arabic": "صلاة", "scene": "The Courtyard",
+      "idea": "What you say in prayer, said right, step by step.",
+      "live": true, "kind": "prayer"
+    },
+    {
+      "id": "quran", "name": "Quran", "arabic": "قرآن", "scene": "The Night Sky",
+      "idea": "Each ayah you fill in lights a star.",
+      "live": false
+    },
+    {
+      "id": "hadith", "name": "Hadith", "arabic": "حديث", "scene": "The Library",
+      "idea": "Each hadith you learn lights a lamp.",
+      "live": false
+    },
+    {
+      "id": "sarf", "name": "Sarf", "arabic": "صرف", "scene": "The Workshop",
+      "idea": "Build words from their roots and patterns.",
+      "live": false
+    },
+    {
+      "id": "nahw", "name": "Nahw", "arabic": "نحو", "scene": "The Market",
+      "idea": "Find who does what in a sentence.",
+      "live": false
+    }
+  ],
+
+  "_lesson": "One lesson of the Words world. `new` is how many words never answered before it teaches, `size` how many words it asks in all; the rest are words due for review (the server's review timer decides which). With too little due it teaches more new words, up to `most-new`, so a first lesson is not five cards long and not twenty either. A word answered wrong comes back once at the end of the lesson. `bank` is which of the quiz's word sets it walks through, in that set's own order.",
+  "lesson": { "new": 3, "most-new": 5, "size": 8, "bank": "quranic" },
+
+  "_stages": "The Words world's stages: how many words of its set must be learnt (the server's 'known') to finish each one. The last should not pass the size of the set.",
+  "stages": [20, 50, 100, 200, 385]
+}

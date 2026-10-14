@@ -28,7 +28,8 @@ const headers = (name) => ({ headers: profileHeaders(name) })
 const landed = (request) => request.then(() => true, () => false)
 
 /**
- * File one answer. Resolves `{ saved }`; never rejects.
+ * File one answer. Resolves `{ saved, earned }` (earned: the XP it made, 0 when
+ * it made none or did not land); never rejects.
  *
  * `ms` is how long the answer took. Send it as measured, however long: which
  * timings are honest enough to average is the store's rule, not the page's.
@@ -40,9 +41,9 @@ export async function recordAttempt({ module, item, correct, ms, context }) {
   } catch {
     return { saved: false }
   }
-  // What it earned goes to whoever shows XP (lib/rewards.js); the caller only needs to know it landed.
+  // What it earned also goes to whoever shows XP (lib/rewards.js), so no tab has to pass it on.
   announce(response.data)
-  return { saved: true }
+  return { saved: true, earned: response.data?.earned ?? 0 }
 }
 
 /**

@@ -62,7 +62,7 @@ def test_xp_today_counts_only_today():
 def test_a_right_answer_earns_and_says_the_new_total():
     saved = answer()
     assert saved["earned"] == 10
-    assert saved["rewards"] == {"xp": 10, "xpToday": 10, "level": 1, "into": 10, "need": 100}
+    assert saved["rewards"] == {"xp": 10, "xpToday": 10, "level": 1, "into": 10, "need": 100, "streak": 1}
 
 
 def test_the_same_item_twice_in_a_day_earns_once():

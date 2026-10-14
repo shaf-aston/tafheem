@@ -14,7 +14,7 @@ describe('filing an answer', () => {
   it('says so when it landed', async () => {
     vi.spyOn(api, 'post').mockResolvedValue({ status: 200 })
     const result = await recordAttempt({ module: 'quiz', item: 'train', correct: true })
-    expect(result).toEqual({ saved: true })
+    expect(result).toEqual({ saved: true, earned: 0 })
   })
 
   it('never throws when there is no backend, so the round carries on', async () => {
