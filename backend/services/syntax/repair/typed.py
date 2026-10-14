@@ -1,17 +1,12 @@
-"""The one step that corrects the parser's tokens (kind, tense, head, link), in a fixed order.
-`naming` and everything after only read them."""
+"""Repair 1 after the book's links: what the reader typed overrides the parser's kind and tense."""
 from __future__ import annotations
 
 from backend.services import verb_reader
-from backend.services.harakat import (
-    has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement)
+from backend.services.harakat import has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw_book import book_words, is_one, only_adverb
-from backend.services.syntax import facts, particles
-from backend.services.syntax.mask import book_links
-from backend.services.syntax.naming import base_tokens
 
 
-def _typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
+def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
     """Reads what was typed into each base word: its vowels, and its kind and tense where they or the book say otherwise."""
     for i, (word, token) in enumerate(zip(words, bases)):
         token["typed"] = word
@@ -43,13 +38,3 @@ def _typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> Non
             elif verb and merged_prefix(own, book_words("ta_merges")):
                 token["asp"] = "i"  # تَطَّوَّعَ: the shadda is the second ta' merged in, so it is present
         token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
-
-
-def correct(words: list[str], tokens: list[dict]) -> None:
-    """Every correction to the parser's tokens, in place. A split that does not line up with
-    the typed words keeps only the book's links."""
-    book_links(tokens)
-    if len(bases := base_tokens(words, tokens)) == len(words):
-        _typed_words(words, bases, tokens)
-        facts.free_clashing_modifiers(tokens)
-        particles.stamp(tokens)

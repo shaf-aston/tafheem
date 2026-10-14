@@ -2,7 +2,7 @@
 import pytest
 
 from backend.services.syntax import facts, naming
-from backend.services.syntax.correct import correct
+from backend.services.syntax.repair import correct
 from backend.services.harakat import typed_case, typed_passive
 
 
