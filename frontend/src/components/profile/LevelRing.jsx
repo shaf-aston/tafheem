@@ -1,10 +1,6 @@
 /**
- * The level, worn quietly on the profile button: a thin ring that fills as the
- * level does, the level's number inside, and a small "+10" that rises and
- * fades when an answer earns. Nothing else on any tab changes; every tab that
- * saves its answers feeds this through lib/rewards.js on its own.
- *
- * Shown only for a logged-in name: the guest record is shared, so it has no XP.
+ * The level on the profile button: a thin ring, the number inside, a fading "+10".
+ * Logged-in only: the shared guest record has no XP.
  */
 import { colorFor } from '../../theme'
 import { rankOf, shareOf } from '../../lib/rewards'
@@ -12,7 +8,7 @@ import { rankOf, shareOf } from '../../lib/rewards'
 const R = 8
 const AROUND = 2 * Math.PI * R
 
-/** `rewards` from lib/useRewards; `gain` the last earning still floating, or null. */
+/** `rewards` and `gain` from lib/useRewards. */
 export default function LevelRing({ rewards, gain }) {
   if (!rewards) return null
   const rank = rankOf(rewards.level)

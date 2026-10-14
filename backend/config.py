@@ -431,9 +431,9 @@ class Progress(BaseSettings):
     progress_learning_hours: int = 24
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
-    # XP (services/rewards.py): what one right answer earns, once per item per day.
+    # XP per right answer, once per item per day (services/rewards.py).
     rewards_xp_per_answer: int = Field(default=10, gt=0)
-    # Level n needs this many times n XP to reach level n + 1, so each level takes a little longer.
+    # Level n needs this × n XP to reach n + 1.
     rewards_level_step: int = Field(default=100, gt=0)
     # Accounts (services/username.py): a username, no password. Longest name allowed after cleaning.
     username_max: int = 40

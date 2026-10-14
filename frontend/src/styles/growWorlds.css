@@ -1,8 +1,4 @@
-/* Grow's home, its worlds and its lessons (components/grow/GrowHome,
-   WordsWorld, WorldHeader, LessonRunner, exercises/). Each world's colour
-   arrives as --w (theme.json's world group), so one rule set dresses every
-   world in its own colour. Durations are built from the motion tokens, so the
-   Animations switch stills them. The step map's own rules are grow.css. */
+/* Grow home, worlds, lessons (components/grow/*). World colour = --w (theme.json `world`). Step map styles: grow.css. */
 
 .grow-home { display: grid; gap: 18px; }
 .grow-hint { font-size: var(--type-ui); color: var(--text-dim); line-height: 1.5; }

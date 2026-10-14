@@ -1,28 +1,13 @@
 /**
- * One Grow lesson: which words, in what order, as which cards. Pure, so no
- * React and no network: the Words world hands in the word table, what has been
- * answered before and what the server says is due, and gets the cards back.
- *
- * Nothing about asking a word is decided here. The question itself is the
- * quiz's own (lib/quiz.js buildQuestion), so a word asked in Grow is the same
- * question, filed under the same module and id, as in the Quiz tab: learn it in
- * one and the other knows.
- *
- * A lesson is mostly review with a few new words:
- *   - `fresh` words never answered before, in the set's own order, each taught
- *     first (a teach card) and then asked;
- *   - the rest are words due for review, longest overdue first;
- *   - too few due and the lesson tops up with more new words, up to `most`, so a
- *     first lesson is neither tiny nor a flood of new words.
+ * One Grow lesson: which words, as which cards. Pure.
+ * Questions are the quiz's own (buildQuestion), filed under the quiz's module, so Grow and Quiz share progress.
+ * A lesson = a few new words (taught, then asked) + words due for review; with little due, more new words up to `most`.
  */
 import { buildQuestion } from './quiz'
 
 /**
- * The words of one lesson. `order` is the set walked through, in its own order;
- * `all` every word (a word due may sit outside the set); `seen` the ids
- * answered before; `due` the ids due now, longest overdue first; `fresh` how
- * many new words to teach, `most` how many at most when there is little to
- * review, and `size` how many words in all.
+ * The words of one lesson. `order`: the set, in order; `all`: every word; `seen`: ids answered;
+ * `due`: ids due, most overdue first; `fresh`/`most`: new words wanted / allowed; `size`: words in all.
  */
 export function lessonWords({ order, all, seen, due, fresh, most = fresh, size }) {
   const byId = new Map(all.map((word) => [word.meaningKey, word]))
@@ -39,11 +24,7 @@ export function lessonWords({ order, all, seen, due, fresh, most = fresh, size }
   return { fresh: [...taught, ...more], reviews }
 }
 
-/**
- * The cards, new and review woven together so a lesson never front-loads all
- * its new words: teach a word, ask it, then a review, then the next new word.
- * `all` is where the wrong options come from.
- */
+/** The cards, woven: teach a word, ask it, a review, the next word. `all` supplies wrong options. */
 export function cardsOf({ fresh, reviews }, all, random = Math.random) {
   const ask = (word, isNew) => ({
     kind: 'meaning',
@@ -61,22 +42,14 @@ export function cardsOf({ fresh, reviews }, all, random = Math.random) {
   return cards
 }
 
-/**
- * The cards after card `at` was answered wrong: it comes back once at the end,
- * so the lesson closes on getting it right. A card already given its second
- * chance is not added again.
- */
+/** A wrong card comes back once, at the end. */
 export function requeue(cards, at) {
   const card = cards[at]
   if (card.again) return cards
   return [...cards, { ...card, id: `${card.id}:again`, again: true }]
 }
 
-/**
- * Where `learnt` words stand among the world's stages (worlds.json): the stage
- * being worked on (0-based), how far into it, and how many it needs. Past the
- * last stage, `done` is true and the last stage reads full.
- */
+/** The current stage (0-based) for `learnt` words, how far into it, and its size; `done` past the last. */
 export function stageOf(learnt, stages) {
   let from = 0
   for (let i = 0; i < stages.length; i += 1) {

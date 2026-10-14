@@ -53,11 +53,7 @@ _TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner'
 
 @router.post("/attempts", response_model=AttemptSaved)
 async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
-    """File one answer, right or wrong, and what it earned.
-
-    The guest record is shared by everyone not logged in, so it earns no XP:
-    a total made of strangers' answers would be nobody's.
-    """
+    """File one answer; return its XP and new totals. The shared guest record earns none."""
     named = user != GUEST
     earns = named and attempt.correct and progress_store.earns(attempt.module, attempt.item, user, attempt.tz)
     row_id = progress_store.record(
@@ -121,7 +117,7 @@ def get_overview(tz: int = _TZ, user: str = USER) -> Overview:
 
 @router.get("/rewards", response_model=Rewards)
 def get_rewards(tz: int = _TZ, user: str = NAMED) -> Rewards:
-    """XP and level alone: cheap, since nothing is replayed, so the header can ask on every page."""
+    """XP, level, streak. Cheap (no FSRS replay), for the header."""
     return Rewards(**progress_store.rewards(user, tz))
 
 

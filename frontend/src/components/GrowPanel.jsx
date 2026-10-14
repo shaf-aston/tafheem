@@ -1,16 +1,7 @@
 /**
- * Grow, نَبَات: a little every day, in every part of the app.
- *
- *   وَأَنبَتَهَا نَبَاتًا حَسَنًا (3:37), and He made her grow a good growth.
- *
- * Three screens and nothing else: the home (grow/GrowHome: your level, today's
- * lesson, every world), one world (its own screen, from SCREENS by the world's
- * `kind` in worlds.json), and a lesson (grow/LessonRunner). This file only
- * moves between them; what a world holds is its own hook and screen, so adding
- * a world is an entry in worlds.json, a screen here, and nothing else touched.
- *
- * XP is earned by saving answers, the same way in every tab (lib/rewards.js);
- * nothing here counts it.
+ * Grow, نَبَات (3:37): a little every day, in every part of the app.
+ * Three screens: home, a world (SCREENS by its `kind` in worlds.json), a lesson.
+ * Adding a world = a worlds.json entry + a screen here.
  */
 import { useState } from 'react'
 
@@ -28,7 +19,6 @@ import WordsWorld from './grow/WordsWorld'
 const WORLDS = config.worlds.map((world) => ({ ...world, accent: colorFor('world', world.id) }))
 const worldOf = (id) => WORLDS.find((world) => world.id === id)
 
-/** A live world's screen, by its `kind`. */
 const SCREENS = {
   words: ({ world, words, back, startWords }) => (
     <WordsWorld world={world} accent={world.accent} words={words} onBack={back} onStart={startWords} />

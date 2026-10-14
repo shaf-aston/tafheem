@@ -1,13 +1,6 @@
 /**
- * One lesson, a card at a time: pick, Check, see whether it was right, go on.
- * A wrong card comes back once at the end (lib/lesson.js requeue), so a lesson
- * ends on getting it right; there are no hearts and nothing is lost.
- *
- * Knows nothing about any kind of card: what is shown, what counts as right and
- * what the progress store files are the exercise registry's (grow/exercises).
- * Each checked answer is saved through recordAttempt like the Quiz tab's, so it
- * earns XP and schedules its review the same way, and the end screen adds up
- * the XP the server said each answer earned rather than guessing it.
+ * A lesson, one card at a time: pick, Check, Continue. Wrong cards return once at the end; no hearts.
+ * Cards are the exercise registry's; answers save like the Quiz's, and the end screen sums the XP the server reported.
  */
 import { useEffect, useRef, useState } from 'react'
 
@@ -26,7 +19,7 @@ export default function LessonRunner({ cards: first, module, accent, rewards, on
   const [value, setValue] = useState(null)
   const [result, setResult] = useState(null)
   const [tally, setTally] = useState({ asked: 0, right: 0, earned: 0 })
-  // When the card in front of the reader was shown, so an answer can say how long it took.
+  // When the current card appeared, for answer timing.
   const started = useRef(0)
   useEffect(() => { started.current = performance.now() }, [at])
 
@@ -40,7 +33,7 @@ export default function LessonRunner({ cards: first, module, accent, rewards, on
   function check(event) {
     const right = kind.check(card, value)
     setResult(right ? 'right' : 'wrong')
-    // Only a card's first showing counts towards the score; its second chance is practice.
+    // Only first showings count towards the score.
     if (!card.again) setTally((was) => ({ ...was, asked: was.asked + 1, right: was.right + (right ? 1 : 0) }))
     if (!right) setCards(requeue(cards, at))
     const ms = Math.max(0, Math.round(event.timeStamp - started.current))
@@ -86,7 +79,7 @@ export default function LessonRunner({ cards: first, module, accent, rewards, on
   )
 }
 
-/** The end of a lesson: how it went, what it earned, how far the level has come. */
+/** Score, XP earned, level progress. */
 function LessonDone({ tally, accent, rewards, onLeave }) {
   const { asked, right, earned } = tally
   return (

@@ -1,4 +1,4 @@
-/** The top of a world: the way back to Grow's home, then the world's scene, name and idea in its own colour. */
+/** A world's header: back button, scene, name, idea. Colour from --w. */
 import { sayIn } from '../../lib/say'
 import ArabicText from '../ui/ArabicText'
 

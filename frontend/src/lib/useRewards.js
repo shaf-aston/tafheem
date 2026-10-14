@@ -1,8 +1,6 @@
 /**
- * The logged-in learner's XP and level, kept current by every saved answer
- * (lib/rewards.js announce), and the last earning while it is still floating.
- * One read when the page opens; after that each answer's own reply updates it,
- * so no tab asks the server twice.
+ * The learner's XP and level: read once, then kept current by each answer's reply.
+ * `gain` is the last earning while its "+10" floats.
  */
 import { useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'

@@ -42,7 +42,7 @@
     "4": "@pink", "5": "@sky", "6": "@green", "7": "@rose"
   },
   "world": {
-    "_comment": "Each Grow world's own colour (worlds.json), so a world reads as its own place. colorFor('world', id).",
+    "_comment": "Grow world colours (worlds.json ids). colorFor('world', id).",
     "words": "@green",
     "prayer": "@teal",
     "quran": "@sky",

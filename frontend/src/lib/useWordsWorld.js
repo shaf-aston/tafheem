@@ -1,11 +1,6 @@
 /**
- * The Words world's data: the word set it walks through, what this learner has
- * answered in it, and a fresh lesson on demand.
- *
- * The record is the Quiz tab's own (module 'quiz', one row per meaning), read
- * from the server's summary, so a word learnt in either place counts in both
- * and the review timer is the one the Quiz's Review already uses. Grow asks in
- * English, the quiz's default; the quiz's other languages keep their own record.
+ * The Words world's data: its word set, the learner's record, a lesson on demand.
+ * The record is the Quiz's own (module 'quiz', English), so both tabs share it.
  */
 import { useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
@@ -42,10 +37,9 @@ export function useWordsWorld() {
     }
   }, [words.data, summary.data])
 
-  // The words are picked when the record is read; the questions are drawn fresh each time.
   const makeLesson = (random = Math.random) => cardsOf(state.next, words.data.all, random)
 
-  // After a lesson the record has moved: re-read it here and wherever the Quiz shows it.
+  // After a lesson: re-read here and in the Quiz.
   const refresh = () => {
     client.invalidateQueries({ queryKey: ['grow-summary'] })
     client.invalidateQueries({ queryKey: ['quiz-review'] })

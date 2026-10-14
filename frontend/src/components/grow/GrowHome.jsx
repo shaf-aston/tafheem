@@ -1,10 +1,5 @@
 /**
- * Grow's home: how far you have grown, today's lesson in one press, and every
- * world. A world that has no lessons yet still shows, marked coming, so the
- * road ahead is visible.
- *
- * Presentation only. XP and the streak are lib/useRewards.js, each world's
- * progress its own hook, the list of worlds worlds.json.
+ * Grow's home: level, streak, daily goal, today's lesson, every world (unbuilt ones shown as coming).
  */
 import { GOAL, GOALS, rankOf, shareOf } from '../../lib/rewards'
 import { sayIn } from '../../lib/say'
@@ -15,7 +10,7 @@ import SectionHeader from '../ui/SectionHeader'
 
 const say = sayIn('en')
 
-/** The learner's level, streak and XP today; for a guest, why there are none. */
+/** Level, streak and goal; for a guest, a log-in hint. */
 function Growth({ rewards }) {
   if (!rewards) {
     return <p className="grow-hint">{say('Log in to keep your XP, level and streak on any device.')}</p>
@@ -40,7 +35,7 @@ function Growth({ rewards }) {
   )
 }
 
-/** Today's XP against the goal the learner picked, and the three goals to pick from. */
+/** Today's XP against the picked goal. */
 function Goal({ xpToday }) {
   const [picked, pick] = useRemembered('grow-goal', GOALS, GOAL)
   const goal = Number(picked)
@@ -64,7 +59,7 @@ function Goal({ xpToday }) {
   )
 }
 
-/** Today's lesson: what it holds, and one button. The next prayer step rides along beside it. */
+/** Today's lesson, plus a link to the next prayer step. */
 function Today({ words, prayer, accent, onToday, onPrayer }) {
   const empty = words.ready && !words.fresh && !words.dueCount
   return (
@@ -88,7 +83,7 @@ function Today({ words, prayer, accent, onToday, onPrayer }) {
   )
 }
 
-/** One world's tile: its Arabic name large, how far along, or that it is coming. */
+/** One world's tile. */
 function WorldTile({ world, status, share, onOpen }) {
   return (
     <button

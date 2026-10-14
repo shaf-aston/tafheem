@@ -1,8 +1,5 @@
 /**
- * The Words world: the quiz's own word set, walked through a few new words at a
- * time, with reviews mixed in. Its stages are counts of words learnt
- * (worlds.json); learnt is the server's "known", the same measure the profile
- * and the rankings use, so no number here can disagree with them.
+ * The Words world: stages by words learnt (the server's "known") and a lesson button.
  */
 import { sayIn } from '../../lib/say'
 import ErrorAlert from '../ui/ErrorAlert'

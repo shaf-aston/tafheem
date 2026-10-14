@@ -1,5 +1,5 @@
 {
-  "_comment": "Grow's worlds: each part of the app as its own place to grow. The order here is the order on Grow's home. A world is `live` once it has lessons; one that is not shows on the map as coming, so the road ahead is visible. `kind` says which screen a live world opens (GrowPanel.jsx SCREENS): `words` runs lessons through the quiz's own word list, `prayer` is the step map of what is said in prayer. Its colour is theme.json's `world` group, by id.",
+  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS). Colour: theme.json `world` by id.",
 
   "worlds": [
     {
@@ -34,9 +34,9 @@
     }
   ],
 
-  "_lesson": "One lesson of the Words world. `new` is how many words never answered before it teaches, `size` how many words it asks in all; the rest are words due for review (the server's review timer decides which). With too little due it teaches more new words, up to `most-new`, so a first lesson is not five cards long and not twenty either. A word answered wrong comes back once at the end of the lesson. `bank` is which of the quiz's word sets it walks through, in that set's own order.",
+  "_lesson": "Words lesson: `new` new words, up to `most-new` when little is due, `size` words in all; rest are due reviews. `bank`: quiz word set walked in order.",
   "lesson": { "new": 3, "most-new": 5, "size": 8, "bank": "quranic" },
 
-  "_stages": "The Words world's stages: how many words of its set must be learnt (the server's 'known') to finish each one. The last should not pass the size of the set.",
+  "_stages": "Words world stages: words learnt (server 'known') to finish each. Last ≤ set size.",
   "stages": [20, 50, 100, 200, 385]
 }

@@ -1,22 +1,6 @@
 /**
- * The Prayer world: a path through what a person says in their prayer, one
- * step at a time, and an honest answer to "did I say it right?".
- *
- *   وَأَنبَتَهَا نَبَاتًا حَسَنًا (3:37), and He made her grow a good growth.
- *
- * Three promises decide everything here:
- *   1. No ruling is the app's own. The ear judges how a word was said, never
- *      what the prayer requires; what the prayer requires is quoted from a
- *      named scholar's book, word for word, and kept out of the way until
- *      asked for (tests/test_grow.py holds every quote to the book).
- *   2. "Not sure" is said when it is not sure, and it never counts as right.
- *   3. The score is what has been learnt, not what has been opened.
- *
- * In three layers: the map (grow/GrowMap) draws it, the card (grow/StepSheet)
- * practises one step, and this file holds the choices between them. The
- * record and the paths are lib/usePrayerRecord.js, shared with Grow's home;
- * the marking is lib/grow.js; everything else is the app's shared pieces, the
- * same microphone, the same word colours, the same ear checks.
+ * Prayer world: the step map (GrowMap) + practice card (StepSheet). Record: lib/usePrayerRecord.js; marking: lib/grow.js.
+ * Rules: rulings are quoted from named books (tests/test_grow.py); "not sure" never counts; score = learnt steps only.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
 

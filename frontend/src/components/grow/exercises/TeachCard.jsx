@@ -1,4 +1,4 @@
-/** A new word, shown before it is asked: the Arabic, its meaning, and nothing to get wrong. */
+/** Teach card: a new word and its meaning, before it is asked. */
 import ArabicText from '../../ui/ArabicText'
 import { sayIn } from '../../../lib/say'
 

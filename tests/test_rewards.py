@@ -1,11 +1,4 @@
-"""XP and level: the rules (services/rewards.py) and the endpoints that carry them.
-
-What is promised to a learner, checked rather than assumed:
-  - a right answer earns once per item per day, so XP rewards coming back and
-    cannot be bought by saying one word over and over;
-  - a wrong answer earns nothing;
-  - "today" is the learner's own day, not the server's;
-  - the shared guest record earns nothing, since it is nobody's.
+"""XP rules (services/rewards.py) and the rewards endpoints.
 
 Run: python -m pytest tests/test_rewards.py
 """
@@ -101,8 +94,6 @@ def test_rewards_reads_back_the_total():
 
 
 def test_today_is_the_learners_own_day():
-    """Fourteen hours east is a day ahead of UTC for most of the day: an answer
-    saved there is today for that learner whatever the server's clock says."""
     answer(tz=840)
     east = client.get("/api/progress/rewards", params={"tz": 840}, headers=AS).json()
     assert east["xpToday"] == 10

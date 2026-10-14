@@ -1,7 +1,5 @@
 /**
- * Which meaning is this word? The quiz's own question (lib/quiz.js), so the
- * options follow every rule the Quiz tab's do. `value` is the option picked;
- * once `result` is set the right option is marked, and the wrong pick too.
+ * Which meaning is this word? The quiz's own question; marks right/wrong once checked.
  */
 import ArabicText from '../../ui/ArabicText'
 import { sayIn } from '../../../lib/say'

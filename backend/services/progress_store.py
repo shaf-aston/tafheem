@@ -157,10 +157,10 @@ GROUP BY module
 ORDER BY module
 """
 
-# `at` is UTC; the shift (e.g. "+60 minutes") moves it to the learner's own day.
+# `at` is UTC; the shift ("+60 minutes") gives the learner's day.
 _DAYS = "SELECT DISTINCT date(at, ?) AS day FROM attempts WHERE user = ? ORDER BY day DESC"
 
-# One row per item answered right on a (local) day: what XP is counted from.
+# One row per (item, local day) answered right: XP source.
 _EARNED = "SELECT DISTINCT module, item, date(at, ?) AS day FROM attempts WHERE user = ? AND correct = 1"
 
 _EARNED_TODAY = (
@@ -356,23 +356,23 @@ def learnt(module: str, name: str) -> int:
 
 
 def _shift(minutes: int) -> str:
-    """SQLite's date modifier for a learner `minutes` east of UTC."""
+    """SQLite date modifier for `minutes` east of UTC."""
     return f"{minutes:+d} minutes"
 
 
 def local_today(minutes: int = 0):
-    """Today on the learner's own calendar, `minutes` east of UTC."""
+    """The learner's today."""
     return (datetime.now(timezone.utc) + timedelta(minutes=minutes)).date()
 
 
 def earns(module: str, item: str, user: str, minutes: int = 0) -> bool:
-    """Whether a right answer to this item now would earn XP: not yet answered right today."""
+    """True if this item has not been answered right yet today (so a right answer earns)."""
     found = _db().execute(_EARNED_TODAY, (user, module, item, _shift(minutes), local_today(minutes).isoformat()))
     return found.fetchone() is None
 
 
 def rewards(user: str, minutes: int = 0) -> dict:
-    """XP, XP today, the level (services/rewards.py) and the streak, each day counted on the learner's own calendar."""
+    """XP, XP today, level and streak, on the learner's days (services/rewards.py)."""
     settings = get_settings()
     today = local_today(minutes)
     days = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_EARNED, (_shift(minutes), user))]
@@ -386,8 +386,7 @@ def rewards(user: str, minutes: int = 0) -> dict:
 def overview(user: str, minutes: int = 0) -> dict:
     """Every module this learner answered in, the totals, and the streak of days.
 
-    Learnt is the leaderboard's own measure, so the two never disagree. The
-    streak counts the learner's own days, `minutes` east of UTC.
+    Learnt is the leaderboard's measure. Streak counts the learner's days.
     """
     modules = [
         {**dict(row), "learnt": learnt(row["module"], user),

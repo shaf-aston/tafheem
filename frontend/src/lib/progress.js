@@ -28,8 +28,7 @@ const headers = (name) => ({ headers: profileHeaders(name) })
 const landed = (request) => request.then(() => true, () => false)
 
 /**
- * File one answer. Resolves `{ saved, earned }` (earned: the XP it made, 0 when
- * it made none or did not land); never rejects.
+ * File one answer. Resolves `{ saved, earned }` (earned XP); never rejects.
  *
  * `ms` is how long the answer took. Send it as measured, however long: which
  * timings are honest enough to average is the store's rule, not the page's.
@@ -41,7 +40,7 @@ export async function recordAttempt({ module, item, correct, ms, context }) {
   } catch {
     return { saved: false }
   }
-  // What it earned also goes to whoever shows XP (lib/rewards.js), so no tab has to pass it on.
+  // Tell the XP display (lib/rewards.js).
   announce(response.data)
   return { saved: true, earned: response.data?.earned ?? 0 }
 }
@@ -76,7 +75,7 @@ export const deleteAccount = () => api.delete(`${BASE}/account`).then((r) => r.d
 /** `{ modules, attempts, correct, learnt, streak }`: every module answered in. Throws, for react-query. */
 export const fetchOverview = () => api.get(`${BASE}/overview`, { params: { tz: tz() } }).then((r) => r.data)
 
-/** `{ xp, xpToday, level, into, need }` for the logged-in name (services/rewards.py). Throws, for react-query. */
+/** `{ xp, xpToday, level, into, need, streak }`. Throws, for react-query. */
 export const fetchRewards = () => api.get(`${BASE}/rewards`, { params: { tz: tz() } }).then((r) => r.data)
 
 /** `{ rows, you }`: a circle's joined members (when `circle` is given) or the public accounts, by words learnt,
