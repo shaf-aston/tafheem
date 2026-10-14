@@ -29,7 +29,7 @@ from backend.models.tarkeeb import TarkeebTree
 from backend.services import arabic_text, provenance, quran_library, quran_service
 from backend.services import mutashabihat, quran_search
 from backend.services import tarkeeb
-from backend.services import tarkeeb_store
+from backend.services import tarkeeb_store, tree_columns
 from backend.services.refs import SURAHS
 from backend.utils import normalize_text, search_query
 
@@ -207,7 +207,7 @@ async def get_tarkeeb(
     out what they can from the corpus tags and leave the rest as open brackets.
     """
     recorded = await asyncio.to_thread(tarkeeb_store.for_ayah, surah, ayah)
-    result = tarkeeb.cut(recorded or await asyncio.to_thread(tarkeeb.for_ayah, surah, ayah))
+    result = tree_columns.cut(recorded or await asyncio.to_thread(tarkeeb.for_ayah, surah, ayah))
     if not result["words"]:
         raise HTTPException(status_code=404, detail=f"There is no ayah {surah}:{ayah}")
     source = provenance.of("treebank" if recorded else "tarkeeb")

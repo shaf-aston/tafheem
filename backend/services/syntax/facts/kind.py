@@ -31,7 +31,7 @@ def calling_head(token: dict, s: Sentence) -> str | None:
     return None
 
 
-def _joins_clauses(token: dict, s: Sentence) -> bool:
+def joins_clauses(token: dict, s: Sentence) -> bool:
     """ثم is a noun to the parser, but a listed joining word between two nouns, or bare
     before a verb, is the particle, as is any typed with its damma: the place-word is ثَمَّ."""
     if not read_as(token, "atf"):
@@ -79,7 +79,7 @@ def _kind(token: dict, s: Sentence) -> str:
         return token["reading"]["kind"]  # إذا before a verb is a ظرف, أَلَا a حرف
     if negates(token, s):
         return "harf"
-    if token["pos"] == "PRT" or _joins_clauses(token, s) or (s.hijazi and token is s.hijazi[0]):
+    if token["pos"] == "PRT" or joins_clauses(token, s) or (s.hijazi and token is s.hijazi[0]):
         return "harf"
     if calling_head(token, s):
         return "ism"

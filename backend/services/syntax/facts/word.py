@@ -11,6 +11,16 @@ from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is
 WEAK = set("اويىءأإآئؤة")
 
 
+def is_suffix(token: dict) -> bool:
+    """A pronoun written onto the word before it (+ه, +ها)."""
+    return token.get("form", "").startswith("+")
+
+
+def is_prefix(token: dict) -> bool:
+    """A letter written onto the word after it (ف+, و+, ل+)."""
+    return token.get("form", "").endswith("+")
+
+
 def read_as(token: dict, family: str) -> bool:
     """The word works as one of this family: by the one reading particles.stamp gave it
     (لا before a bare noun in nasb is the لا of genus, never a joining word), else by the
@@ -150,17 +160,17 @@ def is_deputy(token: dict, doers: list[dict]) -> bool:
 def is_object_pronoun(token: dict) -> bool:
     """إيّاك، إيّاه: the detached pronoun of nasb, only ever an object (Tasheel 2.4.1 p31),
     though the parser tags its إيا a particle."""
-    return is_object_stem(token["form"]) and _listed(token, "damir_munfasil")
+    return is_object_stem(token["form"]) and listed(token, "damir_munfasil")
 
 
 def is_called_alone(token: dict) -> bool:
     """اللهمّ: the called noun with the ميم in the place of يا, so no particle before it."""
-    return _listed(token, "nida", "called_alone")
+    return listed(token, "nida", "called_alone")
 
 
 def is_called_noun(token: dict) -> bool:
     """أيها، أيتها: the noun يا calls, though the parser tags it a particle."""
-    return _listed(token, "nida", "called_nouns")
+    return listed(token, "nida", "called_nouns")
 
 
 def _skeleton(word: str) -> list[str]:
@@ -190,7 +200,7 @@ def is_masdar(token: dict) -> bool:
         tuple(book_words("masdar_patterns")))
 
 
-def _listed(token: dict, family: str, part: str = "words") -> bool:
+def listed(token: dict, family: str, part: str = "words") -> bool:
     """On a book list by its lemma, by the form as typed, or by that form without its
     tanween alef: the list holds صباحا and كوب, while the parser lemmatises the first
     to صباح and may misread the second (كُوبًا as كوان)."""

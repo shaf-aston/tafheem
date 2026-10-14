@@ -20,15 +20,15 @@ from __future__ import annotations
 
 from typing import Callable
 
-from backend.services.syntax.facts.word import (WEAK, read_as, is_verb, is_light, is_passive, typed_case_of, shows_nasb_by_kasra, shows_jarr, shown_cases, is_preposition, typed_or_parsed_case, same_case, agrees, unlike, told_of_subject, indefinite_nasb, is_state_word, state_or_specification, is_deputy, is_object_pronoun, is_called_alone, is_called_noun, _skeleton, same_root, is_participle, is_masdar, _listed)
-from backend.services.syntax.facts.sentence import (Sentence, puts_in_jarr, place_case, told_of_lone_mubtada, verb_above, previous_noun, jarr_takes)
-from backend.services.syntax.facts.kind import (calling_head, _joins_clauses, asked_verb, negates, _kind)
+from backend.services.syntax.facts.word import (WEAK, is_suffix, is_prefix, read_as, is_verb, is_light, is_passive, typed_case_of, shows_nasb_by_kasra, shows_jarr, shown_cases, is_preposition, typed_or_parsed_case, same_case, agrees, unlike, told_of_subject, indefinite_nasb, is_state_word, state_or_specification, is_deputy, is_object_pronoun, is_called_alone, is_called_noun, same_root, is_participle, is_masdar, listed)
+from backend.services.syntax.facts.sentence import (Sentence, next_word, puts_in_jarr, place_case, told_of_lone_mubtada, verb_above, previous_noun, jarr_takes)
+from backend.services.syntax.facts.kind import (calling_head, joins_clauses, asked_verb, negates, _kind)
 from backend.services.syntax.facts.follows import (stands_for, with_waw, _follows)
-from backend.services.syntax.facts.slot import (takes_tamyeez, completes_kaada, is_zarf, zarf_of_khabar, _place_time, _object_of_participle, _verb_place, _nominal_place, _slot)
-from backend.services.syntax.facts.governor import (_governor, _governing)
+from backend.services.syntax.facts.slot import (takes_tamyeez, completes_kaada, is_zarf, zarf_of_khabar, place_time, verb_place, _slot)
+from backend.services.syntax.facts.governor import (_governor)
 from backend.services.syntax.facts.voice import (_voice)
 
-__all__ = ["WEAK", "read_as", "is_verb", "is_light", "is_passive", "typed_case_of", "shows_nasb_by_kasra", "shows_jarr", "shown_cases", "is_preposition", "typed_or_parsed_case", "same_case", "agrees", "unlike", "told_of_subject", "indefinite_nasb", "is_state_word", "state_or_specification", "is_deputy", "is_object_pronoun", "is_called_alone", "is_called_noun", "_skeleton", "same_root", "is_participle", "is_masdar", "_listed", "Sentence", "puts_in_jarr", "place_case", "told_of_lone_mubtada", "verb_above", "previous_noun", "jarr_takes", "calling_head", "_joins_clauses", "asked_verb", "negates", "_kind", "stands_for", "with_waw", "_follows", "takes_tamyeez", "completes_kaada", "is_zarf", "zarf_of_khabar", "_place_time", "_object_of_participle", "_verb_place", "_nominal_place", "_slot", "_governor", "_governing", "_voice", "AXES", "of_sentence"]
+__all__ = ["WEAK", "is_suffix", "is_prefix", "next_word", "read_as", "is_verb", "is_light", "is_passive", "typed_case_of", "shows_nasb_by_kasra", "shows_jarr", "shown_cases", "is_preposition", "typed_or_parsed_case", "same_case", "agrees", "unlike", "told_of_subject", "indefinite_nasb", "is_state_word", "state_or_specification", "is_deputy", "is_object_pronoun", "is_called_alone", "is_called_noun", "same_root", "is_participle", "is_masdar", "listed", "Sentence", "puts_in_jarr", "place_case", "told_of_lone_mubtada", "verb_above", "previous_noun", "jarr_takes", "calling_head", "joins_clauses", "asked_verb", "negates", "stands_for", "with_waw", "takes_tamyeez", "completes_kaada", "is_zarf", "zarf_of_khabar", "place_time", "verb_place", "AXES", "of_sentence"]
 
 
 # Each axis is one question the book asks of a word, with a closed list of answers

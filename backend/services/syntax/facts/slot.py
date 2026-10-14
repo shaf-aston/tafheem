@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import book_map, is_mabni, is_one, is_plain_noun
-from backend.services.syntax.facts.word import _listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
+from backend.services.syntax.facts.word import listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
 
@@ -14,7 +14,7 @@ def takes_tamyeez(token: dict, s: Sentence) -> bool:
     head = s.head(token)
     if head and is_one(head["lemma"], "tamyeez_verbs"):
         return True
-    return any(_listed(t, "tamyeez_head") for t in s.tokens if t["id"] < token["id"])
+    return any(listed(t, "tamyeez_head") for t in s.tokens if t["id"] < token["id"])
 
 
 def completes_kaada(token: dict, s: Sentence) -> bool:
@@ -27,10 +27,10 @@ def is_zarf(token: dict, s: Sentence) -> bool:
     """A listed time or place word, or كل/بعض added to one (كلَّ يومٍ)."""
     if token["pos"] == "PRT":
         return False
-    if _listed(token, "zarf_zaman") or _listed(token, "zarf_makan"):
+    if listed(token, "zarf_zaman") or listed(token, "zarf_makan"):
         return True
-    return _listed(token, "zarf_zaman", "carriers") and any(
-        k["rel"] == "IDF" and (_listed(k, "zarf_zaman") or _listed(k, "zarf_makan")) for k in s.kids(token))
+    return listed(token, "zarf_zaman", "carriers") and any(
+        k["rel"] == "IDF" and (listed(k, "zarf_zaman") or listed(k, "zarf_makan")) for k in s.kids(token))
 
 
 def zarf_of_khabar(token: dict, s: Sentence) -> bool:
@@ -41,7 +41,7 @@ def zarf_of_khabar(token: dict, s: Sentence) -> bool:
             and typed_or_parsed_case(token) in (None, "a") and any(k["rel"] == "IDF" for k in s.kids(token)))
 
 
-def _place_time(token: dict, s: Sentence) -> bool:
+def place_time(token: dict, s: Sentence) -> bool:
     """A listed time or place word that is a verb's مفعول فيه (Tasheel 3.2 p67): it
     modifies the verb with no vowel or fatha (the parser may draw that as idafa), or it
     stands before its verb with the verb hanging off it (مَتَى سافر)."""
@@ -69,7 +69,7 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
         and not same_root(token, head)))
 
 
-def _verb_place(token: dict, s: Sentence) -> str:
+def verb_place(token: dict, s: Sentence) -> str:
     """The place a word fills under a verb (Tasheel 3.1 p60, 3.2 p67), `none` where the
     book names it elsewhere. Tested in this order because an earlier place shadows a
     later one of the same word: a listed time or place word is a مفعول فيه whatever its
@@ -79,7 +79,7 @@ def _verb_place(token: dict, s: Sentence) -> str:
     told by the vowel the reader typed (damma subject, fatha object), else by the link;
     last, an indefinite word in nasb modifying a verb or the noun under it is an
     absolute object (same root), a hal or a tamyeez."""
-    if _place_time(token, s):
+    if place_time(token, s):
         return "place_time"
     if is_object_pronoun(token):
         return "object"  # إيّاك نعبد، ما عبدنا إلا إيّاه: the detached pronoun of nasb is only an object
@@ -227,6 +227,6 @@ def _slot(token: dict, s: Sentence) -> str:
     """Which place the word fills, from its link, position, typed case, definiteness and
     siblings alone; never from what governs it, so one reading serves every family and
     the tree's branch for that family says which places it names. A place a verb gives
-    (_verb_place) comes first, then the nominal sentence's (_nominal_place)."""
-    place = _verb_place(token, s)
+    (verb_place) comes first, then the nominal sentence's (_nominal_place)."""
+    place = verb_place(token, s)
     return place if place != "none" else _nominal_place(token, s)

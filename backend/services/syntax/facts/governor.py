@@ -7,7 +7,7 @@ from backend.services.syntax.facts.word import is_participle, is_verb, shows_jar
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.syntax.facts.kind import calling_head
 from backend.services.syntax.facts.follows import with_waw
-from backend.services.syntax.facts.slot import _place_time, _verb_place
+from backend.services.syntax.facts.slot import place_time, verb_place
 
 
 def _governor(token: dict, s: Sentence) -> str:
@@ -31,7 +31,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
         return "none", None
     if s.hijazi and token in s.hijazi[1:]:
         return "kana", s.hijazi[0]  # ما الحجازية: its ism and khabar, as ليس's
-    if _place_time(token, s):
+    if place_time(token, s):
         if head and (is_verb(head) or is_participle(head)):
             return "verb", head
         return "verb", next((k for k in s.kids(token) if is_verb(k)), None)  # مَتَى سافر
@@ -44,7 +44,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     under_verb = bool(head) and is_verb(head)
     # كنتُ آمرًا أحدًا: the participle governs its object as its verb would; asked before
     # the idafa, since a مضاف إليه is never منصوب (فاهمٌ الدرسَ)
-    if head and not under_verb and _verb_place(token, s) == "object":
+    if head and not under_verb and verb_place(token, s) == "object":
         return "verb", head
     if rel == "IDF" and not (under_verb and typed != "i"):
         return "idafa", head
@@ -67,7 +67,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
             return family, head
     if rel in ("TMZ", "OBJ") and head and not under_verb and head["pos"] != "PRT":
         return "noun", head  # عشرون كتابًا: a number or measure
-    if _verb_place(token, s) != "none":
+    if verb_place(token, s) != "none":
         return "verb", verb_above(token, s) or head  # مسافرٌ غدًا: a participle works like its verb
     if rel == "MOD" and head and not is_verb(token):
         if unlike(token, head) or told_of_subject(token, head):

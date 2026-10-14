@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.nahw_book import is_one
-from backend.services.syntax.facts.word import is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case
+from backend.services.syntax.facts.word import is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case
 
 
 class Sentence:
@@ -27,8 +27,8 @@ class Sentence:
     def _hijazi(self) -> tuple[dict, dict, dict] | None:
         """(ما, its ism, its khabar) of ما الحجازية, which works like ليس (Tasheel 1.9 n6
         p23): a verbless sentence opening ما, a noun, then an indefinite noun in nasb."""
-        words = [t for t in self.tokens if not t["form"].startswith("+")]
-        while words and words[0]["form"].endswith("+"):
+        words = [t for t in self.tokens if not is_suffix(t)]
+        while words and is_prefix(words[0]):
             words.pop(0)  # وَما زيدٌ قائمًا: a وَ or فَ written onto it opens nothing else
         # its ism is marfu': ما أحسنَ زيدًا is the ما of wonder
         if not (self.verbless and len(words) >= 3 and words[0]["lemma"] == "ما"
@@ -146,10 +146,15 @@ def verb_above(token: dict, s: Sentence) -> dict | None:
     return up if up and is_verb(up) else None
 
 
+def next_word(token: dict, s: Sentence) -> dict | None:
+    """The word after it, past a pronoun written onto it."""
+    return next((t for t in s.tokens if t["id"] > token["id"] and not is_suffix(t)), None)
+
+
 def previous_noun(token: dict, s: Sentence) -> dict | None:
     """The noun straight before this word, past any pronoun joined to that noun (أخو+ك)."""
     for t in sorted((t for t in s.tokens if t["id"] < token["id"]), key=lambda t: -t["id"]):
-        if not t["form"].startswith("+"):
+        if not is_suffix(t):
             return t if t["pos"] in ("NOM", "PROP") and not is_verb(t) else None
     return None
 

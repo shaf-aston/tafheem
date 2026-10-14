@@ -4,9 +4,9 @@ from __future__ import annotations
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_one
-from backend.services.syntax.facts.word import _listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case
-from backend.services.syntax.facts.sentence import Sentence, place_case, previous_noun, told_of_lone_mubtada, verb_above
-from backend.services.syntax.facts.kind import _joins_clauses, calling_head
+from backend.services.syntax.facts.word import is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case
+from backend.services.syntax.facts.sentence import Sentence, next_word, place_case, previous_noun, told_of_lone_mubtada, verb_above
+from backend.services.syntax.facts.kind import joins_clauses, calling_head
 
 
 def stands_for(token: dict, s: Sentence) -> bool:
@@ -20,14 +20,14 @@ def stands_for(token: dict, s: Sentence) -> bool:
     if s.verbless or not before or token["rel"] == "IDF":
         return False
     # the pronoun stuck on a noun is its مضاف إليه whatever link the parser drew (عِلْمُهُ)
-    names = token["pos"] == "PROP" or any(k.get("pos_camel") == "pron" and k["form"].startswith("+")
+    names = token["pos"] == "PROP" or any(k.get("pos_camel") == "pron" and is_suffix(k)
                                           for k in s.kids(token))
     mine = typed_or_parsed_case(token)
     if not (names and before.get("stt") in ("d", "c") and mine and mine == typed_or_parsed_case(before)):
         return False
     # جاء الرجلُ أبوه عالمٌ: an indefinite noun in its case after it is its khabar, so the
     # noun opens a sentence of its own (a حال) and stands for nothing
-    after = next((t for t in s.tokens if t["id"] > token["id"] and not t["form"].startswith("+")), None)
+    after = next_word(token, s)
     if after and after["pos"] in ("NOM", "PROP") and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
         return False
     verb = verb_above(before, s)
@@ -87,7 +87,7 @@ def _follows(token: dict, s: Sentence) -> str:
     if not head:
         return "none"
     # لكنّ is also an inna sister; it joins only when no clause of its own follows, or as the light لكنْ
-    if (head["pos"] == "PRT" or _joins_clauses(head, s)) and read_as(head, "atf") \
+    if (head["pos"] == "PRT" or joins_clauses(head, s)) and read_as(head, "atf") \
             and (not is_one(head["lemma"], "inna") or is_light(head)) and s.noun_before(head):
         return "atf"
     # الخليفة عمر: a bare name right after a noun with ال is that noun's badal
@@ -96,7 +96,7 @@ def _follows(token: dict, s: Sentence) -> str:
             and not has_tanween(token.get("typed")):
         return "badal"
     with_pronoun = any(k.get("pos_camel") == "pron" for k in s.kids(token))
-    tawkeed_word = _listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun")
+    tawkeed_word = listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun")
     if not tawkeed_word and stands_for(token, s):
         return "badal"
     if tawkeed_word and head["id"] < token["id"] and not is_verb(head) and head["pos"] != "PRT":
@@ -111,7 +111,7 @@ def _follows(token: dict, s: Sentence) -> str:
     # noun is the doer of a verb still without its object (كافأ المديرُ الذي نجح)
     verb = s.head(head)
     owed = bool(verb) and is_verb(verb) and typed_or_parsed_case(head) == "u"         and not any(k["rel"] == "OBJ" and k is not head for k in s.kids(verb))
-    if _listed(token, "mawsul") and head.get("stt") == "d" and head["id"] == token["id"] - 1 and not owed:
+    if listed(token, "mawsul") and head.get("stt") == "d" and head["id"] == token["id"] - 1 and not owed:
         return "naat"
     mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
     # مدرسةُ البلدِ الكبيرةُ: a صفة of the مضاف comes after its مضاف إليه, in the مضاف's case
@@ -125,7 +125,7 @@ def _follows(token: dict, s: Sentence) -> str:
         return "none"
     if mine and shown_cases(token) & shown_cases(head):
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
-        measure = _listed(head, "tamyeez_head") and not is_participle(token)
+        measure = listed(head, "tamyeez_head") and not is_participle(token)
         return "naat" if agrees(token, head) and not measure else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers
     if told_of_subject(token, head) or indefinite_nasb(token):
