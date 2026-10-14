@@ -31,6 +31,12 @@ CARDS = dict(family_cards())
 JAR_MAJROOR = term_ar("jar_majroor")
 
 
+def names_a_sentence(label: str | None) -> bool:
+    """The label is a kind of sentence (جملة فعلية، جملة تعجب...), not a phrase's name: a
+    مركب توصيفي shows itself in the picture and needs no line above it."""
+    return label in {VERBAL, NOMINAL, QUESTION, CONDITION, *map(term_ar, FRAMES["sentence_by_family"].values())}
+
+
 def _leaf(index: int, role: str | None, why: dict | None = None, name: str | None = None) -> dict:
     """One word on its own. No role means the rules could not name it; `why` is the
     teacher's reason when a rule took the name away, shown on hover. `name` is the

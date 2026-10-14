@@ -152,3 +152,9 @@ def test_a_role_has_one_colour_in_every_tree():
              for key, term in tarkeeb_rules()["terms"].items()
              if tones.get(strip_diacritics(term["ar"]), term["tone"]) != term["tone"]}
     assert not clash
+
+
+def test_only_a_sentence_gets_a_line_above_the_cards():
+    from backend.services.syntax import tree as drawing
+    assert drawing.names_a_sentence(drawing.NOMINAL) and drawing.names_a_sentence(drawing.VERBAL)
+    assert not drawing.names_a_sentence("مُرَكَّبٌ تَوْصِيْفِيٌّ") and not drawing.names_a_sentence(None)
