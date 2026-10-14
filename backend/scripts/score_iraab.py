@@ -96,9 +96,9 @@ def held_out(name: str) -> list[dict]:
 
 
 SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
-        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules")}}
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe")}}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe")
 
 
 def sign_matches(have: str | None, want: str) -> bool:
