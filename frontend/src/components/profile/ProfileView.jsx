@@ -11,6 +11,8 @@ import { shareOf } from '../../lib/coverage'
 import { logOut } from '../../lib/profile'
 import { deleteAccount, fetchAccount, fetchLeaderboard, fetchOverview, setPublic } from '../../lib/progress'
 import { MEANINGS } from '../../lib/quiz'
+import { rankOf } from '../../lib/rewards'
+import { useRewards } from '../../lib/useRewards'
 import { moduleFor, QUIZ } from '../../lib/quizBanks'
 import { forgetShelf } from '../../lib/shelf'
 import { useQuizCoverage } from '../../lib/useQuizCoverage'
@@ -30,6 +32,7 @@ export default function ProfileView({ name }) {
   const account = useQuery({ queryKey: ['account', name], queryFn: fetchAccount })
   const { stats, learnt, share } = useQuizCoverage(language)
   const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview })
+  const { rewards } = useRewards(name)
   // Nothing learnt covers nothing; something learnt waits for the word table.
   const covered = !stats.data ? null : learnt.length === 0 ? '0%' : share === null ? null : `${shareOf(share, language)}%`
 
@@ -40,6 +43,8 @@ export default function ProfileView({ name }) {
         <p role="alert" className="type-small text-[var(--danger)]">Could not load your profile.</p>
       )}
       <dl className="grid grid-cols-2 gap-3">
+        <Fact name="Level" value={rewards && `${rewards.level} · ${rankOf(rewards.level).en} ${rankOf(rewards.level).ar}`} />
+        <Fact name="XP" value={rewards && `${rewards.xp} (${rewards.into} / ${rewards.need} to next)`} />
         <Fact name="Joined" value={account.data && new Date(account.data.joined).toLocaleDateString()} />
         <Fact name="Answers given" value={account.data?.answers} />
         <Fact name="Words learnt" value={stats.data && learnt.length} />

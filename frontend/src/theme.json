@@ -41,6 +41,16 @@
     "0": "@orange", "1": "@teal", "2": "@violet", "3": "@amber",
     "4": "@pink", "5": "@sky", "6": "@green", "7": "@rose"
   },
+  "world": {
+    "_comment": "Grow world colours (worlds.json ids). colorFor('world', id).",
+    "words": "@green",
+    "prayer": "@teal",
+    "quran": "@sky",
+    "hadith": "@amber",
+    "sarf": "@violet",
+    "nahw": "@rose",
+    "default": "@lime"
+  },
   "tab": {
     "nahw": "@violet",
     "quran": "@teal",

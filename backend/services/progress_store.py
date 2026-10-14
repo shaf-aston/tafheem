@@ -25,6 +25,7 @@ import threading
 from datetime import datetime, timedelta, timezone
 
 from backend.config import data_path, get_settings
+from backend.services import rewards as reward_rules
 from backend.services import review_schedule
 from backend.services.username import GUEST
 
@@ -156,7 +157,15 @@ GROUP BY module
 ORDER BY module
 """
 
-_DAYS = "SELECT DISTINCT date(at) AS day FROM attempts WHERE user = ? ORDER BY day DESC"
+# `at` is UTC; the shift ("+60 minutes") gives the learner's day.
+_DAYS = "SELECT DISTINCT date(at, ?) AS day FROM attempts WHERE user = ? ORDER BY day DESC"
+
+# One row per (item, local day) answered right: XP source.
+_EARNED = "SELECT DISTINCT module, item, date(at, ?) AS day FROM attempts WHERE user = ? AND correct = 1"
+
+_EARNED_TODAY = (
+    "SELECT 1 FROM attempts WHERE user = ? AND module = ? AND item = ? AND correct = 1 AND date(at, ?) = ? LIMIT 1"
+)
 
 _ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ? ORDER BY id"
 
@@ -346,10 +355,38 @@ def learnt(module: str, name: str) -> int:
     return sum(row["known"] for row in summary(module, name))
 
 
-def overview(user: str) -> dict:
+def _shift(minutes: int) -> str:
+    """SQLite date modifier for `minutes` east of UTC."""
+    return f"{minutes:+d} minutes"
+
+
+def local_today(minutes: int = 0):
+    """The learner's today."""
+    return (datetime.now(timezone.utc) + timedelta(minutes=minutes)).date()
+
+
+def earns(module: str, item: str, user: str, minutes: int = 0) -> bool:
+    """True if this item has not been answered right yet today (so a right answer earns)."""
+    found = _db().execute(_EARNED_TODAY, (user, module, item, _shift(minutes), local_today(minutes).isoformat()))
+    return found.fetchone() is None
+
+
+def rewards(user: str, minutes: int = 0) -> dict:
+    """XP, XP today, level and streak, on the learner's days (services/rewards.py)."""
+    settings = get_settings()
+    today = local_today(minutes)
+    days = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_EARNED, (_shift(minutes), user))]
+    answered = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_DAYS, (_shift(minutes), user))]
+    return {
+        **reward_rules.rewards_of(days, today, settings.rewards_xp_per_answer, settings.rewards_level_step),
+        "streak": _streak(answered, today),
+    }
+
+
+def overview(user: str, minutes: int = 0) -> dict:
     """Every module this learner answered in, the totals, and the streak of days.
 
-    Learnt is the leaderboard's own measure, so the two never disagree.
+    Learnt is the leaderboard's measure. Streak counts the learner's days.
     """
     modules = [
         {**dict(row), "learnt": learnt(row["module"], user),
@@ -357,12 +394,12 @@ def overview(user: str) -> dict:
         for row in _db().execute(_MODULES, (user,))
     ]
     totals = {key: sum(row[key] for row in modules) for key in ("attempts", "correct", "learnt")}
-    days = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_DAYS, (user,))]
-    return {"modules": modules, **totals, "streak": _streak(days, datetime.now(timezone.utc).date())}
+    days = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_DAYS, (_shift(minutes), user))]
+    return {"modules": modules, **totals, "streak": _streak(days, local_today(minutes))}
 
 
 def _streak(days: list, today) -> int:
-    """Days in a row with an answer, newest first in `days` (UTC). Today counts;
+    """Days in a row with an answer, newest first in `days` (the learner's own days). Today counts;
     a day not yet answered in leaves yesterday's streak standing."""
     day = today if days and days[0] == today else today - timedelta(days=1)
     streak = 0

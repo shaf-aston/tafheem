@@ -16,6 +16,7 @@
  */
 import { api } from '../api'
 import { profileHeaders } from './profile'
+import { announce, tz } from './rewards'
 
 const BASE = '/progress'
 
@@ -27,13 +28,21 @@ const headers = (name) => ({ headers: profileHeaders(name) })
 const landed = (request) => request.then(() => true, () => false)
 
 /**
- * File one answer. Resolves `{ saved }`; never rejects.
+ * File one answer. Resolves `{ saved, earned }` (earned XP); never rejects.
  *
  * `ms` is how long the answer took. Send it as measured, however long: which
  * timings are honest enough to average is the store's rule, not the page's.
  */
 export async function recordAttempt({ module, item, correct, ms, context }) {
-  return { saved: await landed(api.post(`${BASE}/attempts`, { module, item, correct, ms, context })) }
+  let response
+  try {
+    response = await api.post(`${BASE}/attempts`, { module, item, correct, ms, context, tz: tz() })
+  } catch {
+    return { saved: false }
+  }
+  // Tell the XP display (lib/rewards.js).
+  announce(response.data)
+  return { saved: true, earned: response.data?.earned ?? 0 }
 }
 
 /**
@@ -64,7 +73,10 @@ export const fetchAccount = () => api.get(`${BASE}/account`).then((r) => r.data)
 export const deleteAccount = () => api.delete(`${BASE}/account`).then((r) => r.data)
 
 /** `{ modules, attempts, correct, learnt, streak }`: every module answered in. Throws, for react-query. */
-export const fetchOverview = () => api.get(`${BASE}/overview`).then((r) => r.data)
+export const fetchOverview = () => api.get(`${BASE}/overview`, { params: { tz: tz() } }).then((r) => r.data)
+
+/** `{ xp, xpToday, level, into, need, streak }`. Throws, for react-query. */
+export const fetchRewards = () => api.get(`${BASE}/rewards`, { params: { tz: tz() } }).then((r) => r.data)
 
 /** `{ rows, you }`: a circle's joined members (when `circle` is given) or the public accounts, by words learnt,
  *  and this one's place. Throws, for react-query. */

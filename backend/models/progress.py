@@ -22,6 +22,8 @@ class AttemptIn(BaseModel):
     ms: int | None = Field(default=None, ge=0, le=86_400_000)
     """How long the answer took. A day is already absurd; past that it is a bug
     or a clock change, and storing it would poison every average made from it."""
+    tz: int = Field(default=0, ge=-720, le=840)
+    """Minutes east of UTC, so XP days are the learner's. Default UTC."""
     context: dict | None = None
     """Small free-form note about the round it came from, kept for later
     questions nobody has asked yet ("am I worse on Arabic to English?"). Capped
@@ -35,9 +37,27 @@ class AttemptIn(BaseModel):
         return value
 
 
+class Rewards(BaseModel):
+    """XP and level (services/rewards.py)."""
+
+    xp: int
+    xpToday: int
+    level: int
+    into: int
+    """XP into the current level."""
+    need: int
+    """XP the current level needs."""
+    streak: int
+    """Days in a row with an answer."""
+
+
 class AttemptSaved(BaseModel):
     saved: bool = True
     id: int
+    earned: int = 0
+    """XP earned: 0 if wrong, already earned today, or guest."""
+    rewards: Rewards | None = None
+    """Totals after it; None for guests."""
 
 
 class FeedbackIn(BaseModel):
