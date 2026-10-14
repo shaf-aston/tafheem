@@ -392,3 +392,39 @@ def test_a_state_word_and_a_real_idafa_stay():
     assert roles(["جَاءَ", "زَيْدٌ", "رَاكِبًا"], _hit("راكبا", "MOD", ud="ADJ"))[2] != "مفعول به"
     # ضَرَبَ غُلَامُ زَيْدٍ: no tanween on the مضاف, the إضافة stands
     assert roles(["ضَرَبَ", "غُلَامُ", "زَيْدٍ"], _hit("زيد", "IDF"))[2] == "مضاف إليه"
+
+
+def _name(id, form, head, rel, **feats):
+    return token(id, form, form, "PROP", head, rel, pos_camel="noun_prop", **feats)
+
+
+def test_ibn_between_names_is_the_names_sifah_and_mudaf_to_the_next():
+    # the parser read the chain as mubtada and a row of khabars: the name is one unit
+    words = ["محمد", "بن", "عبد", "الله"]
+    toks = [_name(1, "محمد", 0, "---"),
+            token(2, "بن", "ابن", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
+            token(3, "عبد", "عبد", "NOM", 2, "PRD", pos_camel="noun", stt="c"),
+            _name(4, "الله", 3, "IDF", stt="d")]
+    found = named(words, toks)
+    assert [w["role"] for w in found][1:] == ["صفة", "مضاف إليه", "مضاف إليه"]
+    assert [w["case"] for w in found] == ["raf'", "raf'", "jarr", "jarr"]  # the صفة wears its name's case
+
+
+def test_the_name_with_its_ibn_keeps_its_place_in_the_sentence():
+    # محمدٌ hung under the ابن climbs back to the place the ابن held, the sentence's head
+    words = ["مُحَمَّدُ", "بْنُ", "عَبْدِ", "اللهِ", "رَسُولُ", "اللهِ"]
+    toks = [_name(1, "محمد", 2, "SBJ"),
+            token(2, "بن", "ابن", "NOM", 0, "---", pos_camel="noun", stt="c"),
+            token(3, "عبد", "عبد", "NOM", 2, "IDF", pos_camel="noun", stt="c"),
+            _name(4, "الله", 3, "IDF", stt="d"),
+            token(5, "رسول", "رسول", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
+            _name(6, "الله", 5, "IDF", stt="d")]
+    assert roles(words, toks) == ["مبتدأ", "صفة", "مضاف إليه", "مضاف إليه", "خبر", "مضاف إليه"]
+
+
+def test_after_a_name_with_tanween_ibn_is_what_is_told_of_it():
+    words = ["زَيْدٌ", "ابْنُ", "عَمْرٍو"]
+    toks = [_name(1, "زيد", 0, "---"),
+            token(2, "ابن", "ابن", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
+            _name(3, "عمرو", 2, "IDF")]
+    assert roles(words, toks) == ["مبتدأ", "خبر", "مضاف إليه"]

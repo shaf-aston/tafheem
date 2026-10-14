@@ -76,6 +76,9 @@ def _follows(token: dict, s: Sentence) -> str:
                     and c["id"] == token["id"] - 1), None)
     if pointer and token.get("stt") == "d":
         return "naat"
+    # محمدُ بنُ عبدِ اللهِ: ابن hung on the name before it is that name's صفة (mask.book_links)
+    if head and token["rel"] == "MOD" and head["id"] == token["id"] - 1 and listed(token, "nasab"):
+        return "naat"
     # يا أيها الناسُ: the noun with ال after أيها is its صفة
     if head and is_called_noun(head) and token.get("stt") == "d":
         return "naat"
