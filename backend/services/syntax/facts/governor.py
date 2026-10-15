@@ -2,8 +2,9 @@
 inna, kana, kaada, zanna, the called or the excepting particle)."""
 from __future__ import annotations
 
+from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_plain_noun
-from backend.services.syntax.facts.word import is_participle, is_verb, shows_jarr, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
+from backend.services.syntax.facts.word import is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, subject_link
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.syntax.facts.kind import calling_head
 from backend.services.syntax.facts.follows import with_waw
@@ -32,7 +33,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     if s.hijazi and token in s.hijazi[1:]:
         return "kana", s.hijazi[0]  # ما الحجازية: its ism and khabar, as ليس's
     if place_time(token, s):
-        if head and (is_verb(head) or is_participle(head)):
+        if head and works_as_verb(head):
             return "verb", head
         return "verb", next((k for k in s.kids(token) if is_verb(k)), None)  # مَتَى سافر
     if calling := calling_head(token, s):
@@ -44,15 +45,17 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     under_verb = bool(head) and is_verb(head)
     # كنتُ آمرًا أحدًا: the participle governs its object as its verb would; asked before
     # the idafa, since a مضاف إليه is never منصوب (فاهمٌ الدرسَ)
-    if head and not under_verb and verb_place(token, s) == "object":
+    if head and not under_verb and verb_place(token, s) in ("object", "subject"):
         return "verb", head
     if rel == "IDF" and not (under_verb and typed != "i"):
         return "idafa", head
     # ذائقةُ الموتِ: the noun in jarr straight after a noun in construct is its mudaf ilayh
     if head and head.get("stt") == "c" and head["id"] == token["id"] - 1 and typed == "i" and not under_verb:
         return "idafa", head
+    # a noun with tanween is complete (ضَرَبَ زَيْدٌ مَرْيَمَ), so nothing after it is its مضاف إليه
     if rel == "---" and head and is_plain_noun(head) and head["id"] == token["id"] - 1 \
-            and (typed_or_parsed_case(token) == "i" or shows_jarr(token)) and not any(c["rel"] in ("SBJ", "TPC") for c in s.kids(token)) \
+            and not has_tanween(head.get("typed") or "") \
+            and (typed_or_parsed_case(token) == "i" or shows_jarr(token)) and not any(subject_link(c) for c in s.kids(token)) \
             and not ("dem" in token.get("pos_camel", "") and s.verbless):
         return "idafa", head
     # ظن الولد الأمر سهلا: a modifier after the first object is the verb's second

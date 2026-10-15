@@ -37,4 +37,5 @@ async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
         summary=read["summary"],
         source=read["source"],
         tree=read["tree"],
+        parse=read.get("parse"),
     )

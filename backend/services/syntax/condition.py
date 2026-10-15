@@ -43,7 +43,9 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         kind = reading.get("kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
         if not frame["noun"] and reading and reading["family"] != "jazm":
             return None  # إِنَّا جَعَلْنَا: the particle's one reading is إنّ, no condition
-        return None if frame["noun"] and kind == "harf" else frame
+        # مَا تَزْرَعْ تَحْصُدْ: ما النافية puts no verb in jazm, so a jussive verb after it shows the
+        # conditional noun, whatever the parser tagged it
+        return None if frame["noun"] and kind == "harf" and cases[i + 1] != "jazm" else frame
 
     def needs_the_tie(frame: dict, k: int) -> bool:
         """The فاء on a verb shows an answer when the verb could not stand as a condition

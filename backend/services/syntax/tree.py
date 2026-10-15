@@ -14,7 +14,7 @@ from __future__ import annotations
 from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar)
 from backend.services.syntax.facts import (Sentence, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
-                                          is_nasab, read_as, shown_cases)
+                                          is_nasab, read_as, shown_cases, noun_tagged)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import SHADDA, five_verb_nun, has_tanween, letters, own_letters
@@ -237,7 +237,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     def hang_on_unsaid_verb(noun: dict, text: str, **place) -> dict:
         """The noun (with the words that follow it) is the object of a verb no one writes."""
         verb = understand(text, NAMED.fil, drawn.index(noun), pos="VRB", pos_camel="", base=text, asp="na", **place)
-        role_of[noun["id"]] = said_verb["noun"]["masdar" if is_masdar(noun) else "other"]
+        # شكرًا: the unwritten verb's own masdar; الصِّدْقَ الصِّدْقَ: one with ال urged on the
+        # hearer is the object of an unwritten الزم (الإغراء, Tasheel 3.8.1)
+        masdar = is_masdar(noun) and not strip_diacritics(noun["form"]).startswith("ال")
+        role_of[noun["id"]] = said_verb["noun"]["masdar" if masdar else "other"]
         why_of[noun["id"]] = None  # the dash was for a case no job fitted; now one does
         under = {**noun, "head": verb["id"]}
         drawn[drawn.index(noun)], by_id[noun["id"]] = under, under
@@ -256,7 +259,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # hangs is the answer, the object of the question's verb, which is drawn as an unwritten word
     asked = asked_verb(sentence)
     for noun in [t for t in drawn if asked and t["id"] > asked["id"] and t["id"] not in unsaid_objects and role_of[t["id"]] == said_verb["noun"]["other"]
-                 and t["id"] in typed_at and t["pos"] in ("NOM", "PROP") and "a" in shown_cases(t)
+                 and t["id"] in typed_at and noun_tagged(t) and "a" in shown_cases(t)
                  and role_of.get(t["head"]) == NAMED.fil
                  and strip_diacritics(by_id[t["head"]]["lemma"]) in saying["verbs"]]:
         text = columns[next(i for i, t in enumerate(drawn) if t["id"] == asked["id"])]

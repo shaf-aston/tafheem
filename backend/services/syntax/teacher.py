@@ -14,7 +14,7 @@ from __future__ import annotations
 from backend.services.arabic_text import bare_letters
 from backend.services.nahw_book import book_words, case_of, is_mabni, is_one, teacher_rules
 from backend.services.syntax.facts import (
-    Sentence, is_built_zarf, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of)
+    Sentence, is_built_zarf, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of, noun_tagged)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, roles_keyed
 from backend.services.harakat import CASE_NAME
 
@@ -26,7 +26,7 @@ SUBJECTS = roles_keyed("mubtada")
 def _is_noun(token: dict) -> bool:
     """Unlike `nahw_book.is_plain_noun` a pointer counts: هذا can be copied by a follower,
     and so does the called أيها, which the parser tags a particle."""
-    return (token["pos"] in ("NOM", "PROP") and not is_verb(token)) or is_called_noun(token)
+    return (noun_tagged(token) and not is_verb(token)) or is_called_noun(token)
 
 
 def _kid_indices(token: dict, bases: list[dict]) -> list[int]:

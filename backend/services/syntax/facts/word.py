@@ -21,6 +21,21 @@ def is_prefix(token: dict) -> bool:
     return token.get("form", "").endswith("+")
 
 
+def noun_tagged(token: dict) -> bool:
+    """The parser tagged the word a noun or a name (it may still be a verb by its reading)."""
+    return token["pos"] in ("NOM", "PROP")
+
+
+def subject_link(token: dict) -> bool:
+    """The parser hung the word as a subject or a topic."""
+    return token["rel"] in ("SBJ", "TPC")
+
+
+def attached_pronoun(token: dict) -> bool:
+    """A pronoun written onto the word before it: عِلْمُ+هُ."""
+    return token.get("pos_camel") == "pron" and is_suffix(token)
+
+
 def read_as(token: dict, family: str) -> bool:
     """The word works as one of this family: by the one reading particles.stamp gave it
     (لا before a bare noun in nasb is the لا of genus, never a joining word), else by the
@@ -116,7 +131,7 @@ def agrees(token: dict, head: dict) -> bool:
     not agree; a dual describes only a dual (مُحَمَّدٌ وَعَلِيٌّ مُجْتَهِدَانِ: the khabar of both).
     Only the dual is compared: a plural not of people takes a singular na't (الكتبُ الجديدةُ);
     and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا)."""
-    dual = [t.get("num") == "d" for t in (token, head) if t["pos"] in ("NOM", "PROP")]
+    dual = [t.get("num") == "d" for t in (token, head) if noun_tagged(t)]
     return same_case(token, head) and not (token.get("stt") == "i" and head.get("stt") in ("d", "c")) \
         and len(set(dual)) < 2
 
@@ -129,7 +144,7 @@ def unlike(token: dict, head: dict) -> bool:
 def told_of_subject(token: dict, head: dict) -> bool:
     """A modifier of a subject in raf' or jarr: the khabar (لا رجلَ حاضرٌ), not a follower."""
     mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
-    return bool(mine and theirs and head["rel"] in ("SBJ", "TPC") and mine != "a")
+    return bool(mine and theirs and subject_link(head) and mine != "a")
 
 
 def indefinite_nasb(token: dict) -> bool:
@@ -192,6 +207,20 @@ def is_participle(token: dict) -> bool:
     return (token.get("ud") == "ADJ" or token.get("pos_camel") == "adj"
             or token.get("pattern", "").removeprefix("ال").startswith(tuple(book_words("participle_patterns")))
             or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
+
+
+PASSIVE_PARTICIPLE = "مَ1ْ2ُو3"  # مَفْعُول: مفتوحٌ بابُه, its noun the نائب فاعل
+
+
+def works_as_verb(token: dict) -> str | None:
+    """The one test of a word doing a verb's work (شبه الفعل): `active` or `passive` for a
+    verb, or for a participle working as its verb does (كريمٌ أبوه، مفتوحٌ بابُه، فاهمٌ الدرسَ),
+    else None. Governor, slot and voice all ask this one question."""
+    if is_verb(token):
+        return "passive" if is_passive(token) else "active"
+    if is_participle(token):
+        return "passive" if token.get("pattern", "").removeprefix("ال").startswith(PASSIVE_PARTICIPLE) else "active"
+    return None
 
 
 def is_masdar(token: dict) -> bool:

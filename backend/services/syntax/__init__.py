@@ -54,6 +54,12 @@ def disambiguator():
     return catib_onnx.disambiguator() if status() == "ready" else None
 
 
+def _link(token: dict) -> dict:
+    """A token as show_parse prints it: its link and the features the rules read."""
+    keep = ("id", "form", "lemma", "pos", "pos_camel", "head", "rel", "stt", "cas", "typed", "token_type", "diac")
+    return {key: token[key] for key in keep if key in token}
+
+
 def read(sentence: str, picks: list[dict]) -> dict:
     """One reading of a typed sentence: `roles` per word, and the `tree` they draw.
     `picks`: one reading per word (morphology.pick), shared with the cards.
@@ -68,6 +74,7 @@ def read(sentence: str, picks: list[dict]) -> dict:
         from backend.services.syntax import catib_onnx
 
         tokens = catib_onnx.parse(typed, picks)
+        before = [_link(t) for t in tokens]
         correct(typed, tokens)
         found = teacher.review(typed, tokens, name_roles(typed, tokens))
         drawn = tree.build(typed, tokens, found)
@@ -78,7 +85,10 @@ def read(sentence: str, picks: list[dict]) -> dict:
                 word["role"] = job
                 word.pop("gap", None)
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
-        return {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
+        read = {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
+        if get_settings().show_parse:
+            read["parse"] = {"parsed": before, "repaired": [_link(t) for t in tokens]}
+        return read
     except Exception:  # a missing model file, or a sentence it chokes on
         logger.exception("Syntax parser unavailable, every word left unnamed")
         return nothing

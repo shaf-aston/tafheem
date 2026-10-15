@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import book_map, is_mabni, is_one, is_plain_noun
-from backend.services.syntax.facts.word import is_suffix, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
+from backend.services.syntax.facts.word import is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
 
@@ -58,7 +58,7 @@ def place_time(token: dict, s: Sentence) -> bool:
     if is_built_zarf(token) and head and is_verb(head) and token["rel"] in ("MOD", "IDF"):
         return True  # سافر أمسِ: its kasra is built in, so it says nothing of its case
     # مسافرٌ غدًا: a participle works like its verb
-    if head and (is_verb(head) or (is_participle(head) and token["rel"] == "MOD")):
+    if head and works_as_verb(head) and (is_verb(head) or token["rel"] == "MOD"):
         return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a")
     return typed_or_parsed_case(token) in (None, "a") and any(
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
@@ -76,6 +76,15 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
     return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
         rel == "MOD" and typed_or_parsed_case(head) != "a" and not is_state_word(token)
         and not same_root(token, head)))
+
+
+def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
+    """جاء رجلٌ كريمٌ أبوه، المسجدُ مفتوحٌ بابُه: a raf' noun straight after a participle or
+    adjective, carrying a pronoun back to the noun described, is what that describer tells of:
+    its فاعل, or its نائب فاعل after a passive participle (النعت السببي, Tasheel 3.10.1)."""
+    return (subject_link(token) and token["id"] == head["id"] + 1
+            and typed_or_parsed_case(token) == "u"
+            and any(attached_pronoun(k) for k in s.kids(token)))
 
 
 def purpose(token: dict, verb: dict) -> bool:
@@ -107,8 +116,11 @@ def verb_place(token: dict, s: Sentence) -> str:
     typed = typed_case_of(token)
     # زيدٌ ضاربٌ بكرًا: a word like the verb (شبه الفعل) takes its object as the verb does
     # (notes, المفعول به p0: a فعل or a شبه الفعل governs it)
-    if head and not is_verb(head) and is_participle(head) and _object_of_participle(token, head, s):
-        return "object"
+    if head and not is_verb(head) and works_as_verb(head):
+        if _object_of_participle(token, head, s):
+            return "object"
+        if _doer_of_describer(token, head, s):
+            return "subject"
     if head and is_verb(head):
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
@@ -123,6 +135,12 @@ def verb_place(token: dict, s: Sentence) -> str:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
         if head.get("asp") == "c" and rel in ("SBJ", "TPC", "OBJ", "---") and typed != "u":
             return "object"  # قل الحق: a command's doer is always the hidden أنت (Tasheel 2.4.1 p30)
+        # رَأَيْتُ كِلَا الصَّدِيقَيْنِ: a verb of the first or second person holds its doer (تُ، نا، تَ),
+        # so the noun after it is its object, however the parser hung it or what case it guessed
+        if (head.get("per") in ("1", "2") and not is_passive(head) and not before
+                and rel in ("SBJ", "TPC", "OBJ") and typed != "u"
+                and not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)):
+            return "object"
         if (not before and typed in (None, "a") and token.get("stt") in ("i", "c") and is_masdar(token)
                 and same_root(token, head)):
             return "absolute"  # يُطَهِّرَكُمْ تَطْهِيرًا: the verb's own masdar
@@ -218,7 +236,7 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         return "subject"
     kids = s.kids(token)
     if rel == "---":
-        if any(c["rel"] in ("SBJ", "TPC") for c in kids):
+        if any(subject_link(c) for c in kids):
             return "predicate"
         pointer = next((c for c in kids if "dem" in c.get("pos_camel", "") and c["id"] < token["id"]), None)
         # only a noun with ال is the pointer's مشار إليه: هذا بيتٌ and هذا أبي are sentences
@@ -229,8 +247,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # noun is the khabar and the verb its صفة
         if not pointer and any(c["rel"] == "PRD" or (is_verb(c) and c["id"] > token["id"]) for c in kids):
             return "subject"
-        if token["pos"] in ("NOM", "PROP") and s.verbless:
-            loose = [t for t in s.tokens if t["rel"] == "---" and t["pos"] in ("NOM", "PROP")]
+        if noun_tagged(token) and s.verbless:
+            loose = [t for t in s.tokens if t["rel"] == "---" and noun_tagged(t)]
             if loose != [token]:
                 return "subject" if not loose or token is loose[0] else "predicate"
             # محمدُ بنُ عبدِ اللهِ، الطبيبُ الماهرُ: a noun with only its صفة and مضاف إليه
@@ -239,6 +257,9 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             told = any(_nominal_place(k, s) == "predicate" or _jar_khabar(k, token, before) for k in kids if not is_suffix(k))
             return "subject" if told else "none"
     if rel == "MOD" and head:
+        # اشتريت رطلين زيتًا: after a measure a plain noun in nasb is its tamyeez, though the two differ in number
+        if listed(head, "tamyeez_head") and indefinite_nasb(token) and not is_state_word(token):
+            return "specification"
         if told_of_lone_mubtada(token, head, s):
             return "predicate"
         if unlike(token, head):

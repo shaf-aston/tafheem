@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.nahw_book import is_one
-from backend.services.syntax.facts.word import is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case
+from backend.services.syntax.facts.word import is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, subject_link
 
 
 class Sentence:
@@ -32,9 +32,9 @@ class Sentence:
             words.pop(0)  # وَما زيدٌ قائمًا: a وَ or فَ written onto it opens nothing else
         # its ism is marfu': ما أحسنَ زيدًا is the ما of wonder
         if not (self.verbless and len(words) >= 3 and words[0]["lemma"] == "ما"
-                and words[1]["pos"] in ("NOM", "PROP") and typed_or_parsed_case(words[1]) != "a"):
+                and noun_tagged(words[1]) and typed_or_parsed_case(words[1]) != "a"):
             return None
-        khabar = next((t for t in words[2:] if t["pos"] in ("NOM", "PROP") and t.get("stt") == "i"
+        khabar = next((t for t in words[2:] if noun_tagged(t) and t.get("stt") == "i"
                        and typed_or_parsed_case(t) == "a"), None)
         return (words[0], words[1], khabar) if khabar else None
 
@@ -88,13 +88,13 @@ class Sentence:
         first = next((k for k in kids if k["rel"] == "OBJ" and k["pos"] != "PRT"), None)
         if any(k["pos"] == "PRT" and is_one(k["lemma"], "inna") for k in kids):
             return True
-        return bool(first) and any(k["id"] > first["id"] and k["rel"] in ("OBJ", "MOD") and k["pos"] in ("NOM", "PROP")
+        return bool(first) and any(k["id"] > first["id"] and k["rel"] in ("OBJ", "MOD") and noun_tagged(k)
                                    and typed_or_parsed_case(k) in (None, "a") for k in kids)
 
     def noun_before(self, particle: dict) -> bool:
         """The particle follows a noun it can join to, which an oath و does not: the noun it
         hangs on, or the noun straight before it (دخل المعلمُ فالطلابُ, ف hung on the verb)."""
-        return any(before and before["id"] < particle["id"] and before["pos"] in ("NOM", "PROP")
+        return any(before and before["id"] < particle["id"] and noun_tagged(before)
                    and not is_verb(before)
                    for before in (self.head(particle), self.by_id.get(particle["id"] - 1)))
 
@@ -121,7 +121,7 @@ def place_case(token: dict, s: "Sentence") -> str | None:
     """The case a word stands in: the noun of لا النافية للجنس is built on fatha, but لا with its
     noun stands where a mubtada would, in raf' (لا إلهَ إلا اللهُ: اللهُ is its بدل)."""
     head = s.head(token)
-    if head and token["rel"] in ("SBJ", "TPC") and read_as(head, "la_jins"):
+    if head and subject_link(token) and read_as(head, "la_jins"):
         return "u"
     return typed_or_parsed_case(token)
 
@@ -130,7 +130,7 @@ def told_of_lone_mubtada(token: dict, head: dict, s: Sentence) -> bool:
     """الدينُ النصيحةُ: a verbless sentence resting on one noun with nothing else said of
     it, so the plain noun in its case after it is its khabar; a describing word
     (الطبيبُ الماهرُ) stays its صفة (Tasheel 1.4 p6)."""
-    return s.verbless and head["rel"] == "---" and head["pos"] in ("NOM", "PROP") \
+    return s.verbless and head["rel"] == "---" and noun_tagged(head) \
         and same_case(token, head) and token.get("stt") == "d" and token.get("ud") != "ADJ" \
         and [t for t in s.tokens if t["rel"] == "---"] == [head] \
         and all(k is token or k["rel"] == "IDF" for k in s.kids(head))
@@ -155,7 +155,7 @@ def previous_noun(token: dict, s: Sentence) -> dict | None:
     """The noun straight before this word, past any pronoun joined to that noun (أخو+ك)."""
     for t in sorted((t for t in s.tokens if t["id"] < token["id"]), key=lambda t: -t["id"]):
         if not is_suffix(t):
-            return t if t["pos"] in ("NOM", "PROP") and not is_verb(t) else None
+            return t if noun_tagged(t) and not is_verb(t) else None
     return None
 
 
@@ -168,4 +168,4 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
     if is_one(head["lemma"], "jarr", "oath_only") and not head.get("reading") and any(
             t["pos"] in ("NOM", "PROP", "VRB", "VRB-PASS") and t["id"] < head["id"] for t in s.tokens):
         return False  # the و of an oath opens its clause; after a word it joins
-    return not any(t["pos"] in ("NOM", "PROP") and head["id"] < t["id"] < token["id"] for t in s.tokens)
+    return not any(noun_tagged(t) and head["id"] < t["id"] < token["id"] for t in s.tokens)

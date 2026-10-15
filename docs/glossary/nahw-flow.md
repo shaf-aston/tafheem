@@ -34,6 +34,10 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/sy
 - book_links: fixed structures written over the parser (`backend/services/syntax/mask.py`)
 - typed_words: retag by what was typed, command shapes, muḍāf flag (`backend/services/syntax/repair/typed.py`)
 - subject_clash: second noun after a raf' subject → the verb's object (`backend/services/syntax/repair/subject_clash.py`)
+- called: a verb the parser hung on يا → a sentence of its own, not a second منادى (`backend/services/syntax/repair/called.py`)
+- second_khabar: an adjective hung on an adjective khabar → a second khabar, not its صفة (`backend/services/syntax/repair/khabar.py`)
+- before_la: a noun hung on لا from before it → the mubtada, the لا clause its khabar (`backend/services/syntax/repair/khabar.py`)
+- hal_clause: و + a raf' pronoun + a verb → a hal clause, the pronoun its mubtada (`backend/services/syntax/repair/hal.py`)
 - nasab: name + ابن/بن + noun → صفة and مضاف chain; next noun = خبر in a verbless sentence (`backend/services/syntax/repair/nasab.py`)
 - stamp: particle families from the particle decision tree (`backend/services/syntax/particles.py`, `backend/data/nahw_rules/particle_tree.json`)
 <!-- /list -->
