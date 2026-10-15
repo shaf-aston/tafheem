@@ -559,3 +559,62 @@ def test_a_first_person_verb_takes_the_noun_after_it_as_its_object():
             token(2, "كلا", "كلا", "NOM", 1, "SBJ", pos_camel="noun", cas="n", stt="c"),
             token(3, "الصديقين", "صديق", "NOM", 2, "IDF", pos_camel="noun", stt="d", cas="g")]
     assert roles(["رَأَيْتُ", "كِلَا", "الصَّدِيقَيْنِ"], toks) == ["فعل", "مفعول به", "مضاف إليه"]
+
+
+@pytest.mark.parametrize("words, describer, role", [
+    (["جَاءَ", "رَجُلٌ", "كَرِيمٌ", "أَبُوهُ"], token(3, "كريم", "كريم", "NOM", 2, "MOD", pos_camel="adj", ud="ADJ", cas="n"), "فاعل"),
+    (["جَاءَ", "رَجُلٌ", "مَفْتُوحٌ", "بَابُهُ"], token(3, "مفتوح", "مفتوح", "NOM", 2, "MOD", pos_camel="adj", ud="ADJ", cas="n",
+                                                    pattern="مَ1ْ2ُو3"), "نائب فاعل"),
+])
+def test_the_noun_a_describer_tells_of_is_its_doer(words, describer, role):
+    # النعت السببي: the parser hangs أبوه on كريم as a subject, which read alone is a mubtada
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", **VERB),
+            token(2, "رجل", "رجل", "NOM", 1, "SBJ", pos_camel="noun", cas="n"),
+            describer,
+            token(4, "أبو", "أب", "NOM", 3, "SBJ", pos_camel="noun", cas="n", stt="c"),
+            token(5, "+ه", "هو", "NOM", 4, "IDF", pos_camel="pron", token_type="enc0")]
+    assert roles(words, toks)[3] == role
+
+
+def test_an_adjective_on_an_adjective_khabar_is_a_second_khabar():
+    toks = [token(1, "إن", "إن", "PRT", 0, "---", pos_camel="part"),
+            token(2, "الله", "الله", "PROP", 1, "SBJ", pos_camel="noun_prop", stt="d", cas="a"),
+            token(3, "كان", "كان", "VRB", 1, "PRD", **VERB),
+            token(4, "عليما", "عليم", "NOM", 3, "PRD", pos_camel="adj", ud="ADJ", cas="a"),
+            token(5, "حكيما", "حكيم", "NOM", 4, "MOD", pos_camel="adj", ud="ADJ", cas="a")]
+    assert roles(["إِنَّ", "اللَّهَ", "كَانَ", "عَلِيمًا", "حَكِيمًا"], toks)[3:] == ["خبر كان", "خبر كان"]
+
+
+def test_a_plain_noun_after_a_measure_is_its_tamyeez():
+    toks = [token(1, "اشتريت", "اشترى", "VRB", 0, "---", **VERB, per="1"),
+            token(2, "رطلين", "رطل", "NOM", 1, "OBJ", pos_camel="noun", cas="a"),
+            token(3, "زيتا", "زيت", "NOM", 2, "MOD", pos_camel="noun", cas="a")]
+    assert roles(["اِشْتَرَيْتُ", "رِطْلَيْنِ", "زَيْتًا"], toks)[2] == "تمييز"
+
+
+def test_waw_a_pronoun_and_a_verb_open_a_hal_clause():
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", **VERB),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "و+", "و", "PRT", 1, "MOD", pos_camel="conj", token_type="prc2"),
+            token(4, "هو", "هو", "NOM", 3, "OBJ", pos_camel="pron", cas="n"),
+            token(5, "يبكي", "بكى", "VRB", 4, "SBJ", vox="a", asp="i")]
+    assert roles(["جَاءَ", "الْوَلَدُ", "وَهُوَ", "يَبْكِي"], toks)[2] == "مبتدأ"
+
+
+@pytest.mark.parametrize("pos, camel", [("PRT", "part_neg"), ("NOM", "pron_rel")])
+def test_ma_before_a_jussive_second_person_verb_is_its_object(pos, camel):
+    # ما النافية puts no verb in jazm; the hidden أنت is تزرع's doer, so ما fills its object
+    toks = [token(1, "ما", "ما", pos, 2, "OBJ", pos_camel=camel),
+            token(2, "تزرع", "زرع", "VRB", 3, "MOD", vox="a", asp="i", per="2"),
+            token(3, "تحصد", "حصد", "VRB", 0, "---", vox="a", asp="i", per="2")]
+    assert roles(["مَا", "تَزْرَعْ", "تَحْصُدْ"], toks)[0] == "مفعول به"
+
+
+def test_a_noun_before_la_is_the_mubtada():
+    toks = [token(1, "ذلك", "ذلك", "NOM", 3, "SBJ", pos_camel="pron_dem"),
+            token(2, "الكتاب", "كتاب", "NOM", 1, "MOD", stt="d", cas="n"),
+            token(3, "لا", "لا", "PRT", 0, "---", pos_camel="part_neg"),
+            token(4, "ريب", "ريب", "NOM", 3, "SBJ", cas="a"),
+            token(5, "في", "في", "PRT", 4, "MOD", pos_camel="prep"),
+            token(6, "+ه", "هو", "NOM", 5, "OBJ", pos_camel="pron", token_type="enc0")]
+    assert roles(["ذَلِكَ", "الْكِتَابُ", "لَا", "رَيْبَ", "فِيهِ"], toks)[0] == "مبتدأ"

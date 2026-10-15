@@ -45,7 +45,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     under_verb = bool(head) and is_verb(head)
     # كنتُ آمرًا أحدًا: the participle governs its object as its verb would; asked before
     # the idafa, since a مضاف إليه is never منصوب (فاهمٌ الدرسَ)
-    if head and not under_verb and verb_place(token, s) == "object":
+    if head and not under_verb and verb_place(token, s) in ("object", "subject"):
         return "verb", head
     if rel == "IDF" and not (under_verb and typed != "i"):
         return "idafa", head

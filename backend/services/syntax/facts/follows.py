@@ -39,7 +39,8 @@ def with_waw(token: dict, s: Sentence) -> bool:
     مفعول معه when nothing before the و is in nasb for it to join (Tasheel 3.8.5 p76); a
     معطوف would wear the case of what it joins."""
     head = s.head(token)
-    if not (head and head["pos"] == "PRT" and head["lemma"].strip("+") == "و"
+    # جاء الولدُ وهُوَ يبكي: هُوَ's fatha is built in, no nasb; the و opens a hal clause
+    if not (head and head["pos"] == "PRT" and head["lemma"].strip("+") == "و" and not is_subject_pronoun(token)
             and typed_case_of(token) == "a" and verb_above(head, s) is not None):
         return False
     # the noun straight before, and every noun on the verb before the و: جَعَلْنَا الْبَيْتَ مَثَابَةً

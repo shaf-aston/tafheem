@@ -69,6 +69,15 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
         and not same_root(token, head)))
 
 
+def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
+    """جاء رجلٌ كريمٌ أبوه، المسجدُ مفتوحٌ بابُه: a raf' noun straight after a participle or
+    adjective, carrying a pronoun back to the noun described, is what that describer tells of:
+    its فاعل, or its نائب فاعل after a passive participle (النعت السببي, Tasheel 3.10.1)."""
+    return (is_participle(head) and token["rel"] in ("SBJ", "TPC") and token["id"] == head["id"] + 1
+            and typed_or_parsed_case(token) == "u"
+            and any(k.get("pos_camel") == "pron" and is_suffix(k) for k in s.kids(token)))
+
+
 def purpose(token: dict, verb: dict) -> bool:
     """قام الطلاب احترامًا: a masdar of the heart (a feeling or intent, reason_masdars) not of its verb's root,
     in nasb and indefinite or a مضاف, gives the reason for the verb: its مفعول لأجله
@@ -100,6 +109,8 @@ def verb_place(token: dict, s: Sentence) -> str:
     # (notes, المفعول به p0: a فعل or a شبه الفعل governs it)
     if head and not is_verb(head) and is_participle(head) and _object_of_participle(token, head, s):
         return "object"
+    if head and not is_verb(head) and _doer_of_describer(token, head, s):
+        return "subject"
     if head and is_verb(head):
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
@@ -236,6 +247,9 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             told = any(_nominal_place(k, s) == "predicate" or _jar_khabar(k, token, before) for k in kids if not is_suffix(k))
             return "subject" if told else "none"
     if rel == "MOD" and head:
+        # اشتريت رطلين زيتًا: after a measure a plain noun in nasb is its tamyeez, though the two differ in number
+        if listed(head, "tamyeez_head") and indefinite_nasb(token) and not is_state_word(token):
+            return "specification"
         if told_of_lone_mubtada(token, head, s):
             return "predicate"
         if unlike(token, head):
