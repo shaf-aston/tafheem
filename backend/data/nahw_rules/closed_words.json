@@ -1156,6 +1156,11 @@
     "ي": "i"
    }
   },
+  "reason_masdars": {
+   "ar": "مصادر قلبية تأتي مفعولا لأجله",
+   "effect": "a masdar of the heart (a feeling or intent), indefinite or a مضاف, in nasb under a verb of another root, is its مفعول لأجله: قام الطلاب احترامًا. Any other masdar there is a حال (جاء ركضًا). Lemmas as the parser spells them.",
+   "words": ["احترام", "ٱحترام", "إكرام", "تعظيم", "إجلال", "خوف", "خشية", "رهبة", "رغبة", "حب", "طمع", "رجاء", "شوق", "حياء", "حذر", "ابتغاء", "ٱبتغاء", "طلب", "تأديب", "إخلاص", "شفقة", "رحمة"]
+  },
   "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",
    "effect": "after a complete sentence built on one of these, an indefinite accusative noun is a tamyeez of the relation: طاب المكان هواء، امتلأ الكوب ماء. Lemmas as the parser spells them (a hamzat-wasl verb comes back with alef wasla).",

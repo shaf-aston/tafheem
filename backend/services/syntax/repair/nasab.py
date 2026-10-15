@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import has_tanween
+from backend.services.harakat import has_tanween, typed_case
 from backend.services.syntax.facts import is_name, listed
 from backend.services.syntax.mask import above
 
@@ -73,11 +73,16 @@ def _name_goes_on(word: dict, bases: list[dict], tokens: list[dict]) -> dict:
         nxt = bases[at + 1]
         if nxt["pos"] not in ("NOM", "PROP") or listed(nxt, "nasab") or _under(word, nxt, tokens):
             return word
-        # untyped, the reading may miss the construct state: a bare noun (no ال, no tanween)
-        # before a name or a noun with ال is that noun's مضاف all the same
-        if word.get("stt") != "c" and not (_bare(word) and (is_name(nxt) or nxt.get("stt") == "d")):
+        # the reading may miss the construct state: a bare noun (no ال, no tanween) before a
+        # name, a noun with ال, or a noun typed with kasra (أبي طالبٍ) is its مضاف all the same
+        if word.get("stt") != "c" and not (_bare(word) and (is_name(nxt) or nxt.get("stt") == "d" or _typed_kasra(nxt))):
             return word
         nxt["head"], nxt["rel"] = word["id"], "IDF"
         word["mudaf"] = True
         word, at = nxt, at + 1
     return word
+
+
+def _typed_kasra(word: dict) -> bool:
+    """Typed with kasra: a mubtada's khabar never is, so the noun is the name's مضاف إليه."""
+    return typed_case(word.get("typed") or "") == "i"

@@ -3,7 +3,8 @@
 Study Arabic and the Qur'an in one app: grammar of a typed sentence, the Qur'an with checked
 grammar and tafsir, roots and conjugation, a dictionary, quizzes, timelines, and reciting
 checked word by word. Offline by default, and every answer says where it came from.
-More: `docs/core-flow-detail.md` (long notes, where things live), `docs/glossary/` (per module).
+More: `docs/core-flow-detail.md` (long notes, where things live), `docs/glossary/` (per module;
+`docs/glossary/nahw-flow.md` is the i'raab engine, stage by stage, kept true by its test).
 
 ## Run it
 
