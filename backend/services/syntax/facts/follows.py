@@ -97,6 +97,12 @@ def _follows(token: dict, s: Sentence) -> str:
             and head["pos"] == "NOM" and head["form"].startswith("ال") and not is_verb(head) \
             and not has_tanween(token.get("typed")):
         return "badal"
+    # جاء الأميرُ خالدٌ: an indefinite word can be no صفة of a noun with ال; wearing that noun's
+    # raf' or jarr (a nasb one is its حال) where a verb stands over it, it is its بدل
+    if token["rel"] == "MOD" and head["id"] == token["id"] - 1 and head["form"].startswith("ال") \
+            and has_tanween(token.get("typed")) and not is_verb(head) and verb_above(head, s) is not None \
+            and (shown := typed_case_of(token)) in ("u", "i") and shown == typed_case_of(head):
+        return "badal"
     with_pronoun = any(k.get("pos_camel") == "pron" for k in s.kids(token))
     tawkeed_word = listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun")
     if not tawkeed_word and stands_for(token, s):
