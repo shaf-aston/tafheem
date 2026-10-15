@@ -163,6 +163,12 @@ def _read(sentence: str) -> dict:
 
 # One card field each, found by typing the sentence in (backend/scripts/analyze.py).
 CARDS = [
+    ("جَلَسْتُ مَعَ النَّاسِ", 2, "role", "مضاف إليه"),        # the noun after a ظرف the parser drew as a preposition
+    ("جَاءَ الْأَمِيرُ خَالِدٌ", 2, "role", "بدل"),             # an indefinite word after a noun with ال is no صفة
+    ("قِفَا نَبْكِ", 0, "sign", "حذف النون"),                   # the dictionary's root قفو holds وقف's letters
+    ("سَافَرْتُ طَلَبًا لِلْعِلْمِ", 1, "role", "مفعول لأجله"),   # a masdar giving the reason
+    ("مَرَرْتُ بِإِبْرَاهِيمَ وَأَحْمَدَ", 2, "case", "jarr"),     # a diptote follower keeps its fatha in jarr
+    ("اكْتُبَا الدَّرْسَ", 0, "sign", "حذف النون"),              # the dual command
     ("الدِّينُ النَّصِيحَةُ", 1, "role", "خبر"),           # nothing else is said of the mubtada
     ("الكِتَابُ الجَدِيدُ مُفِيدٌ", 1, "role", "صفة"),       # nearest case: a khabar follows, so a صفة
     ("مَدْرَسَةُ الْبَلَدِ الْكَبِيرَةُ جَمِيلَةٌ", 2, "role", "صفة"),  # the مضاف's صفة, after its مضاف إليه

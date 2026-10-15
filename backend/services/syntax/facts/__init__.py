@@ -24,7 +24,7 @@ from backend.services.syntax.facts.word import (WEAK, is_suffix, is_prefix, read
 from backend.services.syntax.facts.sentence import (Sentence, next_word, puts_in_jarr, place_case, told_of_lone_mubtada, verb_above, previous_noun, jarr_takes)
 from backend.services.syntax.facts.kind import (calling_head, joins_clauses, asked_verb, negates, _kind)
 from backend.services.syntax.facts.follows import (stands_for, with_waw, _follows)
-from backend.services.syntax.facts.slot import (takes_tamyeez, completes_kaada, is_zarf, zarf_of_khabar, place_time, verb_place, _slot)
+from backend.services.syntax.facts.slot import (takes_tamyeez, completes_kaada, is_built_zarf, is_zarf, zarf_of_khabar, place_time, verb_place, _slot)
 from backend.services.syntax.facts.governor import (_governor)
 from backend.services.syntax.facts.voice import (_voice)
 
