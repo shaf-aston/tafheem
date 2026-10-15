@@ -3,8 +3,9 @@
  * product-breakdown trees, opened from the header like Settings — not a tab,
  * so it never lives in the tab strip or the URL.
  *
- * Two views inside one dialog: an index of nine cards, and a chart view (one
- * science's tree, from PbsChart). A box with deeper topics zooms: the chart
+ * Three views inside one dialog: an index of nine cards, a chart view (one
+ * science's tree, from PbsChart), and the methodologies view (ManhajView), a
+ * separate card below the nine since schools and movements are not a science. A box with deeper topics zooms: the chart
  * redraws with that box as root, and a breadcrumb walks back up. Content is
  * lib/pbsTree over lib/pbsData; this file only holds which view and which
  * zoom path are showing.
@@ -19,6 +20,7 @@
 import { useMemo, useState } from 'react'
 
 import ArabicText from './ArabicText'
+import ManhajView from './ManhajView'
 import PbsChart from './PbsChart'
 import { useModal } from '../../lib/useModal'
 import { CHARTS } from '../../lib/pbsData'
@@ -29,6 +31,8 @@ const ZOOM_MAX = 2.2
 const ZOOM_STEP = 0.2
 // At 100% the chart never draws narrower than this, so on a phone its text stays readable and the chart scrolls inside its own frame.
 const CHART_MIN_REM = 56
+// The methodologies view's id; never a chart id, so `current` stays null there.
+const MANHAJ = 'manhaj'
 
 export default function MapPanel({ open, onClose }) {
   const dialog = useModal(open)
@@ -49,6 +53,7 @@ export default function MapPanel({ open, onClose }) {
   }
 
   const current = CHARTS.find((c) => c.id === currentId) ?? null
+  const showManhaj = currentId === MANHAJ
   const tree = useMemo(() => (current ? chartTree(current) : null), [current])
   const shown = tree && (nodeAt(tree, path) ?? tree)
   const config = useMemo(
@@ -65,6 +70,7 @@ export default function MapPanel({ open, onClose }) {
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
       if (current) { e.preventDefault(); goUp(); return }
+      if (showManhaj) { e.preventDefault(); goIndex(); return }
       return // let the dialog's own Escape close it
     }
     if (!current) return
@@ -88,7 +94,7 @@ export default function MapPanel({ open, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <header className="flex items-center gap-3 px-4 py-2.5 border-b border-[var(--border)] shrink-0">
-          {current ? (
+          {current || showManhaj ? (
             <button type="button" onClick={goUp} title={path.length ? 'Up one level' : 'Back to overview'} aria-label={path.length ? 'Up one level' : 'Back to overview'} className="icon-button">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M15 18l-6-6 6-6" />
@@ -97,7 +103,7 @@ export default function MapPanel({ open, onClose }) {
           ) : null}
           <div className="flex-1 min-w-0">
             <h2 id="map-title" className="text-sm font-bold text-[var(--text)] sm:truncate">
-              {current ? `${current.en} · ${current.frame}` : 'Map · Nine sciences, one frame per chart'}
+              {current ? `${current.en} · ${current.frame}` : showManhaj ? 'Methodologies · المناهج' : 'Map · Nine sciences, one frame per chart'}
             </h2>
             {path.length > 0 && (
               <nav aria-label="Zoom trail" className="flex sm:flex-wrap overflow-x-auto whitespace-nowrap items-center gap-x-1 type-tiny text-[var(--text-faint)]">
@@ -145,8 +151,10 @@ export default function MapPanel({ open, onClose }) {
                 onZoom={(rel) => { setPath([...path, ...rel]); setHoverBranch(null) }}
               />
             </div>
+          ) : showManhaj ? (
+            <ManhajView />
           ) : (
-            <MapIndex onOpen={goChart} />
+            <MapIndex onOpen={goChart} onOpenManhaj={() => goChart(MANHAJ)} />
           )}
 
         </div>
@@ -158,12 +166,13 @@ export default function MapPanel({ open, onClose }) {
 /** Numbered 1 to 9 by how the sciences lead into each other, in threes that belong together: the law, the sources, the language. The arrow keys walk this same order. */
 const ORDER = [...CHARTS].sort((a, b) => a.id.localeCompare(b.id))
 
-/** The nine-card overview: one science per card, click opens its chart. */
-function MapIndex({ onOpen }) {
+/** The nine-card overview: one science per card, click opens its chart; the methodologies card sits apart below. */
+function MapIndex({ onOpen, onOpenManhaj }) {
   return (
-    <div className="p-5 grid gap-5 grid-cols-[repeat(auto-fill,minmax(18rem,1fr))]">
+    <div className="p-5 flex flex-col gap-5">
+    <div className="grid gap-5 grid-cols-[repeat(auto-fill,minmax(18rem,1fr))]">
       {ORDER.map((chart, delay) => {
-        const fg = `var(--science-${chart.id})`
+        const fg = chart.accent
         return (
           <button
             key={chart.id}
@@ -184,6 +193,18 @@ function MapIndex({ onOpen }) {
           </button>
         )
       })}
+    </div>
+    <button
+      type="button"
+      onClick={onOpenManhaj}
+      className="pbs-card text-right p-3 rounded-[var(--radius-md)] border border-dashed border-[var(--border-hi)] bg-[var(--surface-hi)]"
+    >
+      <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
+      <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)]">BEYOND THE SCIENCES</p>
+      <ArabicText as="p" size="base" className="my-0.5">المناهج والفِرَق</ArabicText>
+      <p className="type-small text-[var(--text-dim)]">Methodologies: creed schools, schools of law, Sufi orders, modern movements</p>
+      <p className="type-tiny text-[var(--text-faint)] mt-1.5">Core beliefs of each, and where they differ</p>
+    </button>
     </div>
   )
 }
