@@ -3,7 +3,7 @@
  *
  * The server sends `[start, end, id]` slices of the hadith's own `arabic`
  * string. The page draws that string in pieces (lib/hadithWords/saying drops
- * the direction marks and the quote marks), so a piece needs the slices that
+ * the direction marks), so a piece needs the slices that
  * fall inside it, counted from the piece's own start. Pure: no React.
  */
 import HADITH from '../hadith.json'

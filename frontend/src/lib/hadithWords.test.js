@@ -2,68 +2,100 @@ import { describe, expect, it } from 'vitest'
 
 import { CHAIN, chainLinks, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
 
+// The said words alone, without the marks around them.
+const said = (text) => saying(text).filter((s) => s.kind === 'said').map((s) => s.text)
+// The spans put back together: always the book's text, less the direction marks.
+const whole = (text) => saying(text).map((s) => s.open + s.text + s.close).join('')
+
 describe('saying', () => {
-  it('marks a quoted stretch as said and the rest as told', () => {
+  it('marks a quoted stretch as said and the rest as told, keeping the marks', () => {
     expect(saying('The Prophet said, "Pray as you have seen me pray." Then he left.')).toEqual([
-      { kind: 'told', text: 'The Prophet said,' },
-      { kind: 'said', text: 'Pray as you have seen me pray.' },
-      { kind: 'told', text: 'Then he left.' },
+      { kind: 'told', open: '', text: 'The Prophet said, ', close: '' },
+      { kind: 'said', open: '"', text: 'Pray as you have seen me pray.', close: '"' },
+      { kind: 'told', open: '', text: ' Then he left.', close: '' },
     ])
   })
 
   it('reads the Arabic mark with its direction marks around it', () => {
-    expect(saying('قَالَ ‏"‏ إِنَّ أَحَدَكُمْ ‏"‏ .')).toEqual([
-      { kind: 'told', text: 'قَالَ' },
-      { kind: 'said', text: 'إِنَّ أَحَدَكُمْ' },
-      { kind: 'told', text: '.' },
-    ])
+    expect(said('قَالَ ‏"‏ إِنَّ أَحَدَكُمْ ‏"‏ .')).toEqual([' إِنَّ أَحَدَكُمْ '])
+    expect(said('قَالَ «بِهَذَا أُمِرْتُ» . فَقَالَ')).toEqual(['بِهَذَا أُمِرْتُ'])
   })
 
   it('claims nothing when the book marked nothing', () => {
     expect(saying('The Last Hour would not come until fire emits from the Hijaz')).toEqual([
-      { kind: 'plain', text: 'The Last Hour would not come until fire emits from the Hijaz' },
+      { kind: 'plain', open: '', text: 'The Last Hour would not come until fire emits from the Hijaz', close: '' },
     ])
+  })
+
+  it('never changes a letter: the spans joined are the text', () => {
+    for (const text of [
+      'Once in \'Iraq, Al-Mughira said, \'O Mughira! said, \'I was ordered?\'" Then',
+      "Ibn 'Abbas met 'Ata' at Allah's house and Hira' too",
+      '“Let him in.’” She said: “It is', 'He said "one', 'a " stray', '\'', '"',
+    ]) expect(whole(text)).toBe(text)
+  })
+
+  it('takes the ʿayn of a name for a letter even inside a quote (bukhari 522)', () => {
+    const text = 'went to him and said, "Once in \'Iraq, Al-Mughira delayed and Abi Mas`ud said, \'O Mughira! Gabriel came and said, \'I was ordered to do so?\'" `Umar said to `Urwa, "Be sure of what you Say."'
+    const spans = saying(text)
+    expect(spans[1]).toMatchObject({ kind: 'told', open: '"' })
+    expect(spans[1].text.startsWith('Once in \'Iraq')).toBe(true)
+    expect(said(text)).toEqual(['I was ordered to do so?', 'Be sure of what you Say.'])
   })
 
   it('marks only the innermost quote when a telling holds the words said', () => {
     // tirmidhi 1148 as sunnah.com prints it, its mismatched marks and all.
-    const said = saying('“My uncle came. So he said: “Let him in.’” She said: “It is only the woman.’ So he said: ‘Indeed he is your uncle.’”')
-      .filter((s) => s.kind === 'said').map((s) => s.text)
-    expect(said).toEqual(['Let him in.', 'It is only the woman.', 'Indeed he is your uncle.'])
+    expect(said('“My uncle came. So he said: “Let him in.’” She said: “It is only the woman.’ So he said: ‘Indeed he is your uncle.’”'))
+      .toEqual(['Let him in.', 'It is only the woman.', 'Indeed he is your uncle.'])
   })
 
   it('closes a quote opened with \' and closed with ", as the books sometimes mix them', () => {
     // bukhari 947 as sunnah.com prints it.
-    const said = saying('He rode and said, \'Allahu Akbar! Khaibar is ruined." The people came out into the streets saying, "Muhammad and his army." Allah\'s Messenger vanquished them')
-      .filter((s) => s.kind === 'said').map((s) => s.text)
-    expect(said).toEqual(['Allahu Akbar! Khaibar is ruined.', 'Muhammad and his army.'])
+    expect(said('He rode and said, \'Allahu Akbar! Khaibar is ruined." The people came out into the streets saying, "Muhammad and his army." Allah\'s Messenger vanquished them'))
+      .toEqual(['Allahu Akbar! Khaibar is ruined.', 'Muhammad and his army.'])
   })
 
   it('reads a straight " by its place: a quote inside a quote opens, a mark after the words closes', () => {
     // bukhari 3268, its mismatched marks and all.
-    const said = saying('He said, "Two persons came to me. One of them asked the other, "What is the ailment of this man?" The other replied, \'He has been bewitched" The first asked, \'Who has bewitched him?\' " So, the Prophet went out')
-      .filter((s) => s.kind === 'said').map((s) => s.text)
-    expect(said).toEqual(['What is the ailment of this man?', 'He has been bewitched', 'Who has bewitched him?'])
+    expect(said('He said, "Two persons came to me. One of them asked the other, "What is the ailment of this man?" The other replied, \'He has been bewitched" The first asked, \'Who has bewitched him?\' " So, the Prophet went out'))
+      .toEqual(['What is the ailment of this man?', 'He has been bewitched', 'Who has bewitched him?'])
+  })
+
+  it('opens a " after a colon whichever side its space is on (muslim 7134)', () => {
+    expect(said('He then recited:" No soul knows what comfort has been hidden')).toEqual([' No soul knows what comfort has been hidden'])
   })
 
   it('does not take a name\'s ʿayn for a quote that " then closes', () => {
-    const said = (text) => saying(text).filter((s) => s.kind === 'said').map((s) => s.text)
     expect(said('He said, "Go to \'Ali." Then he left.')).toEqual(["Go to 'Ali."])
     // bukhari 6253 and nasai 4615.
     expect(said('She replied, "Wa \'alaihi-s- Salam." (Peace be on him)')).toEqual(["Wa 'alaihi-s- Salam."])
     expect(said('He said: \'We paid in the time of Abu Bakr and \'Umar, for wheat." And I asked')).toEqual(["We paid in the time of Abu Bakr and 'Umar, for wheat."])
+    // tirmidhi 3804: the second ' is ʿAbd's, inside a quote that opened after the colon.
+    expect(said("it was said to him: 'O Abu 'Abdur-Rahman, advise us.' He said: 'Sit me up.'")).toEqual(["O Abu 'Abdur-Rahman, advise us.", 'Sit me up.'])
   })
 
   it('reads ʿayn, hamza and apostrophes as letters, not quotes', () => {
     expect(saying("Ibn 'Abbas met 'Ata' at Allah's house").map((s) => s.kind)).toEqual(['plain'])
-    expect(saying('Ibn ‘Abbas said: “Pray.” Aqra’ left.').filter((s) => s.kind === 'said')).toEqual([{ kind: 'said', text: 'Pray.' }])
+    expect(said('Ibn ‘Abbas said: “Pray.” Aqra’ left.')).toEqual(['Pray.'])
+    // tirmidhi 1254: two names' marks, not a quote between them.
+    expect(said('[Abu \'Eisa said:] This Hadith is Hasan Sahih. We do not know of it being Marfu\' except by the narration of \'Amir')).toEqual([])
+  })
+
+  it('takes a \' quote that opens mid-sentence when it ends like one (bukhari 4, nasai 4006)', () => {
+    expect(said('up to \'and desert the idols.\' (74.1-5)')).toEqual(['and desert the idols.'])
+    expect(said('This Verse - \'And whoever kills a believer intentionally, his recompense is Hell\' - was revealed')).toEqual(['And whoever kills a believer intentionally, his recompense is Hell'])
+  })
+
+  it('reads a " after a comma as the close it is (bukhari 7336)', () => {
+    expect(said('`Abdullah said, "The Prophet arranged for a horse race," `Abdullah was one of those')).toEqual(['The Prophet arranged for a horse race,'])
+  })
+
+  it('lets a saying the book never closed run to the end', () => {
+    expect(said('`Urwa added, "Aisha told me that he used to pray')).toEqual(['Aisha told me that he used to pray'])
   })
 
   it('keeps several sayings apart', () => {
-    expect(saying('He said "one" then "two"').filter((s) => s.kind === 'said')).toEqual([
-      { kind: 'said', text: 'one' },
-      { kind: 'said', text: 'two' },
-    ])
+    expect(said('He said "one" then "two"')).toEqual(['one', 'two'])
   })
 
   it('has nothing to say about nothing', () => {
