@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { parsePlace, placeOf } from './colloquialPlace'
+import { nameOfPlace, parsePlace, placeOf } from './colloquialPlace'
 
 const dialects = [{
   key: 'fusha',
@@ -30,5 +30,18 @@ describe('parsePlace', () => {
     expect(parsePlace(placeOf('fusha', 'unit-01'), dialects)?.unit).toBe('unit-01')
     expect(parsePlace(placeOf('fusha', 'unit-01', 'lesson-01'), dialects)?.at).toBe(0)
     expect(parsePlace(placeOf('fusha', 'unit-01', 'lesson-01', true), dialects)?.words).toBe(true)
+  })
+})
+
+describe('nameOfPlace', () => {
+  const named = [{ ...dialects[0], label: 'Fusha', units: [{ ...dialects[0].units[0], lessons: [{ ...dialects[0].units[0].lessons[0], title: 'Greetings' }] }] }]
+  it('says a place in words, not slugs', () => {
+    expect(nameOfPlace('fusha', named)).toBe('Fusha')
+    expect(nameOfPlace('fusha/unit-01', named)).toBe('Fusha · Unit 1')
+    expect(nameOfPlace('fusha/unit-01/lesson-01', named)).toBe('Fusha · Unit 1 · Greetings')
+    expect(nameOfPlace('fusha/unit-01/lesson-01/words', named)).toBe('Fusha · Unit 1 · Greetings · Words')
+  })
+  it('leaves a place it cannot read as it is', () => {
+    expect(nameOfPlace('nowhere/unit-09', named)).toBe('nowhere/unit-09')
   })
 })
