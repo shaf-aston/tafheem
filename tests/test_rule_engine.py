@@ -113,9 +113,6 @@ def test_each_reason_explains_its_own_role(sentence: str):
 
 # The verb's card: a command by its typed shape, a present verb's case by its ending or the particle before it.
 VERB_CARDS = [
-    ("سَافَرْتُ طَلَبًا لِلْعِلْمِ", 1, "role", "مفعول لأجله"),   # a masdar giving the reason
-    ("مَرَرْتُ بِإِبْرَاهِيمَ وَأَحْمَدَ", 3, "case", "jarr"),     # a diptote follower keeps its fatha in jarr
-    ("اكْتُبَا الدَّرْسَ", 0, "sign", "حذف النون"),              # the dual command
     ("اُكْتُبْ الدَّرْسَ", 0, "mabni", "فعل أمر"),
     ("قُمْ يَا وَلَدُ", 0, "mabni", "فعل أمر"),
     ("لَمْ يَكْتُبْ الطَّالِبُ", 1, "jazm", "مجزوم"),
@@ -161,6 +158,9 @@ def _read(sentence: str) -> dict:
 
 # One card field each, found by typing the sentence in (backend/scripts/analyse.py).
 CARDS = [
+    ("سَافَرْتُ طَلَبًا لِلْعِلْمِ", 1, "role", "مفعول لأجله"),   # a masdar giving the reason
+    ("مَرَرْتُ بِإِبْرَاهِيمَ وَأَحْمَدَ", 2, "case", "jarr"),     # a diptote follower keeps its fatha in jarr
+    ("اكْتُبَا الدَّرْسَ", 0, "sign", "حذف النون"),              # the dual command
     ("الدِّينُ النَّصِيحَةُ", 1, "role", "خبر"),           # nothing else is said of the mubtada
     ("الكِتَابُ الجَدِيدُ مُفِيدٌ", 1, "role", "صفة"),       # nearest case: a khabar follows, so a صفة
     ("مَدْرَسَةُ الْبَلَدِ الْكَبِيرَةُ جَمِيلَةٌ", 2, "role", "صفة"),  # the مضاف's صفة, after its مضاف إليه

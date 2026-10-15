@@ -48,14 +48,8 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     left unnamed keeps the no-role dash; a name the teacher took back shows why."""
     entries = rule_engine.cards(tags)
     if len(roles) == len(entries):
-        for i, (entry, found) in enumerate(zip(entries, roles)):
-            # أَبِي الطَّبِيبِ: a noun in jarr after it can be its مضاف إليه, so the ي may be the six nouns' sign
-            idafa_next = i + 1 < len(roles) and (roles[i + 1].get("role") == NAMED.mudaf_ilayh
-                                                 or (roles[i + 1].get("case") == "jarr" and not roles[i + 1].get("role")))
-            if any(not piece["before"] and piece["form"] == "ي" for piece in found.get("attached", [])) \
-                    and entry.get("camel", {}).get("enclitic") in (None, "", "0") and not idafa_next:
-                # لِأَبِي: the parser split off "my" that CAMeL left on the word, so the
-                # kasra belongs to the ya and the six nouns' letter is no sign here
+        for entry, found, after in zip(entries, roles, roles[1:] + [{}]):
+            if _my_ya(entry, found, after):
                 entry["camel"] = {**entry["camel"], "enclitic": "1s_poss"}
             if found.get("gap"):
                 entry.update(role=rule_engine.UNNAMED, role_key=None, case=found["case"], sign=None, gap=True,
@@ -87,6 +81,15 @@ def _pieces_said(cards: list[dict], roles: list[dict]) -> None:
             line = said.get((piece.get("reading") or {}).get("family"), {}).get("said")
             if line:
                 card["reason"] = f"{line}، {card['reason']}"
+
+
+def _my_ya(entry: dict, found: dict, after: dict) -> bool:
+    """لِأَبِي: the parser split off "my" that CAMeL left on the word, so the kasra
+    belongs to the ya and the six nouns' letter is no sign here. Not in أَبِي الطَّبِيبِ,
+    where a noun in jarr after it can be its مضاف إليه and the ي the six nouns' sign."""
+    idafa_next = after.get("role") == NAMED.mudaf_ilayh or (after.get("case") == "jarr" and not after.get("role"))
+    return (any(not piece["before"] and piece["form"] == "ي" for piece in found.get("attached", []))
+            and entry.get("camel", {}).get("enclitic") in (None, "", "0") and not idafa_next)
 
 
 def _named(entry: dict, found: dict) -> None:
