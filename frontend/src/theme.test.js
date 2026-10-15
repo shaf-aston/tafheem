@@ -175,7 +175,6 @@ const isMask = (line) => /mask|soft-edge/i.test(line)
 const ALLOWED = {
   'landing/landing.css': 18,
   'landing/AyahDiagram.css': 10,
-  'lib/pbsData.js': 10,
   'styles/timelines.css': 2,
   'styles/motion.css': 1,
   'components/shell/Backdrop.jsx': 1,
