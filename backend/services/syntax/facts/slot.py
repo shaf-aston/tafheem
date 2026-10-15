@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import book_map, is_mabni, is_one, is_plain_noun
-from backend.services.syntax.facts.word import is_suffix, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
+from backend.services.syntax.facts.word import is_suffix, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
 
@@ -33,10 +33,17 @@ def is_zarf(token: dict, s: Sentence) -> bool:
         k["rel"] == "IDF" and (listed(k, "zarf_zaman") or listed(k, "zarf_makan")) for k in s.kids(token))
 
 
+def is_built_zarf(token: dict) -> bool:
+    """أمسِ، حيثُ، الآن: a time or place word built on one ending (closed_words `built`)."""
+    return token["pos"] != "PRT" and any(is_one(token["lemma"], family, "built") for family in ("zarf_zaman", "zarf_makan"))
+
+
 def zarf_of_khabar(token: dict, s: Sentence) -> bool:
     """الأستاذُ عندَ البابِ: in a verbless sentence a place or time word with its mudaf ilayh
     is the khabar's maf'ul fihi (the khabar itself is understood, Tasheel 1.4.4 p13)."""
-    return (s.verbless and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
+    # المرءُ مع مَن أحبّ: a verb inside the مضاف إليه's صلة still leaves the sentence verbless at its root
+    rests = token["rel"] == "---" and any(k["rel"] in ("SBJ", "TPC") for k in s.kids(token))
+    return ((s.verbless or rests) and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
             and token["rel"] in ("---", "MOD", "PRD")
             and typed_or_parsed_case(token) in (None, "a") and any(k["rel"] == "IDF" for k in s.kids(token)))
 
@@ -48,6 +55,8 @@ def place_time(token: dict, s: Sentence) -> bool:
     if not is_zarf(token, s):
         return False
     head = s.head(token)
+    if is_built_zarf(token) and head and is_verb(head) and token["rel"] in ("MOD", "IDF"):
+        return True  # سافر أمسِ: its kasra is built in, so it says nothing of its case
     # مسافرٌ غدًا: a participle works like its verb
     if head and (is_verb(head) or (is_participle(head) and token["rel"] == "MOD")):
         return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a")
@@ -67,6 +76,14 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
     return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
         rel == "MOD" and typed_or_parsed_case(head) != "a" and not is_state_word(token)
         and not same_root(token, head)))
+
+
+def purpose(token: dict, verb: dict) -> bool:
+    """قام الطلاب احترامًا: a masdar of the heart (a feeling or intent, reason_masdars) not of its verb's root,
+    in nasb and indefinite or a مضاف, gives the reason for the verb: its مفعول لأجله
+    (Tasheel 3.8.3 p73). Any other masdar there is a حال (جاء ركضًا)."""
+    return (listed(token, "reason_masdars") and not same_root(token, verb)
+            and typed_or_parsed_case(token) in (None, "a") and token.get("stt") in ("i", "c"))
 
 
 def verb_place(token: dict, s: Sentence) -> str:
@@ -113,6 +130,8 @@ def verb_place(token: dict, s: Sentence) -> str:
         # لا يُؤْتُونَ النَّاسَ نَقِيرًا: a verb of two objects keeps its second OBJ, so no state or tamyeez
         if after_first and (s.family(head) == "zanna" or is_one(head["lemma"], "two_objects_give")):
             return "second_object"
+        if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
+            return "purpose"
         if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
                 and token.get("stt") == "i" and any(t["rel"] in ("SBJ", "TPC", "OBJ") for t in siblings):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
@@ -146,6 +165,8 @@ def verb_place(token: dict, s: Sentence) -> str:
             if verb:
                 if same_root(token, verb):
                     return "absolute"  # same root as its verb: فَرِحَ فَرَحًا
+                if purpose(token, verb):
+                    return "purpose"
                 return state_or_specification(token, head)
     return "none"
 
@@ -214,7 +235,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
                 return "subject" if not loose or token is loose[0] else "predicate"
             # محمدُ بنُ عبدِ اللهِ، الطبيبُ الماهرُ: a noun with only its صفة and مضاف إليه
             # under it is a phrase, no sentence: nothing is told of it, so it is no mubtada
-            told = any(_nominal_place(k, s) == "predicate" for k in kids if not is_suffix(k))
+            # المعلماتُ في الفصلِ: a raf' noun with a jar-majrur after it is told of by it, its khabar
+            told = any(_nominal_place(k, s) == "predicate" or _jar_khabar(k, token, before) for k in kids if not is_suffix(k))
             return "subject" if told else "none"
     if rel == "MOD" and head:
         if told_of_lone_mubtada(token, head, s):
@@ -226,6 +248,12 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         if indefinite_nasb(token):
             return state_or_specification(token, head)
     return "none"
+
+
+def _jar_khabar(kid: dict, token: dict, before: dict | None) -> bool:
+    """A jar-majrur after a raf' noun is its khabar; not after a called noun (يا محمدُ في البيت ضيفٌ)."""
+    return (is_preposition(kid) and kid["id"] > token["id"] and typed_or_parsed_case(token) == "u"
+            and not (before and strip_diacritics(before["form"]) == "يا"))
 
 
 def _slot(token: dict, s: Sentence) -> str:

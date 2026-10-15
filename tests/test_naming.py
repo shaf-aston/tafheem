@@ -475,3 +475,65 @@ def test_bin_without_its_alef_marks_a_name_the_reading_missed():
             _name(5, "طالب", 4, "IDF"),
             token(6, "شجاعا", "شجاع", "NOM", 1, "OBJ", pos_camel="adj", stt="i")]
     assert roles(words, toks)[2] == "صفة"
+
+
+def test_a_bare_father_before_a_kasra_noun_keeps_the_name_going():
+    # عليُّ بنُ أبي طالبٍ شجاعٌ: طالبٍ is typed with kasra, so it is أبي's مضاف إليه, not the khabar
+    toks = [token(1, "علي", "علي", "PROP", 0, "---", cas="n"),
+            token(2, "بن", "ابن", "NOM", 1, "MOD", stt="c", cas="n"),
+            token(3, "أبي", "أب", "NOM", 2, "IDF", cas="g"),
+            token(4, "طالب", "طالب", "NOM", 1, "PRD", cas="g"),
+            token(5, "شجاع", "شجاع", "NOM", 4, "MOD", cas="n")]
+    assert roles(["عَلِيُّ", "بْنُ", "أَبِي", "طَالِبٍ", "شُجَاعٌ"], toks) == \
+        ["مبتدأ", "صفة", "مضاف إليه", "مضاف إليه", "خبر"]
+
+
+@pytest.mark.parametrize("rel", ["MOD", "OBJ", "TMZ"])
+def test_a_masdar_of_the_heart_is_mafool_li_ajlihi(rel):
+    toks = [token(1, "قام", "قام", "VRB", 0, "---", **VERB),
+            token(2, "الطلاب", "طالب", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "احترام", "احترام", "NOM", 1, rel, cas="a")]
+    assert roles(["قَامَ", "الطُّلَّابُ", "احْتِرَامًا"], toks) == ["فعل", "فاعل", "مفعول لأجله"]
+    # its own verb's masdar stays the مفعول مطلق, and a damma makes it no reason
+    toks[0].update(form="احترم", lemma="احترم")
+    assert roles(["احْتَرَمَ", "الطُّلَّابُ", "احْتِرَامًا"], toks)[2] != "مفعول لأجله"
+    toks[0].update(form="قام", lemma="قام")
+    assert roles(["قَامَ", "الطُّلَّابُ", "احْتِرَامٌ"], toks)[2] != "مفعول لأجله"
+
+
+def test_noun_with_only_a_jar_majrur_after_it_is_the_mubtada():
+    # المعلماتُ في الفصلِ: the parser hangs في on the noun; the jar-majrur is its khabar, so it is a sentence
+    toks = [token(1, "المعلمات", "معلمة", "NOM", 0, "---", stt="d", cas="n"),
+            token(2, "في", "في", "PRT", 1, "MOD", pos_camel="prep"),
+            token(3, "الفصل", "فصل", "NOM", 2, "OBJ", stt="d", cas="g")]
+    assert roles(["الْمُعَلِّمَاتُ", "فِي", "الْفَصْلِ"], toks) == ["مبتدأ", "حرف جر", "مجرور"]
+
+
+def test_a_participle_the_parser_took_for_a_verb_is_a_noun():
+    # جاء الحجاجُ ملبّين دعوةَ ربّهم: no verb opens with مُ and ends in ـينَ; it is a participle, the hal
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", asp="p"),
+            token(2, "الحجاج", "حاج", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "ملبين", "لبى", "VRB", 1, "MOD", asp="na", cas="na"),
+            token(4, "دعوة", "دعوة", "NOM", 3, "OBJ", cas="a", stt="c"),
+            token(5, "ربهم", "رب", "NOM", 4, "IDF", cas="g")]
+    assert roles(["جَاءَ", "الْحُجَّاجُ", "مُلَبِّينَ", "دَعْوَةَ", "رَبِّهِمْ"], toks)[2] == "حال"
+
+
+
+def test_a_plural_participle_under_a_genitive_noun_is_its_majrur_sifah():
+    # مررتُ برجالٍ مسافرين: the parser's "verb" is a صفة of رجالٍ, so it is majrur, not a nasb hal
+    toks = [token(1, "مررت", "مر", "VRB", 0, "---", asp="p"),
+            token(2, "ب+", "ب", "PRT", 1, "MOD", pos_camel="prep", token_type="prefix"),
+            token(3, "رجال", "رجل", "NOM", 2, "OBJ", cas="g"),
+            token(4, "مسافرين", "سافر", "VRB", 3, "MOD", asp="na", cas="na")]
+    found = named(["مَرَرْتُ", "بِرِجَالٍ", "مُسَافِرِينَ"], toks)
+    assert (found[2]["role"], found[2]["case"]) == ("صفة", "jarr")
+
+
+def test_a_called_noun_is_no_mubtada_for_the_jar_majrur_after_it():
+    toks = [token(1, "يا", "يا", "PRT", 2, "MOD", pos_camel="part_voc"),
+            token(2, "محمد", "محمد", "PROP", 0, "---", cas="n"),
+            token(3, "في", "في", "PRT", 2, "MOD", pos_camel="prep"),
+            token(4, "البيت", "بيت", "NOM", 3, "OBJ", stt="d", cas="g"),
+            token(5, "ضيف", "ضيف", "NOM", 3, "SBJ", cas="n")]
+    assert roles(["يَا", "مُحَمَّدُ", "فِي", "الْبَيْتِ", "ضَيْفٌ"], toks)[1] != "مبتدأ"

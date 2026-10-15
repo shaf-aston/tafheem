@@ -200,7 +200,10 @@ def command(word: str, governed: bool = False, root: str = "") -> Cell | None:
     if not found:
         return None
     closest = [c for c, score in found.items() if score == min(found.values())]
-    people = {(c.person, c.gender, c.number) for c in closest}
+    # اُكْتُبَا: the dual is one word for two men or two women, both أنتما, so one person
+    # only for the root the dictionary read: اهْدِنَا is هدي with "us", not a dual of هدن
+    sure = bool(root) and all(c.root == root for c in closest)
+    people = {(c.person, "" if c.number == "d" and sure else c.gender, c.number) for c in closest}
     if all(c.column == "amr" for c in closest) and len(people) == 1:
         # its root tied between بابs whose pasts differ (ضَرَبَ، حَسِبَ): the command is sure, its past is not
         pasts = {past(c) for c in closest if c.root == closest[0].root}

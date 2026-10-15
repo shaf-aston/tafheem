@@ -163,6 +163,9 @@ def _read(sentence: str) -> dict:
 
 # One card field each, found by typing the sentence in (backend/scripts/analyze.py).
 CARDS = [
+    ("سَافَرْتُ طَلَبًا لِلْعِلْمِ", 1, "role", "مفعول لأجله"),   # a masdar giving the reason
+    ("مَرَرْتُ بِإِبْرَاهِيمَ وَأَحْمَدَ", 2, "case", "jarr"),     # a diptote follower keeps its fatha in jarr
+    ("اكْتُبَا الدَّرْسَ", 0, "sign", "حذف النون"),              # the dual command
     ("الدِّينُ النَّصِيحَةُ", 1, "role", "خبر"),           # nothing else is said of the mubtada
     ("الكِتَابُ الجَدِيدُ مُفِيدٌ", 1, "role", "صفة"),       # nearest case: a khabar follows, so a صفة
     ("مَدْرَسَةُ الْبَلَدِ الْكَبِيرَةُ جَمِيلَةٌ", 2, "role", "صفة"),  # the مضاف's صفة, after its مضاف إليه
