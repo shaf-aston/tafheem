@@ -2,20 +2,31 @@
  * A hadith split into who is talking: the words that were said, and the telling
  * around them.
  *
- * Reading a hadith as one grey block hides the thing a reader came for. What
- * the Prophet said, what a companion saw, what happened next and who passed it
- * on are four different kinds of sentence, and the books themselves mark the
- * first one: sunnah.com puts the said words between quote marks, in the Arabic
- * and in the English both.
+ * Reading a hadith as one grey block hides the thing a reader came for. The
+ * books mark what was said themselves: sunnah.com puts it between quote marks,
+ * in the Arabic and in the English both. So the mark is read, never guessed,
+ * and only colour is added: the spans joined give back the book's own text,
+ * every letter and mark of it (a test holds every hadith to that).
  *
- * So the mark is read, never guessed. A quoted stretch is `said`; everything
- * outside it is `told` and is drawn back. Quotes nest in the English: a
- * companion's whole telling sits in double quotes with the Prophet's words in
- * single ones inside it. Only the innermost quote is `said`; a quote that holds
- * another is telling. Where a hadith carries no quote marks
- * at all (about one in six, mostly Muslim's English), nothing is claimed: the
- * whole of it comes back as one plain span and the reader sees it in one
- * colour, which is what it looked like before any of this.
+ * Quotes nest: a companion's telling sits in one quote with the Prophet's words
+ * in another inside it. Only the innermost quote is `said`; a quote that holds
+ * another is `told`, like everything outside quotes. Where a hadith carries no
+ * quote mark at all (about one in six, mostly Muslim's English), nothing is
+ * claimed: it comes back as one `plain` span.
+ *
+ * The one hard part is the straight ' of the English, which is three things:
+ * a quote mark, an apostrophe (Allah's), and the letter ʿayn or hamza of a
+ * name ('Iraq, 'Umar, Hira'). The rules, in full:
+ *   1. ' between two letters is an apostrophe.
+ *   2. ' (or ‘) opens a quote only where speech starts: after a colon, a comma,
+ *      a dash or another quote mark (said, 'O Mughira). Anywhere else it may still be
+ *      a quote (up to 'and desert the idols.'), but only if a ' closes it and
+ *      more than one word sits inside: 'Ata' is a name.
+ *   3. A quote mark left open when the quote around it closes was a letter,
+ *      and stays in the words as one ("Once in 'Iraq, ...").
+ *   4. The books sometimes close a ' quote with " (said, 'Allahu Akbar!
+ *      ruined.") or a “ quote with ’; a mark closes the other kind only when
+ *      the kind it is has nothing open to close.
  *
  * Pure: a string in, spans out. No React.
  */
@@ -26,108 +37,114 @@ import CHAIN from '../../../backend/data/hadith/chain.json'
 
 export { CHAIN }
 
-// The books' own speech mark, with the direction marks sunnah.com sets around
-// it. Those marks are invisible and would otherwise be printed inside the words.
-export const MARKS = /[‎‏]/g
-// Each quote mark's family. A curly mark says which way it faces; a straight
-// one closes its family's open quote, or else opens one.
-const OPENS = { '“': 'double', '‘': 'single', '«': 'angle' }
-const CLOSES = { '”': 'double', '’': 'single', '»': 'angle' }
-const STRAIGHT = { '"': 'double', "'": 'single' }
+// The direction marks sunnah.com sets around its marks. They are invisible
+// and would otherwise be printed inside the words.
+export const MARKS = /[\u200e\u200f]/g
+// Each quote mark's kind and the way it faces: 1 opens, -1 closes, 0 says so by its place.
+const QUOTE = {
+  '“': ['double', 1], '”': ['double', -1], '"': ['double', 0],
+  '‘': ['single', 1], '’': ['single', -1], "'": ['single', 0],
+  '«': ['angle', 1], '»': ['angle', -1],
+}
 const LETTER = /[\p{L}\p{N}]/u
+const SPACE = /\s/
+// Where speech starts: the start, or after a colon, a comma, a dash or an opening mark.
+const SPEECH = /(^|[:,“‘«"'(]|\s[-–—])\s*$/
+// One word alone between ' marks is a name ('Ata'), not a saying.
+const ONE_WORD = /^[\p{L}-]+\p{P}?$/u
+// What a quote ends on before a mismatched closing mark: a full stop, a question.
+const ENDED = /[.!?,;)]$/
 
-/**
- * Each quote mark's place and the step it takes in depth: in 1, out -1, stray 0.
- * A single mark that opens but never closes was the ʿayn of a name ('Aishah,
- * 'Asr), so it stays in the words and is no quote.
- */
+/** The way a straight mark faces, from its place: 1 opens, -1 closes, 0 cannot say. */
+function facing(ch, before, after) {
+  if (ch === "'") {
+    if (LETTER.test(before) && LETTER.test(after)) return 0
+    // Before a word, or before an ellipsis or bracket that starts a quote ('..or from beneath', '(He prayed)').
+    if (!LETTER.test(before) && !/[.!?,;)]/.test(before) && (LETTER.test(after) || (/[\s:(]/.test(before) && /[.([…]/.test(after)))) return 1
+    return SPACE.test(before) ? 0 : -1
+  }
+  // After a colon a " opens even with the space on its wrong side (recited:" No soul).
+  if (before === ':' || (SPACE.test(before) && !SPACE.test(after))) return 1
+  if (!SPACE.test(before) && (SPACE.test(after) || !LETTER.test(after))) return -1
+  return 0
+}
+
+/** The places of the quote marks that pair up, each with its step: 1 in, -1 out. */
 function quoteMarks(text) {
-  // Where the book has double quotes, a single one outside them opens speech
-  // only after a colon or comma (said: ‘Indeed); else it is transliteration:
-  // Ibn ‘Abbas, Aqra’.
-  const nests = /["“”«»]/.test(text)
-  const open = []   // { family, mark } for each quote still open
-  const marks = []
-  const unclosed = new Set()
-  // Any close but a single one ends the single quotes still open inside it.
-  const shed = (family) => { while (family !== 'single' && open.at(-1)?.family === 'single') unclosed.add(open.pop().mark) }
+  const open = []   // { kind, at, speech } for each quote still open, innermost last
+  const pairs = []
+  let closedAt = -2   // where the last pair closed, so '" reads as two closes
   for (let at = 0; at < text.length; at += 1) {
     const ch = text[at]
-    const family = OPENS[ch] ?? CLOSES[ch] ?? STRAIGHT[ch]
-    if (!family) continue
+    if (!QUOTE[ch]) continue
+    const [kind, fixed] = QUOTE[ch]
     const before = text[at - 1] ?? ' '
     const after = text[at + 1] ?? ' '
-    // A single mark between letters is an apostrophe: Allah's, Buda'ah.
-    if (family === 'single' && LETTER.test(before) && LETTER.test(after)) continue
-    // A straight double mark faces the way its place says: a space before and a word after
-    // opens (a quote inside a quote: asked, "What is), text before and no word after closes.
-    // Only where its place says neither (said:" We) does it close the open one or else open.
-    const placed = ch !== '"' ? ''
-      : /\s/.test(before) && LETTER.test(after) ? 'open'
-      : /[^\s:]/.test(before) && !LETTER.test(after) ? 'close' : ''
-    // One that closes with a single quote innermost ends that one: the book opened with ' and
-    // closed with " (bukhari 947: said, 'Allahu Akbar! ... warned." The people). Not where the
-    // single was a name's ʿayn, which closes the double instead: one bare word since it
-    // ("Go to 'Ali."), or, inside a double, one not opened after a colon or comma as speech
-    // is ("Wa 'alaihi-s-Salam." against replied, 'He has been bewitched").
+    // A curly single between letters is ʿayn or hamza too (Ibn ‘Abbas, Aqra’).
+    if (kind === 'single' && LETTER.test(before) && LETTER.test(after)) continue
+    // A straight " that cannot say closes an open double, or else opens one.
+    const step = fixed || facing(ch, before, after) || (ch === '"' ? (open.some((o) => o.kind === 'double') ? -1 : 1) : 0)
+    if (step === 1) {
+      open.push({ kind, at, speech: kind !== 'single' || SPEECH.test(text.slice(0, at)) })
+      continue
+    }
+    if (step !== -1) continue
     const top = open.at(-1)
-    const speech = (mark) => !open.some((o) => o.family === 'double') || /[:,]\s*$/.test(text.slice(0, mark.at))
-    if (placed === 'close' && top?.family === 'single' && speech(top.mark) && !/^[\p{L}-]+\p{P}*$/u.test(text.slice(top.mark.at + 1, at))) {
-      open.pop()
-      marks.push({ at, step: -1 })
-      continue
+    // Rule 4: a " straight after the words of an open ' quote closes it (said, 'Allahu Akbar!
+    // ruined."), unless it follows a ' that just closed: then it closes its own (?'").
+    // Any ' opened inside that quote but not where speech starts was a letter ('Umar, for wheat.").
+    const spoken = open.findLastIndex((o) => o.kind === 'single' && o.speech)
+    const mixed = ch === '"' && spoken >= 0 && open.slice(spoken).every((o) => o.kind === 'single') && closedAt !== at - 1
+    // The innermost open quote of this kind; a ' looks no further out than the nearest ".
+    let i = mixed ? spoken : open.findLastIndex((o) => o.kind === kind)
+    if (kind === 'single' && open.slice(i + 1).some((o) => o.kind !== 'single')) i = -1
+    // A ' quote opened where speech starts outranks a ' opened inside it that may be a letter:
+    // 'O Abu 'Abdur-Rahman, advise us.' closes the first.
+    if (kind === 'single' && i >= 0 && !open[i].speech) {
+      const spoken = open.findLastIndex((o, j) => j < i && o.kind === 'single' && o.speech)
+      if (spoken >= 0 && !open.slice(spoken + 1, i).some((o) => o.kind !== 'single')) i = spoken
     }
-    // A straight single mark opens before a word ("said: 'Indeed") and closes after one ("man.' So").
-    const opens = OPENS[ch] || (ch === '"' ? (placed ? placed === 'open' : top?.family !== family)
-      : ch === "'" && !LETTER.test(before) && LETTER.test(after))
-    if (opens && family === 'single' && nests && !open.length && !/[:,]\s*$/.test(text.slice(0, at))) continue
-    // A book with double quotes never sets a single straight inside another, so one opening
-    // there is a name's ʿayn: He said: 'We paid in the time of Abu Bakr and 'Umar."
-    if (opens && ch === "'" && nests && top?.family === 'single') continue
-    if (opens) {
-      const mark = { at, step: 1 }
-      open.push({ family, mark })
-      marks.push(mark)
-      continue
-    }
-    // A single mark after a letter with no single quote open is a plural's
-    // apostrophe (the Muslims' wealth), not a close.
-    if (family === 'single' && open.at(-1)?.family !== 'single' && LETTER.test(before)) continue
-    shed(family)
-    // A close with nothing open is a stray mark: dropped from the words, nothing more.
-    if (!open.length) { marks.push({ at, step: 0 }); continue }
-    const { family: opened, mark: from } = open.pop()
-    // One bare word in single marks is a name spelled with ʿayn and hamza ('Ata'), not speech.
-    if (opened === 'single' && /^[\p{L}-]+$/u.test(text.slice(from.at + 1, at))) { unclosed.add(from); continue }
-    marks.push({ at, step: -1 })
+    // Rule 4 the other way: a ’ after the words with no ' open closes the double around it.
+    if (i < 0 && kind === 'single' && top && top.kind !== 'single' && ENDED.test(text.slice(0, at))) i = open.length - 1
+    if (i < 0) continue   // nothing to close: the mark stays in the words
+    const from = open[i]
+    open.length = i   // rule 3: anything still open inside was a letter
+    // Rule 2: a ' that opened where speech does not start needs a ' to close it and more than a name inside.
+    if (from.kind === 'single' && !from.speech && (kind !== 'single' || !ENDED.test(text.slice(0, at)) || ONE_WORD.test(text.slice(from.at + 1, at).trim()))) continue
+    pairs.push({ at: from.at, step: 1 }, { at, step: -1 })
+    closedAt = at
   }
-  shed()
-  return marks.filter((mark) => !unclosed.has(mark))
+  // A double left open runs to the end, as a hadith that ends inside a saying does; a single was a letter.
+  for (const o of open) if (o.kind !== 'single') pairs.push({ at: o.at, step: 1 })
+  return pairs.sort((a, b) => a.at - b.at)
 }
 
 /**
- * Who says what, in order. Every span is `said`, `told` or `plain`, and joining
- * their texts gives the hadith back apart from the quote and direction marks.
+ * Who says what, in order. Every span is `said`, `told` or `plain`, with the
+ * book's own quote marks as `open` and `close` around its `text`; joining
+ * open + text + close over every span gives back the hadith exactly, less
+ * the direction marks.
  */
 export function saying(text) {
   const clean = String(text ?? '').replace(MARKS, '')
   if (!clean.trim()) return []
+  const marks = quoteMarks(clean)
+  if (!marks.length) return [{ kind: 'plain', open: '', text: clean, close: '' }]
+  const pieces = []
   let depth = 0
   let from = 0
-  const pieces = []
-  for (const { at, step } of quoteMarks(clean)) {
-    pieces.push({ depth, text: clean.slice(from, at).trim() })
+  let opened = ''
+  for (const { at, step } of marks) {
+    pieces.push({ depth, open: opened, text: clean.slice(from, at), close: step < 0 ? clean[at] : '' })
+    opened = step > 0 ? clean[at] : ''
     depth += step
     from = at + 1
   }
-  pieces.push({ depth, text: clean.slice(from).trim() })
-  const kept = pieces.filter((piece) => piece.text)
-  // No quote at all means the books have not said which part is speech, and
-  // neither do we.
-  if (!kept.some((piece) => piece.depth)) return [{ kind: 'plain', text: clean.trim() }]
+  pieces.push({ depth, open: opened, text: clean.slice(from), close: '' })
+  const kept = pieces.filter((p) => p.open || p.text || p.close)
   // A quote that holds a deeper one is telling: the companion's account, not the words.
   const holds = (i) => [kept[i - 1], kept[i + 1]].some((next) => next?.depth > kept[i].depth)
-  return kept.map((piece, i) => ({ kind: piece.depth && !holds(i) ? 'said' : 'told', text: piece.text }))
+  return kept.map(({ depth: d, open: o, text: t, close: c }, i) => ({ kind: d && !holds(i) ? 'said' : 'told', open: o, text: t, close: c }))
 }
 
 // "Narrated Abu Huraira:", "It is narrated on the authority of X that ... said:"
