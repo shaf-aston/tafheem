@@ -183,7 +183,7 @@ def _trial_model(trial: bool, filed: _Filed) -> str | None:
     if not trial:
         return None
     if not (model := recitation.listen.trial_model()):
-        raise filed.fail(503, "The trial listening model is not installed on this machine.", "validate")
+        raise filed.fail(503, "No trial listening model is set on this machine.", "validate")
     return model
 
 
