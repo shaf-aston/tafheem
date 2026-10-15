@@ -486,3 +486,16 @@ def test_a_bare_father_before_a_kasra_noun_keeps_the_name_going():
             token(5, "شجاع", "شجاع", "NOM", 4, "MOD", cas="n")]
     assert roles(["عَلِيُّ", "بْنُ", "أَبِي", "طَالِبٍ", "شُجَاعٌ"], toks) == \
         ["مبتدأ", "صفة", "مضاف إليه", "مضاف إليه", "خبر"]
+
+
+@pytest.mark.parametrize("rel", ["MOD", "OBJ", "TMZ"])
+def test_a_masdar_of_the_heart_is_mafool_li_ajlihi(rel):
+    toks = [token(1, "قام", "قام", "VRB", 0, "---", **VERB),
+            token(2, "الطلاب", "طالب", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "احترام", "احترام", "NOM", 1, rel, cas="a")]
+    assert roles(["قَامَ", "الطُّلَّابُ", "احْتِرَامًا"], toks) == ["فعل", "فاعل", "مفعول لأجله"]
+    # its own verb's masdar stays the مفعول مطلق, and a damma makes it no reason
+    toks[0].update(form="احترم", lemma="احترم")
+    assert roles(["احْتَرَمَ", "الطُّلَّابُ", "احْتِرَامًا"], toks)[2] != "مفعول لأجله"
+    toks[0].update(form="قام", lemma="قام")
+    assert roles(["قَامَ", "الطُّلَّابُ", "احْتِرَامٌ"], toks)[2] != "مفعول لأجله"

@@ -69,6 +69,14 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
         and not same_root(token, head)))
 
 
+def purpose(token: dict, verb: dict) -> bool:
+    """قام الطلاب احترامًا: a masdar of the heart (a feeling or intent, reason_masdars) not of its verb's root,
+    in nasb and indefinite or a مضاف, gives the reason for the verb: its مفعول لأجله
+    (Tasheel 3.8.3 p73). Any other masdar there is a حال (جاء ركضًا)."""
+    return (listed(token, "reason_masdars") and not same_root(token, verb)
+            and typed_or_parsed_case(token) in (None, "a") and token.get("stt") in ("i", "c"))
+
+
 def verb_place(token: dict, s: Sentence) -> str:
     """The place a word fills under a verb (Tasheel 3.1 p60, 3.2 p67), `none` where the
     book names it elsewhere. Tested in this order because an earlier place shadows a
@@ -113,6 +121,8 @@ def verb_place(token: dict, s: Sentence) -> str:
         # لا يُؤْتُونَ النَّاسَ نَقِيرًا: a verb of two objects keeps its second OBJ, so no state or tamyeez
         if after_first and (s.family(head) == "zanna" or is_one(head["lemma"], "two_objects_give")):
             return "second_object"
+        if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
+            return "purpose"
         if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
                 and token.get("stt") == "i" and any(t["rel"] in ("SBJ", "TPC", "OBJ") for t in siblings):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
@@ -146,6 +156,8 @@ def verb_place(token: dict, s: Sentence) -> str:
             if verb:
                 if same_root(token, verb):
                     return "absolute"  # same root as its verb: فَرِحَ فَرَحًا
+                if purpose(token, verb):
+                    return "purpose"
                 return state_or_specification(token, head)
     return "none"
 
