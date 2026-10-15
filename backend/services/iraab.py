@@ -17,13 +17,14 @@ from backend.services import morphology, provenance, quran_corpus, rule_engine, 
 from backend.services.harakat import CASE_NAME
 from backend.services.nahw_book import case_of, family_cards, reason, teacher_rules
 from backend.services.syntax import teacher
+from backend.services.syntax.tree import names_a_sentence as names_a_sentence
 from backend.services.syntax.naming import NAMED, role_key
 
 
 def analyze(sentence: str, recorded: bool = True) -> dict:
     """{words, summary, source, tree} for one sentence; `tree` is None when nothing joins.
     `recorded=False` skips the treebank and always works the sentence out. The summary is the picture's own top label, so the line above the cards and the
-    picture can never name the sentence apart; with no picture there is no summary."""
+    picture can never name the sentence apart; with no picture, or a phrase (محمد بن عبد الله), there is none."""
     picks = morphology.pick(words(sentence), syntax.disambiguator())  # the one reading, cards and parser alike
     tags = morphology.analyze_sentence(sentence, picks)
     record = tarkeeb_store.for_sentence(sentence) if recorded else None
@@ -31,7 +32,7 @@ def analyze(sentence: str, recorded: bool = True) -> dict:
     tree = _drawn(record) if record else parsed["tree"]
     return {
         "words": cards(tags, parsed["roles"]),
-        "summary": tree["tree"].get("label") if tree else None,
+        "summary": label if tree and names_a_sentence(label := tree["tree"].get("label")) else None,
         "source": provenance.of("treebank" if record else "nahw"),
         "tree": tree,
     }
@@ -77,6 +78,9 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     for word in words:  # غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule
         if teacher.tool_reason(word):
             word["reason"] = teacher.tool_reason(word)
+    for word, found in zip(words, roles):
+        if found.get("also") and word.get("reason"):
+            word["reason"] = f"{word['reason']}، {found['also']}"
     _pieces_said(words, roles)
     return rule_engine.mark_condition(words, roles)
 

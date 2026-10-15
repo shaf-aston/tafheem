@@ -11,7 +11,6 @@ import { shareOf } from '../../lib/coverage'
 import { logOut } from '../../lib/profile'
 import { deleteAccount, fetchAccount, fetchLeaderboard, fetchOverview, setPublic } from '../../lib/progress'
 import { MEANINGS } from '../../lib/quiz'
-import { rankOf } from '../../lib/rewards'
 import { useRewards } from '../../lib/useRewards'
 import { moduleFor, QUIZ } from '../../lib/quizBanks'
 import { forgetShelf } from '../../lib/shelf'
@@ -21,6 +20,7 @@ import { useRemembered } from '../../lib/useRemembered'
 import CirclesView from './CirclesView'
 import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
+import XpCard from './XpCard'
 import { Skeleton } from '../ui/Skeleton'
 import SmallButton from '../ui/SmallButton'
 
@@ -43,8 +43,7 @@ export default function ProfileView({ name }) {
         <p role="alert" className="type-small text-[var(--danger)]">Could not load your profile.</p>
       )}
       <dl className="grid grid-cols-2 gap-3">
-        <Fact name="Level" value={rewards && `${rewards.level} · ${rankOf(rewards.level).en} ${rankOf(rewards.level).ar}`} />
-        <Fact name="XP" value={rewards && `${rewards.xp} (${rewards.into} / ${rewards.need} to next)`} />
+        <XpCard rewards={rewards} />
         <Fact name="Joined" value={account.data && new Date(account.data.joined).toLocaleDateString()} />
         <Fact name="Answers given" value={account.data?.answers} />
         <Fact name="Words learnt" value={stats.data && learnt.length} />

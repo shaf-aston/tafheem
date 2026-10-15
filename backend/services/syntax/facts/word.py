@@ -200,6 +200,16 @@ def is_masdar(token: dict) -> bool:
         tuple(book_words("masdar_patterns")))
 
 
+def is_name(token: dict) -> bool:
+    return token["pos"] == "PROP" or token.get("pos_camel") == "noun_prop"
+
+
+def is_nasab(token: dict) -> bool:
+    """محمدُ بنُ عبدِ اللهِ: the ابن hung on the name before it (repair.nasab), read as its
+    صفة, عطف بيان or بدل."""
+    return token["rel"] == "MOD" and listed(token, "nasab")
+
+
 def listed(token: dict, family: str, part: str = "words") -> bool:
     """On a book list by its lemma, by the form as typed, or by that form without its
     tanween alef: the list holds صباحا and كوب, while the parser lemmatises the first

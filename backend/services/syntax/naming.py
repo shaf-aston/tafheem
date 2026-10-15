@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import (
-    book_merges, book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
+    book_map, book_merges, book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, walker
 from backend.services.harakat import (
     CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
@@ -104,6 +104,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
+             # محمدُ بنُ عبدِ اللهِ: the books also read the ابن as عطف بيان or بدل
+             "also": book_map("nasab", "also") if role == NAMED.sifah and facts.is_nasab(token) else None,
              # إيّاك: the pronoun on إيّا is a letter of the one detached pronoun, not a piece of its own
              "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": facts.is_prefix(t), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,

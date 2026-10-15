@@ -799,3 +799,32 @@ dialog::backdrop {
   .level-ring-fill { transition: none; }
   .level-ring-gain { animation: none; opacity: 0; }
 }
+
+/* Profile XP card (XpCard): the bar fills on sight; a tap opens the rank path. */
+.xp-card { transition: border-color 150ms, transform 150ms; cursor: pointer; }
+.xp-card:hover { border-color: var(--xp-tone); }
+.xp-card:active { transform: scale(0.985); }
+.xp-bar { height: 0.6rem; border-radius: 999px; background: var(--border); overflow: hidden; }
+.xp-bar > span {
+  display: block; height: 100%; border-radius: inherit; background: var(--xp-tone);
+  transform-origin: left; transform: scaleX(var(--xp-share));
+  animation: xp-fill calc(900ms * var(--motion-scale)) cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes xp-fill { from { transform: scaleX(0); } }
+.xp-path { display: flex; justify-content: space-between; gap: 0.25rem; position: relative; padding-top: 0.5rem; }
+.xp-path::before { content: ''; position: absolute; top: 1.05rem; inset-inline: 0.6rem; height: 2px; background: var(--border); }
+.xp-step {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; flex: 1;
+  color: var(--text-faint); animation: xp-rise calc(400ms * var(--motion-scale)) ease-out both;
+  animation-delay: calc(var(--i) * 60ms * var(--motion-scale)); /* one after another, Seed to Fruit */
+}
+.xp-dot { width: 0.9rem; height: 0.9rem; border-radius: 999px; background: var(--surface); border: 2px solid var(--border); }
+.xp-done { color: var(--text-dim); }
+.xp-done .xp-dot { background: var(--xp-tone); border-color: var(--xp-tone); }
+.xp-now { color: var(--text); }
+.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse 1.6s ease-in-out infinite; }
+@keyframes xp-rise { from { opacity: 0; transform: translateY(6px); } }
+@keyframes xp-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--xp-tone) 25%, transparent); } }
+@media (prefers-reduced-motion: reduce) {
+  .xp-bar > span, .xp-step, .xp-now .xp-dot { animation: none; }
+}

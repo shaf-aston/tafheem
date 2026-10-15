@@ -403,9 +403,10 @@ def test_ibn_between_names_is_the_names_sifah_and_mudaf_to_the_next():
     words = ["محمد", "بن", "عبد", "الله"]
     toks = [_name(1, "محمد", 0, "---"),
             token(2, "بن", "ابن", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
-            token(3, "عبد", "عبد", "NOM", 2, "PRD", pos_camel="noun", stt="c"),
-            _name(4, "الله", 3, "IDF", stt="d")]
+            token(3, "عبد", "عبد", "NOM", 2, "PRD", pos_camel="noun"),  # read indefinite
+            _name(4, "الله", 1, "PRD", stt="d")]  # as the live parser drew it: الله a khabar
     found = named(words, toks)
+    assert (toks[3]["head"], toks[3]["rel"]) == (3, "IDF")
     assert [w["role"] for w in found] == [None, "صفة", "مضاف إليه", "مضاف إليه"]  # a phrase: no mubtada
     assert [w["case"] for w in found] == [None, None, "jarr", "jarr"]  # untyped, the name and its صفة show no case
 

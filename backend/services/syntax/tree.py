@@ -14,7 +14,7 @@ from __future__ import annotations
 from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar)
 from backend.services.syntax.facts import (Sentence, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
-                                          read_as, shown_cases)
+                                          is_nasab, read_as, shown_cases)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import SHADDA, five_verb_nun, has_tanween, letters, own_letters
@@ -29,20 +29,30 @@ CONDITION = term_ar("jumlah_shartiyyah")
 FRAMES = frames()
 CARDS = dict(family_cards())
 JAR_MAJROOR = term_ar("jar_majroor")
+FOLLOWED = "متبوع"  # roles.json: the word any تابع follows
+
+
+def names_a_sentence(label: str | None) -> bool:
+    """The label is a kind of sentence (جملة فعلية، جملة تعجب...), not a phrase's name: a
+    مركب توصيفي shows itself in the picture and needs no line above it."""
+    return label in {VERBAL, NOMINAL, QUESTION, CONDITION, *map(term_ar, FRAMES["sentence_by_family"].values())}
 
 
 def _leaf(index: int, role: str | None, why: dict | None = None, name: str | None = None) -> dict:
     """One word on its own. No role means the rules could not name it; `why` is the
     teacher's reason when a rule took the name away, shown on hover. `name` is the
     finer name the picture prints (حرف نصب for a حرف), coloured as its role."""
-    leaf = {"word": index, "role": name or role, "tone": tone(role), "gap": role is None}
+    leaf = {"word": index, "role": name or role, "tone": tone(role or name), "gap": not (role or name)}
     if role is None and why:
         leaf["detail"] = f"{why['ar']} · {why['en']}"
     return leaf
 
 
-def _label(head: dict, child_roles: list[str]) -> str:
-    """What the unit this word heads is called."""
+def _label(head: dict, child_roles: list[str], kids: list[dict] = ()) -> str | None:
+    """What the unit this word heads is called. None: it has no name of its own, as a name
+    with its ابن (محمدُ بنُ عبدِ اللهِ), whose ابن the books read as صفة, عطف بيان or بدل."""
+    if any(is_nasab(kid) for kid in kids):
+        return None
     for unit in role_units():
         if unit["child"] in child_roles and (head["pos"] == "PRT" or not unit.get("on_particle")):
             return term_ar(unit["label"])
@@ -480,10 +490,14 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         role = role_of[token["id"]]
         why = why_of.get(token["id"])
         # a word the teacher dashed stays a dash at the head of its unit: مضاف would name it
-        inside.append((index, pieces(token, _leaf(index, role, why, None if why else _unit_role(name_of[token["id"]], kid_roles)))))
-        label = label_of.get(token["id"]) or _label(token, kid_roles) or (top_label if token is root and token["id"] not in opened
-                                             else NOMINAL if token["id"] in clauses & nominal
-                                             else VERBAL if token["id"] in clauses or role == NAMED.fil else "")
+        own = _label(token, kid_roles, kids)
+        # a name with its ابن is the متبوع: موصوف or مبدل منه would pick one of the three readings
+        head_name = FOLLOWED if own is None else _unit_role(name_of[token["id"]], kid_roles)
+        inside.append((index, pieces(token, _leaf(index, role, why, None if why else head_name))))
+        label = label_of.get(token["id"]) or ("" if own is None else own or (
+            top_label if token is root and token["id"] not in opened
+            else NOMINAL if token["id"] in clauses & nominal
+            else VERBAL if token["id"] in clauses or role == NAMED.fil else ""))
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
         # is written rather than calling the whole unit a حرف. The clause a كاد-type
@@ -519,7 +533,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     top_label = _sentence_label(role_of, drawn, named)
     drawn = sorted(((at[part["id"]], unit(part)) for part in roots), key=lambda pair: pair[0])
     tree = drawn[0][1] if len(drawn) == 1 else None
-    if tree is None or tree.get("word") is not None or not tree.get("label"):
+    # a phrase alone (محمد بن عبد الله): its head has no job, nothing makes it a sentence
+    phrase = tree is not None and tree.get("word") is None and not role_of[roots[0]["id"]]
+    if not phrase and (tree is None or tree.get("word") is not None or not tree.get("label")):
         tree = {"label": top_label,
                 "children": [part for _, part in drawn] if tree is None else [tree]}
     covered = sum(1 for found in named if found["role"])
