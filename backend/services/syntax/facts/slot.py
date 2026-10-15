@@ -227,10 +227,7 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             # محمدُ بنُ عبدِ اللهِ، الطبيبُ الماهرُ: a noun with only its صفة and مضاف إليه
             # under it is a phrase, no sentence: nothing is told of it, so it is no mubtada
             # المعلماتُ في الفصلِ: a raf' noun with a jar-majrur after it is told of by it, its khabar
-            told = any(_nominal_place(k, s) == "predicate" or (is_preposition(k) and k["id"] > token["id"]
-                                                              and typed_or_parsed_case(token) == "u"
-                                                              and not (before and strip_diacritics(before["form"]) == "يا"))
-                       for k in kids if not is_suffix(k))
+            told = any(_nominal_place(k, s) == "predicate" or _jar_khabar(k, token, before) for k in kids if not is_suffix(k))
             return "subject" if told else "none"
     if rel == "MOD" and head:
         if told_of_lone_mubtada(token, head, s):
@@ -242,6 +239,12 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         if indefinite_nasb(token):
             return state_or_specification(token, head)
     return "none"
+
+
+def _jar_khabar(kid: dict, token: dict, before: dict | None) -> bool:
+    """A jar-majrur after a raf' noun is its khabar; not after a called noun (يا محمدُ في البيت ضيفٌ)."""
+    return (is_preposition(kid) and kid["id"] > token["id"] and typed_or_parsed_case(token) == "u"
+            and not (before and strip_diacritics(before["form"]) == "يا"))
 
 
 def _slot(token: dict, s: Sentence) -> str:

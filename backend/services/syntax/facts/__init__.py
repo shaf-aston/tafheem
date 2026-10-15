@@ -41,7 +41,7 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, Sentence], str]]] = {
     "governor": (("harf_jarr", "idafa", "verb", "noun", "inna", "kana", "kaada", "zanna", "nida", "istithna",
                   "none"), _governor),
     "slot": (("subject", "predicate", "object", "second_object", "absolute", "place_time", "accompaniment",
-              "purpose",               "state", "specification", "none"), _slot),
+              "purpose", "state", "specification", "none"), _slot),
     "voice": (("active", "passive", "none"), _voice),
 }
 

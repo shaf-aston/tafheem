@@ -16,13 +16,7 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
             token["pos"] = "NOM"
         # مُلَبِّينَ: no verb opens with مُ and ends in the plural ـونَ/ـينَ, so it is a participle
         elif token["pos"].startswith("VRB") and _participle_plural(word):
-            # ـونَ is raf'; ـينَ is nasb under a verb, jarr under a preposition or مضاف, and under a
-            # noun it is that noun's صفة and takes its case (بِرِجَالٍ مُسَافِرِينَ)
-            head = next((t for t in tokens if t["id"] == token["head"]), None)
-            jarred = token["rel"] == "IDF" or (head is not None and head["pos"] == "PRT" and head.get("pos_camel") == "prep")
-            nasb = head is not None and head["pos"].startswith("VRB")
-            raf = word.rstrip("\u064e").endswith("ون")
-            token.update(pos="NOM", asp="na", cas="n" if raf else "g" if jarred else "a" if nasb else head.get("cas", "na") if head else "na")
+            token.update(pos="NOM", asp="na", cas=_plural_case(word, token, tokens))
         # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
         token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
         token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
@@ -49,7 +43,21 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
 
 
+
 def _participle_plural(word: str) -> bool:
     marked = letters(word)
-    return (len(marked) > 4 and marked[0][0] == "م" and "\u064f" in marked[0][1]
-            and [l for l, _ in marked[-2:]] in (["ي", "ن"], ["و", "ن"]) and "\u064e" in marked[-1][1])
+    return (len(marked) > 4 and marked[0] == ("م", {"ُ"})
+            and [l for l, _ in marked[-2:]] in (["ي", "ن"], ["و", "ن"]) and "َ" in marked[-1][1])
+
+
+def _plural_case(word: str, token: dict, tokens: list[dict]) -> str:
+    """ـونَ is raf'; ـينَ is jarr under a preposition or مضاف, nasb under a verb, and under a
+    noun that noun's صفة, in its case (بِرِجَالٍ مُسَافِرِينَ)."""
+    if letters(word)[-2][0] == "و":
+        return "n"
+    head = next((t for t in tokens if t["id"] == token["head"]), None)
+    if token["rel"] == "IDF" or (head and head["pos"] == "PRT" and head.get("pos_camel") == "prep"):
+        return "g"
+    if head and head["pos"].startswith("VRB"):
+        return "a"
+    return head.get("cas", "na") if head else "na"
