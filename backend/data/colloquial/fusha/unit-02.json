@@ -1547,6 +1547,1751 @@
           "tip": "Name the thing first, then say it is ready."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "where-do-you-live-to-a-man",
+          "arabic": "أَيْنَ تَسْكُنُ؟",
+          "transliteration": "ayna taskunu?",
+          "reply": {
+            "arabic": "أَسْكُنُ فِي الْمَدِينَة",
+            "transliteration": "askunu fee al-madeena",
+            "english": "I live in the city."
+          }
+        },
+        {
+          "slot": "i-live-in-a-flat",
+          "arabic": "أَسْكُنُ فِي شَقَّة",
+          "transliteration": "askunu fee shaqqa"
+        },
+        {
+          "slot": "i-live-in-a-house",
+          "arabic": "أَسْكُنُ فِي بَيْت",
+          "transliteration": "askunu fee bayt"
+        },
+        {
+          "slot": "we-live-near-the-mosque",
+          "arabic": "نَسْكُنُ قَرِيبًا مِنَ الْمَسْجِد",
+          "transliteration": "naskunu qareeban mina al-masjid"
+        },
+        {
+          "slot": "i-live-in-a-village",
+          "arabic": "أَسْكُنُ فِي قَرْيَة",
+          "transliteration": "askunu fee qarya"
+        },
+        {
+          "slot": "what-is-your-address-to-a-man",
+          "arabic": "مَا عُنْوَانُكَ؟",
+          "transliteration": "maa 3unwaanuka?",
+          "reply": {
+            "arabic": "عُنْوَانِي شَارِعُ الْمَسْجِد",
+            "transliteration": "3unwaanee shaari3u al-masjid",
+            "english": "My address is Mosque Street."
+          }
+        },
+        {
+          "slot": "how-long-have-you-lived-here-to-a-man",
+          "arabic": "مُنْذُ مَتَى تَسْكُنُ هُنَا؟",
+          "transliteration": "mundhu mataa taskunu hunaa?",
+          "reply": {
+            "arabic": "أَسْكُنُ هُنَا مُنْذُ خَمْسِ سَنَوَات",
+            "transliteration": "askunu hunaa mundhu khamsi sanawaat",
+            "english": "I have lived here for five years."
+          }
+        },
+        {
+          "slot": "is-it-far-from-here",
+          "arabic": "هَلْ هُوَ بَعِيدٌ عَنْ هُنَا؟",
+          "transliteration": "hal huwa ba3eedun 3an hunaa?",
+          "reply": {
+            "arabic": "لَا، هُوَ قَرِيب",
+            "transliteration": "laa, huwa qareeb",
+            "english": "No, it is near."
+          }
+        },
+        {
+          "slot": "do-you-like-your-neighbourhood-to-a-man",
+          "arabic": "هَلْ تُحِبُّ حَيَّكَ؟",
+          "transliteration": "hal tu7ibbu 7ayyaka?",
+          "reply": {
+            "arabic": "نَعَمْ، حَيِّي هَادِئ وَجَمِيل",
+            "transliteration": "na3am, 7ayyee haadi2 wa jameel",
+            "english": "Yes, my neighbourhood is quiet and beautiful."
+          }
+        },
+        {
+          "slot": "i-moved-here-from-the-village",
+          "arabic": "اِنْتَقَلْتُ إِلَى هُنَا مِنَ الْقَرْيَة",
+          "transliteration": "intaqaltu ilaa hunaa mina al-qarya"
+        },
+        {
+          "slot": "my-neighbour-is-nice-male-neighbour",
+          "arabic": "جَارِي لَطِيف",
+          "transliteration": "jaaree lateef"
+        },
+        {
+          "slot": "which-city-are-you-from-to-a-man",
+          "arabic": "مِنْ أَيِّ مَدِينَةٍ أَنْتَ؟",
+          "transliteration": "min ayyi madeenatin anta?",
+          "reply": {
+            "arabic": "أَنَا مِنْ مَدِينَةٍ صَغِيرَة",
+            "transliteration": "anaa min madeenatin sagheera",
+            "english": "I am from a small city."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Neighbour",
+          "arabic": "أَهْلًا بِكَ فِي الْحَيّ!",
+          "transliteration": "ahlan bika fee al-7ayy!",
+          "english": "Welcome to the neighbourhood!"
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "شُكْرًا. اِسْمِي أَحْمَد. اِنْتَقَلْتُ إِلَى هُنَا مِنَ الْقَرْيَة.",
+          "transliteration": "shukran. ismee A7mad. intaqaltu ilaa hunaa mina al-qarya.",
+          "english": "Thank you. My name is Ahmad. I moved here from the village."
+        },
+        {
+          "speaker": "Neighbour",
+          "arabic": "أَيْنَ تَسْكُنُ يَا أَحْمَد؟",
+          "transliteration": "ayna taskunu yaa A7mad?",
+          "english": "Where do you live, Ahmad?"
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "أَسْكُنُ فِي شَقَّةٍ قَرِيبًا مِنَ الْمَسْجِد.",
+          "transliteration": "askunu fee shaqqatin qareeban mina al-masjid.",
+          "english": "I live in a flat near the mosque."
+        },
+        {
+          "speaker": "Neighbour",
+          "arabic": "هَلْ تُحِبُّ الْحَيّ؟",
+          "transliteration": "hal tu7ibbu al-7ayy?",
+          "english": "Do you like the neighbourhood?"
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "نَعَمْ، هُوَ هَادِئ جِدًّا. وَأَنْتَ، مُنْذُ مَتَى تَسْكُنُ هُنَا؟",
+          "transliteration": "na3am, huwa haadi2 jiddan. wa anta, mundhu mataa taskunu hunaa?",
+          "english": "Yes, it is very quiet. And you, how long have you lived here?"
+        },
+        {
+          "speaker": "Neighbour",
+          "arabic": "أَسْكُنُ هُنَا مُنْذُ عَشْرِ سَنَوَات.",
+          "transliteration": "askunu hunaa mundhu 3ashri sanawaat.",
+          "english": "I have lived here for ten years."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "مَرْحَبًا، أَنَا لَيْلَى أُخْتُ أَحْمَد. هَلِ السُّوقُ بَعِيدٌ عَنْ هُنَا؟",
+          "transliteration": "mar7aban, anaa Layla ukhtu A7mad. hali as-sooqu ba3eedun 3an hunaa?",
+          "english": "Hello, I am Layla, Ahmad's sister. Is the market far from here?"
+        },
+        {
+          "speaker": "Neighbour",
+          "arabic": "لَا، السُّوقُ قَرِيب. خَمْسُ دَقَائِقَ مَشْيًا.",
+          "transliteration": "laa, as-sooqu qareeb. khamsu daqaa2iqa mashyan.",
+          "english": "No, the market is near. Five minutes on foot."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "وَأَيْنَ بَيْتُكَ؟",
+          "transliteration": "wa ayna baytuka?",
+          "english": "And where is your house?"
+        },
+        {
+          "speaker": "Neighbour",
+          "arabic": "بَيْتِي فِي آخِرِ هَذَا الشَّارِع.",
+          "transliteration": "baytee fee aakhiri haathaa ash-shaari3.",
+          "english": "My house is at the end of this street."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "إِذًا أَنْتَ جَارُنَا! هَذَا جَمِيل.",
+          "transliteration": "idhan anta jaarunaa! haathaa jameel.",
+          "english": "So you are our neighbour! That is nice."
+        },
+        {
+          "speaker": "Neighbour",
+          "arabic": "وَأَنْتُمْ جِيرَانِي الْجُدُد. أَهْلًا وَسَهْلًا.",
+          "transliteration": "wa antum jeeraanee al-judud. ahlan wa sahlan.",
+          "english": "And you are my new neighbours. You are most welcome."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "شُكْرًا يَا جَارَنَا.",
+          "transliteration": "shukran yaa jaaranaa.",
+          "english": "Thank you, our neighbour."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَيْنَ تَسْكُنُ؟",
+            "transliteration": "ayna taskunu?",
+            "english": "Where do you live?"
+          },
+          "response": {
+            "arabic": "أَسْكُنُ فِي بَيْتٍ قَرِيبٍ مِنَ الْمَسْجِد.",
+            "transliteration": "askunu fee baytin qareebin mina al-masjid.",
+            "english": "I live in a house near the mosque."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مُنْذُ مَتَى تَسْكُنُ هُنَا؟",
+            "transliteration": "mundhu mataa taskunu hunaa?",
+            "english": "How long have you lived here?"
+          },
+          "response": {
+            "arabic": "مُنْذُ سَنَتَيْنِ.",
+            "transliteration": "mundhu sanatayn.",
+            "english": "For two years."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ تُحِبُّ حَيَّكَ؟",
+            "transliteration": "hal tu7ibbu 7ayyaka?",
+            "english": "Do you like your neighbourhood?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، لَكِنَّهُ بَعِيدٌ عَنِ السُّوق.",
+            "transliteration": "na3am, lakinnahu ba3eedun 3ani as-sooq.",
+            "english": "Yes, but it is far from the market."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مِنْ أَيْنَ أَنْتَ؟",
+            "transliteration": "min ayna anta?",
+            "english": "Where are you from?"
+          },
+          "response": {
+            "arabic": "أَنَا مِنَ الْقَرْيَة، وَانْتَقَلْتُ إِلَى الْمَدِينَة.",
+            "transliteration": "anaa mina al-qarya, wantaqaltu ilaa al-madeena.",
+            "english": "I am from the village, and I moved to the city."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَا عُنْوَانُكَ؟",
+            "transliteration": "maa 3unwaanuka?",
+            "english": "What is your address?"
+          },
+          "response": {
+            "arabic": "عُنْوَانِي شَارِعُ الْمَسْجِد، قَرِيبٌ مِنَ السُّوق.",
+            "transliteration": "3unwaanee shaari3u al-masjid, qareebun mina as-sooq.",
+            "english": "My address is Mosque Street, near the market."
+          }
+        }
+      ],
+      "culture": "In Arab and Muslim culture neighbours matter a great deal, so a newcomer is welcomed with أَهْلًا بِكَ فِي الْحَيّ and is soon asked where he lives and where he comes from. These questions are friendly, not nosy.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A neighbour asks you (a man): 'أَيْنَ تَسْكُنُ؟' Say you live in a flat.",
+          "answer": "أَسْكُنُ فِي شَقَّة",
+          "accepted": [
+            "أَسْكُنُ فِي شَقَّة",
+            "أسكن في شقة",
+            "askunu fee shaqqa"
+          ],
+          "too_formal": {
+            "item": "أَنَا سَاكِن بِشَقَّة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَسْكُنُ means 'I live (reside)' and فِي means 'in'."
+        },
+        {
+          "id": "unit-02.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A neighbour asks: 'هَلْ تُحِبُّ حَيَّكَ؟' Say yes, it is quiet.",
+          "answer": "نَعَمْ، حَيِّي هَادِئ",
+          "accepted": [
+            "نَعَمْ، حَيِّي هَادِئ",
+            "نعم، حيي هادئ",
+            "na3am, 7ayyee haadi2"
+          ],
+          "too_formal": {
+            "item": "إِيه، حَيِّي هَادِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَادِئ means quiet or calm."
+        },
+        {
+          "id": "unit-02.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'أَسْكُنُ _____ شَقَّة.' (I live in a flat.)",
+          "answer": "فِي",
+          "accepted": [
+            "فِي",
+            "في",
+            "fee"
+          ],
+          "too_formal": {
+            "item": "بِشَقَّة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "فِي is the word for 'in' with a place."
+        },
+        {
+          "id": "unit-02.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'نَسْكُنُ _____ مِنَ الْمَسْجِد.' (We live near the mosque.)",
+          "answer": "قَرِيبًا",
+          "accepted": [
+            "قَرِيبًا",
+            "قريبا",
+            "qareeban"
+          ],
+          "too_formal": {
+            "item": "جَنْبَ الْجَامِع",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "قَرِيبًا مِنْ means 'near'; the opposite is بَعِيدًا عَنْ."
+        },
+        {
+          "id": "unit-02.lesson-05.fill_blank.03",
+          "type": "fill_blank",
+          "prompt": "Complete: 'مُنْذُ _____ تَسْكُنُ هُنَا؟' (How long have you lived here?)",
+          "answer": "مَتَى",
+          "accepted": [
+            "مَتَى",
+            "متى",
+            "mataa"
+          ],
+          "too_formal": {
+            "item": "مِنِ امْتَى",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مُنْذُ مَتَى is 'since when'."
+        },
+        {
+          "id": "unit-02.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I live in a house.'",
+          "answer": "أَسْكُنُ فِي بَيْت",
+          "accepted": [
+            "أَسْكُنُ فِي بَيْت",
+            "أسكن في بيت",
+            "askunu fee bayt"
+          ],
+          "too_formal": {
+            "item": "أَنَا سَاكِن فِي بَيْت",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Say the verb first: أَسْكُنُ."
+        },
+        {
+          "id": "unit-02.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'What is your address?' (to a man)",
+          "answer": "مَا عُنْوَانُكَ",
+          "accepted": [
+            "مَا عُنْوَانُكَ",
+            "ما عنوانك",
+            "maa 3unwaanuka"
+          ],
+          "too_formal": {
+            "item": "شُو عِنْوَانَك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The ending ـكَ means 'your' to a man."
+        },
+        {
+          "id": "unit-02.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'I moved here from the village.'",
+          "answer": "اِنْتَقَلْتُ إِلَى هُنَا مِنَ الْقَرْيَة",
+          "accepted": [
+            "اِنْتَقَلْتُ إِلَى هُنَا مِنَ الْقَرْيَة",
+            "انتقلت إلى هنا من القرية",
+            "intaqaltu ilaa hunaa mina al-qarya"
+          ],
+          "too_formal": {
+            "item": "رِحْتُ عَلَى هْنِي مِنَ الضَّيْعَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "اِنْتَقَلْتُ is 'I moved'; إِلَى is 'to' and مِنْ is 'from'."
+        },
+        {
+          "id": "unit-02.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'neighbourhood'?",
+          "options": [
+            "حَيّ",
+            "شَارِع",
+            "قَرْيَة",
+            "سُوق"
+          ],
+          "answer": "حَيّ",
+          "accepted": [
+            "حَيّ",
+            "حي",
+            "7ayy"
+          ],
+          "too_formal": {
+            "item": "حَارَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "حَيّ is a neighbourhood; شَارِع is a street."
+        },
+        {
+          "id": "unit-02.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means 'far from'?",
+          "options": [
+            "بَعِيدٌ عَنْ",
+            "قَرِيبٌ مِنْ",
+            "مُنْذُ",
+            "إِلَى"
+          ],
+          "answer": "بَعِيدٌ عَنْ",
+          "accepted": [
+            "بَعِيدٌ عَنْ",
+            "بعيد عن",
+            "ba3eedun 3an"
+          ],
+          "too_formal": {
+            "item": "بَعِيد كْتِير عَن",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بَعِيدٌ takes عَنْ; قَرِيبٌ takes مِنْ."
+        },
+        {
+          "id": "unit-02.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'هُنَا / تَسْكُنُ / مُنْذُ / مَتَى'.",
+          "answer": "مُنْذُ مَتَى تَسْكُنُ هُنَا",
+          "accepted": [
+            "مُنْذُ مَتَى تَسْكُنُ هُنَا",
+            "منذ متى تسكن هنا",
+            "mundhu mataa taskunu hunaa"
+          ],
+          "too_formal": {
+            "item": "مِنِ امْتَى سَاكِن هْنِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The question word comes after مُنْذُ."
+        },
+        {
+          "id": "unit-02.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'شَقَّة / فِي / أَسْكُنُ'.",
+          "answer": "أَسْكُنُ فِي شَقَّة",
+          "accepted": [
+            "أَسْكُنُ فِي شَقَّة",
+            "أسكن في شقة",
+            "askunu fee shaqqa"
+          ],
+          "too_formal": {
+            "item": "سَاكِن بِشَقَّة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Verb, then فِي, then the place."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "my-house-is-big",
+          "arabic": "بَيْتِي كَبِير",
+          "transliteration": "baytee kabeer"
+        },
+        {
+          "slot": "our-house-is-old",
+          "arabic": "بَيْتُنَا قَدِيم",
+          "transliteration": "baytunaa qadeem"
+        },
+        {
+          "slot": "the-flat-is-new",
+          "arabic": "الشَّقَّةُ جَدِيدَة",
+          "transliteration": "ash-shaqqatu jadeeda"
+        },
+        {
+          "slot": "the-house-is-beautiful",
+          "arabic": "الْبَيْتُ جَمِيل",
+          "transliteration": "al-baytu jameel"
+        },
+        {
+          "slot": "the-living-room-is-spacious",
+          "arabic": "غُرْفَةُ الْجُلُوسِ وَاسِعَة",
+          "transliteration": "ghurfatu al-juloosi waasi3a"
+        },
+        {
+          "slot": "the-flat-is-bright",
+          "arabic": "الشَّقَّةُ مُضِيئَة",
+          "transliteration": "ash-shaqqatu mudee2a"
+        },
+        {
+          "slot": "the-street-is-quiet",
+          "arabic": "الشَّارِعُ هَادِئ",
+          "transliteration": "ash-shaari3u haadi2"
+        },
+        {
+          "slot": "how-many-floors-does-your-house-have-to-a-man",
+          "arabic": "كَمْ طَابِقًا فِي بَيْتِكَ؟",
+          "transliteration": "kam taabiqan fee baytika?",
+          "reply": {
+            "arabic": "فِي بَيْتِي طَابِقَان",
+            "transliteration": "fee baytee taabiqaan",
+            "english": "My house has two floors."
+          }
+        },
+        {
+          "slot": "how-many-rooms-does-the-flat-have",
+          "arabic": "كَمْ غُرْفَةً فِي الشَّقَّة؟",
+          "transliteration": "kam ghurfatan fee ash-shaqqa?",
+          "reply": {
+            "arabic": "فِيهَا ثَلَاثُ غُرَف",
+            "transliteration": "feehaa thalaathu ghuraf",
+            "english": "It has three rooms."
+          }
+        },
+        {
+          "slot": "we-have-a-small-garden",
+          "arabic": "عِنْدَنَا حَدِيقَةٌ صَغِيرَة",
+          "transliteration": "3indanaa 7adeeqatun sagheera"
+        },
+        {
+          "slot": "we-sit-on-the-roof",
+          "arabic": "نَجْلِسُ عَلَى السَّطْح",
+          "transliteration": "najlisu 3alaa as-sat7"
+        },
+        {
+          "slot": "the-market-is-near-my-house",
+          "arabic": "السُّوقُ قَرِيبٌ مِنْ بَيْتِي",
+          "transliteration": "as-sooqu qareebun min baytee"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ahmad",
+          "arabic": "لَيْلَى، هَلْ بَيْتُكُمُ الْجَدِيدُ كَبِير؟",
+          "transliteration": "Layla, hal baytukumu al-jadeedu kabeer?",
+          "english": "Layla, is your new house big?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "نَعَمْ يَا أَحْمَد، بَيْتُنَا كَبِيرٌ وَجَمِيل.",
+          "transliteration": "na3am yaa A7mad, baytunaa kabeerun wa jameel.",
+          "english": "Yes, Ahmad, our house is big and beautiful."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "كَمْ طَابِقًا فِيهِ؟",
+          "transliteration": "kam taabiqan feehi?",
+          "english": "How many floors does it have?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "فِيهِ طَابِقَانِ. وَعِنْدَنَا حَدِيقَةٌ صَغِيرَة.",
+          "transliteration": "feehi taabiqaani. wa 3indanaa 7adeeqatun sagheera.",
+          "english": "It has two floors. And we have a small garden."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "كَمْ غُرْفَةً فِي الْبَيْت؟",
+          "transliteration": "kam ghurfatan fee al-bayt?",
+          "english": "How many rooms are in the house?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "فِيهِ خَمْسُ غُرَفٍ وَمَطْبَخٌ وَاسِعٌ وَشُرْفَة.",
+          "transliteration": "feehi khamsu ghurafin wa matbakhun waasi3un wa shurfa.",
+          "english": "It has five rooms, a spacious kitchen and a balcony."
+        },
+        {
+          "speaker": "Mother",
+          "arabic": "يَا لَيْلَى، هَلْ غُرْفَتُكِ مُضِيئَة؟",
+          "transliteration": "yaa Layla, hal ghurfatuki mudee2a?",
+          "english": "Layla, is your room bright?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "نَعَمْ يَا أُمِّي، النَّافِذَةُ كَبِيرَة وَالْغُرْفَةُ مُضِيئَة.",
+          "transliteration": "na3am yaa ummee, an-naafidhatu kabeera wal-ghurfatu mudee2a.",
+          "english": "Yes, Mum, the window is big and the room is bright."
+        },
+        {
+          "speaker": "Mother",
+          "arabic": "أَحْمَد، تَعَالَ. اُنْظُرْ إِلَى السَّطْح.",
+          "transliteration": "A7mad, ta3aala. unzur ilaa as-sat7.",
+          "english": "Ahmad, come. Look at the roof."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "مَا أَجْمَلَ الْمَنْظَر!",
+          "transliteration": "maa ajmala al-manzar!",
+          "english": "What a beautiful view!"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "وَالشَّارِعُ هَادِئ. السُّوقُ قَرِيبٌ مِنَ الْبَيْت.",
+          "transliteration": "wash-shaari3u haadi2. as-sooqu qareebun mina al-bayt.",
+          "english": "And the street is quiet. The market is near the house."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "بَيْتٌ جَمِيلٌ جِدًّا! مَبْرُوك.",
+          "transliteration": "baytun jameelun jiddan! mabrook.",
+          "english": "A very beautiful house! Congratulations."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "بَارَكَ اللَّهُ فِيكَ.",
+          "transliteration": "baaraka allaahu feeka.",
+          "english": "May God bless you."
+        },
+        {
+          "speaker": "Mother",
+          "arabic": "تَفَضَّلْ يَا أَحْمَد، الشَّايُ جَاهِز.",
+          "transliteration": "tafaddal yaa A7mad, ash-shaayu jaahiz.",
+          "english": "Please, Ahmad, the tea is ready."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كَمْ طَابِقًا فِي بَيْتِكَ؟",
+            "transliteration": "kam taabiqan fee baytika?",
+            "english": "How many floors does your house have?"
+          },
+          "response": {
+            "arabic": "فِي بَيْتِي طَابِقَان.",
+            "transliteration": "fee baytee taabiqaan.",
+            "english": "My house has two floors."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ بَيْتُكُمْ كَبِير؟",
+            "transliteration": "hal baytukum kabeer?",
+            "english": "Is your house big?"
+          },
+          "response": {
+            "arabic": "لَا، بَيْتُنَا صَغِيرٌ لَكِنَّهُ جَمِيل.",
+            "transliteration": "laa, baytunaa sagheerun lakinnahu jameel.",
+            "english": "No, our house is small but it is beautiful."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلِ الْغُرْفَةُ مُضِيئَة؟",
+            "transliteration": "hali al-ghurfatu mudee2a?",
+            "english": "Is the room bright?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، فِيهَا نَافِذَةٌ كَبِيرَة.",
+            "transliteration": "na3am, feehaa naafidhatun kabeera.",
+            "english": "Yes, it has a big window."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ عِنْدَكُمْ حَدِيقَة؟",
+            "transliteration": "hal 3indakum 7adeeqa?",
+            "english": "Do you have a garden?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، عِنْدَنَا حَدِيقَةٌ جَمِيلَة.",
+            "transliteration": "na3am, 3indanaa 7adeeqatun jameela.",
+            "english": "Yes, we have a beautiful garden."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلِ السُّوقُ قَرِيبٌ مِنْ بَيْتِكَ؟",
+            "transliteration": "halis-sooqu qareebun min baytika?",
+            "english": "Is the market near your house?"
+          },
+          "response": {
+            "arabic": "لَا، هُوَ بَعِيدٌ قَلِيلًا.",
+            "transliteration": "laa, huwa ba3eedun qaleelan.",
+            "english": "No, it is a little far."
+          }
+        }
+      ],
+      "culture": "A guest compliments a home with مَا أَجْمَلَ بَيْتَكُمْ, 'how beautiful your home is', and the host answers بَارَكَ اللَّهُ فِيكَ. Flat roofs are common in Arab cities, and families often sit on them in the summer evenings.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks you (a man): 'كَمْ طَابِقًا فِي بَيْتِكَ؟' Say there are two floors.",
+          "answer": "فِي بَيْتِي طَابِقَان",
+          "accepted": [
+            "فِي بَيْتِي طَابِقَان",
+            "في بيتي طابقان",
+            "fee baytee taabiqaan"
+          ],
+          "too_formal": {
+            "item": "عِنْدِي دَوْرَيْن",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "طَابِقَان is 'two floors'; two is shown by a special ending, not by a number word."
+        },
+        {
+          "id": "unit-02.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: 'هَلْ عِنْدَكُمْ حَدِيقَة؟' Say yes, a small garden.",
+          "answer": "نَعَمْ، عِنْدَنَا حَدِيقَةٌ صَغِيرَة",
+          "accepted": [
+            "نَعَمْ، عِنْدَنَا حَدِيقَةٌ صَغِيرَة",
+            "نعم، عندنا حديقة صغيرة",
+            "na3am, 3indanaa 7adeeqatun sagheera"
+          ],
+          "too_formal": {
+            "item": "إِيه، عِنَّا جِنِينَة صَغِيرَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عِنْدَنَا means 'we have' (literally 'at us')."
+        },
+        {
+          "id": "unit-02.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'بَيْتِي _____.' (My house is big.)",
+          "answer": "كَبِير",
+          "accepted": [
+            "كَبِير",
+            "كبير",
+            "kabeer"
+          ],
+          "too_formal": {
+            "item": "كْبِير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The describing word follows the thing described."
+        },
+        {
+          "id": "unit-02.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'السُّوقُ _____ مِنْ بَيْتِي.' (The market is near my house.)",
+          "answer": "قَرِيبٌ",
+          "accepted": [
+            "قَرِيبٌ",
+            "قريب",
+            "qareebun"
+          ],
+          "too_formal": {
+            "item": "قَرِيب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "قَرِيبٌ takes مِنْ; بَعِيدٌ takes عَنْ."
+        },
+        {
+          "id": "unit-02.lesson-06.fill_blank.03",
+          "type": "fill_blank",
+          "prompt": "Complete: 'كَمْ _____ فِي الشَّقَّة؟' (How many rooms are in the flat?)",
+          "answer": "غُرْفَةً",
+          "accepted": [
+            "غُرْفَةً",
+            "غرفة",
+            "ghurfatan"
+          ],
+          "too_formal": {
+            "item": "كَام أُوضَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "After كَمْ the thing counted is singular."
+        },
+        {
+          "id": "unit-02.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'The flat is bright.'",
+          "answer": "الشَّقَّةُ مُضِيئَة",
+          "accepted": [
+            "الشَّقَّةُ مُضِيئَة",
+            "الشقة مضيئة",
+            "ash-shaqqatu mudee2a"
+          ],
+          "too_formal": {
+            "item": "الشَّقَّة مْنَوَّرَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مُضِيئَة ends in ـة because شَقَّة is feminine."
+        },
+        {
+          "id": "unit-02.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'The street is quiet.'",
+          "answer": "الشَّارِعُ هَادِئ",
+          "accepted": [
+            "الشَّارِعُ هَادِئ",
+            "الشارع هادئ",
+            "ash-shaari3u haadi2"
+          ],
+          "too_formal": {
+            "item": "الشَّارِع هَادِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَادِئ is quiet or calm."
+        },
+        {
+          "id": "unit-02.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'We sit on the roof.'",
+          "answer": "نَجْلِسُ عَلَى السَّطْح",
+          "accepted": [
+            "نَجْلِسُ عَلَى السَّطْح",
+            "نجلس على السطح",
+            "najlisu 3alaa as-sat7"
+          ],
+          "too_formal": {
+            "item": "بْنِقْعُد عَالسَّطْح",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "نَجْلِسُ is 'we sit'; عَلَى is 'on'."
+        },
+        {
+          "id": "unit-02.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'roof'?",
+          "options": [
+            "سَطْح",
+            "بَاب",
+            "نَافِذَة",
+            "حَدِيقَة"
+          ],
+          "answer": "سَطْح",
+          "accepted": [
+            "سَطْح",
+            "سطح",
+            "sat7"
+          ],
+          "too_formal": {
+            "item": "السُّطُوح",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بَاب is a door; نَافِذَة is a window."
+        },
+        {
+          "id": "unit-02.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means 'The house is old'?",
+          "options": [
+            "الْبَيْتُ قَدِيم",
+            "الْبَيْتُ جَدِيد",
+            "الْبَيْتُ كَبِير",
+            "الْبَيْتُ جَمِيل"
+          ],
+          "answer": "الْبَيْتُ قَدِيم",
+          "accepted": [
+            "الْبَيْتُ قَدِيم",
+            "البيت قديم",
+            "al-baytu qadeem"
+          ],
+          "too_formal": {
+            "item": "الْبَيْت قْدِيم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "قَدِيم is old; جَدِيد is new."
+        },
+        {
+          "id": "unit-02.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'كَبِير / بَيْتِي'.",
+          "answer": "بَيْتِي كَبِير",
+          "accepted": [
+            "بَيْتِي كَبِير",
+            "بيتي كبير",
+            "baytee kabeer"
+          ],
+          "too_formal": {
+            "item": "بَيْتِي كْبِير",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Name the house first, then describe it."
+        },
+        {
+          "id": "unit-02.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'غُرْفَةُ / وَاسِعَة / الْجُلُوسِ'.",
+          "answer": "غُرْفَةُ الْجُلُوسِ وَاسِعَة",
+          "accepted": [
+            "غُرْفَةُ الْجُلُوسِ وَاسِعَة",
+            "غرفة الجلوس واسعة",
+            "ghurfatu al-juloosi waasi3a"
+          ],
+          "too_formal": {
+            "item": "أُوضَة الْقَعْدَة وَاسْعَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "غُرْفَةُ الْجُلُوسِ is one name, 'living room'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-07",
+      "phrases": [
+        {
+          "slot": "this-is-the-living-room",
+          "arabic": "هَذِهِ غُرْفَةُ الْجُلُوس",
+          "transliteration": "haathihi ghurfatu al-juloos"
+        },
+        {
+          "slot": "where-is-the-kitchen",
+          "arabic": "أَيْنَ الْمَطْبَخ؟",
+          "transliteration": "ayna al-matbakh?",
+          "reply": {
+            "arabic": "الْمَطْبَخُ بِجَانِبِ غُرْفَةِ الْجُلُوس",
+            "transliteration": "al-matbakhu bijaanibi ghurfati al-juloos",
+            "english": "The kitchen is next to the living room."
+          }
+        },
+        {
+          "slot": "this-is-my-bedroom",
+          "arabic": "هَذِهِ غُرْفَةُ نَوْمِي",
+          "transliteration": "haathihi ghurfatu nawmee"
+        },
+        {
+          "slot": "where-is-the-bathroom",
+          "arabic": "أَيْنَ الْحَمَّام؟",
+          "transliteration": "ayna al-7ammaam?",
+          "reply": {
+            "arabic": "الْحَمَّامُ عَلَى الْيَمِين",
+            "transliteration": "al-7ammaamu 3alaa al-yameen",
+            "english": "The bathroom is on the right."
+          }
+        },
+        {
+          "slot": "go-to-the-garden-to-a-man",
+          "arabic": "اِذْهَبْ إِلَى الْحَدِيقَة",
+          "transliteration": "idhhab ilaa al-7adeeqa"
+        },
+        {
+          "slot": "the-guest-room-is-ready",
+          "arabic": "غُرْفَةُ الضُّيُوفِ جَاهِزَة",
+          "transliteration": "ghurfatu ad-duyoofi jaahiza"
+        },
+        {
+          "slot": "the-bedrooms-are-upstairs",
+          "arabic": "غُرَفُ النَّوْمِ فِي الطَّابِقِ الْعُلْوِيّ",
+          "transliteration": "ghurafu an-nawmi fee at-taabiqi al-3ulwiyy"
+        },
+        {
+          "slot": "where-are-the-stairs",
+          "arabic": "أَيْنَ الدَّرَج؟",
+          "transliteration": "ayna ad-daraj?",
+          "reply": {
+            "arabic": "الدَّرَجُ خَلْفَ الْبَاب",
+            "transliteration": "ad-daraju khalfa al-baab",
+            "english": "The stairs are behind the door."
+          }
+        },
+        {
+          "slot": "the-living-room-is-downstairs",
+          "arabic": "غُرْفَةُ الْجُلُوسِ فِي الطَّابِقِ الْأَرْضِيّ",
+          "transliteration": "ghurfatu al-juloosi fee at-taabiqi al-ardiyy"
+        },
+        {
+          "slot": "the-balcony-is-next-to-the-bedroom",
+          "arabic": "الشُّرْفَةُ بِجَانِبِ غُرْفَةِ النَّوْم",
+          "transliteration": "ash-shurfatu bijaanibi ghurfati an-nawm"
+        },
+        {
+          "slot": "lets-go-up-to-the-roof",
+          "arabic": "هَيَّا نَصْعَدْ إِلَى السَّطْح",
+          "transliteration": "hayyaa nas3ad ilaa as-sat7",
+          "reply": {
+            "arabic": "فِكْرَةٌ جَيِّدَة",
+            "transliteration": "fikratun jayyida",
+            "english": "Good idea."
+          }
+        },
+        {
+          "slot": "the-door-is-closed",
+          "arabic": "الْبَابُ مُغْلَق",
+          "transliteration": "al-baabu mughlaq"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ahmad",
+          "arabic": "أَهْلًا وَسَهْلًا يَا خَالِد. هَذَا بَيْتُنَا.",
+          "transliteration": "ahlan wa sahlan yaa Khaalid. haathaa baytunaa.",
+          "english": "Welcome, Khalid. This is our house."
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "this-is-the-living-room"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "غُرْفَةُ الْجُلُوسِ جَمِيلَة.",
+          "transliteration": "ghurfatu al-juloosi jameela.",
+          "english": "The living room is beautiful."
+        },
+        {
+          "speaker": "Mother",
+          "arabic": "أَهْلًا بِكَ يَا خَالِد.",
+          "transliteration": "ahlan bika yaa Khaalid.",
+          "english": "Welcome, Khalid."
+        },
+        {
+          "speaker": "Mother",
+          "slot": "the-guest-room-is-ready"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "شُكْرًا يَا أُمَّ أَحْمَد.",
+          "transliteration": "shukran yaa umma A7mad.",
+          "english": "Thank you, Umm Ahmad."
+        },
+        {
+          "speaker": "Khalid",
+          "slot": "where-is-the-bathroom"
+        },
+        {
+          "speaker": "Layla",
+          "slot": "where-is-the-bathroom",
+          "reply": true
+        },
+        {
+          "speaker": "Khalid",
+          "slot": "where-are-the-stairs"
+        },
+        {
+          "speaker": "Layla",
+          "slot": "where-are-the-stairs",
+          "reply": true
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "the-bedrooms-are-upstairs"
+        },
+        {
+          "speaker": "Layla",
+          "slot": "lets-go-up-to-the-roof"
+        },
+        {
+          "speaker": "Khalid",
+          "slot": "lets-go-up-to-the-roof",
+          "reply": true
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "the-door-is-closed"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "الْمِفْتَاحُ مَعِي.",
+          "transliteration": "al-miftaa7u ma3ee.",
+          "english": "I have the key."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَيْنَ الْمَطْبَخ؟",
+            "transliteration": "ayna al-matbakh?",
+            "english": "Where is the kitchen?"
+          },
+          "response": {
+            "arabic": "الْمَطْبَخُ بِجَانِبِ غُرْفَةِ الْجُلُوس.",
+            "transliteration": "al-matbakhu bijaanibi ghurfati al-juloos.",
+            "english": "The kitchen is next to the living room."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْنَ الْحَمَّام؟",
+            "transliteration": "ayna al-7ammaam?",
+            "english": "Where is the bathroom?"
+          },
+          "response": {
+            "arabic": "الْحَمَّامُ عَلَى الْيَمِين.",
+            "transliteration": "al-7ammaamu 3alaa al-yameen.",
+            "english": "The bathroom is on the right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ غُرْفَةُ الضُّيُوفِ جَاهِزَة؟",
+            "transliteration": "hal ghurfatu ad-duyoofi jaahiza?",
+            "english": "Is the guest room ready?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، هِيَ جَاهِزَة.",
+            "transliteration": "na3am, hiya jaahiza.",
+            "english": "Yes, it is ready."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْنَ غُرْفَةُ نَوْمِكَ؟",
+            "transliteration": "ayna ghurfatu nawmika?",
+            "english": "Where is your bedroom? (to a man)"
+          },
+          "response": {
+            "arabic": "غُرْفَةُ نَوْمِي فِي الطَّابِقِ الْعُلْوِيّ.",
+            "transliteration": "ghurfatu nawmee fee at-taabiqi al-3ulwiyy.",
+            "english": "My bedroom is on the upper floor."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَيَّا نَذْهَبْ إِلَى الْحَدِيقَة.",
+            "transliteration": "hayyaa nadhhab ilaa al-7adeeqa.",
+            "english": "Let us go to the garden."
+          },
+          "response": {
+            "arabic": "فِكْرَةٌ جَيِّدَة.",
+            "transliteration": "fikratun jayyida.",
+            "english": "Good idea."
+          }
+        }
+      ],
+      "culture": "Many Arab homes keep a separate guest room, غُرْفَةُ الضُّيُوف, and a host often shows a visitor into it or the living room first, before the rest of the house. A flat roof, سَطْح, is used for hanging washing and for sitting out on summer evenings.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-07.reply.01",
+          "type": "reply",
+          "prompt": "A guest asks: 'أَيْنَ الْحَمَّام؟' Tell him it is on the right.",
+          "answer": "الْحَمَّامُ عَلَى الْيَمِين",
+          "accepted": [
+            "الْحَمَّامُ عَلَى الْيَمِين",
+            "الحمام على اليمين",
+            "al-7ammaamu 3alaa al-yameen"
+          ],
+          "too_formal": {
+            "item": "الْحَمَّام عَ الْيَمِين",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَلَى الْيَمِين means on the right; عَلَى الْيَسَار means on the left."
+        },
+        {
+          "id": "unit-02.lesson-07.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: 'أَيْنَ الدَّرَج؟' Say the stairs are behind the door.",
+          "answer": "الدَّرَجُ خَلْفَ الْبَاب",
+          "accepted": [
+            "الدَّرَجُ خَلْفَ الْبَاب",
+            "الدرج خلف الباب",
+            "ad-daraju khalfa al-baab"
+          ],
+          "too_formal": {
+            "item": "الدَّرَج وَرَا الْبَاب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "خَلْفَ means behind."
+        },
+        {
+          "id": "unit-02.lesson-07.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الْمَطْبَخُ _____ غُرْفَةِ الْجُلُوس.' (The kitchen is next to the living room.)",
+          "answer": "بِجَانِبِ",
+          "accepted": [
+            "بِجَانِبِ",
+            "بجانب",
+            "bijaanibi"
+          ],
+          "too_formal": {
+            "item": "جَنْب",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "بِجَانِبِ ends in a kasra because it follows the preposition بِ."
+        },
+        {
+          "id": "unit-02.lesson-07.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: 'غُرْفَةُ _____ جَاهِزَة.' (The guest room is ready.)",
+          "answer": "الضُّيُوفِ",
+          "accepted": [
+            "الضُّيُوفِ",
+            "الضيوف",
+            "ad-duyoofi"
+          ],
+          "too_formal": {
+            "item": "الضِّيَافَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الضُّيُوف is the plural of ضَيْف, a guest."
+        },
+        {
+          "id": "unit-02.lesson-07.fill_blank.03",
+          "type": "fill_blank",
+          "prompt": "Complete: 'هَيَّا نَصْعَدْ إِلَى _____.' (Let us go up to the roof.)",
+          "answer": "السَّطْح",
+          "accepted": [
+            "السَّطْح",
+            "السطح",
+            "as-sat7"
+          ],
+          "too_formal": {
+            "item": "السَّطِح",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "سَطْح is the flat roof you can walk on."
+        },
+        {
+          "id": "unit-02.lesson-07.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'The living room is downstairs.'",
+          "answer": "غُرْفَةُ الْجُلُوسِ فِي الطَّابِقِ الْأَرْضِيّ",
+          "accepted": [
+            "غُرْفَةُ الْجُلُوسِ فِي الطَّابِقِ الْأَرْضِيّ",
+            "غرفة الجلوس في الطابق الأرضي",
+            "ghurfatu al-juloosi fee at-taabiqi al-ardiyy"
+          ],
+          "too_formal": {
+            "item": "غُرْفَة الْقَعْدَة تَحْت",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "الطَّابِق الْأَرْضِيّ is the ground floor; الطَّابِق الْعُلْوِيّ is the upper floor."
+        },
+        {
+          "id": "unit-02.lesson-07.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Where is the kitchen?'",
+          "answer": "أَيْنَ الْمَطْبَخ",
+          "accepted": [
+            "أَيْنَ الْمَطْبَخ",
+            "أين المطبخ",
+            "ayna al-matbakh"
+          ],
+          "too_formal": {
+            "item": "وَيْن الْمَطْبَخ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَيْنَ opens the question and the thing asked about follows."
+        },
+        {
+          "id": "unit-02.lesson-07.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'This is my bedroom.'",
+          "answer": "هَذِهِ غُرْفَةُ نَوْمِي",
+          "accepted": [
+            "هَذِهِ غُرْفَةُ نَوْمِي",
+            "هذه غرفة نومي",
+            "haathihi ghurfatu nawmee"
+          ],
+          "too_formal": {
+            "item": "هَيْدِي أُوضَة نَوْمِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هَذِهِ is 'this' for a feminine thing, and غُرْفَة is feminine."
+        },
+        {
+          "id": "unit-02.lesson-07.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'roof'?",
+          "options": [
+            "سَطْح",
+            "دَرَج",
+            "شُرْفَة",
+            "حَدِيقَة"
+          ],
+          "answer": "سَطْح",
+          "accepted": [
+            "سَطْح",
+            "سطح",
+            "sat7"
+          ],
+          "too_formal": {
+            "item": "سَطِح",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "سَطْح is the roof; دَرَج is the stairs."
+        },
+        {
+          "id": "unit-02.lesson-07.choose.02",
+          "type": "choose",
+          "prompt": "Which word means 'balcony'?",
+          "options": [
+            "شُرْفَة",
+            "نَافِذَة",
+            "بَاب",
+            "مَمَرّ"
+          ],
+          "answer": "شُرْفَة",
+          "accepted": [
+            "شُرْفَة",
+            "شرفة",
+            "shurfa"
+          ],
+          "too_formal": {
+            "item": "بَلْكُونَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "شُرْفَة is the balcony; مَمَرّ is the corridor."
+        },
+        {
+          "id": "unit-02.lesson-07.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الْمَطْبَخ / أَيْنَ'.",
+          "answer": "أَيْنَ الْمَطْبَخ",
+          "accepted": [
+            "أَيْنَ الْمَطْبَخ",
+            "أين المطبخ",
+            "ayna al-matbakh"
+          ],
+          "too_formal": {
+            "item": "وَيْن الْمَطْبَخ",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The question word comes first."
+        },
+        {
+          "id": "unit-02.lesson-07.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'النَّوْمِ / الشُّرْفَةُ / بِجَانِبِ / غُرْفَةِ'.",
+          "answer": "الشُّرْفَةُ بِجَانِبِ غُرْفَةِ النَّوْم",
+          "accepted": [
+            "الشُّرْفَةُ بِجَانِبِ غُرْفَةِ النَّوْم",
+            "الشرفة بجانب غرفة النوم",
+            "ash-shurfatu bijaanibi ghurfati an-nawm"
+          ],
+          "too_formal": {
+            "item": "الْبَلْكُونَة جَنْب أُوضَة النَّوْم",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "Name the place first, then where it is."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-08",
+      "phrases": [
+        {
+          "slot": "there-is-a-bed-in-the-room",
+          "arabic": "هُنَاكَ سَرِيرٌ فِي الْغُرْفَة",
+          "transliteration": "hunaaka sareerun fee al-ghurfa"
+        },
+        {
+          "slot": "the-sofa-is-comfortable",
+          "arabic": "الْأَرِيكَةُ مُرِيحَة",
+          "transliteration": "al-areekatu muree7a"
+        },
+        {
+          "slot": "where-is-the-remote-control",
+          "arabic": "أَيْنَ جِهَازُ التَّحَكُّم؟",
+          "transliteration": "ayna jihaazu at-ta7akkum?",
+          "reply": {
+            "arabic": "هُوَ بِجَانِبِ التِّلْفَاز",
+            "transliteration": "huwa bijaanibi at-tilfaaz",
+            "english": "It is next to the television."
+          }
+        },
+        {
+          "slot": "where-is-the-key",
+          "arabic": "أَيْنَ الْمِفْتَاح؟",
+          "transliteration": "ayna al-miftaa7?",
+          "reply": {
+            "arabic": "الْمِفْتَاحُ عَلَى الطَّاوِلَة",
+            "transliteration": "al-miftaa7u 3alaa at-taawila",
+            "english": "The key is on the table."
+          }
+        },
+        {
+          "slot": "switch-on-the-light-to-a-man",
+          "arabic": "شَغِّلِ الضَّوْء",
+          "transliteration": "shaghghili ad-daw2"
+        },
+        {
+          "slot": "switch-off-the-light-to-a-man",
+          "arabic": "أَطْفِئِ الضَّوْء",
+          "transliteration": "atfi2i ad-daw2"
+        },
+        {
+          "slot": "open-the-window-to-a-man",
+          "arabic": "اِفْتَحِ النَّافِذَة",
+          "transliteration": "ifta7i an-naafidha",
+          "reply": {
+            "arabic": "حَاضِر",
+            "transliteration": "7aadir",
+            "english": "Right away."
+          }
+        },
+        {
+          "slot": "close-the-window-to-a-man",
+          "arabic": "أَغْلِقِ النَّافِذَة",
+          "transliteration": "aghliqi an-naafidha"
+        },
+        {
+          "slot": "i-need-a-blanket",
+          "arabic": "أَحْتَاجُ إِلَى بَطَّانِيَّة",
+          "transliteration": "a7taaju ilaa battaaniyya",
+          "reply": {
+            "arabic": "سَأُحْضِرُهَا لَكَ",
+            "transliteration": "sa2u7diruhaa laka",
+            "english": "I will bring it for you. (to a man)"
+          }
+        },
+        {
+          "slot": "the-washing-machine-does-not-work",
+          "arabic": "الْغَسَّالَةُ لَا تَعْمَل",
+          "transliteration": "al-ghassaalatu laa ta3mal"
+        },
+        {
+          "slot": "switch-on-the-fan-to-a-man",
+          "arabic": "شَغِّلِ الْمِرْوَحَة",
+          "transliteration": "shaghghili al-mirwa7a"
+        },
+        {
+          "slot": "the-mirror-is-next-to-the-door",
+          "arabic": "الْمِرْآةُ بِجَانِبِ الْبَاب",
+          "transliteration": "al-mir2aatu bijaanibi al-baab"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ahmad",
+          "arabic": "تَفَضَّلْ يَا خَالِد، هَذِهِ غُرْفَتُكَ.",
+          "transliteration": "tafaddal yaa Khaalid, haathihi ghurfatuka.",
+          "english": "Come in, Khalid, this is your room."
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "there-is-a-bed-in-the-room"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "هَلْ هُنَاكَ مِرْآةٌ فِي الْغُرْفَة؟",
+          "transliteration": "hal hunaaka mir2aatun fee al-ghurfa?",
+          "english": "Is there a mirror in the room?"
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "the-mirror-is-next-to-the-door"
+        },
+        {
+          "speaker": "Khalid",
+          "slot": "i-need-a-blanket"
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "i-need-a-blanket",
+          "reply": true
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "شَغِّلِ الْمِرْوَحَة مِنْ فَضْلِكَ.",
+          "transliteration": "shaghghili al-mirwa7a min fadlika.",
+          "english": "Switch on the fan, please."
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "open-the-window-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Layla",
+          "slot": "where-is-the-remote-control"
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "where-is-the-remote-control",
+          "reply": true
+        },
+        {
+          "speaker": "Mother",
+          "arabic": "يَا لَيْلَى، الْغَسَّالَةُ لَا تَعْمَل.",
+          "transliteration": "yaa Layla, al-ghassaalatu laa ta3mal.",
+          "english": "Layla, the washing machine does not work."
+        },
+        {
+          "speaker": "Layla",
+          "slot": "where-is-the-key"
+        },
+        {
+          "speaker": "Mother",
+          "slot": "where-is-the-key",
+          "reply": true
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "تُصْبِحُ عَلَى خَيْر يَا أَحْمَد.",
+          "transliteration": "tusbi7u 3alaa khayr yaa A7mad.",
+          "english": "Good night, Ahmad."
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "وَأَنْتَ مِنْ أَهْلِ الْخَيْر.",
+          "transliteration": "wa anta min ahli al-khayr.",
+          "english": "And you too."
+        },
+        {
+          "speaker": "Mother",
+          "slot": "switch-off-the-light-to-a-man"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَيْنَ الْمِفْتَاح؟",
+            "transliteration": "ayna al-miftaa7?",
+            "english": "Where is the key?"
+          },
+          "response": {
+            "arabic": "الْمِفْتَاحُ عَلَى الطَّاوِلَة.",
+            "transliteration": "al-miftaa7u 3alaa at-taawila.",
+            "english": "The key is on the table."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْنَ جِهَازُ التَّحَكُّم؟",
+            "transliteration": "ayna jihaazu at-ta7akkum?",
+            "english": "Where is the remote control?"
+          },
+          "response": {
+            "arabic": "هُوَ بِجَانِبِ التِّلْفَاز.",
+            "transliteration": "huwa bijaanibi at-tilfaaz.",
+            "english": "It is next to the television."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَحْتَاجُ إِلَى بَطَّانِيَّة.",
+            "transliteration": "a7taaju ilaa battaaniyya.",
+            "english": "I need a blanket."
+          },
+          "response": {
+            "arabic": "سَأُحْضِرُهَا لَكَ.",
+            "transliteration": "sa2u7diruhaa laka.",
+            "english": "I will bring it for you. (to a man)"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "اِفْتَحِ النَّافِذَة.",
+            "transliteration": "ifta7i an-naafidha.",
+            "english": "Open the window. (to a man)"
+          },
+          "response": {
+            "arabic": "حَاضِر.",
+            "transliteration": "7aadir.",
+            "english": "Right away."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَلْ هُنَاكَ مِرْآةٌ فِي الْغُرْفَة؟",
+            "transliteration": "hal hunaaka mir2aatun fee al-ghurfa?",
+            "english": "Is there a mirror in the room?"
+          },
+          "response": {
+            "arabic": "نَعَمْ، بِجَانِبِ الْخِزَانَة.",
+            "transliteration": "na3am, bijaanibi al-khizaana.",
+            "english": "Yes, next to the wardrobe."
+          }
+        }
+      ],
+      "culture": "A Fusha-speaking host often asks a guest هَلْ تَحْتَاجُ إِلَى شَيْء؟, 'Do you need anything?', and the guest is welcome to ask for a blanket or a fan. In many Arab homes the television sits in the living room, where the family gathers in the evening.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-08.reply.01",
+          "type": "reply",
+          "prompt": "Your host asks: 'هَلْ تَحْتَاجُ إِلَى شَيْء؟' Say you need a blanket.",
+          "answer": "أَحْتَاجُ إِلَى بَطَّانِيَّة",
+          "accepted": [
+            "أَحْتَاجُ إِلَى بَطَّانِيَّة",
+            "أحتاج إلى بطانية",
+            "a7taaju ilaa battaaniyya"
+          ],
+          "too_formal": {
+            "item": "بِدِّي بَطَّانِيَّة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَحْتَاجُ إِلَى means 'I need'."
+        },
+        {
+          "id": "unit-02.lesson-08.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: 'أَيْنَ الْمِفْتَاح؟' Say it is on the table.",
+          "answer": "الْمِفْتَاحُ عَلَى الطَّاوِلَة",
+          "accepted": [
+            "الْمِفْتَاحُ عَلَى الطَّاوِلَة",
+            "المفتاح على الطاولة",
+            "al-miftaa7u 3alaa at-taawila"
+          ],
+          "too_formal": {
+            "item": "الْمِفْتَاح عَالطَّاوْلَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "عَلَى means on."
+        },
+        {
+          "id": "unit-02.lesson-08.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: 'شَغِّلِ _____.' (Switch on the fan.)",
+          "answer": "الْمِرْوَحَة",
+          "accepted": [
+            "الْمِرْوَحَة",
+            "المروحة",
+            "al-mirwa7a"
+          ],
+          "too_formal": {
+            "item": "الْمَرْوَحَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "شَغِّلْ is the command 'switch on' for a machine or a light."
+        },
+        {
+          "id": "unit-02.lesson-08.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: '_____ سَرِيرٌ فِي الْغُرْفَة.' (There is a bed in the room.)",
+          "answer": "هُنَاكَ",
+          "accepted": [
+            "هُنَاكَ",
+            "هناك",
+            "hunaaka"
+          ],
+          "too_formal": {
+            "item": "فِي",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "هُنَاكَ means 'there is' and the thing follows it."
+        },
+        {
+          "id": "unit-02.lesson-08.fill_blank.03",
+          "type": "fill_blank",
+          "prompt": "Complete: 'الْغَسَّالَةُ لَا _____.' (The washing machine does not work.)",
+          "answer": "تَعْمَل",
+          "accepted": [
+            "تَعْمَل",
+            "تعمل",
+            "ta3mal"
+          ],
+          "too_formal": {
+            "item": "تَشْتَغِل",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "تَعْمَل is 'it works', and لَا before it makes it 'does not work'."
+        },
+        {
+          "id": "unit-02.lesson-08.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Switch off the light.' (to a man)",
+          "answer": "أَطْفِئِ الضَّوْء",
+          "accepted": [
+            "أَطْفِئِ الضَّوْء",
+            "أطفئ الضوء",
+            "atfi2i ad-daw2"
+          ],
+          "too_formal": {
+            "item": "طَفِّي النُّور",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "أَطْفِئْ is 'switch off'; شَغِّلْ is 'switch on'."
+        },
+        {
+          "id": "unit-02.lesson-08.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'Open the window.' (to a man)",
+          "answer": "اِفْتَحِ النَّافِذَة",
+          "accepted": [
+            "اِفْتَحِ النَّافِذَة",
+            "افتح النافذة",
+            "ifta7i an-naafidha"
+          ],
+          "too_formal": {
+            "item": "اِفْتَحْ الشُّبَّاك",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "اِفْتَحْ is 'open' and أَغْلِقْ is 'close'."
+        },
+        {
+          "id": "unit-02.lesson-08.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Fusha: 'The sofa is comfortable.'",
+          "answer": "الْأَرِيكَةُ مُرِيحَة",
+          "accepted": [
+            "الْأَرِيكَةُ مُرِيحَة",
+            "الأريكة مريحة",
+            "al-areekatu muree7a"
+          ],
+          "too_formal": {
+            "item": "الْكَنَبَة مُرِيحَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مُرِيحَة is the feminine form because أَرِيكَة is feminine."
+        },
+        {
+          "id": "unit-02.lesson-08.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'mirror'?",
+          "options": [
+            "مِرْآة",
+            "سَجَّادَة",
+            "مِرْوَحَة",
+            "سَاعَة حَائِط"
+          ],
+          "answer": "مِرْآة",
+          "accepted": [
+            "مِرْآة",
+            "مرآة",
+            "mir2aa"
+          ],
+          "too_formal": {
+            "item": "مَرَايَة",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "مِرْآة is the mirror and مِرْوَحَة is the fan."
+        },
+        {
+          "id": "unit-02.lesson-08.choose.02",
+          "type": "choose",
+          "prompt": "Which word means 'carpet'?",
+          "options": [
+            "سَجَّادَة",
+            "وِسَادَة",
+            "سَتَائِر",
+            "طَاوِلَة"
+          ],
+          "answer": "سَجَّادَة",
+          "accepted": [
+            "سَجَّادَة",
+            "سجادة",
+            "sajjaada"
+          ],
+          "too_formal": {
+            "item": "بِسَاط",
+            "feedback": "also a real word for a rug, but this lesson practises سَجَّادَة"
+          },
+          "tip": "سَجَّادَة is the carpet and وِسَادَة is the pillow."
+        },
+        {
+          "id": "unit-02.lesson-08.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'الضَّوْء / شَغِّلِ'.",
+          "answer": "شَغِّلِ الضَّوْء",
+          "accepted": [
+            "شَغِّلِ الضَّوْء",
+            "شغل الضوء",
+            "shaghghili ad-daw2"
+          ],
+          "too_formal": {
+            "item": "شَغِّل النُّور",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "The command comes first."
+        },
+        {
+          "id": "unit-02.lesson-08.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: 'التَّحَكُّم / أَيْنَ / جِهَازُ'.",
+          "answer": "أَيْنَ جِهَازُ التَّحَكُّم",
+          "accepted": [
+            "أَيْنَ جِهَازُ التَّحَكُّم",
+            "أين جهاز التحكم",
+            "ayna jihaazu at-ta7akkum"
+          ],
+          "too_formal": {
+            "item": "وَيْن الرِّيمُوت",
+            "feedback": "spoken, not Fusha"
+          },
+          "tip": "جِهَازُ التَّحَكُّم is 'the remote control'."
+        }
+      ]
     }
   ],
   "challenge": {

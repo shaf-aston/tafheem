@@ -19,9 +19,10 @@ import re
 from functools import lru_cache
 
 from backend.config import data_path
+from backend.services.colloquial.knobs import knob
 
 FILE = "words.json"
-SIZE = 8  # one round of match pairs, and enough that the words half of a tile is not thin
+GROUPS = "groups.json"
 _ARABIC = re.compile(r"[؀-ۿ]")
 _NOT_ARABIC = re.compile(r"[^؀-ۿ\s/]")
 
@@ -34,6 +35,12 @@ def _read(path) -> dict:
 def meanings() -> dict:
     """Every meaning by id: {"english", "group"}."""
     return _read(data_path("colloquial_dir") / FILE)
+
+
+@lru_cache(maxsize=1)
+def groups() -> set[str]:
+    """Every heading a word may sit under; a word naming any other is a typo or a new heading to list first."""
+    return set(json.loads((data_path("colloquial_dir") / GROUPS).read_text(encoding="utf-8"))["groups"])
 
 
 def said_in(folder: str) -> dict:
@@ -51,12 +58,13 @@ def text(words: dict, about: str = "") -> str:
 def outline_faults(spine: list[dict], known: dict) -> list[str]:
     """The meanings and the spine's word lists, checked against each other."""
     said, used = [], set()
+    least = knob("least-topic-words")
     for unit in spine:
         for lesson in unit["lessons"]:
             ids = lesson.get("words") or []
             where = f"spine {unit['unit']} {lesson['lesson']}"
-            if ids and len(ids) < SIZE:
-                said.append(f"{where} teaches {len(ids)} words, fewer than {SIZE}")
+            if ids and len(ids) < least:
+                said.append(f"{where} teaches {len(ids)} words, fewer than {least}")
             said += [f"{where} teaches {one!r} twice" for one in sorted({i for i in ids if ids.count(i) > 1})]
             said += [f"{where} teaches {one!r}, which {FILE} does not have" for one in ids if one not in known]
             used.update(ids)
@@ -65,6 +73,8 @@ def outline_faults(spine: list[dict], known: dict) -> list[str]:
             said.append(f"{FILE} {one!r} has no english or no group")
         elif _ARABIC.search(meaning["english"]):
             said.append(f"{FILE} {one!r} has Arabic letters in its English")
+        elif meaning["group"] not in groups():
+            said.append(f"{FILE} {one!r} has the group {meaning['group']!r}, which {GROUPS} does not list")
         if one not in used:
             said.append(f"{FILE} {one!r} is taught by no topic")
     return said
@@ -82,7 +92,7 @@ def _word_faults(word: dict, where: str) -> list[str]:
     if _NOT_ARABIC.search(arabic):
         said.append(f"{where} has a non-Arabic letter in its Arabic: {arabic!r}")
     forms = arabic.split("/")
-    if any(len(form.split()) > 2 for form in forms):
+    if any(len(form.split()) > knob("most-word-parts") for form in forms):
         said.append(f"{where} is a phrase, not a word: {arabic!r}")
     if len(spelling.split("/")) != len(forms):
         said.append(f"{where} has {len(forms)} forms in Arabic but not in its transliteration")

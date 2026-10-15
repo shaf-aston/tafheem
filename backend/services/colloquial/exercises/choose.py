@@ -12,10 +12,9 @@ from typing import Literal
 from pydantic import BaseModel
 
 from backend.services.colloquial.exercises import base
+from backend.services.colloquial.knobs import knob
 
 TYPES = ("choose",)
-# Fewer than this and the guess is half right by chance, which teaches nothing.
-LEAST_OPTIONS = 3
 
 
 class PictureOption(BaseModel):
@@ -36,22 +35,21 @@ class Choose(base.Exercise):
     # the other and the renderer asks which once.
     options: list[str | PictureOption]
 
+    def rules(self) -> list[str]:
+        said = super().rules()
+        least = knob("least-options")
+        if len(self.options) < least:
+            return said + [f"offers fewer than {least} options"]
+        labels = [one.label if isinstance(one, PictureOption) else one for one in self.options]
+        if any(not label.strip() for label in labels):
+            said.append("has an empty option, which cannot be chosen")
+        for dup in sorted({label for label in labels if labels.count(label) > 1}):
+            # Two identical options make one of them wrong for no reason a learner
+            # can see.
+            said.append(f"offers the option {dup!r} twice")
+        if self.answer not in labels:
+            said.append("has an answer that is not one of its options")
+        return said
 
-PAYLOADS = {"choose": Choose}
 
-
-def faults(exercise: dict) -> list[str]:
-    options = exercise.get("options")
-    if not isinstance(options, list) or len(options) < LEAST_OPTIONS:
-        return [f"offers fewer than {LEAST_OPTIONS} options"]
-    said = []
-    labels = [one["label"] if isinstance(one, dict) else one for one in options]
-    if any(not str(label or "").strip() for label in labels):
-        said.append("has an empty option, which cannot be chosen")
-    for dup in sorted({label for label in labels if labels.count(label) > 1}):
-        # Two identical options make one of them wrong for no reason a learner
-        # can see.
-        said.append(f"offers the option {dup!r} twice")
-    if exercise.get("answer") not in labels:
-        said.append("has an answer that is not one of its options")
-    return said
+MODELS = (Choose,)

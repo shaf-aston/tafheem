@@ -3,27 +3,13 @@
     python -m backend.scripts.check_colloquial_unit <dialect-folder> <unit-NN>
 
 Prints "ok" or every fault, so a unit can be fixed before it is added to dialects.json.
+The check itself is loader.unit_faults.
 """
-import json
 import sys
 
-from backend.config import data_path
-from backend.services.colloquial import loader, wordlist
-
-
-def faults(folder: str, name: str, written: dict | None = None, words: dict | None = None) -> list[str]:
-    """written and words: the unit and the dialect's words as they would be saved, to check
-    them before they are; default the files on disk."""
-    root = data_path("colloquial_dir")
-    spine = json.loads((root / "spine.json").read_text(encoding="utf-8"))["units"]
-    if written is None:
-        written = json.loads((root / folder / f"{name}.json").read_text(encoding="utf-8"))
-    outline = next(one for one in spine if one["unit"] == name)
-    unit, said = loader._fill(outline, written, wordlist.said_in(folder) if words is None else words)
-    return said + loader._unit_faults(unit)
-
+from backend.services.colloquial import loader
 
 if __name__ == "__main__":
-    found = faults(*sys.argv[1:3])
+    found = loader.unit_faults(*sys.argv[1:3])
     print("\n".join(found) or "ok")
     sys.exit(1 if found else 0)

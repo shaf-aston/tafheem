@@ -15,10 +15,12 @@ const named = (piece) => piece.role && (piece.detail ? `${piece.role} (${piece.d
 const said = (node) =>
   [node.label, pieces(node)?.map(named).filter(Boolean).join(' + ') ?? named(node)].filter(Boolean).join(': ') || GAP
 
-/** The diagram as text: one line per word or joined unit, outermost first. */
-function structureLines(words, node, depth = 0) {
-  const line = `${'  '.repeat(depth)}${span(node).map((i) => words[i]).join(' ')} = ${said(node)}`
-  return [line, ...(kids(node) ?? []).flatMap((kid) => structureLines(words, kid, depth + 1))]
+/** The diagram as text: one line per word or joined unit, outermost first. The
+    pieces of one written word print joined (فَسَوَّىٰهُنَّ), as it is written. */
+function structureLines({ words, written }, node, depth = 0) {
+  const cols = span(node)
+  const text = cols.map((i, k) => (k && written && written[i] === written[cols[k - 1]] ? '' : ' ') + words[i]).join('').trim()
+  return [`${'  '.repeat(depth)}${text} = ${said(node)}`, ...(kids(node) ?? []).flatMap((kid) => structureLines({ words, written }, kid, depth + 1))]
 }
 
 export function buildIraabExportText(data) {
@@ -35,6 +37,6 @@ export function buildIraabExportText(data) {
     if (w.book) lines.push(`  Book: ${w.book}`)
     lines.push('')
   }
-  if (data.tree?.tree) lines.push('Structure:', ...structureLines(data.tree.words, data.tree.tree))
+  if (data.tree?.tree) lines.push('Structure:', ...structureLines(data.tree, data.tree.tree))
   return lines.join('\n')
 }

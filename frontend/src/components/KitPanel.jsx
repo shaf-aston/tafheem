@@ -1,7 +1,7 @@
 /**
  * The kit: every token and every element, drawn from the live code.
  *
- * Reached at /app?tab=kit and listed nowhere (the tab is `hidden`). Tokens are
+ * Reached at /app/kit and listed nowhere (the tab is `hidden`). Tokens are
  * read from theme.json, so a new one appears here with no edit to this file;
  * the elements are the real ui/ primitives, so a restyle shows here the moment
  * it lands. The token names printed beside each element are written by hand
@@ -346,7 +346,7 @@ export default function KitPanel({ accent }) {
       <h2 className="text-sm font-semibold text-[var(--text-dim)]">Elements</h2>
       <Elements accent={accent} />
 
-      <h2 className="text-sm font-semibold text-[var(--text-dim)]">Motion</h2>
+      {/* No "Motion" heading: the card's own title says it. */}
       <Motion />
     </div>
   )

@@ -26,6 +26,11 @@ _WORD_RE = re.compile(r"\b\w+\b")
 _MIN_INDEX_WORD_LEN = 2
 
 
+def folded(text: str) -> str:
+    """The letters a search matches on (see _folded), for a caller comparing a result with what was typed."""
+    return _folded(text)
+
+
 def _folded(text: str) -> str:
     """The letters a search is matched on: marks gone, every hamza an alif.
 
@@ -74,16 +79,26 @@ def load_dictionary() -> None:
 
 
 def search_arabic(query: str, limit: int = 10) -> list[dict]:
-    """Find entries by Arabic word, root, or partial match (diacritic-insensitive)."""
+    """Find entries by Arabic word, the word it is a form of, its root, or partial match (diacritic-insensitive)."""
+    return search_arabic_read(query, limit)[0]
+
+
+def search_arabic_read(query: str, limit: int = 10) -> tuple[list[dict], tuple[str, str] | None]:
+    """search_arabic, and the (lemma, root) it was read as when the word as typed is no headword.
+
+    مُنْتَصِرًا is in no dictionary; مُنْتَصِر may be, and its root نصر is. The
+    reading is said, so the page can tell the reader which word it looked up.
+    """
     load_dictionary()
     key = strip_diacritics(query.strip())
     if not key:
-        return []
+        return [], None
     started = time.perf_counter()
+    entries, reading = _arabic_matches(query.strip(), limit)
     # A fresh list each time: the caller owns what it gets, the cache keeps its own.
-    found = [_with_synonym_meanings(entry) for entry in _arabic_matches(key, limit)]
+    found = [_with_synonym_meanings(entry) for entry in entries]
     _log_timing("arabic", key, len(found), started)
-    return found
+    return found, reading
 
 
 def search_english(query: str, limit: int = 10) -> list[dict]:
@@ -217,6 +232,55 @@ def is_loaded() -> bool:
 # handed over by another tab, from simply searching twice. A second search cannot
 # find anything a first did not, so it is not searched a second time.
 #
+def is_root(letters: str) -> bool:
+    """Whether the dictionary files any entry under the root `letters`."""
+    load_dictionary()
+    key = _folded(letters)
+    return bool(key) and any(_folded(entry.get("root") or "") == key for entry in _arabic_index.get(key, ()))
+
+
+def headword_roots(word: str) -> list[str]:
+    """The roots the headwords spelled like `word` are filed under; [] when it is no headword."""
+    load_dictionary()
+    key = _folded(strip_diacritics(word.strip()))
+    return list(dict.fromkeys(entry["root"] for entry in _arabic_index.get(key, ())
+                              if entry.get("root") and _folded(entry.get("arabic", "")) == key))
+
+
+def _by_reading(word: str) -> tuple[list[dict], tuple[str, str] | None]:
+    """Entries for the words `word` is a form of, then for their roots, likeliest reading first.
+
+    The readings come from services/roots.py, the one place every tab asks for
+    a root, so a word the grammar tabs can place is a word the dictionary finds.
+    """
+    from backend.services import roots as root_finder  # it asks this module back
+
+    read = root_finder.readings(word)
+    spelt = [lemma for lemma, _ in read]  # as written: آتى (give) before أتى (come), which fold alike
+    lemmas: list[str] = []
+    for lemma in spelt:
+        if (folded := _folded(lemma)) not in lemmas:
+            lemmas.append(folded)
+    found = [entry for lemma in lemmas for entry in _arabic_index.get(lemma, ())]
+    # The roots of the words found first, then the readings' own.
+    roots = list(dict.fromkeys(r for e in found if (r := e.get("root") or "")))
+    roots += [r for _, r in read if r and _folded(r) not in {_folded(x) for x in roots}]
+    found += [entry for root in roots for entry in _arabic_index.get(_folded(root), ())]
+    if not found:
+        return [], None
+
+    def rank(entry: dict) -> tuple[int, int]:
+        word_itself = _folded(entry.get("arabic", ""))
+        if word_itself in lemmas:  # the word it is a form of, likeliest first
+            return lemmas.index(word_itself), strip_diacritics(entry.get("arabic", "")) not in spelt
+        return len(lemmas) + (word_itself not in {_folded(r) for r in roots}), 0  # then the root's own verb
+
+    ordered = sorted(_dedupe(found), key=rank)
+    lead = ordered[0]
+    shown = strip_diacritics(lead.get("arabic", "")) if rank(lead)[0] < len(lemmas) else ""
+    return ordered, (shown, lead.get("root") or (roots[0] if roots else ""))
+
+
 # Both fallbacks below test every key in the index and stop once they hold more
 # candidates than the answer can use. A one-letter query matches thousands of
 # keys, and collecting them all spent a fifth of a second choosing the same ten
@@ -224,13 +288,20 @@ def is_loaded() -> bool:
 # function costs a call on each of 26,000 keys, which measured slower than the
 # duplication saves.
 @lru_cache(maxsize=_CACHE_SIZE)
-def _arabic_matches(key: str, limit: int) -> tuple[dict, ...]:
+def _arabic_matches(typed: str, limit: int) -> tuple[tuple[dict, ...], tuple[str, str] | None]:
     # Looked up folded, so أخذ and اخذ are one search and both answer with the
     # whole أخذ family. Which spelling was typed decides the order, not what is
     # found: ranking below puts the word as written first.
+    key = strip_diacritics(typed)
     folded = _folded(key)
     results = _arabic_index.get(folded)
+    reading = None
     if not results:
+        # Not a headword: the word it is a form of, before any word that merely
+        # holds its letters. The typed vowels go along, they choose the reading.
+        results, reading = _by_reading(typed)
+        if results:
+            return tuple(results[:limit]), reading
         settings = get_settings()
         ceiling, shortest = settings.dictionary_fuzzy_candidates, settings.dictionary_fuzzy_min_key
         results = []
@@ -248,7 +319,7 @@ def _arabic_matches(key: str, limit: int) -> tuple[dict, ...]:
     # answered with أكتب and إكتاب and never showed the word that was typed.
     ordered = sorted(_dedupe(results), key=lambda e: (
         strip_diacritics(e.get("arabic", "")) != key, _folded(e.get("arabic", "")) != folded))
-    return tuple(ordered[:limit])
+    return tuple(ordered[:limit]), reading
 
 
 @lru_cache(maxsize=_CACHE_SIZE)

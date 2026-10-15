@@ -5,8 +5,8 @@ the parser is fed letters only and the same links come back for both.
 """
 
 from backend.services import harakat
-from backend.services.syntax import naming, tree
-from tests.test_naming import roles, token
+from backend.services.syntax import tree
+from tests.test_naming import named, roles, token
 from tests.test_syntax_tree import built
 
 VERB = dict(vox="a", asp="p")
@@ -131,7 +131,7 @@ def test_a_kasra_before_hamzat_al_wasl_is_the_paused_sukun():
 def test_a_command_moved_to_kasra_is_still_built_on_the_sukun():
     toks = [token(1, "اكتب", "كتب", "VRB", 0, "---", vox="a", asp="i"),
             token(2, "الدرس", "درس", "NOM", 1, "OBJ", stt="d", cas="a")]
-    found = naming.roles(["اُكْتُبِ", "الدَّرْسَ"], toks)
+    found = named(["اُكْتُبِ", "الدَّرْسَ"], toks)
     assert [w["role"] for w in found] == ["فعل", "مفعول به"]
     assert found[0]["case"] == "mabni" and found[0]["aspect"] == "c"
 

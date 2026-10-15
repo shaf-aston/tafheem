@@ -1,6 +1,13 @@
 # Vercel serves only the frontend; the Python backend runs on the PC behind the tunnel.
 # Without this, requirements.txt makes Vercel build a Python app and fail on its size.
-backend/
+# Except the chain words, which the page builds in (lib/hadithWords.js). A file under an
+# ignored folder comes back only when each folder above it is let back in first.
+backend/*
+!backend/data
+backend/data/*
+!backend/data/hadith
+backend/data/hadith/*
+!backend/data/hadith/chain.json
 tests/
 tunnel/
 deploy/

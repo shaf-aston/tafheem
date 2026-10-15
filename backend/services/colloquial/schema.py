@@ -1,22 +1,18 @@
 """What the colloquial routes return.
 
-Here rather than in models/schemas.py because an exercise's shape is defined by
-its own type module, and the union below is assembled from the registry: a new
-exercise type must not mean editing a shared schemas file, or the promise that a
+Here rather than in backend/models/ because an exercise's shape is defined by
+its own type module, and the union (AnyExercise) is assembled in the exercise registry: a new
+exercise type must not mean editing a shared types file, or the promise that a
 type is one file and one registry line is not true.
 """
 from __future__ import annotations
 
-from typing import Annotated, Literal, Union
+from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
-from backend.models.schemas import Source
-from backend.services.colloquial.exercises.registry import PAYLOADS
-
-# One model per exercise type, told apart by the `type` field, so every kind
-# keeps its real shape in the response and in the docs instead of a loose dict.
-AnyExercise = Annotated[Union[tuple(PAYLOADS.values())], Field(discriminator="type")]
+from backend.models.common import Source
+from backend.services.colloquial.exercises.registry import AnyExercise
 
 
 class Word(BaseModel):
@@ -68,12 +64,13 @@ class Lesson(BaseModel):
     # A heading shared with its neighbours, only in units long enough to need one.
     section: str | None = None
     written: Literal[True] = True
-    phrases: list[Phrase]
-    dialogue: list[DialogueLine]
+    # A topic that is only a word list has just its vocabulary.
+    phrases: list[Phrase] = []
+    dialogue: list[DialogueLine] = []
     de_book: list[Drill] = []
     vocabulary: list[VocabWord] = []
-    culture: str
-    exercises: list[AnyExercise]
+    culture: str = ""
+    exercises: list[AnyExercise] = []
 
 
 class Challenge(BaseModel):
@@ -93,8 +90,15 @@ class Unit(BaseModel):
     # for, so the spelling is never a mystery.
     transliteration_key: dict[str, str]
     lessons: list[Lesson | ComingLesson]
-    challenge: Challenge
+    challenge: Challenge | None = None
     source: Source
+
+
+class Cover(BaseModel):
+    """The phrase a unit's card opens with: said aloud, with its picture."""
+    arabic: str
+    english: str
+    image: str
 
 
 class UnitCard(BaseModel):
@@ -104,6 +108,8 @@ class UnitCard(BaseModel):
     # False while the dialect has not written this spine unit yet: shown as coming.
     written: bool
     lessons: list[dict]
+    # None while no phrase in the unit has a picture: the card shows its title only.
+    cover: Cover | None = None
 
 
 class DialectCard(BaseModel):

@@ -12,7 +12,7 @@ from functools import lru_cache
 from fastapi import APIRouter
 
 from backend.config import data_path
-from backend.models.schemas import GrowPath
+from backend.models.grow import GrowPath
 
 router = APIRouter(prefix="/api/grow", tags=["grow"])
 
@@ -20,7 +20,7 @@ router = APIRouter(prefix="/api/grow", tags=["grow"])
 @lru_cache(maxsize=1)
 def paths() -> list[GrowPath]:
     """Every path, in the order the page offers them. Read once."""
-    raw = json.loads(data_path("grow_path_path").read_text(encoding="utf-8"))
+    raw = json.loads(data_path("grow_paths_path").read_text(encoding="utf-8"))
     return [GrowPath(**path) for path in raw["paths"]]
 
 

@@ -2,6 +2,7 @@
 // Built from the unit already loaded, so it adds no request.
 import { useState } from 'react'
 
+import settings from '../../colloquial.json'
 import ArabicText from '../ui/ArabicText'
 import BottomSheet from '../ui/BottomSheet'
 import CloseButton from '../ui/CloseButton'
@@ -22,12 +23,19 @@ function unique(rows) {
 const phrasesOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((l) => l.phrases.flatMap((p) => [p, p.reply])))
 const wordsOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((l) => l.vocabulary ?? []))
 
+// A heading needs this many words in the list; a word whose category has fewer joins the heading before it.
+const MIN_UNDER_HEADING = settings['least-under-heading']
+
 // Rows under their category heading, in the order written; uncategorised rows sit under none.
 function grouped(rows) {
+  const size = new Map()
+  for (const r of rows) size.set(r.category ?? '', (size.get(r.category ?? '') ?? 0) + 1)
   const by = new Map()
+  let heading = ''
   for (const r of rows) {
-    const key = r.category ?? ''
-    by.set(key, [...(by.get(key) ?? []), r])
+    const own = r.category ?? ''
+    heading = size.get(own) < MIN_UNDER_HEADING && heading ? heading : own
+    by.set(heading, [...(by.get(heading) ?? []), r])
   }
   return [...by]
 }
@@ -75,11 +83,12 @@ export default function WordBank({ unit, at = null }) {
   const topic = at === null ? null : unit.lessons[at]
   const lessons = whole || !topic ? unit.lessons : [topic]
   const words = wordsOf(lessons)
+  const phrases = phrasesOf(lessons)
   const [show, setShow] = useState('words')
-  const rows = show === 'words' && words.length > 0 ? words : phrasesOf(lessons)
+  const rows = show === 'words' && words.length > 0 ? words : phrases
   const scope = (words.length > 0 || topic) && (
     <div className="space-y-2">
-      {words.length > 0 && (
+      {words.length > 0 && phrases.length > 0 && (
         <Segmented label="Word bank kind" accent="var(--primary)" value={show} onChange={setShow}
           options={[{ id: 'words', label: 'Words' }, { id: 'phrases', label: 'Phrases' }]} />
       )}

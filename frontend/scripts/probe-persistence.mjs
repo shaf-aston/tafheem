@@ -23,7 +23,7 @@ const page = await browser.newPage()
 page.on('pageerror', (e) => problems.push(`page error: ${e.message}`))
 
 // ── Nahw: which of the two views ─────────────────────────────────────────────
-await page.goto(`${APP}/?tab=nahw`)
+await page.goto(`${APP}/app/nahw`)
 await page.getByRole('button', { name: /I'raab/ }).click()
 await page.waitForSelector('#iraab-input')
 await page.reload()
@@ -36,7 +36,7 @@ await page.reload()
 check('nahw view back to tarkeeb', await pressed(page, 'How close to look at the sentence', 'Tarkeeb'), 'true')
 
 // ── Quiz: the setup, not the round ───────────────────────────────────────────
-await page.goto(`${APP}/?tab=quiz`)
+await page.goto(`${APP}/app/quiz`)
 await openSettings(page)
 await page.getByRole('button', { name: 'EN → AR' }).click()
 await page.keyboard.press('Escape')
@@ -82,7 +82,7 @@ check('best streak read back', /best 7/.test(await page.locator('body').innerTex
 // history looks like after a week and what the row got wrong: a pill grew to fit
 // its own letters, so the Arabic ones stood at twice the height of the English
 // ones, and a word asked on two days was kept as two records and drawn twice.
-await page.goto(`${APP}/?tab=dict`)
+await page.goto(`${APP}/app/dict`)
 await page.evaluate(() => localStorage.setItem('progress:dict-history', JSON.stringify(
   ['مدرسة', 'spirit', 'food', 'كتب', 'روح', 'food', 'ن-ص-ر']
     .map((q, at) => ({ q, at })))))
@@ -100,7 +100,7 @@ check('the same word twice is one chip', chips.words.filter((w) => w === 'food')
 check('nothing spills out of a chip', chips.spilling, 0)
 
 // Back to the quiz, which is the tab the clearing below reads its answer from.
-await page.goto(`${APP}/?tab=quiz`)
+await page.goto(`${APP}/app/quiz`)
 await page.waitForSelector('[role="group"][aria-label="Words"]')
 
 // ── The one button that forgets it all, and does not do it by accident ───────

@@ -18,7 +18,7 @@ const check = (what, got, want) => {
 const ready = (page) => page.getByText('Backend Ready').waitFor({ timeout: 20000 })
 
 const onWord = (page, word) =>
-  page.waitForFunction((w) => new URL(location.href).searchParams.get('q') === w, word, { timeout: 15000 })
+  page.waitForFunction((w) => (history.state?.value ?? null) === w, word, { timeout: 15000 })
 
 const search = async (page, field, word) => {
   await page.fill(field, word)
@@ -44,7 +44,7 @@ const page = await (await chromium.launch()).newPage()
 const errors = []
 page.on('pageerror', (e) => errors.push(e.message))
 
-await page.goto(`${APP}/?tab=dict`, { waitUntil: 'networkidle' })
+await page.goto(`${APP}/app/dict`, { waitUntil: 'networkidle' })
 await ready(page)
 await search(page, '#dict-input', 'كتب')
 await search(page, '#dict-input', 'book')
@@ -72,30 +72,30 @@ await ready(page)
 check('reload on an earlier step keeps what is ahead', await steps(page), 'كتب:here book:ahead')
 
 // 4. A pasted link is a new place after the current one; what was ahead goes.
-await page.goto(`${APP}/?tab=dict&q=%D8%B3%D8%B7%D8%B1`, { waitUntil: 'networkidle' })
+await page.goto(`${APP}/app/dict?q=%D8%B3%D8%B7%D8%B1`, { waitUntil: 'networkidle' })
 await ready(page)
 check('a pasted link joins the path', await steps(page), 'كتب:past سطر:here')
 
 // 5. Another tab, then back to this one from the strip with nothing in hand:
 //    it opens on the word it was on.
 await page.locator('#tab-daleel').click()
-await page.waitForFunction(() => new URL(location.href).searchParams.get('tab') === 'daleel')
-check('daleel opens blank, it has no last word', new URL(page.url()).searchParams.get('q'), null)
+await page.waitForFunction(() => location.pathname.split('/')[2] === 'daleel')
+check('daleel opens blank, it has no last word', await page.evaluate(() => history.state?.value ?? null), null)
 await page.locator('#tab-dict').click()
 await onWord(page, 'سطر')
 check('the dictionary reopens on its last word', await page.locator('#dict-input').inputValue(), 'سطر')
 check('and the return is drawn once, not twice', await steps(page), 'كتب:past سطر:here')
 
 // 5b. A bare address, the way a bookmark opens: the tab's last word, not a blank.
-await page.goto(`${APP}/?tab=dict`, { waitUntil: 'networkidle' })
+await page.goto(`${APP}/app/dict`, { waitUntil: 'networkidle' })
 await ready(page)
 check('a bare address opens on the last word', await page.locator('#dict-input').inputValue(), 'سطر')
-check('and the address now says so', new URL(page.url()).searchParams.get('q'), 'سطر')
+check('and the address now says so', await page.evaluate(() => history.state?.value ?? null), 'سطر')
 
 // 5c. The app's own address, no tab at all: where the reader last was.
-await page.goto(`${APP}/`, { waitUntil: 'networkidle' })
+await page.goto(`${APP}/app`, { waitUntil: 'networkidle' })
 await ready(page)
-check('the root address opens on the last tab', new URL(page.url()).searchParams.get('tab'), 'dict')
+check('the root address opens on the last tab', new URL(page.url()).pathname.split('/')[2], 'dict')
 check('and its last word', await page.locator('#dict-input').inputValue(), 'سطر')
 
 // 6. A path older than its shelf life is not yours any more.

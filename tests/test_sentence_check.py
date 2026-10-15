@@ -107,6 +107,7 @@ def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
     monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
     progress_store.reset_connection()
+    progress_store.sign_up("amina")
     yield
     progress_store.reset_connection()
 

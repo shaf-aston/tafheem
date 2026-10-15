@@ -31,7 +31,7 @@ from fastapi import APIRouter, File, HTTPException, Query, Request, Response, Up
 from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
-from backend.models.schemas import Heard, HeardAyah, HeardPlace, Sureness, TextSureness
+from backend.models.listen import Heard, HeardAyah, HeardPlace, Sureness, TextSureness
 from backend.services import journal, recitation
 from backend.services.recitation import NotInstalled, Unreadable
 from backend.services.recitation.recording import kind_of
@@ -44,6 +44,7 @@ AYAH_KEY = re.compile("[0-9]{1,3}:[0-9]{1,3}")
 # A reading id, the page's own or one made here: letters, digits, and the few
 # separators an id reasonably has. Anything else is ignored rather than
 # trusted, since it flows straight into a log line.
+READING_HEADER = "X-Reading-Id"
 READING_ID = re.compile("[A-Za-z0-9._:-]{1,64}")
 
 # One recitation read at a time on this machine, and none that nobody is
@@ -84,7 +85,7 @@ def is_audio(body: bytes) -> bool:
 def _reading_id(request: Request) -> str:
     """The id this reading is filed under: the page's own, when it sent one and
     it is shaped like an id, otherwise one made here."""
-    given = request.headers.get("x-reading-id", "")
+    given = request.headers.get(READING_HEADER, "")
     if given and READING_ID.fullmatch(given):
         return given
     return uuid.uuid4().hex[:16]
@@ -101,7 +102,7 @@ class _Filed:
         self.id = _reading_id(request)
         self.name = name
         self.started = time.perf_counter()
-        response.headers["X-Reading-Id"] = self.id
+        response.headers[READING_HEADER] = self.id
 
     def done(self, status: int) -> None:
         ms = round((time.perf_counter() - self.started) * 1000)
@@ -122,7 +123,7 @@ class _Filed:
             traceback=journal.scrub("".join(traceback.format_exception(exc))) if exc else "",
         )
         self.done(status)
-        return HTTPException(status_code=status, detail=detail, headers={"X-Reading-Id": self.id})
+        return HTTPException(status_code=status, detail=detail, headers={READING_HEADER: self.id})
 
 
 @contextmanager

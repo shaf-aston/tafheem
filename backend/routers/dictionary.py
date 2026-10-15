@@ -7,22 +7,22 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import (
-    Correction,
+from backend.models.common import Correction
+from backend.models.dictionary import (
     DictionaryEntry,
     DictionaryResponse,
     EntryLine,
     LexiconEntry,
     LexiconsResponse,
+    ReadAs,
     RootEntryEnglishResponse,
     RootEntryLinesResponse,
     RootMeaning,
     RootMeaningResponse,
     SentenceResponse,
     SentenceWord,
-    Source,
-    VerbVerdict,
 )
+from backend.models.morphology import VerbVerdict
 from backend.services import ai as ai_service
 from backend.services import (
     dictionary_service,
@@ -80,7 +80,11 @@ async def search_dictionary(
         raise HTTPException(status_code=400, detail="lang must be 'ar' or 'en'")
 
     # A worker thread: an uncached fuzzy search scans every headword.
-    found = await asyncio.to_thread(searcher, query)
+    reading = None
+    if language == "ar":
+        found, reading = await asyncio.to_thread(dictionary_service.search_arabic_read, query)
+    else:
+        found = await asyncio.to_thread(searcher, query)
     corrected = []
     # Nothing at all, not even inside a longer word: most likely a slip, so the
     # word it was likeliest meant to be is looked up, and the page says so.
@@ -91,9 +95,17 @@ async def search_dictionary(
         query=query,
         lang=language,
         results=[DictionaryEntry(**entry) for entry in found],
-        source=Source(**provenance.of("wiktionary")),
+        source=provenance.of("wiktionary"),
         corrected=corrected,
+        read_as=ReadAs(typed=query, lemma=reading[0], root=reading[1]) if reading else None,
+        root=reading[1] if reading else (_root_as_typed(query, found) if language == "ar" else ""),
     )
+
+
+def _root_as_typed(query: str, found: list[dict]) -> str:
+    """The root of the entry spelled as typed, or "": a result found only by sharing letters says nothing about it."""
+    typed = dictionary_service.folded(query)
+    return next((e.get("root") or "" for e in found if dictionary_service.folded(e.get("arabic", "")) == typed), "")
 
 
 
@@ -108,10 +120,10 @@ async def translate_sentence(
         query=text,
         kind=found["kind"],
         meaning=found["meaning"],
-        source=Source(**provenance.of(found["source"])) if found["source"] else None,
+        source=provenance.of(found["source"]) if found["source"] else None,
         ref=found["ref"],
         words=[SentenceWord(**w) for w in found["words"]],
-        words_source=Source(**provenance.of(found["words_source"])),
+        words_source=provenance.of(found["words_source"]),
         left_out=not_arabic(q),
     )
 
@@ -147,9 +159,9 @@ async def get_root_meaning(root: Root) -> RootMeaningResponse:
         status=state,
         book_root=entry.book_root,
         meaning=RootMeaning(**entry.meaning, rest=root_gloss.rest_of(entry.meaning)),
-        source=Source(**provenance.of(entry.source_key)),
+        source=provenance.of(entry.source_key),
         english_source=(
-            Source(**provenance.of(entry.english_source_key))
+            provenance.of(entry.english_source_key)
             if entry.english_source_key else None
         ),
     )
@@ -177,7 +189,7 @@ async def get_lexicons(root: Root) -> LexiconsResponse:
         entries=[
             LexiconEntry(
                 **{field: value for field, value in entry.items() if field != "source"},
-                source=Source(**provenance.of(entry["source"])),
+                source=provenance.of(entry["source"]),
             )
             for entry in found
         ],
@@ -245,7 +257,7 @@ async def get_root_entry_english(root: Root) -> RootEntryEnglishResponse:
         root=root,
         english=english.removeprefix(root_gloss.opening_of(english)).lstrip() or english,
         truncated=len(arabic) > get_settings().root_entry_truncate_chars,
-        source=Source(**provenance.of(source)),
+        source=provenance.of(source),
     )
 
 
@@ -276,7 +288,7 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
             root=root,
             lines=[EntryLine(arabic=a, english=e) for a, e in zip(every_line, kept)],
             truncated=False,
-            source=Source(**provenance.of("ai")),
+            source=provenance.of("ai"),
         )
 
     lines, truncated = root_gloss.line_budget(rest, get_settings().root_entry_truncate_chars)
@@ -302,5 +314,5 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
         root=root,
         lines=[EntryLine(arabic=a, english=e) for a, e in zip(lines, kept)],
         truncated=truncated,
-        source=Source(**provenance.of("ai")),
+        source=provenance.of("ai"),
     )

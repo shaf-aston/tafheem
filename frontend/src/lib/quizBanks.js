@@ -105,6 +105,19 @@ export function coverage() {
   return covering
 }
 
+/**
+ * One everyday sentence per word that has no ayah to show, keyed by the word's
+ * Arabic. Written for this quiz, not quoted from anywhere, so the card calls it
+ * an example. The word sits in {braces} inside its sentence, inflected as the
+ * sentence needs, so the card can mark it.
+ */
+export const sentencesQuery = {
+  queryKey: ['quiz-sentences'],
+  queryFn: () => fetchJson(`${WORDS_DIR}/sentences.json`).then((file) => file.sentences),
+  retry: false,
+  staleTime: Infinity,
+}
+
 /** The same per surah, only fetched when the surah list is opened. */
 let bySurah = null
 export function surahCoverage() {

@@ -21,7 +21,7 @@ from backend.main import app  # noqa: E402
 from backend.scripts import build_rijal  # noqa: E402
 from backend.services.arabic_text import strip_diacritics  # noqa: E402
 from backend.services.hadith import loader  # noqa: E402
-from backend.services.rijal import cache, parse, store  # noqa: E402
+from backend.services.hadith.rijal import cache, parse, store  # noqa: E402
 
 FIXTURES = Path(__file__).parent / "fixtures" / "rijal"
 OURS = json.loads((FIXTURES / "arabic.json").read_text(encoding="utf-8"))
@@ -70,6 +70,7 @@ def built(tmp_path, monkeypatch):
         monkeypatch.setattr(module, "data_path", paths.__getitem__)
     monkeypatch.setattr(loader, "hadiths", lambda *_: [
         {"number": int(ref[:-1]), "part": ref[-1], "arabic": arabic} for ref, arabic in OURS.items()])
+    monkeypatch.setattr(loader, "collection_name", {"muslim": "Sahih Muslim"}.get)
     cache.write(cache.book_path("muslim", 24), BOOK)
     cache.write(cache.narrator_path(6659), MALIK)
     build_rijal.build()
@@ -81,6 +82,8 @@ def test_the_book_endpoint_gives_slices_that_read_as_names(built):
     assert reply["ready"] is True and reply["source"]["key"] == "rijal"
     text = OURS["1620a"]
     assert [(strip_diacritics(text[a:b]), who) for a, b, who in reply["chains"]["1620a"]][3] == ("أبيه", 549)
+    assert built.get("/api/rijal/chains/nosuchbook/1").status_code == 404
+    assert built.get("/api/rijal/chains/muslim/999").json()["chains"] == {}   # a book of a known collection with no chains
 
 
 def test_a_narrator_sheet_carries_grade_generation_and_his_circle(built):
@@ -115,11 +118,27 @@ def test_a_name_said_again_in_the_story_lands_where_sunnah_links_it():
 
 
 def test_family_meets_the_viewed_chain():
-    from backend.services.rijal.family import meet
+    from backend.services.hadith.rijal.family import meet
     viewed = [1, 2, 3, 4]
     assert meet([9, 2], viewed) == ([9], 2, [3, 4])  # stops early, borrows the rest
     assert meet([7, 8], viewed) == ([7, 8], None, [])  # fully its own
     assert meet([5, 5, 3], [1, 3, 3, 4]) == ([5, 5], 3, [3, 4])  # a repeated narrator
+
+
+def test_the_family_endpoint_lays_each_narration_against_the_viewed_one_and_one_narration_is_404(built, monkeypatch):
+    chain = lambda *ids: [{"id": i, "name": f"n{i}"} for i in ids]  # noqa: E731
+    monkeypatch.setattr(store, "family", lambda c, n: [
+        {"part": "a", "book": 24, "narrators": chain(5085, 6659, 3122, 549, 5913), "said": "x"},
+        {"part": "b", "book": 24, "narrators": chain(777, 3122, 5913), "said": "y"}] if n == 1620 else chain(1)[:0])
+    reply = built.get("/api/rijal/family/muslim/1620", params={"part": "a"}).json()
+    ids = lambda people: [p["id"] for p in people]  # noqa: E731
+    a, b = reply["parts"]
+    assert reply["viewed"] == "a" and (ids(a["own"]), a["meet"]["id"], ids(a["borrowed"])) == ([], 5085, [6659, 3122, 549, 5913])
+    assert (ids(b["own"]), b["meet"]["id"], ids(b["borrowed"])) == ([777], 3122, [549, 5913])
+    assert "narrators" not in b
+    assert built.get("/api/rijal/family/muslim/99999999").status_code == 404
+    monkeypatch.setattr(store, "family", lambda c, n: [{"part": "", "book": 24, "narrators": chain(1), "said": ""}])
+    assert built.get("/api/rijal/family/muslim/1620").status_code == 404
 
 
 def test_the_narrator_list_ranks_by_hadith_and_filters_by_generation(built):

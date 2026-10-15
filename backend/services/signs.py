@@ -9,8 +9,8 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SHADDA, SUKUN, TANWEEN, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
-from backend.services.nahw_book import book_words, family_cards, named_roles, reason, six_noun_case, teacher_rules
+from backend.services.harakat import SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
+from backend.services.nahw_book import book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
@@ -24,7 +24,7 @@ def sign(case: str | None, kind: str = "vowel") -> str | None:
     return tables[kind].get(case) or tables["vowel"].get(case)
 
 
-def kind_of(tag: dict) -> str:
+def kind_of(tag: dict, annexed: bool) -> str:
     """Which sign table a noun's case is read from. CAMeL's number names a dual or a
     plural, unless the reader typed a tanween, which neither ever carries (غَافِلًا)."""
     word = tag.get("word", "")
@@ -35,12 +35,10 @@ def kind_of(tag: dict) -> str:
             return "sound_plural"
         if tag.get("number") == "d":
             return "dual"
-        if tag.get("number") == "p" and tag.get("gender") == "f" and tag["base"].endswith("ات"):
+        if tag.get("gender") == "f" and is_fem_plural(tag["base"], tag.get("number") or "na"):  # a masculine plural keeps its fatha (أَصْوَاتَهُمْ)
             return "fem_plural"  # المعلماتِ: nasb shows by the kasra
-        # بِمَسَاجِدَ: an indefinite word typed with a bare fatha takes no tanween, a diptote
-        # (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
-        if marked and marked[-1][1] & {"َ"} and not bare.startswith("ال") and not _has_pronoun(tag) \
-                and tag.get("case") in ("jarr", "nasb"):
+        # بِمَسَاجِدَ: a diptote, unless a مضاف إليه follows (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
+        if tag.get("case") in ("jarr", "nasb") and is_diptote(word, tag.get("pos", ""), tag.get("lemma") or "", attached=_has_pronoun(tag), annexed=annexed):
             return "diptote"
         if tag.get("enclitic") != "1s_poss" and six_noun_case(tag["base"], tag.get("lemma") or ""):
             return "six_nouns"  # أَخًا has a tanween: not a مضاف, so the vowels show
@@ -96,7 +94,7 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         return None
     if card.get("type") in ("harf", "damir"):
         return sign("mabni")  # a particle or a pronoun never shows a case of its own
-    kind = kind_of(card["camel"])
+    kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
         on = teacher_rules()["case_said"]["la_jins_on"]
@@ -123,17 +121,20 @@ def _verb(card: dict) -> dict:
     aspect = card.get("aspect")
     tense = said["tense"].get(aspect)
     if not tense:
-        return {"case": "mabni", "sign": sign("mabni"), "reason": reason(NAMED.fil)}
+        return {"sign": sign("mabni"), "reason": reason(NAMED.fil)}
     built_on = _built_on(card, aspect)
-    case = "mabni" if built_on else card["case"]  # rule_engine.verb_card settled the mood
+    case = card["case"]  # rule_engine.verb_card settled the mood, a nun of women or emphasis builds it too
     shown = _built(built_on) if built_on else _present_sign(card, case)
     state = shown if built_on else said["word"][case]
     family = _family_said(card)
-    # تُطَوَّقَ، كُتِبَ: the vowels show who is not named, so the card says so
+    # تُطَوَّقَ، كُتِبَ: the vowels show who is not named, so the card says so; the letters
+    # after the base are an attached pronoun (أُكْرِمَكَ), not the verb's
+    bare, base = strip_diacritics(card["word"]), card["camel"]["base"]
+    stuck_on = len(bare) - bare.rfind(base) - len(base) if base and base in bare else 0
     voiced = f"{tense} {said['passive']}" if aspect != "c" and (
-        card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i")) else tense
+        card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i", stuck_on)) else tense
     told = said["verb_by_family"].format(tense=voiced, state=state, **family).rstrip("، ") if family else f"{voiced} {state}"
-    return {"case": case, "sign": shown, "reason": f"{told}. {reason(tense)}"}
+    return {"sign": shown, "reason": f"{told}. {reason(tense)}"}
 
 
 def _built_on(card: dict, aspect: str) -> str | None:
@@ -142,7 +143,7 @@ def _built_on(card: dict, aspect: str) -> str | None:
     word = card["word"]
     if aspect == "p":
         return _past_ending(word)
-    nun = _nun(word)
+    nun = build_nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show
         if not _has_pronoun(card["camel"]) and strip_diacritics(word).endswith(("وا", "ا", "ي")):
@@ -169,18 +170,6 @@ def _present_sign(card: dict, case: str) -> str | None:
 
 def _dropped_weak(card: dict) -> bool:
     return drops_weak(card["camel"]["base"], card["camel"].get("weak_last"))
-
-
-def _nun(word: str) -> str | None:
-    """The nun of emphasis (لَيَنْصُرَنَّ: doubled, a fatha on it and on the letter before)
-    or of women (يَرْسُمْنَ: a sukun on the consonant before it), as typed; a bare nun,
-    a root's doubled nun (يَظُنُّ) or a long vowel's sukun (يَكُوْنَ) says neither."""
-    marked = letters(word)
-    if len(marked) < 3 or marked[-1][0] != "ن" or "َ" not in marked[-1][1]:
-        return None
-    if SHADDA in marked[-1][1]:
-        return "emphasis" if "َ" in marked[-2][1] else None
-    return "women" if SUKUN in marked[-2][1] and marked[-2][0] not in "اوي" else None
 
 
 def _past_ending(word: str) -> str:

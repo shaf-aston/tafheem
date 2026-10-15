@@ -32,9 +32,9 @@ const check = (label, ok, detail = '') => {
 // Both surfaces hold the same box now, and the launcher's stays in the page
 // while shut, so every locator here says which of the two it means.
 const bar = page.locator('.cb > .cb-field .cb-input')
-const tabOf = () => page.evaluate(() => new URL(location.href).searchParams.get('tab'))
+const tabOf = () => page.evaluate(() => location.pathname.split('/')[2])
 
-await page.goto('http://localhost:5173/?tab=nahw', { waitUntil: 'networkidle' })
+await page.goto('http://localhost:5173/app/nahw', { waitUntil: 'networkidle' })
 
 // The header is a pen and a bar now, not a title. The heading still exists for
 // a screen reader, so what is checked is the space it takes on screen: text
@@ -118,7 +118,7 @@ await page.keyboard.press('Escape')
 
 // The launcher, opened from a page that is not the first tab: it has to arrive
 // turned to where the reader already is, in that tab's colour.
-await page.goto('http://localhost:5173/?tab=daleel', { waitUntil: 'networkidle' })
+await page.goto('http://localhost:5173/app/daleel', { waitUntil: 'networkidle' })
 await page.locator('.pen-badge').click()
 await page.waitForTimeout(1400)
 check('the launcher opened', await page.locator('.sh-orbit').isVisible())

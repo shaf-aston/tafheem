@@ -10,7 +10,7 @@
  */
 import { chromium } from 'playwright'
 
-const APP = 'http://localhost:5173/?tab=quiz'
+const APP = 'http://localhost:5173/app/quiz'
 const API = 'http://localhost:8000/api/progress'
 
 const results = []

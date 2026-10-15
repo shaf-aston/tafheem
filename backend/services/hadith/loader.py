@@ -74,11 +74,11 @@ def cite_url(template: str, number: int, part: str) -> str:
 
 @_per_build([])
 def books(collection_id: str) -> list[dict]:
-    """Every book of a collection, each with how many hadiths it holds."""
+    """Every book of a collection, its English and Arabic names, and how many hadiths it holds."""
     return [
-        {"number": number, "name": name, "count": count}
-        for number, name, count in db().execute(
-            "SELECT b.number, b.name, count(h.rowid) "
+        {"number": number, "name": name, "arabic": arabic, "count": count}
+        for number, name, arabic, count in db().execute(
+            "SELECT b.number, b.name, b.arabic, count(h.rowid) "
             "FROM book b LEFT JOIN hadith h "
             "  ON h.collection_id = b.collection_id AND h.book_number = b.number "
             "WHERE b.collection_id = ? GROUP BY b.number ORDER BY b.number",
@@ -87,24 +87,38 @@ def books(collection_id: str) -> list[dict]:
     ]
 
 
+@_per_build(False, maxsize=1)
+def _keeps_in_book() -> bool:
+    """Whether this build of hadith.db holds each hadith's place in its book; one built before it was kept does not."""
+    return any(column[1] == "in_book" for column in db().execute("PRAGMA table_info(hadith)"))
+
+
 def hadiths(collection_id: str, book_number: int) -> list[dict]:
-    """Every hadith in one book, in the order sunnah.com prints them."""
+    """Every hadith in one book, in the order sunnah.com prints them. `in_book` is 0 where the build has no place for it."""
     if not is_built():
         return []
     conn = db()
     cite = cite_of(collection_id)
+    in_book = "in_book" if _keeps_in_book() else "0"
     return [
         {
             "collection": collection_id, "book": book_number, "number": number,
-            "part": part, "arabic": arabic, "english": english,
+            "part": part, "in_book": place, "arabic": arabic, "english": english,
             "grades": json.loads(grades), "cite": cite_url(cite, number, part),
         }
-        for number, part, arabic, english, grades in conn.execute(
-            "SELECT number, part, arabic, english, grades FROM hadith "
+        for number, part, place, arabic, english, grades in conn.execute(
+            f"SELECT number, part, {in_book}, arabic, english, grades FROM hadith "
             "WHERE collection_id = ? AND book_number = ? ORDER BY number, part",
             (collection_id, book_number),
         )
     ]
+
+
+def every_hadith() -> list[tuple[str, int, int, str, str]]:
+    """(collection, book number, number, part, arabic) of every hadith, in every book or none."""
+    if not is_built():
+        return []
+    return db().execute("SELECT collection_id, book_number, number, part, arabic FROM hadith").fetchall()
 
 
 def numbered(collection_id: str, number: int, part: str = "") -> tuple[int, list[tuple]]:

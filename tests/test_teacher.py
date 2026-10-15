@@ -6,14 +6,14 @@ last tests follow a gap all the way to the card and the picture.
 from backend.services import iraab, morphology
 from backend.services.nahw_book import teacher_rules as config
 from backend.services.syntax import naming, teacher, tree
-from tests.test_naming import token
+from tests.test_naming import named, token
 
 VERB = dict(vox="a", asp="p")
 
 
 def review(words, toks):
     """What the route does: name the words, then let the teacher re-read them."""
-    return teacher.review(words, toks, naming.roles(words, toks))
+    return teacher.review(words, toks, named(words, toks))
 
 
 def gapped(found):
@@ -129,8 +129,9 @@ def test_a_gap_reaches_the_picture_as_a_dashed_leaf_with_the_reason_to_hover():
 
 def test_a_head_the_teacher_dashed_stays_a_dash_in_its_unit():
     toks = [token(1, "الولد", "ولد", "NOM", 0, "---", stt="d", cas="n"),
-            token(2, "المدير", "مدير", "NOM", 1, "IDF", stt="d", cas="g")]
-    words = ["الْوَلَدِ", "الْمُدِيرِ"]
+            token(2, "المدير", "مدير", "NOM", 1, "IDF", stt="d", cas="g"),
+            token(3, "حاضر", "حاضر", "NOM", 1, "PRD", cas="n")]
+    words = ["الْوَلَدِ", "الْمُدِيرِ", "حَاضِرٌ"]
     drawn = tree.build(words, toks, review(words, toks))
     head = next(child for child in drawn["tree"]["children"] if child["word"] == 0)
     assert head["gap"] and head["role"] is None

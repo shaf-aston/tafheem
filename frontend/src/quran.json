@@ -1,0 +1,19 @@
+{
+  "_comment": "Quran tab knobs, read only by components/quran/.",
+  "_comment-first-paint-rows": "Rows drawn before the surah shows, more than fill the first screen; the rest follow in a render the browser may interrupt, so a long surah appears as fast as a short one.",
+  "first-paint-rows": 12,
+  "_comment-split": "A phone docks the study as a sheet under the surah. share is the surah's part when the sheet opens, least the smallest the sheet keeps, full the surah's part when the sheet takes the whole screen. step is how far one arrow press moves the bar; a drag ending within a step of full snaps to it.",
+  "split": {
+    "share": 0.45,
+    "least": 0.2,
+    "full": 0,
+    "step": 0.1
+  },
+  "_comment-no-touch": "Reading without touching the words. hold-ms is long enough that a tap never reads as a hold; hint-ms is how long the hint stays; a flick slows by drag per millisecond and stops below still.",
+  "no-touch": {
+    "hold-ms": 450,
+    "hint-ms": 4000,
+    "drag": 0.996,
+    "still": 0.02
+  }
+}

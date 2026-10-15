@@ -20,7 +20,11 @@
  * Pure: a string in, spans out. No React.
  */
 
-import HADITH from '../hadith.json'
+// The chain words, owned by the server's cutter (backend/services/hadith/chain.py) and built
+// into the page from the same file. This module is the page's one reader of it.
+import CHAIN from '../../../backend/data/hadith/chain.json'
+
+export { CHAIN }
 
 // The books' own speech mark, with the direction marks sunnah.com sets around
 // it. Those marks are invisible and would otherwise be printed inside the words.
@@ -55,11 +59,31 @@ function quoteMarks(text) {
     const after = text[at + 1] ?? ' '
     // A single mark between letters is an apostrophe: Allah's, Buda'ah.
     if (family === 'single' && LETTER.test(before) && LETTER.test(after)) continue
-    // A straight double mark closes the open one or opens; a straight single
-    // one opens before a word ("said: 'Indeed") and closes after one ("man.' So").
-    const opens = OPENS[ch] || (ch === '"' ? open.at(-1)?.family !== family
+    // A straight double mark faces the way its place says: a space before and a word after
+    // opens (a quote inside a quote: asked, "What is), text before and no word after closes.
+    // Only where its place says neither (said:" We) does it close the open one or else open.
+    const placed = ch !== '"' ? ''
+      : /\s/.test(before) && LETTER.test(after) ? 'open'
+      : /[^\s:]/.test(before) && !LETTER.test(after) ? 'close' : ''
+    // One that closes with a single quote innermost ends that one: the book opened with ' and
+    // closed with " (bukhari 947: said, 'Allahu Akbar! ... warned." The people). Not where the
+    // single was a name's ʿayn, which closes the double instead: one bare word since it
+    // ("Go to 'Ali."), or, inside a double, one not opened after a colon or comma as speech
+    // is ("Wa 'alaihi-s-Salam." against replied, 'He has been bewitched").
+    const top = open.at(-1)
+    const speech = (mark) => !open.some((o) => o.family === 'double') || /[:,]\s*$/.test(text.slice(0, mark.at))
+    if (placed === 'close' && top?.family === 'single' && speech(top.mark) && !/^[\p{L}-]+\p{P}*$/u.test(text.slice(top.mark.at + 1, at))) {
+      open.pop()
+      marks.push({ at, step: -1 })
+      continue
+    }
+    // A straight single mark opens before a word ("said: 'Indeed") and closes after one ("man.' So").
+    const opens = OPENS[ch] || (ch === '"' ? (placed ? placed === 'open' : top?.family !== family)
       : ch === "'" && !LETTER.test(before) && LETTER.test(after))
     if (opens && family === 'single' && nests && !open.length && !/[:,]\s*$/.test(text.slice(0, at))) continue
+    // A book with double quotes never sets a single straight inside another, so one opening
+    // there is a name's ʿayn: He said: 'We paid in the time of Abu Bakr and 'Umar."
+    if (opens && ch === "'" && nests && top?.family === 'single') continue
     if (opens) {
       const mark = { at, step: 1 }
       open.push({ family, mark })
@@ -126,96 +150,27 @@ export function narrated(english) {
  */
 export const hadithKey = (ref) => (ref?.hadith ? `${ref.hadith}:${ref.number}${ref.part ?? ''}` : '')
 
-// The chain words from hadith.json, read without vowels or punctuation.
-const { verbs, endings, words: linkWords } = HADITH.chain.links
-const LINKS = new Set([...linkWords, ...verbs.flatMap((verb) => endings.map((ending) => verb + ending))])
-const SAYS = new Set(HADITH.chain.says)
-const ABOUT = new Set(HADITH.chain.about)
-const FREE = new Set(HADITH.chain.free)
-const PROPHET = new Set(HADITH.chain.prophet)
-const KIN = new Set(HADITH.chain.kin)
-const HANDS = new Set(HADITH.chain.hands)
+// The chain words, read without vowels or punctuation.
+const { verbs, endings, words: linkWords } = CHAIN.links
+// A passing-on verb with its ending (حدثه); only one hands a chain on past أن.
+const VERBS = new Set(verbs.flatMap((verb) => endings.map((ending) => verb + ending)))
+const LINKS = new Set([...linkWords, ...VERBS])
+const SAYS = new Set(CHAIN.says)
+const HANDS = new Set(CHAIN.hands)
+const KIN = new Set(CHAIN.kin)
 // Anything but a letter goes: vowels, tatweel, direction marks, commas, colons.
 const BARE = /[^\u0621-\u063A\u0641-\u064A\u0671]/g
 // A quote or a bracket is the hadith's own words or a verse, never a name.
 export const QUOTED = /["“”«»{}()]/
-// A full stop ends a sentence; a name never runs on past one.
-const STOP = /[.؟!]/
 const bare = (word) => {
   const plain = word.replace(BARE, '')
   const unjoined = /^[وف]/.test(plain) ? plain.slice(1) : ''
   return LINKS.has(unjoined) || SAYS.has(unjoined) ? unjoined : plain
 }
 
-/**
- * The Arabic as two parts: the chain of narrators, and the hadith it carries.
- *
- * The books do not mark where the chain ends, so it is walked, link by link:
- * a passing-on word (حدثنا، عن) then a name, until a saying word (قال، أنها)
- * that no further link follows. The hadith starts at that last saying word,
- * so "قالت النساء" keeps its verb. A name past `name` words, running on past
- * a full stop, or holding a quote, a bracket or the chain's note on itself
- * (بهذا الإسناد), or a text that does not open with a link, means the end is
- * not plain: the hadith comes back whole with an empty chain, never cut into.
- */
-/** The words not set between a pair of aside marks; a mark with no partner is ignored. */
-function outsideAsides(words, marks) {
-  const at = marks.flatMap((mark, i) => (mark ? [i] : []))
-  const inside = new Set(at.flatMap((start, k) => (k % 2 || k + 1 >= at.length ? [] : range(start, at[k + 1]))))
-  return words.filter((_, i) => !inside.has(i))
-}
-const range = (start, end) => Array.from({ length: end - start + 1 }, (_, k) => start + k)
-
-export function chainOf(arabic) {
-  const text = String(arabic ?? '')
-  const whole = { chain: '', teller: '', body: text }
-  const tokens = [...text.matchAll(/\S+/g)]
-  const words = outsideAsides(tokens, tokens.map((m) => m[0] === HADITH.chain.aside))
-    .map((m) => ({ at: m.index, word: bare(m[0]), quoted: QUOTED.test(m[0]), stop: STOP.test(m[0]) }))
-    .filter((w) => w.word || w.quoted || w.stop)
-  if (!LINKS.has(words[0]?.word)) return whole
-
-  let i = 1
-  let last = 0   // the latest link: from it on is the one who tells the hadith
-  // A link to the Prophet, to a kin word, or straight to a saying word (حدثه أنه) names no new teller.
-  // A kin word counts only standing alone: أبي ذر is a name, عن أبيه، قال is not.
-  const alone = (k) => !words[k + 1] || LINKS.has(words[k + 1].word) || SAYS.has(words[k + 1].word)
-  const before = (k) => PROPHET.has(words[k]?.word) || (KIN.has(words[k]?.word) && alone(k))
-  const teller = (at) => (before(at + 1) || SAYS.has(words[at + 1]?.word) ? last : at)
-  // After "أن", the next link within one name: the narrator named before it hands the hadith on.
-  const handed = (at) => {
-    if (!HANDS.has(words[at].word)) return -1
-    const next = words.findIndex((w, k) => k > at && (LINKS.has(w.word) || SAYS.has(w.word) || w.quoted || w.stop))
-    return next > at + 1 && next - at - 1 <= HADITH.chain.name && LINKS.has(words[next].word) ? next : -1
-  }
-  while (i < words.length) {
-    let name = 0
-    let ended = false   // past a full stop only a link or a saying word may come
-    while (i < words.length && !LINKS.has(words[i].word) && !SAYS.has(words[i].word)) {
-      const { word, quoted, stop } = words[i]
-      if (quoted || ABOUT.has(word) || (ended && word)) return whole
-      if (word && !FREE.has(word) && ++name > HADITH.chain.name) return whole
-      ended = ended || stop
-      i += 1
-    }
-    if (i === words.length) return whole
-    if (LINKS.has(words[i].word)) { last = teller(i); i += 1; continue }
-    while (i + 1 < words.length && SAYS.has(words[i + 1].word)) i += 1
-    if (i + 1 < words.length && LINKS.has(words[i + 1].word)) { last = teller(i + 1); i += 2; continue }
-    const link = handed(i)
-    if (link > 0) { last = before(i + 1) ? last : i; i = link + 1; continue }
-    return {
-      chain: text.slice(0, words[i].at).trim(),
-      teller: text.slice(words[last].at, words[i].at).trim(),
-      body: text.slice(words[i].at),
-    }
-  }
-  return whole
-}
-
-// Each chain word's entry in the guide (hadith.json chain.terms): a verb by its
+// Each chain word's entry in the guide (CHAIN.terms): a verb by its
 // stem (حدثتني is حدث), any other word whole.
-const TERMS = new Map(HADITH.chain.terms.groups.flatMap(({ way, terms }) =>
+const TERMS = new Map(CHAIN.terms.groups.flatMap(({ way, terms }) =>
   terms.flatMap((term) => (term.match ?? []).map((m) => [m, { ...term, way }]))))
 const STEMS = [...verbs].sort((a, b) => b.length - a.length)
 
@@ -229,10 +184,10 @@ export function termOf(word) {
 // the article and أبو/أبا/أبي as one word (alone, أبي is "my father"). Blessings
 // stay: they trail the name, so the prefix rule below reads past them, while
 // dropping الله would leave عبد الله as عبد.
-const SPELLINGS = HADITH.chain.spellings
+const SPELLINGS = CHAIN.spellings
 export const keyOf = (name) => name.split(/\s+/).map(bare).filter(Boolean)
   .map((w, _, all) => (all.length > 1 && SPELLINGS[w]) || w.replace(/^ال/, '').replace(/(.{3,})ا$/, '$1').replace(/ة$/, 'ه').replace(/ى$/, 'ي'))
-const TOGETHER = new Set(HADITH.chain.together)
+const TOGETHER = new Set(CHAIN.together)
 // One narrator when the shorter key opens the longer (سليمان is سليمان بن يسار):
 // inside one hadith's chain a name is rarely shared by two men. "My father" in
 // two strands is two fathers, so it never joins them.
@@ -246,7 +201,7 @@ const same = (a, b) => {
 const shown = (raw) => raw.replace(/[^\u0621-\u063A\u0641-\u065F\u0670\u0671]/g, '')
 
 /**
- * A chain (from chainOf) as narrators and the word that passed it between
+ * A chain (the Arabic before the server's cut, lib/rijal drawnChain) as narrators and the word that passed it between
  * each two: [{ term, way, name }], in the book's order, teacher of the author
  * first, with `span`, where its name stands in `chain`. ح starts another strand; each one but the last becomes a branch of
  * `main` (the last): `at` is the place in `main` it joins, the first narrator
@@ -259,23 +214,36 @@ export function chainLinks(chain) {
   let term = null
   let name = []
   let span = null   // where the name stands in `chain`: [start, end]
+  let handing = false   // the name follows أن: its verb comes after it (أن طاوسا أخبره)
   const close = () => {
     if (name.length) strands.at(-1).push({ term: term?.word ?? '', way: term?.way ?? '', name: name.join(' '), span })
     name = []
     span = null
     term = null
+    handing = false
   }
-  for (const { 0: raw, index } of String(chain ?? '').matchAll(/\S+/g)) {
+  const found = [...String(chain ?? '').matchAll(/\S+/g)]
+  // A remark set between two aside marks (- يعني ابن علية -) is no name; a mark with no partner is ignored.
+  const marks = found.flatMap((m, i) => (m[0] === CHAIN.aside ? [i] : []))
+  const inside = (i) => marks.some((from, k) => k % 2 === 0 && k + 1 < marks.length && i >= from && i <= marks[k + 1])
+  for (const { 0: raw, index } of found.filter((_, i) => !inside(i))) {
     const word = bare(raw)
-    if (word === HADITH.chain.strand) { close(); strands.push([]); continue }
+    if (word === CHAIN.strand) { close(); strands.push([]); continue }
     if (TOGETHER.has(word)) {
       close()
       const last = strands.at(-1).at(-1)
       if (last) last.together = true
       continue
     }
-    if (LINKS.has(word)) { close(); term = { word: shown(raw), way: termOf(raw)?.way ?? '' }; continue }
-    if (SAYS.has(word)) { close(); continue }
+    if (LINKS.has(word)) {
+      const said = { word: shown(raw), way: termOf(raw)?.way ?? '' }
+      const handed = handing && name.length && VERBS.has(word)
+      if (handed) term = said
+      close()
+      term = handed ? null : said
+      continue
+    }
+    if (SAYS.has(word)) { close(); handing = HANDS.has(word); continue }
     if (word) { name.push(shown(raw)); span = [span?.[0] ?? index, index + raw.length] }
   }
   close()

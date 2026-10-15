@@ -7,7 +7,7 @@ default grey.
 
 So these check the two halves of the seam that replaced it: every entry the
 engine builds carries a `role_key`, and every key it uses is one the contract
-allows, because a key that is not in `schemas.ROLE_KEYS` is dropped at the
+allows, because a key that is not in `models/analyze.py ROLE_KEYS` is dropped at the
 router and the colour is silently lost again.
 
 Run: python -m pytest tests/test_rule_engine.py
@@ -16,8 +16,9 @@ from __future__ import annotations
 
 import pytest
 
-from backend.models.schemas import ROLE_KEYS, WordAnalysis
-from backend.services import iraab, morphology, rule_engine
+from backend.models.analyze import ROLE_KEYS, WordAnalysis
+from backend.services import iraab, morphology, rule_engine, syntax
+from backend.services.arabic_text import words
 from backend.services.nahw_book import term_ar
 from backend.services.syntax.catib_onnx import files_present
 
@@ -53,7 +54,7 @@ def test_every_word_carries_a_role_key_field(sentence: str):
 
 @pytest.mark.parametrize("sentence", [VERBAL, NOMINAL])
 def test_keys_are_ones_the_contract_allows(sentence: str):
-    """The list here and the list in schemas.py are the same list.
+    """The list here and the list in models/analyze.py are the same list.
 
     Anything else is dropped to None by `WordAnalysis.from_raw`, so a typo in a
     key would not fail, it would just quietly go grey, which is the exact bug
@@ -103,7 +104,7 @@ def test_every_role_has_a_reason():
 
 @pytest.mark.parametrize("sentence", REASON_SENTENCES)
 def test_each_reason_explains_its_own_role(sentence: str):
-    words = iraab.analyse(sentence)["words"]
+    words = iraab.analyze(sentence)["words"]
     for word in words:
         role = word["role"]
         if word["type"] == "punc" or role == "–":
@@ -132,7 +133,7 @@ VERB_CARDS = [
 
 @pytest.mark.parametrize("sentence, index, case, said", VERB_CARDS)
 def test_verb_card_case_and_reason_agree(sentence: str, index: int, case: str, said: str):
-    word = iraab.analyse(sentence)["words"][index]
+    word = iraab.analyze(sentence)["words"][index]
     assert (word["case"], said in word["reason"]) == (case, True), word
 
 
@@ -148,15 +149,19 @@ def test_a_command_is_described_as_one(sentence: str, lemma: str):
     ("لَمْ يَكْتُبْ الطَّالِبُ", True), ("قَدْ نَجَحَ الطَّالِبُ", True), ("لَنْ يَذْهَبَ زَيْدٌ", True),
     ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", False)])  # nearest case: a particle before a noun
 def test_a_particle_before_the_verb_keeps_the_sentence_verbal(sentence: str, verbal: bool):
-    summary = iraab.analyse(sentence)["summary"]
+    summary = iraab.analyze(sentence)["summary"]
     assert (summary == term_ar("jumlah_filiyyah")) is verbal, summary
 
 
+def _syntax_read(sentence: str) -> dict:
+    return syntax.read(sentence, morphology.pick(words(sentence), syntax.disambiguator()))
+
+
 def _read(sentence: str) -> dict:
-    return iraab.analyse(sentence)
+    return iraab.analyze(sentence)
 
 
-# One card field each, found by typing the sentence in (backend/scripts/analyse.py).
+# One card field each, found by typing the sentence in (backend/scripts/analyze.py).
 CARDS = [
     ("سَافَرْتُ طَلَبًا لِلْعِلْمِ", 1, "role", "مفعول لأجله"),   # a masdar giving the reason
     ("مَرَرْتُ بِإِبْرَاهِيمَ وَأَحْمَدَ", 2, "case", "jarr"),     # a diptote follower keeps its fatha in jarr
@@ -271,8 +276,7 @@ def test_card_field(sentence: str, index: int, field: str, expected: str):
     ("مَتَى سَافَرَ الرَّجُلُ", "jumlah_istifhamiyyah")])  # a question, in the picture and above it
 def test_summary_and_tree_name_the_sentence_alike(sentence: str, term: str):
     answer = _read(sentence)
-    from backend.services import syntax
-    assert (answer["summary"], syntax.read(sentence)["tree"]["tree"]["label"]) == (term_ar(term), term_ar(term))
+    assert (answer["summary"], _syntax_read(sentence)["tree"]["tree"]["label"]) == (term_ar(term), term_ar(term))
 
 
 def _picture_roles(node: dict) -> list:
@@ -281,14 +285,12 @@ def _picture_roles(node: dict) -> list:
 
 
 def test_an_action_after_illa_is_a_munqati_excepted_and_its_hidden_doer_is_said_either_way():
-    from backend.services import syntax
-    shown = _picture_roles(syntax.read("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا")["tree"]["tree"])
+    shown = _picture_roles(_syntax_read("الصَّلَوَاتِ الْخَمْسَ إِلَّا أَنْ تَطَّوَّعَ شَيْئًا")["tree"]["tree"])
     assert "مستثنى منقطع" in shown and "ضمير مستتر تقديره أنتَ أو هي" in shown
 
 
 def test_the_same_masdar_with_no_illa_stays_an_object():
-    from backend.services import syntax
-    shown = _picture_roles(syntax.read("أُرِيدُ أَنْ تَطَّوَّعَ")["tree"]["tree"])
+    shown = _picture_roles(_syntax_read("أُرِيدُ أَنْ تَطَّوَّعَ")["tree"]["tree"])
     assert "مفعول به" in shown and "مستثنى منقطع" not in shown
 
 
@@ -300,8 +302,7 @@ def test_the_summary_is_the_pictures_own_label_never_a_second_guess():
 
 def test_a_relative_and_its_silah_are_one_unit():
     """جاء الذي نجح: the الذي unit does the فاعل's job, made of the relative and its صلة."""
-    from backend.services import syntax
-    doer = syntax.read("جَاءَ الَّذِي نَجَحَ")["tree"]["tree"]["children"][1]
+    doer = _syntax_read("جَاءَ الَّذِي نَجَحَ")["tree"]["tree"]["children"][1]
     inside = [(kid.get("role"), kid.get("label")) for kid in doer["children"]]
     assert (doer["role"], doer["label"], inside) == (
         "فاعل", term_ar("mawsool_silah"), [("اسم موصول", None), ("صلة", term_ar("jumlah_filiyyah"))])
@@ -311,7 +312,7 @@ def test_word_types_are_the_pages():
     """The types a card may carry are the ones grammar.json labels, and the rules use no other."""
     import json
     from pathlib import Path
-    from backend.models.schemas import WORD_TYPES
+    from backend.models.analyze import WORD_TYPES
     labelled = json.loads((Path(__file__).parent.parent / "frontend/src/grammar.json").read_text(encoding="utf-8"))["types"]
     assert WORD_TYPES - {"punc"} == set(labelled)
     for sentence in (VERBAL, NOMINAL, "جَاءَ الَّذِي نَجَحَ، هُوَ فِي البَيْتِ"):
@@ -424,15 +425,15 @@ PARTICLE_ROLES = [
 
 @pytest.mark.parametrize("sentence, expected", PARTICLE_ROLES)
 def test_a_small_word_is_read_once_by_what_surrounds_it(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
 
 
 def test_each_reading_names_the_particle():
-    words = iraab.analyse("إِذَا قَالَ الْعَبْدُ لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ")["words"]
+    words = iraab.analyze("إِذَا قَالَ الْعَبْدُ لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ")["words"]
     assert "ظرف شرط غير جازم" in words[0]["reason"]
     assert "لا النافية للجنس" in words[3]["reason"] and "أداة استثناء" in words[5]["reason"]
     assert "ويجوز أن تكون استئنافية" in words[7]["reason"]
-    assert "أداة حصر" in iraab.analyse("مَا جَاءَ إِلَّا زَيْدٌ")["words"][2]["reason"]
+    assert "أداة حصر" in iraab.analyze("مَا جَاءَ إِلَّا زَيْدٌ")["words"][2]["reason"]
 
 
 @pytest.mark.parametrize("sentence, expected", [
@@ -443,7 +444,7 @@ def test_each_reading_names_the_particle():
     ("لَا إِلَهَ إِلَّا اللَّهُ", ["حرف", "اسم لا", "حرف", "بدل"]),  # control: after a noun in its case, a بدل
 ])
 def test_the_word_after_a_restricting_illa_takes_the_place_the_sentence_leaves(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
 
 
 def _shape(node: dict) -> tuple:
@@ -458,11 +459,10 @@ def _shape(node: dict) -> tuple:
 def test_the_wonder_form_is_drawn_as_the_books_own_example():
     """ما أحسن زيدًا (Tasheel 1.4.2 p8): ما the مبتدأ, the verb's clause its khabar, the verb with its hidden doer."""
     import json
-    from backend.services import syntax
     from backend.services.nahw_book import RULES
     book = next(e for e in json.loads((RULES.parent / "tarkeeb" / "examples" / "tasheel-al-nahw.json")
                                       .read_text(encoding="utf-8"))["examples"] if e["id"] == "1.4.2-taajjub")
-    ours = syntax.read(book["sentence"])
+    ours = _syntax_read(book["sentence"])
     assert _shape(ours["tree"]["tree"]) == _shape(book["tree"])
     assert "ضمير مستتر وجوبًا تقديره هو يعود على ما" in _picture_roles(ours["tree"]["tree"])
     card = _read(book["sentence"])["words"][1]
@@ -486,7 +486,7 @@ def test_the_wonder_form_is_drawn_as_the_books_own_example():
     ("مَا أَعْطَاهَا كِتَابًا", ["حرف", "فعل", "مفعول به"]),  # a second object: not the wonder form
 ])
 def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
 
 
 @pytest.mark.parametrize("sentence, expected", [
@@ -511,7 +511,7 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("إِنَّ مَا عِنْدَ اللَّهِ هُوَ خَيْرٌ لَكُمْ", ["حرف", "اسم إن", "مفعول فيه", "مضاف إليه", "مبتدأ", "خبر إن", "حرف جر"]),
 ])
 def test_a_question_word_before_its_mubtada_is_the_khabar(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyse(sentence)["words"]] == expected
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
 
 
 @pytest.mark.parametrize("sentence, negations", [
@@ -522,29 +522,27 @@ def test_a_question_word_before_its_mubtada_is_the_khabar(sentence: str, expecte
     ("قَرَأْتُ مَا كَتَبَ الطُّلَّابُ إِلَّا زَيْدًا", 0),
 ])
 def test_only_a_ma_that_opens_its_clause_is_the_negation_before_illa(sentence: str, negations: int):
-    from backend.services import syntax
-    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    shown = _picture_roles(_syntax_read(sentence)["tree"]["tree"])
     assert shown.count("ما النافية") == negations
 
 
 def test_the_wonder_verbs_noun_after_its_pronoun_is_no_second_object():
-    words = iraab.analyse("مَا أَجْمَلَهَا لَيْلَةً")["words"]
+    words = iraab.analyze("مَا أَجْمَلَهَا لَيْلَةً")["words"]
     assert [w["role"] for w in words[:2]] == ["مبتدأ", "فعل"] and "للتعجب" in words[1]["reason"]
 
 
 def test_a_relative_before_a_zarf_and_its_verb_is_no_question():
-    words = iraab.analyse("مَا عِنْدَكُمْ يَنْفَدُ")["words"]
+    words = iraab.analyze("مَا عِنْدَكُمْ يَنْفَدُ")["words"]
     assert words[0]["role"] == "مبتدأ" and words[-1]["role"] == "فعل" and "اسْتِفْهَامِيَّةٌ" not in _sentence_label("مَا عِنْدَكُمْ يَنْفَدُ")
 
 
 def _sentence_label(sentence: str) -> str:
-    from backend.services import syntax
-    return syntax.read(sentence)["tree"]["tree"].get("label") or ""
+    return _syntax_read(sentence)["tree"]["tree"].get("label") or ""
 
 
 @pytest.mark.parametrize("sentence", ["مَا أَنْتَ إِلَّا بَشَرٌ", "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ", "ما أنت إلا بشر"])
 def test_ma_before_illa_is_the_negation_and_illa_restricts_the_khabar(sentence: str):
-    words = iraab.analyse(sentence)["words"]
+    words = iraab.analyze(sentence)["words"]
     assert [w["role"] for w in words] == ["حرف", "مبتدأ", "حرف", "خبر"]
     assert "أداة حصر" in words[2]["reason"]
 
@@ -552,11 +550,10 @@ def test_ma_before_illa_is_the_negation_and_illa_restricts_the_khabar(sentence: 
 @pytest.mark.parametrize("sentence", ["هَلْ أَنْتَ تَكْتُبُ", "ما أنت إلا بشر", "هَلِ الْوَلَدُ نَائِمٌ", "يَا أَخِي مَا اسْمُكَ",
                                       "مَنْ أَنْتَ فِي هَذِهِ الْمَدِينَةِ"])
 def test_the_picture_keeps_the_order_the_words_were_typed(sentence: str):
-    from backend.services import syntax
 
     def leaves(node: dict) -> list[int]:
         return ([node["word"]] if node.get("word") is not None else []) + [i for kid in node.get("children", []) for i in leaves(kid)]
-    order = leaves(syntax.read(sentence)["tree"]["tree"])
+    order = leaves(_syntax_read(sentence)["tree"]["tree"])
     assert order == sorted(order)
 
 
@@ -565,11 +562,10 @@ def test_the_picture_keeps_the_order_the_words_were_typed(sentence: str):
     ("كَانَ زَيْدٌ قَائِمًا", "فعل ناقص"),
 ])
 def test_the_picture_names_the_governor_of_kana(sentence: str, name: str):
-    from backend.services import syntax
 
     def roles(node: dict) -> list[str]:
         return [node.get("role")] + [r for kid in node.get("children", []) for r in roles(kid)]
-    assert name in roles(syntax.read(sentence)["tree"]["tree"])
+    assert name in roles(_syntax_read(sentence)["tree"]["tree"])
 
 
 @pytest.mark.parametrize("sentence, doer", [
@@ -580,8 +576,107 @@ def test_the_picture_names_the_governor_of_kana(sentence: str, name: str):
     ("تَكْتُبُ", "ضمير مستتر تقديره أنتَ أو هي"),  # nothing settles it
 ])
 def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: str, doer: str):
-    from backend.services import syntax
-    shown = _picture_roles(syntax.read(sentence)["tree"]["tree"])
+    shown = _picture_roles(_syntax_read(sentence)["tree"]["tree"])
     assert doer in shown
     if sentence.startswith(("أَنْتَ", "هِيَ", "أَنْتِ")):
-        assert [w["role"] for w in iraab.analyse(sentence)["words"]][0] == "مبتدأ" and "خبر" in shown
+        assert [w["role"] for w in iraab.analyze(sentence)["words"]][0] == "مبتدأ" and "خبر" in shown
+
+
+@pytest.mark.parametrize("sentence, roles", [
+    # a typed case clash rules out the نعت: the fatha makes الفقير the first object
+    ("أَعْطَى الرَّجُلُ الْفَقِيرَ دِرْهَمًا", ["فعل", "فاعل", "مفعول به", "مفعول به"]),
+    # آتى takes two objects, so the second is never a حال
+    ("لَا يُؤْتُونَ النَّاسَ نَقِيرًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),
+    # nearest case: an indefinite word after one object stays the حال
+    ("جَاءَ الرَّجُلُ ضَاحِكًا", ["فعل", "فاعل", "حال"])])
+def test_two_objects_of_a_verb_of_giving_are_both_objects_and_a_case_clash_is_no_naat(sentence: str, roles: list[str]):
+    assert [w["role"] for w in _read(sentence)["words"]] == roles
+
+
+def test_the_nun_of_the_five_verbs_kept_after_la_is_raf_not_jazm():
+    verb = _read("لَا يُؤْتُونَ النَّاسَ نَقِيرًا")["words"][1]
+    assert (verb["case"], verb["sign"]) == ("raf'", "ثبوت النون")
+
+
+@pytest.mark.parametrize("sentence, index, named, case", [
+    ("فَإِذًا لَا يُؤْتُونَ النَّاسَ نَقِيرًا", 0, "حرف جواب وجزاء", "mabni"),  # a tanween is إذن, not the sudden إذا; the verb shows raf'
+    ("إِذَنْ أُكْرِمَكَ", 0, "حرف جواب وجزاء ونصب", "mabni"),
+    ("إِذَنْ أُكْرِمَكَ", 1, None, "nasb"),  # the present verb right after it is منصوب
+    ("خَرَجْتُ فَإِذَا الأَسَدُ", 1, "حرف مفاجأة", "mabni"),  # nearest case: إذا without a tanween stays the sudden one
+    # after the sentence it answers, فَإِذًا still opens its own clause (4:53)
+    ("قَالَ زَيْدٌ فَإِذًا لَا يُؤْتُونَ النَّاسَ نَقِيرًا", 2, "حرف جواب وجزاء", "mabni"),
+    ("زَيْدٌ إِذَنْ يَنْجَحُ", 1, "حرف جواب وجزاء", "mabni")])  # inside its clause it never works
+def test_idhan_is_told_from_idha_by_its_spelling_and_works_only_before_a_verb_in_nasb(
+        sentence: str, index: int, named: str | None, case: str):
+    word = _read(sentence)["words"][index]
+    assert (word.get("named"), word["case"]) == (named, case)
+
+
+def test_a_pronoun_on_a_present_verb_is_not_read_as_its_passive_vowel():
+    # the fatha before كَ in أُكْرِمَكَ is the verb's nasb; يُكْرَمُ is the passive
+    assert "مجهول" not in _read("إِذَنْ أُكْرِمَكَ")["words"][1]["reason"]
+    assert "مجهول" in _read("يُكْرَمُ الضَّيْفُ")["words"][0]["reason"]
+
+
+@pytest.mark.parametrize("sentence, particle, verb", [
+    ("وَلَا تَأْكُلُوهَا", "لا الناهية", "فعل مضارع للنهي"),
+    ("وَلَا تَأْكُلُوهَآ", "لا الناهية", "فعل مضارع للنهي"),  # the Qur'an's spelling of the same ending
+    ("لِيَكْتُبْ زَيْدٌ", "لام الأمر", "فعل مضارع للأمر"),
+    ("اكْتُبِ الدَّرْسَ", None, "فعل أمر"),
+])
+def test_a_verb_that_gives_an_order_is_named_for_it_in_the_picture(sentence: str, particle: str | None, verb: str):
+    shown = _picture_roles(_syntax_read(sentence)["tree"]["tree"])
+    assert verb in shown and (particle is None or particle in shown)
+
+
+def test_the_pronoun_on_a_verb_is_no_nun_of_the_five_verbs():
+    # لا يَدْعُوهُ keeps its root و (not the dropped nun), لا تَأْكُلُونَهَا keeps its nun: neither is jussive
+    assert [w["case"] for w in analysed("لَا يَدْعُوهُ زَيْدٌ")][1] == "raf'"
+    assert [w["case"] for w in analysed("لَا تَأْكُلُونَهَا")][1] == "raf'"
+
+
+@pytest.mark.parametrize("sentence, word, role", [
+    ("فَإِنْ آنَسْتُمْ مِنْهُمْ رُشْدًا فَادْفَعُوا إِلَيْهِمْ أَمْوَالَهُمْ", "فَادْفَعُوا", "فعل"),  # the word list has no such command
+    ("فَإِنْ آنَسْتُمْ مِنْهُمْ رُشْدًا فَادْفَعُوا إِلَيْهِمْ أَمْوَالَهُمْ", "أَمْوَالَهُمْ", "مفعول به"),
+])
+def test_a_command_the_word_list_lacks_is_read_by_sarf_under_its_joined_fa(sentence: str, word: str, role: str):
+    got = {w["word"]: w for w in analysed(sentence)}
+    assert got[word]["role"] == role
+
+
+@pytest.mark.parametrize("sentence, word, named", [
+    ("وَابْتَلُوا الْيَتَامَى حَتَّى إِذَا بَلَغُوا النِّكَاحَ", "حَتَّى", "حرف ابتداء"),  # before إذا it works on nothing
+    ("فَإِنْ آنَسْتُمْ مِنْهُمْ رُشْدًا", "فَإِنْ", "حرف شرط جازم"),
+    ("وَبِدَارًا أَنْ يَكْبَرُوا", "أَنْ", "حرف نصب"),
+])
+def test_a_small_word_before_a_clause_is_named_by_what_it_does_there(sentence: str, word: str, named: str):
+    assert named in {w["word"]: w for w in analysed(sentence)}[word]["reason"]
+
+
+def test_the_qurans_uncontracted_jussive_is_a_verb_and_its_fa_proves_the_condition():
+    # the dictionary has only فَلْيَسْتَعِفَّ; sarf's table also writes the doubled pair apart (p.289)
+    got = {w["word"]: w for w in analysed("وَمَنْ كَانَ غَنِيًّا فَلْيَسْتَعْفِفْ")}
+    assert "اسم شرط جازم" in got["وَمَنْ"]["reason"]
+    assert got["فَلْيَسْتَعْفِفْ"]["role"] == "فعل" and "مجزوم" in got["فَلْيَسْتَعْفِفْ"]["reason"]
+
+
+@pytest.mark.parametrize("sentence", [
+    "مَنْ عَمِلَ صَالِحًا فَلِنَفْسِهِ",             # a noun sentence ties its answer with فَ
+    "وَمَنْ كَفَرَ فَإِنَّ اللَّهَ غَنِيٌّ",           # إنّ
+    "مَنْ جَاءَ بِالْحَسَنَةِ فَلَهُ خَيْرٌ مِنْهَا",
+    "مَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",  # the jussive after مَنْ alone is no relative's
+    "مَنْ جَاءَ فَلَا تُكْرِمْهُ",                   # a prohibition could not stand as a condition
+    "مَنْ جَاءَ فَقَدْ فَازَ",
+])
+def test_a_fa_on_an_answer_that_could_not_stand_alone_makes_man_a_condition(sentence: str):
+    assert "اسم شرط جازم" in analysed(sentence)[0]["reason"]
+
+
+def test_a_plain_past_verb_after_fa_is_no_proof_of_a_condition():
+    # a past verb could stand as an answer with no فَ at all, so this is a relative and its عطف
+    assert "اسم شرط" not in analysed("مَنْ جَاءَ فَقَامَ زَيْدٌ")[0]["reason"]
+
+
+def test_la_before_a_jussive_with_a_pronoun_on_it_is_the_prohibition():
+    assert "الناهية" in analysed("لَا تُكْرِمْهُ")[0]["reason"]
+

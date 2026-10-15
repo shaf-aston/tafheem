@@ -43,12 +43,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path, get_settings  # noqa: E402
 from backend.services.recitation.listen import aggregate  # noqa: E402
-from backend.services.recitation.place import reach  # noqa: E402
-from backend.services.recitation.spelling import as_heard  # noqa: E402
+from backend.scripts.ear_bench.words import labelled  # noqa: E402
 from backend.scripts.rescore_recitation import HERE, pieces_path  # noqa: E402
-from backend.scripts.score_recitation_checker import (  # noqa: E402
-    NEIGHBOURS, RESULTS, marks_to_places, page_verdict, stretch,
-)
 
 RULES = ("worst", "worst-but-one", "mean")
 # The rule and flag-below of each level in frontend/src/recite.json.
@@ -59,74 +55,11 @@ SWEEP = HERE / "sweep.txt"
 BAR_MARKED, BAR_VOWELS = 0.03, 0.85
 
 
-def scored_by_app(ayahs: dict, key: str, heard: str) -> tuple[int, int] | None:
-    """Which of the ayah's words the app would check by sound, as recitation.check
-    does: placed on the ayah and its neighbours, run on to the end of the ayah it
-    stops in. None when it does not place, and then nothing is checked by sound."""
-    surah, ayah = map(int, key.split(":"))
-    words, start = [], 0
-    for n in range(ayah - NEIGHBOURS, ayah + NEIGHBOURS + 1):
-        if n == ayah:
-            start = len(words)
-        words += as_heard(ayahs.get(f"{surah}:{n}", ""))
-    end = start + len(as_heard(ayahs[key]))
-    span = reach(words, heard.split())
-    if span is None:
-        return None
-    first, last = span
-    if start <= last - 1 < end:
-        last = end
-    return max(first, start) - start, max(min(last, end) - start, 0)
-
-
-def groups(ayahs: dict, model: str, heard: dict | None = None):
-    """(group name, the word's pieces, the page found it, the app checks it by
-    sound) for every word both files agree on; the last is None when the app
-    cannot place the recording at all.
-
-    Placing is worked out again from the transcript rather than trusted from
-    either file, so the two always speak about the same words.
-    """
-    reviewed = {}
-    for line in RESULTS.open(encoding="utf-8"):
-        row = json.loads(line)
-        if "skipped" not in row:
-            reviewed[row["id"]] = row
-    out = []
-    for line in pieces_path(model).open(encoding="utf-8"):
-        got = json.loads(line)
-        row = reviewed.get(got["id"])
-        if row is None or len(got["probs"]) != len(row["words"]):
-            continue
-        page = row["page"]
-        if heard is not None:
-            if got["id"] not in heard:
-                continue
-            row = {**row, "heard": heard[got["id"]]}
-            page = page_verdict(row["words"], row["heard"])
-        marked = marks_to_places(row["words"], row["marks"])
-        clean = not row["marks"]
-        first, last = stretch(ayahs, row["ayah"], row["heard"])[3]
-        app = scored_by_app(ayahs, row["ayah"], row["heard"])
-        for i in range(first, min(last, len(got["probs"]))):
-            kind = marked.get(i)
-            if kind == "tajweed":
-                name = "marked for tajweed only"
-            elif kind:
-                name = f"{kind} slips"
-            elif clean:
-                name = "right, in a clean recording"
-            else:
-                name = "unmarked, in a recording with a slip"
-            out.append((name, got["probs"][i], page[i], app and app[0] <= i < app[1]))
-    return out
-
-
 def table(rows, model: str) -> str:
     """Every rule at every threshold, as shares of each group counted NOT said."""
     total = defaultdict(int)
     page_flags = defaultdict(int)
-    for name, _probs, said, _app in rows:
+    for name, _probs, said, _app, *_ in rows:
         total[name] += 1
         page_flags[name] += not said
     names = ["right, in a clean recording", "marked for tajweed only",
@@ -147,7 +80,7 @@ def table(rows, model: str) -> str:
              + "".join(f"{page_flags[n] / total[n]:>22.1%}" for n in names)]
     best = None
     for rule in RULES:
-        scored = [(name, aggregate(probs, rule)) for name, probs, _, _ in rows]
+        scored = [(name, aggregate(probs, rule)) for name, probs, _, _, *_ in rows]
         for cut in CUTS:
             flagged = defaultdict(int)
             for name, s in scored:
@@ -180,7 +113,7 @@ def red(rows, names, total) -> list[str]:
              "is under flag-below. Orange is not counted here; orange accuses nobody.", "",
              f"{'rule':>14}{'flag-below':>12}" + "".join(f"{n.split(',')[0][:20]:>22}" for n in names)]
     for rule in RULES:
-        scored = [(name, aggregate(probs, rule), said) for name, probs, said, _ in rows]
+        scored = [(name, aggregate(probs, rule), said) for name, probs, said, _, *_ in rows]
         for cut in CUTS:
             flagged = defaultdict(int)
             for name, s, said in scored:
@@ -198,7 +131,7 @@ def as_the_app(rows, names, total) -> list[str]:
     place or the word is past the stretch, is orange at worst, never red
     (follow.bySound). Red is decided by sound alone once a word is checked.
     """
-    checked = sum(bool(app) for *_, app in rows) / len(rows)
+    checked = sum(bool(app) for _, _, _, app, *_ in rows) / len(rows)
     # Every cut, not only the two in use. Changing anything about how the ear
     # listens moves these numbers, and then the question is which cut puts the
     # reader back where they were: that is a row to read off, not a guess. The
@@ -208,7 +141,7 @@ def as_the_app(rows, names, total) -> list[str]:
              f"{'flag-below':>14}{'in use':>12}" + "".join(f"{n.split(',')[0][:20]:>22}" for n in names)]
     for cut in sorted(set(CUTS) | set(LEVELS.values())):
         flagged = defaultdict(int)
-        for name, probs, _said, app in rows:
+        for name, probs, _said, app, *_ in rows:
             flagged[name] += bool(app) and aggregate(probs, "worst-but-one") < cut
         lines.append(f"{cut:>14}{inuse.get(cut, ''):>12}"
                      + "".join(f"{flagged[n] / total[n]:>22.1%}" for n in names))
@@ -230,7 +163,7 @@ def main() -> None:
         lines = (HERE / args.heard).read_text(encoding="utf-8").splitlines()
         heard = {r["id"]: r["heard"] for r in map(json.loads, lines)}
         out = SWEEP.with_name(f"sweep-{args.heard.stem}.txt")
-    text = table(groups(ayahs, model, heard), model)
+    text = table(labelled(ayahs, model, heard), model)
     out.write_text(text, encoding="utf-8")
     print(text)
 

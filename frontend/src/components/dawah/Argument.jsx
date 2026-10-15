@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { GoButton } from '../ui/RootActions'
-import TimelineRefs from '../TimelineRefs'
+import Evidence from './Evidence'
 
 // The reasoning as a numbered path. Step by step reveals one point per press,
 // the way the argument would be made out loud; All at once is for reading.
@@ -28,11 +28,7 @@ export default function Argument({ points, library, accent, mode, copy, onGo }) 
                 <strong className="font-semibold text-[var(--text)]">{point.title}:</strong> {point.text}
               </p>
               {/* The evidence sits under the point it proves, small, so the claim reads first. */}
-              <div className="flex flex-wrap items-center gap-1.5 type-small">
-                <em className="text-[var(--text-faint)]">{copy.evidence}</em>
-                <TimelineRefs refs={point.refs} library={library} accent={accent} onGo={onGo} className="contents" />
-                {point.note && <em className="text-[var(--text-faint)]">{point.note}</em>}
-              </div>
+              <Evidence refs={point.refs} note={point.note} library={library} accent={accent} onGo={onGo} label={copy.evidence} />
             </div>
           </li>
         ))}

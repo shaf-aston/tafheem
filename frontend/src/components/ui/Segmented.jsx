@@ -9,9 +9,16 @@
  * one row on its own is obvious from its choices. Pass `captioned` where several
  * rows sit side by side and you would otherwise have to work out what each is
  * for, then the same words are shown, rather than a second set written twice.
+ *
+ * `compact` is the size of a small button beside it (the Copy button), for a row that sits in a header.
+ *
+ * `title` is a hover note on the whole control.
+ *
+ * `fill` spreads the choices across the full width, equally, for a row that is
+ * the main switch of a screen (log in or sign up) rather than a small filter.
  */
 export default function Segmented({
-  label, options, value, onChange, accent, captioned = false, wrap = false, className = '',
+  label, options, value, onChange, accent, captioned = false, wrap = false, fill = false, compact = false, className = '', title,
 }) {
   // A pill is the right shape for a row that stays one row. Where there are
   // enough choices to spill onto a second line, a pill's ends curve around two
@@ -22,6 +29,7 @@ export default function Segmented({
       className={`flex gap-0.5 p-0.5 ${shape} bg-[var(--surface)] border border-[var(--border)] ${className}`}
       role="group"
       aria-label={label}
+      title={captioned ? undefined : title}
     >
       {options.map((option) => {
         const on = value === option.id
@@ -34,7 +42,7 @@ export default function Segmented({
             style={on
               ? { color: accent, background: `color-mix(in srgb, ${accent} 16%, transparent)` }
               : undefined}
-            className={`press tap inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+            className={`press tap inline-flex items-center ${fill ? 'flex-1 justify-center py-2.5' : compact ? 'px-3 py-1.5' : 'px-3.5 py-1.5'} rounded-full ${compact ? 'text-xs' : 'text-sm'} font-medium transition-colors ${
               on ? '' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
             }`}
           >
@@ -48,7 +56,7 @@ export default function Segmented({
   if (!captioned) return row
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2" title={title}>
       <span className="eyebrow">{label}</span>
       {row}
     </div>

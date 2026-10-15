@@ -12,34 +12,46 @@ The Analyse page and the practice questions both read sentences through here.
 """
 from __future__ import annotations
 
-from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
-from backend.services.arabic_text import strip_diacritics
+from backend.services.arabic_text import strip_diacritics, words
+from backend.services import morphology, provenance, quran_corpus, rule_engine, signs, syntax, tarkeeb_store, tree_columns
 from backend.services.harakat import CASE_NAME, typed_case
 from backend.services.nahw_book import case_of, family_cards, is_object_stem, reason, teacher_rules
 from backend.services.syntax import teacher
+from backend.services.syntax.tree import names_a_sentence as names_a_sentence
 from backend.services.syntax.naming import NAMED, role_key
 
 
-def analyse(sentence: str) -> dict:
+def analyze(sentence: str, recorded: bool = True) -> dict:
     """{words, summary, source, tree} for one sentence; `tree` is None when nothing joins.
-    The summary is the picture's own top label, so the line above the cards and the
-    picture can never name the sentence apart; with no picture there is no summary."""
-    tags = morphology.analyze_sentence(sentence)
-    recorded = tarkeeb_store.for_sentence(sentence)
-    parsed = recorded or syntax.read(sentence)
-    tree = _drawn(recorded) if recorded else parsed["tree"]
+    `recorded=False` skips the treebank and always works the sentence out. The summary is the picture's own top label, so the line above the cards and the
+    picture can never name the sentence apart; with no picture, or a phrase (محمد بن عبد الله), there is none."""
+    picks = morphology.pick(words(sentence), syntax.disambiguator())  # the one reading, cards and parser alike
+    tags = morphology.analyze_sentence(sentence, picks)
+    record = tarkeeb_store.for_sentence(sentence) if recorded else None
+    parsed = record or syntax.read(sentence, picks)
+    tree = _drawn(record) if record else parsed["tree"]
     return {
         "words": cards(tags, parsed["roles"]),
-        "summary": tree["tree"].get("label") if tree else None,
-        "source": provenance.of("treebank" if recorded else "nahw"),
+        "summary": label if tree and names_a_sentence(label := tree["tree"].get("label")) else None,
+        "source": provenance.of("treebank" if record else "nahw"),
         "tree": tree,
     }
+
+
+def ayah_tree(surah: int, ayah: int) -> dict:
+    """An ayah the treebank has no record of, read as a typed sentence is: one engine,
+    one set of rules, so an ayah and the same words typed are named alike."""
+    text = dict(quran_corpus.ayah_texts(surah)).get(ayah)
+    if not text:
+        return {"words": [], "tree": None, "coverage": 0.0}
+    drawn = syntax.read(text, morphology.pick(words(text), syntax.disambiguator()))["tree"]
+    return drawn or {"words": words(text), "tree": None, "coverage": 0.0}
 
 
 def _drawn(recorded: dict) -> dict:
     """The recorded tree, in the shape the page draws a typed sentence's in."""
     keep = ("surah", "ayah", "words", "tree", "coverage", "unwritten")
-    return {**{key: recorded[key] for key in keep}, "source": provenance.of("treebank")}
+    return {**tree_columns.cut({key: recorded[key] for key in keep}), "source": provenance.of("treebank")}
 
 
 def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
@@ -55,7 +67,7 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
                 entry.update(role=rule_engine.UNNAMED, role_key=None, case=found["case"], sign=None, gap=True,
                              reason=found["gap"]["ar"], notes=found["gap"]["en"])
             elif found["role"]:
-                _named(entry, found)
+                _named(entry, found, after.get("role") == NAMED.mudaf_ilayh)
             elif found["case"] and entry["type"] not in ("fi'l", "harf", "damir", "punc"):
                 entry["case"] = found["case"]  # no name yet: the vowel the reader typed, not CAMeL's guess
     words = signs.settle(entries)
@@ -68,6 +80,9 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     for word in words:  # غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule
         if teacher.tool_reason(word):
             word["reason"] = teacher.tool_reason(word)
+    for word, found in zip(words, roles):
+        if found.get("also") and word.get("reason"):
+            word["reason"] = f"{word['reason']}، {found['also']}"
     _pieces_said(words, roles)
     return rule_engine.mark_condition(words, roles)
 
@@ -92,7 +107,7 @@ def _my_ya(entry: dict, found: dict, after: dict) -> bool:
             and entry.get("camel", {}).get("enclitic") in (None, "", "0") and not idafa_next)
 
 
-def _named(entry: dict, found: dict) -> None:
+def _named(entry: dict, found: dict, annexed: bool) -> None:
     """One card takes the tree's name; the case is naming's (syntax.naming._ending)."""
     renamed = found["role"] != entry.get("role")
     # a recorded ayah names its words vowelled (فِعْلٌ، بَدَلٌ): the rules read the bare name
@@ -111,7 +126,7 @@ def _named(entry: dict, found: dict) -> None:
         entry.update(type="harf" if plain in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
     elif entry.get("type") == "harf" and found["role"] and plain not in (NAMED.harf, NAMED.harf_jarr):
         entry["type"] = "ism"  # أينما: a particle's card named for a place is a built noun
-    elif entry.get("type") == "ism" and found["role"] == NAMED.harf and found.get("named"):
+    elif entry.get("type") in ("ism", "zarf") and found["role"] == NAMED.harf and found.get("named"):
         entry["type"] = "harf"  # ما عدا: CAMeL's relative is the particle the reading names
     if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
         found = {**found, "case": CASE_NAME[own]}  # a recorded ayah's name brings its own case
@@ -128,18 +143,18 @@ def _named(entry: dict, found: dict) -> None:
         return
     if renamed:
         entry["reason"] = reason(found["role"])  # the reason must explain the new name
-    if not _stands_for_own(entry, found) and moved:
+    if not _stands_for_own(entry, found, annexed) and moved:
         entry["case"] = found["case"]  # signs.settle writes the sign for it
     if entry["case"] == "mabni" and entry.get("type") != "harf":
         entry["reason"] = reason(found["role"], mabni=True)  # الذي، هذا: in the place of a case
 
 
-def _stands_for_own(entry: dict, found: dict) -> bool:
-    """The typed vowel is the sign of the role's own case for this kind of word (a sound
-    feminine plural's kasra in nasb, a diptote's fatha in jarr), so the role's case stands."""
+def _stands_for_own(entry: dict, found: dict, annexed: bool) -> bool:
+    """The typed vowel is the sign of the role's own case for this kind of word (a sound plural's kasra in nasb, a diptote's fatha in jarr): mirrors
+    facts.shows_jarr / shows_nasb_by_kasra on the card's reading, so the role's case stands."""
     own = case_of(found["role"])
     typed = next((letter for letter, name in CASE_NAME.items() if name == found["case"]), None)
-    stands = teacher_rules()["signs"]["stands_for"].get(signs.kind_of(entry["camel"]), {})
+    stands = teacher_rules()["signs"]["stands_for"].get(signs.kind_of(entry["camel"], annexed), {})
     if own and stands.get(typed) == own:
         entry["case"] = CASE_NAME[own]
         return True

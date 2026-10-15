@@ -11,15 +11,12 @@ is here only to be searched against; what gets shown is the book's Arabic.
 from __future__ import annotations
 
 import json
-from pathlib import Path
 from typing import Iterable
 
+from backend.config import data_path
 from backend.services.arabic_text import normalize_root
 from backend.services.daleel.model import Passage
-
-_DATA_DIR = Path(__file__).resolve().parents[3] / "data" / "maqayees"
-_ROOTS = _DATA_DIR / "roots.json"
-_ENGLISH = _DATA_DIR / "english_entries.json"
+from backend.services.root_english import STORE_FILE
 
 
 class MaqayeesSource:
@@ -28,10 +25,11 @@ class MaqayeesSource:
     id = "maqayees"
 
     def passages(self) -> Iterable[Passage]:
-        if not _ROOTS.exists():
+        roots_file = data_path("root_meaning_path")
+        if not roots_file.exists():
             return
 
-        roots = json.loads(_ROOTS.read_text(encoding="utf-8"))
+        roots = json.loads(roots_file.read_text(encoding="utf-8"))
         english = _english()
 
         for root, entry in roots.items():
@@ -50,9 +48,9 @@ class MaqayeesSource:
 
 def _english() -> dict[str, str]:
     """The translated entries, keyed the same way as the book's own."""
-    if not _ENGLISH.exists():
+    if not STORE_FILE.exists():
         return {}
-    raw = json.loads(_ENGLISH.read_text(encoding="utf-8"))
+    raw = json.loads(STORE_FILE.read_text(encoding="utf-8"))
     return {
         root: (value if isinstance(value, str) else value.get("english", ""))
         for root, value in raw.items()

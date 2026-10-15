@@ -9,8 +9,29 @@
       "destination": "/app.html"
     },
     {
+      "source": "/app/:tab/:place*",
+      "destination": "/app.html"
+    },
+    {
       "source": "/api/:path*",
       "destination": "https://132-145-17-56.sslip.io/api/:path*"
     }
-  ]
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "claude/*": false
+    }
+  },
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- frontend vercel.json backend/data/hadith/chain.json"
 }

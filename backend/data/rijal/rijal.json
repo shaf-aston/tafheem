@@ -4,7 +4,7 @@
     "impersonate: the browser the request looks like; sunnah.com refuses plain HTTP clients.",
     "pace_seconds: wait between two requests, so the site is never hammered.",
     "timeout_seconds and retries: per request; a block (403, 429) or a failure after the last retry stops the run, and the cache lets the next run resume.",
-    "generations: the narrator list's filter, read by services/rijal/store.py. Each groups sunnah.com's generation (tabaqa, Ibn Hajar's twelve) labels as they are stored."
+    "generations: the narrator list's filter, read by services/hadith/rijal/store.py. Each groups sunnah.com's generation (tabaqa, Ibn Hajar's twelve) labels as they are stored."
   ],
   "generations": [
     {"key": "companions", "label": "Companions", "tabaqat": ["الأولى"]},

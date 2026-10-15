@@ -100,4 +100,10 @@ describe('readying a voice before the press', () => {
     const asked = globalThis.fetch.mock.calls.map(([url]) => url).filter((url) => url.startsWith('/api/speak'))
     expect(asked).toEqual([`/api/speak?text=${encodeURIComponent('بَيْتٌ كَبِيرٌ')}&voice=${config.voices.server.version}`])
   })
+
+  it('marks the ask as ahead, so a word pressed on the server goes first', async () => {
+    await prepare('بَابٌ مَفْتُوحٌ')
+    const [, options] = globalThis.fetch.mock.calls.find(([url]) => url.startsWith('/api/speak'))
+    expect(options.headers['X-Speak-Ahead']).toBe('1')
+  })
 })

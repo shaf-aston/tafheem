@@ -1,22 +1,24 @@
 // Match pairs: the English down one side, the Arabic down the other, mixed up. Tap
-// one then its partner; a pair found fades, a wrong pair shakes. At most five at a
-// time, split evenly, so a long topic is several short boards and none is tiny.
-// A warm-up: nothing here is filed for review, since finding a word among five is
+// one then its partner; a pair found fades, a wrong pair shakes. At most the match-board
+// setting at a time, split evenly, so a long topic is several short boards and none is tiny.
+// A warm-up: nothing here is filed for review, since finding a word among a few is
 // easier than recalling it.
 import { useState } from 'react'
 
+import settings from '../../colloquial.json'
+import { shuffled } from '../../lib/shuffle'
+import { motion } from '../../theme'
 import ArabicText from '../ui/ArabicText'
 import SmallButton from '../ui/SmallButton'
 import { FOCUS } from './Face'
 
-const BOARD = 5
-const SHAKE_MS = 360
+const BOARD = settings['match-board']
+const SHAKE_MS = motion['shake-ms']
 
-const shuffled = (list) => list.map((x) => [Math.random(), x]).sort((a, b) => a[0] - b[0]).map(([, x]) => x)
 const boardOf = (words, round) => {
   const size = Math.ceil(words.length / Math.ceil(words.length / BOARD))
   const these = words.slice(round * size, round * size + size)
-  return { round, left: shuffled(these), right: shuffled(these), found: [], slips: 0 }
+  return { round, left: shuffled(these, Math.random), right: shuffled(these, Math.random), found: [], slips: 0 }
 }
 
 export default function WordMatch({ words }) {

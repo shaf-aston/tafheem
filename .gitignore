@@ -122,6 +122,13 @@ credentials.json
 # backend/scripts/build_tarkeeb.py whenever that script or tarkeeb.json changes.
 !backend/data/tarkeeb/tarkeeb.db
 
+# The weak-points file is small (under 1 MB) and built from rijal.db, which stays off GitHub,
+# so a host cannot rebuild it. Rebuild with backend/scripts/build_usul.py whenever
+# usul.json or rijal.db changes.
+!backend/data/usul/usul.db
+# The narrator books it is built from: downloaded by backend/scripts/fetch_usul.py.
+backend/data/usul/books/
+
 # Large datasets / media
 # Project-specific large folders (ignore if you don't want to track large books/datasets)
 /Islamic books/
@@ -239,6 +246,8 @@ tunnel/cloudflared.exe
 # Hadith collections are fetched on the server by deploy/sync.sh, never committed.
 backend/data/hadith/*.json
 !backend/data/hadith/collections.json
+!backend/data/hadith/chain.json
+!backend/data/hadith/book_names.json
 !backend/data/hadith/search_yardstick.json
 
 # Raw sunnah.com pages the rijal fetch caches. rijal.db is covered by *.db above.

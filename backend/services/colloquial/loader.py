@@ -79,6 +79,8 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     said = []
     if not str(lesson.get("title") or "").strip():
         said.append(f"{name} has no title")
+    if not lesson.get("phrases"):  # a word list: its words are all it teaches
+        return said
     for part in ("phrases", "dialogue", "exercises"):
         if not lesson.get(part):
             said.append(f"{name} has no {part}")
@@ -146,7 +148,7 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
         said.extend(faults)
         filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases,
                        "dialogue": dialogue, "vocabulary": vocabulary, "written": True})
-    return {**written, "title": outline["title"], "lessons": filled}, said
+    return {**written, "title": outline["title"], "cover": outline.get("cover"), "lessons": filled}, said
 
 
 def _unit_faults(unit: dict) -> list[str]:
@@ -165,12 +167,34 @@ def _unit_faults(unit: dict) -> list[str]:
     seen_ids: set[str] = set()
     for lesson in lessons:
         said.extend(_lesson_faults(lesson, seen_ids))
+    if not any(lesson.get("phrases") for lesson in lessons):
+        return said  # a unit of word lists has nothing to challenge
     challenge = unit.get("challenge")
     if not challenge:
         said.append("has no challenge")
     elif not (challenge.get("instructions") and challenge.get("required_elements")):
         said.append("has a challenge with no instructions or nothing required in it")
     return said
+
+
+def _laid(outline: dict, written: dict, words: dict) -> tuple[dict, list[str]]:
+    """A unit file laid onto its spine unit and checked: the one way a unit is read, in the app and in the scripts."""
+    unit, faults = _fill(outline, written, words)
+    return unit, faults + _unit_faults(unit)
+
+
+def spine() -> list[dict]:
+    """The course outline's units, read from disk each call (the app's copy is cached in _content)."""
+    return json.loads((data_path("colloquial_dir") / "spine.json").read_text(encoding="utf-8"))["units"]
+
+
+def unit_faults(folder: str, name: str, written: dict | None = None, words: dict | None = None) -> list[str]:
+    """One dialect unit's faults, as the app would find them on load. `written` and `words`: the unit
+    and the dialect's words as they would be saved, to check them before they are; default the files on disk."""
+    if written is None:
+        written = json.loads((data_path("colloquial_dir") / folder / f"{name}.json").read_text(encoding="utf-8"))
+    outline = next(one for one in spine() if one["unit"] == name)
+    return _laid(outline, written, wordlist.said_in(folder) if words is None else words)[1]
 
 
 @lru_cache(maxsize=1)
@@ -183,9 +207,9 @@ def _content() -> dict:
     """
     root = data_path("colloquial_dir")
     manifest = json.loads((root / "dialects.json").read_text(encoding="utf-8"))
-    spine = json.loads((root / "spine.json").read_text(encoding="utf-8"))["units"]
+    outlines = spine()
     meanings = wordlist.meanings()
-    dialects, broken = [], wordlist.outline_faults(spine, meanings)
+    dialects, broken = [], wordlist.outline_faults(outlines, meanings)
     for dialect in sorted(manifest["dialects"], key=lambda d: d["order"]):
         folder = root / dialect["folder"]
         said = wordlist.said_in(dialect["folder"])
@@ -196,20 +220,20 @@ def _content() -> dict:
             if unit.get("unit") in written:
                 broken.append(f"dialect {dialect['key']!r} has two units named {unit.get('unit')!r}")
             written[unit.get("unit")] = unit
-        for extra in sorted(set(written) - {outline["unit"] for outline in spine}, key=str):
+        for extra in sorted(set(written) - {outline["unit"] for outline in outlines}, key=str):
             broken.append(f"{dialect['key']}/{extra}: is not in spine.json")
         if not written:
             broken.append(f"dialect {dialect['key']!r} has no units in {folder.name}/")
         units = []
-        for outline in spine:
+        for outline in outlines:
             if outline["unit"] not in written:
                 units.append({"unit": outline["unit"], "title": outline["title"], "written": False,
                               "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"],
                                            "section": lesson.get("section"), "written": False}
                                           for lesson in outline["lessons"]]})
                 continue
-            unit, faults = _fill(outline, written[outline["unit"]], said)
-            if faults := faults + _unit_faults(unit):
+            unit, faults = _laid(outline, written[outline["unit"]], said)
+            if faults:
                 broken.append(f"{dialect['key']}/{outline['unit']}: " + "; ".join(faults))
             units.append({**unit, "written": True})
         dialects.append({**dialect, "units": units})
@@ -221,12 +245,22 @@ def _content() -> dict:
     return {"dialects": dialects}
 
 
+def _cover(unit: dict) -> dict | None:
+    """The phrase the spine names as the unit's `cover`, else (not named, or not yet
+    written in this dialect) its first phrase with a picture. Every dialect fills the
+    same spine slots, so the same unit opens on the same phrase in each, said its own way."""
+    pictured = [p for lesson in unit["lessons"] for p in lesson.get("phrases") or [] if p.get("image")]
+    phrase = next((p for p in pictured if p["slot"] == unit.get("cover")), pictured[0] if pictured else None)
+    return phrase and {"arabic": phrase["arabic"], "english": phrase["english"], "image": phrase["image"]}
+
+
 def catalogue() -> dict:
     """Every dialect and the units in it, without the lessons.
 
     Every spine unit is listed for every dialect; `written` says which can be
     opened, so an unwritten unit shows as coming instead of vanishing. A lesson's
     `words` counts its word list, so a topic with one can offer it beside the phrases.
+    `cover` is the phrase the unit's card says, with its picture.
 
     The tab opens on this, so it stays small: a unit's own lessons are about
     sixty kilobytes and there is no reason to send fifteen of them to draw a
@@ -241,8 +275,10 @@ def catalogue() -> dict:
                 "where": dialect["where"],
                 "units": [{"unit": u["unit"], "title": u["title"], "written": u["written"],
                            "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"], "section": lesson["section"],
-                                        "written": lesson["written"], "words": len(lesson.get("vocabulary") or [])}
-                                       for lesson in u["lessons"]]}
+                                        "written": lesson["written"], "words": len(lesson.get("vocabulary") or []),
+                                        "phrases": len(lesson.get("phrases") or [])}
+                                       for lesson in u["lessons"]],
+                           "cover": _cover(u)}
                           for u in dialect["units"]],
             }
             for dialect in _content()["dialects"]

@@ -1,9 +1,17 @@
 {
-  "_comment": "Every setting a reader is allowed to change, and exactly what it drives. Adding an entry here adds it to the settings panel, no component is edited. A 'choice' writes its chosen option's 'write' value into one CSS variable. A 'range' writes its own number. A 'switch' either writes the variables under 'off' while it is off, or is read directly by a component (the dictionary's synonyms). 'section' groups a setting under its module in the panel, in first-seen order. A setting with needs-health is shown only while that useHealth field is non-empty. Defaults live here, so this file is the whole answer to 'what can be configured'.",
+  "_comment": "Every setting a reader is allowed to change, and exactly what it drives. Adding an entry here adds it to the settings panel, no component is edited. A 'choice' writes its chosen option's 'write' value into one CSS variable; one marked \"theme\" picks the look instead: its options and default come from theme.json, so a new look needs no entry here. A 'range' writes its own number. A 'switch' either writes the variables under 'off' while it is off, or is read directly by a component (the dictionary's synonyms). 'section' groups a setting under its module in the panel, in first-seen order. A setting with needs-health is shown only while that useHealth field is non-empty. Defaults live here, so this file is the whole answer to 'what can be configured'.",
 
   "storage-key": "settings",
 
   "settings": [
+    {
+      "key": "theme",
+      "section": "General",
+      "label": "Appearance",
+      "help": "Dark or light. Device follows your phone or computer.",
+      "type": "choice",
+      "theme": true
+    },
     {
       "key": "motion",
       "section": "General",
@@ -16,6 +24,7 @@
         "--motion-base-ms": 0,
         "--motion-spring-ms": 0,
         "--motion-stagger-ms": 0,
+        "--motion-shake-ms": 0,
         "--motion-scale": 0
       }
     },

@@ -8,9 +8,28 @@
  */
 import HADITH from '../hadith.json'
 
-import { MARKS, QUOTED, chainLinks, chainOf } from './hadithWords'
+import { CHAIN, MARKS, QUOTED, chainLinks } from './hadithWords'
 
 const { tones: TONES, teller: TELLER } = HADITH.narrator
+// A name's own words: letter first, letter or vowel last, spaces between.
+const WORDS = /\p{L}(?:[\p{L}\p{M}\s]*[\p{L}\p{M}])?/u
+
+/**
+ * `[from, to]` cut to the name where sunnah.com's link took in the collector's
+ * aside (عبد العزيز، - يعني ابن محمد; - وكيع): the first stretch between aside
+ * marks with a letter in it. A link with no mark stays as it is.
+ */
+function own(text, from, to) {
+  const linked = text.slice(from, to)
+  if (!linked.includes(CHAIN.aside)) return [from, to]
+  let at = from
+  for (const piece of linked.split(CHAIN.aside)) {
+    const words = piece.match(WORDS)
+    if (words) return [at + words.index, at + words.index + words[0].length]
+    at += piece.length + CHAIN.aside.length
+  }
+  return [from, to]
+}
 
 /** The tone a grade wears: the first whose highest rank covers it, else danger. */
 export const toneOf = (rank) => Object.entries(TONES).find(([, top]) => rank != null && rank <= top)?.[0] ?? 'danger'
@@ -23,9 +42,8 @@ export function runs(text, names, offset = 0) {
   const out = []
   let at = 0
   for (const [start, end, id] of [...names].sort((a, b) => a[0] - b[0])) {
-    const from = start - offset
-    const to = end - offset
-    if (from < at || to <= from || to > text.length) continue
+    if (start - offset < at || end <= start || end - offset > text.length) continue
+    const [from, to] = own(text, start - offset, end - offset)
     if (from > at) out.push({ text: text.slice(at, from) })
     out.push({ text: text.slice(from, to), id })
     at = to
@@ -43,16 +61,13 @@ export const withoutMarks = (text, names) =>
 
 /**
  * The hadith from the one who tells it on, with the chain before him dropped,
- * and `names` moved to match. The chain walker (chainOf) finds the cut by its
- * words; where it cannot, sunnah.com's own name links do: the last narrator
- * named before the speech opens is the teller. Neither finds one: whole.
+ * and `names` moved to match. The server's `cut` (data/hadith/chain.json) finds
+ * the teller by the chain's words; with none, sunnah.com's own name links do:
+ * the last narrator named before the speech opens is the teller. Neither: whole.
  */
-export function told(arabic, names) {
-  const cut = chainOf(arabic)
+export function told(arabic, cut, names) {
   const before = names.filter(([, end]) => end <= arabic.search(QUOTED))
-  const at = cut.chain
-    ? arabic.lastIndexOf(cut.teller, arabic.length - cut.body.length)
-    : (before.length >= TELLER ? Math.max(...before.map(([start]) => start)) : 0)
+  const at = cut ? cut[0] : (before.length >= TELLER ? Math.max(...before.map(([start]) => start)) : 0)
   return {
     text: arabic.slice(at),
     names: names.filter(([start]) => start >= at).map(([start, end, id]) => [start - at, end - at, id]),
@@ -60,14 +75,27 @@ export function told(arabic, names) {
 }
 
 /**
- * A drawn chain (lib/hadithWords chainLinks of chainOf(arabic).chain) with each
+ * A drawn chain (lib/hadithWords chainLinks of the Arabic before `cut`) with each
  * narrator's id where sunnah.com linked his name in this hadith: the slice
  * overlapping the place his name stands. A name it did not link stays plain.
+ * Each name in the box is a `member` (a box may join several: أيوب، ويونس) with
+ * its own words, cut to the box so an aside after it stays out, and its `note`
+ * (a weak narrator, from usul.db, starting where his slice starts), for lib/weak.
+ * The box carries the `ties` that start at any member: the links of the chain a
+ * source puts in doubt, each saying who said the word before that name.
  */
-export function linked(links, names) {
-  const add = (link) => link && {
-    ...link,
-    id: names.find(([start, end]) => link.span && start < link.span[1] && end > link.span[0])?.[2] ?? null,
+export function linked(links, names, chain, notes = [], ties = []) {
+  const add = (link) => {
+    if (!link) return link
+    const [from, to] = link.span ?? [0, 0]
+    const slices = names.filter(([start, end]) => start < to && end > from)
+    return {
+      ...link, id: slices[0]?.[2] ?? null,
+      members: slices.map(([start, end, id]) => ({
+        id, name: chain.slice(Math.max(start, from), Math.min(end, to)), note: notes.find((n) => n.at === start) ?? null,
+      })),
+      ties: ties.filter((t) => slices.some(([start]) => t.at === start)),
+    }
   }
   return {
     main: links.main.map(add),
@@ -75,9 +103,14 @@ export function linked(links, names) {
   }
 }
 
-/** The chain drawing for one hadith, its names linked: `names` are its own slices. */
-export function drawnChain(arabic, names) {
-  const { chain } = chainOf(arabic)
+/**
+ * The chain drawing for one hadith, its names linked. `cut` is the server's [teller_at, body_at]
+ * (backend/services/hadith/chain, the one cutter; offsets assume no character outside the BMP),
+ * `names` its own slices, `notes` its weak narrators, `ties` its doubtful links.
+ */
+export function drawnChain(arabic, cut, names, notes = [], ties = []) {
+  const chain = arabic.slice(0, cut[1]).trim()
   const at = arabic.indexOf(chain)
-  return linked(chainLinks(chain), names.map(([start, end, id]) => [start - at, end - at, id]))
+  const moved = (list) => list.map((n) => ({ ...n, at: n.at - at }))
+  return linked(chainLinks(chain), names.map(([start, end, id]) => [start - at, end - at, id]), chain, moved(notes), moved(ties))
 }

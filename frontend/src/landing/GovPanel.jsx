@@ -67,11 +67,15 @@ export default function GovPanel({ lp, govIdx }) {
         {DEMO_WORDS.map((w, i) => <i key={w.word} className={pair.from === i || pair.to === i ? 'act' : ''} style={tone(w)} />)}
       </div>
       <p className="story-pair">Pair {govIdx + 1} of {GOVERNS.length}</p>
-      {GOVERNS.map((g, k) => k === govIdx && (
-        <p key={k} className={`story-why${lp > 0.25 ? ' on' : ''}`}>
-          <b lang="ar">{g.why[0]}</b> {g.why[1]}<b lang="ar">{g.why[2]}</b>{g.why[3]}
-        </p>
-      ))}
+      {/* Every pair's line sits in one cell, the others faded out, so the panel is
+          always as tall as the longest and nothing below it jumps when the pair changes. */}
+      <div className="story-whys">
+        {GOVERNS.map((g, k) => (
+          <p key={k} className={`story-why${k === govIdx && lp > 0.25 ? ' on' : ''}`} aria-hidden={k !== govIdx}>
+            <b lang="ar">{g.why[0]}</b> {g.why[1]}<b lang="ar">{g.why[2]}</b>{g.why[3]}
+          </p>
+        ))}
+      </div>
     </>
   )
 }

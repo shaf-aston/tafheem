@@ -2,13 +2,16 @@
  * A pill that opens a small floating panel. For settings chosen once and left:
  * they stay one click away without taking room on a line that needs it.
  *
+ * `align` is the pill's edge the panel hangs from: "end" for a pill at the end of
+ * a line, "start" for one at the start, so the panel opens toward the room.
+ *
  * Shuts on a click elsewhere or Escape, and Escape hands focus back to the
  * pill. Not Disclosure: a <details> pushes its content into the page, and
  * inside a wrapping row that reflows the row, which is the thing this avoids.
  */
 import { useEffect, useId, useRef, useState } from 'react'
 
-export default function Popover({ label, title, children }) {
+export default function Popover({ label, title, align = 'end', children }) {
   const [open, setOpen] = useState(false)
   const box = useRef(null)
   const pill = useRef(null)
@@ -58,8 +61,8 @@ export default function Popover({ label, title, children }) {
       {open && (
         <div
           id={id}
-          className="absolute end-0 top-full mt-2 z-[var(--layer-popover)] w-max p-3 rounded-[var(--radius-md)]
-            bg-[var(--surface-hi)] border border-[var(--border-hi)] shadow-[var(--shadow-pop)]"
+          className={`absolute ${align === 'start' ? 'start-0' : 'end-0'} top-full mt-2 z-[var(--layer-popover)] w-max max-w-[calc(100vw-2rem)] p-3 rounded-[var(--radius-md)]
+            bg-[var(--surface-hi)] border border-[var(--border-hi)] shadow-[var(--shadow-pop)]`}
         >
           {children}
         </div>

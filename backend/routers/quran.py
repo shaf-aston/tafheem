@@ -7,9 +7,9 @@ import logging
 from fastapi import APIRouter, HTTPException, Path, Query
 
 from backend.config import get_settings
-from backend.models.schemas import (
+from backend.models.common import Correction
+from backend.models.quran import (
     AyahEditions,
-    Correction,
     Edition,
     Passage,
     QuranAyah,
@@ -22,15 +22,15 @@ from backend.models.schemas import (
     SimilarGroup,
     SimilarPartner,
     SimilarSurah,
-    Source,
     SurahEdition,
     SurahGlosses,
-    TarkeebTree,
 )
-from backend.services import arabic_text, provenance, quran_corpus, quran_library, quran_service
+from backend.models.tarkeeb import TarkeebTree
+from backend.services import arabic_text, provenance, quran_library, quran_service
 from backend.services import mutashabihat, quran_search
-from backend.services import tarkeeb
-from backend.services import tarkeeb_store
+from backend.services import iraab
+from backend.services import tarkeeb_store, tree_columns
+from backend.services.refs import SURAHS
 from backend.utils import normalize_text, search_query
 
 logger = logging.getLogger(__name__)
@@ -39,7 +39,6 @@ router = APIRouter(prefix="/api/quran", tags=["quran"])
 # Bounds on the two numbers every Qur'an route takes. Not decoration: an
 # unbounded int goes straight to SQLite, and one long enough to overflow a C
 # integer came back as a 500 rather than as "there is no such ayah".
-SURAHS = 114
 LONGEST_SURAH = 286   # al-Baqarah, and so the largest ayah number there can be
 
 
@@ -57,36 +56,22 @@ async def get_root(root: str) -> RootResponse:
     # The tagger writes a root as ك-ت-ب and the corpus stores كتب; accept either
     # so a link from another tab always lands.
     root = arabic_text.normalize_root(normalize_text(root, "Root"))
-    found = await asyncio.to_thread(
-        quran_corpus.occurrences_of_root, root, get_settings().root_occurrence_limit
-    )
-    if not found["total"]:
-        # Not a root: it may be a word, so answer for the root it comes from.
-        word_root = await asyncio.to_thread(quran_corpus.root_of, root)
-        if word_root:
-            found = await asyncio.to_thread(
-                quran_corpus.occurrences_of_root, word_root, get_settings().root_occurrence_limit
-            )
+    found = await asyncio.to_thread(quran_service.occurrences, root)
     if not found["total"]:
         raise HTTPException(status_code=404, detail=f"The root {root} does not occur in the Qur'an")
-    return RootResponse(**found, source=Source(**provenance.of("corpus")))
+    return RootResponse(**found, source=provenance.of("corpus"))
 
 
 # Declared before /{surah}/{ayah} for the same reason /root/ is: both are two
 # segments, and the first route that matches wins.
 @router.get("/surah/{surah}", response_model=QuranSurah)
-async def get_surah(surah: int, words: bool = False) -> QuranSurah:
-    """A whole surah at once, for reading it end to end.
-
-    `words=false` (the default) is the reading view: the text and its English,
-    which is two local queries however long the surah is. `words=true` adds the
-    word-by-word grammar, and is meant for one ayah being studied rather than a
-    whole surah being skimmed.
-    """
-    data = await asyncio.to_thread(quran_service.get_surah, surah, words)
+async def get_surah(surah: int = Path(..., ge=1, le=SURAHS)) -> QuranSurah:
+    """A whole surah at once, for reading it end to end: the text and its English,
+    two local queries however long the surah is."""
+    data = await asyncio.to_thread(quran_service.get_surah, surah)
     if data is None:
         raise HTTPException(status_code=404, detail=f"There is no surah {surah}")
-    return QuranSurah(**data, source=Source(**provenance.of("corpus")))
+    return QuranSurah(**data, source=provenance.of("corpus"))
 
 
 # Three segments, so it cannot collide with /surah/{surah} above.
@@ -97,8 +82,7 @@ async def get_surah_glosses(surah: int = Path(..., ge=1, le=SURAHS)) -> SurahGlo
     An empty answer is valid and means the meanings database was never built.
     The reader then draws the surah exactly as it did before.
     """
-    glosses = await asyncio.to_thread(quran_service.glosses_for_surah, surah)
-    lemmas = await asyncio.to_thread(quran_corpus.lemmas_for_surah, surah)
+    glosses, lemmas = await asyncio.to_thread(quran_service.aligned_for_surah, surah)
     return SurahGlosses(surah=surah, ayahs=glosses, lemmas=lemmas)
 
 
@@ -113,7 +97,7 @@ async def get_similar_surah(surah: int = Path(..., ge=1, le=SURAHS)) -> SimilarS
         ayahs=sorted({int(k.partition(":")[2]) for g in groups for k in g["keys"] if k.startswith(prefix)}),
         groups=[
             SimilarGroup(id=g["id"], keys=g["keys"], change_type=g["change_type"],
-                         sources=[Source(**provenance.of(f"mutashabihat-{s}")) for s in g["sources"]])
+                         sources=[provenance.of(f"mutashabihat-{s}") for s in g["sources"]])
             for g in groups
         ],
     )
@@ -138,7 +122,7 @@ async def get_similar_ayah(
             **{k: v for k, v in p.items() if k != "sources"},
             surah=int(p["key"].partition(":")[0]),
             ayah=int(p["key"].partition(":")[2]),
-            sources=[Source(**provenance.of(f"mutashabihat-{s}")) for s in p["sources"]],
+            sources=[provenance.of(f"mutashabihat-{s}") for s in p["sources"]],
         )
         for p in found
     ])
@@ -154,7 +138,7 @@ async def get_editions(kind: str = Query("", pattern="^(tafsir|translation)?$"))
     books = await asyncio.to_thread(quran_library.of_kind, kind) if kind \
         else await asyncio.to_thread(quran_library.editions)
     return [
-        Edition(**book, source=Source(**provenance.for_edition(book)))
+        Edition(**book, source=provenance.for_edition(book))
         for book in books
     ]
 
@@ -205,30 +189,36 @@ async def get_ayah_editions(
         surah=surah,
         ayah=ayah,
         passages=[
-            Passage(**passage, source=Source(**provenance.for_edition(passage)))
+            Passage(**passage, source=provenance.for_edition(passage))
             for passage in found
         ],
     )
 
 
 @router.get("/{surah}/{ayah}/tarkeeb", response_model=TarkeebTree)
-async def get_tarkeeb(surah: int, ayah: int) -> TarkeebTree:
+async def get_tarkeeb(
+    surah: int = Path(..., ge=1, le=SURAHS),
+    ayah: int = Path(..., ge=1, le=LONGEST_SURAH),
+) -> TarkeebTree:
     """How the ayah's words assemble, the bracket tree, not the case endings.
 
     Two sources, and the badge always says which. The treebank is what scholars
-    recorded and covers most of the Qur'an; where it has nothing, the rules work
-    out what they can from the corpus tags and leave the rest as open brackets.
+    recorded and covers most of the Qur'an; where it has nothing, the Nahw engine reads
+    the ayah as it reads a typed sentence and leaves what it cannot name as gaps.
     """
     recorded = await asyncio.to_thread(tarkeeb_store.for_ayah, surah, ayah)
-    result = recorded or await asyncio.to_thread(tarkeeb.for_ayah, surah, ayah)
+    result = tree_columns.cut(recorded) if recorded else await asyncio.to_thread(iraab.ayah_tree, surah, ayah)
     if not result["words"]:
         raise HTTPException(status_code=404, detail=f"There is no ayah {surah}:{ayah}")
-    source = provenance.of("treebank" if recorded else "tarkeeb")
-    return TarkeebTree(surah=surah, ayah=ayah, **result, source=Source(**source))
+    source = provenance.of("treebank" if recorded else "nahw")
+    return TarkeebTree(surah=surah, ayah=ayah, **result, source=source)
 
 
 @router.get("/{surah}/{ayah}", response_model=QuranAyah)
-async def get_ayah(surah: int, ayah: int) -> QuranAyah:
+async def get_ayah(
+    surah: int = Path(..., ge=1, le=SURAHS),
+    ayah: int = Path(..., ge=1, le=LONGEST_SURAH),
+) -> QuranAyah:
     """Return an ayah's word-by-word grammar from the corpus."""
     result = await asyncio.to_thread(quran_service.get_ayah, surah, ayah)
     if result is None:
@@ -241,7 +231,7 @@ async def get_ayah(surah: int, ayah: int) -> QuranAyah:
         arabic_text=" ".join(word.arabic for word in words),
         words=words,
         end_mark=result["end_mark"],
-        source=Source(**provenance.of("corpus")),
+        source=provenance.of("corpus"),
     )
 
 
@@ -258,7 +248,7 @@ async def search_quran(q: str = Query(..., min_length=1, max_length=get_settings
                 surah=hit.surah,
                 ayah=hit.ayah,
                 arabic_text=hit.arabic_text,
-                source=Source(**provenance.of(hit.source)),
+                source=provenance.of(hit.source),
             )
             for hit in hits
         ],

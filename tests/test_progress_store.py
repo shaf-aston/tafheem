@@ -206,3 +206,18 @@ def test_the_summary_names_the_words_got_right(store):
     store.record(module="quiz", item="doubt", correct=True)  # saved before words were
     store.record(module="quiz", item="doubt", correct=True, context={"word": 5})  # not a word
     assert stats_for(store, "doubt")["words"] == ["", "رَيْب"]
+
+
+def test_replaying_many_words_is_quick():
+    """Every progress read replays each word, and the leaderboard does it for
+    every account. A card that costs a millisecond to make turns that into
+    seconds, so making 300 must stay far below that."""
+    from time import perf_counter
+
+    from backend.services.review_schedule import card_of
+
+    at = datetime(2026, 1, 1, tzinfo=timezone.utc)
+    started = perf_counter()
+    for _ in range(300):
+        card_of([(at, True)])
+    assert perf_counter() - started < 0.1

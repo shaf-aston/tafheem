@@ -18,10 +18,9 @@ import re
 from itertools import pairwise
 
 from backend.config import get_settings
-from backend.services import ai, dictionary_service, iraab, morphology, progress_store, quran_library, quran_meanings
+from backend.services import ai, dictionary_service, iraab, morphology, progress_store, quran_library, quran_meanings, quran_search
 from backend.services.arabic_text import words
 from backend.services.nahw_book import term_ar
-from backend.services.quran_search import local
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +46,7 @@ def kind_of(summary: str | None, read: list[dict]) -> str:
     """"sentence" when it says something, else "phrase"; "word" when one Arabic word
     is all there is, as when the rest of what was typed is not Arabic.
 
-    `summary` is the grammar's name for the whole (iraab.analyse, as the Analyse
+    `summary` is the grammar's name for the whole (iraab.analyze, as the Analyse
     page shows it), and every clause it names is a جُمْلَةٌ: the verbal, nominal,
     question and call clauses alike. It reads البيت الكبير as a described noun and
     هل أنت جائع as a question. It does not yet see a definite noun told about by
@@ -67,14 +66,14 @@ def translate(text: str) -> dict:
     read = morphology.analyze_sentence(text)
     pairs = [{"arabic": w["word"], "english": literal(w["gloss"]), "base": w.get("base") or w["word"]} for w in read]
     found = _whole_ayah(text, pairs) or _model_sense(text, pairs)
-    return {"kind": kind_of(iraab.analyse(text)["summary"], read), **found}
+    return {"kind": kind_of(iraab.analyze(text)["summary"], read), **found}
 
 
 def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:
     """The ayah's published sense, when the text is one whole ayah and nothing more,
     and its published words too unless their count disagrees with the ayah's own,
     when CAMeL's stand rather than English landing under the wrong word."""
-    if (hit := local.whole_ayah(text)) is None:
+    if (hit := quran_search.whole_ayah(text)) is None:
         return None
     books = quran_library.for_ayah(hit.surah, hit.ayah, [get_settings().sentence_translation])
     if not books:
