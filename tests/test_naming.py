@@ -444,3 +444,34 @@ def test_a_second_ibn_describes_the_whole_name_before_it():
     found = named(words, toks)
     assert toks[4]["head"] == 3 and toks[4]["rel"] == "MOD"
     assert [w["role"] for w in found] == [None, "صفة", "مضاف إليه", "مضاف إليه", "صفة", "مضاف إليه", "مضاف إليه"]
+
+
+def test_the_noun_after_a_full_name_is_its_khabar():
+    # as the live parser drew it: رسولُ hung on the name as its صفة, عمر's khabar a root of its own
+    words = ["مُحَمَّدُ", "بْنُ", "عَبْدِ", "اللهِ", "رَسُولُ", "اللهِ"]
+    toks = [_name(1, "محمد", 0, "---"),
+            token(2, "بن", "ابن", "NOM", 1, "MOD", pos_camel="noun", stt="c"),
+            token(3, "عبد", "عبد", "NOM", 2, "IDF", pos_camel="noun", stt="c"),
+            _name(4, "الله", 3, "IDF", stt="d"),
+            token(5, "رسول", "رسول", "NOM", 1, "MOD", pos_camel="noun", stt="c"),
+            _name(6, "الله", 5, "IDF", stt="d")]
+    assert roles(words, toks) == ["مبتدأ", "صفة", "مضاف إليه", "مضاف إليه", "خبر", "مضاف إليه"]
+    words = ["عمر", "بن", "الخطاب", "خليفة", "عادل"]
+    toks = [_name(1, "عمر", 0, "---"),
+            token(2, "بن", "ابن", "NOM", 1, "MOD", pos_camel="noun", stt="c"),
+            _name(3, "الخطاب", 2, "IDF", stt="d"),
+            token(4, "خليفة", "خليفة", "NOM", 0, "---", pos_camel="noun", stt="i"),
+            token(5, "عادل", "عادل", "NOM", 4, "MOD", pos_camel="adj", stt="i", ud="ADJ")]
+    assert roles(words, toks) == ["مبتدأ", "صفة", "مضاف إليه", "خبر", "صفة"]
+
+
+def test_bin_without_its_alef_marks_a_name_the_reading_missed():
+    # عليُّ read as an adjective: بن (no alef) still makes it a name
+    words = ["كَانَ", "عَلِيُّ", "بْنُ", "أَبِي", "طَالِبٍ", "شُجَاعًا"]
+    toks = [token(1, "كان", "كان", "VRB", 0, "---", pos_camel="verb", asp="p"),
+            token(2, "علي", "علي", "NOM", 1, "SBJ", pos_camel="adj"),
+            token(3, "بن", "ابن", "NOM", 2, "PRD", pos_camel="noun", stt="c"),
+            token(4, "أبي", "أب", "NOM", 3, "IDF", pos_camel="noun", stt="c"),
+            _name(5, "طالب", 4, "IDF"),
+            token(6, "شجاعا", "شجاع", "NOM", 1, "OBJ", pos_camel="adj", stt="i")]
+    assert roles(words, toks)[2] == "صفة"
