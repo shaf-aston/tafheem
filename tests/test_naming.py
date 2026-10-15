@@ -475,3 +475,14 @@ def test_bin_without_its_alef_marks_a_name_the_reading_missed():
             _name(5, "طالب", 4, "IDF"),
             token(6, "شجاعا", "شجاع", "NOM", 1, "OBJ", pos_camel="adj", stt="i")]
     assert roles(words, toks)[2] == "صفة"
+
+
+def test_a_bare_father_before_a_kasra_noun_keeps_the_name_going():
+    # عليُّ بنُ أبي طالبٍ شجاعٌ: طالبٍ is typed with kasra, so it is أبي's مضاف إليه, not the khabar
+    toks = [token(1, "علي", "علي", "PROP", 0, "---", cas="n"),
+            token(2, "بن", "ابن", "NOM", 1, "MOD", stt="c", cas="n"),
+            token(3, "أبي", "أب", "NOM", 2, "IDF", cas="g"),
+            token(4, "طالب", "طالب", "NOM", 1, "PRD", cas="g"),
+            token(5, "شجاع", "شجاع", "NOM", 4, "MOD", cas="n")]
+    assert roles(["عَلِيُّ", "بْنُ", "أَبِي", "طَالِبٍ", "شُجَاعٌ"], toks) == \
+        ["مبتدأ", "صفة", "مضاف إليه", "مضاف إليه", "خبر"]
