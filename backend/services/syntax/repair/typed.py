@@ -14,6 +14,11 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         if ((token["pos"].startswith("VRB") and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"))
                 or (token["pos"] == "PRT" and only_adverb(token["lemma"]))):
             token["pos"] = "NOM"
+        # مَعَ النَّاسِ: the noun the parser hung on a ظرف as a preposition's is its مضاف إليه
+        if token["pos"] == "NOM" and token.get("pos_camel") == "prep" and only_adverb(token["lemma"]):
+            for kid in tokens:
+                if kid["head"] == token["id"] and kid["rel"] == "OBJ":
+                    kid["rel"] = "IDF"
         # مُلَبِّينَ: no verb opens with مُ and ends in the plural ـونَ/ـينَ, so it is a participle
         elif token["pos"].startswith("VRB") and _participle_plural(word):
             token.update(pos="NOM", asp="na", cas=_plural_case(word, token, tokens))
