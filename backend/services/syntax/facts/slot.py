@@ -33,10 +33,17 @@ def is_zarf(token: dict, s: Sentence) -> bool:
         k["rel"] == "IDF" and (listed(k, "zarf_zaman") or listed(k, "zarf_makan")) for k in s.kids(token))
 
 
+def is_built_zarf(token: dict) -> bool:
+    """أمسِ، حيثُ، الآن: a time or place word built on one ending (closed_words `built`)."""
+    return token["pos"] != "PRT" and any(is_one(token["lemma"], family, "built") for family in ("zarf_zaman", "zarf_makan"))
+
+
 def zarf_of_khabar(token: dict, s: Sentence) -> bool:
     """الأستاذُ عندَ البابِ: in a verbless sentence a place or time word with its mudaf ilayh
     is the khabar's maf'ul fihi (the khabar itself is understood, Tasheel 1.4.4 p13)."""
-    return (s.verbless and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
+    # المرءُ مع مَن أحبّ: a verb inside the مضاف إليه's صلة still leaves the sentence verbless at its root
+    rests = token["rel"] == "---" and any(k["rel"] in ("SBJ", "TPC") for k in s.kids(token))
+    return ((s.verbless or rests) and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
             and token["rel"] in ("---", "MOD", "PRD")
             and typed_or_parsed_case(token) in (None, "a") and any(k["rel"] == "IDF" for k in s.kids(token)))
 
@@ -48,6 +55,8 @@ def place_time(token: dict, s: Sentence) -> bool:
     if not is_zarf(token, s):
         return False
     head = s.head(token)
+    if is_built_zarf(token) and head and is_verb(head) and token["rel"] in ("MOD", "IDF"):
+        return True  # سافر أمسِ: its kasra is built in, so it says nothing of its case
     # مسافرٌ غدًا: a participle works like its verb
     if head and (is_verb(head) or (is_participle(head) and token["rel"] == "MOD")):
         return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a")

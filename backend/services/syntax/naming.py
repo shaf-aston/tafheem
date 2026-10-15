@@ -282,7 +282,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token):
+    if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token) or (role and facts.is_built_zarf(token)):
         return "mabni"
     # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built;
     # a name is never built, so a sukun on one is the reader pausing (أَحْمَدْ جَاءَ)
