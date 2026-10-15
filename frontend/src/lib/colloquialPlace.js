@@ -24,3 +24,19 @@ export function parsePlace(q, dialects) {
 }
 
 export const placeOf = (dialect, unit, lesson, words = false) => [dialect, unit, lesson, words && 'words'].filter(Boolean).join('/')
+
+export const unitNumber = (id) => Number(id.replace(/\D/g, '')) || 0
+
+// A place in words, for the journey trail: "Egyptian · Unit 1 · Greetings · Words".
+export function nameOfPlace(q, dialects) {
+  const place = parsePlace(q, dialects)
+  if (!place) return q
+  const dialect = dialects.find((d) => d.key === place.dialect)
+  const unit = place.unit && dialect.units.find((u) => u.unit === place.unit)
+  return [
+    dialect.label,
+    unit && `Unit ${unitNumber(unit.unit)}`,
+    unit && place.at !== null && unit.lessons[place.at].title,
+    place.words && 'Words',
+  ].filter(Boolean).join(' · ')
+}

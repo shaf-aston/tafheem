@@ -9,6 +9,7 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
+import { isArabic } from '../lib/arabicText'
 import { NOTES, runOf } from '../lib/notes'
 
 import ArabicText from './ui/ArabicText'
@@ -16,12 +17,10 @@ import EmptyState from './ui/EmptyState'
 import PrimaryButton from './ui/PrimaryButton'
 import SmallButton from './ui/SmallButton'
 
-// Arabic cards are right to left, English ones are not; a card says which by its letters.
-const isArabic = (text) => /[؀-ۿ]/.test(text)
-
 // A whole paragraph at the large size fills the screen; only a short card gets it.
 const LONG_CARD = 80
 
+// Arabic cards are right to left, English ones are not; a card says which by its letters.
 function Face({ text }) {
   const size = text.length > LONG_CARD ? 'base' : 'lg'
   return isArabic(text)

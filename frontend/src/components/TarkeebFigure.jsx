@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { useModal } from '../lib/useModal'
+import { closeOnBackdrop, useModal } from '../lib/useModal'
 
 import TarkeebDiagram from './TarkeebDiagram'
 import CloseButton from './ui/CloseButton'
@@ -46,7 +46,7 @@ export default function TarkeebFigure({ words, written, tree, unwritten, coverag
         ref={dialog}
         aria-label="Tarkeeb, larger"
         onClose={() => setBig(false)}
-        onClick={(e) => e.target === dialog.current && setBig(false)}
+        onClick={closeOnBackdrop(() => setBig(false))}
         className="tk-max"
       >
         {big && (

@@ -2,8 +2,7 @@ import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { learntLemmas, learntOf } from './coverage'
-import { fetchSummary } from './progress'
-import { allWords, coverage, moduleFor, QUIZ } from './quizBanks'
+import { allWordsQuery, coverageQuery, progressQuery, QUIZ } from './quizBanks'
 
 const NONE = new Set()
 
@@ -14,15 +13,11 @@ const NONE = new Set()
  */
 export function useLearntLemmas() {
   const language = QUIZ.language
-  const stats = useQuery({
-    queryKey: ['quiz-progress', language],
-    queryFn: () => fetchSummary(moduleFor(language)),
-    refetchOnWindowFocus: false,
-  })
+  const stats = useQuery(progressQuery(language))
   const learnt = useMemo(() => learntOf(stats.data), [stats.data])
   const any = learnt.length > 0
-  const words = useQuery({ queryKey: ['quiz-words', 'all'], queryFn: allWords, enabled: any })
-  const covering = useQuery({ queryKey: ['quiz-coverage'], queryFn: coverage, enabled: any })
+  const words = useQuery({ ...allWordsQuery, enabled: any })
+  const covering = useQuery({ ...coverageQuery, enabled: any })
   return useMemo(
     () => (any && words.data && covering.data ? learntLemmas(words.data, covering.data, learnt) : NONE),
     [any, words.data, covering.data, learnt],

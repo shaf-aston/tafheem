@@ -12,9 +12,9 @@ import { useEffect, useState } from 'react'
 
 import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/settings'
 import { useHealth } from '../../lib/useHealth'
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import { levelOf } from '../../lib/confidence'
-import { forgetSaved } from '../../lib/stored'
+import { forgetSaved } from '../../lib/progress'
 import { useSources } from '../../lib/useSources'
 
 import Disclosure from './Disclosure'
@@ -33,7 +33,7 @@ export default function SettingsPanel({ open, onClose }) {
       onClose={onClose}
       // A click that lands on the dialog itself is a click on the backdrop:
       // every real control sits inside the box below.
-      onClick={(e) => e.target === dialog.current && onClose()}
+      onClick={closeOnBackdrop(onClose)}
       aria-labelledby="settings-title"
       className="m-auto p-0 bg-transparent max-w-[min(var(--sheet-narrow),92vw)] w-full"
     >
@@ -109,7 +109,7 @@ const ARMED_MS = 5000
 
 /**
  * What is kept on this device: reset the switches above, or forget the lot
- * (lib/stored.js).
+ * (forgetSaved, lib/progress.js).
  *
  * Clearing takes two clicks and has no undo; one click is the click made by
  * accident on the way to Close. Armed, it disarms after a few seconds rather
@@ -118,7 +118,7 @@ const ARMED_MS = 5000
  * The warning replaces the line already there instead of appearing under the
  * button, so nothing moves as it arrives. It names everything that goes,
  * quiz answers included: they live on the machine, and the wipe reaches them
- * through lib/stored.js.
+ * through forgetSaved.
  */
 function StorageFooter() {
   const [asking, setAsking] = useState(false)

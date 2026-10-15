@@ -20,7 +20,7 @@ import { useMemo, useState } from 'react'
 
 import ArabicText from './ArabicText'
 import PbsChart from './PbsChart'
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import { CHARTS } from '../../lib/pbsData'
 import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'
 
@@ -77,7 +77,7 @@ export default function MapPanel({ open, onClose }) {
     <dialog
       ref={dialog}
       onClose={handleDialogClose}
-      onClick={(e) => e.target === dialog.current && dialog.current.close()}
+      onClick={closeOnBackdrop((e) => e.currentTarget.close())}
       onKeyDown={handleKeyDown}
       aria-labelledby="map-title"
       className="m-auto p-0 bg-transparent max-w-[min(76rem,96vw)] w-full h-[min(46rem,92vh)]"

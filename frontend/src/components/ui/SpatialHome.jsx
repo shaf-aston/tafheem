@@ -13,7 +13,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { useCommandLine } from '../../lib/useCommandLine'
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import { isArabic } from '../../lib/arabicText'
 import { moodFrom } from '../../lib/mood'
 import ArabicText from './ArabicText'
@@ -90,7 +90,7 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
     <dialog
       ref={dialog}
       onClose={onClose}
-      onClick={(e) => e.target === dialog.current && onClose()}
+      onClick={closeOnBackdrop(onClose)}
       aria-label="Everything, at once"
       className="sh-dialog"
     >

@@ -2,7 +2,7 @@
  * All sections: every tab under its group, opened from the end of the strip.
  * Native <dialog>, as in SettingsPanel: Esc, backdrop and focus trap come free.
  */
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import ArabicText from './ArabicText'
 
 export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, children }) {
@@ -17,7 +17,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
     <dialog
       ref={dialog}
       onClose={onClose}
-      onClick={(e) => e.target === dialog.current && onClose()}
+      onClick={closeOnBackdrop(onClose)}
       aria-labelledby="sections-title"
       className="sections-menu m-auto p-0 bg-transparent max-w-[min(var(--sheet-wide),92vw)] w-full"
     >

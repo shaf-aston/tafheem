@@ -2,11 +2,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { keyAction, typingElsewhere } from '../lib/answerKeys'
+import { useAnswerKeys } from '../lib/useAnswerKeys'
 import { fetchReviewItems, recordAttempt } from '../lib/progress'
 import { buildQuestion, DIRECTIONS, makeRandom, MEANINGS } from '../lib/quiz'
 import {
-  allWords, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, WHOLE_SET_SCOPES, wordsFor,
+  allWordsQuery, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, WHOLE_SET_SCOPES, wordsFor,
 } from '../lib/quizBanks'
 import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
@@ -146,11 +146,7 @@ export default function QuizPanel({ accent, onProgress }) {
   // Wrong options for a review question come from every word there is, not
   // from the due words themselves: three words of three different types
   // cannot fill a four-option question between them.
-  const everyWord = useQuery({
-    queryKey: ['quiz-words', 'all'],
-    queryFn: allWords,
-    enabled: bank.live,
-  })
+  const everyWord = useQuery({ ...allWordsQuery, enabled: bank.live })
 
   // What to say about this set beside the question, the dialect it is in.
   // Kept with the words rather than repeated in the panel.
@@ -346,30 +342,18 @@ export default function QuizPanel({ accent, onProgress }) {
 
   // Answer without reaching for the mouse. The app's own 1–5 tab shortcuts are
   // suppressed while this panel is open so the digits mean answers here.
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (typingElsewhere(e) || !question) return
-      const action = keyAction(e.key, { checked: answered, optionCount: question.options.length })
-      if (!action) return
-      // Immediate, not plain stopPropagation: the app's tab shortcut listens on
-      // window too, and plain stopPropagation does not stop a second listener on
-      // the same target, so 2 would answer the question AND open Quran, and a 2
-      // pressed with an answer already on screen would leave the quiz outright.
-      if (action.do !== 'check' && action.do !== 'next') e.stopImmediatePropagation()
-      // 'auto' before anything else, so the switch can be flipped at any point in
-      // a round, including while an answer is on screen and about to take itself
-      // away. One press answers here, so 'check' is nothing to do.
-      if (action.do === 'auto') setAutoNext(!autoNext)
-      if (action.do === 'speak') speakRef.current?.click()
-      if (action.do === 'toggle') choose(question.options[action.index].id)
-      if (action.do === 'next') {
-        // Enter on a focused button would also click it, on the next question.
-        e.preventDefault()
-        nextQuestion()
-      }
-    }
-    window.addEventListener('keydown', onKeyDown, true)
-    return () => window.removeEventListener('keydown', onKeyDown, true)
+  // 'auto' works at any point in a round, including while an answer is on
+  // screen and about to take itself away. One press answers here, so there is
+  // no 'check'.
+  useAnswerKeys(question && { checked: answered, optionCount: question.options.length }, {
+    auto: () => setAutoNext(!autoNext),
+    speak: () => speakRef.current?.click(),
+    toggle: (e, index) => choose(question.options[index].id),
+    next: (e) => {
+      // Enter on a focused button would also click it, on the next question.
+      e.preventDefault()
+      nextQuestion()
+    },
   })
 
   const arabicPrompt = shown?.promptLang === 'ar'

@@ -163,6 +163,10 @@ function AppContent() {
     <div className="min-h-screen bottom-nav-room" style={{ '--c': accent }}>
       {/* First child, so it paints under everything: its layer is below the page. */}
       <Backdrop />
+      {/* First stop for a keyboard: past the header's dozen controls to the panel. */}
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:start-2 focus:z-[var(--layer-tip)] focus:px-3 focus:py-2 focus:rounded-[var(--radius-sm)] focus:bg-[var(--surface)] type-ui">
+        Skip to content
+      </a>
       <header ref={pinHeader} className="app-header sticky top-0 z-[var(--layer-header)]">
         <div className="shell py-1 flex items-center justify-between gap-3">
           {/* The name used to be printed here in two lines that said what every
@@ -273,7 +277,7 @@ function AppContent() {
 
       {/* The tabpanel role sits on the inner element, not on <main>: overriding
           main's own role would leave the page with no main landmark to skip to. */}
-      <main className="shell py-8 glass rounded-[var(--radius-lg)]">
+      <main id="main" tabIndex={-1} className="shell py-8 glass rounded-[var(--radius-lg)] focus:outline-none">
         <div role="tabpanel" id="tabpanel" aria-labelledby={`tab-${activeTab}`}>
           {/* Keyed by the tab and nothing else. Remounting on tab change is
               what replays each panel's entrance animation; a word arriving on
@@ -338,7 +342,7 @@ function AppContent() {
       >
         {/* The tools phones hide from the top bar, kept one tap inside More. */}
         <section className="sm:hidden space-y-2">
-          <h3 className="type-small text-[var(--text-faint)]">Tools</h3>
+          <h3 className="type-small text-[var(--text-faint)]">Actions</h3>
           <div className="grid grid-cols-2 gap-2">
             {TOOLS.filter((tool) => tool.phone === 'more').map((tool) => (
               <button
@@ -347,7 +351,7 @@ function AppContent() {
                 aria-haspopup={tool.dialog ? 'dialog' : undefined}
                 aria-describedby={tool.hint ? `${tool.id}-hint` : undefined}
                 onClick={() => { setSectionsOpen(false); runTool[tool.id]() }}
-                className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium"
+                className={`tap min-h-11 rounded-[var(--radius-sm)] border type-body font-medium ${tool.danger ? 'border-[var(--danger-edge)] text-[var(--danger)]' : 'border-[var(--border)]'}`}
               >
                 {tool.label}
               </button>

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { lastOn, nearest, resume, tabNow, trailFor } from './journey'
 
@@ -135,5 +135,141 @@ describe('tabNow', () => {
 
   it('is nothing before the first step is recorded', () => {
     expect(tabNow([], -1)).toBe(null)
+  })
+})
+
+describe('nearest, at the edge of fitting', () => {
+  const walk = (n) => Array.from({ length: n }, (_, index) => ({ tab: 'dict', value: `w${index}`, index }))
+
+  it('shows a trail exactly as long as the room whole', () => {
+    expect(nearest(walk(3), 2, 3)).toEqual({ shown: walk(3), sliced: false })
+  })
+
+  it('slices a trail one longer than the room, and says so', () => {
+    const { shown, sliced } = nearest(walk(4), 3, 3)
+    expect(shown.map((s) => s.value)).toEqual(['w1', 'w2', 'w3'])
+    expect(sliced).toBe(true)
+  })
+})
+
+// The journey proper, against a browser history kept in memory: entries, the
+// one we sit on, and popstate sent when the arrow moves us. The module keeps
+// its state between calls, as a page does, so each case loads it fresh.
+const JOURNEY_TABS = [{ id: 'dict' }, { id: 'quran' }]
+
+function browserAt(search) {
+  const entries = [{ state: null, url: new URL(`https://tafheem.test/app${search}`) }]
+  let index = 0
+  const popped = []
+  const location = {
+    get href() { return entries[index].url.href },
+    get search() { return entries[index].url.search },
+  }
+  const pop = () => { for (const listener of popped) listener({ state: entries[index].state }) }
+  const history = {
+    get state() { return entries[index].state },
+    pushState: vi.fn((state, _title, url) => {
+      entries.splice(index + 1)
+      entries.push({ state, url: new URL(String(url)) })
+      index += 1
+    }),
+    replaceState: vi.fn((state, _title, url) => { entries[index] = { state, url: new URL(String(url)) } }),
+    go: vi.fn((delta) => { index += delta; pop() }),
+  }
+  const addEventListener = vi.fn((type, listener) => { if (type === 'popstate') popped.push(listener) })
+  const data = new Map()
+  vi.stubGlobal('window', { location, history, addEventListener })
+  vi.stubGlobal('history', history)
+  vi.stubGlobal('localStorage', {
+    getItem: (k) => (data.has(k) ? data.get(k) : null),
+    setItem: (k, v) => data.set(k, String(v)),
+    removeItem: (k) => data.delete(k),
+  })
+  return {
+    history,
+    addEventListener,
+    /** The arrow lands on an entry this session did not write, as one from an expired path would be. */
+    arrive(state, entrySearch) {
+      entries.splice(index + 1)
+      entries.push({ state, url: new URL(`https://tafheem.test/app${entrySearch}`) })
+      index += 1
+      pop()
+    },
+  }
+}
+
+async function freshJourney(search) {
+  const browser = browserAt(search)
+  vi.resetModules()
+  const journey = await import('./journey')
+  journey.startJourney(JOURNEY_TABS)
+  browser.history.pushState.mockClear()
+  browser.history.replaceState.mockClear()
+  return { browser, journey }
+}
+
+describe('the journey and the back arrow', () => {
+  afterEach(() => vi.unstubAllGlobals())
+
+  it('follows the address, not the step number, when the two disagree', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict&q=a')
+    journey.visit('dict', 'b')
+    const jumps = []
+    journey.onJump((place) => jumps.push(place))
+    // Step 0 of this path is dict:a; the entry the arrow landed on is a Qur'an address.
+    browser.arrive({ step: 0 }, '?tab=quran&q=1:1')
+    expect(journey.placeNow()).toEqual({ tab: 'quran', value: '1:1' })
+    expect(jumps).toEqual([{ tab: 'quran', value: '1:1' }])
+    // Walked onto from where we were, and the entry restamped with that step.
+    expect(browser.history.state).toEqual({ step: 2 })
+    expect(journey.lastPlaceOn('dict')).toBe('b')
+  })
+
+  it('sits on the step the entry names when it is this address', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict&q=a')
+    journey.visit('dict', 'b')
+    browser.history.go(-1)
+    expect(journey.placeNow()).toEqual({ tab: 'dict', value: 'a' })
+    expect(browser.history.replaceState).not.toHaveBeenCalled()
+  })
+
+  it('listens to the arrow once however many times it is started', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict&q=a')
+    expect(journey.startJourney(JOURNEY_TABS)).toEqual({ tab: 'dict', value: 'a' })
+    expect(browser.addEventListener).toHaveBeenCalledTimes(1)
+  })
+
+  it('treats a visit to where we already are as no step, and writes nothing', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict&q=a')
+    expect(journey.visit('dict', 'a')).toBe(false)
+    expect(browser.history.pushState).not.toHaveBeenCalled()
+    expect(browser.history.replaceState).not.toHaveBeenCalled()
+  })
+
+  it('pushes a new entry for a visit after going back, rather than overwriting', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict&q=a')
+    journey.visit('dict', 'b')
+    browser.history.go(-1)
+    browser.history.pushState.mockClear()
+    expect(journey.visit('dict', 'c')).toBe(true)
+    expect(browser.history.pushState).toHaveBeenCalledTimes(1)
+    expect(browser.history.replaceState).not.toHaveBeenCalled()
+    expect(browser.history.state).toEqual({ step: 1 })
+  })
+
+  it('fills in a tab opened with nothing by replacing its entry', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict')
+    expect(journey.visit('dict', 'a')).toBe(true)
+    expect(browser.history.replaceState).toHaveBeenCalledTimes(1)
+    expect(browser.history.pushState).not.toHaveBeenCalled()
+    expect(browser.history.state).toEqual({ step: 0 })
+  })
+
+  it('jumps back to a walked step by the distance from here', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict&q=a')
+    for (const value of ['b', 'c', 'd']) journey.visit('dict', value)
+    journey.jumpTo(1)
+    expect(browser.history.go).toHaveBeenCalledWith(-2)
+    expect(journey.placeNow()).toEqual({ tab: 'dict', value: 'b' })
   })
 })

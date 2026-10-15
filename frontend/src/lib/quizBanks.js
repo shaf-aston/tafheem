@@ -20,7 +20,7 @@
  * the same topic, the same verb pattern, or the same surah.
  */
 import settings from '../quiz.json'
-import { fetchReviewItems } from './progress'
+import { fetchReviewItems, fetchSummary } from './progress'
 
 export const QUIZ = {
   optionCount: settings['option-count'],
@@ -130,6 +130,16 @@ const cutFor = (bankId, groupId) => {
 export async function allWords() {
   return (await table()).words
 }
+
+// The cache entries the quiz, its insights and the learnt-words hook share. One
+// spelling each, so a refresh of one is a refresh of all.
+export const allWordsQuery = { queryKey: ['quiz-words', 'all'], queryFn: allWords }
+export const coverageQuery = { queryKey: ['quiz-coverage'], queryFn: coverage }
+export const progressQuery = (language) => ({
+  queryKey: ['quiz-progress', language],
+  queryFn: () => fetchSummary(moduleFor(language)),
+  refetchOnWindowFocus: false,
+})
 
 /**
  * The words to quiz on: a whole set, one group inside it, or the review pile.

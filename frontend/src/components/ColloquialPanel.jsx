@@ -10,7 +10,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { colloquialQuery, colloquialUnitQuery } from '../api'
-import { parsePlace, placeOf } from '../lib/colloquialPlace'
+import { nameOfPlace, parsePlace, placeOf, unitNumber } from '../lib/colloquialPlace'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
 import { useRemembered } from '../lib/useRemembered'
@@ -25,7 +25,12 @@ import WheelPicker from './ui/WheelPicker'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
 const HUES = 8
-const unitNumber = (id) => Number(id.replace(/\D/g, '')) || 0
+
+// "16 of 19 units": the list below shows the unwritten ones too, marked Coming.
+const unitsNote = (units) => {
+  const written = units.filter((u) => u.written).length
+  return written === units.length ? `${written} units` : `${written} of ${units.length} units`
+}
 
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
 // Without onClick it is a unit or topic this dialect has not written yet: shown, not openable.
@@ -186,7 +191,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
 
   return (
     <div className="panel">
-      <SectionHeader title="Colloquial" arabic="عامية" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'} />
+      <SectionHeader title="Colloquial" arabic="عامية" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'} nameOf={(q) => nameOfPlace(q, dialects)} />
       {catalogue.isPending && <AnalyzerSkeleton />}
       {catalogue.isError && <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={catalogue.error} onRetry={catalogue.refetch} />}
       {catalogue.data && (
@@ -200,7 +205,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
         <Grid>
           {dialects.map((d, i) => (
             <Card key={d.key} index={i} hue={colorFor('tab', 'colloq')} kicker={d.where} title={d.label} arabic={d.arabic}
-              note={`${d.units.filter((u) => u.written).length} units`} onClick={() => go(d.key)} />
+              note={unitsNote(d.units)} onClick={() => go(d.key)} />
           ))}
         </Grid>
       )}

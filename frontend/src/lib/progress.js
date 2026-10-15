@@ -65,3 +65,27 @@ export const fetchReviewItems = (module) =>
 export async function leaveFeedback({ module, item, message }) {
   return { saved: await landed(api.post(`${BASE}/feedback`, { module, item, message }, headers())) }
 }
+
+/**
+ * Forget it all, then reload: the answers on the server, then the whole browser
+ * store (stored.js).
+ *
+ * Clears the whole store rather than a written list of key names, which would
+ * go stale the first time a panel remembers something new and then clear less
+ * than the button says. The store holds this app's things only. Quiz answers
+ * are rows in a database on the machine, not in the browser, so they go first;
+ * "clear it all" has to mean Review as well, or the button says more than it does.
+ *
+ * The reload is required, not tidiness: settings and remembered choices are
+ * also held in React state, so clearing underneath them leaves stale values on
+ * screen and the next click writes one straight back.
+ */
+export async function forgetSaved() {
+  await forgetProgress()
+  try {
+    globalThis.localStorage?.clear()
+  } catch {
+    /* private browsing: nothing was kept */
+  }
+  globalThis.location?.reload()
+}

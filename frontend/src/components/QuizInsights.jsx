@@ -26,9 +26,8 @@ import { useQuery } from '@tanstack/react-query'
 
 import { coverageOf, learntOf, shareOf } from '../lib/coverage'
 import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../lib/insights'
-import { fetchSummary } from '../lib/progress'
 import { sayIn } from '../lib/say'
-import { allWords, coverage, groupsFor, moduleFor, QUIZ } from '../lib/quizBanks'
+import { allWordsQuery, coverageQuery, groupsFor, progressQuery, QUIZ } from '../lib/quizBanks'
 
 import ArabicText from './ui/ArabicText'
 import Disclosure from './ui/Disclosure'
@@ -60,15 +59,11 @@ export default function QuizInsights({ accent, language }) {
   // the truth is worse than a figure that moves. The panel does not ask for
   // itself: QuizPanel invalidates 'quiz-progress' once an answer is saved, so
   // the reading follows the store and never the other way round.
-  const stats = useQuery({
-    // Keyed by language as well: each language is counted under its own module,
-    // so the figures on the bar are the ones for the round being played.
-    queryKey: ['quiz-progress', language],
-    queryFn: () => fetchSummary(moduleFor(language)),
-    refetchOnWindowFocus: false,
-  })
-  const words = useQuery({ queryKey: ['quiz-words', 'all'], queryFn: allWords })
-  const covering = useQuery({ queryKey: ['quiz-coverage'], queryFn: coverage })
+  // Keyed by language as well: each language is counted under its own module,
+  // so the figures on the bar are the ones for the round being played.
+  const stats = useQuery(progressQuery(language))
+  const words = useQuery(allWordsQuery)
+  const covering = useQuery(coverageQuery)
   const groups = useQuery({ queryKey: ['quiz-groups', 'quranic'], queryFn: () => groupsFor('quranic') })
 
   // Joined and totalled once per round, not once per render: the bar reads the

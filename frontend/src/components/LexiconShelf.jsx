@@ -31,7 +31,7 @@ import { paragraphs } from '../lib/entryLines'
 import { laneEntry } from '../lib/laneEntry'
 import { BROKEN, MISSING, READY } from '../lib/loadStatus'
 import { scrollToEl } from '../lib/scrollToEl'
-import { accentOf } from '../lib/tabs'
+import { colorFor } from '../theme'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../lib/useLaneTidy'
 
 import ArabicText from './ui/ArabicText'
@@ -239,7 +239,7 @@ function LaneEntry({ forms, anchor }) {
                   key={k}
                   // A verse wears the Qur'an tab's own colour, so "Qur'án 8:62"
                   // reads as the same thing there and here.
-                  style={piece.kind === 'ref' ? { color: accentOf('quran') } : undefined}
+                  style={piece.kind === 'ref' ? { color: colorFor('tab', 'quran') } : undefined}
                   className={
                     piece.kind === 'cite'
                       ? 'text-[var(--text-faint)]'

@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { parseSession, serialise } from './session'
+import config from '../session.json'
+import { loadSession, parseSession, saveSession, serialise } from './session'
 
 const TABS = ['dict', 'daleel', 'quran']
 const NOW = 1_000_000_000
@@ -71,5 +72,49 @@ describe('parseSession', () => {
   it('keeps only tab and value of each step, whatever else was in the file', () => {
     const fat = JSON.stringify({ v: 1, saved: NOW, steps: [{ tab: 'dict', value: 'a', extra: 1 }], at: 0 })
     expect(parseSession(fat, TABS, NOW)).toEqual({ steps: [{ tab: 'dict', value: 'a' }], at: 0 })
+  })
+})
+
+describe('saveSession', () => {
+  const MAX_STEPS = config['max-steps']
+  const MAX_VALUE_LENGTH = config['max-value-length']
+  const walk = (n) => Array.from({ length: n }, (_, i) => ({ tab: 'dict', value: `w${i}` }))
+
+  let data
+  beforeEach(() => {
+    data = new Map()
+    vi.stubGlobal('localStorage', {
+      getItem: (k) => (data.has(k) ? data.get(k) : null),
+      setItem: (k, v) => data.set(k, String(v)),
+      removeItem: (k) => data.delete(k),
+    })
+  })
+  afterEach(() => vi.unstubAllGlobals())
+
+  it('saves a path of exactly the most steps allowed', () => {
+    const full = { steps: walk(MAX_STEPS), at: MAX_STEPS - 1 }
+    saveSession(full, TABS, NOW)
+    expect(loadSession(TABS, NOW)).toEqual(full)
+  })
+
+  it('leaves the last good save standing for a path one step too long', () => {
+    saveSession(GOOD, TABS, NOW)
+    saveSession({ steps: walk(MAX_STEPS + 1), at: 0 }, TABS, NOW)
+    expect(loadSession(TABS, NOW)).toEqual(GOOD)
+  })
+
+  it('writes nothing for a path with no steps', () => {
+    saveSession({ steps: [], at: -1 }, TABS, NOW)
+    expect(data.size).toBe(0)
+  })
+
+  it('takes a word of exactly the longest length, and not one letter more', () => {
+    const longest = { steps: [{ tab: 'dict', value: 'x'.repeat(MAX_VALUE_LENGTH) }], at: 0 }
+    saveSession(longest, TABS, NOW)
+    expect(loadSession(TABS, NOW)).toEqual(longest)
+    expect(parseSession(serialise(longest, NOW), TABS, NOW)).toEqual(longest)
+
+    saveSession({ steps: [{ tab: 'dict', value: 'x'.repeat(MAX_VALUE_LENGTH + 1) }], at: 0 }, TABS, NOW)
+    expect(loadSession(TABS, NOW)).toEqual(longest)
   })
 })
