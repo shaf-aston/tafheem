@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import book_map, is_mabni, is_one, is_plain_noun
-from backend.services.syntax.facts.word import is_suffix, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
+from backend.services.syntax.facts.word import is_suffix, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
 
@@ -73,9 +73,9 @@ def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
     """جاء رجلٌ كريمٌ أبوه، المسجدُ مفتوحٌ بابُه: a raf' noun straight after a participle or
     adjective, carrying a pronoun back to the noun described, is what that describer tells of:
     its فاعل, or its نائب فاعل after a passive participle (النعت السببي, Tasheel 3.10.1)."""
-    return (is_participle(head) and token["rel"] in ("SBJ", "TPC") and token["id"] == head["id"] + 1
+    return (is_participle(head) and subject_link(token) and token["id"] == head["id"] + 1
             and typed_or_parsed_case(token) == "u"
-            and any(k.get("pos_camel") == "pron" and is_suffix(k) for k in s.kids(token)))
+            and any(attached_pronoun(k) for k in s.kids(token)))
 
 
 def purpose(token: dict, verb: dict) -> bool:
@@ -226,7 +226,7 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         return "subject"
     kids = s.kids(token)
     if rel == "---":
-        if any(c["rel"] in ("SBJ", "TPC") for c in kids):
+        if any(subject_link(c) for c in kids):
             return "predicate"
         pointer = next((c for c in kids if "dem" in c.get("pos_camel", "") and c["id"] < token["id"]), None)
         # only a noun with ال is the pointer's مشار إليه: هذا بيتٌ and هذا أبي are sentences
@@ -237,8 +237,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # noun is the khabar and the verb its صفة
         if not pointer and any(c["rel"] == "PRD" or (is_verb(c) and c["id"] > token["id"]) for c in kids):
             return "subject"
-        if token["pos"] in ("NOM", "PROP") and s.verbless:
-            loose = [t for t in s.tokens if t["rel"] == "---" and t["pos"] in ("NOM", "PROP")]
+        if noun_tagged(token) and s.verbless:
+            loose = [t for t in s.tokens if t["rel"] == "---" and noun_tagged(t)]
             if loose != [token]:
                 return "subject" if not loose or token is loose[0] else "predicate"
             # محمدُ بنُ عبدِ اللهِ، الطبيبُ الماهرُ: a noun with only its صفة and مضاف إليه

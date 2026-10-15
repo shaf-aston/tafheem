@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween, typed_case
-from backend.services.syntax.facts import is_name, listed
+from backend.services.syntax.facts import is_name, listed, noun_tagged
 from backend.services.syntax.mask import above
 
 
@@ -21,7 +21,7 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
     hung the name under it. Written over before the words are read."""
     by_id = {t["id"]: t for t in tokens}
     for name, son, after in zip(bases, bases[1:], bases[2:]):
-        if not (_names(name, son) and listed(son, "nasab") and after["pos"] in ("NOM", "PROP")
+        if not (_names(name, son) and listed(son, "nasab") and noun_tagged(after)
                 and not has_tanween(name.get("typed") or "")):
             continue
         # محمدُ بنُ عبدِ اللهِ بنِ عبدِ المطلبِ: the second ابن describes the whole name عبد الله,
@@ -58,7 +58,7 @@ def _told_of(name: dict, end: dict, bases: list[dict], tokens: list[dict]) -> No
             or any(t["pos"].startswith("VRB") for t in tokens) or any(t["head"] == first["id"] and t["rel"] == "PRD" for t in tokens):
         return
     khabar = bases[at]
-    if khabar["pos"] not in ("NOM", "PROP") or listed(khabar, "nasab"):
+    if not noun_tagged(khabar) or listed(khabar, "nasab"):
         return
     first["head"], first["rel"] = 0, "---"
     khabar["head"], khabar["rel"] = first["id"], "PRD"
@@ -71,7 +71,7 @@ def _name_goes_on(word: dict, bases: list[dict], tokens: list[dict]) -> dict:
     at = bases.index(word)
     while at + 1 < len(bases):
         nxt = bases[at + 1]
-        if nxt["pos"] not in ("NOM", "PROP") or listed(nxt, "nasab") or _under(word, nxt, tokens):
+        if not noun_tagged(nxt) or listed(nxt, "nasab") or _under(word, nxt, tokens):
             return word
         # the reading may miss the construct state: a bare noun (no ال, no tanween) before a
         # name, a noun with ال, or a noun typed with kasra (أبي طالبٍ) is its مضاف all the same

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_plain_noun
-from backend.services.syntax.facts.word import is_participle, is_verb, shows_jarr, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
+from backend.services.syntax.facts.word import is_participle, is_verb, shows_jarr, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, subject_link
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.syntax.facts.kind import calling_head
 from backend.services.syntax.facts.follows import with_waw
@@ -55,7 +55,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     # a noun with tanween is complete (ضَرَبَ زَيْدٌ مَرْيَمَ), so nothing after it is its مضاف إليه
     if rel == "---" and head and is_plain_noun(head) and head["id"] == token["id"] - 1 \
             and not has_tanween(head.get("typed") or "") \
-            and (typed_or_parsed_case(token) == "i" or shows_jarr(token)) and not any(c["rel"] in ("SBJ", "TPC") for c in s.kids(token)) \
+            and (typed_or_parsed_case(token) == "i" or shows_jarr(token)) and not any(subject_link(c) for c in s.kids(token)) \
             and not ("dem" in token.get("pos_camel", "") and s.verbless):
         return "idafa", head
     # ظن الولد الأمر سهلا: a modifier after the first object is the verb's second

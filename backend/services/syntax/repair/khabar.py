@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.syntax.facts import is_participle, typed_or_parsed_case
+from backend.services.syntax.facts import is_participle, typed_or_parsed_case, subject_link
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -27,6 +27,6 @@ def before_la(tokens: list[dict]) -> None:
     for token in tokens:
         la = by_id.get(token["head"])
         if (la and la["pos"] == "PRT" and strip_diacritics(la["form"]) == "لا" and token["id"] < la["id"]
-                and token["rel"] in ("SBJ", "TPC") and la["head"] == 0):
+                and subject_link(token) and la["head"] == 0):
             token["head"], token["rel"] = 0, "---"
             la["head"], la["rel"] = token["id"], "PRD"

@@ -15,6 +15,7 @@ import numpy as np
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import is_one, is_plain_noun, is_subject_pronoun, vetoes
 from backend.services.harakat import CAMEL_CASE
+from backend.services.syntax.facts import attached_pronoun, noun_tagged
 
 
 def _verb_subject_follows(toks, add_rel) -> None:
@@ -127,11 +128,11 @@ def _inner_sentence(toks, heads, rels) -> None:
         n1, n3 = n2 - 1, n2 + 2
         # the noun's typed case is under its pronoun's vowel, so the reading's case is used
         if not (is_plain_noun(noun) and noun.get("stt") == "c" and CAMEL_CASE.get(noun.get("cas")) not in ("a", "i")
-                and pronoun.get("pos_camel") == "pron" and pronoun.get("form", "").startswith("+")
-                and khabar["pos"] in ("NOM", "PROP") and khabar.get("stt") == "i" and _case(khabar) == "u"):
+                and attached_pronoun(pronoun)
+                and noun_tagged(khabar) and khabar.get("stt") == "i" and _case(khabar) == "u"):
             continue
         relative = "rel" in before.get("pos_camel", "")
-        first = verbless and n1 == 1 and before["pos"] in ("NOM", "PROP") and not before.get("form", "").startswith("+")
+        first = verbless and n1 == 1 and noun_tagged(before) and not before.get("form", "").startswith("+")
         if relative and (above(heads, n1, n2) or above(heads, n1, n3)):
             continue  # the relative hangs inside the sentence: its own place is not known
         if first:
@@ -167,7 +168,7 @@ def _exception_word_by_case(toks, heads, rels) -> None:
     its doer. After ما only the verb stands (ما عدا زيدًا). The parser's tags are written over."""
     for d, dep in enumerate(toks[:-1], 1):
         after = toks[d]
-        if (dep.get("token_type") != "baseword" or after["pos"] not in ("NOM", "PROP")
+        if (dep.get("token_type") != "baseword" or not noun_tagged(after)
                 or after.get("form", "").startswith("+") or not is_one(dep.get("form", ""), "istithna_verbs")
                 or above(heads, d, d + 1)):
             continue

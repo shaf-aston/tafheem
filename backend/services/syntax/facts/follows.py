@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_one, is_subject_pronoun
-from backend.services.syntax.facts.word import is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case
+from backend.services.syntax.facts.word import is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged
 from backend.services.syntax.facts.sentence import Sentence, next_word, place_case, previous_noun, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.kind import joins_clauses, calling_head
 
@@ -20,7 +20,7 @@ def stands_for(token: dict, s: Sentence) -> bool:
     if s.verbless or not before or token["rel"] == "IDF":
         return False
     # the pronoun stuck on a noun is its مضاف إليه whatever link the parser drew (عِلْمُهُ)
-    names = token["pos"] == "PROP" or any(k.get("pos_camel") == "pron" and is_suffix(k)
+    names = token["pos"] == "PROP" or any(attached_pronoun(k)
                                           for k in s.kids(token))
     mine = typed_or_parsed_case(token)
     if not (names and before.get("stt") in ("d", "c") and mine and mine == typed_or_parsed_case(before)):
@@ -28,7 +28,7 @@ def stands_for(token: dict, s: Sentence) -> bool:
     # جاء الرجلُ أبوه عالمٌ: an indefinite noun in its case after it is its khabar, so the
     # noun opens a sentence of its own (a حال) and stands for nothing
     after = next_word(token, s)
-    if after and after["pos"] in ("NOM", "PROP") and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
+    if after and noun_tagged(after) and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
         return False
     verb = verb_above(before, s)
     return not (verb and (is_one(verb["lemma"], "zanna") or is_one(verb["lemma"], "two_objects_give")))
@@ -47,7 +47,7 @@ def with_waw(token: dict, s: Sentence) -> bool:
     # ... وَأَمْنًا joins مثابة; a ـات kasra is nasb too (خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ)
     verb = verb_above(head, s)
     joinable = [previous_noun(head, s)] + [k for k in s.kids(verb) if k["id"] < head["id"]
-                                           and k["pos"] in ("NOM", "PROP") and not is_verb(k)]
+                                           and noun_tagged(k) and not is_verb(k)]
     return not any(k and "a" in shown_cases(k) for k in joinable)
 
 

@@ -72,7 +72,7 @@ def _joins(token: dict, s: facts.Sentence) -> str:
     الطلابُ إلا زيدٌ. Nothing to share a case with (ما جاء إلا زيدٌ) or a case apart
     (لا إلهَ إلا اللهُ) says no."""
     before, after = facts.previous_noun(token, s), facts.next_word(token, s)
-    if not (before and after and after["pos"] in ("NOM", "PROP")):
+    if not (before and after and facts.noun_tagged(after)):
         return "no"
     behind = s.by_id.get(before["id"] - 1)
     if behind and behind["pos"] == "PRT" and is_one(behind["lemma"], "negation") and not facts.read_as(behind, "la_jins"):
@@ -98,7 +98,7 @@ def _told(token: dict, s: facts.Sentence) -> str:
     """What stands straight after the noun that follows: a noun (its khabar) or anything else."""
     noun = facts.next_word(token, s)
     told = facts.next_word(noun, s) if noun else None
-    return "noun" if told and told["pos"] in ("NOM", "PROP") and not facts.is_verb(told) else "other"
+    return "noun" if told and facts.noun_tagged(told) and not facts.is_verb(told) else "other"
 
 
 def _opens(token: dict, s: facts.Sentence) -> str:
@@ -106,7 +106,7 @@ def _opens(token: dict, s: facts.Sentence) -> str:
     indefinite one in raf' after it that does not describe it, its khabar (واللهُ أكبرُ)."""
     noun = facts.next_word(token, s)
     told = facts.next_word(noun, s) if noun else None
-    if not (noun and told and noun["pos"] in ("NOM", "PROP") and told["pos"] in ("NOM", "PROP")) or facts.is_verb(told):
+    if not (noun and told and facts.noun_tagged(noun) and facts.noun_tagged(told)) or facts.is_verb(told):
         return "no"
     definite = noun.get("stt") == "d" or noun["pos"] == "PROP"
     return "yes" if definite and facts.typed_or_parsed_case(noun) == "u" \
@@ -128,7 +128,7 @@ def _asked_after(token: dict, s: facts.Sentence) -> bool:
 def _after_object(noun: dict, s: facts.Sentence) -> dict | None:
     """The indefinite noun in nasb straight after an object."""
     more = facts.next_word(noun, s)
-    return more if more and more["pos"] in ("NOM", "PROP") and more.get("stt") == "i" and not facts.is_verb(more) \
+    return more if more and facts.noun_tagged(more) and more.get("stt") == "i" and not facts.is_verb(more) \
         and facts.typed_or_parsed_case(more) == "a" else None
 
 
@@ -144,7 +144,7 @@ def _wonder_parts(token: dict, s: facts.Sentence) -> tuple[dict, dict] | None:
     verb = facts.next_word(token, s)
     pronoun = _pronoun_of(verb, s) if verb else None
     noun = pronoun or (facts.next_word(verb, s) if verb else None)
-    if not (verb and noun and verb["pos"] != "PRT" and noun["pos"] in ("NOM", "PROP") and not facts.is_verb(noun)):
+    if not (verb and noun and verb["pos"] != "PRT" and facts.noun_tagged(noun) and not facts.is_verb(noun)):
         return None
     if pronoun:
         if _asked_after(pronoun, s):
@@ -185,7 +185,7 @@ def _asks_nominal(token: dict, s: facts.Sentence) -> bool:
     ما يومُ الدين) and nothing else of a clause: no verb after it, no preposition or restricting إلا
     (ما أنت بعالمٍ, ما أنت إلا بشر), no khabar of its own for the noun (ما زيدٌ قائمٌ), not ما الحجازية."""
     after = facts.next_word(token, s)
-    if token["pos"] == "PRT" or s.hijazi or not after or after["pos"] not in ("NOM", "PROP") or facts.is_verb(after) \
+    if token["pos"] == "PRT" or s.hijazi or not after or not facts.noun_tagged(after) or facts.is_verb(after) \
             or (facts.is_zarf(after, s) and facts.typed_case_of(after) != "u") \
             or not (is_mabni(after.get("pos_camel", "")) or facts.typed_case_of(after) in (None, "u")):
         return False
