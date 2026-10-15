@@ -99,7 +99,15 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
         on = teacher_rules()["case_said"]["la_jins_on"]
         return _built(on.get(kind, on["vowel"]))
+    if case == "mabni" and (ending := _typed_ending(card["word"])):
+        return _built(ending)  # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter
     return sign(case, "vowel" if case == "mabni" else kind)
+
+
+def _typed_ending(word: str) -> str | None:
+    marked = letters(word)
+    on = teacher_rules()["case_said"]["vowel_on"]
+    return next((on[m] for m in marked[-1][1] if m in on), None) if marked else None
 
 
 def _after_la_jins(card: dict, before: dict | None, after: dict | None) -> bool:
