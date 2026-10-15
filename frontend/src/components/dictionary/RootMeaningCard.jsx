@@ -29,13 +29,13 @@ import Segmented from '../ui/Segmented'
 import { Skeleton } from '../ui/Skeleton'
 import SourceBadge from '../ui/SourceBadge'
 
+/** Said when the backend stops answering mid-visit. */
+const STOPPED = 'The backend may have stopped since this page was opened.'
+
 /**
  * The rest of the entry in English, in two shapes (read three ways, see VIEWS).
  * Both cost a model call, so neither retries: the message offers to try again.
  */
-/** Said when the backend stops answering mid-visit. */
-const STOPPED = 'The backend may have stopped since this page was opened.'
-
 const ENGLISH = {
   together: {
     key: 'root-entry-english',
@@ -248,13 +248,9 @@ function Body({
           machine, and one badge covering both would lend the weaker the standing
           of the stronger. */}
       {english && (
-        <div className="space-y-1.5">
+        <MachineEnglish source={data.english_source}>
           <p className="type-body text-[var(--text-dim)]">{english}</p>
-          {/* Pushed to the same edge the card's own badge sits on, so the two
-              read as one column of sources rather than one label adrift in the
-              middle of the card. */}
-          <SourceBadge source={data.english_source} className="ms-auto flex" />
-        </div>
+        </MachineEnglish>
       )}
 
       {sarf_pattern && (
@@ -311,9 +307,8 @@ function Body({
             />
           )}
 
-          {opened && paired ? (
-            <EntryEnglish view={view} root={data.root} accent={accent} />
-          ) : (
+          {/* Paired views carry the Arabic in their own lines; Together keeps it here. */}
+          {!(opened && paired) && (
             <ShowRest lines={config['root-meaning']['rest-lines']} accent={accent} onOpen={() => setOpened(true)}>
               {/* The book first, its English under it. This panel is the
                   book's own words; the English is what a machine made of them,
@@ -323,7 +318,7 @@ function Body({
             </ShowRest>
           )}
 
-          {opened && !paired && <EntryEnglish view="together" root={data.root} />}
+          {opened && <EntryEnglish view={view} root={data.root} accent={accent} />}
         </div>
       )}
 
@@ -369,7 +364,7 @@ function EntryEnglish({ view, root, accent }) {
   if (!(data?.english || data?.lines?.length)) return null
 
   return (
-    <div className="space-y-1.5">
+    <MachineEnglish source={data.source}>
       {/* The longest entries run past what the model is handed. Saying so is the
           difference between a short retelling and a retelling that stops. */}
       {data.truncated && (
@@ -384,10 +379,21 @@ function EntryEnglish({ view, root, accent }) {
           {data.english}
         </p>
       )}
-      <SourceBadge source={data.source} className="ms-auto flex" />
-    </div>
+    </MachineEnglish>
   )
 }
+
+/**
+ * English a machine made, with the badge that says so. The badge is pushed to
+ * the edge the card's own badge sits on, so the two read as one column of
+ * sources rather than one label adrift in the middle of the card.
+ */
+const MachineEnglish = ({ source, children }) => (
+  <div className="space-y-1.5">
+    {children}
+    <SourceBadge source={source} className="ms-auto flex" />
+  </div>
+)
 
 /** Explanatory prose. Body text, so it keeps the reading size the panels use. */
 const Note = ({ children }) => <p className="type-body text-[var(--text-dim)]">{children}</p>
