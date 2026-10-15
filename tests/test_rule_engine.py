@@ -113,6 +113,9 @@ def test_each_reason_explains_its_own_role(sentence: str):
 
 # The verb's card: a command by its typed shape, a present verb's case by its ending or the particle before it.
 VERB_CARDS = [
+    ("سَافَرْتُ طَلَبًا لِلْعِلْمِ", 1, "role", "مفعول لأجله"),   # a masdar giving the reason
+    ("مَرَرْتُ بِإِبْرَاهِيمَ وَأَحْمَدَ", 3, "case", "jarr"),     # a diptote follower keeps its fatha in jarr
+    ("اكْتُبَا الدَّرْسَ", 0, "sign", "حذف النون"),              # the dual command
     ("اُكْتُبْ الدَّرْسَ", 0, "mabni", "فعل أمر"),
     ("قُمْ يَا وَلَدُ", 0, "mabni", "فعل أمر"),
     ("لَمْ يَكْتُبْ الطَّالِبُ", 1, "jazm", "مجزوم"),

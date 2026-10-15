@@ -14,7 +14,7 @@ from __future__ import annotations
 from backend.services.arabic_text import bare_letters
 from backend.services.nahw_book import book_words, case_of, is_mabni, is_one, named_roles, teacher_rules
 from backend.services.syntax.facts import (
-    Sentence, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of)
+    Sentence, is_built_zarf, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, roles_keyed
 from backend.services.harakat import CASE_NAME
 
@@ -56,7 +56,7 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
     bare = bare_letters(token.get("typed") or "")
     free = set()
     # a pronoun, pointer, relative or question word keeps one ending whatever its job
-    if is_mabni(token) or is_object_pronoun(token):
+    if is_mabni(token) or is_object_pronoun(token) or is_built_zarf(token):
         free.add("*")
     # the noun of لا is raf' when the لا works like ليس (لا رجلٌ في الدار), so its ending is open
     if is_one(by_id.get(token["head"], {}).get("lemma", ""), "la_jins"):

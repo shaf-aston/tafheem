@@ -13,8 +13,9 @@ The Analyse page and the practice questions both read sentences through here.
 from __future__ import annotations
 
 from backend.services import morphology, provenance, rule_engine, signs, syntax, tarkeeb_store
-from backend.services.harakat import CASE_NAME
-from backend.services.nahw_book import case_of, family_cards, reason, teacher_rules
+from backend.services.arabic_text import strip_diacritics
+from backend.services.harakat import CASE_NAME, typed_case
+from backend.services.nahw_book import case_of, family_cards, is_object_stem, reason, teacher_rules
 from backend.services.syntax import teacher
 from backend.services.syntax.naming import NAMED, role_key
 
@@ -47,7 +48,15 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     left unnamed keeps the no-role dash; a name the teacher took back shows why."""
     entries = rule_engine.cards(tags)
     if len(roles) == len(entries):
-        for entry, found in zip(entries, roles):
+        for i, (entry, found) in enumerate(zip(entries, roles)):
+            # أَبِي الطَّبِيبِ: a noun in jarr after it can be its مضاف إليه, so the ي may be the six nouns' sign
+            idafa_next = i + 1 < len(roles) and (roles[i + 1].get("role") == NAMED.mudaf_ilayh
+                                                 or (roles[i + 1].get("case") == "jarr" and not roles[i + 1].get("role")))
+            if any(not piece["before"] and piece["form"] == "ي" for piece in found.get("attached", [])) \
+                    and entry.get("camel", {}).get("enclitic") in (None, "", "0") and not idafa_next:
+                # لِأَبِي: the parser split off "my" that CAMeL left on the word, so the
+                # kasra belongs to the ya and the six nouns' letter is no sign here
+                entry["camel"] = {**entry["camel"], "enclitic": "1s_poss"}
             if found.get("gap"):
                 entry.update(role=rule_engine.UNNAMED, role_key=None, case=found["case"], sign=None, gap=True,
                              reason=found["gap"]["ar"], notes=found["gap"]["en"])
@@ -83,14 +92,21 @@ def _pieces_said(cards: list[dict], roles: list[dict]) -> None:
 def _named(entry: dict, found: dict) -> None:
     """One card takes the tree's name; the case is naming's (syntax.naming._ending)."""
     renamed = found["role"] != entry.get("role")
-    entry.update(role=found["role"], book=found.get("book"), role_key=role_key(found["role"]),
+    # a recorded ayah names its words vowelled (فِعْلٌ، بَدَلٌ): the rules read the bare name
+    plain = strip_diacritics(found["role"])
+    if plain != found["role"]:
+        if not found["case"] and plain != NAMED.fil and entry.get("type") in ("harf", "fi'l") \
+                and not is_object_stem(entry["word"].lstrip("وَفَ")) \
+                and (typed := typed_case(entry["word"])):
+            found = {**found, "case": CASE_NAME[typed]}  # رَبِّ read by CAMeL as a particle: the kasra typed is its case
+    entry.update(role=found["role"], book=found.get("book"), role_key=role_key(plain),
                  family=found.get("family"),  # كان، إنّ: named by what they govern (signs.settle)
                  named=found.get("named"),  # أَلَا: a reading's own name, where the family card's does not fit
                  governor=found.get("governor"), follows=found.get("follows"))
-    if found["role"] != NAMED.fil and entry.get("type") == "fi'l":
+    if plain != NAMED.fil and entry.get("type") == "fi'l":  # نَعْبُدُ keeps CAMeL's tense and mood
         # لَسِحْرًا: CAMeL's verb is the parser's noun, so the verb's case goes with it
-        entry.update(type="harf" if found["role"] in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
-    elif entry.get("type") == "harf" and found["role"] and found["role"] not in (NAMED.harf, NAMED.harf_jarr):
+        entry.update(type="harf" if plain in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
+    elif entry.get("type") == "harf" and found["role"] and plain not in (NAMED.harf, NAMED.harf_jarr):
         entry["type"] = "ism"  # أينما: a particle's card named for a place is a built noun
     elif entry.get("type") == "ism" and found["role"] == NAMED.harf and found.get("named"):
         entry["type"] = "harf"  # ما عدا: CAMeL's relative is the particle the reading names

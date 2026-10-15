@@ -653,6 +653,8 @@
    "conditional_adverbs": ["إذا"],
    "_conditional_nouns": "إذا before a past verb is a time word holding the meaning of a condition, not jussive (Tasheel 4.3.1 p112): its own clause is in the place of jarr as its مضاف إليه. Read with jazm's list by nahw_book.condition_of; particle_tree.json tells it from إذا الفجائية.",
    "carriers": ["كل", "بعض"],
+   "_built": "Time words built on one ending whatever their place (Tasheel): the vowel typed on them is part of the word, not a case (زارنا أمسِ: مبني على الكسر في محل نصب).",
+   "built": ["أمس", "الآن", "إذ", "منذ", "مذ"],
    "words": [
     "إذ",
     "إذا",
@@ -742,6 +744,7 @@
   "zarf_makan": {
    "ar": "ظروف المكان",
    "effect": "adverb of place (maf'ul fihi), nasb, or mudaf; حيث is built and is followed by a clause; the rest are usually mudaf to a noun",
+   "built": ["حيث"],
    "words": [
     "حيث",
     "أين",
@@ -1115,7 +1118,11 @@
     "1ِ2َا3",
     "1ُ2َا3",
     "تَ1ْ2ِي3",
-    "إِ1ْ2َا3"
+    "إِ1ْ2َا3",
+    "إِ1ْ2ا3",
+    "ٱِ1ْتِ2ا3",
+    "ٱِنْ1ِ2ا3",
+    "ٱِسْتِ1ْ2ا3"
    ]
   },
   "ta_merges": {

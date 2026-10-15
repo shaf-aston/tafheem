@@ -41,9 +41,10 @@ def test_idafa_is_a_unit_that_plays_one_role():
 
 def test_a_word_no_rule_could_name_is_a_gap_not_a_guess():
     # a word with no case anywhere, hung off the verb by a link that names nothing
+    # (not أمسِ: its kasra is built in, so it is the verb's مفعول فيه)
     toks = [token(1, "ذهب", "ذهب", "VRB", 0, "---", asp="p"),
-            token(2, "أمس", "أمس", "NOM", 1, "MOD", cas="u")]
-    drawn = built(["ذَهَبَ", "أَمْسِ"], toks)
+            token(2, "بيت", "بيت", "NOM", 1, "MOD", cas="u")]
+    drawn = built(["ذَهَبَ", "بَيْتِ"], toks)
     gaps = [child for child in drawn["tree"]["children"] if child.get("gap")]
     assert [leaf["role"] for leaf in gaps] == [None]
     assert drawn["coverage"] == 0.5

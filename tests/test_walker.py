@@ -96,7 +96,7 @@ def test_rejects_empty_children_a_non_true_else_and_an_else_with_nothing_left():
 # Where the real tree has no child for an answer its axis can give, a word stops unnamed
 # (a gap, never a guess). Each stop is listed with the book reason; a new one is a new
 # hole and must be argued for here or filled in naming_tree.json.
-VERB_ONLY = {"object", "second_object", "absolute", "place_time", "accompaniment"}
+VERB_ONLY = {"object", "second_object", "absolute", "place_time", "accompaniment", "reason"}
 ALLOWED_STOPS = {
     ("إن وأخواتها", "slot"): (VERB_ONLY | {"specification", "none"},
                               "إن takes an اسم and a خبر; the particle has no object, and the other places are a verb's"),
@@ -106,7 +106,7 @@ ALLOWED_STOPS = {
                                "كاد names its اسم and خبر; an object of it stays unnamed"),
     ("ظن وأخواتها", "voice"): ({"passive", "none"},
                                "a passive ظن has no places of its own (none cannot occur: ظن is a verb)"),
-    ("ظن المبنية للمعلوم", "slot"): ({"predicate", "absolute", "place_time", "accompaniment", "none"},
+    ("ظن المبنية للمعلوم", "slot"): ({"predicate", "absolute", "place_time", "accompaniment", "reason", "none"},
                                      "ظن's places are its doer and two objects; a khabar or an adverb is not one"),
     ("الفعل", "slot"): ({"predicate", "none"}, "a khabar is not a place a verb gives"),
     ("الفاعل ونائبه", "voice"): ({"none"}, "a doer always has its verb above it"),

@@ -20,7 +20,7 @@ from backend.services.nahw_book import (
     book_merges, book_path, book_words, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, particles, walker
 from backend.services.harakat import (
-    CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, merged_prefix, own_letters, paused, typed_case)
+    CASE_NAME, PRESENT_PREFIX, SUKUN, drops_weak, five_verb_nun, letters, has_tanween, merged_prefix, own_letters, paused, typed_case)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -81,6 +81,10 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         # (اللهُ أكبرُ: the elative, never the verb أَكْبَرَ)
         if token["pos"].startswith("VRB") and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"):
             token["pos"] = "NOM"
+        # مَعَ النَّاسِ: CAMeL tags مع a preposition, but the book lists it with the place
+        # words: a ظرف, منصوب, its noun the مضاف إليه
+        if token["pos"] == "PRT" and token.get("pos_camel") == "prep" and is_one(token["lemma"], "zarf_makan"):
+            token.update(pos="NOM", pos_camel="noun")
         # letters at the end that belong to an attached pronoun, not to the word
         token["stuck_on"] = sum(len(bare_letters(t["form"].strip("+"))) for t in tokens
                                 if t["head"] == token["id"] and t["form"].startswith("+"))
@@ -89,7 +93,11 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
         # a noun's never is, or the يَدِ of وَيَدِهِ would be a command
         after = words[i + 1] if i + 1 < len(words) else ""
         verb = token["pos"].startswith("VRB")
-        if verb or token.get("pos_camel") in ("noun", "noun_prop"):
+        # جاء ذُو مالٍ: a noun with a مضاف إليه hung on it is no command, whatever its shape
+        has_idafa = any(t["head"] == token["id"] and t["rel"] == "IDF" and not t["form"].startswith("+") for t in tokens)
+        # زارنا أمسِ: a listed time or place word is no command either
+        zarf = any(is_one(token["lemma"], family) for family in ("zarf_zaman", "zarf_makan"))
+        if verb or (token.get("pos_camel") in ("noun", "noun_prop") and not has_idafa and not zarf):
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
             root = token.get("root", "")
@@ -258,8 +266,18 @@ def _followers_take_their_case(named: list, cases: list, bases: list[dict], toke
         head = _followed(token, bases, tokens)
         if head is None or cases[head] == "mabni":
             continue
-        if cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token)):
+        if cases[i] == "nasb" and _diptote_fatha(token) and "jarr" in (cases[head], CASE_NAME.get(case_of(named[head] or ""))):
+            cases[i] = "jarr"
+        elif cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token)):
             cases[i] = cases[head]
+
+
+def _diptote_fatha(token: dict) -> bool:
+    """بإبراهيمَ وأحمدَ: a bare fatha with no tanween, ال or pronoun on a follower of a
+    مجرور is a diptote's jarr, the fatha standing for the kasra."""
+    typed = token.get("typed") or ""
+    return (typed_case(typed) == "a" and not has_tanween(typed) and not token["stuck_on"]
+            and not strip_diacritics(typed).lstrip("وف").startswith("ال"))
 
 
 def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None = None) -> str | None:
@@ -304,7 +322,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if is_mabni(token) or facts.is_object_pronoun(token):
+    if is_mabni(token) or facts.is_object_pronoun(token) or (role and facts.is_built_zarf(token)):
         return "mabni"
     if facts.shows_nasb_by_kasra(token) and (case_of(role, token["mudaf"]) == "a" if role else not jarred):
         return "nasb"
