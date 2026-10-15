@@ -237,7 +237,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     def hang_on_unsaid_verb(noun: dict, text: str, **place) -> dict:
         """The noun (with the words that follow it) is the object of a verb no one writes."""
         verb = understand(text, NAMED.fil, drawn.index(noun), pos="VRB", pos_camel="", base=text, asp="na", **place)
-        role_of[noun["id"]] = said_verb["noun"]["masdar" if is_masdar(noun) else "other"]
+        # شكرًا: the unwritten verb's own masdar; الصِّدْقَ الصِّدْقَ: one with ال urged on the
+        # hearer is the object of an unwritten الزم (الإغراء, Tasheel 3.8.1)
+        masdar = is_masdar(noun) and not strip_diacritics(noun["form"]).startswith("ال")
+        role_of[noun["id"]] = said_verb["noun"]["masdar" if masdar else "other"]
         why_of[noun["id"]] = None  # the dash was for a case no job fitted; now one does
         under = {**noun, "head": verb["id"]}
         drawn[drawn.index(noun)], by_id[noun["id"]] = under, under

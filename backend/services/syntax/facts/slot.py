@@ -114,6 +114,12 @@ def verb_place(token: dict, s: Sentence) -> str:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
         if head.get("asp") == "c" and rel in ("SBJ", "TPC", "OBJ", "---") and typed != "u":
             return "object"  # قل الحق: a command's doer is always the hidden أنت (Tasheel 2.4.1 p30)
+        # رَأَيْتُ كِلَا الصَّدِيقَيْنِ: a verb of the first or second person holds its doer (تُ، نا، تَ),
+        # so the noun after it is its object, however the parser hung it or what case it guessed
+        if (head.get("per") in ("1", "2") and not is_passive(head) and not before
+                and rel in ("SBJ", "TPC", "OBJ") and typed != "u"
+                and not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)):
+            return "object"
         if (not before and typed in (None, "a") and token.get("stt") in ("i", "c") and is_masdar(token)
                 and same_root(token, head)):
             return "absolute"  # يُطَهِّرَكُمْ تَطْهِيرًا: the verb's own masdar

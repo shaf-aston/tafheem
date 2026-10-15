@@ -538,3 +538,24 @@ def test_a_called_noun_is_no_mubtada_for_the_jar_majrur_after_it():
             token(4, "البيت", "بيت", "NOM", 3, "OBJ", stt="d", cas="g"),
             token(5, "ضيف", "ضيف", "NOM", 3, "SBJ", cas="n")]
     assert roles(["يَا", "مُحَمَّدُ", "فِي", "الْبَيْتِ", "ضَيْفٌ"], toks)[1] != "مبتدأ"
+
+
+def test_a_command_hung_on_ya_is_no_second_called_noun():
+    toks = [token(1, "يا", "يا", "PRT", 0, "---", pos_camel="part_voc"),
+            token(2, "فاطمة", "فاطمة", "PROP", 1, "OBJ", pos_camel="noun_prop"),
+            token(3, "اجلسي", "جلس", "VRB", 1, "OBJ", vox="a", asp="c")]  # as the live parser drew it
+    assert roles(["يَا", "فَاطِمَةُ", "اِجْلِسِي"], toks) == ["حرف", "منادى", "فعل"]
+
+
+def test_a_detached_pronoun_after_its_verb_is_tawkeed():
+    toks = [token(1, "ذهبت", "ذهب", "VRB", 0, "---", vox="a", asp="p", per="1"),
+            token(2, "أنا", "أنا", "NOM", 1, "SBJ", pos_camel="pron", cas="n")]
+    assert roles(["ذَهَبْتُ", "أَنَا"], toks) == ["فعل", "توكيد"]
+
+
+def test_a_first_person_verb_takes_the_noun_after_it_as_its_object():
+    # كِلَا keeps its alif in every case, so CAMeL's raf' guess says nothing; the تُ is the doer
+    toks = [token(1, "رأيت", "رأى", "VRB", 0, "---", vox="a", asp="p", per="1"),
+            token(2, "كلا", "كلا", "NOM", 1, "SBJ", pos_camel="noun", cas="n", stt="c"),
+            token(3, "الصديقين", "صديق", "NOM", 2, "IDF", pos_camel="noun", stt="d", cas="g")]
+    assert roles(["رَأَيْتُ", "كِلَا", "الصَّدِيقَيْنِ"], toks) == ["فعل", "مفعول به", "مضاف إليه"]

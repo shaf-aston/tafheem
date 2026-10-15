@@ -176,3 +176,13 @@ def test_a_name_with_its_ibn_is_no_murakkab_tawsifi():
     assert found[1]["also"] and "بدل" in found[1]["also"]
     top = drawing.build(words, toks, found)["tree"]
     assert top["label"] == "" and top["children"][0]["role"] == "متبوع"
+
+
+def test_a_masdar_with_al_urged_alone_is_the_object_of_an_unwritten_verb():
+    # الصِّدْقَ الصِّدْقَ: الإغراء, not the unwritten verb's own masdar (شكرًا)
+    from backend.services.syntax import teacher
+    words = ["الصِّدْقَ", "الصِّدْقَ"]
+    toks = [token(1, "الصدق", "صدق", "NOM", 0, "---", stt="d", cas="a", pos_camel="noun", pattern="ال1ِ2ْ3"),
+            token(2, "الصدق", "صدق", "NOM", 1, "MOD", stt="d", cas="a", pos_camel="noun", pattern="ال1ِ2ْ3")]
+    found = teacher.review(words, toks, named(words, toks))
+    assert tree.build(words, toks, found)["unsaid"][0] == "مفعول به"
