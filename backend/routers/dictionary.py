@@ -39,9 +39,11 @@ from backend.utils import arabic_sentence, call_service, normalize_text, require
 
 router = APIRouter(prefix="/api/dictionary", tags=["dictionary"])
 
+# Each returns (entries, reading): the (lemma, root) an Arabic word was read
+# as when it is no headword; English has no such reading.
 _SEARCHERS = {
-    "ar": dictionary_service.search_arabic,
-    "en": dictionary_service.search_english,
+    "ar": dictionary_service.search_arabic_read,
+    "en": lambda query: (dictionary_service.search_english(query), None),
 }
 
 _ARABIC_UNHARMED = "The Arabic above is unaffected."
@@ -80,16 +82,12 @@ async def search_dictionary(
         raise HTTPException(status_code=400, detail="lang must be 'ar' or 'en'")
 
     # A worker thread: an uncached fuzzy search scans every headword.
-    reading = None
-    if language == "ar":
-        found, reading = await asyncio.to_thread(dictionary_service.search_arabic_read, query)
-    else:
-        found = await asyncio.to_thread(searcher, query)
+    found, reading = await asyncio.to_thread(searcher, query)
     corrected = []
     # Nothing at all, not even inside a longer word: most likely a slip, so the
     # word it was likeliest meant to be is looked up, and the page says so.
     if not found and (used := await asyncio.to_thread(dictionary_service.meant, query, language)):
-        found = await asyncio.to_thread(searcher, used)
+        found, _ = await asyncio.to_thread(searcher, used)
         corrected, query = [Correction(typed=query, used=used)], used
     return DictionaryResponse(
         query=query,
@@ -292,7 +290,9 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
         )
 
     lines, truncated = root_gloss.line_budget(rest, get_settings().root_entry_truncate_chars)
-    kept = root_english.get_lines(book_root, len(lines))
+    # Uncut, this is the entry already asked for above; only a cut opening can
+    # have English of its own kept.
+    kept = root_english.get_lines(book_root, len(lines)) if truncated else None
     if kept is None:
         answer = await _ask_ai(
             ai_service.explain_root_entry_lines, root, lines,

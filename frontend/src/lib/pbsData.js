@@ -15,21 +15,16 @@
  * "<chartId>.<branchIndex>.<kidIndex>", each value a "·"-separated list.
  */
 
-/** Each branch colour once: line, tint, label. A chart names one by key. */
-const HUE = {
-  teal:{bar:"#0f766e",fill:"#ccfbf1",text:"#134e4a"},
-  rose:{bar:"#be123c",fill:"#ffe4e6",text:"#881337"},
-  amber:{bar:"#b45309",fill:"#fef3c7",text:"#78350f"},
-  violet:{bar:"#6d28d9",fill:"#ede9fe",text:"#4c1d95"},
-  indigo:{bar:"#4338ca",fill:"#e0e7ff",text:"#312e81"},
-  slate:{bar:"#64748b",fill:"#e2e8f0",text:"#0f172a"},
-  sky:{bar:"#0369a1",fill:"#e0f2fe",text:"#0c4a6e"},
-  slateDeep:{bar:"#475569",fill:"#f1f5f9",text:"#1e293b"},
-  blue:{bar:"#1d4ed8",fill:"#dbeafe",text:"#1e3a8a"},
-  emerald:{bar:"#047857",fill:"#d1fae5",text:"#064e3b"},
-  orange:{bar:"#c2410c",fill:"#ffedd5",text:"#7c2d12"},
-  cyan:{bar:"#0e7490",fill:"#cffafe",text:"#164e63"},
-}
+import { colorFor } from "../theme"
+
+/** Each branch colour once: line, tint, label, from theme.json's `pbs` group. A chart names one by key. */
+const HUE = Object.fromEntries(
+  ["teal", "rose", "amber", "violet", "indigo", "slate", "sky", "slateDeep", "blue", "emerald", "orange", "cyan"].map((hue) => [hue, {
+    bar: colorFor("pbs", `${hue}-bar`),
+    fill: colorFor("pbs", `${hue}-fill`),
+    text: colorFor("pbs", `${hue}-text`),
+  }]),
+)
 
 export const CHARTS = [
 

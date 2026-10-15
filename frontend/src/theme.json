@@ -376,6 +376,21 @@
     "display": "1.875rem"
   },
   "_tarkeeb_comment": "The diagram has no sizes of its own any more. Its sentence is the arabic 'chart' rung, its role names 'term', a name inside another name 'small', and its + signs the English type 'body' size. Depth still reads as size, the steps are just shared with the rest of the app instead of being a second private ladder. Its colours are the 'role' group.",
+  "pbs": {
+    "_comment": "The Map's science charts (lib/pbsData): each branch hue as bar (its line and title box), fill (a topic's tint) and text (a topic's label). Content colours, the same in every look; fill and text are a fixed pair, so no look overrides them.",
+    "teal-bar": "#0f766e", "teal-fill": "#ccfbf1", "teal-text": "#134e4a",
+    "rose-bar": "#be123c", "rose-fill": "#ffe4e6", "rose-text": "#881337",
+    "amber-bar": "#b45309", "amber-fill": "#fef3c7", "amber-text": "#78350f",
+    "violet-bar": "#6d28d9", "violet-fill": "#ede9fe", "violet-text": "#4c1d95",
+    "indigo-bar": "#4338ca", "indigo-fill": "#e0e7ff", "indigo-text": "#312e81",
+    "slate-bar": "#64748b", "slate-fill": "#e2e8f0", "slate-text": "#0f172a",
+    "sky-bar": "#0369a1", "sky-fill": "#e0f2fe", "sky-text": "#0c4a6e",
+    "slateDeep-bar": "#475569", "slateDeep-fill": "#f1f5f9", "slateDeep-text": "#1e293b",
+    "blue-bar": "#1d4ed8", "blue-fill": "#dbeafe", "blue-text": "#1e3a8a",
+    "emerald-bar": "#047857", "emerald-fill": "#d1fae5", "emerald-text": "#064e3b",
+    "orange-bar": "#c2410c", "orange-fill": "#ffedd5", "orange-text": "#7c2d12",
+    "cyan-bar": "#0e7490", "cyan-fill": "#cffafe", "cyan-text": "#164e63"
+  },
   "themes": {
     "_comment": "The looks a reader can pick, and everything the code knows about them: it names none. base is the look the groups above describe. Each entry in looks has a label (what Settings calls it), a scheme (which the browser's own controls, scrollbars and inputs, should match) and then only what it changes, group by group and key by key; the rest stays as above. palette is the usual place to start: tab, role, unit, science and the tones all point at it, so a new look is mostly colours there plus the ground and text in color. Adding a look is adding an entry here and nothing else: Settings lists it, the page paints its ground before any script runs, and the tests hold it to contrast. device is the reader's \"follow my phone or computer\" choice: its id and label, and which look a light device and a dark one each get. hint-key is the one localStorage entry that lets the page paint the right ground early (vite/bootShell.js reads it).",
     "base": "dark",
