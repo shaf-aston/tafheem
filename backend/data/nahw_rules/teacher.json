@@ -35,6 +35,7 @@
   "built_on": "مبني على {ending}",
   "past_on": "الفتح",
   "command_on": "السكون",
+  "vowel_on": {"َ": "الفتح", "ُ": "الضم", "ِ": "الكسر", "ْ": "السكون"},
   "_built_on": "What else a verb or a noun is built on (services/signs.py): a command to many or to one woman drops its nun (اُكْتُبُوا، اُكْتُبِي), a command from a weak root drops its last letter (اِسْقِ، اِتَّقِ), a present verb is built on the fatha with the nun of emphasis (لَيَنْصُرَنَّ) and on the sukun with the nun of women (يَرْسُمْنَ), and the single indefinite noun after لا of the genus is built on what its nasb would show (لا ضَرَرَ، لا قَلَمَيْنِ).",
   "nun_on": {"emphasis": "الفتح", "women": "السكون"},
   "la_jins_on": {"vowel": "الفتح", "dual": "الياء", "sound_plural": "الياء", "on_alef": "الفتح المقدر على الألف"},
