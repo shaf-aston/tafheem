@@ -382,6 +382,7 @@ def _hit(second, rel, **feats):
     (["ضَرَبَ", "زَيْدٌ", "عمراً"], "MOD"),
     (["ضَرَبَ", "زَيْدٌ", "مريم"], "IDF"),      # زيدٌ has tanween, so nothing is its مضاف إليه
     (["ضَرَبَ", "زَيْدٌ", "مَرْيَمَ"], "IDF"),
+    (["ضَرَبَ", "زَيْدٌ", "مَرْيَمَ"], "---"),  # as the live parser draws it: unlabelled under the subject
 ])
 def test_a_word_the_vowels_forbid_under_the_subject_is_the_verbs_object(words, rel):
     assert roles(words, _hit(words[2], rel)) == ["فعل", "فاعل", "مفعول به"]

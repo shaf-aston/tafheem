@@ -66,6 +66,9 @@ class Nahw(BaseSettings):
     # Holds encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json, config.json, clitic_feats.csv.
     # See catib_onnx.py's docstring for sources. Relative paths resolve inside backend/.
     catib_parser_dir: str = "data/parser"
+    # Adds the parser's own links, before and after the repairs, to each /api/analyze answer:
+    # how a wrong role is traced on the server, where the model lives. Off for visitors.
+    show_parse: bool = False
 
 
 class Quran(BaseSettings):

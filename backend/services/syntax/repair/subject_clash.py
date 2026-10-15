@@ -23,7 +23,8 @@ def subject_clash(tokens: list[dict]) -> None:
                 and not is_mabni(token.get("pos_camel", "")) and not is_zarf(token, s)):
             continue
         clash = token["rel"] == "MOD" and typed_case_of(token) == "a" and not (indefinite_nasb(token) and (is_state_word(token) or same_root(token, verb)))
-        added = (token["rel"] == "IDF" and has_tanween(head.get("typed") or "")
+        # the parser may hang it there unlabelled (---) rather than as IDF; either way an إضافة is meant
+        added = (token["rel"] in ("IDF", "---") and has_tanween(head.get("typed") or "")
                  and typed_case_of(token) in ("a", None) and not any(k["rel"] == "OBJ" for k in s.kids(verb)))
         if clash or added:
             token["head"], token["rel"] = verb["id"], "OBJ"

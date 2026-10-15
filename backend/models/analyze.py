@@ -93,3 +93,5 @@ class AnalyzeResponse(BaseModel):
     # The same reading drawn as brackets: which words join, and what the unit
     # does. Unset when the parser could join nothing, so the cards stand alone.
     tree: TarkeebTree | None = None
+    # The parser's links before and after the repairs; only with the show_parse setting on.
+    parse: dict | None = None

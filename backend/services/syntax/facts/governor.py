@@ -2,6 +2,7 @@
 inna, kana, kaada, zanna, the called or the excepting particle)."""
 from __future__ import annotations
 
+from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_plain_noun
 from backend.services.syntax.facts.word import is_participle, is_verb, shows_jarr, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, verb_above
@@ -51,7 +52,9 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     # ذائقةُ الموتِ: the noun in jarr straight after a noun in construct is its mudaf ilayh
     if head and head.get("stt") == "c" and head["id"] == token["id"] - 1 and typed == "i" and not under_verb:
         return "idafa", head
+    # a noun with tanween is complete (ضَرَبَ زَيْدٌ مَرْيَمَ), so nothing after it is its مضاف إليه
     if rel == "---" and head and is_plain_noun(head) and head["id"] == token["id"] - 1 \
+            and not has_tanween(head.get("typed") or "") \
             and (typed_or_parsed_case(token) == "i" or shows_jarr(token)) and not any(c["rel"] in ("SBJ", "TPC") for c in s.kids(token)) \
             and not ("dem" in token.get("pos_camel", "") and s.verbless):
         return "idafa", head

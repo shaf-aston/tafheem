@@ -35,6 +35,7 @@ def analyze(sentence: str, recorded: bool = True) -> dict:
         "summary": label if tree and names_a_sentence(label := tree["tree"].get("label")) else None,
         "source": provenance.of("treebank" if record else "nahw"),
         "tree": tree,
+        "parse": parsed.get("parse"),
     }
 
 
