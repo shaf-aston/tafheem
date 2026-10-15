@@ -90,6 +90,11 @@ describe('saying', () => {
     expect(said('`Abdullah said, "The Prophet arranged for a horse race," `Abdullah was one of those')).toEqual(['The Prophet arranged for a horse race,'])
   })
 
+  it('opens a \' quote before an ellipsis or a bracket (bukhari 7313)', () => {
+    expect(said("revealed: '..or from beneath your feet.' (6.65)")).toEqual(['..or from beneath your feet.'])
+    expect(said("He said: '(He prayed) two rak'ahs.' Then")).toEqual(["(He prayed) two rak'ahs."])
+  })
+
   it('lets a saying the book never closed run to the end', () => {
     expect(said('`Urwa added, "Aisha told me that he used to pray')).toEqual(['Aisha told me that he used to pray'])
   })

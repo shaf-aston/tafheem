@@ -59,7 +59,8 @@ const ENDED = /[.!?,;)]$/
 function facing(ch, before, after) {
   if (ch === "'") {
     if (LETTER.test(before) && LETTER.test(after)) return 0
-    if (!LETTER.test(before) && !/[.!?,;)]/.test(before) && LETTER.test(after)) return 1
+    // Before a word, or before an ellipsis or bracket that starts a quote ('..or from beneath', '(He prayed)').
+    if (!LETTER.test(before) && !/[.!?,;)]/.test(before) && (LETTER.test(after) || (/[\s:(]/.test(before) && /[.([…]/.test(after)))) return 1
     return SPACE.test(before) ? 0 : -1
   }
   // After a colon a " opens even with the space on its wrong side (recited:" No soul).
