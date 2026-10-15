@@ -21,7 +21,9 @@ CTranslate2 export the app runs, tiny the faster one. Recordings: MuazAhmad7/Sur
 model taught on it is an experiment until its authors say otherwise).
 """
 # ruff: noqa: E402  (the tools are installed before they are imported)
+import io
 import json
+import math
 import os
 import random
 import re
@@ -39,9 +41,14 @@ subprocess.run([sys.executable, '-m', 'pip', 'uninstall', '-y', '-q', 'torchao']
 
 import jiwer
 import numpy as np
+import pyarrow.parquet as pq
 import requests
+import soundfile
 import torch
-from datasets import Audio, Dataset, load_dataset
+import zipfile
+from datasets import Audio, Dataset, concatenate_datasets, load_dataset
+from huggingface_hub import HfFileSystem, list_repo_files
+from scipy.signal import fftconvolve, resample_poly
 from peft import LoraConfig, get_peft_model
 from transformers import GenerationConfig, Seq2SeqTrainer, Seq2SeqTrainingArguments, WhisperConfig, WhisperForConditionalGeneration, WhisperProcessor, WhisperTokenizerFast
 
@@ -57,6 +64,27 @@ PROS = 40  # professional clips, 5 to 20 words each
 TESTED = 600  # clips per test group at most: 3,000 held clips heard twice would cost an hour
 EPOCHS = 2  # 18,000 clips: two passes is already ten times the steps four passes over 45 ayahs took
 TARTEEL_V1 = 'tarteel-v1'
+# Pilot knobs. A full run takes every learner clip; the pilot a quarter of them.
+LEARNER_SHARE = 0.25  # share of learner clips kept, picked before decoding
+V13 = {'new voices': 15.62, 'new ayahs': 18.04, 'professional': 4.30}  # last kept run, % words wrong
+# Training clips are changed on the fly, test clips never (recipe: Muno459/zipformer_p-arabic-v2 card).
+NOISE_SET = 'obadx/freesound-commercial-50k-noise-only'  # per-clip CC0 / CC-BY
+NOISE_SHARDS = 1  # of 104 files, 265 clips and half a gigabyte each
+NOISE_P = 0.5  # chance a clip gets background noise
+NOISE_SNR_DB = (10, 20)  # noise this far under the voice, drawn evenly between
+NOISE_MAX_S = 30  # seconds kept of each noise clip
+RIR_ZIP = 'https://www.openslr.org/resources/28/rirs_noises.zip'  # OpenSLR 28, Apache 2.0
+RIR_LIST = 'RIRS_NOISES/real_rirs_isotropic_noises/rir_list'  # the 325 real room recordings in the zip
+REVERB_P = 0.3  # chance a clip gets a room
+RIR_MAX_S = 1.0  # seconds of a room's tail kept
+SPEEDS = (0.9, 1.0, 1.1)  # one drawn per clip
+# Tadabur: 384k ayahs by 600+ reciters, 938 GB, CC BY-NC 4.0. Only a few files are read.
+TADABUR = 'FaisaI/tadabur'
+TADABUR_SHARDS = 3  # of ~390 files, 1,000 ayahs and 2.4 GB each, spread evenly
+TADABUR_SHARE = 0.25  # of the training clips of the pilot
+TADABUR_HELD = 40  # whole reciters never trained on
+TADABUR_TEST = 300  # clips of those reciters, at most
+TADABUR_SURAH_BASE = 1  # its surah_id counts from 0; checked against the printed ayah text
 RECITERS = ['Alafasy_128kbps', 'Husary_128kbps', 'Abdul_Basit_Murattal_192kbps', 'Minshawy_Murattal_128kbps',
             'Saood_ash-Shuraym_128kbps', 'Abdurrahmaan_As-Sudais_192kbps', 'Hudhaify_128kbps']
 OUT = Path.cwd()
@@ -132,6 +160,7 @@ def sound_of(recording):
 
 def learner_clips():
     seen = Counter()
+    share = random.Random(5)
     for name, (clean, ayah, who) in SOURCES.items():
         # Judged with the sound still undecoded, so rejected clips cost nothing.
         rows = (rows_of(name).cast_column('audio', Audio(decode=False))
@@ -140,7 +169,7 @@ def learner_clips():
         damaged = 0
         for row in rows:
             key = ayah(row)
-            if seen[key] >= PER_AYAH:
+            if seen[key] >= PER_AYAH or share.random() > LEARNER_SHARE:
                 continue
             # Decoded one at a time: a damaged file is counted and skipped, not fatal to the run.
             try:
@@ -150,7 +179,8 @@ def learner_clips():
                 continue
             if 0 < len(sound) <= LONGEST:
                 seen[key] += 1
-                yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': row['who']}
+                yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': row['who'], 'src': name,
+                       'secs': len(sound) / RATE}
         print(name, len(rows), 'clean clips,', damaged, 'damaged and skipped', flush=True)
 
 
@@ -164,7 +194,133 @@ def professional_clips(skip):
         mp3 = requests.get(f'https://everyayah.com/data/{who}/{surah:03d}{ayah:03d}.mp3',
                            headers={'User-Agent': 'Mozilla/5.0'}, timeout=60)
         mp3.raise_for_status()
-        yield {'sound': sound_of(mp3.content), 'said': IMLAEI[key], 'ayah': key, 'who': who}
+        sound = sound_of(mp3.content)
+        yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': who, 'src': 'everyayah', 'secs': len(sound) / RATE}
+
+
+def tadabur_plan(skip, target):
+    """Which Tadabur rows to take, as (file, row, reciter, ayah, part). Only the small columns are read here.
+    Reciters are held out whole; the rest give at most `each` clips, the smallest each that reaches target."""
+    fs = HfFileSystem()
+    files = sorted(f for f in list_repo_files(TADABUR, repo_type='dataset') if f.startswith('data/train-'))
+    step = len(files) // TADABUR_SHARDS
+    found, off = [], 0
+    for shard in files[step // 2::step][:TADABUR_SHARDS]:
+        rows = pq.ParquetFile(fs.open(f'datasets/{TADABUR}/{shard}')).read(
+            columns=['reciter_id', 'surah_id', 'ayah_id', 'text_ar_simple', 'ayah_duration_s']).to_pylist()
+        for at, r in enumerate(rows):
+            key = f"{r['surah_id'] + TADABUR_SURAH_BASE}:{r['ayah_id']}"
+            if r['ayah_duration_s'] > LONGEST / RATE or key not in SAYABLE:
+                continue
+            # The printed text must be the ayah the id names: a wrong id would teach a wrong label.
+            if letters(r['text_ar_simple']) != letters(IMLAEI[key]):
+                off += 1
+                continue
+            found.append((shard, at, r['reciter_id'], key))
+    print('tadabur:', len(found), 'usable ayahs under 30 s;', off, 'dropped, text not the named ayah', flush=True)
+    by = {}
+    for f in found:
+        by.setdefault(f[2], []).append(f)
+    reciters = sorted(by)
+    pick = random.Random(13)
+    pick.shuffle(reciters)
+    each_test = -(-TADABUR_TEST // TADABUR_HELD)
+    # Held reciters need enough clips each to make the test; the rest of the long tail trains.
+    held = [who for who in reciters if len(by[who]) >= each_test][:TADABUR_HELD]
+    rest = [who for who in reciters if who not in held]
+    test = [f for who in held for f in pick.sample(by[who], min(each_test, len(by[who])))]
+    test = [f + ('test',) for f in pick.sample(test, min(TADABUR_TEST, len(test)))]
+    free = {who: [f for f in by[who] if f[3] not in skip] for who in rest}
+    each = 1
+    while sum(min(each, len(c)) for c in free.values()) < target and each < max(map(len, free.values())):
+        each += 1
+    train = [f for c in free.values() for f in pick.sample(c, min(each, len(c)))]
+    train = [f + ('train',) for f in pick.sample(train, min(target, len(train)))]
+    print(f'tadabur: {len(held)} held reciters give {len(test)} test clips; {len(rest)} other reciters,'
+          f' at most {each} each, give {len(train)} train clips (wanted {target})', flush=True)
+    return train + test
+
+
+def tadabur_clips(plan):
+    """The planned rows' sound, one file at a time, stopping each file at its last wanted row."""
+    fs = HfFileSystem()
+    for shard in sorted({p[0] for p in plan}):
+        want = {p[1]: p for p in plan if p[0] == shard}
+        at = 0
+        for batch in pq.ParquetFile(fs.open(f'datasets/{TADABUR}/{shard}')).iter_batches(batch_size=50, columns=['audio']):
+            for audio in batch.column('audio').to_pylist():
+                if at in want:
+                    _, _, who, key, part = want[at]
+                    try:
+                        sound = sound_of(audio['bytes'])
+                    except subprocess.CalledProcessError:
+                        sound = []
+                    if 0 < len(sound) <= LONGEST:
+                        yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': f'tadabur:{who}',
+                               'src': 'tadabur', 'secs': len(sound) / RATE, 'part': part}
+                at += 1
+            if at > max(want):
+                break
+
+
+def noise_bank():
+    """Background sounds, 16 kHz mono, each cut to NOISE_MAX_S."""
+    fs = HfFileSystem()
+    files = sorted(f for f in list_repo_files(NOISE_SET, repo_type='dataset') if f.startswith('data/'))[:NOISE_SHARDS]
+    bank = []
+    for shard in files:
+        for batch in pq.ParquetFile(fs.open(f'datasets/{NOISE_SET}/{shard}')).iter_batches(batch_size=20, columns=['audio']):
+            for audio in batch.column('audio').to_pylist():
+                try:
+                    bank.append(sound_of(audio['bytes'])[:NOISE_MAX_S * RATE])
+                except subprocess.CalledProcessError:
+                    pass
+    return [n for n in bank if len(n) > RATE]
+
+
+def rir_archive():
+    """The OpenSLR 28 zip, downloaded once next to the outputs."""
+    path = OUT / 'rirs_noises.zip'
+    if not path.exists():
+        with requests.get(RIR_ZIP, stream=True, timeout=60) as r, open(path, 'wb') as f:
+            r.raise_for_status()
+            shutil.copyfileobj(r.raw, f)
+    return path
+
+
+def room_bank(archive):
+    """Real room impulse responses from the OpenSLR 28 zip, 16 kHz, from the direct sound on, unit energy."""
+    bank = []
+    with zipfile.ZipFile(archive) as z:
+        for line in z.read(RIR_LIST).decode().splitlines():
+            wav, rate = soundfile.read(io.BytesIO(z.read(line.split()[-1])), always_2d=True)
+            gcd = math.gcd(RATE, rate)
+            wav = resample_poly(wav[:, 0], RATE // gcd, rate // gcd)
+            wav = wav[np.argmax(np.abs(wav)):][:int(RIR_MAX_S * RATE)]
+            bank.append((wav / np.linalg.norm(wav)).astype(np.float32))
+    return bank
+
+
+def rms(x):
+    return float(np.sqrt(np.mean(np.square(x)))) + 1e-9
+
+
+def augmented(sound, noises, rooms, rng):
+    """One training clip made harder: speed, then room, then background noise. Never run on a test clip."""
+    x = np.asarray(sound, dtype=np.float32)
+    speed = float(rng.choice(SPEEDS))
+    if speed != 1.0:
+        slowed = resample_poly(x, 100, int(round(100 * speed)))  # 0.9 plays slower, so longer
+        if len(slowed) <= LONGEST:  # a longer clip would lose its end but keep its text
+            x = slowed.astype(np.float32)
+    if rng.random() < REVERB_P:
+        wet = fftconvolve(x, rooms[rng.integers(len(rooms))])[:len(x)]
+        x = (wet * rms(x) / rms(wet)).astype(np.float32)
+    if rng.random() < NOISE_P:
+        noise = np.resize(noises[rng.integers(len(noises))], len(x))  # repeated if shorter
+        snr = rng.uniform(*NOISE_SNR_DB)
+        x = (x + noise * rms(x) / rms(noise) / 10 ** (snr / 20)).astype(np.float32)
+    return x
 
 
 # A held voice is never trained on, nor a held ayah by anyone.
@@ -184,9 +340,24 @@ TESTS = {
     'professional': Dataset.from_generator(professional_clips, gen_kwargs={'skip': taught_ayahs}),
 }
 TESTS = {k: v.shuffle(seed=7).select(range(min(TESTED, len(v)))) for k, v in TESTS.items()}
-taught = whole.filter(lambda r: r['who'] not in new_voices and r['ayah'] not in new_ayahs).shuffle(seed=7)
+learners = whole.filter(lambda r: r['who'] not in new_voices and r['ayah'] not in new_ayahs)
+# Tadabur reciters are strangers to the learners; its train ayahs avoid the held ayahs and the professional test's.
+plan = tadabur_plan(new_ayahs | set(TESTS['professional']['ayah']),
+                    round(len(learners) * TADABUR_SHARE / (1 - TADABUR_SHARE)))
+big = Dataset.from_generator(tadabur_clips, gen_kwargs={'plan': plan})
+TESTS['tadabur new voices'] = big.filter(lambda r: r['part'] == 'test')
+KEPT = ['sound', 'said', 'src', 'secs']
+taught = concatenate_datasets([learners.select_columns(KEPT), big.filter(lambda r: r['part'] == 'train').select_columns(KEPT)]
+                              ).shuffle(seed=7)
+spent = Counter()
+for src, secs in zip(taught['src'], taught['secs']):
+    spent[src] += secs / 3600
 print(len(whole), 'learner clips of', len(ayahs), 'ayahs;', len(taught), 'to learn from; tests:',
       {k: len(v) for k, v in TESTS.items()}, flush=True)
+print('hours to learn from, per source:', {k: round(v, 2) for k, v in spent.items()}, 'total', round(sum(spent.values()), 2), flush=True)
+noises, rooms = noise_bank(), room_bank(rir_archive())
+print(len(noises), 'noise clips,', len(rooms), 'rooms', flush=True)
+rng = np.random.default_rng(3)
 
 model = WhisperForConditionalGeneration.from_pretrained(NAME).cuda()
 # tarteel ships no generation_config.json, so it lacks the language table; its base model has it.
@@ -230,7 +401,7 @@ print('today:', before, flush=True)
 
 def gather(rows):
     # Features made per batch, not stored: 18,000 clips' features would take 17 GB.
-    batch = processor([np.asarray(r['sound'], dtype=np.float32) for r in rows], sampling_rate=RATE, return_tensors='pt')
+    batch = processor([augmented(r['sound'], noises, rooms, rng) for r in rows], sampling_rate=RATE, return_tensors='pt')
     marked = processor.tokenizer([r['said'] for r in rows], padding=True, return_tensors='pt')
     # Padding is not something to say, so it is masked out of the loss.
     labels = marked['input_ids'].masked_fill(marked.attention_mask.ne(1), -100)
@@ -261,7 +432,8 @@ Seq2SeqTrainer(
 after, heard = scored(tuned)
 keep = (before['new ayahs'] - after['new ayahs'] >= BAR
         and after['professional'] - before['professional'] <= SLIP)
-verdict = {'keep': keep, 'before': before, 'after': after, 'bar': BAR, 'slip': SLIP,
+verdict = {'keep': keep, 'before': before, 'after': after, 'bar': BAR, 'slip': SLIP, 'v13': V13,
+           'hours': {k: round(v, 2) for k, v in spent.items()}, 'vs_v13': {k: round(after[k] - V13[k], 2) for k in V13},
            'taught': len(taught), 'tests': {k: len(v) for k, v in TESTS.items()},
            'still_wrong': [{'should': s, 'heard': h} for s, h in zip(TESTS['new ayahs']['said'], heard['new ayahs'])
                            if bare(s) != h][:10]}
