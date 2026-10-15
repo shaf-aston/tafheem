@@ -67,8 +67,8 @@ class Nahw(BaseSettings):
     # See catib_onnx.py's docstring for sources. Relative paths resolve inside backend/.
     catib_parser_dir: str = "data/parser"
     # Adds the parser's own links, before and after the repairs, to each /api/analyze answer:
-    # how a wrong role is traced on the server, where the model lives. Off for visitors.
-    show_parse: bool = False
+    # how a wrong role is traced on the server, where the model lives. On while the parser fixes are checked live; set False after.
+    show_parse: bool = True
 
 
 class Quran(BaseSettings):
