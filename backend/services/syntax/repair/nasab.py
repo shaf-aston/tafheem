@@ -1,6 +1,7 @@
 """Repair 3: ابن between two names is the first name's صفة and مضاف to the second."""
 from __future__ import annotations
 
+from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween
 from backend.services.syntax.facts import is_name, listed
 from backend.services.syntax.mask import above
@@ -20,7 +21,7 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
     hung the name under it. Written over before the words are read."""
     by_id = {t["id"]: t for t in tokens}
     for name, son, after in zip(bases, bases[1:], bases[2:]):
-        if not (is_name(name) and listed(son, "nasab") and after["pos"] in ("NOM", "PROP")
+        if not (_names(name, son) and listed(son, "nasab") and after["pos"] in ("NOM", "PROP")
                 and not has_tanween(name.get("typed") or "")):
             continue
         # محمدُ بنُ عبدِ اللهِ بنِ عبدِ المطلبِ: the second ابن describes the whole name عبد الله,
@@ -34,22 +35,49 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
         son["head"], son["rel"] = name["id"], "MOD"
         after["head"], after["rel"] = son["id"], "IDF"
         son["mudaf"] = True
-        _name_goes_on(after, bases, tokens)
+        _told_of(name, _name_goes_on(after, bases, tokens), bases, tokens)
 
 
-def _name_goes_on(word: dict, bases: list[dict], tokens: list[dict]) -> None:
+def _names(word: dict, son: dict) -> bool:
+    """A name, or a bare word before بن written without its alef: the alef drops only between
+    two names, so عليُّ بنُ أبي طالبٍ is a name whatever the reading calls عليّ."""
+    return is_name(word) or (_bare(word) and strip_diacritics(son.get("typed") or son["form"]) == "بن")
+
+
+def _bare(word: dict) -> bool:
+    """No ال and no tanween: nothing closes the word, so a noun after it can be its مضاف إليه."""
+    return not word["form"].startswith("ال") and not has_tanween(word.get("typed") or "")
+
+
+def _told_of(name: dict, end: dict, bases: list[dict], tokens: list[dict]) -> None:
+    """محمدُ بنُ عبدِ اللهِ رسولُ اللهِ، عمرُ بنُ الخطابِ خليفةٌ: a full name opening a sentence
+    with no verb is its mubtada and the noun straight after the name its khabar, however
+    the parser hung it (as the name's صفة, or a root of its own)."""
+    first, at = bases[0], bases.index(end) + 1
+    if not (name is first or _under(name, first, tokens)) or at >= len(bases) \
+            or any(t["pos"].startswith("VRB") for t in tokens) or any(t["head"] == first["id"] and t["rel"] == "PRD" for t in tokens):
+        return
+    khabar = bases[at]
+    if khabar["pos"] not in ("NOM", "PROP") or listed(khabar, "nasab"):
+        return
+    first["head"], first["rel"] = 0, "---"
+    khabar["head"], khabar["rel"] = first["id"], "PRD"
+
+
+def _name_goes_on(word: dict, bases: list[dict], tokens: list[dict]) -> dict:
     """عبدِ اللهِ، عبدِ المطلبِ: the father's name is itself a مضاف (CAMeL's construct state)
-    and the noun after it its مضاف إليه, wherever the parser hung that noun (as a khabar)."""
+    and the noun after it its مضاف إليه, wherever the parser hung that noun (as a khabar).
+    Returns the name's last word."""
     at = bases.index(word)
     while at + 1 < len(bases):
         nxt = bases[at + 1]
         if nxt["pos"] not in ("NOM", "PROP") or listed(nxt, "nasab") or _under(word, nxt, tokens):
-            return
+            return word
         # untyped, the reading may miss the construct state: a bare noun (no ال, no tanween)
         # before a name or a noun with ال is that noun's مضاف all the same
-        bare = not word["form"].startswith("ال") and not has_tanween(word.get("typed") or "")
-        if word.get("stt") != "c" and not (bare and (is_name(nxt) or nxt.get("stt") == "d")):
-            return
+        if word.get("stt") != "c" and not (_bare(word) and (is_name(nxt) or nxt.get("stt") == "d")):
+            return word
         nxt["head"], nxt["rel"] = word["id"], "IDF"
         word["mudaf"] = True
         word, at = nxt, at + 1
+    return word
