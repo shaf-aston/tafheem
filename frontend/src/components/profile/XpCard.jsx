@@ -36,10 +36,10 @@ export default function XpCard({ rewards }) {
       </div>
       {open && (
         <ol className="xp-path" aria-label="Ranks">
-          {config.ranks.map((r) => {
+          {config.ranks.map((r, i) => {
             const state = r === rank ? 'now' : r.from < rank.from ? 'done' : 'ahead'
             return (
-              <li key={r.from} className={`xp-step xp-${state}`}>
+              <li key={r.from} className={`xp-step xp-${state}`} style={{ '--i': i }}>
                 <span className="xp-dot" aria-hidden="true" />
                 <span className="font-semibold" dir="rtl">{r.ar}</span>
                 <span className="type-small">{r.en} · Lv {r.from}</span>

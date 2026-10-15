@@ -105,7 +105,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
              "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
              # محمدُ بنُ عبدِ اللهِ: the books also read the ابن as عطف بيان or بدل
-             "also": book_map("nasab", "also") if role == NAMED.sifah and facts.listed(token, "nasab") else None,
+             "also": book_map("nasab", "also") if role == NAMED.sifah and facts.is_nasab(token) else None,
              # إيّاك: the pronoun on إيّا is a letter of the one detached pronoun, not a piece of its own
              "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": facts.is_prefix(t), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,

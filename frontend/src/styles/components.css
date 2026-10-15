@@ -816,11 +816,8 @@ dialog::backdrop {
 .xp-step {
   position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; flex: 1;
   color: var(--text-faint); animation: xp-rise calc(400ms * var(--motion-scale)) ease-out both;
+  animation-delay: calc(var(--i) * 60ms * var(--motion-scale)); /* one after another, Seed to Fruit */
 }
-.xp-step:nth-child(2) { animation-delay: calc(60ms * var(--motion-scale)); }
-.xp-step:nth-child(3) { animation-delay: calc(120ms * var(--motion-scale)); }
-.xp-step:nth-child(4) { animation-delay: calc(180ms * var(--motion-scale)); }
-.xp-step:nth-child(5) { animation-delay: calc(240ms * var(--motion-scale)); }
 .xp-dot { width: 0.9rem; height: 0.9rem; border-radius: 999px; background: var(--surface); border: 2px solid var(--border); }
 .xp-done { color: var(--text-dim); }
 .xp-done .xp-dot { background: var(--xp-tone); border-color: var(--xp-tone); }

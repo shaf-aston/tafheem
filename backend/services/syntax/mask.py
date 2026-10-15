@@ -53,7 +53,7 @@ def _switched_on(rules: dict) -> list:
     return [rule for name, rule in rules.items() if vetoes().get(name)]
 
 
-def _above(heads: list[int], word: int, target: int) -> bool:
+def above(heads: list[int], word: int, target: int) -> bool:
     """`target` is `word` or one of the words it hangs under: a link from target down to
     word would close a loop."""
     while word:
@@ -72,7 +72,7 @@ def _pointer_heads_its_noun(toks, heads, rels) -> None:
         noun = toks[n - 1]
         if "dem" not in dep.get("pos_camel", "") or noun.get("stt") != "d" or not is_plain_noun(noun):
             continue
-        if heads[n - 1] == d or _above(heads, heads[n - 1], d):
+        if heads[n - 1] == d or above(heads, heads[n - 1], d):
             continue  # already under the pointer, or the swap would make a loop
         # the pointer takes the noun's place in the sentence; the noun hangs on it
         heads[d - 1], rels[d - 1] = heads[n - 1], rels[n - 1]
@@ -90,7 +90,7 @@ def _listed_preposition_takes_majrur(toks, heads, rels) -> None:
         after = toks[d]
         majrur = (after["pos"] == "NOM" and after.get("stt") == "i" and not after.get("form", "").startswith("+")
                   and "i" in (after.get("case"), CAMEL_CASE.get(after.get("cas"))))
-        if dep["pos"] == "PRT" or len(form) < 2 or not is_one(form, "jarr") or not majrur or _above(heads, d, d + 1):
+        if dep["pos"] == "PRT" or len(form) < 2 or not is_one(form, "jarr") or not majrur or above(heads, d, d + 1):
             continue
         dep.update(pos="PRT", pos_camel="prep")
         heads[d], rels[d] = d, "OBJ"
@@ -132,7 +132,7 @@ def _inner_sentence(toks, heads, rels) -> None:
             continue
         relative = "rel" in before.get("pos_camel", "")
         first = verbless and n1 == 1 and before["pos"] in ("NOM", "PROP") and not before.get("form", "").startswith("+")
-        if relative and (_above(heads, n1, n2) or _above(heads, n1, n3)):
+        if relative and (above(heads, n1, n2) or above(heads, n1, n3)):
             continue  # the relative hangs inside the sentence: its own place is not known
         if first:
             if any(h == 0 for i, h in enumerate(heads, 1) if i not in (n1, n2, n3)):
@@ -169,7 +169,7 @@ def _exception_word_by_case(toks, heads, rels) -> None:
         after = toks[d]
         if (dep.get("token_type") != "baseword" or after["pos"] not in ("NOM", "PROP")
                 or after.get("form", "").startswith("+") or not is_one(dep.get("form", ""), "istithna_verbs")
-                or _above(heads, d, d + 1)):
+                or above(heads, d, d + 1)):
             continue
         case, verb = _case(after), d > 1 and is_one(strip_diacritics(toks[d - 2].get("form", "")), "istithna_verbs", "masdar_ma")
         if case == "i" and not verb:

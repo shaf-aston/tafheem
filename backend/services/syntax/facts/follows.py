@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_one
-from backend.services.syntax.facts.word import is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case
+from backend.services.syntax.facts.word import is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case
 from backend.services.syntax.facts.sentence import Sentence, next_word, place_case, previous_noun, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.kind import joins_clauses, calling_head
 
@@ -76,8 +76,7 @@ def _follows(token: dict, s: Sentence) -> str:
                     and c["id"] == token["id"] - 1), None)
     if pointer and token.get("stt") == "d":
         return "naat"
-    # محمدُ بنُ عبدِ اللهِ: ابن hung on the name before it is that name's صفة (repair.nasab)
-    if head and token["rel"] == "MOD" and head["id"] < token["id"] and listed(token, "nasab"):
+    if is_nasab(token):
         return "naat"
     # يا أيها الناسُ: the noun with ال after أيها is its صفة
     if head and is_called_noun(head) and token.get("stt") == "d":
