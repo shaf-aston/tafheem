@@ -228,7 +228,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             # under it is a phrase, no sentence: nothing is told of it, so it is no mubtada
             # المعلماتُ في الفصلِ: a raf' noun with a jar-majrur after it is told of by it, its khabar
             told = any(_nominal_place(k, s) == "predicate" or (is_preposition(k) and k["id"] > token["id"]
-                                                              and typed_or_parsed_case(token) == "u")
+                                                              and typed_or_parsed_case(token) == "u"
+                                                              and not (before and strip_diacritics(before["form"]) == "يا"))
                        for k in kids if not is_suffix(k))
             return "subject" if told else "none"
     if rel == "MOD" and head:

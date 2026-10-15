@@ -518,3 +518,22 @@ def test_a_participle_the_parser_took_for_a_verb_is_a_noun():
             token(5, "ربهم", "رب", "NOM", 4, "IDF", cas="g")]
     assert roles(["جَاءَ", "الْحُجَّاجُ", "مُلَبِّينَ", "دَعْوَةَ", "رَبِّهِمْ"], toks)[2] == "حال"
 
+
+
+def test_a_plural_participle_under_a_genitive_noun_is_its_majrur_sifah():
+    # مررتُ برجالٍ مسافرين: the parser's "verb" is a صفة of رجالٍ, so it is majrur, not a nasb hal
+    toks = [token(1, "مررت", "مر", "VRB", 0, "---", asp="p"),
+            token(2, "ب+", "ب", "PRT", 1, "MOD", pos_camel="prep", token_type="prefix"),
+            token(3, "رجال", "رجل", "NOM", 2, "OBJ", cas="g"),
+            token(4, "مسافرين", "سافر", "VRB", 3, "MOD", asp="na", cas="na")]
+    found = named(["مَرَرْتُ", "بِرِجَالٍ", "مُسَافِرِينَ"], toks)
+    assert (found[2]["role"], found[2]["case"]) == ("صفة", "jarr")
+
+
+def test_a_called_noun_is_no_mubtada_for_the_jar_majrur_after_it():
+    toks = [token(1, "يا", "يا", "PRT", 2, "MOD", pos_camel="part_voc"),
+            token(2, "محمد", "محمد", "PROP", 0, "---", cas="n"),
+            token(3, "في", "في", "PRT", 2, "MOD", pos_camel="prep"),
+            token(4, "البيت", "بيت", "NOM", 3, "OBJ", stt="d", cas="g"),
+            token(5, "ضيف", "ضيف", "NOM", 3, "SBJ", cas="n")]
+    assert roles(["يَا", "مُحَمَّدُ", "فِي", "الْبَيْتِ", "ضَيْفٌ"], toks)[1] != "مبتدأ"

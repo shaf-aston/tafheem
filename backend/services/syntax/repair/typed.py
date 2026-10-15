@@ -16,10 +16,13 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
             token["pos"] = "NOM"
         # مُلَبِّينَ: no verb opens with مُ and ends in the plural ـونَ/ـينَ, so it is a participle
         elif token["pos"].startswith("VRB") and _participle_plural(word):
-            # ـونَ is raf'; ـينَ is nasb unless a preposition or a مضاف holds it in jarr
+            # ـونَ is raf'; ـينَ is nasb under a verb, jarr under a preposition or مضاف, and under a
+            # noun it is that noun's صفة and takes its case (بِرِجَالٍ مُسَافِرِينَ)
             head = next((t for t in tokens if t["id"] == token["head"]), None)
-            jarred = token["rel"] == "IDF" or (head is not None and head["pos"] == "PRT")
-            token.update(pos="NOM", asp="na", cas="n" if word.rstrip("\u064e").endswith("ون") else "g" if jarred else "a")
+            jarred = token["rel"] == "IDF" or (head is not None and head["pos"] == "PRT" and head.get("pos_camel") == "prep")
+            nasb = head is not None and head["pos"].startswith("VRB")
+            raf = word.rstrip("\u064e").endswith("ون")
+            token.update(pos="NOM", asp="na", cas="n" if raf else "g" if jarred else "a" if nasb else head.get("cas", "na") if head else "na")
         # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
         token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
         token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
