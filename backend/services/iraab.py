@@ -78,6 +78,9 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     for word in words:  # غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule
         if teacher.tool_reason(word):
             word["reason"] = teacher.tool_reason(word)
+    for word, found in zip(words, roles):
+        if found.get("also") and word.get("reason"):
+            word["reason"] = f"{word['reason']}، {found['also']}"
     _pieces_said(words, roles)
     return rule_engine.mark_condition(words, roles)
 

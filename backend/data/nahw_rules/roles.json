@@ -33,6 +33,7 @@
   "مجرور": {"key": "harf", "tone": "harf"},
   "مضاف": {"key": null, "tone": "mudaf"},
   "موصوف": {"key": null, "tone": "sifah"},
+  "متبوع": {"key": null, "tone": "sifah"},
   "اسم موصول": {"key": null, "tone": "rel"},
   "اسم شرط جازم": {"key": null, "tone": "harf"},
   "صلة": {"key": null, "tone": "rel"}
