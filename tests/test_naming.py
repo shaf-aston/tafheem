@@ -499,3 +499,22 @@ def test_a_masdar_of_the_heart_is_mafool_li_ajlihi(rel):
     assert roles(["احْتَرَمَ", "الطُّلَّابُ", "احْتِرَامًا"], toks)[2] != "مفعول لأجله"
     toks[0].update(form="قام", lemma="قام")
     assert roles(["قَامَ", "الطُّلَّابُ", "احْتِرَامٌ"], toks)[2] != "مفعول لأجله"
+
+
+def test_noun_with_only_a_jar_majrur_after_it_is_the_mubtada():
+    # المعلماتُ في الفصلِ: the parser hangs في on the noun; the jar-majrur is its khabar, so it is a sentence
+    toks = [token(1, "المعلمات", "معلمة", "NOM", 0, "---", stt="d", cas="n"),
+            token(2, "في", "في", "PRT", 1, "MOD", pos_camel="prep"),
+            token(3, "الفصل", "فصل", "NOM", 2, "OBJ", stt="d", cas="g")]
+    assert roles(["الْمُعَلِّمَاتُ", "فِي", "الْفَصْلِ"], toks) == ["مبتدأ", "حرف جر", "مجرور"]
+
+
+def test_a_participle_the_parser_took_for_a_verb_is_a_noun():
+    # جاء الحجاجُ ملبّين دعوةَ ربّهم: no verb opens with مُ and ends in ـينَ; it is a participle, the hal
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", asp="p"),
+            token(2, "الحجاج", "حاج", "NOM", 1, "SBJ", stt="d", cas="n"),
+            token(3, "ملبين", "لبى", "VRB", 1, "MOD", asp="na", cas="na"),
+            token(4, "دعوة", "دعوة", "NOM", 3, "OBJ", cas="a", stt="c"),
+            token(5, "ربهم", "رب", "NOM", 4, "IDF", cas="g")]
+    assert roles(["جَاءَ", "الْحُجَّاجُ", "مُلَبِّينَ", "دَعْوَةَ", "رَبِّهِمْ"], toks)[2] == "حال"
+

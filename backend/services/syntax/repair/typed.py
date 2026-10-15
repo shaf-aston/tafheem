@@ -14,6 +14,12 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         if ((token["pos"].startswith("VRB") and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"))
                 or (token["pos"] == "PRT" and only_adverb(token["lemma"]))):
             token["pos"] = "NOM"
+        # مُلَبِّينَ: no verb opens with مُ and ends in the plural ـونَ/ـينَ, so it is a participle
+        elif token["pos"].startswith("VRB") and _participle_plural(word):
+            # ـونَ is raf'; ـينَ is nasb unless a preposition or a مضاف holds it in jarr
+            head = next((t for t in tokens if t["id"] == token["head"]), None)
+            jarred = token["rel"] == "IDF" or (head is not None and head["pos"] == "PRT")
+            token.update(pos="NOM", asp="na", cas="n" if word.rstrip("\u064e").endswith("ون") else "g" if jarred else "a")
         # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
         token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
         token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
@@ -38,3 +44,9 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
             elif verb and merged_prefix(own, book_words("ta_merges")):
                 token["asp"] = "i"  # تَطَّوَّعَ: the shadda is the second ta' merged in, so it is present
         token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
+
+
+def _participle_plural(word: str) -> bool:
+    marked = letters(word)
+    return (len(marked) > 4 and marked[0][0] == "م" and "\u064f" in marked[0][1]
+            and [l for l, _ in marked[-2:]] in (["ي", "ن"], ["و", "ن"]) and "\u064e" in marked[-1][1])

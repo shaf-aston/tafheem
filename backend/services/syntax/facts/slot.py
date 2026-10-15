@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import book_map, is_mabni, is_one, is_plain_noun
-from backend.services.syntax.facts.word import is_suffix, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
+from backend.services.syntax.facts.word import is_suffix, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
 
@@ -226,7 +226,10 @@ def _nominal_place(token: dict, s: Sentence) -> str:
                 return "subject" if not loose or token is loose[0] else "predicate"
             # محمدُ بنُ عبدِ اللهِ، الطبيبُ الماهرُ: a noun with only its صفة and مضاف إليه
             # under it is a phrase, no sentence: nothing is told of it, so it is no mubtada
-            told = any(_nominal_place(k, s) == "predicate" for k in kids if not is_suffix(k))
+            # المعلماتُ في الفصلِ: a raf' noun with a jar-majrur after it is told of by it, its khabar
+            told = any(_nominal_place(k, s) == "predicate" or (is_preposition(k) and k["id"] > token["id"]
+                                                              and typed_or_parsed_case(token) == "u")
+                       for k in kids if not is_suffix(k))
             return "subject" if told else "none"
     if rel == "MOD" and head:
         if told_of_lone_mubtada(token, head, s):
