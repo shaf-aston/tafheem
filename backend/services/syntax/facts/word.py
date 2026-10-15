@@ -209,6 +209,20 @@ def is_participle(token: dict) -> bool:
             or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
+PASSIVE_PARTICIPLE = "مَ1ْ2ُو3"  # مَفْعُول: مفتوحٌ بابُه, its noun the نائب فاعل
+
+
+def works_as_verb(token: dict) -> str | None:
+    """The one test of a word doing a verb's work (شبه الفعل): `active` or `passive` for a
+    verb, or for a participle working as its verb does (كريمٌ أبوه، مفتوحٌ بابُه، فاهمٌ الدرسَ),
+    else None. Governor, slot and voice all ask this one question."""
+    if is_verb(token):
+        return "passive" if is_passive(token) else "active"
+    if is_participle(token):
+        return "passive" if token.get("pattern", "").removeprefix("ال").startswith(PASSIVE_PARTICIPLE) else "active"
+    return None
+
+
 def is_masdar(token: dict) -> bool:
     """A noun of a masdar measure (شُكْرًا), judged by the analyser's pattern."""
     return token.get("pos_camel") == "noun" and token.get("pattern", "").removeprefix("ال").startswith(

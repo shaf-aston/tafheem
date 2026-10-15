@@ -618,3 +618,12 @@ def test_a_noun_before_la_is_the_mubtada():
             token(5, "في", "في", "PRT", 4, "MOD", pos_camel="prep"),
             token(6, "+ه", "هو", "NOM", 5, "OBJ", pos_camel="pron", token_type="enc0")]
     assert roles(["ذَلِكَ", "الْكِتَابُ", "لَا", "رَيْبَ", "فِيهِ"], toks)[0] == "مبتدأ"
+
+
+def test_one_test_says_when_a_word_does_a_verbs_work():
+    from backend.services.syntax.facts import works_as_verb
+    verb = token(1, "فتح", "فَتَح", "VRB", 0, "---", **VERB)
+    active = token(2, "كريم", "كَرِيم", "NOM", 0, "---", ud="ADJ")
+    passive = token(3, "مفتوح", "مَفْتُوح", "NOM", 0, "---", pattern="مَ1ْ2ُو3")
+    noun = token(4, "بيت", "بَيْت", "NOM", 0, "---", pos_camel="noun")
+    assert [works_as_verb(t) for t in (verb, active, passive, noun)] == ["active", "active", "passive", None]

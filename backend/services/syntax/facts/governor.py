@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_plain_noun
-from backend.services.syntax.facts.word import is_participle, is_verb, shows_jarr, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, subject_link
+from backend.services.syntax.facts.word import is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, subject_link
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.syntax.facts.kind import calling_head
 from backend.services.syntax.facts.follows import with_waw
@@ -33,7 +33,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     if s.hijazi and token in s.hijazi[1:]:
         return "kana", s.hijazi[0]  # ما الحجازية: its ism and khabar, as ليس's
     if place_time(token, s):
-        if head and (is_verb(head) or is_participle(head)):
+        if head and works_as_verb(head):
             return "verb", head
         return "verb", next((k for k in s.kids(token) if is_verb(k)), None)  # مَتَى سافر
     if calling := calling_head(token, s):

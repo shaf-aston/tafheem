@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import book_map, is_mabni, is_one, is_plain_noun
-from backend.services.syntax.facts.word import is_suffix, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link
+from backend.services.syntax.facts.word import is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
 
@@ -49,7 +49,7 @@ def place_time(token: dict, s: Sentence) -> bool:
         return False
     head = s.head(token)
     # مسافرٌ غدًا: a participle works like its verb
-    if head and (is_verb(head) or (is_participle(head) and token["rel"] == "MOD")):
+    if head and works_as_verb(head) and (is_verb(head) or token["rel"] == "MOD"):
         return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a")
     return typed_or_parsed_case(token) in (None, "a") and any(
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
@@ -73,7 +73,7 @@ def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
     """جاء رجلٌ كريمٌ أبوه، المسجدُ مفتوحٌ بابُه: a raf' noun straight after a participle or
     adjective, carrying a pronoun back to the noun described, is what that describer tells of:
     its فاعل, or its نائب فاعل after a passive participle (النعت السببي, Tasheel 3.10.1)."""
-    return (is_participle(head) and subject_link(token) and token["id"] == head["id"] + 1
+    return (subject_link(token) and token["id"] == head["id"] + 1
             and typed_or_parsed_case(token) == "u"
             and any(attached_pronoun(k) for k in s.kids(token)))
 
@@ -107,10 +107,11 @@ def verb_place(token: dict, s: Sentence) -> str:
     typed = typed_case_of(token)
     # زيدٌ ضاربٌ بكرًا: a word like the verb (شبه الفعل) takes its object as the verb does
     # (notes, المفعول به p0: a فعل or a شبه الفعل governs it)
-    if head and not is_verb(head) and is_participle(head) and _object_of_participle(token, head, s):
-        return "object"
-    if head and not is_verb(head) and _doer_of_describer(token, head, s):
-        return "subject"
+    if head and not is_verb(head) and works_as_verb(head):
+        if _object_of_participle(token, head, s):
+            return "object"
+        if _doer_of_describer(token, head, s):
+            return "subject"
     if head and is_verb(head):
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
