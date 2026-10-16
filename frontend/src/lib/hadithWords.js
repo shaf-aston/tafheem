@@ -64,7 +64,8 @@ function facing(ch, before, after) {
     return SPACE.test(before) ? 0 : -1
   }
   // After a colon a " opens even with the space on its wrong side (recited:" No soul).
-  if (before === ':' || (SPACE.test(before) && !SPACE.test(after))) return 1
+  // A " before a full stop or comma closes, even with a space before it (the Arabic's  السَّاعَةِ ".).
+  if (before === ':' || (SPACE.test(before) && !SPACE.test(after) && !ENDED.test(after))) return 1
   if (!SPACE.test(before) && (SPACE.test(after) || !LETTER.test(after))) return -1
   return 0
 }
