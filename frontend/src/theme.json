@@ -51,6 +51,10 @@
     "nahw": "@rose",
     "default": "@lime"
   },
+  "grow": {
+    "_comment": "Grow's worlds. backdrop-opacity is how strongly a world's faded picture (components/grow/Backdrop.jsx) shows through under its content: kept faint so the map and the cards stay the point.",
+    "backdrop-opacity": 0.14
+  },
   "sky": {
     "_comment": "Grow's Night Sky (components/grow/scenes/Sky.jsx): dark navy in every look, since it is a night, not a surface. bg and edge the card, line joins the known stars, text its caption; star-on a known ayah, star-learning one met but not known yet, star-off one not met.",
     "bg": "#0b1230",
