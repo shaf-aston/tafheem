@@ -14,11 +14,11 @@ the same `show()`, and `lib/journey.js` records it for back and forward.
 
 | Layer | Part | Job |
 |---|---|---|
-| Entry | `App.jsx` (435 lines) | Shell: header, tab switching, the open/closed state of the four overlays, tools |
+| Entry | `App.jsx` (259 lines) | Shell: draws the header, the panels and the overlays; the logic is in the hooks it calls |
 | Entry | `lib/tabUrl.js`, `lib/journey.js` | Path URL ↔ tab, back/forward |
 | Core | `lib/tabs.js` | One registry: every tab, its label, icon, colour, panel |
 | Core | Nav surfaces: `ui/TabStrip`, `ui/BottomNav`, `SectionsMenu`, `SpatialHome`, `CommandBar` | Five ways to move between tabs, all read the registry |
-| Core | `lib/recent.js` (desktop strip) and `lib/dock.js` (phone bar) | Which tabs a bar shows. Two different rules for one job |
+| Core | `lib/useTabNavigation.js` over `lib/recent.js` (wide-screen strip) and `lib/dock.js` (phone bar) | Every way between tabs; which tabs each bar shows, one rule per screen (ADR-2) |
 | Core | Panels: `MemorisePanel` + `memorise/hooks.js`, `QuizPanel` + `QuizBoard` + `lib/useQuizRound.js`, `TarkeebDiagram`, … | The screens |
 | Data | `api.js`, `lib/quizBanks.js` | axios client, query keys shared by react-query |
 | Config | `theme.json` → `theme.js` → CSS variables; `settings.json` | Colours, Arabic size ladder, motion durations |
@@ -59,7 +59,7 @@ working.
 | 3 | The Tarkeeb chart only scrolls | Long sentences go off the screen; deep trees grow tall | Phase C |
 | 4 | `QuizPanel` main function is about 450 lines | Setup, scope, four queries, scoring and 170 lines of markup in one place | Phase D |
 | 5 | `MemorisePanel` file is 621 lines | The panel is already thin (state lives in `memorise/hooks.js`), but four sub-components share the file and `hooks.js` (454 lines) has no tests | Phase D |
-| 6 | Five ways to move around, and two bar rules | The phone bar is pinned by hand; the desktop strip fills itself | Phase E |
+| 6 | Tab moving, tools and the header all in `App.jsx` | One 320-line function owned the active tab, the tabs kept alive, hand-offs, back/forward, the bars, the tools' armed and done looks and the banner | Phase E |
 
 ### Phase A: render-test seam
 
@@ -139,30 +139,34 @@ Pick from 4, Recite, Check) on old and new code. Step 3 (hooks.js tests) next.
 Fitness: no component file over 400 lines; no function over 50 lines in these
 screens.
 
-### Phase E: one way to move around (needs Phase A)
+### Phase E: one navigation module (needs Phase A)
 
-0. One bar rule: a single model that both bars read, with fixed tabs first,
-   then recent tabs that keep their places, then More. It replaces
-   `lib/recent.js` + `lib/dock.js`. Saved data from both old rules still loads.
-1. One directory: the All sections sheet becomes the single list of
-   everything, with search at its top (the same search logic as the command bar).
-2. The round launcher becomes a view of that same directory, or it goes (ADR-1).
-3. Map stays: it explains the sciences, it is not navigation.
+Re-read before building, the plan changed. The surfaces are not five ways to do
+one job: the strip is the wide screen's bar, the bottom bar is the phone's, All
+sections is the one list (and where the phone bar is arranged), and the header
+search and the launcher share `useCommandLine`. Every one reads `lib/tabs.js`.
+What was tangled was the code behind them, all inside `App.jsx`.
 
-Fitness: each bar is a thin view over one model; a test checks that every tab is
-reachable from the directory.
+Status: done. `lib/useTabNavigation` owns every way between tabs (active, kept
+alive, hand-offs, back arrow, number keys, strip, dock, the practice report for
+the pen); `lib/useTools` the tools' armed and done looks; `shell/StatusPill` and
+`shell/BackendBanner` (which owns its own dismissal) moved out. `App.jsx` is 259
+lines (was 435) and only draws. `src/test/app.test.jsx` opens the whole app and
+switches tab. The same Playwright run of every shell action gives the same
+results before and after.
 
-### ADR-1 (stub): the round launcher
+### ADR-1: the round launcher stays
 
-- Status: proposed.
-- Choice: keep it as the empty-state home that draws the same directory, or
-  remove it and keep only the sheet.
-- Lean: keep it as a view, because it is the app's look, but stop it being a
-  separate list.
+- Status: accepted.
+- It is the pen's click, the app's look, and it holds no list of its own: it
+  draws `LISTED` and searches with the header's `useCommandLine`. Removing it
+  would save one file and lose the identity.
 
-### ADR-2 (stub): one bar rule
+### ADR-2: two bar rules stay, one per screen
 
-- Status: proposed.
-- Choice: auto-recent everywhere, or let people pin tabs everywhere.
-- Lean: auto-recent with pinning on top. Pinned tabs never move; the rest keep
-  their places as recents.
+- Status: accepted.
+- A phone has four slots under the thumb. Tabs that move by themselves there
+  break the reach the hand has learned, so the reader pins them (#454). A wide
+  screen has eight, where recent tabs that keep their places (#478) cost nothing.
+  The rules differ because the screens do; both live behind
+  `useTabNavigation`, so a change to either is one file.
