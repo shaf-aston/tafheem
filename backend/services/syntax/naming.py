@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import (
-    book_map, book_merges, book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
+    book_map, book_merges, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, walker
 from backend.services.harakat import (
     CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
@@ -105,7 +105,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
              "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
              # محمدُ بنُ عبدِ اللهِ: the books also read the ابن as عطف بيان or بدل
-             "also": book_map("nasab", "also") if role == NAMED.sifah and facts.is_nasab(token) else None,
+             "also": book_map("nasab", "also") if role == NAMED.sifah and facts.is_nasab(token)
+             else _kind_said(role, token, s, governed_by),
              # إيّاك: the pronoun on إيّا is a letter of the one detached pronoun, not a piece of its own
              "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": facts.is_prefix(t), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
@@ -119,6 +120,27 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     for found_condition in condition.find(bases, named, cases, before):
         _conditioned(found, found_condition, bases)
     return found
+
+
+def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: dict[int, int]) -> str | None:
+    """Which kind of idafa or badal the word is, as the books name it (teacher.json kinds)."""
+    kinds = teacher_rules()["kinds"]
+    if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
+        if facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ":
+            return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite
+        bare = strip_diacritics(token["form"]).strip("+").removeprefix("ال")
+        if any(is_one(bare, family) or is_one(bare + "ا", family) or facts.listed(token, family) for family in ("zarf_zaman", "zarf_makan")) \
+                or bare in kinds["time"]:
+            return kinds["idafa"]["fi"]  # مكرُ الليلِ
+        bare = strip_diacritics(token["lemma"]).strip("+")
+        return kinds["idafa"]["min" if bare in kinds["material"] else "lam"]
+    if role == "بدل":
+        pronoun = any(facts.attached_pronoun(k) for k in s.kids(token))
+        if not pronoun:
+            return kinds["badal"]["kul"]
+        bare = strip_diacritics(token["lemma"]).strip("+")
+        return kinds["badal"]["baad" if bare in kinds["part"] else "ishtimal"]
+    return None
 
 
 def _pair_named(bases: list[dict], governor: int | None) -> dict[str, str] | None:

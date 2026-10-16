@@ -23,7 +23,9 @@ def stands_for(token: dict, s: Sentence) -> bool:
     names = token["pos"] == "PROP" or any(attached_pronoun(k)
                                           for k in s.kids(token))
     mine = typed_or_parsed_case(token)
-    if not (names and before.get("stt") in ("d", "c") and mine and mine == typed_or_parsed_case(before)):
+    # a name is definite though it wears tanween (أعجبني زيدٌ علمُه)
+    definite = before.get("stt") in ("d", "c") or before["pos"] == "PROP"
+    if not (names and definite and mine and mine == typed_or_parsed_case(before)):
         return False
     # جاء الرجلُ أبوه عالمٌ: an indefinite noun in its case after it is its khabar, so the
     # noun opens a sentence of its own (a حال) and stands for nothing
