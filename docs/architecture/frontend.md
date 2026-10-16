@@ -120,7 +120,11 @@ always draws every row.
 Status: Quiz done (steps 0 and 1). `QuizPanel` is 184 lines (was 510): it joins
 `useQuizSetup`, `useQuizQuestion`, `useQuizRound` and `useQuizScore` and draws
 the page; the setup line is `quiz/QuizSetup`, the note is `lib/quizNote` (tested).
-Memorise (steps 2 and 3) next.
+Memorise step 2 done: `MemorisePanel.jsx` is 322 lines (was 621); `Line`, `Gap`,
+`RecitedWord` and `SimilarCards` are each their own file in `memorise/`. Lint
+does not catch a JSX component left unimported, so the move was checked by
+scanning every tag against the imports, and by the same Playwright run (Type,
+Pick from 4, Recite, Check) on old and new code. Step 3 (hooks.js tests) next.
 
 0. Quiz: move the setup into `useQuizSetup`: language, direction, bank, scope and
    group, the four queries, then `pool` and `question` derived from them. Move the
