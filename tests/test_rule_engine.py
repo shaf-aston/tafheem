@@ -109,7 +109,7 @@ def test_each_reason_explains_its_own_role(sentence: str):
         role = word["role"]
         if word["type"] == "punc" or role == "–":
             continue
-        assert role in word["reason"] or (role == "فعل" and word["type"] == "fi'l"), (word["word"], role, word["reason"])
+        assert role in word["reason"] or (role.startswith("فعل") and word["type"] == "fi'l"), (word["word"], role, word["reason"])
 
 
 # The verb's card: a command by its typed shape, a present verb's case by its ending or the particle before it.
@@ -499,7 +499,7 @@ def test_the_wonder_form_is_drawn_as_the_books_own_example():
     ("مَا أَطْوَلَ اللَّيْلَ", ["مبتدأ", "فعل", "مفعول به"]),
     ("مَا أَكْرَمَ زَيْدٌ عَمْرًا", ["حرف", "فعل", "فاعل", "مفعول به"]),  # a noun in raf': the ordinary negation
     ("ما أكرم زيد عمرا", ["حرف", "فعل", "فاعل", "مفعول به"]),
-    ("مَا أُكْرِمَ زَيْدٌ", ["حرف", "فعل", "نائب فاعل"]),  # the typed damma says it is not the wonder shape
+    ("مَا أُكْرِمَ زَيْدٌ", ["حرف", "فعل مجهول", "نائب فاعل"]),  # the typed damma says it is not the wonder shape
     ("مَا أَعْطَى الرَّجُلَ كِتَابًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),  # two objects: not the wonder form
     ("ما أنزل الله بها من سلطان", ["حرف", "فعل", "فاعل", "حرف جر", "حرف جر", "مجرور"]),  # أنزل gives no comparative
     ("مَا أَجْمَلَهَا", ["مبتدأ", "فعل"]),  # the pronoun on the verb is its one object

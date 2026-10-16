@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import (
-    book_map, book_merges, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
+    book_map, book_merges, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, walker
 from backend.services.harakat import (
     CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
@@ -101,6 +101,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
     found = [{"role": role, "case": case,
              "aspect": token.get("asp") if role == NAMED.fil else None,
+             "printed": frames()["passive"]["verb"] if role == NAMED.fil and facts.is_passive(token) else None,
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
