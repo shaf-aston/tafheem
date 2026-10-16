@@ -36,6 +36,7 @@ def analyze(sentence: str, recorded: bool = True) -> dict:
         "source": provenance.of("treebank" if record else "nahw"),
         "tree": tree,
         "parse": parsed.get("parse"),
+        "read_failed": bool(parsed.get("failed")),
     }
 
 

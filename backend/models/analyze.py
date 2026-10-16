@@ -95,3 +95,6 @@ class AnalyzeResponse(BaseModel):
     tree: TarkeebTree | None = None
     # The parser's links before and after the repairs; only with the show_parse setting on.
     parse: dict | None = None
+    # True when the reader broke on this sentence (the server log has why): its blank
+    # roles are then a crash, not words the rules could not name.
+    read_failed: bool = False

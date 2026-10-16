@@ -108,3 +108,34 @@ def test_cards_and_picture_speak_one_vocabulary():
             assert not re.search(r"[A-Za-z(]", role), (ex["id"], role)
             assert role in known or role.startswith("فعل "), (ex["id"], role)
         assert disagreements(answer["words"], answer.get("tree")) == [], ex["id"]
+
+
+def test_the_check_fails_on_a_drop_or_a_crash_and_passes_level(monkeypatch, tmp_path):
+    from collections import Counter
+
+    from backend.scripts import score_iraab
+    base = {name: 10 for name in score_iraab.EXACT}
+    (tmp_path / "b.json").write_text(__import__("json").dumps(base))
+    monkeypatch.setattr(score_iraab, "BASELINE", tmp_path / "b.json")
+    scores = dict(base)
+    crashes = {}
+    monkeypatch.setattr(score_iraab, "score_exact",
+                        lambda name, api, show: Counter(right=scores[name], crashed=crashes.get(name, 0)))
+    assert score_iraab.check(None, save=False) == 0
+    scores["rules"] = 9
+    assert score_iraab.check(None, save=False) == 1
+    scores["rules"], crashes["exam"] = 10, 1
+    assert score_iraab.check(None, save=False) == 1
+
+
+def test_a_reader_that_breaks_says_so(monkeypatch):
+    from backend.config import get_settings
+    from backend.services import syntax
+    from backend.services.syntax import catib_onnx
+
+    def broken(words, picks):
+        raise RuntimeError("boom")
+    monkeypatch.setattr(get_settings(), "catib_parser_enabled", True)
+    monkeypatch.setattr(catib_onnx, "parse", broken)
+    read = syntax.read("كَيْفَ حَالُكَ", [{}, {}])
+    assert read["failed"] is True and all(r["role"] is None for r in read["roles"])
