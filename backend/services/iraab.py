@@ -85,7 +85,24 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
         if found.get("also") and word.get("reason"):
             word["reason"] = f"{word['reason']}، {found['also']}"
     _pieces_said(words, roles)
+    _counted(words)
     return rule_engine.mark_condition(words, roles)
+
+
+def _counted(cards: list[dict]) -> None:
+    """Two objects or two khabars side by side, with no و between: the books count them
+    (ظننتُ الامتحانَ سهلًا: مفعول به أول، مفعول به ثانٍ؛ إن الله غفور رحيم: خبر ثانٍ)."""
+    for before, card in zip(cards, cards[1:]):
+        role = card.get("role")
+        if not role or role != before.get("role") or not (role == "مفعول به" or role.startswith("خبر")):
+            continue
+        said = f"لأنه {role}"
+        if role == "مفعول به" and said in before.get("reason", ""):
+            before["reason"] = before["reason"].replace(said, f"{said} أول", 1)
+        # خبر إن → خبر ثانٍ لإن، مفعول به → مفعول به ثانٍ
+        second = f"خبر ثانٍ ل{role[4:]}" if role.startswith("خبر ") else f"{role} ثانٍ"
+        if said in card.get("reason", ""):
+            card["reason"] = card["reason"].replace(said, f"لأنه {second}", 1)
 
 
 def _pieces_said(cards: list[dict], roles: list[dict]) -> None:

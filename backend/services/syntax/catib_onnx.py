@@ -301,7 +301,7 @@ def _decode(s_arc: np.ndarray, s_rel: np.ndarray, toks: list[dict]) -> tuple[lis
     L = n_words + 1
     rel_labels = _parser.rel_labels
     rel_ok = book_mask(toks, rel_labels)
-    heads = decode.heads(s_arc[:L, :L])
+    heads = [int(h) for h in decode.heads(s_arc[:L, :L])]  # plain ints: numpy ones break the JSON answer
     rels = [rel_labels[int(np.argmax(np.where(rel_ok[i + 1, heads[i]], s_rel[i + 1, heads[i]], -np.inf)))]
             for i in range(n_words)]
     return heads, rels

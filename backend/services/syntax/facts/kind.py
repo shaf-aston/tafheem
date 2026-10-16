@@ -54,7 +54,7 @@ def asked_verb(s: Sentence) -> dict | None:
         if asking.get(strip_diacritics(question["form"])) != "object":
             continue
         verb = next((t for t in s.tokens if t["id"] > question["id"] and is_verb(t)), None)
-        if verb and not any(k["rel"] == "OBJ" and k is not question for k in s.kids(verb)):
+        if verb and not any(k["rel"] == "OBJ" and k is not question and not is_verb(k) for k in s.kids(verb)):  # قال after it is the reply
             return verb
     return None
 

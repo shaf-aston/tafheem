@@ -34,9 +34,12 @@ def test_idafa_is_a_unit_that_plays_one_role():
             token(2, "الطالب", "طالب", "NOM", 1, "IDF", stt="d", cas="g"),
             token(3, "جديد", "جديد", "NOM", 1, "MOD", ud="ADJ", cas="n")]
     drawn = built(["كِتَابُ", "الطَّالِبِ", "جَدِيدٌ"], toks)
-    unit = drawn["tree"]
-    assert unit["label"] == term_ar("murakkab_idafi")  # what it is
-    assert [child.get("role") for child in unit["children"]] == ["مضاف", "مضاف إليه", "خبر"]
+    sentence = drawn["tree"]  # the خبر hangs outside the unit: the sentence holds both
+    unit, khabar = sentence["children"]
+    assert sentence["label"] == term_ar("jumlah_ismiyyah")
+    assert (unit["role"], unit["label"]) == ("مبتدأ", term_ar("murakkab_idafi"))  # what it does, what it is
+    assert [child.get("role") for child in unit["children"]] == ["مضاف", "مضاف إليه"]
+    assert khabar["role"] == "خبر"
 
 
 def test_a_word_no_rule_could_name_is_a_gap_not_a_guess():

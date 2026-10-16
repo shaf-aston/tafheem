@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_one, is_subject_pronoun
-from backend.services.syntax.facts.word import is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged
+from backend.services.syntax.facts.word import is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
 from backend.services.syntax.facts.sentence import Sentence, next_word, place_case, previous_noun, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.kind import joins_clauses, calling_head
 
@@ -139,7 +139,9 @@ def _follows(token: dict, s: Sentence) -> str:
     if mine and shown_cases(token) & shown_cases(head):
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
         measure = listed(head, "tamyeez_head") and not is_participle(token)
-        return "naat" if agrees(token, head) and not measure else "none"
+        # آمِرًا أحدًا: after a participle at work a plain noun in nasb is its object (slot.py)
+        governed = mine == "a" and works_as_verb(head) and not is_participle(token)
+        return "naat" if agrees(token, head) and not measure and not governed else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers
     if told_of_subject(token, head) or indefinite_nasb(token):
         return "none"

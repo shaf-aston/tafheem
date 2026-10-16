@@ -31,6 +31,8 @@ def kind_of(tag: dict, annexed: bool) -> str:
     bare = strip_diacritics(word)
     marked = letters(word)
     if not has_tanween(word):
+        if bare.endswith(("ون", "ين")) and _attached_plural(bare):
+            return "attached_plural"  # عِشْرِينَ، أُولُو: they take its letters without being one
         if tag.get("number") == "p" and tag.get("gender") == "m" and bare.endswith(("ون", "ين")):
             return "sound_plural"
         if tag.get("number") == "d":
@@ -53,6 +55,11 @@ def kind_of(tag: dict, annexed: bool) -> str:
             SHADDA in marked[-1][1] or marked[-2][1] & {"َ", "ُ", SHADDA, SUKUN}):
         return "manqus"  # القَاضِي: a damma or kasra is too heavy for the ya, the fatha shows
     return "vowel"
+
+
+def _attached_plural(bare: str) -> bool:
+    """عشرون..تسعون، أولو، أهلون، سنون، أرضون، عالمون (teacher.json attached_plural)."""
+    return bare.removeprefix("ال")[:-2] in teacher_rules()["case_said"]["attached_plural"]
 
 
 def _has_pronoun(reading: dict) -> bool:
@@ -93,7 +100,8 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
     if case is None:
         return None
     if card.get("type") in ("harf", "damir"):
-        return sign("mabni")  # a particle or a pronoun never shows a case of its own
+        # a particle or a pronoun never shows a case of its own, only what it is built on (إِنَّ، لَمْ، فِي)
+        return _built(ending) if (ending := _typed_ending(card["word"])) else sign("mabni")
     kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
@@ -107,7 +115,12 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
 def _typed_ending(word: str) -> str | None:
     marked = letters(word)
     on = teacher_rules()["case_said"]["vowel_on"]
-    return next((on[m] for m in marked[-1][1] if m in on), None) if marked else None
+    if not marked:
+        return None
+    letter, marks = marked[-1]
+    if not marks and letter in "اوىي" and len(marked) > 1:
+        return on["ْ"]  # فِي، إِلَى، هَذَا: a long letter carries no vowel, it is built on the sukun
+    return next((on[m] for m in marks if m in on), None)
 
 
 def _after_la_jins(card: dict, before: dict | None, after: dict | None) -> bool:
