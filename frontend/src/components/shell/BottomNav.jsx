@@ -34,6 +34,7 @@ export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, 
         type="button"
         onClick={onAll}
         aria-haspopup="dialog"
+        aria-label={here ? `All sections, now on ${here.label}` : 'All sections'}
         aria-current={here ? 'page' : undefined}
         style={here ? { '--c': colorOf(active) } : undefined}
         className={`${item} ${elsewhere ? 'text-[var(--c)]' : 'text-[var(--text-dim)]'}`}

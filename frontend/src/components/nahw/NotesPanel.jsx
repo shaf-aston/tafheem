@@ -10,7 +10,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getNotes } from '../../api'
+import { notesQuery } from '../../api'
 import { NOTES, cardsOf, rolesUsed } from '../../lib/notes'
 import { scrollToEl } from '../../lib/scrollToEl'
 import { readViewParam, writeViewParams } from '../../lib/tabUrl'
@@ -36,10 +36,7 @@ const MODE_IDS = MODES.map((m) => m.id)
 const NOTHING = new Set()
 
 export default function NotesPanel({ accent, topic: asked, onTamreen }) {
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ['notes'],
-    queryFn: getNotes,
-  })
+  const { data, isPending, isError, error, refetch } = useQuery(notesQuery)
 
   const [savedMode, rememberMode] = useRemembered('notes-mode', MODE_IDS)
   const [mode, setModeNow] = useState(() => readViewParam('notes-mode', MODE_IDS) ?? savedMode)

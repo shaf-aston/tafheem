@@ -9,7 +9,7 @@
  */
 import { useEffect, useMemo, useState } from 'react'
 
-import { keyAction, typingElsewhere } from '../../lib/answerKeys'
+import { useAnswerKeys } from '../../lib/useAnswerKeys'
 import {
   answerParts, buildQueue, gradeGrid, gradeRule, KINDS, labelOf, narrowQueue, partPicks, rowName, scoreOf, SHOWS, statusOf, TAMREEN,
 } from '../../lib/tamreen'
@@ -262,24 +262,13 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
 
   // Answer without reaching for the mouse, the Quiz's keys and the Quiz's
   // guards: a digit ticks an option, Enter checks and then moves on, A flips
-  // auto-advance. No dependency list, on purpose: the handler reads what is on
-  // screen now, so it is replaced on every render, like the Quiz's.
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (typingElsewhere(e) || !entry) return
-      const options = entry.kind === 'rule' ? entry.item.options : []
-      const action = keyAction(e.key, { checked, optionCount: options.length })
-      if (!action) return
-      // Immediate, not plain stopPropagation: the app's 1-5 tab shortcut listens
-      // on window too, so a digit would both tick an option and change tab.
-      if (action.do !== 'check' && action.do !== 'next') e.stopImmediatePropagation()
-      if (action.do === 'auto') setAutoNext(!autoNext)
-      if (action.do === 'toggle') toggleRuleOption(options[action.index])
-      if (action.do === 'check') check()
-      if (action.do === 'next' && i < list.length - 1) go(i + 1)
-    }
-    window.addEventListener('keydown', onKeyDown, true)
-    return () => window.removeEventListener('keydown', onKeyDown, true)
+  // auto-advance.
+  const keyOptions = entry?.kind === 'rule' ? entry.item.options : []
+  useAnswerKeys(entry && { checked, optionCount: keyOptions.length }, {
+    auto: () => setAutoNext(!autoNext),
+    toggle: (e, index) => toggleRuleOption(keyOptions[index]),
+    check: () => check(),
+    next: () => { if (i < list.length - 1) go(i + 1) },
   })
 
   // The pause that makes the marks readable: a right answer only needs a

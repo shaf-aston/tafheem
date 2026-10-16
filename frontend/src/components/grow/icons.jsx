@@ -8,7 +8,7 @@
  * to the names below. The figures are plain lines with a round head and no face.
  */
 
-export function Lock() {
+function Lock() {
   return (
     <svg className="grow-ic" viewBox="0 0 24 24" aria-hidden="true">
       <rect x="5" y="11" width="14" height="9" rx="2.5" />
@@ -17,7 +17,7 @@ export function Lock() {
   )
 }
 
-export function Seed() {
+function Seed() {
   return (
     <svg className="grow-seed" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 3c4 3 6.5 7 6.5 11a6.5 6.5 0 0 1-13 0c0-4 2.5-8 6.5-11z" />
@@ -26,7 +26,7 @@ export function Seed() {
   )
 }
 
-export function Sprout() {
+function Sprout() {
   return (
     <svg className="grow-seed" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 21V11" fill="none" />

@@ -5,7 +5,7 @@
 import { useState } from 'react'
 
 import { useDrag } from '../../lib/useDrag'
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import ArabicText from '../ui/ArabicText'
 import DockSlots from './DockSlots'
 
@@ -35,7 +35,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
     <dialog
       ref={dialog}
       onClose={close}
-      onClick={(e) => e.target === dialog.current && close()}
+      onClick={closeOnBackdrop(close)}
       aria-labelledby="sections-title"
       className="sections-menu m-auto p-0 bg-transparent max-w-[min(var(--sheet-wide),92vw)] w-full"
     >

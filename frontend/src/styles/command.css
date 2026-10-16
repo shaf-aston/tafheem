@@ -93,6 +93,11 @@
    Written with the field in the selector so it outranks the app-wide rule; the
    plain `outline: none` above it never won. */
 .cb-field .cb-input:focus-visible { outline: none; }
+/* The box takes the ring the input gives up, so a keyboard sees the same ring as everywhere else. */
+.cb-field:has(.cb-input:focus-visible) {
+  outline: 2px solid var(--c, var(--primary));
+  outline-offset: 2px;
+}
 
 
 /* The completion, printed under the real box with the typed part in nothing, so

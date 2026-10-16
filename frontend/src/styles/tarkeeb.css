@@ -7,11 +7,14 @@
 /* Sideways only, paged like the timeline's rail: round arrows (lib/useRail),
    no scrollbar, no faded edges. Setting overflow-x alone makes overflow-y auto
    as well, and the last brace's stem, hanging below the grid, drew a vertical
-   scrollbar; the padding holds that stem. */
+   scrollbar; the bottom padding holds that stem. The top padding holds the
+   marks stacked over a word's first letter (أُ, the dagger alif of هٰذا): the
+   clip is the scroller's edge, not the line box, so they were cut off. */
 .tk-frame { position: relative; }
 .tk-scroller {
   overflow-x: auto;
   overflow-y: hidden;
+  padding-top: 0.5rem;
   padding-bottom: 1rem;
   scrollbar-width: none;
 }

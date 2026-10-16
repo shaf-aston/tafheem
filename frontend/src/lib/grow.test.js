@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { CHECK, MISSED, SAID, WRONG } from './follow'
 import { byHand } from './growKinds'
 import {
-  afterDone, afterRecitation, becomesLearnt, daysOf, groupsOf, isLearnt, judge, mapOf, nodeState, pageOf, reactionTo, score, tally, tiersOf,
+  afterDone, afterRecitation, becomesLearnt, daysOf, groupsOf, isClean, isLearnt, judge, mapOf, nodeState, pageOf, reactionTo, score, tally, tiersOf,
   today, unlocked, upNext,
 } from './grow'
 
@@ -204,5 +204,45 @@ describe('the map', () => {
     expect(reactionTo(true, 1)).toBe('correct')
     expect(reactionTo(false, 0)).toBe('wrong')
     expect(reactionTo(true, 3)).toBe('streak')
+  })
+})
+
+describe('where the one-word rule ends and the page follower begins', () => {
+  // recite.json's anchor-words is 2: a step shorter than that is judged word by
+  // word, one that long goes through the follower, which waits for two words.
+  const SUBHAN = ['سُبْحَانَ', 'رَبِّيَ']
+
+  it('judges a one-word step on any word heard, so a wrong one is wrong', () => {
+    expect(states(mark(['آمِينَ'], 'قال', [0.01]))).toEqual([WRONG])
+  })
+
+  it('waits for two words on a two-word step, so one word heard marks nothing said', () => {
+    expect(states(mark(SUBHAN, 'سبحان', [0.01, 0.01]))).toEqual([MISSED, MISSED])
+  })
+
+  it('marks a two-word step said whole as right, through the follower', () => {
+    expect(states(mark(SUBHAN, 'سبحان ربي', [0.99, 0.99]))).toEqual([SAID, SAID])
+  })
+})
+
+describe('nothing heard at all', () => {
+  it('is not said, for a one-word step and a longer one alike', () => {
+    expect(states(mark(['آمِينَ'], '', [0.01]))).toEqual([MISSED])
+    expect(states(mark(RUKU, '', [0.01, 0.01, 0.01]))).toEqual([MISSED, MISSED, MISSED])
+  })
+
+  it('is never clean', () => {
+    expect(judge(RUKU, '', [0.01, 0.01, 0.01]).clean).toBe(false)
+  })
+})
+
+describe('isClean', () => {
+  it('is false for no words, rather than vacuously true', () => {
+    expect(isClean({ words: [] })).toBe(false)
+  })
+
+  it('is true only when every word was said', () => {
+    expect(isClean({ words: [{ state: SAID }, { state: SAID }] })).toBe(true)
+    expect(isClean({ words: [{ state: SAID }, { state: CHECK }] })).toBe(false)
   })
 })

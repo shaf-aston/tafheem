@@ -25,3 +25,6 @@ export function useModal(open) {
   }, [open])
   return ref
 }
+
+/** A click on the backdrop lands on the <dialog> itself, not its content: close then. */
+export const closeOnBackdrop = (close) => (e) => { if (e.target === e.currentTarget) close(e) }

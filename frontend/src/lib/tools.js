@@ -13,6 +13,7 @@ export const TOOLS = [
     hint: 'Start over forgets where you have been, your recent searches, your answers and your Grow steps.',
     paths: ['M3 12a9 9 0 1 0 3-6.7', 'M3 4v5h5'],
     phone: 'more',
+    danger: true,
   },
   {
     id: 'copyLink',

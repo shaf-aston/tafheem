@@ -378,3 +378,75 @@ describe('what a word means to someone who reads Urdu', () => {
     expect(q.urdu).toBeNull()
   })
 })
+
+describe('the seeded random source', () => {
+  const run = (seed, n = 50) => { const random = makeRandom(seed); return Array.from({ length: n }, () => random()) }
+
+  it('gives the same sequence for the same seed', () => {
+    expect(run(42)).toEqual(run(42))
+  })
+
+  it('gives a different sequence for a different seed', () => {
+    expect(run(1)).not.toEqual(run(2))
+    expect(run(42)[0]).not.toBe(run(43)[0])
+  })
+
+  it('stays in [0, 1), and does not sit still', () => {
+    const values = run(7, 2000)
+    for (const value of values) {
+      expect(value).toBeGreaterThanOrEqual(0)
+      expect(value).toBeLessThan(1)
+    }
+    expect(new Set(values).size).toBeGreaterThan(1900)
+  })
+})
+
+describe('the order wrong options are ranked in', () => {
+  // Each one wins on exactly one rule, so the order says which rule outranks which:
+  // the same opening beats a shared topic, a shared topic beats length, and
+  // length decides the rest.
+  const verb = (en, groups = []) => ({ ar: 'ـ', en, meaningKey: en, wordType: 'verb', groups })
+  const answer = verb('to write', ['school'])
+  const bank = [
+    answer,
+    verb('eating food very quickly'), // nothing shared, three words longer
+    verb('running fast'), // nothing shared, same length
+    verb('reading', ['school']), // same topic, one word shorter
+    verb('to go far away'), // same opening, two words longer
+  ]
+
+  it('is opening, then topic, then closeness in length, whatever the shuffle', () => {
+    for (let seed = 1; seed <= 20; seed++) {
+      expect(pickDistractors(bank, answer, 4, makeRandom(seed)).map((d) => d.en))
+        .toEqual(['to go far away', 'reading', 'running fast', 'eating food very quickly'])
+    }
+  })
+})
+
+describe('which end of a gloss is matched', () => {
+  // One option shares the answer's first word, another its last; which one is
+  // offered is decided by the language alone.
+  const noun = (key, en, ur) => ({ ar: 'ـ', en, ur, meaningKey: key, wordType: 'noun' })
+
+  it('reads the last word in Urdu, not the first', () => {
+    const bank = [
+      noun('a', 'x', 'جو اللہ کے'),
+      noun('b', 'x2', 'جو مالک ہے'),
+      noun('c', 'x3', 'رسول کے'),
+    ]
+    for (let seed = 1; seed <= 10; seed++) {
+      expect(pickDistractors(bank, bank[0], 1, makeRandom(seed), 'ur')[0].ur).toBe('رسول کے')
+    }
+  })
+
+  it('reads the first word in English, not the last', () => {
+    const bank = [
+      noun('a', 'to carry out'),
+      noun('b', 'to bring them'),
+      noun('c', 'reach out'),
+    ]
+    for (let seed = 1; seed <= 10; seed++) {
+      expect(pickDistractors(bank, bank[0], 1, makeRandom(seed), 'en')[0].en).toBe('to bring them')
+    }
+  })
+})

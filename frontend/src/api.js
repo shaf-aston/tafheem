@@ -151,6 +151,7 @@ export const getTamreen = () =>
 // backend and hidden on the page, never here, so it is fetched once.
 export const getNotes = () =>
   api.get('/notes').then((r) => r.data)
+export const notesQuery = { queryKey: ['notes'], queryFn: getNotes }
 
 // The teacher's own page a note was read from, for an <img> or a link, so it
 // is an address rather than a request.

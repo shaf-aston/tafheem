@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react'
 
 import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/settings'
 import { useHealth } from '../../lib/useHealth'
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import { levelOf } from '../../lib/confidence'
 import { forgetSaved } from '../../lib/stored'
 import { useSources } from '../../lib/useSources'
@@ -33,7 +33,7 @@ export default function SettingsPanel({ open, onClose }) {
       onClose={onClose}
       // A click that lands on the dialog itself is a click on the backdrop:
       // every real control sits inside the box below.
-      onClick={(e) => e.target === dialog.current && onClose()}
+      onClick={closeOnBackdrop(onClose)}
       aria-labelledby="settings-title"
       className="m-auto p-0 bg-transparent max-w-[min(var(--sheet-narrow),92vw)] w-full"
     >

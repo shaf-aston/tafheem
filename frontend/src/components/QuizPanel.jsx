@@ -5,7 +5,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { fetchReviewItems, recordAttempt } from '../lib/progress'
 import { buildQuestion, DIRECTIONS, makeRandom, MEANINGS } from '../lib/quiz'
 import {
-  allWords, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, sentencesQuery, WHOLE_SET_SCOPES, wordsFor,
+  allWordsQuery, BANKS, bankInfo, groupsFor, moduleFor, QUIZ, sentencesQuery, WHOLE_SET_SCOPES, wordsFor,
 } from '../lib/quizBanks'
 import { ayahQueries } from '../lib/quizAyah'
 import { fillIn, sayIn } from '../lib/say'
@@ -135,11 +135,7 @@ export default function QuizPanel({ accent, onProgress }) {
   // Wrong options for a review question come from every word there is, not
   // from the due words themselves: three words of three different types
   // cannot fill a four-option question between them.
-  const everyWord = useQuery({
-    queryKey: ['quiz-words', 'all'],
-    queryFn: allWords,
-    enabled: bank.live,
-  })
+  const everyWord = useQuery({ ...allWordsQuery, enabled: bank.live })
 
   // What to say about this set beside the question, the dialect it is in.
   // Kept with the words rather than repeated in the panel.
