@@ -23,8 +23,10 @@ const SOURCES = [
   '../components/quiz/QuizExample.jsx',
   '../components/quiz/PracticeSentence.jsx',
   '../components/quiz/SurahCoverage.jsx',
+  '../components/quiz/QuizSetup.jsx',
   '../components/ui/AutoAdvanceToggle.jsx',
   './quizBanks.js',
+  './quizNote.js',
 ]
 const code = SOURCES.map((path) => readFileSync(new URL(path, import.meta.url), 'utf8')).join('\n')
 
