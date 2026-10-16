@@ -11,6 +11,7 @@ import { recordAttempt } from '../../lib/progress'
 import { sayIn } from '../../lib/say'
 import { useHealth } from '../../lib/useHealth'
 import ErrorAlert from '../ui/ErrorAlert'
+import Backdrop from './Backdrop'
 import GrowMap from './GrowMap'
 import CardSheet from './CardSheet'
 import WorldHeader from './WorldHeader'
@@ -53,7 +54,8 @@ export default function PathWorld({ world, accent, onGo, onBack, state }) {
 
   return (
     <>
-      <div inert={Boolean(sheet)} style={{ '--c': accent }}>
+      <div className="grow-world" inert={Boolean(sheet)} style={{ '--c': accent }}>
+        <Backdrop id={world.backdrop} />
         <WorldHeader world={world} onBack={onBack}>
           {done.total > 0 && (
             <p className="grow-progress">
