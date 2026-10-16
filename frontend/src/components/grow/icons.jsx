@@ -4,7 +4,7 @@
  *
  * A step is a lock, a seed, a sprout or a flower (a posture shows its figure
  * until done): nodeState says which, this file only draws it. A group is a small figure of what it holds; its `icon`
- * is a name in data/grow/worlds/*/paths/*.json, and the backend schema (GrowGroup.icon) holds it
+ * is a name in a path file under data/grow/worlds, and the backend schema (GrowGroup.icon) holds it
  * to the names below. The figures are plain lines with a round head and no face.
  */
 
