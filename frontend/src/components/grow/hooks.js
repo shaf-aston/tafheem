@@ -2,13 +2,10 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import config from '../../grow.json'
+import { motionOff as still } from '../../lib/motion'
 
 const BEATS = config['unlock-ms']
 
-/** No motion wanted: the reader's own setting, or the Animations switch. */
-const still = () =>
-  matchMedia('(prefers-reduced-motion: reduce)').matches ||
-  Number(getComputedStyle(document.documentElement).getPropertyValue('--motion-scale')) === 0
 
 /** The width of an element, kept current as the page resizes. */
 export function useWidth() {

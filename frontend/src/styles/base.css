@@ -94,6 +94,9 @@ select option {
   --text-lg: var(--type-heading);
   --text-xl: var(--type-title);
   --text-3xl: var(--type-display);
+  /* Tailwind's transition-* classes take the app's own speed, so the
+     Animations switch stops them too instead of leaving them on 150ms. */
+  --default-transition-duration: calc(var(--motion-instant-ms) * 1ms);
 }
 
 

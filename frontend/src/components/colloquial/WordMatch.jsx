@@ -1,5 +1,6 @@
 // Match pairs: the English down one side, the Arabic down the other, mixed up. Tap
-// one then its partner; a pair found fades, a wrong pair shakes. At most the match-board
+// one then its partner; a pair found fades, a wrong pair shakes and stays marked
+// until the next tap, so a slip can be read, not just glimpsed. At most the match-board
 // setting at a time, split evenly, so a long topic is several short boards and none is tiny.
 // A warm-up: nothing here is filed for review, since finding a word among a few is
 // easier than recalling it.
@@ -7,13 +8,11 @@ import { useState } from 'react'
 
 import settings from '../../colloquial.json'
 import { shuffled } from '../../lib/shuffle'
-import { motion } from '../../theme'
 import ArabicText from '../ui/ArabicText'
 import SmallButton from '../ui/SmallButton'
 import { FOCUS } from './Face'
 
 const BOARD = settings['match-board']
-const SHAKE_MS = motion['shake-ms']
 
 const boardOf = (words, round) => {
   const size = Math.ceil(words.length / Math.ceil(words.length / BOARD))
@@ -25,19 +24,19 @@ export default function WordMatch({ words }) {
   const rounds = Math.ceil(words.length / BOARD)
   const [board, setBoard] = useState(() => boardOf(words, 0))
   const [picked, setPicked] = useState(null)   // { side, arabic }
-  const [missed, setMissed] = useState([])     // the two tiles shaking, as `${side}:${arabic}`
+  const [missed, setMissed] = useState([])     // the last wrong pair, as `${side}:${arabic}`, until the next tap
   const done = board.found.length === board.left.length
 
   const tap = (side, arabic) => {
     if (board.found.includes(arabic)) return
+    setMissed([])
     if (!picked || picked.side === side) return setPicked({ side, arabic })
     setPicked(null)
     if (picked.arabic === arabic) return setBoard((b) => ({ ...b, found: [...b.found, arabic] }))
     setBoard((b) => ({ ...b, slips: b.slips + 1 }))
     setMissed([`${picked.side}:${picked.arabic}`, `${side}:${arabic}`])
-    setTimeout(() => setMissed([]), SHAKE_MS)
   }
-  const restart = (round) => { setPicked(null); setBoard(boardOf(words, round)) }
+  const restart = (round) => { setPicked(null); setMissed([]); setBoard(boardOf(words, round)) }
 
   const tile = (side, word) => {
     const id = `${side}:${word.arabic}`
@@ -57,6 +56,8 @@ export default function WordMatch({ words }) {
           {side === 'en'
             ? <span className="type-body font-medium text-[var(--text)]">{word.english}</span>
             : <ArabicText as="span" size="base" className="text-[var(--text)]">{word.arabic}</ArabicText>}
+          {/* Not colour alone: the mark says "wrong" to anyone who cannot tell red. */}
+          {missed.includes(id) && <span aria-hidden="true" className="ms-2 font-semibold text-[var(--danger)]">✕</span>}
         </button>
       </li>
     )
@@ -70,6 +71,7 @@ export default function WordMatch({ words }) {
       </div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="type-small text-[var(--text-dim)]" aria-live="polite">
+          {missed.length > 0 && 'Not a pair. '}
           {done ? 'All matched' : `${board.found.length} of ${board.left.length} matched`} · {board.slips} {board.slips === 1 ? 'slip' : 'slips'}
           {rounds > 1 && ` · board ${board.round + 1} of ${rounds}`}
         </span>

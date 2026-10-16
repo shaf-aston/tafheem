@@ -21,6 +21,7 @@ import MapPanel from './components/shell/MapPanel'
 import ProfileButton from './components/profile/ProfileButton'
 import SettingsPanel from './components/shell/SettingsPanel'
 import { TOOLS } from './lib/tools'
+import { ARMED_MS, useMoment } from './lib/useMoment'
 import { shareLink } from './lib/tabUrl'
 import { COPY_RESET_MS } from './components/ui/CopyButton'
 import SpatialHome from './components/shell/SpatialHome'
@@ -115,19 +116,22 @@ function AppContent() {
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
-  // The tool that just worked, shown in its `done` look for a moment.
-  const [doneTool, setDoneTool] = useState(null)
-  useEffect(() => {
-    if (!doneTool) return undefined
-    const timer = setTimeout(() => setDoneTool(null), COPY_RESET_MS)
-    return () => clearTimeout(timer)
-  }, [doneTool])
+  // The tool that just worked, shown in its `done` look for a moment; and the
+  // one armed for its second click, in its `armed` look until that runs out.
+  const [doneTool, setDoneTool] = useMoment(COPY_RESET_MS)
+  const [armedTool, setArmedTool] = useMoment(ARMED_MS)
+  // A tool with an `armed` look asks once before it acts: its first click arms it.
+  const armedFirst = (id, act) => () => (armedTool === id ? act() : setArmedTool(id))
   const runTool = {
-    startOver,
+    startOver: armedFirst('startOver', startOver),
     copyLink: () => navigator.clipboard.writeText(shareLink()).then(() => setDoneTool('copyLink'), () => {}),
     map: () => setMapOpen(true),
   }
-  const toolNow = (tool) => (doneTool === tool.id ? { ...tool, ...tool.done } : tool)
+  const toolNow = (tool) => (
+    doneTool === tool.id ? { ...tool, ...tool.done } : armedTool === tool.id ? { ...tool, ...tool.armed } : tool
+  )
+  // Pressed in the More sheet, a tool with something to show next keeps the sheet open.
+  const staysOpen = (tool) => tool.done || (tool.armed && armedTool !== tool.id)
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
   // A root handed from one tab to another, per tab. Held here because it is the
@@ -240,8 +244,8 @@ function AppContent() {
               })}
             />
           </button>
-          {/* Tools from lib/tools.js. Start over is one click, no arming; the wipe
-              with real cost, settings and streak, stays two clicks deep in Settings. */}
+          {/* Tools from lib/tools.js. Start over asks once (its `armed` look); the
+              wipe with more cost, settings and streak, stays in Settings. */}
           {TOOLS.map(toolNow).map((tool) => (
             <button
               key={tool.id}
@@ -250,14 +254,14 @@ function AppContent() {
               title={tool.label}
               aria-label={tool.aria}
               aria-haspopup={tool.dialog ? 'dialog' : undefined}
-              className={`icon-button${tool.phone === 'more' ? ' phone-hide' : ''}`}
+              className={`icon-button${tool.phone === 'more' ? ' phone-hide' : ''}${armedTool === tool.id ? ' text-[var(--danger)] border-[var(--danger-edge)]' : ''}`}
             >
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 {tool.paths.map((d) => <path key={d} d={d} />)}
               </svg>
             </button>
           ))}
-          <span className="sr-only" aria-live="polite">{doneTool && toolNow(TOOLS.find((tool) => tool.id === doneTool)).label}</span>
+          <span className="sr-only" aria-live="polite">{(doneTool || armedTool) && toolNow(TOOLS.find((tool) => tool.id === (doneTool || armedTool))).aria}</span>
           </div>
 
           {/* Sits midway between the tools and the search, matching the colophon at the foot. */}
@@ -403,7 +407,7 @@ function AppContent() {
                 type="button"
                 aria-haspopup={tool.dialog ? 'dialog' : undefined}
                 aria-describedby={tool.hint ? `${tool.id}-hint` : undefined}
-                onClick={() => { if (!tool.done) setSectionsOpen(false); runTool[tool.id]() }}
+                onClick={() => { if (!staysOpen(tool)) setSectionsOpen(false); runTool[tool.id]() }}
                 className={`tap min-h-11 rounded-[var(--radius-sm)] border type-body font-medium ${tool.danger ? 'border-[var(--danger-edge)] text-[var(--danger)]' : 'border-[var(--border)]'}`}
               >
                 {tool.label}
