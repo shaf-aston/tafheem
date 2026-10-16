@@ -164,6 +164,13 @@ def _read(sentence: str) -> dict:
 # One card field each, found by typing the sentence in (backend/scripts/analyze.py).
 CARDS = [
     ("زَارَنَا صَدِيقِي أَمْسِ", 2, "sign", "مبني على الكسر"),  # a built ظرف says the vowel it is built on
+    ("ذَهَبَ الطَّالِبُ إِلَى المَدْرَسَةِ", 2, "sign", "مبني على السكون"),  # a particle ending in a long letter
+    ("إِنَّ اللهَ غَفُورٌ رَحِيمٌ", 0, "sign", "مبني على الفتح"),          # a particle says its vowel too
+    ("اشْتَرَيْتُ عِشْرِينَ كِتَابًا", 1, "sign", "الياء، ملحق بجمع المذكر السالم"),  # a ten is only attached to the plural
+    ("ظَنَنْتُ الامْتِحَانَ سَهْلًا", 1, "reason", "منصوب لأنه مفعول به أول. القاعدة: المفعول به منصوب"),
+    ("ظَنَنْتُ الامْتِحَانَ سَهْلًا", 2, "reason", "منصوب لأنه مفعول به ثانٍ. القاعدة: المفعول به منصوب"),
+    ("إِنَّ اللهَ غَفُورٌ رَحِيمٌ", 3, "reason", "مرفوع لأنه خبر ثانٍ لإن. القاعدة: إن وأخواتها ترفع الخبر"),
+    ("مَاذَا قَرَأْتَ؟ قَالَ الْقُرْآنَ", 0, "role", "مفعول به"),      # قال after the question is its reply, not قرأتَ's object
     ("جَلَسْتُ مَعَ النَّاسِ", 2, "role", "مضاف إليه"),        # the noun after a ظرف the parser drew as a preposition
     ("جَاءَ الْأَمِيرُ خَالِدٌ", 2, "role", "بدل"),             # an indefinite word after a noun with ال is no صفة
     ("قِفَا نَبْكِ", 0, "sign", "حذف النون"),                   # the dictionary's root قفو holds وقف's letters

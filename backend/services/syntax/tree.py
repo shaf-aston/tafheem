@@ -35,7 +35,7 @@ FOLLOWED = "متبوع"  # roles.json: the word any تابع follows
 def names_a_sentence(label: str | None) -> bool:
     """The label is a kind of sentence (جملة فعلية، جملة تعجب...), not a phrase's name: a
     مركب توصيفي shows itself in the picture and needs no line above it."""
-    return label in {VERBAL, NOMINAL, QUESTION, CONDITION, *map(term_ar, FRAMES["sentence_by_family"].values())}
+    return label in {VERBAL, NOMINAL, QUESTION, CONDITION, term_ar("jumlah_nidaiyyah"), *map(term_ar, FRAMES["sentence_by_family"].values())}
 
 
 def _leaf(index: int, role: str | None, why: dict | None = None, name: str | None = None) -> dict:
@@ -72,6 +72,8 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
 
 
 DOER = FRAMES["doer"]
+# the roles that stay inside the unit their head names (a صفة of the مضاف إليه, a عطف on it)
+UNIT_CHILDREN = {unit["child"] for unit in role_units()} | set(FOLLOWERS) | {"حرف عطف"}
 
 
 def _person(token: dict) -> str:
@@ -488,6 +490,17 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]) or leaf["tone"],
                     "detail": place_of.get(token["id"]), "children": [leaf]} if token["id"] in clauses else leaf
         kid_roles = [job_of[kid["id"]] for kid in kids if job_of[kid["id"]]]
+        if token is root and role_of[token["id"]] and token["id"] not in opened and (own := _label(token, kid_roles, kids)) and not names_a_sentence(own):
+            # كِتَابُ الطَّالِبِ جَدِيدٌ: the مضاف heads its unit, but the خبر hangs outside it;
+            # the sentence holds both, the unit as a whole is the مبتدأ
+            if beside := [kid for kid in kids if job_of[kid["id"]] not in UNIT_CHILDREN]:
+                children_of[token["id"]] = [kid for kid in kids if kid not in beside]
+                seen.discard(token["id"])
+                whole = {**node(token), "role": role_of[token["id"]], "tone": tone(role_of[token["id"]])}
+                seen.update(kid["id"] for kid in beside)
+                inside = [(index, whole), *((at[kid["id"]], unit(kid)) for kid in beside)]
+                return {"role": None, "label": top_label, "tone": None, "detail": None,
+                        "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
         seen.update(kid["id"] for kid in kids)
         inside = [(at[kid["id"]], unit(kid)) for kid in kids]
         role = role_of[token["id"]]

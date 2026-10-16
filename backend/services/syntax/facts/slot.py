@@ -67,15 +67,16 @@ def place_time(token: dict, s: Sentence) -> bool:
 def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
     """A word hung on a participle that is its object: linked as one in nasb, or in the
     nasb the reader typed where the link cannot hold it, since a مضاف إليه is never منصوب
-    (فاهمٌ الدرسَ) and a نعت has its noun's case (ضاربٌ بكرًا). An indefinite state word
+    (فاهمٌ الدرسَ) and a نعت has its noun's case (ضاربٌ بكرًا) and is a describing word
+    (آمِرًا أحدًا: both in nasb, yet أحد describes nothing). An indefinite state word
     stays a حال (قادمٌ مسرعًا), and the participle's own root a مفعول مطلق. A diptote's fatha
     is its jarr, so it stays the مضاف إليه (طَرِيقَ جَهَنَّمَ)."""
     rel, typed = token["rel"], typed_case_of(token)
     if rel == "OBJ":
         return typed_or_parsed_case(token) == "a"
     return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
-        rel == "MOD" and typed_or_parsed_case(head) != "a" and not is_state_word(token)
-        and not same_root(token, head)))
+        rel == "MOD" and (typed_or_parsed_case(head) != "a" or token.get("pos_camel") != "adj")
+        and not is_state_word(token) and not same_root(token, head)))
 
 
 def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
@@ -127,7 +128,7 @@ def verb_place(token: dict, s: Sentence) -> str:
         if before and is_object_pronoun(token):
             return "object"  # إيّاك نعبد: the object put first
         asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
-        if asked and before and not any(t["rel"] == "OBJ" for t in siblings):
+        if asked and before and not any(t["rel"] == "OBJ" and not is_verb(t) for t in siblings):  # قال after it is the reply, not its object
             return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
         if before and rel in ("SBJ", "TPC") and typed == "a" and not is_mabni(token.get("pos_camel", "")):
             return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object (a built word's is no case: أنتَ)
@@ -221,7 +222,11 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         leads = any("interrog" in t.get("pos_camel", "") and is_one(t["lemma"], "istifham", "inflected")
                     and any(k["rel"] == "IDF" for k in s.kids(t)) for t in s.tokens)
         if "interrog" in camel:
-            return "subject" if leads else "predicate"  # كيف حالك: the question word is the khabar, brought to the front
+            # مَنْ فِي البيتِ، مَنْ عندك: no noun is left to be the mubtada but a jar-majroor or ظرف, so the
+            # question word is the mubtada and they its khabar
+            told_of = [t for t in s.tokens if t is not token and t["pos"] == "NOM" and not jarr_takes(t, s)
+                       and not is_zarf(t, s) and (t["rel"] != "IDF" or s.head(t) is token)]  # مَتَى السَّفَرُ: hung on it as idafa
+            return "subject" if leads or not told_of else "predicate"  # كيف حالك: the question word is the khabar, brought to the front
         if leads and token["pos"] == "NOM" and typed_or_parsed_case(token) == "u" and rel != "IDF":
             return "predicate"
         if (token["pos"] == "NOM" and typed_or_parsed_case(token) == "u" and rel != "IDF") or s.asked_of(token):
@@ -254,7 +259,9 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             # محمدُ بنُ عبدِ اللهِ، الطبيبُ الماهرُ: a noun with only its صفة and مضاف إليه
             # under it is a phrase, no sentence: nothing is told of it, so it is no mubtada
             # المعلماتُ في الفصلِ: a raf' noun with a jar-majrur after it is told of by it, its khabar
-            told = any(_nominal_place(k, s) == "predicate" or _jar_khabar(k, token, before) for k in kids if not is_suffix(k))
+            # زيدٌ عندك: a ظرف with its مضاف إليه tells of it too
+            told = any(_nominal_place(k, s) == "predicate" or _jar_khabar(k, token, before) or zarf_of_khabar(k, s)
+                       for k in kids if not is_suffix(k))
             return "subject" if told else "none"
     if rel == "MOD" and head:
         # اشتريت رطلين زيتًا: after a measure a plain noun in nasb is its tamyeez, though the two differ in number
