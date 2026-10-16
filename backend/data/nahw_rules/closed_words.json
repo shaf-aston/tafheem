@@ -1222,9 +1222,20 @@
     "طوبى",
     "ويح",
     "ويس",
-    "بؤس",
-    "هلاك",
-    "عذاب"
+    "بؤس"
+   ]
+  },
+  "saying_verbs": {
+   "ar": "أفعال القول والنداء",
+   "book": "Tasheel 1.2 (what is said after قال is a sentence of its own)",
+   "effect": "after these verbs a praying noun with its لِ phrase is the sentence said (قال: وَيْلٌ لَهُ), not the verb's doer; after any other verb (جَاءَ عَذَابٌ لِلْقَوْمِ) the noun stays the doer",
+   "words": [
+    "قال",
+    "نادى",
+    "صاح",
+    "صرخ",
+    "هتف",
+    "دعا"
    ]
   }
  }

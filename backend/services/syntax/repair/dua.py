@@ -7,15 +7,15 @@ from backend.services.syntax.facts import Sentence, is_preposition, is_verb, lis
 
 def dua_clause(tokens: list[dict]) -> None:
     """نَادَى وَيْلٌ لِلأَعْقَابِ: a noun of prayer (closed_words dua_nouns) in raf' with a لِ phrase
-    straight after it is the mubtada of what was said, not the verb's doer; the لِ phrase is its khabar.
+    straight after it after a verb of saying (closed_words saying_verbs) is the mubtada of what was said, not the verb's doer; the لِ phrase is its khabar.
     So it stands as a sentence of its own. Written over before the words are read."""
     s = Sentence(tokens)
     for token, after in zip(tokens, tokens[1:]):
         head = s.head(token)
-        if (head and is_verb(head) and is_one(token["lemma"], "dua_nouns") and typed_case_of(token) == "u"
-                and after["head"] == token["id"] and after["pos_camel"] == "prep" and after["lemma"].strip("+") == "ل"):
+        if (head and is_verb(head) and is_one(head["lemma"], "saying_verbs") and is_one(token["lemma"], "dua_nouns")
+                and typed_case_of(token) == "u" and after["head"] in (token["id"], head["id"]) and after["pos_camel"] == "prep" and after["lemma"].strip("+") == "ل"):
             token["head"], token["rel"] = 0, "---"
-            after["rel"] = "PRD"  # the khabar, as the parser hangs it on a mubtada
+            after["head"], after["rel"] = token["id"], "PRD"  # the khabar, as the parser hangs it on a mubtada
 
 
 def counted_times(tokens: list[dict]) -> None:

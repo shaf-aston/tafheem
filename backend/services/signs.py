@@ -15,6 +15,8 @@ from backend.services.nahw_book import book_words, family_cards, is_diptote, is_
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
 _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
+# the object pronouns a past verb can carry, longest first so هما is not read as ه
+OBJECT_PRONOUNS = ("هما", "كما", "هم", "هن", "ها", "كم", "كن", "ني", "نا", "ه", "ك")
 
 
 def sign(case: str | None, kind: str = "vowel") -> str | None:
@@ -165,8 +167,14 @@ def _built_on(card: dict, aspect: str) -> str | None:
     if aspect == "p":
         ending = _past_ending(word)
         # نَادَى، دَعَا: the fatha is there but an alef cannot carry it, so it is implied
-        alef = strip_diacritics(word).endswith("ى") or (strip_diacritics(word).endswith("ا") and card["camel"].get("weak_last"))
-        return said["past_on_alef"] if ending == said["past_on"] and alef and not _has_pronoun(card["camel"]) else ending
+        # رَمَاهُ: the alef is still the verb's last letter before the pronoun, so read the verb without it
+        bare = strip_diacritics(word)
+        if _has_pronoun(card["camel"]):
+            bare = next((bare[:-len(p)] for p in OBJECT_PRONOUNS if bare.endswith(p)), bare)
+        # رَوَيْنَاهُ، رَمَيَاهُ: an alef after a doer's pronoun (نا، ا) is the pronoun's, not the verb's
+        alone = card["camel"].get("person") == "3" and card["camel"].get("number") == "s"
+        alef = alone and (bare.endswith("ى") or (bare.endswith("ا") and card["camel"].get("weak_last")))
+        return said["past_on_alef"] if ending == said["past_on"] and alef else ending
     nun = build_nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show

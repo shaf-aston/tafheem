@@ -758,3 +758,21 @@ def test_the_idafa_of_an_elative_is_ma3nawiyya_not_lafziyya():
 
 def test_a_count_of_times_is_the_absolute_object_of_its_verb():
     assert iraab.analyze("ضَرَبْتُهُ مَرَّتَيْنِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+
+
+def _role(sentence: str, i: int) -> str:
+    return iraab.analyze(sentence, recorded=False)["words"][i]["role"]
+
+
+def test_a_prayer_noun_is_the_said_only_after_a_verb_of_saying():
+    assert _role("فَقَالَ وَيْلٌ لَهُ", 1) == "مبتدأ"  # the لِ phrase hung on the verb, with a pronoun
+    assert _role("جَاءَ عَذَابٌ لِلْكَافِرِينَ", 1) == "فاعل"  # coming is no saying: the doer
+    assert _role("جَاءَ سَلَامٌ لِلْقَوْمِ", 1) == "فاعل"
+
+
+def test_a_past_verb_on_an_alef_keeps_its_implied_fatha_under_a_pronoun():
+    sign = lambda s: iraab.analyze(s, recorded=False)["words"][0]["sign"]
+    assert sign("رَمَاهُ الْوَلَدُ") == sign("دَعَاهُمُ النَّبِيُّ") == "مبني على الفتح المقدر على الألف للتعذر"
+    assert sign("كَتَبَهُ الرَّجُلُ") == "مبني على الفتح"
+    assert sign("رَمَيْتُ الْحَجَرَ") == "مبني على السكون"
+    assert "المقدر" not in sign("رَوَيْنَاهُ عَنْهُ")  # نا is the doer: its alef is not the verb's
