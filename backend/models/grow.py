@@ -11,9 +11,12 @@ from pydantic import BaseModel
 class GrowRuling(BaseModel):
     """A scholar's own words on one step, quoted, never paraphrased.
 
-    `arabic` is copied from the book exactly (tests/test_grow.py holds it to
-    the book's text), and `where` is the chapter it is in, so the reader can
-    find it; the app adds no ruling of its own."""
+    `source` names the book in data/grow/sources.json; the router fills in
+    `book`, `author` and `known_as` from it. `arabic` is copied from the book
+    exactly (tests/test_grow.py holds it to the book's text), and `where` is
+    the chapter it is in, so the reader can find it; the app adds no ruling
+    of its own."""
+    source: str
     book: str
     author: str
     known_as: str  # the name he goes by, for "What al-Quduri says"

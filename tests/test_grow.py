@@ -24,8 +24,7 @@ from backend.services.recitation.spelling import as_heard
 
 client = TestClient(app)
 WEBM = bytes([0x1A, 0x45, 0xDF, 0xA3]) + bytes(8)
-QUDURI = Path(__file__).resolve().parent.parent / "backend" / "data/books/openiti/0428AbuHusaynQuduri.Mukhtasar.Sham19Y0124336-ara1"
-HADITH = Path(__file__).resolve().parent.parent / "backend" / "data" / "grow" / "hadith-sources.json"
+BACKEND = Path(__file__).resolve().parent.parent / "backend"
 GROW_CONFIG = Path(__file__).resolve().parent.parent / "frontend" / "src" / "grow.json"
 AYAH_KEY = re.compile(r"(\d{1,3}):(\d{1,3})")
 SUNNAH_PAGE = re.compile(r"sunnah\.com/([a-z]+:\d+[a-z]?)")
@@ -121,22 +120,29 @@ def test_every_ruling_says_who_it_is_by():
 
 
 def test_every_ruling_is_the_books_own_sentence():
-    book = _as_read(QUDURI.read_text(encoding="utf-8"))
+    """Each book in sources.json is read once; every ruling that names it must be a sentence in it."""
+    books = {name: _as_read((BACKEND / source["file"]).read_text(encoding="utf-8"))
+             for name, source in grow.sources().items() if source["kind"] == "book"}
+    quoted = 0
     for path in grow.paths():
         for step in path.steps:
-            if step.ruling and step.ruling.known_as == "al-Quduri":
-                quoted = " ".join(step.ruling.arabic.split())
-                assert quoted in book, f"{step.id}: not in al-Quduri as written"
+            if step.ruling and step.ruling.source in books:
+                sentence = " ".join(step.ruling.arabic.split())
+                assert sentence in books[step.ruling.source], f"{step.id}: not in {step.ruling.known_as} as written"
+                quoted += 1
+    assert quoted >= 40
 
 
 def test_every_hadith_ruling_is_the_hadiths_own_words_and_its_phrase_is_in_it():
     """A hadith is quoted vowels and all, so the quote and the phrase it teaches must both
     be in the hadith as sunnah.com prints it (hadith-sources.json), and the page named must exist there."""
-    sources = json.loads(HADITH.read_text(encoding="utf-8"))["hadith"]
+    collections = {name: json.loads((BACKEND / source["file"]).read_text(encoding="utf-8"))["hadith"]
+                   for name, source in grow.sources().items() if source["kind"] == "hadith"}
     cited = 0
     for path in grow.paths():
         for step in path.steps:
-            if step.ruling and step.ruling.known_as != "al-Quduri":
+            if step.ruling and step.ruling.source in collections:
+                sources = collections[step.ruling.source]
                 key = SUNNAH_PAGE.search(step.ruling.where).group(1)
                 assert sources[key]["page"] == f"https://sunnah.com/{key}", step.id
                 said = " ".join(sources[key]["arabic"].split())

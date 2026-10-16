@@ -1,0 +1,13 @@
+{
+  "_comment": "The Prayer world: its paths, one file each in paths/, in the order the map offers them. A path names its tier (frontend/src/grow.json lists the tiers) and cuts its steps into groups: a group is one node on the map, `icon` names its picture, and every step sits in exactly one group. A ruling names its `source` (../../sources.json); its `arabic` is that source's own sentence, never paraphrased, and tests/test_grow.py holds every one to its source. A step with no clear sentence in the book carries no ruling.",
+  "paths": [
+    "wudu",
+    "salah",
+    "surahs",
+    "full-salah",
+    "adhkar",
+    "amma",
+    "kursi",
+    "mulk"
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "adhkar",
+  "tier": "intermediate",
+  "title": "Adhkar after salah",
+  "arabic": "أذكار بعد الصلاة",
+  "groups": [
+    {
+      "id": "adhkar-salam",
+      "title": "After the salam",
+      "arabic": "بعد السلام",
+      "icon": "sit",
+      "steps": [
+        "istighfar",
+        "allahumma-salam"
+      ]
+    },
+    {
+      "id": "adhkar-33",
+      "title": "Glorifying Allah",
+      "arabic": "التسبيح",
+      "icon": "book",
+      "steps": [
+        "tasbih",
+        "tahmid",
+        "takbir-33"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "istighfar",
+      "title": "Asking forgiveness",
+      "arabic": "أَسْتَغْفِرُ اللَّهَ",
+      "meaning": "I ask Allah for forgiveness. Say it three times.",
+      "ruling": {
+        "source": "muslim",
+        "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 591 (sunnah.com/muslim:591)",
+        "arabic": "اسْتَغْفَرَ ثَلاَثًا",
+        "english": "He asked forgiveness three times."
+      }
+    },
+    {
+      "id": "allahumma-salam",
+      "title": "You are Peace",
+      "arabic": "اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ تَبَارَكْتَ ذَا الْجَلاَلِ وَالإِكْرَامِ",
+      "meaning": "O Allah, You are Peace and from You is peace. Blessed are You, Possessor of Glory and Honour.",
+      "ruling": {
+        "source": "muslim",
+        "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 591 (sunnah.com/muslim:591)",
+        "arabic": "اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ تَبَارَكْتَ ذَا الْجَلاَلِ وَالإِكْرَامِ",
+        "english": "When the Messenger of Allah ﷺ finished his prayer he asked forgiveness three times and said: O Allah, You are Peace and from You is peace; blessed are You, Possessor of Glory and Honour."
+      }
+    },
+    {
+      "id": "tasbih",
+      "title": "Tasbih, 33 times",
+      "arabic": "سُبْحَانَ اللَّهِ",
+      "meaning": "Glory be to Allah. Say it 33 times.",
+      "ruling": {
+        "source": "muslim",
+        "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 595a (sunnah.com/muslim:595a)",
+        "arabic": "تُسَبِّحُ اللَّهَ ثَلاَثًا وَثَلاَثِينَ",
+        "english": "Say “Glory be to Allah” thirty-three times."
+      }
+    },
+    {
+      "id": "tahmid",
+      "title": "Tahmid, 33 times",
+      "arabic": "الْحَمْدُ لِلَّهِ",
+      "meaning": "All praise is for Allah. Say it 33 times.",
+      "ruling": {
+        "source": "muslim",
+        "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 595a (sunnah.com/muslim:595a)",
+        "arabic": "وَتَحْمَدُ اللَّهَ ثَلاَثًا وَثَلاَثِينَ",
+        "english": "Say “All praise is for Allah” thirty-three times."
+      }
+    },
+    {
+      "id": "takbir-33",
+      "title": "Takbir, 33 times",
+      "arabic": "اللَّهُ أَكْبَرُ",
+      "meaning": "Allah is the greatest. Say it 33 times.",
+      "ruling": {
+        "source": "muslim",
+        "where": "Kitab al-Masajid wa Mawadi' al-Salah, hadith 595a (sunnah.com/muslim:595a)",
+        "arabic": "وَتُكَبِّرُ اللَّهَ ثَلاَثًا وَثَلاَثِينَ",
+        "english": "Say “Allah is the greatest” thirty-three times."
+      }
+    }
+  ]
+}

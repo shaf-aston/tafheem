@@ -402,7 +402,7 @@ Per-module glossaries, one word per idea across backend and frontend: `docs/glos
 - **Token**: a colour, timing or size in `frontend/src/theme.json`; components use
   `var(--...)` and never a literal.
 - **Tier / nodeState**: Grow's levels (Level 1, 2, 3; `frontend/src/grow.json`,
-  a path names its tier in `paths.json`), and where one circle on its map stands:
+  a path names its tier in its file under `data/grow/worlds/prayer/paths/`), and where one circle on its map stands:
   `locked`, `open`, `started` or `learnt` (`lib/grow.js`, drawn by `components/grow/`).
 
 ### Where things live (current)
