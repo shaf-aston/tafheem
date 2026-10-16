@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import re
 import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -13,12 +14,41 @@ from fastapi.middleware.gzip import GZipMiddleware
 
 from backend.config import get_settings
 from backend.routers import (
-    analysis, colloquial, daleel, dawah, dictionary, grow, hadith, journal, listen, morphology, nahw_notes, practice, progress, quran,
-    rijal, speak, tamreen, tarkeeb, timelines,
+    analyze, colloquial, daleel, dawah, dictionary, grow, hadith, journal, listen, morphology, nahw_notes, practice, progress, quran,
+    speak, tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
-from backend.services import dictionary_service, provenance, quran_meanings, quran_service, recitation, root_meaning, startup, syntax
+from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, speech, startup, syntax
 from backend.services.morphology import get_engine_name
+from backend.identity import PROFILE_HEADER
+from backend.services.username import GUEST
+
+# Answers that are the same for everyone and change only when the app does, so
+# a browser or Vercel's edge may keep them for a day. An allow-list, not a
+# default: anything per-learner (progress, journal), anything typed (search,
+# analyze) or anything that reports on the server (health) must never be here.
+# Nor the list of installed translations: an import adds to it.
+CACHEABLE = re.compile(
+    r"/api/(?:"
+    r"quran/surah/\d+(?:/glosses)?"
+    r"|quran/editions/surah/\d+"
+    r"|hadith/collections"
+    r"|hadith/[^/]+/books(?:/\d+)?"
+    r"|timelines(?:/[^/]+/[^/]+/asbab)?"
+    r"|dawah|tamreen|notes|sources"
+    r"|grow/paths"
+    r"|tarkeeb/examples"
+    r"|daleel/books"
+    r"|colloquial(?:/[^/]+/[^/]+)?"
+    r")"
+)
+CACHE_ONE_DAY = "public, max-age=86400"
+
+
+def cacheable(method: str, status: int, path: str, existing: str | None) -> bool:
+    """Whether this response may be given a day's cache, and has no opinion of its own."""
+    return method == "GET" and status == 200 and not existing and CACHEABLE.fullmatch(path) is not None
+
 
 BACKEND_ROOT = Path(__file__).resolve().parent
 LOG_PATH = BACKEND_ROOT.parent / "backend.log"
@@ -56,7 +86,7 @@ async def lifespan(_: FastAPI):
 
 
 def create_app() -> FastAPI:
-    settings = get_settings()  # validates .env; warns on bad key, never crashes
+    settings = get_settings()  # validates .env; a bad or unknown key stops startup
 
     app = FastAPI(
         title="Tafheem",
@@ -69,6 +99,15 @@ def create_app() -> FastAPI:
     )
 
     app.add_middleware(GZipMiddleware, minimum_size=1000)  # hadith books run to hundreds of KB
+
+    # Added after GZip, so it wraps it and sets the header on the finished response.
+    @app.middleware("http")
+    async def cache_fixed_answers(request: Request, call_next):
+        response = await call_next(request)
+        if cacheable(request.method, response.status_code, request.url.path, response.headers.get("cache-control")):
+            response.headers["Cache-Control"] = CACHE_ONE_DAY
+        return response
+
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
@@ -78,7 +117,7 @@ def create_app() -> FastAPI:
     )
 
     for router in (
-        analysis.router,
+        analyze.router,
         morphology.router,
         quran.router,
         dictionary.router,
@@ -94,7 +133,6 @@ def create_app() -> FastAPI:
         colloquial.router,
         grow.router,
         hadith.router,
-        rijal.router,
         dawah.router,
         speak.router,
     ):
@@ -106,7 +144,7 @@ def create_app() -> FastAPI:
     @app.exception_handler(Exception)
     async def log_crash(request: Request, error: Exception) -> JSONResponse:
         logger.error("%s %s failed for profile %r: %r", request.method, request.url.path,
-                     request.headers.get("x-tafheem-profile", "local"), error)
+                     request.headers.get(PROFILE_HEADER, GUEST), error)
         return JSONResponse(status_code=500, content={"detail": "The server hit an error."})
 
     @app.get("/api/health")
@@ -128,6 +166,8 @@ def create_app() -> FastAPI:
             # for it (its Qur'an model rather than its general one, when the
             # answering ear is the one on this machine).
             "recite_ear": recitation.ears.active(reciting=True),
+            # Which voice would say a new word (GET /api/speak), or why none would.
+            "voice": speech.active(),
             # How sure the ear is of each word is always scored by the model on
             # this machine (see services/recitation/ears.py's "Word sureness"),
             # whichever ear wrote the words down, so it is named on its own.
@@ -139,9 +179,6 @@ def create_app() -> FastAPI:
             # together; lib/recitingSession.js paces itself by it.
             "listen_per_minute": recitation.ears.per_minute(),
             "corpus_loaded": quran_service.is_loaded(),
-            # False means meanings.db predates the printed spelling: the reader shows
-            # no stop signs until build_quran_meanings.py is run on this machine.
-            "stop_signs_loaded": quran_meanings.has_stop_signs(),
             "dictionary_loaded": dictionary_service.is_loaded(),
             "root_meaning_status": root_meaning.status(),
             "parser": syntax.status(),

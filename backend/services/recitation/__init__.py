@@ -28,6 +28,7 @@ from functools import lru_cache
 
 from backend.config import data_path, get_settings
 from backend.services import quran_corpus
+from backend.services.refs import SURAHS
 from backend.services.timing import timed
 from backend.services.recitation import ears, letters, listen, locate, match, place
 # Re-exported so a caller catches them from the package it already talks
@@ -39,8 +40,6 @@ from backend.services.recitation.spelling import as_heard
 from backend.services.recitation.match import Match
 
 log = logging.getLogger(__name__)
-
-SURAHS = 114
 
 
 @lru_cache(maxsize=1)

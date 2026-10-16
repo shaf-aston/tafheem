@@ -7,12 +7,13 @@ loaded as they are, which is the only check that the content on disk is sound.
 Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 import copy
+import json
 
 import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.colloquial import loader, wordlist
+from backend.services.colloquial import knobs, loader, wordlist
 from backend.services.colloquial.exercises import registry
 
 
@@ -204,6 +205,12 @@ def test_the_shared_list_and_the_spine_are_checked_against_each_other():
         assert any(fault in why for why in said), fault
 
 
+def test_a_word_in_a_group_nobody_listed_is_caught():
+    spine = [{"unit": "unit-01", "lessons": [{"lesson": "lesson-01", "words": list(MEANINGS)}]}]
+    said = wordlist.outline_faults(spine, {**MEANINGS, "w8": {"english": "thing", "group": "hoem"}})
+    assert any("'w8' has the group 'hoem'" in why for why in said)
+
+
 def test_a_unit_file_listing_its_own_words_is_caught():
     unit = copy.deepcopy(SOUND)
     unit["lessons"][0]["vocabulary"] = []
@@ -216,14 +223,35 @@ def test_a_missing_culture_note_is_caught():
 
 
 def test_every_fault_is_named_at_once_rather_than_the_first():
-    said = faults(culture="", phrases=[], dialogue=[])
+    said = faults(culture="", dialogue=[], exercises=[])
     assert len(said) >= 3
+
+
+def test_a_unit_of_word_lists_needs_no_phrases_conversation_or_challenge():
+    unit = {**copy.deepcopy(SOUND), "lessons": [{"lesson": "lesson-01", "title": "Animals", "phrases": []}]}
+    del unit["challenge"]
+    assert loader._unit_faults(unit) == []
 
 
 def test_two_lessons_with_one_number_are_caught():
     unit = copy.deepcopy(SOUND)
     unit["lessons"].append(copy.deepcopy(unit["lessons"][0]))
     assert any("two lessons numbered" in why for why in loader._unit_faults(unit))
+
+
+def test_all_three_typed_types_are_sound_through_the_one_model():
+    for kind in ("reply", "fill_blank", "translate_to_arabic"):
+        assert registry.faults(exercise("a.1", kind)) == []
+
+
+def test_a_field_fault_is_reported_beside_a_wrong_option_set():
+    said = faults(exercises=[exercise("a.1", "choose", prompt=" ", options=["one", "two"])])
+    assert any("has no prompt" in why for why in said)
+
+
+def test_every_rule_one_exercise_breaks_is_reported_at_once():
+    said = faults(exercises=[exercise("a.1", "choose", accepted=[], options=["one", "two"])])
+    assert any("no accepted answers" in why and "fewer than" in why for why in said)
 
 
 def test_the_registry_owns_the_five_types_the_content_uses():
@@ -371,6 +399,15 @@ def test_the_catalogue_carries_each_topic_section_so_the_unit_page_can_head_it()
     assert cards and all("section" in lesson for lesson in cards)
 
 
+def test_a_unit_card_fronts_its_named_cover_or_else_its_first_picture():
+    said = lambda slot, image="": {"slot": slot, "arabic": slot, "english": slot, "image": image}
+    unit = {"lessons": [{"phrases": [said("plain"), said("first", "a.jpg"), said("named", "b.jpg")]}]}
+    assert loader._cover(unit)["image"] == "a.jpg"
+    assert loader._cover(unit | {"cover": "named"})["image"] == "b.jpg"
+    assert loader._cover(unit | {"cover": "not-written-here"})["image"] == "a.jpg"  # this dialect lacks it
+    assert loader._cover({"lessons": [{"phrases": [said("plain")]}]}) is None
+
+
 def test_a_repeated_slot_in_one_lesson_is_caught():
     written = copy.deepcopy(WRITTEN)
     written["lessons"][0]["phrases"].append({"slot": "hello", "arabic": "هاي", "transliteration": "hi"})
@@ -437,3 +474,11 @@ def test_a_dumped_word_list_reads_back_as_the_words_on_disk():
     for folder in ("damascene", "fusha"):
         words, said = word_bank._read(word_bank.dump(folder))
         assert said == [] and words == wordlist.said_in(folder)
+
+
+@pytest.mark.parametrize("value", [0, 2.5, "3", True])
+def test_a_rule_that_is_not_a_whole_number_above_zero_is_refused(tmp_path, value):
+    path = tmp_path / "colloquial.json"
+    path.write_text(json.dumps({"_comment": "x", "least-options": value}), encoding="utf-8")
+    with pytest.raises(ValueError, match="least-options"):
+        knobs.read(path)

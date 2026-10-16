@@ -9,14 +9,21 @@ import logging
 
 from fastapi import APIRouter, HTTPException
 
-from backend.models.schemas import (
+
+from backend.models.morphology import (
+
     ConjugationRequest,
+
     ConjugationResponse,
+
     MeaningRequest,
+
     MeaningResponse,
+
     MorphologyRequest,
+
     MorphologyResponse,
-    Source,
+
 )
 from backend.services import ai as ai_service
 from backend.services import conjugation, morphology, provenance, sarf_word
@@ -69,7 +76,7 @@ async def analyze_meaning(request: MeaningRequest) -> MeaningResponse:
     meaning = ai_result.get("meaning") or None
     return MeaningResponse(
         meaning=meaning,
-        meaning_source=Source(**provenance.of("ai")) if meaning else None,
+        meaning_source=provenance.of("ai") if meaning else None,
         verb_class=ai_result.get("verb_class"),
     )
 

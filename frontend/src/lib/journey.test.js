@@ -164,16 +164,18 @@ function browserAt(search) {
   const location = {
     get href() { return entries[index].url.href },
     get search() { return entries[index].url.search },
+    get pathname() { return entries[index].url.pathname },
+    origin: 'https://tafheem.test',
   }
   const pop = () => { for (const listener of popped) listener({ state: entries[index].state }) }
   const history = {
     get state() { return entries[index].state },
     pushState: vi.fn((state, _title, url) => {
       entries.splice(index + 1)
-      entries.push({ state, url: new URL(String(url)) })
+      entries.push({ state, url: new URL(String(url), entries[index].url) })
       index += 1
     }),
-    replaceState: vi.fn((state, _title, url) => { entries[index] = { state, url: new URL(String(url)) } }),
+    replaceState: vi.fn((state, _title, url) => { entries[index] = { state, url: new URL(String(url), entries[index].url) } }),
     go: vi.fn((delta) => { index += delta; pop() }),
   }
   const addEventListener = vi.fn((type, listener) => { if (type === 'popstate') popped.push(listener) })
@@ -221,7 +223,7 @@ describe('the journey and the back arrow', () => {
     expect(journey.placeNow()).toEqual({ tab: 'quran', value: '1:1' })
     expect(jumps).toEqual([{ tab: 'quran', value: '1:1' }])
     // Walked onto from where we were, and the entry restamped with that step.
-    expect(browser.history.state).toEqual({ step: 2 })
+    expect(browser.history.state.step).toBe(2)
     expect(journey.lastPlaceOn('dict')).toBe('b')
   })
 
@@ -254,7 +256,7 @@ describe('the journey and the back arrow', () => {
     expect(journey.visit('dict', 'c')).toBe(true)
     expect(browser.history.pushState).toHaveBeenCalledTimes(1)
     expect(browser.history.replaceState).not.toHaveBeenCalled()
-    expect(browser.history.state).toEqual({ step: 1 })
+    expect(browser.history.state.step).toBe(1)
   })
 
   it('fills in a tab opened with nothing by replacing its entry', async () => {
@@ -262,7 +264,7 @@ describe('the journey and the back arrow', () => {
     expect(journey.visit('dict', 'a')).toBe(true)
     expect(browser.history.replaceState).toHaveBeenCalledTimes(1)
     expect(browser.history.pushState).not.toHaveBeenCalled()
-    expect(browser.history.state).toEqual({ step: 0 })
+    expect(browser.history.state.step).toBe(0)
   })
 
   it('jumps back to a walked step by the distance from here', async () => {

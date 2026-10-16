@@ -1,10 +1,10 @@
 """Links the book rules out, as masks over the parser's scores, and the few links it
 settles outright, written over the parser's tree.
 
-Pure: takes the words' tags and returns which (dependent, head, relation) labels
-are impossible, so the decoder picks the best reading the book allows instead of
-the best reading full stop; `book_links` then fixes a structure the book states
-whatever the scores say. Which rules are on lives in
+`book_mask` is pure: it takes the words' tags and returns which (dependent, head, relation)
+labels are impossible, so the decoder picks the best reading the book allows instead of
+the best reading full stop; `book_links` then fixes, in place on the tokens, a structure
+the book states whatever the scores say. Which rules are on lives in
 data/nahw_rules/closed_words.json ("vetoes"). Index 0 is the root, word i is
 index i, as in the score matrices.
 """
@@ -15,6 +15,7 @@ import numpy as np
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import is_one, is_plain_noun, is_subject_pronoun, vetoes
 from backend.services.harakat import CAMEL_CASE
+from backend.services.syntax.facts import attached_pronoun, noun_tagged
 
 
 def _verb_subject_follows(toks, add_rel) -> None:
@@ -53,7 +54,7 @@ def _switched_on(rules: dict) -> list:
     return [rule for name, rule in rules.items() if vetoes().get(name)]
 
 
-def _above(heads: list[int], word: int, target: int) -> bool:
+def above(heads: list[int], word: int, target: int) -> bool:
     """`target` is `word` or one of the words it hangs under: a link from target down to
     word would close a loop."""
     while word:
@@ -72,7 +73,7 @@ def _pointer_heads_its_noun(toks, heads, rels) -> None:
         noun = toks[n - 1]
         if "dem" not in dep.get("pos_camel", "") or noun.get("stt") != "d" or not is_plain_noun(noun):
             continue
-        if heads[n - 1] == d or _above(heads, heads[n - 1], d):
+        if heads[n - 1] == d or above(heads, heads[n - 1], d):
             continue  # already under the pointer, or the swap would make a loop
         # the pointer takes the noun's place in the sentence; the noun hangs on it
         heads[d - 1], rels[d - 1] = heads[n - 1], rels[n - 1]
@@ -90,7 +91,7 @@ def _listed_preposition_takes_majrur(toks, heads, rels) -> None:
         after = toks[d]
         majrur = (after["pos"] == "NOM" and after.get("stt") == "i" and not after.get("form", "").startswith("+")
                   and "i" in (after.get("case"), CAMEL_CASE.get(after.get("cas"))))
-        if dep["pos"] == "PRT" or len(form) < 2 or not is_one(form, "jarr") or not majrur or _above(heads, d, d + 1):
+        if dep["pos"] == "PRT" or len(form) < 2 or not is_one(form, "jarr") or not majrur or above(heads, d, d + 1):
             continue
         dep.update(pos="PRT", pos_camel="prep")
         heads[d], rels[d] = d, "OBJ"
@@ -127,12 +128,12 @@ def _inner_sentence(toks, heads, rels) -> None:
         n1, n3 = n2 - 1, n2 + 2
         # the noun's typed case is under its pronoun's vowel, so the reading's case is used
         if not (is_plain_noun(noun) and noun.get("stt") == "c" and CAMEL_CASE.get(noun.get("cas")) not in ("a", "i")
-                and pronoun.get("pos_camel") == "pron" and pronoun.get("form", "").startswith("+")
-                and khabar["pos"] in ("NOM", "PROP") and khabar.get("stt") == "i" and _case(khabar) == "u"):
+                and attached_pronoun(pronoun)
+                and noun_tagged(khabar) and khabar.get("stt") == "i" and _case(khabar) == "u"):
             continue
         relative = "rel" in before.get("pos_camel", "")
-        first = verbless and n1 == 1 and before["pos"] in ("NOM", "PROP") and not before.get("form", "").startswith("+")
-        if relative and (_above(heads, n1, n2) or _above(heads, n1, n3)):
+        first = verbless and n1 == 1 and noun_tagged(before) and not before.get("form", "").startswith("+")
+        if relative and (above(heads, n1, n2) or above(heads, n1, n3)):
             continue  # the relative hangs inside the sentence: its own place is not known
         if first:
             if any(h == 0 for i, h in enumerate(heads, 1) if i not in (n1, n2, n3)):
@@ -167,9 +168,9 @@ def _exception_word_by_case(toks, heads, rels) -> None:
     its doer. After ما only the verb stands (ما عدا زيدًا). The parser's tags are written over."""
     for d, dep in enumerate(toks[:-1], 1):
         after = toks[d]
-        if (dep.get("token_type") != "baseword" or after["pos"] not in ("NOM", "PROP")
+        if (dep.get("token_type") != "baseword" or not noun_tagged(after)
                 or after.get("form", "").startswith("+") or not is_one(dep.get("form", ""), "istithna_verbs")
-                or _above(heads, d, d + 1)):
+                or above(heads, d, d + 1)):
             continue
         case, verb = _case(after), d > 1 and is_one(strip_diacritics(toks[d - 2].get("form", "")), "istithna_verbs", "masdar_ma")
         if case == "i" and not verb:
@@ -188,10 +189,11 @@ _LINKS = {"pointer_heads_its_noun": _pointer_heads_its_noun,
           "inner_sentence": _inner_sentence}
 
 
-def book_links(toks: list[dict], heads: list[int], rels: list[str]) -> tuple[list[int], list[str]]:
-    """The parser's heads and labels with every link the book settles written over them
+def book_links(toks: list[dict]) -> None:
+    """Every link the book settles written over the parser's heads and labels on the tokens
     (a listed preposition's word class is corrected on its token too)."""
-    heads, rels = list(heads), list(rels)
+    heads, rels = [t["head"] for t in toks], [t["rel"] for t in toks]
     for rule in _switched_on(_LINKS):
         rule(toks, heads, rels)
-    return heads, rels
+    for tok, head, rel in zip(toks, heads, rels):
+        tok["head"], tok["rel"] = head, rel

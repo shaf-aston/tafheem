@@ -16,16 +16,15 @@ import random
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.models.schemas import (
+from backend.models.practice import (
     CheckedSentence,
     KeptQuestion,
     KeptQuestions,
     PracticeQuestion,
     PracticeRequest,
     PracticeResponse,
-    Source,
 )
-from backend.routers.progress import _USER
+from backend.identity import USER
 from backend.services import ai, iraab, practice_service, progress_store, provenance, sentence_check
 from backend.utils import arabic_sentence
 
@@ -39,7 +38,7 @@ MODULE = "nahw"
 @router.post("", response_model=PracticeResponse)
 async def generate_practice(request: PracticeRequest) -> PracticeResponse:
     sentence = arabic_sentence(request.sentence, "Sentence")
-    read = await asyncio.to_thread(iraab.analyse, sentence)
+    read = await asyncio.to_thread(iraab.analyze, sentence)
     questions = practice_service.from_analysis(sentence, read)
     return await _answer(sentence, [PracticeQuestion(**q) for q in questions], "nahw")
 
@@ -53,7 +52,7 @@ async def kept_practice(sentence: str | None = Query(None, max_length=2000)) -> 
 
 
 @router.post("/checked", response_model=CheckedSentence)
-async def checked_sentence(user: str = _USER) -> CheckedSentence:
+async def checked_sentence(user: str = USER) -> CheckedSentence:
     """A short AI sentence using only words this learner has learnt, every word checked."""
     learnt = [row for row in await asyncio.to_thread(progress_store.summary, "quiz", user) if row["known"]]
     settings = get_settings()
@@ -89,4 +88,4 @@ async def _answer(sentence: str, questions: list[PracticeQuestion], source_key: 
         logger.info("Kept %d new practice question(s) for '%s' (%s)", added, sentence[:40], source_key)
     except Exception as exc:
         logger.warning("Could not keep practice questions: %s", exc)
-    return PracticeResponse(sentence=sentence, questions=questions, source=Source(**provenance.of(source_key)))
+    return PracticeResponse(sentence=sentence, questions=questions, source=provenance.of(source_key))

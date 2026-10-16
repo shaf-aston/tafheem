@@ -10,9 +10,8 @@ import { useEffect, useState } from 'react'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { hadithBookQuery, hadithCollectionsQuery } from '../api'
-import { bookOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, narratorsOf, parsePlace, placeOf } from '../lib/hadithPlace'
-import { goBack } from '../lib/journey'
+import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, searchHadith } from '../api'
+import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -22,23 +21,26 @@ import SectionHeader from './ui/SectionHeader'
 import ErrorAlert from './ui/ErrorAlert'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import StatusNote from './ui/StatusNote'
-import HadithCollectionPicker from './HadithCollectionPicker'
-import HadithBookList from './HadithBookList'
-import HadithCards from './HadithCards'
-import HadithList from './HadithList'
-import HadithSearchResults from './HadithSearchResults'
-import NarratorList from './NarratorList'
-import NarratorPage from './NarratorPage'
+import HadithCollectionPicker from './hadith/HadithCollectionPicker'
+import HadithBookList from './hadith/HadithBookList'
+import HadithCards from './hadith/HadithCards'
+import HadithList from './hadith/HadithList'
+import HadithSearchResults from './hadith/HadithSearchResults'
+import NarratorList from './hadith/NarratorList'
+import NarratorPage from './hadith/NarratorPage'
+import ScholarTerms from './hadith/ScholarTerms'
 import Code from './ui/Code'
 import SourceBadge from './ui/SourceBadge'
 import { useSources } from '../lib/useSources'
+
+const noop = () => {}
 
 export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }) {
   const { data: collections, isPending, isError, error, refetch } = useQuery(hadithCollectionsQuery)
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
   const [narrator, setNarrator] = useState(null)   // the narrator whose page is open, if any
   const [starred, setStarred] = useState(false)
-  const [listing, setListing] = useState(false)   // the narrator list is showing
+  const [listing, setListing] = useState(null)   // the list showing, narrators or scholars, if any
   const { favorites } = useHadithFavorites()
   const source = useSources().sources.find((s) => s.key === 'hadith')
 
@@ -49,19 +51,45 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
     if (named) client.prefetchQuery(hadithBookQuery(...named))
   }, [client, incoming])
 
+  // A link with no book (muslim/2927) is read once its collection's books say the number is no book, and
+  // search, which already reads "muslim 2927", has found which book holds it.
+  const pair = /^[^/]+\/\d+[a-z]?$/.test(incoming ?? '') && !narratorOf(incoming) ? incoming.split('/') : null
+  const books = useQuery({ ...hadithBooksQuery(pair?.[0]), enabled: Boolean(pair) })
+  const short = shortOf(incoming, books.data)
+  const found = useQuery({
+    queryKey: ['hadith-short', incoming],
+    queryFn: () => searchHadith({ q: pair.join(' '), collections: [short] }),
+    enabled: Boolean(short),
+  })
+  const hit = found.data?.reference && found.data.reference.asked === found.data.reference.shown ? found.data.hits[0] : null
+  const known = !pair || books.isFetched && (!short || found.isFetched)
+
   // A deep link, a link from another tab, or the back arrow landing here: all
   // three read the same way, once per arrival (see lib/useArrival).
   const [missed, setMissed] = useState(false)
-  if (useArrivalWhenReady(arrival, Boolean(collections))) {
-    const asked = parsePlace(incoming, collections)
+  if (useArrivalWhenReady(arrival, Boolean(collections) && known)) {
+    const asked = hit ? { collection: hit.collection, book: hit.book, number: hit.number, part: hit.part } : short ? null : parsePlace(incoming, collections)
     setNarrator(narratorOf(incoming))
-    setListing(narratorsOf(incoming))
+    setListing(listOf(incoming))
     if (asked) setPlace(asked)
     else if (collections.length) setPlace({ collection: collections[0].id, book: null, number: null, part: '' })
-    setMissed(Boolean(incoming) && !asked && !narratorOf(incoming) && !narratorsOf(incoming))
+    setMissed(Boolean(incoming) && !asked && !narratorOf(incoming) && !listOf(incoming))
   }
 
-  if (isPending) return <AnalyzerSkeleton />
+  // The header and the search box are the loaded page's own, inert until the
+  // collections arrive, so only the skeleton below them is replaced.
+  if (isPending) {
+    return (
+      <div className="panel">
+        <SectionHeader title="Hadith" arabic="الحديث" />
+        <div inert>
+          <HadithSearchResults accent={accent} onNarrator={noop} onHadith={noop} onOpenBook={noop}>
+            <AnalyzerSkeleton />
+          </HadithSearchResults>
+        </div>
+      </div>
+    )
+  }
 
   if (isError) {
     return (
@@ -93,7 +121,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   const go = (next) => {
     setMissed(false)
     setStarred(false)
-    setListing(false)
+    setListing(null)
     setNarrator(null)
     setPlace(next)
     onVisit?.(placeOf(next.collection, next.book, next.number, next.part))
@@ -112,7 +140,6 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         <NarratorPage
           id={narrator}
           accent={accent}
-          onBack={goBack}
           onNarrator={openNarrator}
           onHadith={openHadith}
         />
@@ -134,14 +161,20 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
           <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
             &#9733; Starred {favorites.length > 0 && favorites.length}
           </Chip>
-          <Chip selected={listing} tinted accent={accent} onClick={() => (listing ? go(place) : onGo('hadith', NARRATORS_PLACE))}>
+          <Chip selected={listing === NARRATORS_PLACE} tinted accent={accent} onClick={() => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE))}>
             Narrators
           </Chip>
-          {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this collection. */}
-          {!starred && !listing && source && <SourceBadge source={{ ...source, label: open.name }} className="ml-auto" />}
+          <Chip selected={listing === SCHOLARS_PLACE} tinted accent={accent} onClick={() => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE))}>
+            Scholars
+          </Chip>
+          {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this
+              collection, unless the picker beside it already names it. */}
+          {!starred && !listing && source && <SourceBadge source={collections.length > 1 ? source : { ...source, label: open.name }} className="ml-auto" />}
         </ChipRow>
-        {listing ? (
+        {listing === NARRATORS_PLACE ? (
           <NarratorList accent={accent} onOpen={openNarrator} />
+        ) : listing === SCHOLARS_PLACE ? (
+          <ScholarTerms accent={accent} onOpen={openHadith} />
         ) : starred ? (
           favorites.length
             ? <HadithCards items={favorites} accent={accent} onNarrator={openNarrator} onHadith={openHadith} />

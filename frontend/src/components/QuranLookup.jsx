@@ -10,22 +10,22 @@
  * ones a scholar assigned. That is also what makes the root links possible: the
  * same root travels to the conjugator and the dictionary.
  */
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { getQuranRoot, searchQuran } from '../api'
-import surahs from '../data/surahs.json'
-import { useArrival } from '../lib/useArrival'
+import { AYAH_REF, isAyah } from '../lib/surahRef'
+import { useArrival, useArrivalEffect } from '../lib/useArrival'
 import { useHistory } from '../lib/useHistory'
 import { isArabic } from '../lib/arabicText'
 
-import QuranSeal from './ui/QuranSeal'
+import QuranSeal from './quran/QuranSeal'
 import EmptyState from './ui/EmptyState'
 import ErrorAlert from './ui/ErrorAlert'
 import RootActions from './ui/RootActions'
-import QuranReader from './QuranReader'
-import QuranPlacePicker from './QuranPlacePicker'
-import QuranSearchBar from './QuranSearchBar'
+import QuranReader from './quran/QuranReader'
+import QuranPlacePicker from './quran/QuranPlacePicker'
+import QuranSearchBar from './quran/QuranSearchBar'
 import SectionHeader from './ui/SectionHeader'
 import SourceBadge from './ui/SourceBadge'
 import ArabicText from './ui/ArabicText'
@@ -34,14 +34,8 @@ import RecentRow from './ui/RecentRow'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import { CorrectedNote } from './ui/StatusNote'
 
-// "1:3" as another tab writes it. Anything else arriving is a root.
-const AYAH_REF = /^(\d+):(\d+)$/
-
-/** An ayah that is really in the Qur'an, so a mistyped one is never remembered. */
-const isAyah = ({ surah, ayah }) => ayah >= 1 && ayah <= (surahs[surah - 1]?.ayahs ?? 0)
-
 export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }) {
-  // What arrived from another tab, if it was an ayah address.
+  // What arrived from another tab, if it was an ayah address; anything else is a root.
   const address = AYAH_REF.exec(incoming ?? '')
   const arrived = address && { surah: Number(address[1]), ayah: Number(address[2]) }
 
@@ -95,14 +89,11 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
     setAt(arrived)
   }
 
-  useEffect(() => {
+  useArrivalEffect(arrival, () => {
     if (!incoming) return
     if (arrived) visit(arrived)
     else lookupRoot(incoming)
-    // `arrived` is derived from `incoming` on every render, so the address
-    // itself is the dependency worth naming; `visit` is new every render.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [arrival, incoming, lookupRoot])
+  })
   const runSearch = (text = query.trim()) => {
     setHeard(null)
     if (!text) return

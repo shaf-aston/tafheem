@@ -1,0 +1,70 @@
+{
+  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `prayer` = the step map. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
+  "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called. `surahs` (Quran): the surahs the items come from, in order.",
+  "worlds": [
+    {
+      "id": "words",
+      "name": "Words",
+      "arabic": "كلمات",
+      "scene": "The Meadow",
+      "idea": "Every word you learn is a seed planted.",
+      "live": true,
+      "kind": "lessons",
+      "unit": "words",
+      "lesson": { "new": 3, "most-new": 5, "size": 8, "bank": "quranic" },
+      "stages": [20, 50, 100, 200, 385]
+    },
+    {
+      "id": "prayer",
+      "name": "Prayer",
+      "arabic": "صلاة",
+      "scene": "The Courtyard",
+      "idea": "What you say in prayer, said right, step by step.",
+      "live": true,
+      "kind": "prayer"
+    },
+    {
+      "id": "quran",
+      "name": "Quran",
+      "arabic": "قرآن",
+      "scene": "The Night Sky",
+      "idea": "Each ayah you fill in lights a star.",
+      "live": true,
+      "kind": "lessons",
+      "view": "sky",
+      "unit": "ayat",
+      "lesson": { "new": 2, "most-new": 3, "size": 6 },
+      "surahs": [1, 112, 113, 114, 103, 108, 110, 109, 107, 106, 105],
+      "stages": [7, 15, 25, 40, 53]
+    },
+    {
+      "id": "hadith",
+      "name": "Hadith",
+      "arabic": "حديث",
+      "scene": "The Library",
+      "idea": "An-Nawawi's Forty, one hadith at a time.",
+      "live": true,
+      "kind": "lessons",
+      "view": "shelf",
+      "unit": "hadith",
+      "lesson": { "new": 1, "most-new": 2, "size": 4 },
+      "stages": [5, 10, 20, 30, 42]
+    },
+    {
+      "id": "sarf",
+      "name": "Sarf",
+      "arabic": "صرف",
+      "scene": "The Workshop",
+      "idea": "Build words from their roots and patterns.",
+      "live": false
+    },
+    {
+      "id": "nahw",
+      "name": "Nahw",
+      "arabic": "نحو",
+      "scene": "The Market",
+      "idea": "Find who does what in a sentence.",
+      "live": false
+    }
+  ]
+}

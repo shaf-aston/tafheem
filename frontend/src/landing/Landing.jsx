@@ -4,9 +4,8 @@ import Hero from './Hero.jsx'
 import SourcesMarquee from './SourcesMarquee.jsx'
 import StoryScroll from './StoryScroll.jsx'
 import FolioBand from './FolioBand.jsx'
-import SentenceDemo from './SentenceDemo.jsx'
 import ClipStrip from './ClipStrip.jsx'
-import Counters from './Counters.jsx'
+import Understand from './Understand.jsx'
 import Finale from './Finale.jsx'
 import Footer from './Footer.jsx'
 import CursorBlob from './CursorBlob.jsx'
@@ -19,9 +18,8 @@ export default function Landing() {
       <SourcesMarquee />
       <StoryScroll />
       <FolioBand />
-      <SentenceDemo />
       <ClipStrip />
-      <Counters />
+      <Understand />
       <Finale />
       <Footer />
     </main>

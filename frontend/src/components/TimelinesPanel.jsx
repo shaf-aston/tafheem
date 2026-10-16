@@ -6,8 +6,8 @@
  * of sections) and which event is read. Where each of those goes on the screen is lib/timelineLayout's job,
  * and what they say is the backend's.
  *
- * The place in the tab is written as "section/event", so ?tab=timelines&q=
- * seerah/hijrah opens that event, and the back arrow steps through the events
+ * The place in the tab is written as "section/event", so
+ * /app/timelines/seerah/hijrah opens that event, and the back arrow steps through the events
  * read rather than leaving the app.
  */
 import { useState } from 'react'
@@ -23,8 +23,8 @@ import ErrorAlert from './ui/ErrorAlert'
 import EmptyState from './ui/EmptyState'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 import StatusNote from './ui/StatusNote'
-import TimelineBoard from './TimelineBoard'
-import TimelineSection from './TimelineSection'
+import TimelineBoard from './timelines/TimelineBoard'
+import TimelineSection from './timelines/TimelineSection'
 
 const ALL = 'all'
 
@@ -46,7 +46,20 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
     setMissed(Boolean(incoming) && !asked)
   }
 
-  if (isPending) return <AnalyzerSkeleton />
+  // The header keeps its place while the library loads; the science filter has
+  // nothing to list yet, so it waits with only "All".
+  if (isPending) {
+    return (
+      <div className="panel">
+        <SectionHeader
+          title="Timelines"
+          arabic="التاريخ"
+          aside={<div inert><Segmented label="Science" options={[{ id: ALL, label: 'All' }]} value={ALL} onChange={() => {}} accent={accent} wrap /></div>}
+        />
+        <AnalyzerSkeleton />
+      </div>
+    )
+  }
 
   if (isError) {
     return (

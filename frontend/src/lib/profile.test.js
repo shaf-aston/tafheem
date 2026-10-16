@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getProfile, profileHeaders, readsProgress, setProfile } from './profile'
+import { getProfile, logInAs, logOut, profileHeaders } from './profile'
 
 describe('profileHeaders', () => {
   beforeEach(() => {
@@ -9,6 +9,7 @@ describe('profileHeaders', () => {
       getItem: (k) => (data.has(k) ? data.get(k) : null),
       setItem: (k, v) => data.set(k, String(v)),
     })
+    vi.stubGlobal('location', { reload: vi.fn() })
   })
   afterEach(() => vi.unstubAllGlobals())
 
@@ -17,7 +18,7 @@ describe('profileHeaders', () => {
   })
 
   it('sends the kept name, encoded so Arabic survives a header', () => {
-    setProfile('عائشة')
+    logInAs('عائشة')
     expect(getProfile()).toBe('عائشة')
     expect(profileHeaders()).toEqual({ 'X-Tafheem-Profile': encodeURIComponent('عائشة') })
   })
@@ -27,7 +28,12 @@ describe('profileHeaders', () => {
   })
 })
 
-it('refetches only queries that read progress', () => {
-  expect(readsProgress({ queryKey: ['quiz-review', 'en'] })).toBe(true)
-  expect(readsProgress({ queryKey: ['quran-surah', 1] })).toBe(false)
+it('logging out goes back to the guest record, reloaded', () => {
+  const data = new Map([['profile', 'amina']])
+  vi.stubGlobal('localStorage', { getItem: (k) => data.get(k) ?? null, removeItem: (k) => data.delete(k) })
+  vi.stubGlobal('location', { reload: vi.fn() })
+  logOut()
+  expect(profileHeaders()).toEqual({})
+  expect(location.reload).toHaveBeenCalledOnce()
+  vi.unstubAllGlobals()
 })

@@ -27,7 +27,7 @@ _ROWS = [
     ("bukhari", 1, 2, "", "كَيْفَ كَانَ بَدْءُ الْوَحْيِ", "How the revelation began"),
     ("bukhari", 2, 3, "", "الصَّلَاةُ نُورٌ وَالصَّدَقَةُ بُرْهَانٌ", "Prayer is light and charity is proof"),
 ]
-_BOOKS = [("bukhari", 1, "Revelation"), ("bukhari", 2, "Faith")]
+_BOOKS = [("bukhari", 1, "Revelation", "كتاب بدء الوحى"), ("bukhari", 2, "Faith", "")]
 _COLLECTIONS = [("bukhari", "Sahih al-Bukhari", "صحيح البخاري", "البخاري", "https://sunnah.com/bukhari:{number}")]
 
 
@@ -38,7 +38,7 @@ def db(tmp_path, monkeypatch):
     conn = sqlite3.connect(path)
     conn.executescript(_SCHEMA)
     conn.executemany("INSERT INTO collection (id, name, arabic, arabic_short, cite) VALUES (?, ?, ?, ?, ?)", _COLLECTIONS)
-    conn.executemany("INSERT INTO book (collection_id, number, name) VALUES (?, ?, ?)", _BOOKS)
+    conn.executemany("INSERT INTO book (collection_id, number, name, arabic) VALUES (?, ?, ?, ?)", _BOOKS)
     conn.executemany(
         "INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) VALUES (?, ?, ?, ?, ?, ?)",
         _ROWS,
@@ -64,8 +64,8 @@ def test_no_database_means_not_built(tmp_path, monkeypatch):
 def test_collections_and_books_are_listed(db):
     assert loader.collections() == [("bukhari", "Sahih al-Bukhari", "", "صحيح البخاري", "البخاري", False)]
     assert loader.books("bukhari") == [
-        {"number": 1, "name": "Revelation", "count": 2},
-        {"number": 2, "name": "Faith", "count": 1},
+        {"number": 1, "name": "Revelation", "arabic": "كتاب بدء الوحى", "count": 2},
+        {"number": 2, "name": "Faith", "arabic": "", "count": 1},
     ]
 
 
@@ -74,6 +74,22 @@ def test_hadiths_of_a_book_carry_their_cite_link(db):
     assert [h["number"] for h in found] == [1, 2]
     assert found[0]["cite"] == "https://sunnah.com/bukhari:1"
     assert found[0]["arabic"].startswith("إِنَّمَا")
+
+
+def test_hadiths_of_a_book_carry_their_place_in_it(db):
+    conn = sqlite3.connect(db)
+    conn.execute("UPDATE hadith SET in_book = number")
+    conn.commit()
+    conn.close()
+    assert [h["in_book"] for h in loader.hadiths("bukhari", 1)] == [1, 2]
+
+
+def test_a_build_from_before_the_place_was_kept_still_reads(db):
+    conn = sqlite3.connect(db)
+    conn.execute("ALTER TABLE hadith DROP COLUMN in_book")
+    conn.commit()
+    conn.close()
+    assert [h["in_book"] for h in loader.hadiths("bukhari", 1)] == [0, 0]
 
 
 def test_an_unknown_book_is_empty_not_an_error(db):
@@ -144,8 +160,19 @@ def test_router_returns_a_books_hadiths(db, client):
     resp = client.get("/api/hadith/bukhari/books/2")
     assert resp.status_code == 200
     body = resp.json()
-    assert body["book"] == {"number": 2, "name": "Faith", "count": 1}
+    assert body["book"] == {"number": 2, "name": "Faith", "arabic": "", "count": 1}
     assert body["hadiths"][0]["arabic"].startswith("الصَّلَاةُ")
+
+
+def test_a_books_hadith_carries_where_its_chain_is_cut(db, client):
+    chained = "حَدَّثَنَا مُحَمَّدٌ، عَنْ عَائِشَةَ، قَالَتْ إِنَّ الصَّلَاةَ نُورٌ"
+    with sqlite3.connect(db) as conn:
+        conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
+                     "VALUES ('bukhari', 2, 9, '', ?, '')", (chained,))
+    by_number = {h["number"]: h for h in client.get("/api/hadith/bukhari/books/2").json()["hadiths"]}
+    teller_at, body_at = by_number[9]["cut"]
+    assert chained[body_at:].startswith("قَالَتْ") and chained[teller_at:].startswith("عَنْ عَائِشَةَ")
+    assert by_number[3]["cut"] is None
 
 
 def test_router_search(db, client):
@@ -246,7 +273,7 @@ def test_a_name_is_not_the_word_it_spells(db):
 def test_router_search_reports_corrections_and_chapters(db, client):
     body = client.get("/api/hadith/search", params={"q": "chairty"}).json()
     assert body["corrected"] == [{"typed": "chairty", "used": "charity"}]
-    assert body["chapters"] == [{"collection": "bukhari", "number": 2, "name": "Faith", "count": 1}]
+    assert body["chapters"] == [{"collection": "bukhari", "number": 2, "name": "Faith", "arabic": "", "count": 1}]
 
 
 def test_ta_marbuta_typed_as_ha_is_the_same_word(db):

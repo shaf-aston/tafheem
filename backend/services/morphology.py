@@ -17,10 +17,10 @@ import logging
 import re
 from typing import Any
 
-from backend.services.arabic_text import HAS_PYARABIC, has_arabic, shown_root, strip_diacritics, words
+from backend.services.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services import verb_reader
-from backend.services.nahw_book import is_one
-from backend.services.harakat import CAMEL_CASE, CASE_NAME, TANWEEN, base_of, best_reading, weak_last, moved_for_wasl, paused, typed_case
+from backend.services.nahw_book import is_mabni, is_one, six_noun_case
+from backend.services.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -154,29 +154,46 @@ def _bw_to_ar(bw: str) -> str:
     return "".join(_BW_MAP.get(c, c) for c in bw)
 
 
-def root_in_arabic(root: str) -> str:
-    """'ktb' → 'كتب'  (handles already-Arabic roots too).
+# The tags whose # is settled to a root. A particle or pronoun CAMeL files with a
+# # (إنّ as verb_pseudo, الذي, سوف) has no root a reader is looking for.
+ROOTED_POS = {"verb", "noun", "noun_prop", "adj"}
 
-    The radicals used to be joined with hyphens, which read as three letters
-    rather than a word. It was decoration, never data: the same string is what
-    the Define and In-the-Qur'an buttons search with, and "ك-ت-ب" is not a word
-    any index holds, so a root was unsearchable the moment it was shown.
 
-    The morphology database writes ``#`` for a radical it cannot pin down
-    (typically an elided weak letter). Showing that to a reader is a guess
-    dressed as an answer, so an incomplete root is reported as no root.
+def root_pattern(root: str) -> str:
+    """CAMeL's root in Arabic letters, keeping its # for a radical it could not pin down; "" for none.
 
-    Particles carry the placeholder ``NTWS`` instead of a root. Mapped letter
-    by letter it came out as "NطWص" on the Nahw table, so a root is only
-    Buckwalter-converted when it is wholly Buckwalter, and shown_root drops
-    anything that still holds a code letter afterwards.
+    'ktb' and 'ك-ت-ب' both give كتب. Particles carry the placeholder NTWS
+    instead of a root; mapped letter by letter it came out as "NطWص", so a root
+    is only Buckwalter-converted when it is wholly Buckwalter.
     """
-    if not root or root in _NO_ROOT or _UNKNOWN_RADICAL in root:
+    if not root or root in _NO_ROOT:
         return ""
     clean = root.replace("-", "").replace(".", "").strip()
-    if not has_arabic(clean) and _BUCKWALTER_RE.fullmatch(clean):
-        clean = "".join(_bw_to_ar(c) for c in clean)
-    return shown_root(clean)
+    if not has_arabic(clean):
+        if not _BUCKWALTER_RE.fullmatch(clean.replace(_UNKNOWN_RADICAL, "")):
+            return ""
+        clean = "".join(c if c == _UNKNOWN_RADICAL else _bw_to_ar(c) for c in clean)
+    return clean
+
+
+def root_in_arabic(root: str, lemma: str = "") -> str:
+    """'ktb' → 'كتب', a root as every tab shows and searches it.
+
+    The radicals used to be joined with hyphens, which read as three letters
+    rather than a word: "ك-ت-ب" is not a word any index holds, so a root was
+    unsearchable the moment it was shown.
+
+    A # (typically an elided weak letter, ق#ل for قالوا) is settled by
+    services/roots.py against the roots the books really file, `lemma`
+    choosing between two that fit; one no book files stays no root, never a
+    guess dressed as an answer. Without a lemma it is not settled.
+    """
+    pattern = root_pattern(root)
+    if _UNKNOWN_RADICAL in pattern and lemma:
+        from backend.services import roots  # it reads with this module
+
+        pattern = roots.settle(pattern, lemma)
+    return shown_root(pattern)
 
 
 def _build_features(a: dict) -> str:
@@ -224,7 +241,7 @@ def _as_command(word: str, a: dict, before: str, after: str) -> dict:
     if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop"):
         return a
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
-    root = root_in_arabic(a.get("root") or "")
+    root = root_in_arabic(a.get("root") or "", a.get("lex") or "")  # a verb or a noun, so rooted
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
     cell = verb_reader.command(word, governed, root) or verb_reader.command(paused(word, after), governed, root)
     if cell is None:
@@ -242,15 +259,14 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
     pos = (a.get("pos") or "").lower()
     word_type = _pos_type(pos)
     # A harf has no root in nahw; CAMeL still files one for لم and its kind.
-    root_ar = "" if word_type == "harf" else root_in_arabic(a.get("root") or "")
+    root_ar = "" if word_type == "harf" else root_in_arabic(a.get("root") or "", (a.get("lex") or "") if pos in ROOTED_POS else "")
 
     lex = a.get("lex") or a.get("diac") or word
     lemma = strip_diacritics(lex)
 
     cas = a.get("cas", "na") or "na"
-    # A past or imperative verb is mabni: its last vowel is not a case.
-    mabni = pos == "verb" and a.get("asp") in ("p", "c")
-    case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if mabni else CASE_NAME.get(typed_case(word)))
+    # A built word (a past verb, a pronoun) has no case: its last vowel is not one.
+    case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if is_mabni(pos, a.get("asp"), base_of(word, a.get("atbtok"))) else CASE_NAME.get(typed_case(word)))
 
     return {
         "word": word,
@@ -342,20 +358,15 @@ def _handle_exact_match(word: str, exact: list[dict]) -> dict:
     ):
         return part
 
-    if word.endswith(_FATHA):
-        if verb := next(
-            (
-                a
-                for a in exact
-                if (a.get("pos") or "").lower() == "verb"
-                and (a.get("asp") or "") == "p"
-            ),
-            None,
-        ):
-            return verb
+    if word.endswith(_FATHA) and (verb := _perfect_verb(exact)):
+        return verb
 
     noun = _find_by_pos_preference(exact, ("noun_prop", "noun", "adj", "verb"))
     return noun or exact[0]
+
+
+def _perfect_verb(items: list[dict]) -> dict | None:
+    return next((a for a in items if (a.get("pos") or "").lower() == "verb" and (a.get("asp") or "") == "p"), None)
 
 
 def _handle_tanwin_bias(items: list[dict]) -> dict | None:
@@ -371,12 +382,7 @@ def _handle_fatha_bias(items: list[dict]) -> dict | None:
     ]:
         return parts[0]
 
-    verbs = [
-        a
-        for a in items
-        if (a.get("pos") or "").lower() == "verb" and (a.get("asp") or "") == "p"
-    ]
-    return verbs[0] if verbs else None
+    return _perfect_verb(items)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -394,6 +400,50 @@ def _analyze_word_camel_only(word: str) -> dict[str, Any] | None:
         return None
     best = _pick_best_analysis(word, analyses)
     return None if best is None else _analysis_dict_from_camel(word, best)
+
+
+def readings(word: str) -> list[tuple[str, str]]:
+    """Every way `word` can be read alone, as (lemma, root) pairs, likeliest first.
+
+    For looking a word up rather than parsing it, so nothing is chosen away: a
+    dictionary shows فَرّ (flee) and فَرْو (fur) for فروا and lets the reader see
+    which. The root keeps CAMeL's # for a weak radical it could not pin down
+    (ق#ل for قالوا): services/roots.py settles it, knowing which roots are real. A harf has no root. Without CAMeL, the lemma alone.
+    """
+    word = word.strip()
+    if not word or not has_arabic(word):
+        return []
+    if _camel_analyzer is None:
+        return [(_analyze_qalsadi(word)["lemma"], "")] if _QALSADI_AVAILABLE else []
+    try:
+        analyses = _camel_analyzer.analyze(word)
+    except Exception as exc:
+        logger.debug("CAMeL analyze error for '%s': %s", word, exc)
+        return []
+    # The typed vowels choose first, as they do for a sentence; the readings they allow come
+    # next, then the rest by how many typed marks they share: CAMeL has no command فِرُّوا,
+    # and the shadda typed on its ر is what puts فَرّ (flee) before فَرْو (fur).
+    best = best_reading(word, analyses) or _pick_best_analysis(word, analyses)
+    typed = letters(word)
+
+    def shared(a: dict) -> int:
+        return sum(len(mine & theirs) for (_, mine), (_, theirs) in zip(typed, letters(a.get("diac", ""))))
+
+    if not any(marks for _, marks in typed):
+        ranked = analyses
+    else:
+        ranked = sorted(analyses, key=lambda a: (vowel_agreement(word, a.get("diac", "")) is None, -shared(a)))
+        best = best if best is not None and vowel_agreement(word, best.get("diac", "")) is not None else None
+    out: list[tuple[str, str]] = []
+    for a in ([best] if best else []) + ranked:
+        pos = (a.get("pos") or "").lower()
+        root = "" if _pos_type(pos) == "harf" else root_pattern(a.get("root") or "")
+        if _UNKNOWN_RADICAL in root and pos not in ROOTED_POS:
+            root = ""
+        reading = (strip_diacritics(a.get("lex") or ""), root)
+        if reading[0] and reading not in out:
+            out.append(reading)
+    return out
 
 
 def glosses_of(word: str) -> list[str]:
@@ -473,51 +523,75 @@ def analyze_word(word: str) -> dict[str, Any]:
     return _analyze_qalsadi(word) if _QALSADI_AVAILABLE else _analyze_bare(word)
 
 
-def _analyze_sentence_camel_mle(tokens: list[str]) -> list[dict[str, Any]] | None:
-    """
-    Sentence-level analysis: neighbouring words decide each word's reading.
+def _reading(word: str, readings: list[dict]) -> dict:
+    """The best reading of a word that does not contradict its typed vowels.
 
-    Evidence order per token: a fully-diacritised input matches exactly one
-    analysis and settles it outright; otherwise the disambiguator's own ranking
-    decides, so no fixed part-of-speech preference is imposed here.
+    The disambiguator reads bare letters, so its favourite may not be the word
+    written. The typed vowels win: the reading sharing most of them is used
+    (harakat.best_reading), never the guessed proper noun. When no real reading
+    agrees the favourite is kept; naming still reads the vowels (a passive بُعْثِرَ).
     """
-    if _camel_mle is None:
-        return None
-    try:
-        disambiguated = _camel_mle.disambiguate(tokens)
-    except Exception as exc:
-        logger.debug("CAMeL MLE disambiguation failed: %s", exc)
-        return None
+    if not readings:
+        return {}
+    real = [r for r in readings if NO_ANALYSIS not in r.get("atbtok", "")]
+    verbs = [r for r in readings
+             if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
+    if past_passive_shape(word) and verbs:
+        return verbs[0]
+    return best_reading(word, real) or readings[0]
 
-    out: list[dict[str, Any]] = []
-    for i, (token, word_disambig) in enumerate(zip(tokens, disambiguated)):
-        ranked = [scored.analysis for scored in word_disambig.analyses]
-        if not ranked:
-            out.append(_analyze_bare(token))
-            continue
-        before = strip_diacritics(tokens[i - 1]) if i else ""
-        after = tokens[i + 1] if i + 1 < len(tokens) else ""
+
+def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:
+    """Each word's CAMeL readings, best first, from the disambiguator (BERT) and, if it fails,
+    the MLE; None when neither reads."""
+    for engine in filter(None, (disambiguator, _camel_mle)):
+        try:
+            return [[scored.analysis for scored in word.analyses] for word in engine.disambiguate(tokens)]
+        except Exception as exc:
+            logger.warning("CAMeL disambiguation failed: %s", exc)
+    return None
+
+
+def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
+    """One raw CAMeL reading per word ({} where none is read), shared by the cards and
+    the parser. Neighbours rank the readings (MLE, or the parser's BERT), the typed vowels choose."""
+    if (all_ranked := _ranked(tokens, disambiguator)) is None:
+        return [{} for _ in tokens]
+
+    steps = []  # each word's vowels as evidence, and its ranked readings
+    for token, ranked, after in zip(tokens, all_ranked, [*tokens[1:], ""], strict=True):
         # a kasra that may be a moved sukun is no evidence for the reading
         evidence = token[:-1] if moved_for_wasl(token, after) else token
-        out.append(_analysis_dict_from_camel(token, best_reading(evidence, ranked) or ranked[0], before, after))
+        if unread(ranked) and (twin := verb_reader.known_as(token)) and (twin_ranked := _ranked([twin], disambiguator)):
+            # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
+            ranked, evidence = twin_ranked[0], twin
+            if unread(ranked) and (sarf := verb_reader.reading_of(token)):
+                # يَسْتَعْتِبُوا: the dictionary has not even the table's spelling, so the table's reading is the word's
+                ranked = [{**sarf, "diac": twin, "lex": twin}]
+        steps.append((evidence, ranked))
+    out = [_reading(*step) for step in steps]
+    # a noun already joined to "my" takes no second mudaf ilayh: before a genitive noun
+    # أَبِي is the six nouns' jarr (أَبِي الطَّبِيبِ), not "my father"
+    for i in range(len(out) - 1):
+        if out[i].get("enc0") == "1s_poss" and out[i + 1].get("pos") == "noun" and out[i + 1].get("cas") == "g":
+            word, ranked = steps[i]
+            out[i] = best_reading(word, [r for r in ranked if r.get("enc0") != "1s_poss"
+                                         and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
     return out
 
 
-def analyze_sentence(sentence: str) -> list[dict[str, Any]]:
-    """
-    Tokenise and morphologically analyse a sentence.
-
-    Uses sentence context (MLE disambiguator) when available, falling back to
-    independent word-level analysis when it is not.
-    """
+def analyze_sentence(sentence: str, picks: list[dict] | None = None) -> list[dict[str, Any]]:
+    """Tokenise and analyse a sentence from `picks` (see `pick`; read here by MLE when
+    absent), falling back to word-level analysis when CAMeL gives none."""
     tokens = words(sentence)
     if not tokens:
         return []
 
     if _CAMEL_AVAILABLE:
-        if result := _analyze_sentence_camel_mle(tokens):
-            return result
-        return [analyze_word(t) for t in tokens]
+        picks = picks or pick(tokens)
+        before = ["", *map(strip_diacritics, tokens[:-1])]
+        return [_analysis_dict_from_camel(t, a, b, n) if a else analyze_word(t)
+                for t, a, b, n in zip(tokens, picks, before, [*tokens[1:], ""], strict=True)]
 
     if _QALSADI_AVAILABLE:
         return [_analyze_qalsadi(t) for t in tokens]

@@ -1,5 +1,25 @@
 {
   "_comment": "Every colour, timing and size knob in the UI lives here. Nothing visual is hard-coded in a component. Edit this file, reload, done.",
+  "palette": {
+    "_comment": "The colours the app is drawn from, named once. Tab, role, pos, unit, science and the tones all point here as \"@name\", so a new look is these lines and nothing else. Each is written as --palette-<name>; a token that points at one is written as var(--palette-<name>), so it follows a palette swap on the page, not only at build.",
+    "violet": "#a78bfa",
+    "violet-hi": "#c4b5fd",
+    "rose": "#fb7185",
+    "teal": "#5eead4",
+    "amber": "#fbbf24",
+    "pink": "#f472b6",
+    "sky": "#38bdf8",
+    "green": "#4ade80",
+    "orange": "#fb923c",
+    "slate": "#94a3b8",
+    "blue": "#93c5fd",
+    "cream": "#f2e7d3",
+    "lime": "#a3e635",
+    "fuchsia": "#e879f9",
+    "blue-deep": "#60a5fa",
+    "orange-deep": "#f97316",
+    "lilac": "#d8b4fe"
+  },
   "color": {
     "bg": "#0c1018",
     "bg-glow": "#161d2b",
@@ -10,37 +30,57 @@
     "text": "#e7ecf5",
     "text-dim": "#9aa7bd",
     "text-faint": "#808da3",
-    "primary": "#a78bfa",
-    "primary-hi": "#c4b5fd",
-    "danger": "#fb7185",
-    "success": "#5eead4",
-    "warn": "#fbbf24"
+    "primary": "@violet",
+    "primary-hi": "@violet-hi",
+    "danger": "@rose",
+    "success": "@teal",
+    "warn": "@amber"
   },
   "unit": {
     "_comment": "Colloquial unit cards cycle through these; a unit's number picks one, so the same unit keeps its colour.",
-    "0": "#fb923c", "1": "#5eead4", "2": "#a78bfa", "3": "#fbbf24",
-    "4": "#f472b6", "5": "#38bdf8", "6": "#4ade80", "7": "#fb7185"
+    "0": "@orange", "1": "@teal", "2": "@violet", "3": "@amber",
+    "4": "@pink", "5": "@sky", "6": "@green", "7": "@rose"
+  },
+  "world": {
+    "_comment": "Grow world colours (worlds.json ids). colorFor('world', id).",
+    "words": "@green",
+    "prayer": "@teal",
+    "quran": "@sky",
+    "hadith": "@amber",
+    "sarf": "@violet",
+    "nahw": "@rose",
+    "default": "@lime"
+  },
+  "sky": {
+    "_comment": "Grow's Night Sky (components/grow/scenes/Sky.jsx): dark navy in every look, since it is a night, not a surface. bg and edge the card, line joins the known stars, text its caption; star-on a known ayah, star-learning one met but not known yet, star-off one not met.",
+    "bg": "#0b1230",
+    "edge": "#1b2650",
+    "line": "#5b6fa8",
+    "text": "#cfd8f0",
+    "star-on": "#fff3b0",
+    "star-learning": "#b08d3a",
+    "star-off": "#5a6a8f"
   },
   "tab": {
-    "nahw": "#a78bfa",
-    "quran": "#5eead4",
-    "mem": "#93c5fd",
-    "sarf": "#fb7185",
-    "dict": "#fbbf24",
-    "quiz": "#f472b6",
-    "timelines": "#38bdf8",
-    "dawah": "#e879f9",
-    "daleel": "#4ade80",
-    "hadith": "#f2e7d3",
-    "colloq": "#fb923c",
-    "grow": "#a3e635",
+    "nahw": "@violet",
+    "quran": "@teal",
+    "mem": "@blue",
+    "sarf": "@rose",
+    "dict": "@amber",
+    "quiz": "@pink",
+    "timelines": "@sky",
+    "dawah": "@fuchsia",
+    "daleel": "@green",
+    "hadith": "@cream",
+    "colloq": "@orange",
+    "grow": "@lime",
     "_comment": "default is what an unknown id wears, the primary purple, so colorFor('tab', id) is the one rule for tab colour everywhere.",
-    "default": "#a78bfa"
+    "default": "@violet"
   },
   "science": {
-    "_comment": "Card colour of each map science (ui/MapPanel), keyed by chart id. One hue each, all readable on the raised surface, borrowed from the tab palette.",
-    "01": "#fbbf24", "02": "#fb923c", "03": "#fb7185", "04": "#5eead4", "05": "#4ade80",
-    "06": "#38bdf8", "07": "#a78bfa", "08": "#93c5fd", "09": "#f472b6"
+    "_comment": "Card colour of each map science (shell/MapPanel), keyed by chart id. One hue each, all readable on the raised surface, borrowed from the tab palette.",
+    "01": "@amber", "02": "@orange", "03": "@rose", "04": "@teal", "05": "@green",
+    "06": "@sky", "07": "@violet", "08": "@blue", "09": "@pink"
   },
   "space": {
     "_comment": "Gaps shared across tabs. panel is the gap between the blocks of every tab, header included (the .panel class). card and tile are the insides of .card and .card-tile.",
@@ -60,7 +100,7 @@
     "tip": 60
   },
   "backdrop": {
-    "_comment": "The faint seal behind a tab (ui/QuranSeal). ink is its colour, strength how much of it shows (wide: once a search fills the page); a light theme changes these two only.",
+    "_comment": "The faint seal behind a tab (quran/QuranSeal). ink is its colour, strength how much of it shows (wide: once a search fills the page); a light theme changes these two only.",
     "ink": "var(--text)",
     "strength": "9%",
     "strength-hover": "19%",
@@ -68,7 +108,7 @@
     "glow": "10px"
   },
   "lights": {
-    "_comment": "The lantern backdrop: soft out-of-focus lights drifting slowly on a dark warm ground, behind every tab. count is how many lights, size-min-px and size-max-px how wide the smallest and largest are, speed how far one drifts per frame at motion.scale 1 (so the Animations setting slows it, and 0 stops it), alpha how bright a light is at its middle. tint is the share of lights that wear the tab's own colour instead of one of the warm lights, so the tab changes the room without painting it. Kept faint on purpose: the words on top are the point, and lights that compete with them are a distraction rather than a mood. ground-top and ground-bottom are the dark the lights float on. colors is the warm lights, comma separated, that the rest of the lights are drawn from.",
+    "_comment": "The lantern backdrop: soft out-of-focus lights drifting slowly on a dark warm ground, behind every tab. count is how many lights, size-min-px and size-max-px how wide the smallest and largest are, speed how far one drifts per frame at motion.scale 1 (so the Animations setting slows it, and 0 stops it), alpha how bright a light is at its middle. tint is the share of lights that wear the tab's own colour instead of one of the warm lights, so the tab changes the room without painting it. Kept faint on purpose: the words on top are the point, and lights that compete with them are a distraction rather than a mood. ground-top and ground-bottom are the dark the lights float on. colors is the warm lights, comma separated, that the rest of the lights are drawn from. blend is how a light meets the ground: lighter adds glow to a dark ground, multiply stains a light one.",
     "count": 34,
     "size-min-px": 30,
     "size-max-px": 110,
@@ -77,6 +117,7 @@
     "tint": 0.25,
     "ground-top": "#120f0d",
     "ground-bottom": "#0c0a09",
+    "blend": "lighter",
     "colors": "#e9b85a,#c0563a,#6b8fb8,#8a6b3a"
   },
   "marks": {
@@ -104,42 +145,42 @@
     "acc-s": "52%",
     "acc-l": "66%",
     "ink-l": "80%",
-    "map-land": "#1c2434",
+    "map-land": "var(--surface-hi)",
     "map-water": "#0f2c38"
   },
   "cursor-light": {
-    "_comment": "The cursor light: one faint circle that follows the pointer on every tab, tinted by the tab's own colour, so the page points at what is being read without a word of instruction. size-px is how wide it reaches, white how much white sits in the middle, and tint how much of the tab's colour bleeds out from it. Small and faint on purpose: at full strength it reads as a torch and the text under it stops being the point. The Animations setting turns it off with everything else.",
+    "_comment": "The cursor light: one faint circle that follows the pointer on every tab, tinted by the tab's own colour, so the page points at what is being read without a word of instruction. size-px is how wide it reaches, white how much of the page's text colour (white on dark, ink on light) sits in the middle, and tint how much of the tab's colour bleeds out from it. Small and faint on purpose: at full strength it reads as a torch and the text under it stops being the point. The Animations setting turns it off with everything else.",
     "size-px": 210,
     "white": "2%",
     "tint": "3%"
   },
   "tamreen": {
     "_comment": "The two underline colours on a Tamreen picture question: blue for a possible حال, green for a possible ذو الحال. Their own group, not 'role', because they mark a candidate in the picture rather than a settled grammatical role.",
-    "haal": "#60a5fa",
-    "zulhaal": "#4ade80"
+    "haal": "@blue-deep",
+    "zulhaal": "@green"
   },
   "role": {
-    "mubtada": "#5eead4",
-    "khabar": "#fb7185",
-    "fail": "#5eead4",
-    "mafool": "#fb7185",
-    "harf": "#fbbf24",
-    "sifah": "#a78bfa",
-    "haal": "#a78bfa",
-    "mudaf": "#f472b6",
-    "fil": "#c4b5fd",
-    "mansub": "#f97316",
-    "tabi": "#a3e635",
-    "rel": "#d8b4fe",
-    "gap": "#94a3b8",
-    "ghair_aamil": "#38bdf8",
-    "default": "#94a3b8"
+    "mubtada": "@teal",
+    "khabar": "@rose",
+    "fail": "@teal",
+    "mafool": "@rose",
+    "harf": "@amber",
+    "sifah": "@violet",
+    "haal": "@violet",
+    "mudaf": "@pink",
+    "fil": "@violet-hi",
+    "mansub": "@orange-deep",
+    "tabi": "@lime",
+    "rel": "@lilac",
+    "gap": "@slate",
+    "ghair_aamil": "@sky",
+    "default": "@slate"
   },
   "pos": {
-    "V": "#a78bfa",
-    "N": "#5eead4",
-    "P": "#fbbf24",
-    "default": "#94a3b8"
+    "V": "@violet",
+    "N": "@teal",
+    "P": "@amber",
+    "default": "@slate"
   },
   "mic": {
     "_comment": "The capsule microphone, the mark that means dictation: capsule, three grille slits, cradle arc, stem. weight is the stroke on the mark's own 24-grid, so it scales with wherever it is drawn. pulse-ms is one beat of the grille level-meter while recording; hover-pulse-ms is that same beat run slowly on hover, a preview of what pressing does. chase-ms is one lap of the arc's chasing dash while thinking.",
@@ -178,37 +219,44 @@
     "scale": 1,
     "_glide_comment": "How many screens away a scroll may glide; further jumps go straight there, since a long smooth scroll stops partway (Go to # in a 300-hadith book landed 9,600px short).",
     "glide-screens": 2,
+    "_hold_comment": "A link to one card keeps it at the top while what is above it is still arriving (names, folds), until the reader scrolls or touches, or hold-ms passes. Without it a deep link to Muslim 2927 left the card 4,000px below the screen.",
+    "hold-ms": 6000,
     "instant-ms": 120,
-    "base-ms": 220,
-    "spring-ms": 420,
+    "_arrive_comment": "What a tap brings in is already there on its first frame: arrivals start at this opacity, never 0, so motion polishes the change rather than holding it back. With 0 a new tab or answer read as nothing for most of base-ms, the lag felt on every tap.",
+    "arrive-from": 0.6,
+    "base-ms": 150,
+    "spring-ms": 300,
     "stagger-ms": 25,
+    "_shake_comment": "How long a wrong answer shakes its head. The .shake class in styles/motion.css lasts this long, and the code that clears a shaking tile after it waits this long too, so the two cannot drift apart.",
+    "shake-ms": 330,
     "spring-ease": "cubic-bezier(.34,1.56,.64,1)",
+    "_slide_comment": "A step sideways: the next page, or a strip arriving from the edge, and the same step back as it leaves. slide-px is how far it travels, slide-ease how it settles.",
+    "slide-px": 40,
+    "slide-ease": "cubic-bezier(.2,.8,.2,1)",
     "_patience_comment": "Not an animation: how a wait is announced. Nothing is said for the first patience-ms, because an answer that arrives sooner than that has arrived at once as far as the eye is concerned, and a spinner shown and taken away inside a fifth of a second reads as a flash rather than as news. Once something has been said it stays for patience-hold-ms, so an answer landing just after the wait was announced does not snatch it away again. Read in JavaScript by lib/useSlowPending.js, not by the stylesheet, so the Animations setting leaves it alone.",
     "patience-ms": 250,
     "patience-hold-ms": 400
   },
   "landing": {
-    "_comment": "The welcome page's one vertical rhythm: the top and bottom breathing room of every section (hero, manuscript band, tools, shift, finale). Fluid between 64px on a phone and 112px on a wide screen. Change it here and every section moves together.",
+    "_comment": "The welcome page's one vertical rhythm: the top and bottom breathing room of every section (hero, manuscript band, tools, finale). Fluid between 64px on a phone and 112px on a wide screen. Change it here and every section moves together.",
     "section-pad": "clamp(64px, 8vw, 112px)",
-    "_band_comment": "The slim strips between big sections (the trusted-sources banner). Small on purpose, so the strip sits snug against the section above and below it instead of floating in space.",
+    "_band_comment": "The slim strips between big sections (the trusted-sources banner, the understand band). Small on purpose, so the strip sits snug against the section above and below it instead of floating in space.",
     "band-pad": "clamp(20px, 2.4vw, 32px)",
     "_gutter_comment": "The side margin every landing section shares, so text and cards line up down the whole page instead of each section picking its own.",
     "gutter": "1.25rem",
-    "_tree_comment": "How far the sentence-demo tree is shrunk to fit. tree-zoom-tablet is used under 1100px wide, tree-zoom-narrow under 820px, tree-zoom-phone under 600px. Below about 0.5 the labels stop being readable, so on a phone the tree keeps a readable size and the page scroll pans it sideways inside its frame instead.",
-    "tree-zoom-tablet": "0.68",
-    "tree-zoom-narrow": "0.6",
-    "tree-zoom-phone": "0.72",
-    "_size_comment": "Fixed sizes that used to sit in the stylesheet. strip-w and strip-h are one tool card in the scroll strip; sd-min-h is the shortest the sentence-demo frame gets; arch-max-w is the hero video frame when it stacks; edge is the gap from the pinned demo's top and bottom to its label and caption.",
+    "_size_comment": "Fixed sizes that used to sit in the stylesheet. strip-w and strip-h are one tool card in the scroll strip.",
     "strip-w": "280px",
     "strip-h": "380px",
-    "sd-min-h": "clamp(220px, 40svh, 340px)",
-    "_phone_comment": "Phone only. sd-phone-start is how much of the screen (in percent, a bare number) the sentence-demo card fills before the reader scrolls, so it can grow to the full screen instead of being full already. strip-w-sm and strip-aspect size a tool card in the strip on a phone: nearly the screen wide, and the same shape as the recordings (16 by 10) so the whole screen shows instead of a cropped slice.",
-    "sd-phone-start": "66",
+    "_phone_comment": "Phone only. strip-w-sm and strip-aspect size a tool card in the strip on a phone: nearly the screen wide, and the same shape as the recordings (16 by 10) so the whole screen shows instead of a cropped slice.",
     "strip-w-sm": "min(86vw, 22rem)",
     "strip-aspect": "16 / 10",
-    "arch-max-w": "420px",
-    "edge": "3rem",
-    "_story_comment": "The scroll story: four demo steps on one centred stage. story-track-h is how much scrolling the whole story takes (about a screen per step), story-col-w the width of the column, story-stage-h the stage (story-stage-h-sm on a phone). story-panel-bg is the dark glass each demo sits on, story-panel-r its corner. step-dim is how faint the steps not yet reached are in the pill row. star-size is the turning geometric star behind the stage, star-turn how far it has turned by the end, star-opacity how strong its lines are. wave-ms is one swell of the recitation waveform, wave-bars how many bars it has, cap-w the widest a caption gets.",
+    "_hero_comment": "The hero keeps its own, smaller top and bottom room instead of section-pad. hero-h is how tall it is: a whole screen on a short one, but never taller than the diagram needs, so a big monitor does not stretch it into empty space (hero-h-sm on a phone, where the copy sits above the diagram and wants the whole screen). hero-title is the headline, sized to stand level with the diagram beside it (hero-title-sm on a phone).",
+    "hero-pad": "clamp(1.25rem, 4vh, 3rem)",
+    "hero-h": "min(100svh, 44rem)",
+    "hero-h-sm": "100svh",
+    "hero-title": "clamp(2.4rem, 4.5vw, 4.1rem)",
+    "hero-title-sm": "clamp(2rem, 9vw, 3rem)",
+    "_story_comment": "The scroll story: four demo steps on one centred stage. story-track-h is how much scrolling the whole story takes (about a screen per step), story-col-w the width of the column, story-stage-h the least height of the stage, which grows to fit its tallest panel (story-stage-h-sm on a phone). story-panel-bg is the dark glass each demo sits on, story-panel-r its corner. step-dim is how faint the steps not yet reached are in the pill row. star-size is the turning geometric star behind the stage, star-turn how far it has turned by the end, star-opacity how strong its lines are. wave-ms is one swell of the recitation waveform, wave-bars how many bars it has, cap-w the widest a caption gets.",
     "story-track-h": "480svh",
     "story-col-w": "860px",
     "story-stage-h": "min(500px, 60svh)",
@@ -235,10 +283,15 @@
     "pan-dim": "0.38",
     "pan-tick-w": "1.6rem",
     "pan-fade": "14%",
-    "_finale_comment": "The closing section. finale-mark-size is the outlined Tafheem wordmark, finale-rise is how many pixels the wordmark climbs while the section scrolls in (the lines climb a third as far), finale-line-gap the space between the short lines.",
+    "_finale_comment": "The closing section. finale-mark-size is the outlined Tafheem wordmark, finale-rise is how many pixels the wordmark climbs while the section scrolls in.",
     "finale-mark-size": "clamp(4rem, 19vw, 15rem)",
     "finale-rise": "160",
-    "finale-line-gap": "0.4rem"
+    "_understand_comment": "The 'Are you ready to understand?' band: its letters start scattered and settle as it scrolls up, with three gold rings orbiting behind. understand-rings is the rings' size, understand-scatter how many pixels a letter can start from its place, understand-blur how blurred (px) a fully scattered letter is, understand-spin the seconds the quickest ring takes per turn (the others take a third and two thirds longer), understand-tilt the most the rings lean toward the pointer, in degrees.",
+    "understand-rings": "clamp(140px, 14vw, 170px)",
+    "understand-scatter": "520",
+    "understand-blur": "6",
+    "understand-spin": "9",
+    "understand-tilt": "25"
   },
   "layout": {
     "_comment": "How wide the page is allowed to get. Everything down the middle of the app reads this one number through the .shell class, so the header, the tab strip, the banner and the panels can never disagree about where the edges are. It is a maximum, not a width: on any screen narrower than this the page simply fills it, which is what keeps the phone view working.",
@@ -250,7 +303,13 @@
     "_tap_comment": "The least height a pill or link stands on a touch screen, where a finger needs more than a pointer does. styles/text.css applies it to .tap when the pointer is coarse; a mouse keeps the compact sizes.",
     "tap": "2.25rem",
     "_pane_comment": "How tall the Quran reader's two panes stand, the surah and the ayah being studied. Each scrolls on its own inside it, so the header, the ayat rail and the recitation bar never leave the screen.",
-    "pane": "min(70dvh, 46rem)"
+    "pane": "min(70dvh, 46rem)",
+    "_split_comment": "How tall the reader stands on a phone while an ayah is studied: the surah over the study, sharing it. Brought up under the top bar, it ends where the recitation bar and the tab bar begin.",
+    "split": "calc(100dvh - 7rem - var(--layout-nav) - env(safe-area-inset-bottom, 0px))",
+    "_nav_comment": "How tall the phone's tab bar stands, above the home indicator. The bar is drawn at exactly this and everything that sits clear of it reads the same number: the room kept under the page, the recitation bar resting on it, the reader's split. Left to its own contents the bar came out a few pixels short of the room kept for it, and the page showed through the slit.",
+    "nav": "4rem",
+    "_proof_comment": "The least width of the Nahw full table's proof column on a wide screen, so a rule and its book path read as lines, not a word to a line. A phone sets the proof on its own line under the row instead.",
+    "proof": "18rem"
   },
   "sheet": {
     "_comment": "How big a pop-up may get on a wide screen. Maximums, not widths: a phone stays full width. narrow is a short list of choices (settings, a Grow step), standard a pop-up with reading in it (the chain, a phrase, the word bank), wide a pop-up laid out in columns (the sections menu). tall is how much of the screen height any of them may take. narrator is the widest a name box grows in the chain drawing before it wraps.",
@@ -266,17 +325,20 @@
     "lg": "1.25rem"
   },
   "shadow": {
-    "_comment": "Depth, for the few things that float over the page rather than sit in it: a tooltip, a popover. Only one so far, on purpose, one lift reads as one layer.",
-    "pop": "0 6px 18px rgba(0, 0, 0, 0.45)"
+    "_comment": "Depth, for the few things that float over the page rather than sit in it. pop is a tooltip or popover, lift a card raised under the pointer, scrim the dim behind a modal. One of each, on purpose: one lift reads as one layer.",
+    "pop": "0 6px 18px rgba(0, 0, 0, 0.45)",
+    "lift": "0 14px 34px rgba(0, 0, 0, 0.35)",
+    "scrim": "rgb(0 0 0 / 60%)"
   },
   "arabic": {
-    "_comment": "One ladder for every piece of Arabic in the app, in rem. Smallest first; tiny, small, reading and display are ui/ArabicText's sizes: tiny is a name inside another name; small is a term or a table cell, and a name inside another name in the tarkeeb chart; term is a name read under its word in the chart; reading is Arabic being read: an ayah, a memorise page, a dictionary entry, chart is the sentence the tarkeeb chart is drawn under, read across a row of names rather than as a line; display is a word on its own, in a search box or as an answer. The diagram used to keep a ladder of its own, and then a rung of its own, and both times its words drifted a third bigger than the same sentence in the word cards under it. Anything Arabic picks a rung here; nothing sets a size of its own.",
+    "_comment": "One ladder for every piece of Arabic in the app, in rem. Smallest first; tiny, small, reading and display are ui/ArabicText's sizes: tiny is a name inside another name; small is a term or a table cell, and a name inside another name in the tarkeeb chart; term is a name read under its word in the chart; reading is Arabic being read: an ayah, a memorise page, a dictionary entry, chart is the sentence the tarkeeb chart is drawn under, read across a row of names rather than as a line; display is a word on its own, in a search box or as an answer; stage is the Arabic a whole page is built around, the words of the landing hero diagram, which have to stand clear of the names under them. The diagram used to keep a ladder of its own, and then a rung of its own, and both times its words drifted a third bigger than the same sentence in the word cards under it. Anything Arabic picks a rung here; nothing sets a size of its own.",
     "tiny-rem": 0.9,
     "small-rem": 1.05,
     "term-rem": 1.25,
     "reading-rem": 1.5,
     "chart-rem": 1.75,
     "display-rem": 2.4,
+    "stage-rem": 3,
     "line-height": 1.9,
     "input-line-height": 1.6
   },
@@ -286,11 +348,13 @@
   },
   "hadith": {
     "_comment": "The words of a hadith, printed under an event in the timelines. said is what was actually said, which the books mark with quote marks; told is the telling around it, the chain of narrators and what happened between the sayings, drawn back because it is read past rather than read; one step under text-faint, the darkest that still reads at 4.5:1 on the surface. lines is how much of one hadith shows before the rest waits behind Show the rest.",
-    "said": "#f2e7d3",
+    "said": "@cream",
     "told": "#76839a",
     "_way_comment": "The chain drawing colours the word between two narrators by how it was received: heard (سمعت، حدّثنا، أخبرنا) and loose (عن, which does not say how). The chain words guide wears the same two.",
     "heard": "#6cc495",
     "loose": "#e09a6a",
+    "_weak_comment": "The edge and rank numeral on a narrator in the chain drawing, and the filled step on a weak point's scale. One colour for every weak narrator: how weak is said by the rank and the words beside it, never by a shade.",
+    "weak": "@rose",
     "lines": "14",
     "stagger-cap": "5"
   },
@@ -312,6 +376,98 @@
     "display": "1.875rem"
   },
   "_tarkeeb_comment": "The diagram has no sizes of its own any more. Its sentence is the arabic 'chart' rung, its role names 'term', a name inside another name 'small', and its + signs the English type 'body' size. Depth still reads as size, the steps are just shared with the rest of the app instead of being a second private ladder. Its colours are the 'role' group.",
+  "pbs": {
+    "_comment": "The Map's science charts (lib/pbsData): each branch hue as bar (its line and title box), fill (a topic's tint) and text (a topic's label). Content colours, the same in every look; fill and text are a fixed pair, so no look overrides them.",
+    "teal-bar": "#0f766e", "teal-fill": "#ccfbf1", "teal-text": "#134e4a",
+    "rose-bar": "#be123c", "rose-fill": "#ffe4e6", "rose-text": "#881337",
+    "amber-bar": "#b45309", "amber-fill": "#fef3c7", "amber-text": "#78350f",
+    "violet-bar": "#6d28d9", "violet-fill": "#ede9fe", "violet-text": "#4c1d95",
+    "indigo-bar": "#4338ca", "indigo-fill": "#e0e7ff", "indigo-text": "#312e81",
+    "slate-bar": "#64748b", "slate-fill": "#e2e8f0", "slate-text": "#0f172a",
+    "sky-bar": "#0369a1", "sky-fill": "#e0f2fe", "sky-text": "#0c4a6e",
+    "slateDeep-bar": "#475569", "slateDeep-fill": "#f1f5f9", "slateDeep-text": "#1e293b",
+    "blue-bar": "#1d4ed8", "blue-fill": "#dbeafe", "blue-text": "#1e3a8a",
+    "emerald-bar": "#047857", "emerald-fill": "#d1fae5", "emerald-text": "#064e3b",
+    "orange-bar": "#c2410c", "orange-fill": "#ffedd5", "orange-text": "#7c2d12",
+    "cyan-bar": "#0e7490", "cyan-fill": "#cffafe", "cyan-text": "#164e63"
+  },
+  "themes": {
+    "_comment": "The looks a reader can pick, and everything the code knows about them: it names none. base is the look the groups above describe. Each entry in looks has a label (what Settings calls it), a scheme (which the browser's own controls, scrollbars and inputs, should match) and then only what it changes, group by group and key by key; the rest stays as above. palette is the usual place to start: tab, role, unit, science and the tones all point at it, so a new look is mostly colours there plus the ground and text in color. Adding a look is adding an entry here and nothing else: Settings lists it, the page paints its ground before any script runs, and the tests hold it to contrast. device is the reader's \"follow my phone or computer\" choice: its id and label, and which look a light device and a dark one each get. hint-key is the one localStorage entry that lets the page paint the right ground early (vite/bootShell.js reads it).",
+    "base": "dark",
+    "hint-key": "theme-hint",
+    "device": {
+      "choice": "system",
+      "label": "Device",
+      "light": "light",
+      "dark": "dark"
+    },
+    "looks": {
+      "dark": {
+        "label": "Dark",
+        "scheme": "dark"
+      },
+      "light": {
+        "label": "Light",
+        "scheme": "light",
+        "_comment": "Paper-bright ground, ink text. Accents are the dark look's hues pulled to the 600-700 weight so each still reads as text and as a border on white (4.5:1 or better on the surface); lights stain the ground (multiply) instead of glowing on it.",
+        "palette": {
+          "violet": "#6a3dd3",
+          "violet-hi": "#5b21b6",
+          "rose": "#b31b3d",
+          "teal": "#0d6a63",
+          "amber": "#904d05",
+          "pink": "#ae1d62",
+          "sky": "#036398",
+          "green": "#126c34",
+          "orange": "#a7380b",
+          "slate": "#526075",
+          "blue": "#2457c5",
+          "cream": "#795929",
+          "lime": "#41690c",
+          "fuchsia": "#9d1ba9",
+          "blue-deep": "#1d4ed8",
+          "orange-deep": "#9a3412",
+          "lilac": "#7e22ce"
+        },
+        "color": {
+          "bg": "#f4f6fb",
+          "bg-glow": "#ffffff",
+          "surface": "#ffffff",
+          "surface-hi": "#eceff6",
+          "border": "#d5dbe8",
+          "border-hi": "#b3bcd0",
+          "text": "#141a2a",
+          "text-dim": "#465069",
+          "text-faint": "#525c73"
+        },
+        "lights": {
+          "ground-top": "#f6f1e8",
+          "ground-bottom": "#efe8da",
+          "colors": "#e9b85a,#d9825f,#7fa6d6,#c2a06a",
+          "alpha": 0.3,
+          "blend": "multiply"
+        },
+        "marks": {
+          "alpha": 0.07
+        },
+        "shadow": {
+          "pop": "0 6px 18px rgba(30, 41, 80, 0.18)",
+          "lift": "0 14px 34px rgba(30, 41, 80, 0.18)",
+          "scrim": "rgb(20 28 50 / 45%)"
+        },
+        "timeline": {
+          "acc-l": "36%",
+          "ink-l": "26%",
+          "map-water": "#cfe6ef"
+        },
+        "hadith": {
+          "told": "#5b6881",
+          "heard": "#1d7d4b",
+          "loose": "#a8501a"
+        }
+      }
+    }
+  },
   "glow": {
     "strength": "0.55",
     "blur": "18px"

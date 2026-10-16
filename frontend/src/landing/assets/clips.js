@@ -1,5 +1,5 @@
-// One place naming the eight tool clips, reused by Hero and
-// ClipStrip so the file list never drifts between sections.
+// One place naming the eight tool clips (ClipStrip) and the
+// Qur'an folio picture (FolioBand).
 import nahwClip from './clip-nahw.mp4'
 import nahwPoster from './clip-nahw.jpg'
 import dictClip from './clip-dict.mp4'

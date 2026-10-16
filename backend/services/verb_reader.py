@@ -13,12 +13,13 @@ from __future__ import annotations
 
 import json
 import re
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from functools import lru_cache
 from pathlib import Path
 
 from backend.services import conjugation
 from backend.services.harakat import SUKUN, letters
+from backend.services.nahw_book import book_words
 
 _READING = Path(__file__).parent.parent / "data" / "sarf" / "reading.json"
 _LONG = set("اوي")  # a sukun typed on a long letter is the reader's habit, not a vowel the table must hold
@@ -34,6 +35,7 @@ class Cell:
     person: str
     gender: str
     number: str
+    spelled: str = field(default="", compare=False)  # the table's own spelling of the word, the one the dictionary knows
 
 
 @lru_cache(maxsize=1)
@@ -159,11 +161,10 @@ def _scored(word: str) -> tuple[tuple[Cell, int], ...]:
             own = conjugation.row_cells(root, form, row)
         except ValueError:
             continue
-        cell = Cell(root, form, name, *conjugation.person_features(row))
-        scores = [score for column, real in own
-                  for named, read in _read_words(column, row, real, form) if named == name
-                  if (score := _untyped(typed, read)) is not None]
+        reads = [read for column, real in own for named, read in _read_words(column, row, real, form) if named == name]
+        scores = [score for read in reads if (score := _untyped(typed, read)) is not None]
         if scores:
+            cell = Cell(root, form, name, *conjugation.person_features(row), spelled=reads[0])
             found[cell] = min(min(scores), found.get(cell, min(scores)))
     return tuple(found.items())
 
@@ -199,9 +200,71 @@ def command(word: str, governed: bool = False, root: str = "") -> Cell | None:
     if not found:
         return None
     closest = [c for c, score in found.items() if score == min(found.values())]
-    people = {(c.person, c.gender, c.number) for c in closest}
+    # اُكْتُبَا: the dual is one word for two men or two women, both أنتما, so one person
+    # only for the root the dictionary read: اهْدِنَا is هدي with "us", not a dual of هدن
+    # قِفَا: the dictionary's قفو holds وقف's letters, out of order, so it still vouches for it
+    closest = [c for c in closest if sorted(c.root) == sorted(root)] or closest if root else closest
+    sure = bool(root) and all(sorted(c.root) == sorted(root) for c in closest)
+    people = {(c.person, "" if c.number == "d" and sure else c.gender, c.number) for c in closest}
     if all(c.column == "amr" for c in closest) and len(people) == 1:
         # its root tied between بابs whose pasts differ (ضَرَبَ، حَسِبَ): the command is sure, its past is not
         pasts = {past(c) for c in closest if c.root == closest[0].root}
         return closest[0] if len(pasts) == 1 else replace(closest[0], form="")
     return None
+
+
+def typed_fully(word: str, cell: Cell) -> bool:
+    """The reader typed every mark of the cell's spelling (سَمِّ), so no mark of it is a guess
+    (ابْنُ as اُبْنُ wants a damma the reader left off)."""
+    return _untyped(letters(_fold(word)), cell.spelled) == 0
+
+
+def known_as(word: str) -> str | None:
+    """A word the dictionary has no reading for, written as sarf's table prints it, its joined
+    letters (وَ، فَ، لْ) kept as typed: فَلْيَسْتَعْفِفْ is فَلْيَسْتَعِفَّ, which the dictionary reads.
+    None where no verb of the table fits, or the fit is not one word: the vowels typed are the
+    evidence, so a bare word (الله) fits too much, and a command has its own reading (command)."""
+    for front, closest in _cuts(word):
+        closest = [cell for cell in closest if cell.column != "amr"]
+        if closest and len({cell.spelled for cell in closest}) == 1:
+            return _spell(front) + closest[0].spelled
+    return None
+
+
+def reading_of(word: str) -> dict | None:
+    """A verb the dictionary cannot read even as the table spells it (يَسْتَعْتِبُوا), read off
+    the table in the dictionary's own features (reading.json `camel`): {pos, asp, vox, per, gen,
+    num, root}. None unless the closest cells agree on its tense, voice, person and root."""
+    for _, closest in _cuts(word):
+        read = {(tuple(_config()["camel"][c.column].items()), c.person, c.gender, c.number, c.root) for c in closest}
+        if len(read) == 1:
+            (features, person, gender, number, root), = read
+            return {"pos": "verb", **dict(features), "per": person, "gen": gender, "num": number, "root": root}
+    return None
+
+
+def _cuts(word: str):
+    """(the letters written onto its front, the table's closest cells for the rest), fewest
+    joined letters (وَ، فَ، لْ) first; only the vowels typed are evidence, so a bare word yields none."""
+    marked = letters(word)
+    for cut in range(min(len(marked), _JOINED_MOST) + 1):
+        front, rest = marked[:cut], marked[cut:]
+        if not all(letter in _joined() for letter, _ in front) or not any(marks for _, marks in rest[:-1]):
+            continue
+        found = dict(_scored(_spell(rest)))
+        if found:
+            yield front, [cell for cell, score in found.items() if score == min(found.values())]
+
+
+# a verb takes at most two letters in front: وَ or فَ, then لْ
+_JOINED_MOST = 2
+
+
+@lru_cache(maxsize=1)
+def _joined() -> set[str]:
+    """The one-letter words that are written onto the front of a verb: the conjunctions and the jazm particle."""
+    return {w for family in ("atf", "jazm") for w in book_words(family) if len(w) == 1}
+
+
+def _spell(marked: list[tuple[str, set]]) -> str:
+    return "".join(letter + "".join(sorted(marks)) for letter, marks in marked)

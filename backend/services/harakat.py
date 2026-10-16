@@ -2,7 +2,7 @@
 
 The parser is fed letters only, so the harakat are the one place case and a
 passive verb can be read from. `naming` and `teacher` judge with these; the
-parser layer (`catib_onnx`) uses them to pick among readings.
+reading picker (`morphology.pick`) uses them to choose among readings.
 """
 from __future__ import annotations
 
@@ -24,8 +24,6 @@ HIDDEN_CASE = ("ين", "ون", "ان")
 # the vowels their nun carries (the plural's fatha, the dual's kasra); any other
 # (الدِّينُ، بَيَانٌ) is the word's own case
 ENDING_NUN = {"ين": {"َ", "ِ"}, "ون": {"َ"}, "ان": {"ِ"}}
-# a sound feminine plural ends so; its kasra also shows nasb (رأيت المعلماتِ)
-FEM_PLURAL_END = "ات"
 # تَفَعَّلَ: the three radicals that follow a Form V or VI verb's opening ت
 FORM_V_STEM = 3
 
@@ -44,6 +42,11 @@ def letters(word: str) -> list[tuple[str, set]]:
         elif char.isalpha():
             out.append((char, set()))
     return out
+
+
+def stuck_letters(pieces) -> int:
+    """How many letters of an attached pronoun (ـها) the `+` pieces among these tokens hold."""
+    return sum(len(bare_letters(t["form"].strip("+"))) for t in pieces if t["form"].startswith("+"))
 
 
 def own_letters(word: str, before: int, after: int) -> str:
@@ -107,6 +110,14 @@ def weak_last(analysis: dict) -> bool:
     return weak_radical(analysis.get("root"), -1) and strip_diacritics(analysis.get("lex") or "")[-1:] in WEAK_ENDS
 
 
+NO_ANALYSIS = "NOAN"  # what CAMeL files as a word's stem when its list has no reading for it
+
+
+def unread(readings: list[dict]) -> bool:
+    """True when every reading CAMeL offers for a word is the no-analysis guess, or it offers none."""
+    return all(NO_ANALYSIS in r.get("atbtok", "") for r in readings)
+
+
 def base_of(word: str, atbtok: str | None) -> str:
     """The typed word's bare letters less the ones CAMeL's split (atbtok, "وَ+_سَ+_يَكْتُب_+هُ")
     files as joined before ("+" after) or as an attached pronoun ("+" before). The letters
@@ -121,28 +132,60 @@ def base_of(word: str, atbtok: str | None) -> str:
     # opens with CAMeL's stem (أَخ for أخي); a letter written once (لِ+ال as لل, عَلَى+يَ
     # as عليّ) fails and the word stays whole
     fits = bare.startswith(joined) and bare.endswith(pronoun)
-    return middle if stem and fits and bare_letters(middle).startswith(bare_letters(stem)) else bare
+    opens_with_stem = stem == NO_ANALYSIS or bare_letters(middle).startswith(bare_letters(stem))  # no stem to check: فَادْفَعُوا
+    return middle if stem and fits and opens_with_stem else bare
 
 
 def drops_weak(base: str, weak_last: bool) -> bool:
     """The root ends in a weak letter the word no longer ends in (اِسْقِ، لم يَدْعُ): the
-    book's sign of jazm for a present verb. `base` is the word without its joined letters."""
-    return bool(weak_last) and strip_diacritics(base)[-1:] not in WEAK_ENDS
+    book's sign of jazm for a present verb. `base` is the word without its joined letters.
+    Not when the five verbs' nun stands (يُؤْتُونَ): the weak letter went before the plural
+    waw, and the nun kept is the sign of raf'."""
+    bare = strip_diacritics(base)
+    return bool(weak_last) and bare[-1:] not in WEAK_ENDS and not bare.endswith(HIDDEN_CASE)
 
 
-def five_verb_nun(word: str) -> str | None:
+def stilled(word: str, base: str, stuck_on: int = 0, weak_last: bool = False) -> bool:
+    """A present verb that shows jazm by its own ending: its last letter stilled (an attached
+    pronoun after it aside: تُكْرِمْهُ) or a weak last letter gone (لم يَدْعُ). `base` is the word
+    without its joined letters; the nun of the five verbs is five_verb_nun's."""
+    own = letters(word)[:len(letters(word)) - stuck_on]
+    return bool(own) and SUKUN in own[-1][1] or drops_weak(base[:len(base) - stuck_on], weak_last)
+
+
+def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str | None:
     """"kept" or "dropped": the nun of one of the five verbs, which shows the case in place
     of a vowel (يكتبون، تكتبين، يكتبان raf'; يكتبوا، يكتبا، تكتبي nasb or jazm), else None.
     A damma typed on the nun makes it the verb's own letter (يَبِينُ), and a fatha on a
-    last ي makes it a weak root letter (لن يَمْشِيَ), not the ya of تكتبي."""
-    bare, shown = strip_diacritics(word), typed_case(word)  # not bare_letters: it folds يقرأ's أ into an alef
+    last ي makes it a weak root letter (لن يَمْشِيَ), not the ya of تكتبي.
+
+    `stuck_on` letters at the end are an attached pronoun's, not the verb's (لن يَكْتُبَهَا
+    ends in the pronoun's ا). The group's silent ا goes before a pronoun, so a verb left
+    ending in و is the dropped nun (لا تَأْكُلُوهَا) unless its root ends in و (يَدْعُوهُ)."""
+    stem = own_letters(word, 0, stuck_on)
+    bare, shown = strip_diacritics(stem), typed_case(word, stuck_on)  # not bare_letters: it folds يقرأ's أ into an alef
+    if stuck_on and bare.endswith("و") and len(bare) >= 4 and not weak_last:
+        return "dropped"
     if shown == "u" or len(bare) < 4:
         return None
     if bare.endswith(HIDDEN_CASE):
         return "kept"
-    if bare.endswith(("وا", "ا")) or (bare.startswith("ت") and bare.endswith("ي") and shown != "a"):
+    # تَجْزِي، تَأْتِي: on a root whose last letter is weak the ي is that letter, kept in raf'
+    if bare.endswith(("وا", "ا")) or (bare.startswith("ت") and bare.endswith("ي") and shown != "a" and not weak_last):
         return "dropped"
     return None
+
+
+def build_nun(word: str) -> str | None:
+    """The nun of emphasis (لَيَنْصُرَنَّ: doubled, a fatha on it and on the letter before)
+    or of women (يَرْسُمْنَ: a sukun on the consonant before it), as typed; a bare nun,
+    a root's doubled nun (يَظُنُّ) or a long vowel's sukun (يَكُوْنَ) says neither."""
+    marked = letters(word)
+    if len(marked) < 3 or marked[-1][0] != "ن" or "َ" not in marked[-1][1]:
+        return None
+    if SHADDA in marked[-1][1]:
+        return "emphasis" if "َ" in marked[-2][1] else None
+    return "women" if SUKUN in marked[-2][1] and marked[-2][0] not in "اوي" else None
 
 
 # The vowel a mark writes, so a fatha and a fathatan on the same letter still
@@ -200,7 +243,7 @@ def _without_ending(marked: list[tuple[str, set]]) -> list[tuple[str, set]]:
     return marked
 
 
-def typed_passive(word: str, present: bool) -> bool:
+def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     """فُعِلَ and يُفْعَلُ by their vowels.
 
     A past verb's opening damma is passive only with the kasra of فُعِلَ inside it:
@@ -216,7 +259,8 @@ def typed_passive(word: str, present: bool) -> bool:
     if not present:
         # or a doubled verb's shadda (حُفَّتْ، رُدَّ), not a ن's: كُنَّا is كان meeting نا
         return any("ِ" in marks or (SHADDA in marks and letter != "ن") for letter, marks in marked[1:-1])
-    stem = _without_ending(marked)
+    # an attached pronoun (stuck_on letters) is read past: the fatha of أُكْرِمَكَ is its nasb
+    stem = _without_ending(marked[:len(marked) - stuck_on])
     return len(stem) >= 3 and "َ" in stem[-2][1]
 
 

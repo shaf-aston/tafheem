@@ -67,9 +67,18 @@
 
 
 .lift:hover,
-.lift:focus-visible {
+.lift:focus-visible,
+.lift:has(> .stretch:focus-visible) {
   transform: translateY(-2px);
   box-shadow: var(--shadow-pop);
+}
+
+
+/* A card opened by a button stretched over it moves only with that button: a
+   speaker drawn above it neither lifts nor presses the card it does not open. */
+.lift:has(> .stretch):hover:not(:has(> .stretch:hover)) {
+  transform: none;
+  box-shadow: none;
 }
 
 
@@ -82,6 +91,10 @@
 
 .press:active {
   transform: scale(0.98);
+}
+
+.press:has(> .stretch):active:not(:has(> .stretch:active)) {
+  transform: none;
 }
 
 
@@ -138,16 +151,21 @@ details:not([open]) > .glide {
 /* The dialog's dimmed backing. ::backdrop sits in the browser's top layer and
    cannot be relied on to read the :root tokens, so this one scrim is written
    directly, it is a shade over the page, not a colour of the design. */
-/* The page behind any open pop-up holds still, for every dialog at once. */
-html:has(dialog:modal) {
-  overflow: hidden;
+/* The page behind an open pop-up still scrolls (wheel off the pop-up), so the
+   scrollbar never leaves and nothing jumps sideways. A pop-up's own scroll
+   stops at its ends instead of carrying on into the page. */
+dialog {
+  overscroll-behavior: contain;
 }
 
 
 dialog::backdrop {
-  background: rgb(0 0 0 / 55%);
+  background: var(--shadow-scrim);
 }
 
+
+.late { opacity: 0; animation: late-in 0s 200ms forwards; }
+@keyframes late-in { to { opacity: 1; } }
 
 .skeleton {
   background: linear-gradient(
@@ -179,9 +197,13 @@ dialog::backdrop {
 /* A word's English while the pointer rests on it, in the reading view.
    The same idea as .peer-dim above and deliberately quieter: there, one word is
    being studied; here, a surah is being read, and a page that reacts loudly to
-   every word the pointer crosses is a page nobody can read. */
-.gloss-line:hover .gloss-word:not(:hover),
-.gloss-line:focus-within .gloss-word:not(:focus-visible) {
+   every word the pointer crosses is a page nobody can read.
+   Only while a word is under the pointer: the line is the row's full width, so
+   resting in the empty space beside a short ayah dimmed it with nothing to show.
+   Not while the button is down in the row: that is a drag-select across words,
+   and a gloss or a dimming on every word it crosses is noise over the selection. */
+.surah-row:not(:active) .gloss-line:has(.gloss-word:hover) .gloss-word:not(:hover),
+.surah-row:not(:active) .gloss-line:has(.gloss-word:focus-visible) .gloss-word:not(:focus-visible) {
   color: var(--text-dim);
 }
 
@@ -197,8 +219,17 @@ dialog::backdrop {
 }
 
 
+/* A box of its own, not the inline span the glyphs sit in: an inline span is as
+   tall as its font's ascent plus descent (2em for the mushaf faces, far above
+   the letters), so a gloss hung off it floated away from its word, and the lit
+   highlight covered twice the word's height. Here the height is the one number
+   below, whatever the face. The line itself keeps its own, taller, line-height,
+   so nothing about the spacing between lines moves. */
 .gloss-word {
+  --gloss-box: 1.5;
   position: relative;
+  display: inline-block;
+  line-height: var(--gloss-box);
   border-radius: var(--radius-sm);
   transition:
     color calc(var(--motion-instant-ms) * 1ms) ease,
@@ -218,8 +249,8 @@ dialog::backdrop {
    inspecting one word. The transition is short on purpose, at three or four
    words a second a slow fade never finishes before the next word starts. */
 .gloss-word-lit,
-.gloss-line:hover .gloss-word-lit:not(:hover),
-.gloss-line:focus-within .gloss-word-lit:not(:focus-visible) {
+.surah-row:not(:active) .gloss-line:has(.gloss-word:hover) .gloss-word-lit:not(:hover),
+.surah-row:not(:active) .gloss-line:has(.gloss-word:focus-visible) .gloss-word-lit:not(:focus-visible) {
   color: var(--bg);
   background: var(--c);
 }
@@ -231,18 +262,19 @@ dialog::backdrop {
 }
 
 
-/* Isolated left to right, or "(is) for Allah" has its bracket flipped. */
+/* Isolated left to right, or "(is) for Allah" has its bracket flipped.
+   Under its word, where "Show all meanings" puts the same English. Above it, a
+   gloss on a first line went under the sticky header, and on every row it was
+   clipped by the row's paint containment (.surah-row); under the last line it
+   lands in the row's own translation, which is never clipped. */
 .gloss-word[data-gloss]::after {
   content: attr(data-gloss);
   direction: ltr;
   unicode-bidi: isolate;
   position: absolute;
-  /* Pulled into the line's own leading rather than clear above it: at this
-     line-height a gloss that clears the glyphs entirely lands nearer the line
-     above than the word it belongs to. */
-  bottom: calc(100% - 0.35em);
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(4px);
+  transform: translateX(-50%) translateY(-4px);
   opacity: 0;
   pointer-events: none;
   z-index: var(--layer-raised);
@@ -264,8 +296,8 @@ dialog::backdrop {
 /* Focus reveals the gloss exactly as the pointer does. The words are buttons, so
    a keyboard reaches every one of them; without this it reached them and was
    shown nothing. */
-.gloss-word[data-gloss]:hover::after,
-.gloss-word[data-gloss]:focus-visible::after {
+.surah-row:not(:active) .gloss-word[data-gloss]:hover::after,
+.surah-row:not(:active) .gloss-word[data-gloss]:focus-visible::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
@@ -281,6 +313,9 @@ dialog::backdrop {
 
 /* "Show all meanings": every gloss sits under its word, always on. After the
    hover rules, so hovering a word does not float its gloss back up. */
+.gloss-all .gloss-word {
+  line-height: inherit;
+}
 .gloss-all .gloss-word[data-gloss] {
   display: inline-flex;
   flex-direction: column;
@@ -510,6 +545,19 @@ dialog::backdrop {
 .wheel-list::-webkit-scrollbar { display: none; }
 
 
+/* A picture set into a card's lower-left corner: it meets the border solid and
+   dissolves only where it faces the card, at its top and right. */
+.soft-edge {
+  --soft-edge-fade: 22%;
+  --soft-edge-x: linear-gradient(to right, #000 calc(100% - var(--soft-edge-fade)), transparent);
+  --soft-edge-y: linear-gradient(to bottom, transparent, #000 var(--soft-edge-fade));
+  -webkit-mask-image: var(--soft-edge-x), var(--soft-edge-y);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--soft-edge-x), var(--soft-edge-y);
+  mask-composite: intersect;
+}
+
+
 .wheel-item {
   display: flex;
   align-items: center;
@@ -582,9 +630,11 @@ dialog::backdrop {
 }
 
 
-/* The phone tab bar (ui/BottomNav): pinned at the bottom, clear of the home
+/* The phone tab bar (shell/BottomNav): pinned at the bottom, clear of the home
    indicator, and the page keeps room under it so nothing hides behind. */
 .bottom-nav {
+  box-sizing: border-box;
+  height: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
   border-top: 1px solid var(--border);
   background: color-mix(in srgb, var(--bg) 96%, transparent);
@@ -619,9 +669,9 @@ dialog::backdrop {
 
 @media (max-width: 39.99rem) {
   .bottom-nav-room {
-    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px));
   }
-  .reader-dock { bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
+  .reader-dock { bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px)); }
   /* Phones keep the top bar to pen, search and settings; these move into More. */
   .phone-hide {
     display: none;
@@ -639,7 +689,7 @@ dialog::backdrop {
 
 
 /* ── Chain drawing ─────────────────────────────────────────────────────────
-   ui/ChainDrawing. A rung is a one-pixel line; a row of strands that split
+   hadith/ChainDrawing. A rung is a one-pixel line; a row of strands that split
    from one narrator (chain-split) or meet at one (chain-merge) gets a bar
    across the tops or feet of its columns, from the middle of the first to the
    middle of the last, so the lines read as one tree. */
@@ -727,3 +777,54 @@ dialog::backdrop {
   mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
 }
 .strip-x::-webkit-scrollbar { display: none; }
+
+/* Level ring on the profile button (profile/LevelRing.jsx). */
+.level-ring { position: relative; display: inline-flex; width: 20px; height: 20px; flex-shrink: 0; }
+.level-ring-n {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; color: var(--text-dim); font-variant-numeric: tabular-nums;
+}
+.level-ring-fill { transition: stroke-dasharray calc(600ms * var(--motion-scale)) ease-out; }
+.level-ring-gain {
+  position: absolute; left: 50%; bottom: 100%; pointer-events: none;
+  font-size: 10px; font-weight: 700; color: var(--palette-lime); white-space: nowrap;
+  animation: level-gain calc(1100ms * var(--motion-scale)) ease-out both;
+}
+@keyframes level-gain {
+  from { opacity: 0; transform: translate(-50%, 6px); }
+  25% { opacity: 1; }
+  to { opacity: 0; transform: translate(-50%, -10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .level-ring-fill { transition: none; }
+  .level-ring-gain { animation: none; opacity: 0; }
+}
+
+/* Profile XP card (XpCard): the bar fills on sight; a tap opens the rank path. */
+.xp-card { transition: border-color 150ms, transform 150ms; cursor: pointer; }
+.xp-card:hover { border-color: var(--xp-tone); }
+.xp-card:active { transform: scale(0.985); }
+.xp-bar { height: 0.6rem; border-radius: 999px; background: var(--border); overflow: hidden; }
+.xp-bar > span {
+  display: block; height: 100%; border-radius: inherit; background: var(--xp-tone);
+  transform-origin: left; transform: scaleX(var(--xp-share));
+  animation: xp-fill calc(900ms * var(--motion-scale)) cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes xp-fill { from { transform: scaleX(0); } }
+.xp-path { display: flex; justify-content: space-between; gap: 0.25rem; position: relative; padding-top: 0.5rem; }
+.xp-path::before { content: ''; position: absolute; top: 1.05rem; inset-inline: 0.6rem; height: 2px; background: var(--border); }
+.xp-step {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; flex: 1;
+  color: var(--text-faint); animation: xp-rise calc(400ms * var(--motion-scale)) ease-out both;
+  animation-delay: calc(var(--i) * 60ms * var(--motion-scale)); /* one after another, Seed to Fruit */
+}
+.xp-dot { width: 0.9rem; height: 0.9rem; border-radius: 999px; background: var(--surface); border: 2px solid var(--border); }
+.xp-done { color: var(--text-dim); }
+.xp-done .xp-dot { background: var(--xp-tone); border-color: var(--xp-tone); }
+.xp-now { color: var(--text); }
+.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse 1.6s ease-in-out infinite; }
+@keyframes xp-rise { from { opacity: 0; transform: translateY(6px); } }
+@keyframes xp-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--xp-tone) 25%, transparent); } }
+@media (prefers-reduced-motion: reduce) {
+  .xp-bar > span, .xp-step, .xp-now .xp-dot { animation: none; }
+}

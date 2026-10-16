@@ -10,17 +10,16 @@
  * telling, drawn back so the eye lands on the saying. The books mark the
  * saying themselves with quote marks and lib/hadithWords reads that mark;
  * where a book marked nothing, nothing is claimed and the hadith prints in
- * one plain colour. The marks are kept as well as the colour, because a
- * reader who cannot tell two colours apart still has to be able to tell
- * speech from telling.
+ * one plain colour. The book's own marks are kept as well as the colour,
+ * because a reader who cannot tell two colours apart still has to be able to
+ * tell speech from telling.
  */
 import ArabicText from './ArabicText'
 import ShowRest from './ShowRest'
-import { MARKS, narrated, saying } from '../../lib/hadithWords'
+import { narrated, saying } from '../../lib/hadithWords'
 import { runs, told, withoutMarks } from '../../lib/rijal'
 
 import NarratorLink from './NarratorLink'
-import { useFirstSight } from '../../lib/firstSight'
 import { themeVariable } from '../../theme'
 
 const TONE = {
@@ -35,22 +34,24 @@ const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
 
 /**
  * One run of words, each span wearing the colour of whoever is talking.
+ * The quote marks are the book's own, where the book put them; `arabic` only
+ * draws a straight " as the « or » it stands for.
  * `names` are [start, end, id] slices of `text`; each is a ui/NarratorLink.
  */
-function Spans({ text, marks, names = [], onNarrator }) {
+function Spans({ text, arabic = false, names = [], onNarrator }) {
   // saying() drops the direction marks, so the slices move with them.
   const at = withoutMarks(text, names)
-  const clean = text.replace(MARKS, '')
+  const mark = (ch, opens) => (arabic && ch === '"' ? (opens ? '«' : '»') : ch)
   let cursor = 0
-  return saying(clean).map((span, i) => {
-    const start = clean.indexOf(span.text, cursor)
-    cursor = start + span.text.length
+  return saying(text).map((span, i) => {
+    const start = cursor + span.open.length
+    cursor = start + span.text.length + span.close.length
     const parts = runs(span.text, at, start).map((run, j) => (
       <NarratorLink key={j} id={run.id} onOpen={onNarrator}>{run.text}</NarratorLink>
     ))
     return (
       <span key={`${span.kind}-${i}`} style={TONE[span.kind]}>
-        {span.kind === 'said' ? <>{marks[0]}{parts}{marks[1]}</> : parts}{' '}
+        {mark(span.open, true)}{parts}{mark(span.close, false)}
       </span>
     )
   })
@@ -59,22 +60,22 @@ function Spans({ text, marks, names = [], onNarrator }) {
 /**
  * `action` is a slot beside the number: a favorite star or a collection badge.
  * `hideChain` drops the chain of narrators but the one who tells the hadith:
- * lib/rijal told finds where the chain ends. The English
+ * lib/rijal told finds where the chain ends, from `cut` (the server's [teller_at, body_at]). The English
  * "Narrated X:" line already names only that one, so it stays.
  * `names` are the narrators named in the Arabic (lib/rijal); with the chain
  * hidden, the teller and anyone named after him keep theirs.
  * `footer` sits under the text: the other narrations of this number.
+ * `split` sets English left and Arabic right on a wide screen, as sunnah.com does; a phone stacks them.
  */
-export default function HadithText({ label, arabic, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, names = [], onNarrator, footer = null }) {
+export default function HadithText({ label, arabic, cut = null, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, split = false, names = [], onNarrator, footer = null }) {
   const { narrator, body } = narrated(english)
-  const shown = hideChain ? told(arabic, names) : { text: arabic, names }
-  const rise = useFirstSight(`hadith:${arabic.slice(0, 30)}`)
+  const shown = hideChain ? told(arabic, cut, names) : { text: arabic, names }
 
   return (
     <li
       id={id}
       style={{ '--i': Math.min(index, STAGGER_CAP) }}
-      className={`${rise ? 'rise-in ' : ''}rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 scroll-mt-[calc(var(--app-header-h,0px)+6rem)] ${className}`.trim()}
+      className={`rise-in rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 scroll-mt-[calc(var(--app-header-h,0px)+6rem)] ${className}`.trim()}
     >
       <div className="flex items-center justify-between gap-2 mb-3">
         <span
@@ -87,16 +88,18 @@ export default function HadithText({ label, arabic, english = '', accent, action
       </div>
 
       <ShowRest lines={LINES} accent={accent} more="Show the rest" less="Show less">
+        <div className={split && english ? 'md:grid md:grid-cols-2 md:gap-x-8 md:items-start' : ''}>
         <ArabicText as="p" size="base" className="block leading-loose m-0">
-          <Spans text={shown.text} marks={['«', '»']} names={shown.names} onNarrator={onNarrator} />
+          <Spans text={shown.text} arabic names={shown.names} onNarrator={onNarrator} />
         </ArabicText>
 
         {english && (
-          <p className="type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)]">
+          <p className={`type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)] ${split ? 'md:order-first md:m-0 md:p-0 md:border-t-0' : ''}`}>
             {narrator && <span style={TONE.told}>{narrator} </span>}
-            <Spans text={body} marks={['“', '”']} />
+            <Spans text={body} />
           </p>
         )}
+        </div>
       </ShowRest>
       {footer}
     </li>

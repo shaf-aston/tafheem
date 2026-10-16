@@ -6,7 +6,7 @@
  * conversation is found without knowing where it is filed.
  *
  * The place in the tab is the question's id (ids are unique across topics), so
- * ?tab=dawah&q=who-made-god opens that answer and the back arrow steps through
+ * /app/dawah/who-made-god opens that answer and the back arrow steps through
  * the answers read. Each point carries its own evidence underneath, reusing the
  * timelines' reference row (pieces in components/dawah, wording in dawah.json): a Qur'an reference opens the ayah itself. A matching
  * IslamQA fatwa is linked at the foot as further reading.
@@ -48,7 +48,25 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
     }
   }
 
-  if (isPending) return <AnalyzerSkeleton />
+  if (isPending) {
+    return (
+      <div className="panel" style={{ '--c': accent }}>
+        <SectionHeader title={copy.title} arabic={copy.arabic} subtitle={copy.subtitle} />
+        <div inert>
+          <SearchBox
+            id="dawah-search"
+            label={copy.search}
+            placeholder={copy['search-hint']}
+            value=""
+            onChange={() => {}}
+            disabled
+            accent={accent}
+          />
+        </div>
+        <AnalyzerSkeleton />
+      </div>
+    )
+  }
   if (isError) {
     return (
       <ErrorAlert title={copy['load-failed']} error={error} fallback={copy.unreachable} onRetry={refetch} />
@@ -84,6 +102,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
         title={copy.title}
         arabic={copy.arabic}
         subtitle={copy.subtitle}
+        nameOf={(id) => all.find(({ question }) => question.id === id)?.question.q ?? id}
       />
 
       <SearchBox
@@ -111,7 +130,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
           <nav aria-label={copy.questions}>
             <QuestionList rows={rows} current={open.question.id} onPick={read} />
           </nav>
-          <Answer {...open} library={data} accent={accent} onGo={onGo} step={step} mode={mode} modes={knobs.modes} onMode={setMode} copy={copy} />
+          <Answer {...open} library={data} accent={accent} onGo={onGo} step={step} searching={searching} mode={mode} modes={knobs.modes} onMode={setMode} copy={copy} />
         </div>
       )}
     </div>

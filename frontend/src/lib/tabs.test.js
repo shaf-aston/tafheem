@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import theme, { colorFor } from '../theme'
+import { colorFor } from '../theme'
 import { accentOf, GROUPS, LISTED, TABS } from './tabs'
 
 describe('the tab registry', () => {
@@ -29,10 +29,10 @@ describe('the tab registry', () => {
 describe('a tab\'s colour', () => {
   it('is the theme\'s colour for that tab', () => {
     for (const tab of TABS) expect(accentOf(tab.id), tab.id).toBe(colorFor('tab', tab.id))
-    expect(accentOf('dict')).toBe(theme.tab.dict)
+    expect(accentOf('dict')).not.toBe(accentOf('quran'))
   })
 
   it('falls back to the theme\'s default for a tab it has no colour for', () => {
-    expect(accentOf('no-such-tab')).toBe(theme.tab.default)
+    expect(accentOf('no-such-tab')).toBe(colorFor('tab', 'default'))
   })
 })

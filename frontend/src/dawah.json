@@ -2,6 +2,8 @@
   "_comment": "Dawah tab knobs and wording, read only by components/DawahPanel.jsx and components/dawah/. Content lives in backend/data/dawah.",
   "_comment-mode": "reading-mode is how the reasoning opens before the reader picks: 'steps' reveals one point per press, 'all' shows every point. The reader's own pick is remembered.",
   "reading-mode": "steps",
+  "_comment-depth-lines": "depth-lines is how many lines of the in-depth discussion show before 'Read the full discussion'.",
+  "depth-lines": 6,
   "modes": [
     {
       "id": "steps",

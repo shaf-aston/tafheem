@@ -5,7 +5,8 @@ import asyncio
 
 from fastapi import APIRouter
 
-from backend.models.schemas import Source, TarkeebExampleBook, TarkeebExamples
+
+from backend.models.tarkeeb import TarkeebExampleBook, TarkeebExamples
 from backend.services import provenance, tarkeeb_examples
 
 router = APIRouter(prefix="/api/tarkeeb", tags=["tarkeeb"])
@@ -24,7 +25,7 @@ async def get_examples() -> TarkeebExamples:
     return TarkeebExamples(
         topics=topics,
         books=[
-            TarkeebExampleBook(**book, source=Source(**provenance.of(book["key"])))
+            TarkeebExampleBook(**book, source=provenance.of(book["key"]))
             for book in books
         ],
     )

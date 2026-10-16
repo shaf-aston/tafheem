@@ -1,48 +1,106 @@
 import { describe, expect, it } from 'vitest'
 
-import HADITH from '../hadith.json'
-import { chainLinks, chainOf, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
+import { CHAIN, chainLinks, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
+
+// The said words alone, without the marks around them.
+const said = (text) => saying(text).filter((s) => s.kind === 'said').map((s) => s.text)
+// The spans put back together: always the book's text, less the direction marks.
+const whole = (text) => saying(text).map((s) => s.open + s.text + s.close).join('')
 
 describe('saying', () => {
-  it('marks a quoted stretch as said and the rest as told', () => {
+  it('marks a quoted stretch as said and the rest as told, keeping the marks', () => {
     expect(saying('The Prophet said, "Pray as you have seen me pray." Then he left.')).toEqual([
-      { kind: 'told', text: 'The Prophet said,' },
-      { kind: 'said', text: 'Pray as you have seen me pray.' },
-      { kind: 'told', text: 'Then he left.' },
+      { kind: 'told', open: '', text: 'The Prophet said, ', close: '' },
+      { kind: 'said', open: '"', text: 'Pray as you have seen me pray.', close: '"' },
+      { kind: 'told', open: '', text: ' Then he left.', close: '' },
     ])
   })
 
   it('reads the Arabic mark with its direction marks around it', () => {
-    expect(saying('قَالَ ‏"‏ إِنَّ أَحَدَكُمْ ‏"‏ .')).toEqual([
-      { kind: 'told', text: 'قَالَ' },
-      { kind: 'said', text: 'إِنَّ أَحَدَكُمْ' },
-      { kind: 'told', text: '.' },
-    ])
+    expect(said('قَالَ ‏"‏ إِنَّ أَحَدَكُمْ ‏"‏ .')).toEqual([' إِنَّ أَحَدَكُمْ '])
+    expect(said('قَالَ «بِهَذَا أُمِرْتُ» . فَقَالَ')).toEqual(['بِهَذَا أُمِرْتُ'])
   })
 
   it('claims nothing when the book marked nothing', () => {
     expect(saying('The Last Hour would not come until fire emits from the Hijaz')).toEqual([
-      { kind: 'plain', text: 'The Last Hour would not come until fire emits from the Hijaz' },
+      { kind: 'plain', open: '', text: 'The Last Hour would not come until fire emits from the Hijaz', close: '' },
     ])
+  })
+
+  it('never changes a letter: the spans joined are the text', () => {
+    for (const text of [
+      'Once in \'Iraq, Al-Mughira said, \'O Mughira! said, \'I was ordered?\'" Then',
+      "Ibn 'Abbas met 'Ata' at Allah's house and Hira' too",
+      '“Let him in.’” She said: “It is', 'He said "one', 'a " stray', '\'', '"',
+    ]) expect(whole(text)).toBe(text)
+  })
+
+  it('takes the ʿayn of a name for a letter even inside a quote (bukhari 522)', () => {
+    const text = 'went to him and said, "Once in \'Iraq, Al-Mughira delayed and Abi Mas`ud said, \'O Mughira! Gabriel came and said, \'I was ordered to do so?\'" `Umar said to `Urwa, "Be sure of what you Say."'
+    const spans = saying(text)
+    expect(spans[1]).toMatchObject({ kind: 'told', open: '"' })
+    expect(spans[1].text.startsWith('Once in \'Iraq')).toBe(true)
+    expect(said(text)).toEqual(['I was ordered to do so?', 'Be sure of what you Say.'])
   })
 
   it('marks only the innermost quote when a telling holds the words said', () => {
     // tirmidhi 1148 as sunnah.com prints it, its mismatched marks and all.
-    const said = saying('“My uncle came. So he said: “Let him in.’” She said: “It is only the woman.’ So he said: ‘Indeed he is your uncle.’”')
-      .filter((s) => s.kind === 'said').map((s) => s.text)
-    expect(said).toEqual(['Let him in.', 'It is only the woman.', 'Indeed he is your uncle.'])
+    expect(said('“My uncle came. So he said: “Let him in.’” She said: “It is only the woman.’ So he said: ‘Indeed he is your uncle.’”'))
+      .toEqual(['Let him in.', 'It is only the woman.', 'Indeed he is your uncle.'])
+  })
+
+  it('closes a quote opened with \' and closed with ", as the books sometimes mix them', () => {
+    // bukhari 947 as sunnah.com prints it.
+    expect(said('He rode and said, \'Allahu Akbar! Khaibar is ruined." The people came out into the streets saying, "Muhammad and his army." Allah\'s Messenger vanquished them'))
+      .toEqual(['Allahu Akbar! Khaibar is ruined.', 'Muhammad and his army.'])
+  })
+
+  it('reads a straight " by its place: a quote inside a quote opens, a mark after the words closes', () => {
+    // bukhari 3268, its mismatched marks and all.
+    expect(said('He said, "Two persons came to me. One of them asked the other, "What is the ailment of this man?" The other replied, \'He has been bewitched" The first asked, \'Who has bewitched him?\' " So, the Prophet went out'))
+      .toEqual(['What is the ailment of this man?', 'He has been bewitched', 'Who has bewitched him?'])
+  })
+
+  it('opens a " after a colon whichever side its space is on (muslim 7134)', () => {
+    expect(said('He then recited:" No soul knows what comfort has been hidden')).toEqual([' No soul knows what comfort has been hidden'])
+  })
+
+  it('does not take a name\'s ʿayn for a quote that " then closes', () => {
+    expect(said('He said, "Go to \'Ali." Then he left.')).toEqual(["Go to 'Ali."])
+    // bukhari 6253 and nasai 4615.
+    expect(said('She replied, "Wa \'alaihi-s- Salam." (Peace be on him)')).toEqual(["Wa 'alaihi-s- Salam."])
+    expect(said('He said: \'We paid in the time of Abu Bakr and \'Umar, for wheat." And I asked')).toEqual(["We paid in the time of Abu Bakr and 'Umar, for wheat."])
+    // tirmidhi 3804: the second ' is ʿAbd's, inside a quote that opened after the colon.
+    expect(said("it was said to him: 'O Abu 'Abdur-Rahman, advise us.' He said: 'Sit me up.'")).toEqual(["O Abu 'Abdur-Rahman, advise us.", 'Sit me up.'])
   })
 
   it('reads ʿayn, hamza and apostrophes as letters, not quotes', () => {
     expect(saying("Ibn 'Abbas met 'Ata' at Allah's house").map((s) => s.kind)).toEqual(['plain'])
-    expect(saying('Ibn ‘Abbas said: “Pray.” Aqra’ left.').filter((s) => s.kind === 'said')).toEqual([{ kind: 'said', text: 'Pray.' }])
+    expect(said('Ibn ‘Abbas said: “Pray.” Aqra’ left.')).toEqual(['Pray.'])
+    // tirmidhi 1254: two names' marks, not a quote between them.
+    expect(said('[Abu \'Eisa said:] This Hadith is Hasan Sahih. We do not know of it being Marfu\' except by the narration of \'Amir')).toEqual([])
+  })
+
+  it('takes a \' quote that opens mid-sentence when it ends like one (bukhari 4, nasai 4006)', () => {
+    expect(said('up to \'and desert the idols.\' (74.1-5)')).toEqual(['and desert the idols.'])
+    expect(said('This Verse - \'And whoever kills a believer intentionally, his recompense is Hell\' - was revealed')).toEqual(['And whoever kills a believer intentionally, his recompense is Hell'])
+  })
+
+  it('reads a " after a comma as the close it is (bukhari 7336)', () => {
+    expect(said('`Abdullah said, "The Prophet arranged for a horse race," `Abdullah was one of those')).toEqual(['The Prophet arranged for a horse race,'])
+  })
+
+  it('opens a \' quote before an ellipsis or a bracket (bukhari 7313)', () => {
+    expect(said("revealed: '..or from beneath your feet.' (6.65)")).toEqual(['..or from beneath your feet.'])
+    expect(said("He said: '(He prayed) two rak'ahs.' Then")).toEqual(["(He prayed) two rak'ahs."])
+  })
+
+  it('lets a saying the book never closed run to the end', () => {
+    expect(said('`Urwa added, "Aisha told me that he used to pray')).toEqual(['Aisha told me that he used to pray'])
   })
 
   it('keeps several sayings apart', () => {
-    expect(saying('He said "one" then "two"').filter((s) => s.kind === 'said')).toEqual([
-      { kind: 'said', text: 'one' },
-      { kind: 'said', text: 'two' },
-    ])
+    expect(said('He said "one" then "two"')).toEqual(['one', 'two'])
   })
 
   it('has nothing to say about nothing', () => {
@@ -106,98 +164,10 @@ describe('printedBy', () => {
   })
 })
 
-describe('chainOf', () => {
-  // Real openings from the books, shortened after the first words of the hadith.
-  it('ends the chain at the said that no further link follows', () => {
-    expect(chainOf('حَدَّثَنَا يَحْيَى بْنُ بُكَيْرٍ، قَالَ حَدَّثَنَا اللَّيْثُ، عَنْ عُقَيْلٍ، عَنْ عَائِشَةَ أُمِّ الْمُؤْمِنِينَ، أَنَّهَا قَالَتْ أَوَّلُ مَا بُدِئَ بِهِ').body)
-      .toBe('قَالَتْ أَوَّلُ مَا بُدِئَ بِهِ')
-  })
-
-  it('walks through a companion who heard the Prophet to the words', () => {
-    const { chain, body } = chainOf('حَدَّثَنَا سُفْيَانُ ، قَالَ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا الأَعْمَالُ')
-    expect(body).toBe('يَقُولُ ‏"‏ إِنَّمَا الأَعْمَالُ')
-    expect(chain.startsWith('حَدَّثَنَا')).toBe(true)
-  })
-
-  it('keeps the one who tells it, never the Prophet, as the teller', () => {
-    expect(chainOf('حَدَّثَنَا يَحْيَى بْنُ بُكَيْرٍ، قَالَ حَدَّثَنَا اللَّيْثُ، عَنْ عَائِشَةَ، أَنَّهَا قَالَتْ أَوَّلُ').teller)
-      .toBe('عَنْ عَائِشَةَ، أَنَّهَا')
-    expect(chainOf('حَدَّثَنَا سُفْيَانُ ، قَالَ : سَمِعْتُ عُمَرَ رَضِيَ اللَّهُ عَنْهُ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا').teller)
-      .toMatch(/^سَمِعْتُ عُمَرَ/)
-  })
-
-  it('keeps the son before "his father", and walks on through "أن X أخبره"', () => {
-    expect(chainOf('حَدَّثَنَا مُحَمَّدٌ، عَنْ جَعْفَرِ بْنِ عَمْرٍو، عَنْ أَبِيهِ، قَالَ رَأَيْتُ').teller)
-      .toBe('عَنْ جَعْفَرِ بْنِ عَمْرٍو، عَنْ أَبِيهِ،')
-    expect(chainOf('حَدَّثَنَا مَهْدِيٌّ، عَنِ الْمَعْرُورِ بْنِ سُوَيْدٍ، عَنْ أَبِي ذَرٍّ ـ رضى الله عنه ـ قَالَ قَالَ').teller)
-      .toMatch(/^عَنْ أَبِي ذَرٍّ/)
-    expect(chainOf('أَخْبَرَنِي سُلَيْمَانُ الأَحْوَلُ، أَنَّ طَاوُسًا، أَخْبَرَهُ عَنِ ابْنِ عَبَّاسٍ، أَنَّ النَّبِيَّ مَرَّ').teller)
-      .toBe('عَنِ ابْنِ عَبَّاسٍ،')
-  })
-
-  it('keeps a said whose speaker is in the hadith, not the chain', () => {
-    expect(chainOf('حَدَّثَنَا آدَمُ، قَالَ سَمِعْتُ أَبَا صَالِحٍ، ذَكْوَانَ يُحَدِّثُ عَنْ أَبِي سَعِيدٍ الْخُدْرِيِّ،‏.‏ قَالَتِ النِّسَاءُ لِلنَّبِيِّ').body)
-      .toBe('قَالَتِ النِّسَاءُ لِلنَّبِيِّ')
-  })
-
-  it('reads a second chain joined by ح', () => {
-    expect(chainOf('حَدَّثَنَا عَبْدَانُ، عَنِ الزُّهْرِيِّ، ح وَحَدَّثَنَا بِشْرٌ، عَنِ الزُّهْرِيِّ، قَالَ أَخْبَرَنِي عُبَيْدُ اللَّهِ، عَنِ ابْنِ عَبَّاسٍ، قَالَ كَانَ رَسُولُ اللَّهِ').body)
-      .toBe('قَالَ كَانَ رَسُولُ اللَّهِ')
-  })
-
-  it('walks through a woman who passed it on', () => {
-    expect(chainOf('حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ، عَنْ يَحْيَى بْنِ أَبِي كَثِيرٍ، قَالَ حَدَّثَتْنِي كَرِيمَةُ بِنْتُ هَمَّامٍ، أَنَّ امْرَأَةً، أَتَتْ عَائِشَةَ').body)
-      .toBe('أَنَّ امْرَأَةً، أَتَتْ عَائِشَةَ')
-  })
-
-  it('keeps a recitation to the Prophet in the hadith', () => {
-    expect(chainOf('حَدَّثَنَا وَكِيعٌ، عَنِ الأَسْوَدِ بْنِ يَزِيدَ، عَنْ عَبْدِ اللَّهِ، قَالَ قَرَأْتُ عَلَى النَّبِيِّ صلى الله عليه وسلم فَهَلْ مِنْ مُذَّكِرٍ').body)
-      .toBe('قَالَ قَرَأْتُ عَلَى النَّبِيِّ صلى الله عليه وسلم فَهَلْ مِنْ مُذَّكِرٍ')
-  })
-
-  it('leaves the hadith whole where the end of the chain is not plain', () => {
-    const text = 'حَدَّثَنَا أَبُو حَيَّانَ التَّيْمِيُّ، بِهَذَا الإِسْنَادِ مِثْلَهُ غَيْرَ أَنَّ فِي رِوَايَتِهِ ‏"‏ إِذَا وَلَدَتِ الأَمَةُ'
-    expect(chainOf(text)).toEqual({ chain: '', teller: '', body: text })
-  })
-
-  it('ends the chain at a plain "that" before the story', () => {
-    expect(chainOf('حَدَّثَنَا عَبْدُ اللَّهِ بْنُ يُوسُفَ، قَالَ أَخْبَرَنَا مَالِكٌ، عَنْ هِشَامِ بْنِ عُرْوَةَ، عَنْ أَبِيهِ، عَنْ عَائِشَةَ أُمِّ الْمُؤْمِنِينَ ـ رضى الله عنها ـ أَنَّ الْحَارِثَ بْنَ هِشَامٍ ـ رضى الله عنه ـ سَأَلَ').body)
-      .toBe('أَنَّ الْحَارِثَ بْنَ هِشَامٍ ـ رضى الله عنه ـ سَأَلَ')
-  })
-
-  it('does not count son of toward a long name', () => {
-    expect(chainOf('حَدَّثَنَا عَبْدُ الْوَهَّابِ بْنُ عَبْدِ الْحَكَمِ الْوَرَّاقُ الْبَغْدَادِيُّ، حَدَّثَنَا يَحْيَى بْنُ سُلَيْمٍ، عَنْ نَافِعٍ، عَنِ ابْنِ عُمَرَ، قَالَ سَافَرْتُ مَعَ النَّبِيِّ').body).toBe('قَالَ سَافَرْتُ مَعَ النَّبِيِّ')
-  })
-
-  it('passes over a narrator note between dashes', () => {
-    expect(chainOf('حَدَّثَنَا عُبَيْدُ اللَّهِ بْنُ مُعَاذٍ الْعَنْبَرِيُّ، - وَهَذَا حَدِيثُهُ - حَدَّثَنَا أَبِي، حَدَّثَنَا كَهْمَسٌ، عَنْ يَحْيَى بْنِ يَعْمَرَ، قَالَ كَانَ أَوَّلَ مَنْ قَالَ فِي الْقَدَرِ').body).toBe('قَالَ كَانَ أَوَّلَ مَنْ قَالَ فِي الْقَدَرِ')
-  })
-
-  it('never hides a short report run on from the last name', () => {
-    const text = 'حَدَّثَنَا إِسْحَاقُ بْنُ إِبْرَاهِيمَ، عَنْ إِسْمَاعِيلَ، عَنْ قَيْسٍ، كَانَ عَطَاءُ الْبَدْرِيِّينَ خَمْسَةَ آلاَفٍ خَمْسَةَ آلاَفٍ‏.‏ وَقَالَ عُمَرُ لأُفَضِّلَنَّهُمْ'
-    expect(chainOf(text)).toEqual({ chain: '', teller: '', body: text })
-  })
-
-  it('never hides a sentence after a full stop', () => {
-    const text = 'حَدَّثَنَا مُسَدَّدٌ، عَنْ أَبِيهِ، عَنِ النَّبِيِّ صلى الله عليه وسلم‏.‏ وَذَكَرَ الَّذِي عَقَرَ النَّاقَةَ قَالَ'
-    expect(chainOf(text)).toEqual({ chain: '', teller: '', body: text })
-  })
-
-  it('never hides a verse sitting where a name would be', () => {
-    const text = 'حَدَّثَنَا يَحْيَى، عَنْ عَائِشَةَ ـ رضى الله عنها – ‏{‏وَالَّذِي تَوَلَّى كِبْرَهُ‏}‏ قَالَتْ عَبْدُ اللَّهِ'
-    expect(chainOf(text)).toEqual({ chain: '', teller: '', body: text })
-  })
-
-  it('leaves a hadith with no chain at all whole', () => {
-    expect(chainOf('قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم')).toEqual({ chain: '', teller: '', body: 'قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم' })
-    expect(chainOf('')).toEqual({ chain: '', teller: '', body: '' })
-  })
-})
-
 describe('termOf', () => {
   it('has a guide entry for every word the chain walker reads', () => {
-    const { verbs, endings, words } = HADITH.chain.links
-    const all = [...words, ...HADITH.chain.says, ...verbs.flatMap((v) => endings.map((e) => v + e))]
+    const { verbs, endings, words } = CHAIN.links
+    const all = [...words, ...CHAIN.says, ...verbs.flatMap((v) => endings.map((e) => v + e))]
     expect(all.filter((word) => !termOf(word))).toEqual([])
   })
 
@@ -208,10 +178,18 @@ describe('termOf', () => {
 })
 
 describe('chainLinks', () => {
-  const links = (chain) => chainLinks(chainOf(chain).chain)
+  // The chain is what comes before `body`, as the server cuts it.
+  const links = (text, body) => chainLinks(text.slice(0, text.lastIndexOf(body)).trim())
+
+  it('gives the verb after a name handed on by أن to that name, as the weak points read it', () => {
+    const { main } = links('حَدَّثَنَا أَبَانُ، حَدَّثَنَا قَتَادَةُ، أَنَّ مُحَمَّدَ بْنَ سِيرِينَ، حَدَّثَهُ عَنْ أَبِي هُرَيْرَةَ، قَالَ كَانَ', 'قَالَ كَانَ')
+    expect(main.map(({ term, name }) => [term, name])).toEqual([
+      ['حَدَّثَنَا', 'أَبَانُ'], ['حَدَّثَنَا', 'قَتَادَةُ'], ['حَدَّثَهُ', 'مُحَمَّدَ بْنَ سِيرِينَ'], ['عَنْ', 'أَبِي هُرَيْرَةَ'],
+    ])
+  })
 
   it('names each narrator with the word that passed it on', () => {
-    const { main, branches } = links('حَدَّثَنَا الْحُمَيْدِيُّ، قَالَ حَدَّثَنَا سُفْيَانُ، عَنْ يَحْيَى بْنِ سَعِيدٍ، قَالَ سَمِعْتُ عُمَرَ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا')
+    const { main, branches } = links('حَدَّثَنَا الْحُمَيْدِيُّ، قَالَ حَدَّثَنَا سُفْيَانُ، عَنْ يَحْيَى بْنِ سَعِيدٍ، قَالَ سَمِعْتُ عُمَرَ، قَالَ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ إِنَّمَا', 'يَقُولُ')
     expect(main.map(({ term, way, name }) => [term, way, name])).toEqual([
       ['حَدَّثَنَا', 'heard', 'الْحُمَيْدِيُّ'],
       ['حَدَّثَنَا', 'heard', 'سُفْيَانُ'],
@@ -223,7 +201,7 @@ describe('chainLinks', () => {
   })
 
   it('joins a second chain at the first narrator both name, in any case ending', () => {
-    const { main, branches } = links('حَدَّثَنَا مُحَمَّدُ بْنُ يُوسُفَ، قَالَ حَدَّثَنَا سُفْيَانُ، عَنْ عَمْرِو بْنِ عَامِرٍ، قَالَ سَمِعْتُ أَنَسًا، ح قَالَ وَحَدَّثَنَا مُسَدَّدٌ، قَالَ حَدَّثَنَا يَحْيَى، عَنْ سُفْيَانَ، قَالَ حَدَّثَنِي عَمْرُو بْنُ عَامِرٍ، عَنْ أَنَسٍ، قَالَ كَانَ')
+    const { main, branches } = links('حَدَّثَنَا مُحَمَّدُ بْنُ يُوسُفَ، قَالَ حَدَّثَنَا سُفْيَانُ، عَنْ عَمْرِو بْنِ عَامِرٍ، قَالَ سَمِعْتُ أَنَسًا، ح قَالَ وَحَدَّثَنَا مُسَدَّدٌ، قَالَ حَدَّثَنَا يَحْيَى، عَنْ سُفْيَانَ، قَالَ حَدَّثَنِي عَمْرُو بْنُ عَامِرٍ، عَنْ أَنَسٍ، قَالَ كَانَ', 'قَالَ كَانَ')
     expect(main.map((l) => l.name)).toEqual(['مُسَدَّدٌ', 'يَحْيَى', 'سُفْيَانَ', 'عَمْرُو بْنُ عَامِرٍ', 'أَنَسٍ'])
     expect(branches).toEqual([{
       links: [expect.objectContaining({ name: 'مُحَمَّدُ بْنُ يُوسُفَ' })],
@@ -233,19 +211,24 @@ describe('chainLinks', () => {
   })
 
   it('joins where the books say both passed it on', () => {
-    const { main, branches } = links('وَحَدَّثَنَا أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، حَدَّثَنَا أَبُو خَالِدٍ الأَحْمَرُ، ح وَحَدَّثَنِيهِ زُهَيْرُ بْنُ حَرْبٍ، حَدَّثَنَا يَزِيدُ بْنُ هَارُونَ، كِلاَهُمَا عَنْ أَبِي مَالِكٍ، عَنْ أَبِيهِ، أَنَّهُ سَمِعَ النَّبِيَّ صلى الله عليه وسلم يَقُولُ مَنْ')
+    const { main, branches } = links('وَحَدَّثَنَا أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ، حَدَّثَنَا أَبُو خَالِدٍ الأَحْمَرُ، ح وَحَدَّثَنِيهِ زُهَيْرُ بْنُ حَرْبٍ، حَدَّثَنَا يَزِيدُ بْنُ هَارُونَ، كِلاَهُمَا عَنْ أَبِي مَالِكٍ، عَنْ أَبِيهِ، أَنَّهُ سَمِعَ النَّبِيَّ صلى الله عليه وسلم يَقُولُ مَنْ', 'يَقُولُ مَنْ')
     expect(main[branches[0].at].name).toBe('أَبِي مَالِكٍ')
     expect(branches[0].links.map((l) => l.name)).toEqual(['أَبُو بَكْرِ بْنُ أَبِي شَيْبَةَ', 'أَبُو خَالِدٍ الأَحْمَرُ'])
   })
 
   it('does not join two strands on "my father", nor claim a meeting the books do not name', () => {
-    const { branches } = links('حَدَّثَنَا مُحَمَّدُ بْنُ سِنَانٍ، قَالَ حَدَّثَنَا فُلَيْحٌ، ح وَحَدَّثَنِي إِبْرَاهِيمُ بْنُ الْمُنْذِرِ، قَالَ حَدَّثَنَا مُحَمَّدُ بْنُ فُلَيْحٍ، قَالَ حَدَّثَنِي أَبِي قَالَ، حَدَّثَنِي هِلاَلُ بْنُ عَلِيٍّ، عَنْ عَطَاءِ بْنِ يَسَارٍ، عَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللَّهِ')
+    const { branches } = links('حَدَّثَنَا مُحَمَّدُ بْنُ سِنَانٍ، قَالَ حَدَّثَنَا فُلَيْحٌ، ح وَحَدَّثَنِي إِبْرَاهِيمُ بْنُ الْمُنْذِرِ، قَالَ حَدَّثَنَا مُحَمَّدُ بْنُ فُلَيْحٍ، قَالَ حَدَّثَنِي أَبِي قَالَ، حَدَّثَنِي هِلاَلُ بْنُ عَلِيٍّ، عَنْ عَطَاءِ بْنِ يَسَارٍ، عَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللَّهِ', 'أَنَّ رَسُولَ اللَّهِ')
     expect(branches[0].at).toBeNull()
   })
 
   it('keeps الله in a name, so عبد الله never joins عبد الرحمن', () => {
-    const { branches } = links('حَدَّثَنَا قُتَيْبَةُ، حَدَّثَنَا عَبْدُ اللَّهِ، ح وَحَدَّثَنَا مُسَدَّدٌ، حَدَّثَنَا عَبْدُ الرَّحْمَنِ بْنُ مَهْدِيٍّ، عَنْ سُفْيَانَ، قَالَ كَانَ')
+    const { branches } = links('حَدَّثَنَا قُتَيْبَةُ، حَدَّثَنَا عَبْدُ اللَّهِ، ح وَحَدَّثَنَا مُسَدَّدٌ، حَدَّثَنَا عَبْدُ الرَّحْمَنِ بْنُ مَهْدِيٍّ، عَنْ سُفْيَانَ، قَالَ كَانَ', 'قَالَ كَانَ')
     expect(branches[0].at).toBeNull()
+  })
+
+  it('leaves a remark set between aside marks out of the name, and ignores a mark with no partner', () => {
+    const { main } = links('حَدَّثَنَا عَبْدُ اللَّهِ، حَدَّثَنَا عَبْدُ الْعَزِيزِ، - يَعْنِي ابْنَ مُحَمَّدٍ - عَنْ مُحَمَّدٍ، - يَعْنِي ابْنَ عَمْرٍو - عَنْ أَبِي سَلَمَةَ، - عَنِ الْمُغِيرَةِ، أَنَّ النَّبِيَّ', 'أَنَّ النَّبِيَّ')
+    expect(main.map(({ name }) => name)).toEqual(['عَبْدُ اللَّهِ', 'عَبْدُ الْعَزِيزِ', 'مُحَمَّدٍ', 'أَبِي سَلَمَةَ', 'الْمُغِيرَةِ'])
   })
 
   it('has nothing to draw for no chain', () => {

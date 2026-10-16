@@ -1,143 +1,90 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 
-import { readRouteFromUrl, readTabFromUrl, readViewParam, writeTabToUrl, writeViewParams } from './tabUrl'
+import { readRouteFromUrl, readViewParam, shareLink, writeTabToUrl, writeViewParams } from './tabUrl'
 
-// The registry's shape, with Nahw deliberately not first, so a legacy link
-// landing on "the first tab" and one landing on Nahw cannot be mistaken.
-const TABS = [{ id: 'quran' }, { id: 'nahw' }, { id: 'dict' }]
+const TABS = [{ id: 'nahw' }, { id: 'dict' }, { id: 'mem' }]
+const ORIGIN = 'https://tafheem-app.vercel.app'
 
-// Just enough of a browser for the address: where we are, and the two ways of
-// writing a history entry, spied on so a test can say which one ran.
-function browserAt(search, state = { step: 4 }) {
-  const location = { href: `https://tafheem.test/app${search}`, search }
-  const history = { state, pushState: vi.fn(), replaceState: vi.fn() }
-  vi.stubGlobal('window', { location, history })
-  return history
+// A browser tab reduced to what tabUrl touches: the address and one history entry's state.
+function openAt(path, state = null) {
+  const page = { href: ORIGIN + path, state }
+  const move = (next, _title, url) => { page.state = next; page.href = new URL(url, page.href).href }
+  globalThis.window = {
+    location: { get href() { return page.href }, get pathname() { return new URL(page.href).pathname }, origin: ORIGIN },
+    history: { get state() { return page.state }, pushState: move, replaceState: move },
+  }
+  return page
 }
-afterEach(() => vi.unstubAllGlobals())
+const shown = (page) => page.href.slice(ORIGIN.length)
 
-/** The address a history write was handed, as its query only. */
-const written = (spy) => new URL(String(spy.mock.calls[0][2])).searchParams
+afterEach(() => { delete globalThis.window })
 
-describe('which tab the address asks for', () => {
-  it('sends the two old tabs to the one they became', () => {
-    for (const old of ['iraab', 'tarkeeb']) {
-      browserAt(`?tab=${old}`)
-      expect(readTabFromUrl(TABS)).toBe('nahw')
-    }
+const at = (tab, value) => `/app/${tab}/${encodeURIComponent(value)}`
+
+describe('the address shows the tab and the place in it', () => {
+  it('an old link opens its word and view, then the address is tidied and a reload keeps both', () => {
+    const page = openAt('/app?tab=nahw&q=%D8%B0%D9%87%D8%A8&view=analyse')
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: 'ذهب' })
+    writeTabToUrl('nahw', 'ذهب', { replace: true, state: { step: 0 } })
+    expect(shown(page)).toBe(at('nahw', 'ذهب'))
+    // A reload keeps the address and the entry's state, nothing else.
+    openAt(shown(page), page.state)
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: 'ذهب' })
+    expect(readViewParam('view', ['analyse', 'tree'])).toBe('analyse')
   })
 
-  it('opens the first tab for a tab it does not know, or none at all', () => {
-    for (const search of ['?tab=gone', '', '?tab=']) {
-      browserAt(search)
-      expect(readTabFromUrl(TABS), search).toBe('quran')
-    }
+  it('a word searched is a new back step with the word in the address', () => {
+    const page = openAt('/app/dict', { step: 0, value: null, view: {} })
+    writeTabToUrl('dict', 'كتب', { state: { step: 1 } })
+    expect(shown(page)).toBe(at('dict', 'كتب'))
+    expect(page.state).toEqual({ step: 1, value: 'كتب', view: {} })
   })
 
-  it('opens a known tab as itself', () => {
-    browserAt('?tab=dict')
-    expect(readTabFromUrl(TABS)).toBe('dict')
-  })
-})
-
-describe('the place the address names', () => {
-  it('names no tab when the address has none, even with a word on it', () => {
-    browserAt('?q=كتب')
-    expect(readRouteFromUrl(TABS)).toEqual({ tab: null, value: 'كتب' })
-  })
-
-  it('reads an empty word as no word', () => {
-    browserAt('?tab=dict&q=')
-    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'dict', value: null })
-  })
-
-  it('reads tab and word together', () => {
-    browserAt('?tab=quran&q=2:255')
-    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'quran', value: '2:255' })
-  })
-})
-
-describe('one in-tab choice from the address', () => {
-  it('is null when the address does not have it', () => {
-    browserAt('?tab=nahw')
-    expect(readViewParam('view', ['table', 'tree'])).toBe(null)
+  it('choices inside a tab stay with that tab and are dropped on leaving it', () => {
+    const page = openAt('/app/mem', { step: 0, value: null, view: {} })
+    writeViewParams({ mode: 'recite' })
+    expect(shown(page)).toBe('/app/mem')
+    writeTabToUrl('mem', '1:1', { state: { step: 1 } })
+    expect(shown(page)).toBe('/app/mem/1:1')
+    writeViewParams({ mode: 'recite' })
+    expect(shown(page)).toBe('/app/mem/1:1')
+    expect(readViewParam('mode')).toBe('recite')
+    writeTabToUrl('dict', null, { state: { step: 2 } })
+    expect(readViewParam('mode')).toBe(null)
+    writeViewParams({ mode: 'recite' })
+    writeViewParams({ mode: '' })
+    expect(readViewParam('mode')).toBe(null)
   })
 
-  it('is null when the value is not one the tab allows', () => {
-    browserAt('?tab=nahw&view=nonsense')
-    expect(readViewParam('view', ['table', 'tree'])).toBe(null)
+  it('Copy link writes the place out, and that link opens the same place', () => {
+    openAt('/app/nahw', { step: 3, value: 'ذهب الولد', view: { view: 'tree' } })
+    const link = shareLink()
+    expect(link).toBe(`${ORIGIN}${at('nahw', 'ذهب الولد')}?view=tree`)
+    openAt(link.slice(ORIGIN.length))
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: 'ذهب الولد' })
+    expect(readViewParam('view')).toBe('tree')
   })
 
-  it('is the value when it is allowed', () => {
-    browserAt('?tab=nahw&view=tree')
-    expect(readViewParam('view', ['table', 'tree'])).toBe('tree')
+  it('a pasted address opens its place: pieces stay pieces, and "?" or "#" inside a place survive', () => {
+    const page = openAt('/app/hadith/bukhari/1/2a')
+    expect(readRouteFromUrl([{ id: 'hadith' }])).toEqual({ tab: 'hadith', value: 'bukhari/1/2a' })
+    writeTabToUrl('daleel', 'why? #1', { state: { step: 0 } })
+    openAt(shown(page))
+    expect(readRouteFromUrl([{ id: 'daleel' }])).toEqual({ tab: 'daleel', value: 'why? #1' })
   })
 
-  it('takes any value when no list of allowed ones is given', () => {
-    browserAt('?tab=nahw&topic=anything-at-all')
-    expect(readViewParam('topic')).toBe('anything-at-all')
-    expect(readViewParam('topic', null)).toBe('anything-at-all')
-  })
-})
-
-describe('writing a place into the address', () => {
-  it('replaces the current entry when asked, and pushes no new one', () => {
-    const history = browserAt('?tab=dict')
-    writeTabToUrl('dict', 'كتب', { replace: true, state: { step: 2 } })
-    expect(history.replaceState).toHaveBeenCalledTimes(1)
-    expect(history.pushState).not.toHaveBeenCalled()
-    expect(history.replaceState.mock.calls[0][0]).toEqual({ step: 2 })
+  it('old tab names, unknown tabs and the bare app', () => {
+    openAt('/app?tab=iraab&q=x')
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: 'x' })
+    openAt('/app/nowhere')
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: null })
+    openAt('/app')
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: null, value: null })
   })
 
-  it('pushes a new entry by default, carrying the state it was given', () => {
-    const history = browserAt('?tab=dict')
-    writeTabToUrl('quran', '1:1', { state: { step: 7 } })
-    expect(history.pushState).toHaveBeenCalledTimes(1)
-    expect(history.replaceState).not.toHaveBeenCalled()
-    expect(history.pushState.mock.calls[0][0]).toEqual({ step: 7 })
-    expect(written(history.pushState).get('tab')).toBe('quran')
-    expect(written(history.pushState).get('q')).toBe('1:1')
-  })
-
-  const CHOICES = 'view=tree&mode=a&topic=b&kind=c&show=d&question=e'
-
-  it('drops every in-tab choice when the tab changes, and keeps anything else', () => {
-    const history = browserAt(`?tab=nahw&${CHOICES}&lang=ur`)
-    writeTabToUrl('dict', 'كتب')
-    const params = written(history.pushState)
-    for (const key of ['view', 'mode', 'topic', 'kind', 'show', 'question']) expect(params.has(key), key).toBe(false)
-    expect(params.get('lang')).toBe('ur')
-    expect(params.get('tab')).toBe('dict')
-  })
-
-  it('keeps the in-tab choices when the tab stays the same', () => {
-    const history = browserAt(`?tab=nahw&${CHOICES}`)
-    writeTabToUrl('nahw', '1:1')
-    const params = written(history.pushState)
-    expect(params.get('view')).toBe('tree')
-    expect(params.get('question')).toBe('e')
-    expect(params.get('q')).toBe('1:1')
-  })
-
-  it('takes the word off the address when there is none', () => {
-    const history = browserAt('?tab=dict&q=كتب')
-    writeTabToUrl('dict', null)
-    expect(written(history.pushState).has('q')).toBe(false)
-  })
-})
-
-describe('writing in-tab choices into the address', () => {
-  it('removes a choice set to nothing, sets one given, and keeps the entry\'s state', () => {
-    const state = { step: 3 }
-    const history = browserAt('?tab=nahw&view=tree&topic=a', state)
-    writeViewParams({ view: '', topic: null, mode: 'b' })
-    expect(history.pushState).not.toHaveBeenCalled()
-    expect(history.replaceState).toHaveBeenCalledTimes(1)
-    expect(history.replaceState.mock.calls[0][0]).toBe(state)
-    const params = written(history.replaceState)
-    expect(params.has('view')).toBe(false)
-    expect(params.has('topic')).toBe(false)
-    expect(params.get('mode')).toBe('b')
-    expect(params.get('tab')).toBe('nahw')
+  it('back onto an entry written before the tidy-up still reads its query', () => {
+    openAt('/app?tab=dict&q=%D9%83%D8%AA%D8%A8&view=lane', { step: 2 })
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'dict', value: 'كتب' })
+    expect(readViewParam('view')).toBe('lane')
   })
 })

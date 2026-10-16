@@ -196,7 +196,7 @@ taken out is chosen beside it, as two buttons rather than the typist's five:
 the word and the pill beside it can never disagree.
 
 ### M6. The strip. Done 2026-09-05.
-`components/ReciteStrip.jsx`, sticky at the foot of the page: the microphone, what
+`components/memorise/ReciteStrip.jsx`, sticky at the foot of the page: the microphone, what
 it is hearing, the tally, and one pill an ayah.
 
 ### What clicking through found that the tests did not

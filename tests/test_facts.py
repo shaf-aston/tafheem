@@ -1,7 +1,6 @@
 """The `follows` axis: one sentence per follower (tabi'), and the words that only look like one."""
 from backend.services.syntax import facts, walker
-from backend.services.syntax.naming import roles as named
-from tests.test_naming import VERB, clitic, token
+from tests.test_naming import VERB, clitic, named, token
 
 
 def answers(toks, token):

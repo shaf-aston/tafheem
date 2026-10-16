@@ -1,12 +1,12 @@
 """The bracket picture for a typed sentence, built from the parser's links."""
 from backend.services.nahw_book import role_units
-from backend.services.syntax import naming, tree
+from backend.services.syntax import tree
 from backend.services.nahw_book import condition_of, term_ar
-from tests.test_naming import token
+from tests.test_naming import named, token
 
 
 def built(words, toks):
-    return tree.build(words, toks, naming.roles(words, toks))
+    return tree.build(words, toks, named(words, toks))
 
 
 def roles_in(node):
@@ -34,16 +34,20 @@ def test_idafa_is_a_unit_that_plays_one_role():
             token(2, "الطالب", "طالب", "NOM", 1, "IDF", stt="d", cas="g"),
             token(3, "جديد", "جديد", "NOM", 1, "MOD", ud="ADJ", cas="n")]
     drawn = built(["كِتَابُ", "الطَّالِبِ", "جَدِيدٌ"], toks)
-    unit = drawn["tree"]
-    assert unit["label"] == term_ar("murakkab_idafi")  # what it is
-    assert [child.get("role") for child in unit["children"]] == ["مضاف", "مضاف إليه", "خبر"]
+    sentence = drawn["tree"]  # the خبر hangs outside the unit: the sentence holds both
+    unit, khabar = sentence["children"]
+    assert sentence["label"] == term_ar("jumlah_ismiyyah")
+    assert (unit["role"], unit["label"]) == ("مبتدأ", term_ar("murakkab_idafi"))  # what it does, what it is
+    assert [child.get("role") for child in unit["children"]] == ["مضاف", "مضاف إليه"]
+    assert khabar["role"] == "خبر"
 
 
 def test_a_word_no_rule_could_name_is_a_gap_not_a_guess():
     # a word with no case anywhere, hung off the verb by a link that names nothing
+    # (not أمسِ: its kasra is built in, so it is the verb's مفعول فيه)
     toks = [token(1, "ذهب", "ذهب", "VRB", 0, "---", asp="p"),
-            token(2, "أمس", "أمس", "NOM", 1, "MOD", cas="u")]
-    drawn = built(["ذَهَبَ", "أَمْسِ"], toks)
+            token(2, "بيت", "بيت", "NOM", 1, "MOD", cas="u")]
+    drawn = built(["ذَهَبَ", "بَيْتِ"], toks)
     gaps = [child for child in drawn["tree"]["children"] if child.get("gap")]
     assert [leaf["role"] for leaf in gaps] == [None]
     assert drawn["coverage"] == 0.5
@@ -152,3 +156,37 @@ def test_a_role_has_one_colour_in_every_tree():
              for key, term in tarkeeb_rules()["terms"].items()
              if tones.get(strip_diacritics(term["ar"]), term["tone"]) != term["tone"]}
     assert not clash
+
+
+def test_only_a_sentence_gets_a_line_above_the_cards():
+    from backend.services.syntax import tree as drawing
+    assert drawing.names_a_sentence(drawing.NOMINAL) and drawing.names_a_sentence(drawing.VERBAL)
+    assert not drawing.names_a_sentence("مُرَكَّبٌ تَوْصِيْفِيٌّ") and not drawing.names_a_sentence(None)
+
+
+def test_a_name_with_its_ibn_is_no_murakkab_tawsifi():
+    # ابن here is صفة, عطف بيان or بدل: the group is not named for one of them, its head is the متبوع
+    from backend.services.syntax import tree as drawing
+    from backend.services.syntax.naming import roles as name_roles
+    from backend.services.syntax.repair import correct
+    from tests.test_naming import _name, token
+    words = ["محمد", "بن", "عبد", "الله"]
+    toks = [_name(1, "محمد", 0, "---"),
+            token(2, "بن", "ابن", "NOM", 1, "PRD", pos_camel="noun", stt="c"),
+            token(3, "عبد", "عبد", "NOM", 2, "PRD", pos_camel="noun"),
+            _name(4, "الله", 1, "PRD", stt="d")]
+    correct(words, toks)
+    found = name_roles(words, toks)
+    assert found[1]["also"] and "بدل" in found[1]["also"]
+    top = drawing.build(words, toks, found)["tree"]
+    assert top["label"] == "" and top["children"][0]["role"] == "متبوع"
+
+
+def test_a_masdar_with_al_urged_alone_is_the_object_of_an_unwritten_verb():
+    # الصِّدْقَ الصِّدْقَ: الإغراء, not the unwritten verb's own masdar (شكرًا)
+    from backend.services.syntax import teacher
+    words = ["الصِّدْقَ", "الصِّدْقَ"]
+    toks = [token(1, "الصدق", "صدق", "NOM", 0, "---", stt="d", cas="a", pos_camel="noun", pattern="ال1ِ2ْ3"),
+            token(2, "الصدق", "صدق", "NOM", 1, "MOD", stt="d", cas="a", pos_camel="noun", pattern="ال1ِ2ْ3")]
+    found = teacher.review(words, toks, named(words, toks))
+    assert tree.build(words, toks, found)["unsaid"][0] == "مفعول به"

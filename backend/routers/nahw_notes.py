@@ -6,7 +6,7 @@ import asyncio
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 
-from backend.models.schemas import NoteLibrary
+from backend.models.nahw_notes import NoteLibrary
 from backend.services import nahw_notes, provenance
 
 router = APIRouter(prefix="/api/notes", tags=["notes"])

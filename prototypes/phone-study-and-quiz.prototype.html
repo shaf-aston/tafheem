@@ -1,0 +1,381 @@
+<title>Tafheem Phone Study and Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Naskh+Arabic:wght@400;600&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Phone prototypes: the Qur'an study panel (3 ways) and the Quiz (3 ways).
+   Tokens are the app's own (frontend/src/theme.json); dark only, like the app.
+   Every frame is 390 x 812, the size the app is judged at. */
+:root {
+  --bg: #0c1018; --bg-glow: #161d2b; --surface: #141a26; --surface-hi: #1c2434;
+  --border: #273041; --border-hi: #38445c;
+  --text: #e7ecf5; --text-dim: #9aa7bd; --text-faint: #808da3;
+  --danger: #fb7185; --success: #5eead4; --warn: #fbbf24;
+  --quran: #5eead4; --quiz: #f472b6;
+  --font-quran: 'Amiri Quran', 'Noto Naskh Arabic', serif;
+  --font-arabic: 'Noto Naskh Arabic', serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --r-sm: .5rem; --r-md: .85rem; --r-lg: 1.25rem;
+  --pop: 0 6px 18px rgba(0, 0, 0, .45);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.5 var(--font-ui); color: var(--text);
+  background: radial-gradient(60rem 26rem at 50% -8%, var(--bg-glow), transparent 70%), var(--bg); background-color: var(--bg); }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
+.page { max-width: 90rem; margin: 0 auto; padding-inline: 16px; padding-block: 20px 6rem; display: grid; gap: 40px; }
+.lede h1 { margin: 0; font-size: 1.25rem; font-weight: 600; text-wrap: balance; }
+.lede p { margin: 4px 0 0; color: var(--text-dim); font-size: .875rem; max-width: 70ch; }
+.group > h2 { margin: 0 0 4px; font-size: 1.05rem; }
+.group > p.sub { margin: 0 0 18px; color: var(--text-dim); font-size: .875rem; max-width: 70ch; }
+.opt { display: grid; gap: 12px; padding-block: 18px; border-top: 1px solid var(--border); }
+.opt h3 { margin: 0; font-size: .95rem; display: flex; gap: 10px; align-items: baseline; }
+.opt h3 b { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--surface-hi); border: 1px solid var(--border-hi); font-size: .8rem; }
+.opt .why { margin: 0; color: var(--text-dim); font-size: .85rem; max-width: 80ch; }
+.opt .reuse { margin: 0; color: var(--text-faint); font-size: .78rem; max-width: 80ch; }
+.frames { display: flex; gap: 22px; overflow-x: auto; padding-bottom: 10px; align-items: flex-start; }
+.cap { color: var(--text-faint); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+
+/* ---- the phone ---- */
+.phone { --a: var(--quran); flex: none; width: 390px; height: 812px; position: relative; overflow: hidden; isolation: isolate;
+  border: 1px solid var(--border-hi); border-radius: 30px; background: var(--bg); }
+.phone.quiz { --a: var(--quiz); }
+.hdr { position: absolute; inset: 0 0 auto 0; height: 52px; display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-bottom: 1px solid var(--border); background: var(--bg); z-index: 3; }
+.hdr .sq { flex: none; width: 2.5rem; height: 2.5rem; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--surface); display: grid; place-items: center; color: var(--text-dim); font-size: .9rem; }
+.hdr .search { flex: 1; height: 2.5rem; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; padding-inline: 12px; color: var(--text-faint); font-size: .85rem; }
+.nav { position: absolute; inset: auto 0 0 0; height: 64px; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--border); background: var(--bg); z-index: 3; }
+.nav div { display: grid; place-items: center; align-content: center; gap: 0; font-size: .68rem; color: var(--text-faint); font-weight: 500; }
+.nav div i { font-style: normal; font-family: var(--font-arabic); font-size: 1.15rem; line-height: 1.3; padding-inline: 14px; border-radius: 999px; }
+.nav div.on { color: var(--a); }
+.nav div.on i { background: color-mix(in srgb, var(--a) 14%, transparent); }
+.screen { position: absolute; inset: 52px 0 64px 0; overflow: hidden; }
+.scrim { position: absolute; inset: 0; background: rgba(5, 8, 14, .62); z-index: 5; }
+
+/* ---- shared small parts ---- */
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 1.9rem; padding-inline: 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); font-size: .8rem; white-space: nowrap; flex: none; }
+.chip.on { color: var(--a); border-color: color-mix(in srgb, var(--a) 45%, transparent); background: color-mix(in srgb, var(--a) 13%, transparent); }
+.seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); }
+.seg span { padding: 5px 12px; border-radius: 999px; font-size: .8rem; color: var(--text-dim); white-space: nowrap; }
+.seg span.on { color: var(--a); background: color-mix(in srgb, var(--a) 15%, transparent); font-weight: 600; }
+.ar { font-family: var(--font-arabic); direction: rtl; }
+.qr { font-family: var(--font-quran); direction: rtl; }
+.grab { width: 2.4rem; height: .28rem; border-radius: 99px; background: var(--border-hi); margin: 8px auto 0; }
+.xbtn { width: 2.1rem; height: 2.1rem; border-radius: 50%; border: 1px solid var(--border-hi); display: grid; place-items: center; color: var(--text-dim); font-size: .85rem; flex: none; }
+.pill { font-size: .72rem; color: var(--text-faint); font-family: ui-monospace, Menlo, monospace; }
+
+/* ---- Qur'an reader frame ---- */
+.rd-top { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.rd-top .nm { display: block; margin-bottom: 5px; padding-top: 4px; font-family: var(--font-quran); font-size: 1.3rem; color: var(--a); line-height: 1; }
+.rd-top .meta { display: block; color: var(--text-faint); font-size: .72rem; }
+.rd-top .sp { flex: 1; }
+.rows { display: grid; }
+.row { padding: 12px 14px; border-bottom: 1px solid var(--border); display: grid; gap: 6px; }
+.row .no { font-size: .7rem; color: var(--text-faint); font-family: ui-monospace, Menlo, monospace; }
+.row .q { font-family: var(--font-quran); direction: rtl; font-size: 1.5rem; line-height: 2.1; color: var(--text); }
+.row .en { color: var(--text-dim); font-size: .82rem; line-height: 1.45; }
+.row.here { background: color-mix(in srgb, var(--a) 8%, var(--surface)); box-shadow: inset 3px 0 0 var(--a); }
+.recbar { position: absolute; inset: auto 10px 8px 10px; height: 2.6rem; border-radius: 999px; border: 1px solid var(--border-hi); background: var(--surface-hi); display: flex; align-items: center; gap: 10px; padding-inline: 6px 14px; box-shadow: var(--pop); z-index: 2; }
+.recbar .pl { width: 2rem; height: 2rem; border-radius: 50%; background: var(--a); color: #06231f; display: grid; place-items: center; font-size: .7rem; }
+.recbar span { font-size: .8rem; color: var(--text-dim); }
+
+/* word chips */
+.words { display: flex; flex-wrap: wrap; gap: 8px; direction: rtl; }
+.w { display: grid; justify-items: center; gap: 2px; padding: 8px 10px; min-width: 4.2rem; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--surface); }
+.w .a { font-family: var(--font-quran); font-size: 1.3rem; line-height: 1.5; }
+.w .p { font-family: var(--font-arabic); font-size: .72rem; color: var(--c); }
+.w .e { font-size: .7rem; color: var(--text-dim); text-align: center; max-width: 6rem; line-height: 1.25; direction: ltr; }
+.w.open { border-color: var(--c); background: color-mix(in srgb, var(--c) 9%, var(--surface)); }
+.w.noun { --c: #5eead4; } .w.part { --c: #fbbf24; }
+.strip { display: flex; gap: 8px; overflow: hidden; direction: rtl; }
+.strip .w { padding: 6px 10px; min-width: 3.6rem; }
+.strip .w .a { font-size: 1.15rem; }
+
+/* word detail card */
+.wd { border: 1px solid var(--border-hi); border-radius: var(--r-md); background: var(--surface); padding: 12px 14px; display: grid; gap: 8px; }
+.wd .tags { font-family: var(--font-arabic); direction: rtl; color: var(--text-dim); font-size: .95rem; }
+.wd .kv { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font-size: .8rem; color: var(--text-faint); }
+.wd .kv .ar { font-size: 1.15rem; color: var(--text); }
+.wd .acts { display: flex; gap: 8px; }
+.wd .acts .chip { height: 1.8rem; }
+
+/* tabs inside a study surface */
+.tabs { display: flex; border-bottom: 1px solid var(--border); }
+.tabs span { flex: 1; text-align: center; padding: 9px 4px; font-size: .82rem; color: var(--text-faint); border-bottom: 2px solid transparent; font-weight: 500; }
+.tabs span.on { color: var(--a); border-bottom-color: var(--a); }
+
+/* sheets */
+.sheet { position: absolute; inset: auto 0 0 0; background: var(--surface); border: 1px solid var(--border-hi); border-bottom: 0; border-radius: var(--r-lg) var(--r-lg) 0 0; box-shadow: var(--pop); z-index: 6; display: grid; align-content: start; overflow: hidden; }
+.sheet .sh-h { display: flex; align-items: center; gap: 10px; padding: 8px 14px 10px; }
+.sheet .sh-h h4 { margin: 0; font-size: .95rem; font-weight: 600; }
+.sheet .body { padding: 10px 14px 14px; display: grid; gap: 12px; overflow: hidden; }
+.sheet.docked { z-index: 2; }
+
+/* join figure (simple tarkeeb rows) */
+.fig { display: grid; gap: 8px; direction: rtl; }
+.fig .g { display: flex; align-items: center; gap: 8px; border-radius: var(--r-md); border: 1px solid var(--border); padding: 8px 10px; background: var(--surface-hi); }
+.fig .g .ar { font-size: 1.05rem; }
+.fig .g .arrow { color: var(--text-faint); }
+.fig .g .role { font-family: var(--font-arabic); color: var(--warn); font-size: .85rem; margin-inline-start: auto; }
+.note { font-size: .8rem; color: var(--text-dim); line-height: 1.5; }
+.sec { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: .75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: .08em; }
+
+/* word rows (list form) */
+.wr { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 12px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.wr .a { font-family: var(--font-quran); font-size: 1.45rem; direction: rtl; text-align: right; grid-column: 2; grid-row: 1 / span 2; line-height: 1.5; }
+.wr .e { font-size: .9rem; color: var(--text); }
+.wr .p { font-family: var(--font-arabic); font-size: .8rem; color: var(--c); }
+.wr.noun { --c: #5eead4; } .wr.part { --c: #fbbf24; }
+.wr.open { background: color-mix(in srgb, var(--c) 7%, var(--surface)); box-shadow: inset 3px 0 0 var(--c); }
+.wr .more { grid-column: 1 / -1; display: grid; gap: 8px; padding-top: 6px; }
+.back { display: flex; align-items: center; gap: 8px; padding: 8px 12px; }
+.back .ttl { font-weight: 600; }
+.stepbar { position: absolute; inset: auto 0 0 0; height: 3.4rem; display: flex; align-items: center; justify-content: space-between; padding-inline: 14px; border-top: 1px solid var(--border); background: var(--surface); z-index: 2; }
+.stepbar .chip { height: 2.2rem; }
+
+/* ---- Quiz frames ---- */
+.qhead { display: flex; align-items: center; gap: 10px; padding: 12px 14px 8px; }
+.qhead h2 { margin: 0; font-size: 1.3rem; font-weight: 600; display: flex; align-items: baseline; gap: 8px; }
+.qhead h2 span { font-family: var(--font-arabic); font-weight: 400; color: var(--text-faint); font-size: 1.15rem; }
+.qhead .sp { flex: 1; }
+.prog { height: 3px; background: var(--border); margin-inline: 14px; border-radius: 3px; overflow: hidden; }
+.prog i { display: block; height: 100%; width: 38%; background: var(--a); }
+.qcard { margin: 12px 14px 0; display: grid; gap: 14px; justify-items: center; }
+.qcard.boxed { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface); padding: 16px 14px 14px; }
+.ask { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-faint); }
+.term { font-family: var(--font-quran); font-size: 3.1rem; line-height: 1.5; display: flex; align-items: center; gap: 10px; direction: ltr; }
+.term > span:first-child { direction: rtl; }
+.term .spk { width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 1px solid var(--border-hi); display: grid; place-items: center; color: var(--text-dim); font-size: .7rem; }
+.opts { display: grid; gap: 10px; width: 100%; }
+.o { display: flex; align-items: center; gap: 12px; padding: 0 14px; min-height: 3.3rem; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--surface-hi); font-size: 1rem; }
+.o b { display: grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--bg); color: var(--text-faint); font-weight: 400; font-size: .8rem; flex: none; }
+.o.right { border-color: var(--success); background: color-mix(in srgb, var(--success) 12%, var(--surface-hi)); }
+.o.wrong { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 12%, var(--surface-hi)); }
+.o .tick { margin-inline-start: auto; font-size: .85rem; }
+.o.right .tick { color: var(--success); } .o.wrong .tick { color: var(--danger); }
+.ctx { margin: 12px 14px 0; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface); padding: 10px 12px; display: grid; gap: 6px; }
+.ctx .q { font-family: var(--font-quran); direction: rtl; font-size: 1.25rem; line-height: 1.9; }
+.ctx .q mark { background: color-mix(in srgb, var(--success) 20%, transparent); color: var(--text); border-radius: 6px; padding-inline: 4px; }
+.ctx .en { font-size: .8rem; color: var(--text-dim); }
+.next { position: absolute; inset: auto 14px 12px 14px; height: 3.1rem; border-radius: var(--r-md); background: var(--a); color: #2a0615; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 2; }
+.row1 { display: flex; gap: 8px; overflow: hidden; padding: 0 14px; align-items: center; }
+.setuppill { display: inline-flex; align-items: center; gap: 8px; height: 2.2rem; padding-inline: 12px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--a) 40%, transparent); background: color-mix(in srgb, var(--a) 10%, transparent); color: var(--text); font-size: .82rem; white-space: nowrap; }
+.setuppill em { font-style: normal; color: var(--a); }
+
+.scoreline { display: flex; gap: 14px; align-items: center; font-size: .78rem; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+.scoreline b { color: var(--text); font-weight: 600; }
+.setrow { display: grid; gap: 6px; }
+.setrow .lab { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint); }
+.toggleline { display: flex; align-items: center; justify-content: space-between; font-size: .9rem; }
+.sw { width: 2.4rem; height: 1.4rem; border-radius: 99px; background: var(--a); position: relative; }
+.sw::after { content: ''; position: absolute; right: 3px; top: 3px; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: #fff; transform: scale(.78); }
+.verdict { display: flex; align-items: center; gap: 8px; font-size: .9rem; margin: 10px 14px 0; color: var(--success); font-weight: 600; }
+.verdict small { color: var(--text-faint); font-weight: 400; }
+.mini { margin: 6px 14px 0; font-size: .72rem; color: var(--text-faint); display: flex; justify-content: space-between; }
+
+.laptop { width: 790px; border: 1px solid var(--border-hi); border-radius: 14px; padding: 14px; background: var(--bg); display: grid; gap: 12px; }
+.lrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.lcols { display: grid; grid-template-columns: 1.7fr 1fr .25fr; gap: 12px; }
+.lcard { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface); padding: 14px; }
+.ringrow { display: flex; align-items: center; gap: 12px; }
+.ring { width: 3.5rem; height: 3.5rem; border-radius: 50%; display: grid; place-items: center; flex: none; background: conic-gradient(var(--success) 0 var(--p), var(--danger) 0); }
+.ring i { font-style: normal; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--surface); display: grid; place-items: center; font-size: .72rem; font-weight: 600; }
+.sq2 { width: 1rem; height: 1rem; border-radius: 4px; background: var(--border-hi); } .sq2.ok { background: var(--success); } .sq2.bad { background: var(--danger); }
+.sqrow { display: flex; gap: 5px; flex-wrap: wrap; }
+.swipe { display: flex; gap: 8px; overflow: hidden; padding: 0 14px; align-items: center; }
+.swipe .seg { flex: none; } .swipe .seg span { padding: 5px 11px; }
+.round { margin: 12px 14px 0; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface); padding: 14px; display: grid; gap: 12px; }
+.pop { position: absolute; z-index: 4; left: 14px; right: 14px; border: 1px solid var(--border-hi); border-radius: var(--r-md); background: var(--surface-hi); box-shadow: var(--pop); padding: 12px; display: grid; gap: 12px; }
+.pop .setrow { gap: 5px; }
+.pop .seg { justify-self: start; max-width: 100%; overflow: hidden; }
+.seg.tight span { padding: 5px 6px; font-size: .78rem; }
+.seg.wrap { flex-wrap: wrap; border-radius: 1rem; }
+.picker { display: flex; align-items: center; justify-content: space-between; height: 2.4rem; padding-inline: 12px; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--surface); font-size: .85rem; }
+
+.pick { margin: 10px 0 0; padding: 10px 14px; border: 1px solid color-mix(in srgb, var(--quiz) 40%, transparent); border-radius: var(--r-md); background: color-mix(in srgb, var(--quiz) 8%, transparent); max-width: 70ch; font-size: .875rem; color: var(--text); }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 410px), 1fr)); gap: 22px; align-items: start; }
+.card { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface); padding: 18px; display: grid; gap: 12px; justify-items: start; min-width: 0; }
+.card h3 { margin: 0; font-size: 1.05rem; display: flex; gap: 10px; align-items: center; }
+.card h3 b { display: inline-grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: color-mix(in srgb, var(--quiz) 18%, transparent); color: var(--quiz); font-size: .9rem; }
+.card .one { margin: 0; color: var(--text-dim); font-size: .9rem; }
+.facts { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; width: 100%; font-size: .82rem; border-block: 1px solid var(--border); padding-block: 10px; }
+.facts li { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+.facts span { color: var(--text-faint); min-width: 11rem; }
+.facts b { font-weight: 600; } .facts i { color: var(--text-faint); font-style: normal; }
+.toggle { display: flex; gap: 6px; }
+.toggle button { height: 1.9rem; padding-inline: 14px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-dim); font-size: .8rem; }
+.toggle button.on { color: var(--quiz); border-color: color-mix(in srgb, var(--quiz) 45%, transparent); background: color-mix(in srgb, var(--quiz) 13%, transparent); }
+.decided { border-top: 1px solid var(--border); padding-top: 24px; }
+.decided h2 { margin: 0 0 4px; font-size: 1.05rem; }
+.decided .sub { margin: 0 0 16px; color: var(--text-dim); font-size: .875rem; max-width: 70ch; }
+</style>
+
+<div class="page">
+  <div class="lede">
+    <h1>One decision left: the Quiz on a phone</h1>
+    <p>Three options. Each keeps every laptop part and adds nothing new. Only the setup controls move.</p>
+    <p class="pick"><b>My pick: 1.</b> CSS only, setup always visible.</p>
+  </div>
+
+  <div class="cols">
+    <section class="card">
+      <h3><b>1</b> One row, swipe sideways</h3>
+      <p class="one">The laptop's setup line on one row.</p>
+      <ul class="facts">
+        <li><span>Question starts at</span><b>230px</b> <i>(today 600)</i></li>
+        <li><span>Hidden until you swipe</span><b>Narrow by, Meaning</b></li>
+        <li><span>What changes in code</span><b>CSS only</b></li>
+      </ul>
+      <div class="toggle" data-for="d1"></div><div id="d1"></div>
+    </section>
+
+    <section class="card">
+      <h3><b>2</b> Words + one pill</h3>
+      <p class="one">Laptop's existing pill also holds Narrow by and surah.</p>
+      <ul class="facts">
+        <li><span>Question starts at</span><b>230px</b> <i>(today 600)</i></li>
+        <li><span>Hidden until one tap</span><b>Narrow by, surah, Meaning</b></li>
+        <li><span>What changes in code</span><b>existing pill holds more</b></li>
+      </ul>
+      <div class="toggle" data-for="d2"></div><div id="d2"></div>
+    </section>
+
+    <section class="card">
+      <h3><b>3</b> Two tabs: Question | This round</h3>
+      <p class="one">Laptop's two columns become two tabs.</p>
+      <ul class="facts">
+        <li><span>Question starts at</span><b>280px</b> <i>(today 600)</i></li>
+        <li><span>Score and Got wrong</span><b>on their own tab</b></li>
+        <li><span>What changes in code</span><b>CSS plus one tab control</b></li>
+      </ul>
+      <div class="toggle" data-for="d3"></div><div id="d3"></div>
+    </section>
+  </div>
+
+  <section class="decided">
+    <h2>Decided: Qur'an study as a sheet</h2>
+    <p class="sub">Nothing to pick here.</p>
+    <div class="frames" id="qa"></div>
+  </section>
+</div>
+
+<script>
+const esc = (s) => s
+const W = [
+  ['ٱللَّهُ', 'اسم', 'Allah', 'noun'], ['لَآ', 'حرف', '(there is) no', 'part'], ['إِلَٰهَ', 'اسم', 'God', 'noun'],
+  ['إِلَّا', 'حرف', 'except', 'part'], ['هُوَ', 'اسم', 'Him', 'noun'], ['ٱلْحَىُّ', 'اسم', 'the Ever-Living', 'noun'],
+  ['ٱلْقَيُّومُ', 'اسم', 'the Sustainer of all', 'noun']
+]
+const AYAH = 'ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ'
+const header = '<div class="hdr"><div class="sq">✎</div><div class="search">Search or ask</div><div class="sq">⚙</div></div>'
+const nav = (on) => '<div class="nav">' + [['ق','Quran','quran'],['م','Dict','dict'],['ب','Grow','grow'],['خ','Quiz','quiz'],['⋯','More','more']].map(([i,l,id]) => `<div class="${id===on?'on':''}"><i>${i}</i>${l}</div>`).join('') + '</div>'
+const phone = (kind, inner, on, cap, over = '') => `<div><div class="cap">${cap}</div><div class="phone ${kind}">${header}<div class="screen">${inner}</div>${nav(on)}${over}</div></div>`
+const word = (w, open) => `<div class="w ${w[3]} ${open?'open':''}"><span class="a">${w[0]}</span><span class="p">${w[1]}</span><span class="e">${w[2]}</span></div>`
+const strip = (open) => `<div class="strip">${W.map((w,i) => word(w, i===open)).join('')}</div>`
+const detail = () => `<div class="wd"><div class="tags">اسم · مذكر · مفرد · منصوب</div>
+  <div class="kv"><span>Dictionary form</span><span class="ar">إِلَٰه</span></div>
+  <div class="kv"><span>Root</span><span class="ar">أله</span></div>
+  <div class="acts"><span class="chip">Define</span><span class="chip">Conjugate</span></div></div>`
+const reader = (hereRows, extra = '') => `
+  <div class="rd-top"><span class="chip">‹</span><span><span class="nm">البقرة</span><span class="meta">2 · Al-Baqarah · 286 ayahs</span></span><span class="sp"></span><span class="chip">255 ▾</span><span class="chip">›</span></div>
+  <div class="rows">${hereRows}${extra}</div>`
+const row = (n, here, q, en) => `<div class="row ${here?'here':''}"><span class="no">2:${n}</span><div class="q">${q}</div><div class="en">${en}</div></div>`
+const r254 = row(254, false, 'يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ أَنفِقُوا۟ مِمَّا رَزَقْنَٰكُم', 'O you who believe! Spend from what We have provided for you.')
+const r255 = (en = true) => row(255, true, AYAH, en ? 'Allah, there is no god but Him, the Ever-Living, the Sustainer of all.' : '')
+const r256 = row(256, false, 'لَآ إِكْرَاهَ فِى ٱلدِّينِ', 'There is no compulsion in religion.')
+const rec = '<div class="recbar"><span class="pl">▶</span><span>Play from 255</span></div>'
+
+/* ---- Qur'an A ---- */
+document.getElementById('qa').innerHTML =
+  phone('', `${reader(r255() + r256)}
+    <div class="sheet docked" style="height:62%">
+      <div class="grab"></div>
+      <div class="sh-h"><h4>Study <span class="pill">2:255</span></h4><span style="flex:1"></span><span class="chip" style="height:1.8rem">‹ ›</span><span class="xbtn">✕</span></div>
+      <div class="tabs"><span class="on">Words</span><span>Joins</span><span>Tafsir</span></div>
+      <div class="body"><div class="words">${W.map(w => word(w, false)).join('')}</div><div class="note">Tap a word for its grammar and root.</div></div>
+    </div>`, 'quran', 'Ayah tapped')
+  + phone('', `${reader(r255() + r256)}
+    <div class="sheet docked" style="height:62%">
+      <div class="grab"></div>
+      <div class="sh-h"><h4>Study <span class="pill">2:255</span></h4><span style="flex:1"></span><span class="chip" style="height:1.8rem">‹ ›</span><span class="xbtn">✕</span></div>
+      <div class="tabs"><span class="on">Words</span><span>Joins</span><span>Tafsir</span></div>
+      <div class="body">${strip(2)}${detail()}</div>
+    </div>`, 'quran', 'Word tapped: row shrinks, detail fills the sheet')
+  + phone('', `${reader(r255() + r256)}
+    <div class="sheet docked" style="top:7%">
+      <div class="grab"></div>
+      <div class="sh-h"><h4>Study <span class="pill">2:255</span></h4><span style="flex:1"></span><span class="chip" style="height:1.8rem">‹ ›</span><span class="xbtn">✕</span></div>
+      <div class="tabs"><span>Words</span><span class="on">Joins</span><span>Tafsir</span></div>
+      <div class="body"><div class="sec"><span>How the words join</span><span class="chip" style="height:1.5rem;font-size:.7rem">Rules</span></div>
+        <div class="fig">
+          <div class="g"><span class="ar">لَآ + إِلَٰهَ</span><span class="arrow">←</span><span class="role">لا النافية + اسمها</span></div>
+          <div class="g"><span class="ar">إِلَّا + هُوَ</span><span class="arrow">←</span><span class="role">أداة استثناء + مستثنى</span></div>
+          <div class="g"><span class="ar">ٱلْحَىُّ ٱلْقَيُّومُ</span><span class="arrow">←</span><span class="role">صفتان</span></div>
+        </div><div class="note">Dragged up to nearly full: the same sheet, other tab.</div></div>
+    </div>`, 'quran', 'Joins tab, sheet dragged up')
+
+/* ---- Quiz ---- */
+const O = (n, t, cls = '', tick = '') => `<div class="o ${cls}"><b>${n}</b>${t}${tick?`<span class="tick">${tick}</span>`:''}</div>`
+const opts = (state) => `<div class="opts">${state === 'ans'
+  ? O(1,'to leave','wrong','✕') + O(2,'to transgress') + O(3,'to remember') + O(4,'to perceive','right','✓')
+  : O(1,'to leave') + O(2,'to transgress') + O(3,'to remember') + O(4,'to perceive')}</div>`
+const term = '<div class="term"><span>شَعَرَ</span><span class="spk">◀))</span></div>'
+const ctx = `<div class="ctx"><div class="sec"><span>Where it appears</span><span class="pill">6:109</span></div><div class="q">وَمَا يُ<mark>شْعِرُكُمْ</mark> أَنَّهَآ إِذَا جَآءَتْ لَا يُؤْمِنُونَ</div><div class="en">What will make you perceive that, when it comes, they will not believe?</div></div>`
+const pill = '<span class="setuppill"><span><em>Qur\'anic</em> · 80% book · English</span> <span style="color:var(--text-faint)">⌄</span></span>'
+
+const under = `<div style="display:grid;gap:10px;margin:14px 14px 0"><div class="ctx" style="margin:0;display:flex;justify-content:space-between;color:var(--text-dim);font-size:.85rem"><span>› How you're doing, all time</span></div><div class="ctx" style="margin:0;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--text-faint);letter-spacing:.08em;text-transform:uppercase"><span>Practice sentence</span><span class="chip">Make one</span></div></div>`
+const segs = (items, on) => `<span class="seg">${items.map(i => `<span class="${i === on ? 'on' : ''}">${i}</span>`).join('')}</span>`
+const wordsSeg = segs(["Qur'anic", 'Everyday', 'All', 'Review'], "Qur'anic")
+const narrowSeg = segs(['80% book', "Whole Qur'an", 'Topic', 'Surah', 'Juz'], '80% book')
+const meaning = '<span class="chip">English · AR → EN <span style="color:var(--text-faint)">⌄</span></span>'
+const sqs = '<div class="sqrow">' + 'ok ok bad ok ok ok bad ok ok ok'.split(' ').map((c) => `<span class="sq2 ${c}"></span>`).join('') + '</div>'
+const roundCard = '<div class="round"><div class="ringrow"><span class="ring" style="--p:70%"><i>70%</i></span><span class="note"><span style="color:var(--success)">7</span> right<br><span style="color:var(--danger)">3</span> wrong<br>streak 3 · best 5</span></div><div class="sec"><span>Got wrong</span></div><div class="note">Nothing yet.</div></div>'
+const soFar = '<div class="round" style="padding:10px 14px"><div class="sec"><span>Questions so far</span></div>' + sqs + '</div>'
+const flatCard = (state) => `<div class="qcard" style="margin-top:14px"><div class="ask">What does this mean?</div>${term}${opts(state)}</div>`
+const tail = '<div class="mini"><span>Keys 1-4 answer</span><span>● auto-advance</span></div>'
+const head = '<div class="qhead" style="padding-bottom:8px"><h2>Quiz <span>اختبار</span></h2></div>'
+
+// D1
+document.getElementById('d1').innerHTML =
+  phone('quiz', `${head}<div class="swipe">${wordsSeg}${narrowSeg}${meaning}</div>${flatCard()}${tail}${under}`, 'quiz', 'Question: the one line swipes sideways')
+  + phone('quiz', `<div style="margin-top:2px"></div>${roundCard}${soFar}${under}`, 'quiz', 'Scrolled down: the same round card and squares')
+
+// D2
+const pillSentence = '<span class="chip" style="height:2.1rem;color:var(--text);padding-inline:10px"><span><span style="color:var(--a)">80% book</span> · EN</span> <span style="color:var(--text-faint)">⌄</span></span>'
+const tight = '<span class="seg tight">' + ["Qur'anic", 'Everyday', 'All', 'Review'].map((i) => `<span class="${i === "Qur'anic" ? 'on' : ''}">${i}</span>`).join('') + '</span>'
+document.getElementById('d2').innerHTML =
+  phone('quiz', `${head}<div class="swipe" style="overflow:visible">${tight}${pillSentence}</div>${flatCard()}${tail}${under}`, 'quiz', 'Question: Words and one pill')
+  + phone('quiz', `${head}<div class="swipe" style="overflow:visible">${tight}${pillSentence}</div>
+    <div class="pop" style="top:96px">
+      <div class="setrow"><span class="lab">Narrow by</span>${narrowSeg.replace('class="seg"', 'class="seg wrap"')}</div>
+      <div class="setrow"><span class="lab">Which surah</span><div class="picker"><span>2. Al-Baqarah (286)</span><span style="color:var(--text-faint)">⇅</span></div></div>
+      <div class="setrow"><span class="lab">Meaning in</span>${segs(['English', 'اردو'], 'English')}</div>
+      <div class="setrow"><span class="lab">Direction</span>${segs(['AR → EN', 'EN → AR'], 'AR → EN')}</div>
+    </div>${flatCard()}`, 'quiz', 'Pill tapped: the same popover, now with Narrow by too')
+
+// D3
+const tabs2 = (on) => `<div class="swipe" style="padding-top:2px"><span class="seg" style="flex:1"><span class="${on === 'q' ? 'on' : ''}" style="flex:1;text-align:center">Question</span><span class="${on === 'r' ? 'on' : ''}" style="flex:1;text-align:center">This round · 70%</span></span></div>`
+document.getElementById('d3').innerHTML =
+  phone('quiz', `${head}<div class="swipe">${wordsSeg}${narrowSeg}${meaning}</div><div style="height:10px"></div>${tabs2('q')}${flatCard()}${tail}${under}`, 'quiz', 'Question tab')
+  + phone('quiz', `${head}<div class="swipe">${wordsSeg}${narrowSeg}${meaning}</div><div style="height:10px"></div>${tabs2('r')}${roundCard}${soFar}
+    <div class="round" style="padding:10px 14px"><div class="sec"><span>Got wrong</span></div><div style="display:flex;justify-content:space-between;align-items:center"><span class="ar" style="font-size:1.3rem">شَعَرَ</span><span class="note">to perceive</span></div></div>`, 'quiz', 'This round tab')
+
+const LABELS = { d1: ['Question', 'Scroll down'], d2: ['Question', 'Tap the pill'], d3: ['Question tab', 'This round tab'] }
+for (const [id, labels] of Object.entries(LABELS)) {
+  const box = document.getElementById(id)
+  const states = [...box.children]
+  const bar = document.querySelector(`[data-for="${id}"]`)
+  states.forEach((state, i) => {
+    state.querySelector('.cap').remove()
+    const button = document.createElement('button')
+    button.textContent = labels[i]
+    button.onclick = () => {
+      states.forEach((other, j) => { other.hidden = j !== i })
+      ;[...bar.children].forEach((b, j) => b.classList.toggle('on', j === i))
+    }
+    bar.append(button)
+  })
+  states.forEach((state, i) => { state.hidden = i > 0 })
+  bar.children[0].classList.add('on')
+}
+</script>

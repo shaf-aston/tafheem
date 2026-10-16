@@ -10,7 +10,7 @@
   "meaning-language": "en",
 
   "auto-next": true,
-  "auto-next-ms": 650,
+  "auto-next-ms": 450,
   "_comment-wrong": "A wrong answer waits longer: the correction under it has to be readable before it goes.",
   "auto-next-wrong-ms": 2500,
 

@@ -15,8 +15,20 @@
   },
   "_meanings": "Hand-checked meanings for Qur'anic words whose one chosen word-by-word gloss only fits its own verse. Each replaces en, ur and the meaning key.",
   "meanings": {
-    "تَأْوِيل": { "en": "interpretation", "ur": "تاویل، تعبیر" }
+    "تَأْوِيل": { "en": "interpretation", "ur": "تاویل، تعبیر" },
+    "لَهَب": { "en": "flame", "ur": "شعلہ" },
+    "كافُور": { "en": "camphor", "ur": "کافور" },
+    "زَنجَبِيل": { "en": "ginger", "ur": "سونٹھ" },
+    "طُور": { "en": "mount", "ur": "پہاڑ" },
+    "شَيْطَان": { "en": "devil", "ur": "شیطان" },
+    "شَيْطان": { "en": "devil", "ur": "شیطان" },
+    "حَرام": { "en": "forbidden, sacred", "ur": "حرام، محترم" },
+    "كَوْثَر": { "en": "abundance", "ur": "خیر کثیر" },
+    "كَلالَة": { "en": "one with no parent or child", "ur": "جس کا نہ باپ ہو نہ اولاد" },
+    "جِزْيَة": { "en": "poll tax", "ur": "جزیہ" }
   },
+  "_names": "Words whose only English is a name: a place, a spring, a register, a pre-Islamic custom. A name as a wrong option is dismissed without reading the question, so these are dropped like the corpus's own names are. A word that also has an ordinary meaning goes in meanings above instead, glossed by that meaning.",
+  "names": ["طُوًى", "سِجِّين", "عِلِّيّ", "تَسْنِيم", "إِيلِيَاء", "راعِ", "بَحِيرَة", "سائِبَة", "وَصِيلَة", "حام"],
   "_lemmas": "Corpus lemmas for 80% book words the build cannot match by letters, because the corpus writes them another way: a present tense, a plural's singular, the Qur'an's own hamza. Each was checked by its Qur'an count against the book's. The build stops if a lemma is not in the corpus.",
   "lemmas": {
     "قُرْآن": ["قُرْءان"],

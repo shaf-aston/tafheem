@@ -13,7 +13,7 @@ from fastapi.testclient import TestClient
 
 from backend.config import data_path
 from backend.main import app
-from backend.services import timelines
+from backend.services import asbab, timelines
 
 LIBRARY = {
     "sciences": [{"key": "seerah", "name": "Seerah", "arabic": "السيرة"}],
@@ -216,15 +216,15 @@ def test_asbab_reports_are_named_on_their_event_or_left_to_the_stretch():
     Skipped rather than failed where the books are not imported: a checkout with
     no library.db is a valid state, and the tab shows no reports in it.
     """
-    if not timelines._asbab():
+    if not asbab._passages():
         pytest.skip("the asbab books are not imported here")
-    badr = timelines.asbab("seerah", "badr")
+    badr = asbab.listing(*timelines.find("seerah", "badr"))
     assert badr["reports"] and all(row["how"] == "named" for row in badr["reports"])
     assert badr["source"]["key"] == "lubab"
     refs = [row["ref"] for row in badr["reports"]]
     assert refs == sorted(refs, key=lambda ref: [int(n) for n in ref.split(":")])
 
-    madinan = timelines.asbab("seerah", "madinan-revelation")
+    madinan = asbab.listing(*timelines.find("seerah", "madinan-revelation"))
     assert all(row["how"] == "period" for row in madinan["reports"])
     # A report shown on Badr must not be buried in the stretch as well.
     assert not {row["ref"] for row in madinan["reports"]} & set(refs)
@@ -233,7 +233,7 @@ def test_asbab_reports_are_named_on_their_event_or_left_to_the_stretch():
 def test_an_event_that_does_not_exist_is_a_404_not_an_empty_list():
     assert TestClient(app).get("/api/timelines/seerah/nowhere/asbab").status_code == 404
     with pytest.raises(KeyError):
-        timelines.asbab("nosuch", "badr")
+        timelines.find("nosuch", "badr")
 
 
 def test_the_endpoint_serves_every_section_with_its_source():

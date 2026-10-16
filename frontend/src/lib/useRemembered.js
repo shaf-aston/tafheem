@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 
-import { readRaw, writeRaw } from './stored'
+import { useStoredRaw, writeRaw } from './stored'
 
 /**
  * One remembered choice, kept in localStorage between visits. Which commentary,
@@ -19,12 +19,8 @@ import { readRaw, writeRaw } from './stored'
  * the stored string comes straight back.
  */
 export function useRemembered(key, allowed = null, fallback = allowed?.[0] ?? '') {
-  const [stored, setStored] = useState(() => readRaw(key) || '')
-
-  const choose = useCallback((value) => {
-    setStored(value)
-    writeRaw(key, value)
-  }, [key])
+  const stored = useStoredRaw(key)
+  const choose = useCallback((value) => writeRaw(key, value), [key])
 
   const chosen = !allowed || allowed.includes(stored) ? stored : fallback
   return [chosen, choose]

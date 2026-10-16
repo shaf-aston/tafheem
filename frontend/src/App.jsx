@@ -1,28 +1,34 @@
-import { useCallback, useEffect, useState } from 'react'
+import { Activity, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
-import { useStrip } from './lib/recent'
+import { DOCK, FIXED, GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
+import { useDock } from './lib/dock'
+import { keepRecent, useStrip } from './lib/recent'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { idle } from './lib/warm'
+import { holdBackdrop } from './lib/backdropHold'
 import { useTabShortcuts } from './lib/useTabShortcuts'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
 
-import Backdrop from './components/Backdrop'
-import CursorLight from './components/CursorLight'
-import CommandBar from './components/ui/CommandBar'
+import Backdrop from './components/shell/Backdrop'
+import TabPane from './components/shell/TabPane'
+import CursorLight from './components/shell/CursorLight'
+import CommandBar from './components/shell/CommandBar'
 import ErrorAlert from './components/ui/ErrorAlert'
 import Mascot from './components/ui/Mascot'
-import MapPanel from './components/ui/MapPanel'
-import ProfileButton from './components/ui/ProfileButton'
-import SettingsPanel from './components/ui/SettingsPanel'
+import MapPanel from './components/shell/MapPanel'
+import ProfileButton from './components/profile/ProfileButton'
+import SettingsPanel from './components/shell/SettingsPanel'
 import { TOOLS } from './lib/tools'
-import SpatialHome from './components/ui/SpatialHome'
-import SourceFooter from './components/ui/SourceFooter'
-import TabStrip from './components/ui/TabStrip'
-import BottomNav from './components/ui/BottomNav'
-import SectionsMenu from './components/ui/SectionsMenu'
+import { shareLink } from './lib/tabUrl'
+import { COPY_RESET_MS } from './components/ui/CopyButton'
+import SpatialHome from './components/shell/SpatialHome'
+import SourceFooter from './components/shell/SourceFooter'
+import TabStrip from './components/shell/TabStrip'
+import BottomNav from './components/shell/BottomNav'
+import InstallBanner from './components/shell/InstallBanner'
+import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
 
 const queryClient = new QueryClient({
@@ -32,8 +38,11 @@ const queryClient = new QueryClient({
 })
 
 // Logs how long each tab's opening data took, `[open] hadith 212ms`; 0ms = already cached.
+// The tab's code comes too (lib/tabs.js `panel`); a failed fetch is tried again on opening.
 const openTab = (id) => {
-  const open = TABS.find((t) => t.id === id)?.open
+  const tab = TABS.find((t) => t.id === id)
+  tab?.Component.preload?.().catch(() => {})
+  const open = tab?.open
   if (!open) return
   const at = performance.now()
   Promise.resolve(open(queryClient)).then(() => console.debug(`[open] ${id} ${Math.round(performance.now() - at)}ms`))
@@ -48,6 +57,15 @@ const QUIET = { streak: 0, answer: null }
 // number is what says an arrival happened. It must never repeat, which a clock
 // can: two arrivals can share a millisecond.
 let arrivals = 0
+
+// Tabs kept alive while hidden, the most recently opened: going back to one
+// shows it as it was left, what was typed, read and scrolled. Each costs its
+// page's memory, nothing while hidden; more would be paying for tabs that are
+// not coming back.
+const KEEP = 4
+
+// How long the backdrop holds still for a switch (lib/backdropHold).
+const SWITCH_MS = 400
 
 const STATUS = {
   checking: { color: 'var(--tab-dict)',  label: 'Connecting…', pulse: true },
@@ -90,16 +108,32 @@ function AppContent() {
   // the panel is born on that word rather than remounted onto it.
   const [opened] = useState(() => startJourney(TABS) ?? { tab: TABS[0].id, value: null })
   const [activeTab, setActiveTab] = useState(opened.tab)
+  const [alive, setAlive] = useState([opened.tab])
+  // The same two, for the callbacks below to read without being remade.
+  const activeRef = useRef(opened.tab)
+  const aliveRef = useRef(alive)
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
-  const runTool = { startOver, map: () => setMapOpen(true) }
+  // The tool that just worked, shown in its `done` look for a moment.
+  const [doneTool, setDoneTool] = useState(null)
+  useEffect(() => {
+    if (!doneTool) return undefined
+    const timer = setTimeout(() => setDoneTool(null), COPY_RESET_MS)
+    return () => clearTimeout(timer)
+  }, [doneTool])
+  const runTool = {
+    startOver,
+    copyLink: () => navigator.clipboard.writeText(shareLink()).then(() => setDoneTool('copyLink'), () => {}),
+    map: () => setMapOpen(true),
+  }
+  const toolNow = (tool) => (doneTool === tool.id ? { ...tool, ...tool.done } : tool)
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
-  // A root handed from one tab to another. Held here because it is the only
-  // thing the panels share; each one reads it once and then owns its own state.
-  const [handoff, setHandoff] = useState(
-    opened.value ? { tab: opened.tab, value: opened.value, at: 0 } : null,
+  // A root handed from one tab to another, per tab. Held here because it is the
+  // only thing the panels share; each one reads it once and then owns its own state.
+  const [handoffs, setHandoffs] = useState(
+    opened.value ? { [opened.tab]: { value: opened.value, at: 0 } } : {},
   )
   const { status, nlpEngine, aiBackend, ear } = useHealth()
   // Dismissing hides this outage only. Once the backend is back, the next drop
@@ -108,29 +142,40 @@ function AppContent() {
     if (status === 'ok') setBannerDismissed(false)
   }, [status])
 
-  const active = TABS.find((t) => t.id === activeTab) ?? TABS[0]
-  const ActiveTab = active.Component
-
   // The practice tabs (Quiz, Tamreen) say how it is going.
   // They report; `moodFrom` below is still the only thing that decides.
   const [quiz, setQuiz] = useState(QUIET)
   const accent = accentOf(activeTab)
 
-  // A tab chosen with nothing in hand opens on the word it was last on, from
-  // the journey, so glancing at another tab and coming back costs nothing.
-  // Already there (the active tab clicked again): not a step, and the panel
-  // is left exactly as it is.
-  const switchTab = useCallback((id, handed = null) => {
-    const incoming = handed ?? lastPlaceOn(id)
-    if (!visit(id, incoming)) return
+  // Every way onto a tab. `arrive`: the word it brings is one for the panel to
+  // follow; without, a tab still alive is shown exactly as it was left.
+  const show = useCallback((id, value, arrive) => {
+    holdBackdrop(SWITCH_MS)
+    activeRef.current = id
     setActiveTab(id)
     // Leaving the quiz ends the round as far as the pen is concerned, a streak
     // face still on while reading the Qur'an is describing nothing.
     setQuiz(QUIET)
-    setHandoff(incoming ? { tab: id, value: incoming, at: ++arrivals } : null)
+    const kept = aliveRef.current.includes(id)
+    aliveRef.current = keepRecent(aliveRef.current, id, KEEP)
+    setAlive(aliveRef.current)
+    if (!arrive && kept) return
+    const handoff = value ? { value, at: ++arrivals } : null
+    setHandoffs((all) => ({ ...all, [id]: handoff }))
   }, [])
 
-  const strip = useStrip(LISTED, RECENT, activeTab)
+  // A tab chosen with nothing in hand opens on the word it was last on, from
+  // the journey, so glancing at another tab and coming back costs nothing; one
+  // still alive is simply shown again. Already there (the active tab clicked
+  // again): not a step, and the panel is left exactly as it is.
+  const switchTab = useCallback((id, handed = null) => {
+    const value = handed ?? lastPlaceOn(id)
+    if (!visit(id, value)) return
+    show(id, value, handed != null)
+  }, [show])
+
+  const strip = useStrip(LISTED, FIXED, RECENT, activeTab)
+  const [dock, placeInDock] = useDock(LISTED, DOCK)
 
   useTabShortcuts(strip, switchTab)
 
@@ -141,15 +186,16 @@ function AppContent() {
   // arrow: a step returned to is handed back to its panel exactly like a
   // hand-off, which is what makes it load that word again.
   useEffect(() => {
-    return onJump((step) => {
-      setActiveTab(step.tab)
-      setQuiz(QUIET)
-      setHandoff(step.value ? { tab: step.tab, value: step.value, at: ++arrivals } : null)
-    })
-  }, [])
+    return onJump((step) => show(step.tab, step.value, step.value != null))
+  }, [show])
 
-  // Panels report where they got to; which tab that is, is App's to know.
-  const recordVisit = useCallback((value) => visit(activeTab, value), [activeTab])
+  // Each panel's own way to report where it got to, and how a round is going:
+  // made once, so a hidden panel is not rendered again for a switch. Only the
+  // tab on screen is heard; a hidden one finishing a search is not a step.
+  const said = useMemo(() => Object.fromEntries(TABS.map(({ id }) => [id, {
+    onVisit: (value) => activeRef.current === id && visit(id, value),
+    onProgress: (round) => { if (activeRef.current === id) setQuiz(round) },
+  }])), [])
 
   // The header is pinned, so anything else pinned sits under it: its height is
   // published as --app-header-h, kept true as it wraps on a narrow screen.
@@ -196,7 +242,7 @@ function AppContent() {
           </button>
           {/* Tools from lib/tools.js. Start over is one click, no arming; the wipe
               with real cost, settings and streak, stays two clicks deep in Settings. */}
-          {TOOLS.map((tool) => (
+          {TOOLS.map(toolNow).map((tool) => (
             <button
               key={tool.id}
               type="button"
@@ -211,6 +257,7 @@ function AppContent() {
               </svg>
             </button>
           ))}
+          <span className="sr-only" aria-live="polite">{doneTool && toolNow(TOOLS.find((tool) => tool.id === doneTool)).label}</span>
           </div>
 
           {/* Sits midway between the tools and the search, matching the colophon at the foot. */}
@@ -237,9 +284,11 @@ function AppContent() {
 
         {/* Phones get the tabs at the bottom instead (BottomNav). */}
         <div className="shell hidden sm:block">
-          <TabStrip tabs={strip} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
+          <TabStrip tabs={strip} fixed={FIXED.length} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
         </div>
       </header>
+
+      <InstallBanner />
 
       {status === 'error' && !bannerDismissed && (
         <div className="shell pt-4 relative">
@@ -279,24 +328,26 @@ function AppContent() {
           main's own role would leave the page with no main landmark to skip to. */}
       <main id="main" tabIndex={-1} className="shell py-8 glass rounded-[var(--radius-lg)] focus:outline-none">
         <div role="tabpanel" id="tabpanel" aria-labelledby={`tab-${activeTab}`}>
-          {/* Keyed by the tab and nothing else. Remounting on tab change is
-              what replays each panel's entrance animation; a word arriving on
-              the tab already open is NOT a new panel, and it used to be keyed
-              that way. Every back press then tore the whole column down, faded
-              it in from nothing over 220ms and left the page collapsed to an
-              empty panel's height while the word was fetched again, which read
-              as the screen blinking. The panels follow the word themselves
-              now; see each one's "a word arriving" block. */}
-          <div key={activeTab} className={`fade-in${active.study ? ' study' : ''}`}>
-            <ActiveTab
-              accent={accent}
-              incoming={handoff?.tab === activeTab ? handoff.value : null}
-              arrival={handoff?.tab === activeTab ? handoff.at : null}
-              onGo={switchTab}
-              onVisit={recordVisit}
-              onProgress={setQuiz}
-            />
-          </div>
+          {/* The last few tabs stay alive, hidden (React's Activity): a switch
+              back shows the panel as it was, with no fetch, no fade and no
+              cards rising again (TabPane). A switch used to tear the panel down
+              and build it again, blank until its code and data came and then
+              animated in. A word arriving on a tab is NOT a new panel: the
+              panels follow the word themselves; see each one's "a word
+              arriving" block. In TABS order, so a switch never moves a panel
+              in the page and loses its scroll. */}
+          {TABS.filter((tab) => alive.includes(tab.id)).map((tab) => (
+            <Activity key={tab.id} mode={tab.id === activeTab ? 'visible' : 'hidden'}>
+              <TabPane
+                tab={tab}
+                handoff={handoffs[tab.id]}
+                accent={accentOf(tab.id)}
+                onGo={switchTab}
+                onVisit={said[tab.id].onVisit}
+                onProgress={said[tab.id].onProgress}
+              />
+            </Activity>
+          ))}
         </div>
       </main>
 
@@ -339,18 +390,20 @@ function AppContent() {
         colorOf={accentOf}
         onGo={switchTab}
         here={activeTab}
+        dock={dock}
+        onDock={placeInDock}
       >
         {/* The tools phones hide from the top bar, kept one tap inside More. */}
         <section className="sm:hidden space-y-2">
           <h3 className="type-small text-[var(--text-faint)]">Actions</h3>
           <div className="grid grid-cols-2 gap-2">
-            {TOOLS.filter((tool) => tool.phone === 'more').map((tool) => (
+            {TOOLS.filter((tool) => tool.phone === 'more').map(toolNow).map((tool) => (
               <button
                 key={tool.id}
                 type="button"
                 aria-haspopup={tool.dialog ? 'dialog' : undefined}
                 aria-describedby={tool.hint ? `${tool.id}-hint` : undefined}
-                onClick={() => { setSectionsOpen(false); runTool[tool.id]() }}
+                onClick={() => { if (!tool.done) setSectionsOpen(false); runTool[tool.id]() }}
                 className={`tap min-h-11 rounded-[var(--radius-sm)] border type-body font-medium ${tool.danger ? 'border-[var(--danger-edge)] text-[var(--danger)]' : 'border-[var(--border)]'}`}
               >
                 {tool.label}
@@ -362,7 +415,7 @@ function AppContent() {
           ))}
         </section>
       </SectionsMenu>
-      <BottomNav tabs={LISTED} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
+      <BottomNav tabs={LISTED} dock={dock} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
       {/* Drawn last so it sits over the page, and once for the whole app. */}
       <CursorLight />
     </div>

@@ -87,7 +87,8 @@ export async function prepare(text) {
   if (prepared.has(text)) return
   prepared.add(text)
   if (await recordingOf(text)) return
-  fetch(serverUrl(text)).catch(() => prepared.delete(text))
+  // Marked as ahead, so a word actually pressed is made before it on the server.
+  fetch(serverUrl(text), { headers: { 'X-Speak-Ahead': '1' } }).catch(() => prepared.delete(text))
 }
 
 export function stop() {

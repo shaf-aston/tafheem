@@ -7,6 +7,18 @@ export const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
+// Whose record a request is about goes on every request, read at send time so
+// a name switched a moment ago is the one sent. A route that does not care
+// ignores it; one that does can no longer be called without it by mistake and
+// file a learner's answers under the guest. A call that names someone else
+// (sign-up, log-in) keeps its own.
+api.interceptors.request.use((config) => {
+  for (const [key, value] of Object.entries(profileHeaders())) {
+    if (!config.headers.has(key)) config.headers.set(key, value)
+  }
+  return config
+})
+
 export const analyzeIraab = (sentence) =>
   api.post('/analyze', { sentence }).then((r) => r.data)
 
@@ -45,6 +57,7 @@ export const quranSurahQuery = (surah) => ({ queryKey: ['quran-surah', surah], q
 // simply absent rather than mis-aligned.
 export const getSurahGlosses = (surah) =>
   api.get(`/quran/surah/${surah}/glosses`).then((r) => r.data)
+export const surahGlossesQuery = (surah) => ({ queryKey: ['surah-glosses', surah], queryFn: () => getSurahGlosses(surah) })
 
 // How the ayah's words join into one another. Derived from the corpus tags by
 // rule, so it comes back with its own source label; not the corpus's.
@@ -55,6 +68,7 @@ export const getSurahGlosses = (surah) =>
  */
 export const getQuranEditions = (kind = '') =>
   api.get('/quran/editions', { params: kind ? { kind } : {} }).then((r) => r.data)
+export const translationsQuery = { queryKey: ['quran-editions', 'translation'], queryFn: () => getQuranEditions('translation') }
 
 /**
  * What the named books say about one ayah. `ids` blank means every book, which
@@ -64,6 +78,7 @@ export const getQuranEditions = (kind = '') =>
  */
 export const getSurahEdition = (surah, id) =>
   api.get(`/quran/editions/surah/${surah}`, { params: { id } }).then((r) => r.data)
+export const surahEditionQuery = (surah, id) => ({ queryKey: ['surah-edition', surah, id], queryFn: () => getSurahEdition(surah, id) })
 
 export const getAyahEditions = (surah, ayah, ids = []) =>
   api
@@ -124,7 +139,7 @@ export const generatePractice = (sentence) =>
 
 // A short AI sentence made only of this learner's learnt words, each one checked.
 export const getCheckedSentence = () =>
-  api.post('/practice/checked', {}, { headers: profileHeaders() }).then((r) => r.data)
+  api.post('/practice/checked', {}).then((r) => r.data)
 
 // The teacher's exercise library: every tag, every exercise, and a count per
 // tag. Small and fixed, so it is fetched whole once and filtered on the
@@ -214,6 +229,26 @@ export const narratorQuery = (id) => ({
   queryFn: () => api.get(`/rijal/narrators/${id}`).then((r) => r.data),
   // No page built for him stays that way, so a 404 is not retried.
   retry: (count, error) => error?.response?.status !== 404 && count < 1,
+})
+
+// What every chain is read against, fetched once: the twelve levels, what each doubtful link says, the terms of the science.
+export const usulGuideQuery = {
+  queryKey: ['usul-guide'],
+  queryFn: () => api.get('/usul/guide').then((r) => r.data),
+}
+// The sorts of ruling the classical books give (with their plain meaning and count), and the hadith carrying one, a page at a time.
+export const usulTermsQuery = {
+  queryKey: ['usul-terms'],
+  queryFn: () => api.get('/usul/terms').then((r) => r.data),
+}
+export const usulTermQuery = (kind) => ({
+  queryKey: ['usul-term', kind],
+  queryFn: ({ pageParam }) => api.get(`/usul/terms/${kind}`, { params: { offset: pageParam } }).then((r) => r.data),
+  initialPageParam: 0,
+  getNextPageParam: (last, pages) => {
+    const seen = pages.reduce((n, p) => n + p.items.length, 0)
+    return last.items.length && seen < last.total ? seen : undefined
+  },
 })
 
 // The narrator list, most hadith first, a page at a time; the server fixes the page size.

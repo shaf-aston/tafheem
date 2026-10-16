@@ -14,6 +14,8 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 
+from pydantic import SecretStr
+
 from backend.config import get_settings
 from backend.main import app
 from backend.services import journal
@@ -33,7 +35,7 @@ class Rejected(Exception):
 @pytest.fixture(autouse=True)
 def fresh(monkeypatch):
     """One listening key, so "hosted" is one stable ear, and none stays retired or resting between tests."""
-    monkeypatch.setattr(get_settings(), "listening_groq_api_keys", "gsk_pretend")
+    monkeypatch.setattr(get_settings(), "listening_groq_api_keys", SecretStr("gsk_pretend"))
     def reset():
         for ear in (ears.named("hosted"), ears.named("letters"), ears.named("here")):
             ear.retired_reason = ""

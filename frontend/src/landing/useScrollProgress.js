@@ -15,6 +15,12 @@ export const riseProgress = (r) => {
   return 1 - (1 - p) ** 3
 }
 
+// 0 as an element's top enters at the bottom, 1 once its middle reaches the screen's middle, eased out.
+export const settleProgress = (r) => {
+  const p = Math.min(1, Math.max(0, (innerHeight - r.top) / ((innerHeight + r.height) / 2)))
+  return 1 - (1 - p) ** 3
+}
+
 // 0 to 1, both directions, measured once per frame while the element is on
 // screen (one more measure as it leaves, so the end values are exact).
 export default function useScrollProgress(ref, measure = trackProgress) {

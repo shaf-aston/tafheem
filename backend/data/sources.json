@@ -35,7 +35,8 @@
     "used_in": [
       "quran",
       "quiz",
-      "daleel"
+      "daleel",
+      "grow"
     ],
     "category": "Qur'an"
   },
@@ -121,17 +122,6 @@
     "detail": "Hand-recorded word relations, 5,023 of 6,236 ayahs",
     "url": "@noorbayan",
     "where": "Hand-recorded word relations (MIT). 5,023 of 6,236 ayahs.",
-    "used_in": [
-      "quran",
-      "nahw"
-    ]
-  },
-  "tarkeeb": {
-    "label": "Tarkeeb rules",
-    "confidence": "derived",
-    "detail": "The corpus's word tags, joined into a bracket tree by rule",
-    "url": "@corpus",
-    "where": "Tree from corpus tags by rule, where Treebank has none. Gaps left visible.",
     "used_in": [
       "quran",
       "nahw"
@@ -358,6 +348,16 @@
       "hadith"
     ]
   },
+  "usul": {
+    "label": "Narrator levels (Ibn Hajar)",
+    "confidence": "derived",
+    "detail": "Each narrator's grade read against Ibn Hajar's twelve levels in the preface of Taqrib al-Tahdhib; where support lifts a weakness, Ibn Hajar's Nuzhat al-Nazar and Ibn al-Salah's Muqaddima are quoted. Narrator pages and chain links also quote Ibn Hajar's Taqrib entries and Ta'rif, al-'Ala'i's Jami' al-Tahsil and Mukhtalitin, and al-Nawawi's Taqrib, each joined to a narrator by name only where the match is one-to-one. Texts from OpenITI",
+    "url": "@openiti",
+    "where": "A fixed rule over the narrator grades and the narrator books, built once and stored locally.",
+    "used_in": [
+      "hadith"
+    ]
+  },
   "hadith": {
     "label": "Hadith collections",
     "confidence": "verified",
@@ -365,7 +365,8 @@
     "url": "https://github.com/fawazahmed0/hadith-api",
     "where": "Every book and hadith. Stored locally.",
     "used_in": [
-      "hadith"
+      "hadith",
+      "grow"
     ]
   },
   "mushkil-tahawi": {

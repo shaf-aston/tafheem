@@ -316,7 +316,7 @@
 
 
 .sh-dialog::backdrop {
-  background: color-mix(in srgb, #000 62%, transparent);
+  background: var(--shadow-scrim);
   backdrop-filter: blur(6px);
   animation: sh-fade calc(var(--motion-base-ms) * 1ms) ease;
 }

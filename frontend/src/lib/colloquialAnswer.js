@@ -43,15 +43,19 @@ export const bankOf = (exercise) =>
   exercise.words?.length ? exercise.words : (exercise.answer ?? '').split(/\s+/).filter(Boolean)
 
 /**
- * Right or wrong for any exercise type, so no component decides that itself.
- * A picked option must match exactly (it cannot be mistyped); a typed or arranged
- * answer goes through isRight. A reorder value is a list of words, joined here.
+ * The three ways an answer is given. Each says what the learner starts with
+ * (`blank`) and how a value is marked (`judge`), so no component decides that
+ * itself and nothing here asks which type an exercise is.
  */
-export const judge = (exercise, value) => {
-  if (exercise.type === 'choose') return value === exercise.answer
-  const written = Array.isArray(value) ? value.join(' ') : value
-  return isRight(written, exercise.accepted)
-}
+
+/** Typed: goes through isRight. */
+export const TYPED = { blank: '', judge: (exercise, value) => isRight(value, exercise.accepted) }
+
+/** Picked: must match exactly, because a picked option cannot be mistyped. */
+export const PICKED = { blank: '', judge: (exercise, value) => value === exercise.answer }
+
+/** Arranged: a list of words, joined here and then goes through isRight. */
+export const ARRANGED = { blank: [], judge: (exercise, value) => isRight(value.join(' '), exercise.accepted) }
 
 /** Whether there is anything to check yet: an empty box or an empty sentence is not an answer. */
 export const hasAnswer = (value) => (Array.isArray(value) ? value.length > 0 : Boolean(value?.trim?.() ?? value))

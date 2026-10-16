@@ -2,11 +2,16 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
+import { bootShellPlugin } from './vite/bootShell'
+import { preloadFont } from './vite/preloadFont'
+
 // The landing page is the front door, so it is index.html and needs no rewrite.
 // The tool's public address is /app; app.html is only the file behind it. A host
 // serves a real file before it consults a rewrite, which is why the front door is
 // a filename and not a rule. One rewrite for the dev server and preview both.
+// /app/<tab> and /app/<tab>/<place> are the same page; lib/tabUrl.js reads the path.
 const PRETTY = { '/app': '/app.html' }
+const TAB_PAGE = /^\/app\/[^/.]+(\/.*)?$/
 const prettyUrls = {
   name: 'pretty-urls',
   configureServer(server) { server.middlewares.use(rewrite) },
@@ -14,13 +19,14 @@ const prettyUrls = {
 }
 function rewrite(req, _res, next) {
   const [path, query] = req.url.split('?')
-  const to = PRETTY[path.replace(/(.)\/$/, '$1')]
+  const bare = path.replace(/(.)\/$/, '$1')
+  const to = PRETTY[bare] ?? (TAB_PAGE.test(bare) ? PRETTY['/app'] : null)
   if (to) req.url = query ? `${to}?${query}` : to
   next()
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), prettyUrls],
+  plugins: [react(), tailwindcss(), prettyUrls, preloadFont, bootShellPlugin],
   build: {
     rollupOptions: {
       // A second real page, not a route: the app has no router, and the

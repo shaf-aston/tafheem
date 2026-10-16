@@ -21,7 +21,7 @@ import { useSearch } from '../lib/useSearch'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../lib/useLaneTidy'
 
 import ArabicText from './ui/ArabicText'
-import BookPicker from './ui/BookPicker'
+import BookPicker from './daleel/BookPicker'
 import EmptyState from './ui/EmptyState'
 import IndexNotBuilt from './ui/IndexNotBuilt'
 import FlagButton from './ui/FlagButton'
@@ -134,7 +134,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
 
         {/* Below the search box, not above: most searches want the whole
             library, so the box that everyone uses leads and the filter, which
-            is the occasional case, folds under it. See ui/BookPicker. */}
+            is the occasional case, folds under it. See daleel/BookPicker. */}
         <BookPicker
           books={catalogue}
           onChange={narrow}

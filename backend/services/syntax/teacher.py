@@ -12,14 +12,13 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters
-from backend.services.nahw_book import book_words, case_of, is_mabni, is_one, named_roles, teacher_rules
+from backend.services.nahw_book import book_words, case_of, is_mabni, is_one, teacher_rules
 from backend.services.syntax.facts import (
-    Sentence, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of)
+    Sentence, is_built_zarf, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of, noun_tagged)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, roles_keyed
 from backend.services.harakat import CASE_NAME
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
-NAMED = named_roles()
 DOERS = roles_keyed("fail")
 SUBJECTS = roles_keyed("mubtada")
 
@@ -27,7 +26,7 @@ SUBJECTS = roles_keyed("mubtada")
 def _is_noun(token: dict) -> bool:
     """Unlike `nahw_book.is_plain_noun` a pointer counts: هذا can be copied by a follower,
     and so does the called أيها, which the parser tags a particle."""
-    return (token["pos"] in ("NOM", "PROP") and not is_verb(token)) or is_called_noun(token)
+    return (noun_tagged(token) and not is_verb(token)) or is_called_noun(token)
 
 
 def _kid_indices(token: dict, bases: list[dict]) -> list[int]:
@@ -56,13 +55,11 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
     bare = bare_letters(token.get("typed") or "")
     free = set()
     # a pronoun, pointer, relative or question word keeps one ending whatever its job
-    if is_mabni(token) or is_object_pronoun(token):
+    if is_mabni(token.get("pos_camel", "")) or is_object_pronoun(token) or is_built_zarf(token):
         free.add("*")
     # the noun of لا is raf' when the لا works like ليس (لا رجلٌ في الدار), so its ending is open
     if is_one(by_id.get(token["head"], {}).get("lemma", ""), "la_jins"):
         free |= {"au", "ai"}
-    # a sound feminine plural takes kasra for nasb too (رأيت المعلماتِ), and a
-    # diptote takes fatha for jarr (مررت بأحمدَ): both look like a clash and are not
     if shows_nasb_by_kasra(token):
         free.add("ai")
     mudaf_ilayh = any(roles[k] == NAMED.mudaf_ilayh for k in _kid_indices(token, bases))

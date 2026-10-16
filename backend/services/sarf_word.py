@@ -9,14 +9,19 @@ is a separate request.
 """
 from __future__ import annotations
 
-from backend.models.schemas import (
+
+from backend.models.morphology import (
+
     ConjugationResponse,
+
     ConjugationTable,
+
     MorphologyResponse,
-    Source,
+
     VerbVerdict,
+
 )
-from backend.services import conjugation, dictionary_service, morphology, provenance, verb_forms
+from backend.services import conjugation, dictionary_service, morphology, provenance, roots, verb_forms
 
 
 def table_for(radicals: str, form: str) -> ConjugationResponse:
@@ -34,14 +39,15 @@ def table_for(radicals: str, form: str) -> ConjugationResponse:
         wazn=conjugation.scale_name(form) if form else None,
         table=table,
         table_note=note,
-        source=Source(**provenance.of("rules")) if table else None,
+        source=provenance.of("rules") if table else None,
     )
 
 
 def analyze(word: str, form: str | None) -> MorphologyResponse:
     """Root, meaning, باب, وزن and table for a word; `form` overrides the باب."""
     tag = morphology.analyze_word(word)
-    root = tag.get("root") or None
+    # The one place every tab asks (the typed vowels choosing: فَفِرُّوا is فرر), then the reading's own.
+    root = roots.root_of(word) or tag.get("root") or None
 
     meaning = dictionary_service.meaning_of(word)
     meaning_key = "wiktionary" if meaning else "rules"
@@ -69,6 +75,6 @@ def analyze(word: str, form: str | None) -> MorphologyResponse:
         form_options=conjugation.forms(len(radicals)),
         table_note=made.table_note or table_note,
         source=made.source,
-        meaning_source=Source(**provenance.of(meaning_key)) if meaning else None,
+        meaning_source=provenance.of(meaning_key) if meaning else None,
         verb=VerbVerdict.of(verdict),
     )

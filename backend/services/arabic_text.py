@@ -43,8 +43,9 @@ HAS_PYARABIC = _strip_fn is not None
 
 
 def strip_diacritics(text: str) -> str:
-    """Strip Arabic tashkeel/diacritics from `text`."""
-    return DIACRITICS_RE.sub("", text) if _strip_fn is None else _strip_fn(text)
+    """Strip Arabic tashkeel/diacritics from `text`. The regex runs after PyArabic too:
+    PyArabic leaves the maddah and the superscript alef (تُتْلَىٰ), which are marks, not letters."""
+    return DIACRITICS_RE.sub("", text if _strip_fn is None else _strip_fn(text))
 
 
 # Folds spelling variants that mean the same word (Qur'anic alef wasla vs plain alef) to shared letters.
@@ -64,7 +65,7 @@ def words(text: str) -> list[str]:
     Punctuation is a break between words, spaced or not: مَرْحَبًا، reached CAMeL
     with its comma and came back as an unknown name.
     """
-    return [w for w in _tokens(text) if _has_arabic_letter(w)]
+    return [_MADDA_RE.sub(lambda found: found.group(1) + "آ", w) for w in _tokens(text) if _has_arabic_letter(w)]
 
 
 def not_arabic(text: str) -> list[str]:
@@ -95,6 +96,11 @@ def _breaks(text: str, i: int) -> bool:
 _APOSTROPHES = "'’"
 
 
+# The Qur'an's spelling of آ: ءَامَنُوا is آمَنُوا. Only where the hamza opens the word (or follows
+# a one-letter prefix) and more follows the alef: جُزْءَا and شَيْءَانِ keep their hamza.
+_MADDA_RE = re.compile("^((?:[وفبلكس][ً-ْ]?)?)ءَا(?=.)")
+
+
 def _tokens(text: str) -> list[str]:
     return unpunctuated(text).split()
 
@@ -109,10 +115,7 @@ def bare_letters(text: str) -> str:
     For deciding whether two sources are talking about the same word, never for
     display, because what it returns is not how anyone writes Arabic.
     """
-    # DIACRITICS_RE runs after strip_diacritics on purpose: PyArabic leaves the
-    # maddah and the superscript alef in place, and Qur'anic spelling is full of both.
-    folded = DIACRITICS_RE.sub("", strip_diacritics(text))
-    return _QURANIC_MARKS_RE.sub("", folded).translate(_LETTER_FOLD)
+    return _QURANIC_MARKS_RE.sub("", strip_diacritics(text)).translate(_LETTER_FOLD)
 
 
 
