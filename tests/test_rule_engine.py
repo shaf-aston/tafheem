@@ -703,3 +703,58 @@ def test_a_plain_past_verb_after_fa_is_no_proof_of_a_condition():
 def test_la_before_a_jussive_with_a_pronoun_on_it_is_the_prohibition():
     assert "الناهية" in analysed("لَا تُكْرِمْهُ")[0]["reason"]
 
+
+
+def _tree_roles(sentence: str) -> list[str | None]:
+    """Every role the picture prints, top to bottom, worked out (not read from the treebank)."""
+    drawn = iraab.analyze(sentence, recorded=False)["tree"]["tree"]
+    out: list[str | None] = []
+
+    def walk(node: dict) -> None:
+        out.append(node.get("role"))
+        for kid in node.get("parts", []) + node.get("children", []):
+            walk(kid)
+    walk(drawn)
+    return out
+
+
+NADA = "فَنَادَى بِأَعْلَى صَوْتِهِ وَيْلٌ لِلأَعْقَابِ مِنَ النَّارِ مَرَّتَيْنِ أَوْ ثَلاَثًا"
+
+
+def test_a_prayer_noun_after_a_verb_is_a_mubtada_not_its_doer():
+    words = iraab.analyze(NADA, recorded=False)["words"]
+    assert [w["role"] for w in words] == [
+        "فعل", "مجرور", "مضاف إليه", "مبتدأ", "مجرور", "حرف جر", "مجرور", "مفعول مطلق", "حرف", "معطوف"]
+
+
+def test_a_prayer_noun_with_its_lam_phrase_is_a_mubtada_and_khabar():
+    assert [w["role"] for w in iraab.analyze("وَيْلٌ لِلْمُطَفِّفِينَ", recorded=False)["words"]][0] == "مبتدأ"
+    roles = _tree_roles("وَيْلٌ لِلْمُطَفِّفِينَ")
+    assert "مبتدأ" in roles and "خبر" in roles
+
+
+def test_a_doer_after_nada_stays_a_doer():
+    assert iraab.analyze("نَادَى زَيْدٌ", recorded=False)["words"][1]["role"] == "فاعل"
+
+
+def test_the_picture_names_no_particle_a_mawsuf_and_leaves_no_gap():
+    roles = _tree_roles(NADA)
+    assert "موصوف" not in roles and "معطوف" in roles
+    drawn = iraab.analyze(NADA, recorded=False)["tree"]["tree"]
+    assert '"gap": true' not in __import__("json").dumps(drawn)
+
+
+def test_a_past_verb_on_an_alef_is_built_on_an_implied_fatha():
+    card = iraab.analyze(NADA, recorded=False)["words"][0]
+    assert card["sign"] == "مبني على الفتح المقدر على الألف للتعذر"
+    assert iraab.analyze("كَتَبَ زَيْدٌ", recorded=False)["words"][0]["sign"] == "مبني على الفتح"
+
+
+def test_the_idafa_of_an_elative_is_ma3nawiyya_not_lafziyya():
+    reason = iraab.analyze(NADA, recorded=False)["words"][2]["reason"]
+    assert "لفظية" not in reason and "معنوية" in reason
+    assert "لفظية" in iraab.analyze("جَاءَ ضَارِبُ زَيْدٍ", recorded=False)["words"][2]["reason"]
+
+
+def test_a_count_of_times_is_the_absolute_object_of_its_verb():
+    assert iraab.analyze("ضَرَبْتُهُ مَرَّتَيْنِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"

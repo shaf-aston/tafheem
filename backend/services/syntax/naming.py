@@ -127,8 +127,8 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
     """Which kind of idafa or badal the word is, as the books name it (teacher.json kinds)."""
     kinds = teacher_rules()["kinds"]
     if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
-        if facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ":
-            return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite
+        if (facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ") and not facts.is_elative(mudaf):
+            return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite; أعلى صوتِه is not, it works on nothing
         bare = strip_diacritics(token["form"]).strip("+").removeprefix("ال")
         if any(is_one(bare, family) or is_one(bare + "ا", family) or facts.listed(token, family) for family in ("zarf_zaman", "zarf_makan")) \
                 or bare in kinds["time"]:

@@ -1195,6 +1195,37 @@
     "بنت",
     "ابنة"
    ]
+  },
+  "elative_patterns": {
+   "ar": "وزن اسم التفضيل",
+   "book": "Tasheel 4.3.5 p118",
+   "effect": "أَفْعَل (أَعْلَى، أَكْبَر) is no describing word at work: it takes no object, so its إضافة is معنوية محضة, never the لفظية of a participle (أَعْلَى صَوْتِهِ)",
+   "words": [
+    "أَ1ْ2َ"
+   ]
+  },
+  "times_counted": {
+   "ar": "عدد المرات",
+   "book": "Tasheel 3.2 p67 (a number or a kind stands in for the masdar)",
+   "effect": "مرة in nasb counts the verb's doing (ضربتُه مرتين): it stands in for the verb's absolute object, never a hal, and belongs to the verb, not to the jar-majrur before it",
+   "words": [
+    "مرة"
+   ]
+  },
+  "dua_nouns": {
+   "ar": "أسماء الدعاء والتحية",
+   "book": "Tasheel 1.2 (the mubtada may be a nakira that prays or greets)",
+   "effect": "a nakira in raf' that opens a clause with a لِ phrase after it is a mubtada, the لِ phrase its khabar (وَيْلٌ لِلْمُطَفِّفِينَ), even straight after a verb of saying: the clause is what was said, not the verb's doer",
+   "words": [
+    "ويل",
+    "سلام",
+    "طوبى",
+    "ويح",
+    "ويس",
+    "بؤس",
+    "هلاك",
+    "عذاب"
+   ]
   }
  }
 }

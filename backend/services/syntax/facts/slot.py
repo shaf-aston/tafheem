@@ -142,6 +142,8 @@ def verb_place(token: dict, s: Sentence) -> str:
                 and rel in ("SBJ", "TPC", "OBJ") and typed != "u"
                 and not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)):
             return "object"
+        if not before and typed != "u" and listed(token, "times_counted"):
+            return "absolute"  # ضربتُه مرتين: the count stands in for the masdar
         if (not before and typed in (None, "a") and token.get("stt") in ("i", "c") and is_masdar(token)
                 and same_root(token, head)):
             return "absolute"  # يُطَهِّرَكُمْ تَطْهِيرًا: the verb's own masdar

@@ -163,7 +163,10 @@ def _built_on(card: dict, aspect: str) -> str | None:
     said = teacher_rules()["case_said"]
     word = card["word"]
     if aspect == "p":
-        return _past_ending(word)
+        ending = _past_ending(word)
+        # نَادَى، دَعَا: the fatha is there but an alef cannot carry it, so it is implied
+        alef = strip_diacritics(word).endswith("ى") or (strip_diacritics(word).endswith("ا") and card["camel"].get("weak_last"))
+        return said["past_on_alef"] if ending == said["past_on"] and alef and not _has_pronoun(card["camel"]) else ending
     nun = build_nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show
