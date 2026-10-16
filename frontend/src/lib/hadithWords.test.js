@@ -21,6 +21,15 @@ describe('saying', () => {
     expect(said('قَالَ «بِهَذَا أُمِرْتُ» . فَقَالَ')).toEqual(['بِهَذَا أُمِرْتُ'])
   })
 
+  it('closes an Arabic quote whose mark has a space before it and a full stop after', () => {
+    // Bukhari 59: the Prophet's words are quoted, the Bedouin's are not.
+    const text = 'قَالَ \u200f"\u200f أَيْنَ السَّائِلُ \u200f"\u200f\u200f.\u200f قَالَ هَا أَنَا\u200f.\u200f قَالَ \u200f"\u200f فَانْتَظِرِ السَّاعَةَ \u200f"\u200f\u200f.\u200f'
+    const kinds = saying(text).map((s) => [s.kind, s.text.trim()])
+    expect(kinds).toEqual([
+      ['told', 'قَالَ'], ['said', 'أَيْنَ السَّائِلُ'], ['told', '. قَالَ هَا أَنَا. قَالَ'], ['said', 'فَانْتَظِرِ السَّاعَةَ'], ['told', '.'],
+    ])
+  })
+
   it('claims nothing when the book marked nothing', () => {
     expect(saying('The Last Hour would not come until fire emits from the Hijaz')).toEqual([
       { kind: 'plain', open: '', text: 'The Last Hour would not come until fire emits from the Hijaz', close: '' },
