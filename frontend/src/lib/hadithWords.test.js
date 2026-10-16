@@ -16,6 +16,11 @@ describe('saying', () => {
     ])
   })
 
+  it('closes an Arabic mark that has a space before it and a full stop after (Bukhari 59)', () => {
+    const text = 'قَالَ ‏"‏ أَيْنَ السَّائِلُ ‏"‏‏.‏ قَالَ هَا أَنَا ‏.‏ قَالَ ‏"‏ فَإِذَا ضُيِّعَتِ الأَمَانَةُ ‏"‏‏.‏'
+    expect(said(text)).toEqual([' أَيْنَ السَّائِلُ ', ' فَإِذَا ضُيِّعَتِ الأَمَانَةُ '])
+  })
+
   it('reads the Arabic mark with its direction marks around it', () => {
     expect(said('قَالَ ‏"‏ إِنَّ أَحَدَكُمْ ‏"‏ .')).toEqual([' إِنَّ أَحَدَكُمْ '])
     expect(said('قَالَ «بِهَذَا أُمِرْتُ» . فَقَالَ')).toEqual(['بِهَذَا أُمِرْتُ'])
