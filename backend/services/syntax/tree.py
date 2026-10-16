@@ -291,10 +291,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     said = teacher_rules()["case_said"]
     family_of = {token["id"]: found.get("family") for token, found in zip(bases, named)} | {
         key: piece["family"] for key, piece in split.items()} | dict.fromkeys(understood)
+    printed_of = {token["id"]: found["printed"] for token, found in zip(bases, named) if found.get("printed")}
     name_of = {token["id"]: _finer(token, role_of[token["id"]], family_of[token["id"]]) for token in drawn}
     for token in drawn:
         if name_of[token["id"]] == NAMED.fil:
-            name_of[token["id"]] = _command_name(token, drawn, family_of) or NAMED.fil
+            name_of[token["id"]] = _command_name(token, drawn, family_of) or printed_of.get(token["id"]) or NAMED.fil
     for key, pair in {**pair_of, **understood_pair}.items():
         name_of[key] = pair.get(role_of[key], name_of[key])
     name_of.update(dict.fromkeys(replies, said_verb["word"]))  # the question's verb, said no more than it is: unwritten

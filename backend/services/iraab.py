@@ -78,6 +78,9 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
         if word.get("role") in found.get("pair", {}):  # لا رجلَ: its governor names the pair, after the sign is settled
             word["role"] = found["pair"][word["role"]]
             word["reason"] = reason(word["role"])
+    for word, found in zip(words, roles):
+        if found.get("printed") and word.get("role") == NAMED.fil:
+            word["role"] = found["printed"]  # أُمِرْتُ: فعل مجهول; its reason already says مبني للمجهول
     for word in words:  # غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule
         if teacher.tool_reason(word):
             word["reason"] = teacher.tool_reason(word)
