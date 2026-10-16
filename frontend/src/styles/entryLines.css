@@ -19,11 +19,7 @@
 .entry-num { color: var(--c); min-width: 1.6em; text-align: center; padding-top: 0.6em; }
 
 /* The English re-enters with a short rise each time the line changes. */
-.entry-rise { animation: entry-rise calc(var(--motion-base-ms) * 1ms) ease backwards; }
-@keyframes entry-rise {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: none; }
-}
+.entry-rise { animation: rise-in calc(var(--motion-base-ms) * 1ms) ease backwards; --rise-from: 0; --rise-scale: 1; }
 @media (prefers-reduced-motion: reduce) { .entry-rise { animation: none; } }
 
 /* The English the reader is asked to try for first. */

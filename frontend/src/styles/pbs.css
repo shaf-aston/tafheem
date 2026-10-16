@@ -2,13 +2,11 @@
    Tailwind can't express — staggered rise-in and :hover transforms on SVG
    groups (which need transform-box set, so they can't be inline styles). */
 
-@keyframes pbs-rise {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: none; }
-}
-
 .pbs-rise {
-  animation: pbs-rise calc(500ms * var(--motion-scale)) cubic-bezier(.2, .7, .2, 1) backwards;
+  --rise-from: 0;
+  --rise-y: 12px;
+  --rise-scale: 1;
+  animation: rise-in calc(500ms * var(--motion-scale)) cubic-bezier(.2, .7, .2, 1) backwards;
   animation-delay: var(--d, 0ms);
 }
 
