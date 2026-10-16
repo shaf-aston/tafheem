@@ -41,8 +41,7 @@
 .ayah-dg .gl { grid-row: 2; unicode-bidi: isolate; text-align: center; font-family: var(--font-ui); font-size: .74rem; color: var(--muted); white-space: nowrap; padding-inline: .25rem; }
 .ayah-dg .tg { grid-row: 3; display: flex; justify-content: center; }
 .ayah-dg .term { font-size: calc(var(--arabic-small-rem) * 1rem); line-height: 1.5; color: var(--tone); white-space: nowrap; padding: 0 .25rem; }
-.ayah-dg .tg .term { animation: ayah-rise var(--slow) ease both; }
-@keyframes ayah-rise { from { opacity: 0; transform: translateY(4px); } }
+.ayah-dg .tg .term { animation: rise-in var(--slow) ease both; --rise-from: 0; --rise-y: 4px; --rise-scale: 1; }
 
 /* A word's line down to the brace that joins it: drawn only when that brace is. */
 .ayah-dg .thread { justify-self: center; width: 1.5px; background: var(--faint); transform: scaleY(0); transform-origin: top; transition: transform var(--slow) ease, opacity var(--slow) ease; }

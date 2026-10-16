@@ -78,6 +78,11 @@ Fitness: `npm test` runs them; a screen that throws on open fails CI.
 
 ### Phase B: one set of animations
 
+Status: done for fade and rise. Nine copies are gone (52 → 44 keyframes), each
+place now sets only its knobs, and `styles/keyframes.test.js` fails on a new
+copy. The pop and pulse groups stay as they are: each one ends somewhere
+different (overshoot, ring out, glow), so none of them is a copy.
+
 0. Pick the shared moves in `styles/motion.css`: `fade-in`, `fade-out`, `rise-in`,
    `pop`, `pulse`. Their distance and scale come from CSS variables, so a feature
    changes how far, not which keyframe.
