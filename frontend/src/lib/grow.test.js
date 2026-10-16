@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
+import config from '../grow.json'
 import { CHECK, MISSED, SAID, WRONG } from './follow'
-import { byHand } from './growKinds'
+import { byHand } from './grow/cards'
 import {
-  afterDone, afterRecitation, becomesLearnt, daysOf, groupsOf, isClean, isLearnt, judge, mapOf, nodeState, pageOf, reactionTo, score, tally, tiersOf,
+  afterDone, afterRecitation, becomesLearnt, daysOf, groupsOf, isClean, isLearnt, judge, levelsOf, mapOf, nodeState, pageOf, reactionTo, score, tally, tiersOf,
   today, unlocked, upNext,
 } from './grow'
 
@@ -166,6 +167,13 @@ describe('the map', () => {
     const [group] = groupsOf(TIERS[1])
     expect(group.steps).toEqual([{ id: 'p', title: 'P', ayahs: [], meaning: 'About P', proposed: true }])
     expect(groupsOf(TIERS[0])[0].steps.map((one) => one.id)).toEqual(['takbir', 'ruku'])
+  })
+
+  it('climbs the levels a world brings, and grow.json\'s when it brings none', () => {
+    const own = [{ id: 'one', title: 'One', proposed: [] }]
+    expect(levelsOf({ id: 'fasting', levels: own })).toBe(own)
+    expect(levelsOf({ id: 'prayer' })).toBe(config.tiers)
+    expect(tiersOf(levelsOf({ levels: own }), [{ ...PATH, tier: 'one' }])[0].paths).toHaveLength(1)
   })
 
   it('shows a locked tier with nothing proposed as no groups, not an empty one', () => {

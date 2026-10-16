@@ -3,7 +3,7 @@
  * flower once learnt; a group's bud wears a ring for how much of it is learnt.
  * Pressing either hands a step up; the bud hands up its next one.
  */
-import { byHand } from '../../lib/growKinds'
+import { byHand } from '../../lib/grow/cards'
 import { sayIn } from '../../lib/say'
 import ArabicText from '../ui/ArabicText'
 import Mascot from '../ui/Mascot'

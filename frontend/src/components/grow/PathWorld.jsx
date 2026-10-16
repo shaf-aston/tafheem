@@ -1,5 +1,5 @@
 /**
- * Prayer world: the step map (GrowMap) + practice card (StepSheet). Record: lib/usePrayerRecord.js; marking: lib/grow.js.
+ * A path world: the step map (GrowMap) + practice card (CardSheet). Record: lib/usePathRecord.js; marking: lib/grow.js.
  * Rules: rulings are quoted from named books (tests/test_grow.py); "not sure" never counts; score = learnt steps only.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -12,13 +12,13 @@ import { sayIn } from '../../lib/say'
 import { useHealth } from '../../lib/useHealth'
 import ErrorAlert from '../ui/ErrorAlert'
 import GrowMap from './GrowMap'
-import StepSheet from './StepSheet'
+import CardSheet from './CardSheet'
 import WorldHeader from './WorldHeader'
 
 const say = sayIn('en')
 
-export default function PrayerWorld({ world, accent, onGo, onBack, prayer }) {
-  const { paths, record, keep, tiers, next, done } = prayer
+export default function PathWorld({ world, accent, onGo, onBack, state }) {
+  const { paths, record, keep, tiers, next, done } = state
   const { status } = useHealth()
   const [sheet, setSheet] = useState(null)
   const [reaction, setReaction] = useState(null)
@@ -72,7 +72,7 @@ export default function PrayerWorld({ world, accent, onGo, onBack, prayer }) {
       </div>
 
       {sheet && (
-        <StepSheet
+        <CardSheet
           key={sheet.step.id}
           step={sheet.step}
           from={sheet.el}

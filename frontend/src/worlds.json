@@ -1,5 +1,5 @@
 {
-  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `prayer` = the step map. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
+  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `path` = the step map (PathWorld fed by lib/usePathRecord.js), whose levels are the world's `levels` when it has them (same shape as grow.json `tiers`), else grow.json's. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
   "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called. `surahs` (Quran): the surahs the items come from, in order.",
   "worlds": [
     {
@@ -21,7 +21,7 @@
       "scene": "The Courtyard",
       "idea": "What you say in prayer, said right, step by step.",
       "live": true,
-      "kind": "prayer"
+      "kind": "path"
     },
     {
       "id": "quran",
