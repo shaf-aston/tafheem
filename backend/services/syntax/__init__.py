@@ -11,6 +11,7 @@ says only what its word is, with no job (iraab.cards).
 """
 from __future__ import annotations
 
+import json
 import logging
 from contextlib import suppress
 
@@ -60,6 +61,16 @@ def _link(token: dict) -> dict:
     return {key: token[key] for key in keep if key in token}
 
 
+def _as_json(parse: dict) -> dict | None:
+    """The parse as plain JSON, or None: a value the answer cannot carry would turn the
+    whole reply into a server error, and the parse is only a debugging aid."""
+    try:
+        return json.loads(json.dumps(parse, ensure_ascii=False, allow_nan=False))
+    except (TypeError, ValueError):
+        logger.exception("show_parse: the parse would not go into JSON, left out")
+        return None
+
+
 def read(sentence: str, picks: list[dict]) -> dict:
     """One reading of a typed sentence: `roles` per word, and the `tree` they draw.
     `picks`: one reading per word (morphology.pick), shared with the cards.
@@ -87,7 +98,7 @@ def read(sentence: str, picks: list[dict]) -> dict:
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         read = {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
         if get_settings().show_parse:
-            read["parse"] = {"parsed": before, "repaired": [_link(t) for t in tokens]}
+            read["parse"] = _as_json({"parsed": before, "repaired": [_link(t) for t in tokens]})
         return read
     except Exception:  # a missing model file, or a sentence it chokes on
         logger.exception("Syntax parser unavailable, every word left unnamed")

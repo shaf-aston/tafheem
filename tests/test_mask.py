@@ -117,3 +117,16 @@ def test_after_a_relative_the_inner_sentence_is_its_sila():
     toks = [tok("VRB", pos_camel="verb")] + inner("NOM", "pron_rel")
     heads, rels = linked(toks, [0, 1, 5, 3, 2], ["---", "SBJ", "SBJ", "IDF", "MOD"])
     assert (heads, rels) == ([0, 1, 5, 3, 2], ["---", "SBJ", "SBJ", "IDF", "PRD"])
+
+
+def test_links_that_already_loop_end_the_climb():
+    from backend.services.syntax.mask import above
+    assert above([2, 1, 0], 1, 3)  # 1 → 2 → 1 …: a loop, counted as one, never climbed forever
+    assert not above([0, 1, 2], 1, 3)
+
+
+def test_a_parse_the_answer_cannot_carry_is_left_out():
+    from backend.services.syntax import _as_json
+    assert _as_json({"parsed": [{"id": 1, "form": "كَيْفَ"}]}) == {"parsed": [{"id": 1, "form": "كَيْفَ"}]}
+    assert _as_json({"parsed": [{"head": float("nan")}]}) is None
+    assert _as_json({"parsed": [{"feats": {"a"}}]}) is None

@@ -56,12 +56,14 @@ def _switched_on(rules: dict) -> list:
 
 def above(heads: list[int], word: int, target: int) -> bool:
     """`target` is `word` or one of the words it hangs under: a link from target down to
-    word would close a loop."""
-    while word:
+    word would close a loop. Links that already loop count as a loop, never climbed forever."""
+    for _ in range(len(heads) + 1):
+        if not word:
+            return False
         if word == target:
             return True
         word = heads[word - 1]
-    return False
+    return True
 
 
 def _pointer_heads_its_noun(toks, heads, rels) -> None:
