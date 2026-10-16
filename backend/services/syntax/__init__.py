@@ -75,7 +75,8 @@ def read(sentence: str, picks: list[dict]) -> dict:
     """One reading of a typed sentence: `roles` per word, and the `tree` they draw.
     `picks`: one reading per word (morphology.pick), shared with the cards.
     Read once, used twice, so the cards and the picture can never disagree.
-    Both come back empty when the parser is off or cannot manage the sentence.
+    Both come back empty when the parser is off or cannot manage the sentence;
+    `failed` then says it broke, so a crash is not mistaken for words it cannot name.
     """
     typed = split_words(sentence)
     nothing = {"roles": [{"role": None, "case": None} for _ in typed], "tree": None}
@@ -102,4 +103,4 @@ def read(sentence: str, picks: list[dict]) -> dict:
         return read
     except Exception:  # a missing model file, or a sentence it chokes on
         logger.exception("Syntax parser unavailable, every word left unnamed")
-        return nothing
+        return {**nothing, "failed": True}

@@ -29,6 +29,13 @@ back off the harakat would score the reader's vowels, not the analyser.
     venv/Scripts/python -m backend.scripts.score_iraab
     venv/Scripts/python -m backend.scripts.score_iraab --set fresh
     venv/Scripts/python -m backend.scripts.score_iraab --api http://127.0.0.1:8000 --show 20
+
+--check scores the five exact sets and fails (exit 1) when any names fewer words
+right than data/nahw_rules/score_baseline.json says it did, or the reader broke on
+a sentence; CI runs it. After a
+change that rightly moves a score, --save-baseline writes the new counts.
+
+    venv/Scripts/python -m backend.scripts.score_iraab --check
 """
 from __future__ import annotations
 
@@ -36,6 +43,7 @@ import argparse
 import asyncio
 import json
 import re
+import sys
 import urllib.request
 from collections import Counter
 from functools import partial
@@ -99,6 +107,7 @@ SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_se
         **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe")}}
 # the sets keyed one exact role per typed word, scored by score_exact
 EXACT = ("fresh", "exam", "hadith", "rules", "probe")
+BASELINE = DATA / "nahw_rules" / "score_baseline.json"
 
 
 def sign_matches(have: str | None, want: str) -> bool:
@@ -191,17 +200,18 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
     return out
 
 
-def score_exact(name: str, api: str | None, show: int) -> None:
+def score_exact(name: str, api: str | None, show: int) -> Counter:
     """Score a set keyed one exact role per word. A blank card role is a gap; any other
-    role that is not the key is confident wrong. Roles are compared exactly, harakat aside."""
+    role that is not the key is confident wrong. Roles are compared exactly, harakat aside.
+    Returns the whole set's counts."""
     stats: dict[str, Counter] = {}
     bad_lines, clashes = [], []
     for ex in SETS[name]():
         answer = routed(ex["sentence"], api)
         cards, key = answer["words"], ex["key"]
         aligned = len(cards) == len(key)
-        row = Counter(sentences=1)
-        wrong = []
+        row = Counter(sentences=1, crashed=int(answer.get("read_failed", False)))
+        wrong = ["the reader broke (see the server log)"] if row["crashed"] else []
         if not aligned:
             wrong.append(f"words did not line up: got {len(cards)}, key {len(key)}")
         for i, want in enumerate(key):
@@ -235,7 +245,7 @@ def score_exact(name: str, api: str | None, show: int) -> None:
         pct = f"{c['right'] / c['roles']:.0%}" if c["roles"] else "-"
         signs = f"  signs {c['signs_right']}/{c['signs']}" if c["signs"] else ""
         return (f"{name:<28} roles {c['right']}/{c['roles']} = {pct:>4}  whole {c['whole']}/{c['sentences']}  "
-                f"confident wrong {c['confident_wrong']}  gaps {c['gaps']}  card/tree disagree {c['disagree']}{signs}")
+                f"confident wrong {c['confident_wrong']}  gaps {c['gaps']}  crashed {c['crashed']}  card/tree disagree {c['disagree']}{signs}")
 
     print(f"{name.capitalize()} set" + (f" via {api}" if api else " (local)"))
     for name in ("all", "tune", "hold"):
@@ -249,6 +259,33 @@ def score_exact(name: str, api: str | None, show: int) -> None:
     if show:
         print("Card/tree disagreements:")
         print(*clashes[:show], sep="\n")
+    return stats["all"]
+
+
+def check(api: str | None, save: bool) -> int:
+    """Each exact set's words right against the baseline: 1 when any set fell or the
+    reader broke on a sentence, else 0.
+    `save` writes today's counts as the new baseline instead."""
+    counts = {name: score_exact(name, api, 0) for name in EXACT}
+    got = {name: c["right"] for name, c in counts.items()}
+    crashed = {name: c["crashed"] for name, c in counts.items() if c["crashed"]}
+    if save:
+        BASELINE.write_text(json.dumps(got, indent=2) + "\n", encoding="utf-8")
+        print(f"Baseline saved: {got}")
+        return 0
+    base = json.loads(BASELINE.read_text(encoding="utf-8"))
+    fell = {name: (base[name], got[name]) for name in EXACT if got[name] < base.get(name, 0)}
+    for name in EXACT:
+        print(f"{name:<8} {got[name]} right, baseline {base.get(name, 0)}")
+    if crashed:
+        print(f"The reader broke (sentences per set): {crashed}")
+    if fell:
+        print("Fell below the baseline: " + ", ".join(f"{n} {b} -> {g}" for n, (b, g) in fell.items()))
+    if fell or crashed:
+        return 1
+    if any(got[name] > base.get(name, 0) for name in EXACT):
+        print("Better than the baseline: run --save-baseline so it cannot slip back.")
+    return 0
 
 
 def main() -> None:
@@ -256,9 +293,13 @@ def main() -> None:
     parser.add_argument("--api", help="score the running app at this address instead of the offline path")
     parser.add_argument("--set", choices=SETS, default="books", help="which answer key to score against")
     parser.add_argument("--show", type=int, default=10, help="how many wrong words to print")
+    parser.add_argument("--check", action="store_true", help="fail when an exact set scores below the baseline")
+    parser.add_argument("--save-baseline", action="store_true", help="write today's exact-set scores as the baseline")
     args = parser.parse_args()
     if args.show < 0:
         parser.error("--show cannot be negative")
+    if args.check or args.save_baseline:
+        sys.exit(check(args.api, args.save_baseline))
 
     if args.set in EXACT:
         return score_exact(args.set, args.api, args.show)
