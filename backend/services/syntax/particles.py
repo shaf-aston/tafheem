@@ -52,7 +52,9 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
     typed = after.get("typed") or ""
     if facts.is_verb(after):
         stuck_on, weak = after.get("stuck_on", 0), after.get("weak_last")
-        return "verb_jazm" if stilled(typed, after["base"], stuck_on, weak) or five_verb_nun(typed, stuck_on, weak) == "dropped" else "verb"
+        jazm = stilled(typed, after["base"], stuck_on, weak) or five_verb_nun(typed, stuck_on, weak) == "dropped" \
+            or _moved_still(after, s)
+        return "verb_jazm" if jazm else "verb"
     if after["pos"] == "PRT" or ((cond := condition_of(_lemma(after))) and not cond["shared"]):
         return "tool"
     bare = strip_diacritics(typed or after["form"])
@@ -61,6 +63,15 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
     named = after["pos"] == "PROP" and after.get("stt") != "i"
     definite = bare.startswith("ال") or named or after.get("stt") == "d" or pronoun
     return "noun" if definite else "indefinite_noun"
+
+
+def _moved_still(verb: dict, s: facts.Sentence) -> bool:
+    """لا تَأْكُلِ السَّمَكَ: a present verb's sukun of jazm turns kasra before the joining
+    hamza of ال (التقاء الساكنين); a kasra is never the present verb's own case."""
+    own = letters(verb.get("typed") or "")[:len(letters(verb.get("typed") or "")) - verb.get("stuck_on", 0)]
+    after = facts.next_word(verb, s)
+    return bool(own) and not verb.get("stuck_on") and "\u0650" in own[-1][1] and SHADDA not in own[-1][1] \
+        and bool(after) and strip_diacritics(after.get("typed") or after["form"]).startswith("ال")
 
 
 def _negated(token: dict, s: facts.Sentence) -> str:
@@ -262,6 +273,14 @@ def _shows(token: dict, s: facts.Sentence) -> str:
     return "nasb" if nun == "dropped" or shown == "a" else "raf" if nun == "kept" or shown == "u" else "other"
 
 
+def _again(token: dict, s: facts.Sentence) -> str:
+    """The same small word stood earlier in the sentence: a pair of tools splits its work
+    between its two halves (إمّا أن تذهب وإمّا أن تبقى: the first إمّا only sets out the
+    choice, the second joins, Tasheel 3.10.2 p91), so the second reads apart from the first."""
+    word = _lemma(token)
+    return "yes" if any(t["id"] < token["id"] and _lemma(t) == word for t in s.tokens) else "no"
+
+
 def _doubled(token: dict, s: facts.Sentence) -> str:
     """The reader typed a shadda on it: إِنَّا is إنّ, never the إنْ of a condition."""
     return "yes" if SHADDA in (token.get("typed") or "") else "no"
@@ -269,6 +288,7 @@ def _doubled(token: dict, s: facts.Sentence) -> str:
 
 AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] = {
     "doubled": (("yes", "no"), _doubled),
+    "again": (("yes", "no"), _again),
     "next": (("verb_jazm", "verb", "indefinite_noun", "noun", "tool", "none"), _what_follows),
     "negated": (("yes", "no"), _negated),
     "joins": (("yes", "no"), _joins),

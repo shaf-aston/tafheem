@@ -110,6 +110,14 @@
   "ضمير": "ضمير مبني، محله من الإعراب يُحدّد بالسياق",
   "–": "يحتاج إلى مزيد من التحليل"
  },
+ "kinds": {
+  "_comment": "The kind the books name for an idafa (Tasheel 3.4 p81) and a badal (Tasheel 3.10.4 p95), said after the word's reason (syntax/naming.py _kind_said). An idafa is لفظية when its مضاف is a describing word at work (حسنُ الوجهِ، ضاربُ زيدٍ); else معنوية: بمعنى «في» before a time or place, «من» before the stuff a thing is made of, اللام otherwise. A badal is بعض من كل when it names a part with a pronoun back, اشتمال when it carries that pronoun without being a part, كل من كل when it names the same thing.",
+  "idafa": {"lafziyya": "والإضافة لفظية غير محضة", "fi": "والإضافة معنوية بمعنى «في»", "min": "والإضافة معنوية بمعنى «من»", "lam": "والإضافة معنوية بمعنى اللام"},
+  "time": ["فجر", "ظهر", "عصر", "مغرب", "عشاء", "ليل", "نهار", "صباح", "مساء", "شتاء", "صيف", "ربيع", "خريف", "ضحى", "سحر", "يوم", "شهر", "سنة", "عام", "دهر"],
+  "material": ["ذهب", "فضة", "حديد", "نحاس", "خشب", "حرير", "صوف", "قطن", "زجاج", "رخام"],
+  "badal": {"kul": "بدل كل من كل", "baad": "بدل بعض من كل", "ishtimal": "بدل اشتمال"},
+  "part": ["نصف", "ثلث", "ربع", "خمس", "بعض", "أكثر", "أقل", "جزء", "معظم", "أغلب", "شطر", "رأس", "يد", "وجه"]
+ },
  "checks": {
   "one_subject": {
    "on": true,
