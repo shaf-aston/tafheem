@@ -117,6 +117,11 @@ always draws every row.
 
 ### Phase D: smaller screens (needs Phase A)
 
+Status: Quiz done (steps 0 and 1). `QuizPanel` is 184 lines (was 510): it joins
+`useQuizSetup`, `useQuizQuestion`, `useQuizRound` and `useQuizScore` and draws
+the page; the setup line is `quiz/QuizSetup`, the note is `lib/quizNote` (tested).
+Memorise (steps 2 and 3) next.
+
 0. Quiz: move the setup into `useQuizSetup`: language, direction, bank, scope and
    group, the four queries, then `pool` and `question` derived from them. Move the
    score into `useQuizScore`: the score, best, `onAnswer` and its streaks.
