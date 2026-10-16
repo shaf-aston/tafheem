@@ -8,6 +8,13 @@
       "known_as": "al-Quduri",
       "file": "data/books/openiti/0428AbuHusaynQuduri.Mukhtasar.Sham19Y0124336-ara1"
     },
+    "hidaya": {
+      "kind": "book",
+      "book": "al-Hidaya",
+      "author": "Burhan al-Din al-Marghinani (d. 593 AH)",
+      "known_as": "al-Marghinani",
+      "file": "data/books/openiti/0593BurhanDinFarghaniMarghinani.HidayaFiSharhBidaya.JK000242-ara1"
+    },
     "muslim": {
       "kind": "hadith",
       "book": "Sahih Muslim",

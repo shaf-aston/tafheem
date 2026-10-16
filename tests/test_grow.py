@@ -30,6 +30,23 @@ AYAH_KEY = re.compile(r"(\d{1,3}):(\d{1,3})")
 SUNNAH_PAGE = re.compile(r"sunnah\.com/([a-z]+:\d+[a-z]?)")
 
 
+def _quotes():
+    """Every quote in the Prayer world with the step or card that carries it: a step's
+    ruling, a ruling card's quote and why, and each position's quote on a difference card."""
+    world = grow.world("prayer")
+    for path in world.paths:
+        for step in path.steps:
+            if step.ruling:
+                yield step, step.ruling
+    for unit in world.units:
+        for card in unit.cards:
+            for quote in (getattr(card, "ruling", None), getattr(card, "quote", None), getattr(card, "why", None)):
+                if quote:
+                    yield card, quote
+            for position in getattr(card, "positions", []):
+                yield card, position.quote
+
+
 def _as_read(text: str) -> str:
     """The book's text with its file markup gone: line marks, page and
     manuscript markers, and line breaks inside a sentence."""
@@ -113,10 +130,38 @@ def test_every_adhkar_step_is_a_phrase_cited_to_a_hadith():
 
 
 def test_every_ruling_says_who_it_is_by():
-    for path in grow.paths():
-        for step in path.steps:
-            if step.ruling:
-                assert step.ruling.known_as, step.id
+    for card, quote in _quotes():
+        assert quote.known_as, card.id
+
+
+def test_a_world_is_served_whole_and_only_by_its_name():
+    """Levels mirror the page's tiers until the page reads them from here; every unit
+    file loads; and an id names one thing across the world, paths' steps and cards alike."""
+    world = client.get("/api/grow/worlds/prayer").json()
+    tiers = json.loads(GROW_CONFIG.read_text(encoding="utf-8"))["tiers"]
+    assert [(level["id"], level["title"]) for level in world["levels"]] == [(t["id"], t["title"]) for t in tiers]
+    assert world["paths"] == client.get("/api/grow/paths").json()
+    folder = BACKEND / "data" / "grow" / "worlds" / "prayer"
+    assert len(world["units"]) == len(json.loads((folder / "world.json").read_text(encoding="utf-8"))["units"]) >= 1
+    levels = {level["id"] for level in world["levels"]}
+    ids = [step["id"] for path in world["paths"] for step in path["steps"]]
+    for unit in world["units"]:
+        assert unit["level"] in levels and unit["cards"], unit["title"]
+        ids += [card["id"] for card in unit["cards"]]
+        for card in unit["cards"]:
+            if card["kind"] == "difference":
+                assert len({p["school"] for p in card["positions"]}) >= 2, card["id"]
+    assert len(ids) == len(set(ids))
+    for name in ("nowhere", "x..y", "Prayer", "prayer%2F..%2Fprayer"):
+        assert client.get(f"/api/grow/worlds/{name}").status_code == 404, name
+
+
+def test_the_pillars_unit_is_four_fard_rulings_from_al_quduri():
+    unit = next(u for u in grow.world("prayer").units if u.title == "Pillars of the prayer")
+    assert [card.kind for card in unit.cards] == ["ruling"] * 4
+    assert {card.category for card in unit.cards} == {"fard"}
+    assert all(card.quote.known_as == "al-Quduri" for card in unit.cards)
+    assert [card.order for card in unit.cards] == [1, 2, 3, 4]
 
 
 def test_every_ruling_is_the_books_own_sentence():
@@ -124,13 +169,12 @@ def test_every_ruling_is_the_books_own_sentence():
     books = {name: _as_read((BACKEND / source["file"]).read_text(encoding="utf-8"))
              for name, source in grow.sources().items() if source["kind"] == "book"}
     quoted = 0
-    for path in grow.paths():
-        for step in path.steps:
-            if step.ruling and step.ruling.source in books:
-                sentence = " ".join(step.ruling.arabic.split())
-                assert sentence in books[step.ruling.source], f"{step.id}: not in {step.ruling.known_as} as written"
-                quoted += 1
-    assert quoted >= 40
+    for card, quote in _quotes():
+        if quote.source in books:
+            sentence = " ".join(quote.arabic.split())
+            assert sentence in books[quote.source], f"{card.id}: not in {quote.known_as} as written"
+            quoted += 1
+    assert quoted >= 44
 
 
 def test_every_hadith_ruling_is_the_hadiths_own_words_and_its_phrase_is_in_it():
@@ -139,16 +183,16 @@ def test_every_hadith_ruling_is_the_hadiths_own_words_and_its_phrase_is_in_it():
     collections = {name: json.loads((BACKEND / source["file"]).read_text(encoding="utf-8"))["hadith"]
                    for name, source in grow.sources().items() if source["kind"] == "hadith"}
     cited = 0
-    for path in grow.paths():
-        for step in path.steps:
-            if step.ruling and step.ruling.source in collections:
-                sources = collections[step.ruling.source]
-                key = SUNNAH_PAGE.search(step.ruling.where).group(1)
-                assert sources[key]["page"] == f"https://sunnah.com/{key}", step.id
-                said = " ".join(sources[key]["arabic"].split())
-                assert " ".join(step.ruling.arabic.split()) in said, f"{step.id}: not in {key}"
-                assert not step.arabic or " ".join(step.arabic.split()) in said, f"{step.id}: phrase not in {key}"
-                cited += 1
+    for card, quote in _quotes():
+        if quote.source in collections:
+            sources = collections[quote.source]
+            key = SUNNAH_PAGE.search(quote.where).group(1)
+            assert sources[key]["page"] == f"https://sunnah.com/{key}", card.id
+            said = " ".join(sources[key]["arabic"].split())
+            assert " ".join(quote.arabic.split()) in said, f"{card.id}: not in {key}"
+            phrase = getattr(card, "arabic", "")
+            assert not phrase or " ".join(phrase.split()) in said, f"{card.id}: phrase not in {key}"
+            cited += 1
     assert cited == 6
 
 

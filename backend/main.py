@@ -36,7 +36,7 @@ CACHEABLE = re.compile(
     r"|hadith/[^/]+/books(?:/\d+)?"
     r"|timelines(?:/[^/]+/[^/]+/asbab)?"
     r"|dawah|tamreen|notes|sources"
-    r"|grow/paths"
+    r"|grow/(?:paths|worlds/[a-z-]+)"
     r"|tarkeeb/examples"
     r"|daleel/books"
     r"|colloquial(?:/[^/]+/[^/]+)?"
