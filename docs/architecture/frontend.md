@@ -63,6 +63,10 @@ working.
 
 ### Phase A: render-test seam
 
+Status: steps 0 and 1 done, and the quiz half of step 2 (`src/test/`). The fake
+backend answers static files from `public/`, so the quiz runs on the real word
+banks. Still to do: the memorise gap.
+
 0. Walking skeleton: add `happy-dom` + `@testing-library/react` as dev
    dependencies, plus `src/test/render.jsx` (a fresh `QueryClient`, data filled in
    with `setQueryData`, `api.js` mocked). One test renders one small panel.
