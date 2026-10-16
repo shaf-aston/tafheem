@@ -97,6 +97,14 @@ One-off moves (mascot, landing art, mic) stay where they are.
 
 ### Phase C: Tarkeeb chart fits any screen
 
+Status: done. The chart shrinks as a whole (CSS `zoom`) to fit, floored at
+`arabic.chart-fit-min` (0.7), then scrolls. Dots and jumps read word positions
+off the screen, so they stay right when shrunk. Rows past the first four fold
+behind "▸ N more rows"; book examples (at most 4 rows) never fold, long ayahs
+(18:1 has 7) do. The fold state lives in the diagram itself, not in
+`useTarkeebView`: only the diagram reads it, and the larger view (`whole`)
+always draws every row.
+
 0. Fit to width: `TarkeebDiagram` already measures the scroller through `useRail`.
    When the grid is wider than the scroller, set a per-chart
    `--arabic-chart-rem` scaled down, never below `arabic.small-rem`. Past that

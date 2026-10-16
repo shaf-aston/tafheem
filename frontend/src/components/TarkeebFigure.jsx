@@ -9,7 +9,7 @@ import Tooltip from './ui/Tooltip'
  * says how much was placed, so a tidy picture never implies everything was;
  * `openWhy`, when given, explains in a hover who left it open. `view`
  * (useTarkeebView) is set from the controls in the header above, which also
- * open the same diagram larger, filling the screen.
+ * open the same diagram larger, filling the screen, with every row drawn.
  */
 export default function TarkeebFigure({ tarkeeb, openWhy, view }) {
   // A book's own worked example carries no coverage: the book placed every word.
@@ -20,14 +20,13 @@ export default function TarkeebFigure({ tarkeeb, openWhy, view }) {
   const open = openWhy
     ? <Tooltip text={openWhy}><span className="underline decoration-dotted cursor-help">left open</span></Tooltip>
     : 'left open'
-  const diagram = <TarkeebDiagram tarkeeb={tarkeeb} mode={mode} />
   return (
     <div className="space-y-2">
       <div
         className="rise-in p-5 rounded-[var(--radius-lg)] bg-[var(--surface)]
           border border-[var(--border)]"
       >
-        {diagram}
+        <TarkeebDiagram tarkeeb={tarkeeb} mode={mode} />
       </div>
       {coverage < 1 && (
         <p className="text-center type-small text-[var(--text-faint)]">
@@ -44,7 +43,7 @@ export default function TarkeebFigure({ tarkeeb, openWhy, view }) {
         {big && (
           <div className="tk-max-box">
             <CloseButton className="tk-max-close" onClick={() => setBig(false)} />
-            {diagram}
+            <TarkeebDiagram tarkeeb={tarkeeb} mode={mode} whole />
           </div>
         )}
       </dialog>

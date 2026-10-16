@@ -9,16 +9,19 @@
  * the tree's shape, and nothing about position is stored in the data. Colours
  * come from theme.json as `--role-<tone>`; this file names no colour of its own.
  */
-import { Fragment, useCallback, useLayoutEffect, useMemo, useState } from 'react'
+import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
-import { cells, fold, hiddenWords, rows, runs, threadSpans, tones } from '../lib/tarkeebLayout'
+import { cells, fold, foldRows, hiddenWords, rows, runs, threadSpans, tones } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
 
 import Tooltip from './ui/Tooltip'
 
 const NAME_COLUMN = '11rem'
+// Rows of names shown before the rest fold behind "more rows": every book example
+// fits in four; a long ayah's widest joins wait for a tap.
+const ROWS_SHOWN = 4
 
 /**
  * One brace, the row of names above it, and the name of the unit itself.
@@ -79,11 +82,32 @@ function Bracket({ node, atEdge, style }) {
   )
 }
 
+/**
+ * How much the chart shrinks to fit its box, 1 when it already fits. Read at
+ * full size: the stylesheet floors it at theme.json's arabic.chart-fit-min,
+ * and a chart still wider than that scrolls.
+ */
+function fitChart(view, chart) {
+  chart.style.removeProperty('--tk-fit')
+  chart.style.setProperty('--tk-fit', String(Math.min(1, view.clientWidth / chart.scrollWidth)))
+}
+
+/**
+ * Where a word's middle sits along the strip, in the strip's own
+ * scrolled pixels. Read off the screen rather than offsetLeft, which inside the
+ * shrunk chart counts unshrunk pixels and put every dot and jump off by the
+ * shrink.
+ */
+function along(view, word) {
+  const box = word.getBoundingClientRect()
+  return box.left - view.getBoundingClientRect().left + view.scrollLeft + box.width / 2
+}
+
 /** Where each written word sits along the strip, and whether it is in view: the dots. */
 function placeDots(view) {
   const width = view.scrollWidth
   return [...view.querySelectorAll('.tk-word')].map((word) => {
-    const middle = word.offsetLeft + word.offsetWidth / 2
+    const middle = along(view, word)
     return {
       left: (middle / width) * 100,
       on: middle >= view.scrollLeft && middle <= view.scrollLeft + view.clientWidth,
@@ -97,30 +121,51 @@ function placeDots(view) {
  * the words already cut into their pieces (فَـ إِذًا), `written` naming each piece's word.
  * `mode` is 'split' (a column per piece) or 'merged' (each written word whole); the
  * choice is made beside the chart's header (TarkeebTools), not on the chart.
+ * `whole` draws every row, for the larger view; otherwise the rows past
+ * ROWS_SHOWN wait behind a "more rows" button.
  */
-export default function TarkeebDiagram({ tarkeeb, mode = 'split' }) {
+export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false }) {
   const { words, written, tree, unwritten } = tarkeeb
   const [dots, setDots] = useState([])
   const { strip, ends, measure, page } = useRail(`${words.join(' ')}|${mode}`)
+  const grid = useRef(null)
+  const [unfolded, setUnfolded] = useState(whole)
   const merged = useMemo(() => (tree ? fold({ words, written, tree }) : null), [words, written, tree])
   const settle = useCallback(() => {
     measure()
     if (strip.current) setDots(placeDots(strip.current))
   }, [measure, strip])
+  const refit = useCallback(() => {
+    const view = strip.current
+    if (!view || !grid.current) return
+    fitChart(view, grid.current)
+    view.scrollTo({ left: view.scrollWidth })
+    settle()
+  }, [strip, settle])
   // A diagram wider than its box opens on the sentence's first word, which is
   // on the right. The scroller itself is left-to-right, so left to itself it
   // opened on the last word, and on a phone that was all anyone saw.
   useLayoutEffect(() => {
+    refit()
+    document.fonts?.ready.then(refit)
+  }, [words, tree, mode, unfolded, refit])
+  // A box that changes width (a phone turned, a sidebar opened) fits again.
+  useEffect(() => {
     const view = strip.current
-    if (!view) return
-    view.scrollTo({ left: view.scrollWidth })
-    settle()
-    document.fonts?.ready.then(settle)
-  }, [words, tree, mode, strip, settle])
+    if (!view || typeof ResizeObserver === 'undefined') return undefined
+    let width = view.clientWidth
+    const watch = new ResizeObserver(() => {
+      if (view.clientWidth === width) return
+      width = view.clientWidth
+      refit()
+    })
+    watch.observe(view)
+    return () => watch.disconnect()
+  }, [strip, refit])
   if (!tree || !words.length) return null
 
   const shown = mode === 'merged' ? merged : tarkeeb
-  const levels = rows(shown.tree, shown.words.length)
+  const { shown: levels, more } = foldRows(rows(shown.tree, shown.words.length), unfolded ? Infinity : ROWS_SHOWN)
   const spans = runs(shown.words, shown.written)
   const hidden = hiddenWords(shown.tree)
   // each word's underline in its own name's colour, so the eye pairs them
@@ -129,8 +174,8 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split' }) {
   const cut = new Set(spans.flatMap(({ from, to }) => (to > from ? Array.from({ length: to - from + 1 }, (_, k) => from + k) : [])))
   const goTo = (index) => {
     const view = strip.current
-    const word = view.querySelectorAll('.tk-word')[index]
-    view.scrollTo({ left: word.offsetLeft - (view.clientWidth - word.offsetWidth) / 2, behavior: 'smooth' })
+    const middle = along(view, view.querySelectorAll('.tk-word')[index])
+    view.scrollTo({ left: middle - view.clientWidth / 2, behavior: 'smooth' })
   }
 
   return (
@@ -161,6 +206,7 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split' }) {
       </button>
       <div ref={strip} onScroll={settle} className="tk-scroller" data-script={isQuranic(shown.words.join(' ')) ? 'quran' : undefined} tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>
         <div
+          ref={grid}
           className="tk-grid"
           style={{
             // a piece of a written word, and an unwritten word tucked by its verb, take only the width they need
@@ -227,6 +273,11 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split' }) {
         &#8250;
       </button>
       </div>
+      {more > 0 && (
+        <button type="button" className="tk-more press tap" onClick={() => setUnfolded(true)}>
+          <span aria-hidden="true">▸</span> {more} more {more === 1 ? 'row' : 'rows'}
+        </button>
+      )}
     </div>
   )
 }
