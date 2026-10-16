@@ -24,7 +24,9 @@ export default function QuizBoard({
 }) {
   const { history, reviewing, shown, strip } = round
   // The answered squares: a column on the far right until the round outgrows it.
-  const railSide = history.length > 0 && history.length < QUIZ.stripSideMax
+  // There from the first question, empty, so the first answer does not make room
+  // for it by squeezing the question card.
+  const railSide = history.length < QUIZ.stripSideMax
 
   return (
     <>
@@ -64,7 +66,7 @@ export default function QuizBoard({
         {railSide && (
           <aside
             aria-label={say('Questions answered so far')}
-            className="hidden lg:block rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-3"
+            className="hidden lg:block min-w-15 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-3"
           >
             <QuestionStrip side say={say} {...strip} />
           </aside>

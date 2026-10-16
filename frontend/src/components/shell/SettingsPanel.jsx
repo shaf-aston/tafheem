@@ -8,7 +8,6 @@
  * A native <dialog> is used on purpose, the browser gives focus trapping, Esc
  * to close and the backdrop for free, none of which is worth hand-writing.
  */
-import { useEffect, useState } from 'react'
 
 import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/settings'
 import { useHealth } from '../../lib/useHealth'
@@ -16,6 +15,7 @@ import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import { levelOf } from '../../lib/confidence'
 import { forgetSaved } from '../../lib/stored'
 import { useSources } from '../../lib/useSources'
+import { ARMED_MS, useMoment } from '../../lib/useMoment'
 
 import Disclosure from '../ui/Disclosure'
 import Segmented from '../ui/Segmented'
@@ -104,9 +104,6 @@ function FooterButton({ onClick, danger = false, disabled = false, title, childr
   )
 }
 
-/** How long the clear button stays armed before it goes quiet again. */
-const ARMED_MS = 5000
-
 /**
  * What is kept on this device: reset the switches above, or forget the lot
  * (lib/stored.js).
@@ -121,13 +118,7 @@ const ARMED_MS = 5000
  * through lib/stored.js.
  */
 function StorageFooter() {
-  const [asking, setAsking] = useState(false)
-
-  useEffect(() => {
-    if (!asking) return undefined
-    const timer = setTimeout(() => setAsking(false), ARMED_MS)
-    return () => clearTimeout(timer)
-  }, [asking])
+  const [asking, setAsking] = useMoment(ARMED_MS, false)
 
   return (
     <div className="pt-1 border-t border-[var(--border)] space-y-2">

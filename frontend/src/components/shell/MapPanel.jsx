@@ -142,7 +142,7 @@ export default function MapPanel({ open, onClose }) {
 
         <div className="relative flex-1 min-h-0 overflow-auto" tabIndex={0} role="region" aria-label="Map">
           {current ? (
-            <div className="p-4" style={{ width: `max(${zoom * 100}%, ${zoom * CHART_MIN_REM}rem)`, transition: 'width .2s ease' }}>
+            <div className="p-4" style={{ width: `max(${zoom * 100}%, ${zoom * CHART_MIN_REM}rem)`, transition: 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
               <PbsChart
                 key={path.join('.')}
                 config={config}

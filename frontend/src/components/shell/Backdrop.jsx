@@ -18,8 +18,8 @@ import { useEffect, useRef } from 'react'
 
 import { pickColor, seed, seedMarks, step, stepMarks } from '../../lib/bokeh'
 import { heldFor } from '../../lib/backdropHold'
+import { motionOff } from '../../lib/motion'
 
-const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 function readKnobs(style) {
   const num = (name) => parseFloat(style.getPropertyValue(`--lights-${name}`))
@@ -84,7 +84,7 @@ export default function Backdrop() {
     let held = 0
 
     const scale = () => parseFloat(getComputedStyle(root).getPropertyValue('--motion-scale'))
-    const moving = () => !document.hidden && !reduced() && scale() > 0
+    const moving = () => !document.hidden && !motionOff()
     const readTab = () => getComputedStyle(wrapper).getPropertyValue('--c').trim() || tab
 
     function paint() {

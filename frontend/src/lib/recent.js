@@ -1,29 +1,40 @@
 /**
- * Recent tabs: the strip's places after the fixed tabs. A list, oldest first.
- * Opening a tab not on the strip drops the oldest and adds it at the end, so
- * the strip never grows. App sees only useStrip.
+ * Recent tabs: the strip's places after the fixed tabs. `{ slots, next }`:
+ * the tabs in place, and which slot the next new tab takes. Opening a tab not
+ * on the strip puts it in that slot and moves `next` on, so the oldest arrival
+ * goes, as before, but every other tab keeps its place, and its number key.
+ * App sees only useStrip.
  */
 import { useEffect, useMemo } from 'react'
 import { progressKey } from './stored'
 import { useRemembered } from './useRemembered'
 
 /** The fixed tabs, then the recent ones. Strip order = number keys. */
-export const stripOf = (tabs, fixed, recent) => [...fixed, ...recent].map((id) => tabs.find((t) => t.id === id))
+export const stripOf = (tabs, fixed, recent) => [...fixed, ...recent.slots].map((id) => tabs.find((t) => t.id === id))
 
-/** Opening `id`: unchanged if it already shows or is a hidden tab (not in `tabs`), else the oldest goes and it comes in at the end. */
-export const addRecent = (recent, id, tabs, fixed) =>
-  !tabs.some((t) => t.id === id) || [...fixed, ...recent].includes(id) ? recent : [...recent.slice(1), id]
+/** The strip before anything is opened: the seed in its slots. */
+export const seedOf = (seed) => ({ slots: seed, next: 0 })
 
-/** Saved text back to the list; anything broken or stale starts again from `seed`. */
+/** Opening `id`: unchanged if it already shows or is a hidden tab (not in `tabs`), else it takes slot `next`. */
+export function addRecent(recent, id, tabs, fixed) {
+  if (!tabs.some((t) => t.id === id) || [...fixed, ...recent.slots].includes(id)) return recent
+  const slots = recent.slots.map((one, at) => (at === recent.next ? id : one))
+  return { slots, next: (recent.next + 1) % slots.length }
+}
+
+/** Saved text back to the strip; anything broken or stale starts again from `seed`. */
 export function readRecent(text, tabs, fixed, seed) {
   try {
-    const recent = JSON.parse(text)
-    const ids = [...fixed, ...recent]  // one Set: no repeats, and no fixed tab among the recent
-    if (recent.length === seed.length && new Set(ids).size === ids.length && recent.every((id) => tabs.some((t) => t.id === id))) return recent
+    const saved = JSON.parse(text)
+    // An older save is the bare list; its oldest was first, so the next new tab takes slot 0.
+    const { slots, next = 0 } = Array.isArray(saved) ? { slots: saved } : saved
+    const ids = [...fixed, ...slots] // one Set: no repeats, and no fixed tab among the recent
+    if (slots.length === seed.length && Number.isInteger(next) && next >= 0 && next < slots.length
+      && new Set(ids).size === ids.length && slots.every((id) => tabs.some((t) => t.id === id))) return { slots, next }
   } catch {
     /* nothing saved yet */
   }
-  return seed
+  return seedOf(seed)
 }
 
 /** The strip for `active`, remembered between visits. Every way into a tab passes here. */
