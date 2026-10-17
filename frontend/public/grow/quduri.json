@@ -3024,6 +3024,1710 @@
     { "id": "sawm", "title": "Fasting", "arabic": "الصوم", "kitab": "كتاب الصوم", "lessons": [] },
     { "id": "hajj", "title": "Hajj", "arabic": "الحج", "kitab": "كتاب الحج", "lessons": [] },
     { "id": "buyu", "title": "Transactions", "arabic": "البيوع", "kitab": "كتاب البيوع", "lessons": [] },
-    { "id": "nikah", "title": "Family", "arabic": "النكاح", "kitab": "كتاب النكاح", "lessons": [] }
+    {
+      "id": "nikah",
+      "title": "Family",
+      "arabic": "النكاح",
+      "kitab": "كتاب النكاح",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "nikah-contract",
+          "title": "Making a nikah: offer, acceptance, witnesses",
+          "arabic": "النكاح ينعقد بالإيجاب والقبول",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "offer",
+              "title": "Offer and acceptance",
+              "ar": "النكاح ينعقد بالإيجاب والقبول بلفظين يعبر بهما عن الماضي أو يعبر بأحدهما عن الماضي وبالآخر عن المستقبل مثل أن يقول: زوجتي فيقول زوجتك",
+              "en": "A nikah (the marriage contract) is made by an offer (ijab) and an acceptance (qabul). Both phrases can be in the past tense, like \"I have married you\", or one can be past and the other about the future. For example, one asks \"Marry me\", and the other answers \"I have married you\"."
+            },
+            {
+              "kind": "choose",
+              "id": "offer-gap",
+              "ask": "What makes a nikah? Complete it.",
+              "ar": "النكاح ينعقد بالإيجاب ____",
+              "options": ["والقبول", "والمهر", "والولي"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "النكاح ينعقد بالإيجاب والقبول",
+              "why": "والقبول: a nikah is made by an offer and an acceptance."
+            },
+            {
+              "kind": "teach",
+              "id": "witnesses",
+              "title": "Two witnesses",
+              "ar": "ولا يعقد نكاح المسلمين إلا بحضور شاهدين حرين بالغين عاقلين مسلمين أو رجل وامرأتين",
+              "en": "A nikah between Muslims is only made in front of two witnesses. They must be free, adult, sane and Muslim: two men, or one man and two women."
+            },
+            {
+              "kind": "teach",
+              "id": "upright",
+              "title": "Even if not known as upright",
+              "ar": "عدولا كانوا",
+              "en": "The witnesses count whether or not they are known as upright ('adl) people, and even if they were once punished for qadhf (falsely accusing someone of zina, unlawful relations)."
+            },
+            {
+              "kind": "choose",
+              "id": "witness-case",
+              "ask": "Yusuf and Maryam make their nikah. The only witness is Maryam's friend Hafsa, an adult Muslim woman. Is the nikah made?",
+              "options": ["No: one woman alone is not enough", "Yes: one Muslim witness is enough", "Yes, if Hafsa is known as upright"],
+              "answer": 0,
+              "source": "إلا بحضور شاهدين حرين بالغين عاقلين مسلمين أو رجل وامرأتين",
+              "why": "The book needs two witnesses, or one man and two women. One woman alone does not make the nikah."
+            },
+            {
+              "kind": "pick",
+              "id": "who",
+              "ask": "Which of these can be the witnesses of a Muslim nikah?",
+              "options": [
+                { "text": "Two free, adult, sane Muslim men", "right": true },
+                { "text": "One Muslim man and two Muslim women", "right": true },
+                { "text": "Two Muslim men not known as upright", "right": true },
+                { "text": "Two 10-year-old Muslim boys" },
+                { "text": "One Muslim man on his own" }
+              ],
+              "source": ["شاهدين حرين بالغين عاقلين مسلمين أو رجل", "عدولا كانوا"],
+              "why": "Two adult Muslim men, or one man and two women, even if they are not known as upright. Children and a single man are not enough."
+            },
+            {
+              "kind": "teach",
+              "id": "dhimmi",
+              "title": "A Muslim man marrying a dhimmi woman",
+              "ar": "فإن تزوج مسلم ذمية بشهادة ذميين جاز عند أبي حنيفة وأبي يوسف وقال محمد: لا يجوز",
+              "en": "A dhimmi is a Jew or Christian living under Muslim rule. If a Muslim man marries a dhimmi woman with two dhimmi witnesses, it is valid for Abu Hanifa and Abu Yusuf. Note: Muhammad says it is not valid."
+            },
+            {
+              "kind": "teach",
+              "id": "words",
+              "title": "Which words make a nikah",
+              "ar": "وينعقد النكاح بلفظ النكاح والتزويج والتمليك والهبة والصدقة ولا ينعقد بلفظ الإجارة والإباحة",
+              "en": "A nikah is made with the words nikah, tazwij (marrying), tamlik (giving ownership), hiba (giving as a gift) and sadaqa (giving in charity). It is not made with the words ijara (hiring) or ibaha (allowing)."
+            },
+            {
+              "kind": "sort",
+              "id": "words-sort",
+              "ask": "Does this word make a nikah?",
+              "into": ["Makes a nikah", "Does not"],
+              "items": [
+                ["Nikah", "Makes a nikah"],
+                ["Tazwij (marrying)", "Makes a nikah"],
+                ["Hiba (gift)", "Makes a nikah"],
+                ["Sadaqa (charity)", "Makes a nikah"],
+                ["Ijara (hiring)", "Does not"],
+                ["Ibaha (allowing)", "Does not"]
+              ],
+              "source": "وينعقد النكاح بلفظ النكاح والتزويج والتمليك والهبة والصدقة ولا ينعقد بلفظ الإجارة والإباحة",
+              "why": "Nikah, tazwij, tamlik, hiba and sadaqa make a nikah. Ijara and ibaha do not."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Ali says to Zaynab's father, before two adult Muslim men, \"Marry your daughter to me\", and with her consent he answers \"I have married her to you\". Is the nikah made?",
+              "options": ["Yes: an offer, an acceptance and two witnesses", "No: both phrases must be in the past tense", "No: the word \"marry\" cannot make a nikah"],
+              "answer": 0,
+              "source": ["أو يعبر بأحدهما عن الماضي وبالآخر عن المستقبل", "ولا يعقد نكاح المسلمين إلا بحضور شاهدين"],
+              "why": "One phrase may be about the future and the other past, and two witnesses were there, so the nikah is made."
+            }
+          ]
+        },
+        {
+          "id": "nikah-mahram",
+          "title": "Whom a man may never marry",
+          "arabic": "ولا يحل للرجل أن يتزوج بأمه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "blood",
+              "title": "Close family by blood",
+              "ar": "ولا يحل للرجل أن يتزوج بأمه ولا بجداته من قبل الرجال والنساء ولا ببنته ولا ببنت ولده وإن سفلت ولا بأخته ولا ببنات أخته ولا ببنات أخيه ولا بعمته",
+              "en": "A man may never marry his mother, his grandmothers on his father's or mother's side, his daughter, his granddaughters however many generations down, his sister, his sister's or brother's daughters, or his father's sister."
+            },
+            {
+              "kind": "choose",
+              "id": "down-gap",
+              "ask": "Granddaughters however far... Complete it.",
+              "ar": "ولا ببنت ولده وإن ____",
+              "options": ["سفلت", "علت", "بعدت"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ولا ببنت ولده وإن سفلت",
+              "why": "وإن سفلت: however many generations down she is, she is forbidden."
+            },
+            {
+              "kind": "teach",
+              "id": "inlaws",
+              "title": "Family through marriage",
+              "ar": "بخالته ولا بأم دخل بابنتها أو لم يدخل ولا ببنت امرأته التي دخل بها سواء كانت في حجره أو في حجر غيره ولا بامرأة أبيه وأجداده ولا بامرأة ابنه وبني أولاده",
+              "en": "Nor his mother's sister. Nor his wife's mother, whether or not the marriage was consummated (dukhul: the couple have been together as husband and wife). Nor his wife's daughter, once the marriage with her mother was consummated, whether she grew up in his home or not. Nor the wives of his father or grandfathers, or of his sons or grandsons."
+            },
+            {
+              "kind": "choose",
+              "id": "mother-case",
+              "ask": "Khalid married Huda, but they divorced before they were ever together as husband and wife. May Khalid now marry Huda's mother?",
+              "options": ["No: a wife's mother is forbidden either way", "Yes: there was no dukhul", "Yes, after Huda's iddah"],
+              "answer": 0,
+              "source": "ولا بأم دخل بابنتها أو لم يدخل",
+              "why": "A wife's mother is forbidden whether or not the marriage was consummated."
+            },
+            {
+              "kind": "choose",
+              "id": "daughter-case",
+              "ask": "Khalid's divorce from Huda came before any dukhul. Huda has a daughter, Sana, from an earlier marriage. May Khalid marry Sana?",
+              "options": ["Yes: a wife's daughter is forbidden only after dukhul with her mother", "No: a wife's daughter is always forbidden", "No, because Sana grew up away from him"],
+              "answer": 0,
+              "source": "ولا ببنت امرأته التي دخل بها",
+              "why": "The book forbids the daughter of a wife \"he has been with\". Here there was no dukhul, so Sana is not forbidden."
+            },
+            {
+              "kind": "teach",
+              "id": "milk",
+              "title": "Milk relations",
+              "ar": "ولا بأمه من الرضاعة",
+              "en": "Nor his milk-mother: a woman who breastfed him as a baby (rada'a). The book goes on to name milk-siblings too."
+            },
+            {
+              "kind": "pick",
+              "id": "which",
+              "ask": "Which of these may a man never marry?",
+              "options": [
+                { "text": "His mother's sister", "right": true },
+                { "text": "His wife's mother", "right": true },
+                { "text": "His father's former wife", "right": true },
+                { "text": "His son's wife", "right": true },
+                { "text": "His father's brother's daughter (his cousin)" }
+              ],
+              "source": ["بخالته ولا بأم دخل بابنتها أو لم يدخل", "ولا بامرأة أبيه وأجداده ولا بامرأة ابنه"],
+              "why": "His maternal aunt, his wife's mother, his father's wife and his son's wife are all named. A cousin is not in the list."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Forbidden to him, or not?",
+              "into": ["Forbidden", "Not forbidden"],
+              "items": [
+                ["His father's sister", "Forbidden"],
+                ["His milk-mother", "Forbidden"],
+                ["His wife's mother, no dukhul", "Forbidden"],
+                ["His wife's daughter, after dukhul", "Forbidden"],
+                ["His wife's daughter, no dukhul", "Not forbidden"],
+                ["His uncle's daughter", "Not forbidden"]
+              ],
+              "source": ["ولا بعمته", "ولا بأمه من الرضاعة", "ولا بأم دخل بابنتها أو لم يدخل ولا ببنت امرأته التي دخل بها"],
+              "why": "Aunt, milk-mother and wife's mother are forbidden. The wife's daughter is forbidden only after dukhul. A cousin is not named."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Umar's son divorced his wife Rania. May Umar marry Rania?",
+              "options": ["No: a son's wife is forbidden to him", "Yes, once her iddah is over", "Yes, if there was no dukhul"],
+              "answer": 0,
+              "source": "ولا بامرأة ابنه وبني أولاده",
+              "why": "The wife of his son or grandson is forbidden to him, so Umar may not marry Rania."
+            }
+          ]
+        },
+        {
+          "id": "nikah-together",
+          "title": "Who may not be married together",
+          "arabic": "ولا يجمع بين أختين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "sisters",
+              "title": "Two sisters, or a woman and her aunt",
+              "ar": "ولا يجمع بين أختين بنكاح ولا بملك يمين وطئا ولا يجمع بين المرأة وبين عمتها وخالتها ولا ابنة أخيها ولا ابنة أختها",
+              "en": "A man may not be married to two sisters at the same time. Nor may he be married at once to a woman and her aunt (father's or mother's sister), or a woman and her niece."
+            },
+            {
+              "kind": "choose",
+              "id": "sister-case",
+              "ask": "Omar is married to Amina. May he also marry Amina's sister Safa while Amina is his wife?",
+              "options": ["No: two sisters may not be married together", "Yes, up to four wives", "Yes, if Amina agrees"],
+              "answer": 0,
+              "source": "ولا يجمع بين أختين بنكاح",
+              "why": "Two sisters may never be his wives at the same time."
+            },
+            {
+              "kind": "teach",
+              "id": "rule",
+              "title": "The general rule",
+              "ar": "ولا يجمع بين امرأتين لو كانت كل واحدة منهما رجلا لم يجز له أن يتزوج بالأخرى ولا بأس أن يجمع بين امرأة وابنة زوج كان لها من قبل",
+              "en": "The rule: two women may not be married to one man together if, were either of them a man, he could not marry the other. But there is no harm in marrying a woman and the daughter of her former husband (from another wife) together."
+            },
+            {
+              "kind": "choose",
+              "id": "stepdaughter-case",
+              "ask": "Hassan is married to Layla. Layla's former husband has a daughter, Nour, from a different wife. May Hassan marry Nour as well?",
+              "options": ["Yes: this pair is allowed", "No: they are like mother and daughter", "No: they are like two sisters"],
+              "answer": 0,
+              "source": "ولا بأس أن يجمع بين امرأة وابنة زوج كان لها من قبل",
+              "why": "The book says there is no harm in marrying a woman and her former husband's daughter together."
+            },
+            {
+              "kind": "pick",
+              "id": "pairs",
+              "ask": "Which pairs may NOT be one man's wives at the same time?",
+              "options": [
+                { "text": "Two sisters", "right": true },
+                { "text": "A woman and her father's sister", "right": true },
+                { "text": "A woman and her mother's sister", "right": true },
+                { "text": "A woman and her brother's daughter", "right": true },
+                { "text": "A woman and her former husband's daughter" },
+                { "text": "Two women who are not related" }
+              ],
+              "source": ["ولا يجمع بين أختين", "ولا يجمع بين المرأة وبين عمتها وخالتها ولا ابنة أخيها ولا ابنة أختها", "ولا بأس أن يجمع بين امرأة وابنة زوج كان لها من قبل"],
+              "why": "Sisters, aunt and niece may not be combined. A woman and her former husband's daughter may, and unrelated women may."
+            },
+            {
+              "kind": "teach",
+              "id": "zina",
+              "title": "After zina",
+              "ar": "ومن زنى بامرأة حرمت عليه أمها وابنتها",
+              "en": "If a man commits zina (unlawful relations) with a woman, her mother and her daughter become forbidden for him to marry."
+            },
+            {
+              "kind": "teach",
+              "id": "iddah",
+              "title": "Her sister during the iddah",
+              "ar": "امرأته طلاقا بائنا لم يجز له أن يتزوج بأختها حتى تنقضي عدتها",
+              "en": "If a man gives his wife a ba'in divorce (a final divorce that ends the marriage at once), he may not marry her sister until her iddah ends. The iddah is the waiting period a woman keeps after a divorce."
+            },
+            {
+              "kind": "choose",
+              "id": "iddah-case",
+              "ask": "Tariq gave his wife a ba'in divorce. Her iddah has one month left. May he marry her sister now?",
+              "options": ["No: not until the iddah ends", "Yes: a ba'in divorce ends the marriage at once", "Yes, if his former wife agrees"],
+              "answer": 0,
+              "source": "لم يجز له أن يتزوج بأختها حتى تنقضي عدتها",
+              "why": "He must wait until his former wife's iddah is over before marrying her sister."
+            },
+            {
+              "kind": "teach",
+              "id": "owner",
+              "title": "Owner and slave",
+              "ar": "ولا يجوز أن يتزوج المولى أمته ولا المرأة عبدها",
+              "en": "In al-Quduri's time some people were enslaved. An owner (mawla) may not marry his own slave woman (ama), and a woman may not marry her own slave ('abd)."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these may a man do?",
+              "options": ["Marry a woman and her former husband's daughter together", "Marry a woman and her niece together", "Marry his ex-wife's sister during her iddah"],
+              "answer": 0,
+              "source": ["ولا بأس أن يجمع بين امرأة وابنة زوج كان لها من قبل", "ولا ابنة أخيها ولا ابنة أختها", "حتى تنقضي عدتها"],
+              "why": "Only the woman and her former husband's daughter may be combined. Aunt and niece may not, and the sister must wait for the iddah to end."
+            }
+          ]
+        },
+        {
+          "id": "nikah-kitabiyya",
+          "title": "People of the Book, ihram, two in one contract",
+          "arabic": "ويجوز تزوج الكتابيات",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "kitab",
+              "title": "Women of the Book",
+              "ar": "ويجوز تزوج الكتابيات ولا يجوز تزوج المجوسيات ولا الوثنيات",
+              "en": "A Muslim man may marry a kitabiyya: a Jewish or Christian woman, from the People of the Book. He may not marry a Majusi woman (a fire-worshipper) or an idol-worshipper."
+            },
+            {
+              "kind": "teach",
+              "id": "sabians",
+              "title": "The Sabians",
+              "ar": "ويجوز تزوج الصابئيات إذا كانوا يؤمنون بنبي ويقرون بكتاب وإن كانوا يعبدون الكواكب ولا كتاب لهم لم تجز مناكحتهم",
+              "en": "He may marry a Sabian woman if her people believe in a prophet and accept a revealed book. If they worship the stars and have no book, marrying them is not allowed."
+            },
+            {
+              "kind": "choose",
+              "id": "christian-case",
+              "ask": "Adam, a Muslim, wants to marry Sarah, a Christian woman. Is this allowed?",
+              "options": ["Yes: she is a kitabiyya", "No: she must become Muslim first", "Only if she is a Sabian"],
+              "answer": 0,
+              "source": "ويجوز تزوج الكتابيات",
+              "why": "A Christian woman is from the People of the Book, so he may marry her."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "May a Muslim man marry her?",
+              "into": ["May marry", "May not"],
+              "items": [
+                ["A Jewish woman", "May marry"],
+                ["A Christian woman", "May marry"],
+                ["A Sabian who believes in a prophet and a book", "May marry"],
+                ["A Majusi woman", "May not"],
+                ["An idol-worshipper", "May not"],
+                ["A star-worshipper with no book", "May not"]
+              ],
+              "source": ["ويجوز تزوج الكتابيات ولا يجوز تزوج المجوسيات ولا الوثنيات", "وإن كانوا يعبدون الكواكب ولا كتاب لهم لم تجز مناكحتهم"],
+              "why": "Women of the Book and Sabians with a prophet and book are allowed. Majusi, idol-worshipping and bookless star-worshipping women are not."
+            },
+            {
+              "kind": "teach",
+              "id": "ihram",
+              "title": "Nikah in ihram",
+              "ar": "ويجوز للمحرم والمحرمة أن يتزوجا في حال الإحرام",
+              "en": "Ihram is the sacred state a pilgrim enters for Hajj or Umrah. A man or woman in ihram may still marry."
+            },
+            {
+              "kind": "choose",
+              "id": "ihram-case",
+              "ask": "Bilal and Zaynab are both in ihram for Umrah. Their families want to hold the nikah in Makkah before they finish. May they?",
+              "options": ["Yes: a nikah in ihram is allowed", "No: they must leave ihram first", "Only the woman may be in ihram"],
+              "answer": 0,
+              "source": "ويجوز للمحرم والمحرمة أن يتزوجا في حال الإحرام",
+              "why": "Al-Quduri allows both the man and the woman in ihram to marry."
+            },
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Two women in one contract",
+              "ar": "ومن تزوج امرأتين في عقد واحد إحداهما لا يحل له نكاحها صح نكاح التي يحل له نكاحها وبطل نكاح الأخرى",
+              "en": "If a man marries two women in one contract and one of them is not allowed for him, the nikah with the allowed woman stands and the other is void."
+            },
+            {
+              "kind": "choose",
+              "id": "two-case",
+              "ask": "In one contract, Yahya marries Asma, a Muslim, and Roxana, a Majusi woman. What happens?",
+              "options": ["Asma's nikah stands; Roxana's is void", "Both are void", "Both stand"],
+              "answer": 0,
+              "source": ["صح نكاح التي يحل له نكاحها وبطل نكاح الأخرى", "ولا يجوز تزوج المجوسيات"],
+              "why": "A Majusi woman is not allowed for him, so only her nikah is void. Asma's stands."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which word completes it?",
+              "ar": "ويجوز تزوج ____ ولا يجوز تزوج المجوسيات",
+              "options": ["الكتابيات", "الوثنيات", "الصابئيات"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ويجوز تزوج الكتابيات ولا يجوز تزوج المجوسيات",
+              "why": "الكتابيات: women of the Book may be married; Majusi women may not."
+            }
+          ]
+        },
+        {
+          "id": "nikah-consent",
+          "title": "Her consent",
+          "arabic": "برضاها",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "adult",
+              "title": "An adult woman's consent",
+              "ar": "وينعقد نكاح المرأة الحرة البالغة العاقلة برضاها وإن لم يعقد عليها ولي عند أبي حنيفة بكر كانت أو ثيبا وقال أبو يوسف ومحمد: لا ينعقد إلا بولي",
+              "en": "A free, adult, sane woman's nikah is made by her own consent, for Abu Hanifa, even if no wali (guardian) contracts it for her. This is so whether she is a bikr (never married before) or a thayyib (married before). Note: Abu Yusuf and Muhammad say it needs a wali."
+            },
+            {
+              "kind": "teach",
+              "id": "bikr",
+              "title": "No forcing, and silence as a yes",
+              "ar": "ولا يجوز للولي إجبار البكر البالغة على النكاح وإذا استأذنها فسكتت أو ضحكت أو بكت فذلك إذن منها وإن أبت لم يزوجها",
+              "en": "A wali may not force an adult bikr to marry. If he asks her permission and she stays silent, laughs or cries, that is her permission. If she refuses, he may not marry her off."
+            },
+            {
+              "kind": "choose",
+              "id": "silent-case",
+              "ask": "Aisha, an adult bikr, is told by her father about a proposal from Hamza and asked if she agrees. She stays quiet. What does her silence mean?",
+              "options": ["It is her permission", "It is a refusal", "He must ask her again until she speaks"],
+              "answer": 0,
+              "source": "وإذا استأذنها فسكتت أو ضحكت أو بكت فذلك إذن منها",
+              "why": "For a bikr, silence, laughing or crying when asked counts as permission."
+            },
+            {
+              "kind": "choose",
+              "id": "refuse-case",
+              "ask": "Fatima, an adult bikr, clearly says no to a proposal. Her father still wants it. May he marry her off?",
+              "options": ["No: if she refuses, he may not", "Yes: a father can decide for a bikr", "Yes, if the man is a good match"],
+              "answer": 0,
+              "source": ["ولا يجوز للولي إجبار البكر البالغة على النكاح", "وإن أبت لم يزوجها"],
+              "why": "A wali cannot force an adult bikr. Her refusal stops the nikah."
+            },
+            {
+              "kind": "teach",
+              "id": "thayyib",
+              "title": "A thayyib must say it",
+              "ar": "وإذا استأذن الثيب فلا بد من رضاها بالقول",
+              "en": "When a thayyib (a woman married before) is asked, her consent must be spoken in words."
+            },
+            {
+              "kind": "choose",
+              "id": "thayyib-gap",
+              "ask": "How does a thayyib consent? Complete it.",
+              "ar": "وإذا استأذن الثيب فلا بد من رضاها ____",
+              "options": ["بالقول", "بالسكوت", "بالكتابة"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وإذا استأذن الثيب فلا بد من رضاها بالقول",
+              "why": "بالقول: in words. Silence is enough only for a bikr."
+            },
+            {
+              "kind": "choose",
+              "id": "widow-case",
+              "ask": "Khadija, a widow, is asked by her brother about a proposal. She only smiles. Has she consented?",
+              "options": ["No: a thayyib must agree in words", "Yes: smiling is permission", "Yes, because she did not refuse"],
+              "answer": 0,
+              "source": "فلا بد من رضاها بالقول",
+              "why": "Smiling is permission only from a bikr. A widow is a thayyib, so she must say it."
+            },
+            {
+              "kind": "teach",
+              "id": "still-bikr",
+              "title": "Still counted a bikr",
+              "ar": "وإذا زالت بكارتها بوثبة أو حيضة أو جراح فهي في حكم الأبكار",
+              "en": "If a girl loses the physical sign of being a bikr through a jump, a heavy period or an injury, she is still treated as a bikr."
+            },
+            {
+              "kind": "teach",
+              "id": "dispute",
+              "title": "If they disagree about her answer",
+              "ar": "وإذا قال الزوج: بلغك النكاح فسكت وقال: بل رددت فالقول قولها ولا يمين عليها ولا يستحلف في النكاح عند أبي حنيفة وقال أبو يوسف ومحمد: يستحلف فيه",
+              "en": "If the husband says \"You heard of the nikah and stayed silent\" and she says \"No, I refused\", her word is accepted and she does not have to swear an oath. For Abu Hanifa no oath is asked for in nikah. Note: Abu Yusuf and Muhammad say an oath may be asked for."
+            },
+            {
+              "kind": "choose",
+              "id": "dispute-case",
+              "ask": "Ahmad says Sumayya stayed silent when told of the nikah. Sumayya says she refused at once. Whose word is accepted?",
+              "options": ["Sumayya's", "Ahmad's", "Ahmad's, if he swears an oath"],
+              "answer": 0,
+              "source": "فالقول قولها ولا يمين عليها",
+              "why": "The word is hers, and she does not have to swear."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Does this count as her yes?",
+              "into": ["Counts as yes", "Not a yes"],
+              "items": [
+                ["A bikr stays silent", "Counts as yes"],
+                ["A bikr laughs", "Counts as yes"],
+                ["A bikr cries", "Counts as yes"],
+                ["A bikr says no", "Not a yes"],
+                ["A thayyib stays silent", "Not a yes"],
+                ["A thayyib says yes", "Counts as yes"]
+              ],
+              "source": ["فسكتت أو ضحكت أو بكت فذلك إذن منها وإن أبت لم يزوجها", "فلا بد من رضاها بالقول"],
+              "why": "For a bikr, silence, laughing or crying is a yes, and a refusal is a no. A thayyib must say it in words."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these is true in al-Quduri's text?",
+              "options": ["A wali may not force an adult bikr to marry", "A thayyib's silence is her consent", "A woman who refuses must swear an oath"],
+              "answer": 0,
+              "source": ["ولا يجوز للولي إجبار البكر البالغة على النكاح", "فلا بد من رضاها بالقول", "فالقول قولها ولا يمين عليها"],
+              "why": "The wali cannot force an adult bikr. A thayyib must speak, and the woman who says she refused swears no oath."
+            }
+          ]
+        },
+        {
+          "id": "nikah-wali",
+          "title": "The wali (guardian)",
+          "arabic": "والولي هو العصبة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "minor",
+              "title": "A child's nikah and the wali",
+              "ar": "ويجوز نكاح الصغير إذا زوجهما الولي بكرا كانت الصغيرة أو ثيبا والولي هو العصبة",
+              "en": "A wali may contract the nikah of a young boy or girl. The wali is the 'asaba: the male relatives on the father's side, such as the father, grandfather, brother and uncle."
+            },
+            {
+              "kind": "teach",
+              "id": "option",
+              "title": "A choice on coming of age",
+              "ar": "فإن زوجهما الأب أو الجد فلا خيار لهما بعد بلوغهما وإن زوجهما غير الأب والجد فلكل واحد منهما الخيار إذا بلغ إن شاء أقام على النكاح وإن شاء فسخ",
+              "en": "If the father or grandfather arranged it, the two have no choice once they come of age. If anyone else arranged it, each of them has a choice on coming of age: to stay in the nikah or to end it."
+            },
+            {
+              "kind": "choose",
+              "id": "uncle-case",
+              "ask": "When Hind was young, her uncle arranged her nikah. She has now come of age. What may she do?",
+              "options": ["Choose to stay in the nikah or end it", "Nothing: the nikah binds her", "Only her father may now decide"],
+              "answer": 0,
+              "source": "وإن زوجهما غير الأب والجد فلكل واحد منهما الخيار إذا بلغ",
+              "why": "An uncle is not the father or grandfather, so Hind has the choice on coming of age."
+            },
+            {
+              "kind": "teach",
+              "id": "not-wali",
+              "title": "Who cannot be a wali",
+              "ar": "ولا ولاية لعبد ولا صغير ولا مجنون ولا كافر على مسلمة وقال أبو حنيفة: يجوز لغير العصبات من الأقارب التزويج",
+              "en": "A slave, a child, an insane person, or a non-Muslim over a Muslim woman cannot be a wali. Abu Hanifa said that relatives who are not 'asaba may also arrange a nikah."
+            },
+            {
+              "kind": "pick",
+              "id": "who-not",
+              "ask": "Who cannot be the wali of a Muslim woman?",
+              "options": [
+                { "text": "A child", "right": true },
+                { "text": "An insane person", "right": true },
+                { "text": "A non-Muslim relative", "right": true },
+                { "text": "A slave", "right": true },
+                { "text": "Her adult Muslim brother" }
+              ],
+              "source": "ولا ولاية لعبد ولا صغير ولا مجنون ولا كافر على مسلمة",
+              "why": "A slave, a child, an insane person and a non-Muslim have no guardianship over a Muslim woman. Her adult Muslim brother is 'asaba."
+            },
+            {
+              "kind": "teach",
+              "id": "absent",
+              "title": "When the nearer wali is far away",
+              "ar": "ومن لا ولي لها إذا زوجها مولاها الذي أعتقها جاز وإذا غاب الولي الأقرب غيبة جاز لمن هو أبعد منه أن يزوج والغيبة المنقطعة: أن يكون في بلد لا تصل إليه القوافل في السنة إلا مرة واحدة",
+              "en": "A woman with no wali may be married off by the one who freed her. If the nearer wali is far away, the next wali may arrange the nikah. \"Far away\" means in a land the caravans reach only once a year."
+            },
+            {
+              "kind": "choose",
+              "id": "absent-gap",
+              "ask": "What is \"far away\"? Complete it.",
+              "ar": "أن يكون في بلد لا تصل إليه ____ في السنة إلا مرة واحدة",
+              "options": ["القوافل", "الرسائل", "السفن"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "أن يكون في بلد لا تصل إليه القوافل في السنة إلا مرة واحدة",
+              "why": "القوافل: a land the caravans reach only once a year."
+            },
+            {
+              "kind": "choose",
+              "id": "absent-case",
+              "ask": "Maryam's father lives in a far land that caravans reach only once a year. Her brother is at home. Who may arrange her nikah?",
+              "options": ["Her brother, as the next wali", "No one until her father returns", "Only the judge"],
+              "answer": 0,
+              "source": ["وإذا غاب الولي الأقرب غيبة جاز لمن هو أبعد منه أن يزوج", "لا تصل إليه القوافل في السنة إلا مرة واحدة"],
+              "why": "The nearer wali is far away by the book's measure, so the next wali, her brother, may arrange it."
+            },
+            {
+              "kind": "teach",
+              "id": "insane",
+              "title": "An insane woman's father and son",
+              "ar": "وإذا اجمع في المجنونة أبوها وابنها فالولي في نكاحها ابنها عند أبي حنيفة وأبي يوسف وقال محمد: أبوها",
+              "en": "If an insane woman has both a father and a son, her wali for nikah is her son, for Abu Hanifa and Abu Yusuf. Note: Muhammad says her father."
+            },
+            {
+              "kind": "teach",
+              "id": "cousin",
+              "title": "A wali marrying her himself",
+              "ar": "ويجوز لابن العم أن يزوج بنت عمه من نفسه وإذا أذنت المرأة لرجل أن يزوجها من نفسه فقعد بحضرة شاهدين جاز",
+              "en": "A cousin who is her wali may marry his uncle's daughter to himself. And if a woman permits a man to marry her to himself, and he makes the contract before two witnesses, it is valid."
+            },
+            {
+              "kind": "choose",
+              "id": "cousin-case",
+              "ask": "Salma's wali is her cousin Idris, and they wish to marry. With her consent, Idris makes the nikah himself before two witnesses. Is it valid?",
+              "options": ["Yes: a cousin may marry her to himself", "No: someone else must be her wali", "No: a wali can never marry his ward"],
+              "answer": 0,
+              "source": "ويجوز لابن العم أن يزوج بنت عمه من نفسه",
+              "why": "The book allows the cousin to marry his uncle's daughter to himself, before two witnesses."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Bashir's father arranged his nikah when Bashir was young. Now he is an adult. Does he have a choice to end it?",
+              "options": ["No: the father arranged it", "Yes: every child has the choice", "Yes, if he asks within a year"],
+              "answer": 0,
+              "source": "فإن زوجهما الأب أو الجد فلا خيار لهما بعد بلوغهما",
+              "why": "When the father or grandfather arranged it, there is no choice on coming of age."
+            }
+          ]
+        },
+        {
+          "id": "nikah-kafaa",
+          "title": "Kafa'a: a suitable match",
+          "arabic": "والكفاءة في النكاح معتبرة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "kafaa",
+              "title": "Kafa'a matters",
+              "ar": "والكفاءة في النكاح معتبرة فإذا تزوجت المرأة غير كفء فللأولياء أن يفرقوا بينهما",
+              "en": "Kafa'a means the husband being a suitable match (kufu) for the wife. It is taken into account: if a woman marries a man who is not her match, her walis may have them separated."
+            },
+            {
+              "kind": "teach",
+              "id": "four",
+              "title": "In what kafa'a is measured",
+              "ar": "والكفاءة تعتبر في النسب والدين والمال وهو: أن يكون مالكا للمهر والنفقة وتعتبر في الصنائع",
+              "en": "Kafa'a looks at lineage, religion, wealth and trade. Wealth here means he can pay the mahr and the nafaqa. The mahr is the gift a husband must give his wife for the nikah; the nafaqa is her upkeep: food, clothing and home."
+            },
+            {
+              "kind": "choose",
+              "id": "kafaa-gap",
+              "ask": "Complete it.",
+              "ar": "والكفاءة تعتبر في ____",
+              "options": ["النسب", "الجمال", "السن"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "والكفاءة تعتبر في النسب",
+              "why": "النسب: lineage is the first thing al-Quduri names."
+            },
+            {
+              "kind": "pick",
+              "id": "what",
+              "ask": "Which of these does kafa'a look at?",
+              "options": [
+                { "text": "Lineage", "right": true },
+                { "text": "Religion", "right": true },
+                { "text": "Being able to pay the mahr and upkeep", "right": true },
+                { "text": "Trade or work", "right": true },
+                { "text": "Height" },
+                { "text": "Which city he lives in" }
+              ],
+              "source": ["والكفاءة تعتبر في النسب والدين والمال", "أن يكون مالكا للمهر والنفقة وتعتبر في الصنائع"],
+              "why": "Lineage, religion, wealth (mahr and nafaqa) and trade. Height and city are not named."
+            },
+            {
+              "kind": "choose",
+              "id": "wealth-case",
+              "ask": "Zayd proposes to Ruqayya, but he has no means to pay a mahr or provide her upkeep. In wealth, is he a kufu for her?",
+              "options": ["No: wealth means owning the mahr and the upkeep", "Yes: wealth does not matter in kafa'a", "Yes, if he has a trade"],
+              "answer": 0,
+              "source": "والمال وهو: أن يكون مالكا للمهر والنفقة",
+              "why": "Al-Quduri defines wealth in kafa'a as owning enough for the mahr and nafaqa."
+            },
+            {
+              "kind": "choose",
+              "id": "walis-case",
+              "ask": "An adult woman marries a man who is not a kufu for her. What may her walis do?",
+              "options": ["Seek to have them separated", "Nothing, since she consented", "Cancel it only if she was a bikr"],
+              "answer": 0,
+              "source": "فإذا تزوجت المرأة غير كفء فللأولياء أن يفرقوا بينهما",
+              "why": "The walis may have them separated when the husband is not her match."
+            },
+            {
+              "kind": "teach",
+              "id": "less-mahr",
+              "title": "A mahr below her worth",
+              "ar": "وإذا تزوجت المرأة ونقصت من مهرها فللأولياء الاعتراض عليها عند أبي حنيفة حتى يتم لها مهر مثلها أو يفارقها",
+              "en": "If a woman marries for less than her proper mahr, her walis may object, for Abu Hanifa, until the husband completes her mahr al-mithl or parts from her. Mahr al-mithl is the usual mahr of women like her in her family."
+            },
+            {
+              "kind": "choose",
+              "id": "less-case",
+              "ask": "Asma marries for a mahr far below what the women of her family receive. Her walis object. What ends their objection?",
+              "options": ["The husband completes her mahr al-mithl, or they part", "Asma swearing an oath", "Nothing: she has consented"],
+              "answer": 0,
+              "source": "حتى يتم لها مهر مثلها أو يفارقها",
+              "why": "The walis may object until he completes her mahr al-mithl or parts from her."
+            },
+            {
+              "kind": "teach",
+              "id": "father",
+              "title": "Only a father or grandfather",
+              "ar": "ونقص من مهرها أو ابنه الصغير وزاد في مهر جاز ذلك عليهما ولا يجوز ذلك لغير الأب والجد",
+              "en": "If a father marries off his young daughter for less than her proper mahr, or his young son for more, it holds against them. No one but the father or grandfather may do this."
+            },
+            {
+              "kind": "choose",
+              "id": "uncle-case",
+              "ask": "An uncle arranges his young niece's nikah for a mahr well below her mahr al-mithl. Does the lower mahr hold?",
+              "options": ["No: only a father or grandfather may do this", "Yes: any wali may do this", "Yes, if two witnesses are present"],
+              "answer": 0,
+              "source": "ولا يجوز ذلك لغير الأب والجد",
+              "why": "Only the father or grandfather may lower a young daughter's mahr."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these is NOT one of the things kafa'a looks at?",
+              "options": ["Beauty", "Trade", "Religion"],
+              "answer": 0,
+              "source": "والكفاءة تعتبر في النسب والدين والمال",
+              "why": "Lineage, religion, wealth and trade are named. Beauty is not part of kafa'a."
+            }
+          ]
+        },
+        {
+          "id": "nikah-mahr",
+          "title": "The mahr",
+          "arabic": "وأقل المهر عشرة دراهم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "named",
+              "title": "Named or not",
+              "ar": "ويصح النكاح إذا سمى فيه مهرا ويصح وإن لم يسم فيه مهرا",
+              "en": "The nikah is valid whether or not a mahr is named in it. The mahr is the gift the husband must give his wife."
+            },
+            {
+              "kind": "teach",
+              "id": "least",
+              "title": "The least mahr",
+              "ar": "وأقل المهر عشرة دراهم فإن سمى أقل من عشرة فلها العشرة",
+              "en": "The least mahr is ten dirhams (silver coins). If less than ten is named, she gets ten."
+            },
+            {
+              "kind": "choose",
+              "id": "least-gap",
+              "ask": "Complete it.",
+              "ar": "وأقل المهر ____ دراهم",
+              "options": ["عشرة", "خمسة", "ثلاثة"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وأقل المهر عشرة دراهم",
+              "why": "عشرة: the least mahr is ten dirhams."
+            },
+            {
+              "kind": "choose",
+              "id": "six-case",
+              "ask": "Hamid names a mahr of 6 dirhams for Zaynab. What is she owed?",
+              "options": ["10 dirhams", "6 dirhams", "Her mahr al-mithl"],
+              "answer": 0,
+              "source": "فإن سمى أقل من عشرة فلها العشرة",
+              "why": "Below ten, she is owed the ten."
+            },
+            {
+              "kind": "teach",
+              "id": "half",
+              "title": "Full or half",
+              "ar": "ومن سمى مهرا عشرة فما زاد فعليه المسمى إن دخل بها أو مات عنها وإن طلقها قبل الدخول والخلوة فلها نصف المسمى",
+              "en": "If he named ten or more, he owes all of it once the marriage is consummated (dukhul) or if he dies. If he divorces her before dukhul and before khalwa (being alone together in private), she gets half of what was named."
+            },
+            {
+              "kind": "choose",
+              "id": "half-case",
+              "ask": "Yasin named a mahr of 1,000 dirhams, then divorced Huda before they had ever been alone together. What does she get?",
+              "options": ["500 dirhams", "1,000 dirhams", "10 dirhams"],
+              "answer": 0,
+              "source": "وإن طلقها قبل الدخول والخلوة فلها نصف المسمى",
+              "why": "Divorce before dukhul and khalwa gives her half the named mahr: 500."
+            },
+            {
+              "kind": "teach",
+              "id": "unnamed",
+              "title": "When no mahr was named",
+              "ar": "وإن تزوجها ولم يسم لها مهرا أو تزوجها على أن لا مهر لها فلها مهر مثلها إن دخل بها أو مات عنها وإن طلقها قبل الدخول فلها المتعة وهي ثلاثة أثواب من كسوة مثلها",
+              "en": "If no mahr was named, or they even agreed there would be none, she gets her mahr al-mithl (the usual mahr of women like her) after dukhul or if he dies. If he divorces her before dukhul she gets the mut'a: a parting gift of three garments, the kind of clothes a woman like her wears."
+            },
+            {
+              "kind": "choose",
+              "id": "mutah-case",
+              "ask": "Ibrahim married Sumayya without naming a mahr, then divorced her before dukhul. What is she owed?",
+              "options": ["The mut'a: three garments", "Half her mahr al-mithl", "Nothing"],
+              "answer": 0,
+              "source": "وإن طلقها قبل الدخول فلها المتعة وهي ثلاثة أثواب من كسوة مثلها",
+              "why": "With no mahr named and a divorce before dukhul, she is owed the mut'a of three garments."
+            },
+            {
+              "kind": "teach",
+              "id": "khamr",
+              "title": "A forbidden thing as mahr",
+              "ar": "وإن تزوج المسلم على خمر أو خنزير فالنكاح جائز ولها مهر مثلها",
+              "en": "If a Muslim names wine or pork as the mahr, the nikah is still valid and she gets her mahr al-mithl."
+            },
+            {
+              "kind": "teach",
+              "id": "later",
+              "title": "A mahr agreed after the nikah",
+              "ar": "ثم تراضيا على تسمية مهر فهو لها إن دخل بها أو مات عنها وإن طلقها قبل الدخول لها المتعة",
+              "en": "If no mahr was named and they later agree on one, it is hers after dukhul or if he dies. If he divorces her before dukhul, she gets the mut'a."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "What is she owed?",
+              "into": ["The full named mahr", "Half the named mahr", "Mahr al-mithl"],
+              "items": [
+                ["1,000 named, after dukhul", "The full named mahr"],
+                ["1,000 named, he dies before dukhul", "The full named mahr"],
+                ["1,000 named, divorced before dukhul and khalwa", "Half the named mahr"],
+                ["None named, after dukhul", "Mahr al-mithl"],
+                ["Wine named as mahr, after dukhul", "Mahr al-mithl"]
+              ],
+              "source": ["فعليه المسمى إن دخل بها أو مات عنها وإن طلقها قبل الدخول والخلوة فلها نصف المسمى", "فلها مهر مثلها إن دخل بها أو مات عنها", "فالنكاح جائز ولها مهر مثلها"],
+              "why": "A named mahr is owed in full after dukhul or death, half if divorced before. With none named, or a forbidden one, she gets mahr al-mithl."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "A mahr of 4 dirhams is named, and the husband divorces before dukhul and khalwa. What is she owed?",
+              "options": ["5 dirhams: half of the ten", "2 dirhams: half of the four", "Nothing"],
+              "answer": 0,
+              "source": ["فإن سمى أقل من عشرة فلها العشرة", "فلها نصف المسمى"],
+              "why": "Less than ten counts as ten, and divorce before dukhul gives half: 5 dirhams."
+            }
+          ]
+        },
+        {
+          "id": "nikah-khalwa",
+          "title": "Changing the mahr, and khalwa",
+          "arabic": "وإذا خلا الزوج بامرأته",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "add",
+              "title": "Adding to or lowering the mahr",
+              "ar": "وإن زادها في المهر بعد العقد لزمته الزيادة وتسقط بالطلاق قبل الدخول وإن حطت عنه من مهرها صح الحط",
+              "en": "If the husband adds to the mahr after the contract, he owes the extra, but it falls away if he divorces her before dukhul. If the wife lets him off part of her mahr, that is valid."
+            },
+            {
+              "kind": "choose",
+              "id": "add-case",
+              "ask": "Musa named 1,000 dirhams, later added 200 as a kindness, then divorced his wife before dukhul. What does she get?",
+              "options": ["500 dirhams: the extra falls away", "600 dirhams", "1,200 dirhams"],
+              "answer": 0,
+              "source": ["لزمته الزيادة وتسقط بالطلاق قبل الدخول", "فلها نصف المسمى"],
+              "why": "The added 200 drops with divorce before dukhul, so she gets half of 1,000."
+            },
+            {
+              "kind": "choose",
+              "id": "forgive-case",
+              "ask": "Layla's mahr is 2,000 dirhams. She tells her husband she lets him off 500 of it. Does this count?",
+              "options": ["Yes: her lowering it is valid", "No: the mahr can never be lowered", "Only with her wali's consent"],
+              "answer": 0,
+              "source": "وإن حطت عنه من مهرها صح الحط",
+              "why": "A wife may let her husband off part of her mahr, and it holds."
+            },
+            {
+              "kind": "teach",
+              "id": "khalwa",
+              "title": "A valid khalwa",
+              "ar": "وإذا خلا الزوج بامرأته",
+              "en": "Khalwa is husband and wife being alone together in private. If they were alone with nothing preventing them from being together as a married couple, and then he divorces her, she gets the full mahr."
+            },
+            {
+              "kind": "teach",
+              "id": "not-valid",
+              "title": "When khalwa does not count",
+              "ar": "وإن كان أحدهما مريضا أو صائما في رمضان أو محرما بفرض أو نفل بحج أو عمرة أو كانت حائضا فليست بخلوة صحيحة",
+              "en": "It is not a valid khalwa if one of them is ill, fasting in Ramadan, in ihram for a fard or voluntary Hajj or Umrah, or if she is in her monthly period (hayd)."
+            },
+            {
+              "kind": "pick",
+              "id": "which",
+              "ask": "Which of these stop a khalwa from counting?",
+              "options": [
+                { "text": "One of them is ill", "right": true },
+                { "text": "One of them is fasting in Ramadan", "right": true },
+                { "text": "One of them is in ihram for Umrah", "right": true },
+                { "text": "She is in her monthly period", "right": true },
+                { "text": "It was in the evening" }
+              ],
+              "source": "وإن كان أحدهما مريضا أو صائما في رمضان أو محرما بفرض أو نفل بحج أو عمرة أو كانت حائضا فليست بخلوة صحيحة",
+              "why": "Illness, the Ramadan fast, ihram and her period each stop it being a valid khalwa. The time of day is not named."
+            },
+            {
+              "kind": "choose",
+              "id": "full-case",
+              "ask": "Anas and his wife were alone at home, both well and with nothing in the way. Later he divorced her before dukhul. The mahr named was 800. What does she get?",
+              "options": ["800: the full mahr", "400: half", "Her mahr al-mithl"],
+              "answer": 0,
+              "source": "مانع من الوطء ثم طلقها فلها كمال المهر",
+              "why": "A valid khalwa followed by divorce gives her the full mahr."
+            },
+            {
+              "kind": "choose",
+              "id": "ramadan-case",
+              "ask": "Hasan and his wife were alone during a Ramadan day while he was fasting. Later he divorced her before dukhul. Was that a valid khalwa?",
+              "options": ["No: fasting in Ramadan stops it", "Yes: they were alone", "Yes, if it was after Asr"],
+              "answer": 0,
+              "source": "أو صائما في رمضان",
+              "why": "Being in the Ramadan fast is one of the things that make it not a valid khalwa."
+            },
+            {
+              "kind": "teach",
+              "id": "majbub",
+              "title": "A husband unable to be with her",
+              "ar": "وإذا خلا المجبوب بامرأته ثم طلقها فلها كمال المهر عند أبي حنيفة",
+              "en": "If a husband who is physically unable to be with his wife (majbub) is alone with her and then divorces her, she gets the full mahr, for Abu Hanifa."
+            },
+            {
+              "kind": "teach",
+              "id": "gift",
+              "title": "The parting gift is recommended",
+              "ar": "وتستحب المتعة لكل مطلقة إلا لمطلقة واحدة وهي: التي طلقها قبل الدخول ولم يسم لها مهرا",
+              "en": "The mut'a (parting gift) is recommended (mustahabb) for every divorced woman except one: the one divorced before dukhul with no mahr named. For her, as the last lesson taught, the mut'a is what she is owed."
+            },
+            {
+              "kind": "choose",
+              "id": "gift-case",
+              "ask": "Nusayba was divorced after years of marriage and was paid her full mahr. Is giving her a parting gift recommended?",
+              "options": ["Yes: it is recommended for every divorced woman but one", "No: she already has her mahr", "It is owed to her as a debt"],
+              "answer": 0,
+              "source": "وتستحب المتعة لكل مطلقة",
+              "why": "Only the woman divorced before dukhul with no mahr named is left out; for Nusayba it is recommended."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which statement matches al-Quduri?",
+              "options": ["A wife may lower her own mahr", "An added mahr stays even after divorce before dukhul", "A khalwa while she is in her period is valid"],
+              "answer": 0,
+              "source": ["وإن حطت عنه من مهرها صح الحط", "وتسقط بالطلاق قبل الدخول", "أو كانت حائضا فليست بخلوة صحيحة"],
+              "why": "Her lowering is valid. The added part falls away, and a khalwa in her period is not valid."
+            }
+          ]
+        },
+        {
+          "id": "nikah-mahr-terms",
+          "title": "Unusual mahrs and conditions",
+          "arabic": "وإذا تزوجها على حيوان غير موصوف",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "swap",
+              "title": "One nikah as the mahr of the other",
+              "ar": "على أن يزوجه الرجل أخته أو ابنته ليكون أحد العقدين عوضا عن الآخر فالعقدان جائزان ولكل واحدة منهما مهر مثلها",
+              "en": "If one man marries his daughter to another on condition that the other marries him his sister or daughter, so that each nikah is the price of the other, both contracts are valid and each woman gets her mahr al-mithl."
+            },
+            {
+              "kind": "choose",
+              "id": "swap-case",
+              "ask": "Two fathers agree: each one's daughter marries the other's son, and each nikah is the mahr for the other. What happens?",
+              "options": ["Both nikahs are valid, and each bride gets her mahr al-mithl", "Both nikahs are void", "Valid, with no mahr for either"],
+              "answer": 0,
+              "source": "فالعقدان جائزان ولكل واحدة منهما مهر مثلها",
+              "why": "Both contracts stand, and each woman is owed her mahr al-mithl."
+            },
+            {
+              "kind": "teach",
+              "id": "service",
+              "title": "Service or teaching as a mahr",
+              "ar": "وإن تزوج حر امرأة على خدمته سنة أو على تعليم القرآن فلها مهر مثلها وإن تزوج عبد حرة بإذن مولاه على خدمتها سنة جاز",
+              "en": "If a free man names as the mahr a year of his service, or teaching her the Qur'an, she gets her mahr al-mithl instead. But if a slave marries a free woman, with his owner's permission, for a year of service to her, that is valid."
+            },
+            {
+              "kind": "choose",
+              "id": "quran-case",
+              "ask": "Idris, a free man, offers as his mahr to teach Amira the Qur'an. What is she owed?",
+              "options": ["Her mahr al-mithl", "The Qur'an lessons only", "Ten dirhams"],
+              "answer": 0,
+              "source": "أو على تعليم القرآن فلها مهر مثلها",
+              "why": "Teaching the Qur'an does not stand as his mahr; she gets her mahr al-mithl."
+            },
+            {
+              "kind": "teach",
+              "id": "condition",
+              "title": "A mahr with a condition",
+              "ar": "وإذا تزوج امرأة على ألف درهم على أن لا يخرجها من البلد أو على أن لا يتزوج عليها فإن وفى بالشرط فلها المسمى وإن تزوج عليها أو أخرجها من البلد فلها مهر مثلها",
+              "en": "If he marries her for 1,000 dirhams on condition that he won't take her out of her town, or won't marry another wife, then if he keeps the condition she gets the 1,000. If he marries another or takes her away, she gets her mahr al-mithl."
+            },
+            {
+              "kind": "choose",
+              "id": "condition-case",
+              "ask": "Rashid married Hana for 1,000 dirhams on condition he would not move her from her town. Later he moved her to another city. What is she owed?",
+              "options": ["Her mahr al-mithl", "The 1,000 dirhams", "Half of the 1,000"],
+              "answer": 0,
+              "source": "وإن تزوج عليها أو أخرجها من البلد فلها مهر مثلها",
+              "why": "He broke the condition, so she gets her mahr al-mithl instead of the named sum."
+            },
+            {
+              "kind": "teach",
+              "id": "animal",
+              "title": "An animal not described",
+              "ar": "وإذا تزوجها على حيوان غير موصوف صحت التسمية ولها الوسط منه والزوج مخير: إن شاء أعطاها ذلك وإن شاء أعطاها قيمته",
+              "en": "If the mahr is an animal that is not described (say, \"a horse\"), the naming is valid and she gets one of middle quality. The husband may choose to give her the animal or its value."
+            },
+            {
+              "kind": "choose",
+              "id": "animal-gap",
+              "ask": "Which one does she get? Complete it.",
+              "ar": "صحت التسمية ولها ____ منه",
+              "options": ["الوسط", "الأعلى", "الأدنى"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "صحت التسمية ولها الوسط منه",
+              "why": "الوسط: one of middle quality."
+            },
+            {
+              "kind": "teach",
+              "id": "cloth",
+              "title": "A cloth not described",
+              "ar": "ولو تزوجها على ثوب غير موصوف فلها مهر مثلها",
+              "en": "But if the mahr is a cloth that is not described, she gets her mahr al-mithl."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Does the named mahr stand?",
+              "into": ["The naming stands", "She gets mahr al-mithl"],
+              "items": [
+                ["\"A horse\", not described", "The naming stands"],
+                ["1,000 dirhams, condition kept", "The naming stands"],
+                ["\"A cloth\", not described", "She gets mahr al-mithl"],
+                ["A free man's year of service", "She gets mahr al-mithl"],
+                ["Teaching the Qur'an", "She gets mahr al-mithl"]
+              ],
+              "source": ["صحت التسمية ولها الوسط منه", "فإن وفى بالشرط فلها المسمى", "ولو تزوجها على ثوب غير موصوف فلها مهر مثلها", "على خدمته سنة أو على تعليم القرآن فلها مهر مثلها"],
+              "why": "An undescribed animal and a kept condition stand. An undescribed cloth, a free man's service and Qur'an teaching give her mahr al-mithl."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Uthman names \"a camel\" as the mahr, without describing it. What may he give?",
+              "options": ["A camel of middle quality, or its value", "Any camel he likes", "Her mahr al-mithl"],
+              "answer": 0,
+              "source": "ولها الوسط منه والزوج مخير: إن شاء أعطاها ذلك وإن شاء أعطاها قيمته",
+              "why": "The naming is valid: she gets a middle one, and he chooses between the animal and its value."
+            }
+          ]
+        },
+        {
+          "id": "nikah-mawquf",
+          "title": "Void and pending marriages",
+          "arabic": "ونكاح المتعة والنكاح المؤقت باطل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "slave",
+              "title": "An enslaved person's nikah",
+              "ar": "ولا يجوز نكاح العبد والأمة إلا بإذن مولاهما وإذا تزوج العبد بإذن مولاه فالمهر دين في رقبته يباع فيه",
+              "en": "An enslaved man ('abd) or woman (ama) may marry only with the owner's (mawla's) permission. If the man marries with permission, the mahr is a debt on him, and he may be sold to pay it."
+            },
+            {
+              "kind": "teach",
+              "id": "home",
+              "title": "An ama's home",
+              "ar": "وإذا زوج المولى أمته فليس عليه أن يبوئها بيت الزوج ولكنها تخدم المولى ويقال للزوج: متى ظفرت بها وطئتها",
+              "en": "If an owner marries off his ama, he does not have to give her a home with her husband. She keeps serving the owner, and the husband is told he may be with her whenever he can."
+            },
+            {
+              "kind": "teach",
+              "id": "mutah",
+              "title": "Mut'a and fixed-term marriage are void",
+              "ar": "ونكاح المتعة والنكاح المؤقت باطل",
+              "en": "Nikah al-mut'a (a \"marriage\" for enjoyment for a set time) and a nikah for a fixed period are void (batil): they are not a marriage at all."
+            },
+            {
+              "kind": "choose",
+              "id": "month-case",
+              "ask": "A man offers a woman a nikah \"for one month only\". What is it?",
+              "options": ["Void: a fixed-term nikah is batil", "Valid, but becomes a normal nikah", "Pending until the month ends"],
+              "answer": 0,
+              "source": "ونكاح المتعة والنكاح المؤقت باطل",
+              "why": "A nikah limited to a time is void."
+            },
+            {
+              "kind": "teach",
+              "id": "pending",
+              "title": "Pending until approved",
+              "ar": "وتزويج العبد والأمة بغير إذن مولاهما موقوف: فإن أجازه المولى جاز وإن رده بطل وكذلك لو زوج امرأة بغير رضاها أو رجلا بغير رضاه",
+              "en": "A nikah of an enslaved person without the owner's permission is mawquf: on hold. If the owner approves it, it is valid; if he rejects it, it is void. The same is true when someone marries off a woman or a man without their consent."
+            },
+            {
+              "kind": "choose",
+              "id": "hamza-case",
+              "ask": "Hamza is an adult. His uncle arranges a nikah for him without asking him. When Hamza hears, he gladly approves. What is the nikah?",
+              "options": ["Valid: it was pending and he approved it", "Void from the start", "Valid only if his father approves"],
+              "answer": 0,
+              "source": "وكذلك لو زوج امرأة بغير رضاها أو رجلا بغير رضاه",
+              "why": "A nikah made without his consent waits on him. His approval makes it valid."
+            },
+            {
+              "kind": "teach",
+              "id": "freed",
+              "title": "A choice when she is freed",
+              "ar": "وإذا زوج الأمة مولاها ثم أعتقت فلها الخيار حرا كان زوجها أو عبدا وكذلك المكاتبة",
+              "en": "If an ama's owner married her off and she is later freed, she has a choice to stay or leave, whether her husband is free or enslaved. The same holds for a mukataba (a woman buying her freedom by installments)."
+            },
+            {
+              "kind": "teach",
+              "id": "no-choice",
+              "title": "No choice if she married herself",
+              "ar": "بغير إذن مولاها ثم أعتقت صح النكاح ولا خيار لها",
+              "en": "If an ama married without her owner's permission and was then freed, the nikah becomes valid and she has no choice."
+            },
+            {
+              "kind": "choose",
+              "id": "freed-case",
+              "ask": "An ama was married by her owner to a free man. Later she is set free. Does she have a choice about the marriage?",
+              "options": ["Yes: she has a choice whether he is free or not", "No: her husband is free", "Only if her husband is a slave"],
+              "answer": 0,
+              "source": "ثم أعتقت فلها الخيار حرا كان زوجها أو عبدا",
+              "why": "Once freed, she has the choice whatever her husband's status."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Valid, void or pending?",
+              "into": ["Valid", "Void", "Pending"],
+              "items": [
+                ["Nikah al-mut'a", "Void"],
+                ["A nikah for one year only", "Void"],
+                ["An adult woman married off without her consent", "Pending"],
+                ["An 'abd marrying without his owner's permission", "Pending"],
+                ["An 'abd marrying with his owner's permission", "Valid"]
+              ],
+              "source": ["ونكاح المتعة والنكاح المؤقت باطل", "وتزويج العبد والأمة بغير إذن مولاهما موقوف", "وإذا تزوج العبد بإذن مولاه"],
+              "why": "Mut'a and fixed-term are void. Without consent or permission it is pending. With permission it is valid."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these is mawquf (pending) rather than void?",
+              "options": ["A woman married off without her consent", "A nikah for a fixed time", "Nikah al-mut'a"],
+              "answer": 0,
+              "source": ["وكذلك لو زوج امرأة بغير رضاها", "ونكاح المتعة والنكاح المؤقت باطل"],
+              "why": "Marrying someone off without consent waits on their approval. Mut'a and fixed-term are void."
+            }
+          ]
+        },
+        {
+          "id": "nikah-mahr-mithl",
+          "title": "Mahr al-mithl, guarantees, invalid marriages",
+          "arabic": "ومهر مثلها يعتبر بأخواتها",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "guarantee",
+              "title": "A wali guaranteeing the mahr",
+              "ar": "وإذا ضمن الولي المهر صح ضمانه وللمرأة الخيار في مطالبة زوجها أو وليها",
+              "en": "If the wali guarantees the mahr, the guarantee is valid, and the wife may ask either her husband or the wali for it."
+            },
+            {
+              "kind": "choose",
+              "id": "guarantee-case",
+              "ask": "Sana's father guaranteed her mahr. The husband has not paid. Whom may Sana ask?",
+              "options": ["Either her husband or her father", "Only her husband", "Only her father"],
+              "answer": 0,
+              "source": "وللمرأة الخيار في مطالبة زوجها أو وليها",
+              "why": "The guarantee is valid, so she may claim from either."
+            },
+            {
+              "kind": "teach",
+              "id": "fasid",
+              "title": "A defective (fasid) nikah",
+              "ar": "وإذا فرق القاضي بين الزوجين في النكاح الفاسد قبل الدخول فلا مهر لها وكذلك بعد الخلوة وإن دخل بها فلها مهر مثلها لا يزاد على المسمى وعليها العدة ويثبت نسب ولدها",
+              "en": "A fasid nikah is one with a defect that spoils it. If the qadi (judge) separates the couple before dukhul, she gets no mahr, and the same after only khalwa. If there was dukhul, she gets her mahr al-mithl, but no more than what was named. She keeps the iddah, and her child's lineage is established."
+            },
+            {
+              "kind": "choose",
+              "id": "fasid-case1",
+              "ask": "A qadi separates a couple in a fasid nikah. They had been alone together, but there was no dukhul. What mahr is owed?",
+              "options": ["None", "Half the named mahr", "The full named mahr"],
+              "answer": 0,
+              "source": "قبل الدخول فلا مهر لها وكذلك بعد الخلوة",
+              "why": "In a fasid nikah, khalwa alone gives no mahr."
+            },
+            {
+              "kind": "choose",
+              "id": "fasid-case2",
+              "ask": "In a fasid nikah, 500 dirhams was named and there was dukhul. Her mahr al-mithl would be 800. What is she owed?",
+              "options": ["500 dirhams", "800 dirhams", "650 dirhams"],
+              "answer": 0,
+              "source": "وإن دخل بها فلها مهر مثلها لا يزاد على المسمى",
+              "why": "She gets her mahr al-mithl, but not more than the named 500."
+            },
+            {
+              "kind": "teach",
+              "id": "measure",
+              "title": "Whose mahr is compared",
+              "ar": "ومهر مثلها يعتبر بأخواتها وعماتها",
+              "en": "Her mahr al-mithl is measured by the mahr of her sisters, her father's sisters and her father's brothers' daughters. It is not measured by her mother or her mother's sister if they are not from her father's tribe."
+            },
+            {
+              "kind": "choose",
+              "id": "mother-case",
+              "ask": "Asiya's mother is from a different tribe than her father. To find Asiya's mahr al-mithl, whose mahr is looked at?",
+              "options": ["Her sisters' and paternal aunts'", "Her mother's", "Her mother's sister's"],
+              "answer": 0,
+              "source": ["ومهر مثلها يعتبر بأخواتها وعماتها", "ولا يعتبر بأمها وخالتها إذا لم يكونا من قبيلتها"],
+              "why": "The women of her father's side are the measure. Her mother and maternal aunt are not, as they are of another tribe."
+            },
+            {
+              "kind": "teach",
+              "id": "equal",
+              "title": "How alike the women must be",
+              "ar": "ويعتبر في مهر المثل: أن تتساوى المرأتان في السن والجمال والعفة والمال والعقل والدين والبلد والعصر",
+              "en": "To compare, the two women must be alike in age, beauty, chastity, wealth, intelligence, religion, town and time."
+            },
+            {
+              "kind": "pick",
+              "id": "alike",
+              "ask": "In what must the two women be alike for mahr al-mithl?",
+              "options": [
+                { "text": "Age", "right": true },
+                { "text": "Religion", "right": true },
+                { "text": "Town", "right": true },
+                { "text": "Intelligence", "right": true },
+                { "text": "Height" },
+                { "text": "Number of brothers" }
+              ],
+              "source": "أن تتساوى المرأتان في السن والجمال والعفة والمال والعقل والدين والبلد والعصر",
+              "why": "Age, beauty, chastity, wealth, intelligence, religion, town and era. Height and brothers are not named."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which statement matches al-Quduri?",
+              "options": ["In a fasid nikah after dukhul, the child's lineage is established", "After a fasid nikah she keeps no iddah", "A wali's guarantee of the mahr is void"],
+              "answer": 0,
+              "source": ["وعليها العدة ويثبت نسب ولدها", "وإذا ضمن الولي المهر صح ضمانه"],
+              "why": "She keeps the iddah and the child's lineage is established. The wali's guarantee is valid."
+            }
+          ]
+        },
+        {
+          "id": "nikah-four",
+          "title": "Up to four wives",
+          "arabic": "وللحر أن يتزوج أربعا",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "ama",
+              "title": "Marrying an ama",
+              "ar": "ويجوز تزويج الأمة مسلمة كانت أو كتابية ولا يجوز أن يتزوج أمة على حرة ويجوز الحرة عليها",
+              "en": "A man may marry an enslaved woman (ama), Muslim or of the People of the Book. But he may not marry an ama while already married to a free woman. He may marry a free woman while married to an ama."
+            },
+            {
+              "kind": "choose",
+              "id": "ama-case",
+              "ask": "Yasir is married to a free woman. May he now marry an ama as well?",
+              "options": ["No: not an ama on top of a free wife", "Yes, up to four", "Yes, if she is Muslim"],
+              "answer": 0,
+              "source": "ولا يجوز أن يتزوج أمة على حرة",
+              "why": "Al-Quduri forbids marrying an ama on top of a free wife."
+            },
+            {
+              "kind": "teach",
+              "id": "four",
+              "title": "Four, or two",
+              "ar": "وللحر أن يتزوج أربعا من الحرائر والإماء وليس له أن يتزوج أكثر من ذلك ولا يتزوج العبد أكثر من اثنتين",
+              "en": "A free man may marry up to four wives, free or not, and no more. An enslaved man may not marry more than two."
+            },
+            {
+              "kind": "choose",
+              "id": "two-gap",
+              "ask": "How many for an enslaved man? Complete it.",
+              "ar": "ولا يتزوج العبد أكثر من ____",
+              "options": ["اثنتين", "ثلاث", "أربع"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ولا يتزوج العبد أكثر من اثنتين",
+              "why": "اثنتين: no more than two."
+            },
+            {
+              "kind": "teach",
+              "id": "fourth",
+              "title": "Waiting for the iddah",
+              "ar": "فإن طلق الحر إحدى الأربع طلاقا بائنا لم يجز له أن يتزوج رابعة حتى تنقضي عدتها",
+              "en": "If a free man gives one of his four wives a ba'in divorce, he may not marry another fourth wife until her iddah is over."
+            },
+            {
+              "kind": "choose",
+              "id": "fourth-case",
+              "ask": "Ibrahim has four wives. He gives one a ba'in divorce, and her iddah has not ended. May he marry another woman now?",
+              "options": ["No: not until her iddah ends", "Yes: a ba'in divorce ends the marriage", "Yes, if the other wives agree"],
+              "answer": 0,
+              "source": "لم يجز له أن يتزوج رابعة حتى تنقضي عدتها",
+              "why": "He must wait for the divorced wife's iddah to end before taking a new fourth wife."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "May he marry now?",
+              "into": ["May marry now", "Must wait", "May not"],
+              "items": [
+                ["A free man with three wives", "May marry now"],
+                ["A free man with four wives", "May not"],
+                ["An enslaved man with two wives", "May not"],
+                ["A free man whose fourth wife is in her iddah after a ba'in divorce", "Must wait"],
+                ["A man married to an ama, marrying a free woman", "May marry now"]
+              ],
+              "source": ["وللحر أن يتزوج أربعا", "ولا يتزوج العبد أكثر من اثنتين", "حتى تنقضي عدتها", "ويجوز الحرة عليها"],
+              "why": "Three wives leaves room for a fourth. Four is the limit for a free man, two for an enslaved man. During the iddah he waits."
+            },
+            {
+              "kind": "choose",
+              "id": "three-case",
+              "ask": "Musa, a free man, has three wives. May he marry a fourth?",
+              "options": ["Yes: a free man may have up to four", "No: three is the limit", "Only an ama"],
+              "answer": 0,
+              "source": "وللحر أن يتزوج أربعا من الحرائر والإماء",
+              "why": "A free man may marry up to four."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which is allowed?",
+              "options": ["Marrying a free woman while married to an ama", "Marrying an ama while married to a free woman", "A free man marrying a fifth wife"],
+              "answer": 0,
+              "source": ["ولا يجوز أن يتزوج أمة على حرة ويجوز الحرة عليها", "وليس له أن يتزوج أكثر من ذلك"],
+              "why": "A free woman may be added to an ama, not the other way. More than four is never allowed."
+            }
+          ]
+        },
+        {
+          "id": "nikah-defects",
+          "title": "Defects and the right to separate",
+          "arabic": "فإن كان عنينا أجله الحاكم حولا",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "defect",
+              "title": "A defect gives no choice",
+              "ar": "وإن كان بالزوجة عيب فلا خيار لزوجها وإذا كان بالزوج جنون أو جذام أو برص فلا خيار للمرأة عند أبي حنيفة وأبي يوسف وقال محمد: لها الخيار",
+              "en": "If the wife has a defect, the husband has no choice to cancel the nikah. If the husband has insanity, leprosy (judham) or white skin patches (baras), the wife has no choice either, for Abu Hanifa and Abu Yusuf. Note: Muhammad says she has the choice."
+            },
+            {
+              "kind": "choose",
+              "id": "defect-case",
+              "ask": "After the nikah, Imran learns his wife has a long-standing illness. May he have the nikah cancelled for it?",
+              "options": ["No: a defect in the wife gives him no choice", "Yes: any defect gives a choice", "Yes, within the first year"],
+              "answer": 0,
+              "source": "وإن كان بالزوجة عيب فلا خيار لزوجها",
+              "why": "Al-Quduri says a defect in the wife gives the husband no choice."
+            },
+            {
+              "kind": "teach",
+              "id": "innin",
+              "title": "A husband unable to be intimate",
+              "ar": "فإن كان عنينا أجله الحاكم حولا فإن وصل إليها وإلا فرق بينهما إن طلبت المرأة ذلك",
+              "en": "If the husband is 'innin (unable to be intimate with his wife), the judge gives him a hawl: one full year. If he is able in that time, the marriage stays. If not, the judge separates them if the wife asks for it."
+            },
+            {
+              "kind": "choose",
+              "id": "year-gap",
+              "ask": "How long is he given? Complete it.",
+              "ar": "فإن كان عنينا أجله الحاكم ____",
+              "options": ["حولا", "شهرا", "أسبوعا"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "فإن كان عنينا أجله الحاكم حولا",
+              "why": "حولا: a full year."
+            },
+            {
+              "kind": "teach",
+              "id": "bain",
+              "title": "A final separation",
+              "ar": "والفرقة تطليقه بائنة ولها كمال المهر إن كان قد خلا بها",
+              "en": "The separation counts as a ba'in divorce (final), and she gets the full mahr if they had been alone together (khalwa)."
+            },
+            {
+              "kind": "choose",
+              "id": "innin-case",
+              "ask": "Sakina's husband was given a year by the judge and was still unable. She asks for separation, and they had been alone together. What happens?",
+              "options": ["They are separated by a ba'in divorce, and she gets the full mahr", "Nothing: she has no choice", "They are separated, with no mahr"],
+              "answer": 0,
+              "source": ["وإلا فرق بينهما إن طلبت المرأة ذلك", "والفرقة تطليقه بائنة ولها كمال المهر إن كان قد خلا بها"],
+              "why": "After the year the judge separates them at her request. It is a ba'in divorce with the full mahr after khalwa."
+            },
+            {
+              "kind": "teach",
+              "id": "khasi",
+              "title": "A eunuch is given the year too",
+              "ar": "والخصي يؤجل كما يؤجل العنين",
+              "en": "A khasi (a man who has been castrated) is given the same one-year delay as the 'innin."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Does the wife have a way to separate?",
+              "into": ["She may ask for separation", "No choice for her"],
+              "items": [
+                ["He is 'innin and the year passed", "She may ask for separation"],
+                ["He is a khasi and the year passed", "She may ask for separation"],
+                ["He has baras (white skin patches)", "No choice for her"],
+                ["He has judham (leprosy)", "No choice for her"]
+              ],
+              "source": ["وإلا فرق بينهما إن طلبت المرأة ذلك", "والخصي يؤجل كما يؤجل العنين", "أو جذام أو برص فلا خيار للمرأة"],
+              "why": "An 'innin or khasi after the year: she may ask. For judham or baras she has no choice, for Abu Hanifa and Abu Yusuf."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Who decides the year for an 'innin husband?",
+              "options": ["The judge (hakim)", "The wife's wali", "The husband himself"],
+              "answer": 0,
+              "source": "أجله الحاكم حولا",
+              "why": "The judge sets the year and, if she asks, separates them."
+            }
+          ]
+        },
+        {
+          "id": "nikah-islam",
+          "title": "When one spouse becomes Muslim",
+          "arabic": "وإذا أسلم زوج الكتابية",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "wife",
+              "title": "The wife becomes Muslim",
+              "ar": "وزوجها كافر عرض عليه القاضي الإسلام فإن أسلم فهي امرأته وإن أبى عن الإسلام فرق بينهما وكان ذلك طلاقا بائنا عند أبي حنيفة ومحمد: وقال أبو يوسف: هي فرقة بغير طلاق",
+              "en": "If a wife becomes Muslim and her husband is not, the qadi invites him to Islam. If he accepts, she stays his wife. If he refuses, they are separated, and that counts as a ba'in divorce for Abu Hanifa and Muhammad. Note: Abu Yusuf says it is a separation without divorce."
+            },
+            {
+              "kind": "teach",
+              "id": "majusi",
+              "title": "The husband becomes Muslim, his wife is Majusi",
+              "ar": "فإن أسلم الزوج وتحته مجوسية عرض عليها الإسلام فإن أسلمت فهي امرأته وإن أبت فرق القاضي بينهما ولم تكن هذه الفرقة طلاقا",
+              "en": "If the husband becomes Muslim and his wife is Majusi, she is invited to Islam. If she accepts, she stays his wife. If she refuses, the qadi separates them, and this separation is not a divorce. If there was dukhul she keeps her mahr; if not, she has no mahr."
+            },
+            {
+              "kind": "teach",
+              "id": "kitabiyya",
+              "title": "The husband of a kitabiyya",
+              "ar": "وإذا أسلم زوج الكتابية فهما على نكاحهما",
+              "en": "If the husband of a Jewish or Christian wife becomes Muslim, their nikah carries on."
+            },
+            {
+              "kind": "choose",
+              "id": "kitabiyya-case",
+              "ask": "Daniel becomes Muslim. His wife Ruth stays Christian. What happens to their marriage?",
+              "options": ["It carries on", "The qadi separates them", "It ends after three periods"],
+              "answer": 0,
+              "source": "وإذا أسلم زوج الكتابية فهما على نكاحهما",
+              "why": "A Muslim may be married to a kitabiyya, so their nikah continues."
+            },
+            {
+              "kind": "choose",
+              "id": "majusi-case",
+              "ask": "Kaveh becomes Muslim. His Majusi wife is invited to Islam and declines. There had been no dukhul. What happens?",
+              "options": ["They are separated, with no mahr", "They stay married", "They are separated, and she gets half the mahr"],
+              "answer": 0,
+              "source": ["وإن أبت فرق القاضي بينهما", "وإن لم يكن دخل بها فلا مهر لها"],
+              "why": "The qadi separates them, not as a divorce, and with no dukhul she has no mahr."
+            },
+            {
+              "kind": "teach",
+              "id": "harb",
+              "title": "In dar al-harb",
+              "ar": "وإذا أسلمت المرأة في دار الحرب لم تقع الفرقة عليها حتى تحيض ثلاث حيض فإذا حاضت بانت من زوجها",
+              "en": "Dar al-harb is a land at war with the Muslims, outside Muslim rule. If a woman becomes Muslim there, the separation does not happen until she has had three monthly periods. When she has, she is parted from her husband."
+            },
+            {
+              "kind": "teach",
+              "id": "leave",
+              "title": "Leaving dar al-harb",
+              "ar": "وإذا خرج أحد الزوجين إلينا من دار الحرب مسلما وقعت البينونة بينهما",
+              "en": "If one spouse comes over from dar al-harb to Muslim lands as a Muslim, the marriage ends between them. If both were captured together, it does not end."
+            },
+            {
+              "kind": "teach",
+              "id": "hijra",
+              "title": "A woman who migrates",
+              "ar": "وإذا خرجت المرأة إلينا مهاجرة جاز لها أن تتزوج ولا عدة عليها عند أبي حنيفة فإن كانت حاملا لم تتزوج حتى تضع حملها",
+              "en": "If a woman comes over to Muslim lands as a muhajira (migrant for her faith), she may marry, and for Abu Hanifa she keeps no iddah. But if she is pregnant, she may not marry until she gives birth."
+            },
+            {
+              "kind": "choose",
+              "id": "hijra-case",
+              "ask": "Amina migrated alone to Muslim lands as a Muslim, leaving her husband behind. She is expecting a baby. When may she marry?",
+              "options": ["After she gives birth", "At once", "After three periods"],
+              "answer": 0,
+              "source": "فإن كانت حاملا لم تتزوج حتى تضع حملها",
+              "why": "A pregnant muhajira waits until the birth."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Does the marriage carry on?",
+              "into": ["Carries on", "They are separated"],
+              "items": [
+                ["Husband becomes Muslim, wife stays Christian", "Carries on"],
+                ["Wife becomes Muslim, husband accepts Islam", "Carries on"],
+                ["Wife becomes Muslim, husband refuses Islam", "They are separated"],
+                ["Husband becomes Muslim, Majusi wife refuses Islam", "They are separated"],
+                ["Both captured together", "Carries on"]
+              ],
+              "source": ["فهما على نكاحهما", "فإن أسلم فهي امرأته وإن أبى عن الإسلام فرق بينهما", "وإن أبت فرق القاضي بينهما", "وإن سبيا معا لم تقع البينونة"],
+              "why": "A kitabiyya wife, an accepting husband, or capture together: it carries on. A refusal of Islam leads to separation."
+            },
+            {
+              "kind": "choose",
+              "id": "kitabiyya-gap",
+              "ask": "Complete it.",
+              "ar": "وإذا أسلم زوج ____ فهما على نكاحهما",
+              "options": ["الكتابية", "المجوسية", "الوثنية"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وإذا أسلم زوج الكتابية فهما على نكاحهما",
+              "why": "الكتابية: the wife of the Book may stay married to a Muslim."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "A woman becomes Muslim in dar al-harb. When is she parted from her husband?",
+              "options": ["After three monthly periods", "At once", "When the qadi rules"],
+              "answer": 0,
+              "source": "لم تقع الفرقة عليها حتى تحيض ثلاث حيض",
+              "why": "In dar al-harb, the separation comes after three periods."
+            }
+          ]
+        },
+        {
+          "id": "nikah-ridda",
+          "title": "Leaving Islam, and the children's religion",
+          "arabic": "وقعت الفرقة بينهما بغير طلاق",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "ridda",
+              "title": "If a spouse leaves Islam",
+              "ar": "أحد الزوجين عن الإسلام وقعت الفرقة بينهما بغير طلاق",
+              "en": "Ridda means leaving Islam, and one who does so is a murtadd. If either spouse leaves Islam, the marriage ends at once, without a divorce."
+            },
+            {
+              "kind": "teach",
+              "id": "mahr",
+              "title": "The mahr after ridda",
+              "ar": "فإن كان الزوج هو المرتد وقد دخل بها فلها كمال المهر وإن كان لم يدخل بها فلها نصف المهر وإن كانت المرأة هي المرتدة فإن كان قبل الدخول فلا مهر لها وإن كانت الردة بعد الدخول فلها المهر وإن ارتدا معا وأسلما فهما على نكاحهما",
+              "en": "If the husband left Islam: after dukhul she gets the full mahr, before it half. If the wife left Islam: before dukhul she has no mahr, after it she keeps the mahr. If both left together and both returned to Islam, their nikah carries on."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "What mahr is owed?",
+              "into": ["Full mahr", "Half the mahr", "No mahr"],
+              "items": [
+                ["Husband leaves Islam, after dukhul", "Full mahr"],
+                ["Husband leaves Islam, before dukhul", "Half the mahr"],
+                ["Wife leaves Islam, before dukhul", "No mahr"],
+                ["Wife leaves Islam, after dukhul", "Full mahr"]
+              ],
+              "source": "فإن كان الزوج هو المرتد وقد دخل بها فلها كمال المهر وإن كان لم يدخل بها فلها نصف المهر وإن كانت المرأة هي المرتدة فإن كان قبل الدخول فلا مهر لها وإن كانت الردة بعد الدخول فلها المهر",
+              "why": "After dukhul the mahr is hers in full. Before dukhul it is half if he left Islam, and none if she did."
+            },
+            {
+              "kind": "teach",
+              "id": "nomarry",
+              "title": "No nikah for a murtadd",
+              "ar": "ولا يجوز أن يتزوج المرتد مسلمة ولا كافرة ولا مرتدة وكذلك المرتدة لا يتزوجها مسلم ولا كافر ولا مرتد",
+              "en": "A man who has left Islam may not marry a Muslim, a non-Muslim, or another murtadd. Likewise no one may marry a woman who has left Islam."
+            },
+            {
+              "kind": "teach",
+              "id": "children",
+              "title": "The children's religion",
+              "ar": "وإذا كان أحد الزوجين مسلما فالولد على دينه وكذلك إن أسلم أحدهما وله ولد صغير صار ولده مسلما بإسلامه وإن كان أحد الأبوين كتابيا والآخر مجوسيا فالولد كتابي",
+              "en": "If one parent is Muslim, the child follows that parent's religion. So if one parent becomes Muslim and has a young child, the child becomes Muslim too. If one parent is of the Book and the other Majusi, the child counts as of the Book."
+            },
+            {
+              "kind": "choose",
+              "id": "child-case",
+              "ask": "Yaqub's father becomes Muslim; his mother does not. Yaqub is six. What is Yaqub's religion in fiqh?",
+              "options": ["Muslim, following his father", "His mother's religion", "He has none until he is grown"],
+              "answer": 0,
+              "source": "وكذلك إن أسلم أحدهما وله ولد صغير صار ولده مسلما بإسلامه",
+              "why": "A young child becomes Muslim with the parent who becomes Muslim."
+            },
+            {
+              "kind": "choose",
+              "id": "kitabi-case",
+              "ask": "A child's mother is Christian and the father is Majusi. How is the child counted?",
+              "options": ["As of the Book (kitabi)", "As Majusi", "As following the father"],
+              "answer": 0,
+              "source": "وإن كان أحد الأبوين كتابيا والآخر مجوسيا فالولد كتابي",
+              "why": "With one parent of the Book and one Majusi, the child is counted as kitabi."
+            },
+            {
+              "kind": "teach",
+              "id": "before",
+              "title": "Marriages made before Islam",
+              "ar": "وإذا تزوج الكافر بغير شهود أو في عدة الكافر وذلك في دينهم",
+              "en": "If a non-Muslim couple married without witnesses, or during an iddah from a non-Muslim, and their religion allowed it, then both became Muslim, they are left in that marriage. But if a Majusi had married his mother or daughter and then they became Muslim, they are separated."
+            },
+            {
+              "kind": "choose",
+              "id": "before-case",
+              "ask": "Before Islam, Peter and Martha married with no witnesses, as their religion allowed. Now both have become Muslim. What about their marriage?",
+              "options": ["It is left as it is", "They must separate", "They must redo the nikah with witnesses"],
+              "answer": 0,
+              "source": ["وإذا تزوج الكافر بغير شهود", "ثم أسلما أقرا عليه"],
+              "why": "Their earlier marriage is accepted once they both become Muslim."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "A married couple both leave Islam together and later both return to Islam. What about their nikah?",
+              "options": ["It carries on", "It ended without divorce", "It needs a new mahr"],
+              "answer": 0,
+              "source": "وإن ارتدا معا وأسلما فهما على نكاحهما",
+              "why": "If they left together and returned together, the book keeps them on their nikah."
+            }
+          ]
+        },
+        {
+          "id": "nikah-qasm",
+          "title": "Fair turns between wives",
+          "arabic": "في القسم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fair",
+              "title": "Being fair",
+              "ar": "وإذا كان للرجل امرأتان حرتان",
+              "en": "If a man has two free wives, he must be fair between them in qasm: sharing his nights between them equally."
+            },
+            {
+              "kind": "teach",
+              "id": "same",
+              "title": "Old or new, the same",
+              "ar": "بينهما في القسم بكرين كانتا أو ثيبتين أو إحداهما بكرا والأخرى ثيبا",
+              "en": "This is so whether both were never married before (bikr), both were married before (thayyib), or one of each."
+            },
+            {
+              "kind": "choose",
+              "id": "new-case",
+              "ask": "Harun marries Ruqayya (a bikr) while already married to Khadija (a thayyib). How should he share his nights?",
+              "options": ["Equally between them", "More for the new wife", "More for the first wife"],
+              "answer": 0,
+              "source": "بينهما في القسم بكرين كانتا أو ثيبتين أو إحداهما بكرا والأخرى ثيبا",
+              "why": "Bikr or thayyib, the turns are equal."
+            },
+            {
+              "kind": "teach",
+              "id": "ama",
+              "title": "A free wife and an ama",
+              "ar": "فللحرة الثلثان من القسم وللأمة الثلث",
+              "en": "If one wife is free and the other an ama, the free wife has two thirds of the turns and the ama one third."
+            },
+            {
+              "kind": "choose",
+              "id": "thirds-case",
+              "ask": "A man's wives are a free woman and an ama. Over 3 nights, how many are the free wife's?",
+              "options": ["2 nights", "1 night", "3 nights"],
+              "answer": 0,
+              "source": "فللحرة الثلثان من القسم وللأمة الثلث",
+              "why": "The free wife has two thirds: 2 of every 3 nights."
+            },
+            {
+              "kind": "teach",
+              "id": "travel",
+              "title": "On a journey",
+              "ar": "ولا حق لهن في القسم حالة السفر ويسافر الزوج بمن شاء منهن",
+              "en": "On a journey the wives have no right to turns: the husband may travel with whichever of them he wishes. It is better that he draws lots and travels with the one whose lot comes out."
+            },
+            {
+              "kind": "choose",
+              "id": "travel-case",
+              "ask": "Zubayr is going on a journey and can take one wife. What does al-Quduri say is best?",
+              "options": ["Draw lots and take the one whose lot comes out", "Always take the first wife", "Take each in turn, by the calendar"],
+              "answer": 0,
+              "source": ["ويسافر الزوج بمن شاء منهن", "فيسافر بمن خرجت قرعتها"],
+              "why": "He may take whom he wishes, but drawing lots is better."
+            },
+            {
+              "kind": "teach",
+              "id": "give",
+              "title": "Giving up a turn",
+              "ar": "وإن رضيت الزوجات بترك قسمها لصاحبتها جاز ولها أن ترجع في ذلك",
+              "en": "If a wife is happy to give her turn to the other wife, that is allowed, and she may take it back later."
+            },
+            {
+              "kind": "choose",
+              "id": "give-case",
+              "ask": "Hafsa gave her nights to her co-wife. Months later she wants them back. May she?",
+              "options": ["Yes: she may take it back", "No: a gift cannot be undone", "Only with the co-wife's consent"],
+              "answer": 0,
+              "source": "ولها أن ترجع في ذلك",
+              "why": "Al-Quduri says she may go back on giving up her turn."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which statement matches al-Quduri?",
+              "options": ["Wives have no right to turns during a journey", "A bikr wife gets more nights than a thayyib", "A free wife and an ama share nights equally"],
+              "answer": 0,
+              "source": ["ولا حق لهن في القسم حالة السفر", "بكرين كانتا أو ثيبتين", "فللحرة الثلثان من القسم وللأمة الثلث"],
+              "why": "Turns stop on a journey. Bikr and thayyib are equal, and the free wife has two thirds."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
