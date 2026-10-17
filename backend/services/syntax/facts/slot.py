@@ -88,6 +88,14 @@ def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
             and any(attached_pronoun(k) for k in s.kids(token)))
 
 
+def stands_for_masdar(token: dict, verb: dict, s: Sentence) -> bool:
+    """ضربتُه ثلاثَ مراتٍ، أحببتُه كلَّ الحبِّ: a word added to the verb's own masdar, or to the
+    count of its doing, takes the masdar's place as its مفعول مطلق (النائب عن المصدر, Tasheel 3.2 p67):
+    the number of times, كل or بعض. Added to any other noun it is the object (أكلتُ كلَّ الطعامِ)."""
+    return any(k["rel"] == "IDF" and (listed(k, "times_counted") or (is_masdar(k) and same_root(k, verb)))
+               for k in s.kids(token))
+
+
 def purpose(token: dict, verb: dict) -> bool:
     """قام الطلاب احترامًا: a masdar of the heart (a feeling or intent, reason_masdars) not of its verb's root,
     in nasb and indefinite or a مضاف, gives the reason for the verb: its مفعول لأجله
@@ -136,14 +144,14 @@ def verb_place(token: dict, s: Sentence) -> str:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
         if head.get("asp") == "c" and rel in ("SBJ", "TPC", "OBJ", "---") and typed != "u":
             return "object"  # قل الحق: a command's doer is always the hidden أنت (Tasheel 2.4.1 p30)
+        if not before and typed != "u" and (listed(token, "times_counted") or stands_for_masdar(token, head, s)):
+            return "absolute"  # ضربتُه مرتين، ثلاثَ مراتٍ، كلَّ الحبِّ: the count or the share stands in for the masdar
         # رَأَيْتُ كِلَا الصَّدِيقَيْنِ: a verb of the first or second person holds its doer (تُ، نا، تَ),
         # so the noun after it is its object, however the parser hung it or what case it guessed
         if (head.get("per") in ("1", "2") and not is_passive(head) and not before
                 and rel in ("SBJ", "TPC", "OBJ") and typed != "u"
                 and not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)):
             return "object"
-        if not before and typed != "u" and listed(token, "times_counted"):
-            return "absolute"  # ضربتُه مرتين: the count stands in for the masdar
         if (not before and typed in (None, "a") and token.get("stt") in ("i", "c") and is_masdar(token)
                 and same_root(token, head)):
             return "absolute"  # يُطَهِّرَكُمْ تَطْهِيرًا: the verb's own masdar

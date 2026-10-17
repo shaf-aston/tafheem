@@ -760,6 +760,16 @@ def test_a_count_of_times_is_the_absolute_object_of_its_verb():
     assert iraab.analyze("ضَرَبْتُهُ مَرَّتَيْنِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
 
 
+def test_a_word_added_to_the_count_or_the_masdar_stands_in_for_the_masdar():
+    assert iraab.analyze("زُرْتُهُ ثَلَاثَ مَرَّاتٍ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+    assert iraab.analyze("قَرَأْتُ الْكِتَابَ عَشْرَ مَرَّاتٍ", recorded=False)["words"][2]["role"] == "مفعول مطلق"
+    assert iraab.analyze("فَرِحْتُ كُلَّ الْفَرَحِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+    # added to any other noun, the number or كل is the object
+    assert iraab.analyze("رَأَيْتُ ثَلَاثَةَ رِجَالٍ", recorded=False)["words"][1]["role"] == "مفعول به"
+    assert iraab.analyze("أَكَلْتُ كُلَّ الطَّعَامِ", recorded=False)["words"][1]["role"] == "مفعول به"
+    assert iraab.analyze("قَرَأْتُ كُلَّ الدَّرْسِ", recorded=False)["words"][1]["role"] == "مفعول به"
+
+
 def _role(sentence: str, i: int) -> str:
     return iraab.analyze(sentence, recorded=False)["words"][i]["role"]
 
