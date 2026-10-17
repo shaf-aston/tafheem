@@ -20,6 +20,7 @@ import { pickColor, seed, seedMarks, step, stepMarks } from '../../lib/bokeh'
 import { heldFor } from '../../lib/backdropHold'
 import { motionOff } from '../../lib/motion'
 
+const MAX_DPR = 1.5
 
 function readKnobs(style) {
   const num = (name) => parseFloat(style.getPropertyValue(`--lights-${name}`))
@@ -116,7 +117,10 @@ export default function Backdrop() {
     }
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1
+      // Soft out-of-focus lights gain nothing from a dense screen's extra
+      // pixels: a phone at 2.6x drew seven times the canvas each frame and
+      // left no idle time for anything else. One cap for every screen.
+      const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
       w = window.innerWidth
       h = window.innerHeight
       node.width = Math.round(w * dpr)

@@ -43,3 +43,28 @@ describe('warm', () => {
     expect(keys).toEqual([['hadith-books', 'a'], ['hadith-books', 'b']])
   })
 })
+
+describe('idle and inTurn', () => {
+  it('idle gives requestIdleCallback a deadline, so a busy page still warms', async () => {
+    const { idle, IDLE_BY } = await import('./warm')
+    const ric = vi.fn()
+    vi.stubGlobal('requestIdleCallback', ric)
+    const fn = () => {}
+    idle(fn)
+    expect(ric).toHaveBeenCalledWith(fn, { timeout: IDLE_BY })
+    vi.unstubAllGlobals()
+  })
+
+  it('inTurn starts each step after the one before has finished, past failures', async () => {
+    const { inTurn } = await import('./warm')
+    const log = []
+    let release
+    const first = () => new Promise((r) => { release = r }).then(() => log.push('a'))
+    const done = inTurn([first, () => { throw new Error('x') }, () => log.push('c')])
+    await new Promise((r) => setTimeout(r, 10))
+    expect(log).toEqual([])
+    release()
+    await done
+    expect(log).toEqual(['a', 'c'])
+  })
+})
