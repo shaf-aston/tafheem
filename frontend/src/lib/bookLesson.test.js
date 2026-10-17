@@ -127,6 +127,13 @@ describe('lesson status', () => {
     expect(statusOf(LESSON, new Map([['l1/c', row('l1/c', { known: true })], ['l1/o', row('l1/o', { known: true })]]))).toBe('learnt')
   })
 
+  it('gives parts and areas their looks in turn, a part’s own path first', () => {
+    const book = { parts: [{ id: 'a', lessons: [] }, { id: 'b', lessons: [] }, { id: 'c', path: 'garden', lessons: [] }], areas: [{ id: 'x', parts: ['a'] }, { id: 'y', parts: ['b', 'c'] }] }
+    const { parts, areas } = partsOf(book, [])
+    expect(parts.map((part) => part.look)).toEqual(['courtyard', 'garden', 'garden'])
+    expect(areas.map((area) => area.look)).toEqual(['courtyard', 'garden'])
+  })
+
   it('points at the first unfinished lesson, counts finished ones, and lists due items oldest first', () => {
     const fresh = partsOf(BOOK_OF, [])
     expect(fresh.next.id).toBe('l1')

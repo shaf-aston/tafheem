@@ -41,7 +41,7 @@ function Tiles({ items, onOpen }) {
       {items.map((item) => {
         const total = item.total ?? item.lessons.length
         return (
-          <button key={item.id} type="button" className="grow-world-tile" disabled={!total} onClick={() => onOpen(item.id)}>
+          <button key={item.id} type="button" className="grow-world-tile" data-look={item.look} disabled={!total} onClick={() => onOpen(item.id)}>
             <ArabicText size="lg" className="grow-tile-ar">{item.arabic}</ArabicText>
             <span className="grow-tile-name">{item.title}</span>
             <span className="grow-tile-status tabular-nums">
@@ -83,7 +83,9 @@ export default function BookWorld({ world, accent, state: book, place, onBack, o
   return (
     <div className="grow-world" style={{ '--w': accent }}>
       <Backdrop id={world.backdrop} />
-      <Header world={world} area={area} part={part} onBack={onBack} onPart={onPart} />
+      <div data-look={(part ?? area)?.look}>
+        <Header world={world} area={area} part={part} onBack={onBack} onPart={onPart} />
+      </div>
       {book.error && <ErrorAlert title={say('Could not load this world')} error={book.error} onRetry={book.retry} />}
       {loading && <Skeleton className="h-80 w-full" />}
       {book.ready && (

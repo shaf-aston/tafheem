@@ -1,7 +1,8 @@
 /**
- * A part's lessons as a winding path of eight-point stars, each with its title beside it: done ones gold, the next one
- * in the world's colour with a "Start" bubble over it, the rest waiting. Nothing is locked; the path only shows the way.
- * The curve is a repeating sway of steps (--x), so a long part keeps winding. Styles: .grow-path, styles/growWorlds.css.
+ * A part's lessons as a winding path, each node with its title beside it: done ones gold, the next one in the world's
+ * colour with a "Start" bubble over it, the rest waiting. Nothing is locked; the path only shows the way. The part's
+ * `look` (lib/bookLesson.js LOOKS) picks the nodes: courtyard stars, or round garden nodes with a leaf sprig. The curve is
+ * a repeating sway of steps (--x), so a long part keeps winding. Styles: .grow-path, styles/growWorlds.css.
  */
 import { sayIn } from '../../lib/say'
 import ArabicText from '../ui/ArabicText'
@@ -23,7 +24,7 @@ const isDone = (lesson) => lesson.status === 'done' || lesson.status === 'learnt
 export default function LessonPath({ part, onStart }) {
   const next = part.lessons.findIndex((lesson) => !isDone(lesson))
   return (
-    <ol className="grow-path">
+    <ol className="grow-path" data-look={part.look}>
       {part.lessons.map((lesson, i) => {
         const state = isDone(lesson) ? 'done' : i === next ? 'now' : 'ahead'
         return (
@@ -33,6 +34,7 @@ export default function LessonPath({ part, onStart }) {
               <span className="grow-path-star" aria-hidden="true">
                 {state === 'now' && <span className="grow-path-bubble">{lesson.status === 'started' ? say('Continue') : say('Start')}</span>}
                 <span className="grow-path-mark">{state === 'done' ? '✓' : i + 1}</span>
+                <span className="grow-path-leaf" />
               </span>
               <span className="grow-path-label">
                 <b>{lesson.title}</b>
