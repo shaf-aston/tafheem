@@ -1028,7 +1028,1998 @@
         }
       ]
     },
-    { "id": "salah", "title": "Prayer", "arabic": "الصلاة", "kitab": "كتاب الصلاة", "lessons": [] },
+    {
+      "id": "salah",
+      "title": "Prayer",
+      "arabic": "الصلاة",
+      "kitab": "كتاب الصلاة",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "times",
+          "title": "Times of prayer",
+          "arabic": "أول الوقت وآخره",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fajr-zuhr",
+              "title": "Fajr and Zuhr",
+              "ar": "أول وقت الصبح إذا طلع الفجر الثاني وهو البياض المعترض في الأفق وآخر وقتها ما لت تتطلع الشمس وأول وقت الظهر إذا زالت الشمس وآخر وقتها عند أبي حنيفة إذا صار ظل كل شيء مثليه سوي فيء الزوال وقال أبو يوسف ومحمد: إذا صار ظل كل شيء مثله",
+              "en": "Fajr begins at the second dawn: the white light that spreads sideways along the horizon. It ends when the sun rises. Zuhr begins when the sun passes its highest point (zawal). For Abu Hanifa it ends when a thing's shadow is twice its height, not counting the shadow it had at midday. Note: Abu Yusuf and Muhammad say it ends when the shadow equals the thing's height."
+            },
+            {
+              "kind": "choose",
+              "id": "zawal-gap",
+              "ask": "Which word completes it?",
+              "ar": "وأول وقت الظهر إذا ____ الشمس",
+              "options": ["زالت", "طلعت", "غربت"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وأول وقت الظهر إذا زالت الشمس",
+              "why": "زالت: Zuhr begins when the sun has passed its highest point and starts to go down."
+            },
+            {
+              "kind": "choose",
+              "id": "sunrise-case",
+              "ask": "Ahmad wakes up just after the sun has risen. He has not prayed Fajr. Is he still in Fajr's time?",
+              "options": ["No: Fajr's time ends when the sun rises", "Yes: Fajr lasts until Zuhr", "Yes: Fajr lasts until the sun is high"],
+              "answer": 0,
+              "source": "وآخر وقتها ما لت تتطلع الشمس",
+              "why": "Fajr's time ends at sunrise, so his Fajr is now missed and must be made up."
+            },
+            {
+              "kind": "teach",
+              "id": "asr",
+              "title": "Asr",
+              "ar": "وأول وقت العصر إذا خرج وقت الظهر على القولين وآخر وقتها ما لم تغرب الشمس",
+              "en": "Asr begins when Zuhr's time ends, whichever of the two views of the shadow you follow. It lasts until the sun sets."
+            },
+            {
+              "kind": "teach",
+              "id": "maghrib",
+              "title": "Maghrib",
+              "ar": "وآخر وقتها ما لم يغب الشفق وهو البياض الذي ف الأفق بعد الحمرة عند أبي حنيفة وقال أبو يوسف ومحمد: هو الحمرة",
+              "en": "Maghrib begins at sunset and lasts until the shafaq (twilight) has gone. For Abu Hanifa the shafaq is the whiteness left in the sky after the redness. Note: Abu Yusuf and Muhammad say it is the redness itself."
+            },
+            {
+              "kind": "teach",
+              "id": "isha-witr",
+              "title": "Isha and witr",
+              "ar": "وأول وقت العشاء إذا غاب الشفق وآخر وقتها ما لم يطلع الفجر وأول وقت الوتر بعد العشاء وآخر وقتها ما لم يطلع الفجر",
+              "en": "Isha begins when the twilight has gone and lasts until dawn. Witr is prayed after Isha, and its time also lasts until dawn."
+            },
+            {
+              "kind": "order",
+              "id": "order",
+              "ask": "Put the prayers in the order their times begin, starting from dawn",
+              "steps": ["Fajr", "Zuhr", "Asr", "Maghrib", "Isha"],
+              "source": ["أول وقت الصبح إذا طلع الفجر الثاني", "وأول وقت العصر إذا خرج وقت الظهر", "وأول وقت المغرب إذا فربت الشمس", "وأول وقت العشاء إذا غاب الشفق"],
+              "why": "Fajr at dawn, Zuhr after midday, Asr when Zuhr ends, Maghrib at sunset, Isha when the twilight goes."
+            },
+            {
+              "kind": "teach",
+              "id": "liked",
+              "title": "Early or late?",
+              "ar": "ويستحب الإسفار بالفجر والإبراد بالظهر في الصيف وتقديمها في الشتاء وتأخير العصر ما لم تتغير الشمس وتعجيل المغرب وتأخير العشاء إلى ما قبل ثلث الليل",
+              "en": "Mustahabb (liked, not required): pray Fajr when the sky has grown light, pray Zuhr once the heat eases in summer but early in winter, delay Asr while the sun has not yet changed colour, pray Maghrib quickly, and delay Isha to just before a third of the night."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-liked",
+              "ask": "Is it liked to pray it early or to delay it?",
+              "into": ["Pray it early", "Delay it"],
+              "items": [
+                ["Fajr", "Delay it"],
+                ["Zuhr in summer", "Delay it"],
+                ["Zuhr in winter", "Pray it early"],
+                ["Asr, while the sun is unchanged", "Delay it"],
+                ["Maghrib", "Pray it early"],
+                ["Isha, to before a third of the night", "Delay it"]
+              ],
+              "source": ["ويستحب الإسفار بالفجر", "والإبراد بالظهر في الصيف وتقديمها في الشتاء", "وتأخير العصر ما لم تتغير الشمس وتعجيل المغرب وتأخير العشاء إلى ما قبل ثلث الليل"],
+              "why": "Only Maghrib, and Zuhr in winter, are prayed early. Fajr, Zuhr in summer, Asr and Isha are liked a little later."
+            },
+            {
+              "kind": "teach",
+              "id": "witr-late",
+              "title": "When to pray witr",
+              "ar": "ويستحب في الوتر لمن يألف صلاة الليل أن يؤخر الوتر إلى آخر الليل فإن لم يثق بالانتباه أوتر قبل النوم",
+              "en": "Whoever is used to praying at night should leave witr to the end of the night. If he is not sure he will wake up, he prays witr before he sleeps."
+            },
+            {
+              "kind": "choose",
+              "id": "witr-case",
+              "ask": "Zayd sleeps deeply and is not sure he will wake before dawn. When should he pray witr?",
+              "options": ["Before he sleeps", "At the end of the night anyway", "After Fajr"],
+              "answer": 0,
+              "source": "فإن لم يثق بالانتباه أوتر قبل النوم",
+              "why": "If he cannot trust himself to wake up, he prays witr before sleeping."
+            },
+            {
+              "kind": "choose",
+              "id": "isha-case",
+              "ask": "Maryam prays Isha after midnight, before dawn. Is it in its time?",
+              "options": ["Yes: Isha's time lasts until dawn", "No: Isha ends at midnight", "No: Isha ends a third of the way into the night"],
+              "answer": 0,
+              "source": ["وأول وقت العشاء إذا غاب الشفق وآخر وقتها ما لم يطلع الفجر", "وتأخير العشاء إلى ما قبل ثلث الليل"],
+              "why": "Isha lasts until dawn, so it is on time. Delaying it to before a third of the night is only the liked time, not its end."
+            }
+          ]
+        },
+        {
+          "id": "adhan",
+          "title": "Adhan and iqama",
+          "arabic": "باب الأذان",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "sunnah",
+              "title": "Which prayers have an adhan",
+              "ar": "الأذان سنة للصلوات الخمس والجمعة دون ما سواها",
+              "en": "The adhan (call to prayer) is sunnah: the Prophet's ﷺ way, rewarded but not fard. It is for the five daily prayers and Jumu'a, and for no other prayer."
+            },
+            {
+              "kind": "pick",
+              "id": "which",
+              "ask": "Which prayers have an adhan?",
+              "options": [
+                { "text": "Fajr", "right": true },
+                { "text": "Jumu'a", "right": true },
+                { "text": "Maghrib", "right": true },
+                { "text": "The Eid prayer" },
+                { "text": "Witr" },
+                { "text": "The janaza prayer" }
+              ],
+              "source": "الأذان سنة للصلوات الخمس والجمعة دون ما سواها",
+              "why": "Only the five daily prayers and Jumu'a. Witr, Eid and janaza are \"other than them\"."
+            },
+            {
+              "kind": "teach",
+              "id": "words",
+              "title": "The words of the adhan",
+              "ar": "وصفة الأذان: أن يقول: الله أكبر الله أكبر - إلى آخره ولا ترجيع فيه ويزيد في أذان الفجر بعد الفلاح: الصلاة خير من النوم مرتين",
+              "en": "The adhan is the well-known words, starting \"Allahu akbar, Allahu akbar\". There is no tarji' in it (saying the shahadas twice, first quietly then loudly). In Fajr, after \"hayya 'ala al-falah\", add \"as-salatu khayrun min an-nawm\" (prayer is better than sleep) twice."
+            },
+            {
+              "kind": "teach",
+              "id": "iqama",
+              "title": "The iqama",
+              "ar": "والإقامة مثل الأذان إلا أنه يزيد فيها بعد الفلاح: قد قامت الصلاة مرتين",
+              "en": "The iqama (the call just before the prayer starts) is like the adhan, but after \"hayya 'ala al-falah\" it adds \"qad qamat as-salah\" (the prayer has begun) twice."
+            },
+            {
+              "kind": "choose",
+              "id": "fajr-gap",
+              "ask": "What does the Fajr adhan add? Complete it.",
+              "ar": "ويزيد في أذان الفجر بعد الفلاح: ____ مرتين",
+              "options": ["الصلاة خير من النوم", "قد قامت الصلاة", "حي على الصلاة"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ويزيد في أذان الفجر بعد الفلاح: الصلاة خير من النوم مرتين",
+              "why": "\"As-salatu khayrun min an-nawm\" belongs to the Fajr adhan. \"Qad qamat as-salah\" belongs to the iqama."
+            },
+            {
+              "kind": "teach",
+              "id": "manner",
+              "title": "How they are called",
+              "ar": "ويترسل في الأذان ويحدر في الإقامة ويستقبل بهما القبلة فإذا بلغ إلى الصلاة والفلاح حول وجهه يمينا وشمالا",
+              "en": "The adhan is said slowly, with pauses. The iqama is said quickly. Face the qibla for both, and at \"hayya 'ala as-salah\" and \"hayya 'ala al-falah\" turn your face right and left."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Adhan or iqama?",
+              "into": ["Adhan", "Iqama"],
+              "items": [
+                ["Said slowly, with pauses", "Adhan"],
+                ["Said quickly", "Iqama"],
+                ["Adds \"qad qamat as-salah\" twice", "Iqama"],
+                ["In Fajr, adds \"as-salatu khayrun min an-nawm\"", "Adhan"],
+                ["Makruh to say without wudu", "Iqama"]
+              ],
+              "source": ["ويترسل في الأذان ويحدر في الإقامة", "والإقامة مثل الأذان إلا أنه يزيد فيها بعد الفلاح: قد قامت الصلاة مرتين", "ويكره أن يقيم على غير وضوء"],
+              "why": "The adhan is slow and has the Fajr addition. The iqama is quick, adds \"qad qamat as-salah\", and is makruh without wudu."
+            },
+            {
+              "kind": "teach",
+              "id": "missed",
+              "title": "For missed prayers",
+              "ar": "ويؤذن للفائتة ويقيم فإن فاتته صلوات أذن للأولى وأقام وكان مخيرا في الباقية: إن شاء أذن وأقام وإن شاء اقتصر على الإقامة",
+              "en": "A missed prayer made up later also gets an adhan and iqama. If several were missed, give adhan and iqama for the first; for the rest you choose: adhan and iqama, or the iqama alone."
+            },
+            {
+              "kind": "choose",
+              "id": "missed-case",
+              "ask": "Umar makes up three missed prayers together. What does he do before the second and third?",
+              "options": ["Adhan and iqama, or just the iqama: his choice", "A full adhan and iqama for each, without fail", "Nothing: missed prayers have no adhan or iqama"],
+              "answer": 0,
+              "source": "فإن فاتته صلوات أذن للأولى وأقام وكان مخيرا في الباقية: إن شاء أذن وأقام وإن شاء اقتصر على الإقامة",
+              "why": "The first gets both. For the others he may choose, and the iqama alone is enough."
+            },
+            {
+              "kind": "teach",
+              "id": "purity",
+              "title": "Purity and the time",
+              "ar": "وينبغي أن يؤذن ويقيم على طهر فإن أذن على غير وضوء جاز ويكره أن يقيم على غير وضوء أو يؤذن وهو جنب ولا يؤذن لصلاة قبل دخول وقتها",
+              "en": "He should give the adhan and iqama in a state of purity. An adhan without wudu still counts. It is makruh (disliked) to give the iqama without wudu, or the adhan while junub (needing ghusl). No adhan is given before the prayer's time has come in."
+            },
+            {
+              "kind": "choose",
+              "id": "early-case",
+              "ask": "Hamza gives the adhan for Zuhr ten minutes before the sun passes its highest point. What is the ruling?",
+              "options": ["It is not given: no adhan before the time comes in", "Fine, since it is close to the time", "Fine, as long as he has wudu"],
+              "answer": 0,
+              "source": "ولا يؤذن لصلاة قبل دخول وقتها",
+              "why": "The adhan is for a time that has started. Before zawal, Zuhr's time has not come in."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are right?",
+              "options": [
+                { "text": "An adhan without wudu still counts", "right": true },
+                { "text": "The iqama is said slowly" },
+                { "text": "Giving the adhan while junub is makruh", "right": true },
+                { "text": "Face the qibla for both calls", "right": true },
+                { "text": "The adhan has tarji'" }
+              ],
+              "source": ["فإن أذن على غير وضوء جاز ويكره أن يقيم على غير وضوء أو يؤذن وهو جنب", "ويحدر في الإقامة ويستقبل بهما القبلة", "ولا ترجيع فيه"],
+              "why": "An adhan without wudu counts, the adhan while junub is makruh, and both face the qibla. The iqama is quick, and there is no tarji'."
+            }
+          ]
+        },
+        {
+          "id": "conditions",
+          "title": "Conditions before salah",
+          "arabic": "باب شروط الصلاة التي تتقدمها",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "purity-awra",
+              "title": "Purity and covering",
+              "ar": "يجب على المصلي أن يقدم الطهارة من الأحداث والأنجاس على ما قدمناه ويستر عورته والعورة من الرجل: ما تحت السرة إلى الركبة والركبة من العورة",
+              "en": "Before praying you must be pure from hadath (what needs wudu or ghusl) and from najasa (filth), and cover your 'awra: the parts that must be covered. For a man it is from below the navel to the knee, and the knee itself is part of it."
+            },
+            {
+              "kind": "choose",
+              "id": "shorts-case",
+              "ask": "Ibrahim prays in shorts that reach from his navel to just above his knees. Is his 'awra covered?",
+              "options": ["No: the knee is part of the 'awra", "Yes: navel to above the knee is enough", "Yes: only the thighs must be covered"],
+              "answer": 0,
+              "source": "والعورة من الرجل: ما تحت السرة إلى الركبة والركبة من العورة",
+              "why": "The knee is part of a man's 'awra, so his knees must be covered too."
+            },
+            {
+              "kind": "teach",
+              "id": "woman",
+              "title": "A woman's 'awra",
+              "ar": "وبدن المرأة الحرة كله عورة إلا وجهها وكفيها وقدميها",
+              "en": "A free woman's whole body is 'awra except her face, her hands and her feet."
+            },
+            {
+              "kind": "pick",
+              "id": "woman-pick",
+              "ask": "In salah, which may a free woman leave uncovered?",
+              "options": [
+                { "text": "Her face", "right": true },
+                { "text": "Her hands", "right": true },
+                { "text": "Her feet", "right": true },
+                { "text": "Her hair" },
+                { "text": "Her forearms" }
+              ],
+              "source": "وبدن المرأة الحرة كله عورة إلا وجهها وكفيها وقدميها",
+              "why": "Face, hands and feet are the exceptions. The rest, hair and forearms included, is 'awra."
+            },
+            {
+              "kind": "teach",
+              "id": "no-means",
+              "title": "When you cannot",
+              "ar": "ومن لم يجد ما يزل به النجاسة صلى معها ولم يعد الصلاة ومن لم يجد ثوبا صلى عريانا قاعدا يومئ بالركوع والسجود فإن صلى قائما أجزاه والأول أفضل",
+              "en": "If you find nothing to remove najasa with, pray with it and do not repeat the prayer. If you have no clothes at all, pray sitting, making ima' (a nod of the head) for ruku and sujud. Praying standing also counts, but sitting is better."
+            },
+            {
+              "kind": "choose",
+              "id": "naked-case",
+              "ask": "Yahya is shipwrecked with no clothes at all. How is it best for him to pray?",
+              "options": ["Sitting, nodding for ruku and sujud", "Standing, with a full ruku and sujud", "He leaves salah until he finds clothes"],
+              "answer": 0,
+              "source": "ومن لم يجد ثوبا صلى عريانا قاعدا يومئ بالركوع والسجود فإن صلى قائما أجزاه والأول أفضل",
+              "why": "He prays sitting and nodding. Standing would also count, but sitting is better."
+            },
+            {
+              "kind": "teach",
+              "id": "niyya-qibla",
+              "title": "Intention and qibla",
+              "ar": "وينوي الصلاة التي يدخل فيها بنية لا يفصل بينها وبين التحريمة بعمل ويستقبل القبلة إلا أن يكون خائفا فيصلي إلى أي جهة قدر",
+              "en": "Intend the prayer you are starting, with no action between the intention and the tahrima (the \"Allahu akbar\" that opens the prayer). Face the qibla, unless you are in danger: then pray in whatever direction you can."
+            },
+            {
+              "kind": "teach",
+              "id": "unsure",
+              "title": "Not sure of the qibla",
+              "ar": "فإن اشتبهت عليه القبلة وليس بحضرته من يسأله عنها اجتهد وصلى",
+              "en": "If you cannot tell which way the qibla is and there is nobody there to ask, think hard, choose your best guess, and pray."
+            },
+            {
+              "kind": "choose",
+              "id": "after-case",
+              "ask": "Khalid can't tell the qibla and nobody is around, so he does his best and prays. Afterwards he learns he faced the wrong way. Must he repeat?",
+              "options": ["No, he does not repeat", "Yes, he repeats it", "Only if the time has not ended"],
+              "answer": 0,
+              "source": "فإن علم أنه أخطأ بإخبار بعد ما صلى فلا إعادة عليه",
+              "why": "He did his best, so once the prayer is over there is nothing to repeat."
+            },
+            {
+              "kind": "choose",
+              "id": "during-case",
+              "ask": "This time Khalid learns he is facing the wrong way in the middle of the prayer. What does he do?",
+              "options": ["Turn to the qibla and carry on", "Start the prayer again", "Finish facing the same way"],
+              "answer": 0,
+              "source": "وإن علم ذلك وهو في الصلاة استدار إلى القبلة وبنى عليها",
+              "why": "He turns towards the qibla and builds on what he has already prayed."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these come before the salah, as its conditions?",
+              "options": [
+                { "text": "Purity from hadath and najasa", "right": true },
+                { "text": "Covering the 'awra", "right": true },
+                { "text": "The intention", "right": true },
+                { "text": "Facing the qibla", "right": true },
+                { "text": "Raising the hands to the ears" },
+                { "text": "Saying the adhan" }
+              ],
+              "source": ["يجب على المصلي أن يقدم الطهارة من الأحداث والأنجاس", "ويستر عورته", "وينوي الصلاة التي يدخل فيها", "ويستقبل القبلة"],
+              "why": "Purity, covering, intention and qibla are the conditions. Raising the hands is a sunnah inside the prayer, and the adhan is a sunnah before it."
+            }
+          ]
+        },
+        {
+          "id": "salah-fard",
+          "title": "Salah 1: the six fard, the rest sunnah",
+          "arabic": "باب صفة الصلاة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "six",
+              "title": "The six fard of salah",
+              "ar": "فرائض الصلاة ستة: التحريمة والقيام والقرءة والركوع والسجود والقعدة الأخيرة مقدار التشهد",
+              "en": "Salah has six fard (parts it cannot do without): the opening takbir (tahrima), standing (qiyam), reciting Qur'an, ruku (bowing), sujud (prostrating), and the last sitting, for as long as the tashahhud takes."
+            },
+            {
+              "kind": "pick",
+              "id": "which",
+              "ask": "Which of these are fard in salah?",
+              "options": [
+                { "text": "The opening takbir", "right": true },
+                { "text": "Standing", "right": true },
+                { "text": "Raising the hands" },
+                { "text": "Ruku", "right": true },
+                { "text": "Saying Amin" },
+                { "text": "The last sitting", "right": true }
+              ],
+              "source": "التحريمة والقيام والقرءة والركوع والسجود والقعدة الأخيرة مقدار التشهد",
+              "why": "The six are takbir, standing, recitation, ruku, sujud and the last sitting. Raising the hands and Amin are sunnah."
+            },
+            {
+              "kind": "teach",
+              "id": "rest",
+              "title": "Everything else is sunnah",
+              "ar": "وما زاد على ذلك فهو سنة",
+              "en": "Everything beyond these six is sunnah: the Prophet's ﷺ way. You are rewarded for it, but the prayer still counts without it."
+            },
+            {
+              "kind": "order",
+              "id": "six-order",
+              "ask": "Put the six fard in the order al-Quduri lists them",
+              "steps": ["The opening takbir", "Standing", "Recitation", "Ruku", "Sujud", "The last sitting"],
+              "source": "التحريمة والقيام والقرءة والركوع والسجود والقعدة الأخيرة مقدار التشهد",
+              "why": "Takbir, standing, recitation, ruku, sujud, then the last sitting: the order of a prayer itself."
+            },
+            {
+              "kind": "teach",
+              "id": "takbir",
+              "title": "Starting the prayer",
+              "ar": "فإذا دخل الرجل في الصلاة كبر ورفع يديه مع التكبير حتى يحاذى بإبهاميه شحمتي أذنيه",
+              "en": "To begin, say \"Allahu akbar\" and raise your hands with it until your thumbs are level with your earlobes."
+            },
+            {
+              "kind": "choose",
+              "id": "ears-gap",
+              "ask": "How high are the hands raised? Complete it.",
+              "ar": "حتى يحاذى بإبهاميه ____ أذنيه",
+              "options": ["شحمتي", "أعلى", "خلف"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "حتى يحاذى بإبهاميه شحمتي أذنيه",
+              "why": "شحمتي أذنيه: the thumbs come level with the earlobes."
+            },
+            {
+              "kind": "choose",
+              "id": "hands-case",
+              "ask": "Ilyas forgot to raise his hands at the opening takbir. Is his prayer valid?",
+              "options": ["Yes: raising the hands is sunnah", "No: raising the hands is fard", "Only if he says the takbir again"],
+              "answer": 0,
+              "source": ["كبر ورفع يديه مع التكبير", "وما زاد على ذلك فهو سنة"],
+              "why": "The takbir is fard, but raising the hands is not among the six, so it is sunnah and the prayer is valid."
+            },
+            {
+              "kind": "teach",
+              "id": "words",
+              "title": "Other words of praise",
+              "ar": "فإن قال بدلا من التكبير: الله أجل أو أعظم أو الرحمن أكبر أجزأه عند أبي حنيفة ومحمد وقال أبو يوسف: لا يجزئه إلا بلفظ التكبير",
+              "en": "If instead of \"Allahu akbar\" someone opens with \"Allahu ajall\", \"Allahu a'zam\" or \"Ar-Rahmanu akbar\", it counts for Abu Hanifa and Muhammad. Note: Abu Yusuf says only the words of the takbir count."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Fard or sunnah?",
+              "into": ["Fard", "Sunnah"],
+              "items": [
+                ["Standing", "Fard"],
+                ["Ruku", "Fard"],
+                ["Raising the hands at the takbir", "Sunnah"],
+                ["The last sitting", "Fard"],
+                ["Right hand over the left", "Sunnah"],
+                ["Sujud", "Fard"]
+              ],
+              "source": ["والقيام والقرءة والركوع والسجود والقعدة الأخيرة مقدار التشهد", "وما زاد على ذلك فهو سنة", "ويعتمد بيده اليمنى على اليسرى"],
+              "why": "Standing, ruku, sujud and the last sitting are among the six. Raising the hands and placing the right hand on the left are sunnah."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these is NOT one of the six fard?",
+              "options": ["Saying Amin", "Recitation", "The last sitting"],
+              "answer": 0,
+              "source": ["فرائض الصلاة ستة", "وما زاد على ذلك فهو سنة"],
+              "why": "Recitation and the last sitting are fard. Saying Amin is beyond the six, so it is sunnah."
+            }
+          ]
+        },
+        {
+          "id": "salah-order",
+          "title": "Salah 2: step by step, takbir to salam",
+          "arabic": "صفة الصلاة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "opening",
+              "title": "After the takbir: praise and recitation",
+              "ar": "ويعتمد بيده اليمنى على اليسرى ويضعهما تحت سرته ثم يقول: سبحانك اللهم وبحمدك وتبارك اسمك وتعلى جدك ولا إله غيرك ويستعيذ بالله من الشيطان الرجيم ويقرأ بسم الله الرحمن الرحيم ويسر بهما ثم يقرأ فاتحة الكتاب وسورة معها أو ثلاث آيات من أي سورة شاء وإذا قال الإمام {ولا الضالين} قال: آمين ويقولها ويخفونها",
+              "en": "Place the right hand over the left, below the navel. Say the opening praise \"Subhanaka Allahumma wa bihamdik...\", then seek refuge from Shaytan and say Bismillah, both quietly. Then recite al-Fatiha with a surah, or three ayat from any surah. When the imam says \"wa la d-dallin\", say Amin; the imam and those behind him say it quietly."
+            },
+            {
+              "kind": "teach",
+              "id": "ruku",
+              "title": "Ruku",
+              "ar": "ثم يكبر ويركع ويعتمد بيديه على ركبتيه ويفرج أصابعه ويبسط ظهره ولا يرفع رأسه ولا ينكسه ويقول في ركوعه: سبحان ربي العظيم ثلاثا",
+              "en": "Say \"Allahu akbar\" and bow (ruku): hands on the knees with the fingers spread, back flat, head neither raised nor lowered. Say \"Subhana rabbiyal-'azim\" three times."
+            },
+            {
+              "kind": "teach",
+              "id": "sujud",
+              "title": "Sujud",
+              "ar": "واعتمد بيديه على الأرض ووضع وجهه بين كفيه وسجد على أنفه وجبهته فإن اقتصر على أحدهما جاز عند أبي حنيفة وقال أبو يوسف ومحمد: لا يجوز الاقتصار على الأنف إلا من عذر",
+              "en": "In sujud (prostration), put your hands on the ground with your face between your palms, on your nose and forehead. For Abu Hanifa one of them alone is allowed. Note: Abu Yusuf and Muhammad say the nose alone is not enough unless there is an excuse."
+            },
+            {
+              "kind": "choose",
+              "id": "turban-case",
+              "ask": "Imran prostrates and his forehead lands on a fold of his turban. Does his sujud count?",
+              "options": ["Yes, it counts", "No, the forehead must touch the ground", "Only in a nafl prayer"],
+              "answer": 0,
+              "source": "وإن سجد على كور عمامته أو فاضل ثوبه جاز",
+              "why": "Al-Quduri says sujud on the fold of the turban or the spare end of a garment is allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "rise",
+              "title": "Rising, and the second rak'ah",
+              "ar": "فإذا اطمأن ساجدا كبر واستوى قائما على صدور قدميه ولا يقعد ولا يعتمد بيديه على الأرض ويفعل في الركعة الثانية مثل ما فعل في الأولى إلا أنه لا يستفتح ولا يتعوذ ولا يرفع يديه إلا في التكبير الأولى",
+              "en": "After the second sujud, say \"Allahu akbar\" and stand straight up on the balls of your feet, without sitting first or pushing up on your hands. A rak'ah is one unit of the prayer. The second rak'ah is like the first, but without the opening praise or seeking refuge, and the hands are raised only at the very first takbir."
+            },
+            {
+              "kind": "order",
+              "id": "rakah",
+              "ask": "Put the first rak'ah in order",
+              "steps": ["Takbir, raising the hands", "Opening praise, refuge, Bismillah", "Al-Fatiha and a surah", "Ruku", "Rise from ruku", "First sujud", "Sit up", "Second sujud"],
+              "source": ["كبر ورفع يديه مع التكبير", "ثم يقول: سبحانك اللهم وبحمدك", "ثم يقرأ فاتحة الكتاب وسورة معها", "ثم يكبر ويركع", "ثم يرفع رأسه ويكبر فإذا اطمأن جالسا كبر وسجد"],
+              "why": "Takbir, the opening praise, recitation, ruku, rising, sujud, sitting, then the second sujud."
+            },
+            {
+              "kind": "teach",
+              "id": "tashahhud",
+              "title": "The tashahhud",
+              "ar": "والتشهد أن يقول: التحيات لله والصلوات والطيبات السلام عليك أيها النبي ورحمة الله وبركاته السلام علينا وعلى عباد الله الصالحين أشهد أن لا إله إلا الله وأشهد أن محمدا عبده ورسوله ولا يزيد على هذا في القعدة الأولى",
+              "en": "After two rak'ahs you sit and say the tashahhud: \"At-tahiyyatu lillahi was-salawatu wat-tayyibat...\" to \"...wa ash-hadu anna Muhammadan 'abduhu wa rasuluh\". In the first sitting you add nothing after it."
+            },
+            {
+              "kind": "choose",
+              "id": "first-sitting-case",
+              "ask": "In the first sitting of Zuhr, Adam finishes the tashahhud and goes on to send salawat on the Prophet ﷺ and make du'a. What does al-Quduri say?",
+              "options": ["In the first sitting he adds nothing after the tashahhud", "That is the sunnah in every sitting", "His prayer is void"],
+              "answer": 0,
+              "source": "ولا يزيد على هذا في القعدة الأولى",
+              "why": "The salawat and du'a belong to the last sitting. In the first one he stops at the tashahhud."
+            },
+            {
+              "kind": "teach",
+              "id": "end",
+              "title": "The last two rak'ahs and the salam",
+              "ar": "ويقرأ في الركعتين الأخريين الكتاب خاصة فإذا جلس في آخر الصلاة جلس كما في الأولى وتشهد وصلى على النبي صلى الله عليه وسلم ودعا بما شاء",
+              "en": "In the last two rak'ahs recite al-Fatiha only. In the final sitting, sit as in the first, say the tashahhud, send salawat on the Prophet ﷺ and make du'a in words like the Qur'an's and the known du'as, not like people's everyday talk. Then say salam to the right, \"As-salamu 'alaykum wa rahmatullah\", and the same to the left."
+            },
+            {
+              "kind": "teach",
+              "id": "aloud",
+              "title": "Aloud or quietly",
+              "ar": "ويجهز بالقرءة في الفجر والركعتين الأوليين من المغرب والعشاء إن كان إماما ويخفي القراءة فيما بعد الأوليين وإن كان منفردا فهو مخير: إن شاء جهر وأسمع نفسه وإن شاء خافت ويخفي الإمام القرءة في الظهر والعصر",
+              "en": "The imam recites aloud in Fajr and in the first two rak'ahs of Maghrib and Isha, and quietly after those two. Someone praying alone may choose, aloud or quietly. The imam recites quietly in Zuhr and Asr."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "The imam: aloud or quiet?",
+              "into": ["Aloud", "Quiet"],
+              "items": [
+                ["Fajr", "Aloud"],
+                ["The first two rak'ahs of Maghrib", "Aloud"],
+                ["The third rak'ah of Maghrib", "Quiet"],
+                ["Zuhr", "Quiet"],
+                ["Asr", "Quiet"],
+                ["The first two rak'ahs of Isha", "Aloud"]
+              ],
+              "source": ["في الفجر والركعتين الأوليين من المغرب والعشاء إن كان إماما ويخفي القراءة فيما بعد الأوليين", "ويخفي الإمام القرءة في الظهر والعصر"],
+              "why": "Aloud: Fajr and the first two of Maghrib and Isha. Quiet: everything after those two, and all of Zuhr and Asr."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which are part of the prayer as al-Quduri describes it?",
+              "options": [
+                { "text": "In sujud, arms away from the sides and belly away from the thighs", "right": true },
+                { "text": "In ruku, the back flat, head neither up nor down", "right": true },
+                { "text": "In the sitting, sit on the left foot with the right foot upright", "right": true },
+                { "text": "Sit for a moment before standing up from sujud" },
+                { "text": "Say salam to the right, then the left", "right": true },
+                { "text": "Raise the hands at every takbir" }
+              ],
+              "source": ["ويبدي ضبعيه ويجافي بطنه عن فخذيه", "ويبسط ظهره ولا يرفع رأسه ولا ينكسه", "افترش رجله اليسرى فجلس عليها ونصب اليمنى نصبا", "ولا يقعد ولا يعتمد بيديه على الأرض", "ثم يسلم عن يمينه فيقول: السلام عليكم ورحمة الله وعن يساره مثل ذلك", "ولا يرفع يديه إلا في التكبير الأولى"],
+              "why": "He stands straight up from sujud without sitting, and raises his hands only at the first takbir. The rest is how al-Quduri describes it."
+            }
+          ]
+        },
+        {
+          "id": "salah-witr",
+          "title": "Salah 3: witr and recitation",
+          "arabic": "والوتر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "witr",
+              "title": "Witr",
+              "ar": "والوتر: ثلاث ركعات لا يفصل بينها بسلام ويقنت في الثالثه قبل الركوع في جميع السنة",
+              "en": "Witr is three rak'ahs with no salam between them. In the third, before ruku, you say the qunut: a special du'a said standing. This is all year round, not only in Ramadan."
+            },
+            {
+              "kind": "choose",
+              "id": "qunut-gap",
+              "ask": "When is the qunut said? Complete it.",
+              "ar": "ويقنت في الثالثه ____ الركوع في جميع السنة",
+              "options": ["قبل", "بعد", "مع"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ويقنت في الثالثه قبل الركوع في جميع السنة",
+              "why": "قبل: in the third rak'ah, before ruku."
+            },
+            {
+              "kind": "teach",
+              "id": "qunut",
+              "title": "How the qunut is said",
+              "ar": "ويقرأ في كل ركعة من الوتر بفاتحة الكتاب وسورة معها فإذا أراد أن يقنت كبر ورفع يديه ثم قنت ولا يقنت في صلاة غيرها",
+              "en": "In every rak'ah of witr recite al-Fatiha and a surah. For the qunut, say \"Allahu akbar\" raising the hands, then say it. There is qunut in no prayer other than witr."
+            },
+            {
+              "kind": "choose",
+              "id": "fajr-case",
+              "ask": "Hasan wants to say the qunut in the Fajr prayer. What does al-Quduri say?",
+              "options": ["There is no qunut in any prayer but witr", "Qunut in Fajr is sunnah", "Only in Ramadan"],
+              "answer": 0,
+              "source": "ولا يقنت في صلاة غيرها",
+              "why": "Al-Quduri gives the qunut to witr alone."
+            },
+            {
+              "kind": "teach",
+              "id": "no-fixed",
+              "title": "No fixed surah",
+              "ar": "وليس في شيء من الصلوات قراءة سورة بعينها لا يجزئ غيرها ويكره أن يتخذ سورة بعينها لصلاة لا يقرأ فيها غيرها",
+              "en": "No prayer has one particular surah that must be read and no other will do. It is makruh (disliked) to fix one surah for a prayer and never read anything else in it."
+            },
+            {
+              "kind": "choose",
+              "id": "ikhlas-case",
+              "ask": "Ayman reads Surah al-Ikhlas in every Maghrib and never anything else. What is the ruling?",
+              "options": ["Makruh: he has fixed one surah for that prayer", "Wajib: he has made it a habit", "Sunnah, and better than changing"],
+              "answer": 0,
+              "source": "ويكره أن يتخذ سورة بعينها لصلاة لا يقرأ فيها غيرها",
+              "why": "Tying a prayer to one surah and never reading another is makruh."
+            },
+            {
+              "kind": "teach",
+              "id": "least",
+              "title": "The least recitation",
+              "ar": "وأدنى ما يجزئ من القراءة في الصلاة ما يتناوله اسم القرآن عند أبي حنيفة وقال يوسف ومحمد: لا يجزئ أقل من ثلاث آيات قصار أو آية طويلة",
+              "en": "For Abu Hanifa the least recitation that counts is whatever can be called Qur'an. Note: Abu Yusuf and Muhammad say no less than three short ayat or one long one."
+            },
+            {
+              "kind": "choose",
+              "id": "follower-case",
+              "ask": "Bilal prays Zuhr behind an imam. Does he recite al-Fatiha?",
+              "options": ["No: the follower does not recite behind the imam", "Yes, quietly, in every rak'ah", "Only in the last two rak'ahs"],
+              "answer": 0,
+              "source": "ولا يقرأ المؤتم خلف الإمام",
+              "why": "The imam's recitation is for everyone; the follower does not recite."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which are true of witr?",
+              "options": [
+                { "text": "It is three rak'ahs", "right": true },
+                { "text": "There is a salam after the second rak'ah" },
+                { "text": "The qunut is in the third, before ruku", "right": true },
+                { "text": "Al-Fatiha and a surah in every rak'ah", "right": true },
+                { "text": "The qunut is only in Ramadan" },
+                { "text": "Takbir with raised hands before the qunut", "right": true }
+              ],
+              "source": ["ثلاث ركعات لا يفصل بينها بسلام", "ويقنت في الثالثه قبل الركوع في جميع السنة", "ويقرأ في كل ركعة من الوتر بفاتحة الكتاب وسورة معها فإذا أراد أن يقنت كبر ورفع يديه ثم قنت"],
+              "why": "Three rak'ahs without a salam between, recitation in each, takbir then qunut before ruku in the third, all year round."
+            }
+          ]
+        },
+        {
+          "id": "salah-jamaah",
+          "title": "Salah 4: jama'a and the imam",
+          "arabic": "والجماعة: سنة مؤكدة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "jamaah",
+              "title": "Praying together",
+              "ar": "ومن أراد الدخول في صلاة غيره يحتاج إلى نيتين: نية الصلاة ونية المتابعة والجماعة: سنة مؤكدة",
+              "en": "To join someone else's prayer you need two intentions: the prayer itself, and following the imam. Jama'a (praying in congregation) is a sunnah mu'akkada: a strongly stressed sunnah."
+            },
+            {
+              "kind": "teach",
+              "id": "who-leads",
+              "title": "Who should lead",
+              "ar": "وأولى الناس بالإمامة أعلمهم بالسنة فإن تساووا فأقرهم فإن تساووا فأورعهم فإن تساووا فأسنهم",
+              "en": "The best person to lead is the one who knows the sunnah best. If they are equal, the best reciter; then the most God-fearing; then the oldest."
+            },
+            {
+              "kind": "order",
+              "id": "lead-order",
+              "ask": "Who comes first for leading the prayer?",
+              "steps": ["Knows the sunnah best", "The best reciter", "The most God-fearing", "The oldest"],
+              "source": "وأولى الناس بالإمامة أعلمهم بالسنة فإن تساووا فأقرهم فإن تساووا فأورعهم فإن تساووا فأسنهم",
+              "why": "Knowledge of the sunnah first, then recitation, then piety, then age."
+            },
+            {
+              "kind": "teach",
+              "id": "disliked",
+              "title": "Disliked as imam; keep it short",
+              "ar": "ويكره تقديم العبد والأعرابي والفاسق والأعمى وولد الزنا فإن تقدموا جاز وينبغي للإمام أن لا يطول بهم الصلاة",
+              "en": "It is makruh to put forward as imam a slave, a desert Bedouin, a fasiq (someone openly sinful), a blind man, or a child born outside marriage; but if they lead, the prayer counts. The imam should not make the prayer long for the people."
+            },
+            {
+              "kind": "choose",
+              "id": "long-case",
+              "ask": "The imam at Isha reads very long surahs and the old and tired behind him struggle. What does al-Quduri say?",
+              "options": ["The imam should not make the prayer long for them", "The longer, the more reward", "The tired should pray alone"],
+              "answer": 0,
+              "source": "وينبغي للإمام أن لا يطول بهم الصلاة",
+              "why": "He tells the imam not to lengthen the prayer for those behind him."
+            },
+            {
+              "kind": "teach",
+              "id": "rows",
+              "title": "Where people stand",
+              "ar": "ومن صلى مع واحد أقامه عن يمينه فإن كان اثنين تقدم عليهما ولا يجوز للرجال أن يقتدوا بامرأة أو صبي ويصف الرجال ثم الصبيان ثم النساء",
+              "en": "An imam with one follower places him at his right. With two, the imam stands in front of them. Men may not follow a woman or a boy as imam. The rows are men, then boys, then women."
+            },
+            {
+              "kind": "order",
+              "id": "rows-order",
+              "ask": "Line up the rows behind the imam, front to back",
+              "steps": ["Men", "Boys", "Women"],
+              "source": "ويصف الرجال ثم الصبيان ثم النساء",
+              "why": "Men first, then boys, then women."
+            },
+            {
+              "kind": "choose",
+              "id": "women-case",
+              "ask": "Some women pray in jama'a on their own, one of them leading. Where does she stand?",
+              "options": ["In the middle of their row", "In front of them, like a man", "Behind them"],
+              "answer": 0,
+              "source": "ويكره للنساء أن يصلين وحدهن جماعة فإن فعلن وقفت الإمام وسطهن",
+              "why": "Al-Quduri calls it makruh for women to pray in jama'a alone, but if they do, the one leading stands in the middle of them."
+            },
+            {
+              "kind": "teach",
+              "id": "beside",
+              "title": "Women and the jama'a",
+              "ar": "فإن قامت امرأة إلى جنب رجل وهما مشتركان في صلاة واحدة فسدت صلاته ويكره للنساء حضور الجماعة ولا بأس بأن تخرج العجوز في الفجر والمغرب والعشاء عند أبي حنيفة وقال أبو يوسف ومحمد يجوز خروج العجوز في كل صلاة",
+              "en": "If a woman stands right beside a man and they are in the same prayer together, his prayer is spoiled. It is makruh for women to attend the jama'a. For Abu Hanifa an old woman may go out for Fajr, Maghrib and Isha. Note: Abu Yusuf and Muhammad allow an old woman to go out for every prayer."
+            },
+            {
+              "kind": "teach",
+              "id": "behind-whom",
+              "title": "Who may follow whom",
+              "ar": "ولا يصلي الطاهر خلف من به سلس البول ولا الطاهرات خلف المستحاضة ولا القارئ خلف الأمي ولا المكتسي خلف العريان ويجوز أن يؤم المتيمم المتوضئين والماسح على الخفين الغاسلين ويصلي القائم خلف القاعد",
+              "en": "Someone pure may not follow a person who cannot hold his urine, nor pure women a woman with istihada (bleeding that is not her period). One who can recite may not follow an ummi (one who cannot recite any Qur'an), nor the clothed follow the unclothed. Someone with tayammum may lead people with wudu, someone wiping khuffs may lead those who washed their feet, and a standing person may follow a seated imam."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Can this person follow this imam?",
+              "into": ["Valid", "Not valid"],
+              "items": [
+                ["Someone with wudu behind an imam with tayammum", "Valid"],
+                ["Standing, behind a seated imam", "Valid"],
+                ["A man behind a woman", "Not valid"],
+                ["One who can recite, behind one who cannot", "Not valid"],
+                ["A fard prayer behind a nafl one", "Not valid"],
+                ["A nafl prayer behind a fard one", "Valid"],
+                ["Full ruku and sujud, behind an imam who nods", "Not valid"]
+              ],
+              "source": ["ولا يجوز للرجال أن يقتدوا بامرأة أو صبي", "ولا القارئ خلف الأمي", "ويجوز أن يؤم المتيمم المتوضئين", "ويصلي القائم خلف القاعد ولا يصلي الذي يركع ويسجد خلف الموميء ولا يصلي المفترض خلف المتنقل ولا من يصلي فرضا خلف من يصلي فرضا آخر ويصلي المتنقل خلف المفترض"],
+              "why": "The follower cannot be doing more than his imam: fard behind nafl, full ruku behind nodding, reciting behind non-reciting, and men behind a woman are not valid."
+            },
+            {
+              "kind": "choose",
+              "id": "no-wudu-case",
+              "ask": "After the prayer, the imam tells Sami he had no wudu. What must Sami do?",
+              "options": ["Repeat the prayer", "Nothing: his own wudu was fine", "Sujud al-sahw only"],
+              "answer": 0,
+              "source": "ومن اقتدى بإمام ثم علم أنه على غير وضوء إعاد الصلاة",
+              "why": "Whoever followed an imam and then learns the imam had no wudu repeats the prayer."
+            }
+          ]
+        },
+        {
+          "id": "salah-spoils",
+          "title": "Salah 5: what spoils it, what is disliked",
+          "arabic": "ما يفسد الصلاة وما يكره فيها",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "makruh",
+              "title": "Makruh in salah",
+              "ar": "ولا يقلب الحصى إلا أن لا يمكنه السجود فيسويه مرة واحدة ولا يفرقع أصابعه ولا يتخصر ولا يسدل ثوبه ولا يعقص شعره ولا يكف ثوبه ولا يلتفت ولا يقعي ولا يرد السلام بلسانه ولا بيده ولا يتربع إلا من عذر ولا يأكل ولا يشرب",
+              "en": "Makruh means disliked: the prayer counts but should not have it. Do not play with your clothes or body, or turn the pebbles over (unless they stop you prostrating: then smooth them once). Do not crack your knuckles, put your hands on your hips, let your garment hang loose, tie up your hair, or hold your clothes back. Do not look around, squat on your heels, return a salam by speaking or with your hand, or sit cross-legged without an excuse. Do not eat or drink."
+            },
+            {
+              "kind": "pick",
+              "id": "makruh-pick",
+              "ask": "Which of these are makruh in salah?",
+              "options": [
+                { "text": "Cracking the knuckles", "right": true },
+                { "text": "Hands on the hips", "right": true },
+                { "text": "Looking around", "right": true },
+                { "text": "Smoothing the pebbles once so he can prostrate" },
+                { "text": "Sitting cross-legged because of an illness" }
+              ],
+              "source": ["ويكره للمصلي أن يعبث بثوبه", "إلا أن لا يمكنه السجود فيسويه مرة واحدة ولا يفرقع أصابعه ولا يتخصر", "ولا يلتفت", "ولا يتربع إلا من عذر"],
+              "why": "Knuckles, hips and looking around are makruh. Smoothing pebbles once to prostrate, and sitting cross-legged with an excuse, are allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "hadath",
+              "title": "If wudu breaks in the prayer",
+              "ar": "فإن سبقه الحدث انصرف فإن كان إماما استخلف وتوضأ وبنى على صلاته والاستئناف أفضل",
+              "en": "If his wudu breaks without his choosing, he leaves the prayer. If he is the imam, he puts someone forward to lead in his place. He makes wudu and may build on what he prayed, though starting afresh is better."
+            },
+            {
+              "kind": "choose",
+              "id": "imam-case",
+              "ask": "In the middle of Asr the imam's wudu suddenly breaks. What does he do?",
+              "options": ["Puts someone forward to lead, makes wudu, and may continue his prayer", "Everyone's prayer is void", "Carries on leading without wudu"],
+              "answer": 0,
+              "source": "فإن سبقه الحدث انصرف فإن كان إماما استخلف وتوضأ وبنى على صلاته",
+              "why": "He appoints a replacement, makes wudu and can build on his prayer, though starting again is better."
+            },
+            {
+              "kind": "teach",
+              "id": "start-again",
+              "title": "When it is all void",
+              "ar": "وإن نام فاحتلم أو جن أو أغمي عليه أو قهقه استأنف الوضوء والصلاة وإن تكلم في صلاته عامدا أو ساهيا بطلت صلاته",
+              "en": "If he falls asleep and has a wet dream, goes mad, faints, or laughs out loud, he makes wudu again and starts the prayer again. If he speaks in his prayer, on purpose or by mistake, the prayer is void."
+            },
+            {
+              "kind": "choose",
+              "id": "speak-case",
+              "ask": "Faris forgets he is praying and answers his brother: \"Yes, coming!\" What happens?",
+              "options": ["His prayer is void, even though it was a mistake", "It is fine, because he forgot", "He just does sujud al-sahw"],
+              "answer": 0,
+              "source": "وإن تكلم في صلاته عامدا أو ساهيا بطلت صلاته",
+              "why": "Speaking spoils the prayer whether on purpose or by mistake."
+            },
+            {
+              "kind": "teach",
+              "id": "after-tashahhud",
+              "title": "After the last tashahhud",
+              "ar": "وإن سبقه الحدث بعد التشهد توضأ وسلم وإن تعمد الحدث في هذه الحالة أو تكلم أو عمل عملا ينافي الصلاة تمت صلاته",
+              "en": "If his wudu breaks after the last tashahhud, he makes wudu and says salam. If at that point he breaks wudu on purpose, speaks, or does anything that ends a prayer, his prayer is complete."
+            },
+            {
+              "kind": "choose",
+              "id": "water-case",
+              "ask": "Anas prayed with tayammum. Halfway through, he sees water. What happens?",
+              "options": ["His prayer is void", "He carries on and it counts", "He finishes, then makes wudu for the next one"],
+              "answer": 0,
+              "source": "وإن رأى المتيمم الماء في صلاته",
+              "why": "Seeing water ends his tayammum, so his prayer is void."
+            },
+            {
+              "kind": "teach",
+              "id": "list",
+              "title": "At the very end of the prayer",
+              "ar": "أو كان صاحب عذر فانقطع عذره بطلت صلاته في قول أبي حنيفة وقال أبو يوسف ومحمد: تمت صلاته",
+              "en": "Al-Quduri lists cases that happen after he has sat for the tashahhud but before salam: the one with tayammum sees water; the time for wiping khuffs runs out; he pulls off his khuffs with a small action; an ummi learns a surah; one without clothes finds some; one nodding becomes able to bow and prostrate; he remembers an earlier prayer he owes; Asr's time comes in during Jumu'a; a splint falls off because he has healed; or someone with a lasting excuse finds it has stopped. For Abu Hanifa the prayer is void. Note: Abu Yusuf and Muhammad say it is complete."
+            },
+            {
+              "kind": "pick",
+              "id": "list-pick",
+              "ask": "Which of these are on al-Quduri's list of things that happen after the tashahhud sitting?",
+              "options": [
+                { "text": "Someone with tayammum sees water", "right": true },
+                { "text": "The time for wiping khuffs runs out", "right": true },
+                { "text": "Someone without clothes finds some", "right": true },
+                { "text": "Someone nodding becomes able to bow and prostrate", "right": true },
+                { "text": "He sneezes" },
+                { "text": "He hears the adhan" }
+              ],
+              "source": ["وإن رآه بعدما قعد قدر التشهد أو كان ماسحا على الخفين فانقضت مدة مسحه", "أو عريانا فوجد ثوبا أو موميا فقدر على الركوع والسجود"],
+              "why": "Each of the four is on his list. Sneezing and hearing the adhan are not."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Spoils the prayer, or only makruh?",
+              "into": ["Spoils it", "Makruh"],
+              "items": [
+                ["Speaking by mistake", "Spoils it"],
+                ["Laughing out loud", "Spoils it"],
+                ["Fainting", "Spoils it"],
+                ["Cracking the knuckles", "Makruh"],
+                ["Returning a salam with the hand", "Makruh"],
+                ["Looking around", "Makruh"]
+              ],
+              "source": ["أو أغمي عليه أو قهقه استأنف الوضوء والصلاة وإن تكلم في صلاته عامدا أو ساهيا بطلت صلاته", "ولا يفرقع أصابعه", "ولا يلتفت ولا يقعي ولا يرد السلام بلسانه ولا بيده"],
+              "why": "Speaking, laughing aloud and fainting mean starting again. Cracking knuckles, a hand-salam and looking around are only makruh."
+            }
+          ]
+        },
+        {
+          "id": "missed-times",
+          "title": "Missed prayers and disliked times",
+          "arabic": "باب قضاء الفوائت",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "qada",
+              "title": "Making up a missed prayer",
+              "ar": "ومن فاتته الصلاة قضاها إذا ذكرها وقدمها لزوما على صلاة الوقت إلا أن يخاف فوات صلاة الوقت فيقدم صلاة الوقت ثم يقضيها",
+              "en": "Whoever misses a prayer makes it up (qada) when he remembers it, and must pray it before the prayer whose time it is now. But if he fears the present prayer's time will run out, he prays the present one first and then makes up the missed one."
+            },
+            {
+              "kind": "choose",
+              "id": "plenty-case",
+              "ask": "Yasir remembers at Zuhr that he missed Fajr. There is plenty of time left for Zuhr. What does he do?",
+              "options": ["Pray Fajr first, then Zuhr", "Pray Zuhr first, then Fajr", "Either order"],
+              "answer": 0,
+              "source": "وقدمها لزوما على صلاة الوقت",
+              "why": "The missed prayer must come first while there is time."
+            },
+            {
+              "kind": "choose",
+              "id": "tight-case",
+              "ask": "Rania remembers a missed Zuhr when only a few minutes of Asr are left. What does she do?",
+              "options": ["Pray Asr now, then make up Zuhr", "Pray Zuhr first, even if Asr runs out", "Pray neither until tomorrow"],
+              "answer": 0,
+              "source": "إلا أن يخاف فوات صلاة الوقت فيقدم صلاة الوقت ثم يقضيها",
+              "why": "When the present prayer's time is about to run out, it comes first."
+            },
+            {
+              "kind": "teach",
+              "id": "several",
+              "title": "Several missed prayers",
+              "ar": "فإن فاتته صلوات رتبها في القضاء كما وجبت في الأصل إلا أن تزيد الفوائت على ست صلوات فيسقط الترتيب فيها",
+              "en": "If several are missed, make them up in the order they were due. But if the missed prayers are more than six, keeping that order drops away."
+            },
+            {
+              "kind": "teach",
+              "id": "forbidden",
+              "title": "When no prayer is allowed",
+              "ar": "لا تجوز الصلاة عند طلوع الشمس ولا عند قيامها في الظهيرة ولا عند غروبها ولا يصلي على جنازة ولا يسجد للتلاوة إلا عصر يومه عند غروب الشمس",
+              "en": "No prayer is allowed as the sun rises, when it stands at its highest at midday, or as it sets. No janaza prayer and no sajda of recitation then either. The one exception: that same day's Asr may be prayed as the sun sets."
+            },
+            {
+              "kind": "pick",
+              "id": "forbidden-pick",
+              "ask": "At which times is no prayer allowed at all?",
+              "options": [
+                { "text": "As the sun rises", "right": true },
+                { "text": "When the sun is at its highest", "right": true },
+                { "text": "As the sun sets (except that day's Asr)", "right": true },
+                { "text": "After Isha" },
+                { "text": "Between Zuhr and Asr" }
+              ],
+              "source": "لا تجوز الصلاة عند طلوع الشمس ولا عند قيامها في الظهيرة ولا عند غروبها",
+              "why": "The three times are sunrise, the midday high point and sunset."
+            },
+            {
+              "kind": "choose",
+              "id": "asr-case",
+              "ask": "Jamal hasn't prayed today's Asr and the sun is now setting. Can he pray it?",
+              "options": ["Yes: that day's Asr is the exception", "No: nothing is prayed at sunset", "Only as a make-up tomorrow"],
+              "answer": 0,
+              "source": "إلا عصر يومه عند غروب الشمس",
+              "why": "The day's own Asr is allowed even at sunset."
+            },
+            {
+              "kind": "teach",
+              "id": "makruh-times",
+              "title": "When nafl is makruh",
+              "ar": "ويكره أن يتنفل بعد صلاة الفجر حتى تطلع الشمس وبعد صلاة العصر حتى تغرب الشمس ولا بأس بأن يصلي في هذين الوقتين الفوائت ويسجد للتلاوة ويصلي على الجنازة ولا يصلي ركعتي الطواف",
+              "en": "It is makruh to pray nafl (voluntary prayer) after Fajr until the sun rises, and after Asr until it sets. In those two times there is no harm in making up missed prayers, doing a sajda of recitation, or praying janaza. But the two rak'ahs of tawaf are not prayed then."
+            },
+            {
+              "kind": "sort",
+              "id": "after-asr",
+              "ask": "After Asr, before sunset: fine, or not done?",
+              "into": ["Fine", "Not done"],
+              "items": [
+                ["Making up a missed prayer", "Fine"],
+                ["A janaza prayer", "Fine"],
+                ["A sajda of recitation", "Fine"],
+                ["A voluntary nafl", "Not done"],
+                ["The two rak'ahs of tawaf", "Not done"]
+              ],
+              "source": ["ويكره أن يتنفل بعد صلاة الفجر حتى تطلع الشمس وبعد صلاة العصر حتى تغرب الشمس", "ولا بأس بأن يصلي في هذين الوقتين الفوائت ويسجد للتلاوة ويصلي على الجنازة ولا يصلي ركعتي الطواف"],
+              "why": "Make-ups, janaza and the sajda of recitation are fine. Nafl is makruh, and the two rak'ahs of tawaf are not prayed."
+            },
+            {
+              "kind": "choose",
+              "id": "dawn-case",
+              "ask": "Rayyan wakes at dawn and wants to pray four extra nafl rak'ahs before Fajr, besides its two sunnah. What does al-Quduri say?",
+              "options": ["Makruh: after dawn, nothing beyond the two rak'ahs of Fajr", "Good: more prayer, more reward", "Allowed only before the adhan"],
+              "answer": 0,
+              "source": "ويكره أن يتنقل بعد طلوع الفجر بأكثر من ركعتي الفجر ولا يتنقل قبل المغرب",
+              "why": "After dawn, nafl beyond the two rak'ahs of Fajr is makruh. Likewise there is no nafl just before Maghrib."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Nadia missed four prayers while ill. How does she make them up?",
+              "options": ["In the order they were due", "In any order she likes", "Only the last one"],
+              "answer": 0,
+              "source": ["فإن فاتته صلوات رتبها في القضاء كما وجبت في الأصل", "إلا أن تزيد الفوائت على ست صلوات"],
+              "why": "Four is not more than six, so she keeps the order they were due."
+            }
+          ]
+        },
+        {
+          "id": "nawafil",
+          "title": "Nafl prayers",
+          "arabic": "باب النوافل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "sunnah",
+              "title": "The sunnah prayers",
+              "ar": "السنة في الصلاة أن يصلي ركعتين بعد طلوع الفجر وأربعا قبل الظهر وركعتين بعدها وأربعا قبل العصر وإن شاء ركعتين وركعتين بعد المغرب وأربعا قبل العشاء وأربعا بعدها وإن شاء ركعتين",
+              "en": "The sunnah prayers: two rak'ahs after dawn (before Fajr), four before Zuhr and two after, four before Asr (or two if he likes), two after Maghrib, four before Isha, and four after it (or two if he likes)."
+            },
+            {
+              "kind": "choose",
+              "id": "zuhr-gap",
+              "ask": "How many after Zuhr? Complete it.",
+              "ar": "وأربعا قبل الظهر و____ بعدها",
+              "options": ["ركعتين", "أربعا", "ثلاثا"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وأربعا قبل الظهر وركعتين بعدها",
+              "why": "Four before Zuhr and two after it."
+            },
+            {
+              "kind": "pick",
+              "id": "which",
+              "ask": "Which of these sunnah prayers does al-Quduri list?",
+              "options": [
+                { "text": "Two rak'ahs after dawn", "right": true },
+                { "text": "Four before Zuhr", "right": true },
+                { "text": "Two after Maghrib", "right": true },
+                { "text": "Four before Maghrib" },
+                { "text": "Two after Asr" }
+              ],
+              "source": "السنة في الصلاة أن يصلي ركعتين بعد طلوع الفجر وأربعا قبل الظهر",
+              "why": "Two at dawn, four before Zuhr and two after Maghrib are on his list. He lists none before Maghrib or after Asr."
+            },
+            {
+              "kind": "teach",
+              "id": "day-night",
+              "title": "How many with one salam",
+              "ar": "ونوافل النهار إن شاء صلى ركعتين بتسليمة واحدة وإن شاء أربعا وتكره الزيادة على ذلك فأما نافلة الليل فقال أبو حنيفة إن صلى ثمان ركعات بتسليمة واحدة جاز وتكره الزيادة على ذلك وقال أبو يوسف ومحمد: لا يزيد بالليل على ركعتين بتسليمة واحدة",
+              "en": "In the day, nafl can be two or four rak'ahs with one salam; more than that is makruh. At night, Abu Hanifa allows eight with one salam, and more is makruh. Note: Abu Yusuf and Muhammad say at night no more than two with one salam."
+            },
+            {
+              "kind": "choose",
+              "id": "six-case",
+              "ask": "Idris prays six rak'ahs of nafl in the daytime with one salam. What is the ruling?",
+              "options": ["Makruh: in the day, no more than four with one salam", "Fine: the more the better", "Void: it must be two"],
+              "answer": 0,
+              "source": "ونوافل النهار إن شاء صلى ركعتين بتسليمة واحدة وإن شاء أربعا وتكره الزيادة على ذلك",
+              "why": "Daytime nafl is two or four with one salam. Going beyond four is makruh."
+            },
+            {
+              "kind": "teach",
+              "id": "reading",
+              "title": "Where recitation is wajib",
+              "ar": "والقراءة في الفرض واجبة في الركعتين الأوليين وهو مخير في الأخريين إن شاء قرأ وإن شاء سبح وإن شاء سكت والقراءة واجبة في جميع ركعات النفل",
+              "en": "Wajib means required (just below fard). In a fard prayer, recitation is wajib in the first two rak'ahs; in the last two he may recite, say \"subhan Allah\", or stay silent. In nafl, recitation is wajib in every rak'ah."
+            },
+            {
+              "kind": "sort",
+              "id": "reading-sort",
+              "ask": "Is recitation wajib here, or his choice?",
+              "into": ["Wajib", "His choice"],
+              "items": [
+                ["The first two rak'ahs of a fard", "Wajib"],
+                ["The last two rak'ahs of a four-rak'ah fard", "His choice"],
+                ["Every rak'ah of a nafl", "Wajib"],
+                ["The third rak'ah of Isha", "His choice"]
+              ],
+              "source": ["والقراءة في الفرض واجبة في الركعتين الأوليين وهو مخير في الأخريين", "والقراءة واجبة في جميع ركعات النفل"],
+              "why": "Fard: wajib in the first two only. Nafl: wajib in every rak'ah."
+            },
+            {
+              "kind": "teach",
+              "id": "broken",
+              "title": "Breaking a nafl",
+              "ar": "ومن دخل في صلاة النفل ثم أفسدها قضاها فإن صلى أربع ركعات وقعد في الأوليين ثم أفسد الأخريين قضى ركعتين",
+              "en": "Whoever starts a nafl prayer and then breaks it must make it up. If he prayed four, sat after the first two, and then spoiled the last two, he makes up two."
+            },
+            {
+              "kind": "choose",
+              "id": "broken-case",
+              "ask": "Huda starts a two-rak'ah nafl and breaks it in the middle. Must she make it up?",
+              "options": ["Yes, she makes it up", "No: nafl is optional", "Only if she broke it on purpose"],
+              "answer": 0,
+              "source": "ومن دخل في صلاة النفل ثم أفسدها قضاها",
+              "why": "Once started, a nafl must be made up if it is broken."
+            },
+            {
+              "kind": "teach",
+              "id": "sitting-riding",
+              "title": "Sitting, or on a mount",
+              "ar": "ويصلي النافلة قاعدا مع القدرة على القيام وإن افتتحها قائما ثم قعد جاز عند أبي حنيفة وقال أبو يوسف ومحمد: لا يجوز إلا من عذر ومن كان خارج المصر",
+              "en": "Nafl may be prayed sitting even if you could stand. If you start it standing and then sit, Abu Hanifa allows it. Note: Abu Yusuf and Muhammad allow that only with an excuse. Outside the town, you may pray nafl on your riding animal in whatever direction it goes, nodding."
+            },
+            {
+              "kind": "choose",
+              "id": "camel-case",
+              "ask": "Outside the town, Sulayman wants to pray nafl on his camel, which is heading away from the qibla. May he?",
+              "options": ["Yes, nodding, whichever way it heads", "Only if he turns it to the qibla", "No: nafl cannot be prayed riding"],
+              "answer": 0,
+              "source": "يجوز أن ينتقل على دابته إلى أي جهة توجهت يومئ إيماء",
+              "why": "Outside the town, nafl on a mount is allowed in any direction, with nods for ruku and sujud."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which are true of nafl prayers?",
+              "options": [
+                { "text": "It may be prayed sitting, even if able to stand", "right": true },
+                { "text": "Recitation is wajib in every rak'ah", "right": true },
+                { "text": "Four rak'ahs before Isha are sunnah", "right": true },
+                { "text": "A broken nafl needs no make-up" },
+                { "text": "In the day, eight with one salam is fine" }
+              ],
+              "source": ["ويصلي النافلة قاعدا مع القدرة على القيام", "والقراءة واجبة في جميع ركعات النفل", "وأربعا قبل العشاء", "ثم أفسدها قضاها", "وتكره الزيادة على ذلك"],
+              "why": "Sitting is allowed, recitation is wajib in every rak'ah, and four before Isha are sunnah. A broken nafl is made up, and more than four in the day is makruh."
+            }
+          ]
+        },
+        {
+          "id": "sahw",
+          "title": "Sujud al-sahw",
+          "arabic": "باب السجود السهو",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "The prostration of forgetting",
+              "ar": "سجود السهو واجب في الزيادة والنقصان بعد السلام ثم يسجد سجدتين ثم يشهد ويسلم",
+              "en": "Sujud al-sahw is two prostrations made for a mistake by forgetting: adding something or leaving something out. It is wajib (required, just below fard). After the salam, prostrate twice, then say the tashahhud and the salam."
+            },
+            {
+              "kind": "order",
+              "id": "steps",
+              "ask": "Put sujud al-sahw in order",
+              "steps": ["The salam", "Two prostrations", "The tashahhud", "The salam again"],
+              "source": "بعد السلام ثم يسجد سجدتين ثم يشهد ويسلم",
+              "why": "It comes after the salam: two sujud, then tashahhud, then salam."
+            },
+            {
+              "kind": "teach",
+              "id": "when",
+              "title": "What calls for it",
+              "ar": "فعلا من جنسها ليس منها أو ترك فعلا مسنونا أو ترك قراءة فاتحة الكتاب أو القنوت أو التشهد أو تكبيرات العيدين",
+              "en": "It is due when he adds an action of the prayer's own kind that does not belong there, leaves out an action of the sunnah way, leaves out al-Fatiha, the qunut, the tashahhud or the Eid takbirs, or when the imam recites aloud where it should be quiet, or quietly where it should be aloud."
+            },
+            {
+              "kind": "pick",
+              "id": "when-pick",
+              "ask": "Which of these call for sujud al-sahw?",
+              "options": [
+                { "text": "He forgot al-Fatiha", "right": true },
+                { "text": "He forgot the qunut in witr", "right": true },
+                { "text": "The imam recited quietly in Fajr", "right": true },
+                { "text": "He forgot the Eid takbirs", "right": true },
+                { "text": "He spoke by mistake" },
+                { "text": "The follower made a mistake on his own" }
+              ],
+              "source": ["أو ترك قراءة فاتحة الكتاب أو القنوت أو التشهد أو تكبيرات العيدين", "أو خافت فيما يجهر", "وإن تكلم في صلاته عامدا أو ساهيا بطلت صلاته", "وإن سها المؤتم لم يلزم الإمام ولا المؤتم السجود"],
+              "why": "Al-Fatiha, qunut, the Eid takbirs and quiet recitation where it should be loud call for sujud al-sahw. Speaking spoils the prayer, and a follower's own mistake needs no sujud."
+            },
+            {
+              "kind": "teach",
+              "id": "imam",
+              "title": "Imam and follower",
+              "ar": "فإن لم يسجد الإمام لم يسجد المؤتم وإن سها المؤتم لم يلزم الإمام ولا المؤتم السجود",
+              "en": "The imam's mistake makes the sujud due on those behind him too; but if the imam does not prostrate, they do not either. If a follower makes a mistake, neither he nor the imam has to prostrate."
+            },
+            {
+              "kind": "choose",
+              "id": "follower-case",
+              "ask": "Behind the imam, Zakariya forgets something on his own. Who does sujud al-sahw?",
+              "options": ["No one", "Zakariya alone", "The imam and everyone"],
+              "answer": 0,
+              "source": "وإن سها المؤتم لم يلزم الإمام ولا المؤتم السجود",
+              "why": "A follower's own forgetting needs no sujud from him or the imam."
+            },
+            {
+              "kind": "teach",
+              "id": "first-sitting",
+              "title": "Forgetting the first sitting",
+              "ar": "ومن سها عن القعدة الأولى ثم تذكر وهو إلى حال القعود أقرب عاد فجلس وتشهد وإن كان إلى حال القيام أقرب لم يعد ويسجد للسهو",
+              "en": "If he forgets the first sitting and remembers while still nearer to sitting, he goes back, sits and says the tashahhud. If he is nearer to standing, he does not go back, and does sujud al-sahw."
+            },
+            {
+              "kind": "choose",
+              "id": "first-case",
+              "ask": "Yusuf forgot to sit for the first tashahhud and is almost fully standing when he remembers. What does he do?",
+              "options": ["Carry on standing, and do sujud al-sahw", "Sit back down for the tashahhud", "Start the prayer again"],
+              "answer": 0,
+              "source": "وإن كان إلى حال القيام أقرب لم يعد ويسجد للسهو",
+              "why": "He is nearer to standing, so he does not go back. The sujud al-sahw makes up for it."
+            },
+            {
+              "kind": "teach",
+              "id": "fifth",
+              "title": "Standing up for a fifth",
+              "ar": "ومن سها عن القعدة الأخيرة فقام إلى الخامسة رجع إلى القعدة ما لم يسجد وألغى الخامسة ويسجد للسهو وإن قيد الخامسة بسجدة بطل فرضه وتحولت صلاته نفلا وكان عليه أن يضم إليها ركعة سادسة",
+              "en": "If he forgets the last sitting and stands for a fifth rak'ah, he goes back to sit as long as he has not prostrated, drops the fifth, and does sujud al-sahw. If he has already made a sujud in the fifth, his fard is lost: the prayer becomes nafl, and he adds a sixth rak'ah."
+            },
+            {
+              "kind": "teach",
+              "id": "doubt",
+              "title": "Doubt",
+              "ar": "ومن شك في صلاته فلم يدر أثلاثا صلى أم أربعا وكان ذلك أول ما عرض له استأنف الصلاة فإن كان الشك يعرض له كثيرا بنى على غالب ظنه إن كان له ظن فإن لم يكن له ظن بنى على اليقين",
+              "en": "If he doesn't know whether he prayed three or four, and this is the first time it has happened to him, he starts again. If doubts come to him often, he goes with what he thinks most likely; if he has no leaning either way, he goes with what is certain."
+            },
+            {
+              "kind": "choose",
+              "id": "doubt-case",
+              "ask": "Khadija often has doubts. Now she can't tell if she prayed three or four, and has no leaning either way. What does she do?",
+              "options": ["Go with what is certain: three", "Start the prayer again", "Go with four"],
+              "answer": 0,
+              "source": "فإن كان الشك يعرض له كثيرا بنى على غالب ظنه إن كان له ظن فإن لم يكن له ظن بنى على اليقين",
+              "why": "Doubt comes to her often and she has no leaning, so she builds on the certain number, three."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Ahmad sat for the tashahhud after the fourth rak'ah of Zuhr, then stood up thinking it was the first sitting, and prostrated in a fifth. What now?",
+              "options": ["Add a sixth, do sujud al-sahw: his Zuhr is complete and the extra two are nafl", "His Zuhr has become nafl and he must pray it again", "Go back and sit: the prayer is void"],
+              "answer": 0,
+              "source": "وإن قعد في الرابعة قدر التشهد ثم قام ولم يسلم يظنها القعدة الأولى عاد إلى القعود ما لم يسجد في الخامسة ويسلم وإن قيد الخامسة بسجدة ضم إليها ركعة أخرى ويسجد للسهو وقد تمت صلاته والركعتان له نافله",
+              "why": "He already sat the last sitting, so his fard is done. He joins a sixth to the fifth, does sujud al-sahw, and the two extra rak'ahs are nafl. (Had he not sat, his fard would be lost.)"
+            }
+          ]
+        },
+        {
+          "id": "sick-tilawa",
+          "title": "The sick person's prayer, and sujud al-tilawa",
+          "arabic": "باب صلاة المريض",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "sitting",
+              "title": "When standing is too hard",
+              "ar": "إذا تعذر على المريض القيام صلى قاعدا يركع ويسجد فإن لم يستطع الركوع والسجود أومأ إيماء برأسه وجعل السجود أخفض من الركوع ولا يرفع إلى وجهه شيئا يسجد عليه",
+              "en": "If a sick person cannot stand, he prays sitting, bowing and prostrating. If he cannot bow and prostrate, he nods with his head, making the nod for sujud lower than for ruku. He does not lift something up to his face to prostrate on."
+            },
+            {
+              "kind": "teach",
+              "id": "lying",
+              "title": "Lying down",
+              "ar": "فإن لم يستطع القعود استلقى على ظهره وجعل رجله إلى القبلة وأومأ بالركوع والسجود وإن استلقى على جنبه ووجهه إلى القبلة وأومأ جاز فإن لم يستطع الإيماء برأسه أخر الصلاة ولا يومئ بعينه ولا بقلبه ولا بحاجبيه",
+              "en": "If he cannot sit, he lies on his back with his feet towards the qibla and nods for ruku and sujud. Lying on his side facing the qibla is also fine. If he cannot even nod his head, he delays the prayer; he does not signal with his eyes, his heart or his eyebrows."
+            },
+            {
+              "kind": "order",
+              "id": "ladder",
+              "ask": "If he can't do one, he moves to the next. Put them in order.",
+              "steps": ["Standing", "Sitting, with ruku and sujud", "Sitting, nodding", "Lying on the back, nodding", "Delaying the prayer"],
+              "source": ["إذا تعذر على المريض القيام صلى قاعدا يركع ويسجد فإن لم يستطع الركوع والسجود أومأ إيماء برأسه", "فإن لم يستطع القعود استلقى على ظهره", "فإن لم يستطع الإيماء برأسه أخر الصلاة"],
+              "why": "Standing, then sitting, then nodding, then lying down, and if even nodding is impossible, the prayer is delayed."
+            },
+            {
+              "kind": "choose",
+              "id": "stand-case",
+              "ask": "After an operation, Ali can stand but cannot bow or prostrate. Must he stand?",
+              "options": ["No: he may pray sitting, nodding", "Yes: he stands and nods", "He delays the prayer"],
+              "answer": 0,
+              "source": "فإن قدر على القيام ولم يقدر على الركوع والسجود لم يلزمه القيام وجاز أن يصلي قاعدا يومئ إيماء",
+              "why": "Standing is not required of someone who cannot bow and prostrate. He may sit and nod."
+            },
+            {
+              "kind": "choose",
+              "id": "regain-case",
+              "ask": "Sami was praying by nodding, then mid-prayer became able to bow and prostrate. What does he do?",
+              "options": ["Start the prayer again", "Carry on with full ruku and sujud", "Carry on nodding"],
+              "answer": 0,
+              "source": ["فإن صلى الصحيح بعض صلاته قائما ثم حدث به مرض أتمها قاعدا", "فإن صلى بإيماء ثم قدر على الركوع والسجود استأنف الصلاة"],
+              "why": "Someone who falls ill mid-prayer finishes it sitting, but someone who was nodding and becomes able to bow starts again."
+            },
+            {
+              "kind": "choose",
+              "id": "faint-case",
+              "ask": "Hasan was unconscious for a day and a night: five prayers. When he recovers, what does he do?",
+              "options": ["Make up the five", "Nothing: they are forgiven", "Make up only the last one"],
+              "answer": 0,
+              "source": "ومن أغمي عليه خمس صلوات فما دونها قضاها إذا صح فإن فاتته بالإغماء أكثر من ذلك لم يقض",
+              "why": "Five or fewer are made up. Only if he missed more than that through fainting does he not make them up."
+            },
+            {
+              "kind": "teach",
+              "id": "places",
+              "title": "Sujud al-tilawa",
+              "ar": "سجود التلاوة في القرآن أربعة عشر: في آخر الأعراف وفي الرعد والنحل وبني إسرائيل ومريم والأولى من الحج والفرقان والنمل",
+              "en": "Sujud al-tilawa is one prostration on reciting certain ayat. There are fourteen places: the end of al-A'raf, al-Ra'd, al-Nahl, Bani Isra'il, Maryam, the first in al-Hajj, al-Furqan, al-Naml, Alif Lam Mim Tanzil, Sad, Ha Mim al-Sajda, al-Inshiqaq and al-'Alaq."
+            },
+            {
+              "kind": "teach",
+              "id": "who",
+              "title": "Who must prostrate",
+              "ar": "والسجود واجب في هذه المواضع كلها على التالي والسامع سواء قصد سماع القرآن أولم يقصد وإذا تلا الإمام آية السجدة سجدها وسجد المأموم معه وإن تلا المأموم لم يسجد الإمام ولا المأموم",
+              "en": "This sujud is wajib on the one reciting and the one hearing, whether he meant to listen or not. If the imam recites a sajda ayah, he prostrates and the followers with him. If a follower recites it, neither the imam nor the follower prostrates."
+            },
+            {
+              "kind": "choose",
+              "id": "outside-case",
+              "ask": "During the prayer, the jama'a hears a man outside recite an ayah of sajda. What do they do?",
+              "options": ["Prostrate for it after the prayer", "Prostrate at once, inside the prayer", "Nothing at all"],
+              "answer": 0,
+              "source": "وإن سمعوا وهم في الصلاة آية سجدة من رجل ليس معهم في الصلاة لم يسجدوها في الصلاة وسجدوها بعد الصلاة فإن سجدوها في الصلاة لم تجزهم ولم فسد صلاتهم",
+              "why": "They prostrate after the prayer. If they did it inside the prayer, it would not count, though their prayer is not spoiled."
+            },
+            {
+              "kind": "choose",
+              "id": "repeat-case",
+              "ask": "While memorising, Maryam recites the same sajda ayah three times in one sitting. How many sujud?",
+              "options": ["One", "Three", "None, as she was memorising"],
+              "answer": 0,
+              "source": "ومن كرر تلاوة سجدة واحدة في مجلس واحد أجزأته سجدة واحدة",
+              "why": "Repeating one sajda ayah in one sitting needs just one sujud."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are right?",
+              "options": [
+                { "text": "Sujud al-tilawa has no tashahhud and no salam", "right": true },
+                { "text": "A sick person may signal with his eyes" },
+                { "text": "If a follower recites a sajda ayah, nobody prostrates", "right": true },
+                { "text": "A sick person lifts something to his face to prostrate on" },
+                { "text": "Sujud al-tilawa is wajib even if you didn't mean to listen", "right": true },
+                { "text": "For sujud al-tilawa, raise the hands at the takbir" }
+              ],
+              "source": ["ومن أراد السجود كبر ولم يرفع يديه وسجد ثم كبر ورفع رأسه ولا تشهد عليه ولا سلام", "ولا يومئ بعينه", "وإن تلا المأموم لم يسجد الإمام ولا المأموم", "ولا يرفع إلى وجهه شيئا يسجد عليه", "سواء قصد سماع القرآن أولم يقصد"],
+              "why": "Sujud al-tilawa is a takbir without raising the hands, one sujud, a takbir up, and no tashahhud or salam. The sick do not signal with their eyes or lift things to their face."
+            }
+          ]
+        },
+        {
+          "id": "traveller",
+          "title": "The traveller",
+          "arabic": "باب صلاة المسافر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "distance",
+              "title": "What counts as travel",
+              "ar": "مسيرة ثلاثة أيام ولياليها بسير الإبل ومشي الأقدام ولا يعتبر ذلك بالسير في الماء",
+              "en": "The journey that changes the rulings is one to a place three days and nights away at the pace of camels and people walking. It is not measured by travel on water."
+            },
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Two rak'ahs",
+              "ar": "وفرض المسافر عندنا: في كل صلاة رباعية ركعتان لا تجوز له الزيادة عليهما",
+              "en": "For us (the Hanafis), the traveller's fard in every four-rak'ah prayer is two rak'ahs, and he may not add to them."
+            },
+            {
+              "kind": "pick",
+              "id": "which",
+              "ask": "Which prayers does the traveller shorten to two?",
+              "options": [
+                { "text": "Zuhr", "right": true },
+                { "text": "Asr", "right": true },
+                { "text": "Isha", "right": true },
+                { "text": "Fajr" },
+                { "text": "Maghrib" }
+              ],
+              "source": ["السفر الذي تتغير به الأحكام", "في كل صلاة رباعية ركعتان"],
+              "why": "Only the four-rak'ah prayers: Zuhr, Asr and Isha. Fajr and Maghrib stay as they are."
+            },
+            {
+              "kind": "choose",
+              "id": "four-case",
+              "ask": "Ilyas, travelling, prays four for Zuhr, but he did sit for the tashahhud after the second. Does it count?",
+              "options": ["Yes: two are his fard, the other two are nafl", "No, the whole prayer is void", "Yes: all four are fard"],
+              "answer": 0,
+              "source": "فإن صلى أربعا وقد قعد في الثانية مقدار التشهد أجزأته ركعتان عن فرضه وكانت الأخريان له نافلة وإن لم يقعد مقدار التشهد في الركعتين الأوليين بطلت صلاته",
+              "why": "Because he sat after two, his fard is done and the extra two are nafl. Had he not sat there, his prayer would be void."
+            },
+            {
+              "kind": "teach",
+              "id": "start-end",
+              "title": "When it starts and ends",
+              "ar": "إذا فارق بيوت المصر ولا يزال على حكم السفر حتى ينوي الإقامة في بلد خمسة عشر يوما فصاعدا فيلزمه الإتمام وإن نوى الإقامة أقل من ذلك لم يتم",
+              "en": "He starts praying two once he has left the houses of his town behind. He stays a traveller until he intends to stay in a place fifteen days or more; then he must pray in full. If he intends to stay less than that, he still shortens."
+            },
+            {
+              "kind": "choose",
+              "id": "days-gap",
+              "ask": "How long must he intend to stay? Complete it.",
+              "ar": "حتى ينوي الإقامة في بلد ____ يوما فصاعدا",
+              "options": ["خمسة عشر", "عشرة", "ثلاثة"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "حتى ينوي الإقامة في بلد خمسة عشر يوما فصاعدا",
+              "why": "Fifteen days or more. Less than that, he is still a traveller."
+            },
+            {
+              "kind": "choose",
+              "id": "tomorrow-case",
+              "ask": "Hamid arrives in a city on business. Each day he says \"I'll leave tomorrow\", and this goes on for three months. How does he pray Zuhr?",
+              "options": ["Two rak'ahs", "Four, once fifteen days have passed", "Four, after the first week"],
+              "answer": 0,
+              "source": "ومن دخل بلدا ولم ينو أن يقيم فيه خمسة عشر يوما وإنما يقول غدا أخرج أو بعد غد أخرج حتى بقي على ذلك سنين صلى ركعتين",
+              "why": "He never intended fifteen days, so he keeps praying two, even if it lasts years."
+            },
+            {
+              "kind": "teach",
+              "id": "behind",
+              "title": "Armies, and praying behind a resident",
+              "ar": "وإذا دخل العسكر أرض الحرب فنووا الإقامة بها خمسة عشر يوما لم يتموا الصلاة وإذا دخل المسافر في صلاة المقيم مع بقاء الوقت أتم الصلاة وإن دخل معه في فائتة لم تجز صلاته خلفه",
+              "en": "An army in enemy land that intends to stay fifteen days still shortens. A traveller who joins a resident's prayer while its time remains prays it in full. But joining him in a make-up prayer is not valid."
+            },
+            {
+              "kind": "teach",
+              "id": "traveller-imam",
+              "title": "A travelling imam",
+              "ar": "وإذا صلى المسافر بالمقيمين ركعتين سلم ثم أتم المقيمون صلاتهم ويستحب له إذا سلم أن يقول: أتموا صلاتكم فإنا قوم سفر",
+              "en": "If a traveller leads residents, he says salam after two and the residents complete their prayer. It is liked for him to say after the salam: \"Complete your prayer, for we are travellers.\""
+            },
+            {
+              "kind": "choose",
+              "id": "imam-case",
+              "ask": "A travelling imam leads residents in Asr and says salam after two rak'ahs. What do the residents do?",
+              "options": ["Stand and complete their four", "Say salam with him: two is enough", "Start Asr again on their own"],
+              "answer": 0,
+              "source": "سلم ثم أتم المقيمون صلاتهم",
+              "why": "The residents owe four, so they complete their own prayer after his salam."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Two rak'ahs or four?",
+              "into": ["Two", "Four"],
+              "items": [
+                ["A traveller behind a resident imam, in time", "Four"],
+                ["A traveller who has reached his home town", "Four"],
+                ["Visiting the old home he moved away from", "Two"],
+                ["Intending fifteen days split between Makka and Mina", "Two"],
+                ["A Zuhr missed on a journey, made up at home", "Two"],
+                ["A Zuhr missed at home, made up on a journey", "Four"],
+                ["A traveller whose journey is sinful", "Two"]
+              ],
+              "source": ["وإذا دخل المسافر في صلاة المقيم مع بقاء الوقت أتم الصلاة", "أتم الصلاة وإن لم ينو الإقامة فيه", "ومن كان له وطن فانتقل عنه واستوطن غيره ثم سافر فدخل وطنه الأول لم يتم الصلاة وإذا نوى المسافر أن يقيم بمكة ومنى خمسة عشر يوما لم يتم الصلاة", "ومن فاتته صلاة في السفر قضاها في الحضر ركعتين", "ومن فاتته صلاة في الحضر قضاها في السفر أربعا", "والعاصي والمطيع في السفر في الرخصة سواء"],
+              "why": "A make-up keeps the number it was due with. Home town and a resident imam mean four. An old home he left, Makka-and-Mina, and a sinful trip still mean two."
+            }
+          ]
+        },
+        {
+          "id": "jumuah",
+          "title": "Jumu'a",
+          "arabic": "باب صلاة الجمعة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "where",
+              "title": "Where Jumu'a is held",
+              "ar": "لا تصح الجمعة إلا بمصر جامع أو في مصلى المصر ولا تجوز في القرى",
+              "en": "Jumu'a (the Friday prayer) is only valid in a proper town (a misr jami') or in its prayer-ground, not in villages. It is only held by the ruler or someone he has appointed."
+            },
+            {
+              "kind": "teach",
+              "id": "conditions",
+              "title": "Its time and its khutba",
+              "ar": "ومن شرائطها: الوقت فتصح في الوقت ولا تصح بعده ومن شرائطها الخطبة قبل الصلاة يخطب الإمام خطبتين يفصل بينهما بقعدة ويخطب قائما على طهارة",
+              "en": "Among its conditions: the time. It is valid in Zuhr's time, not after it. And the khutba (sermon) before the prayer: the imam gives two khutbas with a sitting between them, standing and in a state of purity."
+            },
+            {
+              "kind": "pick",
+              "id": "conditions-pick",
+              "ask": "Which are conditions of Jumu'a?",
+              "options": [
+                { "text": "A town, not a village", "right": true },
+                { "text": "Its time", "right": true },
+                { "text": "A khutba before the prayer", "right": true },
+                { "text": "A jama'a", "right": true },
+                { "text": "A khutba after the prayer" },
+                { "text": "A sajda of recitation" }
+              ],
+              "source": ["لا تصح الجمعة إلا بمصر جامع", "ومن شرائطها: الوقت", "ومن شرائطها الخطبة قبل الصلاة", "ومن شرائطها: الجماعة"],
+              "why": "Town, time, a khutba before, and a jama'a. The khutba comes before the prayer, not after."
+            },
+            {
+              "kind": "teach",
+              "id": "khutba",
+              "title": "The khutba and the jama'a",
+              "ar": "فإن اقتصر على ذكر الله تعالى جاز عند أبي حنيفة وقال أبو يوسف ومحمد: لا بد من ذكر طويل يسمى خطبة وإن خطب قاعدا أو على غير طهارة جاز ويكره ومن شرائطها: الجماعة وأقلهم عند أبي حنيفة ثلاثة سوى الإمام وقال أبو يوسف ومحمد: اثنان سوى الإمام ويجهر الإمام بالقراءة في الركعتين",
+              "en": "For Abu Hanifa a mere mention of Allah is enough for the khutba; giving it sitting or without purity counts but is makruh. Its jama'a is, for Abu Hanifa, at least three besides the imam. The imam recites aloud in both rak'ahs, and there is no fixed surah. Note: Abu Yusuf and Muhammad want a long remembrance that can be called a khutba, and two besides the imam."
+            },
+            {
+              "kind": "choose",
+              "id": "sitting-case",
+              "ask": "The imam gives the Jumu'a khutba sitting down, without wudu. Is it valid?",
+              "options": ["Valid, but makruh", "Not valid", "Valid and not makruh"],
+              "answer": 0,
+              "source": "وإن خطب قاعدا أو على غير طهارة جاز ويكره",
+              "why": "It counts, but it is makruh."
+            },
+            {
+              "kind": "teach",
+              "id": "who",
+              "title": "Who must attend",
+              "ar": "ولا تجب الجمعة على مسافر ولا امرأة ولا مريض ولا عبد ولا أعمى فإن حضروا وصلوا مع الناس أجزاهم عن فرض الوقت ويجوز للمسافر والعبد والمريض ونحوهم أن يؤم في الجمعة",
+              "en": "Jumu'a is not obligatory on a traveller, a woman, a sick person, a slave or a blind person. If they come and pray it with the people, it counts as that time's fard. A traveller, slave, sick person and the like may even lead Jumu'a."
+            },
+            {
+              "kind": "choose",
+              "id": "traveller-case",
+              "ask": "Ahmad is travelling, but he prays Jumu'a with the people. Must he also pray Zuhr?",
+              "options": ["No: Jumu'a counts as that time's fard", "Yes, two rak'ahs of Zuhr", "Yes, four rak'ahs of Zuhr"],
+              "answer": 0,
+              "source": "فإن حضروا وصلوا مع الناس أجزاهم عن فرض الوقت",
+              "why": "Jumu'a was not obligatory on him, but once he prayed it, it counts for the time."
+            },
+            {
+              "kind": "teach",
+              "id": "zuhr-home",
+              "title": "Praying Zuhr at home instead",
+              "ar": "ومن صلى الظهر في منزله يوم الجمعة قبل صلاة الإمام ولا عذر له كره له ذلك وجازت صلاته فإن بدا له أن يحضر الجمعة فتوجه إليها بطلب صلاة الظهر عند أبي حنيفة بالسعي وقال أبو يوسف ومحمد: لا تبطل حتى يدخل مع الإمام",
+              "en": "Whoever prays Zuhr at home on Friday before the imam's prayer, without an excuse, has done something makruh, though the prayer counts. If he then sets off for Jumu'a, for Abu Hanifa his Zuhr is cancelled by setting off. Note: Abu Yusuf and Muhammad say not until he joins the imam."
+            },
+            {
+              "kind": "choose",
+              "id": "sick-case",
+              "ask": "On Friday, some men too ill to go to the mosque want to pray Zuhr together in jama'a at home. What does al-Quduri say?",
+              "options": ["It is makruh for them to pray Zuhr in jama'a", "It is sunnah for them", "They must hold their own Jumu'a"],
+              "answer": 0,
+              "source": "ويكره أن يصلي المعذورون الظهر بجماعة يوم الجمعة وكذلك أهل السجن",
+              "why": "Those with an excuse, and those in prison, pray Zuhr on Friday but not in jama'a: that is makruh."
+            },
+            {
+              "kind": "teach",
+              "id": "late",
+              "title": "Arriving late",
+              "ar": "ومن أدرك الإمام يوم الجمعة صلى معه ما أدرك وبنى عليها الجمعة",
+              "en": "Whoever catches the imam on Friday prays with him what he catches and completes Jumu'a. For Abu Hanifa and Abu Yusuf this holds even if he catches him in the tashahhud or the sujud al-sahw. Note: Muhammad says that if he caught most of the second rak'ah he completes Jumu'a; if less, he completes Zuhr."
+            },
+            {
+              "kind": "choose",
+              "id": "trade-case",
+              "ask": "The first adhan of Jumu'a is called while Faisal is selling in his shop. What should he do?",
+              "options": ["Stop selling and head to Jumu'a", "Keep selling until the khutba starts", "Close at the second adhan"],
+              "answer": 0,
+              "source": "وإذا أذن المؤذنون يوم الجمعة الأذان الأول ترك الناس البيع والشراء وتوجهوا إلى صلاة الجمعة",
+              "why": "At the first adhan people leave buying and selling and set off for Jumu'a."
+            },
+            {
+              "kind": "order",
+              "id": "order",
+              "ask": "Put Friday in order",
+              "steps": ["The first adhan: people stop trading", "The imam climbs the minbar and sits", "The adhan in front of the minbar", "The khutba, in silence", "The iqama", "The prayer"],
+              "source": ["وإذا أذن المؤذنون يوم الجمعة الأذان الأول ترك الناس البيع والشراء", "وإذا خرج الإمام على المنبر يوم الجمعة ترك الناس الصلاة والكلام حتى يفرغ من خطبته", "فإذا صعد الإمام المنبر جلس وأذن المؤذنون بين يدي المنبر فإذا فرغ من خطبته أقاموا الصلاة وصلوا"],
+              "why": "First adhan, the imam sits on the minbar, the adhan before him, the khutba with no prayer or talk, then the iqama and the prayer."
+            }
+          ]
+        },
+        {
+          "id": "eid",
+          "title": "The two Eids",
+          "arabic": "باب صلاة العيدين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fitr",
+              "title": "The morning of Eid al-Fitr",
+              "ar": "ويستحب في يوم الفطر: أن يطعم الإنسان قبل الخروج إلى المصلى ويغتسل ويتطيب ويتوجه إلى المصلى ولا يكبر في طريق المصلى عند أبي حنيفة وعندها يكبر",
+              "en": "On Eid al-Fitr it is liked to eat something before going out to the musalla (the prayer-ground), to bathe, to wear perfume, and to go to the musalla. For Abu Hanifa he does not say takbir on the way. Note: Abu Yusuf and Muhammad say he does."
+            },
+            {
+              "kind": "teach",
+              "id": "time",
+              "title": "Its time",
+              "ar": "فإذا حلت الصلاة من ارتفاع الشمس دخل وقتها إلى الزوال فإذا زالت الشمس خرج وقتها",
+              "en": "No nafl is prayed at the musalla before the Eid prayer. Its time comes in once the sun has risen high, and lasts until midday (zawal). When the sun passes its height, the time is over."
+            },
+            {
+              "kind": "choose",
+              "id": "nafl-case",
+              "ask": "At the musalla on Eid al-Fitr, Rashid wants to pray two nafl rak'ahs while waiting for the Eid prayer. What does al-Quduri say?",
+              "options": ["No nafl is prayed at the musalla before Eid", "Two rak'ahs of greeting are sunnah", "Allowed only after sunrise"],
+              "answer": 0,
+              "source": "ولا يتنقل في المصلى قبل صلاة العيد",
+              "why": "He says there is no nafl at the musalla before the Eid prayer."
+            },
+            {
+              "kind": "teach",
+              "id": "how",
+              "title": "How it is prayed",
+              "ar": "ويصلي الإمام بالناس ركعتين: يكبر في الأولى تكبيرة الأفتتاح وثلاثا بعدها ثم يقرأ فاتحة الكتاب وسورة معها ثم يكبر تكبيرة يركع بها ثم يبتدئ في الركعة الثانية بالقراءة كبر ثلاث تكبيرات وكبر تكبيرة رابعة يركع بها",
+              "en": "The imam leads two rak'ahs. In the first: the opening takbir and three more, then al-Fatiha and a surah, then a takbir to go into ruku. In the second he starts with the recitation, then says three takbirs, and a fourth to go into ruku."
+            },
+            {
+              "kind": "order",
+              "id": "order",
+              "ask": "Put the Eid prayer in order",
+              "steps": ["Opening takbir", "Three extra takbirs", "Al-Fatiha and a surah", "Takbir into ruku", "Second rak'ah: the recitation", "Three extra takbirs", "A fourth takbir into ruku", "Two khutbas"],
+              "source": ["يكبر في الأولى تكبيرة الأفتتاح وثلاثا بعدها ثم يقرأ فاتحة الكتاب وسورة معها ثم يكبر تكبيرة يركع بها", "ثم يبتدئ في الركعة الثانية بالقراءة كبر ثلاث تكبيرات وكبر تكبيرة رابعة يركع بها", "ثم يخطب بعد الصلاة خطبتين"],
+              "why": "In the first rak'ah the takbirs come before the recitation; in the second, after it. The khutbas come after the prayer."
+            },
+            {
+              "kind": "teach",
+              "id": "khutba",
+              "title": "The khutba; missing it",
+              "ar": "ويرفع يديه في تكبيرات العيدين ثم يخطب بعد الصلاة خطبتين يعلم الناس فيها صدقة الفطر وأحكامها ومن فاتته صلاة العيد مع الإمام لم يقضها",
+              "en": "He raises his hands at the Eid takbirs. After the prayer the imam gives two khutbas, teaching people sadaqat al-fitr (the Eid charity) and its rules. Whoever misses the Eid prayer with the imam does not make it up."
+            },
+            {
+              "kind": "choose",
+              "id": "moon-case",
+              "ask": "On the 30th, it was cloudy. After midday, witnesses tell the imam they saw the new moon. What about the Eid prayer?",
+              "options": ["It is prayed the next day", "It is prayed straight away", "There is no Eid prayer this year"],
+              "answer": 0,
+              "source": "فإن غم الهلال على الناس فشهدوا عند الإمام برؤية الهلال بعد الزوال صلى العيد من الغد فإن حدث عذر منع الناس من الصلاة في اليوم الثاني لم يصلها بعده",
+              "why": "Its time ended at midday, so it is prayed the next day. If something stops it on that second day too, it is not prayed after that."
+            },
+            {
+              "kind": "teach",
+              "id": "adha",
+              "title": "Eid al-Adha",
+              "ar": "ويستحب في يوم الأضحى: أن يغتسل ويتطيب ويؤخر الأكل حتى يفرغ من الصلاة ويتوجه إلى المصلى وهو يكبر",
+              "en": "On Eid al-Adha it is liked to bathe and wear perfume, to put off eating until after the prayer, and to go to the musalla saying takbir. It is two rak'ahs like Eid al-Fitr; the khutba teaches the udhiyya (sacrifice) and the takbirs of tashriq. If an excuse stops it, it can be prayed the next day or the day after, but no later."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Eid al-Fitr or Eid al-Adha?",
+              "into": ["Fitr", "Adha"],
+              "items": [
+                ["Eat before going out", "Fitr"],
+                ["Put off eating until after the prayer", "Adha"],
+                ["The khutba teaches sadaqat al-fitr", "Fitr"],
+                ["The khutba teaches the udhiyya", "Adha"],
+                ["Can still be prayed two days late", "Adha"]
+              ],
+              "source": ["أن يطعم الإنسان قبل الخروج إلى المصلى", "ويؤخر الأكل حتى يفرغ من الصلاة ويتوجه إلى المصلى وهو يكبر", "يعلم الناس فيها صدقة الفطر", "ويصلي الأضحى ركعتين كصلاة الفطر ويخطب بعدها خطبيتن يعلم الناس فيهما الأضحية وتكبيرات التشريق فإن حدث عذر منع الناس من الصلاة في يوم الأضحى صلاها من الغد وبعد الغد ولا يصليها بعد ذلك"],
+              "why": "Fitr: eat first, khutba on its charity. Adha: eat after, takbir on the way, khutba on the sacrifice, and up to two days' delay with an excuse."
+            },
+            {
+              "kind": "teach",
+              "id": "tashriq",
+              "title": "The takbirs of tashriq",
+              "ar": "وتكبير التشريق أوله عقيب صلاة الفجر من يوم عرفة وآخره عقيب صلاة العصر من النحر عند أبي حنيفة وقال أبو يوسف ومحمد: إلى صلاة العصر من آخر أيام التشريق",
+              "en": "The takbir of tashriq is said after the fard prayers. It starts after Fajr on the day of 'Arafa and, for Abu Hanifa, ends after Asr on the day of sacrifice (Eid day). Note: Abu Yusuf and Muhammad say it lasts until Asr on the last day of tashriq."
+            },
+            {
+              "kind": "choose",
+              "id": "tashriq-gap",
+              "ask": "Complete the takbir of tashriq.",
+              "ar": "والتكبير عقيب الصلوات المفروضات وهو أن يقول: الله أكبر الله أكبر لا إله إلا الله ____ الله أكبر ولله الحمد",
+              "options": ["والله أكبر", "سبحان الله", "والحمد لله"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "الله أكبر الله أكبر لا إله إلا الله والله أكبر الله أكبر ولله الحمد",
+              "why": "Allahu akbar, Allahu akbar, la ilaha illallah, wallahu akbar, Allahu akbar, wa lillahil-hamd."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which are right about the Eid prayers?",
+              "options": [
+                { "text": "It is two rak'ahs", "right": true },
+                { "text": "The khutba comes before the prayer" },
+                { "text": "Raise the hands at the extra takbirs", "right": true },
+                { "text": "Its time starts once the sun has risen high", "right": true },
+                { "text": "Its time lasts until Asr" },
+                { "text": "A missed Eid prayer is made up alone" }
+              ],
+              "source": ["ويصلي الإمام بالناس ركعتين", "ويرفع يديه في تكبيرات العيدين ثم يخطب بعد الصلاة خطبتين", "فإذا حلت الصلاة من ارتفاع الشمس دخل وقتها إلى الزوال", "ومن فاتته صلاة العيد مع الإمام لم يقضها"],
+              "why": "Two rak'ahs, hands raised at the takbirs, from the risen sun to midday. The khutba is after, and a missed one is not made up."
+            }
+          ]
+        },
+        {
+          "id": "kusuf-istisqa-khawf",
+          "title": "Eclipse, rain, tarawih and fear prayers",
+          "arabic": "الكسوف والاستسقاء وقيام رمضان والخوف",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "kusuf",
+              "title": "The eclipse prayer",
+              "ar": "إذا انكسفت الشمس صلى الإمام بالناس ركعتين كهيئة النافلة في كل ركعة ركوع واحد ويطول القراءة فيهما ويخفي عند أبي حنيفة وقال أبو يوسف ومحمد: يجهر ثم يدعو بعدها حتى تنجلي الشمس",
+              "en": "When the sun is eclipsed, the imam leads two rak'ahs like a nafl prayer, with one ruku in each, and makes the recitation long. For Abu Hanifa it is quiet. Afterwards he makes du'a until the sun clears. Note: Abu Yusuf and Muhammad say it is aloud."
+            },
+            {
+              "kind": "teach",
+              "id": "who",
+              "title": "Who leads; the moon",
+              "ar": "ويصلي بالناس الإمام الذي يصلي بهم الجمعة فإن لم يجمع صلاها الناس فرادى وليس في خسوف القمر جماعة وإنما يصلي كل واحد بنفسه وليس في الكسوف خطبة",
+              "en": "The imam who leads Jumu'a leads it. If he doesn't gather them, people pray it alone. For an eclipse of the moon there is no jama'a: each person prays by himself. There is no khutba for an eclipse."
+            },
+            {
+              "kind": "pick",
+              "id": "kusuf-pick",
+              "ask": "Which are true of the eclipse prayers?",
+              "options": [
+                { "text": "Two rak'ahs, like a nafl", "right": true },
+                { "text": "One ruku in each rak'ah", "right": true },
+                { "text": "A long recitation", "right": true },
+                { "text": "A khutba after it" },
+                { "text": "A jama'a for an eclipse of the moon" }
+              ],
+              "source": ["ركعتين كهيئة النافلة في كل ركعة ركوع واحد ويطول القراءة فيهما", "وليس في خسوف القمر جماعة", "وليس في الكسوف خطبة"],
+              "why": "Two long rak'ahs with one ruku each. No khutba, and the moon's eclipse is prayed alone."
+            },
+            {
+              "kind": "teach",
+              "id": "istisqa",
+              "title": "Praying for rain",
+              "ar": "قال أبو حنيفة رحمه الله عليه: ليس في الاستسقاء صلاة مسنونة في جماعة فإن صلى الناس وحدانا جاز وإنما الاستسقاء الدعاء والاستغفار",
+              "en": "Istisqa is asking Allah for rain. Abu Hanifa said it has no sunnah prayer in jama'a; if people pray alone, that is fine. Istisqa is du'a and asking forgiveness."
+            },
+            {
+              "kind": "teach",
+              "id": "istisqa-two",
+              "title": "The two companions on istisqa",
+              "ar": "وقال أبو يوسف ومحمد: يصلي الإمام بالناس ركعتين يجهر فيهما بالقراءة",
+              "en": "Note: Abu Yusuf and Muhammad say the imam leads two rak'ahs with the recitation aloud. He faces the qibla for the du'a and turns his cloak inside out, but the people do not turn theirs. Ahl al-dhimma (non-Muslims living under Muslim rule) do not attend."
+            },
+            {
+              "kind": "choose",
+              "id": "alone-case",
+              "ask": "During a drought, the people of Hamid's town each pray on their own, asking for rain. Is that allowed?",
+              "options": ["Yes, that is allowed", "No: it must be in jama'a", "No: istisqa has no prayer at all"],
+              "answer": 0,
+              "source": "فإن صلى الناس وحدانا جاز",
+              "why": "Al-Quduri says that if people pray alone for rain, it is allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "tarawih",
+              "title": "Tarawih in Ramadan",
+              "ar": "يستحب أن يجتمع الناس في شهر رمضان بعد العشاء فيصلي بهم إمامهم خمس ترويحات",
+              "en": "In Ramadan it is liked for people to gather after Isha, and their imam leads them in five tarwihas. Each tarwiha is two salams (four rak'ahs), with a rest between them as long as a tarwiha. Then he leads them in witr."
+            },
+            {
+              "kind": "choose",
+              "id": "witr-case",
+              "ask": "In Sha'ban, Idris's friends want to pray witr together in jama'a. What does al-Quduri say?",
+              "options": ["Witr is not prayed in jama'a outside Ramadan", "It is sunnah all year", "Only on Fridays"],
+              "answer": 0,
+              "source": "ثم يوتر بهم ولا يصلي الوتر بجماعة في غير شهر رمضان",
+              "why": "Witr in jama'a belongs to Ramadan only."
+            },
+            {
+              "kind": "teach",
+              "id": "khawf",
+              "title": "The fear prayer",
+              "ar": "إذا اشتد الخوف جعل الإمام الناس طائفتين: طائفة في وجه العدو وطائفة خلفه فيصلي بهذه الطائفة ركعة وسجدتين فإذا رفع رأسه من السجدة الثانية مضت هذه الطائفة إلى وجه العدو وجاءت تلك الطائفة",
+              "en": "When fear is great, the imam splits the people into two groups: one faces the enemy, one prays behind him. He prays one rak'ah with this group; when he rises from its second sujud they go to face the enemy, and the other group comes."
+            },
+            {
+              "kind": "order",
+              "id": "khawf-order",
+              "ask": "A two-rak'ah fear prayer: put it in order",
+              "steps": ["Group A prays one rak'ah with the imam", "A goes to face the enemy; B comes", "B prays the second rak'ah; the imam says salam", "B goes; A returns and finishes alone, without recitation", "A goes; B returns and finishes, with recitation"],
+              "source": ["فيصلي بهم الإمام ركعة وسجدتين وتشهد وسلم ولم يسلموا وذهبوا إلى وجه العدو وجاءت الطائفة الأولى فصلوا وحدانا ركعة وسجدتين بغير قراءة وتشهدوا وسلموا ومضوا إلى وجه العدو وجاءت الطائفة الأخرى فصلوا ركعة وسجدتين بقراءة وتشهدوا وسلموا"],
+              "why": "The first group finishes without recitation (they started behind the imam). The second finishes with recitation."
+            },
+            {
+              "kind": "choose",
+              "id": "maghrib-case",
+              "ask": "The imam is a resident (not travelling) and leads Maghrib in fear. How does he divide it?",
+              "options": ["Two rak'ahs with the first group, one with the second", "One with the first, two with the second", "Three with each group"],
+              "answer": 0,
+              "source": "فإن كان الإمام مقميا صلى بالطائفة الأولى ركعتين وبالثانية ركعتين ويصلي بالطائفة الأولى ركعتين من المغرب وبالثانية ركعة",
+              "why": "In Maghrib the first group gets two and the second one. In a four-rak'ah prayer each gets two."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are right?",
+              "options": [
+                { "text": "Fighting during the fear prayer spoils it", "right": true },
+                { "text": "In very great fear they pray riding, alone, nodding", "right": true },
+                { "text": "The first group finishes with recitation" },
+                { "text": "Tarawih is five tarwihas", "right": true },
+                { "text": "The moon's eclipse is prayed in jama'a" }
+              ],
+              "source": ["ولا يقاتلون في حال الصلاة فإن فعلوا ذلك بطلت صلاتهم وإن اشتد الخوف صلوا ركبانا وحدانا يومئون بالركوع والسجود إلى أي جهة شاءوا إذا لم يقدروا على التوجه إلى القبلة", "بغير قراءة", "فيصلي بهم إمامهم خمس ترويحات", "وإنما يصلي كل واحد بنفسه"],
+              "why": "Fighting voids the prayer; in extreme fear they pray riding, alone, any direction. The first group finishes without recitation, and the moon's eclipse is prayed alone."
+            }
+          ]
+        },
+        {
+          "id": "janaza",
+          "title": "Janaza",
+          "arabic": "باب صلاة الجنائز",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "dying",
+              "title": "At the time of death",
+              "ar": "إذا احتضر الرجل وجه إلى القبلة على شقة الأيمن ولقن الشهادتين فإذا مات شدوا لحييته وغمضوا عينيه وإذا أرادوا غسله وضعوه على سرير وجعلوا على عورته خرقة",
+              "en": "When someone is dying, turn him to the qibla on his right side and gently prompt him with the shahada. When he dies, tie up his jaw and close his eyes. To wash him, lay him on a raised bed and put a cloth over his 'awra."
+            },
+            {
+              "kind": "teach",
+              "id": "washing",
+              "title": "Washing the body",
+              "ar": "ولا يمضمض ولا يستنشق ثم يفيضون الماء عليه ويجمر سريره وترا ويغلى الماء بالسدر أو بالحرض فإن لم يكن فالماء القراح ويغتسل رأسه ولحيته بالخطمي",
+              "en": "They take off his clothes and give him wudu, but without rinsing the mouth or nose, then pour water over him. The bed is perfumed with incense an odd number of times. The water is boiled with sidr (lote leaves) or hurud (a plant soap), or else plain water is used. His head and beard are washed with khitmi (a cleansing plant)."
+            },
+            {
+              "kind": "order",
+              "id": "wash-order",
+              "ask": "Put the washing in order",
+              "steps": ["Wudu, without mouth or nose", "Wash the head and beard with khitmi", "Lay him on his left side and wash", "Lay him on his right side and wash", "Sit him up and wipe his belly gently", "Dry him with a cloth"],
+              "source": ["ونزعوا ثيابه", "ويغتسل رأسه ولحيته بالخطمي", "ثم يضجع على شقه الأيسر فيغتسل بالماء والسدر حتى يرى أن الماء قد وصل إلى ما يلي التخت منه ثم يضجع على شقة الأيمن", "ثم يجلسه ويسنده إليه", "ثم ينشفه بثوب"],
+              "why": "Wudu and head first, then the left side, then the right, then sitting him up, then drying."
+            },
+            {
+              "kind": "choose",
+              "id": "belly-case",
+              "ask": "While the belly is being wiped, something comes out of the body. What do they do?",
+              "options": ["Wash it away, without repeating the whole washing", "Repeat the whole washing", "Start with wudu again"],
+              "answer": 0,
+              "source": "فإن خرج منه شيء غسله ولا يعيد غسله",
+              "why": "They wash off what came out; the washing itself is not repeated."
+            },
+            {
+              "kind": "teach",
+              "id": "kafan",
+              "title": "The shroud",
+              "ar": "ويجعل الحنوط على رأسه ولحيته والكافور على مساجده والسنة أن يكفن الرجل في ثلاثة أثواب: إزار وقميص ولفافة فإن اقتصروا على ثوبين جاز",
+              "en": "Put hanut (a burial perfume) on his head and beard, and camphor on the places that touch the ground in sujud. The sunnah is to shroud a man in three cloths: a wrap for the lower body, a shirt, and a full sheet. Two cloths are also enough."
+            },
+            {
+              "kind": "choose",
+              "id": "wrap-case",
+              "ask": "Wrapping the sheet around the body, which side do they fold over first?",
+              "options": ["The left, then the right", "The right, then the left", "Either side"],
+              "answer": 0,
+              "source": ["ابتداءوا بالجانب الأيسر فألقوه عليه ثم بالأيمن فإن خافوا أن ينشر الكفن عنه عقدوه"],
+              "why": "They start with the left side, then the right, and tie it if they fear it will open."
+            },
+            {
+              "kind": "sort",
+              "id": "kafan-sort",
+              "ask": "A man's shroud or a woman's?",
+              "into": ["Man", "Woman"],
+              "items": [
+                ["Three cloths is the sunnah", "Man"],
+                ["Five cloths", "Woman"],
+                ["A khimar (head-cover) over the shirt", "Woman"],
+                ["A cloth to bind the chest", "Woman"],
+                ["Two cloths are enough", "Man"],
+                ["The hair laid on the chest", "Woman"]
+              ],
+              "source": ["والسنة أن يكفن الرجل في ثلاثة أثواب", "فإن اقتصروا على ثوبين جاز", "وتكفن المرأة في خمسة أثواب: إزار وقميص وخمار وخرقة يربط بها ثدياها ولفافة", "ثلاثة أثواب جاز ويكون الخمار فوق القميص تحت اللفافة ويجعل شعرها على صدرها"],
+              "why": "A man: three, or two at least. A woman: five, with a khimar and a chest cloth, her hair on her chest; three are enough for her."
+            },
+            {
+              "kind": "teach",
+              "id": "leading",
+              "title": "Who leads the janaza prayer",
+              "ar": "فإذا فرغوا منه صلوا عليه وأولى الناس بالصلاة عليه السلطان إن حضر فإن لم يحضر فيستحب تقديم إمام الحي ثم الولي فإن صلى عليه غير الولي والسلطان أعاد الولي وإن صلى الولي لم يجز لأحد أن يصلي بعده فإن دفن ولم يصل عليه صلي على قبره",
+              "en": "Then they pray over him. The ruler, if present, has most right to lead; if not, the local imam is liked, then the wali (nearest male relative). If someone other than the wali or ruler led, the wali may pray again; if the wali led, nobody else may pray after. If he was buried without a prayer, they pray at his grave."
+            },
+            {
+              "kind": "order",
+              "id": "takbirs",
+              "ask": "Put the janaza prayer in order",
+              "steps": ["First takbir, then praise of Allah", "Second takbir, then salawat on the Prophet ﷺ", "Third takbir, then du'a for oneself, the dead and the Muslims", "Fourth takbir, then salam"],
+              "source": ["والصلاة: أن يكبر تكبيرة يحمد الله تعالى عقيبها ثم يكبر تكبيرة ويصلي على النبي صلى الله عليه وسلم", "ثم يكبر تكبيرة رابعة ويسلم ولا يصلى على ميت في مسجد جماعة"],
+              "why": "Four takbirs: praise, salawat, du'a, then salam. It is not prayed in a congregational mosque."
+            },
+            {
+              "kind": "teach",
+              "id": "burial",
+              "title": "Carrying and burial",
+              "ar": "فإذا حملوه على سريره أخذوا بقوائمه الأربع ويمشون به مسرعين دون الخبب فإذا بلغوا إلى قبره كره للناس أن يجلسوا قبل أن يوضع عن أعناق الرجال",
+              "en": "They carry the bier by its four legs and walk quickly, but not at a run. At the grave it is makruh to sit before the bier is lowered from the men's shoulders. A lahd (side niche) is dug, the body is placed from the qibla side, with \"Bismillah wa 'ala millati rasulillah\", faced to the qibla, and the knots untied."
+            },
+            {
+              "kind": "choose",
+              "id": "baby-case",
+              "ask": "A baby cries out at birth and then dies. What is done?",
+              "options": ["He is named, washed and prayed over", "Wrapped in a cloth, with no prayer", "Buried without washing"],
+              "answer": 0,
+              "source": "ومن استهل بعد الولادة سمي وغسل وصلي عليه وإن لم يستهل أدرج في خرقه ولم يصل عليه",
+              "why": "A baby who made a sound after birth is named, washed and prayed over. One who did not is wrapped in a cloth without a prayer."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are right?",
+              "options": [
+                { "text": "Carry the bier quickly, but not at a run", "right": true },
+                { "text": "If the wali has prayed, nobody prays after him", "right": true },
+                { "text": "Baked bricks over the body are makruh", "right": true },
+                { "text": "The grave is made flat" },
+                { "text": "Comb the dead person's hair" }
+              ],
+              "source": ["ويمشون به مسرعين دون الخبب", "وإن صلى الولي لم يجز لأحد أن يصلي بعده", "ويسوي اللبن عليه ويكره الآجر والخشب ولا بأس بالقصب ثم ينهال التراب عليه ويسنم القبر", "ولا يسرح شعر الميت"],
+              "why": "Quick walking, the wali's prayer being final, and makruh baked bricks are right. The grave is humped, not flat, and the dead person's hair is not combed."
+            }
+          ]
+        },
+        {
+          "id": "shahid-kaba",
+          "title": "The shahid, and prayer in the Ka'ba",
+          "arabic": "باب الشهيد",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "who",
+              "title": "Who is a shahid",
+              "ar": "الشهيد: من قتله المشركون أو وجد في المعركة وبه أثر الجراحة أو قتله المسلمون ظلما ولم تجب بقتله دية",
+              "en": "A shahid (martyr) is one killed by the mushrikin (those who worship others with Allah), or found on the battlefield bearing wounds, or killed unjustly by Muslims in a way that brings no diya (blood-money)."
+            },
+            {
+              "kind": "pick",
+              "id": "who-pick",
+              "ask": "Who counts as a shahid here?",
+              "options": [
+                { "text": "Killed by the mushrikin", "right": true },
+                { "text": "Found on the battlefield with wounds", "right": true },
+                { "text": "Killed unjustly by Muslims, with no diya due", "right": true },
+                { "text": "Killed for a hadd or in qisas" },
+                { "text": "Died of an illness at home" }
+              ],
+              "source": ["الشهيد: من قتله المشركون أو وجد في المعركة وبه أثر الجراحة أو قتله المسلمون ظلما ولم تجب بقتله دية", "ومن قتل في حد أو قصاص غسل وصلي عليه"],
+              "why": "The first three are al-Quduri's definition. Someone killed in a hadd or qisas is washed and prayed over like others."
+            },
+            {
+              "kind": "teach",
+              "id": "treatment",
+              "title": "How the shahid is treated",
+              "ar": "فيكفن ويصلي عيه ولا يغتسل وإذا استشهد الجنب غسل عند أبي حنيفة وكذلك الصبي وقال أبو يوسف ومحمد: لا يغسلان ولا يغتسل عن الشهيد دمه ولا ينزع عنه ثيابه",
+              "en": "The shahid is shrouded and prayed over, but not washed. His blood is not washed off and his clothes are not taken off, though fur, leather socks, padding and weapons are removed. For Abu Hanifa a shahid who was junub is washed, and so is a child. Note: Abu Yusuf and Muhammad say neither is washed."
+            },
+            {
+              "kind": "teach",
+              "id": "irtithath",
+              "title": "When he is washed after all",
+              "ar": "ومن ارتث غسل والارتثات: أن يأكل أو يشرب أو يداوى أو يبقى حيا حتى يمضي عليه وقت صلاة وهو يعقل أو ينقل من المعركة حيا",
+              "en": "If he was \"irtathth\", he is washed. That means: he ate, drank or was treated, or lived, conscious, through a whole prayer time, or was carried off the battlefield alive."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Washed, or not washed?",
+              "into": ["Not washed", "Washed"],
+              "items": [
+                ["Killed by the enemy in battle", "Not washed"],
+                ["Wounded, then ate and drank before dying", "Washed"],
+                ["Carried off the battlefield alive", "Washed"],
+                ["Killed unjustly by Muslims, no diya due", "Not washed"],
+                ["Killed in qisas", "Washed"]
+              ],
+              "source": ["فيكفن ويصلي عيه ولا يغتسل", "ومن ارتث غسل والارتثات: أن يأكل أو يشرب", "أو ينقل من المعركة حيا", "ومن قتل في حد أو قصاص غسل وصلي عليه"],
+              "why": "The shahid is not washed. One who ate, drank or was carried off alive is washed, and so is one killed in qisas."
+            },
+            {
+              "kind": "choose",
+              "id": "bandit-case",
+              "ask": "A highway robber is killed during a raid. Is the janaza prayer said for him?",
+              "options": ["No", "Yes, like anyone", "Yes, but he is not washed"],
+              "answer": 0,
+              "source": "ومن قتل من البغاة أو قطاع الطريق لم يصل عليه",
+              "why": "Rebels and highway robbers who are killed are not prayed over."
+            },
+            {
+              "kind": "teach",
+              "id": "kaba",
+              "title": "Prayer inside the Ka'ba",
+              "ar": "الصلاة في الكعبة جائزة فرضها ونفلها",
+              "en": "Praying inside the Ka'ba is allowed, fard and nafl. If an imam leads a jama'a there and some have their backs to the imam's back, it is fine. But whoever has his back to the imam's face, his prayer does not count."
+            },
+            {
+              "kind": "choose",
+              "id": "inside-case",
+              "ask": "Inside the Ka'ba, Hasan stands with his back towards the imam's face. Does his prayer count?",
+              "options": ["No, it does not", "Yes, any direction inside counts", "Yes, but it is makruh"],
+              "answer": 0,
+              "source": "ومن جعل منهم ظهره إلى وجه الإمام لم تجز صلاته",
+              "why": "Standing in front of the imam, back to his face, means he is ahead of the imam, so it does not count."
+            },
+            {
+              "kind": "teach",
+              "id": "around",
+              "title": "Around the Ka'ba",
+              "ar": "وإذا صلى الإمام في المسجد الحرام تحلق الناس حول الكعبة وصلوا بصلاة الإمام فمن كان منهم أقرب إلى الكعبة من الإمام جازت صلاته إذا لم يكن في جانب الإمام",
+              "en": "When the imam prays in the Masjid al-Haram, people form circles around the Ka'ba and follow him. Someone closer to the Ka'ba than the imam is fine, as long as he is not on the imam's own side."
+            },
+            {
+              "kind": "choose",
+              "id": "closer-case",
+              "ask": "In the Haram, Bilal stands closer to the Ka'ba than the imam, but on a different side. Does his prayer count?",
+              "options": ["Yes, it counts", "No: nobody may be closer than the imam", "Only in a nafl prayer"],
+              "answer": 0,
+              "source": "فمن كان منهم أقرب إلى الكعبة من الإمام جازت صلاته إذا لم يكن في جانب الإمام",
+              "why": "Being closer is fine as long as he is not on the imam's side."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are right?",
+              "options": [
+                { "text": "A fard prayer inside the Ka'ba counts", "right": true },
+                { "text": "Praying on the roof of the Ka'ba counts", "right": true },
+                { "text": "Closer to the Ka'ba than the imam on the imam's own side counts" },
+                { "text": "The shahid's blood is washed off" },
+                { "text": "The shahid is prayed over", "right": true }
+              ],
+              "source": ["الصلاة في الكعبة جائزة فرضها ونفلها", "ومن صلى على ظهر الكعبة جازت صلاته", "إذا لم يكن في جانب الإمام", "ولا يغتسل عن الشهيد دمه", "فيكفن ويصلي عيه"],
+              "why": "Fard inside, and on the roof, both count; the shahid is prayed over. Being ahead on the imam's side does not count, and the shahid's blood is left."
+            }
+          ]
+        }
+      ]
+    },
     { "id": "zakah", "title": "Zakat", "arabic": "الزكاة", "kitab": "كتاب الزكاة", "lessons": [] },
     { "id": "sawm", "title": "Fasting", "arabic": "الصوم", "kitab": "كتاب الصوم", "lessons": [] },
     { "id": "hajj", "title": "Hajj", "arabic": "الحج", "kitab": "كتاب الحج", "lessons": [] },
