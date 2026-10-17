@@ -130,6 +130,12 @@ and the table they add up to are `lib/useSarf`, and the result, gardaan, cards
 and titles are each their own file in `sarf/`. `test/sarf.test.jsx` types a
 word and finds its root and its table cell.
 
+Quran reader split: `quran/QuranReader.jsx` is 192 lines (was 508) and only
+draws; `useSurahReading` holds the text, glosses, translation and recitation,
+`useSurahPlace` the place, scroll, split and keys. `AyahList`, `AyahRow`,
+`GlossedAyah`, `AyahRail` and `SplitBar` are each their own file in `quran/`,
+and `test/quranReader.test.jsx` steps a surah and swaps the translation.
+
 0. Quiz: move the setup into `useQuizSetup`: language, direction, bank, scope and
    group, the four queries, then `pool` and `question` derived from them. Move the
    score into `useQuizScore`: the score, best, `onAnswer` and its streaks.
