@@ -15,6 +15,7 @@ import EmptyState from '../ui/EmptyState'
 import { NarratorWhen } from './NarratorParts'
 import ErrorAlert from '../ui/ErrorAlert'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
+import LoadMore from '../ui/LoadMore'
 
 export default function NarratorList({ accent, onOpen }) {
   useOpenAtTop()
@@ -56,14 +57,7 @@ export default function NarratorList({ accent, onOpen }) {
             ))}
           </ul>
           {hasNextPage && (
-            <button
-              type="button"
-              disabled={isFetchingNextPage}
-              onClick={() => fetchNextPage()}
-              className="press type-ui text-[var(--text-dim)] hover:text-[var(--text)] transition-colors"
-            >
-              {isFetchingNextPage ? 'Loading...' : `Show more (${first.total - items.length} left)`}
-            </button>
+            <LoadMore left={first.total - items.length} busy={isFetchingNextPage} onClick={fetchNextPage} />
           )}
         </>
       )}

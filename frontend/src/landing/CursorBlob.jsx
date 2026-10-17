@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-import { reducedMotion } from './motion.js'
+import { reducedMotion } from '../lib/motion.js'
 
 const EASE = 0.18 // share of the gap to the pointer closed each frame
 const SETTLED = 0.05 // px: closer than this and the loop rests until the next move

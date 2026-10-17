@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { roleVar } from '../lib/roleColors'
-import { reducedMotion } from './motion.js'
+import { reducedMotion } from '../lib/motion.js'
 import './AyahDiagram.css'
 
 // One ayah built into its tarkeeb a brace at a time, on a loop. Everything it

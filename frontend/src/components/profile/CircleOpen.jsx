@@ -16,6 +16,7 @@ import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
 import SearchBox from '../ui/SearchBox'
 import Segmented from '../ui/Segmented'
+import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'
 import SmallButton from '../ui/SmallButton'
 import WheelPicker from '../ui/WheelPicker'
@@ -37,7 +38,7 @@ export default function CircleOpen({ id, name, module, run, busy, circles, onOpe
   const [asking, setAsking] = useState(false)
 
   if (detail.isPending) return <Skeleton className="h-24 w-full" />
-  if (detail.isError) return <p className="type-small text-[var(--danger)]">Could not open this circle.</p>
+  if (detail.isError) return <ErrorAlert inline title="Could not open this circle." onRetry={() => detail.refetch()} />
   const { members, inside, kind, parent } = detail.data
   const admin = detail.data.role === 'admin'
 

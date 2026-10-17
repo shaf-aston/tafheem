@@ -1,6 +1,6 @@
 import { Fragment, useRef, useState } from 'react'
 
-import { reducedMotion } from './motion.js'
+import { reducedMotion } from '../lib/motion.js'
 import useScrollProgress, { settleProgress } from './useScrollProgress.js'
 
 const LINE = 'Are you ready to understand?'

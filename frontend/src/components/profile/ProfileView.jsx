@@ -21,6 +21,7 @@ import CirclesView from './CirclesView'
 import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
 import XpCard from './XpCard'
+import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'
 import SmallButton from '../ui/SmallButton'
 
@@ -40,7 +41,7 @@ export default function ProfileView({ name }) {
     <div className="space-y-4">
       <div dir="auto" className="text-lg font-bold text-[var(--text)] truncate">{name}</div>
       {account.isError && (
-        <p role="alert" className="type-small text-[var(--danger)]">Could not load your profile.</p>
+        <ErrorAlert inline title="Could not load your profile." onRetry={() => account.refetch()} />
       )}
       <dl className="grid grid-cols-2 gap-3">
         <XpCard rewards={rewards} />

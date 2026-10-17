@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal.jsx'
 import { useInView } from '../lib/useInView'
 import { CLIPS } from './assets/clips.js'
-import { reducedMotion } from './motion.js'
+import { reducedMotion } from '../lib/motion.js'
 
 const LABELS = {
   nahw: 'Nahw', sarf: 'Sarf', quran: "Qur’an", daleel: 'Daleel',

@@ -16,6 +16,7 @@ import ChipRow from '../ui/ChipRow'
 import EmptyState from '../ui/EmptyState'
 import ErrorAlert from '../ui/ErrorAlert'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
+import LoadMore from '../ui/LoadMore'
 
 function TermHadith({ kind, accent, onOpen }) {
   const { of } = useHadithCollections()
@@ -38,14 +39,7 @@ function TermHadith({ kind, accent, onOpen }) {
             ))}
           </ChipRow>
           {hasNextPage && (
-            <button
-              type="button"
-              disabled={isFetchingNextPage}
-              onClick={() => fetchNextPage()}
-              className="press type-ui text-[var(--text-dim)] hover:text-[var(--text)] transition-colors"
-            >
-              {isFetchingNextPage ? 'Loading...' : `Show more (${total - items.length} left)`}
-            </button>
+            <LoadMore left={total - items.length} busy={isFetchingNextPage} onClick={fetchNextPage} />
           )}
         </>
       )}
