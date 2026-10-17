@@ -9579,12 +9579,2354 @@
     { "id": "hajr", "title": "Restriction", "arabic": "الحجر", "kitab": "كتاب الحجر", "lessons": [] },
     { "id": "iqrar", "title": "Admissions", "arabic": "الإقرار", "kitab": "كتاب الإقرار", "lessons": [] },
     { "id": "ijara", "title": "Hire and wages", "arabic": "الإجارة", "kitab": "كتاب الإجارة", "lessons": [] },
-    { "id": "shufa", "title": "Pre-emption", "arabic": "الشفعة", "kitab": "كتاب الشفعة", "lessons": [] },
-    { "id": "shirka", "title": "Partnership", "arabic": "الشركة", "kitab": "كتاب الشركة", "lessons": [] },
-    { "id": "mudaraba", "title": "Profit-sharing", "arabic": "المضاربة", "kitab": "كتاب المضاربة", "lessons": [] },
-    { "id": "wakala", "title": "Agency", "arabic": "الوكالة", "kitab": "كتاب الوكالة", "lessons": [] },
-    { "id": "kafala", "title": "Surety and debt transfer", "arabic": "الكفالة والحوالة", "kitab": "كتاب الكفالة", "kitabs": ["كتاب الكفالة", "كتاب الحوالة"], "lessons": [] },
-    { "id": "sulh", "title": "Settlement", "arabic": "الصلح", "kitab": "كتاب الصلح", "lessons": [] },
+    {
+      "id": "shufa",
+      "title": "Pre-emption",
+      "arabic": "الشفعة",
+      "kitab": "كتاب الشفعة",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "shufa-who",
+          "title": "Who has the right of pre-emption",
+          "arabic": "الشفعة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "ranks",
+              "title": "Three people, in order",
+              "ar": "ثم للخليط في حق المبيع كالشرب والطريق ثم للجار وليس للشريك في الطريق والشرب والجار شفعة مع الخليط",
+              "en": "Shuf'a (pre-emption) is the right to step in when a property is sold and take it from the buyer for the same price. First comes the co-owner of the property itself. Next comes a partner in its rights, like a shared water channel (shirb) or a private lane. Last comes the neighbour (jar). While a co-owner wants it, the others get nothing."
+            },
+            {
+              "kind": "order",
+              "id": "rank",
+              "ask": "Put the people with a right of pre-emption in order, first to last.",
+              "steps": ["A co-owner of the property itself", "A partner in its rights, like a shared water channel or lane", "The neighbour"],
+              "source": "ثم للخليط في حق المبيع كالشرب والطريق ثم للجار",
+              "why": "The co-owner comes first, then the partner in the property's rights, then the neighbour."
+            },
+            {
+              "kind": "choose",
+              "id": "coowner-case",
+              "ask": "Hasan and Ali own a house together. Ali sells his half to a stranger. Zaid, who shares their private lane, and Umar, the next-door neighbour, also want it. Who has the right to take it?",
+              "options": ["Hasan, the co-owner", "Zaid, who shares the lane", "Umar, the neighbour", "All three share it"],
+              "answer": 0,
+              "source": "وليس للشريك في الطريق والشرب والجار شفعة مع الخليط",
+              "why": "While there is a co-owner, the lane partner and the neighbour have no pre-emption. Hasan comes first."
+            },
+            {
+              "kind": "teach",
+              "id": "passes",
+              "title": "If the first gives it up",
+              "ar": "فإن سلم فالشفعة للشريك في الطريق فإن سلم أخذها الجار",
+              "en": "If the co-owner gives up his right, it passes to the partner in the lane. If he gives it up too, the neighbour may take it."
+            },
+            {
+              "kind": "choose",
+              "id": "passes-case",
+              "ask": "In the same street, Hasan the co-owner says, \"I don't want it.\" Who may now take the house?",
+              "options": ["Zaid, who shares the lane", "Umar, the neighbour", "Nobody: the right has ended"],
+              "answer": 0,
+              "source": "فإن سلم فالشفعة للشريك في الطريق",
+              "why": "When the co-owner gives it up, the right passes to the partner in the lane. Only if he also gives it up does the neighbour get it."
+            },
+            {
+              "kind": "teach",
+              "id": "claim",
+              "title": "Claim it at once, with witnesses",
+              "ar": "وإذا علم الشفيع بالبيع أشهد في مجلسه ذلك على المطالبة ثم ينهض منه فيشهد على البائع إن كان المبيع في يده أو على المبتاع أو عند العقار",
+              "en": "The shafi' is the person with the right. As soon as he hears of the sale, he must say in front of witnesses, in that same sitting, that he claims it. Then he gets up and calls witnesses again, in front of the seller (if he still has the property), the buyer, or at the property itself."
+            },
+            {
+              "kind": "order",
+              "id": "steps",
+              "ask": "Put the steps of a pre-emption claim in order.",
+              "steps": ["The property is sold", "He hears of it and claims it before witnesses in that sitting", "He calls witnesses again before the seller, the buyer or at the property", "He takes it when the buyer hands it over or a judge rules"],
+              "source": ["والشفعة تجب بعقد البيع وتستقر بالإشهاد وتملك بالأخذ إذا سلمها المشتري أو حكم بها حاكم", "أشهد في مجلسه ذلك على المطالبة ثم ينهض منه فيشهد على البائع"],
+              "why": "The right comes with the sale, is made firm by the witnessing, and becomes ownership when he takes the property, by the buyer's handing it over or a judge's ruling."
+            },
+            {
+              "kind": "teach",
+              "id": "delay",
+              "title": "After that, waiting does not spoil it",
+              "ar": "فإذا فعل ذلك استقرت شفعته ولم تسقط بالتأخير عند أبي حنيفة وقال محمد: إن تركها شهرا بعد الإشهاد بطلت شفعته",
+              "en": "Once he has done this, his right is firm, and for Abu Hanifa delay does not end it. Note: Muhammad said that if he leaves it for a month after the witnessing, it ends."
+            },
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "Only land and buildings",
+              "ar": "والشفعة واجبة في العقار وإن كان مما لا يقسم ولا شفعة في العروض والسفن والمسلم والذمي في الشفعة سواء",
+              "en": "Pre-emption is only in real property ('aqar): land and buildings, even ones too small to divide. There is none in goods or ships. A Muslim and a dhimmi (a non-Muslim citizen of the Muslim state) have the same right."
+            },
+            {
+              "kind": "sort",
+              "id": "which",
+              "ask": "Is there pre-emption?",
+              "into": ["Pre-emption", "No pre-emption"],
+              "items": [
+                ["A house sold for 2000 dirhams", "Pre-emption"],
+                ["A small shop too small to divide", "Pre-emption"],
+                ["A ship sold at the harbour", "No pre-emption"],
+                ["A house given as a bride's mahr", "No pre-emption"],
+                ["A house handed over as the rent for another house", "No pre-emption"],
+                ["A house handed over in a settlement where the claim was admitted", "Pre-emption"]
+              ],
+              "source": ["وإذا ملك العقار بعوض هو مال وجبت فيه الشفعة", "ولا شفعة في الدار التي يتزوج", "أو يستأجر بها دارا", "فإن صالح عنها بإقرار وجبت فيها الشفعة", "ولا شفعة في العروض والسفن"],
+              "why": "Pre-emption comes when real property is taken in return for money or goods. A house used as mahr or as rent is not, and ships are not real property. The mahr is the gift a husband must give his bride."
+            },
+            {
+              "kind": "choose",
+              "id": "dhimmi-case",
+              "ask": "Yusuf, a Christian citizen of the Muslim state, is the only neighbour of a house that is sold to a Muslim. Does Yusuf have the right of pre-emption?",
+              "options": ["Yes: Muslim and dhimmi are equal in it", "No: only Muslims have it", "Only if the buyer agrees"],
+              "answer": 0,
+              "source": "والمسلم والذمي في الشفعة سواء",
+              "why": "A Muslim and a dhimmi are the same in pre-emption, so Yusuf has the neighbour's right."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "The co-owner comes before the neighbour", "right": true },
+                { "text": "The right is made firm by calling witnesses", "right": true },
+                { "text": "There is pre-emption in a ship" },
+                { "text": "A house given as mahr can be taken by pre-emption" },
+                { "text": "Pre-emption can be in land that cannot be divided", "right": true }
+              ],
+              "source": ["ثم للجار وليس للشريك في الطريق والشرب والجار شفعة مع الخليط", "وتستقر بالإشهاد", "ولا شفعة في العروض والسفن", "وإن كان مما لا يقسم"],
+              "why": "The co-owner comes first, witnessing makes the right firm, and it applies to land even when it cannot be divided. Ships and a house given as mahr are not included."
+            }
+          ]
+        },
+        {
+          "id": "shufa-claim",
+          "title": "Claiming before the judge, and losing the right",
+          "arabic": "وإذا تقدم الشفيع إلى القاضي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "court",
+              "title": "The judge checks his ownership first",
+              "ar": "وإذا تقدم الشفيع إلى القاضي فادعى الشراء وطلب الشفعة سأل القاضي المدعى عليه فإن اعترف بملكه الذي يشفع به وإلا كلفه إقامة البينة",
+              "en": "When the shafi' brings his claim to the judge, the judge first asks the buyer whether he accepts that the claimant owns the property that gives him the right (for example, the house next door). If not, the claimant must bring bayyina: proof by witnesses. If he cannot, the buyer swears an oath that he does not know it."
+            },
+            {
+              "kind": "order",
+              "id": "court-steps",
+              "ask": "Put the steps in court in order.",
+              "steps": ["The judge asks whether the claimant owns the property that gives him the right", "The judge asks the buyer whether he really bought it", "The judge rules for the claimant", "The claimant must bring the price"],
+              "source": ["سأل القاضي المدعى عليه فإن اعترف بملكه الذي يشفع به", "فإن نكل أو قامت بينه سأله القاضي: هل ابتاع أم لا؟", "فإذا قضى القاضي له بالشفعة لزمه إحضار الثمن"],
+              "why": "First his ownership is settled, then the purchase. Only after the judge rules must he bring the price."
+            },
+            {
+              "kind": "teach",
+              "id": "price",
+              "title": "The money comes after the ruling",
+              "ar": "وتجوز المنازعة في الشفعة وإن لم يحضر الشفيع الثمن إلى مجلس القاضي فإذا قضى القاضي له بالشفعة لزمه إحضار الثمن وللشفيع أن يرد الدار بخيار العيب والرؤية",
+              "en": "He may argue his claim even if he has not brought the price to court. Once the judge rules for him, he must bring it. Like a buyer, he may return the house for a defect, or because he had not seen it."
+            },
+            {
+              "kind": "choose",
+              "id": "money-case",
+              "ask": "Khalid goes to court to claim a house by pre-emption, but he has not brought the 3000 dirhams with him. Will the judge hear his claim?",
+              "options": ["Yes: he must bring the price only after the ruling", "No: he must bring the money first", "Only if he brings half"],
+              "answer": 0,
+              "source": "وتجوز المنازعة في الشفعة وإن لم يحضر الشفيع الثمن إلى مجلس القاضي",
+              "why": "The claim may be argued without the price in court. Once the judge rules for him, he must pay."
+            },
+            {
+              "kind": "teach",
+              "id": "seller",
+              "title": "When the seller still holds it",
+              "ar": "فإن أحضر الشفيع البائع والمبيع في يده فله أن يخاصمه في الشفعة ولا يسمع القاضي البينة حتى يحضر المشتري فيفسخ البيع بمشهد منه ويقضي بالشفعة على البائع ويجعل العهدة عليه",
+              "en": "If the seller still has the property, the shafi' may bring his case against him. But the judge will not hear the witnesses until the buyer is there too. Then he cancels the sale in front of him and gives the property to the shafi' from the seller, who becomes responsible to him for it."
+            },
+            {
+              "kind": "choose",
+              "id": "seller-case",
+              "ask": "The seller still lives in the house he sold. The shafi' brings him to court, but the buyer is abroad. Will the judge hear the witnesses now?",
+              "options": ["No: not until the buyer is present", "Yes: the seller holds the house", "Yes, and the buyer loses his money"],
+              "answer": 0,
+              "source": "ولا يسمع القاضي البينة حتى يحضر المشتري",
+              "why": "The judge waits for the buyer, because the sale to him must be cancelled in front of him."
+            },
+            {
+              "kind": "teach",
+              "id": "lose",
+              "title": "How the right is lost",
+              "ar": "وإذا ترك الشفيع الإشهاد حين علم وهو يقدر على ذلك بطلت شفعته وكذلك إن أشهد في المجلس ولم يشهد على أحد المتبايعين ولا عند العقار",
+              "en": "If he hears of the sale and does not call witnesses, though he could, his right is lost. It is also lost if he calls witnesses in the sitting but never does the second witnessing before the seller, the buyer or at the property."
+            },
+            {
+              "kind": "choose",
+              "id": "silent-case",
+              "ask": "Salim hears at dinner that his neighbour's house was sold. People are around who could act as witnesses, but he says nothing and goes home. A week later he claims it. Has he still got the right?",
+              "options": ["No: he did not call witnesses when he could", "Yes: he has a month", "Yes, if he pays more than the buyer"],
+              "answer": 0,
+              "source": "وإذا ترك الشفيع الإشهاد حين علم وهو يقدر على ذلك بطلت شفعته",
+              "why": "He knew and could call witnesses but did not, so his right was lost."
+            },
+            {
+              "kind": "choose",
+              "id": "paid-case",
+              "ask": "The buyer pays Salim 1000 dirhams to drop his claim, and Salim agrees. What happens?",
+              "options": ["His right ends and he must give the 1000 back", "His right ends and he keeps the 1000", "The deal is binding and his right stays"],
+              "answer": 0,
+              "source": "وإن صالح من شفعته على عوض أخذه بطلت شفعته ويرد العوض",
+              "why": "Selling the right for money ends the right, and the money must be returned."
+            },
+            {
+              "kind": "teach",
+              "id": "death",
+              "title": "Death, and selling his own house",
+              "ar": "وإذا مات الشفيع بطلت شفعته وإن مات المشتري لم تسقط وإن باع الشفيع ما يشفع به قبل أن يقضى له بالشفعة بطلت شفعته",
+              "en": "If the shafi' dies, the right ends. If the buyer dies, it does not. If the shafi' sells the property that gave him the right before the judge rules, the right ends."
+            },
+            {
+              "kind": "sort",
+              "id": "lost",
+              "ask": "Does he still have the right?",
+              "into": ["Still has it", "Lost or none"],
+              "items": [
+                ["The buyer dies", "Still has it"],
+                ["The shafi' dies", "Lost or none"],
+                ["He sells his own house before the ruling", "Lost or none"],
+                ["He was the seller's agent who made the sale", "Lost or none"],
+                ["He was the buyer's agent who made the purchase", "Still has it"],
+                ["The buyer bought with an option to cancel", "Still has it"]
+              ],
+              "source": ["وإن مات المشتري لم تسقط", "ووكيل البائع إذا باع وكان هو الشفيع فلا شفعة له وكذلك إن ضمن الدرك عن البائع", "ووكيل المشتري إذا ابتاع فله الشفعة", "ومن اشترى بشرط الخيار وجبت الشفعة"],
+              "why": "The buyer's death and the buyer's option do not stop it, and the buyer's agent keeps it. The seller's agent, a dead shafi', or one who sold his own house has none."
+            },
+            {
+              "kind": "choose",
+              "id": "option-case",
+              "ask": "Fahd sells his house with an option for himself to cancel within three days. The neighbour claims pre-emption on day one. Does he get it?",
+              "options": ["Not yet: only if Fahd drops his option", "Yes, straight away", "Never, even after the option ends"],
+              "answer": 0,
+              "source": "ومن باع بشرط الخيار فلا شفعة للشفيع فإن أسقط الخيار وجبت الشفعة",
+              "why": "While the seller keeps an option, there is no pre-emption. Once he drops it, the right comes."
+            }
+          ]
+        },
+        {
+          "id": "shufa-price",
+          "title": "Which price the shafi' pays",
+          "arabic": "وإذا اختلف الشفيع والمشتري في الثمن",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fasid",
+              "title": "A broken sale",
+              "ar": "ومن ابتاع دارا شراء فاسدا فلا شفعة لها ولكل واحد من المتعاقدين الفسخ فإن سقط الفسخ وجبت الشفعة",
+              "en": "A fasid sale is a defective one that should be undone. While either side can still cancel it, there is no pre-emption. Once that right to cancel is gone, pre-emption comes."
+            },
+            {
+              "kind": "teach",
+              "id": "wine",
+              "title": "A sale between dhimmis for wine",
+              "ar": "وإذا اشترى ذمي دارا بخمر أو خنزير وشفيعها ذمي أخذها بمثل الخمر وقيمة الخنزير",
+              "en": "Dhimmis may trade in wine and pigs among themselves. If a dhimmi buys a house with wine and the shafi' is a dhimmi, he pays the same amount of wine (or the value of the pig). If the shafi' is a Muslim, he pays the value of the wine and the pig in money."
+            },
+            {
+              "kind": "choose",
+              "id": "wine-case",
+              "ask": "A dhimmi buys a house for ten jars of wine. Its shafi' is a Muslim neighbour. What does he pay?",
+              "options": ["The value of the ten jars of wine", "Ten jars of wine", "Nothing: he cannot take it"],
+              "answer": 0,
+              "source": "وإن كان شفيعها مسلما أخذها",
+              "why": "A Muslim cannot pay with wine, so he pays its value."
+            },
+            {
+              "kind": "teach",
+              "id": "gift",
+              "title": "Gifts, and arguing over the price",
+              "ar": "ولا شفعة في الهبة إلا أن تكون بعوض مشروط وإذا اختلف الشفيع والمشتري في الثمن فالقول قول المشتري فإن أقاما البينة فالبينة بينة الشفيع عند أبي حنيفة ومحمد",
+              "en": "A gift (hiba) brings no pre-emption, unless something was agreed in return. If the shafi' and the buyer disagree about the price, the buyer's word is taken. If both bring witnesses, the shafi's witnesses win, for Abu Hanifa and Muhammad."
+            },
+            {
+              "kind": "choose",
+              "id": "dispute-case",
+              "ask": "The buyer says he paid 1200. The shafi' says it was 1000. Neither has witnesses. Whose word is taken?",
+              "options": ["The buyer's", "The shafi''s", "They meet halfway at 1100"],
+              "answer": 0,
+              "source": "وإذا اختلف الشفيع والمشتري في الثمن فالقول قول المشتري",
+              "why": "When they disagree about the price without proof, the buyer's word is accepted."
+            },
+            {
+              "kind": "choose",
+              "id": "seller-says",
+              "ask": "The seller says the price was 900, and the buyer says 1000. The seller has not been paid yet. What does the shafi' pay?",
+              "options": ["900, as the seller says", "1000, as the buyer says", "950"],
+              "answer": 0,
+              "source": ["وإذا ادعى المشتري ثمنا أكثر وادعى البائع أقل منه ولم يقبض الثمن أخذها الشفيع بما قال البائع وكان ذلك حطا عن المشتري", "وإن كان قبض الثمن بما قال المشتري ولم يلتفت إلى قول البائع"],
+              "why": "Before he is paid, the seller's lower figure counts, as if he had lowered the price. Had he already been paid, the buyer's figure would count."
+            },
+            {
+              "kind": "teach",
+              "id": "discount",
+              "title": "When the price changes",
+              "ar": "وإذا حط البائع عن المشتري بعض الثمن سقط ذلك عن الشفيع وإن حط جميع الثمن لم يسقط عن الشفيع وإذا زاد المشتري البائع في الثمن لم تلزم الزيادة الشفيع",
+              "en": "If the seller lets the buyer off part of the price, the shafi' is let off it too. If he lets him off all of it, the shafi' still pays the full price. If the buyer adds to the price, the shafi' does not pay the extra."
+            },
+            {
+              "kind": "choose",
+              "id": "discount-case",
+              "ask": "A house sells for 1000. Later the seller, out of kindness, lets the buyer off the whole price. What does the shafi' pay?",
+              "options": ["1000", "Nothing", "500"],
+              "answer": 0,
+              "source": "وإن حط جميع الثمن لم يسقط عن الشفيع",
+              "why": "Letting off the whole price does not reach the shafi'. He pays the 1000."
+            },
+            {
+              "kind": "teach",
+              "id": "many",
+              "title": "Several claimants, and paying in goods",
+              "ar": "وإذا جمع الشفعاء فالشفعة بينهم على عدد رؤوسهم ولا يعتبر اختلاف الأملاك ومن اشترى دارا بعرض أخذها الشفيع بقيمته وإن اشتراها بمكيل أو موزون أخذها بمثله",
+              "en": "When several people have the same right, they share it by heads, however different their shares are. If the house was bought with goods, the shafi' pays their value. If with something measured or weighed, like wheat, he pays the same amount of it."
+            },
+            {
+              "kind": "choose",
+              "id": "heads-case",
+              "ask": "A house has three owners. Amir owns half, Nadia a sixth, and the third owner sells his third. Amir and Nadia both claim it. How is it shared?",
+              "options": ["Equally between them", "Three to one, by their shares", "All of it to Amir"],
+              "answer": 0,
+              "source": "وإذا جمع الشفعاء فالشفعة بينهم على عدد رؤوسهم ولا يعتبر اختلاف الأملاك",
+              "why": "Pre-emption is shared by heads. The size of each owner's share does not count."
+            },
+            {
+              "kind": "choose",
+              "id": "wheat-case",
+              "ask": "Rami buys a house for 100 sacks of wheat. What does the shafi' pay?",
+              "options": ["100 sacks of wheat", "The value of the wheat in silver", "Whatever the house is worth"],
+              "answer": 0,
+              "source": "وإن اشتراها بمكيل أو موزون أخذها بمثله",
+              "why": "Wheat is measured, so the shafi' pays the same amount of it."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A gift with nothing in return brings no pre-emption", "right": true },
+                { "text": "A raise in the price after the sale binds the shafi'" },
+                { "text": "Several shafi's share by heads", "right": true },
+                { "text": "A house bought with a horse is taken for the horse's value", "right": true },
+                { "text": "A fasid sale brings pre-emption while it can still be cancelled" }
+              ],
+              "source": ["ولا شفعة في الهبة", "لم تلزم الزيادة الشفيع", "فالشفعة بينهم على عدد رؤوسهم", "أخذها الشفيع بقيمته", "فإن سقط الفسخ وجبت الشفعة"],
+              "why": "A plain gift brings no pre-emption, claimants share by heads, and goods are paid by value. A later raise does not bind the shafi', and a fasid sale brings the right only once it can no longer be cancelled."
+            }
+          ]
+        },
+        {
+          "id": "shufa-cases",
+          "title": "Tricky cases of pre-emption",
+          "arabic": "وإذا بلغ الشفيع أنها بيعت بألف",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "told",
+              "title": "Giving it up on wrong news",
+              "ar": "وإذا بلغ الشفيع أنها بيعت بألف فسلم ثم علم أنها بيعت بأقل أو بحنطة أو شعير قيمتها ألف أو أكثر فتسليمه باطل وله الشفعة وإن بان أنها بيعت بدنانير قيمتها ألف فلا شفعة له",
+              "en": "If he is told it sold for 1000 and gives up his right, then learns it was cheaper, or sold for wheat or barley worth 1000 or more, his giving up does not count and he keeps the right. If it turns out it sold for gold dinars worth 1000, he has no right."
+            },
+            {
+              "kind": "sort",
+              "id": "told-sort",
+              "ask": "He gave up his right after hearing \"It sold for 1000 dirhams\". Then he learns the truth. Does he still have the right?",
+              "into": ["Still has it", "No right"],
+              "items": [
+                ["It sold for 800 dirhams", "Still has it"],
+                ["It sold for wheat worth 1000", "Still has it"],
+                ["It sold for gold dinars worth 1000", "No right"],
+                ["The buyer was not the man he was told", "Still has it"]
+              ],
+              "source": ["فتسليمه باطل وله الشفعة", "وإن بان أنها بيعت بدنانير قيمتها ألف فلا شفعة له", "ثم علم أنه غيره فله الشفعة"],
+              "why": "A lower price, wheat or barley, or a different buyer makes his giving up void. Dinars worth the same 1000 do not."
+            },
+            {
+              "kind": "teach",
+              "id": "agent-strip",
+              "title": "Agents, and keeping a strip",
+              "ar": "ومن اشترى دارا لغيره فهو الخصم في الشفعة إلا أن يسلمها إلى الموكل وإذا باع دارا إلا مقدار ذراع في طول الحد يلي الشفيع فلا شفعة له",
+              "en": "If an agent bought the house for someone else, the shafi' brings his case against the agent until he hands it to the person he bought it for. If the seller keeps back a strip one cubit wide along the side next to the neighbour, the neighbour is no longer next to what was sold, so he has no right."
+            },
+            {
+              "kind": "choose",
+              "id": "two-step",
+              "ask": "Tariq buys a small share of a house for a price, and a month later buys the rest. The neighbour claims pre-emption. Which part may he take?",
+              "options": ["Only the first share", "Only the rest", "The whole house"],
+              "answer": 0,
+              "source": "منها سهما بثمن ثم ابتاع بقيتها فالشفعة للجار في السهم الأول دون الثاني",
+              "why": "The neighbour has the right in the first share only. For the second sale, Tariq was already a co-owner, so he comes before the neighbour."
+            },
+            {
+              "kind": "choose",
+              "id": "cloth-case",
+              "ask": "Nabil buys a house for 1000 dirhams, then gives the seller a cloth instead of the money. What does the shafi' pay?",
+              "options": ["1000 dirhams", "The value of the cloth", "A cloth like it"],
+              "answer": 0,
+              "source": "وإذا ابتاعها بثمن ثم دفع إليه ثوبا عنه فالشفعة بالثمن دون الثوب",
+              "why": "The shafi' pays the price of the sale, not what was later given in its place."
+            },
+            {
+              "kind": "teach",
+              "id": "trick",
+              "title": "Tricks to avoid pre-emption",
+              "ar": "ولا تكره الحيلة في إسقاط الشفعة عند أبي يوسف وقال محمد رحمه الله تكره",
+              "en": "A hila is a legal trick, such as keeping back that one-cubit strip. Note: Abu Yusuf said a trick to avoid pre-emption is not disliked, and Muhammad said it is disliked."
+            },
+            {
+              "kind": "teach",
+              "id": "build",
+              "title": "If the buyer has built on it",
+              "ar": "وإذا بنى المشتري أو غرس ثم قضي للشفيع بالشفعة فهو بالخيار: إن شاء أخذها بالثمن",
+              "en": "If the buyer has built or planted on it before the judge rules for the shafi', the shafi' chooses: take it for the price plus the value of the building or trees as if pulled down, or make the buyer pull them down. If the shafi' himself builds and then someone proves the land was theirs, he gets back the price but not the cost of his building."
+            },
+            {
+              "kind": "choose",
+              "id": "build-case",
+              "ask": "The buyer builds a garage on the land. Then the judge gives the land to the shafi'. What may the shafi' do?",
+              "options": ["Pay the price plus the garage's value as rubble, or make the buyer remove it", "Take the garage for free", "He loses his right because the land changed"],
+              "answer": 0,
+              "source": ["مقلوعا وإن شاء كلف المشتري قلعه", "وإذا أخذها الشفيع فبنى أو غرس ثم استحقت رجع بالثمن"],
+              "why": "He chooses between paying for the building at its pulled-down value and having the buyer pull it down."
+            },
+            {
+              "kind": "teach",
+              "id": "damage",
+              "title": "Damage before he takes it",
+              "ar": "وإذا انهدمت الدار أو احترق بناؤها أو جف شجر البستان بغير فعل أحد فالشفيع بالخيار: إن شاء أخذها بجميع الثمن وإن شاء ترك",
+              "en": "If the house falls down, burns, or the orchard dries up, with no one to blame, the shafi' may take it for the full price or leave it. If the buyer pulls the building down himself, the shafi' may take the bare land ('arsa) for its share of the price, but not the rubble."
+            },
+            {
+              "kind": "choose",
+              "id": "fire-case",
+              "ask": "Before the shafi' takes the house, lightning burns its building down. What can he do?",
+              "options": ["Take it for the full price, or leave it", "Take it for half the price", "Make the buyer rebuild it"],
+              "answer": 0,
+              "source": ["بغير فعل أحد فالشفيع بالخيار: إن شاء أخذها بجميع الثمن وإن شاء ترك", "وإن نقض المشتري البناء قيل للشفيع: إن شئت فخذ العرصة بحصتها وإن شئت فدع وليس له أن يأخذ النقض"],
+              "why": "When no one caused the damage, he takes it for the whole price or leaves it."
+            },
+            {
+              "kind": "teach",
+              "id": "later",
+              "title": "Price paid later",
+              "ar": "وإذا ابتاع بثمن مؤجل فالشفيع بالخيار: إن شاء أخذها بثمن حال وإن شاء صبر حتى ينقضي الأجل ثم يأخذها",
+              "en": "If the buyer bought with the price due later, the shafi' chooses: take it now and pay now, or wait until the due date and take it then."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Land sold with dates on its palms is taken with the dates", "right": true },
+                { "text": "The shafi' who never saw the house may return it after seeing it", "right": true },
+                { "text": "When partners divide land, their neighbour gets pre-emption" },
+                { "text": "If buyer and seller simply agree to undo the sale, the shafi' still has his right", "right": true },
+                { "text": "If the buyer bought on credit, the shafi' must pay at once" }
+              ],
+              "source": ["ومن ابتاع أرضا وعلى نخلها ثمر أخذها الشفيع بثمرها", "وإذا قضي للشفيع بالدار ولم يكن رآها فله خيار الرؤية", "وإذا قسم الشركاء العقار فلا شفعة لجارهم بالقسمة", "وإن ردها بغير قضاء أو تقاتلا فللشفيع الشفعة", "وإن شاء صبر حتى ينقضي الأجل ثم يأخذها"],
+              "why": "The dates go with the land, he has the option of seeing, and undoing the sale by agreement keeps his right. Dividing land between partners brings no pre-emption, and with a later price he may wait."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shirka",
+      "title": "Partnership",
+      "arabic": "الشركة",
+      "kitab": "كتاب الشركة",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "shirka-kinds",
+          "title": "Kinds of partnership, and full partnership",
+          "arabic": "الشركة على ضربين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Two kinds of partnership",
+              "ar": "الشركة على ضربين: شركة أملاك وشركة عقود",
+              "en": "Shirka means partnership. There are two kinds: a partnership of ownership, where people simply own something together, and a partnership of contract, where they agree to work together."
+            },
+            {
+              "kind": "teach",
+              "id": "mulk",
+              "title": "Owning something together",
+              "ar": "فشركة الأملاك: العين يرثها رجلان أو يشتريانها",
+              "en": "A partnership of ownership is a thing that two people inherit or buy together. Neither may deal with the other's share without his permission: in his partner's share, each is like a stranger."
+            },
+            {
+              "kind": "choose",
+              "id": "mulk-case",
+              "ask": "Two brothers inherit their father's car. One sells the whole car without asking the other. Was he allowed to sell his brother's half?",
+              "options": ["No: in his brother's share he is like a stranger", "Yes: brothers act for each other", "Yes, if he shares the money"],
+              "answer": 0,
+              "source": "إلا بإذنه وكل واحد منهما في نصيب صاحبه كالأجنبي",
+              "why": "Without his brother's permission he may not deal with his brother's half. In that share he is like a stranger."
+            },
+            {
+              "kind": "teach",
+              "id": "four",
+              "title": "Four contract partnerships",
+              "ar": "والضرب الثاني: شركة العقود وهي على أربعة أوجه: مفاوضة وعنان وشركة الصنائع وشركة الوجوه",
+              "en": "Contract partnerships come in four kinds: mufawada (full, equal partnership), 'inan (limited partnership), partnership in crafts (sana'i), and partnership on reputation (wujuh), where partners buy on credit using their good name."
+            },
+            {
+              "kind": "pick",
+              "id": "four-pick",
+              "ask": "Which are among the four contract partnerships?",
+              "options": [
+                { "text": "Mufawada, the full partnership", "right": true },
+                { "text": "'Inan, the limited partnership", "right": true },
+                { "text": "Partnership in crafts", "right": true },
+                { "text": "Partnership on reputation", "right": true },
+                { "text": "Two brothers inheriting a house" },
+                { "text": "Partnership in hunting" }
+              ],
+              "source": ["وهي على أربعة أوجه: مفاوضة وعنان وشركة الصنائع وشركة الوجوه", "ولا تجوز الشركة في الاحتطاب والاحتشاش والاصطياد"],
+              "why": "The four are mufawada, 'inan, crafts and reputation. Inheriting is a partnership of ownership, and hunting together is not a valid partnership at all."
+            },
+            {
+              "kind": "teach",
+              "id": "mufawada",
+              "title": "The full partnership",
+              "ar": "فيستويان في مالهما وتصرفهما ودينهما فتجوز بين الحرين المسلمين العاقلين البالغين",
+              "en": "In a mufawada, the two partners are equal in their wealth, in what they may do, and in their religion. So it is allowed between two free, sane, adult Muslims. It is made up of agency (wakala: each acts for the other) and surety (kafala: each stands behind the other's debts)."
+            },
+            {
+              "kind": "sort",
+              "id": "who-mufawada",
+              "ask": "Can these two make a mufawada?",
+              "into": ["Allowed", "Not allowed"],
+              "items": [
+                ["Two free, sane, adult Muslims", "Allowed"],
+                ["A free man and a slave, in al-Quduri's time", "Not allowed"],
+                ["A boy and an adult", "Not allowed"],
+                ["A Muslim and a non-Muslim", "Not allowed"]
+              ],
+              "source": ["فتجوز بين الحرين المسلمين العاقلين البالغين ولا تجوز بين الحر والمملوك ولا بين الصبي والبالغ ولا بين المسلم والكافر وتنعقد على الوكالة والكفالة"],
+              "why": "A mufawada needs the partners to be equal, so it is only between free, sane, adult Muslims."
+            },
+            {
+              "kind": "teach",
+              "id": "inherit",
+              "title": "What is shared, and what ends it",
+              "ar": "وما يشتريه كل واحد منهما يكون على الشركة إلا طعام أهله وكسوتهم",
+              "en": "Whatever either partner buys belongs to the partnership, except food and clothes for his family. Each also stands behind the other's business debts. If one of them inherits or is given money of a kind partnerships are made with, and it reaches his hand, the mufawada ends and becomes an 'inan."
+            },
+            {
+              "kind": "choose",
+              "id": "inherit-case",
+              "ask": "Umar and Saad are in a mufawada. Umar inherits 5000 dirhams from his uncle and receives them. What happens to the partnership?",
+              "options": ["It becomes an 'inan", "Nothing: the money joins the partnership", "It ends completely"],
+              "answer": 0,
+              "source": ["فإن ورث أحدهما مالا تصح فيه الشركة أو وهب له ووصل إلى يده بطلت المفاوضة وصارت الشركة عنانا", "وما يلزم كل واحد منهما من الديون بدلا عما يصح فيه الاشتراك فالآخر ضامن له"],
+              "why": "Now they are no longer equal in wealth, so the mufawada ends and the partnership becomes an 'inan."
+            },
+            {
+              "kind": "teach",
+              "id": "capital",
+              "title": "What the capital must be",
+              "ar": "ولا تنعقد الشركة إلا بالدراهم والدنانير والفلوس النافقة",
+              "en": "A partnership can only be made with dirhams (silver coins), dinars (gold coins) and fulus (copper coins) that are in use. Nothing else, unless people trade with it like money, such as unminted gold or silver."
+            },
+            {
+              "kind": "choose",
+              "id": "goods-case",
+              "ask": "Rashid has a shop full of cloth and Majid a store of rice. They want to start a partnership with these goods. What does al-Quduri say they do?",
+              "options": ["Each sells half his goods for half of the other's, then they make the partnership", "They simply add up the goods' value", "They cannot: goods can never be shared"],
+              "answer": 0,
+              "source": ["وإذا أرادا الشركة بالعروض باع كل واحد منهما نصف ماله بنصف مال الآخر ثم عقدا الشركة", "ولا يجوز بما سوى ذلك إلا أن يتعامل الناس بها كالتبر والنقرة فتصح الشركة بهما"],
+              "why": "Goods cannot be the capital, so each first sells half of his goods for half of the other's. Then they own everything together and make the partnership."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A full partner's purchases belong to the partnership, except his family's food and clothes", "right": true },
+                { "text": "Fulus in use can be partnership capital", "right": true },
+                { "text": "A mufawada is allowed between a boy and an adult" },
+                { "text": "In an inherited house, each brother may sell the other's share" },
+                { "text": "There are four kinds of contract partnership", "right": true }
+              ],
+              "source": ["إلا طعام أهله وكسوتهم", "والفلوس النافقة", "ولا بين الصبي والبالغ", "كالأجنبي", "وهي على أربعة أوجه"],
+              "why": "Purchases go to the partnership except the family's needs, fulus in use are valid capital, and there are four contract kinds. A boy and an adult are not equal, and a co-heir is a stranger in the other's share."
+            }
+          ]
+        },
+        {
+          "id": "shirka-inan",
+          "title": "The limited partnership ('inan)",
+          "arabic": "وأما الشركة العنان",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "inan",
+              "title": "Agency, but not surety",
+              "ar": "وأما الشركة العنان: فتنعقد على الوكالة دون الكفالة ويصح التفاضل في المال ويصح أن يتساويا في المال ويتفاضلا في الربح",
+              "en": "An 'inan partnership is made up of agency only: each partner acts for the other, but does not stand behind his debts. The partners may put in different amounts, and may put in the same amount but agree on different shares of the profit."
+            },
+            {
+              "kind": "choose",
+              "id": "share-case",
+              "ask": "Adam puts 6000 dirhams into an 'inan, and Bilal 4000. They agree to split the profit half and half. Is that allowed?",
+              "options": ["Yes", "No: profit must follow the money", "Only if Bilal works harder"],
+              "answer": 0,
+              "source": "ويصح التفاضل في المال ويصح أن يتساويا في المال ويتفاضلا في الربح",
+              "why": "In an 'inan the money may differ, and the profit shares may be set apart from the money."
+            },
+            {
+              "kind": "teach",
+              "id": "part",
+              "title": "Part of their money, any currency",
+              "ar": "ويجوز أن يعقدها كل واحد منهما ببعض ماله دون بعض ولا تصح إلا بما بينا أن المفاوضة تصح به ويجوز أن يشتركا ومن جهة أحدهما دراهم ومن جهة الآخر دنانير",
+              "en": "Each partner may put in only part of his money. The capital must be what a mufawada is made with: dirhams, dinars or fulus in use. One may bring dirhams and the other dinars."
+            },
+            {
+              "kind": "teach",
+              "id": "buyer",
+              "title": "Who pays the seller",
+              "ar": "وما اشتراه كل واحد منهما للشركة طولب بثمنه دون الآخر ثم يرجع على شريكه بحصته منه",
+              "en": "When one partner buys something for the partnership, the seller asks only him for the price. Then he claims his partner's share of it from his partner."
+            },
+            {
+              "kind": "choose",
+              "id": "buyer-case",
+              "ask": "In an 'inan, Zaid buys stock for the partnership for 2000. The seller goes to Zaid's partner Hamid for the money. Must Hamid pay the seller?",
+              "options": ["No: the seller asks only Zaid, who then claims Hamid's share", "Yes: both owe the seller", "Yes, all 2000"],
+              "answer": 0,
+              "source": "وما اشتراه كل واحد منهما للشركة طولب بثمنه دون الآخر",
+              "why": "An 'inan has agency but no surety. Only the partner who bought is asked for the price. He then claims his partner's share."
+            },
+            {
+              "kind": "teach",
+              "id": "lost",
+              "title": "If the money is lost",
+              "ar": "وإذا هلك مال الشركة أو أحد المالين قبل أن يشتريا شيئا بطلت الشركة وإن اشترى أحدهما بماله وهلك مال الآخر قبل الشراء فالمشترى بينهما على ما شرطا ويرجع على شريكه بحصته من ثمنه",
+              "en": "If the partnership money, or one partner's money, is lost before they buy anything, the partnership ends. But if one has already bought with his money and then the other's money is lost, what he bought is shared as agreed, and he claims his partner's share of the price."
+            },
+            {
+              "kind": "choose",
+              "id": "stolen-case",
+              "ask": "Adam and Bilal agree an 'inan. Before they buy anything, Bilal's money is stolen. What happens?",
+              "options": ["The partnership ends", "Adam must share his money with Bilal", "Bilal owes Adam half"],
+              "answer": 0,
+              "source": "وإذا هلك مال الشركة أو أحد المالين قبل أن يشتريا شيئا بطلت الشركة",
+              "why": "One partner's money was lost before any purchase, so the partnership ends."
+            },
+            {
+              "kind": "choose",
+              "id": "bought-case",
+              "ask": "This time Adam has already bought goods with his 6000. Then Bilal's money is stolen. Who owns the goods?",
+              "options": ["Both, as they agreed, and Adam claims Bilal's share of the price", "Adam alone", "Nobody until Bilal pays"],
+              "answer": 0,
+              "source": "فالمشترى بينهما على ما شرطا ويرجع على شريكه بحصته من ثمنه",
+              "why": "The purchase was made for the partnership before the loss, so it is shared as agreed. Adam claims Bilal's share of what he paid."
+            },
+            {
+              "kind": "teach",
+              "id": "mix",
+              "title": "No need to mix, no fixed sums",
+              "ar": "وتجوز الشركة وإن لم يخلطا المالين ولا تصح الشركة إذا شرطا لأحدهما",
+              "en": "The partners do not need to mix their money together. But the partnership is not valid if one of them is promised a fixed number of dirhams from the profit (for example, \"the first 100 dirhams are mine\")."
+            },
+            {
+              "kind": "choose",
+              "id": "mix-gap",
+              "ask": "Complete al-Quduri's words.",
+              "ar": "وتجوز الشركة وإن لم ____ المالين",
+              "options": ["يخلطا", "يقبضا", "يكتبا"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وتجوز الشركة وإن لم يخلطا المالين",
+              "why": "يخلطا: the partnership is valid even if they have not mixed their money."
+            },
+            {
+              "kind": "teach",
+              "id": "powers",
+              "title": "What a partner may do",
+              "ar": "ولكل واحد من المتفاوضين وشريكي العنان أن يبضع المال ويدفعه مضاربة ويوكل من يتصرف فيه ويده في المال يد أمانة",
+              "en": "A partner in either kind may hand money to someone to trade for free (ibda'), give it out in mudaraba (profit-sharing), or appoint an agent to deal with it. The money is a trust (amana) in his hand: he does not pay for it if it is lost without his fault."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true of an 'inan?",
+              "options": [
+                { "text": "Each partner stands behind the other's debts" },
+                { "text": "One partner may bring dirhams and the other dinars", "right": true },
+                { "text": "They may agree \"the first 100 dirhams of profit are mine\"" },
+                { "text": "A partner may appoint an agent to deal with the money", "right": true },
+                { "text": "The money is a trust in each partner's hand", "right": true }
+              ],
+              "source": ["فتنعقد على الوكالة دون الكفالة", "ومن جهة أحدهما دراهم ومن جهة الآخر دنانير", "ولا تصح الشركة إذا شرطا لأحدهما", "ويوكل من يتصرف فيه ويده في المال يد أمانة"],
+              "why": "An 'inan has agency but no surety, and a fixed sum from the profit makes it invalid. Mixed currencies, appointing agents and holding the money as a trust are all fine."
+            }
+          ]
+        },
+        {
+          "id": "shirka-work",
+          "title": "Partnerships in work, and when they fail",
+          "arabic": "وأما شركة الصنائع",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "crafts",
+              "title": "Partners in a craft",
+              "ar": "وأما شركة الصنائع فالخياطان والصباغان يشتركان على أن يتقبلا الأعمال",
+              "en": "In a crafts partnership, two tailors or two dyers agree to take on jobs and share what they earn. This is allowed. A job either of them takes on binds him and his partner."
+            },
+            {
+              "kind": "choose",
+              "id": "crafts-case",
+              "ask": "Two tailors are partners. This month only Musa did any sewing, while Isa was ill. They earned 400. How is it split?",
+              "options": ["200 each", "400 to Musa", "300 to Musa and 100 to Isa"],
+              "answer": 0,
+              "source": ["فإن عمل أحدهما دون الآخر فالكسب بينهما نصفان", "وما يتقبله كل واحد منهما من العمل يلزمه ويلزم شريكه"],
+              "why": "If one works and the other does not, the earnings are still half and half."
+            },
+            {
+              "kind": "teach",
+              "id": "wujuh",
+              "title": "Partners on reputation",
+              "ar": "وأما شركة الوجوه: فالرجلان يشتركان ولا مال لهما على أن يشتريا بوجوههما ويبيعا فتصح الشركة على هذا وكل واحد منهما وكيل الآخر فيما يشتريه",
+              "en": "In a wujuh partnership, two people with no money agree to buy on credit, trusting in their good name, and then sell. This is valid, and each is the other's agent in what he buys."
+            },
+            {
+              "kind": "choose",
+              "id": "wujuh-case",
+              "ask": "Two traders with no money buy on credit together. They agree the goods are theirs half and half, but the profit 70 to 30. Is the profit split allowed?",
+              "options": ["No: the profit must be half and half too", "Yes: they agreed it", "Yes, if the one with 70 does the selling"],
+              "answer": 0,
+              "source": "فإن شرطا أن يكون المشتري بينهما نصفين فالربح كذلك ولا يجوز أن يتفاضلا فيه",
+              "why": "In a wujuh partnership, the profit follows their shares in the goods. Half the goods means half the profit."
+            },
+            {
+              "kind": "teach",
+              "id": "gather",
+              "title": "Gathering and hunting",
+              "ar": "ولا تجوز الشركة في الاحتطاب والاحتشاش والاصطياد وما اصطاده كل واحد منهما أو احتطبه فهو له دون صاحبه",
+              "en": "There is no partnership in gathering firewood, cutting grass, or hunting. Whatever each one hunts or gathers is his alone."
+            },
+            {
+              "kind": "choose",
+              "id": "wood-case",
+              "ask": "Sami and Tariq agree to gather firewood and split it. Sami gathers 30 bundles and Tariq 10. Who owns what?",
+              "options": ["Sami 30, Tariq 10", "20 each", "Sami 20, Tariq 20, after selling"],
+              "answer": 0,
+              "source": "وما اصطاده كل واحد منهما أو احتطبه فهو له دون صاحبه",
+              "why": "A partnership in gathering is not valid, so each keeps what he gathered."
+            },
+            {
+              "kind": "teach",
+              "id": "mule",
+              "title": "The mule and the waterskin",
+              "ar": "وإذا اشتركا ولأحدهما بغل وللآخر رواية يستقي عليها الماء والكسب بينهما لم تصح الشركة والكسب كله للذي استقى",
+              "en": "One man has a mule and the other a big waterskin, and they agree to carry water for sale and share the earnings. This partnership is not valid. All the earnings go to whoever carried the water, and he pays the other a fair rent for his mule or skin. In any invalid (fasid) partnership, profit follows the money put in, and any other split is void."
+            },
+            {
+              "kind": "choose",
+              "id": "mule-case",
+              "ask": "The mule owner did all the carrying and earned 90 dirhams. What happens?",
+              "options": ["He keeps the 90 and pays a fair rent for the waterskin", "They split the 90 half and half", "The skin owner gets the 90"],
+              "answer": 0,
+              "source": ["والكسب كله للذي استقى وعليه أجر مثل الراوية إن كان صاحب البغل", "وكل شركة فاسدة فالربح فيها على قدر المال ويبطل شرط التفاضل"],
+              "why": "The partnership is invalid, so the earnings go to the one who carried the water, and he owes a fair rent for the skin."
+            },
+            {
+              "kind": "teach",
+              "id": "end",
+              "title": "When a partnership ends, and zakat",
+              "ar": "وإذا مات أحد الشريكين أو ارتد ولحق بدار الحرب بطلت الشركة وليس لواحد من الشركين أن يؤدي زكاة مال الأخر إلا بإذنه",
+              "en": "A partnership ends if a partner dies, or leaves Islam and joins the enemy's land (dar al-harb). Zakat is the yearly charity due on wealth. One partner may not pay the other's zakat without his permission."
+            },
+            {
+              "kind": "choose",
+              "id": "zakat-case",
+              "ask": "Partners Ali and Yasir each allow the other to pay his zakat. Ali pays Yasir's zakat, and then Yasir, not knowing, pays Ali's. Who has to make good what he paid?",
+              "options": ["Yasir, the second to pay, whether he knew or not", "Ali, the first to pay", "Neither"],
+              "answer": 0,
+              "source": "فإن أذن كل واحد منهما لصاحبه أن يؤدي زكاته فأدى كل واحد منهما فالثاني ضامن علم بأداء الأول أو لم يعلم",
+              "why": "When both pay, the second is liable, whether or not he knew the first had paid."
+            },
+            {
+              "kind": "sort",
+              "id": "valid",
+              "ask": "Is the partnership valid?",
+              "into": ["Valid", "Not valid"],
+              "items": [
+                ["Two dyers sharing jobs", "Valid"],
+                ["Two people buying on credit on their good name", "Valid"],
+                ["Two hunters sharing their catch", "Not valid"],
+                ["A mule owner and a waterskin owner carrying water", "Not valid"],
+                ["Two people cutting grass to sell together", "Not valid"]
+              ],
+              "source": ["فالخياطان والصباغان يشتركان على أن يتقبلا الأعمال", "فتصح الشركة على هذا", "ولا تجوز الشركة في الاحتطاب والاحتشاش والاصطياد", "لم تصح الشركة"],
+              "why": "Crafts and reputation partnerships are valid. Hunting, gathering and the mule-and-waterskin deal are not."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A job one craftsman takes on binds his partner too", "right": true },
+                { "text": "In an invalid partnership, profit follows the money put in", "right": true },
+                { "text": "A partnership carries on after one partner dies" },
+                { "text": "A partner may pay the other's zakat without asking" },
+                { "text": "Each wujuh partner is the other's agent", "right": true }
+              ],
+              "source": ["يلزمه ويلزم شريكه", "فالربح فيها على قدر المال", "وإذا مات أحد الشريكين", "إلا بإذنه", "وكل واحد منهما وكيل الآخر فيما يشتريه"],
+              "why": "A job binds both craftsmen, invalid partnerships split profit by money, and wujuh partners are each other's agents. Death ends a partnership, and zakat needs permission."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mudaraba",
+      "title": "Profit-sharing",
+      "arabic": "المضاربة",
+      "kitab": "كتاب المضاربة",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "mudaraba-terms",
+          "title": "Profit-sharing: the terms",
+          "arabic": "المضاربة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "Money from one, work from the other",
+              "ar": "المضاربة: عقد على الشركة بمال من أحد الشريكين وعمل من الآخر",
+              "en": "Mudaraba is a partnership where one side gives the money and the other does the work. The one with the money is the rabb al-mal (owner of the capital). The one who trades with it is the mudarib (the worker)."
+            },
+            {
+              "kind": "teach",
+              "id": "terms",
+              "title": "A share of the profit, and the money handed over",
+              "ar": "ومن شرطها: أن يكون الربح بينهما مشاعا لا يستحق أحدهما منه دراهم مسماة ولا بد أن يكون المال مسلما إلى المضارب",
+              "en": "The capital must be what a partnership is made with: dirhams, dinars or fulus in use. The profit must be shared as a portion (a half, a third...), never a fixed number of dirhams for one side. And the money must be handed over to the worker, with the owner keeping no hold on it."
+            },
+            {
+              "kind": "choose",
+              "id": "fixed-case",
+              "ask": "Hashim gives Nasir 10,000 dirhams to trade with and says, \"You get 500 dirhams of whatever profit there is.\" Is this a valid mudaraba?",
+              "options": ["No: the profit must be shared as a portion, not a fixed sum", "Yes: Nasir agreed", "Yes, if the profit is more than 500"],
+              "answer": 0,
+              "source": "لا يستحق أحدهما منه دراهم مسماة",
+              "why": "Neither side may be owed a fixed number of dirhams from the profit. It must be a share like a half or a third."
+            },
+            {
+              "kind": "choose",
+              "id": "share-gap",
+              "ask": "Complete al-Quduri's condition for the profit.",
+              "ar": "أن يكون الربح بينهما ____",
+              "options": ["مشاعا", "مضمونا", "معجلا"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "أن يكون الربح بينهما مشاعا",
+              "why": "مشاعا: the profit is shared between them as a portion of the whole."
+            },
+            {
+              "kind": "teach",
+              "id": "open",
+              "title": "What the worker may do",
+              "ar": "فإذا صحت المضاربة مطلقة جاز للمضارب أن يشتري ويبيع ويسافر ويبضع ويوكل وليس له أن يدفع المال مضاربة إلا أن يأذن له رب المال في ذلك",
+              "en": "In an open (mutlaqa) mudaraba, with no limits set, the worker may buy, sell, travel, hand money to someone to trade for free, and appoint agents. But he may not give the money to another worker in mudaraba unless the owner allows it. The capital must be money a partnership can be made with."
+            },
+            {
+              "kind": "pick",
+              "id": "open-pick",
+              "ask": "In an open mudaraba, which may the worker do without asking?",
+              "options": [
+                { "text": "Buy and sell", "right": true },
+                { "text": "Travel with the money", "right": true },
+                { "text": "Appoint an agent", "right": true },
+                { "text": "Give the money to another worker in mudaraba" },
+                { "text": "Marry off a slave from the mudaraba money, in al-Quduri's time" }
+              ],
+              "source": ["جاز للمضارب أن يشتري ويبيع ويسافر ويبضع ويوكل", "ولا تصح المضاربة إلا بالمال الذي بيننا أن الشركة تصح به", "ولا يزوج عبدا ولا أمة من مال المضاربة"],
+              "why": "He may buy, sell, travel and appoint agents. A second mudaraba needs the owner's permission, and he may not marry off a slave from the money."
+            },
+            {
+              "kind": "teach",
+              "id": "limits",
+              "title": "When the owner sets limits",
+              "ar": "وإن خص له رب المال التصرف في بلد بعينه أو في سلعة بعينها لم يجز له أن يتجاوز ذلك",
+              "en": "If the owner limits him to one town or one kind of goods, he may not go beyond it. The owner may also set a time limit, and the contract ends when it runs out."
+            },
+            {
+              "kind": "choose",
+              "id": "town-case",
+              "ask": "Hashim tells Nasir, \"Trade with this money in Kufa only.\" Nasir finds a better deal in Basra. May he trade there?",
+              "options": ["No: he may not go beyond the town named", "Yes, if it makes more profit", "Yes, but only once"],
+              "answer": 0,
+              "source": ["لم يجز له أن يتجاوز ذلك", "وكذلك إن وقت للمضاربة مدة بعينها جاز وبطل العقد بمضيها"],
+              "why": "When the owner names a town, the worker must stay within it."
+            },
+            {
+              "kind": "teach",
+              "id": "relatives",
+              "title": "Buying the owner's relatives",
+              "ar": "وليس للمضارب أن يشتري أبا رب المال ولا ابنه ولا من يعتق عليه فإن اشتراهم كان مشتريا لنفسه دون المضاربة",
+              "en": "In al-Quduri's time there were slaves, and a person who came to own his own father or son set them free at once. So the worker may not buy, with mudaraba money, the owner's father, son, or anyone who would be freed on him. If he does, it counts as his own purchase, not the mudaraba's."
+            },
+            {
+              "kind": "teach",
+              "id": "own-relative",
+              "title": "Buying his own relative",
+              "ar": "وإن لم يكن في المال ربح جاز أن يشتريهم فإن زادت قيمتهم عتق نصيبه منهم ولم يضمن لرب المال شيئا ويسعى المعتق لرب المال في قيمة نصيبه منه",
+              "en": "The worker's own relatives are different. If there is profit, he may not buy them, and if he does, he must pay back the mudaraba money. If there is no profit, he may. If their value then rises, his share of them is set free, he owes the owner nothing, and the freed person works to pay the owner the value of the owner's share."
+            },
+            {
+              "kind": "choose",
+              "id": "father-case",
+              "ask": "In al-Quduri's time, a worker uses mudaraba money to buy the owner's father, who is a slave. Whose purchase is it?",
+              "options": ["The worker's own, not the mudaraba's", "The mudaraba's", "The father's"],
+              "answer": 0,
+              "source": "فإن اشتراهم كان مشتريا لنفسه دون المضاربة",
+              "why": "He may not buy the owner's father with mudaraba money. If he does, it counts as bought for himself."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "One side gives the money and the other the work", "right": true },
+                { "text": "The owner may set a time limit for the mudaraba", "right": true },
+                { "text": "The worker may be promised a fixed 300 dirhams of profit" },
+                { "text": "A worker limited to selling cloth may sell horses too" },
+                { "text": "The money must be handed to the worker", "right": true }
+              ],
+              "source": ["بمال من أحد الشريكين وعمل من الآخر", "وكذلك إن وقت للمضاربة مدة بعينها جاز", "لا يستحق أحدهما منه دراهم مسماة", "أو في سلعة بعينها لم يجز له أن يتجاوز ذلك", "ولا بد أن يكون المال مسلما إلى المضارب"],
+              "why": "Money from one, work from the other, a possible time limit, and the money handed over. Fixed sums are not allowed, and limits on goods must be kept."
+            }
+          ]
+        },
+        {
+          "id": "mudaraba-shares",
+          "title": "Passing it on, ending it, and losses",
+          "arabic": "وإذا دفع المضارب المال مضاربة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "pass",
+              "title": "Passing the money on without permission",
+              "ar": "وإذا دفع المضارب المال مضاربة ولم يأذن له رب المال في ذلك لم يضمن بالدفع ولا بتصرف المضارب الثاني حتى يربح فإذا ربح ضمن المضارب الأول المال",
+              "en": "If the worker gives the money to a second worker without the owner's permission, he is not liable just for handing it over, nor for the second worker's trading, until the second worker makes a profit. Once there is profit, the first worker is liable for the money."
+            },
+            {
+              "kind": "choose",
+              "id": "pass-case",
+              "ask": "Nasir passes Hashim's money to Jamal without permission. Jamal trades and makes a profit. Who is now liable to Hashim for the money?",
+              "options": ["Nasir, the first worker", "Nobody", "Hashim himself"],
+              "answer": 0,
+              "source": "فإذا ربح ضمن المضارب الأول المال",
+              "why": "Once the second worker makes a profit, the first worker becomes liable for the money."
+            },
+            {
+              "kind": "teach",
+              "id": "split",
+              "title": "Shares when the owner allows it",
+              "ar": "وإذا دفع إليه المال مضاربة بالنصف فأذن له أن يدفعها مضاربة فدفعها بالثلث فإن كان رب المال قال له على أن رزق الله بيننا نصفان فلرب المال نصف الربح وللمضارب الثاني ثلث الربح وللأول السدس",
+              "en": "The owner gives money for half the profit and allows a second mudaraba, and the first worker gives it on for a third. If the owner had said, \"Whatever God provides is half and half between us,\" the owner takes a half, the second worker a third, and the first worker the rest: a sixth."
+            },
+            {
+              "kind": "choose",
+              "id": "split-case",
+              "ask": "In that case the profit is 600 dirhams. How much does the first worker get?",
+              "options": ["100", "200", "300"],
+              "answer": 0,
+              "source": "فلرب المال نصف الربح وللمضارب الثاني ثلث الربح وللأول السدس",
+              "why": "The owner takes half (300), the second worker a third (200), and the first worker a sixth: 100."
+            },
+            {
+              "kind": "choose",
+              "id": "yours-case",
+              "ask": "Now the owner had said, \"Whatever God provides YOU is half and half between us.\" The profit is 600. How much does the owner get?",
+              "options": ["200", "300", "100"],
+              "answer": 0,
+              "source": "وإن قال على أن ما رزقك الله بيننا نصفان فللمضارب الثاني الثلث وما بقي بين رب المال والمضارب الأول نصفان",
+              "why": "The second worker takes his third (200). The 400 left is what the first worker got, and it is split half and half: 200 to the owner."
+            },
+            {
+              "kind": "teach",
+              "id": "half",
+              "title": "When the owner said \"half is mine\"",
+              "ar": "فإن قال له على أن ما رزق الله فلي نصفه فدفع المال إلى آخر مضاربة بالنصف فللمضارب الثاني نصف الربح ولرب المال النصف ولا شيء للمضارب الأول",
+              "en": "If the owner said, \"Half of what God provides is mine,\" and the first worker gives it on for half, the second worker takes half, the owner half, and the first worker nothing. If he promised the second worker two-thirds, the owner still takes half, the second worker half, and the first worker pays the second the missing sixth from his own money."
+            },
+            {
+              "kind": "teach",
+              "id": "end",
+              "title": "What ends a mudaraba",
+              "ar": "وإذا مات رب المال أو المضارب بطلت المضاربة وإن ارتد رب المال عن الإسلام ولحق بدار الحرب بطلت المضاربة",
+              "en": "A mudaraba ends if the owner or the worker dies, or if the owner leaves Islam and joins the enemy's land."
+            },
+            {
+              "kind": "sort",
+              "id": "fired",
+              "ask": "The owner has dismissed the worker. May the worker still do this?",
+              "into": ["Allowed", "Not allowed"],
+              "items": [
+                ["Trade before he hears he was dismissed", "Allowed"],
+                ["Sell goods he already holds, after hearing", "Allowed"],
+                ["Buy new goods with the price of those goods", "Not allowed"],
+                ["Trade with capital that is already cash, after hearing", "Not allowed"]
+              ],
+              "source": ["وإذا عزل رب المال المضارب ولم يعلم بعزله حتى اشترى وباع فتصرفه جائز وإن علم بعزله والمال عروض فله أن يبيعها ولا يمنعه العزل من ذلك ثم لا يجوز أن يشتري بثمنها شيئا آخر", "وإن عزله ورأس المال دراهم أو دنانير قد نصت فليس له أن يتصرف فيه"],
+              "why": "Until he knows, his dealings are valid. After he knows, he may turn goods into cash but buy nothing new, and cash he may not touch."
+            },
+            {
+              "kind": "teach",
+              "id": "debts",
+              "title": "Collecting debts at the end",
+              "ar": "وإذا افترقا وفي المال ديون وقد ربح المضارب فيه أجبره الحاكم على اقتضاء الديون وإن لم يكن له ربح لم يلزمه الاقتضاء ويقال له: وكل رب المال في الاقتضاء",
+              "en": "If they part while money is still owed to the business, and the worker has made a profit, the judge makes him collect the debts. If there is no profit, he does not have to, but he is told to make the owner his agent to collect them."
+            },
+            {
+              "kind": "teach",
+              "id": "loss",
+              "title": "Losses come out of profit first",
+              "ar": "وما هلك من مال المضاربة فهو من الربح دون رأس المال فإن زاد الهالك على الربح فلا ضمان على المضارب فيه",
+              "en": "Whatever is lost comes out of the profit first, not the capital. If the loss is more than the profit, the worker does not pay for it. If they shared out the profit while the mudaraba was still running and then money was lost, they give the profit back until the owner has his capital again."
+            },
+            {
+              "kind": "choose",
+              "id": "loss-case",
+              "ask": "The capital is 1000. Nasir makes 200 profit, and then 300 is lost. What is the result?",
+              "options": ["The 200 profit is gone, the capital is down to 900, and Nasir owes nothing", "Nasir must pay back the 300", "The owner loses 300 of his capital and Nasir keeps 100"],
+              "answer": 0,
+              "source": ["وما هلك من مال المضاربة فهو من الربح دون رأس المال فإن زاد الهالك على الربح فلا ضمان على المضارب فيه", "وإن عجز عن رأس المال لم يضمن المضارب"],
+              "why": "The loss first eats the 200 profit. The other 100 comes off the capital, and the worker owes nothing for it."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "The worker may sell for cash or on credit", "right": true },
+                { "text": "A mudaraba ends when the worker dies", "right": true },
+                { "text": "Profit shared out mid-way is given back if the capital is later lost", "right": true },
+                { "text": "The worker is liable for any loss bigger than the profit" },
+                { "text": "Profit split after the mudaraba was ended and made again is given back" }
+              ],
+              "source": ["ويجوز للمضارب أن يبيع بالنقد والسيئة", "وإذا مات رب المال أو المضارب بطلت المضاربة", "وإن كانا قد اقتسما الربح والمضاربة بحالها ثم هلك المال أو بعضه ترادا الربح حتى يستوفي رب المال رأس المال", "وإن كانا قد اقتسما الربح وفسخا المضاربة ثم عقداها فهلك المال لم يترادا الربح الأول"],
+              "why": "He may sell for cash or credit, death ends it, and profit shared mid-way goes back to cover lost capital. He is not liable beyond the profit, and profit from an earlier, ended mudaraba stays shared."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wakala",
+      "title": "Agency",
+      "arabic": "الوكالة",
+      "kitab": "كتاب الوكالة",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "wakala-basics",
+          "title": "Appointing an agent",
+          "arabic": "الوكالة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "any",
+              "title": "What you can do, an agent can do",
+              "ar": "كل عقد جاز أن يعقده الإنسان بنفسه جاز أن يوكل به غيره ويجوز التوكيل بالخصومة في سائر الحقوق وبإثباتها",
+              "en": "Wakala is agency: appointing someone to act for you. The one who appoints is the muwakkil (principal). The one appointed is the wakil (agent). Any contract you may make yourself, you may appoint someone else to make. You may also appoint an agent to argue a case for you in court (khusuma) and to prove your rights."
+            },
+            {
+              "kind": "choose",
+              "id": "any-gap",
+              "ask": "Complete al-Quduri's rule.",
+              "ar": "كل عقد جاز أن يعقده الإنسان ____ جاز أن يوكل به غيره",
+              "options": ["بنفسه", "بماله", "بإذن القاضي"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "كل عقد جاز أن يعقده الإنسان بنفسه جاز أن يوكل به غيره",
+              "why": "بنفسه: whatever contract a person may make himself, he may appoint another to make."
+            },
+            {
+              "kind": "teach",
+              "id": "collect",
+              "title": "Collecting rights, except punishments",
+              "ar": "ويجوز التوكيل بالاستيفاء إلا في الحدود والقصاص فإن الوكالة لا تصح باستيفائهما مع غيبة الموكل عن المجلس",
+              "en": "You may appoint an agent to collect what you are owed. But for hadd punishments (fixed punishments set by the Sharia) and qisas (retaliation for an injury or killing), an agent cannot carry them out while the principal is away from the place."
+            },
+            {
+              "kind": "choose",
+              "id": "qisas-case",
+              "ask": "A man has a right of qisas against someone. He asks an agent to see it carried out while he himself stays in another city. Is the agency valid?",
+              "options": ["No: not while the principal is away", "Yes: any right can be collected by an agent", "Yes, if a judge is there"],
+              "answer": 0,
+              "source": "فإن الوكالة لا تصح باستيفائهما مع غيبة الموكل عن المجلس",
+              "why": "An agent may not carry out hadd or qisas while the principal is absent."
+            },
+            {
+              "kind": "teach",
+              "id": "consent",
+              "title": "An agent in court: the opponent's consent",
+              "ar": "وقال أبو حنيفة: لا يجوز التوكيل بالخصومة إلا برضا الخصم إلا أن يكون الموكل مريضا أو غائبا مسيرة ثلاثة أيام فصاعدا",
+              "en": "Abu Hanifa said an agent may argue your case only if the other side agrees, unless you are ill or three days' journey away or more. Note: Abu Yusuf and Muhammad said it is allowed without the opponent's consent."
+            },
+            {
+              "kind": "choose",
+              "id": "ill-case",
+              "ask": "Hamid is in bed with a serious illness and appoints his cousin to argue his case in court. The other side objects. May the cousin act?",
+              "options": ["Yes: Hamid is ill", "No: the other side must agree", "Only after Hamid recovers"],
+              "answer": 0,
+              "source": ["إلا أن يكون الموكل مريضا", "وقال أبو يوسف ومحمد: يجوز التوكيل بغير رضا الخصم"],
+              "why": "Even for Abu Hanifa, an ill principal does not need the opponent's consent, and Abu Yusuf and Muhammad never require it."
+            },
+            {
+              "kind": "teach",
+              "id": "who",
+              "title": "Who can appoint, and who can be appointed",
+              "ar": "ومن شرط الوكالة: أن يكون الموكل ممن يملك التصرف وتلزمه الأحكام والوكيل ممن يعقل العقد ويقصده",
+              "en": "The principal must be someone who may deal with his own things and is bound by the rulings. The agent must understand the contract and mean to make it."
+            },
+            {
+              "kind": "teach",
+              "id": "boy",
+              "title": "A boy or a restricted person as agent",
+              "ar": "وإذا وكل الحر البالغ أو المأذون مثلهما جاز وإن وكلا صبيا محجورا يعقل البيع والشراء أو عبدا محجورا جاز ولا تتعلق بهما الحقوق وتتعلق بموكليهما",
+              "en": "A free adult may appoint someone like himself. He may also appoint a boy who understands buying and selling, or (in al-Quduri's time) a slave without permission to trade. The deal is valid, but its duties fall on the principal, not on them."
+            },
+            {
+              "kind": "choose",
+              "id": "boy-case",
+              "ask": "Yusuf sends his 11-year-old nephew, who understands buying and selling, to buy bread with his money. The baker later has a complaint about the payment. Whom does he deal with?",
+              "options": ["Yusuf, the principal", "The nephew", "The nephew's father"],
+              "answer": 0,
+              "source": "جاز ولا تتعلق بهما الحقوق وتتعلق بموكليهما",
+              "why": "The boy's purchase is valid, but the rights and duties of the deal fall on Yusuf."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "You may appoint an agent for any contract you may make yourself", "right": true },
+                { "text": "An agent must understand the contract", "right": true },
+                { "text": "A boy who understands trade may be an agent", "right": true },
+                { "text": "An agent may carry out qisas while the principal is far away" },
+                { "text": "Only adults may ever act as agents" }
+              ],
+              "source": ["جاز أن يوكل به غيره", "والوكيل ممن يعقل العقد ويقصده", "وإن وكلا صبيا محجورا يعقل البيع والشراء", "مع غيبة الموكل عن المجلس"],
+              "why": "Any contract can be delegated, the agent must understand it, and a boy who understands trade can be an agent. Qisas cannot be carried out by an agent in the principal's absence."
+            }
+          ]
+        },
+        {
+          "id": "wakala-rights",
+          "title": "Whose job is it after the deal?",
+          "arabic": "والعقود التي يعقدها الوكلاء على ضربين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "self",
+              "title": "Deals the agent makes in his own name",
+              "ar": "فكل عقد يضيفه الوكيل إلى نفسه - مثل البيع والإجارة - فحقوق ذلك العقد تتعلق بالوكيل دون الموكل فيسلم المبيع ويقبض الثمن ويطالب بالثمن إذا اشترى ويقبض المبيع ويخاصم بالعيب",
+              "en": "Some deals the agent makes in his own name, like a sale or a hire. The rights of those deals sit with the agent, not the principal. He hands over the goods and takes the price; when buying, he is asked for the price, receives the goods, and complains about defects."
+            },
+            {
+              "kind": "teach",
+              "id": "other",
+              "title": "Deals made in the principal's name",
+              "ar": "وكل عقد يضيفه إلى موكله - كالنكاح والخلع والصلح من دم العمد - فإن حقوقه تتعلق بالموكل دون الوكيل فلا يطالب وكيل الزوج بالمهر ولا يلزم وكيل المرأة تسليمها",
+              "en": "Other deals are made in the principal's name, like marriage (nikah), khul' (a wife ending the marriage for payment), and settling a claim for deliberate killing. Their rights sit with the principal. The groom's agent is not asked for the mahr, and the bride's agent does not have to hand her over."
+            },
+            {
+              "kind": "sort",
+              "id": "whose",
+              "ask": "Whose are the rights of this deal?",
+              "into": ["The agent's", "The principal's"],
+              "items": [
+                ["A sale", "The agent's"],
+                ["A hire", "The agent's"],
+                ["A marriage", "The principal's"],
+                ["A khul'", "The principal's"],
+                ["A settlement for deliberate killing", "The principal's"]
+              ],
+              "source": ["مثل البيع والإجارة", "كالنكاح والخلع والصلح من دم العمد"],
+              "why": "Sales and hires are made in the agent's own name, so their rights are his. Marriage, khul' and settling a killing are in the principal's name."
+            },
+            {
+              "kind": "choose",
+              "id": "mahr-case",
+              "ask": "Ibrahim's friend acts as his agent to marry Sumayya for him. Later Sumayya asks the friend for her mahr. Must he pay it?",
+              "options": ["No: Ibrahim, the husband, owes the mahr", "Yes: he made the contract", "They share it"],
+              "answer": 0,
+              "source": "فلا يطالب وكيل الزوج بالمهر",
+              "why": "Marriage is made in the principal's name, so the husband owes the mahr, not his agent."
+            },
+            {
+              "kind": "choose",
+              "id": "paid-case",
+              "ask": "An agent sells Rami's horse. Rami himself goes to the buyer for the price, and the buyer pays him. Can the agent now ask the buyer to pay again?",
+              "options": ["No", "Yes: the price was the agent's to collect", "Yes, half of it"],
+              "answer": 0,
+              "source": "وإذا طالب الموكل المشتري فله أن يمنعه إياه فإن دفعه إليه جاز ولم يكن للوكيل أن يطالبه به ثانيا",
+              "why": "The buyer could have refused the principal, but once he has paid him, that is valid and the agent cannot ask again."
+            },
+            {
+              "kind": "teach",
+              "id": "name",
+              "title": "Say what to buy",
+              "ar": "ومن وكل رجلا بشراء شيء فلا بد من تسمية جنسه وصفته أو جنسه ومبلغ ثمنه إلا أن يوكله وكالة عامة فيقول: ابتع لي ما رأيت",
+              "en": "When you send an agent to buy something, you must name its kind and description, or its kind and how much to pay, unless you give him general agency: \"Buy me whatever you think best.\""
+            },
+            {
+              "kind": "choose",
+              "id": "name-case",
+              "ask": "Which instruction is enough for an agent to buy with?",
+              "options": ["\"Buy me a grey Arab horse\"", "\"Buy me something\"", "\"Buy me an animal\""],
+              "answer": 0,
+              "source": "فلا بد من تسمية جنسه وصفته أو جنسه ومبلغ ثمنه",
+              "why": "A kind (horse) with a description (grey, Arab) is enough. \"Something\" or \"an animal\" does not name a kind with a description or price."
+            },
+            {
+              "kind": "teach",
+              "id": "defect",
+              "title": "Returning for a defect",
+              "ar": "وإذا اشترى الوكيل وقبض المبيع ثم اطلع على عيب فله أن يرد بالعيب ما دام المبيع في",
+              "en": "If the agent buys something, receives it, and then finds a defect, he may return it as long as it is still with him. Once he has handed it to the principal, he may only return it with the principal's permission."
+            },
+            {
+              "kind": "teach",
+              "id": "own-money",
+              "title": "Exchange, salam, and paying from his own money",
+              "ar": "ويجوز التوكيل بعقد الصرف والسلم فإن فارق الوكيل صاحبه قبل القبض بطل العقد ولا تعتبر مفارقة الموكل",
+              "en": "Sarf is exchanging money for money, and salam is paying now for goods delivered later. You may use an agent for both. If the agent parts from the other side before the handing over, the deal fails. The principal walking away does not matter. If a buying agent pays from his own money, he may claim it back from the principal."
+            },
+            {
+              "kind": "choose",
+              "id": "camel-case",
+              "ask": "An agent pays 300 dirhams of his own money for a camel for Faris. Before the agent holds it back for payment, the camel dies in his care. Who bears the loss?",
+              "options": ["Faris, and he still owes the agent the 300", "The agent, and Faris owes nothing", "The seller"],
+              "answer": 0,
+              "source": ["وإذا دفع الوكيل بالشراء الثمن من ماله وقبض المبيع فله أن يرجع به على الموكل فإن هلك المبيع في يده قبل حبسه هلك من مال الموكل ولم يسقط الثمن", "وإن سلمه إلى الموكل"],
+              "why": "The agent may claim what he paid. If the item dies in his care before he holds it back, it is lost from the principal's wealth and the price is still owed."
+            },
+            {
+              "kind": "teach",
+              "id": "hold",
+              "title": "Holding it back until paid",
+              "ar": "وله أن يحبسه حتى يستوفي الثمن فإن حبسه فهلك كان مضمونا ضمان الرهن عند أبي يوسف وضمان المبيع عند محمد",
+              "en": "The agent may hold the item back until he is paid. Note: if he holds it and it is lost, Abu Yusuf said he is liable as for a pledge (rahn), and Muhammad said as for a sold item."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "In a sale, the agent hands over the goods and takes the price", "right": true },
+                { "text": "The bride's agent must hand her over" },
+                { "text": "An agent may be appointed for a salam", "right": true },
+                { "text": "If the agent walks away before the exchange is handed over, the sarf fails", "right": true },
+                { "text": "\"Buy me whatever you think best\" is never allowed" }
+              ],
+              "source": ["فيسلم المبيع ويقبض الثمن", "ولا يلزم وكيل المرأة تسليمها", "ويجوز التوكيل بعقد الصرف والسلم", "فإن فارق الوكيل صاحبه قبل القبض بطل العقد", "ابتع لي ما رأيت"],
+              "why": "The selling agent deals with goods and price, agents may do salam, and his leaving early breaks a sarf. The bride's agent has no such duty, and general agency is allowed."
+            }
+          ]
+        },
+        {
+          "id": "wakala-two",
+          "title": "Two agents, sub-agents, and when agency ends",
+          "arabic": "وإذا وكل رجلين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Two agents act together",
+              "ar": "وإذا وكل رجلين فليس لأحدهما أن يتصرف فيما وكلا فيه دون الآخر إلا أن يوكلهما بالخصومة أو بطلاق زوجته بغير عوض أو برد وديعة عنده أو بقضاء دين عليه",
+              "en": "If you appoint two agents for one job, neither may act without the other. Except when they are appointed to argue a case, to pronounce a divorce with nothing paid, to return a deposit (wadi'a, something left with you for safekeeping), or to pay off a debt."
+            },
+            {
+              "kind": "sort",
+              "id": "alone",
+              "ask": "Two agents were appointed. May one act alone?",
+              "into": ["One alone", "Both together"],
+              "items": [
+                ["Arguing a case in court", "One alone"],
+                ["Returning a deposit", "One alone"],
+                ["Paying off a debt", "One alone"],
+                ["Selling a house", "Both together"],
+                ["Buying a car", "Both together"]
+              ],
+              "source": ["إلا أن يوكلهما بالخصومة", "أو برد وديعة عنده أو بقضاء دين عليه", "فليس لأحدهما أن يتصرف فيما وكلا فيه دون الآخر"],
+              "why": "Arguing, returning a deposit and paying a debt can be done by one. Other jobs, like buying and selling, need both."
+            },
+            {
+              "kind": "teach",
+              "id": "sub",
+              "title": "An agent appointing an agent",
+              "ar": "وليس للوكيل أن يوكل فيما وكل به إلا أن يأذن له الموكل أو يقول له: اعمل برأيك فإن وكل بغير إذن موكله فعقد وكيله بحضرته جاز وإن عقد بغير حضرته فأجازه الوكيل الأول جاز",
+              "en": "An agent may not appoint another agent for the job unless the principal allows it or says, \"Do as you see fit.\" If he does so without permission, the second agent's deal is still valid if made in the first agent's presence, or if the first agent approves it afterwards."
+            },
+            {
+              "kind": "choose",
+              "id": "sub-case",
+              "ask": "Without asking, Karim's agent asks a friend to do the buying. The friend buys the goods while the agent stands beside him. Is the purchase valid?",
+              "options": ["Yes: it was done in the agent's presence", "No: he had no permission", "Only if Karim was there"],
+              "answer": 0,
+              "source": "فإن وكل بغير إذن موكله فعقد وكيله بحضرته جاز",
+              "why": "A sub-agent's deal made in the first agent's presence is valid."
+            },
+            {
+              "kind": "teach",
+              "id": "dismiss",
+              "title": "Dismissing an agent",
+              "ar": "الوكيل عن الوكالة فإن لم يبلغه العزل فهو على وكالته وتصرفه جائز حتى يعلم",
+              "en": "The principal may dismiss the agent. But until news of it reaches the agent, he is still an agent and what he does is valid."
+            },
+            {
+              "kind": "choose",
+              "id": "letter-case",
+              "ask": "Maha sends a letter dismissing her agent. Before it arrives, the agent sells her land. Is the sale valid?",
+              "options": ["Yes: he had not yet heard", "No: she had already dismissed him", "Only if the price was good"],
+              "answer": 0,
+              "source": "فإن لم يبلغه العزل فهو على وكالته وتصرفه جائز حتى يعلم",
+              "why": "Dismissal counts only once it reaches the agent, so the sale is valid."
+            },
+            {
+              "kind": "teach",
+              "id": "ends",
+              "title": "When agency ends",
+              "ar": "وإذا وكل المكاتب ثم عجز أو المأذون فحجر عليه أو الشريكان فافترقا فهذه الوجوه تبطل الوكالة علم الوكيل أو لم يعلم",
+              "en": "Agency ends when the principal dies, becomes permanently insane, or leaves Islam and joins the enemy's land. It also ends if partners who appointed an agent split up, and in other such cases, whether or not the agent knows."
+            },
+            {
+              "kind": "teach",
+              "id": "agent-dies",
+              "title": "The agent dies, or the principal acts himself",
+              "ar": "وإذا مات الوكيل أو جن جنونا مطبقا بطلت وكالته وإن لحق بدار الحرب مرتدا لم يجز له التصرف إلا أن يعود مسلما ومن وكل آخر بشيء ثم تصرف فيما وكل به بطلت الوكالة",
+              "en": "If the agent dies or becomes permanently insane, his agency ends. If he leaves Islam and joins the enemy's land, he may not act unless he returns as a Muslim. And if the principal does the job himself, the agency ends."
+            },
+            {
+              "kind": "choose",
+              "id": "ring-case",
+              "ask": "Maryam appoints an agent to sell her ring. The next day she sells it herself. What about the agency?",
+              "options": ["It has ended", "It goes on, for another ring", "The agent may still sell it"],
+              "answer": 0,
+              "source": "ومن وكل آخر بشيء ثم تصرف فيما وكل به بطلت الوكالة",
+              "why": "When the principal does the job himself, the agency ends."
+            },
+            {
+              "kind": "sort",
+              "id": "end-sort",
+              "ask": "Does the agency end?",
+              "into": ["Ends", "Goes on"],
+              "items": [
+                ["The principal dies", "Ends"],
+                ["The agent becomes permanently insane", "Ends"],
+                ["The partners who appointed him split up", "Ends"],
+                ["He was dismissed, but has not heard", "Goes on"]
+              ],
+              "source": ["وتبطل الوكالة بموت الموكل", "أو جن جنونا مطبقا بطلت وكالته", "أو الشريكان فافترقا", "فهو على وكالته"],
+              "why": "Death, permanent insanity and partners splitting end it. A dismissal he has not heard of does not, yet."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "An agent told \"do as you see fit\" may appoint another agent", "right": true },
+                { "text": "Two agents to sell a house may each sell alone" },
+                { "text": "The partners splitting up ends their agent's agency even if he does not know", "right": true },
+                { "text": "An agent's dealings are void from the moment the letter is sent" },
+                { "text": "One of two agents may pay off the debt alone", "right": true }
+              ],
+              "source": ["أو يقول له: اعمل برأيك", "دون الآخر", "علم الوكيل أو لم يعلم", "حتى يعلم", "أو بقضاء دين عليه"],
+              "why": "\"Do as you see fit\" allows a sub-agent, cases like partners splitting end it regardless, and one agent may pay a debt. Selling needs both, and dismissal counts only once he knows."
+            }
+          ]
+        },
+        {
+          "id": "wakala-price",
+          "title": "Buying and selling for someone else",
+          "arabic": "والوكيل بالبيع والشراء",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "relatives",
+              "title": "Selling to his own family",
+              "ar": "والوكيل بالبيع والشراء لا يجوز أن يعقد عند أبي حنيفة مع أبيه وجده وولده ولده وزوجته وعبده ومكاتبه",
+              "en": "For Abu Hanifa, an agent to buy or sell may not deal with his own father, grandfather, child, grandchild, wife, slave or mukatab (a slave buying his freedom, in al-Quduri's time). Note: Abu Yusuf and Muhammad said he may sell to them at the fair value, except to his own slave or mukatab."
+            },
+            {
+              "kind": "choose",
+              "id": "slave-case",
+              "ask": "In al-Quduri's time, an agent sells his principal's goods to the agent's own slave at the fair price. Is it allowed?",
+              "options": ["No", "Yes: the price was fair", "Yes, if the principal never finds out"],
+              "answer": 0,
+              "source": ["وقال أبو يوسف ومحمد: يجوز بيعه منهم بمثل القيمة إلا في عبده ومكاتبه"],
+              "why": "Abu Hanifa forbids it, and even Abu Yusuf and Muhammad, who allow a fair sale to family, make an exception of his own slave and mukatab."
+            },
+            {
+              "kind": "teach",
+              "id": "price",
+              "title": "At what price may a selling agent sell?",
+              "ar": "والوكيل بالبيع يجوز بيعه بالقليل والكثير عند أبي حنيفة",
+              "en": "For Abu Hanifa, a selling agent may sell for a low or a high price. Note: Abu Yusuf and Muhammad said he may not sell at a loss that people would not overlook."
+            },
+            {
+              "kind": "teach",
+              "id": "buy",
+              "title": "A buying agent must not overpay much",
+              "ar": "والوكيل بالشراء يجوز عقده بمثل القيمة وزيادة يتغابن الناس في مثلها ولا يجوز بما لا يتغابن الناس في مثله والذي لا يتغابن الناس فيه: ما لا يدخل تحت تقويم المقومين",
+              "en": "A buying agent may buy at the fair value, or a little more, the kind of small overpayment people overlook. He may not pay more than that. A loss people do not overlook is a price outside what any of the experts who value goods would say."
+            },
+            {
+              "kind": "choose",
+              "id": "small-case",
+              "ask": "Experts value a horse at between 980 and 1020 dirhams. The agent buys it for 1010. Is the purchase binding on the principal?",
+              "options": ["Yes: that is within the experts' values", "No: he paid over 1000", "Only if the principal likes the horse"],
+              "answer": 0,
+              "source": "والوكيل بالشراء يجوز عقده بمثل القيمة وزيادة يتغابن الناس في مثلها",
+              "why": "A small overpayment that the valuers' estimates cover is overlooked, so the purchase stands."
+            },
+            {
+              "kind": "choose",
+              "id": "big-case",
+              "ask": "No expert values the horse above 1000, but the agent pays 1500. Is it allowed for the principal?",
+              "options": ["No: it is beyond what people overlook", "Yes: any price is fine", "Yes, if the agent pays the extra"],
+              "answer": 0,
+              "source": "ولا يجوز بما لا يتغابن الناس في مثله والذي لا يتغابن الناس فيه: ما لا يدخل تحت تقويم المقومين",
+              "why": "A price no valuer would give is a loss people do not overlook, so a buying agent may not pay it."
+            },
+            {
+              "kind": "teach",
+              "id": "half",
+              "title": "Guaranteeing the price, and buying half",
+              "ar": "وإذا ضمن الوكيل بالبيع الثمن عن المبتاع فضمانه باطل وإذا وكله ببيع عبده فباع نصفه جاز عند أبي حنيفة وإن وكله بشراء عبد فاشترى نصفه فالشراء موقوف",
+              "en": "A selling agent cannot stand surety for the buyer's price: such a guarantee is void. In al-Quduri's time, if told to sell a slave and he sold half, that was allowed for Abu Hanifa. If told to buy one and he bought half, the purchase waits: if he buys the rest, it binds the principal."
+            },
+            {
+              "kind": "teach",
+              "id": "meat",
+              "title": "Ten pounds of meat",
+              "ar": "وإذا وكله بشراء عشرة أرطال لحم بدرهم فاشترى عشرين رطلا بدرهم من لحم يباع مثله عشرة بدرهم لزم الموكل منه عشرة أرطال بنصف درهم عند أبي حنيفة وقال أبو يوسف ومحمد: يلزمه العشرون",
+              "en": "He is told to buy ten ratls (pounds) of meat for a dirham, and buys twenty for a dirham, of meat that normally sells ten for a dirham. Abu Hanifa said the principal takes ten pounds for half a dirham. Note: Abu Yusuf and Muhammad said he takes all twenty."
+            },
+            {
+              "kind": "teach",
+              "id": "specific",
+              "title": "A named thing, or any one",
+              "ar": "وإذا وكله بشراء شيء بعينه فليس له أن يشتريه لنفسه",
+              "en": "If he is told to buy one particular thing, he may not buy it for himself. If he is told to buy a thing of a kind, not a particular one, what he buys is his own, unless he says he meant it for the principal or pays with the principal's money."
+            },
+            {
+              "kind": "choose",
+              "id": "car-case",
+              "ask": "Omar tells his agent, \"Buy me that blue car in the showroom window.\" The agent likes it and buys it for himself. Is that allowed?",
+              "options": ["No: he was sent for that very car", "Yes, if he pays with his own money", "Yes, if he tells Omar afterwards"],
+              "answer": 0,
+              "source": "وإذا وكله بشراء شيء بعينه فليس له أن يشتريه لنفسه",
+              "why": "When he is sent to buy a particular thing, he may not buy it for himself."
+            },
+            {
+              "kind": "choose",
+              "id": "any-case",
+              "ask": "In al-Quduri's time, an agent is told to buy \"a slave\", none in particular. He buys one using the principal's money. Whose is the purchase?",
+              "options": ["The principal's", "The agent's", "Neither: it is void"],
+              "answer": 0,
+              "source": "فاشترى عبدا فهو للوكيل إلا أن يقول: نويت الشراء للموكل أو يشتريه بمال الموكل",
+              "why": "A thing not named in particular is the agent's, unless he meant it for the principal or paid with the principal's money, as here."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A selling agent's guarantee of the buyer's price is void", "right": true },
+                { "text": "A buying agent may pay a little over value that people overlook", "right": true },
+                { "text": "A buying agent may pay whatever the seller asks" },
+                { "text": "An agent sent for a particular thing may buy it for himself" },
+                { "text": "Half a slave bought by an agent binds the principal once he buys the rest", "right": true }
+              ],
+              "source": ["فضمانه باطل", "وزيادة يتغابن الناس في مثلها", "ولا يجوز بما لا يتغابن الناس في مثله", "فليس له أن يشتريه لنفسه", "فالشراء موقوف"],
+              "why": "The guarantee is void, small overpayments are overlooked, and a half purchase waits until he buys the rest. He may not overpay much or take the named thing for himself."
+            }
+          ]
+        },
+        {
+          "id": "wakala-court",
+          "title": "Agents in court and for debts",
+          "arabic": "والوكيل بالخصومة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "collect",
+              "title": "An agent to argue may collect",
+              "ar": "والوكيل بالخصومة وكيل بالقبض عند أبي حنيفة وأبي يوسف ومحمد والوكيل بقبض الدين وكيل بالخصومة فيه عند أبي حنيفة",
+              "en": "An agent appointed to argue a case may also collect what is won: Abu Hanifa, Abu Yusuf and Muhammad all say so. And for Abu Hanifa, an agent appointed to collect a debt may also argue about it in court."
+            },
+            {
+              "kind": "choose",
+              "id": "collect-case",
+              "ask": "Layla appoints an agent to argue her claim for 2000 dirhams. He wins. May he collect the money for her?",
+              "options": ["Yes", "No: he was only appointed to argue", "Only with a new letter from Layla"],
+              "answer": 0,
+              "source": "والوكيل بالخصومة وكيل بالقبض عند أبي حنيفة وأبي يوسف ومحمد",
+              "why": "An agent for the case is also an agent to collect."
+            },
+            {
+              "kind": "teach",
+              "id": "admit",
+              "title": "When the agent admits against his principal",
+              "ar": "وإذا أقر الوكيل بالخصومة على موكله عند القاضي جاز إقراره ولا يجوز إقراره عليه عند غير القاضي عند أبي حنيفة ومحمد إلا أنه يخرج من الخصومة",
+              "en": "If the agent admits, in front of the judge, something against his principal, the admission counts. Away from the judge, for Abu Hanifa and Muhammad, it does not count against the principal, but the agent is taken off the case. Note: Abu Yusuf said it counts even away from the judge."
+            },
+            {
+              "kind": "choose",
+              "id": "admit-case",
+              "ask": "In court, before the judge, Badr's agent says, \"Yes, my client does owe this money.\" Does the admission count against Badr?",
+              "options": ["Yes: it was made before the judge", "No: only Badr can admit", "Only if Badr agrees later"],
+              "answer": 0,
+              "source": ["وإذا أقر الوكيل بالخصومة على موكله عند القاضي جاز إقراره", "وقال أبو يوسف: يجوز إقراره عليه عند غير القاضي"],
+              "why": "An admission made before the judge by the agent for the case counts against the principal."
+            },
+            {
+              "kind": "choose",
+              "id": "admit-gap",
+              "ask": "Complete al-Quduri's words.",
+              "ar": "وإذا أقر الوكيل بالخصومة على موكله ____ جاز إقراره",
+              "options": ["عند القاضي", "عند الشهود", "في بيته"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وإذا أقر الوكيل بالخصومة على موكله عند القاضي جاز إقراره",
+              "why": "عند القاضي: the agent's admission counts when it is made before the judge."
+            },
+            {
+              "kind": "teach",
+              "id": "claimed",
+              "title": "Someone says, \"I am his agent\"",
+              "ar": "ومن ادعى أنه وكيل الغائب في قبض دينه فصدقه الغريم أمر بتسليم الدين إليه فإن حضر الغائب فصدقه وإلا دفع إليه الغريم الدين ثانيا ورجع به على الوكيل إن كان باقيا في يده",
+              "en": "A man says he is the agent of an absent creditor to collect a debt, and the debtor believes him. The debtor is told to pay him. When the creditor comes back, if he agrees, fine. If not, the debtor must pay the creditor again, and may take it back from the \"agent\" if he still has it."
+            },
+            {
+              "kind": "choose",
+              "id": "claimed-case",
+              "ask": "Hani owes Walid 500. A man says, \"Walid sent me to collect it.\" Hani believes him and pays. Walid returns and says he sent nobody. What now?",
+              "options": ["Hani pays Walid again, and can take the 500 back from the man if he still has it", "Walid loses the 500", "Walid must collect from the man himself"],
+              "answer": 0,
+              "source": "وإلا دفع إليه الغريم الدين ثانيا ورجع به على الوكيل إن كان باقيا في يده",
+              "why": "If the creditor denies sending him, the debtor pays again and may reclaim it from the man if it is still with him."
+            },
+            {
+              "kind": "teach",
+              "id": "deposit",
+              "title": "A deposit is different",
+              "ar": "وإن قال إني وكيل بقبض الوديعة فصدقه المودع لم يؤمر بالتسليم إليه",
+              "en": "If a man says he is the agent to collect a deposit, and the one keeping it believes him, he is not ordered to hand it over."
+            },
+            {
+              "kind": "sort",
+              "id": "handover",
+              "ask": "A man claims to be the owner's agent, and is believed. Is the holder ordered to hand over?",
+              "into": ["Ordered to pay", "Not ordered"],
+              "items": [
+                ["A debt of 500 dirhams", "Ordered to pay"],
+                ["A loan of 200 to be repaid", "Ordered to pay"],
+                ["A bag of gold left for safekeeping", "Not ordered"],
+                ["A watch left as a deposit", "Not ordered"]
+              ],
+              "source": ["أمر بتسليم الدين إليه", "لم يؤمر بالتسليم إليه"],
+              "why": "A believed agent for a debt must be paid. For a deposit, the keeper is not ordered to hand it over."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "An agent to collect a debt may argue about it, for Abu Hanifa", "right": true },
+                { "text": "The agent's admission before the judge counts", "right": true },
+                { "text": "A debtor who paid a false agent owes nothing more" },
+                { "text": "A deposit-keeper who believes the \"agent\" must hand it over" },
+                { "text": "An agent to argue may also collect", "right": true }
+              ],
+              "source": ["والوكيل بقبض الدين وكيل بالخصومة فيه عند أبي حنيفة", "عند القاضي جاز إقراره", "دفع إليه الغريم الدين ثانيا", "لم يؤمر بالتسليم إليه", "وكيل بالقبض"],
+              "why": "Collecting and arguing go together, and an admission before the judge counts. A debtor fooled by a false agent pays again, and a deposit need not be handed over."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kafala",
+      "title": "Surety and debt transfer",
+      "arabic": "الكفالة والحوالة",
+      "kitab": "كتاب الكفالة",
+      "kitabs": ["كتاب الكفالة", "كتاب الحوالة"],
+      "whole": true,
+      "lessons": [
+        {
+          "id": "kafala-person",
+          "title": "Standing surety for a person",
+          "arabic": "الكفالة بالنفس",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Two kinds of surety",
+              "ar": "الكفالة ضربان: كفالة بالنفس وكفالة بالمال",
+              "en": "Kafala is suretyship: taking on someone else's duty as a guarantee. The kafil is the surety. There are two kinds: surety for a person (promising to bring him) and surety for money (promising to pay his debt)."
+            },
+            {
+              "kind": "teach",
+              "id": "person",
+              "title": "Promising to bring someone",
+              "ar": "فالكفالة بالنفس جائزة والمضمون بها إحضار المكفول به",
+              "en": "Surety for a person is allowed. What the surety promises is to bring that person when he is wanted. It is made by saying, \"I stand surety for so-and-so himself,\" or for his neck, soul, body, head, half or third of him, or \"I guarantee him,\" \"He is on me,\" or \"I am answerable for him.\""
+            },
+            {
+              "kind": "pick",
+              "id": "words",
+              "ask": "Which of these words make surety for a person?",
+              "options": [
+                { "text": "\"I stand surety for his body\"", "right": true },
+                { "text": "\"I stand surety for half of him\"", "right": true },
+                { "text": "\"I guarantee him\"", "right": true },
+                { "text": "\"I am answerable for him\"", "right": true },
+                { "text": "\"I know him well\"" },
+                { "text": "\"I hope he comes\"" }
+              ],
+              "source": "أو بروحه أو بجسده أو برأسه أو بنصفه أو بثلثه وكذلك إن قال ضمنته أو هو علي أو إلي أو أنا زعيم به أو قبيل",
+              "why": "Naming his body, a part of him, or saying \"I guarantee him\" or \"I am answerable\" makes the surety. Knowing him or hoping is not a promise."
+            },
+            {
+              "kind": "teach",
+              "id": "time",
+              "title": "Bringing him at the agreed time",
+              "ar": "فإن شرط في الكفالة تسليم المكفول به في وقت بعينه لزمه إحضاره إذا طالبه به في ذلك الوقت فإن أحضره وإلا حبسه الحاكم حتى يحضره",
+              "en": "If a time was set to hand the person over, the surety must bring him when asked at that time. If he does not, the judge locks the surety up until he brings him."
+            },
+            {
+              "kind": "choose",
+              "id": "time-case",
+              "ask": "Jabir stood surety to bring Hakim to court on the first of the month. The day comes and Jabir does not bring him. What does the judge do?",
+              "options": ["Holds Jabir in prison until he brings Hakim", "Lets Jabir go, since he tried", "Makes Jabir pay a fine and ends the surety"],
+              "answer": 0,
+              "source": "فإن أحضره وإلا حبسه الحاكم حتى يحضره",
+              "why": "If the surety does not bring the person at the agreed time, the judge holds him until he does."
+            },
+            {
+              "kind": "teach",
+              "id": "place",
+              "title": "Where he must be handed over",
+              "ar": "وإذا أحضره وسلمه في مكان يقدر المكفول له على محاكمته برئ الكفيل من الكفالة وإذا تكفل به على أن يسلمه في مجلس القاضي فسلمه في السوق برئ وإن سلمه في برية لم يبرأ",
+              "en": "If he hands the person over in a place where the creditor can take him to court, the surety is free. If he promised to hand him over at the judge's court, handing him over in the market frees him, but in the open desert it does not."
+            },
+            {
+              "kind": "sort",
+              "id": "freed",
+              "ask": "Is the surety now free of his promise?",
+              "into": ["Free", "Not free"],
+              "items": [
+                ["He hands the man over in the market", "Free"],
+                ["He hands him over far out in the desert", "Not free"],
+                ["He hands him over where he can be taken to court", "Free"],
+                ["The man he stood surety for dies", "Free"]
+              ],
+              "source": ["فسلمه في السوق برئ وإن سلمه في برية لم يبرأ", "برئ الكفيل من الكفالة", "وإن مات المكفول به برئ الكفيل بالنفس من الكفالة"],
+              "why": "The market, or any place where he can be taken to court, frees the surety, and so does the man's death. The desert does not."
+            },
+            {
+              "kind": "teach",
+              "id": "both",
+              "title": "Surety for a person, with money if he fails",
+              "ar": "فإن تكفل بنفسه على أنه إن لم يواف به في وقت كذا فهو ضامن لما عليه وهو ألف ولم يحضره في ذلك الوقت لزمه ضمان المال ولم يبرأ من الكفالة بالنفس",
+              "en": "If he stood surety for the person on the terms, \"If I don't bring him by this time, I will pay what he owes, which is 1000,\" and he does not bring him, he must pay the money, and he is still surety for bringing the person too."
+            },
+            {
+              "kind": "choose",
+              "id": "both-case",
+              "ask": "Dawud says, \"If I don't bring Sami by Friday, I'll pay his 1000 debt.\" Friday passes without Sami. What is Dawud bound to do?",
+              "options": ["Pay the 1000, and still bring Sami", "Only pay the 1000", "Only bring Sami"],
+              "answer": 0,
+              "source": "لزمه ضمان المال ولم يبرأ من الكفالة بالنفس",
+              "why": "He must pay the money, and he is not freed from the surety for the person."
+            },
+            {
+              "kind": "teach",
+              "id": "hadd",
+              "title": "Surety in punishment cases",
+              "ar": "ولا يجوز الكفالة بالنفس في الحدود والقصاص عند أبي حنيفة وقالا: يجوز",
+              "en": "For Abu Hanifa, surety for a person is not allowed in cases of hadd punishment or qisas. Note: his two students, Abu Yusuf and Muhammad (\"the two\"), said it is allowed."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "The surety for a person promises to bring him", "right": true },
+                { "text": "Handing him over in the desert frees the surety" },
+                { "text": "If the surety misses the agreed time, the judge may hold him", "right": true },
+                { "text": "The surety is freed if the person dies", "right": true },
+                { "text": "Paying the money ends the surety for the person too" }
+              ],
+              "source": ["والمضمون بها إحضار المكفول به", "وإن سلمه في برية لم يبرأ", "وإلا حبسه الحاكم حتى يحضره", "وإن مات المكفول به برئ الكفيل", "ولم يبرأ من الكفالة بالنفس"],
+              "why": "He promises to bring the person, may be held if he does not, and is freed by the person's death. The desert does not free him, and paying does not end the surety for the person."
+            }
+          ]
+        },
+        {
+          "id": "kafala-money",
+          "title": "Standing surety for money",
+          "arabic": "الكفالة بالمال",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "money",
+              "title": "Known or unknown amounts",
+              "ar": "وأما الكفالة بالمال فجائزة معلوما كان المال المكفول به أو مجهولا إذا كان دينا صحيحا",
+              "en": "Surety for money is allowed whether the amount is known or not, as long as it is a sound debt. For example: \"I stand surety for him for 1000,\" or \"for what he owes you,\" or \"for whatever comes back on you in this sale.\""
+            },
+            {
+              "kind": "choose",
+              "id": "money-gap",
+              "ask": "Complete al-Quduri's words.",
+              "ar": "فجائزة معلوما كان المال المكفول به أو ____",
+              "options": ["مجهولا", "حاضرا", "مقبوضا"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "فجائزة معلوما كان المال المكفول به أو مجهولا",
+              "why": "مجهولا: surety for money is allowed whether the amount is known or unknown."
+            },
+            {
+              "kind": "teach",
+              "id": "either",
+              "title": "The creditor may ask either one",
+              "ar": "مثل أن يقول: تكلفت عنه بألف أو بما لك عليه أو بما يدركك في هذا البيع والمكفول به بالخيار: إن شاء طالب الذي عليه الأصل وإن شاء طالب كفيله",
+              "en": "The creditor may choose: he can ask the original debtor, or he can ask the surety."
+            },
+            {
+              "kind": "choose",
+              "id": "either-case",
+              "ask": "Imran owes Fawzi 800, and Bashir stands surety for it. Fawzi goes straight to Bashir for the money. May he?",
+              "options": ["Yes: he may ask either one", "No: he must ask Imran first", "Only if Imran has died"],
+              "answer": 0,
+              "source": "إن شاء طالب الذي عليه الأصل وإن شاء طالب كفيله",
+              "why": "The creditor may ask the debtor or the surety, as he wishes."
+            },
+            {
+              "kind": "teach",
+              "id": "condition",
+              "title": "Surety on a condition, and unknown amounts",
+              "ar": "ويجوز تعليق الكفالة بالشرط مثل أن يقول: ما بايعت فلانا فعلي أو ما ذاب لك عليه فعلي",
+              "en": "Surety may hang on a condition: \"Whatever you sell to so-and-so, I'll pay,\" or \"Whatever he comes to owe you, I'll pay,\" or \"Whatever he takes from you by force, I'll pay.\""
+            },
+            {
+              "kind": "teach",
+              "id": "amount",
+              "title": "How much, if no one is sure",
+              "ar": "وإذا قال: تكفلت بما لك عليه فقامت البينة بألف عليه ضمنه الكفيل فإن لم تقم البينة فالقول قول الكفيل مع يمينه في مقدار ما يعترف به فإن اعترف المكفول عنه بأكثر من ذلك لم يصدق على كفيله",
+              "en": "If he stood surety \"for what he owes you\" and witnesses prove 1000, the surety owes 1000. Without witnesses, the surety's word is taken, under oath, for the amount he admits. If the debtor admits more, that does not bind the surety."
+            },
+            {
+              "kind": "choose",
+              "id": "amount-case",
+              "ask": "Bashir stood surety \"for whatever Imran owes you.\" There are no witnesses. Bashir swears it is 300. Imran says it is 800. What does Bashir owe?",
+              "options": ["300", "800", "550"],
+              "answer": 0,
+              "source": ["فالقول قول الكفيل مع يمينه في مقدار ما يعترف به", "فإن اعترف المكفول عنه بأكثر من ذلك لم يصدق على كفيله", "فعلي أو ما غصبك فلانا فعلي"],
+              "why": "Without proof, the surety's sworn word counts for what he owes. The debtor's bigger admission binds only the debtor."
+            },
+            {
+              "kind": "teach",
+              "id": "asked",
+              "title": "Asked to be surety, or not asked",
+              "ar": "وتجوز الكفالة بأمر المكفول عنه وبغير أمره فإن كفل بأمره رجع بما يؤدي عليه وإن كفل بغير أمره لم يرجع بما يؤديه",
+              "en": "You may stand surety whether the debtor asked you or not. If he asked you, you can claim back from him what you pay. If he did not ask you, you cannot. And the surety may not ask the debtor for the money before he has paid it."
+            },
+            {
+              "kind": "choose",
+              "id": "uncle-case",
+              "ask": "Without being asked, Uncle Tahir stands surety for his nephew's 500 debt, and later pays it. Can he claim the 500 back from his nephew?",
+              "options": ["No: he was not asked", "Yes: he paid the debt", "Half of it"],
+              "answer": 0,
+              "source": "وإن كفل بغير أمره لم يرجع بما يؤديه",
+              "why": "A surety who was not asked by the debtor cannot claim back what he pays."
+            },
+            {
+              "kind": "sort",
+              "id": "released",
+              "ask": "Who is now free of the debt?",
+              "into": ["Both are free", "Only the surety"],
+              "items": [
+                ["The creditor forgives the debtor", "Both are free"],
+                ["The debtor pays the creditor in full", "Both are free"],
+                ["The creditor lets the surety off", "Only the surety"]
+              ],
+              "source": ["وإذا أبرأ الطالب المكفول عنه أو استوفى منه برئ الكفيل وإن أبرأ الكفيل لم يبرإ المكفول عنه"],
+              "why": "If the debtor is forgiven or pays, the surety is free too. Letting the surety off does not free the debtor."
+            },
+            {
+              "kind": "teach",
+              "id": "pressed",
+              "title": "If the surety is pressed",
+              "ar": "وليس للكفيل أن يطالب المكفول عنه بالمال قبل أن يؤدي عنه فإن لوزم بالمال كان له أن يلازم المكفول عنه حتى يخلصه",
+              "en": "The surety may not ask the debtor for the money before paying it himself. But if the creditor keeps after him for the money, he may keep after the debtor in turn until the debtor frees him."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Surety for an unknown amount is allowed", "right": true },
+                { "text": "Surety may hang on a condition", "right": true },
+                { "text": "The surety may ask the debtor for the money before paying anything" },
+                { "text": "Forgiving the surety also frees the debtor" },
+                { "text": "The creditor may go to the surety first", "right": true }
+              ],
+              "source": ["أو مجهولا", "ويجوز تعليق الكفالة بالشرط", "قبل أن يؤدي عنه", "لم يبرإ المكفول عنه", "وإن شاء طالب كفيله"],
+              "why": "Unknown amounts and conditions are allowed, and the creditor may go to the surety. The surety pays before he claims, and freeing him does not free the debtor."
+            }
+          ]
+        },
+        {
+          "id": "kafala-limits",
+          "title": "What surety can cover, and shared sureties",
+          "arabic": "وكل حق لا يمكن استيفاؤه من الكفيل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "limits",
+              "title": "Only what the surety could hand over",
+              "ar": "ولا يجوز تعليق البراءة من الكفالة بشرط وكل حق لا يمكن استيفاؤه من الكفيل لا تصح الكفالة به كالحدود والقصاص",
+              "en": "Release from surety cannot be made to depend on a condition. And surety is not valid for any right that cannot be taken from the surety, like hadd punishments and qisas."
+            },
+            {
+              "kind": "teach",
+              "id": "sale",
+              "title": "Price yes, the goods no",
+              "ar": "وإذا تكفل عن المشتري بالثمن جاز وإن تكفل عن البائع بالمبيع لم يصح ومن استأجر دابة للحمل فإن كانت بعينها لم تصح الكفالة بالحمل وإن كانت بغير عينها جازت الكفالة",
+              "en": "Surety for a buyer's price is valid. Surety for the seller's goods is not. For hiring an animal to carry a load: if it is a particular animal, surety for the carrying is not valid; if it is any animal, it is."
+            },
+            {
+              "kind": "sort",
+              "id": "valid",
+              "ask": "Is the surety valid?",
+              "into": ["Valid", "Not valid"],
+              "items": [
+                ["For the price a buyer owes", "Valid"],
+                ["For the goods a seller must hand over", "Not valid"],
+                ["For carrying a load on any camel", "Valid"],
+                ["For carrying a load on one particular camel", "Not valid"],
+                ["For a qisas punishment", "Not valid"]
+              ],
+              "source": ["وإذا تكفل عن المشتري بالثمن جاز وإن تكفل عن البائع بالمبيع لم يصح", "فإن كانت بعينها لم تصح الكفالة بالحمل وإن كانت بغير عينها جازت الكفالة", "كالحدود والقصاص"],
+              "why": "A price and a carrying job on any animal can come from the surety. Specific goods, a specific animal, and punishments cannot."
+            },
+            {
+              "kind": "teach",
+              "id": "accept",
+              "title": "The creditor must accept at the time",
+              "ar": "ولا تصح الكفالة إلا بقبول المكفول له في مجلس العقد إلا في مسألة واحدة وهي أن يقول المريض لوارثه: تكفل عني بما علي من الدين فتكفل به مع غيبة الغرماء",
+              "en": "Surety is valid only if the creditor accepts it in the same sitting. There is one exception: a sick man says to his heir, \"Stand surety for my debts,\" and the heir does so while the creditors are absent."
+            },
+            {
+              "kind": "choose",
+              "id": "absent-case",
+              "ask": "Zaid tells a friend, \"I'll stand surety for Ahmad's debt to Bakr.\" Bakr is not there, and hears of it next week. Was the surety made?",
+              "options": ["No: the creditor did not accept it in the sitting", "Yes, as soon as Zaid said it", "Yes, once Bakr heard"],
+              "answer": 0,
+              "source": "ولا تصح الكفالة إلا بقبول المكفول له في مجلس العقد",
+              "why": "The creditor must accept in the same sitting, and Bakr was not there."
+            },
+            {
+              "kind": "choose",
+              "id": "sick-case",
+              "ask": "A sick man says to his son, \"Stand surety for my debts,\" and the son agrees. The creditors are not there. Is the surety valid?",
+              "options": ["Yes: this is the one exception", "No: the creditors must accept", "Only after the father dies"],
+              "answer": 0,
+              "source": "إلا في مسألة واحدة وهي أن يقول المريض لوارثه: تكفل عني بما علي من الدين فتكفل به مع غيبة الغرماء",
+              "why": "A sick man asking his heir is the one case where surety is valid without the creditors present."
+            },
+            {
+              "kind": "teach",
+              "id": "pair",
+              "title": "Two debtors, each surety for the other",
+              "ar": "وإذا كان الدين على اثنين وكل واحد منهما كفيل ضامن عن الآخر",
+              "en": "If two people share a debt and each is surety for the other, whatever one pays is first counted as his own half. He cannot claim from his partner until he has paid more than half, and then he claims the extra."
+            },
+            {
+              "kind": "choose",
+              "id": "pair-case",
+              "ask": "Ali and Hadi owe 1000 together, 500 each, and each is surety for the other. Ali pays 700. How much can he claim from Hadi?",
+              "options": ["200", "350", "700"],
+              "answer": 0,
+              "source": "لم يرجع به على شريكه حتى يزيد ما يؤديه على النصف فيرجع بالزيادة",
+              "why": "His own half is 500. He claims only what he paid above that: 200."
+            },
+            {
+              "kind": "teach",
+              "id": "sureties",
+              "title": "Two sureties for one man",
+              "ar": "يرجع بنصفه على شريكه قليلا كان أو كثيرا ولا تجوز الكفالة بمال الكتابة حر تكفل به أو عبد",
+              "en": "If two people stand surety for one man's 1000, each surety for the other too, whatever one of them pays, he claims half from the other, little or much. In al-Quduri's time, no one could stand surety for the money a mukatab owed for his freedom."
+            },
+            {
+              "kind": "choose",
+              "id": "sureties-case",
+              "ask": "Two friends stand surety for Kamal's 1000, each also surety for the other. One friend pays 200. How much can he claim from the other friend?",
+              "options": ["100", "Nothing until he pays 500", "200"],
+              "answer": 0,
+              "source": "يرجع بنصفه على شريكه قليلا كان أو كثيرا",
+              "why": "Here each claims half of whatever he pays, little or much: half of 200 is 100."
+            },
+            {
+              "kind": "teach",
+              "id": "dead",
+              "title": "Surety for a man who died penniless",
+              "ar": "وإذا مات الرجل وعليه ديون ولم يترك شيئا فتكفل رجل عنه للغرماء لم تصح الكفالة عند أبي حنيفة وقالا: تصح",
+              "en": "If a man dies owing debts and leaves nothing, and someone stands surety for him to his creditors, Abu Hanifa said the surety is not valid. Note: Abu Yusuf and Muhammad said it is."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Surety for a buyer's price is valid", "right": true },
+                { "text": "Release from surety can be tied to a condition" },
+                { "text": "Surety needs the creditor to accept in the sitting, with one exception", "right": true },
+                { "text": "Surety for hadd punishments is valid" },
+                { "text": "A debtor-surety claims from his partner only beyond his half", "right": true }
+              ],
+              "source": ["وإذا تكفل عن المشتري بالثمن جاز", "ولا يجوز تعليق البراءة من الكفالة بشرط", "إلا في مسألة واحدة", "كالحدود والقصاص", "فيرجع بالزيادة"],
+              "why": "Surety for a price is valid, it needs acceptance in the sitting (bar one case), and a debtor-surety claims only beyond his half. Release cannot hang on a condition, and punishments cannot be guaranteed."
+            }
+          ]
+        },
+        {
+          "id": "kafala-hawala",
+          "title": "Transferring a debt (hawala)",
+          "arabic": "الحوالة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "Moving a debt to someone else",
+              "ar": "الحوالة: جائزة بالديون وتصح برضا المحيل والمحتال له والمحال عليه",
+              "en": "Hawala is transferring a debt. The muhil is the debtor who transfers it. The muhtal is the creditor. The muhal 'alayh is the person who takes the debt on. It is allowed for debts, and needs all three to agree."
+            },
+            {
+              "kind": "choose",
+              "id": "consent-gap",
+              "ask": "Complete al-Quduri's words: whose agreement does a hawala need?",
+              "ar": "وتصح برضا المحيل والمحتال له و____",
+              "options": ["المحال عليه", "القاضي", "الشهود"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وتصح برضا المحيل والمحتال له والمحال عليه",
+              "why": "المحال عليه: the debtor, the creditor and the one who takes on the debt must all agree."
+            },
+            {
+              "kind": "teach",
+              "id": "freed",
+              "title": "The first debtor is free",
+              "ar": "وإذا تمت الحوالة برىء المحيل من الدين ولم يرجع المحتال على المحيل",
+              "en": "Once the hawala is complete, the original debtor is free of the debt. The creditor cannot come back to him, unless his right is lost (tawa)."
+            },
+            {
+              "kind": "choose",
+              "id": "freed-case",
+              "ask": "Ahmad owes Bilal 100. With everyone's agreement, he transfers the debt to Karim. Later Bilal asks Ahmad for the 100. Must Ahmad pay?",
+              "options": ["No: the hawala freed him", "Yes: he was the first debtor", "Yes, half of it"],
+              "answer": 0,
+              "source": "وإذا تمت الحوالة برىء المحيل من الدين ولم يرجع المحتال على المحيل",
+              "why": "After a complete hawala the original debtor is free, and the creditor cannot come back to him while his right is safe."
+            },
+            {
+              "kind": "teach",
+              "id": "tawa",
+              "title": "When the right is lost",
+              "ar": "والتوى عند أبي حنيفة أحد أمرين: إما أن يجحد الحوالة ويحلف ولا بينة عليه أو يموت مفلسا",
+              "en": "For Abu Hanifa, the right is lost (tawa) in one of two ways: the one who took on the debt denies the hawala on oath and there are no witnesses, or he dies bankrupt. Then the creditor may go back to the first debtor. Note: Abu Yusuf and Muhammad add a third: a judge declares him bankrupt while he is alive."
+            },
+            {
+              "kind": "choose",
+              "id": "bankrupt-case",
+              "ask": "Karim, who took on Ahmad's debt, dies with nothing at all. Can Bilal now go back to Ahmad for the 100?",
+              "options": ["Yes: his right is lost, so he goes back to Ahmad", "No: Ahmad was freed for ever", "Only if a judge agrees"],
+              "answer": 0,
+              "source": ["إلاأن يتوى حقه", "أو يموت مفلسا", "وقال أبو يوسف ومحمد هاذان ووجه ثالث وهو أن يحكم الحاكم بإفلاسه في حال حياته"],
+              "why": "Dying bankrupt is one of the ways the right is lost, and then the creditor may return to the first debtor."
+            },
+            {
+              "kind": "teach",
+              "id": "claim",
+              "title": "When the taker claims it back",
+              "ar": "وإذا طالب المحال عليه المحيل بمثل مال الحواله فقال المحيل: أحلت بدين لي عليك لم يقبل قوله وكان عليه مثل الدين",
+              "en": "If the one who took on the debt later asks the first debtor for the same amount, and the first debtor says, \"I only transferred it because you owed me,\" his word is not accepted. He must pay back the same amount. (The book then begins a case where the creditor says the transfer was a real debt and the debtor says it was only for collecting; our copy breaks off before the ruling.)"
+            },
+            {
+              "kind": "choose",
+              "id": "claim-case",
+              "ask": "Karim paid Bilal the 100 and now asks Ahmad for it. Ahmad says, \"You owed me 100 anyway, that's why I sent the debt to you.\" He has no proof. What happens?",
+              "options": ["Ahmad must pay Karim 100", "Karim loses the 100", "They split it"],
+              "answer": 0,
+              "source": ["لم يقبل قوله وكان عليه مثل الدين", "وإن طالب المحيل المحتال بما أحاله به فقال: إنما أحلتك لتقبضه لي وقال المحتال: بل أحلتني بدين"],
+              "why": "The first debtor's claim that the taker owed him is not accepted, so he owes the same amount."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Hawala is allowed for debts", "right": true },
+                { "text": "The creditor need not agree to a hawala" },
+                { "text": "After a complete hawala the first debtor is free", "right": true },
+                { "text": "For Abu Hanifa, dying bankrupt is one way the right is lost", "right": true },
+                { "text": "The creditor may always go back to the first debtor" }
+              ],
+              "source": ["الحوالة: جائزة بالديون", "والمحتال له", "برىء المحيل من الدين", "أو يموت مفلسا", "ولم يرجع المحتال على المحيل"],
+              "why": "Hawala is for debts, needs all three, and frees the first debtor. The creditor returns to him only if his right is lost, such as by the taker dying bankrupt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sulh",
+      "title": "Settlement",
+      "arabic": "الصلح",
+      "kitab": "كتاب الصلح",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "sulh-kinds",
+          "title": "Three kinds of settlement",
+          "arabic": "الصلح",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Admitting, staying silent, denying",
+              "ar": "الصلح: على ثلاثة أضرب: صلح مع إقرار وصلح مع سكوت وهو أن لا يقر المدعى عليه ولا ينكره وصلح مع إنكار وكل ذلك جائز",
+              "en": "Sulh is a settlement: ending a dispute by agreement. There are three kinds: with admission (the one claimed against says the claim is true), with silence (he neither admits nor denies), and with denial. All three are allowed."
+            },
+            {
+              "kind": "sort",
+              "id": "kind",
+              "ask": "Which kind of settlement is it?",
+              "into": ["With admission", "With silence", "With denial"],
+              "items": [
+                ["\"Yes, I owe you. Take this car and we're done.\"", "With admission"],
+                ["He says nothing either way, but pays 100 to end it", "With silence"],
+                ["\"I owe you nothing, but here is 100 to end the matter.\"", "With denial"],
+                ["\"You're right that the land is yours. Take 500 for it.\"", "With admission"]
+              ],
+              "source": "صلح مع إقرار وصلح مع سكوت وهو أن لا يقر المدعى عليه ولا ينكره وصلح مع إنكار",
+              "why": "Admitting the claim, saying nothing either way, and denying it are the three kinds."
+            },
+            {
+              "kind": "teach",
+              "id": "admit",
+              "title": "A settlement with admission is a trade",
+              "ar": "فإن وقع الصلح عن إقرار اعتبر فيه ما يعتبر في البياعات إن وقع عن مال بمال وإن وقع عن مال بمنافع فيعتبر بالإجارات",
+              "en": "When the claim is admitted, the settlement follows the rules of sales if property is given for property. If property is given for a use of something (manfa'a, like living in a house or riding an animal), it follows the rules of hire (ijara)."
+            },
+            {
+              "kind": "choose",
+              "id": "ride-case",
+              "ask": "Zaid admits he owes Umar 1000 dirhams. They settle: Umar may ride Zaid's camel for a month instead. Which rules does the settlement follow?",
+              "options": ["The rules of hire", "The rules of sale", "No rules: it is a gift"],
+              "answer": 0,
+              "source": "وإن وقع عن مال بمنافع فيعتبر بالإجارات",
+              "why": "It was admitted, and property was settled for the use of a camel, so it follows the rules of hire."
+            },
+            {
+              "kind": "teach",
+              "id": "deny",
+              "title": "Silence or denial: two sides, two meanings",
+              "ar": "والصلح عن السكوت والإنكار في حق المدعى عليه لافتداء اليمين وقطع الخصومة وفي حق المدعي بمعنى المعاوضة",
+              "en": "In a settlement with silence or denial, for the one claimed against, it is paying to avoid an oath and end the quarrel. For the claimant, it is like an exchange. So if a house is the thing claimed, there is no pre-emption in it. If a house is given as the payment, there is."
+            },
+            {
+              "kind": "choose",
+              "id": "house-case",
+              "ask": "Musa claims a house from Harun, who denies it. Harun settles by giving Musa a different house. Does a neighbour have pre-emption in the house Musa receives?",
+              "options": ["Yes: a house given as the payment brings pre-emption", "No: settlements never bring pre-emption", "Only if Harun had admitted"],
+              "answer": 0,
+              "source": "وإذا صالح عن دار لم تجب فيه شفعة وإذا صالح على دار وجبت فيها الشفعة",
+              "why": "For the claimant, the settlement is an exchange, so a house received as payment brings pre-emption. The claimed house, which Harun keeps, does not."
+            },
+            {
+              "kind": "teach",
+              "id": "found",
+              "title": "If someone else owns part of it",
+              "ar": "وإذا كان الصلح عن إقرار فاستحق بعض المصالح عنه رجع المدعى عليه بحصة ذلك من العوض",
+              "en": "In a settlement with admission, if part of the thing settled over turns out to belong to a third person, the one who paid takes back that part's share of the payment."
+            },
+            {
+              "kind": "choose",
+              "id": "goats-case",
+              "ask": "Hamza admits Nuh's claim to 10 goats and pays 500 dirhams to settle. Later, 2 of the goats are proved to belong to someone else. What does Hamza get back?",
+              "options": ["100 dirhams", "500 dirhams", "Nothing"],
+              "answer": 0,
+              "source": "رجع المدعى عليه بحصة ذلك من العوض",
+              "why": "He gets back the share of the payment for the 2 goats: 2 out of 10 of 500 is 100."
+            },
+            {
+              "kind": "teach",
+              "id": "denied-found",
+              "title": "After a denial",
+              "ar": "وإن وقع الصلح عن سكوت أو إنكار فاستحق المتنازع فيه رجع المدعي بالخصومة ورد العوض",
+              "en": "In a settlement with silence or denial, if the thing argued over turns out to belong to a third person, the claimant returns the payment and takes his quarrel to that person instead. If only part of it does, he returns that part's share."
+            },
+            {
+              "kind": "choose",
+              "id": "vague-case",
+              "ask": "Salih claims \"a right\" in a house without saying what. Settling, Fadl pays him 100. Later part of the house is proved to be someone else's. Must Salih give anything back?",
+              "options": ["No: his claim could be in the part that is left", "Yes, all of it", "Yes, half"],
+              "answer": 0,
+              "source": "وإن ادعى حقا في دار لم يبينه فصولح من ذلك على شيء ثم استحق بعض الدار لم يرد شيئا من العوض لأن دعواه يجوز أن تكون فيما بقي",
+              "why": "He never said which part his right was in, so it may be in what remains. He gives nothing back."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which can be settled?",
+              "options": [
+                { "text": "A claim to money", "right": true },
+                { "text": "A claim to the use of a house", "right": true },
+                { "text": "A claim over a deliberate injury", "right": true },
+                { "text": "A claim over an accidental injury", "right": true },
+                { "text": "A claim of a hadd punishment" }
+              ],
+              "source": ["والصلح جائز من دعوى الأموال والمنافع", "العمد والخطإ ولا يجوز من دعوى حد"],
+              "why": "Claims to money, uses, and deliberate or accidental harm may be settled. A hadd punishment may not."
+            }
+          ]
+        },
+        {
+          "id": "sulh-debts",
+          "title": "Settling claims and debts",
+          "arabic": "وكل شيء وقع عليه الصلح",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "marriage",
+              "title": "Claims of marriage",
+              "ar": "وإذا ادعى رجل على امرأة نكاحا وهي تجحد فصالحته على مال بذلته حتى يترك الدعوى جاز وكان في معنى الخلع وإن ادعت امرأة نكاحا على رجل فصالحها على مال بذله لها لم تجز",
+              "en": "If a man claims a woman is his wife and she denies it, she may pay him to drop the claim. It is like khul'. But if a woman claims a man is her husband, he may not pay her to drop it."
+            },
+            {
+              "kind": "sort",
+              "id": "marriage-sort",
+              "ask": "Is this settlement allowed?",
+              "into": ["Allowed", "Not allowed"],
+              "items": [
+                ["A man claims she is his wife; she pays him to drop it", "Allowed"],
+                ["A woman claims he is her husband; he pays her to drop it", "Not allowed"],
+                ["In al-Quduri's time, a man claims another is his slave; the other pays him to drop it", "Allowed"]
+              ],
+              "source": ["حتى يترك الدعوى جاز وكان في معنى الخلع", "فصالحها على مال بذله لها لم تجز", "وإن ادعى على رجل أنه عبده فصالحته على مال أعطاه جاز وكان في حق المدعي في معنى العتق على مال"],
+              "why": "The woman paying is like khul', and the man paying to end a claim that he is a slave is like freeing for money. The man paying off a woman's marriage claim is not allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "debt",
+              "title": "Taking less of a debt is not a swap",
+              "ar": "وكل شيء وقع عليه الصلح وهو مستحق بعقد المداينة",
+              "en": "When a settlement is over a debt, and what he takes is something the debt already owed him, it is not treated as a swap. It is as if he took part of his right and let go of the rest."
+            },
+            {
+              "kind": "teach",
+              "id": "example",
+              "title": "Less, poorer, or later",
+              "ar": "جياد فصالحه على خمسمائة زيوف جاز وصار كأنه أبرأه عن بعض حقه وأخذ باقيه ولو صالحه على ألف مؤجل جاز وصار كأنه أجل نفس الحق",
+              "en": "Someone is owed 1000 good dirhams and settles for 500 poor-quality ones (zuyuf). That is allowed: it is as if he let go of part and took the rest. If he settles for the 1000 paid later, that is allowed too: he has simply given more time."
+            },
+            {
+              "kind": "choose",
+              "id": "poor-case",
+              "ask": "Ilyas is owed 1000 good dirhams. He agrees to take 500 poor-quality dirhams to settle it. Is it allowed?",
+              "options": ["Yes: he took part of his right and let go of the rest", "No: the coins must be the same quality", "No: it is riba"],
+              "answer": 0,
+              "source": ["وإنما يحمل على أنه استوفى بعض حقه", "وصار كأنه أبرأه عن بعض حقه وأخذ باقيه"],
+              "why": "Less and poorer is still within what he was owed, so it counts as taking part and forgiving the rest."
+            },
+            {
+              "kind": "sort",
+              "id": "swap",
+              "ask": "Someone is owed money and settles like this. Is it allowed?",
+              "into": ["Allowed", "Not allowed"],
+              "items": [
+                ["1000 good dirhams settled for 500 poor ones", "Allowed"],
+                ["1000 due now settled for 1000 due in a month", "Allowed"],
+                ["1000 dirhams settled for dinars due in a month", "Not allowed"],
+                ["1000 due later settled for 500 paid now", "Not allowed"],
+                ["1000 black dirhams settled for 500 white ones", "Not allowed"]
+              ],
+              "source": ["جاز وصار كأنه أبرأه عن بعض حقه", "ولو صالحه على ألف مؤجل جاز", "ولو صالحه على دنانير إلى شهر لم يجز ولو كان له ألف مؤجلة فصالحه على خمسمائة حالة لم يجز ولو كان له ألف سود فصالحه على خمسمائة بيض لم يجز"],
+              "why": "Taking less, poorer, or later is allowed. Dinars later, paying early for less, or better coins all bring in something he was not owed, and are not allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "agent",
+              "title": "An agent who settles",
+              "ar": "ومن وكل رجلا بالصلح عنه فصالحه لم يلزم الوكيل ما صالح عليه إلا أن يضمنه والمال لازم للموكل",
+              "en": "If you appoint an agent to settle for you, he does not owe the settlement money unless he guaranteed it. The money is owed by you, the principal."
+            },
+            {
+              "kind": "choose",
+              "id": "agent-case",
+              "ask": "Qasim's agent settles a claim against him for 2000. The claimant asks the agent for the money. Must the agent pay it?",
+              "options": ["No, unless he guaranteed it: Qasim owes it", "Yes: he made the settlement", "They pay half each"],
+              "answer": 0,
+              "source": "لم يلزم الوكيل ما صالح عليه إلا أن يضمنه والمال لازم للموكل",
+              "why": "The settlement money is owed by the principal. The agent owes it only if he guaranteed it."
+            },
+            {
+              "kind": "teach",
+              "id": "stranger",
+              "title": "Someone settles without being asked",
+              "ar": "فإن صالح عنه على شيء بغير أمره فهو على أربعة أوجه: إن صالح بمال وضمنه تم الصلح",
+              "en": "If an outsider settles for someone without being asked, there are four cases. The settlement is complete if he guarantees the money, or says \"I settle with you for this 1000 of mine,\" or names 1000 and hands it over. If he names 1000 but does not hand it over, the settlement waits for the person claimed against."
+            },
+            {
+              "kind": "choose",
+              "id": "stranger-case",
+              "ask": "Without being asked, Nadir says to a claimant, \"I settle with you for 1000 on Rafi's behalf,\" but pays nothing. Rafi hears of it and refuses. What happens?",
+              "options": ["The settlement is void", "Nadir must pay the 1000", "Rafi must pay the 1000"],
+              "answer": 0,
+              "source": ["وكذلك لو قال: صالحتك على ألفي هذه تم الصلح ولزمه تسليمها وكذلك لو قال: صالحتك على ألف وسلمها", "وإن قال: صالحتك على ألف ولم يسلمها فالعقد موقوف: فإن أجازه المدعى عليه جاز ولزمه الألف وإن لم يجزه بطل"],
+              "why": "Naming 1000 without handing it over leaves the settlement waiting. If Rafi approves, he owes the 1000; since he refused, it is void."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A woman may pay a man to drop his claim that she is his wife", "right": true },
+                { "text": "Settling 1000 for 1000 paid later is allowed", "right": true },
+                { "text": "An agent who settles always owes the money himself" },
+                { "text": "Settling a debt due later for less paid now is allowed" },
+                { "text": "An outsider who guarantees the money completes the settlement", "right": true }
+              ],
+              "source": ["وكان في معنى الخلع", "ولو صالحه على ألف مؤجل جاز", "إلا أن يضمنه", "فصالحه على خمسمائة حالة لم يجز", "إن صالح بمال وضمنه تم الصلح"],
+              "why": "The woman's payment is like khul', giving more time is allowed, and an outsider's guarantee completes it. An agent owes only if he guaranteed, and paying early for less is not allowed."
+            }
+          ]
+        },
+        {
+          "id": "sulh-shares",
+          "title": "Settling shared debts and inheritances",
+          "arabic": "وإذا كان الدين بين شريكين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "cloth",
+              "title": "One partner settles his share",
+              "ar": "وإذا كان الدين بين شريكين فصالح أحدهما من نصيبه على ثوب فشريكه بالخيار: إن شاء اتبع عليه الدين بنصفه وإن شاء أخذ نصف الثوب إلا أن يضمن له شريكه ربع الدين",
+              "en": "Two partners are owed a debt together. One settles his share for a cloth. His partner may choose: go after the debtor for his own half, or take half the cloth. Unless the first partner pays him a quarter of the debt instead."
+            },
+            {
+              "kind": "choose",
+              "id": "cloth-case",
+              "ask": "Ali and Umar are owed 1000 by Zaid, half each. Ali settles his 500 share for a fine cloth. Ali wants to keep the whole cloth. What must he pay Umar?",
+              "options": ["250, a quarter of the debt", "500, half of the debt", "Nothing"],
+              "answer": 0,
+              "source": "إلا أن يضمن له شريكه ربع الدين",
+              "why": "Umar could take half the cloth, unless Ali pays him a quarter of the debt: a quarter of 1000 is 250."
+            },
+            {
+              "kind": "teach",
+              "id": "collect",
+              "title": "If one partner collects some",
+              "ar": "ولو استوفى نصف نصيبه من الدين كان لشريكه أن يشركه فيما قبض ثم يرجعان على الغريم بالباقي",
+              "en": "If one partner collects half his share, the other partner may share in what he collected. Then both go after the debtor for the rest. If one partner buys goods from the debtor with his share, his partner may make him pay a quarter of the debt."
+            },
+            {
+              "kind": "choose",
+              "id": "collect-case",
+              "ask": "Ali collects 250 of his 500 share from Zaid. What may Umar do?",
+              "options": ["Share in the 250, then both claim the rest from Zaid", "Nothing: Ali collected his own share", "Take all 250"],
+              "answer": 0,
+              "source": ["كان لشريكه أن يشركه فيما قبض ثم يرجعان على الغريم بالباقي", "ولو اشترى أحدهما نصيبه من الدين سلعة كان لشريكه أن يضمنه ربع الدين"],
+              "why": "What one partner collects of a shared debt may be shared by the other, and then they both claim the rest."
+            },
+            {
+              "kind": "teach",
+              "id": "salam",
+              "title": "A shared salam",
+              "ar": "وإذا كان السلم بين شريكين فصالح أحدهما من نصيبه على رأس المال لم يجز عند أبي حنيفة ومحمد رحمهما الله وقال أبو يوسف رحمه الله: يجوز الصلح",
+              "en": "In a salam, the buyer pays now for goods delivered later. If two partners made a salam together and one settles his share by taking back his money, Abu Hanifa and Muhammad said it is not allowed. Note: Abu Yusuf said the settlement is allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "heirs",
+              "title": "Buying out an heir",
+              "ar": "وإذا كانت التركة بين ورثة فأخرجوا أحدهم منها بمال أعطوه إياه والتركة عقار أو عروض جاز قليلا كان ما أعطوه أو كثيرا",
+              "en": "The tarika is what a dead person leaves behind. If the heirs pay one heir to leave the inheritance to them, and it is land or goods, that is allowed, whether they pay him a little or a lot. The same if it is all silver and they pay him gold, or all gold and they pay him silver."
+            },
+            {
+              "kind": "choose",
+              "id": "heirs-case",
+              "ask": "An estate is a house and its furniture. The other heirs pay Fatima 2000 dirhams to step out of the inheritance. Is it allowed?",
+              "options": ["Yes, whether 2000 is little or a lot", "Only if 2000 equals her share exactly", "No: heirs cannot be bought out"],
+              "answer": 0,
+              "source": ["والتركة عقار أو عروض جاز قليلا كان ما أعطوه أو كثيرا", "وإن كانت التركة فضة فأعطوه ذهبا أو كانت ذهبا فأعطوه فضة فهو كذلك"],
+              "why": "For land or goods, buying an heir out is allowed for any amount."
+            },
+            {
+              "kind": "teach",
+              "id": "mixed-estate",
+              "title": "An estate of gold, silver and more",
+              "ar": "وإن كانت التركة ذهبا وفضة وغير ذلك فصالحوه على فضة أو ذهب فلا بد أن يكون ما أعطوه أكثر من نصيبه من ذلك الجنس حتى يكون نصيبه بمثله والزيادة بحقه من بقية الميراث",
+              "en": "If the estate has gold, silver and other things, and they pay him in silver (or gold), they must give him more than his share of that metal. Then his share of the metal is matched by the same amount, and the extra is for his share of everything else."
+            },
+            {
+              "kind": "choose",
+              "id": "silver-case",
+              "ask": "An estate has silver and land. Hasan's share of the silver is 300 dirhams. The others pay him in silver to leave. Which payment works?",
+              "options": ["400 dirhams", "300 dirhams", "250 dirhams"],
+              "answer": 0,
+              "source": "فلا بد أن يكون ما أعطوه أكثر من نصيبه من ذلك الجنس",
+              "why": "He must get more than his 300 of silver: 300 matches his silver, and the extra is for his share of the land."
+            },
+            {
+              "kind": "teach",
+              "id": "estate-debt",
+              "title": "Debts owed to the estate",
+              "ar": "وإن كان في التركة دين على الناس فأدخلوه في الصلح على أن يخرجوا المصالح عنه ويكون الدين لهم فالصلح باطل",
+              "en": "If people owe debts to the estate and the heirs include those debts in the buy-out, so that the debts become theirs, the settlement is void. But if they agree that he lets the debtors off his part, without claiming his share from them, it is allowed."
+            },
+            {
+              "kind": "sort",
+              "id": "valid",
+              "ask": "Is the settlement valid?",
+              "into": ["Valid", "Void or not allowed"],
+              "items": [
+                ["Heirs pay one heir any sum for his share of land", "Valid"],
+                ["An estate of only gold, the heir is paid in silver", "Valid"],
+                ["The heirs take over his share of debts owed to the estate", "Void or not allowed"],
+                ["He lets the debtors off his part of their debts", "Valid"],
+                ["Estate of silver and land, he gets less silver than his silver share", "Void or not allowed"]
+              ],
+              "source": ["جاز قليلا كان ما أعطوه أو كثيرا", "أو كانت ذهبا فأعطوه فضة فهو كذلك", "ويكون الدين لهم فالصلح باطل", "فإن شرطوا أن يبرئ الغرماء منه ولا يرجع عليهم بنصيب المصالح فالصلح جائز", "أكثر من نصيبه من ذلك الجنس"],
+              "why": "Any sum for land, gold for silver, and letting the debtors off are fine. Taking over his share of the debts is void, and silver must be more than his silver share."
+            }
+          ]
+        }
+      ]
+    },
     { "id": "hiba", "title": "Gifts", "arabic": "الهبة", "kitab": "كتاب الهبة", "lessons": [] },
     { "id": "waqf", "title": "Endowment", "arabic": "الوقف", "kitab": "كتاب الوقف", "lessons": [] },
     { "id": "ghasb", "title": "Taking by force", "arabic": "الغصب", "kitab": "كتاب الغصب", "lessons": [] },
