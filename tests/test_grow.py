@@ -25,7 +25,12 @@ from backend.services.recitation.spelling import as_heard
 client = TestClient(app)
 WEBM = bytes([0x1A, 0x45, 0xDF, 0xA3]) + bytes(8)
 BACKEND = Path(__file__).resolve().parent.parent / "backend"
-GROW_CONFIG = Path(__file__).resolve().parent.parent / "frontend" / "src" / "grow.json"
+PRAYER_WORLD = BACKEND / "data" / "grow" / "worlds" / "prayer" / "world.json"
+
+
+def _levels():
+    """The prayer world's levels, in the order they are climbed (its own world.json)."""
+    return json.loads(PRAYER_WORLD.read_text(encoding="utf-8"))["levels"]
 AYAH_KEY = re.compile(r"(\d{1,3}):(\d{1,3})")
 SUNNAH_PAGE = re.compile(r"sunnah\.com/([a-z]+:\d+[a-z]?)")
 
@@ -82,7 +87,7 @@ def test_every_ayahs_step_is_one_surah():
 
 
 def test_every_path_names_a_tier_and_every_step_sits_in_one_group():
-    tiers = {t["id"] for t in json.loads(GROW_CONFIG.read_text(encoding="utf-8"))["tiers"]}
+    tiers = {t["id"] for t in _levels()}
     for path in grow.paths():
         assert path.tier in tiers, path.id
         grouped = [step for group in path.groups for step in group.steps]
@@ -99,7 +104,7 @@ def test_every_posture_is_an_action_that_quotes_its_source():
 
 
 def test_tiers_unlock_in_order_and_each_has_a_path():
-    tiers = [t["id"] for t in json.loads(GROW_CONFIG.read_text(encoding="utf-8"))["tiers"]]
+    tiers = [t["id"] for t in _levels()]
     used = [tiers.index(path.tier) for path in grow.paths()]
     assert used == sorted(used), "a path sits after every path of an earlier tier"
     assert set(used) == set(range(len(tiers))), "no tier is left without a path"
@@ -135,11 +140,10 @@ def test_every_ruling_says_who_it_is_by():
 
 
 def test_a_world_is_served_whole_and_only_by_its_name():
-    """Levels mirror the page's tiers until the page reads them from here; every unit
-    file loads; and an id names one thing across the world, paths' steps and cards alike."""
+    """Its levels are its world.json's; every unit file loads; and an id names one
+    thing across the world, paths' steps and cards alike."""
     world = client.get("/api/grow/worlds/prayer").json()
-    tiers = json.loads(GROW_CONFIG.read_text(encoding="utf-8"))["tiers"]
-    assert [(level["id"], level["title"]) for level in world["levels"]] == [(t["id"], t["title"]) for t in tiers]
+    assert [(level["id"], level["title"]) for level in world["levels"]] == [(t["id"], t["title"]) for t in _levels()]
     assert world["paths"] == client.get("/api/grow/paths").json()
     folder = BACKEND / "data" / "grow" / "worlds" / "prayer"
     assert len(world["units"]) == len(json.loads((folder / "world.json").read_text(encoding="utf-8"))["units"]) >= 1

@@ -54,7 +54,7 @@ class GrowGroup(BaseModel):
 
 
 class GrowPath(BaseModel):
-    """`tier` is one of the ids in the page's grow.json, so a new tier of
+    """`tier` is one of its world's `levels` (world.json), so a new tier of
     learning is data: a path that names it."""
     id: str
     tier: str
@@ -111,8 +111,8 @@ Card = Annotated[ReciteCard | ActionCard | RulingCard | DifferenceCard, Field(di
 
 
 class GrowLevel(BaseModel):
-    """A level of a world's map, mirroring the page's grow.json tiers until the
-    page reads levels from here. `proposed` are topics planned for it, shown locked."""
+    """A level of a world's map, as its world.json lists it. `proposed` are topics
+    planned for it, shown locked."""
     id: str
     title: str
     proposed: list[str] = []
