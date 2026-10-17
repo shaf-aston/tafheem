@@ -4,7 +4,8 @@
  *
  * Reading a hadith as one grey block hides the thing a reader came for. The
  * books mark what was said themselves: sunnah.com puts it between quote marks,
- * in the Arabic and in the English both. So the mark is read, never guessed,
+ * in the Arabic and in the English both. So the mark is read first; only an
+ * Arabic left unmarked is read from its verbs of saying instead (spoken),
  * and only colour is added: the spans joined give back the book's own text,
  * every letter and mark of it (a test holds every hadith to that).
  *
@@ -149,6 +150,54 @@ export function saying(text) {
   // A quote that holds a deeper one is telling: the companion's account, not the words.
   const holds = (i) => [kept[i - 1], kept[i + 1]].some((next) => next?.depth > kept[i].depth)
   return kept.map(({ depth: d, open: o, text: t, close: c }, i) => ({ kind: d && !holds(i) ? 'said' : 'told', open: o, text: t, close: c }))
+}
+
+// A book that set no quote marks in its Arabic still says who speaks: the
+// saying follows the last verb of saying (CHAIN.voice) after the body starts,
+// once past who says it and to whom. Only an unmarked hadith is read this way;
+// a marked one keeps saying()'s reading of its own marks.
+const VOICE = new Set(CHAIN.voice.verbs)
+const SPEAKER = new Set([...CHAIN.prophet, ...CHAIN.free, ...CHAIN.voice.to])
+const PAST = new Set(CHAIN.voice.past)
+// The name after بن / ابن / بنت belongs to the speaker too.
+const KIN_OF = new Set(['بن', 'ابن', 'بنت'].filter((w) => CHAIN.free.includes(w)))
+// A name in the raf': no ال, ending in a damma or dammatan but not تُ.
+const NAME = /^(?![وف]?ال)\S*[\u0621-\u0629\u062b-\u063a\u0641-\u064a]\u0651?[\u064c\u064f]$/
+
+/**
+ * saying(), and where that finds no marks, the same spans read from the
+ * verbs: `told` up to the saying, `said` from it to the end. `from` is where
+ * the body starts in `text` (after the chain); a verb before it is the chain's.
+ */
+export function spoken(text, from = 0) {
+  const spans = saying(text)
+  if (spans.length !== 1 || spans[0].kind !== 'plain') return spans
+  const clean = spans[0].text
+  const words = [...clean.matchAll(/\S+/g)].filter((m) => m.index >= from)
+  const said = (verb) => {
+    let next = verb + 1
+    // قال أنس / قالت عائشة: a past verb's subject comes next, one word in the
+    // raf' (a damma on its end), with any بن and name after it. A word with ال
+    // or a تُ ending (قلتُ) is the saying's own.
+    const named = PAST.has(bare(words[verb][0])) && NAME.test(words[next]?.[0].replace(/[^\p{L}\p{M}]+$/u, '') ?? '')
+    if (named) next++
+    while (next < words.length) {
+      if (SPEAKER.has(bare(words[next][0])) || !LETTER.test(words[next][0]) || KIN_OF.has(bare(words[next - 1][0]))) next++
+      else break
+    }
+    return next
+  }
+  // The last verb that still leaves words to say: a trailing قال أنس is an aside.
+  let next = words.length
+  for (let verb = words.length - 1; verb >= 0 && next >= words.length; verb--) {
+    if (VOICE.has(bare(words[verb][0]))) next = said(verb)
+  }
+  if (next >= words.length) return spans
+  const at = words[next].index
+  return [
+    { kind: 'told', open: '', text: clean.slice(0, at), close: '' },
+    { kind: 'said', open: '', text: clean.slice(at), close: '' },
+  ]
 }
 
 // "Narrated Abu Huraira:", "It is narrated on the authority of X that ... said:"

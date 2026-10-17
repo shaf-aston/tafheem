@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { CHAIN, chainLinks, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
+import { CHAIN, chainLinks, hadithKey, narrated, printedBy, saying, spoken, termOf } from './hadithWords'
 
 // The said words alone, without the marks around them.
 const said = (text) => saying(text).filter((s) => s.kind === 'said').map((s) => s.text)
@@ -260,5 +260,36 @@ describe('chainLinks', () => {
 
   it('has nothing to draw for no chain', () => {
     expect(chainLinks('')).toEqual({ main: [], branches: [] })
+  })
+})
+
+describe('spoken', () => {
+  const joined = (spans) => spans.map((s) => s.open + s.text + s.close).join('')
+  const said = (spans) => spans.filter((s) => s.kind === 'said').map((s) => s.text).join('')
+
+  it('starts an unmarked saying after the verb and the Prophet who says it', () => {
+    const text = 'عَنْ أَنَسٍ، قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم لاَ يُؤْمِنُ أَحَدُكُمْ'
+    const spans = spoken(text, text.indexOf('قَالَ رَسُولُ'))
+    expect(said(spans)).toBe('لاَ يُؤْمِنُ أَحَدُكُمْ')
+    expect(joined(spans)).toBe(text)
+  })
+
+  it('steps past a named speaker and to whom, but keeps a saying that opens with قلتُ', () => {
+    const named = 'فَقَالَ عُمَرُ لَهُ قَدْ عَرَفْنَا ذَلِكَ'
+    expect(said(spoken(named))).toBe('قَدْ عَرَفْنَا ذَلِكَ')
+    const own = 'فَقَالَ حَلَقْتُ قَبْلَ أَنْ أَذْبَحَ'
+    expect(said(spoken(own))).toBe('حَلَقْتُ قَبْلَ أَنْ أَذْبَحَ')
+  })
+
+  it('takes the last verb that leaves words to say, past a trailing aside', () => {
+    expect(said(spoken('ثُمَّ قَالَ صَلُّوا كَمَا رَأَيْتُمُونِي قَالَ أَنَسٌ.'))).toBe('صَلُّوا كَمَا رَأَيْتُمُونِي قَالَ أَنَسٌ.')
+  })
+
+  it('reads no verb in the chain, and leaves a hadith with no verb or with marks as saying() does', () => {
+    const chain = 'حَدَّثَنَا مَالِكٌ قَالَ حَدَّثَنَا نَافِعٌ'
+    expect(spoken(chain, chain.length)).toEqual(saying(chain))
+    expect(spoken('كَانَ النَّبِيُّ يُصَلِّي')).toEqual(saying('كَانَ النَّبِيُّ يُصَلِّي'))
+    const marked = 'قَالَ "صَلُّوا"'
+    expect(spoken(marked)).toEqual(saying(marked))
   })
 })
