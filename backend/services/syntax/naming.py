@@ -88,7 +88,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     word_of = _typed_word_of(bases, tokens)
     before = [[t["form"].strip("+") for t in tokens if facts.is_prefix(t) and word_of.get(t["id"]) == i]
               for i in range(len(bases))]
-    cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "",
+    cases = [_ending(role, token, _governor(bases, i), words[i + 1] if i + 1 < len(words) else "",
                      facts.puts_in_jarr(token, s), _lam_mood(token, before[i], i == 0))
              for i, (role, token) in enumerate(zip(named, bases))]
     _followers_take_their_ending(named, cases, bases, tokens)
@@ -280,6 +280,17 @@ def opens_with_verb(roles: list[str | None]) -> bool:
         if role in (NAMED.mubtada, NAMED.ism_inna, NAMED.khabar):
             return False
     return False
+
+
+def _governor(bases: list[dict], i: int) -> dict | None:
+    """The word before word i that may govern it. A لا straight after a nasb particle is
+    the plain negation, which governs nothing: أَنْ لَا تَطُوفِي، لِكَيْ لَا يَعْلَمَ are
+    in nasb by the particle before it, not in jazm by a لا of prohibition."""
+    before = bases[i - 1] if i else None
+    if (before and i > 1 and is_one(before["base"], "negation")
+            and is_one(bases[i - 2]["base"], "nasb_mudari", "before_a_present_verb")):
+        return bases[i - 2]
+    return before
 
 
 def _lam_mood(token: dict, front: list[str], opens: bool) -> str | None:

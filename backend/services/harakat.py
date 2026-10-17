@@ -194,6 +194,14 @@ def build_nun(word: str) -> str | None:
 _MARK = {"َ": "a", "ُ": "u", "ِ": "i", "ً": "an", "ٌ": "un", "ٍ": "in", SUKUN: "o", DAGGER_ALEF: "a"}
 
 
+def wasl_typed(marked: list[tuple[str, set]]) -> bool:
+    """The word opens on a hamzat al-wasl, as typed: a bare alef, with no fatha of a dropped
+    hamza on it, before a letter typed with its sukun (اذْهَبْ، اسْتَغْفِرْ، انْطَلَقَ). A hamzat
+    al-qat' is written on its seat (أَكْرِمْ، إِكْرَام), so the alef alone says it is not one."""
+    return (len(marked) > 1 and marked[0][0] == "ا" and "َ" not in marked[0][1]
+            and SUKUN in marked[1][1])
+
+
 def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
     """(how many vowels typed on a word a reading also has, how many letters both voweled
     that it doubles differently), or None when a typed vowel contradicts it (فَتَحَ against
@@ -208,6 +216,8 @@ def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
     mine, theirs = letters(typed), letters(reading)
     if [bare_letters(c) for c, _ in mine] != [bare_letters(c) for c, _ in theirs]:
         return 0, 0
+    if wasl_typed(mine) and theirs[0][0] in "أإ":
+        return None  # اِفْعَلِي typed with its hamzat al-wasl is not the أَفْعَل its letters also spell
     agreed = doubled = 0
     for (_, said), (_, read) in zip(mine, theirs):
         said_v, read_v = {_MARK[m] for m in said if m in _MARK}, {_MARK[m] for m in read if m in _MARK}

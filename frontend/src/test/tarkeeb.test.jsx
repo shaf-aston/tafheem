@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 // A deep chart shows its first rows and folds the widest joins behind one
 // button; the larger view draws every row.
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
@@ -23,9 +23,24 @@ describe('tarkeeb chart', () => {
     expect(screen.queryByRole('button', { name: /more row/ })).toBeNull()
   })
 
+  it('opens a written word in the dictionary when tapped', () => {
+    const onWord = vi.fn()
+    const { container } = renderScreen(<TarkeebDiagram tarkeeb={TARKEEB} onWord={onWord} />)
+    fireEvent.click(container.querySelectorAll('.tk-word')[2])
+    expect(onWord).toHaveBeenCalledWith('ت')
+  })
+
   it('draws every row in the larger view', () => {
     const { container } = renderScreen(<TarkeebDiagram tarkeeb={TARKEEB} whole />)
     expect(rowsDrawn(container)).toBe(5)
     expect(screen.queryByRole('button', { name: /more row/ })).toBeNull()
+  })
+
+  it('hangs every name under its own brace, with no "=" or "+" saying the join again', () => {
+    const { container } = renderScreen(<TarkeebDiagram tarkeeb={TARKEEB} whole />)
+    const names = [...container.querySelectorAll('.tk-name')]
+    expect(names).toHaveLength(5)
+    names.forEach((name) => expect(name.previousElementSibling.classList).toContain('tk-brace'))
+    expect(container.querySelector('.tk-grid').textContent).not.toMatch(/[=+]/)
   })
 })

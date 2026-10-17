@@ -326,10 +326,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             label_of[token["id"]] = masdar["label"]
             job_of[token["id"]] = masdar["job_by_rel"][token["rel"]]
             place_of[token["id"]] = in_place(masdar["case_by_rel"][token["rel"]])
-            # إلا أنْ تتطوعَ after a noun: an action is not of the group the noun names, so a منقطع
+            # إلا أنْ تتطوعَ after a noun: an action is not of the group the noun names, so a منقطع;
+            # غَيْرَ أنْ is غير's مضاف إليه, the excepting noun being the مستثنى itself
             excepting = by_id.get(token["head"])
             for family, after in masdar["after_family"].items():
-                if excepting and read_as(excepting, family) and previous_noun(excepting, sentence):
+                if excepting and excepting["pos"] == "PRT" and read_as(excepting, family) and previous_noun(excepting, sentence):
                     job_of[token["id"]] = after["job"]
                     place_of[token["id"]] = in_place(after["case"])
             framed.add(token["id"])

@@ -18,8 +18,6 @@ import { useRail } from '../lib/useRail'
 
 import Tooltip from './ui/Tooltip'
 
-// the gutter for each row's "= name", in the name's own size, so it grows with the text
-const NAME_COLUMN = 'calc(var(--arabic-reading-rem) * 9rem)'
 // Rows of names shown before the rest fold behind "more rows": every book example
 // fits in four; a long ayah's widest joins wait for a tap.
 const ROWS_SHOWN = 4
@@ -27,39 +25,30 @@ const ROWS_SHOWN = 4
 /**
  * One brace, the row of names above it, and the name of the unit itself.
  *
- * The name normally sits on the brace's left, in the gutter column the grid
- * keeps for it. Only a group reaching the leftmost word has that gutter beside
- * it though: any other group's left is another group, so `atEdge` is false and
- * the name drops under its own brace instead of being drawn over the neighbour.
+ * Every name hangs under its own brace's stem, so it stays beside the words it
+ * names: the brace already says "these join", so no "=" or "+" says it again.
  */
-function Bracket({ node, atEdge, style }) {
+function Bracket({ node, style }) {
   // roleVar is the word grid's own lookup, so one role is one colour in both.
-  const name = node.label && (
-    <div className="tk-name">
-      {/* RTL reading order: the brace, then "=", then the name on the left. */}
-      <span className="tk-eq" aria-hidden="true">=</span>
-      <span>{node.label}</span>
-    </div>
-  )
 
   return (
     <div className="tk-group" data-level={node.level} style={style}>
       {/* each name over its own words' columns: the row is a subgrid of the chart's */}
       <div className="tk-roles">
         {cells(node).map((cell, index) => {
-          // one word holding several names (فعل + فاعل) forks to them, one line to each;
-          // names sharing several columns (فَ and the answer it ties) are read in order with a "+"
+          // one word holding several names (فعل، فاعل) forks to them, one line to each;
+          // names sharing several columns (فَ and the answer it ties) stand side by side
           const forked = cell.roles.length > 1 && cell.from === cell.to
           return (
             <div
               key={index}
-              className={`tk-cell${index > 0 ? ' tk-after' : ''}${forked ? ' tk-forked' : ''}`}
+              className={`tk-cell${forked ? ' tk-forked' : ''}`}
               style={{ gridColumn: `${cell.from - node.from + 1} / ${cell.to - node.from + 2}` }}
             >
+              {/* the line down from the word to the split: its own row, as tall as the row has room */}
+              {forked && <span className="tk-stem" style={{ gridColumn: `1 / ${cell.roles.length + 1}` }} aria-hidden="true" />}
               {cell.roles.map((piece, k) => (
-                <Fragment key={k}>
-                  {k > 0 && !forked && <span className="tk-plus" aria-hidden="true">+</span>}
-                  <div className="tk-branch">
+                <div className="tk-branch" key={k}>
                     <div
                       className={`tk-role${piece.gap ? ' tk-gap' : ''}${piece.raw_wording ? ' tk-raw' : ''}`}
                       style={{ '--tone': roleVar(piece.tone) }}
@@ -70,15 +59,14 @@ function Bracket({ node, atEdge, style }) {
                     </div>
                     {/* the pronoun a doer stands for, which is not written anywhere */}
                     {piece.pronoun && <div className="tk-says">{piece.pronoun}</div>}
-                  </div>
-                </Fragment>
+                </div>
               ))}
             </div>
           )
         })}
       </div>
-      <div className="tk-brace" style={{ '--tone': roleVar(node.tone) }}>{atEdge && name}</div>
-      {!atEdge && name}
+      <div className="tk-brace" style={{ '--tone': roleVar(node.tone) }} />
+      {node.label && <div className="tk-name" style={{ '--tone': roleVar(node.tone) }}>{node.label}</div>}
     </div>
   )
 }
@@ -125,7 +113,7 @@ function placeDots(view) {
  * `whole` draws every row, for the larger view; otherwise the rows past
  * ROWS_SHOWN wait behind a "more rows" button.
  */
-export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false }) {
+export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false, onWord }) {
   const { words, written, tree, unwritten } = tarkeeb
   const [dots, setDots] = useState([])
   const { strip, ends, measure, page } = useRail(`${words.join(' ')}|${mode}`)
@@ -209,7 +197,7 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false 
           className="tk-grid"
           style={{
             // every word takes only the width it needs, so a long sentence pages less
-            gridTemplateColumns: `repeat(${shown.words.length}, max-content) ${NAME_COLUMN}`,
+            gridTemplateColumns: `repeat(${shown.words.length}, max-content)`,
           }}
         >
           {spans.map(({ from, to }) => {
@@ -224,6 +212,19 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false 
                 className={`tk-word${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
                 key={`word-${from}`}
                 style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone[from]) }}
+                // a written word opens in the dictionary, the same search as typing it there
+                {...(onWord && !missing && {
+                  role: 'button',
+                  tabIndex: 0,
+                  title: 'Look this word up',
+                  onClick: () => onWord(pieces.join('').replaceAll('ـ', '')),
+                  onKeyDown: (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      onWord(pieces.join('').replaceAll('ـ', ''))
+                    }
+                  },
+                })}
               >
                 {to > from ? (
                   pieces.map((text, k) => {
@@ -251,7 +252,6 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false 
                 <Bracket
                   key={`${level}-${node.from}`}
                   node={node}
-                  atEdge={node.to === shown.words.length - 1}
                   style={{ gridRow: level + 1, gridColumn: `${node.from + 1} / ${node.to + 2}` }}
                 />
               ))}

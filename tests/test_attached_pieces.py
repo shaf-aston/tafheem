@@ -101,6 +101,36 @@ def test_ghair_with_no_group_before_it_does_the_verbs_own_job(sentence, job):
     assert cards[1]["role"] == job
 
 
+@pytest.mark.parametrize("sentence", ["اكْتُبِي الدَّرْسَ", "اشْرَبُوا المَاءَ", "اجْلِسْ هُنَا"])
+def test_a_command_typed_with_its_hamzat_al_wasl_is_a_verb(sentence):
+    """The bare alef before a sukun is hamzat al-wasl: never the أَفْعَل its letters also spell."""
+    cards, _ = analysed(sentence)
+    assert cards[0]["role"] == "فعل"
+
+
+@pytest.mark.parametrize("sentence, verb", [
+    ("افْعَلِي مَا يَفْعَلُ الحَاجُّ غَيْرَ أَنْ لَا تَطُوفِي بِالبَيْتِ", "تَطُوفِي"),
+    ("ادْرُسُوا الكُتُبَ غَيْرَ أَنْ لَا تَسْهَرُوا", "تَسْهَرُوا"),
+])
+def test_ghair_before_an_masdar_is_the_mustathna_and_the_masdar_its_mudaf_ilayh(sentence, verb):
+    """غَيْرَ أنْ لا ...: غير is the مستثنى, مضاف to the masdar أنْ and its verb make; no
+    مفعول به inside a مفعول به. The لا after أنْ only negates: the verb is أنْ's, in nasb."""
+    cards, leaves = analysed(sentence)
+    ghair, unit = leaves["غَيْرَ"][0]
+    assert ghair["role"] == "مستثنى"
+    assert [kid["role"] for kid in unit["children"]] == ["مستثنى", "مضاف إليه"]
+    card = {c["word"]: c for c in cards}
+    assert card[verb]["case"] == "nasb"
+    assert leaves["لَا"][0][0]["role"] == "لا النافية"
+
+
+def test_la_after_an_negates_and_alone_forbids():
+    cards, leaves = analysed("لَا تَذْهَبُوا")
+    assert cards[1]["case"] == "jazm" and leaves["لَا"][0][0]["role"] == "لا الناهية"
+    cards, _ = analysed("أُحِبُّ أَنْ لَا تَذْهَبُوا")
+    assert cards[3]["case"] == "nasb"
+
+
 def test_man_before_a_verb_is_never_min_and_its_card_says_what_the_picture_does():
     cards, leaves = analysed("مَنْ شَاءَ فَلْيَصُمْهُ وَمَنْ شَاءَ أَفْطَرَ")
     assert cards[0]["role"] == leaves["مَنْ"][0][0]["role"] != "حرف جر"
