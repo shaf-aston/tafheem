@@ -18,7 +18,7 @@ import { useSyncExternalStore } from 'react'
 
 import config from '../settings.json'
 import {
-  BASE_THEME, applyTheme, followDevice, followsDevice, rememberTheme, resolveTheme, themeChoices, themeVariable,
+  FIRST_CHOICE, applyTheme, followDevice, followsDevice, rememberTheme, resolveTheme, themeChoices, themeVariable,
 } from '../theme'
 import { forgetKey, onReplaced, readSaved, writeSaved } from './stored'
 
@@ -26,7 +26,7 @@ import { forgetKey, onReplaced, readSaved, writeSaved } from './stored'
 // The look setting is the one whose options are not written here: they are
 // whatever looks theme.json has, so adding a look touches one file.
 export const SETTINGS = config.settings.map((one) =>
-  one.theme ? { ...one, default: BASE_THEME, options: themeChoices() } : one,
+  one.theme ? { ...one, default: FIRST_CHOICE, options: themeChoices() } : one,
 )
 
 const STORAGE_KEY = config['storage-key']
