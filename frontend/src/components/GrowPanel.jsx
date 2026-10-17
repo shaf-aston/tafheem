@@ -3,7 +3,6 @@
  * Three screens: home, a world (SCREENS by its `kind` in worlds.json), a lesson; each has an address (lib/growPlace.js),
  * written through `onVisit` and followed on back/forward through `arrival`.
  * Adding a lessons world = a worlds.json entry + a hook in `lessons` (a config of lib/useLessonWorld.js);
- * a path world = an entry of kind `path` + its record in `paths` (lib/usePathRecord.js);
  * a book world = an entry of kind `book` + its hook in `books` (lib/useBookWorld.js): parts, then lessons, each one address deeper.
  */
 import { useEffect, useEffectEvent, useState } from 'react'
@@ -16,7 +15,6 @@ import { getProfile } from '../lib/profile'
 import { useHadithWorld } from '../lib/useHadithWorld'
 import { useArrival } from '../lib/useArrival'
 import { useBookWorld } from '../lib/useBookWorld'
-import { usePathRecord } from '../lib/usePathRecord'
 import { useQuranWorld } from '../lib/useQuranWorld'
 import { useRewards } from '../lib/useRewards'
 import { useWordsWorld } from '../lib/useWordsWorld'
@@ -24,7 +22,6 @@ import BookWorld from './grow/BookWorld'
 import GrowHome from './grow/GrowHome'
 import LessonRunner from './grow/LessonRunner'
 import LessonWorld from './grow/LessonWorld'
-import PathWorld from './grow/PathWorld'
 
 const WORLDS = config.worlds.map((world) => ({ ...world, accent: colorFor('world', world.id) }))
 const worldOf = (id) => WORLDS.find((world) => world.id === id)
@@ -34,9 +31,6 @@ const SCREENS = {
   lessons: ({ world, lessons, back, start }) => (
     <LessonWorld world={world} accent={world.accent} state={lessons[world.id]} onBack={back} onStart={() => start(world.id)} />
   ),
-  path: ({ world, paths, back, onGo }) => (
-    <PathWorld world={world} accent={world.accent} state={paths[world.id]} onBack={back} onGo={onGo} />
-  ),
   book: ({ world, books, view, back, go, startBook }) => (
     <BookWorld world={world} accent={world.accent} state={books[world.id]} part={view.part} onBack={back}
       onPart={(part) => go(part ? { at: 'world', id: world.id, part } : { at: 'world', id: world.id })}
@@ -44,11 +38,10 @@ const SCREENS = {
   ),
 }
 
-export default function GrowPanel({ incoming, arrival, onVisit, onGo }) {
+export default function GrowPanel({ incoming, arrival, onVisit }) {
   const [name] = useState(getProfile)
   const { rewards } = useRewards(name)
   const lessons = { words: useWordsWorld(worldOf('words')), hadith: useHadithWorld(worldOf('hadith')), quran: useQuranWorld(worldOf('quran')) }
-  const paths = { prayer: usePathRecord(worldOf('prayer')) }
   const books = { fiqh: useBookWorld(worldOf('fiqh')) }
   const sourceOf = (id) => books[id] ?? lessons[id]
   const placeAt = (value) => placeOf(value, WORLD_IDS, Object.keys(lessons), Object.keys(books))
@@ -89,10 +82,10 @@ export default function GrowPanel({ incoming, arrival, onVisit, onGo }) {
     screen = <LessonRunner cards={view.cards} accent={worldOf(view.id).accent} rewards={rewards} onLeave={finished} />
   } else if (view.at !== 'home') {
     const world = worldOf(view.id)
-    screen = SCREENS[world.kind]({ world, lessons, paths, books, view, back: home, go, start, startBook, onGo })
+    screen = SCREENS[world.kind]({ world, lessons, books, view, back: home, go, start, startBook })
   } else {
     screen = (
-      <GrowHome worlds={WORLDS} rewards={rewards} lessons={lessons} prayer={paths.prayer} books={books} onOpen={open} onStart={start}
+      <GrowHome worlds={WORLDS} rewards={rewards} lessons={lessons} books={books} onOpen={open} onStart={start}
         onStartBook={startBook} />
     )
   }

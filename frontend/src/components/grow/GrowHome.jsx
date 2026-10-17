@@ -93,8 +93,8 @@ const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.rev
 /** A next-step card's room while its world loads, so nothing below jumps when it lands. */
 const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
 
-/** Today's words lesson, then the next step in Fiqh, Hadith, Quran and Prayer. */
-function Today({ worldOf, lessons, prayer, books, onStart, onStartBook, onOpen }) {
+/** Today's words lesson, then the next step in Fiqh, Hadith and Quran. */
+function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const { words } = lessons
   const empty = words.ready && !words.fresh && !words.dueCount
   const hadith = nextOf(lessons.hadith)
@@ -124,10 +124,6 @@ function Today({ worldOf, lessons, prayer, books, onStart, onStartBook, onOpen }
         {ayah && (
           <NextStep world={worldOf('quran')} where={say('{surah}, ayah {n}', { surah: ayah.name_en, n: ayah.ayah })} line={ayah.english}
             onGo={() => onStart('quran')} />
-        )}
-        {!prayer.done.total && <NextSlot />}
-        {prayer.next && (
-          <NextStep world={worldOf('prayer')} where={say('next step')} line={prayer.next.title} onGo={() => onOpen('prayer')} />
         )}
       </div>
     </section>
@@ -165,13 +161,10 @@ function bookStatus(state) {
   return { status: say('{done} of {total} lessons', { done, total }), share: total ? done / total : 0 }
 }
 
-export default function GrowHome({ worlds, rewards, lessons, prayer, books, onOpen, onStart, onStartBook }) {
+export default function GrowHome({ worlds, rewards, lessons, books, onOpen, onStart, onStartBook }) {
   const statusOf = {
     ...Object.fromEntries(Object.entries(lessons).map(([id, state]) => [id, stageStatus(state)])),
     ...Object.fromEntries(Object.entries(books).map(([id, state]) => [id, bookStatus(state)])),
-    prayer: prayer.done.total
-      ? { status: say('{learnt} of {total} steps learnt', prayer.done), share: prayer.done.learnt / prayer.done.total }
-      : { status: say('Loading…'), share: 0 },
   }
   const worldOf = (id) => worlds.find((world) => world.id === id)
   return (
@@ -179,7 +172,7 @@ export default function GrowHome({ worlds, rewards, lessons, prayer, books, onOp
       <SectionHeader title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')}
         aside={rewards ? null : <LogInNudge />} />
       <Growth rewards={rewards} />
-      <Today worldOf={worldOf} lessons={lessons} prayer={prayer} books={books} onStart={onStart} onStartBook={onStartBook} onOpen={onOpen} />
+      <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>
       <div className="grow-worlds">
         {worlds.map((world) => (

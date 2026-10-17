@@ -44,7 +44,6 @@
   "world": {
     "_comment": "Grow world colours (worlds.json ids). colorFor('world', id).",
     "words": "@green",
-    "prayer": "@teal",
     "fiqh": "@blue",
     "quran": "@sky",
     "hadith": "@amber",
