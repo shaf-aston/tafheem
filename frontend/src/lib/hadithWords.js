@@ -52,8 +52,9 @@ const SPACE = /\s/
 const SPEECH = /(^|[:,“‘«"'(]|\s[-–—])\s*$/
 // One word alone between ' marks is a name ('Ata'), not a saying.
 const ONE_WORD = /^[\p{L}-]+\p{P}?$/u
-// What a quote ends on before a mismatched closing mark: a full stop, a question.
-const ENDED = /[.!?,;)]$/
+// What a quote ends on before a mismatched closing mark: a full stop, a question,
+// in the English's punctuation or the Arabic's (، ؛ ؟).
+const ENDED = /[.!?,;)،؛؟]$/
 
 /** The way a straight mark faces, from its place: 1 opens, -1 closes, 0 cannot say. */
 function facing(ch, before, after) {
@@ -83,6 +84,8 @@ function quoteMarks(text) {
     const after = text[at + 1] ?? ' '
     // A curly single between letters is ʿayn or hamza too (Ibn ‘Abbas, Aqra’).
     if (kind === 'single' && LETTER.test(before) && LETTER.test(after)) continue
+    // So is one between a lone letter's full stop and a name (b.’Amir, b.'Ubaid): "b." is "bin".
+    if (kind === 'single' && LETTER.test(after) && /(^|\s)\p{L}\.$/u.test(text.slice(0, at))) continue
     // A straight " that cannot say closes an open double, or else opens one.
     const step = fixed || facing(ch, before, after) || (ch === '"' ? (open.some((o) => o.kind === 'double') ? -1 : 1) : 0)
     if (step === 1) {
