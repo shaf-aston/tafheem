@@ -32,10 +32,11 @@ const STYLE = (themed) =>
 
 // The same decision as theme.js's resolveTheme, from the same theme.json: a
 // look's name, or the device choice, which asks the device; anything else is
-// the base look and is left alone.
+// the base look and is left alone. No hint yet is a first visit, which starts
+// on the device choice, as Settings does.
 const SCRIPT = `<script>
     try {
-      var c = localStorage.getItem('${HINT_KEY}');
+      var c = localStorage.getItem('${HINT_KEY}') || '${device.choice}';
       if (c === '${device.choice}') c = matchMedia('(prefers-color-scheme: light)').matches ? '${device.light}' : '${device.dark}';
       var scheme = ${JSON.stringify(SCHEMES)}[c];
       if (scheme && c !== '${base}') { document.documentElement.dataset.theme = c; document.documentElement.style.colorScheme = scheme; }
