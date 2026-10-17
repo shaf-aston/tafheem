@@ -781,3 +781,15 @@ def test_a_past_verb_on_an_alef_keeps_its_implied_fatha_under_a_pronoun():
 
 def test_a_verb_of_saying_is_known_by_its_meaning_not_only_by_the_list():
     assert _role("نَطَقَ وَيْلٌ لَهُ", 1) == "مبتدأ"  # نطق is in no list: CAMeL glosses it "utter"
+
+
+def test_ams_is_built_on_the_kasra_in_every_place():
+    words = lambda s: iraab.analyze(s, recorded=False)["words"]
+    for sentence, role in (("جِئْتُ أَمْسِ", "مفعول فيه"), ("مَا رَأَيْتُهُ مُنْذُ أَمْسِ", "مجرور"), ("كَانَ أَمْسِ يَوْمًا جَمِيلًا", "اسم كان")):
+        ams = next(w for w in words(sentence) if w["word"] == "أَمْسِ")
+        assert (ams["role"], ams["sign"]) == (role, "مبني على الكسر"), sentence
+    assert words("مُنْذُ أَمْسِ")[1]["sign"] == words("أَمْسِ")[0]["sign"] == "مبني على الكسر"  # never the command "enter the evening"
+
+
+def test_mundhu_before_a_noun_is_a_preposition():
+    assert [w["role"] for w in iraab.analyze("مَا زُرْتُهُ مُذْ شَهْرٍ", recorded=False)["words"]][-2:] == ["حرف جر", "مجرور"]

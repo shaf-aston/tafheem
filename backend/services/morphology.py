@@ -19,7 +19,7 @@ from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services import verb_reader
-from backend.services.nahw_book import is_mabni, is_one, six_noun_case
+from backend.services.nahw_book import is_built_word, is_mabni, is_one, six_noun_case
 from backend.services.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -238,8 +238,8 @@ def _as_command(word: str, a: dict, before: str, after: str) -> dict:
     tense; sarf's own table names the command (verb_reader), by the same rules the
     Sarf tab conjugates with. Only a verb or a noun is overruled: لَمْ and مِنْ have a
     command's shape too, and أَفْضَلُ is a comparative whatever sarf can build."""
-    if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop"):
-        return a
+    if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(strip_diacritics(a.get("lex") or "")):
+        return a  # مُنْذُ أَمْسِ: a built time word is never the command its letters spell
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
     root = root_in_arabic(a.get("root") or "", a.get("lex") or "")  # a verb or a noun, so rooted
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)

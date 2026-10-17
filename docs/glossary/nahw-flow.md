@@ -33,6 +33,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/sy
 <!-- list:repair -->
 - book_links: fixed structures written over the parser (`backend/services/syntax/mask.py`)
 - typed_words: retag by what was typed, command shapes, muḍāf flag (`backend/services/syntax/repair/typed.py`)
+- since_jarr: a built time word that is also a preposition (مُنْذُ أَمْسِ، مُذْ شَهْرٍ) before a noun → the preposition, the noun its majrur (`backend/services/syntax/repair/typed.py`)
 - asked_man: an opening مَنْ with no verb in the sentence → the question word, not the relative (`backend/services/syntax/repair/asked.py`)
 - subject_clash: second noun after a raf' subject → the verb's object (`backend/services/syntax/repair/subject_clash.py`)
 - called: a verb the parser hung on يا → a sentence of its own, not a second منادى (`backend/services/syntax/repair/called.py`)

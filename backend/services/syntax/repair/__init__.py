@@ -16,13 +16,14 @@ from backend.services.syntax.repair.hal import hal_clause
 from backend.services.syntax.repair.khabar import before_la, second_khabar
 from backend.services.syntax.repair.nasab import nasab
 from backend.services.syntax.repair.subject_clash import subject_clash
-from backend.services.syntax.repair.typed import typed_words
+from backend.services.syntax.repair.typed import since_jarr, typed_words
 
 
 def correct(words: list[str], tokens: list[dict]) -> None:
     book_links(tokens)
     if len(bases := base_tokens(words, tokens)) == len(words):
         typed_words(words, bases, tokens)
+        since_jarr(tokens)
         asked_man(bases, tokens)
         subject_clash(tokens)
         called(tokens)
