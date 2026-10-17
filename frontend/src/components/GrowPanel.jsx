@@ -42,7 +42,7 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
   const [name] = useState(getProfile)
   const { rewards } = useRewards(name)
   const lessons = { words: useWordsWorld(worldOf('words')), hadith: useHadithWorld(worldOf('hadith')), quran: useQuranWorld(worldOf('quran')) }
-  const books = { fiqh: useBookWorld(worldOf('fiqh')) }
+  const books = { fiqh: useBookWorld(worldOf('fiqh')), nahw: useBookWorld(worldOf('nahw')), sarf: useBookWorld(worldOf('sarf')) }
   const sourceOf = (id) => books[id] ?? lessons[id]
   const placeAt = (value) => placeOf(value, WORLD_IDS, Object.keys(lessons), Object.keys(books))
   // A lesson's cards: a book world's by the lesson's id, any other world's next lesson.

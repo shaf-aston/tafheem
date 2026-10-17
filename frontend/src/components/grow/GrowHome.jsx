@@ -93,13 +93,12 @@ const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.rev
 /** A next-step card's room while its world loads, so nothing below jumps when it lands. */
 const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
 
-/** Today's words lesson, then the next step in Fiqh, Hadith and Quran. */
+/** Today's words lesson, then the next step in each book world (Fiqh, Nahw, Sarf), Hadith and Quran. */
 function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const { words } = lessons
   const empty = words.ready && !words.fresh && !words.dueCount
   const hadith = nextOf(lessons.hadith)
   const ayah = nextOf(lessons.quran)
-  const { fiqh } = books
   return (
     <section className="grow-today" style={{ '--w': worldOf('words').accent }} aria-labelledby="grow-today-h">
       <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
@@ -111,11 +110,14 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
         {empty ? say('Every word learnt and nothing due') : say('Start')}
       </PrimaryButton>
       <div className="grow-nexts">
-        {!fiqh.ready && <NextSlot />}
-        {fiqh.next && (
-          <NextStep world={worldOf('fiqh')} where={fiqh.parts.find((part) => part.id === fiqh.next.part)?.title} line={fiqh.next.title}
-            onGo={() => onStartBook('fiqh', fiqh.next.id, fiqh.next.part)} />
-        )}
+        {Object.entries(books).map(([id, book]) => {
+          if (!book.ready) return <NextSlot key={id} />
+          if (!book.next) return null
+          return (
+            <NextStep key={id} world={worldOf(id)} where={book.parts.find((part) => part.id === book.next.part)?.title} line={book.next.title}
+              onGo={() => onStartBook(id, book.next.id, book.next.part)} />
+          )
+        })}
         {!lessons.hadith.ready && <NextSlot />}
         {hadith && (
           <NextStep world={worldOf('hadith')} where={say('{n} of 42', { n: hadith.n })} line={hadith.key.en} onGo={() => onStart('hadith')} />

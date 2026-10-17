@@ -1,0 +1,40 @@
+// @vitest-environment happy-dom
+// The lesson runner's feel: three right in a row shows a run, a wrong answer ends it, and the end screen says how many
+// were right first time and how long it took.
+import { describe, expect, it } from 'vitest'
+import { fireEvent, screen } from '@testing-library/react'
+
+import { renderScreen } from './render'
+import LessonRunner from '../components/grow/LessonRunner'
+
+const choose = (id) => ({
+  id, kind: 'choose', tag: 'Test', ask: `Question ${id}?`, why: 'Because.', answer: '0',
+  options: [{ id: '0', text: `right ${id}` }, { id: '1', text: `wrong ${id}` }],
+  record: { module: 'test', item: id },
+})
+
+const answer = (id, pick) => {
+  fireEvent.click(screen.getByRole('radio', { name: `${pick} ${id}` }))
+  fireEvent.click(screen.getByRole('button', { name: 'Check' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+}
+
+describe('lesson runner', () => {
+  it('shows a run from three right, ends it on a wrong one, and sums the lesson at the end', () => {
+    renderScreen(<LessonRunner cards={['a', 'b', 'c', 'd'].map(choose)} accent="#26c" onLeave={() => {}} />, {
+      routes: { 'POST /progress/attempts': { earned: 0 } },
+    })
+    answer('a', 'right')
+    answer('b', 'right')
+    expect(screen.queryByText(/in a row/)).toBe(null)
+    answer('c', 'right')
+    expect(screen.getByText('3 in a row')).toBeTruthy()
+    answer('d', 'wrong')
+    expect(screen.queryByText(/in a row/)).toBe(null)
+    // The wrong one comes back once at the end; right this time, it does not change the first-time score.
+    answer('d', 'right')
+    expect(screen.getByText('Lesson done')).toBeTruthy()
+    expect(screen.getByText('3/4')).toBeTruthy()
+    expect(screen.getByText(/^\d+:\d\d$/)).toBeTruthy()
+  })
+})

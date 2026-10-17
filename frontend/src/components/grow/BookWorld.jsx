@@ -11,16 +11,10 @@ import ErrorAlert from '../ui/ErrorAlert'
 import PrimaryButton from '../ui/PrimaryButton'
 import { Skeleton } from '../ui/Skeleton'
 import Backdrop from './Backdrop'
+import LessonPath from './LessonPath'
 import WorldHeader from './WorldHeader'
 
 const say = sayIn('en')
-
-const STATUS = {
-  new: say('Not started'),
-  started: say('Started'),
-  done: say('Done'),
-  learnt: say('Learnt'),
-}
 
 /** The next lesson to take and the review, side by side. */
 function Next({ book, accent, onStart }) {
@@ -63,25 +57,6 @@ function Tiles({ items, onOpen }) {
   )
 }
 
-function Lessons({ part, onStart }) {
-  return (
-    <ol className="grow-book-lessons">
-      {part.lessons.map((lesson, i) => (
-        <li key={lesson.id}>
-          <button type="button" className="grow-stage-row grow-book-lesson" data-s={lesson.status} onClick={() => onStart(lesson.id, part.id)}>
-            <span className="grow-stage-dot" aria-hidden="true">{lesson.status === 'done' || lesson.status === 'learnt' ? '✓' : i + 1}</span>
-            <span className="grow-stage-text">
-              <b>{lesson.title}</b>
-              <ArabicText size="sm">{lesson.arabic}</ArabicText>
-            </span>
-            <span className="grow-book-status">{STATUS[lesson.status]}</span>
-          </button>
-        </li>
-      ))}
-    </ol>
-  )
-}
-
 /** The header for where the reader is: the world, an area (back to the world), or a part (back to its area, if any). */
 function Header({ world, area, part, onBack, onPart }) {
   if (part) {
@@ -102,7 +77,7 @@ export default function BookWorld({ world, accent, state: book, place, onBack, o
   const area = part ? areaOf(book.areas, part.id) : book.areas.find((one) => one.id === place && one.total)
   const loading = !book.ready && !book.error
   let body
-  if (part) body = <Lessons part={part} onStart={onStart} />
+  if (part) body = <LessonPath part={part} onStart={onStart} />
   else if (area) body = <Tiles items={area.parts} onOpen={onPart} />
   else body = <Tiles items={book.areas.length ? book.areas : book.parts} onOpen={onPart} />
   return (

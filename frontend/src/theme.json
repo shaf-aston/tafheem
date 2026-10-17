@@ -52,8 +52,9 @@
     "default": "@lime"
   },
   "grow": {
-    "_comment": "Grow's worlds. backdrop-opacity is how strongly a world's faded picture (components/grow/Backdrop.jsx) shows through under its content: kept faint so the map and the cards stay the point.",
-    "backdrop-opacity": 0.14
+    "_comment": "Grow's worlds. backdrop-opacity is how strongly a world's faded picture (components/grow/Backdrop.jsx) shows through under its content: kept faint so the map and the cards stay the point. gold is what is learnt and won: a finished lesson's star, the medal, a run of right answers; the light look has its own, since its amber is deepened for text and reads brown as a fill.",
+    "backdrop-opacity": 0.14,
+    "gold": "@amber"
   },
   "sky": {
     "_comment": "Grow's Night Sky (components/grow/scenes/Sky.jsx): dark navy in every look, since it is a night, not a surface. bg and edge the card, line joins the known stars, text its caption; star-on a known ayah, star-learning one met but not known yet, star-off one not met.",
@@ -467,6 +468,9 @@
         },
         "glow": {
           "strength": "0.2"
+        },
+        "grow": {
+          "gold": "#e6a417"
         },
         "timeline": {
           "acc-l": "36%",
