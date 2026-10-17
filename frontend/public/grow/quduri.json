@@ -11298,9 +11298,1698 @@
         }
       ]
     },
-    { "id": "rada", "title": "Milk kinship", "arabic": "الرضاع", "kitab": "كتاب الرضاع", "lessons": [] },
-    { "id": "talaq", "title": "Divorce", "arabic": "الطلاق", "kitab": "كتاب الطلاق", "lessons": [] },
-    { "id": "ila", "title": "Oath of abstention and khul'", "arabic": "الإيلاء", "kitab": "كتاب الإيلاء", "lessons": [] },
+    {
+      "id": "rada",
+      "title": "Milk kinship",
+      "arabic": "الرضاع",
+      "kitab": "كتاب الرضاع",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "rada-who",
+          "title": "Milk kinship: how long, and who becomes family",
+          "arabic": "قليل الرضاع وكثيره سواء",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "amount",
+              "title": "A little or a lot",
+              "ar": "قليل الرضاع وكثيره سواء إذا حصل في مدة الرضاع تعلق به التحريم",
+              "en": "Rada' is a baby being nursed on a woman's milk. A little nursing and a lot are the same: if it happens within the nursing period, it brings tahrim. That means the baby becomes like close family to her (a mahram), and marriage between them is forbidden."
+            },
+            {
+              "kind": "teach",
+              "id": "period",
+              "title": "The nursing period",
+              "ar": "ومدة الرضاع عند أبي حنيفة ثلاثون شهرا وقال أبو يوسف ومحمد: سنتان فإذا مضت مدة الرضاع لم يتعلق بالرضاع تحريم",
+              "en": "For Abu Hanifa the nursing period is thirty months. Once it has passed, nursing no longer makes anyone family. Note: Abu Yusuf and Muhammad say the period is two years."
+            },
+            {
+              "kind": "choose",
+              "id": "once-case",
+              "ask": "Little Umar is 20 months old. His mother is ill, and her neighbour Khadija nurses him just once. Does this make milk kinship?",
+              "options": ["Yes: a little or a lot is the same within the period", "No: one feed is too little", "No: he is too old for nursing to count"],
+              "answer": 0,
+              "source": "قليل الرضاع وكثيره سواء إذا حصل في مدة الرضاع",
+              "why": "Yes. Within the nursing period a single feed counts just like many feeds."
+            },
+            {
+              "kind": "choose",
+              "id": "late-case",
+              "ask": "A girl who is three years old (36 months) is nursed by a woman. Following Abu Hanifa, does this make milk kinship?",
+              "options": ["No: the thirty-month period has passed", "Yes: nursing counts at any age", "Yes, if she drank a lot"],
+              "answer": 0,
+              "source": ["ومدة الرضاع عند أبي حنيفة ثلاثون شهرا", "فإذا مضت مدة الرضاع لم يتعلق بالرضاع تحريم"],
+              "why": "No. Abu Hanifa's period is thirty months, and nursing after it makes no tahrim."
+            },
+            {
+              "kind": "teach",
+              "id": "like-blood",
+              "title": "Like family by blood, with exceptions",
+              "ar": "ويحرم من الرضاع ما يحرم من النسب إلا أم أخته من الرضاع فإنه يجوز أن يتزوجها ولا يجوز أن يتزوج أم أخته من النسب",
+              "en": "Whoever is forbidden to marry through blood (nasab) is forbidden through milk too. There are exceptions. A man may marry the mother of his milk-sister, though he may never marry the mother of his sister by blood."
+            },
+            {
+              "kind": "teach",
+              "id": "son-sister",
+              "title": "The milk-son's sister, and in-laws",
+              "ar": "وأخت ابنه من الرضاع يجوز أن يتزوجها ولا يجوز أخت ابنه من النسب وامرأة ابنه من الرضاع لا يجوز أن يتزوجها",
+              "en": "He may marry the sister of his milk-son, but not the sister of his son by blood. The wife of his milk-son is forbidden to him, just like his blood son's wife. So is the wife of his milk-father."
+            },
+            {
+              "kind": "sort",
+              "id": "may-marry",
+              "ask": "Through milk kinship, may a man marry her?",
+              "into": ["May marry", "May not marry"],
+              "items": [
+                ["The mother of his milk-sister", "May marry"],
+                ["The sister of his milk-son", "May marry"],
+                ["The wife of his milk-son", "May not marry"],
+                ["The wife of his milk-father", "May not marry"],
+                ["His milk-mother", "May not marry"]
+              ],
+              "source": ["ويحرم من الرضاع ما يحرم من النسب إلا أم أخته من الرضاع", "وأخت ابنه من الرضاع يجوز أن يتزوجها", "وامرأة أبيه من الرضاع لا يجوز أن يتزوجها كما لا يجوز أن يتزوج امرأة أبيه من النسب"],
+              "why": "The mother of his milk-sister and the sister of his milk-son are the exceptions. His milk-mother and the wives of his milk-son and milk-father are forbidden, as by blood."
+            },
+            {
+              "kind": "teach",
+              "id": "fahl",
+              "title": "The husband's milk",
+              "ar": "ولبن الفحل يتعلق به التحريم وهو: أن ترضع المرأة صبية فتحرم هذه الصبية على زوجها وعلى آبائه وأبنائه ويصير الزوج الذي نزل منه اللبن أبا للمرضعة",
+              "en": "Laban al-fahl, \"the husband's milk\": a woman's milk comes because of her husband, so he becomes family too. If a woman nurses a baby girl, the girl is forbidden to the woman's husband, his fathers and his sons. The husband becomes her milk-father."
+            },
+            {
+              "kind": "choose",
+              "id": "fahl-case",
+              "ask": "Fatima nursed baby Sara. Years later, the son of Fatima's husband Bilal, from his other wife, wants to marry Sara. May he?",
+              "options": ["No: Bilal is Sara's milk-father, so his sons are forbidden to her", "Yes: he is not Fatima's son", "Yes, if Sara was nursed only once"],
+              "answer": 0,
+              "source": "فتحرم هذه الصبية على زوجها وعلى آبائه وأبنائه",
+              "why": "No. Through the husband's milk, the girl is forbidden to the husband, his fathers and his sons."
+            },
+            {
+              "kind": "teach",
+              "id": "one-breast",
+              "title": "Two babies on one breast",
+              "ar": "وكل صبيين اجتمعا على ثدي واحد لم يجز لأحدهما أن يتزوج بالآخر",
+              "en": "Any two babies nursed by the same woman may never marry each other. A girl nursed by a woman may not marry any of that woman's children or grandchildren, and a nursed boy may not marry the sister of the nursing woman's husband: she is his milk-aunt."
+            },
+            {
+              "kind": "choose",
+              "id": "brother-sister",
+              "ask": "Hamza and Sami were nursed by the same woman, so they are milk-brothers. Sami has a sister by blood, Layla, whom that woman never nursed. May Hamza marry Layla?",
+              "options": ["Yes: a man may marry the sister of his milk-brother", "No: she is his milk-sister", "No: all of Sami's family is forbidden to him"],
+              "answer": 0,
+              "source": "ويجوز أن يتزوج الرجل بأخت أخيه من الرضاع كما يجوز أن يتزوج بأخت أخيه من النسب",
+              "why": "Yes. A man may marry his milk-brother's sister, just as a man may marry his half-brother's sister from another mother."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Amina, the wife of Khalid, nursed baby Zayd. Which of these may Zayd never marry?",
+              "options": [
+                { "text": "Amina's daughter", "right": true },
+                { "text": "A girl Amina nursed at the same time as Zayd", "right": true },
+                { "text": "Khalid's sister", "right": true },
+                { "text": "Amina's son's daughter", "right": true },
+                { "text": "The blood sister of Sami, another baby Amina nursed, when Amina never nursed her" }
+              ],
+              "source": ["وكل صبيين اجتمعا على ثدي واحد لم يجز لأحدهما أن يتزوج بالآخر ولا يجوز أن تتزوج المرضعة أحدا من ولد التي أرضعتها ولا ولد ولدها ولا يتزوج الصبي المرضع أخت زوج المرضعة لأنها عمته من الرضاع", "ويجوز أن يتزوج الرجل بأخت أخيه من الرضاع"],
+              "why": "Amina's children and grandchildren, any baby she nursed, and her husband's sister (his milk-aunt) are forbidden. His milk-brother's sister by blood is allowed."
+            }
+          ]
+        },
+        {
+          "id": "rada-mixed",
+          "title": "Mixed milk, and proving nursing",
+          "arabic": "وإذا اختلط اللبن بالماء",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "water",
+              "title": "Milk mixed with water",
+              "ar": "وإذا اختلط اللبن بالماء واللبن هو الغالب تعلق به التحريم وإن غلب الماء لم يتعلق به التحريم",
+              "en": "If a woman's milk is mixed with water and the milk is more, it still makes milk kinship. If the water is more, it does not."
+            },
+            {
+              "kind": "teach",
+              "id": "food",
+              "title": "Food and medicine",
+              "ar": "وإذا اختلط بالطعام لم يتعلق به التحريم وإن كان اللبن غالبا عند أبي حنيفة وإذا اختلط بالدواء وهو الغالب تعلق به التحريم",
+              "en": "Milk mixed into food makes no milk kinship, for Abu Hanifa, even if the milk is more. Milk mixed with medicine does make it, when the milk is more."
+            },
+            {
+              "kind": "teach",
+              "id": "dead-goat",
+              "title": "A woman who has died, and goat's milk",
+              "ar": "وإذا حلب اللبن من المرأة بعد موتها فأوجر به الصبي تعلق به التحريم وإذا اختلط اللبن بلبن شاة واللبن هو الغالب تعلق به التحريم وإن غلب لبن الشاة لم يتعلق به التحريم",
+              "en": "If milk is taken from a woman after she has died and given to a baby, it makes milk kinship. If her milk is mixed with goat's milk, it counts when her milk is more, and not when the goat's milk is more."
+            },
+            {
+              "kind": "sort",
+              "id": "mix-sort",
+              "ask": "Does the mixture make milk kinship?",
+              "into": ["Makes it", "Does not"],
+              "items": [
+                ["Milk with a little water, the milk being more", "Makes it"],
+                ["Water with a little milk, the water being more", "Does not"],
+                ["Milk cooked into food, even if the milk is more", "Does not"],
+                ["Milk mixed with medicine, the milk being more", "Makes it"],
+                ["A woman's milk with less goat's milk", "Makes it"],
+                ["Goat's milk with less of a woman's milk", "Does not"]
+              ],
+              "source": ["وإذا اختلط اللبن بالماء واللبن هو الغالب تعلق به التحريم وإن غلب الماء لم يتعلق به التحريم", "وإذا اختلط بالطعام لم يتعلق به التحريم وإن كان اللبن غالبا", "وإذا اختلط بالدواء وهو الغالب تعلق به التحريم", "وإذا اختلط اللبن بلبن شاة واللبن هو الغالب تعلق به التحريم وإن غلب لبن الشاة لم يتعلق به التحريم"],
+              "why": "What is more decides with water, medicine and goat's milk. Food never makes milk kinship, even when the milk is more."
+            },
+            {
+              "kind": "teach",
+              "id": "two-women",
+              "title": "The milk of two women",
+              "ar": "وإذا اختلط لبن امرأتين تعلق التحريم بأكثرهما عند أبي حنيفة وأبي يوسف وقال محمد: يتعلق بهما",
+              "en": "If the milk of two women is mixed, the baby becomes the milk-child of the woman whose milk is more, for Abu Hanifa and Abu Yusuf. Note: Muhammad says the baby becomes the milk-child of both."
+            },
+            {
+              "kind": "teach",
+              "id": "virgin-man",
+              "title": "A virgin's milk, a man's milk, a goat's milk",
+              "ar": "وإذا نزل للبكر لبن فأرضعت به صبيا تعلق به التحريم وإذا نزل للرجل لبن فأرضع به صبيا لم يتعلق به التحريم",
+              "en": "If an unmarried girl (bikr) has milk and nurses a baby with it, it makes milk kinship. If a man has milk and gives it to a baby, it does not. And two babies who drink from the same goat do not become milk-siblings."
+            },
+            {
+              "kind": "pick",
+              "id": "which-milk",
+              "ask": "Which of these make milk kinship?",
+              "options": [
+                { "text": "Milk of an unmarried girl given to a baby", "right": true },
+                { "text": "Milk taken from a woman after she died, given to a baby", "right": true },
+                { "text": "Mixed milk of two women: the woman whose milk is more", "right": true },
+                { "text": "Milk that came from a man" },
+                { "text": "Two babies drinking the milk of the same goat" }
+              ],
+              "source": ["وإذا نزل للبكر لبن فأرضعت به صبيا تعلق به التحريم وإذا نزل للرجل لبن فأرضع به صبيا لم يتعلق به التحريم", "وإذا شرب صبيان من لبن", "فلا رضاع بينهما", "فأوجر به الصبي تعلق به التحريم", "تعلق التحريم بأكثرهما"],
+              "why": "A virgin's milk, a dead woman's milk and the larger share of mixed milk all count. A man's milk and a goat's milk do not."
+            },
+            {
+              "kind": "teach",
+              "id": "two-wives",
+              "title": "When one wife nurses the other",
+              "ar": "وإذا تزوج الرجل صغيرة وكبيرة فأرضعت الكبيرة الصغيرة حرمتا على الزوج فإن كان لم يدخل بالكبيرة فلا مهر لها وللصغيرة نصف المهر ويرجع به الزوج على الكبيرة إن كانت تعمدت به الفساد",
+              "en": "In al-Quduri's time a guardian could contract a marriage for a baby girl. If a man was married to such a baby and to a grown woman, and the grown wife nursed the baby, both became forbidden to him: they are now milk-mother and milk-daughter. If his marriage with the older wife had not been consummated, she gets no mahr (the bride-gift), and the little one gets half the mahr. He can claim that half back from the older wife if she nursed the baby on purpose to break the marriage."
+            },
+            {
+              "kind": "choose",
+              "id": "not-on-purpose",
+              "ask": "In that case, the older wife nursed the baby only because the baby was hungry and crying, not to break the marriage. Does she owe the husband the half mahr?",
+              "options": ["No: she did not mean to break the marriage", "Yes: she always owes it", "Yes, but only a quarter of the mahr"],
+              "answer": 0,
+              "source": ["إن كانت تعمدت به الفساد", "وإن لم تتعمد فلا شيء عليها"],
+              "why": "No. He can claim it from her only if she meant to break the marriage; if she did not, she owes nothing."
+            },
+            {
+              "kind": "teach",
+              "id": "witnesses",
+              "title": "Proving nursing",
+              "ar": "ولا تقبل في الرضاع شهادة النساء منفردات وإنما يثبت بشهادة رجلين أو رجل وامرأتين",
+              "en": "Women alone cannot prove that nursing took place. It is proven by two men, or one man and two women, as witnesses."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Two women, with no man, testify that Ahmad and his wife were both nursed by the same woman as babies. Is the nursing proven?",
+              "options": ["No: it needs two men, or one man and two women", "Yes: two women are enough for nursing", "Yes, if the women are elderly"],
+              "answer": 0,
+              "source": "ولا تقبل في الرضاع شهادة النساء منفردات وإنما يثبت بشهادة رجلين أو رجل وامرأتين",
+              "why": "No. Women on their own are not accepted for nursing; two men, or a man and two women, are needed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "talaq",
+      "title": "Divorce",
+      "arabic": "الطلاق",
+      "kitab": "كتاب الطلاق",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "talaq-kinds",
+          "title": "Three kinds of divorce",
+          "arabic": "الطلاق على ثلاثة أوجه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three kinds",
+              "ar": "الطلاق على ثلاثة أوجه: أحسن الطلاق وطلاق السنة وطلاق البدعة",
+              "en": "Talaq is divorce: the husband ending the marriage. It comes in three kinds: the best way, the Sunna way, and the bid'a way (an innovated, wrong way)."
+            },
+            {
+              "kind": "teach",
+              "id": "best-sunna",
+              "title": "The best way and the Sunna way",
+              "ar": "في طهر لم يجامعها فيه ويتركها حتى تنقضي عدتها وطلاق السنة: أن يطلق المدخول بها ثلاثا في ثلاثة أطهار",
+              "en": "The best way: one talaq, given in a tuhr (a clean time between two periods) in which he has not been intimate with her, and then he leaves her until her 'idda (her waiting time after divorce) ends. The Sunna way, for a wife whose marriage was consummated: three talaqs, one in each of three separate tuhrs."
+            },
+            {
+              "kind": "teach",
+              "id": "bida",
+              "title": "The bid'a way",
+              "ar": "يطلقها ثلاثا بكلمة واحدة أو ثلاثا في طهر واحد فإذا فعل ذلك وقع الطلاق وبانت منه وكان عاصيا",
+              "en": "The bid'a way: three talaqs in one word, or three in a single tuhr. If he does this, the divorce still happens, she is separated from him, and he has sinned."
+            },
+            {
+              "kind": "sort",
+              "id": "kinds-sort",
+              "ask": "Which kind of talaq is this?",
+              "into": ["Best", "Sunna", "Bid'a"],
+              "items": [
+                ["One talaq in a tuhr without intimacy, then he waits for the 'idda to end", "Best"],
+                ["Three talaqs, one in each of three tuhrs", "Sunna"],
+                ["Three talaqs in a single sentence", "Bid'a"],
+                ["Three talaqs all in the same tuhr", "Bid'a"]
+              ],
+              "source": ["فأحسن الطلاق: أن يطلق الرجل امرأته", "في طهر لم يجامعها فيه ويتركها حتى تنقضي عدتها", "وطلاق السنة: أن يطلق المدخول بها ثلاثا في ثلاثة أطهار", "يطلقها ثلاثا بكلمة واحدة أو ثلاثا في طهر واحد"],
+              "why": "One talaq then waiting is the best way; one in each of three tuhrs is the Sunna way; three at once or in one tuhr is bid'a."
+            },
+            {
+              "kind": "choose",
+              "id": "bida-case",
+              "ask": "In anger, Umar tells his wife in one sentence, \"You are divorced three times.\" What happens?",
+              "options": ["The divorce happens, she is separated from him, and he has sinned", "Nothing happens, because it was the bid'a way", "One talaq happens, and he has done nothing wrong"],
+              "answer": 0,
+              "source": "فإذا فعل ذلك وقع الطلاق وبانت منه وكان عاصيا",
+              "why": "A bid'a talaq still happens and separates her, but the husband has sinned by doing it."
+            },
+            {
+              "kind": "teach",
+              "id": "number-time",
+              "title": "Sunna in number and in time",
+              "ar": "سنة في العدد فالسنة في العدد يستوي فيها المدخول بها وغير المدخول بها والسنة في الوقت تثبت في المدخول بها خاصة وهو: أن يطلقها في طهر لم يجامعها فيه وغير المدخول بها يطلقها في حال الطهر والحيض",
+              "en": "The Sunna has two sides. In number (one at a time), it is the same for every wife. In timing (in a tuhr without intimacy), it applies only to a wife whose marriage was consummated. A wife whose marriage was never consummated may be divorced while clean or during her period."
+            },
+            {
+              "kind": "choose",
+              "id": "time-case",
+              "ask": "Hasan made a nikah with Sumayya, but the marriage was never consummated. She is now on her period. Can he give her one talaq the Sunna way now?",
+              "options": ["Yes: the timing rule is only for a consummated marriage", "No: he must wait until she is clean", "No: a talaq before consummation is never Sunna"],
+              "answer": 0,
+              "source": ["والسنة في الوقت تثبت في المدخول بها خاصة", "وغير المدخول بها يطلقها في حال الطهر والحيض"],
+              "why": "Yes. For a wife whose marriage was not consummated, he may divorce her while clean or on her period."
+            },
+            {
+              "kind": "teach",
+              "id": "no-periods",
+              "title": "A wife who has no periods",
+              "ar": "وإذا كانت المرأة لا تحيض من صغر أو كبر فأراد أن يطلقها للسنة طلقها واحدة فإذا مضى شهر طلقها أخرى فإذا مضى شهر آخر طلقها آخرى ويجوز أن يطلقها ولا يفصل بين وطئها وطلاقها بزمان",
+              "en": "If she has no periods because she is too young or too old, months take the place of tuhrs: one talaq, then another after a month, then another after a second month. He may also divorce her straight after intimacy, with no time in between."
+            },
+            {
+              "kind": "choose",
+              "id": "month-gap",
+              "ask": "With no periods, what comes between the talaqs? Complete it.",
+              "ar": "فإذا مضى ____ طلقها أخرى",
+              "options": ["شهر", "طهر", "أسبوع"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "طلقها واحدة فإذا مضى شهر طلقها أخرى",
+              "why": "شهر: for a wife with no periods, a month stands in place of a tuhr."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Zayd's elderly wife no longer has periods. He wants to give three talaqs the Sunna way. How long is it from the first talaq to the third?",
+              "options": ["Two months: one talaq each month", "Three months", "He cannot: a Sunna talaq needs periods"],
+              "answer": 0,
+              "source": "طلقها واحدة فإذا مضى شهر طلقها أخرى فإذا مضى شهر آخر طلقها آخرى",
+              "why": "One talaq, a month, a second, another month, a third: two months from the first to the third."
+            }
+          ]
+        },
+        {
+          "id": "talaq-timing",
+          "title": "Pregnancy, periods, and whose divorce counts",
+          "arabic": "ويقع طلاق كل زوج إذا كان عاقلا بالغا",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "pregnant",
+              "title": "A pregnant wife",
+              "ar": "وطلاق الحامل يجوز عقيب الجماع ويطلقها للسنة ثلاثا يفصل بين كل تطليقتين بشهر عند أبي حنيفة وأبي يوسف وقال محمد: لا يطلقها للسنة إلا واحدة",
+              "en": "A pregnant wife may be divorced right after intimacy. For Abu Hanifa and Abu Yusuf, the Sunna way with her is three talaqs, with a month between each two. Note: Muhammad says the Sunna way with her is only one talaq."
+            },
+            {
+              "kind": "choose",
+              "id": "pregnant-case",
+              "ask": "Yasir's wife is pregnant. Following Abu Hanifa, how does he give three talaqs the Sunna way?",
+              "options": ["One talaq, then a month between each two", "All three at once", "One talaq each week"],
+              "answer": 0,
+              "source": "ويطلقها للسنة ثلاثا يفصل بين كل تطليقتين بشهر",
+              "why": "For Abu Hanifa and Abu Yusuf, a month separates each two talaqs."
+            },
+            {
+              "kind": "teach",
+              "id": "in-period",
+              "title": "A divorce during her period",
+              "ar": "وإذا طلق الرجل امرأته في حال الحيض وقع الطلاق ويستحب له أن يراجعها",
+              "en": "If a man divorces his wife during her period, the divorce happens. But it is recommended that he take her back (raj'a, returning to the marriage during the 'idda)."
+            },
+            {
+              "kind": "teach",
+              "id": "then-choose",
+              "title": "Then he chooses",
+              "ar": "فإذا طهرت وحاضت وطهرت فهو مخير: إن شاء طلقها وإن شاء أمسكها",
+              "en": "Once she has become clean, had another period and become clean again, he may choose: divorce her or keep her."
+            },
+            {
+              "kind": "order",
+              "id": "period-order",
+              "ask": "He divorced her during her period. Put what follows in order.",
+              "steps": ["He takes her back, as is recommended", "She becomes clean", "She has another period", "She becomes clean again", "He may divorce her or keep her"],
+              "source": ["ويستحب له أن يراجعها وإن شاء أمسكها", "فإذا طهرت وحاضت وطهرت فهو مخير"],
+              "why": "He takes her back, waits for a tuhr, a period and another tuhr, and then chooses."
+            },
+            {
+              "kind": "choose",
+              "id": "period-case",
+              "ask": "Bilal divorced his wife while she was on her period. Did the divorce happen?",
+              "options": ["Yes, but he is advised to take her back", "No: a divorce during the period does not count", "Yes, and he may never take her back"],
+              "answer": 0,
+              "source": "وإذا طلق الرجل امرأته في حال الحيض وقع الطلاق ويستحب له أن يراجعها",
+              "why": "It happens, and it is recommended that he take her back."
+            },
+            {
+              "kind": "teach",
+              "id": "who",
+              "title": "Whose divorce counts",
+              "ar": "ويقع طلاق كل زوج إذا كان عاقلا بالغا ولا يقع طلاق الصبي والمجنون والنائم",
+              "en": "The talaq of every husband who is sane and adult counts. The talaq of a boy, of an insane man, and of a man asleep does not."
+            },
+            {
+              "kind": "teach",
+              "id": "enslaved",
+              "title": "An enslaved husband",
+              "ar": "ثم طلق وقع طلاقه ولا يقع طلاق مولاه على امرأته",
+              "en": "In al-Quduri's time, if an enslaved man married and then divorced his wife, his talaq counted. His master could not divorce the man's wife for him."
+            },
+            {
+              "kind": "sort",
+              "id": "who-sort",
+              "ask": "Does this talaq count?",
+              "into": ["Counts", "Does not"],
+              "items": [
+                ["A sane adult husband's talaq", "Counts"],
+                ["A married boy, not yet adult", "Does not"],
+                ["An insane husband", "Does not"],
+                ["A husband talking in his sleep", "Does not"],
+                ["In al-Quduri's time, an enslaved husband's own talaq", "Counts"],
+                ["In al-Quduri's time, a master divorcing his slave's wife", "Does not"]
+              ],
+              "source": ["ويقع طلاق كل زوج إذا كان عاقلا بالغا ولا يقع طلاق الصبي والمجنون والنائم", "ثم طلق وقع طلاقه ولا يقع طلاق مولاه على امرأته"],
+              "why": "A sane adult husband's talaq counts, an enslaved husband's own talaq counted; a boy, an insane man, a sleeper and a master divorcing for him do not count."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Hamid says \"You are divorced\" in his sleep, while his wife is on her period. What happens?",
+              "options": ["Nothing: a sleeping man's talaq does not happen", "It happens, and he is advised to take her back", "It happens as a bid'a talaq"],
+              "answer": 0,
+              "source": "ولا يقع طلاق الصبي والمجنون والنائم",
+              "why": "Nothing happens. The talaq of a man asleep does not count, so her period does not matter."
+            }
+          ]
+        },
+        {
+          "id": "talaq-words",
+          "title": "Clear words and hints",
+          "arabic": "والطلاق على ضربين: صريح وكناية",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "two-types",
+              "title": "Clear and hinted",
+              "ar": "والطلاق على ضربين: صريح وكناية فالصريح قوله: أنت طالق",
+              "en": "Talaq is said in two ways: sarih (clear words) and kinaya (hints, words that could mean divorce or something else). The clear words include \"You are divorced\" (anti taliq)."
+            },
+            {
+              "kind": "teach",
+              "id": "clear",
+              "title": "What clear words do",
+              "ar": "وطلقتك فهذا يقع به الطلاق الرجعي ولا يقع به إلا واحدة وإن نوى أكثر من ذلك ولا يفتقر إلى النية",
+              "en": "\"You are divorced\", \"divorced woman\" and \"I have divorced you\" give one raj'i (revocable) talaq: he may take her back during the 'idda. Only one happens even if he intended more, and no intention is needed."
+            },
+            {
+              "kind": "choose",
+              "id": "clear-case",
+              "ask": "Ibrahim says to his wife \"You are divorced\", intending three. How many talaqs happen?",
+              "options": ["One, revocable", "Three", "None, unless there were witnesses"],
+              "answer": 0,
+              "source": "ولا يقع به إلا واحدة وإن نوى أكثر من ذلك",
+              "why": "One revocable talaq: these clear words give only one, even if he intended more."
+            },
+            {
+              "kind": "teach",
+              "id": "the-talaq",
+              "title": "\"You are the divorce\"",
+              "ar": "وقوله: أنت الطلاق أو أنت طالق الطلاق أو أنت طالق طلاقا فإن لم تكن له نية فهي واحدة رجعية وإن نوى به ثلاثا كان ثلاثا",
+              "en": "If he says \"You are the divorce\", \"You are divorced, the divorce\" or \"You are divorced with a divorce\": with no intention it is one revocable talaq, and if he intended three, it is three."
+            },
+            {
+              "kind": "teach",
+              "id": "hints",
+              "title": "Hints",
+              "ar": "وهي على ضربين منها ثلاثة ألفاظ بها الطلاق الرجعي ولا يقع بها إلا واحدة وهي قوله: اعتدي واستبرئي رحمك وأنت واحدة",
+              "en": "Hinted words only cause talaq when he intends it, or the situation shows it. Three of them give one revocable talaq: \"Count your 'idda\", \"Make sure your womb is clear\" and \"You are one\"."
+            },
+            {
+              "kind": "teach",
+              "id": "final",
+              "title": "The other hints are final",
+              "ar": "إذا نوى بها الطلاق كانت واحدة بائنة وإن نوى ثلاثا كانت وإن نوى اثنتين كانت واحدة مثل قوله: أنت بائن وبتة وبتلة وحرام وحبلك على غاربك والحقي بأهلك",
+              "en": "The other hints, when he intends talaq, give one ba'in (final) talaq: he cannot take her back without a new nikah. If he intended three it is three; if he intended two it is one. Examples: \"You are separated\", \"cut off\", \"forbidden\", \"Your rope is on your back\", \"Go to your family\"."
+            },
+            {
+              "kind": "sort",
+              "id": "words-sort",
+              "ask": "He means one divorce. Is this talaq revocable or final?",
+              "into": ["Revocable (raj'i)", "Final (ba'in)"],
+              "items": [
+                ["\"You are divorced\"", "Revocable (raj'i)"],
+                ["\"Count your 'idda\"", "Revocable (raj'i)"],
+                ["\"You are one\"", "Revocable (raj'i)"],
+                ["\"Go to your family\"", "Final (ba'in)"],
+                ["\"You are separated\"", "Final (ba'in)"]
+              ],
+              "source": ["والضرب الثاني: والكنايات ولا يقع بها الطلاق إلا", "فهذا يقع به الطلاق الرجعي", "وهي قوله: اعتدي واستبرئي رحمك وأنت واحدة", "إذا نوى بها الطلاق كانت واحدة بائنة"],
+              "why": "The clear words and the three hints give a revocable talaq; the other hints give a final one."
+            },
+            {
+              "kind": "teach",
+              "id": "no-intent",
+              "title": "No intention",
+              "ar": "فإن لم يكن له نية لم يقع بهذه الألفاظ طلاق إلا أن يكونا في مذاكرة الطلاق فيقع بها الطلاق في القضاء ولايقع فيما بينه وبين الله تعالى إلا أن ينويه",
+              "en": "With no intention, these hints cause no talaq, unless the couple were talking about divorce. Then a judge counts it as talaq, but between him and Allah it does not count unless he meant it. In anger or a quarrel, every hint counts except words meant as an insult."
+            },
+            {
+              "kind": "choose",
+              "id": "quarrel-case",
+              "ask": "In the middle of a quarrel, Tariq tells his wife \"Go to your family!\" He says he did not mean divorce. What does the judge rule?",
+              "options": ["Talaq happens: in a quarrel, a word not meant as an insult counts", "Nothing happens, because he did not mean it", "Three talaqs happen"],
+              "answer": 0,
+              "source": ["وإن لم يكونا في مذاكرة الطلاق وكانا في غضب أو خصومة وقع الطلاق بكل لفظ لا يقصد به السب والشتيمة ولم يقع بما يقصد به السب"],
+              "why": "In a quarrel, talaq happens with every hinted word that is not an insult, and \"Go to your family\" is not one."
+            },
+            {
+              "kind": "teach",
+              "id": "strong",
+              "title": "Making the talaq strong",
+              "ar": "وإذا وصف الطلاق بضرب من الزيادة والشدة كان بائنا مثل أن يقول: أنت طالق بائن أو طالق أشد الطلاق أو أفحش الطلاق أو طلاق الشيطان والبدعة وكالجبل وملء البيت",
+              "en": "If he describes the talaq as extra or harsh, it is final (ba'in): \"divorced, separated\", \"the harshest divorce\", \"the ugliest divorce\", \"the divorce of Shaytan\", \"like a mountain\", \"filling the house\"."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "He means a single divorce. Which of these give a final (ba'in) talaq?",
+              "options": [
+                { "text": "\"You are divorced, the harshest divorce\"", "right": true },
+                { "text": "\"You are divorced, like a mountain\"", "right": true },
+                { "text": "\"You are separated\", meaning divorce", "right": true },
+                { "text": "\"You are divorced\"" },
+                { "text": "\"Count your 'idda\", meaning divorce" }
+              ],
+              "source": ["كان بائنا مثل أن يقول: أنت طالق بائن أو طالق أشد الطلاق", "وكالجبل وملء البيت", "إذا نوى بها الطلاق كانت واحدة بائنة", "اعتدي واستبرئي رحمك وأنت واحدة"],
+              "why": "Harsh descriptions and most hints give a final talaq. \"You are divorced\" and \"Count your 'idda\" give a revocable one."
+            }
+          ]
+        },
+        {
+          "id": "talaq-parts",
+          "title": "Part of her, half a talaq, and the forced",
+          "arabic": "وإذا أضاف الطلاق إلى جملها",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "whole",
+              "title": "Her whole self",
+              "ar": "وإذا أضاف الطلاق إلى جملها أو إلى ما يعبر به عن الجملة وقع الطلاق",
+              "en": "If he links the talaq to her whole self, or to a part that stands for the whole person in Arabic (her neck, her soul, her body, her face), the talaq happens."
+            },
+            {
+              "kind": "teach",
+              "id": "share",
+              "title": "A share of her",
+              "ar": "جزءا شائعا منها مثل أن يقول: نصفك أو ثلثك",
+              "en": "The same if he divorces a share of her, like \"half of you\" or \"a third of you\"."
+            },
+            {
+              "kind": "teach",
+              "id": "hand",
+              "title": "A hand or a foot",
+              "ar": "وإن قال: يدك أو رجلك طالق لم يقع الطلاق",
+              "en": "But if he says \"Your hand is divorced\" or \"Your foot is divorced\", no talaq happens: a hand or foot does not stand for the whole person."
+            },
+            {
+              "kind": "sort",
+              "id": "parts-sort",
+              "ask": "Does this phrase cause talaq?",
+              "into": ["Talaq happens", "No talaq"],
+              "items": [
+                ["\"Your neck is divorced\"", "Talaq happens"],
+                ["\"Your soul is divorced\"", "Talaq happens"],
+                ["\"Your face is divorced\"", "Talaq happens"],
+                ["\"Half of you is divorced\"", "Talaq happens"],
+                ["\"Your hand is divorced\"", "No talaq"],
+                ["\"Your foot is divorced\"", "No talaq"]
+              ],
+              "source": ["أو عنقك طالق أو روحك طالق أو بدنك أو جسدك", "أو وجهك", "جزءا شائعا منها مثل أن يقول: نصفك أو ثلثك", "وإن قال: يدك أو رجلك طالق لم يقع الطلاق"],
+              "why": "The neck, soul, face and a share like half stand for her whole self. A hand or a foot does not."
+            },
+            {
+              "kind": "teach",
+              "id": "half",
+              "title": "Half a talaq",
+              "ar": "وإن طلقها نصف تطليقة أو ثلث تطليقة كانت طلقة واحدة",
+              "en": "If he gives her half a talaq or a third of a talaq, it counts as one whole talaq."
+            },
+            {
+              "kind": "choose",
+              "id": "half-case",
+              "ask": "Salman says, \"You are divorced with half a talaq.\" How many talaqs happen?",
+              "options": ["One whole talaq", "None: half a talaq is nothing", "Half of one"],
+              "answer": 0,
+              "source": "وإن طلقها نصف تطليقة أو ثلث تطليقة كانت طلقة واحدة",
+              "why": "Half a talaq counts as one whole talaq."
+            },
+            {
+              "kind": "teach",
+              "id": "forced",
+              "title": "Forced, drunk, or unable to speak",
+              "ar": "وطلاق المكره والسكران واقع ويقع طلاق الأخرس بالإشارة",
+              "en": "The talaq of a man who was forced, and of a man who is drunk, still happens. A man who cannot speak divorces by a sign."
+            },
+            {
+              "kind": "pick",
+              "id": "who-pick",
+              "ask": "Whose talaq happens?",
+              "options": [
+                { "text": "A man forced to say it", "right": true },
+                { "text": "A drunk man", "right": true },
+                { "text": "A man who cannot speak, by a clear sign", "right": true },
+                { "text": "A man talking in his sleep" },
+                { "text": "An insane man" }
+              ],
+              "source": ["وطلاق المكره والسكران واقع ويقع طلاق الأخرس بالإشارة", "ولا يقع طلاق الصبي والمجنون والنائم"],
+              "why": "The forced, the drunk and the mute (by a sign) are held to their talaq. The sleeper and the insane are not."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Nabil is forced by threats to say to his wife, \"Your neck is divorced.\" Does a talaq happen?",
+              "options": ["Yes: a forced talaq happens, and the neck stands for the whole", "No: a forced talaq never happens", "No: only her whole self can be divorced"],
+              "answer": 0,
+              "source": ["وطلاق المكره والسكران واقع", "وإذا أضاف الطلاق إلى جملها أو إلى ما يعبر به عن الجملة وقع الطلاق"],
+              "why": "Yes. A forced talaq still happens, and \"your neck\" stands for her whole self."
+            }
+          ]
+        },
+        {
+          "id": "talaq-conditions",
+          "title": "Linking divorce to a condition",
+          "arabic": "وإن أضافه إلى شرط وقع عقب الشرط",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "to-nikah",
+              "title": "Linked to marrying her",
+              "ar": "وإذا أضاف الطلاق إلى النكاح وقع عقيب النكاح مثل أن يقول: إن تزوجتك فأنت طالق أو كل امرأة أتزوجها فهي طالق",
+              "en": "If a man links a talaq to marrying her, it happens straight after the nikah. For example: \"If I marry you, you are divorced\", or \"Every woman I marry is divorced\"."
+            },
+            {
+              "kind": "teach",
+              "id": "to-condition",
+              "title": "Linked to a condition",
+              "ar": "وإن أضافه إلى شرط وقع عقب الشرط مثل أن يقول لامرأته: إن دخلت الدار فأنت طالق",
+              "en": "If he links it to a condition, it happens as soon as the condition is met. For example, to his wife: \"If you enter the house, you are divorced.\""
+            },
+            {
+              "kind": "teach",
+              "id": "owner",
+              "title": "Only a husband, or linked to marriage",
+              "ar": "إلا أن يكون الحالف مالكا أو يضيفه إلى ملك",
+              "en": "Such a conditional talaq is only valid if the man saying it is already her husband, or he links it to marrying her."
+            },
+            {
+              "kind": "choose",
+              "id": "stranger-case",
+              "ask": "Hamza says to a woman he is not married to, \"If you enter the house, you are divorced.\" Later he marries her, and she enters the house. Is she divorced?",
+              "options": ["No: he was not her husband, and he did not link it to marrying her", "Yes: the condition came true", "Yes, but only if he enters with her"],
+              "answer": 0,
+              "source": "وإن قال لأجنبية: إن دخلت الدار فأنت طالق ثم تزوجها فدخلت الدار لم تطلق",
+              "why": "No. When he said it he was not her husband, and he did not link it to marrying her."
+            },
+            {
+              "kind": "choose",
+              "id": "marry-case",
+              "ask": "Before any nikah, Faisal says to Huda, \"If I marry you, you are divorced.\" Then they marry. What happens?",
+              "options": ["The talaq happens straight after the nikah", "Nothing: she was not his wife when he said it", "The nikah itself is not valid"],
+              "answer": 0,
+              "source": "وإذا أضاف الطلاق إلى النكاح وقع عقيب النكاح",
+              "why": "He linked the talaq to marrying her, so it happens straight after the nikah."
+            },
+            {
+              "kind": "teach",
+              "id": "words",
+              "title": "Condition words",
+              "ar": "وألفاظ الشرط: إن وإذا وإذ ما وكل وكلما ومتى ومتى ما",
+              "en": "The words of a condition are: in (if), idha and idh ma (when), kull (every), kullama (whenever), mata and mata ma (whenever, at whatever time)."
+            },
+            {
+              "kind": "teach",
+              "id": "kullama",
+              "title": "Kullama repeats",
+              "ar": "ففي كل هذه الشروط إذا وجد الشرط انحلت اليمين إلا في كلما فإن الطلاق يتكرر بتكرار الشرط حتى يقع ثلاث تطليقات فإن تزوجها بعد ذلك وتكرر الشرط لم يقع شيء",
+              "en": "A conditional talaq is called a yamin (an oath). With all these words, once the condition happens the oath is used up, except kullama (whenever): the talaq repeats each time the condition happens, until three have fallen. If he marries her again after that and the condition happens again, nothing happens."
+            },
+            {
+              "kind": "choose",
+              "id": "kullama-gap",
+              "ask": "Which word makes the talaq repeat? Complete it.",
+              "ar": "إلا في ____ فإن الطلاق يتكرر بتكرار الشرط",
+              "options": ["كلما", "متى", "إذا"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "إلا في كلما فإن الطلاق يتكرر بتكرار الشرط",
+              "why": "كلما: with \"whenever\", the talaq repeats each time the condition happens."
+            },
+            {
+              "kind": "teach",
+              "id": "ownership-ends",
+              "title": "If the marriage ends in between",
+              "ar": "وزوال الملك بعد اليمين لا يبطلها فإن وجد في ملكه انحلت اليمين ووقع الطلاق وإن وجد في غير الملك انحلت اليمين ولم يقع شيء",
+              "en": "If the marriage ends after he made the oath, the oath is not cancelled. If the condition then happens while she is his wife, the oath is used up and the talaq happens. If it happens while she is not his wife, the oath is used up and nothing happens."
+            },
+            {
+              "kind": "choose",
+              "id": "outside-case",
+              "ask": "Adam told his wife, \"If you enter the house, you are divorced.\" Then he gave her one final talaq, and after her 'idda ended she entered the house. Later they marry again. Can that old condition still divorce her?",
+              "options": ["No: it was used up when it happened outside the marriage", "Yes: it waits for the new marriage", "Yes, and it gives three talaqs"],
+              "answer": 0,
+              "source": "وإن وجد في غير الملك انحلت اليمين ولم يقع شيء",
+              "why": "The condition happened while she was not his wife, so the oath was used up and nothing happened."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Kamal tells his wife, \"Whenever you enter the house, you are divorced.\" She enters it three separate times while they are married. How many talaqs happen?",
+              "options": ["Three", "One", "None: \"whenever\" is not a condition word"],
+              "answer": 0,
+              "source": ["وألفاظ الشرط: إن وإذا وإذ ما وكل وكلما", "إلا في كلما فإن الطلاق يتكرر بتكرار الشرط حتى يقع ثلاث"],
+              "why": "With kullama the talaq repeats each time the condition happens, until three have fallen."
+            }
+          ]
+        },
+        {
+          "id": "talaq-proof",
+          "title": "When they disagree about the condition",
+          "arabic": "فالقول قول الزوج فيه إلا أن تقيم البينة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "husband-word",
+              "title": "The husband's word",
+              "ar": "وإذا اختلفا في وجود الشرط فالقول قول الزوج فيه إلا أن تقيم البينة",
+              "en": "If they disagree about whether the condition happened, the husband's word is accepted, unless she brings bayyina (proof through witnesses)."
+            },
+            {
+              "kind": "choose",
+              "id": "house-case",
+              "ask": "Nadia says she entered the house, so the conditional talaq has happened. Her husband says she did not. Nobody saw. Whose word is accepted?",
+              "options": ["The husband's", "Nadia's", "Neither: the talaq is cancelled"],
+              "answer": 0,
+              "source": "وإذا اختلفا في وجود الشرط فالقول قول الزوج فيه إلا أن تقيم البينة",
+              "why": "The husband's word is accepted, since she has no witnesses."
+            },
+            {
+              "kind": "teach",
+              "id": "only-she-knows",
+              "title": "What only she can know",
+              "ar": "فإن كان الشرط لا يعلم إلا من وجهتها فالقول قولها في حق نفسها مثل أن يقول: إن حضت فأنت طالق فقالت: قد حضت طلقت",
+              "en": "If the condition is something only she can know, her word is accepted for herself. For example, he says \"If you have your period, you are divorced\", and she says \"My period has come\": she is divorced."
+            },
+            {
+              "kind": "teach",
+              "id": "for-herself",
+              "title": "Only for herself",
+              "ar": "وإذا قال: إذا حضت فأنت طالق وفلانة فقالت: قد حضت طلقت هي ولم تطلق فلانة",
+              "en": "If he says \"When you have your period, you and my other wife are divorced\", and she says her period has come, she is divorced but the other wife is not. Her word only counts for herself."
+            },
+            {
+              "kind": "choose",
+              "id": "two-wives-case",
+              "ask": "A man says to his wife Amna, \"When you have your period, you and Saba are divorced.\" Amna says, \"My period has come.\" Who is divorced?",
+              "options": ["Only Amna", "Both Amna and Saba", "Neither, until he believes her"],
+              "answer": 0,
+              "source": "طلقت هي ولم تطلق فلانة",
+              "why": "Only Amna. Her word is accepted for herself, not for the other wife."
+            },
+            {
+              "kind": "teach",
+              "id": "three-days",
+              "title": "Blood that lasts three days",
+              "ar": "وإذا قال لها: إذا حضت فأنت طالق فرأت الدم لم يقع الطلاق حتى يستمر ثلاثة أيام فإذا تمت ثلاثة أيام حكمنا بوقوع الطلاق من حين حاضت",
+              "en": "If he says \"When you have your period, you are divorced\" and she sees blood, the talaq does not happen until it has lasted three days (the shortest a period can be). Once three days are complete, the talaq is counted from when the bleeding began."
+            },
+            {
+              "kind": "teach",
+              "id": "whole-period",
+              "title": "\"A whole period\"",
+              "ar": "وإذا قال لها: إذا حضت حيضة فأنت طالق لم تطلق حتى تطهر من حيضها",
+              "en": "If he says \"When you have a (whole) period, you are divorced\", she is not divorced until she is clean from that period."
+            },
+            {
+              "kind": "choose",
+              "id": "whole-case",
+              "ask": "He said, \"When you have a whole period, you are divorced.\" Her period began on Monday and ended on Saturday. When is she divorced?",
+              "options": ["On Saturday, when she is clean", "On Monday, when it began", "On Thursday, after three days"],
+              "answer": 0,
+              "source": "إذا حضت حيضة فأنت طالق لم تطلق حتى تطهر من حيضها",
+              "why": "With \"a whole period\", she is not divorced until she is clean from it."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "He said, \"When you have your period, you are divorced.\" Blood appeared on Monday and lasted five days. From when is the talaq counted?",
+              "options": ["From Monday, when it began", "From Thursday, after three days", "From Saturday, when it ended"],
+              "answer": 0,
+              "source": ["لم يقع الطلاق حتى يستمر ثلاثة أيام", "حكمنا بوقوع الطلاق من حين حاضت"],
+              "why": "Once the blood has lasted three days, the talaq is counted from when it began: Monday."
+            }
+          ]
+        },
+        {
+          "id": "talaq-count",
+          "title": "How many talaqs, where and when",
+          "arabic": "وطلاق الحرة ثلاث",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "free-enslaved",
+              "title": "Three or two",
+              "ar": "وطلاق الحرة ثلاث حرا كان زوجها أو عبدا",
+              "en": "A free wife can be divorced up to three times, whether her husband is free or enslaved. In al-Quduri's time an enslaved wife had two talaqs, whoever her husband was. The number goes by the wife."
+            },
+            {
+              "kind": "choose",
+              "id": "count-case",
+              "ask": "In al-Quduri's time, an enslaved man was married to a free woman. How many talaqs does her marriage hold?",
+              "options": ["Three: it goes by the wife", "Two: it goes by the husband", "One"],
+              "answer": 0,
+              "source": ["وطلاق الأمة تطليقتان", "وطلاق الحرة ثلاث حرا كان زوجها أو عبدا"],
+              "why": "Three. A free wife has three talaqs, whether her husband is free or not."
+            },
+            {
+              "kind": "teach",
+              "id": "before",
+              "title": "Before the marriage is consummated",
+              "ar": "وإذا طلق الرجل امرأته قبل الدخول بها ثلاثا وقعن عليها فإن فرق الطلاق بانت بالأولى ولم تقع الثانية",
+              "en": "If he divorces her three times in one go before the marriage is consummated, all three happen. But if he gives them one by one, the first separates her (she has no 'idda), so the second does not happen."
+            },
+            {
+              "kind": "choose",
+              "id": "before-case",
+              "ask": "Before consummation, Imran says, \"You are divorced. You are divorced. You are divorced.\" How many talaqs happen?",
+              "options": ["One: the first separates her", "Three", "Two"],
+              "answer": 0,
+              "source": "فإن فرق الطلاق بانت بالأولى ولم تقع الثانية",
+              "why": "One. Given one by one before consummation, the first separates her and the rest have nothing to fall on."
+            },
+            {
+              "kind": "teach",
+              "id": "before-after",
+              "title": "\"One before one\", \"one after one\"",
+              "ar": "وإن قال لها واحدة قبلها واحدة وقعت اثنتان وإن قال واحدة بعدها وقعت واحدة وإن قال واحدة بعد واحدة أو مع واحدة أو معها واحدة وقعت اثنتان",
+              "en": "Still before consummation: \"one, before which is one\" gives two. \"One, after which is one\" gives one. \"One after one\", \"one with one\" and \"one, with it one\" give two. And \"You are divorced, and one\" gives one."
+            },
+            {
+              "kind": "sort",
+              "id": "count-sort",
+              "ask": "Before consummation, how many talaqs does he give?",
+              "into": ["One", "Two"],
+              "items": [
+                ["\"One, before which is one\"", "Two"],
+                ["\"One, after which is one\"", "One"],
+                ["\"One after one\"", "Two"],
+                ["\"One with one\"", "Two"],
+                ["\"You are divorced, and one\"", "One"]
+              ],
+              "source": ["وإذا قال لها: أنت طالق وواحدة وقعت عليها واحدة وإن قال لها أنت طالق واحدة وقعت واحدة", "وإن قال لها واحدة قبلها واحدة وقعت اثنتان وإن قال واحدة بعدها وقعت واحدة وإن قال واحدة بعد واحدة أو مع واحدة"],
+              "why": "\"Before which is one\", \"after one\" and \"with one\" give two. \"After which is one\" and \"and one\" give one."
+            },
+            {
+              "kind": "teach",
+              "id": "house-one",
+              "title": "A condition with one",
+              "ar": "وإذا قال لها: إن دخلت الدار فأنت طالق واحدة فدخلت الدار وقعت عليها واحدة عند أبي حنيفة",
+              "en": "If he says \"If you enter the house, you are divorced once\" and she enters, one talaq happens, according to Abu Hanifa."
+            },
+            {
+              "kind": "teach",
+              "id": "place-time",
+              "title": "A place and a time",
+              "ar": "وإذا قال لها أنت طالق بمكة فهي طالق في كل البلاد وكذلك إذا قال أنت طالق في الدار وإن قال لها أنت طالق إذا دخلت مكة لم تطلق حتى تدخل مكة وإن قال لها: أنت طالق غدا وقع الطلاق عليها بطلوع الفجر",
+              "en": "\"You are divorced in Makka\" divorces her at once, wherever she is; the same for \"in the house\". But \"You are divorced when you enter Makka\" waits until she enters Makka. \"You are divorced tomorrow\" happens at dawn (fajr) tomorrow."
+            },
+            {
+              "kind": "pick",
+              "id": "place-pick",
+              "ask": "Hadi's wife is in Madina. Which of these divorce her straight away?",
+              "options": [
+                { "text": "\"You are divorced in Makka\"", "right": true },
+                { "text": "\"You are divorced in the house\"", "right": true },
+                { "text": "\"You are divorced when you enter Makka\"" },
+                { "text": "\"You are divorced tomorrow\"" }
+              ],
+              "source": ["وإذا قال لها أنت طالق بمكة فهي طالق في كل البلاد وكذلك إذا قال أنت طالق في الدار", "وإن قال لها أنت طالق إذا دخلت مكة لم تطلق حتى تدخل مكة"],
+              "why": "A place named with \"in\" does not delay it. \"When you enter Makka\" waits for her to enter, and \"tomorrow\" waits for dawn."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "On Tuesday evening Hadi says, \"You are divorced tomorrow.\" When does the talaq happen?",
+              "options": ["At dawn on Wednesday", "At sunset on Wednesday", "Straight away"],
+              "answer": 0,
+              "source": "وإن قال لها: أنت طالق غدا وقع الطلاق عليها بطلوع الفجر",
+              "why": "\"Tomorrow\" begins at dawn, so the talaq happens at fajr on Wednesday."
+            }
+          ]
+        },
+        {
+          "id": "talaq-choice",
+          "title": "Giving her the choice",
+          "arabic": "اختاري نفسك",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "sitting",
+              "title": "While she is still sitting there",
+              "ar": "اختاري نفسك ينوي بذلك الطلاق أو قال لها: طلقي نفسك فلها أن تطلق نفسها ما دامت في مجلسها ذلك فإن قامت منه أو أخذت في عمل آخر خرج الأمر من يدها",
+              "en": "If he tells his wife \"Choose yourself\", meaning divorce, or \"Divorce yourself\", she may divorce herself as long as she stays in that sitting (majlis). If she gets up or starts on something else, the choice leaves her hands."
+            },
+            {
+              "kind": "choose",
+              "id": "sitting-case",
+              "ask": "Sulayman tells his wife \"Choose yourself\", meaning divorce. She gets up to cook dinner, then comes back and says, \"I choose myself.\" What happens?",
+              "options": ["Nothing: the choice left her hands when she got up", "One final talaq", "Three talaqs"],
+              "answer": 0,
+              "source": "فإن قامت منه أو أخذت في عمل آخر خرج الأمر من يدها",
+              "why": "Nothing. When she got up and began something else, the choice left her hands."
+            },
+            {
+              "kind": "teach",
+              "id": "choose-final",
+              "title": "\"Choose\" gives one final talaq",
+              "ar": "واحدة بائنة ولا يكون ثلاثا وإن نوى الزوج ذلك ولا بد من ذكر النفس في كلامه أو في كلامها",
+              "en": "If she chooses herself after \"Choose\", it is one final (ba'in) talaq, and never three, even if he meant three. The word \"yourself\" or \"myself\" must be in his words or in hers."
+            },
+            {
+              "kind": "teach",
+              "id": "divorce-yourself",
+              "title": "\"Divorce yourself\"",
+              "ar": "وإن طلقت نفسها في قوله: طلقي نفسك فهي واحدة رجعية وإن طلقت نفسها ثلاثا وقد أراد الزوج ذلك وقعن عليها",
+              "en": "If she divorces herself after \"Divorce yourself\", it is one revocable talaq. If she divorces herself three times and he meant that, all three happen."
+            },
+            {
+              "kind": "sort",
+              "id": "choice-sort",
+              "ask": "What does she get?",
+              "into": ["One final", "One revocable", "Three"],
+              "items": [
+                ["He said \"Choose yourself\" meaning divorce; she chose herself", "One final"],
+                ["He said \"Choose yourself\" meaning three; she chose herself", "One final"],
+                ["He said \"Divorce yourself\"; she divorced herself once", "One revocable"],
+                ["He said \"Divorce yourself\" meaning three; she divorced herself three times", "Three"]
+              ],
+              "source": ["وإن اختارت نفسها في قوله: اختاري كانت واحدة بائنة ولا يكون ثلاثا وإن نوى الزوج ذلك", "فهي واحدة رجعية وإن طلقت نفسها ثلاثا وقد أراد الزوج ذلك وقعن عليها"],
+              "why": "\"Choose\" always gives one final talaq. \"Divorce yourself\" gives one revocable, or three if she says three and he meant it."
+            },
+            {
+              "kind": "teach",
+              "id": "later",
+              "title": "\"Whenever you wish\", and through someone else",
+              "ar": "وإن قال لها: طلقي نفسك متى شئت فلها أن تطلق نفسها في المجلس وبعده وإذا قال لرجل: طلق امرأتي فله أن يطلقها في المجلس وبعده وإن قال: طلقها إن شئت فله أن يطلقها في المجلس خاصة",
+              "en": "\"Divorce yourself whenever you wish\" lets her do it in that sitting and later. If he tells another man \"Divorce my wife\", that man may do it in the sitting or later. But \"Divorce her if you wish\" lets him do it only in that sitting."
+            },
+            {
+              "kind": "pick",
+              "id": "later-pick",
+              "ask": "Which of these can still be used after the sitting has ended?",
+              "options": [
+                { "text": "\"Divorce yourself whenever you wish\", said to his wife", "right": true },
+                { "text": "\"Divorce my wife\", said to a friend", "right": true },
+                { "text": "\"Divorce her if you wish\", said to a friend" },
+                { "text": "\"Divorce yourself\", said to his wife" },
+                { "text": "\"Choose yourself\", said to his wife" }
+              ],
+              "source": ["طلقي نفسك متى شئت فلها أن تطلق نفسها في المجلس وبعده", "طلق امرأتي فله أن يطلقها في المجلس وبعده وإن قال: طلقها إن شئت فله أن يطلقها في المجلس خاصة", "فلها أن تطلق نفسها ما دامت في مجلسها ذلك"],
+              "why": "\"Whenever you wish\" and a plain request to another man last beyond the sitting. The others end with it."
+            },
+            {
+              "kind": "teach",
+              "id": "love",
+              "title": "\"If you love me\"",
+              "ar": "تحبيني أو تبغضيني فأنت طالق فقالت: أنا أحبك أو أبغضك وقع الطلاق وإن كان في قلبها خلاف ما أظهرت",
+              "en": "If he says \"If you love me (or hate me), you are divorced\" and she says \"I love you\" (or \"I hate you\"), the talaq happens, even if her heart feels the opposite of what she said."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Jamal tells his wife, \"If you love me, you are divorced.\" She says \"I love you\", though in her heart she does not. What happens?",
+              "options": ["The talaq happens: what she says decides", "Nothing: her heart says otherwise", "Only if he believes her"],
+              "answer": 0,
+              "source": "وقع الطلاق وإن كان في قلبها خلاف ما أظهرت",
+              "why": "The talaq happens. What she says decides, even if her heart is different."
+            }
+          ]
+        },
+        {
+          "id": "talaq-illness",
+          "title": "Final illness, \"in sha Allah\" and exceptions",
+          "arabic": "أنت طالق إن شاء الله",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "illness",
+              "title": "A divorce in his final illness",
+              "ar": "وإذا طلق الرجل امرأته في مرض موته طلاقا بائنا وهي في العدة ورثت منه وإن مات بعد انقضاء عدتها فلا ميراث لها",
+              "en": "If a man gives his wife a final talaq during the illness he dies of, and he dies while she is still in her 'idda, she inherits from him. If he dies after her 'idda has ended, she does not inherit."
+            },
+            {
+              "kind": "choose",
+              "id": "inherit-case",
+              "ask": "During his final illness, Karim gives his wife a final talaq. He dies a month later, while she is still in her 'idda. Does she inherit from him?",
+              "options": ["Yes: she is still in her 'idda", "No: the talaq was final", "Only half her share"],
+              "answer": 0,
+              "source": "في مرض موته طلاقا بائنا وهي في العدة ورثت منه",
+              "why": "Yes. A final talaq in his last illness does not stop her inheriting while she is in her 'idda."
+            },
+            {
+              "kind": "choose",
+              "id": "after-idda-case",
+              "ask": "Same illness, same talaq, but Karim dies after her 'idda has ended. Does she inherit?",
+              "options": ["No: her 'idda had ended", "Yes: the divorce was in his last illness", "Yes, if they had children"],
+              "answer": 0,
+              "source": "وإن مات بعد انقضاء عدتها فلا ميراث لها",
+              "why": "No. Once her 'idda has ended, she has no inheritance from him."
+            },
+            {
+              "kind": "teach",
+              "id": "in-sha-allah",
+              "title": "\"In sha Allah\"",
+              "ar": "وإذا قال الزوج لامرأته: أنت طالق إن شاء الله متصلا لم يقع الطلاق عليها",
+              "en": "If he says \"You are divorced, in sha Allah (if Allah wills)\" in one breath, without a pause, no talaq happens."
+            },
+            {
+              "kind": "teach",
+              "id": "except",
+              "title": "\"Except\"",
+              "ar": "وإن قال: لها أنت طالق ثلاثا إلا واحدة طلقت اثنتين وإن قال: ثلاثا إلا اثنتين طلقت واحدة",
+              "en": "\"You are divorced three times except one\" gives two talaqs. \"Three except two\" gives one."
+            },
+            {
+              "kind": "choose",
+              "id": "except-gap",
+              "ask": "\"Three except two\" gives how many? Complete it.",
+              "ar": "وإن قال: ثلاثا إلا اثنتين طلقت ____",
+              "options": ["واحدة", "اثنتين", "ثلاثا"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وإن قال: ثلاثا إلا اثنتين طلقت واحدة",
+              "why": "واحدة: three minus two leaves one."
+            },
+            {
+              "kind": "teach",
+              "id": "owning",
+              "title": "When one spouse comes to own the other",
+              "ar": "وإذا ملك الزوج امرأته أو شقصا منها أو ملكت المرأة زوجها أو شقصا منه وقعت الفرقة بينهما",
+              "en": "In al-Quduri's time, if a husband came to own his enslaved wife, or a share of her, or a wife came to own her enslaved husband, or a share of him, the marriage ended between them."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "How many talaqs happen?",
+              "into": ["None", "One", "Two"],
+              "items": [
+                ["\"You are divorced, in sha Allah\", in one breath", "None"],
+                ["\"Three, except two\"", "One"],
+                ["\"Three, except one\"", "Two"],
+                ["\"Half a talaq\"", "One"]
+              ],
+              "source": ["أنت طالق إن شاء الله متصلا لم يقع الطلاق عليها", "أنت طالق ثلاثا إلا واحدة طلقت اثنتين وإن قال: ثلاثا إلا اثنتين طلقت واحدة", "وإن طلقها نصف تطليقة أو ثلث تطليقة كانت طلقة واحدة"],
+              "why": "\"In sha Allah\" said in one breath stops it. Three minus two is one, three minus one is two, and half a talaq counts as one."
+            }
+          ]
+        },
+        {
+          "id": "talaq-raja",
+          "title": "Taking her back (raj'a)",
+          "arabic": "الرجعة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "raja",
+              "title": "Raj'a",
+              "ar": "إذا طلق الرجل امرأته تطليقة رجعية أو تطليقتين فله أن يراجعها في عدتها رضيت بذلك أو لم ترض",
+              "en": "Raj'a is a husband taking his wife back into the marriage. After one or two revocable talaqs, he may take her back during her 'idda, whether she agrees or not."
+            },
+            {
+              "kind": "teach",
+              "id": "how",
+              "title": "How it is done",
+              "ar": "والرجعة أن يقول: راجعتك أو راجعت امرأتي أو يطأها أو يقبلها",
+              "en": "Raj'a is done by words, like \"I have taken you back\" or \"I have taken back my wife\", or by acts of married closeness, such as intimacy or a kiss."
+            },
+            {
+              "kind": "choose",
+              "id": "consent-case",
+              "ask": "Musa gave his wife one revocable talaq. During her 'idda he says, \"I have taken you back\", but she does not want it. Is the raj'a valid?",
+              "options": ["Yes: it does not need her agreement", "No: she must agree", "Only with a judge's permission"],
+              "answer": 0,
+              "source": "فله أن يراجعها في عدتها رضيت بذلك أو لم ترض",
+              "why": "Yes. During the 'idda he may take her back whether she agrees or not."
+            },
+            {
+              "kind": "teach",
+              "id": "witness",
+              "title": "Witnesses",
+              "ar": "ويستحب أن يشهد على الرجعة شاهدين فإن لم يشهد صحت الرجعة",
+              "en": "It is recommended to have two witnesses to the raj'a, but without them it is still valid."
+            },
+            {
+              "kind": "pick",
+              "id": "how-pick",
+              "ask": "After one revocable talaq, which of these take her back during the 'idda?",
+              "options": [
+                { "text": "Saying \"I have taken you back\"", "right": true },
+                { "text": "Saying \"I have taken back my wife\"", "right": true },
+                { "text": "Kissing her", "right": true },
+                { "text": "Saying \"I have taken you back\" with no witnesses", "right": true },
+                { "text": "Saying \"I have taken you back\" after her 'idda has ended" }
+              ],
+              "source": ["والرجعة أن يقول: راجعتك أو راجعت امرأتي", "أو يقبلها", "فإن لم يشهد صحت الرجعة", "فله أن يراجعها في عدتها"],
+              "why": "Words or a kiss during the 'idda take her back, even without witnesses. After the 'idda, raj'a is no longer possible."
+            },
+            {
+              "kind": "teach",
+              "id": "after-idda",
+              "title": "A claim after the 'idda",
+              "ar": "وإذا انقضت العدة فقال: قد كنت راجعتها في العدة فصدقته فهي رجعة وإن كذبته فالقول قولها ولا يمين عليها عند أبي حنيفة",
+              "en": "If, after the 'idda has ended, he says \"I took her back during the 'idda\": if she agrees, it is a raj'a. If she denies it, her word is accepted, and for Abu Hanifa she does not have to swear an oath."
+            },
+            {
+              "kind": "teach",
+              "id": "reply",
+              "title": "\"My 'idda has ended\"",
+              "ar": "وإذا قال الزوج: قد راجعتك فقالت مجيبة له: قد انقضت عدتي لم تصح الرجعة عند أبي حنيفة",
+              "en": "If he says \"I have taken you back\" and she replies straight away \"My 'idda has ended\", the raj'a is not valid, according to Abu Hanifa."
+            },
+            {
+              "kind": "choose",
+              "id": "deny-case",
+              "ask": "After Hiba's 'idda has ended, her husband says, \"I took you back during the 'idda.\" Hiba says he did not. Whose word is accepted?",
+              "options": ["Hiba's", "The husband's", "Neither, unless she swears an oath"],
+              "answer": 0,
+              "source": "وإن كذبته فالقول قولها ولا يمين عليها",
+              "why": "Hiba's. If she denies it, her word is accepted, and she does not have to swear."
+            },
+            {
+              "kind": "teach",
+              "id": "enslaved",
+              "title": "An enslaved wife",
+              "ar": "وإذا قال زوج الأمة بعد انقضاء عدتها: قد كنت راجعتها في العدة فصدقه المولى وكذبته الأمة فالقول قولها",
+              "en": "In al-Quduri's time, if the husband of an enslaved wife said after her 'idda that he had taken her back during it, and her owner agreed with him but she denied it, her own word was accepted."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Yunus tells his wife, \"I have taken you back.\" She answers at once, \"My 'idda has already ended.\" For Abu Hanifa, is the raj'a valid?",
+              "options": ["No", "Yes, because he spoke first", "Yes, if he has two witnesses"],
+              "answer": 0,
+              "source": "فقالت مجيبة له: قد انقضت عدتي لم تصح الرجعة عند أبي حنيفة",
+              "why": "No. When she answers at once that her 'idda has ended, the raj'a is not valid for Abu Hanifa."
+            }
+          ]
+        },
+        {
+          "id": "talaq-raja-end",
+          "title": "When the right to take her back ends",
+          "arabic": "انقطعت الرجعة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "ten-days",
+              "title": "A third period of ten days",
+              "ar": "وإذا انقطع الدم من الحيضة الثالثة لعشرة أيام انقطعت الرجعة وإن لم تغتسل",
+              "en": "Her 'idda here is three periods. If the blood of her third period stops after ten days (the longest a period can be), his right to take her back ends, even if she has not yet done ghusl (the full bath)."
+            },
+            {
+              "kind": "teach",
+              "id": "fewer",
+              "title": "Fewer than ten days",
+              "ar": "وإن انقطع لأقل من عشرة أيام لم تنقطع الرجعة حتى تغتسل أو يمضي عليها وقت صلاة أو تتيمم وتصلي عند أبي حنيفة وأبي يوسف وقال محمد: إذا تيممت انقطعت الرجعة وإن لم تصل",
+              "en": "If it stops before ten days, his right does not end until she does ghusl, or the time of a whole prayer passes over her, or she does tayammum (purifying with earth) and prays, for Abu Hanifa and Abu Yusuf. Note: Muhammad says tayammum alone ends it, even before she prays."
+            },
+            {
+              "kind": "choose",
+              "id": "ten-case",
+              "ask": "Aisha's third period stopped after exactly ten days. She has not done ghusl yet. Can her husband still take her back?",
+              "options": ["No: after ten days it ends without ghusl", "Yes, until she does ghusl", "Yes, until a prayer time passes"],
+              "answer": 0,
+              "source": "لعشرة أيام انقطعت الرجعة وإن لم تغتسل",
+              "why": "No. When the third period stops at ten days, raj'a ends even without ghusl."
+            },
+            {
+              "kind": "pick",
+              "id": "fewer-pick",
+              "ask": "Her third period stopped after six days. For Abu Hanifa, which of these end his right to take her back?",
+              "options": [
+                { "text": "She does ghusl", "right": true },
+                { "text": "The time of a whole prayer passes over her", "right": true },
+                { "text": "She does tayammum and prays", "right": true },
+                { "text": "One hour passes" },
+                { "text": "She tells a friend she feels clean" }
+              ],
+              "source": "لم تنقطع الرجعة حتى تغتسل أو يمضي عليها وقت صلاة أو تتيمم وتصلي",
+              "why": "Before ten days, raj'a ends with ghusl, a full prayer time passing, or tayammum followed by prayer."
+            },
+            {
+              "kind": "teach",
+              "id": "missed",
+              "title": "A part the water missed",
+              "ar": "وإن اغتسلت ونسيت شيئا من بدنها لم يصبه الماء فإن كان عضوا فما فوقه لم تنقطع الرجعة وإن كان أقل من عضو انقطعت",
+              "en": "If she does ghusl but forgets a part of her body that the water did not reach: if it is a whole limb or more, raj'a has not ended. If it is less than a limb, it has ended."
+            },
+            {
+              "kind": "choose",
+              "id": "arm-case",
+              "ask": "After her third period (six days), Maryam does ghusl, but the water misses her whole arm. Has the right of raj'a ended?",
+              "options": ["No: a whole limb was missed", "Yes: she did ghusl", "Yes, but only after she prays"],
+              "answer": 0,
+              "source": "فإن كان عضوا فما فوقه لم تنقطع الرجعة",
+              "why": "No. A whole limb missed means raj'a has not ended."
+            },
+            {
+              "kind": "choose",
+              "id": "spot-case",
+              "ask": "This time the water misses only a small spot, less than a limb. Has the right of raj'a ended?",
+              "options": ["Yes: less than a limb was missed", "No: any dry spot keeps it open", "No, until she washes that spot"],
+              "answer": 0,
+              "source": "وإن كان أقل من عضو انقطعت",
+              "why": "Yes. If less than a limb was missed, raj'a has ended."
+            },
+            {
+              "kind": "teach",
+              "id": "adorn",
+              "title": "During a revocable 'idda",
+              "ar": "الرجعية تتشوف وتتزين ويستحب لزوجها أن لا يدخل عليها حتى يستأذنها أو يسمعها خفق نعليه",
+              "en": "A wife in the 'idda of a revocable talaq may make herself look nice and adorn herself, since he may take her back. It is recommended that her husband not come in to her until he asks her permission or lets her hear his footsteps."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "During a revocable 'idda, what is recommended for the husband before coming in to where his wife is?",
+              "options": ["To ask her permission or let her hear his footsteps", "Never to enter at all", "To bring two witnesses"],
+              "answer": 0,
+              "source": "ويستحب لزوجها أن لا يدخل عليها حتى يستأذنها أو يسمعها خفق نعليه",
+              "why": "He should ask her permission or let her hear his footsteps first."
+            }
+          ]
+        },
+        {
+          "id": "talaq-halal",
+          "title": "After a final divorce",
+          "arabic": "حتى تنكح زوجا غيره",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "less-than-three",
+              "title": "Final, but less than three",
+              "ar": "والطلاق الرجعي لا يحرم الوطء وإذا كان الطلاق بائنا دون الثلاث فله أن يتزوجها في عدتها وبعد انقضاء عدتها",
+              "en": "A revocable talaq does not forbid married closeness. If the talaq is final but fewer than three, he may marry her again with a new nikah, during her 'idda or after it."
+            },
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "After three",
+              "ar": "وإن كان الطلاق ثلاثا في الحرة أو اثنتين في الأمة لم تحل له حتى تنكح زوجا غيره نكاحا صحيحا ويدخل بها ثم يطلقها أو يموت عنها",
+              "en": "After three talaqs for a free wife (two for an enslaved wife, in al-Quduri's time), she is not lawful for him again until she marries another husband in a valid nikah, that marriage is consummated, and then he divorces her or dies."
+            },
+            {
+              "kind": "choose",
+              "id": "one-final-case",
+              "ask": "Anas gave his wife one final talaq. Two weeks later, while she is still in her 'idda, they both want to marry again. Can they?",
+              "options": ["Yes, with a new nikah, even during the 'idda", "No, not until her 'idda ends", "No, not until she marries someone else"],
+              "answer": 0,
+              "source": "فله أن يتزوجها في عدتها وبعد انقضاء عدتها",
+              "why": "Yes. After a final talaq of fewer than three, he may remarry her during or after the 'idda."
+            },
+            {
+              "kind": "choose",
+              "id": "three-case",
+              "ask": "Saeed has divorced his wife three times. Her 'idda has ended. Can they marry again now?",
+              "options": ["Not until she has validly married another man, that marriage is consummated, and it ends", "Yes, with a new nikah and a new mahr", "Yes, after a second 'idda"],
+              "answer": 0,
+              "source": "لم تحل له حتى تنكح زوجا غيره نكاحا صحيحا ويدخل بها ثم يطلقها أو يموت عنها",
+              "why": "After three, she is lawful for him only after a real, consummated marriage to another man has ended."
+            },
+            {
+              "kind": "teach",
+              "id": "boy-owner",
+              "title": "Who counts as the second husband",
+              "ar": "والصبي المراهق في التحليل كالبالغ ووطء المولى أمته لا يحللها",
+              "en": "A boy near adulthood counts like an adult as the second husband. In al-Quduri's time, an enslaved woman's relations with her owner did not make her lawful again for her husband; a marriage was needed."
+            },
+            {
+              "kind": "teach",
+              "id": "tahlil",
+              "title": "Marrying on condition of making her lawful",
+              "ar": "وإذا تزوجها بشرط التحليل فالنكاح مكروه فإن طلقها بعد وطئها حلت للأول",
+              "en": "If the second husband marries her on the condition that he will make her lawful for the first (tahlil), the nikah is makruh (disliked). Still, if he divorces her after consummation, she becomes lawful for the first husband."
+            },
+            {
+              "kind": "teach",
+              "id": "wipes",
+              "title": "The second husband wipes the count",
+              "ar": "وانقضت عدتها وتزوجت بزوج آخر ثم عادت إلى الأول عادت بثلاث تطليقات ويهدم الزوج الثاني ما دون الثلاث من الطلاق كما يهدم الثلاث وقال محمد: لا يهدم ما دون الثلاث",
+              "en": "If he gave a free wife one or two talaqs, her 'idda ended, she married another man and then came back to the first, she comes back with three talaqs again. The second husband wipes out fewer than three, just as he wipes out three. Note: Muhammad says he does not wipe out fewer than three."
+            },
+            {
+              "kind": "choose",
+              "id": "wipe-case",
+              "ask": "Khalid gave his wife one talaq. After her 'idda she married Umar, who later divorced her. Then she remarried Khalid. How many talaqs does Khalid now have over her?",
+              "options": ["Three", "Two", "One"],
+              "answer": 0,
+              "source": "ثم عادت إلى الأول عادت بثلاث تطليقات ويهدم الزوج الثاني ما دون الثلاث من الطلاق",
+              "why": "Three. The second husband wiped out the earlier talaq, so she returns with three."
+            },
+            {
+              "kind": "teach",
+              "id": "believe",
+              "title": "Believing what she says",
+              "ar": "وإذا طلقها ثلاثا فقالت: قد انقضت عدتي وتزوجت ودخل بي وطلقني وانقضت عدتي والمدة تحتمل ذلك جاز للزوج أن يصدقها إذا كان في غالب ظنه أنها صادقة",
+              "en": "After three talaqs, if she says \"My 'idda ended, I married, the marriage was consummated, he divorced me and my 'idda has ended\", and enough time has passed for that, the first husband may believe her if he thinks she is most likely telling the truth."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "After three talaqs, is she lawful for her first husband again?",
+              "into": ["Lawful again", "Not yet"],
+              "items": [
+                ["She validly married another man, it was consummated, he divorced her and her 'idda ended", "Lawful again"],
+                ["Her second husband, a boy near adulthood, consummated the marriage, divorced her, and her 'idda ended", "Lawful again"],
+                ["She married on a tahlil condition; it was consummated, then he divorced her and her 'idda ended", "Lawful again"],
+                ["She married another man who divorced her before consummation", "Not yet"],
+                ["Only her 'idda from the first husband has ended", "Not yet"]
+              ],
+              "source": ["حتى تنكح زوجا غيره نكاحا صحيحا ويدخل بها", "والصبي المراهق في التحليل كالبالغ", "فإن طلقها بعد وطئها حلت للأول"],
+              "why": "Only a valid, consummated second marriage that has ended makes her lawful again, even with a near-adult boy or a disliked tahlil condition."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ila",
+      "title": "Oath of abstention and khul'",
+      "arabic": "الإيلاء",
+      "kitab": "كتاب الإيلاء",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "ila-oath",
+          "title": "The oath of abstention (ila')",
+          "arabic": "والله لا أقربك",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "What ila' is",
+              "ar": "إذا قال الرجل لامرأته: والله لا أقربك",
+              "en": "Ila' is a husband swearing by Allah to stay away from married closeness with his wife: \"By Allah, I will not come near you\", with no end, or for four months. A husband who does this is called a mu'li."
+            },
+            {
+              "kind": "teach",
+              "id": "four-months",
+              "title": "Four months",
+              "ar": "فإن وطئها في الأربعة الأشهر حنث في يمينه ولزمته الكفارة وسقط الإيلاء وإن لم يقربها حتى مضت أربعة أشهر بانت منه بتطليقة",
+              "en": "If he returns to her within the four months, he has broken his oath and owes the kaffara (the set expiation for a broken oath), and the ila' is over. If he keeps away until four months pass, she is separated from him by one final talaq."
+            },
+            {
+              "kind": "choose",
+              "id": "return-case",
+              "ask": "Mahmud swears, \"By Allah, I will not come near you for four months.\" After two months he returns to his wife. What follows?",
+              "options": ["He owes the kaffara of an oath, and the ila' is over", "She is divorced", "Nothing: such an oath does not count"],
+              "answer": 0,
+              "source": "فإن وطئها في الأربعة الأشهر حنث في يمينه ولزمته الكفارة وسقط الإيلاء",
+              "why": "Returning within the four months breaks the oath: he owes the kaffara and the ila' ends."
+            },
+            {
+              "kind": "choose",
+              "id": "away-case",
+              "ask": "This time Mahmud keeps away for the whole four months. What happens?",
+              "options": ["She is separated from him by one final talaq", "Nothing happens without a judge", "Three talaqs happen"],
+              "answer": 0,
+              "source": "وإن لم يقربها حتى مضت أربعة أشهر بانت منه بتطليقة",
+              "why": "When four months pass without his returning to her, she is separated by one talaq."
+            },
+            {
+              "kind": "teach",
+              "id": "forever",
+              "title": "An oath forever",
+              "ar": "وإن كان حلف على الأبد فاليمين باقية فإن عاد فتزوجها عاد الإيلاء فإن وطئها لزمته الكفارة وإلا وقعت بمضي أربعة أشهر",
+              "en": "If he swore for four months, the oath is over once she is separated. If he swore forever, the oath remains. If he marries her again, the ila' returns: if he comes back to her he owes the kaffara, otherwise another talaq falls when four more months pass, and so on."
+            },
+            {
+              "kind": "teach",
+              "id": "after-another",
+              "title": "After she marries another husband",
+              "ar": "زوج آخر لم يقع بذلك الإيلاء طلاق واليمين باقية فإن وطئها كفر عن يمينه",
+              "en": "Once three talaqs have fallen this way and she remarries him after another husband, that ila' brings no more talaq. But the oath remains: if he comes back to her, he pays the kaffara."
+            },
+            {
+              "kind": "teach",
+              "id": "less-and-other",
+              "title": "Less than four months, and other oaths",
+              "ar": "وإذا حلف على أقل من أربعة أشهر لم يكن موليا وإن حلف بحج أو صوم",
+              "en": "If he swears for less than four months, it is not ila'. If he binds himself with Hajj, fasting, charity, freeing a slave or a talaq (\"If I come near you, I must do Hajj\"), he is a mu'li."
+            },
+            {
+              "kind": "sort",
+              "id": "ila-sort",
+              "ask": "Is this an ila'?",
+              "into": ["Ila'", "Not ila'"],
+              "items": [
+                ["\"By Allah, I will not come near you for four months\"", "Ila'"],
+                ["\"By Allah, I will not come near you\"", "Ila'"],
+                ["\"If I come near you, I must do Hajj\"", "Ila'"],
+                ["\"If I come near you, I must fast a month\"", "Ila'"],
+                ["\"By Allah, I will not come near you for three months\"", "Not ila'"],
+                ["\"By Allah, I will not come near you for two months\"", "Not ila'"]
+              ],
+              "source": ["لا أقربك أو لا أقربك أربعة", "وإذا حلف على أقل من أربعة أشهر لم يكن موليا", "وإن حلف بحج أو صوم", "أو عتق أو طلاق فهو مول"],
+              "why": "Four months or more, with no end, or bound by Hajj or fasting is ila'. Less than four months is not."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Ziyad swore to keep away from his wife forever. Four months passed and she was separated. Then they married again. What follows?",
+              "options": ["The ila' returns: another talaq after four months, unless he comes back to her and pays the kaffara", "Nothing: the oath ended with the first talaq", "They may never marry again"],
+              "answer": 0,
+              "source": ["فقد سقطت اليمين وإن كان حلف على الأبد فاليمين باقية فإن عاد فتزوجها عاد الإيلاء", "ووقع بمضي أربعة أشهر تطليقه أخرى فإن تزوجها بعد"],
+              "why": "An oath forever remains, so on remarriage the ila' returns with a new four months."
+            }
+          ]
+        },
+        {
+          "id": "ila-cases",
+          "title": "Who, how long, and \"you are haram to me\"",
+          "arabic": "أنت علي حرام",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "which-wife",
+              "title": "Which wife, and how long",
+              "ar": "وإن آلى من المطلقة الرجعية كان موليا وإن آلى من البائنة لم يكن موليا ومدة إيلاء الأمة شهران",
+              "en": "An ila' made to a wife in a revocable 'idda counts. An ila' made to a wife already separated by a final talaq does not. In al-Quduri's time, the ila' period for an enslaved wife was two months."
+            },
+            {
+              "kind": "choose",
+              "id": "final-case",
+              "ask": "Ilyas gave his wife a final talaq, then swore not to come near her. Is he a mu'li?",
+              "options": ["No: she was already separated by a final talaq", "Yes: any oath to keep away is ila'", "Yes, if he swore for four months"],
+              "answer": 0,
+              "source": "وإن آلى من البائنة لم يكن موليا",
+              "why": "No. An ila' to a wife already separated by a final talaq does not count."
+            },
+            {
+              "kind": "choose",
+              "id": "months-gap",
+              "ask": "In al-Quduri's time, how long was the ila' for an enslaved wife? Complete it.",
+              "ar": "ومدة إيلاء الأمة ____",
+              "options": ["شهران", "أربعة أشهر", "شهر"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ومدة إيلاء الأمة شهران",
+              "why": "شهران: two months, half of the free wife's four."
+            },
+            {
+              "kind": "teach",
+              "id": "by-tongue",
+              "title": "Returning by words",
+              "ar": "وإن كان المولى مريضا لا يقدر على الجماع أو كانت المرأة مريضة أو كانت بينهما مسافة لا يقدر أن يصل إليها في مدة الإيلاء ففيئه أن يقول بلسانه: فئت إليها",
+              "en": "Fay' is the husband returning to his wife. If he is too ill, or she is ill, or they are too far apart for him to reach her within the ila' period, his fay' is to say: \"I have returned to her.\""
+            },
+            {
+              "kind": "teach",
+              "id": "recovers",
+              "title": "If he recovers in time",
+              "ar": "وإن صح في المدة بطل ذلك الفيء وصار فيئه بالجماع",
+              "en": "Saying it ends the ila'. But if he becomes well within the period, that spoken return no longer counts, and his return must be in person."
+            },
+            {
+              "kind": "choose",
+              "id": "journey-case",
+              "ask": "Nuh made an ila' while on a long journey, too far to reach his wife within four months. How can he return to her?",
+              "options": ["By saying \"I have returned to her\"", "He cannot: she will be divorced", "Only by paying the kaffara"],
+              "answer": 0,
+              "source": "أو كانت بينهما مسافة لا يقدر أن يصل إليها في مدة الإيلاء ففيئه أن يقول بلسانه: فئت إليها",
+              "why": "When distance keeps him from her for the whole period, his return is by saying it."
+            },
+            {
+              "kind": "teach",
+              "id": "haram",
+              "title": "\"You are haram to me\"",
+              "ar": "وإذا قال لامرأته أنت علي حرام سئل عن نيته فإن قال: أردت الكذب فهو كما قال",
+              "en": "If he says to his wife \"You are haram (forbidden) to me\", he is asked what he meant. If he says \"I meant it as a lie (not really)\", it is as he says."
+            },
+            {
+              "kind": "teach",
+              "id": "meanings",
+              "title": "What he meant",
+              "ar": "وإن قال: أردت الطلاق فهي تطليقة بائنة إلا أن ينوي الثلاث وإن قال: أردت الظهار فهو ظهار وإن قال: أردت التحريم أو لم أرد به شيئا فهو يمين يصير بها موليا",
+              "en": "If he meant talaq, it is one final talaq, unless he meant three. If he meant zihar (likening his wife to his mother, taught in the next part), it is zihar. If he meant making her forbidden, or meant nothing, it is an oath that makes him a mu'li."
+            },
+            {
+              "kind": "sort",
+              "id": "haram-sort",
+              "ask": "He said \"You are haram to me\". What is it, by what he meant?",
+              "into": ["One final talaq", "Zihar", "Ila'"],
+              "items": [
+                ["He meant talaq", "One final talaq"],
+                ["He meant zihar", "Zihar"],
+                ["He meant making her forbidden", "Ila'"],
+                ["He meant nothing at all", "Ila'"]
+              ],
+              "source": "وإن قال: أردت الطلاق فهي تطليقة بائنة إلا أن ينوي الثلاث وإن قال: أردت الظهار فهو ظهار وإن قال: أردت التحريم أو لم أرد به شيئا فهو يمين يصير بها موليا",
+              "why": "Talaq gives one final talaq, zihar is zihar, and forbidding or nothing is an oath of ila'."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Harun tells his wife \"You are haram to me\" and says he meant nothing by it. Then he keeps away from her for four months. What happens?",
+              "options": ["She is separated by one final talaq, as in any ila'", "Nothing: he meant nothing", "It is zihar"],
+              "answer": 0,
+              "source": ["أو لم أرد به شيئا فهو يمين يصير بها موليا", "وإن لم يقربها حتى مضت أربعة أشهر بانت منه بتطليقة"],
+              "why": "Meaning nothing makes it an ila' oath, so four months away separates her by one talaq."
+            }
+          ]
+        },
+        {
+          "id": "ila-khul",
+          "title": "Khul': a wife freeing herself for payment",
+          "arabic": "الخلع",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "khul",
+              "title": "What khul' is",
+              "ar": "وخافا أن لا يقيما حدود الله فلا بأس أن تفتدي نفسها منه بمال يخلعها به",
+              "en": "Khul': if husband and wife are at odds and fear they will not keep within the limits Allah has set, there is no harm in the wife freeing herself from him with money in return for which he releases her."
+            },
+            {
+              "kind": "teach",
+              "id": "effect",
+              "title": "What it does",
+              "ar": "وقع بالخلع تطليقة بائنة ولزمها المال",
+              "en": "Khul' counts as one final (ba'in) talaq, and she must pay the money agreed."
+            },
+            {
+              "kind": "teach",
+              "id": "nushuz",
+              "title": "Whose fault",
+              "ar": "وإن كان النشوز من قبله كره له أن يأخذ منها عوضا وإن كان النشوز من قبلها كره له",
+              "en": "Nushuz is a spouse turning against the other and treating them badly. If the nushuz is from the husband's side, it is disliked for him to take any payment from her. If it is from her side, it is disliked for him to take more than he gave her (her mahr). If he does take more, it is still valid in court."
+            },
+            {
+              "kind": "choose",
+              "id": "more-case",
+              "ask": "The trouble came from Fatin's side. For a khul' she pays her husband 2,000 dirhams, though his mahr to her was 1,000. Is it valid?",
+              "options": ["Valid in court, but it is disliked for him to take more than he gave", "Invalid: he must give back the extra", "Perfectly fine, with no dislike at all"],
+              "answer": 0,
+              "source": "أكثر مما أعطاها فإن فعل ذلك جاز في القضاء",
+              "why": "Taking more than he gave is disliked, but if he does, it is valid in court."
+            },
+            {
+              "kind": "choose",
+              "id": "his-fault-case",
+              "ask": "The trouble came from the husband's side, and his wife asks for a khul'. What does the book say about him taking payment?",
+              "options": ["It is disliked for him to take anything", "He may take up to the mahr", "He must take double the mahr"],
+              "answer": 0,
+              "source": "وإن كان النشوز من قبله كره له أن يأخذ منها عوضا",
+              "why": "When the fault is his, it is disliked for him to take any payment from her."
+            },
+            {
+              "kind": "teach",
+              "id": "talaq-money",
+              "title": "A talaq for money",
+              "ar": "وإن طلقها على مال فقبلت وقع الطلاق ولزمها المال وكان الطلاق بائنا",
+              "en": "If he divorces her in return for money and she accepts, the talaq happens, she owes the money, and the talaq is final."
+            },
+            {
+              "kind": "teach",
+              "id": "void-payment",
+              "title": "When the payment is not valid",
+              "ar": "وإذا بطل العوض في الخلع مثل أن تخالع المرأة المسلمة على خمر أو خنزير فلا شيء للزوج والفرقة بائنة وإن بطل العوض في الطلاق كان رجعيا",
+              "en": "If the payment ('iwad) in a khul' is not valid, like a Muslim woman offering wine or pork, the husband gets nothing and the separation is final. If the payment fails in a talaq for money, the talaq is revocable."
+            },
+            {
+              "kind": "teach",
+              "id": "like-mahr",
+              "title": "What can be paid",
+              "ar": "وما جاز أن يكون مهرا جاز أن يكون بدلا في الخلع",
+              "en": "Anything that may be given as a mahr may be given as the payment in a khul'."
+            },
+            {
+              "kind": "sort",
+              "id": "khul-sort",
+              "ask": "Is the separation final or revocable?",
+              "into": ["Final (ba'in)", "Revocable (raj'i)"],
+              "items": [
+                ["A khul' for 500 dirhams", "Final (ba'in)"],
+                ["A talaq for 500 dirhams, which she accepts", "Final (ba'in)"],
+                ["A Muslim woman's khul' for wine", "Final (ba'in)"],
+                ["A talaq for wine", "Revocable (raj'i)"]
+              ],
+              "source": ["وقع بالخلع تطليقة بائنة", "وكان الطلاق بائنا", "فلا شيء للزوج والفرقة بائنة وإن بطل العوض في الطلاق كان رجعيا"],
+              "why": "Khul' is always final, and so is a talaq for valid money. Only a talaq whose payment fails is revocable."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Rania, a Muslim, makes a khul' with her husband for a payment of wine. What does her husband get?",
+              "options": ["Nothing, and the separation is final", "The value of the wine", "Her mahr back"],
+              "answer": 0,
+              "source": "مثل أن تخالع المرأة المسلمة على خمر أو خنزير فلا شيء للزوج والفرقة بائنة",
+              "why": "Wine cannot be a payment for a Muslim, so he gets nothing, and the separation is still final."
+            }
+          ]
+        },
+        {
+          "id": "ila-khul-cases",
+          "title": "Khul' cases, and mutual release",
+          "arabic": "خالعني على ما في يدي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "in-hand",
+              "title": "\"For what is in my hand\"",
+              "ar": "فإن قالت له: خالعني على ما في يدي فخالعها ولم يكن في يدها شيء فلا شيء له عليها وإن قالت: خالعني على ما في يدي من مال ولم يكن في يدها شيء ردت عليه مهرها",
+              "en": "If she says \"Make khul' with me for what is in my hand\" and her hand is empty, she owes him nothing. If she says \"for the money in my hand\" and it is empty, she gives him back her mahr."
+            },
+            {
+              "kind": "teach",
+              "id": "dirhams",
+              "title": "\"For the dirhams in my hand\"",
+              "ar": "وإن قالت: خالعني على ما في يدي من دراهم",
+              "en": "If she says \"for the dirhams in my hand\" and her hand is empty, she owes three dirhams: \"dirhams\" means at least three."
+            },
+            {
+              "kind": "sort",
+              "id": "hand-sort",
+              "ask": "He agrees to the khul', and her hand turns out to be empty. What does she owe?",
+              "into": ["Nothing", "Her mahr back", "Three dirhams"],
+              "items": [
+                ["\"For what is in my hand\"", "Nothing"],
+                ["\"For the money in my hand\"", "Her mahr back"],
+                ["\"For the dirhams in my hand\"", "Three dirhams"]
+              ],
+              "source": ["فلا شيء له عليها", "ردت عليه مهرها", "ولم يكن في يدها شيء فعليها ثلاثة دراهم"],
+              "why": "An empty \"what\" is nothing; \"money\" means her mahr is returned; \"dirhams\" means three dirhams."
+            },
+            {
+              "kind": "teach",
+              "id": "three-for",
+              "title": "Asking for three, getting one",
+              "ar": "وإن قالت: طلقني ثلاثا بألف فطلقها واحدة فعليها ثلث الألف وإن قالت: طلقني ثلاثا على ألف فطلقها واحدة فلا شيء عليها عند أبي حنيفة",
+              "en": "If she says \"Divorce me three times for (bi) a thousand\" and he divorces her once, she owes a third of the thousand. If she says \"on condition of ('ala) a thousand\" and he divorces her once, she owes nothing, according to Abu Hanifa."
+            },
+            {
+              "kind": "choose",
+              "id": "bi-case",
+              "ask": "Huda says, \"Divorce me three times for 900 dirhams.\" He divorces her once. What does she owe?",
+              "options": ["300 dirhams", "900 dirhams", "Nothing"],
+              "answer": 0,
+              "source": "طلقني ثلاثا بألف فطلقها واحدة فعليها ثلث الألف",
+              "why": "With \"for\", each talaq takes its share: one of three is a third, 300 of 900."
+            },
+            {
+              "kind": "choose",
+              "id": "ala-case",
+              "ask": "This time Huda says, \"Divorce me three times on condition of 900 dirhams.\" He divorces her once. For Abu Hanifa, what does she owe?",
+              "options": ["Nothing", "300 dirhams", "900 dirhams"],
+              "answer": 0,
+              "source": "طلقني ثلاثا على ألف فطلقها واحدة فلا شيء عليها عند أبي حنيفة",
+              "why": "With \"on condition of\", the money is for all three together, so one talaq costs her nothing."
+            },
+            {
+              "kind": "teach",
+              "id": "husband-asks",
+              "title": "When he offers it",
+              "ar": "ولو قال الزوج: طلقي نفسك ثلاثا بألف أو على ألف فطلقت نفسها واحدة لم يقع عليها شيء",
+              "en": "If the husband says \"Divorce yourself three times for (or on condition of) a thousand\" and she divorces herself only once, nothing happens at all."
+            },
+            {
+              "kind": "teach",
+              "id": "mubaraa",
+              "title": "Mutual release (mubara'a)",
+              "ar": "والمبارأة كالخلع والخلع كالمبارأة يسقطان كل حق لكل واحد من الزوجين على الآخر مما يتعلق بالنكاح عند أبي حنيفة رحمه الله إلا نفقة العدة",
+              "en": "Mubara'a is when husband and wife release each other. For Abu Hanifa, mubara'a and khul' are alike: both drop every claim each spouse has on the other from the marriage, except the nafaqa (living costs) of her 'idda. Note: Abu Yusuf says mubara'a drops them but khul' does not; Muhammad says neither drops anything except what they named."
+            },
+            {
+              "kind": "pick",
+              "id": "drop-pick",
+              "ask": "After a khul', for Abu Hanifa, which claims are dropped?",
+              "options": [
+                { "text": "Mahr she was still owed", "right": true },
+                { "text": "Other claims either spouse has from the marriage", "right": true },
+                { "text": "The same claims, after a mubara'a instead", "right": true },
+                { "text": "Her nafaqa (living costs) during the 'idda" }
+              ],
+              "source": "يسقطان كل حق لكل واحد من الزوجين على الآخر مما يتعلق بالنكاح عند أبي حنيفة رحمه الله إلا نفقة العدة",
+              "why": "Khul' and mubara'a drop every marriage claim on both sides, except her nafaqa for the 'idda."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "A husband says, \"Divorce yourself three times for 1,000 dirhams.\" She divorces herself once. What happens?",
+              "options": ["Nothing happens", "One talaq, and she owes about 333 dirhams", "One talaq, and she owes nothing"],
+              "answer": 0,
+              "source": "ولو قال الزوج: طلقي نفسك ثلاثا بألف أو على ألف فطلقت نفسها واحدة لم يقع عليها شيء",
+              "why": "When he offers three for money and she takes only one, nothing happens at all."
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "zihar",
       "title": "Zihar, li'an and the 'idda",
