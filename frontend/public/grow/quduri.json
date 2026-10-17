@@ -11,6 +11,7 @@
       "title": "Purity",
       "arabic": "الطهارة",
       "kitab": "كتاب الطهارة",
+      "whole": true,
       "lessons": [
         {
           "id": "wudu",
@@ -113,6 +114,915 @@
               "answer": 0,
               "source": "وتسمية الله تعالى في ابتداء الوضوء",
               "why": "Bismillah is among the sunnahs of wudu, not its fard."
+            }
+          ]
+        },
+        {
+          "id": "nawaqid",
+          "title": "What breaks wudu",
+          "arabic": "والمعاني الناقضة للوضوء",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "out",
+              "title": "What comes out",
+              "ar": "والمعاني الناقضة للوضوء: كل ما خرج من السبيلين والدم والقيح والصديد إذا خرج من البدن فتجاوز إلى موضع يلحقه حكم التطهير",
+              "en": "What breaks wudu: anything that comes out of the two private passages (front or back). Also blood, pus or wound fluid that comes out of the body and flows past its spot, onto a place that has to be washed when you purify yourself."
+            },
+            {
+              "kind": "choose",
+              "id": "blood-case",
+              "ask": "A drop of blood comes out on Yusuf's finger but stays right on its spot. Is his wudu broken?",
+              "options": ["No: it did not flow past its spot", "Yes: any blood breaks wudu", "Only if it came out during prayer"],
+              "answer": 0,
+              "source": "والدم والقيح والصديد إذا خرج من البدن فتجاوز إلى موضع يلحقه حكم التطهير",
+              "why": "No. Blood breaks wudu when it comes out and flows past its spot onto a place that is washed in purification."
+            },
+            {
+              "kind": "teach",
+              "id": "vomit-sleep",
+              "title": "Vomit and sleep",
+              "ar": "والقيء إذا كان ملء الفم والنوم مضطجعا أو متكئا أو مستندا إلى شيء لو أزيل عنه لسقط",
+              "en": "Vomit breaks wudu when it is a mouthful. Sleep breaks it when you sleep lying down, reclining, or leaning on something so that you would fall if it were taken away."
+            },
+            {
+              "kind": "choose",
+              "id": "vomit-case",
+              "ask": "Ali brings up a little vomit, much less than a mouthful. Is his wudu broken?",
+              "options": ["No: it breaks wudu when it is a mouthful", "Yes: any vomit breaks wudu", "Yes, if it came from his stomach"],
+              "answer": 0,
+              "source": "والقيء إذا كان ملء الفم",
+              "why": "No. Al-Quduri says vomit breaks wudu when it fills the mouth."
+            },
+            {
+              "kind": "choose",
+              "id": "sleep-case",
+              "ask": "Ahmad fell asleep leaning on a wall. Had the wall been taken away, he would have fallen. Is his wudu broken?",
+              "options": ["Yes: he slept leaning on something that held him up", "No: he was sitting, not lying down", "No: a short nap never breaks wudu"],
+              "answer": 0,
+              "source": "أو مستندا إلى شيء لو أزيل عنه لسقط",
+              "why": "Yes. Sleeping while leaning on something you would fall without breaks wudu."
+            },
+            {
+              "kind": "teach",
+              "id": "mind-laugh",
+              "title": "Losing the mind, laughing aloud",
+              "ar": "والغلبة على العقل بالإغماء والجنون والقهقهة في كل صلاة ذات ركوع وسجود",
+              "en": "Wudu also breaks when the mind is overcome by fainting or madness, and by laughing out loud (qahqaha) in any prayer that has ruku and sujud."
+            },
+            {
+              "kind": "choose",
+              "id": "laugh-gap",
+              "ask": "Which word completes it?",
+              "ar": "والقهقهة في كل صلاة ذات ____ وسجود",
+              "options": ["ركوع", "قيام", "أذان"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "والقهقهة في كل صلاة ذات ركوع وسجود",
+              "why": "Ruku (ركوع): laughing out loud breaks wudu in a prayer that has ruku and sujud."
+            },
+            {
+              "kind": "choose",
+              "id": "laugh-case",
+              "ask": "Zayd laughs out loud in the middle of his Asr prayer. What about his wudu?",
+              "options": ["It is broken: he needs a new wudu", "It is fine: laughing only spoils the prayer", "It is fine if he did not mean to laugh"],
+              "answer": 0,
+              "source": "والقهقهة في كل صلاة ذات ركوع وسجود",
+              "why": "Asr has ruku and sujud, and loud laughter in such a prayer is among the things that break wudu."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Does it break wudu?",
+              "into": ["Breaks wudu", "Doesn't"],
+              "items": [
+                ["Urine", "Breaks wudu"],
+                ["Blood that flows past its spot", "Breaks wudu"],
+                ["A mouthful of vomit", "Breaks wudu"],
+                ["Fainting", "Breaks wudu"],
+                ["Sleeping lying down", "Breaks wudu"],
+                ["A little vomit, less than a mouthful", "Doesn't"],
+                ["Blood that stays on its spot", "Doesn't"]
+              ],
+              "source": ["كل ما خرج من السبيلين والدم والقيح والصديد إذا خرج من البدن فتجاوز", "والقيء إذا كان ملء الفم والنوم مضطجعا", "والغلبة على العقل بالإغماء"],
+              "why": "What leaves the two passages, flowing blood, a mouthful of vomit, fainting and sleep lying down all break wudu. A little vomit and blood that stays put do not."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these break wudu?",
+              "options": [
+                { "text": "Passing wind", "right": true },
+                { "text": "Madness", "right": true },
+                { "text": "Laughing out loud in Fajr prayer", "right": true },
+                { "text": "Sleeping lying on one's side", "right": true },
+                { "text": "A spot of blood that stays where it is" },
+                { "text": "A little vomit, less than a mouthful" }
+              ],
+              "source": ["كل ما خرج من السبيلين", "والنوم مضطجعا", "والجنون والقهقهة في كل صلاة ذات ركوع وسجود"],
+              "why": "Wind comes out of a passage; madness, loud laughter in a prayer with ruku, and sleep lying down all break wudu. Blood that stays put and a little vomit do not."
+            }
+          ]
+        },
+        {
+          "id": "ghusl",
+          "title": "Ghusl: its fard, how, and when",
+          "arabic": "فرض الغسل وسنته",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fard",
+              "title": "The fard of ghusl",
+              "ar": "وفرض الغسل: المضمضة والاستنشاق وغسل سائر البدن",
+              "en": "Ghusl is the full bath. Its fard: rinse the mouth, rinse the nose, and wash the whole body. In wudu, mouth and nose are sunnah; in ghusl they are fard."
+            },
+            {
+              "kind": "choose",
+              "id": "mouth-case",
+              "ask": "Hamza washes his whole body in the shower but forgets to rinse his mouth and nose. Is his ghusl complete?",
+              "options": ["No: rinsing the mouth and nose is fard in ghusl", "Yes: they are only sunnah, as in wudu", "Yes, as long as the water ran over his face"],
+              "answer": 0,
+              "source": "وفرض الغسل: المضمضة والاستنشاق وغسل سائر البدن",
+              "why": "No. In ghusl the mouth and nose are part of the fard, so he must rinse them."
+            },
+            {
+              "kind": "teach",
+              "id": "sunnah",
+              "title": "The sunnah way of ghusl",
+              "ar": "وسنة الغسل: أن يبدأ المغتسل يديه وفرجه ويزيل النجاسة إن كانت على بدنه ثم يتوضأ وضوءه للصلاة إلا رجليه ثم يفيض الماء على رأسه وسائر جسده ثلاثا ثم يتنحى عن ذلك المكان",
+              "en": "The sunnah way: first wash the hands and private parts, and remove any najis (impure) thing on the body. Then make wudu as for prayer, but leave the feet. Then pour water over the head and the whole body three times. Then step away from that spot and wash the feet."
+            },
+            {
+              "kind": "order",
+              "id": "order",
+              "ask": "Put the sunnah way of ghusl in order",
+              "steps": ["Wash the hands and private parts", "Remove any impurity on the body", "Make wudu, leaving the feet", "Pour water over the head and body three times", "Step aside and wash the feet"],
+              "source": "أن يبدأ المغتسل يديه وفرجه ويزيل النجاسة إن كانت على بدنه ثم يتوضأ وضوءه للصلاة إلا رجليه ثم يفيض الماء على رأسه وسائر جسده ثلاثا ثم يتنحى عن ذلك المكان",
+              "why": "Hands and private parts, impurity, wudu without the feet, water three times, then the feet in a fresh spot."
+            },
+            {
+              "kind": "teach",
+              "id": "braids",
+              "title": "Braided hair",
+              "ar": "وليس على المرأة أن تنقض ضفائرها في الغسل إذا بلغ الماء أصول الشعر",
+              "en": "A woman does not have to undo her braids for ghusl, as long as the water reaches the roots of her hair."
+            },
+            {
+              "kind": "choose",
+              "id": "braids-case",
+              "ask": "Maryam's hair is braided. In her ghusl the water reaches the roots of her hair. Must she undo her braids?",
+              "options": ["No: the water reached the roots", "Yes: every hair must be washed loose", "Only for the ghusl after hayd"],
+              "answer": 0,
+              "source": "وليس على المرأة أن تنقض ضفائرها في الغسل إذا بلغ الماء أصول الشعر",
+              "why": "No. If the water reaches the roots of the hair, she need not undo her braids."
+            },
+            {
+              "kind": "teach",
+              "id": "causes",
+              "title": "What makes ghusl necessary",
+              "ar": "والمعاني الموجبة للغسل: إنزال المني على وجه الدفق والشهوة من الرجل والمرأة والتقاء الختانين من غير إنزال والحيض والنفاس",
+              "en": "Ghusl becomes necessary after: the release of mani (sexual fluid) with force and desire, for a man or a woman; intercourse, even with no release (the book's words: \"the meeting of the two circumcised parts\"); hayd (the monthly period); and nifas (bleeding after childbirth)."
+            },
+            {
+              "kind": "teach",
+              "id": "sunnah-ghusl",
+              "title": "Sunnah ghusls, and madhy",
+              "ar": "وسن رسول الله صلى الله عليه وسلم الغسل للجمعة والعيدين والإحرام وليس في المذي والودي غسل وفيهما الوضوء",
+              "en": "The Prophet ﷺ made ghusl a sunnah for Jumu'ah, the two Eids, and putting on ihram. Madhy (a thin fluid that comes with desire) and wady (a thick white fluid) need no ghusl, only wudu."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Is ghusl fard, sunnah, or is wudu enough?",
+              "into": ["Ghusl is fard", "Ghusl is sunnah", "Wudu is enough"],
+              "items": [
+                ["Mani released with desire", "Ghusl is fard"],
+                ["The end of hayd", "Ghusl is fard"],
+                ["The end of nifas", "Ghusl is fard"],
+                ["Jumu'ah", "Ghusl is sunnah"],
+                ["Eid", "Ghusl is sunnah"],
+                ["Putting on ihram", "Ghusl is sunnah"],
+                ["Madhy", "Wudu is enough"],
+                ["Wady", "Wudu is enough"]
+              ],
+              "source": ["إنزال المني على وجه الدفق والشهوة", "والحيض والنفاس", "وسن رسول الله صلى الله عليه وسلم الغسل للجمعة والعيدين والإحرام", "وليس في المذي والودي غسل وفيهما الوضوء"],
+              "why": "Mani, hayd and nifas make ghusl necessary. Jumu'ah, Eid and ihram have a sunnah ghusl. Madhy and wady need only wudu."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are fard in ghusl?",
+              "options": [
+                { "text": "Rinse the mouth", "right": true },
+                { "text": "Rinse the nose", "right": true },
+                { "text": "Wash the whole body", "right": true },
+                { "text": "Make wudu first" },
+                { "text": "Pour the water three times" },
+                { "text": "Undo braided hair" }
+              ],
+              "source": ["وفرض الغسل: المضمضة والاستنشاق وغسل سائر البدن", "ثم يتوضأ وضوءه للصلاة إلا رجليه ثم يفيض الماء على رأسه وسائر جسده ثلاثا"],
+              "why": "The fard is mouth, nose and the whole body. Wudu first and three pourings are the sunnah way, and braids need not be undone."
+            }
+          ]
+        },
+        {
+          "id": "water",
+          "title": "Water: what purifies",
+          "arabic": "الطهارة من الأحداث بالماء",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "which",
+              "title": "Which water purifies",
+              "ar": "والطهارة من الأحداث جائزة بماء السماء والأودية والعيون والآبار وماء البحار ولا تجوز بما اعتصر من الشجر والثمر ولا بماء غلب عليه غيره وأخرجه عن طبع الماء كالأشربة والخل وماء الورد وماء الباقلاء والمرق وماء الزردج",
+              "en": "Hadath is the state that needs wudu or ghusl. You may purify from it with rain water, valley streams, springs, wells and the sea. Not with juice pressed from trees and fruit, nor with water so overcome by something else that it is no longer like water: drinks, vinegar, rose water, bean water, broth, safflower water."
+            },
+            {
+              "kind": "teach",
+              "id": "mixed-pure",
+              "title": "Water with something pure in it",
+              "ar": "شيء طاهر فغير أحد أوصافه كماء المد والماء الذي يختلط به الأشنان والصابون والزعفران",
+              "en": "Purifying is allowed with water mixed with something pure (tahir) that changed one of its qualities, like its colour or smell: muddy flood water, or water with ushnan (a washing plant), soap or saffron in it."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Can you make wudu with it?",
+              "into": ["Yes", "No"],
+              "items": [
+                ["Rain water", "Yes"],
+                ["Sea water", "Yes"],
+                ["Well water", "Yes"],
+                ["Water with a little soap in it", "Yes"],
+                ["Muddy flood water", "Yes"],
+                ["Vinegar", "No"],
+                ["Rose water", "No"],
+                ["Broth", "No"],
+                ["Fruit juice", "No"]
+              ],
+              "source": ["والطهارة من الأحداث جائزة بماء السماء والأودية والعيون والآبار وماء البحار", "ولا تجوز بما اعتصر من الشجر والثمر", "كالأشربة والخل وماء الورد", "كماء المد والماء الذي يختلط به الأشنان والصابون"],
+              "why": "Water from the sky, wells and the sea purifies, even with something pure mixed in. Vinegar, rose water, broth and juice are no longer water."
+            },
+            {
+              "kind": "teach",
+              "id": "najasa",
+              "title": "Najasa in the water",
+              "ar": "وكل ماء وقعت فيه نجاسة لم يجز اوضوء به قليلا أو كثيرا [لأن النبي عليه الصلاة والسلام أمر بحفظ الماء من النجاسة فقال لا يبولن أحدكم في الماء الدائم ولا يغتسلن فيه من الجنابة]",
+              "en": "Najasa is something impure, like urine. Water that najasa falls into may not be used for wudu, whether there is little or much of it. The Prophet ﷺ told us to guard water from najasa: \"None of you should urinate in still water, nor bathe in it from janaba.\""
+            },
+            {
+              "kind": "teach",
+              "id": "running",
+              "title": "Running water and a great pond",
+              "ar": "وأما الماء الجاري إذا وقعت فيه نجاسة جاز الوضوء منه إذا لم ير لها أثر لا تستقر مع جريان الماء والغدير العظيم الذي لا يتحرك أحد طرفيه بتحريك الطرف الآخر إذا وقعت نجاسة في أحد جانبيه جاز الوضوء من الجانب الآخر",
+              "en": "Running water is different: if najasa falls in, you may make wudu from it when no trace of it is seen, because najasa does not stay put in flowing water. A great pond, so big that moving one end does not move the other: if najasa falls on one side, you may make wudu from the other side."
+            },
+            {
+              "kind": "choose",
+              "id": "bowl-case",
+              "ask": "A drop of urine falls into a bowl of still water. The water looks just the same. Can Ahmad use it for wudu?",
+              "options": ["No: najasa fell into it", "Yes: it has not changed", "Yes, if he pours some away first"],
+              "answer": 0,
+              "source": ["وكل ماء وقعت فيه نجاسة لم يجز", "قليلا أو كثيرا", "فلا يغمسن يده في الإناء حتى يغسلها ثلاثا فإنه لا يدري أين باتت يده"],
+              "why": "No. Still water that najasa falls into may not be used. The Prophet ﷺ even told one who wakes to wash his hand three times before dipping it in the vessel."
+            },
+            {
+              "kind": "choose",
+              "id": "pond-case",
+              "ask": "Some najasa falls into one side of a huge pond, so big that stirring one end does not move the other. Can Umar make wudu from the far side?",
+              "options": ["Yes: it most likely does not reach there", "No: the whole pond is now najis", "Only after the najasa is taken out"],
+              "answer": 0,
+              "source": "إذا وقعت نجاسة في أحد جانبيه جاز الوضوء من الجانب الآخر لأن الظاهر أن النجاسة لا تصل إليه",
+              "why": "Yes. In a great pond, the najasa most likely does not reach the other side."
+            },
+            {
+              "kind": "choose",
+              "id": "fly-case",
+              "ask": "A wasp falls into Bilal's jug of water and dies. Can he still make wudu with it?",
+              "options": ["Yes: a creature with no flowing blood does not make it najis", "No: anything dead makes water najis", "Only after drawing out part of the water"],
+              "answer": 0,
+              "source": "وموت ما ليس له نفس سائلة في الماء لا ينجسه كالبق والذباب والزنابير والعقارب وموت ما يعيش في الماء فيه لا يفسده كالسمك والضفدع والسرطان",
+              "why": "Yes. Gnats, flies, wasps and scorpions have no flowing blood, so their death does not make water najis. Fish, frogs and crabs, which live in water, do not spoil it either."
+            },
+            {
+              "kind": "teach",
+              "id": "used",
+              "title": "Used water",
+              "ar": "والماء المستعمل لا يجوز استعماله في طهارة الأحداث والمستعمل: كل ماء أزيل به حدث أو استعمل في البدن على وجه القربة",
+              "en": "Used water may not be used again to purify from hadath. Used water is any water that removed a hadath, or was used on the body as an act of worship."
+            },
+            {
+              "kind": "choose",
+              "id": "used-case",
+              "ask": "Khalid catches the water dripping off his arms during wudu. Can he use it for another wudu?",
+              "options": ["No: it is used water", "Yes: it is still clean", "Yes, but only for the feet"],
+              "answer": 0,
+              "source": "والماء المستعمل لا يجوز استعماله في طهارة الأحداث",
+              "why": "No. That water removed a hadath, so it is used water, and used water does not purify from hadath."
+            },
+            {
+              "kind": "teach",
+              "id": "hides",
+              "title": "Tanned hides and carcass parts",
+              "ar": "وكل إهاب دبغ فقد ظهر وجازت الصلاة فيه والوضوء منه إلا جلد الخنزير والآدمي وشعر الميتة وعظمها وعصبها وحافرها وقرنها طاهر",
+              "en": "Every hide that is tanned becomes pure: you may pray on it and make wudu from it (a water skin), except pig skin and human skin. The hair, bones, sinews, hooves and horns of a dead animal are pure. (The word ظهر here is a slip for طهر, \"became pure\".)"
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are pure, or fine to use?",
+              "options": [
+                { "text": "Water a fly fell and died in", "right": true },
+                { "text": "A tanned sheep hide", "right": true },
+                { "text": "The bones of a dead animal", "right": true },
+                { "text": "Water already used to lift a hadath, for a new wudu" },
+                { "text": "Tanned pig skin" },
+                { "text": "Rose water, for wudu" }
+              ],
+              "source": ["وموت ما ليس له نفس سائلة في الماء لا ينجسه كالبق والذباب", "إلا جلد الخنزير والآدمي", "وعظمها وعصبها وحافرها وقرنها طاهر", "والماء المستعمل لا يجوز استعماله في طهارة الأحداث"],
+              "why": "A fly has no flowing blood, a tanned hide is pure, and so are a carcass's bones. Used water, pig skin and rose water do not count."
+            }
+          ]
+        },
+        {
+          "id": "wells",
+          "title": "Wells and leftover water",
+          "arabic": "البئر والسؤر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "well",
+              "title": "When something falls in a well",
+              "ar": "وإذا وقعت في البئر نجاسة نزحت وكان نزح ما فيها من الماء طهارة لها فإن ماتت فيها فأرة أو عصفورة أو صعوة أو سوادنية أو سام أبرص نزح منها ما بين عشرين دلوا إلى ثلاثين دلوا بحسب كبر الحيوان وصغره",
+              "en": "If najasa falls into a well, its water is drawn out, and drawing it out purifies the well. If a mouse, a sparrow, a small bird or a gecko dies in it, 20 to 30 buckets are drawn, depending on the animal's size."
+            },
+            {
+              "kind": "teach",
+              "id": "bigger",
+              "title": "Bigger animals",
+              "ar": "وإن ماتت فيها حمامة أو دجاجة أو سنور نزح منها ما بين أربعين دلوا إلى ستين وإن مات فيها كلب أو شاة أو آدمي نزح جميع ما فيها من الماء وإن انتفخ الحيوان فيها أو تفسخ نزح جميع ما فيها من الماء صغر الحيوان أو كبر",
+              "en": "A pigeon, a hen or a cat: 40 to 60 buckets. A dog, a sheep or a person: all the water. And if the animal has swollen up or come apart, all the water is drawn, small or big."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "How much water is drawn from the well?",
+              "into": ["20–30 buckets", "40–60 buckets", "All of it"],
+              "items": [
+                ["A mouse died in it", "20–30 buckets"],
+                ["A sparrow died in it", "20–30 buckets"],
+                ["A gecko died in it", "20–30 buckets"],
+                ["A hen died in it", "40–60 buckets"],
+                ["A cat died in it", "40–60 buckets"],
+                ["A sheep died in it", "All of it"],
+                ["A mouse died and swelled up", "All of it"]
+              ],
+              "source": ["فإن ماتت فيها فأرة أو عصفورة", "نزح منها ما بين عشرين دلوا إلى ثلاثين دلوا", "وإن ماتت فيها حمامة أو دجاجة أو سنور نزح منها ما بين أربعين دلوا إلى ستين", "وإن مات فيها كلب أو شاة أو آدمي نزح جميع ما فيها من الماء", "وإن انتفخ الحيوان فيها أو تفسخ نزح جميع ما فيها من الماء صغر الحيوان أو كبر"],
+              "why": "Small animals: 20–30. Pigeon, hen, cat: 40–60. Dog, sheep, person, or any animal that swelled: all the water."
+            },
+            {
+              "kind": "choose",
+              "id": "bucket",
+              "ask": "Which bucket are the buckets counted by?",
+              "options": ["The middle-sized bucket used for wells in the towns", "Whatever bucket that well has", "The biggest bucket the people own"],
+              "answer": 0,
+              "source": "وعدد الدلاء يعتبر بالدلو الوسط المستعمل للآبار في البلدان فإن نزح منها بدلو عظيم قدر ما يسع عشرين دلوا من الدلو الوسط احتسب به",
+              "why": "The middle bucket. A huge bucket that holds twenty middle buckets counts as twenty."
+            },
+            {
+              "kind": "teach",
+              "id": "spring",
+              "title": "A well fed by a spring",
+              "ar": "وإن كانت البئر معينا لا تنزح ما فيها من الماء أخرجوا مقدار ما كان فيها من الماء",
+              "en": "If the well is fed by a spring, so it can never be emptied, they take out as much water as was in it. Muhammad ibn al-Hasan is reported to have said: 200 to 300 buckets."
+            },
+            {
+              "kind": "teach",
+              "id": "unknown",
+              "title": "Found, and no one knows when",
+              "ar": "وإذا وجد في البئر أو غيرها ولا يدرون متى وقعت ولم تنتفخ ولم تتفسخ أعادوا صلاة يوم وليلة إذا كانوا توضئوا منها وغسلوا كل شيء أصابه ماءها وإن كانت انتفخت أو تفسخت أعادوا صلاة ثلاثة أيام ولياليها في قول أبي حنيفة رحمه الله",
+              "en": "If a dead animal is found in a well and no one knows when it fell in: if it has not swollen or come apart, those who made wudu from it repeat one day and night of prayers and wash everything its water touched. If it has swollen or come apart, they repeat three days and nights, in Abu Hanifa's view. Abu Yusuf and Muhammad said they repeat nothing until they know when it fell."
+            },
+            {
+              "kind": "choose",
+              "id": "unknown-case",
+              "ask": "A dead mouse, not swollen, is found in the village well. No one knows when it fell in, and people made wudu from it. What do they repeat, in Abu Hanifa's view?",
+              "options": ["One day and night of prayers", "Three days and nights of prayers", "Only the last prayer"],
+              "answer": 0,
+              "source": ["ولا يدرون متى وقعت ولم تنتفخ ولم تتفسخ أعادوا صلاة يوم وليلة", "وقال أبو يوسف ومحمد رحمهما الله: ليس عليهم إعادة شيء حتى يتحققوا متى وقعت"],
+              "why": "It had not swollen, so they repeat one day and night of prayers. Three days is for one that has swollen or come apart."
+            },
+            {
+              "kind": "teach",
+              "id": "sur",
+              "title": "Leftover water (su'r)",
+              "ar": "وسؤر الآدمي وما يؤكل لحمه طاهر وسؤر الكلب والخنزير وسباع البهائم نجس وسؤر الهرة والدجاجة المخلاة وسباع الطير وما يسكن في البيوت مثل الحية والفأرة مكروه",
+              "en": "Su'r is the water left after someone drinks from it. A person's, and an animal's whose meat is eaten: pure. A dog's, a pig's, a beast of prey's: najis. A cat's, a free-roaming hen's, a bird of prey's, and house creatures' like snakes and mice: makruh (disliked)."
+            },
+            {
+              "kind": "sort",
+              "id": "sur-sort",
+              "ask": "The water left after it drinks is…",
+              "into": ["Pure", "Najis", "Makruh"],
+              "items": [
+                ["A person", "Pure"],
+                ["A goat", "Pure"],
+                ["A dog", "Najis"],
+                ["A lion", "Najis"],
+                ["A cat", "Makruh"],
+                ["A hawk", "Makruh"],
+                ["A mouse", "Makruh"]
+              ],
+              "source": ["وسؤر الآدمي وما يؤكل لحمه طاهر", "وسؤر الكلب والخنزير وسباع البهائم نجس", "وسؤر الهرة والدجاجة المخلاة وسباع الطير وما يسكن في البيوت مثل الحية والفأرة مكروه"],
+              "why": "People and animals we eat: pure. Dogs, pigs and beasts of prey: najis. Cats, birds of prey and house creatures: makruh."
+            },
+            {
+              "kind": "choose",
+              "id": "donkey-case",
+              "ask": "On a journey, Musa's only water is what a donkey drank from. What does he do?",
+              "options": ["Make wudu with it and also tayammum", "Only tayammum", "Only wudu"],
+              "answer": 0,
+              "source": "وسؤر الحمار والبغل مشكوك فيهما فإن لم يجد غيرهما توضأ بهما وتيمم بأيهما بدأ جاز",
+              "why": "A donkey's and a mule's leftover is doubtful. With no other water he makes wudu with it and tayammum, starting with either."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are right?",
+              "options": [
+                { "text": "Water left by a cat is makruh", "right": true },
+                { "text": "Buckets are counted by the middle-sized well bucket", "right": true },
+                { "text": "For a spring-fed well, draw as much as was in it", "right": true },
+                { "text": "Water left by a sheep is najis" },
+                { "text": "A swollen sparrow needs only 20 buckets" },
+                { "text": "Water left by a dog is pure" }
+              ],
+              "source": ["وسؤر الهرة", "وعدد الدلاء يعتبر بالدلو الوسط", "أخرجوا مقدار ما كان فيها من الماء وقد روي عن محمد بن الحسن رحمه الله عليه أنه قال: ينزح منها مائتا دلو إلى ثلاثمائة دلو", "وإن انتفخ الحيوان فيها أو تفسخ نزح جميع ما فيها من الماء", "وسؤر الكلب والخنزير"],
+              "why": "A cat's leftover is makruh, buckets go by the middle size, and a spring well gives up what it held. A sheep's leftover is pure, a swollen animal needs all the water, and a dog's leftover is najis."
+            }
+          ]
+        },
+        {
+          "id": "tayammum",
+          "title": "Tayammum",
+          "arabic": "باب التيمم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "when",
+              "title": "When to make tayammum",
+              "ar": "ومن لم يجد الماء وهو مسافر أو خارج المصر بينه وبين المصر نحو الميل أو أكثر أو كان يجد الماء إلا أنه مريض فخاف إن استعمل الماء اشتد مرضه أو خاف الجنب إن غسل بالماء أن يقتله البرد أو يمرضه فإنه يتيمم بالصعيد",
+              "en": "Tayammum is purifying with clean earth (sa'id) instead of water. It is for: one who finds no water while travelling, or outside the town about a mile or more from it; one who has water but is ill and fears it will make the illness worse; and one in janaba (needing ghusl) who fears the cold water will kill him or make him ill."
+            },
+            {
+              "kind": "choose",
+              "id": "ill-case",
+              "ask": "Ibrahim has a fever and fears that using water will make it worse. How does he purify for prayer?",
+              "options": ["With tayammum", "With wudu anyway", "He waits until he is well"],
+              "answer": 0,
+              "source": "أو كان يجد الماء إلا أنه مريض فخاف إن استعمل الماء اشتد مرضه",
+              "why": "Tayammum. Al-Quduri allows it for one who has water but fears it will make his illness worse."
+            },
+            {
+              "kind": "teach",
+              "id": "strikes",
+              "title": "Two strikes",
+              "ar": "والتيمم ضربتان: يمسح بإحداهما وجهه وبالأخرى يديه إلى المرفقين والتيمم من الجنابة والحدث سواء",
+              "en": "Tayammum is two strikes of the hands on the earth: with one he wipes his face, with the other his arms up to the elbows. Tayammum for janaba and for wudu is the same."
+            },
+            {
+              "kind": "order",
+              "id": "order",
+              "ask": "Put tayammum in order",
+              "steps": ["Strike the earth with the hands", "Wipe the face", "Strike the earth again", "Wipe the arms up to the elbows"],
+              "source": "والتيمم ضربتان: يمسح بإحداهما وجهه وبالأخرى يديه إلى المرفقين",
+              "why": "Two strikes: the first for the face, the second for the arms to the elbows."
+            },
+            {
+              "kind": "teach",
+              "id": "earth",
+              "title": "What it is made with",
+              "ar": "ويجوز التيمم عند أبي حنيفة ومحمد بكل ما كان من جنس الأرض كالتراب والرمل والحجر والجص والنورة والكحل والزرنيخ وقال أبو يوسف رحمه الله: لا يجوز إلا بالتراب والرمل خاصة",
+              "en": "Abu Hanifa and Muhammad: tayammum may be made with anything of the earth's kind, like soil, sand, stone, gypsum, lime, kohl stone and arsenic stone. Abu Yusuf said: only with soil and sand."
+            },
+            {
+              "kind": "teach",
+              "id": "intention",
+              "title": "Intention, and what breaks it",
+              "ar": "والنية فرض في التيمم مستحبة في الوضوء وينقض التيمم كل شيء ينقض الوضوء وينقضه أيضا رؤية الماء إذا قدر على استعماله ولا يجوز التيمم إلا بصعيد طاهر",
+              "en": "The intention is fard in tayammum, while in wudu it is only mustahabb. Whatever breaks wudu breaks tayammum, and so does seeing water when you are able to use it. Tayammum is only with pure earth."
+            },
+            {
+              "kind": "choose",
+              "id": "water-case",
+              "ask": "Ali made tayammum on a journey. Then he comes to a well and can draw water from it. What about his tayammum?",
+              "options": ["It is broken: he found water he can use", "It lasts until the next prayer time", "It lasts until something breaks wudu"],
+              "answer": 0,
+              "source": "وينقضه أيضا رؤية الماء إذا قدر على استعماله",
+              "why": "Seeing water he is able to use breaks tayammum."
+            },
+            {
+              "kind": "choose",
+              "id": "wait-case",
+              "ask": "Yusuf has no water, but he expects to reach some before Asr time ends. What is mustahabb for him?",
+              "options": ["Delay Asr to the end of its time", "Pray at once with tayammum", "Pray with tayammum, then again with wudu"],
+              "answer": 0,
+              "source": "ويستحب لمن لا يجد الماء وهو يرجو أن يجده في آخر الوقت أن يؤخر الصلاة إلى آخر الوقت فإن وجد الماء توضأ به وصلى وإلا تيمم",
+              "why": "Delay it. If he finds water, he makes wudu and prays; if not, he makes tayammum."
+            },
+            {
+              "kind": "teach",
+              "id": "janaza",
+              "title": "Funeral and Eid prayers",
+              "ar": "ويجوز التيمم للصحيح في المصر إذا حضرت جنازة والولي غيره فخاف إن اشتغل بالطهارة أن تفوته الصلاة فإنه يتيمم ويصلي وكذلك من حضر العيد فخاف إن اشتغل بالطهارة أن تفوته صلاة العيدين فإنه يتيمم ويصلي",
+              "en": "Even a healthy person in town may make tayammum when a funeral is present, someone else is its wali (the one in charge), and he fears missing the prayer while purifying. The same for one who fears missing the Eid prayer. But not for Jumu'ah or a prayer whose time is running out: there he makes wudu."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Tayammum, or wudu?",
+              "into": ["Tayammum", "Wudu"],
+              "items": [
+                ["Afraid of missing a funeral prayer that someone else is leading", "Tayammum"],
+                ["Afraid of missing the Eid prayer", "Tayammum"],
+                ["Travelling, with no water", "Tayammum"],
+                ["Afraid of missing Jumu'ah", "Wudu"],
+                ["Afraid the time of Dhuhr will run out", "Wudu"]
+              ],
+              "source": ["إذا حضرت جنازة والولي غيره", "وكذلك من حضر العيد", "وإن خاف من شهد الجمعة إن اشتغل بالطهارة أن تفوته صلاة الجمعة لم يتيمم ولكنه يتوضأ فإن أدرك الجمعة صلاها وإلا صلى الظهر أربعا", "لم يتيمم ولكنه يتوضأ ويصلي فائتة"],
+              "why": "Funeral and Eid prayers allow tayammum. For Jumu'ah he makes wudu and prays Dhuhr if he misses it; if the time runs out, he makes wudu and makes up the prayer."
+            },
+            {
+              "kind": "teach",
+              "id": "forgot",
+              "title": "Forgotten water, and looking for water",
+              "ar": "والمسافر إذا نسي الماء في رحله فتيمم وصلى ثم ذكر الماء في الوقت لم يعد الصلاة عند أبي حنيفة ومحمد رحمهما الله وقال أبو يوسف: يعيدها وليس على المتيمم إذا لم يغلب على ظنه أن بقربه ماء أن يطلب الماء فإن غلب على ظنه أن هناك ماء لم يجز له أن يتيمم حتى يطلبه وإن كان مع رفيقه ماء طلبه منه قبل أن يتيمم فإن منعه منه تيمم وصلى",
+              "en": "A traveller who forgot the water in his baggage, made tayammum and prayed, then remembered it within the time, does not repeat the prayer, say Abu Hanifa and Muhammad. Abu Yusuf said he repeats it. He need not search for water if he does not think any is near. If he thinks water is there, he must search first. If his companion has water, he asks him for it first; if refused, he makes tayammum and prays."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are right?",
+              "options": [
+                { "text": "One tayammum can serve many fard and nafl prayers", "right": true },
+                { "text": "The intention is fard in tayammum", "right": true },
+                { "text": "If a companion has water, ask him before tayammum", "right": true },
+                { "text": "Tayammum for janaba is done differently" },
+                { "text": "Tayammum may be made with impure earth" },
+                { "text": "Fear of missing Jumu'ah allows tayammum" }
+              ],
+              "source": ["ويصلي بتيممه ما شاء من الفرائض والنوافل", "والنية فرض في التيمم", "وإن كان مع رفيقه ماء طلبه منه قبل أن يتيمم", "والتيمم من الجنابة والحدث سواء", "ولا يجوز التيمم إلا بصعيد طاهر"],
+              "why": "He prays what he likes with one tayammum, the intention is fard, and he asks his companion first. Tayammum for janaba is the same, the earth must be pure, and Jumu'ah needs wudu."
+            }
+          ]
+        },
+        {
+          "id": "khuffs",
+          "title": "Wiping on khuffs",
+          "arabic": "باب المسح على الخفين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "allowed",
+              "title": "When, and for how long",
+              "ar": "المسح على الخفين جائز بالسنة من كل حدث موجب للوضوء إذا لبس الخفين على طهارة كاملة ثم أحدث فإن كان مقيما مسح يوما وليلة وإن كان مسافرا مسح ثلاثة أيام ولياليها وابتداؤها عقيب الحدث",
+              "en": "Khuffs are leather socks. The Sunnah allows wiping over them instead of washing the feet, for anything that needs wudu, if he put them on after a complete purification and then broke wudu. A resident wipes for a day and a night, a traveller for three days and nights. The time starts from when he first breaks wudu."
+            },
+            {
+              "kind": "choose",
+              "id": "time-case",
+              "ask": "Umar made wudu and put on his khuffs at Fajr. He broke his wudu at noon. He is at home. Until when may he wipe?",
+              "options": ["Until noon tomorrow", "Until Fajr tomorrow", "For three days"],
+              "answer": 0,
+              "source": ["فإن كان مقيما مسح يوما وليلة", "وابتداؤها عقيب الحدث"],
+              "why": "A resident has a day and a night, counted from when he broke wudu: noon to noon."
+            },
+            {
+              "kind": "teach",
+              "id": "how",
+              "title": "How to wipe",
+              "ar": "والمسح على الخفين على ظاهرهما خطوطا بالأصابع يبدأ من رؤوس أصابع الرجل إلى الساق وفرض ذلك مقدار ثلاث أصابع من أصغر أصابع اليد",
+              "en": "Wipe the top of the khuffs, in lines with the fingers, from the tips of the toes up toward the shin. The fard is the width of three of the hand's smallest fingers."
+            },
+            {
+              "kind": "choose",
+              "id": "how-gap",
+              "ask": "Which word completes it?",
+              "ar": "وفرض ذلك مقدار ثلاث أصابع من أصغر أصابع ____",
+              "options": ["اليد", "الرجل", "القدم"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وفرض ذلك مقدار ثلاث أصابع من أصغر أصابع اليد",
+              "why": "The hand (اليد): three of its smallest fingers."
+            },
+            {
+              "kind": "teach",
+              "id": "hole",
+              "title": "Holes, and ghusl",
+              "ar": "ولا يجوز المسح على خف فيه خرق كبير يبين منه مقدار ثلاث أصابع من أصابع الرجل وإن كان أقل من ذلك جاز ولا يجوز المسح على الخفين لمن وجب عليه الغسل",
+              "en": "No wiping on a khuff with a big hole that shows three toes' worth of the foot; a smaller hole is fine. And no wiping for one who needs ghusl: he must wash."
+            },
+            {
+              "kind": "choose",
+              "id": "hole-case",
+              "ask": "Zaid's khuff has a small tear that shows about one toe. May he wipe on it?",
+              "options": ["Yes: it is less than three toes", "No: any hole stops the wiping", "Only if he is travelling"],
+              "answer": 0,
+              "source": "مقدار ثلاث أصابع من أصابع الرجل وإن كان أقل من ذلك جاز",
+              "why": "Yes. Only a hole showing three toes' worth stops the wiping."
+            },
+            {
+              "kind": "teach",
+              "id": "breaks",
+              "title": "What ends the wiping",
+              "ar": "ونقض المسح ما ينقض الوضوء وينقضه أيضا نزع الخف ومضي المدة فإذا مضت المدة نزع خفيه وغسل رجليه وصلى",
+              "en": "Whatever breaks wudu breaks the wiping, and so does taking off the khuff and the end of the time. When the time ends, he takes off his khuffs, washes his feet and prays. He does not have to redo the rest of his wudu."
+            },
+            {
+              "kind": "choose",
+              "id": "ends-case",
+              "ask": "Bilal still has wudu when his wiping time ends. What must he do before praying?",
+              "options": ["Take off the khuffs and wash his feet", "Make a whole new wudu", "Nothing: he wipes again"],
+              "answer": 0,
+              "source": "فإذا مضت المدة نزع خفيه وغسل رجليه وصلى",
+              "why": "He takes them off and washes his feet. The rest of his wudu stands."
+            },
+            {
+              "kind": "teach",
+              "id": "travel",
+              "title": "Setting out, or coming home",
+              "ar": "ومن ابتدأ المسح وهو مقيم فسافر قبل تمام يوم وليلة مسح ثلاثة أيام ولياليها ومن ابتدأ المسح وهو مسافر ثم أقام فإن كان مسح يوما وليلة أو أكثر لزمه نزع خفيه وغسل رجليه وإن كان مسح أقل من يوم وليلة تمم مسح يوم وليلة",
+              "en": "If he began wiping at home and set out on a journey before a day and night were over, he wipes three days and nights. If he began as a traveller and then settled: if he has wiped a day and night or more, he takes off his khuffs and washes his feet; if less, he completes a day and night."
+            },
+            {
+              "kind": "choose",
+              "id": "travel-case",
+              "ask": "Hasan began wiping at home. Half a day later he set out on a journey. How long may he wipe in all?",
+              "options": ["Three days and nights", "A day and a night", "A day and a half"],
+              "answer": 0,
+              "source": "ومن ابتدأ المسح وهو مقيم فسافر قبل تمام يوم وليلة مسح ثلاثة أيام ولياليها",
+              "why": "He became a traveller before his day and night ran out, so he gets the traveller's three days and nights."
+            },
+            {
+              "kind": "teach",
+              "id": "socks",
+              "title": "Over-boots and socks",
+              "ar": "ومن لبس الجرموق فوق الخف مسح عليه ولا يجوز المسح على الجوربين عند أبي حنيفة رحمه الله إلا أن يكونا منعلين أو مجلدين",
+              "en": "One who wears a jurmuq (an over-boot) over his khuff wipes on it. Abu Hanifa: no wiping on cloth socks, unless they have leather soles or are covered in leather. Abu Yusuf and Muhammad said: wiping on socks is allowed if they are thick and do not let water through."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "May he wipe on it?",
+              "into": ["Wipe", "Don't wipe"],
+              "items": [
+                ["A jurmuq worn over the khuff", "Wipe"],
+                ["Socks covered in leather", "Wipe"],
+                ["A splint on a broken arm", "Wipe"],
+                ["A khuff with a hole showing three toes", "Don't wipe"],
+                ["A turban", "Don't wipe"],
+                ["Gloves", "Don't wipe"],
+                ["Khuffs, when he needs ghusl", "Don't wipe"]
+              ],
+              "source": ["ومن لبس الجرموق فوق الخف مسح عليه", "إلا أن يكونا منعلين أو مجلدين وقال أبو يوسف ومحمد رحمهما الله: يجوز المسح على الجوربين إذا كانا ثخينين لا يشفان الماء", "ولا يجوز المسح على العمامة والقلنسوة والبرقع والقفازين", "ويجوز المسح على الجبائر وإن شدها على غير وضوء فإن سقطت عن غير برء لم يبطل المسح وإن سقطت عن برء بطل المسح", "ولا يجوز المسح على الخفين لمن وجب عليه الغسل"],
+              "why": "He wipes a jurmuq, leather-covered socks and a splint (even one tied on without wudu, until it falls off healed). Not a big hole, a turban, a cap, a face veil, gloves, or khuffs when ghusl is due."
+            }
+          ]
+        },
+        {
+          "id": "hayd",
+          "title": "Hayd, istihada and nifas",
+          "arabic": "باب الحيض",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "least",
+              "title": "The shortest hayd",
+              "ar": "أقل الحيض ثلاثة أيام ولياليها",
+              "en": "Hayd is a woman's monthly bleeding. The shortest hayd is three days and nights. Bleeding shorter than that is not hayd: it is istihada, bleeding outside the normal pattern."
+            },
+            {
+              "kind": "teach",
+              "id": "most",
+              "title": "The longest hayd, and colours",
+              "ar": "وأكثر الحيض عشرة أيام ولياليها وما زاد على ذلك فهو استحاضة وما تراه المرأة من الحمرة والصفرة والكدرة في أيام الحيض فهو حيض حتى ترى البياض الخالص",
+              "en": "The longest hayd is ten days and nights; anything more is istihada. Reddish, yellowish or murky discharge in the days of hayd counts as hayd, until she sees pure white."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Hayd or istihada?",
+              "into": ["Hayd", "Istihada"],
+              "items": [
+                ["Bleeding that lasts five days", "Hayd"],
+                ["Bleeding that lasts exactly ten days", "Hayd"],
+                ["Yellowish discharge in her days of hayd", "Hayd"],
+                ["Bleeding that lasts only one day", "Istihada"],
+                ["Bleeding that lasts two days", "Istihada"]
+              ],
+              "source": ["أقل الحيض ثلاثة أيام ولياليها", "فليس بحيض وهو استحاضة", "وأكثر الحيض عشرة أيام ولياليها", "من الحمرة والصفرة والكدرة في أيام الحيض فهو حيض"],
+              "why": "Three to ten days is hayd, and so are colours within those days. Less than three days is istihada."
+            },
+            {
+              "kind": "teach",
+              "id": "rules",
+              "title": "What hayd stops",
+              "ar": "والحيض يسقط عن الحائض الصلاة ويحرم عليها الصوم وتقضي الصوم",
+              "en": "Hayd lifts the prayer from her and makes fasting haram for her. She makes up the missed fasts later, but not the prayers. She does not enter the masjid or do tawaf, and her husband does not come to her. Neither she nor one in janaba recites the Qur'an, and no one without wudu touches the mushaf, except by holding it in its cover."
+            },
+            {
+              "kind": "pick",
+              "id": "rules-pick",
+              "ask": "Which of these are right?",
+              "options": [
+                { "text": "She makes up the fasts she missed", "right": true },
+                { "text": "She does not enter the masjid", "right": true },
+                { "text": "Someone without wudu may carry the mushaf in its cover", "right": true },
+                { "text": "She makes up the prayers she missed" },
+                { "text": "She may recite the Qur'an" },
+                { "text": "One in janaba may recite the Qur'an" }
+              ],
+              "source": ["وتقضي الصوم", "الصلاة ولا تدخل المسجد ولا تطوف بالبيت ولا يأتيها زوجها", "ولا يجوز لحائض ولا جنب قراءة القرآن", "ولا يجوز لمحدث مس المصحف إلا أن يأخذه بغلافه"],
+              "why": "She makes up fasts but not prayers, and stays out of the masjid. Neither she nor one in janaba recites the Qur'an; the mushaf may be held by its cover."
+            },
+            {
+              "kind": "teach",
+              "id": "stops",
+              "title": "When the bleeding stops",
+              "ar": "وإذا انقطع دم الحيض لأقل من عشرة أيام لم يجز وطؤها حتى تغتسل أو يمضي عليها وقت صلاة كامل فإن انقطع دمها لعشرة أيام جاز وطؤها قبل الغسل والطهر إذا تخلل بين الدمين في مدة الحيض فهو كالدم الجاري وأقل الطهر خمسة عشر يوما ولا غاية لأكثره",
+              "en": "If the bleeding stops before ten days, her husband may not come to her until she makes ghusl or a full prayer time passes; if it stops at ten days, he may before her ghusl. A clean gap between two bleedings inside the days of hayd counts as bleeding. The shortest clean time (tuhr) between two periods is fifteen days, and it has no longest."
+            },
+            {
+              "kind": "teach",
+              "id": "istihada",
+              "title": "Istihada",
+              "ar": "ودم الإستحاضة هو ما تراه المرأة أقل من ثلاثة أيام أو أكثر من عشرة أيام فحكمه حكم الرعاف الدائم: لا يمنع الصوم ولا الصلاة ولا الوطء وإذا زاد الدم على عشرة أيام وللمرأة عادة معروفة ردت إلى أيام عادتها وما زاد على ذلك فهو استحاضة",
+              "en": "Istihada is bleeding of less than three days or more than ten. It is treated like a nosebleed that won't stop: it does not stop fasting, prayer or married life. If bleeding goes past ten days and she has a known habit, she goes back to her usual days and the rest is istihada. If it began with her very first bleeding and kept on, ten days of each month are hayd and the rest istihada."
+            },
+            {
+              "kind": "choose",
+              "id": "habit-case",
+              "ask": "Aisha's period usually lasts six days. This month the bleeding goes past ten days. What counts as hayd?",
+              "options": ["Her usual six days", "The first ten days", "All of it"],
+              "answer": 0,
+              "source": ["وإذا زاد الدم على عشرة أيام وللمرأة عادة معروفة ردت إلى أيام عادتها وما زاد على ذلك فهو استحاضة", "وإن ابتدأت مع البلوغ مستحاضة"],
+              "why": "She has a known habit, so she goes back to her six days; the rest is istihada. Ten days a month is for one whose very first bleeding kept on."
+            },
+            {
+              "kind": "choose",
+              "id": "wudu-case",
+              "ask": "Fatima has istihada. She makes wudu when Dhuhr time comes in. What can she do with it?",
+              "options": ["Pray any fard and nafl until Dhuhr time ends", "Only one fard prayer", "Pray all day until it breaks"],
+              "answer": 0,
+              "source": ["والمستحاضة ومن به سلس البول والرعاف الدائم والجرح الذي", "يتوضئون لوقت كل صلاة فيصلون بذلك الوضوء في الوقت ما شاءوا من الفرائض والنوافل فإذا خرج الوقت بطل وضوءهم وكان عليهم استئناف الوضوء لصلاة أخرى"],
+              "why": "She, like one with leaking urine, a constant nosebleed or a wound that won't stop, makes wudu for each prayer time and prays what she likes in it. When the time ends, the wudu ends."
+            },
+            {
+              "kind": "teach",
+              "id": "nifas",
+              "title": "Nifas",
+              "ar": "وأقل النفاس لا حد له وأكثره أربعون يوما وما زاد على ذلك فهو استحاضة وإذا تجاوز الدم الأربعين وقد كانت هذه المرأة ولدت قبل ذلك ولها عادة في النفاس ردت إلى أيام عادتها",
+              "en": "Nifas is the bleeding after childbirth. Bleeding while pregnant, or during labour before the baby comes out, is istihada. Nifas has no shortest length; the longest is forty days, and more than that is istihada. If it passes forty days and she has given birth before with a known habit, she goes back to her habit; if not, her nifas is forty days."
+            },
+            {
+              "kind": "teach",
+              "id": "twins",
+              "title": "Twins",
+              "ar": "ومن ولدت ولدين في بطن واحد فنفاسها ما خرج من الدم عقيب الولد الأول عند أبي حنيفة وأبي يوسف وقال محمد وزفر: نفاسها ما خرج من الدم عقيب الولد الثاني",
+              "en": "When a woman gives birth to twins, her nifas is the bleeding after the first child, in the view of Abu Hanifa and Abu Yusuf. Muhammad and Zafar said: after the second."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Hayd, nifas or istihada?",
+              "into": ["Hayd", "Nifas", "Istihada"],
+              "items": [
+                ["Five days of bleeding in her usual time", "Hayd"],
+                ["Reddish discharge in her days of hayd", "Hayd"],
+                ["Bleeding in the days after giving birth", "Nifas"],
+                ["Bleeding while pregnant", "Istihada"],
+                ["Bleeding during labour, before the baby comes", "Istihada"],
+                ["Bleeding on day 45 after a first birth", "Istihada"],
+                ["Bleeding that lasts two days", "Istihada"]
+              ],
+              "source": ["والنفاس: هو الدم الخارج عقيب الولادة والدم الذي تراه الحامل", "في حال ولادتها قبل خروج الولد استحاضة", "وأكثره أربعون يوما وما زاد على ذلك فهو استحاضة", "من الحمرة والصفرة والكدرة في أيام الحيض فهو حيض", "ودم الإستحاضة هو ما تراه المرأة أقل من ثلاثة أيام"],
+              "why": "Nifas follows birth, up to forty days. Bleeding in pregnancy or labour, past forty days after a first birth, or under three days is istihada."
+            }
+          ]
+        },
+        {
+          "id": "najasat",
+          "title": "Impurities and cleaning them",
+          "arabic": "باب الأنجاس",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "wajib",
+              "title": "What must be clean, and with what",
+              "ar": "تطهير النجاسة واجب من بدن المصلي وثوبه والمكان الذي يصلي عليه ويجوز تطهير النجاسة بالماء وبكل مائع طاهر يمكن إزالتها به كالخل وماء الورد",
+              "en": "Cleaning najasa (impurity) is wajib, a duty, from the body and clothes of one who prays and from the place he prays on. Najasa may be cleaned with water, or with any pure liquid that can remove it, like vinegar or rose water."
+            },
+            {
+              "kind": "choose",
+              "id": "vinegar-case",
+              "ask": "Hamid has a spot of najasa on his shirt and only vinegar to hand. Can he clean it with the vinegar?",
+              "options": ["Yes: any pure liquid that removes it", "No: only water removes najasa", "No: vinegar is only for food"],
+              "answer": 0,
+              "source": "ويجوز تطهير النجاسة بالماء وبكل مائع طاهر يمكن إزالتها به كالخل وماء الورد",
+              "why": "Yes. Vinegar cannot be used for wudu, but it can clean najasa, because it is a pure liquid that removes it."
+            },
+            {
+              "kind": "teach",
+              "id": "rubbing",
+              "title": "Khuffs and mani",
+              "ar": "وإذا أصابت الخف نجاسة ولها جرم فجفت فدلكه بالأرض جاز والمني نجس يجب غسل رطبه فإذا جف على الثوب أجزأ فيه الفرك",
+              "en": "If najasa with a body to it (like dung) gets on a khuff and dries, rubbing it on the ground is enough. Mani is najis: wet mani must be washed, but once it dries on a garment, scraping it off is enough."
+            },
+            {
+              "kind": "teach",
+              "id": "wiping",
+              "title": "Mirrors, swords, and the ground",
+              "ar": "والنجاسة إذا أصابت المرآة أو السيف اكتفي بمسحهما وإذا أصابت الأرض نجاسة فجفت بالشمس وذهب أثرها جازت الصلاة بمكانها ولا يجوز التيمم منها",
+              "en": "Najasa on a mirror or a sword: wiping them is enough. If najasa falls on the ground, dries in the sun and leaves no trace, you may pray on that spot, but not make tayammum with its earth."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Must it be washed, or is rubbing or wiping enough?",
+              "into": ["Wash it", "Rubbing or wiping is enough"],
+              "items": [
+                ["Wet mani on a garment", "Wash it"],
+                ["Urine on a shirt", "Wash it"],
+                ["Dried mani on a garment", "Rubbing or wiping is enough"],
+                ["Dried dung on a khuff", "Rubbing or wiping is enough"],
+                ["Najasa on a mirror", "Rubbing or wiping is enough"],
+                ["Najasa on a sword", "Rubbing or wiping is enough"]
+              ],
+              "source": ["والمني نجس يجب غسل رطبه فإذا جف على الثوب أجزأ فيه الفرك", "وإذا أصابت الخف نجاسة ولها جرم فجفت فدلكه بالأرض جاز", "والنجاسة إذا أصابت المرآة أو السيف اكتفي بمسحهما"],
+              "why": "Wet mani and urine on cloth are washed. Dried mani is scraped, dried dung on a khuff is rubbed on the ground, and a mirror or sword is wiped."
+            },
+            {
+              "kind": "choose",
+              "id": "ground-case",
+              "ask": "Najasa fell on a patch of ground. The sun dried it and no trace is left. What may Yahya do there?",
+              "options": ["Pray on it, but not make tayammum with it", "Pray on it and make tayammum with it", "Neither, until it is washed"],
+              "answer": 0,
+              "source": "فجفت بالشمس وذهب أثرها جازت الصلاة بمكانها ولا يجوز التيمم منها",
+              "why": "He may pray there, but tayammum needs earth that is pure, so not with that earth."
+            },
+            {
+              "kind": "teach",
+              "id": "amounts",
+              "title": "How much is excused",
+              "ar": "ومن أصابه من النجاسة المغلظة كالدم والبول والغائط والخمر مقدار الدرهم فما دونه جازت الصلاة معه فإن زاد لم تجز وإن أصابته نجاسة مخففة كبول ما يؤكل لحمه جازت الصلاة معه ما لم يبلغ ربع الثوب",
+              "en": "Heavy najasa (mughallaza), like blood, urine, stool and wine: up to the size of a dirham coin, the prayer with it is valid; more, and it is not. Light najasa (mukhaffafa), like the urine of animals whose meat is eaten: the prayer is valid until it covers a quarter of the garment."
+            },
+            {
+              "kind": "choose",
+              "id": "amount-case",
+              "ask": "A camel's urine splashes on Umar's robe, covering much less than a quarter of it. Can he pray in it?",
+              "options": ["Yes: it is light najasa, under a quarter", "No: it is bigger than a dirham", "No: any urine stops the prayer"],
+              "answer": 0,
+              "source": "وإن أصابته نجاسة مخففة كبول ما يؤكل لحمه جازت الصلاة معه ما لم يبلغ ربع الثوب",
+              "why": "Yes. Camel meat is eaten, so its urine is light najasa, and that is excused below a quarter of the garment."
+            },
+            {
+              "kind": "teach",
+              "id": "two-ways",
+              "title": "Washing: two ways",
+              "ar": "وتطهير النجاسة التي يجب غسلها على وجهين: فما كان له منها مرئية زوال عينها إلا أن يبقى من أثرها ما يشق إزالته",
+              "en": "Najasa that must be washed is cleaned in two ways. Najasa you can see: it is clean when the thing itself is gone, even if a mark stays that is hard to remove. Najasa you cannot see: wash it until you are fairly sure it is clean."
+            },
+            {
+              "kind": "choose",
+              "id": "unseen-case",
+              "ask": "Dried urine on a cloth leaves no mark you can see. How long does Bilal wash it?",
+              "options": ["Until he is fairly sure it is clean", "Exactly seven times", "Once only"],
+              "answer": 0,
+              "source": "فطهارتها أن يغسل حتى يغلب على ظن الغاسل أنه قد طهر",
+              "why": "Najasa you cannot see is washed until the one washing is fairly sure it is clean."
+            },
+            {
+              "kind": "teach",
+              "id": "istinja",
+              "title": "Istinja",
+              "ar": "والاستنجاء سنة يجزي فيها الحجر وما يقوم مقامه يمسحه حتى ينقه وليس فيه عدد مسنون وغسله بالماء أفضل فإن تجاوزت النجاسة مخرجها لم يجز فيه إلا الماء ولا يستنجي بعظم ولا بروث ولا بطعام ولا بيمينه إلا بعذر",
+              "en": "Istinja, cleaning yourself after the toilet, is sunnah. A stone, or anything like it, is enough: wipe until clean; there is no set number. Washing with water is better. If the najasa spreads past its exit, only water will do. Do not use bone, dung or food, nor the right hand unless there is a need."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are right?",
+              "options": [
+                { "text": "Dried mani can be scraped off a garment", "right": true },
+                { "text": "Washing with water is better than stones for istinja", "right": true },
+                { "text": "Vinegar can clean najasa off clothes", "right": true },
+                { "text": "Blood bigger than a dirham is excused in prayer" },
+                { "text": "Istinja may be done with bone or dung" },
+                { "text": "Sun-dried ground is fine for tayammum" }
+              ],
+              "source": ["فإذا جف على الثوب أجزأ فيه الفرك", "وغسله بالماء أفضل", "كالخل وماء الورد", "مقدار الدرهم فما دونه جازت الصلاة معه فإن زاد لم تجز", "ولا يستنجي بعظم ولا بروث", "ولا يجوز التيمم منها"],
+              "why": "Dried mani is scraped, water is better for istinja, and vinegar cleans najasa. Blood over a dirham is not excused, bone and dung are not used, and that ground is not for tayammum."
             }
           ]
         }
