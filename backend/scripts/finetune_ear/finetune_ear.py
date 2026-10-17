@@ -47,7 +47,7 @@ import soundfile
 import torch
 import zipfile
 from datasets import Audio, Dataset, concatenate_datasets, load_dataset
-from huggingface_hub import HfFileSystem, list_repo_files
+from huggingface_hub import HfFileSystem, hf_hub_download, list_repo_files
 from scipy.signal import fftconvolve, resample_poly
 from peft import LoraConfig, get_peft_model
 from transformers import GenerationConfig, Seq2SeqTrainer, Seq2SeqTrainingArguments, WhisperConfig, WhisperForConditionalGeneration, WhisperProcessor, WhisperTokenizerFast
@@ -242,25 +242,27 @@ def tadabur_plan(skip, target):
 
 
 def tadabur_clips(plan):
-    """The planned rows' sound, one file at a time, stopping each file at its last wanted row."""
-    fs = HfFileSystem()
+    """The planned rows' sound, one file at a time.
+    A Tadabur file is one 2.4 GB block: streamed from the hub it was re-read per batch and the run was
+    killed for memory. Downloaded, read once (~7 GB peak, 10 s), its wanted rows kept, then deleted."""
     for shard in sorted({p[0] for p in plan}):
         want = {p[1]: p for p in plan if p[0] == shard}
-        at = 0
-        for batch in pq.ParquetFile(fs.open(f'datasets/{TADABUR}/{shard}')).iter_batches(batch_size=50, columns=['audio']):
-            for audio in batch.column('audio').to_pylist():
+        path = Path(hf_hub_download(TADABUR, shard, repo_type='dataset', local_dir=OUT / 'tadabur'))
+        kept, at = [], 0
+        for batch in pq.ParquetFile(path).iter_batches(batch_size=50, columns=['audio']):
+            for clip in batch.column('audio').to_pylist():
                 if at in want:
-                    _, _, who, key, part = want[at]
-                    try:
-                        sound = sound_of(audio['bytes'])
-                    except subprocess.CalledProcessError:
-                        sound = []
-                    if 0 < len(sound) <= LONGEST:
-                        yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': f'tadabur:{who}',
-                               'src': 'tadabur', 'secs': len(sound) / RATE, 'part': part}
+                    kept.append((want[at], clip['bytes']))
                 at += 1
-            if at > max(want):
-                break
+        path.unlink()
+        for (_, _, who, key, part), clip in kept:
+            try:
+                sound = sound_of(clip)
+            except subprocess.CalledProcessError:
+                continue
+            if 0 < len(sound) <= LONGEST:
+                yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': f'tadabur:{who}',
+                       'src': 'tadabur', 'secs': len(sound) / RATE, 'part': part}
 
 
 def noise_bank():
