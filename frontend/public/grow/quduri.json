@@ -9575,10 +9575,2506 @@
         }
       ]
     },
-    { "id": "rahn", "title": "Pawning", "arabic": "الرهن", "kitab": "كتاب الرهن", "lessons": [] },
-    { "id": "hajr", "title": "Restriction", "arabic": "الحجر", "kitab": "كتاب الحجر", "lessons": [] },
-    { "id": "iqrar", "title": "Admissions", "arabic": "الإقرار", "kitab": "كتاب الإقرار", "lessons": [] },
-    { "id": "ijara", "title": "Hire and wages", "arabic": "الإجارة", "kitab": "كتاب الإجارة", "lessons": [] },
+    {
+      "id": "rahn",
+      "title": "Pawning",
+      "arabic": "الرهن",
+      "kitab": "كتاب الرهن",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "rahn-contract",
+          "title": "Making a pledge, and when it is lost",
+          "arabic": "الرهن: ينعقد بالإيجاب والقبول",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "made",
+              "title": "Offer, acceptance and handing over",
+              "ar": "الرهن: ينعقد بالإيجاب والقبول ويتم القبض",
+              "en": "A rahn (pledge, or pawn) is when someone who owes a debt hands the lender something valuable to hold as security until the debt is paid. The one who gives it is the rahin; the lender who holds it is the murtahin. It is made by an offer and an acceptance, and it is completed by qabd: the lender actually taking hold of it."
+            },
+            {
+              "kind": "teach",
+              "id": "before",
+              "title": "Before it is handed over",
+              "ar": "وما لم يقبضه فالراهن بالخيار: إن شاء سلمه وإن شاء رجع عن الرهن فإذا سلمه إليه وقبضه دخل في ضمانه",
+              "en": "Until the lender takes hold of it, the owner may still choose: hand it over, or go back on the pledge. Once he hands it over and the lender takes it, the lender carries the risk for it (daman). The lender must hold it fully, cleared of other things and separate from them."
+            },
+            {
+              "kind": "choose",
+              "id": "back-case",
+              "ask": "Ahmed agrees to pledge his watch to Yusuf for a £100 loan, but has not handed it over yet. Then he changes his mind. May he?",
+              "options": ["Yes: until it is handed over he may go back on it", "No: the offer and acceptance made it binding", "Only if Yusuf agrees"],
+              "answer": 0,
+              "source": "وما لم يقبضه فالراهن بالخيار: إن شاء سلمه وإن شاء رجع عن الرهن",
+              "why": "The pledge is only complete once the lender takes it. Before that the owner may hand it over or go back."
+            },
+            {
+              "kind": "teach",
+              "id": "debt",
+              "title": "Only for a debt, and how far it covers",
+              "ar": "ولا يصح الرهن إلا بدين مضمون وهو مضمون بالأقل من قيمته ومن الدين",
+              "en": "A pledge is only valid for a debt that is owed. If the pledge is lost, the lender loses whichever is less: the pledge's value or the debt."
+            },
+            {
+              "kind": "teach",
+              "id": "lost",
+              "title": "When the pledge is lost in the lender's hand",
+              "ar": "هلك في يد المرتهن وقيمته والدين سواء صار المرتهن مستوفيا لدينه حكما وإن كانت قيمة الرهن أكثر من الدين فالفضل أمانة في يده وإن كانت أقل سقط من الدين بقدرها ورجع المرتهن بالفضل",
+              "en": "If it is destroyed while the lender holds it: if its value equals the debt, the debt counts as paid. If it was worth more, the extra was only an amana (something held in trust), so nothing is owed for it. If it was worth less, the debt drops by its value and the lender claims the rest."
+            },
+            {
+              "kind": "choose",
+              "id": "more-case",
+              "ask": "Bilal owes Hamza £100 and pledges a bike worth £150. The bike is stolen from Hamza's house without his fault. What now?",
+              "options": ["The debt is paid, and Hamza owes nothing for the extra £50", "Hamza must pay Bilal £50", "Bilal still owes £100"],
+              "answer": 0,
+              "source": ["وقيمته والدين سواء صار المرتهن مستوفيا لدينه حكما", "وإن كانت قيمة الرهن أكثر من الدين فالفضل أمانة في يده"],
+              "why": "The pledge covers the debt, so the £100 is settled. The extra £50 was held in trust, and a trust lost without fault is not paid for."
+            },
+            {
+              "kind": "choose",
+              "id": "less-case",
+              "ask": "Sara owes Aisha £100 and pledges a ring worth £60. The ring is lost while Aisha holds it. What does Sara still owe?",
+              "options": ["£40", "Nothing", "£100", "£60"],
+              "answer": 0,
+              "source": "وإن كانت أقل سقط من الدين بقدرها ورجع المرتهن بالفضل",
+              "why": "The debt drops by the ring's value, £60, and Aisha claims the remaining £40."
+            },
+            {
+              "kind": "teach",
+              "id": "not-allowed",
+              "title": "What cannot be pledged",
+              "ar": "ولا يجوز رهن المشاع ولا رهن ثمرة على رؤوس النخل دون النخل ولا زرع في الأرض دون الأرض ولا يجوز رهن الأرض والنخل دونهما ولا يصح الرهن بالأمانات كالودائع والمضاربات ومال الشركة",
+              "en": "Not allowed: a mushaa' share (an undivided part of something shared, like \"half of this house\"); dates on the palm without the palm; a crop without its land; or the land or palms without what is on them. And a pledge cannot be taken for things held on trust, like a deposit, mudaraba money (money given to someone to trade with) or partnership money."
+            },
+            {
+              "kind": "teach",
+              "id": "salam",
+              "title": "Salam and sarf",
+              "ar": "ويصح الرهن برأس مال السلم وثمن الصرف والمسلم فيه",
+              "en": "A pledge may be taken for the capital of a salam (paying now for goods delivered later), for the goods owed in a salam, and for the price in a sarf (exchanging money for money). If the pledge is lost in the same sitting, the lender counts as paid and the deal stands."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Can this be pledged, or taken a pledge for?",
+              "into": ["Valid", "Not valid"],
+              "items": [
+                ["A pledge for a loan that is owed", "Valid"],
+                ["Half of a shared house, undivided", "Not valid"],
+                ["The dates on a palm, without the palm", "Not valid"],
+                ["A pledge for a deposit someone is keeping", "Not valid"],
+                ["A pledge for the capital of a salam", "Valid"],
+                ["A pledge for the price in a money exchange", "Valid"]
+              ],
+              "source": ["ولا يصح الرهن إلا بدين مضمون", "ولا يجوز رهن المشاع ولا رهن ثمرة على رؤوس النخل دون النخل", "ولا يصح الرهن بالأمانات كالودائع", "ويصح الرهن برأس مال السلم وثمن الصرف"],
+              "why": "A pledge needs an owed debt, including salam and sarf. Shared undivided parts, fruit cut off from its tree, and trusts like deposits are not allowed."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A pledge is completed when the lender takes hold of it", "right": true },
+                { "text": "Before handing it over, the owner may go back on it", "right": true },
+                { "text": "If a pledge worth more than the debt is lost, the lender pays the extra" },
+                { "text": "A pledge may be taken for a deposit" },
+                { "text": "If the pledge is worth less than the debt, the lender claims the rest", "right": true }
+              ],
+              "source": ["ويتم القبض", "وإن شاء رجع عن الرهن", "فالفضل أمانة في يده", "ولا يصح الرهن بالأمانات كالودائع", "ورجع المرتهن بالفضل"],
+              "why": "Taking hold completes it, and before that the owner may withdraw. The extra value is a trust, deposits can't be secured, and a shortfall is still owed."
+            }
+          ]
+        },
+        {
+          "id": "rahn-keeping",
+          "title": "Who holds it, and paying it off",
+          "arabic": "وضع الرهن على يد عدل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "adl",
+              "title": "Left with a trusted person",
+              "ar": "وإذا اتفقا على وضع الرهن على يد عدل جاز وليس للمرتهن ولا للراهن أخذه من يده فإن هلك في يده هلك من ضمان المرتهن",
+              "en": "Both sides may agree to leave the pledge with an 'adl: a trustworthy third person. Then neither of them may take it from him. If it is lost in his hands, the loss falls on the lender, as if he had held it."
+            },
+            {
+              "kind": "choose",
+              "id": "adl-case",
+              "ask": "Omar pledges a gold chain to Zaid, and they leave it with their trusted friend Khalid. It is stolen from Khalid without his fault. Whose loss is it?",
+              "options": ["Zaid's, the lender's: it counts against the debt", "Khalid's: he must pay for it", "Omar's: his debt stays the same"],
+              "answer": 0,
+              "source": "فإن هلك في يده هلك من ضمان المرتهن",
+              "why": "With the trusted person, the pledge is lost on the lender's account, just as if he held it."
+            },
+            {
+              "kind": "teach",
+              "id": "money",
+              "title": "Pledging money and measured goods",
+              "ar": "ويجوز رهن الدراهم والدنانير والمكيل والموزون فإن رهنت بجنسها وهلكت هلكت بمثلها من الدين وإن اختلفا في الجودة والصناعة",
+              "en": "Coins, and goods measured by volume or weight, may be pledged. If they are pledged for a debt of the same kind (silver for silver) and are lost, the same amount of the debt is gone, even if they differ in quality or workmanship."
+            },
+            {
+              "kind": "teach",
+              "id": "zuyuf",
+              "title": "Paid back in bad coins",
+              "ar": "ومن كان له دين على غيره فأخذ منه مثل دينه فأنفقه ثم علم أنه كان زيوفا فلا شيء له عند أبي حنيفة",
+              "en": "Zuyuf are poor-quality coins. If a lender is repaid, spends the money, and only then learns the coins were zuyuf, he has no further claim, says Abu Hanifa. Note: Abu Yusuf and Muhammad say he returns the same amount of bad coins and takes good ones."
+            },
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Paying for one of two pledges",
+              "ar": "درهم فقضى حصة أحدهما",
+              "en": "Al-Quduri's example, from his time, is two slaves pledged together for 1000 dirhams. If the owner pays off the share of one of them, he may not take that one back until he has paid the rest of the debt. The whole pledge secures the whole debt."
+            },
+            {
+              "kind": "choose",
+              "id": "two-case",
+              "ask": "Yasin pledges two bracelets for one debt of £1000. He pays £500, the share of one bracelet. Can he take that bracelet back now?",
+              "options": ["No: not until he pays the rest of the debt", "Yes: he paid its share", "Yes, if the lender keeps the more valuable one"],
+              "answer": 0,
+              "source": ["درهم فقضى حصة أحدهما", "حتى يؤدي باقي الدين"],
+              "why": "Paying one item's share does not free it. Both stay pledged until the whole debt is paid."
+            },
+            {
+              "kind": "teach",
+              "id": "agent",
+              "title": "An agent to sell it",
+              "ar": "وإذا وكل الراهن المرتهن أو العدل أو غيرهما ببيع الرهن عند حلول الدين فالوكالة جائزة فإن شرطت في عقد الرهن فليس للراهن عزله عنها فإن عزله لم ينعزل",
+              "en": "The owner may make the lender, the trusted person, or anyone else his agent (wakil) to sell the pledge when the debt falls due. If this was a condition inside the pledge contract, the owner cannot dismiss the agent; if he tries, the agent stays. Even if the owner dies, the agent is not dismissed."
+            },
+            {
+              "kind": "choose",
+              "id": "agent-case",
+              "ask": "When pledging his car, Faisal agrees, as part of the pledge, that the lender may sell it when the debt is due. Later Faisal says, \"I take that back.\" Is the lender still his agent?",
+              "options": ["Yes: a condition of the pledge cannot be cancelled by him", "No: an agent can always be dismissed", "Only until Faisal dies"],
+              "answer": 0,
+              "source": ["فإن شرطت في عقد الرهن فليس للراهن عزله عنها فإن عزله لم ينعزل", "وإن مات الراهن لم ينعزل"],
+              "why": "Because the agency was a condition of the pledge, the owner cannot remove it, and not even his death ends it."
+            },
+            {
+              "kind": "teach",
+              "id": "demand",
+              "title": "The lender may still demand his debt",
+              "ar": "أن يطالب الراهن ويحبسه به وإن كان الرهن في يده",
+              "en": "Holding a pledge does not stop the lender asking for his money. He may demand the debt and have the debtor detained for it, even while he holds the pledge. He does not have to let the debtor sell the pledge to pay him from its price. Once the debt is paid, he is told to hand the pledge back."
+            },
+            {
+              "kind": "choose",
+              "id": "demand-case",
+              "ask": "Hasan holds Ali's laptop as a pledge for £300. The debt is due. Ali says, \"You have my laptop, so you can't ask me for money.\" Is he right?",
+              "options": ["No: Hasan may still demand the debt", "Yes: the pledge stands in for the money", "Yes, until the laptop is sold"],
+              "answer": 0,
+              "source": "أن يطالب الراهن ويحبسه به وإن كان الرهن في يده",
+              "why": "The lender may demand the debt, and even have the debtor detained, while he holds the pledge."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A pledge left with a trusted person is lost on the lender's account", "right": true },
+                { "text": "Either side may take the pledge back from the trusted person" },
+                { "text": "Once the debt is paid, the lender must give the pledge back", "right": true },
+                { "text": "An agent set as a condition of the pledge cannot be dismissed by the owner", "right": true },
+                { "text": "Holding a pledge means the lender may not ask for his debt" }
+              ],
+              "source": ["هلك من ضمان المرتهن", "وليس للمرتهن ولا للراهن أخذه من يده", "فإن قضاه الدين قيل له: سلم الرهن إليه", "فليس للراهن عزله عنها", "أن يطالب الراهن ويحبسه به"],
+              "why": "The lender carries the loss, neither side may take it from the trusted person, the agent stays, and the lender may still demand his debt; once it is paid, the pledge goes back."
+            }
+          ]
+        },
+        {
+          "id": "rahn-acts",
+          "title": "Selling, damaging and caring for the pledge",
+          "arabic": "وجناية الراهن على الرهن مضمونة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "sale",
+              "title": "The owner sells the pledge",
+              "ar": "وإذا باع الراهن الرهن بغير إذن المرتهن فالبيع موقوف فإن أجازه المرتهن جاز وإن قضاه الراهن دينه جاز البيع",
+              "en": "If the owner sells the pledge without the lender's permission, the sale is mawquf: on hold. It goes through if the lender approves it, or if the owner pays off his debt."
+            },
+            {
+              "kind": "choose",
+              "id": "sale-case",
+              "ask": "Zaid has pledged his bike to Omar. Without asking Omar, Zaid sells it to Bilal. Then Zaid pays Omar the whole debt. What about the sale?",
+              "options": ["It goes through", "It is void and must be made again", "It was always valid from the start"],
+              "answer": 0,
+              "source": "فالبيع موقوف فإن أجازه المرتهن جاز وإن قضاه الراهن دينه جاز البيع",
+              "why": "The sale was on hold. Paying the debt frees the pledge, so the sale goes through."
+            },
+            {
+              "kind": "teach",
+              "id": "free",
+              "title": "Freeing a pledged slave",
+              "ar": "وإن اعتق الراهن عبد الرهن نفذ عتقه فإن كان الدين حالا طولب بأداء الدين وإن كان مؤجلا أخذ منه قيمة العبد فجعلت رهنا مكانه حتى يحل الدين وإن كان الراهن معسرا استسعي العبد في قيمته فقضى بها دينه",
+              "en": "In al-Quduri's time, if the owner freed a slave he had pledged, the freeing took effect. If the debt was due now, he had to pay it. If it was due later, the slave's value was taken from him to be the pledge instead. If he was too poor, the freed man worked to earn his value, and the debt was paid from that."
+            },
+            {
+              "kind": "teach",
+              "id": "stranger",
+              "title": "When the pledge is destroyed",
+              "ar": "وكذلك إذا استهلك الراهن الرهن وإن استهلكه أجنبي فالمرتهن هو الخصم في تضمينه ويأخذ القيمة فتكون رهنا في يده",
+              "en": "If the owner destroys the pledge, it is the same: he must replace it. If a stranger destroys it, the lender is the one who takes him to court; he takes its value, and that value becomes the pledge in his hands."
+            },
+            {
+              "kind": "choose",
+              "id": "stranger-case",
+              "ask": "Yusuf holds Ali's TV as a pledge. A neighbour drops it and smashes it. Who sues the neighbour, and what happens to the money?",
+              "options": ["Yusuf sues; the money becomes the pledge", "Ali sues and keeps the money", "Nobody: the debt is simply paid off"],
+              "answer": 0,
+              "source": "وإن استهلكه أجنبي فالمرتهن هو الخصم في تضمينه ويأخذ القيمة فتكون رهنا في يده",
+              "why": "The lender is the one who claims from a stranger, and the value he takes stays as the pledge."
+            },
+            {
+              "kind": "teach",
+              "id": "harm",
+              "title": "Harm done to and by the pledge",
+              "ar": "وجناية الراهن على الرهن مضمونة وجناية المرتهن عليه تسقط من دينه بقدرها وجناية الرهن على الراهن وعلى المرتهن وعلى مالهما هدر",
+              "en": "Jinaya means harm or damage. If the owner damages the pledge, he must make it good. If the lender damages it, that much drops off his debt. If the pledge itself (an animal, say) harms the owner, the lender or their property, it is hadar: nothing is owed."
+            },
+            {
+              "kind": "choose",
+              "id": "harm-case",
+              "ask": "Hamza holds Karim's camel as a pledge for £1000. Hamza carelessly injures it, cutting £200 off its value. What happens?",
+              "options": ["£200 drops off what Karim owes", "Hamza owes nothing: it is his to hold", "Karim must give another pledge"],
+              "answer": 0,
+              "source": "وجناية المرتهن عليه تسقط من دينه بقدرها",
+              "why": "Damage by the lender is taken off his debt by its amount, so Karim now owes £800."
+            },
+            {
+              "kind": "teach",
+              "id": "costs",
+              "title": "Who pays to keep it",
+              "ar": "وأجرة البيت الذي يحفظ فيه الرهن على المرتهن وأجرة الراعي ونفقة الرهن على الراهن ونماؤه للراهن فيكون رهنا مع الأصل",
+              "en": "The rent of the place where the pledge is stored is on the lender. The shepherd's wage and the upkeep (feeding) of the pledge are on the owner. What the pledge produces, like milk or young, belongs to the owner, and it is pledged along with the original."
+            },
+            {
+              "kind": "sort",
+              "id": "who-pays",
+              "ask": "Who pays?",
+              "into": ["The lender", "The owner"],
+              "items": [
+                ["Rent of the room where it is stored", "The lender"],
+                ["The shepherd's wage", "The owner"],
+                ["Food for the pledged animal", "The owner"],
+                ["Rent of the barn it is kept in", "The lender"]
+              ],
+              "source": "وأجرة البيت الذي يحفظ فيه الرهن على المرتهن وأجرة الراعي ونفقة الرهن على الراهن",
+              "why": "Keeping it safe (storage) is on the lender. Keeping it alive (shepherd, food) is on the owner."
+            },
+            {
+              "kind": "teach",
+              "id": "growth",
+              "title": "When the original or its young is lost",
+              "ar": "ويقسم الدين على قيمة الرهن يوم القبض وقيمة النماء يوم الفكاك فما أصاب الأصل سقط من الدين وما أصاب النماء افتكه الراهن به",
+              "en": "If the growth (say, a lamb) is lost, it is lost for nothing. If the original is lost and the growth remains, the owner redeems the growth for its share: the debt is split by the original's value on the day it was handed over and the growth's value on the day of redeeming. The original's share falls off the debt; the growth's share is what the owner pays to take it back."
+            },
+            {
+              "kind": "choose",
+              "id": "lamb-case",
+              "ask": "Owing £90, Musa pledges a sheep worth £60 on the day he hands it over. It gives birth to a lamb, then the sheep dies. On redemption day the lamb is worth £30. What must Musa pay to take the lamb back?",
+              "options": ["£30", "£90", "£60", "Nothing"],
+              "answer": 0,
+              "source": ["وإن هلك الأصل وبقي النماء", "ويقسم الدين على قيمة الرهن يوم القبض وقيمة النماء يوم الفكاك فما أصاب الأصل سقط من الدين وما أصاب النماء افتكه الراهن به"],
+              "why": "The £90 debt splits 60 : 30. The sheep's £60 share falls off; the lamb's £30 share is what Musa pays to redeem it."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A sale of the pledge without the lender's permission is on hold", "right": true },
+                { "text": "If the pledge's young dies, it is lost for nothing", "right": true },
+                { "text": "If the pledged animal kicks the lender, the owner must pay" },
+                { "text": "The owner pays for the pledge's food", "right": true },
+                { "text": "The milk of a pledged animal belongs to the lender" }
+              ],
+              "source": ["فالبيع موقوف", "فإن هلك هلك بغير شيء", "وجناية الرهن على الراهن وعلى المرتهن وعلى مالهما هدر", "ونفقة الرهن على الراهن ونماؤه للراهن"],
+              "why": "The sale waits, the young is lost for nothing, the owner feeds it and owns its growth. Harm done by the pledge itself is hadar."
+            }
+          ]
+        },
+        {
+          "id": "rahn-more",
+          "title": "Adding to it, keeping it, and death",
+          "arabic": "وللمرتهن أن يحفظ الرهن",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "add",
+              "title": "Adding to the pledge",
+              "ar": "وتجوز الزيادة في الرهن ولا تجوز في الدين عند أبي حنيفة ومحمد ولا يصير الرهن رهنا بهما",
+              "en": "More may be added to the pledge for the same debt. But more debt may not be added onto the same pledge, say Abu Hanifa and Muhammad: the pledge does not become security for both. Note: Abu Yusuf says adding to the debt is allowed too."
+            },
+            {
+              "kind": "teach",
+              "id": "two-lenders",
+              "title": "One pledge, two lenders",
+              "ar": "وإذا رهن عينا واحدة عند رجلين بدين لكل واحد منهما جاز وجميعها رهن عند كل واحد منهما والمضمون على كل واحد منهما حصة دينه منهما فإن قضى أحدهما دينه كانت كلها رهنا في يد الآخر حتى يستوفي دينه",
+              "en": "One thing may be pledged to two people who are each owed a debt. All of it is pledged to each of them, but each carries the risk only for his own share. If one is paid off, the whole thing stays pledged with the other until he is paid too."
+            },
+            {
+              "kind": "choose",
+              "id": "two-case",
+              "ask": "Ibrahim owes Ali £500 and Hasan £500, and pledges one car to both. He pays Ali in full. What happens to the car?",
+              "options": ["All of it stays pledged with Hasan until he is paid", "Half of it is returned to Ibrahim", "Ali keeps half until Hasan is paid"],
+              "answer": 0,
+              "source": "فإن قضى أحدهما دينه كانت كلها رهنا في يد الآخر حتى يستوفي دينه",
+              "why": "The whole car was pledged to each lender, so it all stays with Hasan until his debt is paid."
+            },
+            {
+              "kind": "teach",
+              "id": "sale-cond",
+              "title": "A sale on condition of a pledge",
+              "ar": "لم يجبر عليه وكان البائع بالخيار: إن شاء رضي بترك الرهن وإن شاء فسخ البيع إلا أن يدفع المشتري الثمن حالا أو يدفع قيمة الرهن رهنا مكانه",
+              "en": "If someone sells on condition that the buyer pledges a particular thing for the price, and the buyer refuses to hand it over, he cannot be forced. The seller may then accept going without the pledge, or cancel the sale, unless the buyer pays the price at once or gives the pledge's value as a pledge instead."
+            },
+            {
+              "kind": "choose",
+              "id": "sale-case",
+              "ask": "Tariq sells his car to Yahya on credit, on condition that Yahya pledges his gold watch. Yahya then refuses to hand over the watch. What may Tariq do?",
+              "options": ["Accept without the pledge, or cancel the sale", "Force Yahya to hand over the watch", "Take any other item from Yahya"],
+              "answer": 0,
+              "source": ["ومن باع عبدا على أن يرهنه المشتري بالثمن شيئا بعينه فإن امتنع المشتري من تسليم", "لم يجبر عليه وكان البائع بالخيار: إن شاء رضي بترك الرهن وإن شاء فسخ البيع"],
+              "why": "The buyer is not forced, so the seller chooses: go without the pledge or cancel. Unless Yahya pays now or gives the watch's value as a pledge."
+            },
+            {
+              "kind": "teach",
+              "id": "keep",
+              "title": "Who may keep it for the lender",
+              "ar": "وللمرتهن أن يحفظ الرهن بنفسه وزوجته وولده وخادمه الذي في عياله وإن حفظه بغير من في عياله",
+              "en": "The lender may look after the pledge himself, or by his wife, his child, or his servant who live in his household. If he has it kept by someone outside his household, or deposits it with someone, he is liable for it."
+            },
+            {
+              "kind": "pick",
+              "id": "keepers",
+              "ask": "Who may the lender have look after the pledge without becoming liable?",
+              "options": [
+                { "text": "Himself", "right": true },
+                { "text": "His wife", "right": true },
+                { "text": "His son who lives with him", "right": true },
+                { "text": "A friend in another town" },
+                { "text": "A neighbour, as a deposit" }
+              ],
+              "source": "وللمرتهن أن يحفظ الرهن بنفسه وزوجته وولده وخادمه الذي في عياله",
+              "why": "He and the people of his household may keep it. Anyone outside it makes him liable."
+            },
+            {
+              "kind": "teach",
+              "id": "lend-back",
+              "title": "Misuse, and lending it back to the owner",
+              "ar": "بجميع قيمته وإذا أعار المرتهن الرهن للراهن فقبضه خرج من ضمان المرتهن فإن هلك في يد الراهن هلك بغير شيء وللمرتهن أن يسترجعه إلى يده فإذا أخذه عاد الضمان",
+              "en": "If the lender misuses the pledge, he must pay its whole value, like someone who took it by force. If he lends it back to the owner, it leaves his risk: if it is lost with the owner, it is lost for nothing and the debt stays. The lender may take it back, and then the risk returns to him."
+            },
+            {
+              "kind": "choose",
+              "id": "lend-case",
+              "ask": "Owing £400, Adam pledged his laptop to Khalid. Khalid lends it back to Adam for a week, and it breaks while Adam has it. What does Adam owe now?",
+              "options": ["Still £400", "Nothing: the debt is paid", "£400 less the laptop's value"],
+              "answer": 0,
+              "source": "فإن هلك في يد الراهن هلك بغير شيء",
+              "why": "While lent back, the pledge is out of the lender's risk, so its loss changes nothing: the debt stays £400."
+            },
+            {
+              "kind": "teach",
+              "id": "death",
+              "title": "When the owner dies",
+              "ar": "وإذا مات الراهن باع وصيه الرهن وقضى الدين فإن لم يكن له وصي نصب القاضي له وصيا وأمره ببيعه",
+              "en": "If the owner dies, his wasi (the person he named to handle his affairs after death) sells the pledge and pays the debt. If he has no wasi, the judge appoints one and orders him to sell it."
+            },
+            {
+              "kind": "choose",
+              "id": "death-case",
+              "ask": "Salim dies leaving a pledged necklace and no one named to handle his affairs. How is the debt paid?",
+              "options": ["The judge appoints someone and orders him to sell it", "The lender keeps the necklace", "The heirs must pay before anything is sold"],
+              "answer": 0,
+              "source": "فإن لم يكن له وصي نصب القاضي له وصيا وأمره ببيعه",
+              "why": "With no wasi, the judge appoints one to sell the pledge and pay the debt."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "The pledge is lost. Does the loss fall on the lender, or is it lost for nothing?",
+              "into": ["On the lender", "Lost for nothing"],
+              "items": [
+                ["He misused it and it was ruined", "On the lender"],
+                ["He had lent it back to the owner, and it was lost there", "Lost for nothing"],
+                ["He gave it to a friend outside his home to keep", "On the lender"],
+                ["His wife was keeping it, and it was lost without fault", "On the lender"],
+                ["The pledged sheep's lamb died", "Lost for nothing"]
+              ],
+              "source": ["وإذا تعدى المرتهن في الرهن ضمنه", "فإن هلك في يد الراهن هلك بغير شيء", "وإن حفظه بغير من في عياله", "دخل في ضمانه", "فإن هلك هلك بغير شيء"],
+              "why": "Misuse, a keeper outside the household, and ordinary loss in his household all fall on the lender. Lent back to the owner, or the pledge's young, it is lost for nothing."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hajr",
+      "title": "Restriction",
+      "arabic": "الحجر",
+      "kitab": "كتاب الحجر",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "hajr-causes",
+          "title": "The child, the slave and the insane",
+          "arabic": "الأسباب الموجبة للحجر ثلاثة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three causes",
+              "ar": "الأسباب الموجبة للحجر ثلاثة: الصغر والرق والجنون",
+              "en": "Hajr means restriction: a person is stopped from dealing freely with money and contracts. Al-Quduri gives three causes: being a child, being a slave (in his time), and insanity."
+            },
+            {
+              "kind": "teach",
+              "id": "permission",
+              "title": "With permission, or not at all",
+              "ar": "ولا يجوز تصرف الصغير إلا بإذن وليه ولا تصرف العبد إلا بإذن سيده ولا يجوز تصرف المجنون المغلوب على عقله بحال",
+              "en": "A child's dealings count only with the permission of his wali (guardian). A slave's dealings counted only with his master's permission. Someone insane, whose mind is overcome, cannot deal at all."
+            },
+            {
+              "kind": "teach",
+              "id": "option",
+              "title": "The guardian decides",
+              "ar": "ومن باع من هؤلاء شيئا أو اشتراه وهو يعقل البيع ويقصده فالوالي بالخيار: إن شاء أجازه إذا كان فيه مصلحة وإن شاء فسخه",
+              "en": "If one of them buys or sells something while understanding what a sale is and meaning to do it, the guardian may choose: approve it if it is good for him, or cancel it."
+            },
+            {
+              "kind": "choose",
+              "id": "child-case",
+              "ask": "Musa, aged 10, understands buying and selling. Without asking his father, who is his guardian, he sells his bike for £80. What happens?",
+              "options": ["His father may approve it if it is good for him, or cancel it", "The sale is binding: he understood it", "The sale is void and cannot be approved"],
+              "answer": 0,
+              "source": "وهو يعقل البيع ويقصده فالوالي بالخيار: إن شاء أجازه إذا كان فيه مصلحة وإن شاء فسخه",
+              "why": "A child who understands the sale has made a deal that waits on his guardian, who approves it if it helps him or cancels it."
+            },
+            {
+              "kind": "teach",
+              "id": "words",
+              "title": "Words, not deeds",
+              "ar": "وهذه المعاني الثلاثة توجب الحجر في الأقوال دون الأفعال فالصبي والمجنون لا تصح عقودهما ولا إقرارهما ولا يقع طلاقهما ولا عتاقهما",
+              "en": "These three causes restrict what a person says (contracts, admissions, divorce), not what he does. So a child or an insane person cannot make contracts or admissions, and their divorce or freeing of a slave does not happen. But if they destroy something, they must pay for it."
+            },
+            {
+              "kind": "choose",
+              "id": "window-case",
+              "ask": "Eight-year-old Adam kicks a ball through a shop window. Must the damage be paid for from his money?",
+              "options": ["Yes: restriction covers words, not deeds", "No: a child is restricted, so nothing is owed", "Only if his guardian agrees"],
+              "answer": 0,
+              "source": ["توجب الحجر في الأقوال دون الأفعال", "وإن أتلفا شيئا"],
+              "why": "Breaking things is a deed, and restriction does not cover deeds, so he owes for the window."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Does it take effect for a child?",
+              "into": ["Takes effect", "No effect"],
+              "items": [
+                ["He sells his phone with no guardian's permission", "No effect"],
+                ["He admits he owes someone money", "No effect"],
+                ["He tears a friend's book", "Takes effect"],
+                ["He says he divorces a wife", "No effect"],
+                ["He breaks a neighbour's lamp", "Takes effect"]
+              ],
+              "source": ["فالصبي والمجنون لا تصح عقودهما ولا إقرارهما ولا يقع طلاقهما", "وإن أتلفا شيئا"],
+              "why": "His words (contracts, admissions, divorce) have no effect alone. What he destroys must be paid for."
+            },
+            {
+              "kind": "teach",
+              "id": "slave",
+              "title": "The slave's words",
+              "ar": "وأما العبد فأقواله نافذة في حق نفسه غير نافذة في حق مولاه فإن أقر بمال لزمه بعد الحرية ولم يلزمه في الحال وإن أقر بحد أو قصاص لزمه في الحال وينفذ طلاقه",
+              "en": "In al-Quduri's time, a slave's words counted against himself but not against his master. If he admitted owing money, it bound him only after he was freed. If he admitted something carrying a hadd (a fixed punishment) or qisas (equal retaliation), it bound him at once. His divorce took effect."
+            },
+            {
+              "kind": "choose",
+              "id": "slave-case",
+              "ask": "In al-Quduri's time, a slave admits he owes a man 100 dirhams. When must he pay?",
+              "options": ["After he is freed", "At once, from his master's wealth", "Never: his words count for nothing"],
+              "answer": 0,
+              "source": "فإن أقر بمال لزمه بعد الحرية ولم يلزمه في الحال",
+              "why": "An admission of money touches his master's rights, so it waits until he is free."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Childhood, slavery and insanity are the three causes of restriction", "right": true },
+                { "text": "An insane person may deal with his guardian's permission" },
+                { "text": "A slave's divorce takes effect", "right": true },
+                { "text": "A child who destroys something owes nothing" },
+                { "text": "A guardian may approve a child's sale if it is good for him", "right": true }
+              ],
+              "source": ["الصغر والرق والجنون", "ولا يجوز تصرف المجنون المغلوب على عقله بحال", "وينفذ طلاقه", "إن شاء أجازه إذا كان فيه مصلحة"],
+              "why": "The insane cannot deal at all, and restriction does not cover a child's deeds. The other three are al-Quduri's words."
+            }
+          ]
+        },
+        {
+          "id": "hajr-safih",
+          "title": "The spendthrift",
+          "arabic": "لا يحجر على السفيه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "no-hajr",
+              "title": "No restriction on the adult spendthrift",
+              "ar": "على السفيه إذا كان بالغا عاقلا حرا وتصرفه في ماله جائز وإن كان مبذرا مفسدا يتلف ماله فيما لا غرض له فيه ولا مصلحة",
+              "en": "A safih is a spendthrift: someone who wastes his money. Abu Hanifa said: a spendthrift who is adult, sane and free is not restricted. His dealings with his money are valid, even if he squanders it on things with no purpose or benefit."
+            },
+            {
+              "kind": "choose",
+              "id": "waste-case",
+              "ask": "Tariq is 30, sane and free, and wastes his money on things of no use. His family asks the judge to restrict him. According to Abu Hanifa?",
+              "options": ["He is not restricted: his dealings stand", "He is restricted until he is sensible", "He is restricted until he turns 40"],
+              "answer": 0,
+              "source": "على السفيه إذا كان بالغا عاقلا حرا وتصرفه في ماله جائز",
+              "why": "Abu Hanifa does not restrict an adult, sane, free spendthrift."
+            },
+            {
+              "kind": "teach",
+              "id": "twenty-five",
+              "title": "Until twenty-five",
+              "ar": "إلا أنه قال: إذا بلغ الغلام غير رشيد لم يسلم إليه ماله حتى يبلغ خمسا وعشرين سنة",
+              "en": "Rashid means sensible with money. Abu Hanifa said: if a boy comes of age not sensible, his wealth is not handed to him until he reaches twenty-five."
+            },
+            {
+              "kind": "teach",
+              "id": "before-25",
+              "title": "Before and at twenty-five",
+              "ar": "فإن تصرف فيه قبل ذلك نفذ تصرفه فإذا بلغ خمسا وعشرين سنة سلم إليه",
+              "en": "If he deals with that wealth before then, his dealing still goes through. When he reaches twenty-five, it is handed to him, even if he still has not shown good sense."
+            },
+            {
+              "kind": "choose",
+              "id": "age-gap",
+              "ask": "Complete Abu Hanifa's rule.",
+              "ar": "لم يسلم إليه ماله حتى يبلغ ____ سنة",
+              "options": ["خمسا وعشرين", "ثماني عشرة", "خمس عشرة"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "لم يسلم إليه ماله حتى يبلغ خمسا وعشرين سنة",
+              "why": "خمسا وعشرين: twenty-five. Eighteen and fifteen are ages of coming of age, not of handing over wealth."
+            },
+            {
+              "kind": "choose",
+              "id": "yahya-case",
+              "ask": "Yahya came of age not sensible with money. He is now 22, and his wealth has not been handed to him, but he sells a field from it. According to Abu Hanifa, is the sale valid?",
+              "options": ["Yes: his dealing goes through", "No: he is restricted until 25", "Only if the judge approves it"],
+              "answer": 0,
+              "source": "فإن تصرف فيه قبل ذلك نفذ تصرفه",
+              "why": "The wealth is held back until 25, but if he deals in it before then, his dealing goes through."
+            },
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "The view of Abu Yusuf and Muhammad",
+              "ar": "ويمنع من التصرف في ماله فإن باع لم ينفذ بيعه فإن كان فيه مصلحة أجازه الحاكم وإن أعتق عبدا نفذ عتقه وكان على العبد أن يسعى في قيمته وإن تزوج امرأة جاز نكاحه فإن سمى لها مهرا جاز منه مقدار مهر مثلها وبطل الفضل",
+              "en": "Note: Abu Yusuf and Muhammad say the spendthrift IS restricted and kept from dealing with his money. His sale does not go through unless the judge approves it as good for him. If he freed a slave, it took effect but the slave worked off his value. If he marries, the marriage is valid, but of the mahr (the gift a husband must give his bride) he named, only the usual amount for a woman like her counts; the extra is void."
+            },
+            {
+              "kind": "teach",
+              "id": "two-more",
+              "title": "More from the two companions",
+              "ar": "حتى يؤنس منه الرشد ولا يجوز تصرفه فيه وتخرج الزكاة من مال السفيه",
+              "en": "Note: the two also say a person who comes of age not sensible never gets his wealth until good sense is seen in him, and his dealings in it are not valid. Zakat is still taken from the spendthrift's wealth, and his children, wife and relatives he must support are provided for from it."
+            },
+            {
+              "kind": "teach",
+              "id": "hajj",
+              "title": "Hajj and bequests",
+              "ar": "فإن أراد حجة الإسلام لم يمنع منها ولا يسلم القاضي النفقة إليه ويسلمها إلى ثقة من الحاج ينفقها عليه في طريق الحج فإن مرض وأوصى بوصايا في القرب وأبواب الخير جاز ذلك في ثلث ماله",
+              "en": "If the restricted spendthrift wants to make his obligatory Hajj, he is not stopped. But the judge does not hand him the money; he gives it to a trustworthy pilgrim who spends it on him on the way. If he falls ill and leaves bequests for good causes, they are valid within a third of his wealth."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "According to Abu Hanifa, Hamid came of age not sensible with money. He is now 26 and still careless. What happens to his wealth?",
+              "options": ["It is handed to him", "It is kept from him until he is sensible", "The judge spends it for him"],
+              "answer": 0,
+              "source": "فإذا بلغ خمسا وعشرين سنة سلم إليه",
+              "why": "At twenty-five the wealth is handed over, even if good sense has not been seen in him."
+            }
+          ]
+        },
+        {
+          "id": "hajr-bulugh",
+          "title": "Coming of age",
+          "arabic": "وبلوغ الغلام الاحتلام",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "boy",
+              "title": "A boy comes of age",
+              "ar": "وبلوغ الغلام الاحتلام والإحبال والإنزال إذا وطئ فإن لم يوجد ذلك فحتى يتم له ثماني عشرة سنة عند أبي حنيفة",
+              "en": "Bulugh is coming of age (puberty). A boy comes of age by a wet dream, or by being able to father a child. If none of these signs appears, then when he completes eighteen years, according to Abu Hanifa."
+            },
+            {
+              "kind": "teach",
+              "id": "girl",
+              "title": "A girl comes of age",
+              "ar": "وبلوغ الجارية بالحيض والاحتلام والحبل فإن لم يوجد ذلك فحتى يتم لها سبع عشرة سنة",
+              "en": "A girl comes of age by her period, a wet dream, or pregnancy. If none of these appears, then when she completes seventeen years. Note: Abu Yusuf and Muhammad say a boy and a girl are both of age at fifteen."
+            },
+            {
+              "kind": "sort",
+              "id": "signs",
+              "ask": "A sign for a boy or for a girl?",
+              "into": ["Boy", "Girl"],
+              "items": [
+                ["Her monthly period", "Girl"],
+                ["Being able to father a child", "Boy"],
+                ["Becoming pregnant", "Girl"],
+                ["Eighteen years with no sign", "Boy"],
+                ["Seventeen years with no sign", "Girl"]
+              ],
+              "source": ["وبلوغ الغلام الاحتلام والإحبال والإنزال", "فحتى يتم له ثماني عشرة سنة", "وبلوغ الجارية بالحيض والاحتلام والحبل فإن لم يوجد ذلك فحتى يتم لها سبع عشرة سنة"],
+              "why": "Period and pregnancy are a girl's signs, fathering a child a boy's. With no sign: 18 for a boy, 17 for a girl."
+            },
+            {
+              "kind": "choose",
+              "id": "adam-case",
+              "ask": "Zayd has shown none of the signs of coming of age. At what age is he counted an adult, according to Abu Hanifa?",
+              "options": ["18", "15", "17", "21"],
+              "answer": 0,
+              "source": "فإن لم يوجد ذلك فحتى يتم له ثماني عشرة سنة عند أبي حنيفة",
+              "why": "With no sign, a boy comes of age when he completes eighteen years."
+            },
+            {
+              "kind": "choose",
+              "id": "girl-case",
+              "ask": "Maryam has shown none of the signs. When is she counted an adult?",
+              "options": ["When she completes 17", "When she completes 18", "When she completes 15"],
+              "answer": 0,
+              "source": "فإن لم يوجد ذلك فحتى يتم لها سبع عشرة سنة",
+              "why": "For a girl with no sign, it is seventeen."
+            },
+            {
+              "kind": "teach",
+              "id": "word",
+              "title": "Taking their word",
+              "ar": "الغلام والجارية وأشكل أمرهما في البلوغ وقالا: قد بلغنا فالقول قولهما وأحكامهما أحكام البالغين",
+              "en": "When a boy or girl is near the age and it is unclear whether they have come of age, and they say \"We have come of age\", their word is accepted, and they are treated as adults."
+            },
+            {
+              "kind": "choose",
+              "id": "word-case",
+              "ask": "Thirteen-year-old Idris is near the age of puberty and says, \"I have come of age.\" Nothing shows otherwise. What is the ruling?",
+              "options": ["His word is accepted and he is treated as an adult", "He must wait until 18", "He needs two witnesses"],
+              "answer": 0,
+              "source": "وقالا: قد بلغنا فالقول قولهما وأحكامهما أحكام البالغين",
+              "why": "Near the age and unclear, their own word is accepted."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A wet dream is a sign for both boys and girls", "right": true },
+                { "text": "A girl with no sign comes of age at 17", "right": true },
+                { "text": "A boy with no sign comes of age at 15, according to Abu Hanifa" },
+                { "text": "A child near the age who says he has come of age is believed", "right": true },
+                { "text": "Pregnancy is not a sign of coming of age" }
+              ],
+              "source": ["وبلوغ الغلام الاحتلام", "والاحتلام والحبل", "فحتى يتم لها سبع عشرة سنة", "فحتى يتم له ثماني عشرة سنة عند أبي حنيفة", "فالقول قولهما"],
+              "why": "The wet dream is in both lists, 17 is for girls, and their word is accepted. Abu Hanifa's age for a boy is 18, and pregnancy is a sign."
+            }
+          ]
+        },
+        {
+          "id": "hajr-debt",
+          "title": "The debtor who will not pay",
+          "arabic": "لا أحجر في الدين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "no-hajr",
+              "title": "No restriction for debt",
+              "ar": "وقال أبو حنيفة: لا أحجر في الدين: وإذا وجبت الديون على رجل وطلب غرماؤه حبسه والحجر عليه لم أحجر عليه",
+              "en": "Abu Hanifa said: I do not restrict for debt. If a man has debts, and his creditors (the people he owes) ask for him to be imprisoned and restricted, I do not restrict him."
+            },
+            {
+              "kind": "teach",
+              "id": "prison",
+              "title": "Prison until he sells",
+              "ar": "لم يتصرف فيه الحاكم ولكن يحبسه أبدا حتى يبيعه في دينه",
+              "en": "If he has property, the judge does not deal with it himself. Instead he keeps him imprisoned until he sells it himself for his debt."
+            },
+            {
+              "kind": "teach",
+              "id": "coins",
+              "title": "When he has the same money",
+              "ar": "ودينه دراهم قضاها القاضي بغير أمره وإن كان دينه دراهم وله دنانير باعها القاضي في دينه",
+              "en": "But if he has dirhams (silver coins) and owes dirhams, the judge pays the debt from them without his order. If he owes dirhams and has dinars (gold coins), the judge sells the dinars for his debt."
+            },
+            {
+              "kind": "choose",
+              "id": "same-case",
+              "ask": "Umar owes 500 dirhams and has 800 dirhams at home, but refuses to pay. What does the judge do, according to Abu Hanifa?",
+              "options": ["Pays the 500 from his dirhams without his order", "Imprisons him until he pays", "Restricts all his dealings"],
+              "answer": 0,
+              "source": "ودينه دراهم قضاها القاضي بغير أمره",
+              "why": "Dirhams owed and dirhams held: the judge simply pays the debt from them."
+            },
+            {
+              "kind": "choose",
+              "id": "land-case",
+              "ask": "Rashid owes £20,000 and owns a plot of land, but refuses to sell it. According to Abu Hanifa, what does the judge do?",
+              "options": ["Imprisons him until he sells it himself", "Sells the land for him", "Restricts him and shares the land among the creditors"],
+              "answer": 0,
+              "source": "لم يتصرف فيه الحاكم ولكن يحبسه أبدا حتى يبيعه في دينه",
+              "why": "The judge does not sell his property for him; he keeps him in prison until he sells it."
+            },
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "The view of Abu Yusuf and Muhammad",
+              "ar": "القاضي عليه ومنعه من البيع والتصرف والإقرار حتى لا يضر بالغرماء وباع ماله إن امتنع من بيعه وقسمه بين غرمائه الحصص فإن أقر في حال الحجر بإقرار لزمه ذلك بعد قضاء الديون",
+              "en": "Note: Abu Yusuf and Muhammad say that if the creditors of the muflis (the bankrupt) ask, the judge restricts him: he stops him selling, dealing and making admissions so the creditors are not harmed, sells his property if he refuses, and shares it among them by their shares. An admission made while restricted binds him only after the debts are paid."
+            },
+            {
+              "kind": "teach",
+              "id": "keep",
+              "title": "His family is still provided for",
+              "ar": "وينفق على المفلس من ماله وعلى زوجته وأولاده الصغار وذوي أرحامه",
+              "en": "From the bankrupt's own wealth, he is still provided for, and so are his wife, his young children and the relatives he must support."
+            },
+            {
+              "kind": "teach",
+              "id": "which",
+              "title": "Which debts mean prison",
+              "ar": "وإن لم يعرف للمفلس مال وطلب غرماؤه حبسه وهو يقول لا مال لي حبسه الحاكم في كل دين التزمه بدلا عن مال حصل يده كثمن مبيع وبدل القرض وفي كل دين بعقد كالمهر والكفالة ولم يحبسه فيما سوى ذلك",
+              "en": "If he has no known wealth and says \"I have nothing\", the judge still imprisons him for a debt he took on in exchange for wealth that came into his hands (the price of something bought, a loan), or a debt he took on by a contract (a mahr, or a kafala: standing surety for someone). For other debts, like compensation for injuries, he is not imprisoned unless there is proof he has wealth."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "He says \"I have nothing\" and there is no proof he has wealth. May the judge imprison him for this debt?",
+              "into": ["May imprison", "May not"],
+              "items": [
+                ["The price of a car he bought", "May imprison"],
+                ["A loan he took", "May imprison"],
+                ["His wife's mahr", "May imprison"],
+                ["A debt he guaranteed for a friend", "May imprison"],
+                ["Compensation for an injury he caused", "May not"]
+              ],
+              "source": ["حبسه الحاكم في كل دين التزمه بدلا عن مال حصل يده كثمن مبيع وبدل القرض وفي كل دين بعقد كالمهر والكفالة ولم يحبسه فيما سوى ذلك", "إلا أن تقوم البينة أن له مالا"],
+              "why": "Debts for wealth he received (price, loan) or by contract (mahr, surety) mean prison. Others, like injury compensation, do not without proof of wealth."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Nabil owes 1000 dirhams and has 100 dinars. He will not pay. According to Abu Hanifa, what does the judge do?",
+              "options": ["Sells the dinars for the debt", "Waits until Nabil sells them himself", "Restricts Nabil from all dealing"],
+              "answer": 0,
+              "source": ["وإن كان دينه دراهم وله دنانير باعها القاضي في دينه", "وقال أبو يوسف ومحمد: إذا طلب غرماء المفلس"],
+              "why": "Owing dirhams and holding dinars, the judge sells the dinars to pay. Restricting him is the view of Abu Yusuf and Muhammad, not of Abu Hanifa."
+            }
+          ]
+        },
+        {
+          "id": "hajr-release",
+          "title": "Release, the sinner, and goods left with a bankrupt",
+          "arabic": "ومن أفلس وعنده متاع لرجل بعينه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "months",
+              "title": "Two or three months",
+              "ar": "وإذا حبسه القاضي شهرين أو ثلاثة يسأل عن حاله: فإن لم ينكشف له مال خلى سبيله وكذلك إذا أقام البينة أنه لا مال له",
+              "en": "When the judge has imprisoned him for two or three months, he asks about his situation. If no wealth comes to light, he lets him go. The same if he brings proof that he has nothing."
+            },
+            {
+              "kind": "choose",
+              "id": "release-case",
+              "ask": "Sami has been in prison for his debts for three months. The judge asks around and finds no wealth. What happens?",
+              "options": ["He is let go", "He stays until the debt is paid", "He stays another year"],
+              "answer": 0,
+              "source": "فإن لم ينكشف له مال خلى سبيله",
+              "why": "After two or three months, if no wealth appears, the judge releases him."
+            },
+            {
+              "kind": "teach",
+              "id": "after",
+              "title": "After release",
+              "ar": "ولا يحول بينه وبين غرمائه بعد خروجه من الحبس ويلازمونه",
+              "en": "After his release, the judge does not stand between him and his creditors: they may follow him around. But they cannot stop him from dealing or travelling. They take what he earns beyond his needs and share it by their shares."
+            },
+            {
+              "kind": "choose",
+              "id": "share-case",
+              "ask": "After release, Saeed earns £300 more than he needs. He owes Ali £2000 and Omar £1000. How is the £300 shared?",
+              "options": ["Ali £200, Omar £100", "£150 each", "All £300 to Ali, the bigger creditor"],
+              "answer": 0,
+              "source": "من التصرف والسفر ويأخذون فضل كسبه فيقسم بينهم بالحصص",
+              "why": "The extra earnings are shared by their shares of the debt, 2 : 1, so £200 and £100."
+            },
+            {
+              "kind": "teach",
+              "id": "two-note",
+              "title": "The view of the two companions",
+              "ar": "وقال أبو يوسف ومحمد: إذا فلسه الحاكم حال بينه وبين غرمائه",
+              "en": "Note: Abu Yusuf and Muhammad say that once the judge declares him bankrupt, he keeps the creditors from following him, unless they bring proof he has gained wealth."
+            },
+            {
+              "kind": "teach",
+              "id": "fasiq",
+              "title": "The sinner who manages well",
+              "ar": "ولا يحجر على الفاسق إذا كان مصلحا لماله والفسق الأصلي والطاريء سواء",
+              "en": "A fasiq is someone who openly commits sins. He is not restricted if he looks after his money well. It makes no difference whether he was always like that or became so later."
+            },
+            {
+              "kind": "choose",
+              "id": "fasiq-case",
+              "ask": "Karim neglects his prayers, but he runs his shop carefully and saves well. Is he restricted?",
+              "options": ["No: he manages his money well", "Yes: a sinner is restricted", "Only if he became a sinner after coming of age"],
+              "answer": 0,
+              "source": "ولا يحجر على الفاسق إذا كان مصلحا لماله",
+              "why": "Sin alone is not a cause of restriction when he manages his wealth well, whenever the sin began."
+            },
+            {
+              "kind": "teach",
+              "id": "goods",
+              "title": "Your goods with a bankrupt",
+              "ar": "ومن أفلس وعنده متاع لرجل بعينه ابتاعه منه فصاحب المتاع أسوة الغرماء فيه",
+              "en": "If someone goes bankrupt while he still has the very goods he bought from a seller (and has not paid), the seller has no special claim: he is equal with the other creditors in it."
+            },
+            {
+              "kind": "choose",
+              "id": "goods-case",
+              "ask": "Hassan sold a carpet to Bilal on credit. Bilal goes bankrupt with the carpet still at home and owes others too. What can Hassan do?",
+              "options": ["Share with the other creditors, equal to them", "Take back his carpet", "Be paid first, before the others"],
+              "answer": 0,
+              "source": "فصاحب المتاع أسوة الغرماء فيه",
+              "why": "The seller is equal with the other creditors; he has no right to take the carpet back."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A debtor imprisoned two or three months with no wealth found is released", "right": true },
+                { "text": "After release, the creditors may stop him travelling" },
+                { "text": "Creditors share his spare earnings by their shares", "right": true },
+                { "text": "A sinner who manages his money well is restricted" },
+                { "text": "A seller is equal with other creditors in goods left with a bankrupt", "right": true }
+              ],
+              "source": ["شهرين أو ثلاثة يسأل عن حاله: فإن لم ينكشف له مال خلى سبيله", "من التصرف والسفر ويأخذون فضل كسبه فيقسم بينهم بالحصص", "ولا يحجر على الفاسق إذا كان مصلحا لماله", "فصاحب المتاع أسوة الغرماء فيه"],
+              "why": "He is released, the creditors follow him and share his spare earnings but cannot stop his travel, the careful sinner is not restricted, and the seller is one creditor among many."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "iqrar",
+      "title": "Admissions",
+      "arabic": "الإقرار",
+      "kitab": "كتاب الإقرار",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "iqrar-vague",
+          "title": "Admitting a debt, even a vague one",
+          "arabic": "إذا أقر الحر البالغ العاقل بحق لزمه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "binds",
+              "title": "An admission binds",
+              "ar": "إذا أقر الحر البالغ العاقل بحق لزمه إقراره مجهولا كان ما أقر به أو معلوما ويقال له: بين المجهول",
+              "en": "Iqrar is an admission: saying that you owe someone something. When a free, adult, sane person admits a right, his admission binds him, whether the thing is vague or clear. If it is vague, he is told: explain it."
+            },
+            {
+              "kind": "teach",
+              "id": "something",
+              "title": "\"I owe him something\"",
+              "ar": "فإن قال لفلان على شيء لزمه أن بين ماله قيمة والقول فيه قوله مع يمينه إن ادعى المقر له أكثر من ذلك",
+              "en": "If he says \"I owe so-and-so something\", he must name a thing that has value. His word is accepted, with his oath (yamin: swearing by Allah), if the other person claims more."
+            },
+            {
+              "kind": "choose",
+              "id": "something-case",
+              "ask": "Ali says, \"I owe Omar something.\" Asked to explain, he says it is 5 dirhams. Omar claims it is 100. Whose word is taken?",
+              "options": ["Ali's, with his oath", "Omar's, with his oath", "Neither: the admission is void because it was vague"],
+              "answer": 0,
+              "source": "والقول فيه قوله مع يمينه إن ادعى المقر له أكثر من ذلك",
+              "why": "A vague admission still binds. The one who admitted explains it, and swears if the other claims more."
+            },
+            {
+              "kind": "teach",
+              "id": "amounts",
+              "title": "Wealth, great wealth, dirhams",
+              "ar": "فالمرجع في بيانه إليه ويقبل قوله في القليل والكثير فإن قال: له علي مال عظيم لم يصدق في أقل من مائتي درهم وإن قال: دراهم كثيرة لم يصدق في أقل من عشرة دراهم وإن قال: دراهم فهي ثلاثة إلا أن يبين أكثر منها",
+              "en": "If he says \"I owe him wealth\", it is for him to explain, and a little or a lot is accepted. \"Great wealth\" cannot be less than 200 dirhams. \"Many dirhams\" cannot be less than 10. Just \"dirhams\" means 3, unless he says more."
+            },
+            {
+              "kind": "choose",
+              "id": "many-case",
+              "ask": "Hamza admits, \"I owe Zaid many dirhams.\" What is the least he can be held to?",
+              "options": ["10 dirhams", "3 dirhams", "200 dirhams", "Whatever he says"],
+              "answer": 0,
+              "source": "وإن قال: دراهم كثيرة لم يصدق في أقل من عشرة دراهم",
+              "why": "\"Many dirhams\" cannot be less than ten."
+            },
+            {
+              "kind": "choose",
+              "id": "great-gap",
+              "ask": "Complete the rule for \"great wealth\".",
+              "ar": "فإن قال: له علي مال عظيم لم يصدق في أقل من ____ درهم",
+              "options": ["مائتي", "عشرة", "ثلاثة"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "فإن قال: له علي مال عظيم لم يصدق في أقل من مائتي درهم",
+              "why": "مائتي: two hundred dirhams for \"great wealth\". Ten is for \"many dirhams\", three for \"dirhams\"."
+            },
+            {
+              "kind": "teach",
+              "id": "kadha",
+              "title": "\"So-and-so many dirhams\"",
+              "ar": "وإن قال: له علي كذا كذا درهما لم يصدق في أقل من أحد عشر درهما",
+              "en": "If he says \"I owe him kadha kadha dirhams\" (\"so-many so-many\", two numbers run together, like eleven), it cannot be less than eleven. The next sentence in this copy gives twenty-one, for the form joined by \"and\" (kadha wa kadha), like twenty-one."
+            },
+            {
+              "kind": "teach",
+              "id": "with-me",
+              "title": "\"On me\" or \"with me\"",
+              "ar": "فقد أقر بدين وإن قال: عندي أو: معي فهو إقرار بأمانة في يده",
+              "en": "\"He has on me\" (\"alayya\") is an admission of a debt. \"I have it\" or \"It is with me\" is an admission of an amana: something of his kept in trust in my hands."
+            },
+            {
+              "kind": "teach",
+              "id": "replies",
+              "title": "Replies that admit",
+              "ar": "وإن قال له رجل لي عليك ألف فقال اتزنها أو انتقدها أو أجلني بها أو قد قضيتكها فهو إقرار",
+              "en": "If a man says \"You owe me a thousand\" and he replies \"Weigh it\", \"Check the coins\", \"Give me time for it\" or \"I have already paid it\", that is an admission."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Someone says, \"You owe me 1000.\" Which replies are an admission?",
+              "options": [
+                { "text": "\"Weigh it out\"", "right": true },
+                { "text": "\"Give me more time to pay it\"", "right": true },
+                { "text": "\"I have already paid you\"", "right": true },
+                { "text": "\"I owe you nothing\"" },
+                { "text": "\"Prove it\"" }
+              ],
+              "source": "فقال اتزنها أو انتقدها أو أجلني بها أو قد قضيتكها فهو إقرار",
+              "why": "Weighing it, asking for time, or saying it was paid all accept that the debt existed."
+            },
+            {
+              "kind": "choose",
+              "id": "later-case",
+              "ask": "Yusuf admits, \"I owe Bilal £500, due next year.\" Bilal agrees about the debt but says it is due now. What is the ruling?",
+              "options": ["The debt is due now, and Bilal swears about the date", "It is due next year, as Yusuf said", "The admission is void because they disagree"],
+              "answer": 0,
+              "source": ["ومن أقر بدين مؤجل فصدقه المقر له في الدين وكذبه في التأجيل لزمه الدين", "ويستحلف المقر له في الأجل"],
+              "why": "Yusuf admitted the debt, and the delay is a separate claim. So the debt is due now, and Bilal takes an oath about the delay."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Rami says, \"Sami has 100 with me (‘indi).\" What has he admitted?",
+              "options": ["That he holds 100 of Sami's in trust", "A debt of 100 owed to Sami", "Nothing, because he gave no reason"],
+              "answer": 0,
+              "source": "وإن قال: عندي أو: معي فهو إقرار بأمانة في يده",
+              "why": "\"With me\" admits a trust held in his hands, not a debt."
+            }
+          ]
+        },
+        {
+          "id": "iqrar-except",
+          "title": "Exceptions and conditions",
+          "arabic": "ومن أقر واستثنى متصلا بإقراره",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "except",
+              "title": "An exception said straight away",
+              "ar": "ومن أقر واستثنى متصلا بإقراره صح الاستثناء ولزمه الباقي سواء استثنى الأقل أو الأكثر فإن استثنى الجميع لزمه الإقرار وبطل الاستثناء",
+              "en": "If he admits something and adds an exception straight away, in the same breath (\"except...\"), the exception is valid and he owes the rest, whether he takes out less or more than half. If he takes out all of it, the whole admission binds him and the exception is void."
+            },
+            {
+              "kind": "choose",
+              "id": "seventy",
+              "ask": "Faris says, \"I owe Ziyad 100 dirhams except 30.\" What does he owe?",
+              "options": ["70", "100", "30"],
+              "answer": 0,
+              "source": "صح الاستثناء ولزمه الباقي",
+              "why": "The exception was joined to the admission, so he owes what is left: 70."
+            },
+            {
+              "kind": "choose",
+              "id": "all",
+              "ask": "Faris says, \"I owe Ziyad 100 dirhams except 100.\" What does he owe?",
+              "options": ["100", "Nothing", "50"],
+              "answer": 0,
+              "source": "فإن استثنى الجميع لزمه الإقرار وبطل الاستثناء",
+              "why": "Taking out everything cancels the exception, not the admission. He owes all 100."
+            },
+            {
+              "kind": "teach",
+              "id": "dinar",
+              "title": "Except a dinar",
+              "ar": "وإن قال: له علي مائة درهم إلا دينار أو: إلا قفيز حنطة لزمه مائة درهم إلا قيمة الدينار أو القفيز",
+              "en": "If he says \"100 dirhams except a dinar\" or \"except a qafiz of wheat\" (a measure of grain), he owes 100 dirhams minus the value of the dinar or of the wheat."
+            },
+            {
+              "kind": "teach",
+              "id": "and",
+              "title": "\"A hundred and a dirham\"",
+              "ar": "وإن قال: له علي مائة ودرهم فالمائة كلها دراهم",
+              "en": "\"I owe him a hundred and a dirham\": the hundred are all dirhams. But \"a hundred and a garment\" means one garment, and it is for him to explain what the hundred are."
+            },
+            {
+              "kind": "choose",
+              "id": "garment",
+              "ask": "Qasim says, \"I owe him a hundred and a garment.\" What does he owe?",
+              "options": ["One garment, and he explains what the hundred are", "101 garments", "100 dirhams and a garment"],
+              "answer": 0,
+              "source": "مائة وثوب لزمه ثوب واحد والمرجع في تفسير المائة إليه",
+              "why": "The garment is one garment. Unlike with a dirham, the hundred is not taken to be garments: he explains it."
+            },
+            {
+              "kind": "teach",
+              "id": "inshallah",
+              "title": "In sha' Allah, and an option",
+              "ar": "ومن أقر بحق وقال إن شاء الله متصلا بإقراره لم يلزمه الإقرار ومن أقر وشرط الخيار لزمه الإقرار وبطل الخيار",
+              "en": "If he admits something and says \"in sha' Allah\" (if Allah wills) straight after it, the admission does not bind him. If he admits something but adds an option to take it back (khiyar), the admission binds him and the option is void."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Does the admission bind him?",
+              "into": ["Binds", "Does not bind"],
+              "items": [
+                ["\"I owe him 50, in sha' Allah\", said straight away", "Does not bind"],
+                ["\"I owe him 50, and I have three days to take it back\"", "Binds"],
+                ["\"I owe him 50 except 50\"", "Binds"],
+                ["\"I owe him 50 except 20\"", "Binds"]
+              ],
+              "source": ["وقال إن شاء الله متصلا بإقراره لم يلزمه الإقرار", "ومن أقر وشرط الخيار لزمه الإقرار وبطل الخيار", "فإن استثنى الجميع لزمه الإقرار", "صح الاستثناء ولزمه الباقي"],
+              "why": "Only \"in sha' Allah\" joined to it stops an admission. An option is void, a total exception is void, and a part exception leaves the rest (30)."
+            },
+            {
+              "kind": "teach",
+              "id": "house",
+              "title": "The house and its building",
+              "ar": "فللمقر له الدار والبناء وإن قال: بناء هذه الدار لي والعرصة لفلان فهو كما قال",
+              "en": "If he admits a house is someone's but takes out its building for himself, the other person gets the house and the building. But if he says \"The building of this house is mine and the 'arsa (the bare land) is so-and-so's\", it is as he said."
+            },
+            {
+              "kind": "choose",
+              "id": "house-case",
+              "ask": "Jamal says, \"This house belongs to Nadir, except its building, which is mine.\" What does Nadir get?",
+              "options": ["The house and the building", "Only the land", "Only the building"],
+              "answer": 0,
+              "source": ["ومن أقر بدار", "فللمقر له الدار والبناء"],
+              "why": "The building is part of the house, so it cannot be taken out: Nadir gets both."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "An exception must be joined to the admission", "right": true },
+                { "text": "Taking out everything cancels the whole admission" },
+                { "text": "\"100 except a dinar\" means 100 dirhams minus the dinar's value", "right": true },
+                { "text": "\"The building is mine and the land is his\" is taken as he said", "right": true },
+                { "text": "Adding an option lets him take the admission back" }
+              ],
+              "source": ["ومن أقر واستثنى متصلا بإقراره صح الاستثناء", "فإن استثنى الجميع لزمه الإقرار وبطل الاستثناء", "لزمه مائة درهم إلا قيمة الدينار", "فهو كما قال", "لزمه الإقرار وبطل الخيار"],
+              "why": "A joined exception works and a total one fails; the option is void. The dinar is valued and taken off, and building-and-land is as he said."
+            }
+          ]
+        },
+        {
+          "id": "iqrar-inside",
+          "title": "Things inside things, and sums",
+          "arabic": "ومن أقر بتمر في قوصرة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "basket",
+              "title": "Dates in a basket, an animal in a stable",
+              "ar": "ومن أقر بتمر في قوصره لزمه التمر والقوصرة ومن أقر بدابة في إصطبل لزمه الدابة خاصة",
+              "en": "If he admits \"dates in a basket\" (qawsara, a basket woven from palm leaves), he owes the dates and the basket. If he admits \"an animal in a stable\", he owes only the animal."
+            },
+            {
+              "kind": "teach",
+              "id": "cloth",
+              "title": "A garment in a garment",
+              "ar": "وإن قال: غصبت ثوبا في منديل لزماه جميعا وإن قال: له علي ثوب في ثوب لزماه وإن قال: له علي ثوب في عشرة أثواب لم يلزمه عند أبي حنيفة وأبي يوسف إلا ثوب واحد",
+              "en": "\"I took a garment in a cloth wrapper by force\": he owes both. \"A garment in a garment\": both. But \"a garment in ten garments\" means only one garment, say Abu Hanifa and Abu Yusuf. Note: Muhammad says eleven."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "What does he owe?",
+              "into": ["Both things", "Only the first"],
+              "items": [
+                ["Dates in a basket", "Both things"],
+                ["An animal in a stable", "Only the first"],
+                ["A garment in a cloth wrapper", "Both things"],
+                ["A garment in a garment", "Both things"],
+                ["A garment in ten garments", "Only the first"]
+              ],
+              "source": ["لزمه التمر والقوصرة ومن أقر بدابة في إصطبل لزمه الدابة خاصة", "غصبت ثوبا في منديل لزماه جميعا وإن قال: له علي ثوب في ثوب لزماه", "لم يلزمه عند أبي حنيفة وأبي يوسف إلا ثوب واحد"],
+              "why": "A basket and a wrapper are carried with what they hold, and so is a garment wrapped in a garment. A stable is not, and ten garments cannot wrap one."
+            },
+            {
+              "kind": "teach",
+              "id": "faulty",
+              "title": "Bringing back a damaged one",
+              "ar": "وجاء بثوب معيب",
+              "en": "If he admits he took a garment by force and then brings back a damaged one, his word is taken with his oath. The same if he admits dirhams and says they are zuyuf (poor-quality coins)."
+            },
+            {
+              "kind": "choose",
+              "id": "faulty-case",
+              "ask": "Murad admits he took Tahir's coat by force. He brings back a torn coat and says, \"This is the one.\" Tahir says it was a good one. Whose word is taken?",
+              "options": ["Murad's, with his oath", "Tahir's, with his oath", "Neither: Murad pays a new coat's price"],
+              "answer": 0,
+              "source": ["وقال محمد: يلزمه أحد عشر ثوبا", "وجاء بثوب معيب", "مع يمينه وكذلك لو أقر بدراهم وقال: هي زيوف"],
+              "why": "The one who admitted describes what he took, so his word is taken with an oath, as with bad coins."
+            },
+            {
+              "kind": "teach",
+              "id": "five",
+              "title": "Five in five",
+              "ar": "وإن قال: له علي خمسة في خمسة يريد الضرب والحساب لزمه خمسة واحدة وإن قال: أدرت خمسة مع خمسة لزمه عشرة",
+              "en": "If he says \"I owe him five in five\", meaning multiplication, he owes just five. If he says \"I meant five with five\", he owes ten."
+            },
+            {
+              "kind": "choose",
+              "id": "times-case",
+              "ask": "Asad says, \"I owe Rafi five in five,\" meaning five times five. What does he owe?",
+              "options": ["5", "25", "10"],
+              "answer": 0,
+              "source": "وإن قال: له علي خمسة في خمسة يريد الضرب والحساب لزمه خمسة واحدة",
+              "why": "Multiplying does not add to what he owes: it is five."
+            },
+            {
+              "kind": "choose",
+              "id": "with-gap",
+              "ask": "Complete the rule.",
+              "ar": "خمسة مع خمسة لزمه ____",
+              "options": ["عشرة", "خمسة", "خمسة وعشرون"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "خمسة مع خمسة لزمه عشرة",
+              "why": "عشرة: \"five with five\" adds them, so ten."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Admitting dates in a basket means owing the basket too", "right": true },
+                { "text": "Admitting an animal in a stable means owing the stable too" },
+                { "text": "\"Five in five\", meaning multiplication, is five", "right": true },
+                { "text": "\"Five with five\" is ten", "right": true },
+                { "text": "Bringing back a damaged garment, his word is never accepted" }
+              ],
+              "source": ["لزمه التمر والقوصرة", "لزمه الدابة خاصة", "لزمه خمسة واحدة", "خمسة مع خمسة لزمه عشرة", "مع يمينه"],
+              "why": "The basket comes with the dates but the stable does not; five in five is five, five with five is ten; and his word about the damaged garment is taken with an oath."
+            }
+          ]
+        },
+        {
+          "id": "iqrar-price",
+          "title": "From one to ten, and \"the price of...\"",
+          "arabic": "من درهم إلى عشرة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "range",
+              "title": "From one to ten",
+              "ar": "وإن قال: له علي من درهم إلى عشرة لزمه تسعة عند أبي حنيفة فيلزمه الإبتداء وما بعده",
+              "en": "\"I owe him from one dirham to ten\": he owes nine, says Abu Hanifa. He owes the start and what follows, but the end point drops. Note: Abu Yusuf and Muhammad say all ten."
+            },
+            {
+              "kind": "choose",
+              "id": "range-case",
+              "ask": "Anwar says, \"I owe Halim from one dirham to ten.\" According to Abu Hanifa, how many dirhams does he owe?",
+              "options": ["9", "10", "8", "1"],
+              "answer": 0,
+              "source": "لزمه تسعة عند أبي حنيفة",
+              "why": "The first and everything after it count; the last, the end point, drops: nine."
+            },
+            {
+              "kind": "teach",
+              "id": "named",
+              "title": "The price of a named item, not yet received",
+              "ar": "وإذا قال: له علي ألف درهم من ثمن عبد اشتريته منه ولم أقبضه فإن ذكر عبدا بعينه قيل للمقر له: إن شئت فسلم العبد وخذ الألف وإلا فلا شيء لك",
+              "en": "Al-Quduri's example from his time: \"I owe him 1000 dirhams as the price of a slave I bought from him and have not received.\" If he names a particular one, the other is told: hand it over and take the 1000, or else you get nothing. If it was \"this one\", nothing is owed until it is handed over."
+            },
+            {
+              "kind": "teach",
+              "id": "unnamed",
+              "title": "Not naming which",
+              "ar": "وإن قال: له علي ألف من ثمن عبد ولم يعينه لزمه الألف في قول أبي حنيفة",
+              "en": "If he says it was the price of one he does not identify, he owes the 1000, according to Abu Hanifa: his addition does not cancel the admission."
+            },
+            {
+              "kind": "teach",
+              "id": "wine",
+              "title": "\"The price of wine\"",
+              "ar": "ولو قال: له علي ألف من ثمن خمر أو خنزير لزمه الألف ولم يقبل تفسيره",
+              "en": "If he says \"I owe him 1000 for wine or pork\", he owes the 1000 and his explanation is not accepted: he is trying to take back his admission with a reason that would cancel it."
+            },
+            {
+              "kind": "choose",
+              "id": "wine-case",
+              "ask": "Kamal admits, \"I owe Tamim 1000, the price of some wine.\" What is the ruling?",
+              "options": ["He owes the 1000; his explanation is not accepted", "He owes nothing, since a wine sale is void", "He owes half"],
+              "answer": 0,
+              "source": "لزمه الألف ولم يقبل تفسيره",
+              "why": "He admitted the 1000, and the explanation that would cancel it is not accepted."
+            },
+            {
+              "kind": "teach",
+              "id": "bad-coins",
+              "title": "\"The price of goods, in bad coins\"",
+              "ar": "ولو قال: له علي ألف من ثمن متاع وهي زيوف",
+              "en": "If he says \"I owe him 1000 for some goods, and they are bad coins\", and the other disagrees, he owes good coins, according to Abu Hanifa."
+            },
+            {
+              "kind": "choose",
+              "id": "this-case",
+              "ask": "Majid says, \"I owe him 1000, the price of this item I bought from him and haven't received.\" The seller never hands it over. What does Majid owe?",
+              "options": ["Nothing, until the item is handed over", "The 1000 at once", "Half, as a fair split"],
+              "answer": 0,
+              "source": "لم يلزمه حتى يسلم العبد فإن سلم العبد لزمه الألف وإن لم يسلمه لم تلزمه",
+              "why": "An admission tied to \"this\" item's price only binds when the item is handed over."
+            },
+            {
+              "kind": "teach",
+              "id": "parts",
+              "title": "A ring, a sword, a canopy",
+              "ar": "ومن أقر لغيره بخاتم فله الحلقة والفص وإن أقر له بسيف فله النصل والجفن والحمائل وإن أقر بحجلة فله العيدان والكسوة",
+              "en": "Admitting a ring is someone's gives him the band and the stone. A sword: the blade, the sheath and the straps. A hajala (a canopy over a bed): the poles and the cloth cover."
+            },
+            {
+              "kind": "pick",
+              "id": "sword",
+              "ask": "Faisal admits a sword belongs to Zaid. What does Zaid get?",
+              "options": [
+                { "text": "The blade", "right": true },
+                { "text": "The sheath", "right": true },
+                { "text": "The carrying straps", "right": true },
+                { "text": "Only the blade" },
+                { "text": "The shield that hangs beside it" }
+              ],
+              "source": "وإن أقر له بسيف فله النصل والجفن والحمائل",
+              "why": "A sword includes its blade, sheath and straps; nothing more."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "\"From one to ten\" is nine, according to Abu Hanifa", "right": true },
+                { "text": "\"1000 for wine\" means he owes nothing" },
+                { "text": "A ring includes its stone", "right": true },
+                { "text": "\"1000 for goods, in bad coins\" means he owes good coins, according to Abu Hanifa", "right": true },
+                { "text": "A canopy means only its cloth" }
+              ],
+              "source": ["لزمه تسعة عند أبي حنيفة", "لزمه الألف ولم يقبل تفسيره", "فله الحلقة والفص", "لزمه الجياد في قول أبي حنيفة", "فله العيدان والكسوة"],
+              "why": "Nine, the stone, good coins. The wine excuse is rejected so he owes 1000, and a canopy includes its poles."
+            }
+          ]
+        },
+        {
+          "id": "iqrar-illness",
+          "title": "The unborn, and admissions in the last illness",
+          "arabic": "إقرار المريض",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "unborn",
+              "title": "Owing an unborn child",
+              "ar": "وإن قال: لحمل فلانة علي ألف فإن قال أوصى به له فلان أو مات أبوه فورثه",
+              "en": "If he says \"I owe the unborn child of such-and-such woman 1000\" and explains \"so-and-so left it to him in a will\" or \"his father died and he inherited it\", the admission is valid. Note: if he gives no reason, Abu Yusuf says it is not valid."
+            },
+            {
+              "kind": "teach",
+              "id": "animal",
+              "title": "Admitting what is in the womb",
+              "ar": "وإذا أقر بحمل جارية أو حمل شاة لرجل صح الإقرار ولزمه",
+              "en": "If he admits that the unborn young of an animal (a sheep, say), or, in al-Quduri's time, of a slave woman, belongs to a man, the admission is valid and binds him."
+            },
+            {
+              "kind": "choose",
+              "id": "unborn-case",
+              "ask": "Rashid says, \"I owe Hind's unborn child 1000, because its father died and it inherited from him.\" Is the admission valid?",
+              "options": ["Yes: he gave a reason that makes sense", "No: an unborn child can't be owed anything", "Only after the child is born and names him"],
+              "answer": 0,
+              "source": ["وإن أبهم الإقرار لم يصح عند أبي يوسف", "أو مات أبوه فورثه"],
+              "why": "Inheriting is a way an unborn child can own something, so the admission is valid."
+            },
+            {
+              "kind": "teach",
+              "id": "order",
+              "title": "Debts from health come first",
+              "ar": "وإذا أقر الرجل في مرض موتته بديون وعليه ديون في صحته وديون لزمته في مرضه بأسباب معلومة فدين الصحة والدين المعروف بالأسباب مقدم على غيره",
+              "en": "If a man in his final illness admits debts, while he has debts from when he was healthy and debts he took on in his illness for known reasons, then the health debts and the debts with known reasons come first. Anything left over goes to what he admitted while ill."
+            },
+            {
+              "kind": "teach",
+              "id": "no-health",
+              "title": "With no health debts",
+              "ar": "كان فيما أقر به في حال المرض وإن لم يكن عليه ديون في صحته جاز إقراره وكان المقر له أولى من الورثة",
+              "en": "If he has no debts from his time of health, his admission in illness is valid, and the person he admitted to comes before the heirs."
+            },
+            {
+              "kind": "choose",
+              "id": "order-case",
+              "ask": "Jafar dies of an illness. He owed £1000 from when he was healthy, and while ill he admitted owing a friend £500. His estate is £1200. What does the friend get?",
+              "options": ["£200", "£500", "Nothing", "£400"],
+              "answer": 0,
+              "source": "فدين الصحة والدين المعروف بالأسباب مقدم على غيره",
+              "why": "The £1000 health debt is paid first; the £200 left goes to what he admitted while ill."
+            },
+            {
+              "kind": "teach",
+              "id": "heir",
+              "title": "Admitting to an heir",
+              "ar": "وإقرار المريض لوارثه باطل إلا أن يصدقه فيه بقية الورثة",
+              "en": "An admission by a dying man to one of his heirs is void, unless the rest of the heirs agree with it."
+            },
+            {
+              "kind": "choose",
+              "id": "heir-case",
+              "ask": "In his final illness, Mansur admits he owes his son Ilyas £5000. His other children say it isn't true. Must the £5000 be paid to Ilyas?",
+              "options": ["No: an admission to an heir is void unless the other heirs agree", "Yes: an admission always binds", "Yes, but only from a third of the estate"],
+              "answer": 0,
+              "source": "وإقرار المريض لوارثه باطل إلا أن يصدقه فيه بقية الورثة",
+              "why": "Ilyas is an heir, and the other heirs do not agree, so the admission is void."
+            },
+            {
+              "kind": "teach",
+              "id": "stranger",
+              "title": "A stranger who turns out to be a son",
+              "ar": "ومن أقر لأجنبي في مرضه ثم قال هو ابني ثبت نسبه وبطل إقراره له",
+              "en": "If in illness he admits a debt to a stranger and then says \"He is my son\", the lineage (nasab) is established and the admission is cancelled, since the son is an heir. But if he admits to a woman who is a stranger and then marries her, the admission stays valid."
+            },
+            {
+              "kind": "teach",
+              "id": "divorced",
+              "title": "The wife divorced in illness",
+              "ar": "ومن طلق زوجته في مرضه ثلاثا ثم أقر لها بدين ومات فلها الأقل من الدين ومن ميراثها منه",
+              "en": "If he divorces his wife three times (a final divorce) in his illness, then admits a debt to her and dies, she gets whichever is less: the debt, or what she would have inherited from him."
+            },
+            {
+              "kind": "choose",
+              "id": "divorced-case",
+              "ask": "In his final illness, Imran divorces his wife finally, then admits he owes her £3000, and dies. Her share as an heir would have been £2000. What does she get?",
+              "options": ["£2000", "£3000", "£5000", "Nothing"],
+              "answer": 0,
+              "source": "فلها الأقل من الدين ومن ميراثها منه",
+              "why": "She gets the lesser of the debt (£3000) and her inheritance (£2000): £2000."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "A man admits a debt in his final illness. Valid or void?",
+              "into": ["Valid", "Void"],
+              "items": [
+                ["To a woman, whom he then marries", "Valid"],
+                ["To a stranger, whom he then says is his son", "Void"],
+                ["To his son, and the other heirs deny it", "Void"],
+                ["To a friend, and he has no debts from his health", "Valid"],
+                ["To his son, and all the other heirs agree", "Valid"]
+              ],
+              "source": ["ثم تزوجها لم يبطل إقراره لها", "ثم قال هو ابني ثبت نسبه وبطل إقراره له", "وإقرار المريض لوارثه باطل إلا أن يصدقه فيه بقية الورثة", "جاز إقراره وكان المقر له أولى من الورثة"],
+              "why": "Admissions to heirs fail unless the other heirs agree. A wife married after the admission keeps it, and a non-heir comes before the heirs."
+            }
+          ]
+        },
+        {
+          "id": "iqrar-nasab",
+          "title": "Admitting a relative",
+          "arabic": "ومن أقر بغلام يولد مثله لمثله",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "son",
+              "title": "Claiming a son",
+              "ar": "ومن أقر بغلام يولد مثله لمثله وليس له نسب معروف أنه ابنه",
+              "en": "If a man says a boy is his son, the boy is old enough to be his child, he has no known lineage (nasab: who his father is), and the boy agrees, the lineage is established, even if the man is ill. The boy then shares in the inheritance with the other heirs."
+            },
+            {
+              "kind": "pick",
+              "id": "conditions",
+              "ask": "A man says a boy is his son. What is needed for the lineage to be established?",
+              "options": [
+                { "text": "The boy could be his child, given their ages", "right": true },
+                { "text": "The boy has no known father", "right": true },
+                { "text": "The boy agrees", "right": true },
+                { "text": "The man must be healthy" },
+                { "text": "Two witnesses" }
+              ],
+              "source": ["ومن أقر بغلام يولد مثله لمثله وليس له نسب معروف أنه ابنه", "ثبت نسبه منه وإن كان مريضا ويشارك الورثة في الميراث"],
+              "why": "Possible by age, no known lineage, and his agreement. It holds even if the man is ill, with no witnesses needed."
+            },
+            {
+              "kind": "teach",
+              "id": "who",
+              "title": "Whom men and women may claim",
+              "ar": "ويجوز إقرار الرجل بالوالدين والولد والزوجة والمولى ويقبل إقرار المرأة بالوالدين والزوج والمولى ولا يقبل بالولد إلا أن يصدقها الزوج أو تشهد بولادتها قابلة",
+              "en": "A man may admit a parent, a child, a wife, or a mawla (a tie of clientship, from freeing a slave in al-Quduri's time). A woman may admit a parent, a husband or a mawla, but not a child, unless her husband agrees or a qabila (midwife) testifies she gave birth."
+            },
+            {
+              "kind": "choose",
+              "id": "mother-case",
+              "ask": "Salma says a young boy is her son. Her husband agrees. Is her claim accepted?",
+              "options": ["Yes: her husband agrees", "No: a woman can never admit a child", "Only if the boy is over 15"],
+              "answer": 0,
+              "source": "ولا يقبل بالولد إلا أن يصدقها الزوج أو تشهد بولادتها قابلة",
+              "why": "A woman's claim to a child is accepted when her husband agrees or a midwife testifies."
+            },
+            {
+              "kind": "teach",
+              "id": "others",
+              "title": "A brother or an uncle",
+              "ar": "ومن أقر بنسب من غير الوالدين والولد والزوج والزوجة والمولى - مثل الأخ والعم - لم يقبل إقراره في النسب فإن كان له وارث معروف قريب أو بعيد فهو أولى بالميراث من المقر له وإن لم يكن له وارث استحق المقر له ميراثه",
+              "en": "Claiming anyone else, like a brother or an uncle, does not establish lineage. If he has a known heir, near or distant, that heir comes first in inheritance. If he has no heir, the person he claimed inherits from him."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "A man admits this relative. Is lineage established?",
+              "into": ["Accepted", "Not accepted"],
+              "items": [
+                ["His father", "Accepted"],
+                ["His son", "Accepted"],
+                ["His wife", "Accepted"],
+                ["His brother", "Not accepted"],
+                ["His uncle", "Not accepted"]
+              ],
+              "source": ["ويجوز إقرار الرجل بالوالدين والولد والزوجة والمولى", "مثل الأخ والعم - لم يقبل إقراره في النسب"],
+              "why": "Parents, children, a wife and a mawla are accepted. A brother or an uncle is not."
+            },
+            {
+              "kind": "choose",
+              "id": "no-heir",
+              "ask": "Nuh has no heirs at all. He says, \"Hadi is my brother,\" and dies. What happens to his estate?",
+              "options": ["Hadi inherits it", "Nothing goes to Hadi, since lineage is not established", "Hadi gets a third"],
+              "answer": 0,
+              "source": "وإن لم يكن له وارث استحق المقر له ميراثه",
+              "why": "The lineage is not established, but with no other heir the one he named takes the inheritance."
+            },
+            {
+              "kind": "teach",
+              "id": "brother",
+              "title": "A son claims a brother",
+              "ar": "ومن مات أبوه فأقر بأخ له لم يثبت نسب أخيه ويشاركه في الميراث",
+              "en": "If a man's father dies and he says someone is his brother, the brother's lineage is not established, but he shares the inheritance with him."
+            },
+            {
+              "kind": "choose",
+              "id": "brother-case",
+              "ask": "Bilal's father dies, leaving Bilal as his only known son. Bilal says, \"Saad is my brother.\" What is the ruling?",
+              "options": ["Saad's lineage is not established, but he shares Bilal's inheritance", "Saad becomes Bilal's brother in every way", "Saad gets nothing"],
+              "answer": 0,
+              "source": "لم يثبت نسب أخيه ويشاركه في الميراث",
+              "why": "Admitting a brother does not establish lineage, but Bilal must share his inheritance with him."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Aisha says, \"Amina is my daughter.\" Her husband denies it and no midwife testifies. What is the ruling?",
+              "options": ["Not accepted", "Accepted: a mother knows her child", "Accepted if Amina agrees"],
+              "answer": 0,
+              "source": "ولا يقبل بالولد إلا أن يصدقها الزوج أو تشهد بولادتها قابلة",
+              "why": "A woman's claim to a child needs her husband's agreement or a midwife's testimony. Here there is neither."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ijara",
+      "title": "Hire and wages",
+      "arabic": "الإجارة",
+      "kitab": "كتاب الإجارة",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "ijara-contract",
+          "title": "What hire is, and making it known",
+          "arabic": "الإجارة: عقد على المنافع بعوض",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "A contract on benefits",
+              "ar": "الإجارة: عقد على المنافع بعوض",
+              "en": "Ijara is hire: renting a thing or hiring a person. It is a contract on the benefits (the use or the work) of something, for a payment. You don't buy the house; you buy living in it for a time."
+            },
+            {
+              "kind": "teach",
+              "id": "known",
+              "title": "Both sides must be known",
+              "ar": "ولا تصح حتى تكون المنافع معلومة والأجرة معلومة وما جاز أن يكون ثمنا في البيع جاز أن يكون أجرة في الإجارة",
+              "en": "Hire is valid only when the benefit is known and the ujra (the wage or rent) is known. Anything that can be a price in a sale can be the wage in a hire."
+            },
+            {
+              "kind": "choose",
+              "id": "vague-case",
+              "ask": "Imran rents a flat to Jalal \"for some money, we'll see how much.\" Is the hire valid?",
+              "options": ["No: the rent must be known", "Yes: they can agree the amount later", "Yes, if Jalal moves in"],
+              "answer": 0,
+              "source": "ولا تصح حتى تكون المنافع معلومة والأجرة معلومة",
+              "why": "Hire needs a known benefit and a known wage. \"Some money\" is not known."
+            },
+            {
+              "kind": "choose",
+              "id": "wage-gap",
+              "ask": "Complete the rule.",
+              "ar": "وما جاز أن يكون ثمنا في البيع جاز أن يكون ____ في الإجارة",
+              "options": ["أجرة", "منفعة", "رهنا"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وما جاز أن يكون ثمنا في البيع جاز أن يكون أجرة في الإجارة",
+              "why": "أجرة: whatever can be a price in a sale can be a wage in a hire."
+            },
+            {
+              "kind": "teach",
+              "id": "time",
+              "title": "Known by time",
+              "ar": "والمنافع تارة تصير معلومة بالمدة كاستئجار الدور للسكنى والأرضين للزراعة فيصح العقد على مدة معلومة أي مدة كانت",
+              "en": "The benefit becomes known in three ways. First, by a period of time, like renting houses to live in or land to farm. The contract is valid for any known period, however long."
+            },
+            {
+              "kind": "teach",
+              "id": "work",
+              "title": "Known by the work",
+              "ar": "وتارة تصير معلومة بالعمل والتسمية كمن استأجر رجلا على صبغ ثوب أو خياطته أو استأجر دابة ليحمل عليها مقدارا معلوما أو يركبها مسافة سماها",
+              "en": "Second, by naming the work: hiring a man to dye or sew a garment, or hiring an animal to carry a known load or to ride a named distance."
+            },
+            {
+              "kind": "teach",
+              "id": "point",
+              "title": "Known by pointing",
+              "ar": "وتارة تصير معلومة بالتعيين والإشارة كمن استأجر رجلا لينقل له هذا الطعام إلى موضع معلوم",
+              "en": "Third, by pointing to it: hiring a man to carry \"this food\" to a known place."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "How is the benefit made known?",
+              "into": ["By time", "By naming the work", "By pointing"],
+              "items": [
+                ["Renting a house for a year", "By time"],
+                ["Hiring a tailor to sew a shirt", "By naming the work"],
+                ["Hiring a porter to carry these boxes to the station", "By pointing"],
+                ["Renting farmland for three years", "By time"],
+                ["Hiring a horse to ride 20 miles", "By naming the work"]
+              ],
+              "source": ["والمنافع تارة تصير معلومة بالمدة", "وتارة تصير معلومة بالعمل والتسمية", "وتارة تصير معلومة بالتعيين والإشارة"],
+              "why": "Houses and land go by a period; sewing and a named distance by the work; \"these boxes\" by pointing."
+            },
+            {
+              "kind": "choose",
+              "id": "long-case",
+              "ask": "Rafiq rents a field to Sulayman for 30 years at a known rent. Is the period allowed?",
+              "options": ["Yes: any known period is valid", "No: the limit is one year", "Only up to ten years"],
+              "answer": 0,
+              "source": "فيصح العقد على مدة معلومة أي مدة كانت",
+              "why": "Al-Quduri says any known period, whatever its length."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Hire is a contract on benefits, for a payment", "right": true },
+                { "text": "The wage may be left unknown if both agree" },
+                { "text": "A benefit can be made known by a period of time", "right": true },
+                { "text": "A benefit can be made known by pointing", "right": true },
+                { "text": "Hire buys the thing itself" }
+              ],
+              "source": ["الإجارة: عقد على المنافع بعوض", "والأجرة معلومة", "تصير معلومة بالمدة", "تصير معلومة بالتعيين والإشارة"],
+              "why": "Hire is on benefits, not the thing itself, and the wage must be known. Time and pointing are two of the three ways."
+            }
+          ]
+        },
+        {
+          "id": "ijara-places",
+          "title": "Renting houses, shops and land",
+          "arabic": "استئجار الدور والحوانيت",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "houses",
+              "title": "Houses and shops",
+              "ar": "ويجوز استئجار الدور والحوانيت للسكنى وإن لم يبين ما يعمل فيها وله أن يعمل كل شيء إلا الحداد والقصار والطحان",
+              "en": "Houses and shops may be rented to use, even without saying what will be done in them. The tenant may do anything there except be a blacksmith, a qassar (a fuller, who beats and washes cloth) or a miller: heavy work that damages the building."
+            },
+            {
+              "kind": "pick",
+              "id": "shop",
+              "ask": "Sami rents a shop without saying what it's for. What may he do there?",
+              "options": [
+                { "text": "Sell clothes", "right": true },
+                { "text": "Store his books", "right": true },
+                { "text": "Live in it", "right": true },
+                { "text": "Set up a blacksmith's forge" },
+                { "text": "Run a grain mill" }
+              ],
+              "source": "وله أن يعمل كل شيء إلا الحداد والقصار والطحان",
+              "why": "Anything is allowed except a blacksmith, a fuller or a miller."
+            },
+            {
+              "kind": "teach",
+              "id": "land",
+              "title": "Land for farming",
+              "ar": "ويجوز استئجار الأراضي للزراعة ولا يصح العقد حتى يسمي ما يزرع فيها أو يقول: على أن يزرع فيها ما شاء",
+              "en": "Land may be rented to farm, but the contract is valid only if he names what he will grow, or says \"on condition that he grows whatever he likes.\""
+            },
+            {
+              "kind": "choose",
+              "id": "land-case",
+              "ask": "Ahmad rents a field \"for farming\" but they don't say what he will grow, and he doesn't say \"whatever I like.\" Is the hire valid?",
+              "options": ["No: the crop must be named, or \"whatever he likes\" said", "Yes: farming is enough", "Yes, if he grows wheat"],
+              "answer": 0,
+              "source": "ولا يصح العقد حتى يسمي ما يزرع فيها أو يقول: على أن يزرع فيها ما شاء",
+              "why": "Different crops treat the land differently, so it must be named, or left open by saying so."
+            },
+            {
+              "kind": "teach",
+              "id": "build",
+              "title": "Building and planting on rented land",
+              "ar": "ويجوز أن يستأجر الساحة ليبني فيها أو يغرس فيها نخلا أو شجرا فإذا انقضت مدة الإجارة لزمه أن يقلع البناء والغرس ويسلمها فارغة",
+              "en": "He may rent an open plot to build on, or to plant palms or trees. When the period ends, he must pull up the building and the trees and hand the land back empty."
+            },
+            {
+              "kind": "teach",
+              "id": "owner",
+              "title": "The landowner's choice",
+              "ar": "إلا أن يختار صاحب الأرض أن يغرم له قيمة ذلك مقلوعا فيملكه أو يرضى بتركه على حاله فيكون البناء لهذا والأرض لهذا",
+              "en": "Unless the landowner chooses to pay him what the building or trees are worth once pulled up, and own them, or agrees to leave them as they are, so the building belongs to one and the land to the other."
+            },
+            {
+              "kind": "choose",
+              "id": "trees-case",
+              "ask": "Amir rented a plot for 10 years and planted trees. The 10 years are over, and the owner says nothing special. What must Amir do?",
+              "options": ["Pull up the trees and hand the land back empty", "Leave the trees; they now belong to the owner", "Keep using the land while the trees stand"],
+              "answer": 0,
+              "source": "فإذا انقضت مدة الإجارة لزمه أن يقلع البناء والغرس ويسلمها فارغة",
+              "why": "At the end of the hire he must clear the land, unless the owner chooses otherwise."
+            },
+            {
+              "kind": "choose",
+              "id": "keep-case",
+              "ask": "The landowner wants to keep Amir's trees. What does he pay?",
+              "options": ["Their value as pulled-up trees", "Their value standing in the ground", "Nothing: they are on his land"],
+              "answer": 0,
+              "source": "أن يغرم له قيمة ذلك مقلوعا فيملكه",
+              "why": "He pays what they are worth pulled up (مقلوعا), and then owns them."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Allowed in the rental, or not?",
+              "into": ["Allowed", "Not allowed"],
+              "items": [
+                ["Living in a house rented without saying what for", "Allowed"],
+                ["Running a blacksmith's forge in a rented house", "Not allowed"],
+                ["Renting land \"to grow whatever he likes\"", "Allowed"],
+                ["Renting farmland without naming the crop at all", "Not allowed"],
+                ["Renting a plot to build a shed on", "Allowed"]
+              ],
+              "source": ["للسكنى وإن لم يبين ما يعمل فيها", "إلا الحداد والقصار والطحان", "أو يقول: على أن يزرع فيها ما شاء", "ولا يصح العقد حتى يسمي ما يزرع فيها", "ويجوز أن يستأجر الساحة ليبني فيها"],
+              "why": "Use of a house is open except heavy trades. Farmland needs a named crop or \"whatever he likes\", and building on a plot is allowed."
+            }
+          ]
+        },
+        {
+          "id": "ijara-animals",
+          "title": "Hiring animals: riders and loads",
+          "arabic": "استئجار الدواب للركوب والحمل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "rider",
+              "title": "A named rider",
+              "ar": "ويجوز استئجار الدواب للركوب والحمل فإن قال: على أن يركبها فلان أو يلبس الثوب فلان فأركبها غيره أو ألبسه غيره كان ضامنا إن عطبت الدابة أو تلف الثوب وكذلك كل ما يختلف باختلاف المستعمل",
+              "en": "Animals may be hired to ride or to carry loads. If it was \"for so-and-so to ride\" (or a garment \"for so-and-so to wear\") and he lets someone else, he is damin (must pay for it) if the animal dies or the garment is ruined. The same goes for anything that changes with who uses it."
+            },
+            {
+              "kind": "choose",
+              "id": "rider-case",
+              "ask": "Yusuf hires a horse \"for Yusuf to ride.\" He lets his cousin ride it instead, and the horse dies on the way. Must Yusuf pay for it?",
+              "options": ["Yes: he let someone other than the named rider use it", "No: hired animals are a trust", "Only if the cousin was heavier"],
+              "answer": 0,
+              "source": "فأركبها غيره أو ألبسه غيره كان ضامنا إن عطبت الدابة",
+              "why": "Riding changes with the rider, so using someone else makes him liable when it dies."
+            },
+            {
+              "kind": "teach",
+              "id": "house",
+              "title": "Houses don't change with the user",
+              "ar": "وأما العقار وما لا يختلف باختلاف المستعمل فلا ضمان عليه فإذا شرط سكنى واحد فله أن يسكن غيره",
+              "en": "But 'aqar (land and buildings) and things that don't change with who uses them carry no liability. If the hire said one person would live there, he may let someone else live there."
+            },
+            {
+              "kind": "choose",
+              "id": "house-case",
+              "ask": "Aisha rents a flat \"for Aisha to live in.\" She moves away and lets her sister live there instead. Is that allowed?",
+              "options": ["Yes: a home doesn't change with who lives in it", "No: only the named person may live there", "Only if the landlord agrees"],
+              "answer": 0,
+              "source": "فإذا شرط سكنى واحد فله أن يسكن غيره",
+              "why": "Living in a home is the same whoever does it, so naming one person doesn't stop another."
+            },
+            {
+              "kind": "teach",
+              "id": "load",
+              "title": "Like the named load, or lighter",
+              "ar": "وإن سمى نوعا أو قدرا يحمله على الدابة مثل أن يقول: خمسة أقفزة حنطة فله أن يحمل ما هو مثل الحنطة في الضرر أو أقل كالشعير والسمسم وليس له أن يحمل ما هو أضر من الحنطة كالملح والحديد",
+              "en": "If he names a kind or amount to load, like \"five qafiz of wheat\", he may carry something as easy on the animal as wheat, or easier, like barley or sesame. He may not carry something harder on it, like salt or iron."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Tariq hired a camel to carry five qafiz of wheat. May he carry this instead?",
+              "into": ["May", "May not"],
+              "items": [
+                ["Five qafiz of barley", "May"],
+                ["Five qafiz of sesame", "May"],
+                ["The same of salt", "May not"],
+                ["The same of iron", "May not"]
+              ],
+              "source": "فله أن يحمل ما هو مثل الحنطة في الضرر أو أقل كالشعير والسمسم وليس له أن يحمل ما هو أضر من الحنطة كالملح والحديد",
+              "why": "Barley and sesame are no harder on the animal than wheat; salt and iron are."
+            },
+            {
+              "kind": "teach",
+              "id": "extra",
+              "title": "Cotton, iron, and a second rider",
+              "ar": "فليس له أن يحمل مثل وزنه حديدا وإن استأجرها ليركبها فأردف معه رجلا فعطبت ضمن نصف قيمتها ولا يعتبر بالثقل",
+              "en": "If he hired it to carry a named amount of cotton, he may not carry the same weight in iron (iron presses on one spot). If he hired it to ride and takes another man behind him, and it dies, he pays half its value, whatever their weights."
+            },
+            {
+              "kind": "choose",
+              "id": "extra-case",
+              "ask": "Hamid hires a camel worth £900 to ride. He takes a friend up behind him, and the camel dies. How much must he pay?",
+              "options": ["£450", "£900", "Nothing", "£300"],
+              "answer": 0,
+              "source": "فأردف معه رجلا فعطبت ضمن نصف قيمتها ولا يعتبر بالثقل",
+              "why": "With a second rider he pays half its value, £450, without weighing the riders."
+            },
+            {
+              "kind": "teach",
+              "id": "overload",
+              "title": "Loading more than agreed",
+              "ar": "وإن استأجرها ليحمل عليها مقدرا من الحنطة فحمل أكثر منه فعطبت ضمن ما زاد الثقل",
+              "en": "If he hired it to carry a set amount of wheat, loads more, and it dies, he pays for the share of the extra weight."
+            },
+            {
+              "kind": "teach",
+              "id": "bridle",
+              "title": "Pulling and beating",
+              "ar": "وإذا كبح الدابة بلجامها أو ضربها فعطبت ضمن عند أبي حنيفة",
+              "en": "If he yanks the animal back with its bridle or beats it, and it dies, he pays for it, according to Abu Hanifa."
+            },
+            {
+              "kind": "choose",
+              "id": "overload-case",
+              "ask": "Bashir hires a donkey to carry 100 kg of wheat, loads 120 kg, and it collapses and dies. What does he pay?",
+              "options": ["Only the share that the extra weight caused", "Its whole value", "Nothing, since it was mostly the agreed load"],
+              "answer": 0,
+              "source": "فحمل أكثر منه فعطبت ضمن ما زاد الثقل",
+              "why": "He pays for what the extra weight added, not the whole animal."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Letting an unnamed rider ride makes him liable if it dies", "right": true },
+                { "text": "A house rented for one person may be lived in by another", "right": true },
+                { "text": "Hired for wheat, he may load salt" },
+                { "text": "A second rider makes him pay half if it dies", "right": true },
+                { "text": "Beating a hired animal to death costs nothing, according to Abu Hanifa" }
+              ],
+              "source": ["كان ضامنا إن عطبت الدابة", "فله أن يسكن غيره", "كالملح والحديد", "ضمن نصف قيمتها", "أو ضربها فعطبت ضمن عند أبي حنيفة"],
+              "why": "A named rider, a house for anyone, half for a second rider. Salt is harder than wheat, and beating it to death makes him pay."
+            }
+          ]
+        },
+        {
+          "id": "ijara-workers",
+          "title": "Two kinds of worker",
+          "arabic": "والأجراء على ضربين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Common and private workers",
+              "ar": "والأجراء على ضربين: وأجير مشترك وأجير خاص فالمشترك: من لا يستحق الأجرة حتى يعمل كالصباغ والقصار",
+              "en": "Workers are of two kinds. The ajir mushtarak (common worker) works for anyone who brings a job, like a dyer or a fuller, and earns his wage only by doing the work. The ajir khass (private worker) is hired for a period."
+            },
+            {
+              "kind": "teach",
+              "id": "trust",
+              "title": "The goods are a trust with him",
+              "ar": "والمتاع أمانة في يده: إن هلك لم يضمن شيئا عند أبي حنيفة",
+              "en": "The goods with a common worker are a trust: if they are lost (without his fault), he owes nothing, according to Abu Hanifa. Note: Abu Yusuf and Muhammad say he must pay."
+            },
+            {
+              "kind": "choose",
+              "id": "theft-case",
+              "ask": "A dry-cleaner's shop is robbed, through no fault of his, and Nasir's suit is taken. According to Abu Hanifa, must the cleaner pay?",
+              "options": ["No: the goods were a trust in his hands", "Yes: a worker always pays for what he loses", "Half its value"],
+              "answer": 0,
+              "source": "والمتاع أمانة في يده: إن هلك لم يضمن شيئا عند أبي حنيفة",
+              "why": "For Abu Hanifa the goods are a trust, so a loss without fault is not paid for."
+            },
+            {
+              "kind": "teach",
+              "id": "own-work",
+              "title": "Damage from his own work",
+              "ar": "وما تلف بعمله كتخريق الثوب من دقة وزلق الحمال وانقطاع الحبل الذي يشد به المكاري الحمل وغرق السفينة من مدها مضمون إلا أنه لا يضمن به بني آدم",
+              "en": "But what is ruined by his own work he must pay for: a garment torn by his beating, a porter slipping, the hirer of animals' rope snapping, a boat sinking from his rowing. Except people: he does not pay for a person who drowns in the boat or falls off the animal."
+            },
+            {
+              "kind": "choose",
+              "id": "tear-case",
+              "ask": "A fuller beats Layla's cloth to clean it and tears it. Must he pay?",
+              "options": ["Yes: it was ruined by his own work", "No: the cloth was a trust", "Only if he did it on purpose"],
+              "answer": 0,
+              "source": "وما تلف بعمله كتخريق الثوب من دقة",
+              "why": "Damage caused by the worker's own work is paid for."
+            },
+            {
+              "kind": "choose",
+              "id": "boat-case",
+              "ask": "A boatman's boat sinks from his rowing. Goods are lost, and a passenger drowns. What does the boatman pay for?",
+              "options": ["The goods, not the person", "Both the goods and the person", "Neither"],
+              "answer": 0,
+              "source": ["وغرق السفينة من مدها مضمون إلا أنه لا يضمن به بني آدم", "فمن غرق في السفينة أو سقط من الدابة"],
+              "why": "Goods ruined by his work are paid for, but a person who drowns is not paid for in this way."
+            },
+            {
+              "kind": "teach",
+              "id": "bleeder",
+              "title": "The bloodletter and the vet",
+              "ar": "وإذا قصد الفصاد أو بزغ البزاغ ولم يتجاوز الموضع المعتاد فلا ضمان عليه فيما عطب من ذلك",
+              "en": "A fassad (bloodletter, who opens a vein) or a bazzagh (who lances an animal) who does not go beyond the usual spot is not liable if the patient or animal dies from it."
+            },
+            {
+              "kind": "teach",
+              "id": "private",
+              "title": "The private worker",
+              "ar": "ولأجير الخاص: الذي يستحق الأجرة بتسليم نفسه في المدة وإن لم يعمل كمن استؤجر شهرا للخدمة أو لرعي الغنم ولا ضمان على الأجير الخاص فما تلف في يده ولا ما تلف من عمله",
+              "en": "The private worker earns his wage by making himself available for the period, even if no work is given him, like someone hired for a month to serve or to herd sheep. He owes nothing for what is lost in his hands, or even what is ruined by his work."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Common or private worker?",
+              "into": ["Common", "Private"],
+              "items": [
+                ["A dyer who takes cloth from anyone", "Common"],
+                ["A shepherd hired for a month", "Private"],
+                ["A fuller with a shop in the market", "Common"],
+                ["A servant hired for a month", "Private"]
+              ],
+              "source": ["فالمشترك: من لا يستحق الأجرة حتى يعمل كالصباغ والقصار", "كمن استؤجر شهرا للخدمة أو لرعي الغنم"],
+              "why": "Dyers and fullers work for all comers; those hired for a month are private workers."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Sadiq is hired for a month to herd Hamza's sheep. While herding, one breaks its leg and dies. Must Sadiq pay?",
+              "options": ["No: a private worker isn't liable even for his work", "Yes: it happened in his work", "Yes, half its value"],
+              "answer": 0,
+              "source": "ولا ضمان على الأجير الخاص فما تلف في يده ولا ما تلف من عمله",
+              "why": "Unlike a common worker, the private worker owes nothing, even for what is ruined by his work."
+            }
+          ]
+        },
+        {
+          "id": "ijara-terms",
+          "title": "Conditions and journeys",
+          "arabic": "والإجارة تفسدها الشروط",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "conditions",
+              "title": "Bad conditions spoil it",
+              "ar": "والإجارة تفسدها الشروط كما تفسد البيع",
+              "en": "Hire is made fasid (spoiled, invalid) by improper conditions, just as a sale is."
+            },
+            {
+              "kind": "choose",
+              "id": "cond-gap",
+              "ask": "Complete the rule.",
+              "ar": "والإجارة تفسدها الشروط كما تفسد ____",
+              "options": ["البيع", "النكاح", "الهبة"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "والإجارة تفسدها الشروط كما تفسد البيع",
+              "why": "البيع: conditions spoil hire just as they spoil a sale."
+            },
+            {
+              "kind": "teach",
+              "id": "travel",
+              "title": "Hired to serve, not to travel",
+              "ar": "ومن استأجر عبدا للخدمة فليس له أن يسافر به إلا أن يشترط ذلك",
+              "en": "In al-Quduri's time, someone who hired a slave for service could not take him on a journey, unless that was a condition of the hire. Service at home is lighter than service on a journey."
+            },
+            {
+              "kind": "choose",
+              "id": "travel-case",
+              "ask": "In al-Quduri's time, Munir hires a slave of Zaid's to serve in his house, and says nothing about travel. Then he wants to take him on a trip. May he?",
+              "options": ["No, unless it was a condition", "Yes: service is service anywhere", "Yes, for short trips only"],
+              "answer": 0,
+              "source": "فليس له أن يسافر به إلا أن يشترط ذلك",
+              "why": "Travel was not part of what was hired, so he needs it as a condition."
+            },
+            {
+              "kind": "teach",
+              "id": "litter",
+              "title": "A camel for a litter and two riders",
+              "ar": "ومن استأجر جملا ليحمل عليه محملا وراكبين إلى مكة جاز وله المحمل المعتاد وإن شاهد الجمال المحمل فهو أجود",
+              "en": "He may hire a camel to carry a mahmil (a covered litter seat) and two riders to Makkah. He gets the usual kind of litter. If the camel owner sees the litter first, that is better."
+            },
+            {
+              "kind": "choose",
+              "id": "litter-case",
+              "ask": "Harun hires a camel to Makkah for a litter and two riders. The owner never sees the litter. Is the hire valid?",
+              "options": ["Yes, with the usual kind of litter", "No: the litter must be seen", "Only for one rider"],
+              "answer": 0,
+              "source": "جاز وله المحمل المعتاد وإن شاهد الجمال المحمل فهو أجود",
+              "why": "It is valid with the usual litter; seeing it first is only better."
+            },
+            {
+              "kind": "teach",
+              "id": "food",
+              "title": "Eating the provisions on the way",
+              "ar": "وإن استأجر بعيرا ليحمل عليه مقدارا من الزاد فأكل منه في الطريق جاز له أن يرد عوض ما أكل",
+              "en": "If he hires a camel to carry a set amount of provisions (food for the journey) and eats some on the way, he may put back the same amount to replace what he ate."
+            },
+            {
+              "kind": "choose",
+              "id": "food-case",
+              "ask": "Ihsan hires a camel to carry 100 kg of food for his journey. By halfway he has eaten 20 kg. May he buy 20 kg more and load it?",
+              "options": ["Yes: he may replace what he ate", "No: he may only carry what is left", "Only if he pays extra"],
+              "answer": 0,
+              "source": "فأكل منه في الطريق جاز له أن يرد عوض ما أكل",
+              "why": "The hire was for that amount, so he may replace what he ate."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Improper conditions spoil a hire as they spoil a sale", "right": true },
+                { "text": "Someone hired to serve at home may be taken travelling without a condition" },
+                { "text": "A camel may be hired for a litter and two riders to Makkah", "right": true },
+                { "text": "Eaten provisions may be replaced", "right": true },
+                { "text": "The camel owner must see the litter or the hire is void" }
+              ],
+              "source": ["والإجارة تفسدها الشروط كما تفسد البيع", "فليس له أن يسافر به إلا أن يشترط ذلك", "ليحمل عليه محملا وراكبين إلى مكة جاز", "جاز له أن يرد عوض ما أكل", "وإن شاهد الجمال المحمل فهو أجود"],
+              "why": "Conditions spoil it, travel needs a condition, the litter hire is valid without seeing it, and eaten food may be replaced."
+            }
+          ]
+        },
+        {
+          "id": "ijara-due",
+          "title": "When the wage is due",
+          "arabic": "والأجرة لا تجب بالعقد",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Not by the contract alone",
+              "ar": "والأجرة لا تجب بالعقد وتستحق بأحد معان ثلاثة: إما بشرط التعجيل أو بالتعجيل من غير شرط أو باستيفاء المعقود عليه",
+              "en": "The wage is not owed just by making the contract. It becomes due in one of three ways: a condition to pay in advance, paying in advance without a condition, or receiving the benefit that was hired."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Which of these make the wage due?",
+              "options": [
+                { "text": "A condition that it is paid in advance", "right": true },
+                { "text": "Paying in advance anyway", "right": true },
+                { "text": "Receiving the benefit that was hired", "right": true },
+                { "text": "Signing the contract, and nothing more" },
+                { "text": "The worker asking for it before starting" }
+              ],
+              "source": "إما بشرط التعجيل أو بالتعجيل من غير شرط أو باستيفاء المعقود عليه",
+              "why": "Those are the three ways. The contract alone does not make it due."
+            },
+            {
+              "kind": "teach",
+              "id": "daily",
+              "title": "Day by day, stage by stage",
+              "ar": "ومن استأجر دارا فللمؤجر أن يطالبه لأجره كل يوم إلا أن يبين وقت الاستحقاق بالعقد ومن استأجر بعيرا إلى مكة فللجمال أن يطالبه بأجرة كل مرحلة",
+              "en": "A landlord may ask for each day's rent, unless the contract set a time for payment. The camel owner on the road to Makkah may ask for the wage of each stage of the journey."
+            },
+            {
+              "kind": "choose",
+              "id": "daily-case",
+              "ask": "Kamil rents a house, and the contract says nothing about when rent is paid. After three days the landlord asks for three days' rent. May he?",
+              "options": ["Yes: he may ask for each day's rent", "No: only at the end of the month", "No: only at the end of the hire"],
+              "answer": 0,
+              "source": "فللمؤجر أن يطالبه لأجره كل يوم إلا أن يبين وقت الاستحقاق بالعقد",
+              "why": "Each day's use is received, so each day's rent is due, unless the contract set another time."
+            },
+            {
+              "kind": "teach",
+              "id": "tailor",
+              "title": "Craftsmen wait until done",
+              "ar": "وليس للقصار والخياط أن يطالب بالأجرة حتى يفرغ من العمل إلا أن يشترط التعجيل",
+              "en": "A fuller or a tailor may not ask for the wage until he finishes the work, unless paying in advance was a condition."
+            },
+            {
+              "kind": "choose",
+              "id": "tailor-case",
+              "ask": "A tailor has sewn half of Rashid's suit and asks for half the wage. Must Rashid pay now?",
+              "options": ["No: not until the work is finished", "Yes: half the work, half the wage", "Yes, the whole wage"],
+              "answer": 0,
+              "source": "وليس للقصار والخياط أن يطالب بالأجرة حتى يفرغ من العمل",
+              "why": "A tailor earns his wage only when the work is done, unless advance payment was agreed."
+            },
+            {
+              "kind": "teach",
+              "id": "baker",
+              "title": "The baker and the cook",
+              "ar": "ومن استأجر خبازا ليخبز له في بيته قفيز دقيق بدرهم لم يستحق الأجرة حتى يخرج الخبز من التنور ومن استأجر طباخا ليطبخ له طعاما للوليمة فالغرف عليه",
+              "en": "A baker hired to bake a qafiz of flour in someone's house for a dirham earns nothing until the bread comes out of the oven. A cook hired for a walima (a wedding feast) must also serve the food out into the dishes."
+            },
+            {
+              "kind": "teach",
+              "id": "bricks",
+              "title": "The brick-maker",
+              "ar": "ومن استأجر رجلا ليضرب له لبنا استحق الأجرة إذا أقامه عند أبي حنيفة",
+              "en": "A man hired to make mud bricks earns his wage once he has stood them up to dry, according to Abu Hanifa. Note: Abu Yusuf and Muhammad say not until he stacks them."
+            },
+            {
+              "kind": "choose",
+              "id": "baker-case",
+              "ask": "Wasim hires a baker to bake his flour at home for one dirham. When has the baker earned it?",
+              "options": ["When the bread comes out of the oven", "When he kneads the dough", "When he lights the oven"],
+              "answer": 0,
+              "source": "لم يستحق الأجرة حتى يخرج الخبز من التنور",
+              "why": "The work is done only when the bread comes out of the oven."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Faruq hires a cook for his walima. The food is cooked, and the cook says, \"Serving it out is not my job.\" Who is right?",
+              "options": ["It is the cook's job", "Faruq must serve it himself", "They must hire a waiter"],
+              "answer": 0,
+              "source": "ومن استأجر طباخا ليطبخ له طعاما للوليمة فالغرف عليه",
+              "why": "Serving out the food is on the cook hired for a walima."
+            }
+          ]
+        },
+        {
+          "id": "ijara-choices",
+          "title": "Two prices, and month by month",
+          "arabic": "إن خطت هذا الثوب فارسيا فبدرهم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "styles",
+              "title": "One price or another",
+              "ar": "وإذا قال للخياط: إن خطت هذا الثوب فارسيا فبدرهم وإن خطته روميا فبدرهمين جاز وأي العلمين عمل استحق الأجرة",
+              "en": "He may tell a tailor: \"If you sew this in the Persian style, one dirham; in the Roman style, two.\" That is valid, and he earns the wage for whichever he does."
+            },
+            {
+              "kind": "choose",
+              "id": "styles-case",
+              "ask": "Hasan tells a tailor, \"Persian style, one dirham; Roman style, two.\" The tailor sews it Roman style. What is he owed?",
+              "options": ["Two dirhams", "One dirham", "His usual wage"],
+              "answer": 0,
+              "source": "وأي العلمين عمل استحق الأجرة",
+              "why": "Both offers were valid, and he earns the wage named for the one he did."
+            },
+            {
+              "kind": "teach",
+              "id": "today",
+              "title": "Today or tomorrow",
+              "ar": "وإن قال: إن خطته اليوم فبدرهم وإن خطته غدا فبنصف درهم فإن خاطه اليوم فله درهم وإن خاطه غدا فله أجر مثله عند أبي حنيفة ولا يتجاوز به نصف درهم",
+              "en": "\"Sew it today for a dirham, tomorrow for half.\" If he sews it today he gets a dirham. If tomorrow, he gets ajr al-mithl (the usual wage for such work), but not more than half a dirham, according to Abu Hanifa."
+            },
+            {
+              "kind": "choose",
+              "id": "tomorrow-case",
+              "ask": "The usual wage for this sewing is one dirham. The tailor finishes tomorrow. According to Abu Hanifa, what does he get?",
+              "options": ["Half a dirham", "One dirham", "A quarter of a dirham"],
+              "answer": 0,
+              "source": "وإن خاطه غدا فله أجر مثله عند أبي حنيفة ولا يتجاوز به نصف درهم",
+              "why": "He gets the usual wage, but capped at half a dirham, so half."
+            },
+            {
+              "kind": "teach",
+              "id": "shop",
+              "title": "Perfumer or blacksmith",
+              "ar": "وإن قال: إن سكت في هذا الدكان عطارا فبدرهم في الشهر وإن سكنته حدادا فبدرهمين جاز وأي الأمرين فعل استحق المسمى فيه عند أبي حنيفة",
+              "en": "\"If you use this shop as a perfumer, one dirham a month; as a blacksmith, two.\" Abu Hanifa says that is valid, and the rent named for whichever he does is due. Note: Abu Yusuf and Muhammad say this hire is fasid."
+            },
+            {
+              "kind": "teach",
+              "id": "monthly",
+              "title": "\"A dirham each month\"",
+              "ar": "ومن استأجر دارا كل شهر بدرهم فالعقد صحيح في شهر واحد فاسد في بقية الشهور إلا أن يسمي جملة شهور معلومة",
+              "en": "Renting a house \"at a dirham each month\" is valid for one month and fasid for the rest, unless a known total number of months is named."
+            },
+            {
+              "kind": "teach",
+              "id": "next",
+              "title": "An hour into the next month",
+              "ar": "فإن سكن ساعة من الشهر الثاني صح العقد فيه ولزمه ذلك الشهر ولم يكن للمؤجر أن يخرجه منها إلى أن ينقضي وكذلك كل شهر يسكن في أوله",
+              "en": "If he lives there for an hour of the second month, the contract becomes valid for that month: he owes it, and the landlord cannot put him out until it ends. The same for every month he begins."
+            },
+            {
+              "kind": "choose",
+              "id": "next-case",
+              "ask": "Zubair rents a room \"at £300 each month,\" with no number of months. He stays into the first day of month two. The landlord wants him out on day ten. May he?",
+              "options": ["No: month two is now binding until it ends", "Yes: only the first month was valid", "Yes, if he refunds the rent"],
+              "answer": 0,
+              "source": "صح العقد فيه ولزمه ذلك الشهر ولم يكن للمؤجر أن يخرجه منها إلى أن ينقضي",
+              "why": "Living into the second month makes that month binding on both."
+            },
+            {
+              "kind": "teach",
+              "id": "year",
+              "title": "A year for ten",
+              "ar": "وإذا استأجر دارا سنة بعشرة دراهم جاز وإن لم يسم قسط كل شهر من الأجرة",
+              "en": "Renting a house for a year at ten dirhams is valid, even without saying how much of it is for each month."
+            },
+            {
+              "kind": "choose",
+              "id": "year-gap",
+              "ask": "Complete the rule.",
+              "ar": "وإذا استأجر دارا سنة بعشرة دراهم جاز وإن لم يسم ____ كل شهر من الأجرة",
+              "options": ["قسط", "أول", "يوم"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وإذا استأجر دارا سنة بعشرة دراهم جاز وإن لم يسم قسط كل شهر من الأجرة",
+              "why": "قسط: the share of each month need not be named."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "\"Persian style one dirham, Roman style two\" is valid", "right": true },
+                { "text": "\"A dirham each month\" is valid for every month" },
+                { "text": "A year's rent need not be split into months", "right": true },
+                { "text": "Sewn tomorrow, he gets at most half a dirham, according to Abu Hanifa", "right": true },
+                { "text": "The landlord may evict him in the middle of a month he has started" }
+              ],
+              "source": ["إن خطت هذا الثوب فارسيا فبدرهم وإن خطته روميا فبدرهمين جاز", "فالعقد صحيح في شهر واحد فاسد في بقية الشهور", "وإن لم يسم قسط كل شهر من الأجرة", "ولا يتجاوز به نصف درهم", "ولم يكن للمؤجر أن يخرجه منها إلى أن ينقضي"],
+              "why": "Two styles and a yearly rent are valid; tomorrow is capped at half. \"Each month\" holds only for the first month and each month begun, which cannot be cut short."
+            }
+          ]
+        },
+        {
+          "id": "ijara-lawful",
+          "title": "What may be hired, and the wet nurse",
+          "arabic": "ويجوز استئجار الظئر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "lawful",
+              "title": "Allowed and not allowed",
+              "ar": "ويجوز أخذ أجرة الحمام والحجام ولا يجوز أخذ عسب التيس ولا يجوز الاستئجار على الأذان والإقامة والحج والغناء والنوح",
+              "en": "A fee may be taken for a public bath, and by a hajjam (a cupper, who draws blood for treatment). But not a fee for a male goat to mate with someone's herd. Nor may anyone be hired for the adhan, the iqama, Hajj, singing or wailing for the dead."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "May a wage be taken for this?",
+              "into": ["Allowed", "Not allowed"],
+              "items": [
+                ["Entry to a bath-house", "Allowed"],
+                ["Cupping", "Allowed"],
+                ["A male goat mating with a herd", "Not allowed"],
+                ["Calling the adhan", "Not allowed"],
+                ["Doing Hajj for someone", "Not allowed"],
+                ["Wailing at a funeral", "Not allowed"]
+              ],
+              "source": "ويجوز أخذ أجرة الحمام والحجام ولا يجوز أخذ عسب التيس ولا يجوز الاستئجار على الأذان والإقامة والحج والغناء والنوح",
+              "why": "The bath and the cupper are allowed. A stud fee, acts of worship like the adhan and Hajj, singing and wailing are not."
+            },
+            {
+              "kind": "teach",
+              "id": "shared",
+              "title": "A shared property",
+              "ar": "ولا تجوز أجارة المشاع عند أبي حنيفة إلا من الشريك وقال أبو يوسف ومحمد: إجازة المشاع جائزة",
+              "en": "A mushaa' share (an undivided share of something owned jointly) may not be rented out, says Abu Hanifa, except to the partner who owns the rest. Note: Abu Yusuf and Muhammad say it is allowed."
+            },
+            {
+              "kind": "choose",
+              "id": "shared-case",
+              "ask": "Idris and his brother own a house jointly, undivided. Idris rents his half to a stranger. According to Abu Hanifa, is that allowed?",
+              "options": ["No, only to his brother, the partner", "Yes: it is his half", "Yes, if the stranger lives in one room"],
+              "answer": 0,
+              "source": "ولا تجوز أجارة المشاع عند أبي حنيفة إلا من الشريك",
+              "why": "For Abu Hanifa, an undivided share may only be rented to the partner."
+            },
+            {
+              "kind": "teach",
+              "id": "nurse",
+              "title": "The wet nurse",
+              "ar": "ويجوز استئجار الظئر بأجرة معلومة ويجوز بطعامها وكسوتها وليس للمستأجر أن يمنع زوجها من وطئها",
+              "en": "A zi'r is a wet nurse: a woman hired to breastfeed a baby. She may be hired for a known wage, or for her food and clothing. The family who hired her may not keep her husband from his married life with her."
+            },
+            {
+              "kind": "teach",
+              "id": "nurse-more",
+              "title": "Her duties",
+              "ar": "فإن حبلت كان لهم أن يفسخوا الإجارة إذا خافوا على الصبي من لبنها وعليها أن تصلح طعام الصبي وإن أرضعته في المدة بلبن شاة فلا أجر لها",
+              "en": "If she becomes pregnant, the family may end the hire if they fear her milk will harm the baby. She must prepare the baby's food. If she fed him goat's milk for the period instead of nursing him, she gets no wage."
+            },
+            {
+              "kind": "choose",
+              "id": "food-case",
+              "ask": "A family hires a wet nurse in return for her food and clothing, with no money. Is the hire valid?",
+              "options": ["Yes: food and clothing may be her wage", "No: the wage must be in money", "Only if the amounts are written down"],
+              "answer": 0,
+              "source": "ويجوز استئجار الظئر بأجرة معلومة ويجوز بطعامها وكسوتها",
+              "why": "Al-Quduri allows hiring a wet nurse for her food and clothing."
+            },
+            {
+              "kind": "choose",
+              "id": "goat-case",
+              "ask": "A wet nurse is hired for six months, but she feeds the baby goat's milk the whole time. What wage is she owed?",
+              "options": ["None", "The full wage: the baby was fed", "Half the wage"],
+              "answer": 0,
+              "source": "وإن أرضعته في المدة بلبن شاة فلا أجر لها",
+              "why": "She was hired to nurse him; feeding goat's milk is not that work, so she has no wage."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A cupper may take a fee", "right": true },
+                { "text": "A man may be hired to call the adhan" },
+                { "text": "If the nurse becomes pregnant, the family may end the hire if they fear for the baby", "right": true },
+                { "text": "The nurse must prepare the baby's food", "right": true },
+                { "text": "A stud fee for a male goat is allowed" }
+              ],
+              "source": ["ويجوز أخذ أجرة الحمام والحجام", "ولا يجوز الاستئجار على الأذان", "كان لهم أن يفسخوا الإجارة إذا خافوا على الصبي من لبنها", "وعليها أن تصلح طعام الصبي", "ولا يجوز أخذ عسب التيس"],
+              "why": "The cupper's fee, ending the hire out of fear for the baby, and preparing his food are in the text. The adhan and the stud fee are not allowed."
+            }
+          ]
+        },
+        {
+          "id": "ijara-disputes",
+          "title": "Holding the goods, helpers and disputes",
+          "arabic": "فله أن يحبس العين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "hold",
+              "title": "Holding the goods until paid",
+              "ar": "وكل صانع لعمله أثر في العين كالقصار والصباغ فله أن يحبس العين بعد الفراغ من عمله حتى يستوفي الأجرة",
+              "en": "Any craftsman whose work leaves a mark on the thing itself, like a fuller or a dyer, may keep the item after finishing until he is paid. Someone whose work leaves no mark on it, like a porter or a boatman, may not keep the item for his wage."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "May he keep the item until he is paid?",
+              "into": ["May keep it", "May not"],
+              "items": [
+                ["A dyer, after dyeing a scarf", "May keep it"],
+                ["A fuller, after cleaning cloth", "May keep it"],
+                ["A porter, after carrying a trunk", "May not"],
+                ["A boatman, after carrying goods across", "May not"]
+              ],
+              "source": ["وكل صانع لعمله أثر في العين كالقصار والصباغ فله أن يحبس العين", "ومن ليس لعمله أثر", "كالحمال والملاح"],
+              "why": "Dyeing and fulling leave a mark on the item; carrying it does not."
+            },
+            {
+              "kind": "teach",
+              "id": "himself",
+              "title": "\"Do it yourself\"",
+              "ar": "وإذا شرط على الصانع أن يعمل بنفسه فليس له أن يستعمل غيره فإن أطلق له العمل فله أن يستأجر من",
+              "en": "If the craftsman was told to do the work himself, he may not use anyone else. If the work was left open, he may hire someone to do it."
+            },
+            {
+              "kind": "choose",
+              "id": "himself-case",
+              "ask": "Lubna tells a tailor, \"Sew this dress yourself.\" He gives it to his apprentice. Was he allowed?",
+              "options": ["No: he had to do it himself", "Yes: he is responsible either way", "Yes, if the apprentice is skilled"],
+              "answer": 0,
+              "source": "وإذا شرط على الصانع أن يعمل بنفسه فليس له أن يستعمل غيره",
+              "why": "The condition was his own work, so he may not hand it to someone else."
+            },
+            {
+              "kind": "teach",
+              "id": "style",
+              "title": "Disagreeing about what was asked",
+              "ar": "وإذا اختلف الخياط وصاحب الثوب فقال صاحب الثوب: أمرتك أن تعمله قباء وقال الخياط: قميصا أو قال صاحب الثوب للصباغ: أمرتك أن تصبغه أحمر فصبغته أصفر فالقول قول صاحب الثوب مع يمينه فإن حلف فالخياط ضامن",
+              "en": "If the owner says \"I told you to make a qaba' (a long open robe)\" and the tailor says \"a shirt\", or the owner tells the dyer \"I said red and you dyed it yellow\", the owner's word is taken with his oath. If he swears, the tailor must pay for the cloth."
+            },
+            {
+              "kind": "choose",
+              "id": "red-case",
+              "ask": "Maryam says she asked the dyer for red; he dyed it yellow and says she asked for yellow. Whose word is taken?",
+              "options": ["Maryam's, with her oath", "The dyer's, with his oath", "Neither: they split the cost"],
+              "answer": 0,
+              "source": "فالقول قول صاحب الثوب مع يمينه",
+              "why": "The owner knows what she gave permission for, so her word is taken with an oath."
+            },
+            {
+              "kind": "teach",
+              "id": "free",
+              "title": "\"You did it for free\"",
+              "ar": "وإذا قال صاحب الثوب: عملته لي بغير أجرة وقال الصانع: بأجرة فالقول قول صاحب الثوب مع يمينه عند أبي حنيفة",
+              "en": "If the owner says \"You did it for me without a wage\" and the craftsman says \"for a wage\", the owner's word is taken with his oath, according to Abu Hanifa."
+            },
+            {
+              "kind": "teach",
+              "id": "free-notes",
+              "title": "The other views",
+              "ar": "أبو يوسف: إن كان حريفا له فله الأجرة وإن لم يكن حريفا له فلا أجرة له وقال محمد: إن كان الصانع معروفا بهذه الصنعة أن يعمل بالأجرة فالقول قوله أنه عمله بأجرة",
+              "en": "Note: Abu Yusuf says if the craftsman is his regular (someone he usually deals with), he gets a wage; if not, he doesn't. Muhammad says if the craftsman is known for doing this work for pay, his word is taken that it was for a wage."
+            },
+            {
+              "kind": "choose",
+              "id": "free-case",
+              "ask": "According to Abu Hanifa: a tailor says Bilal agreed to pay for a shirt; Bilal says it was a favour, for free. Whose word is taken?",
+              "options": ["Bilal's, with his oath", "The tailor's: tailors work for pay", "The tailor's, if he swears first"],
+              "answer": 0,
+              "source": "فالقول قول صاحب الثوب مع يمينه عند أبي حنيفة",
+              "why": "For Abu Hanifa, the owner's word is taken with his oath."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "A dyer has finished dyeing Hind's curtains, and she has not paid. He refuses to hand them over until she does. Is he allowed?",
+              "options": ["Yes: his work left a mark on them", "No: he must hand them over and claim later", "Only if the contract said so"],
+              "answer": 0,
+              "source": "وكل صانع لعمله أثر في العين كالقصار والصباغ فله أن يحبس العين بعد الفراغ من عمله حتى يستوفي الأجرة",
+              "why": "A dyer's work shows in the item, so he may hold it until he is paid."
+            }
+          ]
+        },
+        {
+          "id": "ijara-ending",
+          "title": "Spoiled hire, ruin, death and excuses",
+          "arabic": "وتنفسخ الإجارة بالأعذار",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fasid",
+              "title": "A spoiled hire",
+              "ar": "والواجب في الأجارة الفاسدة أجر المثل لا يتجاوز به المسمى",
+              "en": "In a fasid (spoiled) hire, what is owed is the usual wage, but not more than the amount that was named."
+            },
+            {
+              "kind": "choose",
+              "id": "fasid-case",
+              "ask": "A hire turns out fasid. The named rent was £100; the usual rent for such a place is £120. What is owed?",
+              "options": ["£100", "£120", "Nothing"],
+              "answer": 0,
+              "source": "والواجب في الأجارة الفاسدة أجر المثل لا يتجاوز به المسمى",
+              "why": "The usual wage is owed, but capped at what was named, so £100."
+            },
+            {
+              "kind": "teach",
+              "id": "keys",
+              "title": "Received but not used",
+              "ar": "وإذا قبض المستأجر الدار فعليه الأجرة وإن لم يسكنها فإن غصبها غاصب من يده سقطت الأجرة",
+              "en": "Once the tenant has received the house, he owes the rent even if he doesn't live in it. If someone seizes it from him by force, the rent drops. If he finds a defect that harms living there, he may cancel."
+            },
+            {
+              "kind": "choose",
+              "id": "keys-case",
+              "ask": "Daud gets the keys to a rented house but never moves in. Does he owe the rent?",
+              "options": ["Yes: he received the house", "No: he never lived there", "Only half"],
+              "answer": 0,
+              "source": "فعليه الأجرة وإن لم يسكنها",
+              "why": "Receiving the house is enough; whether he uses it is up to him."
+            },
+            {
+              "kind": "teach",
+              "id": "ruin",
+              "title": "When the benefit is lost",
+              "ar": "وإذا خربت الدار أو انقطع شرب الضيعة أو انقطع الماء عن الرحى انفسخت الإجارة",
+              "en": "If the house falls into ruin, or a farm's water supply is cut off, or the water stops reaching a water mill, the hire ends by itself."
+            },
+            {
+              "kind": "teach",
+              "id": "death",
+              "title": "When one of them dies",
+              "ar": "وإذا مات أحد المتعاقدين وقد عقد الإجارة لنفسه انفسخت الإجارة وإن عقدها لغيره لم تنفسخ ويصح شرط الخيار في الإجارة",
+              "en": "If either party dies, having made the hire for himself, it ends. If he made it on behalf of someone else (as an agent), it does not end. A khiyar (an option to cancel) may be set as a condition in a hire."
+            },
+            {
+              "kind": "choose",
+              "id": "death-case",
+              "ask": "Yaqub rents his own shop to Nabil for two years. After six months Yaqub dies. What happens to the hire?",
+              "options": ["It ends", "It continues with Yaqub's heirs", "It continues until the two years are up"],
+              "answer": 0,
+              "source": "وإذا مات أحد المتعاقدين وقد عقد الإجارة لنفسه انفسخت الإجارة",
+              "why": "He made the hire for himself, so his death ends it."
+            },
+            {
+              "kind": "teach",
+              "id": "excuses",
+              "title": "Ended by an excuse",
+              "ar": "وتنفسخ الإجارة بالأعذار كمن استأجر دكانا في السوق ليتجر فيه فذهب ماله وكمن آجر دارا أو دكانا ثم أفلس ولزمته ديون لا يقدر على قضائها إلا من ثمن ما آجر فسخ القاضي العقد وباعها في الدين",
+              "en": "Hire ends because of real excuses ('udhr): someone rents a shop to trade in and loses his money; or someone rents out his house or shop, then goes bankrupt with debts he can only pay from its price, so the judge cancels the hire and sells it for the debt."
+            },
+            {
+              "kind": "teach",
+              "id": "trip",
+              "title": "Changing your mind about a journey",
+              "ar": "وكمن استأجر دابة ليسافر عليها ثم بدا له من السفر فهو عذر وإن بدا للمكاري من السفر فليس ذلك بعذر",
+              "en": "If someone hires an animal to travel and then decides not to go, that is an excuse. But if the mukari (the man who rents out the animal) decides not to travel, that is not an excuse."
+            },
+            {
+              "kind": "choose",
+              "id": "mill-case",
+              "ask": "Rahim rents a water mill for a year. After two months, the river that drives it dries up. What happens?",
+              "options": ["The hire ends", "He must pay the full year", "He must wait for the water to return"],
+              "answer": 0,
+              "source": "أو انقطع الماء عن الرحى انفسخت الإجارة",
+              "why": "With the water gone, the mill's benefit is gone, and the hire ends."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Does the hire end (or may it be ended)?",
+              "into": ["Ends", "Carries on"],
+              "items": [
+                ["The renter decides not to make the trip", "Ends"],
+                ["The animal's owner decides he won't travel", "Carries on"],
+                ["The shop's renter loses all his money", "Ends"],
+                ["The rented house collapses", "Ends"],
+                ["The tenant has the keys but never moves in", "Carries on"]
+              ],
+              "source": ["ثم بدا له من السفر فهو عذر", "وإن بدا للمكاري من السفر فليس ذلك بعذر", "ليتجر فيه فذهب ماله", "وإذا خربت الدار", "فعليه الأجرة وإن لم يسكنها"],
+              "why": "The renter's change of plan, losing his money and a ruined house end it. The animal owner's change of mind is no excuse, and an unused house still costs rent."
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "shufa",
       "title": "Pre-emption",
