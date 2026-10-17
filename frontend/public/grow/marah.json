@@ -12,7 +12,1928 @@
     "خطبة الكتاب"
   ],
   "parts": [
-    {"id": "marah-sahih", "title": "The sound verb", "arabic": "الصحيح", "kitab": "الباب الأول: في بيان بناء الصحيح", "kitabs": ["الباب الأول: في بيان بناء الصحيح", "فصل في بيان أمثلة الماضي", "فصل وتدخل المضمرات في الماضي وأخواته", "فصل في المستقبل", "\"فصل: في الأمر والنهي:", "فصل في اسم الفاعل", "فصل: في اسم المفعول", "\"فصل: في اسمي الزمان والمكان\":"], "lessons": []},
+    {
+      "id": "marah-sahih",
+      "title": "The sound verb",
+      "arabic": "الصحيح",
+      "kitab": "الباب الأول: في بيان بناء الصحيح",
+      "kitabs": ["الباب الأول: في بيان بناء الصحيح", "فصل في بيان أمثلة الماضي", "فصل وتدخل المضمرات في الماضي وأخواته", "فصل في المستقبل", "\"فصل: في الأمر والنهي:", "فصل في اسم الفاعل", "فصل: في اسم المفعول", "\"فصل: في اسمي الزمان والمكان\":"],
+      "whole": true,
+      "lessons": [
+        {
+          "id": "marah-sahih-seven",
+          "title": "Seven kinds of verb, nine derived words",
+          "arabic": "الباب الأول: في بيان بناء الصحيح",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "seven",
+              "title": "Seven kinds of verb",
+              "ar": "ثم شرع في تعداد تلك الأبواب فقال: \"الصحيح والمضاعف والمهموز والمثال والأجوف والناقص واللفيف\"",
+              "en": "Sarf (morphology) is the study of how Arabic words are built. The book has seven babs (chapters), one for each kind of verb: the sound verb (sahih), the doubled verb (mudaaf), the hamzated verb (mahmuz), the weak first letter (mithal), the hollow verb (ajwaf), the weak last letter (naqis) and the doubly weak verb (lafif)."
+            },
+            {
+              "kind": "order",
+              "id": "seven-order",
+              "ask": "Put the seven babs in the book's order",
+              "steps": ["Sahih (sound)", "Mudaaf (doubled)", "Mahmuz (hamzated)", "Mithal (weak first letter)", "Ajwaf (hollow)", "Naqis (weak last letter)", "Lafif (doubly weak)"],
+              "source": "الصحيح والمضاعف والمهموز والمثال والأجوف والناقص واللفيف",
+              "why": "Sahih, mudaaf, mahmuz, mithal, ajwaf, naqis, lafif: that is the order of the seven babs, with the sound verb first."
+            },
+            {
+              "kind": "teach",
+              "id": "nine",
+              "title": "Nine things from every masdar",
+              "ar": "كذلك يحتاج فيها إلى معرفة \"اشتقاق\" أي إخراج \"تسعة أشياء من كل مصدر\" إما بواسطة أو بدونها وتلك الأشياء التسعة المشتقة منه \"وهي الماضي والمستقبل والأمر والنهي واسم الفاعل والمفعول والمكان والزمان والآلة\"",
+              "en": "A masdar is the verbal noun: the name of the action itself, like الضرب (hitting). Nine things are derived (taken out) from every masdar: the past, the present-future, the command, the prohibition, the doer's noun, the done-to's noun, and the nouns of place, time and instrument."
+            },
+            {
+              "kind": "pick",
+              "id": "which-nine",
+              "ask": "Which of these are among the nine things taken from a masdar?",
+              "options": [
+                { "text": "The past verb", "right": true },
+                { "text": "The command", "right": true },
+                { "text": "The noun of instrument", "right": true },
+                { "text": "The noun of place", "right": true },
+                { "text": "The dual" },
+                { "text": "The diminutive" }
+              ],
+              "source": "وهي الماضي والمستقبل والأمر والنهي واسم الفاعل والمفعول والمكان والزمان والآلة",
+              "why": "The nine are the past, present, command, prohibition, doer, done-to, place, time and instrument. The dual and the diminutive are not on the list."
+            },
+            {
+              "kind": "teach",
+              "id": "first",
+              "title": "Why the sound verb comes first",
+              "ar": "وكانت أبنية الصحيح تستحق التقديم لسلامتها عن التغيرات الكثيرة وكونها مقيسا عليها لسائرها",
+              "en": "The sound verb comes first because its forms are safe from the many changes the other kinds go through, and the other kinds are measured against it."
+            },
+            {
+              "kind": "teach",
+              "id": "sahih",
+              "title": "What is a sound verb?",
+              "ar": "\"هو\" البناء \"الذي ليس\" فيه \"في مقابلة الفاء والعين واللام\" من فعل \"حرف علة\" هي الواو والياء والألف وليس في تلك المقابلة أيضا \"تضعيف\" أي حرفان من جنس واحد \"و\" ليس فيها أيضا \"همزة\" فيدخل \"نحو ضرب\"",
+              "en": "Words are weighed against فعل: its ف, ع and ل stand for the three root letters. A sahih (sound) verb has, in those three places, no weak letter (و, ي or ا), no doubling (two letters of one kind) and no hamza. Example: ضرب, whose ض, ر and ب are all strong."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-sahih",
+              "ask": "Sound (sahih) or not?",
+              "into": ["Sahih", "Not sahih"],
+              "items": [
+                ["ضرب", "Sahih"],
+                ["يضرب", "Sahih"],
+                ["حوقل: its و is extra, not a root letter", "Sahih"],
+                ["وعد: و in the ف place", "Not sahih"],
+                ["أمر: hamza in the ف place", "Not sahih"],
+                ["مدّ: two letters of one kind", "Not sahih"]
+              ],
+              "source": ["إذ ليس فيه في مقابلة فاء فعل إلا الضاد، وفي مقابلة عينه إلا الراء، وفي مقابلة لامه إلا الباء", "ويدخل فيه أيضا نحو حوقل وضارب ويضرب ومضروب واقعنسس"],
+              "why": "Only the three root letters count. حوقل and يضرب are sound because their extra letters are not root letters. وعد, أمر and مدّ have a weak letter, a hamza or a doubling in a root place."
+            },
+            {
+              "kind": "teach",
+              "id": "scale",
+              "title": "Why فعل is the scale",
+              "ar": "\"واختص الفاء والعين واللام\" من بين الحروف الباقية \"للوزن\" والمعيار \"حتى يكون فيه\" أي في الوزن \"من حروف الشفة والوسط والحلق\"",
+              "en": "The wazn (scale) is فعل because its letters come from the three main places of speech: ف from the lips, ل from the middle of the mouth, ع from the throat."
+            },
+            {
+              "kind": "choose",
+              "id": "jafar-gap",
+              "ask": "A four-letter word needs a longer scale. Complete it.",
+              "ar": "ويزاد في الرباعي ____ ثانية نحو فعلل في نحو جعفر",
+              "options": ["فاء", "لام", "عين"],
+              "answer": 1,
+              "arabic-options": true,
+              "source": "ويزاد في الرباعي لام ثانية نحو فعلل في نحو جعفر",
+              "why": "A second لام: جعفر weighs فعلل. The letter added to the scale is the last one, since adding at the end is best."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which statement matches the book?",
+              "options": ["The sound verb is studied first and the others are measured against it", "The book has nine babs", "A sound verb may have a hamza among its root letters"],
+              "answer": 0,
+              "source": ["على سبعة أبواب", "وكانت أبنية الصحيح تستحق التقديم"],
+              "why": "The book has seven babs, not nine (nine is the number of derived things). A sound verb has no hamza in its root, and it comes first because the others are measured against it."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-ishtiqaq",
+          "title": "Derivation: where words come from",
+          "arabic": "الاشتقاق",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "root",
+              "title": "The masdar is the root",
+              "ar": "وإنما قلنا إن المصدر أصل للفعل في الاشتقاق \"لأن مفهومه\" أي معنى المصدر \"واحد\" وجزء \"ومفهوم الفعل\" أي المعنى الذي يفهم منه بحسب الوضع \"متعدد\"",
+              "en": "For the Basran grammarians (the school of Basra), the masdar is the asl (root) that the verb is taken from. The masdar means one thing: the action. The verb means more: the action and its time. One comes before many."
+            },
+            {
+              "kind": "teach",
+              "id": "name",
+              "title": "Why it is called masdar",
+              "ar": "\"لأن هذه الأشياء\" السبعة المذكورة \"تصدر عنه\" أي عما صدق عليه المصدر فإن معنى المصدر موضع الصدور",
+              "en": "Masdar literally means ‘the place things come out from’: the other forms come out of it. Note: the commentator says this proof is weak, since a word's name can be used loosely."
+            },
+            {
+              "kind": "teach",
+              "id": "kufans",
+              "title": "The Kufan view (a note)",
+              "ar": "\"قال الكوفيون ينبغي أن يكون الفعل أصلا\" والمصدر فرعا له",
+              "en": "Note: the Kufan grammarians (the school of Kufa) said the verb is the root. Their sign: when a verb changes, its masdar changes too, as يعد and عدة both lose their و. The Basrans answer that the masdar only changes to match its verb (mushakala). The book follows the Basrans."
+            },
+            {
+              "kind": "choose",
+              "id": "water",
+              "ask": "Arabs call good water مشرب عذب, ‘a sweet drinking place’. The book says this is like جرى النهر, ‘the river flowed’. What is really sweet, and what really flows?",
+              "options": ["The place and the river", "The cup and the bank", "The water, in both"],
+              "answer": 2,
+              "source": ["كما قالوا\" في الماء \"مشرب عذب\" أي لذيذ", "\"من باب جرى النهر وسال الميزاب\"", "لأن الجاري والسائل هو الماء لا النهر والميزاب"],
+              "why": "It's a figure of speech: the name of the place is used for what is in it. What flows is the water, not the river, and what is sweet is the water, not the place."
+            },
+            {
+              "kind": "teach",
+              "id": "ishtiqaq",
+              "title": "What derivation is",
+              "ar": "فكأنه قيل العلم بالاشتقاق هو أن تجد بين اللفظين تناسبا في التركيب والمعنى فتعرف ارتداد أحدهما إلى الآخر وأخذه منه",
+              "en": "Ishtiqaq (derivation): you find that two words match in their letters and in their meaning, and so you know one was taken from the other."
+            },
+            {
+              "kind": "choose",
+              "id": "qaada",
+              "ask": "قعد and جلس both mean ‘sit’. Is one derived from the other?",
+              "options": ["Yes: both are past verbs", "No: their letters don't match", "Yes: their meanings match"],
+              "answer": 1,
+              "source": "احترز به عن نحو قعد وجلس",
+              "why": "Derivation needs a match in letters as well as meaning. قعد and جلس share a meaning but not their letters."
+            },
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three kinds of derivation",
+              "ar": "لأنه إن اعتبر الموافقة في الحروف مع الترتيب فهو صغير سمي به لكفاية تأمل قليل في العلم بالاشتقاق فيه بسبب قلة العمل وإن اعتبر الموافقة في الحروف بدون الترتيب فهو كبير",
+              "en": "Three kinds. Small: the same letters in the same order (ضرب from الضرب). Big: the same letters in a different order (جبذ from الجذب, both ‘pulling’). Biggest: the letters only come from the same place in the mouth (نعق, the crow’s caw, from النهق, the donkey’s bray)."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-kinds",
+              "ask": "Which kind of derivation?",
+              "into": ["Small", "Big", "Biggest"],
+              "items": [
+                ["ضرب from الضرب", "Small"],
+                ["Same letters, same order", "Small"],
+                ["جبذ from الجذب", "Big"],
+                ["Same letters, new order", "Big"],
+                ["نعق from النهق", "Biggest"],
+                ["Letters only from the same place", "Biggest"]
+              ],
+              "source": ["\"نحو\" اشتقاق \"ضرب\" ماضيا \"من الضرب\" مصدرا", "\"نحو\" اشتقاق \"جبذ من الجذب\"", "\"أكبر وهو أن يكون بينهما تناسب في المخرج والمعنى\"", "\"نحو\" اشتقاق \"نعق من النهق\""],
+              "why": "Same letters in order: small. Same letters, new order: big. Letters that only share their place in the mouth: biggest."
+            },
+            {
+              "kind": "choose",
+              "id": "donkey-gap",
+              "ask": "Complete the explanation of نعق and النهق.",
+              "ar": "والأول صوت الغراب والثاني صوت ____",
+              "options": ["الفرس", "الكلب", "الحمار"],
+              "answer": 2,
+              "arabic-options": true,
+              "source": "والأول صوت الغراب والثاني صوت الحمار",
+              "why": "نعق is the crow’s caw and النهق the donkey’s bray: both are animal calls, and ع and ه both come from the throat."
+            },
+            {
+              "kind": "choose",
+              "id": "meant",
+              "ask": "Which kind is meant when the book says the nine things are derived from the masdar?",
+              "options": ["Small derivation", "Big derivation", "Biggest derivation"],
+              "answer": 0,
+              "source": ["\"فالمراد بالاشتقاق المذكور ها هنا\"", "\"هو اشتقاق صغير\" فإنه الكامل والمتبادر عند الإطلاق"],
+              "why": "Small derivation: it is the complete kind and what the word means when used alone."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Hiba says: ‘ضرب comes from الضرب: they share ض ر ب in the same order and the meaning of hitting.’ What has she described?",
+              "options": ["Two unrelated words", "Small derivation", "Big derivation"],
+              "answer": 1,
+              "source": "تناسب\" أي توافق \"في الحروف والترتيب\" أي ترتيب تلك الحروف وفي المعنى أيضا",
+              "why": "The same letters in the same order, with a shared meaning: that is small derivation."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-masdar",
+          "title": "Masdar patterns",
+          "arabic": "مصدر الثلاثي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "32",
+              "title": "Many patterns",
+              "ar": "\"ومصدر الثلاثي كثير\" مختلف فيه \"وعند سيبويه\" أي ما ذكره سيبويه منه \"يرتقي إلى اثنين وثلاثين بابا\"",
+              "en": "The masdar of a three-letter verb comes on many patterns. Sibawayh, the great grammarian, counted 32. They are learnt from what the Arabs said, not worked out by rule."
+            },
+            {
+              "kind": "teach",
+              "id": "plain",
+              "title": "Middle letter silent, nothing added",
+              "ar": "فإن لم يكن بزيادة شيء فالفاء منه إما مفتوح أو مكسور أو مضموم \"نحو قتل وفسق وشغل\"",
+              "en": "When the middle letter is silent and nothing is added, the first letter can take any of the three vowels: qatl (killing), fisq (sinfulness), shughl (being busy)."
+            },
+            {
+              "kind": "choose",
+              "id": "fisq",
+              "ask": "Which of these masdars has a kasra on its first letter?",
+              "options": ["فِسق", "قَتل", "شُغل"],
+              "answer": 0,
+              "source": "فالفاء منه إما مفتوح أو مكسور أو مضموم \"نحو قتل وفسق وشغل\"",
+              "why": "The examples follow the order fatha, kasra, damma: qatl, fisq, shughl."
+            },
+            {
+              "kind": "teach",
+              "id": "added",
+              "title": "With added letters",
+              "ar": "رحمة ونشدة وكدرة ودعوى وذكرى وبشرى وليان وحرمان وغفران",
+              "en": "Other masdars add a ة (rahma, nishda, kudra), an alif written ى (da‘wa, dhikra, bushra), or ا with ن (layyan, hirman, ghufran), each with fatha, kasra or damma on the first letter."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-added",
+              "ask": "What has been added to the masdar?",
+              "into": ["ة", "ى (alif)", "ان"],
+              "items": [
+                ["رحمة", "ة"],
+                ["كدرة", "ة"],
+                ["دعوى", "ى (alif)"],
+                ["ذكرى", "ى (alif)"],
+                ["حرمان", "ان"],
+                ["غفران", "ان"]
+              ],
+              "source": "فتلك الزيادة إما تاء أو ألف أو ألف ونون",
+              "why": "The addition is a ت (written ة), an alif, or an alif with a ن."
+            },
+            {
+              "kind": "teach",
+              "id": "like-fail",
+              "title": "Masdars shaped like participles",
+              "ar": "\"ويجيء\" المصدر \"على وزن اسمي الفاعل والمفعول\"",
+              "en": "Sometimes a masdar comes on the pattern of the doer’s noun (قائم) or the done-to’s noun (مفتون, ميسور) but means the action itself. This is only taken from what the Arabs said."
+            },
+            {
+              "kind": "choose",
+              "id": "qaim",
+              "ask": "In قمت قائما, what does قائما mean?",
+              "options": ["A man who stands", "The place of standing", "Standing: the act itself (قياما)"],
+              "answer": 2,
+              "source": "\"نحو قمت قائما\" أي قياما",
+              "why": "Here قائما is a masdar on the doer’s pattern: ‘I stood a standing’."
+            },
+            {
+              "kind": "choose",
+              "id": "maysur",
+              "ask": "In دعه إلى ميسوره, what does ميسوره mean?",
+              "options": ["His wealth", "His ease (يسره)", "The one who was eased"],
+              "answer": 1,
+              "source": "دعه إلى ميسوره أو إلى معسوره أي إلى يسره وإلى عسره",
+              "why": "ميسور is on the done-to’s pattern, but here it is a masdar meaning ease."
+            },
+            {
+              "kind": "teach",
+              "id": "other",
+              "title": "Longer verbs: one way",
+              "ar": "\"ومصدر\" كل واحد من أبواب \"غير الثلاثي\" رباعيا مجردا كان أو مزيدا فيه أو ثلاثيا مزيدا فيه وسواء كان المصدر ميميا أو غير ميمي \"يجيء على سنن\" أي طريق \"واحد\"",
+              "en": "Verbs longer than three letters have one fixed masdar for each bab (أكرم إكراما). The exceptions: كلّم كِلّاما, قاتل قِتالا and قيتالا, تحمّل تِحمّالا, and زلزل زَلزالا."
+            },
+            {
+              "kind": "choose",
+              "id": "kidhdhab",
+              "ask": "Complete the ayah the book quotes.",
+              "ar": "وفي التنزيل {وكذبوا بآياتنا ____}",
+              "options": ["تكذيبا", "كذبا", "كذابا"],
+              "answer": 2,
+              "arabic-options": true,
+              "source": "وفي التنزيل {وكذبوا بآياتنا كذابا}",
+              "why": "كِذّابا: the فِعّال masdar of a فعّل verb, which is how the people of Yemen form it."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these is NOT one of the exceptions the book lists for longer verbs?",
+              "options": ["أكرم إكراما", "قاتل قيتالا", "زلزل زلزالا"],
+              "answer": 0,
+              "source": ["\"إلا في كلم\" يجيء المصدر \"كلاما\"", "\"في قاتل\" يجيء \"قتالا\" بكسر القاف وتخفيف العين \"وقيتالا\"", "يجيء \"زلزالا\" بفتح الأول"],
+              "why": "إكرام is the regular masdar of أكرم. قيتال and زلزال are among the listed exceptions."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-abwab",
+          "title": "The six babs of the three-letter verb",
+          "arabic": "أبواب الثلاثي المجرد",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "35",
+              "title": "Thirty-five babs",
+              "ar": "وقال \"خمسة وثلاثون بابا ستة منها\" كائنة \"للثلاثي المجرد\"",
+              "en": "Verbs are built on 35 babs (patterns). Six are for the bare three-letter verb (thulathi mujarrad: three root letters, nothing added)."
+            },
+            {
+              "kind": "teach",
+              "id": "six",
+              "title": "The six",
+              "ar": "\"نحو ضرب يضرب\" بفتح العين في الماضي وكسرها في الغابر \"وقتل يقتل\" بفتح العين في الماضي وضم عين المضارع \"وعلم يعلم\" يكسر العين في الماضي وفتحه في المستقبل \"وفتح يفتح\" بفتحه فيهما \"وكرم يكرم\" بضمه فيهما \"وحسب يحسب\" بكسره فيهما",
+              "en": "The six differ by the vowel on the middle letter (the ع) in the past and the present: ضرَب يضرِب (a, i); قتَل يقتُل (a, u), the bab of نصَر ينصُر; علِم يعلَم (i, a); فتَح يفتَح (a, a); كرُم يكرُم (u, u); حسِب يحسِب (i, i)."
+            },
+            {
+              "kind": "order",
+              "id": "six-order",
+              "ask": "Put the six babs in the book's order",
+              "steps": ["ضرب يضرب", "قتل يقتل", "علم يعلم", "فتح يفتح", "كرم يكرم", "حسب يحسب"],
+              "source": ["\"نحو ضرب يضرب\"", "\"وقتل يقتل\"", "\"وعلم يعلم\"", "\"وفتح يفتح\"", "\"وكرم يكرم\"", "\"وحسب يحسب\""],
+              "why": "ضرب, قتل, علم, then فتح, كرم, حسب: the three pillars first, then the other three."
+            },
+            {
+              "kind": "choose",
+              "id": "vowels",
+              "ask": "Which bab has kasra on the ع in BOTH the past and the present?",
+              "options": ["ضرب يضرب", "حسب يحسب", "علم يعلم"],
+              "answer": 1,
+              "source": "\"وحسب يحسب\" بكسره فيهما",
+              "why": "حسِب يحسِب: kasra in both. علِم has kasra only in the past, ضرَب only in the present."
+            },
+            {
+              "kind": "teach",
+              "id": "pillars",
+              "title": "The three pillars",
+              "ar": "\"وتسمى الثلاثة الأول دعائم الأبواب\" جمع دعامه وهي عموم البيت أي أصولها \"لاختلاف حركاتهن في عين الماضي والمستقبل\"",
+              "en": "The first three are the da‘a’im (pillars), like the posts of a house. Two reasons: the ع’s vowel differs between past and present, and they are used the most."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-pillars",
+              "ask": "Pillar or not?",
+              "into": ["Pillar", "Not a pillar"],
+              "items": [
+                ["ضرب يضرب", "Pillar"],
+                ["قتل يقتل", "Pillar"],
+                ["علم يعلم", "Pillar"],
+                ["فتح يفتح", "Not a pillar"],
+                ["كرم يكرم", "Not a pillar"],
+                ["حسب يحسب", "Not a pillar"]
+              ],
+              "source": ["\"وتسمى الثلاثة الأول دعائم الأبواب\"", "\"وكثرتهن\""],
+              "why": "The first three are the pillars. The other three keep one vowel in past and present, and are used less."
+            },
+            {
+              "kind": "teach",
+              "id": "fataha",
+              "title": "فتح يفتح needs a throat letter",
+              "ar": "\"وفتح يفتح لا يدخل في الدعائم لانعدام اختلاف الحركات في عين الماضي والمستقبل ولعدم مجيئه\" أي مجيء باب فتح يفتح \"بغير حرف الحلق\" عينا أو لاما",
+              "en": "فتح يفتح is not a pillar: its vowel doesn’t change, and it only comes when the second or third root letter is a throat letter, like the ح of فتح. The light fatha balances the heavy throat letter."
+            },
+            {
+              "kind": "choose",
+              "id": "rakana",
+              "ask": "ركن يركن has fatha in the past and present but no throat letter. What does the book say?",
+              "options": ["It mixes two dialects and is rare (shadhdh)", "It proves the rule wrong", "It belongs to كرم يكرم"],
+              "answer": 0,
+              "source": ["\"وأما ركن يركن وأبى يأبى\"", "\"فمن اللغات المتداخلة والشواذ\""],
+              "why": "The past came from one dialect and the present from another, so it is a mixed, rare form, not a break in the rule."
+            },
+            {
+              "kind": "choose",
+              "id": "tayy",
+              "ask": "بقى يبقى has fatha in the present without a throat letter. Why?",
+              "options": ["It is the bab of فتح يفتح", "It is a mistake", "It is the dialect of the tribe of Tayy, who changed the kasra to fatha"],
+              "answer": 2,
+              "source": ["\"وأما بقى يبقى وفنى يفنى وقلى يقلى\"", "\"فلغات\" قبيلة \"طيء قد فروا\" أي فارين \"من الكسرة إلى الفتحة\""],
+              "why": "In origin the past had kasra (بقِي). The tribe of Tayy fled from the kasra to the lighter fatha."
+            },
+            {
+              "kind": "teach",
+              "id": "karuma",
+              "title": "كرم يكرم: inborn qualities",
+              "ar": "لأنه لا يجيء إلا من الطبائع\" أي الأفعال الطبيعية أي الغريزية التي جبل أي خلق الفاعل عليها من غير اختيار منه كالحسن والكرم",
+              "en": "كرم يكرم comes only for natures: qualities a person is born with and did not choose, like beauty and generosity, and for lasting descriptions. Damma, made by closing the lips, suits a quality that stays."
+            },
+            {
+              "kind": "choose",
+              "id": "kareem",
+              "ask": "Kareem wants a verb for ‘to be noble by nature’. Which bab fits?",
+              "options": ["فتح يفتح", "كرم يكرم", "ضرب يضرب"],
+              "answer": 1,
+              "source": "لأنه لا يجيء إلا من الطبائع\"",
+              "why": "A quality you are born with belongs to كرم يكرم."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Why is حسب يحسب not a pillar?",
+              "options": ["It needs a throat letter", "It is only for inborn qualities", "Its vowel doesn't change and it is rarely used"],
+              "answer": 2,
+              "source": "\"و\" باب \"حسب يحسب لا يدخل في الدعائم\" لانعدام الاختلاف و\"لقلته\"",
+              "why": "It keeps kasra in both tenses and is used little. The throat letter belongs to فتح يفتح, inborn qualities to كرم يكرم."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-mazid",
+          "title": "Added letters, four-letter and joined verbs",
+          "arabic": "المنشعبة والرباعي والملحق",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "twelve",
+              "title": "Twelve branches",
+              "ar": "فقال: \"واثنا عشر لمنشبعة الثلاثي\" أي المتفرعة عليه إما بزيادة حرف أو حرفين أو ثلاثة أحرف",
+              "en": "Twelve babs branch off the three-letter verb by adding one, two or three letters. One: أكرم, قطّع, قاتل. Two: تفضّل, تضارب, انصرف, احتقر, احمرّ. Three: استخرج, اخشوشن, اجلوّذ, احمارّ."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-added",
+              "ask": "How many letters are added?",
+              "into": ["One", "Two", "Three"],
+              "items": [
+                ["أكرم", "One"],
+                ["قطّع", "One"],
+                ["قاتل", "One"],
+                ["تضارب", "Two"],
+                ["انصرف", "Two"],
+                ["احتقر", "Two"],
+                ["استخرج", "Three"],
+                ["اخشوشن", "Three"]
+              ],
+              "source": ["فما زيد فيه حرف واحد فثلاثة أبواب وذلك \"نحو أكرم\"", "ما زيد فيه حرفان فخمسة أبواب نحو \"تفضل\"", "ما زيد فيه ثلاثة أحرف فأربعة أبواب نحو \"استخرج\""],
+              "why": "أكرم adds a hamza, قطّع a second ط, قاتل an alif. تضارب adds ت and ا, انصرف ا and ن, احتقر ا and ت. استخرج adds ا, س, ت; اخشوشن adds ا, و and a second ش."
+            },
+            {
+              "kind": "choose",
+              "id": "ikram",
+              "ask": "Why does the hamza of إكراما take kasra, though أكرم has fatha?",
+              "options": ["To tell the masdar apart from plurals on أفعال", "Because hamza is a throat letter", "Because the masdar is a command"],
+              "answer": 0,
+              "source": "وإنما كسرت في المصدر فرقا بينه وبين الجمع على أفعال",
+              "why": "With fatha, أكرام would look like a plural on أفعال (like أقلام). The kasra marks the masdar."
+            },
+            {
+              "kind": "teach",
+              "id": "ihmarra",
+              "title": "احمرّ was once احمرر",
+              "ar": "أي على أن أصلهما احمارر واحمرر بفك الإدغام على ما صرح به صاحب المفتاح",
+              "en": "احمرّ (to turn red) and احمارّ were first احمرر and احمارر. The two ر’s merged: idgham, merging two like letters. The proof is ارعوى, a verb of the same bab, which was never merged."
+            },
+            {
+              "kind": "choose",
+              "id": "irawa",
+              "ask": "Why is ارعوى not merged like احمرّ?",
+              "options": ["It has three added letters", "Its last two letters are no longer alike", "It has a throat letter"],
+              "answer": 1,
+              "source": ["\"لا يدغم لانعدام الجنسية\"", "أي لا يقع الإدغام في ارعوى لأن أصله ارعو"],
+              "why": "Its weak last letter changed first, so the two letters are not of one kind and cannot merge."
+            },
+            {
+              "kind": "teach",
+              "id": "ruba",
+              "title": "The four-letter verb",
+              "ar": "\"و\" باب \"واحد\" من تلك الأبواب الخمسة والثلاثين \"للرباعي المجرد\"",
+              "en": "The bare four-letter verb has only one bab: دحرج دحرجة (to roll). With so many letters, they kept it light with fatha. It has three branches: احرنجم, اقشعرّ and تدحرج."
+            },
+            {
+              "kind": "teach",
+              "id": "mulhaq",
+              "title": "Joined verbs (mulhaq)",
+              "ar": "\"وستة\" منها \"لملحق دحرج\" أي مزيد على الثلاثي المجرد للإلحاق بدحرج",
+              "en": "A mulhaq (joined) verb is a three-letter root with a letter added so that it matches a longer pattern and is treated like it. Six join دحرج (شملل, حوقل, بيطر, جهور, قلنس, قلسى). Five join تدحرج (تجلبب, تجورب, تشيطن, ترهوك, تمسكن). Two join احرنجم (اقعنسس, اسلنقى)."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-mulhaq",
+              "ask": "Which pattern is each verb joined to?",
+              "into": ["دحرج", "تدحرج", "احرنجم"],
+              "items": [
+                ["شملل", "دحرج"],
+                ["حوقل", "دحرج"],
+                ["بيطر", "دحرج"],
+                ["تجلبب", "تدحرج"],
+                ["تشيطن", "تدحرج"],
+                ["اقعنسس", "احرنجم"],
+                ["اسلنقى", "احرنجم"]
+              ],
+              "source": ["\"و\" نحو \"حوقل\" حوقلة", "\"لمحلق تدحرج نحو تجلبب\"", "\"لملحق احرنجم نحو اقعنسس\""],
+              "why": "شملل, حوقل and بيطر match دحرج. تجلبب and تشيطن match تدحرج. اقعنسس and اسلنقى match احرنجم."
+            },
+            {
+              "kind": "teach",
+              "id": "test",
+              "title": "How to test a joined verb",
+              "ar": "\"ومصداق\" حكم \"الإلحاق\" والمصداق اسم آلة؛ أي آلة صدق الحكم بالحاق فعل يفعل؛ أي طريق معرفة صدق ذلك الحكم \"اتحاد المصدرين\"",
+              "en": "The test (misdaq) that a verb is joined: the two masdars match. حوقل حوقلة goes just like دحرج دحرجة."
+            },
+            {
+              "kind": "choose",
+              "id": "akhraja",
+              "ask": "أخرج إخراجا looks like دحرج دحراجا. Is أخرج joined to دحرج?",
+              "options": ["No: the test is the masdar on فعللة, which أخرج lacks", "Yes: the masdars match", "Yes: both have four letters"],
+              "answer": 0,
+              "source": ["وإنما لم يحكم على أخرج بالإلحاق بدحرج مع اتحاد مصدريهما", "لأن الاعتبار في دحرج بالفعللة لعمومها واطرادها في جميع صور فعلل"],
+              "why": "What counts for دحرج is دحرجة, found in every verb of its kind. أخرج has no such masdar, so it is not joined."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "How many babs does the book count in all?",
+              "options": ["12", "6", "35"],
+              "answer": 2,
+              "source": "\"خمسة وثلاثون بابا ستة منها\"",
+              "why": "6 bare three-letter, 12 branches, 1 four-letter, 3 of its branches, and 6 + 5 + 2 joined verbs: 35."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-madi",
+          "title": "The past tense: fourteen forms",
+          "arabic": "فصل في بيان أمثلة الماضي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fourteen",
+              "title": "Fourteen forms",
+              "ar": "بيان أمثلة \"الماضي\" هو فعل دل وضعا على معنى وجد قبل زمان أخبارك \"وهو يجيء على أربعة عشر وجها\"",
+              "en": "The madi (past) tells of something that happened before you speak. It comes in 14 forms: six for ‘he, she, they’ (absent), six for ‘you’, and two for ‘I’ and ‘we’."
+            },
+            {
+              "kind": "order",
+              "id": "absent",
+              "ask": "Put the six ‘absent’ forms in the book’s order",
+              "steps": ["ضَرَبَ (he)", "ضَرَبَا (they two)", "ضَرَبُوا (they, men)", "ضَرَبَتْ (she)", "ضَرَبَتَا (they two, women)", "ضَرَبْنَ (they, women)"],
+              "source": "تقول ضرب ضربا ضربوا ضربت ضربتا ضربن",
+              "why": "Men first (one, two, all), then women in the same order."
+            },
+            {
+              "kind": "order",
+              "id": "you",
+              "ask": "Now the ‘you’, ‘I’ and ‘we’ forms in order",
+              "steps": ["ضَرَبْتَ (you, a man)", "ضَرَبْتُمَا (you two men)", "ضَرَبْتُمْ (you men)", "ضَرَبْتِ (you, a woman)", "ضَرَبْتُمَا (you two women)", "ضَرَبْتُنَّ (you women)", "ضَرَبْتُ (I)", "ضَرَبْنَا (we)"],
+              "source": "ضربت ضربتما ضربتم ضربت ضربتما ضربتن ضربت منتهيا \"إلى ضربنا\"",
+              "why": "‘You’ for men, then for women, and last ‘I’ and ‘we’, ending with ضربنا."
+            },
+            {
+              "kind": "teach",
+              "id": "mabni",
+              "title": "Why the past never changes its ending",
+              "ar": "\"وإنما بني الماضي لفوات موجب الإعراب فيه\" أي الفاعلية والمفعولية والإضافة",
+              "en": "I‘rab is an ending that changes to show a word’s job: doer, object or owner. The past has none of these jobs, so it is mabni (built: its ending is fixed)."
+            },
+            {
+              "kind": "choose",
+              "id": "why-vowel",
+              "ask": "But the past ends on a vowel (ضَرَبَ), not on sukun. Why?",
+              "options": ["Because sukun is too light", "It is a bit like a noun: it can describe an indefinite noun", "Because it is a command"],
+              "answer": 1,
+              "source": ["\"لمشابهته بالاسم\" في الجملة يعني \"في وقوعه صفة للنكرة\"", "\"نحو مررت برجل ضرب أو\" مررت برجل \"ضارب\""],
+              "why": "You can say مررت برجل ضرب, ‘I passed a man who hit’, just as مررت برجل ضارب. That likeness to a noun earns it a vowel."
+            },
+            {
+              "kind": "choose",
+              "id": "fatha-gap",
+              "ask": "Why fatha, of all vowels? Complete the reason.",
+              "ar": "والألف أخو ____",
+              "options": ["الكسر", "الضم", "السكون"],
+              "answer": 2,
+              "arabic-options": true,
+              "source": "\"والألف أخو السكون\"",
+              "why": "Fatha is part of the alif, and the alif is always silent. So fatha is the vowel closest to sukun."
+            },
+            {
+              "kind": "teach",
+              "id": "letters",
+              "title": "ا, و and ن",
+              "ar": "\"وزيدت الألف\" في آخر الماضي للتثنية مطلقا نحو ضربا وضربتا وضربتما \"و\" زيدت \"الواو\" في آخر الجمع المذكر الغائب \"و\" زيدت \"النون\" في آخر الجمع المؤنث الغائبة والمخاطبة \"حتى يدللن\" أي الحروف المذكورة \"على هما وهمو وهن\"",
+              "en": "Letters at the end show who did it: ا for two (ضربا), و for a group of men (ضربوا), ن for a group of women (ضربن). They point to هما (they two), همو (they, men) and هن (they, women)."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-letters",
+              "ask": "Which letter shows who did it?",
+              "into": ["ا: two", "و: men", "ن: women"],
+              "items": [
+                ["ضربا", "ا: two"],
+                ["ضربتا", "ا: two"],
+                ["ضربتما", "ا: two"],
+                ["ضربوا", "و: men"],
+                ["ضربن", "ن: women"]
+              ],
+              "source": ["\"وزيدت الألف\" في آخر الماضي للتثنية مطلقا نحو ضربا وضربتا وضربتما", "\"على هما وهمو وهن\""],
+              "why": "The alif marks every dual, the و a group of men, the ن a group of women."
+            },
+            {
+              "kind": "choose",
+              "id": "damma",
+              "ask": "Why does the ب of ضربوا take damma?",
+              "options": ["Because of the و after it", "Because it is a throat letter", "To show the past"],
+              "answer": 0,
+              "source": "\"وضم الباء في\" مثل \"ضربوا\" وإن كان مقتضى القياس المذكور أن يفتح \"لأجل الواو\"",
+              "why": "Damma is the vowel of the و’s kind, so it suits the letter before a و."
+            },
+            {
+              "kind": "teach",
+              "id": "alif",
+              "title": "The written alif in ضربوا",
+              "ar": "\"وكتب الألف\" بعد واو الجمع \"في مثل ضربوا\" أي فيما لم يتصل به الضمير، وأما إذا اتصل به الضمير فلا يكتب لعدم الالتباس حينئذ \"للفرق بين واو الجمع وواو العطف في مثل حضر وتكلم زيد\"",
+              "en": "An alif is written after the plural و (ضربوا) to tell it apart from و meaning ‘and’. Without it, حضروتكلم زيد could mean ‘they came, and Zaid spoke’ or ‘Zaid came and spoke’. Once a pronoun is attached (ضربوه), no alif is written. Note: others say it tells the plural و from the و of a singular verb."
+            },
+            {
+              "kind": "teach",
+              "id": "poem",
+              "title": "A line of poetry (a note)",
+              "ar": "هجوت زبان ثم جئت معتذرا ... من هجو زبان لم تهجو ولم تدع",
+              "en": "Note: this line is quoted for that second view. The poet writes لم تهجو with its و kept: ‘You mocked Zabban, then came to apologise, as if you had not mocked him and had not left off.’"
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Bilal writes ضربو without the alif. What has he lost?",
+              "options": ["The meaning of the past", "The sign that tells the plural و from the و of ‘and’", "The damma on the ب"],
+              "answer": 1,
+              "source": "\"للفرق بين واو الجمع وواو العطف في مثل حضر وتكلم زيد\"",
+              "why": "The alif is only a sign in writing. It keeps the plural و apart from the و of ‘and’."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-madi-ta",
+          "title": "The past tense: ت, sukun and shared forms",
+          "arabic": "التاء والميم في الماضي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "ta-fem",
+              "title": "ت for ‘she’",
+              "ar": "\"جعلت التاء علامة للمؤنث في مثل ضربت\" فرقا بين المذكر والمؤنث",
+              "en": "In ضربَتْ (she hit), the silent ت is a sign of the feminine. It is not a pronoun: the doer can be named after it, as in ضربت هند."
+            },
+            {
+              "kind": "teach",
+              "id": "sukun",
+              "title": "The silent ب",
+              "ar": "\"حتى لا يجتمع أربع حركات متواليات\" فإنه مستهجن \"فيما هو كالكلمة الواحدة\"",
+              "en": "In ضربْتُ and ضربْنَ the ب goes silent. Otherwise four vowels would come in a row (ضَرَبَتُ) in what is like one word: the doer pronoun ت is almost part of the verb."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-ba",
+              "ask": "Is the ب silent, or does it keep its fatha?",
+              "into": ["Silent ب", "ب keeps fatha"],
+              "items": [
+                ["ضربْتُ (I hit)", "Silent ب"],
+                ["ضربْتَ (you hit)", "Silent ب"],
+                ["ضربْنَ (they, women)", "Silent ب"],
+                ["ضربَتَا (they two, women)", "ب keeps fatha"],
+                ["ضربَكَ (he hit you)", "ب keeps fatha"]
+              ],
+              "source": ["\"بخلاف ضربتا\"", "\"لأن التاء فيه\" في حكم الساكن", "\"لأنه\" أي مثل ضربك \"ليس كالكلمة الواحدة\""],
+              "why": "Before a doer pronoun with a vowel the ب goes silent. In ضربتا the ت is really silent (its vowel is only for the alif), and in ضربك the ك is an object, not part of the verb."
+            },
+            {
+              "kind": "choose",
+              "id": "and-zaid",
+              "ask": "Bilal wants to say ‘I and Zaid hit’. Which is right?",
+              "options": ["ضربت أنا وزيد", "ضربت وزيد", "ضربت زيد"],
+              "answer": 0,
+              "source": "\"لا يقال ضربت وزيد\" بغير التأكيد \"بل يقال: ضربت أنا وزيد\"",
+              "why": "The ت is like part of the verb, so you can’t join a word straight onto it. Repeat it first with أنا."
+            },
+            {
+              "kind": "choose",
+              "id": "ta-gap",
+              "ask": "ضربن was once ضربتن. Why was the ت dropped? Complete it.",
+              "ar": "حتى لا يجتمع ____ التأنيث",
+              "options": ["حرفا", "ضميرا", "علامتا"],
+              "answer": 2,
+              "arabic-options": true,
+              "source": "\"حتى لا يجتمع علامتا التأنيث\"",
+              "why": "Two signs of the feminine, ت and ن, would meet in one verb, and a verb is heavy, so the ت goes."
+            },
+            {
+              "kind": "teach",
+              "id": "shared",
+              "title": "Shared forms",
+              "ar": "\"وسوى بين تثنيتي المخاطب والمخاطبة\" لأنك تقول: ضربت ضربتما وضربت ضربتما",
+              "en": "Some forms are shared. ضربتما is ‘you two’ for men and for women, since the dual is used less. And the speaker has just two forms: ضربتُ (I, man or woman) and ضربنا (we, two or more, men or women), because you usually see or hear who is speaking."
+            },
+            {
+              "kind": "choose",
+              "id": "girls",
+              "ask": "Fatima and Aisha, speaking together, say ‘we hit’. Which form?",
+              "options": ["ضربتا", "ضربنا", "ضربتما"],
+              "answer": 1,
+              "source": ["إذ يقال في كلها ضربنا", "\"عدم الالتباس في الإخبارات\" لأن المتكلم يرى في أكثر الأحوال أو يسمع صوته"],
+              "why": "ضربنا serves every ‘we’: two or more, men or women. The listener can see or hear who is speaking."
+            },
+            {
+              "kind": "teach",
+              "id": "mim",
+              "title": "The م of ضربتما",
+              "ar": "\"وزيدت الميم في ضربتما\" أي في تثنيتي المخاطب والمخاطبة مع أن قياسهما على سائر التثاني يقتضي أن يقال ضربتما \"حتى لا يلتبس\" ألف ضربتا \"بألف الإشباع\"",
+              "en": "‘You two’ adds a م: ضربتُما, not ضربتا. Otherwise, at a pause, it could be confused with ضربتَ said with a stretched vowel (ishba‘: drawing a fatha out into an alif). Why م? Because underneath it is أنتما."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-ta",
+              "ask": "Which vowel does the ت take?",
+              "into": ["ضمة", "فتحة", "كسرة"],
+              "items": [
+                ["ضربتُ (I)", "ضمة"],
+                ["ضربتُما (you two)", "ضمة"],
+                ["ضربتَ (you, a man)", "فتحة"],
+                ["ضربتِ (you, a woman)", "كسرة"]
+              ],
+              "source": ["\"وضمت التاء في ضربتما لأنها\" أي التاء \"ضمير الفاعل\"", "وضموها للمتكلم؛ لأن الضم أقوى والمتكلم مقدم فأخذه وفتحوها للمخاطب", "فبقيت الكسرة للياء والمخاطبة فأعطيتها"],
+              "why": "Damma, the strongest vowel, for the speaker, who comes first, and for the dual; fatha for a man spoken to; the kasra left over for a woman spoken to."
+            },
+            {
+              "kind": "choose",
+              "id": "tumuhu",
+              "ask": "Add ‘him’ to ضربتم (you men hit). Which is right?",
+              "options": ["ضربتمه", "ضربتمهو", "ضربتموه"],
+              "answer": 2,
+              "source": ["\"وهو الواو لأن أصله ضربتموا\" بدليل عود الواو، وعند اتصال الضمير نحو ضربتموه", "\"وبخلاف ضربتموه\" أي لم يحذف واوه"],
+              "why": "ضربتم was ضربتمو; its و was dropped at the end of the word. Once a pronoun is attached the و is no longer at the end, so it comes back."
+            },
+            {
+              "kind": "choose",
+              "id": "tunna",
+              "ask": "Why does ضربتنّ (you women) have a doubled ن?",
+              "options": ["It was ضربتمن: the م became ن and merged", "To show the past", "Because it is a command"],
+              "answer": 0,
+              "source": "\"لأن أصله\" أي أصل ضربتين \"ضربتمن\"",
+              "why": "Like ضربتما, it once had a م. The م is close to ن, so it became ن and merged into it."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "ضربنا (we hit) has a ن and then an ا. Why the ا?",
+              "options": ["Because it is a command", "So it isn’t confused with ضربن (they, women)", "To show the dual"],
+              "answer": 1,
+              "source": ["\"لأن تحته نحن مضمر\"", "\"ثم زيدت الألف حتى لا يلتبس بضربن\""],
+              "why": "The ن matches نحن, hidden underneath. Without the alif, ضربن would mean ‘they (women) hit’."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-damir",
+          "title": "Sixty pronouns",
+          "arabic": "فصل وتدخل المضمرات في الماضي وأخواته",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "sixty",
+              "title": "Up to sixty",
+              "ar": "\"وهي\" أي جميع المضمرات \"ترتقي إلى ستين نوعا\" وإنما انحصر فيها \"لأنها\" أي المضمرات \"في الأصل ثلاثة\" أحدها مضمر \"مرفوع و\" ثانيها مضمر \"منصوب و\" ثالثها مضمر \"مجرور\"",
+              "en": "Damirs (pronouns) attach to the past and its sister forms. They come to 60 kinds. At root there are three: marfu‘ (in the doer’s case), mansub (in the object’s case) and majrur (after a preposition, or as an owner)."
+            },
+            {
+              "kind": "teach",
+              "id": "five",
+              "title": "Attached and separate",
+              "ar": "ستة ثم أخرج\" أنت من الستة \"المجرور المنفصل حتى لا يلزم تقديم المجرور\" أي جواز تقديمه \"على الجار\"",
+              "en": "Each can be muttasil (attached) or munfasil (separate): 3 × 2 = 6. Take away the separate majrur, since a word after a preposition can never come before it. Five kinds remain."
+            },
+            {
+              "kind": "pick",
+              "id": "which-five",
+              "ask": "Which are among the five kinds?",
+              "options": [
+                { "text": "Attached, in the doer’s case", "right": true },
+                { "text": "Separate, in the doer’s case", "right": true },
+                { "text": "Attached, in the object’s case", "right": true },
+                { "text": "Separate, in the object’s case", "right": true },
+                { "text": "Attached, after a preposition", "right": true },
+                { "text": "Separate, after a preposition" }
+              ],
+              "source": "\"مرفوع متصل و\" ثانيها \"مرفوع منفصل و\" ثالثها \"منصوب متصل و\" رابعها \"منصوب منفصل و\" خامسها \"مجرور متصل",
+              "why": "All but the separate majrur, which would let a word come before its preposition."
+            },
+            {
+              "kind": "teach",
+              "id": "twelve",
+              "title": "Eighteen become twelve",
+              "ar": "إلى المرفوع المتصل وهو يحتمل ثمانية عشر وجها\" أي صورة ثمانية عشر معنى \"في العقل\"",
+              "en": "In theory each kind has 18 forms: 6 for ‘he, she’, 6 for ‘you’, 6 for ‘I, we’. But the dual is shared by men and women, for ‘they’ and for ‘you’, and the speaker has only two forms. 18 − 6 = 12."
+            },
+            {
+              "kind": "choose",
+              "id": "speaker",
+              "ask": "Why does the speaker get only two forms?",
+              "options": ["The speaker is usually seen, or known by voice", "Speakers are always men", "Speakers never use the dual"],
+              "answer": 0,
+              "source": "\"لأن\" الشخص \"المتكلم يرى\" أي يبصر \"في أكثر الأحوال\" فيعلم حاله من الذكورة والأنوثة \"أو يعلم بالصوت أنه مذكر أو مؤنث\"",
+              "why": "You can usually see the speaker or tell from the voice, so separate forms for men and women are not needed."
+            },
+            {
+              "kind": "choose",
+              "id": "maths",
+              "ask": "How does the book reach sixty?",
+              "options": ["6 kinds × 10 forms", "3 kinds × 20 forms", "5 kinds × 12 forms"],
+              "answer": 2,
+              "source": "\"فيحصل لك بضرب الخمسة\" الباقية من الستة الحاصلة من ضرب الاثنين في الثلاثة \"في اثني عشر\" الباقية من ثمانية عشر \"ستون نوعا\"",
+              "why": "Five kinds of pronoun, each with twelve forms: 60."
+            },
+            {
+              "kind": "order",
+              "id": "huwa",
+              "ask": "Put the separate doer pronouns for the absent in order",
+              "steps": ["هو (he)", "هما (they two)", "هم (they, men)", "هي (she)", "هما (they two, women)", "هن (they, women)"],
+              "source": "تقول: هو ضرب هما ضرباهم ضربوا هي ضربت هما ضربتا هن ضربن",
+              "why": "هو ضرب, هما ضربا, هم ضربوا, هي ضربت, هما ضربتا, هن ضربن: the same order as the past."
+            },
+            {
+              "kind": "teach",
+              "id": "hum",
+              "title": "How هم was made",
+              "ar": "\"والأصل في\" اطراد أمثلة لفظة \"هو أن يقال هو هوا هوو\"",
+              "en": "In origin هو’s forms would be هو, هوا, هوو. The و of the plural became م, since both come from the lips and two و’s at the end are heavy: همو. Then the final و dropped, as in ضربتم: هم. The dual followed it: هما."
+            },
+            {
+              "kind": "order",
+              "id": "hum-steps",
+              "ask": "Put the steps from هوو to هم in order",
+              "steps": ["هوو", "همو", "هم"],
+              "source": ["\"لكن جعل الواو ميما في الجمع\"", "\"فصار\" الجمع بعد الجعل المذكور \"همو ثم حذفت الواو"],
+              "why": "First the و becomes م (همو), then the final و is dropped (هم)."
+            },
+            {
+              "kind": "teach",
+              "id": "hi",
+              "title": "هُ or هِ?",
+              "ar": "\"ويكسر الهاء\" بعد حذف الواو من هو \"إذا كان ما قبله\" أي الهاء \"مكسورا أو ياء ساكنة حتى لا يلزم الخروج من الكسرة\"",
+              "en": "Attached, هو becomes ـه. Its ه keeps its damma (لهُ, منهُ, ضربهُ), unless a kasra or a silent ي comes before it. Then it takes kasra (فيهِ, عليهِ), so you don’t climb from i up to u."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-hi",
+              "ask": "هُ or هِ?",
+              "into": ["هُ", "هِ"],
+              "items": [
+                ["له", "هُ"],
+                ["منه", "هُ"],
+                ["ضربه", "هُ"],
+                ["فيه", "هِ"],
+                ["عليه", "هِ"],
+                ["لديه", "هِ"]
+              ],
+              "source": ["ما كان عليه نحو له ومنه وغلامه وضربه", "\"وفيه\" فيما كان قبله ياء ساكنة وعليه ولديه"],
+              "why": "After a silent ي (فيه, عليه, لديه) the ه takes kasra. Otherwise it keeps damma."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Why isn’t the و of هو dropped when it stands alone?",
+              "options": ["Because the و has a fatha", "The word would be too short: a word needs a start, a middle and an end", "Because هو is a verb"],
+              "answer": 1,
+              "source": "\"لقلة حروفه من القدر الصالح\" أي من المقدار الذي يصلح أن يكون ذلك المقدار كلمة وهو ثلاثة أحرف",
+              "why": "A proper word needs three letters: one to start on, one to stop on, and one between. هو alone has too few to lose one."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-mustatir",
+          "title": "Object, owner and hidden pronouns",
+          "arabic": "المنصوب والمجرور والمستتر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "object",
+              "title": "Attached object pronouns",
+              "ar": "تقول ضربه ضربهما ضربهم ضربها ضربهما ضربك ضربكما ضربك ضربكما ضربكن ضربني منتهيا \"إلى ضربنا\"",
+              "en": "The attached object pronoun: ضربه (he hit him), ضربهما, ضربهم, ضربها, ... ضربك (you), ضربني (me), up to ضربنا (us). The ب keeps its fatha, since an object is not part of the verb."
+            },
+            {
+              "kind": "teach",
+              "id": "self",
+              "title": "Not ‘I hit me’",
+              "ar": "\"حتى لا يصير الشخص الواحد فاعلا ومفعولا\" به \"في حالة واحدة\" بل لو أريد ذلك يقال ضربت نفسك وضربت نفسي",
+              "en": "You can’t attach a doer pronoun and an object pronoun for the same person: not ضربتُني. Say ضربت نفسي, ‘I hit myself’. Verbs of the heart (knowing, thinking) are the exception: علمتُني فاضلا, ‘I knew myself to be excellent’, is fine."
+            },
+            {
+              "kind": "choose",
+              "id": "myself",
+              "ask": "Ali wants to say ‘I hit myself’. Which is right?",
+              "options": ["ضربتني", "ضربتك", "ضربت نفسي"],
+              "answer": 2,
+              "source": "بل لو أريد ذلك يقال ضربت نفسك وضربت نفسي",
+              "why": "One person can’t be doer and object in two attached pronouns, so say ضربت نفسي."
+            },
+            {
+              "kind": "choose",
+              "id": "qulub",
+              "ask": "Is علمتُني فاضلا (I knew myself excellent) allowed?",
+              "options": ["Yes: with verbs of the heart the first object isn’t a real object", "No: one person can’t be doer and object", "Only in poetry"],
+              "answer": 0,
+              "source": ["\"في أفعال القلوب نحو علمتك\" بفتح التاء \"فاضلا وعلمتني\"", "\"علمت فضلك و\" من علمتني\" فاضلا \"علمت فضلى\""],
+              "why": "It really means علمت فضلي, ‘I knew my excellence’: what is known is the second object."
+            },
+            {
+              "kind": "teach",
+              "id": "iyya",
+              "title": "Separate objects and owners",
+              "ar": "ولفظ المجرور كلفظ المنصوب المتصل وذلك بحمله عليه",
+              "en": "The separate object pronoun uses إيّا: إياه ضرب, ‘him he hit’, up to إيانا ضربنا. The attached owner (majrur) pronoun looks just like the attached object: ضاربُه (his hitter), ضاربك, up to ضاربنا."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-kind",
+              "ask": "What kind of pronoun is in each?",
+              "into": ["Attached object", "Separate object", "Attached owner"],
+              "items": [
+                ["ضربه", "Attached object"],
+                ["ضربك", "Attached object"],
+                ["إياه ضرب", "Separate object"],
+                ["إياك ضربت", "Separate object"],
+                ["ضاربه", "Attached owner"],
+                ["ضاربك", "Attached owner"]
+              ],
+              "source": ["\"واثنا عشر\" نوعا من تلك الأنواع الستين \"للمنصوب المتصل نحو ضربه\"", "\"واثنا عشر\" منها \"للمنصوب المنفصل نحو إياه ضرب\"", "اثنا عشر نوعا للمحرر المتصل نحو ضاربه"],
+              "why": "On a verb, ـه and ـك are objects. With إيّا they stand alone. On a noun like ضارب they show the owner."
+            },
+            {
+              "kind": "teach",
+              "id": "hidden",
+              "title": "Hidden pronouns",
+              "ar": "\"والمرفوع المتصل يستتر في خمسة مواضع\"",
+              "en": "Sometimes the doer pronoun is mustatir (hidden): it is there in the meaning but not said. Five places: ‘he’ (زيد ضرب, يضرب), ‘she’ (هند ضربت, تضرب), one man you speak to, outside the past (تضرب), the speaker in the present (أضرب, نضرب), and the participle (ضارب)."
+            },
+            {
+              "kind": "pick",
+              "id": "where-hidden",
+              "ask": "In which is the doer pronoun hidden?",
+              "options": [
+                { "text": "ضرب (he hit)", "right": true },
+                { "text": "تضرب (you hit)", "right": true },
+                { "text": "أضرب (I hit)", "right": true },
+                { "text": "ضربتَ (you hit, past)" },
+                { "text": "ضربوا (they hit)" },
+                { "text": "ضربا (they two hit)" }
+              ],
+              "source": ["\"دون التثنية والجمع\"", "دون المتكلم\" وحده أو مع غيره \"و\" دون \"المخاطب اللذين في الماضي", "يستتر الضمير المتصل وجوبا \"في المضارع المتكلم\""],
+              "why": "Hidden: ‘he’, ‘you’ in the present, the speaker in the present. Shown: ‘you’ in the past (ـتَ), and every dual and plural (ـا, ـوا)."
+            },
+            {
+              "kind": "teach",
+              "id": "tadribin",
+              "title": "The ي of تضربين (a note)",
+              "ar": "\"وعند العامة\" أي الجمهور \"هي\" أي ياء تضربين \"ضمير بارز للفاعل\"",
+              "en": "In تضربين (you, a woman, hit) the ي is a visible doer pronoun, like the و of يضربون. It is kept visible so تضربين isn’t confused with the plural تضربن. Note: al-Akhfash held that it is only a sign of speaking to someone, with the doer hidden."
+            },
+            {
+              "kind": "choose",
+              "id": "why-doer",
+              "ask": "Why can only the doer pronoun be hidden, and not the object or the owner?",
+              "options": ["Objects are never pronouns", "The doer is like part of the verb", "The doer is always a man"],
+              "answer": 1,
+              "source": "\"استتر\" أي وقع الاستتار \"في\" الضمير \"المرفوع دون المنصوب والمجرور؛ لأنه\" أي المرفوع \"بمنزلة جزء الفعل\"",
+              "why": "The doer is part of the sentence’s core and almost part of the verb, so the verb’s own shape can stand for it."
+            },
+            {
+              "kind": "choose",
+              "id": "hind",
+              "ask": "In ضربت هند, is the ت a pronoun?",
+              "options": ["No: it stays even with the doer هند named", "Yes: it is the doer", "Yes: it is the object"],
+              "answer": 0,
+              "source": "\"ولا يجوز أن يكون تاء ضربت\" بسكون التاء \"ضميرا كتاء ضربت\" بحركات التاء \"لوجود عدم حذفها بالفاعل الظاهر نحو ضربت هند\"",
+              "why": "A verb can’t have two doers. The ت stays beside هند, so it is only a sign of the feminine."
+            },
+            {
+              "kind": "sort",
+              "id": "must",
+              "ask": "Must the doer stay hidden, or may it be shown?",
+              "into": ["Must be hidden", "May be shown"],
+              "items": [
+                ["اضرب (hit!)", "Must be hidden"],
+                ["تضرب (you hit)", "Must be hidden"],
+                ["أضرب (I hit)", "Must be hidden"],
+                ["نضرب (we hit)", "Must be hidden"],
+                ["ضرب: ضرب زيد", "May be shown"],
+                ["ضارب: زيد ضارب غلامه", "May be shown"]
+              ],
+              "source": ["\"والاستتار واجب في افعل\" مثل اضرب أمر للمخاطب \"و\" في مثل \"تفعل\" مخاطبا \"و\" في مثل \"أفعل\" متكلما وحده \"و\" في مثل \"نفعل\" متكلما مع غيره", "وأما في غير هذه الأربعة فالاستتار جائز، كما أشرنا إليه نحو زيد ضرب وضرب زيد وزيد ضارب غلامه"],
+              "why": "In افعل, تفعل, أفعل and نفعل the form itself shows the doer, so naming it is ugly: not افعل زيد. Elsewhere hiding is allowed, not required."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-mudari",
+          "title": "The present tense",
+          "arabic": "فصل في المستقبل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fourteen",
+              "title": "Fourteen forms again",
+              "ar": "\"وهو أيضا\" أي كالماضي \"يجيء على أربعة عشر وجها، نحو: يضرب إلى آخره\"",
+              "en": "The present also has 14 forms: يضرب, يضربان, يضربون, تضرب, ... أضرب, نضرب. It is called mustaqbal (future) for the future in its meaning, and mudari‘ (resembling) because it resembles a noun."
+            },
+            {
+              "kind": "order",
+              "id": "order",
+              "ask": "Put these present forms in the book’s order",
+              "steps": ["يضرب (he)", "يضربان (they two)", "يضربون (they, men)", "تضرب (she)", "يضربن (they, women)", "أضرب (I)", "نضرب (we)"],
+              "source": "تقول: يضرب يضربان يضربون تضرب يضربان يضربن تضرب تضربان تضربون تضربان تضربن أضرب نضرب",
+              "why": "The ‘he’ forms, then the ‘she’ forms, then ‘you’, and last أضرب and نضرب, just like the past."
+            },
+            {
+              "kind": "pick",
+              "id": "like-noun",
+              "ask": "How does the present resemble the noun ضارب?",
+              "options": [
+                { "text": "Same pattern of vowels and silent letters", "right": true },
+                { "text": "It can describe an indefinite noun", "right": true },
+                { "text": "It takes the lam of emphasis: إن زيدا ليقوم", "right": true },
+                { "text": "سوف narrows it, as ال narrows a noun", "right": true },
+                { "text": "It always ends in tanwin" },
+                { "text": "It starts with a م" }
+              ],
+              "source": ["\"لأنه مشابه بضارب في الحركات والسكنات\"", "\"و\" مشابه في \"وقوعه صفة للنكرة\"", "\"وفي دخول لام الابتداء\" عليه \"نحو إن زيدا لقائم و\" إن زيدا \"ليقوم", "\"كما يختص يضرب بسوف أو السين\""],
+              "why": "يضرب and ضارب have the same count and order of vowels and silent letters; both describe an indefinite noun; both take the lam of emphasis; and both can be narrowed down."
+            },
+            {
+              "kind": "choose",
+              "id": "sa",
+              "ask": "Sami says سيضرب. When is the hitting?",
+              "options": ["Now", "In the past", "In the future only"],
+              "answer": 2,
+              "source": "وقيل: سوف يضرب أو سيضرب يختص بالاستقبال",
+              "why": "يضرب alone can be now or later. سوف or سـ narrows it to the future."
+            },
+            {
+              "kind": "teach",
+              "id": "atin",
+              "title": "The letters أتين",
+              "ar": "\"وزيدت على الماضي من حروف أتين حتى يصير\" الماضي \"مستقبلا\"",
+              "en": "The present is the past with one of the letters of أتين (ا, ت, ي, ن) added at the front. Not at the end: there they would look like past forms (ضربا, ضربت, ضربن)."
+            },
+            {
+              "kind": "order",
+              "id": "places",
+              "ask": "The book links each letter to a place in the mouth. Order them from the deepest throat to the lips.",
+              "steps": ["أ: I, who begin speech", "ي: he, spoken of in the middle", "و, which became ت: you, where speech ends"],
+              "source": ["\"لأن الألف\" خارج \"من أقصى الحلق وهو\" أي أقصى الحلق \"مبدأ المخارج\"", "\"لأن الياء من وسط الفم والغائب هو الذي يذكر في وسط الكلام\"", "\"لكونه\" أي الواو خارجا \"من منتهى المخارج\""],
+              "why": "Alif comes from the deepest throat, for the speaker who starts; ي from the middle of the mouth, for the one talked about; و from the lips, for the listener. The و became ت so three و’s don’t meet."
+            },
+            {
+              "kind": "teach",
+              "id": "damma",
+              "title": "Fatha, except in four",
+              "ar": "\"وفتحت هذه الحروف\" أي حروف المضارعة في جميع الأبواب \"للخفة إلا في\" أبواب \"الرباعي\" أي رباعي كان \"وهو\" أي الرباع \"فعلل\" وملحقاته \"وفاعل وأفعل وفعل\"",
+              "en": "These letters take fatha for lightness, except where the past has four letters: فعلل (دحرج), فاعل, أفعل and فعّل. There they take damma: يُدحرج, يُقاتل, يُكرم, يُقطّع."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-damma",
+              "ask": "Fatha or damma on the first letter?",
+              "into": ["Damma", "Fatha"],
+              "items": [
+                ["يدحرج", "Damma"],
+                ["يقاتل", "Damma"],
+                ["يكرم", "Damma"],
+                ["يضرب", "Fatha"],
+                ["يستخرج", "Fatha"],
+                ["ينصرف", "Fatha"]
+              ],
+              "source": ["\"لأن هذه الأربعة رباعية والرباعي فرع الثلاثي\"", "\"وتفتح\" حروف المضارعة \"فيما وراءهن\""],
+              "why": "Four-letter pasts (دحرج, قاتل, أكرم) give damma. Three letters, or five and six (استخرج, انصرف), give fatha."
+            },
+            {
+              "kind": "choose",
+              "id": "yuhriq",
+              "ask": "يُهريق has five letters, yet starts with damma. Why?",
+              "options": ["Five-letter verbs take damma", "It is really يريق, from a four-letter past, with an extra ه", "It is the dialect of Tayy"],
+              "answer": 1,
+              "source": "\"وأما يهريق فأصله يريق\" بغير هاء من الإراقة \"وهو من الرباعي\"",
+              "why": "Its root form is يُريق, from أراق, a four-letter past. The ه was added against the rule, and the root form is what counts."
+            },
+            {
+              "kind": "teach",
+              "id": "same",
+              "title": "‘You’ and ‘she’ share a form",
+              "ar": "وسوى بين صيغتي المخاطب والغائبة\" مفردين أو مثنيين \"في\" المستقبل \"نحو\" أنت \"أو هي تضرب\"",
+              "en": "تضرب is both ‘you (a man) hit’ and ‘she hits’, because in the past both have a ت: أنت نصرتَ, هي نصرتْ. The context tells them apart."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-nun",
+              "ask": "The ن at the end: a sign of raf‘ or of the feminine?",
+              "into": ["Sign of raf‘", "Sign of the feminine"],
+              "items": [
+                ["يضربان", "Sign of raf‘"],
+                ["يضربون", "Sign of raf‘"],
+                ["تضربين", "Sign of raf‘"],
+                ["يضربن", "Sign of the feminine"]
+              ],
+              "source": ["\"نون\" فى يفعلان وتفعلان ويفعلان وتفعلون وتفعلين عوضا عن الحركة", "\"إلا نون يضربن وهي علامة للتأنيث\""],
+              "why": "Raf‘ is the doer-case ending, a damma in يضربُ. In the five forms a ن stands in for it and drops after لم. The ن of يضربن marks the feminine and never drops."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which statement is right?",
+              "options": ["The ن of يضربن drops after لم", "تضرب can only mean ‘she hits’", "لم يضرب means ‘he did not hit’"],
+              "answer": 2,
+              "source": ["\"وإذا دخل لفظ لم على المستقبل ينقل معناه إلى الماضي\" وينفيه نحو: لم يضرب", "\"إلا نون يضربن وهي علامة للتأنيث\""],
+              "why": "لم turns the present to the past and denies it. The ن of يضربن is the feminine sign and stays, and تضرب is also ‘you hit’."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-amr",
+          "title": "The command",
+          "arabic": "فصل: في الأمر والنهي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "def",
+              "title": "What a command is",
+              "ar": "الأمر صيغة يطلب بها الفعل\": أي بفتح الفعل \"من الفاعل\" الغائب أو المخاطب",
+              "en": "Amr (command): a form that asks for an action from the doer, whether absent (ليضرب, ‘let him hit’) or spoken to (اضرب, ‘hit!’)."
+            },
+            {
+              "kind": "order",
+              "id": "absent",
+              "ask": "Put the commands for the absent in the book’s order",
+              "steps": ["ليضرب (let him hit)", "ليضربا (let them two)", "ليضربوا (let them, men)", "لتضرب (let her)", "لتضربا (let them two, women)", "ليضربن (let them, women)"],
+              "source": "تقول: زيد ليضرب زيدان ليضربا زيدون ليضربوا، هند لتضرب هندان لتضربا هندات ليضربن",
+              "why": "The same order as the present: men (one, two, all), then women."
+            },
+            {
+              "kind": "teach",
+              "id": "from",
+              "title": "Taken from the present",
+              "ar": "\"لمناسبة بينهما\" أي بين الأمر والمضارع \"في الاستقبالية\"",
+              "en": "The command is taken from the present, not the past, because both look to the future."
+            },
+            {
+              "kind": "choose",
+              "id": "why-present",
+              "ask": "Why is the command made from the present and not the past?",
+              "options": ["You only ask for what hasn’t happened yet", "The past has no doer", "The present is shorter"],
+              "answer": 0,
+              "source": "فلأن الطلب إنما يكون لما لم يحصل بعد ولا مناسبة بينه وبين الماضي",
+              "why": "A request is for something not yet done. That ties it to the present-future, not the past."
+            },
+            {
+              "kind": "teach",
+              "id": "lam",
+              "title": "The ل of the absent command",
+              "ar": "\"زيدت اللام في أمر الغائب\" لطلب الفعل دون غيرها \"لأنها من وسط المخارج\"",
+              "en": "For ‘let him…’ a ل is added. It comes from the middle of the mouth, as the absent person is in the middle, between speaker and listener. It is also one of the ‘letters of addition’, gathered in the phrase هويت السمان."
+            },
+            {
+              "kind": "pick",
+              "id": "letters",
+              "ask": "Which are ‘letters of addition’ (هويت السمان)?",
+              "options": [
+                { "text": "ل", "right": true },
+                { "text": "س", "right": true },
+                { "text": "م", "right": true },
+                { "text": "ن", "right": true },
+                { "text": "ب" },
+                { "text": "ق" }
+              ],
+              "source": ["يا أوس هل نمت ولم يأتنا ... سهو فقال اليوم تنساه", "أي هذه الحروف العشرة التي هي الهاء والواو والياء والتاء", "واللام والسين والميم والألف والنون"],
+              "why": "The ten are ه, و, ي, ت, hamza, ل, س, م, ا and ن, all in هويت السمان (and in other phrases, like اليوم تنساه). ب and ق are not among them."
+            },
+            {
+              "kind": "choose",
+              "id": "weigh",
+              "ask": "How do you tell the added letters in مضروب?",
+              "options": ["Count the vowels", "Weigh it on فعل: مضروب is مفعول, so م and و are added", "Any م is always added"],
+              "answer": 1,
+              "source": ["بأن تزن الأصلي بالفاء والعين واللام", "ومضروب وزنه مفعول"],
+              "why": "Letters of addition can also be root letters. Weigh the word: what meets ف, ع, ل is root, the rest is added."
+            },
+            {
+              "kind": "teach",
+              "id": "kasra",
+              "title": "Kasra on the ل",
+              "ar": "\"وكسرت اللام\" أي لام الأمر مع أن من حق حروف المعاني التي جاءت على حرف واحد أن تبنى على الفتحة التي هي أخت السكون \"لأنها مشابهة باللام الجارة\"",
+              "en": "The command ل takes kasra, like the ل that governs nouns (lam al-jarr): jazm, the silent ending of verbs, matches jarr in nouns. After و or ف it usually goes silent: وَلْيضرب, فَلْيضرب, and also ثُمَّ لْيضرب."
+            },
+            {
+              "kind": "choose",
+              "id": "wa-gap",
+              "ask": "Complete it.",
+              "ar": "أسكنت لام الأمر بالواو ____",
+              "options": ["والفاء", "والباء", "واللام"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "\"أسكنت لام الأمر بالواو والفاء\"",
+              "why": "After و and ف, which join tightly to the next word, the ل goes silent: وليضرب, فليضرب, as فخِذ is said فخْذ."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which is the command ‘let her hit’?",
+              "options": ["ليضرب", "اضربي", "لتضرب"],
+              "answer": 2,
+              "source": "هند لتضرب",
+              "why": "‘Let her hit’ is لتضرب: the command ل with the ت of the absent woman. اضربي is ‘hit!’ said to a woman."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-ifal",
+          "title": "The command ‘hit!’ and its hamza",
+          "arabic": "أمر المخاطب وهمزة الوصل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "drop",
+              "title": "How اضرب is made",
+              "ar": "\"وحذف حرف الاستقبال في أمر المخاطب\" بعد حذف اللام للتخفيف لكثرة استعماله؛ إذ أصل اضرب لتضرب",
+              "en": "The command to the one you speak to was لتضرب. The ل was dropped because it is used so much, then the ت, so it isn’t confused with تضرب (you hit). Now the ض is silent, so a hamzat al-wasl (a helping hamza for starting a word) is brought in: اضرب."
+            },
+            {
+              "kind": "order",
+              "id": "steps",
+              "ask": "Put the steps from لتضرب to اضرب in order",
+              "steps": ["لتضرب", "Drop the ل: تضرب", "Drop the ت: ضْرِب", "Bring a helping hamza: اضرب"],
+              "source": ["\"فحذفت اللام\" من لتضرب أمرا للمخاطب", "\"ثم حذفت علامة الاستقبال\"", "\"فبقي الضاد ساكنا واجتلبت همزة الوصل\""],
+              "why": "The ل goes first, then the ت. That leaves the ض silent, and you can’t start on a silent letter, so a hamza is brought in."
+            },
+            {
+              "kind": "choose",
+              "id": "passive",
+              "ask": "Why is the passive command still لِتُضرَب, with its ل and ت?",
+              "options": ["The ت can never be dropped", "It is used little, so nothing was dropped", "It is a different verb"],
+              "answer": 1,
+              "source": "\"لا يحذف\" حرف الاستقبال \"مع اللام في مجهوله\"",
+              "why": "The dropping happened because the active command is used so much. The passive is rare, so it keeps both."
+            },
+            {
+              "kind": "choose",
+              "id": "dahrij",
+              "ask": "From تُدحرج (you roll), the command is دحرج, with no helping hamza. Why?",
+              "options": ["Four-letter verbs never take a hamza", "The hamza is dropped in writing", "The letter after the dropped ت has a vowel"],
+              "answer": 2,
+              "source": ["\"بعد حذف حرف المضارعة إذا كان ما بعده ساكنا للافتتاح\"", "وأما إذا كان ما بعده متحركا فلا احتياج إليها، نحو: دحرج من تدحرج"],
+              "why": "The helping hamza is only needed when the next letter is silent. The د of دحرج has a vowel, so you can start on it."
+            },
+            {
+              "kind": "teach",
+              "id": "hamza-vowel",
+              "title": "The helping hamza’s vowel",
+              "ar": "\"وكسرت الهمزة\" المجتلبة \"لأن الكسر أصل في\" تحريك \"همزات الوصل\"",
+              "en": "The helping hamza normally takes kasra: اِضرب. In اُكتب it takes damma, so you don’t go from kasra up to the ت’s damma; the silent ك between is no real barrier. It takes fatha in أيمن and ال, which are used so much, and أَكرم has a real hamza with fatha."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-hamza",
+              "ask": "Which vowel does the hamza take?",
+              "into": ["Kasra", "Damma", "Fatha"],
+              "items": [
+                ["اضرب", "Kasra"],
+                ["اكتب", "Damma"],
+                ["أكرم", "Fatha"],
+                ["أيمن", "Fatha"],
+                ["ال (the)", "Fatha"]
+              ],
+              "source": ["\"ولم تكسر\" الهمزة \"في مثل اكتب\"", "\"لأن الحرف الساكن لا يكون حاجزا\" أي مانعا \"حصينا\"", "\"وفتح ألف أيمن\"", "\"وفتح ألف التعريف\"", "\"وفتح ألف أكرم\""],
+              "why": "Kasra is the rule. اكتب takes damma to follow its ت. أيمن and ال take fatha because they are used so much, and أكرم’s hamza is a real one."
+            },
+            {
+              "kind": "choose",
+              "id": "akrim",
+              "ask": "Why is the hamza of أَكرم (honour!) not a helping hamza?",
+              "options": ["It is the real hamza of أكرم, dropped in تُكرم but back in the command", "Because ك is a throat letter", "Because it is a passive"],
+              "answer": 0,
+              "source": "\"لأنه ليس من ألف الأمر\" أي جنس الألف الذي زيد للأمر حتى يكسر \"بل ألف قطع محذوف من تؤكرم\"",
+              "why": "تُكرم was تُؤكرم. The hamza was dropped only to avoid أأكرم. With the ت gone, it comes back with its fatha."
+            },
+            {
+              "kind": "choose",
+              "id": "bism",
+              "ask": "Why is بسم الله written without the alif of اسم, while اقرأ باسم ربك keeps it?",
+              "options": ["They are different words", "بسم الله is used far more often", "The alif is a real hamza in one of them"],
+              "answer": 1,
+              "source": ["\"وحذفت الألف\" في الخط \"في بسم الله\"", "\"ولا تحذف\" الألف \"في اقرأ باسم ربك\""],
+              "why": "Frequent use calls for lightness, so the alif is dropped in writing only in بسم الله."
+            },
+            {
+              "kind": "teach",
+              "id": "built",
+              "title": "Built or declined? (a note)",
+              "ar": "\"و\" أما \"عند البصريين فهو\" أي أمر المخاطب بغير اللام \"مبني\" على السكون \"لأن الأصل في الأفعال البناء\"",
+              "en": "Note: the Basrans say اضرب is mabni (its ending fixed), since it lost the present letter that made it like a noun. The Kufans say it is mu‘rab and majzum (silent-ended), because underneath it is لتضرب. Both agree that لِيضرب and فلتفرحوا are mu‘rab."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "فلتفرحوا (so rejoice!) keeps its ت. Built or declined?",
+              "options": ["Mu‘rab (declined), by agreement", "Mabni (built), by agreement", "Mabni for the Kufans only"],
+              "answer": 0,
+              "source": "\"قيل فلتفرحوا معرب بالإجماع\" من الفريقين \"لوجود علة الإعراب وهي حرف المضارعة",
+              "why": "Both schools agree: it keeps the present letter ت, which is the reason for i‘rab."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-tawkid",
+          "title": "The ن of emphasis and the prohibition",
+          "arabic": "نونا التأكيد والنهي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "nun",
+              "title": "Two nuns of emphasis",
+              "ar": "إحداهما ثقيلة والأخرى خفيفة \"لتأكيد معنى الطلب نحو ليضربن\"",
+              "en": "Two nuns of emphasis (tawkid) can be added to the end of a command, to make the request stronger: a heavy one, ـنَّ, and a light one, ـنْ. لَيَضْرِبَنَّ, ‘he really must hit’; اضربَنَّ."
+            },
+            {
+              "kind": "choose",
+              "id": "ba",
+              "ask": "In لَيَضرِبَنَّ the ب takes a vowel. Why?",
+              "options": ["To show the past", "Because ب is a lip letter", "To avoid two silent letters meeting"],
+              "answer": 2,
+              "source": "\"أو فتح الباء\" يحرك بالفتح في ليضربن مع أن أصله السكون \"فرارا من اجتماع الساكنين\"",
+              "why": "The ب was silent and the first ن of نّ is silent too. Two silent letters can’t meet, so the ب takes the light fatha."
+            },
+            {
+              "kind": "sort",
+              "id": "drop",
+              "ask": "Add the heavy ن. What happens to each letter?",
+              "into": ["Dropped", "Kept"],
+              "items": [
+                ["The و of ليضربوا (→ ليضربُنَّ)", "Dropped"],
+                ["The ي of اضربي (→ اضربِنَّ)", "Dropped"],
+                ["The raf‘ ن of يضربان", "Dropped"],
+                ["The ا of ليضربا (→ ليضربانِّ)", "Kept"]
+              ],
+              "source": ["\"وحذف واو ليضربوا\"", "\"و\" حذف \"ياء اضربي\"", "\"ولم يحذف ألف التثنية اكتفاء بالفتحة\"", "\"وحذفت النون التي هي تدل على الرفع في مثل هذ يضربان\""],
+              "why": "The و and ي go, since the damma and kasra still show them. The raf‘ ن goes because the verb becomes mabni. The alif stays, or the dual would look like the singular."
+            },
+            {
+              "kind": "choose",
+              "id": "kasr-gap",
+              "ask": "The heavy ن after the dual alif. Complete it.",
+              "ar": "وكسر النون الثقيلة بعد ألف ____",
+              "options": ["القطع", "التثنية", "الوصل"],
+              "answer": 1,
+              "arabic-options": true,
+              "source": "\"وكسر النون الثقيلة بعد ألف التثنية\"",
+              "why": "After the dual alif the heavy ن takes kasra (ليضربانِّ), like the ن of the dual itself."
+            },
+            {
+              "kind": "teach",
+              "id": "fasila",
+              "title": "An alif between the nuns",
+              "ar": "\"وأدخلت الألف الفاصلة في ليضربان\" أصله ليضربنن \"فرارا من اجتماع النونات\"",
+              "en": "For women, ليضربْنَ with نّ would give three ن’s in a row. So an alif is put between: لَيَضْرِبْنَانِّ. The light ن does not come after these two alifs. Note: Yunus and the Kufans allow it there."
+            },
+            {
+              "kind": "teach",
+              "id": "seven",
+              "title": "Seven places",
+              "ar": "\"وكلتاهما\"؛ أي كلا نوني التأكيد \"تدخلات في سبعة مواضع لوجود معنى الطلب فيها\"",
+              "en": "Both nuns come in seven places where there is some request: the command (اضربنّ), the prohibition (لا تضربنّ), the question (هل تضربنّ), the wish (ليتك تضربنّ), the offer (ألا تضربنّ), the answer of an oath (والله لأضربنّ), and rarely the negative (لا تضربنّ), because it looks like the prohibition."
+            },
+            {
+              "kind": "pick",
+              "id": "where",
+              "ask": "Where can the ن of emphasis come?",
+              "options": [
+                { "text": "هل تضربنّ (a question)", "right": true },
+                { "text": "ليتك تضربنّ (a wish)", "right": true },
+                { "text": "والله لأضربنّ (an oath)", "right": true },
+                { "text": "ألا تضربنّ (an offer)", "right": true },
+                { "text": "ضربنّ (a past verb)" },
+                { "text": "ضاربنّ (a participle)" }
+              ],
+              "source": ["\"الاستفهام\" نحو: \"هل تضربن و\" رابعها \"التمني نحو: ليتك تضربن و\" خامسها \"العرض\"", "\"القسم\"؛ أي جوابه \"نحو: والله لأضربن\"", "فالتأكيد لا يكون إلا في المستقبل"],
+              "why": "Question, wish, oath and offer are among the seven. Emphasis is only for what is still to come, so not the past, and the ن only joins verbs."
+            },
+            {
+              "kind": "choose",
+              "id": "nafy",
+              "ask": "لا تضربنّ as a plain negative (‘you won’t hit’) is rare. Why is it allowed at all?",
+              "options": ["It is a command", "Negatives always take it", "It looks like the prohibition لا تضربنّ"],
+              "answer": 2,
+              "source": "\"النفي\" ويدخلها نونا التأكيد دخولا \"قليلا مشابهة\"؛ أي لأجل المشابهة \"بالنهي\"",
+              "why": "The negative and the prohibition both start with لا and look alike, so the negative borrows the ن, but only rarely."
+            },
+            {
+              "kind": "teach",
+              "id": "nahy",
+              "title": "The prohibition",
+              "ar": "والنهي\" وهي صيغة يطلب بها الترك عن الفعل \"مثل الأمر في جميع الوجوه\"",
+              "en": "Nahy (prohibition): a form that asks you NOT to act: لا تضرب, ‘don’t hit’. It works like the command in every way, but it is mu‘rab by agreement, since it keeps the present letter."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which is true of لا تضرب?",
+              "options": ["It is mu‘rab by agreement of both schools", "It is mabni like the past", "It cannot take the ن of emphasis"],
+              "answer": 0,
+              "source": "\"إلا أنه\"؛ أي لكن النهي مطلقا \"معرب بالإجماع\"",
+              "why": "It keeps its present letter, so both schools call it mu‘rab. And the prohibition is one of the seven places for the ن."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-majhul",
+          "title": "The passive",
+          "arabic": "المجهول",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "The passive",
+              "ar": "\"ويجيء المجهول\" وهو ما حذف فاعله وأسند إلى مفعوله \"من الأشياء المذكورة\"",
+              "en": "Majhul (passive; literally ‘unknown’): the doer is left out and the verb is pinned on the object. ضُرب زيد, ‘Zaid was hit’, from ضربت زيدا. It comes from the past, the present, the command and the prohibition."
+            },
+            {
+              "kind": "teach",
+              "id": "why",
+              "title": "Why leave the doer out?",
+              "ar": "\"والغرض من وضعه\"؛ أي من وضع المجهول وإقامة المفعول مقام الفاعل \"إما\" التبيين \"لخساسة الفاعل\"",
+              "en": "The book gives reasons: the doer is lowly, or great, or famous, or unknown. If a low person insulted the emir, you say شُتم الأمير, ‘the emir was insulted’, keeping the doer off your tongue."
+            },
+            {
+              "kind": "pick",
+              "id": "reasons",
+              "ask": "Which reasons does the book give for the passive?",
+              "options": [
+                { "text": "The doer is lowly", "right": true },
+                { "text": "The doer is great", "right": true },
+                { "text": "The doer is famous", "right": true },
+                { "text": "The doer is unknown", "right": true },
+                { "text": "The verb is too long" },
+                { "text": "The object is absent" }
+              ],
+              "source": ["\"إما\" التبيين \"لخساسة الفاعل\"", "\"أو\" تبيين \"لعظمته\"", "\"أو\" تبيين \"لشهرته\"", "\"أو تبيين لجهالته\""],
+              "why": "Lowliness, greatness, fame and being unknown. A missing object would leave nothing to pin the verb on."
+            },
+            {
+              "kind": "choose",
+              "id": "emir",
+              "ask": "A low man insults the emir. The speaker says شُتم الأمير. Why the passive?",
+              "options": ["Because the emir is unknown", "To show how lowly the doer is", "Because the doer is famous"],
+              "answer": 1,
+              "source": "نحو: شتم الأمير، إذا كان الشاتم شخصا خسيسا غير كفء للأمير",
+              "why": "The insulter is no match for the emir, so leaving him unnamed shows how low he is."
+            },
+            {
+              "kind": "teach",
+              "id": "fuila",
+              "title": "The pattern فُعِل",
+              "ar": "\"واختص\" المجهول \"بصيغة فعل\" بضم الفاء وكسر العين \"في الماضي؛ لأن معناه\"؛ أي معنى المجهول \"غير معقول وهو إسناد الفعل إلى المفعول\"",
+              "en": "The passive past is فُعِل (damma, then kasra): ضُرِب. Pinning an act on the one it was done to is unusual, so it was given an unusual shape that almost no noun has."
+            },
+            {
+              "kind": "choose",
+              "id": "wail",
+              "ask": "Which nouns come on the pattern فُعِل?",
+              "options": ["Only وُعِل (mountain goat) and دُئِل (a small animal)", "Many nouns", "None at all"],
+              "answer": 0,
+              "source": "\"إلا وعل\" بضم الواو وكسر العين وهو معز الجبل \"ودئل\"",
+              "why": "Only these two. If the shape were usual, it would be common in nouns."
+            },
+            {
+              "kind": "teach",
+              "id": "yufal",
+              "title": "The present: يُفعَل",
+              "ar": "\"و\" يجيء المجهول \"في المستقبل على يفعل\" بضم حرف المضارعة وفتح ما قبل الآخر",
+              "en": "The passive present has damma on the present letter and fatha before the last: يُضرَب. Longer verbs follow the same idea: in the past, damma first and kasra before the last (دُحرِج, أُكرِم); in the present, damma first and fatha before the last (يُدحرَج, يُستخرَج)."
+            },
+            {
+              "kind": "teach",
+              "id": "seven",
+              "title": "Seven babs: two dammas",
+              "ar": "\"إلا في سبعة أبواب، فإن أول المتحرك يضم مع ضم الأول\"",
+              "en": "In seven babs the first letter that has a vowel also takes damma: تُفُعِّل, تُفُوعِل, اُفتُعِل, اُنفُعِل, اُستُفعِل and others. For example تُفُضِّل, اُستُخرِج."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Passive past: damma on the first letter only, or two dammas?",
+              "into": ["First letter only", "Two dammas"],
+              "items": [
+                ["دُحرِج", "First letter only"],
+                ["أُكرِم", "First letter only"],
+                ["ضُرِب", "First letter only"],
+                ["تُفُضِّل", "Two dammas"],
+                ["اُستُخرِج", "Two dammas"],
+                ["اُحتُقِر", "Two dammas"]
+              ],
+              "source": ["\"بضم\" الحرف \"الأول وكسر ما قبل الآخر في الماضي\" نحو: دحرج وأكرم", "وهي: تفعل وتفوعل\"", "\"وافتعل وانفعل وافتعل واستفعل وأفعل\"", "\"فقس الباقي\" وهو الأربعة الأخيرة \"عليه\"؛ أي على افتعل. \":"],
+              "why": "دحرج and أكرم take damma on the first letter only. تفعّل, استفعل and افتعل are among the seven babs that take two."
+            },
+            {
+              "kind": "choose",
+              "id": "tafaddal",
+              "ask": "Why does the passive of تفضّل need a damma on the ف too (تُفُضِّل)?",
+              "options": ["Because ف is a lip letter", "Because it has four letters", "So it isn’t confused with the present of فضّل (تُفَضِّل)"],
+              "answer": 2,
+              "source": ["\"وضم الفاء في الأولين\"", "\"حتى لا يلتبسا\"", "\"بمضارع فعل\""],
+              "why": "With a damma only on the ت it would be تُفَضِّل, which is also ‘you prefer’, the present of فضّل."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-fail",
+          "title": "The active participle",
+          "arabic": "فصل في اسم الفاعل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "The doer’s noun",
+              "ar": "\"واشتق\" اسم الفاعل \"منه\"؛ أي من المضارع \"لمناسبتهما\"؛ أي لمناسبة كل واحد من اسم الفاعل والمضارع الآخر \"في الوقوع صفة للنكرة",
+              "en": "Ism al-fa‘il (active participle, the doer’s noun): a noun for the one doing the action, as something happening rather than a fixed quality: ضارب, ‘hitting, a hitter’. It is taken from the present, since both can describe an indefinite noun."
+            },
+            {
+              "kind": "order",
+              "id": "make",
+              "ask": "Make ضارب from يضرب. Put the steps in order.",
+              "steps": ["Drop the ي of يضرب", "Put an alif between the ف and the ع", "Give the ع a kasra: ضارِب"],
+              "source": ["\"حذف علامة الاستقبال من يضرب\"", "\"وأدخل الألف\" للفرق بينه وبين الماضي", "\"لخفتها بين الفاء والعين", "\"وكسر عينه\""],
+              "why": "Drop the present letter, add the light alif after the first root letter, and give the middle root letter kasra."
+            },
+            {
+              "kind": "choose",
+              "id": "nasir",
+              "ask": "What is the doer’s noun from ينصُر?",
+              "options": ["مَنصَر", "ناصِر", "ناصُر"],
+              "answer": 1,
+              "source": "نحو: ينصر فهو ناصر ويحمد فهو حامد",
+              "why": "The ع always takes kasra in فاعِل, even when the present has damma: ينصُر gives ناصِر."
+            },
+            {
+              "kind": "choose",
+              "id": "why-kasra",
+              "ask": "Why not keep a fatha on the ع (ضارَب)?",
+              "options": ["Fatha is too heavy", "It would be a command", "It would look like the past of the مفاعلة bab (ضارَبَ)"],
+              "answer": 2,
+              "source": "\"يصير مشابها لماضي المفاعلة\"",
+              "why": "ضارَبَ is a past verb (like قاتَلَ). Kasra was chosen even though ضارِب then looks like the command ضارِبْ: that mix-up was the lesser problem."
+            },
+            {
+              "kind": "teach",
+              "id": "sifa",
+              "title": "The resembling adjective",
+              "ar": "وهي اسم مشتق من فعل لازم لمن قام به فقط على معنى الثبوت",
+              "en": "Al-sifa al-mushabbaha (the adjective that resembles the participle) comes from an intransitive verb, for a quality that lasts: حَسَن (handsome), شُجاع (brave), جَبان (cowardly), عطشان (thirsty), أحول (cross-eyed). Its patterns are learnt from use."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Happening (active participle) or lasting (resembling adjective)?",
+              "into": ["Active participle", "Resembling adjective"],
+              "items": [
+                ["ضارب", "Active participle"],
+                ["ناصر", "Active participle"],
+                ["حسن", "Resembling adjective"],
+                ["شجاع", "Resembling adjective"],
+                ["جبان", "Resembling adjective"],
+                ["عطشان", "Resembling adjective"]
+              ],
+              "source": ["\"وصيغته\"؛ أي صيغة اسم الفاعل \"من الثلاثي\" المجرد صحيحا كان أو غيره \"على وزن ضارب\"", "\"وحسن\" بفتحهما", "\"وشجاع\" بضم الفاء \"وجبان\" بفتحها", "\"وعطشان\""],
+              "why": "ضارب and ناصر are on فاعل, for an action. حسن, شجاع, جبان and عطشان are among the book’s examples of lasting qualities."
+            },
+            {
+              "kind": "teach",
+              "id": "afal",
+              "title": "أفعل: ‘more’",
+              "ar": "\"ويجيء أفعل\" بفتح الهمزة والعين وسكون الفاء \"لتفضيل الفاعل\"",
+              "en": "أفعل shows the doer has more of a quality than others: أكرم, ‘more generous’. It only comes from a bare three-letter verb that is not a colour or a defect. Otherwise use أشد or أحسن with the masdar: أشد منه استخراجا, أحسن منه بياضا."
+            },
+            {
+              "kind": "choose",
+              "id": "white",
+              "ask": "Hamza wants to say ‘whiter than him’. Which is right?",
+              "options": ["أحسن منه بياضا", "أبيض منه", "أبيضُ"],
+              "answer": 0,
+              "source": ["\"لأن\" الشأن \"فيهما\"؛ أي فى اللون والعيب \"يجيء أفعل للصفة فيلزم الالتباس\"", "وأحسن منه بياضا"],
+              "why": "Colours already use أفعل for the plain adjective (أبيض, ‘white’), so أبيض منه would be unclear. Use أحسن or أشد with the masdar."
+            },
+            {
+              "kind": "choose",
+              "id": "istikhraj",
+              "ask": "From استخرج (to extract), how do you say ‘he extracts more than him’?",
+              "options": ["هو أستخرج منه", "هو أشد منه استخراجا", "هو أخرج منه"],
+              "answer": 1,
+              "source": ["ولا يجيء من المزيد فيه\"", "هو أشد منه استخراجا"],
+              "why": "أفعل can’t hold all the letters of استخرج, and أخرج would mean ‘goes out more’. So use أشد with the masdar."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "أحمق من هبنقة (more foolish than Habannaqa): is it formed by rule?",
+              "options": ["No: it is from a defect, so it is rare (shadhdh) and not copied", "Yes: every quality takes أفعل", "Yes: it is a colour"],
+              "answer": 0,
+              "source": "\"وأحمق\"؛ أي أكثر حماقة \"من هبنقة\" اسم رجل وقصته معروفة \"من العيوب شاذ لا يقاس عليه",
+              "why": "Defects don’t take أفعل for ‘more’. This saying is a rare exception, and nothing is built on it."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-mubalagha",
+          "title": "More doer patterns",
+          "arabic": "فعيل وفعول والمبالغة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fail",
+              "title": "فعيل",
+              "ar": "ويجيء اسم الفاعل على\" وزن \"فعيل نحو نصير\" بمعنى ناصر",
+              "en": "The doer’s noun can come on فعيل: نصير, ‘helper’, means ناصر."
+            },
+            {
+              "kind": "teach",
+              "id": "same",
+              "title": "Same for a man and a woman",
+              "ar": "\"إذا كان\" فعيل \"بمعنى المفعول\" وذكر الموصوف \"نحو\" رجل \"قتيل\" وامرأة قتيل بمعنى مقتول ومقتولة",
+              "en": "When فعيل means the done-to (قتيل, ‘killed’, = مقتول) and the person is named, it is the same for men and women: رجل قتيل, امرأة قتيل. But once it becomes a plain name for a thing, it takes ة: نعجة ذبيحة, صبية لقيطة."
+            },
+            {
+              "kind": "choose",
+              "id": "qatil",
+              "ask": "Which is right for ‘a woman who was killed’?",
+              "options": ["امرأة قتيلة", "امرأة مقتل", "امرأة قتيل"],
+              "answer": 2,
+              "source": "وامرأة قتيل بمعنى مقتول ومقتولة",
+              "why": "فعيل meaning the done-to stays the same when the woman is named, so امرأة قتيل."
+            },
+            {
+              "kind": "teach",
+              "id": "faul",
+              "title": "فعول for ‘a lot’",
+              "ar": "\"ويجيء\" على وزن \"فعول للمبالغة\"؛ أي لمبالغة الفعل وتكثيره \"نحو منوع\"",
+              "en": "فعول shows a lot of the action (mubalagha): منوع, ‘who refuses a lot’; صبور, ‘very patient’. Meaning the doer, it is the same for both: امرأة صبور. Meaning the done-to, the feminine takes ة: ناقة حلوبة, ‘a she-camel for milking’."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-ta",
+              "ask": "Does the feminine take ة here?",
+              "into": ["Same for both", "Takes ة"],
+              "items": [
+                ["امرأة صبور", "Same for both"],
+                ["امرأة قتيل", "Same for both"],
+                ["ناقة حلوبة", "Takes ة"],
+                ["نعجة ذبيحة", "Takes ة"],
+                ["صبية لقيطة", "Takes ة"]
+              ],
+              "source": ["\"نحو امرأة صبور ورجل صبور\"", "\"ويقال في فعول بمعنى المفعول نحو: ناقة حلوب\" وحلوبة بالتاء في المؤنث", "ونعجة \"ذبيحة\" وصبي لقيط \"و\" صبية \"لقيطة\""],
+              "why": "صبور (doer) and قتيل (done-to, described) stay the same. حلوبة, and ذبيحة and لقيطة as names, take ة."
+            },
+            {
+              "kind": "teach",
+              "id": "forms",
+              "title": "More patterns of ‘a lot’",
+              "ar": "\"ويجيء للمبالغة\" في الفعل من الفاعل قوله: \"نحو صبار\"",
+              "en": "Other patterns for a lot of the action: صبّار, مِفعَل (a sword that cuts well), فِسّيق (very sinful), كُبار, طُوّال, علّامة (very learned), نسّابة (expert in family lines), راوية, فَروقة, ضُحَكة, مِجذامة, مِسقام, مِعطير."
+            },
+            {
+              "kind": "pick",
+              "id": "which",
+              "ask": "Which are patterns of ‘a lot’ (mubalagha)?",
+              "options": [
+                { "text": "صبّار", "right": true },
+                { "text": "علّامة", "right": true },
+                { "text": "فِسّيق", "right": true },
+                { "text": "مِعطير", "right": true },
+                { "text": "مضروب" },
+                { "text": "مُكرِم" }
+              ],
+              "source": ["\"نحو صبار\"", "\"وفسيق\"", "\"وعلامة ونسابة\"", "\"ومجذامة ومسقام ومعطير\""],
+              "why": "صبّار, فِسّيق, علّامة and مِعطير are in the book’s list. مضروب is the done-to’s noun and مُكرِم the doer’s noun of أكرم."
+            },
+            {
+              "kind": "choose",
+              "id": "allama",
+              "ask": "Someone writes رجل علّامة, ‘a very learned man’. Is the ة a mistake?",
+              "options": ["Yes: it should be علّام", "No: in these nine patterns man and woman are the same", "Yes: ة is only for women"],
+              "answer": 1,
+              "source": "\"ويستوي المذكر والمؤنث في التسعة الأخيرة\"",
+              "why": "From علّامة to مِعطير, the same word serves both, because they are used little."
+            },
+            {
+              "kind": "teach",
+              "id": "longer",
+              "title": "From longer verbs",
+              "ar": "\"على صيغة المستقبل\"؛ أي مستقبل ذلك الباب كائنة \"بميم مضمومة\" موضع حرف المضارعة بعد حذفه \"وكسر ما قبل الآخر\" لفظا \"نحو مكرم\"",
+              "en": "From verbs longer than three letters, the doer’s noun is the present with مُ in place of the present letter and kasra before the last: يُكرِم gives مُكرِم, يتدحرج gives متدحرِج."
+            },
+            {
+              "kind": "choose",
+              "id": "mim",
+              "ask": "Why a damma on that م, and not a fatha?",
+              "options": ["Damma is lighter", "To show the past", "With fatha it would look like a noun of place"],
+              "answer": 2,
+              "source": "\"للفرق بينه\"؛ أي بين اسم الفاعل \"وبين\" اسم \"الموضع\"",
+              "why": "مَفعِل with fatha on the م is a noun of place, so the doer’s noun takes damma."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "What is the doer’s noun from يستخرج?",
+              "options": ["مُستخرِج", "مُستخرَج", "مَستخرَج"],
+              "answer": 0,
+              "source": ["\"على صيغة المستقبل\"", "\"وكسر ما قبل الآخر\""],
+              "why": "Replace the ي with مُ and keep kasra before the last: مستخرِج. With fatha (مستخرَج) it would be the done-to."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-maful",
+          "title": "The passive participle",
+          "arabic": "فصل: في اسم المفعول",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "The done-to’s noun",
+              "ar": "\"وهو اسم\" جنس شامل لغير المقصود \"مشتق\" فصل يخرج الأسماء الغير المشتقة \"من يفعل\"؛ أي من المضارع مبنيا للمفعول",
+              "en": "Ism al-maf‘ul (passive participle, the done-to’s noun): a noun taken from the passive present (يُضرَب) for the one the action fell on: مضروب, ‘hit’. From the bare three-letter verb it is on مفعول."
+            },
+            {
+              "kind": "order",
+              "id": "steps",
+              "ask": "How مضروب was made from يُضرَب. Put the steps in order.",
+              "steps": ["يُضرَب", "مُضرَب: a م in place of the ي", "مَضرَب: the م takes fatha", "مَضرُب: the ر takes damma", "مضروب: the damma is stretched into و"],
+              "source": ["\"وأدخل الميم مقام\" الحرف \"الزائد\" للمضارعة", "بمفعول باب الأفعال\" ولم يكسر لئلا يلتبس باسم الآلة \"فصار مضرب\"", "\"ثم ضم الراء حتى لا يلتبس بالموضع\"", "ثم أشبع الضم لانعدام مفعل في كلامهم بغير التاء\""],
+              "why": "Each change avoids a mix-up: مُضرَب would be the done-to of أفعل, مَضرَب a noun of place, and مَفعُل does not exist without a ة."
+            },
+            {
+              "kind": "choose",
+              "id": "gap",
+              "ask": "Why the damma on the ر? Complete it.",
+              "ar": "ثم ضم الراء حتى لا يلتبس ____",
+              "options": ["بالأمر", "بالموضع", "بالمتكلم"],
+              "answer": 1,
+              "arabic-options": true,
+              "source": "\"ثم ضم الراء حتى لا يلتبس بالموضع\"",
+              "why": "With fatha, مَضرَب would be the noun of place."
+            },
+            {
+              "kind": "choose",
+              "id": "kasr-mim",
+              "ask": "Why not a kasra on the م (مِضرَب)?",
+              "options": ["It would look like a noun of instrument", "It would look like a command", "Kasra is never used on م"],
+              "answer": 0,
+              "source": "ولم يكسر لئلا يلتبس باسم الآلة",
+              "why": "مِفعَل is the pattern for tools, so the م can’t take kasra."
+            },
+            {
+              "kind": "teach",
+              "id": "change",
+              "title": "Why the three-letter one changes",
+              "ar": "\"حتى يصير\" مفعول الثلاثي \"مشابها في التغيير باسم الفاعل\"",
+              "en": "Only the three-letter done-to’s noun was changed this much, to match its brother, the doer’s noun, which also changed from its present (ينصر, ناصر). From longer verbs, both stay close to the present."
+            },
+            {
+              "kind": "teach",
+              "id": "longer",
+              "title": "From longer verbs",
+              "ar": "\"وصيغته\"؛ أي صيغة اسم المفعول \"من غير الثلاثي المجرد\" مطلقا \"على صيغة\" اسم \"الفاعل\" منه ملتبسا؛ لأنه \"بفتح ماقبل الآخر\"",
+              "en": "From longer verbs, the done-to’s noun is like the doer’s noun but with fatha before the last letter: مُستخرَج, ‘extracted’, against مُستخرِج, ‘extractor’."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Doer or done-to?",
+              "into": ["Doer", "Done-to"],
+              "items": [
+                ["ضارب", "Doer"],
+                ["مضروب", "Done-to"],
+                ["مُستخرِج", "Doer"],
+                ["مُستخرَج", "Done-to"],
+                ["مُكرِم", "Doer"],
+                ["مُكرَم", "Done-to"]
+              ],
+              "source": ["\"نحو مضروب وهو مشتق من يضرب\"", "\"بفتح ماقبل الآخر\" لفظا أو تقديرا تبعا لفعله \"نحو مستخرج\""],
+              "why": "Three-letter verbs: فاعل for the doer, مفعول for the done-to. Longer verbs: kasra before the last for the doer, fatha for the done-to."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "What is the done-to’s noun from نصر ينصر?",
+              "options": ["ناصر", "منصَر", "منصور"],
+              "answer": 2,
+              "source": "\"وصيغته من الثلاثي\" المجرد \"على وزن مفعول\"",
+              "why": "A three-letter verb gives مفعول: منصور. ناصر is the doer."
+            }
+          ]
+        },
+        {
+          "id": "marah-sahih-makan",
+          "title": "Nouns of place, time and instrument",
+          "arabic": "اسما الزمان والمكان والآلة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "The noun of place",
+              "ar": "\"اسم المكان اسم مشتق من يفعل\" على صيغة المبني للفاعل من المستقبل",
+              "en": "Ism al-makan (noun of place): taken from the active present, for the place where the action happens. A م with fatha replaces the present letter, and the ع follows the present’s vowel."
+            },
+            {
+              "kind": "teach",
+              "id": "fatha-kasra",
+              "title": "مَفعَل and مَفعِل",
+              "ar": "أي صيغة اسم المكان \"من باب يفعل\" بفتح العين من الأقسام كلها \"مفعل\" مفتوح العين للموافقة",
+              "en": "If the present has fatha (يذهَب), the place is مَفعَل: مَذهَب. If it has kasra, the place is مَفعِل. Exceptions: verbs that start with و always take kasra (موعِد, موجِل), and verbs with a weak last letter take fatha (مَرمى)."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Fatha or kasra on the ع of the noun of place?",
+              "into": ["Fatha: مَفعَل", "Kasra: مَفعِل"],
+              "items": [
+                ["مذهب (from يذهب)", "Fatha: مَفعَل"],
+                ["مرمى (from يرمي)", "Fatha: مَفعَل"],
+                ["مقتل (from يقتل)", "Fatha: مَفعَل"],
+                ["موعد (from يعد)", "Kasra: مَفعِل"],
+                ["موجل (from يوجل)", "Kasra: مَفعِل"],
+                ["مسجد (from يسجد)", "Kasra: مَفعِل"]
+              ],
+              "source": ["\"كالمذهب\" بالفتح من يذهب", "\"الموجل\" في مفتوح العين", "نحو: المرمى \"فرارا من توالي الكسرات\"", "والمرفق والمسجد\""],
+              "why": "مذهب follows its fatha. مرمى takes fatha to avoid a run of kasras. مقتل takes the fatha given to most damma verbs. و-first verbs take kasra, and مسجد is one of the eleven heard with kasra."
+            },
+            {
+              "kind": "choose",
+              "id": "mawid",
+              "ask": "Why does موعِد take kasra, even where the present has fatha (موجِل)?",
+              "options": ["Because it is a command", "With fatha it might be taken for فَوعَل, like جورب", "Because و is a throat letter"],
+              "answer": 1,
+              "source": ["\"حتى لا يظن أن وزنه فوعل\"", "\"لأن فوعلا بالكسر لا يوجد في كلامهم\""],
+              "why": "مَوعَد could be read as فَوعَل (like جَورَب, a sock). No word is on فَوعِل, so kasra removes the doubt."
+            },
+            {
+              "kind": "teach",
+              "id": "yafulu",
+              "title": "From يَفعُل",
+              "ar": "\"ولا يبنى من يفعل\" بضم العين \"مفعل\" بالضم وإن كان هو الأصل للموافقة \"لثقل الضمة\"",
+              "en": "From a present with damma (يقتُل, يسجُد) there is no مَفعُل, because damma is too heavy. Eleven nouns heard from the Arabs take kasra: المنسِك, المجزِر, المنبِت, المطلِع, المشرِق, المغرِب, المفرِق, المسقِط, المسكِن, المرفِق, المسجِد. All the rest take fatha: مقتَل."
+            },
+            {
+              "kind": "choose",
+              "id": "masjid",
+              "ask": "يسجُد has damma. Why is the place مسجِد, with kasra?",
+              "options": ["Every damma verb gives kasra", "Because ج is a throat letter", "It is one of the eleven nouns given kasra, as the Arabs said them"],
+              "answer": 2,
+              "source": "\"فأعطى للمفعل\" بالكسر \"أحد عشر اسما هي نحو المنسك\"",
+              "why": "Damma verbs give fatha, except eleven nouns heard with kasra, and مسجد is one of them."
+            },
+            {
+              "kind": "choose",
+              "id": "husayn",
+              "ask": "What can مقتل الحسين mean?",
+              "options": ["Both the time (the day of Ashura) and the place (Karbala) he was killed", "Only the place", "Only the killer"],
+              "answer": 0,
+              "source": ["\"واسم الزمان مثل\" اسم \"المكان\"", "كما يقال مقتل الحسين لمكان قتله؛ أعني كربلاء"],
+              "why": "The noun of time has the same forms as the noun of place, so مقتل serves for both."
+            },
+            {
+              "kind": "teach",
+              "id": "ala",
+              "title": "The noun of instrument",
+              "ar": "\"فصل: في اسم الآلة. وهو\"؛ أي اسم الآلة \"اسم مشتق\"",
+              "en": "Ism al-ala (noun of instrument): the name of the tool the doer uses on the object. Its pattern is مِفعَل, with kasra on the م: مِحلَب, ‘milking pail’. It also comes on مِفعال: مِقراض (scissors), مِفتاح (key). It is only made from three-letter verbs that take an object."
+            },
+            {
+              "kind": "sort",
+              "id": "rhyme",
+              "ask": "The scholars’ rhyme: what does each pattern give?",
+              "into": ["Place", "Instrument", "Once"],
+              "items": [
+                ["مَفعَل", "Place"],
+                ["مَذهَب", "Place"],
+                ["مِفعَل", "Instrument"],
+                ["مِفتاح", "Instrument"],
+                ["فَعلة", "Once"]
+              ],
+              "source": ["\"الصرفيون المفعل\" بفتح الميم والعين \"للموضع\"؛ أي للمكان \"والمفعل\" بكسر الميم وفتح العين \"للآلة والفعلة\" بفتح الفاء وسكون العين \"للمرة\"", "\"نحو: مقراض ومفتاح"],
+              "why": "مَفعَل is for the place, مِفعَل (and مِفعال) for the tool, and فَعلة for doing something once."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Why does the instrument’s م take kasra, not fatha?",
+              "options": ["Because it comes from the past", "To tell it apart from the noun of place", "Because tools are heavy"],
+              "answer": 1,
+              "source": "\"وكسر الميم في اسم الآلة\" ولم يبق على الأصل الذي هو الفتح لقيامه مقام الحرف المفتوح \"للفرق بينه وبين الموضع\"",
+              "why": "مَفعَل with fatha is already the noun of place, so the tool takes kasra."
+            }
+          ]
+        }
+      ]
+    },
     {"id": "marah-mudaaf", "title": "The doubled verb", "arabic": "المضاعف", "kitab": "الباب الثاني: في المضاعف", "kitabs": ["الباب الثاني: في المضاعف"], "lessons": []},
     {"id": "marah-mahmuz", "title": "The hamzated verb", "arabic": "المهموز", "kitab": "الباب الثالث: في المهموز", "kitabs": ["الباب الثالث: في المهموز"], "lessons": []},
     {"id": "marah-mithal", "title": "The weak first letter", "arabic": "المثال", "kitab": "الباب الرابع في المعتل", "kitabs": ["الباب الرابع في المعتل"], "lessons": []},
