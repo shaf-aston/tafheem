@@ -188,8 +188,7 @@ def _engine(name: str):
         _models[name] = WhisperModel(str(folder), **build)
     else:
         repo, _, revision = name.partition("@")
-        build.update(revision=revision or None,
-                     use_auth_token=settings.recitation_hf_token.get_secret_value() or None)
+        build.update(revision=revision or None)
         try:
             # The copy already on this machine, without asking the internet whether
             # there is a newer one. That question costs a second every startup and
