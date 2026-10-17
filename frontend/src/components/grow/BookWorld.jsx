@@ -1,7 +1,9 @@
 /**
- * A book world (Fiqh): first its parts (Purity, Prayer…), then a part's lessons, one tap from each other.
- * Above the parts, the next lesson and any review due. `state` from lib/useBookWorld.js; a lesson plays in LessonRunner.
+ * A book world (Fiqh), one level at a time: its areas (Worship, Trade…), an area's parts (Purity, Prayer…), a part's lessons.
+ * A book without areas opens on its parts. Above them, the next lesson and any review due. `place` is the address step,
+ * an area's id or a part's. `state` from lib/useBookWorld.js; a lesson plays in LessonRunner.
  */
+import { areaOf } from '../../lib/bookLesson'
 import { REVIEW } from '../../lib/useBookWorld'
 import { sayIn } from '../../lib/say'
 import ArabicText from '../ui/ArabicText'
@@ -38,20 +40,21 @@ function Next({ book, accent, onStart }) {
   )
 }
 
-function Parts({ book, onPart }) {
+/** A tile per area or part: its name, lessons finished of those it has; one with none yet shows as coming. */
+function Tiles({ items, onOpen }) {
   return (
     <div className="grow-worlds">
-      {book.parts.map((part) => {
-        const open = part.lessons.length > 0
+      {items.map((item) => {
+        const total = item.total ?? item.lessons.length
         return (
-          <button key={part.id} type="button" className="grow-world-tile" disabled={!open} onClick={() => onPart(part.id)}>
-            <ArabicText size="lg" className="grow-tile-ar">{part.arabic}</ArabicText>
-            <span className="grow-tile-name">{part.title}</span>
+          <button key={item.id} type="button" className="grow-world-tile" disabled={!total} onClick={() => onOpen(item.id)}>
+            <ArabicText size="lg" className="grow-tile-ar">{item.arabic}</ArabicText>
+            <span className="grow-tile-name">{item.title}</span>
             <span className="grow-tile-status tabular-nums">
-              {open ? say('{done} of {total} lessons', { done: part.finished, total: part.lessons.length }) : say('Coming soon')}
+              {total ? say('{done} of {total} lessons', { done: item.finished, total }) : say('Coming soon')}
             </span>
             <span className="grow-lesson-bar" aria-hidden="true">
-              <i style={{ width: `${open ? (100 * part.finished) / part.lessons.length : 0}%` }} />
+              <i style={{ width: `${total ? (100 * item.finished) / total : 0}%` }} />
             </span>
           </button>
         )
@@ -79,21 +82,39 @@ function Lessons({ part, onStart }) {
   )
 }
 
-export default function BookWorld({ world, accent, state: book, part: partId, onBack, onPart, onStart }) {
-  const part = book.parts.find((one) => one.id === partId && one.lessons.length)
+/** The header for where the reader is: the world, an area (back to the world), or a part (back to its area, if any). */
+function Header({ world, area, part, onBack, onPart }) {
+  if (part) {
+    const up = area?.title ?? world.name
+    return (
+      <WorldHeader world={{ scene: part.kitab, name: part.title, arabic: part.arabic, idea: up }} back={up}
+        onBack={() => onPart(area?.id ?? null)} />
+    )
+  }
+  if (area) {
+    return <WorldHeader world={{ scene: world.name, name: area.title, arabic: area.arabic, idea: area.idea }} back={world.name} onBack={() => onPart(null)} />
+  }
+  return <WorldHeader world={world} onBack={onBack} />
+}
+
+export default function BookWorld({ world, accent, state: book, place, onBack, onPart, onStart }) {
+  const part = book.parts.find((one) => one.id === place && one.lessons.length)
+  const area = part ? areaOf(book.areas, part.id) : book.areas.find((one) => one.id === place && one.total)
   const loading = !book.ready && !book.error
+  let body
+  if (part) body = <Lessons part={part} onStart={onStart} />
+  else if (area) body = <Tiles items={area.parts} onOpen={onPart} />
+  else body = <Tiles items={book.areas.length ? book.areas : book.parts} onOpen={onPart} />
   return (
     <div className="grow-world" style={{ '--w': accent }}>
       <Backdrop id={world.backdrop} />
-      {part
-        ? <WorldHeader world={{ scene: part.kitab, name: part.title, arabic: part.arabic, idea: world.name }} back={world.name} onBack={() => onPart(null)} />
-        : <WorldHeader world={world} onBack={onBack} />}
+      <Header world={world} area={area} part={part} onBack={onBack} onPart={onPart} />
       {book.error && <ErrorAlert title={say('Could not load this world')} error={book.error} onRetry={book.retry} />}
       {loading && <Skeleton className="h-80 w-full" />}
       {book.ready && (
         <div className="grow-book">
           <Next book={book} accent={accent} onStart={onStart} />
-          {part ? <Lessons part={part} onStart={onStart} /> : <Parts book={book} onPart={onPart} />}
+          {body}
           <p className="grow-hint">{say('{book} ({madhhab}). Arabic is the book’s own words; the English is ours. Learn it with a teacher too.', { book: book.book.book, madhhab: book.book.madhhab })}</p>
         </div>
       )}

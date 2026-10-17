@@ -5,6 +5,15 @@
   "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
   "madhhab": "Hanafi",
   "file": "0428AbuHusaynQuduri.Mukhtasar.Sham19Y0124336-ara1",
+  "_areas": "The areas Fiqh opens on, each a few parts by id; every part sits in exactly one (lib/bookLesson.test.js). A part may join small Kitabs: `kitabs` lists them all, `kitab` is the one its header shows.",
+  "areas": [
+    {"id": "worship", "title": "Worship", "arabic": "العبادات", "idea": "Purity, prayer, zakat, fasting, hajj and the sacrifice.", "parts": ["tahara", "salah", "zakah", "sawm", "hajj", "udhiya"]},
+    {"id": "trade", "title": "Trade and money", "arabic": "المعاملات", "idea": "Buying and selling, renting, partners, loans, gifts and land.", "parts": ["buyu", "rahn", "hajr", "iqrar", "ijara", "shufa", "shirka", "mudaraba", "wakala", "kafala", "sulh", "hiba", "waqf", "ghasb", "wadia", "laqit", "mawat", "madhun", "muzaraa"]},
+    {"id": "family", "title": "Family", "arabic": "الأسرة", "idea": "Marriage, divorce, the 'idda and keeping a family.", "parts": ["nikah", "rada", "talaq", "ila", "zihar", "nafaqat"]},
+    {"id": "crimes", "title": "Crimes and courts", "arabic": "الجنايات والقضاء", "idea": "Injuries, punishments, claims, witnesses and the judge.", "parts": ["jinayat", "diyat", "hudud", "sariqa", "dawa", "shahadat", "qadi", "qisma", "ikrah"]},
+    {"id": "life", "title": "Food, oaths and the state", "arabic": "الصيد والأيمان والسير", "idea": "Hunting and slaughter, oaths, what is allowed, and jihad.", "parts": ["sayd", "ayman", "hazr", "siyar"]},
+    {"id": "wills", "title": "Wills, inheritance and freedom", "arabic": "الوصايا والفرائض", "idea": "Wills, shares of inheritance, and freeing slaves.", "parts": ["wasaya", "faraid", "itq", "mukatab", "wala"]}
+  ],
   "parts": [
     {
       "id": "tahara",
@@ -9566,6 +9575,24 @@
         }
       ]
     },
+    { "id": "rahn", "title": "Pawning", "arabic": "الرهن", "kitab": "كتاب الرهن", "lessons": [] },
+    { "id": "hajr", "title": "Restriction", "arabic": "الحجر", "kitab": "كتاب الحجر", "lessons": [] },
+    { "id": "iqrar", "title": "Admissions", "arabic": "الإقرار", "kitab": "كتاب الإقرار", "lessons": [] },
+    { "id": "ijara", "title": "Hire and wages", "arabic": "الإجارة", "kitab": "كتاب الإجارة", "lessons": [] },
+    { "id": "shufa", "title": "Pre-emption", "arabic": "الشفعة", "kitab": "كتاب الشفعة", "lessons": [] },
+    { "id": "shirka", "title": "Partnership", "arabic": "الشركة", "kitab": "كتاب الشركة", "lessons": [] },
+    { "id": "mudaraba", "title": "Profit-sharing", "arabic": "المضاربة", "kitab": "كتاب المضاربة", "lessons": [] },
+    { "id": "wakala", "title": "Agency", "arabic": "الوكالة", "kitab": "كتاب الوكالة", "lessons": [] },
+    { "id": "kafala", "title": "Surety and debt transfer", "arabic": "الكفالة والحوالة", "kitab": "كتاب الكفالة", "kitabs": ["كتاب الكفالة", "كتاب الحوالة"], "lessons": [] },
+    { "id": "sulh", "title": "Settlement", "arabic": "الصلح", "kitab": "كتاب الصلح", "lessons": [] },
+    { "id": "hiba", "title": "Gifts", "arabic": "الهبة", "kitab": "كتاب الهبة", "lessons": [] },
+    { "id": "waqf", "title": "Endowment", "arabic": "الوقف", "kitab": "كتاب الوقف", "lessons": [] },
+    { "id": "ghasb", "title": "Taking by force", "arabic": "الغصب", "kitab": "كتاب الغصب", "lessons": [] },
+    { "id": "wadia", "title": "Deposits and loans", "arabic": "الوديعة والعارية", "kitab": "كتاب الوديعة", "kitabs": ["كتاب الوديعة", "كتاب العارية"], "lessons": [] },
+    { "id": "laqit", "title": "Found, lost and missing", "arabic": "اللقيط", "kitab": "كتاب اللقيط", "kitabs": ["كتاب اللقيط", "كتاب الخنثى", "كتاب المفقود", "كتاب الإباق"], "lessons": [] },
+    { "id": "mawat", "title": "Reviving dead land", "arabic": "إحياء الموات", "kitab": "كتاب إحياء الموات", "lessons": [] },
+    { "id": "madhun", "title": "The permitted trader", "arabic": "المأذون", "kitab": "كتاب المأذون", "lessons": [] },
+    { "id": "muzaraa", "title": "Sharecropping", "arabic": "المزارعة", "kitab": "كتاب المزارعة", "lessons": [] },
     {
       "id": "nikah",
       "title": "Family",
@@ -11270,6 +11297,30 @@
           ]
         }
       ]
-    }
+    },
+    { "id": "rada", "title": "Milk kinship", "arabic": "الرضاع", "kitab": "كتاب الرضاع", "lessons": [] },
+    { "id": "talaq", "title": "Divorce", "arabic": "الطلاق", "kitab": "كتاب الطلاق", "lessons": [] },
+    { "id": "ila", "title": "Oath of abstention and khul'", "arabic": "الإيلاء", "kitab": "كتاب الإيلاء", "lessons": [] },
+    { "id": "zihar", "title": "Zihar, li'an and the 'idda", "arabic": "الظهار", "kitab": "كتاب الظهار", "lessons": [] },
+    { "id": "nafaqat", "title": "Maintenance", "arabic": "النفقات", "kitab": "كتاب النفقات", "lessons": [] },
+    { "id": "itq", "title": "Freeing slaves", "arabic": "العتاق", "kitab": "كتاب العتاق", "lessons": [] },
+    { "id": "mukatab", "title": "The mukatab", "arabic": "المكاتب", "kitab": "كتاب المكاتب", "lessons": [] },
+    { "id": "wala", "title": "Wala'", "arabic": "الولاء", "kitab": "كتاب الولاء", "lessons": [] },
+    { "id": "jinayat", "title": "Injuries", "arabic": "الجنايات", "kitab": "كتاب الجنايات", "lessons": [] },
+    { "id": "diyat", "title": "Blood money", "arabic": "الديات", "kitab": "كتاب الديات", "lessons": [] },
+    { "id": "hudud", "title": "Hadd punishments and drink", "arabic": "الحدود", "kitab": "كتاب الحدود", "kitabs": ["كتاب الحدود", "كتاب الأشربة"], "lessons": [] },
+    { "id": "sariqa", "title": "Theft", "arabic": "السرقة", "kitab": "كتاب السرقة", "lessons": [] },
+    { "id": "sayd", "title": "Hunting and slaughter", "arabic": "الصيد والذبائح", "kitab": "كتاب الصيد والذبائح", "lessons": [] },
+    { "id": "udhiya", "title": "The sacrifice", "arabic": "الأضحية", "kitab": "كتاب الأضحية", "lessons": [] },
+    { "id": "ayman", "title": "Oaths", "arabic": "الأيمان", "kitab": "كتاب الأيمان", "lessons": [] },
+    { "id": "dawa", "title": "Claims", "arabic": "الدعوى", "kitab": "كتاب الدعوى", "lessons": [] },
+    { "id": "shahadat", "title": "Testimony", "arabic": "الشهادات", "kitab": "كتاب الشهادات", "lessons": [] },
+    { "id": "qadi", "title": "The judge", "arabic": "أدب القاضي", "kitab": "كتاب أدب القاضي", "lessons": [] },
+    { "id": "qisma", "title": "Dividing property", "arabic": "القسمة", "kitab": "كتاب القسمة", "lessons": [] },
+    { "id": "ikrah", "title": "Coercion", "arabic": "الإكراه", "kitab": "كتاب الإكراه", "lessons": [] },
+    { "id": "siyar", "title": "Jihad and rebels", "arabic": "السير", "kitab": "كتاب السير", "kitabs": ["كتاب السير", "كتاب البغاة"], "lessons": [] },
+    { "id": "hazr", "title": "Allowed and disallowed", "arabic": "الحظر والإباحة", "kitab": "كتاب الحظر والإباحة", "lessons": [] },
+    { "id": "wasaya", "title": "Wills", "arabic": "الوصايا", "kitab": "كتاب الوصايا", "lessons": [] },
+    { "id": "faraid", "title": "Inheritance", "arabic": "الفرائض", "kitab": "كتاب الفرائض", "lessons": [] }
   ]
 }

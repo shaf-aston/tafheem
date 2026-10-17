@@ -29,7 +29,7 @@ export function useBookWorld(world) {
     error: source.error ?? summary.error,
     retry: () => { source.refetch(); summary.refetch() },
     book: source.data,
-    ...(state ?? { parts: [], next: null, due: [] }),
+    ...(state ?? { parts: [], areas: [], next: null, due: [] }),
     // A lesson's cards, or the due ones for REVIEW; null when there is no such lesson.
     makeLesson: (lessonId, random = Math.random) => (lessonId === REVIEW
       ? reviewCards(source.data, state.due, world.module, random)

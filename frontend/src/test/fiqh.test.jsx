@@ -11,7 +11,7 @@ const click = (name) => fireEvent.click(screen.getByRole('button', { name }))
 const option = (name) => screen.getByRole('radio', { name })
 
 describe('fiqh', () => {
-  it('goes world → part → lesson, and plays its questions', async () => {
+  it('goes world → area → part → lesson, and plays its questions', async () => {
     const filed = []
     const visits = []
     renderScreen(<GrowPanel incoming="fiqh" onVisit={(value) => visits.push(value)} />, {
@@ -21,9 +21,12 @@ describe('fiqh', () => {
       },
     })
 
-    // The parts: Purity has lessons, Prayer is still coming.
-    fireEvent.click(await screen.findByRole('button', { name: /Purity/ }))
+    // The areas, then Worship's parts, then Purity's lessons; Purity's back button returns to Worship.
+    fireEvent.click(await screen.findByRole('button', { name: /^العبادات Worship/ }))
+    expect(visits.at(-1)).toBe('fiqh/worship')
+    fireEvent.click(screen.getByRole('button', { name: /Purity/ }))
     expect(visits.at(-1)).toBe('fiqh/tahara')
+    expect(screen.getByRole('button', { name: 'Back to Worship' })).toBeTruthy()
     const lessons = screen.getAllByRole('listitem')
     expect(within(lessons[0]).getByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
 
