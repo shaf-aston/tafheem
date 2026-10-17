@@ -243,9 +243,12 @@ def measure(pattern: str) -> str:
     return pattern
 
 
-def is_masdar(token: dict) -> bool:
-    """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا), judged by the analyser's pattern."""
-    return token.get("pos_camel") == "noun" and measure(token.get("pattern") or "").startswith(
+def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
+    """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا), judged by the analyser's pattern.
+    weak_or_doubled=False takes a doubled or hollow root's pattern as written, for a word
+    with nothing else saying it is a doing: طَوْقًا is فَعْل, and a collar all the same."""
+    pattern = token.get("pattern") or ""
+    return token.get("pos_camel") == "noun" and (measure(pattern) if weak_or_doubled else pattern.removeprefix("ال")).startswith(
         tuple(book_words("masdar_patterns")))
 
 
