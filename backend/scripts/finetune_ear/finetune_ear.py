@@ -251,28 +251,36 @@ def tadabur_plan(target):
     return train + test
 
 
-def tadabur_clips(plan):
-    """The planned rows' sound, one file at a time.
+def tadabur_files(plan):
+    """Each planned row's recording saved as its own file, as (row, path).
     A Tadabur file is one 2.4 GB block: streamed from the hub it was re-read per batch and the run was
-    killed for memory. Downloaded, read once (~7 GB peak, 10 s), its wanted rows kept, then deleted."""
+    killed for memory. Downloaded, read once (~7 GB peak, 10 s), its wanted rows written out, then deleted.
+    Done before the dataset is built: the builder fingerprints its generator's code, and walking
+    hf_hub_download's wrappers overflows (RecursionError, datasets 5.1 / huggingface_hub 2.2)."""
+    rows = []
     for shard in sorted({p[0] for p in plan}):
         want = {p[1]: p for p in plan if p[0] == shard}
         path = Path(hf_hub_download(TADABUR, shard, repo_type='dataset', local_dir=OUT / 'tadabur'))
-        kept, at = [], 0
+        at = 0
         for batch in pq.ParquetFile(path).iter_batches(batch_size=50, columns=['audio']):
             for clip in batch.column('audio').to_pylist():
                 if at in want:
-                    kept.append((want[at], clip['bytes']))
+                    rows.append((want[at], str(OUT / 'tadabur' / f'{len(rows)}.audio')))
+                    Path(rows[-1][1]).write_bytes(clip['bytes'])
                 at += 1
         path.unlink()
-        for (_, _, who, key, part), clip in kept:
-            try:
-                sound = sound_of(clip)
-            except subprocess.CalledProcessError:
-                continue
-            if 0 < len(sound) <= LONGEST:
-                yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': f'tadabur:{who}',
-                       'src': 'tadabur', 'secs': len(sound) / RATE, 'part': part}
+    return rows
+
+
+def tadabur_clips(rows):
+    for (_, _, who, key, part), path in rows:
+        try:
+            sound = sound_of(Path(path).read_bytes())
+        except subprocess.CalledProcessError:
+            continue
+        if 0 < len(sound) <= LONGEST:
+            yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': f'tadabur:{who}',
+                   'src': 'tadabur', 'secs': len(sound) / RATE, 'part': part}
 
 
 def noise_bank():
@@ -348,7 +356,7 @@ TESTS = {k: v.shuffle(seed=7).select(range(min(TESTED, len(v)))) for k, v in TES
 learners = whole.filter(lambda r: not held(r['who']) and not held(r['ayah']))
 # Tadabur reciters are strangers to the learners; its train ayahs avoid the held ones.
 plan = tadabur_plan(round(len(learners) * TADABUR_SHARE / (1 - TADABUR_SHARE)))
-big = Dataset.from_generator(tadabur_clips, gen_kwargs={'plan': plan})
+big = Dataset.from_generator(tadabur_clips, gen_kwargs={'rows': tadabur_files(plan)})
 TESTS['tadabur new voices'] = big.filter(lambda r: r['part'] == 'test')
 KEPT = ['sound', 'said', 'src', 'secs']
 taught = concatenate_datasets([learners.select_columns(KEPT), big.filter(lambda r: r['part'] == 'train').select_columns(KEPT)]
@@ -360,6 +368,9 @@ print(len(whole), 'learner clips of', len(ayahs), 'ayahs;', len(taught), 'to lea
       {k: len(v) for k, v in TESTS.items()}, flush=True)
 print('hours to learn from, per source:', {k: round(v, 2) for k, v in spent.items()}, 'total', round(sum(spent.values()), 2), flush=True)
 noises, rooms = noise_bank(), room_bank(rir_archive())
+# Downloads out of the folder Kaggle hands back: cloud.py fetches it whole, and wants only the result.
+shutil.rmtree(OUT / 'tadabur')
+(OUT / 'rirs_noises.zip').unlink()
 print(len(noises), 'noise clips,', len(rooms), 'rooms', flush=True)
 rng = np.random.default_rng(3)
 
