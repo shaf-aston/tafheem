@@ -125,6 +125,10 @@ Memorise step 2 done: `MemorisePanel.jsx` is 322 lines (was 621); `Line`, `Gap`,
 does not catch a JSX component left unimported, so the move was checked by
 scanning every tag against the imports, and by the same Playwright run (Type,
 Pick from 4, Recite, Check) on old and new code. Step 3 (hooks.js tests) next.
+Sarf done: `SarfPanel.jsx` is 76 lines (was 551); the word, the three requests
+and the table they add up to are `lib/useSarf`, and the result, gardaan, cards
+and titles are each their own file in `sarf/`. `test/sarf.test.jsx` types a
+word and finds its root and its table cell.
 
 0. Quiz: move the setup into `useQuizSetup`: language, direction, bank, scope and
    group, the four queries, then `pool` and `question` derived from them. Move the
