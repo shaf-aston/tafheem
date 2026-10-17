@@ -26,11 +26,15 @@ function quotesOf(card) {
   return quotes.map((quote) => (quote.includes('____') ? quote.replace('____', card.options[card.answer]) : quote))
 }
 
+// A part's Kitabs: most are one, a few join small ones.
+const kitabsOf = (part) => part.kitabs ?? [part.kitab]
+const partText = (part) => kitabsOf(part).flatMap(paragraphsOf)
+
 const seq = (...values) => { let i = 0; return () => values[i++ % values.length] }
 
 describe('the Quduri lessons', () => {
   for (const part of book.parts.filter((one) => one.lessons.length)) {
-    const text = paragraphsOf(part.kitab).join(' ')
+    const text = partText(part).join(' ')
 
     it(`quotes ${part.title} word for word`, () => {
       expect(text.length).toBeGreaterThan(0)
@@ -49,7 +53,7 @@ describe('the Quduri lessons', () => {
       it(`covers every paragraph of ${part.title}`, () => {
         const quotes = lessonsOf({ parts: [part] }).flatMap((lesson) => lesson.cards.flatMap(quotesOf))
         let at = 0
-        const spans = paragraphsOf(part.kitab).map((paragraph) => {
+        const spans = partText(part).map((paragraph) => {
           const from = text.indexOf(paragraph, at)
           at = from + paragraph.length
           return { paragraph, from, to: at }
@@ -60,6 +64,14 @@ describe('the Quduri lessons', () => {
       })
     }
   }
+
+  it('gives every Kitab of the book to exactly one part, and every part to exactly one area', () => {
+    const kitabs = BOOK.split('\n').filter((line) => line.startsWith('### | ')).map((line) => line.split(' - ').pop())
+    const claimed = book.parts.flatMap(kitabsOf)
+    expect([...claimed].sort()).toEqual([...kitabs].sort())
+    const placed = book.areas.flatMap((area) => area.parts)
+    expect([...placed].sort()).toEqual(book.parts.map((part) => part.id).sort())
+  })
 
   it('has unique lesson ids across the book and unique card ids in a lesson', () => {
     const lessons = lessonsOf(book)

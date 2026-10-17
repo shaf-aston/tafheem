@@ -1,5 +1,5 @@
 /**
- * A book world's lessons (public/grow/quduri.json): its parts, each lesson's status from the server summary, and the cards
+ * A book world's lessons (public/grow/quduri.json): its areas (optional) and parts, each lesson's status from the server summary, and the cards
  * the lesson runner plays. Pure. A lesson is played whole, teach and ask in the book's order; a review deals only the
  * asking cards that are due. Every Arabic line is the book's (lib/bookLesson.test.js).
  */
@@ -25,7 +25,16 @@ export function statusOf(lesson, rows) {
   return met.every((item) => rows.get(item).known) ? 'learnt' : 'done'
 }
 
-/** The parts with each lesson's status, how many are finished, and the first unfinished lesson in the book. */
+/** An area's or part's lessons finished, of those it has. */
+const countOf = (parts) => ({
+  finished: parts.reduce((sum, part) => sum + part.finished, 0),
+  total: parts.reduce((sum, part) => sum + part.lessons.length, 0),
+})
+
+/**
+ * The parts with each lesson's status, how many are finished, the first unfinished lesson in the book, what is due, and
+ * the areas that group the parts (each with its parts and counts; none when the book has no `areas`).
+ */
 export function partsOf(book, summary) {
   const rows = new Map(summary.map((row) => [row.item, row]))
   const parts = book.parts.map((part) => {
@@ -35,8 +44,15 @@ export function partsOf(book, summary) {
   const next = parts.flatMap((part) => part.lessons).find((lesson) => lesson.status === 'new' || lesson.status === 'started') ?? null
   const items = new Set(lessonsOf(book).flatMap((lesson) => lesson.cards.filter(asks).map((card) => itemOf(lesson, card))))
   const due = summary.filter((row) => row.due && items.has(row.item)).sort((a, b) => a.dueAt.localeCompare(b.dueAt)).map((row) => row.item)
-  return { parts, next, due }
+  const areas = (book.areas ?? []).map((area) => {
+    const own = area.parts.map((id) => parts.find((part) => part.id === id)).filter(Boolean)
+    return { ...area, parts: own, ...countOf(own) }
+  })
+  return { parts, areas, next, due }
 }
+
+/** The area a part sits in, if the book has areas. */
+export const areaOf = (areas, partId) => areas.find((area) => area.parts.some((part) => part.id === partId)) ?? null
 
 /** One authored card as the runner's card. `record` files the answer under `module`. */
 export function cardOf(lesson, card, module, random, tag = lesson.title) {

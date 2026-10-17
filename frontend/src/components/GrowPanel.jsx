@@ -32,7 +32,7 @@ const SCREENS = {
     <LessonWorld world={world} accent={world.accent} state={lessons[world.id]} onBack={back} onStart={() => start(world.id)} />
   ),
   book: ({ world, books, view, back, go, startBook }) => (
-    <BookWorld world={world} accent={world.accent} state={books[world.id]} part={view.part} onBack={back}
+    <BookWorld world={world} accent={world.accent} state={books[world.id]} place={view.part} onBack={back}
       onPart={(part) => go(part ? { at: 'world', id: world.id, part } : { at: 'world', id: world.id })}
       onStart={(lesson, part) => startBook(world.id, lesson, part)} />
   ),
