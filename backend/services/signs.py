@@ -165,16 +165,14 @@ def _built_on(card: dict, aspect: str) -> str | None:
     said = teacher_rules()["case_said"]
     word = card["word"]
     if aspect == "p":
-        ending = _past_ending(word)
-        # نَادَى، دَعَا: the fatha is there but an alef cannot carry it, so it is implied
-        # رَمَاهُ: the alef is still the verb's last letter before the pronoun, so read the verb without it
-        bare = strip_diacritics(word)
-        if _has_pronoun(card["camel"]):
-            bare = next((bare[:-len(p)] for p in OBJECT_PRONOUNS if bare.endswith(p)), bare)
+        # رَمَيْتُهُ، رَمَاهُ: the verb ends before its object pronoun, so read it without the pronoun
+        verb = _without_object(word) if _has_pronoun(card["camel"]) else word
+        bare = strip_diacritics(verb)
+        # نَادَى، دَعَا: the fatha is there but an alef cannot carry it, so it is implied;
         # رَوَيْنَاهُ، رَمَيَاهُ: an alef after a doer's pronoun (نا، ا) is the pronoun's, not the verb's
         alone = card["camel"].get("person") == "3" and card["camel"].get("number") == "s"
         alef = alone and (bare.endswith("ى") or (bare.endswith("ا") and card["camel"].get("weak_last")))
-        return said["past_on_alef"] if ending == said["past_on"] and alef else ending
+        return said["past_on_alef"] if alef else _past_ending(verb)  # رَوَاهُ: one doer, so its وا is no plural's
     nun = build_nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show
@@ -202,6 +200,14 @@ def _present_sign(card: dict, case: str) -> str | None:
 
 def _dropped_weak(card: dict) -> bool:
     return drops_weak(card["camel"]["base"], card["camel"].get("weak_last"))
+
+
+def _without_object(word: str) -> str:
+    """The verb with its object pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ."""
+    bare = strip_diacritics(word)
+    pronoun = next((p for p in OBJECT_PRONOUNS if bare.endswith(p) and len(bare) > len(p) + 1), "")
+    marked = letters(word)[:len(bare) - len(pronoun)]
+    return "".join(letter + "".join(sorted(marks)) for letter, marks in marked)
 
 
 def _past_ending(word: str) -> str:

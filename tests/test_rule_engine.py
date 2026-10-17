@@ -775,4 +775,5 @@ def test_a_past_verb_on_an_alef_keeps_its_implied_fatha_under_a_pronoun():
     assert sign("رَمَاهُ الْوَلَدُ") == sign("دَعَاهُمُ النَّبِيُّ") == "مبني على الفتح المقدر على الألف للتعذر"
     assert sign("كَتَبَهُ الرَّجُلُ") == "مبني على الفتح"
     assert sign("رَمَيْتُ الْحَجَرَ") == "مبني على السكون"
-    assert "المقدر" not in sign("رَوَيْنَاهُ عَنْهُ")  # نا is the doer: its alef is not the verb's
+    assert sign("رَوَيْنَاهُ عَنْهُ") == sign("رَمَيْتُهُ أَمْسِ") == "مبني على السكون"  # the doer's pronoun, under the object's
+    assert sign("رَوَاهُ زَيْدٌ") == "مبني على الفتح المقدر على الألف للتعذر"  # one doer: its وا is no plural's
