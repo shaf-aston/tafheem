@@ -5,45 +5,28 @@
  * right, or on a screen too narrow for two columns as a sheet docked under the
  * surah: its handle drags it up to the whole screen or back down.
  *
- * One request brings the surah's text and its English, 35ms for al-Baqarah,
- * the longest. The word-by-word grammar is not fetched here: it is ~2MB for a
- * long surah and is only worth loading for the ayah being studied.
+ * What is read (the text, the English, the recitation) is useSurahReading's;
+ * where the reader is in it, and how it moves, is useSurahPlace's. This draws.
  *
  * The request was never the wait. Measured 2026-09-04: both answers were back
  * in 180ms and al-Baqarah appeared at 2,000ms, the rest spent drawing 286 rows
  * before the first could be shown. Two things fix that: the first screen of
  * rows is drawn first (AyahList), and rows off the screen are not laid out
  * (.surah-row).
- *
- * One reciter and one recitation for the whole view, held here: the bar plays
- * by them and every row lights its words by them, so the two cannot disagree
- * about which recording is sounding.
  */
-import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
-
-import { quranSurahQuery, surahGlossesQuery } from '../../api'
-import { warm } from '../../lib/warm'
-import { ayahEnd } from '../../lib/ayahEnd'
-import { useTranslation } from '../../lib/useTranslation'
-import { useRecitation } from '../../lib/useRecitation'
-import { useRecitedWord } from '../../lib/useRecitedWord'
-import { RECITERS, nowPlaying, watch } from '../../lib/ayahAudio'
-import { LAST_SURAH } from '../../lib/surahRef'
-import { useRemembered, useRememberedFlag } from '../../lib/useRemembered'
 import { learntWords } from '../../lib/coverage'
-import { useLearntLemmas } from '../../lib/useLearntLemmas'
-import { PHONE, useMedia } from '../../lib/useMedia'
-import { useWheelX } from '../../lib/useWheelX'
-import { scrollToEl } from '../../lib/scrollToEl'
-import { useSlide, useSwipe } from '../../lib/useSwipe'
+import { FIRST_SURAH, LAST_SURAH } from '../../lib/surahRef'
+import { useSurahPlace } from '../../lib/useSurahPlace'
+import { useSurahReading } from '../../lib/useSurahReading'
 
+import AyahList from './AyahList'
+import AyahRail from './AyahRail'
+import AyahRow from './AyahRow'
 import AyahStudy from './AyahStudy'
 import RecitationBar, { Glyph, PLAY } from './RecitationBar'
-import QURAN from '../../quran.json'
+import SplitBar from './SplitBar'
 import { NoTouchButton, ScrollPad } from './NoTouchReading'
 import ArabicText from '../ui/ArabicText'
-import GlossWord from './GlossWord'
 import ReadingOptions from '../ui/ReadingOptions'
 import CloseButton from '../ui/CloseButton'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -52,129 +35,24 @@ import Stepper from '../ui/Stepper'
 import { Skeleton } from '../ui/Skeleton'
 import SourceBadge from '../ui/SourceBadge'
 
-const FIRST_SURAH = 1
-const { 'first-paint-rows': FIRST_PAINT_ROWS, split: SPLIT } = QURAN
-// Wide enough for the surah and the study side by side; Tailwind's lg.
-const TWO_PANES = '(min-width: 64rem)'
-const TOUCH = '(pointer: coarse)'
-// How far a press may move and still be a tap on the sheet's handle, in px.
-const TAP_SLOP = 6
-
 /** The English under one ayah: the chosen translation once it has arrived,
  *  the corpus's word-by-word gloss before that, so nothing is credited to a
  *  book it did not come from. */
 const englishFor = (translation, ayah) => (translation.ready ? translation.textFor(ayah.ayah) : ayah.english)
 
-/** The ayah whose row is at the top of the list, counting from 1. Rows are
- *  in ayah order, so a binary search over their offsets. */
-function rowAt(list) {
-  const rows = list.children
-  let lo = 0
-  let hi = rows.length - 1
-  while (lo < hi) {
-    const mid = (lo + hi + 1) >> 1
-    if (rows[mid].offsetTop <= list.scrollTop + 8) lo = mid
-    else hi = mid - 1
-  }
-  return lo + 1
-}
-
-/** Put an ayah's row at the top of the list, moving the list and not the page. */
-function showRow(list, ayah) {
-  const row = list?.children[ayah - 1]
-  if (row) list.scrollTop = row.offsetTop
-}
-
-// What the reader does to take over the scrolling from the page.
-const TAKE_OVER = ['pointerdown', 'wheel', 'touchstart', 'keydown']
-
 export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   const { surah, ayah } = place
-  const twoPanes = useMedia(TWO_PANES)
-  const [reciter, chooseReciter] = useRemembered('reciter', RECITERS.map((one) => one.id))
+  const {
+    data, isPending, isError, error, refetch,
+    glosses, learnt, allMeanings, showAllMeanings, anyGlosses,
+    touch, phone, noTouchButton, showNoTouchButton, noTouchOn, setNoTouch, noTouch,
+    reciter, chooseReciter, recitation, reciting, recite, translation,
+  } = useSurahReading(surah)
+  const {
+    twoPanes, stacked, list, here, setHere, tapped, panes, share, setShare,
+    goTo, open, shut, changeSurah, swipe, slide, sheet,
+  } = useSurahPlace(place, data, onPlace, onClose)
 
-  const { data, isPending, isError, error, refetch } = useQuery(quranSurahQuery(surah))
-  const client = useQueryClient()
-  useEffect(() => {
-    if (surah < LAST_SURAH) warm(client, quranSurahQuery(surah + 1))
-  }, [client, surah])
-
-  // The English of each word, for the hover gloss. Its own request so the text
-  // is never held up by it, and reads normally for good if it never arrives.
-  const { data: glosses } = useQuery(surahGlossesQuery(surah))
-  const learnt = useLearntLemmas()
-  const [allMeanings, showAllMeanings] = useRememberedFlag('reader-all-meanings', false)
-  const anyGlosses = Object.keys(glosses?.ayahs ?? {}).length > 0
-  // Reading without touching the words: a switch in the bar, which the reader
-  // may take out of the bar, and which is off whenever it is out of reach.
-  const touch = useMedia(TOUCH)
-  const phone = useMedia(PHONE)
-  const [noTouchButton, showNoTouchButton] = useRememberedFlag('reader-no-touch-button', true)
-  const [noTouchOn, setNoTouch] = useRememberedFlag('reader-no-touch', false)
-  const noTouch = touch && noTouchButton && noTouchOn
-  const recitation = useRecitation(surah, reciter)
-  // The bar stays away until something is recited; the header's play starts it.
-  const reciting = useSyncExternalStore(watch, nowPlaying, () => '') !== ''
-  const recite = useRef(null)
-  const translation = useTranslation(surah)
-
-  const list = useRef(null)
-  // The ayah at the top of the list as it is scrolled: the rail follows it.
-  const [here, setHere] = useState(ayah ?? 1)
-  // A row tapped is already in view; only an ayah opened from elsewhere is
-  // scrolled to.
-  const [tapped, setTapped] = useState(null)
-  const [hereIn, setHereIn] = useState(surah)
-  if (hereIn !== surah) { setHereIn(surah); setHere(ayah ?? 1); setTapped(null) }
-  // Narrow, an ayah studied splits the reader in two, one over the other;
-  // `share` is how much of it the surah keeps.
-  const stacked = !twoPanes && Boolean(ayah)
-  const panes = useRef(null)
-  const [share, setShare] = useState(SPLIT.share)
-  // Splitting brings the two panes up to fill the screen, the ayah at the top
-  // of its half: the half it was in may end above it.
-  const wasStacked = useRef(false)
-  useEffect(() => {
-    if (!stacked) wasStacked.current = false
-    if (!stacked || !data || wasStacked.current) return
-    wasStacked.current = true
-    scrollToEl(panes.current, 'top')
-    showRow(list.current, ayah)
-  }, [stacked, ayah, data])
-  const goTo = useCallback((n) => { showRow(list.current, n); setHere(n) }, [])
-  const open = (n) => { setTapped(n); onPlace({ surah, ayah: n }) }
-  // Focus goes back to the ayah's row, not lost with the close button.
-  const shut = useCallback(() => {
-    onPlace({ surah, ayah: null })
-    list.current?.children[ayah - 1]?.querySelector('[role="button"]')?.focus({ preventScroll: true })
-  }, [onPlace, surah, ayah])
-  const changeSurah = useCallback((n) => onPlace({ surah: n, ayah: null }), [onPlace])
-
-  // ← → change surah and Esc shuts the study, then the reader. Not while typing,
-  // and not while a sheet is open: it handles its own Esc.
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return
-      // Arrows belong to whatever has its own: a field, a strip, a row of choices.
-      if (e.target.closest('input, textarea, select, .strip-x, [role="group"]') || document.querySelector('dialog[open]')) return
-      if (e.key === 'ArrowLeft' && surah > FIRST_SURAH) changeSurah(surah - 1)
-      if (e.key === 'ArrowRight' && surah < LAST_SURAH) changeSurah(surah + 1)
-      if (e.key === 'Escape') (ayah ? shut : onClose)()
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [surah, ayah, changeSurah, shut, onClose])
-  const swipe = useSwipe(surah > FIRST_SURAH && (() => changeSurah(surah - 1)),
-    surah < LAST_SURAH && (() => changeSurah(surah + 1)))
-  const slide = useSlide(surah)
-
-  // On a phone the study is a sheet: its tabs, and a word or a tab that needs
-  // room, ask the sheet for the whole screen. Stepping scrolls the surah to the ayah.
-  const sheet = stacked && {
-    onFull: () => setShare(FULL),
-    onPrev: ayah > 1 ? () => onPlace({ surah, ayah: ayah - 1 }) : null,
-    onNext: ayah < data?.ayah_count ? () => onPlace({ surah, ayah: ayah + 1 }) : null,
-  }
   const study = ayah && (
     <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo} onClose={shut} accent={accent} sheet={sheet || undefined} />
   )
@@ -310,199 +188,5 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         />
       )}
     </div>
-  )
-}
-
-/**
- * One ayah, with each word's English shown while the pointer rests on it.
- *
- * Arabic joins its letters inside a word and never across a space, so drawing
- * every word in its own box changes nothing about the writing. `english`
- * missing means the two sources disagreed about how many words this ayah has;
- * the ayah is then drawn plain, and a gloss is never guessed onto a word.
- */
-function GlossedAyah({ arabic, english, learnt, allMeanings, lit = -1, end }) {
-  const line = 'block text-right leading-loose text-[var(--text)]'
-  const mark = <span className="text-[var(--c)]" aria-hidden="true"> {end}</span>
-  if (!english && !learnt && lit < 0) {
-    return <ArabicText size="lg" className={line}>{arabic}{mark}</ArabicText>
-  }
-  return (
-    <ArabicText size="lg" className={`${line} gloss-line${allMeanings ? ' gloss-all' : ''}`}>
-      {arabic.split(' ').map((word, i) => (
-        <span key={i}>
-          {i > 0 && ' '}
-          <GlossWord gloss={english?.[i]} lit={i === lit} learnt={learnt?.[i]}>{word}</GlossWord>
-        </span>
-      ))}
-      {mark}
-    </ArabicText>
-  )
-}
-
-/**
- * One ayah of the surah: its line, closed by its numbered medallion, and its
- * English the full width under it. A row of its own because it asks which of
- * its words is being recited; all but the one sounding answer with a single
- * comparison.
- */
-function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, open, onOpen }) {
-  const lit = useRecitedWord(src, segments)
-  return (
-    <li className="surah-row">
-      {/* Not a <button>: text inside a button cannot be dragged over to select. The
-          row still opens on a click and on Enter or Space, but a click that ends a
-          drag-select (some text is selected) is the end of the selection, not a tap. */}
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={() => { if (window.getSelection()?.isCollapsed ?? true) onOpen(ayah.ayah) }}
-        onKeyDown={(e) => {
-          if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return
-          e.preventDefault()
-          onOpen(ayah.ayah)
-        }}
-        aria-pressed={open}
-        className={`w-full text-left p-4 space-y-2 transition-colors hover:bg-[var(--surface-hi)]
-          focus:outline-none focus-visible:bg-[var(--surface-hi)]
-          ${open ? 'bg-[color-mix(in_srgb,var(--c)_8%,transparent)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--c)_35%,transparent)]' : ''}`}
-      >
-        <GlossedAyah arabic={ayah.arabic} english={glosses} learnt={learnt} allMeanings={allMeanings} lit={lit} end={ayahEnd(ayah.ayah)} />
-        {english && (
-          <span className="block type-body text-[var(--text)] leading-relaxed border-t border-[var(--border)] pt-2">
-            {english}
-          </span>
-        )}
-      </div>
-    </li>
-  )
-}
-
-/**
- * The rows of one surah, in a pane that scrolls on its own. A new surah is a
- * new list (the reader keys it), so it starts with only the first screen of
- * rows drawn, the rest following once those are on screen. `target` is the
- * ayah to open at: it may be past the first screen, so it is scrolled to once
- * its row exists. Rows off the screen are laid out at a guessed height
- * (.surah-row) and the Quran face arrives late, so the row moves as the rows
- * around it take their real size: it is held in place through every such
- * change until the reader scrolls or taps for themselves. `still` is reading
- * without touching the words: a finger on them scrolls, opens and shows nothing.
- */
-function AyahList({ listRef, ayahs, target, still, onScrolled, children: row }) {
-  const rows = useDeferredValue(ayahs, ayahs.slice(0, FIRST_PAINT_ROWS))
-  const reached = target && rows.length >= target
-  useLayoutEffect(() => {
-    const list = listRef.current
-    if (!reached || !list) return undefined
-    const aim = () => showRow(list, target)
-    aim()
-    const sizes = new ResizeObserver(aim)
-    for (const one of list.children) sizes.observe(one)
-    const release = () => {
-      sizes.disconnect()
-      TAKE_OVER.forEach((type) => document.removeEventListener(type, release, true))
-    }
-    TAKE_OVER.forEach((type) => document.addEventListener(type, release, { capture: true, passive: true }))
-    return release
-  }, [listRef, reached, target])
-
-  return (
-    <ol
-      ref={listRef}
-      onScroll={(e) => onScrolled(rowAt(e.currentTarget))}
-      className={`scroll-pane flex-1 min-w-0 h-full divide-y divide-[var(--border)] ${still ? 'touch-none [&>li]:pointer-events-none' : ''}`}
-    >
-      {rows.map(row)}
-    </ol>
-  )
-}
-
-const { least: LEAST, full: FULL } = SPLIT
-const clampShare = (n) => Math.min(1 - LEAST, Math.max(FULL, n))
-
-/**
- * The sheet's handle on a phone: drag it, press the arrows on it, or tap it,
- * to give the surah or the study more room. A tap swaps between the sheet
- * opening size and the whole screen, and a drag that ends near the top snaps
- * to the whole screen so no sliver of surah is left.
- */
-function SplitBar({ panes, share, onShare }) {
-  const from = useRef(null)
-  const drag = (e) => {
-    if (!e.currentTarget.hasPointerCapture(e.pointerId)) return
-    const box = panes.current.getBoundingClientRect()
-    onShare(clampShare((e.clientY - box.top) / box.height))
-  }
-  const release = (e) => {
-    if (Math.abs(e.clientY - from.current) < TAP_SLOP) onShare(share > FULL ? FULL : SPLIT.share)
-    else if (share < SPLIT.step) onShare(FULL)
-  }
-  const step = { ArrowUp: -SPLIT.step, ArrowDown: SPLIT.step }
-  return (
-    <div
-      role="separator"
-      aria-orientation="horizontal"
-      aria-label="Resize the surah and the study"
-      aria-valuenow={Math.round(share * 100)}
-      aria-valuemin={FULL * 100}
-      aria-valuemax={(1 - LEAST) * 100}
-      tabIndex={0}
-      onPointerDown={(e) => { from.current = e.clientY; e.currentTarget.setPointerCapture(e.pointerId) }}
-      onPointerMove={drag}
-      onPointerUp={release}
-      onKeyDown={(e) => step[e.key] && (e.preventDefault(), onShare(clampShare(share + step[e.key])))}
-      className="touch-none select-none shrink-0 grid place-items-center h-6 cursor-row-resize rounded-t-[var(--radius-lg)]
-        border-t border-[var(--border-hi)] bg-[var(--surface)] shadow-[var(--shadow-pop)] focus:outline-none focus-visible:bg-[var(--surface-hi)]"
-    >
-      <span aria-hidden="true" className="w-10 h-1 rounded-full bg-[var(--border-hi)]" />
-    </div>
-  )
-}
-
-/**
- * Every ayah's number in one sideways strip, to jump straight to one. It
- * follows the reading: the ayah at the top of the list is marked and kept in
- * view, and the one being studied wears the accent. One stop for Tab, the
- * arrows walk it, so a long surah is not 286 presses to get past.
- */
-function AyahRail({ count, here, open, onPick }) {
-  const rail = useWheelX()
-  useEffect(() => {
-    const strip = rail.current
-    const chip = strip?.children[here - 1]
-    if (chip) strip.scrollTo({ left: chip.offsetLeft - (strip.clientWidth - chip.offsetWidth) / 2 })
-  }, [rail, here])
-  // Right is the next number, as the strip reads left to right.
-  const walk = (e) => {
-    const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key]
-    const n = Number(e.target.textContent) + (step ?? 0)
-    if (step && n >= 1 && n <= count) rail.current.children[n - 1].focus()
-  }
-
-  return (
-    <nav aria-label="Ayat" className="border-b border-[var(--border)]">
-      <div ref={rail} onKeyDown={walk} className="strip-x relative gap-1 px-3 py-2">
-        {Array.from({ length: count }, (_, i) => {
-          const n = i + 1
-          return (
-            <button
-              key={n}
-              type="button"
-              onClick={() => onPick(n)}
-              tabIndex={n === here ? 0 : -1}
-              aria-current={n === here ? 'location' : undefined}
-              aria-label={n === open ? `${n}, being studied` : undefined}
-              className={`press tap shrink-0 min-w-9 px-2 py-1 rounded-full type-small tabular-nums transition-colors
-                ${n === open ? 'text-[var(--bg)] bg-[var(--c)]'
-                  : n === here ? 'text-[var(--text)] bg-[var(--surface-hi)]'
-                    : 'text-[var(--text-faint)] hover:text-[var(--text)]'}`}
-            >
-              {n}
-            </button>
-          )
-        })}
-      </div>
-    </nav>
   )
 }
