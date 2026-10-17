@@ -22727,7 +22727,1780 @@
         }
       ]
     },
-    { "id": "wasaya", "title": "Wills", "arabic": "الوصايا", "kitab": "كتاب الوصايا", "lessons": [] },
-    { "id": "faraid", "title": "Inheritance", "arabic": "الفرائض", "kitab": "كتاب الفرائض", "lessons": [] }
+    {
+      "id": "wasaya",
+      "title": "Wills",
+      "arabic": "الوصايا",
+      "kitab": "كتاب الوصايا",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "wasaya-basics",
+          "title": "What a will is, and its limits",
+          "arabic": "الوصية غير واجبة وهي مستحبة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "recommended",
+              "title": "Recommended, not required",
+              "ar": "الوصية غير واجبة وهي مستحبة",
+              "en": "A wasiyya (will) is when someone says that part of their wealth should go to a person or a good cause after they die. Making one is not wajib (required). It is mustahabb (recommended)."
+            },
+            {
+              "kind": "teach",
+              "id": "limits",
+              "title": "Three limits",
+              "ar": "ولا تجوز الوصية لوارث إلا أن يجيزها الورثة ولا يجوز الوصية بما زاد على الثلث ولا للقاتل",
+              "en": "A will has limits. It cannot be for a warith (someone who already inherits from you), unless the other heirs agree. It cannot be for more than a third of your wealth. And it cannot be for the person who killed you."
+            },
+            {
+              "kind": "choose",
+              "id": "heir-case",
+              "ask": "Umar's will gives 1,000 dirhams to his own son Hamza, on top of Hamza's inheritance. After Umar dies, his other heirs do not agree. Does the will stand?",
+              "options": ["No: a will for an heir needs the other heirs to agree", "Yes: a father may always give his son more", "Yes, because 1,000 is less than a third"],
+              "answer": 0,
+              "source": "ولا تجوز الوصية لوارث إلا أن يجيزها الورثة",
+              "why": "Hamza is an heir, so the will for him only stands if the other heirs agree. They did not."
+            },
+            {
+              "kind": "choose",
+              "id": "third-case",
+              "ask": "Saad leaves 9,000 dirhams. His will gives 4,000 to a poor neighbour, and his heirs do not agree to more. How much can the neighbour get?",
+              "options": ["3,000 dirhams: a third", "4,000 dirhams: all of it", "4,500 dirhams: a half"],
+              "answer": 0,
+              "source": "ولا يجوز الوصية بما زاد على الثلث",
+              "why": "A will cannot go past a third. A third of 9,000 is 3,000."
+            },
+            {
+              "kind": "teach",
+              "id": "after-death",
+              "title": "Accepting comes after death",
+              "ar": "وقبول الوصية بعد الموت فإن قبلها الموصى له في حال الحياة أو ردها فذلك باطل",
+              "en": "The musa lahu (the person the will is for) accepts the gift after the death. If he accepts it or turns it down while the person making the will is still alive, that counts for nothing."
+            },
+            {
+              "kind": "teach",
+              "id": "owned",
+              "title": "Owned by accepting",
+              "ar": "والموصى به يملك بالقبول إلا في مسألة وهي: أن يموت الموصي ثم يموت الموصى له قبل القبول فيدخل الموصى به في ملك ورثته",
+              "en": "The thing left in the will becomes his when he accepts it. There is one exception: if the musi (the one making the will) dies, and then the musa lahu dies before he could accept, the gift goes into the ownership of the musa lahu's heirs."
+            },
+            {
+              "kind": "choose",
+              "id": "refuse-case",
+              "ask": "Hasan's will leaves a horse to Ali. While Hasan is alive, Ali says \"I don't want it.\" After Hasan dies, Ali says \"I accept.\" Who gets the horse?",
+              "options": ["Ali: his refusal during Hasan's life counted for nothing", "Hasan's heirs: Ali already refused", "Nobody: the will is cancelled"],
+              "answer": 0,
+              "source": ["فإن قبلها الموصى له في حال الحياة أو ردها فذلك باطل", "والموصى به يملك بالقبول"],
+              "why": "Refusing during life counts for nothing. Ali accepted after the death, so the horse is his."
+            },
+            {
+              "kind": "choose",
+              "id": "died-case",
+              "ask": "Hasan dies, and his will leaves a horse to Ali. A week later Ali dies too, before he had said he accepts. Who gets the horse?",
+              "options": ["Ali's heirs", "Hasan's heirs", "Nobody: Ali never accepted"],
+              "answer": 0,
+              "source": "أن يموت الموصي ثم يموت الموصى له قبل القبول فيدخل الموصى به في ملك ورثته",
+              "why": "This is the one exception: Hasan died first, then Ali died before accepting, so the horse goes to Ali's heirs."
+            },
+            {
+              "kind": "teach",
+              "id": "child",
+              "title": "Whose will does not count",
+              "ar": "ولا تصح وصية الصبي والمكاتب وإن ترك وفاء",
+              "en": "A will made by a child is not valid. Nor is a will by a mukatab (in al-Quduri's time, a slave with a contract to buy his own freedom), even if he left enough to pay off his contract."
+            },
+            {
+              "kind": "teach",
+              "id": "take-back",
+              "title": "Taking a will back",
+              "ar": "ويجوز للموصي الرجوع عن الوصية فإن صرح بالرجوع أو فعل ما يدل على الرجوع كان رجوعا ومن جحد الوصية لم يكن رجوعا",
+              "en": "The person who made a will may take it back. Saying so clearly, or doing something that shows he took it back, counts. But simply denying that he ever made the will does not count as taking it back."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A Muslim may leave a will to a Christian neighbour", "right": true },
+                { "text": "It is recommended to leave less than a third", "right": true },
+                { "text": "Saying clearly \"I take it back\" cancels a will", "right": true },
+                { "text": "Denying he ever made the will cancels it" },
+                { "text": "A 10-year-old's will is valid" },
+                { "text": "Making a will is wajib (required)" }
+              ],
+              "source": ["ويجوز أن يوصي المسلم للكافر والكافر للمسلم", "ويستحب أن يوصي الإنسان بدون الثلث", "ومن جحد الوصية لم يكن رجوعا", "ولا تصح وصية الصبي", "الوصية غير واجبة"],
+              "why": "A Muslim and a non-Muslim may leave wills to each other, less than a third is recommended, and a clear taking back counts. Denying is not taking back, a child's will is not valid, and a will is not wajib."
+            }
+          ]
+        },
+        {
+          "id": "wasaya-executor",
+          "title": "The executor of a will",
+          "arabic": "وإذا أوصى إلى رجل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "face",
+              "title": "Refusing to his face",
+              "ar": "وإذا أوصى إلى رجل فقبل الوصي في وجه الموصي فردها في غير وجهه فليس برد وإن ردها في وجهه فهو رد",
+              "en": "A wasi (executor) is the person chosen to carry out the will after the death. If he accepts the job in front of the person making the will, and then refuses it behind his back, that is not a refusal. If he refuses it to his face, it is a refusal."
+            },
+            {
+              "kind": "choose",
+              "id": "face-case",
+              "ask": "Khalid names Yasir as his wasi, and Yasir accepts in front of him. Later, at the market, Yasir tells friends \"I won't do it\", while Khalid is not there. Is Yasir free of the job?",
+              "options": ["No: refusing behind his back is not a refusal", "Yes: he said it before witnesses", "Yes, once Khalid dies"],
+              "answer": 0,
+              "source": "فقبل الوصي في وجه الموصي فردها في غير وجهه فليس برد",
+              "why": "Yasir accepted to Khalid's face and refused behind his back, so that is not a refusal. He is still the wasi."
+            },
+            {
+              "kind": "teach",
+              "id": "unfit",
+              "title": "An unfit executor",
+              "ar": "ومن أوصى إلى عبد أو كافر أو فاسق أخرجهم القاضي من الوصية",
+              "en": "If someone names as wasi a slave (in al-Quduri's time), a non-Muslim, or a fasiq (someone who openly sins), the qadi (judge) removes them from the job and puts others in their place."
+            },
+            {
+              "kind": "teach",
+              "id": "own-slave",
+              "title": "His own slave",
+              "ar": "ومن أوصى إلى عبد نفسه وفي الورثة كبار لم تصح الوصية",
+              "en": "In al-Quduri's time: if a man names his own slave as wasi, and some of his heirs are adults, the appointment is not valid."
+            },
+            {
+              "kind": "teach",
+              "id": "weak",
+              "title": "An executor who cannot cope",
+              "ar": "ومن أوصى إلى من يعجز عن القيام بالوصية",
+              "en": "If the wasi is not able to manage the job on his own, the judge adds another person to work with him."
+            },
+            {
+              "kind": "sort",
+              "id": "judge-sort",
+              "ask": "What happens with this wasi?",
+              "into": ["Judge removes him", "Judge adds a helper", "Not valid at all"],
+              "items": [
+                ["A non-Muslim wasi", "Judge removes him"],
+                ["A wasi who openly sins", "Judge removes him"],
+                ["An honest wasi too weak to manage alone", "Judge adds a helper"],
+                ["The man's own slave, with adult heirs (in al-Quduri's time)", "Not valid at all"]
+              ],
+              "source": ["أخرجهم القاضي من الوصية", "ومن أوصى إلى من يعجز عن القيام بالوصية", "ومن أوصى إلى عبد نفسه وفي الورثة كبار لم تصح الوصية"],
+              "why": "A non-Muslim or a fasiq is removed, a weak wasi gets a helper, and his own slave with adult heirs is not valid."
+            },
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Two executors",
+              "ar": "ومن أوصى إلى اثنين لم يجز لأحدهما أن يتصرف عند أبي حنيفة ومحمد دون صاحبه",
+              "en": "If two people are named as wasi, one of them may not act without the other. This is the view of Abu Hanifa and Muhammad."
+            },
+            {
+              "kind": "teach",
+              "id": "alone",
+              "title": "What one may do alone",
+              "ar": "إلا من شراء كفن الميت وتجهيزه وطعام الصغار وكسوتهم ورد وديعة بعينها وقضاء دين وتنفيذ وصية بعينها وعتق عبد بتعينه والخصومة في حقوق الميت",
+              "en": "Except for these, which one may do alone: buying the kafan (burial cloth) and getting the body ready, food and clothes for the young children, returning a particular item left in trust, paying a debt, carrying out a particular named gift in the will, freeing a particular named slave (in al-Quduri's time), and going to court for the dead person's rights."
+            },
+            {
+              "kind": "pick",
+              "id": "alone-pick",
+              "ask": "Ruqayya named Imran and Musa together as her executors. Musa is away. Which may Imran do on his own?",
+              "options": [
+                { "text": "Buy her burial cloth", "right": true },
+                { "text": "Buy winter clothes for her young children", "right": true },
+                { "text": "Pay back a debt she owed", "right": true },
+                { "text": "Return a ring a friend left with her in trust", "right": true },
+                { "text": "Sell her house" },
+                { "text": "Trade with the children's money" }
+              ],
+              "source": "إلا من شراء كفن الميت وتجهيزه وطعام الصغار وكسوتهم ورد وديعة بعينها وقضاء دين",
+              "why": "The burial cloth, the children's clothes, paying a debt and returning a trust are on the list. Selling the house and trading are not, so they need both executors."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these matches al-Quduri?",
+              "options": ["A wasi who accepted and then refused behind the man's back is still the wasi", "A wasi who is a fasiq stays in the job", "One of two executors may sell the property alone"],
+              "answer": 0,
+              "source": ["فردها في غير وجهه فليس برد", "أخرجهم القاضي من الوصية", "لم يجز لأحدهما أن يتصرف"],
+              "why": "Refusing behind his back is not a refusal. A fasiq is removed by the judge, and one of two executors cannot sell alone."
+            }
+          ]
+        },
+        {
+          "id": "wasaya-shares",
+          "title": "When wills share the third",
+          "arabic": "ومن أوصى لرجل بثلث ماله ولآخر بثلث ماله",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "third-third",
+              "title": "A third to each of two",
+              "ar": "ومن أوصى لرجل بثلث ماله ولآخر بثلث ماله فلم تجز الورثة فالثلث بينهما نصفان",
+              "en": "If a will gives a third to one man and a third to another, and the heirs do not agree to more, the one third is split between them in halves."
+            },
+            {
+              "kind": "teach",
+              "id": "third-sixth",
+              "title": "A third and a sixth",
+              "ar": "وإن أوصى لأحدهما بالثلث وللآخر بالسدس فالثلث بينهما أثلاثا",
+              "en": "If it gives one a third and the other a sixth, the third is split between them in thirds: two parts to the one given a third and one part to the one given a sixth."
+            },
+            {
+              "kind": "choose",
+              "id": "sixth-case",
+              "ask": "Mansur leaves 1,800 dirhams. His will gives a third to Zayd and a sixth to Bakr. The heirs do not agree to more. What does each get?",
+              "options": ["Zayd 400, Bakr 200", "Zayd 300, Bakr 300", "Zayd 600, Bakr 300"],
+              "answer": 0,
+              "source": "وإن أوصى لأحدهما بالثلث وللآخر بالسدس فالثلث بينهما أثلاثا",
+              "why": "The third is 600, split in thirds: two parts (400) to Zayd and one part (200) to Bakr."
+            },
+            {
+              "kind": "teach",
+              "id": "all",
+              "title": "All the wealth and a third",
+              "ar": "وإن أوصى لأحدهما بجميع ماله وللآخر بثلث ماله فلم تجز الورثة فالثلث بينهما على أربعة أسهم عند أبي يوسف ومحمد وقال أبو حنيفة: الثلث بينهما نصفان",
+              "en": "If it gives one man all his wealth and the other a third, and the heirs do not agree, Abu Hanifa says the third is split in halves. Abu Hanifa does not count a will for more than a third, except in three cases: muhabat (selling cheaply as a favour), si'aya (a slave earning his freedom) and a set sum of dirhams. Note: Abu Yusuf and Muhammad split it into four parts."
+            },
+            {
+              "kind": "teach",
+              "id": "debt",
+              "title": "When debts swallow the wealth",
+              "ar": "ومن أوصى وعليه دين يحيط بماله لم تجز الوصية إلا أن يبرئ الغرماء الدين",
+              "en": "If he makes a will while he owes debts as big as all his wealth, the will does not go ahead, unless the people he owes let him off the debt."
+            },
+            {
+              "kind": "choose",
+              "id": "debt-case",
+              "ask": "Rashid owns 8,000 dirhams and owes 10,000. His will gives 1,000 to the mosque. The people he owes do not let him off. What happens to the will?",
+              "options": ["It does not go ahead: the debt covers all he has", "The mosque gets 1,000 first", "The mosque gets a third of 8,000"],
+              "answer": 0,
+              "source": "ومن أوصى وعليه دين يحيط بماله لم تجز الوصية",
+              "why": "His debt is more than all his wealth, so the will does not go ahead unless the debt is forgiven."
+            },
+            {
+              "kind": "teach",
+              "id": "son-share",
+              "title": "\"My son's share\" or \"like it\"",
+              "ar": "ومن أوصى بنصيب ابنه فالوصية باطلة وإن أوصى بمثل نصيب ابنه جازت فإن كان له ابنان فللموصى له الثلث",
+              "en": "A will of \"my son's share\" is void, because that share belongs to the son. But a will of \"the same as my son's share\" is valid. If he has two sons, the person in the will gets a third."
+            },
+            {
+              "kind": "choose",
+              "id": "son-case",
+              "ask": "Hashim has two sons and no other heirs. His will gives his nephew \"the same as one son's share\". What does the nephew get?",
+              "options": ["A third", "A half", "Nothing: the will is void"],
+              "answer": 0,
+              "source": "وإن أوصى بمثل نصيب ابنه جازت فإن كان له ابنان فللموصى له الثلث",
+              "why": "\"The same as\" a son's share is valid. With two sons, the nephew gets a third."
+            },
+            {
+              "kind": "teach",
+              "id": "sahm",
+              "title": "\"A share\" of my wealth",
+              "ar": "ومن أوصى بسهم من ماله فله أخس سهام الورثة إلا أن ينقص من السدس فيتم له السدس",
+              "en": "A will of \"a sahm (share) of my wealth\" gives him the smallest share any heir gets. But if that is less than a sixth, it is made up to a sixth."
+            },
+            {
+              "kind": "choose",
+              "id": "juz-gap",
+              "ask": "And a will of \"a part\" of my wealth? Complete it.",
+              "ar": "وإن أوصى بجزء من ماله قيل للورثة: أعطوه ____",
+              "options": ["ما شئتم", "السدس", "الثلث"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وإن أوصى بجزء من ماله قيل للورثة: أعطوه ما شئتم",
+              "why": "ما شئتم: for \"a part\" (juz'), the heirs are told to give him whatever they wish."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A will of \"my son's share\" is void", "right": true },
+                { "text": "Two wills of a third each, not agreed, split the third in halves", "right": true },
+                { "text": "A will of \"a share\" never gives less than a sixth", "right": true },
+                { "text": "A will still goes ahead when debts cover all the wealth" },
+                { "text": "A will of \"a part\" always means a third" }
+              ],
+              "source": ["ومن أوصى بنصيب ابنه فالوصية باطلة", "فالثلث بينهما نصفان", "إلا أن ينقص من السدس فيتم له السدس", "لم تجز الوصية إلا أن يبرئ الغرماء الدين", "قيل للورثة: أعطوه ما شئتم"],
+              "why": "\"My son's share\" is void, two thirds split the third in halves, and a sahm is at least a sixth. Debts covering everything stop the will, and for \"a part\" the heirs give what they wish."
+            }
+          ]
+        },
+        {
+          "id": "wasaya-illness",
+          "title": "Last illness, and duties to Allah",
+          "arabic": "ومن أعتق عبدا في مرضه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "illness",
+              "title": "Gifts in the last illness",
+              "ar": "ومن أعتق عبدا في مرضه أو باع وحابى أو وهب فذلك كله جائز يعتبر من الثلث ويضرب به مع أصحاب الوصايا",
+              "en": "In his final illness, a man may free a slave (in al-Quduri's time), sell something with muhabat (cheaply, as a favour), or give a gift. All of it is valid, but it is counted from the third, and it shares the third with the people named in his wills."
+            },
+            {
+              "kind": "choose",
+              "id": "gift-case",
+              "ask": "Jamil, in the illness he later dies of, gives his cousin 5,000 dirhams. He owns 6,000 in all, and his heirs do not agree to more. How is the gift treated?",
+              "options": ["Counted from the third: valid up to 2,000", "Valid in full: a gift is not a will", "Void: gifts in illness do not count"],
+              "answer": 0,
+              "source": "أو وهب فذلك كله جائز يعتبر من الثلث",
+              "why": "A gift in the last illness is valid but counted from the third. A third of 6,000 is 2,000."
+            },
+            {
+              "kind": "teach",
+              "id": "which-first",
+              "title": "A cheap sale and a freeing",
+              "ar": "فإن حابى ثم أعتق بالمحاباة أولى عند أبي حنيفة وإن أعتق ثم حابى فهما سواء",
+              "en": "If both do not fit in the third: for Abu Hanifa, if he sold cheaply first and then freed a slave, the cheap sale comes first. If he freed first and then sold cheaply, they are equal. Note: Abu Yusuf and Muhammad say the freeing comes first in both cases."
+            },
+            {
+              "kind": "teach",
+              "id": "allah",
+              "title": "Duties to Allah come first",
+              "ar": "ومن أوصى بوصايا من حقوق الله تعالى قدمت الفرائض منها قدمها الموصي أو آخرها مثل الحج والزكاة والكفارات وما ليس بواجب قدم منه ما قدمه الموصي",
+              "en": "If a will has several things owed to Allah, the fard (obligatory) ones come first, whether he named them first or last: like Hajj, zakat and kaffarat (expiations for broken oaths and similar). Among the ones that are not wajib, what he named first comes first."
+            },
+            {
+              "kind": "choose",
+              "id": "zakat-case",
+              "ask": "Bakr's will says: \"First, 100 dirhams as voluntary charity. Then, pay the zakat I missed.\" The third is not enough for both. Which comes first?",
+              "options": ["The zakat: what is fard comes first, whatever the order", "The charity: he named it first", "They share the money equally"],
+              "answer": 0,
+              "source": "قدمت الفرائض منها قدمها الموصي أو آخرها",
+              "why": "Zakat is fard, so it comes first even though he named it second."
+            },
+            {
+              "kind": "teach",
+              "id": "hajj",
+              "title": "A Hajj for him",
+              "ar": "ومن أوصى بحجة الإسلام أحجوا عنه رجلا من بلده يحج عنه راكبا فإن لم تبلغ الوصية النفقة أحجوا عنه من حيث تبلغ",
+              "en": "If he leaves a will for Hajjat al-Islam (the Hajj every Muslim owes once), they send a man from his own city to make Hajj for him, riding. If the money is not enough from there, they send someone from wherever the money is enough."
+            },
+            {
+              "kind": "choose",
+              "id": "hajj-case",
+              "ask": "Idris of Kufa leaves money in his will for his Hajj. It is not enough for a trip from Kufa, but it is enough from a town closer to Makkah. What do they do?",
+              "options": ["Send someone from where the money is enough", "Cancel the will", "Make the heirs add the rest"],
+              "answer": 0,
+              "source": "فإن لم تبلغ الوصية النفقة أحجوا عنه من حيث تبلغ",
+              "why": "If the money does not reach from his city, the Hajj is made from wherever it does reach."
+            },
+            {
+              "kind": "teach",
+              "id": "on-the-way",
+              "title": "Dying on the way",
+              "ar": "ومن خرج من بلده حاجا فمات في الطريق وأوصى أن يحج عنه حج عنه من بلده عند أبي حنيفة",
+              "en": "If a man sets out from his city for Hajj, dies on the way, and leaves a will for a Hajj for him, Abu Hanifa says the Hajj is made for him from his own city."
+            },
+            {
+              "kind": "choose",
+              "id": "way-case",
+              "ask": "Tariq of Basra sets out for Hajj and dies halfway. His will asks for a Hajj for him. Where does the person making it start, for Abu Hanifa?",
+              "options": ["From Basra, his city", "From the place he died", "From Makkah"],
+              "answer": 0,
+              "source": "فمات في الطريق وأوصى أن يحج عنه حج عنه من بلده عند أبي حنيفة",
+              "why": "For Abu Hanifa, the Hajj is made for him from his own city, Basra."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Hajj, zakat and kaffarat in a will come before voluntary gifts", "right": true },
+                { "text": "Voluntary gifts in a will go in the order he named them", "right": true },
+                { "text": "A gift in the last illness is counted from the third", "right": true },
+                { "text": "A gift in the last illness is taken from all the wealth" },
+                { "text": "The Hajj for him must be made on foot" }
+              ],
+              "source": ["مثل الحج والزكاة والكفارات وما ليس بواجب قدم منه ما قدمه الموصي", "يعتبر من الثلث", "يحج عنه راكبا"],
+              "why": "Fard duties come first and voluntary ones go in his order. A gift in the last illness comes from the third, and the Hajj is made riding."
+            }
+          ]
+        },
+        {
+          "id": "wasaya-relatives",
+          "title": "Wills for neighbours and relatives",
+          "arabic": "ومن أوصى لجيرانه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "neighbours",
+              "title": "My neighbours",
+              "ar": "ومن أوصى لجيرانه فهم الملاصقون عند أبي حنيفة",
+              "en": "If a will is \"for my neighbours\", Abu Hanifa says that means the ones whose homes touch his."
+            },
+            {
+              "kind": "choose",
+              "id": "neighbour-case",
+              "ask": "Salim's will leaves 600 dirhams \"for my neighbours\". Who shares it, for Abu Hanifa?",
+              "options": ["The families whose houses touch Salim's", "Everyone in his street", "Everyone who prays in his mosque"],
+              "answer": 0,
+              "source": "فهم الملاصقون عند أبي حنيفة",
+              "why": "For Abu Hanifa, the neighbours are those whose homes are joined to his."
+            },
+            {
+              "kind": "teach",
+              "id": "in-laws",
+              "title": "My in-laws",
+              "ar": "ومن أوصى لأصهاره فالوصية لكل ذي رحم محرم من امرأته ومن أوصى لأختانه فالختن كل ذات رحم محرم منه",
+              "en": "A will \"for my ashar\" (in-laws through my wife) is for every close relative of his wife whom she could never marry, like her father or brother. For his akhtan (in-laws through the women of his own family), the book links them to every close woman relative of his whom he could never marry."
+            },
+            {
+              "kind": "choose",
+              "id": "ashar-case",
+              "ask": "Umar's will gives 300 dirhams \"to my ashar\". Who is it for?",
+              "options": ["His wife's close mahram relatives, like her father and brothers", "His own cousins", "His friends from work"],
+              "answer": 0,
+              "source": "ومن أوصى لأصهاره فالوصية لكل ذي رحم محرم من امرأته",
+              "why": "Ashar are every close mahram relative of his wife."
+            },
+            {
+              "kind": "teach",
+              "id": "relatives",
+              "title": "My relatives",
+              "ar": "ومن أوصى لأقربائه فالوصية للأقرب فالأقرب من كل ذي رحمه محرم منه ولا يدخل فيهم الوالدان والولد ويكون للإثنين فصاعدا",
+              "en": "A will \"for my relatives\" goes to the nearest, then the next nearest, from his close mahram relatives (relatives he could never marry). His parents and children are not counted among them. It is for two or more people."
+            },
+            {
+              "kind": "pick",
+              "id": "relatives-pick",
+              "ask": "Who can be counted among \"my relatives\" in a will?",
+              "options": [
+                { "text": "His brother", "right": true },
+                { "text": "His sister", "right": true },
+                { "text": "His father's sister", "right": true },
+                { "text": "His father" },
+                { "text": "His daughter" }
+              ],
+              "source": ["من كل ذي رحمه محرم منه ولا يدخل فيهم الوالدان والولد"],
+              "why": "Brothers, sisters and aunts are close mahram relatives. Parents and children are not counted."
+            },
+            {
+              "kind": "teach",
+              "id": "uncles",
+              "title": "Paternal and maternal uncles",
+              "ar": "وإذا أوصى بذلك وله عمان وخالان فالوصية لعميه عند أبي حنيفة وإن كان له عم وخالان فللعم النصف وللخالين النصف",
+              "en": "For Abu Hanifa: if he has two 'amms (father's brothers) and two khals (mother's brothers), the will for his relatives goes to the two 'amms. If he has one 'amm and two khals, the 'amm gets half and the two khals share half. Note: Abu Yusuf and Muhammad say it is for everyone descended from his furthest ancestor in Islam."
+            },
+            {
+              "kind": "choose",
+              "id": "one-amm-case",
+              "ask": "Faisal's will leaves 600 dirhams \"to my relatives\". His only close relatives are one 'amm and two khals. What do they get, for Abu Hanifa?",
+              "options": ["The 'amm 300, and the two khals 300 between them", "The 'amm all 600", "200 each"],
+              "answer": 0,
+              "source": "وإن كان له عم وخالان فللعم النصف وللخالين النصف",
+              "why": "With one 'amm and two khals, the 'amm takes half (300) and the two khals share the other half (300)."
+            },
+            {
+              "kind": "choose",
+              "id": "two-amm-case",
+              "ask": "Same will, but Faisal has two 'amms and two khals. Who gets the 600, for Abu Hanifa?",
+              "options": ["The two 'amms", "All four equally", "The two khals"],
+              "answer": 0,
+              "source": "وله عمان وخالان فالوصية لعميه عند أبي حنيفة",
+              "why": "With two 'amms and two khals, the will is for the two 'amms, since there are two of them."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these matches al-Quduri?",
+              "options": ["A will for \"my relatives\" does not include his father or son", "A will for \"my neighbours\" is for the whole street", "A will for \"my ashar\" is for his own cousins"],
+              "answer": 0,
+              "source": ["ولا يدخل فيهم الوالدان والولد", "فهم الملاصقون", "فالوصية لكل ذي رحم محرم من امرأته"],
+              "why": "Parents and children are not counted as relatives. Neighbours are those whose homes touch his, and ashar are his wife's mahram relatives."
+            }
+          ]
+        },
+        {
+          "id": "wasaya-property",
+          "title": "When the wealth or the people change",
+          "arabic": "ومن أوصى لرجل بثلث دراهمه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "lost",
+              "title": "Part of the gift is lost",
+              "ar": "ومن أوصى لرجل بثلث دراهمه أو ثلث غنمه فهلك ثلثا ذلك وبقي ثلثه وهو يخرج من ثلث ما بقي من ماله فله جميع ما بقي",
+              "en": "A will gives someone a third of his dirhams, or a third of his sheep. Then two thirds of them are lost and one third is left. If what is left fits inside a third of the rest of his wealth, the person gets all that is left."
+            },
+            {
+              "kind": "teach",
+              "id": "clothes",
+              "title": "But clothes are different",
+              "ar": "وإن أوصى بثلث ثيابه فهلك ثلثاها وبقي ثلثها وهو يخرج من ثلث ما بقي من ماله لم يستحق إلا ثلث ما بقي من الثياب",
+              "en": "If the will is a third of his clothes, and two thirds of them are lost, he only gets a third of the clothes that are left, even if they would fit in the third."
+            },
+            {
+              "kind": "choose",
+              "id": "sheep-case",
+              "ask": "Nasir's will gives Bilal a third of his 90 sheep. Before Nasir dies, 60 sheep die, and 30 are left. The 30 fit easily in a third of Nasir's other wealth. How many does Bilal get?",
+              "options": ["All 30", "10", "None"],
+              "answer": 0,
+              "source": "ومن أوصى لرجل بثلث دراهمه أو ثلث غنمه فهلك ثلثا ذلك وبقي ثلثه وهو يخرج من ثلث ما بقي من ماله فله جميع ما بقي",
+              "why": "With dirhams or sheep, if the third that is left fits in the third of the wealth, he gets all of it: 30 sheep."
+            },
+            {
+              "kind": "choose",
+              "id": "robes-case",
+              "ask": "Nasir's will gives Bilal a third of his 45 robes. 30 robes are lost, and 15 are left. How many does Bilal get?",
+              "options": ["5: a third of what is left", "15: all that is left", "None"],
+              "answer": 0,
+              "source": "لم يستحق إلا ثلث ما بقي من الثياب",
+              "why": "With clothes, he only gets a third of what is left: a third of 15 is 5."
+            },
+            {
+              "kind": "teach",
+              "id": "cash-debt",
+              "title": "Cash and money owed to him",
+              "ar": "ومن أوصى لرجل بألف درهم وله مال عين ودين فإن خرجت الألف من ثلث العين دفعت إلى الموصى له",
+              "en": "A will gives someone 1,000 dirhams. The dead man has 'ayn (cash in hand) and dayn (money others owe him). If 1,000 fits in a third of the cash, it is paid to him. If not, he is paid a third of the cash, and every time some of the owed money comes in, he takes a third of it, until he has his 1,000."
+            },
+            {
+              "kind": "choose",
+              "id": "cash-case",
+              "ask": "Will: 1,000 dirhams to Hamid. The dead man has 1,500 in cash, and people owe him 3,000. What does Hamid get now?",
+              "options": ["500 now, then a third of each debt that comes in, until he has 1,000", "1,000 now from the cash", "Nothing until all the debts are paid"],
+              "answer": 0,
+              "source": "وإن لم تخرج دفع إليه ثلث العين وكلما خرج شيء من الدين أخذ ثلثه حتى يستوفي الألف",
+              "why": "1,000 does not fit in a third of 1,500 (500). So he gets 500 now and a third of each debt as it comes in, until he reaches 1,000."
+            },
+            {
+              "kind": "teach",
+              "id": "zayd-amr",
+              "title": "When one of the two has died",
+              "ar": "ومن أوصى لزيد وعمرو بثلث ماله فإذا عمرو ميت فالثلث كله لزيد وإن قال: ثلث مالي بين زيد وعمرو وزيد ميت كان لعمرو نصف الثلث",
+              "en": "If he says \"a third of my wealth to Zayd and Amr\", and Amr turns out to be already dead, the whole third goes to Zayd. But if he says \"a third of my wealth is between Zayd and Amr\", and Zayd is dead, Amr gets only half of the third."
+            },
+            {
+              "kind": "choose",
+              "id": "between-case",
+              "ask": "Bilal owns 3,000 dirhams. His will says \"a third of my wealth is between Zayd and Amr\", but Zayd had already died. What does Amr get?",
+              "options": ["500: half of the third", "1,000: the whole third", "Nothing"],
+              "answer": 0,
+              "source": "وإن قال: ثلث مالي بين زيد وعمرو وزيد ميت كان لعمرو نصف الثلث",
+              "why": "With the word \"between\", Amr gets half of the third. The third is 1,000, so he gets 500."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Nuh writes a will of a third of his wealth when he owns 3,000 dirhams. By his death he owns 6,000. How much does the will give?",
+              "options": ["2,000: a third of what he owns at death", "1,000: a third of what he had when he wrote it", "3,000"],
+              "answer": 0,
+              "source": "ومن أوصى بثلث ماله له ثم اكتسب مالا استحق الموصى له ثلث ما يملكه عند الموت",
+              "why": "The third is counted on what he owns when he dies. A third of 6,000 is 2,000."
+            }
+          ]
+        },
+        {
+          "id": "wasaya-unborn",
+          "title": "The unborn, service, and \"so-and-so's children\"",
+          "arabic": "وتجوز الوصية للحمل وبالحمل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "unborn",
+              "title": "For an unborn child",
+              "ar": "وتجوز الوصية للحمل وبالحمل إذا وضع لأقل من ستة أشهر من يوم الوصية",
+              "en": "A will may be for a haml (a baby not yet born), or may give away an unborn young (like an animal's), if it is born less than six months after the day of the will."
+            },
+            {
+              "kind": "choose",
+              "id": "unborn-case",
+              "ask": "Yahya's will gives 500 dirhams \"to the baby Fatima is carrying\". The baby is born five months after the will. Is it valid?",
+              "options": ["Yes: the baby was born less than six months after the will", "No: the baby was not born yet", "Only if the baby is a boy"],
+              "answer": 0,
+              "source": "وتجوز الوصية للحمل وبالحمل إذا وضع لأقل من ستة أشهر من يوم الوصية",
+              "why": "A will for an unborn child is valid when it is born less than six months from the day of the will. Five months is less."
+            },
+            {
+              "kind": "teach",
+              "id": "born-after",
+              "title": "A child born before accepting",
+              "ar": "ومن أوصى لرجل بجارية فولدت بعد موت الموصي قبل أن يقبل الموصى له ولدا ثم قبل وهما يخرجان من الثلث فهما للموصى له",
+              "en": "In al-Quduri's time: a will gives a man a jariya (a slave woman). After the death, and before he accepts, she gives birth. Then he accepts. If mother and child both fit within the third, both are his."
+            },
+            {
+              "kind": "teach",
+              "id": "born-dispute",
+              "title": "If they do not both fit",
+              "ar": "وإن لم يخرجا من الثلث ضرب بالثلث وأخذ ما يخصه منهما جميعا في قول أبو يوسف ومحمد وقال أبو حنيفة: يأخذ ذلك من الأم فإن فضل شيء أخذه من الولد",
+              "en": "If they do not both fit in the third: Abu Hanifa says he takes his third from the mother first, and anything left over from the child. Note: Abu Yusuf and Muhammad say he takes his part from both of them together."
+            },
+            {
+              "kind": "teach",
+              "id": "service",
+              "title": "A will of service or of living in a house",
+              "ar": "وتجوز الوصية بخدمة عبده وسكنى داره سنين معلومة وتجوز بذلك أبدا فإن خرجت رقبة العبد من الثلث سلم إليه للخدمة وإن كان لا مال له غيره خدم الورثة يومين والموصى له يوما",
+              "en": "A will may give someone the service of a slave (in al-Quduri's time), or the right to live in a house, for a set number of years or forever. If the slave's value fits in the third, he is handed over for service. If the man had no other wealth, the slave serves the heirs two days and the person in the will one day."
+            },
+            {
+              "kind": "choose",
+              "id": "service-case",
+              "ask": "In al-Quduri's time: a will gives Karim the service of a slave, and the slave is all the dead man owned. How is the service shared?",
+              "options": ["Two days for the heirs, one day for Karim", "One day each, taking turns", "All of it to Karim"],
+              "answer": 0,
+              "source": "وإن كان لا مال له غيره خدم الورثة يومين والموصى له يوما",
+              "why": "With no other wealth, the heirs get two days and Karim one: Karim's third, the heirs' two thirds."
+            },
+            {
+              "kind": "teach",
+              "id": "service-end",
+              "title": "When the receiver dies",
+              "ar": "فإن مات الموصى له عاد إلى الورثة وإن مات الموصى له في حياة الموصى بطلت الوصية",
+              "en": "If the person who was given the service dies, it goes back to the heirs. If he dies while the man who made the will is still alive, the will is cancelled."
+            },
+            {
+              "kind": "teach",
+              "id": "children-heirs",
+              "title": "\"His children\" and \"his heirs\"",
+              "ar": "وإذا أوصى لولد فلان فالوصية بينهم: الذكر والأنثى فيه سواء ومن أوصى لورثة فلان فالوصية بينهم: للذكر مثل حظ الأنثيين",
+              "en": "A will \"for the children of so-and-so\" is shared equally between the boys and the girls. A will \"for the heirs of so-and-so\" is shared like inheritance: a male gets as much as two females."
+            },
+            {
+              "kind": "choose",
+              "id": "heirs-case",
+              "ask": "A will gives 900 dirhams \"to the heirs of Khalid\". Khalid's heirs are two sons and one daughter. What does each get?",
+              "options": ["360, 360 and 180", "300 each", "450, 450, and nothing for the daughter"],
+              "answer": 0,
+              "source": "ومن أوصى لورثة فلان فالوصية بينهم: للذكر مثل حظ الأنثيين",
+              "why": "For heirs, a male gets two parts and a female one: 5 parts of 180. Each son gets 360, the daughter 180."
+            },
+            {
+              "kind": "choose",
+              "id": "children-case",
+              "ask": "Now the will gives 900 dirhams \"to the children of Khalid\", who are two sons and one daughter. What does each get?",
+              "options": ["300 each", "360, 360 and 180", "450 to each son"],
+              "answer": 0,
+              "source": "وإذا أوصى لولد فلان فالوصية بينهم: الذكر والأنثى فيه سواء",
+              "why": "For \"children\", boys and girls are equal: 900 shared by three is 300 each."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A will of a jariya, leaving out the baby she carries, is valid with the exception (in al-Quduri's time)", "right": true },
+                { "text": "A will to live in a house can be forever", "right": true },
+                { "text": "If the receiver dies before the man who made the will, the will is cancelled", "right": true },
+                { "text": "A will for an unborn child is valid however late it is born" },
+                { "text": "\"The children of so-and-so\" share like inheritance, two to one" }
+              ],
+              "source": ["ومن أوصى لرجل بجارية إلا حملها صحت الوصية والاستثناء", "وتجوز بذلك أبدا", "وإن مات الموصى له في حياة الموصى بطلت الوصية", "إذا وضع لأقل من ستة أشهر", "الذكر والأنثى فيه سواء"],
+              "why": "The exception of the unborn is valid, service or living can be forever, and the will is cancelled if the receiver dies first. The unborn must be born within six months, and children share equally."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faraid",
+      "title": "Inheritance",
+      "arabic": "الفرائض",
+      "kitab": "كتاب الفرائض",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "faraid-heirs",
+          "title": "Who inherits, and who cannot",
+          "arabic": "المجمع على توريثهم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "men",
+              "title": "The ten men",
+              "ar": "المجمع على توريثهم من الذكور عشرة: الابن وابن الابن وإن سفل والأب والجد أب الأب وإن علا والأخ وابن الأخ والعم وابن العم والزوج ومولى النعمة",
+              "en": "Fara'id is the knowledge of who inherits and how much. All scholars agree that ten men inherit: the son; the son's son, however far down; the father; the grandfather on the father's side, however far up; the brother; the brother's son; the 'amm (father's brother); the 'amm's son; the husband; and the mawla al-ni'ma (in al-Quduri's time, the one who freed the dead person from slavery)."
+            },
+            {
+              "kind": "choose",
+              "id": "men-gap",
+              "ask": "How many men are agreed heirs? Complete it.",
+              "ar": "المجمع على توريثهم من الذكور ____",
+              "options": ["عشرة", "سبع", "ستة"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "المجمع على توريثهم من الذكور عشرة",
+              "why": "عشرة: ten men are agreed to inherit."
+            },
+            {
+              "kind": "teach",
+              "id": "women",
+              "title": "The seven women",
+              "ar": "ومن الإناث سبع: البنت وبنت الابن والأم والجدة والأخت والزوجة ومولاة النعمة",
+              "en": "And seven women: the daughter, the son's daughter, the mother, the grandmother, the sister, the wife, and the mawlat al-ni'ma (the woman who freed the dead person, in al-Quduri's time)."
+            },
+            {
+              "kind": "pick",
+              "id": "women-pick",
+              "ask": "Which of these are among the seven women who are agreed heirs?",
+              "options": [
+                { "text": "The son's daughter", "right": true },
+                { "text": "The grandmother", "right": true },
+                { "text": "The wife", "right": true },
+                { "text": "The mother", "right": true },
+                { "text": "The daughter's daughter" },
+                { "text": "The khala (mother's sister)" }
+              ],
+              "source": "ومن الإناث سبع: البنت وبنت الابن والأم والجدة والأخت والزوجة ومولاة النعمة",
+              "why": "The son's daughter, grandmother, wife and mother are on the list. The daughter's daughter and the khala are not."
+            },
+            {
+              "kind": "teach",
+              "id": "four",
+              "title": "Four who do not inherit",
+              "ar": "ولا يرث أربعة: المملوك والقاتل من المقتول والمرتد وأهل الملتين",
+              "en": "Four people do not inherit: a slave (in al-Quduri's time); a killer, from the person he killed; a murtadd (someone who left Islam); and people of two different religions, from each other."
+            },
+            {
+              "kind": "choose",
+              "id": "killer-case",
+              "ask": "Fahd wrongly kills his father. Fahd's brother Salim is also alive. Does Fahd inherit from his father?",
+              "options": ["No: a killer does not inherit from the one he killed", "Yes: a son always inherits", "Yes, but only half a son's share"],
+              "answer": 0,
+              "source": "والقاتل من المقتول",
+              "why": "The killer does not inherit from the person he killed, so everything goes to Salim."
+            },
+            {
+              "kind": "choose",
+              "id": "religion-case",
+              "ask": "Maryam, a Muslim, dies. Her only brother is a Christian. Does he inherit from her?",
+              "options": ["No: people of two religions do not inherit from each other", "Yes: a brother is one of the ten men", "Yes, if she said so in her will"],
+              "answer": 0,
+              "source": "وأهل الملتين",
+              "why": "People of two different religions do not inherit from each other."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Does this relative inherit?",
+              "into": ["Can inherit", "Does not"],
+              "items": [
+                ["The son's son", "Can inherit"],
+                ["The father's father", "Can inherit"],
+                ["The brother's son", "Can inherit"],
+                ["The husband", "Can inherit"],
+                ["A son who is a slave (in al-Quduri's time)", "Does not"],
+                ["A brother who left Islam", "Does not"]
+              ],
+              "source": ["الابن وابن الابن وإن سفل والأب والجد أب الأب", "ولا يرث أربعة: المملوك والقاتل من المقتول والمرتد"],
+              "why": "The son's son, father's father, brother's son and husband are among the ten. A slave and a murtadd do not inherit."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these matches al-Quduri?",
+              "options": ["The daughter's son is not one of the ten agreed men", "The 'amm's son cannot inherit", "The wife is not one of the seven women"],
+              "answer": 0,
+              "source": ["والأخ وابن الأخ والعم وابن العم والزوج ومولى النعمة", "والزوجة ومولاة النعمة"],
+              "why": "The ten men are the son's line, the father's line, brothers, 'amms and their sons, the husband and the freer. The daughter's son is not among them, while the 'amm's son and the wife are."
+            }
+          ]
+        },
+        {
+          "id": "faraid-shares",
+          "title": "The fixed shares: half, quarter, eighth, two thirds",
+          "arabic": "والفروض المحدودة في كتاب الله تعالى ستة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "six",
+              "title": "Six fixed shares",
+              "ar": "والفروض المحدودة في كتاب الله تعالى ستة: النصف والربع والثمن والثلثان والثلث والسدس",
+              "en": "The furud (fixed shares) named in the Book of Allah are six: a half, a quarter, an eighth, two thirds, a third and a sixth."
+            },
+            {
+              "kind": "pick",
+              "id": "six-pick",
+              "ask": "Which are among the six fixed shares?",
+              "options": [
+                { "text": "A half", "right": true },
+                { "text": "An eighth", "right": true },
+                { "text": "Two thirds", "right": true },
+                { "text": "A sixth", "right": true },
+                { "text": "A fifth" },
+                { "text": "A tenth" }
+              ],
+              "source": "ستة: النصف والربع والثمن والثلثان والثلث والسدس",
+              "why": "The six are a half, a quarter, an eighth, two thirds, a third and a sixth. There is no fifth or tenth."
+            },
+            {
+              "kind": "teach",
+              "id": "half",
+              "title": "The half",
+              "ar": "فالنصف من الأب والأم والأخت من الأب إذا لم تكن أخت لأب وأم والزوج إذا لم يكن للميت ولد",
+              "en": "The half goes to five people: a single daughter; a son's daughter, when there is no daughter; a full sister (from the father and mother); a sister from the father only, when there is no full sister; and the husband, when his wife leaves no child and no son's child. This copy of the book has lost the first two from this line; it gives the daughter her half later."
+            },
+            {
+              "kind": "teach",
+              "id": "quarter-eighth",
+              "title": "The quarter and the eighth",
+              "ar": "والربع: فرض الزوج مع الولد أو ولد الابن والزوجات إذا لم يكن للميت ولد ولا ولد ابن والثمن: فرض الزوجات مع الولد وولد الابن",
+              "en": "The quarter is for the husband when there is a child or a son's child, and for the wife (or wives) when there is no child and no son's child. The eighth is for the wife (or wives) when there is a child or a son's child."
+            },
+            {
+              "kind": "choose",
+              "id": "husband-case",
+              "ask": "Hind dies, leaving her husband Zayd and their son. What is Zayd's share?",
+              "options": ["A quarter", "A half", "An eighth"],
+              "answer": 0,
+              "source": "والربع: فرض الزوج مع الولد",
+              "why": "A husband gets a quarter when there is a child. The son takes the rest."
+            },
+            {
+              "kind": "choose",
+              "id": "wife-child-case",
+              "ask": "Ahmad dies, leaving his wife and a daughter. What is the wife's share?",
+              "options": ["An eighth", "A quarter", "A sixth"],
+              "answer": 0,
+              "source": "والثمن: فرض الزوجات مع الولد وولد الابن",
+              "why": "A daughter is a child, and a wife with a child gets an eighth."
+            },
+            {
+              "kind": "choose",
+              "id": "wife-case",
+              "ask": "Ahmad dies with no children or grandchildren, leaving his wife and his brother. What is the wife's share?",
+              "options": ["A quarter", "An eighth", "A half"],
+              "answer": 0,
+              "source": "والزوجات إذا لم يكن للميت ولد ولا ولد ابن",
+              "why": "With no child and no son's child, the wife gets a quarter. The brother takes the rest."
+            },
+            {
+              "kind": "teach",
+              "id": "two-thirds",
+              "title": "Two thirds",
+              "ar": "والثلثان: لكل اثنين فصاعدا ممن فرضه النصف إلا الزوج",
+              "en": "Two thirds is for two or more of the people whose share alone would be a half, except the husband. So two sisters share two thirds, where one alone would get a half."
+            },
+            {
+              "kind": "choose",
+              "id": "sisters-case",
+              "ask": "Layla dies with no children and no parents. She leaves two full sisters and her 'amm. What do the two sisters get together?",
+              "options": ["Two thirds", "A half", "Everything"],
+              "answer": 0,
+              "source": "والثلثان: لكل اثنين فصاعدا ممن فرضه النصف",
+              "why": "One full sister would get a half, so two of them share two thirds. The 'amm takes the rest."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "What is the share?",
+              "into": ["Half", "Quarter", "Eighth"],
+              "items": [
+                ["A husband, no children", "Half"],
+                ["A husband with a son", "Quarter"],
+                ["A husband with a son's daughter", "Quarter"],
+                ["A wife, no children", "Quarter"],
+                ["A wife with a daughter", "Eighth"]
+              ],
+              "source": ["والزوج إذا لم يكن للميت ولد", "والربع: فرض الزوج مع الولد أو ولد الابن والزوجات إذا لم يكن للميت ولد ولا ولد ابن", "والثمن: فرض الزوجات مع الولد"],
+              "why": "A husband gets a half with no child and a quarter with one. A wife gets a quarter with no child and an eighth with one."
+            }
+          ]
+        },
+        {
+          "id": "faraid-third-sixth",
+          "title": "The third and the sixth",
+          "arabic": "والثلث: للأم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "mother-third",
+              "title": "The mother's third",
+              "ar": "والثلث: للأم إذا لم يكن للميت ولد ولا ولد ابن ولا اثنان من الإخوة والأخوات فصاعدا",
+              "en": "The mother gets a third when the dead person has no child, no son's child, and not two or more brothers or sisters."
+            },
+            {
+              "kind": "choose",
+              "id": "mother-case",
+              "ask": "Sami dies young, with no children and no brothers or sisters. He leaves his mother and father. What is his mother's share?",
+              "options": ["A third", "A sixth", "A half"],
+              "answer": 0,
+              "source": "والثلث: للأم إذا لم يكن للميت ولد ولا ولد ابن",
+              "why": "No child and no two siblings, so the mother gets a third. The father takes the rest."
+            },
+            {
+              "kind": "teach",
+              "id": "two-cases",
+              "title": "A third of what is left",
+              "ar": "ويفرض لها في مسألتين - وهما: زوج وأبوان وامرأة وأبوان - ثلث ما يبقى بعد فرض الزوج أو الزوجة",
+              "en": "In two cases the mother gets a third of what is left, not a third of everything: a husband with both parents, and a wife with both parents. First the husband's or wife's share is taken out, then the mother gets a third of the rest, and the father the remainder."
+            },
+            {
+              "kind": "choose",
+              "id": "husband-parents",
+              "ask": "Amina dies with no children, leaving her husband, her mother and her father, and 600 dirhams. What does her mother get?",
+              "options": ["100: a third of what is left after the husband", "200: a third of everything", "150"],
+              "answer": 0,
+              "source": ["زوج وأبوان", "ثلث ما يبقى بعد فرض الزوج أو الزوجة", "والزوج إذا لم يكن للميت ولد"],
+              "why": "The husband takes half (300). The mother gets a third of the 300 left, which is 100, and the father the other 200."
+            },
+            {
+              "kind": "choose",
+              "id": "wife-parents",
+              "ask": "Yusuf dies with no children, leaving his wife, mother and father, and 1,200 dirhams. What does his mother get?",
+              "options": ["300", "400", "200"],
+              "answer": 0,
+              "source": ["وامرأة وأبوان", "ثلث ما يبقى بعد فرض الزوج أو الزوجة"],
+              "why": "The wife takes a quarter (300). The mother gets a third of the 900 left, which is 300, and the father 600."
+            },
+            {
+              "kind": "teach",
+              "id": "maternal",
+              "title": "The mother's other children",
+              "ar": "وهو لكل اثنين فصاعدا من ولد الأم: ذكورهم وإناثهم فيه سواء",
+              "en": "The third is also for two or more walad al-umm (half-brothers and half-sisters through the mother only). The males and females among them get equal parts."
+            },
+            {
+              "kind": "choose",
+              "id": "maternal-case",
+              "ask": "The third of an estate is 300 dirhams. It goes to the dead man's half-brother and half-sister from his mother. What does each get?",
+              "options": ["150 each", "200 to the brother, 100 to the sister", "300 each"],
+              "answer": 0,
+              "source": "من ولد الأم: ذكورهم وإناثهم فيه سواء",
+              "why": "Among the mother's children, males and females are equal: 150 each."
+            },
+            {
+              "kind": "teach",
+              "id": "sixth",
+              "title": "The sixth: seven cases",
+              "ar": "والسدس: فرض سبعة: لكل واحد من الأبوين مع الولد أو ولد الابن وللأم مع الإخوة والأخوات من أي جهة كانوا وللجدات وللجد مع الولد أو ولد الابن ولبنات الابن مع البنت وللأخوات لأب مع الأخت لأب وأم وللواحد من ولد الأم",
+              "en": "The sixth is for seven: each parent when there is a child or son's child; the mother when there are brothers and sisters of any kind; the grandmothers; the grandfather when there is a child or son's child; the son's daughters along with one daughter; the sisters from the father along with a full sister; and one single child of the mother."
+            },
+            {
+              "kind": "pick",
+              "id": "sixth-pick",
+              "ask": "Who gets a sixth here?",
+              "options": [
+                { "text": "A father, when the dead man has a son", "right": true },
+                { "text": "A son's daughter, along with one daughter", "right": true },
+                { "text": "One half-brother through the mother", "right": true },
+                { "text": "A grandmother", "right": true },
+                { "text": "A mother, with no children and no siblings" },
+                { "text": "A husband, when there is a child" }
+              ],
+              "source": ["لكل واحد من الأبوين مع الولد", "ولبنات الابن مع البنت", "وللواحد من ولد الأم", "وللجدات"],
+              "why": "The father with a child, a son's daughter with a daughter, one maternal sibling and the grandmother get a sixth. The mother here gets a third, and the husband a quarter."
+            },
+            {
+              "kind": "choose",
+              "id": "daughters-case",
+              "ask": "Khadija dies, leaving one daughter, one son's daughter, and her 'amm. What does the son's daughter get?",
+              "options": ["A sixth", "A half", "Nothing"],
+              "answer": 0,
+              "source": "ولبنات الابن مع البنت",
+              "why": "The daughter gets a half, and the son's daughter a sixth with her, making two thirds. The 'amm takes the rest."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Ibrahim dies with no children, leaving his mother, his father and two brothers. What is his mother's share?",
+              "options": ["A sixth", "A third", "A third of what is left"],
+              "answer": 0,
+              "source": ["وللأم مع الإخوة والأخوات من أي جهة كانوا", "ولا اثنان من الإخوة والأخوات فصاعدا"],
+              "why": "Two brothers bring the mother down to a sixth, even though the brothers themselves get nothing because of the father."
+            }
+          ]
+        },
+        {
+          "id": "faraid-falling",
+          "title": "Who drops out",
+          "arabic": "وتسقط الجدات بالأم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fall",
+              "title": "Blocked by a closer one",
+              "ar": "وتسقط الجدات بالأم والجد والإخوة والأخوات بالأب",
+              "en": "Some heirs \"fall\" (get nothing) because a closer heir is there. The grandmothers fall when the mother is alive. The grandfather and the brothers and sisters fall when the father is alive."
+            },
+            {
+              "kind": "choose",
+              "id": "fall-case",
+              "ask": "Hasan dies, leaving his father, his mother, a brother, and his father's father. Who gets nothing?",
+              "options": ["The grandfather and the brother", "Only the brother", "The mother"],
+              "answer": 0,
+              "source": "والجد والإخوة والأخوات بالأب",
+              "why": "The father is alive, so the grandfather and the brother both fall."
+            },
+            {
+              "kind": "teach",
+              "id": "maternal-fall",
+              "title": "The mother's children fall by four",
+              "ar": "ويسقط ولد الأم بأربعة: بالولد وولد الابن والأب والجد",
+              "en": "Half-siblings through the mother fall with four: a child, a son's child, the father, and the grandfather."
+            },
+            {
+              "kind": "sort",
+              "id": "maternal-sort",
+              "ask": "A half-brother through the mother is left with this relative. Does he inherit?",
+              "into": ["He falls", "He inherits"],
+              "items": [
+                ["With a son", "He falls"],
+                ["With a son's daughter", "He falls"],
+                ["With the father", "He falls"],
+                ["With the father's father", "He falls"],
+                ["With only the mother", "He inherits"],
+                ["With only a husband", "He inherits"]
+              ],
+              "source": "ويسقط ولد الأم بأربعة: بالولد وولد الابن والأب والجد",
+              "why": "A child, a son's child, the father and the grandfather make him fall. The mother or a husband do not."
+            },
+            {
+              "kind": "teach",
+              "id": "daughters-full",
+              "title": "When daughters fill two thirds",
+              "ar": "وإذا استكمل البنات الثلثين سقطت بنات الابن إلا أن يكون بإزائهن أو أسفل منهن ابن ابن فيعصبهن",
+              "en": "When the daughters have taken the full two thirds, the son's daughters fall, unless there is a son's son at their level or lower. He makes them 'asaba with him: heirs who share what is left over after the fixed shares."
+            },
+            {
+              "kind": "choose",
+              "id": "no-brother-case",
+              "ask": "Rabi'a dies, leaving two daughters, a son's daughter, and her 'amm. What does the son's daughter get?",
+              "options": ["Nothing: the daughters filled two thirds", "A sixth", "A share of the two thirds"],
+              "answer": 0,
+              "source": "وإذا استكمل البنات الثلثين سقطت بنات الابن",
+              "why": "The two daughters take the full two thirds, and there is no son's son, so the son's daughter falls."
+            },
+            {
+              "kind": "choose",
+              "id": "brother-case",
+              "ask": "Rabi'a leaves 900 dirhams: two daughters, a son's daughter, and a son's son. What do the son's son and son's daughter get?",
+              "options": ["Son's son 200, son's daughter 100", "Son's son 300, son's daughter nothing", "150 each"],
+              "answer": 0,
+              "source": ["إلا أن يكون بإزائهن أو أسفل منهن ابن ابن فيعصبهن", "والفاضل عن فرض البنات لبني الابن وأخواتهم للذكر مثل حظ الأنثيين"],
+              "why": "The daughters take two thirds (600). The son's son makes his sister 'asaba, and the 300 left is shared two to one: 200 and 100."
+            },
+            {
+              "kind": "teach",
+              "id": "sisters-full",
+              "title": "When full sisters fill two thirds",
+              "ar": "وإذا استكمل الأخوات لأب وأم الثلثين سقطت الأخوات لأب إلا أن يكون معهن أخ لهن فيعصبهن",
+              "en": "In the same way, when full sisters have taken two thirds, the sisters from the father only fall, unless they have a brother with them who makes them 'asaba."
+            },
+            {
+              "kind": "choose",
+              "id": "sisters-case",
+              "ask": "Zaynab dies with no children or parents. She leaves two full sisters, one half-sister from her father, and an 'amm. Does the half-sister inherit?",
+              "options": ["No: the full sisters filled two thirds", "Yes, a sixth", "Yes, a third"],
+              "answer": 0,
+              "source": "وإذا استكمل الأخوات لأب وأم الثلثين سقطت الأخوات لأب",
+              "why": "The full sisters took two thirds and the half-sister has no brother with her, so she falls."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "What does the son's son do for the son's daughters? Complete it.",
+              "ar": "سقطت بنات الابن إلا أن يكون بإزائهن أو أسفل منهن ابن ابن ____",
+              "options": ["فيعصبهن", "فيحجبهن", "فيسقطهن"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "إلا أن يكون بإزائهن أو أسفل منهن ابن ابن فيعصبهن",
+              "why": "فيعصبهن: he makes them 'asaba, so they share what is left with him instead of falling."
+            }
+          ]
+        },
+        {
+          "id": "faraid-asaba",
+          "title": "The nearest 'asaba",
+          "arabic": "باب أقرب العصبات",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "order",
+              "title": "Who is nearest",
+              "ar": "باب أقرب العصبات وأقرب العصبات البنون ثم بنوهم ثم الأب ثم الجد ثم بنو الأب وهم الإخوة ثم بنو الجد وهم الأعمام ثم بنوا أب الجد",
+              "en": "The 'asaba are the relatives who take what is left after the fixed shares, or everything if there are none. The nearest are the sons, then their sons, then the father, then the grandfather, then the father's sons (the brothers), then the grandfather's sons (the 'amms), then the sons of the grandfather's father."
+            },
+            {
+              "kind": "order",
+              "id": "order-steps",
+              "ask": "Put the 'asaba in order, nearest first.",
+              "steps": ["Sons", "Sons' sons", "Father", "Grandfather", "Brothers", "'Amms (father's brothers)", "Sons of the great-grandfather"],
+              "source": "وأقرب العصبات البنون ثم بنوهم ثم الأب ثم الجد ثم بنو الأب وهم الإخوة ثم بنو الجد وهم الأعمام ثم بنوا أب الجد",
+              "why": "Sons, their sons, the father, the grandfather, the brothers, the 'amms, then the great-grandfather's sons."
+            },
+            {
+              "kind": "choose",
+              "id": "brother-amm-case",
+              "ask": "Bashir dies, leaving only a brother and an 'amm. Who takes everything?",
+              "options": ["The brother", "The 'amm", "They share it"],
+              "answer": 0,
+              "source": "ثم بنو الأب وهم الإخوة ثم بنو الجد وهم الأعمام",
+              "why": "The brothers come before the 'amms, so the brother takes it all."
+            },
+            {
+              "kind": "teach",
+              "id": "full-first",
+              "title": "Full before half",
+              "ar": "وإذا استوى بنو أب في الدرجة فأولاهم من كان لأب وأم",
+              "en": "When they are at the same level, the one related through both father and mother comes before the one related through the father only."
+            },
+            {
+              "kind": "choose",
+              "id": "full-case",
+              "ask": "Jabir dies, leaving a full brother and a half-brother from his father. Who inherits?",
+              "options": ["The full brother alone", "Both equally", "The half-brother alone"],
+              "answer": 0,
+              "source": "فأولاهم من كان لأب وأم",
+              "why": "Both are brothers, at the same level, so the full brother comes first and takes it all."
+            },
+            {
+              "kind": "teach",
+              "id": "two-to-one",
+              "title": "Sharing with sisters",
+              "ar": "والابن وابن الابن والإخوة يقاسمون أخواتهم للذكر مثل حظ الأنثيين ومن عداهم من العصبات ينفرد بالميراث ذكورهم دون إناثهم",
+              "en": "The son, the son's son and the brothers share with their sisters, a male getting as much as two females. For the other 'asaba, only the males inherit, not their sisters."
+            },
+            {
+              "kind": "choose",
+              "id": "son-daughter-case",
+              "ask": "Usama dies, leaving one son and one daughter, and 900 dirhams. What does each get?",
+              "options": ["Son 600, daughter 300", "450 each", "Son 900, daughter nothing"],
+              "answer": 0,
+              "source": "والابن وابن الابن والإخوة يقاسمون أخواتهم للذكر مثل حظ الأنثيين",
+              "why": "A son shares with his sister, a male getting two parts: 3 parts of 300, so 600 and 300."
+            },
+            {
+              "kind": "choose",
+              "id": "cousins-case",
+              "ask": "Uthman's only relatives are the son and the daughter of his 'amm. Who inherits as 'asaba?",
+              "options": ["The 'amm's son alone", "Son two parts, daughter one", "Both equally"],
+              "answer": 0,
+              "source": "ومن عداهم من العصبات ينفرد بالميراث ذكورهم دون إناثهم",
+              "why": "Only sons, son's sons and brothers share with their sisters. Among the 'amm's children, only the male inherits."
+            },
+            {
+              "kind": "teach",
+              "id": "freer",
+              "title": "When there is no 'asaba by blood",
+              "ar": "وإذا لم يكن عصبة من النسب فالعصبة هو المولى المعتق ثم أقرب عصبة المولى",
+              "en": "In al-Quduri's time: if there is no 'asaba by family, the 'asaba is the man who freed the dead person from slavery, and then that man's nearest 'asaba."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "The father comes before the grandfather", "right": true },
+                { "text": "A brother shares with his sister, two to one", "right": true },
+                { "text": "A full brother comes before a half-brother from the father", "right": true },
+                { "text": "An 'amm comes before a brother" },
+                { "text": "An 'amm's daughter shares with her brother, two to one" }
+              ],
+              "source": ["ثم الأب ثم الجد", "والإخوة يقاسمون أخواتهم للذكر مثل حظ الأنثيين", "فأولاهم من كان لأب وأم", "ينفرد بالميراث ذكورهم دون إناثهم"],
+              "why": "The father is before the grandfather, brothers share with sisters, and the full brother comes first. Brothers are before 'amms, and an 'amm's daughter does not share as 'asaba."
+            }
+          ]
+        },
+        {
+          "id": "faraid-hajb",
+          "title": "Reducing shares, and what is left over",
+          "arabic": "باب الحجب",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "mother",
+              "title": "The mother reduced",
+              "ar": "باب الحجب وتحجب الأم من الثلث إلى السدس بالولد أو بأخوين",
+              "en": "Hajb is when one heir reduces or blocks another's share. The mother is brought down from a third to a sixth by a child, or by two brothers."
+            },
+            {
+              "kind": "choose",
+              "id": "mother-case",
+              "ask": "Rania dies, leaving her mother, a daughter and an 'amm. What is the mother's share?",
+              "options": ["A sixth", "A third", "Nothing"],
+              "answer": 0,
+              "source": "وتحجب الأم من الثلث إلى السدس بالولد",
+              "why": "A daughter is a child, and a child brings the mother down to a sixth."
+            },
+            {
+              "kind": "teach",
+              "id": "left-over",
+              "title": "What is left after the daughters or sisters",
+              "ar": "والفاضل عن فرض البنات لبني الابن وأخواتهم للذكر مثل حظ الأنثيين والفاضل عن فرض الأختين من الأب والأم للإخوة والأخوات من الأب للذكر مثل حظ الأنثيين",
+              "en": "What is left after the daughters' share goes to the son's sons and their sisters, a male getting as much as two females. What is left after two full sisters' share goes to the brothers and sisters from the father, a male getting as much as two females."
+            },
+            {
+              "kind": "teach",
+              "id": "one-daughter",
+              "title": "One daughter",
+              "ar": "فللبنت النصف والباقي لبني الابن وأخواتهم للذكر مثل حظ الأنثيين وكذلك الفاضل عن فرض الأخت من الأب والأم لبني الأب وبنات الأب للذكر مثل حظ الأنثيين",
+              "en": "With one daughter, she gets a half and the rest goes to the son's sons and their sisters, two to one. In the same way, what is left after one full sister's share goes to the father's sons and daughters, two to one."
+            },
+            {
+              "kind": "choose",
+              "id": "daughter-case",
+              "ask": "Musa leaves 1,200 dirhams: one daughter, one son's son and one son's daughter. What does each get?",
+              "options": ["Daughter 600, son's son 400, son's daughter 200", "Daughter 400, the others 400 each", "Daughter 600, son's son 600"],
+              "answer": 0,
+              "source": "فللبنت النصف والباقي لبني الابن وأخواتهم للذكر مثل حظ الأنثيين",
+              "why": "The daughter takes half (600). The 600 left is shared two to one: 400 to the son's son and 200 to the son's daughter."
+            },
+            {
+              "kind": "choose",
+              "id": "sister-case",
+              "ask": "Salma dies with no children or parents, leaving 600 dirhams: one full sister, one half-brother and one half-sister from her father. What does the half-brother get?",
+              "options": ["200", "300", "150"],
+              "answer": 0,
+              "source": "وكذلك الفاضل عن فرض الأخت من الأب والأم لبني الأب وبنات الأب للذكر مثل حظ الأنثيين",
+              "why": "The full sister takes half (300). The 300 left goes two to one: 200 to the half-brother and 100 to the half-sister."
+            },
+            {
+              "kind": "teach",
+              "id": "cousins",
+              "title": "A cousin who is also a half-brother",
+              "ar": "ومن ترك ابني عم أحدهما أخ الأم فللأخ للأم السدس والباقي",
+              "en": "If someone leaves two sons of an 'amm (cousins), and one of them is also his half-brother through the mother, that one first gets a sixth as a maternal half-brother. The rest is then shared between the two cousins."
+            },
+            {
+              "kind": "choose",
+              "id": "cousins-case",
+              "ask": "Tamim leaves 1,200 dirhams and two cousins, Rafi and Hadi. Hadi is also his half-brother through the mother. What does each get?",
+              "options": ["Hadi 700, Rafi 500", "600 each", "Hadi 800, Rafi 400"],
+              "answer": 0,
+              "source": "ومن ترك ابني عم أحدهما أخ الأم فللأخ للأم السدس والباقي",
+              "why": "Hadi first takes a sixth (200). The 1,000 left is shared between the two cousins: 500 each. So Hadi has 700 and Rafi 500."
+            },
+            {
+              "kind": "teach",
+              "id": "mushtaraka",
+              "title": "The mushtaraka case",
+              "ar": "والمشركة: أن تترك المرأة زوجا وأما - أو جدة - وأختين من أم وأخا لأب وأم فللزوج النصف وللأم السدس ولولد الأم الثلث ولا شيء للأخوة من الأب والأم",
+              "en": "The mushtaraka case: a woman leaves her husband, her mother (or a grandmother), two half-sisters through the mother, and a full brother. The husband gets a half, the mother a sixth, the mother's children a third, and the full brother gets nothing."
+            },
+            {
+              "kind": "choose",
+              "id": "mushtaraka-case",
+              "ask": "Huda leaves 1,200 dirhams: her husband, her mother, two half-sisters through the mother, and a full brother. What does the full brother get?",
+              "options": ["Nothing", "A share of the third with his half-sisters", "200"],
+              "answer": 0,
+              "source": "فللزوج النصف وللأم السدس ولولد الأم الثلث ولا شيء للأخوة من الأب والأم",
+              "why": "The husband takes 600, the mother 200 and the half-sisters 400. Nothing is left, and al-Quduri gives the full brother nothing."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Nabil dies with no children, leaving his mother, his father and one brother. What is his mother's share?",
+              "options": ["A third", "A sixth", "Nothing"],
+              "answer": 0,
+              "source": ["بالولد أو بأخوين", "والثلث: للأم إذا لم يكن للميت ولد ولا ولد ابن ولا اثنان من الإخوة والأخوات فصاعدا"],
+              "why": "It takes a child or two brothers to bring the mother down to a sixth. With one brother she keeps her third."
+            }
+          ]
+        },
+        {
+          "id": "faraid-radd",
+          "title": "Giving back the surplus, and special cases",
+          "arabic": "باب الرد",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "radd",
+              "title": "Radd: giving back the surplus",
+              "ar": "باب الرد والفاضل عن فرض ذوي السهام إذا لم يكن عصبة مردود عليهم بمقدار سهامهم إلا على الزوجين",
+              "en": "Radd means giving back. If the fixed shares do not use up the estate and there is no 'asaba, what is left is given back to the share-holders in proportion to their shares. But nothing is given back to a husband or wife."
+            },
+            {
+              "kind": "choose",
+              "id": "radd-case",
+              "ask": "Sumayya dies, leaving her mother and a daughter, and 800 dirhams. There is no 'asaba. What does each get in the end?",
+              "options": ["Mother 200, daughter 600", "Mother 133, daughter 400, the rest to no one", "400 each"],
+              "answer": 0,
+              "source": "مردود عليهم بمقدار سهامهم",
+              "why": "The mother has a sixth and the daughter a half: that is 1 to 3. The rest is given back in the same ratio, so the mother gets a quarter (200) and the daughter three quarters (600)."
+            },
+            {
+              "kind": "choose",
+              "id": "spouse-case",
+              "ask": "Hala dies, leaving her husband and a daughter, and 800 dirhams. There is no 'asaba. What does each get?",
+              "options": ["Husband 200, daughter 600", "Husband 400, daughter 400", "Husband 267, daughter 533"],
+              "answer": 0,
+              "source": "إلا على الزوجين",
+              "why": "The husband takes his quarter (200) only, because nothing is given back to a spouse. The daughter takes her half and the rest is given back to her: 600."
+            },
+            {
+              "kind": "teach",
+              "id": "religion",
+              "title": "Killing, religion and leaving Islam",
+              "ar": "ولا يرث القاتل من المقتول والكفر كله ملة واحدة يتوارث به أهله ولا يرث المسلم من الكافر ولا الكافر من المسلم ومال المرتد لورثته من المسلمين وما اكتسبه في حال ردته فيء",
+              "en": "The killer does not inherit from the one he killed. All kinds of kufr (unbelief) count as one religion, so non-Muslims inherit from each other. A Muslim does not inherit from a non-Muslim, nor the other way round. The wealth of a murtadd goes to his Muslim heirs, but what he earned after leaving Islam is fay' (it goes to the Muslims' public treasury)."
+            },
+            {
+              "kind": "choose",
+              "id": "kufr-case",
+              "ask": "A Jewish man dies. His only son is a Christian. Does the son inherit?",
+              "options": ["Yes: all kufr counts as one religion", "No: they are of two religions", "Only half the estate"],
+              "answer": 0,
+              "source": "والكفر كله ملة واحدة يتوارث به أهله",
+              "why": "All kinds of unbelief count as one religion for inheritance, so they inherit from each other."
+            },
+            {
+              "kind": "teach",
+              "id": "drowned",
+              "title": "When no one knows who died first",
+              "ar": "وإذا غرق جماعة أو سقط عليهم حائط فلم يعلم من مات",
+              "en": "If a group drown, or a wall falls on them, and no one knows who died first, each one's wealth goes to his own living heirs. They do not inherit from each other."
+            },
+            {
+              "kind": "choose",
+              "id": "drowned-case",
+              "ask": "Two brothers, Adam and Idris, drown together in a flood. No one knows who died first. Does either inherit from the other?",
+              "options": ["No: each one's wealth goes to his own living heirs", "The older inherits from the younger", "Each inherits from the other"],
+              "answer": 0,
+              "source": "فمال كل واحد منهم للأحياء من ورثته",
+              "why": "When the order of death is not known, each one's wealth goes to his living heirs only."
+            },
+            {
+              "kind": "teach",
+              "id": "majus",
+              "title": "Two links in one person",
+              "ar": "وإذا اجتمع في المجوسي قرابتان لو تفرقت في شخصين ورث أحدهما مع الآخر ورث بهما ولا يرث المجوسي بالأنكحة الفاسدة التي يستحلونها في دينهم",
+              "en": "A Majusi is a fire-worshipper. If one Majusi person is related to the dead in two ways, and two separate people with those two links would both inherit, he inherits by both links. But a Majusi does not inherit through invalid marriages that their religion allows."
+            },
+            {
+              "kind": "teach",
+              "id": "mother-side",
+              "title": "A child with no father's line",
+              "ar": "وعصبة ولد الزنا وولد الملاعنة مولى أمهما",
+              "en": "For a child born outside marriage, or a child of li'an (when the husband denied the child by a sworn process before a judge), their 'asaba is their mother's mawla (her freer, in al-Quduri's time)."
+            },
+            {
+              "kind": "teach",
+              "id": "unborn",
+              "title": "An unborn heir",
+              "ar": "ومن مات وترك حملا وقف ماله حتى تضع امرأته حملها في قول أبي حنيفة",
+              "en": "If a man dies and his wife is pregnant, Abu Hanifa says his wealth is held back until she gives birth."
+            },
+            {
+              "kind": "choose",
+              "id": "unborn-case",
+              "ask": "Harun dies while his wife is pregnant. His brothers want to divide the estate now. What does Abu Hanifa say?",
+              "options": ["Hold it until the baby is born", "Divide it now among those alive", "Divide it now, and the baby gets nothing"],
+              "answer": 0,
+              "source": "وقف ماله حتى تضع امرأته حملها في قول أبي حنيفة",
+              "why": "For Abu Hanifa, the wealth is held back until the wife gives birth."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Nothing is given back (radd) to a husband or wife", "right": true },
+                { "text": "A Muslim does not inherit from a non-Muslim relative", "right": true },
+                { "text": "What a murtadd owned as a Muslim goes to his Muslim heirs", "right": true },
+                { "text": "What a murtadd earned after leaving Islam goes to his heirs" },
+                { "text": "People who drown together inherit from each other" }
+              ],
+              "source": ["إلا على الزوجين", "ولا يرث المسلم من الكافر", "ومال المرتد لورثته من المسلمين", "وما اكتسبه في حال ردته فيء", "فمال كل واحد منهم للأحياء من ورثته"],
+              "why": "No radd to spouses, no inheriting across Islam and kufr, and a murtadd's earlier wealth goes to his Muslim heirs. What he earned after is fay', and the drowned do not inherit from each other."
+            }
+          ]
+        },
+        {
+          "id": "faraid-arham",
+          "title": "Grandparents, distant relatives and the freer",
+          "arabic": "باب ذوي الأرحام",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "grandfather",
+              "title": "The grandfather and the brothers",
+              "ar": "والجد أولى بالميراث من الإخوة عند أبي حنيفة",
+              "en": "Abu Hanifa says the grandfather comes before the brothers, so they get nothing with him. Note: Abu Yusuf and Muhammad say he shares with them, unless sharing would give him less than a third."
+            },
+            {
+              "kind": "teach",
+              "id": "grandmothers",
+              "title": "The grandmothers",
+              "ar": "وإذا اجتمعت الجدات فالسدس لأقربهن ويحجب الجد أمه ولا ترث أم أبي الأم بسهم وكل جدة تحجب أمها",
+              "en": "When there are several grandmothers, the sixth goes to the nearest one. The grandfather blocks his own mother. The mother of the mother's father does not get a fixed share. And every grandmother blocks her own mother."
+            },
+            {
+              "kind": "choose",
+              "id": "grandmothers-case",
+              "ask": "Hiba dies, leaving her mother's mother and her father's father's mother (no mother or father). Who takes the grandmothers' sixth?",
+              "options": ["The mother's mother: she is nearer", "They share it equally", "The father's father's mother"],
+              "answer": 0,
+              "source": "وإذا اجتمعت الجدات فالسدس لأقربهن",
+              "why": "The mother's mother is one step away, the other is two. The sixth goes to the nearest."
+            },
+            {
+              "kind": "teach",
+              "id": "arham",
+              "title": "Dhawu al-arham",
+              "ar": "باب ذوي الأرحام وإذا لم يكن للميت عصبة ولا ذو سهم ورثه ذوو أرحامه وهم عشرة: ولد البنت وولد الأخت وابنة الأخ وابنة العم والخال والخالة وأب الأم والعم من الأم والعمة وولد الأخ من الأم ومن أدلى بهم",
+              "en": "Dhawu al-arham are other blood relatives. If the dead person has no 'asaba and no one with a fixed share, these inherit. They are ten: the daughter's children, the sister's children, the brother's daughter, the 'amm's daughter, the khal (mother's brother), the khala (mother's sister), the mother's father, the 'amm through the mother only, the 'amma (father's sister), the children of a maternal half-brother, and anyone related through them."
+            },
+            {
+              "kind": "choose",
+              "id": "khala-case",
+              "ask": "Ayyub dies. He has no 'asaba and no one with a fixed share. His only relative is his khala. What happens?",
+              "options": ["She inherits, as one of the dhawu al-arham", "Nothing: she is not one of the seven women", "She gets only a sixth"],
+              "answer": 0,
+              "source": "وإذا لم يكن للميت عصبة ولا ذو سهم ورثه ذوو أرحامه",
+              "why": "With no 'asaba and no share-holder, the dhawu al-arham inherit, and the khala is one of them."
+            },
+            {
+              "kind": "teach",
+              "id": "arham-order",
+              "title": "Which of them first",
+              "ar": "وأولاهم ولد الميت ثم ولد الأبوين أو أحدهما وهم بنات الإخوة وولد الأخوات ثم ولد أبوي أبويه أو أحدهما وهم الأخوال والخالات والعمات",
+              "en": "First come the dead person's own descendants (like a daughter's child), then the descendants of his parents (brothers' daughters, sisters' children), then the descendants of his grandparents (khals, khalas and 'ammas)."
+            },
+            {
+              "kind": "choose",
+              "id": "order-case",
+              "ask": "Hadi has no 'asaba and no share-holder. He leaves his daughter's son and his khal. Who inherits?",
+              "options": ["The daughter's son", "The khal", "They share it"],
+              "answer": 0,
+              "source": "وأولاهم ولد الميت ثم ولد الأبوين",
+              "why": "The dead person's own descendants come first, so the daughter's son inherits."
+            },
+            {
+              "kind": "choose",
+              "id": "mothers-father-case",
+              "ask": "Hadi leaves only his mother's father and his brother's daughter. Who inherits?",
+              "options": ["The mother's father", "The brother's daughter", "They share it"],
+              "answer": 0,
+              "source": "وإذا استوى ولد أب في درجة فأولاهم من أدلى بوارث وأقربهم أولى من أبعدهم وأب الأم أولى من ولد الأخ والأخت",
+              "why": "The book says the mother's father comes before the children of a brother or sister."
+            },
+            {
+              "kind": "teach",
+              "id": "freer",
+              "title": "The freer, and a pact of loyalty",
+              "ar": "والمعتق أحق بالفاضل من سهم ذوي سهام إذا لم تكن عصبة سواه ومولى الموالاة يرث",
+              "en": "In al-Quduri's time: the man who freed the dead person has the best right to what is left after the fixed shares, if there is no other 'asaba. And the mawla al-muwalat (someone who made a pact of loyalty with the dead person) also inherits."
+            },
+            {
+              "kind": "choose",
+              "id": "freer-case",
+              "ask": "In al-Quduri's time: a freed woman dies, leaving her daughter and the man who freed her. Who takes what is left after the daughter's half?",
+              "options": ["The man who freed her", "The daughter, by radd", "The public treasury"],
+              "answer": 0,
+              "source": "والمعتق أحق بالفاضل من سهم ذوي سهام إذا لم تكن عصبة",
+              "why": "The freer has the best right to what is left after the fixed shares, so the daughter takes her half and he takes the other half."
+            },
+            {
+              "kind": "teach",
+              "id": "freers-family",
+              "title": "The freer's family",
+              "ar": "وإذا ترك المعتق أبا مولاه وابن مولاه فماله للابن وقال أبو يوسف: للأب السدس والباقي للابن فإن ترك جد مولاه وأخ مولاه فالمال للجد في قول أبي حنيفة",
+              "en": "If a freed person dies after the man who freed him, leaving that man's father and son, his wealth goes to the son. If he leaves that man's grandfather and brother, Abu Hanifa gives it to the grandfather. Note: Abu Yusuf gives the father a sixth in the first case, and Abu Yusuf and Muhammad share it between grandfather and brother in the second."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "Wala' (the freer's tie) cannot be sold or given as a gift", "right": true },
+                { "text": "For Abu Hanifa, the grandfather comes before the brothers", "right": true },
+                { "text": "Every grandmother blocks her own mother", "right": true },
+                { "text": "The khala inherits even when there is a son" },
+                { "text": "The farther grandmother shares the sixth with the nearer" }
+              ],
+              "source": ["ولا يباع الولاء ولا يوهب", "والجد أولى بالميراث من الإخوة عند أبي حنيفة", "وكل جدة تحجب أمها", "وإذا لم يكن للميت عصبة ولا ذو سهم", "فالسدس لأقربهن"],
+              "why": "Wala' is not sold or given, the grandfather comes first for Abu Hanifa, and each grandmother blocks her mother. The dhawu al-arham only inherit when there is no 'asaba, and the sixth goes to the nearest grandmother."
+            }
+          ]
+        },
+        {
+          "id": "faraid-base",
+          "title": "Working out the shares: the base number",
+          "arabic": "باب حساب الفرائض",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "two-three",
+              "title": "Base 2 and base 3",
+              "ar": "إذا كان في المسألة نصف ونصف أو نصف وما بقي فأصلها من اثنين وإن كان ثلث وما بقي أو ثلثان وما بقي فأصلها من ثلاثة",
+              "en": "To work out an inheritance, first find the asl (base number): the smallest number all the shares can be counted in. A half and a half, or a half and the rest: the base is 2. A third and the rest, or two thirds and the rest: the base is 3."
+            },
+            {
+              "kind": "choose",
+              "id": "two-case",
+              "ask": "Husna dies with no children, leaving her husband and her brother. What is the base number?",
+              "options": ["2", "4", "6"],
+              "answer": 0,
+              "source": "أو نصف وما بقي فأصلها من اثنين",
+              "why": "The husband has a half and the brother the rest: a half and what is left is base 2. One part each."
+            },
+            {
+              "kind": "teach",
+              "id": "six",
+              "title": "Base 6, and 'awl",
+              "ar": "وإذا كان سدس وما بقي أو نصف وثلث أو سدس فأصلها من ستة وتعول إلى سبعة وثمانية وتسعة وعشرة",
+              "en": "A sixth and the rest, or a half with a third or a sixth: the base is 6. It can rise by 'awl to 7, 8, 9 or 10. 'Awl is when the shares add up to more than the whole, so the base is raised and every share shrinks a little."
+            },
+            {
+              "kind": "choose",
+              "id": "six-case",
+              "ask": "Ghada dies, leaving her mother and her son. What is the base number?",
+              "options": ["6", "3", "2"],
+              "answer": 0,
+              "source": "وإذا كان سدس وما بقي",
+              "why": "The mother has a sixth (there is a child) and the son the rest: a sixth and what is left is base 6."
+            },
+            {
+              "kind": "choose",
+              "id": "awl-case",
+              "ask": "A woman dies with no children, leaving her husband (a half), her full sister (a half) and her mother (a third). Out of 6, that is 3 + 3 + 2. What does the base rise to?",
+              "options": ["8", "7", "9"],
+              "answer": 0,
+              "source": "نصف وثلث أو سدس فأصلها من ستة وتعول إلى سبعة وثمانية",
+              "why": "3 + 3 + 2 = 8, which is more than 6. So the base rises by 'awl to 8, and each gets their parts out of 8."
+            },
+            {
+              "kind": "teach",
+              "id": "twelve",
+              "title": "Base 12",
+              "ar": "وإن كان مع الربع ثلث أو سدس فأصلها من اثني عشر وتعول إلى ثلاثة عشر وخمسة عشرة وسبعة عشر",
+              "en": "A quarter with a third or a sixth: the base is 12. It can rise by 'awl to 13, 15 or 17."
+            },
+            {
+              "kind": "choose",
+              "id": "twelve-case",
+              "ask": "Faris dies with no children, leaving his wife (a quarter), his mother (a third) and one brother (the rest). From a base of 12, how many parts does the brother get?",
+              "options": ["5", "6", "4"],
+              "answer": 0,
+              "source": "وإن كان مع الربع ثلث أو سدس فأصلها من اثني عشر",
+              "why": "Out of 12, the wife gets 3 and the mother 4. That leaves 5 for the brother."
+            },
+            {
+              "kind": "teach",
+              "id": "twenty-four",
+              "title": "Base 24",
+              "ar": "وإذا كان مع الثمن ثلثان أو سدس فأصلها من أربعة وعشرين وتعول إلى سبعة وعشرين",
+              "en": "An eighth with two thirds or a sixth: the base is 24. It can rise by 'awl to 27."
+            },
+            {
+              "kind": "choose",
+              "id": "twenty-four-case",
+              "ask": "Sahl dies, leaving his wife (an eighth), two daughters (two thirds) and his father. From 24, how many parts does the father get?",
+              "options": ["5: his sixth (4) plus the 1 left over", "4: just his sixth", "8"],
+              "answer": 0,
+              "source": ["وإذا كان مع الثمن ثلثان أو سدس فأصلها من أربعة وعشرين", "لكل واحد من الأبوين مع الولد"],
+              "why": "Out of 24, the wife gets 3 and the daughters 16. The father gets a sixth (4) with a child, and as 'asaba he also takes the 1 left over: 5."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Which base number?",
+              "into": ["2", "6", "12"],
+              "items": [
+                ["A half and a half", "2"],
+                ["A half and what is left", "2"],
+                ["A sixth and what is left", "6"],
+                ["A half and a third", "6"],
+                ["A quarter and a third", "12"],
+                ["A quarter and a sixth", "12"]
+              ],
+              "source": ["إذا كان في المسألة نصف ونصف أو نصف وما بقي فأصلها من اثنين", "وإذا كان سدس وما بقي أو نصف وثلث أو سدس فأصلها من ستة", "وإن كان مع الربع ثلث أو سدس فأصلها من اثني عشر"],
+              "why": "Halves with a half or the rest are 2. A sixth and the rest, or a half and a third, are 6. A quarter with a third or a sixth is 12."
+            }
+          ]
+        },
+        {
+          "id": "faraid-tashih",
+          "title": "When the parts do not divide",
+          "arabic": "فإذا انقسمت المسألة على الورثة فقد صحت",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "divide",
+              "title": "Making the parts whole",
+              "ar": "فإذا انقسمت المسألة على الورثة فقد صحت وإن لم تنقسم سهام فريق عليهم فاضرب عددهم في أصل المسألة وعولها إن كانت عائلة فما خرج فمنه تصح المسألة",
+              "en": "If the parts divide evenly among the heirs, the case is done. If one group's parts do not divide among them, multiply the base (raised by 'awl if it has one) by the number of people in that group. The answer is the number the case comes right from."
+            },
+            {
+              "kind": "teach",
+              "id": "example",
+              "title": "A wife and two brothers",
+              "ar": "كامرأة وأخوين: للمرأة الربع سهم وللأخوين ما بقي وهي ثلاثة أسهم لا تنقسم عليهما فاضرب اثنين في أصل المسألة فتكون ثمانية ومنها تصح",
+              "en": "Example: a wife and two brothers. The wife's quarter is 1 part, and the brothers get the rest, 3 parts. 3 does not divide between 2, so multiply the base by 2. That gives 8, and the case comes right from 8: the wife 2, each brother 3."
+            },
+            {
+              "kind": "choose",
+              "id": "example-case",
+              "ask": "Yasin dies with no children, leaving his wife and two brothers, and 800 dirhams. The case comes right from 8. What does each brother get?",
+              "options": ["300", "400", "350"],
+              "answer": 0,
+              "source": "فاضرب اثنين في أصل المسألة فتكون ثمانية ومنها تصح",
+              "why": "Out of 8, the wife has 2 and each brother 3. Each part is 100, so each brother gets 300."
+            },
+            {
+              "kind": "teach",
+              "id": "agree",
+              "title": "When the numbers agree",
+              "ar": "وإن وافق سهامهم عددهم فاضرب وفق عددهم في أصل المسألة كامرأة وستة إخوة للمرأة الربع سهم وللإخوة ثلاثة فاضرب وفق عددهم في أصل المسألة يكون ثمانية ومنه تصح",
+              "en": "If the group's parts and their number share a common factor, multiply the base by the wafq (their number divided by that factor). Example: a wife and six brothers. The wife has 1 part, the brothers 3. 3 and 6 share 3, so the wafq of 6 is 2. Multiply 4 by 2: the case comes right from 8."
+            },
+            {
+              "kind": "choose",
+              "id": "agree-case",
+              "ask": "A wife and six brothers: the case comes right from 8, and the wife has 2. How many parts does each brother get?",
+              "options": ["1", "3", "2"],
+              "answer": 0,
+              "source": "فاضرب وفق عددهم في أصل المسألة يكون ثمانية ومنه تصح",
+              "why": "The brothers share 6 parts of 8, so each has 1."
+            },
+            {
+              "kind": "teach",
+              "id": "groups",
+              "title": "Two groups or more",
+              "ar": "وإن لم تنقسم سهام فريقين أو أكثر فاضرب أحد الفريقين",
+              "en": "If two or more groups' parts do not divide, multiply one group's number by the other, then the result by any third group, then the result by the base."
+            },
+            {
+              "kind": "teach",
+              "id": "same",
+              "title": "When the groups are the same size",
+              "ar": "فإن تساوت الأعداد أجزأ أحدهما عن الآخر كامرأتين وأخوين فاضرب اثنين",
+              "en": "If the groups have the same number, one of them is enough. Example: two wives and two brothers: multiply the base by 2."
+            },
+            {
+              "kind": "choose",
+              "id": "same-case",
+              "ask": "Two wives and two brothers, no children. The base is 4. What does the case come right from?",
+              "options": ["8", "16", "4"],
+              "answer": 0,
+              "source": "كامرأتين وأخوين فاضرب اثنين في أصل المسألة",
+              "why": "Both groups are 2, so one 2 is enough: 4 times 2 is 8. The wives get 1 each, the brothers 3 each."
+            },
+            {
+              "kind": "teach",
+              "id": "part-of",
+              "title": "When one number fits in the other",
+              "ar": "فإن كان أحد العددين جزءا من الآخر أغنى الأكثر عن الأقل كأربع نسوة وأخوين إذا ضربت الأربعة أجزأك عن الآخر",
+              "en": "If one group's number fits inside the other, the bigger one is enough. Example: four wives and two brothers: multiplying by 4 covers the 2 as well."
+            },
+            {
+              "kind": "choose",
+              "id": "part-of-case",
+              "ask": "Four wives and two brothers, no children. The base is 4. What does the case come right from?",
+              "options": ["16", "32", "8"],
+              "answer": 0,
+              "source": "كأربع نسوة وأخوين إذا ضربت الأربعة أجزأك عن الآخر",
+              "why": "2 fits inside 4, so multiply only by 4: 4 times 4 is 16. Each wife gets 1, each brother 6."
+            },
+            {
+              "kind": "teach",
+              "id": "forty-eight",
+              "title": "When the two numbers agree",
+              "ar": "فإن وافق أحد العددين الآخر ضربت وفق أحدهما في جميع الآخر ثم ما اجتمع في أصل المسألة كأربع نسوة وأخت وستة أعمام فالستة توافق الأربعة بالنصف فاضرب نصف أحدهما في جميع الآخر ثم ما اجتمع في أصل المسألة تكون ثمانية وأربعين ومنها تصح",
+              "en": "If the two numbers share a factor, multiply the wafq of one by the whole of the other, then by the base. Example: four wives, a sister and six 'amms. 6 and 4 share a half, so multiply 2 by 6 to get 12, then by the base 4: the case comes right from 48."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "In that case of 48, the wives have a quarter (12), the sister a half (24) and the six 'amms the rest. How many parts does each 'amm get?",
+              "options": ["2", "4", "3"],
+              "answer": 0,
+              "source": "تكون ثمانية وأربعين ومنها تصح",
+              "why": "48 minus 12 minus 24 leaves 12 for the 'amms. Shared by six, that is 2 each."
+            }
+          ]
+        },
+        {
+          "id": "faraid-payout",
+          "title": "Paying out the estate, and a second death",
+          "arabic": "فإذا صحت المسألة فاضرب سهام كل وارث في التركة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "payout",
+              "title": "Turning parts into money",
+              "ar": "فإذا صحت المسألة فاضرب سهام كل وارث في التركة ثم اقسم ما اجتمع على ما صحت منه الفريضة يخرج حق ذلك الوارث",
+              "en": "Once the case comes right, multiply each heir's parts by the tarika (the estate), then divide by the number the case came right from. That gives what the heir is owed."
+            },
+            {
+              "kind": "choose",
+              "id": "payout-case",
+              "ask": "A wife and two brothers: the case comes right from 8, and the wife has 2 parts. The estate is 1,600 dirhams. What does the wife get?",
+              "options": ["400", "200", "533"],
+              "answer": 0,
+              "source": "فاضرب سهام كل وارث في التركة ثم اقسم ما اجتمع على ما صحت منه الفريضة",
+              "why": "2 times 1,600 is 3,200. Divided by 8, that is 400."
+            },
+            {
+              "kind": "choose",
+              "id": "mother-case",
+              "ask": "Wife, mother and brother: the case comes right from 12, and the mother has 4 parts. The estate is 2,400 dirhams. What does the mother get?",
+              "options": ["800", "600", "1,000"],
+              "answer": 0,
+              "source": "يخرج حق ذلك الوارث",
+              "why": "4 times 2,400 is 9,600. Divided by 12, that is 800."
+            },
+            {
+              "kind": "teach",
+              "id": "munasakha",
+              "title": "A second death before dividing",
+              "ar": "وإذا لم تقسم التركة حتى مات أحد الورثة فإن كان ما يصيبه من الميت الأول ينقسم على ورثته فقد صحت المسألتان مما صحت الأولى",
+              "en": "Munasakha is when one of the heirs dies before the estate was divided. If his parts from the first estate divide evenly among his own heirs, both cases come right from the first case's number."
+            },
+            {
+              "kind": "choose",
+              "id": "divides-case",
+              "ask": "Ali dies, leaving two sons: base 2, one part each. Before dividing, his son Hasan dies, leaving only one son. What do both cases come right from?",
+              "options": ["2: the first number", "4", "They cannot be joined"],
+              "answer": 0,
+              "source": "فإن كان ما يصيبه من الميت الأول ينقسم على ورثته فقد صحت المسألتان مما صحت الأولى",
+              "why": "Hasan's 1 part goes whole to his one son, so it divides, and both cases come right from 2."
+            },
+            {
+              "kind": "teach",
+              "id": "not-divide",
+              "title": "If it does not divide",
+              "ar": "وإن لم ينقسم صححت فريضة الميت الثاني بالطريقة التي ذكرناها ثم ضربت إحدى المسألتين في الأخرى إن لم يكن بين سهام الميت الثاني وما صحت منه فريضة موافقة",
+              "en": "If it does not divide, work out the second dead person's case the same way. Then, if his parts and his own case's number share no common factor, multiply one case's number by the other."
+            },
+            {
+              "kind": "teach",
+              "id": "agreement",
+              "title": "If they share a factor",
+              "ar": "فإن كان بينهما موافقة فاضرب المسألة الثانية في الأولى فما اجتمع صحت منه المسألتان",
+              "en": "If they do share a common factor, the book says to multiply the second case into the first (using its wafq), and both cases come right from the result."
+            },
+            {
+              "kind": "teach",
+              "id": "heirs-parts",
+              "title": "Each heir's parts",
+              "ar": "وكل من له شيء من المسألة الأولى مضروب في وفق المسألة الثانية ومن كان له شيء من المسألة الثانية مضروب في وفق تركة الميت الثاني",
+              "en": "Each heir's parts in the first case are multiplied by the wafq of the second case. Each heir's parts in the second case are multiplied by the wafq of the second dead person's share."
+            },
+            {
+              "kind": "choose",
+              "id": "not-divide-case",
+              "ask": "Ali dies, leaving two sons: base 2. Before dividing, his son Hasan dies, leaving three sons (base 3). Hasan's 1 part does not divide by 3, and 1 and 3 share no factor. What do both cases come right from?",
+              "options": ["6", "3", "5"],
+              "answer": 0,
+              "source": "ثم ضربت إحدى المسألتين في الأخرى",
+              "why": "Multiply one case by the other: 2 times 3 is 6. The living son gets 3, and Hasan's three sons 1 each."
+            },
+            {
+              "kind": "teach",
+              "id": "grains",
+              "title": "Down to the grains of a dirham",
+              "ar": "وإذا صحت مسألة المناسخة وأردت معرفة ما يصيب كل واحد من حبات الدرهم قسمت ما صحت منه المسألة على ثمانية وأربعين فما خرج أخذت له من سهام كل وارث",
+              "en": "To know what each heir gets in habbas (grains, small weights of a dirham), divide the number the case came right from by 48, and count each heir's parts by the result."
+            },
+            {
+              "kind": "order",
+              "id": "mixed",
+              "ask": "Put the steps of working out an inheritance in order.",
+              "steps": ["Find the base from the shares (2, 3, 6, 12 or 24)", "Raise it by 'awl if the shares are too many", "Multiply by a group's number (or its wafq) if their parts do not divide", "Multiply each heir's parts by the estate and divide by the final number"],
+              "source": ["فأصلها من ستة وتعول إلى سبعة", "فاضرب عددهم في أصل المسألة وعولها إن كانت عائلة", "فاضرب سهام كل وارث في التركة ثم اقسم ما اجتمع على ما صحت منه الفريضة"],
+              "why": "First the base, then 'awl, then correcting for groups that do not divide, and last turning the parts into money."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
