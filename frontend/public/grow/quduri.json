@@ -3023,7 +3023,1823 @@
     { "id": "zakah", "title": "Zakat", "arabic": "الزكاة", "kitab": "كتاب الزكاة", "lessons": [] },
     { "id": "sawm", "title": "Fasting", "arabic": "الصوم", "kitab": "كتاب الصوم", "lessons": [] },
     { "id": "hajj", "title": "Hajj", "arabic": "الحج", "kitab": "كتاب الحج", "lessons": [] },
-    { "id": "buyu", "title": "Transactions", "arabic": "البيوع", "kitab": "كتاب البيوع", "lessons": [] },
+    {
+      "id": "buyu",
+      "title": "Transactions",
+      "arabic": "البيوع",
+      "kitab": "كتاب البيوع",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "buyu-contract",
+          "title": "Making a sale: offer and acceptance",
+          "arabic": "البيع: ينعقد بالإيجاب والقبول",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "offer",
+              "title": "Offer and acceptance",
+              "ar": "البيع: ينعقد بالإيجاب والقبول إذا كانا بلفظ الماضي",
+              "en": "A sale (bay') is made by an offer (ijab) and an acceptance (qabul), when both are said in the past tense: \"I have sold it to you\", \"I have bought it.\" Words like these show the deal is done, not just planned."
+            },
+            {
+              "kind": "choose",
+              "id": "future-case",
+              "ask": "Zaid says, \"I will sell you my bike for £50.\" Omar answers, \"I will buy it.\" Has a sale been made?",
+              "options": ["No: the words must be in the past tense", "Yes: both of them agreed", "Yes, as soon as they shake hands"],
+              "answer": 0,
+              "source": "البيع: ينعقد بالإيجاب والقبول إذا كانا بلفظ الماضي",
+              "why": "\"I will sell\" and \"I will buy\" are promises about the future. The sale is made when offer and acceptance are in the past tense."
+            },
+            {
+              "kind": "teach",
+              "id": "sitting",
+              "title": "Accept while you are still sitting",
+              "ar": "وإذا أوجب أحد المتعاقدين البيع فالآخر بالخيار: إن شاء قبل في المجلس وإن شاء رده وأيهما قام من المجلس قبل القبول بطل الإيجاب",
+              "en": "Once one side makes the offer, the other may accept or refuse while they are still in the same sitting (majlis), the meeting where the deal is being made. If either of them gets up and leaves before accepting, the offer is cancelled."
+            },
+            {
+              "kind": "choose",
+              "id": "leave-case",
+              "ask": "Aisha offers Sara her old laptop for £200 at a café. Sara stands up and walks out to think. An hour later she comes back and says, \"I accept.\" Is there a sale?",
+              "options": ["No: the offer ended when she left the sitting", "Yes: she accepted the same day", "Yes, but only if Aisha repeats the price"],
+              "answer": 0,
+              "source": "وأيهما قام من المجلس قبل القبول بطل الإيجاب",
+              "why": "Whoever leaves the sitting before accepting cancels the offer. Aisha would have to offer again."
+            },
+            {
+              "kind": "teach",
+              "id": "binding",
+              "title": "Once agreed, the sale is binding",
+              "ar": "وإذا حصل الإيجاب والقبول لزم البيع ولا خيار لواحد منهما إلا من عيب أو عدم رؤية",
+              "en": "When the offer and acceptance have both happened, the sale is binding: neither side can back out. A khiyar is an \"option\", a right to cancel. Here there is none, except for a defect in the item or for not having seen it."
+            },
+            {
+              "kind": "choose",
+              "id": "regret-case",
+              "ask": "Bilal buys a phone from a shop, and both say the words of sale. The next day he finds a cheaper one and wants his money back. Must the shop cancel?",
+              "options": ["No: the sale is binding", "Yes: anyone may cancel within three days", "Yes, as long as the shop hasn't spent the money"],
+              "answer": 0,
+              "source": "وإذا حصل الإيجاب والقبول لزم البيع ولا خيار لواحد منهما إلا من عيب أو عدم رؤية",
+              "why": "After offer and acceptance the sale is binding. Finding a better price is not a defect, and he saw the phone."
+            },
+            {
+              "kind": "teach",
+              "id": "price",
+              "title": "A price must be known",
+              "ar": "والأعواض المشار إليها لا يحتاج إلى معرفة مقدراها في جواز البيع والأثمان المطلقة لا تصح إلا أن تكون معروفة القدر والصفة",
+              "en": "If the goods or payment are right there and pointed at (\"this pile for that bag of coins\"), their exact amount need not be known. But a price that is only named, not pointed at, must have a known amount and a known kind."
+            },
+            {
+              "kind": "teach",
+              "id": "deferred",
+              "title": "Paying now or later",
+              "ar": "ويجوز البيع بثمن حال ومؤجل إذا كان الأجل معلوما ومن أطلق الثمن في البيع كان على غالب نقد البلد فإن كانت النقود مختلفة فالبيع فاسد إلا أن يبين أحدها",
+              "en": "The price may be paid now or later, if the date is known. If the price is named with no currency (\"100\"), it means the main currency of the town. If several currencies are used, the sale is fasid (invalid and not to be kept) unless one of them is named."
+            },
+            {
+              "kind": "choose",
+              "id": "date-gap",
+              "ask": "Complete al-Quduri's rule for paying later.",
+              "ar": "ويجوز البيع بثمن حال ومؤجل إذا كان الأجل ____",
+              "options": ["معلوما", "قريبا", "مكتوبا"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ويجوز البيع بثمن حال ومؤجل إذا كان الأجل معلوما",
+              "why": "معلوما: the date to pay must be known. Short or written down is not the condition."
+            },
+            {
+              "kind": "choose",
+              "id": "someday-case",
+              "ask": "Hamza buys a sofa for £600 and says he will pay \"whenever I get some money.\" Is that payment term allowed?",
+              "options": ["No: the date to pay is not known", "Yes: any delay is fine between friends", "Yes, if he pays within a year"],
+              "answer": 0,
+              "source": "ويجوز البيع بثمن حال ومؤجل إذا كان الأجل معلوما",
+              "why": "Paying later is allowed only when the date is known. \"Whenever I get money\" is not a known date."
+            },
+            {
+              "kind": "choose",
+              "id": "currency-case",
+              "ask": "In a town where two currencies are used side by side, Yusuf sells his car \"for 1000\" and names neither. What is the sale?",
+              "options": ["Fasid, unless they name one currency", "Valid, in the cheaper currency", "Valid, and the buyer picks the currency"],
+              "answer": 0,
+              "source": "فإن كانت النقود مختلفة فالبيع فاسد إلا أن يبين أحدها",
+              "why": "With different currencies in use and none named, the price is unknown, so the sale is fasid until one is named."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                { "text": "A sale is made by offer and acceptance", "right": true },
+                { "text": "The other side may accept while still in the sitting", "right": true },
+                { "text": "After acceptance, either side may cancel for any reason" },
+                { "text": "The price may be paid later, by a known date", "right": true },
+                { "text": "A price of \"some money\" is fine" }
+              ],
+              "source": ["البيع: ينعقد بالإيجاب والقبول", "إن شاء قبل في المجلس", "لزم البيع ولا خيار لواحد منهما إلا من عيب أو عدم رؤية", "والأثمان المطلقة لا تصح إلا أن تكون معروفة القدر والصفة"],
+              "why": "Offer and acceptance make the sale, acceptance can come within the sitting, and a deferred price needs a known date. After that the sale is binding, and a vague price is not valid."
+            }
+          ]
+        },
+        {
+          "id": "buyu-measure",
+          "title": "Selling by measure: heaps, flocks and cloth",
+          "arabic": "مكايلة ومجازفة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "heap",
+              "title": "Measured, or by the heap",
+              "ar": "ويجوز بيع الطعام والحبوب مكايلة ومجازفة وبإناء بعينه لا يعرف مقدراه وبوزن حجر بعينه لا يعرف مقداره",
+              "en": "Food and grain may be sold measured out (mukayala), or as a heap judged by eye without measuring (mujazafa). They may also be sold by a particular container, or weighed against a particular stone, even if nobody knows its exact size."
+            },
+            {
+              "kind": "choose",
+              "id": "sack-case",
+              "ask": "A grocer sells \"this whole sack of rice for £20\" without weighing it. Is the sale valid?",
+              "options": ["Yes: grain may be sold by the heap", "No: it must be weighed first", "Only if the buyer weighs it at home"],
+              "answer": 0,
+              "source": "ويجوز بيع الطعام والحبوب مكايلة ومجازفة",
+              "why": "Mujazafa, selling a heap by sight, is allowed for food and grain."
+            },
+            {
+              "kind": "teach",
+              "id": "per-unit",
+              "title": "\"A dirham for each\"",
+              "ar": "ومن باع صبرة طعام كل قفيز بدرهم جاز البيع في قفيز واحد عند أبي حنيفة إلا أن يسمي جملة قفزانها ومن باع قطيع غنم كل شاة بدرهم فالبيع فاسد في جميعها",
+              "en": "A qafiz is a measure of grain, and a dirham is a silver coin. If someone sells a heap at \"a dirham per qafiz\" without saying how many qafiz there are, Abu Hanifa says the sale holds for one qafiz only, unless the total is named. A flock of sheep at \"a dirham per sheep\" is fasid for all of them."
+            },
+            {
+              "kind": "choose",
+              "id": "flock-case",
+              "ask": "A farmer sells \"this flock, £100 a sheep\" but nobody counts the sheep or names the total. What happens?",
+              "options": ["The sale is fasid for all of them", "It is valid for one sheep", "It is valid for the whole flock"],
+              "answer": 0,
+              "source": "ومن باع قطيع غنم كل شاة بدرهم فالبيع فاسد في جميعها",
+              "why": "For a flock sold per head with no total, the sale is fasid in all of it. The one-unit rule is for a heap of food."
+            },
+            {
+              "kind": "choose",
+              "id": "wheat-case",
+              "ask": "Under Abu Hanifa's rule, a shop sells \"this heap of wheat, a dirham per qafiz\" and names no total. For how much is the sale valid?",
+              "options": ["One qafiz", "The whole heap", "None of it"],
+              "answer": 0,
+              "source": "جاز البيع في قفيز واحد عند أبي حنيفة إلا أن يسمي جملة قفزانها",
+              "why": "Abu Hanifa holds it valid in one qafiz only, unless the total number of qafiz is named."
+            },
+            {
+              "kind": "teach",
+              "id": "short-heap",
+              "title": "A heap that turns out short",
+              "ar": "ومن ابتاع صبرة على أنها قفيز بمائة درهم فوجدها أقل كان المشتري بالخيار: إن شاء أخذ الموجود بحصته من الثمن وإن شاء فسخ البيع وإن وجدها أكثر فالزيادة للبائع",
+              "en": "If a heap is bought as being a stated amount for a stated price and it turns out less, the buyer chooses: take what is there for its share of the price, or cancel. If it turns out more, the extra belongs to the seller."
+            },
+            {
+              "kind": "choose",
+              "id": "rice-case",
+              "ask": "Maryam buys a sack \"of 50 kg for £50\". At home it is only 40 kg. What may she do?",
+              "options": ["Keep the 40 kg for £40, or cancel", "She must pay the full £50", "Make the seller add 10 kg"],
+              "answer": 0,
+              "source": "إن شاء أخذ الموجود بحصته من الثمن وإن شاء فسخ البيع",
+              "why": "For food sold by amount, the buyer takes what is there for its share of the price, or cancels the sale."
+            },
+            {
+              "kind": "teach",
+              "id": "cloth",
+              "title": "Cloth and land are different",
+              "ar": "ومن اشترى ثوبا على أنه عشرة أذرع بعشرة دراهم أو أرضا على أنها مائة ذراع بمائة درهم فوجدها أقل فالمشتري بالخيار: إن شاء أخذها بجملة الثمن وإن شاء تركها وإن وجدها أكثر من الذراع الذي سماه فهو المشتري ولا خيار للبائع",
+              "en": "A dhira' (cubit) is an arm's length. For cloth or land sold at one lump price as \"ten cubits\", the length is only a description. If it is shorter, the buyer takes it for the full price or leaves it. If it is longer, the extra is the buyer's, and the seller has no option."
+            },
+            {
+              "kind": "teach",
+              "id": "per-cubit",
+              "title": "When each cubit has its own price",
+              "ar": "وإن قال: بعتكها على أنها مائة ذراع بمائة درهم كل ذراع بدرهم فوجدها ناقصة",
+              "en": "But if the seller says \"a hundred cubits for a hundred dirhams, a dirham per cubit\", each cubit has its price. If it is short, the buyer may take it for its share of the price or leave it. If it is longer, the buyer may take all of it at a dirham a cubit, or cancel."
+            },
+            {
+              "kind": "choose",
+              "id": "per-cubit-case",
+              "ask": "Land is sold as \"100 cubits for 100 dirhams, a dirham per cubit\". It measures 110 cubits. What are the buyer's choices?",
+              "options": ["Take all 110 for 110 dirhams, or cancel", "Take all 110 for 100 dirhams", "Only 100 cubits for 100 dirhams"],
+              "answer": 0,
+              "source": ["وإن وجدها زائد كان المشتري بالخيار", "كل ذراع بدرهم وإن شاء فسخ البيع"],
+              "why": "Because each cubit was priced, the extra comes at a dirham each, so the buyer takes 110 for 110 or cancels."
+            },
+            {
+              "kind": "sort",
+              "id": "extra",
+              "ask": "The goods turn out bigger than stated. Who gets the extra?",
+              "into": ["The seller", "The buyer"],
+              "items": [
+                ["A heap of wheat sold as an amount for a price", "The seller"],
+                ["A sack of rice that weighs more than stated", "The seller"],
+                ["Cloth sold as 10 cubits for 10 dirhams, lump price", "The buyer"],
+                ["Land sold as 100 cubits for 100 dirhams, lump price", "The buyer"]
+              ],
+              "source": ["وإن وجدها أكثر فالزيادة للبائع", "وإن وجدها أكثر من الذراع الذي سماه فهو المشتري ولا خيار للبائع"],
+              "why": "For food sold by amount, the extra is the seller's. For cloth or land at a lump price, length is a description, so the extra is the buyer's."
+            }
+          ]
+        },
+        {
+          "id": "buyu-included",
+          "title": "What comes with the sale, and who hands over first",
+          "arabic": "ومن باع دارا دخل بناؤها في البيع",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "house",
+              "title": "A house and a plot",
+              "ar": "ومن باع دارا دخل بناؤها في البيع وإن لم يسمه",
+              "en": "Whoever sells a house sells its building with it, even if the building is not mentioned."
+            },
+            {
+              "kind": "teach",
+              "id": "land",
+              "title": "Land, but not its crop",
+              "ar": "ومن باع أرضا دخل ما فيها وإن لم يسمه ولا يدخل الزرع في بيع الأرض إلا بالتسمية",
+              "en": "Land is sold with what is fixed in it, even if not mentioned. But a crop growing on it is not included unless it is named."
+            },
+            {
+              "kind": "choose",
+              "id": "crop-case",
+              "ask": "Khalid sells his farmland while a wheat crop is growing on it. Nothing is said about the crop. Whose is the wheat?",
+              "options": ["Khalid's, the seller", "The buyer's", "They share it"],
+              "answer": 0,
+              "source": "ولا يدخل الزرع في بيع الأرض إلا بالتسمية",
+              "why": "A crop does not go with the land unless it is named in the sale."
+            },
+            {
+              "kind": "teach",
+              "id": "fruit",
+              "title": "Fruit on the trees",
+              "ar": "ومن باع نخلا أو شجرا فيه ثمر فثمرته للبائع إلا أن يشترطها المبتاع ويقال للبائع: اقطعها وسلم المبيع",
+              "en": "If palms or trees are sold with fruit on them, the fruit stays the seller's, unless the buyer makes it a condition. The seller is told: pick your fruit and hand over what you sold."
+            },
+            {
+              "kind": "choose",
+              "id": "orchard-case",
+              "ask": "Nadia buys an apple orchard in autumn. The trees are full of apples, and no one mentions them. What happens?",
+              "options": ["The apples are the seller's; he picks them and hands over the trees", "The apples come with the trees", "The apples are split in half"],
+              "answer": 0,
+              "source": "فثمرته للبائع إلا أن يشترطها المبتاع ويقال للبائع: اقطعها وسلم المبيع",
+              "why": "Fruit on sold trees is the seller's unless the buyer made it a condition, so the seller picks it and hands over."
+            },
+            {
+              "kind": "teach",
+              "id": "fruit-sale",
+              "title": "Buying fruit still on the tree",
+              "ar": "ومن باع ثمرة لم يبد صلاحها أو قد بدا جاز البيع ووجب على المشتري قطعها في الحال فإن شرط تركها على النخل فسد البيع",
+              "en": "Fruit on the tree may be sold whether or not it has started to ripen, but the buyer must pick it straight away. If he makes it a condition to leave it on the tree, the sale is fasid."
+            },
+            {
+              "kind": "choose",
+              "id": "mango-case",
+              "ask": "Imran buys the mangoes on a neighbour's tree, \"on condition they stay on the tree another month to ripen.\" What is the sale?",
+              "options": ["Fasid, because of the condition", "Valid, and the mangoes stay a month", "Valid, but he pays extra rent"],
+              "answer": 0,
+              "source": "فإن شرط تركها على النخل فسد البيع",
+              "why": "Leaving the fruit on the tree as a condition makes the sale fasid. Without it the buyer would pick them at once."
+            },
+            {
+              "kind": "teach",
+              "id": "except",
+              "title": "Some things that are allowed and not",
+              "ar": "ولا يجوز أن يبيع ثمرة ويستثني منها أرطالا معلومة ويجوز بيع الحنطة في سبيلها والباقلاء في قشرها ومن باع دارا دخل في المبيع مفاتيح أغلاقها",
+              "en": "A seller may not sell a fruit crop but keep back a set number of ratls (pounds) of it. Wheat still in the ear and beans in their pods may be sold. A house is sold with the keys to its locks."
+            },
+            {
+              "kind": "sort",
+              "id": "fees",
+              "ask": "Who pays this fee?",
+              "into": ["The seller", "The buyer"],
+              "items": [
+                ["The man who measures out the grain", "The seller"],
+                ["The man who checks the coins of the price", "The seller"],
+                ["The man who weighs the coins of the price", "The buyer"]
+              ],
+              "source": "وأجرة الكيال وناقد الثمن على البائع وأجرة وزان الثمن على المشتري",
+              "why": "The measurer and the coin-checker are paid by the seller; the one who weighs the price is paid by the buyer."
+            },
+            {
+              "kind": "teach",
+              "id": "first",
+              "title": "Who hands over first",
+              "ar": "ومن باع سلعة بثمن قيل للمشتري: ادفع الثمن أولا فإذا دفع قيل للبائع: سلم البيع ومن باع سلعة بسلعة أو ثمنا بثمن قيل لهما سلما معا",
+              "en": "When goods are sold for money, the buyer pays first, then the seller hands over the goods. When goods are swapped for goods, or money for money, both hand over together."
+            },
+            {
+              "kind": "choose",
+              "id": "swap-case",
+              "ask": "Ali swaps his games console for Sami's bike. Neither wants to go first. What is the rule?",
+              "options": ["Both hand over together", "Ali hands over first", "Sami hands over first"],
+              "answer": 0,
+              "source": "ومن باع سلعة بسلعة أو ثمنا بثمن قيل لهما سلما معا",
+              "why": "Goods for goods: both are told to hand over at the same time."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Without being mentioned, which come with the sale?",
+              "options": [
+                { "text": "The building, with a house", "right": true },
+                { "text": "The keys to the house's locks", "right": true },
+                { "text": "A crop growing on the land" },
+                { "text": "Fruit on the trees that are sold" }
+              ],
+              "source": ["ومن باع دارا دخل بناؤها في البيع وإن لم يسمه", "ولا يدخل الزرع في بيع الأرض إلا بالتسمية", "فثمرته للبائع إلا أن يشترطها المبتاع", "دخل في المبيع مفاتيح أغلاقها"],
+              "why": "The building and the keys come with a house. A crop and fruit on the trees stay the seller's unless named."
+            }
+          ]
+        },
+        {
+          "id": "buyu-shart",
+          "title": "Option by condition: three days to decide",
+          "arabic": "باب خيار الشرط",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Up to three days",
+              "ar": "خيار الشرط: جائز في البيع للبائع والمشتري ولهما الخيار ثلاثة أيام فما دونها ولا يجوز أكثر من ذلك عند أبي حنيفة رحمه الله وقال أبو يوسف ومحمد رحمهما الله: يجوز إذا سمى مدة معلومة",
+              "en": "Khiyar al-shart is an option by condition: the buyer or the seller keeps the right to cancel for a set time. It is allowed for three days or less, and Abu Hanifa does not allow more. Note: Abu Yusuf and Muhammad allow a longer time if it is known."
+            },
+            {
+              "kind": "choose",
+              "id": "dress-case",
+              "ask": "Layla buys a dress \"on condition I can cancel within three days.\" Is the condition allowed?",
+              "options": ["Yes: three days or less is allowed", "No: a sale is binding at once", "Only the seller may have an option"],
+              "answer": 0,
+              "source": "جائز في البيع للبائع والمشتري ولهما الخيار ثلاثة أيام فما دونها",
+              "why": "Either side may have the option, for three days or less."
+            },
+            {
+              "kind": "choose",
+              "id": "ten-case",
+              "ask": "For Abu Hanifa, a buyer asks for \"ten days to decide.\" Is that allowed?",
+              "options": ["No: not more than three days", "Yes, any time they agree on", "Yes, up to a month"],
+              "answer": 0,
+              "source": "ولا يجوز أكثر من ذلك عند أبي حنيفة",
+              "why": "Abu Hanifa does not allow more than three days."
+            },
+            {
+              "kind": "teach",
+              "id": "seller",
+              "title": "Whose is the item meanwhile?",
+              "ar": "وخيار البائع يمنع خروج المبيع من ملكه فإن قبضه المشتري فهلك في يده",
+              "en": "If the seller has the option, the item stays his. If the buyer has taken it and it is destroyed with him, the buyer pays its value (qima: what it is worth), not the agreed price."
+            },
+            {
+              "kind": "teach",
+              "id": "buyer",
+              "title": "When the buyer has the option",
+              "ar": "وخيار المشتري لا يمنع خروج المبيع من ملك البائع إلا أن المشتري لا يملكه عند أبي حنيفة وعندهما يملكه فإن هلك في يده هلك بالثمن وكذلك إن دخله عيب",
+              "en": "If the buyer has the option, the item leaves the seller's ownership, but for Abu Hanifa the buyer doesn't own it yet. If it is destroyed with the buyer, he pays the agreed price, and the same if it gets a defect. Note: Abu Yusuf and Muhammad say the buyer does own it."
+            },
+            {
+              "kind": "sort",
+              "id": "who-pays",
+              "ask": "The item is destroyed in the buyer's hands. What does he pay?",
+              "into": ["Its value", "The agreed price"],
+              "items": [
+                ["The seller had the three-day option", "Its value"],
+                ["The buyer had the three-day option", "The agreed price"],
+                ["The buyer had the option, and it got a defect", "The agreed price"]
+              ],
+              "source": ["بالقيمة وخيار المشتري لا يمنع خروج المبيع", "فإن هلك في يده هلك بالثمن وكذلك إن دخله عيب"],
+              "why": "With the seller's option the buyer pays its value. With the buyer's option it is lost at the agreed price, and a defect is the same."
+            },
+            {
+              "kind": "teach",
+              "id": "cancel",
+              "title": "Approving and cancelling",
+              "ar": "ومن شرط له الخيار فله أن يفسخ في مدة الخيار وله أن يجيزه",
+              "en": "Whoever has the option may cancel the sale within the time, or approve it. He may approve it on his own, but he can cancel only when the other person is present."
+            },
+            {
+              "kind": "choose",
+              "id": "alone-case",
+              "ask": "Faris has a three-day option on a camera. While the seller is away, Faris says to himself, \"I cancel.\" Does the cancellation count?",
+              "options": ["No: the other person must be present", "Yes: it is his option", "Yes, if he sends the camera back"],
+              "answer": 0,
+              "source": "وإن فسخ لم يجز إلا أن يكون الآخر حاضرا",
+              "why": "Approving needs no one else, but cancelling only counts with the other person present."
+            },
+            {
+              "kind": "teach",
+              "id": "death",
+              "title": "If he dies",
+              "ar": "وإذا مات من له الخيار بطل خياره ولم ينتقل إلى ورثته",
+              "en": "If the person with the option dies, the option ends. It does not pass to his heirs."
+            },
+            {
+              "kind": "choose",
+              "id": "heirs-case",
+              "ask": "Ibrahim buys a car with a three-day option and dies on day two. His sons want to cancel. Can they?",
+              "options": ["No: the option ended and didn't pass to them", "Yes: they inherit his option", "Yes, but only on day three"],
+              "answer": 0,
+              "source": "وإذا مات من له الخيار بطل خياره ولم ينتقل إلى ورثته",
+              "why": "The option ends with his death and is not inherited."
+            },
+            {
+              "kind": "choose",
+              "id": "baker",
+              "ask": "A slave was sold \"as a baker\" but cannot bake. What may the buyer do?",
+              "options": ["Take him for the full price, or leave him", "Keep him and take back part of the price", "Nothing: the sale is binding"],
+              "answer": 0,
+              "source": "ومن باع عبدا على أنه خباز أو كاتب بخلاف ذلك فالمشتري بالخيار: إن شاء أخذه بجميع الثمن وإن شاء ترك",
+              "why": "When a described skill is missing, the buyer may take it at the full price or leave it."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which are true of the option by condition?",
+              "options": [
+                { "text": "The seller or the buyer may have it", "right": true },
+                { "text": "Abu Hanifa allows up to three days", "right": true },
+                { "text": "Cancelling needs the other person present", "right": true },
+                { "text": "It passes to the heirs" },
+                { "text": "Approving needs the other person present" }
+              ],
+              "source": ["خيار الشرط: جائز في البيع للبائع والمشتري", "فإن أجازه بغير حضره صاحبه جاز وإن فسخ لم يجز إلا أن يكون الآخر حاضرا", "ولم ينتقل إلى ورثته"],
+              "why": "Either side may hold it for up to three days. Cancelling needs the other present, approving does not, and it ends at death."
+            }
+          ]
+        },
+        {
+          "id": "buyu-ruya",
+          "title": "Option of seeing: bought unseen",
+          "arabic": "باب خيار الرؤية",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "unseen",
+              "title": "Buying what you haven't seen",
+              "ar": "شيئا لم يره فالبيع جائز وله الخيار إذا رآه: إن شاء أخذه وإن شاء",
+              "en": "Whoever buys something he hasn't seen, the sale is valid. When he sees it, he has khiyar al-ru'ya, the option of seeing: he may keep it or return it."
+            },
+            {
+              "kind": "choose",
+              "id": "phone-case",
+              "ask": "Adam orders a phone online without ever seeing it. When it arrives he doesn't like it. What may he do?",
+              "options": ["Keep it or return it: he has the option of seeing", "Nothing: the sale was binding", "Return it only if it is faulty"],
+              "answer": 0,
+              "source": "شيئا لم يره فالبيع جائز وله الخيار إذا رآه",
+              "why": "The sale of an unseen item is valid, and the buyer gets an option once he sees it."
+            },
+            {
+              "kind": "teach",
+              "id": "seller",
+              "title": "No option for the seller",
+              "ar": "ومن باع ما لم يره فلا خيار له",
+              "en": "But whoever sells something he hasn't seen has no option."
+            },
+            {
+              "kind": "teach",
+              "id": "glance",
+              "title": "How much seeing is enough",
+              "ar": "ومن نظر إلى وجه الصبرة إلى ظاهر الثوب مطويا أو إلى وجه الجارية أو إلى وجه الدابة وكفلها فلا خيار له",
+              "en": "Seeing the main part is enough: the top of a heap of grain, the outside of folded cloth, the face of a slave girl, or the face and rump of an animal. After that there is no option. The same for seeing a house's courtyard, even without seeing its rooms."
+            },
+            {
+              "kind": "sort",
+              "id": "option",
+              "ask": "Option of seeing or not?",
+              "into": ["Has the option", "No option"],
+              "items": [
+                ["A buyer who ordered a phone unseen", "Has the option"],
+                ["A seller who sold an inherited watch he never saw", "No option"],
+                ["A buyer who looked at the top of a sack of rice", "No option"],
+                ["A buyer who saw a house's courtyard but not its rooms", "No option"],
+                ["A buyer who saw a car last year and finds it rusted now", "Has the option"]
+              ],
+              "source": ["ومن باع ما لم يره فلا خيار له", "ومن نظر إلى وجه الصبرة", "وإن رأى صحن الدار فلا خيار له وإن لم يشاهد بيوتها", "وإن وجده متغيرا فله الخيار"],
+              "why": "The unseen buyer and the one who finds the item changed have the option. The seller never does, and seeing the top of the heap or the courtyard is enough."
+            },
+            {
+              "kind": "teach",
+              "id": "blind",
+              "title": "A blind buyer",
+              "ar": "وله الخيار إذا اشترى ويسقط خياره بأن يجس المبيع إذا كان يعرف بالجس أو يشمه إذا كان يعرف بالشم أو يذوقه إذا كان يعرف بالذوق ولا يسقط خياره في العقار حتى يوصف له",
+              "en": "A blind person may buy and sell, and when he buys he has the option. It ends when he feels the item, if it is known by feel; smells it, if known by smell; or tastes it, if known by taste. For land or a house it lasts until it is described to him."
+            },
+            {
+              "kind": "choose",
+              "id": "perfume-case",
+              "ask": "Yaqub, who is blind, buys a bottle of perfume and smells it in the shop. Later he wants to return it. Does he still have the option?",
+              "options": ["No: smelling it ended his option", "Yes: a blind buyer always keeps it", "Yes, until someone describes it to him"],
+              "answer": 0,
+              "source": "أو يشمه إذا كان يعرف بالشم",
+              "why": "Perfume is known by smell, so smelling it counts as seeing it and ends the option."
+            },
+            {
+              "kind": "teach",
+              "id": "not-his",
+              "title": "Selling someone else's property",
+              "ar": "فالمالك بالخيار: إن شاء أجاز البيع وإن شاء فسخ وله الإجازة إذا كان المعقود عليه باقيا والمتعاقدان بحالهما",
+              "en": "If someone sells what belongs to another, the owner has the option: approve the sale or cancel it. He may approve only while the item still exists and both parties are as they were."
+            },
+            {
+              "kind": "choose",
+              "id": "bike-case",
+              "ask": "Your brother sells your bike without asking you. What is your right?",
+              "options": ["Approve the sale or cancel it", "Nothing: the sale is done", "Only to take the money"],
+              "answer": 0,
+              "source": "فالمالك بالخيار: إن شاء أجاز البيع وإن شاء فسخ",
+              "why": "The owner chooses whether the sale stands."
+            },
+            {
+              "kind": "choose",
+              "id": "two-case",
+              "ask": "Hana sees one of two shirts, buys both, then sees the second one. What may she do?",
+              "options": ["Return both of them", "Return only the second one", "Nothing: she saw one"],
+              "answer": 0,
+              "source": "ومن رأى أحد ثوبين فاشتراهما ثم رأى الآخر جاز له أن يردهما",
+              "why": "Her option of seeing covers the deal, so she may return both together."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Omar viewed a flat last month and buys it now. It is just as he saw it. Does he have the option of seeing?",
+              "options": ["No: it is as he saw it", "Yes: he didn't see it on the day", "Yes, for three days"],
+              "answer": 0,
+              "source": ["ومن مات وله خيار الرؤية بطل خياره", "ومن رأى شيئا ثم اشتراه بعد مدة: فإن كان على الصفة التي رآه فلا خيار له"],
+              "why": "Seeing it earlier counts if nothing changed. (And if he had died with an option of seeing, it would end.)"
+            }
+          ]
+        },
+        {
+          "id": "buyu-ayb",
+          "title": "Option for defects",
+          "arabic": "باب خيار العيب",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "keep-or-return",
+              "title": "Keep it, or give it back",
+              "ar": "إن شاء أخذه بجميع الثمن وإن شاء رده وليس له أن يمسكه ويأخذ النقصان",
+              "en": "If the buyer finds an 'ayb (a defect), he chooses: keep it at the full price, or return it. He may not keep it and take back the difference (nuqsan, what the defect takes off the price)."
+            },
+            {
+              "kind": "choose",
+              "id": "crack-case",
+              "ask": "Sara buys a phone and finds the screen was already cracked. She wants to keep it and get £50 back. Must the shop agree?",
+              "options": ["No: she keeps it at full price or returns it", "Yes: she gets the difference", "Yes, if she asks within a week"],
+              "answer": 0,
+              "source": ["إذا طلع المشتري على عيب في المبيع", "وليس له أن يمسكه ويأخذ النقصان"],
+              "why": "With a defect she may return it or keep it at the full price, but not keep it and take the difference."
+            },
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "What counts as a defect",
+              "ar": "وكل ما أوجب نقصان الثمن في عادة التجار فهو عيب",
+              "en": "Anything that lowers the price in the custom of traders is a defect."
+            },
+            {
+              "kind": "pick",
+              "id": "defects",
+              "ask": "In the slaves of al-Quduri's time, which were defects?",
+              "options": [
+                { "text": "Running away, in a young slave", "right": true },
+                { "text": "Stealing, in a young slave", "right": true },
+                { "text": "Bed-wetting in a grown slave, only from childhood and not since" },
+                { "text": "Bad breath in a slave girl", "right": true },
+                { "text": "Bad breath in a slave boy, if not from illness" }
+              ],
+              "source": ["والإباق والبول في الفراش والسرقة عيب في الصغير ما لم يبلغ", "فليس ذلك بعيب حتى يعادوه بعد البلوغ والبخر والدفر عيب في الجارية وليس بعيب في الغلام إلا أن يكون من داء", "والزنا وولد الزنا عيب في الجارية دون الغلام"],
+              "why": "Running away, bed-wetting and stealing are defects in a child, but after adulthood only if they come back. Bad breath is a defect in a girl, and in a boy only if from illness: each lowers the price in traders' custom."
+            },
+            {
+              "kind": "teach",
+              "id": "new-defect",
+              "title": "A new defect at the buyer's",
+              "ar": "وإذا حدث عند المشتري عيب ثم اطلع على عيب كان عند البائع فله أن يرجع بنقصان العيب ولا يرد المبيع إلا أن يرضى البائع أن يأخذه بعيبه",
+              "en": "If the item gets a new defect with the buyer, and then he finds an old one from the seller, he claims the difference for the old defect. He can't return the item, unless the seller agrees to take it back with its new defect."
+            },
+            {
+              "kind": "choose",
+              "id": "sofa-case",
+              "ask": "Zain scratches his new sofa, then finds a broken spring that was there before. What does he get?",
+              "options": ["The difference for the spring; he returns it only if the seller agrees", "A full refund", "Nothing, because he scratched it"],
+              "answer": 0,
+              "source": "فله أن يرجع بنقصان العيب ولا يرد المبيع إلا أن يرضى البائع أن يأخذه بعيبه",
+              "why": "With a new defect at the buyer's, he claims the difference for the old one and returns it only if the seller agrees."
+            },
+            {
+              "kind": "teach",
+              "id": "changed",
+              "title": "When the buyer changes it or uses it up",
+              "ar": "وإن قطع المشتري الثوب فوجد به عيبا رجع بالعيب وإن خاطه أو صبغه أو لت السويق بسمن ثم اطلع على عيب رجع بنقصانه وليس للبائع أن يأخذه ومن اشترى عبدا فأعتقه أو مات ثم اطلع على عيب رجع بنقصانه فإن قتل المشتري العبد أو كان طعاما فأكله لم يرجع عليه بشيء في قول أبي حنيفة وقال أبو يوسف ومحمد: يرجع",
+              "en": "If the buyer has cut, sewn or dyed the cloth, or mixed the barley flour with ghee, then finds a defect, he claims the difference, and the seller can't take it back. The same if he freed the slave or the slave died. But if he killed it, or it was food he ate, Abu Hanifa says he gets nothing. Note: Abu Yusuf and Muhammad say he still claims the difference."
+            },
+            {
+              "kind": "sort",
+              "id": "claim",
+              "ask": "The buyer then finds an old defect. What does he get?",
+              "into": ["The difference", "Nothing"],
+              "items": [
+                ["He had dyed the fabric", "The difference"],
+                ["He had sewn the cloth into a shirt", "The difference"],
+                ["He had freed the slave", "The difference"],
+                ["It was food and he ate it (Abu Hanifa)", "Nothing"]
+              ],
+              "source": ["وإن خاطه أو صبغه", "رجع بنقصانه وليس للبائع أن يأخذه", "ومن اشترى عبدا فأعتقه أو مات ثم اطلع على عيب رجع بنقصانه", "أو كان طعاما فأكله لم يرجع عليه بشيء في قول أبي حنيفة"],
+              "why": "Sewing, dyeing and freeing keep his claim to the difference. Eating the food ends it for Abu Hanifa."
+            },
+            {
+              "kind": "teach",
+              "id": "as-is",
+              "title": "Sold with no responsibility",
+              "ar": "ومن اشترى عبدا وشرط البراءة من كل عيب فليس له أن يرده بعيب وإن لم يسم العيوب ولم يعدها",
+              "en": "If the seller sells on condition that he is free of every defect (bara'a), the buyer can't return it for a defect, even if the defects were never named or listed."
+            },
+            {
+              "kind": "choose",
+              "id": "car-case",
+              "ask": "Rashid sells his old car \"free of responsibility for any defect.\" The buyer later finds a leaking engine. Can he return it?",
+              "options": ["No: the seller was freed from every defect", "Yes: the leak was never named", "Yes, within three days"],
+              "answer": 0,
+              "source": "وشرط البراءة من كل عيب فليس له أن يرده بعيب وإن لم يسم العيوب ولم يعدها",
+              "why": "With a condition freeing him of every defect, no defect gives a return, named or not."
+            },
+            {
+              "kind": "choose",
+              "id": "resale-case",
+              "ask": "Musa bought a slave and sold him on. The second buyer returns him for a defect, and Musa takes him back without a judge's ruling. Can Musa now return him to his own seller?",
+              "options": ["No: he took him back without a judge", "Yes, always", "Yes, if the defect is serious"],
+              "answer": 0,
+              "source": "فباعه المشتري ثم رد عليه بعيب فإن قبله بقضاء القاضي فله أن يرده على بائعه وإن قبله بغير قضاء القاضي فليس له أن يرده",
+              "why": "Only if he took it back by a judge's ruling may he pass it back to his seller. Taking it back by choice ends that."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which buyer can still return the item for an old defect?",
+              "options": ["Huda, who found the defect before using it", "Amir, who bought it \"free of every defect\"", "Lina, who scratched it before finding the defect"],
+              "answer": 0,
+              "source": ["إن شاء أخذه بجميع الثمن وإن شاء رده", "وشرط البراءة من كل عيب فليس له أن يرده بعيب", "ولا يرد المبيع إلا أن يرضى البائع"],
+              "why": "Huda may return it. Amir agreed to no responsibility, and Lina added a new defect, so she only gets the difference unless the seller agrees."
+            }
+          ]
+        },
+        {
+          "id": "buyu-fasid",
+          "title": "Invalid sales 1: forbidden, not owned, not in hand",
+          "arabic": "باب البيع الفاسد",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "haram",
+              "title": "Forbidden things",
+              "ar": "إذا كان أحد العوضين أو كلاهما محرما فالبيع فاسد كالبيع بالميتة أو بالدم أو بالخمر أو بالخنزير",
+              "en": "A fasid sale is a broken sale that must not stand. If one side of the deal, or both, is something haram (forbidden), the sale is fasid: like selling for carrion (an animal that died without slaughter), blood, wine or pork."
+            },
+            {
+              "kind": "choose",
+              "id": "wine-case",
+              "ask": "Tariq sells his car in exchange for a crate of wine. What is the sale?",
+              "options": ["Fasid: wine is a forbidden payment", "Valid, since the car is halal", "Valid, if the wine is poured away"],
+              "answer": 0,
+              "source": "إذا كان أحد العوضين أو كلاهما محرما فالبيع فاسد",
+              "why": "If either side of the exchange is haram, the sale is fasid."
+            },
+            {
+              "kind": "teach",
+              "id": "not-owned",
+              "title": "What can't be owned",
+              "ar": "وكذلك إذا كان غير مملوك كالحر وبيع أم الولد والمدبر والمكاتب فاسد",
+              "en": "The same if the thing can't be owned and sold, like a free person. Also selling an umm walad (a slave woman who has had her master's child), a mudabbar (a slave promised freedom at the master's death) or a mukatab (a slave buying his freedom) is fasid."
+            },
+            {
+              "kind": "teach",
+              "id": "not-in-hand",
+              "title": "What isn't in hand",
+              "ar": "ولا يجوز بيع السمك في الماء ولا بيع الطير في الهواء ولا يجوز بيع الحمل ولا النتاج ولا بيع اللبن في الضرع",
+              "en": "You may not sell fish still in the water, a bird in the air, an unborn animal or the young it will have, or milk still in the udder."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Valid sale or invalid?",
+              "into": ["Valid", "Invalid"],
+              "items": [
+                ["A heap of grain sold by sight", "Valid"],
+                ["The fish swimming in a lake", "Invalid"],
+                ["A pigeon flying overhead", "Invalid"],
+                ["The calf a cow is carrying", "Invalid"],
+                ["One cubit of a garment, still to be cut off", "Invalid"],
+                ["Beans in their pods", "Valid"]
+              ],
+              "source": ["ويجوز بيع الطعام والحبوب مكايلة ومجازفة", "ولا يجوز بيع السمك في الماء ولا بيع الطير في الهواء ولا يجوز بيع الحمل", "وذراع من ثوب وجذع في سقف وضربة القانص", "والباقلاء في قشرها"],
+              "why": "Fish in water, birds in the air, the unborn and a cubit cut from a cloth are not allowed. A heap by sight and beans in pods are."
+            },
+            {
+              "kind": "teach",
+              "id": "gambles",
+              "title": "Gambles and guesses",
+              "ar": "وذراع من ثوب وجذع في سقف وضربة القانص وبيع المزابنة - وهو بيع الثمر على رؤوس النخل بخرصه تمرا - ولا يجوز البيع بإلقاء الحجر والملامسة",
+              "en": "Also not allowed: a cubit from a cloth, a beam in a roof, a hunter's next catch, and muzabana: selling dates on the palm for an estimated amount of dried dates. Nor a sale by throwing a stone (whatever it lands on is sold) or by touching (whatever you touch you've bought)."
+            },
+            {
+              "kind": "choose",
+              "id": "catch-case",
+              "ask": "Jamal says to a fisherman, \"I'll give you £30 for whatever your next cast of the net brings up.\" Valid?",
+              "options": ["No: it is like the hunter's catch", "Yes, if the price is fair", "Yes, if he casts today"],
+              "answer": 0,
+              "source": "وضربة القانص",
+              "why": "Selling a hunter's next catch is fasid: nobody knows what, or whether, there will be anything."
+            },
+            {
+              "kind": "choose",
+              "id": "stone-case",
+              "ask": "At a fair, you throw a stone and \"buy\" whatever box it lands on for £5. Valid?",
+              "options": ["No: the stone-throwing sale is not allowed", "Yes: it's only £5", "Yes, if you can see the boxes"],
+              "answer": 0,
+              "source": "ولا يجوز البيع بإلقاء الحجر والملامسة",
+              "why": "A sale decided by where a stone lands is forbidden."
+            },
+            {
+              "kind": "choose",
+              "id": "two-case",
+              "ask": "A shop sells you \"one of these two hoodies, we'll decide which.\" Is the sale valid?",
+              "options": ["No: one garment of two is not allowed", "Yes, they are the same price", "Yes, if both are your size"],
+              "answer": 0,
+              "source": "ولا يجوز بيع ثوب من ثوبين",
+              "why": "Selling one of two garments without fixing which is not allowed."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these sales are fasid?",
+              "options": [
+                { "text": "Selling with wine as the price", "right": true },
+                { "text": "Selling a free person", "right": true },
+                { "text": "Selling milk still in the udder", "right": true },
+                { "text": "Selling a heap of rice by sight" },
+                { "text": "Selling dates on the palm for estimated dried dates", "right": true }
+              ],
+              "source": ["كالبيع بالميتة أو بالدم أو بالخمر", "وكذلك إذا كان غير مملوك كالحر", "ولا بيع اللبن في الضرع", "وبيع المزابنة", "ويجوز بيع الطعام والحبوب مكايلة ومجازفة"],
+              "why": "Wine, a free person, milk in the udder and muzabana are all fasid. Selling a heap by sight is allowed."
+            }
+          ]
+        },
+        {
+          "id": "buyu-conditions",
+          "title": "Invalid sales 2: bad conditions and vague dates",
+          "arabic": "شروط تفسد البيع",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "conditions",
+              "title": "Conditions that spoil a sale",
+              "ar": "ومن باع عبدا على أن يعتقه المشتري أو يدبره أو يكاتبه أو باع أمة على أن يستولدها فالبيع فاسد",
+              "en": "A sale with an extra condition tied to it can be fasid: for example selling a slave on condition the buyer frees him, or promises him freedom, or lets him buy his freedom."
+            },
+            {
+              "kind": "teach",
+              "id": "benefit",
+              "title": "A condition that benefits one side",
+              "ar": "وكذلك لو باع عبدا على أن يستخدمه البائع شهرا أو دارا",
+              "en": "It is the same if the seller keeps a benefit: a slave sold on condition the seller uses his service for a month, or a house on condition the seller lives in it, or a sale on condition the buyer lends him money or gives him a gift."
+            },
+            {
+              "kind": "choose",
+              "id": "house-case",
+              "ask": "Nabil sells his house on condition he can stay living in it for one more month. What is the sale?",
+              "options": ["Fasid", "Valid, and he stays a month", "Valid, but the month is cancelled"],
+              "answer": 0,
+              "source": ["وكذلك لو باع عبدا على أن يستخدمه البائع شهرا أو دارا", "على أن يسكهنا"],
+              "why": "Selling a house on condition the seller lives in it makes the sale fasid."
+            },
+            {
+              "kind": "choose",
+              "id": "loan-case",
+              "ask": "Dina sells her car for £5000 \"on condition you also lend me £100.\" What is the sale?",
+              "options": ["Fasid", "Valid: loans are good", "Valid, if the loan is repaid quickly"],
+              "answer": 0,
+              "source": "أو على أن يقرضه المشتري درهما أو على أن يهدي له هدية",
+              "why": "A sale on condition the buyer gives a loan or a gift is fasid."
+            },
+            {
+              "kind": "teach",
+              "id": "delay",
+              "title": "Holding back the goods",
+              "ar": "ومن باع عينا على أن لا يسلمها إلى رأس الشهر فالبيع فاسد ومن باع جارية إلا حملها فسد البيع",
+              "en": "Selling a thing on condition it won't be handed over until the start of next month is fasid. So is selling a pregnant slave woman but keeping back her unborn child."
+            },
+            {
+              "kind": "teach",
+              "id": "tailor",
+              "title": "Buy it, then you make it",
+              "ar": "ومن اشترى ثوبا على أن يقطعه البائع ويخيطه قميصا أو قباء أو نعلا على أن يحذوها أو يشركها فالبيع فاسد",
+              "en": "Buying cloth on condition the seller cuts and sews it into a shirt or coat, or a sandal on condition he shapes it or puts straps on it, is fasid."
+            },
+            {
+              "kind": "choose",
+              "id": "fabric-case",
+              "ask": "Huda buys fabric from a shop \"on condition you sew it into a dress for me.\" What is the sale?",
+              "options": ["Fasid", "Valid", "Valid if she pays for the sewing"],
+              "answer": 0,
+              "source": "ومن اشترى ثوبا على أن يقطعه البائع ويخيطه قميصا أو قباء",
+              "why": "Buying cloth on condition the seller sews it is a fasid sale."
+            },
+            {
+              "kind": "teach",
+              "id": "festivals",
+              "title": "Paying on a date you don't know",
+              "ar": "والبيع إلى النيروز والمهرجان وصوم النصارى وفطر اليهود - إذا لم يعرف المتبايعان ذلك فالبيع فاسد",
+              "en": "A sale with the price due at Nayruz or Mihrajan (Persian festivals), the Christians' fast or the Jews' feast is fasid if the two sides don't know when that is."
+            },
+            {
+              "kind": "teach",
+              "id": "harvest",
+              "title": "\"Pay at harvest time\"",
+              "ar": "ولا يجوز البيع إلى الحصاد والدياس والقطاف وقدوم الحاج فإن تراضيا بإسقاط الأجل قبل أن يأخذ الناس في الحصاد والدياس وقبل قدوم الحاج جاز البيع",
+              "en": "A price due \"at harvest\", \"at threshing\", \"at grape-picking\" or \"when the pilgrims return\" is not allowed, since the day varies. But if both agree to drop that deadline before the harvest or the pilgrims' return, the sale becomes valid."
+            },
+            {
+              "kind": "choose",
+              "id": "pilgrims-case",
+              "ask": "Sami buys a bike to pay \"when the pilgrims come back.\" A week later, long before they return, both agree to drop that date. What is the sale now?",
+              "options": ["Valid", "Still invalid", "Valid only after the pilgrims return"],
+              "answer": 0,
+              "source": "فإن تراضيا بإسقاط الأجل قبل أن يأخذ الناس في الحصاد والدياس وقبل قدوم الحاج جاز البيع",
+              "why": "Dropping the vague deadline by agreement before the time comes makes the sale valid."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Valid sale or fasid?",
+              "into": ["Valid", "Fasid"],
+              "items": [
+                ["Price due on a known date", "Valid"],
+                ["Price due \"at harvest\"", "Fasid"],
+                ["Goods held back until next month", "Fasid"],
+                ["Cloth sold on condition the seller sews it", "Fasid"],
+                ["Car sold on condition the buyer gives a gift", "Fasid"]
+              ],
+              "source": ["ويجوز البيع بثمن حال ومؤجل إذا كان الأجل معلوما", "ولا يجوز البيع إلى الحصاد", "ومن باع عينا على أن لا يسلمها إلى رأس الشهر فالبيع فاسد", "أو على أن يهدي له هدية"],
+              "why": "A known date is fine. A harvest-time price, holding back the goods, a sewing condition and a gift condition all make it fasid."
+            }
+          ]
+        },
+        {
+          "id": "buyu-fasid-after",
+          "title": "Invalid sales 3: what follows, and disliked sales",
+          "arabic": "وكل ذلك يكره ولا يفسد به العقد",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "taken",
+              "title": "When a fasid sale is taken",
+              "ar": "وإذا قبض المشتري المبيع في البيع الفاسد بأمر البائع وفي العقد عوضان كل واحد منهما مال ملك المبيع ولزمته قيمته ولكل واحد من المتعاقدين فسخه فإن باعه المشتري نفذ بيعه",
+              "en": "If the buyer takes the item in a fasid sale with the seller's permission, and both sides are real property (mal), he owns it but owes its value, not the agreed price. Either side may cancel. If the buyer has already sold it on, that sale goes through."
+            },
+            {
+              "kind": "choose",
+              "id": "resold-case",
+              "ask": "Ayman takes a car under a fasid sale, with the seller's permission, and sells it to Bilal. What about Bilal's purchase?",
+              "options": ["It goes through", "It is cancelled too", "It waits for a judge"],
+              "answer": 0,
+              "source": "فإن باعه المشتري نفذ بيعه",
+              "why": "Once the buyer owns it by taking it, his resale goes through."
+            },
+            {
+              "kind": "choose",
+              "id": "owes-case",
+              "ask": "In a fasid sale the buyer has taken the item with the seller's permission. What does he owe?",
+              "options": ["Its value", "The agreed price", "Nothing until it's cancelled"],
+              "answer": 0,
+              "source": "ملك المبيع ولزمته قيمته",
+              "why": "He owns it but owes its value, since the agreed price came from a broken deal."
+            },
+            {
+              "kind": "teach",
+              "id": "mixed-deal",
+              "title": "Two things in one deal",
+              "ar": "ومن جمع بين حر وعبد أو شاة ذكية وميتة بطل البيع فيهما ومن جمع بين عبد ومدبر أو عبده وعبد غيره صح العقد في العبد بحصته من الثمن",
+              "en": "If one deal joins a free man with a slave, or a slaughtered sheep with carrion, the whole sale is void. If it joins a slave with a mudabbar, or one's own slave with someone else's, it is valid for the slave at his share of the price."
+            },
+            {
+              "kind": "choose",
+              "id": "two-sheep-case",
+              "ask": "Kareem sells two sheep for one price: one properly slaughtered, one that died by itself. What is the sale?",
+              "options": ["Void for both", "Valid for the slaughtered one", "Valid for both"],
+              "answer": 0,
+              "source": "أو شاة ذكية وميتة بطل البيع فيهما",
+              "why": "Joining a slaughtered sheep with carrion voids the sale in both."
+            },
+            {
+              "kind": "teach",
+              "id": "disliked",
+              "title": "Disliked, but still valid",
+              "ar": "ونهى رسول الله صلى الله عليه وسلم عن النجش وعن السوم على سوم غيره وعن تلقي الجلب وعن بيع الحاضر للبادي وعن البيع عند أذان الجمعة وكل ذلك يكره ولا يفسد به العقد",
+              "en": "The Prophet ﷺ forbade najsh (bidding up a price with no wish to buy), bargaining over someone else's bargain, going out to meet traders before they reach the market, a townsman selling for a desert trader, and selling at the adhan of Jumu'a. All these are makruh (disliked), but the sale is not made fasid by them."
+            },
+            {
+              "kind": "choose",
+              "id": "jumuah-case",
+              "ask": "Faisal sells a jacket online just as the adhan for Jumu'a is called. What is the sale?",
+              "options": ["Valid, but makruh", "Fasid", "Valid, and nothing wrong with it"],
+              "answer": 0,
+              "source": "وعن البيع عند أذان الجمعة وكل ذلك يكره ولا يفسد به العقد",
+              "why": "Selling at the Jumu'a adhan is forbidden and makruh, but the sale itself still holds."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Fasid sale, or makruh but valid?",
+              "into": ["Fasid", "Makruh, still valid"],
+              "items": [
+                ["Fake bids to push up an auction price", "Makruh, still valid"],
+                ["Bargaining over someone else's bargain", "Makruh, still valid"],
+                ["A slaughtered sheep sold with carrion", "Fasid"],
+                ["Paying with wine", "Fasid"]
+              ],
+              "source": ["عن النجش وعن السوم على سوم غيره", "وكل ذلك يكره ولا يفسد به العقد", "أو شاة ذكية وميتة بطل البيع فيهما", "فالبيع فاسد كالبيع بالميتة أو بالدم أو بالخمر"],
+              "why": "Najsh and bargaining over another's bargain are disliked but the sale holds. Carrion and wine spoil the sale."
+            },
+            {
+              "kind": "teach",
+              "id": "family",
+              "title": "Not separating young relatives",
+              "ar": "ومن ملك مملوكين صغيرين أحدهما ذو رحم محرم من الآخر لم يفرق بينهما وكذلك إن كان أحدهما كبيرا والآخر صغيرا فإن فرق بينهما كره له ذلك وجاز البيع وإن كانا كبيرين فلا بأس بالتفريق بينهما",
+              "en": "If someone owns two young slaves who are close family to each other (a mother and child, two brothers), he must not separate them by selling one. The same if one is grown and the other young. If he does, it is makruh but the sale holds. If both are adults, there is no harm in separating them."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "An owner sells a young slave boy away from his mother. What is the ruling?",
+              "options": ["Makruh, but the sale holds", "Fasid", "Allowed with no dislike"],
+              "answer": 0,
+              "source": "فإن فرق بينهما كره له ذلك وجاز البيع",
+              "why": "Separating a young child from close family is disliked, but the sale is still valid."
+            }
+          ]
+        },
+        {
+          "id": "buyu-iqala",
+          "title": "Cancelling a sale, and cost-plus sales",
+          "arabic": "باب الإقالة · المرابحة والتولية",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "iqala",
+              "title": "Iqala: undoing a sale",
+              "ar": "الإقالة: جائزة في البيع بمثل الثمن الأول فإن شرط أقل منه أو أكثر فالشرط باطل ويرد مثل الثمن الأول",
+              "en": "Iqala is when both sides agree to undo a sale. It is allowed, for the same price as before. If they set a lower or higher price, that condition is void and the original price is returned."
+            },
+            {
+              "kind": "choose",
+              "id": "refund-case",
+              "ask": "Zara returns a coat, and the shop agrees to undo the sale \"but we'll keep £10 of your £80.\" What must the shop give back?",
+              "options": ["£80", "£70", "Whatever they agreed"],
+              "answer": 0,
+              "source": "فإن شرط أقل منه أو أكثر فالشرط باطل ويرد مثل الثمن الأول",
+              "why": "In an iqala the condition of less is void; the original £80 is returned."
+            },
+            {
+              "kind": "teach",
+              "id": "nature",
+              "title": "What an iqala is",
+              "ar": "وهي فسخ في حق المتعاقدين بيع جديد في حق غيرهما في قول أبي حنيفة",
+              "en": "For Abu Hanifa, an iqala is a cancelling (faskh) between the two parties, but for anyone else it counts as a new sale."
+            },
+            {
+              "kind": "teach",
+              "id": "lost",
+              "title": "If something is lost",
+              "ar": "وهلاك الثمن لا يمنع صحة الإقالة وهلاك المبيع يمنع منها فإن هلك بعض المبيع جازت الإقالة في باقيه",
+              "en": "If the price has been lost, an iqala is still possible. If the item sold has been destroyed, there can be no iqala. If part of it is destroyed, iqala is allowed for the rest."
+            },
+            {
+              "kind": "choose",
+              "id": "lost-case",
+              "ask": "Ahmed sold ten boxes of tiles; two were smashed at the buyer's. Both now want an iqala. What can they do?",
+              "options": ["Undo the sale for the eight boxes left", "Nothing: some of it is destroyed", "Undo the whole sale"],
+              "answer": 0,
+              "source": "فإن هلك بعض المبيع جازت الإقالة في باقيه",
+              "why": "When part of the item is destroyed, iqala is allowed for what remains."
+            },
+            {
+              "kind": "teach",
+              "id": "murabaha",
+              "title": "Murabaha: cost plus profit",
+              "ar": "المرابحة: نقل ما ملكه بالعقد الأول بالثمن الأول مع زيادة ربح",
+              "en": "Murabaha is selling something for what you paid for it plus a stated profit."
+            },
+            {
+              "kind": "teach",
+              "id": "tawliya",
+              "title": "Tawliya: at cost",
+              "ar": "والتولية: نقل ما ملكه بالعقد الأول بالثمن الأول من غير زيادة ربح",
+              "en": "Tawliya is selling it for exactly what you paid, with no profit."
+            },
+            {
+              "kind": "sort",
+              "id": "which",
+              "ask": "Murabaha or tawliya?",
+              "into": ["Murabaha", "Tawliya"],
+              "items": [
+                ["\"I paid £100; yours for £110\"", "Murabaha"],
+                ["\"I paid £100; yours for £100\"", "Tawliya"],
+                ["\"Cost price plus 5 percent\"", "Murabaha"],
+                ["\"At cost, no profit\"", "Tawliya"]
+              ],
+              "source": ["مع زيادة ربح", "بالثمن الأول من غير زيادة ربح"],
+              "why": "Cost plus a profit is murabaha. Exactly cost is tawliya."
+            },
+            {
+              "kind": "teach",
+              "id": "costs",
+              "title": "Adding costs honestly",
+              "ar": "ولا تصح المرابحة ولا التولية حتى يكون العوض مما له مثل ويجوز أن يضيف إلى رأس المال أجرة القصار والصباغ والطراز والفتل وأجرة حمل الطعام ولكن يقول: قام علي بكذا ولا يقول: اشتريته بكذا",
+              "en": "Murabaha and tawliya are only valid when the first price was something with a like (a fixed amount of money or grain). The seller may add the cost of bleaching, dyeing, embroidery, twisting thread and carrying goods. But he must say \"it cost me so much\", not \"I bought it for so much\"."
+            },
+            {
+              "kind": "choose",
+              "id": "dyed-case",
+              "ask": "Ilham bought cloth for £100 and paid £20 to dye it. For a cost-plus sale, what should she say?",
+              "options": ["\"It cost me £120\"", "\"I bought it for £120\"", "\"I bought it for £100\" and not mention the dyeing"],
+              "answer": 0,
+              "source": "ولكن يقول: قام علي بكذا ولا يقول: اشتريته بكذا",
+              "why": "She may add the dyeing, but must say \"it cost me\", since saying \"I bought it for £120\" would be untrue."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Hamid and a shop agree to undo the sale of a watch, but the money he paid has since been stolen from the till. Can there still be an iqala?",
+              "options": ["Yes: losing the price doesn't stop it", "No: the price is gone", "Only if Hamid pays again first"],
+              "answer": 0,
+              "source": "وهلاك الثمن لا يمنع صحة الإقالة",
+              "why": "Only the item being destroyed stops an iqala. The price being lost does not."
+            }
+          ]
+        },
+        {
+          "id": "buyu-qabd",
+          "title": "Honesty, taking possession, and changing the price",
+          "arabic": "قبل القبض",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "lie",
+              "title": "Caught overcharging",
+              "ar": "فإن اطلع المشتري على خيانة في المرابحة فهو بالخيار عند أبي حنيفة: إن شاء أخذه بجميع الثمن وإن شاء رده وإن اطلع على خيانة في التولية أسقطها المشتري من الثمن وقال أبو يوسف: يحط فيهما وقال محمد: لا يحط فيهما",
+              "en": "Khiyana is dishonesty about the cost. In a murabaha, Abu Hanifa says the buyer may keep it at the full price or return it. In a tawliya, the buyer simply knocks the overcharge off the price. Note: Abu Yusuf says the overcharge is taken off in both; Muhammad says in neither."
+            },
+            {
+              "kind": "choose",
+              "id": "lie-case",
+              "ask": "Ali sells at \"cost plus £10\", saying his cost was £100. The buyer learns it was really £80. In Abu Hanifa's view, what may the buyer do?",
+              "options": ["Keep it at the full price, or return it", "Pay £90 and keep it", "Nothing: the deal is done"],
+              "answer": 0,
+              "source": "فإن اطلع المشتري على خيانة في المرابحة فهو بالخيار عند أبي حنيفة",
+              "why": "In a murabaha, Abu Hanifa gives the buyer the choice of full price or returning it."
+            },
+            {
+              "kind": "teach",
+              "id": "possession",
+              "title": "Don't sell before you have it",
+              "ar": "ومن اشترى شيئا مما ينقل ويحول لم يجز له بيعه حتى يقبضه ويجوز بيع العقار قبل القبض عند أبي حنيفة وأبي يوسف وقال محمد: لا يجوز",
+              "en": "Qabd is taking possession. If you buy something that can be moved, you may not sell it until you have taken it. Land and buildings may be sold before taking possession, for Abu Hanifa and Abu Yusuf. Note: Muhammad says they may not."
+            },
+            {
+              "kind": "choose",
+              "id": "resell-case",
+              "ask": "Bilal orders a new phone. Before it reaches him, a friend offers him £50 more, and he wants to sell it. Can he?",
+              "options": ["No: he must take possession first", "Yes: it is already his", "Yes, if the friend collects it"],
+              "answer": 0,
+              "source": "ومن اشترى شيئا مما ينقل ويحول لم يجز له بيعه حتى يقبضه",
+              "why": "A phone is movable, so he may not sell it until he has taken it."
+            },
+            {
+              "kind": "teach",
+              "id": "remeasure",
+              "title": "Measure it again",
+              "ar": "ومن اشترى مكيلا مكايلة أو موزونا موازنة فاكتاله أو أتزنه ثم باعه مكايلة أو موازنة لم يجز للمشتري منه أن يبيعه ولا يأكله حتى يعيد الكيل والوزن",
+              "en": "If someone bought grain by measure and measured it, then sells it on by measure, the next buyer may not sell or eat it until he measures or weighs it again himself."
+            },
+            {
+              "kind": "choose",
+              "id": "flour-case",
+              "ask": "A baker buys 20 kg of flour \"by weight\" from a trader who had weighed it when he bought it. May the baker use it without weighing it again?",
+              "options": ["No: he must weigh it again", "Yes: the trader already weighed it", "Yes, if he trusts the trader"],
+              "answer": 0,
+              "source": "لم يجز للمشتري منه أن يبيعه ولا يأكله حتى يعيد الكيل والوزن",
+              "why": "The second buyer must measure or weigh it again before selling or eating it."
+            },
+            {
+              "kind": "teach",
+              "id": "adjust",
+              "title": "Adding to the price or the goods",
+              "ar": "ويجوز للمشتري أن يزيد البائع في الثمن ويجوز للبائع أن يزيد في المبيع ويجوز أن يحط من الثمن ويتعلق الإستحقاق بجميع ذلك",
+              "en": "Using the price (the money owed) before it is received is allowed. After the deal, the buyer may add to the price, the seller may add to the goods, and the seller may lower the price. All these become part of the deal."
+            },
+            {
+              "kind": "choose",
+              "id": "extra-case",
+              "ask": "After the sale, a happy seller throws in a free phone case. Is that allowed?",
+              "options": ["Yes: the seller may add to the goods", "No: the deal is fixed", "Only if the buyer pays for it"],
+              "answer": 0,
+              "source": ["ويجوز للبائع أن يزيد في المبيع", "والتصرف في الثمن قبل القبض"],
+              "why": "Either side may add after the sale, and the seller may lower the price."
+            },
+            {
+              "kind": "teach",
+              "id": "defer",
+              "title": "Giving more time",
+              "ar": "ومن باع بثمن حال ثم أجله أجلا معلوما مؤجلا وكل دين حال إذا أجله صاحبه صار مؤجلا إلا القرض فإن تأجيله لا يصح",
+              "en": "If someone sells for cash now and then gives the buyer a known extra time, the price becomes deferred. Any debt due now becomes deferred when its owner gives time, except a loan (qard): giving time on a loan is not binding."
+            },
+            {
+              "kind": "choose",
+              "id": "loan-case",
+              "ask": "Noor lends Asma £100, then says \"pay me in six months.\" Is that six-month term binding?",
+              "options": ["No: giving time on a loan doesn't hold", "Yes, like any debt", "Yes, if it is written down"],
+              "answer": 0,
+              "source": "إلا القرض فإن تأجيله لا يصح",
+              "why": "Every debt becomes deferred when its owner gives time, except a loan."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which are allowed?",
+              "options": [
+                { "text": "Selling a plot of land before taking it (Abu Hanifa)", "right": true },
+                { "text": "Selling a laptop before it has reached you" },
+                { "text": "The seller lowering the price after the sale", "right": true },
+                { "text": "Giving a buyer three more months to pay", "right": true },
+                { "text": "In a tawliya, knocking a lied-about overcharge off the price", "right": true }
+              ],
+              "source": ["ويجوز بيع العقار قبل القبض عند أبي حنيفة", "لم يجز له بيعه حتى يقبضه", "ويجوز أن يحط من الثمن", "وكل دين حال إذا أجله صاحبه صار مؤجلا", "أسقطها المشتري من الثمن"],
+              "why": "Land may be sold before possession, the price may be lowered, a debt may be deferred, and tawliya overcharges are taken off. A movable item can't be sold before you have it."
+            }
+          ]
+        },
+        {
+          "id": "buyu-riba",
+          "title": "Riba 1: like for like",
+          "arabic": "باب الربا",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "riba",
+              "title": "What riba is",
+              "ar": "الربا محرم كل مكيل أو موزون إذا بيع بجنسه متفاضلا",
+              "en": "Riba is forbidden. In a sale, riba is an excess: when something sold by measure (makil) or by weight (mawzun) is exchanged for its own kind in unequal amounts."
+            },
+            {
+              "kind": "teach",
+              "id": "cause",
+              "title": "The cause, and the cure",
+              "ar": "فإذا بيع المكيل أو الموزون بجنسه مثلا بمثل جاز البيع وإن تفاضلا لم يجز",
+              "en": "The cause ('illa) is being measured or weighed, together with being the same kind (jins). So measured or weighed goods swapped for their own kind must be equal: like for like is allowed, unequal is not."
+            },
+            {
+              "kind": "choose",
+              "id": "dates-case",
+              "ask": "Umar swaps 2 kg of dates for 3 kg of dates. Is that allowed?",
+              "options": ["No: dates for dates must be equal", "Yes, if both agree", "Yes, if the dates differ in quality"],
+              "answer": 0,
+              "source": ["أو الوزن مع الجنس", "وإن تفاضلا لم يجز"],
+              "why": "Dates for dates is the same kind and measured, so they must be like for like."
+            },
+            {
+              "kind": "teach",
+              "id": "quality",
+              "title": "Better quality doesn't change it",
+              "ar": "ولا يجوز: بيع الجيد بالرديء مما فيه",
+              "en": "Good quality for poor quality of the same kind is still only allowed like for like."
+            },
+            {
+              "kind": "choose",
+              "id": "ajwa-case",
+              "ask": "Sara offers 1 kg of top-quality Ajwa dates for 2 kg of ordinary dates. Allowed?",
+              "options": ["No: same kind must be equal, whatever the quality", "Yes: the Ajwa are worth more", "Yes, if they swap on the spot"],
+              "answer": 0,
+              "source": ["ولا يجوز: بيع الجيد بالرديء مما فيه", "إلا مثلا بمثل"],
+              "why": "Quality doesn't count: dates for dates must be like for like."
+            },
+            {
+              "kind": "teach",
+              "id": "two-features",
+              "title": "Excess and delay",
+              "ar": "فإذا عدم الوصفان الجنس والمعنى المضموم إليه حل التفاضل والنساء وإذا وجدوا حرم التفاضل والنساء وإذا وجد أحدهما وعدم الآخر حل التفاضل وحرم النساء",
+              "en": "Nasa' means delay: one side handed over later. If neither feature is there (same kind, and measure or weight), excess and delay are both allowed. If both are there, both are forbidden. If only one is there, excess is allowed but delay is not."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "What is allowed in this swap?",
+              "into": ["Equal and on the spot", "More is fine, but no delay", "More and delay both fine"],
+              "items": [
+                ["1 kg wheat for 1 kg wheat", "Equal and on the spot"],
+                ["Wheat for barley (both measured, different kinds)", "More is fine, but no delay"],
+                ["Two shirts for one shirt (same kind, not measured or weighed)", "More is fine, but no delay"],
+                ["A bicycle for two books", "More and delay both fine"]
+              ],
+              "source": ["وإذا وجدوا حرم التفاضل والنساء", "وإذا وجد أحدهما وعدم الآخر حل التفاضل وحرم النساء", "فإذا عدم الوصفان الجنس والمعنى المضموم إليه حل التفاضل والنساء"],
+              "why": "Both features: equal and no delay. One feature: excess fine, no delay. Neither: anything goes."
+            },
+            {
+              "kind": "teach",
+              "id": "fixed",
+              "title": "Fixed by the Prophet ﷺ",
+              "ar": "وكل شيء نص رسول الله صلى الله عليه وسلم على تحريم التفاضل فيه كيلا فهو مكيل أبدا وإن ترك الناس الكيل فيه مثل الحنطة والشعير والتمر والملح وكل ما نص على تحريم التفاضل فيه وزنا فهو موزون أبدا مثل الذهب والفضة وما لم ينص عليه فهو محمول عادات الناس",
+              "en": "What the Prophet ﷺ named as measured (wheat, barley, dates, salt) stays measured forever, even if people stop measuring it. What he named as weighed (gold, silver) stays weighed. Anything else follows people's custom."
+            },
+            {
+              "kind": "choose",
+              "id": "weigh-case",
+              "ask": "Today wheat is sold in shops by the kilo, not by volume. For riba, which is it?",
+              "options": ["Measured (makil), forever", "Weighed, as people do now", "Neither, so riba doesn't apply"],
+              "answer": 0,
+              "source": "فهو مكيل أبدا وإن ترك الناس الكيل فيه مثل الحنطة",
+              "why": "Wheat was named as measured, so it stays measured even if people stop measuring it."
+            },
+            {
+              "kind": "teach",
+              "id": "sarf-hand",
+              "title": "Money needs hand to hand",
+              "ar": "وما سواه مما فيه الربا يعتبر فيه التعيين ولا يعتبر فيه التقابض ولا يجوز بيع الحنطة بالدقيق ولا بالسويق",
+              "en": "In sarf (money for money: gold and silver), both sides must be taken in hand. In other riba goods it is enough that each side is specified (fixed and pointed out); taking in hand is not required. And wheat may not be sold for its flour or for sawiq (roasted barley or wheat flour)."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Can you swap 1 kg of wheat for 1 kg of wheat flour?",
+              "options": ["No: wheat may not be sold for its flour", "Yes: it's equal weight", "Yes, if handed over at once"],
+              "answer": 0,
+              "source": ["وعقد الصرف: بما وقع على جنس الأثمان يعتبر فيه قبض عوضيه", "ولا يجوز بيع الحنطة بالدقيق ولا بالسويق"],
+              "why": "Al-Quduri says wheat may not be sold for flour or sawiq at all."
+            }
+          ]
+        },
+        {
+          "id": "buyu-riba-2",
+          "title": "Riba 2: fresh and dry, oil and seed",
+          "arabic": "بيع الرطب بالتمر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "meat",
+              "title": "Meat for a live animal",
+              "ar": "ويجوز: بيع اللحم بالحيوان عند أبي حنيفة وأبي يوسف وقال محمد: لا يجوز إلا أن يكون اللحم الذي في الحيوان أقل مما هو المعقود عليه",
+              "en": "Meat may be sold for a live animal, for Abu Hanifa and Abu Yusuf. Note: Muhammad allows it only if the meat in the animal is less than the meat being given."
+            },
+            {
+              "kind": "teach",
+              "id": "fresh",
+              "title": "Fresh for dry",
+              "ar": "ويجوز: بيع الرطب بالتمر مثلا بمثل والعنب بالزبيب",
+              "en": "Fresh dates (rutab) may be sold for dried dates like for like, and grapes for raisins."
+            },
+            {
+              "kind": "choose",
+              "id": "rutab-case",
+              "ask": "Halima swaps 1 kg of fresh dates for 1 kg of dried dates. Allowed?",
+              "options": ["Yes, like for like", "No: fresh and dry can never be swapped", "Only if there are more fresh dates"],
+              "answer": 0,
+              "source": "ويجوز: بيع الرطب بالتمر مثلا بمثل",
+              "why": "Al-Quduri allows fresh dates for dried dates, like for like."
+            },
+            {
+              "kind": "teach",
+              "id": "oil",
+              "title": "Olives for oil",
+              "ar": "ولا يجوز بيع الزيتون بالزيت والسمسم بالشيرج حتى يكون الزيت والشيرج أكثر مما في الزيتون والسمسم فيكون الدهن بمثله والزيادة بالثجير",
+              "en": "Olives may not be sold for olive oil, or sesame for sesame oil, unless the oil given is more than the oil in the olives or seeds. Then oil matches oil, and the extra pays for the thujayr (the pulp left over)."
+            },
+            {
+              "kind": "choose",
+              "id": "olive-case",
+              "ask": "A sack of olives holds about 2 litres of oil. Faris offers 1 litre of olive oil for the sack. Allowed?",
+              "options": ["No: the oil must be more than what's in the olives", "Yes: olives and oil are different", "Yes, if he pays on the spot"],
+              "answer": 0,
+              "source": "حتى يكون الزيت والشيرج أكثر مما في الزيتون والسمسم",
+              "why": "The oil given must be more than the oil inside the olives, so 1 litre for 2 litres' worth is not allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "kinds",
+              "title": "Different kinds, unequal is fine",
+              "ar": "ويجوز بيع اللحمان المختلفة بعضها ببعض متفاضلا وكذلك ألبان البقر والغنم",
+              "en": "Different meats may be swapped in unequal amounts, and so may cow's milk and sheep's milk, low-grade date vinegar and grape vinegar. Bread may also be sold for wheat, or for oil, in unequal amounts."
+            },
+            {
+              "kind": "choose",
+              "id": "meat-case",
+              "ask": "Bashir swaps 2 kg of lamb for 3 kg of beef. Allowed?",
+              "options": ["Yes: different meats may be unequal", "No: meat for meat must be equal", "Only if it is the same weight"],
+              "answer": 0,
+              "source": "ويجوز بيع اللحمان المختلفة بعضها ببعض متفاضلا",
+              "why": "Lamb and beef are different kinds, so an unequal swap is allowed."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Allowed or not?",
+              "into": ["Allowed", "Not allowed"],
+              "items": [
+                ["Grapes for raisins, like for like", "Allowed"],
+                ["3 loaves of bread for 2 kg of wheat", "Allowed"],
+                ["Cow's milk for more sheep's milk", "Allowed"],
+                ["Sesame for less sesame oil than it holds", "Not allowed"]
+              ],
+              "source": ["والعنب بالزبيب", "بخل العنب ويجوز بيع الخبز بالحنطة والدهن متفاضلا", "وكذلك ألبان البقر والغنم", "والسمسم بالشيرج"],
+              "why": "Grapes for raisins, bread for wheat and different milks are allowed. Sesame for less oil than it holds is not."
+            },
+            {
+              "kind": "teach",
+              "id": "no-riba",
+              "title": "Where there is no riba",
+              "ar": "ولا ربا بين المولى وعبده ولا بين المسلم والحربي في دار الحرب",
+              "en": "There is no riba between a master and his slave (what the slave has is the master's anyway), nor between a Muslim and a harbi (a non-Muslim from an enemy land) in the land of war."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these swaps is NOT allowed?",
+              "options": ["1 kg wheat for 1 kg wheat flour", "Fresh dates for dried dates, like for like", "2 kg lamb for 3 kg beef"],
+              "answer": 0,
+              "source": ["ولا يجوز بيع الحنطة بالدقيق", "بيع الرطب بالتمر مثلا بمثل", "ويجوز بيع اللحمان المختلفة بعضها ببعض متفاضلا"],
+              "why": "Wheat for flour is not allowed. Fresh for dried dates like for like, and different meats unequally, are."
+            }
+          ]
+        },
+        {
+          "id": "buyu-salam",
+          "title": "Salam 1: paying in advance",
+          "arabic": "باب السلم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "salam",
+              "title": "What salam is",
+              "ar": "السلم جائز في المكيلات والموزونات والمعدودات التي لا تتفاوت كالجوز والبيض وفي المذروعات",
+              "en": "Salam is paying now for goods delivered later. It is allowed in things measured, things weighed, things counted that are all alike (like walnuts and eggs), and things sold by length, like cloth."
+            },
+            {
+              "kind": "teach",
+              "id": "not-allowed",
+              "title": "What can't be ordered this way",
+              "ar": "ولا يجوز السلم في الحيوان ولا في أطرافه ولا في الجلود عددا ولا في الحطب حزما ولا في الرطبة جرزا",
+              "en": "Salam is not allowed in animals or their parts, in hides by count, in firewood by bundles, or in fresh green fodder by the bunch, because these differ too much."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Can you pay in advance (salam) for it?",
+              "into": ["Salam allowed", "Not allowed"],
+              "items": [
+                ["500 kg of wheat", "Salam allowed"],
+                ["1000 eggs", "Salam allowed"],
+                ["50 cubits of cloth", "Salam allowed"],
+                ["A sheep", "Not allowed"],
+                ["20 leather hides, by count", "Not allowed"],
+                ["10 bundles of firewood", "Not allowed"]
+              ],
+              "source": ["السلم جائز في المكيلات والموزونات والمعدودات التي لا تتفاوت كالجوز والبيض وفي المذروعات", "ولا يجوز السلم في الحيوان ولا في أطرافه ولا في الجلود عددا ولا في الحطب حزما"],
+              "why": "Measured, weighed, alike counted goods and cloth may be ordered. Animals, hides by count and firewood by bundle may not."
+            },
+            {
+              "kind": "teach",
+              "id": "exists",
+              "title": "Available, and later, on a known date",
+              "ar": "ولا يجوز السلم حتى يكون المسلم فيه موجودا من حين العقد إلى حين المحل ولا يصح السلم إلا مؤجلا ولا يجوز إلا بأجل معلوم",
+              "en": "The goods ordered must be available from the day of the deal to the day of delivery. Salam must be for later delivery, and the date must be known."
+            },
+            {
+              "kind": "choose",
+              "id": "season-case",
+              "ask": "In January, Yusuf pays a farmer in advance for strawberries to be delivered in June. Strawberries can't be found anywhere between now and June. Is the salam valid?",
+              "options": ["No: they must be available from the deal to delivery", "Yes: they will exist in June", "Yes, if the farmer is reliable"],
+              "answer": 0,
+              "source": "حتى يكون المسلم فيه موجودا من حين العقد إلى حين المحل",
+              "why": "Salam needs the goods to be available all the way from the contract to the delivery date."
+            },
+            {
+              "kind": "choose",
+              "id": "date-gap",
+              "ask": "Complete it: salam is only allowed with a ____ term.",
+              "ar": "ولا يجوز إلا بأجل ____",
+              "options": ["معلوم", "قصير", "طويل"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ولا يجوز إلا بأجل معلوم",
+              "why": "بأجل معلوم: a known date. Short or long doesn't matter."
+            },
+            {
+              "kind": "teach",
+              "id": "specific",
+              "title": "Not tied to one source",
+              "ar": "ولا يجوز السلم بمكيال رجل بعينه ولا بذراع رجل بعينه",
+              "en": "Salam can't be by one particular man's measuring bowl or arm length, nor for the grain of one particular village or the fruit of one particular palm tree, since these could be lost."
+            },
+            {
+              "kind": "choose",
+              "id": "tree-case",
+              "ask": "Hana pays in advance for \"the mangoes of that one tree in my neighbour's garden\" next summer. Is the salam valid?",
+              "options": ["No: not the fruit of one particular tree", "Yes, if the tree is healthy", "Yes, if she names the weight"],
+              "answer": 0,
+              "source": "ولا في طعام قرية بعينها ولا ثمرة نخلة بعينها",
+              "why": "Salam can't be tied to the fruit of a single tree or the crop of one village."
+            },
+            {
+              "kind": "teach",
+              "id": "seven",
+              "title": "The conditions to name",
+              "ar": "ولا يصح السلم عند أبي حنيفة إلا بسبع شرائط تذكر العقد: جنس معلوم ونوع معلوم وصفة معلومة وأجل معلوم ومعرفة مقدار رأس المال إذا كان مما يتعلق العقد على قدره كالمكيل والموزون والمعدود وتسمية المكان الذي يوافيه فيه إذا كان له حمل ومؤنة",
+              "en": "For Abu Hanifa, salam needs conditions named in the deal: a known kind (wheat), a known type (which wheat), a known quality, a known date, the amount of the capital (the money paid) when it is measured, weighed or counted, and the place of delivery when the goods are heavy to carry."
+            },
+            {
+              "kind": "pick",
+              "id": "conditions",
+              "ask": "Which must be named in a salam?",
+              "options": [
+                { "text": "The kind of goods", "right": true },
+                { "text": "Their quality", "right": true },
+                { "text": "The delivery date", "right": true },
+                { "text": "The place of delivery, for heavy goods", "right": true },
+                { "text": "The seller's reason for needing money" }
+              ],
+              "source": ["جنس معلوم ونوع معلوم وصفة معلومة وأجل معلوم", "وتسمية المكان الذي يوافيه فيه إذا كان له حمل ومؤنة"],
+              "why": "Kind, type, quality, date, the capital's amount and, for heavy goods, the place. The seller's reasons are not a condition."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which advance order is valid?",
+              "options": ["500 kg of a named wheat of a set quality, delivered on 1 June", "\"A sheep, sometime next year\"", "\"Whatever that one palm tree gives\""],
+              "answer": 0,
+              "source": ["السلم جائز في المكيلات", "ولا يجوز السلم في الحيوان", "ولا يجوز إلا بأجل معلوم", "ولا ثمرة نخلة بعينها"],
+              "why": "Measured goods with a known kind, quality and date are fine. An animal, an unknown date and one tree's fruit are not."
+            }
+          ]
+        },
+        {
+          "id": "buyu-salam-2",
+          "title": "Salam 2: capital in hand, and what may be sold",
+          "arabic": "رأس مال السلم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "note",
+              "title": "Where the two companions differ",
+              "ar": "وقال أبو يوسف ومحمد: لا يحتاج إلى تسمية رأس المال إذا كان معنيا ولا إلى مكان التسليم ويسلمه في موضع العقد",
+              "en": "Note: Abu Yusuf and Muhammad say the amount of the capital need not be named if it is pointed at, and the place of delivery need not be named: it is delivered where the deal was made."
+            },
+            {
+              "kind": "teach",
+              "id": "capital",
+              "title": "Pay before you part",
+              "ar": "ولا يصح السلم حتى يقبض رأس المال قبل أن يفارقه",
+              "en": "Salam is only valid if the seller receives the capital (the money paid in advance) before the two of them part."
+            },
+            {
+              "kind": "choose",
+              "id": "transfer-case",
+              "ask": "Adam agrees a salam for next year's wheat harvest, and says, \"I'll send you the money next week.\" Valid?",
+              "options": ["No: the capital must be paid before they part", "Yes, if he pays within a week", "Yes, salam is about later delivery"],
+              "answer": 0,
+              "source": "ولا يصح السلم حتى يقبض رأس المال قبل أن يفارقه",
+              "why": "The goods come later, but the money must be handed over before they part."
+            },
+            {
+              "kind": "teach",
+              "id": "no-dealing",
+              "title": "No dealing before delivery",
+              "ar": "ولا يجوز التصرف في رأس المال ولا في المسلم فيه قبل قبض ولا تجوز الشركة ولا التولية في المسلم فيه قبل قبضه",
+              "en": "Neither the capital nor the ordered goods may be dealt with before they are received. Nor may the buyer take a partner in the ordered goods, or pass them on at cost, before receiving them."
+            },
+            {
+              "kind": "choose",
+              "id": "sell-on-case",
+              "ask": "Bilal paid in advance for 100 kg of rice due in March. In February he sells that rice to Omar. Allowed?",
+              "options": ["No: not before he receives it", "Yes: he already paid", "Yes, at the same price"],
+              "answer": 0,
+              "source": "ولا في المسلم فيه قبل قبض",
+              "why": "The ordered goods can't be dealt with before they are received."
+            },
+            {
+              "kind": "teach",
+              "id": "cloth",
+              "title": "Cloth, gems, bricks",
+              "ar": "ويجوز السلم في الثياب إذا سمى طولا وعرضا ورقعة ولا يجوز السلم في الجواهر ولا في الخرز ولا بأس بالسلم في اللبن والآجر إذا سمى ملبنا معلوما",
+              "en": "Salam in cloth is allowed when length, width and fineness are named. Not in jewels or beads. Mud bricks and fired bricks are fine if a known brick mould is named."
+            },
+            {
+              "kind": "teach",
+              "id": "rule",
+              "title": "The rule behind it",
+              "ar": "وكل ما أمكن ضبط صفته ومعرفة مقدراه جاز السلم فيه وما لا يمكن ضبط صفته ولا يعرف مقدراه لا يجوز السلم فيه",
+              "en": "Anything whose description can be pinned down and whose amount can be known may be ordered by salam. What can't be pinned down can't."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Salam allowed?",
+              "into": ["Allowed", "Not allowed"],
+              "items": [
+                ["Cloth with length, width and fineness named", "Allowed"],
+                ["Bricks from a known mould", "Allowed"],
+                ["A pearl necklace", "Not allowed"],
+                ["A bag of beads", "Not allowed"]
+              ],
+              "source": ["ويجوز السلم في الثياب إذا سمى طولا وعرضا ورقعة", "ولا يجوز السلم في الجواهر ولا في الخرز", "إذا سمى ملبنا معلوما"],
+              "why": "Cloth and bricks can be described exactly. Jewels and beads can't, so no salam."
+            },
+            {
+              "kind": "teach",
+              "id": "animals",
+              "title": "Selling dogs, wine, silkworms",
+              "ar": "ويجوز بيع الكلب والفهد والسباع ولا يجوز بيع الخمر والخنزير ولا يجوز بيع دود القز إلا أن يكون مع القز ولا النحل إلا مع الكوارات",
+              "en": "Selling a dog, a cheetah or other beasts of prey is allowed. Wine and pigs may not be sold. Silkworms may not be sold except with their silk, nor bees except with their hives."
+            },
+            {
+              "kind": "teach",
+              "id": "dhimmi",
+              "title": "Non-Muslim citizens",
+              "ar": "وأهل الذمة في البياعات كالمسلمين إلا في الخمر والخنزير خاصة فإن عقدهم على الخمر كعقد المسلم على العصير وعقدهم على الخنزير كعقد المسلم على الشاة",
+              "en": "Ahl al-dhimma (non-Muslims living under Muslim rule) follow the same rules of sale as Muslims, except for wine and pigs. For them, a deal in wine is like a Muslim's deal in grape juice, and a deal in pigs like a Muslim's deal in sheep."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these sales may a Muslim make?",
+              "options": ["A guard dog", "A crate of wine", "Bees without their hive"],
+              "answer": 0,
+              "source": ["ويجوز بيع الكلب والفهد والسباع", "ولا يجوز بيع الخمر والخنزير", "ولا النحل إلا مع الكوارات"],
+              "why": "A dog may be sold. Wine may not, and bees only with their hives."
+            }
+          ]
+        },
+        {
+          "id": "buyu-sarf",
+          "title": "Currency exchange 1: gold for gold",
+          "arabic": "باب الصرف",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "sarf",
+              "title": "What sarf is",
+              "ar": "الصرف هو: البيع إذا كان كل واحد من العوضين من جنس الأثمان فإن باع فضة بفضة أو ذهبا بذهب لم يجز إلا مثلا بمثل وإن اختلفا في الجودة والصياغة ولا بد من قبض العوضين",
+              "en": "Sarf is a sale where both sides are money: gold or silver. Silver for silver, or gold for gold, must be like for like (equal weight), even if they differ in quality or craftsmanship. Both sides must be handed over before the two part."
+            },
+            {
+              "kind": "choose",
+              "id": "jewellery-case",
+              "ask": "Aisha wants to swap her old 20 g gold necklace for a beautifully made 18 g gold ring. Allowed?",
+              "options": ["No: gold for gold must be equal weight, whatever the craftsmanship", "Yes: the ring's work makes up the 2 g", "Yes, if handed over on the spot"],
+              "answer": 0,
+              "source": "أو ذهبا بذهب لم يجز إلا مثلا بمثل وإن اختلفا في الجودة والصياغة",
+              "why": "Gold for gold must be equal weight. Better craftsmanship doesn't count."
+            },
+            {
+              "kind": "teach",
+              "id": "gold-silver",
+              "title": "Gold for silver",
+              "ar": "وإذا باع الذهب بالفضة جاز التفاضل ووجب التقابض وإن افترقا في الصرف قبل قبض العوضين أو أحدهما بطل العقد",
+              "en": "Gold for silver may be unequal, but both must be handed over on the spot. If they part before both sides are taken, or one of them, the deal is void."
+            },
+            {
+              "kind": "choose",
+              "id": "tomorrow-case",
+              "ask": "Imran buys 100 g of silver with 10 g of gold and says, \"I'll bring the gold tomorrow.\" They part. What happens?",
+              "options": ["The deal is void", "It's fine: gold for silver can be unequal", "Valid, if he brings it tomorrow"],
+              "answer": 0,
+              "source": "وإن افترقا في الصرف قبل قبض العوضين أو أحدهما بطل العقد",
+              "why": "Unequal is fine, but parting before both sides are taken voids the deal."
+            },
+            {
+              "kind": "teach",
+              "id": "more",
+              "title": "Two more rules",
+              "ar": "ولا يجوز التصرف في ثمن الصرف قبل قبضه",
+              "en": "The money from a sarf may not be used before it is received. And gold may be sold for silver by guess (mujazafa), without weighing."
+            },
+            {
+              "kind": "choose",
+              "id": "guess-case",
+              "ask": "Can a jeweller swap a handful of silver coins for a gold bracelet without weighing either?",
+              "options": ["Yes: gold for silver may be by guess", "No: they must be weighed", "Only if they are equal"],
+              "answer": 0,
+              "source": "ويجوز بيع الذهب بالفضة مجازفة",
+              "why": "Since gold for silver may be unequal, guessing the amounts is allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "sword",
+              "title": "A sword decorated with silver",
+              "ar": "ومن باع سيفا محلى بمائة درهم وحليته خمسون درهما فدفع من ثمنه خمسين جاز البيع وكان المقبوض حصة الفضة وإن لم يبين ذلك",
+              "en": "A sword with 50 dirhams of silver on it is sold for 100 dirhams, and the buyer pays 50. The sale holds, and the 50 paid counts for the silver, even if he didn't say so."
+            },
+            {
+              "kind": "choose",
+              "id": "sword-case",
+              "ask": "In the same sale, they part without either side handing anything over. The silver can't be removed without damaging the sword. What happens?",
+              "options": ["The deal is void for both the silver and the sword", "Void for the silver only", "Valid, because a sword isn't money"],
+              "answer": 0,
+              "source": ["فإن لم يتقابضا حتى افترقا بطل العقد في الحلية والسيف إن كان لا يتخلص إلا بضرر", "وإن كان يتخلص بغير ضرر جاز البيع في السيف وبطل في الحلية"],
+              "why": "If the silver can't come off without damage, both are void. If it could, the sword's sale would hold and only the silver would fail."
+            },
+            {
+              "kind": "teach",
+              "id": "vessel",
+              "title": "A silver vessel, part paid",
+              "ar": "ومن باع إناء فضة ثم افترقا وقد قبض بعض ثمنه بطل العقد فيما لم يقبض وصح فيما قبض وكان الإناء مشتركا بينهما وإن استحق بعض الإناء كان المشتري بالخيار: إن شاء أخذ الباقي بحصته من الثمن وإن شاء رده",
+              "en": "If a silver vessel is sold and they part when only some of the price is paid, the deal holds for the part paid and fails for the rest, so they share the vessel. If part of it turns out to belong to someone else, the buyer may keep the rest for its share of the price, or return it."
+            },
+            {
+              "kind": "choose",
+              "id": "vessel-case",
+              "ask": "A silver bowl is sold, and they part after half the price is paid. What now?",
+              "options": ["The sale holds for half; they share the bowl", "The whole sale is void", "The buyer owns it and owes the rest"],
+              "answer": 0,
+              "source": "بطل العقد فيما لم يقبض وصح فيما قبض وكان الإناء مشتركا بينهما",
+              "why": "The paid half stands and the unpaid half fails, so the bowl is shared."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these exchanges are valid?",
+              "options": [
+                { "text": "10 g gold for 10 g gold, hand to hand", "right": true },
+                { "text": "10 g gold for 12 g gold, hand to hand" },
+                { "text": "10 g gold for 150 g silver, hand to hand", "right": true },
+                { "text": "Gold for silver, the gold to follow next week" }
+              ],
+              "source": ["لم يجز إلا مثلا بمثل", "وإذا باع الذهب بالفضة جاز التفاضل ووجب التقابض"],
+              "why": "Gold for gold must be equal. Gold for silver may be unequal, but always hand to hand."
+            }
+          ]
+        },
+        {
+          "id": "buyu-sarf-mixed",
+          "title": "Currency exchange 2: mixed coins",
+          "arabic": "ومن باع درهمين ودينارا بدينارين ودرهم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "piece",
+              "title": "A piece of silver",
+              "ar": "وإن باع قطعة نقرة فاستحق أخذ ما بقي بحصته",
+              "en": "Nuqra is a lump of silver. If one is sold and part of it turns out to belong to someone else, the buyer takes the rest for its share of the price, with no option to cancel."
+            },
+            {
+              "kind": "teach",
+              "id": "cross",
+              "title": "Each kind for the other kind",
+              "ar": "ومن باع درهمين ودينارا بدينارين ودرهم جاز البيع وجعل كل واحد من الجنسين بالجنس الآخر",
+              "en": "A dinar is a gold coin; a dirham is silver. Two dirhams and a dinar may be sold for two dinars and a dirham. Each kind is counted against the other kind, so no gold meets gold unequally."
+            },
+            {
+              "kind": "choose",
+              "id": "cross-case",
+              "ask": "Is it allowed to exchange 2 dirhams + 1 dinar for 2 dinars + 1 dirham, hand to hand?",
+              "options": ["Yes: each kind is set against the other", "No: the gold amounts are unequal", "No: coins can't be mixed"],
+              "answer": 0,
+              "source": "جاز البيع وجعل كل واحد من الجنسين بالجنس الآخر",
+              "why": "The silver is counted against the gold and the gold against the silver, so it is valid."
+            },
+            {
+              "kind": "teach",
+              "id": "eleven",
+              "title": "Eleven for ten and a dinar",
+              "ar": "ومن باع أحد عشر درهما بعشرة دراهم ودينار جاز البيع وكانت العشرة بمثلها والدينار بدرهم",
+              "en": "Eleven dirhams may be sold for ten dirhams and a dinar: ten match ten, and the dinar is for the one extra dirham."
+            },
+            {
+              "kind": "choose",
+              "id": "eleven-case",
+              "ask": "Zaid gives 11 silver dirhams and gets back 10 dirhams and 1 gold dinar. How is it counted?",
+              "options": ["10 dirhams for 10, and the dinar for 1 dirham", "11 dirhams for 10: riba", "The dinar for all 11"],
+              "answer": 0,
+              "source": "وكانت العشرة بمثلها والدينار بدرهم",
+              "why": "Ten match ten like for like, and the dinar pays for the eleventh dirham."
+            },
+            {
+              "kind": "teach",
+              "id": "broken",
+              "title": "Good and poor coins",
+              "ar": "ويجوز بيع درهمين صحيحين ودرهم غلة بدرهم صحيح ودرهمين غلة",
+              "en": "A ghalla dirham is a poor-quality coin that a treasury might refuse. Two good dirhams and one poor one may be swapped for one good and two poor: three for three."
+            },
+            {
+              "kind": "choose",
+              "id": "count-gap",
+              "ask": "Complete it: two good dirhams and one poor dirham, for ____ good dirham and two poor.",
+              "ar": "ويجوز بيع درهمين صحيحين ودرهم غلة بدرهم ____ ودرهمين غلة",
+              "options": ["صحيح", "صحيحين", "غلة"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "بدرهم صحيح ودرهمين غلة",
+              "why": "بدرهم صحيح: one good dirham with two poor, three coins for three."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which exchange is NOT allowed?",
+              "options": ["11 dirhams for 10 dirhams, nothing else", "11 dirhams for 10 dirhams and a dinar", "2 dirhams and a dinar for 2 dinars and a dirham"],
+              "answer": 0,
+              "source": ["فإن باع فضة بفضة أو ذهبا بذهب لم يجز إلا مثلا بمثل", "ومن باع أحد عشر درهما بعشرة دراهم ودينار جاز البيع"],
+              "why": "Silver for silver must be equal, so 11 for 10 alone is riba. Adding the dinar, or mixing kinds, makes it valid."
+            }
+          ]
+        },
+        {
+          "id": "buyu-fulus",
+          "title": "Currency exchange 3: alloyed coins and copper fulus",
+          "arabic": "الفلوس",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "alloy",
+              "title": "Mostly silver, mostly gold",
+              "ar": "وإذا كان الغالب على الدراهم الفضة فهي فضة وإن كان الغالب على الدنانير الذهب فهي ذهب ويعتبر فيهما من تحريم التفاضل ما يعتبر في الجياد وإن كان الغالب عليهما الغش فليسا في حكم الدراهم والدنانير",
+              "en": "Coins are often mixed with cheaper metal. If a dirham is mostly silver, it counts as silver; if a dinar is mostly gold, it counts as gold, and the like-for-like rule applies as for pure coins. If they are mostly the cheap metal, they are not treated as dirhams and dinars."
+            },
+            {
+              "kind": "choose",
+              "id": "alloy-case",
+              "ask": "Coins that are mostly copper with a little silver are swapped for more of the same coins. Allowed?",
+              "options": ["Yes: mostly-alloy coins may be swapped unequally", "No: silver for silver must be equal", "Only by weight"],
+              "answer": 0,
+              "source": ["وإن كان الغالب عليهما الغش فليسا في حكم الدراهم والدنانير", "فإذا بيعت بجنسها متفاضلا جاز"],
+              "why": "When the cheap metal is most of the coin, it isn't treated as silver, so unequal amounts are allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "dead",
+              "title": "When a currency dies",
+              "ar": "ثم كسدت وترك الناس المعاملة بها بطل البيع عند أبي حنيفة وقال أبو يوسف: عليه قيمتها يوم البيع وقال محمد: عليه قيمتها آخر ما تعامل الناس بها",
+              "en": "If someone buys goods with such alloyed coins and then they go out of use (people stop dealing in them) before he pays, Abu Hanifa says the sale is void. Note: Abu Yusuf says he owes their value on the day of sale; Muhammad says their value on the last day people used them."
+            },
+            {
+              "kind": "teach",
+              "id": "fulus",
+              "title": "Copper fulus",
+              "ar": "ويجوز البيع بالفلوس النافقة وإن لم تتعين وإن كانت كاسدة لم يجز البيع بها حتى يعينها وإذا باع بالفلوس النافقة ثم كسدت بطل البيع عند أبي حنيفة",
+              "en": "Fulus are copper coins. You may buy with fulus that are in circulation without pointing to particular coins. If they are out of use, you must point to the actual coins. If they go out of use after the sale, Abu Hanifa says the sale is void."
+            },
+            {
+              "kind": "choose",
+              "id": "dead-case",
+              "ask": "Yasin buys a carpet for 500 copper fulus, to pay next month. Before he pays, the government withdraws those coins and nobody uses them. For Abu Hanifa, what happens?",
+              "options": ["The sale is void", "He pays in the new coins", "He pays with the old coins anyway"],
+              "answer": 0,
+              "source": "وإذا باع بالفلوس النافقة ثم كسدت بطل البيع عند أبي حنيفة",
+              "why": "When the coins of the price stop being used, Abu Hanifa holds the sale void."
+            },
+            {
+              "kind": "choose",
+              "id": "pointed-case",
+              "ask": "Can you buy with old fulus that are no longer in use?",
+              "options": ["Only if you point to the actual coins", "Yes, like current coins", "Never"],
+              "answer": 0,
+              "source": "وإن كانت كاسدة لم يجز البيع بها حتى يعينها",
+              "why": "Coins out of use only work as a price when the actual coins are pointed to."
+            },
+            {
+              "kind": "teach",
+              "id": "half",
+              "title": "Half a dirham in fulus",
+              "ar": "ومن اشترى شيئا بنصف درهم فلوسا جاز البيع وعليه ما يباع بنصف درهم من الفلوس",
+              "en": "If someone buys something for \"half a dirham in fulus\", the sale is valid, and he pays the number of fulus that half a dirham buys."
+            },
+            {
+              "kind": "teach",
+              "id": "changer",
+              "title": "At the money-changer",
+              "ar": "ومن أعطى الصيرفي درهما وقال: أعطني بنصفه فلوسا وبنصفه نصفا إلا حبة فسد البيع في الجميع عند أبي حنيفة",
+              "en": "A habba is a tiny weight. If someone gives a money-changer a dirham and says \"for half of it give me fulus, and for the other half a half-dirham less a habba\", Abu Hanifa says the whole sale is fasid: half a dirham of silver for less silver is riba. Note: Abu Yusuf and Muhammad say the fulus part holds and only the rest fails. If he instead says \"give me half a dirham in fulus and a half less a habba\", it is valid: the whole dirham is for both together."
+            },
+            {
+              "kind": "choose",
+              "id": "changer-case",
+              "ask": "Ali hands a money-changer one silver dirham and says, \"Give me half a dirham's worth of fulus and a half-dirham coin less a habba,\" naming no split. Valid?",
+              "options": ["Yes: the dirham is for both together", "No: it is riba", "Only the fulus part"],
+              "answer": 0,
+              "source": "ولو قال: أعطني نصف درهم فلوسا ونصفا إلا حبة جاز البيع وكانت الفلوس والنصف إلا حبة بدرهم",
+              "why": "Without splitting the dirham, the extra silver is set against the fulus, so the sale is valid."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which purchase is valid?",
+              "options": ["Bread for \"half a dirham in fulus\"", "A carpet for fulus that stopped being used before payment (Abu Hanifa)", "Half a dirham of silver for less silver"],
+              "answer": 0,
+              "source": ["ومن اشترى شيئا بنصف درهم فلوسا جاز البيع", "وإذا باع بالفلوس النافقة ثم كسدت بطل البيع عند أبي حنيفة", "وبنصفه نصفا إلا حبة فسد البيع في الجميع عند أبي حنيفة"],
+              "why": "Buying for half a dirham in fulus is valid. A price in coins that died is void for Abu Hanifa, and silver for less silver is riba."
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "nikah",
       "title": "Family",
