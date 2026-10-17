@@ -213,6 +213,7 @@ function AppContent() {
       <SectionsMenu
         open={sectionsOpen}
         onClose={() => setSectionsOpen(false)}
+        onHover={openTab}
         groups={GROUPS}
         tabs={LISTED}
         colorOf={accentOf}

@@ -3,6 +3,8 @@
  * thumb rests. Phones only; a wider screen keeps the TabStrip in the header.
  * Draws the registry, decides nothing, like TabStrip.
  */
+import { ahead } from '../../lib/warm'
+
 const MORE = 'M6 12h.01M12 12h.01M18 12h.01'
 
 export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, onAll, onHover }) {
@@ -20,7 +22,7 @@ export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, 
             key={tab.id}
             type="button"
             onClick={() => onSelect(tab.id)}
-            onFocus={() => onHover?.(tab.id)}
+            {...ahead(() => onHover?.(tab.id))}
             aria-current={on ? 'page' : undefined}
             style={{ '--c': colorOf(tab.id) }}
             className={`${item} ${on ? 'text-[var(--c)]' : 'text-[var(--text-dim)]'}`}
