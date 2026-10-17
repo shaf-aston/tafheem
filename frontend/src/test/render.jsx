@@ -7,7 +7,8 @@
  * request not listed fails as a 404, the way a backend that is down would,
  * so a screen's error state is part of what a smoke test sees. A plain fetch
  * is for the app's own static files (the word banks), so it is answered from
- * public/ on disk: the screen gets the real files it would get in the browser.
+ * public/ on disk: the screen gets the real files it would get in the browser,
+ * a book world's split index and parts included (lib/bookSplit.js).
  *
  * Needs `// @vitest-environment happy-dom` at the top of the test file; the
  * rest of the suite stays on node.
@@ -20,15 +21,27 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { cleanup, render, renderHook } from '@testing-library/react'
 
 import { api } from '../api'
+import { servedFile } from '../lib/bookSplit'
 
 afterEach(cleanup)
 
 const PUBLIC = join(import.meta.dirname, '../../public')
 
+// A book world's index and parts are made from its authored file, as vite/growBooks.js serves them.
+const BOOK_FILE = /^\/grow\/([\w-]+)\/([\w-]+\.json)$/
+
+async function publicFile(path) {
+  const [, name, file] = path.match(BOOK_FILE) ?? []
+  if (!name) return readFile(join(PUBLIC, path))
+  const body = servedFile(JSON.parse(await readFile(join(PUBLIC, `grow/${name}.json`), 'utf8')), file)
+  if (!body) throw new Error('Not a part of this book')
+  return JSON.stringify(body)
+}
+
 globalThis.fetch = async (input) => {
   const path = new URL(String(input?.url ?? input), 'http://app.test').pathname
   try {
-    return new Response(await readFile(join(PUBLIC, path)), { headers: { 'Content-Type': 'application/json' } })
+    return new Response(await publicFile(path), { headers: { 'Content-Type': 'application/json' } })
   } catch {
     return new Response('Not found', { status: 404 })
   }

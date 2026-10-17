@@ -26,6 +26,7 @@ import LessonWorld from './grow/LessonWorld'
 const WORLDS = config.worlds.map((world) => ({ ...world, accent: colorFor('world', world.id) }))
 const worldOf = (id) => WORLDS.find((world) => world.id === id)
 const WORLD_IDS = WORLDS.filter((world) => world.live).map((world) => world.id)
+const BOOK_IDS = WORLDS.filter((world) => world.kind === 'book').map((world) => world.id)
 
 const SCREENS = {
   lessons: ({ world, lessons, back, start }) => (
@@ -42,15 +43,17 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
   const [name] = useState(getProfile)
   const { rewards } = useRewards(name)
   const lessons = { words: useWordsWorld(worldOf('words')), hadith: useHadithWorld(worldOf('hadith')), quran: useQuranWorld(worldOf('quran')) }
-  const books = { fiqh: useBookWorld(worldOf('fiqh')), nahw: useBookWorld(worldOf('nahw')), sarf: useBookWorld(worldOf('sarf')) }
-  const sourceOf = (id) => books[id] ?? lessons[id]
-  const placeAt = (value) => placeOf(value, WORLD_IDS, Object.keys(lessons), Object.keys(books))
-  // A lesson's cards: a book world's by the lesson's id, any other world's next lesson.
-  const deal = (at) => (books[at.id] ? books[at.id].makeLesson(at.lesson) : lessons[at.id].makeLesson())
+  const placeAt = (value) => placeOf(value, WORLD_IDS, Object.keys(lessons), BOOK_IDS)
   // { at: 'home' } | { at: 'world', id, part? } | { at: 'lesson', id, part?, lesson?, cards?, inApp? }; a lesson without cards deals them once its world is ready.
   const [view, setView] = useState(() => placeAt(incoming))
   if (useArrival(arrival).arrived) setView(placeAt(incoming))
-  if (view.at === 'lesson' && !view.cards && sourceOf(view.id).ready) {
+  // A book world fetches the part files the view needs (its open part, the lesson's, a review's).
+  const books = { fiqh: useBookWorld(worldOf('fiqh'), view), nahw: useBookWorld(worldOf('nahw'), view), sarf: useBookWorld(worldOf('sarf'), view) }
+  const sourceOf = (id) => books[id] ?? lessons[id]
+  // A lesson's cards: a book world's by the lesson's id, once its part is in; any other world's next lesson.
+  const deal = (at) => (books[at.id] ? books[at.id].makeLesson(at.lesson) : lessons[at.id].makeLesson())
+  const dealable = (id) => (books[id] ? books[id].dealable : lessons[id].ready)
+  if (view.at === 'lesson' && !view.cards && dealable(view.id)) {
     const cards = deal(view)
     // A lesson the book does not have, or a review with nothing due: that world's page instead.
     setView(cards?.length ? { ...view, cards } : { at: 'world', id: view.id, ...(view.part && { part: view.part }) })
@@ -70,7 +73,8 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
   const home = () => go({ at: 'home' })
   const open = (id) => go({ at: 'world', id })
   const start = (id) => go({ at: 'lesson', id, cards: lessons[id].makeLesson(), inApp: true })
-  const startBook = (id, lesson, part) => go({ at: 'lesson', id, lesson, ...(part && { part }), cards: books[id].makeLesson(lesson), inApp: true })
+  // Dealt once the lesson's part is in (above); a part already open has it at once.
+  const startBook = (id, lesson, part) => go({ at: 'lesson', id, lesson, ...(part && { part }), inApp: true })
   // Back to where the lesson was started from; a lesson opened by its address has nowhere to go back to, so its world (a book's part).
   const finished = () => {
     if (view.inApp) goBack()

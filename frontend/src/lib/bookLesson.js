@@ -1,7 +1,8 @@
 /**
- * A book world's lessons (public/grow/quduri.json): its areas (optional) and parts, each lesson's status from the server summary, and the cards
- * the lesson runner plays. Pure. A lesson is played whole, teach and ask in the book's order; a review deals only the
- * asking cards that are due. Every Arabic line is the book's (lib/bookLesson.test.js).
+ * A book world's lessons (public/grow/quduri.json): its areas (optional) and parts, each lesson's status from the server
+ * summary, and the cards the lesson runner plays. Pure. Status reads a book's index (lib/bookSplit.js: lessons carry
+ * `asks`, their question ids) or the whole book alike; cards need the part's own file. A lesson is played whole, teach and
+ * ask in the book's order; a review deals only the asking cards that are due. Every Arabic line is the book's.
  */
 import { shuffled } from './shuffle'
 
@@ -23,9 +24,12 @@ export const itemOf = (lesson, card) => `${lesson.id}/${card.id}`
 /** The book's lessons, flat, each with its part's id. */
 export const lessonsOf = (book) => book.parts.flatMap((part) => part.lessons.map((lesson) => ({ ...lesson, part: part.id })))
 
+/** A lesson's question items: from the index's `asks`, or from its cards. */
+const itemsOf = (lesson) => (lesson.asks ?? lesson.cards.filter(asks).map((card) => card.id)).map((id) => `${lesson.id}/${id}`)
+
 /** 'new' (nothing answered), 'started', 'done' (every question answered) or 'learnt' (every one known). */
 export function statusOf(lesson, rows) {
-  const items = lesson.cards.filter(asks).map((card) => itemOf(lesson, card))
+  const items = itemsOf(lesson)
   const met = items.filter((item) => rows.has(item))
   if (!met.length) return 'new'
   if (met.length < items.length) return 'started'
@@ -50,7 +54,7 @@ export function partsOf(book, summary) {
     return { ...part, look: part.path ?? lookAt(i), lessons, finished }
   })
   const next = parts.flatMap((part) => part.lessons).find((lesson) => lesson.status === 'new' || lesson.status === 'started') ?? null
-  const items = new Set(lessonsOf(book).flatMap((lesson) => lesson.cards.filter(asks).map((card) => itemOf(lesson, card))))
+  const items = new Set(lessonsOf(book).flatMap(itemsOf))
   const due = summary.filter((row) => row.due && items.has(row.item)).sort((a, b) => a.dueAt.localeCompare(b.dueAt)).map((row) => row.item)
   const areas = (book.areas ?? []).map((area, i) => {
     const own = area.parts.map((id) => parts.find((part) => part.id === id)).filter(Boolean)
@@ -92,7 +96,16 @@ export function lessonCards(book, lessonId, module, random = Math.random) {
   return lesson ? lesson.cards.map((card) => cardOf(lesson, card, module, random)) : null
 }
 
-/** The asking cards whose items are `due` (most overdue first), up to REVIEW_SIZE. */
+/** The parts a review of `due` items draws on (the index tells which part each lesson is in), in no set order. */
+export function partsDue(book, due) {
+  const partOfLesson = new Map(lessonsOf(book).map((lesson) => [lesson.id, lesson.part]))
+  return [...new Set(due.slice(0, REVIEW_SIZE).map((item) => partOfLesson.get(item.split('/')[0])).filter(Boolean))]
+}
+
+/** The part a lesson is in, from the index. */
+export const partOfLesson = (book, lessonId) => lessonsOf(book).find((lesson) => lesson.id === lessonId)?.part ?? null
+
+/** The asking cards whose items are `due` (most overdue first), up to REVIEW_SIZE. `book` holds the parts with cards. */
 export function reviewCards(book, due, module, random = Math.random) {
   const byItem = new Map(lessonsOf(book).flatMap((lesson) => lesson.cards.filter(asks).map((card) => [itemOf(lesson, card), [lesson, card]])))
   return due.slice(0, REVIEW_SIZE).filter((item) => byItem.has(item))

@@ -33,8 +33,8 @@ describe('fiqh', () => {
     fireEvent.click(within(lessons[0]).getByRole('button'))
     expect(visits.at(-1)).toBe('fiqh/tahara/wudu')
 
-    // Teach, then "which are fard?": pick the four, Check, and the reason is said.
-    expect(screen.getByText('The fard of wudu')).toBeTruthy()
+    // The part's cards arrive in their own file; then teach, then "which are fard?": pick the four, Check, and the reason is said.
+    expect(await screen.findByText('The fard of wudu')).toBeTruthy()
     click('Continue')
     for (const name of ['Wash the face', 'Wash the arms, elbows included', 'Wipe the head', 'Wash the feet, ankles included']) click(name)
     click('Check')
