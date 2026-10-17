@@ -770,6 +770,13 @@ def test_a_word_added_to_the_count_or_the_masdar_stands_in_for_the_masdar():
     assert iraab.analyze("قَرَأْتُ كُلَّ الدَّرْسِ", recorded=False)["words"][1]["role"] == "مفعول به"
 
 
+def test_a_doubled_or_hollow_root_still_reads_as_a_masdar_measure():
+    # حُبّ is فُعْل with its last radicals in one shadda, قَوْل is فَعْل with its weak middle letter
+    assert iraab.analyze("أَحْبَبْتُهُ كُلَّ الْحُبِّ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+    assert iraab.analyze("قُلْتُ بَعْضَ الْقَوْلِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+    assert iraab.analyze("مَدَدْتُ كُلَّ الْحَبْلِ", recorded=False)["words"][1]["role"] == "مفعول به"
+
+
 def _role(sentence: str, i: int) -> str:
     return iraab.analyze(sentence, recorded=False)["words"][i]["role"]
 

@@ -2,6 +2,8 @@
 No sentence is needed for any of these; every other module here builds on them."""
 from __future__ import annotations
 
+import re
+
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, own_letters, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_object_stem, is_one, six_noun_case
@@ -228,9 +230,25 @@ def works_as_verb(token: dict) -> str | None:
     return None
 
 
-def is_masdar(token: dict) -> bool:
-    """A noun of a masdar measure (شُكْرًا), judged by the analyser's pattern."""
-    return token.get("pos_camel") == "noun" and token.get("pattern", "").removeprefix("ال").startswith(
+def measure(pattern: str) -> str:
+    """The analyser's pattern laid back on its measure: a doubled root writes its last two
+    radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
+    in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3)."""
+    pattern = pattern.removeprefix("ال")
+    if "3" not in pattern and "2" + SHADDA in pattern:
+        return pattern.replace("2" + SHADDA, "2" + SUKUN + "3", 1)
+    if "2" not in pattern:  # قِيَام 1ِيا3: the weak letter stands as the 2, and the alef after it implies its fatha
+        pattern = re.sub(r"(?<=1[\u064b-\u0652])[وي](?=[\u064b-\u0652]?[اوي]?3)", "2", pattern, count=1)
+        return pattern.replace("2ا", "2َا")
+    return pattern
+
+
+def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
+    """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا), judged by the analyser's pattern.
+    weak_or_doubled=False takes a doubled or hollow root's pattern as written, for a word
+    with nothing else saying it is a doing: طَوْقًا is فَعْل, and a collar all the same."""
+    pattern = token.get("pattern") or ""
+    return token.get("pos_camel") == "noun" and (measure(pattern) if weak_or_doubled else pattern.removeprefix("ال")).startswith(
         tuple(book_words("masdar_patterns")))
 
 

@@ -152,8 +152,8 @@ def verb_place(token: dict, s: Sentence) -> str:
                 and rel in ("SBJ", "TPC", "OBJ") and typed != "u"
                 and not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)):
             return "object"
-        if (not before and typed in (None, "a") and token.get("stt") in ("i", "c") and is_masdar(token)
-                and same_root(token, head)):
+        if (not before and typed in (None, "a") and token.get("stt") in ("i", "c")
+                and is_masdar(token, weak_or_doubled=False) and same_root(token, head)):
             return "absolute"  # يُطَهِّرَكُمْ تَطْهِيرًا: the verb's own masdar
         after_first = rel == "OBJ" and typed in (None, "a") and any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)
         # لا يُؤْتُونَ النَّاسَ نَقِيرًا: a verb of two objects keeps its second OBJ, so no state or tamyeez
