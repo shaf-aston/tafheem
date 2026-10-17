@@ -11,7 +11,7 @@ Every step runs from any checkout, on this PC or in a cloud session; nothing is 
 | 4. Ship | `python backend/scripts/finetune_ear/cloud.py --ship` | uploads a kept `ear-tuned/` to the public Hugging Face repo `CHAMPION` names and prints its `repo@revision` |
 | 5. Serve | `recitation_trial_model` in `backend/config.py` | Oracle pulls master every 5 minutes and loads that revision (`services/recitation/listen.py` `_engine`) |
 
-`--fetch` re-fetches the last run without training. A run takes hours; watch it at the link `cloud.py` prints.
+`--fetch` waits for the last run and fetches it, without training. A run takes hours; watch it at the link `cloud.py` prints.
 
 ## Words
 
