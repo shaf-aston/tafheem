@@ -5,15 +5,17 @@ checks whether it hears them better than before. Started from this computer by
 cloud.py (next to this file); on Lightning.ai or Colab, run `python finetune_ear.py`
 on a GPU machine. Everything it writes goes to the folder it was started in.
 
-Scored on three groups it never trained on:
+Scored on groups no run ever trains on (held(): the same names every run):
   new voices    people it never heard, reciting ayahs it trained on
   new ayahs     ayahs it never trained on: the only proof it learnt listening, not text
-  professional  everyayah reciters on unseen ayahs: what the app hears well today
+  professional  everyayah reciters on held ayahs: what the app hears well today
 
-The rule is fixed before the run, so a wobble cannot be read as a win: keep the new
-model only if it gets at least BAR points fewer words wrong on new ayahs and at most
-SLIP points more wrong on professionals. verdict.json says which; ear-tuned/ exists
-only on a win, and is the folder `recitation_model` (backend/config.py) points at.
+The starting model, the served ear (CHAMPION) and the new one are each scored as the app
+runs them, CTranslate2 through faster-whisper, on the same clips. The rule is fixed before
+the run, so a wobble cannot be read as a win: keep the new model only if it gets at least
+BAR points fewer words wrong on new ayahs than the served ear and at most SLIP points more
+on professionals. verdict.json says which; ear-tuned/ exists only on a win, and is what
+`cloud.py --ship` uploads.
 
 Model: tarteel-ai/whisper-SIZE-ar-quran (Apache 2.0); base is the original of the
 CTranslate2 export the app runs, tiny the faster one. Recordings: MuazAhmad7/Surah_Ikhlas-Labeled_Dataset
@@ -35,7 +37,7 @@ from pathlib import Path
 
 # One card: two T4s would split each batch for no gain on a model this small.
 os.environ.setdefault('CUDA_VISIBLE_DEVICES', '0')
-subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'peft', 'jiwer', 'ctranslate2'], check=True)
+subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'peft', 'jiwer', 'faster-whisper'], check=True)
 # Kaggle's image carries a torchao too old for the new peft, which then refuses to start.
 subprocess.run([sys.executable, '-m', 'pip', 'uninstall', '-y', '-q', 'torchao'], check=True)
 
@@ -46,7 +48,9 @@ import requests
 import soundfile
 import torch
 import zipfile
+import zlib
 from datasets import Audio, Dataset, concatenate_datasets, load_dataset
+from faster_whisper import WhisperModel
 from huggingface_hub import HfFileSystem, hf_hub_download, list_repo_files
 from scipy.signal import fftconvolve, resample_poly
 from peft import LoraConfig, get_peft_model
@@ -64,9 +68,9 @@ PROS = 40  # professional clips, 5 to 20 words each
 TESTED = 600  # clips per test group at most: 3,000 held clips heard twice would cost an hour
 EPOCHS = 2  # 18,000 clips: two passes is already ten times the steps four passes over 45 ayahs took
 TARTEEL_V1 = 'tarteel-v1'
+CHAMPION = 'shafTheG/quran-ear'  # the served ear, its newest upload; cloud.py --ship uploads a win here
 # Pilot knobs. A full run takes every learner clip; the pilot a quarter of them.
 LEARNER_SHARE = 0.25  # share of learner clips kept, picked before decoding
-V13 = {'new voices': 15.62, 'new ayahs': 18.04, 'professional': 4.30}  # last kept run, % words wrong
 # Training clips are changed on the fly, test clips never (recipe: Muno459/zipformer_p-arabic-v2 card).
 NOISE_SET = 'obadx/freesound-commercial-50k-noise-only'  # per-clip CC0 / CC-BY
 NOISE_SHARDS = 1  # of 104 files, 265 clips and half a gigabyte each
@@ -97,6 +101,12 @@ print('graphics card:', torch.cuda.get_device_name(0), flush=True)
 verses = requests.get('https://api.quran.com/api/v4/quran/verses/imlaei', timeout=60).json()['verses']
 IMLAEI = {v['verse_key']: v['text_imlaei'] for v in verses}
 UTHMANI = requests.get('https://api.quran.com/api/v4/quran/verses/uthmani', timeout=60).json()['verses']
+
+
+def held(name):
+    """One voice or ayah in HELD, by a fixed hash: never trained on by any run, so every run and
+    the served ear meet on clips none of them learnt from."""
+    return zlib.crc32(name.encode()) % HELD == 0
 
 
 def letters(text):
@@ -184,9 +194,9 @@ def learner_clips():
         print(name, len(rows), 'clean clips,', damaged, 'damaged and skipped', flush=True)
 
 
-def professional_clips(skip):
-    """Mid-surah ayahs (a first ayah's recording carries the basmala) no learner recited."""
-    pool = [k for k, t in IMLAEI.items() if not k.endswith(':1') and k not in skip and 5 <= len(t.split()) <= 20]
+def professional_clips():
+    """Held mid-surah ayahs (a first ayah's recording carries the basmala)."""
+    pool = [k for k, t in IMLAEI.items() if held(k) and not k.endswith(':1') and 5 <= len(t.split()) <= 20]
     for at, key in enumerate(random.Random(11).sample(pool, PROS)):
         surah, ayah = map(int, key.split(':'))
         who = RECITERS[at % len(RECITERS)]
@@ -198,7 +208,7 @@ def professional_clips(skip):
         yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': who, 'src': 'everyayah', 'secs': len(sound) / RATE}
 
 
-def tadabur_plan(skip, target):
+def tadabur_plan(target):
     """Which Tadabur rows to take, as (file, row, reciter, ayah, part). Only the small columns are read here.
     Reciters are held out whole; the rest give at most `each` clips, the smallest each that reaches target."""
     fs = HfFileSystem()
@@ -226,17 +236,17 @@ def tadabur_plan(skip, target):
     pick.shuffle(reciters)
     each_test = -(-TADABUR_TEST // TADABUR_HELD)
     # Held reciters need enough clips each to make the test; the rest of the long tail trains.
-    held = [who for who in reciters if len(by[who]) >= each_test][:TADABUR_HELD]
-    rest = [who for who in reciters if who not in held]
-    test = [f for who in held for f in pick.sample(by[who], min(each_test, len(by[who])))]
+    strangers = [who for who in reciters if len(by[who]) >= each_test][:TADABUR_HELD]
+    rest = [who for who in reciters if who not in strangers]
+    test = [f for who in strangers for f in pick.sample(by[who], min(each_test, len(by[who])))]
     test = [f + ('test',) for f in pick.sample(test, min(TADABUR_TEST, len(test)))]
-    free = {who: [f for f in by[who] if f[3] not in skip] for who in rest}
+    free = {who: [f for f in by[who] if not held(f[3])] for who in rest}
     each = 1
     while sum(min(each, len(c)) for c in free.values()) < target and each < max(map(len, free.values())):
         each += 1
     train = [f for c in free.values() for f in pick.sample(c, min(each, len(c)))]
     train = [f + ('train',) for f in pick.sample(train, min(target, len(train)))]
-    print(f'tadabur: {len(held)} held reciters give {len(test)} test clips; {len(rest)} other reciters,'
+    print(f'tadabur: {len(strangers)} held reciters give {len(test)} test clips; {len(rest)} other reciters,'
           f' at most {each} each, give {len(train)} train clips (wanted {target})', flush=True)
     return train + test
 
@@ -325,27 +335,19 @@ def augmented(sound, noises, rooms, rng):
     return x
 
 
-# A held voice is never trained on, nor a held ayah by anyone.
 # Written to disk 1,000 clips at a time: held as one list, 19k decoded clips pass
 # Arrow's 2 GB limit for a single column block and the run dies before training.
 whole = Dataset.from_generator(learner_clips)
-pick = random.Random(7)
-voices, ayahs = sorted(set(whole['who'])), sorted(set(whole['ayah']))
-pick.shuffle(voices)
-pick.shuffle(ayahs)
-new_voices, new_ayahs = set(voices[::HELD]), set(ayahs[::HELD])
-taught_ayahs = set(ayahs) - new_ayahs
+ayahs = set(whole['ayah'])
 TESTS = {
-    'new voices': whole.filter(lambda r: r['who'] in new_voices and r['ayah'] not in new_ayahs),
-    'new ayahs': whole.filter(lambda r: r['ayah'] in new_ayahs),
-    # Unseen by training is what matters; learners now cover nearly every ayah, so skipping all of them left too few.
-    'professional': Dataset.from_generator(professional_clips, gen_kwargs={'skip': taught_ayahs}),
+    'new voices': whole.filter(lambda r: held(r['who']) and not held(r['ayah'])),
+    'new ayahs': whole.filter(lambda r: held(r['ayah'])),
+    'professional': Dataset.from_generator(professional_clips),
 }
 TESTS = {k: v.shuffle(seed=7).select(range(min(TESTED, len(v)))) for k, v in TESTS.items()}
-learners = whole.filter(lambda r: r['who'] not in new_voices and r['ayah'] not in new_ayahs)
-# Tadabur reciters are strangers to the learners; its train ayahs avoid the held ayahs and the professional test's.
-plan = tadabur_plan(new_ayahs | set(TESTS['professional']['ayah']),
-                    round(len(learners) * TADABUR_SHARE / (1 - TADABUR_SHARE)))
+learners = whole.filter(lambda r: not held(r['who']) and not held(r['ayah']))
+# Tadabur reciters are strangers to the learners; its train ayahs avoid the held ones.
+plan = tadabur_plan(round(len(learners) * TADABUR_SHARE / (1 - TADABUR_SHARE)))
 big = Dataset.from_generator(tadabur_clips, gen_kwargs={'plan': plan})
 TESTS['tadabur new voices'] = big.filter(lambda r: r['part'] == 'test')
 KEPT = ['sound', 'said', 'src', 'secs']
@@ -377,28 +379,34 @@ def bare(text):
     return MARKS.sub('', text).replace('ٱ', 'ا').strip()
 
 
-def listen(m, rows, batch=8):
-    """What the model writes for each clip, marks off."""
-    heard = []
-    m.eval()
-    for at in range(0, len(rows), batch):
-        part = rows[at:at + batch]
-        feats = processor([np.asarray(s, dtype=np.float32) for s in part['sound']],
-                          sampling_rate=RATE, return_tensors='pt').input_features.cuda()
-        with torch.no_grad():
-            out = m.generate(input_features=feats, max_new_tokens=MOST_MARKS - len(processor.tokenizer.prefix_tokens))
-        heard += [bare(t) for t in processor.batch_decode(out, skip_special_tokens=True)]
-    return heard
+def export(m, folder):
+    """A model as the CTranslate2 folder faster-whisper loads, made the way the served ear was.
+    tokenizer.json from openai/whisper-SIZE: same words as Tarteel's, plus the timestamp marks theirs
+    lacks; without the file faster-whisper silently fetches openai/whisper-tiny's."""
+    merged = OUT / 'ear-merged'
+    m.save_pretrained(merged)
+    WhisperTokenizerFast.from_pretrained(f'openai/whisper-{SIZE}').save_pretrained(merged)
+    processor.feature_extractor.save_pretrained(merged)  # the processor alone no longer writes this file
+    subprocess.run(['ct2-transformers-converter', '--model', str(merged), '--output_dir', str(folder), '--force',
+                    '--copy_files', 'preprocessor_config.json', 'tokenizer.json', '--quantization', 'float16'], check=True)
+    shutil.rmtree(merged)  # 280 MB that would otherwise be downloaded for nothing
+    return folder
 
 
-def scored(m):
-    """Words wrong, in percent, per test group; and what was heard."""
-    heard = {k: listen(m, rows) for k, rows in TESTS.items()}
+def scored(ear):
+    """Words wrong, in percent, per test group, heard as the app hears (one guess, untimed, each clip
+    alone); and what was heard. Scored before training too, so a model that will not load fails in minutes."""
+    m = WhisperModel(str(ear), device='cuda', compute_type='float16')
+    heard = {k: [bare(' '.join(s.text for s in m.transcribe(np.asarray(x, dtype=np.float32), language='ar', beam_size=1,
+                                                             without_timestamps=True, condition_on_previous_text=False)[0]))
+                 for x in rows['sound']] for k, rows in TESTS.items()}
     return {k: round(100 * jiwer.wer([bare(t) for t in TESTS[k]['said']], heard[k]), 2) for k in TESTS}, heard
 
 
-before, _ = scored(model)
-print('today:', before, flush=True)
+before, _ = scored(export(model, OUT / 'ear-today'))
+shutil.rmtree(OUT / 'ear-today')
+champion, _ = scored(CHAMPION)
+print('today:', before, 'served ear:', champion, flush=True)
 
 
 def gather(rows):
@@ -431,25 +439,16 @@ Seq2SeqTrainer(
     data_collator=gather,
 ).train()
 
-after, heard = scored(tuned)
-keep = (before['new ayahs'] - after['new ayahs'] >= BAR
-        and after['professional'] - before['professional'] <= SLIP)
-verdict = {'keep': keep, 'before': before, 'after': after, 'bar': BAR, 'slip': SLIP, 'v13': V13,
-           'hours': {k: round(v, 2) for k, v in spent.items()}, 'vs_v13': {k: round(after[k] - V13[k], 2) for k in V13},
+after, heard = scored(export(tuned.merge_and_unload(), OUT / 'ear-tuned'))
+keep = (champion['new ayahs'] - after['new ayahs'] >= BAR
+        and after['professional'] - champion['professional'] <= SLIP)
+if not keep:
+    shutil.rmtree(OUT / 'ear-tuned')
+verdict = {'keep': keep, 'before': before, 'champion': champion, 'after': after, 'bar': BAR, 'slip': SLIP,
+           'hours': {k: round(v, 2) for k, v in spent.items()},
            'taught': len(taught), 'tests': {k: len(v) for k, v in TESTS.items()},
            'still_wrong': [{'should': s, 'heard': h} for s, h in zip(TESTS['new ayahs']['said'], heard['new ayahs'])
                            if bare(s) != h][:10]}
 (OUT / 'verdict.json').write_text(json.dumps(verdict, ensure_ascii=False, indent=1), encoding='utf-8')
 print(json.dumps(verdict, ensure_ascii=False, indent=1), flush=True)
 
-if keep:
-    # Folded back in and converted the way the shipped ear was, so only recitation_model changes at home.
-    # tokenizer.json from openai/whisper-SIZE: same words as Tarteel's, plus the timestamp marks theirs lacks.
-    # Without the file faster-whisper silently fetches openai/whisper-tiny's.
-    merged = OUT / 'ear-merged'
-    tuned.merge_and_unload().save_pretrained(merged)
-    WhisperTokenizerFast.from_pretrained(f'openai/whisper-{SIZE}').save_pretrained(merged)
-    processor.feature_extractor.save_pretrained(merged)  # the processor alone no longer writes this file
-    subprocess.run(['ct2-transformers-converter', '--model', str(merged), '--output_dir', str(OUT / 'ear-tuned'),
-                    '--copy_files', 'preprocessor_config.json', 'tokenizer.json', '--quantization', 'float16'], check=True)
-    shutil.rmtree(merged)  # 280 MB that would otherwise be downloaded for nothing

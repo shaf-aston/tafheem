@@ -12,6 +12,8 @@ prints the RECITATION_TRIAL_MODEL value that serves it; each upload gets its own
 """
 import json
 import os
+import re
+import shutil
 import subprocess
 import sys
 import time
@@ -20,7 +22,8 @@ from pathlib import Path
 HERE = Path(__file__).parent
 KERNEL = json.loads((HERE / 'kernel-metadata.json').read_text())['id']
 LANDS = HERE.parents[1] / 'data' / 'models' / 'finetune-ear'
-REPO = 'quran-ear'  # public, under the signed-in Hugging Face account, so a server needs no key
+# Public, so a server needs no key. Named once, in the recipe, whose judge scores against it.
+CHAMPION = re.search(r"^CHAMPION = '(.+?)'", (HERE / 'finetune_ear.py').read_text(encoding='utf-8'), re.M)[1]
 EVERY = 60  # seconds between status checks
 ENDED = ('COMPLETE', 'ERROR', 'CANCEL')
 # Without these the CLI writes the Arabic log in Windows' own code page and fails half way.
@@ -38,10 +41,10 @@ def ship():
     if not verdict['keep']:
         sys.exit('verdict.json says not to keep this ear, so nothing is uploaded')
     hub = HfApi()
-    repo = hub.create_repo(f"{hub.whoami()['name']}/{REPO}", private=False, exist_ok=True).repo_id
-    done = hub.upload_folder(repo_id=repo, folder_path=LANDS / 'ear-tuned', commit_message=
-                             f"words wrong before {verdict['before']}, after {verdict['after']}")
-    print(f'RECITATION_TRIAL_MODEL={repo}@{done.oid}')
+    hub.create_repo(CHAMPION, private=False, exist_ok=True)
+    done = hub.upload_folder(repo_id=CHAMPION, folder_path=LANDS / 'ear-tuned', commit_message=
+                             f"words wrong: served ear {verdict['champion']}, this one {verdict['after']}")
+    print(f'RECITATION_TRIAL_MODEL={CHAMPION}@{done.oid}')
 
 
 if '--ship' in sys.argv:
@@ -54,6 +57,8 @@ if '--fetch' not in sys.argv:
         time.sleep(EVERY)
 status = kaggle('status', KERNEL)
 print(status)
+shutil.rmtree(LANDS, ignore_errors=True)  # a failed run must not leave the last run's verdict to ship
+LANDS.mkdir(parents=True)
 kaggle('output', KERNEL, '-p', str(LANDS), '--force')
 log = json.loads((LANDS / f'{KERNEL.split("/")[1]}.log').read_text(encoding='utf-8'))
 sys.stdout.reconfigure(encoding='utf-8')
