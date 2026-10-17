@@ -6,10 +6,3300 @@
   "madhhab": "Basran grammar",
   "file": "0723IbnAjrum.Ajrumiyya.Shamela0011371-ara1",
   "parts": [
-    {"id": "ajr-words", "title": "Words and endings", "arabic": "الكلام والإعراب", "kitab": "مدخل", "kitabs": ["مدخل", "باب الإعراب", "باب معرفة علامات الإعراب", "باب الأفعال"], "lessons": []},
-    {"id": "ajr-raised", "title": "The raised nouns", "arabic": "مرفوعات الأسماء", "kitab": "باب مرفوعات الأسماء", "kitabs": ["باب مرفوعات الأسماء", "باب الفاعل", "باب المفعول الذي لم يسم فاعله", "باب المبتدأ والخبر", "باب العوامل الداخلة على المبتدأ والخبر"], "lessons": []},
-    {"id": "ajr-followers", "title": "The followers", "arabic": "التوابع", "kitab": "باب النعت", "kitabs": ["باب النعت", "باب العطف", "باب التوكيد", "[باب البدل]"], "lessons": []},
-    {"id": "ajr-accusative", "title": "The accusative nouns", "arabic": "منصوبات الأسماء", "kitab": "باب منصوبات الأسماء", "kitabs": ["باب منصوبات الأسماء", "باب المفعول به", "باب المصدر", "باب ظرف الزمان وظرف المكان", "باب الحال", "باب التمييز", "باب الاستثناء", "باب لا", "باب المنادى", "باب المفعول من أجله", "باب المفعول معه"], "lessons": []},
-    {"id": "ajr-genitive", "title": "The genitive nouns", "arabic": "المخفوضات من الأسماء", "kitab": "باب المخفوضات من الأسماء", "kitabs": ["باب المخفوضات من الأسماء"], "lessons": []}
+    {
+      "id": "ajr-words",
+      "title": "Words and endings",
+      "arabic": "الكلام والإعراب",
+      "kitab": "مدخل",
+      "kitabs": [
+        "مدخل",
+        "باب الإعراب",
+        "باب معرفة علامات الإعراب",
+        "باب الأفعال"
+      ],
+      "whole": true,
+      "lessons": [
+        {
+          "id": "ajr-words-kalam",
+          "title": "Speech and its three kinds of word",
+          "arabic": "أنواع الكلام",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "kalam",
+              "title": "What speech is",
+              "ar": "الكلام: هو اللفظ المركب المفيد بالوضع.",
+              "en": "Kalam (speech) is spoken words (lafz), put together (murakkab), that give a full, useful meaning (mufid), in the language as the Arabs set it (bil-wad'). So قام زيد, \"Zayd stood\", is speech: two words that tell you something."
+            },
+            {
+              "kind": "choose",
+              "id": "kalam-gap",
+              "ask": "Which word completes it?",
+              "ar": "الكلام: هو اللفظ المركب ____ بالوضع.",
+              "options": [
+                "المفيد",
+                "المفرد",
+                "المرفوع"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": [
+                "... بسم الله الرحمن الرحيم أنواع الكلام الكلام: هو اللفظ المركب المفيد بالوضع."
+              ],
+              "why": "المفيد: speech must give a useful meaning, not just be words put side by side."
+            },
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three kinds of word",
+              "ar": "وأقسامه ثلاثة: اسم، وفعل، وحرف جاء لمعنى.",
+              "en": "Every word is one of three kinds: an ism (noun, a name of a person or thing), a fi'l (verb, an action) or a harf (particle), a small word that comes to bring a meaning, like في, \"in\"."
+            },
+            {
+              "kind": "teach",
+              "id": "noun",
+              "title": "How to know a noun",
+              "ar": "فالاسم يعرف: بالخفض، والتنوين، ودخول الألف واللام، وحروف الخفض, وهي: من، وإلى، وعن، وعلى، وفي, ورب، والباء، والكاف، واللام، وحروف القسم وهي: الواو، والباء، والتاء.",
+              "en": "You know a noun by four signs: khafd (the genitive ending, usually -i), tanwin (the extra -n sound, as in Zaydun), al- (ال, \"the\") at its front, and the letters of khafd before it: min (from), ila (to), 'an (away from), 'ala (on), fi (in), rubba (many a), bi (with), ka (like), li (for), and the oath letters wa, bi and ta (as in wallahi, \"by Allah\")."
+            },
+            {
+              "kind": "pick",
+              "id": "noun-signs",
+              "ask": "Which of these show that a word is a noun?",
+              "options": [
+                {
+                  "text": "It has tanwin",
+                  "right": true
+                },
+                {
+                  "text": "It has al- at its front",
+                  "right": true
+                },
+                {
+                  "text": "It comes after في",
+                  "right": true
+                },
+                {
+                  "text": "It comes after قد"
+                },
+                {
+                  "text": "It comes after سوف"
+                },
+                {
+                  "text": "It has the genitive ending (khafd)",
+                  "right": true
+                }
+              ],
+              "source": "فالاسم يعرف: بالخفض، والتنوين، ودخول الألف واللام، وحروف الخفض",
+              "why": "Khafd, tanwin, al- and a letter of khafd such as في mark a noun. قد and سوف mark a verb."
+            },
+            {
+              "kind": "teach",
+              "id": "verb",
+              "title": "How to know a verb",
+              "ar": "والفعل يعرف بقد، والسين، وسوف، وتاء التأنيث الساكنة.",
+              "en": "You know a verb by: qad (قد, \"already\") before it, sa- (س, \"will\") or sawfa (سوف, \"will\") before it, and the still ta of the feminine at its end: قامتْ, \"she stood\"."
+            },
+            {
+              "kind": "teach",
+              "id": "particle",
+              "title": "How to know a particle",
+              "ar": "والحرف ما لا يصلح معه دليل الاسم ولا دليل الفعل.",
+              "en": "A particle is a word that takes none of the signs of a noun and none of the signs of a verb, like في (in) or لم (did not)."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Noun, verb or particle?",
+              "into": [
+                "Noun",
+                "Verb",
+                "Particle"
+              ],
+              "items": [
+                [
+                  "الرجل (the man): it has al-",
+                  "Noun"
+                ],
+                [
+                  "زيدٌ with tanwin",
+                  "Noun"
+                ],
+                [
+                  "قامتْ (she stood)",
+                  "Verb"
+                ],
+                [
+                  "يقوم after سوف",
+                  "Verb"
+                ],
+                [
+                  "في (in)",
+                  "Particle"
+                ],
+                [
+                  "زيد after the letter بِ",
+                  "Noun"
+                ],
+                [
+                  "يقوم after قد",
+                  "Verb"
+                ]
+              ],
+              "source": [
+                "فالاسم يعرف: بالخفض، والتنوين، ودخول الألف واللام",
+                "والفعل يعرف بقد، والسين، وسوف، وتاء التأنيث الساكنة.",
+                "والحرف ما لا يصلح معه دليل الاسم ولا دليل الفعل."
+              ],
+              "why": "Al-, tanwin and a letter of khafd before it mark a noun. Qad, sawfa and the feminine ta mark a verb. في takes neither kind of sign, so it is a particle."
+            },
+            {
+              "kind": "choose",
+              "id": "verb-case",
+              "ask": "Amina reads سيكتب, \"he will write\". What kind of word is يكتب?",
+              "options": [
+                "A verb: it takes the sin of \"will\"",
+                "A noun: it ends in a damma",
+                "A particle: it has no al-"
+              ],
+              "answer": 0,
+              "source": "والفعل يعرف بقد، والسين، وسوف",
+              "why": "The sin (س) is one of the signs of a verb, so يكتب is a verb."
+            },
+            {
+              "kind": "choose",
+              "id": "noun-case",
+              "ask": "Yusuf reads مررت بالرجل, \"I passed by the man\". What shows that الرجل is a noun?",
+              "options": [
+                "It has al- and a letter of khafd (بِ) before it",
+                "It has قد before it",
+                "It takes no sign at all"
+              ],
+              "answer": 0,
+              "source": "ودخول الألف واللام، وحروف الخفض",
+              "why": "Al- and the letter bi are both signs of a noun."
+            },
+            {
+              "kind": "choose",
+              "id": "particle-gap",
+              "ask": "Which word completes it?",
+              "ar": "والحرف ما لا يصلح معه دليل الاسم ولا دليل ____.",
+              "options": [
+                "الفعل",
+                "الحرف",
+                "الكلام"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "والحرف ما لا يصلح معه دليل الاسم ولا دليل الفعل.",
+              "why": "A particle takes neither the sign of the noun nor the sign of the verb (الفعل)."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which sign belongs to a verb, never to a noun?",
+              "options": [
+                "The still ta of the feminine at its end",
+                "Tanwin",
+                "Al- at its front"
+              ],
+              "answer": 0,
+              "source": [
+                "والتنوين، ودخول الألف واللام",
+                "وتاء التأنيث الساكنة."
+              ],
+              "why": "Tanwin and al- are signs of a noun. The still feminine ta (قامتْ) is a sign of a verb."
+            }
+          ]
+        },
+        {
+          "id": "ajr-words-irab",
+          "title": "I'rab, and the signs of raf'",
+          "arabic": "باب الإعراب",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "irab",
+              "title": "What i'rab is",
+              "ar": "الإعراب هو تغيير أواخر الكلم، لاختلاف العوامل الداخلة عليها لفظا أو تقديرا.",
+              "en": "I'rab is the change at the end of a word because a different 'amil comes in on it. An 'amil is a word that works on another, like a verb or a preposition. The change is either heard (lafzan) or only understood (taqdiran), when the last letter cannot show it. Zayd ends in -u, -a or -i depending on what comes before him."
+            },
+            {
+              "kind": "choose",
+              "id": "irab-gap",
+              "ask": "Which word completes it?",
+              "ar": "الإعراب هو تغيير ____ الكلم",
+              "options": [
+                "أواخر",
+                "أوائل",
+                "أوساط"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "الإعراب هو تغيير أواخر الكلم",
+              "why": "I'rab changes the ENDS (أواخر) of words, not their beginnings or middles."
+            },
+            {
+              "kind": "teach",
+              "id": "four",
+              "title": "The four kinds of i'rab",
+              "ar": "وأقسامه أربعة: رفع، ونصب، وخفض، وجزم.",
+              "en": "There are four: raf' (raised, nominative, usually -u), nasb (accusative, usually -a), khafd (genitive, usually -i) and jazm (jussive, usually a still letter with no vowel, called sukun)."
+            },
+            {
+              "kind": "teach",
+              "id": "who",
+              "title": "Which words take which",
+              "ar": "فللأسماء من ذلك الرفع، والنصب، والخفض، ولا جزم فيها, وللأفعال من ذلك: الرفع، والنصب، والجزم, ولا خفض فيها.",
+              "en": "Nouns take raf', nasb and khafd, but never jazm. Verbs take raf', nasb and jazm, but never khafd."
+            },
+            {
+              "kind": "sort",
+              "id": "who-sort",
+              "ask": "Who can take it?",
+              "into": [
+                "Nouns only",
+                "Verbs only",
+                "Both"
+              ],
+              "items": [
+                [
+                  "Khafd",
+                  "Nouns only"
+                ],
+                [
+                  "Jazm",
+                  "Verbs only"
+                ],
+                [
+                  "Raf'",
+                  "Both"
+                ],
+                [
+                  "Nasb",
+                  "Both"
+                ]
+              ],
+              "source": [
+                "فللأسماء من ذلك الرفع، والنصب، والخفض، ولا جزم فيها",
+                "وللأفعال من ذلك: الرفع، والنصب، والجزم, ولا خفض فيها."
+              ],
+              "why": "Raf' and nasb are shared. Khafd is for nouns only and jazm for verbs only."
+            },
+            {
+              "kind": "teach",
+              "id": "raf",
+              "title": "Raf' and its damma",
+              "ar": "للرفع أربع علامات: الضمة، والواو، والألف، والنون. فأما الضمة فتكون علامة للرفع في أربعة مواضع في الاسم المفرد، وجمع التكسير، وجمع المؤنث السالم، والفعل المضارع الذي لم يتصل بآخره شيء.",
+              "en": "Raf' has four signs: damma (-u), waw, alif and nun. Damma marks raf' in four places: the single noun (زيدٌ), the broken plural, whose shape changes (الرجالُ, men), the sound feminine plural, made with -at (الهنداتُ), and the present verb with nothing joined to its end (يقومُ)."
+            },
+            {
+              "kind": "teach",
+              "id": "letters",
+              "title": "Waw, alif and nun for raf'",
+              "ar": "وأما الواو فتكون علامة للرفع في موضعين: في جمع المذكر السالم وفي الأسماء الخمسة، وهي: أبوك وأخوك وحموك وفوك وذو مال. وأما الألف فتكون علامة للرفع في تثنية الأسماء خاصة. وأما النون فتكون علامة للرفع في الفعل المضارع, إذا اتصل به ضمير تثنية، أو ضمير جمع، أو ضمير المؤنثة المخاطبة.",
+              "en": "Waw marks raf' in the sound masculine plural, made with -un (الزيدون), and in the five nouns: abuka (your father), akhuka (your brother), hamuka (your in-law), fuka (your mouth) and dhu mal (owner of wealth). Alif marks raf' only in the dual, the word for two (الزيدان). Nun marks raf' in the present verb when a pronoun for two (يفعلان), for many (يفعلون) or for \"you\", a woman (تفعلين) is joined to it."
+            },
+            {
+              "kind": "sort",
+              "id": "raf-sort",
+              "ask": "Which sign shows its raf'?",
+              "into": [
+                "Damma",
+                "Waw",
+                "Alif"
+              ],
+              "items": [
+                [
+                  "زيدٌ (a single noun)",
+                  "Damma"
+                ],
+                [
+                  "الرجالُ (a broken plural)",
+                  "Damma"
+                ],
+                [
+                  "الزيدون (a sound masculine plural)",
+                  "Waw"
+                ],
+                [
+                  "أبوك (your father)",
+                  "Waw"
+                ],
+                [
+                  "الزيدان (two Zayds)",
+                  "Alif"
+                ],
+                [
+                  "الهنداتُ (a sound feminine plural)",
+                  "Damma"
+                ]
+              ],
+              "source": [
+                "فأما الضمة فتكون علامة للرفع في أربعة مواضع",
+                "وأما الواو فتكون علامة للرفع في موضعين",
+                "وأما الألف فتكون علامة للرفع في تثنية الأسماء خاصة."
+              ],
+              "why": "Single nouns and both kinds of -at and broken plurals take damma. The -un plural and the five nouns take waw. The dual takes alif."
+            },
+            {
+              "kind": "choose",
+              "id": "dual-case",
+              "ask": "Bilal says that the two Zayds stood. What shows the raf' of \"the two Zayds\", الزيدان?",
+              "options": [
+                "The alif",
+                "The waw",
+                "A damma"
+              ],
+              "answer": 0,
+              "source": "وأما الألف فتكون علامة للرفع في تثنية الأسماء خاصة.",
+              "why": "الزيدان is a dual, and the alif is the sign of raf' in the dual only."
+            },
+            {
+              "kind": "choose",
+              "id": "nun-case",
+              "ask": "Huda reads يقومان, \"the two of them stand\". What shows that the verb is raised?",
+              "options": [
+                "The nun at its end",
+                "The alif",
+                "A damma"
+              ],
+              "answer": 0,
+              "source": "وأما النون فتكون علامة للرفع في الفعل المضارع, إذا اتصل به ضمير تثنية",
+              "why": "The alif is the pronoun for two. The verb's raf' is shown by the nun after it."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Ali writes a noun with jazm. What does Ibn Ajurrum say?",
+              "options": [
+                "Nouns never take jazm",
+                "That is fine if the noun is a plural",
+                "Jazm is only for the five nouns"
+              ],
+              "answer": 0,
+              "source": "فللأسماء من ذلك الرفع، والنصب، والخفض، ولا جزم فيها",
+              "why": "Nouns take raf', nasb and khafd, \"and there is no jazm in them\"."
+            }
+          ]
+        },
+        {
+          "id": "ajr-words-nasb",
+          "title": "The five signs of nasb",
+          "arabic": "وللنصب خمس علامات",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "five",
+              "title": "Five signs",
+              "ar": "وللنصب خمس علامات: الفتحة, والألف، والكسرة، والياء، وحذف النون.",
+              "en": "Nasb (the accusative) has five signs: fatha (-a), alif, kasra (-i), ya, and dropping the nun."
+            },
+            {
+              "kind": "teach",
+              "id": "fatha",
+              "title": "Fatha",
+              "ar": "فأما الفتحة فتكون علامة للنصب في ثلاثة مواضع: في الاسم المفرد, وجمع التكسير، والفعل المضارع إذا دخل عليه ناصب ولم يتصل بآخره شيء.",
+              "en": "Fatha marks nasb in three places: the single noun (رأيت زيدًا, I saw Zayd), the broken plural, and the present verb when a nasb-word (like لن, \"will not\") comes before it and nothing is joined to its end: لن يضربَ."
+            },
+            {
+              "kind": "choose",
+              "id": "fatha-gap",
+              "ask": "Which word completes it?",
+              "ar": "في الاسم المفرد, وجمع التكسير، والفعل ____ إذا دخل عليه ناصب",
+              "options": [
+                "المضارع",
+                "الماضي",
+                "الأمر"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "والفعل المضارع إذا دخل عليه ناصب",
+              "why": "Only the present verb (المضارع) changes its ending; a nasb-word comes before it."
+            },
+            {
+              "kind": "teach",
+              "id": "alif",
+              "title": "Alif",
+              "ar": "وأما الألف: فتكون علامة للنصب في الأسماء الخمسة نحو: \"رأيت أباك وأخاك\" وما أشبه ذلك.",
+              "en": "Alif marks nasb in the five nouns: رأيت أباك وأخاك, \"I saw your father and your brother\". In raf' they had waw: أبوك."
+            },
+            {
+              "kind": "choose",
+              "id": "alif-case",
+              "ask": "Maryam wants to say \"I saw your father\". Which is right?",
+              "options": [
+                "رأيت أباك",
+                "رأيت أبوك",
+                "رأيت أبيك"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "\"رأيت أباك وأخاك\"",
+              "why": "أباك: the five nouns take alif in nasb. Waw is for raf' and ya for khafd."
+            },
+            {
+              "kind": "teach",
+              "id": "kasra-ya",
+              "title": "Kasra and ya",
+              "ar": "وأما الكسرة: فتكون علامة للنصب في جمع المؤنث السالم. وأما الياء: فتكون علامة للنصب في التثنية والجمع.",
+              "en": "Kasra marks nasb in the sound feminine plural: رأيت الهنداتِ, not -a. Ya marks nasb in the dual (الزيدَين) and in the sound masculine plural (الزيدِين)."
+            },
+            {
+              "kind": "teach",
+              "id": "nun",
+              "title": "Dropping the nun",
+              "ar": "وأما حذف النون فيكون علامة للنصب في الأفعال الخمسة التي رفعها بثبات النون.",
+              "en": "Dropping the nun marks nasb in the five verbs, the ones raised by keeping their nun: يفعلون becomes لن يفعلوا."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Which sign shows its nasb?",
+              "into": [
+                "Fatha",
+                "Kasra",
+                "Ya"
+              ],
+              "items": [
+                [
+                  "زيدًا (a single noun)",
+                  "Fatha"
+                ],
+                [
+                  "الرجالَ (a broken plural)",
+                  "Fatha"
+                ],
+                [
+                  "الهنداتِ (a sound feminine plural)",
+                  "Kasra"
+                ],
+                [
+                  "الزيدَين (the dual)",
+                  "Ya"
+                ],
+                [
+                  "الزيدِين (the -un plural)",
+                  "Ya"
+                ],
+                [
+                  "لن يضربَ (a present verb)",
+                  "Fatha"
+                ]
+              ],
+              "source": [
+                "فأما الفتحة فتكون علامة للنصب في ثلاثة مواضع",
+                "وأما الكسرة: فتكون علامة للنصب في جمع المؤنث السالم.",
+                "وأما الياء: فتكون علامة للنصب في التثنية والجمع."
+              ],
+              "why": "Single nouns, broken plurals and present verbs take fatha. The -at plural takes kasra. The dual and the -un plural take ya."
+            },
+            {
+              "kind": "choose",
+              "id": "nun-case",
+              "ask": "Omar puts لن (\"will not\") before يكتبون, \"they write\". What happens?",
+              "options": [
+                "The nun drops: لن يكتبوا",
+                "It takes a fatha: لن يكتبونَ",
+                "Nothing changes"
+              ],
+              "answer": 0,
+              "source": "وأما حذف النون فيكون علامة للنصب في الأفعال الخمسة",
+              "why": "يكتبون is one of the five verbs, so its nasb is shown by dropping the nun."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Which of these are signs of nasb?",
+              "options": [
+                {
+                  "text": "Fatha",
+                  "right": true
+                },
+                {
+                  "text": "Alif",
+                  "right": true
+                },
+                {
+                  "text": "Kasra",
+                  "right": true
+                },
+                {
+                  "text": "Ya",
+                  "right": true
+                },
+                {
+                  "text": "Damma"
+                },
+                {
+                  "text": "Waw"
+                }
+              ],
+              "source": "وللنصب خمس علامات: الفتحة, والألف، والكسرة، والياء، وحذف النون.",
+              "why": "The five are fatha, alif, kasra, ya and dropping the nun. Damma and waw are signs of raf'."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which sign marks nasb in the sound feminine plural (الهندات)?",
+              "options": [
+                "Kasra",
+                "Fatha",
+                "Ya"
+              ],
+              "answer": 0,
+              "source": "وأما الكسرة: فتكون علامة للنصب في جمع المؤنث السالم.",
+              "why": "The -at plural is the one place where kasra marks nasb."
+            }
+          ]
+        },
+        {
+          "id": "ajr-words-khafd-jazm",
+          "title": "The signs of khafd and jazm",
+          "arabic": "وللخفض ثلاث علامات",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three signs of khafd",
+              "ar": "الكسرة، والياء، والفتحة. وللخفض ثلاث علامات:",
+              "en": "Khafd (the genitive) has three signs: kasra, ya and fatha. In this copy of the book the list is printed just before its heading."
+            },
+            {
+              "kind": "teach",
+              "id": "kasra",
+              "title": "Kasra",
+              "ar": "فأما الكسرة: فتكون علامة للخفض في ثلاثة مواضع: في الاسم المفرد المنصرف، وجمع التكسير المنصرف، وفي جمع المؤنث السالم.",
+              "en": "Kasra marks khafd in three places: the single noun that is munsarif (fully declined: it can take tanwin, as بزيدٍ), the munsarif broken plural, and the sound feminine plural."
+            },
+            {
+              "kind": "teach",
+              "id": "ya-fatha",
+              "title": "Ya and fatha",
+              "ar": "وأما الياء: فتكون علامة للخفض في ثلاثة مواضع: في الأسماء الخمسة، وفي التثنية, والجمع. وأما الفتحة: فتكون علامة للخفض في الاسم الذي لا ينصرف.",
+              "en": "Ya marks khafd in the five nouns (بأبيك), the dual and the -un plural. Fatha marks khafd in the noun that is not munsarif: a noun that takes no tanwin and no kasra."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Which sign shows its khafd?",
+              "into": [
+                "Kasra",
+                "Ya",
+                "Fatha"
+              ],
+              "items": [
+                [
+                  "بزيدٍ (a munsarif single noun)",
+                  "Kasra"
+                ],
+                [
+                  "بأبيك (one of the five nouns)",
+                  "Ya"
+                ],
+                [
+                  "بالزيدَين (the dual)",
+                  "Ya"
+                ],
+                [
+                  "بالهنداتِ (a sound feminine plural)",
+                  "Kasra"
+                ],
+                [
+                  "A noun that is not munsarif",
+                  "Fatha"
+                ],
+                [
+                  "بالرجالِ (a broken plural)",
+                  "Kasra"
+                ]
+              ],
+              "source": [
+                "فأما الكسرة: فتكون علامة للخفض في ثلاثة مواضع",
+                "وأما الياء: فتكون علامة للخفض في ثلاثة مواضع: في الأسماء الخمسة، وفي التثنية, والجمع.",
+                "وأما الفتحة: فتكون علامة للخفض في الاسم الذي لا ينصرف."
+              ],
+              "why": "Single nouns, broken plurals and -at plurals take kasra. The five nouns, duals and -un plurals take ya. A noun that is not munsarif takes fatha."
+            },
+            {
+              "kind": "choose",
+              "id": "fatha-gap",
+              "ask": "Which word completes it?",
+              "ar": "وأما الفتحة: فتكون علامة للخفض في الاسم الذي ____ ينصرف.",
+              "options": [
+                "لا",
+                "قد",
+                "سوف"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وأما الفتحة: فتكون علامة للخفض في الاسم الذي لا ينصرف.",
+              "why": "Fatha marks khafd in the noun that does NOT (لا) take full declension."
+            },
+            {
+              "kind": "teach",
+              "id": "jazm",
+              "title": "Jazm by sukun",
+              "ar": "وللجزم علامتان: السكون, والحذف. فأما السكون فيكون علامة للجزم في الفعل المضارع الصحيح الآخر.",
+              "en": "Jazm has two signs: sukun (no vowel) and dropping. Sukun marks jazm in the present verb whose last letter is sound, not alif, waw or ya: لم يضربْ, \"he did not hit\"."
+            },
+            {
+              "kind": "teach",
+              "id": "drop",
+              "title": "Jazm by dropping",
+              "ar": "وأما الحذف فيكون علامة للجزم في الفعل المضارع المعتل الآخر، وفي الأفعال الخمسة التي رفعها بثبات النون.",
+              "en": "Dropping marks jazm in the present verb whose last letter is weak (alif, waw or ya): that letter drops. It also marks jazm in the five verbs, which drop their nun: لم يفعلوا."
+            },
+            {
+              "kind": "choose",
+              "id": "sukun-case",
+              "ask": "Ali puts لم (\"did not\") before يضرب. Its last letter, ب, is sound. What is the sign of jazm?",
+              "options": [
+                "Sukun: لم يضربْ",
+                "Dropping the last letter",
+                "A fatha"
+              ],
+              "answer": 0,
+              "source": "فأما السكون فيكون علامة للجزم في الفعل المضارع الصحيح الآخر.",
+              "why": "A present verb with a sound last letter takes sukun in jazm."
+            },
+            {
+              "kind": "choose",
+              "id": "drop-case",
+              "ask": "Sana puts لم before يدعو (\"he calls\"), which ends in a weak waw. What happens?",
+              "options": [
+                "The waw drops: لم يدعُ",
+                "The waw takes sukun",
+                "Nothing changes"
+              ],
+              "answer": 0,
+              "source": "وأما الحذف فيكون علامة للجزم في الفعل المضارع المعتل الآخر",
+              "why": "A present verb with a weak last letter is put in jazm by dropping that letter."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Which are put in jazm by dropping?",
+              "options": [
+                {
+                  "text": "A present verb whose last letter is weak",
+                  "right": true
+                },
+                {
+                  "text": "The five verbs, like يفعلون",
+                  "right": true
+                },
+                {
+                  "text": "A present verb whose last letter is sound"
+                },
+                {
+                  "text": "A single noun"
+                },
+                {
+                  "text": "A past verb"
+                }
+              ],
+              "source": "وأما الحذف فيكون علامة للجزم في الفعل المضارع المعتل الآخر، وفي الأفعال الخمسة",
+              "why": "Dropping is for the weak-ended present verb and the five verbs. A sound-ended verb takes sukun, and nouns never take jazm."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "How many signs does jazm have, and what are they?",
+              "options": [
+                "Two: sukun and dropping",
+                "Three: sukun, dropping and kasra",
+                "Four, like raf'"
+              ],
+              "answer": 0,
+              "source": "وللجزم علامتان: السكون, والحذف.",
+              "why": "Jazm has just two signs: sukun and dropping (الحذف)."
+            }
+          ]
+        },
+        {
+          "id": "ajr-words-two-ways",
+          "title": "Ending with vowels, ending with letters",
+          "arabic": "المعربات",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Two groups",
+              "ar": "فصل: المعربات المعربات قسمان: قسم يعرب بالحركات، وقسم يعرب بالحروف.",
+              "en": "Words that take i'rab come in two groups: those that show it with vowels (harakat: damma, fatha, kasra, sukun) and those that show it with letters (huruf: waw, alif, ya, nun)."
+            },
+            {
+              "kind": "teach",
+              "id": "vowels",
+              "title": "The four that use vowels",
+              "ar": "الاسم المفرد، وجمع التكسير، وجمع المؤنث السالم، والفعل المضارع الذي لم يتصل بآخره شيء. وكلها ترفع بالضمة، وتنصب بالفتحة، وتخفض بالكسرة، وتجزم بالسكون.",
+              "en": "Four use vowels: the single noun, the broken plural, the sound feminine plural, and the present verb with nothing joined to its end. All of them are raised with damma, made mansub with fatha, made genitive with kasra and put in jazm with sukun."
+            },
+            {
+              "kind": "teach",
+              "id": "except",
+              "title": "Three exceptions",
+              "ar": "وخرج عن ذلك ثلاثة أشياء: جمع المؤنث السالم ينصب بالكسرة، والاسم الذي لا ينصرف يخفض بالفتحة، والفعل المضارع المعتل الآخر يجزم بحذف آخره.",
+              "en": "Three break that pattern: the sound feminine plural takes kasra for nasb; the noun that is not munsarif takes fatha for khafd; and the present verb with a weak last letter is put in jazm by dropping its end."
+            },
+            {
+              "kind": "pick",
+              "id": "except-pick",
+              "ask": "Which of these break the vowel pattern?",
+              "options": [
+                {
+                  "text": "The -at plural takes kasra in nasb",
+                  "right": true
+                },
+                {
+                  "text": "A noun that is not munsarif takes fatha in khafd",
+                  "right": true
+                },
+                {
+                  "text": "A weak-ended present verb drops its end in jazm",
+                  "right": true
+                },
+                {
+                  "text": "A broken plural takes fatha in nasb"
+                },
+                {
+                  "text": "A single noun takes damma in raf'"
+                }
+              ],
+              "source": "وخرج عن ذلك ثلاثة أشياء",
+              "why": "These three are the exceptions the book names. A broken plural with fatha and a single noun with damma follow the normal pattern."
+            },
+            {
+              "kind": "teach",
+              "id": "letters",
+              "title": "The four that use letters",
+              "ar": "والذي يعرب بالحروف أربعة أنواع: التثنية، وجمع المذكر السالم، والأسماء الخمسة، والأفعال الخمسة، وهي: يفعلان، وتفعلان، ويفعلون، وتفعلون، وتفعلين.",
+              "en": "Four use letters: the dual, the sound masculine plural, the five nouns, and the five verbs: yaf'alan, taf'alan (two do), yaf'alun, taf'alun (many do) and taf'alin (you, a woman, do)."
+            },
+            {
+              "kind": "teach",
+              "id": "dual-plural",
+              "title": "The dual and the -un plural",
+              "ar": "فأما التثنية: فترفع بالألف، وتنصب وتخفض بالياء. وأما جمع المذكر السالم: فيرفع بالواو، وينصب ويخفض بالياء.",
+              "en": "The dual is raised with alif, and takes ya for both nasb and khafd. The sound masculine plural is raised with waw, and takes ya for both nasb and khafd."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Vowels or letters?",
+              "into": [
+                "By vowels",
+                "By letters"
+              ],
+              "items": [
+                [
+                  "A single noun, like زيد",
+                  "By vowels"
+                ],
+                [
+                  "A broken plural, like الرجال",
+                  "By vowels"
+                ],
+                [
+                  "The dual, like الزيدان",
+                  "By letters"
+                ],
+                [
+                  "The -un plural, like الزيدون",
+                  "By letters"
+                ],
+                [
+                  "The five nouns, like أبوك",
+                  "By letters"
+                ],
+                [
+                  "The -at plural, like الهندات",
+                  "By vowels"
+                ],
+                [
+                  "يفعلون",
+                  "By letters"
+                ],
+                [
+                  "يضرب",
+                  "By vowels"
+                ]
+              ],
+              "source": [
+                "فالذي يعرب بالحركات أربعة أنواع",
+                "والذي يعرب بالحروف أربعة أنواع: التثنية، وجمع المذكر السالم، والأسماء الخمسة، والأفعال الخمسة"
+              ],
+              "why": "The single noun, the broken plural, the -at plural and the plain present verb use vowels. The dual, the -un plural, the five nouns and the five verbs use letters."
+            },
+            {
+              "kind": "choose",
+              "id": "plural-case",
+              "ask": "In الزيدون (the Zayds), what shows raf', and what shows nasb and khafd?",
+              "options": [
+                "Waw for raf'; ya for nasb and khafd",
+                "Alif for raf'; ya for nasb and khafd",
+                "Waw for raf'; alif for nasb, ya for khafd"
+              ],
+              "answer": 0,
+              "source": "وأما جمع المذكر السالم: فيرفع بالواو، وينصب ويخفض بالياء.",
+              "why": "The -un plural is raised with waw and takes ya in both nasb and khafd."
+            },
+            {
+              "kind": "choose",
+              "id": "five-case",
+              "ask": "Khalid wants to say \"I passed by your brother\". Which is right?",
+              "options": [
+                "مررت بأخيك",
+                "مررت بأخوك",
+                "مررت بأخاك"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وأما الأسماء الخمسة: فترفع بالواو، وتنصب بالألف، وتخفض بالياء.",
+              "why": "After بِ the noun is genitive, and the five nouns take ya in khafd: بأخيك."
+            },
+            {
+              "kind": "choose",
+              "id": "verbs-gap",
+              "ask": "Which word completes it?",
+              "ar": "وأما الأفعال الخمسة: فترفع بالنون وتنصب وتجزم ____.",
+              "options": [
+                "بحذفها",
+                "بالسكون",
+                "بالفتحة"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وأما الأفعال الخمسة: فترفع بالنون وتنصب وتجزم بحذفها.",
+              "why": "The five verbs lose their nun (بحذفها) in both nasb and jazm."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which group is raised with alif and takes ya in nasb and khafd?",
+              "options": [
+                "The dual",
+                "The -un plural",
+                "The five nouns"
+              ],
+              "answer": 0,
+              "source": "فأما التثنية: فترفع بالألف، وتنصب وتخفض بالياء.",
+              "why": "Only the dual is raised with alif. The -un plural is raised with waw, and the five nouns take alif in nasb."
+            }
+          ]
+        },
+        {
+          "id": "ajr-words-verbs",
+          "title": "Past, present and command",
+          "arabic": "باب الأفعال",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three kinds of verb",
+              "ar": "الأفعال ثلاثة: ماض، ومضارع، وأمر، نحو: ضرب، ويضرب، واضرب. فالماضي: مفتوح الآخر أبدا. والأمر: مجزوم أبدا.",
+              "en": "Verbs are three: the past (madi) ضرب, \"he hit\"; the present (mudari') يضرب, \"he hits\"; and the command (amr) اضرب, \"hit!\". The past always ends in fatha. The command is always majzum (ends in jazm)."
+            },
+            {
+              "kind": "sort",
+              "id": "kinds",
+              "ask": "Past, present or command?",
+              "into": [
+                "Past",
+                "Present",
+                "Command"
+              ],
+              "items": [
+                [
+                  "ضرب (he hit)",
+                  "Past"
+                ],
+                [
+                  "يضرب (he hits)",
+                  "Present"
+                ],
+                [
+                  "اضرب (hit!)",
+                  "Command"
+                ],
+                [
+                  "قام (he stood)",
+                  "Past"
+                ],
+                [
+                  "يقوم (he stands)",
+                  "Present"
+                ],
+                [
+                  "يكرم (he honours)",
+                  "Present"
+                ]
+              ],
+              "source": "الأفعال ثلاثة: ماض، ومضارع، وأمر، نحو: ضرب، ويضرب، واضرب.",
+              "why": "ضرب and قام tell what happened; يضرب, يقوم and يكرم begin with one of the extra letters of the present; اضرب is a command."
+            },
+            {
+              "kind": "teach",
+              "id": "present",
+              "title": "The present verb",
+              "ar": "والمضارع: ما كان في أوله إحدى الزوائد الأربع التي يجمعها قولك: \"أنيت\" وهو مرفوع أبدا، حتى يدخل عليه ناصب أو جازم.",
+              "en": "The present verb begins with one of four extra letters, gathered in the word أنيت: hamza (أضرب, I hit), nun (نضرب, we hit), ya (يضرب, he hits) and ta (تضرب, you hit). It is always marfu' (raised) until a nasb-word or a jazm-word comes in on it."
+            },
+            {
+              "kind": "choose",
+              "id": "anayt-gap",
+              "ask": "Which word gathers the four letters?",
+              "ar": "ما كان في أوله إحدى الزوائد الأربع التي يجمعها قولك: \"____\"",
+              "options": [
+                "أنيت",
+                "هويت",
+                "سوف"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "الزوائد الأربع التي يجمعها قولك: \"أنيت\"",
+              "why": "أنيت holds hamza, nun, ya and ta, the letters that begin a present verb."
+            },
+            {
+              "kind": "choose",
+              "id": "raised-case",
+              "ask": "Bilal says يقوم زيد, \"Zayd stands\", with nothing before the verb. What state is يقوم in?",
+              "options": [
+                "Marfu' (raised)",
+                "Mansub",
+                "Majzum"
+              ],
+              "answer": 0,
+              "source": "وهو مرفوع أبدا، حتى يدخل عليه ناصب أو جازم.",
+              "why": "With no nasb-word or jazm-word before it, the present verb stays raised."
+            },
+            {
+              "kind": "teach",
+              "id": "nawasib",
+              "title": "The ten nasb-words",
+              "ar": "فالنواصب عشرة، وهي: أن، ولن، وإذن، وكي، ولام كي، ولام الجحود، وحتى، والجواب بالفاء والواو, وأو.",
+              "en": "Ten words make a present verb mansub: an (that), lan (will not), idhan (then), kay (so that), the lam of kay (li-, so that), the lam of denial (after \"he was not\"), hatta (until), the answer with fa and with waw, and aw."
+            },
+            {
+              "kind": "teach",
+              "id": "jawazim",
+              "title": "The eighteen jazm-words",
+              "ar": "والجوازم ثمانية عشر، وهي: لم، لما، ألم، ألما، ولام الأمر والدعاء، و\"لا\" في النهي والدعاء، وان، وما، ومن، ومهما، واذما، وأي، ومتى، وأيان، وأين، وأنى، وحيثما، وكيفما، وإذا في الشعر خاصة.",
+              "en": "Eighteen words put it in jazm: lam (did not), lamma (not yet), alam and alamma (did ... not?), the lam of command and of prayer, la of forbidding and of prayer, in (if), ma, man (whoever), mahma (whatever), idhma, ayy, mata (when), ayyana, ayna (where), anna, haythuma (wherever), kayfama (however), and idha, in poetry only."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Nasb-word or jazm-word?",
+              "into": [
+                "Makes it mansub",
+                "Puts it in jazm"
+              ],
+              "items": [
+                [
+                  "لن",
+                  "Makes it mansub"
+                ],
+                [
+                  "كي",
+                  "Makes it mansub"
+                ],
+                [
+                  "حتى",
+                  "Makes it mansub"
+                ],
+                [
+                  "أن",
+                  "Makes it mansub"
+                ],
+                [
+                  "لم",
+                  "Puts it in jazm"
+                ],
+                [
+                  "لما",
+                  "Puts it in jazm"
+                ],
+                [
+                  "مهما",
+                  "Puts it in jazm"
+                ],
+                [
+                  "متى",
+                  "Puts it in jazm"
+                ]
+              ],
+              "source": [
+                "فالنواصب عشرة، وهي: أن، ولن، وإذن، وكي",
+                "والجوازم ثمانية عشر، وهي: لم، لما"
+              ],
+              "why": "An, lan, kay and hatta are among the ten nasb-words. Lam, lamma, mahma and mata are among the eighteen jazm-words."
+            },
+            {
+              "kind": "choose",
+              "id": "lan-case",
+              "ask": "Sara puts لن (\"will not\") before يقوم. What happens to the verb?",
+              "options": [
+                "It becomes mansub: لن يقومَ",
+                "It goes into jazm: لن يقمْ",
+                "It stays raised"
+              ],
+              "answer": 0,
+              "source": "فالنواصب عشرة، وهي: أن، ولن",
+              "why": "لن is one of the ten nasb-words, so the verb becomes mansub."
+            },
+            {
+              "kind": "choose",
+              "id": "lam-case",
+              "ask": "Omar puts لم (\"did not\") before يقوم. What happens to the verb?",
+              "options": [
+                "It goes into jazm",
+                "It becomes mansub",
+                "It stays raised"
+              ],
+              "answer": 0,
+              "source": "والجوازم ثمانية عشر، وهي: لم",
+              "why": "لم is the first of the eighteen jazm-words."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are true?",
+              "options": [
+                {
+                  "text": "The past verb always ends in fatha",
+                  "right": true
+                },
+                {
+                  "text": "The command is always majzum",
+                  "right": true
+                },
+                {
+                  "text": "The present verb stays raised even after لن"
+                },
+                {
+                  "text": "إذا puts a verb in jazm only in poetry",
+                  "right": true
+                },
+                {
+                  "text": "There are eighteen nasb-words"
+                }
+              ],
+              "source": [
+                "فالماضي: مفتوح الآخر أبدا. والأمر: مجزوم أبدا.",
+                "وإذا في الشعر خاصة.",
+                "فالنواصب عشرة"
+              ],
+              "why": "The past ends in fatha, the command is majzum, and idha works only in poetry. After لن the verb is mansub, and the nasb-words are ten, not eighteen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ajr-raised",
+      "title": "The raised nouns",
+      "arabic": "مرفوعات الأسماء",
+      "kitab": "باب مرفوعات الأسماء",
+      "kitabs": [
+        "باب مرفوعات الأسماء",
+        "باب الفاعل",
+        "باب المفعول الذي لم يسم فاعله",
+        "باب المبتدأ والخبر",
+        "باب العوامل الداخلة على المبتدأ والخبر"
+      ],
+      "whole": true,
+      "lessons": [
+        {
+          "id": "ajr-raised-doer",
+          "title": "The raised nouns, and the doer",
+          "arabic": "باب الفاعل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "seven",
+              "title": "Seven raised nouns",
+              "ar": "المرفوعات سبعة، وهي: الفاعل، والمفعول الذي لم يسم فاعله، والمبتدأ وخبره، واسم كان وأخواتها، وخبر إن وأخواتها، والتابع للمرفوع",
+              "en": "Seven kinds of noun are marfu' (raised): the fa'il (doer), the object whose doer is not named, the mubtada' (the subject a sentence starts with) and its khabar (the news about it), the noun of kana and its sisters, the khabar of inna and its sisters, and a word that follows a raised word."
+            },
+            {
+              "kind": "teach",
+              "id": "followers",
+              "title": "Four followers",
+              "ar": "والتابع للمرفوع، وهو أربعة أشياء: النعت، والعطف، والتوكيد، والبدل.",
+              "en": "A follower copies the word before it. There are four: na't (a describing word), 'atf (a word joined with \"and\"), tawkid (a stressing word, like \"himself\") and badal (a word put in place of another)."
+            },
+            {
+              "kind": "pick",
+              "id": "which",
+              "ask": "Which of these are raised nouns?",
+              "options": [
+                {
+                  "text": "The fa'il (doer)",
+                  "right": true
+                },
+                {
+                  "text": "The mubtada' (subject)",
+                  "right": true
+                },
+                {
+                  "text": "The khabar of inna",
+                  "right": true
+                },
+                {
+                  "text": "The noun of kana",
+                  "right": true
+                },
+                {
+                  "text": "The noun of inna"
+                },
+                {
+                  "text": "The khabar of kana"
+                }
+              ],
+              "source": "واسم كان وأخواتها، وخبر إن وأخواتها",
+              "why": "The noun of kana and the khabar of inna are raised. It is the other way round for the khabar of kana and the noun of inna."
+            },
+            {
+              "kind": "teach",
+              "id": "doer",
+              "title": "The fa'il",
+              "ar": "الفاعل هو: الاسم المرفوع المذكور قبله فعله.",
+              "en": "The fa'il (doer) is the raised noun with its verb mentioned before it: قام زيد, \"Zayd stood\". Zayd did the standing, and قام comes first."
+            },
+            {
+              "kind": "choose",
+              "id": "doer-gap",
+              "ask": "Which word completes it?",
+              "ar": "الفاعل هو: الاسم المرفوع المذكور ____ فعله.",
+              "options": [
+                "قبله",
+                "بعده",
+                "معه"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "الفاعل هو: الاسم المرفوع المذكور قبله فعله.",
+              "why": "The doer's verb is mentioned BEFORE it (قبله): قام زيد."
+            },
+            {
+              "kind": "teach",
+              "id": "visible",
+              "title": "A visible doer",
+              "ar": "وهو على قسمين: ظاهر , ومضمر. فالظاهر نحو قولك: قام زيد، ويقوم زيد، وقام الزيدان، ويقوم الزيدان، وقام الزيدون، ويقوم الزيدون، وقام الرجال",
+              "en": "The doer is of two kinds: zahir (visible, a noun you can see) and mudmar (a pronoun). Visible: قام زيد (Zayd stood), يقوم زيد (Zayd stands), قام الزيدان (the two Zayds stood), قام الزيدون (the Zayds stood), قام الرجال (the men stood)."
+            },
+            {
+              "kind": "choose",
+              "id": "hind-case",
+              "ask": "In قامت هند, \"Hind stood\", which word is the doer?",
+              "options": [
+                "هند (Hind)",
+                "قامت (stood)",
+                "The ta at the end of قامت"
+              ],
+              "answer": 0,
+              "source": "وقامت هند، وتقوم هند",
+              "why": "Hind is the raised noun with her verb before her, so she is the fa'il. The ta only shows the doer is female."
+            },
+            {
+              "kind": "choose",
+              "id": "brother-case",
+              "ask": "In قام أخوك, \"your brother stood\", what shows that أخوك is raised?",
+              "options": [
+                "The waw: it is one of the five nouns",
+                "A damma",
+                "The alif"
+              ],
+              "answer": 0,
+              "source": "وقام أخوك، ويقوم أخوك، وقام غلامي، ويقوم غلامي، وما أشبه ذلك.",
+              "why": "أخوك is one of the five nouns, and they are raised with waw."
+            },
+            {
+              "kind": "teach",
+              "id": "pronoun",
+              "title": "A pronoun doer",
+              "ar": "والمضمر اثنا عشر، نحو قولك: \"ضربت، وضربنا، وضربت، وضربت، وضربتما، وضربتم، وضربتن، وضرب، وضربت، وضربا، وضربوا، وضربن\".",
+              "en": "Pronoun doers are twelve: darabtu (I hit), darabna (we hit), darabta and darabti (you hit, to a man and a woman), darabtuma (you two), darabtum and darabtunna (you all), daraba (he hit), darabat (she hit), daraba (the two hit), darabu and darabna (they hit). The doer is the ending on the verb, or hidden in it."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "A visible doer or a pronoun?",
+              "into": [
+                "Visible (zahir)",
+                "Pronoun (mudmar)"
+              ],
+              "items": [
+                [
+                  "قام زيد",
+                  "Visible (zahir)"
+                ],
+                [
+                  "ضربتُ (I hit)",
+                  "Pronoun (mudmar)"
+                ],
+                [
+                  "قام الرجال",
+                  "Visible (zahir)"
+                ],
+                [
+                  "ضربوا (they hit)",
+                  "Pronoun (mudmar)"
+                ],
+                [
+                  "تقوم الهندات",
+                  "Visible (zahir)"
+                ],
+                [
+                  "ضربنا (we hit)",
+                  "Pronoun (mudmar)"
+                ]
+              ],
+              "source": [
+                "وهو على قسمين: ظاهر , ومضمر.",
+                "وتقوم الهندات"
+              ],
+              "why": "Zayd, the men and the Hinds are visible nouns. In ضربتُ, ضربوا and ضربنا the doer is the pronoun ending."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "In يقوم الزيدون, \"the Zayds stand\", what is the doer and how is it raised?",
+              "options": [
+                "الزيدون, with waw",
+                "يقوم, with damma",
+                "الزيدون, with damma"
+              ],
+              "answer": 0,
+              "source": "ويقوم الزيدون",
+              "why": "الزيدون has its verb before it, so it is the doer, and an -un plural is raised with waw."
+            }
+          ]
+        },
+        {
+          "id": "ajr-raised-unnamed",
+          "title": "When the doer is not named",
+          "arabic": "باب المفعول الذي لم يسم فاعله",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "what",
+              "title": "The object standing for the doer",
+              "ar": "وهو الاسم المرفوع, الذي لم يذكر معه فاعله.",
+              "en": "This is the raised noun whose doer is not mentioned with it: ضُرِبَ زيدٌ, \"Zayd was hit\". We do not say who hit him, so Zayd, the one hit, is raised in the doer's place."
+            },
+            {
+              "kind": "choose",
+              "id": "what-gap",
+              "ask": "Which word completes it?",
+              "ar": "وهو الاسم المرفوع, الذي لم ____ معه فاعله.",
+              "options": [
+                "يذكر",
+                "يرفع",
+                "ينصب"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وهو الاسم المرفوع, الذي لم يذكر معه فاعله.",
+              "why": "Its doer is not mentioned (لم يذكر) with it."
+            },
+            {
+              "kind": "teach",
+              "id": "past",
+              "title": "Changing a past verb",
+              "ar": "فإن كان الفعل ماضيا: ضم أوله وكسر ما قبل آخره",
+              "en": "If the verb is past, give its first letter a damma and the letter before the last a kasra: ضَرَبَ (he hit) becomes ضُرِبَ (he was hit)."
+            },
+            {
+              "kind": "teach",
+              "id": "present",
+              "title": "Changing a present verb",
+              "ar": "وان كان مضارعا: ضم أوله وفتح ما قبل آخره.",
+              "en": "If it is present, give its first letter a damma and the letter before the last a fatha: يَضْرِبُ (he hits) becomes يُضْرَبُ (he is hit)."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Past or present passive?",
+              "into": [
+                "Past: u, then i",
+                "Present: u, then a"
+              ],
+              "items": [
+                [
+                  "ضُرِبَ (was hit)",
+                  "Past: u, then i"
+                ],
+                [
+                  "أُكرِمَ (was honoured)",
+                  "Past: u, then i"
+                ],
+                [
+                  "يُضرَبُ (is hit)",
+                  "Present: u, then a"
+                ],
+                [
+                  "يُكرَمُ (is honoured)",
+                  "Present: u, then a"
+                ]
+              ],
+              "source": [
+                "ضم أوله وكسر ما قبل آخره",
+                "ضم أوله وفتح ما قبل آخره."
+              ],
+              "why": "Both start with damma. The past puts kasra before the last letter; the present puts fatha there."
+            },
+            {
+              "kind": "teach",
+              "id": "kinds",
+              "title": "Visible and pronoun",
+              "ar": "وهو على قسمين: ظاهر، ومضمر؛ فالظاهر نحو قولك: \"ضرب زيد\" و\"يضرب زيد\" و\"أكرم عمرو\" و\"يكرم عمرو\".",
+              "en": "Again two kinds. Visible: ضُرِبَ زيدٌ (Zayd was hit), يُضرَبُ زيدٌ (Zayd is hit), أُكرِمَ عمرٌو ('Amr was honoured), يُكرَمُ عمرٌو ('Amr is honoured). And twelve pronouns, the same shapes read the passive way: ضُرِبْتُ (I was hit), ضُرِبْنا (we were hit), and so on."
+            },
+            {
+              "kind": "choose",
+              "id": "amr-case",
+              "ask": "Ahmad wants to say \"'Amr was honoured\" without saying who honoured him. Which is right?",
+              "options": [
+                "أُكرِمَ عمرٌو, with 'Amr raised",
+                "أَكرَمَ عمرًا, with 'Amr mansub",
+                "أُكرِمَ عمرًا, with 'Amr mansub"
+              ],
+              "answer": 0,
+              "source": [
+                "\"أكرم عمرو\" و\"يكرم عمرو\"",
+                "وهو الاسم المرفوع, الذي لم يذكر معه فاعله."
+              ],
+              "why": "The verb takes the passive shape (u, then i) and 'Amr, standing in the doer's place, is raised."
+            },
+            {
+              "kind": "choose",
+              "id": "zayd-case",
+              "ask": "In ضُرِبَ زيدٌ, \"Zayd was hit\", what is the case of Zayd?",
+              "options": [
+                "Raised: he stands in place of the doer",
+                "Mansub: he is the one hit",
+                "Genitive"
+              ],
+              "answer": 0,
+              "source": [
+                "فالظاهر نحو قولك: \"ضرب زيد\"",
+                "وهو الاسم المرفوع"
+              ],
+              "why": "Even though Zayd was the one hit, the doer is not named, so Zayd is raised in its place."
+            },
+            {
+              "kind": "choose",
+              "id": "we-case",
+              "ask": "Layla says ضُرِبْنا, \"we were hit\". Where is the raised noun?",
+              "options": [
+                "The pronoun نا, \"we\"",
+                "There is none",
+                "The verb ضرب"
+              ],
+              "answer": 0,
+              "source": "والمضمر اثنا عشر، نحو قولك: \"ضربت، وضربنا",
+              "why": "It is one of the twelve pronouns: نا stands in the doer's place."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "How do you make يَضْرِب passive?",
+              "options": [
+                "Damma first, fatha before the last: يُضْرَب",
+                "Damma first, kasra before the last: يُضْرِب",
+                "Fatha first, kasra before the last: يَضْرِب"
+              ],
+              "answer": 0,
+              "source": "وان كان مضارعا: ضم أوله وفتح ما قبل آخره.",
+              "why": "A present verb takes damma on its first letter and fatha before its last."
+            }
+          ]
+        },
+        {
+          "id": "ajr-raised-subject",
+          "title": "The subject and its news",
+          "arabic": "باب المبتدأ والخبر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "mubtada",
+              "title": "The mubtada'",
+              "ar": "المبتدأ: هو الاسم المرفوع العاري عن العوامل اللفظية.",
+              "en": "The mubtada' (the subject a sentence starts with) is the raised noun with no spoken 'amil working on it: no verb or particle comes before it. In زيد قائم, \"Zayd is standing\", Zayd is the mubtada'."
+            },
+            {
+              "kind": "teach",
+              "id": "khabar",
+              "title": "The khabar",
+              "ar": "والخبر: هو الاسم المرفوع المسند إليه، نحو قولك: \"زيد قائم\" و\"الزيدان قائمان\" و\"الزيدون قائمون\".",
+              "en": "The khabar (news) is the raised noun that says something about the subject: زيد قائم (Zayd is standing), الزيدان قائمان (the two Zayds are standing), الزيدون قائمون (the Zayds are standing). Both are raised."
+            },
+            {
+              "kind": "choose",
+              "id": "dual-gap",
+              "ask": "Which word completes it?",
+              "ar": "\"زيد قائم\" و\"الزيدان ____\"",
+              "options": [
+                "قائمان",
+                "قائمون",
+                "قائما"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "\"زيد قائم\" و\"الزيدان قائمان\"",
+              "why": "Two Zayds take a dual khabar: قائمان, raised with alif."
+            },
+            {
+              "kind": "choose",
+              "id": "plural-case",
+              "ask": "In الزيدون قائمون, which word is the khabar, and how is it raised?",
+              "options": [
+                "قائمون, with waw",
+                "الزيدون, with waw",
+                "قائمون, with damma"
+              ],
+              "answer": 0,
+              "source": "و\"الزيدون قائمون\"",
+              "why": "قائمون is the news about the Zayds, and an -un plural is raised with waw."
+            },
+            {
+              "kind": "teach",
+              "id": "pronouns",
+              "title": "Pronoun subjects",
+              "ar": "والمبتدأ قسمان: ظاهر ومضمر. فالظاهر ما تقدم ذكره. والمضمر اثنا عشر، وهي: أنا، ونحن، وأنت، وأنت، وأنتما، وأنتم، وأنتن، وهو، وهي، وهما، وهم، وهن، نحو قولك: \"أنا قائم\" و\"نحن قائمون\" وما أشبه ذلك.",
+              "en": "The subject is visible (like Zayd, above) or one of twelve pronouns: ana (I), nahnu (we), anta and anti (you), antuma (you two), antum and antunna (you all), huwa (he), hiya (she), huma (they two), hum and hunna (they): أنا قائم, \"I am standing\"; نحن قائمون, \"we are standing\"."
+            },
+            {
+              "kind": "pick",
+              "id": "pronoun-pick",
+              "ask": "Which of these can be a pronoun subject?",
+              "options": [
+                {
+                  "text": "أنا (I)",
+                  "right": true
+                },
+                {
+                  "text": "نحن (we)",
+                  "right": true
+                },
+                {
+                  "text": "هي (she)",
+                  "right": true
+                },
+                {
+                  "text": "هم (they)",
+                  "right": true
+                },
+                {
+                  "text": "ضربتُ (I hit)"
+                },
+                {
+                  "text": "زيد"
+                }
+              ],
+              "source": "والمضمر اثنا عشر، وهي: أنا، ونحن",
+              "why": "Ana, nahnu, hiya and hum are among the twelve. ضربتُ is a verb with a pronoun doer, and Zayd is a visible noun."
+            },
+            {
+              "kind": "teach",
+              "id": "single",
+              "title": "A single khabar",
+              "ar": "والخبر قسمان: مفرد؛ وغير مفرد. فالمفرد نحو قولك: \"زيد قائم\".",
+              "en": "The khabar is single (mufrad: one word, not a phrase or sentence), as in زيد قائم, or not single."
+            },
+            {
+              "kind": "teach",
+              "id": "not-single",
+              "title": "A khabar that is not single",
+              "ar": "وغير المفرد أربعة أشياء: الجار والمجرور، والظرف، والفعل مع فاعله، والمبتدأ مع خبره، نحو قولك: \"زيد في الدار، وزيد عندك، وزيد قام أبوه، وزيد جاريته ذاهبة\".",
+              "en": "Not single is four things: a preposition with its noun (زيد في الدار, Zayd is in the house); a zarf, a word of place or time (زيد عندك, Zayd is with you); a verb with its doer (زيد قام أبوه, Zayd, his father stood); and a subject with its khabar (زيد جاريته ذاهبة, Zayd, his servant girl is going)."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "What kind of khabar?",
+              "into": [
+                "Single",
+                "Preposition or zarf",
+                "A whole sentence"
+              ],
+              "items": [
+                [
+                  "زيد قائم",
+                  "Single"
+                ],
+                [
+                  "زيد في الدار",
+                  "Preposition or zarf"
+                ],
+                [
+                  "زيد عندك",
+                  "Preposition or zarf"
+                ],
+                [
+                  "زيد قام أبوه",
+                  "A whole sentence"
+                ],
+                [
+                  "زيد جاريته ذاهبة",
+                  "A whole sentence"
+                ],
+                [
+                  "أنا قائم",
+                  "Single"
+                ]
+              ],
+              "source": [
+                "فالمفرد نحو قولك: \"زيد قائم\".",
+                "الجار والمجرور، والظرف، والفعل مع فاعله، والمبتدأ مع خبره"
+              ],
+              "why": "قائم is one word. في الدار and عندك are a preposition and a zarf. قام أبوه (verb and doer) and جاريته ذاهبة (subject and khabar) are whole sentences."
+            },
+            {
+              "kind": "choose",
+              "id": "house-case",
+              "ask": "Fatima says زيد في الدار, \"Zayd is in the house\". What is the khabar?",
+              "options": [
+                "في الدار: a preposition with its noun",
+                "زيد",
+                "الدار on its own"
+              ],
+              "answer": 0,
+              "source": "نحو قولك: \"زيد في الدار",
+              "why": "The news about Zayd is \"in the house\": a preposition with its noun, one of the four khabars that are not single."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Why is زيد raised in زيد قائم?",
+              "options": [
+                "It is the mubtada', with no spoken 'amil before it",
+                "It is the fa'il of قائم",
+                "It follows قائم"
+              ],
+              "answer": 0,
+              "source": "المبتدأ: هو الاسم المرفوع العاري عن العوامل اللفظية.",
+              "why": "Nothing spoken works on Zayd, so he is the mubtada', which is raised. A fa'il needs its verb before it."
+            }
+          ]
+        },
+        {
+          "id": "ajr-raised-kana",
+          "title": "Kana, inna and zanantu",
+          "arabic": "باب العوامل الداخلة على المبتدأ والخبر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three sets of words",
+              "ar": "وهي ثلاثة أشياء: كان وأخواتها، وان وأخواتها، وظننت وأخواتها.",
+              "en": "Three sets of words can come in on a subject and its khabar and change their endings: kana and its sisters, inna and its sisters, and zanantu (\"I thought\") and its sisters."
+            },
+            {
+              "kind": "teach",
+              "id": "kana",
+              "title": "Kana and its sisters",
+              "ar": "فأما كان وأخواتها , فإنها ترفع الاسم, وتنصب الخبر، وهي: كان، وأمسى، وأصبح، وأضحى، وظل، وبات، وصار، وليس، وما زال، وما انفك، وما فتيء، وما برح، وما دام",
+              "en": "Kana (\"was\") and its sisters keep the noun raised and make the khabar mansub. They are: kana (was), amsa, asbaha and adha (became, in the evening, morning or forenoon), zalla (stayed, by day), bata (stayed, by night), sara (became), laysa (is not), ma zala, ma infakka, ma fati'a and ma bariha (all: kept on), and ma dama (as long as)."
+            },
+            {
+              "kind": "teach",
+              "id": "kana-forms",
+              "title": "Their forms, and an example",
+              "ar": "وما تصرف منها نحو: كان, ويكون, وكن، وأصبح ويصبح, وأصبح، تقول: \"كان زيد قائما، وليس عمرو شاخصا\" وما أشبه ذلك.",
+              "en": "Their other forms work the same: kana, yakunu, kun; asbaha, yusbihu, asbih. You say كان زيدٌ قائمًا, \"Zayd was standing\", and ليس عمرٌو شاخصًا, \"'Amr is not leaving\"."
+            },
+            {
+              "kind": "choose",
+              "id": "kana-gap",
+              "ask": "Which word completes it?",
+              "ar": "تقول: \"كان زيد ____، وليس عمرو شاخصا\"",
+              "options": [
+                "قائما",
+                "قائم",
+                "قائمون"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "تقول: \"كان زيد قائما، وليس عمرو شاخصا\"",
+              "why": "Kana makes its khabar mansub: قائمًا."
+            },
+            {
+              "kind": "teach",
+              "id": "inna",
+              "title": "Inna and its sisters",
+              "ar": "وأما إن وأخواتها فإنها تنصب الاسم وترفع الخبر، وهي: إن، وأن، ولكن، وكأن، وليت، ولعل، تقول: إن زيدا قائم، وليت عمرا شاخص، وما أشبه ذلك,",
+              "en": "Inna and its sisters do the opposite: the noun becomes mansub and the khabar stays raised. They are inna, anna, lakinna, ka'anna, layta and la'alla: إنَّ زيدًا قائمٌ, \"Zayd is standing, truly\"; ليت عمرًا شاخصٌ, \"if only 'Amr were leaving\"."
+            },
+            {
+              "kind": "teach",
+              "id": "meanings",
+              "title": "What they mean",
+              "ar": "ومعنى إن وأن للتوكيد، ولكن للاستدراك، وكأن للتشبيه، وليت للتمني، ولعل للترجي والتوقع.",
+              "en": "Inna and anna stress (truly, that). Lakinna corrects (but). Ka'anna compares (as if). Layta wishes (if only). La'alla hopes or expects (perhaps)."
+            },
+            {
+              "kind": "teach",
+              "id": "zanna",
+              "title": "Zanantu and its sisters",
+              "ar": "وأما ظننت وأخواتها فإنها تنصب المبتدأ والخبر على أنهما مفعولان لها، وهي: ظننت، وحسبت، وخلت، وزعمت، ورأيت، وعلمت، ووجدت، واتخذت، وجعلت، وسمعت؛ تقول: ظننت زيدا قائما، ورأيت عمرا شاخصا، وما أشبه ذلك.",
+              "en": "Zanantu (\"I thought\") and its sisters make both the subject and the khabar mansub, as their two objects. They are: zanantu (I thought), hasibtu (I reckoned), khiltu (I imagined), za'amtu (I claimed), ra'aytu (I saw), 'alimtu (I knew), wajadtu (I found), ittakhadhtu (I took), ja'altu (I made) and sami'tu (I heard): ظننت زيدًا قائمًا, \"I thought Zayd was standing\"."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "What does it do to the noun and the khabar?",
+              "into": [
+                "Noun raised, khabar mansub",
+                "Noun mansub, khabar raised",
+                "Both mansub"
+              ],
+              "items": [
+                [
+                  "كان",
+                  "Noun raised, khabar mansub"
+                ],
+                [
+                  "ليس",
+                  "Noun raised, khabar mansub"
+                ],
+                [
+                  "أصبح",
+                  "Noun raised, khabar mansub"
+                ],
+                [
+                  "إن",
+                  "Noun mansub, khabar raised"
+                ],
+                [
+                  "ليت",
+                  "Noun mansub, khabar raised"
+                ],
+                [
+                  "لعل",
+                  "Noun mansub, khabar raised"
+                ],
+                [
+                  "ظننت",
+                  "Both mansub"
+                ],
+                [
+                  "علمت",
+                  "Both mansub"
+                ]
+              ],
+              "source": [
+                "فإنها ترفع الاسم, وتنصب الخبر",
+                "فإنها تنصب الاسم وترفع الخبر",
+                "فإنها تنصب المبتدأ والخبر على أنهما مفعولان لها"
+              ],
+              "why": "Kana, laysa and asbaha raise the noun and make the khabar mansub. Inna, layta and la'alla do the opposite. Zanantu and 'alimtu make both mansub."
+            },
+            {
+              "kind": "choose",
+              "id": "layta-case",
+              "ask": "Zaynab hears زيد قائم and puts ليت (\"if only\") in front. Which is right?",
+              "options": [
+                "ليت زيدا قائم",
+                "ليت زيد قائما",
+                "ليت زيدا قائما"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": [
+                "فإنها تنصب الاسم وترفع الخبر",
+                "وليت عمرا شاخص"
+              ],
+              "why": "Layta is a sister of inna: the noun becomes mansub (زيدًا) and the khabar stays raised (قائمٌ)."
+            },
+            {
+              "kind": "choose",
+              "id": "zanna-case",
+              "ask": "Bilal puts ظننت (\"I thought\") before زيد قائم. What does he say?",
+              "options": [
+                "ظننت زيدا قائما",
+                "ظننت زيد قائم",
+                "ظننت زيدا قائم"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "تقول: ظننت زيدا قائما",
+              "why": "Zanantu makes both mansub, as its two objects."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which word is used to compare, meaning \"as if\"?",
+              "options": [
+                "كأن",
+                "لعل",
+                "لكن"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وكأن للتشبيه",
+              "why": "Ka'anna is for comparing. La'alla is for hoping and lakinna for correcting."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ajr-followers",
+      "title": "The followers",
+      "arabic": "التوابع",
+      "kitab": "باب النعت",
+      "kitabs": [
+        "باب النعت",
+        "باب العطف",
+        "باب التوكيد",
+        "[باب البدل]"
+      ],
+      "whole": true,
+      "lessons": [
+        {
+          "id": "ajr-followers-describing",
+          "title": "The describing word",
+          "arabic": "باب النعت",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "naat",
+              "title": "The na't",
+              "ar": "النعت: تابع للمنعوت في رفعه، ونصبه، وخفضه، وتعريفه، وتنكيره",
+              "en": "The na't (a describing word, an adjective) follows the word it describes. It copies its raf', nasb and khafd, and whether it is definite or indefinite."
+            },
+            {
+              "kind": "teach",
+              "id": "examples",
+              "title": "Zayd the wise",
+              "ar": "تقول: قام زيد العاقل، ورأيت زيدا العاقل، ومررت بزيد العاقل.",
+              "en": "قام زيدٌ العاقلُ, \"Zayd the wise stood\"; رأيت زيدًا العاقلَ, \"I saw Zayd the wise\"; مررت بزيدٍ العاقلِ, \"I passed by Zayd the wise\". The describing word copies Zayd's ending each time."
+            },
+            {
+              "kind": "choose",
+              "id": "khafd-case",
+              "ask": "Sami says مررت بزيد العاقل. What ending does العاقل take?",
+              "options": [
+                "Kasra: it is genitive, like Zayd after بِ",
+                "Damma",
+                "Fatha"
+              ],
+              "answer": 0,
+              "source": "ومررت بزيد العاقل.",
+              "why": "Zayd is genitive after بِ, and the na't follows him in khafd."
+            },
+            {
+              "kind": "teach",
+              "id": "definite",
+              "title": "Five definite words",
+              "ar": "والمعرفة خمسة أشياء: الاسم المضمر، نحو: أنا، وأنت، والاسم العلم، نحو: زيد ومكة، والاسم المبهم، نحو: هذا وهذه وهؤلاء، والاسم الذي فيه الألف واللام، نحو: الرجل والغلام، وما أضيف إلى واحد من هذه الأربعة.",
+              "en": "A ma'rifa (definite word, pointing at one known thing) is one of five: a pronoun (ana, anta); a proper name, 'alam (Zayd, Makka); a pointing word, mubham (hadha, hadhihi, ha'ula', \"this, these\"); a noun with al- (al-rajul, the man; al-ghulam, the boy); and a noun joined in idafa to one of these four."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Definite or indefinite?",
+              "into": [
+                "Definite (ma'rifa)",
+                "Indefinite (nakira)"
+              ],
+              "items": [
+                [
+                  "أنا (I)",
+                  "Definite (ma'rifa)"
+                ],
+                [
+                  "مكة (Makka)",
+                  "Definite (ma'rifa)"
+                ],
+                [
+                  "هذا (this)",
+                  "Definite (ma'rifa)"
+                ],
+                [
+                  "الغلام (the boy)",
+                  "Definite (ma'rifa)"
+                ],
+                [
+                  "رجل (a man)",
+                  "Indefinite (nakira)"
+                ],
+                [
+                  "فرس (a horse)",
+                  "Indefinite (nakira)"
+                ]
+              ],
+              "source": [
+                "الاسم المضمر، نحو: أنا، وأنت، والاسم العلم، نحو: زيد ومكة، والاسم المبهم، نحو: هذا",
+                "نحو: الرجل والفرس."
+              ],
+              "why": "Ana, Makka, hadha and al-ghulam are among the five definite kinds. Rajul and faras can take al-, so they are indefinite."
+            },
+            {
+              "kind": "teach",
+              "id": "indefinite",
+              "title": "The indefinite word",
+              "ar": "والنكرة: كل اسم شائع في جنسه لا يختص به واحد دون آخر، وتقريبه كل ما صلح دخول الألف واللام عليه، نحو: الرجل والفرس.",
+              "en": "A nakira (indefinite word) is any noun spread over its whole kind, not fixed on one: rajul, \"a man\", is any man. A quick test: it can take al-, as in الرجل and الفرس."
+            },
+            {
+              "kind": "choose",
+              "id": "test-gap",
+              "ask": "What is the quick test for an indefinite word? Complete it.",
+              "ar": "وتقريبه كل ما صلح دخول ____ عليه",
+              "options": [
+                "الألف واللام",
+                "التنوين",
+                "حروف القسم"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وتقريبه كل ما صلح دخول الألف واللام عليه",
+              "why": "If a noun can take al- (الألف واللام), it is indefinite."
+            },
+            {
+              "kind": "choose",
+              "id": "man-case",
+              "ask": "Hana wants to describe الرجل (\"the man\") as wise. Which describing word fits?",
+              "options": [
+                "العاقل, with al-, because الرجل is definite",
+                "عاقل, without al-",
+                "Either one"
+              ],
+              "answer": 0,
+              "source": "وتعريفه، وتنكيره",
+              "why": "The na't follows its noun in being definite, so a definite noun takes a definite describing word."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "In what does the na't follow its noun?",
+              "options": [
+                {
+                  "text": "Raf'",
+                  "right": true
+                },
+                {
+                  "text": "Nasb",
+                  "right": true
+                },
+                {
+                  "text": "Khafd",
+                  "right": true
+                },
+                {
+                  "text": "Being definite or indefinite",
+                  "right": true
+                },
+                {
+                  "text": "Jazm"
+                }
+              ],
+              "source": "تابع للمنعوت في رفعه، ونصبه، وخفضه، وتعريفه، وتنكيره",
+              "why": "The book lists raf', nasb, khafd, definiteness and indefiniteness. Jazm is for verbs."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these is definite because it is joined to a definite word?",
+              "options": [
+                "غلام زيد (Zayd's boy)",
+                "غلام (a boy)",
+                "رجل (a man)"
+              ],
+              "answer": 0,
+              "source": "وما أضيف إلى واحد من هذه الأربعة.",
+              "why": "غلام is joined to the name Zayd, so it becomes definite. Plain غلام and رجل are indefinite."
+            }
+          ]
+        },
+        {
+          "id": "ajr-followers-join",
+          "title": "Joining, stressing and substituting",
+          "arabic": "العطف والتوكيد والبدل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "atf",
+              "title": "The ten joining letters",
+              "ar": "وحروف العطف عشرة، وهي: الواو، والفاء، وثم، وأو، وأم، وإما، وبل، ولا، ولكن، وحتى في بعض المواضع.",
+              "en": "'Atf is joining one word to another. There are ten joining letters: wa (and), fa (and then), thumma (and later), aw (or), am (or, in a question), imma (either), bal (rather), la (not), lakin (but), and hatta (even), in some places."
+            },
+            {
+              "kind": "teach",
+              "id": "atf-rule",
+              "title": "The joined word copies",
+              "ar": "أو على منصوب نصبت، أو على مخفوض خفضت، أو على مجزوم جزمت، تقول: \"قام زيد وعمرو، ورأيت زيدا وعمرا، ومررت بزيد وعمرو، وزيد لم يقم ولم يقعد\".",
+              "en": "Join a word to a raised word and it is raised; to a mansub word, mansub; to a genitive, genitive; to a majzum verb, majzum: قام زيدٌ وعمرٌو (Zayd and 'Amr stood); رأيت زيدًا وعمرًا (I saw Zayd and 'Amr); مررت بزيدٍ وعمرٍو; زيد لم يقمْ ولم يقعدْ (Zayd did not stand and did not sit)."
+            },
+            {
+              "kind": "choose",
+              "id": "atf-gap",
+              "ask": "Which word completes it?",
+              "ar": "ورأيت زيدا ____، ومررت بزيد وعمرو",
+              "options": [
+                "وعمرا",
+                "وعمرو",
+                "وبعمرو"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ورأيت زيدا وعمرا",
+              "why": "Zayd is mansub as the object, so 'Amr, joined to him, is mansub too: وعمرًا."
+            },
+            {
+              "kind": "choose",
+              "id": "jazm-case",
+              "ask": "In زيد لم يقم ولم يقعد, why is يقعد majzum?",
+              "options": [
+                "It is joined to a majzum verb",
+                "It is a command",
+                "Present verbs are always majzum"
+              ],
+              "answer": 0,
+              "source": "أو على مجزوم جزمت",
+              "why": "يقعد is joined to يقم, which is majzum after لم, so it is majzum too."
+            },
+            {
+              "kind": "teach",
+              "id": "tawkid",
+              "title": "Stressing words",
+              "ar": "التوكيد: \"تابع للمؤكد في رفعه، ونصبه، وخفضه، وتعريفه\". ويكون بألفاظ معلومة، وهي: النفس، والعين، وكل، وأجمع، وتوابع أجمع، وهي: أكتع، وأبتع، وأبصع",
+              "en": "Tawkid (stressing) follows the stressed word in raf', nasb, khafd and definiteness. It uses known words: nafs (himself), 'ayn (itself), kull (all), ajma' (all together), and the words that follow ajma': akta', abta', absa'."
+            },
+            {
+              "kind": "choose",
+              "id": "tawkid-gap",
+              "ask": "Which word completes it?",
+              "ar": "تقول: قام زيد ____، ورأيت القوم كلهم",
+              "options": [
+                "نفسه",
+                "أخوك",
+                "العاقل"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "تقول: قام زيد نفسه، ورأيت القوم كلهم، ومررت بالقوم أجمعين.",
+              "why": "نفسه, \"himself\", is one of the known stressing words: Zayd himself stood."
+            },
+            {
+              "kind": "teach",
+              "id": "badal",
+              "title": "The substitute",
+              "ar": "إذا أبدل اسم من اسم أو فعل من فعل تبعه في جميع إعرابه. وهو أربعة أقسام",
+              "en": "Badal (a substitute): when a noun is put in place of a noun, or a verb in place of a verb, it follows it in all its i'rab. It has four kinds."
+            },
+            {
+              "kind": "teach",
+              "id": "badal-kinds",
+              "title": "Four kinds of substitute",
+              "ar": "بدل الشيء من الشيء، وبدل البعض من الكل، وبدل الاشتمال، وبدل الغلط، نحو قولك: \"قام زيد أخوك، وأكلت الرغيف ثلثه، ونفعني زيد علمه، ورأيت زيدا الفرس\"، أردت أن تقول: الفرس فغلطت فأبدلت زيدا منه.",
+              "en": "Whole for whole: قام زيد أخوك, \"Zayd, your brother, stood\". Part for whole: أكلت الرغيف ثلثه, \"I ate the loaf, a third of it\". Something it contains (ishtimal): نفعني زيد علمه, \"Zayd benefited me, his knowledge\". Mistake: رأيت زيدا الفرس, \"I saw Zayd, the horse\": you meant to say \"the horse\", slipped, and said Zayd first."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Joined, stressing or substitute?",
+              "into": [
+                "Joined ('atf)",
+                "Stressing (tawkid)",
+                "Substitute (badal)"
+              ],
+              "items": [
+                [
+                  "قام زيد وعمرو",
+                  "Joined ('atf)"
+                ],
+                [
+                  "رأيت زيدا وعمرا",
+                  "Joined ('atf)"
+                ],
+                [
+                  "قام زيد نفسه",
+                  "Stressing (tawkid)"
+                ],
+                [
+                  "مررت بالقوم أجمعين",
+                  "Stressing (tawkid)"
+                ],
+                [
+                  "قام زيد أخوك",
+                  "Substitute (badal)"
+                ],
+                [
+                  "أكلت الرغيف ثلثه",
+                  "Substitute (badal)"
+                ]
+              ],
+              "source": [
+                "قام زيد وعمرو",
+                "قام زيد نفسه",
+                "قام زيد أخوك"
+              ],
+              "why": "'Amr is joined with wa. Nafs and ajma'in are stressing words. أخوك and ثلثه stand in place of Zayd and the loaf."
+            },
+            {
+              "kind": "choose",
+              "id": "loaf-case",
+              "ask": "Yasir says أكلت الرغيف ثلثه, \"I ate the loaf, a third of it\". Which kind of substitute is ثلثه?",
+              "options": [
+                "Part for whole",
+                "Whole for whole",
+                "Mistake"
+              ],
+              "answer": 0,
+              "source": "وبدل البعض من الكل",
+              "why": "A third is part of the loaf, so it is a part-for-whole substitute."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "What do na't, 'atf, tawkid and badal share?",
+              "options": [
+                "Each copies the i'rab of the word it follows",
+                "Each is always raised",
+                "Each is always definite"
+              ],
+              "answer": 0,
+              "source": [
+                "تبعه في جميع إعرابه",
+                "تابع للمؤكد في رفعه، ونصبه، وخفضه"
+              ],
+              "why": "They are the four followers: each takes the ending of the word it follows, raised, mansub or genitive."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ajr-accusative",
+      "title": "The accusative nouns",
+      "arabic": "منصوبات الأسماء",
+      "kitab": "باب منصوبات الأسماء",
+      "kitabs": [
+        "باب منصوبات الأسماء",
+        "باب المفعول به",
+        "باب المصدر",
+        "باب ظرف الزمان وظرف المكان",
+        "باب الحال",
+        "باب التمييز",
+        "باب الاستثناء",
+        "باب لا",
+        "باب المنادى",
+        "باب المفعول من أجله",
+        "باب المفعول معه"
+      ],
+      "whole": true,
+      "lessons": [
+        {
+          "id": "ajr-accusative-object",
+          "title": "The accusative nouns, and the object",
+          "arabic": "باب المفعول به",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fifteen",
+              "title": "The accusative nouns",
+              "ar": "المنصوبات خمسة عشر، وهي: المفعول به، والمصدر، وظرف الزمان، وظرف المكان، والحال، والتمييز، والمستثنى، واسم لا، والمنادى، والمفعول من أجله، والمفعول معه، وخبر كان وأخواتها، واسم إن وأخواتها.",
+              "en": "The mansub (accusative) nouns are fifteen: the object, the masdar (verbal noun), the time-word, the place-word, the hal (state), the tamyiz (specifier), the excepted noun, the noun of la, the munada (called one), the reason-object, the with-object, the khabar of kana and its sisters, the noun of inna and its sisters..."
+            },
+            {
+              "kind": "teach",
+              "id": "followers",
+              "title": "... and the followers",
+              "ar": "والتابع للمنصوب، وهو أربعة أشياء: النعت، والعطف، والتوكيد، والبدل.",
+              "en": "... and the follower of a mansub word, which is four things: na't (describing), 'atf (joining), tawkid (stressing) and badal (substitute)."
+            },
+            {
+              "kind": "sort",
+              "id": "raised-or-not",
+              "ask": "Raised or accusative?",
+              "into": [
+                "Raised",
+                "Accusative"
+              ],
+              "items": [
+                [
+                  "The object",
+                  "Accusative"
+                ],
+                [
+                  "The hal (state)",
+                  "Accusative"
+                ],
+                [
+                  "The noun of inna",
+                  "Accusative"
+                ],
+                [
+                  "The khabar of kana",
+                  "Accusative"
+                ],
+                [
+                  "The fa'il (doer)",
+                  "Raised"
+                ],
+                [
+                  "The khabar of inna",
+                  "Raised"
+                ]
+              ],
+              "source": [
+                "المنصوبات خمسة عشر",
+                "وأما خبر \"كان\" وأخواتها، واسم \"إن\" وأخواتها، فقد تقدم ذكرهما في المرفوعات"
+              ],
+              "why": "The object, the hal, the noun of inna and the khabar of kana are in the accusative list. The doer and the khabar of inna were among the raised nouns."
+            },
+            {
+              "kind": "teach",
+              "id": "object",
+              "title": "The object",
+              "ar": "وهو الاسم المنصوب الذي يقع به الفعل, نحو: ضربت زيدا، وركبت الفرس.",
+              "en": "The maf'ul bih (object) is the mansub noun the action falls on: ضربتُ زيدًا, \"I hit Zayd\"; ركبتُ الفرسَ, \"I rode the horse\"."
+            },
+            {
+              "kind": "choose",
+              "id": "object-gap",
+              "ask": "Which word completes it?",
+              "ar": "وهو الاسم المنصوب الذي يقع به ____",
+              "options": [
+                "الفعل",
+                "الفاعل",
+                "الخبر"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وهو الاسم المنصوب الذي يقع به الفعل",
+              "why": "The object is the noun the action (الفعل) falls on."
+            },
+            {
+              "kind": "choose",
+              "id": "horse-case",
+              "ask": "In ركبت الفرس, \"I rode the horse\", which word is the object?",
+              "options": [
+                "الفرس (the horse)",
+                "The تُ (I)",
+                "ركب (rode)"
+              ],
+              "answer": 0,
+              "source": "وركبت الفرس.",
+              "why": "The riding falls on the horse, so الفرس is the object and is mansub. The تُ is the doer."
+            },
+            {
+              "kind": "teach",
+              "id": "kinds",
+              "title": "Visible, joined and separate",
+              "ar": "وهو قسمان: ظاهر , ومضمر. فالظاهر ما تقدم ذكره. والمضمر قسمان: متصل، ومنفصل.",
+              "en": "The object is visible (like Zayd and the horse, above) or a pronoun. A pronoun is joined (muttasil, stuck to the verb) or separate (munfasil, standing on its own)."
+            },
+            {
+              "kind": "teach",
+              "id": "joined",
+              "title": "Twelve joined pronouns",
+              "ar": "فالمتصل اثنا عشر، وهي: ضربني، وضربنا، وضربك، وضربك، وضربكما، وضربكم، وضربكن، وضربه، وضربها، وضربهما، وضربهم، وضربهن.",
+              "en": "Twelve joined: darabani (he hit me), darabana (us), darabaka and darabaki (you), darabakuma (you two), darabakum and darabakunna (you all), darabahu (him), darabaha (her), darabahuma (the two of them), darabahum and darabahunna (them)."
+            },
+            {
+              "kind": "teach",
+              "id": "separate",
+              "title": "Twelve separate pronouns",
+              "ar": "والمنفصل اثنا عشر، وهي: إياي، وإيانا، وإياك، وإياك، وإياكما، وإياكم، وإياكن، وإياه، وإياها، وإياهما، وإياهم، وإياهن.",
+              "en": "Twelve separate: iyyaya (me), iyyana (us), iyyaka and iyyaki (you), iyyakuma (you two), iyyakum and iyyakunna (you all), iyyahu (him), iyyaha (her), iyyahuma (the two of them), iyyahum and iyyahunna (them)."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Joined or separate?",
+              "into": [
+                "Joined (muttasil)",
+                "Separate (munfasil)"
+              ],
+              "items": [
+                [
+                  "ضربني",
+                  "Joined (muttasil)"
+                ],
+                [
+                  "إياي",
+                  "Separate (munfasil)"
+                ],
+                [
+                  "ضربها",
+                  "Joined (muttasil)"
+                ],
+                [
+                  "إياهم",
+                  "Separate (munfasil)"
+                ],
+                [
+                  "ضربكم",
+                  "Joined (muttasil)"
+                ],
+                [
+                  "إيانا",
+                  "Separate (munfasil)"
+                ]
+              ],
+              "source": [
+                "فالمتصل اثنا عشر، وهي: ضربني",
+                "والمنفصل اثنا عشر، وهي: إياي"
+              ],
+              "why": "The joined pronoun sticks to the verb (-ni, -ha, -kum). The separate one stands alone with iyya-."
+            },
+            {
+              "kind": "choose",
+              "id": "him-case",
+              "ask": "Bilal says ضربه, \"he hit him\". Where is the object?",
+              "options": [
+                "The ـه (him), a joined pronoun",
+                "There is none",
+                "ضرب itself"
+              ],
+              "answer": 0,
+              "source": "وضربه، وضربها",
+              "why": "The ـه stuck to the verb is a joined pronoun object."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these is an accusative noun?",
+              "options": [
+                "زيدا in ضربت زيدا",
+                "زيد in قام زيد",
+                "زيد in زيد قائم"
+              ],
+              "answer": 0,
+              "source": "نحو: ضربت زيدا",
+              "why": "In ضربت زيدا Zayd is the object, which is mansub. In the other two he is the doer and the subject, which are raised."
+            }
+          ]
+        },
+        {
+          "id": "ajr-accusative-masdar-zarf",
+          "title": "The masdar, and words of time and place",
+          "arabic": "المصدر والظرف",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "masdar",
+              "title": "The masdar",
+              "ar": "المصدر: هو الاسم المنصوب, الذي يجيء ثالثا في تصريف الفعل، نحو: ضرب يضرب ضربا.",
+              "en": "The masdar (verbal noun) is the mansub noun that comes third when you run through a verb's forms: ضرب يضرب ضربًا, \"he hit, he hits, a hitting\"."
+            },
+            {
+              "kind": "choose",
+              "id": "masdar-gap",
+              "ask": "Which word completes it?",
+              "ar": "نحو: ضرب يضرب ____.",
+              "options": [
+                "ضربا",
+                "اضرب",
+                "ضارب"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "نحو: ضرب يضرب ضربا.",
+              "why": "ضربًا comes third: past, present, then the masdar."
+            },
+            {
+              "kind": "teach",
+              "id": "lafzi",
+              "title": "Matching in wording",
+              "ar": "وهو قسمان: لفظي ومعنوي فإن وافق لفظه لفظ فعله فهو لفظي, نحو: قتلته قتلا.",
+              "en": "Two kinds. Lafzi (in wording): it has the same letters as its verb: قتلته قتلًا, \"I killed him a killing\"."
+            },
+            {
+              "kind": "teach",
+              "id": "manawi",
+              "title": "Matching in meaning",
+              "ar": "وان وافق معنى فعله دون لفظه فهو معنوي، نحو: جلست قعودا، وقمت وقوفا، وما أشبه ذلك.",
+              "en": "Ma'nawi (in meaning): the same meaning as its verb but different letters: جلست قعودًا, \"I sat a sitting\"; قمت وقوفًا, \"I stood a standing\"."
+            },
+            {
+              "kind": "sort",
+              "id": "masdar-sort",
+              "ask": "In wording or in meaning?",
+              "into": [
+                "Lafzi (wording)",
+                "Ma'nawi (meaning)"
+              ],
+              "items": [
+                [
+                  "قتلته قتلا",
+                  "Lafzi (wording)"
+                ],
+                [
+                  "ضرب ضربا",
+                  "Lafzi (wording)"
+                ],
+                [
+                  "جلست قعودا",
+                  "Ma'nawi (meaning)"
+                ],
+                [
+                  "قمت وقوفا",
+                  "Ma'nawi (meaning)"
+                ]
+              ],
+              "source": [
+                "فهو لفظي, نحو: قتلته قتلا.",
+                "فهو معنوي، نحو: جلست قعودا، وقمت وقوفا"
+              ],
+              "why": "Qatl shares qatala's letters, and darb shares daraba's. Qu'ud and wuquf mean sitting and standing but use other letters."
+            },
+            {
+              "kind": "choose",
+              "id": "sit-case",
+              "ask": "Nadia says جلست قعودا. Why is قعودا a ma'nawi masdar?",
+              "options": [
+                "It means the same as جلست but has other letters",
+                "It has the same letters as جلست",
+                "It is a word of time"
+              ],
+              "answer": 0,
+              "source": "وان وافق معنى فعله دون لفظه فهو معنوي",
+              "why": "Qu'ud means sitting, like jalastu, but its letters differ, so it matches in meaning only."
+            },
+            {
+              "kind": "teach",
+              "id": "time",
+              "title": "Words of time",
+              "ar": "ظرف الزمان هو: اسم الزمان المنصوب بتقدير \"في\" نحو: اليوم، والليلة، وغدوة، وبكرة، وسحرا، وغدا، وعتمة، وصباحا، ومساء، وأبدا، وأمدا، وحينا، وما أشبه ذلك.",
+              "en": "The zarf of time is a time noun, mansub, with \"in\" (في) understood: al-yawma (today), al-laylata (tonight), ghudwatan and bukratan (early in the day), saharan (before dawn), ghadan (tomorrow), 'atamatan (at nightfall), sabahan (in the morning), masa'an (in the evening), abadan and amadan (for ever, for a long time), hinan (for a while)."
+            },
+            {
+              "kind": "teach",
+              "id": "place",
+              "title": "Words of place",
+              "ar": "وظرف المكان هو: اسم المكان المنصوب بتقدير \"في\" نحو: أمام، وخلف، وقدام، ووراء، وفوق، وتحت، وعند، ومع، وإزاء، وحذاء، وتلقاء، وهنا، وثم، وما أشبه ذلك.",
+              "en": "The zarf of place is a place noun, mansub, with \"in\" understood: amama and quddama (in front), khalfa and wara'a (behind), fawqa (above), tahta (under), 'inda (at), ma'a (with), iza'a, hidha'a and tilqa'a (facing), huna (here), thamma (there)."
+            },
+            {
+              "kind": "sort",
+              "id": "zarf-sort",
+              "ask": "Time or place?",
+              "into": [
+                "Time",
+                "Place"
+              ],
+              "items": [
+                [
+                  "اليوم (today)",
+                  "Time"
+                ],
+                [
+                  "غدا (tomorrow)",
+                  "Time"
+                ],
+                [
+                  "سحرا (before dawn)",
+                  "Time"
+                ],
+                [
+                  "مساء (in the evening)",
+                  "Time"
+                ],
+                [
+                  "أمام (in front)",
+                  "Place"
+                ],
+                [
+                  "فوق (above)",
+                  "Place"
+                ],
+                [
+                  "تحت (under)",
+                  "Place"
+                ],
+                [
+                  "عند (at)",
+                  "Place"
+                ]
+              ],
+              "source": [
+                "ظرف الزمان هو: اسم الزمان المنصوب",
+                "وظرف المكان هو: اسم المكان المنصوب"
+              ],
+              "why": "Today, tomorrow, before dawn and evening are times. In front, above, under and at are places."
+            },
+            {
+              "kind": "choose",
+              "id": "fi-gap",
+              "ask": "Which word is understood in a zarf? Complete it.",
+              "ar": "ظرف الزمان هو: اسم الزمان المنصوب بتقدير \"____\"",
+              "options": [
+                "في",
+                "من",
+                "على"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "اسم الزمان المنصوب بتقدير \"في\"",
+              "why": "A zarf has \"in\" (في) understood: \"I fasted today\" means \"in today\"."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Ilyas says جلس زيد خلف الدار, \"Zayd sat behind the house\". What is خلف?",
+              "options": [
+                "A word of place, mansub with \"in\" understood",
+                "A word of time",
+                "A masdar"
+              ],
+              "answer": 0,
+              "source": "وظرف المكان هو: اسم المكان المنصوب بتقدير \"في\" نحو: أمام، وخلف",
+              "why": "Khalfa (\"behind\") is in the list of place-words, so it is a zarf of place."
+            }
+          ]
+        },
+        {
+          "id": "ajr-accusative-state",
+          "title": "The state and the specifier",
+          "arabic": "الحال والتمييز",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "hal",
+              "title": "The hal",
+              "ar": "الحال هو: الاسم المنصوب, المفسر لما انبهم من الهيئات، نحو قولك: \"جاء زيد راكبا\" و\"ركبت الفرس مسرجا\" و\"لقيت عبد الله راكبا\" وما أشبه ذلك.",
+              "en": "The hal (state) is a mansub noun that makes clear an unclear manner: how someone or something was. جاء زيد راكبًا, \"Zayd came riding\"; ركبت الفرس مسرجًا, \"I rode the horse saddled\"; لقيت عبد الله راكبًا, \"I met Abdullah riding\"."
+            },
+            {
+              "kind": "choose",
+              "id": "hal-gap",
+              "ask": "Which word completes it?",
+              "ar": "\"جاء زيد ____\"",
+              "options": [
+                "راكبا",
+                "الراكب",
+                "راكب"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "\"جاء زيد راكبا\"",
+              "why": "The hal is mansub and indefinite: راكبًا."
+            },
+            {
+              "kind": "teach",
+              "id": "hal-rules",
+              "title": "Three rules of the hal",
+              "ar": "ولا يكون الحال إلا نكرة، ولا يكون إلا بعد تمام الكلام، ولا يكون صاحبها إلا معرفة.",
+              "en": "The hal is only indefinite. It comes only after the sentence is complete. And its owner, the one it describes, is only definite."
+            },
+            {
+              "kind": "choose",
+              "id": "hal-case",
+              "ask": "Sami says جاء زيد الراكب, meaning \"Zayd came riding\". What is wrong?",
+              "options": [
+                "The hal must be indefinite: راكبا",
+                "The hal must come before the verb",
+                "Zayd must be indefinite"
+              ],
+              "answer": 0,
+              "source": "ولا يكون الحال إلا نكرة",
+              "why": "الراكب has al-, so it is definite. A hal is only indefinite."
+            },
+            {
+              "kind": "teach",
+              "id": "tamyiz",
+              "title": "The tamyiz",
+              "ar": "التمييز هو: الاسم المنصوب, المفسر لما انبهم من الذوات، نحو قولك: \"تصبب زيد عرقا\"، و\"تفقأ بكر شحما\" و\"طاب محمد نفسا\" و\"اشتريت عشرين غلاما\" و\"ملكت تسعين نعجة\" و\"زيد أكرم منك أبا\" و\"أجمل منك وجها\".",
+              "en": "The tamyiz (specifier) is a mansub noun that makes clear an unclear thing: what exactly. تصبب زيد عرقًا, \"Zayd poured with sweat\"; تفقأ بكر شحمًا, \"Bakr burst with fat\"; طاب محمد نفسًا, \"Muhammad was happy of soul\"; اشتريت عشرين غلامًا, \"I bought twenty ghulams\" (young servants, in the book's time); ملكت تسعين نعجة, \"I owned ninety ewes\"; زيد أكرم منك أبًا, \"Zayd is nobler than you in father\"; أجمل منك وجهًا, \"more handsome than you in face\"."
+            },
+            {
+              "kind": "choose",
+              "id": "ewes-gap",
+              "ask": "Which word completes it?",
+              "ar": "\"ملكت تسعين ____\"",
+              "options": [
+                "نعجة",
+                "النعجة",
+                "نعجات"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "\"ملكت تسعين نعجة\"",
+              "why": "After \"ninety\" the tamyiz says what they are: one indefinite, mansub نعجةً."
+            },
+            {
+              "kind": "teach",
+              "id": "tamyiz-rules",
+              "title": "Two rules of the tamyiz",
+              "ar": "ولا يكون إلا نكرة، ولا يكون إلا بعد تمام الكلام.",
+              "en": "The tamyiz too is only indefinite, and comes only after the sentence is complete."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Hal or tamyiz?",
+              "into": [
+                "Hal (how?)",
+                "Tamyiz (what?)"
+              ],
+              "items": [
+                [
+                  "راكبا in جاء زيد راكبا",
+                  "Hal (how?)"
+                ],
+                [
+                  "مسرجا in ركبت الفرس مسرجا",
+                  "Hal (how?)"
+                ],
+                [
+                  "راكبا in لقيت عبد الله راكبا",
+                  "Hal (how?)"
+                ],
+                [
+                  "عرقا in تصبب زيد عرقا",
+                  "Tamyiz (what?)"
+                ],
+                [
+                  "نفسا in طاب محمد نفسا",
+                  "Tamyiz (what?)"
+                ],
+                [
+                  "وجها in أجمل منك وجها",
+                  "Tamyiz (what?)"
+                ]
+              ],
+              "source": [
+                "المفسر لما انبهم من الهيئات",
+                "المفسر لما انبهم من الذوات"
+              ],
+              "why": "Riding and saddled tell HOW (a state). Sweat, soul and face tell WHAT the unclear thing was (a specifier)."
+            },
+            {
+              "kind": "choose",
+              "id": "twenty-case",
+              "ask": "In اشتريت عشرين غلاما, why is غلاما mansub?",
+              "options": [
+                "It is a tamyiz: it says what the twenty are",
+                "It is a hal",
+                "It is the object of اشتريت"
+              ],
+              "answer": 0,
+              "source": "و\"اشتريت عشرين غلاما\"",
+              "why": "\"Twenty\" alone is unclear. غلامًا makes clear what they are, so it is a tamyiz."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Which are true of the hal?",
+              "options": [
+                {
+                  "text": "It is only indefinite",
+                  "right": true
+                },
+                {
+                  "text": "It comes after the sentence is complete",
+                  "right": true
+                },
+                {
+                  "text": "Its owner is only definite",
+                  "right": true
+                },
+                {
+                  "text": "Its owner may be indefinite"
+                },
+                {
+                  "text": "It is raised"
+                }
+              ],
+              "source": "ولا يكون الحال إلا نكرة، ولا يكون إلا بعد تمام الكلام، ولا يكون صاحبها إلا معرفة.",
+              "why": "The book gives three rules: indefinite, after a complete sentence, with a definite owner. And it is mansub."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "What is the difference between the hal and the tamyiz?",
+              "options": [
+                "The hal makes clear an unclear manner; the tamyiz an unclear thing",
+                "The hal is definite; the tamyiz is indefinite",
+                "The hal is raised; the tamyiz is mansub"
+              ],
+              "answer": 0,
+              "source": [
+                "المفسر لما انبهم من الهيئات",
+                "المفسر لما انبهم من الذوات"
+              ],
+              "why": "Both are mansub and indefinite. The hal explains manners (الهيئات); the tamyiz explains things (الذوات)."
+            }
+          ]
+        },
+        {
+          "id": "ajr-accusative-except",
+          "title": "The exception",
+          "arabic": "باب الاستثناء",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "eight",
+              "title": "Eight words of exception",
+              "ar": "وحروف الاستثناء ثمانية , وهي: إلا، وغير، وسوى، وسوى، وسواء، وخلا، وعدا، وحاشا.",
+              "en": "Istithna' is making an exception (\"except\"). Its words are eight: illa; ghayr; siwa, suwa and sawa' (three ways of saying \"other than\"); khala, 'ada and hasha."
+            },
+            {
+              "kind": "teach",
+              "id": "complete",
+              "title": "Complete and positive",
+              "ar": "فالمستثنى بإلا ينصب إذا كان الكلام تاما موجبا، نحو: \"قام القوم إلا زيدا\" و\"خرج الناس إلا عمرا\".",
+              "en": "After illa, the excepted word is mansub when the sentence is complete (the whole group is named) and positive (not negated): قام القوم إلا زيدًا, \"the people stood except Zayd\"; خرج الناس إلا عمرًا, \"the people went out except 'Amr\"."
+            },
+            {
+              "kind": "choose",
+              "id": "complete-gap",
+              "ask": "Which word completes it?",
+              "ar": "\"قام القوم إلا ____\"",
+              "options": [
+                "زيدا",
+                "زيد",
+                "بزيد"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "\"قام القوم إلا زيدا\"",
+              "why": "The sentence is complete and positive, so the excepted word is mansub: زيدًا."
+            },
+            {
+              "kind": "teach",
+              "id": "negative",
+              "title": "Complete and negative",
+              "ar": "وإن كان الكلام منفيا تاما جاز فيه البدل والنصب على الاستثناء، نحو: \"ما قام إلا زيدا\" و\"إلا زيد\".",
+              "en": "If the sentence is complete but negative, you may treat the word as a badal (substitute, copying the word it comes from) or make it mansub as an exception. The book's example: ما قام إلا زيدًا, or إلا زيدٌ."
+            },
+            {
+              "kind": "teach",
+              "id": "incomplete",
+              "title": "Incomplete",
+              "ar": "وإن كان الكلام ناقصا كان على حسب العوامل، نحو: \"ما قام إلا زيد\" و\"ما ضربت إلا زيدا\" و\"ما مررت إلا بزيد\".",
+              "en": "If the sentence is incomplete (the group is not named), the word after illa takes whatever its 'amil gives it: ما قام إلا زيدٌ (no one stood but Zayd: a doer, raised); ما ضربت إلا زيدًا (I hit only Zayd: an object, mansub); ما مررت إلا بزيدٍ (I passed only by Zayd: genitive after بِ)."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "After illa: what ending?",
+              "into": [
+                "Must be mansub",
+                "Mansub or badal",
+                "As its 'amil gives"
+              ],
+              "items": [
+                [
+                  "قام القوم إلا زيدا (complete, positive)",
+                  "Must be mansub"
+                ],
+                [
+                  "خرج الناس إلا عمرا (complete, positive)",
+                  "Must be mansub"
+                ],
+                [
+                  "A complete, negative sentence",
+                  "Mansub or badal"
+                ],
+                [
+                  "ما قام إلا زيد (incomplete)",
+                  "As its 'amil gives"
+                ],
+                [
+                  "ما مررت إلا بزيد (incomplete)",
+                  "As its 'amil gives"
+                ]
+              ],
+              "source": [
+                "ينصب إذا كان الكلام تاما موجبا",
+                "جاز فيه البدل والنصب على الاستثناء",
+                "وإن كان الكلام ناقصا كان على حسب العوامل"
+              ],
+              "why": "Complete and positive: mansub. Complete and negative: mansub or badal. Incomplete: whatever the 'amil gives."
+            },
+            {
+              "kind": "teach",
+              "id": "others",
+              "title": "Ghayr, and khala",
+              "ar": "والمستثنى بغير, وسوى, وسوى، وسواء, مجرور لا غير. والمستثنى بخلا، وعدا، وحاشا، يجوز نصبه وجره، نحو: \"قام القوم خلا زيدا, وزيد\" و\"عدا عمرا وعمرو\" و\"حاشا بكرا وبكر\".",
+              "en": "After ghayr, siwa, suwa and sawa' the excepted word is genitive, and nothing else. After khala, 'ada and hasha it may be mansub or genitive: قام القوم خلا زيدًا or خلا زيدٍ."
+            },
+            {
+              "kind": "choose",
+              "id": "ghayr-case",
+              "ask": "Ali says قام القوم غير ... and then names Zayd. What ending does Zayd take?",
+              "options": [
+                "Genitive, and nothing else",
+                "Mansub, and nothing else",
+                "Mansub or genitive"
+              ],
+              "answer": 0,
+              "source": "والمستثنى بغير, وسوى, وسوى، وسواء, مجرور لا غير.",
+              "why": "After ghayr the excepted word is genitive only."
+            },
+            {
+              "kind": "choose",
+              "id": "hit-case",
+              "ask": "Huda says ما ضربت إلا زيدا, \"I hit only Zayd\". Why is زيدا mansub?",
+              "options": [
+                "The sentence is incomplete, and ضربت needs an object",
+                "The sentence is complete and positive",
+                "Every word after illa is mansub"
+              ],
+              "answer": 0,
+              "source": "وإن كان الكلام ناقصا كان على حسب العوامل",
+              "why": "No group is named, so the word takes what its 'amil gives. ضربت needs an object, so زيدًا is mansub."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "After which words may the excepted noun be mansub OR genitive?",
+              "options": [
+                {
+                  "text": "خلا",
+                  "right": true
+                },
+                {
+                  "text": "عدا",
+                  "right": true
+                },
+                {
+                  "text": "حاشا",
+                  "right": true
+                },
+                {
+                  "text": "غير"
+                },
+                {
+                  "text": "سوى"
+                }
+              ],
+              "source": "والمستثنى بخلا، وعدا، وحاشا، يجوز نصبه وجره",
+              "why": "Khala, 'ada and hasha allow both. After ghayr and siwa the word is genitive only."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "In قام القوم إلا زيدا, why must زيدا be mansub?",
+              "options": [
+                "The sentence is complete and positive",
+                "The sentence is negative",
+                "The sentence is incomplete"
+              ],
+              "answer": 0,
+              "source": "فالمستثنى بإلا ينصب إذا كان الكلام تاما موجبا",
+              "why": "The people are named (complete) and nothing is negated (positive), so the word after illa is mansub."
+            }
+          ]
+        },
+        {
+          "id": "ajr-accusative-la-call",
+          "title": "La, and the called one",
+          "arabic": "باب لا وباب المنادى",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "la",
+              "title": "La of \"there is no\"",
+              "ar": "اعلم أن \"لا\" تنصب النكرات بغير تنوين إذا باشرت النكرة ولم تتكرر \"لا\" نحو: \"لا رجل في الدار\".",
+              "en": "La (\"there is no\") makes an indefinite noun mansub, with no tanwin, when it comes right before it and la is not repeated: لا رجلَ في الدار, \"there is no man in the house\"."
+            },
+            {
+              "kind": "choose",
+              "id": "la-gap",
+              "ask": "Which word completes it?",
+              "ar": "نحو: \"لا ____ في الدار\"",
+              "options": [
+                "رجل",
+                "الرجل",
+                "رجلا"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "نحو: \"لا رجل في الدار\"",
+              "why": "La works only on an indefinite noun, and with no tanwin: لا رجلَ, not رجلًا."
+            },
+            {
+              "kind": "teach",
+              "id": "apart",
+              "title": "When la is not right before it",
+              "ar": "فإن لم تباشرها وجب الرفع ووجب تكرار \"لا\" نحو: \"لا في الدار رجل ولا امرأة\".",
+              "en": "If la does not come right before the noun, the noun must be raised and la must be repeated: لا في الدار رجلٌ ولا امرأةٌ, \"there is in the house no man and no woman\"."
+            },
+            {
+              "kind": "teach",
+              "id": "repeat",
+              "title": "When la is repeated",
+              "ar": "فإن تكررت \"لا\" جاز إعمالها وإلغاؤها، فإن شئت قلت: \"لا رجل في الدار ولا امرأة\" وإن شئت قلت: \"لا رجل في الدار ولا امرأة\".",
+              "en": "If la is repeated, you may let it work (لا رجلَ في الدار ولا امرأةَ) or cancel it (لا رجلٌ في الدار ولا امرأةٌ). The book writes both without vowels, so its two examples look the same on the page."
+            },
+            {
+              "kind": "choose",
+              "id": "apart-case",
+              "ask": "Maryam puts في الدار first: \"in the house there is no man and no woman\". What must she do?",
+              "options": [
+                "Raise رجل and repeat la",
+                "Make رجل mansub with no tanwin",
+                "Say la only once"
+              ],
+              "answer": 0,
+              "source": "فإن لم تباشرها وجب الرفع ووجب تكرار \"لا\"",
+              "why": "La is not right before رجل, so the noun must be raised and la repeated."
+            },
+            {
+              "kind": "sort",
+              "id": "la-sort",
+              "ask": "What happens to the noun after la?",
+              "into": [
+                "Mansub, no tanwin",
+                "Must be raised",
+                "Either"
+              ],
+              "items": [
+                [
+                  "لا رجل في الدار (la right before, said once)",
+                  "Mansub, no tanwin"
+                ],
+                [
+                  "لا في الدار رجل ولا امرأة (la not right before)",
+                  "Must be raised"
+                ],
+                [
+                  "La right before the noun, and repeated",
+                  "Either"
+                ]
+              ],
+              "source": [
+                "إذا باشرت النكرة ولم تتكرر \"لا\"",
+                "فإن لم تباشرها وجب الرفع",
+                "فإن تكررت \"لا\" جاز إعمالها وإلغاؤها"
+              ],
+              "why": "Right before and not repeated: mansub. Not right before: raised. Repeated: you choose."
+            },
+            {
+              "kind": "teach",
+              "id": "munada",
+              "title": "Five kinds of called one",
+              "ar": "المنادى خمسة أنواع: المفرد العلم، والنكرة المقصودة، والنكرة غير المقصودة، والمضاف، والشبيه بالمضاف.",
+              "en": "The munada is the one called with ya (\"O ...\"). Five kinds: a single proper name (Zayd); an intended indefinite (a particular man you face); an unintended indefinite (any man); a mudaf, a word joined to another (ya 'Abdallah); and one like a mudaf."
+            },
+            {
+              "kind": "teach",
+              "id": "munada-rule",
+              "title": "Damma or nasb",
+              "ar": "فأما المفرد العلم والنكرة المقصودة فيبنيان على الضم من غير تنوين، نحو: \"يا زيد\" و\"يا رجل\". والثلاثة الباقية منصوبة لا غير.",
+              "en": "The single name and the intended indefinite are fixed on damma with no tanwin: يا زيدُ, \"O Zayd\"; يا رجلُ, \"O man\" (to a man in front of you). The other three are mansub, nothing else."
+            },
+            {
+              "kind": "sort",
+              "id": "munada-sort",
+              "ask": "Damma or mansub?",
+              "into": [
+                "Fixed on damma",
+                "Mansub"
+              ],
+              "items": [
+                [
+                  "A single proper name, like يا زيد",
+                  "Fixed on damma"
+                ],
+                [
+                  "An intended indefinite, like يا رجل",
+                  "Fixed on damma"
+                ],
+                [
+                  "An unintended indefinite",
+                  "Mansub"
+                ],
+                [
+                  "A mudaf (joined word)",
+                  "Mansub"
+                ],
+                [
+                  "A word like a mudaf",
+                  "Mansub"
+                ]
+              ],
+              "source": [
+                "فأما المفرد العلم والنكرة المقصودة فيبنيان على الضم من غير تنوين",
+                "والثلاثة الباقية منصوبة لا غير."
+              ],
+              "why": "Two kinds are fixed on damma. The remaining three are mansub."
+            },
+            {
+              "kind": "choose",
+              "id": "man-case",
+              "ask": "Ali calls to a particular man standing in front of him: \"O man!\" How is رجل read?",
+              "options": [
+                "يا رجلُ: damma, no tanwin",
+                "يا رجلًا: mansub",
+                "يا رجلٌ: with tanwin"
+              ],
+              "answer": 0,
+              "source": "والنكرة المقصودة فيبنيان على الضم من غير تنوين، نحو: \"يا زيد\" و\"يا رجل\"",
+              "why": "A particular man he means is an intended indefinite, fixed on damma with no tanwin."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "How many kinds of munada are mansub, and nothing else?",
+              "options": [
+                "Three",
+                "Two",
+                "Five"
+              ],
+              "answer": 0,
+              "source": "والثلاثة الباقية منصوبة لا غير.",
+              "why": "Of the five kinds, two are fixed on damma and the remaining three are mansub."
+            }
+          ]
+        },
+        {
+          "id": "ajr-accusative-reason-with",
+          "title": "For the sake of, and along with",
+          "arabic": "المفعول من أجله والمفعول معه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "reason",
+              "title": "The reason-object",
+              "ar": "وهو: الاسم المنصوب الذي يذكر بيانا لسبب وقوع الفعل، نحو قولك: \"قام زيد إجلالا لعمرو\" و\"قصدتك ابتغاء معروفك\".",
+              "en": "The maf'ul li-ajlih (reason-object) is the mansub noun mentioned to give the reason the action happened: قام زيد إجلالًا لعمرو, \"Zayd stood out of respect for 'Amr\"; قصدتك ابتغاء معروفك, \"I came to you seeking your kindness\"."
+            },
+            {
+              "kind": "choose",
+              "id": "reason-gap",
+              "ask": "Which word completes it?",
+              "ar": "\"قام زيد ____ لعمرو\"",
+              "options": [
+                "إجلالا",
+                "إجلال",
+                "الإجلال"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "\"قام زيد إجلالا لعمرو\"",
+              "why": "The reason-object is mansub: إجلالًا, \"out of respect\"."
+            },
+            {
+              "kind": "choose",
+              "id": "seek-case",
+              "ask": "In قصدتك ابتغاء معروفك, why is ابتغاء mansub?",
+              "options": [
+                "It gives the reason for coming",
+                "It is a word of time",
+                "It is a hal"
+              ],
+              "answer": 0,
+              "source": "و\"قصدتك ابتغاء معروفك\"",
+              "why": "\"Seeking your kindness\" is why I came to you, so it is the reason-object."
+            },
+            {
+              "kind": "teach",
+              "id": "with",
+              "title": "The with-object",
+              "ar": "وهو: الاسم المنصوب الذي يذكر لبيان من فعل معه الفعل، نحو قولك: \"جاء الأمير والجيش\" و\"استوى الماء والخشبة\".",
+              "en": "The maf'ul ma'ahu (with-object) is the mansub noun mentioned to show who or what the action was done along with: جاء الأميرُ والجيشَ, \"the commander came along with the army\"; استوى الماءُ والخشبةَ, \"the water rose level with the post\". The wa here means \"with\"."
+            },
+            {
+              "kind": "choose",
+              "id": "with-gap",
+              "ask": "Which word completes it?",
+              "ar": "\"استوى الماء ____\"",
+              "options": [
+                "والخشبة",
+                "في الخشبة",
+                "الخشبة"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "\"استوى الماء والخشبة\"",
+              "why": "The with-object comes after a wa meaning \"with\": والخشبةَ."
+            },
+            {
+              "kind": "choose",
+              "id": "army-case",
+              "ask": "In جاء الأمير والجيش, why is الجيش mansub?",
+              "options": [
+                "It is the with-object: the commander came with the army",
+                "It is joined ('atf) to الأمير",
+                "It is the object of جاء"
+              ],
+              "answer": 0,
+              "source": "\"جاء الأمير والجيش\"",
+              "why": "The book gives it as a with-object, which is mansub. A word joined to الأمير by 'atf would be raised like him."
+            },
+            {
+              "kind": "teach",
+              "id": "covered",
+              "title": "Already covered",
+              "ar": "وأما خبر \"كان\" وأخواتها، واسم \"إن\" وأخواتها، فقد تقدم ذكرهما في المرفوعات، وكذلك التوابع فقد تقدمت هناك.",
+              "en": "The khabar of kana and the noun of inna were already explained with the raised nouns, and so were the followers."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Which accusative is it?",
+              "into": [
+                "Reason",
+                "With",
+                "State (hal)"
+              ],
+              "items": [
+                [
+                  "إجلالا in قام زيد إجلالا لعمرو",
+                  "Reason"
+                ],
+                [
+                  "ابتغاء in قصدتك ابتغاء معروفك",
+                  "Reason"
+                ],
+                [
+                  "والجيش in جاء الأمير والجيش",
+                  "With"
+                ],
+                [
+                  "والخشبة in استوى الماء والخشبة",
+                  "With"
+                ],
+                [
+                  "راكبا in جاء زيد راكبا",
+                  "State (hal)"
+                ],
+                [
+                  "مسرجا in ركبت الفرس مسرجا",
+                  "State (hal)"
+                ]
+              ],
+              "source": [
+                "الذي يذكر بيانا لسبب وقوع الفعل",
+                "الذي يذكر لبيان من فعل معه الفعل",
+                "نحو قولك: \"جاء زيد راكبا\" و\"ركبت الفرس مسرجا\""
+              ],
+              "why": "Respect and seeking give reasons. The army and the post are \"with\". Riding and saddled tell the state."
+            },
+            {
+              "kind": "choose",
+              "id": "inna-case",
+              "ask": "In إن زيدا قائم, which word is in the accusative list?",
+              "options": [
+                "زيدا: the noun of inna",
+                "قائم: the khabar of inna",
+                "Both"
+              ],
+              "answer": 0,
+              "source": [
+                "واسم إن وأخواتها.",
+                "وأما خبر \"كان\" وأخواتها، واسم \"إن\" وأخواتها"
+              ],
+              "why": "The noun of inna is among the fifteen accusatives. Its khabar stays raised."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which of these are among the accusative nouns?",
+              "options": [
+                {
+                  "text": "The reason-object",
+                  "right": true
+                },
+                {
+                  "text": "The with-object",
+                  "right": true
+                },
+                {
+                  "text": "The khabar of kana",
+                  "right": true
+                },
+                {
+                  "text": "The munada",
+                  "right": true
+                },
+                {
+                  "text": "The fa'il"
+                },
+                {
+                  "text": "The mubtada'"
+                }
+              ],
+              "source": "والمنادى، والمفعول من أجله، والمفعول معه، وخبر كان وأخواتها",
+              "why": "These four are in the list of fifteen. The doer and the subject are raised nouns."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ajr-genitive",
+      "title": "The genitive nouns",
+      "arabic": "المخفوضات من الأسماء",
+      "kitab": "باب المخفوضات من الأسماء",
+      "kitabs": [
+        "باب المخفوضات من الأسماء"
+      ],
+      "whole": true,
+      "lessons": [
+        {
+          "id": "ajr-genitive-all",
+          "title": "The genitive nouns",
+          "arabic": "باب المخفوضات من الأسماء",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three kinds",
+              "ar": "مخفوض بالحرف، ومخفوض بالإضافة، وتابع للمخفوض.",
+              "en": "Makhfud (genitive) nouns are of three kinds: made genitive by a particle, made genitive by idafa (a noun joined to the noun before it), and a follower of a genitive word."
+            },
+            {
+              "kind": "teach",
+              "id": "particle",
+              "title": "By a particle",
+              "ar": "فأما المخفوض بالحرف فهو: ما يخفض بمن، وإلى، وعن، وعلى، وفي، ورب، والباء، والكاف، واللام، وبحروف القسم، وهي: الواو، والباء، والتاء، وبواو رب، وبمذ، ومنذ.",
+              "en": "Made genitive by a particle: after min (from), ila (to), 'an (away from), 'ala (on), fi (in), rubba (many a), bi (with), ka (like), li (for); the oath letters wa, bi and ta; the waw of rubba; and mudh and mundhu (since)."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Which of these make the next noun genitive?",
+              "options": [
+                {
+                  "text": "من (from)",
+                  "right": true
+                },
+                {
+                  "text": "في (in)",
+                  "right": true
+                },
+                {
+                  "text": "منذ (since)",
+                  "right": true
+                },
+                {
+                  "text": "The waw of an oath",
+                  "right": true
+                },
+                {
+                  "text": "لن (will not)"
+                },
+                {
+                  "text": "لم (did not)"
+                }
+              ],
+              "source": "ما يخفض بمن، وإلى، وعن، وعلى، وفي",
+              "why": "Min, fi, mundhu and the oath waw make a noun genitive. Lan and lam work on verbs."
+            },
+            {
+              "kind": "choose",
+              "id": "ila-gap",
+              "ask": "Which word completes it?",
+              "ar": "فأما المخفوض بالحرف فهو: ما يخفض بمن، ____، وعن",
+              "options": [
+                "وإلى",
+                "ولن",
+                "وقد"
+              ],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "فأما المخفوض بالحرف فهو: ما يخفض بمن، وإلى، وعن",
+              "why": "Ila (\"to\") is the second of the genitive particles. Lan and qad come before verbs."
+            },
+            {
+              "kind": "teach",
+              "id": "idafa",
+              "title": "By idafa",
+              "ar": "وأما ما يخفض بالإضافة , فنحو قولك: \"غلام زيد\" وهو على قسمين: ما يقدر باللام، وما يقدر بمن، فالذي يقدر باللام، نحو: \"غلام زيد\"",
+              "en": "Made genitive by idafa: غلامُ زيدٍ, \"Zayd's ghulam (servant boy)\". Zayd is genitive. It has two kinds: one where li (\"belonging to\") is understood, as in غلام زيد, the boy belonging to Zayd; and one where min (\"made of\") is understood."
+            },
+            {
+              "kind": "teach",
+              "id": "min",
+              "title": "With min understood",
+              "ar": "والذي يقدر بمن، نحو: \"ثوب خز\" و\"باب ساج\" و\"خاتم حديد\". تم بحمد الله",
+              "en": "With min understood: ثوبُ خزٍّ, \"a garment of khazz (silk mixed with wool)\"; بابُ ساجٍ, \"a door of teak\"; خاتمُ حديدٍ, \"a ring of iron\". And there the book ends: \"Complete, with praise to Allah.\""
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Why is it genitive?",
+              "into": [
+                "After a particle",
+                "By idafa",
+                "As a follower"
+              ],
+              "items": [
+                [
+                  "زيد in مررت بزيد",
+                  "After a particle"
+                ],
+                [
+                  "الدار in زيد في الدار",
+                  "After a particle"
+                ],
+                [
+                  "زيد in غلام زيد",
+                  "By idafa"
+                ],
+                [
+                  "حديد in خاتم حديد",
+                  "By idafa"
+                ],
+                [
+                  "العاقل in مررت بزيد العاقل",
+                  "As a follower"
+                ],
+                [
+                  "عمرو in مررت بزيد وعمرو",
+                  "As a follower"
+                ]
+              ],
+              "source": [
+                "... باب المخفوضات الأسماء المخفوضات ثلاثة أنواع",
+                "مخفوض بالحرف، ومخفوض بالإضافة، وتابع للمخفوض."
+              ],
+              "why": "بِ and في are particles of khafd. زيد and حديد are the second noun of an idafa. العاقل and عمرو follow a genitive word (a na't and an 'atf)."
+            },
+            {
+              "kind": "choose",
+              "id": "ring-case",
+              "ask": "Hamid has a ring made of iron: خاتم حديد. What is understood between the two words?",
+              "options": [
+                "Min: a ring of iron",
+                "Li: a ring belonging to iron",
+                "Fi: a ring in iron"
+              ],
+              "answer": 0,
+              "source": "والذي يقدر بمن، نحو: \"ثوب خز\" و\"باب ساج\" و\"خاتم حديد\"",
+              "why": "The ring is made of iron, so min is understood."
+            },
+            {
+              "kind": "choose",
+              "id": "boy-case",
+              "ask": "In غلام زيد, which word is genitive, and why?",
+              "options": [
+                "زيد, by idafa",
+                "غلام, by idafa",
+                "زيد, after a particle"
+              ],
+              "answer": 0,
+              "source": "وأما ما يخفض بالإضافة , فنحو قولك: \"غلام زيد\"",
+              "why": "The second noun of an idafa is genitive: غلامُ زيدٍ. No particle comes before Zayd."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "In مررت بزيد العاقل, why is العاقل genitive?",
+              "options": [
+                "It follows a genitive word",
+                "A particle comes right before it",
+                "It is in idafa with Zayd"
+              ],
+              "answer": 0,
+              "source": "وتابع للمخفوض.",
+              "why": "Zayd is genitive after بِ, and العاقل, his describing word, follows him."
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
