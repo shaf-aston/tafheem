@@ -15,8 +15,14 @@ describe('quiz', () => {
       expect(found.length).toBeGreaterThan(1)
       return found
     }, { timeout: 3000 })
+    // The way on is held in place before there is an answer, so arriving it
+    // does not push the card's last row down.
+    const next = screen.getByRole('button', { name: /Next word/, hidden: true })
+    expect(next.disabled).toBe(true)
     fireEvent.click(options[0])
     expect(await screen.findByText(/^(Correct|Not this)$/)).toBeTruthy()
     expect(options.every((option) => option.disabled)).toBe(true)
+    expect(screen.getByRole('button', { name: /Next word/ })).toBe(next)
+    expect(next.disabled).toBe(false)
   })
 })

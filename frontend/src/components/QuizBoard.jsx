@@ -139,9 +139,10 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
 
       {/* One row under the answers, always there so the card never changes
           height: what the word meant on the left, auto-advance and the way
-          on at the right. */}
-      <div className="flex items-center justify-between gap-3 flex-wrap min-h-9">
-        <div aria-live="polite">
+          on at the right. A phone has no room for both on one line, so there
+          the meaning goes under the button, which then stays where it is. */}
+      <div className="flex items-start justify-between gap-3 flex-wrap min-h-9">
+        <div aria-live="polite" className="flex-1 min-w-0 max-sm:order-last max-sm:basis-full">
           {answered && (
             <p className="text-sm" style={{ color: correct ? 'var(--success)' : 'var(--danger)' }}>
               {/* A right answer already says so on the option it was; the
@@ -177,29 +178,30 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
         </div>
         <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-2 ms-auto max-w-full">
           <AutoAdvanceToggle value={autoNext} onChange={setAutoNext} accent={accent} say={say} />
-          {answered && (
-            <button
-              type="button"
-              ref={nextButton}
-              onClick={next}
-              style={{ background: accent, color: 'var(--bg)', '--c': accent }}
-              className="flex items-center gap-2 ps-5 pe-3 py-2 rounded-[var(--radius-md)] whitespace-nowrap
-                text-sm font-semibold glow hover:brightness-110 active:translate-y-px
-                transition-[filter,transform]"
+          {/* Held in place, unseen, until there is an answer: appearing, it
+              used to wrap the row and push everything under it down. */}
+          <button
+            type="button"
+            ref={nextButton}
+            onClick={next}
+            disabled={!answered}
+            style={{ background: accent, color: 'var(--bg)', '--c': accent }}
+            className={`flex items-center gap-2 ps-5 pe-3 py-2 rounded-[var(--radius-md)] whitespace-nowrap
+              text-sm font-semibold glow hover:brightness-110 active:translate-y-px
+              transition-[filter,transform] ${answered ? '' : 'invisible'}`}
+          >
+            {say(past ? 'Back to the question' : 'Next word')}
+            {/* The key printed on the button it fires, so the shortcut is
+                learnt where it is used rather than from a line of hints.
+                Not on a touch screen: a phone has no Enter key. */}
+            <kbd
+              aria-hidden="true"
+              className="pointer-coarse:hidden px-1.5 py-0.5 rounded type-tiny font-semibold leading-none
+                bg-[var(--bg)]/25 border border-current/30"
             >
-              {say(past ? 'Back to the question' : 'Next word')}
-              {/* The key printed on the button it fires, so the shortcut is
-                  learnt where it is used rather than from a line of hints.
-                  Not on a touch screen: a phone has no Enter key. */}
-              <kbd
-                aria-hidden="true"
-                className="pointer-coarse:hidden px-1.5 py-0.5 rounded type-tiny font-semibold leading-none
-                  bg-[var(--bg)]/25 border border-current/30"
-              >
-                Enter ↵
-              </kbd>
-            </button>
-          )}
+              Enter ↵
+            </kbd>
+          </button>
         </div>
       </div>
 
