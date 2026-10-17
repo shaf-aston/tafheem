@@ -69,8 +69,9 @@ TESTED = 600  # clips per test group at most: 3,000 held clips heard twice would
 EPOCHS = 2  # 18,000 clips: two passes is already ten times the steps four passes over 45 ayahs took
 TARTEEL_V1 = 'tarteel-v1'
 CHAMPION = 'shafTheG/quran-ear'  # the served ear, its newest upload; cloud.py --ship uploads a win here
-# Pilot knobs. A full run takes every learner clip; the pilot a quarter of them.
-LEARNER_SHARE = 0.25  # share of learner clips kept, picked before decoding
+# A pilot takes a quarter of the learner clips (0.25): a quarter-size run ended 6 points behind
+# the served ear on new ayahs, 2026-10-17, so a run meant to ship takes them all.
+LEARNER_SHARE = 1.0  # share of learner clips kept, picked before decoding
 # Training clips are changed on the fly, test clips never (recipe: Muno459/zipformer_p-arabic-v2 card).
 NOISE_SET = 'obadx/freesound-commercial-50k-noise-only'  # per-clip CC0 / CC-BY
 NOISE_SHARDS = 1  # of 104 files, 265 clips and half a gigabyte each
@@ -84,8 +85,8 @@ RIR_MAX_S = 1.0  # seconds of a room's tail kept
 SPEEDS = (0.9, 1.0, 1.1)  # one drawn per clip
 # Tadabur: 384k ayahs by 600+ reciters, 938 GB, CC BY-NC 4.0. Only a few files are read.
 TADABUR = 'FaisaI/tadabur'
-TADABUR_SHARDS = 3  # of ~390 files, 1,000 ayahs and 2.4 GB each, spread evenly
-TADABUR_SHARE = 0.25  # of the training clips of the pilot
+TADABUR_SHARDS = 8  # of ~390 files, 1,000 ayahs and 2.4 GB each, spread evenly; 3 gave 2,796 usable
+TADABUR_SHARE = 0.25  # of the training clips
 TADABUR_HELD = 40  # whole reciters never trained on
 TADABUR_TEST = 300  # clips of those reciters, at most
 TADABUR_SURAH_BASE = 1  # its surah_id counts from 0; checked against the printed ayah text
@@ -382,8 +383,9 @@ model.generation_config.task = 'transcribe'
 model.generation_config.forced_decoder_ids = None
 
 # Marks off both sides: this measures letters. A stop changes the last vowel by rule,
-# and vowels are the sureness check's job, a different model run.
-MARKS = re.compile('[ً-ْٰ]')
+# and vowels are the sureness check's job, a different model run. Pause signs (ۖ ۗ ۚ) too:
+# printed apart, each was counted as a word, so a pause sign heard or not cost a whole word.
+MARKS = re.compile('[ً-ْٰۖ-ۭ]')
 
 
 def bare(text):
