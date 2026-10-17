@@ -18,7 +18,8 @@ import { useRail } from '../lib/useRail'
 
 import Tooltip from './ui/Tooltip'
 
-const NAME_COLUMN = '11rem'
+// the gutter for each row's "= name", in the name's own size, so it grows with the text
+const NAME_COLUMN = 'calc(var(--arabic-reading-rem) * 9rem)'
 // Rows of names shown before the rest fold behind "more rows": every book example
 // fits in four; a long ayah's widest joins wait for a tap.
 const ROWS_SHOWN = 4
@@ -170,8 +171,6 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false 
   const hidden = hiddenWords(shown.tree)
   // each word's underline in its own name's colour, so the eye pairs them
   const tone = tones(shown.tree)
-  // the columns of a written word cut into pieces
-  const cut = new Set(spans.flatMap(({ from, to }) => (to > from ? Array.from({ length: to - from + 1 }, (_, k) => from + k) : [])))
   const goTo = (index) => {
     const view = strip.current
     const middle = along(view, view.querySelectorAll('.tk-word')[index])
@@ -209,8 +208,8 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false 
           ref={grid}
           className="tk-grid"
           style={{
-            // a piece of a written word, and an unwritten word tucked by its verb, take only the width they need
-            gridTemplateColumns: `${shown.words.map((_, index) => (cut.has(index) || hidden.has(index) ? 'max-content' : 'minmax(max-content, 1fr)')).join(' ')} ${NAME_COLUMN}`,
+            // every word takes only the width it needs, so a long sentence pages less
+            gridTemplateColumns: `repeat(${shown.words.length}, max-content) ${NAME_COLUMN}`,
           }}
         >
           {spans.map(({ from, to }) => {
