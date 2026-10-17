@@ -4,9 +4,9 @@
  * same reading. The picture is left out when nothing could be joined.
  */
 import { Fragment, useLayoutEffect, useRef, useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
-import { analyzeIraab, generatePractice } from '../../api'
+import { analyzeIraab, generatePractice, translateSentence } from '../../api'
 import { errorMessage, errorStatus } from '../../lib/apiError'
 import { buildIraabExportText } from '../../lib/iraabExport'
 import { caseLabel, isUnnamed } from '../../lib/grammarTerms'
@@ -20,6 +20,7 @@ import SourceBadge from '../ui/SourceBadge'
 import TarkeebFigure from '../TarkeebFigure'
 import TarkeebTools from '../TarkeebTools'
 import PracticePanel from './PracticePanel'
+import SentenceMeaning from '../dictionary/SentenceMeaning'
 import WordCard from '../WordCard'
 import ArabicText from '../ui/ArabicText'
 import BookPath from '../ui/BookPath'
@@ -104,6 +105,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
           <AnalysisResults
             data={analyze.data}
             accent={accent}
+            onGo={onGo}
             onWordClick={setSelectedWord}
             picked={analyze.data.words.indexOf(selectedWord)}
             practice={practice}
@@ -128,7 +130,7 @@ function AnalyzeError({ error, onRetry }) {
 
 // `detail` is the opened word's card, drawn right under the grid it was
 // tapped in rather than after the practice block, where a tap looked ignored.
-function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }) {
+function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, detail }) {
   const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
   const linked = data.words.some((w) => source(w) !== undefined)
   const governs = linked && lens === 'governs'
@@ -155,8 +157,9 @@ function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }
       {data.tree && (
         // An ayah drawn from its record carries the words the book supplies,
         // (هُوَ) or an elided khabar, and the mark it writes them with.
-        <TarkeebFigure tarkeeb={data.tree} view={view} />
+        <TarkeebFigure tarkeeb={data.tree} view={view} onWord={onGo && ((w) => onGo('dict', w))} />
       )}
+      <EnglishMeaning sentence={data.sentence} accent={accent} onGo={onGo} />
       <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked}
         corner={linked && (
           <FlagButton value={governs} onChange={(on) => setLens(on ? 'governs' : 'roles')} accent={accent}
@@ -174,6 +177,25 @@ function AnalysisResults({ data, accent, onWordClick, picked, practice, detail }
       <FullIraabTable words={data.words} onRowClick={onWordClick} />
       <PracticePanel practice={practice} sentence={data.sentence} accent={accent} />
     </div>
+  )
+}
+
+// The sentence in English, asked of the dictionary as soon as it is analysed:
+// the same answer the Dictionary tab gives a sentence, each word a way into its entry.
+function EnglishMeaning({ sentence, accent, onGo }) {
+  const meaning = useQuery({
+    queryKey: ['dictionary-sentence', sentence],
+    queryFn: () => translateSentence(sentence),
+    enabled: Boolean(sentence),
+    staleTime: Infinity,
+  })
+  if (!meaning.data?.words) return null
+  return (
+    <section aria-label="English meaning" className="rise-in">
+      <h3 className="text-sm text-[var(--text-dim)] mb-2">In English</h3>
+      <SentenceMeaning data={meaning.data} accent={accent} onGo={onGo}
+        onLookup={(w) => onGo?.('dict', w)} />
+    </section>
   )
 }
 
