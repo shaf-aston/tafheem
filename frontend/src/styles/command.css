@@ -565,7 +565,7 @@
 
 
 .sh-hint {
-  color: var(--text-faint);
+  color: var(--command-hint);
   font-size: var(--type-small);
 }
 
