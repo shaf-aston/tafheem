@@ -187,9 +187,8 @@ class Listening(BaseSettings):
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
     # Empty means no trial offered. Loaded like recitation_model; a learner's "Trial" listening hears
     # and checks with it alone. Set by scripts/finetune_ear/cloud.py --ship, which prints the line to put here.
-    recitation_trial_model: str = ""
-    # Reads the private tuned-ear repo on Hugging Face; empty is enough for public models.
-    recitation_hf_token: SecretStr = SecretStr("")
+    # v13, kept 2026-10-04: words wrong on new voices 24.0 -> 15.6, new ayahs 24.2 -> 18.0, professionals 5.0 -> 4.3.
+    recitation_trial_model: str = "shafTheG/quran-ear@c0df8677a0f0175053ffb95fe69adc590c5ceb5f"
     # Search boxes are dictation, and the Qur'an model knows no other words:
     # "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ, "mercy" as مَسْكُوبُ, where base heard both.
     # A recording is a recitation only when its language is asked for by name.

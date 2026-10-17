@@ -2,7 +2,7 @@
 
     python backend/scripts/finetune_ear/cloud.py          send this folder, wait, fetch the result
     python backend/scripts/finetune_ear/cloud.py --fetch  fetch the last run's result only
-    python backend/scripts/finetune_ear/cloud.py --ship   upload a kept ear-tuned/ to Hugging Face, privately
+    python backend/scripts/finetune_ear/cloud.py --ship   upload a kept ear-tuned/ to Hugging Face
 
 Needs the Kaggle CLI signed in (`kaggle` reads ~/.kaggle). Watch a run live at
 https://www.kaggle.com/code/<id in kernel-metadata.json>. The result lands in
@@ -20,7 +20,7 @@ from pathlib import Path
 HERE = Path(__file__).parent
 KERNEL = json.loads((HERE / 'kernel-metadata.json').read_text())['id']
 LANDS = HERE.parents[1] / 'data' / 'models' / 'finetune-ear'
-REPO = 'quran-ear'  # private, under the signed-in Hugging Face account
+REPO = 'quran-ear'  # public, under the signed-in Hugging Face account, so a server needs no key
 EVERY = 60  # seconds between status checks
 ENDED = ('COMPLETE', 'ERROR', 'CANCEL')
 # Without these the CLI writes the Arabic log in Windows' own code page and fails half way.
@@ -38,7 +38,7 @@ def ship():
     if not verdict['keep']:
         sys.exit('verdict.json says not to keep this ear, so nothing is uploaded')
     hub = HfApi()
-    repo = hub.create_repo(f"{hub.whoami()['name']}/{REPO}", private=True, exist_ok=True).repo_id
+    repo = hub.create_repo(f"{hub.whoami()['name']}/{REPO}", private=False, exist_ok=True).repo_id
     done = hub.upload_folder(repo_id=repo, folder_path=LANDS / 'ear-tuned', commit_message=
                              f"words wrong before {verdict['before']}, after {verdict['after']}")
     print(f'RECITATION_TRIAL_MODEL={repo}@{done.oid}')
