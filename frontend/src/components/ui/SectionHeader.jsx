@@ -15,7 +15,7 @@ import Trail from './Trail'
 
 export default function SectionHeader({ title, arabic, subtitle, aside = null, nameOf }) {
   return (
-    <div className="fade-in">
+    <div>
       <div className="flex items-baseline justify-between gap-4 flex-wrap">
         <div className="flex items-baseline gap-2 flex-wrap">
           {/* No leading at all on the title, so the line box holds the letters
