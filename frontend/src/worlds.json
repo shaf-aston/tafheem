@@ -1,5 +1,5 @@
 {
-  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `path` = the step map (PathWorld fed by lib/usePathRecord.js), `book` = BookWorld (a book's parts, then a part's lessons) from `source` (lib/useBookWorld.js), answers filed under `module`, whose levels are the world's `levels` when it has them (same shape as grow.json `tiers`), else grow.json's. `backdrop` (optional) names a picture in public/grow/backdrops/manifest.json to fade in behind the world's screen (components/grow/Backdrop.jsx); lib/backdrops.test.js checks it exists. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
+  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `book` = BookWorld (a book's parts, then a part's lessons) from `source` (lib/useBookWorld.js), answers filed under `module`. `backdrop` (optional) names a picture in public/grow/backdrops/manifest.json to fade in behind the world's screen (components/grow/Backdrop.jsx); lib/backdrops.test.js checks it exists. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
   "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called. `surahs` (Quran): the surahs the items come from, in order.",
   "worlds": [
     {
@@ -23,16 +23,7 @@
       "live": true,
       "kind": "book",
       "source": "/grow/quduri.json",
-      "module": "quduri"
-    },
-    {
-      "id": "prayer",
-      "name": "Prayer",
-      "arabic": "صلاة",
-      "scene": "The Courtyard",
-      "idea": "What you say in prayer, said right, step by step.",
-      "live": true,
-      "kind": "path",
+      "module": "quduri",
       "backdrop": "courtyard"
     },
     {
@@ -46,8 +37,8 @@
       "view": "sky",
       "unit": "ayat",
       "lesson": { "new": 2, "most-new": 3, "size": 6 },
-      "surahs": [1, 112, 113, 114, 103, 108, 110, 109, 107, 106, 105],
-      "stages": [7, 15, 25, 40, 53]
+      "surahs": [1, 112, 113, 114, 103, 108, 110, 109, 107, 106, 105, 97, 94, 95, 93, 99, 100, 88, 87, 67],
+      "stages": [7, 15, 25, 40, 53, 80, 120, 179]
     },
     {
       "id": "hadith",

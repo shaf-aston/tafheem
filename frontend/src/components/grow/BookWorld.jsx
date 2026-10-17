@@ -8,6 +8,7 @@ import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'
 import PrimaryButton from '../ui/PrimaryButton'
 import { Skeleton } from '../ui/Skeleton'
+import Backdrop from './Backdrop'
 import WorldHeader from './WorldHeader'
 
 const say = sayIn('en')
@@ -82,7 +83,8 @@ export default function BookWorld({ world, accent, state: book, part: partId, on
   const part = book.parts.find((one) => one.id === partId && one.lessons.length)
   const loading = !book.ready && !book.error
   return (
-    <div style={{ '--w': accent }}>
+    <div className="grow-world" style={{ '--w': accent }}>
+      <Backdrop id={world.backdrop} />
       {part
         ? <WorldHeader world={{ scene: part.kitab, name: part.title, arabic: part.arabic, idea: world.name }} back={world.name} onBack={() => onPart(null)} />
         : <WorldHeader world={world} onBack={onBack} />}
