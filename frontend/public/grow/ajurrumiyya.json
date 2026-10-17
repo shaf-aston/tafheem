@@ -1,0 +1,15 @@
+{
+  "_comment": "Grow's Nahw world: al-Ajurrumiyya, part by part (a few babs each), lesson by lesson. Hand-written. Every `ar` and `source` is the book's own words, from backend/data/books/openiti/<file>; src/lib/bookLesson.test.js checks each, and that a `whole` part quotes every paragraph of its babs (`kitabs`, the book's headings). `en` and `why` are our English.",
+  "_cards": "teach {title, ar, en} · choose {ask, ar?, options, answer: index, arabic-options?, source, why} — an `ar` with ____ is a gap the answer fills · pick {ask, options: [{text, right?}], source, why} · sort {ask, into, items: [[text, bucket]], source, why} · order {ask, steps (in the right order), source, why}. `source` may be one quote or a list.",
+  "book": "al-Ajurrumiyya",
+  "author": "Ibn Ajurrum (d. 723 AH)",
+  "madhhab": "Basran grammar",
+  "file": "0723IbnAjrum.Ajrumiyya.Shamela0011371-ara1",
+  "parts": [
+    {"id": "ajr-words", "title": "Words and endings", "arabic": "الكلام والإعراب", "kitab": "مدخل", "kitabs": ["مدخل", "باب الإعراب", "باب معرفة علامات الإعراب", "باب الأفعال"], "lessons": []},
+    {"id": "ajr-raised", "title": "The raised nouns", "arabic": "مرفوعات الأسماء", "kitab": "باب مرفوعات الأسماء", "kitabs": ["باب مرفوعات الأسماء", "باب الفاعل", "باب المفعول الذي لم يسم فاعله", "باب المبتدأ والخبر", "باب العوامل الداخلة على المبتدأ والخبر"], "lessons": []},
+    {"id": "ajr-followers", "title": "The followers", "arabic": "التوابع", "kitab": "باب النعت", "kitabs": ["باب النعت", "باب العطف", "باب التوكيد", "[باب البدل]"], "lessons": []},
+    {"id": "ajr-accusative", "title": "The accusative nouns", "arabic": "منصوبات الأسماء", "kitab": "باب منصوبات الأسماء", "kitabs": ["باب منصوبات الأسماء", "باب المفعول به", "باب المصدر", "باب ظرف الزمان وظرف المكان", "باب الحال", "باب التمييز", "باب الاستثناء", "باب لا", "باب المنادى", "باب المفعول من أجله", "باب المفعول معه"], "lessons": []},
+    {"id": "ajr-genitive", "title": "The genitive nouns", "arabic": "المخفوضات من الأسماء", "kitab": "باب المخفوضات من الأسماء", "kitabs": ["باب المخفوضات من الأسماء"], "lessons": []}
+  ]
+}

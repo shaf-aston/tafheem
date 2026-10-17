@@ -2,18 +2,31 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
-import book from '../../public/grow/quduri.json'
+import worlds from '../worlds.json'
 import { cardOf, lessonCards, lessonsOf, partsOf, reviewCards, statusOf } from './bookLesson'
 
-const BOOK = readFileSync(join(import.meta.dirname, '../../../backend/data/books/openiti', book.file), 'utf8')
+const PUBLIC = join(import.meta.dirname, '../../public')
+const OPENITI = join(import.meta.dirname, '../../../backend/data/books/openiti')
+// Every book world's lessons, beside the book file they quote.
+const BOOKS = worlds.worlds.filter((world) => world.kind === 'book').map((world) => {
+  const book = JSON.parse(readFileSync(join(PUBLIC, world.source), 'utf8'))
+  return { world, book, lines: readFileSync(join(OPENITI, book.file), 'utf8').split('\n') }
+})
 
-// A Kitab's paragraphs as the reader sees them: a `# ` line and its `~~` continuations, page and manuscript marks gone.
-function paragraphsOf(kitab) {
-  const lines = BOOK.split('\n')
-  const start = lines.findIndex((line) => line.startsWith('### | ') && line.endsWith(kitab))
+// A section heading's name: the text after `### | `, without the file's "AUTO 3 - " numbering or manuscript marks.
+const headingOf = (line) => line.slice(6).replace(/^AUTO \d+ - /, '').replace(/\s*ms\d+/g, '').trim()
+const isHeading = (line) => line.startsWith('### | ')
+
+/**
+ * A section's paragraphs as the reader sees them: each `# ` line and its `~~` continuations, page and manuscript marks
+ * gone, up to the next heading. A heading the book `continues` past (a commentary's own break) does not end it.
+ */
+function paragraphsOf({ book, lines }, kitab) {
+  const start = lines.findIndex((line) => isHeading(line) && headingOf(line) === kitab)
+  if (start < 0) return []
   const paragraphs = []
   for (const line of lines.slice(start + 1)) {
-    if (line.startsWith('### | ')) break
+    if (isHeading(line) && !(book.continues ?? []).includes(headingOf(line))) break
     if (line.startsWith('# ')) paragraphs.push(line.slice(2))
     else if (line.startsWith('~~') && paragraphs.length) paragraphs[paragraphs.length - 1] += ` ${line.slice(2)}`
   }
@@ -26,13 +39,15 @@ function quotesOf(card) {
   return quotes.map((quote) => (quote.includes('____') ? quote.replace('____', card.options[card.answer]) : quote))
 }
 
-// A part's Kitabs: most are one, a few join small ones.
+// A part's sections: most are one Kitab or bab, some join a few.
 const kitabsOf = (part) => part.kitabs ?? [part.kitab]
-const partText = (part) => kitabsOf(part).flatMap(paragraphsOf)
 
 const seq = (...values) => { let i = 0; return () => values[i++ % values.length] }
 
-describe('the Quduri lessons', () => {
+describe.each(BOOKS)('the $book.book lessons', (source) => {
+  const { book, lines } = source
+  const partText = (part) => kitabsOf(part).flatMap((kitab) => paragraphsOf(source, kitab))
+
   for (const part of book.parts.filter((one) => one.lessons.length)) {
     const text = partText(part).join(' ')
 
@@ -65,12 +80,14 @@ describe('the Quduri lessons', () => {
     }
   }
 
-  it('gives every Kitab of the book to exactly one part, and every part to exactly one area', () => {
-    const kitabs = BOOK.split('\n').filter((line) => line.startsWith('### | ')).map((line) => line.split(' - ').pop())
-    const claimed = book.parts.flatMap(kitabsOf)
-    expect([...claimed].sort()).toEqual([...kitabs].sort())
-    const placed = book.areas.flatMap((area) => area.parts)
-    expect([...placed].sort()).toEqual(book.parts.map((part) => part.id).sort())
+  it('gives every section of the book to exactly one part, and every part to at most one area', () => {
+    const passed = [...(book.continues ?? []), ...(book.skip ?? [])]
+    const sections = lines.filter(isHeading).map(headingOf).filter((name) => !passed.includes(name))
+    expect([...book.parts.flatMap(kitabsOf)].sort()).toEqual([...sections].sort())
+    if (book.areas) {
+      const placed = book.areas.flatMap((area) => area.parts)
+      expect([...placed].sort()).toEqual(book.parts.map((part) => part.id).sort())
+    }
   })
 
   it('has unique lesson ids across the book and unique card ids in a lesson', () => {

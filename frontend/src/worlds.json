@@ -57,17 +57,23 @@
       "id": "sarf",
       "name": "Sarf",
       "arabic": "صرف",
-      "scene": "The Workshop",
-      "idea": "Build words from their roots and patterns.",
-      "live": false
+      "scene": "Marah al-Arwah",
+      "idea": "How Arabic builds its verbs and nouns, bab by bab: the sound verb, then each weak kind.",
+      "live": true,
+      "kind": "book",
+      "source": "/grow/marah.json",
+      "module": "marah"
     },
     {
       "id": "nahw",
       "name": "Nahw",
       "arabic": "نحو",
-      "scene": "The Market",
-      "idea": "Find who does what in a sentence.",
-      "live": false
+      "scene": "al-Ajurrumiyya",
+      "idea": "The first book of grammar: words, endings, and what raises, sets and pulls a noun.",
+      "live": true,
+      "kind": "book",
+      "source": "/grow/ajurrumiyya.json",
+      "module": "ajurrumiyya"
     }
   ]
 }

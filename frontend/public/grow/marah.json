@@ -1,0 +1,23 @@
+{
+  "_comment": "Grow's Sarf world: Marah al-Arwah, bab by bab, read through Dikunquz's commentary (the matn is quoted inside it). Hand-written. Every `ar` and `source` is the file's own words (backend/data/books/openiti/<file>); src/lib/bookLesson.test.js checks each, and that a `whole` part quotes every paragraph of its headings (`kitabs`). The commentary's own '[شرح ديكنقوز]' headings continue a section rather than end it (`continues`); `skip` lists headings not taught.",
+  "_cards": "teach {title, ar, en} · choose {ask, ar?, options, answer: index, arabic-options?, source, why} — an `ar` with ____ is a gap the answer fills · pick {ask, options: [{text, right?}], source, why} · sort {ask, into, items: [[text, bucket]], source, why} · order {ask, steps (in the right order), source, why}. `source` may be one quote or a list.",
+  "book": "Marah al-Arwah",
+  "author": "Ahmad ibn Ali ibn Mas'ud, with the commentary of Dikunquz (d. 855 AH)",
+  "madhhab": "Classical sarf",
+  "file": "0855ShamsDinDikunquz.SharhCalaMarahArwah.Shamela0023140-ara1",
+  "continues": [
+    "[شرح ديكنقوز]"
+  ],
+  "skip": [
+    "خطبة الكتاب"
+  ],
+  "parts": [
+    {"id": "marah-sahih", "title": "The sound verb", "arabic": "الصحيح", "kitab": "الباب الأول: في بيان بناء الصحيح", "kitabs": ["الباب الأول: في بيان بناء الصحيح", "فصل في بيان أمثلة الماضي", "فصل وتدخل المضمرات في الماضي وأخواته", "فصل في المستقبل", "\"فصل: في الأمر والنهي:", "فصل في اسم الفاعل", "فصل: في اسم المفعول", "\"فصل: في اسمي الزمان والمكان\":"], "lessons": []},
+    {"id": "marah-mudaaf", "title": "The doubled verb", "arabic": "المضاعف", "kitab": "الباب الثاني: في المضاعف", "kitabs": ["الباب الثاني: في المضاعف"], "lessons": []},
+    {"id": "marah-mahmuz", "title": "The hamzated verb", "arabic": "المهموز", "kitab": "الباب الثالث: في المهموز", "kitabs": ["الباب الثالث: في المهموز"], "lessons": []},
+    {"id": "marah-mithal", "title": "The weak first letter", "arabic": "المثال", "kitab": "الباب الرابع في المعتل", "kitabs": ["الباب الرابع في المعتل"], "lessons": []},
+    {"id": "marah-ajwaf", "title": "The hollow verb", "arabic": "الأجوف", "kitab": "الباب الخامس في الأجوف", "kitabs": ["الباب الخامس في الأجوف"], "lessons": []},
+    {"id": "marah-naqis", "title": "The weak last letter", "arabic": "الناقص", "kitab": "الباب السادس في الناقص", "kitabs": ["الباب السادس في الناقص"], "lessons": []},
+    {"id": "marah-lafif", "title": "The doubly weak verb", "arabic": "اللفيف", "kitab": "الباب السابع في اللفيف", "kitabs": ["الباب السابع في اللفيف"], "lessons": []}
+  ]
+}
