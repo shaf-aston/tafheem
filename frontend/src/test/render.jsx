@@ -1,5 +1,5 @@
 /**
- * Render a whole screen in a test: a fresh query cache and a fake backend.
+ * Render a whole screen (or one hook) in a test: a fresh query cache and a fake backend.
  *
  * Every backend request goes through api.js's one axios client, so the fake
  * sits at its adapter and no api function is mocked one by one. `routes` maps
@@ -17,7 +17,7 @@ import { join } from 'node:path'
 import { afterEach } from 'vitest'
 import { AxiosError } from 'axios'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { cleanup, render } from '@testing-library/react'
+import { cleanup, render, renderHook } from '@testing-library/react'
 
 import { api } from '../api'
 
@@ -34,7 +34,8 @@ globalThis.fetch = async (input) => {
   }
 }
 
-export function renderScreen(ui, { routes = {} } = {}) {
+// A fresh query cache, and the axios adapter answering from `routes`.
+function fakeBackend(routes) {
   const client = new QueryClient({ defaultOptions: { queries: { retry: false }, mutations: { retry: false } } })
   const asked = []
   api.defaults.adapter = async (config) => {
@@ -48,6 +49,17 @@ export function renderScreen(ui, { routes = {} } = {}) {
     const data = typeof reply === 'function' ? reply(config) : reply
     return { status: 200, statusText: 'OK', data, headers: {}, config }
   }
-  const view = render(<QueryClientProvider client={client}>{ui}</QueryClientProvider>)
-  return { ...view, client, asked }
+  const wrapper = ({ children }) => <QueryClientProvider client={client}>{children}</QueryClientProvider>
+  return { client, asked, wrapper }
+}
+
+export function renderScreen(ui, { routes = {} } = {}) {
+  const { client, asked, wrapper } = fakeBackend(routes)
+  return { ...render(ui, { wrapper }), client, asked }
+}
+
+/** The same, for a hook on its own: `result.current` is what it returned. */
+export function renderWithBackend(hook, { routes = {}, initialProps } = {}) {
+  const { client, asked, wrapper } = fakeBackend(routes)
+  return { ...renderHook(hook, { wrapper, initialProps }), client, asked }
 }
