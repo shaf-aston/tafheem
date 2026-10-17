@@ -67,12 +67,12 @@ export default function LessonRunner({ cards: first, accent, rewards, onLeave })
         {result && (
           <p role="status" className="grow-lesson-say">
             {result === 'right'
-              ? say('Right!')
+              ? [say('Right!'), kind.because?.(card)].filter(Boolean).join(' ')
               : `${kind.correction(card)} ${say('It comes back at the end.')}`}
           </p>
         )}
         {asks && !result
-          ? <PrimaryButton accent={accent} disabled={!kind.ready(value)} onClick={check}>{say('Check')}</PrimaryButton>
+          ? <PrimaryButton accent={accent} disabled={!kind.ready(value, card)} onClick={check}>{say('Check')}</PrimaryButton>
           : <PrimaryButton accent={accent} onClick={next}>{say('Continue')}</PrimaryButton>}
       </div>
     </div>

@@ -93,12 +93,13 @@ const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.rev
 /** A next-step card's room while its world loads, so nothing below jumps when it lands. */
 const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
 
-/** Today's words lesson, then the next step in Hadith, Quran and Prayer. */
-function Today({ worldOf, lessons, prayer, onStart, onOpen }) {
+/** Today's words lesson, then the next step in Fiqh, Hadith, Quran and Prayer. */
+function Today({ worldOf, lessons, prayer, books, onStart, onStartBook, onOpen }) {
   const { words } = lessons
   const empty = words.ready && !words.fresh && !words.dueCount
   const hadith = nextOf(lessons.hadith)
   const ayah = nextOf(lessons.quran)
+  const { fiqh } = books
   return (
     <section className="grow-today" style={{ '--w': worldOf('words').accent }} aria-labelledby="grow-today-h">
       <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
@@ -110,6 +111,11 @@ function Today({ worldOf, lessons, prayer, onStart, onOpen }) {
         {empty ? say('Every word learnt and nothing due') : say('Start')}
       </PrimaryButton>
       <div className="grow-nexts">
+        {!fiqh.ready && <NextSlot />}
+        {fiqh.next && (
+          <NextStep world={worldOf('fiqh')} where={fiqh.parts.find((part) => part.id === fiqh.next.part)?.title} line={fiqh.next.title}
+            onGo={() => onStartBook('fiqh', fiqh.next.id, fiqh.next.part)} />
+        )}
         {!lessons.hadith.ready && <NextSlot />}
         {hadith && (
           <NextStep world={worldOf('hadith')} where={say('{n} of 42', { n: hadith.n })} line={hadith.key.en} onGo={() => onStart('hadith')} />
@@ -151,9 +157,18 @@ const stageStatus = (state) => (state.ready
   ? { status: say('Stage {n} · {into} of {need}', { n: state.stage.stage + 1, ...state.stage }), share: state.stage.into / state.stage.need }
   : { status: say('Loading…'), share: 0 })
 
-export default function GrowHome({ worlds, rewards, lessons, prayer, onOpen, onStart }) {
+/** A book world's tile: lessons finished of those written so far. */
+function bookStatus(state) {
+  if (!state.ready) return { status: say('Loading…'), share: 0 }
+  const total = state.parts.reduce((sum, part) => sum + part.lessons.length, 0)
+  const done = state.parts.reduce((sum, part) => sum + part.finished, 0)
+  return { status: say('{done} of {total} lessons', { done, total }), share: total ? done / total : 0 }
+}
+
+export default function GrowHome({ worlds, rewards, lessons, prayer, books, onOpen, onStart, onStartBook }) {
   const statusOf = {
     ...Object.fromEntries(Object.entries(lessons).map(([id, state]) => [id, stageStatus(state)])),
+    ...Object.fromEntries(Object.entries(books).map(([id, state]) => [id, bookStatus(state)])),
     prayer: prayer.done.total
       ? { status: say('{learnt} of {total} steps learnt', prayer.done), share: prayer.done.learnt / prayer.done.total }
       : { status: say('Loading…'), share: 0 },
@@ -164,7 +179,7 @@ export default function GrowHome({ worlds, rewards, lessons, prayer, onOpen, onS
       <SectionHeader title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')}
         aside={rewards ? null : <LogInNudge />} />
       <Growth rewards={rewards} />
-      <Today worldOf={worldOf} lessons={lessons} prayer={prayer} onStart={onStart} onOpen={onOpen} />
+      <Today worldOf={worldOf} lessons={lessons} prayer={prayer} books={books} onStart={onStart} onStartBook={onStartBook} onOpen={onOpen} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>
       <div className="grow-worlds">
         {worlds.map((world) => (

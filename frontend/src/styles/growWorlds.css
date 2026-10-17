@@ -169,3 +169,41 @@
 .grow-star[data-s='learning'] { fill: var(--sky-star-learning); }
 .grow-star[data-s='known'] { fill: var(--sky-star-on); filter: drop-shadow(0 0 2.5px var(--sky-star-on)); }
 @media (prefers-reduced-motion: reduce) { .grow-spine { transition: none; } }
+
+/* A book world (components/grow/BookWorld.jsx): the next lesson and review, then parts or lessons. */
+.grow-book { display: grid; gap: 16px; }
+.grow-book-next { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.grow-book-review { min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 2px solid var(--w); color: var(--w); background: var(--surface); font-weight: 700; }
+.grow-book-review:hover { background: color-mix(in srgb, var(--w) 12%, var(--surface)); }
+.grow-book-lessons { display: grid; gap: 8px; }
+.grow-book-lesson { width: 100%; grid-template-columns: 36px minmax(0, 1fr) auto; text-align: start; color: var(--text); cursor: pointer; transition: border-color calc(var(--motion-instant-ms) * 1ms) ease; }
+.grow-book-lesson:hover { border-color: var(--w); }
+.grow-book-lesson .grow-stage-text { display: grid; gap: 2px; min-width: 0; }
+.grow-book-lesson[data-s='started'] { border-color: var(--w); }
+.grow-book-lesson[data-s='started'] .grow-stage-dot { border: 2px solid var(--w); color: var(--w); }
+.grow-book-lesson[data-s='done'] .grow-stage-dot, .grow-book-lesson[data-s='learnt'] .grow-stage-dot { background: var(--w); color: var(--bg); }
+.grow-book-status { font-size: var(--type-micro); color: var(--text-dim); white-space: nowrap; }
+
+/* A book world's cards (components/grow/exercises): the book's sentence, sorting, ordering. */
+.grow-rule-title { font-size: var(--type-title); font-weight: 800; color: var(--text); }
+.grow-rule-ar { padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); line-height: 1.9; }
+.grow-rule-en { font-size: var(--type-body); line-height: 1.6; color: var(--text); }
+.grow-ask-strong { font-weight: 700; color: var(--text); }
+.grow-option-check { padding-inline-start: 44px; position: relative; }
+.grow-option-check::before { content: ''; position: absolute; inset-inline-start: 14px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 5px; border: 2px solid var(--border-hi); }
+.grow-option-check[aria-pressed='true']::before { background: var(--w); border-color: var(--w); }
+.grow-sort { display: grid; gap: 10px; }
+.grow-sort-row { display: grid; gap: 6px; padding: 10px 12px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
+.grow-sort-text { font-weight: 700; }
+.grow-sort-groups { display: flex; flex-wrap: wrap; gap: 6px; }
+.grow-sort-pick { min-height: 40px; padding: 6px 12px; flex: 1 1 0; text-align: center; font-size: var(--type-ui); }
+.grow-order { display: grid; gap: 8px; }
+.grow-order-slot { display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: center; gap: 8px; }
+.grow-order-n { font-weight: 800; color: var(--text-dim); text-align: center; }
+.grow-order-empty { min-height: 52px; border-radius: var(--radius-md); border: 2px dashed var(--border); }
+.grow-order-step { width: 100%; }
+.grow-order-deck { display: flex; flex-wrap: wrap; gap: 8px; }
+.grow-order-deck .grow-order-step { width: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .grow-book-lesson { transition: none; }
+}

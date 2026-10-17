@@ -1,5 +1,5 @@
 {
-  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `path` = the step map (PathWorld fed by lib/usePathRecord.js), whose levels are the world's `levels` when it has them (same shape as grow.json `tiers`), else grow.json's. `backdrop` (optional) names a picture in public/grow/backdrops/manifest.json to fade in behind the world's screen (components/grow/Backdrop.jsx); lib/backdrops.test.js checks it exists. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
+  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `path` = the step map (PathWorld fed by lib/usePathRecord.js), `book` = BookWorld (a book's parts, then a part's lessons) from `source` (lib/useBookWorld.js), answers filed under `module`, whose levels are the world's `levels` when it has them (same shape as grow.json `tiers`), else grow.json's. `backdrop` (optional) names a picture in public/grow/backdrops/manifest.json to fade in behind the world's screen (components/grow/Backdrop.jsx); lib/backdrops.test.js checks it exists. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
   "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called. `surahs` (Quran): the surahs the items come from, in order.",
   "worlds": [
     {
@@ -13,6 +13,17 @@
       "unit": "words",
       "lesson": { "new": 3, "most-new": 5, "size": 8, "bank": "quranic" },
       "stages": [20, 50, 100, 200, 385]
+    },
+    {
+      "id": "fiqh",
+      "name": "Fiqh",
+      "arabic": "فقه",
+      "scene": "Mukhtasar al-Quduri",
+      "idea": "Purity, prayer and more, chapter by chapter: what is fard, what is sunnah, and why.",
+      "live": true,
+      "kind": "book",
+      "source": "/grow/quduri.json",
+      "module": "quduri"
     },
     {
       "id": "prayer",
