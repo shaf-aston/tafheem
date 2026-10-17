@@ -136,6 +136,11 @@ draws; `useSurahReading` holds the text, glosses, translation and recitation,
 `GlossedAyah`, `AyahRail` and `SplitBar` are each their own file in `quran/`,
 and `test/quranReader.test.jsx` steps a surah and swaps the translation.
 
+Tamreen practise split: `TamreenPractise.jsx` is 191 lines (was 456) and only
+draws; its state and effects are `lib/useTamreenPractise`, and the option list,
+grid, rule and sentence questions are their own files in `nahw/tamreen/`. Checked by
+the same tag scan and a line-by-line diff; `test/tamreen.test.jsx` answers two.
+
 0. Quiz: move the setup into `useQuizSetup`: language, direction, bank, scope and
    group, the four queries, then `pool` and `question` derived from them. Move the
    score into `useQuizScore`: the score, best, `onAnswer` and its streaks.
