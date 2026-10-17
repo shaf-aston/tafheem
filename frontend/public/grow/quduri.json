@@ -1,0 +1,128 @@
+{
+  "_comment": "Grow's Fiqh world: Mukhtasar al-Quduri, part by part (a Kitab), lesson by lesson (a bab, or a few small ones). Hand-written. Every `ar` and `source` is the book's own words, copied from backend/data/books/openiti/<file> (src/lib/bookLesson.test.js checks each, and that a finished part quotes every paragraph of its Kitab). `en` and `why` are our English. A part with no lessons shows as coming.",
+  "_cards": "teach {title, ar, en} · choose {ask, ar?, options, answer: index, arabic-options?, source, why} — an `ar` with ____ is a gap the answer fills · pick {ask, options: [{text, right?}], source, why} · sort {ask, into, items: [[text, bucket]], source, why} · order {ask, steps (in the right order), source, why}. `source` may be one quote or a list.",
+  "book": "Mukhtasar al-Quduri",
+  "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+  "madhhab": "Hanafi",
+  "file": "0428AbuHusaynQuduri.Mukhtasar.Sham19Y0124336-ara1",
+  "parts": [
+    {
+      "id": "tahara",
+      "title": "Purity",
+      "arabic": "الطهارة",
+      "kitab": "كتاب الطهارة",
+      "lessons": [
+        {
+          "id": "wudu",
+          "title": "Wudu: fard, sunnah, mustahabb",
+          "arabic": "فرض الطهارة وسننها",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "fard",
+              "title": "The fard of wudu",
+              "ar": "ففرض الطهارة: غسل الأعضاء الثلاثة ومسح الرأس والمرفقان والكعبان يدخلان في الغسل",
+              "en": "Wudu's fard: wash the three limbs (face, arms, feet) and wipe the head. The elbows and ankles are part of the washing."
+            },
+            {
+              "kind": "pick",
+              "id": "which-fard",
+              "ask": "Which of these are fard in wudu?",
+              "options": [
+                { "text": "Wash the face", "right": true },
+                { "text": "Rinse the mouth" },
+                { "text": "Wash the arms, elbows included", "right": true },
+                { "text": "Say Bismillah" },
+                { "text": "Wipe the head", "right": true },
+                { "text": "Wash the feet, ankles included", "right": true }
+              ],
+              "source": "غسل الأعضاء الثلاثة ومسح الرأس",
+              "why": "The fard are the four in the ayah: face, arms, head, feet."
+            },
+            {
+              "kind": "teach",
+              "id": "head",
+              "title": "How much of the head",
+              "ar": "والمفروض في مسح الرأس مقدار الناصية لما روى المغيرة بن شعبة [أن النبي صلى الله عليه وسلم أتى سباطة قوم فبال وتوضأ ومسح على ناصيته وخفيه]",
+              "en": "The fard in wiping the head is the size of the forelock, the front of the head. Al-Mughira saw the Prophet ﷺ wipe his forelock and his khuffs."
+            },
+            {
+              "kind": "choose",
+              "id": "head-gap",
+              "ask": "Which word completes it?",
+              "ar": "والمفروض في مسح الرأس مقدار ____",
+              "options": ["الناصية", "الأذنين", "اللحية"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "والمفروض في مسح الرأس مقدار الناصية",
+              "why": "The forelock (الناصية): the front of the head."
+            },
+            {
+              "kind": "teach",
+              "id": "sunnah",
+              "title": "The sunnahs of wudu",
+              "ar": "وسنن الطهارة: وغسل اليدين قبل إدخالها إذا استيقظ المتوضئ من نومه وتسمية الله تعالى في ابتداء الوضوء والسواك والمضمضة والأستنشاق ومسح الأذنين وتخليل اللحية والأصابع وتكرار الغسل إلى الثلاث",
+              "en": "Its sunnahs: wash the hands before putting them in the water on waking, say Bismillah at the start, use the siwak, rinse the mouth and the nose, wipe the ears, run wet fingers through the beard and between the fingers, and wash each limb three times."
+            },
+            {
+              "kind": "teach",
+              "id": "mustahabb",
+              "title": "What is mustahabb",
+              "ar": "ويستحب للمتوضئ أن ينوي الطهارة ويستوعب رأسه بالمسح ويرتب الوضوء فيبدأ بما بدأ الله تعالى بذكره وبالميامن",
+              "en": "Mustahabb (liked, not required): intend purification, wipe the whole head, keep the order Allah gave, and start with the right."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "Fard, sunnah or mustahabb?",
+              "into": ["Fard", "Sunnah", "Mustahabb"],
+              "items": [
+                ["Wash the face", "Fard"],
+                ["Say Bismillah", "Sunnah"],
+                ["Make the intention", "Mustahabb"],
+                ["Wipe the forelock", "Fard"],
+                ["Use the siwak", "Sunnah"],
+                ["Wipe the whole head", "Mustahabb"],
+                ["Wash each limb three times", "Sunnah"]
+              ],
+              "source": ["غسل الأعضاء الثلاثة ومسح الرأس", "وتسمية الله تعالى في ابتداء الوضوء والسواك", "ويستحب للمتوضئ أن ينوي الطهارة ويستوعب رأسه بالمسح"],
+              "why": "Fard: the four limbs. Sunnah: Bismillah, siwak, three times. Mustahabb: the intention, the whole head."
+            },
+            {
+              "kind": "order",
+              "id": "order",
+              "ask": "Put the fard in the order Allah names them",
+              "steps": ["Wash the face", "Wash the arms", "Wipe the head", "Wash the feet"],
+              "source": "قال الله تعالى: {يا أيها الذين آمنوا إذا قمتم إلى الصلاة فاغسلوا وجوهكم وأيديكم إلى المرافق وامسحوا برؤوسكم وأرجلكم إلى الكعبين}",
+              "why": "Face, arms, head, feet: the order of the ayah."
+            },
+            {
+              "kind": "choose",
+              "id": "order-case",
+              "ask": "Bilal washes his feet before his arms. Is his wudu valid?",
+              "options": ["Yes: keeping the order is mustahabb", "No: the order is fard", "Only if he forgot"],
+              "answer": 0,
+              "source": "ويرتب الوضوء فيبدأ بما بدأ الله تعالى بذكره",
+              "why": "Al-Quduri lists keeping the order among the mustahabb acts, so his wudu is valid. He has missed a virtue."
+            },
+            {
+              "kind": "choose",
+              "id": "bismillah-case",
+              "ask": "Sara forgets Bismillah at the start. What has she missed?",
+              "options": ["A sunnah: her wudu is valid", "A fard: she must start again", "Nothing at all"],
+              "answer": 0,
+              "source": "وتسمية الله تعالى في ابتداء الوضوء",
+              "why": "Bismillah is among the sunnahs of wudu, not its fard."
+            }
+          ]
+        }
+      ]
+    },
+    { "id": "salah", "title": "Prayer", "arabic": "الصلاة", "kitab": "كتاب الصلاة", "lessons": [] },
+    { "id": "zakah", "title": "Zakat", "arabic": "الزكاة", "kitab": "كتاب الزكاة", "lessons": [] },
+    { "id": "sawm", "title": "Fasting", "arabic": "الصوم", "kitab": "كتاب الصوم", "lessons": [] },
+    { "id": "hajj", "title": "Hajj", "arabic": "الحج", "kitab": "كتاب الحج", "lessons": [] },
+    { "id": "buyu", "title": "Transactions", "arabic": "البيوع", "kitab": "كتاب البيوع", "lessons": [] },
+    { "id": "nikah", "title": "Family", "arabic": "النكاح", "kitab": "كتاب النكاح", "lessons": [] }
+  ]
+}
