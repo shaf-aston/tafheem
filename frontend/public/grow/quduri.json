@@ -11314,10 +11314,1902 @@
     { "id": "udhiya", "title": "The sacrifice", "arabic": "الأضحية", "kitab": "كتاب الأضحية", "lessons": [] },
     { "id": "ayman", "title": "Oaths", "arabic": "الأيمان", "kitab": "كتاب الأيمان", "lessons": [] },
     { "id": "dawa", "title": "Claims", "arabic": "الدعوى", "kitab": "كتاب الدعوى", "lessons": [] },
-    { "id": "shahadat", "title": "Testimony", "arabic": "الشهادات", "kitab": "كتاب الشهادات", "lessons": [] },
-    { "id": "qadi", "title": "The judge", "arabic": "أدب القاضي", "kitab": "كتاب أدب القاضي", "lessons": [] },
-    { "id": "qisma", "title": "Dividing property", "arabic": "القسمة", "kitab": "كتاب القسمة", "lessons": [] },
-    { "id": "ikrah", "title": "Coercion", "arabic": "الإكراه", "kitab": "كتاب الإكراه", "lessons": [] },
+    {
+      "id": "shahadat",
+      "title": "Testimony",
+      "arabic": "الشهادات",
+      "kitab": "كتاب الشهادات",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "shahadat-duty",
+          "title": "A duty, and how many witnesses",
+          "arabic": "الشهادة: فرض",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "duty",
+              "title": "Testimony is a duty",
+              "ar": "الشهادة: فرض يلزم الشهود اداؤها ولا يسعهم كتمانها إذا طالبهم المدعي",
+              "en": "Shahada (testimony) means telling the judge what you saw or heard. It is a duty (fard). When the mudda'i (the person making a claim in court) asks the witnesses to speak, they must give their testimony and may not hide it."
+            },
+            {
+              "kind": "choose",
+              "id": "duty-case",
+              "ask": "Khalid saw Umar borrow 500 dirhams from Salim. Umar now denies the loan, and Salim asks Khalid to testify. What must Khalid do?",
+              "options": ["He must testify: he may not hide it", "He may stay silent if he likes", "He testifies only if Salim pays him"],
+              "answer": 0,
+              "source": "يلزم الشهود اداؤها ولا يسعهم كتمانها إذا طالبهم المدعي",
+              "why": "Testimony is a duty: when the claimant asks, the witness must give it and may not hide it."
+            },
+            {
+              "kind": "teach",
+              "id": "hudud",
+              "title": "Hadd cases: covering is better",
+              "ar": "والشهادة في الحدود يخير فيها الشاهد بين الستر والإظهار والستر أفضل",
+              "en": "Hudud (singular hadd) are the fixed punishments set by Allah, such as for theft. In a hadd case the witness may choose between covering up the sin (satr) and making it known. Covering it is better."
+            },
+            {
+              "kind": "teach",
+              "id": "theft",
+              "title": "Theft: say \"he took\"",
+              "ar": "إلا أنه يجب أن يشهد بالمال في السرقة فيقول: أخذ ولا يقول: سرق",
+              "en": "But in a theft the owner's money is at stake, so the witness must testify about the money. He says \"He took it\", not \"He stole it\". That way the owner gets his property back, while the sin itself stays covered."
+            },
+            {
+              "kind": "choose",
+              "id": "theft-gap",
+              "ask": "What does the witness say in a theft case? Complete it.",
+              "ar": "فيقول: ____ ولا يقول: سرق",
+              "options": ["أخذ", "سرق", "غصب"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "فيقول: أخذ ولا يقول: سرق",
+              "why": "أخذ (he took): he testifies to the money but does not say \"he stole\"."
+            },
+            {
+              "kind": "teach",
+              "id": "levels",
+              "title": "Zina, other hudud, and qisas",
+              "ar": "والشهادة على مراتب: منها الشهادة في الزنا يعتبر فيها أربعة من الرجال ولا تقبل فيها شهادة النساء ومنها الشهادة ببقية الحدود والقصاص تقبل فيها شهادة رجلين ولا تقبل فيها شهادة النساء",
+              "en": "Testimony has levels. For zina (unlawful relations) four men are needed, and women's testimony is not accepted. For the other hudud and for qisas (equal punishment for an injury or killing), two men are accepted, and women's testimony is not."
+            },
+            {
+              "kind": "teach",
+              "id": "others",
+              "title": "Every other right",
+              "ar": "وما سوى ذلك من الحقوق تقبل فيها شهادة رجلين",
+              "en": "For every other right, two men are accepted, or a man and two women. It makes no difference whether the right is money or not, such as nikah (marriage), talaq (divorce), wakala (appointing an agent) and a will."
+            },
+            {
+              "kind": "sort",
+              "id": "how-many",
+              "ask": "How many witnesses are needed?",
+              "into": ["Four men", "Two men only", "Two men, or a man and two women"],
+              "items": [
+                ["Zina", "Four men"],
+                ["The hadd for theft", "Two men only"],
+                ["Qisas for a killing", "Two men only"],
+                ["A loan of money", "Two men, or a man and two women"],
+                ["A nikah", "Two men, or a man and two women"],
+                ["A divorce", "Two men, or a man and two women"]
+              ],
+              "source": ["منها الشهادة في الزنا يعتبر فيها أربعة من الرجال", "ومنها الشهادة ببقية الحدود والقصاص تقبل فيها شهادة رجلين ولا تقبل فيها شهادة النساء", "سواء كان الحق مالا أو غير مال مثل النكاح مثل النكاح والطلاق والوكالة والوصية"],
+              "why": "Zina needs four men. Other hudud and qisas need two men. Every other right, money or not, takes two men or a man and two women."
+            },
+            {
+              "kind": "teach",
+              "id": "one-woman",
+              "title": "One woman alone",
+              "ar": "وتقبل في الولادة والبكارة والعيوب بالنساء في موضع لا يطلع عليه الرجال شهادة امرأة واحدة",
+              "en": "For things that men do not see, such as a birth, whether a woman is a virgin, and hidden defects of women, the testimony of one woman is accepted."
+            },
+            {
+              "kind": "teach",
+              "id": "adala",
+              "title": "Uprightness and the word \"I testify\"",
+              "ar": "ولا بد في ذلك كله من العدالة ولفظ الشهادة فإن لم يذكر الشاهد لفظ الشهادة وقال: أعلم أو أتيقن لم تقبل شهادته",
+              "en": "In all of these, the witness must have 'adala (be upright and trustworthy) and must use the word of testimony: \"I testify\" (ashhadu). If he says \"I know\" or \"I am certain\" instead, his testimony is not accepted."
+            },
+            {
+              "kind": "choose",
+              "id": "word-case",
+              "ask": "In court Hamza says: \"I am certain that Zayd owes Amr 100 dirhams.\" He never says \"I testify\". Is this accepted as testimony?",
+              "options": ["No: he did not use the word of testimony", "Yes: being certain is even stronger", "Yes, if a second witness agrees"],
+              "answer": 0,
+              "source": "فإن لم يذكر الشاهد لفظ الشهادة وقال: أعلم أو أتيقن لم تقبل شهادته",
+              "why": "Without the word \"I testify\", saying \"I know\" or \"I am certain\" is not accepted."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Which of these can be proved by the testimony of one woman alone?",
+              "options": ["A birth that only women attended", "A loan of 1,000 dirhams", "A nikah", "A theft"],
+              "answer": 0,
+              "source": ["وتقبل في الولادة والبكارة والعيوب بالنساء في موضع لا يطلع عليه الرجال شهادة امرأة واحدة", "أو رجلين وامرأتين سواء كان الحق مالا أو غير مال"],
+              "why": "One woman is accepted for a birth, where men do not see. A loan or a nikah needs two men or a man and two women, and a theft needs two men."
+            }
+          ]
+        },
+        {
+          "id": "shahadat-bearing",
+          "title": "Checking witnesses, and what a witness may testify to",
+          "arabic": "وما يتحمله الشاهد على ضربين",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "zahir",
+              "title": "Abu Hanifa: the outward uprightness",
+              "ar": "وقال أبو حنيفة: يقتصر الحاكم على ظاهر عدالة المسلم إلا في الحدود والقصاص فإنه يسأل عن الشهود وإن طعن الخصم فيهم سأل عنهم",
+              "en": "Abu Hanifa says the judge (hakim) may rely on a Muslim witness looking upright from the outside. But in hudud and qisas he asks about the witnesses, and if the other side attacks the witnesses, he asks about them too."
+            },
+            {
+              "kind": "teach",
+              "id": "sirr",
+              "title": "Note: Abu Yusuf and Muhammad",
+              "ar": "وقال أبو يوسف ومحمد: لا بد أن يسأل عنهم في السر والعلانية",
+              "en": "Note: Abu Yusuf and Muhammad say the judge must always ask about the witnesses, both secretly and openly."
+            },
+            {
+              "kind": "choose",
+              "id": "qisas-case",
+              "ask": "In a qisas case, two Muslim witnesses who look upright testify. What does the judge do about them?",
+              "options": ["He asks about the witnesses", "He accepts them without asking", "He asks only if they are women"],
+              "answer": 0,
+              "source": "إلا في الحدود والقصاص فإنه يسأل عن الشهود",
+              "why": "In hudud and qisas the judge asks about the witnesses before relying on them."
+            },
+            {
+              "kind": "choose",
+              "id": "taan-case",
+              "ask": "In a debt case, the man being sued says: \"These witnesses are not honest people!\" What does the judge do?",
+              "options": ["He asks about the witnesses", "He ignores it, because it is not a hadd case", "He throws out the whole claim"],
+              "answer": 0,
+              "source": "وإن طعن الخصم فيهم سأل عنهم",
+              "why": "When the opponent attacks the witnesses, the judge asks about them."
+            },
+            {
+              "kind": "teach",
+              "id": "self",
+              "title": "Things that stand by themselves",
+              "ar": "وما يتحمله الشاهد على ضربين: أحدهما: ما يثبت حكمه بنفسه مثل البيع والإقرار والغصب والقتل وحكم الحاكم فإذا سمع ذلك الشاهد أو رآه وسعه أن يشهد به وإن لم يشهد عليه",
+              "en": "What a witness takes on is of two kinds. The first stands by itself: a sale, an iqrar (admitting you owe something), ghasb (taking by force), a killing, a judge's ruling. If the witness heard or saw it, he may testify to it, even if nobody asked him to be a witness."
+            },
+            {
+              "kind": "teach",
+              "id": "wording",
+              "title": "\"He sold\", not \"he made me witness\"",
+              "ar": "ويقول: أشهد أنه باع ولا يقول: أشهدني",
+              "en": "Then he says \"I testify that he sold\". He does not say \"he made me a witness\", because no one did."
+            },
+            {
+              "kind": "choose",
+              "id": "sale-case",
+              "ask": "Bilal overheard Yusuf sell his camel to Idris. Nobody asked Bilal to be a witness. May he testify to the sale?",
+              "options": ["Yes: he heard it, and a sale stands by itself", "No: he must be asked to witness first", "Only if Yusuf agrees"],
+              "answer": 0,
+              "source": "فإذا سمع ذلك الشاهد أو رآه وسعه أن يشهد به وإن لم يشهد عليه",
+              "why": "A sale stands by itself, so whoever heard or saw it may testify, even without being asked."
+            },
+            {
+              "kind": "teach",
+              "id": "on-testimony",
+              "title": "Testimony on testimony needs permission",
+              "ar": "ومنه ما لا يثبت حكمه بنفسه مثل الشهادة على الشهادة فإن سمع شاهدا يشهد بشيء لم يجز أن يشهد على شهادته إلا أن يشهده وكذلك لو سمعه يشهد الشاهد على شهادته لم يسع السامع أن يشهد",
+              "en": "The second kind does not stand by itself, like testifying about someone else's testimony. If you hear a witness testify to something, you may not pass on his testimony unless he asks you to. Even if you hear him ask another person to carry his testimony, you, who only overheard, may not."
+            },
+            {
+              "kind": "choose",
+              "id": "hear-case",
+              "ask": "Sara heard Ahmad testify about a debt. Ahmad never asked her to carry his testimony. Later Ahmad is ill and cannot come to court. May Sara testify on his testimony?",
+              "options": ["No: he did not ask her to", "Yes: she heard it clearly", "Yes, because he is ill"],
+              "answer": 0,
+              "source": "فإن سمع شاهدا يشهد بشيء لم يجز أن يشهد على شهادته إلا أن يشهده",
+              "why": "Testifying on someone's testimony needs that witness to ask you. Just hearing it is not enough."
+            },
+            {
+              "kind": "teach",
+              "id": "khatt",
+              "title": "Your own handwriting",
+              "ar": "ولا يحل للشاهد إذا رأى خطه أن يشهد إلا أن يذكر الشهادة",
+              "en": "If a witness sees his own handwriting (for example on a paper he signed as a witness), he may not testify from it unless he actually remembers the event."
+            },
+            {
+              "kind": "choose",
+              "id": "khatt-case",
+              "ask": "Umar finds a paper with his own handwriting saying he witnessed a sale, but he cannot remember the sale at all. May he testify?",
+              "options": ["No, not unless he remembers it", "Yes: it is his own handwriting", "Yes, if the paper is old"],
+              "answer": 0,
+              "source": "ولا يحل للشاهد إذا رأى خطه أن يشهد إلا أن يذكر الشهادة",
+              "why": "Seeing his own handwriting is not enough. He may testify only if he remembers it."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "May the witness testify?",
+              "into": ["May testify", "May not"],
+              "items": [
+                ["He saw a killing", "May testify"],
+                ["He heard a man admit a debt", "May testify"],
+                ["He saw a judge give a ruling", "May testify"],
+                ["He overheard a witness testify, and was not asked to carry it", "May not"],
+                ["He sees his own handwriting but does not remember", "May not"]
+              ],
+              "source": ["مثل البيع والإقرار والغصب والقتل وحكم الحاكم فإذا سمع ذلك الشاهد أو رآه وسعه أن يشهد به", "لم يجز أن يشهد على شهادته إلا أن يشهده", "إلا أن يذكر الشهادة"],
+              "why": "A killing, an admission and a ruling stand by themselves, so he may testify. Testimony on testimony needs permission, and handwriting alone is not enough."
+            }
+          ]
+        },
+        {
+          "id": "shahadat-rejected",
+          "title": "Whose testimony is not accepted",
+          "arabic": "ولا تقبل شهادة الأعمى",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "blind",
+              "title": "The blind, the slave, and the one punished for qadhf",
+              "ar": "ولا تقبل شهادة الأعمى ولا المملوك ولا المحدود في قذف وإن تاب",
+              "en": "The testimony of these is not accepted: a blind man, a slave (in al-Quduri's time), and one who was given the hadd for qadhf (falsely accusing someone of zina), even if he has repented."
+            },
+            {
+              "kind": "teach",
+              "id": "family",
+              "title": "Close family and spouses",
+              "ar": "ولا شهادة الوالد لولده وولد ولده ولا شهادة الولد لأبويه وأجداده ولا تقبل شهادة أحد الزوجين للآخر",
+              "en": "A father may not testify for his child or grandchild, and a child may not testify for his parents or grandparents. A husband and wife may not testify for each other."
+            },
+            {
+              "kind": "choose",
+              "id": "grandson-case",
+              "ask": "Hasan testifies that his grandson is owed 300 dirhams. Is his testimony accepted?",
+              "options": ["No: a grandfather cannot testify for his grandchild", "Yes: only a father is blocked", "Yes, if he is upright"],
+              "answer": 0,
+              "source": "ولا شهادة الوالد لولده وولد ولده",
+              "why": "A father may not testify for his child or his child's child."
+            },
+            {
+              "kind": "teach",
+              "id": "partner",
+              "title": "Master, partner, brother and uncle",
+              "ar": "ولا شهادة المولى لعبده ولا لمكاتبه ولا شهادة الشريك لشريكه فيما هو من شركتهما وتقبل شهادة الرجل لأخيه وعمه",
+              "en": "In al-Quduri's time a master could not testify for his slave or his mukatab (a slave buying his freedom in instalments). A business partner may not testify for his partner about their shared business. But a man may testify for his brother and his uncle."
+            },
+            {
+              "kind": "choose",
+              "id": "brother-case",
+              "ask": "Yasir testifies that his brother Ammar lent 1,000 dirhams to a neighbour. Is it accepted?",
+              "options": ["Yes: a brother may testify for his brother", "No: family may never testify for each other", "Only if a woman testifies with him"],
+              "answer": 0,
+              "source": "وتقبل شهادة الرجل لأخيه وعمه",
+              "why": "A man's testimony for his brother and uncle is accepted. Only parents, children and spouses are blocked."
+            },
+            {
+              "kind": "teach",
+              "id": "conduct",
+              "title": "Shameful ways of living",
+              "ar": "ولا تقبل شهادة مخنث ولا نائحة ولا مغنية ولا مدمن الشرب على اللهو ولا من يلعب بالطيور ولا من يغني للناس",
+              "en": "Not accepted: a man who openly behaves in an indecent, effeminate way; a woman paid to wail at funerals; a singing woman; one who keeps drinking for fun; one who plays with birds (racing pigeons); and one who sings for people."
+            },
+            {
+              "kind": "teach",
+              "id": "kabair",
+              "title": "Major sins and low behaviour",
+              "ar": "ولا من يأتي بابا من الكبائر التي يتعلق بها الحد ولا من يدخل الحمام بغير إزار أو يأكل الربا ولا المقامر بالنرد والشطرنج ولا من يفعل الأفعال المستخفة كالبول على الطريق والأكل على الطريق",
+              "en": "Also not accepted: one who commits a major sin that carries a hadd; one who enters the public bath without a waist-cloth; one who eats riba (interest on loans); one who gambles with backgammon or chess; and one who does shameless things, like urinating or eating in the street."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Whose testimony is NOT accepted?",
+              "options": [
+                { "text": "A man who eats riba", "right": true },
+                { "text": "A man who gambles at chess", "right": true },
+                { "text": "A man who eats in the street", "right": true },
+                { "text": "A man testifying for his uncle" },
+                { "text": "A man born of zina" }
+              ],
+              "source": ["أو يأكل الربا ولا المقامر بالنرد والشطرنج", "والأكل على الطريق", "وتقبل شهادة الرجل لأخيه وعمه", "والخصي وولد الزنا"],
+              "why": "Eating riba, gambling and eating in the street block testimony. Testifying for an uncle is accepted, and so is a man born of zina."
+            },
+            {
+              "kind": "teach",
+              "id": "ahwa",
+              "title": "Beliefs, dhimmis and harbis",
+              "ar": "ولا تقبل شهادة من يظهر سب السلف وتقبل شهادة أهل الأهواء إلا الخطابية وتقبل شهادة أهل الذمة بعضهم على بعض وإن اختلفت مللهم ولا تقبل شهادة الحربي على الذمي",
+              "en": "Not accepted: one who openly insults the salaf (the early Muslims). People of mistaken beliefs (ahl al-ahwa) are accepted, except a group called al-Khattabiyya. Dhimmis (Jews and Christians living under Muslim rule) are accepted against each other, even of different religions. A harbi (from a land at war with Muslims) is not accepted against a dhimmi."
+            },
+            {
+              "kind": "choose",
+              "id": "good-case",
+              "ask": "Faris avoids all major sins, and his good deeds are far more than his bad ones, but sometimes he slips into a small sin. Is his testimony accepted?",
+              "options": ["Yes", "No: any sin blocks testimony", "Only in money cases"],
+              "answer": 0,
+              "source": "وإن كانت الحسنات أغلب من السيئات والرجل ممن يجتنب الكبائر قبلت شهادته",
+              "why": "If his good deeds are more than his bad ones and he avoids major sins, his testimony is accepted even if he sometimes slips."
+            },
+            {
+              "kind": "teach",
+              "id": "accepted",
+              "title": "These are accepted",
+              "ar": "وتقبل شهادة الأقلف والخصي وولد الزنا وشهادة الخنثى جائزة",
+              "en": "These are accepted: a man who is not circumcised, a eunuch, a person born of zina, and a khuntha (a person whose body is not clearly male or female)."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Is the testimony accepted?",
+              "into": ["Accepted", "Not accepted"],
+              "items": [
+                ["A Christian dhimmi against a Jewish dhimmi", "Accepted"],
+                ["A harbi against a dhimmi", "Not accepted"],
+                ["A wife for her husband", "Not accepted"],
+                ["A man for his brother", "Accepted"],
+                ["A man punished for qadhf who has repented", "Not accepted"],
+                ["A man who is not circumcised", "Accepted"]
+              ],
+              "source": ["وتقبل شهادة أهل الذمة بعضهم على بعض وإن اختلفت مللهم ولا تقبل شهادة الحربي على الذمي", "ولا تقبل شهادة أحد الزوجين للآخر", "وتقبل شهادة الرجل لأخيه", "ولا المحدود في قذف وإن تاب", "وتقبل شهادة الأقلف"],
+              "why": "Dhimmis against each other, a brother and an uncircumcised man are accepted. A harbi against a dhimmi, a spouse, and one punished for qadhf are not."
+            }
+          ]
+        },
+        {
+          "id": "shahadat-agree",
+          "title": "When witnesses agree, and hearsay",
+          "arabic": "وإذا وافقت الشهادة الدعوى",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "match",
+              "title": "Testimony must match the claim",
+              "ar": "وإذا وافقت الشهادة الدعوى قبلت وإن خالفتها لم تقبل ويعتبر اتفاق الشاهدين في اللفظ والمعنى عند أبي حنيفة",
+              "en": "If the testimony matches the da'wa (the claim), it is accepted; if it goes against it, it is not. For Abu Hanifa, the two witnesses must agree in both their words and their meaning."
+            },
+            {
+              "kind": "teach",
+              "id": "alf",
+              "title": "1,000 and 2,000",
+              "ar": "فإن شهد أحدهما بألف والآخر بألفين لم تقبل الشهادة",
+              "en": "If one witness says 1,000 and the other says 2,000, the testimony is not accepted."
+            },
+            {
+              "kind": "choose",
+              "id": "alf-case",
+              "ask": "Musa claims money from Hamid. Witness Ali says \"1,000 dirhams\" and witness Umar says \"2,000 dirhams\". What happens?",
+              "options": ["The testimony is not accepted", "He gets 1,000", "He gets 2,000"],
+              "answer": 0,
+              "source": "فإن شهد أحدهما بألف والآخر بألفين لم تقبل الشهادة",
+              "why": "1,000 and 2,000 do not agree, so the testimony is not accepted."
+            },
+            {
+              "kind": "teach",
+              "id": "khamsami",
+              "title": "1,000 and 1,500",
+              "ar": "وإن شهد أحدهما بألف والآخر بألف وخمسمائة والمدعي يدعي ألفا وخمسمائة قبلت شهادتهما بألف",
+              "en": "But if one says 1,000 and the other 1,500, and the claimant claims 1,500, their testimony is accepted for 1,000, the amount both agree on."
+            },
+            {
+              "kind": "choose",
+              "id": "khamsami-case",
+              "ask": "Idris claims 1,500 dirhams from Hamid. Ali testifies to 1,000 and Umar testifies to 1,500. How much is proved?",
+              "options": ["1,000", "1,500", "Nothing", "1,250"],
+              "answer": 0,
+              "source": "قبلت شهادتهما بألف",
+              "why": "The claim is 1,500 and the two witnesses meet on 1,000, so their testimony is accepted for 1,000."
+            },
+            {
+              "kind": "teach",
+              "id": "qada",
+              "title": "\"He paid back 500\"",
+              "ar": "وقال: قضاه منها خمسمائة قبلت شهادته بألف ولم يسمع قوله: إنه قضاه إلا أن يشهد معه آخر",
+              "en": "If a witness testifies to 1,000 and adds \"but he paid back 500 of it\", his testimony for 1,000 is accepted. His words \"he paid it back\" are not heard unless a second witness says the same with him."
+            },
+            {
+              "kind": "teach",
+              "id": "advice",
+              "title": "What the witness should do",
+              "ar": "وينبغي للشاهد إذا علم ذلك أن لا يشهد بألف حتى يقر المدعي أنه قبض خمسمائة",
+              "en": "So a witness who knows that 500 was paid back should not testify to 1,000 until the claimant admits he received the 500."
+            },
+            {
+              "kind": "choose",
+              "id": "qada-case",
+              "ask": "Two witnesses testify that Zayd owes Amr 1,000. One adds: \"But Zayd paid back 500.\" No one else says so. What does the testimony prove?",
+              "options": ["1,000", "500", "Nothing"],
+              "answer": 0,
+              "source": "قبلت شهادته بألف ولم يسمع قوله: إنه قضاه إلا أن يشهد معه آخر",
+              "why": "The 1,000 is accepted. One witness alone saying \"he paid it back\" is not heard."
+            },
+            {
+              "kind": "teach",
+              "id": "makka",
+              "title": "Makka or Kufa, and attacking witnesses",
+              "ar": "وإذا شهد شاهدان أن زيدا قتل يوم النحر بمكة وشهد آخران أنه قتل يوم النحر بالكوفة واجتمعوا عند الحاكم لم يقبل الشهادتين فإن سبقت إحداهما فقضى بها ثم حضرت الأخرى لم تقبل ولا يسمع القاضي الشهادة على جرح ولا يحكم بذلك",
+              "en": "Two witnesses say Zayd was killed on the Day of Sacrifice in Makka, and two others say on that same day in Kufa. If they all come together, neither testimony is accepted. If one pair came first and the judge ruled, the later pair is not accepted. And the judge does not hear testimony that only attacks a witness's character (jarh), nor rule on it."
+            },
+            {
+              "kind": "teach",
+              "id": "tasamu",
+              "title": "Testifying from what you were told",
+              "ar": "ولا يجوز للشاهد أن يشهد بشيء لم يعاينه إلا النسب والموت والنكاح والدخول وولاية القاضي فإنه يسعه أن يشهد بهذه الأشياء إذا اخبره بها من يثق به",
+              "en": "A witness may only testify to what he saw himself, except for: lineage (who is whose child), a death, a nikah, the consummation of a marriage, and a judge's appointment. For these he may testify when someone he trusts tells him."
+            },
+            {
+              "kind": "sort",
+              "id": "seen",
+              "ask": "Must the witness have seen it himself?",
+              "into": ["A trusted report is enough", "He must have seen it"],
+              "items": [
+                ["Someone's death", "A trusted report is enough"],
+                ["Who someone's father is", "A trusted report is enough"],
+                ["That a man is the appointed judge", "A trusted report is enough"],
+                ["A nikah", "A trusted report is enough"],
+                ["A sale", "He must have seen it"],
+                ["A loan being handed over", "He must have seen it"]
+              ],
+              "source": "إلا النسب والموت والنكاح والدخول وولاية القاضي فإنه يسعه أن يشهد بهذه الأشياء إذا اخبره بها من يثق به",
+              "why": "Lineage, death, nikah, consummation and a judge's appointment can be testified from a trusted report. Everything else must be seen."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Two witnesses say Zayd was killed on the Day of Sacrifice in Makka; two others, in the same court session, say it was in Kufa. What does the judge do?",
+              "options": ["Accepts neither testimony", "Accepts the Makka witnesses", "Accepts whichever pair is more upright"],
+              "answer": 0,
+              "source": "واجتمعوا عند الحاكم لم يقبل الشهادتين",
+              "why": "When both pairs come together, neither testimony is accepted, because a man cannot be killed in two cities on one day."
+            }
+          ]
+        },
+        {
+          "id": "shahadat-far",
+          "title": "Testimony on testimony",
+          "arabic": "والشهادة على الشهادة جائزة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "allowed",
+              "title": "Where it is allowed",
+              "ar": "والشهادة على الشهادة جائزة في كل حق لا يسقط بالشبهة ولا تقبل في الحدود والقصاص",
+              "en": "Testimony on testimony means a far' (branch) witness tells the court what an asl (original) witness testified. It is allowed in every right that does not fall away because of doubt. It is not accepted in hudud or qisas."
+            },
+            {
+              "kind": "choose",
+              "id": "hadd-case",
+              "ask": "The original witnesses to a theft are far away. Two branch witnesses come to testify on their testimony, to bring the hadd. Is it accepted?",
+              "options": ["No: not in hudud", "Yes, if they are two men", "Yes, if the originals have died"],
+              "answer": 0,
+              "source": "ولا تقبل في الحدود والقصاص",
+              "why": "Testimony on testimony is not accepted in hudud and qisas."
+            },
+            {
+              "kind": "teach",
+              "id": "two",
+              "title": "Two on two",
+              "ar": "وتجوز شهادة شاهدين على شهادة شاهدين ولا تقبل شهادة واحد على شهادة واحد",
+              "en": "Two branch witnesses may testify on the testimony of two original witnesses. One witness on the testimony of one witness is not accepted."
+            },
+            {
+              "kind": "teach",
+              "id": "sifa",
+              "title": "The words used",
+              "ar": "أني أشهد أن فلان ابن فلان أقر عندي بكذا وأشهدني على نفسه وإن لم يقل: أشهدني على نفسه جاز",
+              "en": "The original witness tells the branch witness: \"Testify to my testimony that I testify that so-and-so son of so-and-so admitted such-and-such before me, and made me witness to it.\" If he leaves out \"and made me witness\", it still works. In court the branch witness then says: \"I testify that so-and-so made me witness to his testimony that...\"."
+            },
+            {
+              "kind": "teach",
+              "id": "when",
+              "title": "When branch witnesses are heard",
+              "ar": "ولا تقبل شهادة شهود الفرع إلا أن يموت شهود الأصل أو يغيبوا مسيرة ثلاثة أيام فصاعدا أو يمرضوا مرضا لا يستطيعون معه حضور مجلس الحاكم",
+              "en": "Branch witnesses are only accepted if the original witnesses have died, are away a journey of three days or more, or are so ill they cannot come to the judge's court."
+            },
+            {
+              "kind": "choose",
+              "id": "away-case",
+              "ask": "The original witnesses live in a town one day's journey away and are healthy. Can branch witnesses testify for them?",
+              "options": ["No: they are not three days away", "Yes: any distance is enough", "Yes, if the claimant pays"],
+              "answer": 0,
+              "source": "أو يغيبوا مسيرة ثلاثة أيام فصاعدا",
+              "why": "They must be away three days' journey or more, dead, or too ill to come. One day away is not enough."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "When may branch witnesses be heard?",
+              "options": [
+                { "text": "The original witnesses have died", "right": true },
+                { "text": "They are four days' journey away", "right": true },
+                { "text": "They are too ill to come to court", "right": true },
+                { "text": "They are busy at work that day" },
+                { "text": "They live in the next street" }
+              ],
+              "source": "إلا أن يموت شهود الأصل أو يغيبوا مسيرة ثلاثة أيام فصاعدا أو يمرضوا مرضا لا يستطيعون معه حضور مجلس الحاكم",
+              "why": "Death, three days' distance or more, or illness that keeps them from court. Being busy or nearby is not enough."
+            },
+            {
+              "kind": "teach",
+              "id": "tadil",
+              "title": "Vouching, and denying",
+              "ar": "وإن عدل شهود الأصل شهود الفرع جاز فإن سكتوا عن تعديلهم جاز وينظر القاضي في حالهم وإن أنكر شهود الأصل الشهادة لم تقبل شهادة شهود الفرع",
+              "en": "If the branch witnesses vouch that the original witnesses are upright, that is fine. If they say nothing about it, that is also fine, and the judge looks into them himself. But if the original witnesses deny ever giving the testimony, the branch witnesses are not accepted."
+            },
+            {
+              "kind": "choose",
+              "id": "deny-case",
+              "ask": "Branch witnesses testify on the testimony of Ilyas, who is ill. Ilyas sends word: \"I never testified to any such thing.\" What happens?",
+              "options": ["The branch testimony is not accepted", "It is accepted, since they are two", "The judge must punish Ilyas"],
+              "answer": 0,
+              "source": "وإن أنكر شهود الأصل الشهادة لم تقبل شهادة شهود الفرع",
+              "why": "When the original witness denies the testimony, the branch witnesses are not accepted."
+            },
+            {
+              "kind": "teach",
+              "id": "zur",
+              "title": "The false witness",
+              "ar": "وقال أبو حنيفة في شاهد الزور: أشهر في السوق ولا أعزره وقال أبو يوسف ومحمد: نوجعه ضربا ونحبسه",
+              "en": "A shahid al-zur is a false witness. Abu Hanifa said: \"I make him known in the marketplace, and I do not give him ta'zir (a punishment the judge chooses).\" Note: Abu Yusuf and Muhammad said they would beat him painfully and imprison him."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Two men testify in a debt case on the testimony of two original witnesses who have died. Is it accepted?",
+              "options": ["Yes", "No: two on two is not allowed", "No: debts cannot be proved this way"],
+              "answer": 0,
+              "source": ["والشهادة على الشهادة جائزة في كل حق لا يسقط بالشبهة", "وتجوز شهادة شاهدين على شهادة شاهدين", "إلا أن يموت شهود الأصل"],
+              "why": "A debt does not fall away by doubt, two on two is allowed, and the originals have died, so it is accepted."
+            }
+          ]
+        },
+        {
+          "id": "shahadat-ruju",
+          "title": "Retracting testimony: who pays",
+          "arabic": "إذا رجع الشهود عن شهادتهم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "ruju",
+              "title": "Taking testimony back",
+              "ar": "إذا رجع الشهود عن شهادتهم قبل الحكم بها سقطت وإن حكم بشهادتهم ثم رجعوا لم يفسخ الحكم ووجب عليهم ضمان ما أتلفوه بشهادتهم ولا يصح الرجوع إلا بحضرة الحاكم",
+              "en": "Ruju' means a witness takes back his testimony. If witnesses take it back before the judge rules, it falls away. If the judge has already ruled, the ruling is not cancelled, but the witnesses must pay damages (daman) for what their testimony caused someone to lose. Taking it back only counts in front of the judge."
+            },
+            {
+              "kind": "choose",
+              "id": "before-case",
+              "ask": "Two witnesses testify that Tariq owes 600 dirhams. Before the judge rules, they say \"We take it back.\" What happens?",
+              "options": ["The testimony falls away", "The judge still rules for 600", "They must pay 600"],
+              "answer": 0,
+              "source": "إذا رجع الشهود عن شهادتهم قبل الحكم بها سقطت",
+              "why": "Before the ruling, taking it back makes the testimony fall away."
+            },
+            {
+              "kind": "choose",
+              "id": "after-case",
+              "ask": "The judge ruled that Tariq must pay 600 dirhams. Then both witnesses take their testimony back in court. What happens?",
+              "options": ["The ruling stays, and the witnesses pay Tariq 600", "The ruling is cancelled", "Nothing: the witnesses owe nothing"],
+              "answer": 0,
+              "source": "وإن حكم بشهادتهم ثم رجعوا لم يفسخ الحكم ووجب عليهم ضمان ما أتلفوه بشهادتهم",
+              "why": "After the ruling it is not cancelled, but the witnesses must pay for what they made Tariq lose."
+            },
+            {
+              "kind": "teach",
+              "id": "half",
+              "title": "Two witnesses, one takes it back",
+              "ar": "وإذا شهد شاهدان بمال فحكم الحاكم به ثم رجعا ضمنا المال المشهود عليه وإن رجع أحدهما ضمن النصف",
+              "en": "If two witnesses testified to money, the judge ruled, and both take it back, they pay the whole amount. If only one takes it back, he pays half."
+            },
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three witnesses",
+              "ar": "وإن شهد بالمال ثلاثة فرجع أحدهم فلا ضمان عليه فإن رجع آخر ضمن الراجعان نصف المال",
+              "en": "If three testified and one takes it back, he pays nothing, because two witnesses still stand. If a second one takes it back too, the two of them pay half the money."
+            },
+            {
+              "kind": "choose",
+              "id": "three-case",
+              "ask": "Three witnesses testified that Hadi owes 900 dirhams, and the judge ruled. Then two of them take it back. How much do those two pay together?",
+              "options": ["450", "900", "600", "Nothing"],
+              "answer": 0,
+              "source": "فإن رجع آخر ضمن الراجعان نصف المال",
+              "why": "When the second one takes it back, the two who retracted pay half: half of 900 is 450."
+            },
+            {
+              "kind": "teach",
+              "id": "women",
+              "title": "A man and two women",
+              "ar": "وإن شهد رجل وامرأتان فرجعت امرأة ضمنت ربع الحق وإن رجعنا ضمنتا نصف الحق",
+              "en": "If a man and two women testified and one woman takes it back, she pays a quarter of the right. If both women take it back, they pay half."
+            },
+            {
+              "kind": "choose",
+              "id": "women-case",
+              "ask": "A man and two women testified that Nuh owes 1,000 dirhams. After the ruling, one woman takes it back. How much does she pay?",
+              "options": ["250", "500", "1,000", "Nothing"],
+              "answer": 0,
+              "source": "فرجعت امرأة ضمنت ربع الحق",
+              "why": "One woman out of a man and two women pays a quarter: a quarter of 1,000 is 250."
+            },
+            {
+              "kind": "teach",
+              "id": "ten",
+              "title": "A man and ten women",
+              "ar": "وإن شهد رجل وعشر نسوة ثم رجع ثمان منهن فلا ضمان عليهن وإن رجعت آخرى كان على النسوة ربع الحق",
+              "en": "If a man and ten women testified and eight women take it back, they pay nothing, because a man and two women still stand. If one more takes it back, the women pay a quarter. Note: if the man and all the women take it back, Abu Hanifa says the man pays a sixth and the women five sixths; Abu Yusuf and Muhammad say half and half."
+            },
+            {
+              "kind": "teach",
+              "id": "mahr",
+              "title": "Marriage and sale at the fair price",
+              "ar": "وإن شهدا ببيع بمثل القيمة أو أكثر ثم رجعا لم يضمنا وإن كان بأقل من القيمة ضمنا النقصان",
+              "en": "If two witnesses testify to a sale at the fair price or more, then take it back, they pay nothing, since no one lost anything. If it was below the fair price, they pay the shortfall. In the same way, testifying to a nikah at the mahr al-mithl (the usual bride-gift for a woman like her) costs them nothing; above it, they pay the extra."
+            },
+            {
+              "kind": "sort",
+              "id": "pay",
+              "ask": "After the ruling, the two witnesses take it back. Do they pay?",
+              "into": ["They pay", "They do not pay"],
+              "items": [
+                ["They testified to a sale below the fair price", "They pay"],
+                ["They testified to a sale at the fair price", "They do not pay"],
+                ["They testified to a sale above the fair price", "They do not pay"],
+                ["A nikah at her mahr al-mithl", "They do not pay"],
+                ["A nikah with a mahr above her mahr al-mithl", "They pay"]
+              ],
+              "source": ["وإن شهد شاهدان على امرأة بالنكاح بمقدار مهر مثلها ثم رجعا فلا ضمان عليهما", "وإن شهدا بأكثر من مهر المثل ثم رجعا ضمنا الزيادة", "وإن شهدا ببيع بمثل القيمة أو أكثر ثم رجعا لم يضمنا وإن كان بأقل من القيمة ضمنا النقصان"],
+              "why": "They pay only where their testimony caused a loss: a sale below value (the shortfall) or a mahr above the usual (the extra)."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "A man and ten women testified about a debt, and the judge ruled. Then eight of the women take it back. How much do they pay?",
+              "options": ["Nothing", "A quarter", "Four fifths", "Half"],
+              "answer": 0,
+              "source": "ثم رجع ثمان منهن فلا ضمان عليهن",
+              "why": "A man and two women still stand behind the testimony, so the eight pay nothing."
+            }
+          ]
+        },
+        {
+          "id": "shahadat-ruju-cases",
+          "title": "Retracting: divorce, freeing, qisas and more",
+          "arabic": "ضمنا نصف المهر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "talaq",
+              "title": "Divorce before and after consummation",
+              "ar": "وإن شهدا على رجل أنه طلق امرأته قبل الدخول ثم رجعا ضمنا نصف المهر فإن كان الدخول لم يضمنا",
+              "en": "If two witnesses testify that a man divorced his wife before the marriage was consummated, then take it back, they pay him half the mahr (bride-gift), since that is what he had to pay because of them. If it was after consummation, they pay nothing."
+            },
+            {
+              "kind": "choose",
+              "id": "talaq-case",
+              "ask": "Two witnesses say Saad divorced his wife before consummation, and her mahr is 2,000 dirhams. The judge rules; then they take it back. How much do they pay Saad?",
+              "options": ["1,000", "2,000", "Nothing", "500"],
+              "answer": 0,
+              "source": "قبل الدخول ثم رجعا ضمنا نصف المهر",
+              "why": "Before consummation they pay half the mahr: half of 2,000 is 1,000."
+            },
+            {
+              "kind": "teach",
+              "id": "itq",
+              "title": "Freeing a slave",
+              "ar": "وإن شهدا أنه أعتق عبده ثم رجعا ضمنا قيمته",
+              "en": "In al-Quduri's time, if two witnesses testified that a man freed his slave, then took it back, they paid the master the slave's value."
+            },
+            {
+              "kind": "teach",
+              "id": "qisas",
+              "title": "Qisas",
+              "ar": "وإن شهدا بقصاص ثم رجعا بعد القتل ضمنا الدية ولا يقتص منهما",
+              "en": "If two witnesses testify to qisas, and after it has been carried out they take it back, they pay the diya (blood money). They are not themselves killed in qisas."
+            },
+            {
+              "kind": "choose",
+              "id": "qisas-case",
+              "ask": "Two witnesses testified for qisas, and it was carried out. Then they take their testimony back. What is due from them?",
+              "options": ["The diya", "Qisas on both of them", "Nothing"],
+              "answer": 0,
+              "source": "ضمنا الدية ولا يقتص منهما",
+              "why": "They pay the diya, and no qisas is taken from them."
+            },
+            {
+              "kind": "teach",
+              "id": "far",
+              "title": "Branch and original witnesses",
+              "ar": "وإذا رجع شهود الفرع ضنوا وإن رجع شهود الأصل وقالوا: لم نشهد شهود الفرع على شهادتنا فلا ضمان عليهم وإن قالوا: أشهدناهم وغلطنا ضمنوا",
+              "en": "If branch witnesses take it back, they pay. If the original witnesses say \"We never asked the branch witnesses to carry our testimony\", they pay nothing. But if they say \"We did ask them, and we were wrong\", they pay."
+            },
+            {
+              "kind": "choose",
+              "id": "asl-case",
+              "ask": "After a ruling based on branch witnesses, the original witnesses say: \"We made them witnesses to our testimony, but we made a mistake.\" Who pays?",
+              "options": ["The original witnesses", "No one", "The judge"],
+              "answer": 0,
+              "source": "وإن قالوا: أشهدناهم وغلطنا ضمنوا",
+              "why": "Original witnesses who admit they gave the testimony and erred must pay."
+            },
+            {
+              "kind": "choose",
+              "id": "kadhib",
+              "ask": "After a ruling, the branch witnesses say: \"The original witnesses lied.\" What happens?",
+              "options": ["Nothing changes: this is not taken into account", "The ruling is cancelled", "The original witnesses must pay"],
+              "answer": 0,
+              "source": "وإن قال شهود الفرع: كذب شهود الأصل أو غلطوا في شهادتهم",
+              "why": "Al-Quduri says no notice is taken of this: the branch witnesses' words against the originals do not undo the ruling."
+            },
+            {
+              "kind": "teach",
+              "id": "ihsan",
+              "title": "Ihsan witnesses and those who vouched",
+              "ar": "وإذا شهدوا أربعة بالزنا وشاهدان بالإحصان فرجع شهود الإحصان لم يضمنوا وإذا رجع المزكون عن التزكية ضمنوا",
+              "en": "Ihsan is the status (being married, free, adult and Muslim) that makes the hadd for zina stoning. If four witnesses testify to zina and two to ihsan, and the ihsan witnesses take it back, they pay nothing. But the muzakkun (people who vouched that the witnesses were upright) do pay if they take back their vouching."
+            },
+            {
+              "kind": "teach",
+              "id": "yamin",
+              "title": "The oath and the condition",
+              "ar": "وإذا شهد شاهدان باليمين وشاهدان بوجود الشرط ثم رجعوا فالضمان على شهود اليمين خاصة",
+              "en": "Say two witnesses testify that a man swore \"If I enter the house, my slave is free\", and two others that he entered. If they all take it back, only the witnesses to the oath pay."
+            },
+            {
+              "kind": "sort",
+              "id": "who-pays",
+              "ask": "They all take their testimony back. Do these people pay?",
+              "into": ["They pay", "They do not pay"],
+              "items": [
+                ["Witnesses to ihsan", "They do not pay"],
+                ["The muzakkun who vouched for the witnesses", "They pay"],
+                ["Witnesses to the oath", "They pay"],
+                ["Witnesses to the condition being met", "They do not pay"],
+                ["Branch witnesses", "They pay"]
+              ],
+              "source": ["فرجع شهود الإحصان لم يضمنوا وإذا رجع المزكون عن التزكية ضمنوا", "فالضمان على شهود اليمين خاصة", "وإذا رجع شهود الفرع"],
+              "why": "Ihsan and condition witnesses pay nothing. The muzakkun, the oath witnesses and branch witnesses pay."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Two witnesses say Bakr divorced his wife after the marriage was consummated. The judge rules; then they take it back. How much do they pay Bakr?",
+              "options": ["Nothing", "Half the mahr", "The whole mahr"],
+              "answer": 0,
+              "source": "فإن كان الدخول لم يضمنا",
+              "why": "After consummation the whole mahr was already due, so they made him lose nothing and pay nothing."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qadi",
+      "title": "The judge",
+      "arabic": "أدب القاضي",
+      "kitab": "كتاب أدب القاضي",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "qadi-appoint",
+          "title": "Who may be a judge, and taking over",
+          "arabic": "لا تصح ولاية القاضي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "shurut",
+              "title": "The judge's conditions",
+              "ar": "لا تصح ولاية القاضي حتى يجتمع في المولى شرائط الشهادة ويكون من أهل الاجتهاد",
+              "en": "A man cannot be made qadi (judge) unless he has all the conditions of a witness, and is a person of ijtihad (able to work out rulings from the sources himself)."
+            },
+            {
+              "kind": "choose",
+              "id": "shurut-case",
+              "ask": "Mus'ab is a great scholar, but he was once given the hadd for qadhf, so his testimony is never accepted. Can he be made a judge?",
+              "options": ["No: he lacks the conditions of a witness", "Yes: his learning is enough", "Yes, if he repented"],
+              "answer": 0,
+              "source": "حتى يجتمع في المولى شرائط الشهادة",
+              "why": "A judge needs all the conditions of a witness. Someone whose testimony is not accepted cannot be a judge."
+            },
+            {
+              "kind": "teach",
+              "id": "dukhul",
+              "title": "Taking the job",
+              "ar": "ولا بأس بالدخول في القضاء لمن يثق أنه يؤدي فرضه ويكره الدخول فيه لمن يخاف العجز عنه ولا يأمن على نفسه الحيف فيه ولا ينبغي أن يطلب الولاية ولا يسألها",
+              "en": "There is no harm in becoming a judge for one who trusts he can do the duty. It is disliked for one who fears he cannot manage it, or who is not sure he will stay fair. And no one should ask or seek to be made a judge."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Which are true about becoming a judge?",
+              "options": [
+                { "text": "It is fine for one sure he can do the duty", "right": true },
+                { "text": "It is disliked for one who fears being unfair", "right": true },
+                { "text": "One should not ask to be made judge", "right": true },
+                { "text": "Anyone who wants the job should ask for it" },
+                { "text": "A judge does not need ijtihad" }
+              ],
+              "source": ["ولا بأس بالدخول في القضاء لمن يثق أنه يؤدي فرضه", "ولا يأمن على نفسه الحيف فيه", "ولا ينبغي أن يطلب الولاية ولا يسألها", "ويكون من أهل الاجتهاد"],
+              "why": "It is fine for the capable, disliked for one who fears unfairness, and no one should ask for it. A judge must be a person of ijtihad."
+            },
+            {
+              "kind": "teach",
+              "id": "diwan",
+              "title": "The old judge's records and prisoners",
+              "ar": "ومن قلد القضاء يسلم إليه ديوان القاضي الذي قبله وينظر في حال المحبوسين فمن اعترف بحق ألزمه إياه",
+              "en": "A new judge is handed the diwan (record books) of the judge before him. He looks into the prisoners: whoever admits he owes a right is made to pay it."
+            },
+            {
+              "kind": "teach",
+              "id": "mazul",
+              "title": "When a prisoner denies",
+              "ar": "لم يقبل قول المعزول عليه إلا بينة وإن لم تقم بينة لم يعجل بتخليته حتى ينادي عليه ويستظهر في أمره",
+              "en": "If a prisoner denies owing anything, the word of the ma'zul (the judge who was removed) is not accepted against him without bayyina (proof by witnesses). If there is no proof, the new judge does not rush to free him: he first has it announced and looks carefully into his case."
+            },
+            {
+              "kind": "choose",
+              "id": "prisoner-case",
+              "ask": "A prisoner tells the new judge: \"I owe nothing.\" There are no witnesses, only the old judge's word. What does the new judge do?",
+              "options": ["He does not free him at once: he announces it and looks into it", "He frees him the same day", "He keeps him in prison forever on the old judge's word"],
+              "answer": 0,
+              "source": "وإن لم تقم بينة لم يعجل بتخليته حتى ينادي عليه ويستظهر في أمره",
+              "why": "Without proof the old judge's word is not enough, but the new judge does not rush to free him either: he announces it and checks first."
+            },
+            {
+              "kind": "teach",
+              "id": "wadai",
+              "title": "Deposits and waqf income",
+              "ar": "وينظر في الودائع وارتفاع الوقوف فيعمل على ما تقوم به البينة أو يعترف به من هو في يده ولا يقبل قول المعزول إلا أن يعترف الذي هو في يده أن المعزول سلمها إليه فيقبل قوله فيها",
+              "en": "He also looks at deposits held for people and the income of waqfs (property given for good causes). He acts on proof, or on what the person holding it admits. The old judge's word is not accepted, unless the holder admits that the old judge handed it to him; then the old judge's word about it is accepted."
+            },
+            {
+              "kind": "choose",
+              "id": "wadia-case",
+              "ask": "The old judge says a bag of money held by Hisham belongs to orphans. Hisham says: \"Yes, the old judge handed it to me.\" Whose word decides who owns it?",
+              "options": ["The old judge's", "Hisham's", "No one's: it goes to the treasury"],
+              "answer": 0,
+              "source": "إلا أن يعترف الذي هو في يده أن المعزول سلمها إليه فيقبل قوله فيها",
+              "why": "Because Hisham admits the old judge handed it to him, the old judge's word about it is accepted."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Among the prisoners the new judge finds Jabir, who admits: \"Yes, I owe Kamal 200 dirhams.\" What does the judge do?",
+              "options": ["Makes him pay it", "Frees him, since he was jailed by the old judge", "Asks the old judge first"],
+              "answer": 0,
+              "source": "فمن اعترف بحق ألزمه إياه",
+              "why": "Whoever admits he owes a right is made to pay it."
+            }
+          ]
+        },
+        {
+          "id": "qadi-majlis",
+          "title": "How the judge sits, gifts and fairness",
+          "arabic": "ويجلس للحكم جلوسا ظاهرا في المسجد",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "masjid",
+              "title": "Sitting in the open",
+              "ar": "ويجلس للحكم جلوسا ظاهرا في المسجد",
+              "en": "The judge sits to judge openly, in the masjid, where people can easily reach him."
+            },
+            {
+              "kind": "teach",
+              "id": "hadiyya",
+              "title": "Gifts",
+              "ar": "ولا يقبل هدية إلا من ذي رحم محرم أو ممن جرت عادته قبل القضاء بمهاداته",
+              "en": "The judge does not accept a gift, except from a close relative he could never marry (dhu rahim mahram), or from someone who used to give him gifts before he became judge."
+            },
+            {
+              "kind": "choose",
+              "id": "trader-case",
+              "ask": "A rich trader, who never gave the judge anything before, sends him an expensive cloak. May he accept it?",
+              "options": ["No", "Yes, gifts are always fine", "Yes, if the trader has no case in court"],
+              "answer": 0,
+              "source": "ولا يقبل هدية إلا من ذي رحم محرم أو ممن جرت عادته قبل القضاء بمهاداته",
+              "why": "The trader is not a close relative and did not give him gifts before, so the judge does not accept it."
+            },
+            {
+              "kind": "choose",
+              "id": "uncle-case",
+              "ask": "The judge's uncle (his father's brother) sends him a basket of dates. May he accept it?",
+              "options": ["Yes: he is a close relative he could never marry", "No: a judge takes no gifts at all", "Only if he pays for it"],
+              "answer": 0,
+              "source": "إلا من ذي رحم محرم",
+              "why": "A gift from a dhu rahim mahram is allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "dawa",
+              "title": "Invitations, funerals and the sick",
+              "ar": "ولا يحضر دعوة إلا أن تكون عامة ويشهد الجنازة ويعود المريض",
+              "en": "He does not go to an invitation (a meal) unless it is open to everyone. He does attend funerals and visits the sick."
+            },
+            {
+              "kind": "teach",
+              "id": "taswiya",
+              "title": "Equal to both sides",
+              "ar": "ولا يضيف أحد الخصمين دون خصمه وإذا حضرا سوى بينهما في المجلوس والإقبال: ولا يسار أحدهما ولا يشير إليه ولا يلقنه حجة",
+              "en": "He does not host one side of a case as his guest without the other. When both come, he treats them the same in where they sit and how he faces them. He does not whisper to one, signal to him, or teach him an argument."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Which may the judge do?",
+              "options": [
+                { "text": "Go to a funeral", "right": true },
+                { "text": "Visit a sick person", "right": true },
+                { "text": "Go to a meal open to everyone", "right": true },
+                { "text": "Invite one side of a case to dinner alone" },
+                { "text": "Whisper advice to one side" }
+              ],
+              "source": ["ولا يحضر دعوة إلا أن تكون عامة ويشهد الجنازة ويعود المريض", "ولا يضيف أحد الخصمين دون خصمه", "ولا يسار أحدهما"],
+              "why": "Funerals, visiting the sick and open meals are allowed. Hosting one side alone or whispering to him is not."
+            },
+            {
+              "kind": "choose",
+              "id": "seat-case",
+              "ask": "Rashid, an important man, is suing a poor worker. The judge seats Rashid near him and the worker at the back. Is this right?",
+              "options": ["No: he must treat both the same in seating", "Yes: important people get better seats", "Yes, if Rashid came first"],
+              "answer": 0,
+              "source": "وإذا حضرا سوى بينهما في المجلوس والإقبال",
+              "why": "The judge must make both sides equal in seating and in how he faces them."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "During a case, the judge quietly tells one side: \"Say that you already paid him.\" Is this allowed?",
+              "options": ["No: he may not teach a side an argument", "Yes, if that side is weak", "Yes, if he whispers it"],
+              "answer": 0,
+              "source": "ولا يلقنه حجة",
+              "why": "The judge may not prompt either side with an argument."
+            }
+          ]
+        },
+        {
+          "id": "qadi-habs",
+          "title": "Imprisoning a debtor",
+          "arabic": "فإن امتنع حبسه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "habs",
+              "title": "Ordering payment first",
+              "ar": "وطلب صاحب الحق حبس غريمه لم يعجل بحبسه وأمره بدفع ما عليه فإن امتنع حبسه",
+              "en": "When a right is proved and its owner asks for his debtor to be jailed, the judge does not rush to jail him. He first orders him to pay. If he refuses, he jails him."
+            },
+            {
+              "kind": "choose",
+              "id": "habs-case",
+              "ask": "The court has proved that Nabil owes Faisal 400 dirhams. Faisal says: \"Jail him now!\" What does the judge do first?",
+              "options": ["Orders Nabil to pay", "Jails Nabil at once", "Lets Nabil go"],
+              "answer": 0,
+              "source": "لم يعجل بحبسه وأمره بدفع ما عليه فإن امتنع حبسه",
+              "why": "He first orders him to pay, and only jails him if he refuses."
+            },
+            {
+              "kind": "teach",
+              "id": "dayn",
+              "title": "Which debts",
+              "ar": "في كل دين لزمه بدلا عن مال حصل في يده كثمن المبيع وبدل القرض أو التزمه بعقد كالمهر والكفالة",
+              "en": "He is jailed for any debt he owes in return for property that came into his hands, like the price of something he bought or a loan, or a debt he took on by a contract, like a mahr or a kafala (standing as guarantor for someone)."
+            },
+            {
+              "kind": "teach",
+              "id": "faqir",
+              "title": "\"I am poor\"",
+              "ar": "ولا يحبسه فيما سوى ذلك إذا قال: إني فقير إلا أن يثبت غريمه أن له مالا",
+              "en": "For other debts, if he says \"I am poor\", he is not jailed, unless the creditor proves he has money."
+            },
+            {
+              "kind": "choose",
+              "id": "price-case",
+              "ask": "Zayd bought a horse and has not paid its price. He refuses to pay and says: \"I am poor.\" Can he be jailed?",
+              "options": ["Yes: it is the price of something that came into his hands", "No: he said he is poor", "Only if the horse died"],
+              "answer": 0,
+              "source": "في كل دين لزمه بدلا عن مال حصل في يده كثمن المبيع",
+              "why": "The price of a thing he bought is a debt for property he received, so he can be jailed."
+            },
+            {
+              "kind": "teach",
+              "id": "muddah",
+              "title": "How long",
+              "ar": "ويحبسه شهرين أو ثلاثة ثم يسأل عنه فإن لم يظهر له مال خلى سبيله ولا يحول بينه وبين غرمائه",
+              "en": "He jails him for two or three months, then asks about him. If no money of his comes to light, he lets him go. But he does not stop his creditors from following him to get their money."
+            },
+            {
+              "kind": "choose",
+              "id": "muddah-gap",
+              "ask": "How long is he jailed before the judge asks about him? Complete it.",
+              "ar": "ويحبسه ____ ثم يسأل عنه",
+              "options": ["شهرين أو ثلاثة", "سنة كاملة", "ثلاثة أيام"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ويحبسه شهرين أو ثلاثة ثم يسأل عنه",
+              "why": "شهرين أو ثلاثة: two or three months, then the judge asks about him."
+            },
+            {
+              "kind": "teach",
+              "id": "nafaqa",
+              "title": "A wife's keep, and a father",
+              "ar": "ويحبس الرجل في نفقة زوجته ولا يحبس والد في دين ولده إلا إذا امتنع من الإنفاق عليه",
+              "en": "A man can be jailed for not paying his wife's nafaqa (her food, clothing and housing). A father is not jailed for a debt he owes his child, unless he refuses to spend on the child's keep."
+            },
+            {
+              "kind": "choose",
+              "id": "father-case",
+              "ask": "Ibrahim borrowed 1,000 dirhams from his grown-up son and has not paid it back. Can the son have him jailed for it?",
+              "options": ["No: a father is not jailed for his child's debt", "Yes, like any debtor", "Yes, after two months"],
+              "answer": 0,
+              "source": "ولا يحبس والد في دين ولده",
+              "why": "A father is not jailed for a debt to his child. Only refusing to spend on the child's keep would change that."
+            },
+            {
+              "kind": "pick",
+              "id": "mixed",
+              "ask": "Which are true?",
+              "options": [
+                { "text": "A man can be jailed for not paying his wife's nafaqa", "right": true },
+                { "text": "After release, the creditors may still follow him", "right": true },
+                { "text": "The judge orders payment before jailing", "right": true },
+                { "text": "A debtor who says \"I am poor\" is always freed" },
+                { "text": "He stays in jail until he dies if no money is found" }
+              ],
+              "source": ["ويحبس الرجل في نفقة زوجته", "ولا يحول بينه وبين غرمائه", "وأمره بدفع ما عليه", "فإن لم يظهر له مال خلى سبيله"],
+              "why": "Nafaqa can bring jail, payment is ordered first, and creditors may follow him after release. If no money appears he is let go, not kept forever."
+            }
+          ]
+        },
+        {
+          "id": "qadi-letter",
+          "title": "Women judges, letters between judges, deputies",
+          "arabic": "ويقبل كتاب القاضي إلى القاضي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "mara",
+              "title": "A woman as judge",
+              "ar": "ويجوز قضاء المرأة في كل شيء إلا في الحدود والقصاص",
+              "en": "A woman may judge in everything except hudud and qisas."
+            },
+            {
+              "kind": "choose",
+              "id": "mara-case",
+              "ask": "Judge Khadija hears a dispute about the sale of a house. Is her ruling valid?",
+              "options": ["Yes", "No: women may never judge", "Only if a man agrees with her"],
+              "answer": 0,
+              "source": "ويجوز قضاء المرأة في كل شيء إلا في الحدود والقصاص",
+              "why": "A woman may judge in everything except hudud and qisas, so her ruling on a sale is valid."
+            },
+            {
+              "kind": "teach",
+              "id": "kitab",
+              "title": "A letter from one judge to another",
+              "ar": "ويقبل كتاب القاضي إلى القاضي في الحقوق إذا شهد به عنده فإن شهدوا على خصم حكم بالشهادة وكتب بحكمه وإن شهدوا بغير حضرة خصم لم يحكم وكتب بالشهادة ليحكم بها المكتوب إليه",
+              "en": "When witnesses testify before a judge about a right, he can write to a judge in another town. If they testified with the opponent present, he rules and writes his ruling. If the opponent was not there, he does not rule, but writes down the testimony so the judge who receives the letter can rule on it."
+            },
+            {
+              "kind": "teach",
+              "id": "khatm",
+              "title": "Witnesses to the letter",
+              "ar": "ولا يقبل الكتاب إلا بشهادة رجلين أو رجل وامرأتين",
+              "en": "The letter is only accepted with two men or a man and two women as witnesses. The judge reads it to them so they know what is in it, seals it in front of them and hands it to them. The receiving judge only accepts it with the opponent present; when the witnesses testify that it is the judge's letter, he opens it, reads it to the opponent and makes him do what it says."
+            },
+            {
+              "kind": "order",
+              "id": "steps",
+              "ask": "Put the journey of a judge's letter in order.",
+              "steps": ["The judge reads the letter to the witnesses", "He seals it in front of them", "He hands it to them", "They testify to the other judge, with the opponent present", "The other judge opens it and reads it to the opponent"],
+              "source": "ويجب أن يقرأ الكتاب عليهم ليعوفوا ما فيه ثم يختمه بحضرتهم ويسلمه إليهم فإذا وصل إلى القاضي لم يقبله إلا بحضرة الخصم فإن شهدوا أنه كتاب فلان القاضي سلمه إلينا في مجلس حكمه وقرأه علينا وختمه فضه القاضي وقرأه على الخصم وألزمه ما فيه",
+              "why": "He reads it to them, seals it, hands it over; they testify before the other judge with the opponent there; then he opens and reads it."
+            },
+            {
+              "kind": "teach",
+              "id": "istikhlaf",
+              "title": "Not in hudud, and deputies",
+              "ar": "ولا يقبل كتاب القاضي إلى القاضي في الحدود والقصاص وليس للقاضي أن يستخلف على القضاء إلا أن يفوض ذلك إليه",
+              "en": "A judge's letter is not accepted in hudud and qisas. And a judge may not appoint a deputy to judge in his place, unless the ruler gave him that power."
+            },
+            {
+              "kind": "choose",
+              "id": "deputy-case",
+              "ask": "Judge Salih wants to travel and appoints his student to judge while he is away. The ruler never gave him the power to do this. Is it allowed?",
+              "options": ["No", "Yes: a judge may always appoint a deputy", "Yes, if the student is learned"],
+              "answer": 0,
+              "source": "وليس للقاضي أن يستخلف على القضاء إلا أن يفوض ذلك إليه",
+              "why": "A judge may not appoint a deputy unless that power was given to him."
+            },
+            {
+              "kind": "teach",
+              "id": "imda",
+              "title": "Another judge's ruling, and an absent party",
+              "ar": "وإذا رفع القاضي حكم حاكم أمضاه إلا أن يخالف الكتاب أو السنة أو الإجماع أو يكون قولا لا دليل عليه ولا يقضي القاضي على غائب إلا أن يحضر من يقوم مقامه",
+              "en": "When another judge's ruling is brought to a judge, he carries it out, unless it goes against the Qur'an, the Sunna or ijma' (the agreement of the scholars), or is a view with no evidence at all. And a judge does not rule against someone absent, unless someone who stands in his place is present."
+            },
+            {
+              "kind": "choose",
+              "id": "ijma-case",
+              "ask": "A ruling by an earlier judge is brought to Judge Anas. It clearly goes against the ijma'. What does Anas do?",
+              "options": ["He does not carry it out", "He must carry it out anyway", "He sends it back to the earlier judge"],
+              "answer": 0,
+              "source": "إلا أن يخالف الكتاب أو السنة أو الإجماع",
+              "why": "A judge carries out another's ruling unless it goes against the Qur'an, the Sunna or ijma'."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Can a judge's letter be accepted for this?",
+              "into": ["Accepted", "Not accepted"],
+              "items": [
+                ["A debt", "Accepted"],
+                ["The price of a sale", "Accepted"],
+                ["The hadd for theft", "Not accepted"],
+                ["Qisas for a killing", "Not accepted"]
+              ],
+              "source": ["ويقبل كتاب القاضي إلى القاضي في الحقوق", "ولا يقبل كتاب القاضي إلى القاضي في الحدود والقصاص"],
+              "why": "Letters are accepted for rights such as debts and prices, but not for hudud and qisas."
+            }
+          ]
+        },
+        {
+          "id": "qadi-tahkim",
+          "title": "Choosing an arbiter",
+          "arabic": "وإذا حكم رجلان رجلا",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "tahkim",
+              "title": "Two people choose a judge",
+              "ar": "وإذا حكم رجلان رجلا ليحكم بينهما ورضيا بحكمه جاز إذا كان بصفة الحاكم",
+              "en": "Tahkim means two people choose a man to judge between them (an arbiter) and agree to his ruling. It is allowed if he has the qualities of a judge."
+            },
+            {
+              "kind": "teach",
+              "id": "la",
+              "title": "Who cannot be an arbiter",
+              "ar": "ولا يجوز تحكيم الكافر والعبد والذمي والمحدود في القذف والفاسق والصبي",
+              "en": "These may not be chosen as arbiter: a kafir (non-Muslim), a slave (in al-Quduri's time), a dhimmi, one given the hadd for qadhf, a fasiq (an openly sinful person), and a child."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Two Muslims want to choose an arbiter. Whom may they NOT choose?",
+              "options": [
+                { "text": "A 12-year-old boy", "right": true },
+                { "text": "A man known for open sins", "right": true },
+                { "text": "A man punished for qadhf", "right": true },
+                { "text": "An upright, free, adult Muslim man" }
+              ],
+              "source": "ولا يجوز تحكيم الكافر والعبد والذمي والمحدود في القذف والفاسق والصبي",
+              "why": "A child, a fasiq and one punished for qadhf cannot be arbiters. An upright, free, adult Muslim can."
+            },
+            {
+              "kind": "teach",
+              "id": "ruju",
+              "title": "Pulling out, and the judge's review",
+              "ar": "ولكل واحد من المحكمين أن يرجع ما لم يحكم عليهما فإذا حكم لزمهما وإذا رفع حكمه إلى القاضي فوافق مذهبه أمضاه وإن خالفه أبطله",
+              "en": "Either of the two may pull out until the arbiter has ruled. Once he rules, it binds them both. If his ruling is brought to the judge, the judge carries it out if it agrees with his own view, and cancels it if not."
+            },
+            {
+              "kind": "choose",
+              "id": "pull-case",
+              "ask": "Ali and Hasan choose Umar to settle their dispute. Before Umar rules, Hasan says: \"I don't want this any more.\" May he pull out?",
+              "options": ["Yes, before the ruling", "No: once chosen, it is final", "Only if Ali agrees"],
+              "answer": 0,
+              "source": "ولكل واحد من المحكمين أن يرجع ما لم يحكم عليهما",
+              "why": "Each may pull out as long as the arbiter has not yet ruled."
+            },
+            {
+              "kind": "choose",
+              "id": "review-case",
+              "ask": "Umar ruled between Ali and Hasan. The ruling is then brought to the judge, whose own view is different. What does the judge do?",
+              "options": ["Cancels it", "Must carry it out", "Asks Umar to rule again"],
+              "answer": 0,
+              "source": "وإن خالفه أبطله",
+              "why": "If the arbiter's ruling goes against the judge's view, the judge cancels it."
+            },
+            {
+              "kind": "teach",
+              "id": "hudud",
+              "title": "Not in hudud, qisas, or the 'aqila",
+              "ar": "ولا يجوز التحكيم في الحدود والقصاص وإن حكما في دم خطإ فقضى الحاكم على العاقلة بالدية لم ينفذ حكمه",
+              "en": "Arbitration is not allowed in hudud and qisas. If two people choose an arbiter over an accidental killing and he makes the 'aqila (the relatives who share in paying blood money) pay the diya, his ruling does not take effect."
+            },
+            {
+              "kind": "choose",
+              "id": "khata-case",
+              "ask": "After an accidental killing, the two sides choose an arbiter, who rules that the killer's 'aqila must pay the diya. Does this ruling take effect?",
+              "options": ["No", "Yes, since both sides chose him", "Yes, if the diya is small"],
+              "answer": 0,
+              "source": "فقضى الحاكم على العاقلة بالدية لم ينفذ حكمه",
+              "why": "His ruling against the 'aqila does not take effect."
+            },
+            {
+              "kind": "teach",
+              "id": "nukul",
+              "title": "Proof and refusing an oath",
+              "ar": "ويجوز أن يسمع البينة ويقضي بالنكول",
+              "en": "The arbiter may hear proof from witnesses, and may rule on nukul (when the person who should swear an oath refuses to)."
+            },
+            {
+              "kind": "teach",
+              "id": "qarib",
+              "title": "Ruling for his own family",
+              "ar": "وحكم الحاكم لأبويه وولده وزوجته باطل",
+              "en": "A ruling by the arbiter in favour of his own parents, child or wife is void."
+            },
+            {
+              "kind": "choose",
+              "id": "wife-case",
+              "ask": "Two neighbours choose Salman as arbiter. One of them is Salman's wife, and he rules in her favour. What is the ruling?",
+              "options": ["Void", "Valid, since both chose him", "Valid if he swears he was fair"],
+              "answer": 0,
+              "source": "وحكم الحاكم لأبويه وولده وزوجته باطل",
+              "why": "A ruling for his wife is void."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Can this be settled by an arbiter?",
+              "into": ["Can be", "Cannot be"],
+              "items": [
+                ["A dispute over a sale", "Can be"],
+                ["A debt", "Can be"],
+                ["The hadd for theft", "Cannot be"],
+                ["Qisas", "Cannot be"],
+                ["Making the 'aqila pay diya", "Cannot be"]
+              ],
+              "source": ["ولا يجوز التحكيم في الحدود والقصاص", "فقضى الحاكم على العاقلة بالدية لم ينفذ حكمه", "وإذا حكم رجلان رجلا ليحكم بينهما ورضيا بحكمه جاز"],
+              "why": "Money disputes like sales and debts can go to an arbiter. Hudud, qisas and the 'aqila's diya cannot."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qisma",
+      "title": "Dividing property",
+      "arabic": "القسمة",
+      "kitab": "كتاب القسمة",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "qisma-qasim",
+          "title": "The divider, and dividing inherited land",
+          "arabic": "ينبغي للإمام أن ينصب قاسما",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "qasim",
+              "title": "A divider for the people",
+              "ar": "ينبغي للإمام أن ينصب قاسما",
+              "en": "Qisma means dividing shared property between its owners. The imam (ruler) should appoint a qasim (divider), paid from the bayt al-mal (public treasury), to divide between people free of charge. If he does not, he appoints a divider who takes a fee."
+            },
+            {
+              "kind": "teach",
+              "id": "sifa",
+              "title": "What the divider must be",
+              "ar": "ويجب أن يكون عدلا مأمونا عالما بالقسمة ولا يجبر القاضي الناس على قاسم واحد ولا يترك القسام يشتركون",
+              "en": "The divider must be upright, trustworthy and know how to divide. The judge does not force people to use only one divider, and he does not let the dividers join together (so they could not push up their fees)."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "Which are true about the divider?",
+              "options": [
+                { "text": "He must be upright and trustworthy", "right": true },
+                { "text": "He must know how to divide", "right": true },
+                { "text": "If not paid by the treasury, he may take a fee", "right": true },
+                { "text": "Everyone must use the same one divider" },
+                { "text": "The dividers should join together" }
+              ],
+              "source": ["ويجب أن يكون عدلا مأمونا عالما بالقسمة", "فإن لم يفعل نصب قاسما بالأجرة", "ولا يجبر القاضي الناس على قاسم واحد ولا يترك القسام يشتركون"],
+              "why": "He must be upright, trustworthy and skilled, and may be paid a fee. People are not forced onto one divider, and dividers may not join together."
+            },
+            {
+              "kind": "choose",
+              "id": "one-case",
+              "ask": "The judge tells the town: \"Only Hamid may divide your land, no one else.\" Is this right?",
+              "options": ["No: he does not force people onto one divider", "Yes: it keeps things simple", "Yes, if Hamid is upright"],
+              "answer": 0,
+              "source": "ولا يجبر القاضي الناس على قاسم واحد",
+              "why": "The judge does not force people to use one divider."
+            },
+            {
+              "kind": "teach",
+              "id": "ajr",
+              "title": "Who pays the fee",
+              "ar": "وأجر القسمة على عدد الرؤوس عند أبي حنيفة وقال أبو يوسف ومحمد: على قدر الأنصاء",
+              "en": "Abu Hanifa says the divider's fee is shared by head: each partner pays the same. Note: Abu Yusuf and Muhammad say each pays by the size of his share."
+            },
+            {
+              "kind": "teach",
+              "id": "mirath",
+              "title": "Inherited land: Abu Hanifa asks for proof",
+              "ar": "لم يقسمها عند أبي حنيفة حتى يقيموا",
+              "en": "If partners come holding a house or farmland and say they inherited it from someone, Abu Hanifa says the judge does not divide it until they bring proof of his death and of how many heirs he has. Note: Abu Yusuf and Muhammad say he divides it on their own word, and writes that he divided it on what they said."
+            },
+            {
+              "kind": "teach",
+              "id": "other",
+              "title": "Other cases",
+              "ar": "وإذا كان المال المشترك ما سوى العقار وادعوا أنه ميراث قسمه في قولهم جميعا وإن ادعوا في العقار اشتروه قسمه بينهم وإن ادعوا الملك ولم يذكروا كيف انتقل قسمه بينهم",
+              "en": "'Aqar means land and buildings. If the shared property is not 'aqar and they say it is inherited, the judge divides it, by all three scholars. If they say they bought the 'aqar, he divides it. If they just say they own it, without saying how it came to them, he divides it too."
+            },
+            {
+              "kind": "choose",
+              "id": "sheep-case",
+              "ask": "Three brothers bring 60 sheep and say they inherited them from their father. They ask the judge to divide them. What does he do?",
+              "options": ["Divides them", "Refuses until they prove the death and the heirs", "Refuses: sheep cannot be divided"],
+              "answer": 0,
+              "source": "وإذا كان المال المشترك ما سوى العقار وادعوا أنه ميراث قسمه في قولهم جميعا",
+              "why": "Sheep are not 'aqar, so all three scholars agree he divides them."
+            },
+            {
+              "kind": "choose",
+              "id": "bought-case",
+              "ask": "Two friends say: \"We bought this house together.\" They ask the judge to divide it. What does he do?",
+              "options": ["Divides it", "Asks for proof of a death", "Refuses: houses are never divided"],
+              "answer": 0,
+              "source": "وإن ادعوا في العقار اشتروه قسمه بينهم",
+              "why": "If they say they bought the 'aqar, he divides it between them."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Partners hold a piece of land. They say \"It is ours\" but do not say how they got it. What does the judge do?",
+              "options": ["Divides it", "Refuses to divide it", "Gives it to the treasury"],
+              "answer": 0,
+              "source": "وإن ادعوا الملك ولم يذكروا كيف انتقل قسمه بينهم",
+              "why": "If they claim ownership without saying how it came to them, he divides it."
+            }
+          ]
+        },
+        {
+          "id": "qisma-when",
+          "title": "When property is divided",
+          "arabic": "قسم بطلب أحدهم",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "intifa",
+              "title": "When each can use his share",
+              "ar": "وإذا كان كل واحد من الشركاء ينتفع بنصيبه قسم بطلب أحدهم",
+              "en": "If every partner can still make use of his share after dividing, the property is divided when any one of them asks."
+            },
+            {
+              "kind": "teach",
+              "id": "darar",
+              "title": "When a small share is useless",
+              "ar": "وإن كان أحدهم ينتفع والآخر يستضر لقلة نصيبه فإن طلب صاحب الكثير قسم وإن طلب صاحب القليل لم يقسم وإن كان كل واحد يستضر لم يقسمها إلا بتراضيها",
+              "en": "If one can use his share but the other is harmed because his share is too small to use, then: if the owner of the big share asks, it is divided; if the owner of the small share asks, it is not. If dividing harms every one of them, it is only divided if they all agree."
+            },
+            {
+              "kind": "choose",
+              "id": "small-case",
+              "ask": "Bilal owns one tenth of a small shop, and Ahmad owns the rest. Bilal's tenth would be useless on its own. Bilal asks for the shop to be divided. Is it?",
+              "options": ["No", "Yes", "Only if Ahmad pays a fee"],
+              "answer": 0,
+              "source": "وإن طلب صاحب القليل لم يقسم",
+              "why": "When the owner of the small share asks, it is not divided."
+            },
+            {
+              "kind": "choose",
+              "id": "big-case",
+              "ask": "Same shop: this time Ahmad, who owns nine tenths, asks for it to be divided. Is it?",
+              "options": ["Yes", "No", "Only if Bilal agrees"],
+              "answer": 0,
+              "source": "فإن طلب صاحب الكثير قسم",
+              "why": "When the owner of the big share asks, it is divided."
+            },
+            {
+              "kind": "teach",
+              "id": "urud",
+              "title": "Goods of one kind",
+              "ar": "ويقسم العروض إذا كانت من صنف واحد ولا يقسم الجنسان بعضهما في بعض",
+              "en": "'Urud (goods) are divided when they are all of one kind. Two different kinds are not divided one against the other (for example, all the wheat to one and all the cloth to the other)."
+            },
+            {
+              "kind": "teach",
+              "id": "hammam",
+              "title": "Slaves, jewels, bathhouses, wells and mills",
+              "ar": "وقال أبو يوسف ومحمد: يقسم الرقيق ولا يقسم حمام ولا بئر ولا رحى إلا أن يتراضى الشركاء",
+              "en": "A bathhouse, a well or a mill is not divided unless the partners all agree. Note: Abu Hanifa says slaves (in his time) and jewels are not divided, as they differ so much; Abu Yusuf and Muhammad say slaves are divided."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "How can this shared property be divided?",
+              "into": ["On one partner's request", "Only if all agree"],
+              "items": [
+                ["A big field where every share is still useful", "On one partner's request"],
+                ["A well", "Only if all agree"],
+                ["A bathhouse", "Only if all agree"],
+                ["A mill", "Only if all agree"],
+                ["A heap of wheat of one kind", "On one partner's request"]
+              ],
+              "source": ["وإذا كان كل واحد من الشركاء ينتفع بنصيبه قسم بطلب أحدهم", "ولا يقسم حمام ولا بئر ولا رحى إلا أن يتراضى الشركاء", "ويقسم العروض إذا كانت من صنف واحد"],
+              "why": "Things every partner can still use, and goods of one kind, are divided on request. A well, a bathhouse and a mill need everyone's agreement."
+            },
+            {
+              "kind": "teach",
+              "id": "ghaib",
+              "title": "An absent heir",
+              "ar": "وإذا حضر وارثان وأقاما البينة على الوفاة وعدد الورثة والدار في أيديهم ومعهم وارث غائب قسمها القاضي بطلب الحاضرين وينصب للغائب وكيلا يقبض نصيبه",
+              "en": "If two heirs come with proof of the death and the number of heirs, and the house is in their hands, but another heir is away, the judge divides it when the present heirs ask. He appoints a wakil (agent) to take the absent heir's share for him."
+            },
+            {
+              "kind": "teach",
+              "id": "mushtari",
+              "title": "Buyers, and one heir alone",
+              "ar": "وإن كانوا مشترين لم يقسم مع غيبة أحدهم وإن كان العقار في يد الوارث الغائب لم يقسم وإن حضر وارث واحد لم يقسم",
+              "en": "If they are buyers, not heirs, it is not divided while one of them is away. And it is not divided if the land is in the absent heir's hands, or if only one heir comes."
+            },
+            {
+              "kind": "choose",
+              "id": "heirs-case",
+              "ask": "Two of three heirs come with proof of their father's death and the number of heirs. The house is in their hands; the third heir is abroad. What does the judge do?",
+              "options": ["Divides it and appoints an agent for the absent heir", "Waits until the third heir returns", "Gives the whole house to the two"],
+              "answer": 0,
+              "source": "قسمها القاضي بطلب الحاضرين وينصب للغائب وكيلا يقبض نصيبه",
+              "why": "He divides it at the present heirs' request and appoints an agent to take the absent one's share."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Three men bought a house together. One is away on a journey. The other two ask the judge to divide it. What does he do?",
+              "options": ["Does not divide it while one buyer is away", "Divides it and appoints an agent", "Divides it between the two present"],
+              "answer": 0,
+              "source": "وإن كانوا مشترين لم يقسم مع غيبة أحدهم",
+              "why": "For buyers, the judge does not divide while one of them is absent."
+            }
+          ]
+        },
+        {
+          "id": "qisma-how",
+          "title": "How the divider divides",
+          "arabic": "وينبغي للقاسم: أن يصور ما يقسمه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "dur",
+              "title": "Several houses",
+              "ar": "وإذا كانت دور مشتركة في مصر واحد قسمت كل دار على حدتها في قول أبي حنيفة رحمه الله وقالا: إن كان الأصلح لهم قسمة بعضها في بعض قسمها",
+              "en": "If partners share several houses in one town, Abu Hanifa says each house is divided on its own. Note: Abu Yusuf and Muhammad say that if it is better for the partners, some houses may be given against others."
+            },
+            {
+              "kind": "teach",
+              "id": "hanut",
+              "title": "A house and a shop",
+              "ar": "وإن كانت دار وضيعة أو دار وحانوت قسم كل واحد على حدته",
+              "en": "If they share a house and farmland, or a house and a shop, each one is divided on its own."
+            },
+            {
+              "kind": "choose",
+              "id": "shop-case",
+              "ask": "Two sisters share a house and a shop. One says: \"I'll take the house, you take the shop.\" How does the divider divide them?",
+              "options": ["Each one is divided on its own", "House to one sister, shop to the other", "He sells both and splits the money"],
+              "answer": 0,
+              "source": "أو دار وحانوت قسم كل واحد على حدته",
+              "why": "A house and a shop are each divided on their own."
+            },
+            {
+              "kind": "teach",
+              "id": "tasawwur",
+              "title": "Drawing, measuring and separating",
+              "ar": "وينبغي للقاسم: أن يصور ما يقسمه ويعدله ويذرعه ويقوم البناء ويفرز كل نصيب عن الباقي بطريقة وشربه حتى لا يكون لنصيب بعضهم بنصيب الآخر تعلق",
+              "en": "The divider should draw a plan of what he divides, make the shares equal, measure it, value the buildings, and separate each share with its own path and water supply, so that no share depends on another."
+            },
+            {
+              "kind": "teach",
+              "id": "qura",
+              "title": "Naming the shares and drawing lots",
+              "ar": "والذي يليه بالثاني والثالث وعلى هذا ثم يخرج القرعة فمن خرج اسمه أولا فله السهم الأول ومن خرج ثانيا فله السهم الثاني",
+              "en": "Then he names one share \"the first\", the next \"the second\", then \"the third\", and so on. Then he draws lots (qur'a): whoever's name comes out first gets the first share, and whoever's comes out second gets the second."
+            },
+            {
+              "kind": "order",
+              "id": "steps",
+              "ask": "Put the divider's work in order.",
+              "steps": ["Draw a plan of the land", "Measure it and value the buildings", "Separate each share with its own path and water", "Name the shares first, second, third", "Draw lots"],
+              "source": ["أن يصور ما يقسمه ويعدله ويذرعه ويقوم البناء ويفرز كل نصيب عن الباقي بطريقة وشربه", "ثم يلقب نصيبا بالأول", "ثم يخرج القرعة"],
+              "why": "He draws, measures and values, separates each share, names the shares, and finally draws lots."
+            },
+            {
+              "kind": "teach",
+              "id": "darahim",
+              "title": "No money added",
+              "ar": "ولا يدخل في القسمة الدراهم والدنانير إلا بتراضيهم",
+              "en": "Dirhams and dinars (money) are not added into the division to even out the shares, unless the partners all agree."
+            },
+            {
+              "kind": "teach",
+              "id": "tariq",
+              "title": "A path or water channel through another's share",
+              "ar": "أو طريق لم يشترط في القسمة: فإن أمكن صرف الطريق والمسيل عنه فليس له أن يستطرق ويسيل في نصيب الآخر وإن لم يمكن فسخت القسمة",
+              "en": "After dividing, one partner may find his water channel or path runs through the other's share, and this was not agreed in the division. If the path or channel can be moved away, he may not use the other's share for it. If it cannot be moved, the division is cancelled."
+            },
+            {
+              "kind": "choose",
+              "id": "tariq-case",
+              "ask": "After dividing, Kamil's only path to the street runs through Nasir's share. Nothing was agreed about it, and there is no other way to make a path. What happens?",
+              "options": ["The division is cancelled", "Kamil keeps using Nasir's share", "Kamil must stay inside forever"],
+              "answer": 0,
+              "source": "وإن لم يمكن فسخت القسمة",
+              "why": "If the path cannot be moved away, the division is cancelled."
+            },
+            {
+              "kind": "teach",
+              "id": "sufl",
+              "title": "Upper and lower floors",
+              "ar": "وإن كان سفل لا علو له وعلو لا سفل له وسفل له علو قوم كل واحد على حدته وقسم بالقيمة ولا معتبر بغير ذلك",
+              "en": "If there is a ground floor with nothing above it, an upper floor with nothing below it (owned without the ground floor), and a ground floor with an upper floor on it, each is valued on its own and they are divided by value. Nothing else counts."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "The shares are not quite equal, so the divider decides to give one partner some extra dirhams to balance them. The partners did not agree to this. Is it allowed?",
+              "options": ["No, not without their agreement", "Yes: it makes the shares fair", "Yes, if the amount is small"],
+              "answer": 0,
+              "source": "ولا يدخل في القسمة الدراهم والدنانير إلا بتراضيهم",
+              "why": "Money is only brought into a division if the partners all agree."
+            }
+          ]
+        },
+        {
+          "id": "qisma-dispute",
+          "title": "Disputes after dividing",
+          "arabic": "وإذا اختلف المتقاسمون",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "qasiman",
+              "title": "The dividers as witnesses",
+              "ar": "وإذا اختلف المتقاسمون فشهد القاسمان قبلت شهادتهما",
+              "en": "If the partners disagree about the division and the two dividers testify about it, their testimony is accepted."
+            },
+            {
+              "kind": "choose",
+              "id": "qasiman-case",
+              "ask": "After dividing, Habib and Murad argue about where the line between their shares is. The two men who did the dividing testify about it. Is their testimony accepted?",
+              "options": ["Yes", "No: they did the job, so they cannot testify", "Only if they took no fee"],
+              "answer": 0,
+              "source": "فشهد القاسمان قبلت شهادتهما",
+              "why": "The two dividers' testimony is accepted."
+            },
+            {
+              "kind": "teach",
+              "id": "ghalat",
+              "title": "Claiming a mistake after receiving",
+              "ar": "فإن ادعى أحدهما الغلط وزعم أن مما أصابه شيئا في يد صاحبه وقد أشهد على نفسه بالاستيفاء لم يصدق على ذلك إلا ببينة",
+              "en": "If one claims there was a mistake, saying part of what he should have got is in his partner's hands, but he already had it witnessed that he received his full share, he is not believed without proof."
+            },
+            {
+              "kind": "teach",
+              "id": "bad",
+              "title": "\"I received it all\", then \"only some\"",
+              "ar": "وإن قال: استوفيت حقي ثم قال: أخذت بعضه فالقول قول خصمه مع يمينه",
+              "en": "If he said \"I received my full right\" and later says \"I only took some of it\", then his partner's word counts, with his oath."
+            },
+            {
+              "kind": "choose",
+              "id": "bad-case",
+              "ask": "Yunus said: \"I have received my whole share.\" A week later he says: \"Actually I only got part of it.\" His partner denies this. Whose word counts?",
+              "options": ["The partner's, with an oath", "Yunus's, with an oath", "Neither: the division is cancelled"],
+              "answer": 0,
+              "source": "فالقول قول خصمه مع يمينه",
+              "why": "After saying he received his full right, the partner's word counts, with his oath."
+            },
+            {
+              "kind": "teach",
+              "id": "tahaluf",
+              "title": "Both swear, and it is cancelled",
+              "ar": "ولم يشهد على نفسه بالاستيفاء وكذبه شريكه تحالفا وفسخت القسمة",
+              "en": "If he says \"My share reaches as far as this spot, but you did not hand it to me\", and he never had it witnessed that he received his share, and his partner says he is lying, then they both swear (tahaluf) and the division is cancelled."
+            },
+            {
+              "kind": "choose",
+              "id": "tahaluf-case",
+              "ask": "Rami says: \"My share goes up to the palm tree, but you never gave me that strip.\" He never declared that he received his share. His partner says he is wrong. What happens?",
+              "options": ["Both swear, and the division is cancelled", "Rami gets the strip", "The partner keeps it without an oath"],
+              "answer": 0,
+              "source": "تحالفا وفسخت القسمة",
+              "why": "Without a declaration of receiving, and with the partner denying, both swear and the division is cancelled."
+            },
+            {
+              "kind": "teach",
+              "id": "istihqaq",
+              "title": "When part of a share turns out to belong to someone else",
+              "ar": "وإن استحق بعض نصيب أحدهما بعينه لم تفسخ القسمة عند أبي حنيفة ورجع بحصة ذلك من",
+              "en": "If a specific part of one partner's share turns out to belong to someone else, Abu Hanifa says the division is not cancelled: he claims back the matching amount from his partner's share. Note: Abu Yusuf says the division is cancelled."
+            },
+            {
+              "kind": "sort",
+              "id": "sort",
+              "ask": "After the division, what happens?",
+              "into": ["Not believed without proof", "Partner's word with oath", "Both swear, division cancelled"],
+              "items": [
+                ["He declared he received it all, then claims a mistake", "Not believed without proof"],
+                ["He said \"I got my full right\", then \"only some\"", "Partner's word with oath"],
+                ["He never declared receiving, says a strip was not handed over, partner denies", "Both swear, division cancelled"]
+              ],
+              "source": ["وقد أشهد على نفسه بالاستيفاء لم يصدق على ذلك إلا ببينة", "فالقول قول خصمه مع يمينه", "تحالفا وفسخت القسمة"],
+              "why": "A declared receipt needs proof to undo; \"all\" then \"some\" goes to the partner's oath; no declaration plus denial means both swear and it is cancelled."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Hakim had it witnessed that he received his full share. Now he says a room that should be his is in his partner's hands, but he has no witnesses. Is he believed?",
+              "options": ["No, not without proof", "Yes, with his oath", "Yes: both swear and it is cancelled"],
+              "answer": 0,
+              "source": "لم يصدق على ذلك إلا ببينة",
+              "why": "Since he declared he received his share, he is not believed without proof."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ikrah",
+      "title": "Coercion",
+      "arabic": "الإكراه",
+      "kitab": "كتاب الإكراه",
+      "whole": true,
+      "lessons": [
+        {
+          "id": "ikrah-deals",
+          "title": "Forced into a sale",
+          "arabic": "الإكراه يثبت حكمه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "ikrah",
+              "title": "What counts as coercion",
+              "ar": "الإكراه يثبت حكمه إذا حصل ممن يقدر على إيقاع ما توعد به سلطانا كان أو لصا",
+              "en": "Ikrah (coercion) means forcing someone with threats. It has its rulings when it comes from someone able to carry out his threat, whether he is a ruler or a robber."
+            },
+            {
+              "kind": "choose",
+              "id": "lis-case",
+              "ask": "A robber holding a knife, who could easily use it, tells Adam: \"Sign this or I'll kill you.\" Does this count as coercion?",
+              "options": ["Yes: he is able to carry out his threat", "No: only a ruler can coerce", "No: a robber's threats do not count"],
+              "answer": 0,
+              "source": "ممن يقدر على إيقاع ما توعد به سلطانا كان أو لصا",
+              "why": "Coercion counts when the threat comes from someone able to carry it out, ruler or robber."
+            },
+            {
+              "kind": "teach",
+              "id": "bay",
+              "title": "Forced to sell, buy, admit or rent",
+              "ar": "وإذا أكره الرجل على بيع ماله أو على شراء سلعة أو على أن يقر لرجل بألف أو يؤاجر داره - وأكره على ذلك بالقتل أو بالضرب الشديد أو بالحبس المديد",
+              "en": "Say a man is forced to sell his property, buy goods, admit he owes someone 1,000, or rent out his house, and the threat is killing, a severe beating or a long imprisonment."
+            },
+            {
+              "kind": "teach",
+              "id": "khiyar",
+              "title": "He has the choice",
+              "ar": "فباع أو اشترى فهو بالخيار: إن شاء أمضى البيع وإن شاء فسخه",
+              "en": "If he sold or bought under that threat, he has the choice (khiyar): he may let the sale stand, or cancel it."
+            },
+            {
+              "kind": "choose",
+              "id": "house-case",
+              "ask": "Under threat of a severe beating, Rafiq sold his house to Jalal. Later he is safe. What is the sale's status?",
+              "options": ["Rafiq chooses: keep it or cancel it", "It is final and cannot be undone", "It is void and nothing can make it valid"],
+              "answer": 0,
+              "source": "فهو بالخيار: إن شاء أمضى البيع وإن شاء فسخه",
+              "why": "A coerced seller has the choice to let the sale stand or cancel it."
+            },
+            {
+              "kind": "pick",
+              "id": "pick",
+              "ask": "In the book's words, which threats make a forced sale coercion?",
+              "options": [
+                { "text": "A threat to kill him", "right": true },
+                { "text": "A threat of a severe beating", "right": true },
+                { "text": "A threat of long imprisonment", "right": true },
+                { "text": "\"I'll be upset with you\"" },
+                { "text": "\"I won't invite you to dinner\"" }
+              ],
+              "source": "وأكره على ذلك بالقتل أو بالضرب الشديد أو بالحبس المديد",
+              "why": "The book names killing, a severe beating and long imprisonment. Being upset or not inviting him are not threats of harm."
+            },
+            {
+              "kind": "teach",
+              "id": "qabd",
+              "title": "Taking the price",
+              "ar": "وإن كان قبض الثمن طوعا فقد أجاز البيع وإن كان قبضه مكرها فليس بإجازة وعليه رده إن كان قائما في يده",
+              "en": "If he later takes the price willingly, he has approved the sale. If he was forced to take it too, that is not approval, and if he cancels he must give the price back, if he still has it."
+            },
+            {
+              "kind": "choose",
+              "id": "qabd-case",
+              "ask": "Rafiq was forced to sell his house. A month later, free and safe, he happily collects the price from the buyer. Can he still cancel the sale?",
+              "options": ["No: taking the price willingly approved it", "Yes: the sale was forced", "Yes, if he returns half"],
+              "answer": 0,
+              "source": "وإن كان قبض الثمن طوعا فقد أجاز البيع",
+              "why": "Taking the price willingly counts as approving the sale."
+            },
+            {
+              "kind": "teach",
+              "id": "halak",
+              "title": "If the item is destroyed",
+              "ar": "وإن هلك المبيع في يد المشتري وهو غير مكره ضمن قيمته وللمكره أن يضمن المكره إن شاء",
+              "en": "If the thing sold is destroyed while with the buyer, and the buyer was not forced, the buyer pays its value. And the one who was forced may, if he wishes, make the one who forced him pay instead."
+            },
+            {
+              "kind": "choose",
+              "id": "halak-case",
+              "ask": "Sami was forced to sell his camel. The buyer, who was not forced, has it, and it dies. Sami cancels the sale. Who can Sami claim the camel's value from?",
+              "options": ["The buyer, or if he wishes, the man who forced him", "No one", "Only the judge"],
+              "answer": 0,
+              "source": ["وإن هلك المبيع في يد المشتري وهو غير مكره ضمن قيمته", "وللمكره أن يضمن المكره إن شاء"],
+              "why": "The willing buyer owes its value, and the forced seller may choose to claim from the coercer instead."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "A ruler threatens to imprison Tahir for years unless he admits he owes Fadi 1,000 dirhams. Tahir admits it. What does this coerced admission count as?",
+              "options": ["It is coercion, with its rulings", "A free and binding admission", "Coercion only counts for sales"],
+              "answer": 0,
+              "source": "أو على أن يقر لرجل بألف",
+              "why": "Being forced to admit a debt under threat of long imprisonment is coercion like being forced to sell."
+            }
+          ]
+        },
+        {
+          "id": "ikrah-food-kufr",
+          "title": "Forced to eat the forbidden, or to say words of kufr",
+          "arabic": "ومن أكره على أن يأكل الميتة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "mayta",
+              "title": "Carrion and wine",
+              "ar": "ومن أكره على أن يأكل الميتة أو يشرب الخمر - وأكره على ذلك بحبس أو ضرب أو يد لم يحل له إلا أن يكره بما يخاف منه على نفسه أو على عضو من أعضائه",
+              "en": "If someone is forced to eat mayta (meat of an animal that died without proper slaughter) or drink wine, with a threat of prison or a beating, it is still not allowed for him, unless the threat makes him fear for his life or for a limb."
+            },
+            {
+              "kind": "teach",
+              "id": "wasi",
+              "title": "Then he must not hold out",
+              "ar": "فإذا خاف ذلك وسعه أن يقدم على ما أكره عليه ولا يسعه أن يصبر على ما توعد به فإن صبر حتى أوقعوا به ولم يأكل فهو آثم",
+              "en": "If he fears that, he may do what he is forced to, and he may not hold out against the threat. If he holds out until they carry it out and he did not eat, he is sinful."
+            },
+            {
+              "kind": "choose",
+              "id": "mayta-case",
+              "ask": "Captors tell Harun: \"Eat this carrion or we will kill you\", and he truly fears they will. He refuses, and they harm him. What is his position?",
+              "options": ["He is sinful for refusing", "He is rewarded for refusing", "He did nothing either way"],
+              "answer": 0,
+              "source": "فإن صبر حتى أوقعوا به ولم يأكل فهو آثم",
+              "why": "When he fears for his life, he must eat. Holding out until they harm him is a sin."
+            },
+            {
+              "kind": "choose",
+              "id": "habs-case",
+              "ask": "Harun is threatened only with a short spell in prison unless he drinks wine. Is it allowed for him to drink?",
+              "options": ["No", "Yes: any threat makes it allowed", "Yes, but only a little"],
+              "answer": 0,
+              "source": "بحبس أو ضرب أو يد لم يحل له إلا أن يكره بما يخاف منه على نفسه أو على عضو من أعضائه",
+              "why": "Prison or a beating is not enough; only fear for his life or a limb makes it allowed."
+            },
+            {
+              "kind": "teach",
+              "id": "kufr",
+              "title": "Forced to say words of kufr",
+              "ar": "وإن أكره على الكفر بالله عز وجل أو سب النبي عليه الصلاة والسلام: بقيد أو حبس أو ضرب لم يكن ذلك إكراها حتى يكره بأمر يخاف منه على نفسه أو على عضو من أعضائه",
+              "en": "Kufr means disbelief. If someone is forced to say words of kufr, or to insult the Prophet, peace be upon him, with chains, prison or a beating, that is not coercion, until he is threatened with something that makes him fear for his life or a limb."
+            },
+            {
+              "kind": "teach",
+              "id": "qalb",
+              "title": "His heart at peace with faith",
+              "ar": "فإذا خاف ذلك وسعه أن يظهر ما أمروه به ويوري فإذا أظهر ذلك وقلبه مطمئن بالإيمان فلا إثم عليه وإن صبر حتى قتل ولم يظهر الكفر ذلك كان مأجورا",
+              "en": "If he fears that, he may say outwardly what they order, while meaning something else in his mind (tawriya). If he says it while his heart is at peace with iman (faith), he has no sin. But if he holds firm until he is killed and does not say the words of kufr, he is rewarded."
+            },
+            {
+              "kind": "choose",
+              "id": "kufr-case",
+              "ask": "Under a real threat of death, Yahya says the words of kufr his captors demand, while his heart stays firm in faith. Is he sinful?",
+              "options": ["No", "Yes", "Only if he does not repeat his shahada later"],
+              "answer": 0,
+              "source": "فإذا أظهر ذلك وقلبه مطمئن بالإيمان فلا إثم عليه",
+              "why": "If he says it while his heart is at peace with faith, there is no sin on him."
+            },
+            {
+              "kind": "sort",
+              "id": "mixed",
+              "ask": "Under a real threat of death, he holds firm and is harmed. Is he sinful or rewarded?",
+              "into": ["Sinful", "Rewarded"],
+              "items": [
+                ["He refused to eat mayta", "Sinful"],
+                ["He refused to drink wine", "Sinful"],
+                ["He refused to say words of kufr, and was killed", "Rewarded"]
+              ],
+              "source": ["فإن صبر حتى أوقعوا به ولم يأكل فهو آثم", "وإن صبر حتى قتل ولم يظهر الكفر ذلك كان مأجورا"],
+              "why": "Holding out over food or drink is a sin. Holding firm against words of kufr until killed is rewarded."
+            }
+          ]
+        },
+        {
+          "id": "ikrah-harm",
+          "title": "Forced to destroy, kill, divorce or free",
+          "arabic": "وإن أكره بقتل على قتل",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "mal",
+              "title": "Destroying someone's property",
+              "ar": "وإن أكره على إتلاف مال مسلم لأمر يخاف منه على نفسه أو على عضو من أعضائه وسعه أن يفعل ذلك ولصاحب المال أن يضمن المكره",
+              "en": "If someone is forced, with a threat that makes him fear for his life or a limb, to destroy a Muslim's property, he may do it. The owner of the property can make the one who forced him pay."
+            },
+            {
+              "kind": "choose",
+              "id": "mal-case",
+              "ask": "Under a real threat of death, Wasim is forced by a gang leader to smash Karim's shop window. Who does Karim claim the damage from?",
+              "options": ["The gang leader who forced him", "Wasim", "No one"],
+              "answer": 0,
+              "source": "ولصاحب المال أن يضمن المكره",
+              "why": "The owner may make the one who did the forcing pay."
+            },
+            {
+              "kind": "teach",
+              "id": "qatl",
+              "title": "Forced to kill",
+              "ar": "وإن أكره بقتل على قتل لم يسعه أن يقدم عليه ويصبر حتى يقتل فإن قتله كان آثما والقصاص على الذي أكرهه إن كان القتل عمدا",
+              "en": "If someone is threatened with death unless he kills another person, he may not do it. He must hold out, even until he is killed. If he does kill, he is sinful, and the qisas falls on the one who forced him, if the killing was deliberate."
+            },
+            {
+              "kind": "choose",
+              "id": "qatl-case",
+              "ask": "A tyrant tells Hamid: \"Kill this man, or I will kill you.\" What must Hamid do?",
+              "options": ["Refuse, even if he is killed", "Kill the man, since his own life is threatened", "Kill him, but pay diya afterwards"],
+              "answer": 0,
+              "source": "لم يسعه أن يقدم عليه ويصبر حتى يقتل",
+              "why": "Being forced by death threats never makes killing another person allowed. He must hold out."
+            },
+            {
+              "kind": "teach",
+              "id": "talaq",
+              "title": "Divorce and freeing under coercion",
+              "ar": "وإن أكرهه على طلاق امرأته أو أعتق عبده ففعل وقع ما أكره عليه ويرجع على الذي أكرهه بقيمة العبد وبنصف مهر المرأة إن كان الطلاق قبل الدخول",
+              "en": "If he is forced to divorce his wife, or (in al-Quduri's time) to free his slave, and he does it, it takes effect. He then claims from the one who forced him the slave's value, and half the mahr if the divorce was before consummation."
+            },
+            {
+              "kind": "choose",
+              "id": "talaq-case",
+              "ask": "Murad is forced to divorce his wife before the marriage was consummated. Her mahr is 4,000 dirhams. How much can he claim from the man who forced him?",
+              "options": ["2,000", "4,000", "Nothing: the divorce did not happen"],
+              "answer": 0,
+              "source": "وبنصف مهر المرأة إن كان الطلاق قبل الدخول",
+              "why": "The divorce happens, and he claims half the mahr: half of 4,000 is 2,000."
+            },
+            {
+              "kind": "teach",
+              "id": "zina",
+              "title": "Zina under coercion",
+              "ar": "وإن أكرهه على الزنا وجب عليه الحد عند أبي حنيفة إلا أن يكرهه السلطان",
+              "en": "If a man is forced into zina, Abu Hanifa says the hadd is due on him, unless it was the ruler who forced him. Note: Abu Yusuf and Muhammad say the hadd is not due."
+            },
+            {
+              "kind": "teach",
+              "id": "ridda",
+              "title": "Forced to leave Islam",
+              "ar": "وإذا أكره على الردة لم تبن امرأته منه",
+              "en": "Ridda means leaving Islam. If a man is forced into words of ridda, his wife is not separated from him."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "Under a real threat of death, Ziyad is forced to say words of ridda, while his heart stays firm in faith. What happens to his marriage?",
+              "options": ["Nothing: his wife is not separated from him", "The marriage ends at once", "He must renew the nikah"],
+              "answer": 0,
+              "source": "وإذا أكره على الردة لم تبن امرأته منه",
+              "why": "Coerced ridda does not separate a man from his wife."
+            }
+          ]
+        }
+      ]
+    },
     { "id": "siyar", "title": "Jihad and rebels", "arabic": "السير", "kitab": "كتاب السير", "kitabs": ["كتاب السير", "كتاب البغاة"], "lessons": [] },
     { "id": "hazr", "title": "Allowed and disallowed", "arabic": "الحظر والإباحة", "kitab": "كتاب الحظر والإباحة", "lessons": [] },
     { "id": "wasaya", "title": "Wills", "arabic": "الوصايا", "kitab": "كتاب الوصايا", "lessons": [] },
