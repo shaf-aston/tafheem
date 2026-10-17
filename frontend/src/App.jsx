@@ -2,7 +2,7 @@ import { Activity, useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { FIXED, GROUPS, LISTED, TABS, accentOf } from './lib/tabs'
-import { idle } from './lib/warm'
+import { idle, inTurn } from './lib/warm'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
 import { TOOLS } from './lib/tools'
@@ -37,11 +37,12 @@ const queryClient = new QueryClient({
 // The tab's code comes too (lib/tabs.js `panel`); a failed fetch is tried again on opening.
 const openTab = (id) => {
   const tab = TABS.find((t) => t.id === id)
-  tab?.Component.preload?.().catch(() => {})
+  const code = tab?.Component.preload?.().catch(() => {})
   const open = tab?.open
-  if (!open) return
+  if (!open) return code
   const at = performance.now()
-  Promise.resolve(open(queryClient)).then(() => console.debug(`[open] ${id} ${Math.round(performance.now() - at)}ms`))
+  const data = Promise.resolve(open(queryClient)).then(() => console.debug(`[open] ${id} ${Math.round(performance.now() - at)}ms`))
+  return Promise.all([code, data])
 }
 
 function AppContent() {
@@ -54,8 +55,9 @@ function AppContent() {
   const { status, nlpEngine, aiBackend, ear } = useHealth()
   const accent = accentOf(activeTab)
 
-  // Every tab's opening data, fetched once the page is idle.
-  useEffect(() => { idle(() => TABS.forEach((t) => openTab(t.id))) }, [])
+  // Every tab's opening data, fetched once the page is idle, one tab at a time
+  // so a tab pressed meanwhile is not queued behind all the others (lib/warm).
+  useEffect(() => { idle(() => inTurn(TABS.map((t) => () => openTab(t.id)))) }, [])
 
   // The header is pinned, so anything else pinned sits under it: its height is
   // published as --app-header-h, kept true as it wraps on a narrow screen.
