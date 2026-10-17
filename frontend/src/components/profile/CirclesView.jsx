@@ -14,6 +14,7 @@ import { answerInvite, createCircle, fetchCircles } from '../../lib/progress'
 
 import CircleOpen from './CircleOpen'
 import SearchBox from '../ui/SearchBox'
+import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'
 import SmallButton from '../ui/SmallButton'
 import WheelPicker from '../ui/WheelPicker'
@@ -44,7 +45,7 @@ export default function CirclesView({ name, module }) {
   }
 
   if (circles.isPending) return <Skeleton className="h-16 w-full" />
-  if (circles.isError) return <p className="type-small text-[var(--danger)]">Could not load your circles.</p>
+  if (circles.isError) return <ErrorAlert inline title="Could not load your circles." onRetry={() => circles.refetch()} />
   const { kinds, circles: mine } = circles.data
   const invites = mine.filter((one) => one.status === 'invited')
   const joined = mine.filter((one) => one.status === 'joined')

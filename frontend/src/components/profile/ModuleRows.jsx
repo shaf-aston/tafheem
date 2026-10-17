@@ -2,6 +2,7 @@
 import { MEANINGS } from '../../lib/quiz'
 import { TABS } from '../../lib/tabs'
 
+import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'
 
 // A module id is a tab's id, or one of the names a tab files under (its `modules`),
@@ -16,7 +17,7 @@ const nameOf = (module) => {
 
 export default function ModuleRows({ overview }) {
   if (overview.isPending) return <Skeleton className="h-16 w-full" />
-  if (overview.isError) return <p className="type-small text-[var(--danger)]">Could not load the modules.</p>
+  if (overview.isError) return <ErrorAlert inline title="Could not load the modules." onRetry={() => overview.refetch()} />
   const { modules } = overview.data
   if (modules.length === 0) return <p className="type-small text-[var(--text-faint)]">No answers yet.</p>
   return (
