@@ -1,6 +1,7 @@
 /**
  * A lesson, one card at a time: pick, Check, Continue. Wrong cards return once at the end; no hearts.
- * Cards are the exercise registry's; answers save like the Quiz's, and the end screen sums the XP the server reported.
+ * Cards are the exercise registry's; answers save like the Quiz's. Three right in a row shows a run; the end screen
+ * sums the XP the server reported, how many were right first time, and how long the lesson took.
  */
 import { useEffect, useRef, useState } from 'react'
 
@@ -18,13 +19,17 @@ export default function LessonRunner({ cards: first, accent, rewards, onLeave })
   const [at, setAt] = useState(0)
   const [value, setValue] = useState(null)
   const [result, setResult] = useState(null)
-  const [tally, setTally] = useState({ asked: 0, right: 0, earned: 0 })
-  // When the current card appeared, for answer timing.
+  // `run`: answers right in a row, this lesson.
+  const [tally, setTally] = useState({ asked: 0, right: 0, earned: 0, run: 0 })
+  const [took, setTook] = useState(0)
+  // When the current card appeared, for answer timing, and when the lesson began.
   const started = useRef(0)
+  const begun = useRef(0)
   useEffect(() => { started.current = performance.now() }, [at])
+  useEffect(() => { begun.current = performance.now() }, [])
 
   const done = at >= cards.length
-  if (done) return <LessonDone tally={tally} accent={accent} rewards={rewards} onLeave={onLeave} />
+  if (done) return <LessonDone tally={tally} took={took} accent={accent} rewards={rewards} onLeave={onLeave} />
 
   const card = cards[at]
   const kind = kindOf(card)
@@ -34,7 +39,11 @@ export default function LessonRunner({ cards: first, accent, rewards, onLeave })
     const right = kind.check(card, value)
     setResult(right ? 'right' : 'wrong')
     // Only first showings count towards the score.
-    if (!card.again) setTally((was) => ({ ...was, asked: was.asked + 1, right: was.right + (right ? 1 : 0) }))
+    setTally((was) => ({
+      ...was,
+      run: right ? was.run + 1 : 0,
+      ...(!card.again && { asked: was.asked + 1, right: was.right + (right ? 1 : 0) }),
+    }))
     if (!right) setCards(requeue(cards, at))
     const ms = Math.max(0, Math.round(event.timeStamp - started.current))
     recordAttempt({ ...card.record, correct: right, ms }).then(({ earned = 0 }) => {
@@ -42,7 +51,8 @@ export default function LessonRunner({ cards: first, accent, rewards, onLeave })
     })
   }
 
-  function next() {
+  function next(event) {
+    if (at + 1 >= cards.length) setTook(event.timeStamp - begun.current)
     setAt(at + 1)
     setValue(null)
     setResult(null)
@@ -59,6 +69,7 @@ export default function LessonRunner({ cards: first, accent, rewards, onLeave })
           aria-label={say('Lesson progress')}>
           <i style={{ width: `${(100 * at) / cards.length}%` }} />
         </span>
+        {tally.run >= 3 && <span key={tally.run} className="grow-run pop">{say('{n} in a row', { n: tally.run })}</span>}
       </div>
 
       <Card key={card.id} card={card} value={value} setValue={setValue} result={result} />
@@ -79,24 +90,36 @@ export default function LessonRunner({ cards: first, accent, rewards, onLeave })
   )
 }
 
-/** Score, XP earned, level progress. */
-function LessonDone({ tally, accent, rewards, onLeave }) {
+/** m:ss for a lesson's length. */
+const clock = (ms) => {
+  const seconds = Math.max(0, Math.round(ms / 1000))
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`
+}
+
+/** A burst round the medal: pieces in the theme's colours, spaced evenly. */
+const BURST = Array.from({ length: 12 }, (_, i) => ({ angle: i * 30, tone: ['var(--w)', 'var(--grow-gold)', 'var(--success)'][i % 3] }))
+
+/** The medal and its burst, XP earned, right first time, the time taken, and level progress. */
+function LessonDone({ tally, took, accent, rewards, onLeave }) {
   const { asked, right, earned } = tally
   return (
     <div className="grow-lesson grow-lesson-done" style={{ '--w': accent }}>
+      <div className="grow-medal" aria-hidden="true">
+        {BURST.map(({ angle, tone }) => <i key={angle} style={{ '--a': `${angle}deg`, '--tone': tone }} />)}
+        <span className="pop">✓</span>
+      </div>
       <p className="grow-done-title">{say('Lesson done')}</p>
-      <p className="grow-done-score tabular-nums">{say('{right} of {asked} right first time', { right, asked })}</p>
-      <dl className="grow-done-facts">
-        <div><dt>{say('XP earned')}</dt><dd className="tabular-nums">+{earned}</dd></div>
-        {rewards && (
-          <div>
-            <dt>{say('Level {level}', { level: rewards.level })} · {rankOf(rewards.level).en}</dt>
-            <dd className="tabular-nums">{rewards.into} / {rewards.need}</dd>
-          </div>
-        )}
+      <dl className="grow-done-stats">
+        <div><dt>{say('XP')}</dt><dd className="tabular-nums">+{earned}</dd></div>
+        <div><dt>{say('Right first time')}</dt><dd className="tabular-nums">{right}/{asked}</dd></div>
+        <div><dt>{say('Time')}</dt><dd className="tabular-nums">{clock(took)}</dd></div>
       </dl>
       {rewards && (
-        <span className="grow-lesson-bar" aria-hidden="true"><i style={{ width: `${100 * shareOf(rewards)}%` }} /></span>
+        <div className="grow-done-level">
+          <span>{say('Level {level}', { level: rewards.level })} · {rankOf(rewards.level).en}</span>
+          <span className="tabular-nums">{rewards.into} / {rewards.need}</span>
+          <span className="grow-lesson-bar" aria-hidden="true"><i style={{ width: `${100 * shareOf(rewards)}%` }} /></span>
+        </div>
       )}
       {!rewards && <p className="grow-hint">{say('Log in to keep your XP and streak on any device.')}</p>}
       <PrimaryButton accent={accent} onClick={onLeave}>{say('Continue')}</PrimaryButton>
