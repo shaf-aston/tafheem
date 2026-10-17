@@ -1222,13 +1222,18 @@
     "طوبى",
     "ويح",
     "ويس",
-    "بؤس"
+    "بؤس",
+    "تعس",
+    "سحق",
+    "بعد",
+    "تب",
+    "خيبة"
    ]
   },
   "saying_verbs": {
    "ar": "أفعال القول والنداء",
    "book": "Tasheel 1.2 (what is said after قال is a sentence of its own)",
-   "effect": "after these verbs a praying noun with its لِ phrase is the sentence said (قال: وَيْلٌ لَهُ), not the verb's doer; after any other verb (جَاءَ عَذَابٌ لِلْقَوْمِ) the noun stays the doer",
+   "effect": "after these verbs, or any verb whose meaning (CAMeL's gloss) is one of the glosses, a praying noun with its لِ phrase is the sentence said (قال: وَيْلٌ لَهُ), not the verb's doer; after any other verb (جَاءَ عَذَابٌ لِلْقَوْمِ) the noun stays the doer",
    "words": [
     "قال",
     "نادى",
@@ -1236,6 +1241,29 @@
     "صرخ",
     "هتف",
     "دعا"
+   ],
+   "glosses": [
+    "say",
+    "said",
+    "announce",
+    "declare",
+    "proclaim",
+    "call",
+    "summon",
+    "shout",
+    "scream",
+    "exclaim",
+    "whisper",
+    "mutter",
+    "answer",
+    "reply",
+    "repeat",
+    "recite",
+    "speak",
+    "utter",
+    "tell",
+    "pray",
+    "invoke"
    ]
   }
  }

@@ -1,8 +1,22 @@
 """Repair 4b: a praying noun with its لِ phrase after a verb is a clause of its own."""
 from __future__ import annotations
 
-from backend.services.nahw_book import is_one
+import re
+from functools import cache
+
+from backend.services.morphology import glosses_of
+from backend.services.nahw_book import book_words, is_one
 from backend.services.syntax.facts import Sentence, is_preposition, is_verb, listed, typed_case_of
+
+
+@cache
+def says(lemma: str) -> bool:
+    """A verb of saying: listed, or CAMeL glosses it as one (همس whisper, أجاب reply)."""
+    if is_one(lemma, "saying_verbs"):
+        return True
+    meant = book_words("saying_verbs", "glosses")
+    return any(word in meant for g in glosses_of(lemma) if "<verb>" in g
+               for word in re.split(r"[;+_]", g.split("+")[0]))
 
 
 def dua_clause(tokens: list[dict]) -> None:
@@ -12,7 +26,7 @@ def dua_clause(tokens: list[dict]) -> None:
     s = Sentence(tokens)
     for token, after in zip(tokens, tokens[1:]):
         head = s.head(token)
-        if (head and is_verb(head) and is_one(head["lemma"], "saying_verbs") and is_one(token["lemma"], "dua_nouns")
+        if (head and is_verb(head) and says(head["lemma"]) and is_one(token["lemma"], "dua_nouns")
                 and typed_case_of(token) == "u" and after["head"] in (token["id"], head["id"]) and after["pos_camel"] == "prep" and after["lemma"].strip("+") == "ل"):
             token["head"], token["rel"] = 0, "---"
             after["head"], after["rel"] = token["id"], "PRD"  # the khabar, as the parser hangs it on a mubtada

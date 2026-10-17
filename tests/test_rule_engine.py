@@ -777,3 +777,7 @@ def test_a_past_verb_on_an_alef_keeps_its_implied_fatha_under_a_pronoun():
     assert sign("رَمَيْتُ الْحَجَرَ") == "مبني على السكون"
     assert sign("رَوَيْنَاهُ عَنْهُ") == sign("رَمَيْتُهُ أَمْسِ") == "مبني على السكون"  # the doer's pronoun, under the object's
     assert sign("رَوَاهُ زَيْدٌ") == "مبني على الفتح المقدر على الألف للتعذر"  # one doer: its وا is no plural's
+
+
+def test_a_verb_of_saying_is_known_by_its_meaning_not_only_by_the_list():
+    assert _role("نَطَقَ وَيْلٌ لَهُ", 1) == "مبتدأ"  # نطق is in no list: CAMeL glosses it "utter"
