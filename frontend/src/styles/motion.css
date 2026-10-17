@@ -50,16 +50,56 @@
 
 /* ── Motion ─────────────────────────────────────────────────────────────────
    Everything here is triggered by something the reader did. Nothing loops
-   forever except the loading shimmer, which stops when the answer arrives. */
+   forever except the loading shimmer, which stops when the answer arrives.
+
+   rise-in, fade-in and fade-out are the app's only enter and leave moves. A
+   place that needs a different start says so with the four knobs below, never
+   with a keyframe of its own. They are registered with inherits: false, so a
+   knob set on one thing never leaks into the things inside it. */
+@property --rise-y {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 6px;
+}
+
+
+@property --rise-scale {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0.98;
+}
+
+
+/* Where a rise or fade starts its opacity. Left unset it is theme.json's
+   arrive-from, as a tap's arrival should be; a thing drawn in on its own (a
+   sheet's scrim, a chart's step) can start at 0. Any syntax, with no initial
+   value, so an unset knob falls back to the token rather than a copy of it. */
+@property --rise-from {
+  syntax: '*';
+  inherits: false;
+}
+
+
+@property --fade-from {
+  syntax: '*';
+  inherits: false;
+}
+
+
 @keyframes rise-in {
-  from { opacity: var(--motion-arrive-from); transform: translateY(6px) scale(0.98); }
+  from { opacity: var(--rise-from, var(--motion-arrive-from)); transform: translateY(var(--rise-y)) scale(var(--rise-scale)); }
   to   { opacity: 1; transform: none; }
 }
 
 
 @keyframes fade-in {
-  from { opacity: var(--motion-arrive-from); }
+  from { opacity: var(--fade-from, var(--motion-arrive-from)); }
   to   { opacity: 1; }
+}
+
+
+@keyframes fade-out {
+  to { opacity: 0; }
 }
 
 

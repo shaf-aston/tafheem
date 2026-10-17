@@ -25,6 +25,45 @@ jobs:
       - run: pip install -r requirements.txt pytest
       - run: python -m pytest tests -q
 
+  # The whole-sentence tests and the five scored sets need the parser. Its encoder
+  # (~110 MB) is too big for git, so it comes from the release tagged parser-model;
+  # CAMeL's data is fetched once and cached. Until that release exists this job
+  # says so and skips, as the tests did before.
+  nahw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch the parser encoder
+        id: model
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release download parser-model -p encoder.onnx -D backend/data/parser; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::No parser-model release with encoder.onnx: whole-sentence tests and the score check skipped"
+          fi
+      - uses: actions/setup-python@v5
+        if: steps.model.outputs.ready == 'true'
+        with:
+          python-version: "3.13"
+          cache: pip
+      - uses: actions/cache@v4
+        if: steps.model.outputs.ready == 'true'
+        with:
+          path: ~/.camel_tools
+          key: camel-data-defaults-v1
+      - if: steps.model.outputs.ready == 'true'
+        run: |
+          pip install -r requirements.txt pytest
+          camel_data -i defaults
+      - name: Whole-sentence tests
+        if: steps.model.outputs.ready == 'true'
+        run: python -m pytest tests/test_rule_engine.py tests/test_attached_pieces.py tests/test_catib_onnx.py tests/test_practice_questions.py -q
+      - name: Scores no lower than the baseline
+        if: steps.model.outputs.ready == 'true'
+        run: python -m backend.scripts.score_iraab --check
+
   frontend:
     runs-on: ubuntu-latest
     defaults:

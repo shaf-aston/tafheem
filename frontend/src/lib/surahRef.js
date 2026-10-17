@@ -14,6 +14,9 @@ import surahs from '../data/surahs.json'
 import { bareForm, isArabic } from './arabicText'
 import { editDistance } from './editDistance'
 
+/** The first surah's number. */
+export const FIRST_SURAH = 1
+
 /** The last surah's number. */
 export const LAST_SURAH = surahs.length
 

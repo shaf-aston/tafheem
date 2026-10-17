@@ -59,6 +59,9 @@
   display: grid;
   width: 100%;
   min-width: max-content;
+  /* Shrunk as a whole to fit the box (TarkeebDiagram's fitChart), never past
+     the floor; --tk-fit is unset while the chart is measured at full size. */
+  zoom: max(var(--arabic-chart-fit-min), var(--tk-fit, 1));
   row-gap: var(--tk-gap);
   font-family: var(--font-arabic);
   /* One faint line for everything that only leads the eye: a word's thread down to its name,
@@ -241,6 +244,20 @@
   font-family: var(--font-ui);
 }
 
+
+/* Under a chart whose widest joins are folded away: one quiet line, the
+   brace's own colour, so it reads as more of the chart rather than a control
+   bar. */
+.tk-more {
+  display: block;
+  margin: 0 auto;
+  padding: 0.35rem 0.85rem;
+  border: 1px dashed var(--border-hi);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+.tk-more:hover { color: var(--text); border-color: var(--text-faint); }
 
 /* The larger view: the same diagram filling the screen, everything scaled up. */
 .tk-max {

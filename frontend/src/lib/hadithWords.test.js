@@ -26,6 +26,28 @@ describe('saying', () => {
     expect(said('قَالَ «بِهَذَا أُمِرْتُ» . فَقَالَ')).toEqual(['بِهَذَا أُمِرْتُ'])
   })
 
+  it('closes an Arabic quote whose mark has a space before it and a full stop after', () => {
+    // Bukhari 59: the Prophet's words are quoted, the Bedouin's are not.
+    const text = 'قَالَ \u200f"\u200f أَيْنَ السَّائِلُ \u200f"\u200f\u200f.\u200f قَالَ هَا أَنَا\u200f.\u200f قَالَ \u200f"\u200f فَانْتَظِرِ السَّاعَةَ \u200f"\u200f\u200f.\u200f'
+    const kinds = saying(text).map((s) => [s.kind, s.text.trim()])
+    expect(kinds).toEqual([
+      ['told', 'قَالَ'], ['said', 'أَيْنَ السَّائِلُ'], ['told', '. قَالَ هَا أَنَا. قَالَ'], ['said', 'فَانْتَظِرِ السَّاعَةَ'], ['told', '.'],
+    ])
+  })
+
+  it('closes an Arabic quote whose mark has a space before it and an Arabic comma after', () => {
+    // Bukhari 4372: "release Thumama", then the telling goes on.
+    const text = 'فَقَالَ " أَطْلِقُوا ثُمَامَةَ "، فَانْطَلَقَ إِلَى نَخْلٍ'
+    const kinds = saying(text).map((s) => [s.kind, s.text.trim()])
+    expect(kinds).toEqual([['told', 'فَقَالَ'], ['said', 'أَطْلِقُوا ثُمَامَةَ'], ['told', '، فَانْطَلَقَ إِلَى نَخْلٍ']])
+  })
+
+  it('reads a single mark after an abbreviated "b." as the ʿayn of a name', () => {
+    // Abu Dawud 169: ‘Uqbah b. ‘Amir ... b.’Amir is a name, not a quote from the first ‘ to here.
+    const text = '‘Uqbah b. ‘Amir said: We served ourselves. Narrated on the authority of ‘Uqbah b.’Amir'
+    expect(saying(text).map((s) => s.kind)).toEqual(['plain'])
+  })
+
   it('claims nothing when the book marked nothing', () => {
     expect(saying('The Last Hour would not come until fire emits from the Hijaz')).toEqual([
       { kind: 'plain', open: '', text: 'The Last Hour would not come until fire emits from the Hijaz', close: '' },

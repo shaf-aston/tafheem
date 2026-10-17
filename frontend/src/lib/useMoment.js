@@ -5,6 +5,9 @@
  */
 import { useEffect, useState } from 'react'
 
+/** How long a "Copied" look shows before the button reads as it did. */
+export const COPY_RESET_MS = 2000
+
 /** How long a destructive button stays armed before it goes quiet again. */
 export const ARMED_MS = 5000
 
