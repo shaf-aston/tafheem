@@ -127,8 +127,8 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
     """Which kind of idafa or badal the word is, as the books name it (teacher.json kinds)."""
     kinds = teacher_rules()["kinds"]
     if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
-        if facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ":
-            return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite
+        if (facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ") and not facts.is_elative(mudaf):
+            return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite; أعلى صوتِه is not, it works on nothing
         bare = strip_diacritics(token["form"]).strip("+").removeprefix("ال")
         if any(is_one(bare, family) or is_one(bare + "ا", family) or facts.listed(token, family) for family in ("zarf_zaman", "zarf_makan")) \
                 or bare in kinds["time"]:
@@ -308,7 +308,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token) or (role and facts.is_built_zarf(token)):
+    if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token) or facts.is_built_zarf(token):
         return "mabni"
     # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built;
     # a name is never built, so a sukun on one is the reader pausing (أَحْمَدْ جَاءَ)

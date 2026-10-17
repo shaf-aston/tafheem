@@ -78,6 +78,11 @@ def only_adverb(lemma: str) -> bool:
         word in kept.get("words", []) for name, kept in families.items() if name not in ADVERB_FAMILIES)
 
 
+def is_built_word(lemma: str) -> bool:
+    """أمس، حيث، الآن: a time or place word built on one ending (closed_words `built`)."""
+    return any(lemma.strip("+") in book_words(f, "built") for f in ADVERB_FAMILIES)
+
+
 def six_noun_case(base: str, lemma: str) -> str | None:
     """The case one of the six nouns shows by its long letter as a مضاف (أَخُو، أَبَا،
     لِأَخِيهِ), from the bare base word (joined letters and pronoun off) and its lemma.

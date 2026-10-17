@@ -15,6 +15,8 @@ from backend.services.nahw_book import book_words, family_cards, is_diptote, is_
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
 _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
+# the object pronouns a past verb can carry, longest first so هما is not read as ه
+OBJECT_PRONOUNS = ("هما", "كما", "هم", "هن", "ها", "كم", "كن", "ني", "نا", "ه", "ك")
 
 
 def sign(case: str | None, kind: str = "vowel") -> str | None:
@@ -163,7 +165,14 @@ def _built_on(card: dict, aspect: str) -> str | None:
     said = teacher_rules()["case_said"]
     word = card["word"]
     if aspect == "p":
-        return _past_ending(word)
+        # رَمَيْتُهُ، رَمَاهُ: the verb ends before its object pronoun, so read it without the pronoun
+        verb = _without_object(word) if _has_pronoun(card["camel"]) else word
+        bare = strip_diacritics(verb)
+        # نَادَى، دَعَا: the fatha is there but an alef cannot carry it, so it is implied;
+        # رَوَيْنَاهُ، رَمَيَاهُ: an alef after a doer's pronoun (نا، ا) is the pronoun's, not the verb's
+        alone = card["camel"].get("person") == "3" and card["camel"].get("number") == "s"
+        alef = alone and (bare.endswith("ى") or (bare.endswith("ا") and card["camel"].get("weak_last")))
+        return said["past_on_alef"] if alef else _past_ending(verb)  # رَوَاهُ: one doer, so its وا is no plural's
     nun = build_nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show
@@ -191,6 +200,14 @@ def _present_sign(card: dict, case: str) -> str | None:
 
 def _dropped_weak(card: dict) -> bool:
     return drops_weak(card["camel"]["base"], card["camel"].get("weak_last"))
+
+
+def _without_object(word: str) -> str:
+    """The verb with its object pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ."""
+    bare = strip_diacritics(word)
+    pronoun = next((p for p in OBJECT_PRONOUNS if bare.endswith(p) and len(bare) > len(p) + 1), "")
+    marked = letters(word)[:len(bare) - len(pronoun)]
+    return "".join(letter + "".join(sorted(marks)) for letter, marks in marked)
 
 
 def _past_ending(word: str) -> str:

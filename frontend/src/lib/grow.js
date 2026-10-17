@@ -141,7 +141,10 @@ export const nodeState = (steps, record, open = true) => {
   return steps.some(started) ? 'started' : 'open'
 }
 
-/** The tiers of grow.json, each with the paths that name it. */
+/** A world's levels, the tiers its map climbs: its own `levels` when it has them, else grow.json's. */
+export const levelsOf = (world) => world?.levels ?? config.tiers
+
+/** The levels of a world (levelsOf), each with the paths that name it. */
 export const tiersOf = (tiers, paths = []) =>
   tiers.map((tier) => ({ ...tier, paths: paths.filter((path) => path.tier === tier.id) }))
 

@@ -12,7 +12,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import { nodeState } from '../../lib/grow'
-import { byHand } from '../../lib/growKinds'
+import { byHand } from '../../lib/grow/cards'
 import { sayIn } from '../../lib/say'
 import { useModal } from '../../lib/useModal'
 import ArabicText from '../ui/ArabicText'
@@ -28,7 +28,7 @@ const CHIP = {
   locked: ['', say('Locked')],
 }
 
-export default function StepSheet({ step, from, state, figure, tier, before, record, accent, onRecited, onDone, onGo, onClosed }) {
+export default function CardSheet({ step, from, state, figure, tier, before, record, accent, onRecited, onDone, onGo, onClosed }) {
   const dialog = useModal(true)
   const box = useRef(null)
   const closeRef = useRef(null)

@@ -304,8 +304,8 @@ class Daleel(BaseSettings):
 
     # Rebuilt by backend/scripts/build_daleel_index.py, never written while serving.
     daleel_index_path: str = "data/daleel.db"
-    # Hand-written, read once. See routers/grow.py.
-    grow_paths_path: str = "data/grow/paths.json"
+    # Hand-written: sources.json and worlds/<id>/, read once. See routers/grow.py.
+    grow_dir: str = "data/grow"
     # Past a handful of passages the list is scrolled, not read.
     daleel_result_limit: int = 12
     # A common word expands to its root family plus synonyms (hundreds for قول); capped to avoid a hundred-term search.

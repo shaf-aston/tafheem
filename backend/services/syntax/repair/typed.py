@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services import verb_reader
 from backend.services.harakat import has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement
-from backend.services.nahw_book import book_words, is_one, only_adverb
+from backend.services.nahw_book import book_words, is_built_word, is_one, only_adverb
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -14,6 +14,10 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         if ((token["pos"].startswith("VRB") and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"))
                 or (token["pos"] == "PRT" and only_adverb(token["lemma"]))):
             token["pos"] = "NOM"
+        # مُنْذُ أَمْسِ: the letters of a time word built on one ending are that word, never the command they spell
+        built = is_built_word(token["base"])
+        if built and token["pos"].startswith("VRB"):
+            token.update(pos="NOM", pos_camel="noun", lemma=token["base"], asp="na")
         # مَعَ النَّاسِ: the noun the parser hung on a ظرف as a preposition's is its مضاف إليه
         if token["pos"] == "NOM" and token.get("pos_camel") == "prep" and only_adverb(token["lemma"]):
             for kid in tokens:
@@ -34,7 +38,7 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         after = words[i + 1] if i + 1 < len(words) else ""
         verb = token["pos"].startswith("VRB")
         read_noun = token.get("pos_camel") == "noun" and vowel_agreement(word, token.get("diac", "")) is not None
-        if verb or token.get("pos_camel") in ("noun", "noun_prop"):
+        if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
             own = own_letters(word, token["front"], token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
@@ -66,3 +70,13 @@ def _plural_case(word: str, token: dict, tokens: list[dict]) -> str:
     if head and head["pos"].startswith("VRB"):
         return "a"
     return head.get("cas", "na") if head else "na"
+
+
+def since_jarr(tokens: list[dict]) -> None:
+    """مُنْذُ أَمْسِ: a built time word that is also on the book's list of prepositions (منذ، مذ) is a
+    preposition before a noun, the noun its majrur; the parser can read it as a conjunction.
+    Before a verb it stays what it read."""
+    for since, noun in zip(tokens, tokens[1:]):
+        if is_built_word(since["lemma"]) and is_one(since["lemma"], "jarr") and noun["pos"] == "NOM":
+            since.update(pos="PRT", pos_camel="prep")
+            noun["head"], noun["rel"] = since["id"], "OBJ"

@@ -209,6 +209,11 @@ def is_participle(token: dict) -> bool:
             or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
+def is_elative(token: dict) -> bool:
+    """أَعْلَى، أَكْبَر: the analyser's pattern holds the elative's shape (closed_words elative_patterns), with or without ال or a proclitic."""
+    return any(shape in token.get("pattern", "") for shape in book_words("elative_patterns"))
+
+
 PASSIVE_PARTICIPLE = "مَ1ْ2ُو3"  # مَفْعُول: مفتوحٌ بابُه, its noun the نائب فاعل
 
 

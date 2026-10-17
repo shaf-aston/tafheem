@@ -1,0 +1,26 @@
+{
+  "id": "kursi",
+  "tier": "advanced",
+  "title": "Ayat al-Kursi",
+  "arabic": "آية الكرسي",
+  "groups": [
+    {
+      "id": "kursi-1",
+      "title": "The Throne verse",
+      "arabic": "آية الكرسي",
+      "icon": "book",
+      "steps": [
+        "ayat-al-kursi"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "ayat-al-kursi",
+      "title": "Ayat al-Kursi",
+      "ayahs": [
+        "2:255"
+      ]
+    }
+  ]
+}

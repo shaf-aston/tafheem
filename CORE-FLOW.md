@@ -36,7 +36,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | hadith | `components/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `lib/useNarrators.js` | `routers/hadith.py` | `services/hadith/` (`rijal/`, `usul/` inside) | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
 | dict | `components/Dictionary.jsx` | `searchDictionary` | `routers/dictionary.py` | `services/dictionary_service.py` | `data/arabic_dictionary.json`, `data/lexicons.db` |
 | mem | `components/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/books.js`) | `routers/quran.py` | `services/mutashabihat.py`, `services/quran_service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
-| grow | `components/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow.js` steps | `data/grow/paths.json` |
+| grow | `components/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow.js` steps | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
 | quiz | `components/QuizPanel.jsx` | `lib/quizBanks.js`, `fetchReviewItems` (`lib/progress.js`) | `routers/progress.py` | `services/progress_store.py` | `frontend/public/words/`, `data/progress.db` |
 | timelines | `components/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py`, `services/refs.py`, `services/asbab.py` | `data/timelines/` |
 | dawah | `components/DawahPanel.jsx` | `dawahQuery` | `routers/dawah.py` | `services/dawah.py` | `data/dawah/dawah.json` |

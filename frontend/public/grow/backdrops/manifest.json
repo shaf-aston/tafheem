@@ -1,0 +1,11 @@
+{
+  "_comment": "Grow's backdrops: the faded picture behind a world (components/grow/Backdrop.jsx, read through lib/backdrops.js). A world names one by id in worlds.json `backdrop`. Each entry: `file` the still (under this folder), `video` an optional short loop shown only while motion is on, `poster` its still frame (falls back to `file`), `subject` what it shows, `credit` who made it, `licence` what lets us use it. Rule: no humans or animals, ever. `subject` says what is in the picture so a reviewer can hold that line; it must be one of architecture, nature-no-animals, objects, geometry, calligraphy, sky, water (lib/backdrops.js SUBJECTS, checked by lib/backdrops.test.js).",
+  "backdrops": {
+    "courtyard": {
+      "file": "courtyard.svg",
+      "subject": "geometry",
+      "credit": "tafheem",
+      "licence": "CC0"
+    }
+  }
+}

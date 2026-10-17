@@ -703,3 +703,93 @@ def test_a_plain_past_verb_after_fa_is_no_proof_of_a_condition():
 def test_la_before_a_jussive_with_a_pronoun_on_it_is_the_prohibition():
     assert "الناهية" in analysed("لَا تُكْرِمْهُ")[0]["reason"]
 
+
+
+def _tree_roles(sentence: str) -> list[str | None]:
+    """Every role the picture prints, top to bottom, worked out (not read from the treebank)."""
+    drawn = iraab.analyze(sentence, recorded=False)["tree"]["tree"]
+    out: list[str | None] = []
+
+    def walk(node: dict) -> None:
+        out.append(node.get("role"))
+        for kid in node.get("parts", []) + node.get("children", []):
+            walk(kid)
+    walk(drawn)
+    return out
+
+
+NADA = "فَنَادَى بِأَعْلَى صَوْتِهِ وَيْلٌ لِلأَعْقَابِ مِنَ النَّارِ مَرَّتَيْنِ أَوْ ثَلاَثًا"
+
+
+def test_a_prayer_noun_after_a_verb_is_a_mubtada_not_its_doer():
+    words = iraab.analyze(NADA, recorded=False)["words"]
+    assert [w["role"] for w in words] == [
+        "فعل", "مجرور", "مضاف إليه", "مبتدأ", "مجرور", "حرف جر", "مجرور", "مفعول مطلق", "حرف", "معطوف"]
+
+
+def test_a_prayer_noun_with_its_lam_phrase_is_a_mubtada_and_khabar():
+    assert [w["role"] for w in iraab.analyze("وَيْلٌ لِلْمُطَفِّفِينَ", recorded=False)["words"]][0] == "مبتدأ"
+    roles = _tree_roles("وَيْلٌ لِلْمُطَفِّفِينَ")
+    assert "مبتدأ" in roles and "خبر" in roles
+
+
+def test_a_doer_after_nada_stays_a_doer():
+    assert iraab.analyze("نَادَى زَيْدٌ", recorded=False)["words"][1]["role"] == "فاعل"
+
+
+def test_the_picture_names_no_particle_a_mawsuf_and_leaves_no_gap():
+    roles = _tree_roles(NADA)
+    assert "موصوف" not in roles and "معطوف" in roles
+    drawn = iraab.analyze(NADA, recorded=False)["tree"]["tree"]
+    assert '"gap": true' not in __import__("json").dumps(drawn)
+
+
+def test_a_past_verb_on_an_alef_is_built_on_an_implied_fatha():
+    card = iraab.analyze(NADA, recorded=False)["words"][0]
+    assert card["sign"] == "مبني على الفتح المقدر على الألف للتعذر"
+    assert iraab.analyze("كَتَبَ زَيْدٌ", recorded=False)["words"][0]["sign"] == "مبني على الفتح"
+
+
+def test_the_idafa_of_an_elative_is_ma3nawiyya_not_lafziyya():
+    reason = iraab.analyze(NADA, recorded=False)["words"][2]["reason"]
+    assert "لفظية" not in reason and "معنوية" in reason
+    assert "لفظية" in iraab.analyze("جَاءَ ضَارِبُ زَيْدٍ", recorded=False)["words"][2]["reason"]
+
+
+def test_a_count_of_times_is_the_absolute_object_of_its_verb():
+    assert iraab.analyze("ضَرَبْتُهُ مَرَّتَيْنِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+
+
+def _role(sentence: str, i: int) -> str:
+    return iraab.analyze(sentence, recorded=False)["words"][i]["role"]
+
+
+def test_a_prayer_noun_is_the_said_only_after_a_verb_of_saying():
+    assert _role("فَقَالَ وَيْلٌ لَهُ", 1) == "مبتدأ"  # the لِ phrase hung on the verb, with a pronoun
+    assert _role("جَاءَ عَذَابٌ لِلْكَافِرِينَ", 1) == "فاعل"  # coming is no saying: the doer
+    assert _role("جَاءَ سَلَامٌ لِلْقَوْمِ", 1) == "فاعل"
+
+
+def test_a_past_verb_on_an_alef_keeps_its_implied_fatha_under_a_pronoun():
+    sign = lambda s: iraab.analyze(s, recorded=False)["words"][0]["sign"]
+    assert sign("رَمَاهُ الْوَلَدُ") == sign("دَعَاهُمُ النَّبِيُّ") == "مبني على الفتح المقدر على الألف للتعذر"
+    assert sign("كَتَبَهُ الرَّجُلُ") == "مبني على الفتح"
+    assert sign("رَمَيْتُ الْحَجَرَ") == "مبني على السكون"
+    assert sign("رَوَيْنَاهُ عَنْهُ") == sign("رَمَيْتُهُ أَمْسِ") == "مبني على السكون"  # the doer's pronoun, under the object's
+    assert sign("رَوَاهُ زَيْدٌ") == "مبني على الفتح المقدر على الألف للتعذر"  # one doer: its وا is no plural's
+
+
+def test_a_verb_of_saying_is_known_by_its_meaning_not_only_by_the_list():
+    assert _role("نَطَقَ وَيْلٌ لَهُ", 1) == "مبتدأ"  # نطق is in no list: CAMeL glosses it "utter"
+
+
+def test_ams_is_built_on_the_kasra_in_every_place():
+    words = lambda s: iraab.analyze(s, recorded=False)["words"]
+    for sentence, role in (("جِئْتُ أَمْسِ", "مفعول فيه"), ("مَا رَأَيْتُهُ مُنْذُ أَمْسِ", "مجرور"), ("كَانَ أَمْسِ يَوْمًا جَمِيلًا", "اسم كان")):
+        ams = next(w for w in words(sentence) if w["word"] == "أَمْسِ")
+        assert (ams["role"], ams["sign"]) == (role, "مبني على الكسر"), sentence
+    assert words("مُنْذُ أَمْسِ")[1]["sign"] == words("أَمْسِ")[0]["sign"] == "مبني على الكسر"  # never the command "enter the evening"
+
+
+def test_mundhu_before_a_noun_is_a_preposition():
+    assert [w["role"] for w in iraab.analyze("مَا زُرْتُهُ مُذْ شَهْرٍ", recorded=False)["words"]][-2:] == ["حرف جر", "مجرور"]

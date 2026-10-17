@@ -1,0 +1,26 @@
+{
+  "_comment": "Every book or collection Grow quotes, once. A ruling names one by id and the router fills in who said it. `file` is the text the quote test reads, under backend/: an OpenITI book, or for a hadith collection the sunnah.com copies in hadith-sources.json (`kind` hadith: a ruling's `where` then names its sunnah.com page).",
+  "sources": {
+    "quduri": {
+      "kind": "book",
+      "book": "Mukhtasar al-Quduri",
+      "author": "Abu al-Husayn al-Quduri (d. 428 AH)",
+      "known_as": "al-Quduri",
+      "file": "data/books/openiti/0428AbuHusaynQuduri.Mukhtasar.Sham19Y0124336-ara1"
+    },
+    "hidaya": {
+      "kind": "book",
+      "book": "al-Hidaya",
+      "author": "Burhan al-Din al-Marghinani (d. 593 AH)",
+      "known_as": "al-Marghinani",
+      "file": "data/books/openiti/0593BurhanDinFarghaniMarghinani.HidayaFiSharhBidaya.JK000242-ara1"
+    },
+    "muslim": {
+      "kind": "hadith",
+      "book": "Sahih Muslim",
+      "author": "Imam Muslim (d. 261 AH)",
+      "known_as": "Muslim",
+      "file": "data/grow/hadith-sources.json"
+    }
+  }
+}

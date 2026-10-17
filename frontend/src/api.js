@@ -353,6 +353,13 @@ export const growPathsQuery = {
   queryFn: () => api.get('/grow/paths').then((r) => r.data),
 }
 
+// One Grow world whole: itself, its levels and its paths. Not read yet; the
+// path worlds still take their paths from growPathsQuery and their levels from grow.json.
+export const growWorldQuery = (id) => ({
+  queryKey: ['grow-world', id],
+  queryFn: () => api.get(`/grow/worlds/${id}`).then((r) => r.data),
+})
+
 // Where lib/journal.js's trail of reciting events goes. Its own constant
 // because sendBeacon cannot go through axios and needs the full path, not
 // just what api.post's baseURL would fill in.
