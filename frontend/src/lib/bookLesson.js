@@ -8,6 +8,13 @@ import { shuffled } from './shuffle'
 /** How many due cards one review deals at most. */
 export const REVIEW_SIZE = 8
 
+/**
+ * The looks a part's path can wear (components/grow/LessonPath.jsx): courtyard stars or a garden of leaves. Parts take
+ * them in turn through the book, so neighbours differ and a part is known by sight; a part's own `path` overrides.
+ */
+export const LOOKS = ['courtyard', 'garden']
+const lookAt = (i) => LOOKS[i % LOOKS.length]
+
 const asks = (card) => card.kind !== 'teach'
 
 /** The progress id of a lesson's card: unique across the book. */
@@ -37,16 +44,17 @@ const countOf = (parts) => ({
  */
 export function partsOf(book, summary) {
   const rows = new Map(summary.map((row) => [row.item, row]))
-  const parts = book.parts.map((part) => {
+  const parts = book.parts.map((part, i) => {
     const lessons = part.lessons.map((lesson) => ({ ...lesson, part: part.id, status: statusOf(lesson, rows) }))
-    return { ...part, lessons, finished: lessons.filter((lesson) => lesson.status === 'done' || lesson.status === 'learnt').length }
+    const finished = lessons.filter((lesson) => lesson.status === 'done' || lesson.status === 'learnt').length
+    return { ...part, look: part.path ?? lookAt(i), lessons, finished }
   })
   const next = parts.flatMap((part) => part.lessons).find((lesson) => lesson.status === 'new' || lesson.status === 'started') ?? null
   const items = new Set(lessonsOf(book).flatMap((lesson) => lesson.cards.filter(asks).map((card) => itemOf(lesson, card))))
   const due = summary.filter((row) => row.due && items.has(row.item)).sort((a, b) => a.dueAt.localeCompare(b.dueAt)).map((row) => row.item)
-  const areas = (book.areas ?? []).map((area) => {
+  const areas = (book.areas ?? []).map((area, i) => {
     const own = area.parts.map((id) => parts.find((part) => part.id === id)).filter(Boolean)
-    return { ...area, parts: own, ...countOf(own) }
+    return { ...area, look: area.path ?? lookAt(i), parts: own, ...countOf(own) }
   })
   return { parts, areas, next, due }
 }
