@@ -24,7 +24,7 @@
 {"id": "r025", "chapter": "rule-32", "book": "1.9 n2-5 p23", "source": "rule probe", "sentence": "مَا بَرِحَ الْحَارِسُ وَاقِفًا", "key": ["حرف", "فعل", "اسم كان", "خبر كان"]},
 {"id": "r026", "chapter": "rule-33", "book": "1.9 n7 p24", "source": "rule probe", "sentence": "كَانَ عَلَى الْجِدَارِ مِسْمَارٌ", "key": ["فعل", "حرف جر", "مجرور", "اسم كان"]},
 {"id": "r027", "chapter": "rule-34", "book": "1.9 n1 p23", "source": "rule probe", "sentence": "كَانَتِ الْأُمُّ تَطْبُخُ", "key": ["فعل", "اسم كان", "فعل"]},
-{"id": "r028", "chapter": "rule-35", "book": "1.9 n6 p23", "source": "rule probe", "sentence": "لَيْسَ الْكَذُوبُ بِأَمِينٍ", "key": ["فعل", "اسم كان", "مجرور"]},
+{"id": "r028", "chapter": "rule-35", "book": "1.9 n6 p23", "source": "rule probe", "sentence": "لَيْسَ الْكَذُوبُ بِأَمِينٍ", "key": ["فعل", "اسم كان", "خبر كان"], "_key_note": "the باء is زائدة in ليس's khabar: مجرور لفظًا منصوب محلًا خبر ليس (Awdah al-Masalik: وتزاد الباء بكثرة في خبر ليس وما)"},
 {"id": "r029", "chapter": "rule-38", "book": "2.2 p27", "source": "rule probe", "sentence": "يَسْقُطُ الثَّلْجُ", "key": ["فعل", "فاعل"], "signs": {"0": "ضمة"}},
 {"id": "r030", "chapter": "rule-38", "book": "2.2 p27", "source": "rule probe", "sentence": "وَصَلَ الْبَرِيدُ", "key": ["فعل", "فاعل"], "signs": {"0": "مبني على الفتح"}},
 {"id": "r031", "chapter": "rule-39", "book": "2.2 p27", "source": "rule probe", "sentence": "لَيَنْصُرَنَّ اللَّهُ الْمُؤْمِنِينَ", "key": ["فعل", "فاعل", "مفعول به"], "signs": {"0": "مبني على الفتح", "2": "الياء"}},
