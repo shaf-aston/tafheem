@@ -77,6 +77,24 @@
         17
       ],
       "whole": true,
+      "units": [
+        {
+          "title": "Allah is One, Eternal",
+          "arabic": "الواحد القديم",
+          "lessons": [
+            "tah-tawhid-one",
+            "tah-tawhid-eternal"
+          ]
+        },
+        {
+          "title": "Names before creation",
+          "arabic": "الأسماء قبل الخلق",
+          "lessons": [
+            "tah-tawhid-names",
+            "tah-tawhid-lord"
+          ]
+        }
+      ],
       "lessons": [
         {
           "id": "tah-tawhid-one",
@@ -93,11 +111,11 @@
             {
               "kind": "choose",
               "id": "opening-what",
-              "ask": "What does al-Tahawi say his book sets out?",
+              "ask": "What kind of book does the opening line announce?",
               "options": [
-                "The creed of Ahl al-Sunna wal-Jama'a",
-                "The rulings of purity, prayer and fasting",
-                "The rules of Arabic grammar"
+                "An account of what Ahl al-Sunna hold as belief",
+                "A book of prayer rulings on the way of Abu Hanifa",
+                "A history of Abu Hanifa and his two companions"
               ],
               "answer": 0,
               "source": "هذا ذكر بيان عقيدة أهل السنة والجماعة",
@@ -106,7 +124,7 @@
             {
               "kind": "pick",
               "id": "jurists",
-              "ask": "Which jurists does al-Tahawi name in his opening?",
+              "ask": "Which jurists are named in the opening?",
               "options": [
                 {
                   "text": "Abu Hanifa",
@@ -147,7 +165,7 @@
             {
               "kind": "choose",
               "id": "power-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word completes the line?",
               "ar": "ولا شيء ____",
               "options": [
                 "يعجزه",
@@ -162,7 +180,7 @@
             {
               "kind": "pick",
               "id": "affirm",
-              "ask": "Which of these does al-Tahawi affirm?",
+              "ask": "Which of these belong to the creed?",
               "options": [
                 {
                   "text": "Allah is One",
@@ -196,20 +214,20 @@
             {
               "kind": "choose",
               "id": "partner",
-              "ask": "What does لا شريك له (la sharika lahu) say of Allah?",
+              "ask": "What does لا شريك له (la sharika lahu) mean?",
               "options": [
-                "He has no partner",
-                "He has no helper in war",
-                "He has no beginning at all"
+                "He has no associate",
+                "Nothing is beyond His power",
+                "Nothing resembles Him"
               ],
               "answer": 0,
               "source": "إن الله واحد لا شريك له",
-              "why": "Sharik is a partner: Allah is One, with no partner."
+              "why": "Sharik is a partner or associate: Allah is One, and none is associated with Him."
             },
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi affirms of Allah, and what he denies.",
+              "ask": "Sort: what the creed affirms of Allah, and what it denies.",
               "into": [
                 "He affirms",
                 "He denies"
@@ -245,15 +263,15 @@
             {
               "kind": "choose",
               "id": "true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says: \"Some things are too hard even for Allah.\" Which line of the creed answers him?",
               "options": [
-                "Nothing is beyond Allah's power",
-                "Some things are too hard even for Allah",
-                "Allah is one god among others"
+                "No matter can ever overwhelm Him",
+                "Allah is One, with no partner",
+                "His attributes were His before creation"
               ],
               "answer": 0,
-              "source": "ولا شيء يعجزه ولا إله غيره",
-              "why": "Nothing is beyond His power, and there is no god but Him."
+              "source": "ولا شيء يعجزه",
+              "why": "La shay'a yu'jizuhu: nothing is beyond His power, so nothing is too hard for Him."
             }
           ]
         },
@@ -272,7 +290,7 @@
             {
               "kind": "pick",
               "id": "no-start",
-              "ask": "Which does al-Tahawi say of Allah?",
+              "ask": "Which of these is said of Allah here?",
               "options": [
                 {
                   "text": "He has no beginning",
@@ -302,7 +320,7 @@
             {
               "kind": "choose",
               "id": "will-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Fill the gap in the creed's words.",
               "ar": "ولا يكون إلا ما ____",
               "options": [
                 "يريد",
@@ -317,15 +335,15 @@
             {
               "kind": "choose",
               "id": "will-true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "A man says: \"Allah wills the good, but evil happens apart from His will.\" What does the creed say?",
               "options": [
-                "Nothing comes to be except what Allah wills",
-                "Most things come to be without Allah's will",
-                "Allah's will covers the heavens only"
+                "Nothing whatever occurs unless He wills it",
+                "He is right: Allah wills what is good and evil is outside His will",
+                "He is right: a servant's evil deeds are his own creation, apart from Allah"
               ],
               "answer": 0,
               "source": "ولا يكون إلا ما يريد",
-              "why": "Nothing at all comes to be except what He wills."
+              "why": "La yakunu illa ma yurid: nothing comes to be, good or evil, except what He wills."
             },
             {
               "kind": "teach",
@@ -344,20 +362,20 @@
             {
               "kind": "choose",
               "id": "qayyum",
-              "ask": "Al-Tahawi says Allah is Qayyum (Self-Sustaining) and...",
+              "ask": "Which pairing matches the creed's words?",
               "options": [
-                "He does not sleep",
-                "He does not hear at all",
-                "He does not will anything"
+                "Self-Sustaining: no sleep takes Him",
+                "Self-Sustaining: He does not ever die",
+                "Living: He does not ever sleep"
               ],
               "answer": 0,
               "source": "قيوم لا ينام",
-              "why": "Qayyum la yanam: Self-Sustaining, and He does not sleep."
+              "why": "Hayyun la yamut, qayyumun la yanam: Living, He does not die; Self-Sustaining, He does not sleep."
             },
             {
               "kind": "pick",
               "id": "deny",
-              "ask": "Which does al-Tahawi deny of Allah?",
+              "ask": "Which of these are denied of Allah?",
               "options": [
                 {
                   "text": "That He dies",
@@ -391,15 +409,15 @@
             {
               "kind": "choose",
               "id": "reach",
-              "ask": "What does al-Tahawi say does not reach Allah?",
+              "ask": "Someone tries to picture in his mind what Allah looks like. Which line of the creed speaks to this?",
               "options": [
-                "Imaginations (al-awham)",
-                "The du'a of those who call on Him",
-                "His own knowledge"
+                "The mind's pictures fall short of Him",
+                "He is Living and does not die",
+                "He does not perish or pass away"
               ],
               "answer": 0,
-              "source": "لا تبلغه الأوهام",
-              "why": "La tablughuhu al-awham: imaginations do not reach Him."
+              "source": "لا تبلغه الأوهام ولا تدركه الأفهام ولا يشبه الأنام",
+              "why": "La tablughuhu al-awham: imaginations do not reach Him, and He does not resemble created beings."
             }
           ]
         },
@@ -425,20 +443,20 @@
             {
               "kind": "choose",
               "id": "provider",
-              "ask": "Al-Tahawi says Allah provides...",
+              "ask": "How does He provide, in the creed's words?",
               "options": [
-                "Without any burden on Him",
-                "Only to those who ask Him",
-                "In return for their worship"
+                "It costs Him nothing to do so",
+                "In return for His servants' worship of Him",
+                "Out of His need to be thanked by them"
               ],
               "answer": 0,
               "source": "رازق بلا مؤنة",
-              "why": "Raziq bila mu'na: He provides, and it is no burden on Him."
+              "why": "Raziq bila mu'na: He provides, and it is no burden on Him; and He creates with no need."
             },
             {
               "kind": "choose",
               "id": "creator-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Complete the statement.",
               "ar": "خالق بلا ____",
               "options": [
                 "حاجة",
@@ -453,11 +471,11 @@
             {
               "kind": "choose",
               "id": "raises",
-              "ask": "Al-Tahawi says Allah raises the dead...",
+              "ask": "Raising the dead, in the creed's words, is...",
               "options": [
-                "Without hardship",
-                "With great effort",
-                "Only some of them"
+                "Effortless for Him",
+                "Hard, though within His power",
+                "Something He did once, in creating, and will not repeat"
               ],
               "answer": 0,
               "source": "باعث بلا مشقة",
@@ -473,15 +491,15 @@
             {
               "kind": "choose",
               "id": "before-true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says: \"Allah took on new attributes once creation came to be.\" Which line of the creed answers him?",
               "options": [
-                "Allah had His attributes before He created anything",
-                "Allah gained new attributes once creation came to exist",
-                "Allah's attributes began with the first creation"
+                "Creation added no attribute to Him",
+                "He causes death without fear of anyone",
+                "He creates, not out of any need"
               ],
               "answer": 0,
               "source": "ما زال بصفاته قديما قبل خلقه",
-              "why": "He has always been with His attributes, before His creation; creation added nothing to them."
+              "why": "He has always had His attributes, before His creation; creation coming to be added nothing to them."
             },
             {
               "kind": "teach",
@@ -500,11 +518,11 @@
             {
               "kind": "choose",
               "id": "name-when",
-              "ask": "Did Allah gain the name al-Khaliq (the Creator) after He created?",
+              "ask": "Someone argues: \"Allah could only be called al-Khaliq (the Creator) once there was a creation.\" What does the creed say?",
               "options": [
-                "No: He did not gain it after creating",
-                "Yes: when He created the first thing",
-                "Yes: when people first called Him by it"
+                "The name was His before any creature existed",
+                "He is right: the name came with the first creation",
+                "He is right: names come from those who call on Him"
               ],
               "answer": 0,
               "source": "ليس بعد خلق الخلق استفاد اسم الخالق",
@@ -513,7 +531,7 @@
             {
               "kind": "pick",
               "id": "affirm",
-              "ask": "Which of these does al-Tahawi affirm?",
+              "ask": "Which of these belong to the creed?",
               "options": [
                 {
                   "text": "His attributes have no beginning",
@@ -557,11 +575,11 @@
             {
               "kind": "choose",
               "id": "lord-true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Before there were any servants, was Allah Lord?",
               "options": [
-                "Allah was Lord before there was anyone to be lorded over",
-                "Allah became Lord once there were servants",
-                "Allah was the Creator only in name, before He created anything"
+                "Yes: lordship was His with no one yet to rule",
+                "No: He became Lord once servants came to be",
+                "In name, but its meaning came later, with creation"
               ],
               "answer": 0,
               "source": "له معنى الربوبية ولا مربوب",
@@ -577,11 +595,11 @@
             {
               "kind": "choose",
               "id": "life-when",
-              "ask": "Al-Tahawi's example: Allah deserved the name \"Giver of life to the dead\"...",
+              "ask": "In the example of \"Giver of life to the dead\", when was that name His by right?",
               "options": [
-                "Before giving them life",
-                "Only after giving them life",
-                "Only on the Day of Rising"
+                "Already, before any were revived",
+                "From the moment He gave them life",
+                "On the Day of Rising, when the dead are raised"
               ],
               "answer": 0,
               "source": "استحق هذا الاسم قبل إحيائهم",
@@ -597,7 +615,7 @@
             {
               "kind": "pick",
               "id": "power-pick",
-              "ask": "Which does al-Tahawi say?",
+              "ask": "Which of these does the creed say?",
               "options": [
                 {
                   "text": "He has power over everything",
@@ -635,7 +653,7 @@
             {
               "kind": "choose",
               "id": "ayah-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word belongs in the gap?",
               "ar": "ليس كمثله شيء وهو السميع ____",
               "options": [
                 "البصير",
@@ -650,7 +668,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi affirms of Allah, and what he denies.",
+              "ask": "Sort: what the creed affirms of Allah, and what it denies.",
               "into": [
                 "He affirms",
                 "He denies"
@@ -687,15 +705,15 @@
             {
               "kind": "choose",
               "id": "poor",
-              "ask": "What does al-Tahawi say everything is towards Allah?",
+              "ask": "How does everything stand towards Allah?",
               "options": [
-                "In need of Him (faqir)",
-                "Equal to Him in some things",
-                "Hidden from Him"
+                "Each thing depends on Him",
+                "Some things stand apart from Him, in no need of Him",
+                "Things need Him, and He needs them in turn"
               ],
               "answer": 0,
               "source": "وكل شيء إليه فقير",
-              "why": "Kullu shay'in ilayhi faqir: everything is in need of Him."
+              "why": "Kullu shay'in ilayhi faqir: everything is in need of Him, and He needs nothing."
             }
           ]
         }
@@ -727,7 +745,7 @@
             {
               "kind": "pick",
               "id": "did",
-              "ask": "Which does al-Tahawi say Allah did for His creation?",
+              "ask": "What did Allah do for His creation, in these lines?",
               "options": [
                 {
                   "text": "Created them",
@@ -754,7 +772,7 @@
             {
               "kind": "choose",
               "id": "terms-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word completes the line?",
               "ar": "وضرب لهم ____",
               "options": [
                 "آجالا",
@@ -771,9 +789,9 @@
               "id": "ajal",
               "ask": "What is an ajal (أجل), in \"He fixed their terms\"?",
               "options": [
-                "The set length of a life",
-                "A reward for a good deed",
-                "A command to be obeyed"
+                "How long someone will live",
+                "The measure of each one's provision",
+                "A reward fixed for a good deed"
               ],
               "answer": 0,
               "source": "وضرب لهم آجالا",
@@ -789,33 +807,33 @@
             {
               "kind": "choose",
               "id": "when",
-              "ask": "When did Allah know what people would do, al-Tahawi says?",
+              "ask": "A man says: \"Allah learns what we do once we do it.\" What does the creed say?",
               "options": [
-                "Before He created them",
-                "Once they had done it",
-                "Once they had made up their minds"
+                "Our deeds were known to Him before He made us",
+                "He is right: Allah's knowledge follows our deeds",
+                "He is right about deeds, though Allah knew how many we would be"
               ],
               "answer": 0,
               "source": "وعلم ما هم عاملون قبل أن يخلقهم",
-              "why": "He knew what they would do before He created them."
+              "why": "He knew what they would do before He created them; nothing about them was hidden from Him."
             },
             {
               "kind": "choose",
               "id": "true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Which of these agrees with the creed?",
               "options": [
-                "Nothing about people was hidden from Allah before He made them",
-                "Allah comes to know people as they act",
-                "Allah knew how many people there would be, but not their deeds"
+                "Each person's lifespan was set by Allah",
+                "A person's term is set by his own care for his health",
+                "Allah created people, then left their measures to them"
               ],
               "answer": 0,
-              "source": "ولم يخف عليه شيء قبل أن يخلقهم",
-              "why": "Nothing about them was hidden from Him, before He created them."
+              "source": "خلق الخلق بعمله وقدر لهم أقدارا وضرب لهم آجالا",
+              "why": "He created the creation, set their measures, and fixed their terms."
             },
             {
               "kind": "order",
               "id": "order",
-              "ask": "Put al-Tahawi's statements in his order.",
+              "ask": "Put the statements in the order they come.",
               "steps": [
                 "He created the creation",
                 "He set their measures",
@@ -852,15 +870,15 @@
             {
               "kind": "choose",
               "id": "will-true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says: \"I willed it myself; Allah's will had no part in it.\" What does the creed say?",
               "options": [
-                "Servants will nothing except what Allah wills for them",
-                "Servants' will runs apart from Allah's will",
-                "Allah's will is sometimes left undone by His servants"
+                "A servant wills only as Allah wills for him",
+                "He is right: a servant's will runs apart from Allah's",
+                "A view that the servant has no will or choice, like a feather in the wind"
               ],
               "answer": 0,
               "source": "ومشيئته تنفذ لا مشيئة للعباد إلا ما شاء لهم",
-              "why": "His will is carried out, and servants have no will except what He wills for them."
+              "why": "Servants have no will except what He wills for them: so they do will, but within His will."
             },
             {
               "kind": "teach",
@@ -872,7 +890,7 @@
             {
               "kind": "choose",
               "id": "happens-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Fill the gap in the creed's words.",
               "ar": "فما شاء لهم ____ وما لم يشأ لم يكن",
               "options": [
                 "كان",
@@ -894,7 +912,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: which does al-Tahawi say is out of His grace, and which out of His justice?",
+              "ask": "Sort: which is out of His grace, and which out of His justice?",
               "into": [
                 "Out of His grace",
                 "Out of His justice"
@@ -934,20 +952,20 @@
             {
               "kind": "choose",
               "id": "between-q",
-              "ask": "Between which two does al-Tahawi say all people turn about?",
+              "ask": "One person is guided and kept safe; another is left astray and tested. What does the creed say of the two?",
               "options": [
-                "His grace and His justice",
-                "Their own will and chance",
-                "Their deeds and their fathers' deeds"
+                "The first is His favour, the second His fairness",
+                "The first earned it alone; the second chose it apart from His will",
+                "Both are His justice, and neither is His grace"
               ],
               "answer": 0,
-              "source": "وكلهم يتقلبون في مشيئته بين فضله وعدله",
-              "why": "They turn about within His will, between His grace and His justice."
+              "source": "يهدي من يشاء ويعصم ويعافي فضلا ويضل من يشاء ويخذل ويبتلي عدلا",
+              "why": "He guides and keeps safe out of His grace (fadl), and leaves astray and tests out of His justice ('adl)."
             },
             {
               "kind": "pick",
               "id": "affirm",
-              "ask": "Which of these does al-Tahawi affirm?",
+              "ask": "Which of these belong to the creed?",
               "options": [
                 {
                   "text": "Everything runs by Allah's decree and will",
@@ -998,7 +1016,7 @@
             {
               "kind": "choose",
               "id": "none-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Complete the statement.",
               "ar": "لا راد ____ ولا معقب لحكمه",
               "options": [
                 "لقضائه",
@@ -1013,7 +1031,7 @@
             {
               "kind": "pick",
               "id": "none-pick",
-              "ask": "Which does al-Tahawi say?",
+              "ask": "Which of these does the creed say?",
               "options": [
                 {
                   "text": "None can turn back His decree",
@@ -1028,10 +1046,10 @@
                   "right": true
                 },
                 {
-                  "text": "None may ask Him for help"
+                  "text": "A great wali can overrule His decree"
                 },
                 {
-                  "text": "None can know His names"
+                  "text": "Some creatures are His equals"
                 }
               ],
               "source": "لا راد لقضائه ولا معقب لحكمه ولا غالب لأمره",
@@ -1047,33 +1065,33 @@
             {
               "kind": "choose",
               "id": "above-q",
-              "ask": "What does al-Tahawi say Allah is exalted above?",
+              "ask": "Allah is exalted above addad and andad. What are they?",
               "options": [
-                "Opposites and rivals",
-                "Hearing and seeing",
-                "Power and will"
+                "Any who would oppose Him or match Him",
+                "The names and attributes He has",
+                "The angels who carry out His commands in creation"
               ],
               "answer": 0,
               "source": "وهو متعال عن الأضداد والأنداد",
-              "why": "He is exalted above addad and andad: opposites and rivals."
+              "why": "Addad are opposites and andad are rivals: none stands against Him and none is His equal."
             },
             {
               "kind": "choose",
               "id": "all-true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says: \"The good in my life is from Allah, but the bad came from somewhere else.\" What does the creed say?",
               "options": [
-                "We are certain all of it is from Allah",
-                "Only the good of it is from Allah",
-                "Some of it is from Allah, and some from chance"
+                "Every bit of the decree is from Him",
+                "He is right: the bad comes from the servant's own creating",
+                "He is right: the bad comes by chance"
               ],
               "answer": 0,
               "source": "وأيقنا أن كلا من عنده",
-              "why": "We are certain that all of it is from Him."
+              "why": "Ayqanna anna kullan min 'indih: we are certain all of it is from Him, and none can turn back His decree."
             },
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi affirms, and what he denies.",
+              "ask": "Sort: what the creed affirms, and what it denies.",
               "into": [
                 "He affirms",
                 "He denies"
@@ -1111,11 +1129,11 @@
             {
               "kind": "choose",
               "id": "ends",
-              "ask": "With what words does al-Tahawi end this section?",
+              "ask": "How does this passage close?",
               "options": [
-                "We believe in all of that",
-                "We leave all of that to the scholars",
-                "We doubt some of that"
+                "With a statement of faith in the whole of it",
+                "By leaving the whole matter to the scholars to settle",
+                "By saying that some of it is unclear to us"
               ],
               "answer": 0,
               "source": "آمنا بذلك كله",
@@ -1151,7 +1169,7 @@
             {
               "kind": "pick",
               "id": "called",
-              "ask": "What does al-Tahawi call Muhammad ﷺ here?",
+              "ask": "What is Muhammad ﷺ called here?",
               "options": [
                 {
                   "text": "His chosen servant",
@@ -1185,7 +1203,7 @@
             {
               "kind": "choose",
               "id": "seal-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word belongs in the gap?",
               "ar": "وأنه ____ الأنبياء",
               "options": [
                 "خاتم",
@@ -1207,15 +1225,15 @@
             {
               "kind": "choose",
               "id": "after-true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "A man appears today claiming to be a prophet. What does the creed say of his claim?",
               "options": [
-                "Every claim to prophethood after him is error",
-                "A prophet may still come with a new law",
-                "Prophethood is open to the most pious"
+                "It is misguidance driven by whim",
+                "It may be true, if he works wonders",
+                "It may be true, if he brings no new law"
               ],
               "answer": 0,
               "source": "وكل دعوى النبوة بعده فغي وهوى",
-              "why": "He is the Seal, so every claim to prophethood after him is ghayy, error, and hawa, desire."
+              "why": "He ﷺ is the Seal of the Prophets, so every claim to prophethood after him is ghayy, error, and hawa, desire."
             },
             {
               "kind": "teach",
@@ -1227,11 +1245,11 @@
             {
               "kind": "choose",
               "id": "sent-to",
-              "ask": "To whom was the Prophet ﷺ sent, al-Tahawi says?",
+              "ask": "Who was the Prophet ﷺ sent to?",
               "options": [
-                "All the jinn and all mankind",
-                "The Arabs alone",
-                "The people of Makka and Madina"
+                "Humans and jinn, wherever they are",
+                "The Arabs; other nations keep their own prophets",
+                "Mankind, but not the jinn"
               ],
               "answer": 0,
               "source": "وهو المبعوث إلى عامة الجن وكافة الورى",
@@ -1240,7 +1258,7 @@
             {
               "kind": "pick",
               "id": "with",
-              "ask": "What does al-Tahawi say he was sent with?",
+              "ask": "What was he sent with?",
               "options": [
                 {
                   "text": "Truth",
@@ -1271,7 +1289,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi affirms, and what he rejects.",
+              "ask": "Sort: what the creed affirms, and what it rejects.",
               "into": [
                 "He affirms",
                 "He rejects"
@@ -1329,15 +1347,15 @@
             {
               "kind": "choose",
               "id": "what",
-              "ask": "What is the Quran, in al-Tahawi's first words on it?",
+              "ask": "Someone says: \"The Quran is the Prophet's own wording of an idea from Allah.\" What do the creed's first words on the Quran say?",
               "options": [
-                "The speech of Allah",
-                "The words of the Prophet",
-                "The speech of Jibril"
+                "It is what Allah Himself spoke",
+                "He is right: the wording is the Prophet's",
+                "He is right: the wording is Jibril's"
               ],
               "answer": 0,
               "source": "وإن القرآن كلام الله",
-              "why": "He begins: the Quran is kalam Allah, the speech of Allah."
+              "why": "Al-Qur'an kalam Allah: it came from Him as speech, and He sent it down on His Messenger as revelation."
             },
             {
               "kind": "teach",
@@ -1349,7 +1367,7 @@
             {
               "kind": "choose",
               "id": "created-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word completes the line?",
               "ar": "ليس ____ ككلام البرية",
               "options": [
                 "بمخلوق",
@@ -1364,7 +1382,7 @@
             {
               "kind": "pick",
               "id": "says",
-              "ask": "Which does al-Tahawi say of the Quran?",
+              "ask": "Which of these are said of the Quran?",
               "options": [
                 {
                   "text": "It is the speech of Allah",
@@ -1398,10 +1416,10 @@
             {
               "kind": "choose",
               "id": "believers",
-              "ask": "How did the believers receive it, al-Tahawi says?",
+              "ask": "How did the believers receive the revelation?",
               "options": [
-                "They affirmed it as truly so",
-                "They doubted parts of it",
+                "They accepted it as really from Allah",
+                "They took some parts and doubted others",
                 "They took it as fine poetry by the Prophet"
               ],
               "answer": 0,
@@ -1411,7 +1429,7 @@
             {
               "kind": "order",
               "id": "order",
-              "ask": "Put al-Tahawi's words on the Quran in his order.",
+              "ask": "Put al-Tahawi's words on the Quran in the order they come.",
               "steps": [
                 "The Quran is Allah's speech",
                 "He sent it down on His Messenger",
@@ -1424,15 +1442,15 @@
             {
               "kind": "choose",
               "id": "kayfiyya",
-              "ask": "What does بلا كيفية (bila kayfiyya) say, here?",
+              "ask": "What does بلا كيفية (bila kayfiyya) rule out?",
               "options": [
-                "Without any \"how\"",
-                "Without any meaning",
-                "Without any words"
+                "Describing the manner of it",
+                "Its having a meaning we understand",
+                "Its being truly speech"
               ],
               "answer": 0,
               "source": "منه بدا بلا كيفية قولا",
-              "why": "Kayfiyya is the \"how\" of a thing: it came from Him as speech, without a how."
+              "why": "Kayfiyya is the \"how\" of a thing: it came from Him as speech (qawlan), without a how."
             }
           ]
         },
@@ -1458,15 +1476,15 @@
             {
               "kind": "choose",
               "id": "claim-q",
-              "ask": "What does al-Tahawi say of one who hears the Quran and claims it is human speech?",
+              "ask": "A man hears the Quran recited and says: \"This is a man's speech.\" What does the creed say?",
               "options": [
-                "He has disbelieved",
-                "He has made a small slip",
-                "He is excused if he is learned"
+                "He has fallen into kufr",
+                "He has erred, but he remains a believer",
+                "He is a sinner, not a disbeliever"
               ],
               "answer": 0,
               "source": "فمن سمعه فزعم أنه كلام البشر فقد كفر",
-              "why": "Faqad kafar: he has disbelieved."
+              "why": "Faqad kafar: whoever hears it and claims it is human speech has disbelieved."
             },
             {
               "kind": "teach",
@@ -1478,7 +1496,7 @@
             {
               "kind": "choose",
               "id": "creator-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Fill the gap in the creed's words.",
               "ar": "علمنا وأيقنا أنه قول ____ البشر",
               "options": [
                 "خالق",
@@ -1493,15 +1511,15 @@
             {
               "kind": "choose",
               "id": "saqar-q",
-              "ask": "What is Saqar, in the ayah al-Tahawi quotes?",
+              "ask": "What does Allah's threat of Saqar show, in this reasoning?",
               "options": [
-                "A name of Hell",
-                "A garden of Paradise",
-                "A town of the Arabs"
+                "That the Quran comes from the One who made mankind",
+                "That the Quran is human speech, though of the finest kind",
+                "That calling it human speech is a small slip"
               ],
               "answer": 0,
-              "source": "وأوعده بسقر",
-              "why": "Allah threatened the one who called it human speech with Saqar: the Fire."
+              "source": "علمنا وأيقنا أنه قول خالق البشر",
+              "why": "Since Allah threatened Saqar for calling it human speech, we know it is the word of the Creator of humans."
             },
             {
               "kind": "teach",
@@ -1520,20 +1538,20 @@
             {
               "kind": "choose",
               "id": "like",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says: \"Allah's hearing is like ours, but stronger.\" What does the creed say?",
               "options": [
-                "Allah, in His attributes, is not like humans",
-                "Allah's attributes are like ours, only greater",
-                "Whoever likens Allah to humans is excused"
+                "He is unlike mankind in His attributes",
+                "He is right, as he made Allah's hearing greater",
+                "He is excused, for that is how we know Him"
               ],
               "answer": 0,
               "source": "وعلم أنه بصفاته ليس كالبشر",
-              "why": "He is not like humans in His attributes; whoever describes Him with a human meaning has disbelieved."
+              "why": "Allah, in His attributes, is not like humans; whoever describes Him with a human meaning has disbelieved."
             },
             {
               "kind": "pick",
               "id": "says",
-              "ask": "Which does al-Tahawi say in this passage?",
+              "ask": "Which of these does this passage say?",
               "options": [
                 {
                   "text": "The Quran is the word of the Creator of humans",
@@ -1574,6 +1592,24 @@
         42
       ],
       "whole": true,
+      "units": [
+        {
+          "title": "The Vision and submission",
+          "arabic": "الرؤية والتسليم",
+          "lessons": [
+            "tah-ruya-vision",
+            "tah-ruya-taslim"
+          ]
+        },
+        {
+          "title": "The Mi'raj and the Hawd",
+          "arabic": "المعراج والحوض",
+          "lessons": [
+            "tah-ruya-miraj",
+            "tah-ruya-hawd"
+          ]
+        }
+      ],
       "lessons": [
         {
           "id": "tah-ruya-vision",
@@ -1597,20 +1633,20 @@
             {
               "kind": "choose",
               "id": "who",
-              "ask": "Who will see Allah, al-Tahawi says?",
+              "ask": "Someone says: \"Allah will not be seen, in this world or the next.\" What does the creed answer?",
               "options": [
-                "The people of Paradise",
-                "Every person in this world",
-                "No one, in either world"
+                "The dwellers of the Garden will look upon their Lord",
+                "He is right: the Vision means knowing Him, not seeing Him",
+                "He is right: the faces will look at His reward, not at Him"
               ],
               "answer": 0,
               "source": "والرؤية حق لأهل الجنة",
-              "why": "The Vision is true for ahl al-janna, the people of Paradise."
+              "why": "The Vision is true for ahl al-janna, the people of Paradise: \"looking at their Lord\"; and we do not reinterpret it by our opinions."
             },
             {
               "kind": "choose",
               "id": "ayah-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Complete the statement.",
               "ar": "إلى ربها ____",
               "options": [
                 "ناظرة",
@@ -1639,11 +1675,11 @@
             {
               "kind": "choose",
               "id": "how",
-              "ask": "How does al-Tahawi say the Vision will be?",
+              "ask": "How will the people of Paradise see Him?",
               "options": [
-                "Without encompassing Him and without any \"how\"",
-                "With the eyes taking in all of Him",
-                "Only in a dream, in this world, for the best of the believers"
+                "Truly, yet sight does not take Him in, nor ask how",
+                "With eyes that take in the whole of Him",
+                "In the heart, as knowledge of Him, and not with the eyes"
               ],
               "answer": 0,
               "source": "بغير إحاطة ولا كيفية",
@@ -1659,7 +1695,7 @@
             {
               "kind": "pick",
               "id": "says",
-              "ask": "Which does al-Tahawi say about the Vision?",
+              "ask": "Which of these fit what is said of the Vision?",
               "options": [
                 {
                   "text": "It is true for the people of Paradise",
@@ -1698,15 +1734,15 @@
             {
               "kind": "choose",
               "id": "safe-q",
-              "ask": "Who is safe in his religion, al-Tahawi says?",
+              "ask": "A student meets a sound hadith on the Vision that he cannot fully grasp. What does the creed tell him to do?",
               "options": [
-                "One who submits to Allah and His Messenger",
-                "One who argues every question out until he wins",
-                "One who follows his own reasoning alone"
+                "Accept it and leave its knowledge to Allah",
+                "Reinterpret it by his opinion until it fits",
+                "Set it aside until his reason proves it"
               ],
               "answer": 0,
               "source": "فإنه ما سلم في دينه إلا من سلم لله عز وجل ولرسوله",
-              "why": "Only one who submits to Allah and His Messenger, and refers what is unclear to Allah."
+              "why": "None is safe in his religion except one who submits, and refers what is unclear back to the One who knows it; we do not reinterpret by our opinions."
             }
           ]
         },
@@ -1732,7 +1768,7 @@
             {
               "kind": "choose",
               "id": "foot-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word belongs in the gap?",
               "ar": "ولا تثبت قدم الإسلام إلا على ظهر ____ والاستسلام",
               "options": [
                 "التسليم",
@@ -1754,9 +1790,9 @@
             {
               "kind": "choose",
               "id": "waver-q",
-              "ask": "What happens to the one who will not submit, al-Tahawi says?",
+              "ask": "What becomes of one whose understanding refuses to submit?",
               "options": [
-                "He wavers, doubting, neither believer nor denier",
+                "He is tossed to and fro, sure of nothing",
                 "He reaches a deeper knowledge of Allah than those who submit",
                 "He becomes certain by his own reason"
               ],
@@ -1781,7 +1817,7 @@
             {
               "kind": "pick",
               "id": "guard-pick",
-              "ask": "Which two does al-Tahawi say one must guard against?",
+              "ask": "Which two must one guard against?",
               "options": [
                 {
                   "text": "Denial (nafy)",
@@ -1818,11 +1854,11 @@
             {
               "kind": "choose",
               "id": "unique-q",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Which of these agrees with the creed?",
               "options": [
-                "No creature shares in Allah's meaning",
-                "Some creatures share in His attributes",
-                "His attributes are those of created things"
+                "Nothing created shares in what He is",
+                "Some creatures share a part of His attributes",
+                "His attributes are like those of creatures, but greater"
               ],
               "answer": 0,
               "source": "ليس في معناه أحد من البرية",
@@ -1845,11 +1881,11 @@
             {
               "kind": "choose",
               "id": "how",
-              "ask": "How was the Prophet ﷺ raised, al-Tahawi says?",
+              "ask": "Someone says the Mi'raj was a dream the Prophet ﷺ saw. What does the creed say?",
               "options": [
-                "In his person and awake",
-                "In a dream only",
-                "In spirit only, while asleep"
+                "He was taken up bodily, while awake",
+                "He is right: it was a true dream",
+                "He is right: his spirit rose as he slept"
               ],
               "answer": 0,
               "source": "وعرج بشخصه في اليقظة",
@@ -1872,7 +1908,7 @@
             {
               "kind": "order",
               "id": "order",
-              "ask": "Put the journey in al-Tahawi's order.",
+              "ask": "Put the journey in the order the text gives.",
               "steps": [
                 "He was taken by night",
                 "He was raised to the heaven",
@@ -1885,7 +1921,7 @@
             {
               "kind": "choose",
               "id": "awake-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word completes the line?",
               "ar": "وعرج بشخصه في ____ إلى السماء",
               "options": [
                 "اليقظة",
@@ -1900,7 +1936,7 @@
             {
               "kind": "pick",
               "id": "affirm",
-              "ask": "Which does al-Tahawi affirm about the Mi'raj?",
+              "ask": "Which of these does the creed affirm about the Mi'raj?",
               "options": [
                 {
                   "text": "It is true",
@@ -1935,11 +1971,11 @@
             {
               "kind": "choose",
               "id": "far",
-              "ask": "How far was he raised, al-Tahawi says?",
+              "ask": "How far did the ascent go?",
               "options": [
-                "To the heaven, then as high as Allah willed",
-                "Only to the first heaven, then straight back",
-                "To Jerusalem, and no further than that"
+                "Past the heaven, to heights He chose",
+                "To the first heaven, then straight back",
+                "To Jerusalem, and no further"
               ],
               "answer": 0,
               "source": "إلى السماء ثم إلى حيث شاء الله من العلا",
@@ -1948,15 +1984,15 @@
             {
               "kind": "choose",
               "id": "ayah",
-              "ask": "Which ayah does al-Tahawi quote on the Mi'raj?",
+              "ask": "The ayah \"The heart did not deny what it saw\" is quoted here about...",
               "options": [
-                "\"The heart did not deny what it saw\"",
-                "\"Faces that Day will be radiant\"",
-                "\"There is nothing like Him\""
+                "What the Prophet ﷺ saw on his night journey",
+                "The believers seeing their Lord in Paradise",
+                "Musa when Allah spoke to him"
               ],
               "answer": 0,
               "source": "ما كذب الفؤاد ما رأى",
-              "why": "Ma kadhaba al-fu'adu ma ra'a (53:11)."
+              "why": "Al-Tahawi quotes it (53:11) at the close of his words on the Mi'raj."
             }
           ]
         },
@@ -1975,11 +2011,11 @@
             {
               "kind": "choose",
               "id": "hawd-q",
-              "ask": "What is the Hawd, as al-Tahawi describes it?",
+              "ask": "What is the Hawd for, in the creed's words?",
               "options": [
-                "Relief for his umma, an honour from Allah",
+                "A help for his people, given to him as an honour",
                 "A river of this world that runs near Makka",
-                "A wall standing between Paradise and Hell"
+                "A wall that stands between the people of Paradise and Hell"
               ],
               "answer": 0,
               "source": "والحوض الذي أكرمه الله تعالى به غياثا لأمته حق",
@@ -2002,7 +2038,7 @@
             {
               "kind": "pick",
               "id": "haqq",
-              "ask": "Which does al-Tahawi call true (haqq) here?",
+              "ask": "Which of these are called true (haqq) here?",
               "options": [
                 {
                   "text": "The Hawd",
@@ -2033,7 +2069,7 @@
             {
               "kind": "choose",
               "id": "shafaa-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Fill the gap in the creed's words.",
               "ar": "والشفاعة التي ____ لهم حق",
               "options": [
                 "ادخرها",
@@ -2048,7 +2084,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort each description under what al-Tahawi says it of.",
+              "ask": "Sort each description under what the creed says it of.",
               "into": [
                 "The Hawd",
                 "The Intercession",
@@ -2086,11 +2122,11 @@
             {
               "kind": "choose",
               "id": "mithaq-q",
-              "ask": "From whom did Allah take the Covenant, al-Tahawi says?",
+              "ask": "Who gave the Covenant (mithaq) to Allah?",
               "options": [
-                "Adam and his descendants",
+                "Adam and his offspring",
                 "The angels, before Adam was made",
-                "The prophets alone"
+                "The prophets, apart from the rest of mankind"
               ],
               "answer": 0,
               "source": "والميثاق الذي أخذه الله تعالى من آدم وذريته حق",
@@ -2099,15 +2135,15 @@
             {
               "kind": "choose",
               "id": "true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says: \"No one will intercede for sinners on the Last Day.\" What does the creed say?",
               "options": [
-                "The Intercession is true, as related in the reports",
-                "There is no intercession on the Last Day",
-                "The Hawd is only a parable"
+                "The Prophet ﷺ has kept an intercession in store for them",
+                "He is right: the sinner of this umma has no intercessor",
+                "He is right: the reports of it are parables, not real"
               ],
               "answer": 0,
               "source": "والشفاعة التي ادخرها لهم حق كما روي في الأخبار",
-              "why": "The Intercession is true, as related in the reports."
+              "why": "The Intercession he has stored up for them is true, as related in the reports."
             }
           ]
         }
@@ -2123,6 +2159,24 @@
         53
       ],
       "whole": true,
+      "units": [
+        {
+          "title": "The secret of the decree",
+          "arabic": "سر القدر",
+          "lessons": [
+            "tah-qalam-known",
+            "tah-qalam-two"
+          ]
+        },
+        {
+          "title": "The Pen and the Throne",
+          "arabic": "القلم والعرش",
+          "lessons": [
+            "tah-qalam-pen",
+            "tah-qalam-arsh"
+          ]
+        }
+      ],
       "lessons": [
         {
           "id": "tah-qalam-known",
@@ -2139,11 +2193,11 @@
             {
               "kind": "choose",
               "id": "number-q",
-              "ask": "Can the number of those who enter Paradise change, al-Tahawi says?",
+              "ask": "Can the number of the people of Paradise grow or shrink?",
               "options": [
-                "No: it is not added to or taken from",
+                "No: it stays as Allah has known it from before",
                 "Yes: it grows as people do good",
-                "Yes: it is set again each year"
+                "Yes: it changes as Allah learns of their new deeds"
               ],
               "answer": 0,
               "source": "فلا يزاد في ذلك العدد ولا ينقص منه",
@@ -2166,7 +2220,7 @@
             {
               "kind": "choose",
               "id": "endings-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Complete the statement.",
               "ar": "والأعمال ____",
               "options": [
                 "بالخواتيم",
@@ -2188,15 +2242,15 @@
             {
               "kind": "choose",
               "id": "shown",
-              "ask": "Who has been shown the root of the decree, al-Tahawi says?",
+              "ask": "Someone claims a saint was shown the secret of the decree. What does the creed say?",
               "options": [
-                "No angel and no prophet",
-                "The angels brought near",
-                "The prophets who were sent"
+                "Not even the closest angel or a sent prophet has seen it",
+                "He may be right, if the saint is truly righteous",
+                "He may be right: the prophets knew it, so the awliya may too"
               ],
               "answer": 0,
               "source": "لم يطلع على ذلك ملك مقرب ولا نبي مرسل",
-              "why": "It is Allah's secret: not even an angel brought near or a prophet sent has been shown it."
+              "why": "The root of the decree is Allah's secret: no angel brought near and no prophet sent has been shown it."
             },
             {
               "kind": "teach",
@@ -2208,7 +2262,7 @@
             {
               "kind": "pick",
               "id": "probing",
-              "ask": "What does al-Tahawi say delving into the decree is?",
+              "ask": "What is delving into the decree?",
               "options": [
                 {
                   "text": "A means to being forsaken",
@@ -2226,7 +2280,7 @@
                   "text": "A way to deeper faith"
                 },
                 {
-                  "text": "A duty on every scholar"
+                  "text": "Praiseworthy, for those of sharp mind"
                 }
               ],
               "source": "والتعمق والنظر في ذلك ذريعة الخذلان وسلم الحرمان ودرجة الطغيان",
@@ -2249,15 +2303,15 @@
             {
               "kind": "choose",
               "id": "why-q",
-              "ask": "What does al-Tahawi say of one who asks of Allah \"Why did He do it?\"",
+              "ask": "A man keeps asking, as a challenge, \"Why did Allah decree this?\" What does the creed say?",
               "options": [
-                "He has rejected the ruling of the Book",
-                "He has asked a fine question that scholars must answer",
-                "He has done nothing wrong"
+                "He has turned from the Book's ruling that Allah is not questioned",
+                "It is a fine question that the scholars must answer",
+                "It is no fault, for human reason may judge Allah's acts as good or bad"
               ],
               "answer": 0,
               "source": "فمن سأل لم فعل فقد رد حكم الكتاب",
-              "why": "Allah \"is not asked about what He does\"; asking why rejects the ruling of the Book."
+              "why": "Allah \"is not asked about what He does\"; whoever asks why He did it has rejected the ruling of the Book."
             }
           ]
         },
@@ -2283,7 +2337,7 @@
             {
               "kind": "choose",
               "id": "how-many",
-              "ask": "How many kinds of knowledge does al-Tahawi name here?",
+              "ask": "Into how many kinds does knowledge divide, here?",
               "options": [
                 "Two",
                 "Three",
@@ -2303,7 +2357,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: which does al-Tahawi call disbelief, and which does iman need?",
+              "ask": "Sort: which is disbelief, and which does iman need?",
               "into": [
                 "Disbelief",
                 "Iman needs it"
@@ -2342,7 +2396,7 @@
             {
               "kind": "choose",
               "id": "claim-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word belongs in the gap?",
               "ar": "وادعاء العلم ____ كفر",
               "options": [
                 "المفقود",
@@ -2357,9 +2411,9 @@
             {
               "kind": "choose",
               "id": "rank",
-              "ask": "Whose rank does al-Tahawi call this?",
+              "ask": "Holding to this is the rank of whom?",
               "options": [
-                "Those firmly grounded in knowledge",
+                "The deeply rooted scholars",
                 "Those who probe into the secret of the decree",
                 "Those who know the unseen"
               ],
@@ -2370,20 +2424,20 @@
             {
               "kind": "choose",
               "id": "true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone claims to know what is written for each person in the unseen. What does the creed say?",
               "options": [
-                "Claiming the missing knowledge is disbelief",
-                "Claiming the missing knowledge is a high rank",
-                "Denying the found knowledge is allowed"
+                "To claim the hidden knowledge is kufr",
+                "It is a high rank, granted to the awliya",
+                "It is allowed, if he is a scholar"
               ],
               "answer": 0,
               "source": "وادعاء العلم المفقود كفر",
-              "why": "Claiming the knowledge missing from creation is kufr."
+              "why": "Claiming the knowledge missing from creation is kufr; iman leaves off seeking it."
             },
             {
               "kind": "pick",
               "id": "needs",
-              "ask": "What does iman need, al-Tahawi says?",
+              "ask": "What does iman need?",
               "options": [
                 {
                   "text": "Accepting the knowledge that is found",
@@ -2427,15 +2481,15 @@
             {
               "kind": "choose",
               "id": "gather-q",
-              "ask": "If all creation gathered to stop something written in the Tablet, al-Tahawi says...",
+              "ask": "The people of the earth join together to stop something Allah wrote as coming. What does the creed say?",
               "options": [
-                "They could not do it",
-                "They could stop part of it",
-                "They could hold it back a while"
+                "It will come about in spite of them",
+                "They can stop part of it",
+                "They can delay it for a while, if they all agree"
               ],
               "answer": 0,
               "source": "ليجعلوه غير كائن لم يقدروا عليه",
-              "why": "Lam yaqdiru 'alayh: they would not be able to."
+              "why": "Lam yaqdiru 'alayh: they would not be able to make it not be."
             },
             {
               "kind": "teach",
@@ -2454,7 +2508,7 @@
             {
               "kind": "choose",
               "id": "dried-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word completes the line?",
               "ar": "جف ____ بما هو كائن إلى يوم القيامة",
               "options": [
                 "القلم",
@@ -2476,15 +2530,15 @@
             {
               "kind": "choose",
               "id": "missed-q",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "A man is narrowly missed by a falling wall and says: \"It nearly got me.\" What does the creed say?",
               "options": [
-                "What reached you was never going to miss you",
-                "What missed you might have reached you with more effort",
-                "What reached you could have been turned away"
+                "It was not going to strike him",
+                "It could have struck him, with worse luck",
+                "It was meant for him, but he turned it aside"
               ],
               "answer": 0,
-              "source": "وما أصابه لم يكن ليخطئه",
-              "why": "What reached the servant was never going to miss him."
+              "source": "وما أخطأ العبد لم يكن ليصيبه",
+              "why": "What missed the servant was never going to reach him, and what reached him was never going to miss him."
             },
             {
               "kind": "teach",
@@ -2503,11 +2557,11 @@
             {
               "kind": "choose",
               "id": "change",
-              "ask": "Who can undo or change Allah's decree, al-Tahawi says?",
+              "ask": "Who could undo what Allah has decreed?",
               "options": [
-                "No one in the heavens or the earth",
-                "The angels brought near, if Allah gives them leave",
-                "A prophet, by his du'a"
+                "Not one of His creatures, anywhere",
+                "A great wali, by the strength of his spiritual rank",
+                "The stars, by their movement"
               ],
               "answer": 0,
               "source": "ليس فيه ناقض ولا معقب ولا مزيل ولا مغير ولا ناقص ولا زائد من خلقه في سماواته وأرضه",
@@ -2523,9 +2577,9 @@
             {
               "kind": "choose",
               "id": "woe-q",
-              "ask": "What does al-Tahawi say of one who becomes Allah's opponent over the decree?",
+              "ask": "What does the creed say of one who argues with Allah over the decree?",
               "options": [
-                "Woe to him",
+                "Ruin awaits him",
                 "He is rewarded for his effort",
                 "He is excused if he means well"
               ],
@@ -2550,15 +2604,15 @@
             {
               "kind": "choose",
               "id": "need",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says: \"Allah needs the Throne to rest upon.\" What does the creed say?",
               "options": [
-                "Allah has no need of the Throne or anything below it",
-                "Allah needs the Throne to hold Him",
-                "The Throne and the Kursi are only parables, not real things"
+                "He is self-sufficient, beyond any need of it",
+                "He is right, for the Throne carries Him",
+                "He is wrong, for the Throne is a parable, not a real thing"
               ],
               "answer": 0,
               "source": "وهو مستغن عن العرش وما دونه",
-              "why": "Mustaghnin 'an al-'arsh: He has no need of the Throne or anything below it."
+              "why": "Mustaghnin 'an al-'arsh: He has no need of the Throne or anything below it; and the Throne and Kursi are true."
             },
             {
               "kind": "teach",
@@ -2570,7 +2624,7 @@
             {
               "kind": "choose",
               "id": "above-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Fill the gap in the creed's words.",
               "ar": "وقد أعجز عن ____ خلقه",
               "options": [
                 "الإحاطة",
@@ -2592,11 +2646,11 @@
             {
               "kind": "choose",
               "id": "khalil",
-              "ask": "Whom did Allah take as His khalil, al-Tahawi says?",
+              "ask": "Which prophet did Allah take as His khalil (intimate friend)?",
               "options": [
                 "Ibrahim",
                 "Musa",
-                "Nuh"
+                "Sulayman"
               ],
               "answer": 0,
               "source": "إن الله اتخذ إبراهيم خليلا",
@@ -2605,15 +2659,15 @@
             {
               "kind": "choose",
               "id": "spoke",
-              "ask": "To whom did Allah speak directly, al-Tahawi says?",
+              "ask": "Someone says: \"Allah did not truly speak to Musa; the speech was made in the tree.\" What does the creed say?",
               "options": [
-                "Musa",
-                "Ibrahim",
-                "Yunus"
+                "Allah spoke to Musa directly",
+                "He is right: the speech was created in the tree",
+                "He is right: Musa heard it through an angel"
               ],
               "answer": 0,
               "source": "وكلم الله موسى تكليما",
-              "why": "Kallama Allahu Musa taklima: Allah spoke to Musa directly."
+              "why": "Kallama Allahu Musa taklima: Allah spoke to Musa directly; we say it believing, affirming and submitting."
             },
             {
               "kind": "teach",
@@ -2625,7 +2679,7 @@
             {
               "kind": "pick",
               "id": "believe",
-              "ask": "Which does al-Tahawi say we believe in here?",
+              "ask": "Which of these do we believe in, by these lines?",
               "options": [
                 {
                   "text": "The angels",
@@ -2640,10 +2694,10 @@
                   "right": true
                 },
                 {
-                  "text": "The last book only"
+                  "text": "The Quran, but not the earlier books"
                 },
                 {
-                  "text": "The prophets of the Arabs only"
+                  "text": "The prophets, but not the angels"
                 }
               ],
               "source": "ونؤمن بالملائكة والنبيين والكتب المنزلة على المرسلين",
@@ -2652,7 +2706,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi affirms, and what he denies.",
+              "ask": "Sort: what the creed affirms, and what it denies.",
               "into": [
                 "He affirms",
                 "He denies"
@@ -2743,11 +2797,11 @@
             {
               "kind": "choose",
               "id": "called",
-              "ask": "What does al-Tahawi call the people of our qibla?",
+              "ask": "A man prays towards our qibla and affirms all that the Prophet ﷺ brought. What do we call him?",
               "options": [
-                "Muslims and believers",
-                "Hypocrites until proven otherwise",
-                "Believers, but only once they are scholars"
+                "A Muslim and a believer",
+                "A hypocrite until proven otherwise",
+                "A Muslim, but not yet a believer"
               ],
               "answer": 0,
               "source": "ونسمي أهل قبلتنا مسلمين مؤمنين",
@@ -2770,7 +2824,7 @@
             {
               "kind": "pick",
               "id": "not-do",
-              "ask": "Which does al-Tahawi say we do NOT do?",
+              "ask": "Which of these do we NOT do?",
               "options": [
                 {
                   "text": "Plunge into speculation about Allah",
@@ -2814,7 +2868,7 @@
             {
               "kind": "choose",
               "id": "takfir-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Complete the statement.",
               "ar": "ولا نكفر أحدا من أهل القبلة بذنب ما لم ____",
               "options": [
                 "يستحله",
@@ -2836,11 +2890,11 @@
             {
               "kind": "choose",
               "id": "sinner",
-              "ask": "A Muslim of the qibla commits a sin, but does not hold it lawful. What does al-Tahawi say?",
+              "ask": "A Muslim of the qibla commits a sin, but does not hold it lawful. What does the creed say?",
               "options": [
-                "We do not call him a disbeliever for it",
+                "He is not ruled a disbeliever because of it",
                 "He has left Islam by that sin",
-                "His sin cannot harm him at all, given his iman"
+                "With iman in his heart, the sin does him no harm"
               ],
               "answer": 0,
               "source": [
@@ -2852,7 +2906,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi says we say, and what we do not say.",
+              "ask": "Sort: what we say, and what we do not say.",
               "into": [
                 "We say",
                 "We do not say"
@@ -2912,7 +2966,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi says we do for each.",
+              "ask": "Sort: what we do for each.",
               "into": [
                 "For those who do good",
                 "For those who do wrong"
@@ -2956,7 +3010,7 @@
             {
               "kind": "choose",
               "id": "between-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word belongs in the gap?",
               "ar": "وسبيل الحق ____ لأهل القبلة",
               "options": [
                 "بينهما",
@@ -2971,11 +3025,11 @@
             {
               "kind": "choose",
               "id": "out",
-              "ask": "Which two does al-Tahawi say take one out of the religion of Islam?",
+              "ask": "Which two attitudes does the creed say lead out of Islam?",
               "options": [
-                "Feeling safe and despairing",
+                "Complacency and hopelessness",
                 "Hoping and fearing",
-                "Asking forgiveness and repenting"
+                "Asking forgiveness and fearing"
               ],
               "answer": 0,
               "source": "والأمن والإياس ينقلان عن ملة الإسلام",
@@ -2991,24 +3045,24 @@
             {
               "kind": "choose",
               "id": "leave-q",
-              "ask": "How does a servant leave iman, al-Tahawi says?",
+              "ask": "A Muslim drinks wine but does not deny that it is forbidden. Has he left iman, by the creed?",
               "options": [
-                "Only by denying what brought him into it",
-                "By any sin at all, small or great, once done",
-                "By missing a single prayer through laziness"
+                "No: iman is left by denying what made him a believer",
+                "Yes: a major sin takes him out of Islam",
+                "He is neither believer nor disbeliever, but between the two"
               ],
               "answer": 0,
               "source": "ولا يخرج العبد من الإيمان إلا بجحود ما أدخله فيه",
-              "why": "Only by juhud, denying what brought him into iman."
+              "why": "A servant leaves iman only by juhud, denying what brought him into it; and we do not call a Muslim a disbeliever for a sin he does not hold lawful."
             },
             {
               "kind": "choose",
               "id": "testify",
-              "ask": "Do we testify that a believer who does good is in Paradise, by al-Tahawi's words?",
+              "ask": "A friend says of a pious neighbour who died: \"He is in Paradise, without a doubt.\" What does the creed say?",
               "options": [
-                "No: we hope for him, but do not testify",
-                "Yes: every good-doer is sure of Paradise",
-                "Yes, if he prays all five prayers"
+                "We hope it for him, but do not bear witness to it",
+                "He is right: a good-doer is sure of Paradise",
+                "He is right, if the man prayed his five prayers on time"
               ],
               "answer": 0,
               "source": "ولا نأمن عليهم ولا نشهد لهم بالجنة",
@@ -3017,7 +3071,7 @@
             {
               "kind": "pick",
               "id": "wrongdoers",
-              "ask": "Which does al-Tahawi say we do for the believers who do wrong?",
+              "ask": "What do we do for the believers who do wrong?",
               "options": [
                 {
                   "text": "Ask forgiveness for them",
@@ -3054,7 +3108,7 @@
             {
               "kind": "choose",
               "id": "iman-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word completes the line?",
               "ar": "والإيمان هو الإقرار باللسان والتصديق ____",
               "options": [
                 "بالجنان",
@@ -3069,7 +3123,7 @@
             {
               "kind": "pick",
               "id": "two",
-              "ask": "Which two does al-Tahawi name in his words on iman?",
+              "ask": "Which two are named in the words on iman?",
               "options": [
                 {
                   "text": "Affirming with the tongue",
@@ -3099,15 +3153,15 @@
             {
               "kind": "choose",
               "id": "sound-q",
-              "ask": "What does al-Tahawi say of all that is soundly reported from the Messenger ﷺ?",
+              "ask": "Someone accepts the Quran but rejects any sound hadith. What does the creed say?",
               "options": [
-                "All of it is true",
-                "Only what is in the Quran is true",
-                "Only the law, not the explanation"
+                "Authentic reports from the Prophet ﷺ are truth",
+                "He is right: the Quran alone binds us",
+                "He is right about the rulings, but not the explaining"
               ],
               "answer": 0,
               "source": "وجميع ما صح عن رسول الله صلى الله عليه وسلم من الشرع والبيان كله حق",
-              "why": "Kulluhu haqq: all of it, law and explanation, is true."
+              "why": "Kulluhu haqq: all that is soundly reported from the Messenger ﷺ, of law and of explanation, is true."
             },
             {
               "kind": "teach",
@@ -3126,7 +3180,7 @@
             {
               "kind": "pick",
               "id": "rank-pick",
-              "ask": "By what does al-Tahawi say believers differ in rank?",
+              "ask": "By what do believers differ in rank?",
               "options": [
                 {
                   "text": "Awe of Allah",
@@ -3164,11 +3218,11 @@
             {
               "kind": "choose",
               "id": "honoured",
-              "ask": "Who is most honoured with Allah, al-Tahawi says?",
+              "ask": "Who stands highest with Allah?",
               "options": [
-                "The most obedient, who best follows the Quran",
-                "The one born into the noblest family of the Arabs",
-                "The one with the most wealth"
+                "Whoever obeys Him most and keeps to His Book",
+                "Whoever is born into the noblest family of the Arabs",
+                "Whoever works the most wonders"
               ],
               "answer": 0,
               "source": "وأكرمهم عند الله أطوعهم وأتبعهم للقرآن",
@@ -3177,15 +3231,15 @@
             {
               "kind": "choose",
               "id": "friends",
-              "ask": "Who are the friends (awliya) of the Most Merciful, al-Tahawi says?",
+              "ask": "Is an ordinary believer who works no wonders a wali of Allah?",
               "options": [
-                "All the believers",
-                "Only those who work wonders",
-                "Only the prophets"
+                "Yes: all who have iman are His awliya",
+                "No: a wali is someone who works wonders",
+                "No: the awliya are the prophets"
               ],
               "answer": 0,
               "source": "والمؤمنون كلهم أولياء الرحمن",
-              "why": "Al-mu'minuna kulluhum: all the believers."
+              "why": "Al-mu'minuna kulluhum awliya' al-Rahman: all the believers are friends of the Most Merciful."
             }
           ]
         },
@@ -3204,7 +3258,7 @@
             {
               "kind": "choose",
               "id": "count",
-              "ask": "How many things does al-Tahawi list to believe in?",
+              "ask": "How many articles of faith are listed here?",
               "options": [
                 "Six",
                 "Five",
@@ -3217,7 +3271,7 @@
             {
               "kind": "order",
               "id": "order",
-              "ask": "Put them in al-Tahawi's order.",
+              "ask": "Put them in the order the text gives.",
               "steps": [
                 "Allah",
                 "His angels",
@@ -3239,15 +3293,15 @@
             {
               "kind": "choose",
               "id": "all-q",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone believes in Muhammad ﷺ but denies that 'Isa was a messenger. What does the creed say?",
               "options": [
-                "We make no distinction between any of His messengers",
-                "We affirm some messengers and leave the rest aside",
-                "Only the good of the decree is from Allah; the bad is from others"
+                "We affirm them all alike in what they brought",
+                "That is allowed, as long as he follows the last one",
+                "That is allowed, since the earlier books were changed"
               ],
               "answer": 0,
               "source": "لا نفرق بين أحد من رسله",
-              "why": "We affirm all of the messengers, and the decree's good and bad are both from Allah."
+              "why": "La nufarriqu bayna ahadin min rusulih: we make no distinction between His messengers, and affirm them all."
             },
             {
               "kind": "teach",
@@ -3266,15 +3320,18 @@
             {
               "kind": "choose",
               "id": "forever",
-              "ask": "Do the people of major sins of this umma stay in the Fire forever, if they die on tawhid?",
+              "ask": "A Muslim dies on tawhid with a major sin he never repented of. What does the creed say?",
               "options": [
-                "No, not forever",
-                "Yes, forever",
-                "Only if they never prayed"
+                "Allah may forgive him, or punish him, then bring him out",
+                "He stays in the Fire forever",
+                "His sin does him no harm at the Reckoning, given his iman"
               ],
               "answer": 0,
-              "source": "في النار لا يخلدون إذا ماتوا وهم موحدون",
-              "why": "La yukhalladun: they do not stay forever, if they die on tawhid."
+              "source": [
+                "وأهل الكبائر من أمة محمد صلى الله عليه وسلم في النار لا يخلدون إذا ماتوا وهم موحدون وإن لم يكونوا تائبين",
+                "وهم في مشيئته وحكمه إن شاء غفر لهم وعفا عنهم بفضله"
+              ],
+              "why": "The people of major sins do not stay in the Fire forever if they die on tawhid; they are in His will: He forgives, or punishes and then brings them out."
             },
             {
               "kind": "teach",
@@ -3286,7 +3343,7 @@
             {
               "kind": "order",
               "id": "path",
-              "ask": "If Allah wills to punish such a person, put what al-Tahawi says follows in order.",
+              "ask": "If Allah wills to punish such a person, put what follows in order.",
               "steps": [
                 "Punished in the Fire, by His justice",
                 "Brought out by His mercy and the intercession",
@@ -3305,11 +3362,11 @@
             {
               "kind": "choose",
               "id": "intercede",
-              "ask": "Whose intercession does al-Tahawi say helps bring them out?",
+              "ask": "Whose intercession helps bring them out of the Fire?",
               "options": [
-                "Those of His people who obey Him",
-                "Anyone they call on in the Fire",
-                "No one: there is no intercession"
+                "The pleas of His obedient servants",
+                "The idols and saints they called on in the world",
+                "There is no intercession for those in the Fire"
               ],
               "answer": 0,
               "source": "وشفاعة الشافعين من أهل طاعته",
@@ -3332,15 +3389,15 @@
             {
               "kind": "choose",
               "id": "pray-q",
-              "ask": "Behind whom does al-Tahawi say we pray?",
+              "ask": "The imam of the mosque is known to sin openly. May one pray behind him, by the creed?",
               "options": [
-                "Anyone of the qibla, righteous or sinful",
-                "Only a righteous scholar whose life we know well",
-                "Only a man of our own madhhab"
+                "Yes: pious or not, he is of the qibla",
+                "No: prayer behind a sinner is void",
+                "No: pray behind a man of our own madhhab"
               ],
               "answer": 0,
               "source": "ونرى الصلاة خلف كل بر وفاجر من أهل القبلة",
-              "why": "Khalfa kulli barrin wa fajir: behind every righteous and sinful one of the qibla."
+              "why": "Khalfa kulli barrin wa fajir: we pray behind every righteous and sinful one of the people of the qibla."
             },
             {
               "kind": "teach",
@@ -3359,7 +3416,7 @@
             {
               "kind": "pick",
               "id": "not-do",
-              "ask": "Which does al-Tahawi say we do NOT do with the people of the qibla?",
+              "ask": "Which of these do we NOT do with the people of the qibla?",
               "options": [
                 {
                   "text": "Place any of them in Paradise or the Fire",
@@ -3385,7 +3442,7 @@
             {
               "kind": "choose",
               "id": "hidden-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Fill the gap in the creed's words.",
               "ar": "ونذر ____ إلى الله تعالى",
               "options": [
                 "سرائرهم",
@@ -3407,11 +3464,11 @@
             {
               "kind": "choose",
               "id": "sword-q",
-              "ask": "Against whom of this umma does al-Tahawi allow the sword?",
+              "ask": "Against whom of this umma may the sword be raised?",
               "options": [
-                "Only one on whom it has become due",
-                "Anyone who sins openly",
-                "Anyone who disagrees with our scholars on any question"
+                "Someone whose crime has made it due",
+                "A Muslim who commits a major sin",
+                "Anyone who differs from our scholars"
               ],
               "answer": 0,
               "source": "إلا من وجب عليه السيف",
@@ -3420,7 +3477,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi says we do, and what we do not do.",
+              "ask": "Sort: what we do, and what we do not do.",
               "into": [
                 "We do",
                 "We do not"
@@ -3478,20 +3535,23 @@
             {
               "kind": "choose",
               "id": "until",
-              "ask": "When is obeying those in charge no longer due, by al-Tahawi's words?",
+              "ask": "A ruler is unjust, but does not order anyone to sin. What does the creed say?",
               "options": [
-                "When they command a sin",
-                "When they are unjust to us",
-                "When we dislike their rule"
+                "We keep to his authority and pray he is set right",
+                "We rise up against him by force",
+                "We curse him openly and step back from obeying him"
               ],
               "answer": 0,
-              "source": "ما لم يأمروا بمعصية",
-              "why": "Ma lam ya'muru bi-ma'siya: as long as they do not command a sin."
+              "source": [
+                "ولا نرى الخروج على أئمتنا وولاة أمورنا وإن جاروا ولا ندعوا عليهم ولا ننزع يدا من طاعتهم",
+                "ونرى طاعتهم من طاعة الله عز وجل فريضة ما لم يأمروا بمعصية وندعوا لهم بالصلاح والمعافاة"
+              ],
+              "why": "We do not rise against leaders even if they are unjust; obeying them is due as long as they do not command a sin, and we pray for them."
             },
             {
               "kind": "pick",
               "id": "rulers",
-              "ask": "Which does al-Tahawi say we do towards our leaders?",
+              "ask": "Which of these do we do towards our leaders?",
               "options": [
                 {
                   "text": "Obey them unless they command a sin",
@@ -3524,7 +3584,7 @@
             {
               "kind": "choose",
               "id": "sunna-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Complete the statement.",
               "ar": "ونتبع السنة و____",
               "options": [
                 "الجماعة",
@@ -3546,7 +3606,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: whom al-Tahawi says we love, and whom we dislike.",
+              "ask": "Sort: whom we love, and whom we dislike.",
               "into": [
                 "We love",
                 "We dislike"
@@ -3575,11 +3635,11 @@
             {
               "kind": "choose",
               "id": "avoid",
-              "ask": "What does al-Tahawi say we avoid?",
+              "ask": "What does the creed tell us to keep away from?",
               "options": [
-                "Going off alone, discord and division",
-                "The Sunna and the Jama'a",
-                "Praying for the uprightness of those in charge"
+                "Breaking away, quarrels and splits",
+                "Praying for the wellbeing of those in charge",
+                "Loving the people of justice"
               ],
               "answer": 0,
               "source": "ونجتنب الشذوذ والخلاف والفرقة",
@@ -3602,11 +3662,11 @@
             {
               "kind": "choose",
               "id": "unclear-q",
-              "ask": "What does al-Tahawi say we say where knowledge is unclear to us?",
+              "ask": "A student is asked something whose answer is unclear to him. What does the creed teach him to say?",
               "options": [
-                "Allah knows best",
-                "Whatever our reason prefers",
-                "Nothing is unclear to us"
+                "Allahu a'lam",
+                "Whatever his reason prefers",
+                "His best guess, as if certain"
               ],
               "answer": 0,
               "source": "ونقول الله أعلم فيما اشتبه علينا علمه",
@@ -3622,15 +3682,15 @@
             {
               "kind": "choose",
               "id": "khuffs-q",
-              "ask": "When does al-Tahawi say we wipe over khuffs?",
+              "ask": "A man at home, not travelling, put on khuffs after wudu. May he wipe over them?",
               "options": [
-                "Both travelling and at home",
-                "Only when travelling",
-                "Only in the cold of winter, at home"
+                "Yes: residents wipe as travellers do",
+                "No: wiping is for travellers alone",
+                "No: washing the feet is the sole way"
               ],
               "answer": 0,
               "source": "ونرى المسح على الخفين في السفر والحضر",
-              "why": "Fis-safar wal-hadar: travelling and at home."
+              "why": "Fis-safar wal-hadar: we hold to wiping over khuffs both travelling and at home."
             },
             {
               "kind": "teach",
@@ -3642,7 +3702,7 @@
             {
               "kind": "choose",
               "id": "hajj-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word belongs in the gap?",
               "ar": "والحج والجهاد ____ مع أولي الأمر من المسلمين",
               "options": [
                 "ماضيان",
@@ -3657,11 +3717,11 @@
             {
               "kind": "choose",
               "id": "with",
-              "ask": "With whom do Hajj and jihad go on, al-Tahawi says?",
+              "ask": "Must Hajj and jihad wait for a just ruler, by the creed?",
               "options": [
-                "Those in charge, righteous or sinful",
-                "Only a just ruler whom all the scholars accept",
-                "No ruler at all"
+                "No: they go on with those in charge, pious or not",
+                "Yes: they wait for a ruler all the scholars accept",
+                "Yes: they are held back until the awaited imam comes"
               ],
               "answer": 0,
               "source": "مع أولي الأمر من المسلمين برهم وفاجرهم",
@@ -3670,7 +3730,7 @@
             {
               "kind": "pick",
               "id": "says",
-              "ask": "Which does al-Tahawi say in these lines?",
+              "ask": "Which of these do these lines say?",
               "options": [
                 {
                   "text": "Hajj and jihad go on until the Hour",
@@ -3701,7 +3761,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi holds, and what he rejects.",
+              "ask": "Sort: what the creed holds, and what it rejects.",
               "into": [
                 "He holds",
                 "He rejects"
@@ -3750,6 +3810,24 @@
         92
       ],
       "whole": true,
+      "units": [
+        {
+          "title": "The grave and the Rising",
+          "arabic": "القبر والبعث",
+          "lessons": [
+            "tah-akhira-grave",
+            "tah-akhira-rising"
+          ]
+        },
+        {
+          "title": "Capacity and His will",
+          "arabic": "الاستطاعة والمشيئة",
+          "lessons": [
+            "tah-akhira-capacity",
+            "tah-akhira-will"
+          ]
+        }
+      ],
       "lessons": [
         {
           "id": "tah-akhira-grave",
@@ -3773,9 +3851,9 @@
             {
               "kind": "choose",
               "id": "death-q",
-              "ask": "What is the Angel of Death charged with, al-Tahawi says?",
+              "ask": "What is the Angel of Death's task?",
               "options": [
-                "Taking the souls of all beings",
+                "Seizing the souls of creatures",
                 "Writing down people's deeds",
                 "Questioning the dead in the grave"
               ],
@@ -3793,7 +3871,7 @@
             {
               "kind": "pick",
               "id": "asked",
-              "ask": "What do Munkar and Nakir ask about, al-Tahawi says?",
+              "ask": "What do Munkar and Nakir ask about?",
               "options": [
                 {
                   "text": "His Lord",
@@ -3834,7 +3912,7 @@
             {
               "kind": "choose",
               "id": "garden-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word completes the line?",
               "ar": "والقبر ____ من رياض الجنة أو حفرة من حفر النيران",
               "options": [
                 "روضة",
@@ -3849,7 +3927,7 @@
             {
               "kind": "choose",
               "id": "who",
-              "ask": "Who questions the dead in the grave, al-Tahawi says?",
+              "ask": "Who questions the buried, in the creed?",
               "options": [
                 "Munkar and Nakir",
                 "The Noble Scribes",
@@ -3862,15 +3940,15 @@
             {
               "kind": "choose",
               "id": "true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says: \"There is no punishment in the grave; it begins on the Last Day.\" What does the creed say?",
               "options": [
-                "The punishment of the grave is for whoever deserves it",
-                "The grave is only a place of rest for everyone, good or bad",
-                "There is no questioning until the Last Day"
+                "The grave's torment is real for those who earn it",
+                "He is right: the grave is rest for good and bad",
+                "He is right: the dead feel neither good nor ill until the Rising"
               ],
               "answer": 0,
               "source": "وبعذاب القبر لمن كان له أهلا",
-              "why": "We believe in the punishment of the grave for whoever deserves it."
+              "why": "We believe in the punishment of the grave for whoever deserves it; the grave is a garden of Paradise or a pit of the Fire."
             }
           ]
         },
@@ -3889,7 +3967,7 @@
             {
               "kind": "pick",
               "id": "list",
-              "ask": "Which does al-Tahawi list for the Day of Rising?",
+              "ask": "Which of these are listed for the Day of Rising?",
               "options": [
                 {
                   "text": "The Reckoning",
@@ -3920,7 +3998,7 @@
             {
               "kind": "choose",
               "id": "mizan",
-              "ask": "In al-Tahawi's list, what is the Mizan?",
+              "ask": "In the list for the Day of Rising, which is the Mizan?",
               "options": [
                 "The Scale",
                 "The Bridge",
@@ -3947,20 +4025,20 @@
             {
               "kind": "choose",
               "id": "created-q",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says Paradise and the Fire do not exist yet and will one day end. What does the creed say?",
               "options": [
-                "Paradise and the Fire are created and never end",
-                "Paradise and the Fire will only be created on the Last Day",
-                "The Fire will one day come to an end"
+                "Both already exist and will last for ever",
+                "He is right: they will be made on the Last Day",
+                "He is right that the Fire will one day end"
               ],
               "answer": 0,
               "source": "والجنة والنار مخلوقتان لا تفنيان أبدا ولا تبيدان",
-              "why": "Makhluqatan, la tafniyan: they are created, and never end."
+              "why": "Makhluqatan, la tafniyan: they are created, and never end; Allah created them before creation."
             },
             {
               "kind": "choose",
               "id": "created-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Fill the gap in the creed's words.",
               "ar": "والجنة والنار ____ لا تفنيان أبدا ولا تبيدان",
               "options": [
                 "مخلوقتان",
@@ -3989,15 +4067,15 @@
             {
               "kind": "choose",
               "id": "good-q",
-              "ask": "What does al-Tahawi say of good and evil?",
+              "ask": "Someone says: \"Allah decrees the good; evil is the servant's own creation.\" What does the creed say?",
               "options": [
-                "Both are decreed for servants",
-                "Only the good is decreed; evil comes from the servant alone",
-                "Neither is decreed"
+                "Allah has measured out good and bad alike",
+                "He is right: evil comes from the servant",
+                "Both are decreed, so the servant has no part in his deeds"
               ],
               "answer": 0,
               "source": "والخير والشر مقدران على العباد",
-              "why": "Muqaddarani: both are decreed."
+              "why": "Good and evil are both decreed for servants; yet servants' acts are also their acquiring (kasb), as the next lesson says."
             }
           ]
         },
@@ -4023,7 +4101,7 @@
             {
               "kind": "choose",
               "id": "count",
-              "ask": "How many kinds of capacity does al-Tahawi describe?",
+              "ask": "How many kinds of capacity (istita'a) are described?",
               "options": [
                 "Two",
                 "Three",
@@ -4039,7 +4117,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: which capacity does al-Tahawi say comes with the deed, and which before it?",
+              "ask": "Sort: which capacity comes with the deed, and which before it?",
               "into": [
                 "With the deed",
                 "Before the deed"
@@ -4089,7 +4167,7 @@
             {
               "kind": "choose",
               "id": "kasb-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Complete the statement.",
               "ar": "وأفعال العباد خلق الله و____ من العباد",
               "options": [
                 "كسب",
@@ -4118,15 +4196,18 @@
             {
               "kind": "choose",
               "id": "bear-q",
-              "ask": "With what has Allah charged servants, al-Tahawi says?",
+              "ask": "A sick man cannot stand for prayer. What has Allah charged him with, by the creed?",
               "options": [
-                "Only what they can bear",
-                "More than they can bear, to test them",
-                "Nothing at all: they are left free"
+                "What lies within his ability",
+                "Standing as usual, as a test of him",
+                "Standing all the same, or his prayer is not accepted"
               ],
               "answer": 0,
-              "source": "ولم يكلفهم الله تعالى إلا ما يطيقون",
-              "why": "Illa ma yutiqun: only what they can bear."
+              "source": [
+                "ولم يكلفهم الله تعالى إلا ما يطيقون ولا يطيقون إلا ما كلفهم",
+                "وهو كما قال تعالى لا يكلف الله نفسا إلا وسعها"
+              ],
+              "why": "Allah has charged them only with what they can bear: \"Allah does not burden a soul beyond its capacity\"."
             },
             {
               "kind": "teach",
@@ -4145,7 +4226,7 @@
             {
               "kind": "pick",
               "id": "says",
-              "ask": "Which does al-Tahawi say here?",
+              "ask": "Which of these does the creed say here?",
               "options": [
                 {
                   "text": "Allah charges people only with what they can bear",
@@ -4197,15 +4278,15 @@
             {
               "kind": "choose",
               "id": "unjust-q",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says: \"If Allah wills everything, He wrongs those He punishes.\" Which line of the creed answers him?",
               "options": [
-                "Allah does what He wills and is never unjust",
-                "Allah's will can be overcome by a strong scheme",
-                "Allah's will is only over the heavens"
+                "He acts as He wills, and injustice is not of Him",
+                "The du'a and charity of the living benefit the dead",
+                "Allah answers prayers and fulfils needs"
               ],
               "answer": 0,
               "source": "يفعل ما يشاء وهو غير ظالم أبدا",
-              "why": "He does what He wills, and is never unjust; His decree overcomes every scheme."
+              "why": "Yaf'alu ma yasha' wa huwa ghayru zalim: He does what He wills, and is never unjust."
             },
             {
               "kind": "teach",
@@ -4224,7 +4305,7 @@
             {
               "kind": "pick",
               "id": "benefit",
-              "ask": "What does al-Tahawi say benefits the dead?",
+              "ask": "What benefits the dead?",
               "options": [
                 {
                   "text": "The du'a of the living",
@@ -4247,7 +4328,7 @@
             {
               "kind": "choose",
               "id": "benefit-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word belongs in the gap?",
               "ar": "وفي دعاء الأحياء وصدقاتهم ____ للأموات",
               "options": [
                 "منفعة",
@@ -4276,15 +4357,18 @@
             {
               "kind": "choose",
               "id": "blink",
-              "ask": "For how long can anyone do without Allah, al-Tahawi says?",
+              "ask": "A man feels his health and wealth make him independent of Allah. What does the creed say?",
               "options": [
-                "Not for the blink of an eye",
-                "For a day or two",
-                "For as long as he is healthy"
+                "Thinking so, even for an instant, is kufr",
+                "He may be, for as long as his health and wealth last",
+                "He may be, for a day or two"
               ],
               "answer": 0,
-              "source": "ولا غنى عن الله تعالى طرفة عين",
-              "why": "La ghina 'an Allah tarfata 'ayn: not for the blink of an eye."
+              "source": [
+                "ويملك كل شيء ولا يملكه شيء ولا غنى عن الله تعالى طرفة عين",
+                "ومن استغنى عن الله طرفة عين فقد كفر وصار من أهل الحين"
+              ],
+              "why": "No one can do without Allah for the blink of an eye; whoever thinks himself free of Him for that long has disbelieved."
             },
             {
               "kind": "teach",
@@ -4296,11 +4380,11 @@
             {
               "kind": "choose",
               "id": "pleased-q",
-              "ask": "How does al-Tahawi say Allah is angered and pleased?",
+              "ask": "How is Allah angered and pleased, in the creed?",
               "options": [
-                "Not like anyone of creation",
+                "In a way unlike any creature",
                 "Just as people are",
-                "He is never angered or pleased"
+                "He is neither, as that would be change in Him"
               ],
               "answer": 0,
               "source": "والله يغضب ويرضى لا كأحد من الورى",
@@ -4309,7 +4393,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi affirms, and what he rejects.",
+              "ask": "Sort: what the creed affirms, and what it rejects.",
               "into": [
                 "He affirms",
                 "He rejects"
@@ -4408,7 +4492,7 @@
             {
               "kind": "pick",
               "id": "do",
-              "ask": "Which does al-Tahawi say we do towards the Companions?",
+              "ask": "Which of these do we do towards the Companions?",
               "options": [
                 {
                   "text": "Love them",
@@ -4441,7 +4525,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi says loving them is, and what hating them is.",
+              "ask": "Sort: what loving them is, and what hating them is.",
               "into": [
                 "Loving them is",
                 "Hating them is"
@@ -4474,7 +4558,7 @@
             {
               "kind": "choose",
               "id": "din-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word completes the line?",
               "ar": "وحبهم دين وإيمان و____",
               "options": [
                 "إحسان",
@@ -4489,24 +4573,24 @@
             {
               "kind": "choose",
               "id": "true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone loves Ali greatly but disowns Abu Bakr and Umar. What does the creed say?",
               "options": [
-                "We love all the Companions and disown none of them",
-                "We love some Companions and disown others",
-                "We go to excess in loving one Companion above all the rest"
+                "We love them all, without excess, disowning none",
+                "That is fine: love of the Prophet's household is enough",
+                "That is fine: one may choose among them"
               ],
               "answer": 0,
               "source": "ولا نفرط في حب أحد منهم ولا نتبرأ من أحد منهم",
-              "why": "We love them without excess for any, and disown none."
+              "why": "We love the Companions, without excess in love for any of them, and disown none of them."
             },
             {
               "kind": "choose",
               "id": "speak",
-              "ask": "How do we speak of the Companions, al-Tahawi says?",
+              "ask": "How should a Muslim speak of the Companions?",
               "options": [
-                "Only well",
-                "As we please",
-                "Only of their faults"
+                "With good, and good alone",
+                "As he pleases",
+                "Of their faults, to be fair"
               ],
               "answer": 0,
               "source": "ولا نذكرهم إلا بخير",
@@ -4536,7 +4620,7 @@
             {
               "kind": "order",
               "id": "order",
-              "ask": "Put the caliphs in al-Tahawi's order.",
+              "ask": "Put the caliphs in the order the text gives.",
               "steps": [
                 "Abu Bakr al-Siddiq",
                 "Umar ibn al-Khattab",
@@ -4552,7 +4636,7 @@
             {
               "kind": "choose",
               "id": "first",
-              "ask": "Who does al-Tahawi say was caliph first, after the Messenger ﷺ?",
+              "ask": "Who held the caliphate first after the Messenger ﷺ?",
               "options": [
                 "Abu Bakr al-Siddiq",
                 "Ali ibn Abi Talib",
@@ -4579,7 +4663,7 @@
             {
               "kind": "pick",
               "id": "ten-pick",
-              "ask": "Which of these are among the Ten al-Tahawi names?",
+              "ask": "Which of these are among the Ten named here?",
               "options": [
                 {
                   "text": "Talha",
@@ -4610,7 +4694,7 @@
             {
               "kind": "choose",
               "id": "amin",
-              "ask": "Whom does al-Tahawi call the trustee (amin) of this umma?",
+              "ask": "Who is called the trustee (amin) of this umma?",
               "options": [
                 "Abu Ubayda",
                 "Abu Bakr al-Siddiq",
@@ -4630,15 +4714,15 @@
             {
               "kind": "choose",
               "id": "free-q",
-              "ask": "Who is free of hypocrisy, al-Tahawi says?",
+              "ask": "Someone praises the Companions but speaks ill of the Prophet's wives. Is he free of hypocrisy, by the creed?",
               "options": [
-                "Whoever speaks well of the Companions, wives and offspring",
-                "Whoever speaks well of the Prophet's offspring alone",
-                "Whoever praises some Companions and finds fault with the rest"
+                "No: the wives and offspring must be spoken of well too",
+                "Yes: praising the Companions alone is quite enough for that",
+                "Yes: the wives are not part of what is meant here"
               ],
               "answer": 0,
-              "source": "ومن أحسن القول في أصحاب رسول الله صلى الله عليه وسلم وأزواجه",
-              "why": "He speaks well of all three: the Companions, the wives and the offspring."
+              "source": "ومن أحسن القول في أصحاب رسول الله صلى الله عليه وسلم وأزواجه الطاهرات من كل دنس وذرياته المقدسين من كل رجس فقد برئ من النفاق",
+              "why": "Whoever speaks well of the Companions, his wives and his offspring is free of hypocrisy: all three."
             }
           ]
         },
@@ -4664,15 +4748,18 @@
             {
               "kind": "choose",
               "id": "salaf-q",
-              "ask": "How are the scholars of the salaf to be spoken of, al-Tahawi says?",
+              "ask": "A student mocks one of the early fuqaha for his reasoning. What does the creed say?",
               "options": [
-                "Only with what is beautiful",
-                "With their faults put before their merits",
-                "Not at all"
+                "He has strayed; they are mentioned with honour",
+                "He is free to, since they were not prophets",
+                "He is right to do so, if that faqih erred in a ruling"
               ],
               "answer": 0,
-              "source": "لا يذكرون إلا بالجميل",
-              "why": "Illa bil-jamil: only with what is beautiful."
+              "source": [
+                "وعلماء السلف من السابقين ومن بعدهم من التابعين أهل الخير والأثر وأهل الفقه والنظر لا يذكرون إلا بالجميل",
+                "ومن ذكرهم بسوء فهو على غير السبيل"
+              ],
+              "why": "The scholars of the salaf, people of fiqh and reasoning, are spoken of only with what is beautiful; whoever speaks ill of them is off the path."
             },
             {
               "kind": "teach",
@@ -4691,7 +4778,7 @@
             {
               "kind": "choose",
               "id": "one-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Fill the gap in the creed's words.",
               "ar": "ونقول نبي واحد أفضل من جميع ____",
               "options": [
                 "الأولياء",
@@ -4713,20 +4800,20 @@
             {
               "kind": "choose",
               "id": "true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says his shaykh, a great wali, is better than a prophet. What does the creed say?",
               "options": [
-                "One prophet is better than all the awliya",
-                "A great wali can be better than a prophet",
-                "The awliya have no wonders at all"
+                "A single prophet outranks the awliya together",
+                "That may be, if his wonders are many",
+                "That may be, as awliya are given knowledge prophets lack"
               ],
               "answer": 0,
               "source": "ونقول نبي واحد أفضل من جميع الأولياء",
-              "why": "No wali is preferred over any prophet; one prophet is better than all of them."
+              "why": "No wali is preferred over any prophet; one prophet is better than all the awliya."
             },
             {
               "kind": "pick",
               "id": "affirm",
-              "ask": "Which does al-Tahawi affirm?",
+              "ask": "Which of these does the creed affirm?",
               "options": [
                 {
                   "text": "The wonders (karamat) of the awliya, soundly reported",
@@ -4773,7 +4860,7 @@
             {
               "kind": "pick",
               "id": "signs-pick",
-              "ask": "Which signs of the Hour does al-Tahawi name?",
+              "ask": "Which signs of the Hour are named here?",
               "options": [
                 {
                   "text": "The coming out of the Dajjal",
@@ -4795,7 +4882,7 @@
                   "text": "A comet striking the earth"
                 },
                 {
-                  "text": "The sea turning to fire"
+                  "text": "The flood in the time of Nuh"
                 }
               ],
               "source": [
@@ -4807,7 +4894,7 @@
             {
               "kind": "choose",
               "id": "isa",
-              "ask": "From where does al-Tahawi say 'Isa son of Maryam descends?",
+              "ask": "From where will 'Isa son of Maryam come down?",
               "options": [
                 "From the heaven",
                 "From a mountain",
@@ -4820,7 +4907,7 @@
             {
               "kind": "choose",
               "id": "sun-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Complete the statement.",
               "ar": "ونؤمن بطلوع الشمس من ____",
               "options": [
                 "مغربها",
@@ -4842,7 +4929,7 @@
             {
               "kind": "pick",
               "id": "not-believe",
-              "ask": "Whom does al-Tahawi say we do not believe?",
+              "ask": "Whom do we not believe?",
               "options": [
                 {
                   "text": "A soothsayer",
@@ -4869,20 +4956,20 @@
             {
               "kind": "choose",
               "id": "against",
-              "ask": "Which three does al-Tahawi say a claim must not go against?",
+              "ask": "A fortune-teller tells you what will happen to you next year. What does the creed say?",
               "options": [
-                "The Book, the Sunna and the consensus of the umma",
-                "The ruler's word, the people's custom and the philosophers' reasoning",
-                "The stars, dreams and omens"
+                "We do not believe what he tells",
+                "Believe him, if he was right before",
+                "Believe him, if he quotes the Quran"
               ],
               "answer": 0,
-              "source": "يخالف الكتاب والسنة وإجماع الأمة",
-              "why": "Al-kitab wal-sunna wa ijma' al-umma."
+              "source": "ولا نصدق كاهنا ولا عرافا ولا من يدعي شيئا يخالف الكتاب والسنة وإجماع الأمة",
+              "why": "We do not believe a kahin or an 'arraf, nor anyone who claims what goes against the Book, the Sunna and the consensus."
             },
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi believes, and what he does not believe.",
+              "ask": "Sort: what we believe, and what we do not believe.",
               "into": [
                 "He believes",
                 "He does not believe"
@@ -4933,7 +5020,7 @@
             {
               "kind": "sort",
               "id": "sort",
-              "ask": "Sort: what al-Tahawi says the Jama'a is, and what division is.",
+              "ask": "Sort: what the Jama'a is, and what division is.",
               "into": [
                 "The Jama'a",
                 "Division"
@@ -4976,15 +5063,15 @@
             {
               "kind": "choose",
               "id": "one-q",
-              "ask": "How many religions of Allah are there, in the earth and the heaven, by al-Tahawi's words?",
+              "ask": "Someone says each prophet brought a different religion from Allah. What does the creed say?",
               "options": [
-                "One: Islam",
-                "Two: one for the earth, one for the heaven",
-                "One for each prophet's people"
+                "There is a single religion with Allah: Islam",
+                "He is right: one for each prophet's people",
+                "He is right: one for the earth, another for heaven"
               ],
               "answer": 0,
               "source": "ودين الله في الأرض والسماء واحد وهو دين الإسلام",
-              "why": "Wahid: one, the religion of Islam."
+              "why": "Allah's religion in the earth and in the heaven is one: the religion of Islam."
             },
             {
               "kind": "teach",
@@ -4996,7 +5083,7 @@
             {
               "kind": "pick",
               "id": "pairs",
-              "ask": "Islam lies between which pairs, al-Tahawi says?",
+              "ask": "Islam lies between which pairs?",
               "options": [
                 {
                   "text": "Excess and falling short",
@@ -5027,7 +5114,7 @@
             {
               "kind": "choose",
               "id": "jabr-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word belongs in the gap?",
               "ar": "وبين الجبر و____",
               "options": [
                 "القدر",
@@ -5042,15 +5129,15 @@
             {
               "kind": "choose",
               "id": "true",
-              "ask": "Which is true, as al-Tahawi says it?",
+              "ask": "Someone says splitting into groups is a mercy for the umma. What does the creed say?",
               "options": [
-                "Division is deviation and torment",
-                "Division is a mercy for the umma",
+                "Splitting is a swerving that brings suffering",
+                "He is right: division is a mercy from Allah for the umma",
                 "The Jama'a is one opinion among many"
               ],
               "answer": 0,
               "source": "والفرقة زيغا وعذابا",
-              "why": "Al-furqa zaygh wa 'adhab: division is deviation and torment."
+              "why": "Al-furqa zaygh wa 'adhab: division is deviation and torment, and the Jama'a is truth."
             }
           ]
         },
@@ -5076,11 +5163,11 @@
             {
               "kind": "choose",
               "id": "held",
-              "ask": "How does al-Tahawi say this creed is held?",
+              "ask": "How does al-Tahawi hold this creed?",
               "options": [
-                "Outwardly and inwardly",
-                "Outwardly only",
-                "Inwardly only, in secret"
+                "Openly and in his heart alike",
+                "Outwardly, for the sake of others",
+                "Inwardly, in secret"
               ],
               "answer": 0,
               "source": "فهذا ديننا واعتقادنا ظاهرا وباطنا",
@@ -5103,7 +5190,7 @@
             {
               "kind": "choose",
               "id": "seal-gap",
-              "ask": "Which word completes al-Tahawi's statement?",
+              "ask": "Which word completes the line?",
               "ar": "ونسأل الله تعالى أن يثبتنا على الإيمان و____ لنا به",
               "options": [
                 "يختم",
@@ -5125,7 +5212,7 @@
             {
               "kind": "pick",
               "id": "sects-pick",
-              "ask": "Which groups does al-Tahawi name as having gone against the Sunna and the Jama'a?",
+              "ask": "Which groups are named as having gone against the Sunna and the Jama'a?",
               "options": [
                 {
                   "text": "The Mu'tazila",
@@ -5163,11 +5250,11 @@
             {
               "kind": "choose",
               "id": "ask",
-              "ask": "What does al-Tahawi ask Allah for at the close?",
+              "ask": "What is the closing prayer for?",
               "options": [
-                "To keep us firm on iman and seal our lives with it",
-                "To give us wealth and long life",
-                "To let us know the secret of the decree before we die"
+                "Firmness on iman and a good end with it",
+                "Wealth and long life",
+                "Knowing the secret of the decree before death"
               ],
               "answer": 0,
               "source": "ونسأل الله تعالى أن يثبتنا على الإيمان ويختم لنا به",
@@ -5176,7 +5263,7 @@
             {
               "kind": "order",
               "id": "order",
-              "ask": "Put the close in al-Tahawi's order.",
+              "ask": "Put the close in the order the text gives.",
               "steps": [
                 "This is our religion and creed",
                 "We are clear of whoever goes against it",
