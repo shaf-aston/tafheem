@@ -27,14 +27,22 @@ describe('fiqh', () => {
     fireEvent.click(screen.getByRole('button', { name: /Purity/ }))
     expect(visits.at(-1)).toBe('fiqh/tahara')
     expect(screen.getByRole('button', { name: 'Back to Worship' })).toBeTruthy()
-    const lessons = screen.getAllByRole('listitem')
-    expect(within(lessons[0]).getByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
+    // The part's first unit is headed on the path; the ruling words open it, then wudu.
+    expect(screen.getByRole('heading', { name: 'Wudu' })).toBeTruthy()
+    const lessons = screen.getAllByRole('listitem').filter((item) => item.querySelector('button'))
+    expect(within(lessons[0]).getByText('The ruling words')).toBeTruthy()
+    expect(within(lessons[1]).getByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
 
-    fireEvent.click(within(lessons[0]).getByRole('button'))
+    fireEvent.click(within(lessons[1]).getByRole('button'))
     expect(visits.at(-1)).toBe('fiqh/tahara/wudu')
 
-    // The part's cards arrive in their own file; then teach, then "which are fard?": pick the four, Check, and the reason is said.
+    // The part's cards arrive in their own file; then teach, "how many?", then "which are fard?": pick the four, Check,
+    // and the reason is said.
     expect(await screen.findByText('The fard of wudu')).toBeTruthy()
+    click('Continue')
+    fireEvent.click(option('Four'))
+    click('Check')
+    await waitFor(() => expect(filed.at(-1)).toMatchObject({ item: 'wudu/fard-count', correct: true }))
     click('Continue')
     for (const name of ['Wash the face', 'Wash the arms, elbows included', 'Wipe the head', 'Wash the feet, ankles included']) click(name)
     click('Check')
@@ -56,8 +64,8 @@ describe('fiqh', () => {
     click('Continue')
     const check = screen.getByRole('button', { name: 'Check' })
     const rows = screen.getAllByRole('radiogroup')
-    const answer = { 'Wash the face': 'Fard', 'Say Bismillah': 'Sunnah', 'Make the intention': 'Mustahabb', 'Wipe the forelock': 'Fard',
-      'Use the siwak': 'Sunnah', 'Wipe the whole head': 'Mustahabb', 'Wash each limb three times': 'Sunnah' }
+    const answer = { 'Wipe the forelock': 'Fard', 'Use the siwak': 'Sunnah', 'Wash each limb three times': 'Sunnah',
+      'Wipe the whole head': 'Mustahabb', 'Start with the right': 'Mustahabb' }
     rows.forEach((row, i) => {
       expect(check.disabled).toBe(true)
       fireEvent.click(within(row).getByRole('radio', { name: answer[row.getAttribute('aria-label')] }))
@@ -73,8 +81,34 @@ describe('fiqh', () => {
     await waitFor(() => expect(filed.at(-1)).toMatchObject({ item: 'wudu/order', correct: true }))
   })
 
+  it('still shows and plays the lessons when the record cannot be read', async () => {
+    renderScreen(<GrowPanel incoming="fiqh/tahara" />, { routes: { 'GET /progress/summary': () => { throw new Error('down') } } })
+    expect(await screen.findByText(/Your progress could not be loaded/, {}, { timeout: 4000 })).toBeTruthy()
+    expect(screen.getByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
+  })
+
+  it('leads Grow home with the book last studied, one tap from its next lesson', async () => {
+    localStorage.setItem('grow-last-book', 'fiqh')
+    const visits = []
+    renderScreen(<GrowPanel incoming="" onVisit={(value) => visits.push(value)} />, { routes: { 'GET /progress/summary': { items: [] } } })
+    expect(await screen.findByText('Continue · Fiqh')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+    expect(visits.at(-1)).toMatch(/^fiqh\/tahara\//)
+    localStorage.removeItem('grow-last-book')
+  })
+
   it('falls back to the part for a lesson the book does not have', async () => {
     renderScreen(<GrowPanel incoming="fiqh/tahara/nothing" />, { routes: { 'GET /progress/summary': { items: [] } } })
     expect(await screen.findByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
+  })
+
+  it('finds a term in the book\'s glossary and opens the lesson that teaches it', async () => {
+    const visits = []
+    renderScreen(<GrowPanel incoming="fiqh" onVisit={(value) => visits.push(value)} />, { routes: { 'GET /progress/summary': { items: [] } } })
+    fireEvent.click(await screen.findByText(/^Glossary · \d+ terms$/))
+    fireEvent.change(screen.getByRole('searchbox', { name: 'Find a term' }), { target: { value: 'nisab' } })
+    expect(screen.getByText(/the least amount of wealth on which zakat is due/)).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: /^Lesson: / }))
+    expect(visits.at(-1)).toBe('fiqh/zakah/zakah-who')
   })
 })

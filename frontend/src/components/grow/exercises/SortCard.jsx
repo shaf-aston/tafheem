@@ -1,4 +1,7 @@
-/** Put each one in its group (fard / sunnah / mustahabb, and the like). `value` maps an item's index to the group picked. */
+/**
+ * Put each one in its group (fard / sunnah / mustahabb, and the like). `value` maps an item's index to the group picked.
+ * Once checked, a row put in the wrong group is marked, so the learner sees which ones slipped.
+ */
 import { sayIn } from '../../../lib/say'
 
 const say = sayIn('en')
@@ -16,7 +19,7 @@ export default function SortCard({ card, value, setValue, result }) {
       <p className="grow-card-ask grow-ask-strong">{card.ask}</p>
       <ul className="grow-sort">
         {card.items.map((item, i) => (
-          <li key={item.text} className="grow-sort-row">
+          <li key={item.text} className="grow-sort-row" data-miss={result && chosen[i] !== item.into ? '' : undefined}>
             <span className="grow-sort-text">{item.text}</span>
             <span className="grow-sort-groups" role="radiogroup" aria-label={item.text}>
               {card.into.map((group) => (

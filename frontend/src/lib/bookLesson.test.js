@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 import worlds from '../worlds.json'
-import { cardOf, lessonCards, lessonsOf, partsOf, reviewCards, statusOf } from './bookLesson'
+import { cardOf, firstOpen, lessonCards, lessonsOf, nextAfter, partsOf, reviewCards, statusOf } from './bookLesson'
 
 const PUBLIC = join(import.meta.dirname, '../../public')
 const OPENITI = join(import.meta.dirname, '../../../backend/data/books/openiti')
@@ -42,11 +42,29 @@ function quotesOf(card) {
 // A part's sections: most are one Kitab or bab, some join a few.
 const kitabsOf = (part) => part.kitabs ?? [part.kitab]
 
+/**
+ * A book with no headings, only numbered statements (a creed: `# 12 text`, the opening `# $ text` as 0): a part's
+ * `statements` [from, to] are its paragraphs, numbers and marks gone.
+ */
+function statementsOf({ lines }, [from, to]) {
+  const paragraphs = []
+  for (const line of lines) {
+    const head = line.match(/^# (\$|\d+) (.*)$/)
+    if (head) paragraphs.push({ n: head[1] === '$' ? 0 : Number(head[1]), text: head[2] })
+    else if (line.startsWith('~~') && paragraphs.length) paragraphs[paragraphs.length - 1].text += ` ${line.slice(2)}`
+  }
+  return paragraphs.filter(({ n }) => n >= from && n <= to)
+    .map(({ text }) => text.replace(/PageV\d+P\d+|ms\d+|@Q[BE]@/g, ' ').replace(/\s+/g, ' ').trim()).filter(Boolean)
+}
+
+// The world a card's answer is filed under: its id and module.
+const FIQH = { id: 'fiqh', module: 'quduri' }
+
 const seq = (...values) => { let i = 0; return () => values[i++ % values.length] }
 
 describe.each(BOOKS)('the $book.book lessons', (source) => {
   const { book, lines } = source
-  const partText = (part) => kitabsOf(part).flatMap((kitab) => paragraphsOf(source, kitab))
+  const partText = (part) => (part.statements ? statementsOf(source, part.statements) : kitabsOf(part).flatMap((kitab) => paragraphsOf(source, kitab)))
 
   for (const part of book.parts.filter((one) => one.lessons.length)) {
     const text = partText(part).join(' ')
@@ -83,7 +101,14 @@ describe.each(BOOKS)('the $book.book lessons', (source) => {
   it('gives every section of the book to exactly one part, and every part to at most one area', () => {
     const passed = [...(book.continues ?? []), ...(book.skip ?? [])]
     const sections = lines.filter(isHeading).map(headingOf).filter((name) => !passed.includes(name))
-    expect([...book.parts.flatMap(kitabsOf)].sort()).toEqual([...sections].sort())
+    // A creed's parts go by `statements` (their `kitab` is only a label): together they run 0 to the last, in turn.
+    const byStatement = book.parts.filter((part) => part.statements)
+    expect([...book.parts.filter((part) => !part.statements).flatMap(kitabsOf)].sort()).toEqual([...sections].sort())
+    if (byStatement.length) {
+      const last = Math.max(...lines.map((line) => line.match(/^# (\d+) /)).filter(Boolean).map((head) => Number(head[1])))
+      expect(byStatement.map((part) => part.statements)).toEqual(byStatement.map((part, i) =>
+        [i ? byStatement[i - 1].statements[1] + 1 : 0, i === byStatement.length - 1 ? last : part.statements[1]]))
+    }
     if (book.areas) {
       const placed = book.areas.flatMap((area) => area.parts)
       expect([...placed].sort()).toEqual(book.parts.map((part) => part.id).sort())
@@ -146,25 +171,43 @@ describe('lesson status', () => {
   })
 })
 
+describe('the next lesson', () => {
+  const at = (id, status, extra) => ({ id, part: 'p', status, ...(extra && { extra }) })
+  const lessons = [at('a', 'done'), at('b', 'new', true), at('c', 'started'), at('d', 'new')]
+
+  it('passes a rare `extra` lesson by while a core one is open, then offers it', () => {
+    expect(firstOpen(lessons).id).toBe('c')
+    expect(firstOpen([at('a', 'done'), at('b', 'new', true)]).id).toBe('b')
+    expect(firstOpen([at('a', 'learnt')])).toBe(null)
+  })
+
+  it('after a lesson, offers the next open one after it, then any before it, never itself', () => {
+    const parts = [{ id: 'p', lessons }]
+    expect(nextAfter(parts, 'c').id).toBe('d')
+    expect(nextAfter(parts, 'd').id).toBe('c')
+    expect(nextAfter([{ id: 'p', lessons: [at('a', 'new')] }], 'a')).toBe(null)
+  })
+})
+
 describe('cards', () => {
   it('plays a lesson in its order, files questions under the module, and keeps teach cards unrecorded', () => {
-    const cards = lessonCards(BOOK_OF, 'l1', 'quduri', seq(0))
+    const cards = lessonCards(BOOK_OF, 'l1', FIQH, seq(0))
     expect(cards.map((card) => card.kind)).toEqual(['rule', 'choose', 'order'])
     expect(cards[0].record).toBeUndefined()
-    expect(cards[1].record).toMatchObject({ module: 'quduri', item: 'l1/c' })
+    expect(cards[1].record).toMatchObject({ module: 'quduri', item: 'l1/c', context: { world: 'fiqh', lesson: 'l1' } })
     expect(cards[1].answer).toBe('0')
-    expect(lessonCards(BOOK_OF, 'nope', 'quduri')).toBe(null)
+    expect(lessonCards(BOOK_OF, 'nope', FIQH)).toBe(null)
   })
 
   it('shuffles what is offered but keeps the right order to check against', () => {
-    const card = cardOf(LESSON, LESSON.cards[2], 'quduri', seq(0))
+    const card = cardOf(LESSON, LESSON.cards[2], FIQH, seq(0))
     expect(card.steps).toEqual(['1', '2', '3'])
     expect([...card.deck].sort()).toEqual(['1', '2', '3'])
     expect(card.deck).not.toEqual(card.steps)
   })
 
   it('reviews only due questions, tagged as a review', () => {
-    const cards = reviewCards(BOOK_OF, ['l1/o', 'gone/x'], 'quduri', seq(0))
+    const cards = reviewCards(BOOK_OF, ['l1/o', 'gone/x'], FIQH, seq(0))
     expect(cards.map((card) => [card.id, card.tag])).toEqual([['l1/o', 'Review']])
   })
 })

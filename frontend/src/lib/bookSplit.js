@@ -9,14 +9,17 @@
 export const indexPath = (source) => source.replace(/\.json$/, '/index.json')
 export const partPath = (source, partId) => source.replace(/\.json$/, `/${partId}.json`)
 
-/** The book with every lesson's cards replaced by `asks`, the ids of its question cards. */
+/** An object without some of its keys. */
+const without = (object, keys) => Object.fromEntries(Object.entries(object).filter(([key]) => !keys.includes(key)))
+
+/** The book with every lesson's cards replaced by `asks`, the ids of its question cards, and without what only the
+ * authoring tests read (where each part sits in the book's text, and the notes). */
 export function indexOf(book) {
   const parts = book.parts.map(({ lessons, ...part }) => ({
-    ...part,
+    ...without(part, ['kitabs', 'statements', 'whole']),
     lessons: lessons.map(({ cards, ...lesson }) => ({ ...lesson, asks: cards.filter((card) => card.kind !== 'teach').map((card) => card.id) })),
   }))
-  const { _comment, _cards, ...rest } = book
-  return { ...rest, parts }
+  return { ...without(book, ['_comment', '_cards', '_areas', 'file', 'continues', 'skip']), parts }
 }
 
 /** One part, cards and all; null for a part the book does not have. */

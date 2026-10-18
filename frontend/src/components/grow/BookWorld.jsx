@@ -1,6 +1,7 @@
 /**
  * A book world (Fiqh), one level at a time: its areas (Worship, Trade…), an area's parts (Purity, Prayer…), a part's lessons.
- * A book without areas opens on its parts. Above them, the next lesson and any review due. `place` is the address step,
+ * A book without areas opens on its parts. Above them, the next lesson and any review due; below, the book's glossary
+ * (its `glossary`: each term, its Arabic, what it means, and the lesson that teaches it). `place` is the address step,
  * an area's id or a part's. `state` from lib/useBookWorld.js; a lesson plays in LessonRunner.
  */
 import { areaOf } from '../../lib/bookLesson'
@@ -11,6 +12,7 @@ import ErrorAlert from '../ui/ErrorAlert'
 import PrimaryButton from '../ui/PrimaryButton'
 import { Skeleton } from '../ui/Skeleton'
 import Backdrop from './Backdrop'
+import Glossary from './Glossary'
 import LessonPath from './LessonPath'
 import WorldHeader from './WorldHeader'
 
@@ -90,8 +92,10 @@ export default function BookWorld({ world, accent, state: book, place, onBack, o
       {loading && <Skeleton className="h-80 w-full" />}
       {book.ready && (
         <div className="grow-book">
+          {book.offline && <p className="grow-hint">{say('Your progress could not be loaded, so it is not shown. The lessons still work.')}</p>}
           <Next book={book} accent={accent} onStart={onStart} />
           {body}
+          <Glossary book={book.book} onStart={onStart} />
           <p className="grow-hint">{say('{book} ({madhhab}). Arabic is the book’s own words; the English is ours. Learn it with a teacher too.', { book: book.book.book, madhhab: book.book.madhhab })}</p>
         </div>
       )}
