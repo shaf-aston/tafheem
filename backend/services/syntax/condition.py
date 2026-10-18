@@ -45,12 +45,15 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
     def opens(i: int) -> dict | None:
         frame = condition_of(strip_diacritics(bases[i]["form"]))
         v = verb_at(i)
-        if not frame or v >= len(bases) or named[v] != NAMED.fil or (i and not joined(i)):
+        if not frame or v >= len(bases) or (i and not joined(i)):
+            return None
+        # لولا زيدٌ: a particle of امتناع لوجود opens on a noun; before a verb it urges and opens none
+        if (named[v] == NAMED.fil) == (frame.get("before") == "noun") or (frame.get("before") == "noun" and bases[v]["pos"] not in ("NOM", "PROP")):
             return None
         # ما النافية is a particle; إذا before a verb is a ظرف, whatever the parser tagged it
         reading = bases[i].get("reading") or {}
         kind = reading.get("kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
-        if not frame["noun"] and reading and reading["family"] != "jazm":
+        if not frame["noun"] and reading and reading["family"] not in ("jazm", frame["family"]):
             return None  # إِنَّا جَعَلْنَا: the particle's one reading is إنّ, no condition
         # مَا تَزْرَعْ تَحْصُدْ: ما النافية puts no verb in jazm, so a jussive verb after it shows the
         # conditional noun, whatever the parser tagged it

@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, has_tanween, vowel_agreement, own_letters, past_passive_shape, typed_case, typed_passive
+from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_object_stem, is_one, six_noun_case
 
 
@@ -94,10 +94,11 @@ def is_light(token: dict) -> bool:
 def is_passive(token: dict) -> bool:
     if token.get("asp") == "c":
         return False  # a command is never passive; اُكْتُبُوا opens with a damma all the same
-    if token.get("vox") == "p":
-        return True
     typed = own_letters(token.get("typed") or "", token.get("front", 0), 0)  # وَيُغْسَلُ opens with the و's fatha
     present = token.get("asp") == "i" or not (verb_tagged(token) or past_passive_shape(typed))
+    if token.get("vox") == "p":
+        # the typed opening vowel outranks the tag: لا يَغْلَقُ الرهنُ is active
+        return not opens_active(typed, present)
     return typed_passive(typed, present, token.get("stuck_on", 0))
 
 
@@ -120,9 +121,20 @@ def shows_jarr(token: dict) -> bool:
                                          attached=bool(token.get("stuck_on")), annexed=bool(token.get("mudaf")))
 
 
+def case_unseen(token: dict) -> bool:
+    """A مقصور noun the reader left bare (السُّفْلَى، الدُّنْيَا): its case is unseen on the alif
+    (مقدرة للتعذر) in all three, so the parser's case for it is a guess and no evidence."""
+    form, lemma = strip_diacritics(token.get("form", "")), strip_diacritics(token.get("lemma", ""))
+    # only a declinable noun is مقصور; a built one ending in ا (مَا، إِذَا، هَذَا) has no case to hide
+    return token.get("pos_camel") in ("noun", "adj") and not typed_case_of(token) and (
+        form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
+
+
 def shown_cases(token: dict) -> set[str]:
     """Every case the word's ending can mean: the one typed or parsed, and nasb too for a
-    ـات word typed with a kasra."""
+    ـات word typed with a kasra; any of the three for a مقصور noun whose case is unseen."""
+    if case_unseen(token):
+        return {"u", "a", "i"}
     shown = typed_or_parsed_case(token)
     return {shown, "a"} if shows_nasb_by_kasra(token) else {shown} - {None}
 

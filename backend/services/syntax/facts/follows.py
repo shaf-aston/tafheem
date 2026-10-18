@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_one, is_subject_pronoun
-from backend.services.syntax.facts.word import is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
+from backend.services.syntax.facts.word import case_unseen, is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
 from backend.services.syntax.facts.sentence import Sentence, next_word, place_case, previous_noun, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.kind import joins_clauses, calling_head
 
@@ -143,7 +143,8 @@ def _follows(token: dict, s: Sentence) -> str:
         return "none"  # أعطى الغنيُّ الفقيرَ: with ال both show their case, and a na't wears its noun's
     if told_of_lone_mubtada(token, head, s):
         return "none"
-    if mine and shown_cases(token) & shown_cases(head):
+    # السُّفْلَى: a مقصور noun shows no case, so any its noun wears is its own
+    if (mine or case_unseen(token)) and shown_cases(token) & shown_cases(head):
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
         # (شَعِيرًا has the فعيل shape, so the morphology's adjective tag tells, not the shape)
         measure = listed(head, "tamyeez_head") and token.get("pos_camel") != "adj"

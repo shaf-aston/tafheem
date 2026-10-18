@@ -511,8 +511,8 @@
     "هل",
     "لو"
    ],
-   "conditional_particles": ["لو"],
-   "_conditional_particles": "the non-jussive conditional particles that open a condition before a verb (Year 3 notes, zuroof p4: لولا، لوما، لو، أمّا are حروف). لولا and لوما open one only before a noun and urge before a verb; أمّا comes before a noun: so only لو. Read with jazm's list by nahw_book.condition_of",
+   "conditional_particles": ["لو", "لولا", "لوما"],
+   "_conditional_particles": "the non-jussive conditional particles (Year 3 notes, zuroof p4: لولا، لوما، لو، أمّا are حروف). لو opens one before a verb; لولا and لوما before a noun only (roles.json condition `by_word`), and urge before a verb; أمّا comes before a noun and is not listed. Read with jazm's list by nahw_book.condition_of",
    "ambiguous": {
     "أما": "notification/detail 'as for' (أما ... فـ) vs أم + ما (interrogative) vs أما الاستفتاحية",
     "ألا": "notification 'lo!' vs exhortation 'why not' vs أن + لا (written together) vs أ + لا (question with negation)",
@@ -979,6 +979,9 @@
   "damir_muttasil": {
    "ar": "الضمائر المتصلة",
    "effect": "written joined to the word before it: genitive/accusative suffix on nouns, verbs and particles (كتابه، ضربه، إنه), or the subject ending of a verb",
+   "on_nouns": ["ي", "نا", "ك", "كما", "كم", "كن", "ه", "ها", "هما", "هم", "هن"],
+   "on_verbs": ["ني", "نا", "ك", "كما", "كم", "كن", "ه", "ها", "هما", "هم", "هن"],
+   "_on_verbs": "The object pronouns a verb takes (ظَلَمَكَ، أَكْرَمَنِي): the same as a noun's, but me is ني, its نون of protection kept (نون الوقاية).",
    "words": [
     "ي",
     "نا",
@@ -1170,7 +1173,7 @@
   },
   "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",
-   "effect": "after a complete sentence built on one of these, an indefinite accusative noun is a tamyeez of the relation: طاب المكان هواء، امتلأ الكوب ماء. Lemmas as the parser spells them (a hamzat-wasl verb comes back with alef wasla).",
+   "effect": "after a complete sentence built on one of these, an indefinite accusative noun is a tamyeez of the relation: طاب المكان هواء، امتلأ الكوب ماء، كفى بالمرء كذبًا. Lemmas as the parser spells them (a hamzat-wasl verb comes back with alef wasla).",
    "words": [
     "طاب",
     "امتلأ",
@@ -1181,7 +1184,8 @@
     "تصبب",
     "تفصد",
     "فاض",
-    "غزر"
+    "غزر",
+    "كفى"
    ]
   },
   "nasab": {

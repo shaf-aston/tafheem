@@ -243,7 +243,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             drawn[[t["id"] for t in drawn].index(held["id"])], by_id[held["id"]] = held, held
         place = next(i for i, t in enumerate(drawn) if t["id"] == held["id"])
         khabar = kept["khabar_of"][role_of[subject["id"]]]
-        said_word = understand(kept["word"], khabar, place, head=held["head"], rel="PRD", pos="NOM", pos_camel="")
+        # voweled for its place: the case its subject's khabar stands in (ثَابِتٌ، ثَابِتًا)
+        case = (clause_of(role_of[subject["id"]]) or {}).get("case", "u")
+        said_word = understand(kept["voweled"] + kept["tanween"][case], khabar, place,
+                               head=held["head"], rel="PRD", pos="NOM", pos_camel="")
         understood_pair[said_word["id"]] = pair_of.get(subject["id"], {})
         at = [t["id"] for t in drawn]
         if at.index(said_word["id"]) < at.index(subject["id"]) and role_of[subject["id"]] in kept["fronted"]:
@@ -498,7 +501,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                     _move(holder, under, holder[tied["id"]])
                 ties.append(_take(holder, tied))
         verb_case, answer_case = condition.get("verb_case"), condition["case"] if ties else None
-        for unit, job, case in ((verb, condition["verb"], verb_case), (answer, condition["answer"], answer_case)):
+        # لولا زيدٌ: the noun is a مبتدأ, no فعل الشرط; the answer is جواب لولا
+        verb_job = None if condition.get("subject") else condition["verb"]
+        for unit, job, case in ((verb, verb_job, verb_case), (answer, condition.get("answer_named") or condition["answer"], answer_case)):
             job_of[unit["id"]] = job
             place_of[unit["id"]] = in_place(case) if case else said["no_place"]
             clauses.add(unit["id"])

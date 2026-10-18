@@ -300,6 +300,8 @@
   },
   "_conjugates": "Which of the categories above the engine can shape today. A category is added here only once the book's own paradigms for it pass in tests/test_weak_paradigms.py; until then the tab says plainly that it is not built rather than printing a guess.",
   "_conjugates-lafif-maqrun": "Taken out 2026-09-20. It was listed as working but never had paradigms to pass: the book's entry for it (p.267, طوي) is a summary line whose grid was not transcribed, so tests/test_weak_paradigms.py has nothing to check and nothing failed. Driven by hand it printed يَطِيُّ and طِيْ where p.267 gives يَطْوِيْ and إِطْوِ, so the two weak letters side by side are being collapsed as though the first were the middle radical of a hollow root. Put it back once p.267 and p.269 are transcribed into the fixtures and pass.",
+  "_conjugates-mahmuz-weak": "مهموز ومعتل is shaped only where its two sets of rules never meet: the hamzah first, the weak letter last, in a derived باب (أَدَّى يُؤَدِّي أَدِّ، آتَى يُؤْتِي). There the hamzah keeps its seat rules and the end its ناقص ones, each at its own end of the word. Form I is left out: its command opens on a hamzat wasl that meets the root's hamzah (اِئْتِ), a rule of this chapter not built yet.",
+  "mahmuz-weak-built": {"hamzah_at": 0, "weak_at": -1, "not_forms": ["I-"]},
   "conjugates": ["sahih", "ajwaf", "naqis", "mithal", "mudaaf", "lafif-mafruq", "mahmuz"],
   "_jussive": "The 14 مجزوم endings, in the same order as `persons`. Read off the نهي column of Treasures p.98 (لاَ يُكْرِمْ ... لاَ نُكْرِمْ).",
   "jussive": [

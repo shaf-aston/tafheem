@@ -18,7 +18,7 @@ import re
 from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
-from backend.services import verb_reader
+from backend.services import noun_reader, verb_reader
 from backend.services.nahw_book import is_built_word, is_mabni, is_one, six_noun_case
 from backend.services.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
 
@@ -573,6 +573,9 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the table's own tense is only spelled otherwise: the dictionary's stays. A command is left to
             # repair.typed (verb_reader.command), which reads its attached pronoun (اِهْدِنَا) as the table cannot
             ranked = [{"lex": evidence, **sarf, "diac": evidence}]
+        elif not _agreeing(evidence, ranked) and (noun := noun_reader.reading_of(evidence)):
+            # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off
+            ranked = [noun]
         steps.append((evidence, ranked))
     out = [_reading(*step) for step in steps]
     for i, (evidence, ranked) in enumerate(steps):
@@ -593,13 +596,17 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                                          and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
     # صِلْ مَنْ قَطَعَكَ: a relative's صلة is a sentence, so a word after it that the typed vowels read
     # as well as a verb (قَطَعَكَ the verb, or the noun "your pieces") is that verb. Opening the sentence
-    # مَنْ، ما may be a question or a negation instead (مَنْ أَبُوكَ، مَا أَنْتَ), so only one after a word
+    # مَنْ، ما may be a question or a negation instead (مَنْ أَبُوكَ، مَا أَنْتَ), so only one after a word.
+    # The relative may be written onto a preposition (عَمَّنْ ظَلَمَكَ: عن + من), its own tag then the enclitic's
     for i in range(2, len(out)):
-        if out[i - 1].get("pos") == "pron_rel" and out[i].get("pos") != "verb":
+        relative = out[i - 1].get("pos") == "pron_rel" or str(out[i - 1].get("enc0", "")).endswith("_rel")
+        if relative and out[i].get("pos") != "verb":
             word, ranked = steps[i]
             here = vowel_agreement(word, out[i].get("diac", ""))
             verb = best_reading(word, [r for r in _widened(tokens[i], ranked) if r.get("pos") == "verb"])
-            if verb and here is not None and vowel_agreement(word, verb.get("diac", "")) >= here:
+            said = vowel_agreement(word, verb.get("diac", "")) if verb else None
+            # the verb reads the typed vowels at least as well, or the reading kept contradicts them (ظُلْمُكَ for ظَلَمَكَ)
+            if said is not None and (here is None or said >= here):
                 out[i] = verb
     # مَنْ جَدَّ وَجَدَ: a مضاف needs its مضاف إليه straight after it, so a bare construct noun
     # before a و, a preposition or nothing is not the word typed (here the verb جَدَّ)

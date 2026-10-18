@@ -191,9 +191,20 @@ def _check(radicals: str, form: str) -> dict:
         )
     if wanted == 4 and kind(radicals) not in rules["quadriliteral-kinds"]:
         raise ValueError(f"This root is {root_type(radicals)}, and its four-letter rules are not built yet.")
-    if kind(radicals) not in conjugates():
+    if kind(radicals) not in conjugates() and not _mahmuz_weak_built(radicals, form):
         raise ValueError(f"This root is {root_type(radicals)}, and its rules are not built yet.")
     return shape
+
+
+def _mahmuz_weak_built(radicals: str, form: str) -> bool:
+    """A مهموز ومعتل root whose hamzah and weak letter sit where their rules never meet
+    (patterns.json `mahmuz-weak-built`): أدي in Form II is shaped as a ناقص root."""
+    built = _rules()["mahmuz-weak-built"]
+    if kind(radicals) != "mahmuz-weak" or any(form.startswith(no) for no in built["not_forms"]):
+        return False
+    hamzah = [i for i, letter in enumerate(radicals) if letter in HAMZAH]
+    weak = [i - len(radicals) for i, letter in enumerate(radicals) if letter in WEAK]
+    return hamzah == [built["hamzah_at"]] and weak == [built["weak_at"]]
 
 
 def scale_name(form: str) -> str:

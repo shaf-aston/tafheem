@@ -248,6 +248,56 @@
         ]
       },
       {
+        "branch": "لولا",
+        "book": "1.2 p3",
+        "is": "لولا",
+        "split": "next",
+        "children": [
+          {
+            "branch": "لولا قبل فعل",
+            "book": "1.4.2 p8",
+            "is": [
+              "verb",
+              "verb_jazm"
+            ],
+            "role": "ghair_amila_other",
+            "named": "حرف عرض وتحضيض"
+          },
+          {
+            "branch": "لولا قبل اسم",
+            "book": "1.2 p3",
+            "else": true,
+            "role": "ghair_amila_other",
+            "named": "حرف امتناع لوجود"
+          }
+        ]
+      },
+      {
+        "branch": "لوما",
+        "book": "1.2 p3",
+        "is": "لوما",
+        "split": "next",
+        "children": [
+          {
+            "branch": "لوما قبل فعل",
+            "book": "1.4.2 p8",
+            "is": [
+              "verb",
+              "verb_jazm"
+            ],
+            "role": "ghair_amila_other",
+            "named": "حرف عرض وتحضيض"
+          },
+          {
+            "branch": "لوما قبل اسم",
+            "book": "1.2 p3",
+            "else": true,
+            "role": "ghair_amila_other",
+            "named": "حرف امتناع لوجود"
+          }
+        ]
+      },
+      {
         "branch": "حتى",
         "book": "1.2 p3",
         "is": "حتى",

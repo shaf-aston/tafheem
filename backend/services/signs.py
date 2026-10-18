@@ -97,6 +97,9 @@ def _family_said(card: dict) -> dict | None:
     return {"named": named, "does": family["does"]}
 
 
+_PLACE = {"raf'": "u", "nasb": "a", "jarr": "i"}  # a case by its name, as case_said.place keys it
+
+
 def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | None:
     case = card.get("case")
     if case is None:
@@ -107,8 +110,11 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
     kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
-        on = teacher_rules()["case_said"]["la_jins_on"]
-        return _built(on.get(kind, on["vowel"]))
+        said = teacher_rules()["case_said"]
+        on = said["la_jins_on"]
+        # built, yet it stands where nasb would be: مبني على الفتح في محل نصب
+        place = said["in_place"].format(place=said["place"][_PLACE[case]])
+        return f"{_built(on.get(kind, on['vowel']))} {place}"
     if case == "mabni" and (ending := _typed_ending(_unmoved(card, after))):
         return _built(ending)  # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter
     return sign(case, "vowel" if case == "mabni" else kind)
