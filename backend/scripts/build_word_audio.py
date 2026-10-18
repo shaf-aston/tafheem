@@ -7,9 +7,12 @@ the Qur'an can therefore be spoken by a real reciter instead of a synthetic
 voice. lib/speak.js reads the output as a plain lookup, so all spelling logic
 lives here, once.
 
-Words and file addresses both come from quran.com's own word list (cached in
-backend/data/quran/wbw_words.json after one fetch). File numbers skip where a
-pause mark sits, so an address cannot be worked out from the word's position.
+Words come from quran.com's own word list (cached in
+backend/data/quran/wbw_words.json after one fetch). A file is named by the
+word's place in its ayah: 004_088_014 is the 14th word of 4:88. The list's own
+`audio_url` is not used: it counts ۞ and the pause marks (ۚ ۖ) as words, so after
+one it names the next word's file (4:88's أَضَلَّ pointed at وَمَن), which put a
+wrong word on 638 of 1,805 quiz words.
 
 Matching is strict, because a recording of a different word is worse than a
 computer voice:
@@ -18,8 +21,12 @@ computer voice:
 - every letter the quiz word vowels must carry the same vowels in the Qur'an,
   and a quiz sukun means the Qur'an letter has no vowel (أَكْل is not أَكَلَ);
   a letter the quiz leaves bare accepts anything;
-- the last letter follows the same rule, so a bare dictionary ending accepts the
-  Qur'an's case ending but a written one must match (شَكَّ is not شَكٍّ).
+- the last letter is stricter: the reciter says the ending the ayah needs, so a
+  bare dictionary ending only matches a Qur'an word with no vowel there either
+  (أَثِيم is not أَثِيمٍ, heard as athīmin), and a written one must match
+  (شَكَّ is not شَكٍّ);
+- a Qur'an word opening on a joining alif (ٱ) is never used: mid-ayah the
+  reciter runs over it, so ٱبْتَغَىٰ is heard as btaghā.
 Words with no match are left out and fall through to the next voice.
 """
 from __future__ import annotations
@@ -63,11 +70,20 @@ def letters(word: str) -> list[tuple[str, frozenset[str]]]:
     return [(c, frozenset(m)) for c, m in out]
 
 
+def matches(quiz: str, quran: str) -> bool:
+    """Whether the reciter saying `quran` in its ayah says exactly the word `quiz` shows."""
+    if quran.startswith("ٱ"):
+        return False
+    return compatible(letters(quiz), letters(quran))
+
+
 def compatible(quiz: list, quran: list) -> bool:
     # A word with no vowels at all cannot say which word it is (كتب: kataba or kutiba?).
     if not any(marks for _, marks in quiz):
         return False
     if [c for c, _ in quiz] != [c for c, _ in quran]:
+        return False
+    if not quiz[-1][1] and quran[-1][1] & VOWELS:
         return False
     return all(_same(q, r) for (_, q), (_, r) in zip(quiz, quran))
 
@@ -83,7 +99,9 @@ def _same(quiz: frozenset[str], quran: frozenset[str]) -> bool:
 def fetch() -> list[dict]:
     """quran.com's word list, fetched once and kept."""
     if CACHE.exists():
-        return json.loads(CACHE.read_text(encoding="utf-8"))
+        words = json.loads(CACHE.read_text(encoding="utf-8"))
+        if words and "position" in words[0]:  # a list kept before files went by position is refetched
+            return words
     words = []
     for surah in range(1, 115):
         page = 1
@@ -91,7 +109,8 @@ def fetch() -> list[dict]:
             req = urllib.request.Request(API.format(s=surah, p=page), headers={"User-Agent": "Mozilla/5.0"})
             body = json.load(urllib.request.urlopen(req, timeout=30))
             for verse in body["verses"]:
-                words += [{"text": w["text_uthmani"], "audio": w["audio_url"]}
+                words += [{"text": w["text_uthmani"], "position": w["position"],
+                           "audio": audio_path(verse["verse_key"], w["position"])}
                           for w in verse["words"] if w["char_type_name"] == "word" and w["audio_url"]]
             page = body["pagination"]["next_page"]
             time.sleep(0.2)
@@ -99,12 +118,18 @@ def fetch() -> list[dict]:
     return words
 
 
+def audio_path(verse_key: str, position: int) -> str:
+    """The reciter's file for the word at `position` (from 1) in ayah `verse_key` ("4:88")."""
+    surah, ayah = verse_key.split(":")
+    return f"wbw/{int(surah):03d}_{int(ayah):03d}_{position:03d}.mp3"
+
+
 def quran_words() -> dict[str, list]:
-    """Bare-letter skeleton -> [(audio path, letters)], first occurrence first."""
+    """Bare-letter skeleton -> [(audio path, Uthmani text)], first occurrence first."""
     by_skeleton: dict[str, list] = {}
     for word in fetch():
-        parsed = letters(word["text"])
-        by_skeleton.setdefault("".join(c for c, _ in parsed), []).append((word["audio"], parsed))
+        skeleton = "".join(c for c, _ in letters(word["text"]))
+        by_skeleton.setdefault(skeleton, []).append((word["audio"], word["text"]))
     return by_skeleton
 
 
@@ -113,9 +138,8 @@ def build() -> dict[str, str]:
     found: dict[str, str] = {}
     for entry in json.loads(WORDS.read_text(encoding="utf-8"))["words"]:
         ar = entry["ar"]
-        parsed = letters(ar)
-        for loc, form in index.get("".join(c for c, _ in parsed), []):
-            if compatible(parsed, form):
+        for loc, form in index.get("".join(c for c, _ in letters(ar)), []):
+            if matches(ar, form):
                 found[ar] = loc
                 break
     return found
