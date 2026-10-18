@@ -9,7 +9,8 @@ import { GoButton } from '../ui/RootActions'
 import SourceBadge from '../ui/SourceBadge'
 import TranslationStrip from '../ui/TranslationStrip'
 
-// `bare` drops what the analyser already says around it: the kind line and who translated it.
+// `bare` drops what the analyser already says around it: the kind line, who translated it,
+// and the word-by-word list, which its chart shows on hover.
 export default function SentenceMeaning({ data, accent, onGo, onLookup, bare = false }) {
   return (
     <div className="space-y-4">
@@ -34,9 +35,10 @@ export default function SentenceMeaning({ data, accent, onGo, onLookup, bare = f
         <p className="type-small text-[var(--text-dim)]">Left out, not Arabic: {data.left_out.join(', ')}</p>
       )}
 
+      {!bare && <>
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <h3 className="text-sm text-[var(--text-dim)]">Word by word</h3>
-        {!bare && <SourceBadge source={data.words_source} />}
+        <SourceBadge source={data.words_source} />
       </div>
       <div className="flex flex-wrap justify-center gap-2" dir="rtl">
         {data.words.map((w, i) => (
@@ -56,6 +58,7 @@ export default function SentenceMeaning({ data, accent, onGo, onLookup, bare = f
           </button>
         ))}
       </div>
+      </>}
     </div>
   )
 }
