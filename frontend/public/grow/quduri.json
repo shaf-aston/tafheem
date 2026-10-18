@@ -8410,6 +8410,15 @@
       "arabic": "البيوع",
       "kitab": "كتاب البيوع",
       "whole": true,
+      "units": [
+        {"title": "The contract", "arabic": "البيع", "lessons": ["buyu-contract", "buyu-measure", "buyu-included"]},
+        {"title": "Options", "arabic": "الخيارات", "lessons": ["buyu-shart", "buyu-ruya", "buyu-ayb"]},
+        {"title": "Invalid sales", "arabic": "البيع الفاسد", "lessons": ["buyu-fasid", "buyu-conditions", "buyu-fasid-after"]},
+        {"title": "Iqala and resale", "arabic": "الإقالة والمرابحة", "lessons": ["buyu-iqala", "buyu-qabd"]},
+        {"title": "Riba", "arabic": "باب الربا", "lessons": ["buyu-riba", "buyu-riba-2"]},
+        {"title": "Salam", "arabic": "باب السلم", "lessons": ["buyu-salam", "buyu-salam-2"]},
+        {"title": "Currency exchange", "arabic": "باب الصرف", "lessons": ["buyu-sarf", "buyu-sarf-mixed", "buyu-fulus"]}
+      ],
       "lessons": [
         {
           "id": "buyu-contract",
@@ -9435,6 +9444,15 @@
               "en": "Tawliya is selling it for exactly what you paid, with no profit."
             },
             {
+              "kind": "choose",
+              "id": "define",
+              "ask": "What is murabaha?",
+              "options": ["Selling at cost plus a stated profit", "Selling at exactly cost, with no profit", "Undoing a sale at the first price paid"],
+              "answer": 0,
+              "source": "المرابحة: نقل ما ملكه بالعقد الأول بالثمن الأول مع زيادة ربح",
+              "why": "Murabaha passes on what you bought at the first price, plus a profit."
+            },
+            {
               "kind": "sort",
               "id": "which",
               "ask": "Murabaha or tawliya?",
@@ -9852,6 +9870,15 @@
               "en": "For Abu Hanifa, salam needs conditions named in the deal: a known kind (wheat), a known type (which wheat), a known quality, a known date, the amount of the capital (the money paid) when it is measured, weighed or counted, and the place of delivery when the goods are heavy to carry."
             },
             {
+              "kind": "choose",
+              "id": "count",
+              "ask": "For Abu Hanifa, how many conditions must be named in a salam?",
+              "options": ["3", "5", "7"],
+              "answer": 2,
+              "source": "ولا يصح السلم عند أبي حنيفة إلا بسبع شرائط",
+              "why": "Al-Quduri says salam is valid for Abu Hanifa only with seven conditions named in the contract."
+            },
+            {
               "kind": "pick",
               "id": "conditions",
               "ask": "Which must be named in a salam?",
@@ -9984,6 +10011,15 @@
               "title": "What sarf is",
               "ar": "الصرف هو: البيع إذا كان كل واحد من العوضين من جنس الأثمان فإن باع فضة بفضة أو ذهبا بذهب لم يجز إلا مثلا بمثل وإن اختلفا في الجودة والصياغة ولا بد من قبض العوضين",
               "en": "Sarf is a sale where both sides are money: gold or silver. Silver for silver, or gold for gold, must be like for like (equal weight), even if they differ in quality or craftsmanship. Both sides must be handed over before the two part."
+            },
+            {
+              "kind": "choose",
+              "id": "define",
+              "ask": "What is sarf?",
+              "options": ["A sale where both sides are money", "Paying now for goods delivered later", "Selling goods for a price paid later"],
+              "answer": 0,
+              "source": "الصرف هو: البيع إذا كان كل واحد من العوضين من جنس الأثمان",
+              "why": "Sarf is a sale where each side is of the kind used as money: gold or silver."
             },
             {
               "kind": "choose",
@@ -10730,6 +10766,15 @@
               "en": "Hajr means restriction: a person is stopped from dealing freely with money and contracts. Al-Quduri gives three causes: being a child, being a slave (in his time), and insanity."
             },
             {
+              "kind": "choose",
+              "id": "count",
+              "ask": "How many causes of restriction (hajr) does al-Quduri give?",
+              "options": ["2", "3", "4"],
+              "answer": 1,
+              "source": "الأسباب الموجبة للحجر ثلاثة",
+              "why": "The causes are three: childhood, slavery and insanity."
+            },
+            {
               "kind": "teach",
               "id": "permission",
               "title": "With permission, or not at all",
@@ -11202,6 +11247,10 @@
       "arabic": "الإقرار",
       "kitab": "كتاب الإقرار",
       "whole": true,
+      "units": [
+        {"title": "Amounts and wording", "arabic": "ألفاظ الإقرار", "lessons": ["iqrar-vague", "iqrar-except", "iqrar-inside", "iqrar-price"]},
+        {"title": "Illness and kin", "arabic": "إقرار المريض والنسب", "lessons": ["iqrar-illness", "iqrar-nasab"]}
+      ],
       "lessons": [
         {
           "id": "iqrar-vague",
@@ -11841,6 +11890,11 @@
       "arabic": "الإجارة",
       "kitab": "كتاب الإجارة",
       "whole": true,
+      "units": [
+        {"title": "The hire contract", "arabic": "الإجارة", "lessons": ["ijara-contract", "ijara-places", "ijara-animals"]},
+        {"title": "Workers and wages", "arabic": "الأجراء والأجرة", "lessons": ["ijara-workers", "ijara-terms", "ijara-due", "ijara-choices"]},
+        {"title": "Limits and ending", "arabic": "فسخ الإجارة", "lessons": ["ijara-lawful", "ijara-disputes", "ijara-ending"]}
+      ],
       "lessons": [
         {
           "id": "ijara-contract",
@@ -11853,6 +11907,15 @@
               "title": "A contract on benefits",
               "ar": "الإجارة: عقد على المنافع بعوض",
               "en": "Ijara is hire: renting a thing or hiring a person. It is a contract on the benefits (the use or the work) of something, for a payment. You don't buy the house; you buy living in it for a time."
+            },
+            {
+              "kind": "choose",
+              "id": "define",
+              "ask": "What is ijara?",
+              "options": ["Buying a thing outright, for a price", "A contract on benefits, for a payment", "Giving the use of a thing, for nothing"],
+              "answer": 1,
+              "source": "الإجارة: عقد على المنافع بعوض",
+              "why": "Hire is a contract on the benefits of something, in return for a payment."
             },
             {
               "kind": "teach",
@@ -11910,6 +11973,15 @@
               "title": "Known by pointing",
               "ar": "وتارة تصير معلومة بالتعيين والإشارة كمن استأجر رجلا لينقل له هذا الطعام إلى موضع معلوم",
               "en": "Third, by pointing to it: hiring a man to carry \"this food\" to a known place."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "In how many ways does al-Quduri say the benefit becomes known?",
+              "options": ["2", "3", "4"],
+              "answer": 1,
+              "source": ["والمنافع تارة تصير معلومة بالمدة", "وتارة تصير معلومة بالعمل والتسمية", "وتارة تصير معلومة بالتعيين والإشارة"],
+              "why": "Three ways: by a period of time, by naming the work, and by pointing."
             },
             {
               "kind": "sort",
@@ -12159,6 +12231,15 @@
               "en": "Workers are of two kinds. The ajir mushtarak (common worker) works for anyone who brings a job, like a dyer or a fuller, and earns his wage only by doing the work. The ajir khass (private worker) is hired for a period."
             },
             {
+              "kind": "choose",
+              "id": "count",
+              "ask": "Into how many kinds does al-Quduri divide hired workers?",
+              "options": ["2", "3", "4"],
+              "answer": 0,
+              "source": "والأجراء على ضربين",
+              "why": "Two kinds: the common worker (ajir mushtarak) and the private worker (ajir khass)."
+            },
+            {
               "kind": "teach",
               "id": "trust",
               "title": "The goods are a trust with him",
@@ -12336,6 +12417,15 @@
               "title": "Not by the contract alone",
               "ar": "والأجرة لا تجب بالعقد وتستحق بأحد معان ثلاثة: إما بشرط التعجيل أو بالتعجيل من غير شرط أو باستيفاء المعقود عليه",
               "en": "The wage is not owed just by making the contract. It becomes due in one of three ways: a condition to pay in advance, paying in advance without a condition, or receiving the benefit that was hired."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "In how many ways can the wage become due?",
+              "options": ["1", "2", "3"],
+              "answer": 2,
+              "source": "وتستحق بأحد معان ثلاثة",
+              "why": "Three: a condition to pay in advance, paying in advance anyway, or receiving the benefit."
             },
             {
               "kind": "pick",
@@ -13341,6 +13431,15 @@
               "en": "Contract partnerships come in four kinds: mufawada (full, equal partnership), 'inan (limited partnership), partnership in crafts (sana'i), and partnership on reputation (wujuh), where partners buy on credit using their good name."
             },
             {
+              "kind": "choose",
+              "id": "count",
+              "ask": "How many kinds of contract partnership are there?",
+              "options": ["2", "3", "4"],
+              "answer": 2,
+              "source": "شركة العقود وهي على أربعة أوجه",
+              "why": "Four: mufawada, inan, partnership in crafts, and partnership on reputation."
+            },
+            {
               "kind": "pick",
               "id": "four-pick",
               "ask": "Which are among the four contract partnerships?",
@@ -13670,6 +13769,15 @@
               "title": "Money from one, work from the other",
               "ar": "المضاربة: عقد على الشركة بمال من أحد الشريكين وعمل من الآخر",
               "en": "Mudaraba is a partnership where one side gives the money and the other does the work. The one with the money is the rabb al-mal (owner of the capital). The one who trades with it is the mudarib (the worker)."
+            },
+            {
+              "kind": "choose",
+              "id": "define",
+              "ask": "What is a mudaraba?",
+              "options": ["One side gives the money, the other the work", "Both partners put in money and both of them work", "The owner lends money and takes a fixed return"],
+              "answer": 0,
+              "source": "المضاربة: عقد على الشركة بمال من أحد الشريكين وعمل من الآخر",
+              "why": "Mudaraba is a partnership with money from one partner and work from the other."
             },
             {
               "kind": "teach",
@@ -14466,6 +14574,15 @@
               "en": "Kafala is suretyship: taking on someone else's duty as a guarantee. The kafil is the surety. There are two kinds: surety for a person (promising to bring him) and surety for money (promising to pay his debt)."
             },
             {
+              "kind": "choose",
+              "id": "count",
+              "ask": "How many kinds of kafala (surety) are there?",
+              "options": ["2", "3", "4"],
+              "answer": 0,
+              "source": "الكفالة ضربان",
+              "why": "Two: surety for a person and surety for money."
+            },
+            {
               "kind": "teach",
               "id": "person",
               "title": "Promising to bring someone",
@@ -14805,6 +14922,15 @@
             },
             {
               "kind": "choose",
+              "id": "define",
+              "ask": "What is a hawala?",
+              "options": ["Moving a debt from one debtor to another", "Standing surety to bring a person to court", "Leaving goods with someone to keep them safe"],
+              "answer": 0,
+              "source": "الحوالة: جائزة بالديون",
+              "why": "A hawala transfers a debt: the debtor moves it onto someone else."
+            },
+            {
+              "kind": "choose",
               "id": "consent-gap",
               "ask": "Complete al-Quduri's words: whose agreement does a hawala need?",
               "ar": "وتصح برضا المحيل والمحتال له و____",
@@ -14836,6 +14962,15 @@
               "title": "When the right is lost",
               "ar": "والتوى عند أبي حنيفة أحد أمرين: إما أن يجحد الحوالة ويحلف ولا بينة عليه أو يموت مفلسا",
               "en": "For Abu Hanifa, the right is lost (tawa) in one of two ways: the taker denies the hawala on oath and there are no witnesses, or he dies bankrupt. Then the creditor may go back to the first debtor. Note: Abu Yusuf and Muhammad add a third: a judge declares him bankrupt in his lifetime."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "For Abu Hanifa, in how many ways is the creditor's right lost (tawa)?",
+              "options": ["2", "3", "4"],
+              "answer": 0,
+              "source": "والتوى عند أبي حنيفة أحد أمرين",
+              "why": "Two: the taker denies the hawala on oath with no proof against him, or he dies bankrupt."
             },
             {
               "kind": "choose",
@@ -14898,6 +15033,15 @@
               "title": "Admitting, staying silent, denying",
               "ar": "الصلح: على ثلاثة أضرب: صلح مع إقرار وصلح مع سكوت وهو أن لا يقر المدعى عليه ولا ينكره وصلح مع إنكار وكل ذلك جائز",
               "en": "Sulh is a settlement: ending a dispute by agreement. There are three kinds: with admission (the one claimed against says the claim is true), with silence (he neither admits nor denies), and with denial. All three are allowed."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "How many kinds of settlement does al-Quduri give?",
+              "options": ["2", "3", "4"],
+              "answer": 1,
+              "source": "الصلح: على ثلاثة أضرب",
+              "why": "Three: with admission, with silence, and with denial."
             },
             {
               "kind": "sort",
@@ -15081,6 +15225,15 @@
             },
             {
               "kind": "choose",
+              "id": "count",
+              "ask": "An outsider settles for someone without being asked. In how many ways does al-Quduri set out the case?",
+              "options": ["2", "3", "4"],
+              "answer": 2,
+              "source": "فإن صالح عنه على شيء بغير أمره فهو على أربعة أوجه",
+              "why": "Al-Quduri says such a settlement falls into four cases."
+            },
+            {
+              "kind": "choose",
               "id": "stranger-case",
               "ask": "Without being asked, Nadir says to a claimant, \"I settle with you for 1000 on Rafi's behalf,\" but pays nothing. Rafi hears of it and refuses. What happens?",
               "options": ["The settlement is void", "Nadir must pay the 1000", "Rafi must pay the 1000"],
@@ -15108,7 +15261,6 @@
           "id": "sulh-shares",
           "title": "Settling shared debts and inheritances",
           "arabic": "وإذا كان الدين بين شريكين",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -16438,6 +16590,15 @@
               "en": "An 'ariya is a loan for use: giving someone the use of a thing for free. It is made with words like \"I lend you\", \"I give you this land to eat from\", \"I give you this garment\", \"I mount you on this animal\" (not meant as a gift), and \"My house is yours to live in\"."
             },
             {
+              "kind": "choose",
+              "id": "define",
+              "ask": "What is an 'ariya?",
+              "options": ["Giving the use of a thing for free", "Giving the use of a thing for a rent", "Giving the thing itself for free"],
+              "answer": 0,
+              "source": "وهي: تمليك المنافع بغير عوض",
+              "why": "An 'ariya is giving someone the benefits of a thing without payment."
+            },
+            {
               "kind": "teach",
               "id": "trust",
               "title": "Taking it back, and losing it",
@@ -17108,6 +17269,15 @@
               "en": "Mawat (dead land) is land that cannot be used, because water does not reach it, or water floods it, or something like that which stops it being farmed."
             },
             {
+              "kind": "choose",
+              "id": "define",
+              "ask": "What is mawat?",
+              "options": ["Land that cannot be used, such as land cut off from water", "Land near a village, kept as grazing for its people", "Land owned in Islam whose owner is well known"],
+              "answer": 0,
+              "source": "الموات: ما لا ينتفع به من الأرض لانقطاع الماء عنه",
+              "why": "Mawat is land that cannot be used, for example because water has been cut off from it."
+            },
+            {
               "kind": "teach",
               "id": "far",
               "title": "Ownerless and far away",
@@ -17513,6 +17683,15 @@
               "title": "The four ways (on the two companions' view)",
               "ar": "وهي عندهما على أربعة أوجه: إذا كانت الأرض والبذر لواحد والعمل والبقر لواحد جازت المزارعة وإن كانت الأرض لواحد والعمل والبقر والبذر لآخر جازت",
               "en": "Abu Yusuf and Muhammad allow it, and the rest of these lessons follow their view. For them it comes in four ways. Land and seed from one, work and oxen from the other: allowed. Land from one, and work, oxen and seed from the other: allowed."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "On the two companions' view, in how many ways can sharecropping be set up?",
+              "options": ["2", "3", "4"],
+              "answer": 2,
+              "source": "وهي عندهما على أربعة أوجه",
+              "why": "Abu Yusuf and Muhammad set out four ways of sharing land, seed, oxen and work."
             },
             {
               "kind": "choose",
