@@ -5,19 +5,7 @@ checks whether it hears them better than before. Started from this computer by
 cloud.py (next to this file); on Lightning.ai or Colab, run `python finetune_ear.py`
 on a GPU machine. Everything it writes goes to the folder it was started in.
 
-Scored on groups it never trained on, the same clips every full run (fixed seeds, fixed data),
-so the served ear never meets a clip it learnt from:
-  new voices    people it never heard, reciting ayahs it trained on
-  new ayahs     ayahs it never trained on: the only proof it learnt listening, not text
-  professional  everyayah reciters on unseen ayahs: what the app hears well today
-  tadabur new voices  reciters held by held(), so the same ones whichever files are read
-
-The starting model, the served ear (CHAMPION) and the new one are each scored as the app
-runs them, CTranslate2 through faster-whisper, on the same clips. The rule is fixed before
-the run, so a wobble cannot be read as a win: keep the new model only if it gets at least
-BAR points fewer words wrong on new ayahs than the served ear and at most SLIP points more
-on professionals. verdict.json says which; ear-tuned/ exists only on a win, and is what
-`cloud.py --ship` uploads.
+How it is judged, and what happens after: README.md next to this file.
 
 Model: tarteel-ai/whisper-SIZE-ar-quran (Apache 2.0); base is the original of the
 CTranslate2 export the app runs, tiny the faster one. Recordings: MuazAhmad7/Surah_Ikhlas-Labeled_Dataset

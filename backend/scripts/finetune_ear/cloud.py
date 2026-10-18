@@ -4,11 +4,7 @@
     python backend/scripts/finetune_ear/cloud.py --fetch  wait for the last run, then fetch its result
     python backend/scripts/finetune_ear/cloud.py --ship   upload a kept ear-tuned/ to Hugging Face and serve it
 
-Needs the Kaggle CLI signed in (`kaggle` reads ~/.kaggle). Watch a run live at
-https://www.kaggle.com/code/<id in kernel-metadata.json>. The result lands in
-backend/data/models/finetune-ear/: verdict.json, the run's log, and ear-tuned/ on a win.
---ship needs a Hugging Face login that can create repos (`hf auth login`, or HF_TOKEN) and a
-master checkout that can push; it pins the upload's own revision in config.py.
+The result lands in backend/data/models/finetune-ear/. The whole loop and its keys: README.md here.
 """
 import json
 import os

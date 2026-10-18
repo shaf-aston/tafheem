@@ -13,6 +13,16 @@ Every step runs from any checkout, on this PC or in a cloud session; nothing is 
 
 `--fetch` waits for the last run and fetches it, without training. A run takes hours; watch it at the link `cloud.py` prints.
 
+## The judge
+
+1. Before training, the held clips are set aside; no ear learns from them.
+2. The starting model, the champion and the new ear each write out every held clip, run exactly as the app runs them (faster-whisper).
+3. Score = share of words wrong, lower is better, on four groups: new voices, new ayahs, professional, tadabur new voices.
+4. Keep only if the new ear is at least `BAR` points better than the champion on new ayahs (the only proof it learnt listening, not text) and at most `SLIP` points worse on professionals. Both knobs sit at the top of `finetune_ear.py` and are fixed before the run, so a wobble cannot pass as a win.
+5. Lost: `ear-tuned/` is deleted and the app keeps its ear. Won: run step 4.
+
+A server fetches a new revision from Hugging Face once, on first use, and after that loads its own copy (`listen.py`), offline included.
+
 ## Words
 
 - **ear-tuned**: the folder a run makes, a CTranslate2 model faster-whisper loads.
