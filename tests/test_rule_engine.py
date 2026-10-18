@@ -847,3 +847,36 @@ def test_ams_is_built_on_the_kasra_in_every_place():
 
 def test_mundhu_before_a_noun_is_a_preposition():
     assert [w["role"] for w in iraab.analyze("مَا زُرْتُهُ مُذْ شَهْرٍ", recorded=False)["words"]][-2:] == ["حرف جر", "مجرور"]
+
+
+def test_a_built_word_keeps_its_sukun_when_moved_to_kasra_for_the_next_sakin():
+    sign = lambda s, i: iraab.analyze(s, recorded=False)["words"][i]["sign"]
+    assert sign("أَحْسِنْ إِلَى مَنِ اسْتَشَارَكَ", 2) == "مبني على السكون"
+    assert sign("سَأَلْتُ عَنِ الْأَمْرِ", 1) == "مبني على السكون"
+    assert sign("جَاءَ هَؤُلَاءِ", 1) == "مبني على الكسر"  # its own kasra, no meeting
+
+
+def test_idha_past_a_jussive_particle_still_opens_a_condition():
+    words = iraab.analyze("إِذَا لَمْ تَدْرُسْ فَلَنْ تَنْجَحَ", recorded=False)["words"]
+    assert words[0]["role"] == "مفعول فيه"
+
+
+def test_a_relative_after_a_command_is_its_object_and_its_sila_a_verb():
+    words = iraab.analyze("أَكْرِمْ مَنْ زَارَكَ", recorded=False)["words"]
+    assert words[0]["sign"] == "مبني على السكون" and words[1]["role"] == "مفعول به"
+    assert words[2]["role"] == "فعل"
+    # حَرَمَكَ reads as a noun too ("your sanctuary"); after a relative its صلة is the verb
+    assert iraab.analyze("أَعْطِ مَنْ حَرَمَكَ", recorded=False)["words"][2]["role"] == "فعل"
+
+
+def test_a_conditional_noun_before_laysa_is_its_mubtada_not_its_ism():
+    assert _role("مَنْ ظَلَمَنَا فَلَيْسَ صَدِيقًا", 0) == "مبتدأ"  # ليس comes after it: it governs nothing before
+    words = iraab.analyze("مَنْ كَذَبَ فَلَيْسَ صَادِقًا", recorded=False)["words"]
+    assert "اسم شرط" in words[0]["role"] and "كان" not in words[0]["role"] and "ليس" not in words[0]["role"]
+
+
+def test_a_form_four_command_is_a_verb_but_a_name_stays_a_name():
+    sign = lambda s, i: iraab.analyze(s, recorded=False)["words"][i]["sign"]
+    assert sign("أَكْرِمُوا الضَّيْفَ", 0) == sign("أَفْشُوا السَّلَامَ", 0) == "مبني على حذف النون"
+    assert _role("جَاءَ أَحْمَدُ", 1) == "فاعل"
+    assert _role("أَحْمَدْ", 0) != "فعل"  # a name in pause keeps its own vowels

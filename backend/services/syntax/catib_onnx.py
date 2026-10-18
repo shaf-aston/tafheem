@@ -254,7 +254,9 @@ def _split_word(word: str, a: dict) -> list[dict]:
         form = clean(tok)
         if not _is_clitic(tok):
             # pattern: the analyser's own word-shape, e.g. 1ا2ِ3 for فاعل: how a participle is told from a noun
-            out.append(baseword(form, tok, catib6, ud, pattern=a.get("pattern", "")))
+            # guessed: the dictionary had no reading of the word, so its "name" is only a guess (أَفْشُوا)
+            out.append({**baseword(form, tok, catib6, ud, pattern=a.get("pattern", "")),
+                        "guessed": NO_ANALYSIS in a.get("atbtok", "")})
         else:
             feats = _clitic_token_feats(tok, "prc" if tok.endswith("+") else "enc", a)
             out.append({

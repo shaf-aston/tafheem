@@ -172,6 +172,12 @@ def verb_place(token: dict, s: Sentence) -> str:
                 return "state"
         if after_first:
             return "second_object"  # ظن الولد الأمر سهلا, أعطى الولد الكتاب
+        # صِلْ مَنْ قَطَعَكَ: a relative hung on the verb as a modifier is a noun no hal or tamyeez can be
+        # (its صلة makes it definite); with the doer settled (a command's is the hidden أنت) it is the object.
+        # A verb has no مضاف إليه, so a relative the parser hung as one (أَكْرِمْ مَنْ زَارَكَ) is the same
+        if rel in ("MOD", "IDF") and listed(token, "mawsul") and not any(t["rel"] == "OBJ" for t in siblings) \
+                and (head.get("asp") == "c" or any(subject_link(t) for t in siblings)):
+            return "object"
         if (rel in NOUN_LINKS or (rel == "IDF" and typed != "i")
                 or (rel == "MOD" and typed == "u" and is_plain_noun(token))
                 # بِعْ الكِتَابَ: hung on the verb as a modifier, but a definite word is never a

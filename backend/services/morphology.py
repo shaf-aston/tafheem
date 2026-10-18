@@ -567,9 +567,12 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if unread(ranked) and (twin := verb_reader.known_as(token)) and (twin_ranked := _ranked([twin], disambiguator)):
             # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
             ranked, evidence = twin_ranked[0], twin
-            if unread(ranked) and (sarf := verb_reader.reading_of(token)):
-                # يَسْتَعْتِبُوا: the dictionary has not even the table's spelling, so the table's reading is the word's
-                ranked = [{**sarf, "diac": twin, "lex": twin}]
+        if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token)) and sarf.get("asp") != "c" \
+                and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
+            # يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
+            # the table's own tense is only spelled otherwise: the dictionary's stays. A command is left to
+            # repair.typed (verb_reader.command), which reads its attached pronoun (اِهْدِنَا) as the table cannot
+            ranked = [{"lex": evidence, **sarf, "diac": evidence}]
         steps.append((evidence, ranked))
     out = [_reading(*step) for step in steps]
     for i, (evidence, ranked) in enumerate(steps):
@@ -588,6 +591,16 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             word, ranked = steps[i]
             out[i] = best_reading(word, [r for r in ranked if r.get("enc0") != "1s_poss"
                                          and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
+    # صِلْ مَنْ قَطَعَكَ: a relative's صلة is a sentence, so a word after it that the typed vowels read
+    # as well as a verb (قَطَعَكَ the verb, or the noun "your pieces") is that verb. Opening the sentence
+    # مَنْ، ما may be a question or a negation instead (مَنْ أَبُوكَ، مَا أَنْتَ), so only one after a word
+    for i in range(2, len(out)):
+        if out[i - 1].get("pos") == "pron_rel" and out[i].get("pos") != "verb":
+            word, ranked = steps[i]
+            here = vowel_agreement(word, out[i].get("diac", ""))
+            verb = best_reading(word, [r for r in _widened(tokens[i], ranked) if r.get("pos") == "verb"])
+            if verb and here is not None and vowel_agreement(word, verb.get("diac", "")) >= here:
+                out[i] = verb
     # مَنْ جَدَّ وَجَدَ: a مضاف needs its مضاف إليه straight after it, so a bare construct noun
     # before a و, a preposition or nothing is not the word typed (here the verb جَدَّ)
     for i, reading in enumerate(out):
@@ -597,6 +610,11 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
                                          if not _bare_construct(r) and r.get("pos") != "noun_prop"]) or reading
     return out
+
+
+def _agreeing(typed: str, ranked: list[dict]) -> bool:
+    """Some real reading (not the no-analysis guess) has no vowel against the typed ones."""
+    return best_reading(typed, [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")]) is not None
 
 
 def _widened(token: str, ranked: list[dict]) -> list[dict]:
