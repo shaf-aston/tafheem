@@ -195,7 +195,8 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
         return []
     out = []
     for leaf in tree_leaves(tree.get("tree")):
-        card, pic = plain_role(cards[leaf["word"]].get("role")), plain_role(leaf.get("role"))
+        shown = cards[leaf["word"]]  # a card shows its finer name over its role, as the copy does
+        card, pic = plain_role(shown.get("name") or shown.get("role")), plain_role(leaf.get("role"))
         if not card or not pic or pic in UNIT_WORDING:
             continue
         # the picture may name a governor finer than its card (حرف نصب for حرف), never otherwise

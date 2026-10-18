@@ -14,7 +14,8 @@ from __future__ import annotations
 from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar)
 from backend.services.syntax.facts import (Sentence, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
-                                          is_nasab, is_verb, read_as, shown_cases, noun_tagged)
+                                          is_nasab, is_verb, read_as, shown_cases, noun_tagged,
+                                          NOUN_LINKS, typed_or_parsed_case)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import SHADDA, five_verb_nun, has_tanween, letters, own_letters
@@ -310,6 +311,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         mother, sister = SISTERS[family_of[bases[at_gov]["id"]]], strip_diacritics(bases[at_gov]["lemma"]).strip("+")
         if role.endswith(f" {mother}") and sister != mother:
             name_of[token["id"]] = f"{role.removesuffix(mother)}{sister}"
+            if job_of.get(token["id"]) == role:
+                job_of[token["id"]] = name_of[token["id"]]
     place_of: dict[int, str] = {}
     label_of: dict[int, str] = {}
     framed: set[int] = set()  # units whose job a governor gave, drawn even under a particle
@@ -350,6 +353,27 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     nominal |= {token["id"] for token in drawn if token["head"] in by_id and (
         _read(token) == "la_jins" or (role_of[token["id"]] == NAMED.mubtada and any(
             t["head"] == token["id"] and role_of[t["id"]] == NAMED.khabar for t in drawn)))}
+    # يَحْمِلُ حَقِيبَةً after رَجُلًا, كَأَنَّ رَأْسَهُ زَبِيبَةٌ after حَبَشِيٌّ, يَرْكُضُ after جَاءَ الطَّالِبُ
+    after_noun = FRAMES["clause_after_noun"]
+    for token in drawn:
+        head = by_id.get(token["head"])
+        if (token["rel"] != "MOD" or not head or token["id"] in place_of or token["id"] < head["id"]
+                or job_of[token["id"]] not in (None, NAMED.fil, NAMED.harf)
+                or not (is_verb(token) or family_of[token["id"]] == "inna")):
+            continue
+        if not noun_tagged(head):  # on the verb: the noun it describes is the verb's, just before it
+            head = next((t for t in reversed(drawn) if t["head"] == head["id"] and t["id"] < token["id"]
+                         and noun_tagged(t) and t["rel"] in NOUN_LINKS), None)
+            if not head or not definite(head):
+                continue
+        known = definite(head)
+        if not known and head.get("stt") != "i":
+            continue
+        job_of[token["id"]] = after_noun["definite" if known else "indefinite"]
+        place_of[token["id"]] = in_place(after_noun["definite_case"] if known else typed_or_parsed_case(head) or "u")
+        framed.add(token["id"])  # drawn even when a particle heads it
+        if not is_verb(token):
+            nominal.add(token["id"])
     clauses = {token["id"] for token in drawn if job_of[token["id"]] == NAMED.silah} | set(place_of) | nominal | replies
     for token in drawn:
         if _read(token) in FRAMES["unit_by_family"]:
@@ -603,6 +627,11 @@ def _unbracket(node: dict) -> dict:
         bare = kid.get("word") is None and "children" in kid and not kid.get("label") and not kid.get("role")
         children.extend(kid["children"] if bare else [kid])
     return {**node, "children": children}
+
+
+def definite(token: dict) -> bool:
+    """ال, a مضاف, a name or a pronoun stuck on it makes a noun known."""
+    return token.get("stt") in ("d", "c") or token["pos"] == "PROP" or bool(token.get("stuck_on"))
 
 
 def _move(holder: dict[int, list[dict]], token: dict, to: list[dict]) -> None:
