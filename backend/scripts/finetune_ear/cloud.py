@@ -12,15 +12,15 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
 HERE = Path(__file__).parent
 KERNEL = json.loads((HERE / 'kernel-metadata.json').read_text())['id']
 LANDS = HERE.parents[1] / 'data' / 'models' / 'finetune-ear'
-# Public, so a server needs no key. Named once, in the recipe, whose judge scores against it.
-CHAMPION = re.search(r"^CHAMPION = '(.+?)'", (HERE / 'finetune_ear.py').read_text(encoding='utf-8'), re.M)[1]
-CONFIG = HERE.parents[1] / 'config.py'
+# The served ear's one name: master's config.py pin, "repo@revision". The judge reads the same line.
+PIN = re.compile(r'(recitation_trial_model: str = "([^@"]+)@)[^"]*"')
 EVERY = 60  # seconds between status checks
 ENDED = ('COMPLETE', 'ERROR', 'CANCEL')
 # Without these the CLI writes the Arabic log in Windows' own code page and fails half way.
@@ -50,19 +50,22 @@ def ship():
     verdict = json.loads((LANDS / 'verdict.json').read_text(encoding='utf-8'))
     if not verdict['keep']:
         sys.exit('verdict.json says not to keep this ear, so nothing is uploaded')
-    if git('rev-parse', '--abbrev-ref', 'HEAD') != 'master':
-        sys.exit('--ship runs from master, since the pin it commits is pushed there')
-    git('pull', '--ff-only', 'origin', 'master')
     scores = f"words wrong: served ear {verdict['champion']}, this one {verdict['after']}"
-    hub = HfApi()
-    hub.create_repo(CHAMPION, private=False, exist_ok=True)
-    done = hub.upload_folder(repo_id=CHAMPION, folder_path=LANDS / 'ear-tuned', commit_message=scores)
-    pin = f'{CHAMPION}@{done.oid}'
-    text = CONFIG.read_text(encoding='utf-8')
-    CONFIG.write_text(re.sub(r'(recitation_trial_model: str = )".*"', rf'\g<1>"{pin}"', text), encoding='utf-8')
-    git('commit', '-m', f'Serve the ear {pin}\n\n{scores}', '--', str(CONFIG))
-    git('push', 'origin', 'master')
-    print(f'serving {pin} within 5 minutes')
+    # A copy of master beside this checkout, so --ship runs from any branch and touches nothing here.
+    tree = Path(tempfile.mkdtemp()) / 'master'
+    git('fetch', '-q', 'origin', 'master')
+    git('worktree', 'add', '-q', '--detach', str(tree), 'origin/master')
+    try:
+        config = tree / 'backend' / 'config.py'
+        text = config.read_text(encoding='utf-8')
+        done = HfApi().upload_folder(repo_id=PIN.search(text)[2], folder_path=LANDS / 'ear-tuned',
+                                     commit_message=scores)
+        config.write_text(PIN.sub(rf'\g<1>{done.oid}"', text), encoding='utf-8')
+        git('-C', str(tree), 'commit', '-q', '-m', f'Serve the ear {done.oid}\n\n{scores}', '--', 'backend/config.py')
+        git('-C', str(tree), 'push', '-q', 'origin', 'HEAD:master')
+    finally:
+        git('worktree', 'remove', '--force', str(tree))
+    print(f'serving {done.oid} within 5 minutes')
 
 
 if '--ship' in sys.argv:

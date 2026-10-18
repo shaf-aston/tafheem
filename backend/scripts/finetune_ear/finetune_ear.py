@@ -22,6 +22,7 @@ import re
 import shutil
 import subprocess
 import sys
+import urllib.request
 from collections import Counter
 from pathlib import Path
 
@@ -58,7 +59,8 @@ PROS = 40  # professional clips, 5 to 20 words each
 TESTED = 600  # clips per test group at most: 3,000 held clips heard twice would cost an hour
 EPOCHS = 2  # 18,000 clips: two passes is already ten times the steps four passes over 45 ayahs took
 TARTEEL_V1 = 'tarteel-v1'
-CHAMPION = 'shafTheG/quran-ear'  # the served ear, its newest upload; cloud.py --ship uploads a win here
+# The served ear (champion) is the one master's config.py pins; cloud.py --ship moves that pin on a win.
+SERVED = 'https://raw.githubusercontent.com/shaf-aston/tafheem/master/backend/config.py'
 # A pilot takes a quarter of the learner clips (0.25): a quarter-size run ended 6 points behind
 # the served ear on new ayahs, 2026-10-17, so a run meant to ship takes them all.
 LEARNER_SHARE = 1.0  # share of learner clips kept, picked before decoding
@@ -400,10 +402,10 @@ def export(m, folder):
     return folder
 
 
-def scored(ear):
+def scored(ear, revision=None):
     """Words wrong, in percent, per test group, heard as the app hears (one guess, untimed, each clip
     alone); and what was heard. Scored before training too, so a model that will not load fails in minutes."""
-    m = WhisperModel(str(ear), device='cuda', compute_type='float16')
+    m = WhisperModel(str(ear), revision=revision, device='cuda', compute_type='float16')
     heard = {k: [bare(' '.join(s.text for s in m.transcribe(np.asarray(x, dtype=np.float32), language='ar', beam_size=1,
                                                              without_timestamps=True, condition_on_previous_text=False)[0]))
                  for x in rows['sound']] for k, rows in TESTS.items()}
@@ -412,7 +414,8 @@ def scored(ear):
 
 before, _ = scored(export(model, OUT / 'ear-today'))
 shutil.rmtree(OUT / 'ear-today')
-champion, _ = scored(CHAMPION)
+pin = re.search(r'recitation_trial_model: str = "(.+?)@(.+?)"', urllib.request.urlopen(SERVED).read().decode())
+champion, _ = scored(*pin.groups())
 print('today:', before, 'served ear:', champion, flush=True)
 
 
