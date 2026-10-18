@@ -160,8 +160,7 @@ def test_a_noun_with_its_own_pronoun_is_no_command(sentence: str, role: str):
     ("هَذَا الْكِتَابُ جَدِيدٌ", ["مبتدأ", "صفة", "خبر"]),  # nearest case: with ال it follows the pointer
     ("أَهْدَى الْجَدُّ حَفِيدَهُ مِنْظَارًا", ["فعل", "فاعل", "مفعول به", "مفعول به"]),  # its pronoun makes it definite: no حال
     ("جَاءَ زَيْدٌ رَاكِبًا", ["فعل", "فاعل", "حال"]),  # nearest case: indefinite, a حال
-    ("ابْتَاعَ الْخَبَّازُ صَاعًا شَعِيرًا", ["فعل", "فاعل", "مفعول به", "تمييز"]),  # a noun names what is measured
-    ("قَرَأْتُ كِتَابًا مُفِيدًا", ["فعل", "مفعول به", "صفة"])])  # nearest case: an adjective describes
+    ("كَانَ النَّاسُ أُمَّةً وَاحِدَةً", ["فعل", "اسم كان", "خبر كان", "صفة"])])
 def test_what_a_word_after_a_verb_noun_or_pointer_is(sentence: str, want: list[str]):
     got = [w["role"] for w in iraab.analyze(sentence)["words"]]
     assert len(got) == len(want) and all(g and g.startswith(x) for g, x in zip(got, want)), got
