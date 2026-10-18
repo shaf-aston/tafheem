@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, own_letters, past_passive_shape, typed_case, typed_passive
+from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, has_tanween, own_letters, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_object_stem, is_one, six_noun_case
 
 
@@ -69,9 +69,10 @@ def is_verb(token: dict) -> bool:
 
 def is_light(token: dict) -> bool:
     """The light لكنْ (or إنْ، أنْ) the reader typed: a sukun on the end and no shadda. It
-    only joins (or is the light particle); the inna sister wears the shadda (Tasheel 1.8 p20)."""
+    only joins (or is the light particle); the inna sister wears the shadda (Tasheel 1.8 p20).
+    Before ال the sukun is moved to a kasra (لَكِنِ الْعَاقِلَ), still the light one."""
     typed = token.get("typed") or ""
-    return typed.endswith(SUKUN) and SHADDA not in typed
+    return typed.endswith((SUKUN, KASRA)) and SHADDA not in typed
 
 
 def is_passive(token: dict) -> bool:
@@ -162,7 +163,10 @@ def is_state_word(token: dict) -> bool:
 
 def state_or_specification(token: dict, head: dict) -> str:
     """An indefinite nasb word is a hal if it is a participle, else a tamyeez, which never
-    comes before its head (Tasheel 3.2 p67)."""
+    comes before its head (Tasheel 3.2 p67). After a number or measure it tells what was counted
+    or measured (صَاعًا شَعِيرًا), whatever its shape."""
+    if token["id"] > head["id"] and listed(head, "tamyeez_head") and token.get("pos_camel") != "adj":
+        return "specification"
     if is_state_word(token):
         return "state"
     return "specification" if token["id"] > head["id"] else "none"
