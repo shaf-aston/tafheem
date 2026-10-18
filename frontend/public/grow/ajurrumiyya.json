@@ -18,6 +18,36 @@
         "باب الأفعال"
       ],
       "whole": true,
+      "units": [
+        {
+          "title": "Kinds of word",
+          "arabic": "الكلام",
+          "lessons": [
+            "ajr-words-kalam",
+            "ajr-words-signs"
+          ]
+        },
+        {
+          "title": "Signs of i'rab",
+          "arabic": "علامات الإعراب",
+          "lessons": [
+            "ajr-words-irab",
+            "ajr-words-raf-letters",
+            "ajr-words-nasb",
+            "ajr-words-khafd-jazm",
+            "ajr-words-two-ways"
+          ]
+        },
+        {
+          "title": "Verbs",
+          "arabic": "باب الأفعال",
+          "lessons": [
+            "ajr-words-verbs",
+            "ajr-words-nawasib",
+            "ajr-words-jawazim"
+          ]
+        }
+      ],
       "lessons": [
         {
           "id": "ajr-words-kalam",
@@ -219,6 +249,37 @@
               "en": "You know a verb by: qad (قد, \"already\") before it, sa- (س, \"will\") or sawfa (سوف, \"will\") before it, and the still ta of the feminine at its end: قامتْ, \"she stood\"."
             },
             {
+              "kind": "pick",
+              "id": "verb-signs",
+              "ask": "Which of these are signs of a verb?",
+              "options": [
+                {
+                  "text": "قد before it",
+                  "right": true
+                },
+                {
+                  "text": "سـ (will) before it",
+                  "right": true
+                },
+                {
+                  "text": "سوف before it",
+                  "right": true
+                },
+                {
+                  "text": "A still feminine ta at its end",
+                  "right": true
+                },
+                {
+                  "text": "Tanwin at its end"
+                },
+                {
+                  "text": "Al- at its front"
+                }
+              ],
+              "source": "والفعل يعرف بقد، والسين، وسوف، وتاء التأنيث الساكنة.",
+              "why": "The verb has four signs: qad, sin, sawfa and the still ta. Tanwin and al- are signs of a noun."
+            },
+            {
               "kind": "choose",
               "id": "verb-case",
               "ask": "Amina reads سيكتب, \"he will write\". What kind of word is يكتب?",
@@ -370,6 +431,19 @@
               "en": "There are four: raf' (raised, nominative, usually -u), nasb (accusative, usually -a), khafd (genitive, usually -i) and jazm (jussive, usually a still letter with no vowel, called sukun)."
             },
             {
+              "kind": "choose",
+              "id": "four-count",
+              "ask": "How many kinds of i'rab are there?",
+              "options": [
+                "Three",
+                "Four",
+                "Five"
+              ],
+              "answer": 1,
+              "source": "وأقسامه أربعة: رفع، ونصب، وخفض، وجزم.",
+              "why": "Four: raf', nasb, khafd and jazm."
+            },
+            {
               "kind": "teach",
               "id": "who",
               "title": "Which words take which",
@@ -428,6 +502,37 @@
               "answer": 0,
               "source": "فأما الضمة فتكون علامة للرفع في أربعة مواضع في الاسم المفرد، وجمع التكسير",
               "why": "The broken plural is one of the four places where damma marks raf'."
+            },
+            {
+              "kind": "pick",
+              "id": "raf-signs",
+              "ask": "Which of these are the signs of raf'?",
+              "options": [
+                {
+                  "text": "Damma",
+                  "right": true
+                },
+                {
+                  "text": "Waw",
+                  "right": true
+                },
+                {
+                  "text": "Alif",
+                  "right": true
+                },
+                {
+                  "text": "Nun",
+                  "right": true
+                },
+                {
+                  "text": "Fatha"
+                },
+                {
+                  "text": "Kasra"
+                }
+              ],
+              "source": "للرفع أربع علامات: الضمة، والواو، والألف، والنون.",
+              "why": "Raf' has four signs: damma, waw, alif and nun. Fatha and kasra belong to nasb and khafd."
             },
             {
               "kind": "choose",
@@ -613,6 +718,19 @@
               "en": "Nasb (the accusative; a word in nasb is called mansub) has five signs: fatha (-a), alif, kasra (-i), ya, and dropping the nun."
             },
             {
+              "kind": "choose",
+              "id": "five-count",
+              "ask": "How many signs does nasb have?",
+              "options": [
+                "Four",
+                "Five",
+                "Three"
+              ],
+              "answer": 1,
+              "source": "وللنصب خمس علامات: الفتحة, والألف، والكسرة، والياء، وحذف النون.",
+              "why": "Five: fatha, alif, kasra, ya and dropping the nun."
+            },
+            {
               "kind": "teach",
               "id": "fatha",
               "title": "Fatha",
@@ -777,6 +895,19 @@
               "title": "Three signs of khafd",
               "ar": "الكسرة، والياء، والفتحة. وللخفض ثلاث علامات:",
               "en": "Khafd (the genitive) has three signs: kasra, ya and fatha. In this copy of the book the list is printed just before its heading."
+            },
+            {
+              "kind": "choose",
+              "id": "three-count",
+              "ask": "How many signs does khafd have?",
+              "options": [
+                "Two",
+                "Four",
+                "Three"
+              ],
+              "answer": 2,
+              "source": "الكسرة، والياء، والفتحة. وللخفض ثلاث علامات:",
+              "why": "Three: kasra, ya and fatha."
             },
             {
               "kind": "teach",
@@ -1265,6 +1396,19 @@
             },
             {
               "kind": "choose",
+              "id": "ten-count",
+              "ask": "How many nasb-words does the book list?",
+              "options": [
+                "Ten",
+                "Eighteen",
+                "Seven"
+              ],
+              "answer": 0,
+              "source": "فالنواصب عشرة",
+              "why": "Ten nasb-words. The jazm-words are eighteen."
+            },
+            {
+              "kind": "choose",
               "id": "lan-case",
               "ask": "Sara puts لن (\"will not\") before يقوم. What happens to the verb?",
               "options": [
@@ -1396,6 +1540,19 @@
               "title": "Lam, lamma, alam, alamma",
               "ar": "والجوازم ثمانية عشر، وهي: لم، لما، ألم، ألما",
               "en": "Eighteen words put a present verb in jazm (majzum: usually ending in a sukun). The first four: lam (did not), lamma (not yet), alam (did ... not?) and alamma (has ... not yet?): لم يقمْ, \"he did not stand\"."
+            },
+            {
+              "kind": "choose",
+              "id": "eighteen-count",
+              "ask": "How many jazm-words does the book list?",
+              "options": [
+                "Ten",
+                "Eighteen",
+                "Twelve"
+              ],
+              "answer": 1,
+              "source": "والجوازم ثمانية عشر",
+              "why": "Eighteen jazm-words. The nasb-words are ten."
             },
             {
               "kind": "choose",
@@ -1562,6 +1719,26 @@
         "باب العوامل الداخلة على المبتدأ والخبر"
       ],
       "whole": true,
+      "units": [
+        {
+          "title": "Doer and subject",
+          "arabic": "الفاعل والمبتدأ",
+          "lessons": [
+            "ajr-raised-doer",
+            "ajr-raised-unnamed",
+            "ajr-raised-subject"
+          ]
+        },
+        {
+          "title": "Kana, inna, zanna",
+          "arabic": "العوامل الداخلة على المبتدأ والخبر",
+          "lessons": [
+            "ajr-raised-kana",
+            "ajr-raised-inna",
+            "ajr-raised-zanna"
+          ]
+        }
+      ],
       "lessons": [
         {
           "id": "ajr-raised-doer",
@@ -1574,6 +1751,19 @@
               "title": "Seven raised nouns: a preview",
               "ar": "المرفوعات سبعة، وهي: الفاعل، والمفعول الذي لم يسم فاعله، والمبتدأ وخبره، واسم كان وأخواتها، وخبر إن وأخواتها، والتابع للمرفوع",
               "en": "This part is about the marfu' (raised) nouns, which end in raf', usually -u. The book lists all seven first, as a preview; each is taught later: the doer, the object whose doer is not named, the subject and its news, the noun of kana, the khabar of inna, and a follower of a raised word."
+            },
+            {
+              "kind": "choose",
+              "id": "seven-count",
+              "ask": "How many raised nouns does the book list?",
+              "options": [
+                "Fifteen",
+                "Seven",
+                "Three"
+              ],
+              "answer": 1,
+              "source": "المرفوعات سبعة",
+              "why": "Seven raised nouns. Fifteen is the count of the accusative nouns."
             },
             {
               "kind": "teach",
@@ -1596,6 +1786,37 @@
               "arabic-options": true,
               "source": "الفاعل هو: الاسم المرفوع المذكور قبله فعله.",
               "why": "The doer's verb is mentioned BEFORE it (قبله): قام زيد."
+            },
+            {
+              "kind": "pick",
+              "id": "seven-pick",
+              "ask": "Which of these are among the raised nouns?",
+              "options": [
+                {
+                  "text": "The doer (fa'il)",
+                  "right": true
+                },
+                {
+                  "text": "The mubtada' and its khabar",
+                  "right": true
+                },
+                {
+                  "text": "The noun of kana",
+                  "right": true
+                },
+                {
+                  "text": "The khabar of inna",
+                  "right": true
+                },
+                {
+                  "text": "The khabar of kana"
+                },
+                {
+                  "text": "The noun of inna"
+                }
+              ],
+              "source": "المرفوعات سبعة، وهي: الفاعل، والمفعول الذي لم يسم فاعله، والمبتدأ وخبره، واسم كان وأخواتها، وخبر إن وأخواتها، والتابع للمرفوع",
+              "why": "Kana raises its noun and inna raises its khabar. The khabar of kana and the noun of inna are accusative."
             },
             {
               "kind": "teach",
@@ -1925,6 +2146,19 @@
               "en": "Not single is four things: a preposition with its noun (زيد في الدار, Zayd is in the house); a zarf, a word of place or time (زيد عندك, Zayd is with you); a verb with its doer (زيد قام أبوه, Zayd, his father stood); and a subject with its khabar (زيد جاريته ذاهبة, Zayd, his servant girl is going)."
             },
             {
+              "kind": "choose",
+              "id": "not-single-count",
+              "ask": "How many kinds of khabar are \"not single\"?",
+              "options": [
+                "Two",
+                "Four",
+                "Three"
+              ],
+              "answer": 1,
+              "source": "وغير المفرد أربعة أشياء",
+              "why": "Four: a preposition with its noun, a zarf, a verb with its doer, and a subject with its khabar."
+            },
+            {
               "kind": "sort",
               "id": "sort",
               "ask": "What kind of khabar?",
@@ -2000,6 +2234,19 @@
               "title": "Three sets of words",
               "ar": "وهي ثلاثة أشياء: كان وأخواتها، وان وأخواتها، وظننت وأخواتها.",
               "en": "Three sets of words can come in on a subject and its khabar and change their endings: kana and her sisters, inna and her sisters, and zanantu (\"I thought\") and her sisters. Each set has its own lesson."
+            },
+            {
+              "kind": "choose",
+              "id": "three-count",
+              "ask": "How many sets of words come in on the subject and its khabar?",
+              "options": [
+                "Two",
+                "Four",
+                "Three"
+              ],
+              "answer": 2,
+              "source": "وهي ثلاثة أشياء: كان وأخواتها، وان وأخواتها، وظننت وأخواتها.",
+              "why": "Three: kana and her sisters, inna and her sisters, zanantu and her sisters."
             },
             {
               "kind": "teach",
@@ -2198,6 +2445,40 @@
               "en": "The other three: ka'anna (as if), layta (if only) and la'alla (perhaps). You say إنَّ زيدًا قائمٌ, and ليت عمرًا شاخصٌ, \"if only 'Amr were leaving\"."
             },
             {
+              "kind": "pick",
+              "id": "inna-pick",
+              "ask": "Which of these are sisters of inna?",
+              "options": [
+                {
+                  "text": "لكن (but)",
+                  "right": true
+                },
+                {
+                  "text": "كأن (as if)",
+                  "right": true
+                },
+                {
+                  "text": "ليت (if only)",
+                  "right": true
+                },
+                {
+                  "text": "لعل (perhaps)",
+                  "right": true
+                },
+                {
+                  "text": "ليس (is not)"
+                },
+                {
+                  "text": "ظننت (I thought)"
+                }
+              ],
+              "source": [
+                "وهي: إن، وأن، ولكن",
+                "وكأن، وليت، ولعل"
+              ],
+              "why": "Inna has six sisters: inna, anna, lakinna, ka'anna, layta, la'alla. Laysa is a sister of kana, zanantu its own set."
+            },
+            {
               "kind": "choose",
               "id": "layta-case",
               "ask": "Zaynab hears زيد قائم and puts ليت (\"if only\") in front. Which is right?",
@@ -2347,6 +2628,41 @@
               "en": "The last four: wajadtu (I found), ittakhadhtu (I took), ja'altu (I made) and sami'tu (I heard). You say ظننتُ زيدًا قائمًا, and رأيتُ عمرًا شاخصًا, \"I held 'Amr to be leaving\"."
             },
             {
+              "kind": "pick",
+              "id": "zanna-pick",
+              "ask": "Which of these are sisters of zanantu?",
+              "options": [
+                {
+                  "text": "حسبت (I reckoned)",
+                  "right": true
+                },
+                {
+                  "text": "زعمت (I claimed)",
+                  "right": true
+                },
+                {
+                  "text": "وجدت (I found)",
+                  "right": true
+                },
+                {
+                  "text": "سمعت (I heard)",
+                  "right": true
+                },
+                {
+                  "text": "أصبح (became)"
+                },
+                {
+                  "text": "لعل (perhaps)"
+                }
+              ],
+              "source": [
+                "وهي: ظننت، وحسبت، وخلت",
+                "وزعمت، ورأيت، وعلمت",
+                "ووجدت، واتخذت، وجعلت، وسمعت"
+              ],
+              "why": "All four are in zanantu's list. Asbaha is a sister of kana, la'alla a sister of inna."
+            },
+            {
               "kind": "sort",
               "id": "sort",
               "ask": "What does it do to the noun and the khabar?",
@@ -2452,6 +2768,19 @@
               "title": "Five definite words",
               "ar": "والمعرفة خمسة أشياء: الاسم المضمر، نحو: أنا، وأنت، والاسم العلم، نحو: زيد ومكة، والاسم المبهم، نحو: هذا وهذه وهؤلاء، والاسم الذي فيه الألف واللام، نحو: الرجل والغلام، وما أضيف إلى واحد من هذه الأربعة.",
               "en": "A ma'rifa (definite word, pointing at one known thing) is one of five: a pronoun (ana, anta); a proper name, 'alam (Zayd, Makka); a pointing word, mubham (hadha, \"this\"); a noun with al- (al-rajul, the man); and a noun joined in idafa to one of these four, as in غلام زيد, \"Zayd's boy\"."
+            },
+            {
+              "kind": "choose",
+              "id": "definite-count",
+              "ask": "How many kinds of definite word (ma'rifa) are there?",
+              "options": [
+                "Four",
+                "Five",
+                "Three"
+              ],
+              "answer": 1,
+              "source": "والمعرفة خمسة أشياء",
+              "why": "Five: a pronoun, a proper name, a pointing word, a noun with al-, and a noun joined to one of these."
             },
             {
               "kind": "sort",
@@ -2578,6 +2907,19 @@
               "title": "Wa, fa, thumma",
               "ar": "وحروف العطف عشرة، وهي: الواو، والفاء، وثم",
               "en": "'Atf is joining a word to the word before it. There are ten joining letters, taken a few at a time. First: wa (and), fa (and then, straight after) and thumma (and later, after a gap)."
+            },
+            {
+              "kind": "choose",
+              "id": "ten-count",
+              "ask": "How many joining letters does the book list?",
+              "options": [
+                "Ten",
+                "Eight",
+                "Seven"
+              ],
+              "answer": 0,
+              "source": "وحروف العطف عشرة",
+              "why": "Ten joining letters, from wa to hatta."
             },
             {
               "kind": "choose",
@@ -2714,6 +3056,37 @@
               "why": "Kull is one of the known stressing words, and it copies the ending of القوم."
             },
             {
+              "kind": "pick",
+              "id": "tawkid-pick",
+              "ask": "Which of these are stressing words?",
+              "options": [
+                {
+                  "text": "نفس (himself)",
+                  "right": true
+                },
+                {
+                  "text": "عين (itself)",
+                  "right": true
+                },
+                {
+                  "text": "كل (all)",
+                  "right": true
+                },
+                {
+                  "text": "أجمع (all together)",
+                  "right": true
+                },
+                {
+                  "text": "غير (other than)"
+                },
+                {
+                  "text": "إلا (except)"
+                }
+              ],
+              "source": "ويكون بألفاظ معلومة، وهي: النفس، والعين، وكل، وأجمع، وتوابع أجمع",
+              "why": "Tawkid uses known words: nafs, 'ayn, kull, ajma' and the words that follow ajma'. Ghayr and illa are words of exception."
+            },
+            {
               "kind": "teach",
               "id": "badal",
               "title": "The substitute",
@@ -2726,6 +3099,19 @@
               "title": "Four kinds of substitute",
               "ar": "بدل الشيء من الشيء، وبدل البعض من الكل، وبدل الاشتمال، وبدل الغلط، نحو قولك: \"قام زيد أخوك، وأكلت الرغيف ثلثه، ونفعني زيد علمه، ورأيت زيدا الفرس\"، أردت أن تقول: الفرس فغلطت فأبدلت زيدا منه.",
               "en": "Whole for whole: قام زيد أخوك, \"Zayd, your brother, stood\". Part for whole: أكلت الرغيف ثلثه, \"I ate the loaf, a third of it\". Something it contains (ishtimal): نفعني زيد علمه, \"Zayd benefited me, his knowledge\". Mistake: رأيت زيدا الفرس, \"I saw Zayd, the horse\": you meant to say \"the horse\", slipped, and said Zayd first."
+            },
+            {
+              "kind": "choose",
+              "id": "badal-count",
+              "ask": "How many kinds of badal (substitute) are there?",
+              "options": [
+                "Three",
+                "Four",
+                "Two"
+              ],
+              "answer": 1,
+              "source": "وهو أربعة أقسام",
+              "why": "Four: whole for whole, part for whole, something it contains, and mistake."
             },
             {
               "kind": "choose",
@@ -2830,6 +3216,32 @@
         "باب المفعول معه"
       ],
       "whole": true,
+      "units": [
+        {
+          "title": "Object and adverbs",
+          "arabic": "المفعول به والمصدر والظرف",
+          "lessons": [
+            "ajr-accusative-object",
+            "ajr-accusative-masdar-zarf"
+          ]
+        },
+        {
+          "title": "State and exception",
+          "arabic": "الحال والتمييز والاستثناء",
+          "lessons": [
+            "ajr-accusative-state",
+            "ajr-accusative-except"
+          ]
+        },
+        {
+          "title": "La, call, reason",
+          "arabic": "لا والمنادى والمفعولان",
+          "lessons": [
+            "ajr-accusative-la-call",
+            "ajr-accusative-reason-with"
+          ]
+        }
+      ],
       "lessons": [
         {
           "id": "ajr-accusative-object",
@@ -2842,6 +3254,19 @@
               "title": "Fifteen accusative nouns: a preview",
               "ar": "المنصوبات خمسة عشر، وهي: المفعول به، والمصدر، وظرف الزمان، وظرف المكان، والحال، والتمييز، والمستثنى، واسم لا، والمنادى، والمفعول من أجله، والمفعول معه، وخبر كان وأخواتها، واسم إن وأخواتها.",
               "en": "This part is about the mansub (accusative) nouns, which usually end in -a. The book lists fifteen as a preview; each new one is taught later in this part: the object, the masdar, the time-word, the place-word, the hal, the tamyiz, the excepted noun, the noun of la, the called one, the reason-object, the with-object..."
+            },
+            {
+              "kind": "choose",
+              "id": "fifteen-count",
+              "ask": "How many accusative nouns does the book list?",
+              "options": [
+                "Seven",
+                "Fifteen",
+                "Eight"
+              ],
+              "answer": 1,
+              "source": "المنصوبات خمسة عشر",
+              "why": "Fifteen. Seven is the count of the raised nouns."
             },
             {
               "kind": "teach",
@@ -3359,6 +3784,19 @@
               "en": "Istithna' is making an exception (\"except\"). Its words are eight: illa; ghayr; siwa, suwa and sawa' (three ways of saying \"other than\"); khala, 'ada and hasha."
             },
             {
+              "kind": "choose",
+              "id": "eight-count",
+              "ask": "How many words of exception does the book list?",
+              "options": [
+                "Ten",
+                "Five",
+                "Eight"
+              ],
+              "answer": 2,
+              "source": "وحروف الاستثناء ثمانية",
+              "why": "Eight: illa, ghayr, siwa, suwa, sawa', khala, 'ada and hasha."
+            },
+            {
               "kind": "teach",
               "id": "complete",
               "title": "Complete and positive",
@@ -3597,6 +4035,19 @@
               "title": "Five kinds of called one",
               "ar": "المنادى خمسة أنواع: المفرد العلم، والنكرة المقصودة، والنكرة غير المقصودة، والمضاف، والشبيه بالمضاف.",
               "en": "The munada is the one called with ya (\"O ...\"). Five kinds: a single proper name (Zayd); an intended indefinite (a particular man you face); an unintended indefinite (any man); a mudaf, a word joined to another (ya 'Abdallah); and one like a mudaf."
+            },
+            {
+              "kind": "choose",
+              "id": "munada-count",
+              "ask": "How many kinds of munada (called one) are there?",
+              "options": [
+                "Three",
+                "Five",
+                "Two"
+              ],
+              "answer": 1,
+              "source": "المنادى خمسة أنواع",
+              "why": "Five: the single name, the intended and the unintended indefinite, the mudaf, and the one like a mudaf."
             },
             {
               "kind": "teach",
@@ -3859,6 +4310,19 @@
               "title": "Three kinds",
               "ar": "مخفوض بالحرف، ومخفوض بالإضافة، وتابع للمخفوض.",
               "en": "Makhfud (genitive) nouns are of three kinds: made genitive by a particle, made genitive by idafa (a noun joined to the noun before it), and a follower of a genitive word."
+            },
+            {
+              "kind": "choose",
+              "id": "three-count",
+              "ask": "How many kinds of genitive noun are there?",
+              "options": [
+                "Two",
+                "Four",
+                "Three"
+              ],
+              "answer": 2,
+              "source": "مخفوض بالحرف، ومخفوض بالإضافة، وتابع للمخفوض.",
+              "why": "Three: by a particle, by idafa, and as a follower of a genitive word."
             },
             {
               "kind": "teach",

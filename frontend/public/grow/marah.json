@@ -19,6 +19,12 @@
       "kitab": "الباب الأول: في بيان بناء الصحيح",
       "kitabs": ["الباب الأول: في بيان بناء الصحيح", "فصل في بيان أمثلة الماضي", "فصل وتدخل المضمرات في الماضي وأخواته", "فصل في المستقبل", "\"فصل: في الأمر والنهي:", "فصل في اسم الفاعل", "فصل: في اسم المفعول", "\"فصل: في اسمي الزمان والمكان\":"],
       "whole": true,
+      "units": [
+        { "title": "Babs and masdars", "arabic": "أبنية الصحيح", "lessons": ["marah-sahih-seven", "marah-sahih-ishtiqaq", "marah-sahih-masdar", "marah-sahih-abwab", "marah-sahih-mazid"] },
+        { "title": "Past and pronouns", "arabic": "الماضي والمضمرات", "lessons": ["marah-sahih-madi", "marah-sahih-madi-ta", "marah-sahih-damir", "marah-sahih-mustatir"] },
+        { "title": "Present and command", "arabic": "المستقبل والأمر والنهي", "lessons": ["marah-sahih-mudari", "marah-sahih-amr", "marah-sahih-ifal", "marah-sahih-tawkid", "marah-sahih-majhul"] },
+        { "title": "Derived nouns", "arabic": "الفاعل والمفعول والمكان", "lessons": ["marah-sahih-fail", "marah-sahih-mubalagha", "marah-sahih-maful", "marah-sahih-makan"] }
+      ],
       "lessons": [
         {
           "id": "marah-sahih-seven",
@@ -246,6 +252,15 @@
               "en": "The masdar of a three-letter verb comes on many patterns. Sibawayh, the great grammarian, counted 32. They are learnt from what the Arabs said, not worked out by rule."
             },
             {
+              "kind": "choose",
+              "id": "count",
+              "ask": "How many masdar patterns of the three-letter verb did Sibawayh count?",
+              "options": ["Six", "Thirty-two", "Twelve"],
+              "answer": 1,
+              "source": "يرتقي إلى اثنين وثلاثين بابا",
+              "why": "Thirty-two, as heard from the Arabs. Six is the number of babs of the bare three-letter verb."
+            },
+            {
               "kind": "teach",
               "id": "plain",
               "title": "Middle letter silent, nothing added",
@@ -455,6 +470,15 @@
               "en": "Twelve babs branch off the three-letter verb by adding one, two or three letters. One: أكرم, قطّع, قاتل. Two: تفضّل, تضارب, انصرف, احتقر, احمرّ. Three: استخرج, اخشوشن, اجلوّذ, احمارّ."
             },
             {
+              "kind": "choose",
+              "id": "count",
+              "ask": "How many babs branch off the three-letter verb by added letters?",
+              "options": ["Six", "Twelve", "Three"],
+              "answer": 1,
+              "source": "واثنا عشر لمنشبعة الثلاثي",
+              "why": "Twelve, made by adding one, two or three letters. Six are the bare babs."
+            },
+            {
               "kind": "sort",
               "id": "sort-added",
               "ask": "One letter added, or two?",
@@ -577,6 +601,15 @@
               "title": "Fourteen forms",
               "ar": "بيان أمثلة \"الماضي\" هو فعل دل وضعا على معنى وجد قبل زمان أخبارك \"وهو يجيء على أربعة عشر وجها\"",
               "en": "The madi (past) tells of something that happened before you speak. It comes in 14 forms: six for ‘he, she, they’ (absent), six for ‘you’, and two for ‘I’ and ‘we’."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "In how many forms does the past come?",
+              "options": ["Twelve", "Fourteen", "Six"],
+              "answer": 1,
+              "source": "وهو يجيء على أربعة عشر وجها",
+              "why": "Fourteen: six absent, six spoken to, and two for the speaker."
             },
             {
               "kind": "order",
@@ -1416,6 +1449,15 @@
               "en": "Both nuns come in seven places where there is some request: the command (اضربنّ), the prohibition (لا تضربنّ), the question (هل تضربنّ), the wish (ليتك تضربنّ), the offer (ألا تضربنّ), the answer of an oath (والله لأضربنّ), and rarely the negative (لا تضربنّ), because it looks like the prohibition."
             },
             {
+              "kind": "choose",
+              "id": "count",
+              "ask": "In how many places can the nuns of emphasis come?",
+              "options": ["Seven", "Five", "Three"],
+              "answer": 0,
+              "source": "تدخلات في سبعة مواضع لوجود معنى الطلب فيها",
+              "why": "Seven places, each with some request in it."
+            },
+            {
               "kind": "pick",
               "id": "where",
               "ask": "Where can the ن of emphasis come?",
@@ -1529,6 +1571,15 @@
               "title": "Seven babs: two dammas",
               "ar": "\"إلا في سبعة أبواب، فإن أول المتحرك يضم مع ضم الأول\"",
               "en": "In seven babs the first letter that has a vowel also takes damma: تُفُعِّل, تُفُوعِل, اُفتُعِل, اُنفُعِل, اُستُفعِل and others. For example تُفُضِّل, اُستُخرِج."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "In how many babs does the passive also put a damma on the first voweled letter?",
+              "options": ["Seven", "Three", "Twelve"],
+              "answer": 0,
+              "source": "إلا في سبعة أبواب، فإن أول المتحرك يضم مع ضم الأول",
+              "why": "Seven babs, like تُفُضِّل and اُستُخرِج."
             },
             {
               "kind": "sort",
@@ -1898,6 +1949,15 @@
             },
             {
               "kind": "choose",
+              "id": "count",
+              "ask": "How many nouns of place from يفعُل are heard with kasra?",
+              "options": ["Eleven", "Seven", "Three"],
+              "answer": 0,
+              "source": "أحد عشر اسما هي نحو المنسك",
+              "why": "Eleven, from المنسك to المسجد. All the rest take fatha."
+            },
+            {
+              "kind": "choose",
               "id": "masjid",
               "ask": "يسجُد has damma. Why is the place مسجِد, with kasra?",
               "options": ["Every damma verb gives kasra", "Because ج is a throat letter", "It is one of the eleven nouns given kasra, as the Arabs said them"],
@@ -1956,6 +2016,10 @@
       "kitab": "الباب الثاني: في المضاعف",
       "kitabs": ["الباب الثاني: في المضاعف"],
       "whole": true,
+      "units": [
+        { "title": "Doubling and merging", "arabic": "المضاعف والإدغام", "lessons": ["marah-mudaaf-what", "marah-mudaaf-idgham", "marah-mudaaf-kinds", "marah-mudaaf-amr"] },
+        { "title": "The ta of ifta'ala", "arabic": "تاء الافتعال", "lessons": ["marah-mudaaf-iftial", "marah-mudaaf-iftial-2", "marah-mudaaf-after-ta"] }
+      ],
       "lessons": [
         {
           "id": "marah-mudaaf-what",
@@ -2186,6 +2250,15 @@
               "title": "First kind: both have a vowel",
               "ar": "واجتماع الحرفين\" المتماثلين في الذات في كلمة واحدة \"على ثلاثة أضرب\" الضرب \"الأول\" منها \"أن يكونا\"؛ أي الحرفان المجتمعان \"متحركين يجب فيه\"؛ أي في الضرب الأول في جميع صور \"الإدغام نحو مد",
               "en": "Two same letters in one word meet in three ways. First: both have a vowel. Then idgham is a must: مَدَدَ becomes مدّ."
+            },
+            {
+              "kind": "choose",
+              "id": "ways-count",
+              "ask": "In how many ways do two same letters meet in one word?",
+              "options": ["Two", "Four", "Three"],
+              "answer": 2,
+              "source": "على ثلاثة أضرب",
+              "why": "Three: both voweled, the first silent, or the second silent."
             },
             {
               "kind": "teach",
@@ -2877,6 +2950,10 @@
       "kitab": "الباب الثالث: في المهموز",
       "kitabs": ["الباب الثالث: في المهموز"],
       "whole": true,
+      "units": [
+        { "title": "Lightening the hamza", "arabic": "تخفيف الهمزة", "lessons": ["marah-mahmuz-what", "marah-mahmuz-drop", "marah-mahmuz-two"] },
+        { "title": "رأى, babs, writing", "arabic": "رأى وأبواب المهموز", "lessons": ["marah-mahmuz-yara", "marah-mahmuz-ra", "marah-mahmuz-babs"] }
+      ],
       "lessons": [
         {
           "id": "marah-mahmuz-what",
@@ -3664,6 +3741,15 @@
               "en": "The mithal comes from five babs: وعد يعِد (to promise), وجل يوجَل (to fear), وهب يهَب (to give), وجه يوجُه (to be eminent), ومق يمِق (to love)."
             },
             {
+              "kind": "choose",
+              "id": "babs-count",
+              "ask": "From how many babs does the mithal come?",
+              "options": ["Three", "Six", "Five"],
+              "answer": 2,
+              "source": "وهو\"؛ أي المثال يجيء من خمسة أبواب",
+              "why": "Five: وعد يعد, وجل يوجل, وهب يهب, وجه يوجه, ومق يمق."
+            },
+            {
               "kind": "teach",
               "id": "wajada",
               "title": "وجد يجُد",
@@ -3856,6 +3942,10 @@
       "kitab": "الباب الخامس في الأجوف",
       "kitabs": ["الباب الخامس في الأجوف"],
       "whole": true,
+      "units": [
+        { "title": "Changing the weak letter", "arabic": "إعلال الأجوف", "lessons": ["marah-ajwaf-what", "marah-ajwaf-alif", "marah-ajwaf-kept", "marah-ajwaf-cases"] },
+        { "title": "Forms of قال", "arabic": "تصريف قال", "lessons": ["marah-ajwaf-past", "marah-ajwaf-nouns", "marah-ajwaf-passive"] }
+      ],
       "lessons": [
         {
           "id": "marah-ajwaf-what",
@@ -4051,12 +4141,12 @@
             },
             {
               "kind": "choose",
-              "id": "cond-case",
-              "ask": "Ibn Jinni's first condition: where must the weak letter be?",
-              "options": ["In a verb, or a verb-shaped noun", "In any noun, of any shape at all", "At the very start of the word"],
-              "answer": 0,
-              "source": "\"إذا كن\"؛ أي حروف العلة \"في فعل\" لثقله \"أو في اسم على وزن فعل\"",
-              "why": "The weak letter must be in a verb, which is heavy, or in a noun on a verb's pattern."
+              "id": "cond-count",
+              "ask": "How many conditions does Ibn Jinni give for turning the weak letter into alif?",
+              "options": ["Four", "Seven", "Five"],
+              "answer": 1,
+              "source": "إنما يتحقق بشروط سبعة",
+              "why": "Seven conditions; all must hold before the weak letter turns into alif."
             },
             {
               "kind": "teach",
@@ -4790,6 +4880,10 @@
       "kitab": "الباب السادس في الناقص",
       "kitabs": ["الباب السادس في الناقص"],
       "whole": true,
+      "units": [
+        { "title": "Forms of رمى", "arabic": "تصريف رمى", "lessons": ["marah-naqis-what", "marah-naqis-yarmi", "marah-naqis-nouns"] },
+        { "title": "Ibdal", "arabic": "الإبدال", "lessons": ["marah-naqis-ibdal-hamza", "marah-naqis-ibdal-ta", "marah-naqis-ibdal-ya", "marah-naqis-ibdal-rest"] }
+      ],
       "lessons": [
         {
           "id": "marah-naqis-what",
@@ -4825,6 +4919,15 @@
               "title": "Its babs",
               "ar": "وهو\"؛ أي الناقص \"لا يجيء\" بالاستقراء \"من باب فعل يفعل\" بكسر العين فيهما",
               "en": "It comes from every bab except i-then-i: رمى يرمي (to throw), غزا يغزو (to raid), رضي يرضى (to be pleased), رعى يرعى (to graze), زكا يزكو (to grow)."
+            },
+            {
+              "kind": "choose",
+              "id": "babs-case",
+              "ask": "Which bab does the naqis NOT come from?",
+              "options": ["a then i, like رمى يرمي", "i then i", "a then u, like غزا يغزو"],
+              "answer": 1,
+              "source": "وهو\"؛ أي الناقص \"لا يجيء\" بالاستقراء \"من باب فعل يفعل\" بكسر العين فيهما",
+              "why": "It comes from every bab except i-then-i (kasra in both)."
             },
             {
               "kind": "sort",
@@ -5450,7 +5553,6 @@
           "id": "marah-naqis-ibdal-ya",
           "title": "Ibdal: ya and waw",
           "arabic": "الإبدال: الياء والواو",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",

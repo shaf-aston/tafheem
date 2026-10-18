@@ -23,6 +23,12 @@
       "arabic": "الطهارة",
       "kitab": "كتاب الطهارة",
       "whole": true,
+      "units": [
+        {"title": "Wudu", "arabic": "الوضوء", "lessons": ["tahara-words", "wudu", "nawaqid"]},
+        {"title": "Ghusl and water", "arabic": "الغسل والمياه", "lessons": ["ghusl", "water", "wells"]},
+        {"title": "Tayammum and khuffs", "arabic": "التيمم والمسح على الخفين", "lessons": ["tayammum", "khuffs"]},
+        {"title": "Blood and impurity", "arabic": "الحيض والأنجاس", "lessons": ["hayd", "tahara-istihada", "najasat"]}
+      ],
       "lessons": [
         {
           "id": "tahara-words",
@@ -130,7 +136,16 @@
               "id": "fard",
               "title": "The fard of wudu",
               "ar": "ففرض الطهارة: غسل الأعضاء الثلاثة ومسح الرأس والمرفقان والكعبان يدخلان في الغسل",
-              "en": "Wudu's fard (what it cannot do without): wash the three limbs (face, arms, feet) and wipe the head. The elbows and ankles are part of the washing."
+              "en": "Wudu has four fard (what it cannot do without): 1. wash the face; 2. wash the arms; 3. wipe the head; 4. wash the feet. The elbows and ankles are part of the washing."
+            },
+            {
+              "kind": "choose",
+              "id": "fard-count",
+              "ask": "How many fard acts does wudu have?",
+              "options": ["Four", "Three", "Six"],
+              "answer": 0,
+              "source": "ففرض الطهارة: غسل الأعضاء الثلاثة ومسح الرأس",
+              "why": "Washing the three limbs (face, arms, feet) and wiping the head: four."
             },
             {
               "kind": "pick",
@@ -337,7 +352,7 @@
               "id": "fard",
               "title": "The fard of ghusl",
               "ar": "وفرض الغسل: المضمضة والاستنشاق وغسل سائر البدن",
-              "en": "Ghusl is the full bath. Its fard: rinse the mouth, rinse the nose, and wash the whole body. In wudu, mouth and nose are sunnah; in ghusl they are fard."
+              "en": "Ghusl is the full bath. Its fard are three: 1. rinse the mouth; 2. rinse the nose; 3. wash the whole body. In wudu, mouth and nose are sunnah; in ghusl they are fard."
             },
             {
               "kind": "choose",
@@ -347,6 +362,15 @@
               "answer": 0,
               "source": "وفرض الغسل: المضمضة والاستنشاق وغسل سائر البدن",
               "why": "No. In ghusl the mouth and nose are part of the fard, so he must rinse them."
+            },
+            {
+              "kind": "choose",
+              "id": "fard-count",
+              "ask": "How many fard acts does ghusl have?",
+              "options": ["Three", "Four", "Two"],
+              "answer": 0,
+              "source": "وفرض الغسل: المضمضة والاستنشاق وغسل سائر البدن",
+              "why": "Rinsing the mouth, rinsing the nose, and washing the whole body: three."
             },
             {
               "kind": "teach",
@@ -384,7 +408,16 @@
               "id": "causes",
               "title": "What makes ghusl necessary",
               "ar": "والمعاني الموجبة للغسل: إنزال المني على وجه الدفق والشهوة من الرجل والمرأة والتقاء الختانين من غير إنزال والحيض والنفاس",
-              "en": "Ghusl becomes necessary after: the release of mani (sexual fluid) with force and desire, for a man or a woman; intercourse, even with no release (the book's words: \"the meeting of the two circumcised parts\"); hayd (the monthly period); and nifas (bleeding after childbirth)."
+              "en": "Four things make ghusl necessary: 1. mani (sexual fluid) released with force and desire, for a man or a woman; 2. intercourse, even with no release (\"the meeting of the two circumcised parts\"); 3. hayd (the monthly period); 4. nifas (bleeding after childbirth)."
+            },
+            {
+              "kind": "choose",
+              "id": "causes-count",
+              "ask": "How many things does al-Quduri list that make ghusl necessary?",
+              "options": ["Four", "Three", "Six"],
+              "answer": 0,
+              "source": "والمعاني الموجبة للغسل: إنزال المني على وجه الدفق والشهوة من الرجل والمرأة والتقاء الختانين من غير إنزال والحيض والنفاس",
+              "why": "Mani released with desire, intercourse, hayd and nifas: four."
             },
             {
               "kind": "teach",
@@ -727,6 +760,15 @@
               "why": "Two strikes: the first for the face, the second for the arms to the elbows."
             },
             {
+              "kind": "choose",
+              "id": "strikes-count",
+              "ask": "How many strikes on the earth does tayammum take?",
+              "options": ["Two", "One", "Three"],
+              "answer": 0,
+              "source": "والتيمم ضربتان: يمسح بإحداهما وجهه وبالأخرى يديه إلى المرفقين",
+              "why": "One strike for the face, one for the arms: two."
+            },
+            {
               "kind": "teach",
               "id": "earth",
               "title": "What it is made with",
@@ -949,6 +991,15 @@
               "en": "Hayd is a woman's monthly bleeding. The shortest hayd is three days and nights. Bleeding shorter than that is not hayd: it is istihada, bleeding outside the normal pattern."
             },
             {
+              "kind": "choose",
+              "id": "least-q",
+              "ask": "What is the shortest hayd?",
+              "options": ["Three days and nights", "One day and a night", "Ten days and their nights"],
+              "answer": 0,
+              "source": "أقل الحيض ثلاثة أيام ولياليها",
+              "why": "The shortest hayd is three days and nights; less is istihada."
+            },
+            {
               "kind": "teach",
               "id": "most",
               "title": "The longest hayd, and colours",
@@ -1085,6 +1136,15 @@
               "title": "Nifas",
               "ar": "والنفاس: هو الدم الخارج عقيب الولادة والدم الذي تراه الحامل وما تره المرأة في حال ولادتها قبل خروج الولد استحاضة وأقل النفاس لا حد له وأكثره أربعون يوما وما زاد على ذلك فهو استحاضة وإذا تجاوز الدم الأربعين وقد كانت هذه المرأة ولدت قبل ذلك ولها عادة في النفاس ردت إلى أيام عادتها",
               "en": "Nifas is the bleeding after childbirth. Bleeding while pregnant, or in labour before the baby comes out, is istihada. Nifas has no shortest length; its longest is forty days, and more is istihada. If it passes forty and she has a known habit from an earlier birth, she goes back to her habit."
+            },
+            {
+              "kind": "choose",
+              "id": "nifas-most",
+              "ask": "What is the longest nifas?",
+              "options": ["Forty days", "Ten days", "Sixty days"],
+              "answer": 0,
+              "source": "وأقل النفاس لا حد له وأكثره أربعون يوما",
+              "why": "Nifas has no shortest length, and its longest is forty days."
             },
             {
               "kind": "sort",
@@ -1246,6 +1306,15 @@
       "arabic": "الصلاة",
       "kitab": "كتاب الصلاة",
       "whole": true,
+      "units": [
+        {"title": "Times and adhan", "arabic": "المواقيت والأذان", "lessons": ["times", "adhan", "conditions"]},
+        {"title": "How to pray", "arabic": "صفة الصلاة", "lessons": ["salah-fard", "salah-order", "salah-witr", "salah-jamaah"]},
+        {"title": "What spoils it", "arabic": "ما يفسد الصلاة", "lessons": ["salah-spoils", "missed-times"]},
+        {"title": "Nafl and sahw", "arabic": "النوافل والسهو", "lessons": ["nawafil", "sahw"]},
+        {"title": "The sick and travellers", "arabic": "صلاة المريض والمسافر", "lessons": ["sick-tilawa", "traveller"]},
+        {"title": "Jumu'a and Eid", "arabic": "الجمعة والعيدين", "lessons": ["jumuah", "eid", "kusuf-istisqa-khawf"]},
+        {"title": "Funerals", "arabic": "الجنائز", "lessons": ["janaza", "shahid-kaba"]}
+      ],
       "lessons": [
         {
           "id": "times",
@@ -1604,7 +1673,16 @@
               "id": "six",
               "title": "The six fard of salah",
               "ar": "فرائض الصلاة ستة: التحريمة والقيام والقرءة والركوع والسجود والقعدة الأخيرة مقدار التشهد",
-              "en": "Salah has six fard (parts it cannot do without): the opening takbir (tahrima), standing (qiyam), reciting Qur'an, ruku (bowing), sujud (prostrating), and the last sitting, for as long as the tashahhud takes."
+              "en": "Salah has six fard (parts it cannot do without): 1. the opening takbir (tahrima); 2. standing (qiyam); 3. reciting Qur'an; 4. ruku (bowing); 5. sujud (prostrating); 6. the last sitting, as long as the tashahhud takes."
+            },
+            {
+              "kind": "choose",
+              "id": "six-count",
+              "ask": "How many fard does salah have?",
+              "options": ["Six", "Four", "Seven"],
+              "answer": 0,
+              "source": "فرائض الصلاة ستة",
+              "why": "Takbir, standing, recitation, ruku, sujud and the last sitting: six."
             },
             {
               "kind": "pick",
@@ -1841,6 +1919,15 @@
               "arabic-options": true,
               "source": "ويقنت في الثالثه قبل الركوع في جميع السنة",
               "why": "قبل: in the third rak'ah, before ruku."
+            },
+            {
+              "kind": "choose",
+              "id": "witr-count",
+              "ask": "How many rak'ahs is witr?",
+              "options": ["Three", "One", "Five"],
+              "answer": 0,
+              "source": "والوتر: ثلاث ركعات لا يفصل بينها بسلام",
+              "why": "Witr is three rak'ahs, with no salam between them."
             },
             {
               "kind": "teach",
@@ -2186,6 +2273,15 @@
               "title": "Several missed prayers",
               "ar": "فإن فاتته صلوات رتبها في القضاء كما وجبت في الأصل إلا أن تزيد الفوائت على ست صلوات فيسقط الترتيب فيها",
               "en": "If several are missed, make them up in the order they were due. But if the missed prayers are more than six, keeping that order drops away."
+            },
+            {
+              "kind": "choose",
+              "id": "six-case",
+              "ask": "Ilyas has seven missed prayers to make up. Must he keep their order?",
+              "options": ["No: past six, order drops", "Yes, always in order", "Yes, unless time is tight"],
+              "answer": 0,
+              "source": "إلا أن تزيد الفوائت على ست صلوات",
+              "why": "Keeping the order drops away once the missed prayers are more than six."
             },
             {
               "kind": "teach",
@@ -2551,6 +2647,15 @@
               "en": "Sujud al-tilawa is one prostration on reciting certain ayat. There are fourteen places: the end of al-A'raf, al-Ra'd, al-Nahl, Bani Isra'il, Maryam, the first in al-Hajj, al-Furqan, al-Naml, Alif Lam Mim Tanzil, Sad, Ha Mim al-Sajda, al-Inshiqaq and al-'Alaq."
             },
             {
+              "kind": "choose",
+              "id": "places-count",
+              "ask": "How many places of sujud al-tilawa are in the Qur'an?",
+              "options": ["Fourteen", "Seventeen", "Ten"],
+              "answer": 0,
+              "source": "سجود التلاوة في القرآن أربعة عشر",
+              "why": "Al-Quduri counts fourteen places of sajda."
+            },
+            {
               "kind": "teach",
               "id": "who",
               "title": "Who must prostrate",
@@ -2603,6 +2708,15 @@
               "title": "What counts as travel",
               "ar": "مسيرة ثلاثة أيام ولياليها بسير الإبل ومشي الأقدام ولا يعتبر ذلك بالسير في الماء",
               "en": "The journey that changes the rulings is one to a place three days and nights away at the pace of camels and people walking. It is not measured by travel on water."
+            },
+            {
+              "kind": "choose",
+              "id": "distance-q",
+              "ask": "How far must the journey be to count as travel?",
+              "options": ["Three days' walk away", "One day's walk away", "Three days away by water"],
+              "answer": 0,
+              "source": "مسيرة ثلاثة أيام ولياليها بسير الإبل ومشي الأقدام",
+              "why": "Three days and nights at the pace of camels and walkers. Travel on water is not the measure."
             },
             {
               "kind": "teach",
@@ -2948,7 +3062,6 @@
           "id": "kusuf-istisqa-khawf",
           "title": "Eclipse, rain, tarawih and fear prayers",
           "arabic": "الكسوف والاستسقاء وقيام رمضان والخوف",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -3133,6 +3246,15 @@
               "why": "Four takbirs: praise, salawat, du'a, then salam. It is not prayed in a congregational mosque."
             },
             {
+              "kind": "choose",
+              "id": "takbir-count",
+              "ask": "How many takbirs does the janaza prayer have?",
+              "options": ["Four", "Three", "Five"],
+              "answer": 0,
+              "source": "ثم يكبر تكبيرة رابعة ويسلم",
+              "why": "Praise, salawat, du'a, each after a takbir, then a fourth takbir and salam: four."
+            },
+            {
               "kind": "teach",
               "id": "burial",
               "title": "Carrying and burial",
@@ -3168,7 +3290,6 @@
           "id": "shahid-kaba",
           "title": "The shahid, and prayer in the Ka'ba",
           "arabic": "باب الشهيد",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -3285,6 +3406,11 @@
       "arabic": "الزكاة",
       "kitab": "كتاب الزكاة",
       "whole": true,
+      "units": [
+        {"title": "Herds", "arabic": "زكاة المواشي", "lessons": ["zakah-who", "zakah-camels", "zakah-camels-more", "zakah-cattle", "zakah-sheep", "zakah-horses", "zakah-herds"]},
+        {"title": "Gold, goods, crops", "arabic": "الذهب والعروض والزروع", "lessons": ["zakah-gold-silver", "zakah-trade", "zakah-crops"]},
+        {"title": "Who receives it", "arabic": "من يجوز دفع الصدقة إليه", "lessons": ["zakah-recipients", "zakah-not-to", "zakah-fitr"]}
+      ],
       "lessons": [
         {
           "id": "zakah-who",
@@ -3297,6 +3423,15 @@
               "title": "Who must pay",
               "ar": "الزكاة: واجبة على الحر المسلم البالغ العاقل إذا ملك نصابا ملكا تاما وحال عليه الحول",
               "en": "Zakat is the yearly charity that Allah makes fard (compulsory) on wealth. It is owed by a person who is free, Muslim, grown-up and sane, who fully owns a nisab (the smallest amount of wealth that makes zakat due), once a hawl (one full year) has passed over it."
+            },
+            {
+              "kind": "choose",
+              "id": "nisab-def",
+              "ask": "What is a nisab?",
+              "options": ["The smallest amount that makes zakat due", "One full year passing over the wealth one owns", "The part of one's wealth handed to the poor"],
+              "answer": 0,
+              "source": "إذا ملك نصابا ملكا تاما وحال عليه الحول",
+              "why": "A nisab is the least wealth that makes zakat due. The full year is the hawl."
             },
             {
               "kind": "teach",
@@ -4377,6 +4512,15 @@
               "en": "Allah names who zakat is for in the ayah \"Zakat is only for the poor and the needy...\". That makes eight kinds of people. One of them, al-mu'allafa qulubuhum (people whose hearts were being won over to Islam), has dropped, because Allah made Islam strong and it no longer needs them."
             },
             {
+              "kind": "choose",
+              "id": "eight-count",
+              "ask": "How many kinds of people does the ayah of zakat name?",
+              "options": ["Eight", "Seven", "Four"],
+              "answer": 0,
+              "source": "فهذه ثمانية أصناف",
+              "why": "The ayah names eight kinds; one of them, al-mu'allafa qulubuhum, has dropped."
+            },
+            {
               "kind": "teach",
               "id": "poor",
               "title": "The poor, the needy, the worker",
@@ -4741,6 +4885,11 @@
       "arabic": "الصوم",
       "kitab": "كتاب الصوم",
       "whole": true,
+      "units": [
+        {"title": "The fast", "arabic": "الصوم وما يفسده", "lessons": ["sawm-kinds", "sawm-breaks", "sawm-kaffara"]},
+        {"title": "Excuses", "arabic": "الأعذار", "lessons": ["sawm-excuses", "sawm-cases"]},
+        {"title": "Eid moon and i'tikaf", "arabic": "هلال الفطر والاعتكاف", "lessons": ["sawm-mistakes", "sawm-itikaf"]}
+      ],
       "lessons": [
         {
           "id": "sawm-kinds",
@@ -4753,6 +4902,15 @@
               "title": "Two kinds",
               "ar": "الصوم ضربان: واجب ونفل فالواجب ضربان",
               "en": "Fasting is of two kinds: wajib (required) and nafl (extra, voluntary). The wajib kind is itself of two kinds. The first is tied to a set time, like the fast of Ramadan, or a nadhr (a vow) to fast on a named day; its intention may be made in the night before."
+            },
+            {
+              "kind": "choose",
+              "id": "kinds-count",
+              "ask": "Fasting is of two kinds. What are they?",
+              "options": ["Wajib and nafl", "Fard and makruh", "Ramadan and qada"],
+              "answer": 0,
+              "source": "الصوم ضربان: واجب ونفل",
+              "why": "Al-Quduri: fasting is of two kinds, wajib and nafl."
             },
             {
               "kind": "teach",
@@ -5460,6 +5618,16 @@
       "arabic": "الحج",
       "kitab": "كتاب الحج",
       "whole": true,
+      "units": [
+        {"title": "Ihram", "arabic": "الإحرام", "lessons": ["hajj-who", "hajj-miqat", "hajj-ihram", "hajj-muhrim"]},
+        {"title": "Tawaf and sa'y", "arabic": "الطواف والسعي", "lessons": ["hajj-qudum", "hajj-sai"]},
+        {"title": "Arafa to Mina", "arabic": "من عرفة إلى منى", "lessons": ["hajj-arafat", "hajj-muzdalifa", "hajj-nahr", "hajj-tashriq", "hajj-wuquf"]},
+        {"title": "Kinds of hajj", "arabic": "القران والتمتع", "lessons": ["hajj-qiran", "hajj-tamattu", "hajj-months"]},
+        {"title": "Penalties", "arabic": "جنايات المحرم", "lessons": ["hajj-wrongs", "hajj-jima", "hajj-impure-tawaf", "hajj-missed-rites"]},
+        {"title": "Killing game", "arabic": "جزاء الصيد", "lessons": ["hajj-game", "hajj-game-harm", "hajj-game-rules", "hajj-double"]},
+        {"title": "The blocked pilgrim", "arabic": "الإحصار والفوات", "lessons": ["hajj-ihsar", "hajj-fawat"]},
+        {"title": "The hady", "arabic": "الهدي", "lessons": ["hajj-hady", "hajj-hady-care"]}
+      ],
       "lessons": [
         {
           "id": "hajj-who",
@@ -5574,14 +5742,23 @@
               "id": "north",
               "title": "The miqats of Madinah, Iraq and Syria",
               "ar": "والمواقيت التي لا يجوز أن يتجاوزها الإنسان إلا محرما: لأهل المدينة ذو الحليفة ولأهل العراق ذات عرق ولأهل الشام الجحفة",
-              "en": "A miqat is a fixed place on the way to Makkah. A pilgrim may not pass it without being in ihram. For the people of Madinah it is Dhul-Hulayfa, for Iraq it is Dhat 'Irq, and for Syria (al-Sham) it is al-Juhfa."
+              "en": "A miqat is a fixed place on the way to Makkah that a pilgrim may not pass without ihram. Al-Quduri names five. 1. Madinah: Dhul-Hulayfa. 2. Iraq: Dhat 'Irq. 3. Syria (al-Sham): al-Juhfa."
             },
             {
               "kind": "teach",
               "id": "south",
               "title": "The miqats of Najd and Yemen",
               "ar": "ولأهل نجد قرن المنازل ولأهل اليمن يلملم",
-              "en": "For the people of Najd it is Qarn al-Manazil, and for Yemen it is Yalamlam."
+              "en": "4. Najd: Qarn al-Manazil. 5. Yemen: Yalamlam."
+            },
+            {
+              "kind": "choose",
+              "id": "miqat-count",
+              "ask": "How many miqats does al-Quduri name?",
+              "options": ["Five", "Four", "Seven"],
+              "answer": 0,
+              "source": ["لأهل المدينة ذو الحليفة ولأهل العراق", "ولأهل نجد قرن المنازل ولأهل اليمن يلملم"],
+              "why": "Dhul-Hulayfa, Dhat 'Irq, al-Juhfa, Qarn al-Manazil and Yalamlam: five."
             },
             {
               "kind": "choose",
@@ -5772,6 +5949,15 @@
               "why": "A muhrim may not kill game, point at it, or show where it is."
             },
             {
+              "kind": "choose",
+              "id": "jidal-def",
+              "ask": "Of the three things Allah forbade, what is jidal?",
+              "options": ["Quarrelling", "Intimate talk", "Sins"],
+              "answer": 0,
+              "source": "من الرفث والفسوق والجدال",
+              "why": "Rafath is intimate talk and relations, fusuq is sins, and jidal is quarrelling."
+            },
+            {
               "kind": "teach",
               "id": "clothes",
               "title": "Clothes he may not wear",
@@ -5910,6 +6096,15 @@
               "title": "Seven circuits",
               "ar": "ثم آخذ عن يمينه مما يلي الباب وقد اضطبع رداءه قبل ذلك فيطوف بالبيت سبعة أشواط",
               "en": "Then he goes to his right, towards the door, and walks round the House seven shawts (circuits). Before that he does idtiba': he puts his rida' under his right arm and over his left shoulder."
+            },
+            {
+              "kind": "choose",
+              "id": "circuits-count",
+              "ask": "How many circuits (shawts) of the House is the tawaf?",
+              "options": ["Seven", "Three", "Five"],
+              "answer": 0,
+              "source": "فيطوف بالبيت سبعة أشواط",
+              "why": "He walks round the House seven circuits."
             },
             {
               "kind": "teach",
@@ -6296,6 +6491,15 @@
               "en": "A jamra is one of the stone pillars in Mina that pilgrims throw pebbles at. On reaching Mina he starts with Jamrat al-'Aqaba, throwing at it from the valley bottom seven pebbles, small like those flicked between the fingers."
             },
             {
+              "kind": "choose",
+              "id": "pebbles-count",
+              "ask": "How many pebbles does he throw at Jamrat al-'Aqaba?",
+              "options": ["Seven", "Three", "Twenty-one"],
+              "answer": 0,
+              "source": "فيرميها من بطن الوادي بسبع حصيات",
+              "why": "Seven pebbles, small like those flicked between the fingers."
+            },
+            {
               "kind": "teach",
               "id": "takbir",
               "title": "Takbir, and the talbiya stops",
@@ -6599,6 +6803,15 @@
               "title": "Qiran is best",
               "ar": "القران أفضل عندنا من التمتع والإفراد وصفة القران:",
               "en": "There are three ways to do Hajj. Ifrad: Hajj alone. Tamattu': an umrah, coming out of ihram, then Hajj. Qiran: umrah and Hajj together in one ihram. For us (the Hanafis), qiran is the best of the three. The qarin enters ihram for both together at the miqat."
+            },
+            {
+              "kind": "choose",
+              "id": "ways-q",
+              "ask": "Al-Quduri compares three ways of doing Hajj. Which three?",
+              "options": ["Qiran, tamattu' and ifrad", "Qiran, ihsar and tawaf al-sadr", "Tamattu', umrah and sa'y"],
+              "answer": 0,
+              "source": "القران أفضل عندنا من التمتع والإفراد",
+              "why": "Qiran, tamattu' and ifrad, and qiran is the best of them."
             },
             {
               "kind": "choose",
@@ -7152,7 +7365,6 @@
           "id": "hajj-impure-tawaf",
           "title": "Tawaf without purity, or cut short",
           "arabic": "من طاف محدثا",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -7760,6 +7972,15 @@
             },
             {
               "kind": "choose",
+              "id": "muhsar-def",
+              "ask": "What is a muhsar?",
+              "options": ["A pilgrim held back by an enemy or illness", "A pilgrim who missed the standing at Arafa", "A pilgrim who passed the miqat without ihram"],
+              "answer": 0,
+              "source": "إذا أحصر المحرم بعدو أو أصابه مرض منعه من المضي",
+              "why": "A muhsar is held back by an enemy or an illness. Missing Arafa is fawat."
+            },
+            {
+              "kind": "choose",
               "id": "ill-case",
               "ask": "Bilal is in ihram for Hajj but falls so ill on the way that he cannot go on. What does he do?",
               "options": ["Send a sheep to the Haram, then leave ihram", "Leave ihram at once, with nothing at all owed", "Slaughter a sheep where he is, then leave ihram"],
@@ -8064,7 +8285,6 @@
           "id": "hajj-hady-care",
           "title": "Slaughtering and caring for the hady",
           "arabic": "ذبح الهدايا",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -27506,6 +27726,15 @@
               "title": "Three days",
               "ar": "وهي جائزة في ثلاثة أيام: يوم النحر ويومان بعده",
               "en": "It can be done on three days: the day of sacrifice and the two days after it."
+            },
+            {
+              "kind": "choose",
+              "id": "days-count",
+              "ask": "On how many days may the udhiya be slaughtered?",
+              "options": ["Three", "Seven", "Four"],
+              "answer": 0,
+              "source": "وهي جائزة في ثلاثة أيام: يوم النحر ويومان بعده",
+              "why": "The day of sacrifice and the two days after it: three."
             },
             {
               "kind": "choose",

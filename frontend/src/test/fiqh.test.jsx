@@ -27,16 +27,22 @@ describe('fiqh', () => {
     fireEvent.click(screen.getByRole('button', { name: /Purity/ }))
     expect(visits.at(-1)).toBe('fiqh/tahara')
     expect(screen.getByRole('button', { name: 'Back to Worship' })).toBeTruthy()
-    // The ruling words open the part, then wudu.
-    const lessons = screen.getAllByRole('listitem')
+    // The part's first unit is headed on the path; the ruling words open it, then wudu.
+    expect(screen.getByRole('heading', { name: 'Wudu' })).toBeTruthy()
+    const lessons = screen.getAllByRole('listitem').filter((item) => item.querySelector('button'))
     expect(within(lessons[0]).getByText('The ruling words')).toBeTruthy()
     expect(within(lessons[1]).getByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
 
     fireEvent.click(within(lessons[1]).getByRole('button'))
     expect(visits.at(-1)).toBe('fiqh/tahara/wudu')
 
-    // The part's cards arrive in their own file; then teach, then "which are fard?": pick the four, Check, and the reason is said.
+    // The part's cards arrive in their own file; then teach, "how many?", then "which are fard?": pick the four, Check,
+    // and the reason is said.
     expect(await screen.findByText('The fard of wudu')).toBeTruthy()
+    click('Continue')
+    fireEvent.click(option('Four'))
+    click('Check')
+    await waitFor(() => expect(filed.at(-1)).toMatchObject({ item: 'wudu/fard-count', correct: true }))
     click('Continue')
     for (const name of ['Wash the face', 'Wash the arms, elbows included', 'Wipe the head', 'Wash the feet, ankles included']) click(name)
     click('Check')
