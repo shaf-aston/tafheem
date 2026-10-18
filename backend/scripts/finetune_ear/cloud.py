@@ -2,13 +2,13 @@
 
     python backend/scripts/finetune_ear/cloud.py          send this folder, wait, fetch the result
     python backend/scripts/finetune_ear/cloud.py --fetch  wait for the last run, then fetch its result
-    python backend/scripts/finetune_ear/cloud.py --ship   upload a kept ear-tuned/ to Hugging Face
+    python backend/scripts/finetune_ear/cloud.py --ship   upload a kept ear-tuned/ to Hugging Face and serve it
 
 Needs the Kaggle CLI signed in (`kaggle` reads ~/.kaggle). Watch a run live at
 https://www.kaggle.com/code/<id in kernel-metadata.json>. The result lands in
 backend/data/models/finetune-ear/: verdict.json, the run's log, and ear-tuned/ on a win.
---ship needs a Hugging Face login that can create repos (`hf auth login`, or HF_TOKEN) and
-prints the RECITATION_TRIAL_MODEL value that serves it; each upload gets its own revision.
+--ship needs a Hugging Face login that can create repos (`hf auth login`, or HF_TOKEN) and a
+master checkout that can push; it pins the upload's own revision in config.py.
 """
 import json
 import os
@@ -24,6 +24,7 @@ KERNEL = json.loads((HERE / 'kernel-metadata.json').read_text())['id']
 LANDS = HERE.parents[1] / 'data' / 'models' / 'finetune-ear'
 # Public, so a server needs no key. Named once, in the recipe, whose judge scores against it.
 CHAMPION = re.search(r"^CHAMPION = '(.+?)'", (HERE / 'finetune_ear.py').read_text(encoding='utf-8'), re.M)[1]
+CONFIG = HERE.parents[1] / 'config.py'
 EVERY = 60  # seconds between status checks
 ENDED = ('COMPLETE', 'ERROR', 'CANCEL')
 # Without these the CLI writes the Arabic log in Windows' own code page and fails half way.
@@ -43,16 +44,29 @@ def status():
         return ''
 
 
+def git(*args):
+    return subprocess.run(['git', *args], cwd=HERE, capture_output=True, text=True, check=True).stdout.strip()
+
+
 def ship():
+    """Upload a kept ear and pin it in config.py on master; the server's 5-minute pull of master serves it."""
     from huggingface_hub import HfApi
     verdict = json.loads((LANDS / 'verdict.json').read_text(encoding='utf-8'))
     if not verdict['keep']:
         sys.exit('verdict.json says not to keep this ear, so nothing is uploaded')
+    if git('rev-parse', '--abbrev-ref', 'HEAD') != 'master':
+        sys.exit('--ship runs from master, since the pin it commits is pushed there')
+    git('pull', '--ff-only', 'origin', 'master')
+    scores = f"words wrong: served ear {verdict['champion']}, this one {verdict['after']}"
     hub = HfApi()
     hub.create_repo(CHAMPION, private=False, exist_ok=True)
-    done = hub.upload_folder(repo_id=CHAMPION, folder_path=LANDS / 'ear-tuned', commit_message=
-                             f"words wrong: served ear {verdict['champion']}, this one {verdict['after']}")
-    print(f'RECITATION_TRIAL_MODEL={CHAMPION}@{done.oid}')
+    done = hub.upload_folder(repo_id=CHAMPION, folder_path=LANDS / 'ear-tuned', commit_message=scores)
+    pin = f'{CHAMPION}@{done.oid}'
+    text = CONFIG.read_text(encoding='utf-8')
+    CONFIG.write_text(re.sub(r'(recitation_trial_model: str = )".*"', rf'\g<1>"{pin}"', text), encoding='utf-8')
+    git('commit', '-m', f'Serve the ear {pin}\n\n{scores}', '--', str(CONFIG))
+    git('push', 'origin', 'master')
+    print(f'serving {pin} within 5 minutes')
 
 
 if '--ship' in sys.argv:

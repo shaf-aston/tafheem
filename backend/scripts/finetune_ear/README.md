@@ -8,8 +8,8 @@ Every step runs from any checkout, on this PC or in a cloud session; nothing is 
 | 1. Change the recipe | `finetune_ear.py` (knobs at the top) | the only training code; git holds every version |
 | 2. Train | `python backend/scripts/finetune_ear/cloud.py` | pushes to Kaggle's free GPU, waits, fetches |
 | 3. Judge | `backend/data/models/finetune-ear/verdict.json` | the new ear, the starting model and the served ear are scored on the same held clips; `keep` means it beat the served ear |
-| 4. Ship | `python backend/scripts/finetune_ear/cloud.py --ship` | uploads a kept `ear-tuned/` to the public Hugging Face repo `CHAMPION` names and prints its `repo@revision` |
-| 5. Serve | `recitation_trial_model` in `backend/config.py` | Oracle pulls master every 5 minutes and loads that revision (`services/recitation/listen.py` `_engine`) |
+| 4. Ship | `python backend/scripts/finetune_ear/cloud.py --ship` | uploads a kept `ear-tuned/` to the public Hugging Face repo `CHAMPION` names, writes its `repo@revision` into `recitation_trial_model` in `backend/config.py` and pushes that to master (run from master) |
+| 5. Serve | nothing to do | Oracle pulls master every 5 minutes and loads that revision (`services/recitation/listen.py` `_engine`) |
 
 `--fetch` waits for the last run and fetches it, without training. A run takes hours; watch it at the link `cloud.py` prints.
 
