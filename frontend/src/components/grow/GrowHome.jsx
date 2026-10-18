@@ -105,7 +105,9 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const hadith = nextOf(lessons.hadith)
   const ayah = nextOf(lessons.quran)
   const lead = books[last]?.ready && books[last].next ? last : null
-  const wordsLine = words.ready ? say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length }) : '\u00a0'
+  let wordsLine = '\u00a0'
+  if (words.ready) wordsLine = say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length })
+  else if (words.error) wordsLine = say('Words could not load just now. The book worlds below still work.')
   const partOf = (book) => book.parts.find((part) => part.id === book.next.part)?.title
   const accent = worldOf(lead ?? 'words').accent
   return (
@@ -179,13 +181,16 @@ function WorldTile({ world, status, share, onOpen }) {
   )
 }
 
+// A world that could not load says so, instead of loading for ever.
+const waiting = (state) => ({ status: state.error ? say('Could not load') : say('Loading…'), share: 0 })
+
 const stageStatus = (state) => (state.ready
   ? { status: say('Stage {n} · {into} of {need}', { n: state.stage.stage + 1, ...state.stage }), share: state.stage.into / state.stage.need }
-  : { status: say('Loading…'), share: 0 })
+  : waiting(state))
 
 /** A book world's tile: lessons finished of those written so far. */
 function bookStatus(state) {
-  if (!state.ready) return { status: say('Loading…'), share: 0 }
+  if (!state.ready) return waiting(state)
   const total = state.parts.reduce((sum, part) => sum + part.lessons.length, 0)
   const done = state.parts.reduce((sum, part) => sum + part.finished, 0)
   return { status: say('{done} of {total} lessons', { done, total }), share: total ? done / total : 0 }

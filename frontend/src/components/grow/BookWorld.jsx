@@ -1,9 +1,12 @@
 /**
  * A book world (Fiqh), one level at a time: its areas (Worship, Trade…), an area's parts (Purity, Prayer…), a part's lessons.
- * A book without areas opens on its parts. Above them, the next lesson and any review due. `place` is the address step,
+ * A book without areas opens on its parts. Above them, the next lesson and any review due; below, the book's glossary
+ * (its `glossary`: each term, its Arabic, what it means, and the lesson that teaches it). `place` is the address step,
  * an area's id or a part's. `state` from lib/useBookWorld.js; a lesson plays in LessonRunner.
  */
-import { areaOf } from '../../lib/bookLesson'
+import { useState } from 'react'
+
+import { areaOf, lessonsOf } from '../../lib/bookLesson'
 import { REVIEW } from '../../lib/useBookWorld'
 import { sayIn } from '../../lib/say'
 import ArabicText from '../ui/ArabicText'
@@ -31,6 +34,40 @@ function Next({ book, accent, onStart }) {
         </button>
       )}
     </div>
+  )
+}
+
+/** The book's terms, folded away; a filter narrows them, and each opens the lesson that teaches it. */
+function Glossary({ book, onStart }) {
+  const [find, setFind] = useState('')
+  const terms = book.glossary ?? []
+  if (!terms.length) return null
+  const lessons = new Map(lessonsOf(book).map((lesson) => [lesson.id, lesson]))
+  const looking = find.trim().toLowerCase()
+  const shown = terms.filter((one) => !looking || `${one.term} ${one.ar} ${one.en}`.toLowerCase().includes(looking))
+  return (
+    <details className="grow-glossary">
+      <summary>{say('Glossary · {n} terms', { n: terms.length })}</summary>
+      <input type="search" value={find} onChange={(event) => setFind(event.target.value)} placeholder={say('Find a term')}
+        aria-label={say('Find a term')} />
+      <dl>
+        {shown.map((one) => {
+          const lesson = lessons.get(one.lesson)
+          return (
+            <div key={one.term}>
+              <dt><b>{one.term}</b> <ArabicText size="sm">{one.ar}</ArabicText></dt>
+              <dd>
+                {one.en}
+                {lesson && (
+                  <button type="button" onClick={() => onStart(lesson.id, lesson.part)}>{say('Lesson: {title}', { title: lesson.title })}</button>
+                )}
+              </dd>
+            </div>
+          )
+        })}
+      </dl>
+      {!shown.length && <p className="grow-hint">{say('No term matches.')}</p>}
+    </details>
   )
 }
 
@@ -93,6 +130,7 @@ export default function BookWorld({ world, accent, state: book, place, onBack, o
           {book.offline && <p className="grow-hint">{say('Your progress could not be loaded, so it is not shown. The lessons still work.')}</p>}
           <Next book={book} accent={accent} onStart={onStart} />
           {body}
+          <Glossary book={book.book} onStart={onStart} />
           <p className="grow-hint">{say('{book} ({madhhab}). Arabic is the book’s own words; the English is ours. Learn it with a teacher too.', { book: book.book.book, madhhab: book.book.madhhab })}</p>
         </div>
       )}

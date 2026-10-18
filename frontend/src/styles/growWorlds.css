@@ -341,3 +341,12 @@
 .grow-leave p { flex: 1 1 100%; margin: 0; font-size: var(--type-ui); }
 .grow-leave button { padding: 8px 14px; border-radius: var(--radius-md); font-weight: 600; color: var(--danger); }
 .grow-leave .grow-leave-stay { background: var(--w); color: var(--bg); }
+
+/* A book's glossary, folded under its tiles or path: a filter, then each term with its meaning and lesson. */
+.grow-glossary { width: 100%; max-width: 560px; margin-inline: auto; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 14px; }
+.grow-glossary summary { cursor: pointer; font-weight: 700; }
+.grow-glossary input { width: 100%; margin: 12px 0 4px; padding: 8px 10px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
+.grow-glossary dl { display: grid; gap: 10px; margin: 8px 0 0; }
+.grow-glossary dt { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.grow-glossary dd { margin: 2px 0 0; color: var(--text-dim); display: grid; justify-items: start; gap: 4px; }
+.grow-glossary dd button { color: var(--w); font-weight: 600; font-size: var(--type-small); }
