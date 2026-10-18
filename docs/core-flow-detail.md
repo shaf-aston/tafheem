@@ -134,7 +134,7 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
   `backend/config.py`: every setting, and the only reader of the environment.
 - Hadith search (`services/hadith/search.py`): words matched as written and by dictionary form
   (`lemma.py`, CAMeL), numbers matched however written, misspellings swapped by `repair.py`
-  (fewest slips, most common word in everyday writing via `language.py`, so a real word the hadith
+  (fewest slips, most common word in everyday writing via `services/spelling.py`, so a real word the hadith
   never use is kept, not "fixed"), and hadith close in meaning merged in by `meaning.py`
   (multilingual sentence model on onnxruntime; vectors from `scripts/build_hadith_meaning.py`).
   Scored by `scripts/score_hadith_search.py` against `data/hadith/search_yardstick.json`.
@@ -182,6 +182,6 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
   (`lib/notes.js`), so the stored note stays the reference. Tamreen questions link to it.
 - `frontend/src/components/`: each tab's main screen; its own parts in `components/<tab>/`; parts two tabs share at the root; the app frame (tab bar, map, settings) in `shell/`; shared building blocks only in `ui/`.
   `frontend/src/lib/`: helpers, and `journey.js` for where the reader has been.
-  `frontend/src/components/Backdrop.jsx`: the drifting-lights canvas behind every tab, tinted by the tab colour; it exists so the dark page has depth, and it stops when Animations is off. Maths in `lib/bokeh.js`, knobs in theme.json `lights` and `marks` (the faint drifting letters under the lights). The kit page (`/app/kit`, hidden from every menu) is where every element and token is seen.
+  `frontend/src/components/shell/Backdrop.jsx`: the drifting-lights canvas behind every tab, tinted by the tab colour; it exists so the dark page has depth, and it stops when Animations is off. Maths in `lib/bokeh.js`, knobs in theme.json `lights` and `marks` (the faint drifting letters under the lights). The kit page (`/app/kit`, hidden from every menu) is where every element and token is seen.
 - Styles live in `frontend/src/styles/`, one file per job (base, layers, motion, text, components, ...); `index.css` there imports them in cascade order.
 - `logs/recite-journal.jsonl`: the reciting log, rolled over at 5 MB, last 3 kept.
