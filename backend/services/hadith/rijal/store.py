@@ -11,7 +11,7 @@ import re
 from functools import lru_cache
 
 from backend.config import data_path
-from backend.services.hadith import loader, words
+from backend.services.hadith import chain, loader, words
 from backend.services.readonly_db import ReadOnlyDb
 
 _db = ReadOnlyDb(lambda: data_path("rijal_index_path"))
@@ -116,9 +116,17 @@ def narrator(narrator_id: int) -> dict | None:
     }
 
 
-def _said(text: str, end: int) -> str:
-    """What a hadith says after its chain, its last narrator's name ending at `end`."""
-    return re.sub(r"^[\s\W_]+", "", text[end:])
+def _said(text: str, end: int | None = None) -> str:
+    """What a hadith says after its chain, where the chain reader (chain.cut_of) ends it.
+
+    A name sunnah.com links inside the story (الحسن told of, not telling) is a mention
+    too, so the last mention is not the end of the chain; `end`, the last
+    mention's end, is used only where the chain reader finds no plain cut, and
+    without it such a hadith gives "" rather than a guess.
+    """
+    at = chain.cut_of(text)
+    start = at[1] if at else end
+    return "" if start is None else re.sub(r"^[\s\W_]+", "", text[start:])
 
 
 def hadith_of(narrator_id: int, limit: int, words: int) -> list[dict]:
@@ -130,13 +138,12 @@ def hadith_of(narrator_id: int, limit: int, words: int) -> list[dict]:
     order = [c[0] for c in loader.collections()]
     rank = "CASE collection " + " ".join("WHEN ? THEN ?" for _ in order) + f" ELSE {len(order)} END" if order else "collection"
     rows = db.execute(
-        "SELECT collection, book, number, part, (SELECT MAX(x.end) FROM mention x WHERE x.collection = m.collection "
-        "AND x.number = m.number AND x.part = m.part) AS chain_end FROM mention m WHERE narrator_id = ? "
-        f"GROUP BY collection, book, number, part ORDER BY {rank}, collection, number, part LIMIT ?",
+        "SELECT DISTINCT collection, book, number, part FROM mention WHERE narrator_id = ? "
+        f"ORDER BY {rank}, collection, number, part LIMIT ?",
         (narrator_id, *(v for i, c in enumerate(order) for v in (c, i)), limit))
     out = []
-    for collection, book, number, part, end in rows:
-        said = _said(loader.arabic(collection, number, part), end or 0).split()
+    for collection, book, number, part in rows:
+        said = _said(loader.arabic(collection, number, part)).split()
         out.append({"collection": collection, "book": book, "number": number, "part": part,
                     "opening": " ".join(said[:words]) + (" …" if len(said) > words else "")})
     return out
