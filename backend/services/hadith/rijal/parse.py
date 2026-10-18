@@ -106,6 +106,45 @@ def _facts(soup: BeautifulSoup) -> list[dict]:
     return [{"label_en": le, "en": ve, "label_ar": la, "ar": va} for (le, ve), (la, va) in zip(en, ar) if ve or va]
 
 
+# A run inside a classical text that the page marks: the scholar quoted, his words, a book's letter.
+_RUNS = {"tarjama-scholar": "scholar", "tarjama-verdict": "verdict", "sigla-link": "mark", "sigla": "mark"}
+
+
+def _runs(node) -> list[dict]:
+    """A block's text as runs, each {"t": text} with "role" for a marked one and "title" for a book letter's book; plain neighbours joined."""
+    runs: list[dict] = []
+    for child in node.children:
+        role = next((_RUNS[c] for c in (getattr(child, "get", lambda *_: None)("class") or []) if c in _RUNS), None)
+        text = child.get_text() if child.name else str(child)
+        if role:
+            runs.append({"t": text.strip(), "role": role, **({"title": child["title"]} if child.get("title") else {})})
+        elif text.strip() or (runs and "role" not in runs[-1]):
+            if runs and "role" not in runs[-1]:
+                runs[-1]["t"] += text
+            elif text.strip():
+                runs.append({"t": text})
+    for run in runs:
+        run["t"] = re.sub(r"\s+", " ", run["t"])
+    return [r for r in runs if r["t"].strip()]
+
+
+def _blocks(body) -> list[dict]:
+    """A classical text as the page sets it: {"kind", "runs"}, kind title (a bold opening line), para, label (a heading
+    such as روى عن) or item (one row of a list under it)."""
+    out = []
+    for node in body.find_all(["p", "div", "li"]):
+        classes = node.get("class") or []
+        if node.name == "li":
+            out.append({"kind": "item", "runs": _runs(node)})
+        elif "sublabel" in classes:
+            out.append({"kind": "label", "runs": [{"t": _text(node)}]})
+        elif node.name == "p":
+            bold = node.find("strong")
+            out.append({"kind": "title", "runs": [{"t": _text(bold)}]} if bold and _text(bold) == _text(node)
+                       else {"kind": "para", "runs": _runs(node)})
+    return [b for b in out if b["runs"]]
+
+
 def narrator(html: str) -> dict:
     """One narrator page: names, grade, the labelled facts, appraisals, teachers, students and the classical texts."""
     # The site joins book and author with an em dash; the app never prints one.
@@ -135,6 +174,6 @@ def narrator(html: str) -> dict:
         "teachers": _people(soup, "teachers"),
         "students": _people(soup, "students"),
         "hadith_total": int(total.group(1).replace(",", "")) if total else None,
-        "texts": [(_text(a.select_one(".accordion-title")), a.select_one(".accordion-body").get_text("\n", strip=True))
-                  for a in soup.select("div.accordion") if a.select_one(".accordion-body")],
+        "texts": [(_text(a.select_one(".accordion-title")), body.get_text("\n", strip=True), _blocks(body))
+                  for a in soup.select("div.accordion") if (body := a.select_one(".accordion-body"))],
     }

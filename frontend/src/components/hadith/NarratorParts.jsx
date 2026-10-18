@@ -229,33 +229,50 @@ export function NarratorError({ error, onRetry }) {
 }
 
 /**
- * Narrators as tappable rows, as sunnah.com lists them: grade dot and Arabic name
- * on the right, the English name on the left. `row` packs Arabic-only pills in a wrapping line.
+ * One tappable row set as sunnah.com lists a narrator's people and hadith: the
+ * Arabic on the right, with an optional dot after it, and the English on the left.
  */
-export function NarratorLinks({ items, onOpen, row = false }) {
+export function PairRow({ en, ar, dot, title, onClick }) {
   return (
-    <ul className={`list-none m-0 p-0 ${row ? 'flex flex-wrap gap-1.5' : 'divide-y divide-[var(--border)]'}`}>
+    <button
+      type="button"
+      onClick={onClick}
+      title={title}
+      className="press tap w-full flex items-center gap-3 py-2 hover:bg-[var(--surface)] transition-colors"
+    >
+      {en && <span className="min-w-0 shrink-0 max-w-[45%] text-left type-small text-[var(--text-dim)] truncate">{en}</span>}
+      <span className="min-w-0 flex-1 flex items-center justify-end gap-2">
+        <ArabicText size="sm" className="min-w-0 truncate text-[var(--text)]">{ar}</ArabicText>
+        {dot && <span aria-hidden="true" className="w-2 h-2 rounded-full shrink-0" style={{ background: dot }} />}
+      </span>
+    </button>
+  )
+}
+
+/** Rows divided by a hairline, the list PairRow sits in. */
+export const PAIR_ROWS = 'list-none m-0 p-0 divide-y divide-[var(--border)]'
+
+/** Narrators as tappable rows (PairRow). `row` packs Arabic-only pills in a wrapping line instead. */
+export function NarratorLinks({ items, onOpen, row = false }) {
+  const dot = (n) => (n.grade_ar ? `var(--${toneOf(n.grade_rank)})` : 'var(--border)')
+  return (
+    <ul className={row ? 'list-none m-0 p-0 flex flex-wrap gap-1.5' : PAIR_ROWS}>
       {items.map((n) => (
         <li key={n.id} className="min-w-0">
-          <button
-            type="button"
-            onClick={() => onOpen(n.id)}
-            title={n.grade_ar || undefined}
-            className={`press tap w-full flex items-center gap-3 transition-colors ${row
-              ? 'px-3 py-2 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--text-faint)]'
-              : 'py-2 hover:bg-[var(--surface)]'}`}
-          >
-            {n.name_en && !row && <span className="min-w-0 flex-1 text-left type-small text-[var(--text-dim)] truncate">{n.name_en}</span>}
-            <span className="flex items-center gap-2 shrink-0 ms-auto">
+          {row ? (
+            <button
+              type="button"
+              onClick={() => onOpen(n.id)}
+              title={n.grade_ar || undefined}
+              className="press tap flex items-center gap-2 px-3 py-2 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--text-faint)] transition-colors"
+            >
+              <span aria-hidden="true" className="w-2 h-2 rounded-full shrink-0" style={{ background: dot(n) }} />
               <ArabicText size="sm" className="text-[var(--text)]">{n.name_ar}</ArabicText>
-              {n.grade_ar && <span className="sr-only">{n.grade_ar}</span>}
-              <span
-                aria-hidden="true"
-                className="w-2 h-2 rounded-full shrink-0"
-                style={{ background: n.grade_ar ? `var(--${toneOf(n.grade_rank)})` : 'var(--border)' }}
-              />
-            </span>
-          </button>
+            </button>
+          ) : (
+            <PairRow en={n.name_en} ar={n.name_ar} dot={dot(n)} title={n.grade_ar || undefined} onClick={() => onOpen(n.id)} />
+          )}
+          {n.grade_ar && <span className="sr-only">{n.grade_ar}</span>}
         </li>
       ))}
     </ul>

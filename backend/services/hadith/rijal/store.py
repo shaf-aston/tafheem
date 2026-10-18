@@ -106,7 +106,9 @@ def narrator(narrator_id: int) -> dict | None:
         **dict(row),
         "books": json.loads(row["books"]),
         "facts": json.loads(row["facts"]),
-        "texts": [{"book": book, "body": body} for book, body in json.loads(row["texts"])],
+        # A build from before the blocks were kept holds [book, body] alone.
+        "texts": [{"book": book, "body": body, "blocks": blocks[0] if blocks else []}
+                  for book, body, *blocks in json.loads(row["texts"])],
         "verdicts": [dict(v) for v in db.execute(
             "SELECT scholar, quote FROM verdict WHERE narrator_id = ? ORDER BY ord", (narrator_id,))],
         "teachers": _ties(db, narrator_id, "teacher_id", "student_id"),
@@ -114,17 +116,30 @@ def narrator(narrator_id: int) -> dict | None:
     }
 
 
-def hadith_of(narrator_id: int, limit: int) -> list[dict]:
-    """The hadith in the built books that name him, the books in the order the tab lists them, each in number order."""
+def _said(text: str, end: int) -> str:
+    """What a hadith says after its chain, its last narrator's name ending at `end`."""
+    return re.sub(r"^[\s\W_]+", "", text[end:])
+
+
+def hadith_of(narrator_id: int, limit: int, words: int) -> list[dict]:
+    """The hadith in the built books that name him, the books in the order the tab lists them, each in number order,
+    with the first `words` words said after its chain."""
     db = _db()
     if not db:
         return []
     order = [c[0] for c in loader.collections()]
     rank = "CASE collection " + " ".join("WHEN ? THEN ?" for _ in order) + f" ELSE {len(order)} END" if order else "collection"
-    return [dict(row) for row in db.execute(
-        "SELECT DISTINCT collection, book, number, part FROM mention WHERE narrator_id = ? "
-        f"ORDER BY {rank}, collection, number, part LIMIT ?",
-        (narrator_id, *(v for i, c in enumerate(order) for v in (c, i)), limit))]
+    rows = db.execute(
+        "SELECT collection, book, number, part, (SELECT MAX(x.end) FROM mention x WHERE x.collection = m.collection "
+        "AND x.number = m.number AND x.part = m.part) AS chain_end FROM mention m WHERE narrator_id = ? "
+        f"GROUP BY collection, book, number, part ORDER BY {rank}, collection, number, part LIMIT ?",
+        (narrator_id, *(v for i, c in enumerate(order) for v in (c, i)), limit))
+    out = []
+    for collection, book, number, part, end in rows:
+        said = _said(loader.arabic(collection, number, part), end or 0).split()
+        out.append({"collection": collection, "book": book, "number": number, "part": part,
+                    "opening": " ".join(said[:words]) + (" …" if len(said) > words else "")})
+    return out
 
 
 def search(query: str, limit: int) -> list[dict]:
@@ -153,5 +168,5 @@ def family(collection: str, number: int) -> list[dict]:
     for found in parts.values():
         text = next((h["arabic"] for h in loader.hadiths(collection, found["book"])
                      if h["number"] == number and h["part"] == found["part"]), "")
-        found["said"] = re.sub(r"^[\s\W_]+", "", text[found.pop("end"):])
+        found["said"] = _said(text, found.pop("end"))
     return list(parts.values())

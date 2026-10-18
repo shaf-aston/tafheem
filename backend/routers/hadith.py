@@ -22,7 +22,7 @@ from backend.models.hadith import (
     NarratorList,
     RijalChains,
     RijalFamily,
-    RijalHadithRef,
+    NarratorHadith,
     RijalSearch,
     UsulFacts,
     UsulGuide,
@@ -161,10 +161,10 @@ async def get_narrator(narrator_id: int) -> Narrator:
     return Narrator(**found, usul=UsulFacts(**await asyncio.to_thread(usul.facts, narrator_id), source=provenance.of("usul")), source=provenance.of("rijal"))
 
 
-@narrators.get("/narrators/{narrator_id}/hadith", response_model=list[RijalHadithRef])
-async def get_narrator_hadith(narrator_id: int) -> list[RijalHadithRef]:
-    found = await asyncio.to_thread(rijal.hadith_of, narrator_id, get_settings().rijal_hadith_limit)
-    return [RijalHadithRef(**h) for h in found]
+@narrators.get("/narrators/{narrator_id}/hadith", response_model=list[NarratorHadith])
+async def get_narrator_hadith(narrator_id: int) -> list[NarratorHadith]:
+    found = await asyncio.to_thread(rijal.hadith_of, narrator_id, get_settings().rijal_hadith_limit, get_settings().rijal_opening_words)
+    return [NarratorHadith(**h) for h in found]
 
 
 @narrators.get("/search", response_model=RijalSearch)
