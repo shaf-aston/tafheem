@@ -350,3 +350,6 @@
 .grow-glossary dt { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
 .grow-glossary dd { margin: 2px 0 0; color: var(--text-dim); display: grid; justify-items: start; gap: 4px; }
 .grow-glossary dd button { color: var(--w); font-weight: 600; font-size: var(--type-small); }
+/* The card's wrapper only carries `inert` while "Leave this lesson?" is asked. */
+.grow-lesson-card { display: contents; }
+.grow-lesson-top .grow-x { flex-shrink: 0; }

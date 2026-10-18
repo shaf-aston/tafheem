@@ -3,7 +3,8 @@
  * Cards are the exercise registry's; answers save like the Quiz's. Three right in a row shows a run; the end screen
  * sums the XP the server reported, how many were right first time, and how long the lesson took, recaps what was missed,
  * and offers the next lesson (`next`: its title and `go`) when there is one. Enter presses the footer's button (Check or
- * Continue), which takes the focus once an answer is checked; leaving mid-lesson asks first, since it starts over.
+ * Continue), also from an answer option, and takes the focus once an answer is checked; leaving mid-lesson asks first
+ * (focus in the question, Escape to stay), since it starts over.
  */
 import { useEffect, useRef, useState } from 'react'
 
@@ -35,15 +36,37 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
   const go = useRef(null)
   const [leaving, setLeaving] = useState(false)
   useEffect(() => { if (result) go.current?.focus() }, [result])
+  // Enter on an answer option checks once the answer is ready (Space still picks); other controls keep their own Enter.
   useEffect(() => {
+    if (leaving) return undefined
     const press = (event) => {
-      if (event.key !== 'Enter' || event.target.closest?.('button, input, textarea, select, a')) return
+      if (event.key !== 'Enter') return
+      const option = event.target.closest?.('.grow-option')
+      if (option ? go.current?.disabled : event.target.closest?.('button, input, textarea, select, a')) return
       event.preventDefault()
       go.current?.click()
     }
     document.addEventListener('keydown', press)
     return () => document.removeEventListener('keydown', press)
-  }, [])
+  }, [leaving])
+  // "Leave this lesson?" takes the focus on "Keep going", Escape keeps going, and the focus goes back to the ×.
+  const stay = useRef(null)
+  const x = useRef(null)
+  useEffect(() => {
+    if (!leaving) return undefined
+    stay.current?.focus()
+    const press = (event) => {
+      if (event.key !== 'Escape') return
+      setLeaving(false)
+      x.current?.focus()
+    }
+    document.addEventListener('keydown', press)
+    return () => document.removeEventListener('keydown', press)
+  }, [leaving])
+  function keepGoing() {
+    setLeaving(false)
+    x.current?.focus()
+  }
 
   const done = at >= cards.length
   if (done) return <LessonDone tally={tally} took={took} missed={missed} accent={accent} rewards={rewards} next={after} onLeave={onLeave} />
@@ -80,7 +103,7 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
   return (
     <div className="grow-lesson" style={{ '--w': accent }}>
       <div className="grow-lesson-top">
-        <button type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (tally.asked ? setLeaving(true) : onLeave())}>
+        <button ref={x} type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (tally.asked ? setLeaving(true) : onLeave())}>
           <span aria-hidden="true">×</span>
         </button>
         <span className="grow-lesson-bar" role="progressbar" aria-valuemin={0} aria-valuemax={cards.length} aria-valuenow={at}
@@ -91,16 +114,18 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
       </div>
 
       {leaving && (
-        <div className="grow-leave" role="alertdialog" aria-labelledby="grow-leave-h">
+        <div className="grow-leave" role="alertdialog" aria-modal="true" aria-labelledby="grow-leave-h">
           <p id="grow-leave-h">{say('Leave this lesson? Your answers are saved, but it starts again from the first card.')}</p>
           <button type="button" onClick={onLeave}>{say('Leave')}</button>
-          <button type="button" className="grow-leave-stay" onClick={() => setLeaving(false)}>{say('Keep going')}</button>
+          <button ref={stay} type="button" className="grow-leave-stay" onClick={keepGoing}>{say('Keep going')}</button>
         </div>
       )}
 
-      <Card key={card.id} card={card} value={value} setValue={setValue} result={result} />
+      <div className="grow-lesson-card" inert={leaving}>
+        <Card key={card.id} card={card} value={value} setValue={setValue} result={result} />
+      </div>
 
-      <div className="grow-lesson-foot" data-result={result ?? undefined}>
+      <div className="grow-lesson-foot" data-result={result ?? undefined} inert={leaving}>
         {result && (
           <p role="status" className="grow-lesson-say">
             {result === 'right'

@@ -104,7 +104,9 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const empty = words.ready && !words.fresh && !words.dueCount
   const hadith = nextOf(lessons.hadith)
   const ayah = nextOf(lessons.quran)
-  const lead = books[last]?.ready && books[last].next ? last : null
+  // Without words to start, a book leads even before one was studied.
+  const open = (id) => books[id]?.ready && books[id].next
+  const lead = open(last) ? last : words.error ? Object.keys(books).find(open) ?? null : null
   let wordsLine = '\u00a0'
   if (words.ready) wordsLine = say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length })
   else if (words.error) wordsLine = say('Words could not load just now. The book worlds below still work.')
@@ -134,7 +136,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
           <NextStep world={worldOf('words')} where={say('Today’s words')} line={wordsLine} onGo={() => onStart('words')} />
         )}
         {Object.entries(books).map(([id, book]) => {
-          if (!book.ready) return <NextSlot key={id} />
+          if (!book.ready) return book.error ? null : <NextSlot key={id} />
           return (
             <Fragment key={id}>
               {book.due.length > 0 && (
@@ -148,11 +150,11 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
             </Fragment>
           )
         })}
-        {!lessons.hadith.ready && <NextSlot />}
+        {!lessons.hadith.ready && !lessons.hadith.error && <NextSlot />}
         {hadith && (
           <NextStep world={worldOf('hadith')} where={say('{n} of 42', { n: hadith.n })} line={hadith.key.en} onGo={() => onStart('hadith')} />
         )}
-        {!lessons.quran.ready && <NextSlot />}
+        {!lessons.quran.ready && !lessons.quran.error && <NextSlot />}
         {ayah && (
           <NextStep world={worldOf('quran')} where={say('{surah}, ayah {n}', { surah: ayah.name_en, n: ayah.ayah })} line={ayah.english}
             onGo={() => onStart('quran')} />
