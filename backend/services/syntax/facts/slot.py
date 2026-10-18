@@ -3,7 +3,7 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.nahw_book import book_map, is_mabni, is_one, is_plain_noun
+from backend.services.nahw_book import book_map, is_built_word, is_mabni, is_one, is_plain_noun
 from backend.services.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, NOUN_LINKS, SUBJECTS
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
@@ -36,7 +36,7 @@ def is_zarf(token: dict, s: Sentence) -> bool:
 
 def is_built_zarf(token: dict) -> bool:
     """أمسِ، حيثُ، الآن: a time or place word built on one ending (closed_words `built`)."""
-    return token["pos"] != "PRT" and any(is_one(token["lemma"], family, "built") for family in ("zarf_zaman", "zarf_makan"))
+    return token["pos"] != "PRT" and is_built_word(token["lemma"])
 
 
 def zarf_of_khabar(token: dict, s: Sentence) -> bool:

@@ -224,6 +224,9 @@ CARDS = [
     ("مَرَرْتُ بِإِبْرَاهِيمَ وَأَحْمَدَ", 2, "case", "jarr"),     # a diptote follower keeps its fatha in jarr
     ("اكْتُبَا الدَّرْسَ", 0, "sign", "حذف النون"),              # the dual command
     ("الدِّينُ النَّصِيحَةُ", 1, "role", "خبر"),           # nothing else is said of the mubtada
+    ("الطُّهُورُ شَطْرُ الْإِيمَانِ", 1, "role", "خبر"),     # a plain noun made definite by its مضاف إليه names, not describes
+    ("جَاءَ رَجُلٌ غَيْرُ خَالِدٍ", 2, "role", "صفة"),       # nearest case: a describing word stays a صفة
+    ("اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ", 2, "sign", "مبني على السكون"),  # a condition's place word is built, answer or none
     ("الكِتَابُ الجَدِيدُ مُفِيدٌ", 1, "role", "صفة"),       # nearest case: a khabar follows, so a صفة
     ("مَدْرَسَةُ الْبَلَدِ الْكَبِيرَةُ جَمِيلَةٌ", 2, "role", "صفة"),  # the مضاف's صفة, after its مضاف إليه
     ("الْيَدُ الْعُلْيَا خَيْرٌ", 1, "sign", "ضمة مقدرة"),    # a صفة wears its noun's case
