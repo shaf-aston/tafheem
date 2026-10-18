@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 // The lesson runner's feel: three right in a row shows a run, a wrong answer ends it, and the end screen says how many
-// were right first time and how long it took.
+// were right first time, how long it took and what was missed, and offers the next lesson.
 import { describe, expect, it } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
@@ -36,5 +36,19 @@ describe('lesson runner', () => {
     expect(screen.getByText('Lesson done')).toBeTruthy()
     expect(screen.getByText('3/4')).toBeTruthy()
     expect(screen.getByText(/^\d+:\d\d$/)).toBeTruthy()
+    // The one missed first time is recapped with its reason.
+    expect(screen.getByRole('heading', { name: 'What you missed' })).toBeTruthy()
+    expect(screen.getByText('Question d?')).toBeTruthy()
+  })
+
+  it('offers the next lesson at the end, and the way back to the path', () => {
+    const went = []
+    renderScreen(<LessonRunner cards={[choose('a')]} accent="#26c" next={{ title: 'Ghusl', go: () => went.push('next') }}
+      onLeave={() => went.push('back')} />, { routes: { 'POST /progress/attempts': { earned: 0 } } })
+    answer('a', 'right')
+    expect(screen.queryByRole('heading', { name: 'What you missed' })).toBe(null)
+    fireEvent.click(screen.getByRole('button', { name: 'Next: Ghusl' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Back to the path' }))
+    expect(went).toEqual(['next', 'back'])
   })
 })

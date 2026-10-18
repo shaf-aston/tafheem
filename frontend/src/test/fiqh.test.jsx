@@ -73,6 +73,22 @@ describe('fiqh', () => {
     await waitFor(() => expect(filed.at(-1)).toMatchObject({ item: 'wudu/order', correct: true }))
   })
 
+  it('still shows and plays the lessons when the record cannot be read', async () => {
+    renderScreen(<GrowPanel incoming="fiqh/tahara" />, { routes: { 'GET /progress/summary': () => { throw new Error('down') } } })
+    expect(await screen.findByText(/Your progress could not be loaded/, {}, { timeout: 4000 })).toBeTruthy()
+    expect(screen.getByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
+  })
+
+  it('leads Grow home with the book last studied, one tap from its next lesson', async () => {
+    localStorage.setItem('grow-last-book', 'fiqh')
+    const visits = []
+    renderScreen(<GrowPanel incoming="" onVisit={(value) => visits.push(value)} />, { routes: { 'GET /progress/summary': { items: [] } } })
+    expect(await screen.findByText('Continue · Fiqh')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+    expect(visits.at(-1)).toMatch(/^fiqh\/tahara\//)
+    localStorage.removeItem('grow-last-book')
+  })
+
   it('falls back to the part for a lesson the book does not have', async () => {
     renderScreen(<GrowPanel incoming="fiqh/tahara/nothing" />, { routes: { 'GET /progress/summary': { items: [] } } })
     expect(await screen.findByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()

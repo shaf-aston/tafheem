@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 import worlds from '../worlds.json'
-import { cardOf, lessonCards, lessonsOf, partsOf, reviewCards, statusOf } from './bookLesson'
+import { cardOf, firstOpen, lessonCards, lessonsOf, nextAfter, partsOf, reviewCards, statusOf } from './bookLesson'
 
 const PUBLIC = join(import.meta.dirname, '../../public')
 const OPENITI = join(import.meta.dirname, '../../../backend/data/books/openiti')
@@ -143,6 +143,24 @@ describe('lesson status', () => {
     expect(done.next).toBe(null)
     expect(done.parts[0].finished).toBe(1)
     expect(done.due).toEqual(['l1/o', 'l1/c'])
+  })
+})
+
+describe('the next lesson', () => {
+  const at = (id, status, extra) => ({ id, part: 'p', status, ...(extra && { extra }) })
+  const lessons = [at('a', 'done'), at('b', 'new', true), at('c', 'started'), at('d', 'new')]
+
+  it('passes a rare `extra` lesson by while a core one is open, then offers it', () => {
+    expect(firstOpen(lessons).id).toBe('c')
+    expect(firstOpen([at('a', 'done'), at('b', 'new', true)]).id).toBe('b')
+    expect(firstOpen([at('a', 'learnt')])).toBe(null)
+  })
+
+  it('after a lesson, offers the next open one after it, then any before it, never itself', () => {
+    const parts = [{ id: 'p', lessons }]
+    expect(nextAfter(parts, 'c').id).toBe('d')
+    expect(nextAfter(parts, 'd').id).toBe('c')
+    expect(nextAfter([{ id: 'p', lessons: [at('a', 'new')] }], 'a')).toBe(null)
   })
 })
 

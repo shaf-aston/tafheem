@@ -9,13 +9,15 @@ import { useEffect, useEffectEvent, useState } from 'react'
 
 import config from '../worlds.json'
 import { colorFor } from '../theme'
+import { nextAfter } from '../lib/bookLesson'
 import { placeOf, valueOf } from '../lib/growPlace'
 import { goBack } from '../lib/journey'
 import { getProfile } from '../lib/profile'
 import { useHadithWorld } from '../lib/useHadithWorld'
 import { useArrival } from '../lib/useArrival'
-import { useBookWorld } from '../lib/useBookWorld'
+import { LAST_BOOK, REVIEW, useBookWorld } from '../lib/useBookWorld'
 import { useQuranWorld } from '../lib/useQuranWorld'
+import { useRemembered } from '../lib/useRemembered'
 import { useRewards } from '../lib/useRewards'
 import { useWordsWorld } from '../lib/useWordsWorld'
 import BookWorld from './grow/BookWorld'
@@ -59,14 +61,17 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
     setView(cards?.length ? { ...view, cards } : { at: 'world', id: view.id, ...(view.part && { part: view.part }) })
   }
 
-  // Leaving a lesson by any way (Continue, ×, the back arrow): its answers are saved, so re-read that world's record.
-  const lessonId = view.at === 'lesson' ? view.id : null
+  // Leaving a lesson by any way (Continue, ×, the back arrow, on to the next lesson): its answers are saved, so re-read
+  // that world's record.
+  const playing = view.at === 'lesson' ? `${view.id}/${view.lesson ?? ''}` : null
   const refreshWorld = useEffectEvent((id) => sourceOf(id).refresh())
   useEffect(() => {
-    if (lessonId) return () => refreshWorld(lessonId)
-  }, [lessonId])
+    if (playing) return () => refreshWorld(playing.split('/')[0])
+  }, [playing])
 
+  const [, rememberBook] = useRemembered(LAST_BOOK, BOOK_IDS, '')
   const go = (next) => {
+    if (next.at === 'lesson' && BOOK_IDS.includes(next.id)) rememberBook(next.id)
     setView(next)
     onVisit?.(valueOf(next))
   }
@@ -81,9 +86,18 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
     else go({ at: 'world', id: view.id, ...(view.part && { part: view.part }) })
   }
 
+  // A book lesson's end offers the next open lesson after it; a review's end does not. That lesson ends on its part's path.
+  const nextOf = () => {
+    const book = books[view.id]
+    const after = book && view.lesson !== REVIEW && nextAfter(book.parts, view.lesson)
+    return after ? { title: after.title, go: () => go({ at: 'lesson', id: view.id, lesson: after.id, part: after.part }) } : null
+  }
+
   let screen
   if (view.at === 'lesson' && view.cards) {
-    screen = <LessonRunner cards={view.cards} accent={worldOf(view.id).accent} rewards={rewards} onLeave={finished} />
+    screen = (
+      <LessonRunner key={playing} cards={view.cards} accent={worldOf(view.id).accent} rewards={rewards} next={nextOf()} onLeave={finished} />
+    )
   } else if (view.at !== 'home') {
     const world = worldOf(view.id)
     screen = SCREENS[world.kind]({ world, lessons, books, view, back: home, go, start, startBook })

@@ -42,8 +42,16 @@ const countOf = (parts) => ({
   total: parts.reduce((sum, part) => sum + part.lessons.length, 0),
 })
 
+const isOpen = (lesson) => lesson.status === 'new' || lesson.status === 'started'
+
 /**
- * The parts with each lesson's status, how many are finished, the first unfinished lesson in the book, what is due, and
+ * The lesson to take next of `lessons` (with statuses): the first open core one, else the first open `extra` one (a rare
+ * case a beginner can leave for later), else null.
+ */
+export const firstOpen = (lessons) => lessons.find((lesson) => isOpen(lesson) && !lesson.extra) ?? lessons.find(isOpen) ?? null
+
+/**
+ * The parts with each lesson's status, how many are finished, the next lesson in the book (firstOpen), what is due, and
  * the areas that group the parts (each with its parts and counts; none when the book has no `areas`).
  */
 export function partsOf(book, summary) {
@@ -53,7 +61,7 @@ export function partsOf(book, summary) {
     const finished = lessons.filter((lesson) => lesson.status === 'done' || lesson.status === 'learnt').length
     return { ...part, look: part.path ?? lookAt(i), lessons, finished }
   })
-  const next = parts.flatMap((part) => part.lessons).find((lesson) => lesson.status === 'new' || lesson.status === 'started') ?? null
+  const next = firstOpen(parts.flatMap((part) => part.lessons))
   const items = new Set(lessonsOf(book).flatMap(itemsOf))
   const due = summary.filter((row) => row.due && items.has(row.item)).sort((a, b) => a.dueAt.localeCompare(b.dueAt)).map((row) => row.item)
   const areas = (book.areas ?? []).map((area, i) => {
@@ -61,6 +69,14 @@ export function partsOf(book, summary) {
     return { ...area, look: area.path ?? lookAt(i), parts: own, ...countOf(own) }
   })
   return { parts, areas, next, due }
+}
+
+/** The lesson to offer once `lessonId` is finished: the next open one after it in the book, else any still open. */
+export function nextAfter(parts, lessonId) {
+  const lessons = parts.flatMap((part) => part.lessons)
+  const at = lessons.findIndex((lesson) => lesson.id === lessonId)
+  const rest = [...lessons.slice(at + 1), ...lessons.slice(0, Math.max(at, 0))]
+  return firstOpen(rest)
 }
 
 /** The area a part sits in, if the book has areas. */

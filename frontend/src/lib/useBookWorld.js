@@ -2,7 +2,8 @@
  * A book world's data (Fiqh, Nahw, Sarf): the book's index (lib/bookSplit.js), the learner's record for its `module`,
  * each lesson's status, the next lesson and what is due, and a lesson's cards. A part's cards are fetched only when the
  * screen needs them: its lessons are open, one of its lessons is being played, or a review draws on it. `view` is
- * GrowPanel's (its address); `dealable` says the cards for it are in. Rules: lib/bookLesson.js; entry: worlds.json.
+ * GrowPanel's (its address); `dealable` says the cards for it are in. The book is static: when the learner's record cannot
+ * be read (the server is down), the lessons still show and play, as if nothing were answered yet (`offline`). Rules: lib/bookLesson.js; entry: worlds.json.
  */
 import { useMemo } from 'react'
 import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
@@ -10,6 +11,9 @@ import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 import { lessonCards, partOfLesson, partsDue, partsOf, reviewCards } from './bookLesson'
 import { indexPath, partPath } from './bookSplit'
 import { fetchSummary } from './progress'
+
+/** Where the book world last studied is remembered (GrowPanel writes it, Grow home leads with it). */
+export const LAST_BOOK = 'grow-last-book'
 
 /** The lesson id a review goes by, in the address and to `makeLesson`. */
 export const REVIEW = 'review'
@@ -19,6 +23,9 @@ async function load(url) {
   if (!response.ok) throw new Error(`Could not load the book (${response.status})`)
   return response.json()
 }
+
+// The record when it cannot be read: nothing answered.
+const NOTHING = []
 
 /** The parts `view` needs the cards of, in this world. */
 function partsWanted(world, view, index, due) {
@@ -30,8 +37,9 @@ function partsWanted(world, view, index, due) {
 export function useBookWorld(world, view) {
   const client = useQueryClient()
   const source = useQuery({ queryKey: ['grow-source', world.id], queryFn: () => load(indexPath(world.source)), staleTime: Infinity })
-  const summary = useQuery({ queryKey: ['grow-summary', world.module], queryFn: () => fetchSummary(world.module) })
-  const state = useMemo(() => (source.data && summary.data ? partsOf(source.data, summary.data) : null), [source.data, summary.data])
+  const summary = useQuery({ queryKey: ['grow-summary', world.module], queryFn: () => fetchSummary(world.module), retry: 1 })
+  const record = summary.data ?? (summary.isError ? NOTHING : null)
+  const state = useMemo(() => (source.data && record ? partsOf(source.data, record) : null), [source.data, record])
 
   const wanted = partsWanted(world, view, source.data, state?.due ?? [])
   const parts = useQueries({
@@ -44,7 +52,8 @@ export function useBookWorld(world, view) {
     world,
     ready: Boolean(state),
     dealable: Boolean(state) && loaded,
-    error: source.error ?? summary.error ?? parts.find((part) => part.error)?.error,
+    error: source.error ?? parts.find((part) => part.error)?.error,
+    offline: summary.isError,
     retry: () => { source.refetch(); summary.refetch(); for (const part of parts) part.refetch() },
     book: source.data,
     ...(state ?? { parts: [], areas: [], next: null, due: [] }),

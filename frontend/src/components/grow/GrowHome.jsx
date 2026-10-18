@@ -1,10 +1,14 @@
 /**
  * Grow's home: level, streak, daily goal, today's lesson with each world's next step, every world (unbuilt ones shown as coming).
+ * Today leads with the book last studied (its next lesson, one tap away) once there is one, and the words lesson otherwise;
+ * a book with questions due shows its review as a step too.
  * A guest's log-in nudge rides on the title line (SectionHeader `aside`).
  */
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 
 import { GOAL, GOALS, rankOf, shareOf } from '../../lib/rewards'
+import { REVIEW_SIZE } from '../../lib/bookLesson'
+import { LAST_BOOK, REVIEW } from '../../lib/useBookWorld'
 import { sayIn } from '../../lib/say'
 import { useRemembered } from '../../lib/useRemembered'
 import ProfileDialog from '../profile/ProfileDialog'
@@ -93,29 +97,52 @@ const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.rev
 /** A next-step card's room while its world loads, so nothing below jumps when it lands. */
 const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
 
-/** Today's words lesson, then the next step in each book world (Fiqh, Nahw, Sarf), Hadith and Quran. */
+/** Today's lesson: the last book's next one when there is one, else the words lesson; then every world's next step. */
 function Today({ worldOf, lessons, books, onStart, onStartBook }) {
+  const [last] = useRemembered(LAST_BOOK, Object.keys(books), '')
   const { words } = lessons
   const empty = words.ready && !words.fresh && !words.dueCount
   const hadith = nextOf(lessons.hadith)
   const ayah = nextOf(lessons.quran)
+  const lead = books[last]?.ready && books[last].next ? last : null
+  const wordsLine = words.ready ? say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length }) : '\u00a0'
+  const partOf = (book) => book.parts.find((part) => part.id === book.next.part)?.title
+  const accent = worldOf(lead ?? 'words').accent
   return (
-    <section className="grow-today" style={{ '--w': worldOf('words').accent }} aria-labelledby="grow-today-h">
-      <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
-      <h3 id="grow-today-h">{say('Keep your garden growing')}</h3>
-      <p className="grow-today-holds tabular-nums">
-        {words.ready ? say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length }) : '\u00a0'}
-      </p>
-      <PrimaryButton accent={worldOf('words').accent} disabled={!words.ready || empty} onClick={() => onStart('words')}>
-        {empty ? say('Every word learnt and nothing due') : say('Start')}
-      </PrimaryButton>
+    <section className="grow-today" style={{ '--w': accent }} aria-labelledby="grow-today-h">
+      {lead ? (
+        <>
+          <p className="grow-today-kicker">{say('Continue · {world}', { world: worldOf(lead).name })}</p>
+          <h3 id="grow-today-h">{books[lead].next.title}</h3>
+          <p className="grow-today-holds">{partOf(books[lead])}</p>
+          <PrimaryButton accent={accent} onClick={() => onStartBook(lead, books[lead].next.id, books[lead].next.part)}>{say('Continue')}</PrimaryButton>
+        </>
+      ) : (
+        <>
+          <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
+          <h3 id="grow-today-h">{say('Keep your garden growing')}</h3>
+          <p className="grow-today-holds tabular-nums">{wordsLine}</p>
+          <PrimaryButton accent={accent} disabled={!words.ready || empty} onClick={() => onStart('words')}>
+            {empty ? say('Every word learnt and nothing due') : say('Start')}
+          </PrimaryButton>
+        </>
+      )}
       <div className="grow-nexts">
+        {lead && words.ready && !empty && (
+          <NextStep world={worldOf('words')} where={say('Today’s words')} line={wordsLine} onGo={() => onStart('words')} />
+        )}
         {Object.entries(books).map(([id, book]) => {
           if (!book.ready) return <NextSlot key={id} />
-          if (!book.next) return null
           return (
-            <NextStep key={id} world={worldOf(id)} where={book.parts.find((part) => part.id === book.next.part)?.title} line={book.next.title}
-              onGo={() => onStartBook(id, book.next.id, book.next.part)} />
+            <Fragment key={id}>
+              {book.due.length > 0 && (
+                <NextStep world={worldOf(id)} where={say('Review')}
+                  line={say('{n} questions due', { n: Math.min(book.due.length, REVIEW_SIZE) })} onGo={() => onStartBook(id, REVIEW)} />
+              )}
+              {book.next && id !== lead && (
+                <NextStep world={worldOf(id)} where={partOf(book)} line={book.next.title} onGo={() => onStartBook(id, book.next.id, book.next.part)} />
+              )}
+            </Fragment>
           )
         })}
         {!lessons.hadith.ready && <NextSlot />}

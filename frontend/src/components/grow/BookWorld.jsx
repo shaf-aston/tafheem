@@ -90,6 +90,7 @@ export default function BookWorld({ world, accent, state: book, place, onBack, o
       {loading && <Skeleton className="h-80 w-full" />}
       {book.ready && (
         <div className="grow-book">
+          {book.offline && <p className="grow-hint">{say('Your progress could not be loaded, so it is not shown. The lessons still work.')}</p>}
           <Next book={book} accent={accent} onStart={onStart} />
           {body}
           <p className="grow-hint">{say('{book} ({madhhab}). Arabic is the book’s own words; the English is ours. Learn it with a teacher too.', { book: book.book.book, madhhab: book.book.madhhab })}</p>
