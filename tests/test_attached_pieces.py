@@ -8,6 +8,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
+from backend.services.arabic_text import strip_diacritics
 from backend.services.syntax.catib_onnx import files_present
 
 pytestmark = pytest.mark.skipif(not files_present(), reason="CATiB parser model files not present")
@@ -29,6 +30,11 @@ def analysed(sentence: str) -> tuple[list[dict], dict[str, list[tuple[dict, dict
             walk(child, node)
     walk(body["tree"]["tree"], {})
     return body["words"], leaves
+
+
+def thabit_in(leaves: dict) -> list[tuple[dict, dict]]:
+    """The understood ثابت's leaves, however it is voweled."""
+    return [pair for text, found in leaves.items() if strip_diacritics(text).removesuffix("ا") == "ثابت" for pair in found]  # ثَابِتًا writes its tanween on an alif
 
 
 def parts(leaf: dict) -> list[str]:
@@ -155,16 +161,17 @@ def test_a_ta_verb_after_a_third_person_subject_is_she():
     assert leaves["تَكْتُبُ"][0][0]["parts"][1]["detail"].endswith("هي")
 
 
-@pytest.mark.parametrize("sentence, khabar, unit_job", [
-    ("الْحَمْدُ لِلَّهِ", "خبر", None),
-    ("زَيْدٌ فِي الدَّارِ", "خبر", None),
-    ("زَيْدٌ عِنْدَكَ", "خبر", "مفعول فيه"),
-    ("لَا رَيْبَ فِيهِ", "خبر لا", None),
-    ("إِنَّ زَيْدًا فِي الدَّارِ", "خبر إن", None),
+@pytest.mark.parametrize("sentence, khabar, unit_job, drawn", [
+    ("الْحَمْدُ لِلَّهِ", "خبر", None, "ثَابِتٌ"),
+    ("زَيْدٌ فِي الدَّارِ", "خبر", None, "ثَابِتٌ"),
+    ("زَيْدٌ عِنْدَكَ", "خبر", "مفعول فيه", "ثَابِتٌ"),
+    ("لَا رَيْبَ فِيهِ", "خبر لا", None, "ثَابِتٌ"),
+    ("إِنَّ زَيْدًا فِي الدَّارِ", "خبر إن", None, "ثَابِتٌ"),
 ])
-def test_a_jar_or_zarf_in_the_khabar_slot_hangs_on_an_understood_thabit(sentence, khabar, unit_job):
+def test_a_jar_or_zarf_in_the_khabar_slot_hangs_on_an_understood_thabit(sentence, khabar, unit_job, drawn):
+    """The word no one writes is voweled for its place: a khabar in raf' is ثَابِتٌ."""
     _, leaves = analysed(sentence)
-    (thabit, above), = leaves["ثابت"]
+    (thabit, above), = leaves[drawn]
     assert thabit["role"] == khabar and thabit["hidden"] is True
     # the book's row: the subject, (ثابت) خبر, then the unit hung on it, side by side
     assert above["label"] == "جُمْلَةٌ اِسْمِيَّةٌ" and len(above["children"]) >= 3
@@ -174,10 +181,19 @@ def test_a_jar_or_zarf_in_the_khabar_slot_hangs_on_an_understood_thabit(sentence
     assert body["written"].count(-1) == 1 and body["unwritten"]["note"]
 
 
+@pytest.mark.parametrize("sentence, drawn", [("كَانَ زَيْدٌ فِي الدَّارِ", "ثَابِتًا"), ("أَصْبَحَ الْمَاءُ فِي الْبِئْرِ", "ثَابِتًا"),
+                                            ("الْعِلْمُ فِي الصُّدُورِ", "ثَابِتٌ")])
+def test_the_understood_thabit_wears_the_case_of_its_place(sentence, drawn):
+    """كان's khabar stands in nasb, so the word no one writes is ثَابِتًا; a مبتدأ's is ثَابِتٌ."""
+    _, leaves = analysed(sentence)
+    (thabit, _), = thabit_in(leaves)
+    assert thabit["hidden"] is True and leaves.get(drawn) == thabit_in(leaves)
+
+
 @pytest.mark.parametrize("sentence", ["ذَهَبَ زَيْدٌ إِلَى السُّوقِ", "زَيْدٌ قَائِمٌ فِي الدَّارِ", "مَرَرْتُ بِزَيْدٍ"])
 def test_a_jar_hanging_on_a_verb_or_a_khabar_gets_no_understood_word(sentence):
     _, leaves = analysed(sentence)
-    assert "ثابت" not in leaves
+    assert not thabit_in(leaves)
 
 
 @pytest.mark.parametrize("sentence, noun, name", [
@@ -212,7 +228,7 @@ def test_a_noun_a_word_governs_gets_no_understood_verb(sentence):
 def test_a_governor_of_the_inna_family_names_its_pair_by_its_own_name(sentence, noun, pair):
     cards, leaves = analysed(sentence)
     assert leaves[noun][0][0]["role"] == pair[0] and next(c for c in cards if c["word"] == noun)["role"] == pair[0]
-    assert pair[1] is None or leaves["ثابت"][0][0]["role"] == pair[1]
+    assert pair[1] is None or thabit_in(leaves)[0][0]["role"] == pair[1]
 
 
 def test_la_before_a_noun_in_raf_is_a_plain_negation_not_the_genus():
@@ -318,3 +334,32 @@ def test_the_reply_takes_the_verb_the_question_word_is_the_object_of():
 def test_a_word_a_verb_of_saying_takes_with_no_question_before_stays_its_object(sentence):
     _, leaves = analysed(sentence)
     assert not any(leaf.get("hidden") for pairs in leaves.values() for leaf, _ in pairs)
+
+
+def _named(sentence: str) -> dict[str, tuple[str, str]]:
+    """Each card's bare word → (its role, its reason)."""
+    cards, _ = analysed(sentence)
+    return {strip_diacritics(card["word"]): (card.get("name") or card.get("role") or "", card.get("reason") or "") for card in cards}
+
+
+@pytest.mark.parametrize("sentence, noun, answer", [
+    ("لَوْلَا الْعِلْمُ لَضَاعَ النَّاسُ", "العلم", "لضاع"),
+    ("لَوْلَا خَالِدٌ لَخَسِرَ الْفَرِيقُ", "خالد", "لخسر"),
+])
+def test_laula_before_a_noun_opens_a_mubtada_whose_khabar_is_left_out(sentence, noun, answer):
+    named = _named(sentence)
+    assert named["لولا"][0] == "حرف امتناع لوجود"
+    assert named[noun][0] == "مبتدأ" and "محذوف وجوبًا" in named[noun][1]
+    assert "جواب لولا" in named[answer][1]
+
+
+def test_laula_before_a_verb_urges():
+    assert _named("لَوْلَا تَذْكُرُونَ اللَّهَ")["لولا"][0] == "حرف عرض وتحضيض"
+
+
+@pytest.mark.parametrize("sentence, khabar, role", [
+    ("ظَنَنْتُ أَنَّ الْبَيْتَ وَاسِعٌ", "واسع", "خبر أن"),
+    ("لَعَلَّ الْمُسَافِرَ قَادِمٌ", "قادم", "خبر لعل"),
+])
+def test_the_khabar_is_named_for_its_own_governor(sentence, khabar, role):
+    assert _named(sentence)[khabar][0] == role

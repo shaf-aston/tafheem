@@ -180,11 +180,12 @@ def condition_of(word: str) -> dict | None:
     letters too (مَنْ، ما، متى), so only an answer shows it opens a condition (إذا has none)."""
     frame = frames()["condition"]
     words = _closed()["families"]
-    return next(({**frame, **own, "family": family, "noun": part == "conditional_nouns",
+    # a member whose condition differs from its family's lays its own over it (لولا: before a noun)
+    return next(({**frame, **own, **own.get("by_word", {}).get(word, {}), "family": family, "noun": part == "conditional_nouns",
                   "adverb": word in words[family].get("conditional_adverbs", ()),
                   "built": word not in words[family].get("conditional_inflected", ()),
                   "shared": any(word in words[other]["words"] for other in ("mawsul", "istifham")),
-                  "opener": own["noun" if part == "conditional_nouns" else "particle"]}
+                  "opener": {**own, **own.get("by_word", {}).get(word, {})}["noun" if part == "conditional_nouns" else "particle"]}
                  for family, own in frame["by_family"].items()
                  for part in ("conditional_particles", "conditional_nouns")
                  if word in words[family].get(part, ())), None)

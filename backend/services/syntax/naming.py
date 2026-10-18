@@ -167,7 +167,11 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
     opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"],
                            "kind": frame["opener"] if frame["noun"] else None}
-    for part in ("verb", "answer"):
+    if subject := frame.get("subject"):
+        # لولا زيدٌ: the noun after it is the مبتدأ, its khabar left out; the answer still answers
+        found[c["verb"]].update(role=subject, book=None)
+        found[c["verb"]]["condition"] = {"part": "subject", "opener": c["opener"], "family": frame["family"]}
+    for part in ("answer",) if subject else ("verb", "answer"):
         if c[part] is None:
             continue
         word = found[c[part]]
@@ -177,7 +181,7 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
             if frame["case"]:
                 word["governor"] = c["opener"]
         word["condition"] = {"part": part, "opener": c["opener"], "family": frame["family"],
-                             "tie": c["tie"] if part == "answer" else None}
+                             "tie": c["tie"] if part == "answer" else None, "named": frame.get(f"{part}_named")}
 
 
 def _noun_place(frame: dict, verb: int, found: list[dict], verb_token: dict) -> str:

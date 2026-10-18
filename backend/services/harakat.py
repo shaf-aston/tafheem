@@ -264,6 +264,15 @@ def _opening_vowel(marked: list) -> str:
     return next((marks for _, marks in rest if marks - {SHADDA, SUKUN}), "")
 
 
+def opens_active(word: str, present: bool) -> bool:
+    """The reader typed an opening fatha, which no passive has: a passive verb opens on a damma
+    (فُعِلَ، يُفْعَلُ), or a hollow past on the kasra of قِيلَ، بِيعَ. So يَغْلَقُ and فَتَحَ are
+    active whatever a dictionary tags them."""
+    marked = letters(word)
+    opening = (marked[0][1] if marked else set()) if present else _opening_vowel(marked)
+    return "َ" in opening
+
+
 def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     """فُعِلَ and يُفْعَلُ by their vowels.
 
