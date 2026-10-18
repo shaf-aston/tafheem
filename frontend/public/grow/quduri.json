@@ -152,7 +152,7 @@
               "kind": "choose",
               "id": "fard-case",
               "ask": "Huda makes wudu but forgets to wipe her head. What about her wudu?",
-              "options": ["It does not count", "Yes, it counts", "It counts: she missed a sunnah"],
+              "options": ["It does not count: wiping the head is fard", "It counts: she did the rest", "It counts: she missed a sunnah"],
               "answer": 0,
               "source": "ففرض الطهارة: غسل الأعضاء الثلاثة ومسح الرأس",
               "why": "Wiping the head is fard, and leaving out a fard spoils the act."
@@ -327,7 +327,7 @@
               "kind": "choose",
               "id": "order-case",
               "ask": "Bilal washes his feet before his arms. Is his wudu valid?",
-              "options": ["Yes, it is valid", "No: the order is fard", "No: start again"],
+              "options": ["Yes: keeping the order is only mustahabb", "No: the order is fard", "No: start again"],
               "answer": 0,
               "source": "ويرتب الوضوء فيبدأ بما بدأ الله تعالى بذكره",
               "why": "Al-Quduri lists keeping the order among the mustahabb acts, so his wudu is valid. He has missed a virtue."
@@ -384,7 +384,7 @@
               "kind": "choose",
               "id": "sleep-case",
               "ask": "Ahmad fell asleep leaning on a wall. Had the wall been taken away, he would have fallen. Is his wudu broken?",
-              "options": ["Yes, it is broken", "No: he was sitting, not lying down", "No, it is not"],
+              "options": ["Yes: the wall held him up", "No: he was sitting, not lying down", "No: only sleep lying down breaks it"],
               "answer": 0,
               "source": "أو مستندا إلى شيء لو أزيل عنه لسقط",
               "why": "Yes. Sleeping while leaning on something you would fall without breaks wudu."
@@ -464,7 +464,7 @@
               "kind": "choose",
               "id": "mouth-case",
               "ask": "Hamza washes his whole body in the shower but forgets to rinse his mouth and nose. Is his ghusl complete?",
-              "options": ["No: in ghusl they are fard", "Yes: they are only sunnah, as in wudu", "Yes, it is complete"],
+              "options": ["No: in ghusl they are fard", "Yes: they are only sunnah, as in wudu", "Yes: he washed the whole body"],
               "answer": 0,
               "source": "وفرض الغسل: المضمضة والاستنشاق وغسل سائر البدن",
               "why": "No. In ghusl the mouth and nose are part of the fard, so he must rinse them."
@@ -524,6 +524,21 @@
               "answer": 0,
               "source": "والمعاني الموجبة للغسل: إنزال المني على وجه الدفق والشهوة من الرجل والمرأة والتقاء الختانين من غير إنزال والحيض والنفاس",
               "why": "Mani released with desire, intercourse, hayd and nifas: four."
+            },
+            {
+              "kind": "pick",
+              "id": "causes-pick",
+              "ask": "Which of these make ghusl necessary?",
+              "options": [
+                { "text": "Mani released with force and desire", "right": true },
+                { "text": "Intercourse, even with no release", "right": true },
+                { "text": "Hayd", "right": true },
+                { "text": "Nifas", "right": true },
+                { "text": "Madhy" },
+                { "text": "Wady" }
+              ],
+              "source": ["والمعاني الموجبة للغسل: إنزال المني على وجه الدفق والشهوة من الرجل والمرأة والتقاء الختانين من غير إنزال والحيض والنفاس", "وليس في المذي والودي غسل وفيهما الوضوء"],
+              "why": "The four are mani with desire, intercourse, hayd and nifas. Madhy and wady need only wudu."
             },
             {
               "kind": "teach",
@@ -653,7 +668,7 @@
               "kind": "choose",
               "id": "pond-case",
               "ask": "Some najasa falls into one side of a huge pond, so big that stirring one end does not move the other. Can Umar make wudu from the far side?",
-              "options": ["Yes, from the far side", "No: the whole pond is now najis", "No, not at all"],
+              "options": ["Yes, from the far side", "No: the whole pond is now najis", "No: no wudu from water najasa fell in"],
               "answer": 0,
               "source": "إذا وقعت نجاسة في أحد جانبيه جاز الوضوء من الجانب الآخر لأن الظاهر أن النجاسة لا تصل إليه",
               "why": "Yes. In a great pond, the najasa most likely does not reach the other side."
@@ -1305,7 +1320,7 @@
               "kind": "choose",
               "id": "vinegar-case",
               "ask": "Hamid has a spot of najasa on his shirt and only vinegar to hand. Can he clean it with the vinegar?",
-              "options": ["Yes: it is a pure liquid", "No: only water removes najasa", "No, it cannot"],
+              "options": ["Yes: it is a pure liquid", "No: only water removes najasa", "No: vinegar is not used for wudu"],
               "answer": 0,
               "source": "ويجوز تطهير النجاسة بالماء وبكل مائع طاهر يمكن إزالتها به كالخل وماء الورد",
               "why": "Yes. Vinegar cannot be used for wudu, but it can clean najasa, because it is a pure liquid that removes it."
@@ -1359,7 +1374,7 @@
               "kind": "choose",
               "id": "amount-case",
               "ask": "A camel's urine splashes on Umar's robe, covering much less than a quarter of it. Can he pray in it?",
-              "options": ["Yes: it is light najasa", "No: it is bigger than a dirham", "No, he cannot"],
+              "options": ["Yes: it is light najasa", "No: it is bigger than a dirham", "No: any urine spoils the prayer"],
               "answer": 0,
               "source": "وإن أصابته نجاسة مخففة كبول ما يؤكل لحمه جازت الصلاة معه ما لم يبلغ ربع الثوب",
               "why": "Yes. Camel meat is eaten, so its urine is light najasa, and that is excused below a quarter of the garment."
@@ -1449,7 +1464,7 @@
               "kind": "choose",
               "id": "sunrise-case",
               "ask": "Ahmad wakes up just after the sun has risen. He has not prayed Fajr. Is he still in Fajr's time?",
-              "options": ["No: it ended at sunrise", "Yes, still in time", "Yes: Fajr lasts until the sun is high"],
+              "options": ["No: it ended at sunrise", "Yes: he has only just woken up", "Yes: Fajr lasts until the sun is high"],
               "answer": 0,
               "source": "وآخر وقتها ما لت تتطلع الشمس",
               "why": "Fajr's time ends at sunrise, so his Fajr is now missed and must be made up."
@@ -1465,7 +1480,7 @@
               "kind": "choose",
               "id": "asr-case",
               "ask": "Salma has not prayed Asr, and the sun is about to set. Is Asr still in its time?",
-              "options": ["Yes: it lasts until sunset", "No, it is over", "No: it ends when the sun turns yellow"],
+              "options": ["Yes: it lasts until sunset", "No: it ends in mid-afternoon", "No: it ends when the sun turns yellow"],
               "answer": 0,
               "source": "وآخر وقتها ما لم تغرب الشمس",
               "why": "Asr lasts until the sun sets. Delaying it while the sun is unchanged is only the liked time."
@@ -1738,7 +1753,7 @@
               "kind": "choose",
               "id": "after-case",
               "ask": "Khalid can't tell the qibla and nobody is around, so he does his best and prays. Afterwards he learns he faced the wrong way. Must he repeat?",
-              "options": ["No, he does not repeat", "Yes, he repeats it", "Only if the time has not ended"],
+              "options": ["No: he did his best", "Yes: he faced the wrong way", "Only if the time has not ended"],
               "answer": 0,
               "source": "فإن علم أنه أخطأ بإخبار بعد ما صلى فلا إعادة عليه",
               "why": "He did his best, so once the prayer is over there is nothing to repeat."
@@ -1791,6 +1806,13 @@
               "why": "Takbir, standing, recitation, ruku, sujud and the last sitting: six."
             },
             {
+              "kind": "teach",
+              "id": "rest",
+              "title": "Everything else is sunnah",
+              "ar": "وما زاد على ذلك فهو سنة",
+              "en": "Everything beyond these six is sunnah (the Prophet's ﷺ way), such as raising the hands, saying Amin, or placing the right hand over the left. You are rewarded for it, but the prayer still counts without it."
+            },
+            {
               "kind": "pick",
               "id": "which",
               "ask": "Which of these are fard in salah?",
@@ -1802,15 +1824,8 @@
                 { "text": "Saying Amin" },
                 { "text": "The last sitting", "right": true }
               ],
-              "source": "التحريمة والقيام والقرءة والركوع والسجود والقعدة الأخيرة مقدار التشهد",
+              "source": ["التحريمة والقيام والقرءة والركوع والسجود والقعدة الأخيرة مقدار التشهد", "وما زاد على ذلك فهو سنة"],
               "why": "The six are takbir, standing, recitation, ruku, sujud and the last sitting. Raising the hands and Amin are sunnah."
-            },
-            {
-              "kind": "teach",
-              "id": "rest",
-              "title": "Everything else is sunnah",
-              "ar": "وما زاد على ذلك فهو سنة",
-              "en": "Everything beyond these six is sunnah: the Prophet's ﷺ way. You are rewarded for it, but the prayer still counts without it."
             },
             {
               "kind": "order",
@@ -1921,7 +1936,7 @@
               "kind": "choose",
               "id": "turban-case",
               "ask": "Imran prostrates and his forehead lands on a fold of his turban. Does his sujud count?",
-              "options": ["Yes, it counts", "No, the forehead must touch the ground", "Only in a nafl prayer"],
+              "options": ["Yes: sujud on a fold of the turban is allowed", "No, the forehead must touch the ground", "Only in a nafl prayer"],
               "answer": 0,
               "source": "وإن سجد على كور عمامته أو فاضل ثوبه جاز",
               "why": "Al-Quduri says sujud on the fold of the turban or the spare end of a garment is allowed."
@@ -2185,7 +2200,7 @@
               "kind": "choose",
               "id": "ummi-case",
               "ask": "Musa knows al-Fatiha well. The only other man there cannot recite any Qur'an. May Musa pray behind him?",
-              "options": ["No, he may not", "Yes, he may", "Yes, if Musa recites for himself"],
+              "options": ["No: one who can recite may not follow an ummi", "Yes: any Muslim man may lead", "Yes, if Musa recites for himself"],
               "answer": 0,
               "source": "ولا القارئ خلف الأمي",
               "why": "One who can recite may not follow an ummi."
@@ -2546,7 +2561,7 @@
               "kind": "choose",
               "id": "broken-case",
               "ask": "Huda starts a two-rak'ah nafl and breaks it in the middle. Must she make it up?",
-              "options": ["Yes, she makes it up", "No: nafl is optional", "Only if she broke it on purpose"],
+              "options": ["Yes: a nafl, once started, is made up", "No: nafl is optional", "Only if she broke it on purpose"],
               "answer": 0,
               "source": "ومن دخل في صلاة النفل ثم أفسدها قضاها",
               "why": "Once started, a nafl must be made up if it is broken."
@@ -2760,6 +2775,21 @@
               "answer": 0,
               "source": "سجود التلاوة في القرآن أربعة عشر",
               "why": "Al-Quduri counts fourteen places of sajda."
+            },
+            {
+              "kind": "pick",
+              "id": "places-pick",
+              "ask": "Which of these are among al-Quduri's places of sujud al-tilawa?",
+              "options": [
+                { "text": "Maryam", "right": true },
+                { "text": "Al-Furqan", "right": true },
+                { "text": "The second sajda in al-Hajj" },
+                { "text": "Sad", "right": true },
+                { "text": "Al-Kahf" },
+                { "text": "Iqra' (al-'Alaq)", "right": true }
+              ],
+              "source": "آخر الأعراف وفي الرعد والنحل وبني إسرائيل ومريم والأولى من الحج والفرقان والنمل و {الم * تنزيل} وص {حم} السجدة و {إذا السماء انشقت} و {اقرأ باسم ربك}",
+              "why": "Maryam, al-Furqan, Sad and Iqra' are on the list. Only the first sajda of al-Hajj is, and al-Kahf is not named."
             },
             {
               "kind": "teach",
@@ -3208,7 +3238,7 @@
               "kind": "choose",
               "id": "alone-case",
               "ask": "During a drought, the people of Hamid's town each pray on their own, asking for rain. Is that allowed?",
-              "options": ["Yes, that is allowed", "No: it must be in jama'a", "No: istisqa has no prayer at all"],
+              "options": ["Yes: praying alone for rain is allowed", "No: it must be in jama'a", "No: istisqa has no prayer at all"],
               "answer": 0,
               "source": "فإن صلى الناس وحدانا جاز",
               "why": "Al-Quduri says that if people pray alone for rain, it is allowed."
@@ -3451,7 +3481,7 @@
               "kind": "choose",
               "id": "bandit-case",
               "ask": "A highway robber is killed during a raid. Is the janaza prayer said for him?",
-              "options": ["No", "Yes, like anyone", "Yes, but he is not washed"],
+              "options": ["No: robbers killed in a raid are not prayed over", "Yes, like anyone", "Yes, but he is not washed"],
               "answer": 0,
               "source": "ومن قتل من البغاة أو قطاع الطريق لم يصل عليه",
               "why": "Rebels and highway robbers who are killed are not prayed over."
@@ -3467,7 +3497,7 @@
               "kind": "choose",
               "id": "inside-case",
               "ask": "Inside the Ka'ba, Hasan stands with his back towards the imam's face. Does his prayer count?",
-              "options": ["No, it does not", "Yes, any direction inside counts", "Yes, but it is makruh"],
+              "options": ["No: he is ahead of the imam", "Yes, any direction inside counts", "Yes, but it is makruh"],
               "answer": 0,
               "source": "ومن جعل منهم ظهره إلى وجه الإمام لم تجز صلاته",
               "why": "Standing in front of the imam, back to his face, means he is ahead of the imam, so it does not count."
@@ -3483,7 +3513,7 @@
               "kind": "choose",
               "id": "closer-case",
               "ask": "In the Haram, Bilal stands closer to the Ka'ba than the imam, but on a different side. Does his prayer count?",
-              "options": ["Yes, it counts", "No: nobody may be closer than the imam", "Only in a nafl prayer"],
+              "options": ["Yes: he is not on the imam's side", "No: nobody may be closer than the imam", "Only in a nafl prayer"],
               "answer": 0,
               "source": "فمن كان منهم أقرب إلى الكعبة من الإمام جازت صلاته إذا لم يكن في جانب الإمام",
               "why": "Being closer is fine as long as he is not on the imam's side."
@@ -4627,6 +4657,21 @@
               "why": "The ayah names eight kinds; one of them, al-mu'allafa qulubuhum, has dropped."
             },
             {
+              "kind": "pick",
+              "id": "eight-pick",
+              "ask": "Which of these are among the kinds named in the ayah of zakat?",
+              "options": [
+                { "text": "The poor (faqir)", "right": true },
+                { "text": "The zakat workers", "right": true },
+                { "text": "Orphans" },
+                { "text": "Debtors", "right": true },
+                { "text": "Dhimmis" },
+                { "text": "Travellers (ibn as-sabil)", "right": true }
+              ],
+              "source": ["والفقير: من له أدنى شيء والمسكين: من لا شيء له والعامل", "والغارم: من لزمه دين", "وابن السبيل", "ولا يجوز أن يدفع الزكاة إلى ذمي"],
+              "why": "The poor, the workers, debtors and travellers are among the eight. Orphans are not named as a kind, and a dhimmi may not be given zakat."
+            },
+            {
               "kind": "teach",
               "id": "poor",
               "title": "The poor, the needy, the worker",
@@ -4804,7 +4849,7 @@
               "kind": "choose",
               "id": "mukatab",
               "ask": "Ziyad gives his zakat to a man, then finds out he is his own mukatab. Does it count?",
-              "options": ["No, it does not count", "Yes: he did not know who he was", "Yes, as with a man who turns out rich"],
+              "options": ["No: not to his own mukatab", "Yes: he did not know who he was", "Yes, as with a man who turns out rich"],
               "answer": 0,
               "source": "أو مكاتبه لم يجز في قولهم جميعا",
               "why": "Giving to your own mukatab does not count, in the view of them all."
@@ -5570,7 +5615,7 @@
               "kind": "choose",
               "id": "eid-cloudy",
               "ask": "It is cloudy on the 29th of Ramadan. One man and two women say they saw the Eid moon. Is their word accepted?",
-              "options": ["Yes", "No: it must be two men", "No: a large crowd is needed"],
+              "options": ["Yes: under clouds, a man and two women are enough", "No: it must be two men", "No: a large crowd is needed"],
               "answer": 0,
               "source": "لم تقبل في هلال الفطر إلا شهادة رجلين أو رجل وامرأتين",
               "why": "With a blocked sky, a man and two women are enough for the Eid moon."
@@ -6855,7 +6900,7 @@
               "kind": "choose",
               "id": "asleep-case",
               "ask": "Sulayman falls asleep on the bus and it drives through Arafa in the afternoon of the Day of Arafa. Does that count as his standing?",
-              "options": ["Yes, it counts", "No: he must be awake", "No: he must know it is Arafa"],
+              "options": ["Yes: passing through asleep still counts", "No: he must be awake", "No: he must know it is Arafa"],
               "answer": 0,
               "source": "ومن اجتاز بعرفة وهو نائم أو مغمى عليه أو لم يعلم أنها عرفة أجزأه ذلك عن الوقوف",
               "why": "Passing through asleep, unconscious or unaware still counts."
@@ -7932,7 +7977,7 @@
               "kind": "choose",
               "id": "eat-case",
               "ask": "Zayd is not in ihram. He hunts a deer by himself and gives some meat to Umar, who is in ihram. Umar did not point it out or ask for it. May Umar eat it?",
-              "options": ["Yes, no harm", "No: a muhrim may never eat game", "Only after leaving ihram"],
+              "options": ["Yes: he did not point it out or ask for it", "No: a muhrim may never eat game", "Only after leaving ihram"],
               "answer": 0,
               "source": "لحم صيد اصطاده أو ذبحه إذا لم يدله المحرم عليه ولا أمره بصيده",
               "why": "A muhrim may eat game someone else hunted or slaughtered, as long as he did not point it out or order it."
@@ -8312,7 +8357,7 @@
               "kind": "choose",
               "id": "fault-case",
               "ask": "Ibrahim's sheep has lost one eye. Can it be his hady?",
-              "options": ["No", "Yes, if it is fat", "Yes: an eye is a small fault"],
+              "options": ["No: a one-eyed animal is not valid", "Yes, if it is fat", "Yes: an eye is a small fault"],
               "answer": 0,
               "source": "ولا الذاهبة العين",
               "why": "An animal that has lost an eye is not valid as a hady."
@@ -9181,7 +9226,7 @@
               "kind": "choose",
               "id": "resale-case",
               "ask": "Musa bought a slave and sold him on. The second buyer returns him for a defect, and Musa takes him back without a judge's ruling. Can Musa now return him to his own seller?",
-              "options": ["No: he took him back without a judge", "Yes, always", "Yes, if the defect is serious"],
+              "options": ["No: he took him back without a judge", "Yes: the defect was there all along", "Yes, if the defect is serious"],
               "answer": 0,
               "source": "فباعه المشتري ثم رد عليه بعيب فإن قبله بقضاء القاضي فله أن يرده على بائعه وإن قبله بغير قضاء القاضي فليس له أن يرده",
               "why": "Only if he took it back by a judge's ruling may he pass it back to his seller. Taking it back by choice ends that."
@@ -9785,7 +9830,7 @@
               "kind": "teach",
               "id": "sarf-hand",
               "title": "Money needs hand to hand",
-              "ar": "وما سواه مما فيه الربا يعتبر فيه التعيين ولا يعتبر فيه التقابض ولا يجوز بيع الحنطة بالدقيق ولا بالسويق",
+              "ar": "وعقد الصرف: بما وقع على جنس الأثمان يعتبر فيه قبض عوضيه في وما سواه مما فيه الربا يعتبر فيه التعيين ولا يعتبر فيه التقابض ولا يجوز بيع الحنطة بالدقيق ولا بالسويق",
               "en": "In sarf (money for money: gold and silver), both sides must be taken in hand. In other riba goods it is enough that each side is specified (fixed and pointed out); taking in hand is not required. And wheat may not be sold for its flour or for sawiq (roasted barley or wheat flour)."
             },
             {
@@ -9822,7 +9867,7 @@
               "kind": "choose",
               "id": "rutab-case",
               "ask": "Halima swaps 1 kg of fresh dates for 1 kg of dried dates. Allowed?",
-              "options": ["Yes, like for like", "No: fresh and dry can never be swapped", "Only if there are more fresh dates"],
+              "options": ["Yes: like for like is allowed", "No: fresh and dry can never be swapped", "Only if there are more fresh dates"],
               "answer": 0,
               "source": "ويجوز: بيع الرطب بالتمر مثلا بمثل",
               "why": "Al-Quduri allows fresh dates for dried dates, like for like."
@@ -10879,6 +10924,20 @@
               "answer": 1,
               "source": "الأسباب الموجبة للحجر ثلاثة",
               "why": "The causes are three: childhood, slavery and insanity."
+            },
+            {
+              "kind": "pick",
+              "id": "causes-pick",
+              "ask": "Which of these are al-Quduri's causes of restriction?",
+              "options": [
+                { "text": "Being a child", "right": true },
+                { "text": "Old age" },
+                { "text": "Being a slave", "right": true },
+                { "text": "Illness" },
+                { "text": "Insanity", "right": true }
+              ],
+              "source": "الأسباب الموجبة للحجر ثلاثة: الصغر والرق والجنون",
+              "why": "The three are childhood, slavery and insanity. Old age and illness are not on his list."
             },
             {
               "kind": "teach",
@@ -12346,6 +12405,19 @@
               "why": "Two kinds: the common worker (ajir mushtarak) and the private worker (ajir khass)."
             },
             {
+              "kind": "pick",
+              "id": "kinds-pick",
+              "ask": "Which of these are al-Quduri's kinds of hired worker?",
+              "options": [
+                { "text": "The common worker (ajir mushtarak)", "right": true },
+                { "text": "The partner" },
+                { "text": "The private worker (ajir khass)", "right": true },
+                { "text": "The agent" }
+              ],
+              "source": "والأجراء على ضربين: وأجير مشترك وأجير خاص",
+              "why": "His two kinds are the common worker and the private worker. A partner and an agent are not hired workers."
+            },
+            {
               "kind": "teach",
               "id": "trust",
               "title": "The goods are a trust with him",
@@ -13645,7 +13717,7 @@
               "kind": "choose",
               "id": "share-case",
               "ask": "Adam puts 6000 dirhams into an 'inan, and Bilal 4000. They agree to split the profit half and half. Is that allowed?",
-              "options": ["Yes", "No: profit must follow the money", "Only if Bilal works harder"],
+              "options": ["Yes: the profit may be set apart from the money", "No: profit must follow the money", "Only if Bilal works harder"],
               "answer": 0,
               "source": "ويصح التفاضل في المال ويصح أن يتساويا في المال ويتفاضلا في الربح",
               "why": "In an 'inan the money may differ, and the profit shares may be set apart from the money."
@@ -14260,7 +14332,7 @@
               "kind": "choose",
               "id": "paid-case",
               "ask": "An agent sells Rami's horse. Rami himself goes to the buyer for the price, and the buyer pays him. Can the agent now ask the buyer to pay again?",
-              "options": ["No", "Yes: the price was the agent's to collect", "Yes, half of it"],
+              "options": ["No: the buyer validly paid the principal", "Yes: the price was the agent's to collect", "Yes, half of it"],
               "answer": 0,
               "source": "وإذا طالب الموكل المشتري فله أن يمنعه إياه فإن دفعه إليه جاز ولم يكن للوكيل أن يطالبه به ثانيا",
               "why": "The buyer could have refused the principal, but once he has paid him, that is valid and the agent cannot ask again."
@@ -14455,7 +14527,7 @@
               "kind": "choose",
               "id": "slave-case",
               "ask": "In al-Quduri's time, an agent sells his principal's goods to the agent's own slave at the fair price. Is it allowed?",
-              "options": ["No", "Yes: the price was fair", "Yes, if the principal never finds out"],
+              "options": ["No: not to his own slave", "Yes: the price was fair", "Yes, if the principal never finds out"],
               "answer": 0,
               "source": ["وقال أبو يوسف ومحمد: يجوز بيعه منهم بمثل القيمة إلا في عبده ومكاتبه"],
               "why": "Abu Hanifa forbids it, and even Abu Yusuf and Muhammad, who allow a fair sale to family, make an exception of his own slave and mukatab."
@@ -14572,7 +14644,7 @@
               "kind": "choose",
               "id": "collect-case",
               "ask": "Layla appoints an agent to argue her claim for 2000 dirhams. He wins. May he collect the money for her?",
-              "options": ["Yes", "No: he was only appointed to argue", "Only with a new letter from Layla"],
+              "options": ["Yes: an agent for the case may also collect", "No: he was only appointed to argue", "Only with a new letter from Layla"],
               "answer": 0,
               "source": "والوكيل بالخصومة وكيل بالقبض عند أبي حنيفة وأبي يوسف ومحمد",
               "why": "An agent for the case is also an agent to collect."
@@ -14687,6 +14759,19 @@
               "answer": 0,
               "source": "الكفالة ضربان",
               "why": "Two: surety for a person and surety for money."
+            },
+            {
+              "kind": "pick",
+              "id": "kinds-pick",
+              "ask": "Which of these are the kinds of kafala?",
+              "options": [
+                { "text": "Surety for a person", "right": true },
+                { "text": "A pledge (rahn)" },
+                { "text": "Surety for money", "right": true },
+                { "text": "A transfer of debt (hawala)" }
+              ],
+              "source": "الكفالة ضربان: كفالة بالنفس وكفالة بالمال",
+              "why": "Kafala is surety for a person or surety for money. A pledge and a hawala have chapters of their own."
             },
             {
               "kind": "teach",
@@ -15079,6 +15164,19 @@
               "why": "Two: the taker denies the hawala on oath with no proof against him, or he dies bankrupt."
             },
             {
+              "kind": "pick",
+              "id": "tawa-pick",
+              "ask": "For Abu Hanifa, which of these make the creditor's right lost (tawa)?",
+              "options": [
+                { "text": "The taker denies the hawala on oath, with no proof against him", "right": true },
+                { "text": "The taker dies bankrupt", "right": true },
+                { "text": "A judge declares the taker bankrupt in his lifetime" },
+                { "text": "The taker is slow to pay" }
+              ],
+              "source": ["والتوى عند أبي حنيفة أحد أمرين: إما أن يجحد الحوالة ويحلف ولا بينة عليه أو يموت مفلسا", "وقال أبو يوسف ومحمد هاذان ووجه ثالث وهو أن يحكم الحاكم بإفلاسه في حال حياته"],
+              "why": "Abu Hanifa names two: denial on oath with no proof, and dying bankrupt. A judge's ruling of bankruptcy is the third way that Abu Yusuf and Muhammad add."
+            },
+            {
               "kind": "choose",
               "id": "bankrupt-case",
               "ask": "Karim, who took on Ahmad's debt, dies with nothing at all. Can Bilal now go back to Ahmad for the 100?",
@@ -15148,6 +15246,20 @@
               "answer": 1,
               "source": "الصلح: على ثلاثة أضرب",
               "why": "Three: with admission, with silence, and with denial."
+            },
+            {
+              "kind": "pick",
+              "id": "kinds-pick",
+              "ask": "Which of these are al-Quduri's kinds of settlement?",
+              "options": [
+                { "text": "With admission", "right": true },
+                { "text": "With an oath" },
+                { "text": "With silence", "right": true },
+                { "text": "With denial", "right": true },
+                { "text": "By a judge's order" }
+              ],
+              "source": "الصلح: على ثلاثة أضرب: صلح مع إقرار وصلح مع سكوت وهو أن لا يقر المدعى عليه ولا ينكره وصلح مع إنكار",
+              "why": "The three are settlement with admission, with silence and with denial. An oath and a judge's order are not on the list."
             },
             {
               "kind": "sort",
@@ -15222,7 +15334,7 @@
               "kind": "choose",
               "id": "vague-case",
               "ask": "Salih claims \"a right\" in a house without saying what. Settling, Fadl pays him 100. Later part of the house is proved to be someone else's. Must Salih give anything back?",
-              "options": ["No, nothing", "Yes, all 100 of it", "Yes, a share for the lost part"],
+              "options": ["No: his right may be in what remains", "Yes, all 100 of it", "Yes, a share for the lost part"],
               "answer": 0,
               "source": "وإن ادعى حقا في دار لم يبينه فصولح من ذلك على شيء ثم استحق بعض الدار لم يرد شيئا من العوض لأن دعواه يجوز أن تكون فيما بقي",
               "why": "He never said which part his right was in, so it may be in what remains. He gives nothing back."
@@ -15286,7 +15398,7 @@
               "kind": "choose",
               "id": "poor-case",
               "ask": "Ilyas is owed 1000 good dirhams. He agrees to take 500 poor-quality dirhams to settle it. Is it allowed?",
-              "options": ["Yes, it is allowed", "No: the coins must be the same quality", "No: it is riba (unlawful gain)"],
+              "options": ["Yes: he takes part and forgives the rest", "No: the coins must be the same quality", "No: it is riba (unlawful gain)"],
               "answer": 0,
               "source": ["وإنما يحمل على أنه استوفى بعض حقه", "وصار كأنه أبرأه عن بعض حقه وأخذ باقيه"],
               "why": "Less and poorer is still within what he was owed, so it counts as taking part and forgiving the rest."
@@ -15337,6 +15449,19 @@
               "answer": 2,
               "source": "فإن صالح عنه على شيء بغير أمره فهو على أربعة أوجه",
               "why": "Al-Quduri says such a settlement falls into four cases."
+            },
+            {
+              "kind": "pick",
+              "id": "cases-pick",
+              "ask": "An outsider settles for someone without being asked. In which of these cases is the settlement complete?",
+              "options": [
+                { "text": "He guarantees the money", "right": true },
+                { "text": "He says, \"I settle with you for this 1000 of mine\"", "right": true },
+                { "text": "He names 1000 and hands it over", "right": true },
+                { "text": "He names 1000 but does not hand it over" }
+              ],
+              "source": ["إن صالح بمال وضمنه تم الصلح", "وكذلك لو قال: صالحتك على ألفي هذه تم الصلح ولزمه تسليمها وكذلك لو قال: صالحتك على ألف وسلمها", "وإن قال: صالحتك على ألف ولم يسلمها فالعقد موقوف"],
+              "why": "Guaranteeing, naming his own 1000, or naming 1000 and handing it over completes it. Naming 1000 without handing it over leaves it waiting on the one claimed against."
             },
             {
               "kind": "choose",
@@ -16177,7 +16302,7 @@
               "kind": "choose",
               "id": "flood-case",
               "ask": "A man seizes his neighbour's house. A flood, which was not his fault, destroys it. According to Abu Hanifa, must he pay for it?",
-              "options": ["No", "Yes, its full value", "Yes, half its value"],
+              "options": ["No: land lost without his doing is not paid for", "Yes, its full value", "Yes, half its value"],
               "answer": 0,
               "source": "وإذا غصب عقارا فهلك في يده لم يضمنه عند أبي حنيفة وأبي يوسف",
               "why": "Land and buildings destroyed without his doing are not his to pay for, according to Abu Hanifa."
@@ -16715,7 +16840,7 @@
               "kind": "choose",
               "id": "bike-case",
               "ask": "Saleh borrows Idris's bike. It is stolen from a locked shed, with no fault of Saleh's. Must he pay?",
-              "options": ["No", "Yes, its full value", "Yes, half its value"],
+              "options": ["No: a loan is a trust", "Yes, its full value", "Yes, half its value"],
               "answer": 0,
               "source": "والعارية أمانة: إن هلكت من غير تعد لم يضمن شيئا",
               "why": "A loan is a trust; lost without misuse, the borrower pays nothing."
@@ -17681,7 +17806,7 @@
               "kind": "choose",
               "id": "free-case",
               "ask": "A permitted trader's debts are greater than all his goods and his own value. His master frees one of the slaves the trader bought. According to Abu Hanifa, is that slave freed?",
-              "options": ["No", "Yes", "Yes, and the master pays the creditors"],
+              "options": ["No: the master does not own those slaves", "Yes: the trader bought them for the master", "Yes, and the master pays the creditors"],
               "answer": 0,
               "source": "فإن أعتق عبيده لم يعتقوا عند أبي حنيفة",
               "why": "With debts that swallow everything, the master does not own those slaves, so his freeing them does not work, for Abu Hanifa."
@@ -17803,7 +17928,7 @@
               "kind": "choose",
               "id": "four-case",
               "ask": "Sami gives the land and the seed. Bakr brings his oxen and does the work. For Abu Yusuf and Muhammad, is this sharecropping valid?",
-              "options": ["Yes, it is allowed", "No: the oxen must come with the land", "Only if Bakr also brings the seed"],
+              "options": ["Yes: it is one of the allowed ways", "No: the oxen must come with the land", "Only if Bakr also brings the seed"],
               "answer": 0,
               "source": "إذا كانت الأرض والبذر لواحد والعمل والبقر لواحد جازت المزارعة",
               "why": "Land and seed from one side, and work and oxen from the other, is one of the allowed ways."
@@ -17816,20 +17941,16 @@
               "en": "Land, oxen and seed from one, and only the work from the other: allowed. But land and oxen from one, and seed and work from the other: invalid."
             },
             {
-              "kind": "sort",
+              "kind": "pick",
               "id": "ways",
-              "ask": "For Abu Yusuf and Muhammad, is the sharecropping allowed?",
-              "into": ["Allowed", "Invalid"],
-              "items": [
-                ["Land and seed from one; work and oxen from the other", "Allowed"],
-                ["Land from one; work, oxen and seed from the other", "Allowed"],
-                ["Land, oxen and seed from one; only the work from the other", "Allowed"],
-                ["Land and oxen from one; seed and work from the other", "Invalid"]
+              "ask": "For Abu Yusuf and Muhammad, which of the four ways of sharecropping are allowed?",
+              "options": [
+                { "text": "Land and seed from one; work and oxen from the other", "right": true },
+                { "text": "Land from one; work, oxen and seed from the other", "right": true },
+                { "text": "Land and oxen from one; seed and work from the other" },
+                { "text": "Land, oxen and seed from one; only the work from the other", "right": true }
               ],
-              "source": [
-                "وهي عندهما على أربعة أوجه: إذا كانت الأرض والبذر لواحد والعمل والبقر لواحد جازت المزارعة وإن كانت الأرض لواحد والعمل والبقر والبذر لآخر جازت",
-                "وإن كانت الأرض والبقر والبذر لواحد والعمل لآخر جازت وإن كانت الأرض والبقر لواحد والبذر والعمل لآخر فهي باطلة"
-              ],
+              "source": ["وهي عندهما على أربعة أوجه: إذا كانت الأرض والبذر لواحد والعمل والبقر لواحد جازت المزارعة وإن كانت الأرض لواحد والعمل والبقر والبذر لآخر جازت", "وإن كانت الأرض والبقر والبذر لواحد والعمل لآخر جازت وإن كانت الأرض والبقر لواحد والبذر والعمل لآخر فهي باطلة"],
               "why": "Three of the four ways are allowed. Only land and oxen from one side, with seed and work from the other, is invalid."
             },
             {
@@ -17859,7 +17980,7 @@
               "kind": "choose",
               "id": "qafiz-case",
               "ask": "A farmer and a landowner agree, \"The first 10 qafiz of wheat go to the landowner, and the rest we split.\" Is it valid?",
-              "options": ["No, it is invalid", "Yes, if the harvest is big", "Yes, the split makes it fair"],
+              "options": ["No: the crop must be shared as a portion", "Yes, if the harvest is big", "Yes, the split makes it fair"],
               "answer": 0,
               "source": "فإن شرطا لأحدهما قفزانا مسماة فهي باطلة",
               "why": "Naming a fixed number of qafiz for one side spoils it: the crop must be shared as a portion."
@@ -18041,7 +18162,7 @@
               "kind": "choose",
               "id": "ripe-case",
               "ask": "Idris gives his palms to a worker for musaqat, but the dates are already fully ripe and nothing more will grow from the work. Is it allowed?",
-              "options": ["No", "Yes", "Yes, for half the dates"],
+              "options": ["No: the work must make the fruit grow", "Yes: any palms may be given for musaqat", "Yes, for half the dates"],
               "answer": 0,
               "source": "وإن كانت قد انتهت لم يجز",
               "why": "The work must make the fruit grow; fruit that is already finished cannot be tended for a share."
@@ -18177,6 +18298,20 @@
               "answer": 0,
               "source": "وينعقد النكاح بلفظ النكاح والتزويج والتمليك والهبة والصدقة",
               "why": "Five: nikah, tazwij, tamlik, hiba and sadaqa."
+            },
+            {
+              "kind": "pick",
+              "id": "words-pick",
+              "ask": "Which of these words make a nikah?",
+              "options": [
+                { "text": "Tamlik (giving ownership)", "right": true },
+                { "text": "Ijara (hiring)" },
+                { "text": "Sadaqa (charity)", "right": true },
+                { "text": "Nikah", "right": true },
+                { "text": "Ibaha (allowing)" }
+              ],
+              "source": "وينعقد النكاح بلفظ النكاح والتزويج والتمليك والهبة والصدقة ولا ينعقد بلفظ الإجارة والإباحة",
+              "why": "Tamlik, sadaqa and nikah are among the five words. Ijara and ibaha do not make a nikah."
             },
             {
               "kind": "sort",
@@ -20178,6 +20313,18 @@
               "why": "One talaq then waiting is the best way; one in each of three tuhrs is the Sunna way; three at once or in one tuhr is bid'a."
             },
             {
+              "kind": "order",
+              "id": "kinds-order",
+              "ask": "Put the three kinds of talaq in the book's order, from the best",
+              "steps": [
+                "Ahsan: the best way",
+                "The Sunna way",
+                "Bid'a: the innovated way"
+              ],
+              "source": "الطلاق على ثلاثة أوجه: أحسن الطلاق وطلاق السنة وطلاق البدعة",
+              "why": "The book names the best way first, then the Sunna way, then the bid'a way."
+            },
+            {
               "kind": "choose",
               "id": "bida-case",
               "ask": "In anger, Umar tells his wife in one sentence, \"You are divorced three times.\" What happens?",
@@ -20373,6 +20520,20 @@
               "answer": 0,
               "source": "منها ثلاثة ألفاظ بها الطلاق الرجعي ولا يقع بها إلا واحدة وهي قوله: اعتدي واستبرئي رحمك وأنت واحدة",
               "why": "Three: \"Count your 'idda\", \"Make sure your womb is clear\" and \"You are one\"."
+            },
+            {
+              "kind": "pick",
+              "id": "hints-pick",
+              "ask": "Which of these hinted phrases give a revocable talaq?",
+              "options": [
+                { "text": "\"Count your 'idda\"", "right": true },
+                { "text": "\"Go to your family\"" },
+                { "text": "\"Make sure your womb is clear\"", "right": true },
+                { "text": "\"You are one\"", "right": true },
+                { "text": "\"You are forbidden\"" }
+              ],
+              "source": ["منها ثلاثة ألفاظ بها الطلاق الرجعي ولا يقع بها إلا واحدة وهي قوله: اعتدي واستبرئي رحمك وأنت واحدة", "إذا نوى بها الطلاق كانت واحدة بائنة"],
+              "why": "The three are \"Count your 'idda\", \"Make sure your womb is clear\" and \"You are one\". \"Go to your family\" and \"forbidden\" give a final talaq."
             },
             {
               "kind": "choose",
@@ -21086,7 +21247,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Yunus tells his wife, \"I have taken you back.\" She answers at once, \"My 'idda has already ended.\" For Abu Hanifa, is the raj'a valid?",
-              "options": ["No", "Yes, because he spoke first", "Yes, if he has two witnesses"],
+              "options": ["No: she answered at once that the 'idda had ended", "Yes, because he spoke first", "Yes, if he has two witnesses"],
               "answer": 0,
               "source": "فقالت مجيبة له: قد انقضت عدتي لم تصح الرجعة عند أبي حنيفة",
               "why": "No. When she answers at once that her 'idda has ended, the raj'a is not valid for Abu Hanifa."
@@ -22707,7 +22868,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "After a final divorce, a woman gives birth exactly two years from the day of the separation, and the man does not claim the child. Is the child joined to him?",
-              "options": ["No", "Yes", "Yes, as a taking back"],
+              "options": ["No: it must come in less than two years", "Yes: the man was once her husband", "Yes, as a taking back"],
               "answer": 0,
               "source": "فإن جاءت به لتمام سنتين من يوم الفرقة لم يثبت نسبه",
               "why": "After a final divorce the child must come in less than two years; at a full two years it is not joined to him unless he claims it."
@@ -23000,7 +23161,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Rashid is poor and does not have a servant to pay for. His wife says he must pay for one. Must he?",
-              "options": ["No: only a well-off husband pays it", "Yes, always", "Yes: every husband must pay for one servant"],
+              "options": ["No: only a well-off husband pays it", "Yes: a wife is always owed a servant", "Yes: every husband must pay for one servant"],
               "answer": 0,
               "source": "وتفرض على الزوج نفقة خادمها إذا كان موسرا",
               "why": "The servant's keep is ordered only when the husband is well off."
@@ -23334,7 +23495,7 @@
               "kind": "choose",
               "id": "parents-case",
               "ask": "Idris is travelling. He left 1,000 dirhams with his poor parents, and they spend 200 on their food. Must they pay it back?",
-              "options": ["No", "Yes, all 200", "Yes, half"],
+              "options": ["No: they spent on themselves from money in their hands", "Yes, all 200", "Yes, half"],
               "answer": 0,
               "source": "وإن كان للابن الغائب مال في يد أبويه فانفقا منه لم يضمنا",
               "why": "Parents who spend on themselves from their absent son's money in their own hands owe nothing."
@@ -24973,15 +25134,15 @@
               "id": "shibh",
               "title": "The heavy diya of shibh 'amd",
               "ar": "ودية شبه العمد عند أبي حنيفة وأبي يوسف مائة من الإبل أرباعا: خمس وعشرون بنت مخاض وخمس وعشرون بنت لبون وخمس وعشرون حقة وخمس وعشرون جذعة",
-              "en": "Diya is blood money for a life or an injury. For shibh 'amd (striking on purpose with what does not usually kill), the killer's 'aqila (his people who share in paying) owe a heavy diya. It is 100 camels in quarters: 25 bint makhad, 25 bint labun, 25 hiqqa and 25 jadha'a, she-camels of rising ages."
+              "en": "Diya is blood money for a life or an injury. For shibh 'amd (striking on purpose with what does not usually kill), the killer's 'aqila owe a heavy diya. For Abu Hanifa and Abu Yusuf it is 100 camels in quarters: 25 each of bint makhad, bint labun, hiqqa and jadha'a, she-camels of rising ages."
             },
             {
               "kind": "choose",
               "id": "quarters",
-              "ask": "Shibh 'amd: how many jadha'a camels are in the heavy diya?",
+              "ask": "Shibh 'amd, for Abu Hanifa and Abu Yusuf: how many jadha'a camels are in the heavy diya?",
               "options": ["25", "20", "50"],
               "answer": 0,
-              "source": "وخمس وعشرون حقة وخمس وعشرون جذعة",
+              "source": ["عند أبي حنيفة وأبي يوسف مائة من الإبل أرباعا", "وخمس وعشرون حقة وخمس وعشرون جذعة"],
               "why": "The 100 camels are in four groups of 25, and the jadha'a are one of them."
             },
             {
@@ -25001,7 +25162,7 @@
             {
               "kind": "sort",
               "id": "kind-sort",
-              "ask": "Which diya is this?",
+              "ask": "Which diya is this (shibh 'amd as Abu Hanifa and Abu Yusuf give it)?",
               "into": ["Shibh 'amd", "Mistake"],
               "items": [
                 ["100 camels in quarters", "Shibh 'amd"],
@@ -25010,7 +25171,7 @@
                 ["20 ibn makhad (young males) among them", "Mistake"]
               ],
               "source": ["مائة من الإبل أرباعا", "وخمس وعشرون جذعة", "مائة من الإبل أخماسا", "وعشرون ابن مخاض"],
-              "why": "Shibh 'amd is in quarters of 25 and includes jadha'a. A mistake is in fifths of 20 and includes young male camels."
+              "why": "For Abu Hanifa and Abu Yusuf, shibh 'amd is in quarters of 25 and includes jadha'a. A mistake is in fifths of 20 and includes young male camels."
             },
             {
               "kind": "choose",
@@ -25174,7 +25335,7 @@
               "id": "ten",
               "title": "Ten head wounds",
               "ar": "والشجاج عشرة: الحارصة والدامعة والدامية والباضعة والمتلاحمة والسمحاق والموضحه والهاشمة والمنقلة والأمة",
-              "en": "A shajja is a wound to the head or face. There are ten, from lightest to deepest. The last four are the important ones: mudiha (shows the bone), hashima (breaks the bone), munaqqila (moves the bone out of place), and amma (reaches the lining of the brain)."
+              "en": "A shajja is a wound to the head or face. There are ten, from lightest to deepest. The last four are mudiha (shows the bone), hashima (breaks the bone), munaqqila (moves the bone out of place), and amma (reaches the lining of the brain)."
             },
             {
               "kind": "order",
@@ -26029,6 +26190,19 @@
               "why": "Only two: bayyina (four witnesses) or iqrar (his own confession)."
             },
             {
+              "kind": "pick",
+              "id": "ways-pick",
+              "ask": "Which of these prove zina?",
+              "options": [
+                { "text": "Four witnesses", "right": true },
+                { "text": "Two witnesses" },
+                { "text": "A confession made four times, in four sittings", "right": true },
+                { "text": "A single confession" }
+              ],
+              "source": ["الزنا يثبت بالبينة والإقرار", "فالبينة: أن تشهد أربعة من الشهود", "أربع مرات في أربعة مجالس من مجالس المقر"],
+              "why": "Zina is proved by four witnesses or by four confessions in four sittings. Two witnesses or one confession are not enough."
+            },
+            {
               "kind": "teach",
               "id": "four",
               "title": "Four witnesses",
@@ -26049,7 +26223,7 @@
               "id": "questions",
               "title": "The five questions",
               "ar": "ما هو؟ وكيف هو؟ وأين زنى؟ وبمن زنى؟ ومتى زنى؟",
-              "en": "The imam asks the witnesses: What is it? How was it? Where did it happen? With whom? When? Their answers must be clear and agree, so nobody is punished on a vague story."
+              "en": "The imam asks the witnesses: What is it? How was it? Where did it happen? With whom? When?"
             },
             {
               "kind": "teach",
@@ -26149,7 +26323,7 @@
               "id": "who-starts",
               "title": "Who begins",
               "ar": "يبتدئ الشهود برجمه ثم الإمام ثم الناس فإن امتنع الشهود من الابتداء سقط الحد",
-              "en": "The witnesses must begin, then the imam, then the people. If the witnesses refuse to begin, the hadd falls away. This shows how serious their testimony is."
+              "en": "The witnesses must begin, then the imam, then the people. If the witnesses refuse to begin, the hadd falls away."
             },
             {
               "kind": "order",
@@ -26180,7 +26354,7 @@
               "id": "lashes",
               "title": "If he is not muhsan",
               "ar": "وإن لم يكن محصنا وكان حرا فحده مائة جلدة يأمر الإمام بضربه بسوط لا ثمرة له ضربا متوسطا تنزع عنه ثيابه ويفرق الضرب على أعضائه إلا رأسه ووجهه وفرجه",
-              "en": "If he is not muhsan and is free, the hadd is 100 lashes, with a whip that has no knot at its end, struck with medium force. His outer clothes are removed and the blows are spread over his body, avoiding the head, the face and the private parts. A slave got half: 50."
+              "en": "If he is not muhsan and is free, the hadd is 100 lashes, with a whip that has no knot at its end, struck with medium force. His clothes are taken off and the blows are spread over his body, avoiding the head, the face and the private parts. A slave got half: 50."
             },
             {
               "kind": "choose",
@@ -26580,7 +26754,7 @@
               "kind": "choose",
               "id": "women-case",
               "ask": "One man and two women testify that Rami drank wine. Is it proved?",
-              "options": ["No, it is not proved", "Yes: a man and two women equal two men", "Yes, it is"],
+              "options": ["No, it is not proved", "Yes: a man and two women equal two men", "Yes: three witnesses are more than two"],
               "answer": 0,
               "source": "ولا تقبل فيه شهادة النساء مع الرجال",
               "why": "For drinking, only two men count as witnesses. Women's testimony with men is not accepted in hudud."
@@ -26621,7 +26795,7 @@
               "id": "qadhf",
               "title": "What qadhf is",
               "ar": "إذا قذف رجل رجلا محصنا أو امرأة محصنة بصريح الزنا وطالب المقذوف بالحد حده الحاكم ثمانين سوطا إن كان حرا",
-              "en": "Qadhf is accusing someone openly and clearly of zina. If a man accuses a muhsan man or woman, and the accused person demands the hadd, the ruler lashes the accuser 80 times, if he is free. Islam protects people's honour."
+              "en": "Qadhf is accusing someone openly and clearly of zina. If a man accuses a muhsan man or woman, and the accused person demands the hadd, the ruler lashes the accuser 80 times, if he is free."
             },
             {
               "kind": "choose",
@@ -26815,7 +26989,7 @@
               "kind": "choose",
               "id": "witness-case",
               "ask": "Jamal, a Muslim, was lashed for qadhf. Years later he has sincerely repented. Can he be a witness in court?",
-              "options": ["No, never again", "Yes: repentance restores it", "Yes, later"],
+              "options": ["No, never again", "Yes: repentance restores it", "Yes, once some years have passed"],
               "answer": 0,
               "source": "وإذا حد المسلم في القذف سقطت شهادته وإن تاب",
               "why": "A Muslim lashed for qadhf loses his testimony for good, even after repenting."
@@ -26943,19 +27117,19 @@
               "why": "Wine that becomes vinegar is halal, whether by itself or because something was added."
             },
             {
-              "kind": "sort",
+              "kind": "pick",
               "id": "sort",
-              "ask": "Forbidden or halal?",
-              "into": ["Forbidden", "Halal"],
-              "items": [
-                ["Grape wine (khamr)", "Forbidden"],
-                ["Raw-soaked dates that became strong", "Forbidden"],
-                ["Grape juice boiled until one-third is left", "Halal"],
-                ["Nabidh of honey", "Halal"],
-                ["Vinegar made from wine", "Halal"]
+              "ask": "Which of these are among the four forbidden drinks?",
+              "options": [
+                { "text": "Grape wine (khamr)", "right": true },
+                { "text": "Grape juice boiled until one-third is left" },
+                { "text": "Grape juice cooked until less than two-thirds is gone", "right": true },
+                { "text": "Nabidh of honey" },
+                { "text": "Raw-soaked dates that became strong", "right": true },
+                { "text": "Vinegar made from wine" }
               ],
-              "source": ["الأشربة المحرمة أربعة: الخمر", "ونقيع التمر والزبيب إذا اشتد", "حتى ذهب منه ثلثاه وبقي ثلثه حلال", "ونبيذ العسل", "وإذا تخللت الخمر حلت"],
-              "why": "Khamr and strong raw-soaked dates are among the four forbidden. Juice down to a third, honey nabidh and vinegar are halal."
+              "source": ["الأشربة المحرمة أربعة: الخمر", "والعصير إذا طبخ حتى ذهب أقل من ثلثيه", "ونقيع التمر والزبيب إذا اشتد", "حتى ذهب منه ثلثاه وبقي ثلثه حلال", "ونبيذ العسل", "وإذا تخللت الخمر حلت"],
+              "why": "Khamr, juice cooked by less than two-thirds and strong soaked dates are among the four. Juice boiled down to a third, honey nabidh and vinegar from wine are halal."
             }
           ]
         }
@@ -27025,7 +27199,7 @@
               "id": "same",
               "title": "Free and slave alike",
               "ar": "والعبد والحر في القطع سواء",
-              "en": "In al-Quduri's time, a slave and a free person were the same in this: the hand is cut for both. Unlike other hudud, it is not halved for a slave."
+              "en": "In al-Quduri's time, a slave and a free person were the same in this: the hand is cut for both."
             },
             {
               "kind": "teach",
@@ -27126,7 +27300,7 @@
               "kind": "choose",
               "id": "mushaf-case",
               "ask": "Someone steals a Mushaf with a gold-decorated cover worth 100 dirhams. Is the hand cut?",
-              "options": ["No", "Yes: the gold is worth more than ten dirhams", "Yes, but only if the gold is removed"],
+              "options": ["No: there is no cutting for a Mushaf", "Yes: the gold is worth more than ten dirhams", "Yes, but only if the gold is removed"],
               "answer": 0,
               "source": "ولا في الطيور ولا في السرقة المصحف وإن كان عليه حلية",
               "why": "There is no cutting for a Mushaf, even with decoration on it."
@@ -27234,7 +27408,7 @@
               "kind": "choose",
               "id": "treasury-case",
               "ask": "Hamid steals 100 dirhams from the bayt al-mal. Is his hand cut?",
-              "options": ["No: he has a share in it", "Yes: it is far above ten dirhams", "Yes, he is cut"],
+              "options": ["No: he has a share in it", "Yes: it is far above ten dirhams", "Yes: the treasury is guarded"],
               "answer": 0,
               "source": "ولا يقطع السارق من بيت المال",
               "why": "Every Muslim has a share in the public treasury, so there is no cutting."
@@ -27257,7 +27431,7 @@
               "kind": "choose",
               "id": "uncle-case",
               "ask": "Ali steals 50 dirhams from his uncle's (his mother's brother's) house. Is his hand cut?",
-              "options": ["No: he is a close mahram", "Yes: it is a different household", "Yes, he is cut"],
+              "options": ["No: he is a close mahram", "Yes: it is a different household", "Yes: an uncle is not a parent"],
               "answer": 0,
               "source": "أو ذي رحم محرم منه لم يقطع",
               "why": "A maternal uncle is a dhu rahim mahram, so there is no cutting."
@@ -27277,6 +27451,19 @@
               "answer": 0,
               "source": "والحرز على ضربين",
               "why": "Two: a place that protects by itself, and protection by a guard."
+            },
+            {
+              "kind": "pick",
+              "id": "hirz-pick",
+              "ask": "Which of these are the two kinds of hirz?",
+              "options": [
+                { "text": "A place that protects by itself, like a house", "right": true },
+                { "text": "A public bath" },
+                { "text": "A guard watching over the property", "right": true },
+                { "text": "A building people may enter" }
+              ],
+              "source": ["والحرز على ضربين: حرز لمعنى فيه كالبيوت والدور وحرز بالحافظ", "ولا قطع على من سرق من حمام أو من بيت أذن للناس في دخوله"],
+              "why": "A hirz is a place like a house, or a guard. A public bath, or a building people are let into, is not a hirz against them."
             },
             {
               "kind": "teach",
@@ -27350,7 +27537,7 @@
               "kind": "choose",
               "id": "guest-case",
               "ask": "Karim invites Omar to dinner. Omar takes 30 dirhams from Karim's room. Is Omar's hand cut?",
-              "options": ["No: he is a guest", "Yes: it is over ten dirhams", "Yes, he is cut"],
+              "options": ["No: he is a guest", "Yes: it is over ten dirhams", "Yes: he took it from a closed room"],
               "answer": 0,
               "source": "ولا قطع على الضيف إذا سرق ممن أضافه",
               "why": "A guest was let in, so there is no cutting, though he must return it."
@@ -27468,7 +27655,7 @@
               "kind": "choose",
               "id": "left-case",
               "ask": "A thief whose left hand is paralysed steals 20 dirhams from a hirz. Is his right hand cut?",
-              "options": ["No", "Yes, as normal", "His left foot is cut instead"],
+              "options": ["No: he would have no useful hand", "Yes, as normal", "His left foot is cut instead"],
               "answer": 0,
               "source": "وإذا كان السارق أشل اليد اليسرى",
               "why": "With a paralysed left hand, the right is not cut, or he would have no useful hand."
@@ -27882,7 +28069,7 @@
               "id": "who",
               "title": "Whose slaughter is halal",
               "ar": "وذبيحة المسلم والكتابي حلال ولا تؤكل ذبيحة المجوسي والمرتد والوثني والمحرم",
-              "en": "What a Muslim or a kitabi (a Jew or Christian) slaughters is halal. What a Majusi, a murtadd, an idol-worshipper, or a muhrim (someone in ihram, the state of Hajj or Umrah) slaughters is not eaten."
+              "en": "What a Muslim or a kitabi (a Jew or Christian) slaughters is halal. What a Majusi, a murtadd or an idol-worshipper slaughters is not eaten, nor game slaughtered by a muhrim (someone in ihram). In Hajj the book lets a muhrim slaughter his sheep or camel."
             },
             {
               "kind": "sort",
@@ -27894,10 +28081,10 @@
                 ["A Jew or a Christian", "Halal"],
                 ["A Majusi", "Not eaten"],
                 ["An idol-worshipper", "Not eaten"],
-                ["A Muslim in ihram", "Not eaten"]
+                ["A man in ihram, with a deer he hunted", "Not eaten"]
               ],
               "source": "وذبيحة المسلم والكتابي حلال ولا تؤكل ذبيحة المجوسي والمرتد والوثني والمحرم",
-              "why": "Muslims and the People of the Book (Jews and Christians) may slaughter. A Majusi, an idol-worshipper and a muhrim may not."
+              "why": "Muslims and the People of the Book (Jews and Christians) may slaughter. A Majusi and an idol-worshipper may not, and game slaughtered by a muhrim is not eaten."
             },
             {
               "kind": "teach",
@@ -27972,10 +28159,10 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which of these animals may be eaten?",
-              "options": ["A Muslim forgot Bismillah and used a sharp stone", "A Muslim in ihram slaughtered it with a knife", "A Muslim left out Bismillah on purpose to save time", "It was cut with a tooth still in the mouth"],
+              "options": ["A Muslim forgot Bismillah and used a sharp stone", "It was a deer a man in ihram hunted and slaughtered", "A Muslim left out Bismillah on purpose to save time", "It was cut with a tooth still in the mouth"],
               "answer": 0,
               "source": ["وإن تركها ناسيا أكلت", "والمحرم", "وإن ترك الذابح التسمية عمدا فالذبيحة ميتة لا تؤكل", "إلا السن القائم"],
-              "why": "Forgetting the tasmiya is forgiven and a sharp stone is fine. A muhrim's slaughter, leaving Bismillah on purpose, and an attached tooth all make it unlawful."
+              "why": "Forgetting the tasmiya is forgiven and a sharp stone is fine. Game slaughtered by a muhrim, leaving Bismillah on purpose, and an attached tooth all make it unlawful."
             }
           ]
         },
@@ -28048,7 +28235,7 @@
               "kind": "choose",
               "id": "janin-case",
               "ask": "Ali slaughters a cow and finds a dead calf inside it, fully formed with hair. May the calf be eaten?",
-              "options": ["No", "Yes, because it had grown hair", "Yes: its mother was slaughtered"],
+              "options": ["No: a dead janin is not eaten", "Yes, because it had grown hair", "Yes: its mother was slaughtered"],
               "answer": 0,
               "source": "فوجد في بطنها جنينا ميتا لم يؤكل أشعر أو لم يشعر",
               "why": "A dead janin is not eaten, with hair or without."
@@ -28469,6 +28656,20 @@
               "why": "Three: the ghamus, the binding and the slip oath."
             },
             {
+              "kind": "pick",
+              "id": "kinds-pick",
+              "ask": "Which of these are the kinds of oath al-Quduri names?",
+              "options": [
+                { "text": "The ghamus oath", "right": true },
+                { "text": "The written oath" },
+                { "text": "The binding (mun'aqida) oath", "right": true },
+                { "text": "The laghw (slip) oath", "right": true },
+                { "text": "The silent oath" }
+              ],
+              "source": "الأيمان على ثلاثة أضرب: يمين غموس ويمين منعقدة ويمين لغو",
+              "why": "His three kinds are the ghamus, the binding and the slip oath. The other two are not on his list."
+            },
+            {
               "kind": "teach",
               "id": "ghamus",
               "title": "The ghamus oath",
@@ -28630,6 +28831,20 @@
               "answer": 0,
               "source": "وحروف القسم: الواو كقوله: والله والباء كقوله: بالله والتاء كقوله: تالله",
               "why": "Three: wa, bi and ta."
+            },
+            {
+              "kind": "pick",
+              "id": "letters-pick",
+              "ask": "Which of these are al-Quduri's letters of swearing?",
+              "options": [
+                { "text": "Wa, as in wallahi", "right": true },
+                { "text": "La" },
+                { "text": "Bi, as in billahi", "right": true },
+                { "text": "Fa" },
+                { "text": "Ta, as in tallahi", "right": true }
+              ],
+              "source": "وحروف القسم: الواو كقوله: والله والباء كقوله: بالله والتاء كقوله: تالله",
+              "why": "The letters of swearing are wa, bi and ta. La and fa are not among them."
             },
             {
               "kind": "teach",
@@ -30646,6 +30861,20 @@
               "why": "Two: what stands by itself, and what does not, like testimony on testimony."
             },
             {
+              "kind": "pick",
+              "id": "self-pick",
+              "ask": "Which of these stand by themselves, so a witness who saw or heard them may testify without being asked?",
+              "options": [
+                { "text": "A sale", "right": true },
+                { "text": "A killing", "right": true },
+                { "text": "Another witness's testimony" },
+                { "text": "An iqrar (admission)", "right": true },
+                { "text": "A judge's ruling", "right": true }
+              ],
+              "source": ["أحدهما: ما يثبت حكمه بنفسه مثل البيع والإقرار والغصب والقتل وحكم الحاكم", "ومنه ما لا يثبت حكمه بنفسه مثل الشهادة على الشهادة"],
+              "why": "A sale, an admission, a killing and a judge's ruling stand by themselves. Testimony on testimony does not: he must be asked to carry it."
+            },
+            {
               "kind": "choose",
               "id": "sale-case",
               "ask": "Bilal overheard Yusuf sell his camel to Idris. Nobody asked Bilal to be a witness. May he testify to the sale?",
@@ -30786,7 +31015,7 @@
               "kind": "choose",
               "id": "good-case",
               "ask": "Faris avoids all major sins, and his good deeds are far more than his bad ones, but sometimes he slips into a small sin. Is his testimony accepted?",
-              "options": ["Yes", "No: any sin blocks testimony", "Only in money cases"],
+              "options": ["Yes: his good deeds are more than his bad", "No: any sin blocks testimony", "Only in money cases"],
               "answer": 0,
               "source": "وإن كانت الحسنات أغلب من السيئات والرجل ممن يجتنب الكبائر قبلت شهادته",
               "why": "If his good deeds are more than his bad ones and he avoids major sins, his testimony is accepted even if he sometimes slips."
@@ -30922,19 +31151,19 @@
               "why": "Five: lineage, a death, a nikah, consummation, and a judge's authority."
             },
             {
-              "kind": "sort",
+              "kind": "pick",
               "id": "seen",
-              "ask": "Must the witness have seen it himself?",
-              "into": ["A trusted report is enough", "He must have seen it"],
-              "items": [
-                ["Someone's death", "A trusted report is enough"],
-                ["Who someone's father is", "A trusted report is enough"],
-                ["That a man is the appointed judge", "A trusted report is enough"],
-                ["A sale", "He must have seen it"],
-                ["A loan being handed over", "He must have seen it"]
+              "ask": "Which of these may a witness testify to from a trusted report, without seeing it himself?",
+              "options": [
+                { "text": "Someone's death", "right": true },
+                { "text": "A sale" },
+                { "text": "Who someone's father is", "right": true },
+                { "text": "That a man is the appointed judge", "right": true },
+                { "text": "A loan being handed over" },
+                { "text": "A nikah", "right": true }
               ],
-              "source": "إلا النسب والموت والنكاح والدخول وولاية القاضي فإنه يسعه أن يشهد بهذه الأشياء إذا اخبره بها من يثق به",
-              "why": "Lineage, death, nikah, consummation and a judge's appointment can be testified from a trusted report. Everything else must be seen."
+              "source": "ولا يجوز للشاهد أن يشهد بشيء لم يعاينه إلا النسب والموت والنكاح والدخول وولاية القاضي فإنه يسعه أن يشهد بهذه الأشياء إذا اخبره بها من يثق به",
+              "why": "Lineage, death, nikah, consummation and a judge's appointment can be testified from a trusted report. Anything else, like a sale or a loan, he must have seen."
             }
           ]
         },
@@ -30970,7 +31199,7 @@
               "kind": "choose",
               "id": "one-case",
               "ask": "Only one branch witness comes, to testify on the testimony of one original witness. Is it accepted?",
-              "options": ["No, it is not accepted", "Yes, if he is upright", "Yes, for small debts only"],
+              "options": ["No: it takes two on two", "Yes, if he is upright", "Yes, for small debts only"],
               "answer": 0,
               "source": "ولا تقبل شهادة واحد على شهادة واحد",
               "why": "One witness on the testimony of one is not accepted. It takes two on two."
@@ -30993,7 +31222,7 @@
               "kind": "choose",
               "id": "away-case",
               "ask": "The original witnesses live in a town one day's journey away and are healthy. Can branch witnesses testify for them?",
-              "options": ["No: not three days away", "Yes: any distance is enough", "Yes, they can"],
+              "options": ["No: not three days away", "Yes: any distance is enough", "Yes: they live in another town"],
               "answer": 0,
               "source": "أو يغيبوا مسيرة ثلاثة أيام فصاعدا",
               "why": "They must be away three days' journey or more, dead, or too ill to come. One day away is not enough."
@@ -31039,7 +31268,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Two men testify in a debt case on the testimony of two original witnesses who have died. Is it accepted?",
-              "options": ["Yes", "No: two on two is not allowed", "No: debts cannot be proved this way"],
+              "options": ["Yes: two on two is allowed, and the originals have died", "No: two on two is not allowed", "No: debts cannot be proved this way"],
               "answer": 0,
               "source": ["والشهادة على الشهادة جائزة في كل حق لا يسقط بالشبهة", "وتجوز شهادة شاهدين على شهادة شاهدين", "إلا أن يموت شهود الأصل"],
               "why": "A debt does not fall away by doubt, two on two is allowed, and the originals have died, so it is accepted."
@@ -31290,7 +31519,7 @@
               "kind": "choose",
               "id": "shurut-case",
               "ask": "Mus'ab is a great scholar, but he was once given the hadd for qadhf, so his testimony is never accepted. Can he be made a judge?",
-              "options": ["No: he cannot be a witness", "Yes, he can", "Yes, if he has repented since"],
+              "options": ["No: he cannot be a witness", "Yes: knowledge is what a judge needs", "Yes, if he has repented since"],
               "answer": 0,
               "source": "حتى يجتمع في المولى شرائط الشهادة",
               "why": "A judge needs all the conditions of a witness. Someone whose testimony is not accepted cannot be a judge."
@@ -31389,7 +31618,7 @@
               "kind": "choose",
               "id": "trader-case",
               "ask": "A rich trader, who never gave the judge anything before, sends him an expensive cloak. May he accept it?",
-              "options": ["No", "Yes, gifts are always fine", "Yes, if the trader has no case in court"],
+              "options": ["No: he never gave the judge gifts before", "Yes, gifts are always fine", "Yes, if the trader has no case in court"],
               "answer": 0,
               "source": "ولا يقبل هدية إلا من ذي رحم محرم أو ممن جرت عادته قبل القضاء بمهاداته",
               "why": "The trader is not a close relative and did not give him gifts before, so the judge does not accept it."
@@ -31444,7 +31673,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "During a case, the judge quietly tells one side: \"Say that you already paid him.\" Is this allowed?",
-              "options": ["No, he may not", "Yes, he may", "Yes, if he only whispers it"],
+              "options": ["No: he may not prompt either side", "Yes: he may help a weak side", "Yes, if he only whispers it"],
               "answer": 0,
               "source": "ولا يلقنه حجة",
               "why": "The judge may not prompt either side with an argument."
@@ -31490,7 +31719,7 @@
               "kind": "choose",
               "id": "price-case",
               "ask": "Zayd bought a horse and has not paid its price. He refuses to pay and says: \"I am poor.\" Can he be jailed?",
-              "options": ["Yes, he can be jailed", "No, he cannot", "Only if the horse has died"],
+              "options": ["Yes: it is a debt for a horse he received", "No: he says he is poor", "Only if the horse has died"],
               "answer": 0,
               "source": "في كل دين لزمه بدلا عن مال حصل في يده كثمن المبيع",
               "why": "The price of a thing he bought is a debt for property he received, so he can be jailed."
@@ -31524,7 +31753,7 @@
               "kind": "choose",
               "id": "father-case",
               "ask": "Ibrahim borrowed 1,000 dirhams from his grown-up son and has not paid it back. Can the son have him jailed for it?",
-              "options": ["No, not for this debt", "Yes, like any other debtor", "Yes, after two months"],
+              "options": ["No: a father is not jailed for a debt to his child", "Yes, like any other debtor", "Yes, after two months"],
               "answer": 0,
               "source": "ولا يحبس والد في دين ولده",
               "why": "A father is not jailed for a debt to his child. Only refusing to spend on the child's keep would change that."
@@ -31561,7 +31790,7 @@
               "kind": "choose",
               "id": "mara-case",
               "ask": "Judge Khadija hears a dispute about the sale of a house. Is her ruling valid?",
-              "options": ["Yes", "No: women may never judge", "Only if a man agrees with her"],
+              "options": ["Yes: a woman may judge except in hudud and qisas", "No: women may never judge", "Only if a man agrees with her"],
               "answer": 0,
               "source": "ويجوز قضاء المرأة في كل شيء إلا في الحدود والقصاص",
               "why": "A woman may judge in everything except hudud and qisas, so her ruling on a sale is valid."
@@ -31599,7 +31828,7 @@
               "kind": "choose",
               "id": "deputy-case",
               "ask": "Judge Salih wants to travel and appoints his student to judge while he is away. The ruler never gave him the power to do this. Is it allowed?",
-              "options": ["No", "Yes: a judge may always appoint a deputy", "Yes, if the student is learned"],
+              "options": ["No: he was not given that power", "Yes: a judge may always appoint a deputy", "Yes, if the student is learned"],
               "answer": 0,
               "source": "وليس للقاضي أن يستخلف على القضاء إلا أن يفوض ذلك إليه",
               "why": "A judge may not appoint a deputy unless that power was given to him."
@@ -31704,7 +31933,7 @@
               "kind": "choose",
               "id": "khata-case",
               "ask": "After an accidental killing, the two sides choose an arbiter, who rules that the killer's 'aqila must pay the diya. Does this ruling take effect?",
-              "options": ["No", "Yes, since both sides chose him", "Yes, if the diya is small"],
+              "options": ["No: his ruling against the 'aqila does not take effect", "Yes, since both sides chose him", "Yes, if the diya is small"],
               "answer": 0,
               "source": "فقضى الحاكم على العاقلة بالدية لم ينفذ حكمه",
               "why": "His ruling against the 'aqila does not take effect."
@@ -31795,7 +32024,7 @@
               "kind": "choose",
               "id": "one-case",
               "ask": "The judge tells the town: \"Only Hamid may divide your land, no one else.\" Is this right?",
-              "options": ["No: people may choose", "Yes: it keeps things simple", "Yes, that is right"],
+              "options": ["No: people may choose", "Yes: it keeps things simple", "Yes: the judge picks the divider"],
               "answer": 0,
               "source": "ولا يجبر القاضي الناس على قاسم واحد",
               "why": "The judge does not force people to use one divider."
@@ -31882,7 +32111,7 @@
               "kind": "choose",
               "id": "small-case",
               "ask": "Bilal owns one tenth of a small shop, and Ahmad owns the rest. Bilal's tenth would be useless on its own. Bilal asks for the shop to be divided. Is it?",
-              "options": ["No", "Yes", "Only if Ahmad pays a fee"],
+              "options": ["No: the owner of the small share asked", "Yes: any owner may ask", "Only if Ahmad pays a fee"],
               "answer": 0,
               "source": "وإن طلب صاحب القليل لم يقسم",
               "why": "When the owner of the small share asks, it is not divided."
@@ -31891,7 +32120,7 @@
               "kind": "choose",
               "id": "big-case",
               "ask": "Same shop: this time Ahmad, who owns nine tenths, asks for it to be divided. Is it?",
-              "options": ["Yes", "No", "Only if Bilal agrees"],
+              "options": ["Yes: the owner of the big share asked", "No: Bilal's tenth would be useless", "Only if Bilal agrees"],
               "answer": 0,
               "source": "فإن طلب صاحب الكثير قسم",
               "why": "When the owner of the big share asks, it is divided."
@@ -32066,7 +32295,7 @@
               "kind": "choose",
               "id": "qasiman-case",
               "ask": "After dividing, Habib and Murad argue about where the line between their shares is. The two men who did the dividing testify about it. Is their testimony accepted?",
-              "options": ["Yes", "No: they did the job, so they cannot testify", "Only if they took no fee"],
+              "options": ["Yes: the dividers' testimony is accepted", "No: they did the job, so they cannot testify", "Only if they took no fee"],
               "answer": 0,
               "source": "فشهد القاسمان قبلت شهادتهما",
               "why": "The two dividers' testimony is accepted."
@@ -32166,7 +32395,7 @@
               "kind": "choose",
               "id": "lis-case",
               "ask": "A robber holding a knife, who could easily use it, tells Adam: \"Sign this or I'll kill you.\" Does this count as coercion?",
-              "options": ["Yes: he can carry it out", "No, it does not", "No: a robber's threats do not count"],
+              "options": ["Yes: he can carry it out", "No: he has not hurt Adam yet", "No: a robber's threats do not count"],
               "answer": 0,
               "source": "ممن يقدر على إيقاع ما توعد به سلطانا كان أو لصا",
               "why": "Coercion counts when the threat comes from someone able to carry it out, ruler or robber."
@@ -32219,7 +32448,7 @@
               "kind": "choose",
               "id": "qabd-case",
               "ask": "Rafiq was forced to sell his house. A month later, free and safe, he happily collects the price from the buyer. Can he still cancel the sale?",
-              "options": ["No: he approved it", "Yes, he can", "Yes, if he returns half the price"],
+              "options": ["No: he approved it", "Yes: the sale was forced", "Yes, if he returns half the price"],
               "answer": 0,
               "source": "وإن كان قبض الثمن طوعا فقد أجاز البيع",
               "why": "Taking the price willingly counts as approving the sale."
@@ -32283,7 +32512,7 @@
               "kind": "choose",
               "id": "habs-case",
               "ask": "Harun is threatened only with a short spell in prison unless he drinks wine. Is it allowed for him to drink?",
-              "options": ["No", "Yes: any threat makes it allowed", "Yes, but only a little"],
+              "options": ["No: only fear for his life or a limb allows it", "Yes: any threat makes it allowed", "Yes, but only a little"],
               "answer": 0,
               "source": "بحبس أو ضرب أو يد لم يحل له إلا أن يكره بما يخاف منه على نفسه أو على عضو من أعضائه",
               "why": "Prison or a beating is not enough; only fear for his life or a limb makes it allowed."
@@ -32306,7 +32535,7 @@
               "kind": "choose",
               "id": "kufr-case",
               "ask": "Under a real threat of death, Yahya says the words of kufr his captors demand, while his heart stays firm in faith. Is he sinful?",
-              "options": ["No", "Yes", "Only if he does not repeat his shahada later"],
+              "options": ["No: his heart stayed firm in faith", "Yes: the words of kufr are a sin", "Only if he does not repeat his shahada later"],
               "answer": 0,
               "source": "فإذا أظهر ذلك وقلبه مطمئن بالإيمان فلا إثم عليه",
               "why": "If he says it while his heart is at peace with faith, there is no sin on him."
@@ -33218,7 +33447,7 @@
               "kind": "choose",
               "id": "raid-case",
               "ask": "Two men raid enemy land without the ruler's permission and take 100 sheep. Is a fifth taken from them?",
-              "options": ["No", "Yes, 20 sheep", "Yes, 25 sheep"],
+              "options": ["No: two raiders without permission pay no fifth", "Yes, 20 sheep", "Yes, 25 sheep"],
               "answer": 0,
               "source": "وإذا دخل الواحد أو الاثنان إلى دار الحرب مغيرين بغير إذن الإمام فأخذوا شيئا لم يخمس",
               "why": "One or two raiders without permission are not taxed a fifth."
@@ -33479,7 +33708,7 @@
               "kind": "choose",
               "id": "idle-case",
               "ask": "Mundhir owns kharaj land but chooses to leave it unfarmed this year. Does he owe kharaj?",
-              "options": ["Yes", "No: there was no crop", "Only half"],
+              "options": ["Yes: leaving it idle does not remove the kharaj", "No: there was no crop", "Only half"],
               "answer": 0,
               "source": "وإن عطلها صاحبها فعليه الخراج",
               "why": "Leaving it unused by choice does not remove the kharaj."
@@ -33626,7 +33855,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "A dhimmi refuses to pay his jizya. Has his covenant ended?",
-              "options": ["No", "Yes, at once", "Yes, after a year"],
+              "options": ["No: only joining the land of war or fighting ends it", "Yes, at once", "Yes, after a year"],
               "answer": 0,
               "source": "ومن امتنع من أداء الجزية",
               "why": "Refusing the jizya does not end the covenant; only joining the land of war or fighting does."
@@ -33912,7 +34141,7 @@
               "kind": "choose",
               "id": "flee-case",
               "ask": "A rebel group with no larger group to return to is broken up, and its men run away. Should the ruler's army chase them?",
-              "options": ["No", "Yes, always", "Only the leaders"],
+              "options": ["No: they have no group to go back to", "Yes: fleeing rebels are always chased", "Only the leaders"],
               "answer": 0,
               "source": "وإن لم يكن لهم فئة لم يجهز على جريحهم ولم يتبع موليهم",
               "why": "With no fi'a behind them, those who flee are not chased."
@@ -34027,7 +34256,7 @@
               "kind": "choose",
               "id": "mulham-case",
               "ask": "Yusuf buys a shirt whose long threads are silk and whose cross threads are cotton. May he wear it?",
-              "options": ["Yes", "No: it has silk in it", "Only in battle"],
+              "options": ["Yes: silk warp with cotton weft is allowed", "No: it has silk in it", "Only in battle"],
               "answer": 0,
               "source": "ولا بأس بلبس الملحم إذا كان سداه إبرسما ولحمته قطنا",
               "why": "Silk warp with a cotton weft is allowed."
@@ -34194,7 +34423,7 @@
               "kind": "choose",
               "id": "gift-case",
               "ask": "A 9-year-old boy knocks: \"My father sent you this plate of dates as a gift.\" May you accept it on his word?",
-              "options": ["Yes", "No: a child's word is not accepted", "Only if an adult comes too"],
+              "options": ["Yes: a child's word is accepted for a gift", "No: a child's word is not accepted", "Only if an adult comes too"],
               "answer": 0,
               "source": "ويجوز أن يقبل في الهدية والإذن قول الصبي",
               "why": "A child's word is accepted for a gift."
@@ -34334,7 +34563,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Ahmad wants to look at the face of a woman he does not know. He cannot be sure he will not feel desire, and there is no need. May he?",
-              "options": ["No", "Yes: the face is always allowed", "Yes, but only briefly"],
+              "options": ["No: not without a need, if he may feel desire", "Yes: the face is always allowed", "Yes, but only briefly"],
               "answer": 0,
               "source": "وإن كان لا يأمن الشهوة لا ينظر إلى وجهها إلا لحاجة",
               "why": "Without being safe from desire, he does not look even at her face unless there is a need."
@@ -35317,6 +35546,21 @@
               "why": "عشرة: ten men are agreed to inherit."
             },
             {
+              "kind": "pick",
+              "id": "men-pick",
+              "ask": "Which of these are among the ten men who are agreed heirs?",
+              "options": [
+                { "text": "The son's son", "right": true },
+                { "text": "The daughter's son" },
+                { "text": "The father's father", "right": true },
+                { "text": "The 'amm's son", "right": true },
+                { "text": "The khal (mother's brother)" },
+                { "text": "The husband", "right": true }
+              ],
+              "source": "المجمع على توريثهم من الذكور عشرة: الابن وابن الابن وإن سفل والأب والجد أب الأب وإن علا والأخ وابن الأخ والعم وابن العم والزوج ومولى النعمة",
+              "why": "The son's son, father's father, 'amm's son and husband are on the list. The daughter's son and the khal are not."
+            },
+            {
               "kind": "teach",
               "id": "women",
               "title": "The seven women",
@@ -35362,6 +35606,21 @@
               "answer": 0,
               "source": "ولا يرث أربعة: المملوك والقاتل من المقتول والمرتد وأهل الملتين",
               "why": "Four: the slave, the killer, the murtadd and people of two religions."
+            },
+            {
+              "kind": "pick",
+              "id": "four-pick",
+              "ask": "Which of these does the book say do not inherit?",
+              "options": [
+                { "text": "A killer, from the one he killed", "right": true },
+                { "text": "A murtadd", "right": true },
+                { "text": "A wife" },
+                { "text": "A slave, in al-Quduri's time", "right": true },
+                { "text": "A son's son" },
+                { "text": "People of two religions, from each other", "right": true }
+              ],
+              "source": ["ولا يرث أربعة: المملوك والقاتل من المقتول والمرتد وأهل الملتين", "وابن الابن وإن سفل", "والزوجة"],
+              "why": "The four who do not inherit are the slave, the killer, the murtadd and people of two religions. The wife and the son's son are agreed heirs."
             },
             {
               "kind": "choose",
@@ -35448,7 +35707,7 @@
               "id": "half",
               "title": "The half",
               "ar": "فالنصف من الأب والأم والأخت من الأب إذا لم تكن أخت لأب وأم والزوج إذا لم يكن للميت ولد",
-              "en": "The half goes to five people: a single daughter; a son's daughter, when there is no daughter; a full sister; a sister from the father only, when there is no full sister; and the husband, when his wife leaves no child and no son's child. Note: this copy of the book has lost the first two from this line."
+              "en": "The half goes to a full sister; to a sister from the father only, when there is no full sister; and to the husband, when his wife leaves no child and no son's child. A single daughter also takes a half, as a later lesson shows."
             },
             {
               "kind": "teach",
@@ -35668,16 +35927,16 @@
               "why": "Four: a child, a son's child, the father and the grandfather."
             },
             {
-              "kind": "sort",
+              "kind": "pick",
               "id": "maternal-sort",
-              "ask": "A half-brother through the mother is left with this relative. Does he inherit?",
-              "into": ["He falls", "He inherits"],
-              "items": [
-                ["With a son", "He falls"],
-                ["With the father", "He falls"],
-                ["With the father's father", "He falls"],
-                ["With only the mother", "He inherits"],
-                ["With only a husband", "He inherits"]
+              "ask": "A half-brother through the mother is left with this relative. Which of these make him fall?",
+              "options": [
+                { "text": "A son", "right": true },
+                { "text": "Only the mother" },
+                { "text": "The father", "right": true },
+                { "text": "The father's father", "right": true },
+                { "text": "Only a husband" },
+                { "text": "A son's daughter", "right": true }
               ],
               "source": "ويسقط ولد الأم بأربعة: بالولد وولد الابن والأب والجد",
               "why": "A child, a son's child, the father and the grandfather make him fall. The mother or a husband do not."
@@ -36096,6 +36355,21 @@
               "why": "The book says they are ten, and those related through them."
             },
             {
+              "kind": "pick",
+              "id": "arham-pick",
+              "ask": "Which of these are among the dhawu al-arham?",
+              "options": [
+                { "text": "The daughter's children", "right": true },
+                { "text": "The son's daughter" },
+                { "text": "The khal", "right": true },
+                { "text": "The 'amma (father's sister)", "right": true },
+                { "text": "The father's father" },
+                { "text": "The mother's father", "right": true }
+              ],
+              "source": ["وهم عشرة: ولد البنت وولد الأخت وابنة الأخ وابنة العم والخال والخالة وأب الأم والعم من الأم والعمة", "الابن وابن الابن وإن سفل والأب والجد أب الأب", "البنت وبنت الابن"],
+              "why": "The daughter's children, the khal, the 'amma and the mother's father are among the ten. The son's daughter and the father's father are agreed heirs, not dhawu al-arham."
+            },
+            {
               "kind": "choose",
               "id": "khala-case",
               "ask": "Ayyub dies. He has no 'asaba and no one with a fixed share. His only relative is his khala. What happens?",
@@ -36150,7 +36424,7 @@
               "id": "freers-family",
               "title": "The freer's family",
               "ar": "وإذا ترك المعتق أبا مولاه وابن مولاه فماله للابن وقال أبو يوسف: للأب السدس والباقي للابن فإن ترك جد مولاه وأخ مولاه فالمال للجد في قول أبي حنيفة",
-              "en": "If a freed person dies after his freer, leaving the freer's father and son, his wealth goes to the son. If he leaves the freer's grandfather and brother, Abu Hanifa gives it to the grandfather. Wala' cannot be sold or given as a gift."
+              "en": "If a freed person dies after his freer, leaving the freer's father and son, his wealth goes to the son. Note: Abu Yusuf gives the father a sixth and the son the rest. If he leaves the freer's grandfather and brother, Abu Hanifa gives it to the grandfather. Wala' cannot be sold or given as a gift."
             },
             {
               "kind": "pick",

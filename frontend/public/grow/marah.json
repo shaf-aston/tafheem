@@ -526,6 +526,21 @@
               "why": "Twelve, made by adding one, two or three letters. Six are the bare babs."
             },
             {
+              "kind": "pick",
+              "id": "twelve-pick",
+              "ask": "Which of these are among the twelve babs that branch off the three-letter verb?",
+              "options": [
+                { "text": "أكرم", "right": true },
+                { "text": "دحرج" },
+                { "text": "انصرف", "right": true },
+                { "text": "استخرج", "right": true },
+                { "text": "تدحرج" },
+                { "text": "احمرّ", "right": true }
+              ],
+              "source": ["فما زيد فيه حرف واحد فثلاثة أبواب وذلك \"نحو أكرم\"", "\"و\" نحو \"انصرف\" انصرافا", "ما زيد فيه ثلاثة أحرف فأربعة أبواب نحو \"استخرج\"", "\"ونحو احمر\" احمرارا", "\"و\" باب \"واحد\" من تلك الأبواب الخمسة والثلاثين \"للرباعي المجرد\"", "\"نحو تدحرج\""],
+              "why": "أكرم, انصرف, استخرج and احمرّ add letters to a three-letter root. دحرج is the bare four-letter verb, and تدحرج is one of its branches."
+            },
+            {
               "kind": "sort",
               "id": "sort-added",
               "ask": "One letter added, or two?",
@@ -679,7 +694,7 @@
               "id": "mabni",
               "title": "Why the past never changes its ending",
               "ar": "\"وإنما بني الماضي لفوات موجب الإعراب فيه\" أي الفاعلية والمفعولية والإضافة",
-              "en": "I‘rab is an ending that changes to show a word’s job: doer, object or owner. The past has none of these jobs, so it is mabni (built: its ending is fixed)."
+              "en": "I‘rab is an ending that changes to show a word’s job: doer, object or owner. The past has none of these jobs, so it is mabni (built: its ending is fixed). Note: of the vowels, it takes fatha, the one nearest to sukun."
             },
             {
               "kind": "choose",
@@ -689,17 +704,6 @@
               "answer": 1,
               "source": ["\"لمشابهته بالاسم\" في الجملة يعني \"في وقوعه صفة للنكرة\"", "\"نحو مررت برجل ضرب أو\" مررت برجل \"ضارب\""],
               "why": "You can say مررت برجل ضرب, ‘I passed a man who hit’, just as مررت برجل ضارب. That likeness to a noun earns it a vowel."
-            },
-            {
-              "kind": "choose",
-              "id": "fatha-gap",
-              "ask": "Why fatha, of all vowels? Complete the reason.",
-              "ar": "والألف أخو ____",
-              "options": ["الكسر", "الضم", "السكون"],
-              "answer": 2,
-              "arabic-options": true,
-              "source": "\"والألف أخو السكون\"",
-              "why": "Fatha is part of the alif, and the alif is always silent. So fatha is the vowel closest to sukun."
             },
             {
               "kind": "teach",
@@ -744,7 +748,7 @@
               "id": "poem",
               "title": "A line of poetry (a note)",
               "ar": "هجوت زبان ثم جئت معتذرا ... من هجو زبان لم تهجو ولم تدع",
-              "en": "Note: this line is quoted for that second view. The poet writes لم تهجو with its و kept: ‘You mocked Zabban, then came to apologise, as if you had not mocked him and had not left off.’"
+              "en": "Note: this line is quoted for that second view, since the poet writes لم تهجو with its و kept."
             },
             {
               "kind": "choose",
@@ -1629,6 +1633,21 @@
               "why": "Seven babs, like تُفُضِّل and اُستُخرِج."
             },
             {
+              "kind": "pick",
+              "id": "seven-pick",
+              "ask": "In which of these babs does the passive put a damma on the first voweled letter too?",
+              "options": [
+                { "text": "تفعّل: تُفُضِّل", "right": true },
+                { "text": "فعّل: فُضِّل" },
+                { "text": "استفعل: اُستُخرِج", "right": true },
+                { "text": "انفعل", "right": true },
+                { "text": "فاعل: قُوتِل" },
+                { "text": "افتعل", "right": true }
+              ],
+              "source": ["إلا في سبعة أبواب، فإن أول المتحرك يضم مع ضم الأول", "\"ويكسر ما قبل الآخر وهي: تفعل وتفوعل\"", "\"وافتعل وانفعل وافتعل واستفعل وأفعل\""],
+              "why": "The book names seven, among them تفعّل, استفعل, انفعل and افتعل. فعّل and فاعل are not on the list."
+            },
+            {
               "kind": "sort",
               "id": "sort",
               "ask": "Passive past: damma on the first letter only, or two dammas?",
@@ -2004,6 +2023,20 @@
               "why": "Eleven, from المنسك to المسجد. All the rest take fatha."
             },
             {
+              "kind": "pick",
+              "id": "eleven-pick",
+              "ask": "Which of these are among the eleven nouns of place heard with kasra?",
+              "options": [
+                { "text": "المسجد", "right": true },
+                { "text": "المقتل" },
+                { "text": "المشرق", "right": true },
+                { "text": "المسكن", "right": true },
+                { "text": "المطلع", "right": true }
+              ],
+              "source": ["أحد عشر اسما هي نحو المنسك", "\"والمجزر والمنبت والمطلع والمشرق والمغرب والمفرق والمسقط والمسكن والمرفق والمسجد\"", "\"و\" أعطى \"الباقي\" من أحد عشر اسما \"للمفعل\" بالفتح"],
+              "why": "المسجد, المشرق, المسكن and المطلع are among the eleven. All the rest, like المقتل, take fatha."
+            },
+            {
               "kind": "choose",
               "id": "masjid",
               "ask": "يسجُد has damma. Why is the place مسجِد, with kasra?",
@@ -2308,11 +2341,24 @@
               "why": "Three: both voweled, the first silent, or the second silent."
             },
             {
+              "kind": "pick",
+              "id": "ways-pick",
+              "ask": "Two same letters meet in one word. In which of these ways must they merge?",
+              "options": [
+                { "text": "Both have a vowel, as in مدّ", "right": true },
+                { "text": "The second has a fixed sukun" },
+                { "text": "The first is silent and the second has a vowel", "right": true },
+                { "text": "Both have a vowel in a joined word, like قردد" }
+              ],
+              "source": ["على ثلاثة أضرب\" الضرب \"الأول\" منها \"أن يكونا\"؛ أي الحرفان المجتمعان \"متحركين يجب فيه\"؛ أي في الضرب الأول في جميع صور \"الإدغام نحو مد إلا في\" الصور \"الإلحاقيات نحو قردد\"", "الضرب \"الثاني\" منها \"أن يكون\" الحرف \"الأول\" من الحرفين المجتمعين في كلمة التماثلين في الذات \"ساكنا\" والثاني باقيا على حركته \"يجب فيه الإدغام ضرورة\"", "\"فالإدغام فيه ممتنع لعدم شرط الإدغام\""],
+              "why": "Of the three ways, both voweled and first silent must merge. With a fixed sukun on the second, merging is impossible, and a joined word like قردد is not merged."
+            },
+            {
               "kind": "teach",
               "id": "exceptions",
               "title": "Two exceptions",
               "ar": "إلا في\" الصور \"الإلحاقيات نحو قردد\" فإن الإدغام فيه غير واجب، بل لا يجوز \"حتى لا يبطل الإلحاق\"",
-              "en": "Except (1) words built to match another word's shape (ilhaq), like قردد made to match جعفر: merging would spoil the match. And (2) where merging would cause a mix-up: صكك, سرر, جدد, طلل, مدد would look like صكّ, سرّ, جدّ, طلّ, مدّ."
+              "en": "Except (1) words built to match another word's shape (ilhaq), like قردد made to match جعفر: merging would spoil the match. And (2) nouns where merging would cause a mix-up: صكك, سرر (beds), جدد, طلل and مدد (the noun: supply) would look like صكّ, سرّ, جدّ, طلّ, مدّ."
             },
             {
               "kind": "choose",
@@ -2343,7 +2389,7 @@
                 ["عَضِضَ", "Merged"]
               ],
               "source": ["يجب فيه\"؛ أي في الضرب الأول في جميع صور \"الإدغام نحو مد", "نحو قردد", "مثل صكك\" بفتحتين، وهي عيب في رجل الفرس \"وسرر\" بضمتين جمع سرير \"وجدد\"", "وفر أيضا\"؛ أي كرد"],
-              "why": "Verbs with two voweled same letters merge. قردد keeps its matched shape, and سرر would be confused with سرّ."
+              "why": "Verbs like مَدَدَ, with two voweled same letters, merge. قردد keeps its matched shape, and سرر would be confused with سرّ."
             },
             {
               "kind": "choose",
@@ -3165,7 +3211,7 @@
               "id": "before",
               "title": "Which letter can be before",
               "ar": "إذا كان ما قبلها حرفا صحيحا أو واوا أو ياء أصليتين\" في كلمة الهمزة",
-              "en": "This is when the letter before is a sound letter, an original و or ي, or a و or ي added to match a pattern (ilhaq): مسلة from مسئلة, ملك from ملأك, جيل from جيأل, حوبة from حوأبة, and even across two words: أبو يوب for أبو أيوب, ابتغى مره for ابتغى أمره."
+              "en": "This is when the letter before is a sound letter, an original و or ي, or a و or ي added to match a pattern (ilhaq): مسلة from مسئلة, ملك (angel) from ملأك (from الألوكة, the message), جيل from جيأل, حوبة from حوأبة, and across two words: أبو يوب for أبو أيوب."
             },
             {
               "kind": "choose",
@@ -3614,6 +3660,20 @@
             },
             {
               "kind": "pick",
+              "id": "middle-pick",
+              "ask": "Which of these are hamza-middle verbs?",
+              "options": [
+                { "text": "رأى يرأى", "right": true },
+                { "text": "أخذ يأخذ" },
+                { "text": "يئس ييأس", "right": true },
+                { "text": "هنأ يهنئ" },
+                { "text": "لؤم يلؤم", "right": true }
+              ],
+              "source": ["والمهموز العين يجيء من ثلاثة أبواب من باب فتح \"نحو رأى يرأى و\" من باب علم نحو: \"يئس ييأس و\" من باب حسن نحو: \"لؤم يلؤم\"", "\"نحو: أخذ يأخذو\"", "\"نحو هنأ يهنئ"],
+              "why": "رأى, يئس and لؤم have the hamza in the middle. أخذ has it first and هنأ last."
+            },
+            {
+              "kind": "pick",
               "id": "last",
               "ask": "Which of these are hamza-last verbs?",
               "options": [
@@ -3795,6 +3855,21 @@
               "answer": 2,
               "source": "وهو\"؛ أي المثال يجيء من خمسة أبواب",
               "why": "Five: وعد يعد, وجل يوجل, وهب يهب, وجه يوجه, ومق يمق."
+            },
+            {
+              "kind": "pick",
+              "id": "babs-pick",
+              "ask": "Which of these are the book's examples of the mithal?",
+              "options": [
+                { "text": "وعد يعد", "right": true },
+                { "text": "قال يقول" },
+                { "text": "وهب يهب", "right": true },
+                { "text": "ومق يمق", "right": true },
+                { "text": "رمى يرمي" },
+                { "text": "وجل يوجل", "right": true }
+              ],
+              "source": "وهو\"؛ أي المثال يجيء من خمسة أبواب من باب ضرب وعلم وفتح وحسن وحسب، نحو: وعد يعد ووجل يوجل ووهب يهب ووجه يوجه وومق يمق",
+              "why": "وعد, وهب, ومق and وجل are among the five, each with a weak first letter. قال and رمى are not on the list."
             },
             {
               "kind": "teach",
@@ -4144,7 +4219,7 @@
               "id": "kaynuna",
               "title": "كينونة",
               "ar": "لأن أصله\"؛ أي أصل لفظ كينونة \"كيونونة عند الخليل\"",
-              "en": "كينونة (being), from الكون, also changes. For al-Khalil it was كيْوَنونة: و and ي met with the first silent, so the و became ي and merged (كيّنونة), then it was lightened, just as ميّت (dead) from ميْوِت may become ميْت."
+              "en": "Note: كينونة (being), from الكون, changes too. For al-Khalil it was كيْوَنونة: the و became ي and merged, then was lightened, as ميّت (dead), from ميْوِت, may become ميْت."
             },
             {
               "kind": "choose",
@@ -4159,9 +4234,9 @@
             {
               "kind": "teach",
               "id": "kufans",
-              "title": "A note from the Kufans",
+              "title": "The Kufans (a note)",
               "ar": "وقيل\"؛ أي قال الكوفيون \"أصله\"؛ أي أصل كينونة \"كونونة بضم الكاف\"",
-              "en": "Note: the Kufans say it was كُونونة: the damma became a fatha and the و a ي, to follow the many ya-words like صيرورة, غيبوبة, قيلولة. It is said only four waw-words come this way: كينونة, ديمومة, سيدودة, هيعوعة."
+              "en": "Note: the Kufans say كينونة was كُونونة instead."
             },
             {
               "kind": "teach",
@@ -5357,6 +5432,20 @@
                 "وعند ابن الحاجب أربعة عشر يجمعها قولك: أنصت يوم جد طاء زل"
               ],
               "why": "Fifteen, in استنجده يوم صال زط. Fourteen is Ibn al-Hajib's count."
+            },
+            {
+              "kind": "pick",
+              "id": "letters-pick",
+              "ask": "Which of these letters are in the author's phrase for the letters of ibdal?",
+              "options": [
+                { "text": "ط", "right": true },
+                { "text": "ب" },
+                { "text": "ص", "right": true },
+                { "text": "ه", "right": true },
+                { "text": "ف" }
+              ],
+              "source": "وعند المصنف خمسة عشر وهي ما يجمعه \"استنجده يوم صال زط\"",
+              "why": "ط, ص and ه are all in استنجده يوم صال زط. ب and ف are not."
             },
             {
               "kind": "teach",

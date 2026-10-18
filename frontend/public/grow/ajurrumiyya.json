@@ -505,6 +505,40 @@
               "why": "Four: raf', nasb, khafd and jazm."
             },
             {
+              "kind": "pick",
+              "id": "four-pick",
+              "ask": "Which of these are kinds of i'rab?",
+              "options": [
+                {
+                  "text": "Raf'",
+                  "right": true
+                },
+                {
+                  "text": "Nasb",
+                  "right": true
+                },
+                {
+                  "text": "Tanwin"
+                },
+                {
+                  "text": "Khafd",
+                  "right": true
+                },
+                {
+                  "text": "Jazm",
+                  "right": true
+                },
+                {
+                  "text": "Damma"
+                }
+              ],
+              "source": [
+                "وأقسامه أربعة: رفع، ونصب، وخفض، وجزم.",
+                "للرفع أربع علامات: الضمة"
+              ],
+              "why": "The four kinds are raf', nasb, khafd and jazm. Damma is a sign of raf', not a kind, and tanwin is not one of the four."
+            },
+            {
               "kind": "teach",
               "id": "who",
               "title": "Which words take which",
@@ -969,6 +1003,33 @@
               "answer": 2,
               "source": "الكسرة، والياء، والفتحة. وللخفض ثلاث علامات:",
               "why": "Three: kasra, ya and fatha."
+            },
+            {
+              "kind": "pick",
+              "id": "three-pick",
+              "ask": "Which of these are signs of khafd?",
+              "options": [
+                {
+                  "text": "Kasra",
+                  "right": true
+                },
+                {
+                  "text": "Damma"
+                },
+                {
+                  "text": "Ya",
+                  "right": true
+                },
+                {
+                  "text": "Waw"
+                },
+                {
+                  "text": "Fatha",
+                  "right": true
+                }
+              ],
+              "source": "الكسرة، والياء، والفتحة. وللخفض ثلاث علامات:",
+              "why": "Khafd has three signs: kasra, ya and fatha. Damma and waw are signs of raf'."
             },
             {
               "kind": "teach",
@@ -1616,6 +1677,38 @@
               "why": "Eighteen jazm-words. The nasb-words are ten."
             },
             {
+              "kind": "pick",
+              "id": "eighteen-pick",
+              "ask": "Which of these are among the jazm-words?",
+              "options": [
+                {
+                  "text": "لم (did not)",
+                  "right": true
+                },
+                {
+                  "text": "لن (will not)"
+                },
+                {
+                  "text": "من (whoever)",
+                  "right": true
+                },
+                {
+                  "text": "كي (so that)"
+                },
+                {
+                  "text": "متى (when)",
+                  "right": true
+                }
+              ],
+              "source": [
+                "لم، لما، ألم، ألما",
+                "وان، وما، ومن، ومهما",
+                "واذما، وأي، ومتى، وأيان",
+                "أن، ولن، وإذن، وكي"
+              ],
+              "why": "Lam, man and mata are among the eighteen jazm-words. Lan and kay are nasb-words."
+            },
+            {
               "kind": "choose",
               "id": "lam-case",
               "ask": "Omar puts لم (\"did not\") before يقوم. What happens to the verb?",
@@ -1725,7 +1818,7 @@
               "ask": "Bilal writes a letter, not a poem, and puts إذا before a present verb. Does إذا put it in jazm?",
               "options": [
                 "No: only in poetry",
-                "Yes: always",
+                "Yes: it is one of the eighteen",
                 "Yes, but only after لم"
               ],
               "answer": 0,
@@ -2220,6 +2313,37 @@
               "why": "Four: a preposition with its noun, a zarf, a verb with its doer, and a subject with its khabar."
             },
             {
+              "kind": "pick",
+              "id": "not-single-pick",
+              "ask": "Which of these are khabars that are \"not single\"?",
+              "options": [
+                {
+                  "text": "A preposition with its noun: في الدار",
+                  "right": true
+                },
+                {
+                  "text": "One word: قائم"
+                },
+                {
+                  "text": "A zarf: عندك",
+                  "right": true
+                },
+                {
+                  "text": "A verb with its doer: قام أبوه",
+                  "right": true
+                },
+                {
+                  "text": "A subject with its khabar: جاريته ذاهبة",
+                  "right": true
+                }
+              ],
+              "source": [
+                "وغير المفرد أربعة أشياء: الجار والمجرور، والظرف، والفعل مع فاعله، والمبتدأ مع خبره",
+                "فالمفرد نحو قولك: \"زيد قائم\"."
+              ],
+              "why": "The four not-single kinds are a preposition with its noun, a zarf, a verb with its doer, and a subject with its khabar. قائم alone is a single khabar."
+            },
+            {
               "kind": "sort",
               "id": "sort",
               "ask": "What kind of khabar?",
@@ -2308,6 +2432,33 @@
               "answer": 2,
               "source": "وهي ثلاثة أشياء: كان وأخواتها، وان وأخواتها، وظننت وأخواتها.",
               "why": "Three: kana and her sisters, inna and her sisters, zanantu and her sisters."
+            },
+            {
+              "kind": "pick",
+              "id": "three-pick",
+              "ask": "Which of these sets come in on the subject and its khabar?",
+              "options": [
+                {
+                  "text": "Kana and her sisters",
+                  "right": true
+                },
+                {
+                  "text": "The jazm-words"
+                },
+                {
+                  "text": "Inna and her sisters",
+                  "right": true
+                },
+                {
+                  "text": "Zanantu and her sisters",
+                  "right": true
+                },
+                {
+                  "text": "The joining letters"
+                }
+              ],
+              "source": "وهي ثلاثة أشياء: كان وأخواتها، وان وأخواتها، وظننت وأخواتها.",
+              "why": "The three sets are kana, inna and zanantu, each with her sisters. The jazm-words and the joining letters are not among them."
             },
             {
               "kind": "teach",
@@ -2844,6 +2995,37 @@
               "why": "Five: a pronoun, a proper name, a pointing word, a noun with al-, and a noun joined to one of these."
             },
             {
+              "kind": "pick",
+              "id": "definite-pick",
+              "ask": "Which of these are kinds of definite word (ma'rifa)?",
+              "options": [
+                {
+                  "text": "A pronoun, like أنا",
+                  "right": true
+                },
+                {
+                  "text": "A proper name, like مكة",
+                  "right": true
+                },
+                {
+                  "text": "A noun spread over its kind, like رجل"
+                },
+                {
+                  "text": "A pointing word, like هذا",
+                  "right": true
+                },
+                {
+                  "text": "A noun with al-, like الغلام",
+                  "right": true
+                }
+              ],
+              "source": [
+                "والمعرفة خمسة أشياء: الاسم المضمر، نحو: أنا، وأنت، والاسم العلم، نحو: زيد ومكة، والاسم المبهم، نحو: هذا وهذه وهؤلاء، والاسم الذي فيه الألف واللام، نحو: الرجل والغلام",
+                "والنكرة: كل اسم شائع في جنسه"
+              ],
+              "why": "A pronoun, a proper name, a pointing word and a noun with al- are definite. A noun spread over its whole kind, like رجل, is indefinite."
+            },
+            {
               "kind": "sort",
               "id": "sort",
               "ask": "Definite or indefinite?",
@@ -3175,6 +3357,33 @@
               "why": "Four: whole for whole, part for whole, something it contains, and mistake."
             },
             {
+              "kind": "pick",
+              "id": "badal-pick",
+              "ask": "Which of these are kinds of badal?",
+              "options": [
+                {
+                  "text": "Whole for whole: قام زيد أخوك",
+                  "right": true
+                },
+                {
+                  "text": "Part for whole: أكلت الرغيف ثلثه",
+                  "right": true
+                },
+                {
+                  "text": "Badal by stressing: جاء زيد نفسه"
+                },
+                {
+                  "text": "Mistake: رأيت زيدا الفرس",
+                  "right": true
+                }
+              ],
+              "source": [
+                "بدل الشيء من الشيء، وبدل البعض من الكل، وبدل الاشتمال، وبدل الغلط، نحو قولك: \"قام زيد أخوك، وأكلت الرغيف ثلثه، ونفعني زيد علمه، ورأيت زيدا الفرس\"",
+                "وهي: النفس، والعين"
+              ],
+              "why": "Whole for whole, part for whole and mistake are among the four kinds; the fourth is ishtimal. A word like nafs is tawkid, not badal."
+            },
+            {
               "kind": "choose",
               "id": "loaf-case",
               "ask": "Yasir says أكلت الرغيف ثلثه, \"I ate the loaf, a third of it\". Which kind of substitute is ثلثه?",
@@ -3328,6 +3537,37 @@
               "answer": 1,
               "source": "المنصوبات خمسة عشر",
               "why": "Fifteen. Seven is the count of the raised nouns."
+            },
+            {
+              "kind": "pick",
+              "id": "fifteen-pick",
+              "ask": "Which of these are on the book's list of accusative nouns?",
+              "options": [
+                {
+                  "text": "The hal",
+                  "right": true
+                },
+                {
+                  "text": "The tamyiz",
+                  "right": true
+                },
+                {
+                  "text": "The doer (fa'il)"
+                },
+                {
+                  "text": "The called one (munada)",
+                  "right": true
+                },
+                {
+                  "text": "The khabar of kana",
+                  "right": true
+                },
+                {
+                  "text": "The noun of kana"
+                }
+              ],
+              "source": "المنصوبات خمسة عشر، وهي: المفعول به، والمصدر، وظرف الزمان، وظرف المكان، والحال، والتمييز، والمستثنى، واسم لا، والمنادى، والمفعول من أجله، والمفعول معه، وخبر كان وأخواتها، واسم إن وأخواتها.",
+              "why": "The hal, the tamyiz, the munada and the khabar of kana are on the list. The doer and the noun of kana are not: they are raised."
             },
             {
               "kind": "teach",
@@ -3858,6 +4098,37 @@
               "why": "Eight: illa, ghayr, siwa, suwa, sawa', khala, 'ada and hasha."
             },
             {
+              "kind": "pick",
+              "id": "eight-pick",
+              "ask": "Which of these are words of exception?",
+              "options": [
+                {
+                  "text": "إلا",
+                  "right": true
+                },
+                {
+                  "text": "غير",
+                  "right": true
+                },
+                {
+                  "text": "بل"
+                },
+                {
+                  "text": "حاشا",
+                  "right": true
+                },
+                {
+                  "text": "لكن"
+                },
+                {
+                  "text": "سوى",
+                  "right": true
+                }
+              ],
+              "source": "وحروف الاستثناء ثمانية , وهي: إلا، وغير، وسوى، وسوى، وسواء، وخلا، وعدا، وحاشا.",
+              "why": "Illa, ghayr, hasha and siwa are among the eight. Bal and lakin are not on the list."
+            },
+            {
               "kind": "teach",
               "id": "complete",
               "title": "Complete and positive",
@@ -3994,15 +4265,15 @@
             {
               "kind": "choose",
               "id": "mixed",
-              "ask": "In قام القوم إلا زيدا, why must زيدا be mansub?",
+              "ask": "Ali says ما جاء القوم إلا and then names Khalid. What ending may Khalid take?",
               "options": [
-                "Complete and positive",
-                "Complete but negative",
-                "Incomplete: no group named"
+                "Mansub or badal: both are allowed",
+                "Only mansub, as in a positive sentence",
+                "Only as its 'amil gives"
               ],
               "answer": 0,
-              "source": "فالمستثنى بإلا ينصب إذا كان الكلام تاما موجبا",
-              "why": "The people are named (complete) and nothing is negated (positive), so the word after illa is mansub."
+              "source": "وإن كان الكلام منفيا تاما جاز فيه البدل والنصب على الاستثناء",
+              "why": "The people are named (complete) but the verb is negated, so Khalid may be a badal or mansub as an exception."
             }
           ]
         },
@@ -4109,6 +4380,34 @@
               "answer": 1,
               "source": "المنادى خمسة أنواع",
               "why": "Five: the single name, the intended and the unintended indefinite, the mudaf, and the one like a mudaf."
+            },
+            {
+              "kind": "pick",
+              "id": "munada-pick",
+              "ask": "Which of these are kinds of munada?",
+              "options": [
+                {
+                  "text": "A single proper name: يا زيد",
+                  "right": true
+                },
+                {
+                  "text": "An intended indefinite: يا رجل, to a man you face",
+                  "right": true
+                },
+                {
+                  "text": "A pronoun: يا أنت"
+                },
+                {
+                  "text": "A mudaf: يا عبد الله",
+                  "right": true
+                },
+                {
+                  "text": "An unintended indefinite",
+                  "right": true
+                }
+              ],
+              "source": "المنادى خمسة أنواع: المفرد العلم، والنكرة المقصودة، والنكرة غير المقصودة، والمضاف، والشبيه بالمضاف.",
+              "why": "The single name, the intended and unintended indefinite and the mudaf are four of the five; the fifth is the one like a mudaf. A pronoun is not on the list."
             },
             {
               "kind": "teach",
@@ -4384,6 +4683,33 @@
               "answer": 2,
               "source": "مخفوض بالحرف، ومخفوض بالإضافة، وتابع للمخفوض.",
               "why": "Three: by a particle, by idafa, and as a follower of a genitive word."
+            },
+            {
+              "kind": "pick",
+              "id": "three-pick",
+              "ask": "Which of these are kinds of genitive noun?",
+              "options": [
+                {
+                  "text": "Made genitive by a particle",
+                  "right": true
+                },
+                {
+                  "text": "Made genitive by a verb"
+                },
+                {
+                  "text": "Made genitive by idafa",
+                  "right": true
+                },
+                {
+                  "text": "A follower of a genitive word",
+                  "right": true
+                },
+                {
+                  "text": "Made genitive by la"
+                }
+              ],
+              "source": "مخفوض بالحرف، ومخفوض بالإضافة، وتابع للمخفوض.",
+              "why": "The three kinds are by a particle, by idafa, and as a follower. A verb and la do not make a noun genitive."
             },
             {
               "kind": "teach",
