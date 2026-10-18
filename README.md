@@ -6,18 +6,9 @@ Understand Quranic and classical Arabic, word by word. Grammar, morphology, the 
 
 Built on real corpora and classical references. AI explanations are optional; the core app runs fully offline.
 
-## Features
+## What is in it
 
-| Tab | What it does |
-|---|---|
-| **Nahw** | Tarkeeb (sentence tree) and I'raab (word-by-word case and function) with proof citations. Includes 47 worked examples from *Tasheel al-Nahw* and a tree for any ayah. |
-| **Sarf** | Root extraction, verb patterns and conjugation tables |
-| **Quran** | Search and look up any ayah, with optional deep analysis |
-| **Daleel** | Find the passage in the classical books, asked in Arabic or English, with the source and location of every quote |
-| **Memorise** | A printed mushaf page with words removed; type them back or pick from four |
-| **Dictionary** | Arabic and English search, built from the Wiktionary Arabic extract |
-| **Quiz** | Practice questions generated for any sentence |
-| **Timelines** | Five eras from Adam onward, with about fifty events to read |
+One row per tab, with the files behind it: `CORE-FLOW.md`. Every HTTP endpoint is listed live on the FastAPI page at `/docs` while the backend runs.
 
 ## Stack
 
@@ -29,56 +20,16 @@ Built on real corpora and classical references. AI explanations are optional; th
 | AI (optional) | Groq or local Ollama |
 | Hosting | Landing page on Vercel, app on an Oracle Cloud VM (see [deploy/](deploy/README.md)) |
 
-## Run locally
+## Run and test
 
-Needs Python 3.10+ and Node 18+.
+Commands to run the app, the tests and the data builds: `CORE-FLOW.md` (Run it) and `docs/core-flow-detail.md`. `./start.sh` is a one-shot launcher for macOS/Linux. Optional: set `GROQ_API_KEY` in `.env` for AI explanations ([free key](https://console.groq.com/keys)).
 
-```bash
-./start.sh
-```
+## Docs
 
-Or by hand, from the project root:
-
-```bash
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt && pip install --no-deps -r requirements-nodeps.txt
-python -m uvicorn backend.main:app --reload     # API on :8000
-
-cd frontend && npm install && npm run dev       # app on http://localhost:5173
-```
-
-Optional: set `GROQ_API_KEY` in `.env` for AI explanations ([free key](https://console.groq.com/keys)).
-
-## API
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| POST | `/api/analyze` | I'raab analysis of a sentence |
-| GET | `/api/tarkeeb/examples` | Worked tarkeeb trees |
-| GET | `/api/quran/{surah}/{ayah}/tarkeeb` | Tarkeeb tree of one ayah |
-| POST | `/api/morphology` | Sarf breakdown of a word |
-| GET | `/api/quran/{surah}/{ayah}` | Ayah lookup |
-| GET | `/api/quran/search` | Quran search |
-| GET | `/api/dictionary/search` | Dictionary lookup |
-| POST | `/api/practice` | Practice questions |
-| GET | `/api/health` | Health check |
-
-## Layout
-
-```
-backend/    FastAPI app: routers, services, models, data
-frontend/   React app: components, lib, api client
-deploy/     server setup for the Oracle VM
-tests/      backend tests
-docs/       design notes and research
-```
-
-## Tests
-
-```bash
-pytest                      # backend
-cd frontend && npm test     # frontend
-```
+- `CORE-FLOW.md`: what it does, the flow, the glossary
+- `docs/core-flow-detail.md`: long notes; `docs/glossary/`: per module
+- `RECITE-PLAN.md`: reciting rules and open work
+- `docs/strategy/README.md`: product strategy
 
 ## Troubleshooting
 
