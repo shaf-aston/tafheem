@@ -107,7 +107,10 @@ def weak_radical(raw_root: str | None, place: int) -> bool:
 
 def weak_last(analysis: dict) -> bool:
     """A CAMeL reading whose root ends in و or ي: the root says weak and the dictionary
-    form ends in a long letter (دَعَا، رَمَى، نَسِيَ، القَاضِي), not a hamza (قَرَأَ، جَاءَ)."""
+    form ends in a long letter (دَعَا، رَمَى، نَسِيَ، القَاضِي), not a hamza (قَرَأَ، جَاءَ). A reading
+    sarf's table made (verb_reader.reading_of) says it outright: its root may be فشو or فشي."""
+    if "weak_last" in analysis:
+        return analysis["weak_last"]
     return weak_radical(analysis.get("root"), -1) and strip_diacritics(analysis.get("lex") or "")[-1:] in WEAK_ENDS
 
 

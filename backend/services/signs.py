@@ -9,7 +9,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
+from backend.services.harakat import SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, paused, typed_passive
 from backend.services.nahw_book import book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
@@ -103,15 +103,26 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         return None
     if card.get("type") in ("harf", "damir"):
         # a particle or a pronoun never shows a case of its own, only what it is built on (إِنَّ، لَمْ، فِي)
-        return _built(ending) if (ending := _typed_ending(card["word"])) else sign("mabni")
+        return _built(ending) if (ending := _typed_ending(_unmoved(card, after))) else sign("mabni")
     kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
         on = teacher_rules()["case_said"]["la_jins_on"]
         return _built(on.get(kind, on["vowel"]))
-    if case == "mabni" and (ending := _typed_ending(card["word"])):
+    if case == "mabni" and (ending := _typed_ending(_unmoved(card, after))):
         return _built(ending)  # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter
     return sign(case, "vowel" if case == "mabni" else kind)
+
+
+def _unmoved(card: dict, after: dict | None) -> str:
+    """The word as built: مَنِ ائْتَمَنَكَ is مَنْ, its kasra only meets the sakin after it
+    (التقاء الساكنين). A kasra the word is built on stays (هَؤُلَاءِ الرِّجَالُ): its own
+    pattern, as the morphology reads it, ends on a sukun only in the first case. A particle's
+    pattern leaves a sakin end bare (عَنْ is 1َ2), as no case ever moves it."""
+    word = card["word"]
+    own = (card.get("camel") or {}).get("pattern") or ""
+    sakin = own.endswith(SUKUN) or (card.get("type") == "harf" and own[-1:].isdigit())
+    return paused(word, (after or {}).get("word", "")) if sakin else word
 
 
 def _typed_ending(word: str) -> str | None:

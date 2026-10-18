@@ -64,7 +64,10 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     # كان الطفلُ يلعب: the parser may hang كان's noun on it as a modifier
     named_by_kana = rel == "MOD" and under_verb and typed != "a" and s.family(head) == "kana" \
         and head["id"] == token["id"] - 1
-    if head and (second or named_by_kana or rel in (*NOUN_LINKS, "PRD") or (rel == "IDF" and typed != "i")):
+    # مَنْ غَشَّنَا فَلَيْسَ مِنَّا: a governor works on what comes after it, so a noun before ليس is not its اسم
+    # (only a خبر may be put first: قائمًا كان زيدٌ)
+    ahead = head and (head["id"] < token["id"] or rel == "PRD")
+    if ahead and (second or named_by_kana or rel in (*NOUN_LINKS, "PRD") or (rel == "IDF" and typed != "i")):
         family = s.family(head)
         if family:
             return family, head

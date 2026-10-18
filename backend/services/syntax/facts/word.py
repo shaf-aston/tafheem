@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, has_tanween, own_letters, past_passive_shape, typed_case, typed_passive
+from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, has_tanween, vowel_agreement, own_letters, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_object_stem, is_one, six_noun_case
 
 
@@ -73,8 +73,10 @@ def is_verb(token: dict) -> bool:
     # hollow command (بِعْ, which CAMeL takes for a name)
     typed = token.get("typed") or ""
     # naming marks a typed command shape (asp c): بِعِ البيتَ، اعْبُدُوا. Not Form IV's أَفْعِلْ,
-    # which a name shares (أَحْمَدْ); CAMeL's own reading settles that one
-    if token.get("asp") == "c" and strip_diacritics(typed)[:1] != "أ":
+    # which a name shares (أَحْمَدْ), where CAMeL knows the name; a name it only guessed, or one
+    # the typed vowels contradict (أَكْرِمْ is not أَكْرَم), is no evidence, so the command stands
+    if token.get("asp") == "c" and (strip_diacritics(typed)[:1] != "أ" or token.get("guessed")
+                                    or vowel_agreement(typed, token.get("diac") or "") is None):
         return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
     return token.get("pos_camel") == "noun_prop" and (
         (token["base"][:1] in PRESENT_PREFIX and typed_passive(typed, True, token.get("stuck_on", 0)))
