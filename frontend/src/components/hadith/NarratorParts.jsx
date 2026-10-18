@@ -156,7 +156,7 @@ function Labelled({ label, arabic = false, children }) {
 const PAIR = 'grid gap-x-10 gap-y-2 sm:grid-cols-2'
 
 /**
- * His page's header card: the name in both languages up top, then each fact
+ * His page's header card: the name in both languages up top as one row like the facts, then each fact
  * sunnah.com prints in both languages as one row, English left and Arabic
  * right, then the numbers, which read the same in either.
  */
@@ -169,12 +169,14 @@ export function NarratorHead({ who }) {
   ].filter(([, n]) => n != null && n !== '')
   return (
     <div className="mx-auto max-w-3xl px-6 py-5 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] divide-y divide-[var(--border)] [&>*]:py-4 [&>*:first-child]:pt-0 [&>*:last-child]:pb-0">
-      <div className="flex flex-col items-end gap-2 text-right">
-        <ArabicText as="h2" size="lg" className="block m-0">{who.name_ar}</ArabicText>
-        {who.name_en && <p className="type-small text-[var(--text-dim)] m-0">{who.name_en}</p>}
-        <div className="flex flex-wrap items-center gap-3">
-          <GenerationDots name={who.generation_ar} />
-          {who.grade_ar && <GradePill rank={who.grade_rank}>{who.grade_ar}</GradePill>}
+      <div className={`${PAIR} items-end`}>
+        <p className="type-ui font-medium m-0 sm:order-none order-last">{who.name_en}</p>
+        <div className="flex flex-col items-end gap-2 text-right">
+          <ArabicText as="h2" size="lg" className="block m-0">{who.name_ar}</ArabicText>
+          <div className="flex flex-wrap items-center gap-3">
+            <GenerationDots name={who.generation_ar} />
+            {who.grade_ar && <GradePill rank={who.grade_rank}>{who.grade_ar}</GradePill>}
+          </div>
         </div>
       </div>
       {who.facts.length > 0 && (
