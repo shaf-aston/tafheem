@@ -1,5 +1,6 @@
-"""Held-out sentences for three rules: a sukun moved to kasra is said so, the
-تمييز/حال after كفى بـ, and a sentence after a describing khabar is a second khabar."""
+"""Three nahw rules the analyser identifies, each on held-out sentences:
+التقاء الساكنين on a built word's sign, the تمييز/حال after كفى بـ (فاعل behind a
+زائدة باء), and a sentence after a describing khabar as خبر ثانٍ."""
 from backend.services import iraab
 
 
