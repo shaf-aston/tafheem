@@ -17,7 +17,8 @@ import { useOpenAtTop } from '../../lib/scrollToEl'
 import ArabicText from '../ui/ArabicText'
 import BookFacts from './BookFacts'
 import ClassicalText from './ClassicalText'
-import { NarratorError, NarratorHead, NarratorLinks, PAIR_ROWS, PairRow } from './NarratorParts'
+import { GradeKey, NarratorError, NarratorHead, NarratorLinks, PAIR_ROWS, PairRow } from './NarratorParts'
+import ErrorAlert from '../ui/ErrorAlert'
 import ShowRest from '../ui/ShowRest'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 
@@ -49,7 +50,7 @@ function FoldedList({ items, lines, accent, children: draw }) {
 export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
   useOpenAtTop(id)
   const { data: who, isPending, isError, error, refetch } = useQuery(narratorQuery(id))
-  const { data: hadith = [] } = useQuery(narratorHadithQuery(id))
+  const { data: hadith = [], isError: hadithFailed, error: hadithError, refetch: refetchHadith } = useQuery(narratorHadithQuery(id))
   const { of } = useHadithCollections()
 
   return (
@@ -88,6 +89,9 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
               </Section>
             ))}
           </div>
+          {(who.teachers.length > 0 || who.students.length > 0) && <GradeKey />}
+
+          {hadithFailed && <ErrorAlert title="Could not load the hadith he narrates" error={hadithError} fallback="Try again." onRetry={refetchHadith} />}
 
           {hadith.length > 0 && (
             <Section title="Hadith narrated" ar="الأحاديث المروية">

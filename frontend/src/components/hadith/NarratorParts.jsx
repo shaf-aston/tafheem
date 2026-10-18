@@ -13,7 +13,7 @@ import ErrorAlert from '../ui/ErrorAlert'
 import SourceBadge from '../ui/SourceBadge'
 import StatusNote from '../ui/StatusNote'
 
-const { site: SITE, generations: GENERATIONS } = HADITH.narrator
+const { site: SITE, generations: GENERATIONS, tones: TONES } = HADITH.narrator
 
 const count = (n, noun) => `${n} ${noun}${n === 1 ? '' : 's'}`
 
@@ -113,10 +113,11 @@ function NarratorTerms({ who }) {
 }
 
 export function NarratorFacts({ who }) {
+  if (who.fetched === false) return <><StatusNote>{UNFETCHED}</StatusNote><SourceLine who={who} /></>
   const facts = [
     count(who.teachers.length, 'teacher'),
     count(who.students.length, 'student'),
-    who.hadith_total != null && `${who.hadith_total} hadith`,
+    who.hadith_total != null && `${who.hadith_total} hadith on sunnah.com`,
   ].filter(Boolean)
 
   return (
@@ -164,6 +165,10 @@ function Labelled({ label, arabic = false, children }) {
 /** Two sides of one row, English left and Arabic right as sunnah.com sets them; stacked on a phone. */
 const PAIR = 'grid gap-x-10 gap-y-2 sm:grid-cols-2'
 
+/** Said in place of the facts for a narrator known only by name from other narrators' lists. */
+const UNFETCHED = 'Known here only by name, from the teacher and student lists of other narrators. His own sunnah.com page has not been fetched, so his grade, generation and counts are not shown.'
+
+
 /**
  * His page's header card: the name in both languages up top as one row like the facts, then each fact
  * sunnah.com prints in both languages as one row, English left and Arabic
@@ -173,10 +178,11 @@ export function NarratorHead({ who }) {
   const numbers = [
     // sunnah.com's years pill: a death date (d. 57 AH) or a lifespan (58 – 145 AH).
     ['Years', who.years],
-    ['Hadith', who.hadith_total],
+    // sunnah.com's own count; the hadith listed below are the ones this app holds, which can differ.
+    ['Hadith on sunnah.com', who.hadith_total],
     ['Teachers', who.teachers.length],
     ['Students', who.students.length],
-  ].filter(([, n]) => n != null && n !== '')
+  ].filter(([, n]) => n != null && n !== '' && who.fetched !== false)
   return (
     <div className="mx-auto max-w-3xl px-6 py-5 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] divide-y divide-[var(--border)] [&>*]:py-4 [&>*:first-child]:pt-0 [&>*:last-child]:pb-0">
       <div className={`${PAIR} items-end`}>
@@ -189,10 +195,11 @@ export function NarratorHead({ who }) {
           </div>
         </div>
       </div>
+      {who.fetched === false && <StatusNote>{UNFETCHED}</StatusNote>}
       {who.facts.length > 0 && (
         <div className="space-y-5">
-          {who.facts.map((f) => (
-            <div key={f.label_en} className={PAIR}>
+          {who.facts.map((f, i) => (
+            <div key={i} className={PAIR}>
               <Labelled label={f.label_en}>{f.en}</Labelled>
               <Labelled label={f.label_ar} arabic>{f.ar}</Labelled>
             </div>
@@ -201,8 +208,8 @@ export function NarratorHead({ who }) {
       )}
       {who.books.length > 0 && (
         <div className={PAIR}>
-          <div className="flex flex-wrap gap-2">{who.books.map((b) => <BookMark key={b.en}>{b.en}</BookMark>)}</div>
-          <div dir="rtl" className="flex flex-wrap gap-2">{who.books.map((b) => <BookMark key={b.ar} arabic>{b.ar}</BookMark>)}</div>
+          <div className="flex flex-wrap gap-2">{who.books.map((b, i) => <BookMark key={i}>{b.en}</BookMark>)}</div>
+          <div dir="rtl" className="flex flex-wrap gap-2">{who.books.map((b, i) => <BookMark key={i} arabic>{b.ar}</BookMark>)}</div>
         </div>
       )}
       {numbers.length > 0 && (
@@ -220,10 +227,34 @@ export function NarratorHead({ who }) {
   )
 }
 
-/** A book that carries his hadith, as a quiet outlined mark. */
+/** A book that carries his hadith: a filled tag with no outline, so it does not read as a button. */
 function BookMark({ arabic = false, children }) {
-  const box = 'inline-block px-3 py-1 rounded-[var(--radius-md)] border border-[var(--border)] text-[var(--text-dim)]'
+  const box = 'inline-block px-2.5 py-0.5 rounded-[var(--radius-sm)] bg-[var(--surface-hi)] text-[var(--text-dim)]'
   return arabic ? <ArabicText size="sm" className={box}>{children}</ArabicText> : <span className={`type-small ${box}`}>{children}</span>
+}
+
+/**
+ * What the dot beside a teacher or student means, read off the same tone table
+ * the dots are drawn from (hadith.json narrator.tones), so the key cannot drift
+ * from the colours. Ranks are sunnah.com's, 1 the most trusted.
+ */
+export function GradeKey() {
+  let from = 1
+  const bands = Object.entries(TONES).map(([tone, top]) => {
+    const band = [tone, from === top ? `rank ${top}` : `ranks ${from}–${top}`]
+    from = top + 1
+    return band
+  })
+  bands.push(['danger', `rank ${from} and below`])
+  const dot = (colour) => <span aria-hidden="true" className="inline-block w-2 h-2 rounded-full me-1.5" style={{ background: colour }} />
+  return (
+    <p className="m-0 type-small text-[var(--text-faint)] flex flex-wrap gap-x-4 gap-y-1">
+      <span>Dot: sunnah.com grade, 1 most trusted:</span>
+      {bands.map(([tone, label]) => <span key={tone}>{dot(`var(--${tone})`)}{label}</span>)}
+      <span>{dot('var(--text-faint)')}graded, no rank</span>
+      <span>{dot('var(--border)')}no grade</span>
+    </p>
+  )
 }
 
 /** A narrator that failed to load: a 404 means no page for him is built here. */

@@ -88,7 +88,30 @@ def test_a_classical_text_keeps_its_lines_and_book_letters():
     item, said = parse.narrator(page)["texts"][0][2]
     assert item == {"kind": "item", "runs": [{"t": "بكر بن وائل "}, {"t": "م", "role": "mark", "title": "Sahih Muslim"},
                                              {"t": " وهو أصغر منه"}]}
-    assert [r.get("role") for r in said["runs"]] == [None, "scholar", "verdict"]
+    assert [r.get("role") for r in said["runs"]] == [None, "scholar", None, "verdict"]
+
+
+def test_a_classical_text_keeps_the_space_between_two_quotes_and_reads_a_nested_block_once():
+    page = '<div class="accordion"><div class="accordion-title">T</div><div class="accordion-body"><p>قال '
+    page += '<span class="tarjama-scholar">أحمد:</span> <span class="tarjama-verdict">ثقة</span> '
+    page += '<span class="tarjama-scholar">يحيى:</span> <span class="tarjama-verdict">صدوق</span></p>'
+    page += '<ul><li><p>روى عن نافع</p></li></ul></div></div>'
+    said, item = parse.narrator(page)["texts"][0][2]
+    assert "".join(r["t"] for r in said["runs"]) == "قال أحمد: ثقة يحيى: صدوق"
+    assert item == {"kind": "item", "runs": [{"t": "روى عن نافع"}]}
+
+
+def test_a_name_is_placed_on_a_whole_word_not_inside_a_longer_one():
+    placed, lost = parse.place("حدثنا مَعْمَر عن عمر", [(1, "عمر", 6)])
+    assert placed == [(17, 20, 1)] and not lost
+    placed, _ = parse.place("حدثنا شعبة وعمر", [(2, "عمر", 10)])
+    assert placed == [(12, 15, 2)]
+
+
+def test_only_the_english_has_its_ayn_set_and_the_arabic_is_untouched():
+    page = '<h1 class="hero-title">`Urwa</h1><h1 class="hero-title arabic">عروة — `</h1>'
+    found = parse.narrator(page)
+    assert (found["name_en"], found["name_ar"]) == ("ʿUrwa", "عروة — `")
 
 
 def test_the_book_endpoint_gives_slices_that_read_as_names(built):
@@ -114,6 +137,14 @@ def test_a_narrator_sheet_carries_grade_generation_and_his_circle(built):
 def test_search_finds_a_narrator_by_unpointed_arabic_or_english(built):
     assert [n["id"] for n in built.get("/api/rijal/search", params={"q": "مالك أنس"}).json()["narrators"]] == [6659]
     assert [n["id"] for n in built.get("/api/rijal/search", params={"q": "malik"}).json()["narrators"]] == [6659]
+    # The ayn (ʿAisha, al-ʿAdawi) is not typed: plain letters still find the name.
+    assert [n["id"] for n in built.get("/api/rijal/search", params={"q": "aisha"}).json()["narrators"]] == [4049]
+    assert 5913 in [n["id"] for n in built.get("/api/rijal/search", params={"q": "adawi"}).json()["narrators"]]
+
+
+def test_a_teacher_known_only_from_lists_is_marked_as_not_fetched(built):
+    assert built.get("/api/rijal/narrators/6659").json()["fetched"] is True
+    assert built.get("/api/rijal/narrators/4049").json()["fetched"] is False
 
 
 def test_a_link_ending_in_a_space_still_lands_before_the_next_word():

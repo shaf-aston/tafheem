@@ -22,12 +22,21 @@ _LABELS = {
 }
 
 
+# A name starts a word: nothing word-like (a letter or its vowel marks) before it, or only an attached و or ف that does.
+_WORD_START = r"(?:(?<![\w\u064B-\u065F\u0670])|(?<=(?<![\w\u064B-\u065F\u0670])[وف]))"
+
+
 def _soup(html: str) -> BeautifulSoup:
     return BeautifulSoup(html, "html.parser")
 
 
 def _text(tag) -> str:
     return tag.get_text(" ", strip=True) if tag else ""
+
+
+def _en(text: str) -> str:
+    """sunnah.com's English, its ayn written as a backtick (`Abd) set as ʿ. English only: the Arabic is copied untouched."""
+    return text.replace("`", "ʿ")
 
 
 def _letters(text: str) -> int:
@@ -78,7 +87,7 @@ def place(arabic: str, names: list[tuple[int, str, int]]) -> tuple[list[tuple[in
         letters.append(letters[-1] + (not ch.isspace()))
     placed, lost = [], []
     for who, shown, before in names:
-        hits = re.finditer(re.escape(shown) + r"(?!\w)", arabic)
+        hits = re.finditer(_WORD_START + re.escape(shown) + r"(?![\w\u064B-\u065F\u0670])", arabic)
         hit = min(hits, key=lambda h: abs(letters[h.start()] - before), default=None)
         if hit:
             placed.append((hit.start(), hit.end(), who))
@@ -93,7 +102,7 @@ def _people(soup: BeautifulSoup, panel: str) -> list[tuple[int, str, str]]:
     for a in soup.select(f"section.panel--{panel} a.name-en"):
         if m := _NARRATOR.match(a.get("href", "")):
             who = int(m.group(1))
-            found.setdefault(who, (who, _text(a.find_next_sibling("a", class_="name-ar")), _text(a)))
+            found.setdefault(who, (who, _text(a.find_next_sibling("a", class_="name-ar")), _en(_text(a))))
     return list(found.values())
 
 
@@ -103,7 +112,7 @@ def _facts(soup: BeautifulSoup) -> list[dict]:
         return [(_text(label), _text(label.parent.find(class_=["field", "lineage"]))) for label in labels]
     en = side(label for label in soup.select("span.label") if "arabic-label" not in label["class"])
     ar = side(soup.select("span.label.arabic-label"))
-    return [{"label_en": le, "en": ve, "label_ar": la, "ar": va} for (le, ve), (la, va) in zip(en, ar) if ve or va]
+    return [{"label_en": le, "en": _en(ve), "label_ar": la, "ar": va} for (le, ve), (la, va) in zip(en, ar) if ve or va]
 
 
 # A run inside a classical text that the page marks: the scholar quoted, his words, a book's letter.
@@ -118,14 +127,18 @@ def _runs(node) -> list[dict]:
         text = child.get_text() if child.name else str(child)
         if role:
             runs.append({"t": text.strip(), "role": role, **({"title": child["title"]} if child.get("title") else {})})
-        elif text.strip() or (runs and "role" not in runs[-1]):
-            if runs and "role" not in runs[-1]:
-                runs[-1]["t"] += text
-            elif text.strip():
-                runs.append({"t": text})
+        elif runs and "role" not in runs[-1]:
+            runs[-1]["t"] += text
+        elif text:
+            # Kept even when only a space: it is what parts two marked runs (ثقة يحيى).
+            runs.append({"t": text})
     for run in runs:
         run["t"] = re.sub(r"\s+", " ", run["t"])
-    return [r for r in runs if r["t"].strip()]
+    while runs and "role" not in runs[0] and not runs[0]["t"].strip():
+        runs.pop(0)
+    while runs and "role" not in runs[-1] and not runs[-1]["t"].strip():
+        runs.pop()
+    return [r for r in runs if r["t"]]
 
 
 def _blocks(body) -> list[dict]:
@@ -133,6 +146,9 @@ def _blocks(body) -> list[dict]:
     such as روى عن) or item (one row of a list under it)."""
     out = []
     for node in body.find_all(["p", "div", "li"]):
+        # A block inside another (a <p> in an <li>) is that block's words, not a line of its own.
+        if node.find_parent(["p", "li"]) and body in node.parents:
+            continue
         classes = node.get("class") or []
         if node.name == "li":
             out.append({"kind": "item", "runs": _runs(node)})
@@ -147,9 +163,7 @@ def _blocks(body) -> list[dict]:
 
 def narrator(html: str) -> dict:
     """One narrator page: names, grade, the labelled facts, appraisals, teachers, students and the classical texts."""
-    # The site joins book and author with an em dash; the app never prints one.
-    # Its English writes the letter ayn as a backtick (`Abd); the app writes ʿ.
-    soup = _soup(html.replace("—", "-").replace("`", "ʿ"))
+    soup = _soup(html)
     out = {key: "" for key in _LABELS.values()}
     for label in soup.select("span.label.arabic-label"):
         key = _LABELS.get(_text(label))
@@ -160,13 +174,13 @@ def narrator(html: str) -> dict:
     total = next((m for h in soup.select("h3.section-title") if (m := _TOTAL.match(_text(h)))), None)
     return {
         **out,
-        "name_en": _text(soup.select_one("h1.hero-title:not(.arabic)")),
+        "name_en": _en(_text(soup.select_one("h1.hero-title:not(.arabic)"))),
         "name_ar": _text(soup.select_one("h1.hero-title.arabic")),
-        "grade_en": _text(soup.select_one("div.pill-grade .pill-text")),
+        "grade_en": _en(_text(soup.select_one("div.pill-grade .pill-text"))),
         "grade_ar": _text(soup.select_one("div.pill-grade .arabic")),
         "grade_rank": int(rank.group(1)) if rank else None,
         "years": _text(soup.select_one("span.pill-secondary:not(.arabic)")),
-        "books": [{"en": _text(en), "ar": _text(ar)} for en, ar in
+        "books": [{"en": _en(_text(en)), "ar": _text(ar)} for en, ar in
                   zip(soup.select("span.pill-outline:not(.arabic)"), soup.select("span.pill-outline.arabic"))],
         "facts": _facts(soup),
         "verdicts": [(_text(v.select_one(".verdict-scholar")), _text(v.select_one(".critic-quote")))
@@ -174,6 +188,7 @@ def narrator(html: str) -> dict:
         "teachers": _people(soup, "teachers"),
         "students": _people(soup, "students"),
         "hadith_total": int(total.group(1).replace(",", "")) if total else None,
-        "texts": [(_text(a.select_one(".accordion-title")), body.get_text("\n", strip=True), _blocks(body))
+        # The site joins a book and its author with an em dash; the app never prints one.
+        "texts": [(_text(a.select_one(".accordion-title")).replace("—", "-"), body.get_text("\n", strip=True), _blocks(body))
                   for a in soup.select("div.accordion") if (body := a.select_one(".accordion-body"))],
     }
