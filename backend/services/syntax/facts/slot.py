@@ -257,6 +257,10 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     if rel in SUBJECTS:
         return "subject"
     kids = s.kids(token)
+    # وهو مبتسمٌ: the sentence a و brings rests on its khabar, as a whole one does on its own
+    if rel == "OBJ" and head and head["pos"] == "PRT" and typed_or_parsed_case(token) == "u" \
+            and any(subject_link(c) and c["id"] < token["id"] for c in kids):
+        return "predicate"
     if rel == "---":
         if any(subject_link(c) for c in kids):
             return "predicate"

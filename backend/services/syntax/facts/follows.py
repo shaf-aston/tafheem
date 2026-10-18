@@ -96,6 +96,11 @@ def _follows(token: dict, s: Sentence) -> str:
     if not head:
         return "none"
     # لكنّ is also an inna sister; it joins only when no clause of its own follows, or as the light لكنْ
+    # دخل المديرُ وهو مبتسمٌ: a raf' pronoun straight after the و, hung on this word, is its
+    # مبتدأ; the و brings a sentence (واو الحال), joining no noun (Tasheel 3.7)
+    opener = s.by_id.get(head["id"] + 1)
+    if opener and opener["id"] < token["id"] and opener["head"] == token["id"] and is_subject_pronoun(opener):
+        return "none"
     if (head["pos"] == "PRT" or joins_clauses(head, s)) and read_as(head, "atf") \
             and (not is_one(head["lemma"], "inna") or is_light(head)) and s.noun_before(head):
         return "atf"

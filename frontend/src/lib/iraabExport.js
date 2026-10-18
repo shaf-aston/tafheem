@@ -5,8 +5,9 @@
 import { caseLabel } from './grammarTerms'
 import { GAP, kids, pieces } from './tarkeebLayout'
 
-// The columns a node covers, in reading order (children come sorted).
-const span = (node) => (node.word != null ? [node.word] : (kids(node) ?? []).flatMap(span))
+// The columns a node covers, in reading order (children come sorted). A word no one
+// wrote (the ثابت a jar-majroor hangs on) stays out of the typed text around it.
+const span = (node) => (node.word != null ? (node.hidden ? [] : [node.word]) : (kids(node) ?? []).flatMap(span))
 const named = (piece) => piece.role && (piece.detail ? `${piece.role} (${piece.detail})` : piece.role)
 // What the diagram writes for a node: the unit's name, then its job, then the
 // pieces inside one word (a verb and its hidden doer). A word with none is the
@@ -18,8 +19,9 @@ const said = (node) =>
 /** The diagram as text: one line per word or joined unit, outermost first. The
     pieces of one written word print joined (فَسَوَّىٰهُنَّ), as it is written. */
 function structureLines({ words, written }, node, depth = 0) {
-  const cols = span(node)
-  const text = cols.map((i, k) => (k && written && written[i] === written[cols[k - 1]] ? '' : ' ') + words[i]).join('').trim()
+  const cols = node.hidden ? [node.word] : span(node)
+  const typed = cols.map((i, k) => (k && written && written[i] === written[cols[k - 1]] ? '' : ' ') + words[i]).join('').trim()
+  const text = node.hidden ? `(${typed} محذوف)` : typed
   const name = said(node)
   return [`${'  '.repeat(depth)}${text}${name && ` = ${name}`}`, ...(kids(node) ?? []).flatMap((kid) => structureLines({ words, written }, kid, depth + 1))]
 }
