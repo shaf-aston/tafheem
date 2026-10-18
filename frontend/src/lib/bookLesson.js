@@ -82,10 +82,10 @@ export function nextAfter(parts, lessonId) {
 /** The area a part sits in, if the book has areas. */
 export const areaOf = (areas, partId) => areas.find((area) => area.parts.some((part) => part.id === partId)) ?? null
 
-/** One authored card as the runner's card. `record` files the answer under `module`. */
-export function cardOf(lesson, card, module, random, tag = lesson.title) {
+/** One authored card as the runner's card. `record` files the answer under the world's `module`, with its id. */
+export function cardOf(lesson, card, world, random, tag = lesson.title) {
   const base = { id: itemOf(lesson, card), kind: card.kind, tag, why: card.why }
-  const record = { module, item: itemOf(lesson, card), context: { world: 'fiqh', lesson: lesson.id } }
+  const record = { module: world.module, item: itemOf(lesson, card), context: { world: world.id, lesson: lesson.id } }
   switch (card.kind) {
     case 'teach':
       return { ...base, kind: 'rule', title: card.title, ar: card.ar, en: card.en }
@@ -107,9 +107,9 @@ export function cardOf(lesson, card, module, random, tag = lesson.title) {
 }
 
 /** A lesson's cards, in its order; null for a lesson the book does not have. */
-export function lessonCards(book, lessonId, module, random = Math.random) {
+export function lessonCards(book, lessonId, world, random = Math.random) {
   const lesson = lessonsOf(book).find((one) => one.id === lessonId)
-  return lesson ? lesson.cards.map((card) => cardOf(lesson, card, module, random)) : null
+  return lesson ? lesson.cards.map((card) => cardOf(lesson, card, world, random)) : null
 }
 
 /** The parts a review of `due` items draws on (the index tells which part each lesson is in), in no set order. */
@@ -122,8 +122,8 @@ export function partsDue(book, due) {
 export const partOfLesson = (book, lessonId) => lessonsOf(book).find((lesson) => lesson.id === lessonId)?.part ?? null
 
 /** The asking cards whose items are `due` (most overdue first), up to REVIEW_SIZE. `book` holds the parts with cards. */
-export function reviewCards(book, due, module, random = Math.random) {
+export function reviewCards(book, due, world, random = Math.random) {
   const byItem = new Map(lessonsOf(book).flatMap((lesson) => lesson.cards.filter(asks).map((card) => [itemOf(lesson, card), [lesson, card]])))
   return due.slice(0, REVIEW_SIZE).filter((item) => byItem.has(item))
-    .map((item) => cardOf(...byItem.get(item), module, random, 'Review'))
+    .map((item) => cardOf(...byItem.get(item), world, random, 'Review'))
 }

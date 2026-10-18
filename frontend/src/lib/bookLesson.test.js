@@ -57,6 +57,9 @@ function statementsOf({ lines }, [from, to]) {
     .map(({ text }) => text.replace(/PageV\d+P\d+|ms\d+|@Q[BE]@/g, ' ').replace(/\s+/g, ' ').trim()).filter(Boolean)
 }
 
+// The world a card's answer is filed under: its id and module.
+const FIQH = { id: 'fiqh', module: 'quduri' }
+
 const seq = (...values) => { let i = 0; return () => values[i++ % values.length] }
 
 describe.each(BOOKS)('the $book.book lessons', (source) => {
@@ -188,23 +191,23 @@ describe('the next lesson', () => {
 
 describe('cards', () => {
   it('plays a lesson in its order, files questions under the module, and keeps teach cards unrecorded', () => {
-    const cards = lessonCards(BOOK_OF, 'l1', 'quduri', seq(0))
+    const cards = lessonCards(BOOK_OF, 'l1', FIQH, seq(0))
     expect(cards.map((card) => card.kind)).toEqual(['rule', 'choose', 'order'])
     expect(cards[0].record).toBeUndefined()
-    expect(cards[1].record).toMatchObject({ module: 'quduri', item: 'l1/c' })
+    expect(cards[1].record).toMatchObject({ module: 'quduri', item: 'l1/c', context: { world: 'fiqh', lesson: 'l1' } })
     expect(cards[1].answer).toBe('0')
-    expect(lessonCards(BOOK_OF, 'nope', 'quduri')).toBe(null)
+    expect(lessonCards(BOOK_OF, 'nope', FIQH)).toBe(null)
   })
 
   it('shuffles what is offered but keeps the right order to check against', () => {
-    const card = cardOf(LESSON, LESSON.cards[2], 'quduri', seq(0))
+    const card = cardOf(LESSON, LESSON.cards[2], FIQH, seq(0))
     expect(card.steps).toEqual(['1', '2', '3'])
     expect([...card.deck].sort()).toEqual(['1', '2', '3'])
     expect(card.deck).not.toEqual(card.steps)
   })
 
   it('reviews only due questions, tagged as a review', () => {
-    const cards = reviewCards(BOOK_OF, ['l1/o', 'gone/x'], 'quduri', seq(0))
+    const cards = reviewCards(BOOK_OF, ['l1/o', 'gone/x'], FIQH, seq(0))
     expect(cards.map((card) => [card.id, card.tag])).toEqual([['l1/o', 'Review']])
   })
 })

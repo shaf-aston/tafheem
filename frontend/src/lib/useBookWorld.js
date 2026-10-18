@@ -57,10 +57,11 @@ export function useBookWorld(world, view) {
     retry: () => { source.refetch(); summary.refetch(); for (const part of parts) part.refetch() },
     book: source.data,
     ...(state ?? { parts: [], areas: [], next: null, due: [] }),
-    // A lesson's cards, or the due ones for REVIEW, from the parts loaded for `view`; null when there is no such lesson.
-    makeLesson: (lessonId, random = Math.random) => (lessonId === REVIEW
-      ? reviewCards(withCards, state.due, world.module, random)
-      : lessonCards(withCards, lessonId, world.module, random)),
+    // A lesson's cards, or the due ones for REVIEW, from the parts loaded for `view`; null when there is no such lesson
+    // or the book is not in yet.
+    makeLesson: (lessonId, random = Math.random) => (!state ? null : lessonId === REVIEW
+      ? reviewCards(withCards, state.due, world, random)
+      : lessonCards(withCards, lessonId, world, random)),
     refresh: () => client.invalidateQueries({ queryKey: ['grow-summary', world.module] }),
   }
 }

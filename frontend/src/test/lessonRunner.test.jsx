@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
 // The lesson runner's feel: three right in a row shows a run, a wrong answer ends it, and the end screen says how many
-// were right first time, how long it took and what was missed, and offers the next lesson.
+// were right first time, how long it took and what was missed, and offers the next lesson. Enter checks and goes on;
+// leaving mid-lesson asks first.
 import { describe, expect, it } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
@@ -50,5 +51,32 @@ describe('lesson runner', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Next: Ghusl' }))
     fireEvent.click(screen.getByRole('button', { name: 'Back to the path' }))
     expect(went).toEqual(['next', 'back'])
+  })
+
+  it('checks and goes on with Enter, focusing Continue after Check', () => {
+    renderScreen(<LessonRunner cards={['a', 'b'].map(choose)} accent="#26c" onLeave={() => {}} />, {
+      routes: { 'POST /progress/attempts': { earned: 0 } },
+    })
+    fireEvent.click(screen.getByRole('radio', { name: 'right a' }))
+    fireEvent.keyDown(document.body, { key: 'Enter' })
+    expect(screen.getByRole('status').textContent).toMatch(/^Right!/)
+    expect(document.activeElement).toBe(screen.getByRole('button', { name: 'Continue' }))
+    fireEvent.keyDown(document.body, { key: 'Enter' })
+    expect(screen.getByText('Question b?')).toBeTruthy()
+  })
+
+  it('asks before leaving once a question is answered, and leaves at once before', () => {
+    const went = []
+    renderScreen(<LessonRunner cards={['a', 'b'].map(choose)} accent="#26c" onLeave={() => went.push('left')} />, {
+      routes: { 'POST /progress/attempts': { earned: 0 } },
+    })
+    answer('a', 'right')
+    fireEvent.click(screen.getByRole('button', { name: 'Leave the lesson' }))
+    expect(screen.getByRole('alertdialog')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Keep going' }))
+    expect(screen.queryByRole('alertdialog')).toBe(null)
+    fireEvent.click(screen.getByRole('button', { name: 'Leave the lesson' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Leave' }))
+    expect(went).toEqual(['left'])
   })
 })

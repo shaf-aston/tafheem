@@ -91,11 +91,14 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
     else go({ at: 'world', id: view.id, ...(view.part && { part: view.part }) })
   }
 
-  // A book lesson's end offers the next open lesson after it; a review's end does not. That lesson ends on its part's path.
+  // A book lesson's end offers the next open lesson after it, named with its part when that is another; a review's end
+  // does not. That lesson ends on its part's path.
   const nextOf = () => {
     const book = books[view.id]
     const after = book && view.lesson !== REVIEW && nextAfter(book.parts, view.lesson)
-    return after ? { title: after.title, go: () => go({ at: 'lesson', id: view.id, lesson: after.id, part: after.part }) } : null
+    if (!after) return null
+    const part = after.part !== view.part && book.parts.find((one) => one.id === after.part)
+    return { title: part ? `${part.title}: ${after.title}` : after.title, go: () => go({ at: 'lesson', id: view.id, lesson: after.id, part: after.part }) }
   }
 
   let screen

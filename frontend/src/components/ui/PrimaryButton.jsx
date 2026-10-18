@@ -10,9 +10,11 @@ export default function PrimaryButton({
   loading = false,
   children,
   type = 'button',
+  ref,
 }) {
   return (
     <button
+      ref={ref}
       type={type}
       onClick={onClick}
       disabled={disabled}

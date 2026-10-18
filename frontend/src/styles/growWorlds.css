@@ -335,3 +335,9 @@
 .grow-path-unit h3 { margin: 0; font-size: var(--type-ui); font-weight: 800; }
 .grow-path-unit .arabic-sm { grid-row: 2; color: var(--text-dim); }
 .grow-path-unit > span { grid-row: 1 / span 2; grid-column: 2; font-size: var(--type-small, 0.8rem); color: var(--text-dim); }
+
+/* "Leave this lesson?" under the top bar: the question, Leave, and Keep going (the default look). */
+.grow-leave { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 12px 14px; border-radius: var(--radius-md); background: var(--surface-hi); }
+.grow-leave p { flex: 1 1 100%; margin: 0; font-size: var(--type-ui); }
+.grow-leave button { padding: 8px 14px; border-radius: var(--radius-md); font-weight: 600; color: var(--danger); }
+.grow-leave .grow-leave-stay { background: var(--w); color: var(--bg); }

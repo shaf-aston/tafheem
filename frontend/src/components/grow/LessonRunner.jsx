@@ -2,7 +2,8 @@
  * A lesson, one card at a time: pick, Check, Continue. Wrong cards return once at the end; no hearts.
  * Cards are the exercise registry's; answers save like the Quiz's. Three right in a row shows a run; the end screen
  * sums the XP the server reported, how many were right first time, and how long the lesson took, recaps what was missed,
- * and offers the next lesson (`next`: its title and `go`) when there is one.
+ * and offers the next lesson (`next`: its title and `go`) when there is one. Enter presses the footer's button (Check or
+ * Continue), which takes the focus once an answer is checked; leaving mid-lesson asks first, since it starts over.
  */
 import { useEffect, useRef, useState } from 'react'
 
@@ -30,6 +31,19 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
   const begun = useRef(0)
   useEffect(() => { started.current = performance.now() }, [at])
   useEffect(() => { begun.current = performance.now() }, [])
+  // The footer's button, for Enter and for focus after Check; `leaving` while "Leave this lesson?" is asked.
+  const go = useRef(null)
+  const [leaving, setLeaving] = useState(false)
+  useEffect(() => { if (result) go.current?.focus() }, [result])
+  useEffect(() => {
+    const press = (event) => {
+      if (event.key !== 'Enter' || event.target.closest?.('button, input, textarea, select, a')) return
+      event.preventDefault()
+      go.current?.click()
+    }
+    document.addEventListener('keydown', press)
+    return () => document.removeEventListener('keydown', press)
+  }, [])
 
   const done = at >= cards.length
   if (done) return <LessonDone tally={tally} took={took} missed={missed} accent={accent} rewards={rewards} next={after} onLeave={onLeave} />
@@ -66,7 +80,7 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
   return (
     <div className="grow-lesson" style={{ '--w': accent }}>
       <div className="grow-lesson-top">
-        <button type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={onLeave}>
+        <button type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (tally.asked ? setLeaving(true) : onLeave())}>
           <span aria-hidden="true">×</span>
         </button>
         <span className="grow-lesson-bar" role="progressbar" aria-valuemin={0} aria-valuemax={cards.length} aria-valuenow={at}
@@ -75,6 +89,14 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
         </span>
         {tally.run >= 3 && <span key={tally.run} className="grow-run pop">{say('{n} in a row', { n: tally.run })}</span>}
       </div>
+
+      {leaving && (
+        <div className="grow-leave" role="alertdialog" aria-labelledby="grow-leave-h">
+          <p id="grow-leave-h">{say('Leave this lesson? Your answers are saved, but it starts again from the first card.')}</p>
+          <button type="button" onClick={onLeave}>{say('Leave')}</button>
+          <button type="button" className="grow-leave-stay" onClick={() => setLeaving(false)}>{say('Keep going')}</button>
+        </div>
+      )}
 
       <Card key={card.id} card={card} value={value} setValue={setValue} result={result} />
 
@@ -87,8 +109,8 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
           </p>
         )}
         {asks && !result
-          ? <PrimaryButton accent={accent} disabled={!kind.ready(value, card)} onClick={check}>{say('Check')}</PrimaryButton>
-          : <PrimaryButton accent={accent} onClick={next}>{say('Continue')}</PrimaryButton>}
+          ? <PrimaryButton ref={go} accent={accent} disabled={!kind.ready(value, card)} onClick={check}>{say('Check')}</PrimaryButton>
+          : <PrimaryButton ref={go} accent={accent} onClick={next}>{say('Continue')}</PrimaryButton>}
       </div>
     </div>
   )
