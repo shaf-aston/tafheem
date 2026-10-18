@@ -83,21 +83,20 @@
               "into": ["Sahih", "Not sahih"],
               "items": [
                 ["ضرب", "Sahih"],
-                ["يضرب", "Sahih"],
                 ["حوقل: its و is extra, not a root letter", "Sahih"],
                 ["وعد: و in the ف place", "Not sahih"],
                 ["أمر: hamza in the ف place", "Not sahih"],
                 ["مدّ: two letters of one kind", "Not sahih"]
               ],
               "source": ["إذ ليس فيه في مقابلة فاء فعل إلا الضاد، وفي مقابلة عينه إلا الراء، وفي مقابلة لامه إلا الباء", "ويدخل فيه أيضا نحو حوقل وضارب ويضرب ومضروب واقعنسس"],
-              "why": "Only the three root letters count. حوقل and يضرب are sound because their extra letters are not root letters. وعد, أمر and مدّ have a weak letter, a hamza or a doubling in a root place."
+              "why": "Only the three root letters count. حوقل is sound because its و is an extra letter, not a root letter. وعد, أمر and مدّ have a weak letter, a hamza or a doubling in a root place."
             },
             {
               "kind": "teach",
               "id": "scale",
               "title": "Why فعل is the scale",
               "ar": "\"واختص الفاء والعين واللام\" من بين الحروف الباقية \"للوزن\" والمعيار \"حتى يكون فيه\" أي في الوزن \"من حروف الشفة والوسط والحلق\"",
-              "en": "The wazn (scale) is فعل because its letters come from the three main places of speech: ف from the lips, ل from the middle of the mouth, ع from the throat."
+              "en": "The wazn (scale) that words are weighed on is فعل. Note: the book's reason is that its letters come from the three main places of speech: ف from the lips, ل from the middle of the mouth, ع from the throat."
             },
             {
               "kind": "choose",
@@ -114,7 +113,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which statement matches the book?",
-              "options": ["The sound verb is studied first and the others are measured against it", "The book has nine babs", "A sound verb may have a hamza among its root letters"],
+              "options": ["The others are measured against the sound verb", "The book has nine babs, one for each verb", "A sound verb may have a hamza as a root letter"],
               "answer": 0,
               "source": ["على سبعة أبواب", "وكانت أبنية الصحيح تستحق التقديم"],
               "why": "The book has seven babs, not nine (nine is the number of derived things). A sound verb has no hamza in its root, and it comes first because the others are measured against it."
@@ -139,6 +138,15 @@
               "title": "Why it is called masdar",
               "ar": "\"لأن هذه الأشياء\" السبعة المذكورة \"تصدر عنه\" أي عما صدق عليه المصدر فإن معنى المصدر موضع الصدور",
               "en": "Masdar literally means ‘the place things come out from’: the other forms come out of it. Note: the commentator says this proof is weak, since a word's name can be used loosely."
+            },
+            {
+              "kind": "choose",
+              "id": "root-case",
+              "ask": "For the Basran grammarians, which comes first?",
+              "options": ["The masdar: the verb is taken from it", "The verb: the masdar is taken from it", "Neither: both come from the noun"],
+              "answer": 0,
+              "source": "وإنما قلنا إن المصدر أصل للفعل في الاشتقاق \"لأن مفهومه\" أي معنى المصدر \"واحد\" وجزء \"ومفهوم الفعل\" أي المعنى الذي يفهم منه بحسب الوضع \"متعدد\"",
+              "why": "For the Basrans the masdar is the root: it means one thing, the action, and the verb, meaning more, is taken from it."
             },
             {
               "kind": "teach",
@@ -167,7 +175,7 @@
               "kind": "choose",
               "id": "qaada",
               "ask": "قعد and جلس both mean ‘sit’. Is one derived from the other?",
-              "options": ["Yes: both are past verbs", "No: their letters don't match", "Yes: their meanings match"],
+              "options": ["Yes: both are past verbs", "No: their letters differ", "Yes: their meanings match"],
               "answer": 1,
               "source": "احترز به عن نحو قعد وجلس",
               "why": "Derivation needs a match in letters as well as meaning. قعد and جلس share a meaning but not their letters."
@@ -186,14 +194,13 @@
               "into": ["Small", "Big", "Biggest"],
               "items": [
                 ["ضرب from الضرب", "Small"],
-                ["Same letters, same order", "Small"],
                 ["جبذ from الجذب", "Big"],
                 ["Same letters, new order", "Big"],
                 ["نعق from النهق", "Biggest"],
                 ["Letters only from the same place", "Biggest"]
               ],
               "source": ["\"نحو\" اشتقاق \"ضرب\" ماضيا \"من الضرب\" مصدرا", "\"نحو\" اشتقاق \"جبذ من الجذب\"", "\"أكبر وهو أن يكون بينهما تناسب في المخرج والمعنى\"", "\"نحو\" اشتقاق \"نعق من النهق\""],
-              "why": "Same letters in order: small. Same letters, new order: big. Letters that only share their place in the mouth: biggest."
+              "why": "ضرب from الضرب keeps the same letters in order: small. Same letters, new order: big. Letters that only share their place in the mouth: biggest."
             },
             {
               "kind": "choose",
@@ -251,6 +258,7 @@
               "ask": "Which of these masdars has a kasra on its first letter?",
               "options": ["فِسق", "قَتل", "شُغل"],
               "answer": 0,
+              "arabic-options": true,
               "source": "فالفاء منه إما مفتوح أو مكسور أو مضموم \"نحو قتل وفسق وشغل\"",
               "why": "The examples follow the order fatha, kasra, damma: qatl, fisq, shughl."
             },
@@ -268,7 +276,6 @@
               "into": ["ة", "ى (alif)", "ان"],
               "items": [
                 ["رحمة", "ة"],
-                ["كدرة", "ة"],
                 ["دعوى", "ى (alif)"],
                 ["ذكرى", "ى (alif)"],
                 ["حرمان", "ان"],
@@ -288,7 +295,7 @@
               "kind": "choose",
               "id": "qaim",
               "ask": "In قمت قائما, what does قائما mean?",
-              "options": ["A man who stands", "The place of standing", "Standing: the act itself (قياما)"],
+              "options": ["A man who is standing", "The place where one stands", "Standing, the act (قياما)"],
               "answer": 2,
               "source": "\"نحو قمت قائما\" أي قياما",
               "why": "Here قائما is a masdar on the doer’s pattern: ‘I stood a standing’."
@@ -326,6 +333,7 @@
               "ask": "Which of these is NOT one of the exceptions the book lists for longer verbs?",
               "options": ["أكرم إكراما", "قاتل قيتالا", "زلزل زلزالا"],
               "answer": 0,
+              "arabic-options": true,
               "source": ["\"إلا في كلم\" يجيء المصدر \"كلاما\"", "\"في قاتل\" يجيء \"قتالا\" بكسر القاف وتخفيف العين \"وقيتالا\"", "يجيء \"زلزالا\" بفتح الأول"],
               "why": "إكرام is the regular masdar of أكرم. قيتال and زلزال are among the listed exceptions."
             }
@@ -364,6 +372,7 @@
               "ask": "Which bab has kasra on the ع in BOTH the past and the present?",
               "options": ["ضرب يضرب", "حسب يحسب", "علم يعلم"],
               "answer": 1,
+              "arabic-options": true,
               "source": "\"وحسب يحسب\" بكسره فيهما",
               "why": "حسِب يحسِب: kasra in both. علِم has kasra only in the past, ضرَب only in the present."
             },
@@ -384,8 +393,7 @@
                 ["قتل يقتل", "Pillar"],
                 ["علم يعلم", "Pillar"],
                 ["فتح يفتح", "Not a pillar"],
-                ["كرم يكرم", "Not a pillar"],
-                ["حسب يحسب", "Not a pillar"]
+                ["كرم يكرم", "Not a pillar"]
               ],
               "source": ["\"وتسمى الثلاثة الأول دعائم الأبواب\"", "\"وكثرتهن\""],
               "why": "The first three are the pillars. The other three keep one vowel in past and present, and are used less."
@@ -395,25 +403,16 @@
               "id": "fataha",
               "title": "فتح يفتح needs a throat letter",
               "ar": "\"وفتح يفتح لا يدخل في الدعائم لانعدام اختلاف الحركات في عين الماضي والمستقبل ولعدم مجيئه\" أي مجيء باب فتح يفتح \"بغير حرف الحلق\" عينا أو لاما",
-              "en": "فتح يفتح is not a pillar: its vowel doesn’t change, and it only comes when the second or third root letter is a throat letter, like the ح of فتح. The light fatha balances the heavy throat letter."
+              "en": "فتح يفتح is not a pillar: its vowel doesn’t change, and it only comes when the second or third root letter is a throat letter, like the ح of فتح. Note: ركن يركن and أبى يأبى are rare mixed-dialect forms, and بقى يبقى is the dialect of Tayy."
             },
             {
               "kind": "choose",
-              "id": "rakana",
-              "ask": "ركن يركن has fatha in the past and present but no throat letter. What does the book say?",
-              "options": ["It mixes two dialects and is rare (shadhdh)", "It proves the rule wrong", "It belongs to كرم يكرم"],
+              "id": "dakhala",
+              "ask": "دخل يدخل has a throat letter (خ), yet it is not on the bab of فتح يفتح. Does that break the rule?",
+              "options": ["No: the rule only works one way", "Yes: then the whole rule is wrong", "No: خ is not a throat letter"],
               "answer": 0,
-              "source": ["\"وأما ركن يركن وأبى يأبى\"", "\"فمن اللغات المتداخلة والشواذ\""],
-              "why": "The past came from one dialect and the present from another, so it is a mixed, rare form, not a break in the rule."
-            },
-            {
-              "kind": "choose",
-              "id": "tayy",
-              "ask": "بقى يبقى has fatha in the present without a throat letter. Why?",
-              "options": ["It is the bab of فتح يفتح", "It is a mistake", "It is the dialect of the tribe of Tayy, who changed the kasra to fatha"],
-              "answer": 2,
-              "source": ["\"وأما بقى يبقى وفنى يفنى وقلى يقلى\"", "\"فلغات\" قبيلة \"طيء قد فروا\" أي فارين \"من الكسرة إلى الفتحة\""],
-              "why": "In origin the past had kasra (بقِي). The tribe of Tayy fled from the kasra to the lighter fatha."
+              "source": ["\"بغير حرف الحلق\" عينا أو لاما", "ولا يرد مثل دخل يدخل؛ لأنه دليل بعد الوقوع"],
+              "why": "The rule says فتح يفتح needs a throat letter, not that every verb with a throat letter is on فتح يفتح."
             },
             {
               "kind": "teach",
@@ -428,6 +427,7 @@
               "ask": "Kareem wants a verb for ‘to be noble by nature’. Which bab fits?",
               "options": ["فتح يفتح", "كرم يكرم", "ضرب يضرب"],
               "answer": 1,
+              "arabic-options": true,
               "source": "لأنه لا يجيء إلا من الطبائع\"",
               "why": "A quality you are born with belongs to كرم يكرم."
             },
@@ -435,7 +435,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Why is حسب يحسب not a pillar?",
-              "options": ["It needs a throat letter", "It is only for inborn qualities", "Its vowel doesn't change and it is rarely used"],
+              "options": ["It needs a throat letter", "It is only for inborn qualities", "Its vowel stays, and it is rare"],
               "answer": 2,
               "source": "\"و\" باب \"حسب يحسب لا يدخل في الدعائم\" لانعدام الاختلاف و\"لقلته\"",
               "why": "It keeps kasra in both tenses and is used little. The throat letter belongs to فتح يفتح, inborn qualities to كرم يكرم."
@@ -457,29 +457,41 @@
             {
               "kind": "sort",
               "id": "sort-added",
-              "ask": "How many letters are added?",
-              "into": ["One", "Two", "Three"],
+              "ask": "One letter added, or two?",
+              "into": ["One", "Two"],
               "items": [
                 ["أكرم", "One"],
                 ["قطّع", "One"],
                 ["قاتل", "One"],
                 ["تضارب", "Two"],
-                ["انصرف", "Two"],
-                ["احتقر", "Two"],
-                ["استخرج", "Three"],
-                ["اخشوشن", "Three"]
+                ["انصرف", "Two"]
               ],
               "source": ["فما زيد فيه حرف واحد فثلاثة أبواب وذلك \"نحو أكرم\"", "ما زيد فيه حرفان فخمسة أبواب نحو \"تفضل\"", "ما زيد فيه ثلاثة أحرف فأربعة أبواب نحو \"استخرج\""],
-              "why": "أكرم adds a hamza, قطّع a second ط, قاتل an alif. تضارب adds ت and ا, انصرف ا and ن, احتقر ا and ت. استخرج adds ا, س, ت; اخشوشن adds ا, و and a second ش."
+              "why": "أكرم adds a hamza, قطّع a doubled letter, قاتل an alif. تضارب adds ت and alif, and انصرف adds a hamza and ن."
             },
             {
               "kind": "choose",
               "id": "ikram",
               "ask": "Why does the hamza of إكراما take kasra, though أكرم has fatha?",
-              "options": ["To tell the masdar apart from plurals on أفعال", "Because hamza is a throat letter", "Because the masdar is a command"],
+              "options": ["To tell it from plurals on أفعال", "Because hamza is a throat letter", "Because the masdar is a command"],
               "answer": 0,
               "source": "وإنما كسرت في المصدر فرقا بينه وبين الجمع على أفعال",
               "why": "With fatha, أكرام would look like a plural on أفعال (like أقلام). The kasra marks the masdar."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-added-2",
+              "ask": "Two letters added, or three?",
+              "into": ["Two", "Three"],
+              "items": [
+                ["احتقر", "Two"],
+                ["احمرّ", "Two"],
+                ["استخرج", "Three"],
+                ["اخشوشن", "Three"],
+                ["اجلوّذ", "Three"]
+              ],
+              "source": ["فما زيد فيه حرف واحد فثلاثة أبواب وذلك \"نحو أكرم\"", "ما زيد فيه حرفان فخمسة أبواب نحو \"تفضل\"", "ما زيد فيه ثلاثة أحرف فأربعة أبواب نحو \"استخرج\""],
+              "why": "احتقر and احمرّ add two letters. استخرج, اخشوشن and اجلوّذ add three."
             },
             {
               "kind": "teach",
@@ -492,7 +504,7 @@
               "kind": "choose",
               "id": "irawa",
               "ask": "Why is ارعوى not merged like احمرّ?",
-              "options": ["It has three added letters", "Its last two letters are no longer alike", "It has a throat letter"],
+              "options": ["It has three added letters, not two", "Its last two letters are not alike", "It has a throat letter in the middle"],
               "answer": 1,
               "source": ["\"لا يدغم لانعدام الجنسية\"", "أي لا يقع الإدغام في ارعوى لأن أصله ارعو"],
               "why": "Its weak last letter changed first, so the two letters are not of one kind and cannot merge."
@@ -514,19 +526,17 @@
             {
               "kind": "sort",
               "id": "sort-mulhaq",
-              "ask": "Which pattern is each verb joined to?",
-              "into": ["دحرج", "تدحرج", "احرنجم"],
+              "ask": "Joined to دحرج or to تدحرج?",
+              "into": ["دحرج", "تدحرج"],
               "items": [
                 ["شملل", "دحرج"],
                 ["حوقل", "دحرج"],
                 ["بيطر", "دحرج"],
                 ["تجلبب", "تدحرج"],
-                ["تشيطن", "تدحرج"],
-                ["اقعنسس", "احرنجم"],
-                ["اسلنقى", "احرنجم"]
+                ["تشيطن", "تدحرج"]
               ],
               "source": ["\"و\" نحو \"حوقل\" حوقلة", "\"لمحلق تدحرج نحو تجلبب\"", "\"لملحق احرنجم نحو اقعنسس\""],
-              "why": "شملل, حوقل and بيطر match دحرج. تجلبب and تشيطن match تدحرج. اقعنسس and اسلنقى match احرنجم."
+              "why": "شملل, حوقل and بيطر match دحرج. تجلبب and تشيطن match تدحرج."
             },
             {
               "kind": "teach",
@@ -539,7 +549,7 @@
               "kind": "choose",
               "id": "akhraja",
               "ask": "أخرج إخراجا looks like دحرج دحراجا. Is أخرج joined to دحرج?",
-              "options": ["No: the test is the masdar on فعللة, which أخرج lacks", "Yes: the masdars match", "Yes: both have four letters"],
+              "options": ["No: its masdar is not on فعللة", "Yes: the two masdars look alike", "Yes: both verbs have four letters"],
               "answer": 0,
               "source": ["وإنما لم يحكم على أخرج بالإلحاق بدحرج مع اتحاد مصدريهما", "لأن الاعتبار في دحرج بالفعللة لعمومها واطرادها في جميع صور فعلل"],
               "why": "What counts for دحرج is دحرجة, found in every verb of its kind. أخرج has no such masdar, so it is not joined."
@@ -550,6 +560,7 @@
               "ask": "How many babs does the book count in all?",
               "options": ["12", "6", "35"],
               "answer": 2,
+              "arabic-options": true,
               "source": "\"خمسة وثلاثون بابا ستة منها\"",
               "why": "6 bare three-letter, 12 branches, 1 four-letter, 3 of its branches, and 6 + 5 + 2 joined verbs: 35."
             }
@@ -594,7 +605,7 @@
               "kind": "choose",
               "id": "why-vowel",
               "ask": "But the past ends on a vowel (ضَرَبَ), not on sukun. Why?",
-              "options": ["Because sukun is too light", "It is a bit like a noun: it can describe an indefinite noun", "Because it is a command"],
+              "options": ["Sukun is too light for a past verb", "Like a noun, it can describe a noun", "It is a command, so it needs a vowel"],
               "answer": 1,
               "source": ["\"لمشابهته بالاسم\" في الجملة يعني \"في وقوعه صفة للنكرة\"", "\"نحو مررت برجل ضرب أو\" مررت برجل \"ضارب\""],
               "why": "You can say مررت برجل ضرب, ‘I passed a man who hit’, just as مررت برجل ضارب. That likeness to a noun earns it a vowel."
@@ -659,7 +670,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Bilal writes ضربو without the alif. What has he lost?",
-              "options": ["The meaning of the past", "The sign that tells the plural و from the و of ‘and’", "The damma on the ب"],
+              "options": ["The meaning of the past tense itself", "What tells its و from the و of ‘and’", "The damma that sits on the ب"],
               "answer": 1,
               "source": "\"للفرق بين واو الجمع وواو العطف في مثل حضر وتكلم زيد\"",
               "why": "The alif is only a sign in writing. It keeps the plural و apart from the و of ‘and’."
@@ -706,6 +717,7 @@
               "ask": "Bilal wants to say ‘I and Zaid hit’. Which is right?",
               "options": ["ضربت أنا وزيد", "ضربت وزيد", "ضربت زيد"],
               "answer": 0,
+              "arabic-options": true,
               "source": "\"لا يقال ضربت وزيد\" بغير التأكيد \"بل يقال: ضربت أنا وزيد\"",
               "why": "The ت is like part of the verb, so you can’t join a word straight onto it. Repeat it first with أنا."
             },
@@ -733,6 +745,7 @@
               "ask": "Fatima and Aisha, speaking together, say ‘we hit’. Which form?",
               "options": ["ضربتا", "ضربنا", "ضربتما"],
               "answer": 1,
+              "arabic-options": true,
               "source": ["إذ يقال في كلها ضربنا", "\"عدم الالتباس في الإخبارات\" لأن المتكلم يرى في أكثر الأحوال أو يسمع صوته"],
               "why": "ضربنا serves every ‘we’: two or more, men or women. The listener can see or hear who is speaking."
             },
@@ -763,6 +776,7 @@
               "ask": "Add ‘him’ to ضربتم (you men hit). Which is right?",
               "options": ["ضربتمه", "ضربتمهو", "ضربتموه"],
               "answer": 2,
+              "arabic-options": true,
               "source": ["\"وهو الواو لأن أصله ضربتموا\" بدليل عود الواو، وعند اتصال الضمير نحو ضربتموه", "\"وبخلاف ضربتموه\" أي لم يحذف واوه"],
               "why": "ضربتم was ضربتمو; its و was dropped at the end of the word. Once a pronoun is attached the و is no longer at the end, so it comes back."
             },
@@ -770,7 +784,7 @@
               "kind": "choose",
               "id": "tunna",
               "ask": "Why does ضربتنّ (you women) have a doubled ن?",
-              "options": ["It was ضربتمن: the م became ن and merged", "To show the past", "Because it is a command"],
+              "options": ["It was ضربتمن: the م became ن", "To show it is in the past tense", "Because women's forms double it"],
               "answer": 0,
               "source": "\"لأن أصله\" أي أصل ضربتين \"ضربتمن\"",
               "why": "Like ضربتما, it once had a م. The م is close to ن, so it became ن and merged into it."
@@ -779,7 +793,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "ضربنا (we hit) has a ن and then an ا. Why the ا?",
-              "options": ["Because it is a command", "So it isn’t confused with ضربن (they, women)", "To show the dual"],
+              "options": ["Because it is a command, like اضرب", "To tell it from ضربن (they, women)", "To show the dual, as in ضربا"],
               "answer": 1,
               "source": ["\"لأن تحته نحن مضمر\"", "\"ثم زيدت الألف حتى لا يلتبس بضربن\""],
               "why": "The ن matches نحن, hidden underneath. Without the alif, ضربن would mean ‘they (women) hit’."
@@ -831,7 +845,7 @@
               "kind": "choose",
               "id": "speaker",
               "ask": "Why does the speaker get only two forms?",
-              "options": ["The speaker is usually seen, or known by voice", "Speakers are always men", "Speakers never use the dual"],
+              "options": ["The speaker is seen or heard", "Speakers are always men", "Speakers never use the dual form"],
               "answer": 0,
               "source": "\"لأن\" الشخص \"المتكلم يرى\" أي يبصر \"في أكثر الأحوال\" فيعلم حاله من الذكورة والأنوثة \"أو يعلم بالصوت أنه مذكر أو مؤنث\"",
               "why": "You can usually see the speaker or tell from the voice, so separate forms for men and women are not needed."
@@ -885,17 +899,16 @@
                 ["منه", "هُ"],
                 ["ضربه", "هُ"],
                 ["فيه", "هِ"],
-                ["عليه", "هِ"],
-                ["لديه", "هِ"]
+                ["عليه", "هِ"]
               ],
               "source": ["ما كان عليه نحو له ومنه وغلامه وضربه", "\"وفيه\" فيما كان قبله ياء ساكنة وعليه ولديه"],
-              "why": "After a silent ي (فيه, عليه, لديه) the ه takes kasra. Otherwise it keeps damma."
+              "why": "After a kasra or a silent ي (فيه, عليه) the ه takes kasra. Otherwise it keeps damma."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "Why isn’t the و of هو dropped when it stands alone?",
-              "options": ["Because the و has a fatha", "The word would be too short: a word needs a start, a middle and an end", "Because هو is a verb"],
+              "options": ["Because its و has a fatha", "The word would be too short", "Because هو is really a verb"],
               "answer": 1,
               "source": "\"لقلة حروفه من القدر الصالح\" أي من المقدار الذي يصلح أن يكون ذلك المقدار كلمة وهو ثلاثة أحرف",
               "why": "A proper word needs three letters: one to start on, one to stop on, and one between. هو alone has too few to lose one."
@@ -927,6 +940,7 @@
               "ask": "Ali wants to say ‘I hit myself’. Which is right?",
               "options": ["ضربتني", "ضربتك", "ضربت نفسي"],
               "answer": 2,
+              "arabic-options": true,
               "source": "بل لو أريد ذلك يقال ضربت نفسك وضربت نفسي",
               "why": "One person can’t be doer and object in two attached pronouns, so say ضربت نفسي."
             },
@@ -934,7 +948,7 @@
               "kind": "choose",
               "id": "qulub",
               "ask": "Is علمتُني فاضلا (I knew myself excellent) allowed?",
-              "options": ["Yes: with verbs of the heart the first object isn’t a real object", "No: one person can’t be doer and object", "Only in poetry"],
+              "options": ["Yes: verbs of the heart allow it", "No: one person can't be doer and object", "Only in poetry, never in prose"],
               "answer": 0,
               "source": ["\"في أفعال القلوب نحو علمتك\" بفتح التاء \"فاضلا وعلمتني\"", "\"علمت فضلك و\" من علمتني\" فاضلا \"علمت فضلى\""],
               "why": "It really means علمت فضلي, ‘I knew my excellence’: what is known is the second object."
@@ -955,7 +969,6 @@
                 ["ضربه", "Attached object"],
                 ["ضربك", "Attached object"],
                 ["إياه ضرب", "Separate object"],
-                ["إياك ضربت", "Separate object"],
                 ["ضاربه", "Attached owner"],
                 ["ضاربك", "Attached owner"]
               ],
@@ -995,7 +1008,7 @@
               "kind": "choose",
               "id": "why-doer",
               "ask": "Why can only the doer pronoun be hidden, and not the object or the owner?",
-              "options": ["Objects are never pronouns", "The doer is like part of the verb", "The doer is always a man"],
+              "options": ["Objects and owners are never pronouns", "The doer is like part of the verb", "The doer is always a man, never a woman"],
               "answer": 1,
               "source": "\"استتر\" أي وقع الاستتار \"في\" الضمير \"المرفوع دون المنصوب والمجرور؛ لأنه\" أي المرفوع \"بمنزلة جزء الفعل\"",
               "why": "The doer is part of the sentence’s core and almost part of the verb, so the verb’s own shape can stand for it."
@@ -1004,7 +1017,7 @@
               "kind": "choose",
               "id": "hind",
               "ask": "In ضربت هند, is the ت a pronoun?",
-              "options": ["No: it stays even with the doer هند named", "Yes: it is the doer", "Yes: it is the object"],
+              "options": ["No: it stays when هند is named", "Yes: it is the doer, like ضربتُ", "Yes: it is an object pronoun"],
               "answer": 0,
               "source": "\"ولا يجوز أن يكون تاء ضربت\" بسكون التاء \"ضميرا كتاء ضربت\" بحركات التاء \"لوجود عدم حذفها بالفاعل الظاهر نحو ضربت هند\"",
               "why": "A verb can’t have two doers. The ت stays beside هند, so it is only a sign of the feminine."
@@ -1018,7 +1031,6 @@
                 ["اضرب (hit!)", "Must be hidden"],
                 ["تضرب (you hit)", "Must be hidden"],
                 ["أضرب (I hit)", "Must be hidden"],
-                ["نضرب (we hit)", "Must be hidden"],
                 ["ضرب: ضرب زيد", "May be shown"],
                 ["ضارب: زيد ضارب غلامه", "May be shown"]
               ],
@@ -1066,7 +1078,7 @@
               "kind": "choose",
               "id": "sa",
               "ask": "Sami says سيضرب. When is the hitting?",
-              "options": ["Now", "In the past", "In the future only"],
+              "options": ["Now, and in the future", "In the past", "In the future only"],
               "answer": 2,
               "source": "وقيل: سوف يضرب أو سيضرب يختص بالاستقبال",
               "why": "يضرب alone can be now or later. سوف or سـ narrows it to the future."
@@ -1076,15 +1088,16 @@
               "id": "atin",
               "title": "The letters أتين",
               "ar": "\"وزيدت على الماضي من حروف أتين حتى يصير\" الماضي \"مستقبلا\"",
-              "en": "The present is the past with one of the letters of أتين (ا, ت, ي, ن) added at the front. Not at the end: there they would look like past forms (ضربا, ضربت, ضربن)."
+              "en": "The present is the past with one of the letters of أتين (ا, ت, ي, ن) added at the front. Not at the end: there they would look like past forms (ضربا, ضربت, ضربن). Note: the book also links each letter to a place in the mouth, from the throat to the lips."
             },
             {
-              "kind": "order",
-              "id": "places",
-              "ask": "The book links each letter to a place in the mouth. Order them from the deepest throat to the lips.",
-              "steps": ["أ: I, who begin speech", "ي: he, spoken of in the middle", "و, which became ت: you, where speech ends"],
-              "source": ["\"لأن الألف\" خارج \"من أقصى الحلق وهو\" أي أقصى الحلق \"مبدأ المخارج\"", "\"لأن الياء من وسط الفم والغائب هو الذي يذكر في وسط الكلام\"", "\"لكونه\" أي الواو خارجا \"من منتهى المخارج\""],
-              "why": "Alif comes from the deepest throat, for the speaker who starts; ي from the middle of the mouth, for the one talked about; و from the lips, for the listener. The و became ت so three و’s don’t meet."
+              "kind": "choose",
+              "id": "front",
+              "ask": "Why are the letters of أتين added at the front of the present, and not at the end?",
+              "options": ["At the end they'd look like past forms", "The front is lighter to say than the end", "The end must keep the case vowel"],
+              "answer": 0,
+              "source": ["\"وزيدت على الماضي من حروف أتين حتى يصير\" الماضي \"مستقبلا\"", "\"لأن الألف\" خارج \"من أقصى الحلق وهو\" أي أقصى الحلق \"مبدأ المخارج\"", "\"لأن الياء من وسط الفم والغائب هو الذي يذكر في وسط الكلام\"", "\"لكونه\" أي الواو خارجا \"من منتهى المخارج\""],
+              "why": "At the end, ا, ت and ن would make ضربا, ضربت and ضربن: past forms."
             },
             {
               "kind": "teach",
@@ -1103,8 +1116,7 @@
                 ["يقاتل", "Damma"],
                 ["يكرم", "Damma"],
                 ["يضرب", "Fatha"],
-                ["يستخرج", "Fatha"],
-                ["ينصرف", "Fatha"]
+                ["يستخرج", "Fatha"]
               ],
               "source": ["\"لأن هذه الأربعة رباعية والرباعي فرع الثلاثي\"", "\"وتفتح\" حروف المضارعة \"فيما وراءهن\""],
               "why": "Four-letter pasts (دحرج, قاتل, أكرم) give damma. Three letters, or five and six (استخرج, انصرف), give fatha."
@@ -1113,7 +1125,7 @@
               "kind": "choose",
               "id": "yuhriq",
               "ask": "يُهريق has five letters, yet starts with damma. Why?",
-              "options": ["Five-letter verbs take damma", "It is really يريق, from a four-letter past, with an extra ه", "It is the dialect of Tayy"],
+              "options": ["Five-letter verbs all take damma", "It is really يريق, with an extra ه", "Its ه is a root letter like ر"],
               "answer": 1,
               "source": "\"وأما يهريق فأصله يريق\" بغير هاء من الإراقة \"وهو من الرباعي\"",
               "why": "Its root form is يُريق, from أراق, a four-letter past. The ه was added against the rule, and the root form is what counts."
@@ -1143,7 +1155,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which statement is right?",
-              "options": ["The ن of يضربن drops after لم", "تضرب can only mean ‘she hits’", "لم يضرب means ‘he did not hit’"],
+              "options": ["The ن of يضربن drops after لم", "تضرب can only mean ‘she hits’", "لم يضرب: ‘he did not hit’"],
               "answer": 2,
               "source": ["\"وإذا دخل لفظ لم على المستقبل ينقل معناه إلى الماضي\" وينفيه نحو: لم يضرب", "\"إلا نون يضربن وهي علامة للتأنيث\""],
               "why": "لم turns the present to the past and denies it. The ن of يضربن is the feminine sign and stays, and تضرب is also ‘you hit’."
@@ -1181,7 +1193,7 @@
               "kind": "choose",
               "id": "why-present",
               "ask": "Why is the command made from the present and not the past?",
-              "options": ["You only ask for what hasn’t happened yet", "The past has no doer", "The present is shorter"],
+              "options": ["You can only ask for what is to come", "The past has no doer pronoun at all", "The present is shorter than the past"],
               "answer": 0,
               "source": "فلأن الطلب إنما يكون لما لم يحصل بعد ولا مناسبة بينه وبين الماضي",
               "why": "A request is for something not yet done. That ties it to the present-future, not the past."
@@ -1191,7 +1203,7 @@
               "id": "lam",
               "title": "The ل of the absent command",
               "ar": "\"زيدت اللام في أمر الغائب\" لطلب الفعل دون غيرها \"لأنها من وسط المخارج\"",
-              "en": "For ‘let him…’ a ل is added. It comes from the middle of the mouth, as the absent person is in the middle, between speaker and listener. It is also one of the ‘letters of addition’, gathered in the phrase هويت السمان."
+              "en": "For ‘let him…’ a ل is added. It is one of the ‘letters of addition’, gathered in the phrase هويت السمان. Note: the book says the ل suits the absent person because it comes from the middle of the mouth, as he is in the middle, between speaker and listener."
             },
             {
               "kind": "pick",
@@ -1212,7 +1224,7 @@
               "kind": "choose",
               "id": "weigh",
               "ask": "How do you tell the added letters in مضروب?",
-              "options": ["Count the vowels", "Weigh it on فعل: مضروب is مفعول, so م and و are added", "Any م is always added"],
+              "options": ["Count its vowels and silent letters", "Weigh it on فعل: it is مفعول", "Any م or و is always an added letter"],
               "answer": 1,
               "source": ["بأن تزن الأصلي بالفاء والعين واللام", "ومضروب وزنه مفعول"],
               "why": "Letters of addition can also be root letters. Weigh the word: what meets ف, ع, ل is root, the rest is added."
@@ -1241,6 +1253,7 @@
               "ask": "Which is the command ‘let her hit’?",
               "options": ["ليضرب", "اضربي", "لتضرب"],
               "answer": 2,
+              "arabic-options": true,
               "source": "هند لتضرب",
               "why": "‘Let her hit’ is لتضرب: the command ل with the ت of the absent woman. اضربي is ‘hit!’ said to a woman."
             }
@@ -1279,7 +1292,7 @@
               "kind": "choose",
               "id": "dahrij",
               "ask": "From تُدحرج (you roll), the command is دحرج, with no helping hamza. Why?",
-              "options": ["Four-letter verbs never take a hamza", "The hamza is dropped in writing", "The letter after the dropped ت has a vowel"],
+              "options": ["Four-letter verbs never take a hamza", "The hamza is dropped only in writing", "The letter after the ت has a vowel"],
               "answer": 2,
               "source": ["\"بعد حذف حرف المضارعة إذا كان ما بعده ساكنا للافتتاح\"", "وأما إذا كان ما بعده متحركا فلا احتياج إليها، نحو: دحرج من تدحرج"],
               "why": "The helping hamza is only needed when the next letter is silent. The د of دحرج has a vowel, so you can start on it."
@@ -1310,7 +1323,7 @@
               "kind": "choose",
               "id": "akrim",
               "ask": "Why is the hamza of أَكرم (honour!) not a helping hamza?",
-              "options": ["It is the real hamza of أكرم, dropped in تُكرم but back in the command", "Because ك is a throat letter", "Because it is a passive"],
+              "options": ["It is أكرم's own hamza, come back", "Because ك is a throat letter", "Because the command is a passive"],
               "answer": 0,
               "source": "\"لأنه ليس من ألف الأمر\" أي جنس الألف الذي زيد للأمر حتى يكسر \"بل ألف قطع محذوف من تؤكرم\"",
               "why": "تُكرم was تُؤكرم. The hamza was dropped only to avoid أأكرم. With the ت gone, it comes back with its fatha."
@@ -1335,7 +1348,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "فلتفرحوا (so rejoice!) keeps its ت. Built or declined?",
-              "options": ["Mu‘rab (declined), by agreement", "Mabni (built), by agreement", "Mabni for the Kufans only"],
+              "options": ["Mu‘rab, by agreement", "Mabni, by agreement", "Mabni for the Kufans, mu‘rab for the Basrans"],
               "answer": 0,
               "source": "\"قيل فلتفرحوا معرب بالإجماع\" من الفريقين \"لوجود علة الإعراب وهي حرف المضارعة",
               "why": "Both schools agree: it keeps the present letter ت, which is the reason for i‘rab."
@@ -1358,7 +1371,7 @@
               "kind": "choose",
               "id": "ba",
               "ask": "In لَيَضرِبَنَّ the ب takes a vowel. Why?",
-              "options": ["To show the past", "Because ب is a lip letter", "To avoid two silent letters meeting"],
+              "options": ["Because ب is a lip letter", "To show the past tense, as in ضرب", "So two silent letters don't meet"],
               "answer": 2,
               "source": "\"أو فتح الباء\" يحرك بالفتح في ليضربن مع أن أصله السكون \"فرارا من اجتماع الساكنين\"",
               "why": "The ب was silent and the first ن of نّ is silent too. Two silent letters can’t meet, so the ب takes the light fatha."
@@ -1421,7 +1434,7 @@
               "kind": "choose",
               "id": "nafy",
               "ask": "لا تضربنّ as a plain negative (‘you won’t hit’) is rare. Why is it allowed at all?",
-              "options": ["It is a command", "Negatives always take it", "It looks like the prohibition لا تضربنّ"],
+              "options": ["Every negative may take it", "It is really a command, like اضربنّ", "It looks like the prohibition"],
               "answer": 2,
               "source": "\"النفي\" ويدخلها نونا التأكيد دخولا \"قليلا مشابهة\"؛ أي لأجل المشابهة \"بالنهي\"",
               "why": "The negative and the prohibition both start with لا and look alike, so the negative borrows the ن, but only rarely."
@@ -1437,7 +1450,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which is true of لا تضرب?",
-              "options": ["It is mu‘rab by agreement of both schools", "It is mabni like the past", "It cannot take the ن of emphasis"],
+              "options": ["It is mu‘rab, by agreement", "It is mabni, like the past", "It cannot take the ن of emphasis"],
               "answer": 0,
               "source": "\"إلا أنه\"؛ أي لكن النهي مطلقا \"معرب بالإجماع\"",
               "why": "It keeps its present letter, so both schools call it mu‘rab. And the prohibition is one of the seven places for the ن."
@@ -1482,7 +1495,7 @@
               "kind": "choose",
               "id": "emir",
               "ask": "A low man insults the emir. The speaker says شُتم الأمير. Why the passive?",
-              "options": ["Because the emir is unknown", "To show how lowly the doer is", "Because the doer is famous"],
+              "options": ["Because the emir is not known", "To keep the lowly doer unsaid", "Because the doer is famous"],
               "answer": 1,
               "source": "نحو: شتم الأمير، إذا كان الشاتم شخصا خسيسا غير كفء للأمير",
               "why": "The insulter is no match for the emir, so leaving him unnamed shows how low he is."
@@ -1498,7 +1511,7 @@
               "kind": "choose",
               "id": "wail",
               "ask": "Which nouns come on the pattern فُعِل?",
-              "options": ["Only وُعِل (mountain goat) and دُئِل (a small animal)", "Many nouns", "None at all"],
+              "options": ["Almost none: only وعل and دئل", "Many: it is a common noun pattern", "Only plurals, like رجال"],
               "answer": 0,
               "source": "\"إلا وعل\" بضم الواو وكسر العين وهو معز الجبل \"ودئل\"",
               "why": "Only these two. If the shape were usual, it would be common in nouns."
@@ -1527,8 +1540,7 @@
                 ["أُكرِم", "First letter only"],
                 ["ضُرِب", "First letter only"],
                 ["تُفُضِّل", "Two dammas"],
-                ["اُستُخرِج", "Two dammas"],
-                ["اُحتُقِر", "Two dammas"]
+                ["اُستُخرِج", "Two dammas"]
               ],
               "source": ["\"بضم\" الحرف \"الأول وكسر ما قبل الآخر في الماضي\" نحو: دحرج وأكرم", "وهي: تفعل وتفوعل\"", "\"وافتعل وانفعل وافتعل واستفعل وأفعل\"", "\"فقس الباقي\" وهو الأربعة الأخيرة \"عليه\"؛ أي على افتعل. \":"],
               "why": "دحرج and أكرم take damma on the first letter only. تفعّل, استفعل and افتعل are among the seven babs that take two."
@@ -1537,7 +1549,7 @@
               "kind": "choose",
               "id": "tafaddal",
               "ask": "Why does the passive of تفضّل need a damma on the ف too (تُفُضِّل)?",
-              "options": ["Because ف is a lip letter", "Because it has four letters", "So it isn’t confused with the present of فضّل (تُفَضِّل)"],
+              "options": ["Because ف is a lip letter", "Because the verb has four letters", "So it isn't taken for تُفَضِّل"],
               "answer": 2,
               "source": ["\"وضم الفاء في الأولين\"", "\"حتى لا يلتبسا\"", "\"بمضارع فعل\""],
               "why": "With a damma only on the ت it would be تُفَضِّل, which is also ‘you prefer’, the present of فضّل."
@@ -1570,6 +1582,7 @@
               "ask": "What is the doer’s noun from ينصُر?",
               "options": ["مَنصَر", "ناصِر", "ناصُر"],
               "answer": 1,
+              "arabic-options": true,
               "source": "نحو: ينصر فهو ناصر ويحمد فهو حامد",
               "why": "The ع always takes kasra in فاعِل, even when the present has damma: ينصُر gives ناصِر."
             },
@@ -1577,7 +1590,7 @@
               "kind": "choose",
               "id": "why-kasra",
               "ask": "Why not keep a fatha on the ع (ضارَب)?",
-              "options": ["Fatha is too heavy", "It would be a command", "It would look like the past of the مفاعلة bab (ضارَبَ)"],
+              "options": ["Fatha is too heavy after an alif", "It would be taken for a command", "It would look like the past ضارَبَ"],
               "answer": 2,
               "source": "\"يصير مشابها لماضي المفاعلة\"",
               "why": "ضارَبَ is a past verb (like قاتَلَ). Kasra was chosen even though ضارِب then looks like the command ضارِبْ: that mix-up was the lesser problem."
@@ -1599,11 +1612,10 @@
                 ["ناصر", "Active participle"],
                 ["حسن", "Resembling adjective"],
                 ["شجاع", "Resembling adjective"],
-                ["جبان", "Resembling adjective"],
-                ["عطشان", "Resembling adjective"]
+                ["جبان", "Resembling adjective"]
               ],
               "source": ["\"وصيغته\"؛ أي صيغة اسم الفاعل \"من الثلاثي\" المجرد صحيحا كان أو غيره \"على وزن ضارب\"", "\"وحسن\" بفتحهما", "\"وشجاع\" بضم الفاء \"وجبان\" بفتحها", "\"وعطشان\""],
-              "why": "ضارب and ناصر are on فاعل, for an action. حسن, شجاع, جبان and عطشان are among the book’s examples of lasting qualities."
+              "why": "ضارب and ناصر are on فاعل, for an action. حسن, شجاع and جبان are among the book’s examples of lasting qualities."
             },
             {
               "kind": "teach",
@@ -1618,6 +1630,7 @@
               "ask": "Hamza wants to say ‘whiter than him’. Which is right?",
               "options": ["أحسن منه بياضا", "أبيض منه", "أبيضُ"],
               "answer": 0,
+              "arabic-options": true,
               "source": ["\"لأن\" الشأن \"فيهما\"؛ أي فى اللون والعيب \"يجيء أفعل للصفة فيلزم الالتباس\"", "وأحسن منه بياضا"],
               "why": "Colours already use أفعل for the plain adjective (أبيض, ‘white’), so أبيض منه would be unclear. Use أحسن or أشد with the masdar."
             },
@@ -1627,6 +1640,7 @@
               "ask": "From استخرج (to extract), how do you say ‘he extracts more than him’?",
               "options": ["هو أستخرج منه", "هو أشد منه استخراجا", "هو أخرج منه"],
               "answer": 1,
+              "arabic-options": true,
               "source": ["ولا يجيء من المزيد فيه\"", "هو أشد منه استخراجا"],
               "why": "أفعل can’t hold all the letters of استخرج, and أخرج would mean ‘goes out more’. So use أشد with the masdar."
             },
@@ -1634,7 +1648,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "أحمق من هبنقة (more foolish than Habannaqa): is it formed by rule?",
-              "options": ["No: it is from a defect, so it is rare (shadhdh) and not copied", "Yes: every quality takes أفعل", "Yes: it is a colour"],
+              "options": ["No: from a defect, it is rare", "Yes: every quality takes أفعل", "Yes: it is a colour, like أحمر"],
               "answer": 0,
               "source": "\"وأحمق\"؛ أي أكثر حماقة \"من هبنقة\" اسم رجل وقصته معروفة \"من العيوب شاذ لا يقاس عليه",
               "why": "Defects don’t take أفعل for ‘more’. This saying is a rare exception, and nothing is built on it."
@@ -1666,6 +1680,7 @@
               "ask": "Which is right for ‘a woman who was killed’?",
               "options": ["امرأة قتيلة", "امرأة مقتل", "امرأة قتيل"],
               "answer": 2,
+              "arabic-options": true,
               "source": "وامرأة قتيل بمعنى مقتول ومقتولة",
               "why": "فعيل meaning the done-to stays the same when the woman is named, so امرأة قتيل."
             },
@@ -1717,7 +1732,7 @@
               "kind": "choose",
               "id": "allama",
               "ask": "Someone writes رجل علّامة, ‘a very learned man’. Is the ة a mistake?",
-              "options": ["Yes: it should be علّام", "No: in these nine patterns man and woman are the same", "Yes: ة is only for women"],
+              "options": ["Yes: it should be علّام", "No: these patterns serve both", "Yes: a man's word never takes ة"],
               "answer": 1,
               "source": "\"ويستوي المذكر والمؤنث في التسعة الأخيرة\"",
               "why": "From علّامة to مِعطير, the same word serves both, because they are used little."
@@ -1744,6 +1759,7 @@
               "ask": "What is the doer’s noun from يستخرج?",
               "options": ["مُستخرِج", "مُستخرَج", "مَستخرَج"],
               "answer": 0,
+              "arabic-options": true,
               "source": ["\"على صيغة المستقبل\"", "\"وكسر ما قبل الآخر\""],
               "why": "Replace the ي with مُ and keep kasra before the last: مستخرِج. With fatha (مستخرَج) it would be the done-to."
             }
@@ -1813,8 +1829,7 @@
                 ["مضروب", "Done-to"],
                 ["مُستخرِج", "Doer"],
                 ["مُستخرَج", "Done-to"],
-                ["مُكرِم", "Doer"],
-                ["مُكرَم", "Done-to"]
+                ["مُكرِم", "Doer"]
               ],
               "source": ["\"نحو مضروب وهو مشتق من يضرب\"", "\"بفتح ماقبل الآخر\" لفظا أو تقديرا تبعا لفعله \"نحو مستخرج\""],
               "why": "Three-letter verbs: فاعل for the doer, مفعول for the done-to. Longer verbs: kasra before the last for the doer, fatha for the done-to."
@@ -1825,6 +1840,7 @@
               "ask": "What is the done-to’s noun from نصر ينصر?",
               "options": ["ناصر", "منصَر", "منصور"],
               "answer": 2,
+              "arabic-options": true,
               "source": "\"وصيغته من الثلاثي\" المجرد \"على وزن مفعول\"",
               "why": "A three-letter verb gives مفعول: منصور. ناصر is the doer."
             }
@@ -1857,19 +1873,18 @@
               "items": [
                 ["مذهب (from يذهب)", "Fatha: مَفعَل"],
                 ["مرمى (from يرمي)", "Fatha: مَفعَل"],
-                ["مقتل (from يقتل)", "Fatha: مَفعَل"],
                 ["موعد (from يعد)", "Kasra: مَفعِل"],
                 ["موجل (from يوجل)", "Kasra: مَفعِل"],
                 ["مسجد (from يسجد)", "Kasra: مَفعِل"]
               ],
               "source": ["\"كالمذهب\" بالفتح من يذهب", "\"الموجل\" في مفتوح العين", "نحو: المرمى \"فرارا من توالي الكسرات\"", "والمرفق والمسجد\""],
-              "why": "مذهب follows its fatha. مرمى takes fatha to avoid a run of kasras. مقتل takes the fatha given to most damma verbs. و-first verbs take kasra, and مسجد is one of the eleven heard with kasra."
+              "why": "مذهب follows its fatha. مرمى takes fatha to avoid a run of kasras. و-first verbs take kasra, and مسجد is one of the eleven heard with kasra."
             },
             {
               "kind": "choose",
               "id": "mawid",
               "ask": "Why does موعِد take kasra, even where the present has fatha (موجِل)?",
-              "options": ["Because it is a command", "With fatha it might be taken for فَوعَل, like جورب", "Because و is a throat letter"],
+              "options": ["Because it is a command form", "It might be taken for فَوعَل", "Because و is a throat letter"],
               "answer": 1,
               "source": ["\"حتى لا يظن أن وزنه فوعل\"", "\"لأن فوعلا بالكسر لا يوجد في كلامهم\""],
               "why": "مَوعَد could be read as فَوعَل (like جَورَب, a sock). No word is on فَوعِل, so kasra removes the doubt."
@@ -1894,7 +1909,7 @@
               "kind": "choose",
               "id": "husayn",
               "ask": "What can مقتل الحسين mean?",
-              "options": ["Both the time (the day of Ashura) and the place (Karbala) he was killed", "Only the place", "Only the killer"],
+              "options": ["The time and the place", "Only the place, Karbala", "Only the killer, the doer"],
               "answer": 0,
               "source": ["\"واسم الزمان مثل\" اسم \"المكان\"", "كما يقال مقتل الحسين لمكان قتله؛ أعني كربلاء"],
               "why": "The noun of time has the same forms as the noun of place, so مقتل serves for both."
@@ -1925,7 +1940,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Why does the instrument’s م take kasra, not fatha?",
-              "options": ["Because it comes from the past", "To tell it apart from the noun of place", "Because tools are heavy"],
+              "options": ["Because it comes from the past tense", "To tell it from the noun of place", "Because tools are heavy things"],
               "answer": 1,
               "source": "\"وكسر الميم في اسم الآلة\" ولم يبق على الأصل الذي هو الفتح لقيامه مقام الحرف المفتوح \"للفرق بينه وبين الموضع\"",
               "why": "مَفعَل with fatha is already the noun of place, so the tool takes kasra."
@@ -2054,12 +2069,9 @@
               "kind": "choose",
               "id": "rare-case",
               "ask": "Which of these doubled verbs is from the rare bab fa'ula?",
-              "options": [
-                "فر",
-                "عض",
-                "حب"
-              ],
+              "options": ["فر", "عض", "حب"],
               "answer": 2,
+              "arabic-options": true,
               "source": "قليلا نحو: حب فهو حبيب",
               "why": "حب is fa'ula: its adjective is حبيب. فر and عض are from the common babs."
             },
@@ -2100,16 +2112,9 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Ali says: \"عض يعض is a sound (sahih) verb, because it has no weak letter.\" What does the book say?",
-              "options": [
-                "He is right",
-                "It is a hamzated verb",
-                "It is mudaaf, also called asamm, not sahih"
-              ],
+              "options": ["He is right: it is sahih", "It is a hamzated verb, not sahih", "It is mudaaf (asamm), not sahih"],
               "answer": 2,
-              "source": [
-                ": والمضاعف من ضاعف الشيء",
-                "ولا يقال له صحيح"
-              ],
+              "source": [": والمضاعف من ضاعف الشيء", "ولا يقال له صحيح"],
               "why": "Its last two letters are the same (ض ض), so it is the doubled verb, and the book says it is not called sahih."
             }
           ]
@@ -2190,6 +2195,15 @@
               "en": "Except (1) words built to match another word's shape (ilhaq), like قردد made to match جعفر: merging would spoil the match. And (2) where merging would cause a mix-up: صكك, سرر, جدد, طلل, مدد would look like صكّ, سرّ, جدّ, طلّ, مدّ."
             },
             {
+              "kind": "choose",
+              "id": "qardad",
+              "ask": "Why is قردد not merged into قردّ?",
+              "options": ["It was built to match جعفر", "Its two د's are not alike", "Merging is never allowed in nouns"],
+              "answer": 0,
+              "source": "إلا في\" الصور \"الإلحاقيات نحو قردد\" فإن الإدغام فيه غير واجب، بل لا يجوز \"حتى لا يبطل الإلحاق\"",
+              "why": "قردد was built to match جعفر (ilhaq), and merging would spoil the match."
+            },
+            {
               "kind": "teach",
               "id": "no-mixup",
               "title": "رد, فر, عض are safe",
@@ -2200,53 +2214,22 @@
               "kind": "sort",
               "id": "merge-sort",
               "ask": "Merged or left apart?",
-              "into": [
-                "Merged",
-                "Left apart"
-              ],
+              "into": ["Merged", "Left apart"],
               "items": [
-                [
-                  "مَدَدَ (he stretched)",
-                  "Merged"
-                ],
-                [
-                  "قردد",
-                  "Left apart"
-                ],
-                [
-                  "سرر (beds)",
-                  "Left apart"
-                ],
-                [
-                  "طلل (ruins)",
-                  "Left apart"
-                ],
-                [
-                  "رَدَدَ",
-                  "Merged"
-                ],
-                [
-                  "عَضِضَ",
-                  "Merged"
-                ]
+                ["مَدَدَ (he stretched)", "Merged"],
+                ["قردد", "Left apart"],
+                ["سرر (beds)", "Left apart"],
+                ["رَدَدَ", "Merged"],
+                ["عَضِضَ", "Merged"]
               ],
-              "source": [
-                "يجب فيه\"؛ أي في الضرب الأول في جميع صور \"الإدغام نحو مد",
-                "نحو قردد",
-                "مثل صكك\" بفتحتين، وهي عيب في رجل الفرس \"وسرر\" بضمتين جمع سرير \"وجدد\"",
-                "وفر أيضا\"؛ أي كرد"
-              ],
-              "why": "Verbs with two voweled same letters merge. قردد keeps its matched shape, and سرر and طلل would be confused with سرّ and طلّ."
+              "source": ["يجب فيه\"؛ أي في الضرب الأول في جميع صور \"الإدغام نحو مد", "نحو قردد", "مثل صكك\" بفتحتين، وهي عيب في رجل الفرس \"وسرر\" بضمتين جمع سرير \"وجدد\"", "وفر أيضا\"؛ أي كرد"],
+              "why": "Verbs with two voweled same letters merge. قردد keeps its matched shape, and سرر would be confused with سرّ."
             },
             {
               "kind": "choose",
               "id": "case",
               "ask": "Yusuf writes the plural of سرير (bed) as سُرّ. What is wrong?",
-              "options": [
-                "It must be merged as سرّ",
-                "سرر is not merged, so it is not mixed up with سُرّ, the cut navel cord",
-                "Nothing: both are right"
-              ],
+              "options": ["It must be merged as سرّ in writing", "It must stay سرر, apart from سُرّ", "Nothing: both forms are right"],
               "answer": 1,
               "source": "و\" السرر بلفظ \"سر\" بالضم وهو ما تقطعه القابلة في سرة الصبي",
               "why": "Merged, سرر would look like سُرّ, what the midwife cuts at the baby's navel, so it is left apart."
@@ -2258,13 +2241,6 @@
           "title": "The second and third kinds",
           "arabic": "الضرب الثاني والثالث",
           "cards": [
-            {
-              "kind": "teach",
-              "id": "hayiya",
-              "title": "A note on حيي",
-              "ar": "وقيل\" الأوجه عدم إدغام حيي؛ لأن \"الياء الأخيرة\" فيه \"غير لازمة؛ لأنها تسقط تارة نحو حيوا\"",
-              "en": "Note: in some dialects حيي is not merged, so that the present tense does not put a damma on a ي. It is also said its last ي is not fixed: it drops in حيوا and turns into alif in يحيا."
-            },
             {
               "kind": "teach",
               "id": "second",
@@ -2336,10 +2312,26 @@
             },
             {
               "kind": "teach",
+              "id": "hayiya",
+              "title": "A note on حيي",
+              "ar": "وقيل\" الأوجه عدم إدغام حيي؛ لأن \"الياء الأخيرة\" فيه \"غير لازمة؛ لأنها تسقط تارة نحو حيوا\"",
+              "en": "Note: in some dialects حيي is not merged, so that the present tense does not put a damma on a ي. It is also said its last ي is not fixed: it drops in حيوا and turns into alif in يحيا."
+            },
+            {
+              "kind": "teach",
               "id": "drop",
               "title": "Dropping one letter",
               "ar": "ولكن جوزوا الحذف\"؛ أي حذف أحد المثلين في الضرب الثاني \"في بعض المواضع\" سماعا \"نظرا إلى اجتماع المتجانسين\"",
               "en": "Two same letters together are heavy, so in some words (as heard from the Arabs) they drop one of them instead of merging: ظَلْتُ for ظَلِلْتُ. They may also turn one into ي, as in تقضي البازي."
+            },
+            {
+              "kind": "choose",
+              "id": "zaltu",
+              "ask": "Hamza hears ظَلْتُ (\"I stayed\"). What is it from?",
+              "options": ["ظَلِلْتُ, with one ل dropped", "ظَلَّ, with the ل's merged", "ظال, a hollow verb with alif"],
+              "answer": 0,
+              "source": "ولكن جوزوا الحذف\"؛ أي حذف أحد المثلين في الضرب الثاني \"في بعض المواضع\" سماعا \"نظرا إلى اجتماع المتجانسين\"",
+              "why": "Two same letters are heavy, so the Arabs dropped one: ظَلْتُ for ظَلِلْتُ."
             },
             {
               "kind": "teach",
@@ -2368,16 +2360,9 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Why is ظَلْتُ said for ظَلِلْتُ?",
-              "options": [
-                "Two same letters are heavy and merging is impossible, so one is dropped",
-                "It is a merged form",
-                "The ل is a weak letter"
-              ],
+              "options": ["Merging can't be done, so one drops", "It is merged, as in مدّ from مدد", "The ل is a weak letter, so it drops"],
               "answer": 0,
-              "source": [
-                "ولكن جوزوا الحذف",
-                "نحو ظللت"
-              ],
+              "source": ["ولكن جوزوا الحذف", "نحو ظللت"],
               "why": "The second ل is silent, so it can't merge; dropping one letter is the other way to lighten it."
             }
           ]
@@ -2439,16 +2424,9 @@
               "kind": "choose",
               "id": "firra",
               "ask": "Zayd tells his friend فِرُّ, with a damma on the ر. Is that right?",
-              "options": [
-                "Yes: any of the three vowels works",
-                "No: the damma only follows a damma on the middle letter, and يفر has a kasra",
-                "Yes: damma is the basic vowel"
-              ],
+              "options": ["Yes: any of the three vowels works", "No: يفر has no damma to follow", "Yes: damma is the basic vowel"],
               "answer": 1,
-              "source": [
-                "ومن ثمة\"؛ أي ومن أجل أن الضم في مد للاتباع \"لا يجوز فر بالضم\"",
-                "بل الموجود هنا مصحح الاتباع في الكسر؛ لأنه من باب يضرب"
-              ],
+              "source": ["ومن ثمة\"؛ أي ومن أجل أن الضم في مد للاتباع \"لا يجوز فر بالضم\"", "بل الموجود هنا مصحح الاتباع في الكسر؛ لأنه من باب يضرب"],
               "why": "فِرِّ, فِرَّ or افْرِرْ are fine, but not the damma, since nothing in يفِرّ calls for it."
             },
             {
@@ -2464,6 +2442,16 @@
               "title": "With the nun of emphasis",
               "ar": "بالنون الثقيلة مدن مدان\" بفتح الدال \"مدن\" بضمها ويحذف الواو اكتفاء بالضم",
               "en": "With the heavy nun of emphasis: مُدَّنَّ, مُدَّانِّ, مُدُّنَّ (the و is dropped; the damma is enough), مُدِّنَّ (the ي is dropped), مُدَّانِّ, امْدُدْنانِّ."
+            },
+            {
+              "kind": "choose",
+              "id": "nun-case",
+              "ask": "With the heavy nun of emphasis, what is \"stretch!\" said to a group of men?",
+              "options": ["مُدُّنَّ", "مُدُّونَّ", "امْدُدْنَّ"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "بالنون الثقيلة مدن مدان\" بفتح الدال \"مدن\" بضمها ويحذف الواو اكتفاء بالضم",
+              "why": "The plural و is dropped and the damma is enough: مُدُّنَّ."
             },
             {
               "kind": "teach",
@@ -2529,12 +2517,9 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which is the tool noun (ism al-ala) of مد?",
-              "options": [
-                "مِمَدّ",
-                "مَمَدّ",
-                "ممدود"
-              ],
+              "options": ["مِمَدّ", "مَمَدّ", "ممدود"],
               "answer": 0,
+              "arabic-options": true,
               "source": "و\" اسم \"الآلة ممد\" بكسر الميم الأولى أصله ممدد",
               "why": "The tool takes a kasra on the م: مِمَدّ. مَمَدّ with fatha is the place and time."
             }
@@ -2563,16 +2548,9 @@
               "kind": "choose",
               "id": "ittakhadh",
               "ask": "Why is merging in اتّخذ (from أخذ) called irregular?",
-              "options": [
-                "Its first ت came from a hamza, through a ي that is not original",
-                "Two ت's never merge",
-                "It is a doubled verb"
-              ],
+              "options": ["Its ت came from a hamza", "Two ت's can never merge", "It is a doubled verb, like مد"],
               "answer": 0,
-              "source": [
-                "نحو اتخذ وهو\"؛ أي إدغام اتخذ \"شاذ\"",
-                "لأن الياء المبدلة لا تقلب تاء"
-              ],
+              "source": ["نحو اتخذ وهو\"؛ أي إدغام اتخذ \"شاذ\"", "لأن الياء المبدلة لا تقلب تاء"],
               "why": "Only an original ي turns into ت by rule; here the ي came from a hamza, so the merge is shadhdh."
             },
             {
@@ -2608,11 +2586,7 @@
               "kind": "choose",
               "id": "iddana-case",
               "ask": "Bilal says ادتان, keeping the ت. What does the book say?",
-              "options": [
-                "Fine: leaving it is allowed",
-                "Only merging is allowed: ادّان",
-                "It should be اتّان"
-              ],
+              "options": ["Fine: leaving it apart is allowed", "Only ادّان is allowed", "It should be اتّان, with ت kept"],
               "answer": 1,
               "source": "لبعده من الدال في المهموسية",
               "why": "The ت is far from the د in being whispered and right next to it in the mouth, so it becomes د and must merge."
@@ -2693,6 +2667,15 @@
               "en": "استمع (from سمع) may merge as اسّمع, with the ت turned into س, never by turning the س into ت. It may also be left apart: استمع. اشتبه (from شبه) is the same."
             },
             {
+              "kind": "choose",
+              "id": "istamaa-case",
+              "ask": "Sara merges استمع as اتّمع, turning the س into ت. Is that allowed?",
+              "options": ["No: only اسّمع or استمع", "Yes: either letter may change", "Yes, and it is more common"],
+              "answer": 0,
+              "source": "ونحو اسمع\" أصله استمع؛ لأنه من سمع \"يجوز فيه الإدغام\" بقلب التاء سينا",
+              "why": "The ت may turn into س (اسّمع), never the س into ت. Or leave it: استمع."
+            },
+            {
               "kind": "teach",
               "id": "istabara",
               "title": "اصطبر",
@@ -2728,55 +2711,22 @@
               "kind": "sort",
               "id": "sort-iftial",
               "ask": "Must merge, or may merge or leave?",
-              "into": [
-                "Must merge",
-                "May merge or leave"
-              ],
+              "into": ["Must merge", "May merge or leave"],
               "items": [
-                [
-                  "اطّلب from طلب",
-                  "Must merge"
-                ],
-                [
-                  "اتّجر from تجر",
-                  "Must merge"
-                ],
-                [
-                  "اسّمع from سمع",
-                  "May merge or leave"
-                ],
-                [
-                  "اصّبر from صبر",
-                  "May merge or leave"
-                ],
-                [
-                  "اظّلم from ظلم",
-                  "May merge or leave"
-                ],
-                [
-                  "اضّرب from ضرب",
-                  "May merge or leave"
-                ]
+                ["اطّلب from طلب", "Must merge"],
+                ["اتّجر from تجر", "Must merge"],
+                ["اسّمع from سمع", "May merge or leave"],
+                ["اصّبر from صبر", "May merge or leave"],
+                ["اظّلم from ظلم", "May merge or leave"]
               ],
-              "source": [
-                "لا يجوز فيه غير الإدغام لاجتماع الحرفين من جنس واحد بعد قلب تاء الافتعال طاء",
-                "فأدغمت التاء في التاء وجوبا",
-                "ويجوز البيان\" بأن يقال استمع",
-                "ويجوز البيان\" نحو اصطبر، وهو الأكثر",
-                "ويجوز البيان\"بعد قلب التاء ظاء",
-                "واضطرب\" بعدم الإدغام"
-              ],
+              "source": ["لا يجوز فيه غير الإدغام لاجتماع الحرفين من جنس واحد بعد قلب تاء الافتعال طاء", "فأدغمت التاء في التاء وجوبا", "ويجوز البيان\" بأن يقال استمع", "ويجوز البيان\" نحو اصطبر، وهو الأكثر", "ويجوز البيان\"بعد قلب التاء ظاء", "واضطرب\" بعدم الإدغام"],
               "why": "Where the two letters end up the same (ط ط, ت ت), merging is a must. Where they stay different (س ت, ص ط, ظ ط, ض ط), leaving them is allowed."
             },
             {
               "kind": "choose",
               "id": "idtaraba",
               "ask": "From ضرب (ifta'ala), which forms are allowed?",
-              "options": [
-                "Only اطّرب",
-                "اضّرب or اضطرب, never اطّرب",
-                "It must be merged"
-              ],
+              "options": ["Only اطّرب", "اضّرب or اضطرب", "Only اضطرب, never merged"],
               "answer": 1,
               "source": "أعني يجوز اضرب\" بإدغام الطاء والمقلوبة من التاء في الضاد \"واضطرب\" بعدم الإدغام \"ولا يجوز لطرب\"",
               "why": "It is like اصطبر: merge by turning ط into ض, or leave it; the ض may not become ط."
@@ -2792,28 +2742,17 @@
               "kind": "choose",
               "id": "ittaada-case",
               "ask": "Khalid forms ifta'ala from وعد. Which is right?",
-              "options": [
-                "ايتعد",
-                "اتّعد",
-                "اوتعد"
-              ],
+              "options": ["ايتعد", "اتّعد", "اوتعد"],
               "answer": 1,
-              "source": [
-                "فجعل الواو تاء",
-                "ونحو اتسر\" أصله ايتسر",
-                "لأن الياء\" في ايتكل \"ليست بلازمة\""
-              ],
+              "arabic-options": true,
+              "source": ["فجعل الواو تاء", "ونحو اتسر\" أصله ايتسر", "لأن الياء\" في ايتكل \"ليست بلازمة\""],
               "why": "The و turns into ت and merges into the ت of ifta'ala: اتّعد."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "Why is ايتكل (from أكل) not merged into اتّكل?",
-              "options": [
-                "Its ي is not fixed: it is a hamza in أكل",
-                "ي never becomes ت",
-                "Because ك is a raised letter"
-              ],
+              "options": ["Its ي is a hamza in أكل", "A ي never becomes ت", "Because ك is a raised letter"],
               "answer": 0,
               "source": "يعني تصير\"؛ أي تلك الياء \"همزة إذا جعلته\"؛ أي ايتكل \"ثلاثيا نحو أكل\"",
               "why": "A merged letter must be a fixed one. The ي in ايتكل goes back to a hamza in أكل, so it doesn't merge."
@@ -2824,6 +2763,7 @@
           "id": "marah-mudaaf-after-ta",
           "title": "Merging after the ta",
           "arabic": "يقتل ويخصم",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -2869,6 +2809,16 @@
               "en": "In the present, يَخَصِّم or يَخِصِّم. The doer: مخصّمون, with any vowel on the خ. The masdar (verbal noun): خِصّام, or خَصّام, or with a helper hamza."
             },
             {
+              "kind": "choose",
+              "id": "masdar-case",
+              "ask": "Which is a masdar (verbal noun) of يخصّم, by the book?",
+              "options": ["خِصّام", "تخصيم", "مخصّم"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "ويجيء مصدره\"؛ أي اخصم مدغما \"خصاما\" بكسر الخاء",
+              "why": "The book gives خِصّام or خَصّام. مخصّم is the doer, and تخصيم is the masdar of a different bab."
+            },
+            {
               "kind": "teach",
               "id": "tafaala",
               "title": "تفعّل and تفاعل",
@@ -2879,12 +2829,9 @@
               "kind": "choose",
               "id": "ithaqala",
               "ask": "What is اثّاقل originally?",
-              "options": [
-                "تثاقل",
-                "استثقل",
-                "ثقّل"
-              ],
+              "options": ["تثاقل", "استثقل", "ثقّل"],
               "answer": 0,
+              "arabic-options": true,
               "source": "واثاقل\" بتشديد الثاء أصله تثاقل",
               "why": "The ت of تثاقل became ث and merged; then a hamza was added because a word can't start silent."
             },
@@ -2899,53 +2846,22 @@
               "kind": "sort",
               "id": "sort-merge",
               "ask": "Can the ت merge?",
-              "into": [
-                "May merge",
-                "Can't merge"
-              ],
+              "into": ["May merge", "Can't merge"],
               "items": [
-                [
-                  "يقتتل",
-                  "May merge"
-                ],
-                [
-                  "يختصم",
-                  "May merge"
-                ],
-                [
-                  "تطهّر",
-                  "May merge"
-                ],
-                [
-                  "تثاقل",
-                  "May merge"
-                ],
-                [
-                  "استطعم",
-                  "Can't merge"
-                ],
-                [
-                  "استدان",
-                  "Can't merge"
-                ]
+                ["يقتتل", "May merge"],
+                ["يختصم", "May merge"],
+                ["تطهّر", "May merge"],
+                ["استطعم", "Can't merge"],
+                ["استدان", "Can't merge"]
               ],
-              "source": [
-                "ويبدل\" أصله يبتدل",
-                "ويدغم تاء تفعل وتفاعل فيما بعدها",
-                "ولا تدغم\" تاء استفعل فيما بعدها \"في نحو: استطعم بسكون التاء تحقيقا\"",
-                "لأن أصله أطاع كالهاء\"؛ أي كزيادة الهاء \"في اهراق\""
-              ],
+              "source": ["ويبدل\" أصله يبتدل", "ويدغم تاء تفعل وتفاعل فيما بعدها", "ولا تدغم\" تاء استفعل فيما بعدها \"في نحو: استطعم بسكون التاء تحقيقا\"", "لأن أصله أطاع كالهاء\"؛ أي كزيادة الهاء \"في اهراق\""],
               "why": "Ifta'ala, tafa''ala and tafa'ala may merge into a close letter. The ت of istaf'ala, or the letter after it, is silent, so it can't."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "Hasan says اسطاع is a merged form of استطاع. What does the book say?",
-              "options": [
-                "Yes: the ت merged into the ط",
-                "No: the ت is dropped to lighten the word, not merged",
-                "It comes from صاع"
-              ],
+              "options": ["Yes: the ت merged into the ط of طاع", "No: its ت was dropped, not merged", "It comes from صاع, not طاع"],
               "answer": 1,
               "source": "كما مر في ظلت\" من أن إحدى اللامين حذفت للتخفيف",
               "why": "The ت of istaf'ala doesn't merge; in اسطاع it is dropped, as one ل is dropped in ظلت."
@@ -2978,45 +2894,15 @@
               "kind": "sort",
               "id": "sort-kind",
               "ask": "Where is the hamza?",
-              "into": [
-                "Hamza first",
-                "Hamza in the middle",
-                "Hamza last"
-              ],
+              "into": ["Hamza first", "Hamza in the middle", "Hamza last"],
               "items": [
-                [
-                  "أخذ",
-                  "Hamza first"
-                ],
-                [
-                  "سأل",
-                  "Hamza in the middle"
-                ],
-                [
-                  "قرأ",
-                  "Hamza last"
-                ],
-                [
-                  "أمر",
-                  "Hamza first"
-                ],
-                [
-                  "يئس",
-                  "Hamza in the middle"
-                ],
-                [
-                  "هنأ",
-                  "Hamza last"
-                ]
+                ["أخذ", "Hamza first"],
+                ["سأل", "Hamza in the middle"],
+                ["قرأ", "Hamza last"],
+                ["أمر", "Hamza first"],
+                ["يئس", "Hamza in the middle"]
               ],
-              "source": [
-                "مهموز الفاء نحو أخذ",
-                "مهموز \"العين نحو سأل\"",
-                "مهموز \"اللام نحو قرأ\"",
-                "لأن أصلها أأكل وأأخذ وأأمر",
-                "نحو: \"يئس ييأس",
-                "نحو هنأ يهنئ"
-              ],
+              "source": ["مهموز الفاء نحو أخذ", "مهموز \"العين نحو سأل\"", "مهموز \"اللام نحو قرأ\"", "لأن أصلها أأكل وأأخذ وأأمر", "نحو: \"يئس ييأس", "نحو هنأ يهنئ"],
               "why": "Find the ء among the three root letters: first (فاء), middle (عين) or last (لام)."
             },
             {
@@ -3034,6 +2920,15 @@
               "en": "It is lightened in three ways: turning it into another letter (qalb), making it \"between-between\" (bayna bayna: said halfway between a hamza and the long letter of its own vowel), and dropping it (hadhf). Note: lightening is the dialect of Quraysh and most of the Hijaz; Tamim and Qays say the hamza fully."
             },
             {
+              "kind": "choose",
+              "id": "ways-case",
+              "ask": "Which is NOT one of the three ways to lighten a hamza?",
+              "options": ["Doubling it", "Turning it into another letter", "Dropping it"],
+              "answer": 0,
+              "source": "بالقلب وجعلها بين بين؛ أي بين مخرجها وبين مخرج الحرف الذي منه حركتها",
+              "why": "The three ways are turning (qalb), between-between (bayna bayna) and dropping (hadhf). Doubling is not one of them."
+            },
+            {
               "kind": "teach",
               "id": "turn",
               "title": "First way: turning",
@@ -3044,12 +2939,9 @@
               "kind": "choose",
               "id": "bir",
               "ask": "You lighten بئر (a well). What do you get?",
-              "options": [
-                "بور",
-                "بير",
-                "بار"
-              ],
+              "options": ["بور", "بير", "بار"],
               "answer": 1,
+              "arabic-options": true,
               "source": "وبير\" بالياء أصله بئر",
               "why": "The hamza is silent after a kasra, so it turns into ي: بير."
             },
@@ -3093,52 +2985,22 @@
               "kind": "sort",
               "id": "sort-way",
               "ask": "How is the hamza lightened?",
-              "into": [
-                "Turned into a long letter",
-                "Between-between"
-              ],
+              "into": ["Turned into a long letter", "Between-between"],
               "items": [
-                [
-                  "رأس",
-                  "Turned into a long letter"
-                ],
-                [
-                  "بئر",
-                  "Turned into a long letter"
-                ],
-                [
-                  "سأل",
-                  "Between-between"
-                ],
-                [
-                  "سئل",
-                  "Between-between"
-                ],
-                [
-                  "مئر",
-                  "Turned into a long letter"
-                ],
-                [
-                  "جؤن",
-                  "Turned into a long letter"
-                ]
+                ["رأس", "Turned into a long letter"],
+                ["بئر", "Turned into a long letter"],
+                ["سأل", "Between-between"],
+                ["سئل", "Between-between"],
+                ["مئر", "Turned into a long letter"]
               ],
-              "source": [
-                "نحو راس\" بالألف أصله رأس",
-                "نحو سأل ولؤم\" وسئم ورؤس وجؤن \"وسئل\"",
-                "نحو مير\" فيما كان ما قبلها مكسورا أصله مئر"
-              ],
+              "source": ["نحو راس\" بالألف أصله رأس", "نحو سأل ولؤم\" وسئم ورؤس وجؤن \"وسئل\"", "نحو مير\" فيما كان ما قبلها مكسورا أصله مئر"],
               "why": "A silent hamza turns. A voweled hamza after a vowel is between-between, except a fatha after kasra or damma, which turns."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "Why isn't the hamza of سأل turned into alif, though its fatha is weak?",
-              "options": [
-                "It is turned: سال",
-                "The fatha before it makes it strong",
-                "Because it is the first letter"
-              ],
+              "options": ["It is turned: سال, like راس", "The fatha before it makes it strong", "Because it is the root's first letter"],
               "answer": 1,
               "source": "قلنا: فتحته\"؛ أي فتحة همزة سأل يحذف المضاف \"صارت قوية بفتح ما قبلها\"",
               "why": "A thing grows strong with its own kind: the fatha on the س strengthens the fatha on the hamza."
@@ -3205,16 +3067,10 @@
               "kind": "choose",
               "id": "jayal",
               "ask": "جيأل (hyena) is lightened. What do you get?",
-              "options": [
-                "جيل",
-                "جيّل",
-                "جائل"
-              ],
+              "options": ["جيل", "جيّل", "جائل"],
               "answer": 0,
-              "source": [
-                "وجيل\" أصله جأل فزيدت الياء للإلحاق بجعفر",
-                "ويجوز تحميل الحركة على حروف العلة هذه الأشياء"
-              ],
+              "arabic-options": true,
+              "source": ["وجيل\" أصله جأل فزيدت الياء للإلحاق بجعفر", "ويجوز تحميل الحركة على حروف العلة هذه الأشياء"],
               "why": "The ي was added to match جعفر, so it counts as strong: the hamza drops and its fatha goes onto the ي: جيَل."
             },
             {
@@ -3235,54 +3091,22 @@
               "kind": "sort",
               "id": "sort-drop",
               "ask": "How is the hamza lightened?",
-              "into": [
-                "Dropped, its vowel moved back",
-                "Turned and merged",
-                "Between-between"
-              ],
+              "into": ["Dropped, its vowel moved back", "Turned and merged", "Between-between"],
               "items": [
-                [
-                  "مسئلة",
-                  "Dropped, its vowel moved back"
-                ],
-                [
-                  "جيأل",
-                  "Dropped, its vowel moved back"
-                ],
-                [
-                  "خطيئة",
-                  "Turned and merged"
-                ],
-                [
-                  "مقروءة",
-                  "Turned and merged"
-                ],
-                [
-                  "سائل",
-                  "Between-between"
-                ],
-                [
-                  "أفيئس",
-                  "Turned and merged"
-                ]
+                ["مسئلة", "Dropped, its vowel moved back"],
+                ["جيأل", "Dropped, its vowel moved back"],
+                ["خطيئة", "Turned and merged"],
+                ["مقروءة", "Turned and merged"],
+                ["سائل", "Between-between"]
               ],
-              "source": [
-                "لينت الهمزة بسب حركتها أولا ثم حذفت",
-                "جعلت الهمزة مثل ما قبلها\" جوازا",
-                "وأفيس\" أصله أفيئس تصغير أفؤس",
-                "نحو سائل\" في الهمزة الأصلية \"وقائل\" في المبدلة"
-              ],
+              "source": ["لينت الهمزة بسب حركتها أولا ثم حذفت", "جعلت الهمزة مثل ما قبلها\" جوازا", "وأفيس\" أصله أفيئس تصغير أفؤس", "نحو سائل\" في الهمزة الأصلية \"وقائل\" في المبدلة"],
               "why": "After a sound or strong letter: drop. After an extra long ي/و: turn and merge. After an alif: between-between."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "Omar lightens مقروءة by moving the hamza's vowel onto the و. What does the book say?",
-              "options": [
-                "Right: the vowel goes back",
-                "The و is an extra long letter, so the hamza turns into و and merges: مقروّة",
-                "It is never lightened"
-              ],
+              "options": ["Right: the vowel goes back", "Wrong: it becomes مقروّة", "It is never lightened at all"],
               "answer": 1,
               "source": "لأن نقل الحركة عن الهمزة إلى هذه الأشياء\" التي هي الواو والياء المزيدتان المدتان أو ما يشبه المدة \"يفضي إلى تحميل الضعيف\"",
               "why": "Moving the vowel would load a weak letter with a vowel, so it turns and merges instead."
@@ -3346,11 +3170,7 @@
               "kind": "choose",
               "id": "aimma-case",
               "ask": "Why does آمّة become أيمّة?",
-              "options": [
-                "To avoid mixing it up with أمّة",
-                "Two silent letters meet: the alif and the merged م",
-                "The first hamza has a kasra"
-              ],
+              "options": ["To avoid mixing it up with أمّة", "Two silent letters meet", "The first hamza has a kasra"],
               "answer": 1,
               "source": "ثم جعلت الألف ياء\" متحركة بحركة من جنسها دفعا \"لاجتماع الساكنين\"",
               "why": "After merging, the alif and the first م are both silent, so the alif becomes a voweled ي."
@@ -3366,12 +3186,9 @@
               "kind": "choose",
               "id": "kul-case",
               "ask": "What is the command \"eat!\" from أكل?",
-              "options": [
-                "أوكُلْ",
-                "كُلْ",
-                "إيكُلْ"
-              ],
+              "options": ["أوكُلْ", "كُلْ", "إيكُلْ"],
               "answer": 1,
+              "arabic-options": true,
               "source": "ثم الحذف في الأولين واجب بخلاف الثالث",
               "why": "كُلْ: the hamza is dropped as a must in كل and خذ, irregularly, since they are so common."
             },
@@ -3393,18 +3210,10 @@
               "kind": "choose",
               "id": "alif-between",
               "ask": "Which word shows an alif put between two hamzas?",
-              "options": [
-                "آخذ",
-                "آأنت",
-                "أيمّة"
-              ],
+              "options": ["آخذ", "آأنت", "أيمّة"],
               "answer": 1,
-              "source": [
-                "وعند بعض العرب مقحم بينهما ألف للفصل نحو آنت\"",
-                "أصله أأنت الوعساء الأرض اللينة",
-                "خرق إذا ما القوم أبدو فكاهة ... تفكر آياه يعنون أم قردا",
-                "وعند أهل الحجاز تخفيف كلاهما\""
-              ],
+              "arabic-options": true,
+              "source": ["وعند بعض العرب مقحم بينهما ألف للفصل نحو آنت\"", "أصله أأنت الوعساء الأرض اللينة", "خرق إذا ما القوم أبدو فكاهة ... تفكر آياه يعنون أم قردا", "وعند أهل الحجاز تخفيف كلاهما\""],
               "why": "آأنت is أأنت with an alif put in to keep the two hamzas apart. In آخذ the second hamza itself became alif."
             },
             {
@@ -3518,17 +3327,9 @@
               "kind": "choose",
               "id": "raa",
               "ask": "Can you say رَى for the past رأى in normal speech?",
-              "options": [
-                "Yes, like يرى",
-                "No: the letter before the hamza is not silent; only poets do it",
-                "Only in the plural"
-              ],
+              "options": ["Yes, just like يرى", "No: only poets do it", "Only in the plural, رأوا"],
               "answer": 1,
-              "source": [
-                "ولا يجوز هذا التخفيف في أى لعدم سكون ما قبل الهمزة إلا في ضرورة الشعر",
-                "صاح هل ريت أو سمعت براع",
-                "ألم تر ما لاقيت والدهر أعصر ... ومن يطل العيش يرأي ويسمع وتقول أخبرني ما رأيت من العجائب"
-              ],
+              "source": ["ولا يجوز هذا التخفيف في أى لعدم سكون ما قبل الهمزة إلا في ضرورة الشعر", "صاح هل ريت أو سمعت براع", "ألم تر ما لاقيت والدهر أعصر ... ومن يطل العيش يرأي ويسمع وتقول أخبرني ما رأيت من العجائب"],
               "why": "Dropping needs a silent letter before the hamza, and the ر of رأى has a fatha. A poet said ريت, but only under need."
             },
             {
@@ -3565,12 +3366,9 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which word must drop its hamza?",
-              "options": [
-                "يسأل",
-                "يرى",
-                "مرأى"
-              ],
+              "options": ["يسأل", "يرى", "مرأى"],
               "answer": 1,
+              "arabic-options": true,
               "source": "وهذا التخفيف\"؛ أي تخفيف الهمزة بالحذف \"واجب في يرى\"",
               "why": "Dropping is a must only in يرى; the others keep their hamza."
             }
@@ -3599,11 +3397,7 @@
               "kind": "choose",
               "id": "rah-case",
               "ask": "Why is ه added in رَهْ when you pause?",
-              "options": [
-                "It is the object pronoun \"him\"",
-                "So you neither start on a silent letter nor stop on a voweled one",
-                "It replaces the hamza"
-              ],
+              "options": ["It is the object pronoun ‘him’", "So you don't stop on a vowel", "It replaces the dropped hamza"],
               "answer": 1,
               "source": "ثم ألحق هاء السكت؛ لئلا يلزم الابتداء بالساكن إن أسكن الراء للوقف أو الوقف على المتحرك إن لم يسكن",
               "why": "رَ is one letter: silent, you'd start on a silent letter; voweled, you'd stop on a vowel. The ه of pause solves both."
@@ -3626,12 +3420,9 @@
               "kind": "choose",
               "id": "doer-case",
               "ask": "What is the doer noun of رأى?",
-              "options": [
-                "راءٍ",
-                "مرئي",
-                "رَاءَى"
-              ],
+              "options": ["راءٍ", "مرئي", "رَاءَى"],
               "answer": 0,
+              "arabic-options": true,
               "source": "الفاعل\" من يرى \"راء إلخ\"",
               "why": "راءٍ, like رامٍ, keeping its hamza."
             },
@@ -3653,54 +3444,24 @@
               "kind": "sort",
               "id": "sort-hamza",
               "ask": "Hamza dropped or kept?",
-              "into": [
-                "Dropped",
-                "Kept"
-              ],
+              "into": ["Dropped", "Kept"],
               "items": [
-                [
-                  "يرى",
-                  "Dropped"
-                ],
-                [
-                  "أرى",
-                  "Dropped"
-                ],
-                [
-                  "مرئيّ",
-                  "Kept"
-                ],
-                [
-                  "راءٍ",
-                  "Kept"
-                ],
-                [
-                  "رُئِيَ",
-                  "Kept"
-                ],
-                [
-                  "مُرًى",
-                  "Dropped"
-                ]
+                ["يرى", "Dropped"],
+                ["أرى", "Dropped"],
+                ["مرئيّ", "Kept"],
+                ["راءٍ", "Kept"],
+                ["مُرًى", "Dropped"]
               ],
-              "source": [
-                "ولا يجب حذف همزته؛ لأن وجوب حذف الهمزة من فعله\"",
-                "و\" إنما \"حذف\" الهمزة وجوبا \"في نحو مرى\"",
-                "المجهول رؤي\" على الأصل \"يرى\" على الحذف",
-                "تاء التأنيث عن الهمزة المحذوفة كما عوض عن الواو في إقامة فصار إراءة"
-              ],
-              "why": "The verbs يرى and أرى drop it, and مُرًى follows أرى. مرئيّ, راءٍ and the past passive رُئِيَ keep it."
+              "source": ["ولا يجب حذف همزته؛ لأن وجوب حذف الهمزة من فعله\"", "و\" إنما \"حذف\" الهمزة وجوبا \"في نحو مرى\"", "المجهول رؤي\" على الأصل \"يرى\" على الحذف", "تاء التأنيث عن الهمزة المحذوفة كما عوض عن الواو في إقامة فصار إراءة"],
+              "why": "The verbs يرى and أرى drop it, and مُرًى follows أرى. مرئيّ and راءٍ keep it."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "Which is the passive past of رأى?",
-              "options": [
-                "رِيَ",
-                "رأى",
-                "رُئِيَ"
-              ],
+              "options": ["رِيَ", "رأى", "رُئِيَ"],
               "answer": 2,
+              "arabic-options": true,
               "source": "المجهول رؤي\" على الأصل",
               "why": "رُئِيَ keeps the hamza, as in the original; the present passive is يُرى, with the hamza dropped."
             }
@@ -3722,11 +3483,7 @@
               "kind": "choose",
               "id": "count",
               "ask": "From how many babs does the hamza-middle verb come?",
-              "options": [
-                "Three",
-                "Four",
-                "Five"
-              ],
+              "options": ["Three", "Four", "Seven"],
               "answer": 0,
               "source": "والمهموز العين يجيء من ثلاثة أبواب",
               "why": "Three: رأى يرأى, يئس ييأس, لؤم يلؤم."
@@ -3814,6 +3571,15 @@
               "en": "In the middle, a silent hamza sits on the letter of the vowel before it: رأس, لؤم, ذئب. A voweled one sits on the letter of its own vowel: سأل, لؤم, سئم."
             },
             {
+              "kind": "choose",
+              "id": "ras",
+              "ask": "Yusuf writes رأس (head) with the hamza on an alif. Why an alif?",
+              "options": ["The vowel before it is a fatha", "A hamza always sits on an alif", "The hamza itself has a fatha"],
+              "answer": 0,
+              "source": "في الوسط إذا كانت ساكنة على وفق حركة ما قبلها، نحو: رأس ولؤم وذئب للمشاكلة",
+              "why": "A silent hamza in the middle sits on the letter of the vowel before it. The ر has a fatha, so: an alif."
+            },
+            {
               "kind": "teach",
               "id": "write-end",
               "title": "At the end",
@@ -3824,55 +3590,22 @@
               "kind": "sort",
               "id": "sort-write",
               "ask": "Which seat does the hamza sit on?",
-              "into": [
-                "Alif",
-                "Waw",
-                "Ya",
-                "No seat"
-              ],
+              "into": ["Alif", "Waw", "Ya", "No seat"],
               "items": [
-                [
-                  "إبل",
-                  "Alif"
-                ],
-                [
-                  "قرأ",
-                  "Alif"
-                ],
-                [
-                  "لؤم (silent hamza)",
-                  "Waw"
-                ],
-                [
-                  "ذئب",
-                  "Ya"
-                ],
-                [
-                  "سئم",
-                  "Ya"
-                ],
-                [
-                  "دفء",
-                  "No seat"
-                ]
+                ["إبل", "Alif"],
+                ["قرأ", "Alif"],
+                ["لؤم (silent hamza)", "Waw"],
+                ["ذئب", "Ya"],
+                ["دفء", "No seat"]
               ],
-              "source": [
-                "نحو: أخ و\" مضمومة نحو: \"أم\" أو مكسورة، نحو: \"إبل\"",
-                "نحو قرأ وطرؤ وفتئ\"",
-                "نحو: خبء ودفء وبرء\"",
-                "سأل ولؤم وسئم\""
-              ],
+              "source": ["نحو: أخ و\" مضمومة نحو: \"أم\" أو مكسورة، نحو: \"إبل\"", "نحو قرأ وطرؤ وفتئ\"", "نحو: خبء ودفء وبرء\"", "سأل ولؤم وسئم\""],
               "why": "Start: alif. Silent middle: the vowel before. Voweled middle: its own vowel. End: the vowel before, or no seat after a silent letter."
             },
             {
               "kind": "choose",
               "id": "dhib",
               "ask": "Hana writes \"wolf\" as ذأب, with the hamza on an alif. Where should it sit?",
-              "options": [
-                "On an alif",
-                "On a و",
-                "On a ي: ذئب"
-              ],
+              "options": ["On an alif", "On a و", "On a ي"],
               "answer": 2,
               "source": "نحو: رأس ولؤم وذئب للمشاكلة",
               "why": "It is a silent hamza in the middle after a kasra, so it sits on a ي."
@@ -3918,16 +3651,9 @@
               "kind": "choose",
               "id": "name-case",
               "ask": "Why is وعد called mithal?",
-              "options": [
-                "It is like the doubled verb",
-                "Its past is like a sound verb, unchanged",
-                "Its present is like its past"
-              ],
+              "options": ["It is like the doubled verb", "Its past is like a sound verb", "Its present looks like its past"],
               "answer": 1,
-              "source": [
-                ": قدم ما يكون حرف العلة فيه غير متعدد",
-                "لأن ماضيه مثل الصحيح في الصحة وعدم الإعلال"
-              ],
+              "source": [": قدم ما يكون حرف العلة فيه غير متعدد", "لأن ماضيه مثل الصحيح في الصحة وعدم الإعلال"],
               "why": "Mithal means \"like\": its past behaves just like a sound verb."
             },
             {
@@ -3942,20 +3668,16 @@
               "id": "wajada",
               "title": "وجد يجُد",
               "ar": "ولا يجيء\" المثال \"من فعل يفعل\"؛ أي من باب نصر بالاستقراء \"إلا وجد يجد\" كائنا \"في لغة بني عامر\"",
-              "en": "It does not come from bab nasara (a then u), except وجد يجُد in the dialect of Banu Amir; the و dropped because it is heavy before a damma. Note: it is also said this is a weak dialect form. For others it is وجد يجِد."
+              "en": "It does not come from bab nasara (a then u). Note: وجد يجُد is found in the dialect of Banu Amir, the و dropping because it is heavy before a damma; it is also called a weak dialect form. For others it is وجد يجِد."
             },
             {
               "kind": "choose",
               "id": "wajada-case",
-              "ask": "Which mithal verb comes from bab nasara, and in whose dialect?",
-              "options": [
-                "وعد يعُد, in the Hijaz",
-                "وجد يجُد, in the dialect of Banu Amir",
-                "وهب يهُب, in Tamim"
-              ],
-              "answer": 1,
-              "source": "إلا وجد يجد\" كائنا \"في لغة بني عامر\"",
-              "why": "Only وجد يجُد, and only for Banu Amir."
+              "ask": "Bilal builds a mithal on bab nasara (a then u): وعد يوعُد. What does the book say?",
+              "options": ["It doesn't come on that bab", "That bab is the most common one", "Every bab allows the mithal"],
+              "answer": 0,
+              "source": ["ولا يجيء\" المثال \"من فعل يفعل\"؛ أي من باب نصر بالاستقراء", "إلا وجد يجد\" كائنا \"في لغة بني عامر\""],
+              "why": "The mithal does not come from bab nasara. The one exception, وجد يجُد, is a dialect form."
             },
             {
               "kind": "teach",
@@ -3968,16 +3690,9 @@
               "kind": "choose",
               "id": "start-case",
               "ask": "Is the و of the passive وُعِد changed?",
-              "options": [
-                "Yes: it becomes أ",
-                "Yes: it drops",
-                "No: at the start it is like a sound letter"
-              ],
+              "options": ["Yes: it becomes a hamza, أ", "Yes: it drops, as it does in يعد", "No: it is like a sound letter"],
               "answer": 2,
-              "source": [
-                "نحو: وعد ووعد ووقر ووقر\"",
-                "لقوة المتكلم عند الابتداء\""
-              ],
+              "source": ["نحو: وعد ووعد ووقر ووقر\"", "لقوة المتكلم عند الابتداء\""],
               "why": "A و at the start of a word, with any vowel, stays as it is."
             },
             {
@@ -4013,17 +3728,10 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which of these starts with a ت that makes up for a dropped و?",
-              "options": [
-                "تعد",
-                "التكلان",
-                "عدة"
-              ],
+              "options": ["تعد", "التكلان", "عدة"],
               "answer": 1,
-              "source": [
-                "ويجوز\" عطف على قوله ولا يجوز؛ أي ويجوز إدخال التاء في الأول \"في التكلان\"",
-                "وعند الفراء لا يجوز الحذف\"",
-                "إلا في\" حال \"الإضافة\""
-              ],
+              "arabic-options": true,
+              "source": ["ويجوز\" عطف على قوله ولا يجوز؛ أي ويجوز إدخال التاء في الأول \"في التكلان\"", "وعند الفراء لا يجوز الحذف\"", "إلا في\" حال \"الإضافة\""],
               "why": "التكلان is from الوكلان, with ت in place of the و. تعد is a present verb, and عدة has its ة at the end."
             }
           ]
@@ -4048,6 +3756,15 @@
               "en": "The past goes وعد وعدا وعدوا... like a sound verb. In وعدتُّ the د merges into the ت, since they are said close together (here \"allowed\" means a must)."
             },
             {
+              "kind": "choose",
+              "id": "waadtu-case",
+              "ask": "In وعدتُّ (\"I promised\"), what happened to the د?",
+              "options": ["It merged into the ت", "It dropped, like the و of يعد", "It became a و"],
+              "answer": 0,
+              "source": "ويجوز\"؛ أي يجب \"في وعدت إدغام الدال في التاء لقرب مخرجهما\"",
+              "why": "د and ت are said close together, so the د merges into the ت: وعدتُّ."
+            },
+            {
               "kind": "teach",
               "id": "yaidu",
               "title": "Why يعِد drops the waw",
@@ -4058,11 +3775,7 @@
               "kind": "choose",
               "id": "yaidu-case",
               "ask": "Why does the و drop in يعِد?",
-              "options": [
-                "Because the و is silent",
-                "Going from ي to و to a kasra is heavy",
-                "To match the command"
-              ],
+              "options": ["Because the و is a silent letter", "ي, then و, then kasra is heavy", "To match the command, عِدْ"],
               "answer": 1,
               "source": "فحذفت الواو؛ لأنه يلزم الخروج من الكسرة التقديرية\" أعني الياء \"إلى الضمة التقديرية\"",
               "why": "The و sits between a ي and a kasra; that back-and-forth is heavy, so the و goes."
@@ -4085,43 +3798,15 @@
               "kind": "sort",
               "id": "sort-drop",
               "ask": "Does the و drop in the present?",
-              "into": [
-                "Drops",
-                "Stays"
-              ],
+              "into": ["Drops", "Stays"],
               "items": [
-                [
-                  "وعد يعد",
-                  "Drops"
-                ],
-                [
-                  "وهب يهب",
-                  "Drops"
-                ],
-                [
-                  "وضع يضع",
-                  "Drops"
-                ],
-                [
-                  "وجل يوجل",
-                  "Stays"
-                ],
-                [
-                  "وجه يوجه",
-                  "Stays"
-                ],
-                [
-                  "أوعد يوعد",
-                  "Stays"
-                ]
+                ["وعد يعد", "Drops"],
+                ["وهب يهب", "Drops"],
+                ["وضع يضع", "Drops"],
+                ["وجل يوجل", "Stays"],
+                ["أوعد يوعد", "Stays"]
               ],
-              "source": [
-                "ووهب يهب",
-                "ووجل يوجل",
-                "ووجه يوجه",
-                "لأن أصله يوضع\"",
-                "ولا تحذف\" الواو \"في يوعد"
-              ],
+              "source": ["ووهب يهب", "ووجل يوجل", "ووجه يوجه", "لأن أصله يوضع\"", "ولا تحذف\" الواو \"في يوعد"],
               "why": "It drops where a kasra follows it (or followed it, as in يضع). Before a fatha or damma (يوجَل, يوجُه), or after a damma (يُوعِد), it stays."
             },
             {
@@ -4135,12 +3820,9 @@
               "kind": "choose",
               "id": "miad",
               "ask": "What is the tool noun (ism al-ala) from وعد?",
-              "options": [
-                "موعد",
-                "ميعد",
-                "معد"
-              ],
+              "options": ["موعد", "ميعد", "معد"],
               "answer": 1,
+              "arabic-options": true,
               "source": "والآلة ميعد\" أصله موعد على وزن مفعل بكسر الميم وفتح العين \"فقلبت الواو ياء\"",
               "why": "مِوْعَد: the و is silent after a kasra, so it becomes ي: ميعَد."
             },
@@ -4148,12 +3830,9 @@
               "kind": "choose",
               "id": "command",
               "ask": "Imran says the command of وعد is أُوعُدْ. What is it?",
-              "options": [
-                "عِدْ",
-                "أُوعُدْ",
-                "اِيعِدْ"
-              ],
+              "options": ["عِدْ", "أُوعُدْ", "اِيعِدْ"],
               "answer": 0,
+              "arabic-options": true,
               "source": "والأمر عد إلى آخره\"",
               "why": "The command is taken from تعِد, which has already lost its و: عِدْ."
             },
@@ -4161,16 +3840,9 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Why does the silent و turn into ي in ميعَد but not in موعود?",
-              "options": [
-                "In ميعد a kasra comes before it",
-                "Because ميعد is a verb",
-                "It turns in both"
-              ],
+              "options": ["A kasra comes before it in ميعد", "Because ميعد is a verb, not a noun", "It turns in both of them"],
               "answer": 0,
-              "source": [
-                "وهم\"؛ أي الصرفيون \"يقلبونها\"؛ أي الواو \"ياء مع الحاجز\"؛ أي المانع \"في نحو قنية\"",
-                "المفعول موعود\" بسلامتها"
-              ],
+              "source": ["وهم\"؛ أي الصرفيون \"يقلبونها\"؛ أي الواو \"ياء مع الحاجز\"؛ أي المانع \"في نحو قنية\"", "المفعول موعود\" بسلامتها"],
               "why": "A silent و after a kasra turns into ي; in موعود the م before it has a fatha. They turn it even with a letter between, as in قنية."
             }
           ]
@@ -4208,16 +3880,9 @@
               "kind": "choose",
               "id": "three-case",
               "ask": "Why is the hollow verb called \"the three-letter one\"?",
-              "options": [
-                "Its root has three letters",
-                "Speaking of yourself it has three letters, as in قلت",
-                "It comes from three babs"
-              ],
+              "options": ["Its root has three letters", "In قلت it has three letters", "It comes from three babs, like قال"],
               "answer": 1,
-              "source": [
-                ": أي معتل العين",
-                "نحو: قلت\" فإنه وإن كان جملة"
-              ],
+              "source": [": أي معتل العين", "نحو: قلت\" فإنه وإن كان جملة"],
               "why": "قُلْتُ: the weak letter drops, and ق ل ت are left."
             },
             {
@@ -4231,48 +3896,15 @@
               "kind": "sort",
               "id": "sort-babs",
               "ask": "Which bab is each verb from?",
-              "into": [
-                "Like قال يقول",
-                "Like باع يبيع",
-                "Like خاف يخاف"
-              ],
+              "into": ["Like قال يقول", "Like باع يبيع", "Like خاف يخاف"],
               "items": [
-                [
-                  "قال يقول",
-                  "Like قال يقول"
-                ],
-                [
-                  "دام يدوم",
-                  "Like قال يقول"
-                ],
-                [
-                  "ساد يسود",
-                  "Like قال يقول"
-                ],
-                [
-                  "باع يبيع",
-                  "Like باع يبيع"
-                ],
-                [
-                  "صار يصير",
-                  "Like باع يبيع"
-                ],
-                [
-                  "غاب يغيب",
-                  "Like باع يبيع"
-                ],
-                [
-                  "خاف يخاف",
-                  "Like خاف يخاف"
-                ]
+                ["قال يقول", "Like قال يقول"],
+                ["دام يدوم", "Like قال يقول"],
+                ["باع يبيع", "Like باع يبيع"],
+                ["صار يصير", "Like باع يبيع"],
+                ["خاف يخاف", "Like خاف يخاف"]
               ],
-              "source": [
-                "من باب نصر \"نحو: قال يقول",
-                "مصدر دام يدوم دوما",
-                "مصدر ساد يسود",
-                "مصدر صار يصير",
-                "مصدر غاب يغيب"
-              ],
+              "source": ["من باب نصر \"نحو: قال يقول", "مصدر دام يدوم دوما", "مصدر ساد يسود", "مصدر صار يصير", "مصدر غاب يغيب"],
               "why": "A present in يَفْعُل (يدوم, يسود) is like يقول; in يَفْعِل (يصير, يغيب) like يبيع."
             },
             {
@@ -4350,12 +3982,9 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "What does مِوْزان become?",
-              "options": [
-                "موزان",
-                "مازان",
-                "ميزان"
-              ],
+              "options": ["موزان", "مازان", "ميزان"],
               "answer": 2,
+              "arabic-options": true,
               "source": "نحو: ميزان أصله موزن\"",
               "why": "The silent و after a kasra becomes ي: ميزان."
             }
@@ -4381,6 +4010,16 @@
               "en": "كينونة (being), from الكون, also changes. For al-Khalil it was كيْوَنونة: و and ي met with the first silent, so the و became ي and merged (كيّنونة), then it was lightened, just as ميّت (dead) from ميْوِت may become ميْت."
             },
             {
+              "kind": "choose",
+              "id": "mayyit",
+              "ask": "What is ميّت (dead) from?",
+              "options": ["ميْوِت", "مَوِيت", "مَيِت"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": ["كما\" أدغمت \"في ميت أصله ميوت\"", "كل أنثى وإن بدا لك منها ... آية الحب حبها حيقور"],
+              "why": "ميْوِت: و and ي met with the first silent, so the و became ي and the two merged."
+            },
+            {
               "kind": "teach",
               "id": "kufans",
               "title": "A note from the Kufans",
@@ -4388,27 +4027,43 @@
               "en": "Note: the Kufans say it was كُونونة: the damma became a fatha and the و a ي, to follow the many ya-words like صيرورة, غيبوبة, قيلولة. It is said only four waw-words come this way: كينونة, ديمومة, سيدودة, هيعوعة."
             },
             {
-              "kind": "choose",
-              "id": "mayyit",
-              "ask": "What is ميّت (dead) from?",
-              "options": [
-                "ميْوِت",
-                "مَوِيت",
-                "مَيِت"
-              ],
-              "answer": 0,
-              "source": [
-                "كما\" أدغمت \"في ميت أصله ميوت\"",
-                "كل أنثى وإن بدا لك منها ... آية الحب حبها حيقور"
-              ],
-              "why": "ميْوِت: و and ي met with the first silent, so the و became ي and the two merged."
-            },
-            {
               "kind": "teach",
               "id": "ibn-jinni",
               "title": "Ibn Jinni's rule",
               "ar": "قال\" الإمام \"ابن جني في الثلاثة الأخيرة\"؛ أي فيما كان ما قبل حرف العلة مفتوحا مع الحركات الثلاث في حرف العلة، نحو: بيع وخوف وطول \"يسكن حرف العلة فيها\" أولا \"للخفة\"؛ أي ليحصل الخفة \"ثم تقلب ألفا\"",
-              "en": "Ibn Jinni: when the weak letter has a vowel and the letter before has a fatha, the weak letter is silenced and turned into alif, if seven conditions hold: (1) it is in a verb, or a noun on a verb's pattern; (2) its vowel isn't passing; (3) the fatha before isn't \"as if silent\"; (4) the meaning has no movement in it; (5) two changes don't pile up; (6) no damma lands on a weak letter in the present; (7) it isn't kept to show the origin."
+              "en": "Ibn Jinni: when the weak letter has a vowel and the letter before it has a fatha, the weak letter is first silenced, for lightness, and then turned into alif. But only when seven conditions hold. The first four come next."
+            },
+            {
+              "kind": "choose",
+              "id": "silenced",
+              "ask": "By Ibn Jinni, what happens to the و of قَوَل?",
+              "options": ["It is silenced, then becomes alif", "It becomes alif, then is silenced", "It is dropped, and an alif added"],
+              "answer": 0,
+              "source": "قال\" الإمام \"ابن جني في الثلاثة الأخيرة\"؛ أي فيما كان ما قبل حرف العلة مفتوحا مع الحركات الثلاث في حرف العلة، نحو: بيع وخوف وطول \"يسكن حرف العلة فيها\" أولا \"للخفة\"؛ أي ليحصل الخفة \"ثم تقلب ألفا\"",
+              "why": "First the weak letter is silenced for lightness, then it turns into alif: قال."
+            },
+            {
+              "kind": "teach",
+              "id": "conditions-1",
+              "title": "Conditions 1 to 4",
+              "ar": "\"إذا كن\"؛ أي حروف العلة \"في فعل\" لثقله \"أو في اسم على وزن فعل\"",
+              "en": "The first four conditions: (1) it is in a verb, or a noun on a verb's pattern; (2) its vowel isn't a passing one; (3) the fatha before it isn't \"as if silent\"; (4) the meaning of the word has no movement in it."
+            },
+            {
+              "kind": "choose",
+              "id": "cond-case",
+              "ask": "Ibn Jinni's first condition: where must the weak letter be?",
+              "options": ["In a verb, or a verb-shaped noun", "In any noun, of any shape at all", "At the very start of the word"],
+              "answer": 0,
+              "source": "\"إذا كن\"؛ أي حروف العلة \"في فعل\" لثقله \"أو في اسم على وزن فعل\"",
+              "why": "The weak letter must be in a verb, which is heavy, or in a noun on a verb's pattern."
+            },
+            {
+              "kind": "teach",
+              "id": "conditions-2",
+              "title": "Conditions 5 to 7",
+              "ar": "\"ولا يجتمع فيه\" على تقدير الإعلال \"إعلالان\"",
+              "en": "The last three: (5) two changes don't pile up in the word; (6) no damma lands on a weak letter in the present; (7) the letter isn't kept to show the origin."
             },
             {
               "kind": "pick",
@@ -4567,6 +4222,15 @@
               "en": "No change in حَيَوان (a living thing): its moving letters show the moving in its meaning (condition 4). موتان (death) is kept like it, being its opposite."
             },
             {
+              "kind": "choose",
+              "id": "hayawan-case",
+              "ask": "Why doesn't حَيَوان (a living thing) turn its و into alif?",
+              "options": ["Its meaning has movement in it", "Its vowel is a passing one", "Two changes would pile up in it"],
+              "answer": 0,
+              "source": "نحو الحيوان حتى تدل حركته على اضطراب معناه\"",
+              "why": "Its moving letters show the moving in its meaning (condition 4)."
+            },
+            {
               "kind": "teach",
               "id": "tawa",
               "title": "طوى",
@@ -4577,16 +4241,9 @@
               "kind": "choose",
               "id": "tawa-case",
               "ask": "Why doesn't the و of طوى turn into alif?",
-              "options": [
-                "It isn't a verb",
-                "Its meaning has movement in it",
-                "Two changes would pile up: its ي already became alif"
-              ],
+              "options": ["Its meaning has movement in it", "It isn't a verb at all", "Two changes would pile up"],
               "answer": 2,
-              "source": [
-                "و\" لم يعل طويا\"؛ لأنه \"محمول عليه\"",
-                "وسائلة بظهر الغيب عني ... أعارت عنه أم لم تعارا"
-              ],
+              "source": ["و\" لم يعل طويا\"؛ لأنه \"محمول عليه\"", "وسائلة بظهر الغيب عني ... أعارت عنه أم لم تعارا"],
               "why": "The last letter changed already; changing the و too would be two changes together."
             },
             {
@@ -4600,55 +4257,24 @@
               "kind": "sort",
               "id": "sort-kept",
               "ask": "Does the weak letter turn into alif?",
-              "into": [
-                "Turns into alif",
-                "Stays"
-              ],
+              "into": ["Turns into alif", "Stays"],
               "items": [
-                [
-                  "قَوَل (قال)",
-                  "Turns into alif"
-                ],
-                [
-                  "دَوَر (دار)",
-                  "Turns into alif"
-                ],
-                [
-                  "حَوَكة",
-                  "Stays"
-                ],
-                [
-                  "حَيَوان",
-                  "Stays"
-                ],
-                [
-                  "القَوَد",
-                  "Stays"
-                ],
-                [
-                  "عَوِر",
-                  "Stays"
-                ]
+                ["قَوَل (قال)", "Turns into alif"],
+                ["دَوَر (دار)", "Turns into alif"],
+                ["حَوَكة", "Stays"],
+                ["حَيَوان", "Stays"],
+                ["القَوَد", "Stays"]
               ],
-              "source": [
-                "يعل نحو قال أصله قول",
-                "نحو الحيوان",
-                "والموتان محمول عليه\"",
-                "نحو القود والصيد حتى يدل على الأصل\"",
-                "في حكم عين أعور\""
-              ],
+              "source": ["يعل نحو قال أصله قول", "نحو الحيوان", "والموتان محمول عليه\"", "نحو القود والصيد حتى يدل على الأصل\"", "في حكم عين أعور\""],
               "why": "قال and دار meet all seven conditions; each of the others fails one."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "Which word keeps its weak letter to show its origin?",
-              "options": [
-                "حوكة",
-                "القود",
-                "عور"
-              ],
+              "options": ["حوكة", "القود", "عور"],
               "answer": 1,
+              "arabic-options": true,
               "source": "و\" من ثمة \"لا\" يعل \"نحو القود والصيد حتى يدل على الأصل\"",
               "why": "القود keeps its و so you can tell it is a waw-word. حوكة fails condition 1, عور condition 3."
             }
@@ -4670,16 +4296,10 @@
               "kind": "choose",
               "id": "bia",
               "ask": "Which is the more correct passive of باع?",
-              "options": [
-                "بُوعَ",
-                "بِيعَ",
-                "بُيِعَ"
-              ],
+              "options": ["بُوعَ", "بِيعَ", "بُيِعَ"],
               "answer": 1,
-              "source": [
-                "فصار بوع\" وهذه لغة",
-                "فصار حينئذ بيع\" وهذه أفصح"
-              ],
+              "arabic-options": true,
+              "source": ["فصار بوع\" وهذه لغة", "فصار حينئذ بيع\" وهذه أفصح"],
               "why": "بُوعَ is a dialect; بِيعَ, with the ب given a kasra to suit the ي, is more correct."
             },
             {
@@ -4693,17 +4313,9 @@
               "kind": "choose",
               "id": "duwal",
               "ask": "Why doesn't the و of دِوَل change?",
-              "options": [
-                "It is not taken from a verb and not on a verb's pattern",
-                "Its vowel is a fatha",
-                "It is a plural"
-              ],
+              "options": ["It is not from a verb or its pattern", "Its vowel is a fatha, which is light", "It is a plural, and plurals stay"],
               "answer": 0,
-              "source": [
-                "ولا يعل مثل دول\"",
-                "لأن الأسماء التي ليست بمشتقة من الفعل لا تعل بحال لخفتها\"",
-                "ولا يعل\" حرف العلة \"في\" الصورة \"الرابعة لخفة الفتحة\""
-              ],
+              "source": ["ولا يعل مثل دول\"", "لأن الأسماء التي ليست بمشتقة من الفعل لا تعل بحال لخفتها\"", "ولا يعل\" حرف العلة \"في\" الصورة \"الرابعة لخفة الفتحة\""],
               "why": "Nouns far from verbs are light, so they don't need changing."
             },
             {
@@ -4761,16 +4373,9 @@
               "kind": "choose",
               "id": "ayun",
               "ask": "Why isn't أعيُن (eyes) changed?",
-              "options": [
-                "It would look like the verb أُعين",
-                "Its ي is at the start",
-                "It is not a plural"
-              ],
+              "options": ["It would look like the verb أُعين", "Its ي is not at the end of the word", "It is a plural, so it stays"],
               "answer": 0,
-              "source": [
-                "حتى لا يلتبس بالأفعال\"",
-                "و\" لا يعل \"نحو جدول\" مع أنه من تلك الصور \"حتى لا يبطل الإلحاق\""
-              ],
+              "source": ["حتى لا يلتبس بالأفعال\"", "و\" لا يعل \"نحو جدول\" مع أنه من تلك الصور \"حتى لا يبطل الإلحاق\""],
               "why": "Moved and changed, أعين would sound like the verb \"I help\", so it is left alone."
             },
             {
@@ -4784,16 +4389,10 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "What does يَخْوَف become?",
-              "options": [
-                "يخوف",
-                "يخاف",
-                "يخيف"
-              ],
+              "options": ["يخوف", "يخاف", "يخيف"],
               "answer": 1,
-              "source": [
-                "ولكن يجعل\" حرف العلة \"في يخوف ألفا لفتحة ما قبلها\"",
-                "ولا يعل مثل ما أقوله\" فعل التعجب \"وأغيلت المرأة\""
-              ],
+              "arabic-options": true,
+              "source": ["ولكن يجعل\" حرف العلة \"في يخوف ألفا لفتحة ما قبلها\"", "ولا يعل مثل ما أقوله\" فعل التعجب \"وأغيلت المرأة\""],
               "why": "The و's fatha moves to the خ, and then the silent و after a fatha becomes alif: يخاف."
             }
           ]
@@ -4821,16 +4420,9 @@
               "kind": "choose",
               "id": "khifna-case",
               "ask": "Why does قُلْنَ have a damma but خِفْنَ a kasra?",
-              "options": [
-                "Each takes its own dropped و's vowel, except قلن, where the fatha could show nothing, so a damma came in",
-                "خفن is a passive verb",
-                "Because خ is a throat letter"
-              ],
+              "options": ["قلن needed a damma to show the و", "خفن is a passive verb, so it differs", "Because خ is a throat letter"],
               "answer": 0,
-              "source": [
-                "لأن الأصل في النقل\"؛ أي فيما يمكن \"نقل حركة الواو إلى ما قبلها\"",
-                "لأنه لا يلزم فتح المفتوحة\""
-              ],
+              "source": ["لأن الأصل في النقل\"؛ أي فيما يمكن \"نقل حركة الواو إلى ما قبلها\"", "لأنه لا يلزم فتح المفتوحة\""],
               "why": "خَوِفْنَ hands its kasra back; قَوَلْنَ's fatha would change nothing, so a damma shows the و."
             },
             {
@@ -4846,6 +4438,16 @@
               "title": "يقول",
               "ar": "أصله يقول كينصر وإعلاله مر\"",
               "en": "The present يقول is from يَقْوُل, like ينصُر: the و's damma moves back to the ق."
+            },
+            {
+              "kind": "choose",
+              "id": "yaqulu-case",
+              "ask": "What is يقول (\"he says\") originally?",
+              "options": ["يَقْوُلُ", "يَقْوَلُ", "يَقْيُلُ"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "أصله يقول كينصر وإعلاله مر\"",
+              "why": "يقول is from يَقْوُل, like ينصُر: the و's damma moves back to the ق."
             },
             {
               "kind": "teach",
@@ -4918,11 +4520,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Ahmad says قُلِ الحقَّ should be قُولِ الحقَّ, since the ل now has a vowel. What does the book say?",
-              "options": [
-                "He is right",
-                "The vowel comes from outside the word, so the و stays dropped",
-                "It should be قَالِ الحقَّ"
-              ],
+              "options": ["He is right: the ل has a vowel now", "Wrong: the vowel comes from outside", "It should be قَالِ الحقَّ"],
               "answer": 1,
               "source": "لأن الحركة فيه حصلت بالخارجي\"",
               "why": "A vowel from outside counts as nothing, so the two silent letters are still there in effect."
@@ -5000,16 +4598,10 @@
               "kind": "choose",
               "id": "mabi",
               "ask": "What is مَبيع (sold) originally?",
-              "options": [
-                "مَبْيِع",
-                "مَبْيُوع",
-                "مُبَاع"
-              ],
+              "options": ["مَبْيِع", "مَبْيُوع", "مُبَاع"],
               "answer": 1,
-              "source": [
-                "وكذلك\"؛ أي كمقول \"مبيع\" أصله مبيوع",
-                "فحذفت الواو الزائدة\" للمفعول \"عند سيبويه؛ لأن الحذف بالزائد أولى\""
-              ],
+              "arabic-options": true,
+              "source": ["وكذلك\"؛ أي كمقول \"مبيع\" أصله مبيوع", "فحذفت الواو الزائدة\" للمفعول \"عند سيبويه؛ لأن الحذف بالزائد أولى\""],
               "why": "Done-to nouns are on مَفْعُول: مَبْيُوع, then lightened to مَبيع."
             },
             {
@@ -5061,12 +4653,9 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which doer noun drops its middle letter?",
-              "options": [
-                "قائل",
-                "هارٍ",
-                "شائك"
-              ],
+              "options": ["قائل", "هارٍ", "شائك"],
               "answer": 1,
+              "arabic-options": true,
               "source": "ومنه\"؛ أي مما يجيء بالحذف \"قوله تعالى: {على شفا جرف هار}",
               "why": "هارٍ is هائر with the middle letter dropped. قائل keeps it as a hamza; شائك is the full form."
             }
@@ -5088,16 +4677,10 @@
               "kind": "choose",
               "id": "most-correct",
               "ask": "Which is the most correct way?",
-              "options": [
-                "قُوْلَ",
-                "قِيلَ",
-                "قَالَ"
-              ],
+              "options": ["قُوْلَ", "قِيلَ", "قَالَ"],
               "answer": 1,
-              "source": [
-                "فصار قيل\" وهذه أفصح اللغات",
-                "وهو لغة ضعيفة لثقل اجتماع الضمة والواو"
-              ],
+              "arabic-options": true,
+              "source": ["فصار قيل\" وهذه أفصح اللغات", "وهو لغة ضعيفة لثقل اجتماع الضمة والواو"],
               "why": "قِيلَ has no heaviness at all, so it is the most correct. قُوْلَ is weak."
             },
             {
@@ -5171,11 +4754,7 @@
               "kind": "choose",
               "id": "uqima-case",
               "ask": "Musa says أُقيم with ishmam, leaning the kasra toward a damma. What does the book say?",
-              "options": [
-                "Fine: all passives allow it",
-                "Not allowed: the ق had no damma in the original",
-                "Only in poetry"
-              ],
+              "options": ["Fine: every passive allows it", "Not allowed in أقيم", "Allowed only in poetry"],
               "answer": 1,
               "source": "لانعدام ضمة ما قبل الياء",
               "why": "Ishmam shows a damma that was there; in أُقْوِم the ق was silent."
@@ -5235,11 +4814,7 @@
               "kind": "choose",
               "id": "name-case",
               "ask": "Why is رمى called naqis?",
-              "options": [
-                "It lacks a vowel or a letter at the end, as in يرمي and لم يرم",
-                "It has only two root letters",
-                "Its middle letter is weak"
-              ],
+              "options": ["It lacks something at the end", "It has only two root letters", "Its middle root letter is weak"],
               "answer": 0,
               "source": "إما من بعض الحركات كما في حالة الرفع نحو: يرمي، أو من الحروف كما في حالة الجزم نحو: لم يرم",
               "why": "Naqis means lacking: the damma isn't shown in يرمي, and the ي itself goes in لم يرمِ."
@@ -5305,16 +4880,9 @@
               "kind": "choose",
               "id": "ramaw-case",
               "ask": "In رماوا, why does the alif drop and not the و?",
-              "options": [
-                "The و is the pronoun \"they\", which isn't dropped",
-                "The alif is heavier",
-                "The و is part of the root"
-              ],
+              "options": ["The و is the pronoun ‘they’", "The alif is heavier than و", "The و is part of the root"],
               "answer": 0,
-              "source": [
-                "فصار رماوا فاجتمع ساكنان فحذفت الألف\"",
-                "رضوا إلا أنهم ضموا الضاد فيه\"؛ أي في رضوا \"بعد الحذف\""
-              ],
+              "source": ["فصار رماوا فاجتمع ساكنان فحذفت الألف\"", "رضوا إلا أنهم ضموا الضاد فيه\"؛ أي في رضوا \"بعد الحذف\""],
               "why": "The و carries the meaning \"they\", so the alif goes instead."
             },
             {
@@ -5328,53 +4896,24 @@
               "kind": "sort",
               "id": "sort-ya",
               "ask": "Does the ي stay in the past?",
-              "into": [
-                "ي stays",
-                "ي drops"
-              ],
+              "into": ["ي stays", "ي drops"],
               "items": [
-                [
-                  "رميا",
-                  "ي stays"
-                ],
-                [
-                  "رموا",
-                  "ي drops"
-                ],
-                [
-                  "رمت",
-                  "ي drops"
-                ],
-                [
-                  "رمتا",
-                  "ي drops"
-                ],
-                [
-                  "رمين",
-                  "ي stays"
-                ],
-                [
-                  "رميت",
-                  "ي stays"
-                ]
+                ["رميا", "ي stays"],
+                ["رموا", "ي drops"],
+                ["رمت", "ي drops"],
+                ["رمتا", "ي drops"],
+                ["رمين", "ي stays"]
               ],
-              "source": [
-                "ويحذف الياء\" بعد القلب \"في رمتا\"",
-                "ولا يعل\" حرف العلة \"في رمين كما مر في القول\"",
-                "رمى رميا رموا رميت رمتا رمين"
-              ],
+              "source": ["ويحذف الياء\" بعد القلب \"في رمتا\"", "ولا يعل\" حرف العلة \"في رمين كما مر في القول\"", "رمى رميا رموا رميت رمتا رمين"],
               "why": "It drops where it turned to alif and met a silent letter (رموا, رمت, رمتا). With a silent ي after a fatha, or a light fatha on it, it stays."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "Which is the past \"she threw\"?",
-              "options": [
-                "رمَيَتْ",
-                "رمَتْ",
-                "رمَاتْ"
-              ],
+              "options": ["رمَيَتْ", "رمَتْ", "رمَاتْ"],
               "answer": 1,
+              "arabic-options": true,
               "source": "وأصل رمت رميت",
               "why": "رمَيَتْ is the original; the ي turns to alif and drops: رمَتْ."
             }
@@ -5400,6 +4939,16 @@
               "en": "يرمُون (they throw) is from يرمِيُون: the ي's damma moves to the م, then the ي drops because two silent letters meet."
             },
             {
+              "kind": "choose",
+              "id": "yarmuna-case",
+              "ask": "What is يرمُون (\"they throw\") originally?",
+              "options": ["يرمِيُون", "يرمُوُون", "يرمَيُون"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "وأصل يرمون يرميون فأسكنت الياء\" بنقل ضمها إلى الميم بعد سلب حركته \"ثم حذفت لاجتماع الساكنين\"",
+              "why": "يرمُون is from يرمِيُون: the ي's damma moves to the م, then the ي drops."
+            },
+            {
               "kind": "teach",
               "id": "yafuna",
               "title": "يعفون: men and women",
@@ -5410,16 +4959,9 @@
               "kind": "choose",
               "id": "yafuna-case",
               "ask": "In إلا أن يعفون (Qur'an 2:237, about divorced women), why does the ن stay after أن?",
-              "options": [
-                "أن never affects verbs",
-                "It is the women's ending, not the case ending",
-                "Because it is a waw verb"
-              ],
+              "options": ["أن never affects any verb", "It is the women's ending", "Because it is a waw verb"],
               "answer": 1,
-              "source": [
-                "ومن ثمة\"؛ أي ومن أجل أن النون في جمع النساء علامة \"لا تسقط في قوله تعالى: {إلا أن يعفون} \"",
-                "و\" تلك \"الواو في\" جمع \"النساء أصلية\""
-              ],
+              "source": ["ومن ثمة\"؛ أي ومن أجل أن النون في جمع النساء علامة \"لا تسقط في قوله تعالى: {إلا أن يعفون} \"", "و\" تلك \"الواو في\" جمع \"النساء أصلية\""],
               "why": "A case-ending ن would drop after أن; the women's ن is a sign of the women, so it stays."
             },
             {
@@ -5478,16 +5020,9 @@
               "kind": "choose",
               "id": "yakhsha",
               "ask": "Why doesn't لن يخشى show a fatha?",
-              "options": [
-                "An alif can't carry a vowel",
-                "لن doesn't act on it",
-                "Its ي was dropped"
-              ],
+              "options": ["An alif can't carry a vowel", "لن doesn't act on this verb", "Its last ي was dropped by لن"],
               "answer": 0,
-              "source": [
-                "لأن الألف لا يحتمل الحركة\"",
-                "ولا يحسبون الحكم عجزا ... لما عدم السنون احتمالي"
-              ],
+              "source": ["لأن الألف لا يحتمل الحركة\"", "ولا يحسبون الحكم عجزا ... لما عدم السنون احتمالي"],
               "why": "An alif is silent by nature; given a vowel it would stop being an alif."
             },
             {
@@ -5501,12 +5036,9 @@
               "kind": "choose",
               "id": "amr-case",
               "ask": "Layla tells one woman \"throw!\". Which does she say?",
-              "options": [
-                "ارمِ",
-                "ارمُوا",
-                "ارمِي"
-              ],
+              "options": ["ارمِ", "ارمُوا", "ارمِي"],
               "answer": 2,
+              "arabic-options": true,
               "source": "وأصل ارمي\" بالياء للواحدة المخاطبة \"ارميي\"",
               "why": "ارمِي: of the two ي's the root one drops, and the ي meaning \"you, a woman\" stays."
             },
@@ -5514,16 +5046,10 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which is the jussive of يرمي?",
-              "options": [
-                "لم يرمِ",
-                "لم يرمِي",
-                "لم يرمَى"
-              ],
+              "options": ["لم يرمِ", "لم يرمِي", "لم يرمَى"],
               "answer": 0,
-              "source": [
-                "تقول لم يرم",
-                "وأصل ارموا ارميوا\""
-              ],
+              "arabic-options": true,
+              "source": ["تقول لم يرم", "وأصل ارموا ارميوا\""],
               "why": "The jussive drops the ي, as a sound verb drops its damma."
             }
           ]
@@ -5551,16 +5077,10 @@
               "kind": "choose",
               "id": "ram-case",
               "ask": "Zayd saw a thrower: رأيتُ ____. Which form?",
-              "options": [
-                "رامٍ",
-                "رامِيًا",
-                "رامُونَ"
-              ],
+              "options": ["رامٍ", "رامِيًا", "رامُونَ"],
               "answer": 1,
-              "source": [
-                "ولا تسكن\" الياء \"في حالة النصب\"",
-                "وأصل رامون راميون\" على وزن ضاربون \"فأسكنت الياء\""
-              ],
+              "arabic-options": true,
+              "source": ["ولا تسكن\" الياء \"في حالة النصب\"", "وأصل رامون راميون\" على وزن ضاربون \"فأسكنت الياء\""],
               "why": "After رأيت it is accusative, so the ي keeps its fatha: رامِيًا."
             },
             {
@@ -5581,16 +5101,10 @@
               "kind": "choose",
               "id": "marmi-case",
               "ask": "What is مَرْمِيّ originally?",
-              "options": [
-                "مَرْمَي",
-                "مِرْمَي",
-                "مَرْمُوي"
-              ],
+              "options": ["مَرْمَي", "مِرْمَي", "مَرْمُوي"],
               "answer": 2,
-              "source": [
-                "فأدغم\"؛ أي وقع الإدغام في راموي",
-                "بأربع ياآت\""
-              ],
+              "arabic-options": true,
+              "source": ["فأدغم\"؛ أي وقع الإدغام في راموي", "بأربع ياآت\""],
               "why": "Done-to nouns are on مَفْعُول: مَرْمُوي, then the و became ي and merged."
             },
             {
@@ -5649,12 +5163,9 @@
               "kind": "choose",
               "id": "ghaza-case",
               "ask": "What is أغزيتُ originally?",
-              "options": [
-                "أغزوتُ",
-                "أغزأتُ",
-                "غزيتُ"
-              ],
+              "options": ["أغزوتُ", "أغزأتُ", "غزيتُ"],
               "answer": 0,
+              "arabic-options": true,
               "source": "أنهم يبدلون الواو ياء في نحو أغزيت\" أصله اغزوت \"تبعا ليغزى\"",
               "why": "أغزوتُ: the و becomes ي to follow يُغزي, where it stands after a kasra."
             },
@@ -5662,11 +5173,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Why is the place noun مَرْمًى and not مَرْمِي?",
-              "options": [
-                "They fled kasra after kasra",
-                "Because رمى is a waw verb",
-                "It is the tool noun"
-              ],
+              "options": ["To avoid kasra after kasra", "Because رمى is a waw verb", "Because it is the tool noun"],
               "answer": 0,
               "source": "إلا أنهم فروا من توالي الكسرات\"",
               "why": "The rule gives a kasra (يرمِي), but a run of kasras is heavy, so it takes a fatha."
@@ -5716,6 +5223,15 @@
               "en": "Hamza from alif, as a must: the hamza of صحراء (desert) was an alif, like the alif of سكرى. An extra alif came before it, and the second became hamza. That is why the plural is صحارى, never صحاريء."
             },
             {
+              "kind": "choose",
+              "id": "sahra-case",
+              "ask": "Why is the plural of صحراء (desert) صحارى, and never صحاريء?",
+              "options": ["Its hamza was really an alif", "The hamza always drops in plurals", "صحارى is a different word"],
+              "answer": 0,
+              "source": "من الألف في نحو صحراء\"؛ أي فيما فيه الألف الممدودة \"لأن همزتها ألف في الأصل كألف سكرى\"",
+              "why": "The hamza of صحراء stands in for an alif, like the alif of سكرى, so the plural shows the alif."
+            },
+            {
               "kind": "teach",
               "id": "waw",
               "title": "From و and ي",
@@ -5733,45 +5249,16 @@
               "kind": "sort",
               "id": "sort-kind",
               "ask": "Which kind of change is it?",
-              "into": [
-                "A must, by rule",
-                "Allowed, by rule",
-                "Allowed, only as heard"
-              ],
+              "into": ["A must, by rule", "Allowed, by rule", "Allowed, only as heard"],
               "items": [
-                [
-                  "أواصل",
-                  "A must, by rule"
-                ],
-                [
-                  "كساء",
-                  "A must, by rule"
-                ],
-                [
-                  "بائع",
-                  "A must, by rule"
-                ],
-                [
-                  "أجوه",
-                  "Allowed, by rule"
-                ],
-                [
-                  "إشاح",
-                  "Allowed, only as heard"
-                ],
-                [
-                  "أديه",
-                  "Allowed, only as heard"
-                ]
+                ["أواصل", "A must, by rule"],
+                ["بائع", "A must, by rule"],
+                ["أجوه", "Allowed, by rule"],
+                ["إشاح", "Allowed, only as heard"],
+                ["أديه", "Allowed, only as heard"]
               ],
-              "source": [
-                "من الياء وجوبا مطردا في نحو بائع\"",
-                "لوقوع الحركات المختلفة على الواو\"",
-                "من الواو الغير المضمومة\" من المكسورة \"نحو: إشاح\"",
-                "نحو قطع الله أديه\" أصله يديه",
-                "جوازا\"؛ أي إبدالا يصح أن يقع ويصح أن لا يقع"
-              ],
-              "why": "أواصل, كساء, بائع always change; أجوه may, by the rule of a heavy damma; إشاح and أديه are only heard."
+              "source": ["من الياء وجوبا مطردا في نحو بائع\"", "لوقوع الحركات المختلفة على الواو\"", "من الواو الغير المضمومة\" من المكسورة \"نحو: إشاح\"", "نحو قطع الله أديه\" أصله يديه", "جوازا\"؛ أي إبدالا يصح أن يقع ويصح أن لا يقع"],
+              "why": "أواصل and بائع always change; أجوه may, by the rule of a heavy damma; إشاح and أديه are only heard."
             },
             {
               "kind": "choose",
@@ -5797,32 +5284,19 @@
               "kind": "choose",
               "id": "dallin",
               "ask": "Ayyub as-Sakhtiyani recited ولا الضألين. What did the hamza replace?",
-              "options": [
-                "A و",
-                "An alif",
-                "A ل"
-              ],
+              "options": ["A waw (و)", "An alif", "A lam (ل)"],
               "answer": 1,
-              "source": [
-                "ونحو قراءة من قرأ بالهمزة وهو أيوب السختياني \"ولا الضألين\"",
-                "والدكاديك جمع دكداك وهي الرمل المتراكم"
-              ],
+              "source": ["ونحو قراءة من قرأ بالهمزة وهو أيوب السختياني \"ولا الضألين\"", "والدكاديك جمع دكداك وهي الرمل المتراكم"],
               "why": "The word is الضالين, with an alif; the hamza stands in for it, as in المشتئق."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "In أباب بحر, which letter was the hamza originally?",
-              "options": [
-                "ه",
-                "ع",
-                "و"
-              ],
+              "options": ["ه", "ع", "و"],
               "answer": 1,
-              "source": [
-                "نحو: أباب بحر ضاحك زهوق\" أصله عباب",
-                "لاتحاد مخرجهن\""
-              ],
+              "arabic-options": true,
+              "source": ["نحو: أباب بحر ضاحك زهوق\" أصله عباب", "لاتحاد مخرجهن\""],
               "why": "عباب: the hamza and the ع are both throat letters, said from the same place."
             }
           ]
@@ -5831,6 +5305,7 @@
           "id": "marah-naqis-ibdal-ta",
           "title": "Ibdal: ta, nun, jim, dal and ha",
           "arabic": "الإبدال: التاء والجيم والهاء",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -5856,46 +5331,15 @@
               "kind": "sort",
               "id": "sort-ta",
               "ask": "What was the ت originally?",
-              "into": [
-                "و",
-                "ي",
-                "س"
-              ],
+              "into": ["و", "ي", "س"],
               "items": [
-                [
-                  "تخمة",
-                  "و"
-                ],
-                [
-                  "أخت",
-                  "و"
-                ],
-                [
-                  "ثنتان",
-                  "ي"
-                ],
-                [
-                  "أسنتوا",
-                  "ي"
-                ],
-                [
-                  "ست",
-                  "س"
-                ],
-                [
-                  "النات",
-                  "س"
-                ]
+                ["تخمة", "و"],
+                ["أخت", "و"],
+                ["ثنتان", "ي"],
+                ["أسنتوا", "ي"],
+                ["ست", "س"]
               ],
-              "source": [
-                "و\" من الواو التي هي لام نحو \"أخت\" أصله أخو",
-                "من الياء\" جوازا غير مطرد \"نحو ثنتان أصله ثنيان\"",
-                "وأسنتوا\" بفتح الهمزة",
-                "و\" أبدلت التاء \"من السين\" جوازا غير مطرد \"نحو ست أصله سدس\"",
-                "النات الأصل الناس",
-                "من الصاد نحو لصت\" أصله لص بالتشديد",
-                "نحو الذعالت\" أصله الذعالب"
-              ],
+              "source": ["و\" من الواو التي هي لام نحو \"أخت\" أصله أخو", "من الياء\" جوازا غير مطرد \"نحو ثنتان أصله ثنيان\"", "وأسنتوا\" بفتح الهمزة", "و\" أبدلت التاء \"من السين\" جوازا غير مطرد \"نحو ست أصله سدس\"", "النات الأصل الناس", "من الصاد نحو لصت\" أصله لص بالتشديد", "نحو الذعالت\" أصله الذعالب"],
               "why": "وخمة and أخو had و; ثنيان and أسنيوا had ي; سدس and الناس had س."
             },
             {
@@ -5916,19 +5360,9 @@
               "kind": "choose",
               "id": "jim-case",
               "ask": "In أبو علج, what does the ج stand for?",
-              "options": [
-                "A doubled ي",
-                "A ل",
-                "A hamza"
-              ],
+              "options": ["A doubled ي", "A lam (ل)", "A hamza (ء)"],
               "answer": 0,
-              "source": [
-                "نحو: أبو علج\" أصله أبو علي في قوله:",
-                "خالي عويف وأبو علج ... المطعمان الشحم بالعشج",
-                "وبالغداة كتل البرنج ... يقلع بالواد وبالصيصج",
-                "أصله بالعشي والبرني أجود التمر",
-                "نحو: لعن\" أصله لعل"
-              ],
+              "source": ["نحو: أبو علج\" أصله أبو علي في قوله:", "خالي عويف وأبو علج ... المطعمان الشحم بالعشج", "وبالغداة كتل البرنج ... يقلع بالواد وبالصيصج", "أصله بالعشي والبرني أجود التمر", "نحو: لعن\" أصله لعل"],
               "why": "علجّ is عليّ: the doubled ي became ج, as in العشجّ (العشيّ) and البرنجّ (البرنيّ)."
             },
             {
@@ -6005,11 +5439,7 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Why is the ة of طلحة said as ه at a pause, but not the ت of ضربتْ?",
-              "options": [
-                "To tell the noun's ت from the verb's",
-                "Because ضربت is plural",
-                "Both become ه"
-              ],
+              "options": ["To tell a noun's ت from a verb's", "Because ضربت is a plural verb", "Both of them become ه at a pause"],
               "answer": 0,
               "source": "للفرق بينهما وبين التاء التي في الفعل\"",
               "why": "The noun's ة becomes ه; the verb's stays ت. ضربه would be \"he hit him\"."
@@ -6020,6 +5450,7 @@
           "id": "marah-naqis-ibdal-ya",
           "title": "Ibdal: ya and waw",
           "arabic": "الإبدال: الياء والواو",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -6032,16 +5463,9 @@
               "kind": "choose",
               "id": "mifitih",
               "ask": "Why is the alif of مفتاح a ي in مفيتيح?",
-              "options": [
-                "A kasra comes before it",
-                "To show it is a plural",
-                "Because of the ت"
-              ],
+              "options": ["A kasra comes before it", "To show it is a plural form", "Because of the ت before it"],
               "answer": 0,
-              "source": [
-                "لكسرة ما قبلهما\"",
-                "من الهمزة جوازا\" غير مطرد \"نحو: ذيب\""
-              ],
+              "source": ["لكسرة ما قبلهما\"", "من الهمزة جوازا\" غير مطرد \"نحو: ذيب\""],
               "why": "An alif can't follow a kasra, so it becomes ي."
             },
             {
@@ -6166,52 +5590,22 @@
               "kind": "sort",
               "id": "sort-must",
               "ask": "Which kind of change is it?",
-              "into": [
-                "A must, by rule",
-                "Allowed, only as heard"
-              ],
+              "into": ["A must, by rule", "Allowed, only as heard"],
               "items": [
-                [
-                  "مفيتيح",
-                  "A must, by rule"
-                ],
-                [
-                  "ضوارب",
-                  "A must, by rule"
-                ],
-                [
-                  "موقن",
-                  "A must, by rule"
-                ],
-                [
-                  "دينار",
-                  "Allowed, only as heard"
-                ],
-                [
-                  "سادي",
-                  "Allowed, only as heard"
-                ],
-                [
-                  "الثالي",
-                  "Allowed, only as heard"
-                ]
+                ["مفيتيح", "A must, by rule"],
+                ["ضوارب", "A must, by rule"],
+                ["موقن", "A must, by rule"],
+                ["دينار", "Allowed, only as heard"],
+                ["سادي", "Allowed, only as heard"]
               ],
-              "source": [
-                "الياء أبدلت من الألف وجوبا",
-                "الواو أبدلت من الألف وجوبا مطردا",
-                "من النون\" جوازا غير مطرد"
-              ],
+              "source": ["الياء أبدلت من الألف وجوبا", "الواو أبدلت من الألف وجوبا مطردا", "من النون\" جوازا غير مطرد"],
               "why": "Changes after a vowel that calls for them are a must; ي for ن, س, ث are only heard."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "موقن (certain) is from ميقن. Why did the ي become و?",
-              "options": [
-                "It is silent after a damma",
-                "It is at the end",
-                "It merged into the ق"
-              ],
+              "options": ["It is silent after a damma", "It is at the end of the word", "It merged into the ق after it"],
               "answer": 0,
               "source": "من الياء وجوبا مطردا نحو: موقن\"؛ أي إذا كانت الياء ساكنة وما قبلها مضموما أصله ميقن \"لضمة ما قبلها\"",
               "why": "A damma calls for و, so the silent ي after it becomes و."
@@ -6222,6 +5616,7 @@
           "id": "marah-naqis-ibdal-rest",
           "title": "Ibdal: mim, sad, alif, lam, zay, ta",
           "arabic": "الإبدال: الميم واللام والزاي",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -6257,44 +5652,15 @@
               "kind": "sort",
               "id": "sort-mim",
               "ask": "What was the م originally?",
-              "into": [
-                "و",
-                "ل",
-                "ن or ب"
-              ],
+              "into": ["و", "ل", "ن or ب"],
               "items": [
-                [
-                  "فم",
-                  "و"
-                ],
-                [
-                  "امبرّ",
-                  "ل"
-                ],
-                [
-                  "امصيام",
-                  "ل"
-                ],
-                [
-                  "عمبر",
-                  "ن or ب"
-                ],
-                [
-                  "البنام",
-                  "ن or ب"
-                ],
-                [
-                  "راتما",
-                  "ن or ب"
-                ]
+                ["فم", "و"],
+                ["امبرّ", "ل"],
+                ["عمبر", "ن or ب"],
+                ["البنام", "ن or ب"],
+                ["راتما", "ن or ب"]
               ],
-              "source": [
-                "نحو: عمبر\" أصله عنبر",
-                "نحو: البنام في قوله:",
-                "يا هال ذات المنطق التمتام ... وكفك المخضب البنام",
-                "أصله البنان",
-                "نحو\" قولهم: \"ما زلت راتما\" على هذا؛ أي راتبا"
-              ],
+              "source": ["نحو: عمبر\" أصله عنبر", "نحو: البنام في قوله:", "يا هال ذات المنطق التمتام ... وكفك المخضب البنام", "أصله البنان", "نحو\" قولهم: \"ما زلت راتما\" على هذا؛ أي راتبا"],
               "why": "فوه had و; البرّ and الصيام had the ل of \"the\"; عنبر, البنان and راتبا had ن or ب."
             },
             {
@@ -6315,18 +5681,10 @@
               "kind": "choose",
               "id": "lam-case",
               "ask": "In فالطجع, which letter did the ل replace?",
-              "options": [
-                "ن",
-                "ض",
-                "ط"
-              ],
+              "options": ["ن", "ض", "ط"],
               "answer": 1,
-              "source": [
-                "لما رأى أن لا دعة ولا شبع ... مال إلى أرطاء حقفا فالطجع",
-                "أصله اضطجع",
-                "وقفت فيها أصيلالا أسائلها ... أعيت جوابا وما بالربع من أحد",
-                "والمعنى وقفت بدار الحبيبة أحيانا"
-              ],
+              "arabic-options": true,
+              "source": ["لما رأى أن لا دعة ولا شبع ... مال إلى أرطاء حقفا فالطجع", "أصله اضطجع", "وقفت فيها أصيلالا أسائلها ... أعيت جوابا وما بالربع من أحد", "والمعنى وقفت بدار الحبيبة أحيانا"],
               "why": "الطجع is اضطجع: the ض became ل."
             },
             {
@@ -6347,59 +5705,24 @@
               "kind": "sort",
               "id": "sort-kind",
               "ask": "Which kind of change is it?",
-              "into": [
-                "A must, by rule",
-                "Allowed, by rule",
-                "Allowed, only as heard"
-              ],
+              "into": ["A must, by rule", "Allowed, by rule", "Allowed, only as heard"],
               "items": [
-                [
-                  "قال (alif from و)",
-                  "A must, by rule"
-                ],
-                [
-                  "اصطبر (ط from ت)",
-                  "A must, by rule"
-                ],
-                [
-                  "لوم (و from hamza)",
-                  "Allowed, by rule"
-                ],
-                [
-                  "أصبغ (ص from س)",
-                  "Allowed, by rule"
-                ],
-                [
-                  "فم (م from و)",
-                  "Allowed, only as heard"
-                ],
-                [
-                  "أصيلال (ل from ن)",
-                  "Allowed, only as heard"
-                ]
+                ["قال (alif from و)", "A must, by rule"],
+                ["اصطبر (ط from ت)", "A must, by rule"],
+                ["لوم (و from hamza)", "Allowed, by rule"],
+                ["أصبغ (ص from س)", "Allowed, by rule"],
+                ["أصيلال (ل from ن)", "Allowed, only as heard"]
               ],
-              "source": [
-                "الطاء أبدلت من التاء وجوابا مطردا\"",
-                "الصاد أبدلت\" جوازا مطردا \"من السين نحو أصبغ\"",
-                "من الهمزة جوازا مطردا نحو رأس\"",
-                "وما قبلها مفتوحا جعلت ألفا للين عريكة الساكن واستدعاء ما قبلها"
-              ],
-              "why": "قال and اصطبر always change; لوم and أصبغ may, by rule; فم and أصيلال are only heard."
+              "source": ["الطاء أبدلت من التاء وجوابا مطردا\"", "الصاد أبدلت\" جوازا مطردا \"من السين نحو أصبغ\"", "من الهمزة جوازا مطردا نحو رأس\"", "وما قبلها مفتوحا جعلت ألفا للين عريكة الساكن واستدعاء ما قبلها"],
+              "why": "قال and اصطبر always change; لوم and أصبغ may, by rule; أصيلال is only heard."
             },
             {
               "kind": "choose",
               "id": "mixed",
               "ask": "Hatim at-Ta'i said فزدي for فصدي. Which kind of change is it?",
-              "options": [
-                "A must, by rule",
-                "Allowed, by rule",
-                "Allowed, only as heard"
-              ],
+              "options": ["A must, by rule, always", "Allowed, by rule, as a choice", "Allowed only as heard"],
               "answer": 2,
-              "source": [
-                "هكذا فزدي أنه\"",
-                "يكون\" الإبدال في ذلك الغير المقيد \"جائزا غير مطرد\""
-              ],
+              "source": ["هكذا فزدي أنه\"", "يكون\" الإبدال في ذلك الغير المقيد \"جائزا غير مطرد\""],
               "why": "ز from ص is not marked by the author, so it is allowed only as heard."
             }
           ]
@@ -6502,12 +5825,9 @@
               "kind": "choose",
               "id": "qi",
               "ask": "What is the command \"protect!\" to one man?",
-              "options": [
-                "اوقِ",
-                "قِي",
-                "قِ"
-              ],
+              "options": ["اوقِ", "قِي", "قِ"],
               "answer": 2,
+              "arabic-options": true,
               "source": "وإعلاله كإعلال أخواته وأتقن قواعد بابي المثال والناقص",
               "why": "Both ends drop: the و as in عِدْ and the ي as in ارمِ, leaving قِ. قِي is to a woman."
             },
@@ -6555,12 +5875,9 @@
               "kind": "choose",
               "id": "mixed",
               "ask": "Which is the doer noun of وقى?",
-              "options": [
-                "موقٍ",
-                "واقٍ",
-                "وَقِيّ"
-              ],
+              "options": ["موقٍ", "واقٍ", "وَقِيّ"],
               "answer": 1,
+              "arabic-options": true,
               "source": "الفاعل واق\" أصله واقي",
               "why": "واقٍ, from واقِي, made like رامٍ."
             }
@@ -6582,11 +5899,7 @@
               "kind": "choose",
               "id": "tawa",
               "ask": "Why isn't the و of طوى turned into alif?",
-              "options": [
-                "Two changes would pile up",
-                "A و never becomes alif",
-                "Because it is a command"
-              ],
+              "options": ["Two changes would pile up", "A و never becomes alif", "Because it is a command form"],
               "answer": 0,
               "source": "ولا يعل عينهما كما مر في باب الأجوف\"",
               "why": "The last ي already became alif; changing the و too would be two changes."
@@ -6606,6 +5919,16 @@
               "en": "To find the forms with the nun of emphasis in the naqis and lafif, look at the last weak letter. If it is a root letter that dropped in the singular, it comes back with a fatha, since the nun ends the sukun: اطوِيَنَّ, اغزُوَنَّ, ارْوَيَنَّ, just as in اطوِيا, اغزُوا."
             },
             {
+              "kind": "choose",
+              "id": "nun-root-case",
+              "ask": "With the heavy nun of emphasis, what does اطوِ (\"fold!\", to one man) become?",
+              "options": ["اطوِيَنَّ", "اطوِنَّ", "اطوُنَّ"],
+              "answer": 0,
+              "arabic-options": true,
+              "source": "فانظر إلى حروف العلة\" التي في آخر الكلمة \"إن كانت أصلية\"؛ أي من نفس الكلمة \"محذوفة في الواحد ترد\"",
+              "why": "The root ي that dropped in اطوِ comes back with a fatha, since the nun ends the sukun: اطوِيَنَّ."
+            },
+            {
               "kind": "teach",
               "id": "nun-pronoun",
               "title": "With the nun: a pronoun",
@@ -6616,42 +5939,15 @@
               "kind": "sort",
               "id": "sort-nun",
               "ask": "With the nun of emphasis, what happens to the last weak letter?",
-              "into": [
-                "Root letter back with a fatha",
-                "Pronoun takes a vowel",
-                "Pronoun drops"
-              ],
+              "into": ["Root letter back with a fatha", "Pronoun takes a vowel", "Pronoun drops"],
               "items": [
-                [
-                  "اطوِيَنَّ (to one man)",
-                  "Root letter back with a fatha"
-                ],
-                [
-                  "اغزُوَنَّ (to one man)",
-                  "Root letter back with a fatha"
-                ],
-                [
-                  "ارْوَوُنَّ",
-                  "Pronoun takes a vowel"
-                ],
-                [
-                  "ارْوَيِنَّ",
-                  "Pronoun takes a vowel"
-                ],
-                [
-                  "اطوُنَّ",
-                  "Pronoun drops"
-                ],
-                [
-                  "اطوِنَّ",
-                  "Pronoun drops"
-                ]
+                ["اطوِيَنَّ (to one man)", "Root letter back with a fatha"],
+                ["اغزُوَنَّ (to one man)", "Root letter back with a fatha"],
+                ["ارْوَوُنَّ", "Pronoun takes a vowel"],
+                ["ارْوَيِنَّ", "Pronoun takes a vowel"],
+                ["اطوُنَّ", "Pronoun drops"]
               ],
-              "source": [
-                "نحو\" الياء في \"اطوين و\" الواو في \"اغزون و\" الياء في \"اروين",
-                "نحو اروون\" بضم واو الضمير \"واروين\" بكسر ياء الضمير",
-                "لعدم الخفة فيما قبلها نحو: اطون\" بضم العين أصله اطوون"
-              ],
+              "source": ["نحو\" الياء في \"اطوين و\" الواو في \"اغزون و\" الياء في \"اروين", "نحو اروون\" بضم واو الضمير \"واروين\" بكسر ياء الضمير", "لعدم الخفة فيما قبلها نحو: اطون\" بضم العين أصله اطوون"],
               "why": "A dropped root letter returns. A pronoun after a fatha (ارْوَ...) takes a vowel; after a damma or kasra (اطوُ, اطوِ) it drops."
             },
             {
@@ -6665,16 +5961,9 @@
               "kind": "choose",
               "id": "riwa",
               "ask": "Why isn't the و of رِواء turned into ي, as in سياط?",
-              "options": [
-                "So two changes don't pile up: its last ي already became a hamza",
-                "Because it is feminine",
-                "A و after a kasra never changes"
-              ],
+              "options": ["Two changes would pile up", "Because the word is feminine", "A و after a kasra never changes"],
               "answer": 0,
-              "source": [
-                "ولم يجعل واوهما\"؛ أي الجمعين \"ياء كما\" جعل الواو ياء \"في سياط حتى لا يجتمع الإعلالان",
-                "من الري ريان\" للمفرد المذكر"
-              ],
+              "source": ["ولم يجعل واوهما\"؛ أي الجمعين \"ياء كما\" جعل الواو ياء \"في سياط حتى لا يجتمع الإعلالان", "من الري ريان\" للمفرد المذكر"],
               "why": "رِواء was رِوايٌ; the ي became a hamza, so the و is left as it is."
             },
             {
