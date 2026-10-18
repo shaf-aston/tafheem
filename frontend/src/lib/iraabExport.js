@@ -31,7 +31,7 @@ export function buildIraabExportText(data) {
 
   for (const w of data.words) {
     lines.push(w.word)
-    if (w.role) lines.push(`  Role: ${w.role}`)
+    if (w.role) lines.push(`  Role: ${w.name ?? w.role}`)
     if (w.case) lines.push(`  Case: ${caseLabel(w.case)}${w.sign ? ` (${w.sign})` : ''}`)
     if (w.root) lines.push(`  Root: ${w.root}`)
     if (w.reason) lines.push(`  Reason: ${w.reason}`)

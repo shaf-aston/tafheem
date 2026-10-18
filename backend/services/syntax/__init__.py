@@ -96,6 +96,10 @@ def read(sentence: str, picks: list[dict]) -> dict:
             if job and not word["role"]:
                 word["role"] = job
                 word.pop("gap", None)
+        # the card says the same finer name the picture prints, read off the one tree
+        for word, finer in zip(found, drawn.pop("finer", [])):
+            if finer and word["role"]:
+                word["name"] = finer
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         read = {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
         if get_settings().show_parse:

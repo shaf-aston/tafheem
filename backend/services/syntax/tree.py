@@ -14,7 +14,7 @@ from __future__ import annotations
 from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar)
 from backend.services.syntax.facts import (Sentence, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
-                                          is_nasab, read_as, shown_cases, noun_tagged)
+                                          is_nasab, is_verb, read_as, shown_cases, noun_tagged)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import SHADDA, five_verb_nun, has_tanween, letters, own_letters
@@ -71,6 +71,8 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
     return role
 
 
+# the family whose sisters lend their own name to what they govern, by its mother's word
+SISTERS = {"inna": "إن", "kana": "كان"}
 DOER = FRAMES["doer"]
 # the roles that stay inside the unit their head names (a صفة of the مضاف إليه, a عطف on it)
 UNIT_CHILDREN = {unit["child"] for unit in role_units()} | set(FOLLOWERS) | {"حرف عطف"}
@@ -299,6 +301,15 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     for key, pair in {**pair_of, **understood_pair}.items():
         name_of[key] = pair.get(role_of[key], name_of[key])
     name_of.update(dict.fromkeys(replies, said_verb["word"]))  # the question's verb, said no more than it is: unwritten
+    # كَأَنَّ رَأْسَهُ زَبِيبَةٌ، أَصْبَحَ الْجَوُّ بَارِدًا: the two a sister governs are called after
+    # that sister (اسم كأنّ، خبر أصبح), the family's mother (إنّ، كان) only naming the family
+    for token, found in zip(bases, named):
+        role, at_gov = role_of.get(token["id"]), found.get("governor")
+        if not role or at_gov is None or family_of.get(bases[at_gov]["id"]) not in SISTERS:
+            continue
+        mother, sister = SISTERS[family_of[bases[at_gov]["id"]]], strip_diacritics(bases[at_gov]["lemma"]).strip("+")
+        if role.endswith(f" {mother}") and sister != mother:
+            name_of[token["id"]] = f"{role.removesuffix(mother)}{sister}"
     place_of: dict[int, str] = {}
     label_of: dict[int, str] = {}
     framed: set[int] = set()  # units whose job a governor gave, drawn even under a particle
@@ -480,6 +491,23 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         own = {key: leaf[key] for key in ("role", "tone", "gap", "detail") if key in leaf}
         return {**leaf, "parts": [own] + ([doer] if doer else []) + attached}
 
+    def kind_of(token: dict) -> str:
+        """A unit with no name of its own is still a sentence when its head opens one,
+        wherever it hangs (وَأَطِيعُوا، وَإِنَّ كَيْدَ الشَّيْطَانِ كَانَ ضَعِيفًا، وَإِنِ اسْتُعْمِلَ):
+        a verb a verbal one, a particle of إنّ's family a nominal one, a condition's
+        opener a condition."""
+        found = named[typed_at[token["id"]]] if token["id"] in typed_at else {}
+        if found.get("condition", {}).get("part") == "opener":
+            return CONDITION
+        if is_verb(token):
+            return VERBAL
+        if family_of[token["id"]] == "inna":
+            return NOMINAL
+        # وَأَطِيعُوا hung on its وَ: the joined sentence is what the وَ brings
+        if token["pos"] == "PRT":
+            return next((kind for kid in children_of[token["id"]] if (kind := kind_of(kid))), "")
+        return ""
+
     def node(token: dict) -> dict:
         # the parser can hand back two words pointing at each other; a word already
         # drawn is left as a leaf rather than followed round the circle again
@@ -515,7 +543,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         label = label_of.get(token["id"]) or ("" if own is None else own or (
             top_label if token is root and token["id"] not in opened
             else NOMINAL if token["id"] in clauses & nominal
-            else VERBAL if token["id"] in clauses or role == NAMED.fil else ""))
+            else VERBAL if token["id"] in clauses or role == NAMED.fil else kind_of(token)))
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
         # is written rather than calling the whole unit a حرف. The clause a كاد-type
@@ -556,10 +584,25 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     if not phrase and (tree is None or tree.get("word") is not None or not tree.get("label")):
         tree = {"label": top_label,
                 "children": [part for _, part in drawn] if tree is None else [tree]}
+    tree = _unbracket(tree)
     covered = sum(1 for found in named if found["role"])
     return {"words": columns, "written": written, "tree": tree, "coverage": round(covered / len(words), 2),
             "unsaid": [role_of[token["id"]] if token["id"] in unsaid_objects else None for token in bases],  # the job on the card too
+            # the picture's finer name (حرف ناسخ, فعل أمر, فعل مجهول) where it says more than the role
+            "finer": [name_of.get(token["id"]) if name_of.get(token["id"]) != role_of[token["id"]] else None for token in bases],
             **({"unwritten": {"mark": columns[written.index(-1)], "note": tarkeeb_rules()["treebank"]["unwritten_note"]}} if understood else {})}
+
+
+def _unbracket(node: dict) -> dict:
+    """A brace with no name and no job says nothing (وَ with its معطوف, the books name
+    neither the pair nor the unit), so its words are drawn under the brace above it."""
+    if node.get("word") is not None or "children" not in node:
+        return node
+    children = []
+    for kid in map(_unbracket, node["children"]):
+        bare = kid.get("word") is None and "children" in kid and not kid.get("label") and not kid.get("role")
+        children.extend(kid["children"] if bare else [kid])
+    return {**node, "children": children}
 
 
 def _move(holder: dict[int, list[dict]], token: dict, to: list[dict]) -> None:

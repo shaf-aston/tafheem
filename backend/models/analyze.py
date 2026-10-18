@@ -48,6 +48,9 @@ class WordAnalysis(BaseModel):
     # do: telling the grid which colour to draw it in. Unset means "not settled",
     # which stays uncoloured rather than being given a plausible colour.
     role_key: str | None = None
+    # The finer name the picture prints for that role (حرف ناسخ مشبه بالفعل, فعل أمر),
+    # so the card and the copied text say what the chart says. Unset when the role says it all.
+    name: str | None = None
     case: str | None = None
     sign: str | None = None
     reason: str | None = None
@@ -75,6 +78,7 @@ class WordAnalysis(BaseModel):
             type=w.get("type") if w.get("type") in WORD_TYPES else None,
             role=w.get("role"),
             role_key=key if key in ROLE_KEYS else None,
+            name=w.get("name"),
             case=w.get("case"),
             sign=w.get("sign"),
             reason=w.get("reason"),

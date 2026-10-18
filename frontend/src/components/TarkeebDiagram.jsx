@@ -114,7 +114,7 @@ function placeDots(view) {
  * `whole` draws every row, for the larger view; otherwise the rows past
  * ROWS_SHOWN wait behind a "more rows" button.
  */
-export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false, onWord }) {
+export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false, onWord, glossOf }) {
   const { words, written, tree, unwritten } = tarkeeb
   const [dots, setDots] = useState([])
   const { strip, ends, measure, page } = useRail(`${words.join(' ')}|${mode}`)
@@ -201,40 +201,46 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
             gridTemplateColumns: `repeat(${shown.words.length}, max-content)`,
           }}
         >
-          {spans.map(({ from, to }) => {
+          {spans.map(({ from, to }, n) => {
             const word = shown.words[from]
             // The tree marks the leaves not written, so no text stands for "not written" here.
             const missing = hidden.has(from)
             // فَـ لْـ يَصُمْهُ: one written word drawn across its pieces' columns, each piece
             // over its own name, the joining written as the tatweel in the text
             const pieces = shown.words.slice(from, to + 1)
+            // a written word opens its answer where it was tapped; `nth` counts only
+            // the words on the page, the order the analysis lists them in
+            const nth = spans.slice(0, n).filter((span) => !hidden.has(span.from)).length
+            const text = pieces.join('').replaceAll('ـ', '')
+            const open = (e) => onWord(text, nth, e.currentTarget)
+            const gloss = !missing && glossOf?.(nth, text)
             return (
               <div
                 className={`tk-word${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
                 key={`word-${from}`}
                 style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone[from]) }}
-                // a written word opens in the dictionary, the same search as typing it there
+                data-gloss={gloss || undefined}
                 {...(onWord && !missing && {
                   role: 'button',
                   tabIndex: 0,
-                  title: 'Look this word up',
-                  onClick: () => onWord(pieces.join('').replaceAll('ـ', '')),
+                  'aria-label': gloss ? `${text}: ${gloss}` : text,
+                  onClick: open,
                   onKeyDown: (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault()
-                      onWord(pieces.join('').replaceAll('ـ', ''))
+                      open(e)
                     }
                   },
                 })}
               >
                 {to > from ? (
-                  pieces.map((text, k) => {
+                  pieces.map((piece, k) => {
                     // each piece underlined in its own name's colour; وَ joins nothing after it,
                     // so it stands apart, فَـ and لْـ end in the tatweel that joins them to the next piece.
-                    const joins = k < pieces.length - 1 && joinsOn(text)
+                    const joins = k < pieces.length - 1 && joinsOn(piece)
                     return (
                       <span key={k} className="tk-cut" style={{ gridColumn: k + 1, '--tone': roleVar(tone[from + k]) }}>
-                        <span className="tk-text">{seatSmallAlef(joins ? joinedOn(text) : text)}</span>
+                        <span className="tk-text">{seatSmallAlef(joins ? joinedOn(piece) : piece)}</span>
                       </span>
                     )
                   })

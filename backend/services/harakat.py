@@ -254,6 +254,13 @@ def _without_ending(marked: list[tuple[str, set]]) -> list[tuple[str, set]]:
     return marked
 
 
+def _opening_vowel(marked: list) -> str:
+    """The marks of the first letter that carries a vowel, past a همزة وصل and the
+    sakin letters after it: اسْتُعْمِلَ opens on the تُ, as فُعِلَ opens on its فُ."""
+    rest = marked[1:] if marked and marked[0][0] == "ا" else marked
+    return next((marks for _, marks in rest if marks - {SHADDA, SUKUN}), "")
+
+
 def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     """فُعِلَ and يُفْعَلُ by their vowels.
 
@@ -265,9 +272,11 @@ def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     كُتِبَتِ sits on a root letter, not the last one, which is why the end is not read.
     """
     marked = letters(word)
-    if len(marked) < 3 or "ُ" not in marked[0][1]:
+    if len(marked) < 3 or "ُ" not in (marked[0][1] if present else _opening_vowel(marked)):
         return False
     if not present:
+        if marked[-1][0] == "ي" and not marked[-1][1] - {SUKUN}:
+            return False  # اُدْرُسِي: the ي of a woman told, which only a command or a present verb ends on
         # or a doubled verb's shadda (حُفَّتْ، رُدَّ), not a ن's: كُنَّا is كان meeting نا
         return any("ِ" in marks or (SHADDA in marks and letter != "ن") for letter, marks in marked[1:-1])
     # an attached pronoun (stuck_on letters) is read past: the fatha of أُكْرِمَكَ is its nasb
@@ -293,7 +302,7 @@ def past_passive_shape(word: str) -> bool:
     A final ت is the verb's only when it is bare or carries the kasra of meeting a
     sakin (قُرِئَتِ), and not the ات of a plural (مُسْلِمَاتُ)."""
     marked = letters(word)
-    if len(marked) < 3 or "ُ" not in marked[0][1] or marked[0][0] == "ا":
+    if len(marked) < 3 or "ُ" not in _opening_vowel(marked):
         return False
     letter, last = marked[-1]
     closes = "َ" in last or SUKUN in last or (

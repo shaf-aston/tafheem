@@ -11,7 +11,7 @@ import Tooltip from './ui/Tooltip'
  * (useTarkeebView) is set from the controls in the header above, which also
  * open the same diagram larger, filling the screen, with every row drawn.
  */
-export default function TarkeebFigure({ tarkeeb, openWhy, view, onWord }) {
+export default function TarkeebFigure({ tarkeeb, openWhy, view, onWord, glossOf }) {
   // A book's own worked example carries no coverage: the book placed every word.
   const { coverage = 1 } = tarkeeb
   const { big, setBig, mode } = view
@@ -26,7 +26,7 @@ export default function TarkeebFigure({ tarkeeb, openWhy, view, onWord }) {
         className="rise-in p-5 rounded-[var(--radius-lg)] bg-[var(--surface)]
           border border-[var(--border)]"
       >
-        <TarkeebDiagram tarkeeb={tarkeeb} mode={mode} onWord={onWord} />
+        <TarkeebDiagram tarkeeb={tarkeeb} mode={mode} onWord={onWord} glossOf={glossOf} />
       </div>
       {coverage < 1 && (
         <p className="text-center type-small text-[var(--text-faint)]">
@@ -43,7 +43,7 @@ export default function TarkeebFigure({ tarkeeb, openWhy, view, onWord }) {
         {big && (
           <div className="tk-max-box">
             <CloseButton className="tk-max-close" onClick={() => setBig(false)} />
-            <TarkeebDiagram tarkeeb={tarkeeb} mode={mode} whole onWord={onWord} />
+            <TarkeebDiagram tarkeeb={tarkeeb} mode={mode} whole onWord={onWord} glossOf={glossOf} />
           </div>
         )}
       </dialog>

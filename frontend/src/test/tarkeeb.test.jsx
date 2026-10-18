@@ -23,11 +23,18 @@ describe('tarkeeb chart', () => {
     expect(screen.queryByRole('button', { name: /more row/ })).toBeNull()
   })
 
-  it('opens a written word in the dictionary when tapped', () => {
+  it('hands a tapped word, its place among the written words and itself to the caller', () => {
     const onWord = vi.fn()
     const { container } = renderScreen(<TarkeebDiagram tarkeeb={TARKEEB} onWord={onWord} />)
-    fireEvent.click(container.querySelectorAll('.tk-word')[2])
-    expect(onWord).toHaveBeenCalledWith('ت')
+    const word = container.querySelectorAll('.tk-word')[2]
+    fireEvent.click(word)
+    expect(onWord).toHaveBeenCalledWith('ت', 2, word)
+  })
+
+  it('shows a word\'s English on it, from the caller, by its place', () => {
+    const { container } = renderScreen(
+      <TarkeebDiagram tarkeeb={TARKEEB} onWord={() => {}} glossOf={(n, text) => `${n}:${text}`} />)
+    expect(container.querySelectorAll('.tk-word')[2].dataset.gloss).toBe('2:ت')
   })
 
   it('draws every row in the larger view', () => {

@@ -537,7 +537,9 @@ def _reading(word: str, readings: list[dict]) -> dict:
     verbs = [r for r in readings
              if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
     if past_passive_shape(word) and verbs:
-        return verbs[0]
+        # the shape is a past verb's: اسْتُعْمِلَ, which CAMeL lacks, is its active اِسْتَعْمَلَ
+        # with the voice read off the vowels, never أَسْتَعْمِلُ
+        return next((r for r in verbs if r.get("asp") == "p"), verbs[0])
     return best_reading(word, real) or readings[0]
 
 

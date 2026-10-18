@@ -9,21 +9,22 @@ import { GoButton } from '../ui/RootActions'
 import SourceBadge from '../ui/SourceBadge'
 import TranslationStrip from '../ui/TranslationStrip'
 
-export default function SentenceMeaning({ data, accent, onGo, onLookup }) {
+// `bare` drops what the analyser already says around it: the kind line and who translated it.
+export default function SentenceMeaning({ data, accent, onGo, onLookup, bare = false }) {
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <p className="text-[var(--text-dim)] type-body capitalize">{data.kind}</p>
+      {!(bare && !data.ref) && <div className="flex items-center justify-between gap-3 flex-wrap">
+        {!bare && <p className="text-[var(--text-dim)] type-body capitalize">{data.kind}</p>}
         {data.ref && onGo && (
           <GoButton onClick={() => onGo('quran', data.ref)} style={{ '--c': accent }}>
             Open ayah {data.ref}
           </GoButton>
         )}
-      </div>
+      </div>}
 
       <div className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-hidden">
         <ArabicText as="p" size="lg" className="p-5 text-[var(--text)]">{data.query}</ArabicText>
-        <TranslationStrip source={data.source}>
+        <TranslationStrip source={bare ? null : data.source}>
           {data.meaning
             ? <p className="type-body text-[var(--text)] leading-relaxed">{data.meaning}</p>
             : <p className="type-body text-[var(--text-dim)]">The translator could not be reached, so only the words below.</p>}
@@ -35,7 +36,7 @@ export default function SentenceMeaning({ data, accent, onGo, onLookup }) {
 
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <h3 className="text-sm text-[var(--text-dim)]">Word by word</h3>
-        <SourceBadge source={data.words_source} />
+        {!bare && <SourceBadge source={data.words_source} />}
       </div>
       <div className="flex flex-wrap justify-center gap-2" dir="rtl">
         {data.words.map((w, i) => (
