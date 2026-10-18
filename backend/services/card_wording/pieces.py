@@ -12,8 +12,8 @@ def pieces(cards: list[dict], roles: list[dict]) -> None:
     for card, found in zip(cards, roles):
         for piece in found.get("attached", []):
             line = said.get((piece.get("reading") or {}).get("family"), {}).get("said")
-            if line:
-                card["said"].front.insert(0, line)  # the last piece written is said first
+            if line and (reason := card.get("said")):
+                reason.front.insert(0, line)  # the last piece written is said first
 
 
 def extra_ba(cards: list[dict], roles: list[dict]) -> None:
@@ -22,7 +22,8 @@ def extra_ba(cards: list[dict], roles: list[dict]) -> None:
     for card, found in zip(cards, roles):
         if not (place := found.get("extra_ba")):
             continue
-        reason = card["said"]
+        if not (reason := card.get("said")):
+            continue
         # the باء's own line takes the lead; the rule the place follows and anything after it stay
         reason.lead, reason.because, reason.front, reason.extras = \
             f"الباء {extra_ba_named()}، {extra_ba_said(place)} ", card.get("name") or card["role"], [], []
