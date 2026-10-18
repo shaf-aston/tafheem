@@ -26,6 +26,8 @@ typed sentence
  → syntax.tree               the bracket picture (tarkeeb)
  → iraab.cards               one card per word: rule_engine (what the word is) + role
  → signs.settle              the sign (ضمة، مبني على السكون ...) from the final case
+ → card_wording              the card's words after the sign: pair names, زائدة باء, كافة ما,
+                             counted khabars, followers (backend/services/card_wording, fixed order)
 ```
 
 ## Data (`backend/data/nahw_rules/`)
@@ -49,6 +51,7 @@ typed sentence
 | Role named for a governor that isn't there | `facts/governor.py` |
 | Condition / answer wrong | `condition.py` |
 | Right role, wrong sign | `signs.py`, `harakat.py` |
+| Right role and sign, wrong wording on the card | `card_wording/` (one pass per feature; naming leaves the key it reads) |
 | A closed list *is* the grammar (built words, sisters) | `closed_words.json` |
 
 Rule of thumb: fix the cause by a grammar rule. Never key a fix to one sentence or one hadith.

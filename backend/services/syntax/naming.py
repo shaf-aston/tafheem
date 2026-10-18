@@ -121,7 +121,18 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     for found_condition in condition.find(bases, named, cases, before):
         _conditioned(found, found_condition, bases)
     _extra_ba(found, bases, tokens, s)
+    _kaffa(found, words)
     return found
+
+
+def _kaffa(found: list[dict], words: list[str]) -> None:
+    """إنما، كأنما: a particle that is an إن sister with ما written onto it (data: closed_words
+    inna `kaffa`) leaves the sister on its entry; card_wording names the pair."""
+    ma = book_map("inna", "kaffa")["ma"]
+    for entry, typed in zip(found, words):
+        bare = strip_diacritics(typed)
+        if entry["role"] == NAMED.harf and bare.endswith(ma) and bare[:-len(ma)] in book_words("inna"):
+            entry["kaffa"] = bare[:-len(ma)]
 
 
 def _extra_ba(found: list[dict], bases: list[dict], tokens: list[dict], s: facts.Sentence) -> None:
