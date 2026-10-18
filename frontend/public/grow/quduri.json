@@ -9107,7 +9107,7 @@
               "options": ["No: it is as he saw it", "Yes: he didn't see it on the day", "Yes, for three days"],
               "answer": 0,
               "source": ["ومن مات وله خيار الرؤية بطل خياره", "ومن رأى شيئا ثم اشتراه بعد مدة: فإن كان على الصفة التي رآه فلا خيار له"],
-              "why": "Seeing it earlier counts if nothing changed. (And if he had died with an option of seeing, it would end.)"
+              "why": "Seeing it earlier counts if nothing changed."
             }
           ]
         },

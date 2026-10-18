@@ -337,7 +337,7 @@
               "id": "will-true",
               "ask": "A man says: \"Allah wills the good, but evil happens apart from His will.\" What does the creed say?",
               "options": [
-                "Nothing whatever occurs unless He wills it",
+                "He is wrong: nothing whatever occurs unless He wills it",
                 "He is right: Allah wills what is good and evil is outside His will",
                 "He is right: a servant's evil deeds are his own creation, apart from Allah"
               ],
@@ -520,7 +520,7 @@
               "id": "name-when",
               "ask": "Someone argues: \"Allah could only be called al-Khaliq (the Creator) once there was a creation.\" What does the creed say?",
               "options": [
-                "The name was His before any creature existed",
+                "He is wrong: the name was His before any creature existed",
                 "He is right: the name came with the first creation",
                 "He is right: names come from those who call on Him"
               ],
@@ -809,7 +809,7 @@
               "id": "when",
               "ask": "A man says: \"Allah learns what we do once we do it.\" What does the creed say?",
               "options": [
-                "Our deeds were known to Him before He made us",
+                "He is wrong: our deeds were known to Him before He made us",
                 "He is right: Allah's knowledge follows our deeds",
                 "He is right about deeds, though Allah knew how many we would be"
               ],
@@ -872,7 +872,7 @@
               "id": "will-true",
               "ask": "Someone says: \"I willed it myself; Allah's will had no part in it.\" What does the creed say?",
               "options": [
-                "A servant wills only as Allah wills for him",
+                "He is wrong: a servant wills only as Allah wills for him",
                 "He is right: a servant's will runs apart from Allah's",
                 "A view that the servant has no will or choice, like a feather in the wind"
               ],
@@ -1080,7 +1080,7 @@
               "id": "all-true",
               "ask": "Someone says: \"The good in my life is from Allah, but the bad came from somewhere else.\" What does the creed say?",
               "options": [
-                "Every bit of the decree is from Him",
+                "He is wrong: every bit of the decree is from Him",
                 "He is right: the bad comes from the servant's own creating",
                 "He is right: the bad comes by chance"
               ],
@@ -1349,7 +1349,7 @@
               "id": "what",
               "ask": "Someone says: \"The Quran is the Prophet's own wording of an idea from Allah.\" What do the creed's first words on the Quran say?",
               "options": [
-                "It is what Allah Himself spoke",
+                "He is wrong: it is what Allah Himself spoke",
                 "He is right: the wording is the Prophet's",
                 "He is right: the wording is Jibril's"
               ],
@@ -1540,7 +1540,7 @@
               "id": "like",
               "ask": "Someone says: \"Allah's hearing is like ours, but stronger.\" What does the creed say?",
               "options": [
-                "He is unlike mankind in His attributes",
+                "He is wrong: He is unlike mankind in His attributes",
                 "He is right, as he made Allah's hearing greater",
                 "He is excused, for that is how we know Him"
               ],
@@ -1635,7 +1635,7 @@
               "id": "who",
               "ask": "Someone says: \"Allah will not be seen, in this world or the next.\" What does the creed answer?",
               "options": [
-                "The dwellers of the Garden will look upon their Lord",
+                "He is wrong: the dwellers of the Garden will look upon their Lord",
                 "He is right: the Vision means knowing Him, not seeing Him",
                 "He is right: the faces will look at His reward, not at Him"
               ],
@@ -1883,7 +1883,7 @@
               "id": "how",
               "ask": "Someone says the Mi'raj was a dream the Prophet ﷺ saw. What does the creed say?",
               "options": [
-                "He was taken up bodily, while awake",
+                "He is wrong: the Prophet ﷺ was taken up bodily, while awake",
                 "He is right: it was a true dream",
                 "He is right: his spirit rose as he slept"
               ],
@@ -2137,7 +2137,7 @@
               "id": "true",
               "ask": "Someone says: \"No one will intercede for sinners on the Last Day.\" What does the creed say?",
               "options": [
-                "The Prophet ﷺ has kept an intercession in store for them",
+                "He is wrong: the Prophet ﷺ has kept an intercession in store for them",
                 "He is right: the sinner of this umma has no intercessor",
                 "He is right: the reports of it are parables, not real"
               ],
@@ -2606,7 +2606,7 @@
               "id": "need",
               "ask": "Someone says: \"Allah needs the Throne to rest upon.\" What does the creed say?",
               "options": [
-                "He is self-sufficient, beyond any need of it",
+                "He is wrong: He is self-sufficient, beyond any need of it",
                 "He is right, for the Throne carries Him",
                 "He is wrong, for the Throne is a parable, not a real thing"
               ],
@@ -2661,7 +2661,7 @@
               "id": "spoke",
               "ask": "Someone says: \"Allah did not truly speak to Musa; the speech was made in the tree.\" What does the creed say?",
               "options": [
-                "Allah spoke to Musa directly",
+                "He is wrong: Allah spoke to Musa directly",
                 "He is right: the speech was created in the tree",
                 "He is right: Musa heard it through an angel"
               ],
@@ -3060,7 +3060,7 @@
               "id": "testify",
               "ask": "A friend says of a pious neighbour who died: \"He is in Paradise, without a doubt.\" What does the creed say?",
               "options": [
-                "We hope it for him, but do not bear witness to it",
+                "He is wrong: we hope it for him, but do not bear witness to it",
                 "He is right: a good-doer is sure of Paradise",
                 "He is right, if the man prayed his five prayers on time"
               ],
@@ -3155,7 +3155,7 @@
               "id": "sound-q",
               "ask": "Someone accepts the Quran but rejects any sound hadith. What does the creed say?",
               "options": [
-                "Authentic reports from the Prophet ﷺ are truth",
+                "He is wrong: authentic reports from the Prophet ﷺ are truth",
                 "He is right: the Quran alone binds us",
                 "He is right about the rulings, but not the explaining"
               ],
@@ -3756,7 +3756,7 @@
                 "ونرى المسح على الخفين في السفر والحضر",
                 "إلى قيام الساعة لا يبطلهما شيء"
               ],
-              "why": "All three are his words; nothing cancels Hajj and jihad, and wiping is for travel and home."
+              "why": "All three are the creed's words; nothing cancels Hajj and jihad, and wiping is for travel and home."
             },
             {
               "kind": "sort",
@@ -3942,7 +3942,7 @@
               "id": "true",
               "ask": "Someone says: \"There is no punishment in the grave; it begins on the Last Day.\" What does the creed say?",
               "options": [
-                "The grave's torment is real for those who earn it",
+                "He is wrong: the grave's torment is real for those who earn it",
                 "He is right: the grave is rest for good and bad",
                 "He is right: the dead feel neither good nor ill until the Rising"
               ],
@@ -4027,7 +4027,7 @@
               "id": "created-q",
               "ask": "Someone says Paradise and the Fire do not exist yet and will one day end. What does the creed say?",
               "options": [
-                "Both already exist and will last for ever",
+                "He is wrong: both already exist and will last for ever",
                 "He is right: they will be made on the Last Day",
                 "He is right that the Fire will one day end"
               ],
@@ -4069,7 +4069,7 @@
               "id": "good-q",
               "ask": "Someone says: \"Allah decrees the good; evil is the servant's own creation.\" What does the creed say?",
               "options": [
-                "Allah has measured out good and bad alike",
+                "He is wrong: Allah has measured out good and bad alike",
                 "He is right: evil comes from the servant",
                 "Both are decreed, so the servant has no part in his deeds"
               ],
@@ -4575,7 +4575,7 @@
               "id": "true",
               "ask": "Someone loves Ali greatly but disowns Abu Bakr and Umar. What does the creed say?",
               "options": [
-                "We love them all, without excess, disowning none",
+                "No: we love them all, without excess, disowning none",
                 "That is fine: love of the Prophet's household is enough",
                 "That is fine: one may choose among them"
               ],
@@ -4802,7 +4802,7 @@
               "id": "true",
               "ask": "Someone says his shaykh, a great wali, is better than a prophet. What does the creed say?",
               "options": [
-                "A single prophet outranks the awliya together",
+                "No: a single prophet outranks the awliya together",
                 "That may be, if his wonders are many",
                 "That may be, as awliya are given knowledge prophets lack"
               ],
@@ -5065,7 +5065,7 @@
               "id": "one-q",
               "ask": "Someone says each prophet brought a different religion from Allah. What does the creed say?",
               "options": [
-                "There is a single religion with Allah: Islam",
+                "He is wrong: there is a single religion with Allah: Islam",
                 "He is right: one for each prophet's people",
                 "He is right: one for the earth, another for heaven"
               ],
@@ -5131,7 +5131,7 @@
               "id": "true",
               "ask": "Someone says splitting into groups is a mercy for the umma. What does the creed say?",
               "options": [
-                "Splitting is a swerving that brings suffering",
+                "He is wrong: splitting is a swerving that brings suffering",
                 "He is right: division is a mercy from Allah for the umma",
                 "The Jama'a is one opinion among many"
               ],
