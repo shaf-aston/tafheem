@@ -228,27 +228,32 @@ export function NarratorError({ error, onRetry }) {
     : <ErrorAlert title="Could not load the narrator" error={error} fallback="Try again." onRetry={onRetry} />
 }
 
-/** Narrators as tappable cards: Arabic name, grade colour, English name. `row` packs them in a wrapping line. */
+/**
+ * Narrators as tappable rows, as sunnah.com lists them: grade dot and Arabic name
+ * on the right, the English name on the left. `row` packs Arabic-only pills in a wrapping line.
+ */
 export function NarratorLinks({ items, onOpen, row = false }) {
   return (
-    <ul className={`list-none m-0 p-0 ${row ? 'flex flex-wrap gap-1.5' : 'grid gap-1.5 sm:grid-cols-2'}`}>
+    <ul className={`list-none m-0 p-0 ${row ? 'flex flex-wrap gap-1.5' : 'divide-y divide-[var(--border)]'}`}>
       {items.map((n) => (
         <li key={n.id} className="min-w-0">
           <button
             type="button"
             onClick={() => onOpen(n.id)}
             title={n.grade_ar || undefined}
-            className="press tap w-full text-left flex items-center gap-2 px-3 py-2 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--text-faint)] transition-colors"
+            className={`press tap w-full flex items-center gap-3 transition-colors ${row
+              ? 'px-3 py-2 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--text-faint)]'
+              : 'py-2 hover:bg-[var(--surface)]'}`}
           >
-            <span
-              aria-hidden="true"
-              className="w-2 h-2 rounded-full shrink-0"
-              style={{ background: n.grade_ar ? `var(--${toneOf(n.grade_rank)})` : 'var(--border)' }}
-            />
-            <span className="min-w-0">
-              <ArabicText size="sm" className="block text-[var(--text)]">{n.name_ar}</ArabicText>
+            {n.name_en && !row && <span className="min-w-0 flex-1 text-left type-small text-[var(--text-dim)] truncate">{n.name_en}</span>}
+            <span className="flex items-center gap-2 shrink-0 ms-auto">
+              <ArabicText size="sm" className="text-[var(--text)]">{n.name_ar}</ArabicText>
               {n.grade_ar && <span className="sr-only">{n.grade_ar}</span>}
-              {n.name_en && !row && <span className="block type-small text-[var(--text-faint)] truncate">{n.name_en}</span>}
+              <span
+                aria-hidden="true"
+                className="w-2 h-2 rounded-full shrink-0"
+                style={{ background: n.grade_ar ? `var(--${toneOf(n.grade_rank)})` : 'var(--border)' }}
+              />
             </span>
           </button>
         </li>
