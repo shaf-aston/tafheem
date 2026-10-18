@@ -22,6 +22,11 @@ _NUMBER = re.compile("[0-9]+")
 MAX_NUMBER = 1_000_000
 
 
+
+def fold_en(text: str) -> str:
+    """English folded for search: the ayn sunnah.com writes (` or ʿ) dropped, so aisha finds ʿAisha."""
+    return re.sub("[`ʿʾ']", "", text).lower()
+
 def tokens(query: str) -> list[tuple[str, str]]:
     """(typed, folded) for each word or number in the query, in order, repeats once."""
     seen: dict[str, str] = {}

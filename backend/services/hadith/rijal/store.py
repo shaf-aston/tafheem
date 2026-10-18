@@ -104,6 +104,8 @@ def narrator(narrator_id: int) -> dict | None:
         return None
     return {
         **dict(row),
+        # False for a teacher or student known only from another narrator's lists; a build before the flag held pages only as rows with facts.
+        "fetched": bool(row["fetched"]) if "fetched" in row.keys() else row["hadith_total"] is not None or row["facts"] != "[]",
         "books": json.loads(row["books"]),
         "facts": json.loads(row["facts"]),
         # A build from before the blocks were kept holds [book, body] alone.
@@ -151,7 +153,7 @@ def hadith_of(narrator_id: int, limit: int, words: int) -> list[dict]:
 
 def search(query: str, limit: int) -> list[dict]:
     """Narrators whose name, kunya or full name starts with every word typed; the most narrated first."""
-    terms = re.findall(r"\w+", words.fold(query))
+    terms = re.findall(r"\w+", words.fold_en(words.fold(query)))
     db = _db()
     if not terms or not db:
         return []

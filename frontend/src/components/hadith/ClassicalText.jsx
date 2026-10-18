@@ -20,7 +20,7 @@ function Run({ run, accent }) {
       </span>
     )
   }
-  if (run.role === 'scholar') return <span className="font-medium" style={{ color: accent }}>{run.t} </span>
+  if (run.role === 'scholar') return <span className="font-medium" style={{ color: accent }}>{run.t}</span>
   if (run.role === 'verdict') return <span className="text-[var(--text)]">{run.t}</span>
   return run.t
 }
@@ -36,6 +36,8 @@ export default function ClassicalText({ text, accent }) {
   if (!text.blocks?.length) {
     return <ArabicText as="p" size="sm" className="block m-0 whitespace-pre-line text-[var(--text-dim)]">{text.body}</ArabicText>
   }
+  // The key to the book letters, each as the page names it; a letter the page gives no name is left out, never guessed.
+  const key = new Map(text.blocks.flatMap((b) => b.runs).filter((r) => r.role === 'mark' && r.title).map((r) => [r.t, r.title]))
   return (
     <div dir="rtl" className="space-y-1.5">
       {text.blocks.map((b, i) => (
@@ -43,6 +45,13 @@ export default function ClassicalText({ text, accent }) {
           {b.runs.map((r, j) => <Run key={j} run={r} accent={accent} />)}
         </ArabicText>
       ))}
+      {key.size > 0 && (
+        <p dir="ltr" className="m-0 pt-3 type-small text-[var(--text-faint)] flex flex-wrap gap-x-4 gap-y-1">
+          {[...key].map(([mark, book]) => (
+            <span key={mark}><Run run={{ t: mark, role: 'mark' }} /> {book}</span>
+          ))}
+        </p>
+      )}
     </div>
   )
 }

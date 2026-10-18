@@ -32,7 +32,7 @@ CREATE TABLE narrator (
     grade_rank INTEGER, generation_ar TEXT NOT NULL DEFAULT '', years TEXT NOT NULL DEFAULT '',
     lineage_ar TEXT NOT NULL DEFAULT '', nisba_ar TEXT NOT NULL DEFAULT '', city_ar TEXT NOT NULL DEFAULT '',
     profession_ar TEXT NOT NULL DEFAULT '', school_ar TEXT NOT NULL DEFAULT '',
-    hadith_total INTEGER, books TEXT NOT NULL DEFAULT '[]', facts TEXT NOT NULL DEFAULT '[]', texts TEXT NOT NULL DEFAULT '[]'
+    hadith_total INTEGER, fetched INTEGER NOT NULL DEFAULT 0, books TEXT NOT NULL DEFAULT '[]', facts TEXT NOT NULL DEFAULT '[]', texts TEXT NOT NULL DEFAULT '[]'
 );
 CREATE TABLE verdict (narrator_id INTEGER NOT NULL, ord INTEGER NOT NULL, scholar TEXT NOT NULL, quote TEXT NOT NULL);
 CREATE INDEX verdict_by_narrator ON verdict (narrator_id, ord);
@@ -55,14 +55,14 @@ def add_narrators(conn: sqlite3.Connection) -> int:
     """A row per cached narrator page, then a bare row (names only) for each teacher or student never fetched."""
     heard: dict[int, tuple[str, str]] = {}
     count = 0
-    columns = ", ".join(("id", *_JSON, *_PLAIN))
+    columns = ", ".join(("id", "fetched", *_JSON, *_PLAIN))
     for who, page in cache.narrator_pages():
         html = cache.read(page)
         if not html:
             continue
         found = parse.narrator(html)
-        conn.execute(f"INSERT INTO narrator ({columns}) VALUES ({', '.join('?' * (1 + len(_JSON) + len(_PLAIN)))})",
-                     (who, *(json.dumps(found[f], ensure_ascii=False) for f in _JSON), *(found[f] for f in _PLAIN)))
+        conn.execute(f"INSERT INTO narrator ({columns}) VALUES ({', '.join('?' * (2 + len(_JSON) + len(_PLAIN)))})",
+                     (who, 1, *(json.dumps(found[f], ensure_ascii=False) for f in _JSON), *(found[f] for f in _PLAIN)))
         conn.executemany("INSERT INTO verdict VALUES (?, ?, ?, ?)",
                          [(who, i, *v) for i, v in enumerate(found["verdicts"])])
         for other, name_ar, name_en in found["teachers"]:
@@ -76,7 +76,7 @@ def add_narrators(conn: sqlite3.Connection) -> int:
                      [(who, *names) for who, names in heard.items()])
     conn.executemany(
         "INSERT INTO narrator_fts (rowid, name_ar, name_en, kunya_ar, lineage_ar) VALUES (?, ?, ?, ?, ?)",
-        [(i, words.fold(ar), en, words.fold(kunya), words.fold(lineage)) for i, ar, en, kunya, lineage in
+        [(i, words.fold(ar), words.fold_en(en), words.fold(kunya), words.fold(lineage)) for i, ar, en, kunya, lineage in
          conn.execute("SELECT id, name_ar, name_en, kunya_ar, lineage_ar FROM narrator").fetchall()])
     return count
 

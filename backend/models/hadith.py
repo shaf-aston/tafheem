@@ -158,7 +158,8 @@ class UsulFacts(BaseModel):
 
 
 class Narrator(NarratorSummary):
-    """One narrator's sheet. Teachers and students keep their names even where we hold no page of theirs."""
+    """One narrator's sheet. Teachers and students keep their names even where we hold no page of theirs (`fetched` False)."""
+    fetched: bool = True
     kunya_ar: str = ""
     grade_en: str = ""
     generation_ar: str = ""
