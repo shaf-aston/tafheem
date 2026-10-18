@@ -98,7 +98,14 @@ describe.each(BOOKS)('the $book.book lessons', (source) => {
   it('gives every section of the book to exactly one part, and every part to at most one area', () => {
     const passed = [...(book.continues ?? []), ...(book.skip ?? [])]
     const sections = lines.filter(isHeading).map(headingOf).filter((name) => !passed.includes(name))
-    expect([...book.parts.flatMap(kitabsOf)].sort()).toEqual([...sections].sort())
+    // A creed's parts go by `statements` (their `kitab` is only a label): together they run 0 to the last, in turn.
+    const byStatement = book.parts.filter((part) => part.statements)
+    expect([...book.parts.filter((part) => !part.statements).flatMap(kitabsOf)].sort()).toEqual([...sections].sort())
+    if (byStatement.length) {
+      const last = Math.max(...lines.map((line) => line.match(/^# (\d+) /)).filter(Boolean).map((head) => Number(head[1])))
+      expect(byStatement.map((part) => part.statements)).toEqual(byStatement.map((part, i) =>
+        [i ? byStatement[i - 1].statements[1] + 1 : 0, i === byStatement.length - 1 ? last : part.statements[1]]))
+    }
     if (book.areas) {
       const placed = book.areas.flatMap((area) => area.parts)
       expect([...placed].sort()).toEqual(book.parts.map((part) => part.id).sort())

@@ -27,6 +27,17 @@
       "backdrop": "courtyard"
     },
     {
+      "id": "aqidah",
+      "name": "Aqidah",
+      "arabic": "عقيدة",
+      "scene": "al-Aqida al-Tahawiyya",
+      "idea": "What a Muslim believes, statement by statement, as al-Tahawi set it down.",
+      "live": true,
+      "kind": "book",
+      "source": "/grow/tahawiyya.json",
+      "module": "tahawiyya"
+    },
+    {
       "id": "quran",
       "name": "Quran",
       "arabic": "قرآن",

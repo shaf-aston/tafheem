@@ -50,7 +50,12 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
   const [view, setView] = useState(() => placeAt(incoming))
   if (useArrival(arrival).arrived) setView(placeAt(incoming))
   // A book world fetches the part files the view needs (its open part, the lesson's, a review's).
-  const books = { fiqh: useBookWorld(worldOf('fiqh'), view), nahw: useBookWorld(worldOf('nahw'), view), sarf: useBookWorld(worldOf('sarf'), view) }
+  const books = {
+    fiqh: useBookWorld(worldOf('fiqh'), view),
+    nahw: useBookWorld(worldOf('nahw'), view),
+    sarf: useBookWorld(worldOf('sarf'), view),
+    aqidah: useBookWorld(worldOf('aqidah'), view),
+  }
   const sourceOf = (id) => books[id] ?? lessons[id]
   // A lesson's cards: a book world's by the lesson's id, once its part is in; any other world's next lesson.
   const deal = (at) => (books[at.id] ? books[at.id].makeLesson(at.lesson) : lessons[at.id].makeLesson())
