@@ -830,7 +830,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about wells and leftover water?",
               "options": [
                 { "text": "Water left by a cat is makruh", "right": true },
                 { "text": "Buckets are counted by the middle-sized well bucket", "right": true },
@@ -960,7 +960,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about tayammum?",
               "options": [
                 { "text": "One tayammum can serve many fard and nafl prayers", "right": true },
                 { "text": "The intention is fard in tayammum", "right": true },
@@ -1152,7 +1152,7 @@
             {
               "kind": "pick",
               "id": "rules-pick",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about a woman during hayd?",
               "options": [
                 { "text": "She makes up the fasts she missed", "right": true },
                 { "text": "She does not enter the masjid", "right": true },
@@ -1405,7 +1405,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about impurities and cleaning them?",
               "options": [
                 { "text": "Dried mani can be scraped off a garment", "right": true },
                 { "text": "Washing with water is better than stones for istinja", "right": true },
@@ -1664,7 +1664,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the adhan and iqama?",
               "options": [
                 { "text": "An adhan without wudu still counts", "right": true },
                 { "text": "The iqama is said slowly" },
@@ -2819,7 +2819,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the sick person's prayer and sujud al-tilawa?",
               "options": [
                 { "text": "Sujud al-tilawa has no tashahhud and no salam", "right": true },
                 { "text": "A sick person may signal with his eyes" },
@@ -3286,7 +3286,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the eclipse, tarawih and fear prayers?",
               "options": [
                 { "text": "Fighting during the fear prayer spoils it", "right": true },
                 { "text": "In very great fear they pray riding, alone, nodding", "right": true },
@@ -3409,7 +3409,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the janaza?",
               "options": [
                 { "text": "Carry the bier quickly, but not at a run", "right": true },
                 { "text": "If the wali has prayed, nobody prays after him", "right": true },
@@ -3521,7 +3521,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the shahid and prayer in the Ka'ba?",
               "options": [
                 { "text": "A fard prayer inside the Ka'ba counts", "right": true },
                 { "text": "Praying on the roof of the Ka'ba counts", "right": true },
@@ -3676,7 +3676,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about paying zakat?",
               "options": [
                 { "text": "Zakat needs an intention", "right": true },
                 { "text": "Giving away all your wealth, without intending zakat, drops the zakat", "right": true },
@@ -3897,7 +3897,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about zakat on camels over 120?",
               "options": [
                 { "text": "125 camels pay two hiqqas and a sheep", "right": true },
                 { "text": "150 camels pay three hiqqas", "right": true },
@@ -3997,7 +3997,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about zakat on cattle?",
               "options": [
                 { "text": "Fewer than 30 cattle pay nothing", "right": true },
                 { "text": "40 cattle pay a musinna or musinn", "right": true },
@@ -4202,7 +4202,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about zakat on horses and mules?",
               "options": [
                 { "text": "The owner of mixed grazing horses chooses how to pay", "right": true },
                 { "text": "Mules for trade owe zakat", "right": true },
@@ -4323,7 +4323,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about zakat on herds?",
               "options": [
                 { "text": "The collector takes the middle, not the best or worst", "right": true },
                 { "text": "Zakat may be paid with the value", "right": true },
@@ -4761,7 +4761,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the receivers of zakat?",
               "options": [
                 { "text": "A faqir has a little; a miskin has nothing", "right": true },
                 { "text": "The share of al-mu'allafa qulubuhum has dropped", "right": true },
@@ -5015,7 +5015,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about sadaqat al-fitr?",
               "options": [
                 { "text": "Fitra may be paid before Eid day", "right": true },
                 { "text": "If delayed past Eid it must still be paid", "right": true },
@@ -5137,7 +5137,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about fasts and the new moon?",
               "options": [
                 { "text": "A make-up fast needs an intention from the night", "right": true },
                 { "text": "A woman's word can count for the Ramadan moon on a cloudy day", "right": true },
@@ -5256,7 +5256,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about what breaks the fast?",
               "options": [
                 { "text": "Chewing gum does not break the fast, but is makruh", "right": true },
                 { "text": "A kiss that leads to a discharge means a make-up day", "right": true },
@@ -5347,7 +5347,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about breaking the fast and making it up?",
               "options": [
                 { "text": "An enema breaks the fast", "right": true },
                 { "text": "Medicine on a deep head wound that reaches the brain breaks the fast", "right": true },
@@ -5541,7 +5541,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about special cases of fasting and making up?",
               "options": [
                 { "text": "A spoiled voluntary prayer must be made up", "right": true },
                 { "text": "A madman who recovers mid-Ramadan makes up the days that passed", "right": true },
@@ -5748,7 +5748,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about i'tikaf?",
               "options": [
                 { "text": "I'tikaf needs fasting", "right": true },
                 { "text": "Silence is makruh in i'tikaf", "right": true },
@@ -5979,7 +5979,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the miqats?",
               "options": [
                 { "text": "Al-Juhfa is the miqat of Syria", "right": true },
                 { "text": "Qarn al-Manazil is the miqat of Najd", "right": true },
@@ -6065,7 +6065,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about entering ihram?",
               "options": [
                 { "text": "Ghusl is better than wudu before ihram", "right": true },
                 { "text": "The two cloths may be new or washed", "right": true },
@@ -6316,7 +6316,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the arrival tawaf?",
               "options": [
                 { "text": "He walks round outside the Hatim", "right": true },
                 { "text": "He ends the tawaf by touching the Stone", "right": true },
@@ -6411,7 +6411,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the sa'y?",
               "options": [
                 { "text": "Sa'y has seven rounds", "right": true },
                 { "text": "He faces the House on Safa", "right": true },
@@ -6509,7 +6509,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about Mina and Arafat?",
               "options": [
                 { "text": "The imam gives two sermons on the Day of Arafa", "right": true },
                 { "text": "The joined prayers are in Zuhr's time", "right": true },
@@ -6616,7 +6616,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about Muzdalifa?",
               "options": [
                 { "text": "They leave Arafat calmly", "right": true },
                 { "text": "Fajr at Muzdalifa is prayed while still dark", "right": true },
@@ -6723,7 +6723,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the Day of Sacrifice?",
               "options": [
                 { "text": "Shaving is better than cutting short", "right": true },
                 { "text": "Tawaf al-ziyara is the fard tawaf of Hajj", "right": true },
@@ -6828,7 +6828,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the days in Mina?",
               "options": [
                 { "text": "On the second day he throws after zawal", "right": true },
                 { "text": "He may leave Mina before the fourth day", "right": true },
@@ -6930,7 +6930,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about catching Arafa and the woman's Hajj?",
               "options": [
                 { "text": "A woman in ihram uncovers her face", "right": true },
                 { "text": "Standing at Arafa in the night before the Day of Sacrifice catches the Hajj", "right": true },
@@ -7057,7 +7057,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about qiran?",
               "options": [
                 { "text": "Qiran is the best way, for the Hanafis", "right": true },
                 { "text": "The qarin's umrah tawaf has ramal", "right": true },
@@ -7171,7 +7171,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about tamattu'?",
               "options": [
                 { "text": "The mutamatti' enters ihram for Hajj from the Masjid", "right": true },
                 { "text": "He owes the dam of tamattu'", "right": true },
@@ -7401,7 +7401,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the muhrim's wrongs?",
               "options": [
                 { "text": "Shaving less than a quarter of the head: a sadaqa", "right": true },
                 { "text": "Cutting the nails of one foot: a dam", "right": true },
@@ -7499,7 +7499,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about intimacy in ihram?",
               "options": [
                 { "text": "Forgetting is the same as doing it on purpose", "right": true },
                 { "text": "The make-up Hajj does not need the couple kept apart", "right": true },
@@ -7599,7 +7599,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about a tawaf without purity or cut short?",
               "options": [
                 { "text": "Leaving two circuits of al-ziyara: a sheep", "right": true },
                 { "text": "Leaving three circuits of al-sadr: a sadaqa", "right": true },
@@ -7699,7 +7699,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about leaving out a rite of Hajj?",
               "options": [
                 { "text": "Missing sa'y does not void the Hajj", "right": true },
                 { "text": "Leaving out Muzdalifa needs a dam", "right": true },
@@ -7786,7 +7786,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about killing game in ihram?",
               "options": [
                 { "text": "Showing game to a hunter who kills it means a jaza", "right": true },
                 { "text": "Two fair men value the animal", "right": true },
@@ -7909,7 +7909,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about wounding game in ihram?",
               "options": [
                 { "text": "Wounding game: pay the value it lost", "right": true },
                 { "text": "Killing a snake: no jaza", "right": true },
@@ -8001,7 +8001,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about game and the muhrim?",
               "options": [
                 { "text": "Game slaughtered by a muhrim is carrion", "right": true },
                 { "text": "A halal person who kills Haram game owes the jaza", "right": true },
@@ -8096,7 +8096,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the qarin's double and game in ihram?",
               "options": [
                 { "text": "The qarin owes double where the mufrid owes a dam", "right": true },
                 { "text": "Two muhrims who share a kill each owe a full jaza", "right": true },
@@ -8213,7 +8213,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about ihsar?",
               "options": [
                 { "text": "Illness can make someone a muhsar", "right": true },
                 { "text": "The dam of ihsar is slaughtered only in the Haram", "right": true },
@@ -8307,7 +8307,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about missing the Hajj and the umrah?",
               "options": [
                 { "text": "Umrah is sunnah", "right": true },
                 { "text": "Whoever misses the Hajj owes no dam", "right": true },
@@ -8419,7 +8419,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about the hady animals?",
               "options": [
                 { "text": "The least hady is a sheep or goat", "right": true },
                 { "text": "A young jadha' sheep is valid", "right": true },
@@ -8540,7 +8540,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about slaughtering the hady?",
               "options": [
                 { "text": "Every hady is slaughtered in the Haram", "right": true },
                 { "text": "Taking the hady to Arafat is not required", "right": true },
@@ -8670,7 +8670,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of making a sale?",
               "options": [
                 { "text": "A sale is made by offer and acceptance", "right": true },
                 { "text": "The other side may accept while still in the sitting", "right": true },
@@ -10016,9 +10016,9 @@
             {
               "kind": "teach",
               "id": "seven",
-              "title": "The conditions to name",
+              "title": "The seven conditions",
               "ar": "ولا يصح السلم عند أبي حنيفة إلا بسبع شرائط تذكر العقد: جنس معلوم ونوع معلوم وصفة معلومة وأجل معلوم ومعرفة مقدار رأس المال إذا كان مما يتعلق العقد على قدره كالمكيل والموزون والمعدود وتسمية المكان الذي يوافيه فيه إذا كان له حمل ومؤنة",
-              "en": "For Abu Hanifa, salam needs conditions named in the deal: a known kind (wheat), a known type (which wheat), a known quality, a known date, the amount of the capital (the money paid) when it is measured, weighed or counted, and the place of delivery when the goods are heavy to carry."
+              "en": "For Abu Hanifa, salam needs seven conditions named in the deal. This copy lists six: a known kind, type and quality, a known date, the capital's amount when measured, weighed or counted, and the delivery place for heavy goods. The seventh, missing here but required by the school, is a known amount of the goods."
             },
             {
               "kind": "choose",
@@ -10027,7 +10027,7 @@
               "options": ["3", "5", "7"],
               "answer": 2,
               "source": "ولا يصح السلم عند أبي حنيفة إلا بسبع شرائط",
-              "why": "Al-Quduri says salam is valid for Abu Hanifa only with seven conditions named in the contract."
+              "why": "Al-Quduri says seven conditions. This copy lists six; the seventh, a known amount of the goods ordered, is missing from it but required in the Hanafi school."
             },
             {
               "kind": "pick",
@@ -10547,7 +10547,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of making a pledge?",
               "options": [
                 { "text": "A pledge is completed when the lender takes hold of it", "right": true },
                 { "text": "Before handing it over, the owner may go back on it", "right": true },
@@ -10655,7 +10655,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of holding a pledge?",
               "options": [
                 { "text": "A pledge left with a trusted person is lost on the lender's account", "right": true },
                 { "text": "Either side may take the pledge back from the trusted person" },
@@ -10768,7 +10768,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of dealing with a pledge?",
               "options": [
                 { "text": "A sale of the pledge without the lender's permission is on hold", "right": true },
                 { "text": "If the pledge's young dies, it is lost for nothing", "right": true },
@@ -11021,7 +11021,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of restriction?",
               "options": [
                 { "text": "Childhood, slavery and insanity are the three causes of restriction", "right": true },
                 { "text": "An insane person may deal with his guardian's permission" },
@@ -11199,7 +11199,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of coming of age?",
               "options": [
                 { "text": "A wet dream is a sign for both boys and girls", "right": true },
                 { "text": "A girl with no sign comes of age at 17", "right": true },
@@ -11391,7 +11391,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of a restricted debtor?",
               "options": [
                 { "text": "A debtor imprisoned two or three months with no wealth found is released", "right": true },
                 { "text": "After release, the creditors may stop him travelling" },
@@ -11629,7 +11629,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of exceptions in an admission?",
               "options": [
                 { "text": "An exception must be joined to the admission", "right": true },
                 { "text": "Taking out everything cancels the whole admission" },
@@ -11723,7 +11723,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of admitting things inside things?",
               "options": [
                 { "text": "Admitting dates in a basket means owing the basket too", "right": true },
                 { "text": "Admitting an animal in a stable means owing the stable too" },
@@ -11827,7 +11827,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of admitting sums?",
               "options": [
                 { "text": "\"From one to ten\" is nine, according to Abu Hanifa", "right": true },
                 { "text": "\"1000 for wine\" means he owes nothing" },
@@ -12166,7 +12166,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of a hire contract?",
               "options": [
                 { "text": "Hire is a contract on benefits, for a payment", "right": true },
                 { "text": "The wage may be left unknown if both agree" },
@@ -12370,7 +12370,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of hiring animals and houses?",
               "options": [
                 { "text": "Letting an unnamed rider ride makes him liable if it dies", "right": true },
                 { "text": "A house rented for one person may be lived in by another", "right": true },
@@ -12571,7 +12571,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of conditions in a hire?",
               "options": [
                 { "text": "Improper conditions spoil a hire as they spoil a sale", "right": true },
                 { "text": "Someone hired to serve at home may be taken travelling without a condition" },
@@ -12782,7 +12782,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of hire with two prices or month by month?",
               "options": [
                 { "text": "\"Persian style one dirham, Roman style two\" is valid", "right": true },
                 { "text": "\"A dirham each month\" is valid for every month" },
@@ -12873,7 +12873,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of what may be hired?",
               "options": [
                 { "text": "A cupper may take a fee", "right": true },
                 { "text": "A man may be hired to call the adhan" },
@@ -13199,7 +13199,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of who has pre-emption?",
               "options": [
                 { "text": "The co-owner comes before the neighbour", "right": true },
                 { "text": "The right is made firm by calling witnesses", "right": true },
@@ -13437,7 +13437,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the price in pre-emption?",
               "options": [
                 { "text": "A gift with nothing in return brings no pre-emption", "right": true },
                 { "text": "A raise in the price after the sale binds the shafi'" },
@@ -13551,7 +13551,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of cases of pre-emption?",
               "options": [
                 { "text": "Land sold with dates on its palms is taken with the dates", "right": true },
                 { "text": "The shafi' who never saw the house may return it after seeing it", "right": true },
@@ -13688,7 +13688,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the kinds of partnership?",
               "options": [
                 { "text": "A full partner's purchases belong to the partnership, except his family's food and clothes", "right": true },
                 { "text": "Fulus in use can be partnership capital", "right": true },
@@ -13914,7 +13914,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of partnerships in work?",
               "options": [
                 { "text": "A job one craftsman takes on binds his partner too", "right": true },
                 { "text": "In an invalid partnership, profit follows the money put in", "right": true },
@@ -14056,7 +14056,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the terms of a mudaraba?",
               "options": [
                 { "text": "One side gives the money and the other the work", "right": true },
                 { "text": "The owner may set a time limit for the mudaraba", "right": true },
@@ -14169,7 +14169,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of running and ending a mudaraba?",
               "options": [
                 { "text": "The worker may sell for cash or on credit", "right": true },
                 { "text": "A mudaraba ends when the worker dies", "right": true },
@@ -14272,7 +14272,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of appointing an agent?",
               "options": [
                 { "text": "You may appoint an agent for any contract you may make yourself", "right": true },
                 { "text": "An agent must understand the contract", "right": true },
@@ -14386,7 +14386,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of an agent's duties after the deal?",
               "options": [
                 { "text": "In a sale, the agent hands over the goods and takes the price", "right": true },
                 { "text": "The bride's agent must hand her over" },
@@ -14498,7 +14498,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of two agents and sub-agents?",
               "options": [
                 { "text": "An agent told \"do as you see fit\" may appoint another agent", "right": true },
                 { "text": "Two agents to sell a house may each sell alone" },
@@ -14615,7 +14615,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of agents buying and selling?",
               "options": [
                 { "text": "A selling agent's guarantee of the buyer's price is void", "right": true },
                 { "text": "A buying agent may pay a little over value that people overlook", "right": true },
@@ -14716,7 +14716,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of agents in court and for debts?",
               "options": [
                 { "text": "An agent to collect a debt may argue about it, for Abu Hanifa", "right": true },
                 { "text": "The agent's admission before the judge counts", "right": true },
@@ -14858,7 +14858,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of surety for a person?",
               "options": [
                 { "text": "The surety for a person promises to bring him", "right": true },
                 { "text": "Handing him over in the desert frees the surety" },
@@ -14972,7 +14972,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of surety for money?",
               "options": [
                 { "text": "Surety for an unknown amount is allowed", "right": true },
                 { "text": "Surety may hang on a condition", "right": true },
@@ -15086,7 +15086,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the limits of surety?",
               "options": [
                 { "text": "Surety for a buyer's price is valid", "right": true },
                 { "text": "Release from surety can be tied to a condition" },
@@ -15204,7 +15204,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of hawala?",
               "options": [
                 { "text": "Hawala is allowed for debts", "right": true },
                 { "text": "The creditor need not agree to a hawala" },
@@ -15475,7 +15475,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of settling claims and debts?",
               "options": [
                 { "text": "A woman may pay a man to drop his claim that she is his wife", "right": true },
                 { "text": "Settling 1000 for 1000 paid later is allowed", "right": true },
@@ -16015,7 +16015,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of 'umra and charity?",
               "options": [
                 { "text": "An 'umra goes to the receiver's heirs after him", "right": true },
                 { "text": "Charity can be given to two poor people together", "right": true },
@@ -21171,8 +21171,8 @@
               "kind": "teach",
               "id": "how",
               "title": "How it is done",
-              "ar": "والرجعة أن يقول: راجعتك أو راجعت امرأتي أو يطأها أو يقبلها",
-              "en": "Raj'a is done by words, like \"I have taken you back\" or \"I have taken back my wife\", or by acts of married closeness, such as intimacy or a kiss."
+              "ar": "والرجعة أن يقول: راجعتك أو راجعت امرأتي أو يطأها أو يقبلها أو يلمسها شهوة أو ينظر إلى فرجها بشهوة",
+              "en": "Raj'a is done by words, like \"I have taken you back\" or \"I have taken back my wife\", or by an act: intimacy with her, or kissing her, touching her or looking at her private parts with desire. Without desire, a kiss or a touch is not a raj'a."
             },
             {
               "kind": "choose",
@@ -21205,13 +21205,23 @@
               "ask": "After one revocable talaq, which of these take her back during the 'idda?",
               "options": [
                 { "text": "Saying \"I have taken you back\"", "right": true },
-                { "text": "Saying \"I have taken back my wife\"", "right": true },
-                { "text": "Kissing her", "right": true },
+                {
+                  "text": "Kissing her with desire",
+                  "right": true
+                },
                 { "text": "Saying \"I have taken you back\" with no witnesses", "right": true },
+                {
+                  "text": "A kiss without desire"
+                },
                 { "text": "Saying \"I have taken you back\" after her 'idda has ended" }
               ],
-              "source": ["والرجعة أن يقول: راجعتك أو راجعت امرأتي", "أو يقبلها", "فإن لم يشهد صحت الرجعة", "فله أن يراجعها في عدتها"],
-              "why": "Words or a kiss during the 'idda take her back, even without witnesses. After the 'idda, raj'a is no longer possible."
+              "source": [
+                "والرجعة أن يقول: راجعتك أو راجعت امرأتي",
+                "أو يطأها أو يقبلها أو يلمسها شهوة أو ينظر إلى فرجها بشهوة",
+                "فإن لم يشهد صحت الرجعة",
+                "فله أن يراجعها في عدتها"
+              ],
+              "why": "Words, or a kiss with desire, during the 'idda take her back, even without witnesses. A kiss without desire does not, and after the 'idda raj'a is no longer possible."
             },
             {
               "kind": "teach",
@@ -22947,7 +22957,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about pregnancy, proving a birth and the 'idda?",
               "options": [
                 { "text": "The longest pregnancy is two years", "right": true },
                 { "text": "A dhimmi woman divorced by a dhimmi has no 'idda", "right": true },
@@ -23535,7 +23545,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are right?",
+              "ask": "Which are right about maintenance from an absent son's money?",
               "options": [
                 { "text": "The judge may order parents' maintenance from an absent son's money", "right": true },
                 { "text": "A stranger who spends it without the judge's permission must repay it", "right": true },
@@ -23672,6 +23682,7 @@
           "id": "itq-shared",
           "title": "Relatives, part-freeing and shared slaves",
           "arabic": "وإذا كان العبد بين شريكين",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -23771,6 +23782,7 @@
           "id": "itq-pay",
           "title": "Conditions, payment and children",
           "arabic": "وإذا أعتق عبده على مال",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -23972,6 +23984,7 @@
           "id": "itq-umm-walad",
           "title": "Istilad: the mother of the master's child",
           "arabic": "باب الاستيلاد",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -24220,6 +24233,7 @@
           "id": "mukatab-fail",
           "title": "Failing to pay, dying, and faulty contracts",
           "arabic": "وإذا عجز المكاتب عن نجم",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -24320,6 +24334,7 @@
           "id": "mukatab-master",
           "title": "When the master frees, dies or changes the contract",
           "arabic": "وإذا أعتق المولى مكاتبه",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -24542,6 +24557,7 @@
           "id": "wala-inherit",
           "title": "Inheriting by wala', and wala' by pact",
           "arabic": "وولاء العتاقة تعصيب",
+          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -26407,7 +26423,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the punishment for zina?",
               "options": [
                 { "text": "A free person who is not muhsan gets 100 lashes", "right": true },
                 { "text": "The blows avoid the head, face and private parts", "right": true },
@@ -26532,7 +26548,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of ihsan and the witnesses to zina?",
               "options": [
                 { "text": "If only three witnesses come, they themselves get the hadd", "right": true },
                 { "text": "Late testimony is still accepted for qadhf", "right": true },
@@ -26997,7 +27013,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of ta'zir and the hadd?",
               "options": [
                 { "text": "Ta'zir is at least three lashes", "right": true },
                 { "text": "If someone dies from a hadd, no diya is owed", "right": true },
@@ -27604,7 +27620,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of theft from inside the hirz?",
               "options": [
                 { "text": "A guest who steals from his host is not cut", "right": true },
                 { "text": "Reaching through a hole in the wall brings no cutting", "right": true },
@@ -27711,7 +27727,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of cutting for theft?",
               "options": [
                 { "text": "The hand is cut at the wrist", "right": true },
                 { "text": "A third theft brings prison, not cutting", "right": true },
@@ -27826,7 +27842,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of highway robbery?",
               "options": [
                 { "text": "Robbers caught before doing anything are imprisoned until they repent", "right": true },
                 { "text": "Taking money brings cutting the right hand and left foot", "right": true },
@@ -28039,7 +28055,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of hunting with arrows?",
               "options": [
                 { "text": "Game that falls straight to the ground is eaten", "right": true },
                 { "text": "Game that falls into water and dies is not eaten", "right": true },
@@ -28595,7 +28611,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the udhiya?",
               "options": [
                 { "text": "He may eat from his own udhiya", "right": true },
                 { "text": "He may make a household item from the skin", "right": true },
@@ -28742,7 +28758,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the kinds of oath?",
               "options": [
                 { "text": "A ghamus oath has no kaffara, only asking forgiveness", "right": true },
                 { "text": "Breaking a binding oath means paying the kaffara", "right": true },
@@ -28972,7 +28988,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the kaffara for an oath?",
               "options": [
                 { "text": "The kaffara can be clothing ten poor people", "right": true },
                 { "text": "Fasting is only for someone who cannot do the other three", "right": true },
@@ -33335,7 +33351,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the spoils?",
               "options": [
                 { "text": "With no pack animals, fighters may carry the spoils for safe-keeping", "right": true },
                 { "text": "The spoils may be sold before they are divided" },
@@ -34880,7 +34896,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of wills?",
               "options": [
                 { "text": "A Muslim may leave a will to a Christian neighbour", "right": true },
                 { "text": "It is recommended to leave less than a third", "right": true },
@@ -35087,7 +35103,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of wills that share the third?",
               "options": [
                 { "text": "A will of \"my son's share\" is void", "right": true },
                 { "text": "Two wills of a third each, not agreed, split the third in halves", "right": true },
@@ -35179,7 +35195,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of wills and duties to Allah?",
               "options": [
                 { "text": "Hajj, zakat and kaffarat in a will come before voluntary gifts", "right": true },
                 { "text": "Voluntary gifts in a will go in the order he named them", "right": true },
@@ -35494,7 +35510,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of special cases in wills?",
               "options": [
                 { "text": "A will of a jariya, leaving out the baby she carries, is valid with the exception (in al-Quduri's time)", "right": true },
                 { "text": "A will to live in a house can be forever", "right": true },
@@ -36075,7 +36091,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of the 'asaba?",
               "options": [
                 { "text": "The father comes before the grandfather", "right": true },
                 { "text": "A brother shares with his sister, two to one", "right": true },
@@ -36297,7 +36313,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of radd and who cannot inherit?",
               "options": [
                 { "text": "Nothing is given back (radd) to a husband or wife", "right": true },
                 { "text": "A Muslim does not inherit from a non-Muslim relative", "right": true },
@@ -36429,7 +36445,7 @@
             {
               "kind": "pick",
               "id": "mixed",
-              "ask": "Which of these are true?",
+              "ask": "Which are true of grandfathers, distant relatives and wala'?",
               "options": [
                 { "text": "Wala' (the freer's tie) cannot be sold or given as a gift", "right": true },
                 { "text": "For Abu Hanifa, the grandfather comes before the brothers", "right": true },

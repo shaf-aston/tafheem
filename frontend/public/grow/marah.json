@@ -4228,15 +4228,8 @@
               "options": ["ميْوِت", "مَوِيت", "مَيِت"],
               "answer": 0,
               "arabic-options": true,
-              "source": ["كما\" أدغمت \"في ميت أصله ميوت\"", "كل أنثى وإن بدا لك منها ... آية الحب حبها حيقور"],
+              "source": ["كما\" أدغمت \"في ميت أصله ميوت\"", "كل أنثى وإن بدا لك منها ... آية الحب حبها حيقور", "وقيل\"؛ أي قال الكوفيون \"أصله\"؛ أي أصل كينونة \"كونونة بضم الكاف\""],
               "why": "ميْوِت: و and ي met with the first silent, so the و became ي and the two merged."
-            },
-            {
-              "kind": "teach",
-              "id": "kufans",
-              "title": "The Kufans (a note)",
-              "ar": "وقيل\"؛ أي قال الكوفيون \"أصله\"؛ أي أصل كينونة \"كونونة بضم الكاف\"",
-              "en": "Note: the Kufans say كينونة was كُونونة instead."
             },
             {
               "kind": "teach",
@@ -4626,7 +4619,7 @@
               "id": "khifna",
               "title": "خفن",
               "ar": "ولا يضم الفاء\" وهو الخاء \"في خفن\" لتلك الدلالة",
-              "en": "In خِفْنَ (from خَوِفْنَ) the خ takes no damma: the rule is to move the و's own vowel back, a kasra here. In قلن that couldn't be done: the و's fatha onto a ق that already has one changes nothing, so a damma was brought in."
+              "en": "In خِفْنَ (from خَوِفْنَ) the خ takes the و's own kasra: that is the rule. In قَوَلْنَ the و's fatha would change nothing on the ق, so a damma was brought in to show the و."
             },
             {
               "kind": "choose",
@@ -4642,7 +4635,7 @@
               "id": "alike",
               "title": "Same sound, different origin",
               "ar": "ويكتفون بالفرق التقديري\"",
-              "en": "قُلْنَ (they said) and قُلْنَ (say!, to women) sound alike; the difference is only in the original, قَوَلْنَ and اقْوُلْنَ, and that is enough. بِعْنَ is the same, active and passive. طُلْنَ is known to be from طَوُل (u) because its adjective is طويل."
+              "en": "قُلْنَ (they said) and قُلْنَ (say!, to women) sound alike. Only their originals differ, قَوَلْنَ and اُقْوُلْنَ, and the book says that is enough."
             },
             {
               "kind": "teach",
@@ -5004,7 +4997,7 @@
       "whole": true,
       "units": [
         { "title": "Forms of رمى", "arabic": "تصريف رمى", "lessons": ["marah-naqis-what", "marah-naqis-yarmi", "marah-naqis-nouns"] },
-        { "title": "Ibdal", "arabic": "الإبدال", "lessons": ["marah-naqis-ibdal-hamza", "marah-naqis-ibdal-ta", "marah-naqis-ibdal-ya", "marah-naqis-ibdal-rest"] }
+        { "title": "Ibdal", "arabic": "الإبدال", "lessons": ["marah-naqis-ibdal-hamza", "marah-naqis-ibdal-ta", "marah-naqis-ibdal-ya", "marah-naqis-ibdal-heard", "marah-naqis-ibdal-rest"] }
       ],
       "lessons": [
         {
@@ -5478,65 +5471,42 @@
               "en": "Hamza from و, as a must: أواصل from وواصل (two و's at the start), قائل, أدؤر (from أدوُر, plural of دار), كساء from كساو. From ي, as a must: بائع."
             },
             {
+              "kind": "choose",
+              "id": "awasil",
+              "ask": "أواصل was وواصل. Why did its first و become a hamza?",
+              "options": ["To avoid two و's together", "Because a kasra came before the first و", "Because the word is a verb, not a noun"],
+              "answer": 0,
+              "source": "وإنما وجب قلب الواو \"فرارا من اجتماع الواوات\"",
+              "why": "Two moving و's at the start of a word are heavy, so the first must become a hamza: أواصل."
+            },
+            {
               "kind": "teach",
               "id": "jawaz",
-              "title": "Allowed changes",
+              "title": "Allowed, by rule: أجوه",
               "ar": "مطردا من الواو المضمومة نحو: أجوه\" أصله وجوه جمع وجه \"لثقل الضمة على الواو\"",
-              "en": "Allowed, by rule: أجوه for وجوه (faces), since a damma on و is heavy. Allowed only as heard: إشاح for وشاح, أحد أحد in the hadith (for وحد), قطع الله أديه for يديه, ماء from ماه, المشتئق for المشتاق, and أباب for عباب."
+              "en": "Allowed, by rule: أجوه for وجوه (faces), since a damma on و is heavy. It may change or stay. It is not a must, because the singular وجه is not on a verb's pattern."
             },
             {
               "kind": "sort",
               "id": "sort-kind",
-              "ask": "Which kind of change is it?",
-              "into": ["A must, by rule", "Allowed, by rule", "Allowed, only as heard"],
+              "ask": "A must, or allowed by rule?",
+              "into": ["A must, by rule", "Allowed, by rule"],
               "items": [
                 ["أواصل", "A must, by rule"],
+                ["قائل", "A must, by rule"],
                 ["بائع", "A must, by rule"],
-                ["أجوه", "Allowed, by rule"],
-                ["إشاح", "Allowed, only as heard"],
-                ["أديه", "Allowed, only as heard"]
+                ["كساء", "A must, by rule"],
+                ["أجوه", "Allowed, by rule"]
               ],
-              "source": ["من الياء وجوبا مطردا في نحو بائع\"", "لوقوع الحركات المختلفة على الواو\"", "من الواو الغير المضمومة\" من المكسورة \"نحو: إشاح\"", "نحو قطع الله أديه\" أصله يديه", "جوازا\"؛ أي إبدالا يصح أن يقع ويصح أن لا يقع"],
-              "why": "أواصل and بائع always change; أجوه may, by the rule of a heavy damma; إشاح and أديه are only heard."
-            },
-            {
-              "kind": "choose",
-              "id": "ma",
-              "ask": "How do we know the hamza of ماء was a ه?",
-              "options": [
-                "Its plural is مياه",
-                "It rhymes with ماه",
-                "The Qur'an spells it so"
+              "source": [
+                "وجوبا مطرد في نحو أواصل",
+                "في نحو قائل\"؛ أي في اسم الفاعل من الأجوف",
+                "من الياء وجوبا مطردا في نحو بائع\"",
+                "لوقوع الحركات المختلفة على الواو\"",
+                "مطردا من الواو المضمومة نحو: أجوه\"",
+                "جوازا\"؛ أي إبدالا يصح أن يقع ويصح أن لا يقع"
               ],
-              "answer": 0,
-              "source": "ومن ثمة\"؛ أي ومن أجل أن أصله ماء \"يجيء جمعه مياه\"",
-              "why": "The plural and the diminutive (مويه) bring a word back to its origin."
-            },
-            {
-              "kind": "teach",
-              "id": "poem",
-              "title": "المشتئق",
-              "ar": "يا دار مي بدكاديك البرق ... صبر فقد هيجت شوق المشتئق",
-              "en": "\"O house of Mayy among the sand-hills (الدكاديك) of rough ground... patience! You have stirred the longing of the longing one (المشتئق).\" A hamza stands in for the alif of مشتاق. This is irregular: it makes the word heavier."
-            },
-            {
-              "kind": "choose",
-              "id": "dallin",
-              "ask": "Ayyub as-Sakhtiyani recited ولا الضألين. What did the hamza replace?",
-              "options": ["A waw (و)", "An alif", "A lam (ل)"],
-              "answer": 1,
-              "source": ["ونحو قراءة من قرأ بالهمزة وهو أيوب السختياني \"ولا الضألين\"", "والدكاديك جمع دكداك وهي الرمل المتراكم"],
-              "why": "The word is الضالين, with an alif; the hamza stands in for it, as in المشتئق."
-            },
-            {
-              "kind": "choose",
-              "id": "mixed",
-              "ask": "In أباب بحر, which letter was the hamza originally?",
-              "options": ["ه", "ع", "و"],
-              "answer": 1,
-              "arabic-options": true,
-              "source": ["نحو: أباب بحر ضاحك زهوق\" أصله عباب", "لاتحاد مخرجهن\""],
-              "why": "عباب: the hamza and the ع are both throat letters, said from the same place."
+              "why": "أواصل, قائل, بائع and كساء always change; أجوه may change or stay, by the rule of a heavy damma."
             }
           ]
         },
@@ -5640,10 +5610,7 @@
               "kind": "sort",
               "id": "sort-ha",
               "ask": "Which kind of change is it?",
-              "into": [
-                "A must, by rule",
-                "Allowed, only as heard"
-              ],
+              "into": ["A must, by rule", "Allowed, only as heard"],
               "items": [
                 [
                   "طلحة said طلحه at a pause",
@@ -5695,7 +5662,7 @@
               "id": "ya",
               "title": "The ya",
               "ar": "الياء أبدلت من الألف وجوبا\" مطردا \"نحو مفيتيح\"",
-              "en": "ي from alif, as a must: مفيتيح, the little form of مفتاح (key), after a kasra. From و: ميقات, from موقات. From hamza, allowed: ذيب for ذئب. From one of two doubled letters: تقضّي البازي for تقضّض."
+              "en": "ي from alif, as a must: مفيتيح, the little form of مفتاح (key), after a kasra. From و: ميقات, from موقات, a silent و after a kasra. From hamza, only allowed: ذيب for ذئب."
             },
             {
               "kind": "choose",
@@ -5707,28 +5674,126 @@
               "why": "An alif can't follow a kasra, so it becomes ي."
             },
             {
+              "kind": "choose",
+              "id": "miqat",
+              "ask": "ميقات was موقات. Why did the و become ي?",
+              "options": ["It is silent after a kasra", "It comes right before the letter ق", "The word is a plural form"],
+              "answer": 0,
+              "source": ["ميقات\"؛ أي فيما إذا كان الواو ساكنا وما قبلها مكسورا", "لكسرة ما قبلهما\""],
+              "why": "A kasra calls for ي, so a silent و after it becomes ي."
+            },
+            {
               "kind": "teach",
-              "id": "taqaddi",
-              "title": "The falcon's swoop",
-              "ar": "إذا الكرام ابتدروا الباع بدر ... تقضي البازي إذا البازي كسر",
-              "en": "Al-'Ajjaj: \"When the noble race for honour, he rushes ahead, like the swoop (تقضّي) of the falcon when it folds its wings.\" تقضّي was تقضّض: three ض's together were heavy, so the last became ي."
+              "id": "waw",
+              "title": "The waw",
+              "ar": "الواو أبدلت من الألف وجوبا مطردا نحو: ضوارب\"",
+              "en": "و from alif, as a must: ضوارب, plural of ضارب (two alifs would meet). From ي, as a must: موقن (certain), from ميقن, a silent ي after a damma."
             },
             {
               "kind": "choose",
-              "id": "taqaddi-case",
-              "ask": "In تقضّي البازي, what did the ي replace?",
+              "id": "dawarib",
+              "ask": "Why is the plural of ضارب said ضوارب, with a و?",
+              "options": ["Two alifs would meet", "A damma comes before the alif", "The و is a root letter of ضرب"],
+              "answer": 0,
+              "source": "فأبدلت الواو من الأولى \"لقربهما في العلية واجتماع الساكنين\"",
+              "why": "The plural's alif comes after the alif of ضارب; two silent alifs can't meet, so the first becomes و."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "موقن (certain) is from ميقن. Why did the ي become و?",
+              "options": ["It is silent after a damma", "It is at the end of the word", "It merged into the ق after it"],
+              "answer": 0,
+              "source": "من الياء وجوبا مطردا نحو: موقن\"؛ أي إذا كانت الياء ساكنة وما قبلها مضموما أصله ميقن \"لضمة ما قبلها\"",
+              "why": "A damma calls for و, so the silent ي after it becomes و."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-origin",
+              "ask": "What was the changed letter originally?",
+              "into": ["Alif", "و", "ي"],
+              "items": [
+                ["مفيتيح", "Alif"],
+                ["ضوارب", "Alif"],
+                ["ميقات", "و"],
+                ["موقن", "ي"]
+              ],
+              "source": ["أبدلت من الألف وجوبا\" مطردا \"نحو مفيتيح\"", "الواو أبدلت من الألف وجوبا مطردا", "من الواو وجوبا\" غير مطرد \"نحو:", "أصله ميقن"],
+              "why": "مفيتيح and ضوارب had an alif (مفاتيح, ضارب); ميقات had و (موقات); موقن had ي (ميقن)."
+            },
+            {
+              "kind": "pick",
+              "id": "must-pick",
+              "ask": "Which of these changes does the book mark as a must, by rule?",
               "options": [
-                "A ض",
-                "An alif",
-                "A و"
+                { "text": "مفيتيح (ي from alif)", "right": true },
+                { "text": "ذيب (ي from hamza)" },
+                { "text": "ضوارب (و from alif)", "right": true },
+                { "text": "موقن (و from ي)", "right": true },
+                { "text": "أجوه (hamza from و)" }
+              ],
+              "source": [
+                "أبدلت من الألف وجوبا\" مطردا \"نحو مفيتيح\"",
+                "الواو أبدلت من الألف وجوبا مطردا",
+                "وجوبا مطردا نحو: موقن\"",
+                "من الهمزة جوازا\" غير مطرد \"نحو: ذيب\"",
+                "مطردا من الواو المضمومة نحو: أجوه\""
+              ],
+              "why": "مفيتيح, ضوارب and موقن always change. ذيب is only allowed, and أجوه may change or stay."
+            }
+          ]
+        },
+        {
+          "id": "marah-naqis-ibdal-heard",
+          "title": "Ibdal: rare words, only as heard",
+          "arabic": "الإبدال الجائز غير المطرد",
+          "extra": true,
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "heard",
+              "title": "Hamza, only as heard",
+              "ar": "ابدلت جوازا غير مطرد \"من الواو الغير المضمومة\" من المكسورة \"نحو: إشاح\"",
+              "en": "Allowed only as heard: hamza for و in إشاح (وشاح) and أحد أحد in the hadith (وحد); for ي in قطع الله أديه (يديه); for ه in ماء (ماه); for alif in المشتئق (مشتاق); for ع in أباب (عباب). These are found in a few words, not copied."
+            },
+            {
+              "kind": "choose",
+              "id": "ma",
+              "ask": "How do we know the hamza of ماء was a ه?",
+              "options": [
+                "Its plural is مياه",
+                "It rhymes with ماه",
+                "The Qur'an spells it so"
               ],
               "answer": 0,
-              "source": [
-                "من أحد حرفي التضعيف نحو: تقضي البازي\"",
-                "أبصر خربان فضاء فانكدر",
-                "أصله تقضض فاستثقلوا ثلاث ضادات"
-              ],
-              "why": "تقضّض had three ض's; the last became ي."
+              "source": "ومن ثمة\"؛ أي ومن أجل أن أصله ماء \"يجيء جمعه مياه\"",
+              "why": "The plural and the diminutive (مويه) bring a word back to its origin."
+            },
+            {
+              "kind": "teach",
+              "id": "poem",
+              "title": "المشتئق",
+              "ar": "يا دار مي بدكاديك البرق ... صبر فقد هيجت شوق المشتئق",
+              "en": "\"O house of Mayy among the sand-hills (الدكاديك) of rough ground... patience! You have stirred the longing of the longing one (المشتئق).\" A hamza stands in for the alif of مشتاق. This is irregular: it makes the word heavier."
+            },
+            {
+              "kind": "choose",
+              "id": "dallin",
+              "ask": "Ayyub as-Sakhtiyani recited ولا الضألين. What did the hamza replace?",
+              "options": ["A waw (و)", "An alif", "A lam (ل)"],
+              "answer": 1,
+              "source": ["ونحو قراءة من قرأ بالهمزة وهو أيوب السختياني \"ولا الضألين\"", "والدكاديك جمع دكداك وهي الرمل المتراكم"],
+              "why": "The word is الضالين, with an alif; the hamza stands in for it, as in المشتئق."
+            },
+            {
+              "kind": "choose",
+              "id": "mixed",
+              "ask": "In أباب بحر, which letter was the hamza originally?",
+              "options": ["ه", "ع", "و"],
+              "answer": 1,
+              "arabic-options": true,
+              "source": ["نحو: أباب بحر ضاحك زهوق\" أصله عباب", "لاتحاد مخرجهن\""],
+              "why": "عباب: the hamza and the ع are both throat letters, said from the same place."
             },
             {
               "kind": "teach",
@@ -5780,6 +5845,30 @@
             },
             {
               "kind": "teach",
+              "id": "taqaddi",
+              "title": "The falcon's swoop",
+              "ar": "إذا الكرام ابتدروا الباع بدر ... تقضي البازي إذا البازي كسر",
+              "en": "Al-'Ajjaj: \"When the noble race for honour, he rushes ahead, like the swoop (تقضّي) of the falcon when it folds its wings.\" تقضّي was تقضّض: three ض's together were heavy, so the last became ي."
+            },
+            {
+              "kind": "choose",
+              "id": "taqaddi-case",
+              "ask": "In تقضّي البازي, what did the ي replace?",
+              "options": [
+                "A ض",
+                "An alif",
+                "A و"
+              ],
+              "answer": 0,
+              "source": [
+                "من أحد حرفي التضعيف نحو: تقضي البازي\"",
+                "أبصر خربان فضاء فانكدر",
+                "أصله تقضض فاستثقلوا ثلاث ضادات"
+              ],
+              "why": "تقضّض had three ض's; the last became ي."
+            },
+            {
+              "kind": "teach",
               "id": "sadi",
               "title": "Your father is sixth",
               "ar": "إذا ما عد أربعة فسال ... فزوجك خامس وأبوك سادي",
@@ -5818,13 +5907,6 @@
               "why": "ايتصلت is اتّصلت; سادي is سادس; الثالي is الثالث (\"two days have passed, and this is the third\")."
             },
             {
-              "kind": "teach",
-              "id": "waw",
-              "title": "The waw",
-              "ar": "الواو أبدلت من الألف وجوبا مطردا نحو: ضوارب\"",
-              "en": "و from alif, as a must: ضوارب, plural of ضارب (two alifs would meet). From ي, as a must: موقن (certain), from ميقن, a silent ي after a damma."
-            },
-            {
               "kind": "sort",
               "id": "sort-must",
               "ask": "Which kind of change is it?",
@@ -5838,15 +5920,6 @@
               ],
               "source": ["الياء أبدلت من الألف وجوبا", "الواو أبدلت من الألف وجوبا مطردا", "من النون\" جوازا غير مطرد"],
               "why": "Changes after a vowel that calls for them are a must; ي for ن, س, ث are only heard."
-            },
-            {
-              "kind": "choose",
-              "id": "mixed",
-              "ask": "موقن (certain) is from ميقن. Why did the ي become و?",
-              "options": ["It is silent after a damma", "It is at the end of the word", "It merged into the ق after it"],
-              "answer": 0,
-              "source": "من الياء وجوبا مطردا نحو: موقن\"؛ أي إذا كانت الياء ساكنة وما قبلها مضموما أصله ميقن \"لضمة ما قبلها\"",
-              "why": "A damma calls for و, so the silent ي after it becomes و."
             }
           ]
         },
