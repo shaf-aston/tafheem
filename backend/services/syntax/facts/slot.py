@@ -3,7 +3,7 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.nahw_book import book_map, is_built_word, is_mabni, is_one, is_plain_noun
+from backend.services.nahw_book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun
 from backend.services.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, NOUN_LINKS, SUBJECTS
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
@@ -16,6 +16,12 @@ def takes_tamyeez(token: dict, s: Sentence) -> bool:
     if head and (is_one(head["lemma"], "tamyeez_verbs") or is_elative(head)):
         return True
     return any(listed(t, "tamyeez_head") for t in s.tokens if t["id"] < token["id"])
+
+
+def _doer_by_extra_ba(token: dict, verb: dict) -> bool:
+    """كَفَى بِاللَّهِ: the doer comes after a زائدة باء, hung on the verb as the book's rule says."""
+    rule = extra_ba_on(strip_diacritics(verb["lemma"]))
+    return bool(rule and rule["role"] == "فاعل" and token["rel"] == rule["rel"] and is_extra_ba(token["form"].strip("+")))
 
 
 def completes_kaada(token: dict, s: Sentence) -> bool:
@@ -165,7 +171,7 @@ def verb_place(token: dict, s: Sentence) -> str:
         if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
             return "purpose"
         if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
-                and token.get("stt") == "i" and any(t["rel"] in NOUN_LINKS for t in siblings):
+                and token.get("stt") == "i" and any(t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head) for t in siblings):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
                 return "specification"
             if is_participle(token):

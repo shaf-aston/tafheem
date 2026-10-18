@@ -12,8 +12,8 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 from __future__ import annotations
 
 from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, role_units,
-                                       tarkeeb_rules, teacher_rules, term_ar)
-from backend.services.syntax.facts import (Sentence, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
+                                       tarkeeb_rules, teacher_rules, term_ar, counted_name)
+from backend.services.syntax.facts import (Sentence, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
                                           is_nasab, is_verb, read_as, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
@@ -409,6 +409,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if not known and (head.get("stt") != "i" or not case):  # مَا، مَتَى: no case shown, nothing to describe
             continue
         job_of[token["id"]] = after_noun["definite" if known else "indefinite"]
+        if not known and role_of.get(head["id"]) in after_noun["on_khabar"] and is_participle(head):
+            # جميلٌ يحب الجمال: a second khabar, no صفة
+            name_of[head["id"]], job_of[token["id"]] = counted_name(role_of[head["id"]], 0), counted_name(role_of[head["id"]], 1)
         place_of[token["id"]] = in_place(after_noun["definite_case"] if known else case)
         framed.add(token["id"])  # drawn even when a particle heads it
         if not is_verb(token):

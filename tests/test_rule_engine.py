@@ -851,8 +851,9 @@ def test_mundhu_before_a_noun_is_a_preposition():
 
 def test_a_built_word_keeps_its_sukun_when_moved_to_kasra_for_the_next_sakin():
     sign = lambda s, i: iraab.analyze(s, recorded=False)["words"][i]["sign"]
-    assert sign("أَحْسِنْ إِلَى مَنِ اسْتَشَارَكَ", 2) == "مبني على السكون"
-    assert sign("سَأَلْتُ عَنِ الْأَمْرِ", 1) == "مبني على السكون"
+    moved = "مبني على السكون، وحُرِّك بالكسر لالتقاء الساكنين"
+    assert sign("أَحْسِنْ إِلَى مَنِ اسْتَشَارَكَ", 2) == moved
+    assert sign("سَأَلْتُ عَنِ الْأَمْرِ", 1) == moved
     assert sign("جَاءَ هَؤُلَاءِ", 1) == "مبني على الكسر"  # its own kasra, no meeting
 
 

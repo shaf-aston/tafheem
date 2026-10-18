@@ -1,0 +1,34 @@
+"""Held-out sentences for three rules: a sukun moved to kasra is said so, the
+تمييز/حال after كفى بـ, and a sentence after a describing khabar is a second khabar."""
+from backend.services import iraab
+
+
+def _words(s):
+    return iraab.analyze(s, recorded=False)["words"]
+
+
+def _jobs(node, out):
+    out.append(node.get("role"))
+    for child in node.get("children", []):
+        _jobs(child, out)
+    return out
+
+
+def test_a_built_word_moved_for_the_next_sakin_says_so():
+    moved = "مبني على السكون، وحُرِّك بالكسر لالتقاء الساكنين"
+    assert _words("اسْتَمِعْ إِلَى مَنِ اسْتَنْصَحَكَ")[2]["sign"] == moved
+    assert _words("رَوَيْتُ عَنِ ابْنِ عَبَّاسٍ")[1]["sign"] == moved
+    assert _words("جَاءَ هَؤُلَاءِ")[1]["sign"] == "مبني على الكسر"  # its own kasra
+
+
+def test_after_kafa_with_an_extra_ba_the_nasb_noun_is_no_object():
+    for s in ("كَفَى بِالْمَرْءِ إِثْمًا", "كَفَى بِاللَّهِ حَسِيبًا"):
+        assert _words(s)[2]["role"] in ("تمييز", "حال"), s
+    assert _words("كَفَاكَ اللَّهُ شَرَّهُمْ")[2]["role"] == "مفعول به"  # no ba: a real object
+
+
+def test_a_sentence_after_a_describing_khabar_is_a_second_khabar():
+    jobs = _jobs(iraab.analyze("إِنَّ اللَّهَ رَحِيمٌ يَغْفِرُ الذُّنُوبَ", recorded=False)["tree"]["tree"], [])
+    assert "خبر ثانٍ لإن" in jobs
+    jobs = _jobs(iraab.analyze("هَذَا رَجُلٌ يُحِبُّ الْعِلْمَ", recorded=False)["tree"]["tree"], [])
+    assert "صفة" in jobs and not any(j and "ثانٍ" in j for j in jobs)  # a plain noun: its صفة
