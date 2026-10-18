@@ -23,6 +23,20 @@ def is_prefix(token: dict) -> bool:
     return token.get("form", "").endswith("+")
 
 
+SUBJECTS = ("SBJ", "TPC")  # the parser's links for a doer or a topic
+NOUN_LINKS = (*SUBJECTS, "OBJ")  # ...and for a done-to noun
+
+
+def verb_tagged(token: dict) -> bool:
+    """The parser tagged the word a verb, VRB-PASS too (it may still be a noun by its tanween)."""
+    return token["pos"].startswith("VRB")
+
+
+def present_verb_tagged(token: dict) -> bool:
+    """The parser tagged the word a present-tense verb."""
+    return verb_tagged(token) and token.get("asp") == "i"
+
+
 def noun_tagged(token: dict) -> bool:
     """The parser tagged the word a noun or a name (it may still be a verb by its reading)."""
     return token["pos"] in ("NOM", "PROP")
@@ -30,7 +44,7 @@ def noun_tagged(token: dict) -> bool:
 
 def subject_link(token: dict) -> bool:
     """The parser hung the word as a subject or a topic."""
-    return token["rel"] in ("SBJ", "TPC")
+    return token["rel"] in SUBJECTS
 
 
 def attached_pronoun(token: dict) -> bool:
@@ -53,7 +67,7 @@ def is_verb(token: dict) -> bool:
         return token["reading"]["kind"] == "fil"  # أَلَا is a particle, whatever the parser tagged it
     if has_tanween(token.get("typed")):
         return False  # a verb never carries tanween, whatever the parser tagged it
-    if token["pos"].startswith("VRB"):  # VRB-PASS is a verb too
+    if verb_tagged(token):  # VRB-PASS is a verb too
         return True
     # the word is unknown to the morphology, but the reader typed a passive verb or a
     # hollow command (بِعْ, which CAMeL takes for a name)
@@ -81,7 +95,7 @@ def is_passive(token: dict) -> bool:
     if token.get("vox") == "p":
         return True
     typed = own_letters(token.get("typed") or "", token.get("front", 0), 0)  # وَيُغْسَلُ opens with the و's fatha
-    present = token.get("asp") == "i" or not (token["pos"].startswith("VRB") or past_passive_shape(typed))
+    present = token.get("asp") == "i" or not (verb_tagged(token) or past_passive_shape(typed))
     return typed_passive(typed, present, token.get("stuck_on", 0))
 
 

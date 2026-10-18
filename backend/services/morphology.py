@@ -537,7 +537,9 @@ def _reading(word: str, readings: list[dict]) -> dict:
     verbs = [r for r in readings
              if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
     if past_passive_shape(word) and verbs:
-        return verbs[0]
+        # the shape is a past verb's: اسْتُعْمِلَ, which CAMeL lacks, is its active اِسْتَعْمَلَ
+        # with the voice read off the vowels, never أَسْتَعْمِلُ
+        return next((r for r in verbs if r.get("asp") == "p"), verbs[0])
     return best_reading(word, real) or readings[0]
 
 
@@ -570,6 +572,15 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                 ranked = [{**sarf, "diac": twin, "lex": twin}]
         steps.append((evidence, ranked))
     out = [_reading(*step) for step in steps]
+    for i, (evidence, ranked) in enumerate(steps):
+        # وَجَدَ: the context ranker keeps its top readings only, and may keep none but ones that
+        # double a letter the reader left single (وَجَدّ); then the word's whole list is read too
+        if not ((found := vowel_agreement(evidence, out[i].get("diac", ""))) and found[1]):
+            continue
+        wider = _widened(tokens[i], ranked)
+        better = best_reading(evidence, wider)
+        if better and (vowel_agreement(evidence, better.get("diac", "")) or found)[1] < found[1]:
+            out[i], steps[i] = better, (evidence, wider)
     # a noun already joined to "my" takes no second mudaf ilayh: before a genitive noun
     # أَبِي is the six nouns' jarr (أَبِي الطَّبِيبِ), not "my father"
     for i in range(len(out) - 1):
@@ -577,7 +588,31 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             word, ranked = steps[i]
             out[i] = best_reading(word, [r for r in ranked if r.get("enc0") != "1s_poss"
                                          and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
+    # مَنْ جَدَّ وَجَدَ: a مضاف needs its مضاف إليه straight after it, so a bare construct noun
+    # before a و, a preposition or nothing is not the word typed (here the verb جَدَّ)
+    for i, reading in enumerate(out):
+        if _bare_construct(reading) and not _takes_mudaf_ilayh(out[i + 1] if i + 1 < len(out) else {}):
+            word, ranked = steps[i]
+            # the word's whole list too (أَكْبَرُ's own indefinite reading may be ranked out), never a guessed name
+            out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
+                                         if not _bare_construct(r) and r.get("pos") != "noun_prop"]) or reading
     return out
+
+
+def _widened(token: str, ranked: list[dict]) -> list[dict]:
+    """The context ranker's readings, then the word's whole list, never one CAMeL could not analyse."""
+    return [r for r in ranked + (_ranked([token], None) or [[]])[0] if NO_ANALYSIS not in r.get("atbtok", "")]
+
+
+def _bare_construct(reading: dict) -> bool:
+    """A noun read as a مضاف with no pronoun on it."""
+    return reading.get("pos") in ("noun", "adj") and reading.get("stt") == "c" and reading.get("enc0") in ("0", "na", None)
+
+
+def _takes_mudaf_ilayh(after: dict) -> bool:
+    """The next word can be a مضاف إليه: a noun or pronoun with no و, ف or preposition on it."""
+    return after.get("pos", "").startswith(("noun", "adj", "pron", "abbrev", "digit")) and all(
+        after.get(prc, "0") in ("0", "na") for prc in ("prc1", "prc2", "prc3"))
 
 
 def analyze_sentence(sentence: str, picks: list[dict] | None = None) -> list[dict[str, Any]]:

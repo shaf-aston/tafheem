@@ -15,7 +15,7 @@ import numpy as np
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import is_one, is_plain_noun, is_subject_pronoun, vetoes
 from backend.services.harakat import CAMEL_CASE
-from backend.services.syntax.facts import attached_pronoun, noun_tagged
+from backend.services.syntax.facts import attached_pronoun, noun_tagged, verb_tagged
 
 
 def _verb_subject_follows(toks, add_rel) -> None:
@@ -29,7 +29,7 @@ def _verb_subject_follows(toks, add_rel) -> None:
         if not (is_subject_pronoun(dep) or (is_plain_noun(dep) and dep.get("case") != "a")):
             continue
         for h in range(d + 1, len(toks) + 1):
-            if toks[h - 1]["pos"].startswith("VRB"):
+            if verb_tagged(toks[h - 1]):
                 for label in ("SBJ", "OBJ", "MOD"):
                     add_rel(d, h, label)
 
@@ -106,7 +106,7 @@ def _topic_carries_its_verb(toks, heads, rels) -> None:
     A noun in nasb is left: it is a fronted object. A detached pronoun of raf' is one too."""
     for d, dep in enumerate(toks, 1):
         h = heads[d - 1]
-        if not (h > d and toks[h - 1]["pos"].startswith("VRB") and rels[d - 1] in ("---", "TPC")
+        if not (h > d and verb_tagged(toks[h - 1]) and rels[d - 1] in ("---", "TPC")
                 and (is_subject_pronoun(dep) or (is_plain_noun(dep) and _case(dep) not in ("a", "i")))):
             continue
         heads[d - 1], rels[d - 1] = heads[h - 1], rels[h - 1]
@@ -124,7 +124,7 @@ def _inner_sentence(toks, heads, rels) -> None:
     parser draws it three ways; it is written as the khabar hung on that noun (PRD) with
     its mubtada under it (SBJ), as a verb's clause is. Only after the first noun of a
     sentence with no verb, or straight after a relative, so a hal is never caught."""
-    verbless = not any(t["pos"].startswith("VRB") for t in toks)
+    verbless = not any(verb_tagged(t) for t in toks)
     for n2 in range(2, len(toks) - 1):  # 1-based: noun, its pronoun, the khabar
         noun, pronoun, khabar, before = toks[n2 - 1], toks[n2], toks[n2 + 1], toks[n2 - 2]
         n1, n3 = n2 - 1, n2 + 2

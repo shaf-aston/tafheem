@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.nahw_book import is_one
-from backend.services.syntax.facts.word import is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, subject_link
+from backend.services.syntax.facts.word import is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, present_verb_tagged, subject_link
 
 
 class Sentence:
@@ -57,9 +57,9 @@ class Sentence:
         """كاد يموت, أوشك أن ينتهي: a present verb, bare or behind أن, finishes the clause."""
         for kid in self.kids(verb):
             if kid["pos"] == "PRT" and is_one(kid["lemma"], "nasb_mudari"):
-                if any(k["pos"].startswith("VRB") and k.get("asp") == "i" for k in self.kids(kid)):
+                if any(present_verb_tagged(k) for k in self.kids(kid)):
                     return True
-            elif kid["pos"].startswith("VRB") and kid.get("asp") == "i":
+            elif present_verb_tagged(kid):
                 return True
         return False
 

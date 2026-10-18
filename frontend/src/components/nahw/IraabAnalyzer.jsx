@@ -9,6 +9,7 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { analyzeIraab, generatePractice, translateSentence } from '../../api'
 import { errorMessage, errorStatus } from '../../lib/apiError'
 import { buildIraabExportText } from '../../lib/iraabExport'
+import { bareForm } from '../../lib/arabicText'
 import { caseLabel, isUnnamed } from '../../lib/grammarTerms'
 import { arc } from '../../lib/govArc'
 import { roleVar } from '../../lib/roleColors'
@@ -21,6 +22,7 @@ import TarkeebFigure from '../TarkeebFigure'
 import TarkeebTools from '../TarkeebTools'
 import PracticePanel from './PracticePanel'
 import SentenceMeaning from '../dictionary/SentenceMeaning'
+import WordPeek from './WordPeek'
 import WordCard from '../WordCard'
 import ArabicText from '../ui/ArabicText'
 import BookPath from '../ui/BookPath'
@@ -135,6 +137,7 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
   const linked = data.words.some((w) => source(w) !== undefined)
   const governs = linked && lens === 'governs'
   const view = useTarkeebView(data.tree)
+  const meaning = useSentenceMeaning(data.sentence)
   return (
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -157,14 +160,15 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
       {data.tree && (
         // An ayah drawn from its record carries the words the book supplies,
         // (هُوَ) or an elided khabar, and the mark it writes them with.
-        <TarkeebFigure tarkeeb={data.tree} view={view} onWord={onGo && ((w) => onGo('dict', w))} />
+        <ChartWithPeek data={data} view={view} glosses={meaning.data?.words}
+          onMore={onWordClick} onLookup={onGo && ((w) => onGo('dict', w))} />
       )}
-      <EnglishMeaning sentence={data.sentence} accent={accent} onGo={onGo} />
+      <EnglishMeaning meaning={meaning} accent={accent} onGo={onGo} />
       <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked}
         corner={linked && (
           <FlagButton value={governs} onChange={(on) => setLens(on ? 'governs' : 'roles')} accent={accent}
             title="Draw arrows from each governor to the word it governs">
-            who governs whom
+            see governance
           </FlagButton>
         )} />
       <p className="text-center type-small text-[var(--text-faint)]">
@@ -181,21 +185,61 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
 }
 
 // The sentence in English, asked of the dictionary as soon as it is analysed:
-// the same answer the Dictionary tab gives a sentence, each word a way into its entry.
-function EnglishMeaning({ sentence, accent, onGo }) {
-  const meaning = useQuery({
+// the same answer the Dictionary tab gives a sentence. Its word-by-word list is
+// also what the chart shows on hover, so the one request serves both.
+function useSentenceMeaning(sentence) {
+  return useQuery({
     queryKey: ['dictionary-sentence', sentence],
     queryFn: () => translateSentence(sentence),
     enabled: Boolean(sentence),
     staleTime: Infinity,
   })
+}
+
+// The English straight under the analysis: the sentence card already says what it
+// is, so no heading names it again.
+function EnglishMeaning({ meaning, accent, onGo }) {
   if (!meaning.data?.words) return null
   return (
     <section aria-label="English meaning" className="rise-in">
-      <h3 className="text-sm text-[var(--text-dim)] mb-2">In English</h3>
-      <SentenceMeaning data={meaning.data} accent={accent} onGo={onGo}
+      <SentenceMeaning data={meaning.data} accent={accent} onGo={onGo} bare
         onLookup={(w) => onGo?.('dict', w)} />
     </section>
+  )
+}
+
+// The written word a chart word is: the analysis lists the words on the page in
+// order, so the nth is the one, unless the two spellings disagree (a word the
+// parser split differently), when the first with the same letters is.
+function nthWord(list, nth, text, key) {
+  const same = (item) => item && bareForm(item[key]) === bareForm(text)
+  return same(list?.[nth]) ? list[nth] : list?.find(same)
+}
+
+// The chart, with a tapped word answered in a small panel under it, in place.
+function ChartWithPeek({ data, view, glosses, onMore, onLookup }) {
+  const [peek, setPeek] = useState(null)
+  const frame = useRef(null)
+  const glossOf = (nth, text) => nthWord(glosses, nth, text, 'arabic')?.english
+  const open = (text, nth, el) => {
+    const word = nthWord(data.words, nth, text, 'word')
+    if (!word) return onLookup?.(text)
+    const box = frame.current.getBoundingClientRect()
+    const at = el.getBoundingClientRect()
+    // kept inside the frame, so the panel never hangs off a phone's edge
+    const half = Math.min(144, box.width / 2)
+    const x = Math.min(Math.max(at.left + at.width / 2 - box.left, half), box.width - half)
+    setPeek({ word, english: glossOf(nth, text), text, at: { x, y: at.bottom - box.top + 6 } })
+  }
+  return (
+    <div ref={frame} className="relative">
+      <TarkeebFigure tarkeeb={data.tree} view={view} onWord={open} glossOf={glosses && glossOf} />
+      {peek && (
+        <WordPeek {...peek} onClose={() => setPeek(null)}
+          onMore={() => { onMore(peek.word); setPeek(null) }}
+          onLookup={() => onLookup?.(peek.text)} />
+      )}
+    </div>
   )
 }
 
@@ -268,7 +312,7 @@ function WordGrid({ words, onClick, governs, picked, corner }) {
             key={`${word.word}-${i}`}
             type="button"
             onClick={() => onClick(word)}
-            aria-label={`${word.word}, ${isUnnamed(word) ? 'not named, see why' : word.role || 'details'}`}
+            aria-label={`${word.word}, ${isUnnamed(word) ? 'not named, see why' : (word.name ?? word.role) || 'details'}`}
             style={{ '--i': i, '--c': roleVar(key) }}
             className="word rise-in role glow
               flex flex-col items-center gap-1.5 px-4 py-3 rounded-[var(--radius-md)]
@@ -279,7 +323,7 @@ function WordGrid({ words, onClick, governs, picked, corner }) {
                 of the page, once, not under every tag. */}
             {word.role && (
               <span className="type-tiny px-2 py-0.5 rounded-full role-tag">
-                {word.role}
+                {word.name ?? word.role}
               </span>
             )}
             {word.case && (
@@ -349,7 +393,7 @@ function FullIraabTable({ words, onRowClick }) {
                     <ArabicText as="button" type="button" className="rounded-[var(--radius-sm)] px-1">{w.word}</ArabicText>
                   </td>
                   <td className="py-3 px-3 whitespace-nowrap">
-                    <ArabicText size="sm" className="block" style={{ color: 'var(--c)' }}>{w.role || '–'}</ArabicText>
+                    <ArabicText size="sm" className="block" style={{ color: 'var(--c)' }}>{w.name ?? (w.role || '–')}</ArabicText>
                     {reading.length > 0 && (
                       <ArabicText size="tiny" className="block mt-1 text-[var(--text-dim)]">{reading.join(' · ')}</ArabicText>
                     )}
