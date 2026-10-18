@@ -5,10 +5,12 @@ checks whether it hears them better than before. Started from this computer by
 cloud.py (next to this file); on Lightning.ai or Colab, run `python finetune_ear.py`
 on a GPU machine. Everything it writes goes to the folder it was started in.
 
-Scored on groups no run ever trains on (held(): the same names every run):
+Scored on groups it never trained on, the same clips every full run (fixed seeds, fixed data),
+so the served ear never meets a clip it learnt from:
   new voices    people it never heard, reciting ayahs it trained on
   new ayahs     ayahs it never trained on: the only proof it learnt listening, not text
-  professional  everyayah reciters on held ayahs: what the app hears well today
+  professional  everyayah reciters on unseen ayahs: what the app hears well today
+  tadabur new voices  reciters held by held(), so the same ones whichever files are read
 
 The starting model, the served ear (CHAMPION) and the new one are each scored as the app
 runs them, CTranslate2 through faster-whisper, on the same clips. The rule is fixed before
@@ -61,7 +63,7 @@ NAME = f'tarteel-ai/whisper-{SIZE}-ar-quran'
 RATE = 16000
 LONGEST = 30 * RATE  # Whisper hears 30 seconds at most; a longer clip's text would be cut short
 PER_AYAH = 40  # two thirds of the clips are al-Ikhlas; uncapped it teaches that one surah
-HELD = 5  # one voice in HELD and one ayah in HELD are never trained on
+HELD = 5  # one voice, one ayah and one Tadabur reciter in HELD are never trained on
 BAR = 1.5  # points fewer words wrong on new ayahs the new model must win by
 SLIP = 1.0  # points more wrong on professionals it may lose; more means it forgot
 PROS = 40  # professional clips, 5 to 20 words each
@@ -87,7 +89,6 @@ SPEEDS = (0.9, 1.0, 1.1)  # one drawn per clip
 TADABUR = 'FaisaI/tadabur'
 TADABUR_SHARDS = 8  # of ~390 files, 1,000 ayahs and 2.4 GB each, spread evenly; 3 gave 2,796 usable
 TADABUR_SHARE = 0.25  # of the training clips
-TADABUR_HELD = 40  # whole reciters never trained on
 TADABUR_TEST = 300  # clips of those reciters, at most
 TADABUR_SURAH_BASE = 1  # its surah_id counts from 0; checked against the printed ayah text
 RECITERS = ['Alafasy_128kbps', 'Husary_128kbps', 'Abdul_Basit_Murattal_192kbps', 'Minshawy_Murattal_128kbps',
@@ -105,9 +106,8 @@ UTHMANI = requests.get('https://api.quran.com/api/v4/quran/verses/uthmani', time
 
 
 def held(name):
-    """One voice or ayah in HELD, by a fixed hash: never trained on by any run, so every run and
-    the served ear meet on clips none of them learnt from."""
-    return zlib.crc32(name.encode()) % HELD == 0
+    """One Tadabur reciter in HELD, by a fixed hash, never trained on."""
+    return zlib.crc32(str(name).encode()) % HELD == 0
 
 
 def letters(text):
@@ -195,9 +195,9 @@ def learner_clips():
         print(name, len(rows), 'clean clips,', damaged, 'damaged and skipped', flush=True)
 
 
-def professional_clips():
-    """Held mid-surah ayahs (a first ayah's recording carries the basmala)."""
-    pool = [k for k, t in IMLAEI.items() if held(k) and not k.endswith(':1') and 5 <= len(t.split()) <= 20]
+def professional_clips(skip):
+    """Mid-surah ayahs (a first ayah's recording carries the basmala) no learner recited."""
+    pool = [k for k, t in IMLAEI.items() if not k.endswith(':1') and k not in skip and 5 <= len(t.split()) <= 20]
     for at, key in enumerate(random.Random(11).sample(pool, PROS)):
         surah, ayah = map(int, key.split(':'))
         who = RECITERS[at % len(RECITERS)]
@@ -209,7 +209,7 @@ def professional_clips():
         yield {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': who, 'src': 'everyayah', 'secs': len(sound) / RATE}
 
 
-def tadabur_plan(target):
+def tadabur_plan(skip, target):
     """Which Tadabur rows to take, as (file, row, reciter, ayah, part). Only the small columns are read here.
     Reciters are held out whole; the rest give at most `each` clips, the smallest each that reaches target."""
     fs = HfFileSystem()
@@ -234,14 +234,11 @@ def tadabur_plan(target):
         by.setdefault(f[2], []).append(f)
     reciters = sorted(by)
     pick = random.Random(13)
-    pick.shuffle(reciters)
-    each_test = -(-TADABUR_TEST // TADABUR_HELD)
-    # Held reciters need enough clips each to make the test; the rest of the long tail trains.
-    strangers = [who for who in reciters if len(by[who]) >= each_test][:TADABUR_HELD]
-    rest = [who for who in reciters if who not in strangers]
-    test = [f for who in strangers for f in pick.sample(by[who], min(each_test, len(by[who])))]
+    strangers = [who for who in reciters if held(who)]
+    rest = [who for who in reciters if not held(who)]
+    test = [f for who in strangers for f in by[who]]
     test = [f + ('test',) for f in pick.sample(test, min(TADABUR_TEST, len(test)))]
-    free = {who: [f for f in by[who] if not held(f[3])] for who in rest}
+    free = {who: [f for f in by[who] if f[3] not in skip] for who in rest}
     each = 1
     while sum(min(each, len(c)) for c in free.values()) < target and each < max(map(len, free.values())):
         each += 1
@@ -347,16 +344,25 @@ def augmented(sound, noises, rooms, rng):
 # Written to disk 1,000 clips at a time: held as one list, 19k decoded clips pass
 # Arrow's 2 GB limit for a single column block and the run dies before training.
 whole = Dataset.from_generator(learner_clips)
-ayahs = set(whole['ayah'])
+# A held voice is never trained on, nor a held ayah by anyone. This split made the served ear
+# (v13); a hash split tried 2026-10-17 put 4 in 5 of its training clips in the tests.
+pick = random.Random(7)
+voices, ayahs = sorted(set(whole['who'])), sorted(set(whole['ayah']))
+pick.shuffle(voices)
+pick.shuffle(ayahs)
+new_voices, new_ayahs = set(voices[::HELD]), set(ayahs[::HELD])
+taught_ayahs = set(ayahs) - new_ayahs
 TESTS = {
-    'new voices': whole.filter(lambda r: held(r['who']) and not held(r['ayah'])),
-    'new ayahs': whole.filter(lambda r: held(r['ayah'])),
-    'professional': Dataset.from_generator(professional_clips),
+    'new voices': whole.filter(lambda r: r['who'] in new_voices and r['ayah'] not in new_ayahs),
+    'new ayahs': whole.filter(lambda r: r['ayah'] in new_ayahs),
+    # Unseen by training is what matters; learners now cover nearly every ayah, so skipping all of them left too few.
+    'professional': Dataset.from_generator(professional_clips, gen_kwargs={'skip': taught_ayahs}),
 }
 TESTS = {k: v.shuffle(seed=7).select(range(min(TESTED, len(v)))) for k, v in TESTS.items()}
-learners = whole.filter(lambda r: not held(r['who']) and not held(r['ayah']))
-# Tadabur reciters are strangers to the learners; its train ayahs avoid the held ones.
-plan = tadabur_plan(round(len(learners) * TADABUR_SHARE / (1 - TADABUR_SHARE)))
+learners = whole.filter(lambda r: r['who'] not in new_voices and r['ayah'] not in new_ayahs)
+# Tadabur reciters are strangers to the learners; its train ayahs avoid the held ayahs and the professional test's.
+plan = tadabur_plan(new_ayahs | set(TESTS['professional']['ayah']),
+                    round(len(learners) * TADABUR_SHARE / (1 - TADABUR_SHARE)))
 big = Dataset.from_generator(tadabur_clips, gen_kwargs={'rows': tadabur_files(plan)})
 TESTS['tadabur new voices'] = big.filter(lambda r: r['part'] == 'test')
 KEPT = ['sound', 'said', 'src', 'secs']

@@ -17,7 +17,7 @@ Every step runs from any checkout, on this PC or in a cloud session; nothing is 
 
 - **ear-tuned**: the folder a run makes, a CTranslate2 model faster-whisper loads.
 - **verdict**: words wrong for the starting model, the served ear and the new one on held voices, ayahs and professionals.
-- **held**: one voice or ayah in five, by a fixed hash; no run trains on it, so every run is judged on the same unseen clips.
+- **held**: the voices and ayahs no run trains on: v13's own seeded split (same data, same clips every full run), plus one Tadabur reciter in five by a fixed hash.
 - **champion**: the served ear, the newest upload to the `CHAMPION` repo; a new ear must beat it to ship.
 - **revision**: one upload's Hugging Face commit; a new upload is a new name, so a server never serves a stale copy.
 - **trial ear**: the model behind a learner's "Trial" listening; the main ear is `recitation_model`.
