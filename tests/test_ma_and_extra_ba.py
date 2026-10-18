@@ -1,0 +1,53 @@
+"""ما read by what stands around it, and the باء زائدة after كفى and ليس (data: particle_tree, closed_words extra_ba).
+The sentences are not the hadith the rules were drawn from."""
+from __future__ import annotations
+
+import pytest
+
+from backend.services import iraab
+from backend.services.syntax.catib_onnx import files_present
+
+pytestmark = pytest.mark.skipif(not files_present(), reason="CATiB parser model files not present")
+
+
+def card(sentence: str, word: str) -> dict:
+    return next(w for w in iraab.analyze(sentence)["words"] if w["word"] == word)
+
+
+@pytest.mark.parametrize("sentence", ["سَأَبْقَى هُنَا مَا لَمْ تَرْجِعْ", "لَا أَتْرُكُكَ مَا دُمْتُ حَيًّا"])
+def test_ma_before_lam_or_dama_is_a_timed_masdar(sentence):
+    assert "الظرفية" in (card(sentence, "مَا").get("name") or "")
+
+
+@pytest.mark.parametrize("sentence, said", [
+    ("مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ", "النافية"),   # a past verb after it: never in jazm
+    ("مَا تَفْعَلُوا مِنْ خَيْرٍ يَعْلَمْهُ اللَّهُ", "شرط"),
+    ("مَا أَصَابَكَ مِنْ حَسَنَةٍ فَمِنَ اللَّهِ", "شرط"),  # the ف answers it
+])
+def test_ma_at_the_start_is_read_by_what_follows(sentence, said):
+    found = card(sentence, "مَا")
+    assert said in (found.get("name") or found.get("role") or "") + (found.get("reason") or "")
+
+
+@pytest.mark.parametrize("sentence, word, role, place", [
+    ("لَيْسَ الطَّالِبُ بِكَسُولٍ", "بِكَسُولٍ", "خبر ليس", "منصوب محلًا"),
+    ("كَفَى بِالْمَوْتِ وَاعِظًا", "بِالْمَوْتِ", "فاعل", "مرفوع محلًا"),
+])
+def test_a_word_after_an_extra_ba_holds_its_place(sentence, word, role, place):
+    found = card(sentence, word)
+    assert (found.get("name") or found["role"]) == role and found["case"] == "jarr" and place in found["reason"] and "زائد" in found["reason"]
+
+
+@pytest.mark.parametrize("sentence, word", [("مَرَرْتُ بِزَيْدٍ", "بِزَيْدٍ"),
+                                            ("كَفَى بِالْمَرْءِ إِثْمًا أَنْ يُضَيِّعَ", "بِالْمَرْءِ")])
+def test_a_plain_ba_or_one_with_another_doer_stays_majroor(sentence, word):
+    assert card(sentence, word)["role"] == "مجرور"
+
+
+@pytest.mark.parametrize("sentence, word", [("إِنَّمَا الْعِلْمُ بِالتَّعَلُّمِ", "إِنَّمَا"), ("كَأَنَّمَا يُسَاقُونَ إِلَى الْمَوْتِ", "كَأَنَّمَا")])
+def test_ma_on_an_inna_sister_stops_its_work(sentence, word):
+    assert card(sentence, word)["name"] == "كافة ومكفوفة"
+
+
+def test_a_bare_inna_keeps_its_own_name():
+    assert card("إِنَّ زَيْدًا قَائِمٌ", "إِنَّ")["name"] != "كافة ومكفوفة"

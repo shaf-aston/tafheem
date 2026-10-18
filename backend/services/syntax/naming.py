@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import (
-    book_map, book_merges, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
+    book_map, book_merges, book_words, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, walker
 from backend.services.harakat import (
     CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
@@ -120,7 +120,34 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
             entry["pair"] = pair  # the role keeps its id; only the printed name follows the governor
     for found_condition in condition.find(bases, named, cases, before):
         _conditioned(found, found_condition, bases)
+    _extra_ba(found, bases, tokens, s)
     return found
+
+
+def _extra_ba(found: list[dict], bases: list[dict], tokens: list[dict], s: facts.Sentence) -> None:
+    """كفى بالله شهيدًا، ليس الشديد بالصرعة: the باء is زائدة and its word holds the place of the
+    verb's doer or khabar (data: closed_words extra_ba). The word keeps its jarr, the case it shows;
+    its role is its place, and the reason says both."""
+    book = book_map("extra_ba", "on")
+    index = {token["id"]: i for i, token in enumerate(bases)}
+    for i, token in enumerate(bases):
+        ba, entry = s.head(token), found[i]
+        verb = s.head(ba) if ba else None
+        rule = book.get(strip_diacritics(verb["lemma"])) if verb and verb["id"] in index else None
+        if not (rule and entry["role"] == NAMED.majroor and ba["form"].strip("+") in book_words("extra_ba")
+                and ba["rel"] == rule["rel"]):
+            continue
+        # كفى بالمرء كذبًا أن يحدّث: another doer (a subject, or the masdar أن makes) leaves the باء a plain one
+        if rule.get("alone") and any(t["id"] != ba["id"] and t["head"] == verb["id"] and t["rel"] == "SBJ" for t in tokens) \
+                or rule.get("alone") and any(t["id"] > token["id"] and strip_diacritics(t["lemma"]) in frames()["masdar"]["words"]
+                                             for t in tokens):
+            continue
+        entry.update(role=rule["role"], governor=index[verb["id"]], extra_ba=rule["place_case"])
+        token["extra_ba"] = True  # the teacher reads the place, not the jarr the letters show
+        for piece in entry["attached"]:
+            if piece["id"] == ba["id"]:
+                piece["named"] = book_map("extra_ba", "named")  # حرف جر زائد
+
 
 
 def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: dict[int, int]) -> str | None:

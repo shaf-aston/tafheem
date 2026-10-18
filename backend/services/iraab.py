@@ -15,7 +15,7 @@ from __future__ import annotations
 from backend.services.arabic_text import strip_diacritics, words
 from backend.services import morphology, provenance, quran_corpus, rule_engine, signs, syntax, tarkeeb_store, tree_columns
 from backend.services.harakat import CASE_NAME, typed_case
-from backend.services.nahw_book import case_of, family_cards, is_object_stem, reason, teacher_rules
+from backend.services.nahw_book import book_map, book_words, case_of, family_cards, is_object_stem, reason, teacher_rules
 from backend.services.syntax import teacher
 from backend.services.syntax.tree import names_a_sentence as names_a_sentence
 from backend.services.syntax.naming import NAMED, role_key
@@ -93,6 +93,8 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
         if found.get("also") and word.get("reason"):
             word["reason"] = f"{word['reason']}، {found['also']}"
     _pieces_said(words, roles)
+    _extra_ba_said(words, roles)
+    _kaffa_said(words)
     _counted(words)
     _followed(words)
     return rule_engine.mark_condition(words, roles)
@@ -165,6 +167,29 @@ def _pieces_said(cards: list[dict], roles: list[dict]) -> None:
                 card["reason"] = f"{line}، {card['reason']}"
 
 
+def _kaffa_said(cards: list[dict]) -> None:
+    """إنما الأعمال بالنيات: an إن-family word with ما written onto it works on nothing, and the
+    card names the pair (data: closed_words inna `kaffa`)."""
+    kaffa = book_map("inna", "kaffa")
+    for card in cards:
+        bare = strip_diacritics(card.get("word") or "")
+        if card.get("role") == NAMED.harf and bare.endswith(kaffa["ma"]) and bare[:-len(kaffa["ma"])] in book_words("inna"):
+            card["name"] = kaffa["named"]
+            card["reason"] = kaffa["said"].format(word=card["word"], bare=bare[:-len(kaffa["ma"])])
+
+
+def _extra_ba_said(cards: list[dict], roles: list[dict]) -> None:
+    """كفى بالله شهيدًا: the card says the باء is زائدة, and the word is مجرور in its letters and
+    in its place's case (data: closed_words extra_ba), before the rule its place follows."""
+    for card, found in zip(cards, roles):
+        if not (place := found.get("extra_ba")):
+            continue
+        said = book_map("extra_ba", "said").format(place=book_map("extra_ba", "place_said")[place])
+        rule = card.get("reason", "").partition(". ")[2]
+        card.update(case="jarr", reason=f"الباء {book_map('extra_ba', 'named')}، {said} لأنه {card.get('name') or card['role']}"
+                    + (f". {rule}" if rule else ""))
+
+
 def _my_ya(entry: dict, found: dict, after: dict) -> bool:
     """لِأَبِي: the parser split off "my" that CAMeL left on the word, so the kasra
     belongs to the ya and the six nouns' letter is no sign here. Not in أَبِي الطَّبِيبِ,
@@ -194,8 +219,9 @@ def _named(entry: dict, found: dict, annexed: bool) -> None:
         entry.update(type="harf" if plain in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
     elif entry.get("type") == "harf" and found["role"] and plain not in (NAMED.harf, NAMED.harf_jarr):
         entry["type"] = "ism"  # أينما: a particle's card named for a place is a built noun
-    elif entry.get("type") in ("ism", "zarf") and found["role"] == NAMED.harf and found.get("named"):
-        entry["type"] = "harf"  # ما عدا: CAMeL's relative is the particle the reading names
+    elif entry.get("type") in ("ism", "zarf") and found["role"] == NAMED.harf and (found.get("named") or found.get("name")):
+        # ما عدا، ما النافية: CAMeL's relative is the particle the reading or its family names
+        entry["type"] = "harf"
     if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
         found = {**found, "case": CASE_NAME[own]}  # a recorded ayah's name brings its own case
     moved = found["case"] and found["case"] != entry.get("case")

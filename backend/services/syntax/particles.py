@@ -50,6 +50,8 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
     if after is None:
         return "none"
     typed = after.get("typed") or ""
+    if facts.is_verb(after) and not _is_present(after):
+        return "verb"  # نَقَصَتْ: a past verb is never in jazm; its تْ is the still ت of the feminine
     if facts.is_verb(after):
         stuck_on, weak = after.get("stuck_on", 0), after.get("weak_last")
         # أَنْ لَا تَطُوفِي: after a nasb particle the nun is gone for its nasb, so it shows no jazm
@@ -99,6 +101,27 @@ def _tool_next(token: dict, s: facts.Sentence) -> str:
     """The word after it is خلا, عدا or حاشا (ما عدا زيدًا): the ما that turns them into a masdar."""
     after = facts.next_word(token, s)
     return "yes" if after and is_one(strip_diacritics(after["form"]), "istithna_verbs") else "no"
+
+
+def _timed(token: dict, s: facts.Sentence) -> str:
+    """The word after it is لم or دام (data: istithna_verbs `timed_ma_before`) and it does not
+    open the sentence: ما المصدرية الظرفية, "as long as" (البيعان بالخيار ما لم يتفرقا)."""
+    after, before = facts.next_word(token, s), s.by_id.get(token["id"] - 1)
+    return "yes" if before and after and is_one(
+        strip_diacritics(after["lemma"] or after["form"]), "istithna_verbs", "timed_ma_before") else "no"
+
+
+def _answered(token: dict, s: facts.Sentence) -> str:
+    """A tying letter of its condition (ف) is written later onto a word that could not stand as a
+    condition itself, anything but a past verb (data: roles.json condition `_evidence_comment`):
+    ما أصابك من حسنة فمن الله is the ما of a condition, never the negation."""
+    ties = (condition_of(_word(token, s)) or {}).get("ties") or {}
+    for piece in s.tokens:
+        if piece["id"] > token["id"] and facts.is_prefix(piece) and piece["form"].strip("+") in ties:
+            after = s.by_id.get(piece["id"] + 1)
+            if after and not (facts.is_verb(after) and not _is_present(after)):
+                return "yes"
+    return "no"
 
 
 def _raf(token: dict, s: facts.Sentence) -> str:
@@ -298,6 +321,8 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "opens": (("yes", "no"), _opens),
     "raf": (("yes", "no"), _raf),
     "tool_next": (("yes", "no"), _tool_next),
+    "timed": (("yes", "no"), _timed),
+    "answered": (("yes", "no"), _answered),
     "told": (("noun", "other"), _told),
     "wonder": (("yes", "no"), _wonder),
     "asks": (("yes", "no"), _asks),

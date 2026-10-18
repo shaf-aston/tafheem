@@ -80,7 +80,8 @@ def _typed_case_fits_role(bases, tokens, roles):
     by_id = {t["id"]: t for t in tokens}
     for i, (token, role) in enumerate(zip(bases, roles)):
         shown = typed_case_of(token)
-        if not is_verb(token) and _clashes(role, shown, _vowel_facts(token, bases, roles, by_id)):
+        # كفى بالله: a word after a زائدة باء shows jarr in its letters, not its place's case
+        if not token.get("extra_ba") and not is_verb(token) and _clashes(role, shown, _vowel_facts(token, bases, roles, by_id)):
             yield i
 
 
