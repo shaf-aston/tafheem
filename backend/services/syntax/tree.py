@@ -366,11 +366,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                          and noun_tagged(t) and t["rel"] in NOUN_LINKS), None)
             if not head or not definite(head):
                 continue
-        known = definite(head)
-        if not known and head.get("stt") != "i":
+        known, case = definite(head), typed_or_parsed_case(head)
+        if not known and (head.get("stt") != "i" or not case):  # مَا، مَتَى: no case shown, nothing to describe
             continue
         job_of[token["id"]] = after_noun["definite" if known else "indefinite"]
-        place_of[token["id"]] = in_place(after_noun["definite_case"] if known else typed_or_parsed_case(head) or "u")
+        place_of[token["id"]] = in_place(after_noun["definite_case"] if known else case)
         framed.add(token["id"])  # drawn even when a particle heads it
         if not is_verb(token):
             nominal.add(token["id"])
