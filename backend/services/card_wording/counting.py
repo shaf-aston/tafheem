@@ -16,17 +16,16 @@ def counted(cards: list[dict], roles: list[dict]) -> None:
             run = 0
             continue
         run += 1
-        said = f"لأنه {role}"
 
         def count(nth: str) -> str:  # خبر إن → خبر ثانٍ لإن، مفعول به → مفعول به ثانٍ
-            return f"لأنه خبر {nth} ل{role[4:]}" if role.startswith("خبر ") else f"{said} {nth}"
-        def bare(reason: str) -> bool:  # said, and not already counted (ظنّ names its own أول and ثانٍ)
-            return said in reason and not any(f"{said} {nth}" in reason for nth in ordinals)
-        if run == 1 and bare(before.get("reason", "")):
-            before["reason"] = before["reason"].replace(said, count(ordinals[0]), 1)
-        if bare(card.get("reason", "")):
-            card["reason"] = card["reason"].replace(said, count(ordinals[min(run, len(ordinals) - 1)]), 1)
-
+            return f"خبر {nth} ل{role[4:]}" if role.startswith("خبر ") else f"{role} {nth}"
+        def bare(card: dict) -> bool:  # said, and not already counted (ظنّ names its own أول and ثانٍ)
+            said = card.get("said")
+            return bool(said) and said.says(role) and not any(said.says(f"{role} {nth}") for nth in ordinals)
+        if run == 1 and bare(before):
+            before["said"].rename(role, count(ordinals[0]))
+        if bare(card):
+            card["said"].rename(role, count(ordinals[min(run, len(ordinals) - 1)]))
 
 def followed(cards: list[dict], roles: list[dict]) -> None:
     """A follower names the word it follows (تابع لـ«زيدٌ»). Every معطوف of a chain is joined on
@@ -48,14 +47,12 @@ def followed(cards: list[dict], roles: list[dict]) -> None:
             joined.setdefault(root(i), []).append(i)
     for i, card in enumerate(cards):
         at = card.get("follows")
-        if not isinstance(at, int) or not 0 <= at < len(cards) or not card.get("reason"):
+        if not isinstance(at, int) or not 0 <= at < len(cards) or not (reason := card.get("said")):
             continue
         on = root(i) if card.get("role") == atf else at
-        card["reason"] = card["reason"].replace(said["before"], said["followed"].format(word=cards[on]["word"]), 1)
+        reason.swap(said["before"], said["followed"].format(word=cards[on]["word"]))
         if card.get("role") == atf and len(joined.get(on, [])) > 1:
-            nth = said["ordinals"][min(joined[on].index(i), len(said["ordinals"]) - 1)]
-            card["reason"] = card["reason"].replace(f"لأنه {atf}", f"لأنه {atf} {nth}", 1)
+            reason.rename(atf, f"{atf} {said['ordinals'][min(joined[on].index(i), len(said['ordinals']) - 1)]}")
     for on in joined:
-        if cards[on].get("reason") and said["joined_on"] not in cards[on]["reason"]:
-            first, dot, rule = cards[on]["reason"].partition(". ")
-            cards[on]["reason"] = f"{first}، {said['joined_on']}{dot}{rule}"
+        if (reason := cards[on].get("said")) and said["joined_on"] not in reason.text():
+            reason.extras.append(said["joined_on"])

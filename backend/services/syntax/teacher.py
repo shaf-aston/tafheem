@@ -80,8 +80,7 @@ def _typed_case_fits_role(bases, tokens, roles):
     by_id = {t["id"]: t for t in tokens}
     for i, (token, role) in enumerate(zip(bases, roles)):
         shown = typed_case_of(token)
-        # كفى بالله: a word after a زائدة باء shows jarr in its letters, not its place's case
-        if not token.get("extra_ba") and not is_verb(token) and _clashes(role, shown, _vowel_facts(token, bases, roles, by_id)):
+        if not is_verb(token) and _clashes(role, shown, _vowel_facts(token, bases, roles, by_id)):
             yield i
 
 
@@ -141,7 +140,9 @@ def review(words: list[str], tokens: list[dict], found: list[dict]) -> list[dict
     for rule, check in CHECKS.items():
         if rules[rule]["on"]:
             for i in list(check(bases, tokens, roles)):
-                caught.setdefault(i, rule)
+                # كفى بالله: a word whose case is its place's shows other letters (naming's by_place)
+                if not (rule == "typed_case_fits_role" and found[i].get("by_place")):
+                    caught.setdefault(i, rule)
             # the next check reads the sentence without the words already doubted:
             # a khabar whose mubtada was just dashed has lost its mubtada
             roles = [None if i in caught else role for i, role in enumerate(roles)]
