@@ -364,6 +364,8 @@ class Hadith(BaseSettings):
     rijal_list_max: int = Field(default=200, gt=0)
     # Hadith one narrator's page lists, all of them behind "Show all".
     rijal_hadith_limit: int = Field(default=5000, gt=0)
+    # Words of each one's text that list shows after the chain, as sunnah.com opens it.
+    rijal_opening_words: int = Field(default=12, gt=0)
     # Weak points on the chains: the rule and its words, and the file built from rijal.db with them (scripts/build_usul.py).
     usul_dir: str = "data/usul"
     usul_index_path: str = "data/usul/usul.db"

@@ -77,6 +77,20 @@ def built(tmp_path, monkeypatch):
     return TestClient(app)
 
 
+def test_a_classical_text_keeps_its_lines_and_book_letters():
+    text = parse.narrator(MALIK)["texts"][0]
+    blocks = text[2]
+    assert blocks[0]["kind"] == "title" and blocks[0]["runs"][0]["t"].startswith("مالك بن أنس")
+    assert any(b["kind"] == "label" for b in blocks)
+    page = '<div class="accordion"><div class="accordion-title">T</div><div class="accordion-body"><ul><li>بكر بن وائل '
+    page += '<a class="sigla-link" title="Sahih Muslim">م</a> وهو أصغر منه</li></ul><p>وقال <span class="tarjama-scholar">العجلي:</span> '
+    page += '<span class="tarjama-verdict">ثقة</span></p></div></div>'
+    item, said = parse.narrator(page)["texts"][0][2]
+    assert item == {"kind": "item", "runs": [{"t": "بكر بن وائل "}, {"t": "م", "role": "mark", "title": "Sahih Muslim"},
+                                             {"t": " وهو أصغر منه"}]}
+    assert [r.get("role") for r in said["runs"]] == [None, "scholar", "verdict"]
+
+
 def test_the_book_endpoint_gives_slices_that_read_as_names(built):
     reply = built.get("/api/rijal/chains/muslim/24").json()
     assert reply["ready"] is True and reply["source"]["key"] == "rijal"
@@ -94,7 +108,7 @@ def test_a_narrator_sheet_carries_grade_generation_and_his_circle(built):
     assert city["label_en"] == "Cities/Regions" and city["en"] and city["ar"] == sheet["city_ar"]
     assert all(b["en"] and b["ar"] for b in sheet["books"])
     assert built.get("/api/rijal/narrators/1").status_code == 404
-    assert built.get("/api/rijal/narrators/6659/hadith").json() == [{"collection": "muslim", "book": 24, "number": 1620, "part": "a"}]
+    assert built.get("/api/rijal/narrators/6659/hadith").json() == [{"collection": "muslim", "book": 24, "number": 1620, "part": "a", "opening": ""}]
 
 
 def test_search_finds_a_narrator_by_unpointed_arabic_or_english(built):

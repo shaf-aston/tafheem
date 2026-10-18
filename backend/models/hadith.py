@@ -97,10 +97,24 @@ class RijalVerdict(BaseModel):
     quote: str
 
 
+class TextRun(BaseModel):
+    """Part of a line of a classical text: `role` is scholar, verdict or mark (a book's letter, `title` its book), "" for plain words."""
+    t: str
+    role: str = ""
+    title: str = ""
+
+
+class TextBlock(BaseModel):
+    """One line of a classical text: title, para, label (a heading such as روى عن) or item (a row under it)."""
+    kind: str
+    runs: list[TextRun] = []
+
+
 class RijalText(BaseModel):
-    """A classical book's entry on him, as sunnah.com prints it."""
+    """A classical book's entry on him, as sunnah.com prints it: the plain text, and its lines as the page sets them."""
     book: str
     body: str
+    blocks: list[TextBlock] = []
 
 
 class RijalFact(BaseModel):
@@ -171,6 +185,11 @@ class RijalHadithRef(BaseModel):
     book: int
     number: int
     part: str = ""
+
+
+class NarratorHadith(RijalHadithRef):
+    """One hadith on a narrator's page, with the first words said after its chain; "" where the text is not built."""
+    opening: str = ""
 
 
 class WeakNote(BaseModel):

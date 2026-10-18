@@ -16,9 +16,8 @@ import { useOpenAtTop } from '../../lib/scrollToEl'
 
 import ArabicText from '../ui/ArabicText'
 import BookFacts from './BookFacts'
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
-import { NarratorError, NarratorHead, NarratorLinks } from './NarratorParts'
+import ClassicalText from './ClassicalText'
+import { NarratorError, NarratorHead, NarratorLinks, PAIR_ROWS, PairRow } from './NarratorParts'
 import ShowRest from '../ui/ShowRest'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 
@@ -92,14 +91,14 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
 
           {hadith.length > 0 && (
             <Section title="Hadith narrated" ar="الأحاديث المروية">
-              <FoldedList items={hadith} lines={6} accent={accent}>
-                {(shown) => (<ChipRow>
+              <FoldedList items={hadith} lines={10} accent={accent}>
+                {(shown) => (<ul className={PAIR_ROWS}>
                   {shown.map((h) => (
-                    <Chip key={`${h.collection}:${h.number}${h.part}`} accent={accent} onClick={() => onHadith(h)}>
-                      {of(h.collection).short} {h.number}{h.part}
-                    </Chip>
+                    <li key={`${h.collection}:${h.number}${h.part}`} className="min-w-0">
+                      <PairRow en={`${of(h.collection).short} ${h.number}${h.part}`} ar={h.opening} onClick={() => onHadith(h)} />
+                    </li>
                   ))}
-                </ChipRow>)}
+                </ul>)}
               </FoldedList>
             </Section>
           )}
@@ -107,7 +106,7 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
           {who.texts.map((t) => (
             <Section key={t.book} ar={t.book}>
               <ShowRest lines={8} accent={accent}>
-                <ArabicText as="p" size="sm" className="block m-0 whitespace-pre-line text-[var(--text-dim)]">{t.body}</ArabicText>
+                <ClassicalText text={t} accent={accent} />
               </ShowRest>
             </Section>
           ))}
