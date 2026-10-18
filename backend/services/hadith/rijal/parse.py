@@ -109,7 +109,8 @@ def _facts(soup: BeautifulSoup) -> list[dict]:
 def narrator(html: str) -> dict:
     """One narrator page: names, grade, the labelled facts, appraisals, teachers, students and the classical texts."""
     # The site joins book and author with an em dash; the app never prints one.
-    soup = _soup(html.replace("—", "-"))
+    # Its English writes the letter ayn as a backtick (`Abd); the app writes ʿ.
+    soup = _soup(html.replace("—", "-").replace("`", "ʿ"))
     out = {key: "" for key in _LABELS.values()}
     for label in soup.select("span.label.arabic-label"):
         key = _LABELS.get(_text(label))
