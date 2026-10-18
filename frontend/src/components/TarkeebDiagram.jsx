@@ -214,12 +214,15 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
             const text = pieces.join('').replaceAll('ـ', '')
             const open = (e) => onWord(text, nth, e.currentTarget)
             const gloss = !missing && glossOf?.(nth, text)
+            // on hover: the word and its English; before the English is in, the word and
+            // that a tap opens its meaning and the dictionary
+            const hover = !missing && onWord && `${text} · ${gloss || 'tap for its meaning'}`
             return (
               <div
                 className={`tk-word${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
                 key={`word-${from}`}
                 style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone[from]) }}
-                data-gloss={gloss || undefined}
+                data-gloss={hover || undefined}
                 {...(onWord && !missing && {
                   role: 'button',
                   tabIndex: 0,

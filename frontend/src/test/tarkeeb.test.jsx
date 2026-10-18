@@ -31,10 +31,15 @@ describe('tarkeeb chart', () => {
     expect(onWord).toHaveBeenCalledWith('ت', 2, word)
   })
 
-  it('shows a word\'s English on it, from the caller, by its place', () => {
+  it('shows a word and its English on hover, from the caller, by its place', () => {
     const { container } = renderScreen(
       <TarkeebDiagram tarkeeb={TARKEEB} onWord={() => {}} glossOf={(n, text) => `${n}:${text}`} />)
-    expect(container.querySelectorAll('.tk-word')[2].dataset.gloss).toBe('2:ت')
+    expect(container.querySelectorAll('.tk-word')[2].dataset.gloss).toBe('ت · 2:ت')
+  })
+
+  it('says a tap opens the meaning while no English is in', () => {
+    const { container } = renderScreen(<TarkeebDiagram tarkeeb={TARKEEB} onWord={() => {}} />)
+    expect(container.querySelectorAll('.tk-word')[2].dataset.gloss).toBe('ت · tap for its meaning')
   })
 
   it('draws every row in the larger view', () => {
