@@ -17980,6 +17980,14 @@
       "arabic": "النكاح",
       "kitab": "كتاب النكاح",
       "whole": true,
+      "units": [
+        {"title": "Who may marry", "arabic": "المحرمات", "lessons": ["nikah-contract", "nikah-mahram", "nikah-together", "nikah-kitabiyya"]},
+        {"title": "Consent and guardians", "arabic": "الأولياء والأكفاء", "lessons": ["nikah-consent", "nikah-wali", "nikah-kafaa"]},
+        {"title": "The mahr", "arabic": "المهر", "lessons": ["nikah-mahr", "nikah-khalwa", "nikah-mahr-terms"]},
+        {"title": "Pending and fasid marriages", "arabic": "النكاح الموقوف والفاسد", "lessons": ["nikah-mawquf", "nikah-mahr-mithl"]},
+        {"title": "Wives and defects", "arabic": "العدد والعيوب", "lessons": ["nikah-four", "nikah-defects"]},
+        {"title": "Faith and fair turns", "arabic": "اختلاف الدين والقسم", "lessons": ["nikah-islam", "nikah-ridda", "nikah-qasm"]}
+      ],
       "lessons": [
         {
           "id": "nikah-contract",
@@ -18009,7 +18017,7 @@
               "id": "witnesses",
               "title": "Two witnesses",
               "ar": "ولا يعقد نكاح المسلمين إلا بحضور شاهدين حرين بالغين عاقلين مسلمين أو رجل وامرأتين",
-              "en": "A nikah between Muslims is only made in front of two witnesses. They must be free, adult, sane and Muslim: two men, or one man and two women."
+              "en": "A nikah between Muslims is only made in front of two witnesses: two men, or one man and two women. Each must be 1) free, 2) adult, 3) sane and 4) Muslim."
             },
             {
               "kind": "teach",
@@ -18053,7 +18061,16 @@
               "id": "words",
               "title": "Which words make a nikah",
               "ar": "وينعقد النكاح بلفظ النكاح والتزويج والتمليك والهبة والصدقة ولا ينعقد بلفظ الإجارة والإباحة",
-              "en": "A nikah is made with the words nikah, tazwij (marrying), tamlik (giving ownership), hiba (giving as a gift) and sadaqa (giving in charity). It is not made with the words ijara (hiring) or ibaha (allowing)."
+              "en": "A nikah is made with five words: 1) nikah, 2) tazwij (marrying), 3) tamlik (giving ownership), 4) hiba (gift), 5) sadaqa (charity). It is not made with ijara (hiring) or ibaha (allowing)."
+            },
+            {
+              "kind": "choose",
+              "id": "words-count",
+              "ask": "How many words does the book name that make a nikah?",
+              "options": ["Five", "Three", "Seven"],
+              "answer": 0,
+              "source": "وينعقد النكاح بلفظ النكاح والتزويج والتمليك والهبة والصدقة",
+              "why": "Five: nikah, tazwij, tamlik, hiba and sadaqa."
             },
             {
               "kind": "sort",
@@ -18429,6 +18446,15 @@
               "en": "If a girl loses the physical sign of being a bikr through a jump, a heavy period or an injury, she is still treated as a bikr."
             },
             {
+              "kind": "choose",
+              "id": "still-bikr-case",
+              "ask": "Hiba lost the physical sign of being a bikr through an injury. She is asked about a proposal and stays silent. What is her silence?",
+              "options": ["Her permission: she is still a bikr", "Not enough: she must say it in words", "A refusal"],
+              "answer": 0,
+              "source": "وإذا زالت بكارتها بوثبة أو حيضة أو جراح فهي في حكم الأبكار",
+              "why": "A jump, a heavy period or an injury leaves her a bikr, and a bikr's silence is her permission."
+            },
+            {
               "kind": "teach",
               "id": "dispute",
               "title": "If they disagree about her answer",
@@ -18503,7 +18529,7 @@
               "id": "not-wali",
               "title": "Who cannot be a wali",
               "ar": "ولا ولاية لعبد ولا صغير ولا مجنون ولا كافر على مسلمة وقال أبو حنيفة: يجوز لغير العصبات من الأقارب التزويج",
-              "en": "A slave, a child, an insane person, or a non-Muslim over a Muslim woman cannot be a wali. Abu Hanifa said that relatives who are not 'asaba may also arrange a nikah."
+              "en": "Four cannot be a wali: 1) a slave, 2) a child, 3) an insane person, 4) a non-Muslim, over a Muslim woman. Abu Hanifa said relatives who are not 'asaba may also arrange a nikah."
             },
             {
               "kind": "pick",
@@ -18597,7 +18623,16 @@
               "id": "four",
               "title": "In what kafa'a is measured",
               "ar": "والكفاءة تعتبر في النسب والدين والمال وهو: أن يكون مالكا للمهر والنفقة وتعتبر في الصنائع",
-              "en": "Kafa'a looks at lineage, religion, wealth and trade. Wealth here means he can pay the mahr and the nafaqa. The mahr is the gift a husband must give his wife for the nikah; the nafaqa is her upkeep: food, clothing and home."
+              "en": "Kafa'a is measured in four things: 1) lineage (nasab), 2) religion, 3) wealth: he can pay the mahr and the nafaqa, 4) trade (work). The mahr is the gift a husband must give his wife; the nafaqa is her upkeep."
+            },
+            {
+              "kind": "choose",
+              "id": "four-count",
+              "ask": "In how many things is kafa'a measured?",
+              "options": ["Four", "Three", "Six"],
+              "answer": 0,
+              "source": ["والكفاءة تعتبر في النسب", "والمال وهو: أن يكون مالكا للمهر والنفقة وتعتبر في الصنائع"],
+              "why": "Four: lineage, religion, wealth and trade."
             },
             {
               "kind": "choose",
@@ -18839,7 +18874,7 @@
               "id": "not-valid",
               "title": "When khalwa does not count",
               "ar": "وإن كان أحدهما مريضا أو صائما في رمضان أو محرما بفرض أو نفل بحج أو عمرة أو كانت حائضا فليست بخلوة صحيحة",
-              "en": "It is not a valid khalwa if one of them is ill, fasting in Ramadan, in ihram for a fard or voluntary Hajj or Umrah, or if she is in her monthly period (hayd)."
+              "en": "Four things stop a khalwa being valid: 1) one of them is ill, 2) one is fasting in Ramadan, 3) one is in ihram for Hajj or Umrah, fard or voluntary, 4) she is in her monthly period (hayd)."
             },
             {
               "kind": "pick",
@@ -18850,10 +18885,10 @@
                 { "text": "One of them is fasting in Ramadan", "right": true },
                 { "text": "One of them is in ihram for Umrah", "right": true },
                 { "text": "She is in her monthly period", "right": true },
-                { "text": "It was in the evening" }
+                { "text": "He is majbub (unable to be with her)" }
               ],
-              "source": "وإن كان أحدهما مريضا أو صائما في رمضان أو محرما بفرض أو نفل بحج أو عمرة أو كانت حائضا فليست بخلوة صحيحة",
-              "why": "Illness, the Ramadan fast, ihram and her period each stop it being a valid khalwa. The time of day is not named."
+              "source": ["وإن كان أحدهما مريضا أو صائما في رمضان أو محرما بفرض أو نفل بحج أو عمرة أو كانت حائضا فليست بخلوة صحيحة", "وإذا خلا المجبوب بامرأته ثم طلقها فلها كمال المهر"],
+              "why": "Illness, the Ramadan fast, ihram and her period are the four. A majbub husband's khalwa still gives her the full mahr."
             },
             {
               "kind": "choose",
@@ -19188,7 +19223,7 @@
               "id": "equal",
               "title": "How alike the women must be",
               "ar": "ويعتبر في مهر المثل: أن تتساوى المرأتان في السن والجمال والعفة والمال والعقل والدين والبلد والعصر",
-              "en": "To compare, the two women must be alike in age, beauty, chastity, wealth, intelligence, religion, town and time."
+              "en": "To compare, the two women must be alike in eight things: 1) age, 2) beauty, 3) chastity, 4) wealth, 5) intelligence, 6) religion, 7) town, 8) time."
             },
             {
               "kind": "pick",
@@ -19204,6 +19239,15 @@
               ],
               "source": "أن تتساوى المرأتان في السن والجمال والعفة والمال والعقل والدين والبلد والعصر",
               "why": "Age, beauty, chastity, wealth, intelligence, religion, town and era. Height and brothers are not named."
+            },
+            {
+              "kind": "choose",
+              "id": "alike-count",
+              "ask": "In how many things must the two women be alike for mahr al-mithl?",
+              "options": ["Eight", "Seven", "Six"],
+              "answer": 0,
+              "source": "ويعتبر في مهر المثل: أن تتساوى المرأتان في السن والجمال والعفة والمال والعقل والدين والبلد والعصر",
+              "why": "Eight: age, beauty, chastity, wealth, intelligence, religion, town and time."
             },
             {
               "kind": "choose",
@@ -19397,7 +19441,6 @@
           "id": "nikah-islam",
           "title": "When one spouse becomes Muslim",
           "arabic": "وإذا أسلم زوج الكتابية",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -19669,7 +19712,7 @@
             {
               "kind": "choose",
               "id": "travel-case",
-              "ask": "Zubayr is going on a journey and can take one wife. What does al-Quduri say is best?",
+              "ask": "Zubayr is going on a journey and can take one wife. Which way is best?",
               "options": ["Draw lots between them", "Always take the first wife", "Take each in turn, by the calendar"],
               "answer": 0,
               "source": ["ويسافر الزوج بمن شاء منهن", "فيسافر بمن خرجت قرعتها"],
@@ -19962,6 +20005,13 @@
       "arabic": "الطلاق",
       "kitab": "كتاب الطلاق",
       "whole": true,
+      "units": [
+        {"title": "Kinds of talaq", "arabic": "أقسام الطلاق", "lessons": ["talaq-kinds", "talaq-timing"]},
+        {"title": "Words of talaq", "arabic": "ألفاظ الطلاق", "lessons": ["talaq-words", "talaq-parts"]},
+        {"title": "Conditions and numbers", "arabic": "الطلاق بالشرط", "lessons": ["talaq-conditions", "talaq-proof", "talaq-count"]},
+        {"title": "Choice and illness", "arabic": "تفويض الطلاق", "lessons": ["talaq-choice", "talaq-illness"]},
+        {"title": "Taking her back", "arabic": "الرجعة", "lessons": ["talaq-raja", "talaq-raja-end", "talaq-halal"]}
+      ],
       "lessons": [
         {
           "id": "talaq-kinds",
@@ -19973,7 +20023,16 @@
               "id": "three",
               "title": "Three kinds",
               "ar": "الطلاق على ثلاثة أوجه: أحسن الطلاق وطلاق السنة وطلاق البدعة",
-              "en": "Talaq is divorce: the husband ending the marriage. It comes in three kinds: the best way, the Sunna way, and the bid'a way (an innovated, wrong way)."
+              "en": "Talaq is divorce: the husband ending the marriage. It comes in three kinds: 1) ahsan, the best way, 2) the Sunna way, 3) bid'a, an innovated, wrong way."
+            },
+            {
+              "kind": "choose",
+              "id": "three-count",
+              "ask": "How many kinds of talaq does the book name?",
+              "options": ["Three", "Seven", "Two"],
+              "answer": 0,
+              "source": "الطلاق على ثلاثة أوجه: أحسن الطلاق وطلاق السنة وطلاق البدعة",
+              "why": "Three: the best way, the Sunna way and the bid'a way."
             },
             {
               "kind": "teach",
@@ -20202,6 +20261,15 @@
             },
             {
               "kind": "choose",
+              "id": "hints-count",
+              "ask": "How many hinted phrases give a revocable talaq?",
+              "options": ["Three", "Seven", "Five"],
+              "answer": 0,
+              "source": "منها ثلاثة ألفاظ بها الطلاق الرجعي ولا يقع بها إلا واحدة وهي قوله: اعتدي واستبرئي رحمك وأنت واحدة",
+              "why": "Three: \"Count your 'idda\", \"Make sure your womb is clear\" and \"You are one\"."
+            },
+            {
+              "kind": "choose",
               "id": "hint-case",
               "ask": "Ali says to his wife \"Count your 'idda\", meaning divorce. What happens?",
               "options": ["One revocable (raj'i) talaq", "One final (ba'in) talaq", "No talaq: it is only a hint"],
@@ -20417,7 +20485,22 @@
               "id": "words",
               "title": "Condition words",
               "ar": "وألفاظ الشرط: إن وإذا وإذ ما وكل وكلما ومتى ومتى ما",
-              "en": "The words of a condition are: in (if), idha and idh ma (when), kull (every), kullama (whenever), mata and mata ma (whenever, at whatever time)."
+              "en": "The condition words are seven: 1) in (if), 2) idha (when), 3) idh ma (when), 4) kull (every), 5) kullama (whenever), 6) mata (whenever), 7) mata ma (at whatever time)."
+            },
+            {
+              "kind": "pick",
+              "id": "words-pick",
+              "ask": "Which of these are condition words?",
+              "options": [
+                { "text": "In (if)", "right": true },
+                { "text": "Idha (when)", "right": true },
+                { "text": "Kullama (whenever)", "right": true },
+                { "text": "Mata (whenever)", "right": true },
+                { "text": "Illa (except)" },
+                { "text": "Ma'a (with)" }
+              ],
+              "source": ["وألفاظ الشرط: إن وإذا وإذ ما وكل وكلما ومتى ومتى ما", "وإن قال: ثلاثا إلا اثنتين"],
+              "why": "In, idha, kullama and mata are among the seven. \"Except\" and \"with\" change the number of talaqs, not a condition."
             },
             {
               "kind": "teach",
@@ -20468,7 +20551,6 @@
           "id": "talaq-proof",
           "title": "When they disagree about the condition",
           "arabic": "فالقول قول الزوج فيه إلا أن تقيم البينة",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -20827,6 +20909,15 @@
             },
             {
               "kind": "choose",
+              "id": "raja-def",
+              "ask": "What is raj'a?",
+              "options": ["Taking her back during her 'idda", "A new nikah after another husband", "A talaq she buys with money"],
+              "answer": 0,
+              "source": "فله أن يراجعها في عدتها رضيت بذلك أو لم ترض",
+              "why": "Raj'a is the husband taking his wife back during the 'idda of a revocable talaq."
+            },
+            {
+              "kind": "choose",
               "id": "consent-case",
               "ask": "Musa gave his wife one revocable talaq. During her 'idda he says, \"I have taken you back\", but she does not want it. Is the raj'a valid?",
               "options": ["Yes: it does not need her agreement", "No: a raj'a is valid only if she agrees", "Only with a judge's permission"],
@@ -20900,7 +20991,6 @@
           "id": "talaq-raja-end",
           "title": "When the right to take her back ends",
           "arabic": "انقطعت الرجعة",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -21002,6 +21092,14 @@
               "en": "After three talaqs for a free wife (two for an enslaved wife, in al-Quduri's time), she is not lawful for him again until she marries another husband in a valid nikah, that marriage is consummated, and then he divorces her or dies."
             },
             {
+              "kind": "order",
+              "id": "three-order",
+              "ask": "After three talaqs, put in order what makes her lawful for him again.",
+              "steps": ["She marries another husband in a valid nikah", "That marriage is consummated", "He divorces her or dies"],
+              "source": "لم تحل له حتى تنكح زوجا غيره نكاحا صحيحا ويدخل بها ثم يطلقها أو يموت عنها",
+              "why": "A valid nikah to another, consummation, then his divorce or death."
+            },
+            {
               "kind": "choose",
               "id": "one-final-case",
               "ask": "Anas gave his wife one final talaq. Two weeks later, while she is still in her 'idda, they both want to marry again. Can they?",
@@ -21090,6 +21188,10 @@
       "arabic": "الإيلاء",
       "kitab": "كتاب الإيلاء",
       "whole": true,
+      "units": [
+        {"title": "Ila'", "arabic": "الإيلاء", "lessons": ["ila-oath", "ila-cases"]},
+        {"title": "Khul'", "arabic": "الخلع", "lessons": ["ila-khul", "ila-khul-cases"]}
+      ],
       "lessons": [
         {
           "id": "ila-oath",
@@ -21102,6 +21204,15 @@
               "title": "What ila' is",
               "ar": "إذا قال الرجل لامرأته: والله لا أقربك",
               "en": "Ila' is a husband swearing by Allah to stay away from married closeness with his wife: \"By Allah, I will not come near you\", with no end, or for four months. A husband who does this is called a mu'li."
+            },
+            {
+              "kind": "choose",
+              "id": "ila-def",
+              "ask": "What is ila'?",
+              "options": ["An oath to keep away from his wife", "Likening his wife to his mother", "A wife buying her release"],
+              "answer": 0,
+              "source": "إذا قال الرجل لامرأته: والله لا أقربك أو لا أقربك أربعة أشهرفهو مول",
+              "why": "Ila' is swearing by Allah not to come near his wife, and he is then a mu'li."
             },
             {
               "kind": "teach",
@@ -21282,6 +21393,15 @@
               "en": "Khul': if husband and wife are at odds and fear they will not keep within the limits Allah has set, there is no harm in the wife freeing herself from him with money in return for which he releases her."
             },
             {
+              "kind": "choose",
+              "id": "khul-def",
+              "ask": "What is khul'?",
+              "options": ["A wife freeing herself for a payment", "A husband's oath to keep away", "A husband taking her back"],
+              "answer": 0,
+              "source": "فلا بأس أن تفتدي نفسها منه بمال يخلعها به",
+              "why": "In khul' the wife frees herself with money, and he releases her for it."
+            },
+            {
               "kind": "teach",
               "id": "effect",
               "title": "What it does",
@@ -21316,7 +21436,7 @@
             {
               "kind": "choose",
               "id": "his-fault-case",
-              "ask": "The trouble came from the husband's side, and his wife asks for a khul'. What does the book say about him taking payment?",
+              "ask": "The trouble came from the husband's side, and his wife asks for a khul'. What is the ruling on him taking payment?",
               "options": ["It is disliked for him to take anything", "He may take up to the mahr he gave her, no more", "He must take double the mahr"],
               "answer": 0,
               "source": "وإن كان النشوز من قبله كره له أن يأخذ منها عوضا",
@@ -21472,6 +21592,12 @@
       "arabic": "الظهار",
       "kitab": "كتاب الظهار",
       "whole": true,
+      "units": [
+        {"title": "Zihar", "arabic": "الظهار", "lessons": ["zihar-words", "zihar-kaffara-freeing", "zihar-kaffara-fast-feed"]},
+        {"title": "Li'an", "arabic": "اللعان", "lessons": ["zihar-lian", "zihar-lian-child"]},
+        {"title": "The 'idda", "arabic": "العدة", "lessons": ["zihar-idda-length", "zihar-idda-changes", "zihar-idda-start", "zihar-ihdad"]},
+        {"title": "A child's lineage", "arabic": "ثبوت النسب", "lessons": ["zihar-nasab-idda", "zihar-nasab-proof"]}
+      ],
       "lessons": [
         {
           "id": "zihar-words",
@@ -21495,6 +21621,15 @@
               "arabic-options": true,
               "source": "ولا يحل له وطؤها ولا لمسها ولا تقبيلها حتى يكفر عن ظهاره",
               "why": "يكفر: she is forbidden to him until he pays the kaffara for his zihar."
+            },
+            {
+              "kind": "choose",
+              "id": "zihar-def",
+              "ask": "What is zihar?",
+              "options": ["Likening his wife to his mother's back", "Swearing not to come near his wife", "Accusing his wife of zina"],
+              "answer": 0,
+              "source": "إذا قال الزوج لامرأته: أنت علي كظهر أمي فقد حرمت عليه",
+              "why": "Zihar is \"You are to me like my mother's back\": she becomes forbidden to him until he pays the kaffara."
             },
             {
               "kind": "teach",
@@ -21592,7 +21727,6 @@
           "id": "zihar-kaffara-freeing",
           "title": "The kaffara: freeing a slave",
           "arabic": "وكفارة الظهار",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -21720,7 +21854,7 @@
               "id": "fast",
               "title": "Two months in a row",
               "ar": "وإذا لم يجد المظاهر ما يعتق فكفارته صوم شهرين متتابعين ليس فيهما شهر رمضان ولا يوم الفطر ولا يوم النحر ولا أيام التشريق",
-              "en": "If the man who made zihar cannot find a slave to free, he fasts two months in a row. They must not include the month of Ramadan, the day of Eid al-Fitr, the Day of Sacrifice (Eid al-Adha), or the days of tashriq (the three days after it)."
+              "en": "If he cannot find a slave to free, he fasts two months in a row. They must not include four times: 1) the month of Ramadan, 2) the day of Eid al-Fitr, 3) the Day of Sacrifice, 4) the days of tashriq (the three days after it)."
             },
             {
               "kind": "choose",
@@ -21730,6 +21864,21 @@
               "answer": 0,
               "source": "صوم شهرين متتابعين ليس فيهما شهر رمضان",
               "why": "The two months of the kaffara must not include Ramadan, so he must choose two other months in a row."
+            },
+            {
+              "kind": "pick",
+              "id": "fast-pick",
+              "ask": "Which of these may NOT fall inside his two months of fasting?",
+              "options": [
+                { "text": "The month of Ramadan", "right": true },
+                { "text": "The day of Eid al-Fitr", "right": true },
+                { "text": "The Day of Sacrifice", "right": true },
+                { "text": "The days of tashriq", "right": true },
+                { "text": "The month of Sha'ban" },
+                { "text": "A Friday" }
+              ],
+              "source": "ليس فيهما شهر رمضان ولا يوم الفطر ولا يوم النحر ولا أيام التشريق",
+              "why": "The book names four: Ramadan, the day of Eid al-Fitr, the Day of Sacrifice and the days of tashriq."
             },
             {
               "kind": "teach",
@@ -21834,6 +21983,15 @@
               "en": "Qadhf is accusing someone of zina (unlawful relations). Li'an is a set of oaths husband and wife swear before the judge. It is due when a husband accuses his wife of zina, or denies her child is his, and she asks the judge to act. Both must be fit to be witnesses, and her accuser must be liable to punishment."
             },
             {
+              "kind": "choose",
+              "id": "lian-def",
+              "ask": "What is li'an?",
+              "options": ["Oaths husband and wife swear before the judge", "An oath to keep away from his wife", "A payment for her release"],
+              "answer": 0,
+              "source": "وصفة اللعان: أن يبتدئ القاضي بالزوج فيشهد أربع مرات",
+              "why": "Li'an is the oaths sworn before the judge after a husband accuses his wife."
+            },
+            {
               "kind": "teach",
               "id": "refuse",
               "title": "If one of them refuses",
@@ -21932,7 +22090,6 @@
           "id": "zihar-lian-child",
           "title": "Li'an: special cases and denying a child",
           "arabic": "وإذا نفى الرجل ولد امرأته",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -22544,6 +22701,11 @@
       "arabic": "النفقات",
       "kitab": "كتاب النفقات",
       "whole": true,
+      "units": [
+        {"title": "The wife's upkeep", "arabic": "نفقة الزوجة", "lessons": ["nafaqat-wife", "nafaqat-home", "nafaqat-owed"]},
+        {"title": "Children", "arabic": "نفقة الأولاد والحضانة", "lessons": ["nafaqat-children", "nafaqat-hadana"]},
+        {"title": "Relatives", "arabic": "نفقة الأقارب", "lessons": ["nafaqat-relatives", "nafaqat-absent-son"]}
+      ],
       "lessons": [
         {
           "id": "nafaqat-wife",
@@ -23127,6 +23289,10 @@
       "arabic": "العتاق",
       "kitab": "كتاب العتاق",
       "whole": true,
+      "units": [
+        {"title": "Freeing", "arabic": "العتق", "lessons": ["itq-words", "itq-shared", "itq-pay"]},
+        {"title": "Tadbir and istilad", "arabic": "التدبير والاستيلاد", "lessons": ["itq-tadbir", "itq-umm-walad"]}
+      ],
       "lessons": [
         {
           "id": "itq-words",
@@ -23680,6 +23846,15 @@
               "title": "What kitaba is",
               "ar": "وإذا كاتب المولى عبده أو أمته على مال شرطه عليه وقبل العبد ذلك صار مكاتبا",
               "en": "In al-Quduri's time a slave could buy his own freedom. Kitaba is a contract in which the master agrees to free his slave for a sum of money, and the slave accepts. The slave is then a mukatab."
+            },
+            {
+              "kind": "choose",
+              "id": "kitaba-def",
+              "ask": "What is kitaba?",
+              "options": ["A slave buying his freedom for money", "Freedom at the master's death", "A slave mother of his child"],
+              "answer": 0,
+              "source": "وإذا كاتب المولى عبده أو أمته على مال شرطه عليه وقبل العبد ذلك صار مكاتبا",
+              "why": "In kitaba the master agrees to free the slave for a sum, and the slave accepts: he is then a mukatab."
             },
             {
               "kind": "teach",
@@ -34050,6 +34225,11 @@
       "arabic": "الوصايا",
       "kitab": "كتاب الوصايا",
       "whole": true,
+      "units": [
+        {"title": "Making a will", "arabic": "الوصية", "lessons": ["wasaya-basics", "wasaya-executor"]},
+        {"title": "Sharing the third", "arabic": "الوصية بالثلث", "lessons": ["wasaya-shares", "wasaya-illness"]},
+        {"title": "Named people and things", "arabic": "الوصية للأقارب وغيرهم", "lessons": ["wasaya-relatives", "wasaya-property", "wasaya-unborn"]}
+      ],
       "lessons": [
         {
           "id": "wasaya-basics",
@@ -34061,14 +34241,28 @@
               "id": "recommended",
               "title": "Recommended, not required",
               "ar": "الوصية غير واجبة وهي مستحبة",
-              "en": "A wasiyya (will) is when someone says that part of their wealth should go to a person or a good cause after they die. Making one is not wajib (required). It is mustahabb (recommended)."
+              "en": "A wasiyya (will) is when someone says that part of their wealth should go to a person or a good cause after they die. Making one is not wajib (required). It is mustahabb (recommended), and best for less than a third."
             },
             {
               "kind": "teach",
               "id": "limits",
               "title": "Three limits",
               "ar": "ولا تجوز الوصية لوارث إلا أن يجيزها الورثة ولا يجوز الوصية بما زاد على الثلث ولا للقاتل",
-              "en": "A will has limits. It cannot be for a warith (someone who already inherits from you), unless the other heirs agree. It cannot be for more than a third of your wealth. And it cannot be for the person who killed you."
+              "en": "A will has three limits. It cannot be: 1) for a warith (someone who already inherits from you), unless the other heirs agree, 2) for more than a third of your wealth, 3) for the person who killed you. A Muslim and a non-Muslim may leave wills to each other."
+            },
+            {
+              "kind": "pick",
+              "id": "limits-pick",
+              "ask": "The heirs do not agree to more. Which of these wills are NOT allowed?",
+              "options": [
+                { "text": "1,000 to his son, who is an heir", "right": true },
+                { "text": "Half his wealth to a poor neighbour", "right": true },
+                { "text": "Any amount to the man who killed him", "right": true },
+                { "text": "A third to a Christian friend" },
+                { "text": "A quarter to the mosque" }
+              ],
+              "source": ["ولا تجوز الوصية لوارث", "إلا أن يجيزها الورثة ولا يجوز الوصية بما زاد على الثلث ولا للقاتل", "ويجوز أن يوصي المسلم للكافر والكافر للمسلم"],
+              "why": "A will cannot go to an heir, beyond a third, or to the killer. A third to a non-Muslim and a quarter to the mosque are fine."
             },
             {
               "kind": "choose",
@@ -34547,7 +34741,6 @@
           "id": "wasaya-property",
           "title": "When the wealth or the people change",
           "arabic": "ومن أوصى لرجل بثلث دراهمه",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -34651,7 +34844,7 @@
               "id": "unborn",
               "title": "For an unborn child",
               "ar": "وتجوز الوصية للحمل وبالحمل إذا وضع لأقل من ستة أشهر من يوم الوصية",
-              "en": "A will may be for a haml (a baby not yet born), or may give away an unborn young (like an animal's), if it is born less than six months after the day of the will."
+              "en": "A will may be for a haml (a baby not yet born), or give away an unborn young, if it is born less than six months after the day of the will. And a will of a jariya (slave woman) except the baby she carries is valid with its exception."
             },
             {
               "kind": "choose",
@@ -34773,6 +34966,12 @@
       "arabic": "الفرائض",
       "kitab": "كتاب الفرائض",
       "whole": true,
+      "units": [
+        {"title": "Heirs and fixed shares", "arabic": "الفروض", "lessons": ["faraid-heirs", "faraid-shares", "faraid-third-sixth"]},
+        {"title": "Blocking and 'asaba", "arabic": "الحجب والعصبات", "lessons": ["faraid-falling", "faraid-asaba", "faraid-hajb"]},
+        {"title": "Special cases", "arabic": "الرد وذوو الأرحام", "lessons": ["faraid-radd", "faraid-arham"]},
+        {"title": "Working it out", "arabic": "حساب الفرائض", "lessons": ["faraid-base", "faraid-tashih", "faraid-payout"]}
+      ],
       "lessons": [
         {
           "id": "faraid-heirs",
@@ -34802,7 +35001,7 @@
               "id": "women",
               "title": "The seven women",
               "ar": "ومن الإناث سبع: البنت وبنت الابن والأم والجدة والأخت والزوجة ومولاة النعمة",
-              "en": "And seven women: the daughter, the son's daughter, the mother, the grandmother, the sister, the wife, and the mawlat al-ni'ma (the woman who freed the dead person, in al-Quduri's time)."
+              "en": "And seven women: 1) the daughter, 2) the son's daughter, 3) the mother, 4) the grandmother, 5) the sister, 6) the wife, 7) the mawlat al-ni'ma (the woman who freed the dead person, in al-Quduri's time)."
             },
             {
               "kind": "pick",
@@ -34820,11 +35019,29 @@
               "why": "The son's daughter, grandmother, wife and mother are on the list. The daughter's daughter and the khala are not."
             },
             {
+              "kind": "choose",
+              "id": "women-count",
+              "ask": "How many women are agreed heirs?",
+              "options": ["Seven", "Three", "Ten"],
+              "answer": 0,
+              "source": "ومن الإناث سبع: البنت وبنت الابن والأم والجدة والأخت والزوجة ومولاة النعمة",
+              "why": "Seven, against ten men."
+            },
+            {
               "kind": "teach",
               "id": "four",
               "title": "Four who do not inherit",
               "ar": "ولا يرث أربعة: المملوك والقاتل من المقتول والمرتد وأهل الملتين",
-              "en": "Four people do not inherit: a slave (in al-Quduri's time); a killer, from the person he killed; a murtadd (someone who left Islam); and people of two different religions, from each other."
+              "en": "Four do not inherit: 1) a slave (in al-Quduri's time), 2) a killer, from the person he killed, 3) a murtadd (someone who left Islam), 4) people of two different religions, from each other."
+            },
+            {
+              "kind": "choose",
+              "id": "four-count",
+              "ask": "How many kinds of people does the book say do not inherit?",
+              "options": ["Four", "Two", "Seven"],
+              "answer": 0,
+              "source": "ولا يرث أربعة: المملوك والقاتل من المقتول والمرتد وأهل الملتين",
+              "why": "Four: the slave, the killer, the murtadd and people of two religions."
             },
             {
               "kind": "choose",
@@ -34880,7 +35097,7 @@
               "id": "six",
               "title": "Six fixed shares",
               "ar": "والفروض المحدودة في كتاب الله تعالى ستة: النصف والربع والثمن والثلثان والثلث والسدس",
-              "en": "The furud (fixed shares) named in the Book of Allah are six: a half, a quarter, an eighth, two thirds, a third and a sixth."
+              "en": "The furud (fixed shares) named in the Book of Allah are six: 1) a half, 2) a quarter, 3) an eighth, 4) two thirds, 5) a third, 6) a sixth."
             },
             {
               "kind": "pick",
@@ -34896,6 +35113,15 @@
               ],
               "source": "ستة: النصف والربع والثمن والثلثان والثلث والسدس",
               "why": "The six are a half, a quarter, an eighth, two thirds, a third and a sixth. There is no fifth or tenth."
+            },
+            {
+              "kind": "choose",
+              "id": "six-count",
+              "ask": "How many fixed shares are named in the Book of Allah?",
+              "options": ["Six", "Four", "Eight"],
+              "answer": 0,
+              "source": "والفروض المحدودة في كتاب الله تعالى ستة: النصف",
+              "why": "Six: a half, a quarter, an eighth, two thirds, a third and a sixth."
             },
             {
               "kind": "teach",
@@ -35041,6 +35267,15 @@
               "en": "The sixth is for seven: each parent, with a child or son's child; the mother, with brothers or sisters of any kind; the grandmothers; the grandfather, with a child or son's child; son's daughters, with one daughter; sisters from the father, with a full sister; and a single child of the mother."
             },
             {
+              "kind": "choose",
+              "id": "sixth-count",
+              "ask": "For how many heirs is the sixth the fixed share?",
+              "options": ["Seven", "Three", "Five"],
+              "answer": 0,
+              "source": "والسدس: فرض سبعة",
+              "why": "The book says the sixth is the share of seven."
+            },
+            {
               "kind": "pick",
               "id": "sixth-pick",
               "ask": "Who gets a sixth here?",
@@ -35101,7 +35336,16 @@
               "id": "maternal-fall",
               "title": "The mother's children fall by four",
               "ar": "ويسقط ولد الأم بأربعة: بالولد وولد الابن والأب والجد",
-              "en": "Half-siblings through the mother fall with four: a child, a son's child, the father, and the grandfather."
+              "en": "Half-siblings through the mother fall with four: 1) a child, 2) a son's child, 3) the father, 4) the grandfather."
+            },
+            {
+              "kind": "choose",
+              "id": "maternal-count",
+              "ask": "By how many relatives do the mother's children fall?",
+              "options": ["Four", "Two", "Three"],
+              "answer": 0,
+              "source": "ويسقط ولد الأم بأربعة: بالولد وولد الابن والأب والجد",
+              "why": "Four: a child, a son's child, the father and the grandfather."
             },
             {
               "kind": "sort",
@@ -35375,6 +35619,15 @@
             },
             {
               "kind": "choose",
+              "id": "radd-def",
+              "ask": "What is radd?",
+              "options": ["Giving the surplus back to the share-holders", "Raising the base when shares are too many", "The freer taking what is left"],
+              "answer": 0,
+              "source": "والفاضل عن فرض ذوي السهام إذا لم يكن عصبة مردود عليهم بمقدار سهامهم",
+              "why": "Radd gives what is left back to those with fixed shares, in proportion. Raising the base is 'awl."
+            },
+            {
+              "kind": "choose",
               "id": "radd-case",
               "ask": "Sumayya dies, leaving her mother and a daughter, and 800 dirhams. There is no 'asaba. What does each get in the end?",
               "options": ["Mother 200, daughter 600", "Mother 133, daughter 400, the rest to no one", "400 each"],
@@ -35515,6 +35768,15 @@
             },
             {
               "kind": "choose",
+              "id": "arham-count",
+              "ask": "How many kinds of dhawu al-arham does the book name?",
+              "options": ["Ten", "Seven", "Four"],
+              "answer": 0,
+              "source": "ورثه ذوو أرحامه وهم عشرة",
+              "why": "The book says they are ten, and those related through them."
+            },
+            {
+              "kind": "choose",
               "id": "khala-case",
               "ask": "Ayyub dies. He has no 'asaba and no one with a fixed share. His only relative is his khala. What happens?",
               "options": ["She inherits, as one of the dhawu al-arham", "Nothing: she is not one of the seven women", "She gets only a sixth"],
@@ -35568,7 +35830,7 @@
               "id": "freers-family",
               "title": "The freer's family",
               "ar": "وإذا ترك المعتق أبا مولاه وابن مولاه فماله للابن وقال أبو يوسف: للأب السدس والباقي للابن فإن ترك جد مولاه وأخ مولاه فالمال للجد في قول أبي حنيفة",
-              "en": "If a freed person dies after his freer, leaving the freer's father and son, his wealth goes to the son. If he leaves the freer's grandfather and brother, Abu Hanifa gives it to the grandfather. Note: Abu Yusuf and Muhammad differ on both cases."
+              "en": "If a freed person dies after his freer, leaving the freer's father and son, his wealth goes to the son. If he leaves the freer's grandfather and brother, Abu Hanifa gives it to the grandfather. Wala' cannot be sold or given as a gift."
             },
             {
               "kind": "pick",
@@ -35656,6 +35918,20 @@
               "en": "An eighth with two thirds or a sixth: the base is 24. It can rise by 'awl to 27."
             },
             {
+              "kind": "pick",
+              "id": "awl-pick",
+              "ask": "Which base numbers can rise by 'awl?",
+              "options": [
+                { "text": "6", "right": true },
+                { "text": "12", "right": true },
+                { "text": "24", "right": true },
+                { "text": "2" },
+                { "text": "3" }
+              ],
+              "source": ["وتعول إلى سبعة وثمانية وتسعة وعشرة", "وتعول إلى ثلاثة عشر", "وتعول إلى سبعة وعشرين", "أو نصف وما بقي فأصلها من اثنين"],
+              "why": "6 rises to 7, 8, 9 or 10; 12 to 13, 15 or 17; 24 to 27. The book gives no 'awl for 2 or 3."
+            },
+            {
               "kind": "choose",
               "id": "twenty-four-case",
               "ask": "Sahl dies, leaving his wife (an eighth), two daughters (two thirds) and his father. From 24, how many parts does the father get?",
@@ -35685,7 +35961,6 @@
           "id": "faraid-tashih",
           "title": "When the parts do not divide",
           "arabic": "فإذا انقسمت المسألة على الورثة فقد صحت",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
