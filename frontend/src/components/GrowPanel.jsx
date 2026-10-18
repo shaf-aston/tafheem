@@ -3,7 +3,7 @@
  * Three screens: home, a world (SCREENS by its `kind` in worlds.json), a lesson; each has an address (lib/growPlace.js),
  * written through `onVisit` and followed on back/forward through `arrival`.
  * Adding a lessons world = a worlds.json entry + a hook in `lessons` (a config of lib/useLessonWorld.js);
- * a book world = an entry of kind `book` + its hook in `books` (lib/useBookWorld.js): parts, then lessons, each one address deeper.
+ * a book world = an entry of kind `book`, nothing more (its data: lib/useBookWorld.js): parts, then lessons, each one address deeper.
  */
 import { useEffect, useEffectEvent, useState } from 'react'
 
@@ -15,7 +15,7 @@ import { goBack } from '../lib/journey'
 import { getProfile } from '../lib/profile'
 import { useHadithWorld } from '../lib/useHadithWorld'
 import { useArrival } from '../lib/useArrival'
-import { LAST_BOOK, REVIEW, useBookWorld } from '../lib/useBookWorld'
+import { LAST_BOOK, REVIEW, useBookWorlds } from '../lib/useBookWorld'
 import { useQuranWorld } from '../lib/useQuranWorld'
 import { useRemembered } from '../lib/useRemembered'
 import { useRewards } from '../lib/useRewards'
@@ -28,7 +28,8 @@ import LessonWorld from './grow/LessonWorld'
 const WORLDS = config.worlds.map((world) => ({ ...world, accent: colorFor('world', world.id) }))
 const worldOf = (id) => WORLDS.find((world) => world.id === id)
 const WORLD_IDS = WORLDS.filter((world) => world.live).map((world) => world.id)
-const BOOK_IDS = WORLDS.filter((world) => world.kind === 'book').map((world) => world.id)
+const BOOKS = WORLDS.filter((world) => world.kind === 'book')
+const BOOK_IDS = BOOKS.map((world) => world.id)
 
 const SCREENS = {
   lessons: ({ world, lessons, back, start }) => (
@@ -50,12 +51,7 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
   const [view, setView] = useState(() => placeAt(incoming))
   if (useArrival(arrival).arrived) setView(placeAt(incoming))
   // A book world fetches the part files the view needs (its open part, the lesson's, a review's).
-  const books = {
-    fiqh: useBookWorld(worldOf('fiqh'), view),
-    nahw: useBookWorld(worldOf('nahw'), view),
-    sarf: useBookWorld(worldOf('sarf'), view),
-    aqidah: useBookWorld(worldOf('aqidah'), view),
-  }
+  const books = useBookWorlds(BOOKS, view)
   const sourceOf = (id) => books[id] ?? lessons[id]
   // A lesson's cards: a book world's by the lesson's id, once its part is in; any other world's next lesson.
   const deal = (at) => (books[at.id] ? books[at.id].makeLesson(at.lesson) : lessons[at.id].makeLesson())
