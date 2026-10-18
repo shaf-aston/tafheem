@@ -35,7 +35,7 @@ function Line({ line, source, accent }) {
       {line.ar && <ArabicText as="p" size="base" className="block m-0 leading-relaxed">{line.ar}</ArabicText>}
       {line.quote && <Quote accent={accent}>{line.quote}</Quote>}
       {line.rule && (
-        <Disclosure label={`Rule: ${[line.rule.book, line.rule.page].filter(Boolean).join(', ')}`}>
+        <Disclosure label={['Rule', [line.rule.book, line.rule.page].filter(Boolean).join(', ')].filter(Boolean).join(': ')}>
           <p className="type-small m-0 mb-1 text-[var(--text-dim)]">{line.rule.say}</p>
           <ArabicText as="p" size="sm" className="block m-0 leading-loose text-[var(--text-faint)]">{line.rule.quote}</ArabicText>
         </Disclosure>

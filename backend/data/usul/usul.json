@@ -437,6 +437,6 @@
       "label": "Ibn al-Jawzi, al-Mawdu'at", "openiti": "0597IbnJawzi.Mawducat.Shamela0000882-ara1"
     },
     "ours": { "label": "Hadith in this app (sunnah.com)", "openiti": "" },
-    "grade": { "label": "Grade on sunnah.com, on Ibn Hajar's twelve levels", "openiti": "" }
+    "grade": { "label": "Our reading of the grade on Ibn Hajar's twelve levels", "openiti": "" }
   }
 }

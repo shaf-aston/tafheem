@@ -33,6 +33,13 @@ export function GradePill({ rank, children, size = 'sm' }) {
   )
 }
 
+/** One of the page's warnings beside the grade (Ikhtilat, Tadlis): the amber of a doubtful rank, so a green grade is not read as clean. */
+function Flag({ arabic = false, children }) {
+  const box = 'inline-block px-2 py-0.5 rounded-full border'
+  const style = { color: 'var(--warn)', borderColor: 'var(--warn-edge)', background: 'var(--warn-wash)' }
+  return arabic ? <ArabicText size="sm" className={box} style={style}>{children}</ArabicText> : <span className={`type-small ${box}`} style={style}>{children}</span>
+}
+
 export function NarratorName({ who, as = 'h2' }) {
   return (
     <div className="min-w-0">
@@ -177,7 +184,7 @@ const UNFETCHED = 'Known here only by name, from the teacher and student lists o
 export function NarratorHead({ who }) {
   const numbers = [
     // sunnah.com's years pill: a death date (d. 57 AH) or a lifespan (58 – 145 AH).
-    ['Years', who.years],
+    ['Years', who.years && <>{who.years}{who.years_ar && <ArabicText size="sm" className="ms-2 text-[var(--text-dim)]">{who.years_ar}</ArabicText>}</>],
     // sunnah.com's own count; the hadith listed below are the ones this app holds, which can differ.
     ['Hadith on sunnah.com', who.hadith_total],
     ['Teachers', who.teachers.length],
@@ -186,12 +193,18 @@ export function NarratorHead({ who }) {
   return (
     <div className="mx-auto max-w-3xl px-6 py-5 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] divide-y divide-[var(--border)] [&>*]:py-4 [&>*:first-child]:pt-0 [&>*:last-child]:pb-0">
       <div className={`${PAIR} items-end`}>
-        <p className="type-ui font-medium m-0 sm:order-none order-last">{who.name_en}</p>
+        <div className="space-y-2 sm:order-none order-last">
+          <p className="type-ui font-medium m-0">{who.name_en}</p>
+          {who.alt_en && <p className="type-small text-[var(--text-dim)] m-0">{who.alt_en}</p>}
+          {who.flags.some((f) => f.en) && <div className="flex flex-wrap gap-2">{who.flags.filter((f) => f.en).map((f, i) => <Flag key={i}>{f.en}</Flag>)}</div>}
+        </div>
         <div className="flex flex-col items-end gap-2 text-right">
           <ArabicText as="h2" size="lg" className="block m-0">{who.name_ar}</ArabicText>
-          <div className="flex flex-wrap items-center gap-3">
+          {who.alt_ar && <ArabicText as="p" size="sm" className="block m-0 text-[var(--text-dim)]">{who.alt_ar}</ArabicText>}
+          <div className="flex flex-wrap items-center justify-end gap-3">
             <GenerationDots name={who.generation_ar} />
             {who.grade_ar && <GradePill rank={who.grade_rank}>{who.grade_ar}</GradePill>}
+            {who.flags.filter((f) => f.ar).map((f, i) => <Flag key={i} arabic>{f.ar}</Flag>)}
           </div>
         </div>
       </div>
@@ -252,7 +265,7 @@ export function GradeKey() {
       <span>Dot: sunnah.com grade, 1 most trusted:</span>
       {bands.map(([tone, label]) => <span key={tone}>{dot(`var(--${tone})`)}{label}</span>)}
       <span>{dot('var(--text-faint)')}graded, no rank</span>
-      <span>{dot('var(--border)')}no grade</span>
+      <span>{dot('var(--border)')}page not fetched here</span>
     </p>
   )
 }
@@ -268,7 +281,7 @@ export function NarratorError({ error, onRetry }) {
  * One tappable row set as sunnah.com lists a narrator's people and hadith: the
  * Arabic on the right, with an optional dot after it, and the English on the left.
  */
-export function PairRow({ en, ar, dot, title, onClick }) {
+export function PairRow({ en, ar, dot, title, hint, onClick }) {
   return (
     <button
       type="button"
@@ -281,6 +294,7 @@ export function PairRow({ en, ar, dot, title, onClick }) {
         <ArabicText size="sm" className="min-w-0 truncate text-[var(--text)]">{ar}</ArabicText>
         {dot && <span aria-hidden="true" className="w-2 h-2 rounded-full shrink-0" style={{ background: dot }} />}
       </span>
+      {hint && <span className="sr-only">{hint}</span>}
     </button>
   )
 }
@@ -304,11 +318,11 @@ export function NarratorLinks({ items, onOpen, row = false }) {
             >
               <span aria-hidden="true" className="w-2 h-2 rounded-full shrink-0" style={{ background: dot(n) }} />
               <ArabicText size="sm" className="text-[var(--text)]">{n.name_ar}</ArabicText>
+              {n.grade_ar && <span className="sr-only">{n.grade_ar}</span>}
             </button>
           ) : (
-            <PairRow en={n.name_en} ar={n.name_ar} dot={dot(n)} title={n.grade_ar || undefined} onClick={() => onOpen(n.id)} />
+            <PairRow en={n.name_en} ar={n.name_ar} dot={dot(n)} title={n.grade_ar || undefined} hint={n.grade_ar} onClick={() => onOpen(n.id)} />
           )}
-          {n.grade_ar && <span className="sr-only">{n.grade_ar}</span>}
         </li>
       ))}
     </ul>
