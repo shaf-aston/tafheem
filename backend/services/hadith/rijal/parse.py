@@ -17,15 +17,15 @@ _GRADE = re.compile(r"pill-grade--grade-(\d+)")
 _TOTAL = re.compile(r"^([\d,]+) Hadith Narrated")
 # The page's own Arabic labels, mapped to our field names. A label not here is left out.
 _LABELS = {
-    "الكنية": "kunya_ar", "الطبقة": "generation_ar", "الاسم الكامل": "lineage_ar",
+    "الكنية": "kunya_ar", "اللقب": "kunya_ar", "الطبقة": "generation_ar", "الاسم الكامل": "lineage_ar",
     "النسب والنسبة": "nisba_ar", "بلد الإقامة": "city_ar", "الصنعة": "profession_ar", "المذهب": "school_ar",
 }
 
 
 # A name starts a word: nothing word-like (a letter or its vowel marks) before it, or only the particles Arabic writes
-# on to the next word: و or ف, then ب ل ك (وبمالك, لمالك).
-_NOT_WORD = r"(?<![\w\u064B-\u065F\u0670])"
-_WORD_START = "(?:" + "|".join((_NOT_WORD, *(f"(?<={_NOT_WORD}{p})" for p in ("[وف]", "[بلك]", "[وف][بلك]")))) + ")"
+# on to the next word: و or ف, then ب ل ك (وبمالك, لمالك), each with its vowel marks (وَمَالِكٌ, لِمَالِكٍ).
+_MARKS = r"[\u064B-\u065F\u0670]"
+_WORD_START = rf"(?<![\w{_MARKS[1:-1]}])(?:[وف]{_MARKS}*)?(?:[بلك]{_MARKS}*)?"
 
 
 def _soup(html: str) -> BeautifulSoup:
@@ -101,11 +101,11 @@ def place(arabic: str, names: list[tuple[int, str, int, bool]]) -> tuple[list[tu
         letters.append(letters[-1] + (not ch.isspace()))
     placed, lost, taken = [], [], set()
     for who, shown, before, in_chain in names:
-        hits = re.finditer(_WORD_START + re.escape(shown) + r"(?![\w\u064B-\u065F\u0670])", arabic)
-        hit = min((h for h in hits if h.start() not in taken), key=lambda h: abs(letters[h.start()] - before), default=None)
+        hits = re.finditer(_WORD_START + "(?P<name>" + re.escape(shown) + r")(?![\w\u064B-\u065F\u0670])", arabic)
+        hit = min((h for h in hits if h.start("name") not in taken), key=lambda h: abs(letters[h.start("name")] - before), default=None)
         if hit:
-            taken.add(hit.start())
-            placed.append((hit.start(), hit.end(), who, in_chain))
+            taken.add(hit.start("name"))
+            placed.append((hit.start("name"), hit.end(), who, in_chain))
         else:
             lost.append((who, shown))
     return sorted(placed), lost
@@ -197,7 +197,8 @@ def narrator(html: str) -> dict:
     for label in soup.select("span.label.arabic-label"):
         key = _LABELS.get(_text(label))
         if key:
-            out[key] = _text(label.parent.find(class_=["field", "lineage"]))
+            # Two labels can name one field (الكنية and اللقب for Abu Huraira's أبو هريرة): the first on the page stands.
+            out[key] = out[key] or _text(label.parent.find(class_=["field", "lineage"]))
     grade = soup.select_one("div.pill-grade")
     rank = _GRADE.search(" ".join(grade["class"])) if grade else None
     total = next((m for h in soup.select("h3.section-title") if (m := _TOTAL.match(_text(h)))), None)
