@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import book_map, is_mabni, is_one, is_plain_noun
-from backend.services.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link
+from backend.services.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, NOUN_LINKS, SUBJECTS
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
 
@@ -43,7 +43,7 @@ def zarf_of_khabar(token: dict, s: Sentence) -> bool:
     """الأستاذُ عندَ البابِ: in a verbless sentence a place or time word with its mudaf ilayh
     is the khabar's maf'ul fihi (the khabar itself is understood, Tasheel 1.4.4 p13)."""
     # المرءُ مع مَن أحبّ: a verb inside the مضاف إليه's صلة still leaves the sentence verbless at its root
-    rests = token["rel"] == "---" and any(k["rel"] in ("SBJ", "TPC") for k in s.kids(token))
+    rests = token["rel"] == "---" and any(k["rel"] in SUBJECTS for k in s.kids(token))
     return ((s.verbless or rests) and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
             and token["rel"] in ("---", "MOD", "PRD")
             and typed_or_parsed_case(token) in (None, "a") and any(k["rel"] == "IDF" for k in s.kids(token)))
@@ -141,18 +141,18 @@ def verb_place(token: dict, s: Sentence) -> str:
         asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
         if asked and before and not any(t["rel"] == "OBJ" and not is_verb(t) for t in siblings):  # قال after it is the reply, not its object
             return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
-        if before and rel in ("SBJ", "TPC") and typed == "a" and not is_mabni(token.get("pos_camel", "")):
+        if before and rel in SUBJECTS and typed == "a" and not is_mabni(token.get("pos_camel", "")):
             return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object (a built word's is no case: أنتَ)
-        if before and rel in ("SBJ", "TPC"):
+        if before and rel in SUBJECTS:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
-        if head.get("asp") == "c" and rel in ("SBJ", "TPC", "OBJ", "---") and typed != "u":
+        if head.get("asp") == "c" and rel in (*NOUN_LINKS, "---") and typed != "u":
             return "object"  # قل الحق: a command's doer is always the hidden أنت (Tasheel 2.4.1 p30)
         if not before and typed != "u" and (listed(token, "times_counted") or stands_for_masdar(token, head, s)):
             return "absolute"  # ضربتُه مرتين، ثلاثَ مراتٍ، كلَّ الحبِّ: the count or the share stands in for the masdar
         # رَأَيْتُ كِلَا الصَّدِيقَيْنِ: a verb of the first or second person holds its doer (تُ، نا، تَ),
         # so the noun after it is its object, however the parser hung it or what case it guessed
         if (head.get("per") in ("1", "2") and not is_passive(head) and not before
-                and rel in ("SBJ", "TPC", "OBJ") and typed != "u"
+                and rel in NOUN_LINKS and typed != "u"
                 and not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)):
             return "object"
         if (not before and typed in (None, "a") and token.get("stt") in ("i", "c")
@@ -165,14 +165,14 @@ def verb_place(token: dict, s: Sentence) -> str:
         if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
             return "purpose"
         if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
-                and token.get("stt") == "i" and any(t["rel"] in ("SBJ", "TPC", "OBJ") for t in siblings):
+                and token.get("stt") == "i" and any(t["rel"] in NOUN_LINKS for t in siblings):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
                 return "specification"
             if is_participle(token):
                 return "state"
         if after_first:
             return "second_object"  # ظن الولد الأمر سهلا, أعطى الولد الكتاب
-        if (rel in ("SBJ", "TPC", "OBJ") or (rel == "IDF" and typed != "i")
+        if (rel in NOUN_LINKS or (rel == "IDF" and typed != "i")
                 or (rel == "MOD" and typed == "u" and is_plain_noun(token))
                 # بِعْ الكِتَابَ: hung on the verb as a modifier, but a definite word is never a
                 # hal or tamyeez, so its fatha makes it the object (unless it is the verb's own masdar)
@@ -183,7 +183,7 @@ def verb_place(token: dict, s: Sentence) -> str:
                 # a fatha left is the second (أُعْطِيَ الولدُ الكتابَ)
                 return "subject" if typed == "u" else "second_object" if is_passive(head) else "object"
             if is_passive(head):
-                nouns = [t for t in (*siblings, token) if t["rel"] in ("SBJ", "TPC", "OBJ")]
+                nouns = [t for t in (*siblings, token) if t["rel"] in NOUN_LINKS]
                 return "subject" if rel != "OBJ" or is_deputy(token, nouns) else "object"
             # the parser reads letters only, so a nominative "object" with no subject is the subject
             return "object" if rel == "OBJ" and (
@@ -254,7 +254,7 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         fronted_jar = fronted_jar or (head is not None and s.family(head) == "inna" and typed_or_parsed_case(token) == "a"
                                       and any(is_preposition(k) and k["id"] < token["id"] for k in s.kids(token)))
         return "subject" if fronted_jar else "predicate"
-    if rel in ("SBJ", "TPC"):
+    if rel in SUBJECTS:
         return "subject"
     kids = s.kids(token)
     if rel == "---":

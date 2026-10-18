@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_plain_noun
-from backend.services.syntax.facts.word import is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, subject_link
+from backend.services.syntax.facts.word import is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, subject_link, NOUN_LINKS
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.syntax.facts.kind import calling_head
 from backend.services.syntax.facts.follows import with_waw
@@ -64,7 +64,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     # كان الطفلُ يلعب: the parser may hang كان's noun on it as a modifier
     named_by_kana = rel == "MOD" and under_verb and typed != "a" and s.family(head) == "kana" \
         and head["id"] == token["id"] - 1
-    if head and (second or named_by_kana or rel in ("SBJ", "TPC", "OBJ", "PRD") or (rel == "IDF" and typed != "i")):
+    if head and (second or named_by_kana or rel in (*NOUN_LINKS, "PRD") or (rel == "IDF" and typed != "i")):
         family = s.family(head)
         if family:
             return family, head

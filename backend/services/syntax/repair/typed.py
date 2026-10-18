@@ -4,6 +4,7 @@ from __future__ import annotations
 from backend.services import verb_reader
 from backend.services.harakat import has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw_book import book_words, is_built_word, is_one, only_adverb
+from backend.services.syntax.facts import verb_tagged
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -11,12 +12,12 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
     for i, (word, token) in enumerate(zip(words, bases)):
         token["typed"] = word
         # a tenseless "verb" CAMeL reads as a noun or adjective is that noun (اللهُ أكبرُ); a word the book lists only as a ظرف is a noun
-        if ((token["pos"].startswith("VRB") and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"))
+        if ((verb_tagged(token) and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"))
                 or (token["pos"] == "PRT" and only_adverb(token["lemma"]))):
             token["pos"] = "NOM"
         # مُنْذُ أَمْسِ: the letters of a time word built on one ending are that word, never the command they spell
         built = is_built_word(token["base"])
-        if built and token["pos"].startswith("VRB"):
+        if built and verb_tagged(token):
             token.update(pos="NOM", pos_camel="noun", lemma=token["base"], asp="na")
         # مَعَ النَّاسِ: the noun the parser hung on a ظرف as a preposition's is its مضاف إليه
         if token["pos"] == "NOM" and token.get("pos_camel") == "prep" and only_adverb(token["lemma"]):
@@ -24,7 +25,7 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
                 if kid["head"] == token["id"] and kid["rel"] == "OBJ":
                     kid["rel"] = "IDF"
         # مُلَبِّينَ: no verb opens with مُ and ends in the plural ـونَ/ـينَ, so it is a participle
-        elif token["pos"].startswith("VRB") and _participle_plural(word):
+        elif verb_tagged(token) and _participle_plural(word):
             token.update(pos="NOM", asp="na", cas=_plural_case(word, token, tokens))
         # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
         token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
@@ -36,7 +37,7 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         # letters (فَاقْبَلْهَا); a noun never, or the يَدِ of وَيَدِهِ would be a command, except a name the list only
         # guessed (فَادْفَعُوا). A noun read with the vowels typed stays that noun unless the command is typed in full (سَمِّ)
         after = words[i + 1] if i + 1 < len(words) else ""
-        verb = token["pos"].startswith("VRB")
+        verb = verb_tagged(token)
         read_noun = token.get("pos_camel") == "noun" and vowel_agreement(word, token.get("diac", "")) is not None
         # عَمِّي، جَدِّي: a noun read with its own pronoun stuck on is that noun and its owner, never a command
         owned = read_noun and any(t["head"] == token["id"] and t.get("token_type") == "enc0" for t in tokens)
@@ -69,7 +70,7 @@ def _plural_case(word: str, token: dict, tokens: list[dict]) -> str:
     head = next((t for t in tokens if t["id"] == token["head"]), None)
     if token["rel"] == "IDF" or (head and head["pos"] == "PRT" and head.get("pos_camel") == "prep"):
         return "g"
-    if head and head["pos"].startswith("VRB"):
+    if head and verb_tagged(head):
         return "a"
     return head.get("cas", "na") if head else "na"
 

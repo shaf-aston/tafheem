@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween, typed_case
-from backend.services.syntax.facts import is_name, listed, noun_tagged
+from backend.services.syntax.facts import is_name, listed, noun_tagged, verb_tagged
 from backend.services.syntax.mask import above
 
 
@@ -58,7 +58,7 @@ def _told_of(name: dict, end: dict, bases: list[dict], tokens: list[dict]) -> No
     the parser hung it (as the name's صفة, or a root of its own)."""
     first, at = bases[0], bases.index(end) + 1
     if not (name is first or _under(name, first, tokens)) or at >= len(bases) \
-            or any(t["pos"].startswith("VRB") for t in tokens) or any(t["head"] == first["id"] and t["rel"] == "PRD" for t in tokens):
+            or any(verb_tagged(t) for t in tokens) or any(t["head"] == first["id"] and t["rel"] == "PRD" for t in tokens):
         return
     khabar = bases[at]
     if not noun_tagged(khabar) or listed(khabar, "nasab"):
