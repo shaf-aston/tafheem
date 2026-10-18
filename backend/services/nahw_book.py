@@ -43,6 +43,39 @@ def book_map(family: str, part: str) -> dict[str, str]:
     return _closed()["families"][family][part]
 
 
+def extra_ba_on(verb: str) -> dict | None:
+    """كفى، ليس: the rule a زائدة باء on this verb follows (rel, role, place_case, alone), or none."""
+    return _closed()["families"]["extra_ba"]["on"].get(verb)
+
+
+def is_extra_ba(letter: str) -> bool:
+    return letter in _closed()["families"]["extra_ba"]["words"]
+
+
+def extra_ba_named() -> str:
+    """حرف جر زائد: the name the باء itself takes."""
+    return _closed()["families"]["extra_ba"]["named"]
+
+
+def extra_ba_said(place: str) -> str:
+    """The card's line for a word under a زائدة باء whose place is in this case (u / a)."""
+    family = _closed()["families"]["extra_ba"]
+    return family["said"].format(place=family["place_said"][place])
+
+
+def kaffa_sister(word: str) -> str | None:
+    """إنما → إن: the إن sister a كافة ما is written onto, for a bare word; none otherwise."""
+    family = _closed()["families"]["inna"]
+    ma = family["kaffa"]["ma"]
+    return word[:-len(ma)] if word.endswith(ma) and word[:-len(ma)] in family["words"] else None
+
+
+def kaffa_card(word: str, sister: str) -> tuple[str, str]:
+    """The name and the reason of an إن sister stopped by ما."""
+    kaffa = _closed()["families"]["inna"]["kaffa"]
+    return kaffa["named"], kaffa["said"].format(word=word, bare=sister)
+
+
 def book_merges(family: str) -> dict:
     """A family's merged words (أَلَّا in nasb_mudari), or none."""
     return _closed()["families"][family].get("merges", {})

@@ -21,11 +21,16 @@ typed sentence
                                follows   is it a تابع (naat, atf, badal, tawkeed)
                                voice     active / passive
                                sentence  the parsed sentence, with lookups built once
- → syntax.naming + walker    walks data/nahw_rules/naming_tree.json to each word's role
+ → syntax.naming + walker    walks data/nahw_rules/naming_tree.json to each word's role; then
+                             FINISHES (pair names, زائدة باء, كافة ما) add keys to each FoundEntry
+                             (the typed schema every later step reads)
  → syntax.teacher            second reading; dashes a role the vowels or the rules reject
  → syntax.tree               the bracket picture (tarkeeb)
  → iraab.cards               one card per word: rule_engine (what the word is) + role
  → signs.settle              the sign (ضمة، مبني على السكون ...) from the final case
+ → card_wording              the card's words after the sign: pair names, زائدة باء, كافة ما,
+                             counted khabars, followers (backend/services/card_wording, fixed order);
+                             a reason is held as parts (card_wording/reason.py) and written once
 ```
 
 ## Data (`backend/data/nahw_rules/`)
@@ -49,7 +54,15 @@ typed sentence
 | Role named for a governor that isn't there | `facts/governor.py` |
 | Condition / answer wrong | `condition.py` |
 | Right role, wrong sign | `signs.py`, `harakat.py` |
-| A closed list *is* the grammar (built words, sisters) | `closed_words.json` |
+| Right role and sign, wrong wording on the card | `card_wording/` (one pass per feature; naming leaves the key it reads) |
+| A closed list *is* the grammar (built words, sisters) | `closed_words.json`, read through `nahw_book`'s questions (`extra_ba_on`, `kaffa_sister`), never its raw shape |
+
+## Adding a grammar feature that changes a card
+
+```
+closed_words.json (the list)  → nahw_book question  → naming FINISHES step (sets a FoundEntry key)
+                              → card_wording pass (words the card from that key) → a parser-free test
+```
 
 Rule of thumb: fix the cause by a grammar rule. Never key a fix to one sentence or one hadith.
 

@@ -140,9 +140,34 @@
     "سواء"
    ]
   },
+  "extra_ba": {
+   "ar": "الباء الزائدة",
+   "_comment": "A باء written onto a word that holds a place of its own: the word is مجرور in its letters and stands in its place's case (Tasheel: حروف الجر الزائدة). `on`: the verb it hangs on, the parser's link of the باء to it (`rel`), the place (`role`, a roles.json name) and the case of that place (`place_case`). `alone`: only when nothing else is the verb's doer: كفى بالله شهيدًا, but in كفى بالمرء كذبًا أن يحدّث the masdar أن يحدّث is the doer and بالمرء a plain جار ومجرور.",
+   "words": [
+    "ب"
+   ],
+   "named": "حرف جر زائد",
+   "said": "اسم مجرور لفظًا بحرف الجر الزائد، {place} محلًا",
+   "place_said": {"u": "مرفوع", "a": "منصوب"},
+   "on": {
+    "كفى": {
+     "rel": "MOD",
+     "role": "فاعل",
+     "place_case": "u",
+     "alone": true
+    },
+    "ليس": {
+     "rel": "PRD",
+     "role": "خبر كان",
+     "place_case": "a"
+    }
+   }
+  },
   "istithna_verbs": {
    "ar": "خلا وعدا وحاشا",
    "masdar_ma": ["ما"],
+   "_timed_comment": "ما المصدرية الظرفية: ما standing for a span of time, before لم or the verb دام (البيعان بالخيار ما لم يتفرقا، ما دمت حيا)",
+   "timed_ma_before": ["لم", "دام"],
    "effect": "before a noun in nasb a past verb that never changes (فعل ماضٍ جامد), its doer hidden (هو) and the noun its object; before a noun in jarr a preposition and the noun its majrur; after ما only the verb. Read by services/syntax/mask.py from the noun's typed case",
    "words": [
     "خلا",
@@ -159,6 +184,8 @@
    "ar": "إن وأخواتها",
    "card": {"named": "حرف ناسخ مشبه بالفعل", "does": "ينصب الاسم ويرفع الخبر", "governs": "inna"},
    "effect": "nasb the ism and raf' the khabar; attached ما cancels the effect (إنما)",
+   "_kaffa_comment": "إنما، كأنما، لكنما: a ما written onto a member stops its work, and the books name the pair, not the bare حرف (Tasheel 1.10).",
+   "kaffa": {"ma": "ما", "named": "كافة ومكفوفة", "said": "{word} كافة ومكفوفة: {bare} حرف ناسخ مكفوف عن العمل، وما كافة، مبني لا محل له من الإعراب"},
    "words": [
     "إن",
     "أن",
