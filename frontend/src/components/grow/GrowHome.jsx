@@ -137,7 +137,8 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
             <Fragment key={id}>
               {book.due.length > 0 && (
                 <NextStep world={worldOf(id)} where={say('Review')}
-                  line={say('{n} questions due', { n: Math.min(book.due.length, REVIEW_SIZE) })} onGo={() => onStartBook(id, REVIEW)} />
+                  line={book.due.length === 1 ? say('1 question due') : say('{n} questions due', { n: Math.min(book.due.length, REVIEW_SIZE) })}
+                  onGo={() => onStartBook(id, REVIEW)} />
               )}
               {book.next && id !== lead && (
                 <NextStep world={worldOf(id)} where={partOf(book)} line={book.next.title} onGo={() => onStartBook(id, book.next.id, book.next.part)} />
