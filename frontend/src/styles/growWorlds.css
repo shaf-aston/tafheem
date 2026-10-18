@@ -328,3 +328,10 @@
 .grow-done-missed b { display: block; }
 .grow-done-go { display: grid; gap: 8px; width: 100%; }
 .grow-done-back { min-height: 44px; font-weight: 700; color: var(--w); }
+
+/* A unit's head on a part's path: the book's own section, its lessons below it. */
+.grow-path-unit { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 2px 12px; padding: 14px 4px 4px; border-bottom: 1px solid var(--border); }
+.grow-path-unit:first-child { padding-top: 0; }
+.grow-path-unit h3 { margin: 0; font-size: var(--type-ui); font-weight: 800; }
+.grow-path-unit .arabic-sm { grid-row: 2; color: var(--text-dim); }
+.grow-path-unit > span { grid-row: 1 / span 2; grid-column: 2; font-size: var(--type-small, 0.8rem); color: var(--text-dim); }

@@ -1,5 +1,5 @@
-// How a book world's lesson reads, Duolingo-style: do more than read, short reads, small sorts, no giveaway answers,
-// and lessons marked `extra` (rare cases) never lead a part. The book's words are checked in bookLesson.test.js.
+// How a book world's lesson reads, Duolingo-style: do more than read, short reads, small sorts, no giveaway answers;
+// a long part is cut into `units` (the book's own sections), and lessons marked `extra` (rare cases) are few and lead nothing. The book's words are checked in bookLesson.test.js.
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -17,6 +17,9 @@ const MOST_READS = 2
 const MOST_WORDS = 60
 const MOST_ROWS = 5
 const MOST_LONGEST = 0.4
+// A part this long is cut into units of at least two lessons; extras are at most this share of the book's lessons.
+const UNITS_FROM = 6
+const MOST_EXTRA = 0.1
 const words = (text) => text.split(/\s+/).filter(Boolean).length
 
 describe.each(BOOKS)('the $book lessons, as lessons', (book) => {
@@ -56,10 +59,21 @@ describe.each(BOOKS)('the $book lessons, as lessons', (book) => {
     expect(longest.length / asked.length).toBeLessThanOrEqual(MOST_LONGEST)
   })
 
-  it('opens every part with a core lesson, and keeps extras to a few', () => {
-    for (const part of book.parts.filter((one) => one.lessons.length)) {
-      expect(part.lessons[0].extra, part.id).toBeFalsy()
-      expect(part.lessons.filter((lesson) => lesson.extra).length, part.id).toBeLessThanOrEqual(Math.ceil(part.lessons.length / 3))
+  it(`cuts every part of ${UNITS_FROM} lessons or more into units, in the lessons' order`, () => {
+    for (const part of book.parts.filter((one) => one.units || one.lessons.length >= UNITS_FROM)) {
+      expect(part.units?.flatMap((unit) => unit.lessons), part.id).toEqual(part.lessons.map((lesson) => lesson.id))
+      for (const unit of part.units) {
+        expect(unit.lessons.length, `${part.id}: ${unit.title}`).toBeGreaterThanOrEqual(2)
+        expect(unit.title && unit.arabic, `${part.id}: ${unit.title}`).toBeTruthy()
+      }
     }
+  })
+
+  it('opens every part and unit with a core lesson, and keeps extras to a few', () => {
+    for (const part of book.parts.filter((one) => one.lessons.length)) {
+      const firsts = [part.lessons[0].id, ...(part.units ?? []).map((unit) => unit.lessons[0])]
+      expect(part.lessons.filter((lesson) => lesson.extra && firsts.includes(lesson.id)).map((lesson) => lesson.id), part.id).toEqual([])
+    }
+    expect(lessons.filter((lesson) => lesson.extra).length).toBeLessThanOrEqual(Math.ceil(lessons.length * MOST_EXTRA))
   })
 })

@@ -42,11 +42,26 @@ function quotesOf(card) {
 // A part's sections: most are one Kitab or bab, some join a few.
 const kitabsOf = (part) => part.kitabs ?? [part.kitab]
 
+/**
+ * A book with no headings, only numbered statements (a creed: `# 12 text`, the opening `# $ text` as 0): a part's
+ * `statements` [from, to] are its paragraphs, numbers and marks gone.
+ */
+function statementsOf({ lines }, [from, to]) {
+  const paragraphs = []
+  for (const line of lines) {
+    const head = line.match(/^# (\$|\d+) (.*)$/)
+    if (head) paragraphs.push({ n: head[1] === '$' ? 0 : Number(head[1]), text: head[2] })
+    else if (line.startsWith('~~') && paragraphs.length) paragraphs[paragraphs.length - 1].text += ` ${line.slice(2)}`
+  }
+  return paragraphs.filter(({ n }) => n >= from && n <= to)
+    .map(({ text }) => text.replace(/PageV\d+P\d+|ms\d+|@Q[BE]@/g, ' ').replace(/\s+/g, ' ').trim()).filter(Boolean)
+}
+
 const seq = (...values) => { let i = 0; return () => values[i++ % values.length] }
 
 describe.each(BOOKS)('the $book.book lessons', (source) => {
   const { book, lines } = source
-  const partText = (part) => kitabsOf(part).flatMap((kitab) => paragraphsOf(source, kitab))
+  const partText = (part) => (part.statements ? statementsOf(source, part.statements) : kitabsOf(part).flatMap((kitab) => paragraphsOf(source, kitab)))
 
   for (const part of book.parts.filter((one) => one.lessons.length)) {
     const text = partText(part).join(' ')

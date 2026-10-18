@@ -8,7 +8,9 @@
   "_areas": "The areas Fiqh opens on, each a few parts by id; every part sits in exactly one (lib/bookLesson.test.js). A part may join small Kitabs: `kitabs` lists them all, `kitab` is the one its header shows.",
   "areas": [
     {"id": "worship", "title": "Worship", "arabic": "العبادات", "idea": "Purity, prayer, zakat, fasting, hajj and the sacrifice.", "parts": ["tahara", "salah", "zakah", "sawm", "hajj", "udhiya"]},
-    {"id": "trade", "title": "Trade and money", "arabic": "المعاملات", "idea": "Buying and selling, renting, partners, loans, gifts and land.", "parts": ["buyu", "rahn", "hajr", "iqrar", "ijara", "shufa", "shirka", "mudaraba", "wakala", "kafala", "sulh", "hiba", "waqf", "ghasb", "wadia", "laqit", "mawat", "madhun", "muzaraa"]},
+    {"id": "trade", "title": "Buying, selling and hire", "arabic": "البيوع والإجارة", "idea": "Sales, pawning, restriction, admissions, hire and pre-emption.", "parts": ["buyu", "rahn", "hajr", "iqrar", "ijara", "shufa"]},
+    {"id": "partners", "title": "Partners, agents and debts", "arabic": "الشركة والوكالة والكفالة", "idea": "Partnership, profit-sharing, agency, surety and settlement.", "parts": ["shirka", "mudaraba", "wakala", "kafala", "sulh"]},
+    {"id": "property", "title": "Gifts, trusts and land", "arabic": "الهبة والوقف والأمانات", "idea": "Gifts, endowment, things taken, deposits, finds, dead land, the permitted trader and sharecropping.", "parts": ["hiba", "waqf", "ghasb", "wadia", "laqit", "mawat", "madhun", "muzaraa"]},
     {"id": "family", "title": "Family", "arabic": "الأسرة", "idea": "Marriage, divorce, the 'idda and keeping a family.", "parts": ["nikah", "rada", "talaq", "ila", "zihar", "nafaqat"]},
     {"id": "crimes", "title": "Crimes and courts", "arabic": "الجنايات والقضاء", "idea": "Injuries, punishments, claims, witnesses and the judge.", "parts": ["jinayat", "diyat", "hudud", "sariqa", "dawa", "shahadat", "qadi", "qisma", "ikrah"]},
     {"id": "life", "title": "Food, oaths and the state", "arabic": "الصيد والأيمان والسير", "idea": "Hunting and slaughter, oaths, what is allowed, and jihad.", "parts": ["sayd", "ayman", "hazr", "siyar"]},
