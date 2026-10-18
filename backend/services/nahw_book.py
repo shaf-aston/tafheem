@@ -79,8 +79,12 @@ def only_adverb(lemma: str) -> bool:
 
 
 def is_built_word(lemma: str) -> bool:
-    """أمس، حيث، الآن: a time or place word built on one ending (closed_words `built`)."""
-    return any(lemma.strip("+") in book_words(f, "built") for f in ADVERB_FAMILIES)
+    """أمس، حيث، الآن: a time or place word built on one ending (closed_words `built`); and
+    حيثما، أينما، متى, a condition's time or place word, built whether or not an answer follows."""
+    word = lemma.strip("+")
+    opened = condition_of(word)
+    return any(word in book_words(f, "built") for f in ADVERB_FAMILIES) or bool(
+        opened and opened["adverb"] and opened["built"])
 
 
 def six_noun_case(base: str, lemma: str) -> str | None:
