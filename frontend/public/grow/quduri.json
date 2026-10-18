@@ -25775,7 +25775,7 @@
               "kind": "choose",
               "id": "value-case",
               "ask": "A slave worth 15,000 dirhams is killed by mistake. How much is owed?",
-              "options": ["9, 990", "15,000", "10,000"],
+              "options": ["9,990", "15,000", "10,000"],
               "answer": 0,
               "source": "فإن كانت قيمته عشرة آلاف أو أكثر قضي عليه بعشرة آلاف إلا عشرة",
               "why": "At 10,000 or more, the judgement is 10,000 less ten: 9,990."
@@ -36399,7 +36399,7 @@
               "id": "arham-order",
               "title": "Which of them first",
               "ar": "وأولاهم ولد الميت ثم ولد الأبوين أو أحدهما وهم بنات الإخوة وولد الأخوات ثم ولد أبوي أبويه أو أحدهما وهم الأخوال والخالات والعمات",
-              "en": "First come the dead person's own descendants (like a daughter's child), then the descendants of his parents (brothers' daughters, sisters' children), then the descendants of his grandparents (khals, khalas and 'ammas)."
+              "en": "First come the dead person's own descendants (like a daughter's child), then the descendants of his parents (brothers' daughters, sisters' children), then the descendants of his grandparents (khals, khalas and 'ammas). One exception the book names: the mother's father comes before a brother's or sister's children."
             },
             {
               "kind": "choose",

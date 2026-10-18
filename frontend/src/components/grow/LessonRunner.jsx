@@ -182,7 +182,7 @@ function LessonDone({ tally, took, missed, accent, rewards, next, onLeave }) {
           <h4 id="grow-missed-h">{say('What you missed')}</h4>
           <ul>
             {missed.slice(0, 3).map((one) => (
-              <li key={one.id}><b>{one.ask}</b> {one.ar && <ArabicText as="span" size="sm">{one.ar}</ArabicText>} {one.why}</li>
+              <li key={one.id}><b>{one.ask}</b>{one.ar && <ArabicText as="p" size="sm" dir="rtl">{one.ar}</ArabicText>} {one.why}</li>
             ))}
           </ul>
         </section>

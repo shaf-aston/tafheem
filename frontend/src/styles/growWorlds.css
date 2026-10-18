@@ -353,3 +353,4 @@
 /* The card's wrapper only carries `inert` while "Leave this lesson?" is asked. */
 .grow-lesson-card { display: contents; }
 .grow-lesson-top .grow-x { flex-shrink: 0; }
+.grow-done-missed li p { margin: 2px 0; text-align: right; }

@@ -362,11 +362,11 @@
             {
               "kind": "choose",
               "id": "qayyum",
-              "ask": "Which pairing matches the creed's words?",
+              "ask": "In the creed, which of His names comes with \"He does not sleep\"?",
               "options": [
-                "Self-Sustaining: no sleep takes Him",
-                "Self-Sustaining: He does not ever die",
-                "Living: He does not ever sleep"
+                "Self-Sustaining (qayyum)",
+                "Living (hayy)",
+                "Creator (khaliq)"
               ],
               "answer": 0,
               "source": "قيوم لا ينام",
@@ -641,7 +641,7 @@
                 }
               ],
               "source": "ذلك بأنه على كل شيء قدير وكل شيء إليه فقير وكل أمر عليه يسير لا يحتاج إلى شيء",
-              "why": "All four are his words; he needs nothing, so not even His names wait on creation."
+              "why": "All four are al-Tahawi's words; he needs nothing, so not even His names wait on creation."
             },
             {
               "kind": "teach",
@@ -1411,7 +1411,7 @@
                 "وإن القرآن كلام الله منه بدا بلا كيفية قولا وأنزله على رسوله وحيا",
                 "ليس بمخلوق ككلام البرية"
               ],
-              "why": "All four are his words; it is Allah's speech, not the words of a human."
+              "why": "All four are al-Tahawi's words; it is Allah's speech, not the words of a human."
             },
             {
               "kind": "choose",
