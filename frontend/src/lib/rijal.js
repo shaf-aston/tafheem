@@ -32,7 +32,8 @@ function own(text, from, to) {
 }
 
 /** The tone a grade wears: the first whose highest rank covers it, else danger. */
-export const toneOf = (rank) => Object.entries(TONES).find(([, top]) => rank != null && rank <= top)?.[0] ?? 'danger'
+// null for a grade the page gave no rank: shown neutral, never as weak.
+export const toneOf = (rank) => (rank == null ? null : Object.entries(TONES).find(([, top]) => rank <= top)?.[0] ?? 'danger')
 
 /**
  * `text` split into `{text}` and `{text, id}` runs. `offset` is where `text`

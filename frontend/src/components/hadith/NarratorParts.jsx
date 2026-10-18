@@ -24,7 +24,9 @@ export function GradePill({ rank, children, size = 'sm' }) {
     <ArabicText
       size={size}
       className="inline-block px-2 py-1 rounded-full border"
-      style={{ color: `var(--${tone})`, borderColor: `var(--${tone}-edge)`, background: `var(--${tone}-wash)` }}
+      style={tone
+        ? { color: `var(--${tone})`, borderColor: `var(--${tone}-edge)`, background: `var(--${tone}-wash)` }
+        : { color: 'var(--text-dim)', borderColor: 'var(--border)' }}
     >
       {children}
     </ArabicText>
@@ -36,7 +38,7 @@ export function NarratorName({ who, as = 'h2' }) {
     <div className="min-w-0">
       <ArabicText as={as} size="lg" className="block m-0">{who.name_ar}</ArabicText>
       {who.name_en && <p className="type-small text-[var(--text-dim)] mt-1">{who.name_en}</p>}
-      {who.kunya_ar && <ArabicText as="p" size="sm" className="block text-left text-[var(--text-dim)] m-0 mt-1">{who.kunya_ar}</ArabicText>}
+      {who.kunya_ar && <ArabicText as="p" size="sm" className="block text-right text-[var(--text-dim)] m-0 mt-1">{who.kunya_ar}</ArabicText>}
     </div>
   )
 }
@@ -52,7 +54,7 @@ function GenerationDots({ name }) {
   const at = GENERATIONS.indexOf(name)
   if (at < 0) return null
   return (
-    <div dir="rtl" role="img" aria-label={generationLabel(name)} className="flex justify-end gap-1">
+    <div dir="rtl" role="img" aria-label={generationLabel(name)} className="flex gap-1">
       {GENERATIONS.map((g, i) => (
         <span
           key={g}
@@ -126,13 +128,20 @@ export function NarratorFacts({ who }) {
           <p className="type-small text-[var(--text-dim)]">{facts.join(' · ')}</p>
         </div>
       </div>
-      <div className="flex flex-wrap items-center gap-3">
-        <SourceBadge source={who.source} />
-        <a href={`${SITE}${who.id}`} target="_blank" rel="noreferrer" className="type-small text-[var(--text-dim)] hover:text-[var(--text)] underline underline-offset-2">
-          Read on sunnah.com &#8599;
-        </a>
-      </div>
+      <SourceLine who={who} />
     </>
+  )
+}
+
+/** Where his page comes from, and the link to it on sunnah.com. */
+function SourceLine({ who }) {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <SourceBadge source={who.source} />
+      <a href={`${SITE}${who.id}`} target="_blank" rel="noreferrer" className="type-small text-[var(--text-dim)] hover:text-[var(--text)] underline underline-offset-2">
+        Read on sunnah.com &#8599;
+      </a>
+    </div>
   )
 }
 
@@ -162,7 +171,8 @@ const PAIR = 'grid gap-x-10 gap-y-2 sm:grid-cols-2'
  */
 export function NarratorHead({ who }) {
   const numbers = [
-    ['Died', who.years],
+    // sunnah.com's years pill: a death date (d. 57 AH) or a lifespan (58 – 145 AH).
+    ['Years', who.years],
     ['Hadith', who.hadith_total],
     ['Teachers', who.teachers.length],
     ['Students', who.students.length],
@@ -205,12 +215,7 @@ export function NarratorHead({ who }) {
           ))}
         </dl>
       )}
-      <div className="flex flex-wrap items-center gap-3">
-        <SourceBadge source={who.source} />
-        <a href={`${SITE}${who.id}`} target="_blank" rel="noreferrer" className="type-small text-[var(--text-dim)] hover:text-[var(--text)] underline underline-offset-2">
-          Read on sunnah.com &#8599;
-        </a>
-      </div>
+      <SourceLine who={who} />
     </div>
   )
 }
@@ -254,7 +259,7 @@ export const PAIR_ROWS = 'list-none m-0 p-0 divide-y divide-[var(--border)]'
 
 /** Narrators as tappable rows (PairRow). `row` packs Arabic-only pills in a wrapping line instead. */
 export function NarratorLinks({ items, onOpen, row = false }) {
-  const dot = (n) => (n.grade_ar ? `var(--${toneOf(n.grade_rank)})` : 'var(--border)')
+  const dot = (n) => { const tone = n.grade_ar && toneOf(n.grade_rank); return tone ? `var(--${tone})` : n.grade_ar ? 'var(--text-faint)' : 'var(--border)' }
   return (
     <ul className={row ? 'list-none m-0 p-0 flex flex-wrap gap-1.5' : PAIR_ROWS}>
       {items.map((n) => (

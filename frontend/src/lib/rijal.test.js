@@ -52,7 +52,7 @@ describe('withoutMarks', () => {
 
 describe('toneOf', () => {
   it('colours rank 1 trusted, rank 5 doubtful, and the rest and the unranked as danger', () => {
-    expect([1, 3, 4, 5, 6, null].map(toneOf)).toEqual(['success', 'success', 'warn', 'warn', 'danger', 'danger'])
+    expect([1, 3, 4, 5, 6, null].map(toneOf)).toEqual(['success', 'success', 'warn', 'warn', 'danger', null])
   })
 })
 

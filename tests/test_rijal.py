@@ -165,3 +165,9 @@ def test_the_narrator_list_ranks_by_hadith_and_filters_by_generation(built):
     mine = built.get("/api/rijal/narrators", params={"generation": "students"}).json()
     assert 6659 in [n["id"] for n in mine["items"]] and mine["total"] < page["total"]
     assert built.get("/api/rijal/narrators", params={"offset": page["total"]}).json()["items"] == []
+
+
+def test_a_hadith_opens_where_its_chain_ends_not_after_a_name_in_its_story():
+    text = "حدثنا مالك، عن نافع، عن ابن عمر، أن رسول الله صلى الله عليه وسلم قال: لا يبع بعضكم على بيع الحسن"
+    # الحسن at the very end is a linked name too; the last mention is not where the chain stops.
+    assert store._said(text, len(text)).startswith("أن رسول الله")
