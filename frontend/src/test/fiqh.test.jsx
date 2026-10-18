@@ -101,4 +101,14 @@ describe('fiqh', () => {
     renderScreen(<GrowPanel incoming="fiqh/tahara/nothing" />, { routes: { 'GET /progress/summary': { items: [] } } })
     expect(await screen.findByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
   })
+
+  it('finds a term in the book\'s glossary and opens the lesson that teaches it', async () => {
+    const visits = []
+    renderScreen(<GrowPanel incoming="fiqh" onVisit={(value) => visits.push(value)} />, { routes: { 'GET /progress/summary': { items: [] } } })
+    fireEvent.click(await screen.findByText(/^Glossary · \d+ terms$/))
+    fireEvent.change(screen.getByRole('searchbox', { name: 'Find a term' }), { target: { value: 'nisab' } })
+    expect(screen.getByText(/the least amount of wealth on which zakat is due/)).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: /^Lesson: / }))
+    expect(visits.at(-1)).toBe('fiqh/zakah/zakah-who')
+  })
 })
