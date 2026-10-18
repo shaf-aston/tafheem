@@ -140,9 +140,12 @@ def _follows(token: dict, s: Sentence) -> str:
         return "none"
     if mine and shown_cases(token) & shown_cases(head):
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
-        measure = listed(head, "tamyeez_head") and not is_participle(token)
-        # آمِرًا أحدًا: after a participle at work a plain noun in nasb is its object (slot.py)
-        governed = mine == "a" and works_as_verb(head) and not is_participle(token)
+        # (شَعِيرًا has the فعيل shape, so the morphology's adjective tag tells, not the shape)
+        measure = listed(head, "tamyeez_head") and token.get("pos_camel") != "adj"
+        # آمِرًا أحدًا: after a participle at work a plain noun in nasb is its object (slot.py);
+        # with ال on both it follows it (إِنَّ الْمُهَنْدِسَ الْعَجُوزَ)
+        governed = (mine == "a" and works_as_verb(head) and not is_participle(token)
+                    and not token.get("stt") == head.get("stt") == "d")
         return "naat" if agrees(token, head) and not measure and not governed else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers
     if told_of_subject(token, head) or indefinite_nasb(token):

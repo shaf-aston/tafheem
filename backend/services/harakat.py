@@ -12,6 +12,7 @@ from backend.services.arabic_text import bare_letters, strip_diacritics
 VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
 TANWEEN = {"ً", "ٌ", "ٍ"}
 SUKUN = "ْ"
+KASRA = "ِ"
 SHADDA = "ّ"
 SHADDA_SUKUN = SHADDA + SUKUN
 DAGGER_ALEF = "ٰ"

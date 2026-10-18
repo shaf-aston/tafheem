@@ -4,15 +4,16 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import book_map, is_mabni, is_one, is_plain_noun
-from backend.services.syntax.facts.word import is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link
+from backend.services.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
 
 
 def takes_tamyeez(token: dict, s: Sentence) -> bool:
-    """A tamyeez stands after a number or a measure, or after a verb of tamyeez al-nisba."""
+    """A tamyeez stands after a number or a measure, or after a verb of tamyeez al-nisba or an
+    elative, which tells in what way one thing passes another (أَثْقَلُ وَزْنًا)."""
     head = s.head(token)
-    if head and is_one(head["lemma"], "tamyeez_verbs"):
+    if head and (is_one(head["lemma"], "tamyeez_verbs") or is_elative(head)):
         return True
     return any(listed(t, "tamyeez_head") for t in s.tokens if t["id"] < token["id"])
 
@@ -68,7 +69,8 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
     """A word hung on a participle that is its object: linked as one in nasb, or in the
     nasb the reader typed where the link cannot hold it, since a مضاف إليه is never منصوب
     (فاهمٌ الدرسَ) and a نعت has its noun's case (ضاربٌ بكرًا) and is a describing word
-    (آمِرًا أحدًا: both in nasb, yet أحد describes nothing). An indefinite state word
+    (آمِرًا أحدًا: both in nasb, yet أحد describes nothing); with ال on both in the same nasb it
+    follows as a نعت (إِنَّ الْمُهَنْدِسَ الْعَجُوزَ). An indefinite state word
     stays a حال (قادمٌ مسرعًا), and the participle's own root a مفعول مطلق. A diptote's fatha
     is its jarr, so it stays the مضاف إليه (طَرِيقَ جَهَنَّمَ)."""
     rel, typed = token["rel"], typed_case_of(token)
@@ -76,6 +78,7 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
         return typed_or_parsed_case(token) == "a"
     return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
         rel == "MOD" and (typed_or_parsed_case(head) != "a" or token.get("pos_camel") != "adj")
+        and not (typed_or_parsed_case(head) == "a" and token.get("stt") == head.get("stt") == "d")
         and not is_state_word(token) and not same_root(token, head)))
 
 
@@ -246,6 +249,10 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     if rel == "PRD":
         fronted_jar = any(t["rel"] == "PRD" and t["pos"] == "PRT" and t["id"] < token["id"]
                           for t in (s.kids(head) if head else ()))
+        # إِنَّ مِنَ الْبَيَانِ لَسِحْرًا: the jar-majrur the parser hung on the nasb noun stands
+        # first as إنّ's khabar, so the noun after it is its اسم, brought back
+        fronted_jar = fronted_jar or (head is not None and s.family(head) == "inna" and typed_or_parsed_case(token) == "a"
+                                      and any(is_preposition(k) and k["id"] < token["id"] for k in s.kids(token)))
         return "subject" if fronted_jar else "predicate"
     if rel in ("SBJ", "TPC"):
         return "subject"
@@ -275,11 +282,13 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             return "subject" if told else "none"
     if rel == "MOD" and head:
         # اشتريت رطلين زيتًا: after a measure a plain noun in nasb is its tamyeez, though the two differ in number
-        if listed(head, "tamyeez_head") and indefinite_nasb(token) and not is_state_word(token):
+        if listed(head, "tamyeez_head") and indefinite_nasb(token) and token.get("pos_camel") != "adj":
             return "specification"
         if told_of_lone_mubtada(token, head, s):
             return "predicate"
-        if unlike(token, head):
+        # a name is definite by itself (رأيت أخاك زيدًا): its tanween makes it no hal; an unknown
+        # word the analyser filed as a name is still one if it has a hal's shape (مسرعًا)
+        if unlike(token, head) and (is_state_word(token) or not is_name(token)):
             return "state" if typed_or_parsed_case(token) == "a" else "predicate"
         if told_of_subject(token, head):
             return "predicate"

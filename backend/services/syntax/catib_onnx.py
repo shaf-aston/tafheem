@@ -27,7 +27,7 @@ from backend.config import data_path, get_settings
 from backend.services.syntax import decode
 from backend.services.syntax.mask import book_mask
 from backend.services.morphology import ROOTED_POS, root_in_arabic
-from backend.services.harakat import base_of, stuck_letters, typed_case, weak_last
+from backend.services.harakat import NO_ANALYSIS, base_of, stuck_letters, typed_case, weak_last
 
 logger = logging.getLogger(__name__)
 
@@ -225,9 +225,10 @@ def _split_word(word: str, a: dict) -> list[dict]:
     # the pieces are the tokenisation's, not the tags': ثُلْثَ_+هُ is tagged NOM alone, and
     # left whole its pronoun is lost to the sentence (the بدل's pronoun back to its noun).
     # Only a trailing pronoun is split untagged: it is a noun as the padding below makes it.
-    pieces = a["atbtok"].split("_")
+    # a word the analyser could not read keeps its tags, but its text is the word, not the NOAN mark
+    pieces = [base_of(word, a["atbtok"]) if p == NO_ANALYSIS else p for p in a["atbtok"].split("_")]
     if len(pieces) == 1:
-        toks, catib6s, uds = [a["atbtok"]], [a["catib6"]], [a["ud"]]
+        toks, catib6s, uds = pieces, [a["catib6"]], [a["ud"]]
     elif "+" not in a["catib6"] and not all(p.startswith("+") for p in pieces[1:]):
         # فَلَيْسَتِ، بِأَرْبَعَةِ: one tag for a word with a word joined in front, and it is the
         # front word's; each piece takes its own kind: the joined word a particle, a pronoun
