@@ -64,6 +64,8 @@ def add_narrators(conn: sqlite3.Connection) -> int:
         if not html:
             continue
         found = parse.narrator(html)
+        if not found["name_ar"]:
+            continue  # a cached page that is no narrator's (an error or login page) is no row
         conn.execute(f"INSERT INTO narrator ({columns}) VALUES ({', '.join('?' * (2 + len(_JSON) + len(_PLAIN)))})",
                      (who, 1, *(json.dumps(found[f], ensure_ascii=False) for f in _JSON), *(found[f] for f in _PLAIN)))
         conn.executemany("INSERT INTO verdict VALUES (?, ?, ?, ?)",

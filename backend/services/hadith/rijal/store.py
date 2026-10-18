@@ -79,7 +79,7 @@ def chains(collection: str, book: int) -> dict[str, list[list[int]]]:
     found: dict[str, list[list[int]]] = {}
     if db:
         for number, part, start, end, who in db.execute(
-            "SELECT number, part, start, end, narrator_id FROM mention WHERE collection = ? AND book = ? "
+            f"SELECT number, part, start, end, narrator_id FROM mention WHERE collection = ? AND book = ? {_chained(db)} "
             "ORDER BY number, part, ord", (collection, book)
         ):
             found.setdefault(f"{number}{part}", []).append([start, end, who])
@@ -103,10 +103,14 @@ def kin(collection: str, book: int) -> dict[str, int]:
 def _ties(db, narrator_id: int, side: str, other: str, order: str) -> list[dict]:
     """Narrators on one side of a link to this one, in the order his own page lists them (the most narrated first where
     that page was never fetched). side and other are tie's two id columns, order the column holding his page's order."""
-    first = f"tie.{order} IS NULL, tie.{order}, " if _has(db, "tie", order) else ""
+    ranked = _has(db, "tie", order)
+    first = f"tie.{order} IS NULL, tie.{order}, " if ranked else ""
+    # His page is the source for his own list: a link only the other narrator's page declares is left out once his is fetched.
+    own = f"AND (tie.{order} IS NOT NULL OR NOT (SELECT fetched FROM narrator WHERE id = ?)) " if ranked and _has(db, "narrator", "fetched") else ""
+    args = (narrator_id, narrator_id) if own else (narrator_id,)
     return [dict(row) for row in db.execute(
-        f"SELECT {_SUMMARY} FROM tie JOIN narrator n ON n.id = tie.{side} WHERE tie.{other} = ? "
-        f"ORDER BY {first}COALESCE(n.hadith_total, 0) DESC", (narrator_id,))]
+        f"SELECT {_SUMMARY} FROM tie JOIN narrator n ON n.id = tie.{side} WHERE tie.{other} = ? {own}"
+        f"ORDER BY {first}COALESCE(n.hadith_total, 0) DESC", args)]
 
 
 def narrator(narrator_id: int) -> dict | None:

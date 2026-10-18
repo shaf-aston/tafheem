@@ -265,7 +265,7 @@ export function GradeKey() {
       <span>Dot: sunnah.com grade, 1 most trusted:</span>
       {bands.map(([tone, label]) => <span key={tone}>{dot(`var(--${tone})`)}{label}</span>)}
       <span>{dot('var(--text-faint)')}graded, no rank</span>
-      <span>{dot('var(--border)')}page not fetched here</span>
+      <span>{dot('var(--border)')}no grade here</span>
     </p>
   )
 }

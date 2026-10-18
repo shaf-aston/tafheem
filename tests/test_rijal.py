@@ -239,3 +239,10 @@ def test_a_build_that_places_no_name_keeps_the_old_file(built, monkeypatch):
         build_rijal.build()
     assert built.get("/api/rijal/narrators/6659").status_code == 200
     assert not build_rijal.data_path("rijal_index_path").with_suffix(".building.db").exists()
+
+
+def test_place_finds_a_name_after_a_vowelled_particle():
+    """وَمَالِكٌ and لِمَالِكٍ carry their vowel marks between the particle and the name; أَمَالِكٌ is another word."""
+    assert parse.place("حَدَّثَنَا وَمَالِكٌ", [(1, "مَالِكٌ", 0, True)])[0] == [(13, 20, 1, True)]
+    assert parse.place("لِمَالِكٍ", [(1, "مَالِكٍ", 0, True)])[0] == [(2, 9, 1, True)]
+    assert parse.place("أَمَالِكٌ", [(1, "مَالِكٌ", 0, True)])[0] == []

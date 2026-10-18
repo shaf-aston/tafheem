@@ -10,8 +10,8 @@
   },
   "narrator": {
     "site": "https://sunnah.com/narrator/",
-    "_tones": "Highest rank each tone covers, as sunnah.com ranks a narrator (1 is the most trusted); lower ranks are danger.",
-    "tones": { "success": 3, "warn": 5 },
+    "_tones": "Highest rank each tone covers, as sunnah.com ranks a narrator (1 trusted, 2 sadūq or maqbūl, 3 unknown in state, 4 weak or unknown, 5 accused of lying); the ranks past it are danger.",
+    "tones": { "success": 2, "warn": 3 },
     "_teller": "Fewest narrators linked before the speech for the last of them to count as its teller when the chain words cannot place him; one alone may be the speaker himself.",
     "teller": 2,
     "_generations": "Ibn Hajar's twelve generations (tabaqat) as sunnah.com names them, first (the Companions) to last.",
