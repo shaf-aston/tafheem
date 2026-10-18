@@ -577,7 +577,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         # double a letter the reader left single (وَجَدّ); then the word's whole list is read too
         if not ((found := vowel_agreement(evidence, out[i].get("diac", ""))) and found[1]):
             continue
-        wider = [r for r in ranked + (_ranked([tokens[i]], None) or [[]])[0] if NO_ANALYSIS not in r.get("atbtok", "")]
+        wider = _widened(tokens[i], ranked)
         better = best_reading(evidence, wider)
         if better and (vowel_agreement(evidence, better.get("diac", "")) or found)[1] < found[1]:
             out[i], steps[i] = better, (evidence, wider)
@@ -594,10 +594,14 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if _bare_construct(reading) and not _takes_mudaf_ilayh(out[i + 1] if i + 1 < len(out) else {}):
             word, ranked = steps[i]
             # the word's whole list too (أَكْبَرُ's own indefinite reading may be ranked out), never a guessed name
-            wider = ranked + (_ranked([tokens[i]], None) or [[]])[0]
-            out[i] = best_reading(word, [r for r in wider if not _bare_construct(r) and r.get("pos") != "noun_prop"
-                                         and NO_ANALYSIS not in r.get("atbtok", "")]) or reading
+            out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
+                                         if not _bare_construct(r) and r.get("pos") != "noun_prop"]) or reading
     return out
+
+
+def _widened(token: str, ranked: list[dict]) -> list[dict]:
+    """The context ranker's readings, then the word's whole list, never one CAMeL could not analyse."""
+    return [r for r in ranked + (_ranked([token], None) or [[]])[0] if NO_ANALYSIS not in r.get("atbtok", "")]
 
 
 def _bare_construct(reading: dict) -> bool:
