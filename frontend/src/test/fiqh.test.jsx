@@ -27,10 +27,12 @@ describe('fiqh', () => {
     fireEvent.click(screen.getByRole('button', { name: /Purity/ }))
     expect(visits.at(-1)).toBe('fiqh/tahara')
     expect(screen.getByRole('button', { name: 'Back to Worship' })).toBeTruthy()
+    // The ruling words open the part, then wudu.
     const lessons = screen.getAllByRole('listitem')
-    expect(within(lessons[0]).getByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
+    expect(within(lessons[0]).getByText('The ruling words')).toBeTruthy()
+    expect(within(lessons[1]).getByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
 
-    fireEvent.click(within(lessons[0]).getByRole('button'))
+    fireEvent.click(within(lessons[1]).getByRole('button'))
     expect(visits.at(-1)).toBe('fiqh/tahara/wudu')
 
     // The part's cards arrive in their own file; then teach, then "which are fard?": pick the four, Check, and the reason is said.
@@ -56,8 +58,8 @@ describe('fiqh', () => {
     click('Continue')
     const check = screen.getByRole('button', { name: 'Check' })
     const rows = screen.getAllByRole('radiogroup')
-    const answer = { 'Wash the face': 'Fard', 'Say Bismillah': 'Sunnah', 'Make the intention': 'Mustahabb', 'Wipe the forelock': 'Fard',
-      'Use the siwak': 'Sunnah', 'Wipe the whole head': 'Mustahabb', 'Wash each limb three times': 'Sunnah' }
+    const answer = { 'Wipe the forelock': 'Fard', 'Use the siwak': 'Sunnah', 'Wash each limb three times': 'Sunnah',
+      'Wipe the whole head': 'Mustahabb', 'Start with the right': 'Mustahabb' }
     rows.forEach((row, i) => {
       expect(check.disabled).toBe(true)
       fireEvent.click(within(row).getByRole('radio', { name: answer[row.getAttribute('aria-label')] }))
