@@ -24839,6 +24839,23 @@
       "arabic": "الديات",
       "kitab": "كتاب الديات",
       "whole": true,
+      "units": [
+        {
+          "title": "How much is owed",
+          "arabic": "الديات",
+          "lessons": ["diyat-amount", "diyat-body", "diyat-shijaj", "diyat-together"]
+        },
+        {
+          "title": "Causes and liability",
+          "arabic": "الضمان",
+          "lessons": ["diyat-roads", "diyat-slaves", "diyat-janin"]
+        },
+        {
+          "title": "Qasama and 'aqila",
+          "arabic": "القسامة والمعاقل",
+          "lessons": ["diyat-qasama", "diyat-qasama-places", "diyat-aqila"]
+        }
+      ],
       "lessons": [
         {
           "id": "diyat-amount",
@@ -25535,7 +25552,7 @@
                 ["Stillborn baby, then the mother dies", "Diya and ghurra"]
               ],
               "source": ["فألقت جنينا ميتا فعليه غرة", "فإن ألقته حيا ثم مات فعليه دية كاملة", "وإن ألقته ميتا ثم ماتت الأم فعليه دية وغرة", "فعليه دية في الأم ولا شيء في الجنين"],
-              "why": "Stillborn alone is a ghurra. Born alive is a diya. The mother's death adds a diya, and if she died first, there is nothing for the unborn child."
+              "why": "Stillborn alone is a ghurra; born alive is a diya. The mother's death adds a diya, and if she died first, there is nothing for the unborn child."
             },
             {
               "kind": "teach",
@@ -25866,6 +25883,23 @@
       "kitab": "كتاب الحدود",
       "kitabs": ["كتاب الحدود", "كتاب الأشربة"],
       "whole": true,
+      "units": [
+        {
+          "title": "Zina",
+          "arabic": "الزنا",
+          "lessons": ["hudud-proof", "hudud-zina-punish", "hudud-zina-more", "hudud-shubha"]
+        },
+        {
+          "title": "Drink and qadhf",
+          "arabic": "حد الشرب والقذف",
+          "lessons": ["hudud-shurb", "hudud-qadhf"]
+        },
+        {
+          "title": "Ta'zir and drinks",
+          "arabic": "التعزير والأشربة",
+          "lessons": ["hudud-tazir", "hudud-ashriba"]
+        }
+      ],
       "lessons": [
         {
           "id": "hudud-proof",
@@ -25878,6 +25912,15 @@
               "title": "Two ways to prove it",
               "ar": "الزنا يثبت بالبينة والإقرار",
               "en": "A hadd (plural hudud) is a fixed punishment that Allah has set for certain crimes. Zina means a man and a woman having relations without being married to each other. It is proved in only two ways: bayyina (evidence from witnesses) or iqrar (the person's own confession)."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "In how many ways is zina proved?",
+              "options": ["2", "3", "4"],
+              "answer": 0,
+              "source": "الزنا يثبت بالبينة والإقرار",
+              "why": "Only two: bayyina (four witnesses) or iqrar (his own confession)."
             },
             {
               "kind": "teach",
@@ -26031,7 +26074,7 @@
               "id": "lashes",
               "title": "If he is not muhsan",
               "ar": "وإن لم يكن محصنا وكان حرا فحده مائة جلدة يأمر الإمام بضربه بسوط لا ثمرة له ضربا متوسطا تنزع عنه ثيابه ويفرق الضرب على أعضائه إلا رأسه ووجهه وفرجه",
-              "en": "If he is not muhsan and is free, the hadd is 100 lashes, with a whip that has no knot at its end, struck with medium force. His outer clothes are removed and the blows are spread over his body, avoiding the head, the face and the private parts."
+              "en": "If he is not muhsan and is free, the hadd is 100 lashes, with a whip that has no knot at its end, struck with medium force. His outer clothes are removed and the blows are spread over his body, avoiding the head, the face and the private parts. A slave got half: 50."
             },
             {
               "kind": "choose",
@@ -26050,13 +26093,11 @@
               "en": "If the one who confessed takes it back before the hadd, or even in the middle of it, his taking back is accepted and he is let go."
             },
             {
-              "kind": "choose",
-              "id": "hint",
-              "ask": "Before the hadd, what is it mustahabb (recommended) for the imam to do with someone who confesses?",
-              "options": ["Hint that he may take it back", "Urge him to repeat it quickly", "Have it written and signed by him"],
-              "answer": 0,
-              "source": "ويستحب للإمام أن يلقن المقر الرجوع ويقول له: لعلك لمست أو قبلت",
-              "why": "The imam is encouraged to prompt him to take it back, offering him a lesser explanation."
+              "kind": "teach",
+              "id": "prompt",
+              "title": "The imam prompts him",
+              "ar": "ويستحب للإمام أن يلقن المقر الرجوع ويقول له: لعلك لمست أو قبلت",
+              "en": "It is mustahabb (recommended) for the imam to prompt the one who confessed to take it back, saying: \"Perhaps you only touched her, or kissed her.\""
             },
             {
               "kind": "choose",
@@ -26066,6 +26107,15 @@
               "answer": 0,
               "source": "فإن رجع المقر عن إقراره قبل إقامة الحد عليه أو في وسطه قبل رجوعه وخلي سبيله",
               "why": "Taking back a confession is accepted even in the middle of the hadd, and he is set free."
+            },
+            {
+              "kind": "choose",
+              "id": "hint",
+              "ask": "Before the hadd, what is it mustahabb (recommended) for the imam to do with someone who confesses?",
+              "options": ["Hint that he may take it back", "Urge him to repeat it quickly", "Have it written and signed by him"],
+              "answer": 0,
+              "source": "ويستحب للإمام أن يلقن المقر الرجوع ويقول له: لعلك لمست أو قبلت",
+              "why": "The imam is encouraged to prompt him to take it back, offering him a lesser explanation."
             },
             {
               "kind": "teach",
@@ -26219,7 +26269,6 @@
           "id": "hudud-shubha",
           "title": "When there is no hadd",
           "arabic": "ولا حد على من وطئ",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -26718,12 +26767,12 @@
             },
             {
               "kind": "choose",
-              "id": "soaked-case",
-              "ask": "Ibrahim soaks raw dates in water for days, until the drink becomes strong. What is the ruling?",
-              "options": ["Haram: it is one of the four", "Halal, if he drinks only a little", "Halal"],
+              "id": "count",
+              "ask": "How many drinks does al-Quduri count as haram?",
+              "options": ["4", "3", "5"],
               "answer": 0,
-              "source": "ونقيع التمر والزبيب إذا اشتد",
-              "why": "Raw-soaked dates or raisins that become strong are among the four forbidden drinks."
+              "source": "الأشربة المحرمة أربعة",
+              "why": "Four: khamr, grape juice cooked by less than two-thirds, and strong soaked dates or raisins."
             },
             {
               "kind": "teach",
@@ -26812,6 +26861,23 @@
       "arabic": "السرقة",
       "kitab": "كتاب السرقة",
       "whole": true,
+      "units": [
+        {
+          "title": "When it is cut",
+          "arabic": "شروط القطع",
+          "lessons": ["sariqa-nisab", "sariqa-items"]
+        },
+        {
+          "title": "The hirz",
+          "arabic": "الحرز",
+          "lessons": ["sariqa-kin", "sariqa-hirz"]
+        },
+        {
+          "title": "Punishment and robbery",
+          "arabic": "القطع وقطع الطريق",
+          "lessons": ["sariqa-cutting", "sariqa-tariq"]
+        }
+      ],
       "lessons": [
         {
           "id": "sariqa-nisab",
@@ -27098,6 +27164,15 @@
               "en": "A hirz is of two kinds: a place that protects by itself, like houses and buildings; and protection by a guard watching over the property."
             },
             {
+              "kind": "choose",
+              "id": "count",
+              "ask": "A hirz is of how many kinds?",
+              "options": ["2", "3", "4"],
+              "answer": 0,
+              "source": "والحرز على ضربين",
+              "why": "Two: a place that protects by itself, and protection by a guard."
+            },
+            {
               "kind": "teach",
               "id": "guarded",
               "title": "Guarded property",
@@ -27150,7 +27225,6 @@
           "id": "sariqa-hirz",
           "title": "Inside the hirz: guests, helpers and reaching in",
           "arabic": "وإذا نقب اللص البيت",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -27443,6 +27517,20 @@
               "en": "If only one of them actually did the killing or taking, the hadd still applies to all of them, since they acted as one band."
             },
             {
+              "kind": "sort",
+              "id": "cases",
+              "ask": "What does the imam do with highway robbers?",
+              "into": ["Prison", "Cutting", "Death", "Imam's choice"],
+              "items": [
+                ["Caught before taking or killing anything", "Prison"],
+                ["Took money, killed no one", "Cutting"],
+                ["Killed, took no money", "Death"],
+                ["Killed and took money", "Imam's choice"]
+              ],
+              "source": ["حبسهم الإمام حتى يحدثوا توبة", "قطع الإمام أيديهم وأرجلهم من خلاف", "وإن قتلوا ولم يأخذوا مالا قتلهم الإمام حدا", "وإن قتلوا وأخذوا المال فالإمام بالخيار"],
+              "why": "The book gives four cases: prison, cutting from opposite sides, death, or the imam's choice when they did both."
+            },
+            {
               "kind": "pick",
               "id": "mixed",
               "ask": "Which of these are true?",
@@ -27484,7 +27572,7 @@
               "id": "dog",
               "title": "A trained dog",
               "ar": "وتعليم الكلب: أن يترك الأكل ثلاث مرات",
-              "en": "A dog counts as trained when it leaves the catch without eating from it three times. That shows it is catching for its owner, not for itself."
+              "en": "A dog counts as trained when it leaves the catch without eating from it three times. That shows it is catching for its owner, not for itself. A hawk counts as trained when it comes back when called."
             },
             {
               "kind": "choose",
@@ -27644,7 +27732,7 @@
               "id": "second",
               "title": "Two hunters",
               "ar": "ومن رمى صيدا فأصابه ولم يثخنه ولم يخرجه من حيز الإمتناع فرماه آخر فقتله فهو للثاني ويؤكل",
-              "en": "If one man hits an animal but does not wound it enough to stop it escaping, and a second man shoots and kills it, it belongs to the second, and it is eaten."
+              "en": "If one man hits an animal but does not wound it enough to stop it escaping, and a second man shoots and kills it, it belongs to the second, and it is eaten. But if the first had already disabled it, it is not eaten, and the second pays the first its value."
             },
             {
               "kind": "choose",
@@ -27660,14 +27748,14 @@
               "id": "mixed",
               "ask": "Which of these are true?",
               "options": [
-                { "text": "Game hunted by an idol-worshipper may not be eaten", "right": true },
+                { "text": "Game that falls straight to the ground is eaten", "right": true },
                 { "text": "Game that falls into water and dies is not eaten", "right": true },
                 { "text": "He must keep searching for wounded game", "right": true },
                 { "text": "Game killed by a clay pellet is eaten" },
                 { "text": "A cut-off limb is eaten too" }
               ],
-              "source": ["ولا يؤكل صيد المجوسي والمرتد والوثني", "فوقع في الماء فمات لم يؤكل", "ولم يزل في طلبه حتى أصابه ميتا أكل", "ولا يؤكل العضو"],
-              "why": "The game of a Majusi, a murtadd (one who left Islam) or an idol-worshipper is not eaten, nor what dies in water, and he must keep searching. A pellet does not cut, and the limb is not eaten."
+              "source": ["وإن وقع على الأرض ابتداء أكل", "فوقع في الماء فمات لم يؤكل", "ولم يزل في طلبه حتى أصابه ميتا أكل", "ولا يؤكل العضو"],
+              "why": "Game that falls straight down is eaten, not what dies in water, and he must keep searching. A pellet does not cut, and the cut-off limb is not eaten."
             }
           ]
         },
@@ -27913,7 +28001,7 @@
                 ["Insects", "Makruh"]
               ],
               "source": ["ولا يجوز أكل كل ذي ناب من السباع وكل ذي مخلب من الطير", "بغراب الزرع", "ويكره أكل الضبع والضب والحشرات كلها"],
-              "why": "Fanged beasts and taloned birds are not allowed. The hyena and insects are makruh. The crop crow, which eats grain, is fine."
+              "why": "Fanged beasts and taloned birds are not allowed; the hyena and insects are makruh. The crop crow, which eats grain, is fine."
             },
             {
               "kind": "teach",
@@ -28235,6 +28323,23 @@
       "arabic": "الأيمان",
       "kitab": "كتاب الأيمان",
       "whole": true,
+      "units": [
+        {
+          "title": "Oaths and kaffara",
+          "arabic": "الأيمان والكفارة",
+          "lessons": ["ayman-kinds", "ayman-words", "ayman-kaffara", "ayman-nadhr"]
+        },
+        {
+          "title": "What breaks an oath",
+          "arabic": "ما يحنث به",
+          "lessons": ["ayman-enter", "ayman-changed", "ayman-speak"]
+        },
+        {
+          "title": "Meanings and times",
+          "arabic": "المعاني والأوقات",
+          "lessons": ["ayman-meaning", "ayman-time", "ayman-debt"]
+        }
+      ],
       "lessons": [
         {
           "id": "ayman-kinds",
@@ -28247,6 +28352,15 @@
               "title": "Three kinds",
               "ar": "الأيمان على ثلاثة أضرب: يمين غموس ويمين منعقدة ويمين لغو",
               "en": "An oath (yamin) is when you swear, for example \"By Allah, I will...\". Al-Quduri says there are three kinds: the ghamus oath, the mun'aqida (binding) oath and the laghw (slip) oath."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "How many kinds of oath does al-Quduri name?",
+              "options": ["3", "2", "4"],
+              "answer": 0,
+              "source": "الأيمان على ثلاثة أضرب",
+              "why": "Three: the ghamus, the binding and the slip oath."
             },
             {
               "kind": "teach",
@@ -28300,7 +28414,7 @@
                 ["\"By Allah, I was at home last night\", a deliberate lie", "Ghamus"]
               ],
               "source": ["الحلف على أمر ماض يتعمد الكذب فيه", "هي الحلف على الأمر المستقبل أن يفعله أو لا يفعله", "أن يحلف على أمر ماض وهو يظن أنه"],
-              "why": "A deliberate lie about the past is ghamus. Any oath about the future is binding. An honest mistake about the past is laghw."
+              "why": "A deliberate lie about the past is ghamus, and an honest mistake about the past is laghw. Any oath about the future is binding."
             },
             {
               "kind": "teach",
@@ -28323,11 +28437,11 @@
               "id": "mixed",
               "ask": "Which of these are true?",
               "options": [
-                {"text": "A ghamus oath has no kaffara, only asking forgiveness", "right": true},
-                {"text": "Breaking a binding oath means paying the kaffara", "right": true},
-                {"text": "An oath said under force still counts", "right": true},
-                {"text": "A laghw oath is about the future"},
-                {"text": "A ghamus oath is about the future"}
+                { "text": "A ghamus oath has no kaffara, only asking forgiveness", "right": true },
+                { "text": "Breaking a binding oath means paying the kaffara", "right": true },
+                { "text": "An oath said under force still counts", "right": true },
+                { "text": "A laghw oath is about the future" },
+                { "text": "A ghamus oath is about the future" }
               ],
               "source": ["ولا كفارة فيها إلا الاستغفار", "فإذا حنث في ذلك لزمته الكفارة", "والقاصد في اليمين والمكره والناسي سواء"],
               "why": "Ghamus has only istighfar, a broken binding oath needs a kaffara, and a forced oath counts. Ghamus and laghw are both about the past."
@@ -28401,6 +28515,15 @@
               "arabic-options": true,
               "source": "وقد تضمر الحروف فيكون حالفا كقوله: الله لا أفعل كذا",
               "why": "الله: saying \"Allah, I won't do it\" with no letter is still an oath."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "How many letters of swearing does al-Quduri name?",
+              "options": ["3", "2", "4"],
+              "answer": 0,
+              "source": "وحروف القسم: الواو كقوله: والله والباء كقوله: بالله والتاء كقوله: تالله",
+              "why": "Three: wa, bi and ta."
             },
             {
               "kind": "teach",
@@ -28530,11 +28653,11 @@
               "id": "mixed",
               "ask": "Which of these are true?",
               "options": [
-                {"text": "The kaffara can be clothing ten poor people", "right": true},
-                {"text": "Fasting is only for someone who cannot do the other three", "right": true},
-                {"text": "A kaffara paid before breaking the oath doesn't count", "right": true},
-                {"text": "The fast is ten days"},
-                {"text": "A non-Muslim who swore and broke it after Islam owes a kaffara"}
+                { "text": "The kaffara can be clothing ten poor people", "right": true },
+                { "text": "Fasting is only for someone who cannot do the other three", "right": true },
+                { "text": "A kaffara paid before breaking the oath doesn't count", "right": true },
+                { "text": "The fast is ten days" },
+                { "text": "A non-Muslim who swore and broke it after Islam owes a kaffara" }
               ],
               "source": ["وإن شاء كسا عشرة مساكين", "فإن لم يقدر على أحد الأشياء الثلاثة صام ثلاثة أيام متتابعات", "فإن قدم الكفارة على الحنث لم يجزه", "فلا حنث عليه"],
               "why": "Clothing ten is one choice, fasting comes only when the others are impossible, and early kaffara doesn't count. The fast is three days, and a non-Muslim's oath has no breaking."
@@ -28844,7 +28967,6 @@
           "id": "ayman-speak",
           "title": "Wheat, flour, speaking and the doorway",
           "arabic": "ومن حلف لا يأكل من هذه الحنطة",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -29049,11 +29171,11 @@
               "id": "mixed",
               "ask": "Which of these break the oath?",
               "options": [
-                {"text": "Swore not to sleep on a mattress; slept on it with a sheet on top", "right": true},
-                {"text": "Swore not to divorce; had an agent divorce for him", "right": true},
-                {"text": "Swore not to eat roast; ate roast lamb", "right": true},
-                {"text": "Swore not to sleep on a mattress; slept on another mattress laid on top"},
-                {"text": "Swore not to sit on the ground; sat on a mat"}
+                { "text": "Swore not to sleep on a mattress; slept on it with a sheet on top", "right": true },
+                { "text": "Swore not to divorce; had an agent divorce for him", "right": true },
+                { "text": "Swore not to eat roast; ate roast lamb", "right": true },
+                { "text": "Swore not to sleep on a mattress; slept on another mattress laid on top" },
+                { "text": "Swore not to sit on the ground; sat on a mat" }
               ],
               "source": ["وإن حلف لا ينام على فراش فنام عليه", "وإن جعل فوقه فراشا آخر لم يحنث", "ومن حلف لا يتزوج أو لا يطلق", "فهو على اللحم", "فجلس على بساط أو حصير لم يحنث"],
               "why": "A sheet doesn't change the mattress, divorce by an agent counts, and roast lamb is roast. A second mattress on top, or a mat on the ground, makes it something else."
@@ -29256,11 +29378,11 @@
               "id": "mixed",
               "ask": "Which of these break the oath?",
               "options": [
-                {"text": "Swore not to live here; left, but left his family and things", "right": true},
-                {"text": "Swore to go to Basra; died without going", "right": true},
-                {"text": "Swore to pay today; the coins were sattuqa", "right": true},
-                {"text": "Swore to pay today; some coins were zuyuf"},
-                {"text": "Swore not to collect bit by bit; collected in two weighings back to back"}
+                { "text": "Swore not to live here; left, but left his family and things", "right": true },
+                { "text": "Swore to go to Basra; died without going", "right": true },
+                { "text": "Swore to pay today; the coins were sattuqa", "right": true },
+                { "text": "Swore to pay today; some coins were zuyuf" },
+                { "text": "Swore not to collect bit by bit; collected in two weighings back to back" }
               ],
               "source": ["وترك فيها أهله ومتاعه حنث", "حنث في آخر جزء من أجزاء حياته", "وإن وجدها رصاصا أو ستوقة حنث", "زيوفا أو نبهرجة أو مستحقة لم يحنث", "وليس ذلك بتفريق"],
               "why": "Leaving family and things behind, dying before Basra, and sattuqa coins all break it. Zuyuf coins and two weighings back to back do not."
@@ -29275,6 +29397,23 @@
       "arabic": "الدعوى",
       "kitab": "كتاب الدعوى",
       "whole": true,
+      "units": [
+        {
+          "title": "Bringing a claim",
+          "arabic": "الدعوى والبينة",
+          "lessons": ["dawa-court", "dawa-two", "dawa-rival"]
+        },
+        {
+          "title": "Oaths and holders",
+          "arabic": "اليمين",
+          "lessons": ["dawa-qisas", "dawa-oath", "dawa-hand"]
+        },
+        {
+          "title": "When parties disagree",
+          "arabic": "التحالف",
+          "lessons": ["dawa-sale", "dawa-mahr", "dawa-home"]
+        }
+      ],
       "lessons": [
         {
           "id": "dawa-court",
@@ -29363,6 +29502,15 @@
               "title": "Refusing to swear",
               "ar": "وإذا نكل المدعى عليه عن اليمين قضي عليه بالنكول ولزمه ما ادعى عليه",
               "en": "Nukul means refusing to swear. If the defendant refuses, the judge rules against him for refusing, and he owes what was claimed."
+            },
+            {
+              "kind": "choose",
+              "id": "nukul-def",
+              "ask": "What is nukul?",
+              "options": ["Refusing to swear the oath", "Refusing to bring witnesses", "Dropping the claim"],
+              "answer": 0,
+              "source": "وإذا نكل المدعى عليه عن اليمين",
+              "why": "Nukul is the defendant refusing to swear, and the judge rules against him for it."
             },
             {
               "kind": "teach",
@@ -29496,7 +29644,6 @@
           "id": "dawa-rival",
           "title": "Rival proofs: which wins",
           "arabic": "فالشراء أولى",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -30193,6 +30340,23 @@
       "arabic": "الشهادات",
       "kitab": "كتاب الشهادات",
       "whole": true,
+      "units": [
+        {
+          "title": "Giving testimony",
+          "arabic": "الشهادة",
+          "lessons": ["shahadat-duty", "shahadat-bearing"]
+        },
+        {
+          "title": "Whose testimony counts",
+          "arabic": "من تقبل شهادته",
+          "lessons": ["shahadat-rejected", "shahadat-agree", "shahadat-far"]
+        },
+        {
+          "title": "Retracting testimony",
+          "arabic": "الرجوع عن الشهادة",
+          "lessons": ["shahadat-ruju", "shahadat-ruju-cases"]
+        }
+      ],
       "lessons": [
         {
           "id": "shahadat-duty",
@@ -30365,6 +30529,15 @@
               "title": "\"He sold\", not \"he made me witness\"",
               "ar": "ويقول: أشهد أنه باع ولا يقول: أشهدني",
               "en": "Then he says \"I testify that he sold\". He does not say \"he made me a witness\", because no one did."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "What a witness takes on is of how many kinds?",
+              "options": ["2", "3", "4"],
+              "answer": 0,
+              "source": "وما يتحمله الشاهد على ضربين",
+              "why": "Two: what stands by itself, and what does not, like testimony on testimony."
             },
             {
               "kind": "choose",
@@ -30632,6 +30805,15 @@
               "title": "Testifying from what you were told",
               "ar": "ولا يجوز للشاهد أن يشهد بشيء لم يعاينه إلا النسب والموت والنكاح والدخول وولاية القاضي فإنه يسعه أن يشهد بهذه الأشياء إذا اخبره بها من يثق به",
               "en": "A witness may only testify to what he saw himself, except for: lineage (who is whose child), a death, a nikah, the consummation of a marriage, and a judge's appointment. For these he may testify when someone he trusts tells him."
+            },
+            {
+              "kind": "choose",
+              "id": "count",
+              "ask": "How many matters does the book let a witness testify to from a trusted report?",
+              "options": ["5", "3", "7"],
+              "answer": 0,
+              "source": "ولا يجوز للشاهد أن يشهد بشيء لم يعاينه إلا النسب والموت والنكاح والدخول",
+              "why": "Five: lineage, a death, a nikah, consummation, and a judge's authority."
             },
             {
               "kind": "sort",
@@ -31261,7 +31443,6 @@
           "id": "qadi-letter",
           "title": "Women judges, letters between judges, deputies",
           "arabic": "ويقبل كتاب القاضي إلى القاضي",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -31767,7 +31948,6 @@
           "id": "qisma-dispute",
           "title": "Disputes after dividing",
           "arabic": "وإذا اختلف المتقاسمون",
-          "extra": true,
           "cards": [
             {
               "kind": "teach",
@@ -32127,6 +32307,28 @@
       "kitab": "كتاب السير",
       "kitabs": ["كتاب السير", "كتاب البغاة"],
       "whole": true,
+      "units": [
+        {
+          "title": "Jihad and war",
+          "arabic": "الجهاد",
+          "lessons": ["siyar-duty", "siyar-invite", "siyar-limits", "siyar-supplies"]
+        },
+        {
+          "title": "Spoils",
+          "arabic": "الغنائم",
+          "lessons": ["siyar-aman", "siyar-seized", "siyar-spoils", "siyar-shares"]
+        },
+        {
+          "title": "Land, tax, dhimmis",
+          "arabic": "الخراج والجزية وأهل الذمة",
+          "lessons": ["siyar-trade", "siyar-lands", "siyar-kharaj", "siyar-jizya", "siyar-dhimma"]
+        },
+        {
+          "title": "Apostates and rebels",
+          "arabic": "المرتد والبغاة",
+          "lessons": ["siyar-ridda", "siyar-ridda-wealth", "siyar-rebels"]
+        }
+      ],
       "lessons": [
         {
           "id": "siyar-duty",
@@ -33656,6 +33858,18 @@
       "arabic": "الحظر والإباحة",
       "kitab": "كتاب الحظر والإباحة",
       "whole": true,
+      "units": [
+        {
+          "title": "Silk and gold",
+          "arabic": "اللباس والحلي",
+          "lessons": ["hazr-silk", "hazr-gold"]
+        },
+        {
+          "title": "Looking and dealings",
+          "arabic": "النظر والمعاملات",
+          "lessons": ["hazr-word", "hazr-looking", "hazr-family", "hazr-market"]
+        }
+      ],
       "lessons": [
         {
           "id": "hazr-silk",
