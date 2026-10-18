@@ -25711,7 +25711,7 @@
               "kind": "choose",
               "id": "freed-case",
               "ask": "A slave worth 800 dirhams harms someone by mistake; the arsh is 1,000. Not knowing, the master frees him. How much does the master owe?",
-              "options": ["800", "1, 000", "Nothing"],
+              "options": ["800", "1,000", "Nothing"],
               "answer": 0,
               "source": "وإن أعتقه المولى وهو لا يعلم بالجناية ضمن الأقل من قيمته ومن أرشها",
               "why": "Not knowing, he owes the lesser of the value (800) and the arsh (1,000): 800."
@@ -25775,7 +25775,7 @@
               "kind": "choose",
               "id": "value-case",
               "ask": "A slave worth 15,000 dirhams is killed by mistake. How much is owed?",
-              "options": ["9, 990", "15, 000", "10, 000"],
+              "options": ["9, 990", "15,000", "10,000"],
               "answer": 0,
               "source": "فإن كانت قيمته عشرة آلاف أو أكثر قضي عليه بعشرة آلاف إلا عشرة",
               "why": "At 10,000 or more, the judgement is 10,000 less ten: 9,990."
@@ -25848,7 +25848,7 @@
               "kind": "choose",
               "id": "slave-janin",
               "ask": "A slave woman loses her unborn boy after a blow. Alive, he would be worth 1,000 dirhams. How much is due?",
-              "options": ["50", "100", "1, 000"],
+              "options": ["50", "100", "1,000"],
               "answer": 0,
               "source": "وفي جنين الأمة إذا كان ذكرا نصف عشر قيمته لو كان حيا",
               "why": "For a boy, a twentieth of his value alive: 1,000 ÷ 20 = 50."

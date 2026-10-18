@@ -12,6 +12,7 @@ import { requeue } from '../../lib/lesson'
 import { recordAttempt } from '../../lib/progress'
 import { rankOf, shareOf } from '../../lib/rewards'
 import { sayIn } from '../../lib/say'
+import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
 import { kindOf } from './exercises'
 
@@ -85,7 +86,7 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
       ...(!card.again && { asked: was.asked + 1, right: was.right + (right ? 1 : 0) }),
     }))
     if (!right) setCards(requeue(cards, at))
-    if (!right && !card.again && card.ask) setMissed((was) => [...was, { id: card.id, ask: card.ask, why: card.why }])
+    if (!right && !card.again && card.ask) setMissed((was) => [...was, { id: card.id, ask: card.ask, ar: lineOf(card), why: card.why }])
     const ms = Math.max(0, Math.round(event.timeStamp - started.current))
     recordAttempt({ ...card.record, correct: right, ms }).then(({ earned = 0 }) => {
       if (earned) setTally((was) => ({ ...was, earned: was.earned + earned }))
@@ -141,6 +142,9 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
   )
 }
 
+/** A card's line of the book for the recap, its gap filled with the right word; none for a card without one. */
+const lineOf = (card) => card.ar?.replace('____', card.options?.find((option) => option.id === card.answer)?.text ?? '____')
+
 /** m:ss for a lesson's length. */
 const clock = (ms) => {
   const seconds = Math.max(0, Math.round(ms / 1000))
@@ -177,7 +181,9 @@ function LessonDone({ tally, took, missed, accent, rewards, next, onLeave }) {
         <section className="grow-done-missed" aria-labelledby="grow-missed-h">
           <h4 id="grow-missed-h">{say('What you missed')}</h4>
           <ul>
-            {missed.slice(0, 3).map((one) => <li key={one.id}><b>{one.ask}</b> {one.why}</li>)}
+            {missed.slice(0, 3).map((one) => (
+              <li key={one.id}><b>{one.ask}</b> {one.ar && <ArabicText as="span" size="sm">{one.ar}</ArabicText>} {one.why}</li>
+            ))}
           </ul>
         </section>
       )}

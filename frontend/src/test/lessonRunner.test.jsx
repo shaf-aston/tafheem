@@ -42,6 +42,17 @@ describe('lesson runner', () => {
     expect(screen.getByText('Question d?')).toBeTruthy()
   })
 
+  it('recaps a missed gap card with its line, the gap filled with the right word', () => {
+    const gap = { ...choose('g'), ask: 'Which word completes the line?', ar: 'الحمد ____ رب العالمين',
+      options: [{ id: '0', text: 'لله' }, { id: '1', text: 'wrong g' }] }
+    renderScreen(<LessonRunner cards={[gap]} accent="#26c" onLeave={() => {}} />, { routes: { 'POST /progress/attempts': { earned: 0 } } })
+    answer('g', 'wrong')
+    fireEvent.click(screen.getByRole('radio', { name: 'لله' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+    expect(screen.getByText('الحمد لله رب العالمين')).toBeTruthy()
+  })
+
   it('offers the next lesson at the end, and the way back to the path', () => {
     const went = []
     renderScreen(<LessonRunner cards={[choose('a')]} accent="#26c" next={{ title: 'Ghusl', go: () => went.push('next') }}
