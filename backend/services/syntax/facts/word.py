@@ -150,8 +150,9 @@ def told_of_subject(token: dict, head: dict) -> bool:
 
 
 def indefinite_nasb(token: dict) -> bool:
-    """An indefinite word in nasb: a hal or tamyeez, never a na't."""
-    return typed_or_parsed_case(token) == "a" and token.get("stt") != "d"
+    """An indefinite word in nasb: a hal or tamyeez, never a na't. A pronoun stuck on makes it
+    definite (حَفِيدَهُ), as ال does."""
+    return typed_or_parsed_case(token) == "a" and token.get("stt") != "d" and not token.get("stuck_on")
 
 
 def is_state_word(token: dict) -> bool:

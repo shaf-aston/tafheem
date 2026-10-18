@@ -40,6 +40,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/sy
 - dua_clause: a praying noun (ويل، سلام) in raf' with a لِ phrase after it → a mubtada of its own with that khabar, not the verb's doer (`backend/services/syntax/repair/dua.py`)
 - counted_times: مرة/مرتين hung on a jar-majrur → the verb's (`backend/services/syntax/repair/dua.py`)
 - second_khabar: an adjective hung on an adjective khabar → a second khabar, not its صفة (`backend/services/syntax/repair/khabar.py`)
+- after_pointer: an indefinite noun hung on هذا / هاتان as its صفة → the khabar (`backend/services/syntax/repair/khabar.py`)
 - before_la: a noun hung on لا from before it → the mubtada, the لا clause its khabar (`backend/services/syntax/repair/khabar.py`)
 - hal_clause: و + a raf' pronoun + a verb → a hal clause, the pronoun its mubtada (`backend/services/syntax/repair/hal.py`)
 - nasab: name + ابن/بن + noun → صفة and مضاف chain; next noun = خبر in a verbless sentence (`backend/services/syntax/repair/nasab.py`)

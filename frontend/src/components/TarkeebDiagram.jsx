@@ -13,7 +13,7 @@ import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, use
 
 import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
-import { cells, fold, foldRows, hiddenWords, rows, runs, threadSpans, tones } from '../lib/tarkeebLayout'
+import { GAP, cells, fold, foldRows, hiddenWords, rows, runs, threadSpans, tones } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
 
 import Tooltip from './ui/Tooltip'
@@ -55,7 +55,8 @@ function Bracket({ node, style }) {
                     >
                       {/* Tooltip is a no-op without text, so every role can pass through
                           it, only the roles with a `detail` end up hoverable. */}
-                      <Tooltip text={piece.detail}>{piece.role}</Tooltip>
+                      {/* a word no rule named: the open mark the copied text writes too */}
+                      <Tooltip text={piece.gap ? 'No rule named this word' : piece.detail}>{piece.gap ? GAP : piece.role}</Tooltip>
                     </div>
                     {/* the pronoun a doer stands for, which is not written anywhere */}
                     {piece.pronoun && <div className="tk-says">{piece.pronoun}</div>}

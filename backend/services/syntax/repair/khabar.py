@@ -30,3 +30,16 @@ def before_la(tokens: list[dict]) -> None:
                 and subject_link(token) and la["head"] == 0):
             token["head"], token["rel"] = 0, "---"
             la["head"], la["rel"] = token["id"], "PRD"
+
+
+def after_pointer(tokens: list[dict]) -> None:
+    """هَاتَانِ قِلَادَتَانِ: what describes or stands for a pointing word carries ال (هذا الكتابُ),
+    so an indefinite noun the parser hung on one as its صفة is the khabar, the pointer its mubtada.
+    Written over before the words are read."""
+    by_id = {t["id"]: t for t in tokens}
+    for token in tokens:
+        pointer = by_id.get(token["head"])
+        if (pointer and pointer.get("pos_camel") == "pron_dem" and pointer["head"] == 0 and token["rel"] == "MOD"
+                and token["id"] > pointer["id"] and token["pos"] == "NOM" and token.get("stt") == "i"):
+            token["head"], token["rel"] = 0, "---"
+            pointer["head"], pointer["rel"] = token["id"], "SBJ"
