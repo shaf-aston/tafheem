@@ -20,7 +20,12 @@ blind by two separate readers and kept where they agreed; all held out.
 collections, keyed the same way, some typed again without vowels.
 --set rules has one new sentence per Tasheel rule (the "rule" field is its number
 in the rule audit), in vocabulary the other sets do not use; a debatable key was dropped.
-Rows in these two may carry "signs", the sign the book gives chosen words (word
+--set blind is a set in the fresh format written after the others, its words kept
+apart from theirs, keyed blind by two readers who never saw the app's answer and
+kept where they agreed. It splits three ways: "tune" may be looked at while fixing,
+"verify" shows whether a fix carried to sentences it was not written against, and
+"hold" is scored once, at the end.
+Rows in these may carry "signs", the sign the book gives chosen words (word
 index to sign), so the case line is scored as well as the role.
 
 The other sets score roles only: the books record no case field, and reading case
@@ -92,9 +97,9 @@ def checked_sentences() -> list[dict]:
     return [{"id": f"c{i}", **ex} for i, ex in enumerate(json.loads(path.read_text(encoding="utf-8")), 1)]
 
 
-def fresh_sentences() -> list[dict]:
-    """One exact role per typed word; the vocabulary is fixed by the test."""
-    return json.loads((DATA.parent / KEY["sources"]["fresh"]).read_text(encoding="utf-8"))
+def fresh_sentences(name: str = "fresh") -> list[dict]:
+    """One exact role per typed word, each row in the split it may be used for."""
+    return json.loads((DATA.parent / KEY["sources"][name]).read_text(encoding="utf-8"))
 
 
 def held_out(name: str) -> list[dict]:
@@ -104,9 +109,10 @@ def held_out(name: str) -> list[dict]:
 
 
 SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
-        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe")}}
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe")},
+        "blind": partial(fresh_sentences, "blind")}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules", "probe")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind")
 BASELINE = DATA / "nahw_rules" / "score_baseline.json"
 
 
@@ -248,7 +254,7 @@ def score_exact(name: str, api: str | None, show: int) -> Counter:
                 f"confident wrong {c['confident_wrong']}  gaps {c['gaps']}  crashed {c['crashed']}  card/tree disagree {c['disagree']}{signs}")
 
     print(f"{name.capitalize()} set" + (f" via {api}" if api else " (local)"))
-    for name in ("all", "tune", "hold"):
+    for name in ("all", "tune", "verify", "hold"):
         if name in stats:
             print(line(name, stats[name]))
     print("Per chapter:")

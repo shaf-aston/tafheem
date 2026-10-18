@@ -38,7 +38,9 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         after = words[i + 1] if i + 1 < len(words) else ""
         verb = token["pos"].startswith("VRB")
         read_noun = token.get("pos_camel") == "noun" and vowel_agreement(word, token.get("diac", "")) is not None
-        if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built:
+        # عَمِّي، جَدِّي: a noun read with its own pronoun stuck on is that noun and its owner, never a command
+        owned = read_noun and any(t["head"] == token["id"] and t.get("token_type") == "enc0" for t in tokens)
+        if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not owned:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
             own = own_letters(word, token["front"], token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word

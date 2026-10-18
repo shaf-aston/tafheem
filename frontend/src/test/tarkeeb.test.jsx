@@ -43,4 +43,11 @@ describe('tarkeeb chart', () => {
     names.forEach((name) => expect(name.previousElementSibling.classList).toContain('tk-brace'))
     expect(container.querySelector('.tk-grid').textContent).not.toMatch(/[=+]/)
   })
+
+  it('writes the open mark under a word no rule named, as the copied text does', () => {
+    const tarkeeb = { words: ['أ', 'ب'], tree: { label: 'جُمْلَةٌ', parts: [], children: [
+      { word: 0, role: 'مُبْتَدَأٌ', children: [], parts: [] }, { word: 1, role: null, gap: true, children: [], parts: [] }] } }
+    const { container } = renderScreen(<TarkeebDiagram tarkeeb={tarkeeb} />)
+    expect(container.querySelector('.tk-gap').textContent).toBe('؟')
+  })
 })

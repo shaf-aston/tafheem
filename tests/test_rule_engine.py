@@ -145,6 +145,28 @@ def test_a_command_is_described_as_one(sentence: str, lemma: str):
     assert (word["lemma"], word["features"].startswith("command"), "perfect" in word["features"]) == (lemma, True, False)
 
 
+@pytest.mark.parametrize("sentence, role", [("جَاءَ عَمِّي", "فاعل"), ("زَارَنِي جَدِّي", "فاعل"),
+                                            ("سَمِّ اللَّهَ", "فعل")])  # nearest case: a command typed in full
+def test_a_noun_with_its_own_pronoun_is_no_command(sentence: str, role: str):
+    """عَمِّي is uncle + my, though its letters also spell the command "be general" to a woman."""
+    word = iraab.analyze(sentence)["words"][-1 if role == "فاعل" else 0]
+    assert word["role"].startswith(role), word
+
+
+@pytest.mark.parametrize("sentence, want", [
+    ("سَرَّنِي مَا صَنَعْتَهُ", ["فعل", "فاعل", "فعل"]),  # ما after the verb's own pronoun is its doer
+    ("مَا رَأَيْتُهُ", ["حرف", "فعل"]),                    # nearest case: ما opening the sentence negates
+    ("هَاتَانِ قِلَادَتَانِ فِضِّيَّتَانِ", ["مبتدأ", "خبر", "صفة"]),  # no ال after a pointer: the khabar
+    ("هَذَا الْكِتَابُ جَدِيدٌ", ["مبتدأ", "صفة", "خبر"]),  # nearest case: with ال it follows the pointer
+    ("أَهْدَى الْجَدُّ حَفِيدَهُ مِنْظَارًا", ["فعل", "فاعل", "مفعول به", "مفعول به"]),  # its pronoun makes it definite: no حال
+    ("جَاءَ زَيْدٌ رَاكِبًا", ["فعل", "فاعل", "حال"]),  # nearest case: indefinite, a حال
+    ("ابْتَاعَ الْخَبَّازُ صَاعًا شَعِيرًا", ["فعل", "فاعل", "مفعول به", "تمييز"]),  # a noun names what is measured
+    ("قَرَأْتُ كِتَابًا مُفِيدًا", ["فعل", "مفعول به", "صفة"])])  # nearest case: an adjective describes
+def test_what_a_word_after_a_verb_noun_or_pointer_is(sentence: str, want: list[str]):
+    got = [w["role"] for w in iraab.analyze(sentence)["words"]]
+    assert len(got) == len(want) and all(g and g.startswith(x) for g, x in zip(got, want)), got
+
+
 @pytest.mark.parametrize("sentence, verbal", [
     ("لَمْ يَكْتُبْ الطَّالِبُ", True), ("قَدْ نَجَحَ الطَّالِبُ", True), ("لَنْ يَذْهَبَ زَيْدٌ", True),
     ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", False)])  # nearest case: a particle before a noun

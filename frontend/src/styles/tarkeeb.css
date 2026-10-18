@@ -147,12 +147,16 @@
   padding-top: 0.55rem;
 }
 .tk-forked > .tk-branch { grid-row: 2; }
-/* up through the cell's padding and the gap above the row, to meet the thread */
+/* up through the cell's padding and the gap above the row, to meet the thread. Its
+   least height is that climb, so it reaches the word even when the row has no
+   spare height and its own grid row is empty. */
 .tk-stem {
   grid-row: 1;
   justify-self: center;
+  align-self: stretch;
   width: 1.5px;
   margin-top: calc((var(--tk-gap) + 0.55rem) * -1);
+  min-height: calc(var(--tk-gap) + 0.55rem);
   background: var(--tk-line);
 }
 .tk-forked > .tk-branch::before,
@@ -163,7 +167,9 @@
 .tk-forked > .tk-branch:first-of-type::after { inset-inline: 50% 0; }
 .tk-forked > .tk-branch:last-child::after { inset-inline: 0 50%; }
 /* What the doer is, under its name: faint like the lines, since nothing writes it. It hangs
-   below the name, inside the brace, so the names of a row stay level. */
+   below the name, inside the brace, so the names of a row stay level; the row keeps
+   room for it under every name, so it never sits on the brace or the next name. */
+.tk-roles:has(.tk-says) { padding-bottom: calc(var(--arabic-small-rem) * 1.4rem); }
 .tk-says {
   position: absolute;
   inset-inline: 0;
