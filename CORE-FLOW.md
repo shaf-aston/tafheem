@@ -94,7 +94,7 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
 - **I'raab**: one word's case and why. **Tarkeeb**: which words join into a unit, as a bracket tree.
 - **Root**: the three letters a word is built from; the link every tab shares (`services/roots.py`).
 - **Bab**: a verb's vowel pattern or form, read from Lane or Wiktionary, never worked out.
-- **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound.
+- **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound; the Trial ear is taught, judged and shipped by `backend/scripts/finetune_ear/README.md`.
 - **Source**: `verified`, `derived` or `guessed`, carried by every answer.
 - **Weak point**: a flagged narrator or link in a chain; `notes` and `links` in code (`docs/glossary/hadith.md`).
 - **Token**: a theme value in `frontend/src/theme.json`; components use `var(--...)`, never a literal.

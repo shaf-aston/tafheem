@@ -186,8 +186,8 @@ class Listening(BaseSettings):
     #   LISTENING_EARS=here          (else Groq answers first and the folder is only the fallback)
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
     # Empty means no trial offered. Loaded like recitation_model; a learner's "Trial" listening hears
-    # and checks with it alone. Set by scripts/finetune_ear/cloud.py --ship, which prints the line to put here.
-    # v13, kept 2026-10-04: words wrong on new voices 24.0 -> 15.6, new ayahs 24.2 -> 18.0, professionals 5.0 -> 4.3.
+    # and checks with it alone. Written and pushed by scripts/finetune_ear/cloud.py --ship; each of
+    # its commits carries the scores that won (git log backend/config.py).
     recitation_trial_model: str = "shafTheG/quran-ear@c0df8677a0f0175053ffb95fe69adc590c5ceb5f"
     # Search boxes are dictation, and the Qur'an model knows no other words:
     # "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ, "mercy" as مَسْكُوبُ, where base heard both.
