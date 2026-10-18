@@ -29,25 +29,28 @@ CREATE TABLE narrator (
     id INTEGER PRIMARY KEY,
     name_en TEXT NOT NULL DEFAULT '', name_ar TEXT NOT NULL DEFAULT '',
     kunya_ar TEXT NOT NULL DEFAULT '', grade_en TEXT NOT NULL DEFAULT '', grade_ar TEXT NOT NULL DEFAULT '',
-    grade_rank INTEGER, generation_ar TEXT NOT NULL DEFAULT '', years TEXT NOT NULL DEFAULT '',
+    grade_rank INTEGER, generation_ar TEXT NOT NULL DEFAULT '', years TEXT NOT NULL DEFAULT '', years_ar TEXT NOT NULL DEFAULT '',
+    alt_en TEXT NOT NULL DEFAULT '', alt_ar TEXT NOT NULL DEFAULT '',
     lineage_ar TEXT NOT NULL DEFAULT '', nisba_ar TEXT NOT NULL DEFAULT '', city_ar TEXT NOT NULL DEFAULT '',
     profession_ar TEXT NOT NULL DEFAULT '', school_ar TEXT NOT NULL DEFAULT '',
-    hadith_total INTEGER, fetched INTEGER NOT NULL DEFAULT 0, books TEXT NOT NULL DEFAULT '[]', facts TEXT NOT NULL DEFAULT '[]', texts TEXT NOT NULL DEFAULT '[]'
+    hadith_total INTEGER, fetched INTEGER NOT NULL DEFAULT 0, books TEXT NOT NULL DEFAULT '[]', flags TEXT NOT NULL DEFAULT '[]', facts TEXT NOT NULL DEFAULT '[]', texts TEXT NOT NULL DEFAULT '[]'
 );
 CREATE TABLE verdict (narrator_id INTEGER NOT NULL, ord INTEGER NOT NULL, scholar TEXT NOT NULL, quote TEXT NOT NULL);
 CREATE INDEX verdict_by_narrator ON verdict (narrator_id, ord);
-CREATE TABLE tie (teacher_id INTEGER NOT NULL, student_id INTEGER NOT NULL, PRIMARY KEY (teacher_id, student_id));
+-- teacher_ord: the teacher's place in the student's own page; student_ord: the student's place in the teacher's. NULL where that page was never fetched.
+CREATE TABLE tie (teacher_id INTEGER NOT NULL, student_id INTEGER NOT NULL, teacher_ord INTEGER, student_ord INTEGER, PRIMARY KEY (teacher_id, student_id));
 CREATE INDEX tie_by_student ON tie (student_id);
 CREATE TABLE mention (
     collection TEXT NOT NULL, book INTEGER NOT NULL, number INTEGER NOT NULL, part TEXT NOT NULL,
-    start INTEGER NOT NULL, end INTEGER NOT NULL, narrator_id INTEGER NOT NULL, ord INTEGER NOT NULL
+    start INTEGER NOT NULL, end INTEGER NOT NULL, narrator_id INTEGER NOT NULL, ord INTEGER NOT NULL,
+    in_chain INTEGER NOT NULL DEFAULT 1  -- 0 for a name sunnah.com links in the matn, outside the isnad (arabic_sanad)
 );
 CREATE INDEX mention_by_book ON mention (collection, book, number, part, ord);
 CREATE INDEX mention_by_narrator ON mention (narrator_id);
 CREATE VIRTUAL TABLE narrator_fts USING fts5(name_ar, name_en, kunya_ar, lineage_ar);
 """
-_JSON = ("books", "facts", "texts")
-_PLAIN = ("name_en", "name_ar", "kunya_ar", "grade_en", "grade_ar", "grade_rank", "generation_ar", "years",
+_JSON = ("books", "flags", "facts", "texts")
+_PLAIN = ("name_en", "name_ar", "kunya_ar", "grade_en", "grade_ar", "grade_rank", "generation_ar", "years", "years_ar", "alt_en", "alt_ar",
           "lineage_ar", "nisba_ar", "city_ar", "profession_ar", "school_ar", "hadith_total")
 
 
@@ -65,11 +68,13 @@ def add_narrators(conn: sqlite3.Connection) -> int:
                      (who, 1, *(json.dumps(found[f], ensure_ascii=False) for f in _JSON), *(found[f] for f in _PLAIN)))
         conn.executemany("INSERT INTO verdict VALUES (?, ?, ?, ?)",
                          [(who, i, *v) for i, v in enumerate(found["verdicts"])])
-        for other, name_ar, name_en in found["teachers"]:
-            conn.execute("INSERT OR IGNORE INTO tie VALUES (?, ?)", (other, who))
+        for place, (other, name_ar, name_en) in enumerate(found["teachers"]):
+            conn.execute("INSERT INTO tie (teacher_id, student_id, teacher_ord) VALUES (?, ?, ?) "
+                         "ON CONFLICT DO UPDATE SET teacher_ord = excluded.teacher_ord", (other, who, place))
             heard[other] = (name_ar, name_en)
-        for other, name_ar, name_en in found["students"]:
-            conn.execute("INSERT OR IGNORE INTO tie VALUES (?, ?)", (who, other))
+        for place, (other, name_ar, name_en) in enumerate(found["students"]):
+            conn.execute("INSERT INTO tie (teacher_id, student_id, student_ord) VALUES (?, ?, ?) "
+                         "ON CONFLICT DO UPDATE SET student_ord = excluded.student_ord", (who, other, place))
             heard[other] = (name_ar, name_en)
         count += 1
     conn.executemany("INSERT OR IGNORE INTO narrator (id, name_ar, name_en) VALUES (?, ?, ?)",
@@ -88,17 +93,18 @@ def add_mentions(conn: sqlite3.Connection) -> tuple[int, int, int, int, list[tup
     for collection, book, page in cache.book_pages():
         text = {(h["number"], h["part"]): h["arabic"] for h in loader.hadiths(collection, book)}
         ours += len(text)
-        for chain in parse.book_chains(cache.read(page)):
-            arabic = text.get((chain["number"], chain["part"]))
-            seen += len(chain["names"])
+        for entry in parse.book_chains(cache.read(page)):
+            arabic = text.get((entry["number"], entry["part"]))
+            seen += len(entry["names"])
             if arabic is None:
-                placed, missing = [], [(who, shown) for who, shown, _ in chain["names"]]
+                placed, missing = [], [(who, shown) for who, shown, *_ in entry["names"]]
             else:
                 linked += 1
-                placed, missing = parse.place(arabic, chain["names"])
-            conn.executemany("INSERT INTO mention VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                             [(collection, book, chain["number"], chain["part"], *at, i) for i, at in enumerate(placed)])
-            lost.extend((collection, chain["number"], chain["part"], who, shown) for who, shown in missing)
+                placed, missing = parse.place(arabic, entry["names"])
+            conn.executemany("INSERT INTO mention VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                             [(collection, book, entry["number"], entry["part"], start, end, who, i, in_chain)
+                              for i, (start, end, who, in_chain) in enumerate(placed)])
+            lost.extend((collection, entry["number"], entry["part"], who, shown) for who, shown in missing)
             placed_n += len(placed)
     return ours, linked, placed_n, seen, lost
 
@@ -114,9 +120,11 @@ def build() -> None:
         conn.executescript(_SCHEMA)
         narrators = add_narrators(conn)
         ours, linked, placed, seen, lost = add_mentions(conn)
+        if not placed:  # hadith.db missing or the wrong books: an empty index would read as "nobody narrated anything"
+            raise SystemExit(f"no names placed in {ours:,} of our hadith: the old file is kept. Is hadith.db built?")
         conn.commit()
         conn.close()
-    except Exception:
+    except BaseException:  # SystemExit too: a refused build leaves no half file
         conn.close()
         scratch.unlink(missing_ok=True)
         raise

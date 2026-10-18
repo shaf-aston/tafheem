@@ -126,7 +126,7 @@ class RijalFact(BaseModel):
 
 
 class RijalBook(BaseModel):
-    """A book that carries his hadith, named in both languages."""
+    """A pill the page shows in both languages: a book that carries his hadith, or a warning flag."""
     en: str
     ar: str
 
@@ -164,14 +164,19 @@ class Narrator(NarratorSummary):
     grade_en: str = ""
     generation_ar: str = ""
     years: str = ""
+    years_ar: str = ""
+    alt_en: str = ""  # the page's line under the name: "(Abu al-Mundhir al-Madani)"
+    alt_ar: str = ""
     lineage_ar: str = ""
     nisba_ar: str = ""
     city_ar: str = ""
     profession_ar: str = ""
     school_ar: str = ""
     books: list[RijalBook] = []
+    flags: list[RijalBook] = []  # the page's warnings beside the grade, e.g. Ikhtilat / مختلط
     facts: list[RijalFact] = []
     hadith_total: int | None = None
+    hadith_count: int = 0  # of our hadith, those with him in the chain
     verdicts: list[RijalVerdict] = []
     teachers: list[NarratorSummary] = []
     students: list[NarratorSummary] = []

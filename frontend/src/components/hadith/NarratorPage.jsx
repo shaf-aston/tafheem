@@ -38,11 +38,12 @@ const Section = ({ title, ar, children }) => (
 const FOLDED_ROWS = 80
 
 // A long list folded under "Show all N", drawing the rest only once opened.
-function FoldedList({ items, lines, accent, children: draw }) {
+function FoldedList({ items, lines, accent, total = items.length, children: draw }) {
   const [open, setOpen] = useState(false)
   return (
     <ShowRest lines={lines} accent={accent} more={`Show all ${items.length}`} open={open} onOpenChange={setOpen}>
       {draw(open ? items : items.slice(0, FOLDED_ROWS))}
+      {open && total > items.length && <p className="type-small text-[var(--text-faint)] mt-2 mb-0">Showing the first {items.length} of {total}.</p>}
     </ShowRest>
   )
 }
@@ -83,7 +84,7 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
           <div className="grid gap-x-8 gap-y-6 grid-cols-[repeat(auto-fit,minmax(min(100%,22rem),1fr))] [&>*]:min-w-0">
             {[['Teachers', 'المشايخ', who.teachers], ['Students', 'التلاميذ', who.students]].map(([title, ar, list]) => list.length > 0 && (
               <Section key={title} title={title} ar={ar}>
-                <FoldedList items={list} lines={10} accent={accent}>
+                <FoldedList key={`${id}:${title}`} items={list} lines={10} accent={accent}>
                   {(shown) => <NarratorLinks items={shown} onOpen={onNarrator} />}
                 </FoldedList>
               </Section>
@@ -95,7 +96,7 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
 
           {hadith.length > 0 && (
             <Section title="Hadith narrated" ar="الأحاديث المروية">
-              <FoldedList items={hadith} lines={10} accent={accent}>
+              <FoldedList key={id} items={hadith} total={who.hadith_count} lines={10} accent={accent}>
                 {(shown) => (<ul className={PAIR_ROWS}>
                   {shown.map((h) => (
                     <li key={`${h.collection}:${h.number}${h.part}`} className="min-w-0">
@@ -107,8 +108,8 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
             </Section>
           )}
 
-          {who.texts.map((t) => (
-            <Section key={t.book} ar={t.book}>
+          {who.texts.map((t, i) => (
+            <Section key={`${i}:${t.book}`} ar={t.book}>
               <ShowRest lines={8} accent={accent}>
                 <ClassicalText text={t} accent={accent} />
               </ShowRest>

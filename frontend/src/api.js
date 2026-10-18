@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { keepPreviousData } from '@tanstack/react-query'
 
 import { profileHeaders } from './lib/profile'
 
@@ -254,6 +255,7 @@ export const usulTermQuery = (kind) => ({
 // The narrator list, most hadith first, a page at a time; the server fixes the page size.
 export const narratorListQuery = (generation) => ({
   queryKey: ['narrator-list', generation],
+  placeholderData: keepPreviousData, // the filter chips and list stay while another generation loads
   queryFn: ({ pageParam }) => api.get('/rijal/narrators', { params: { generation, offset: pageParam } }).then((r) => r.data),
   initialPageParam: 0,
   getNextPageParam: (last, pages) => {

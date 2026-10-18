@@ -22,8 +22,10 @@ _LABELS = {
 }
 
 
-# A name starts a word: nothing word-like (a letter or its vowel marks) before it, or only an attached و or ف that does.
-_WORD_START = r"(?:(?<![\w\u064B-\u065F\u0670])|(?<=(?<![\w\u064B-\u065F\u0670])[وف]))"
+# A name starts a word: nothing word-like (a letter or its vowel marks) before it, or only the particles Arabic writes
+# on to the next word: و or ف, then ب ل ك (وبمالك, لمالك).
+_NOT_WORD = r"(?<![\w\u064B-\u065F\u0670])"
+_WORD_START = "(?:" + "|".join((_NOT_WORD, *(f"(?<={_NOT_WORD}{p})" for p in ("[وف]", "[بلك]", "[وف][بلك]")))) + ")"
 
 
 def _soup(html: str) -> BeautifulSoup:
@@ -39,18 +41,30 @@ def _en(text: str) -> str:
     return text.replace("`", "ʿ")
 
 
+def _paired(en: list, ar: list) -> list[tuple]:
+    """The two languages' lists of one thing side by side. They are matched by place, so only where both pages show the
+    same number: a thing one language lacks would shift every later pair, so then each stands alone, (en, None) or (None, ar)."""
+    if len(en) == len(ar):
+        return list(zip(en, ar))
+    return [(e, None) for e in en] + [(None, a) for a in ar]
+
+
 def _letters(text: str) -> int:
     return len(re.sub(r"\s", "", text))
 
 
-def _names(full) -> list[tuple[int, str, int]]:
-    """(id, the words shown, letters before them) for each narrator link with a letter in it."""
+def _names(full) -> list[tuple[int, str, int, bool]]:
+    """(id, the words shown, letters before them, in the chain) for each narrator link with a letter in it.
+
+    The page wraps the isnad in span.arabic_sanad and the matn in span.arabic_text_details, so a name linked in the
+    story is told apart from the chain by the source itself; a hadith the page does not wrap counts all as chain."""
     names, before = [], 0
+    wrapped = bool(full and full.select_one(".arabic_sanad"))
     for node in full.descendants if full else ():
         if node.name == "a" and (m := _NARRATOR.match(node.get("href", ""))):
             shown = node.get_text().strip()
             if any(ch.isalpha() for ch in shown):
-                names.append((int(m.group(1)), shown, before))
+                names.append((int(m.group(1)), shown, before, not wrapped or node.find_parent(class_="arabic_sanad") is not None))
         elif isinstance(node, NavigableString):
             before += _letters(node)
     return names
@@ -73,24 +87,25 @@ def book_chains(html: str) -> list[dict]:
     return out
 
 
-def place(arabic: str, names: list[tuple[int, str, int]]) -> tuple[list[tuple[int, int, int]], list[tuple[int, str]]]:
-    """([(start, end, id)] found in our text, [(id, shown)] not found).
+def place(arabic: str, names: list[tuple[int, str, int, bool]]) -> tuple[list[tuple[int, int, int, bool]], list[tuple[int, str]]]:
+    """([(start, end, id, in the chain)] found in our text, [(id, shown)] not found).
 
     Our text is sunnah.com's, so each name goes to the copy of its words whose
     letter count from the start is nearest where sunnah.com links it; a name
     said twice (الحسن in the chain, الحسن in the story) lands on the right one.
     A hit must end its word (أبيه, not the start of أبيها); its start may carry
-    an attached و or ف.
+    an attached و, ف, ب, ل or ك. One place is never given to two names.
     """
     letters = [0]
     for ch in arabic:
         letters.append(letters[-1] + (not ch.isspace()))
-    placed, lost = [], []
-    for who, shown, before in names:
+    placed, lost, taken = [], [], set()
+    for who, shown, before, in_chain in names:
         hits = re.finditer(_WORD_START + re.escape(shown) + r"(?![\w\u064B-\u065F\u0670])", arabic)
-        hit = min(hits, key=lambda h: abs(letters[h.start()] - before), default=None)
+        hit = min((h for h in hits if h.start() not in taken), key=lambda h: abs(letters[h.start()] - before), default=None)
         if hit:
-            placed.append((hit.start(), hit.end(), who))
+            taken.add(hit.start())
+            placed.append((hit.start(), hit.end(), who, in_chain))
         else:
             lost.append((who, shown))
     return sorted(placed), lost
@@ -112,7 +127,8 @@ def _facts(soup: BeautifulSoup) -> list[dict]:
         return [(_text(label), _text(label.parent.find(class_=["field", "lineage"]))) for label in labels]
     en = side(label for label in soup.select("span.label") if "arabic-label" not in label["class"])
     ar = side(soup.select("span.label.arabic-label"))
-    return [{"label_en": le, "en": _en(ve), "label_ar": la, "ar": va} for (le, ve), (la, va) in zip(en, ar) if ve or va]
+    return [{"label_en": le, "en": _en(ve), "label_ar": la, "ar": va}
+            for (le, ve), (la, va) in ((e or ("", ""), a or ("", "")) for e, a in _paired(en, ar)) if ve or va]
 
 
 # A run inside a classical text that the page marks: the scholar quoted, his words, a book's letter.
@@ -161,6 +177,19 @@ def _blocks(body) -> list[dict]:
     return [b for b in out if b["runs"]]
 
 
+def _pairs(soup: BeautifulSoup, selector: str) -> list[dict]:
+    """The page's pills of one kind as {"en", "ar"}, each language's own, side by side where both pages agree on how many."""
+    return [{"en": _en(_text(e)), "ar": _text(a)} for e, a in
+            _paired(soup.select(f"{selector}:not(.arabic)"), soup.select(f"{selector}.arabic"))]
+
+
+def _body(body) -> str:
+    """A classical text's plain words: the page's own buttons ("read more" and its icon's name) are not the book's."""
+    for button in body.find_all("button"):
+        button.decompose()
+    return body.get_text("\n", strip=True)
+
+
 def narrator(html: str) -> dict:
     """One narrator page: names, grade, the labelled facts, appraisals, teachers, students and the classical texts."""
     soup = _soup(html)
@@ -180,15 +209,19 @@ def narrator(html: str) -> dict:
         "grade_ar": _text(soup.select_one("div.pill-grade .arabic")),
         "grade_rank": int(rank.group(1)) if rank else None,
         "years": _text(soup.select_one("span.pill-secondary:not(.arabic)")),
-        "books": [{"en": _en(_text(en)), "ar": _text(ar)} for en, ar in
-                  zip(soup.select("span.pill-outline:not(.arabic)"), soup.select("span.pill-outline.arabic"))],
+        "years_ar": _text(soup.select_one("span.pill-secondary.arabic")),
+        "alt_en": _en(_text(soup.select_one("p.hero-alt-name:not(.arabic)"))),
+        "alt_ar": _text(soup.select_one("p.hero-alt-name.arabic")),
+        "books": _pairs(soup, "span.pill-outline"),
+        # The page's warnings beside the grade (Ikhtilat, Tadlis): a grade alone would read as clean.
+        "flags": _pairs(soup, "span.pill-flag"),
         "facts": _facts(soup),
-        "verdicts": [(_text(v.select_one(".verdict-scholar")), _text(v.select_one(".critic-quote")))
-                     for v in soup.select("div.verdict")],
+        "verdicts": [v for v in ((_text(v.select_one(".verdict-scholar")), _text(v.select_one(".critic-quote")))
+                                 for v in soup.select("div.verdict")) if all(v)],
         "teachers": _people(soup, "teachers"),
         "students": _people(soup, "students"),
         "hadith_total": int(total.group(1).replace(",", "")) if total else None,
         # The site joins a book and its author with an em dash; the app never prints one.
-        "texts": [(_text(a.select_one(".accordion-title")).replace("—", "-"), body.get_text("\n", strip=True), _blocks(body))
+        "texts": [(_text(a.select_one(".accordion-title")).replace("—", "-"), _body(body), _blocks(body))
                   for a in soup.select("div.accordion") if (body := a.select_one(".accordion-body"))],
     }
