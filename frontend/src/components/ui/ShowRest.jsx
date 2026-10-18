@@ -107,6 +107,10 @@ export default function ShowRest({
     <div className={`space-y-2 ${className}`}>
       <div
         ref={body}
+        // The clip's own box for what is absolutely placed inside it: a screen-reader
+        // label sits outside the flow, and without this it escaped the cut and
+        // stretched the page below by the full height of the folded list.
+        className="relative"
         // Its own glide only: a hover fading inside it bubbles up here too. Cancelled when the tab is hidden mid-glide.
         onTransitionEnd={(event) => event.target === event.currentTarget && setGliding(null)}
         onTransitionCancel={(event) => event.target === event.currentTarget && setGliding(null)}

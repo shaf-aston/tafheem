@@ -22,9 +22,13 @@ import { NarratorError, NarratorHead, NarratorLinks } from './NarratorParts'
 import ShowRest from '../ui/ShowRest'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 
-const Section = ({ title, children }) => (
-  <section className="space-y-2">
-    <h3 className="type-ui font-medium text-[var(--text)]">{title}</h3>
+/** A section headed in both languages, English left and Arabic right, as the header card sets its facts. */
+const Section = ({ title, ar, children }) => (
+  <section className="space-y-3">
+    <h3 className="m-0 flex items-baseline justify-between gap-4 pb-2 border-b border-[var(--border)]">
+      <span className="type-ui font-medium text-[var(--text)]">{title}</span>
+      {ar && <ArabicText size="base" className="text-[var(--text)]">{ar}</ArabicText>}
+    </h3>
     {children}
   </section>
 )
@@ -60,15 +64,13 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
 
           <BookFacts usul={who.usul} accent={accent} />
 
-          {/* The three side by side where the width allows, one column on a phone. */}
-          <div className="grid gap-x-6 gap-y-4 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))] [&>*]:min-w-0">
           {who.verdicts.length > 0 && (
-            <Section title="What scholars said">
-              <ShowRest lines={6} accent={accent}>
-                <ul className="list-none m-0 p-0 space-y-3">
+            <Section title="What scholars said" ar="الجرح والتعديل">
+              <ShowRest lines={9} accent={accent}>
+                <ul dir="rtl" className="list-none m-0 p-0 space-y-2">
                   {who.verdicts.map((v, i) => (
-                    <li key={i}>
-                      <ArabicText as="p" size="sm" className="block m-0 text-[var(--text)]">{v.scholar}</ArabicText>
+                    <li key={i} className="px-4 py-3 rounded-[var(--radius-md)] rounded-s-none bg-[var(--surface)] border-s-2" style={{ borderColor: accent }}>
+                      <ArabicText as="p" size="sm" className="block m-0 font-medium" style={{ color: accent }}>{v.scholar}</ArabicText>
                       <ArabicText as="p" size="sm" className="block m-0 text-[var(--text-dim)]">{v.quote}</ArabicText>
                     </li>
                   ))}
@@ -77,17 +79,19 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
             </Section>
           )}
 
-          {[['Teachers', who.teachers], ['Students', who.students]].map(([title, list]) => list.length > 0 && (
-            <Section key={title} title={title}>
-              <FoldedList items={list} lines={12} accent={accent}>
-                {(shown) => <NarratorLinks items={shown} onOpen={onNarrator} />}
-              </FoldedList>
-            </Section>
-          ))}
+          {/* Teachers and students side by side where the width allows, one column on a phone. */}
+          <div className="grid gap-x-8 gap-y-6 grid-cols-[repeat(auto-fit,minmax(min(100%,22rem),1fr))] [&>*]:min-w-0">
+            {[['Teachers', 'المشايخ', who.teachers], ['Students', 'التلاميذ', who.students]].map(([title, ar, list]) => list.length > 0 && (
+              <Section key={title} title={title} ar={ar}>
+                <FoldedList items={list} lines={10} accent={accent}>
+                  {(shown) => <NarratorLinks items={shown} onOpen={onNarrator} />}
+                </FoldedList>
+              </Section>
+            ))}
           </div>
 
           {hadith.length > 0 && (
-            <Section title="Hadith narrated">
+            <Section title="Hadith narrated" ar="الأحاديث المروية">
               <FoldedList items={hadith} lines={6} accent={accent}>
                 {(shown) => (<ChipRow>
                   {shown.map((h) => (
@@ -101,7 +105,7 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
           )}
 
           {who.texts.map((t) => (
-            <Section key={t.book} title={<ArabicText size="sm">{t.book}</ArabicText>}>
+            <Section key={t.book} ar={t.book}>
               <ShowRest lines={8} accent={accent}>
                 <ArabicText as="p" size="sm" className="block m-0 whitespace-pre-line text-[var(--text-dim)]">{t.body}</ArabicText>
               </ShowRest>

@@ -115,11 +115,16 @@ def narrator(narrator_id: int) -> dict | None:
 
 
 def hadith_of(narrator_id: int, limit: int) -> list[dict]:
-    """The hadith in the built books that name him, in number order."""
+    """The hadith in the built books that name him, the books in the order the tab lists them, each in number order."""
     db = _db()
+    if not db:
+        return []
+    order = [c[0] for c in loader.collections()]
+    rank = "CASE collection " + " ".join("WHEN ? THEN ?" for _ in order) + f" ELSE {len(order)} END" if order else "collection"
     return [dict(row) for row in db.execute(
         "SELECT DISTINCT collection, book, number, part FROM mention WHERE narrator_id = ? "
-        "ORDER BY collection, number, part LIMIT ?", (narrator_id, limit))] if db else []
+        f"ORDER BY {rank}, collection, number, part LIMIT ?",
+        (narrator_id, *(v for i, c in enumerate(order) for v in (c, i)), limit))]
 
 
 def search(query: str, limit: int) -> list[dict]:
