@@ -57,9 +57,12 @@ EXPECTED = {
     "هَذَانِ الْمُهَنْدِسَانِ مَاهِرَانِ": {0: "مبتدأ", 2: "خبر"},
 }
 
-# where the rule is about the sign: a dual pointer inflects by its letters, it is not built on its last kasra
+# where the rule is about the sign: a dual pointer inflects by its letters, it is not built on its last kasra;
+# the five verbs' nun is kept in raf' and dropped in nasb and jazm (signs._present_sign)
 EXPECTED_SIGN = {
     "هَذَانِ الْمُهَنْدِسَانِ مَاهِرَانِ": {0: "الألف، مثنى"},
+    "لَنْ يَكْتُبُوا": {1: "حذف النون"},
+    "الطُّلَّابُ يَكْتُبُونَ الدَّرْسَ": {1: "ثبوت النون"},
 }
 
 
@@ -88,28 +91,27 @@ def test_held_out_signs(sentence):
 EXPECTED_CASE = {
     "لِيَكْتُبْ زَيْدٌ الدَّرْسَ": {0: "jazm"},
     "جِئْتُ لِأَتَعَلَّمَ": {1: "nasb"},
+    # the same with no vowel typed on the last letter: only the لام says the mood
+    "لِيَكْتُب الدَّرْسَ": {0: "jazm"},
+    "جِئْتُ لِأَتَعَلَّم": {1: "nasb"},
     "لَمْ يَأْكُلْ وَيَشْرَب": {2: "jazm"},
     "لَنْ يَأْكُلُوا وَيَشْرَبُوا": {2: "nasb"},
 }
-# the five verbs' nun: kept in raf', dropped in nasb and jazm (signs._present_sign)
-EXPECTED_SIGN.update({
-    "لَنْ يَكْتُبُوا": {1: "حذف النون"},
-    "الطُّلَّابُ يَكْتُبُونَ الدَّرْسَ": {1: "ثبوت النون"},
-})
 # a verb clause is governed only by a family that frames it (كان: its khabar); the verb a parser hangs
 # a صلة on does not govern it (naming._governed)
 EXPECTED_GOVERNOR = {
     "كَانَ الطِّفْلُ يَلْعَبُ": {2: 0},
     "جَاءَ مَنْ نَجَحَ": {2: None},
 }
-# a command's doer is the hidden أنت, so the noun after it is its object, unless its damma says it is the doer
-# (slot.verb_place); a noun with a pronoun stuck on is definite, so what follows it is a حال, and the pair
-# an idafa (tree.definite)
+# a command's doer is the hidden أنت, so the noun after it is its object (slot.verb_place); a noun with a
+# pronoun stuck on is definite, so a clause after it is its حال, not a صفة (tree.definite)
 EXPECTED_PICTURE = {
     "اكْتُبْ الدَّرْسَ": ["فعل أمر", "مفعول به"],
     "لِيَقُمْ زَيْدٌ": ["لام الأمر", "فعل مضارع للأمر", "فاعل"],
     "كِتَابُهُ جَدِيدٌ": ["مبتدأ", "مضاف", "مضاف إليه", "خبر"],
     "جَاءَ أَخُوهُ مُسْرِعًا": ["فعل", "فاعل", "مضاف", "مضاف إليه", "حال"],
+    "جَاءَ أَخُوهُ يَرْكُضُ": ["فعل", "فاعل", "مضاف", "مضاف إليه", "حال", "فعل"],
+    "رَأَيْتُ صَدِيقَهُ يَبْكِي": ["فعل", "مفعول به", "مضاف", "مضاف إليه", "حال", "فعل"],
 }
 
 
