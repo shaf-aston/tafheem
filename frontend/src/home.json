@@ -44,6 +44,7 @@
     "answers-many": "{n} answers",
     "progress-loading": "Loading your progress",
     "progress-error": "Your progress did not load",
-    "guest-go": "Log in"
+    "guest-go": "Log in",
+    "progress-error-body": "Nothing was lost."
   }
 }

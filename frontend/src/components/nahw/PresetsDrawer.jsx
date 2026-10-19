@@ -56,7 +56,7 @@ function PresetGroup({ group, onPick }) {
             type="button"
             onClick={() => onPick(w)}
             style={{ '--i': i }}
-            className="card-tile rise-in lift press flex flex-col items-center justify-center
+            className="tile rise-in lift press flex flex-col items-center justify-center
               hover:border-[var(--c)] focus-visible:border-[var(--c)]"
           >
             {/* Same size as the gardaan's cells, a verb should not change size

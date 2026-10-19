@@ -610,8 +610,8 @@ dialog::backdrop {
 .panel > * + * { margin-top: var(--space-panel); }
 
 
-/* One card look. .card is a block on the page; .card-tile is a smaller box
-   inside one, a step lighter; .card-accent adds the tab's colour bar (--c).
+/* One card look. .card is a block on the page; .tile is a smaller box inside one
+   (or on Home, ui/Tile), a step lighter; .card-accent adds the tab's colour bar (--c).
    In the components layer so a utility beside it (a hover border) wins. */
 @layer components {
 .card {
@@ -620,25 +620,19 @@ dialog::backdrop {
   background: var(--surface);
   border: 1px solid var(--border);
 }
-/* A tile: one box for a tab on Home (ui/Tile). --c is the tab's colour. */
 .tile {
   position: relative;
   overflow: hidden;
   text-align: start;
+  padding: var(--space-tile);
   border-radius: var(--radius-md);
-  background: var(--surface);
+  background: var(--surface-hi);
   border: 1px solid var(--border);
   transition: border-color calc(var(--motion-base-ms) * 1ms), background-color calc(var(--motion-base-ms) * 1ms);
 }
 button.tile:hover { border-color: var(--c); }
 .tile-wash { background-image: radial-gradient(90% 90% at 100% 0, color-mix(in srgb, var(--c) 22%, transparent), transparent 65%); }
-.tile-lead { padding: var(--space-card); border-color: var(--c); }
-.card-tile {
-  padding: var(--space-tile);
-  border-radius: var(--radius-md);
-  background: var(--surface-hi);
-  border: 1px solid var(--border);
-}
+.tile-lead { padding: var(--space-card); background: var(--surface); border-color: var(--c); }
 .card-accent { border-left: 4px solid var(--c); }
 }
 

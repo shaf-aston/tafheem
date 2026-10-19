@@ -46,6 +46,7 @@ const KitPanel = panel(() => import('../components/KitPanel'))
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
 // `modules`: other names its answers are filed under in the progress store, so a
 //   progress row can say which tab it came from.
+// `ownsHealth`: draws its own offline state, so the app-wide backend banner stays off it.
 // `hidden`: reachable by URL only (journey and the panel mapping read TABS), left out of
 //   everything a person browses; those read LISTED.
 // Home is first, so it is where a visit with no saved place opens.
@@ -62,7 +63,7 @@ export const GROUPS = [
 const GROW_MODULES = [HADITH_MODULE, QURAN_MODULE, ...grow.worlds.filter((world) => world.module).map((world) => world.module)]
 
 export const TABS = [
-  { id: 'home',   label: 'Home',       short: 'Home',   arabic: 'البداية', mark: 'ه', Component: HomePanel, blurb: "Where you left off, your progress, and every tab", group: 'start' },
+  { id: 'home',   label: 'Home',       short: 'Home',   arabic: 'البداية', mark: 'ه', Component: HomePanel, ownsHealth: true, blurb: "Where you left off, your progress, and every tab", group: 'start' },
   { id: 'nahw',   label: 'Nahw',       short: 'Nahw',   arabic: 'نحو',    mark: 'ن', Component: NahwPanel,   study: true, half: true, blurb: "Type a sentence: every word's role and the reason", group: 'language' },
   { id: 'sarf',   label: 'Sarf',       short: 'Sarf',   arabic: 'صرف',    mark: 'ص', Component: SarfPanel,   study: true, half: true, blurb: "Conjugate any root, or read a verb back", group: 'language' },
   { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', mark: 'ق', Component: QuranLookup, open: quranOpen, study: true, blurb: "Read, search and study the Qur'an word by word", group: 'quran' },

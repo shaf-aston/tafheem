@@ -156,7 +156,7 @@ function AppContent() {
 
       <InstallBanner />
 
-      <BackendBanner status={status} />
+      {!TABS.find((tab) => tab.id === activeTab)?.ownsHealth && <BackendBanner status={status} />}
 
       {/* The tabpanel role sits on the inner element, not on <main>: overriding
           main's own role would leave the page with no main landmark to skip to. */}

@@ -7,8 +7,8 @@
  * A button unless `as` says otherwise.
  */
 const VARIANT = {
-  jump: 'tile tile-wash press rise-in min-h-24 p-3 flex flex-col justify-between gap-2',
-  row: 'tile press min-h-11 p-3 space-y-1',
+  jump: 'tile tile-wash press rise-in min-h-[var(--layout-tile)] flex flex-col justify-between gap-2',
+  row: 'tile press min-h-11 space-y-1',
   lead: 'tile tile-lead rise-in space-y-3',
 }
 

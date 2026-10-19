@@ -62,7 +62,7 @@ export default function HomePanel({ accent, onGo }) {
   const progressStrip = (
     <>
       {name && overview.isPending && <Skeleton className="h-16 w-full" />}
-      {name && overview.isError && <ErrorAlert inline title={copy["progress-error"]} error={overview.error} fallback={copy["progress-error"]} onRetry={overview.refetch} />}
+      {name && overview.isError && <ErrorAlert inline title={copy['progress-error']} onRetry={overview.refetch}>{copy['progress-error-body']}</ErrorAlert>}
       {!(name && (overview.isPending || overview.isError)) && (
         <ProgressStrip name={name} rewards={rewards} streak={overview.data?.streak} copy={copy} />
       )}
@@ -72,7 +72,7 @@ export default function HomePanel({ accent, onGo }) {
   return (
     <div className="panel space-y-6" style={{ '--c': accent }}>
       <header className="relative isolate space-y-2">
-        <ArabicText aria-hidden="true" className="outline-text hidden sm:block absolute -z-10 top-0 right-0 text-8xl! leading-none pointer-events-none select-none">
+        <ArabicText aria-hidden="true" className="outline-text hidden sm:block absolute -z-10 top-0 right-0 [--outline-size:6rem] leading-none pointer-events-none select-none">
           فهم
         </ArabicText>
         <p className="rise-in type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{first ? copy['greeting-first'] : greeting()}</p>
@@ -108,11 +108,11 @@ export default function HomePanel({ accent, onGo }) {
         <section className="space-y-2" aria-label={jumpLabel}>
           <h3 className="type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{jumpLabel}</h3>
           {health.status === 'checking' ? (
-            <div className="grid grid-cols-2 gap-3" role="status" aria-label={copy['progress-loading']}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3" role="status" aria-label={copy['progress-loading']}>
               {tiles.map((id) => <Skeleton key={id} className="h-24" />)}
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {tiles.map((id, at) => <JumpTile key={id} tab={tabOf(id)} accent={accentOf(id)} index={at} wide={tiles.length % 2 === 1 && at === tiles.length - 1} onOpen={onGo} />)}
             </div>
           )}

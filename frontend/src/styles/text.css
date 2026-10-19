@@ -147,8 +147,9 @@ textarea.arabic-lg {
 
 
 /* Big letters drawn as an outline only: a quiet word behind a heading (Home), the sources band (landing).
-   --outline-c and --outline-w tune it where it sits. */
+   --outline-c, --outline-w and --outline-size tune it where it sits. */
 .outline-text {
+  font-size: var(--outline-size, inherit);
   color: transparent;
   -webkit-text-stroke: var(--outline-w, 1.5px) var(--outline-c, color-mix(in srgb, var(--primary) 30%, transparent));
 }

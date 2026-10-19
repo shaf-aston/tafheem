@@ -93,7 +93,7 @@
     "06": "@sky", "07": "@violet", "08": "@blue", "09": "@pink"
   },
   "space": {
-    "_comment": "Gaps shared across tabs. panel is the gap between the blocks of every tab, header included (the .panel class). card and tile are the insides of .card and .card-tile.",
+    "_comment": "Gaps shared across tabs. panel is the gap between the blocks of every tab, header included (the .panel class). card and tile are the insides of .card and .tile.",
     "panel": "1.25rem",
     "card": "1rem",
     "tile": "0.75rem"
@@ -323,6 +323,7 @@
     "_split_comment": "How tall the reader stands on a phone while an ayah is studied: the surah over the study, sharing it. Brought up under the top bar, it ends where the recitation bar and the tab bar begin.",
     "split": "calc(100dvh - 7rem - var(--layout-nav) - env(safe-area-inset-bottom, 0px))",
     "_nav_comment": "How tall the phone's tab bar stands, above the home indicator. The bar is drawn at exactly this and everything that sits clear of it reads the same number: the room kept under the page, the recitation bar resting on it, the reader's split. Left to its own contents the bar came out a few pixels short of the room kept for it, and the page showed through the slit.",
+    "tile": "6rem",
     "nav": "4rem",
     "_proof_comment": "The least width of the Nahw full table's proof column on a wide screen, so a rule and its book path read as lines, not a word to a line. A phone sets the proof on its own line under the row instead.",
     "proof": "18rem"
