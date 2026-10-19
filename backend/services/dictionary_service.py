@@ -24,6 +24,8 @@ _DATA_DIR = Path(__file__).parent.parent / "data"
 _DICTIONARY_JSON = _DATA_DIR / "arabic_dictionary.json"
 
 _WORD_RE = re.compile(r"\b\w+\b")
+# A typed word keeps its apostrophe (don't, it's), as utils.english_sentence does.
+_TYPED_RE = re.compile(r"[^\W_]+(?:'[^\W_]+)*")
 _MIN_INDEX_WORD_LEN = 2
 
 
@@ -118,7 +120,7 @@ def search_english(query: str, limit: int = 10) -> list[dict]:
 def english_words(text: str, per_word: int = 3) -> list[dict]:
     """Each English word of `text` with its lemma and its best few entries, in order."""
     load_dictionary()
-    typed = _WORD_RE.findall(text.casefold())
+    typed = _TYPED_RE.findall(text.casefold())
     with ThreadPoolExecutor() as pool:
         found = pool.map(lambda w: search_english(w, per_word), typed)
     return [{"english": w, "lemma": _lemma(w), "entries": entries} for w, entries in zip(typed, found)]
