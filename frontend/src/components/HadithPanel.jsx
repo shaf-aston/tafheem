@@ -165,8 +165,8 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         menu={(
           <HadithMoreMenu accent={accent} items={[
             { label: '★ Starred', count: favorites.length, on: starred, pick: () => setStarred(!starred) },
-            { label: 'Narrators', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
-            { label: 'Scholars', on: listing === SCHOLARS_PLACE, pick: () => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE)) },
+            { label: 'Narrators', hint: 'who passed them on', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
+            { label: 'Scholars', hint: 'what they said of them', on: listing === SCHOLARS_PLACE, pick: () => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE)) },
           ]} />
         )}
       >
