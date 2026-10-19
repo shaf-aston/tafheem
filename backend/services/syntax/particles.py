@@ -94,9 +94,12 @@ def _joins(token: dict, s: facts.Sentence) -> str:
     if behind and behind["pos"] == "PRT" and is_one(behind["lemma"], "negation") and not facts.read_as(behind, "la_jins"):
         return "no"  # ما أنت إلا بشر: the noun after the negation is the مبتدأ, what follows إلا its khabar
     mine = facts.case_shown(after)
-    # لا اله الا الله typed bare, لا إله إلا هو: no case shown to tell apart, and a noun named
-    # before إلا is the excepted-from, so it is an exception, not a حصر (Tasheel 3.8.7)
-    return "yes" if not mine or mine == facts.place_case(before, s) else "no"
+    if not mine:
+        # لا اله الا الله typed bare, لا إله إلا هو: the اسم لا named before إلا is the
+        # excepted-from, so it is an exception, not a حصر (Tasheel 3.8.7). Elsewhere a case
+        # that cannot show (ما أنقذ الغريقَ إلا فتًى) tells nothing: the verb may still want its فاعل.
+        return "yes" if behind and facts.read_as(behind, "la_jins") else "no"
+    return "yes" if mine == facts.place_case(before, s) else "no"
 
 
 def _tool_next(token: dict, s: facts.Sentence) -> str:
