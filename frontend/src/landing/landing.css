@@ -5,13 +5,13 @@
    since this file only ever loads on landing.html. */
 .landing-page, .landing-page * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Landing page palette: its own ink-and-gold brand, scoped to .landing-page.
-   Motion is not its own: it reads the app's theme.json tokens. */
+/* Landing page palette: these are the app's own colour tokens (theme.json, the
+   Ink look), under the landing's names. Nothing here is a colour of its own.
+   Motion is the app's tokens too. */
 .landing-page {
-  --ink-rgb: 13 10 7; --gold-rgb: 201 162 75; --gold-hi-rgb: 236 202 119; --text-rgb: 244 234 214;
-  --ink: rgb(var(--ink-rgb)); --gold: rgb(var(--gold-rgb)); --gold-hi: rgb(var(--gold-hi-rgb)); --text: rgb(var(--text-rgb));
-  --ink2: #17120c; --parch: #efe3c6; --muted: #a4937a; --text-p: #241c11; --muted-p: #6b5c3f; --gold-p: #8a6a1f;
-  --quran: #5fe0c7; --line: rgb(var(--text-rgb) / .14);
+  --ink: var(--bg); --ink2: var(--surface); --gold: var(--palette-gold); --gold-hi: var(--palette-gold-hi);
+  --muted: var(--text-dim); --quran: var(--palette-teal); --line: color-mix(in srgb, var(--text) 14%, transparent);
+  --parch: var(--landing-paper); --text-p: var(--landing-paper-text); --muted-p: var(--landing-paper-muted); --gold-p: var(--landing-paper-gold);
   /* Timings are the app's own motion tokens (theme.json), so the landing moves like every tab. */
   --fast: calc(var(--motion-instant-ms) * 1ms); --med: calc(var(--motion-base-ms) * 1ms); --slow: calc(var(--motion-spring-ms) * 1ms);
   --spring: var(--motion-spring-ease); --smooth: cubic-bezier(.16, 1, .3, 1);
@@ -86,8 +86,8 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .hero::before {
   content: ""; position: absolute; inset: 0; z-index: 0;
   background:
-    radial-gradient(120% 90% at 85% 15%, rgb(var(--gold-rgb) / .14) 0%, transparent 55%),
-    linear-gradient(180deg, var(--ink) 0%, #14100a 100%);
+    radial-gradient(120% 90% at 85% 15%, color-mix(in srgb, var(--gold) 14%, transparent) 0%, transparent 55%),
+    linear-gradient(180deg, var(--ink) 0%, var(--surface) 100%);
 }
 .landing-page .hero-grid {
   position: relative; z-index: 2; display: grid; grid-template-columns: .8fr 1.2fr; gap: 2.5rem;
@@ -102,11 +102,11 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .cta-row { margin-top: clamp(2.5rem, 9vh, 5rem); display: flex; gap: 1rem; flex-wrap: wrap; }
 .landing-page .cta {
   display: inline-block; font-family: var(--font-label); font-weight: 700; font-size: .98rem;
-  background: var(--gold-hi); color: #181209; padding: 1rem 2rem; border-radius: 999px; border: none;
+  background: var(--gold-hi); color: var(--ink); padding: 1rem 2rem; border-radius: 999px; border: none;
   text-decoration: none; cursor: pointer; transition: transform var(--fast) ease, background var(--fast) ease;
 }
 .landing-page .cta:hover { transform: translateY(-3px); background: var(--gold); }
-.landing-page .cta.ghost { background: transparent; color: var(--text); border: 1px solid rgb(var(--text-rgb) / .35); }
+.landing-page .cta.ghost { background: transparent; color: var(--text); border: 1px solid color-mix(in srgb, var(--text) 35%, transparent); }
 
 @media (max-width: 860px) {
   .landing-page .hero { height: var(--landing-hero-h-sm); }
@@ -142,7 +142,7 @@ body { margin: 0; overflow-x: hidden; }
 }
 .landing-page .story-pill:hover,
 .landing-page .story-pill:focus-visible,
-.landing-page .story-pill.active { opacity: 1; border-color: var(--accent); background: rgba(255, 255, 255, .05); }
+.landing-page .story-pill.active { opacity: 1; border-color: var(--accent); background: color-mix(in srgb, var(--text) 5%, transparent); }
 /* Every panel shares one grid cell, so the stage is as tall as the tallest panel and
    never cuts one short; the token is only its least height. */
 .landing-page .story-stage { position: relative; display: grid; min-height: var(--landing-story-stage-h); }
@@ -198,7 +198,7 @@ body { margin: 0; overflow-x: hidden; }
   font: 700 .7rem var(--font-label); letter-spacing: .06em; color: var(--muted); border: 1px solid var(--line); border-radius: 99px;
   padding: .3rem .7rem;
 }
-.landing-page .story-chip.on { color: var(--gold-hi); border-color: rgb(var(--gold-hi-rgb) / .4); }
+.landing-page .story-chip.on { color: var(--gold-hi); border-color: color-mix(in srgb, var(--gold-hi) 40%, transparent); }
 
 /* Governs: the whole sentence on one line, full-bleed, sliding so the active
    pair sits in the middle. The arrows are drawn in the line's own coordinates. */
@@ -227,7 +227,7 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .story-pair { margin-top: -.5rem; color: var(--muted); font: 700 .7rem var(--font-label); letter-spacing: .06em; text-transform: uppercase; }
 .landing-page .story-whys { display: grid; }
 .landing-page .story-why {
-  grid-area: 1 / 1; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); border-radius: 12px; padding: .8rem 1rem; max-width: 420px;
+  grid-area: 1 / 1; background: color-mix(in srgb, var(--text) 4%, transparent); border: 1px solid var(--line); border-radius: 12px; padding: .8rem 1rem; max-width: 420px;
   font-size: .9rem; color: var(--muted);
 }
 .landing-page .story-why b { color: var(--text); font-weight: 600; }
@@ -270,8 +270,8 @@ body { margin: 0; overflow-x: hidden; }
   transition: transform var(--med) var(--smooth), color var(--med) ease, text-shadow var(--med) ease;
   animation: landing-bob 5.5s ease-in-out infinite; animation-delay: calc(var(--d) * -1.3s);
 }
-.landing-page .story-ltr:hover { text-shadow: 0 0 28px rgb(var(--gold-hi-rgb) / .55); }
-.landing-page .story-ltr.hit { color: var(--text); text-shadow: 0 0 36px rgb(var(--gold-hi-rgb) / .9); }
+.landing-page .story-ltr:hover { text-shadow: 0 0 28px color-mix(in srgb, var(--gold-hi) 55%, transparent); }
+.landing-page .story-ltr.hit { color: var(--text); text-shadow: 0 0 36px color-mix(in srgb, var(--gold-hi) 90%, transparent); }
 @keyframes landing-bob { 50% { translate: 0 -.06em; } }
 .landing-page .story-ring {
   position: absolute; z-index: 3; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--gold-hi); translate: -50% -50%; pointer-events: none;
@@ -290,7 +290,7 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .story-rchip.on { opacity: 1; transform: translate(-50%, -50%); }
 .landing-page .story-rchip .arabic { font-size: 1.5rem; color: var(--text); }
 .landing-page .story-gloss { white-space: nowrap; font: 600 .66rem var(--font-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.landing-page .story-rchip:hover, .landing-page .story-rchip.hot { border-color: var(--gold-hi); box-shadow: 0 0 0 1px rgb(var(--gold-hi-rgb) / .35), 0 10px 26px -10px rgb(var(--gold-hi-rgb) / .5); }
+.landing-page .story-rchip:hover, .landing-page .story-rchip.hot { border-color: var(--gold-hi); box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold-hi) 35%, transparent), 0 10px 26px -10px color-mix(in srgb, var(--gold-hi) 50%, transparent); }
 .landing-page .story-rchip:hover .arabic, .landing-page .story-rchip.hot .arabic { color: var(--gold-hi); }
 .landing-page .story-rchip.on:active { transform: translate(-50%, -50%) scale(.95); }
 /* Narrow panel: the ring becomes a three-across grid under the letters. */
@@ -325,7 +325,7 @@ body { margin: 0; overflow-x: hidden; }
 }
 .landing-page .manu-overlay { position: absolute; inset: 0; background:
   linear-gradient(180deg, var(--ink) 0%, transparent 32%, transparent 68%, var(--ink) 100%),
-  linear-gradient(180deg, rgb(var(--ink-rgb) / .5) 0%, rgb(var(--ink-rgb) / .82) 100%); }
+  linear-gradient(180deg, color-mix(in srgb, var(--ink) 50%, transparent) 0%, color-mix(in srgb, var(--ink) 82%, transparent) 100%); }
 .landing-page .manu-content { position: relative; z-index: 1; text-align: center; padding: var(--landing-section-pad) 1.5rem; max-width: 820px; margin: 0 auto; }
 .landing-page .manu-quote { font-family: var(--font-serif); font-weight: 500; font-style: italic; font-size: clamp(1.5rem, 4vw, 2.8rem); line-height: 1.2; }
 .landing-page .manu-cite { color: var(--muted); font-size: .83rem; margin-top: 1.25rem; }
@@ -342,8 +342,8 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .strip-item video.show { opacity: 1; }
 .landing-page .strip-item .cap {
   position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem;
-  background: linear-gradient(0deg, rgb(var(--ink-rgb) / .96) 0%, rgb(var(--ink-rgb) / .4) 70%, transparent 100%);
-  color: var(--text); font-family: var(--font-label); font-weight: 700; font-size: .95rem; text-shadow: 0 2px 10px rgb(var(--ink-rgb) / .9);
+  background: linear-gradient(0deg, color-mix(in srgb, var(--ink) 96%, transparent) 0%, color-mix(in srgb, var(--ink) 40%, transparent) 70%, transparent 100%);
+  color: var(--text); font-family: var(--font-label); font-weight: 700; font-size: .95rem; text-shadow: 0 2px 10px color-mix(in srgb, var(--ink) 90%, transparent);
 }
 
 /* ================= UNDERSTAND: the question settles ================= */
@@ -377,13 +377,13 @@ body { margin: 0; overflow-x: hidden; }
 
 /* ================= FINALE: rise ================= */
 /* --e (0 to 1) is how far the section has risen into view, set by Finale.jsx. */
-.landing-page .finale { --e: 0; background: var(--ink) radial-gradient(80% 60% at 50% 100%, #211a10 0%, var(--ink) 70%); text-align: center; overflow: hidden; }
+.landing-page .finale { --e: 0; background: var(--ink) radial-gradient(80% 60% at 50% 100%, var(--surface-hi) 0%, var(--ink) 70%); text-align: center; overflow: hidden; }
 .landing-page .finale .wrap { display: grid; justify-items: center; }
 .landing-page .finale-link { display: grid; justify-items: center; gap: 2rem; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 .landing-page .finale-mark {
   font-family: var(--font-ui); font-weight: 800; font-size: var(--landing-finale-mark-size); line-height: .95; letter-spacing: -.04em;
   color: transparent;
-  background: linear-gradient(var(--gold-hi), var(--gold-hi)) 0 100% / 100% 0% no-repeat, linear-gradient(rgb(var(--gold-hi-rgb) / .14), rgb(var(--gold-hi-rgb) / .14)) 0 0 / 100% 100% no-repeat;
+  background: linear-gradient(var(--gold-hi), var(--gold-hi)) 0 100% / 100% 0% no-repeat, linear-gradient(color-mix(in srgb, var(--gold-hi) 14%, transparent), color-mix(in srgb, var(--gold-hi) 14%, transparent)) 0 0 / 100% 100% no-repeat;
   -webkit-background-clip: text; background-clip: text;
   transition: background-size var(--slow) var(--smooth);
   transform: translateY(calc((1 - var(--e)) * var(--landing-finale-rise) * 1px)); opacity: calc(.2 + var(--e) * .8);

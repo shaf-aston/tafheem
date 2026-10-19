@@ -3,20 +3,20 @@
    of the Arabic ladder. The JS shrinks .dg to fit, so nothing here needs a
    breakpoint to stay inside the card. */
 .ayah-dg {
-  --faint: rgb(var(--text-rgb) / .38);
+  --faint: color-mix(in srgb, var(--text) 38%, transparent);
   position: relative; min-width: 0; min-height: 0; overflow: hidden;
   display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: .8rem;
   padding: 1.4rem 1.2rem 1.3rem; border-radius: 18px;
-  border: 1px solid rgb(var(--gold-rgb) / .25); box-shadow: 0 30px 70px rgb(0 0 0 / .5);
+  border: 1px solid color-mix(in srgb, var(--gold) 25%, transparent); box-shadow: 0 30px 70px rgb(0 0 0 / .5);
   background:
-    radial-gradient(40% 50% at 22% 24%, rgb(var(--gold-hi-rgb) / .22), transparent 70%),
-    radial-gradient(30% 40% at 82% 16%, rgb(var(--gold-hi-rgb) / .16), transparent 70%),
-    radial-gradient(45% 55% at 60% 95%, rgb(var(--gold-rgb) / .18), transparent 70%),
+    radial-gradient(40% 50% at 22% 24%, color-mix(in srgb, var(--gold-hi) 22%, transparent), transparent 70%),
+    radial-gradient(30% 40% at 82% 16%, color-mix(in srgb, var(--gold-hi) 16%, transparent), transparent 70%),
+    radial-gradient(45% 55% at 60% 95%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 70%),
     var(--ink);
 }
 .ayah-dg .orb {
   position: absolute; border-radius: 50%; pointer-events: none;
-  background: radial-gradient(circle, rgb(var(--gold-hi-rgb) / .4), transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold-hi) 40%, transparent), transparent 70%);
   animation: ayah-drift 9s ease-in-out infinite alternate;
 }
 .ayah-dg .orb:nth-of-type(1) { width: 90px; height: 90px; left: 4%; top: 8%; }
@@ -36,7 +36,7 @@
 .ayah-dg .wd.ghost { align-items: center; }
 .ayah-dg .wd.ghost .ar {
   font-size: calc(var(--arabic-term-rem) * 1rem); line-height: 1.5; color: var(--muted);
-  border: 1.5px dashed rgb(var(--text-rgb) / .35); border-radius: 10px; padding: 0 .4rem .1rem;
+  border: 1.5px dashed color-mix(in srgb, var(--text) 35%, transparent); border-radius: 10px; padding: 0 .4rem .1rem;
 }
 .ayah-dg .gl { grid-row: 2; unicode-bidi: isolate; text-align: center; font-family: var(--font-ui); font-size: .74rem; color: var(--muted); white-space: nowrap; padding-inline: .25rem; }
 .ayah-dg .tg { grid-row: 3; display: flex; justify-content: center; }
@@ -61,8 +61,8 @@
   color: var(--tone); font-size: calc(var(--arabic-small-rem) * 1rem); line-height: 1.5; transition: opacity var(--slow);
 }
 .ayah-dg .nm .eq { color: var(--faint); font-family: var(--font-ui); font-size: .9rem; }
-.ayah-dg .nm.gold { background: var(--gold-hi); color: var(--ink); font-weight: 700; padding: .05rem .85rem .2rem; border-radius: 999px; box-shadow: 0 0 22px rgb(var(--gold-hi-rgb) / .45); }
-.ayah-dg .nm.gold .eq { color: rgb(var(--ink-rgb) / .55); }
+.ayah-dg .nm.gold { background: var(--gold-hi); color: var(--ink); font-weight: 700; padding: .05rem .85rem .2rem; border-radius: 999px; box-shadow: 0 0 22px color-mix(in srgb, var(--gold-hi) 45%, transparent); }
+.ayah-dg .nm.gold .eq { color: color-mix(in srgb, var(--ink) 55%, transparent); }
 /* The beat after a phrase forms: an arrow drops from its name to what it becomes. */
 .ayah-dg .then { justify-self: center; display: grid; justify-items: center; opacity: 0; transform: translateY(-6px); transition: opacity var(--slow), transform var(--slow); }
 .ayah-dg .br.turned .then { opacity: 1; transform: none; }
@@ -83,7 +83,7 @@
 .ayah-dg .ayah-play {
   position: absolute; z-index: 2; right: .8rem; bottom: .8rem; width: 44px; height: 44px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center; font-size: .9rem; cursor: pointer;
-  border: 1.5px solid rgb(var(--text-rgb) / .5); background: rgb(var(--ink-rgb) / .82); color: var(--text);
+  border: 1.5px solid color-mix(in srgb, var(--text) 50%, transparent); background: color-mix(in srgb, var(--ink) 82%, transparent); color: var(--text);
   transition: transform var(--med) var(--spring);
 }
 .ayah-dg .ayah-play:hover { transform: scale(1.06); }

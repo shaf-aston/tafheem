@@ -18,7 +18,7 @@ describe('bootShellPlugin', () => {
 
   it('gives a themed page every look’s ground and the hint reader', () => {
     const out = run('<html lang="en" data-themed><head></head></html>')
-    expect(out).toContain(`html[data-theme="light"], html[data-theme="light"] body { background: ${theme.themes.looks.light.color.bg}; }`)
+    expect(out).toContain(`html[data-theme="parchment"], html[data-theme="parchment"] body { background: ${theme.themes.looks.parchment.color.bg}; }`)
     expect(out).toContain(`localStorage.getItem('${theme.themes['hint-key']}')`)
     expect(out).toContain(`'${theme.themes.device.choice}'`)
   })

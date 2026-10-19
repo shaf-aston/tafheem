@@ -62,20 +62,20 @@ describe('settings', () => {
     expect(applied().get('--motion-base-ms')).not.toBe(undefined)
   })
 
-  it('puts the chosen look on :root, and the dark one back', () => {
-    setSetting('theme', 'light')
-    expect(applied().get('--bg')).toBe(theme.themes.looks.light.color.bg)
-    expect(applied().get('--palette-violet')).toBe(theme.themes.looks.light.palette.violet)
+  it('puts the chosen look on :root, and the base one back', () => {
+    setSetting('theme', 'parchment')
+    expect(applied().get('--bg')).toBe(theme.themes.looks.parchment.color.bg)
+    expect(applied().get('--palette-violet')).toBe(theme.themes.looks.parchment.palette.violet)
 
-    setSetting('theme', 'dark')
+    setSetting('theme', 'ink')
     expect(applied().get('--bg')).toBe(theme.color.bg)
   })
 
   it('lays the other settings over the look, not under it', () => {
-    setSetting('theme', 'light')
+    setSetting('theme', 'parchment')
     setSetting('motion', false)
     expect(applied().get('--motion-base-ms')).toBe('0')
-    // Switched back on, it is the light look's own value, not a stale dark one.
+    // Switched back on, it is the light look's own value, not a stale ink one.
     setSetting('motion', true)
     expect(applied().get('--motion-base-ms')).toBe(themeVariable('--motion-base-ms'))
   })

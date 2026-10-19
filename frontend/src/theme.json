@@ -18,20 +18,23 @@
     "fuchsia": "#e879f9",
     "blue-deep": "#60a5fa",
     "orange-deep": "#f97316",
-    "lilac": "#d8b4fe"
+    "lilac": "#d8b4fe",
+    "gold": "#c9a24b",
+    "gold-hi": "#ecca77"
   },
   "color": {
-    "bg": "#0c1018",
-    "bg-glow": "#161d2b",
-    "surface": "#141a26",
-    "surface-hi": "#1c2434",
-    "border": "#273041",
-    "border-hi": "#38445c",
-    "text": "#e7ecf5",
-    "text-dim": "#9aa7bd",
-    "text-faint": "#808da3",
-    "primary": "@violet",
-    "primary-hi": "@violet-hi",
+    "_comment": "The default look, Ink: the landing page's warm black and gold, so the app and the welcome page are one place. Gold is the brand accent (primary); the other palette hues stay for roles and tabs.",
+    "bg": "#0d0a07",
+    "bg-glow": "#211a10",
+    "surface": "#17120c",
+    "surface-hi": "#211a10",
+    "border": "#35291a",
+    "border-hi": "#54442a",
+    "text": "#f4ead6",
+    "text-dim": "#bcae94",
+    "text-faint": "#b0a084",
+    "primary": "@gold",
+    "primary-hi": "@gold-hi",
     "danger": "@rose",
     "success": "@teal",
     "warn": "@amber"
@@ -252,6 +255,11 @@
     "band-pad": "clamp(20px, 2.4vw, 32px)",
     "_gutter_comment": "The side margin every landing section shares, so text and cards line up down the whole page instead of each section picking its own.",
     "gutter": "1.25rem",
+    "_paper_comment": "The parchment band (the understand section) is always paper, in every look: paper is its ground, paper-text and paper-muted its ink, paper-gold the gold deep enough to read on it. The Parchment look is lighter than this on purpose, since whole screens of text sit on it.",
+    "paper": "#efe3c6",
+    "paper-text": "#241c11",
+    "paper-muted": "#6b5c3f",
+    "paper-gold": "#8a6a1f",
     "_size_comment": "Fixed sizes that used to sit in the stylesheet. strip-w and strip-h are one tool card in the scroll strip.",
     "strip-w": "280px",
     "strip-h": "380px",
@@ -405,23 +413,41 @@
   },
   "themes": {
     "_comment": "The looks a reader can pick, and everything the code knows about them: it names none. base is the look the groups above describe. Each entry in looks has a label (what Settings calls it), a scheme (which the browser's own controls, scrollbars and inputs, should match) and then only what it changes, group by group and key by key; the rest stays as above. palette is the usual place to start: tab, role, unit, science and the tones all point at it, so a new look is mostly colours there plus the ground and text in color. Adding a look is adding an entry here and nothing else: Settings lists it, the page paints its ground before any script runs, and the tests hold it to contrast. device is the reader's \"follow my phone or computer\" choice: its id and label, and which look a light device and a dark one each get. hint-key is the one localStorage entry that lets the page paint the right ground early (vite/bootShell.js reads it).",
-    "base": "dark",
+    "base": "ink",
     "hint-key": "theme-hint",
     "device": {
       "choice": "system",
       "label": "Device",
-      "light": "light",
-      "dark": "dark"
+      "light": "parchment",
+      "dark": "ink"
     },
     "looks": {
-      "dark": {
-        "label": "Dark",
+      "ink": {
+        "label": "Ink",
         "scheme": "dark"
       },
-      "light": {
-        "label": "Light",
+      "dark": {
+        "label": "Midnight",
+        "scheme": "dark",
+        "_comment": "The blue-black look the app wore before Ink: only the ground, text and accent differ.",
+        "color": {
+          "bg": "#0c1018",
+          "bg-glow": "#161d2b",
+          "surface": "#141a26",
+          "surface-hi": "#1c2434",
+          "border": "#273041",
+          "border-hi": "#38445c",
+          "text": "#e7ecf5",
+          "text-dim": "#9aa7bd",
+          "text-faint": "#808da3",
+          "primary": "@violet",
+          "primary-hi": "@violet-hi"
+        }
+      },
+      "parchment": {
+        "label": "Parchment",
         "scheme": "light",
-        "_comment": "Paper-bright ground, ink text. Accents are the dark look's hues pulled to the 600-700 weight so each still reads as text and as a border on white (4.5:1 or better on the surface); lights stain the ground (multiply) instead of glowing on it. A glow round a word is a light source, which paper has none of: kept to a trace, since at the dark look's strength it blurred the ink and haloed every card.",
+        "_comment": "Ink's light twin: the landing page's warm paper, warm ink text, gold deepened to read as text. Accents are the dark look's hues pulled to the 600-700 weight so each still reads as text and as a border on a page (4.5:1 or better on the surface); lights stain the ground (multiply) instead of glowing on it. Accents are the dark look's hues pulled to the 600-700 weight so each still reads as text and as a border on white (4.5:1 or better on the surface); lights stain the ground (multiply) instead of glowing on it. A glow round a word is a light source, which paper has none of: kept to a trace, since at the dark look's strength it blurred the ink and haloed every card.",
         "palette": {
           "violet": "#6a3dd3",
           "violet-hi": "#5b21b6",
@@ -439,18 +465,20 @@
           "fuchsia": "#9d1ba9",
           "blue-deep": "#1d4ed8",
           "orange-deep": "#9a3412",
-          "lilac": "#7e22ce"
+          "lilac": "#7e22ce",
+          "gold": "#6e5110",
+          "gold-hi": "#573e0c"
         },
         "color": {
-          "bg": "#f4f6fb",
-          "bg-glow": "#ffffff",
-          "surface": "#ffffff",
-          "surface-hi": "#eceff6",
-          "border": "#d5dbe8",
-          "border-hi": "#b3bcd0",
-          "text": "#141a2a",
-          "text-dim": "#465069",
-          "text-faint": "#525c73"
+          "bg": "#f8f3e4",
+          "bg-glow": "#fffcf3",
+          "surface": "#fffcf3",
+          "surface-hi": "#f6efdb",
+          "border": "#d9c9a0",
+          "border-hi": "#b4a06c",
+          "text": "#241c11",
+          "text-dim": "#5a4c30",
+          "text-faint": "#665736"
         },
         "lights": {
           "ground-top": "#f6f1e8",
