@@ -84,10 +84,11 @@ export const TABS = [
 export const LISTED = TABS.filter((tab) => !tab.hidden)
 
 // The strip: FIXED always shows, in this order, phones too. RECENT follows from
-// md: how many, and what they are before anything is opened, oldest first;
+// md: eight slots in all, so Home joining FIXED cost RECENT one; how many, and
+// what they are before anything is opened, oldest first;
 // opening another tab drops the oldest (lib/recent.js).
 export const FIXED = ['home', 'quran', 'nahw', 'sarf', 'dict']
-export const RECENT = ['daleel', 'mem', 'quiz', 'grow']
+export const RECENT = ['daleel', 'mem', 'quiz']
 
 // The phone's bar until the reader changes it (lib/dock.js): these, in this order, then More.
 export const DOCK = ['home', 'quran', 'dict', 'quiz']
