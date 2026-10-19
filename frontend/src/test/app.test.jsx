@@ -8,6 +8,11 @@ import { renderScreen } from './render'
 import App from '../App'
 
 describe('app shell', () => {
+  it('opens on Home when nothing is saved', async () => {
+    renderScreen(<App />)
+    expect(await screen.findByRole('heading', { name: /^Home/ })).toBeTruthy()
+  })
+
   it('opens, says the backend is down, and switches tab', async () => {
     renderScreen(<App />)
     expect(await screen.findByRole('button', { name: 'Open the launcher' })).toBeTruthy()

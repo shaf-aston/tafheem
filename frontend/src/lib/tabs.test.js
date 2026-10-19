@@ -20,6 +20,16 @@ describe('the tab registry', () => {
     for (const tab of TABS) expect(groups.has(tab.group), tab.id).toBe(true)
   })
 
+  it('says in a line what every tab is for', () => {
+    for (const tab of TABS) expect(tab.blurb?.length, tab.id).toBeLessThanOrEqual(60)
+    for (const tab of TABS) expect(tab.blurb, tab.id).toBeTruthy()
+  })
+
+  it('opens on Home, which is browsable', () => {
+    expect(TABS[0].id).toBe('home')
+    expect(LISTED[0].id).toBe('home')
+  })
+
   it('leaves a hidden tab out of everything a person browses', () => {
     expect(LISTED.some((tab) => tab.hidden)).toBe(false)
     expect(LISTED).toHaveLength(TABS.filter((tab) => !tab.hidden).length)

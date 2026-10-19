@@ -1,0 +1,14 @@
+{
+  "_comment": "Home's words. 'continue-max': how many places the Continue row offers.",
+  "continue-max": 3,
+  "copy": {
+    "title": "Home",
+    "arabic": "البداية",
+    "subtitle": "Start anywhere. Your place in each tab is kept.",
+    "placeholder": "Type an ayah, a word, @root or a sentence",
+    "continue": "Continue",
+    "guest": "Log in to keep your progress",
+    "streak-one": "1 day in a row",
+    "streak-many": "days in a row"
+  }
+}
