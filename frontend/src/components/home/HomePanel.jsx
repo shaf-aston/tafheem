@@ -68,11 +68,21 @@ export default function HomePanel({ accent, onGo }) {
   })
   const jumpLabel = first ? copy['jump-first'] : copy['jump-resume']
 
+  const progressStrip = (
+    <>
+      {name && overview.isPending && <Skeleton className="h-16 w-full" />}
+      {name && overview.isError && <ErrorAlert inline error={overview.error} fallback={copy['progress-error']} onRetry={overview.refetch} />}
+      {!(name && (overview.isPending || overview.isError)) && (
+        <ProgressStrip name={name} rewards={rewards} streak={overview.data?.streak} copy={copy} />
+      )}
+    </>
+  )
+
   return (
     <div className="panel space-y-6" style={{ '--c': accent }}>
       <header className="relative space-y-2">
-        <ArabicText aria-hidden="true" className="absolute -top-2 right-0 leading-none pointer-events-none select-none"
-          style={{ fontSize: 'clamp(6rem, 24vw, 12rem)', color: 'transparent', WebkitTextStroke: '1.5px color-mix(in srgb, var(--primary) 30%, transparent)' }}>
+        <ArabicText aria-hidden="true" className="absolute top-0 right-0 leading-none pointer-events-none select-none"
+          style={{ fontSize: 'clamp(5rem, 12vw, 7.5rem)', color: 'transparent', WebkitTextStroke: '1.5px color-mix(in srgb, var(--primary) 30%, transparent)' }}>
           فهم
         </ArabicText>
         <p className="rise-in type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{first ? copy['greeting-first'] : greeting()}</p>
@@ -97,10 +107,13 @@ export default function HomePanel({ accent, onGo }) {
         )}
       </div>
 
-      <div className="grid gap-6 md:grid-cols-[1.15fr_1fr]">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-[1.15fr_1fr]">
+        <div className="space-y-6 min-w-0">
         <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume?.value}
           label={first ? copy['first-label'] : copy['resume-label']} goLabel={first ? copy['first-go'] : copy['resume-go']}
           progressText={progressText(sums[lead.id])} onGo={onGo} />
+        {progressStrip}
+        </div>
 
         <section className="space-y-2" aria-label={jumpLabel}>
           <h3 className="type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{jumpLabel}</h3>
@@ -118,12 +131,6 @@ export default function HomePanel({ accent, onGo }) {
           </p>
         </section>
       </div>
-
-      {name && overview.isPending && <Skeleton className="h-16 w-full" />}
-      {name && overview.isError && <ErrorAlert inline error={overview.error} fallback={copy['progress-error']} onRetry={overview.refetch} />}
-      {!(name && (overview.isPending || overview.isError)) && (
-        <ProgressStrip name={name} rewards={rewards} streak={overview.data?.streak} copy={copy} />
-      )}
 
       <Disclosure tone="strong" label={`${copy.all} (${OTHERS.length})`} className="[&_summary]:min-h-11">
         <div className="space-y-4 pt-2">

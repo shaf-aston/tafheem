@@ -83,7 +83,7 @@
     "hadith": "@cream",
     "colloq": "@orange",
     "grow": "@lime",
-    "home": "@slate",
+    "home": "@gold",
     "_comment": "default is what an unknown id wears, the primary purple, so colorFor('tab', id) is the one rule for tab colour everywhere.",
     "default": "@violet"
   },

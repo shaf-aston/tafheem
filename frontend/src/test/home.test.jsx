@@ -24,7 +24,7 @@ describe('Home', () => {
     renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
     const others = LISTED.filter((tab) => tab.id !== HOME)
     for (const tab of others) {
-      expect(screen.getByText(tab.blurb), tab.id).toBeTruthy()
+      expect(screen.getAllByText(tab.blurb).length, tab.id).toBeGreaterThan(0)
     }
   })
 

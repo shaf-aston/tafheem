@@ -6,11 +6,12 @@ import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import App from '../App'
+import home from '../home.json'
 
 describe('app shell', () => {
   it('opens on Home when nothing is saved', async () => {
     renderScreen(<App />)
-    expect(await screen.findByRole('heading', { name: /^Home/ })).toBeTruthy()
+    expect(await screen.findByRole('heading', { name: home.copy['title-first'] })).toBeTruthy()
   })
 
   it('opens, says the backend is down, and switches tab', async () => {
