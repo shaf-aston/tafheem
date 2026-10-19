@@ -419,3 +419,11 @@ def test_a_unit_with_a_job_leaves_off_what_it_is_made_of():
     assert unit["role"] == "مفعول به" and not unit["label"]
     body = client.post("/api/analyze", json={"sentence": "كِتَابُ زَيْدٍ"}).json()
     assert body["tree"]["tree"]["label"] == "مُرَكَّبٌ إِضَافِيٌّ"
+
+
+def test_a_weak_radical_left_unpinned_is_still_one_root():
+    """سارَ سَيْرًا: without the Qur'an corpus the analyser files سار under سور, its masdar
+    under سير; the weak middle letter is the same radical, so the مفعول مطلق still shows."""
+    from backend.services.syntax.facts import same_root
+    assert same_root({"root": "سور", "lemma": "سار"}, {"root": "سير", "lemma": "سير"})
+    assert not same_root({"root": "كتب", "lemma": "كتب"}, {"root": "كسب", "lemma": "كسب"})

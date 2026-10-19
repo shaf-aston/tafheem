@@ -252,11 +252,19 @@ def _skeleton(word: str) -> list[str]:
     return [letter for letter in bare_letters(word) if letter not in WEAK]
 
 
+_WEAK_RADICAL = str.maketrans({letter: "و" for letter in "يىءأإآئؤا"})
+
+
+def _weak_folded(root: str) -> str:
+    return root.translate(_WEAK_RADICAL)
+
+
 def same_root(token: dict, other: dict) -> bool:
     """فَرِحَ فَرَحًا، يُطَهِّرَكُمْ تَطْهِيرًا: one root, the analyser's where both have one,
     else the lemma's letters less the weak ones (the ت of تَفْعِيل is not a weak letter)."""
     if token.get("root") and other.get("root"):
-        return token["root"] == other["root"]
+        # سارَ سَيْرًا: a weak radical the analyser could not pin down (سور، سير) is one letter
+        return _weak_folded(token["root"]) == _weak_folded(other["root"])
     return _skeleton(token["lemma"]) == _skeleton(other["lemma"])
 
 
