@@ -88,6 +88,10 @@ export const LISTED = TABS.filter((tab) => !tab.hidden)
 // what they are before anything is opened, oldest first;
 // opening another tab drops the oldest (lib/recent.js).
 export const FIXED = ['home', 'quran', 'nahw', 'sarf', 'dict']
+
+/** The tab the app opens on, and the group of All sections that holds only it. */
+export const HOME = FIXED[0]
+export const START = GROUPS[0].id
 export const RECENT = ['daleel', 'mem', 'quiz']
 
 // The phone's bar until the reader changes it (lib/dock.js): these, in this order, then More.

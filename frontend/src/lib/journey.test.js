@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { lastOn, nearest, resume, tabNow, trailFor } from './journey'
+import { jumpTabs, lastOn, nearest, resume, resumePlace, tabNow, trailFor } from './journey'
 
 const STEPS = [
   { tab: 'dict', value: null },
@@ -273,5 +273,26 @@ describe('the journey and the back arrow', () => {
     journey.jumpTo(1)
     expect(browser.history.go).toHaveBeenCalledWith(-2)
     expect(journey.placeNow()).toEqual({ tab: 'dict', value: 'b' })
+  })
+})
+
+describe('what Home offers', () => {
+  const listed = ['home', 'quran', 'nahw', 'sarf', 'dict', 'quiz'].map((id) => ({ id }))
+  const base = { listed, fallback: ['quran', 'nahw', 'sarf', 'dict'], home: 'home', count: 3 }
+
+  it('resumes the newest step with a word, never Home', () => {
+    const steps = [{ tab: 'dict', value: 'a' }, { tab: 'sarf', value: null }, { tab: 'home', value: 'x' }]
+    expect(resumePlace(steps, listed, 'home')).toEqual({ tab: 'dict', value: 'a' })
+    expect(resumePlace([], listed, 'home')).toBe(null)
+  })
+
+  it('tiles are the recent tabs, newest first, without the resume tab or repeats', () => {
+    const steps = [{ tab: 'quiz' }, { tab: 'sarf' }, { tab: 'quiz' }, { tab: 'dict', value: 'a' }]
+    expect(jumpTabs(steps, { ...base, skip: 'dict' })).toEqual(['quiz', 'sarf', 'quran'])
+  })
+
+  it('a first visit falls back, and a pinned tab stays when offline', () => {
+    expect(jumpTabs([], base)).toEqual(['quran', 'nahw', 'sarf'])
+    expect(jumpTabs([], { ...base, pin: 'dict' })).toEqual(['quran', 'nahw', 'dict'])
   })
 })

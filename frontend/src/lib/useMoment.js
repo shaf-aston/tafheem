@@ -11,6 +11,9 @@ export const COPY_RESET_MS = 2000
 /** How long a destructive button stays armed before it goes quiet again. */
 export const ARMED_MS = 5000
 
+/** How long Start over waits, with an Undo showing, before it forgets anything. */
+export const UNDO_MS = 5000
+
 export function useMoment(ms, empty = null) {
   const [value, setValue] = useState(empty)
   useEffect(() => {

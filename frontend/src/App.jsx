@@ -26,6 +26,9 @@ import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
 import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
+import UndoToast from './components/ui/UndoToast'
+
+const startOver = TOOLS.find((tool) => tool.id === 'startOver')
 
 const queryClient = new QueryClient({
   // The data is fixed for the life of the backend: keep every answer, so a
@@ -203,6 +206,7 @@ function AppContent() {
           </div>
         </div>
       </footer>
+      <UndoToast message={tools.undo.pending && startOver.pending.message} undoLabel={startOver.pending.undo} onUndo={tools.undo.cancel} />
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
       <MapPanel open={mapOpen} onClose={() => setMapOpen(false)} />
       <SpatialHome
