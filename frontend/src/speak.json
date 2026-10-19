@@ -15,9 +15,12 @@
     },
     "browser": {
       "_comment": "The device's own voice, the last resort. Varies by phone and may ignore harakat.",
-      "lang": "ar",
       "rate": 0.8,
-      "startTimeoutMs": 3000
+      "startTimeoutMs": 3000,
+      "_preferred": "Arabic voices to choose first, by name (part of it will do), best first: Apple's, Windows', Google's. Otherwise a voice on the device is used. Never a non-Arabic one: it spells the letters out.",
+      "preferred": ["Majed", "Maged", "Tarik", "Hoda", "Naayf", "Arabic", "العربية"],
+      "_voicesTimeoutMs": "Browsers often list no voices until a moment after load; how long to wait for them before saying there are none.",
+      "voicesTimeoutMs": 1500
     }
   }
 }

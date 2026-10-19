@@ -14,7 +14,7 @@ vi.mock('./ayahAudio', () => ({
   watch: vi.fn((fn) => { tell = fn; return () => {} }),
 }))
 
-const { prepare, speak, reset } = await import('./speak')
+const { prepare, speak, reset, pickVoice } = await import('./speak')
 
 beforeEach(() => {
   played.length = 0
@@ -105,5 +105,58 @@ describe('readying a voice before the press', () => {
     await prepare('بَابٌ مَفْتُوحٌ')
     const [, options] = globalThis.fetch.mock.calls.find(([url]) => url.startsWith('/api/speak'))
     expect(options.headers['X-Speak-Ahead']).toBe('1')
+  })
+})
+
+const voice = (name, lang, localService = true) => ({ name, lang, localService })
+
+describe('choosing a device voice', () => {
+  it('prefers a named voice over another Arabic one', () => {
+    const voices = [voice('Other', 'ar-SA'), voice('Majed', 'ar_EG', false)]
+    expect(pickVoice(voices, config).name).toBe('Majed')
+  })
+
+  it('prefers a local Arabic voice over a remote one when none is named', () => {
+    const voices = [voice('Remote', 'ar-SA', false), voice('Local', 'AR', true)]
+    expect(pickVoice(voices, config).name).toBe('Local')
+  })
+
+  it('gives nothing when only English voices exist', () => {
+    expect(pickVoice([voice('Samantha', 'en-US'), voice('Daniel', 'en-GB')], config)).toBeNull()
+  })
+})
+
+describe('the device voice', () => {
+  let synth
+  beforeEach(() => {
+    refuse = () => true  // recorded and server fail, so the device voice is reached
+    synth = {
+      voices: [],
+      listeners: [],
+      getVoices() { return this.voices },
+      addEventListener(_, fn) { this.listeners.push(fn) },
+      removeEventListener() {},
+      cancel: vi.fn(),
+      speak: vi.fn((line) => queueMicrotask(() => line.onstart())),
+    }
+    globalThis.speechSynthesis = synth
+    globalThis.SpeechSynthesisUtterance = class { constructor(text) { this.text = text } }
+  })
+
+  it('refuses, and never speaks, when the device has no Arabic voice', async () => {
+    synth.voices = [voice('Samantha', 'en-US')]
+    await expect(speak('قِطَار')).rejects.toThrow('No voice could say this')
+    expect(synth.speak).not.toHaveBeenCalled()
+  })
+
+  it('waits for the voice list, then speaks with the Arabic voice', async () => {
+    const arabic = voice('Hoda', 'ar-EG')
+    const pending = speak('قِطَار')
+    await vi.waitFor(() => expect(synth.listeners).toHaveLength(1))
+    synth.voices = [voice('Samantha', 'en-US'), arabic]
+    synth.listeners[0]()
+    expect((await pending).id).toBe('browser')
+    expect(synth.speak.mock.calls[0][0].voice).toBe(arabic)
+    expect(synth.speak.mock.calls[0][0].lang).toBe('ar-EG')
   })
 })
