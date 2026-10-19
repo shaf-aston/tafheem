@@ -38,11 +38,11 @@ import Code from './ui/Code'
 const languageOf = (text) => (/[a-z]/i.test(text) && !isArabic(text) ? 'en' : 'ar')
 
 /**
- * Arabic of two words or more is a phrase or a sentence, and wants translating
- * rather than looking up. A word is two letters or more: ك ت ب is one root
- * spelled out, not three words.
+ * Two words or more, in either language, is a phrase or a sentence, and wants
+ * translating rather than looking up. A word is two letters or more: ك ت ب is
+ * one root spelled out, not three words.
  */
-const isSentence = (text) => languageOf(text) === 'ar' && text.split(/\s+/).filter((w) => w.length > 1).length > 1
+const isSentence = (text) => text.split(/\s+/).filter((w) => w.length > 1).length > 1
 
 export default function Dictionary({ accent, incoming, arrival, onGo, onVisit }) {
   const { dictionaryLoaded } = useHealth()

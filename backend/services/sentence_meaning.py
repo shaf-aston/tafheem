@@ -2,14 +2,14 @@
 
 Two lines, the way al-Maany sets them out: the sense first, the words under it.
 
-The words come from CAMeL on this machine, every time, in milliseconds: each
-word's sense as its tagger read it from the words around it. The sense comes
-from the surest source that has one. A whole ayah has its published translation
-and the Qur'an's own word-by-word; anything else goes to the language model,
-handed the word-by-word too so its sentence stays tied to those words. A model
-answer is filed on disk, so the same text asks once and reads the same each
-time, on every server process. The model also picks, from numbered candidate
-senses (CAMeL's readings, the dictionary's), the one each word has in the sentence.
+The words come from the grammar on this machine, every time, in milliseconds:
+the i'rab reading's own analysis of each word (the one the Nahw tab shows), so
+the two pages cannot disagree; CAMeL alone when the parser is not installed.
+The sense comes from the surest source that has one. A whole ayah has its
+published translation and the Qur'an's own word-by-word; anything else goes to
+the language model, handed those facts and asked for one English sentence. It
+never picks a word's sense. A model answer is filed on disk, so the same text
+asks once and reads the same each time, on every server process.
 """
 from __future__ import annotations
 
@@ -28,7 +28,8 @@ _TAGS_RE = re.compile(r"\[[^\]]*\]|<[^>]*>")
 # The word every clause's name opens with (data/nahw_rules/tarkeeb.json).
 _CLAUSE = term_ar("jumlah_ismiyyah").split()[0]
 # Where a model's sense is filed (progress_store), so every server process reads the first one kept.
-_KEPT = "dict"
+# A new question name, not a new module: rows filed with word picks under "meaning" are never reused.
+_KEPT, _QUESTION = "dict", "meaning2"
 
 
 def literal(gloss: str) -> str:
@@ -61,12 +62,31 @@ def kind_of(summary: str | None, read: list[dict]) -> str:
     return "sentence" if told or (summary or "").startswith(_CLAUSE) else "phrase"
 
 
+def read_words(text: str) -> tuple[list[dict], str | None]:
+    """(a row per word, the grammar's name for the whole or None).
+
+    The row is what the i'rab card says of the word: CAMeL's chosen reading plus the
+    role and case the book's rules gave it. The parser's model files may be missing,
+    and then CAMeL's reading stands alone, with no role.
+    """
+    try:
+        read = iraab.analyze(text)
+        cards = [(c["word"], c["camel"], c.get("role_key") and c.get("role"), c.get("case")) for c in read["words"]]
+        summary = read["summary"]
+    except Exception as exc:  # noqa: BLE001, the parser is optional here
+        logger.info("sentence meaning  no i'rab reading: %s", exc)
+        cards = [(w["word"], w, None, None) for w in morphology.analyze_sentence(text)]
+        summary = None
+    return [{"arabic": word, "english": literal(c.get("gloss") or ""), "base": c.get("base") or word,
+             "lemma": c.get("lemma") or "", "pos": c.get("pos") or "", "state": c.get("state"),
+             "role": role or None, "case": case or None} for word, c, role, case in cards], summary
+
+
 def translate(text: str) -> dict:
     """The sense, its source, and the words; the sense is None when nothing could give one."""
-    read = morphology.analyze_sentence(text)
-    pairs = [{"arabic": w["word"], "english": literal(w["gloss"]), "base": w.get("base") or w["word"]} for w in read]
+    pairs, summary = read_words(text)
     found = _whole_ayah(text, pairs) or _model_sense(text, pairs)
-    return {"kind": kind_of(iraab.analyze(text)["summary"], read), **found}
+    return {"kind": kind_of(summary, pairs), **found}
 
 
 def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:
@@ -120,57 +140,53 @@ def standing(text: str) -> str:
     return text[:1].upper() + text[1:]
 
 
-def _senses(pair: dict) -> list[str]:
-    """Candidate English for one word: CAMeL's pick, its other readings, then the dictionary's senses."""
-    found = [pair["english"], *map(literal, morphology.glosses_of(pair["arabic"])),
-             *dictionary_service.meanings_of(pair["arabic"])]
-    return list(dict.fromkeys(s for s in found if s))[:get_settings().sentence_candidates]
-
-
 def _model_sense(text: str, pairs: list[dict]) -> dict:
-    """The model's sense over CAMeL's words, and the sense of each word it picked from
-    the candidates; no sense when the model is unreachable."""
-    options = [_senses(p) for p in pairs]
+    """The model's one sentence over the grammar's facts; no sense when it is unreachable."""
     try:
-        meaning, picks = _asked(text, pairs, options)
+        meaning = _asked(text, pairs)
     except Exception as exc:  # noqa: BLE001, a dead model leaves the word-by-word standing
         logger.info("sentence meaning  model failed: %s", exc)
-        meaning, picks = None, []
-    # The badge names who chose each word's sense: the model when it picked, else CAMeL.
-    words_source = "camel"
-    if picks := _valid(picks, options):  # also when filed: the candidates may have changed since
-        pairs = [{**p, "english": o[i - 1]} for p, o, i in zip(pairs, options, picks)]
-        words_source = "ai"
+        meaning = None
     return {"meaning": meaning, "source": "ai" if meaning else None, "ref": None,
-            "words": pairs, "words_source": words_source}
+            "words": pairs, "words_source": "camel"}
 
 
-def _valid(picks, options: list[list[str]]) -> list[int]:
-    """The model's numbers when there is one per word, each naming a candidate; else [],
-    so CAMeL's senses stand rather than English landing under the wrong word."""
-    ok = (isinstance(picks, list) and len(picks) == len(options)
-          and all(type(i) is int and 1 <= i <= len(o) for i, o in zip(picks, options)))
-    return picks if ok else []
+def _facts(pairs: list[dict]) -> str:
+    """One line per word: what the grammar already decided, for the model to translate from."""
+    return "\n".join(
+        f"{n}. {p['arabic']} — {p['lemma'] or p['base']} ({p['pos'] or '-'}, {p['role'] or '-'}, {p['case'] or '-'}): "
+        f"{p['english'] or '-'}" for n, p in enumerate(pairs, 1))
 
 
-def _asked(text: str, pairs: list[dict], options: list[list[str]]) -> tuple[str, list[int]]:
+def _asked(text: str, pairs: list[dict]) -> str:
     """One model answer per text, filed on disk: the server runs several processes,
     and a cache in each gave the same sentence two wordings by turns. A failure or
     an empty answer raises and is not filed. Two first askings at once both ask, and
-    both return the one the store kept first. The word picks are filed with it, as none
-    when invalid; the model chooses numbers, it never writes a word's English. A text
-    filed before picks existed is asked once more for them, its sense kept as filed."""
-    kept = {row["question"]: row["answer"] for row in progress_store.kept_questions(_KEPT, text)}
-    if "senses" not in kept:
-        word_by_word = "\n".join(
-            f"{n}. {p['arabic']}: " + " | ".join(f"{k}) {s}" for k, s in enumerate(o, 1))
-            for n, (p, o) in enumerate(zip(pairs, options), 1))
-        reply = ai.translate_sentence(text, word_by_word)
-        if not (english := reply["english"].strip()):
+    both return the one the store kept first."""
+    if not (kept := _kept(text)):
+        reply = ai.translate_sentence(text, _facts(pairs))
+        if not (english := str(reply.get("english", "")).strip()):
             raise ValueError("the model answered with nothing")
-        # "0" names no candidate, so an invalid reply is filed as no picks, not asked again.
-        picks = ",".join(map(str, _valid(reply.get("senses"), options))) or "0"
-        progress_store.keep_questions(module=_KEPT, sentence=text, source="ai", questions=[
-            {"question": "meaning", "answer": english}, {"question": "senses", "answer": picks}])
-        kept = {row["question"]: row["answer"] for row in progress_store.kept_questions(_KEPT, text)}
-    return kept["meaning"], [int(i) for i in kept["senses"].split(",")]
+        progress_store.keep_questions(module=_KEPT, sentence=text, source="ai",
+                                      questions=[{"question": _QUESTION, "answer": english}])
+        kept = _kept(text)
+    return kept
+
+
+def _kept(text: str) -> str | None:
+    return next((r["answer"] for r in progress_store.kept_questions(_KEPT, text) if r["question"] == _QUESTION), None)
+
+
+def translate_english(text: str) -> dict:
+    """English into Arabic: each word's candidates from the dictionary, always, and the
+    whole as the model renders it, which is None when it is unreachable. The model
+    never touches the word rows, so a wrong rendering cannot change a lookup."""
+    rows = [{"arabic": (w["entries"][0]["arabic"] if w["entries"] else ""), "english": w["english"], "base": w["lemma"]}
+            for w in dictionary_service.english_words(text)]
+    try:
+        meaning = str(ai.render_in_arabic(text).get("arabic", "")).strip() or None
+    except Exception as exc:  # noqa: BLE001, a dead model leaves the word-by-word standing
+        logger.info("sentence meaning  model failed: %s", exc)
+        meaning = None
+    return {"kind": "sentence", "direction": "en", "meaning": meaning, "source": "ai" if meaning else None,
+            "ref": None, "words": rows, "words_source": "wiktionary"}

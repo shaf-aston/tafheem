@@ -10,6 +10,7 @@ import json
 import logging
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor
 from functools import lru_cache
 from pathlib import Path
 
@@ -102,15 +103,42 @@ def search_arabic_read(query: str, limit: int = 10) -> tuple[list[dict], tuple[s
 
 
 def search_english(query: str, limit: int = 10) -> list[dict]:
-    """Find entries whose definitions contain the English keyword."""
+    """Find entries whose definitions contain the English keyword, or its lemma (ran finds "to run")."""
     load_dictionary()
     keyword = query.strip().casefold()
     if not keyword:
         return []
     started = time.perf_counter()
-    found = [_with_synonym_meanings(entry) for entry in _english_matches(keyword, limit)]
+    keys = tuple(dict.fromkeys((keyword, _lemma(keyword)))) if " " not in keyword else (keyword,)
+    found = [_with_synonym_meanings(entry) for entry in _english_matches(keys, limit)]
     _log_timing("english", keyword, len(found), started)
     return found
+
+
+def english_words(text: str, per_word: int = 3) -> list[dict]:
+    """Each English word of `text` with its lemma and its best few entries, in order."""
+    load_dictionary()
+    typed = _WORD_RE.findall(text.casefold())
+    with ThreadPoolExecutor() as pool:
+        found = pool.map(lambda w: search_english(w, per_word), typed)
+    return [{"english": w, "lemma": _lemma(w), "entries": entries} for w, entries in zip(typed, found)]
+
+
+_lemmatiser_missing = False
+
+
+@lru_cache(maxsize=50_000)
+def _lemma(word: str) -> str:
+    """The English dictionary form of a word (ran -> run); the word itself when simplemma is not installed."""
+    global _lemmatiser_missing
+    try:
+        import simplemma
+    except ImportError:
+        if not _lemmatiser_missing:
+            _lemmatiser_missing = True
+            logger.warning("simplemma is not installed, so English search matches typed forms only")
+        return word
+    return simplemma.lemmatize(word, lang="en").casefold()
 
 
 def meant(query: str, lang: str) -> str | None:
@@ -323,20 +351,19 @@ def _arabic_matches(typed: str, limit: int) -> tuple[tuple[dict, ...], tuple[str
 
 
 @lru_cache(maxsize=_CACHE_SIZE)
-def _english_matches(keyword: str, limit: int) -> tuple[dict, ...]:
+def _english_matches(keys: tuple[str, ...], limit: int) -> tuple[dict, ...]:
     # An exact hit is ranked in full, however many entries mention the word: the
     # entry the word is *about* can sit anywhere in that list, and cutting the
     # list short is how a search for "the" stopped finding ال.
-    results = _english_index.get(keyword)
+    results = [entry for key in keys for entry in _english_index.get(key, ())]
     if not results:
         ceiling = get_settings().dictionary_fuzzy_candidates
-        results = []
         for index_key, entries in _english_index.items():
-            if keyword in index_key:
+            if keys[0] in index_key:
                 results.extend(entries)
                 if len(results) >= ceiling:
                     break
-    return tuple(sorted(_dedupe(results), key=lambda e: _english_rank(e, keyword))[:limit])
+    return tuple(sorted(_dedupe(results), key=lambda e: _english_rank(e, keys))[:limit])
 
 
 def _build_indices(entries: list[dict]) -> tuple[dict[str, list[dict]], dict[str, list[dict]]]:
@@ -351,19 +378,26 @@ def _build_indices(entries: list[dict]) -> tuple[dict[str, list[dict]], dict[str
         for definition in entry.get("definitions", []):
             for word in _WORD_RE.findall(definition.casefold()):
                 if len(word) > _MIN_INDEX_WORD_LEN:
-                    english.setdefault(word, []).append(entry)
+                    # Under the lemma too, so "ran" reaches a definition that says "run".
+                    for key in {word, _lemma(word)}:
+                        english.setdefault(key, []).append(entry)
     return arabic, english
 
 
-def _english_rank(entry: dict, keyword: str) -> tuple[int, int]:
-    """Best match first: the word a definition is *about* beats one that merely
-    mentions it. A definition that is the keyword alone ranks above one where it
-    is the tenth word of a long gloss."""
+def _english_rank(entry: dict, keys: tuple[str, ...]) -> tuple[int, int, int]:
+    """Best match first: the word a definition is *about* ("run", "to run", "a run") beats
+    one that merely mentions it, and a short gloss beats the tenth word of a long one."""
+    best = (9, 99, 999)
     for position, definition in enumerate(entry.get("definitions", [])):
         words = _WORD_RE.findall(definition.casefold())
-        if keyword in words:
-            return (position, words.index(keyword) + len(words))
-    return (99, 999)
+        hits = [i for i, w in enumerate(words) if w in keys or _lemma(w) in keys]
+        if not hits:
+            continue
+        # Starts with the keyword, or "to"/"a"/"the" and then it.
+        about = hits[0] == (1 if len(words) > 1 and words[0] in ("to", "a", "an", "the") else 0)
+        rank = (0 if about else 1, position, hits[0] + len(words))
+        best = min(best, rank)
+    return best
 
 
 def _dedupe(entries: list[dict]) -> list[dict]:
