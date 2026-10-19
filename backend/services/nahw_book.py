@@ -224,6 +224,13 @@ def condition_of(word: str) -> dict | None:
                  if word in words[family].get(part, ())), None)
 
 
+def counted_name(role: str, nth: int) -> str:
+    """The nth (from 0) of several of one role side by side: خبر إن → خبر ثانٍ لإن، مفعول به → مفعول به ثانٍ."""
+    ordinals = teacher_rules()["case_said"]["ordinals"]
+    word = ordinals[min(nth, len(ordinals) - 1)]
+    return f"خبر {word} ل{role[4:]}" if role.startswith("خبر ") else f"{role} {word}"
+
+
 def teacher_rules() -> dict:
     """The teacher's checks and their reasons (services/syntax/teacher.py)."""
     return book_file("teacher.json")

@@ -106,7 +106,7 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         return None
     if card.get("type") in ("harf", "damir"):
         # a particle or a pronoun never shows a case of its own, only what it is built on (إِنَّ، لَمْ، فِي)
-        return _built(ending) if (ending := _typed_ending(_unmoved(card, after))) else sign("mabni")
+        return _built(ending) + _moved(card, after) if (ending := _typed_ending(_unmoved(card, after))) else sign("mabni")
     kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
@@ -116,7 +116,7 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         place = said["in_place"].format(place=said["place"][_PLACE[case]])
         return f"{_built(on.get(kind, on['vowel']))} {place}"
     if case == "mabni" and (ending := _typed_ending(_unmoved(card, after))):
-        return _built(ending)  # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter
+        return _built(ending) + _moved(card, after)  # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter
     return sign(case, "vowel" if case == "mabni" else kind)
 
 
@@ -129,6 +129,11 @@ def _unmoved(card: dict, after: dict | None) -> str:
     own = (card.get("camel") or {}).get("pattern") or ""
     sakin = own.endswith(SUKUN) or (card.get("type") == "harf" and own[-1:].isdigit())
     return paused(word, (after or {}).get("word", "")) if sakin else word
+
+
+def _moved(card: dict, after: dict | None) -> str:
+    """مَنِ ائْتَمَنَكَ، عَنِ ابْنِ: the sukun it is built on shows as a kasra, said so."""
+    return teacher_rules()["case_said"]["moved_to_meet"] if _unmoved(card, after) != card["word"] else ""
 
 
 def _typed_ending(word: str) -> str | None:

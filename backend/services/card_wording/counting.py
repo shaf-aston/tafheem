@@ -1,7 +1,7 @@
 """Words of one kind side by side, counted and tied to the word they follow."""
 from __future__ import annotations
 
-from backend.services.nahw_book import teacher_rules
+from backend.services.nahw_book import counted_name, teacher_rules
 from backend.services.syntax.naming import NAMED
 
 
@@ -17,15 +17,13 @@ def counted(cards: list[dict], roles: list[dict]) -> None:
             continue
         run += 1
 
-        def count(nth: str) -> str:  # خبر إن → خبر ثانٍ لإن، مفعول به → مفعول به ثانٍ
-            return f"خبر {nth} ل{role[4:]}" if role.startswith("خبر ") else f"{role} {nth}"
         def bare(card: dict) -> bool:  # said, and not already counted (ظنّ names its own أول and ثانٍ)
             said = card.get("said")
             return bool(said) and said.says(role) and not any(said.says(f"{role} {nth}") for nth in ordinals)
         if run == 1 and bare(before):
-            before["said"].rename(role, count(ordinals[0]))
+            before["said"].rename(role, counted_name(role, 0))
         if bare(card):
-            card["said"].rename(role, count(ordinals[min(run, len(ordinals) - 1)]))
+            card["said"].rename(role, counted_name(role, run))
 
 def followed(cards: list[dict], roles: list[dict]) -> None:
     """A follower names the word it follows (تابع لـ«زيدٌ»). Every معطوف of a chain is joined on
