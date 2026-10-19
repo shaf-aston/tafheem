@@ -620,6 +620,19 @@ dialog::backdrop {
   background: var(--surface);
   border: 1px solid var(--border);
 }
+/* A tile: one box for a tab on Home (ui/Tile). --c is the tab's colour. */
+.tile {
+  position: relative;
+  overflow: hidden;
+  text-align: start;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color calc(var(--motion-base-ms) * 1ms), background-color calc(var(--motion-base-ms) * 1ms);
+}
+button.tile:hover { border-color: var(--c); }
+.tile-wash { background-image: radial-gradient(90% 90% at 100% 0, color-mix(in srgb, var(--c) 22%, transparent), transparent 65%); }
+.tile-lead { padding: var(--space-card); border-color: var(--c); }
 .card-tile {
   padding: var(--space-tile);
   border-radius: var(--radius-md);

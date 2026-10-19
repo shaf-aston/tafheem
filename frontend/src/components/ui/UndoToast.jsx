@@ -1,5 +1,5 @@
 /** A short notice with one way back, fixed to the foot of the screen. Shown only while `message` is set. */
-export default function UndoToast({ message, onUndo, undoLabel = 'Undo' }) {
+export default function UndoToast({ message, undoLabel, onUndo }) {
   if (!message) return null
   return (
     <div role="status"

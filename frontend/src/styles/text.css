@@ -146,6 +146,14 @@ textarea.arabic-lg {
 .type-ui     { font-size: var(--type-ui); }
 
 
+/* Big letters drawn as an outline only: a quiet word behind a heading (Home), the sources band (landing).
+   --outline-c and --outline-w tune it where it sits. */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: var(--outline-w, 1.5px) var(--outline-c, color-mix(in srgb, var(--primary) 30%, transparent));
+}
+
+
 /* Small grey capitals label. In the components layer so a utility beside it wins. */
 @layer components {
   .eyebrow {

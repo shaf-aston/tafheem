@@ -26,7 +26,7 @@
 import { levelOf } from '../../lib/confidence'
 import { sourcesFor, useSources } from '../../lib/useSources'
 
-export default function SourceFooter({ tab, onSeeAll }) {
+export default function SourceFooter({ tab, offline, onSeeAll }) {
   const { sources, isPending, isError } = useSources()
 
   // Nothing yet, and nothing worth a placeholder for: the page above is the
@@ -36,7 +36,9 @@ export default function SourceFooter({ tab, onSeeAll }) {
   if (isError) {
     return (
       <p className="type-small text-[var(--text-faint)]">
-        Couldn&rsquo;t reach the backend to say what this tab is built on.
+        {offline
+          ? 'Couldn\u2019t reach the backend to say what this tab is built on.'
+          : 'The list of sources did not load.'}
       </p>
     )
   }

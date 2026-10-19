@@ -9,10 +9,13 @@ export default function ProgressStrip({ name, rewards, streak, copy }) {
   if (!name) {
     return (
       <>
-        <button type="button" onClick={() => setAsking(true)} aria-haspopup="dialog"
-          className="press min-h-11 type-small px-3 rounded-[var(--radius-sm)] border border-[var(--border)] text-[var(--text-dim)] hover:text-[var(--text)]">
-          {copy.guest}
-        </button>
+        <p className="flex flex-wrap items-center gap-x-2 text-[var(--text-dim)]">
+          <span>{copy.guest}</span>
+          <button type="button" onClick={() => setAsking(true)} aria-haspopup="dialog"
+            className="press min-h-11 px-1 font-semibold text-[var(--primary-hi)] underline underline-offset-4">
+            {copy['guest-go']}
+          </button>
+        </p>
         {asking && <ProfileDialog onClose={() => setAsking(false)} />}
       </>
     )

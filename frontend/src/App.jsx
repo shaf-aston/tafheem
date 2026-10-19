@@ -1,7 +1,7 @@
 import { Activity, useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { FIXED, GROUPS, LISTED, TABS, accentOf } from './lib/tabs'
+import { FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/tabs'
 import { idle, inTurn } from './lib/warm'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
@@ -195,7 +195,7 @@ function AppContent() {
             column of its own, which is why a list of thirteen sources wrapped
             into a stripe while two thirds of the page sat empty beside it. */}
         <div className="shell space-y-5">
-          <SourceFooter tab={activeTab} onSeeAll={() => setSettingsOpen(true)} />
+          {activeTab !== HOME && <SourceFooter tab={activeTab} offline={status === 'error'} onSeeAll={() => setSettingsOpen(true)} />}
 
           {/* The colophon, on the same pane as the page and only as wide as its
               words, so the backdrop still shows around it. */}

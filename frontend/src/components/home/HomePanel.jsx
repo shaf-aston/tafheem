@@ -18,6 +18,7 @@ import { jumpTabs, resumePlace, useJourney } from '../../lib/journey'
 import { progressByTab } from '../../lib/moduleTab'
 import { useCommandLine } from '../../lib/useCommandLine'
 import { accentOf, FIXED, GROUPS, HOME, LISTED, RECENT, START } from '../../lib/tabs'
+import { fill, greeting, progressText } from '../../lib/homeCopy'
 import knobs from '../../home.json'
 
 import ArabicText from '../ui/ArabicText'
@@ -37,16 +38,6 @@ const OTHERS = LISTED.filter((tab) => tab.id !== HOME)
 const FALLBACK = FIXED.filter((id) => id !== HOME)
 const KEY_COUNT = FIXED.length + RECENT.length
 const tabOf = (id) => LISTED.find((tab) => tab.id === id)
-const fill = (line, values) => line.replace(/\{(\w+)\}/g, (_, key) => values[key])
-const greeting = () => {
-  const hour = new Date().getHours()
-  return (knobs.greetings.find((one) => hour < one.until) ?? knobs.greetings.at(-1)).text
-}
-
-function progressText(sum) {
-  if (!sum) return null
-  return `${fill(copy.learnt, sum)} · ${fill(sum.attempts === 1 ? copy['answers-one'] : copy['answers-many'], { n: sum.attempts })}`
-}
 
 export default function HomePanel({ accent, onGo }) {
   const [name] = useState(getProfile)
@@ -64,14 +55,14 @@ export default function HomePanel({ accent, onGo }) {
   const lead = tabOf(resume?.tab ?? FALLBACK[0])
   const tiles = jumpTabs(steps, {
     listed: LISTED, fallback: FALLBACK, home: HOME, skip: lead.id, pin: offline ? knobs['offline-pin'] : null,
-    count: first ? knobs['tiles-first'] : knobs.tiles,
+    count: first ? knobs.tiles.first : knobs.tiles.recent,
   })
   const jumpLabel = first ? copy['jump-first'] : copy['jump-resume']
 
   const progressStrip = (
     <>
       {name && overview.isPending && <Skeleton className="h-16 w-full" />}
-      {name && overview.isError && <ErrorAlert inline error={overview.error} fallback={copy['progress-error']} onRetry={overview.refetch} />}
+      {name && overview.isError && <ErrorAlert inline title={copy["progress-error"]} error={overview.error} fallback={copy["progress-error"]} onRetry={overview.refetch} />}
       {!(name && (overview.isPending || overview.isError)) && (
         <ProgressStrip name={name} rewards={rewards} streak={overview.data?.streak} copy={copy} />
       )}
@@ -80,9 +71,8 @@ export default function HomePanel({ accent, onGo }) {
 
   return (
     <div className="panel space-y-6" style={{ '--c': accent }}>
-      <header className="relative space-y-2">
-        <ArabicText aria-hidden="true" className="absolute top-0 right-0 leading-none pointer-events-none select-none"
-          style={{ fontSize: 'clamp(5rem, 12vw, 7.5rem)', color: 'transparent', WebkitTextStroke: '1.5px color-mix(in srgb, var(--primary) 30%, transparent)' }}>
+      <header className="relative isolate space-y-2">
+        <ArabicText aria-hidden="true" className="outline-text hidden sm:block absolute -z-10 top-0 right-0 text-8xl! leading-none pointer-events-none select-none">
           فهم
         </ArabicText>
         <p className="rise-in type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{first ? copy['greeting-first'] : greeting()}</p>
@@ -123,7 +113,7 @@ export default function HomePanel({ accent, onGo }) {
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-3">
-              {tiles.map((id, at) => <JumpTile key={id} tab={tabOf(id)} accent={accentOf(id)} index={at} onOpen={onGo} />)}
+              {tiles.map((id, at) => <JumpTile key={id} tab={tabOf(id)} accent={accentOf(id)} index={at} wide={tiles.length % 2 === 1 && at === tiles.length - 1} onOpen={onGo} />)}
             </div>
           )}
           <p className="type-small text-[var(--text-dim)] [@media(pointer:coarse)]:hidden">
