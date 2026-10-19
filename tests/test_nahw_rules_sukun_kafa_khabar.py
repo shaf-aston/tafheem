@@ -1,7 +1,16 @@
 """Three nahw rules the analyser identifies, each on held-out sentences:
 التقاء الساكنين on a built word's sign, the تمييز/حال after كفى بـ (فاعل behind a
 زائدة باء), and a sentence after a describing khabar as خبر ثانٍ."""
-from backend.services import iraab
+import pytest
+
+from backend.services import iraab, morphology
+from backend.services.syntax.catib_onnx import files_present
+
+# Reading a sentence needs CAMeL's data and the parser's model files, neither in git.
+pytestmark = pytest.mark.skipif(
+    not (morphology._CAMEL_AVAILABLE and files_present()),
+    reason="CAMeL data or CATiB parser files not present",
+)
 
 
 def _words(s):
