@@ -4,7 +4,8 @@
  *
  * Reading a hadith as one grey block hides the thing a reader came for. The
  * books mark what was said themselves: sunnah.com puts it between quote marks,
- * in the Arabic and in the English both. So the mark is read, never guessed,
+ * in the Arabic and in the English both. So the mark is read first; only an
+ * Arabic left unmarked is read from its verbs of saying instead (spoken),
  * and only colour is added: the spans joined give back the book's own text,
  * every letter and mark of it (a test holds every hadith to that).
  *
@@ -52,8 +53,9 @@ const SPACE = /\s/
 const SPEECH = /(^|[:,“‘«"'(]|\s[-–—])\s*$/
 // One word alone between ' marks is a name ('Ata'), not a saying.
 const ONE_WORD = /^[\p{L}-]+\p{P}?$/u
-// What a quote ends on before a mismatched closing mark: a full stop, a question.
-const ENDED = /[.!?,;)]$/
+// What a quote ends on before a mismatched closing mark: a full stop, a question,
+// in the English's punctuation or the Arabic's (، ؛ ؟).
+const ENDED = /[.!?,;)،؛؟]$/
 
 /** The way a straight mark faces, from its place: 1 opens, -1 closes, 0 cannot say. */
 function facing(ch, before, after) {
@@ -64,7 +66,8 @@ function facing(ch, before, after) {
     return SPACE.test(before) ? 0 : -1
   }
   // After a colon a " opens even with the space on its wrong side (recited:" No soul).
-  if (before === ':' || (SPACE.test(before) && !SPACE.test(after))) return 1
+  // A " before a full stop or comma closes, even with a space before it (the Arabic's  السَّاعَةِ ".).
+  if (before === ':' || (SPACE.test(before) && !SPACE.test(after) && !ENDED.test(after))) return 1
   if (!SPACE.test(before) && (SPACE.test(after) || !LETTER.test(after))) return -1
   return 0
 }
@@ -82,6 +85,8 @@ function quoteMarks(text) {
     const after = text[at + 1] ?? ' '
     // A curly single between letters is ʿayn or hamza too (Ibn ‘Abbas, Aqra’).
     if (kind === 'single' && LETTER.test(before) && LETTER.test(after)) continue
+    // So is one between a lone letter's full stop and a name (b.’Amir, b.'Ubaid): "b." is "bin".
+    if (kind === 'single' && LETTER.test(after) && /(^|\s)\p{L}\.$/u.test(text.slice(0, at))) continue
     // A straight " that cannot say closes an open double, or else opens one.
     const step = fixed || facing(ch, before, after) || (ch === '"' ? (open.some((o) => o.kind === 'double') ? -1 : 1) : 0)
     if (step === 1) {
@@ -145,6 +150,118 @@ export function saying(text) {
   // A quote that holds a deeper one is telling: the companion's account, not the words.
   const holds = (i) => [kept[i - 1], kept[i + 1]].some((next) => next?.depth > kept[i].depth)
   return kept.map(({ depth: d, open: o, text: t, close: c }, i) => ({ kind: d && !holds(i) ? 'said' : 'told', open: o, text: t, close: c }))
+}
+
+// A book that set no quote marks in its Arabic still says who speaks: the
+// saying follows the last verb of saying (CHAIN.voice) after the body starts,
+// once past who says it and to whom. Only an unmarked hadith is read this way;
+// a marked one keeps saying()'s reading of its own marks.
+const VOICE = new Set(CHAIN.voice.verbs)
+const SPEAKER = new Set([...CHAIN.prophet, ...CHAIN.free, ...CHAIN.voice.to])
+const PAST = new Set(CHAIN.voice.past)
+// قال / يقول: one man speaking, whose name may go unsaid; the only verbs that can be the Prophet's.
+const HE = new Set(CHAIN.voice.he)
+const PROPHET = new Set(CHAIN.prophet)
+// يا before رسول / النبي: speaking to the Prophet, not as him.
+const CALL = new Set(CHAIN.voice.call)
+// The name after بن / ابن / بنت belongs to the speaker too.
+const KIN_OF = new Set(['بن', 'ابن', 'بنت'].filter((w) => CHAIN.free.includes(w)))
+// A name in the raf': no ال, a dammatan on its end (أنسٌ), or a damma (عمرُ)
+// on a word that does not open as a present verb does (يقولُ، تطعمُ) nor end
+// in تُ (قلتُ) or هُ (دعوهُ).
+const NAME = /^(?![وف]?ال)(?:\S*\u064c|[^\sيتن][\u064b-\u0652]*\S*[\u0621-\u0629\u062b-\u0647\u0649-\u064a]\u0651?\u064f)$/
+// أبو هريرة، ابن عمر: a name that is two words.
+const KUNYA = new Set(CHAIN.voice.kunya)
+const TO_HIM = new Set(CHAIN.voice.to_him)
+// The chain's last words may name him (عن النبي صلى الله عليه وسلم قال): that many count as the scene.
+const CHAIN_TAIL = 8
+// A full stop or question ends a sentence, and with it a saying.
+const END = /[.؟?!]$/
+// حدثنا، أخبرني، سمعت: a chain word, the hadith handed on (a bare حدث is a word of the saying).
+const NARRATES = (word) => VERBS.has(word) && !STEMS.includes(word)
+
+/**
+ * The whole colouring of one hadith's text, as saying()'s spans:
+ *   1. the book's own quote marks, where it set any (saying). The books mark
+ *      the Prophet's words alone, so that is what `said` means;
+ *   2. else the chain is `told`, and the body after it is read by its turns.
+ *      Each verb of saying (CHAIN.voice) opens a turn; the verb and who says
+ *      it stay `told`. When the Prophet says it (turn below) his words are
+ *      `said` to the end of their sentence; the rest of the scene is `told`;
+ *   3. a body with no word of the Prophet's tells what was done: all of it is
+ *      the hadith, so all of it is `said`, the chain alone `told`.
+ * `from` is where the body starts in `text`; null (no chain known) leaves an
+ * unmarked text `plain`, since nothing tells chain from body.
+ */
+export function spoken(text, { from = null } = {}) {
+  const spans = saying(text)
+  if (from === null || spans.length !== 1 || spans[0].kind !== 'plain') return spans
+  const clean = spans[0].text
+  // `from` counts the direction marks saying() dropped.
+  const body = Math.max(0, from - (String(text).slice(0, from).match(MARKS) ?? []).length)
+  const words = [...clean.matchAll(/\S+/g)].map((m) => ({ at: m.index, word: bare(m[0]), raw: m[0] }))
+  const first = words.findIndex((w) => w.at >= body)
+  if (first < 0) return spans
+  const kinds = words.map(() => 'told')
+  let heard = false
+  let last = null
+  for (let i = first; i < words.length; i++) {
+    if (!VOICE.has(words[i].word) && !NARRATES(words[i].word)) continue
+    const t = turn(words, i, first, last)
+    last = t
+    i = t.at - 1
+    if (!t.prophet) continue
+    heard = true
+    // His words run to the end of the sentence, or to a chain word that hands
+    // the hadith on; a verb inside them is a saying he quotes.
+    for (i = t.at; i < words.length && !NARRATES(words[i].word); i++) {
+      kinds[i] = 'said'
+      if (END.test(words[i].raw)) break
+    }
+  }
+  if (!heard) for (let i = first; i < words.length; i++) kinds[i] = 'said'
+  const out = []
+  words.forEach((w, i) => {
+    const start = i ? w.at : 0
+    const end = words[i + 1]?.at ?? clean.length
+    const last = out[out.length - 1]
+    if (last?.kind === kinds[i]) last.text += clean.slice(start, end)
+    else out.push({ kind: kinds[i], open: '', text: clean.slice(start, end), close: '' })
+  })
+  return out
+}
+
+/**
+ * One turn: the verb at `verb`, who says it, and where the words start (`at`).
+ * Only a verb of one man (قال، يقول; never قالت or قالوا) can be his. He says it when he is named just before the verb (أن النبي صلى الله
+ * عليه وسلم قال) or just after it (قال رسول الله), or when a bare قال / يقول
+ * names no one else, past the narrator's own opening verb, once he is in the
+ * scene and not answering someone else named in the `last` turn, and its words
+ * do not call on him (يا رسول الله).
+ */
+function turn(words, verb, first, last) {
+  const word = (i) => words[i]?.raw.replace(/[^\p{L}\p{M}]+$/u, '') ?? ''
+  let at = verb + 1
+  // قال أنس / قال أبو هريرة: a past verb's subject comes next, in the raf'.
+  let back = verb
+  while (back > 0 && SPEAKER.has(words[back - 1].word) && !END.test(words[back - 1].raw)) back--
+  const past = PAST.has(words[verb].word) && !words.slice(back, verb).some((w) => PROPHET.has(w.word))
+  if (past && KUNYA.has(words[at]?.word)) at += 2
+  else if (past && NAME.test(word(at))) at++
+  const named = at > verb + 1
+  while (at < words.length && (SPEAKER.has(words[at].word) || !LETTER.test(words[at].raw) || KIN_OF.has(words[at - 1].word))) at++
+  // جاء رجل إلى النبي فقال: a Prophet the scene moves toward is not the one speaking.
+  const toHim = TO_HIM.has(words[back - 1]?.word)
+  const near = [...(toHim ? [] : words.slice(back, verb)), ...words.slice(verb + 1, at)]
+  const calls = words.slice(at, at + 4).some((w, k, run) => CALL.has(w.word) && PROPHET.has(run[k + 1]?.word))
+  // فلقيني أبو بكرة فقال، فجاءه رجلٌ فقال: someone named just before a bare verb says it.
+  const namedBefore = KUNYA.has(words[back - 2]?.word) || (/^[فو]/.test(words[verb].raw) && NAME.test(word(back - 1)))
+  // A bare verb is his only once he is in the scene, and not as the answer to
+  // someone else just named (فقال أيوب ... قال).
+  const inScene = words.slice(Math.max(0, first - CHAIN_TAIL), verb).some((w) => PROPHET.has(w.word))
+  const answers = last && !last.prophet && last.named
+  const bareHe = HE.has(words[verb].word) && !named && !namedBefore && verb > first + 1 && inScene && !answers
+  return { verb, at, named: named || namedBefore, prophet: HE.has(words[verb].word) && (near.some((w) => PROPHET.has(w.word)) || bareHe) && !calls }
 }
 
 // "Narrated Abu Huraira:", "It is narrated on the authority of X that ... said:"

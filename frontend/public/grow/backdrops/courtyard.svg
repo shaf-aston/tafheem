@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" preserveAspectRatio="xMidYMid slice">
+  <!-- A courtyard's arcade, drawn as a faded repeat of pointed arches: a placeholder until a real picture is chosen. Lines only, no photo, nobody in it. -->
+  <defs>
+    <pattern id="arches" width="120" height="160" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#8a8a8a" stroke-width="1.5">
+        <path d="M10 160 V70 Q10 20 60 14 Q110 20 110 70 V160" />
+        <path d="M26 160 V76 Q26 36 60 30 Q94 36 94 76 V160" opacity="0.6" />
+        <circle cx="60" cy="52" r="7" opacity="0.5" />
+      </g>
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <mask id="soft"><rect width="480" height="320" fill="url(#fade)" /></mask>
+  </defs>
+  <rect width="480" height="320" fill="url(#arches)" mask="url(#soft)" />
+</svg>

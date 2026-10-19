@@ -1,0 +1,177 @@
+{
+  "id": "full-salah",
+  "tier": "intermediate",
+  "title": "The full salah, in order",
+  "arabic": "الصلاة كاملة",
+  "groups": [
+    {
+      "id": "fs-rakah-1",
+      "title": "First rak'ah",
+      "arabic": "الركعة الأولى",
+      "icon": "stand",
+      "steps": [
+        "fs-open",
+        "fs-aloud",
+        "fs-bow",
+        "fs-sujud"
+      ]
+    },
+    {
+      "id": "fs-rakah-2",
+      "title": "Second rak'ah",
+      "arabic": "الركعة الثانية",
+      "icon": "stand",
+      "steps": [
+        "fs-rise",
+        "fs-second",
+        "fs-first-sitting"
+      ]
+    },
+    {
+      "id": "fs-end",
+      "title": "Last rak'ahs",
+      "arabic": "الركعتان الأخريان والقعدة",
+      "icon": "bow",
+      "steps": [
+        "fs-last-two",
+        "fs-last-sitting",
+        "fs-dua",
+        "fs-salam"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "fs-open",
+      "title": "Open and recite",
+      "kind": "action",
+      "instruction": "Say the takbir with your hands raised and fold them. Then thana', ta'awwudh, Bismillah, the Fatiha and Amin, and a surah with it.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ثم يقرأ فاتحة الكتاب وسورة معها أو ثلاث آيات من أي سورة شاء",
+        "english": "Then he reads the Fatiha and a surah with it, or three ayahs from any surah he wishes."
+      }
+    },
+    {
+      "id": "fs-aloud",
+      "title": "Aloud or quietly",
+      "kind": "action",
+      "instruction": "As imam, recite aloud in Fajr and in the first two rak'ahs of Maghrib and 'Isha. After the first two rak'ahs, recite quietly.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ويجهز بالقرءة في الفجر والركعتين الأوليين من المغرب والعشاء إن كان إماما ويخفي القراءة فيما بعد الأوليين",
+        "english": "He recites aloud in Fajr and in the first two rak'ahs of Maghrib and 'Isha if he is the imam, and recites quietly after the first two."
+      }
+    },
+    {
+      "id": "fs-bow",
+      "title": "Bow and rise",
+      "kind": "action",
+      "instruction": "Say the takbir and bow. Say Subhana Rabbiya al-'Azim, then rise.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ثم يكبر ويركع",
+        "english": "Then he says the takbir and bows."
+      }
+    },
+    {
+      "id": "fs-sujud",
+      "title": "Two prostrations",
+      "kind": "action",
+      "instruction": "Prostrate and say Subhana Rabbiya al-A'la. Rise with the takbir and sit calmly, then say the takbir and prostrate again.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ثم يرفع رأسه ويكبر فإذا اطمأن جالسا كبر وسجد",
+        "english": "Then he raises his head and says the takbir; when he is settled sitting, he says the takbir and prostrates."
+      }
+    },
+    {
+      "id": "fs-rise",
+      "title": "Rise for the second rak'ah",
+      "kind": "action",
+      "instruction": "Say the takbir and stand on the fronts of your feet, without sitting and without leaning on your hands.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "فإذا اطمأن ساجدا كبر واستوى قائما على صدور قدميه ولا يقعد ولا يعتمد بيديه على الأرض",
+        "english": "When he is settled in prostration he says the takbir and stands on the fronts of his feet; he does not sit and does not lean on his hands on the ground."
+      }
+    },
+    {
+      "id": "fs-second",
+      "title": "The second rak'ah",
+      "kind": "action",
+      "instruction": "Pray it as the first, but with no thana', no ta'awwudh, and hands raised only at the opening takbir.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ويفعل في الركعة الثانية مثل ما فعل في الأولى إلا أنه لا يستفتح ولا يتعوذ ولا يرفع يديه إلا في التكبير الأولى",
+        "english": "He does in the second rak'ah what he did in the first, except that he does not open with the thana', does not seek refuge, and does not raise his hands except at the first takbir."
+      }
+    },
+    {
+      "id": "fs-first-sitting",
+      "title": "First sitting",
+      "kind": "action",
+      "instruction": "Sit as you learnt and say the tashahhud, adding nothing to it.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ولا يزيد على هذا في القعدة الأولى",
+        "english": "He adds nothing to this in the first sitting."
+      }
+    },
+    {
+      "id": "fs-last-two",
+      "title": "The last rak'ahs",
+      "kind": "action",
+      "instruction": "In the last two rak'ahs recite only the Fatiha.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ويقرأ في الركعتين الأخريين الكتاب خاصة",
+        "english": "He reads only the Fatiha in the last two rak'ahs."
+      }
+    },
+    {
+      "id": "fs-last-sitting",
+      "title": "Last sitting",
+      "kind": "action",
+      "instruction": "Sit as in the first sitting, say the tashahhud and send prayers on the Prophet ﷺ.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "فإذا جلس في آخر الصلاة جلس كما في الأولى وتشهد وصلى على النبي صلى الله عليه وسلم",
+        "english": "When he sits at the end of the prayer he sits as in the first, says the tashahhud, and sends prayers on the Prophet ﷺ."
+      }
+    },
+    {
+      "id": "fs-dua",
+      "title": "Ask Allah",
+      "kind": "action",
+      "instruction": "Ask with words like the Qur'an's or the du'as handed down, never with words like everyday speech.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ودعا بما شاء بما يشبه ألفاظ القرآن والأدعيه المأثورة ولا يدعو بما يشبه كلام الناس",
+        "english": "He asks for what he wishes, with words like those of the Qur'an and the handed-down du'as, and does not ask with words like people's speech."
+      }
+    },
+    {
+      "id": "fs-salam",
+      "title": "Give the salam",
+      "kind": "action",
+      "instruction": "Say the closing salam to your right, then the same to your left.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ثم يسلم عن يمينه فيقول: السلام عليكم ورحمة الله وعن يساره مثل ذلك",
+        "english": "Then he gives salam to his right, saying “as-salamu 'alaykum wa rahmatullah”, and to his left the same."
+      }
+    }
+  ]
+}

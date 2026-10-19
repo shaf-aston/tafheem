@@ -3,7 +3,8 @@
  * `phone: 'more'` hides it on phones and lists it in the More sheet instead.
  * Moving a tool between the bar and More is one word here. What a tool does
  * is App's (`run` names its handler), so this file stays data. `done` is what a
- * tool shows for a moment after it worked.
+ * tool shows for a moment after it worked; `armed`, what it shows while waiting
+ * for the second click that lets it act.
  */
 export const TOOLS = [
   {
@@ -13,6 +14,10 @@ export const TOOLS = [
     hint: 'Start over forgets where you have been, your recent searches, your answers and your Grow steps.',
     paths: ['M3 12a9 9 0 1 0 3-6.7', 'M3 4v5h5'],
     phone: 'more',
+    danger: true,
+    // It forgets everything, so the first click only asks: a second within a
+    // few seconds goes ahead. One click is the click made on the way to Map.
+    armed: { label: 'Sure? Start over', aria: 'Press again to start over, or wait and nothing happens' },
   },
   {
     id: 'copyLink',

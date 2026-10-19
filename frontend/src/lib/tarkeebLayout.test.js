@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cells, fold, hiddenWords, measure, rows, threadSpans, tones } from './tarkeebLayout'
+import { cells, fold, foldRows, hiddenWords, measure, rows, threadSpans, tones } from './tarkeebLayout'
 
 /** Shaped exactly as the API sends it: empty arrays, not missing keys. */
 const AYAH = {
@@ -60,6 +60,24 @@ describe('rows', () => {
     // الْحَمْدُ is only named at the top, so it threads through the row below it.
     expect(laid[0].threads).toEqual([0])
     expect(laid[1].threads).toEqual([])
+  })
+})
+
+describe('foldRows', () => {
+  const levels = [1, 2, 3, 4, 5, 6].map((level) => ({ level, groups: [], threads: [] }))
+
+  it('keeps the rows nearest the words and counts the rest', () => {
+    const { shown, more } = foldRows(levels, 4)
+    expect(shown.map(({ level }) => level)).toEqual([1, 2, 3, 4])
+    expect(more).toBe(2)
+  })
+
+  it('folds nothing from a chart that already fits', () => {
+    expect(foldRows(levels.slice(0, 3), 4)).toEqual({ shown: levels.slice(0, 3), more: 0 })
+  })
+
+  it('shows every row when asked to keep them all', () => {
+    expect(foldRows(levels, Infinity)).toEqual({ shown: levels, more: 0 })
   })
 })
 

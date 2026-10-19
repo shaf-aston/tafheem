@@ -25,7 +25,8 @@ def book_pages() -> list[tuple[str, int, Path]]:
     found = []
     for file in sorted(book_path("", 0).parent.glob("*.html.gz")):
         collection, _, book = file.name.removesuffix(".html.gz").rpartition("-")
-        found.append((collection, int(book), file))
+        if book.isdigit():  # a book the site names rather than numbers (an introduction) holds no chains to place
+            found.append((collection, int(book), file))
     return found
 
 

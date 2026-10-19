@@ -139,6 +139,7 @@ def test_a_command_moved_to_kasra_is_still_built_on_the_sukun():
 def test_the_light_lakin_joins_and_the_shadda_one_is_the_inna_sister():
     from backend.services.syntax.facts import is_light
     assert is_light({"typed": "لَكِنْ"})
+    assert is_light({"typed": "لَكِنِ"})  # the sukun moved to a kasra before ال
     assert not is_light({"typed": "لَكِنَّ"})
     assert not is_light({"typed": "لكن"})  # untyped: the sentence decides
 

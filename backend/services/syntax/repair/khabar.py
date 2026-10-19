@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.syntax.facts import is_participle, typed_or_parsed_case, subject_link
+from backend.services.syntax.facts import is_participle, is_verb, typed_or_parsed_case, subject_link
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -30,3 +30,26 @@ def before_la(tokens: list[dict]) -> None:
                 and subject_link(token) and la["head"] == 0):
             token["head"], token["rel"] = 0, "---"
             la["head"], la["rel"] = token["id"], "PRD"
+
+
+def after_pointer(tokens: list[dict]) -> None:
+    """هَاتَانِ قِلَادَتَانِ، زَيْدٌ ضَارِبٌ: a نعت matches its noun in being definite (هذا الكتابُ،
+    زيدٌ الكريمُ), so an indefinite noun or adjective the parser hung as the صفة of a definite
+    word that opens the sentence (a pointer, a name, a word with ال) is the khabar, that word its mubtada.
+    Written over before the words are read."""
+    by_id = {t["id"]: t for t in tokens}
+    for token in tokens:
+        head = by_id.get(token["head"])
+        if (head and head["head"] == 0 and head["pos"] in ("NOM", "PROP") and not is_verb(head) and token["rel"] == "MOD"
+                and (head.get("pos_camel") in ("pron_dem", "noun_prop") or head.get("stt") == "d")
+                and token["id"] > head["id"] and token.get("pos_camel") in ("noun", "adj")
+                and _indefinite(token, tokens)
+                and not any(t["head"] == head["id"] and t["rel"] in ("PRD", "SBJ") for t in tokens)):
+            token["head"], token["rel"] = 0, "---"
+            head["head"], head["rel"] = token["id"], "SBJ"
+
+
+def _indefinite(token: dict, tokens: list[dict]) -> bool:
+    """Without ال: read so, or read as a مضاف with nothing added to it (الملاحون أقوياء), which it then is not."""
+    return token.get("stt") == "i" or (token.get("stt") == "c" and not any(
+        t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens))

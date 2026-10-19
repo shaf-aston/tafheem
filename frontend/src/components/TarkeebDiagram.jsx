@@ -9,81 +9,95 @@
  * the tree's shape, and nothing about position is stored in the data. Colours
  * come from theme.json as `--role-<tone>`; this file names no colour of its own.
  */
-import { Fragment, useCallback, useLayoutEffect, useMemo, useState } from 'react'
+import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../lib/arabicText'
 import { roleVar } from '../lib/roleColors'
-import { cells, fold, hiddenWords, rows, runs, threadSpans, tones } from '../lib/tarkeebLayout'
+import { GAP, cells, fold, foldRows, hiddenWords, rows, runs, threadSpans, tones } from '../lib/tarkeebLayout'
 import { useRail } from '../lib/useRail'
 
 import Tooltip from './ui/Tooltip'
 
-const NAME_COLUMN = '11rem'
+// Rows of names shown before the rest fold behind "more rows": every book example
+// fits in four; a long ayah's widest joins wait for a tap.
+const ROWS_SHOWN = 4
 
 /**
  * One brace, the row of names above it, and the name of the unit itself.
  *
- * The name normally sits on the brace's left, in the gutter column the grid
- * keeps for it. Only a group reaching the leftmost word has that gutter beside
- * it though: any other group's left is another group, so `atEdge` is false and
- * the name drops under its own brace instead of being drawn over the neighbour.
+ * Every name hangs under its own brace's stem, so it stays beside the words it
+ * names: the brace already says "these join", so no "=" or "+" says it again.
  */
-function Bracket({ node, atEdge, style }) {
+function Bracket({ node, style }) {
   // roleVar is the word grid's own lookup, so one role is one colour in both.
-  const name = node.label && (
-    <div className="tk-name">
-      {/* RTL reading order: the brace, then "=", then the name on the left. */}
-      <span className="tk-eq" aria-hidden="true">=</span>
-      <span>{node.label}</span>
-    </div>
-  )
 
   return (
     <div className="tk-group" data-level={node.level} style={style}>
       {/* each name over its own words' columns: the row is a subgrid of the chart's */}
       <div className="tk-roles">
         {cells(node).map((cell, index) => {
-          // one word holding several names (فعل + فاعل) forks to them, one line to each;
-          // names sharing several columns (فَ and the answer it ties) are read in order with a "+"
+          // one word holding several names (فعل، فاعل) forks to them, one line to each;
+          // names sharing several columns (فَ and the answer it ties) stand side by side
           const forked = cell.roles.length > 1 && cell.from === cell.to
           return (
             <div
               key={index}
-              className={`tk-cell${index > 0 ? ' tk-after' : ''}${forked ? ' tk-forked' : ''}`}
+              className={`tk-cell${forked ? ' tk-forked' : ''}`}
               style={{ gridColumn: `${cell.from - node.from + 1} / ${cell.to - node.from + 2}` }}
             >
+              {/* the line down from the word to the split: its own row, as tall as the row has room */}
+              {forked && <span className="tk-stem" style={{ gridColumn: `1 / ${cell.roles.length + 1}` }} aria-hidden="true" />}
               {cell.roles.map((piece, k) => (
-                <Fragment key={k}>
-                  {k > 0 && !forked && <span className="tk-plus" aria-hidden="true">+</span>}
-                  <div className="tk-branch">
+                <div className="tk-branch" key={k}>
                     <div
                       className={`tk-role${piece.gap ? ' tk-gap' : ''}${piece.raw_wording ? ' tk-raw' : ''}`}
                       style={{ '--tone': roleVar(piece.tone) }}
                     >
                       {/* Tooltip is a no-op without text, so every role can pass through
                           it, only the roles with a `detail` end up hoverable. */}
-                      <Tooltip text={piece.detail}>{piece.role}</Tooltip>
+                      {/* a word no rule named: the open mark the copied text writes too */}
+                      <Tooltip text={piece.gap ? 'No rule named this word' : piece.detail}>{piece.gap ? GAP : piece.role}</Tooltip>
                     </div>
                     {/* the pronoun a doer stands for, which is not written anywhere */}
                     {piece.pronoun && <div className="tk-says">{piece.pronoun}</div>}
-                  </div>
-                </Fragment>
+                </div>
               ))}
             </div>
           )
         })}
       </div>
-      <div className="tk-brace" style={{ '--tone': roleVar(node.tone) }}>{atEdge && name}</div>
-      {!atEdge && name}
+      <div className="tk-brace" style={{ '--tone': roleVar(node.tone) }} />
+      {node.label && <div className="tk-name" style={{ '--tone': roleVar(node.tone) }}>{node.label}</div>}
     </div>
   )
+}
+
+/**
+ * How much the chart shrinks to fit its box, 1 when it already fits. Read at
+ * full size: the stylesheet floors it at theme.json's arabic.chart-fit-min,
+ * and a chart still wider than that scrolls.
+ */
+function fitChart(view, chart) {
+  chart.style.removeProperty('--tk-fit')
+  chart.style.setProperty('--tk-fit', String(Math.min(1, view.clientWidth / chart.scrollWidth)))
+}
+
+/**
+ * Where a word's middle sits along the strip, in the strip's own
+ * scrolled pixels. Read off the screen rather than offsetLeft, which inside the
+ * shrunk chart counts unshrunk pixels and put every dot and jump off by the
+ * shrink.
+ */
+function along(view, word) {
+  const box = word.getBoundingClientRect()
+  return box.left - view.getBoundingClientRect().left + view.scrollLeft + box.width / 2
 }
 
 /** Where each written word sits along the strip, and whether it is in view: the dots. */
 function placeDots(view) {
   const width = view.scrollWidth
   return [...view.querySelectorAll('.tk-word')].map((word) => {
-    const middle = word.offsetLeft + word.offsetWidth / 2
+    const middle = along(view, word)
     return {
       left: (middle / width) * 100,
       on: middle >= view.scrollLeft && middle <= view.scrollLeft + view.clientWidth,
@@ -97,40 +111,59 @@ function placeDots(view) {
  * the words already cut into their pieces (فَـ إِذًا), `written` naming each piece's word.
  * `mode` is 'split' (a column per piece) or 'merged' (each written word whole); the
  * choice is made beside the chart's header (TarkeebTools), not on the chart.
+ * `whole` draws every row, for the larger view; otherwise the rows past
+ * ROWS_SHOWN wait behind a "more rows" button.
  */
-export default function TarkeebDiagram({ tarkeeb, mode = 'split' }) {
+export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false, onWord, glossOf }) {
   const { words, written, tree, unwritten } = tarkeeb
   const [dots, setDots] = useState([])
   const { strip, ends, measure, page } = useRail(`${words.join(' ')}|${mode}`)
+  const grid = useRef(null)
+  const [unfolded, setUnfolded] = useState(whole)
   const merged = useMemo(() => (tree ? fold({ words, written, tree }) : null), [words, written, tree])
   const settle = useCallback(() => {
     measure()
     if (strip.current) setDots(placeDots(strip.current))
   }, [measure, strip])
+  const refit = useCallback(() => {
+    const view = strip.current
+    if (!view || !grid.current) return
+    fitChart(view, grid.current)
+    view.scrollTo({ left: view.scrollWidth })
+    settle()
+  }, [strip, settle])
   // A diagram wider than its box opens on the sentence's first word, which is
   // on the right. The scroller itself is left-to-right, so left to itself it
   // opened on the last word, and on a phone that was all anyone saw.
   useLayoutEffect(() => {
+    refit()
+    document.fonts?.ready.then(refit)
+  }, [words, tree, mode, unfolded, refit])
+  // A box that changes width (a phone turned, a sidebar opened) fits again.
+  useEffect(() => {
     const view = strip.current
-    if (!view) return
-    view.scrollTo({ left: view.scrollWidth })
-    settle()
-    document.fonts?.ready.then(settle)
-  }, [words, tree, mode, strip, settle])
+    if (!view || typeof ResizeObserver === 'undefined') return undefined
+    let width = view.clientWidth
+    const watch = new ResizeObserver(() => {
+      if (view.clientWidth === width) return
+      width = view.clientWidth
+      refit()
+    })
+    watch.observe(view)
+    return () => watch.disconnect()
+  }, [strip, refit])
   if (!tree || !words.length) return null
 
   const shown = mode === 'merged' ? merged : tarkeeb
-  const levels = rows(shown.tree, shown.words.length)
+  const { shown: levels, more } = foldRows(rows(shown.tree, shown.words.length), unfolded ? Infinity : ROWS_SHOWN)
   const spans = runs(shown.words, shown.written)
   const hidden = hiddenWords(shown.tree)
   // each word's underline in its own name's colour, so the eye pairs them
   const tone = tones(shown.tree)
-  // the columns of a written word cut into pieces
-  const cut = new Set(spans.flatMap(({ from, to }) => (to > from ? Array.from({ length: to - from + 1 }, (_, k) => from + k) : [])))
   const goTo = (index) => {
     const view = strip.current
-    const word = view.querySelectorAll('.tk-word')[index]
-    view.scrollTo({ left: word.offsetLeft - (view.clientWidth - word.offsetWidth) / 2, behavior: 'smooth' })
+    const middle = along(view, view.querySelectorAll('.tk-word')[index])
+    view.scrollTo({ left: middle - view.clientWidth / 2, behavior: 'smooth' })
   }
 
   return (
@@ -161,33 +194,56 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split' }) {
       </button>
       <div ref={strip} onScroll={settle} className="tk-scroller" data-script={isQuranic(shown.words.join(' ')) ? 'quran' : undefined} tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>
         <div
+          ref={grid}
           className="tk-grid"
           style={{
-            // a piece of a written word, and an unwritten word tucked by its verb, take only the width they need
-            gridTemplateColumns: `${shown.words.map((_, index) => (cut.has(index) || hidden.has(index) ? 'max-content' : 'minmax(max-content, 1fr)')).join(' ')} ${NAME_COLUMN}`,
+            // every word takes only the width it needs, so a long sentence pages less
+            gridTemplateColumns: `repeat(${shown.words.length}, max-content)`,
           }}
         >
-          {spans.map(({ from, to }) => {
+          {spans.map(({ from, to }, n) => {
             const word = shown.words[from]
             // The tree marks the leaves not written, so no text stands for "not written" here.
             const missing = hidden.has(from)
             // فَـ لْـ يَصُمْهُ: one written word drawn across its pieces' columns, each piece
             // over its own name, the joining written as the tatweel in the text
             const pieces = shown.words.slice(from, to + 1)
+            // a written word opens its answer where it was tapped; `nth` counts only
+            // the words on the page, the order the analysis lists them in
+            const nth = spans.slice(0, n).filter((span) => !hidden.has(span.from)).length
+            const text = pieces.join('').replaceAll('ـ', '')
+            const open = (e) => onWord(text, nth, e.currentTarget)
+            const gloss = !missing && glossOf?.(nth, text)
+            // on hover: the word and its English; before the English is in, the word and
+            // that a tap opens its meaning and the dictionary
+            const hover = !missing && onWord && `${text} · ${gloss || 'tap for its meaning'}`
             return (
               <div
                 className={`tk-word${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
                 key={`word-${from}`}
                 style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone[from]) }}
+                data-gloss={hover || undefined}
+                {...(onWord && !missing && {
+                  role: 'button',
+                  tabIndex: 0,
+                  'aria-label': gloss ? `${text}: ${gloss}` : text,
+                  onClick: open,
+                  onKeyDown: (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      open(e)
+                    }
+                  },
+                })}
               >
                 {to > from ? (
-                  pieces.map((text, k) => {
+                  pieces.map((piece, k) => {
                     // each piece underlined in its own name's colour; وَ joins nothing after it,
                     // so it stands apart, فَـ and لْـ end in the tatweel that joins them to the next piece.
-                    const joins = k < pieces.length - 1 && joinsOn(text)
+                    const joins = k < pieces.length - 1 && joinsOn(piece)
                     return (
                       <span key={k} className="tk-cut" style={{ gridColumn: k + 1, '--tone': roleVar(tone[from + k]) }}>
-                        <span className="tk-text">{seatSmallAlef(joins ? joinedOn(text) : text)}</span>
+                        <span className="tk-text">{seatSmallAlef(joins ? joinedOn(piece) : piece)}</span>
                       </span>
                     )
                   })
@@ -206,7 +262,6 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split' }) {
                 <Bracket
                   key={`${level}-${node.from}`}
                   node={node}
-                  atEdge={node.to === shown.words.length - 1}
                   style={{ gridRow: level + 1, gridColumn: `${node.from + 1} / ${node.to + 2}` }}
                 />
               ))}
@@ -227,6 +282,11 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split' }) {
         &#8250;
       </button>
       </div>
+      {more > 0 && (
+        <button type="button" className="tk-more press tap" onClick={() => setUnfolded(true)}>
+          <span aria-hidden="true">▸</span> {more} more {more === 1 ? 'row' : 'rows'}
+        </button>
+      )}
     </div>
   )
 }

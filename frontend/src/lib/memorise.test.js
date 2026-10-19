@@ -268,3 +268,61 @@ describe('a page said from memory', () => {
     expect(blanks.has('3:0')).toBe(true)
   })
 })
+
+describe('where a page ends', () => {
+  const line = (id, n) => ({ id, arabic: Array(n).fill('ك').join(' ') })
+
+  it('takes a line that lands exactly on the page size, and breaks at the next', () => {
+    // 5 + 5 is exactly 10: that page is full, not over.
+    const pages = pagesOf([line(1, 5), line(2, 5), line(3, 5)], 10)
+    expect(pages.map((p) => p.map((l) => l.id))).toEqual([[1, 2], [3]])
+  })
+
+  it('breaks one word past the page size once the page is half full', () => {
+    // 5 is half of 10, so a sixth word over is where the page closes.
+    expect(pagesOf([line(1, 5), line(2, 6)], 10).map((p) => p.length)).toEqual([1, 1])
+  })
+
+  it('keeps pulling lines in while the page is under half full, even past the size', () => {
+    expect(pagesOf([line(1, 4), line(2, 7)], 10).map((p) => p.length)).toEqual([2])
+  })
+})
+
+describe('keeping gaps apart', () => {
+  const page = [{ id: 1, arabic: Array.from({ length: 21 }, (_, i) => `ك${i}`).join(' ') }]
+  const touching = (blanks) => [...blanks].some((key) => {
+    const [l, w] = key.split(':').map(Number)
+    return blanks.has(`${l}:${w + 1}`) || blanks.has(`${l}:${w - 1}`)
+  })
+
+  it('never puts two gaps side by side just below the share where the rule steps aside', () => {
+    for (let seed = 1; seed <= 300; seed++) {
+      const blanks = blanksFor(page, 0.49, makeRandom(seed))
+      expect(blanks.size).toBeGreaterThan(0)
+      expect(touching(blanks), `seed ${seed}`).toBe(false)
+    }
+  })
+
+  it('steps aside at that share, hiding all it was asked for even if two touch', () => {
+    const runs = Array.from({ length: 300 }, (_, seed) => blanksFor(page, 0.5, makeRandom(seed + 1)))
+    // 20 words can be hidden on this line; half of them is 10, every time.
+    for (const blanks of runs) expect(blanks.size).toBe(10)
+    expect(runs.some(touching)).toBe(true)
+  })
+})
+
+describe('which near misses a gap offers first', () => {
+  it('offers the word sharing more of the answer\'s opening over one sharing less', () => {
+    for (let seed = 1; seed <= 10; seed++) {
+      const options = optionsFor('كتبوا', ['قلم', 'كتاب', 'كتبت'], makeRandom(seed), 2)
+      expect(options.sort()).toEqual(['كتبت', 'كتبوا'].sort())
+    }
+  })
+
+  it('between equal openings, offers the one closer in length', () => {
+    for (let seed = 1; seed <= 10; seed++) {
+      const options = optionsFor('كتب', ['كتبوهم', 'كتبا'], makeRandom(seed), 2)
+      expect(options.sort()).toEqual(['كتب', 'كتبا'].sort())
+    }
+  })
+})

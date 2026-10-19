@@ -1,7 +1,7 @@
 /**
- * Grow: one step of a path, said once, and how it went, and where each step
- * stands on the map. Pure, so no React, no microphone and no network reach it;
- * GrowPanel and the map under it are the only callers.
+ * Grow: one step of a path, said once, and how it went. Pure, so no React, no
+ * microphone and no network reach it; the practice card (components/grow/Practice.jsx)
+ * is the only caller.
  *
  * Nothing about judging a word is decided here. Lining the words up is
  * follow.js's, weighing the ear's sureness is bySound's, and what each state
@@ -15,15 +15,11 @@
  *     different days (grow.json). One good run is a good run, not learnt.
  *     The one exception is a posture, which cannot be heard: the reader's
  *     own Done makes it learnt;
- *   - the score counts learnt steps and nothing else. Steps opened, steps
- *     tried, recitations that were nearly right: none of them are counted.
- */
+ * */
 import config from '../grow.json'
 import { sameSpokenWord } from './arabicText'
 import { CHECK, MISSED, SAID, WAITING, WRONG, bySound, follow, wordsHeard } from './follow'
-import { streakAt } from './mascot'
 import { wordsOf } from './memorise'
-import { moodFrom } from './mood'
 import { soundsTheSame } from './soundalike'
 import recite from '../recite.json'
 
@@ -121,105 +117,9 @@ export const daysOf = (record, stepId) => record[stepId]?.cleanDays.length ?? 0
 
 export const isLearnt = (record, stepId) => record[stepId]?.done === true || daysOf(record, stepId) >= config['clean-days']
 
-/** The record after the reader ticks a posture off: learnt at once, no days to count. */
-export const afterDone = (record, stepId) => ({ ...record, [stepId]: { tries: (record[stepId]?.tries ?? 0) + 1, cleanDays: [], done: true } })
-
-/**
- * Where a circle on the map stands, from the one record. `steps` is the single
- * step behind a step's circle, or the several behind a group's, and `open` is
- * whether its tier is open. Four answers, drawn as a lock, a seed, a sprout
- * and a flower:
- *   locked   its tier is not open yet
- *   open     ready, never tried
- *   started  tried or said clean once, not yet learnt
- *   learnt   every step said clean on enough different days
- */
-export const nodeState = (steps, record, open = true) => {
-  if (!open) return 'locked'
-  if (steps.length && steps.every((step) => isLearnt(record, step.id))) return 'learnt'
-  const started = (step) => (record[step.id]?.tries ?? 0) > 0 || daysOf(record, step.id) > 0
-  return steps.some(started) ? 'started' : 'open'
-}
-
-/** The tiers of grow.json, each with the paths that name it. */
-export const tiersOf = (tiers, paths = []) =>
-  tiers.map((tier) => ({ ...tier, paths: paths.filter((path) => path.tier === tier.id) }))
-
-const stepsOf = (tier) => tier.paths.flatMap((path) => path.steps)
-
-/** Learnt steps over all steps of every path. Only learnt counts. */
-export const score = (tiers, record) => {
-  const steps = tiers.flatMap(stepsOf)
-  return { learnt: steps.filter((step) => isLearnt(record, step.id)).length, total: steps.length }
-}
-
-/**
- * Whether tier `i` is open: it has a path, and the tier before it is open and
- * every step of it is learnt. The first tier is open as soon as it has a path.
- * A tier nobody has written yet is never open, however much is learnt before it.
- */
-export const unlocked = (tiers, i, record) =>
-  tiers[i].paths.length > 0 &&
-  (i === 0 || (unlocked(tiers, i - 1, record) && stepsOf(tiers[i - 1]).every((step) => isLearnt(record, step.id))))
-
-/**
- * The nodes of a tier's vine, each a group with its step objects. A tier with
- * paths uses the paths' own groups; one without shows its proposed topics as a
- * single locked group, so the road ahead is visible before it is built.
- */
-export const groupsOf = (tier) => {
-  if (!tier.paths.length) {
-    const steps = tier.proposed.map(({ about, ...one }) => ({ ...one, ayahs: [], meaning: about, proposed: true }))
-    return steps.length ? [{ id: `${tier.id}-proposed`, title: 'Steps', arabic: '', icon: 'lock', steps }] : []
-  }
-  return tier.paths.flatMap((path) => path.groups.map((group) => ({
-    ...group,
-    path: path.id,
-    steps: group.steps.map((id) => path.steps.find((step) => step.id === id)),
-  })))
-}
-
-/**
- * Everything the map draws, in one pass: each tier with whether it is open and
- * how much of it is learnt, its paths, and each path's groups with every step's
- * state. A group marked `alongside` runs through its whole path rather than
- * after the group before it, so it is kept apart for the map to draw beside.
- */
-export const mapOf = (tiers, record, next) => tiers.map((tier, i) => {
-  const open = unlocked(tiers, i, record)
-  const groups = groupsOf(tier).map((group) => {
-    const steps = group.steps.map((step) => ({ step, state: nodeState([step], record, open), now: step === next }))
-    return { group, steps, state: nodeState(group.steps, record, open), learnt: steps.filter((one) => one.state === 'learnt').length }
-  })
-  const paths = (tier.paths.length ? tier.paths : [{ id: tier.id, title: '', arabic: '' }]).map((path) => {
-    const own = groups.filter((one) => (one.group.path ?? tier.id) === path.id)
-    return { path, groups: own.filter((one) => !one.group.alongside), alongside: own.filter((one) => one.group.alongside) }
-  })
-  const learnt = groups.reduce((sum, one) => sum + one.learnt, 0)
-  const total = groups.reduce((sum, one) => sum + one.steps.length, 0)
-  return { tier, i, open, paths, learnt, total }
-})
-
 /**
  * Whether saying this step clean just now is the one that makes it learnt, so
  * the page can celebrate the moment and not every run after it.
  */
 export const becomesLearnt = (record, stepId, clean) =>
   !isLearnt(record, stepId) && isLearnt(afterRecitation(record, stepId, clean), stepId)
-
-/**
- * Qalam's reaction to a recitation: a right one is a nod, a wrong one a
- * droop, and a run of right ones in this visit is the hop. `streak` counts
- * right ones in a row, this one included.
- */
-export const reactionTo = (clean, streak) => moodFrom(clean && streak >= streakAt ? { streak } : { answer: clean ? 'correct' : 'wrong' })
-
-/** The step to work on next: the first not yet learnt in an open tier, else none. */
-export const upNext = (tiers, record) => {
-  for (let i = 0; i < tiers.length; i += 1) {
-    if (!unlocked(tiers, i, record)) return null
-    const step = stepsOf(tiers[i]).find((one) => !isLearnt(record, one.id))
-    if (step) return step
-  }
-  return null
-}

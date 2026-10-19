@@ -15,6 +15,7 @@ import EmptyState from '../ui/EmptyState'
 import { NarratorWhen } from './NarratorParts'
 import ErrorAlert from '../ui/ErrorAlert'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
+import LoadMore from '../ui/LoadMore'
 
 export default function NarratorList({ accent, onOpen }) {
   useOpenAtTop()
@@ -36,7 +37,7 @@ export default function NarratorList({ accent, onOpen }) {
 
       {isPending && <AnalyzerSkeleton />}
       {isError && <ErrorAlert title="Could not load the narrators" error={error} fallback="The narrators could not be reached." onRetry={refetch} />}
-      {first && !items.length && <EmptyState>No narrators are built yet.</EmptyState>}
+      {first && !items.length && <EmptyState>{generation ? 'No narrators of this generation are built yet.' : 'No narrators are built yet.'}</EmptyState>}
 
       {items.length > 0 && (
         <>
@@ -50,20 +51,13 @@ export default function NarratorList({ accent, onOpen }) {
                   className="lift press w-full h-full text-start px-4 py-3 space-y-1 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--c)] transition-colors"
                 >
                   <ArabicText as="span" size="base" className="block">{n.name_ar}</ArabicText>
-                  <NarratorWhen who={n} also={[`${n.hadith_count} hadith`]} />
+                  <NarratorWhen who={n} also={[`in ${n.hadith_count} of our hadith`]} />
                 </button>
               </li>
             ))}
           </ul>
           {hasNextPage && (
-            <button
-              type="button"
-              disabled={isFetchingNextPage}
-              onClick={() => fetchNextPage()}
-              className="press type-ui text-[var(--text-dim)] hover:text-[var(--text)] transition-colors"
-            >
-              {isFetchingNextPage ? 'Loading...' : `Show more (${first.total - items.length} left)`}
-            </button>
+            <LoadMore left={first.total - items.length} busy={isFetchingNextPage} onClick={fetchNextPage} />
           )}
         </>
       )}

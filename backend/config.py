@@ -67,8 +67,8 @@ class Nahw(BaseSettings):
     # See catib_onnx.py's docstring for sources. Relative paths resolve inside backend/.
     catib_parser_dir: str = "data/parser"
     # Adds the parser's own links, before and after the repairs, to each /api/analyze answer:
-    # how a wrong role is traced on the server, where the model lives. On while the parser fixes are checked live; set False after.
-    show_parse: bool = True
+    # how a wrong role is traced on the server, where the model lives. Off for visitors.
+    show_parse: bool = False
 
 
 class Quran(BaseSettings):
@@ -185,9 +185,10 @@ class Listening(BaseSettings):
     #   RECITATION_MODEL=data/models/finetune-ear/ear-tuned
     #   LISTENING_EARS=here          (else Groq answers first and the folder is only the fallback)
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
-    # Empty means no trial offered. A folder inside backend/ (data/models/finetune-ear/ear-tuned),
-    # loaded like recitation_model; a learner's "Trial" listening hears and checks with it alone.
-    recitation_trial_model: str = ""
+    # Empty means no trial offered. Loaded like recitation_model; a learner's "Trial" listening hears
+    # and checks with it alone. Written and pushed by scripts/finetune_ear/cloud.py --ship; each of
+    # its commits carries the scores that won (git log backend/config.py).
+    recitation_trial_model: str = "shafTheG/quran-ear@c0df8677a0f0175053ffb95fe69adc590c5ceb5f"
     # Search boxes are dictation, and the Qur'an model knows no other words:
     # "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ, "mercy" as مَسْكُوبُ, where base heard both.
     # A recording is a recitation only when its language is asked for by name.
@@ -302,8 +303,8 @@ class Daleel(BaseSettings):
 
     # Rebuilt by backend/scripts/build_daleel_index.py, never written while serving.
     daleel_index_path: str = "data/daleel.db"
-    # Hand-written, read once. See routers/grow.py.
-    grow_paths_path: str = "data/grow/paths.json"
+    # Hand-written: sources.json and worlds/<id>/, read once. See routers/grow.py.
+    grow_dir: str = "data/grow"
     # Past a handful of passages the list is scrolled, not read.
     daleel_result_limit: int = 12
     # A common word expands to its root family plus synonyms (hundreds for قول); capped to avoid a hundred-term search.
@@ -363,6 +364,8 @@ class Hadith(BaseSettings):
     rijal_list_max: int = Field(default=200, gt=0)
     # Hadith one narrator's page lists, all of them behind "Show all".
     rijal_hadith_limit: int = Field(default=5000, gt=0)
+    # Words of each one's text that list shows after the chain, as sunnah.com opens it.
+    rijal_opening_words: int = Field(default=12, gt=0)
     # Weak points on the chains: the rule and its words, and the file built from rijal.db with them (scripts/build_usul.py).
     usul_dir: str = "data/usul"
     usul_index_path: str = "data/usul/usul.db"

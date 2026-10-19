@@ -2,13 +2,11 @@
    Tailwind can't express — staggered rise-in and :hover transforms on SVG
    groups (which need transform-box set, so they can't be inline styles). */
 
-@keyframes pbs-rise {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: none; }
-}
-
 .pbs-rise {
-  animation: pbs-rise .5s cubic-bezier(.2, .7, .2, 1) backwards;
+  --rise-from: 0;
+  --rise-y: 12px;
+  --rise-scale: 1;
+  animation: rise-in calc(500ms * var(--motion-scale)) cubic-bezier(.2, .7, .2, 1) backwards;
   animation-delay: var(--d, 0ms);
 }
 
@@ -16,19 +14,19 @@
 .pbs-card {
   position: relative;
   overflow: hidden;
-  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+  transition: transform calc(300ms * var(--motion-scale)) cubic-bezier(.2, .7, .2, 1), box-shadow calc(300ms * var(--motion-scale)) ease;
 }
 .pbs-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
 .pbs-card .pbs-ghost {
   position: absolute; right: 6px; bottom: -20px;
   font-size: 4.5rem; font-weight: 900; line-height: 1;
-  opacity: .10; pointer-events: none; transition: opacity .3s ease, transform .3s ease;
+  opacity: .10; pointer-events: none; transition: opacity calc(300ms * var(--motion-scale)) ease, transform calc(300ms * var(--motion-scale)) ease;
 }
 .pbs-card:hover .pbs-ghost { opacity: .14; transform: translate(-2px, -3px); }
 .pbs-card .pbs-go {
   position: absolute; top: 12px; left: 12px;
   opacity: 0; transform: translateX(6px);
-  transition: opacity .3s ease, transform .3s ease;
+  transition: opacity calc(300ms * var(--motion-scale)) ease, transform calc(300ms * var(--motion-scale)) ease;
 }
 .pbs-card:hover .pbs-go { opacity: 1; transform: none; }
 
@@ -36,7 +34,7 @@
 .pbs-kid, .pbs-branch {
   transform-box: fill-box;
   transform-origin: center;
-  transition: transform .25s cubic-bezier(.2, .7, .2, 1);
+  transition: transform calc(250ms * var(--motion-scale)) cubic-bezier(.2, .7, .2, 1);
 }
 .pbs-kid:hover { transform: translateY(-2px) scale(1.035); }
 .pbs-branch:hover { transform: scale(1.03); }

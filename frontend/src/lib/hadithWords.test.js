@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { CHAIN, chainLinks, hadithKey, narrated, printedBy, saying, termOf } from './hadithWords'
+import { CHAIN, chainLinks, hadithKey, narrated, printedBy, saying, spoken, termOf } from './hadithWords'
 
 // The said words alone, without the marks around them.
 const said = (text) => saying(text).filter((s) => s.kind === 'said').map((s) => s.text)
@@ -16,9 +16,36 @@ describe('saying', () => {
     ])
   })
 
+  it('closes an Arabic mark that has a space before it and a full stop after (Bukhari 59)', () => {
+    const text = 'قَالَ ‏"‏ أَيْنَ السَّائِلُ ‏"‏‏.‏ قَالَ هَا أَنَا ‏.‏ قَالَ ‏"‏ فَإِذَا ضُيِّعَتِ الأَمَانَةُ ‏"‏‏.‏'
+    expect(said(text)).toEqual([' أَيْنَ السَّائِلُ ', ' فَإِذَا ضُيِّعَتِ الأَمَانَةُ '])
+  })
+
   it('reads the Arabic mark with its direction marks around it', () => {
     expect(said('قَالَ ‏"‏ إِنَّ أَحَدَكُمْ ‏"‏ .')).toEqual([' إِنَّ أَحَدَكُمْ '])
     expect(said('قَالَ «بِهَذَا أُمِرْتُ» . فَقَالَ')).toEqual(['بِهَذَا أُمِرْتُ'])
+  })
+
+  it('closes an Arabic quote whose mark has a space before it and a full stop after', () => {
+    // Bukhari 59: the Prophet's words are quoted, the Bedouin's are not.
+    const text = 'قَالَ \u200f"\u200f أَيْنَ السَّائِلُ \u200f"\u200f\u200f.\u200f قَالَ هَا أَنَا\u200f.\u200f قَالَ \u200f"\u200f فَانْتَظِرِ السَّاعَةَ \u200f"\u200f\u200f.\u200f'
+    const kinds = saying(text).map((s) => [s.kind, s.text.trim()])
+    expect(kinds).toEqual([
+      ['told', 'قَالَ'], ['said', 'أَيْنَ السَّائِلُ'], ['told', '. قَالَ هَا أَنَا. قَالَ'], ['said', 'فَانْتَظِرِ السَّاعَةَ'], ['told', '.'],
+    ])
+  })
+
+  it('closes an Arabic quote whose mark has a space before it and an Arabic comma after', () => {
+    // Bukhari 4372: "release Thumama", then the telling goes on.
+    const text = 'فَقَالَ " أَطْلِقُوا ثُمَامَةَ "، فَانْطَلَقَ إِلَى نَخْلٍ'
+    const kinds = saying(text).map((s) => [s.kind, s.text.trim()])
+    expect(kinds).toEqual([['told', 'فَقَالَ'], ['said', 'أَطْلِقُوا ثُمَامَةَ'], ['told', '، فَانْطَلَقَ إِلَى نَخْلٍ']])
+  })
+
+  it('reads a single mark after an abbreviated "b." as the ʿayn of a name', () => {
+    // Abu Dawud 169: ‘Uqbah b. ‘Amir ... b.’Amir is a name, not a quote from the first ‘ to here.
+    const text = '‘Uqbah b. ‘Amir said: We served ourselves. Narrated on the authority of ‘Uqbah b.’Amir'
+    expect(saying(text).map((s) => s.kind)).toEqual(['plain'])
   })
 
   it('claims nothing when the book marked nothing', () => {
@@ -233,5 +260,53 @@ describe('chainLinks', () => {
 
   it('has nothing to draw for no chain', () => {
     expect(chainLinks('')).toEqual({ main: [], branches: [] })
+  })
+})
+
+describe('spoken', () => {
+  const joined = (spans) => spans.map((s) => s.open + s.text + s.close).join('')
+  const said = (spans) => spans.filter((s) => s.kind === 'said').map((s) => s.text.trim()).join(' | ')
+  const read = (chain, body) => spoken(chain + body, { from: chain.length })
+  const chain = 'حَدَّثَنَا مَالِكٌ، عَنْ نَافِعٍ، '
+
+  it('draws the Prophet\'s words after قال رسول الله, and gives the text back whole', () => {
+    const body = 'قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم لاَ يُؤْمِنُ أَحَدُكُمْ.'
+    expect(said(read(chain, body))).toBe('لاَ يُؤْمِنُ أَحَدُكُمْ.')
+    expect(joined(read(chain, body))).toBe(chain + body)
+  })
+
+  it('knows him named before the verb (أن النبي صلى الله عليه وسلم قال)', () => {
+    expect(said(read(chain, 'أَنَّ النَّبِيَّ صلى الله عليه وسلم قَالَ صَلُّوا.'))).toBe('صَلُّوا.')
+  })
+
+  it('leaves the scene told, and a question put to him (يا رسول الله) his listener\'s', () => {
+    const body = 'جَاءَ رَجُلٌ إِلَى النَّبِيِّ صلى الله عليه وسلم فَقَالَ يَا رَسُولَ اللَّهِ مَا الإِيمَانُ؟ قَالَ أَنْ تُؤْمِنَ بِاللَّهِ. فَانْصَرَفَ'
+    expect(said(read(chain, body))).toBe('أَنْ تُؤْمِنَ بِاللَّهِ.')
+  })
+
+  it('gives a named speaker his own words, not the Prophet\'s', () => {
+    const body = 'أَنَّ النَّبِيَّ صلى الله عليه وسلم صَلَّى. فَقَالَ أَيُّوبُ لَعَلَّهُ. قَالَ عَسَى. ثُمَّ قَالَ النَّبِيُّ صلى الله عليه وسلم ارْجِعُوا.'
+    expect(said(read(chain, body))).toBe('ارْجِعُوا.')
+  })
+
+  it('draws the whole body of a hadith of what was done, the chain alone told', () => {
+    const spans = read(chain, 'كَانَ النَّبِيُّ صلى الله عليه وسلم يُصَلِّي')
+    expect(spans.map((s) => s.kind)).toEqual(['told', 'said'])
+    expect(said(spans)).toBe('كَانَ النَّبِيُّ صلى الله عليه وسلم يُصَلِّي')
+  })
+
+  it('counts the direction marks before the body', () => {
+    const text = '\u200fحَدَّثَنَا مَالِكٌ، كَانَ يُصَلِّي'
+    expect(said(spoken(text, { from: text.indexOf('كَانَ') }))).toBe('كَانَ يُصَلِّي')
+  })
+
+  it('keeps the book\'s marks, and claims nothing with no chain known', () => {
+    const marked = 'قَالَ "صَلُّوا"'
+    expect(spoken(marked, { from: 0 })).toEqual(saying(marked))
+    expect(spoken('كَانَ يُصَلِّي')).toEqual(saying('كَانَ يُصَلِّي'))
+  })
+
+  it('draws an unmarked English body whole, the narrator line aside', () => {
+    expect(spoken('The Prophet prayed two rak`at.', { from: 0 }).map((s) => s.kind)).toEqual(['said'])
   })
 })

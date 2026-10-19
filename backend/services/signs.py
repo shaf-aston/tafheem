@@ -9,12 +9,14 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, typed_passive
+from backend.services.harakat import SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, paused, typed_passive
 from backend.services.nahw_book import book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
 _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
+# the object pronouns a past verb can carry, longest first so هما is not read as ه
+OBJECT_PRONOUNS = ("هما", "كما", "هم", "هن", "ها", "كم", "كن", "ني", "نا", "ه", "ك")
 
 
 def sign(case: str | None, kind: str = "vowel") -> str | None:
@@ -31,6 +33,8 @@ def kind_of(tag: dict, annexed: bool) -> str:
     bare = strip_diacritics(word)
     marked = letters(word)
     if not has_tanween(word):
+        if bare.endswith(("ون", "ين")) and _attached_plural(bare):
+            return "attached_plural"  # عِشْرِينَ، أُولُو: they take its letters without being one
         if tag.get("number") == "p" and tag.get("gender") == "m" and bare.endswith(("ون", "ين")):
             return "sound_plural"
         if tag.get("number") == "d":
@@ -53,6 +57,11 @@ def kind_of(tag: dict, annexed: bool) -> str:
             SHADDA in marked[-1][1] or marked[-2][1] & {"َ", "ُ", SHADDA, SUKUN}):
         return "manqus"  # القَاضِي: a damma or kasra is too heavy for the ya, the fatha shows
     return "vowel"
+
+
+def _attached_plural(bare: str) -> bool:
+    """عشرون..تسعون، أولو، أهلون، سنون، أرضون، عالمون (teacher.json attached_plural)."""
+    return bare.removeprefix("ال")[:-2] in teacher_rules()["case_said"]["attached_plural"]
 
 
 def _has_pronoun(reading: dict) -> bool:
@@ -88,26 +97,54 @@ def _family_said(card: dict) -> dict | None:
     return {"named": named, "does": family["does"]}
 
 
+_PLACE = {"raf'": "u", "nasb": "a", "jarr": "i"}  # a case by its name, as case_said.place keys it
+
+
 def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | None:
     case = card.get("case")
     if case is None:
         return None
     if card.get("type") in ("harf", "damir"):
-        return sign("mabni")  # a particle or a pronoun never shows a case of its own
+        # a particle or a pronoun never shows a case of its own, only what it is built on (إِنَّ، لَمْ، فِي)
+        return _built(ending) + _moved(card, after) if (ending := _typed_ending(_unmoved(card, after))) else sign("mabni")
     kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
-        on = teacher_rules()["case_said"]["la_jins_on"]
-        return _built(on.get(kind, on["vowel"]))
-    if case == "mabni" and (ending := _typed_ending(card["word"])):
-        return _built(ending)  # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter
+        said = teacher_rules()["case_said"]
+        on = said["la_jins_on"]
+        # built, yet it stands where nasb would be: مبني على الفتح في محل نصب
+        place = said["in_place"].format(place=said["place"][_PLACE[case]])
+        return f"{_built(on.get(kind, on['vowel']))} {place}"
+    if case == "mabni" and (ending := _typed_ending(_unmoved(card, after))):
+        return _built(ending) + _moved(card, after)  # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter
     return sign(case, "vowel" if case == "mabni" else kind)
+
+
+def _unmoved(card: dict, after: dict | None) -> str:
+    """The word as built: مَنِ ائْتَمَنَكَ is مَنْ, its kasra only meets the sakin after it
+    (التقاء الساكنين). A kasra the word is built on stays (هَؤُلَاءِ الرِّجَالُ): its own
+    pattern, as the morphology reads it, ends on a sukun only in the first case. A particle's
+    pattern leaves a sakin end bare (عَنْ is 1َ2), as no case ever moves it."""
+    word = card["word"]
+    own = (card.get("camel") or {}).get("pattern") or ""
+    sakin = own.endswith(SUKUN) or (card.get("type") == "harf" and own[-1:].isdigit())
+    return paused(word, (after or {}).get("word", "")) if sakin else word
+
+
+def _moved(card: dict, after: dict | None) -> str:
+    """مَنِ ائْتَمَنَكَ، عَنِ ابْنِ: the sukun it is built on shows as a kasra, said so."""
+    return teacher_rules()["case_said"]["moved_to_meet"] if _unmoved(card, after) != card["word"] else ""
 
 
 def _typed_ending(word: str) -> str | None:
     marked = letters(word)
     on = teacher_rules()["case_said"]["vowel_on"]
-    return next((on[m] for m in marked[-1][1] if m in on), None) if marked else None
+    if not marked:
+        return None
+    letter, marks = marked[-1]
+    if not marks and letter in "اوىي" and len(marked) > 1:
+        return on["ْ"]  # فِي، إِلَى، هَذَا: a long letter carries no vowel, it is built on the sukun
+    return next((on[m] for m in marks if m in on), None)
 
 
 def _after_la_jins(card: dict, before: dict | None, after: dict | None) -> bool:
@@ -150,7 +187,14 @@ def _built_on(card: dict, aspect: str) -> str | None:
     said = teacher_rules()["case_said"]
     word = card["word"]
     if aspect == "p":
-        return _past_ending(word)
+        # رَمَيْتُهُ، رَمَاهُ: the verb ends before its object pronoun, so read it without the pronoun
+        verb = _without_object(word) if _has_pronoun(card["camel"]) else word
+        bare = strip_diacritics(verb)
+        # نَادَى، دَعَا: the fatha is there but an alef cannot carry it, so it is implied;
+        # رَوَيْنَاهُ، رَمَيَاهُ: an alef after a doer's pronoun (نا، ا) is the pronoun's, not the verb's
+        alone = card["camel"].get("person") == "3" and card["camel"].get("number") == "s"
+        alef = alone and (bare.endswith("ى") or (bare.endswith("ا") and card["camel"].get("weak_last")))
+        return said["past_on_alef"] if alef else _past_ending(verb)  # رَوَاهُ: one doer, so its وا is no plural's
     nun = build_nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show
@@ -178,6 +222,14 @@ def _present_sign(card: dict, case: str) -> str | None:
 
 def _dropped_weak(card: dict) -> bool:
     return drops_weak(card["camel"]["base"], card["camel"].get("weak_last"))
+
+
+def _without_object(word: str) -> str:
+    """The verb with its object pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ."""
+    bare = strip_diacritics(word)
+    pronoun = next((p for p in OBJECT_PRONOUNS if bare.endswith(p) and len(bare) > len(p) + 1), "")
+    marked = letters(word)[:len(bare) - len(pronoun)]
+    return "".join(letter + "".join(sorted(marks)) for letter, marks in marked)
 
 
 def _past_ending(word: str) -> str:

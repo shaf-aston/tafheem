@@ -47,6 +47,16 @@ describe('buildIraabExportText', () => {
     expect(text).toContain('  أمس = ؟')
   })
 
+  it('leaves a group the chart does not name unnamed, not an open mark', () => {
+    // وَعَمْرٌو: one written word, its pieces named, the word itself not a unit with a name
+    const tree = { label: 'جملة', children: [
+      { word: 0, role: 'فاعل', children: [] },
+      { word: null, children: [{ word: 1, role: 'حرف عطف', children: [] }, { word: 2, role: 'معطوف', children: [] }] }] }
+    const text = buildIraabExportText({ sentence: '', words: [], tree: { words: ['زَيْدٌ', 'وَ', 'عَمْرٌو'], written: [0, 1, 1], tree } })
+    expect(text).toMatch(/^ {2}وَعَمْرٌو$/m)
+    expect(text).not.toContain('؟')
+  })
+
   it('prints the pieces of one written word joined, as it is written', () => {
     const tree = { label: 'جملة', children: [
       { word: 0, role: 'حرف عطف', children: [] }, { word: 1, role: 'فعل', children: [] }, { word: 2, role: 'فاعل', children: [] }] }

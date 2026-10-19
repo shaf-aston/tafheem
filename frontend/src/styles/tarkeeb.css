@@ -1,17 +1,20 @@
 /* ── The tarkeeb diagram ────────────────────────────────────────────────────
    One grid. Word columns are equal, so a group covering 2 of 4 columns is
    exactly half the width, which is what lets every brace line up with the
-   words above it without measuring anything. A gutter column on the far left
-   holds each level's "= name". Classes are prefixed tk- because .word and
+   words above it without measuring anything. Each unit's name hangs under its
+   own brace. Classes are prefixed tk- because .word and
    .role above mean different things. */
 /* Sideways only, paged like the timeline's rail: round arrows (lib/useRail),
    no scrollbar, no faded edges. Setting overflow-x alone makes overflow-y auto
    as well, and the last brace's stem, hanging below the grid, drew a vertical
-   scrollbar; the padding holds that stem. */
+   scrollbar; the bottom padding holds that stem. The top padding holds the
+   marks stacked over a word's first letter (أُ, the dagger alif of هٰذا): the
+   clip is the scroller's edge, not the line box, so they were cut off. */
 .tk-frame { position: relative; }
 .tk-scroller {
   overflow-x: auto;
   overflow-y: hidden;
+  padding-top: 0.5rem;
   padding-bottom: 1rem;
   scrollbar-width: none;
 }
@@ -54,8 +57,14 @@
 .tk-grid {
   direction: rtl;
   display: grid;
-  width: 100%;
-  min-width: max-content;
+  /* Each column only as wide as its word or name: the chart packs tight and sits centred,
+     so more of a long sentence fits before it pages sideways. */
+  width: max-content;
+  min-width: 100%;
+  justify-content: center;
+  /* Shrunk as a whole to fit the box (TarkeebDiagram's fitChart), never past
+     the floor; --tk-fit is unset while the chart is measured at full size. */
+  zoom: max(var(--arabic-chart-fit-min), var(--tk-fit, 1));
   row-gap: var(--tk-gap);
   font-family: var(--font-arabic);
   /* One faint line for everything that only leads the eye: a word's thread down to its name,
@@ -71,7 +80,8 @@
   /* The chart rung: a sentence read word by word across a row of names. */
   font-size: calc(var(--arabic-chart-rem) * 1rem);
   line-height: 1.5;
-  padding: 0 0.6rem 0.2rem;
+  /* half the row gap each side: words stand as far apart as the rows of names do */
+  padding: 0 calc(var(--tk-gap) / 2) 0.2rem;
   border-bottom: 1.5px solid var(--tone, var(--border-hi));
   white-space: nowrap;
 }
@@ -82,7 +92,6 @@
 /* A piece is centred in its column, so the thread that leaves it and the name under it
    are on its middle. */
 .tk-cut { display: flex; align-items: flex-end; justify-content: center; }
-.tk-cut .tk-text { padding-inline: 0.3rem; }
 
 /* A name the Treebank supplied that the app has not checked against a book. It
    still reads, but it must not look as settled as a term that was checked. */
@@ -111,48 +120,56 @@
 }
 
 /* A group and its row of names share the chart's columns (subgrid), so each
-   name sits over its own words. */
+   name sits over its own words. The row of names takes whatever height the
+   chart's row has spare (a taller group beside it), so the braces of one row
+   stay level and a fork's stem can reach up to the row's top. */
 .tk-group {
   display: grid;
   grid-template-columns: subgrid;
+  grid-template-rows: 1fr;
   row-gap: 0.5rem;
-  align-content: end;
 }
 .tk-group > * { grid-column: 1 / -1; }
 .tk-group > .tk-brace { margin-inline: 0.35rem; }  /* two braces side by side never touch */
 .tk-roles { display: grid; grid-template-columns: subgrid; align-items: end; }
-.tk-cell { display: flex; justify-content: center; align-items: flex-end; position: relative; padding: 0 0.35rem; }
-/* the "+" between two names stands in the seam between their columns */
-.tk-cell.tk-after::before {
-  content: '+';
-  position: absolute;
-  inset-inline-start: -0.35em;
-  bottom: 0.2rem;
-  color: var(--text-faint);
-  font-family: var(--font-ui);
-  font-size: var(--type-body);
-}
-/* A word holding several names (فعل + فاعل) forks to them: one line down from the word,
+.tk-cell { display: flex; justify-content: center; align-items: flex-end; gap: 0.35rem; position: relative; padding: 0 0.35rem; }
+/* A word holding several names (فعل، فاعل) forks to them: one line down from the word,
    split across the names, one drop to each. The names share the width equally so the
-   split sits under the word. */
+   split sits under the word. The cell fills its row's height and the stem (.tk-stem)
+   fills the cell's first grid row, from the row above to the split, so no seam opens. */
 .tk-cell.tk-forked {
+  align-self: stretch;
   display: grid;
+  grid-template-rows: 1fr auto;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
-  align-items: start;
-  padding-top: 1.1rem;
+  row-gap: 0.55rem;
+  padding-top: 0.55rem;
 }
-.tk-forked::after,
+.tk-forked > .tk-branch { grid-row: 2; }
+/* up through the cell's padding and the gap above the row, to meet the thread. Its
+   least height is that climb, so it reaches the word even when the row has no
+   spare height and its own grid row is empty. */
+.tk-stem {
+  grid-row: 1;
+  justify-self: center;
+  align-self: stretch;
+  width: 1.5px;
+  margin-top: calc((var(--tk-gap) + 0.55rem) * -1);
+  min-height: calc(var(--tk-gap) + 0.55rem);
+  background: var(--tk-line);
+}
 .tk-forked > .tk-branch::before,
 .tk-forked > .tk-branch::after { content: ''; position: absolute; background: var(--tk-line); }
-.tk-forked::after { left: 50%; width: 1.5px; margin-left: -0.75px; top: calc(var(--tk-gap) * -1); height: calc(var(--tk-gap) + 0.55rem); }
 .tk-branch { position: relative; }
 .tk-forked > .tk-branch::before { left: 50%; width: 1.5px; margin-left: -0.75px; top: -0.55rem; height: 0.55rem; }
 .tk-forked > .tk-branch::after { top: -0.55rem; height: 1.5px; inset-inline: 0; }
-.tk-forked > .tk-branch:first-child::after { inset-inline: 50% 0; }
+.tk-forked > .tk-branch:first-of-type::after { inset-inline: 50% 0; }
 .tk-forked > .tk-branch:last-child::after { inset-inline: 0 50%; }
 /* What the doer is, under its name: faint like the lines, since nothing writes it. It hangs
-   below the name, inside the brace, so the names of a row stay level. */
+   below the name, inside the brace, so the names of a row stay level; the row keeps
+   room for it under every name, so it never sits on the brace or the next name. */
+.tk-roles:has(.tk-says) { padding-bottom: calc(var(--arabic-small-rem) * 1.4rem); }
 .tk-says {
   position: absolute;
   inset-inline: 0;
@@ -162,20 +179,9 @@
   line-height: 1.4;
   color: var(--text-faint);
 }
-.tk-plus {
-  flex: 0 0 auto;
-  align-self: center;
-  padding: 0 0.2rem;
-  color: var(--text-faint);
-  font-family: var(--font-ui);
-  /* A "+" is not Arabic, so it takes the English body size rather than a size
-     of its own. It had two, one for the outer row, a smaller one for a nested
-     one, and at that scale the difference was under a pixel. */
-  font-size: var(--type-body);
-}
 .tk-role {
   text-align: center;
-  font-size: calc(var(--arabic-term-rem) * 1rem);
+  font-size: calc(var(--arabic-reading-rem) * 1rem);
   line-height: 1.4;
   color: var(--tone, var(--role-default));
   padding: 0 0.2rem;
@@ -208,36 +214,30 @@
   background: var(--tone, var(--border-hi));
 }
 
-/* inset-inline-start, not -end: in RTL that is the left, where the name goes. */
+/* Under the brace's stem, in the middle of the words it names. */
 .tk-name {
-  position: absolute;
-  inset-inline-start: 100%;
-  top: 50%;
-  transform: translateY(-50%);
+  justify-self: center;
   white-space: nowrap;
-  padding-inline-start: 0.6rem;
-  font-size: calc(var(--arabic-term-rem) * 1rem);
+  padding-top: 0.35rem;
+  font-size: calc(var(--arabic-reading-rem) * 1rem);
+  line-height: 1.4;
   color: var(--tone, var(--text));
 }
-/* A group that does not reach the leftmost word has no gutter beside it, only
-   the next group along, so its name goes under its own brace rather than over
-   its neighbour. Left, not right: in RTL that is flex-end, and it is where the
-   eye already looks for a name. The padding clears the brace's stem, which
-   hangs 0.7rem below it. */
-.tk-group > .tk-name {
-  position: static;
-  transform: none;
-  justify-self: end;
-  padding-inline-start: 0;
-  padding-top: 0.35rem;
-}
 
-.tk-name .tk-eq {
-  color: var(--text-faint);
-  padding-inline-end: 0.35rem;
-  font-family: var(--font-ui);
-}
 
+/* Under a chart whose widest joins are folded away: one quiet line, the
+   brace's own colour, so it reads as more of the chart rather than a control
+   bar. */
+.tk-more {
+  display: block;
+  margin: 0 auto;
+  padding: 0.35rem 0.85rem;
+  border: 1px dashed var(--border-hi);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+.tk-more:hover { color: var(--text); border-color: var(--text-faint); }
 
 /* The larger view: the same diagram filling the screen, everything scaled up. */
 .tk-max {
@@ -256,3 +256,34 @@
 .tk-max-box { position: relative; height: 100%; overflow: auto; padding: 3.5rem 1.5rem 1.5rem; }
 .tk-max-box > div:last-child { zoom: var(--tk-max-scale); }
 .tk-max-close { position: absolute; top: 0.75rem; left: 0.75rem; }
+
+/* a word that opens its answer: a soft wash of its own colour on hover, not a
+   second underline over the one it already has */
+.tk-word[role='button'] { cursor: pointer; border-radius: var(--radius-sm, 4px); position: relative; }
+.tk-word[role='button']:hover .tk-text,
+.tk-word[role='button']:focus-visible .tk-text {
+  background: color-mix(in srgb, var(--tone, var(--border-hi)) 14%, transparent);
+  border-radius: var(--radius-sm, 4px) var(--radius-sm, 4px) 0 0;
+}
+/* its English, word for word, the moment the pointer is on it; drawn under the word,
+   since the scroller clips above it */
+.tk-word[data-gloss]:hover::after,
+.tk-word[data-gloss]:focus-visible::after {
+  content: attr(data-gloss);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.25rem;
+  z-index: 2;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm, 4px);
+  background: var(--surface-hi);
+  border: 1px solid var(--border-hi);
+  color: var(--text);
+  font-size: 0.75rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+  direction: ltr;
+}

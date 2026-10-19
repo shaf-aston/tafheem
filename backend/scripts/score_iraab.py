@@ -20,7 +20,12 @@ blind by two separate readers and kept where they agreed; all held out.
 collections, keyed the same way, some typed again without vowels.
 --set rules has one new sentence per Tasheel rule (the "rule" field is its number
 in the rule audit), in vocabulary the other sets do not use; a debatable key was dropped.
-Rows in these two may carry "signs", the sign the book gives chosen words (word
+--set blind is a set in the fresh format written after the others, its words kept
+apart from theirs, keyed blind by two readers who never saw the app's answer and
+kept where they agreed. It splits three ways: "tune" may be looked at while fixing,
+"verify" shows whether a fix carried to sentences it was not written against, and
+"hold" is scored once, at the end.
+Rows in these may carry "signs", the sign the book gives chosen words (word
 index to sign), so the case line is scored as well as the role.
 
 The other sets score roles only: the books record no case field, and reading case
@@ -29,6 +34,13 @@ back off the harakat would score the reader's vowels, not the analyser.
     venv/Scripts/python -m backend.scripts.score_iraab
     venv/Scripts/python -m backend.scripts.score_iraab --set fresh
     venv/Scripts/python -m backend.scripts.score_iraab --api http://127.0.0.1:8000 --show 20
+
+--check scores the five exact sets and fails (exit 1) when any names fewer words
+right than data/nahw_rules/score_baseline.json says it did, or the reader broke on
+a sentence; CI runs it. After a
+change that rightly moves a score, --save-baseline writes the new counts.
+
+    venv/Scripts/python -m backend.scripts.score_iraab --check
 """
 from __future__ import annotations
 
@@ -36,6 +48,7 @@ import argparse
 import asyncio
 import json
 import re
+import sys
 import urllib.request
 from collections import Counter
 from functools import partial
@@ -84,9 +97,9 @@ def checked_sentences() -> list[dict]:
     return [{"id": f"c{i}", **ex} for i, ex in enumerate(json.loads(path.read_text(encoding="utf-8")), 1)]
 
 
-def fresh_sentences() -> list[dict]:
-    """One exact role per typed word; the vocabulary is fixed by the test."""
-    return json.loads((DATA.parent / KEY["sources"]["fresh"]).read_text(encoding="utf-8"))
+def fresh_sentences(name: str = "fresh") -> list[dict]:
+    """One exact role per typed word, each row in the split it may be used for."""
+    return json.loads((DATA.parent / KEY["sources"][name]).read_text(encoding="utf-8"))
 
 
 def held_out(name: str) -> list[dict]:
@@ -96,9 +109,11 @@ def held_out(name: str) -> list[dict]:
 
 
 SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
-        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe")}}
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe")},
+        "blind": partial(fresh_sentences, "blind")}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules", "probe")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind")
+BASELINE = DATA / "nahw_rules" / "score_baseline.json"
 
 
 def sign_matches(have: str | None, want: str) -> bool:
@@ -180,7 +195,8 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
         return []
     out = []
     for leaf in tree_leaves(tree.get("tree")):
-        card, pic = plain_role(cards[leaf["word"]].get("role")), plain_role(leaf.get("role"))
+        shown = cards[leaf["word"]]  # a card shows its finer name over its role, as the copy does
+        card, pic = plain_role(shown.get("name") or shown.get("role")), plain_role(leaf.get("role"))
         if not card or not pic or pic in UNIT_WORDING:
             continue
         # the picture may name a governor finer than its card (حرف نصب for حرف), never otherwise
@@ -191,17 +207,18 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
     return out
 
 
-def score_exact(name: str, api: str | None, show: int) -> None:
+def score_exact(name: str, api: str | None, show: int) -> Counter:
     """Score a set keyed one exact role per word. A blank card role is a gap; any other
-    role that is not the key is confident wrong. Roles are compared exactly, harakat aside."""
+    role that is not the key is confident wrong. Roles are compared exactly, harakat aside.
+    Returns the whole set's counts."""
     stats: dict[str, Counter] = {}
     bad_lines, clashes = [], []
     for ex in SETS[name]():
         answer = routed(ex["sentence"], api)
         cards, key = answer["words"], ex["key"]
         aligned = len(cards) == len(key)
-        row = Counter(sentences=1)
-        wrong = []
+        row = Counter(sentences=1, crashed=int(answer.get("read_failed", False)))
+        wrong = ["the reader broke (see the server log)"] if row["crashed"] else []
         if not aligned:
             wrong.append(f"words did not line up: got {len(cards)}, key {len(key)}")
         for i, want in enumerate(key):
@@ -235,10 +252,10 @@ def score_exact(name: str, api: str | None, show: int) -> None:
         pct = f"{c['right'] / c['roles']:.0%}" if c["roles"] else "-"
         signs = f"  signs {c['signs_right']}/{c['signs']}" if c["signs"] else ""
         return (f"{name:<28} roles {c['right']}/{c['roles']} = {pct:>4}  whole {c['whole']}/{c['sentences']}  "
-                f"confident wrong {c['confident_wrong']}  gaps {c['gaps']}  card/tree disagree {c['disagree']}{signs}")
+                f"confident wrong {c['confident_wrong']}  gaps {c['gaps']}  crashed {c['crashed']}  card/tree disagree {c['disagree']}{signs}")
 
     print(f"{name.capitalize()} set" + (f" via {api}" if api else " (local)"))
-    for name in ("all", "tune", "hold"):
+    for name in ("all", "tune", "verify", "hold"):
         if name in stats:
             print(line(name, stats[name]))
     print("Per chapter:")
@@ -249,6 +266,33 @@ def score_exact(name: str, api: str | None, show: int) -> None:
     if show:
         print("Card/tree disagreements:")
         print(*clashes[:show], sep="\n")
+    return stats["all"]
+
+
+def check(api: str | None, save: bool) -> int:
+    """Each exact set's words right against the baseline: 1 when any set fell or the
+    reader broke on a sentence, else 0.
+    `save` writes today's counts as the new baseline instead."""
+    counts = {name: score_exact(name, api, 0) for name in EXACT}
+    got = {name: c["right"] for name, c in counts.items()}
+    crashed = {name: c["crashed"] for name, c in counts.items() if c["crashed"]}
+    if save:
+        BASELINE.write_text(json.dumps(got, indent=2) + "\n", encoding="utf-8")
+        print(f"Baseline saved: {got}")
+        return 0
+    base = json.loads(BASELINE.read_text(encoding="utf-8"))
+    fell = {name: (base[name], got[name]) for name in EXACT if got[name] < base.get(name, 0)}
+    for name in EXACT:
+        print(f"{name:<8} {got[name]} right, baseline {base.get(name, 0)}")
+    if crashed:
+        print(f"The reader broke (sentences per set): {crashed}")
+    if fell:
+        print("Fell below the baseline: " + ", ".join(f"{n} {b} -> {g}" for n, (b, g) in fell.items()))
+    if fell or crashed:
+        return 1
+    if any(got[name] > base.get(name, 0) for name in EXACT):
+        print("Better than the baseline: run --save-baseline so it cannot slip back.")
+    return 0
 
 
 def main() -> None:
@@ -256,9 +300,13 @@ def main() -> None:
     parser.add_argument("--api", help="score the running app at this address instead of the offline path")
     parser.add_argument("--set", choices=SETS, default="books", help="which answer key to score against")
     parser.add_argument("--show", type=int, default=10, help="how many wrong words to print")
+    parser.add_argument("--check", action="store_true", help="fail when an exact set scores below the baseline")
+    parser.add_argument("--save-baseline", action="store_true", help="write today's exact-set scores as the baseline")
     args = parser.parse_args()
     if args.show < 0:
         parser.error("--show cannot be negative")
+    if args.check or args.save_baseline:
+        sys.exit(check(args.api, args.save_baseline))
 
     if args.set in EXACT:
         return score_exact(args.set, args.api, args.show)

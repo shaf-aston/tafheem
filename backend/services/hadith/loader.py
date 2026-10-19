@@ -121,6 +121,15 @@ def every_hadith() -> list[tuple[str, int, int, str, str]]:
     return db().execute("SELECT collection_id, book_number, number, part, arabic FROM hadith").fetchall()
 
 
+def arabic(collection_id: str, number: int, part: str = "") -> str:
+    """One hadith's Arabic; "" where the build lacks it."""
+    if not is_built():
+        return ""
+    row = db().execute("SELECT arabic FROM hadith WHERE collection_id = ? AND number = ? AND part = ?",
+                       (collection_id, number, part)).fetchone()
+    return row[0] if row else ""
+
+
 def numbered(collection_id: str, number: int, part: str = "") -> tuple[int, list[tuple]]:
     """The hadith carrying this number (every lettered part, unless one letter is asked).
 

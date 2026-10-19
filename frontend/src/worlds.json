@@ -1,5 +1,5 @@
 {
-  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `prayer` = the step map. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
+  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `book` = BookWorld (a book's parts, then a part's lessons) from `source` (lib/useBookWorld.js), answers filed under `module`. `backdrop` (optional) names a picture in public/grow/backdrops/manifest.json to fade in behind the world's screen (components/grow/Backdrop.jsx); lib/backdrops.test.js checks it exists. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
   "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called. `surahs` (Quran): the surahs the items come from, in order.",
   "worlds": [
     {
@@ -15,13 +15,27 @@
       "stages": [20, 50, 100, 200, 385]
     },
     {
-      "id": "prayer",
-      "name": "Prayer",
-      "arabic": "صلاة",
-      "scene": "The Courtyard",
-      "idea": "What you say in prayer, said right, step by step.",
+      "id": "fiqh",
+      "name": "Fiqh",
+      "arabic": "فقه",
+      "scene": "Mukhtasar al-Quduri",
+      "idea": "Purity, prayer and more, chapter by chapter: what is fard, what is sunnah, and why.",
       "live": true,
-      "kind": "prayer"
+      "kind": "book",
+      "source": "/grow/quduri.json",
+      "module": "quduri",
+      "backdrop": "courtyard"
+    },
+    {
+      "id": "aqidah",
+      "name": "Aqidah",
+      "arabic": "عقيدة",
+      "scene": "al-Aqida al-Tahawiyya",
+      "idea": "What a Muslim believes, statement by statement, as al-Tahawi set it down.",
+      "live": true,
+      "kind": "book",
+      "source": "/grow/tahawiyya.json",
+      "module": "tahawiyya"
     },
     {
       "id": "quran",
@@ -34,8 +48,8 @@
       "view": "sky",
       "unit": "ayat",
       "lesson": { "new": 2, "most-new": 3, "size": 6 },
-      "surahs": [1, 112, 113, 114, 103, 108, 110, 109, 107, 106, 105],
-      "stages": [7, 15, 25, 40, 53]
+      "surahs": [1, 112, 113, 114, 103, 108, 110, 109, 107, 106, 105, 97, 94, 95, 93, 99, 100, 88, 87, 67],
+      "stages": [7, 15, 25, 40, 53, 80, 120, 179]
     },
     {
       "id": "hadith",
@@ -54,17 +68,23 @@
       "id": "sarf",
       "name": "Sarf",
       "arabic": "صرف",
-      "scene": "The Workshop",
-      "idea": "Build words from their roots and patterns.",
-      "live": false
+      "scene": "Marah al-Arwah",
+      "idea": "How Arabic builds its verbs and nouns, bab by bab: the sound verb, then each weak kind.",
+      "live": true,
+      "kind": "book",
+      "source": "/grow/marah.json",
+      "module": "marah"
     },
     {
       "id": "nahw",
       "name": "Nahw",
       "arabic": "نحو",
-      "scene": "The Market",
-      "idea": "Find who does what in a sentence.",
-      "live": false
+      "scene": "al-Ajurrumiyya",
+      "idea": "The first book of grammar: words, endings, and what raises, sets and pulls a noun.",
+      "live": true,
+      "kind": "book",
+      "source": "/grow/ajurrumiyya.json",
+      "module": "ajurrumiyya"
     }
   ]
 }

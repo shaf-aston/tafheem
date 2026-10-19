@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 
-import { reducedMotion } from './motion.js'
+import { reducedMotion } from '../lib/motion.js'
 import links from './links.json'
 import useScrollProgress, { riseProgress } from './useScrollProgress.js'
 

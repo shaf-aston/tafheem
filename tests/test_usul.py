@@ -72,7 +72,7 @@ def paths(tmp_path, monkeypatch):
     conn.executescript(build_rijal._SCHEMA)
     conn.executemany("INSERT INTO narrator (id, name_ar, grade_ar) VALUES (?, ?, ?)",
                      [(who, f"راو {who}", grade) for who, grade in GRADES.items()])
-    conn.executemany("INSERT INTO mention VALUES ('muslim', 24, ?, ?, ?, ?, ?, ?)",
+    conn.executemany("INSERT INTO mention (collection, book, number, part, start, end, narrator_id, ord) VALUES ('muslim', 24, ?, ?, ?, ?, ?, ?)",
                      [(number, part, start, start + 5, who, i) for number, part, start, who, i in MENTIONS])
     conn.commit()
     conn.close()

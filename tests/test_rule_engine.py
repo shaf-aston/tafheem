@@ -109,7 +109,7 @@ def test_each_reason_explains_its_own_role(sentence: str):
         role = word["role"]
         if word["type"] == "punc" or role == "–":
             continue
-        assert role in word["reason"] or (role == "فعل" and word["type"] == "fi'l"), (word["word"], role, word["reason"])
+        assert role in word["reason"] or (role.startswith("فعل") and word["type"] == "fi'l"), (word["word"], role, word["reason"])
 
 
 # The verb's card: a command by its typed shape, a present verb's case by its ending or the particle before it.
@@ -145,6 +145,40 @@ def test_a_command_is_described_as_one(sentence: str, lemma: str):
     assert (word["lemma"], word["features"].startswith("command"), "perfect" in word["features"]) == (lemma, True, False)
 
 
+@pytest.mark.parametrize("sentence, role", [("جَاءَ عَمِّي", "فاعل"), ("زَارَنِي جَدِّي", "فاعل"),
+                                            ("سَمِّ اللَّهَ", "فعل")])  # nearest case: a command typed in full
+def test_a_noun_with_its_own_pronoun_is_no_command(sentence: str, role: str):
+    """عَمِّي is uncle + my, though its letters also spell the command "be general" to a woman."""
+    word = iraab.analyze(sentence)["words"][-1 if role == "فاعل" else 0]
+    assert word["role"].startswith(role), word
+
+
+@pytest.mark.parametrize("sentence, want", [
+    ("سَرَّنِي مَا صَنَعْتَهُ", ["فعل", "فاعل", "فعل"]),  # ما after the verb's own pronoun is its doer
+    ("مَا رَأَيْتُهُ", ["حرف", "فعل"]),                    # nearest case: ما opening the sentence negates
+    ("هَاتَانِ قِلَادَتَانِ فِضِّيَّتَانِ", ["مبتدأ", "خبر", "صفة"]),  # no ال after a pointer: the khabar
+    ("هَذَا الْكِتَابُ جَدِيدٌ", ["مبتدأ", "صفة", "خبر"]),  # nearest case: with ال it follows the pointer
+    ("أَهْدَى الْجَدُّ حَفِيدَهُ مِنْظَارًا", ["فعل", "فاعل", "مفعول به", "مفعول به"]),  # its pronoun makes it definite: no حال
+    ("جَاءَ زَيْدٌ رَاكِبًا", ["فعل", "فاعل", "حال"]),  # nearest case: indefinite, a حال
+    ("كَانَ النَّاسُ أُمَّةً وَاحِدَةً", ["فعل", "اسم كان", "خبر كان", "صفة"]),
+    ("إِنَّ مِنَ الْبَيَانِ لَسِحْرًا", ["حرف", "حرف جر", "مجرور", "اسم إن"]),  # the jar-majrur stands first as the khabar
+    ("عَادَ الْوَلَدُ مِنَ الْمَدْرَسَةِ فَرِحاً", ["فعل", "فاعل", "حرف جر", "مجرور", "حال"]),
+    ("محمد بن عبد الله نبي كريم", ["مبتدأ", "صفة", "مضاف إليه", "مضاف إليه", "خبر", "صفة"]),
+    ("زَيْدٌ ضَارِبٌ بَكْرًا", ["مبتدأ", "خبر", "مفعول به"]),  # no ال after a name: the khabar
+    ("إِنَّ الْمُهَنْدِسَ الْعَجُوزَ نَشِيطٌ", ["حرف", "اسم إن", "صفة", "خبر إن"]),  # ال on both: it follows
+    ("ابْتَاعَ الْخَبَّازُ صَاعًا شَعِيرًا", ["فعل", "فاعل", "مفعول به", "تمييز"]),  # after a measure
+    ("اشْتَرَيْتُ رِطْلًا كَامِلًا", ["فعل", "مفعول به", "صفة"]),  # nearest case: an adjective after one
+    ("الْفِيلُ أَثْقَلُ وَزْنًا مِنَ الْجَمَلِ", ["مبتدأ", "خبر", "تمييز", "حرف جر", "مجرور"]),  # after an elative
+    ("أَنْصَتَ الْمُسْتَمِعُونَ تَقْدِيرًا لِلْخَطِيبِ", ["فعل", "فاعل", "مفعول لأجله", "مجرور"]),
+    ("أَدْهَشَ الْجُمْهُورَ السَّاحِرُ", ["فعل", "مفعول به", "فاعل"]),  # the object put before the doer
+    ("أَكَلَ الْوَلَدُ الصَّغِيرُ", ["فعل", "فاعل", "صفة"]),  # nearest case: the same case, a صفة
+    ("يَا سَائِقًا الشَّاحِنَةَ تَمَهَّلْ", ["حرف", "منادى", "مفعول به", "فعل"]),  # tanween: no إضافة
+    ("يَا سَائِقَ الشَّاحِنَةِ تَمَهَّلْ", ["حرف", "منادى", "مضاف إليه", "فعل"])])  # nearest case: an إضافة
+def test_what_a_word_after_a_verb_noun_or_pointer_is(sentence: str, want: list[str]):
+    got = [w["role"] for w in iraab.analyze(sentence)["words"]]
+    assert len(got) == len(want) and all(g and g.startswith(x) for g, x in zip(got, want)), got
+
+
 @pytest.mark.parametrize("sentence, verbal", [
     ("لَمْ يَكْتُبْ الطَّالِبُ", True), ("قَدْ نَجَحَ الطَّالِبُ", True), ("لَنْ يَذْهَبَ زَيْدٌ", True),
     ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", False)])  # nearest case: a particle before a noun
@@ -164,6 +198,25 @@ def _read(sentence: str) -> dict:
 # One card field each, found by typing the sentence in (backend/scripts/analyze.py).
 CARDS = [
     ("زَارَنَا صَدِيقِي أَمْسِ", 2, "sign", "مبني على الكسر"),  # a built ظرف says the vowel it is built on
+    ("ذَهَبَ الطَّالِبُ إِلَى المَدْرَسَةِ", 2, "sign", "مبني على السكون"),  # a particle ending in a long letter
+    ("إِنَّ اللهَ غَفُورٌ رَحِيمٌ", 0, "sign", "مبني على الفتح"),          # a particle says its vowel too
+    ("اشْتَرَيْتُ عِشْرِينَ كِتَابًا", 1, "sign", "الياء، ملحق بجمع المذكر السالم"),  # a ten is only attached to the plural
+    ("ظَنَنْتُ الامْتِحَانَ سَهْلًا", 1, "reason", "منصوب لأنه مفعول به أول. القاعدة: المفعول به منصوب"),
+    ("ظَنَنْتُ الامْتِحَانَ سَهْلًا", 2, "reason", "منصوب لأنه مفعول به ثانٍ. القاعدة: المفعول به منصوب"),
+    ("إِنَّ اللهَ غَفُورٌ رَحِيمٌ", 3, "reason", "مرفوع لأنه خبر ثانٍ لإن. القاعدة: إن وأخواتها ترفع الخبر"),
+    # a pair of tools splits its work: the first إمّا sets out the choice, the second joins
+    ("إِمَّا أَنْ تَذْهَبَ وَإِمَّا أَنْ تَبْقَى", 0, "reason", "حرف تفصيل"),
+    ("إِمَّا أَنْ تَذْهَبَ وَإِمَّا أَنْ تَبْقَى", 3, "reason", "حرف عطف وتفصيل"),
+    ("لَمَّا جَاءَ الْمَطَرُ فَرِحَ النَّاسُ", 0, "reason", "حرف وجود لوجود"),     # لمّا before a past verb joins nothing
+    ("لَا تَأْكُلِ السَّمَكَ وَتَشْرَبَ اللَّبَنَ", 0, "reason", "لا الناهية"),  # jazm's sukun moved to kasra before ال
+    ("مَكْرُ اللَّيْلِ خَطِيرٌ", 1, "reason", "والإضافة معنوية بمعنى «في»"),
+    ("لَبِسْتُ خَاتَمَ ذَهَبٍ", 2, "reason", "والإضافة معنوية بمعنى «من»"),
+    ("كِتَابُ الطَّالِبِ جَدِيدٌ", 1, "reason", "والإضافة معنوية بمعنى اللام"),
+    ("أَنْتَ ضَارِبُ زَيْدٍ غَدًا", 2, "reason", "والإضافة لفظية غير محضة"),
+    ("أَكَلْتُ الرَّغِيفَ نِصْفَهُ", 2, "reason", "بدل بعض من كل"),
+    ("أَعْجَبَنِي زَيْدٌ عِلْمُهُ", 2, "reason", "بدل اشتمال"),
+    ("جَاءَ أَخُوكَ زَيْدٌ", 2, "reason", "بدل كل من كل"),
+    ("مَاذَا قَرَأْتَ؟ قَالَ الْقُرْآنَ", 0, "role", "مفعول به"),      # قال after the question is its reply, not قرأتَ's object
     ("جَلَسْتُ مَعَ النَّاسِ", 2, "role", "مضاف إليه"),        # the noun after a ظرف the parser drew as a preposition
     ("جَاءَ الْأَمِيرُ خَالِدٌ", 2, "role", "بدل"),             # an indefinite word after a noun with ال is no صفة
     ("قِفَا نَبْكِ", 0, "sign", "حذف النون"),                   # the dictionary's root قفو holds وقف's letters
@@ -171,6 +224,9 @@ CARDS = [
     ("مَرَرْتُ بِإِبْرَاهِيمَ وَأَحْمَدَ", 2, "case", "jarr"),     # a diptote follower keeps its fatha in jarr
     ("اكْتُبَا الدَّرْسَ", 0, "sign", "حذف النون"),              # the dual command
     ("الدِّينُ النَّصِيحَةُ", 1, "role", "خبر"),           # nothing else is said of the mubtada
+    ("الطُّهُورُ شَطْرُ الْإِيمَانِ", 1, "role", "خبر"),     # a plain noun made definite by its مضاف إليه names, not describes
+    ("جَاءَ رَجُلٌ غَيْرُ خَالِدٍ", 2, "role", "صفة"),       # nearest case: a describing word stays a صفة
+    ("اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ", 2, "sign", "مبني على السكون"),  # a condition's place word is built, answer or none
     ("الكِتَابُ الجَدِيدُ مُفِيدٌ", 1, "role", "صفة"),       # nearest case: a khabar follows, so a صفة
     ("مَدْرَسَةُ الْبَلَدِ الْكَبِيرَةُ جَمِيلَةٌ", 2, "role", "صفة"),  # the مضاف's صفة, after its مضاف إليه
     ("الْيَدُ الْعُلْيَا خَيْرٌ", 1, "sign", "ضمة مقدرة"),    # a صفة wears its noun's case
@@ -480,7 +536,7 @@ def test_the_wonder_form_is_drawn_as_the_books_own_example():
     ("مَا أَطْوَلَ اللَّيْلَ", ["مبتدأ", "فعل", "مفعول به"]),
     ("مَا أَكْرَمَ زَيْدٌ عَمْرًا", ["حرف", "فعل", "فاعل", "مفعول به"]),  # a noun in raf': the ordinary negation
     ("ما أكرم زيد عمرا", ["حرف", "فعل", "فاعل", "مفعول به"]),
-    ("مَا أُكْرِمَ زَيْدٌ", ["حرف", "فعل", "نائب فاعل"]),  # the typed damma says it is not the wonder shape
+    ("مَا أُكْرِمَ زَيْدٌ", ["حرف", "فعل مجهول", "نائب فاعل"]),  # the typed damma says it is not the wonder shape
     ("مَا أَعْطَى الرَّجُلَ كِتَابًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),  # two objects: not the wonder form
     ("ما أنزل الله بها من سلطان", ["حرف", "فعل", "فاعل", "حرف جر", "حرف جر", "مجرور"]),  # أنزل gives no comparative
     ("مَا أَجْمَلَهَا", ["مبتدأ", "فعل"]),  # the pronoun on the verb is its one object
@@ -684,3 +740,144 @@ def test_a_plain_past_verb_after_fa_is_no_proof_of_a_condition():
 def test_la_before_a_jussive_with_a_pronoun_on_it_is_the_prohibition():
     assert "الناهية" in analysed("لَا تُكْرِمْهُ")[0]["reason"]
 
+
+
+def _tree_roles(sentence: str) -> list[str | None]:
+    """Every role the picture prints, top to bottom, worked out (not read from the treebank)."""
+    drawn = iraab.analyze(sentence, recorded=False)["tree"]["tree"]
+    out: list[str | None] = []
+
+    def walk(node: dict) -> None:
+        out.append(node.get("role"))
+        for kid in node.get("parts", []) + node.get("children", []):
+            walk(kid)
+    walk(drawn)
+    return out
+
+
+NADA = "فَنَادَى بِأَعْلَى صَوْتِهِ وَيْلٌ لِلأَعْقَابِ مِنَ النَّارِ مَرَّتَيْنِ أَوْ ثَلاَثًا"
+
+
+def test_a_prayer_noun_after_a_verb_is_a_mubtada_not_its_doer():
+    words = iraab.analyze(NADA, recorded=False)["words"]
+    assert [w["role"] for w in words] == [
+        "فعل", "مجرور", "مضاف إليه", "مبتدأ", "مجرور", "حرف جر", "مجرور", "مفعول مطلق", "حرف", "معطوف"]
+
+
+def test_a_prayer_noun_with_its_lam_phrase_is_a_mubtada_and_khabar():
+    assert [w["role"] for w in iraab.analyze("وَيْلٌ لِلْمُطَفِّفِينَ", recorded=False)["words"]][0] == "مبتدأ"
+    roles = _tree_roles("وَيْلٌ لِلْمُطَفِّفِينَ")
+    assert "مبتدأ" in roles and "خبر" in roles
+
+
+def test_a_doer_after_nada_stays_a_doer():
+    assert iraab.analyze("نَادَى زَيْدٌ", recorded=False)["words"][1]["role"] == "فاعل"
+
+
+def test_the_picture_names_no_particle_a_mawsuf_and_leaves_no_gap():
+    roles = _tree_roles(NADA)
+    assert "موصوف" not in roles and "معطوف" in roles
+    drawn = iraab.analyze(NADA, recorded=False)["tree"]["tree"]
+    assert '"gap": true' not in __import__("json").dumps(drawn)
+
+
+def test_a_past_verb_on_an_alef_is_built_on_an_implied_fatha():
+    card = iraab.analyze(NADA, recorded=False)["words"][0]
+    assert card["sign"] == "مبني على الفتح المقدر على الألف للتعذر"
+    assert iraab.analyze("كَتَبَ زَيْدٌ", recorded=False)["words"][0]["sign"] == "مبني على الفتح"
+
+
+def test_the_idafa_of_an_elative_is_ma3nawiyya_not_lafziyya():
+    reason = iraab.analyze(NADA, recorded=False)["words"][2]["reason"]
+    assert "لفظية" not in reason and "معنوية" in reason
+    assert "لفظية" in iraab.analyze("جَاءَ ضَارِبُ زَيْدٍ", recorded=False)["words"][2]["reason"]
+
+
+def test_a_count_of_times_is_the_absolute_object_of_its_verb():
+    assert iraab.analyze("ضَرَبْتُهُ مَرَّتَيْنِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+
+
+def test_a_word_added_to_the_count_or_the_masdar_stands_in_for_the_masdar():
+    assert iraab.analyze("زُرْتُهُ ثَلَاثَ مَرَّاتٍ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+    assert iraab.analyze("قَرَأْتُ الْكِتَابَ عَشْرَ مَرَّاتٍ", recorded=False)["words"][2]["role"] == "مفعول مطلق"
+    assert iraab.analyze("فَرِحْتُ كُلَّ الْفَرَحِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+    # added to any other noun, the number or كل is the object
+    assert iraab.analyze("رَأَيْتُ ثَلَاثَةَ رِجَالٍ", recorded=False)["words"][1]["role"] == "مفعول به"
+    assert iraab.analyze("أَكَلْتُ كُلَّ الطَّعَامِ", recorded=False)["words"][1]["role"] == "مفعول به"
+    assert iraab.analyze("قَرَأْتُ كُلَّ الدَّرْسِ", recorded=False)["words"][1]["role"] == "مفعول به"
+
+
+def test_a_doubled_or_hollow_root_still_reads_as_a_masdar_measure():
+    # حُبّ is فُعْل with its last radicals in one shadda, قَوْل is فَعْل with its weak middle letter
+    assert iraab.analyze("أَحْبَبْتُهُ كُلَّ الْحُبِّ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+    assert iraab.analyze("قُلْتُ بَعْضَ الْقَوْلِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
+    assert iraab.analyze("مَدَدْتُ كُلَّ الْحَبْلِ", recorded=False)["words"][1]["role"] == "مفعول به"
+
+
+def _role(sentence: str, i: int) -> str:
+    return iraab.analyze(sentence, recorded=False)["words"][i]["role"]
+
+
+def test_a_prayer_noun_is_the_said_only_after_a_verb_of_saying():
+    assert _role("فَقَالَ وَيْلٌ لَهُ", 1) == "مبتدأ"  # the لِ phrase hung on the verb, with a pronoun
+    assert _role("جَاءَ عَذَابٌ لِلْكَافِرِينَ", 1) == "فاعل"  # coming is no saying: the doer
+    assert _role("جَاءَ سَلَامٌ لِلْقَوْمِ", 1) == "فاعل"
+
+
+def test_a_past_verb_on_an_alef_keeps_its_implied_fatha_under_a_pronoun():
+    sign = lambda s: iraab.analyze(s, recorded=False)["words"][0]["sign"]
+    assert sign("رَمَاهُ الْوَلَدُ") == sign("دَعَاهُمُ النَّبِيُّ") == "مبني على الفتح المقدر على الألف للتعذر"
+    assert sign("كَتَبَهُ الرَّجُلُ") == "مبني على الفتح"
+    assert sign("رَمَيْتُ الْحَجَرَ") == "مبني على السكون"
+    assert sign("رَوَيْنَاهُ عَنْهُ") == sign("رَمَيْتُهُ أَمْسِ") == "مبني على السكون"  # the doer's pronoun, under the object's
+    assert sign("رَوَاهُ زَيْدٌ") == "مبني على الفتح المقدر على الألف للتعذر"  # one doer: its وا is no plural's
+
+
+def test_a_verb_of_saying_is_known_by_its_meaning_not_only_by_the_list():
+    assert _role("نَطَقَ وَيْلٌ لَهُ", 1) == "مبتدأ"  # نطق is in no list: CAMeL glosses it "utter"
+
+
+def test_ams_is_built_on_the_kasra_in_every_place():
+    words = lambda s: iraab.analyze(s, recorded=False)["words"]
+    for sentence, role in (("جِئْتُ أَمْسِ", "مفعول فيه"), ("مَا رَأَيْتُهُ مُنْذُ أَمْسِ", "مجرور"), ("كَانَ أَمْسِ يَوْمًا جَمِيلًا", "اسم كان")):
+        ams = next(w for w in words(sentence) if w["word"] == "أَمْسِ")
+        assert (ams["role"], ams["sign"]) == (role, "مبني على الكسر"), sentence
+    assert words("مُنْذُ أَمْسِ")[1]["sign"] == words("أَمْسِ")[0]["sign"] == "مبني على الكسر"  # never the command "enter the evening"
+
+
+def test_mundhu_before_a_noun_is_a_preposition():
+    assert [w["role"] for w in iraab.analyze("مَا زُرْتُهُ مُذْ شَهْرٍ", recorded=False)["words"]][-2:] == ["حرف جر", "مجرور"]
+
+
+def test_a_built_word_keeps_its_sukun_when_moved_to_kasra_for_the_next_sakin():
+    sign = lambda s, i: iraab.analyze(s, recorded=False)["words"][i]["sign"]
+    moved = "مبني على السكون، وحُرِّك بالكسر لالتقاء الساكنين"
+    assert sign("أَحْسِنْ إِلَى مَنِ اسْتَشَارَكَ", 2) == moved
+    assert sign("سَأَلْتُ عَنِ الْأَمْرِ", 1) == moved
+    assert sign("جَاءَ هَؤُلَاءِ", 1) == "مبني على الكسر"  # its own kasra, no meeting
+
+
+def test_idha_past_a_jussive_particle_still_opens_a_condition():
+    words = iraab.analyze("إِذَا لَمْ تَدْرُسْ فَلَنْ تَنْجَحَ", recorded=False)["words"]
+    assert words[0]["role"] == "مفعول فيه"
+
+
+def test_a_relative_after_a_command_is_its_object_and_its_sila_a_verb():
+    words = iraab.analyze("أَكْرِمْ مَنْ زَارَكَ", recorded=False)["words"]
+    assert words[0]["sign"] == "مبني على السكون" and words[1]["role"] == "مفعول به"
+    assert words[2]["role"] == "فعل"
+    # حَرَمَكَ reads as a noun too ("your sanctuary"); after a relative its صلة is the verb
+    assert iraab.analyze("أَعْطِ مَنْ حَرَمَكَ", recorded=False)["words"][2]["role"] == "فعل"
+
+
+def test_a_conditional_noun_before_laysa_is_its_mubtada_not_its_ism():
+    assert _role("مَنْ ظَلَمَنَا فَلَيْسَ صَدِيقًا", 0) == "مبتدأ"  # ليس comes after it: it governs nothing before
+    words = iraab.analyze("مَنْ كَذَبَ فَلَيْسَ صَادِقًا", recorded=False)["words"]
+    assert "اسم شرط" in words[0]["role"] and "كان" not in words[0]["role"] and "ليس" not in words[0]["role"]
+
+
+def test_a_form_four_command_is_a_verb_but_a_name_stays_a_name():
+    sign = lambda s, i: iraab.analyze(s, recorded=False)["words"][i]["sign"]
+    assert sign("أَكْرِمُوا الضَّيْفَ", 0) == sign("أَفْشُوا السَّلَامَ", 0) == "مبني على حذف النون"
+    assert _role("جَاءَ أَحْمَدُ", 1) == "فاعل"
+    assert _role("أَحْمَدْ", 0) != "فعل"  # a name in pause keeps its own vowels

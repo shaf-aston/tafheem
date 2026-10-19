@@ -44,12 +44,18 @@
   "world": {
     "_comment": "Grow world colours (worlds.json ids). colorFor('world', id).",
     "words": "@green",
-    "prayer": "@teal",
+    "fiqh": "@blue",
     "quran": "@sky",
     "hadith": "@amber",
     "sarf": "@violet",
     "nahw": "@rose",
+    "aqidah": "@teal",
     "default": "@lime"
+  },
+  "grow": {
+    "_comment": "Grow's worlds. backdrop-opacity is how strongly a world's faded picture (components/grow/Backdrop.jsx) shows through under its content: kept faint so the map and the cards stay the point. gold is what is learnt and won: a finished lesson's star, the medal, a run of right answers; the light look has its own, since its amber is deepened for text and reads brown as a fill.",
+    "backdrop-opacity": 0.14,
+    "gold": "@amber"
   },
   "sky": {
     "_comment": "Grow's Night Sky (components/grow/scenes/Sky.jsx): dark navy in every look, since it is a night, not a surface. bg and edge the card, line joins the known stars, text its caption; star-on a known ayah, star-learning one met but not known yet, star-off one not met.",
@@ -194,14 +200,15 @@
     "entry-h": "13rem"
   },
   "command": {
-    "_comment": "The command line: the bar in the header and the orbit launcher behind the pen. rest-w is how wide the bar sits when nobody is using it and open-w how wide it grows on focus, both in rem, so a longer placeholder needs a number changed here and not a class edited. orbit-r is the radius the seven tabs sit at in the launcher, sat-w the width of one of them, and rail-w the strip of letters beside a result list.",
+    "_comment": "The command line: the bar in the header and the orbit launcher behind the pen. rest-w is how wide the bar sits when nobody is using it and open-w how wide it grows on focus, both in rem, so a longer placeholder needs a number changed here and not a class edited. orbit-r is the radius the seven tabs sit at in the launcher, sat-w the width of one of them, and rail-w the strip of letters beside a result list. hint is the keys line under the launcher's ring, which sits straight on the modal's scrim rather than on a card: quiet on a dark scrim, but a light look's scrim is a mid grey that only full ink reads on.",
     "rest-w": "13.5rem",
     "open-w": "24rem",
     "orbit-r": "12.75rem",
     "sat-w": "7rem",
     "rail-w": "2rem",
     "results-h": "22rem",
-    "dim": "0.5"
+    "dim": "0.5",
+    "hint": "var(--text-faint)"
   },
   "wheel": {
     "_comment": "Every dropdown is ui/WheelPicker. type-from is how many choices a list needs before its card shows a box to type in; a shorter list is quicker to spin. loop-from is how many a list needs before it spins round, last choice above the first; fewer than the five rows on show would see itself twice.",
@@ -337,6 +344,8 @@
     "term-rem": 1.25,
     "reading-rem": 1.5,
     "chart-rem": 1.75,
+    "_chart_fit_comment": "How far the tarkeeb chart may shrink, all of it at once, to fit its box: a long sentence is read whole at a glance rather than a third at a time. Below this the names under the words stop being readable on a phone, so a chart that still does not fit scrolls sideways from here.",
+    "chart-fit-min": 0.7,
     "display-rem": 2.4,
     "stage-rem": 3,
     "line-height": 1.9,
@@ -409,7 +418,7 @@
       "light": {
         "label": "Light",
         "scheme": "light",
-        "_comment": "Paper-bright ground, ink text. Accents are the dark look's hues pulled to the 600-700 weight so each still reads as text and as a border on white (4.5:1 or better on the surface); lights stain the ground (multiply) instead of glowing on it.",
+        "_comment": "Paper-bright ground, ink text. Accents are the dark look's hues pulled to the 600-700 weight so each still reads as text and as a border on white (4.5:1 or better on the surface); lights stain the ground (multiply) instead of glowing on it. A glow round a word is a light source, which paper has none of: kept to a trace, since at the dark look's strength it blurred the ink and haloed every card.",
         "palette": {
           "violet": "#6a3dd3",
           "violet-hi": "#5b21b6",
@@ -453,7 +462,16 @@
         "shadow": {
           "pop": "0 6px 18px rgba(30, 41, 80, 0.18)",
           "lift": "0 14px 34px rgba(30, 41, 80, 0.18)",
-          "scrim": "rgb(20 28 50 / 45%)"
+          "scrim": "rgb(20 28 50 / 35%)"
+        },
+        "command": {
+          "hint": "var(--text)"
+        },
+        "glow": {
+          "strength": "0.2"
+        },
+        "grow": {
+          "gold": "#e6a417"
         },
         "timeline": {
           "acc-l": "36%",
@@ -469,6 +487,7 @@
     }
   },
   "glow": {
+    "_comment": "The halo of the .glow box and the .text-glow word (styles/components.css), in the colour of the --c it sits under: a word's role, the chosen tab's line. strength scales both, blur is how far they spread.",
     "strength": "0.55",
     "blur": "18px"
   }

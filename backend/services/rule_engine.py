@@ -104,6 +104,10 @@ def mark_condition(cards: list[dict], roles: list[dict]) -> list[dict]:
         part = found.get("condition") or {}
         if part.get("kind") and card.get("role") != part["kind"]:
             card["reason"] = f"{part['kind']}، {card['reason']}"
+        if part.get("part") == "subject" and (left := said["by_family"][part["family"]].get("subject")):
+            head, dot, rule = card["reason"].partition(". القاعدة")
+            card["reason"] = f"{head}، {left}{dot}{rule}"  # لولا زيدٌ: وخبره محذوف وجوبًا
+            continue
         if part.get("part") not in ("verb", "answer") or card.get("type") != "fi'l":
             continue
         own = said["by_family"][part["family"]]
@@ -113,7 +117,8 @@ def mark_condition(cards: list[dict], roles: list[dict]) -> list[dict]:
         where = said["jazm"] if card.get("case") == "jazm" and not part["tie"] else place
         tie = f"{own['ties'][part['tie']]}، " if part["tie"] else ""
         head, dot, rule = card["reason"].partition(". القاعدة")
-        card["reason"] = f"{head}، {tie}{where.format(part=said[part['part']])}{dot}{rule}"
+        named = f"وهو {part['named']}" if part.get("named") else said[part["part"]]  # جواب لولا
+        card["reason"] = f"{head}، {tie}{where.format(part=named)}{dot}{rule}"
     return cards
 
 

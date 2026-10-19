@@ -2,8 +2,10 @@
 No sentence is needed for any of these; every other module here builds on them."""
 from __future__ import annotations
 
+import re
+
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, SHADDA, SUKUN, has_tanween, own_letters, past_passive_shape, typed_case, typed_passive
+from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_object_stem, is_one, six_noun_case
 
 
@@ -21,6 +23,20 @@ def is_prefix(token: dict) -> bool:
     return token.get("form", "").endswith("+")
 
 
+SUBJECTS = ("SBJ", "TPC")  # the parser's links for a doer or a topic
+NOUN_LINKS = (*SUBJECTS, "OBJ")  # ...and for a done-to noun
+
+
+def verb_tagged(token: dict) -> bool:
+    """The parser tagged the word a verb, VRB-PASS too (it may still be a noun by its tanween)."""
+    return token["pos"].startswith("VRB")
+
+
+def present_verb_tagged(token: dict) -> bool:
+    """The parser tagged the word a present-tense verb."""
+    return verb_tagged(token) and token.get("asp") == "i"
+
+
 def noun_tagged(token: dict) -> bool:
     """The parser tagged the word a noun or a name (it may still be a verb by its reading)."""
     return token["pos"] in ("NOM", "PROP")
@@ -28,7 +44,7 @@ def noun_tagged(token: dict) -> bool:
 
 def subject_link(token: dict) -> bool:
     """The parser hung the word as a subject or a topic."""
-    return token["rel"] in ("SBJ", "TPC")
+    return token["rel"] in SUBJECTS
 
 
 def attached_pronoun(token: dict) -> bool:
@@ -51,14 +67,16 @@ def is_verb(token: dict) -> bool:
         return token["reading"]["kind"] == "fil"  # أَلَا is a particle, whatever the parser tagged it
     if has_tanween(token.get("typed")):
         return False  # a verb never carries tanween, whatever the parser tagged it
-    if token["pos"].startswith("VRB"):  # VRB-PASS is a verb too
+    if verb_tagged(token):  # VRB-PASS is a verb too
         return True
     # the word is unknown to the morphology, but the reader typed a passive verb or a
     # hollow command (بِعْ, which CAMeL takes for a name)
     typed = token.get("typed") or ""
     # naming marks a typed command shape (asp c): بِعِ البيتَ، اعْبُدُوا. Not Form IV's أَفْعِلْ,
-    # which a name shares (أَحْمَدْ); CAMeL's own reading settles that one
-    if token.get("asp") == "c" and strip_diacritics(typed)[:1] != "أ":
+    # which a name shares (أَحْمَدْ), where CAMeL knows the name; a name it only guessed, or one
+    # the typed vowels contradict (أَكْرِمْ is not أَكْرَم), is no evidence, so the command stands
+    if token.get("asp") == "c" and (strip_diacritics(typed)[:1] != "أ" or token.get("guessed")
+                                    or vowel_agreement(typed, token.get("diac") or "") is None):
         return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
     return token.get("pos_camel") == "noun_prop" and (
         (token["base"][:1] in PRESENT_PREFIX and typed_passive(typed, True, token.get("stuck_on", 0)))
@@ -67,18 +85,20 @@ def is_verb(token: dict) -> bool:
 
 def is_light(token: dict) -> bool:
     """The light لكنْ (or إنْ، أنْ) the reader typed: a sukun on the end and no shadda. It
-    only joins (or is the light particle); the inna sister wears the shadda (Tasheel 1.8 p20)."""
+    only joins (or is the light particle); the inna sister wears the shadda (Tasheel 1.8 p20).
+    Before ال the sukun is moved to a kasra (لَكِنِ الْعَاقِلَ), still the light one."""
     typed = token.get("typed") or ""
-    return typed.endswith(SUKUN) and SHADDA not in typed
+    return typed.endswith((SUKUN, KASRA)) and SHADDA not in typed
 
 
 def is_passive(token: dict) -> bool:
     if token.get("asp") == "c":
         return False  # a command is never passive; اُكْتُبُوا opens with a damma all the same
-    if token.get("vox") == "p":
-        return True
     typed = own_letters(token.get("typed") or "", token.get("front", 0), 0)  # وَيُغْسَلُ opens with the و's fatha
-    present = token.get("asp") == "i" or not (token["pos"].startswith("VRB") or past_passive_shape(typed))
+    present = token.get("asp") == "i" or not (verb_tagged(token) or past_passive_shape(typed))
+    if token.get("vox") == "p":
+        # the typed opening vowel outranks the tag: لا يَغْلَقُ الرهنُ is active
+        return not opens_active(typed, present)
     return typed_passive(typed, present, token.get("stuck_on", 0))
 
 
@@ -101,9 +121,20 @@ def shows_jarr(token: dict) -> bool:
                                          attached=bool(token.get("stuck_on")), annexed=bool(token.get("mudaf")))
 
 
+def case_unseen(token: dict) -> bool:
+    """A مقصور noun the reader left bare (السُّفْلَى، الدُّنْيَا): its case is unseen on the alif
+    (مقدرة للتعذر) in all three, so the parser's case for it is a guess and no evidence."""
+    form, lemma = strip_diacritics(token.get("form", "")), strip_diacritics(token.get("lemma", ""))
+    # only a declinable noun is مقصور; a built one ending in ا (مَا، إِذَا، هَذَا) has no case to hide
+    return token.get("pos_camel") in ("noun", "adj") and not typed_case_of(token) and (
+        form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
+
+
 def shown_cases(token: dict) -> set[str]:
     """Every case the word's ending can mean: the one typed or parsed, and nasb too for a
-    ـات word typed with a kasra."""
+    ـات word typed with a kasra; any of the three for a مقصور noun whose case is unseen."""
+    if case_unseen(token):
+        return {"u", "a", "i"}
     shown = typed_or_parsed_case(token)
     return {shown, "a"} if shows_nasb_by_kasra(token) else {shown} - {None}
 
@@ -148,8 +179,9 @@ def told_of_subject(token: dict, head: dict) -> bool:
 
 
 def indefinite_nasb(token: dict) -> bool:
-    """An indefinite word in nasb: a hal or tamyeez, never a na't."""
-    return typed_or_parsed_case(token) == "a" and token.get("stt") != "d"
+    """An indefinite word in nasb: a hal or tamyeez, never a na't. A pronoun stuck on makes it
+    definite (حَفِيدَهُ), as ال does."""
+    return typed_or_parsed_case(token) == "a" and token.get("stt") != "d" and not token.get("stuck_on")
 
 
 def is_state_word(token: dict) -> bool:
@@ -159,7 +191,10 @@ def is_state_word(token: dict) -> bool:
 
 def state_or_specification(token: dict, head: dict) -> str:
     """An indefinite nasb word is a hal if it is a participle, else a tamyeez, which never
-    comes before its head (Tasheel 3.2 p67)."""
+    comes before its head (Tasheel 3.2 p67). After a number or measure it tells what was counted
+    or measured (صَاعًا شَعِيرًا), whatever its shape."""
+    if token["id"] > head["id"] and listed(head, "tamyeez_head") and token.get("pos_camel") != "adj":
+        return "specification"
     if is_state_word(token):
         return "state"
     return "specification" if token["id"] > head["id"] else "none"
@@ -209,6 +244,11 @@ def is_participle(token: dict) -> bool:
             or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
+def is_elative(token: dict) -> bool:
+    """أَعْلَى، أَكْبَر: the analyser's pattern holds the elative's shape (closed_words elative_patterns), with or without ال or a proclitic."""
+    return any(shape in token.get("pattern", "") for shape in book_words("elative_patterns"))
+
+
 PASSIVE_PARTICIPLE = "مَ1ْ2ُو3"  # مَفْعُول: مفتوحٌ بابُه, its noun the نائب فاعل
 
 
@@ -223,9 +263,25 @@ def works_as_verb(token: dict) -> str | None:
     return None
 
 
-def is_masdar(token: dict) -> bool:
-    """A noun of a masdar measure (شُكْرًا), judged by the analyser's pattern."""
-    return token.get("pos_camel") == "noun" and token.get("pattern", "").removeprefix("ال").startswith(
+def measure(pattern: str) -> str:
+    """The analyser's pattern laid back on its measure: a doubled root writes its last two
+    radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
+    in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3)."""
+    pattern = pattern.removeprefix("ال")
+    if "3" not in pattern and "2" + SHADDA in pattern:
+        return pattern.replace("2" + SHADDA, "2" + SUKUN + "3", 1)
+    if "2" not in pattern:  # قِيَام 1ِيا3: the weak letter stands as the 2, and the alef after it implies its fatha
+        pattern = re.sub(r"(?<=1[\u064b-\u0652])[وي](?=[\u064b-\u0652]?[اوي]?3)", "2", pattern, count=1)
+        return pattern.replace("2ا", "2َا")
+    return pattern
+
+
+def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
+    """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا), judged by the analyser's pattern.
+    weak_or_doubled=False takes a doubled or hollow root's pattern as written, for a word
+    with nothing else saying it is a doing: طَوْقًا is فَعْل, and a collar all the same."""
+    pattern = token.get("pattern") or ""
+    return token.get("pos_camel") == "noun" and (measure(pattern) if weak_or_doubled else pattern.removeprefix("ال")).startswith(
         tuple(book_words("masdar_patterns")))
 
 

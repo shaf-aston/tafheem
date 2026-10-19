@@ -1,30 +1,26 @@
-import { Activity, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Activity, useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { DOCK, FIXED, GROUPS, LISTED, RECENT, TABS, accentOf } from './lib/tabs'
-import { useDock } from './lib/dock'
-import { keepRecent, useStrip } from './lib/recent'
-import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
-import { idle } from './lib/warm'
-import { holdBackdrop } from './lib/backdropHold'
-import { useTabShortcuts } from './lib/useTabShortcuts'
+import { FIXED, GROUPS, LISTED, TABS, accentOf } from './lib/tabs'
+import { idle, inTurn } from './lib/warm'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
+import { TOOLS } from './lib/tools'
+import { useTabNavigation } from './lib/useTabNavigation'
+import { useTools } from './lib/useTools'
 
 import Backdrop from './components/shell/Backdrop'
+import BackendBanner from './components/shell/BackendBanner'
 import TabPane from './components/shell/TabPane'
 import CursorLight from './components/shell/CursorLight'
 import CommandBar from './components/shell/CommandBar'
-import ErrorAlert from './components/ui/ErrorAlert'
 import Mascot from './components/ui/Mascot'
 import MapPanel from './components/shell/MapPanel'
 import ProfileButton from './components/profile/ProfileButton'
 import SettingsPanel from './components/shell/SettingsPanel'
-import { TOOLS } from './lib/tools'
-import { shareLink } from './lib/tabUrl'
-import { COPY_RESET_MS } from './components/ui/CopyButton'
 import SpatialHome from './components/shell/SpatialHome'
 import SourceFooter from './components/shell/SourceFooter'
+import StatusPill from './components/shell/StatusPill'
 import TabStrip from './components/shell/TabStrip'
 import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
@@ -41,161 +37,27 @@ const queryClient = new QueryClient({
 // The tab's code comes too (lib/tabs.js `panel`); a failed fetch is tried again on opening.
 const openTab = (id) => {
   const tab = TABS.find((t) => t.id === id)
-  tab?.Component.preload?.().catch(() => {})
+  const code = tab?.Component.preload?.().catch(() => {})
   const open = tab?.open
-  if (!open) return
+  if (!open) return code
   const at = performance.now()
-  Promise.resolve(open(queryClient)).then(() => console.debug(`[open] ${id} ${Math.round(performance.now() - at)}ms`))
-}
-
-// Nothing to say about a round: no streak, no answer just given.
-const QUIET = { streak: 0, answer: null }
-
-// Numbers the arrivals. A panel cannot tell "this word has come again" from
-// "this word never left" by the word alone: its own searches are steps on the
-// journey too, so the back arrow can land on the word already in its box. The
-// number is what says an arrival happened. It must never repeat, which a clock
-// can: two arrivals can share a millisecond.
-let arrivals = 0
-
-// Tabs kept alive while hidden, the most recently opened: going back to one
-// shows it as it was left, what was typed, read and scrolled. Each costs its
-// page's memory, nothing while hidden; more would be paying for tabs that are
-// not coming back.
-const KEEP = 4
-
-// How long the backdrop holds still for a switch (lib/backdropHold).
-const SWITCH_MS = 400
-
-const STATUS = {
-  checking: { color: 'var(--tab-dict)',  label: 'Connecting…', pulse: true },
-  ok:       { color: 'var(--success)',   label: 'Backend Ready' },
-  error:    { color: 'var(--danger)',    label: 'Backend offline' },
-}
-
-// Telling a visitor to start a server on their own machine only makes sense on
-// the machine the server would run on.
-const OWN_MACHINE = ['localhost', '127.0.0.1'].includes(window.location.hostname)
-
-function StatusPill({ status, nlpEngine, aiBackend, ear }) {
-  const { color, label, pulse } = STATUS[status]
-
-  // Engine names are for whoever runs the thing, not for whoever reads Arabic
-  // with it. The dot and three words say whether it is up; the names stay in
-  // the tooltip for anyone who wants them.
-  const engines = [nlpEngine, aiBackend, ear].filter(Boolean).join(' + ')
-
-  return (
-    <div
-      className="flex items-center gap-2 type-small text-[var(--text-dim)]"
-      aria-live="polite"
-      title={engines ? `Engines: ${engines}` : undefined}
-    >
-      <span
-        className={`w-2 h-2 rounded-full shrink-0 ${pulse ? 'animate-pulse' : ''}`}
-        style={{ background: color, boxShadow: `0 0 8px ${color}` }}
-      />
-      {/* Dot only on a phone: the full label plus the command bar and gear
-          overflows a 375px screen and scrolls the whole page sideways. */}
-      <span className="sr-only sm:not-sr-only">{label}</span>
-    </div>
-  )
+  const data = Promise.resolve(open(queryClient)).then(() => console.debug(`[open] ${id} ${Math.round(performance.now() - at)}ms`))
+  return Promise.all([code, data])
 }
 
 function AppContent() {
-  // Where the journey lands: the address if it names a word, else the tab's
-  // last word from the saved path. Started here, before the first render, so
-  // the panel is born on that word rather than remounted onto it.
-  const [opened] = useState(() => startJourney(TABS) ?? { tab: TABS[0].id, value: null })
-  const [activeTab, setActiveTab] = useState(opened.tab)
-  const [alive, setAlive] = useState([opened.tab])
-  // The same two, for the callbacks below to read without being remade.
-  const activeRef = useRef(opened.tab)
-  const aliveRef = useRef(alive)
-  const [bannerDismissed, setBannerDismissed] = useState(false)
+  const { activeTab, alive, handoffs, switchTab, said, round, strip, dock, placeInDock } = useTabNavigation()
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
-  // The tool that just worked, shown in its `done` look for a moment.
-  const [doneTool, setDoneTool] = useState(null)
-  useEffect(() => {
-    if (!doneTool) return undefined
-    const timer = setTimeout(() => setDoneTool(null), COPY_RESET_MS)
-    return () => clearTimeout(timer)
-  }, [doneTool])
-  const runTool = {
-    startOver,
-    copyLink: () => navigator.clipboard.writeText(shareLink()).then(() => setDoneTool('copyLink'), () => {}),
-    map: () => setMapOpen(true),
-  }
-  const toolNow = (tool) => (doneTool === tool.id ? { ...tool, ...tool.done } : tool)
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
-  // A root handed from one tab to another, per tab. Held here because it is the
-  // only thing the panels share; each one reads it once and then owns its own state.
-  const [handoffs, setHandoffs] = useState(
-    opened.value ? { [opened.tab]: { value: opened.value, at: 0 } } : {},
-  )
+  const tools = useTools(TOOLS, { map: () => setMapOpen(true) })
   const { status, nlpEngine, aiBackend, ear } = useHealth()
-  // Dismissing hides this outage only. Once the backend is back, the next drop
-  // is news again; before this, one click silenced every later outage too.
-  useEffect(() => {
-    if (status === 'ok') setBannerDismissed(false)
-  }, [status])
-
-  // The practice tabs (Quiz, Tamreen) say how it is going.
-  // They report; `moodFrom` below is still the only thing that decides.
-  const [quiz, setQuiz] = useState(QUIET)
   const accent = accentOf(activeTab)
 
-  // Every way onto a tab. `arrive`: the word it brings is one for the panel to
-  // follow; without, a tab still alive is shown exactly as it was left.
-  const show = useCallback((id, value, arrive) => {
-    holdBackdrop(SWITCH_MS)
-    activeRef.current = id
-    setActiveTab(id)
-    // Leaving the quiz ends the round as far as the pen is concerned, a streak
-    // face still on while reading the Qur'an is describing nothing.
-    setQuiz(QUIET)
-    const kept = aliveRef.current.includes(id)
-    aliveRef.current = keepRecent(aliveRef.current, id, KEEP)
-    setAlive(aliveRef.current)
-    if (!arrive && kept) return
-    const handoff = value ? { value, at: ++arrivals } : null
-    setHandoffs((all) => ({ ...all, [id]: handoff }))
-  }, [])
-
-  // A tab chosen with nothing in hand opens on the word it was last on, from
-  // the journey, so glancing at another tab and coming back costs nothing; one
-  // still alive is simply shown again. Already there (the active tab clicked
-  // again): not a step, and the panel is left exactly as it is.
-  const switchTab = useCallback((id, handed = null) => {
-    const value = handed ?? lastPlaceOn(id)
-    if (!visit(id, value)) return
-    show(id, value, handed != null)
-  }, [show])
-
-  const strip = useStrip(LISTED, FIXED, RECENT, activeTab)
-  const [dock, placeInDock] = useDock(LISTED, DOCK)
-
-  useTabShortcuts(strip, switchTab)
-
-  // Every tab's opening data, fetched once the page is idle.
-  useEffect(() => { idle(() => TABS.forEach((t) => openTab(t.id))) }, [])
-
-  // The trail and the browser's back arrow are the same list; this follows the
-  // arrow: a step returned to is handed back to its panel exactly like a
-  // hand-off, which is what makes it load that word again.
-  useEffect(() => {
-    return onJump((step) => show(step.tab, step.value, step.value != null))
-  }, [show])
-
-  // Each panel's own way to report where it got to, and how a round is going:
-  // made once, so a hidden panel is not rendered again for a switch. Only the
-  // tab on screen is heard; a hidden one finishing a search is not a step.
-  const said = useMemo(() => Object.fromEntries(TABS.map(({ id }) => [id, {
-    onVisit: (value) => activeRef.current === id && visit(id, value),
-    onProgress: (round) => { if (activeRef.current === id) setQuiz(round) },
-  }])), [])
+  // Every tab's opening data, fetched once the page is idle, one tab at a time
+  // so a tab pressed meanwhile is not queued behind all the others (lib/warm).
+  useEffect(() => { idle(() => inTurn(TABS.map((t) => () => openTab(t.id)))) }, [])
 
   // The header is pinned, so anything else pinned sits under it: its height is
   // published as --app-header-h, kept true as it wraps on a narrow screen.
@@ -209,6 +71,10 @@ function AppContent() {
     <div className="min-h-screen bottom-nav-room" style={{ '--c': accent }}>
       {/* First child, so it paints under everything: its layer is below the page. */}
       <Backdrop />
+      {/* First stop for a keyboard: past the header's dozen controls to the panel. */}
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:start-2 focus:z-[var(--layer-tip)] focus:px-3 focus:py-2 focus:rounded-[var(--radius-sm)] focus:bg-[var(--surface)] type-ui">
+        Skip to content
+      </a>
       <header ref={pinHeader} className="app-header sticky top-0 z-[var(--layer-header)]">
         <div className="shell py-1 flex items-center justify-between gap-3">
           {/* The name used to be printed here in two lines that said what every
@@ -232,28 +98,28 @@ function AppContent() {
               mood={moodFrom({
                 offline: status === 'error',
                 busy: status === 'checking',
-                ...quiz,
+                ...round,
               })}
             />
           </button>
-          {/* Tools from lib/tools.js. Start over is one click, no arming; the wipe
-              with real cost, settings and streak, stays two clicks deep in Settings. */}
-          {TOOLS.map(toolNow).map((tool) => (
+          {/* Tools from lib/tools.js. Start over asks once (its `armed` look); the
+              wipe with more cost, settings and streak, stays in Settings. */}
+          {TOOLS.map(tools.now).map((tool) => (
             <button
               key={tool.id}
               type="button"
-              onClick={runTool[tool.id]}
+              onClick={tools.run[tool.id]}
               title={tool.label}
               aria-label={tool.aria}
               aria-haspopup={tool.dialog ? 'dialog' : undefined}
-              className={`icon-button${tool.phone === 'more' ? ' phone-hide' : ''}`}
+              className={`icon-button${tool.phone === 'more' ? ' phone-hide' : ''}${tools.armed === tool.id ? ' text-[var(--danger)] border-[var(--danger-edge)]' : ''}`}
             >
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 {tool.paths.map((d) => <path key={d} d={d} />)}
               </svg>
             </button>
           ))}
-          <span className="sr-only" aria-live="polite">{doneTool && toolNow(TOOLS.find((tool) => tool.id === doneTool)).label}</span>
+          <span className="sr-only" aria-live="polite">{tools.said}</span>
           </div>
 
           {/* Sits midway between the tools and the search, matching the colophon at the foot. */}
@@ -286,43 +152,11 @@ function AppContent() {
 
       <InstallBanner />
 
-      {status === 'error' && !bannerDismissed && (
-        <div className="shell pt-4 relative">
-          <ErrorAlert title={OWN_MACHINE ? 'Backend offline' : 'Not connected yet'}>
-            {OWN_MACHINE ? (
-              <>
-                The backend is not running.
-                {/* The command was the only advice here; most readers can't run
-                    it, so it moves behind a summary instead of leading. */}
-                <details className="mt-2">
-                  <summary className="cursor-pointer">The command, if you run it yourself</summary>
-                  <code className="mt-1 block px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
-                    python -m uvicorn backend.main:app --reload
-                  </code>
-                </details>
-              </>
-            ) : (
-              <>
-                The books this reads from are not attached to this copy yet, so nothing here
-                will load. <a className="underline" href="/">The front page</a> shows what it does.
-              </>
-            )}
-          </ErrorAlert>
-          <button
-            type="button"
-            aria-label="Dismiss backend warning"
-            onClick={() => setBannerDismissed(true)}
-            className="absolute top-6 right-6 w-7 h-7 grid place-items-center rounded-full border text-[var(--danger)] bg-[var(--surface)] hover:opacity-70 text-sm"
-            style={{ borderColor: 'var(--danger-edge)' }}
-          >
-            ✕
-          </button>
-        </div>
-      )}
+      <BackendBanner status={status} />
 
       {/* The tabpanel role sits on the inner element, not on <main>: overriding
           main's own role would leave the page with no main landmark to skip to. */}
-      <main className="shell py-8 glass rounded-[var(--radius-lg)]">
+      <main id="main" tabIndex={-1} className="shell py-8 glass rounded-[var(--radius-lg)] focus:outline-none">
         <div role="tabpanel" id="tabpanel" aria-labelledby={`tab-${activeTab}`}>
           {/* The last few tabs stay alive, hidden (React's Activity): a switch
               back shows the panel as it was, with no fetch, no fade and no
@@ -381,6 +215,7 @@ function AppContent() {
       <SectionsMenu
         open={sectionsOpen}
         onClose={() => setSectionsOpen(false)}
+        onHover={openTab}
         groups={GROUPS}
         tabs={LISTED}
         colorOf={accentOf}
@@ -391,16 +226,16 @@ function AppContent() {
       >
         {/* The tools phones hide from the top bar, kept one tap inside More. */}
         <section className="sm:hidden space-y-2">
-          <h3 className="type-small text-[var(--text-faint)]">Tools</h3>
+          <h3 className="type-small text-[var(--text-faint)]">Actions</h3>
           <div className="grid grid-cols-2 gap-2">
-            {TOOLS.filter((tool) => tool.phone === 'more').map(toolNow).map((tool) => (
+            {TOOLS.filter((tool) => tool.phone === 'more').map(tools.now).map((tool) => (
               <button
                 key={tool.id}
                 type="button"
                 aria-haspopup={tool.dialog ? 'dialog' : undefined}
                 aria-describedby={tool.hint ? `${tool.id}-hint` : undefined}
-                onClick={() => { if (!tool.done) setSectionsOpen(false); runTool[tool.id]() }}
-                className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium"
+                onClick={() => { if (!tools.staysOpen(tool)) setSectionsOpen(false); tools.run[tool.id]() }}
+                className={`tap min-h-11 rounded-[var(--radius-sm)] border type-body font-medium ${tool.danger ? 'border-[var(--danger-edge)] text-[var(--danger)]' : 'border-[var(--border)]'}`}
               >
                 {tool.label}
               </button>

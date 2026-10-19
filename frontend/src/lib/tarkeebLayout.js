@@ -11,6 +11,9 @@
  */
 
 /** The API sends empty arrays where the artifact's data had nothing at all. */
+/** What chart and copied text both write for a word no rule named. */
+export const GAP = '؟'
+
 export const kids = (node) => (node.children?.length ? node.children : null)
 export const pieces = (node) => (node.parts?.length ? node.parts : null)
 /**
@@ -105,6 +108,16 @@ export function threadSpans(levels) {
   )
 }
 
+/**
+ * The rows to draw when a chart shows only its first `keep`: { shown, more },
+ * `more` the number held back. Level 1 sits under the words and the whole
+ * sentence's join is the last row, so what folds away is the widest joining,
+ * and every word keeps the name nearest it. A chart with `keep` rows or fewer
+ * folds nothing.
+ */
+export const foldRows = (levels, keep) =>
+  ({ shown: levels.slice(0, keep), more: Math.max(0, levels.length - keep) })
+
 /** A name to write: a group named only by its own brace (= متعلق بـ...) has none here. */
 const named = (piece) => piece.role || piece.gap
 
@@ -112,7 +125,7 @@ const named = (piece) => piece.role || piece.gap
  * The names written on a group's row, each over the columns of its own words:
  * [{ from, to, roles }]. A flat word's pieces share its one column (لْـ | فعل + فاعل),
  * and a word's own pieces all sit over that word. Names that land on one column
- * (a folded word's pieces) share one cell, read in order with a "+" between.
+ * (a folded word's pieces) share one cell, read in order.
  */
 export const cells = (node) =>
   (kids(node)?.map((kid) => ({ from: kid.from, to: kid.to, roles: flat(kid) ? kid.parts : [kid] })) ??

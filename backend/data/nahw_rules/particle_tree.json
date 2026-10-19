@@ -1,5 +1,5 @@
 {
-  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `doubled` the reader typed a shadda on it (إِنَّا is إنّ, never the إنْ of a condition), `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it; a tool: a particle, or a word only a condition opens with, إذا), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. `tool_next` the word after it is خلا، عدا or حاشا; `raf` the noun after it typed in raf' (the noun of لا of the genus never is), `told` what stands after that noun: a noun, its khabar (لا رجلٌ أفضلُ منك: لا المشبهة بليس), or anything else (لا خوفٌ عليهم: the noun is a مبتدأ). `wonder` ما before a verb of the wonder shape (closed_words.json wonder). `asks` ما or من asks (Tasheel 2.4.7 p47): a noun, pronoun or pointer follows as its مبتدأ and no verb, ظرف, preposition or إلا comes after it (ما اسمك، من أنت), or a verb of informing with its pronoun is followed by a second question word (وما أدراك ما يوم الدين); ما عندكم ينفد and من في البيت are not it. `restricted` an إلا comes after it in the clause (ما أنت إلا بشر). A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف), `retag` the word class the parser's tag is written over with before the other words are read (ما قبل إلا is a particle, so إلا after it restricts). `starts` only a و or ف stands before it (إذن opens the answer); `shows` the mood the present verb after it shows (nasb, raf', other) or none where no present verb follows it directly (closed_words.json nasb_mudari `idhan_*`). إِذًا with a tanween is the lemma إذن (nasb_mudari `tanween_spells`), never the time word. A word with no branch here is read by its lists as before.",
+  "_comment": "Which reading a small word with more than one takes, decided once from what stands round it (services/syntax/particles.py walks it; the card, the picture and the case rules all read the answer). A branch splits on one particle axis: `word` the word itself, `again` the same word stood earlier in the sentence (the second إمّا joins, the first sets out the choice), `doubled` the reader typed a shadda on it (إِنَّا is إنّ, never the إنْ of a condition), `next` what follows it (an indefinite noun: no ال, no name, no pronoun on it; a tool: a particle, or a word only a condition opens with, إذا), `negated` a negation before it, `joins` the noun after it in the case of a noun before it, `opens` the noun after it with a khabar of its own after it. `tool_next` the word after it is خلا، عدا or حاشا; `timed` ما before لم or دام, not opening the sentence (ما المصدرية الظرفية: البيعان بالخيار ما لم يتفرقا); `answered` a tying ف of its condition later on a word that could not be a condition (ما أصابك من حسنة فمن الله: no negation); `raf` the noun after it typed in raf' (the noun of لا of the genus never is), `told` what stands after that noun: a noun, its khabar (لا رجلٌ أفضلُ منك: لا المشبهة بليس), or anything else (لا خوفٌ عليهم: the noun is a مبتدأ). `wonder` ما before a verb of the wonder shape (closed_words.json wonder). `asks` ما or من asks (Tasheel 2.4.7 p47): a noun, pronoun or pointer follows as its مبتدأ and no verb, ظرف, preposition or إلا comes after it (ما اسمك، من أنت), or a verb of informing with its pronoun is followed by a second question word (وما أدراك ما يوم الدين); ما عندكم ينفد and من في البيت are not it. `restricted` an إلا comes after it in the clause (ما أنت إلا بشر). A leaf's `role` is the closed_words.json family it works as; `named` its name where the family card's own does not fit, `kind` when it is no حرف (إذا before a verb is a ظرف), `retag` the word class the parser's tag is written over with before the other words are read (ما قبل إلا is a particle, so إلا after it restricts). `starts` only a و or ف stands before it (إذن opens the answer); `shows` the mood the present verb after it shows (nasb, raf', other) or none where no present verb follows it directly (closed_words.json nasb_mudari `idhan_*`). إِذًا with a tanween is the lemma إذن (nasb_mudari `tanween_spells`), never the time word. A word with no branch here is read by its lists as before.",
   "tree": {
     "branch": "الحروف ذات الوجوه",
     "book": "1.2 p3",
@@ -112,6 +112,20 @@
         ]
       },
       {
+        "branch": "اللام قبل المضارع المجزوم",
+        "book": "4.1.2 p102",
+        "is": "ل",
+        "split": "next",
+        "children": [
+          {
+            "branch": "لام الأمر",
+            "book": "4.1.2 p102",
+            "is": "verb_jazm",
+            "role": "jazm"
+          }
+        ]
+      },
+      {
         "branch": "إلا",
         "book": "3.8.7 p85",
         "is": "إلا",
@@ -195,7 +209,59 @@
                         "book": "3.8.7 p85",
                         "is": "yes",
                         "role": "negation",
-                        "retag": {"pos": "PRT", "pos_camel": "part_neg"}
+                        "retag": {
+                          "pos": "PRT",
+                          "pos_camel": "part_neg"
+                        }
+                      },
+                      {
+                        "branch": "ما بلا إلا بعدها",
+                        "book": "3.8.7 p85",
+                        "is": "no",
+                        "split": "timed",
+                        "children": [
+                          {
+                            "branch": "ما المصدرية الظرفية قبل لم ودام",
+                            "book": "1.2 p3",
+                            "is": "yes",
+                            "role": "ghair_amila_other",
+                            "named": "ما المصدرية الظرفية، حرف مصدري"
+                          },
+                          {
+                            "branch": "ما غير الظرفية",
+                            "book": "1.2 p3",
+                            "is": "no",
+                            "split": "starts",
+                            "children": [
+                              {
+                                "branch": "ما في أول جملتها",
+                                "book": "3.8.7 p85",
+                                "is": "yes",
+                                "split": "answered",
+                                "children": [
+                                  {
+                                    "branch": "ما بلا جواب مربوط بالفاء",
+                                    "book": "4.3.1 p112",
+                                    "is": "no",
+                                    "split": "next",
+                                    "children": [
+                                      {
+                                        "branch": "ما النافية قبل فعل غير مجزوم",
+                                        "book": "3.8.7 p85",
+                                        "is": "verb",
+                                        "role": "negation",
+                                        "retag": {
+                                          "pos": "PRT",
+                                          "pos_camel": "part_neg"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
                       }
                     ]
                   }
@@ -227,6 +293,56 @@
             "else": true,
             "role": "ghair_amila_other",
             "named": "حرف استفتاح وتنبيه"
+          }
+        ]
+      },
+      {
+        "branch": "لولا",
+        "book": "1.2 p3",
+        "is": "لولا",
+        "split": "next",
+        "children": [
+          {
+            "branch": "لولا قبل فعل",
+            "book": "1.4.2 p8",
+            "is": [
+              "verb",
+              "verb_jazm"
+            ],
+            "role": "ghair_amila_other",
+            "named": "حرف عرض وتحضيض"
+          },
+          {
+            "branch": "لولا قبل اسم",
+            "book": "1.2 p3",
+            "else": true,
+            "role": "ghair_amila_other",
+            "named": "حرف امتناع لوجود"
+          }
+        ]
+      },
+      {
+        "branch": "لوما",
+        "book": "1.2 p3",
+        "is": "لوما",
+        "split": "next",
+        "children": [
+          {
+            "branch": "لوما قبل فعل",
+            "book": "1.4.2 p8",
+            "is": [
+              "verb",
+              "verb_jazm"
+            ],
+            "role": "ghair_amila_other",
+            "named": "حرف عرض وتحضيض"
+          },
+          {
+            "branch": "لوما قبل اسم",
+            "book": "1.2 p3",
+            "else": true,
+            "role": "ghair_amila_other",
+            "named": "حرف امتناع لوجود"
           }
         ]
       },
@@ -342,7 +458,10 @@
                 "is": "nasb",
                 "role": "nasb_mudari",
                 "named": "حرف جواب وجزاء ونصب",
-                "retag": {"pos": "PRT", "pos_camel": "part"}
+                "retag": {
+                  "pos": "PRT",
+                  "pos_camel": "part"
+                }
               },
               {
                 "branch": "إذن المهملة في أول الجواب",
@@ -350,7 +469,10 @@
                 "else": true,
                 "role": "ghair_amila_other",
                 "named": "حرف جواب وجزاء",
-                "retag": {"pos": "PRT", "pos_camel": "part"}
+                "retag": {
+                  "pos": "PRT",
+                  "pos_camel": "part"
+                }
               }
             ]
           },
@@ -360,7 +482,10 @@
             "else": true,
             "role": "ghair_amila_other",
             "named": "حرف جواب وجزاء",
-            "retag": {"pos": "PRT", "pos_camel": "part"}
+            "retag": {
+              "pos": "PRT",
+              "pos_camel": "part"
+            }
           }
         ]
       },
@@ -390,6 +515,49 @@
             "book": "3.10.4 p95",
             "is": "yes",
             "role": "istinaf"
+          }
+        ]
+      },
+      {
+        "branch": "إما",
+        "book": "3.10.2 p91",
+        "is": "إما",
+        "split": "again",
+        "children": [
+          {
+            "branch": "إما الثانية",
+            "book": "3.10.2 p91",
+            "is": "yes",
+            "role": "atf",
+            "named": "حرف عطف وتفصيل"
+          },
+          {
+            "branch": "إما الأولى",
+            "book": "3.10.2 p91",
+            "is": "no",
+            "role": "ghair_amila_other",
+            "named": "حرف تفصيل"
+          }
+        ]
+      },
+      {
+        "branch": "لما",
+        "book": "4.1.2 p102",
+        "is": "لما",
+        "split": "next",
+        "children": [
+          {
+            "branch": "لما الجازمة",
+            "book": "4.1.2 p102",
+            "is": "verb_jazm",
+            "role": "jazm"
+          },
+          {
+            "branch": "لما الحينية قبل الماضي",
+            "book": "4.1.2 p102",
+            "is": "verb",
+            "role": "ghair_amila_other",
+            "named": "حرف وجود لوجود"
           }
         ]
       }

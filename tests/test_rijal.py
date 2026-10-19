@@ -37,7 +37,7 @@ def _placed(ref: str) -> list[tuple[int, int, int]]:
 
 
 def _read(ref: str) -> list[tuple[str, int]]:
-    return [(strip_diacritics(OURS[ref][start:end]), who) for start, end, who in _placed(ref)]
+    return [(strip_diacritics(OURS[ref][start:end]), who) for start, end, who, _ in _placed(ref)]
 
 
 def test_offsets_slice_our_arabic_to_the_right_names():
@@ -77,6 +77,43 @@ def built(tmp_path, monkeypatch):
     return TestClient(app)
 
 
+def test_a_classical_text_keeps_its_lines_and_book_letters():
+    text = parse.narrator(MALIK)["texts"][0]
+    blocks = text[2]
+    assert blocks[0]["kind"] == "title" and blocks[0]["runs"][0]["t"].startswith("مالك بن أنس")
+    assert any(b["kind"] == "label" for b in blocks)
+    page = '<div class="accordion"><div class="accordion-title">T</div><div class="accordion-body"><ul><li>بكر بن وائل '
+    page += '<a class="sigla-link" title="Sahih Muslim">م</a> وهو أصغر منه</li></ul><p>وقال <span class="tarjama-scholar">العجلي:</span> '
+    page += '<span class="tarjama-verdict">ثقة</span></p></div></div>'
+    item, said = parse.narrator(page)["texts"][0][2]
+    assert item == {"kind": "item", "runs": [{"t": "بكر بن وائل "}, {"t": "م", "role": "mark", "title": "Sahih Muslim"},
+                                             {"t": " وهو أصغر منه"}]}
+    assert [r.get("role") for r in said["runs"]] == [None, "scholar", None, "verdict"]
+
+
+def test_a_classical_text_keeps_the_space_between_two_quotes_and_reads_a_nested_block_once():
+    page = '<div class="accordion"><div class="accordion-title">T</div><div class="accordion-body"><p>قال '
+    page += '<span class="tarjama-scholar">أحمد:</span> <span class="tarjama-verdict">ثقة</span> '
+    page += '<span class="tarjama-scholar">يحيى:</span> <span class="tarjama-verdict">صدوق</span></p>'
+    page += '<ul><li><p>روى عن نافع</p></li></ul></div></div>'
+    said, item = parse.narrator(page)["texts"][0][2]
+    assert "".join(r["t"] for r in said["runs"]) == "قال أحمد: ثقة يحيى: صدوق"
+    assert item == {"kind": "item", "runs": [{"t": "روى عن نافع"}]}
+
+
+def test_a_name_is_placed_on_a_whole_word_not_inside_a_longer_one():
+    placed, lost = parse.place("حدثنا مَعْمَر عن عمر", [(1, "عمر", 6, True)])
+    assert placed == [(17, 20, 1, True)] and not lost
+    placed, _ = parse.place("حدثنا شعبة وعمر", [(2, "عمر", 10, True)])
+    assert placed == [(12, 15, 2, True)]
+
+
+def test_only_the_english_has_its_ayn_set_and_the_arabic_is_untouched():
+    page = '<h1 class="hero-title">`Urwa</h1><h1 class="hero-title arabic">عروة — `</h1>'
+    found = parse.narrator(page)
+    assert (found["name_en"], found["name_ar"]) == ("ʿUrwa", "عروة — `")
+
+
 def test_the_book_endpoint_gives_slices_that_read_as_names(built):
     reply = built.get("/api/rijal/chains/muslim/24").json()
     assert reply["ready"] is True and reply["source"]["key"] == "rijal"
@@ -94,12 +131,20 @@ def test_a_narrator_sheet_carries_grade_generation_and_his_circle(built):
     assert city["label_en"] == "Cities/Regions" and city["en"] and city["ar"] == sheet["city_ar"]
     assert all(b["en"] and b["ar"] for b in sheet["books"])
     assert built.get("/api/rijal/narrators/1").status_code == 404
-    assert built.get("/api/rijal/narrators/6659/hadith").json() == [{"collection": "muslim", "book": 24, "number": 1620, "part": "a"}]
+    assert built.get("/api/rijal/narrators/6659/hadith").json() == [{"collection": "muslim", "book": 24, "number": 1620, "part": "a", "opening": ""}]
 
 
 def test_search_finds_a_narrator_by_unpointed_arabic_or_english(built):
     assert [n["id"] for n in built.get("/api/rijal/search", params={"q": "مالك أنس"}).json()["narrators"]] == [6659]
     assert [n["id"] for n in built.get("/api/rijal/search", params={"q": "malik"}).json()["narrators"]] == [6659]
+    # The ayn (ʿAisha, al-ʿAdawi) is not typed: plain letters still find the name.
+    assert [n["id"] for n in built.get("/api/rijal/search", params={"q": "aisha"}).json()["narrators"]] == [4049]
+    assert 5913 in [n["id"] for n in built.get("/api/rijal/search", params={"q": "adawi"}).json()["narrators"]]
+
+
+def test_a_teacher_known_only_from_lists_is_marked_as_not_fetched(built):
+    assert built.get("/api/rijal/narrators/6659").json()["fetched"] is True
+    assert built.get("/api/rijal/narrators/4049").json()["fetched"] is False
 
 
 def test_a_link_ending_in_a_space_still_lands_before_the_next_word():
@@ -107,14 +152,14 @@ def test_a_link_ending_in_a_space_still_lands_before_the_next_word():
             '<div class="arabic_hadith_full">عَنْ <a href="/narrator/3260">أَبِي سَعِيدٍ ـ </a>رضى الله عنه</div></div>')
     names = parse.book_chains(page)[0]["names"]
     placed, lost = parse.place("عَنْ أَبِي سَعِيدٍ ـ رضى الله عنه", names)
-    assert lost == [] and placed == [(5, 20, 3260)]
+    assert lost == [] and placed == [(5, 20, 3260, True)]
 
 
 def test_a_name_said_again_in_the_story_lands_where_sunnah_links_it():
     text = "سَمِعْتُ الْحَسَنَ يَقُولُ وَلَقَدْ سَمِعْتُ أَبَا بَكْرَةَ يَقُولُ إِنَّ ابْنِي هَذَا سَيِّدٌ يَعْنِي الْحَسَنَ"
     later = len(re.sub(r"\s", "", text[:text.rindex("الْحَسَنَ")]))
-    placed, _ = parse.place(text, [(1281, "الْحَسَنَ", later)])
-    assert placed == [(text.rindex("الْحَسَنَ"), len(text), 1281)]
+    placed, _ = parse.place(text, [(1281, "الْحَسَنَ", later, True)])
+    assert placed == [(text.rindex("الْحَسَنَ"), len(text), 1281, True)]
 
 
 def test_family_meets_the_viewed_chain():
@@ -151,3 +196,53 @@ def test_the_narrator_list_ranks_by_hadith_and_filters_by_generation(built):
     mine = built.get("/api/rijal/narrators", params={"generation": "students"}).json()
     assert 6659 in [n["id"] for n in mine["items"]] and mine["total"] < page["total"]
     assert built.get("/api/rijal/narrators", params={"offset": page["total"]}).json()["items"] == []
+
+
+def test_a_hadith_opens_where_its_chain_ends_not_after_a_name_in_its_story():
+    text = "حدثنا مالك، عن نافع، عن ابن عمر، أن رسول الله صلى الله عليه وسلم قال: لا يبع بعضكم على بيع الحسن"
+    # الحسن at the very end is a linked name too; the last mention is not where the chain stops.
+    assert store._said(text, len(text)).startswith("أن رسول الله")
+
+
+def test_a_name_in_the_story_is_told_from_the_chain_by_the_pages_own_markup():
+    page = ('<div class="actualHadithContainer"><table class="hadith_reference"><tr><td><a href="/muslim:7">x</a></td></tr></table>'
+            '<div class="arabic_hadith_full"><span class="arabic_sanad">حدثنا <a href="/narrator/1">يحيى</a> قال</span> '
+            '<span class="arabic_text_details">ذكر <a href="/narrator/2">الحسن</a></span></div></div>')
+    names = parse.book_chains(page)[0]["names"]
+    assert [(who, in_chain) for who, _, _, in_chain in names] == [(1, True), (2, False)]
+    plain = page.replace("arabic_sanad", "x").replace("arabic_text_details", "y")
+    assert all(n[3] for n in parse.book_chains(plain)[0]["names"])  # not wrapped: nothing is guessed to be story
+
+
+def test_two_names_never_take_the_same_place_and_a_particle_may_be_attached():
+    placed, lost = parse.place("حدثنا عمر وعمر", [(1, "عمر", 0, True), (2, "عمر", 0, True)])
+    assert [(a, b) for a, b, *_ in placed] == [(6, 9), (11, 14)] and lost == []
+    placed, lost = parse.place("قال بمالك ولعمر", [(1, "مالك", 3, True), (2, "عمر", 8, True)])
+    assert len(placed) == 2 and lost == []
+
+
+def test_a_fact_one_language_lacks_does_not_shift_the_others():
+    assert parse._paired(["a", "b"], ["x", "y"]) == [("a", "x"), ("b", "y")]
+    assert parse._paired(["a", "b"], ["x"]) == [("a", None), ("b", None), (None, "x")]
+
+
+def test_the_pages_warning_flags_and_alternate_name_are_kept():
+    page = ('<h1 class="hero-title">A</h1><p class="hero-alt-name">(Abu B)</p><h1 class="hero-title arabic">ا</h1>'
+            '<p class="hero-alt-name arabic">(أبو ب)</p><span class="pill-flag">Tadlis</span><span class="pill-flag arabic">مدلّس</span>')
+    got = parse.narrator(page)
+    assert got["flags"] == [{"en": "Tadlis", "ar": "مدلّس"}] and (got["alt_en"], got["alt_ar"]) == ("(Abu B)", "(أبو ب)")
+
+
+def test_a_build_that_places_no_name_keeps_the_old_file(built, monkeypatch):
+    monkeypatch.setattr(loader, "hadiths", lambda *_: [])
+    with pytest.raises(SystemExit):
+        build_rijal.build()
+    assert built.get("/api/rijal/narrators/6659").status_code == 200
+    assert not build_rijal.data_path("rijal_index_path").with_suffix(".building.db").exists()
+
+
+def test_place_finds_a_name_after_a_vowelled_particle():
+    """وَمَالِكٌ and لِمَالِكٍ carry their vowel marks between the particle and the name; أَمَالِكٌ is another word."""
+    assert parse.place("حَدَّثَنَا وَمَالِكٌ", [(1, "مَالِكٌ", 0, True)])[0] == [(13, 20, 1, True)]
+    assert parse.place("لِمَالِكٍ", [(1, "مَالِكٍ", 0, True)])[0] == [(2, 9, 1, True)]
+    assert parse.place("أَمَالِكٌ", [(1, "مَالِكٌ", 0, True)])[0] == []

@@ -2,11 +2,12 @@
  * A ranking by words learnt, the global one or one circle's: your row stands
  * out, and is added below when you are not among the rows shown.
  */
+import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'
 
 export default function Ranking({ board, name, title }) {
   if (board.isPending) return <Skeleton className="h-24 w-full" />
-  if (board.isError) return <p className="type-small text-[var(--danger)]">Could not load the ranking.</p>
+  if (board.isError) return <ErrorAlert inline title="Could not load the ranking." onRetry={() => board.refetch()} />
   const { rows, you } = board.data
   const shown = you && !rows.some((row) => row.name === name) ? [...rows, you] : rows
   return (

@@ -97,10 +97,24 @@ class RijalVerdict(BaseModel):
     quote: str
 
 
+class TextRun(BaseModel):
+    """Part of a line of a classical text: `role` is scholar, verdict or mark (a book's letter, `title` its book), "" for plain words."""
+    t: str
+    role: str = ""
+    title: str = ""
+
+
+class TextBlock(BaseModel):
+    """One line of a classical text: title, para, label (a heading such as روى عن) or item (a row under it)."""
+    kind: str
+    runs: list[TextRun] = []
+
+
 class RijalText(BaseModel):
-    """A classical book's entry on him, as sunnah.com prints it."""
+    """A classical book's entry on him, as sunnah.com prints it: the plain text, and its lines as the page sets them."""
     book: str
     body: str
+    blocks: list[TextBlock] = []
 
 
 class RijalFact(BaseModel):
@@ -112,7 +126,7 @@ class RijalFact(BaseModel):
 
 
 class RijalBook(BaseModel):
-    """A book that carries his hadith, named in both languages."""
+    """A pill the page shows in both languages: a book that carries his hadith, or a warning flag."""
     en: str
     ar: str
 
@@ -144,19 +158,25 @@ class UsulFacts(BaseModel):
 
 
 class Narrator(NarratorSummary):
-    """One narrator's sheet. Teachers and students keep their names even where we hold no page of theirs."""
+    """One narrator's sheet. Teachers and students keep their names even where we hold no page of theirs (`fetched` False)."""
+    fetched: bool = True
     kunya_ar: str = ""
     grade_en: str = ""
     generation_ar: str = ""
     years: str = ""
+    years_ar: str = ""
+    alt_en: str = ""  # the page's line under the name: "(Abu al-Mundhir al-Madani)"
+    alt_ar: str = ""
     lineage_ar: str = ""
     nisba_ar: str = ""
     city_ar: str = ""
     profession_ar: str = ""
     school_ar: str = ""
     books: list[RijalBook] = []
+    flags: list[RijalBook] = []  # the page's warnings beside the grade, e.g. Ikhtilat / مختلط
     facts: list[RijalFact] = []
     hadith_total: int | None = None
+    hadith_count: int = 0  # of our hadith, those with him in the chain
     verdicts: list[RijalVerdict] = []
     teachers: list[NarratorSummary] = []
     students: list[NarratorSummary] = []
@@ -171,6 +191,11 @@ class RijalHadithRef(BaseModel):
     book: int
     number: int
     part: str = ""
+
+
+class NarratorHadith(RijalHadithRef):
+    """One hadith on a narrator's page, with the first words said after its chain; "" where the text is not built."""
+    opening: str = ""
 
 
 class WeakNote(BaseModel):

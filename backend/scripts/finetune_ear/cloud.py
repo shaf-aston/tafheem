@@ -1,22 +1,26 @@
 """Run finetune_ear.py on Kaggle's free graphics card from this computer, and bring back what it decided.
 
     python backend/scripts/finetune_ear/cloud.py          send this folder, wait, fetch the result
-    python backend/scripts/finetune_ear/cloud.py --fetch  fetch the last run's result only
+    python backend/scripts/finetune_ear/cloud.py --fetch  wait for the last run, then fetch its result
+    python backend/scripts/finetune_ear/cloud.py --ship   upload a kept ear-tuned/ to Hugging Face and serve it
 
-Needs the Kaggle CLI signed in (`kaggle` reads ~/.kaggle). Watch a run live at
-https://www.kaggle.com/code/<id in kernel-metadata.json>. The result lands in
-backend/data/models/finetune-ear/: verdict.json, the run's log, and ear-tuned/ on a win.
+The result lands in backend/data/models/finetune-ear/. The whole loop and its keys: README.md here.
 """
 import json
 import os
+import re
+import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
 HERE = Path(__file__).parent
 KERNEL = json.loads((HERE / 'kernel-metadata.json').read_text())['id']
 LANDS = HERE.parents[1] / 'data' / 'models' / 'finetune-ear'
+# The served ear's one name: master's config.py pin, "repo@revision". The judge reads the same line.
+PIN = re.compile(r'(recitation_trial_model: str = "([^@"]+)@)[^"]*"')
 EVERY = 60  # seconds between status checks
 ENDED = ('COMPLETE', 'ERROR', 'CANCEL')
 # Without these the CLI writes the Arabic log in Windows' own code page and fails half way.
@@ -28,16 +32,56 @@ def kaggle(*args):
                           text=True, encoding='utf-8', check=True).stdout.strip()
 
 
+def status():
+    """The run's state, or '' when the check itself failed (a dropped connection, a busy server)."""
+    try:
+        return kaggle('status', KERNEL)
+    except subprocess.CalledProcessError:
+        return ''
+
+
+def git(*args):
+    return subprocess.run(['git', *args], cwd=HERE, capture_output=True, text=True, check=True).stdout.strip()
+
+
+def ship():
+    """Upload a kept ear and pin it in config.py on master; the server's 5-minute pull of master serves it."""
+    from huggingface_hub import HfApi
+    verdict = json.loads((LANDS / 'verdict.json').read_text(encoding='utf-8'))
+    if not verdict['keep']:
+        sys.exit('verdict.json says not to keep this ear, so nothing is uploaded')
+    scores = f"words wrong: served ear {verdict['champion']}, this one {verdict['after']}"
+    # A copy of master beside this checkout, so --ship runs from any branch and touches nothing here.
+    tree = Path(tempfile.mkdtemp()) / 'master'
+    git('fetch', '-q', 'origin', 'master')
+    git('worktree', 'add', '-q', '--detach', str(tree), 'origin/master')
+    try:
+        config = tree / 'backend' / 'config.py'
+        text = config.read_text(encoding='utf-8')
+        done = HfApi().upload_folder(repo_id=PIN.search(text)[2], folder_path=LANDS / 'ear-tuned',
+                                     commit_message=scores)
+        config.write_text(PIN.sub(rf'\g<1>{done.oid}"', text), encoding='utf-8')
+        git('-C', str(tree), 'commit', '-q', '-m', f'Serve the ear {done.oid}\n\n{scores}', '--', 'backend/config.py')
+        git('-C', str(tree), 'push', '-q', 'origin', 'HEAD:master')
+    finally:
+        git('worktree', 'remove', '--force', str(tree))
+    print(f'serving {done.oid} within 5 minutes')
+
+
+if '--ship' in sys.argv:
+    ship()
+    sys.exit()
 if '--fetch' not in sys.argv:
     print(kaggle('push', '-p', str(HERE)), f'\nlive: https://www.kaggle.com/code/{KERNEL}', flush=True)
     time.sleep(EVERY)  # right after a push the status can still be the last run's
-    while not any(end in kaggle('status', KERNEL) for end in ENDED):
-        time.sleep(EVERY)
-status = kaggle('status', KERNEL)
-print(status)
+while not any(end in (now := status()) for end in ENDED):
+    time.sleep(EVERY)
+print(now)
+shutil.rmtree(LANDS, ignore_errors=True)  # a failed run must not leave the last run's verdict to ship
+LANDS.mkdir(parents=True)
 kaggle('output', KERNEL, '-p', str(LANDS), '--force')
 log = json.loads((LANDS / f'{KERNEL.split("/")[1]}.log').read_text(encoding='utf-8'))
 sys.stdout.reconfigure(encoding='utf-8')
 print(''.join(part['data'] for part in log if part['stream_name'] == 'stdout'))
-if 'ERROR' in status:  # the why is in the warnings stream, at its end
+if 'ERROR' in now:  # the why is in the warnings stream, at its end
     print(''.join(part['data'] for part in log if part['stream_name'] == 'stderr')[-3000:])

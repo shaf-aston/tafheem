@@ -78,6 +78,13 @@ export function resolveTheme(choice, prefersLight = globalThis.matchMedia?.('(pr
   return choice in LOOKS ? choice : BASE_THEME
 }
 
+/**
+ * The choice a reader starts on: whatever their phone or computer is set to.
+ * Someone whose device is light is not to be met with dark until they find
+ * Settings, which is what a dark default did.
+ */
+export const FIRST_CHOICE = DEVICE.choice
+
 /** Whether a stored choice is the device one, which has to be re-asked when the device changes. */
 export const followsDevice = (choice) => choice === DEVICE.choice
 

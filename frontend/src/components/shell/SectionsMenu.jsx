@@ -4,15 +4,16 @@
  */
 import { useState } from 'react'
 
+import { ahead } from '../../lib/warm'
 import { useDrag } from '../../lib/useDrag'
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import ArabicText from '../ui/ArabicText'
 import DockSlots from './DockSlots'
 
 // `dock` is the ids on the phone bar, `onDock(id, slot)` changes it (lib/dock.js);
 // both left out, there is no bar to edit. Editing is the phone's: the strip a
 // wider screen has is its own rule.
-export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, dock, onDock, children }) {
+export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, dock, onDock, onHover, children }) {
   const dialog = useModal(open)
   const [editing, setEditing] = useState(false)
   const editable = Boolean(dock)
@@ -35,7 +36,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
     <dialog
       ref={dialog}
       onClose={close}
-      onClick={(e) => e.target === dialog.current && close()}
+      onClick={closeOnBackdrop(close)}
       aria-labelledby="sections-title"
       className="sections-menu m-auto p-0 bg-transparent max-w-[min(var(--sheet-wide),92vw)] w-full"
     >
@@ -86,6 +87,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
                     <button
                       type="button"
                       onClick={() => tap(tab.id)}
+                      {...ahead(() => onHover?.(tab.id))}
                       aria-pressed={editing ? onBar(tab.id) : undefined}
                       className="flex flex-1 min-w-0 items-center justify-between gap-2 min-h-11 px-3 text-left"
                     >

@@ -27,7 +27,7 @@ import { useQuery } from '@tanstack/react-query'
 import { shareOf } from '../../lib/coverage'
 import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../../lib/insights'
 import { sayIn } from '../../lib/say'
-import { allWords, groupsFor, QUIZ } from '../../lib/quizBanks'
+import { allWordsQuery, groupsFor, QUIZ } from '../../lib/quizBanks'
 import { useQuizCoverage } from '../../lib/useQuizCoverage'
 
 import ArabicText from '../ui/ArabicText'
@@ -58,7 +58,7 @@ export default function QuizInsights({ accent, language }) {
   // the store. Keyed by language, since each language is its own module.
   const { stats, learnt, covering, share } = useQuizCoverage(language)
   // The word table always, not only once something is learnt: the open panel lists every word answered.
-  const words = useQuery({ queryKey: ['quiz-words', 'all'], queryFn: allWords })
+  const words = useQuery(allWordsQuery)
   const groups = useQuery({ queryKey: ['quiz-groups', 'quranic'], queryFn: () => groupsFor('quranic') })
 
   // Joined and totalled once per round, not once per render: the bar reads the

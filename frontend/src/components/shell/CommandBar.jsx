@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { useCommandLine } from '../../lib/useCommandLine'
+import { PHONE, useMedia } from '../../lib/useMedia'
 import CommandField from './CommandField'
 import CommandResults from './CommandResults'
 
@@ -24,6 +25,8 @@ const KEY_LABEL = MAC ? '⌘K' : 'Ctrl K'
 export default function CommandBar({ tabs, colorOf, onGo }) {
   const [open, setOpen] = useState(false)
   const input = useRef(null)
+  // A phone's resting box holds one word; "Search or ask" was cut to "Search or".
+  const phone = useMedia(PHONE)
   const line = useCommandLine(tabs, (row) => {
     setOpen(false)
     input.current?.blur()
@@ -61,7 +64,7 @@ export default function CommandBar({ tabs, colorOf, onGo }) {
         line={line}
         name={NAME}
         inputRef={input}
-        placeholder="Search or ask"
+        placeholder={phone ? 'Search' : 'Search or ask'}
         onFocus={() => setOpen(true)}
         showing={showing}
         trailing={!line.query && <kbd className="cb-key">{KEY_LABEL}</kbd>}

@@ -13,10 +13,9 @@ The Analyse page and the practice questions both read sentences through here.
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics, words
-from backend.services import morphology, provenance, quran_corpus, rule_engine, signs, syntax, tarkeeb_store, tree_columns
+from backend.services import card_wording, morphology, provenance, quran_corpus, rule_engine, signs, syntax, tarkeeb_store, tree_columns
 from backend.services.harakat import CASE_NAME, typed_case
-from backend.services.nahw_book import case_of, family_cards, is_object_stem, reason, teacher_rules
-from backend.services.syntax import teacher
+from backend.services.nahw_book import case_of, is_object_stem, reason, teacher_rules
 from backend.services.syntax.tree import names_a_sentence as names_a_sentence
 from backend.services.syntax.naming import NAMED, role_key
 
@@ -36,6 +35,7 @@ def analyze(sentence: str, recorded: bool = True) -> dict:
         "source": provenance.of("treebank" if record else "nahw"),
         "tree": tree,
         "parse": parsed.get("parse"),
+        "read_failed": bool(parsed.get("failed")),
     }
 
 
@@ -74,29 +74,8 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     words = signs.settle(entries)
     if len(roles) != len(words):
         return words
-    for word, found in zip(words, roles):
-        if word.get("role") in found.get("pair", {}):  # لا رجلَ: its governor names the pair, after the sign is settled
-            word["role"] = found["pair"][word["role"]]
-            word["reason"] = reason(word["role"])
-    for word in words:  # غير، سوى: the excepted noun is the tool itself, and says so, not إلا's rule
-        if teacher.tool_reason(word):
-            word["reason"] = teacher.tool_reason(word)
-    for word, found in zip(words, roles):
-        if found.get("also") and word.get("reason"):
-            word["reason"] = f"{word['reason']}، {found['also']}"
-    _pieces_said(words, roles)
+    card_wording.word(words, roles)
     return rule_engine.mark_condition(words, roles)
-
-
-def _pieces_said(cards: list[dict], roles: list[dict]) -> None:
-    """A piece written onto the word that its family card says on the word's own card first
-    (وَاللهُ: الواو حرف عطف، ويجوز أن تكون استئنافية), where the picture names it short."""
-    said = dict(family_cards())
-    for card, found in zip(cards, roles):
-        for piece in found.get("attached", []):
-            line = said.get((piece.get("reading") or {}).get("family"), {}).get("said")
-            if line:
-                card["reason"] = f"{line}، {card['reason']}"
 
 
 def _my_ya(entry: dict, found: dict, after: dict) -> bool:
@@ -121,14 +100,16 @@ def _named(entry: dict, found: dict, annexed: bool) -> None:
     entry.update(role=found["role"], book=found.get("book"), role_key=role_key(plain),
                  family=found.get("family"),  # كان، إنّ: named by what they govern (signs.settle)
                  named=found.get("named"),  # أَلَا: a reading's own name, where the family card's does not fit
+                 name=found.get("name"),  # the picture's finer name (حرف ناسخ، فعل أمر), said on the card too
                  governor=found.get("governor"), follows=found.get("follows"))
     if plain != NAMED.fil and entry.get("type") == "fi'l":  # نَعْبُدُ keeps CAMeL's tense and mood
         # لَسِحْرًا: CAMeL's verb is the parser's noun, so the verb's case goes with it
         entry.update(type="harf" if plain in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
     elif entry.get("type") == "harf" and found["role"] and plain not in (NAMED.harf, NAMED.harf_jarr):
         entry["type"] = "ism"  # أينما: a particle's card named for a place is a built noun
-    elif entry.get("type") in ("ism", "zarf") and found["role"] == NAMED.harf and found.get("named"):
-        entry["type"] = "harf"  # ما عدا: CAMeL's relative is the particle the reading names
+    elif entry.get("type") in ("ism", "zarf") and found["role"] == NAMED.harf and (found.get("named") or found.get("name")):
+        # ما عدا، ما النافية: CAMeL's relative is the particle the reading or its family names
+        entry["type"] = "harf"
     if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
         found = {**found, "case": CASE_NAME[own]}  # a recorded ayah's name brings its own case
     moved = found["case"] and found["case"] != entry.get("case")

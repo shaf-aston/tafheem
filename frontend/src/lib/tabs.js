@@ -11,7 +11,7 @@
  * after the network drops.
  */
 import { colorFor } from '../theme'
-import { colloquialQuery, dawahQuery, daleelBooksQuery, growPathsQuery, hadithOpen, timelinesQuery } from '../api'
+import { colloquialQuery, dawahQuery, daleelBooksQuery, hadithOpen, timelinesQuery } from '../api'
 import { load } from './warm'
 import { memoriseOpen } from './books'
 import { table } from './quizBanks'
@@ -56,11 +56,11 @@ export const TABS = [
   { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', mark: 'ق', Component: QuranLookup, open: quranOpen, study: true, group: 'quran' },
   // Daleel finds a passage, Dictionary a word: reached for together.
   { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   mark: 'د', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, group: 'quran' },
-  { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', mark: 'ث', Component: HadithPanel, open: hadithOpen, study: true, group: 'quran' },
+  { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', mark: 'ح', Component: HadithPanel, open: hadithOpen, study: true, group: 'quran' },
   { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  mark: 'م', Component: Dictionary,  study: true, group: 'tools' },
-  { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    mark: 'ح', Component: MemorisePanel, open: memoriseOpen, study: true, group: 'quran' },
-  // Grow, نبات (3:37): a learning path, reciting what is said in prayer.
-  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   mark: 'ب', Component: GrowPanel, open: load(growPathsQuery), study: true, group: 'quran' },
+  { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    mark: 'ف', Component: MemorisePanel, open: memoriseOpen, study: true, group: 'quran' },
+  // Grow, نبات (3:37): a little every day: words, fiqh, Quran and hadith.
+  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   mark: 'ب', Component: GrowPanel, study: true, group: 'quran' },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel, open: table, group: 'tools' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, open: load(timelinesQuery), study: true, group: 'tools' },
   { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   mark: 'و', Component: DawahPanel, open: load(dawahQuery), study: true, group: 'tools' },

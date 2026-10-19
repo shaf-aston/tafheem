@@ -1,0 +1,230 @@
+{
+  "id": "wudu",
+  "tier": "basics",
+  "title": "Wudu",
+  "arabic": "الوضوء",
+  "groups": [
+    {
+      "id": "wudu-begin",
+      "title": "Beginning",
+      "arabic": "البداية",
+      "icon": "drop",
+      "steps": [
+        "wudu-intention",
+        "wudu-bismillah",
+        "wudu-hands",
+        "wudu-siwak",
+        "wudu-mouth",
+        "wudu-nose"
+      ]
+    },
+    {
+      "id": "wudu-wash",
+      "title": "Washing, then the dua",
+      "arabic": "الغسل والدعاء",
+      "icon": "drop",
+      "steps": [
+        "wudu-face",
+        "wudu-arms",
+        "wudu-head",
+        "wudu-ears",
+        "wudu-feet",
+        "wudu-dua"
+      ]
+    },
+    {
+      "id": "wudu-care",
+      "alongside": true,
+      "title": "Good manners",
+      "arabic": "الآداب",
+      "icon": "drop",
+      "steps": [
+        "wudu-between",
+        "wudu-thrice",
+        "wudu-order"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "wudu-intention",
+      "title": "Make the intention",
+      "kind": "action",
+      "instruction": "Intend in your heart to purify yourself for prayer.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "ويستحب للمتوضئ أن ينوي الطهارة",
+        "english": "It is recommended that the one making wudu intends purification."
+      }
+    },
+    {
+      "id": "wudu-bismillah",
+      "title": "Say Bismillah",
+      "kind": "action",
+      "instruction": "Say Bismillah as you begin.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "وتسمية الله تعالى في ابتداء الوضوء",
+        "english": "Among the sunnahs of purification: naming Allah at the start of wudu."
+      }
+    },
+    {
+      "id": "wudu-hands",
+      "title": "Wash the hands",
+      "kind": "action",
+      "instruction": "Wash both hands first, before they go into the water. This is a sunnah for one who has just woken from sleep.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "وغسل اليدين قبل إدخالها إذا استيقظ المتوضئ من نومه",
+        "english": "Among the sunnahs of purification: washing the hands before putting them in, when the one making wudu has woken from sleep."
+      }
+    },
+    {
+      "id": "wudu-siwak",
+      "title": "Clean the teeth",
+      "kind": "action",
+      "instruction": "Clean your teeth with the siwak.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "والسواك والمضمضة والأستنشاق",
+        "english": "Among the sunnahs of purification: the siwak, rinsing the mouth and sniffing water into the nose."
+      }
+    },
+    {
+      "id": "wudu-mouth",
+      "title": "Rinse the mouth",
+      "kind": "action",
+      "instruction": "Rinse your mouth with water.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "والسواك والمضمضة والأستنشاق",
+        "english": "Among the sunnahs of purification: the siwak, rinsing the mouth and sniffing water into the nose."
+      }
+    },
+    {
+      "id": "wudu-nose",
+      "title": "Sniff water into the nose",
+      "kind": "action",
+      "instruction": "Sniff a little water into your nose.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "والسواك والمضمضة والأستنشاق",
+        "english": "Among the sunnahs of purification: the siwak, rinsing the mouth and sniffing water into the nose."
+      }
+    },
+    {
+      "id": "wudu-face",
+      "title": "Wash the face",
+      "kind": "action",
+      "instruction": "Wash your whole face. This is an obligation of wudu.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "فاغسلوا وجوهكم",
+        "english": "Wash your faces."
+      }
+    },
+    {
+      "id": "wudu-arms",
+      "title": "Wash the arms",
+      "kind": "action",
+      "instruction": "Wash your arms up to the elbows, elbows included. This is an obligation of wudu.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "والمرفقان والكعبان يدخلان في الغسل",
+        "english": "The elbows and the ankles are included in the washing."
+      }
+    },
+    {
+      "id": "wudu-head",
+      "title": "Wipe the head",
+      "kind": "action",
+      "instruction": "Wipe your head with wet hands. Al-Quduri makes the amount of the forelock the obligation.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "والمفروض في مسح الرأس مقدار الناصية",
+        "english": "What is obligatory in wiping the head is the amount of the forelock."
+      }
+    },
+    {
+      "id": "wudu-ears",
+      "title": "Wipe the ears",
+      "kind": "action",
+      "instruction": "Wipe your ears.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "ومسح الأذنين",
+        "english": "Among the sunnahs of purification: wiping the ears."
+      }
+    },
+    {
+      "id": "wudu-feet",
+      "title": "Wash the feet",
+      "kind": "action",
+      "instruction": "Wash your feet up to the ankles, ankles included. This is an obligation of wudu.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "وأرجلكم إلى الكعبين",
+        "english": "and your feet up to the ankles."
+      }
+    },
+    {
+      "id": "wudu-between",
+      "title": "Between the fingers",
+      "kind": "action",
+      "instruction": "Run wet fingers between your fingers, and through the beard if you have one.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "وتخليل اللحية والأصابع",
+        "english": "Among the sunnahs of purification: combing the beard and the fingers with water."
+      }
+    },
+    {
+      "id": "wudu-thrice",
+      "title": "Three times",
+      "kind": "action",
+      "instruction": "Wash each limb up to three times.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "وتكرار الغسل إلى الثلاث",
+        "english": "Among the sunnahs of purification: repeating the washing up to three times."
+      }
+    },
+    {
+      "id": "wudu-order",
+      "title": "Keep the order",
+      "kind": "action",
+      "instruction": "Wash in the order Allah names them, and begin with the right side.",
+      "ruling": {
+        "source": "quduri",
+        "where": "Kitab al-Tahara",
+        "arabic": "ويرتب الوضوء فيبدأ بما بدأ الله تعالى بذكره وبالميامن",
+        "english": "He keeps the wudu in order, beginning with what Allah mentioned first, and with the right side."
+      }
+    },
+    {
+      "id": "wudu-dua",
+      "title": "After wudu",
+      "arabic": "أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا عَبْدُ اللَّهِ وَرَسُولُهُ",
+      "meaning": "I bear witness that there is no god but Allah, and that Muhammad is Allah's servant and messenger.",
+      "ruling": {
+        "source": "muslim",
+        "where": "Kitab al-Taharah, hadith 234a (sunnah.com/muslim:234a)",
+        "arabic": "مَا مِنْكُمْ مِنْ أَحَدٍ يَتَوَضَّأُ فَيُبْلِغُ - أَوْ فَيُسْبِغُ - الْوُضُوءَ ثُمَّ يَقُولُ أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا عَبْدُ اللَّهِ وَرَسُولُهُ إِلاَّ فُتِحَتْ لَهُ أَبْوَابُ الْجَنَّةِ الثَّمَانِيَةُ يَدْخُلُ مِنْ أَيِّهَا شَاءَ",
+        "english": "If any of you performs wudu well and then says: I bear witness that there is no god but Allah and that Muhammad is His servant and messenger, the eight gates of Paradise are opened for him, and he may enter by whichever he wishes."
+      }
+    }
+  ]
+}

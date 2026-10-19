@@ -158,6 +158,7 @@
     { "title": "التوابع", "terms": [
       { "arabic": "موصوف", "meaning": "The noun a صفة describes." },
       { "arabic": "صفة", "meaning": "Describes the noun before it and copies its gender, number, ال and ending, as in الطالبُ المجتهدُ. Also called نعت." },
+      { "arabic": "متبوع", "meaning": "The noun a follower (صفة, بدل, عطف بيان) comes after, as محمدُ in محمدُ بنُ عبدِ اللهِ; it takes the case of its own job." },
       { "arabic": "مركب توصيفي", "meaning": "A موصوف and its صفة read together as one unit." },
       { "arabic": "توكيد", "meaning": "A word that stresses the one before it and copies its ending, as in جاء القوم كلُّهم." },
       { "arabic": "بدل", "meaning": "A word that renames the one before it and copies its ending, as in جاء أخوك زيدٌ." },

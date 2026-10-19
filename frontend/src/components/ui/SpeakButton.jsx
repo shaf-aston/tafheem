@@ -1,6 +1,7 @@
 /**
  * Hear this word. A small speaker icon; lib/speak.js picks the voice.
  */
+import { ahead } from '../../lib/warm'
 import { useEffect, useRef, useState } from 'react'
 
 import { prepare, speak, stop } from '../../lib/speak'
@@ -55,8 +56,7 @@ export default function SpeakButton({ text, ref, shortcut, early, className = ''
       ref={ref}
       type="button"
       onClick={press}
-      onPointerEnter={() => prepare(text)}
-      onFocus={() => prepare(text)}
+      {...ahead(() => prepare(text))}
       aria-label={state === 'speaking' ? 'Stop' : state === 'failed' ? FAILED : 'Say it aloud'}
       title={state === 'failed' ? FAILED : shortcut ? `Say it aloud (${shortcut})` : 'Say it aloud'}
       aria-busy={state === 'busy'}

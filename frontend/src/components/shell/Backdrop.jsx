@@ -18,8 +18,9 @@ import { useEffect, useRef } from 'react'
 
 import { pickColor, seed, seedMarks, step, stepMarks } from '../../lib/bokeh'
 import { heldFor } from '../../lib/backdropHold'
+import { motionOff } from '../../lib/motion'
 
-const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const MAX_DPR = 1.5
 
 function readKnobs(style) {
   const num = (name) => parseFloat(style.getPropertyValue(`--lights-${name}`))
@@ -84,7 +85,7 @@ export default function Backdrop() {
     let held = 0
 
     const scale = () => parseFloat(getComputedStyle(root).getPropertyValue('--motion-scale'))
-    const moving = () => !document.hidden && !reduced() && scale() > 0
+    const moving = () => !document.hidden && !motionOff()
     const readTab = () => getComputedStyle(wrapper).getPropertyValue('--c').trim() || tab
 
     function paint() {
@@ -116,7 +117,10 @@ export default function Backdrop() {
     }
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1
+      // Soft out-of-focus lights gain nothing from a dense screen's extra
+      // pixels: a phone at 2.6x drew seven times the canvas each frame and
+      // left no idle time for anything else. One cap for every screen.
+      const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
       w = window.innerWidth
       h = window.innerHeight
       node.width = Math.round(w * dpr)

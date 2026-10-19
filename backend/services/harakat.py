@@ -12,6 +12,7 @@ from backend.services.arabic_text import bare_letters, strip_diacritics
 VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
 TANWEEN = {"ً", "ٌ", "ٍ"}
 SUKUN = "ْ"
+KASRA = "ِ"
 SHADDA = "ّ"
 SHADDA_SUKUN = SHADDA + SUKUN
 DAGGER_ALEF = "ٰ"
@@ -106,7 +107,10 @@ def weak_radical(raw_root: str | None, place: int) -> bool:
 
 def weak_last(analysis: dict) -> bool:
     """A CAMeL reading whose root ends in و or ي: the root says weak and the dictionary
-    form ends in a long letter (دَعَا، رَمَى، نَسِيَ، القَاضِي), not a hamza (قَرَأَ، جَاءَ)."""
+    form ends in a long letter (دَعَا، رَمَى، نَسِيَ، القَاضِي), not a hamza (قَرَأَ، جَاءَ). A reading
+    sarf's table made (verb_reader.reading_of) says it outright: its root may be فشو or فشي."""
+    if "weak_last" in analysis:
+        return analysis["weak_last"]
     return weak_radical(analysis.get("root"), -1) and strip_diacritics(analysis.get("lex") or "")[-1:] in WEAK_ENDS
 
 
@@ -194,6 +198,14 @@ def build_nun(word: str) -> str | None:
 _MARK = {"َ": "a", "ُ": "u", "ِ": "i", "ً": "an", "ٌ": "un", "ٍ": "in", SUKUN: "o", DAGGER_ALEF: "a"}
 
 
+def wasl_typed(marked: list[tuple[str, set]]) -> bool:
+    """The word opens on a hamzat al-wasl, as typed: a bare alef, with no fatha of a dropped
+    hamza on it, before a letter typed with its sukun (اذْهَبْ، اسْتَغْفِرْ، انْطَلَقَ). A hamzat
+    al-qat' is written on its seat (أَكْرِمْ، إِكْرَام), so the alef alone says it is not one."""
+    return (len(marked) > 1 and marked[0][0] == "ا" and "َ" not in marked[0][1]
+            and SUKUN in marked[1][1])
+
+
 def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
     """(how many vowels typed on a word a reading also has, how many letters both voweled
     that it doubles differently), or None when a typed vowel contradicts it (فَتَحَ against
@@ -208,6 +220,8 @@ def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
     mine, theirs = letters(typed), letters(reading)
     if [bare_letters(c) for c, _ in mine] != [bare_letters(c) for c, _ in theirs]:
         return 0, 0
+    if wasl_typed(mine) and theirs[0][0] in "أإ":
+        return None  # اِفْعَلِي typed with its hamzat al-wasl is not the أَفْعَل its letters also spell
     agreed = doubled = 0
     for (_, said), (_, read) in zip(mine, theirs):
         said_v, read_v = {_MARK[m] for m in said if m in _MARK}, {_MARK[m] for m in read if m in _MARK}
@@ -243,6 +257,22 @@ def _without_ending(marked: list[tuple[str, set]]) -> list[tuple[str, set]]:
     return marked
 
 
+def _opening_vowel(marked: list) -> str:
+    """The marks of the first letter that carries a vowel, past a همزة وصل and the
+    sakin letters after it: اسْتُعْمِلَ opens on the تُ, as فُعِلَ opens on its فُ."""
+    rest = marked[1:] if marked and marked[0][0] == "ا" else marked
+    return next((marks for _, marks in rest if marks - {SHADDA, SUKUN}), "")
+
+
+def opens_active(word: str, present: bool) -> bool:
+    """The reader typed an opening fatha, which no passive has: a passive verb opens on a damma
+    (فُعِلَ، يُفْعَلُ), or a hollow past on the kasra of قِيلَ، بِيعَ. So يَغْلَقُ and فَتَحَ are
+    active whatever a dictionary tags them."""
+    marked = letters(word)
+    opening = (marked[0][1] if marked else set()) if present else _opening_vowel(marked)
+    return "َ" in opening
+
+
 def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     """فُعِلَ and يُفْعَلُ by their vowels.
 
@@ -254,9 +284,11 @@ def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     كُتِبَتِ sits on a root letter, not the last one, which is why the end is not read.
     """
     marked = letters(word)
-    if len(marked) < 3 or "ُ" not in marked[0][1]:
+    if len(marked) < 3 or "ُ" not in (marked[0][1] if present else _opening_vowel(marked)):
         return False
     if not present:
+        if marked[-1][0] == "ي" and not marked[-1][1] - {SUKUN}:
+            return False  # اُدْرُسِي: the ي of a woman told, which only a command or a present verb ends on
         # or a doubled verb's shadda (حُفَّتْ، رُدَّ), not a ن's: كُنَّا is كان meeting نا
         return any("ِ" in marks or (SHADDA in marks and letter != "ن") for letter, marks in marked[1:-1])
     # an attached pronoun (stuck_on letters) is read past: the fatha of أُكْرِمَكَ is its nasb
@@ -282,7 +314,7 @@ def past_passive_shape(word: str) -> bool:
     A final ت is the verb's only when it is bare or carries the kasra of meeting a
     sakin (قُرِئَتِ), and not the ات of a plural (مُسْلِمَاتُ)."""
     marked = letters(word)
-    if len(marked) < 3 or "ُ" not in marked[0][1] or marked[0][0] == "ا":
+    if len(marked) < 3 or "ُ" not in _opening_vowel(marked):
         return False
     letter, last = marked[-1]
     closes = "َ" in last or SUKUN in last or (

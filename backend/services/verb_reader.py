@@ -233,13 +233,30 @@ def known_as(word: str) -> str | None:
 
 def reading_of(word: str) -> dict | None:
     """A verb the dictionary cannot read even as the table spells it (يَسْتَعْتِبُوا), read off
-    the table in the dictionary's own features (reading.json `camel`): {pos, asp, vox, per, gen,
-    num, root}. None unless the closest cells agree on its tense, voice, person and root."""
+    the table in the dictionary's own features (reading.json `camel`): {pos, asp, vox, ...}.
+    None unless the closest cells agree on its tense and voice. What they do not agree on is
+    left out, not guessed: تَسْتَحِ is "she" or "you", أَفْشُوا has فشو or فشي; both are verbs."""
     for _, closest in _cuts(word):
-        read = {(tuple(_config()["camel"][c.column].items()), c.person, c.gender, c.number, c.root) for c in closest}
-        if len(read) == 1:
-            (features, person, gender, number, root), = read
-            return {"pos": "verb", **dict(features), "per": person, "gen": gender, "num": number, "root": root}
+        if len({tuple(_config()["camel"][c.column].items()) for c in closest}) != 1:
+            continue
+        cells = [{**_config()["camel"][c.column], "per": c.person, "gen": c.gender, "num": c.number, "root": c.root,
+                  "lex": past(c), "weak_last": c.root[-1:] in "وي"} for c in closest]
+        return {"pos": "verb", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)}}
+    return _with_object(word)
+
+
+def _with_object(word: str) -> dict | None:
+    """reading_of a verb with its object pronoun written on (ظَلَمَكَ is ظَلَمَ + كَ), the table
+    holding the verb alone: the longest pronoun first, the verb before it voweled to its end."""
+    marked = letters(word)
+    for size in (3, 2, 1):
+        verb, pronoun = marked[:-size], marked[-size:]
+        if len(verb) < 2 or "".join(c for c, _ in pronoun) not in book_words("damir_muttasil", "on_verbs"):
+            continue
+        if not verb[-1][1] or not (found := reading_of(_spell(verb))):
+            continue
+        person = _ENCLITIC.get("".join(c for c, _ in pronoun)) or _ENCLITIC["كِ" if "ِ" in pronoun[-1][1] else "كَ"]
+        return {**found, "atbtok": f"{_spell(verb)}_+{_spell(pronoun)}", "catib6": "VRB+NOM", "ud": "VERB+PRON", "enc0": f"{person}_dobj"}
     return None
 
 
@@ -255,6 +272,10 @@ def _cuts(word: str):
         if found:
             yield front, [cell for cell, score in found.items() if score == min(found.values())]
 
+
+# CAMeL's name for each object pronoun, by its letters and, for ك, its vowel
+_ENCLITIC = {"ني": "1s", "نا": "1p", "كَ": "2ms", "كِ": "2fs", "كما": "2d", "كم": "2mp", "كن": "2fp",
+             "ه": "3ms", "ها": "3fs", "هما": "3d", "هم": "3mp", "هن": "3fp"}
 
 # a verb takes at most two letters in front: وَ or فَ, then لْ
 _JOINED_MOST = 2

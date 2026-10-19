@@ -8,7 +8,7 @@
  */
 import { useEffect, useState } from 'react'
 
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 
 export default function BottomSheet({ label, onClose, className = '', children }) {
   const dialog = useModal(true)
@@ -19,7 +19,7 @@ export default function BottomSheet({ label, onClose, className = '', children }
       ref={dialog}
       aria-label={label}
       onClose={onClose}
-      onClick={(e) => e.target === dialog.current && onClose()}
+      onClick={closeOnBackdrop(onClose)}
       className="m-0 mt-auto sm:m-auto p-0 w-full max-w-none sm:max-w-[var(--sheet-standard)] max-h-[100dvh] bg-transparent"
     >
       <div

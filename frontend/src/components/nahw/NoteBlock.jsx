@@ -6,6 +6,7 @@
  * that names the column it asks hides that column. Nothing here changes the
  * note: `hidden` and `revealed` decide what shows, the text stays the text.
  */
+import { isArabic } from '../../lib/arabicText'
 import { parseMarked, stripMarks } from '../../lib/notes'
 import { notePageUrl } from '../../api'
 
@@ -66,9 +67,6 @@ function Segments({ text }) {
   ))
 }
 
-// Most lines are Arabic, but the teacher writes some list lines and headings in English.
-const isArabic = (text) => /[؀-ۿ]/.test(text ?? '')
-
 // type-body, not type-small: here the English is what is being read, not a
 // label on something else, and the scale's own note says body is that size.
 function English({ children }) {
@@ -116,6 +114,7 @@ export default function NoteBlock({ topicId, block, testing, hidden, revealed, o
         <ol className="list-decimal ps-6 space-y-1">
           {(block.items ?? []).map((line, i) => {
             const text = <Marked text={line} field={`items.${i}`} block={block} hidden={shown} revealed={revealed} onReveal={onReveal} />
+            // Most lines are Arabic, but the teacher writes some list lines and headings in English.
             return isArabic(line)
               ? <ArabicText as="li" key={i} className="leading-loose">{text}</ArabicText>
               : <li key={i} className="type-body">{text}</li>

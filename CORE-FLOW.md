@@ -3,8 +3,8 @@
 Study Arabic and the Qur'an in one app: grammar of a typed sentence, the Qur'an with checked
 grammar and tafsir, roots and conjugation, a dictionary, quizzes, timelines, and reciting
 checked word by word. Offline by default, and every answer says where it came from.
-More: `docs/core-flow-detail.md` (long notes, where things live), `docs/glossary/` (per module;
-`docs/glossary/nahw-flow.md` is the i'raab engine, stage by stage, kept true by its test).
+More: `docs/core-flow-detail.md` (long notes), `docs/glossary/` (per module; `nahw-flow.md` is the i'raab
+engine, stage by stage, kept true by its test), `RECITE-PLAN.md` (reciting rules), `docs/strategy/README.md`.
 
 ## Run it
 
@@ -36,7 +36,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | hadith | `components/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `lib/useNarrators.js` | `routers/hadith.py` | `services/hadith/` (`rijal/`, `usul/` inside) | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
 | dict | `components/Dictionary.jsx` | `searchDictionary` | `routers/dictionary.py` | `services/dictionary_service.py` | `data/arabic_dictionary.json`, `data/lexicons.db` |
 | mem | `components/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/books.js`) | `routers/quran.py` | `services/mutashabihat.py`, `services/quran_service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
-| grow | `components/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow.js` steps | `data/grow/paths.json` |
+| grow | `components/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow.js` steps | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
 | quiz | `components/QuizPanel.jsx` | `lib/quizBanks.js`, `fetchReviewItems` (`lib/progress.js`) | `routers/progress.py` | `services/progress_store.py` | `frontend/public/words/`, `data/progress.db` |
 | timelines | `components/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py`, `services/refs.py`, `services/asbab.py` | `data/timelines/` |
 | dawah | `components/DawahPanel.jsx` | `dawahQuery` | `routers/dawah.py` | `services/dawah.py` | `data/dawah/dawah.json` |
@@ -94,7 +94,7 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
 - **I'raab**: one word's case and why. **Tarkeeb**: which words join into a unit, as a bracket tree.
 - **Root**: the three letters a word is built from; the link every tab shares (`services/roots.py`).
 - **Bab**: a verb's vowel pattern or form, read from Lane or Wiktionary, never worked out.
-- **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound.
+- **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound; the Trial ear is taught, judged and shipped by `backend/scripts/finetune_ear/README.md`.
 - **Source**: `verified`, `derived` or `guessed`, carried by every answer.
 - **Weak point**: a flagged narrator or link in a chain; `notes` and `links` in code (`docs/glossary/hadith.md`).
 - **Token**: a theme value in `frontend/src/theme.json`; components use `var(--...)`, never a literal.

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-import { keyAction, typingElsewhere } from './answerKeys'
+import { useAnswerKeys } from './useAnswerKeys'
 import { QUIZ } from './quizBanks'
 
 /**
@@ -80,31 +80,19 @@ export function useQuizRound({ question, onAnswer, onNext, autoNext, setAutoNext
 
   // Answer without reaching for the mouse. The app's own 1-5 tab shortcuts are
   // suppressed while a round is open so the digits mean answers here.
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      // `shown`, not `question`: a missed word looked at again after the last one still owns the keys.
-      if (typingElsewhere(e) || !shown) return
-      const action = keyAction(e.key, { checked: answered, optionCount: shown.options.length })
-      if (!action) return
-      // Immediate, not plain stopPropagation: the app's tab shortcut listens on
-      // window too, and plain stopPropagation does not stop a second listener on
-      // the same target, so 2 would answer the question AND open Quran, and a 2
-      // pressed with an answer already on screen would leave the quiz outright.
-      if (action.do !== 'check' && action.do !== 'next') e.stopImmediatePropagation()
-      // 'auto' before anything else, so the switch can be flipped at any point in
-      // a round, including while an answer is on screen and about to take itself
-      // away. One press answers here, so 'check' is nothing to do.
-      if (action.do === 'auto') setAutoNext(!autoNext)
-      if (action.do === 'speak') speakRef.current?.click()
-      if (action.do === 'toggle') choose(shown.options[action.index].id)
-      if (action.do === 'next') {
-        // Enter on a focused button would also click it, on the next question.
-        e.preventDefault()
-        next()
-      }
-    }
-    window.addEventListener('keydown', onKeyDown, true)
-    return () => window.removeEventListener('keydown', onKeyDown, true)
+  // `shown`, not `question`: a missed word looked at again after the last one
+  // still owns the keys. 'auto' works at any point in a round, including while
+  // an answer is on screen and about to take itself away. One press answers
+  // here, so there is no 'check'.
+  useAnswerKeys(shown && { checked: answered, optionCount: shown.options.length }, {
+    auto: () => setAutoNext(!autoNext),
+    speak: () => speakRef.current?.click(),
+    toggle: (e, index) => choose(shown.options[index].id),
+    next: (e) => {
+      // Enter on a focused button would also click it, on the next question.
+      e.preventDefault()
+      next()
+    },
   })
 
   return {

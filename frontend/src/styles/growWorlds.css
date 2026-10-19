@@ -62,6 +62,12 @@
 .grow-tile-name { font-size: var(--type-body); font-weight: 800; color: var(--text); }
 .grow-tile-status { font-size: var(--type-small); color: var(--text-dim); }
 
+/* ── a world's backdrop: a faded picture under the whole screen (components/grow/Backdrop.jsx) ── */
+/* The world screen wears .grow-world so the layer has something to fill; isolation keeps the layer's z-index under the content and nothing else. */
+.grow-world { position: relative; isolation: isolate; }
+.grow-backdrop { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; opacity: var(--grow-backdrop-opacity); border-radius: var(--radius-lg); }
+.grow-backdrop img, .grow-backdrop video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
 /* ── a world's own header ── */
 .grow-world-hd { display: grid; gap: 14px; margin-bottom: 18px; }
 .grow-back { justify-self: start; display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 12px 0 6px; border-radius: 999px; font-size: var(--type-ui); color: var(--text-dim); background: var(--surface); border: 1px solid var(--border); }
@@ -117,10 +123,6 @@
 .grow-lesson-done { text-align: center; padding-top: 24px; }
 .grow-done-title { font-size: var(--type-title); font-weight: 800; color: var(--text); }
 .grow-done-score { color: var(--text-dim); }
-.grow-done-facts { display: grid; gap: 8px; text-align: start; padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); }
-.grow-done-facts div { display: flex; justify-content: space-between; gap: 12px; }
-.grow-done-facts dt { color: var(--text-dim); }
-.grow-done-facts dd { font-weight: 800; color: var(--w); }
 
 @media (prefers-reduced-motion: reduce) {
   .grow-card { animation: none; }
@@ -163,3 +165,192 @@
 .grow-star[data-s='learning'] { fill: var(--sky-star-learning); }
 .grow-star[data-s='known'] { fill: var(--sky-star-on); filter: drop-shadow(0 0 2.5px var(--sky-star-on)); }
 @media (prefers-reduced-motion: reduce) { .grow-spine { transition: none; } }
+
+/* A book world (components/grow/BookWorld.jsx): the next lesson and review, then parts or lessons. */
+.grow-book { display: grid; gap: 16px; }
+.grow-book-next { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.grow-book-review { min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 2px solid var(--w); color: var(--w); background: var(--surface); font-weight: 700; }
+.grow-book-review:hover { background: color-mix(in srgb, var(--w) 12%, var(--surface)); }
+
+/* A book world's cards (components/grow/exercises): the book's sentence, sorting, ordering. */
+.grow-rule-title { font-size: var(--type-title); font-weight: 800; color: var(--text); }
+.grow-rule-ar { padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); line-height: 1.9; }
+.grow-rule-en { font-size: var(--type-body); line-height: 1.6; color: var(--text); }
+.grow-ask-strong { font-weight: 700; color: var(--text); }
+.grow-option-check { padding-inline-start: 44px; position: relative; }
+.grow-option-check::before { content: ''; position: absolute; inset-inline-start: 14px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 5px; border: 2px solid var(--border-hi); }
+.grow-option-check[aria-pressed='true']::before { background: var(--w); border-color: var(--w); }
+.grow-sort { display: grid; gap: 10px; }
+.grow-sort-row { display: grid; gap: 6px; padding: 10px 12px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
+.grow-sort-text { font-weight: 700; }
+.grow-sort-groups { display: flex; flex-wrap: wrap; gap: 6px; }
+.grow-sort-pick { min-height: 40px; padding: 6px 12px; flex: 1 1 0; text-align: center; font-size: var(--type-ui); }
+.grow-order { display: grid; gap: 8px; }
+.grow-order-slot { display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: center; gap: 8px; }
+.grow-order-n { font-weight: 800; color: var(--text-dim); text-align: center; }
+.grow-order-empty { min-height: 52px; border-radius: var(--radius-md); border: 2px dashed var(--border); }
+.grow-order-step { width: 100%; }
+.grow-order-deck { display: flex; flex-wrap: wrap; gap: 8px; }
+.grow-order-deck .grow-order-step { width: auto; }
+
+/* ── Geometric art: an eight-point star tile, drawn in the world's colour through a mask (no colour of its own) ── */
+.grow-world-title, .grow-world-tile { position: relative; isolation: isolate; overflow: hidden; }
+.grow-world-title::after, .grow-world-tile::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: var(--w, var(--c)); opacity: 0.12;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 3l4.9 7.3 8.6-1.8-1.8 8.6L39 22l-7.3 4.9 1.8 8.6-8.6-1.8L20 41l-4.9-7.3-8.6 1.8 1.8-8.6L1 22l7.3-4.9-1.8-8.6 8.6 1.8z' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E"), linear-gradient(to left, black, transparent 70%); mask-composite: intersect; mask-size: 34px, 100%;
+}
+.grow-world-tile::after { opacity: 0.1; mask-size: 26px, 100%; }
+
+/* ── A part's lessons as a winding path of stars (components/grow/LessonPath.jsx) ── */
+.grow-path { --step: clamp(1rem, 6vw, 2.25rem); --star: 64px; display: grid; gap: 14px; padding: 18px 0 8px; }
+.grow-path-row {
+  display: flex; align-items: center; gap: 14px; width: 100%; min-height: var(--star);
+  padding-inline-start: calc((var(--x) + 2) * var(--step)); text-align: start; color: var(--text); cursor: pointer;
+}
+.grow-path-star { --fill: var(--surface-hi); position: relative; isolation: isolate; flex: none; width: var(--star); height: var(--star); display: grid; place-items: center; color: var(--text-dim);
+  transition: transform calc(var(--motion-instant-ms) * 1ms) ease; }
+.grow-path-star::before {
+  content: ''; position: absolute; inset: 0; background: var(--fill); clip-path: polygon(50% 0, 64.6% 14.6%, 85.4% 14.6%, 85.4% 35.4%, 100% 50%, 85.4% 64.6%, 85.4% 85.4%, 64.6% 85.4%, 50% 100%, 35.4% 85.4%, 14.6% 85.4%, 14.6% 64.6%, 0 50%, 14.6% 35.4%, 14.6% 14.6%, 35.4% 14.6%);
+  filter: drop-shadow(0 5px 0 color-mix(in srgb, var(--fill) 58%, black));
+}
+.grow-path-row:hover .grow-path-star { transform: translateY(-2px); }
+.grow-path-row:active .grow-path-star { transform: translateY(3px); }
+.grow-path-mark { position: relative; font-weight: 800; font-size: var(--type-body); font-variant-numeric: tabular-nums; }
+.grow-path-row[data-s='now'] .grow-path-star { --fill: var(--w); color: var(--bg); }
+.grow-path-row[data-s='done'] .grow-path-star { --fill: var(--grow-gold); color: color-mix(in srgb, var(--grow-gold) 25%, black); }
+.grow-path-row[data-s='now'] { margin-top: 26px; }
+.grow-path-row[data-s='now'] .grow-path-star::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; background: var(--w);
+  clip-path: polygon(50% 0, 64.6% 14.6%, 85.4% 14.6%, 85.4% 35.4%, 100% 50%, 85.4% 64.6%, 85.4% 85.4%, 64.6% 85.4%, 50% 100%, 35.4% 85.4%, 14.6% 85.4%, 14.6% 64.6%, 0 50%, 14.6% 35.4%, 14.6% 14.6%, 35.4% 14.6%);
+  animation: grow-ring calc(var(--motion-spring-ms) * 4ms) ease-out infinite;
+}
+@keyframes grow-ring { from { transform: scale(1); opacity: 0.45; } to { transform: scale(1.45); opacity: 0; } }
+.grow-path-bubble {
+  position: absolute; bottom: calc(100% + 10px); left: 50%; translate: -50% 0; z-index: 1; white-space: nowrap;
+  padding: 4px 12px; border-radius: var(--radius-md); background: var(--surface); color: var(--w); border: 2px solid color-mix(in srgb, var(--w) 45%, var(--border));
+  font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;
+  animation: grow-bob calc(var(--motion-spring-ms) * 3ms) ease-in-out infinite;
+}
+@keyframes grow-bob { 50% { transform: translateY(-4px); } }
+.grow-path-label { display: grid; gap: 2px; min-width: 0; }
+.grow-path-label b { font-size: var(--type-ui); line-height: 1.3; }
+.grow-path-label .arabic-sm { color: var(--text-dim); }
+.grow-path-row[data-s='ahead'] .grow-path-label b { color: var(--text-dim); font-weight: 600; }
+.grow-path-row:focus-visible { outline: 3px solid var(--w); outline-offset: 4px; border-radius: var(--radius-md); }
+@media (prefers-reduced-motion: reduce) {
+  .grow-path-star { transition: none; }
+  .grow-path-row[data-s='now'] .grow-path-star::after, .grow-path-bubble { animation: none; }
+}
+
+/* ── A lesson's feel: a chunky bar that shines, a run of right answers, a feedback bar that says it plainly ── */
+.grow-lesson-top .grow-lesson-bar i { box-shadow: inset 0 -4px 0 color-mix(in srgb, var(--w) 70%, black), inset 0 3px 0 color-mix(in srgb, var(--surface) 35%, transparent); }
+.grow-run { flex: none; font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--grow-gold); }
+.grow-lesson-foot[data-result] { border-top: 2px solid color-mix(in srgb, var(--fb) 40%, transparent); }
+.grow-lesson-foot[data-result='right'] { --fb: var(--success); }
+.grow-lesson-foot[data-result='wrong'] { --fb: var(--danger); }
+.grow-lesson-foot[data-result] .grow-lesson-say { display: flex; gap: 10px; align-items: flex-start; color: var(--text); font-weight: 600; }
+.grow-lesson-foot[data-result] .grow-lesson-say::before {
+  flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--fb); color: var(--bg); font-weight: 800;
+}
+.grow-lesson-foot[data-result='right'] .grow-lesson-say::before { content: '✓'; }
+.grow-lesson-foot[data-result='wrong'] .grow-lesson-say::before { content: '✕'; }
+.grow-option[data-mark='wrong'] { animation: shake calc(var(--motion-shake-ms) * 1ms) ease-in-out; }
+.grow-option[data-mark='right'] { animation: pop calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease); }
+
+/* ── The end of a lesson: a medal in a burst, three numbers, the level ── */
+.grow-lesson-done { justify-items: center; }
+.grow-medal { position: relative; width: 132px; height: 132px; }
+.grow-medal span {
+  position: absolute; inset: 24px; display: grid; place-items: center; border-radius: 50%;
+  background: var(--grow-gold); color: color-mix(in srgb, var(--grow-gold) 25%, black); font-size: 2.2rem; font-weight: 800;
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--grow-gold) 60%, black);
+}
+.grow-medal i {
+  position: absolute; left: 50%; top: 50%; width: 9px; height: 18px; margin: -9px 0 0 -4.5px; border-radius: 3px; background: var(--tone);
+  transform: rotate(var(--a)) translateY(-58px); animation: grow-burst calc(var(--motion-spring-ms) * 2ms) var(--motion-spring-ease) backwards;
+}
+@keyframes grow-burst {
+  0% { transform: rotate(var(--a)) translateY(0) scale(0.2); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: rotate(var(--a)) translateY(-58px); }
+}
+.grow-done-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
+.grow-done-stats div { display: grid; gap: 2px; padding: 12px 8px; border-radius: var(--radius-lg); border: 2px solid color-mix(in srgb, var(--w) 30%, var(--border)); background: var(--surface); }
+.grow-done-stats dt { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
+.grow-done-stats dd { font-size: var(--type-title); font-weight: 800; color: var(--w); }
+.grow-done-level { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; width: 100%; font-size: var(--type-ui); color: var(--text-dim); text-align: start; }
+.grow-done-level .grow-lesson-bar { grid-column: 1 / -1; }
+@media (prefers-reduced-motion: reduce) {
+  .grow-medal i, .grow-option[data-mark='wrong'], .grow-option[data-mark='right'] { animation: none; }
+}
+
+/* ── Two looks, taken in turn by a book's parts (lib/bookLesson.js LOOKS): courtyard stars and a garden of leaves.
+      The look marks the part's banner, its tile and its path, so a part is known by sight. ── */
+[data-look='garden'] .grow-world-title::after, .grow-world-tile[data-look='garden']::after {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M6 34C6 19 16 8 34 6c-2 17-13 28-28 28zM6 34L30 10' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E"), linear-gradient(to left, black, transparent 70%);
+}
+.grow-path { position: relative; isolation: isolate; }
+.grow-path::before {
+  content: ''; position: absolute; inset: 0 auto 0 0; width: calc(var(--step) * 4 + var(--star)); z-index: -1; pointer-events: none;
+  background: var(--w); opacity: 0.06; mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 3l4.9 7.3 8.6-1.8-1.8 8.6L39 22l-7.3 4.9 1.8 8.6-8.6-1.8L20 41l-4.9-7.3-8.6 1.8 1.8-8.6L1 22l7.3-4.9-1.8-8.6 8.6 1.8z' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E"), linear-gradient(black, black); mask-size: 30px, 100%; mask-composite: intersect;
+}
+.grow-path[data-look='garden']::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M6 34C6 19 16 8 34 6c-2 17-13 28-28 28zM6 34L30 10' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E"), linear-gradient(black, black); }
+.grow-path-leaf { display: none; }
+.grow-path[data-look='garden'] .grow-path-star::before,
+.grow-path[data-look='garden'] .grow-path-row[data-s='now'] .grow-path-star::after { clip-path: circle(50%); }
+.grow-path[data-look='garden'] .grow-path-leaf {
+  display: block; position: absolute; top: -6px; inset-inline-end: -12px; width: 24px; height: 13px; border-radius: 0 100% 0 100%;
+  background: color-mix(in srgb, var(--success) 75%, var(--surface)); rotate: -28deg;
+}
+.grow-path[data-look='garden'] .grow-path-leaf::after {
+  content: ''; position: absolute; top: 9px; inset-inline-start: -20px; width: 18px; height: 10px; border-radius: 100% 0 100% 0;
+  background: color-mix(in srgb, var(--success) 55%, var(--surface)); rotate: 50deg;
+}
+.grow-path[data-look='garden'] .grow-path-row[data-s='ahead'] .grow-path-leaf { opacity: 0.45; }
+
+/* ── Reading as a lesson: the English leads and the book's words sit under it; a sort shows the rows that slipped;
+      an extra lesson is a smaller node; the path and the next button keep to a column on a wide screen ── */
+.grow-rule-book { margin: 0; display: grid; gap: 6px; }
+.grow-rule-book figcaption { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
+.grow-sort-row[data-miss] { border-color: var(--danger); box-shadow: inset 4px 0 0 var(--danger); }
+.grow-path-row[data-extra] { --star: 48px; padding-inline-start: calc((var(--x) + 2) * var(--step) + 8px); }
+.grow-path-extra {
+  justify-self: start; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border-hi);
+  font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim);
+}
+.grow-book .grow-path { width: 100%; max-width: 560px; margin-inline: auto; }
+.grow-book-next > :first-child { width: auto; flex: 0 1 420px; }
+.grow-done-missed { display: grid; gap: 8px; width: 100%; text-align: start; padding: 12px 14px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); }
+.grow-done-missed h4 { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
+.grow-done-missed ul { display: grid; gap: 8px; font-size: var(--type-ui); line-height: 1.5; color: var(--text); }
+.grow-done-missed b { display: block; }
+.grow-done-go { display: grid; gap: 8px; width: 100%; }
+.grow-done-back { min-height: 44px; font-weight: 700; color: var(--w); }
+
+/* A unit's head on a part's path: the book's own section, its lessons below it. */
+.grow-path-unit { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 2px 12px; padding: 14px 4px 4px; border-bottom: 1px solid var(--border); }
+.grow-path-unit:first-child { padding-top: 0; }
+.grow-path-unit h3 { margin: 0; font-size: var(--type-ui); font-weight: 800; }
+.grow-path-unit .arabic-sm { grid-row: 2; color: var(--text-dim); }
+.grow-path-unit > span { grid-row: 1 / span 2; grid-column: 2; font-size: var(--type-small, 0.8rem); color: var(--text-dim); }
+
+/* "Leave this lesson?" under the top bar: the question, Leave, and Keep going (the default look). */
+.grow-leave { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 12px 14px; border-radius: var(--radius-md); background: var(--surface-hi); }
+.grow-leave p { flex: 1 1 100%; margin: 0; font-size: var(--type-ui); }
+.grow-leave button { padding: 8px 14px; border-radius: var(--radius-md); font-weight: 600; color: var(--danger); }
+.grow-leave .grow-leave-stay { background: var(--w); color: var(--bg); }
+
+/* A book's glossary, folded under its tiles or path: a filter, then each term with its meaning and lesson. */
+.grow-glossary { width: 100%; max-width: 560px; margin-inline: auto; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 14px; }
+.grow-glossary summary { cursor: pointer; font-weight: 700; }
+.grow-glossary input { width: 100%; margin: 12px 0 4px; padding: 8px 10px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
+.grow-glossary dl { display: grid; gap: 10px; margin: 8px 0 0; }
+.grow-glossary dt { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.grow-glossary dd { margin: 2px 0 0; color: var(--text-dim); display: grid; justify-items: start; gap: 4px; }
+.grow-glossary dd button { color: var(--w); font-weight: 600; font-size: var(--type-small); }
+/* The card's wrapper only carries `inert` while "Leave this lesson?" is asked. */
+.grow-lesson-card { display: contents; }
+.grow-lesson-top .grow-x { flex-shrink: 0; }
+.grow-done-missed li p { margin: 2px 0; text-align: right; }

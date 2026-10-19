@@ -80,9 +80,9 @@ describe('settings', () => {
     expect(applied().get('--motion-base-ms')).toBe(themeVariable('--motion-base-ms'))
   })
 
-  it('offers exactly the looks theme.json has, then the device', () => {
+  it('offers exactly the looks theme.json has, then the device, and starts on the device', () => {
     expect(setting('theme').options.map((one) => one.id)).toEqual(themeChoices().map((one) => one.id))
-    expect(setting('theme').default).toBe(theme.themes.base)
+    expect(setting('theme').default).toBe(theme.themes.device.choice)
   })
 
   it('ignores a look that does not exist', () => {

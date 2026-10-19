@@ -2,18 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Annotated, Literal
 
-from pydantic import BaseModel
-
+from pydantic import BaseModel, Field
 
 
 class GrowRuling(BaseModel):
     """A scholar's own words on one step, quoted, never paraphrased.
 
-    `arabic` is copied from the book exactly (tests/test_grow.py holds it to
-    the book's text), and `where` is the chapter it is in, so the reader can
-    find it; the app adds no ruling of its own."""
+    `source` names the book in data/grow/sources.json; the router fills in
+    `book`, `author` and `known_as` from it. `arabic` is copied from the book
+    exactly (tests/test_grow.py holds it to the book's text), and `where` is
+    the chapter it is in, so the reader can find it; the app adds no ruling
+    of its own."""
+    source: str
     book: str
     author: str
     known_as: str  # the name he goes by, for "What al-Quduri says"
@@ -52,7 +54,7 @@ class GrowGroup(BaseModel):
 
 
 class GrowPath(BaseModel):
-    """`tier` is one of the ids in the page's grow.json, so a new tier of
+    """`tier` is one of its world's `levels` (world.json), so a new tier of
     learning is data: a path that names it."""
     id: str
     tier: str
@@ -60,3 +62,74 @@ class GrowPath(BaseModel):
     arabic: str
     groups: list[GrowGroup]
     steps: list[GrowStep]
+
+
+Category = Literal["fard", "wajib", "sunnah", "mustahabb", "makruh", "breaks", "condition"]
+School = Literal["hanafi", "maliki", "shafii", "hanbali"]
+
+
+class ReciteCard(GrowStep):
+    """A step to say, as a card: `arabic` or `ayahs`, checked by ear."""
+    kind: Literal["recite"]
+
+
+class ActionCard(GrowStep):
+    """A step to do, as a card: `instruction`, tapped Done."""
+    kind: Literal["action"]
+
+
+class RulingCard(BaseModel):
+    """One ruling of one school: what it is (`category`) in the book's own words
+    (`quote`), and from Level 2 the reason a later book gives (`why`). `order`
+    is its place in a sequence, for exercises that ask for one."""
+    kind: Literal["ruling"]
+    id: str
+    title: str
+    category: Category
+    quote: GrowRuling
+    why: GrowRuling | None = None
+    order: int | None = None
+
+
+class Position(BaseModel):
+    """What one school says, in its own book's words."""
+    school: School
+    category: Category
+    quote: GrowRuling
+
+
+class DifferenceCard(BaseModel):
+    """One question the schools answer differently: at least two positions."""
+    kind: Literal["difference"]
+    id: str
+    title: str
+    positions: list[Position]
+
+
+# One shape for everything on a world's map, told apart by `kind`.
+Card = Annotated[ReciteCard | ActionCard | RulingCard | DifferenceCard, Field(discriminator="kind")]
+
+
+class GrowLevel(BaseModel):
+    """A level of a world's map, as its world.json lists it. `proposed` are topics
+    planned for it, shown locked."""
+    id: str
+    title: str
+    proposed: list[str] = []
+
+
+class GrowUnit(BaseModel):
+    """One file of cards under a world's folder, sitting in one level."""
+    level: str
+    title: str
+    arabic: str
+    cards: list[Card]
+
+
+class GrowWorld(BaseModel):
+    """A world as /api/grow/worlds/{id} serves it: its levels, its recitation
+    paths (the same ones /api/grow/paths serves) and its units of cards."""
+    id: str
+    levels: list[GrowLevel]
+    paths: list[GrowPath]
+    units: list[GrowUnit]

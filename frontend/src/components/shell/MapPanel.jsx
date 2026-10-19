@@ -22,7 +22,7 @@ import { useMemo, useState } from 'react'
 import ArabicText from '../ui/ArabicText'
 import ManhajView from '../ui/ManhajView'
 import PbsChart from './PbsChart'
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import { CHARTS } from '../../lib/pbsData'
 import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'
 
@@ -83,7 +83,7 @@ export default function MapPanel({ open, onClose }) {
     <dialog
       ref={dialog}
       onClose={handleDialogClose}
-      onClick={(e) => e.target === dialog.current && dialog.current.close()}
+      onClick={closeOnBackdrop((e) => e.currentTarget.close())}
       onKeyDown={handleKeyDown}
       aria-labelledby="map-title"
       className="m-auto p-0 bg-transparent max-w-[min(76rem,96vw)] w-full h-[min(46rem,92vh)]"
@@ -142,7 +142,7 @@ export default function MapPanel({ open, onClose }) {
 
         <div className="relative flex-1 min-h-0 overflow-auto" tabIndex={0} role="region" aria-label="Map">
           {current ? (
-            <div className="p-4" style={{ width: `max(${zoom * 100}%, ${zoom * CHART_MIN_REM}rem)`, transition: 'width .2s ease' }}>
+            <div className="p-4" style={{ width: `max(${zoom * 100}%, ${zoom * CHART_MIN_REM}rem)`, transition: 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
               <PbsChart
                 key={path.join('.')}
                 config={config}

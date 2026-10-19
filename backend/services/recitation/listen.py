@@ -180,32 +180,34 @@ def _engine(name: str):
         compute_type=settings.recitation_compute,
         cpu_threads=settings.recitation_threads,
     )
-    # A folder inside backend/ (a model tuned by scripts/finetune_ear) is loaded as it is,
-    # and a broken one fails here with its own error; anything else is a model name.
+    # A folder inside backend/ is loaded as it is, and a broken one fails here with its own error;
+    # anything else is a model name, "repo@revision" pinning one upload of a tuned ear
+    # (scripts/finetune_ear/cloud.py --ship), so a new upload is a new name, never a stale copy.
     folder = confined("recitation_model", name)
     if folder.is_dir():
         _models[name] = WhisperModel(str(folder), **build)
     else:
+        repo, _, revision = name.partition("@")
+        build.update(revision=revision or None)
         try:
             # The copy already on this machine, without asking the internet whether
             # there is a newer one. That question costs a second every startup and
             # the answer never changes; more to the point, this app works with the
             # network unplugged and loading a model should not be the exception.
-            _models[name] = WhisperModel(name, local_files_only=True, **build)
+            _models[name] = WhisperModel(repo, local_files_only=True, **build)
         except Exception:
             # Not on this machine yet. Fetching it is a one-off of a few hundred
             # megabytes, and after that the line above is the one that runs.
             log.info("downloading the %s model, once", name)
-            _models[name] = WhisperModel(name, **build)
+            _models[name] = WhisperModel(repo, **build)
     log.info("loaded  model=%s  threads=%d  %.0fms", name, settings.recitation_threads,
              (time.perf_counter() - started) * 1000)
     return _models[name]
 
 
 def trial_model() -> str:
-    """The trial model's folder as configured, or "" when none is set or it is not on disk."""
-    name = get_settings().recitation_trial_model
-    return name if name and confined("recitation_trial_model", name).is_dir() else ""
+    """The trial model as configured (a folder or "repo@revision"), or "" when none is set."""
+    return get_settings().recitation_trial_model
 
 
 def warm() -> None:

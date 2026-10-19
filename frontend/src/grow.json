@@ -1,28 +1,7 @@
 {
-  "_comment": "Grow's numbers and the shape of its map. The rules that use them are in lib/grow.js.",
-
+  "_comment": "Grow's numbers for the practice card (components/grow/Practice.jsx); the rules that use them are in lib/grow.js.",
   "_clean-days": "How many different days a step must be said with every word right before it counts as learnt. One clean run can be luck or a fresh memory; the same words right again on another day is what knowing them looks like. The score counts only learnt steps.",
   "clean-days": 2,
-
-  "_storage-key": "Where the reader's record is kept in this browser. Nothing of it leaves the device except the anonymous attempt lib/progress.js already sends for every module.",
-  "storage-key": "grow-record",
-
-  "_tiers": "The levels of the map, in the order they are climbed. A path in paths.json joins a tier by naming its id. A tier opens once every step of the one before it is learnt, and one with no path yet stays locked. `proposed` (required on a tier with no path, empty is fine) are the topics planned for it: shown locked so the road ahead is visible, and not steps anyone can practise. Adding a tier, or giving one its first path, is data only.",
-  "tiers": [
-    { "id": "basics", "title": "Level 1", "proposed": [] },
-    { "id": "intermediate", "title": "Level 2", "proposed": [] },
-    { "id": "advanced", "title": "Level 3", "proposed": [] }
-  ],
-
-  "_vine": "The shape of a vine of steps, in pixels (lib/vine.js). cell: the least room a step needs, so a group's steps wrap into a curl once the row is narrower than that many. row: the height of one row of steps. top: where the vine runs, down from the top of a row. sway: how far each step sits above or below the vine, alternating, which makes it wind. spread: how many cells apart the steps of a short branch may spread before they stop filling the row. bud: the room a group's own circle takes at the start of its branch.",
-  "vine": { "cell": 104, "row": 132, "top": 40, "sway": 6, "spread": 1.6, "bud": 100 },
-
   "_daleel-words": "How many opening words of a ruling are handed to Daleel by its Open in Daleel link.",
-  "daleel-words": 8,
-
-  "_unlock-ms": "The tier unlock, in four waits: the gate stays shut, the gate opens, the vine draws, the steps appear. Each number is how long that beat lasts before the next one starts. Read in JavaScript, so it is skipped when animations are off.",
-  "unlock-ms": [500, 1100, 1000, 800],
-
-  "_mood-ms": "How long Qalam holds a reaction to a recitation before going back to resting. Longer than the motion itself so the reaction is seen, short enough that the next one reads as new.",
-  "mood-ms": 1400
+  "daleel-words": 8
 }

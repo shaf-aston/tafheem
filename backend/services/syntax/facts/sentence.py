@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.nahw_book import is_one
-from backend.services.syntax.facts.word import is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, subject_link
+from backend.services.syntax.facts.word import is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
 
 
 class Sentence:
@@ -57,9 +57,9 @@ class Sentence:
         """كاد يموت, أوشك أن ينتهي: a present verb, bare or behind أن, finishes the clause."""
         for kid in self.kids(verb):
             if kid["pos"] == "PRT" and is_one(kid["lemma"], "nasb_mudari"):
-                if any(k["pos"].startswith("VRB") and k.get("asp") == "i" for k in self.kids(kid)):
+                if any(present_verb_tagged(k) for k in self.kids(kid)):
                     return True
-            elif kid["pos"].startswith("VRB") and kid.get("asp") == "i":
+            elif present_verb_tagged(kid):
                 return True
         return False
 
@@ -129,9 +129,11 @@ def place_case(token: dict, s: "Sentence") -> str | None:
 def told_of_lone_mubtada(token: dict, head: dict, s: Sentence) -> bool:
     """الدينُ النصيحةُ: a verbless sentence resting on one noun with nothing else said of
     it, so the plain noun in its case after it is its khabar; a describing word
-    (الطبيبُ الماهرُ) stays its صفة (Tasheel 1.4 p6)."""
+    (الطبيبُ الماهرُ) stays its صفة (Tasheel 1.4 p6). Made definite by its مضاف إليه
+    (الطهورُ شطرُ الإيمانِ) it is a khabar too: a plain noun names a thing, it does not describe one."""
+    plain_mudaf = token.get("stt") == "c" and token.get("pos_camel") == "noun" and not is_participle(token)
     return s.verbless and head["rel"] == "---" and noun_tagged(head) \
-        and same_case(token, head) and token.get("stt") == "d" and token.get("ud") != "ADJ" \
+        and same_case(token, head) and (token.get("stt") == "d" or plain_mudaf) and token.get("ud") != "ADJ" \
         and [t for t in s.tokens if t["rel"] == "---"] == [head] \
         and all(k is token or k["rel"] == "IDF" for k in s.kids(head))
 

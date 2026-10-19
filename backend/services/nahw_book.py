@@ -43,6 +43,39 @@ def book_map(family: str, part: str) -> dict[str, str]:
     return _closed()["families"][family][part]
 
 
+def extra_ba_on(verb: str) -> dict | None:
+    """كفى، ليس: the rule a زائدة باء on this verb follows (rel, role, place_case, alone), or none."""
+    return _closed()["families"]["extra_ba"]["on"].get(verb)
+
+
+def is_extra_ba(letter: str) -> bool:
+    return letter in _closed()["families"]["extra_ba"]["words"]
+
+
+def extra_ba_named() -> str:
+    """حرف جر زائد: the name the باء itself takes."""
+    return _closed()["families"]["extra_ba"]["named"]
+
+
+def extra_ba_said(place: str) -> str:
+    """The card's line for a word under a زائدة باء whose place is in this case (u / a)."""
+    family = _closed()["families"]["extra_ba"]
+    return family["said"].format(place=family["place_said"][place])
+
+
+def kaffa_sister(word: str) -> str | None:
+    """إنما → إن: the إن sister a كافة ما is written onto, for a bare word; none otherwise."""
+    family = _closed()["families"]["inna"]
+    ma = family["kaffa"]["ma"]
+    return word[:-len(ma)] if word.endswith(ma) and word[:-len(ma)] in family["words"] else None
+
+
+def kaffa_card(word: str, sister: str) -> tuple[str, str]:
+    """The name and the reason of an إن sister stopped by ما."""
+    kaffa = _closed()["families"]["inna"]["kaffa"]
+    return kaffa["named"], kaffa["said"].format(word=word, bare=sister)
+
+
 def book_merges(family: str) -> dict:
     """A family's merged words (أَلَّا in nasb_mudari), or none."""
     return _closed()["families"][family].get("merges", {})
@@ -76,6 +109,15 @@ def only_adverb(lemma: str) -> bool:
     word = lemma.strip("+")
     return any(word in families[f]["words"] for f in ADVERB_FAMILIES) and not any(
         word in kept.get("words", []) for name, kept in families.items() if name not in ADVERB_FAMILIES)
+
+
+def is_built_word(lemma: str) -> bool:
+    """أمس، حيث، الآن: a time or place word built on one ending (closed_words `built`); and
+    حيثما، أينما، متى, a condition's time or place word, built whether or not an answer follows."""
+    word = lemma.strip("+")
+    opened = condition_of(word)
+    return any(word in book_words(f, "built") for f in ADVERB_FAMILIES) or bool(
+        opened and opened["adverb"] and opened["built"])
 
 
 def six_noun_case(base: str, lemma: str) -> str | None:
@@ -171,14 +213,22 @@ def condition_of(word: str) -> dict | None:
     letters too (مَنْ، ما، متى), so only an answer shows it opens a condition (إذا has none)."""
     frame = frames()["condition"]
     words = _closed()["families"]
-    return next(({**frame, **own, "family": family, "noun": part == "conditional_nouns",
+    # a member whose condition differs from its family's lays its own over it (لولا: before a noun)
+    return next(({**frame, **own, **own.get("by_word", {}).get(word, {}), "family": family, "noun": part == "conditional_nouns",
                   "adverb": word in words[family].get("conditional_adverbs", ()),
                   "built": word not in words[family].get("conditional_inflected", ()),
                   "shared": any(word in words[other]["words"] for other in ("mawsul", "istifham")),
-                  "opener": own["noun" if part == "conditional_nouns" else "particle"]}
+                  "opener": {**own, **own.get("by_word", {}).get(word, {})}["noun" if part == "conditional_nouns" else "particle"]}
                  for family, own in frame["by_family"].items()
                  for part in ("conditional_particles", "conditional_nouns")
                  if word in words[family].get(part, ())), None)
+
+
+def counted_name(role: str, nth: int) -> str:
+    """The nth (from 0) of several of one role side by side: خبر إن → خبر ثانٍ لإن، مفعول به → مفعول به ثانٍ."""
+    ordinals = teacher_rules()["case_said"]["ordinals"]
+    word = ordinals[min(nth, len(ordinals) - 1)]
+    return f"خبر {word} ل{role[4:]}" if role.startswith("خبر ") else f"{role} {word}"
 
 
 def teacher_rules() -> dict:

@@ -54,7 +54,7 @@ def asked_verb(s: Sentence) -> dict | None:
         if asking.get(strip_diacritics(question["form"])) != "object":
             continue
         verb = next((t for t in s.tokens if t["id"] > question["id"] and is_verb(t)), None)
-        if verb and not any(k["rel"] == "OBJ" and k is not question for k in s.kids(verb)):
+        if verb and not any(k["rel"] == "OBJ" and k is not question and not is_verb(k) for k in s.kids(verb)):  # قال after it is the reply
             return verb
     return None
 
@@ -62,9 +62,13 @@ def asked_verb(s: Sentence) -> dict | None:
 def negates(token: dict, s: Sentence) -> bool:
     """ما رأيتُه: ما straight before a verb that has its object already can only negate it
     (a relative or question ما would be that object). Straight after a verb with no object
-    of its own it is that object, the relative (قرأتُ ما كتبتُه)."""
+    of its own it is that object, the relative (قرأتُ ما كتبتُه); hung on that verb as its doer it is
+    the doer (سَرَّنِي ما صنعتَه), the verb's own pronouns stuck on before it."""
     verb, before = s.by_id.get(token["id"] + 1), s.by_id.get(token["id"] - 1)
-    if before and is_verb(before) and not any(k["rel"] == "OBJ" and k is not token for k in s.kids(before)):
+    while before and before.get("token_type") == "enc0":
+        before = s.by_id.get(before["id"] - 1)
+    if before and is_verb(before) and (token["head"] == before["id"] and token["rel"] == "SBJ"
+                                       or not any(k["rel"] == "OBJ" and k is not token for k in s.kids(before))):
         return False
     return bool(token["lemma"] == "ما" and token["pos"] != "PRT" and verb and is_verb(verb)
                 and any(k["rel"] == "OBJ" for k in s.kids(verb)))

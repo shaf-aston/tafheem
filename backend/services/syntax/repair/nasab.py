@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween, typed_case
-from backend.services.syntax.facts import is_name, listed, noun_tagged
+from backend.services.syntax.facts import is_name, listed, noun_tagged, verb_tagged
 from backend.services.syntax.mask import above
 
 
@@ -29,8 +29,11 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
         while name["rel"] == "IDF" and (head := by_id.get(name["head"])) and head["id"] < name["id"] \
                 and not listed(head, "nasab"):
             name = head
-        # climb the name out from under the ابن and its noun into the place they held
-        while (over := next((w for w in (son, after) if _under(name, w, tokens)), None)):
+        # climb the name out from under the ابن and its noun into the place they held;
+        # no more climbs than words, so links that already loop cannot spin it forever
+        for _ in tokens:
+            if not (over := next((w for w in (son, after) if _under(name, w, tokens)), None)):
+                break
             name["head"], name["rel"] = over["head"], over["rel"]
         son["head"], son["rel"] = name["id"], "MOD"
         after["head"], after["rel"] = son["id"], "IDF"
@@ -55,7 +58,7 @@ def _told_of(name: dict, end: dict, bases: list[dict], tokens: list[dict]) -> No
     the parser hung it (as the name's صفة, or a root of its own)."""
     first, at = bases[0], bases.index(end) + 1
     if not (name is first or _under(name, first, tokens)) or at >= len(bases) \
-            or any(t["pos"].startswith("VRB") for t in tokens) or any(t["head"] == first["id"] and t["rel"] == "PRD" for t in tokens):
+            or any(verb_tagged(t) for t in tokens) or any(t["head"] == first["id"] and t["rel"] == "PRD" for t in tokens):
         return
     khabar = bases[at]
     if not noun_tagged(khabar) or listed(khabar, "nasab"):

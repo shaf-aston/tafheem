@@ -51,6 +51,7 @@ def test_a_post_is_not_cached():
     "/api/notes",
     "/api/sources",
     "/api/grow/paths",
+    "/api/grow/worlds/prayer",
     "/api/tarkeeb/examples",
     "/api/daleel/books",
     "/api/colloquial",

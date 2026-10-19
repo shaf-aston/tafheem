@@ -93,6 +93,11 @@
    Written with the field in the selector so it outranks the app-wide rule; the
    plain `outline: none` above it never won. */
 .cb-field .cb-input:focus-visible { outline: none; }
+/* The box takes the ring the input gives up, so a keyboard sees the same ring as everywhere else. */
+.cb-field:has(.cb-input:focus-visible) {
+  outline: 2px solid var(--c, var(--primary));
+  outline-offset: 2px;
+}
 
 
 /* The completion, printed under the real box with the typed part in nothing, so
@@ -152,13 +157,10 @@
   background: var(--surface);
   box-shadow: var(--shadow-pop);
   transform-origin: 100% 0;
-  animation: cb-drop calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease);
-}
-
-
-@keyframes cb-drop {
-  from { opacity: 0; transform: translateY(-0.4rem) scale(0.985); }
-  to { opacity: 1; transform: none; }
+  animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease);
+  --rise-from: 0;
+  --rise-y: -0.4rem;
+  --rise-scale: 0.985;
 }
 
 
@@ -313,13 +315,8 @@
 .sh-dialog::backdrop {
   background: var(--shadow-scrim);
   backdrop-filter: blur(6px);
-  animation: sh-fade calc(var(--motion-base-ms) * 1ms) ease;
-}
-
-
-@keyframes sh-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  animation: fade-in calc(var(--motion-base-ms) * 1ms) ease;
+  --fade-from: 0;
 }
 
 
@@ -436,7 +433,8 @@
   border-radius: 50%;
   animation:
     sh-drift calc(90s * var(--motion-scale)) linear infinite,
-    sh-fade calc(var(--motion-spring-ms) * 2ms) ease backwards;
+    fade-in calc(var(--motion-spring-ms) * 2ms) ease backwards;
+  --fade-from: 0;
 }
 
 
@@ -560,13 +558,14 @@
 /* Last to arrive: the ring is what the eye should follow first. */
 .sh-hint,
 .sh-stage .cb-results {
-  animation: sh-fade calc(var(--motion-spring-ms) * 2ms) ease backwards;
+  animation: fade-in calc(var(--motion-spring-ms) * 2ms) ease backwards;
+  --fade-from: 0;
   animation-delay: calc(var(--motion-spring-ms) * 1ms);
 }
 
 
 .sh-hint {
-  color: var(--text-faint);
+  color: var(--command-hint);
   font-size: var(--type-small);
 }
 

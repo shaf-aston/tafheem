@@ -1,10 +1,14 @@
 /**
  * Grow's home: level, streak, daily goal, today's lesson with each world's next step, every world (unbuilt ones shown as coming).
+ * Today leads with the book last studied (its next lesson, one tap away) once there is one, and the words lesson otherwise;
+ * a book with questions due shows its review as a step too.
  * A guest's log-in nudge rides on the title line (SectionHeader `aside`).
  */
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 
 import { GOAL, GOALS, rankOf, shareOf } from '../../lib/rewards'
+import { REVIEW_SIZE } from '../../lib/bookLesson'
+import { LAST_BOOK, REVIEW } from '../../lib/useBookWorld'
 import { sayIn } from '../../lib/say'
 import { useRemembered } from '../../lib/useRemembered'
 import ProfileDialog from '../profile/ProfileDialog'
@@ -93,35 +97,67 @@ const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.rev
 /** A next-step card's room while its world loads, so nothing below jumps when it lands. */
 const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
 
-/** Today's words lesson, then the next step in Hadith, Quran and Prayer. */
-function Today({ worldOf, lessons, prayer, onStart, onOpen }) {
+/** Today's lesson: the last book's next one when there is one, else the words lesson; then every world's next step. */
+function Today({ worldOf, lessons, books, onStart, onStartBook }) {
+  const [last] = useRemembered(LAST_BOOK, Object.keys(books), '')
   const { words } = lessons
   const empty = words.ready && !words.fresh && !words.dueCount
   const hadith = nextOf(lessons.hadith)
   const ayah = nextOf(lessons.quran)
+  // Without words to start, a book leads even before one was studied.
+  const open = (id) => books[id]?.ready && books[id].next
+  const lead = open(last) ? last : words.error ? Object.keys(books).find(open) ?? null : null
+  let wordsLine = '\u00a0'
+  if (words.ready) wordsLine = say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length })
+  else if (words.error) wordsLine = say('Words could not load just now. The book worlds below still work.')
+  const partOf = (book) => book.parts.find((part) => part.id === book.next.part)?.title
+  const accent = worldOf(lead ?? 'words').accent
   return (
-    <section className="grow-today" style={{ '--w': worldOf('words').accent }} aria-labelledby="grow-today-h">
-      <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
-      <h3 id="grow-today-h">{say('Keep your garden growing')}</h3>
-      <p className="grow-today-holds tabular-nums">
-        {words.ready ? say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length }) : '\u00a0'}
-      </p>
-      <PrimaryButton accent={worldOf('words').accent} disabled={!words.ready || empty} onClick={() => onStart('words')}>
-        {empty ? say('Every word learnt and nothing due') : say('Start')}
-      </PrimaryButton>
+    <section className="grow-today" style={{ '--w': accent }} aria-labelledby="grow-today-h">
+      {lead ? (
+        <>
+          <p className="grow-today-kicker">{say('Continue · {world}', { world: worldOf(lead).name })}</p>
+          <h3 id="grow-today-h">{books[lead].next.title}</h3>
+          <p className="grow-today-holds">{partOf(books[lead])}</p>
+          <PrimaryButton accent={accent} onClick={() => onStartBook(lead, books[lead].next.id, books[lead].next.part)}>{say('Continue')}</PrimaryButton>
+        </>
+      ) : (
+        <>
+          <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
+          <h3 id="grow-today-h">{say('Keep your garden growing')}</h3>
+          <p className="grow-today-holds tabular-nums">{wordsLine}</p>
+          <PrimaryButton accent={accent} disabled={!words.ready || empty} onClick={() => onStart('words')}>
+            {empty ? say('Every word learnt and nothing due') : say('Start')}
+          </PrimaryButton>
+        </>
+      )}
       <div className="grow-nexts">
-        {!lessons.hadith.ready && <NextSlot />}
+        {lead && words.ready && !empty && (
+          <NextStep world={worldOf('words')} where={say('Today’s words')} line={wordsLine} onGo={() => onStart('words')} />
+        )}
+        {Object.entries(books).map(([id, book]) => {
+          if (!book.ready) return book.error ? null : <NextSlot key={id} />
+          return (
+            <Fragment key={id}>
+              {book.due.length > 0 && (
+                <NextStep world={worldOf(id)} where={say('Review')}
+                  line={book.due.length === 1 ? say('1 question due') : say('{n} questions due', { n: Math.min(book.due.length, REVIEW_SIZE) })}
+                  onGo={() => onStartBook(id, REVIEW)} />
+              )}
+              {book.next && id !== lead && (
+                <NextStep world={worldOf(id)} where={partOf(book)} line={book.next.title} onGo={() => onStartBook(id, book.next.id, book.next.part)} />
+              )}
+            </Fragment>
+          )
+        })}
+        {!lessons.hadith.ready && !lessons.hadith.error && <NextSlot />}
         {hadith && (
           <NextStep world={worldOf('hadith')} where={say('{n} of 42', { n: hadith.n })} line={hadith.key.en} onGo={() => onStart('hadith')} />
         )}
-        {!lessons.quran.ready && <NextSlot />}
+        {!lessons.quran.ready && !lessons.quran.error && <NextSlot />}
         {ayah && (
           <NextStep world={worldOf('quran')} where={say('{surah}, ayah {n}', { surah: ayah.name_en, n: ayah.ayah })} line={ayah.english}
             onGo={() => onStart('quran')} />
-        )}
-        {!prayer.done.total && <NextSlot />}
-        {prayer.next && (
-          <NextStep world={worldOf('prayer')} where={say('next step')} line={prayer.next.title} onGo={() => onOpen('prayer')} />
         )}
       </div>
     </section>
@@ -147,16 +183,25 @@ function WorldTile({ world, status, share, onOpen }) {
   )
 }
 
+// A world that could not load says so, instead of loading for ever.
+const waiting = (state) => ({ status: state.error ? say('Could not load') : say('Loading…'), share: 0 })
+
 const stageStatus = (state) => (state.ready
   ? { status: say('Stage {n} · {into} of {need}', { n: state.stage.stage + 1, ...state.stage }), share: state.stage.into / state.stage.need }
-  : { status: say('Loading…'), share: 0 })
+  : waiting(state))
 
-export default function GrowHome({ worlds, rewards, lessons, prayer, onOpen, onStart }) {
+/** A book world's tile: lessons finished of those written so far. */
+function bookStatus(state) {
+  if (!state.ready) return waiting(state)
+  const total = state.parts.reduce((sum, part) => sum + part.lessons.length, 0)
+  const done = state.parts.reduce((sum, part) => sum + part.finished, 0)
+  return { status: say('{done} of {total} lessons', { done, total }), share: total ? done / total : 0 }
+}
+
+export default function GrowHome({ worlds, rewards, lessons, books, onOpen, onStart, onStartBook }) {
   const statusOf = {
     ...Object.fromEntries(Object.entries(lessons).map(([id, state]) => [id, stageStatus(state)])),
-    prayer: prayer.done.total
-      ? { status: say('{learnt} of {total} steps learnt', prayer.done), share: prayer.done.learnt / prayer.done.total }
-      : { status: say('Loading…'), share: 0 },
+    ...Object.fromEntries(Object.entries(books).map(([id, state]) => [id, bookStatus(state)])),
   }
   const worldOf = (id) => worlds.find((world) => world.id === id)
   return (
@@ -164,7 +209,7 @@ export default function GrowHome({ worlds, rewards, lessons, prayer, onOpen, onS
       <SectionHeader title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')}
         aside={rewards ? null : <LogInNudge />} />
       <Growth rewards={rewards} />
-      <Today worldOf={worldOf} lessons={lessons} prayer={prayer} onStart={onStart} onOpen={onOpen} />
+      <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>
       <div className="grow-worlds">
         {worlds.map((world) => (

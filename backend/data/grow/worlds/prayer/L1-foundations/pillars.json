@@ -1,0 +1,60 @@
+{
+  "_comment": "The pillars of the prayer as al-Quduri lists them, one card each, in the order they are done. Every quote is his sentence as written (tests/test_grow.py holds it to the book).",
+  "level": "basics",
+  "title": "Pillars of the prayer",
+  "arabic": "فرائض الصلاة",
+  "cards": [
+    {
+      "id": "salah-pillar-takbir",
+      "kind": "ruling",
+      "title": "The opening takbir",
+      "category": "fard",
+      "order": 1,
+      "quote": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "فإذا دخل الرجل في الصلاة كبر ورفع يديه مع التكبير حتى يحاذى بإبهاميه شحمتي أذنيه",
+        "english": "When a man enters the prayer he says the takbir and raises his hands with it until his thumbs are level with his earlobes."
+      }
+    },
+    {
+      "id": "salah-pillar-qiyam",
+      "kind": "ruling",
+      "title": "Standing",
+      "category": "fard",
+      "order": 2,
+      "quote": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "فرائض الصلاة ستة: التحريمة والقيام والقرءة والركوع والسجود والقعدة الأخيرة مقدار التشهد",
+        "english": "The obligations of the prayer are six: the opening takbir, standing, reciting, ruku', sujud, and the last sitting for the length of the tashahhud."
+      }
+    },
+    {
+      "id": "salah-pillar-ruku",
+      "kind": "ruling",
+      "title": "Bowing",
+      "category": "fard",
+      "order": 3,
+      "quote": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "ثم يكبر ويركع ويعتمد بيديه على ركبتيه ويفرج أصابعه ويبسط ظهره ولا يرفع رأسه ولا ينكسه",
+        "english": "Then he says the takbir and bows, resting his hands on his knees, spreading his fingers and flattening his back, neither raising his head nor lowering it."
+      }
+    },
+    {
+      "id": "salah-pillar-sujud",
+      "kind": "ruling",
+      "title": "Prostration",
+      "category": "fard",
+      "order": 4,
+      "quote": {
+        "source": "quduri",
+        "where": "Kitab al-Salah, Bab Sifat al-Salah",
+        "arabic": "واعتمد بيديه على الأرض ووضع وجهه بين كفيه وسجد على أنفه وجبهته",
+        "english": "He rests his hands on the ground, puts his face between his palms, and prostrates on his nose and forehead."
+      }
+    }
+  ]
+}

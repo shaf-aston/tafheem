@@ -140,9 +140,34 @@
     "سواء"
    ]
   },
+  "extra_ba": {
+   "ar": "الباء الزائدة",
+   "_comment": "A باء written onto a word that holds a place of its own: the word is مجرور in its letters and stands in its place's case (Tasheel: حروف الجر الزائدة). `on`: the verb it hangs on, the parser's link of the باء to it (`rel`), the place (`role`, a roles.json name) and the case of that place (`place_case`). `alone`: only when nothing else is the verb's doer: كفى بالله شهيدًا, but in كفى بالمرء كذبًا أن يحدّث the masdar أن يحدّث is the doer and بالمرء a plain جار ومجرور.",
+   "words": [
+    "ب"
+   ],
+   "named": "حرف جر زائد",
+   "said": "اسم مجرور لفظًا بحرف الجر الزائد، {place} محلًا",
+   "place_said": {"u": "مرفوع", "a": "منصوب"},
+   "on": {
+    "كفى": {
+     "rel": "MOD",
+     "role": "فاعل",
+     "place_case": "u",
+     "alone": true
+    },
+    "ليس": {
+     "rel": "PRD",
+     "role": "خبر كان",
+     "place_case": "a"
+    }
+   }
+  },
   "istithna_verbs": {
    "ar": "خلا وعدا وحاشا",
    "masdar_ma": ["ما"],
+   "_timed_comment": "ما المصدرية الظرفية: ما standing for a span of time, before لم or the verb دام (البيعان بالخيار ما لم يتفرقا، ما دمت حيا)",
+   "timed_ma_before": ["لم", "دام"],
    "effect": "before a noun in nasb a past verb that never changes (فعل ماضٍ جامد), its doer hidden (هو) and the noun its object; before a noun in jarr a preposition and the noun its majrur; after ما only the verb. Read by services/syntax/mask.py from the noun's typed case",
    "words": [
     "خلا",
@@ -159,6 +184,8 @@
    "ar": "إن وأخواتها",
    "card": {"named": "حرف ناسخ مشبه بالفعل", "does": "ينصب الاسم ويرفع الخبر", "governs": "inna"},
    "effect": "nasb the ism and raf' the khabar; attached ما cancels the effect (إنما)",
+   "_kaffa_comment": "إنما، كأنما، لكنما: a ما written onto a member stops its work, and the books name the pair, not the bare حرف (Tasheel 1.10).",
+   "kaffa": {"ma": "ما", "named": "كافة ومكفوفة", "said": "{word} كافة ومكفوفة: {bare} حرف ناسخ مكفوف عن العمل، وما كافة، مبني لا محل له من الإعراب"},
    "words": [
     "إن",
     "أن",
@@ -511,8 +538,8 @@
     "هل",
     "لو"
    ],
-   "conditional_particles": ["لو"],
-   "_conditional_particles": "the non-jussive conditional particles that open a condition before a verb (Year 3 notes, zuroof p4: لولا، لوما، لو، أمّا are حروف). لولا and لوما open one only before a noun and urge before a verb; أمّا comes before a noun: so only لو. Read with jazm's list by nahw_book.condition_of",
+   "conditional_particles": ["لو", "لولا", "لوما"],
+   "_conditional_particles": "the non-jussive conditional particles (Year 3 notes, zuroof p4: لولا، لوما، لو، أمّا are حروف). لو opens one before a verb; لولا and لوما before a noun only (roles.json condition `by_word`), and urge before a verb; أمّا comes before a noun and is not listed. Read with jazm's list by nahw_book.condition_of",
    "ambiguous": {
     "أما": "notification/detail 'as for' (أما ... فـ) vs أم + ما (interrogative) vs أما الاستفتاحية",
     "ألا": "notification 'lo!' vs exhortation 'why not' vs أن + لا (written together) vs أ + لا (question with negation)",
@@ -979,6 +1006,9 @@
   "damir_muttasil": {
    "ar": "الضمائر المتصلة",
    "effect": "written joined to the word before it: genitive/accusative suffix on nouns, verbs and particles (كتابه، ضربه، إنه), or the subject ending of a verb",
+   "on_nouns": ["ي", "نا", "ك", "كما", "كم", "كن", "ه", "ها", "هما", "هم", "هن"],
+   "on_verbs": ["ني", "نا", "ك", "كما", "كم", "كن", "ه", "ها", "هما", "هم", "هن"],
+   "_on_verbs": "The object pronouns a verb takes (ظَلَمَكَ، أَكْرَمَنِي): the same as a noun's, but me is ني, its نون of protection kept (نون الوقاية).",
    "words": [
     "ي",
     "نا",
@@ -1109,8 +1139,8 @@
   },
   "participle_patterns": {
    "ar": "أوزان اسم الفاعل واسم المفعول والصفة المشبهة",
-   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل (آ2ِ3 when the first root letter is a hamza: آمِر، آكِل), 1ا2ِي the same with a weak last letter (باكية، داعيًا), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
-   "words": [
+   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل (آ2ِ3 when the first root letter is a hamza: آمِر، آكِل), 1ائِ3 the same with a hollow middle letter (سائق، قائم، صائم), 1ا2ِي the same with a weak last letter (باكية، داعيًا), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
+   "words": ["1ائِ3", 
     "1ا2ِ3",
     "آ2ِ3",
     "1ا2ِي",
@@ -1166,11 +1196,11 @@
   "reason_masdars": {
    "ar": "مصادر قلبية تأتي مفعولا لأجله",
    "effect": "a masdar of the heart (a feeling or intent), indefinite or a مضاف, in nasb under a verb of another root, is its مفعول لأجله: قام الطلاب احترامًا. Any other masdar there is a حال (جاء ركضًا). Lemmas as the parser spells them.",
-   "words": ["احترام", "ٱحترام", "إكرام", "تعظيم", "إجلال", "خوف", "خشية", "رهبة", "رغبة", "حب", "طمع", "رجاء", "شوق", "حياء", "حذر", "ابتغاء", "ٱبتغاء", "طلب", "تأديب", "إخلاص", "شفقة", "رحمة"]
+   "words": ["احترام", "ٱحترام", "إكرام", "تعظيم", "إجلال", "خوف", "خشية", "رهبة", "رغبة", "حب", "طمع", "رجاء", "شوق", "حياء", "حذر", "ابتغاء", "ٱبتغاء", "طلب", "تأديب", "إخلاص", "شفقة", "رحمة", "تقدير", "إعجاب", "حرص", "اتقاء", "ٱتقاء", "طاعة", "تكريم", "رأفة", "كراهية", "إشفاق", "اعتراف", "ٱعتراف", "امتنان", "ٱمتنان"]
   },
   "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",
-   "effect": "after a complete sentence built on one of these, an indefinite accusative noun is a tamyeez of the relation: طاب المكان هواء، امتلأ الكوب ماء. Lemmas as the parser spells them (a hamzat-wasl verb comes back with alef wasla).",
+   "effect": "after a complete sentence built on one of these, an indefinite accusative noun is a tamyeez of the relation: طاب المكان هواء، امتلأ الكوب ماء، كفى بالمرء كذبًا. Lemmas as the parser spells them (a hamzat-wasl verb comes back with alef wasla).",
    "words": [
     "طاب",
     "امتلأ",
@@ -1181,7 +1211,8 @@
     "تصبب",
     "تفصد",
     "فاض",
-    "غزر"
+    "غزر",
+    "كفى"
    ]
   },
   "nasab": {
@@ -1194,6 +1225,76 @@
     "بن",
     "بنت",
     "ابنة"
+   ]
+  },
+  "elative_patterns": {
+   "ar": "وزن اسم التفضيل",
+   "book": "Tasheel 4.3.5 p118",
+   "effect": "أَفْعَل (أَعْلَى، أَكْبَر) is no describing word at work: it takes no object, so its إضافة is معنوية محضة, never the لفظية of a participle (أَعْلَى صَوْتِهِ)",
+   "words": [
+    "أَ1ْ2َ"
+   ]
+  },
+  "times_counted": {
+   "ar": "عدد المرات",
+   "book": "Tasheel 3.2 p67 (a number or a kind stands in for the masdar)",
+   "effect": "مرة in nasb counts the verb's doing (ضربتُه مرتين): it stands in for the verb's absolute object, never a hal, and belongs to the verb, not to the jar-majrur before it",
+   "words": [
+    "مرة"
+   ]
+  },
+  "dua_nouns": {
+   "ar": "أسماء الدعاء والتحية",
+   "book": "Tasheel 1.2 (the mubtada may be a nakira that prays or greets)",
+   "effect": "a nakira in raf' that opens a clause with a لِ phrase after it is a mubtada, the لِ phrase its khabar (وَيْلٌ لِلْمُطَفِّفِينَ), even straight after a verb of saying: the clause is what was said, not the verb's doer",
+   "words": [
+    "ويل",
+    "سلام",
+    "طوبى",
+    "ويح",
+    "ويس",
+    "بؤس",
+    "تعس",
+    "سحق",
+    "بعد",
+    "تب",
+    "خيبة"
+   ]
+  },
+  "saying_verbs": {
+   "ar": "أفعال القول والنداء",
+   "book": "Tasheel 1.2 (what is said after قال is a sentence of its own)",
+   "effect": "after these verbs, or any verb whose meaning (CAMeL's gloss) is one of the glosses, a praying noun with its لِ phrase is the sentence said (قال: وَيْلٌ لَهُ), not the verb's doer; after any other verb (جَاءَ عَذَابٌ لِلْقَوْمِ) the noun stays the doer",
+   "words": [
+    "قال",
+    "نادى",
+    "صاح",
+    "صرخ",
+    "هتف",
+    "دعا"
+   ],
+   "glosses": [
+    "say",
+    "said",
+    "announce",
+    "declare",
+    "proclaim",
+    "call",
+    "summon",
+    "shout",
+    "scream",
+    "exclaim",
+    "whisper",
+    "mutter",
+    "answer",
+    "reply",
+    "repeat",
+    "recite",
+    "speak",
+    "utter",
+    "tell",
+    "pray",
+    "invoke"
    ]
   }
  }

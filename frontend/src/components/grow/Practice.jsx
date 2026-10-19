@@ -1,8 +1,8 @@
 /**
  * The inside of a step's card when the step is open: the words, the
  * microphone, the marks, the days and the scholar's words; or, for a posture
- * (growKinds byHand), the instruction and one Done. How a word is judged is
- * lib/grow.js (judge), which ear checks a step gets is lib/growKinds.js, and
+ * (a card kind by hand), the instruction and one Done. How a word is judged is
+ * lib/grow.js (judge), which ear checks a step gets is lib/grow/cards, and
  * the record is the panel's.
  */
 import { useMemo, useState } from 'react'
@@ -12,7 +12,7 @@ import { quranSurahQuery } from '../../api'
 import config from '../../grow.json'
 import { CHECK, MISSED, WAITING, WRONG } from '../../lib/follow'
 import { becomesLearnt, daysOf, isLearnt, judge, pageOf, tally } from '../../lib/grow'
-import { byHand, checkStep } from '../../lib/growKinds'
+import { byHand, checkStep } from '../../lib/grow/cards'
 import { isQuranic } from '../../lib/arabicText'
 import { LOOK } from '../../lib/reciteColors'
 import { sayIn } from '../../lib/say'

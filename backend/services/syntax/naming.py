@@ -7,9 +7,12 @@ quoted once, in this package's `__init__.py`.
 """
 from __future__ import annotations
 
+from typing import NamedTuple, TypedDict
+
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import (
-    book_map, book_merges, book_path, case_of, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
+    extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
+    book_map, book_merges, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, walker
 from backend.services.harakat import (
     CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
@@ -56,7 +59,30 @@ def base_tokens(words: list[str], tokens: list[dict]) -> list[dict]:
     return bases
 
 
-def roles(words: list[str], tokens: list[dict]) -> list[dict]:
+class FoundEntry(TypedDict, total=False):
+    """One typed word as naming found it; every later step (teacher, tree, cards) reads it.
+    `role` and `case` are always there; the rest only when it applies."""
+    role: str | None
+    case: str | None
+    aspect: str | None  # a فعل's tense, from the parser
+    printed: str | None  # فعل مجهول: the name a passive verb's card prints
+    family: str | None  # كان، إنّ: the family a governing word or particle belongs to
+    named: str | None  # a particle reading's own name (ألا الاستفتاحية)
+    book: str | None  # the proof line: the tree's branches that named it
+    also: str | None  # a second thing the book says (عطف بيان)
+    attached: list[dict]  # pieces written onto it: id, role, before, form, family, reading
+    governor: int  # index of the word that works its case on it
+    follows: int  # index of the word a تابع follows
+    condition: dict  # its part in a شرط: opener, subject, answer
+    pair: dict[str, str]  # لا رجلَ: role → the name its governor gives the pair
+    extra_ba: str  # u / a: the place's case under a زائدة باء
+    by_place: bool  # the case is its place's, not the one its letters show (the teacher skips the typed check)
+    kaffa: str  # إنما: the إن sister the كافة ما is on
+    gap: dict  # set by the teacher: the rule a dashed role broke, ar and en
+    name: str  # set from the picture: its finer name (اسم ليس)
+
+
+def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
     """One {role, case, aspect, book} per typed word, in the order they were typed;
     `book` is the proof line, the tree's branches that named it.
 
@@ -88,7 +114,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     word_of = _typed_word_of(bases, tokens)
     before = [[t["form"].strip("+") for t in tokens if facts.is_prefix(t) and word_of.get(t["id"]) == i]
               for i in range(len(bases))]
-    cases = [_ending(role, token, bases[i - 1] if i else None, words[i + 1] if i + 1 < len(words) else "",
+    cases = [_ending(role, token, _governor(bases, i), words[i + 1] if i + 1 < len(words) else "",
                      facts.puts_in_jarr(token, s), _lam_mood(token, before[i], i == 0))
              for i, (role, token) in enumerate(zip(named, bases))]
     _followers_take_their_ending(named, cases, bases, tokens)
@@ -101,11 +127,13 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
     # the parser's tense goes with a فعل, so a card CAMeL took for a noun (ضُرِبَ) still says ماضٍ
     found = [{"role": role, "case": case,
              "aspect": token.get("asp") if role == NAMED.fil else None,
+             "printed": frames()["passive"]["verb"] if role == NAMED.fil and facts.is_passive(token) else None,
              "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
              # محمدُ بنُ عبدِ اللهِ: the books also read the ابن as عطف بيان or بدل
-             "also": book_map("nasab", "also") if role == NAMED.sifah and facts.is_nasab(token) else None,
+             "also": book_map("nasab", "also") if role == NAMED.sifah and facts.is_nasab(token)
+             else _kind_said(role, token, s, governed_by),
              # إيّاك: the pronoun on إيّا is a letter of the one detached pronoun, not a piece of its own
              "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": facts.is_prefix(t), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
@@ -113,12 +141,82 @@ def roles(words: list[str], tokens: list[dict]) -> list[dict]:
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
              **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]])}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
-    for entry, role in zip(found, named):
-        if (pair := _pair_named(bases, entry.get("governor"))) and role in pair:
-            entry["pair"] = pair  # the role keeps its id; only the printed name follows the governor
     for found_condition in condition.find(bases, named, cases, before):
         _conditioned(found, found_condition, bases)
+    for step in FINISHES:
+        step(Named(found, bases, tokens, s, words))
     return found
+
+
+class Named(NamedTuple):
+    """What a finishing step reads: the entries so far, and the sentence they name."""
+    found: list[FoundEntry]
+    bases: list[dict]
+    tokens: list[dict]
+    s: facts.Sentence
+    words: list[str]
+
+
+def _pair(n: Named) -> None:
+    """لا رجلَ: the role keeps its id; only the printed name follows the governor."""
+    for entry in n.found:
+        if (pair := _pair_named(n.bases, entry.get("governor"))) and entry["role"] in pair:
+            entry["pair"] = pair
+
+
+def _kaffa(n: Named) -> None:
+    """إنما، كأنما: a particle that is an إن sister with ما written onto it (data: closed_words
+    inna `kaffa`) leaves the sister on its entry; card_wording names the pair."""
+    for entry, typed in zip(n.found, n.words):
+        if entry["role"] == NAMED.harf and (sister := kaffa_sister(strip_diacritics(typed))):
+            entry["kaffa"] = sister
+
+
+def _extra_ba(n: Named) -> None:
+    """كفى بالله شهيدًا، ليس الشديد بالصرعة: the باء is زائدة and its word holds the place of the
+    verb's doer or khabar (data: closed_words extra_ba). The word keeps its jarr, the case it shows;
+    its role is its place, and the reason says both."""
+    found, bases, tokens, s = n.found, n.bases, n.tokens, n.s
+    index = {token["id"]: i for i, token in enumerate(bases)}
+    for i, token in enumerate(bases):
+        ba, entry = s.head(token), found[i]
+        verb = s.head(ba) if ba else None
+        rule = extra_ba_on(strip_diacritics(verb["lemma"])) if verb and verb["id"] in index else None
+        if not (rule and entry["role"] == NAMED.majroor and is_extra_ba(ba["form"].strip("+"))
+                and ba["rel"] == rule["rel"]):
+            continue
+        # كفى بالمرء كذبًا أن يحدّث: another doer (a subject, or the masdar أن makes) leaves the باء a plain one
+        if rule.get("alone") and any(t["id"] != ba["id"] and t["head"] == verb["id"] and t["rel"] == "SBJ" for t in tokens) \
+                or rule.get("alone") and any(t["id"] > token["id"] and strip_diacritics(t["lemma"]) in frames()["masdar"]["words"]
+                                             for t in tokens):
+            continue
+        # by_place: the teacher reads the place's case, not the jarr the letters show
+        entry.update(role=rule["role"], governor=index[verb["id"]], extra_ba=rule["place_case"], by_place=True)
+        for piece in entry["attached"]:
+            if piece["id"] == ba["id"]:
+                piece["named"] = extra_ba_named()  # حرف جر زائد
+
+
+
+def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: dict[int, int]) -> str | None:
+    """Which kind of idafa or badal the word is, as the books name it (teacher.json kinds)."""
+    kinds = teacher_rules()["kinds"]
+    if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
+        if (facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ") and not facts.is_elative(mudaf):
+            return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite; أعلى صوتِه is not, it works on nothing
+        bare = strip_diacritics(token["form"]).strip("+").removeprefix("ال")
+        if any(is_one(bare, family) or is_one(bare + "ا", family) or facts.listed(token, family) for family in ("zarf_zaman", "zarf_makan")) \
+                or bare in kinds["time"]:
+            return kinds["idafa"]["fi"]  # مكرُ الليلِ
+        bare = strip_diacritics(token["lemma"]).strip("+")
+        return kinds["idafa"]["min" if bare in kinds["material"] else "lam"]
+    if role == "بدل":
+        pronoun = any(facts.attached_pronoun(k) for k in s.kids(token))
+        if not pronoun:
+            return kinds["badal"]["kul"]
+        bare = strip_diacritics(token["lemma"]).strip("+")
+        return kinds["badal"]["baad" if bare in kinds["part"] else "ishtimal"]
+    return None
 
 
 def _pair_named(bases: list[dict], governor: int | None) -> dict[str, str] | None:
@@ -144,7 +242,11 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
     opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"],
                            "kind": frame["opener"] if frame["noun"] else None}
-    for part in ("verb", "answer"):
+    if subject := frame.get("subject"):
+        # لولا زيدٌ: the noun after it is the مبتدأ, its khabar left out; the answer still answers
+        found[c["verb"]].update(role=subject, book=None)
+        found[c["verb"]]["condition"] = {"part": "subject", "opener": c["opener"], "family": frame["family"]}
+    for part in ("answer",) if subject else ("verb", "answer"):
         if c[part] is None:
             continue
         word = found[c[part]]
@@ -154,7 +256,7 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
             if frame["case"]:
                 word["governor"] = c["opener"]
         word["condition"] = {"part": part, "opener": c["opener"], "family": frame["family"],
-                             "tie": c["tie"] if part == "answer" else None}
+                             "tie": c["tie"] if part == "answer" else None, "named": frame.get(f"{part}_named")}
 
 
 def _noun_place(frame: dict, verb: int, found: list[dict], verb_token: dict) -> str:
@@ -259,6 +361,17 @@ def opens_with_verb(roles: list[str | None]) -> bool:
     return False
 
 
+def _governor(bases: list[dict], i: int) -> dict | None:
+    """The word before word i that may govern it. A لا straight after a nasb particle is
+    the plain negation, which governs nothing: أَنْ لَا تَطُوفِي، لِكَيْ لَا يَعْلَمَ are
+    in nasb by the particle before it, not in jazm by a لا of prohibition."""
+    before = bases[i - 1] if i else None
+    if (before and i > 1 and is_one(before["base"], "negation")
+            and is_one(bases[i - 2]["base"], "nasb_mudari", "before_a_present_verb")):
+        return bases[i - 2]
+    return before
+
+
 def _lam_mood(token: dict, front: list[str], opens: bool) -> str | None:
     """The mood a لام written onto a present verb gives it: a sukun (فَلْيَصُمْهُ) or opening the sentence
     (لِيُنْفِقْ) is لام الأمر, jazm; a kasra after a clause is لام التعليل, nasb (لِيُضِلُّوا). A fatha or a bare لام settles nothing."""
@@ -285,7 +398,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token) or (role and facts.is_built_zarf(token)):
+    if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token) or facts.is_built_zarf(token):
         return "mabni"
     # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built;
     # a name is never built, so a sukun on one is the reader pausing (أَحْمَدْ جَاءَ)
@@ -320,3 +433,8 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
         return "jazm"
     shown = typed_case(typed, stuck_on)
     return CASE_NAME[shown] if shown in ("u", "a") else lam  # None: nothing shows (_followers_take_their_ending)
+
+
+# run in this order once every word is named; each adds keys to the entries, never a role to a
+# word another step named (the condition's roles come first, above)
+FINISHES = (_pair, _extra_ba, _kaffa)

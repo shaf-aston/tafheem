@@ -16,15 +16,19 @@ import { useOpenAtTop } from '../../lib/scrollToEl'
 
 import ArabicText from '../ui/ArabicText'
 import BookFacts from './BookFacts'
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
-import { NarratorError, NarratorHead, NarratorLinks } from './NarratorParts'
+import ClassicalText from './ClassicalText'
+import { GradeKey, NarratorError, NarratorHead, NarratorLinks, PAIR_ROWS, PairRow } from './NarratorParts'
+import ErrorAlert from '../ui/ErrorAlert'
 import ShowRest from '../ui/ShowRest'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 
-const Section = ({ title, children }) => (
-  <section className="space-y-2">
-    <h3 className="type-ui font-medium text-[var(--text)]">{title}</h3>
+/** A section headed in both languages, English left and Arabic right, as the header card sets its facts. */
+const Section = ({ title, ar, children }) => (
+  <section className="space-y-3">
+    <h3 className="m-0 flex items-baseline justify-between gap-4 pb-2 border-b border-[var(--border)]">
+      <span className="type-ui font-medium text-[var(--text)]">{title}</span>
+      {ar && <ArabicText size="base" className="text-[var(--text)]">{ar}</ArabicText>}
+    </h3>
     {children}
   </section>
 )
@@ -34,11 +38,12 @@ const Section = ({ title, children }) => (
 const FOLDED_ROWS = 80
 
 // A long list folded under "Show all N", drawing the rest only once opened.
-function FoldedList({ items, lines, accent, children: draw }) {
+function FoldedList({ items, lines, accent, total = items.length, children: draw }) {
   const [open, setOpen] = useState(false)
   return (
     <ShowRest lines={lines} accent={accent} more={`Show all ${items.length}`} open={open} onOpenChange={setOpen}>
       {draw(open ? items : items.slice(0, FOLDED_ROWS))}
+      {open && total > items.length && <p className="type-small text-[var(--text-faint)] mt-2 mb-0">Showing the first {items.length} of {total}.</p>}
     </ShowRest>
   )
 }
@@ -46,7 +51,7 @@ function FoldedList({ items, lines, accent, children: draw }) {
 export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
   useOpenAtTop(id)
   const { data: who, isPending, isError, error, refetch } = useQuery(narratorQuery(id))
-  const { data: hadith = [] } = useQuery(narratorHadithQuery(id))
+  const { data: hadith = [], isError: hadithFailed, error: hadithError, refetch: refetchHadith } = useQuery(narratorHadithQuery(id))
   const { of } = useHadithCollections()
 
   return (
@@ -60,15 +65,13 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
 
           <BookFacts usul={who.usul} accent={accent} />
 
-          {/* The three side by side where the width allows, one column on a phone. */}
-          <div className="grid gap-x-6 gap-y-4 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))] [&>*]:min-w-0">
           {who.verdicts.length > 0 && (
-            <Section title="What scholars said">
-              <ShowRest lines={6} accent={accent}>
-                <ul className="list-none m-0 p-0 space-y-3">
+            <Section title="What scholars said" ar="الجرح والتعديل">
+              <ShowRest lines={9} accent={accent}>
+                <ul dir="rtl" className="list-none m-0 p-0 space-y-2">
                   {who.verdicts.map((v, i) => (
-                    <li key={i}>
-                      <ArabicText as="p" size="sm" className="block m-0 text-[var(--text)]">{v.scholar}</ArabicText>
+                    <li key={i} className="px-4 py-3 rounded-[var(--radius-md)] rounded-s-none bg-[var(--surface)] border-s-2" style={{ borderColor: accent }}>
+                      <ArabicText as="p" size="sm" className="block m-0 font-medium" style={{ color: accent }}>{v.scholar}</ArabicText>
                       <ArabicText as="p" size="sm" className="block m-0 text-[var(--text-dim)]">{v.quote}</ArabicText>
                     </li>
                   ))}
@@ -77,33 +80,38 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
             </Section>
           )}
 
-          {[['Teachers', who.teachers], ['Students', who.students]].map(([title, list]) => list.length > 0 && (
-            <Section key={title} title={title}>
-              <FoldedList items={list} lines={12} accent={accent}>
-                {(shown) => <NarratorLinks items={shown} onOpen={onNarrator} />}
-              </FoldedList>
-            </Section>
-          ))}
+          {/* Teachers and students side by side where the width allows, one column on a phone. */}
+          <div className="grid gap-x-8 gap-y-6 grid-cols-[repeat(auto-fit,minmax(min(100%,22rem),1fr))] [&>*]:min-w-0">
+            {[['Teachers', 'المشايخ', who.teachers], ['Students', 'التلاميذ', who.students]].map(([title, ar, list]) => list.length > 0 && (
+              <Section key={title} title={title} ar={ar}>
+                <FoldedList key={`${id}:${title}`} items={list} lines={10} accent={accent}>
+                  {(shown) => <NarratorLinks items={shown} onOpen={onNarrator} />}
+                </FoldedList>
+              </Section>
+            ))}
           </div>
+          {(who.teachers.length > 0 || who.students.length > 0) && <GradeKey />}
+
+          {hadithFailed && <ErrorAlert title="Could not load the hadith he narrates" error={hadithError} fallback="Try again." onRetry={refetchHadith} />}
 
           {hadith.length > 0 && (
-            <Section title="Hadith narrated">
-              <FoldedList items={hadith} lines={6} accent={accent}>
-                {(shown) => (<ChipRow>
+            <Section title="Hadith narrated" ar="الأحاديث المروية">
+              <FoldedList key={id} items={hadith} total={who.hadith_count} lines={10} accent={accent}>
+                {(shown) => (<ul className={PAIR_ROWS}>
                   {shown.map((h) => (
-                    <Chip key={`${h.collection}:${h.number}${h.part}`} accent={accent} onClick={() => onHadith(h)}>
-                      {of(h.collection).short} {h.number}{h.part}
-                    </Chip>
+                    <li key={`${h.collection}:${h.number}${h.part}`} className="min-w-0">
+                      <PairRow en={`${of(h.collection).short} ${h.number}${h.part}`} ar={h.opening} onClick={() => onHadith(h)} />
+                    </li>
                   ))}
-                </ChipRow>)}
+                </ul>)}
               </FoldedList>
             </Section>
           )}
 
-          {who.texts.map((t) => (
-            <Section key={t.book} title={<ArabicText size="sm">{t.book}</ArabicText>}>
+          {who.texts.map((t, i) => (
+            <Section key={`${i}:${t.book}`} ar={t.book}>
               <ShowRest lines={8} accent={accent}>
-                <ArabicText as="p" size="sm" className="block m-0 whitespace-pre-line text-[var(--text-dim)]">{t.body}</ArabicText>
+                <ClassicalText text={t} accent={accent} />
               </ShowRest>
             </Section>
           ))}

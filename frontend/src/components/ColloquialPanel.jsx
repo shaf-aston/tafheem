@@ -26,6 +26,12 @@ import SpeakButton from './ui/SpeakButton'
 import WheelPicker from './ui/WheelPicker'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
+// "16 of 19 units": the list below shows the unwritten ones too, marked Coming.
+const unitsNote = (units) => {
+  const written = units.filter((u) => u.written).length
+  return written === units.length ? `${written} units` : `${written} of ${units.length} units`
+}
+
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
 // Without onClick it is a unit or topic this dialect has not written yet: shown, not openable.
 // With `twin` it is two halves joined, each its own way in: a topic's phrases and its words.
@@ -211,7 +217,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
         <Grid>
           {dialects.map((d, i) => (
             <Card key={d.key} index={i} hue={colorFor('tab', 'colloq')} kicker={d.where} title={d.label} arabic={d.arabic}
-              note={`${d.units.filter((u) => u.written).length} units`} onClick={() => go({ dialect: d.key })} />
+              note={unitsNote(d.units)} onClick={() => go({ dialect: d.key })} />
           ))}
         </Grid>
       )}

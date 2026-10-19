@@ -13,7 +13,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { useCommandLine } from '../../lib/useCommandLine'
-import { useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import { isArabic } from '../../lib/arabicText'
 import { moodFrom } from '../../lib/mood'
 import ArabicText from '../ui/ArabicText'
@@ -90,11 +90,11 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
     <dialog
       ref={dialog}
       onClose={onClose}
-      onClick={(e) => e.target === dialog.current && onClose()}
       aria-label="Everything, at once"
       className="sh-dialog"
     >
-      <div className="sh-stage" onClick={(e) => e.stopPropagation()}>
+      {/* The stage fills the screen, so its own empty space is the backdrop here. */}
+      <div className="sh-stage" onClick={closeOnBackdrop(onClose)}>
         {/* Two halves that slide apart the moment there is something to show.
             Which half goes where follows the language being typed, so the
             answers always open on the side that language runs towards and the

@@ -34,18 +34,30 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         return any(is_one(piece, "atf") for piece in before[i]) or (
             i > 0 and named[i - 1] in (NAMED.harf, None) and is_one(strip_diacritics(bases[i - 1]["form"]), "atf"))
 
+    def verb_at(i: int) -> int:
+        """The فعل الشرط's index: straight after the opener, or past a particle hung on it
+        (إذا لم تستحِ، إن لا تفعلوه): the particle is in its clause, not between."""
+        k = i + 1
+        if k + 1 < len(bases) and bases[k]["pos"] == "PRT" and bases[k]["head"] == bases[k + 1]["id"]:
+            return k + 1
+        return k
+
     def opens(i: int) -> dict | None:
         frame = condition_of(strip_diacritics(bases[i]["form"]))
-        if not frame or i + 1 >= len(bases) or named[i + 1] != NAMED.fil or (i and not joined(i)):
+        v = verb_at(i)
+        if not frame or v >= len(bases) or (i and not joined(i)):
+            return None
+        # لولا زيدٌ: a particle of امتناع لوجود opens on a noun; before a verb it urges and opens none
+        if (named[v] == NAMED.fil) == (frame.get("before") == "noun") or (frame.get("before") == "noun" and bases[v]["pos"] not in ("NOM", "PROP")):
             return None
         # ما النافية is a particle; إذا before a verb is a ظرف, whatever the parser tagged it
         reading = bases[i].get("reading") or {}
         kind = reading.get("kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
-        if not frame["noun"] and reading and reading["family"] != "jazm":
+        if not frame["noun"] and reading and reading["family"] not in ("jazm", frame["family"]):
             return None  # إِنَّا جَعَلْنَا: the particle's one reading is إنّ, no condition
         # مَا تَزْرَعْ تَحْصُدْ: ما النافية puts no verb in jazm, so a jussive verb after it shows the
         # conditional noun, whatever the parser tagged it
-        return None if frame["noun"] and kind == "harf" and cases[i + 1] != "jazm" else frame
+        return None if frame["noun"] and kind == "harf" and cases[v] != "jazm" else frame
 
     def needs_the_tie(frame: dict, k: int) -> bool:
         """The فاء on a verb shows an answer when the verb could not stand as a condition
@@ -63,8 +75,9 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
     for i in range(len(bases)):
         if not (frame := opens(i)):
             continue
+        verb = verb_at(i)
         span = []
-        for k in range(i + 2, len(bases)):
+        for k in range(verb + 1, len(bases)):
             if opens(k):
                 break
             span.append(k)
@@ -81,7 +94,7 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
             answer = next((k for k in verbs if not joined(k) and (cases[k] == "jazm" or bases[k].get("asp") == "p")), None)
             tie, tie_at = None, answer
         # a present verb in jazm right after مَنْ is never a relative's: it opens a condition
-        if answer is None and frame["shared"] and not (cases[i + 1] == "jazm" and span):
+        if answer is None and frame["shared"] and not (cases[verb] == "jazm" and span):
             continue  # مَنْ جاءَ؟ : no answer, so the relative or the question word
-        found.append({"opener": i, "verb": i + 1, "answer": answer, "tie": tie, "tie_at": tie_at, "frame": frame})
+        found.append({"opener": i, "verb": verb, "answer": answer, "tie": tie, "tie_at": tie_at, "frame": frame})
     return found

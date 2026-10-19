@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { keepPreviousData } from '@tanstack/react-query'
 
 import { profileHeaders } from './lib/profile'
 
@@ -151,6 +152,7 @@ export const getTamreen = () =>
 // backend and hidden on the page, never here, so it is fetched once.
 export const getNotes = () =>
   api.get('/notes').then((r) => r.data)
+export const notesQuery = { queryKey: ['notes'], queryFn: getNotes }
 
 // The teacher's own page a note was read from, for an <img> or a link, so it
 // is an address rather than a request.
@@ -253,6 +255,7 @@ export const usulTermQuery = (kind) => ({
 // The narrator list, most hadith first, a page at a time; the server fixes the page size.
 export const narratorListQuery = (generation) => ({
   queryKey: ['narrator-list', generation],
+  placeholderData: keepPreviousData, // the filter chips and list stay while another generation loads
   queryFn: ({ pageParam }) => api.get('/rijal/narrators', { params: { generation, offset: pageParam } }).then((r) => r.data),
   initialPageParam: 0,
   getNextPageParam: (last, pages) => {
@@ -345,12 +348,6 @@ export const checkReading = (recording, { heard = '', check = [], ...how } = {})
 // wrote `heard` down from. One number per word, in order.
 export const checkText = (recording, { heard = '', expected = '', ...how } = {}) =>
   postRecording('/listen/check-text', recording, { heard, expected }, how)
-
-// Grow's paths: the steps to learn and a scholar's words on each.
-export const growPathsQuery = {
-  queryKey: ['grow-paths'],
-  queryFn: () => api.get('/grow/paths').then((r) => r.data),
-}
 
 // Where lib/journal.js's trail of reciting events goes. Its own constant
 // because sendBeacon cannot go through axios and needs the full path, not

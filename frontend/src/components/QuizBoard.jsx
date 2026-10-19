@@ -24,7 +24,9 @@ export default function QuizBoard({
 }) {
   const { history, reviewing, shown, strip } = round
   // The answered squares: a column on the far right until the round outgrows it.
-  const railSide = history.length > 0 && history.length < QUIZ.stripSideMax
+  // There from the first question, empty, so the first answer does not make room
+  // for it by squeezing the question card.
+  const railSide = history.length < QUIZ.stripSideMax
 
   return (
     <>
@@ -64,7 +66,7 @@ export default function QuizBoard({
         {railSide && (
           <aside
             aria-label={say('Questions answered so far')}
-            className="hidden lg:block rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-3"
+            className="hidden lg:block min-w-15 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-3"
           >
             <QuestionStrip side say={say} {...strip} />
           </aside>
@@ -137,9 +139,10 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
 
       {/* One row under the answers, always there so the card never changes
           height: what the word meant on the left, auto-advance and the way
-          on at the right. */}
-      <div className="flex items-center justify-between gap-3 flex-wrap min-h-9">
-        <div aria-live="polite">
+          on at the right. A phone has no room for both on one line, so there
+          the meaning goes under the button, which then stays where it is. */}
+      <div className="flex items-start justify-between gap-3 flex-wrap min-h-9">
+        <div aria-live="polite" className="flex-1 min-w-0 max-sm:order-last max-sm:basis-full">
           {answered && (
             <p className="text-sm" style={{ color: correct ? 'var(--success)' : 'var(--danger)' }}>
               {/* A right answer already says so on the option it was; the
@@ -175,29 +178,32 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
         </div>
         <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-2 ms-auto max-w-full">
           <AutoAdvanceToggle value={autoNext} onChange={setAutoNext} accent={accent} say={say} />
-          {answered && (
-            <button
-              type="button"
-              ref={nextButton}
-              onClick={next}
-              style={{ background: accent, color: 'var(--bg)', '--c': accent }}
-              className="flex items-center gap-2 ps-5 pe-3 py-2 rounded-[var(--radius-md)] whitespace-nowrap
-                text-sm font-semibold glow hover:brightness-110 active:translate-y-px
-                transition-[filter,transform]"
+          {/* On a phone it is held in place, unseen, until there is an answer:
+              appearing, it wrapped the row and pushed everything under it
+              down. A wide row has room for it, so there it simply arrives,
+              before the toggle, which then stays where it was. */}
+          <button
+            type="button"
+            ref={nextButton}
+            onClick={next}
+            disabled={!answered}
+            style={{ background: accent, color: 'var(--bg)', '--c': accent }}
+            className={`flex items-center gap-2 ps-5 pe-3 py-2 rounded-[var(--radius-md)] whitespace-nowrap
+              text-sm font-semibold glow hover:brightness-110 active:translate-y-px
+              transition-[filter,transform] sm:order-first ${answered ? '' : 'max-sm:invisible sm:hidden'}`}
+          >
+            {say(past ? 'Back to the question' : 'Next word')}
+            {/* The key printed on the button it fires, so the shortcut is
+                learnt where it is used rather than from a line of hints.
+                Not on a touch screen: a phone has no Enter key. */}
+            <kbd
+              aria-hidden="true"
+              className="pointer-coarse:hidden px-1.5 py-0.5 rounded type-tiny font-semibold leading-none
+                bg-[var(--bg)]/25 border border-current/30"
             >
-              {say(past ? 'Back to the question' : 'Next word')}
-              {/* The key printed on the button it fires, so the shortcut is
-                  learnt where it is used rather than from a line of hints.
-                  Not on a touch screen: a phone has no Enter key. */}
-              <kbd
-                aria-hidden="true"
-                className="pointer-coarse:hidden px-1.5 py-0.5 rounded type-tiny font-semibold leading-none
-                  bg-[var(--bg)]/25 border border-current/30"
-              >
-                Enter ↵
-              </kbd>
-            </button>
-          )}
+              Enter ↵
+            </kbd>
+          </button>
         </div>
       </div>
 
@@ -222,7 +228,9 @@ function Option({ option, index, lang, say, answered, picked, answerId, accent, 
   }
 
   // The verdict rides on the option itself. That keeps the answer and the word
-  // it belongs to in one place, and saves a whole row below the grid.
+  // it belongs to in one place, and saves a whole row below the grid. It sits
+  // on the border, taking no room from the text: inside the row, a long
+  // meaning wrapped to make space for it and the option grew as it arrived.
   let verdict = null
   if (answered && isAnswer) verdict = say(isPicked ? 'Correct' : 'Answer')
   else if (answered && isPicked) verdict = say('Not this')
@@ -233,7 +241,7 @@ function Option({ option, index, lang, say, answered, picked, answerId, accent, 
       onClick={() => onChoose(option.id)}
       disabled={answered}
       style={{ '--i': index, '--c': accent, borderColor: border, color }}
-      className={`rise-in option flex items-center gap-3 px-4 py-3 rounded-[var(--radius-md)] text-start
+      className={`rise-in option relative flex items-center gap-3 px-4 py-3 rounded-[var(--radius-md)] text-start
         bg-[var(--surface-hi)] border
         ${answered ? 'cursor-default' : ''}
         ${answered && !isAnswer && !isPicked ? 'opacity-50' : ''}`}
@@ -250,7 +258,11 @@ function Option({ option, index, lang, say, answered, picked, answerId, accent, 
       ) : (
         <ArabicText lang={lang} className="leading-tight">{option.text}</ArabicText>
       )}
-      {verdict && <span className="ms-auto type-small font-medium shrink-0">{verdict}</span>}
+      {verdict && (
+        <span className="absolute -top-2.5 end-3 px-1.5 rounded type-tiny font-medium leading-5 bg-[var(--surface)]">
+          {verdict}
+        </span>
+      )}
     </button>
   )
 }
