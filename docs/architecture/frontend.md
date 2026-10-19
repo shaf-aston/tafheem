@@ -8,7 +8,8 @@ from the frontend review. Paths are relative to `frontend/src`.
 open `/app/<tab>/<place>` → `lib/tabUrl.js` reads the path → `App.jsx` shows the tab
 → the registry `lib/tabs.js` lazy-loads that tab's panel → the panel asks for data
 through react-query → `api.js` → backend `/api`. Moving to another tab goes through
-the same `show()`, and `lib/journey.js` records it for back and forward.
+the same `show()`, and `lib/journey.js` records it for back and forward. With no saved
+place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every tab from the registry.
 
 ## Core Parts
 
@@ -17,6 +18,7 @@ the same `show()`, and `lib/journey.js` records it for back and forward.
 | Entry | `App.jsx` (259 lines) | Shell: draws the header, the panels and the overlays; the logic is in the hooks it calls |
 | Entry | `lib/tabUrl.js`, `lib/journey.js` | Path URL ↔ tab, back/forward |
 | Core | `lib/tabs.js` | One registry: every tab, its label, icon, colour, panel |
+| Core | `components/home/HomePanel.jsx`, `lib/moduleTab.js` | Home: the first screen, one card per tab from the registry with the learner's progress, Continue, and the command line; `moduleTab` files a progress module under its tab |
 | Core | Nav surfaces: `ui/TabStrip`, `ui/BottomNav`, `SectionsMenu`, `SpatialHome`, `CommandBar` | Five ways to move between tabs, all read the registry |
 | Core | `lib/useTabNavigation.js` over `lib/recent.js` (wide-screen strip) and `lib/dock.js` (phone bar) | Every way between tabs; which tabs each bar shows, one rule per screen (ADR-2) |
 | Core | Panels: `MemorisePanel` + `memorise/hooks.js`, `QuizPanel` + `QuizBoard` + `lib/useQuizRound.js`, `TarkeebDiagram`, … | The screens |

@@ -71,7 +71,7 @@ function AppContent() {
     <div className="min-h-screen bottom-nav-room" style={{ '--c': accent }}>
       {/* First child, so it paints under everything: its layer is below the page. */}
       <Backdrop />
-      {/* First stop for a keyboard: past the header's dozen controls to the panel. */}
+      {/* First stop for a keyboard: past the header's controls to the panel. */}
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:start-2 focus:z-[var(--layer-tip)] focus:px-3 focus:py-2 focus:rounded-[var(--radius-sm)] focus:bg-[var(--surface)] type-ui">
         Skip to content
       </a>
@@ -126,8 +126,9 @@ function AppContent() {
           <ArabicText as="p" className="phone-hide whitespace-nowrap">فَفِرُّوا إِلَى اللَّهِ</ArabicText>
 
           <div className="flex items-center gap-2 min-w-0">
-            <CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} />
-            <StatusPill status={status} nlpEngine={nlpEngine} aiBackend={aiBackend} ear={ear} />
+            {/* Home has the command line and the tabs on a phone; the header keeps pen, profile, gear. */}
+            <div className="phone-hide min-w-0"><CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} /></div>
+            <span className="phone-hide"><StatusPill status={status} nlpEngine={nlpEngine} aiBackend={aiBackend} ear={ear} /></span>
             <ProfileButton />
             <button
               type="button"

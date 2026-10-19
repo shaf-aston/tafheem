@@ -29,6 +29,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 
 | Tab | Screen | Data call | Route | Logic | Data |
 |---|---|---|---|---|---|
+| home | `components/home/HomePanel.jsx` | `fetchOverview` (`lib/progress.js`) | `routers/progress.py` | `services/progress_store.py` | `data/progress.db` |
 | nahw | `components/NahwPanel.jsx` | `analyzeIraab` | `routers/analyze.py` | `services/iraab.py`, `services/syntax/` | `data/nahw_rules/`, `data/tarkeeb/tarkeeb.db` |
 | sarf | `components/SarfPanel.jsx` | `analyzeMorphology`, `conjugateForm` | `routers/morphology.py` | `services/conjugation.py`, `services/sarf/` | `data/sarf/` |
 | quran | `components/QuranLookup.jsx` | `quranSurahQuery` (`lib/quranOpen.js`), `searchQuran` | `routers/quran.py` | `services/quran_service.py`, `services/quran_corpus.py` | `data/quran/corpus.db`, `data/quran/library.db` |
@@ -54,6 +55,7 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
 
 1. **A tab picks the tool.** `frontend/src/App.jsx` holds the tabs, checks `/api/health`, and
    carries a root from one tab to another (`onGo`), so the tabs work as one app.
+   Home is the first screen and lists the tabs from the registry.
 2. **A typed sentence is read by the book's rules alone, no AI.** `services/iraab.py` runs it:
    `morphology.py` (CAMeL) reads each word, `rule_engine.py` says what each is. An ayah the
    Treebank recorded is read from that record (`tarkeeb_store.py`); anything else goes to
