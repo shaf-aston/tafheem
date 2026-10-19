@@ -242,6 +242,8 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
         bare = strip_diacritics(token["lemma"]).strip("+")
         return kinds["idafa"]["min" if bare in kinds["material"] else "lam"]
     if role == NAMED.badal:
+        if said := facts.excepted_after_la(token, s):
+            return said[2]["badal"]  # لا إله إلا الله: no بدل كل من كل of the منصوب noun
         pronoun = any(facts.attached_pronoun(k) for k in s.kids(token))
         if not pronoun:
             return kinds["badal"]["kul"]
@@ -470,4 +472,12 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
 
 # run in this order once every word is named; each adds keys to the entries, never a role to a
 # word another step named (the condition's roles come first, above)
-FINISHES = (_pair, _extra_ba, _kaffa)
+def _excepted_after_la(n: Named) -> None:
+    """لا اله الا الله typed bare: the بدل follows the hidden pronoun of a khabar no one writes,
+    so no typed word lends it its case; it stands in raf', that khabar's (roles.json exception_after_la)."""
+    for entry, token in zip(n.found, n.bases):
+        if entry["role"] == NAMED.badal and entry["case"] is None and facts.excepted_after_la(token, n.s):
+            entry["case"] = CASE_NAME["u"]
+
+
+FINISHES = (_pair, _extra_ba, _kaffa, _excepted_after_la)

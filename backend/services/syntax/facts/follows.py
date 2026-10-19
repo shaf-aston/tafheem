@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_one, is_subject_pronoun
-from backend.services.syntax.facts.word import case_unseen, is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
+from backend.services.syntax.facts.word import case_shown, case_unseen, is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
 from backend.services.syntax.facts.sentence import Sentence, next_word, place_case, praised_noun, previous_noun, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.kind import joins_clauses, calling_head
 
@@ -70,7 +70,8 @@ def _follows(token: dict, s: Sentence) -> str:
     if excepting and excepting["pos"] == "PRT" and read_as(excepting, "istithna") \
             and s.negated_before(excepting):
         before = previous_noun(excepting, s)
-        if before and typed_or_parsed_case(token) and typed_or_parsed_case(token) == place_case(before, s):
+        # no case shown (لا اله الا الله، لا إله إلا هو): the إتباع, the stronger reading (Tasheel 3.8.7)
+        if before and (shown := case_shown(token)) in (None, place_case(before, s)):
             return "badal"
     head = s.head(token)
     # هذا البستانُ: the noun with ال a pointer points at, hung on it or (as some parses

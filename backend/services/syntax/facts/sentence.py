@@ -2,7 +2,8 @@
 but belong to no single axis: the verb above a word, the noun before it, what a jarr takes."""
 from __future__ import annotations
 
-from backend.services.nahw_book import is_one
+from backend.services.arabic_text import bare_letters
+from backend.services.nahw_book import frames, is_one
 from backend.services.syntax.facts.word import NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
 
 
@@ -177,6 +178,21 @@ def previous_noun(token: dict, s: Sentence) -> dict | None:
         if not is_suffix(t):
             return t if noun_tagged(t) and not is_verb(t) else None
     return None
+
+
+def excepted_after_la(token: dict, s: Sentence) -> tuple[dict, dict, dict] | None:
+    """(اسم لا, إلا, its entry) when the word is the name straight after لا, its noun, then إلا,
+    and that noun is one roles.json `exception_after_la` lists (لا إله إلا الله); no word between
+    them, so no khabar is written."""
+    words = [t for t in s.tokens if t["id"] <= token["id"] and not is_suffix(t)]
+    if len(words) < 4 or words[-1] is not token:
+        return None
+    la, noun, illa = words[-4:-1]
+    listed = frames()["exception_after_la"]["by_noun"]
+    entry = next((listed[k] for k in listed if bare_letters(k) == bare_letters(noun["form"])), None)
+    if not (entry and read_as(la, "la_jins") and read_as(illa, "istithna")):
+        return None
+    return noun, illa, entry
 
 
 def jarr_takes(token: dict, s: Sentence) -> bool:

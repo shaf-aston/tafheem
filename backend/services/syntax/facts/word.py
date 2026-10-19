@@ -102,6 +102,12 @@ def is_built(token: dict) -> bool:
     return is_mabni(kind) and not (token.get("num") == "d" and any(k in kind for k in ("dem", "rel")))
 
 
+def case_shown(token: dict) -> str | None:
+    """The case its ending tells, or None: no vowel typed or parsed, or a built word (هُوَ's
+    fatha is its build, no nasb)."""
+    return None if is_built(token) else typed_or_parsed_case(token)
+
+
 def is_light(token: dict) -> bool:
     """The light لكنْ (or إنْ، أنْ) the reader typed: a sukun on the end and no shadda. It
     only joins (or is the light particle); the inna sister wears the shadda (Tasheel 1.8 p20).

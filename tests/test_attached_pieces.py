@@ -363,3 +363,22 @@ def test_laula_before_a_verb_urges():
 ])
 def test_the_khabar_is_named_for_its_own_governor(sentence, khabar, role):
     assert _named(sentence)[khabar][0] == role
+
+
+@pytest.mark.parametrize("sentence", ["لَا إِلَٰهَ إِلَّا اللَّهُ", "لا إله إلا الله", "لَا إِلَٰهَ إِلَّا هُوَ"])
+def test_the_shahada_draws_its_unsaid_khabar_and_names_its_badal(sentence):
+    """Ibn Hishām: the khabar of لا is left out, known (مَعْبُودٌ بِحَقٍّ), and sits between
+    إله and إلا; اللهُ is a بدل of the pronoun hidden in it, no بدل كل من كل of the منصوب noun."""
+    cards, leaves = analysed(sentence)
+    (khabar, _), = leaves["مَعْبُودٌ بِحَقٍّ"]
+    assert khabar["role"] == "خبر لا" and khabar["hidden"] is True
+    columns = client.post("/api/analyze", json={"sentence": sentence}).json()["tree"]["words"]
+    assert [strip_diacritics(c) for c in columns][1:4] == ["إله", "معبود بحق", "إلا"]
+    badal = cards[-1]
+    assert badal["role"] == "بدل" and badal["case"] in ("raf'", "mabni") and "الضمير المستتر في الخبر المحذوف" in badal["reason"]
+
+
+def test_another_noun_after_la_keeps_its_plain_badal():
+    """The تقدير is chosen for إله alone: لا رجلَ إلا زيدٌ draws no khabar of it."""
+    cards, leaves = analysed("لَا رَجُلَ إِلَّا زَيْدٌ")
+    assert "مَعْبُودٌ بِحَقٍّ" not in leaves and cards[-1]["reason"].endswith("بدل كل من كل")

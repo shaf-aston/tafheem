@@ -14,7 +14,7 @@ from __future__ import annotations
 from backend.services.nahw_book import (card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
 from backend.services.syntax.facts import (Sentence, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
-                                          is_nasab, is_verb, read_as, shown_cases, noun_tagged,
+                                          is_nasab, is_verb, read_as, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
 from backend.services.syntax.doer import DOER, doer as _doer, person_key as _person, persons as _persons
@@ -216,6 +216,14 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if at.index(said_word["id"]) < at.index(subject["id"]) and role_of[subject["id"]] in kept["fronted"]:
             fronted |= {said_word["id"]: kept["fronted"][khabar], subject["id"]: kept["fronted"][role_of[subject["id"]]]}
         hung.add(held["id"])
+    # لا إله إلا الله: the khabar left out because it is known, between the noun and إلا
+    # (roles.json exception_after_la), the name after إلا standing for its hidden pronoun
+    after_la = FRAMES["exception_after_la"]
+    for token in list(drawn):
+        if role_of.get(token["id"]) == NAMED.badal and (hit := excepted_after_la(token, sentence)):
+            noun, illa, entry = hit
+            understand(entry["khabar"], after_la["khabar_named"], [t["id"] for t in drawn].index(illa["id"]),
+                       head=noun["head"], rel="PRD", pos="NOM", pos_camel="")
     said_verb = kept["verb"]
     saying = FRAMES["said_clause"]
     unsaid_objects: set[int] = set()  # nouns that are the object of a verb no one writes
