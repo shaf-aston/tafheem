@@ -273,7 +273,7 @@ export function GradeKey() {
 /** A narrator that failed to load: a 404 means no page for him is built here. */
 export function NarratorError({ error, onRetry }) {
   return errorStatus(error) === 404
-    ? <StatusNote>No page for this narrator is built on this machine.</StatusNote>
+    ? <StatusNote>There is no page for this narrator yet.</StatusNote>
     : <ErrorAlert title="Could not load the narrator" error={error} fallback="Try again." onRetry={onRetry} />
 }
 

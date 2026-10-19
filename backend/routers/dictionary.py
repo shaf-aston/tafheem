@@ -31,6 +31,7 @@ from backend.services import (
     root_english,
     root_gloss,
     root_meaning,
+    roots,
     sentence_meaning,
     verb_forms,
 )
@@ -101,9 +102,15 @@ async def search_dictionary(
 
 
 def _root_as_typed(query: str, found: list[dict]) -> str:
-    """The root of the entry spelled as typed, or "": a result found only by sharing letters says nothing about it."""
+    """The root of the entry spelled as typed, else the root the word is read as, else "".
+
+    A result found only by sharing letters says nothing about it. Wiktionary
+    leaves some headwords without a root (مُشْتَاق): asking Maqayees about the
+    word itself then found nothing, so the root finder places it (شوق) instead.
+    """
     typed = dictionary_service.folded(query)
-    return next((e.get("root") or "" for e in found if dictionary_service.folded(e.get("arabic", "")) == typed), "")
+    filed = next((e.get("root") or "" for e in found if dictionary_service.folded(e.get("arabic", "")) == typed), "")
+    return filed or roots.root_of(query)
 
 
 

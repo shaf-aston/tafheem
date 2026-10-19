@@ -9,7 +9,7 @@ export default function LoadMore({ left, busy, onClick }) {
       type="button"
       disabled={busy}
       onClick={() => onClick()}
-      className="press type-ui text-[var(--text-dim)] hover:text-[var(--text)] transition-colors"
+      className="press tap type-ui text-[var(--text-dim)] hover:text-[var(--text)] transition-colors"
     >
       {busy ? 'Loading…' : `Show more (${left} left)`}
     </button>
