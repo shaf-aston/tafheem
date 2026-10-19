@@ -29,7 +29,8 @@ _TAGS_RE = re.compile(r"\[[^\]]*\]|<[^>]*>")
 _CLAUSE = term_ar("jumlah_ismiyyah").split()[0]
 # Where a model's sense is filed (progress_store), so every server process reads the first one kept.
 # A new question name, not a new module: rows filed with word picks under "meaning" are never reused.
-_KEPT, _QUESTION = "dict", "meaning2"
+# "arabic" is the other direction's answer, filed the same way.
+_KEPT, _QUESTION, _ARABIC = "dict", "meaning2", "arabic"
 
 
 def literal(gloss: str) -> str:
@@ -143,7 +144,7 @@ def standing(text: str) -> str:
 def _model_sense(text: str, pairs: list[dict]) -> dict:
     """The model's one sentence over the grammar's facts; no sense when it is unreachable."""
     try:
-        meaning = _asked(text, pairs)
+        meaning = _asked(text, _QUESTION, lambda: ai.translate_sentence(text, _facts(pairs))["english"])
     except Exception as exc:  # noqa: BLE001, a dead model leaves the word-by-word standing
         logger.info("sentence meaning  model failed: %s", exc)
         meaning = None
@@ -158,33 +159,33 @@ def _facts(pairs: list[dict]) -> str:
         f"{p['english'] or '-'}" for n, p in enumerate(pairs, 1))
 
 
-def _asked(text: str, pairs: list[dict]) -> str:
-    """One model answer per text, filed on disk: the server runs several processes,
-    and a cache in each gave the same sentence two wordings by turns. A failure or
-    an empty answer raises and is not filed. Two first askings at once both ask, and
+def _asked(text: str, question: str, ask) -> str:
+    """One model answer per text, filed on disk under `question`: the server runs several
+    processes, and a cache in each gave the same sentence two wordings by turns. A failure
+    or an empty answer raises and is not filed. Two first askings at once both ask, and
     both return the one the store kept first."""
-    if not (kept := _kept(text)):
-        reply = ai.translate_sentence(text, _facts(pairs))
-        if not (english := str(reply.get("english", "")).strip()):
+    if not (kept := _kept(text, question)):
+        if not (answer := str(ask() or "").strip()):
             raise ValueError("the model answered with nothing")
         progress_store.keep_questions(module=_KEPT, sentence=text, source="ai",
-                                      questions=[{"question": _QUESTION, "answer": english}])
-        kept = _kept(text)
+                                      questions=[{"question": question, "answer": answer}])
+        kept = _kept(text, question)
     return kept
 
 
-def _kept(text: str) -> str | None:
-    return next((r["answer"] for r in progress_store.kept_questions(_KEPT, text) if r["question"] == _QUESTION), None)
+def _kept(text: str, question: str) -> str | None:
+    return next((r["answer"] for r in progress_store.kept_questions(_KEPT, text) if r["question"] == question), None)
 
 
 def translate_english(text: str) -> dict:
     """English into Arabic: each word's candidates from the dictionary, always, and the
-    whole as the model renders it, which is None when it is unreachable. The model
-    never touches the word rows, so a wrong rendering cannot change a lookup."""
+    whole as the model renders it, filed once like the other direction, and None when
+    it is unreachable. The model never touches the word rows, so a wrong rendering
+    cannot change a lookup."""
     rows = [{"arabic": (w["entries"][0]["arabic"] if w["entries"] else ""), "english": w["english"], "base": w["lemma"]}
             for w in dictionary_service.english_words(text)]
     try:
-        meaning = str(ai.render_in_arabic(text).get("arabic", "")).strip() or None
+        meaning = _asked(text, _ARABIC, lambda: ai.render_in_arabic(text)["arabic"])
     except Exception as exc:  # noqa: BLE001, a dead model leaves the word-by-word standing
         logger.info("sentence meaning  model failed: %s", exc)
         meaning = None

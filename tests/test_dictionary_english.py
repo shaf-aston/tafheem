@@ -49,8 +49,12 @@ def test_a_definition_that_is_the_word_beats_a_passing_mention(small) -> None:
 
 
 def test_a_sentence_has_a_row_per_word_and_the_model_renders_the_whole(small, client, monkeypatch) -> None:
-    monkeypatch.setattr(ai, "render_in_arabic", lambda text: {"arabic": "أَنَا أَقْرَأُ كِتَابًا"})
+    asked = []
+    monkeypatch.setattr(ai, "render_in_arabic", lambda text: asked.append(text) or {"arabic": "أَنَا أَقْرَأُ كِتَابًا"})
     body = client.get("/api/dictionary/sentence", params={"q": "We ran. The book!"}).json()
+    # Filed on the first ask, so the same text reads the same next time without asking again.
+    again = client.get("/api/dictionary/sentence", params={"q": "We ran. The book!"}).json()
+    assert again["meaning"] == body["meaning"] and len(asked) == 1
     assert body["direction"] == "en" and body["kind"] == "sentence"
     assert body["meaning"] == "أَنَا أَقْرَأُ كِتَابًا" and body["source"]["label"].startswith("AI")
     assert [(w["english"], w["base"], w["arabic"]) for w in body["words"]] == [
