@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from backend.services.syntax import particles
 from backend.services.syntax.mask import book_links
-from backend.services.syntax.naming import base_tokens
+from backend.services.syntax.facts import base_tokens
 from backend.services.syntax.repair.asked import asked_man
 from backend.services.syntax.repair.called import called
 from backend.services.syntax.repair.dua import counted_times, dua_clause

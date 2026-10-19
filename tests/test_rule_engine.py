@@ -20,13 +20,9 @@ from backend.models.analyze import ROLE_KEYS, WordAnalysis
 from backend.services import iraab, morphology, rule_engine, syntax
 from backend.services.arabic_text import words
 from backend.services.nahw_book import term_ar
-from backend.services.syntax.catib_onnx import files_present
+from tests.nahw_helpers import needs_parser
 
-# Reading a sentence needs CAMeL's data and the parser's model files, neither in git.
-pytestmark = pytest.mark.skipif(
-    not (morphology._CAMEL_AVAILABLE and files_present()),
-    reason="CAMeL data or CATiB parser files not present",
-)
+pytestmark = needs_parser
 
 # Two sentences, one of each kind, so both branches of the engine are walked.
 VERBAL = "ذهب الولد إلى المدرسة"     # jumlah fi'liyyah

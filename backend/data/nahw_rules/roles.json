@@ -42,7 +42,7 @@
  "named": {
   "fil": "فعل", "fail": "فاعل", "harf": "حرف", "harf_jarr": "حرف جر", "majroor": "مجرور",
   "munada": "منادى", "mustathna": "مستثنى", "mubtada": "مبتدأ", "khabar": "خبر", "khabar_kaada": "خبر كاد",
-  "ism_inna": "اسم إن", "tamyeez": "تمييز", "mudaf_ilayh": "مضاف إليه", "sifah": "صفة", "silah": "صلة", "matoof": "معطوف"
+  "ism_inna": "اسم إن", "tamyeez": "تمييز", "mudaf_ilayh": "مضاف إليه", "sifah": "صفة", "silah": "صلة", "matoof": "معطوف", "badal": "بدل", "mafool_bih": "مفعول به", "matboo": "متبوع"
  },
  "units": [
   {"child": "مجرور", "label": "jar_majroor", "on_particle": true},

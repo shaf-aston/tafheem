@@ -5,20 +5,15 @@ independent examiner, each with the role a nahw teacher expects on its key words
 A sentence here is never used to write a rule; a rule is fixed on its sibling and checked here."""
 import pytest
 
-from backend.services import iraab, morphology
-from backend.services.syntax.catib_onnx import files_present
+from tests.nahw_helpers import cards, needs_parser
 
-# Reading a sentence needs CAMeL's data and the parser's model files, neither in git.
-pytestmark = pytest.mark.skipif(
-    not (morphology._CAMEL_AVAILABLE and files_present()),
-    reason="CAMeL data or CATiB parser files not present",
-)
+pytestmark = needs_parser
 
 # sentence → {word index: role the card prints (its finer name, else its role)}
 EXPECTED = {
     "الصِّدْقُ مَنْجَاةٌ": {0: "مبتدأ", 1: "خبر"},
     "الْبُسْتَانُ وَاسِعٌ أَشْجَارُهُ": {0: "مبتدأ", 1: "خبر", 2: "فاعل"},
-    "فِي الدَّارِ رَجُلٌ": {1: "مجرور", 2: "مبتدأ"},
+    "فِي الدَّارِ رَجُلٌ": {1: "مجرور", 2: "مبتدأ مؤخر"},
     "كَانَ الْجَوُّ بَارِدًا": {1: "اسم كان", 2: "خبر كان"},
     "أَصْبَحَ الْفَلَّاحُ نَشِيطًا": {1: "اسم أصبح", 2: "خبر أصبح"},
     "لَيْسَ الْكَذُوبُ أَمِينًا": {1: "اسم ليس", 2: "خبر ليس"},
@@ -74,13 +69,13 @@ def _printed(card: dict) -> str | None:
 
 @pytest.mark.parametrize("sentence", list(EXPECTED))
 def test_held_out_roles(sentence):
-    words = iraab.analyze(sentence, recorded=False)["words"]
+    words = cards(sentence)
     got = {i: _printed(words[i]) for i in EXPECTED[sentence]}
     assert got == EXPECTED[sentence], sentence
 
 
 @pytest.mark.parametrize("sentence", list(EXPECTED_SIGN))
 def test_held_out_signs(sentence):
-    words = iraab.analyze(sentence, recorded=False)["words"]
+    words = cards(sentence)
     got = {i: words[i].get("sign") for i in EXPECTED_SIGN[sentence]}
     assert got == EXPECTED_SIGN[sentence], sentence

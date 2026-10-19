@@ -3,10 +3,12 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.nahw_book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun
+from backend.services.nahw_book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles
 from backend.services.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, NOUN_LINKS, SUBJECTS
-from backend.services.syntax.facts.sentence import Sentence, jarr_takes, told_of_lone_mubtada, verb_above
+from backend.services.syntax.facts.sentence import Sentence, jarr_takes, praised_noun, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
+
+NAMED = named_roles()
 
 
 def takes_tamyeez(token: dict, s: Sentence) -> bool:
@@ -21,7 +23,7 @@ def takes_tamyeez(token: dict, s: Sentence) -> bool:
 def _doer_by_extra_ba(token: dict, verb: dict) -> bool:
     """كَفَى بِاللَّهِ: the doer comes after a زائدة باء, hung on the verb as the book's rule says."""
     rule = extra_ba_on(strip_diacritics(verb["lemma"]))
-    return bool(rule and rule["role"] == "فاعل" and token["rel"] == rule["rel"] and is_extra_ba(token["form"].strip("+")))
+    return bool(rule and rule["role"] == NAMED.fail and token["rel"] == rule["rel"] and is_extra_ba(token["form"].strip("+")))
 
 
 def completes_kaada(token: dict, s: Sentence) -> bool:
@@ -91,8 +93,11 @@ def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
 def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
     """جاء رجلٌ كريمٌ أبوه، المسجدُ مفتوحٌ بابُه: a raf' noun straight after a participle or
     adjective, carrying a pronoun back to the noun described, is what that describer tells of:
-    its فاعل, or its نائب فاعل after a passive participle (النعت السببي, Tasheel 3.10.1)."""
-    return (subject_link(token) and token["id"] == head["id"] + 1
+    its فاعل, or its نائب فاعل after a passive participle (النعت السببي, Tasheel 3.10.1).
+    The parser may hang it as the describer's مضاف إليه (الْبُسْتَانُ وَاسِعٌ أَشْجَارُهُ); a damma
+    typed on it rules that out, since a مضاف إليه is never مرفوع."""
+    return ((subject_link(token) or (token["rel"] == "IDF" and typed_case_of(token) == "u"))
+            and token["id"] == head["id"] + 1
             and typed_or_parsed_case(token) == "u"
             and any(attached_pronoun(k) for k in s.kids(token)))
 
@@ -151,6 +156,8 @@ def verb_place(token: dict, s: Sentence) -> str:
             return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object (a built word's is no case: أنتَ)
         if before and rel in SUBJECTS:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
+        if praised_noun(token, s):
+            return "none"  # نِعْمَ الْخُلُقُ الْوَفَاءُ: the one praised is no second doer (_nominal_place: مبتدأ)
         if head.get("asp") == "c" and rel in (*NOUN_LINKS, "---") and typed != "u":
             return "object"  # قل الحق: a command's doer is always the hidden أنت (Tasheel 2.4.1 p30)
         if not before and typed != "u" and (listed(token, "times_counted") or stands_for_masdar(token, head, s)):
@@ -224,6 +231,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     rel = token["rel"]
     if s.hijazi and token in s.hijazi[1:]:
         return "subject" if token is s.hijazi[1] else "predicate"
+    if praised_noun(token, s):
+        return "subject"  # بِئْسَ الْخُلُقُ الْكَذِبُ: the one blamed, a مبتدأ whose khabar is the sentence before it
     if zarf_of_khabar(token, s):
         return "place_time"
     # واللهُ أكبرُ: a و that opens a sentence (particles.stamp) leaves the noun after it its

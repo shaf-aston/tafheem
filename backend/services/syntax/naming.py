@@ -14,6 +14,7 @@ from backend.services.nahw_book import (
     extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
     book_map, book_merges, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, walker
+from backend.services.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
 from backend.services.harakat import (
     CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
     typed_case)
@@ -49,14 +50,43 @@ def tone(role: str | None) -> str | None:
     return _entry(role)[1]
 
 
-def base_tokens(words: list[str], tokens: list[dict]) -> list[dict]:
-    """The parser's tokens that are the words the reader typed, clitics aside.
-    Fewer or more than `words` means the split does not line up."""
-    bases = [t for t in tokens if t.get("token_type") == "baseword"]
-    if len(bases) != len(words):
-        # a reader who writes بِ or وَ apart types as many words as the parser splits
-        bases = [t for t in tokens if not facts.is_suffix(t)]
-    return bases
+class Piece(TypedDict, total=False):
+    """A clitic written onto a typed word (بِـ، ـها), named by the same tree."""
+    id: int
+    role: str | None
+    before: bool  # written before the word (بِـ، وَ) or after it (ـها)
+    form: str
+    family: str | None
+    reading: dict | None
+    named: str  # حرف جر زائد: a name a finishing step gave it
+
+
+class Condition(TypedDict, total=False):
+    """A word's part in a شرط (syntax.condition): the opener, its verb, the answer, or لولا's subject."""
+    part: str  # opener / verb / answer / subject
+    opener: int
+    verb: int
+    answer: int | None
+    tie_at: int
+    tie: str | None  # the letter written onto the answer that ties it (ف، ل)
+    kind: str | None  # اسم شرط جازم: what a conditional noun is, said before its place
+    family: str
+    named: str | None  # جواب لولا: the part's own name where the family gives one
+
+
+class Gap(TypedDict):
+    """Why the teacher took a name back, in Arabic and English."""
+    ar: str
+    en: str
+
+
+class Doer(TypedDict):
+    """The doer drawn inside a verb (syntax.doer): hidden (هو) or written onto it (the تاء)."""
+    role: str
+    tone: str | None
+    detail: str
+    pronoun: str
+    hidden: bool
 
 
 class FoundEntry(TypedDict, total=False):
@@ -70,16 +100,17 @@ class FoundEntry(TypedDict, total=False):
     named: str | None  # a particle reading's own name (ألا الاستفتاحية)
     book: str | None  # the proof line: the tree's branches that named it
     also: str | None  # a second thing the book says (عطف بيان)
-    attached: list[dict]  # pieces written onto it: id, role, before, form, family, reading
+    attached: list[Piece]  # pieces written onto it
     governor: int  # index of the word that works its case on it
     follows: int  # index of the word a تابع follows
-    condition: dict  # its part in a شرط: opener, subject, answer
+    condition: Condition  # its part in a شرط
     pair: dict[str, str]  # لا رجلَ: role → the name its governor gives the pair
     extra_ba: str  # u / a: the place's case under a زائدة باء
     by_place: bool  # the case is its place's, not the one its letters show (the teacher skips the typed check)
     kaffa: str  # إنما: the إن sister the كافة ما is on
-    gap: dict  # set by the teacher: the rule a dashed role broke, ar and en
+    gap: Gap  # set by the teacher: the rule a dashed role broke
     name: str  # set from the picture: its finer name (اسم ليس)
+    doer: Doer  # set from the picture: the doer drawn inside a verb, said on its card too
 
 
 def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
@@ -210,7 +241,7 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
             return kinds["idafa"]["fi"]  # مكرُ الليلِ
         bare = strip_diacritics(token["lemma"]).strip("+")
         return kinds["idafa"]["min" if bare in kinds["material"] else "lam"]
-    if role == "بدل":
+    if role == NAMED.badal:
         pronoun = any(facts.attached_pronoun(k) for k in s.kids(token))
         if not pronoun:
             return kinds["badal"]["kul"]
@@ -310,11 +341,13 @@ def _governed(i: int, role: str | None, token: dict, bases: list[dict], tokens: 
 
 
 def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
-    """The typed word a follower follows, reached through the و of a معطوف."""
+    """The typed word a follower follows, reached through the و of a معطوف. A particle is
+    climbed past, but not the called أيها, which the parser tags one: يا أيها الناسُ, the
+    صفة follows it, not the verb after (facts._follows names it by the same test)."""
     at = {t["id"]: i for i, t in enumerate(bases)}
     by_id = {t["id"]: t for t in tokens}
     head = by_id.get(token["head"])
-    while head and (head["id"] not in at or head["pos"] == "PRT"):
+    while head and (head["id"] not in at or (head["pos"] == "PRT" and not facts.is_called_noun(head))):
         head = by_id.get(head["head"])
     return at[head["id"]] if head else None
 
@@ -398,7 +431,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni"
     # a question word, a demonstrative, a relative or a pronoun never changes its
     # ending, so the vowel on it is part of the word and not a case
-    if is_mabni(token.get("pos_camel", "")) or facts.is_object_pronoun(token) or facts.is_built_zarf(token):
+    if facts.is_built(token) or facts.is_object_pronoun(token) or facts.is_built_zarf(token):
         return "mabni"
     # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built;
     # a name is never built, so a sukun on one is the reader pausing (أَحْمَدْ جَاءَ)

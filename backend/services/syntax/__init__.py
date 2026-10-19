@@ -100,6 +100,10 @@ def read(sentence: str, picks: list[dict]) -> dict:
         for word, finer in zip(found, drawn.pop("finer", [])):
             if finer and word["role"]:
                 word["name"] = finer
+        # and the doer drawn inside a verb (ضمير مستتر تقديره هو), so its card says the same
+        for word, doer in zip(found, drawn.pop("doer", [])):
+            if doer and word["role"]:
+                word["doer"] = doer
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         read = {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
         if get_settings().show_parse:

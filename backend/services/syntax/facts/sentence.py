@@ -3,7 +3,25 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.nahw_book import is_one
-from backend.services.syntax.facts.word import is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
+from backend.services.syntax.facts.word import NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
+
+
+def praised_noun(token: dict, s: "Sentence") -> bool:
+    """نِعْمَ الْخُلُقُ الْوَفَاءُ، بِئْسَ الْخُلُقُ الْكَذِبُ: a verb of praise or blame (closed_words
+    praise_blame) has one doer, the noun with ال straight after it; the raf' noun after that is
+    the one praised or blamed (المخصوص), the مبتدأ of a sentence of its own, whether the parser
+    hung it on the verb as a second subject or on the doer as its modifier. The follows axis
+    and the slot both ask this, so neither calls it a صفة or a second doer."""
+    head = s.head(token)
+    if not head or typed_or_parsed_case(token) != "u" or not noun_tagged(token):
+        return False
+    verb = head if is_verb(head) else s.head(head)
+    if not verb or not is_verb(verb) or not is_one(verb["lemma"], "praise_blame"):
+        return False
+    # the doer by what it shows, not the parser's label for it (it hangs the noun as SBJ or OBJ)
+    doer = next((k for k in s.kids(verb) if k["id"] < token["id"] and noun_tagged(k) and k["rel"] in NOUN_LINKS
+                 and typed_or_parsed_case(k) == "u"), None)
+    return bool(doer and (token["rel"] in NOUN_LINKS or (token["rel"] == "MOD" and head is doer)))
 
 
 class Sentence:

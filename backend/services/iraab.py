@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics, words
 from backend.services import card_wording, morphology, provenance, quran_corpus, rule_engine, signs, syntax, tarkeeb_store, tree_columns
-from backend.services.harakat import CASE_NAME, typed_case
+from backend.services.harakat import CASE_LETTER, CASE_NAME, typed_case
 from backend.services.nahw_book import case_of, is_object_stem, reason, teacher_rules
 from backend.services.syntax.tree import names_a_sentence as names_a_sentence
 from backend.services.syntax.naming import NAMED, role_key
@@ -75,7 +75,7 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     if len(roles) != len(words):
         return words
     card_wording.word(words, roles)
-    return rule_engine.mark_condition(words, roles)
+    return words
 
 
 def _my_ya(entry: dict, found: dict, after: dict) -> bool:
@@ -135,7 +135,7 @@ def _stands_for_own(entry: dict, found: dict, annexed: bool) -> bool:
     """The typed vowel is the sign of the role's own case for this kind of word (a sound plural's kasra in nasb, a diptote's fatha in jarr): mirrors
     facts.shows_jarr / shows_nasb_by_kasra on the card's reading, so the role's case stands."""
     own = case_of(found["role"])
-    typed = next((letter for letter, name in CASE_NAME.items() if name == found["case"]), None)
+    typed = CASE_LETTER.get(found["case"])
     stands = teacher_rules()["signs"]["stands_for"].get(signs.kind_of(entry["camel"], annexed), {})
     if own and stands.get(typed) == own:
         entry["case"] = CASE_NAME[own]

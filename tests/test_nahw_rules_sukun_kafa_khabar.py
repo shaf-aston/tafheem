@@ -1,27 +1,9 @@
 """Three nahw rules the analyser identifies, each on held-out sentences:
 التقاء الساكنين on a built word's sign, the تمييز/حال after كفى بـ (فاعل behind a
 زائدة باء), and a sentence after a describing khabar as خبر ثانٍ."""
-import pytest
+from tests.nahw_helpers import analyze, cards as _words, needs_parser, tree_roles
 
-from backend.services import iraab, morphology
-from backend.services.syntax.catib_onnx import files_present
-
-# Reading a sentence needs CAMeL's data and the parser's model files, neither in git.
-pytestmark = pytest.mark.skipif(
-    not (morphology._CAMEL_AVAILABLE and files_present()),
-    reason="CAMeL data or CATiB parser files not present",
-)
-
-
-def _words(s):
-    return iraab.analyze(s, recorded=False)["words"]
-
-
-def _jobs(node, out):
-    out.append(node.get("role"))
-    for child in node.get("children", []):
-        _jobs(child, out)
-    return out
+pytestmark = needs_parser
 
 
 def test_a_built_word_moved_for_the_next_sakin_says_so():
@@ -38,7 +20,7 @@ def test_after_kafa_with_an_extra_ba_the_nasb_noun_is_no_object():
 
 
 def test_a_sentence_after_a_describing_khabar_is_a_second_khabar():
-    jobs = _jobs(iraab.analyze("إِنَّ اللَّهَ رَحِيمٌ يَغْفِرُ الذُّنُوبَ", recorded=False)["tree"]["tree"], [])
+    jobs = tree_roles(analyze("إِنَّ اللَّهَ رَحِيمٌ يَغْفِرُ الذُّنُوبَ")["tree"]["tree"])
     assert "خبر ثانٍ لإن" in jobs
-    jobs = _jobs(iraab.analyze("هَذَا رَجُلٌ يُحِبُّ الْعِلْمَ", recorded=False)["tree"]["tree"], [])
+    jobs = tree_roles(analyze("هَذَا رَجُلٌ يُحِبُّ الْعِلْمَ")["tree"]["tree"])
     assert "صفة" in jobs and not any(j and "ثانٍ" in j for j in jobs)  # a plain noun: its صفة

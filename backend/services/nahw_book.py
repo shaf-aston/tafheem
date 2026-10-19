@@ -93,6 +93,11 @@ def family_cards() -> tuple[tuple[str, dict], ...]:
     return tuple((family, kept["card"]) for family, kept in _closed()["families"].items() if "card" in kept)
 
 
+def family_mother(family: str) -> str:
+    """The word a family is named by (إن for إن وأخواتها, كان for كان وأخواتها): the first on its list."""
+    return _closed()["families"][family]["words"][0]
+
+
 def in_family(lemma: str, family: str) -> bool:
     """The lemma is on any of the family's word lists (زال is kana's, behind a negation)."""
     kept = _closed()["families"][family]
@@ -229,6 +234,13 @@ def counted_name(role: str, nth: int) -> str:
     ordinals = teacher_rules()["case_said"]["ordinals"]
     word = ordinals[min(nth, len(ordinals) - 1)]
     return f"خبر {word} ل{role[4:]}" if role.startswith("خبر ") else f"{role} {word}"
+
+
+@lru_cache(maxsize=1)
+def card_keys() -> SimpleNamespace:
+    """What a card is first said to be by the word alone (حرف عطف، ضمير), by id
+    (`card_keys().atf`); teacher.json spells them, each a key of its reasons."""
+    return SimpleNamespace(**teacher_rules()["card_keys"])
 
 
 def teacher_rules() -> dict:

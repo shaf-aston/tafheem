@@ -39,7 +39,7 @@
   "ordinals": ["أول", "ثانٍ", "ثالث", "رابع", "خامس", "سادس", "سابع", "ثامن", "تاسع", "عاشر"],
   "no_place": "لا محل لها من الإعراب",
   "built_on": "مبني على {ending}",
-  "moved_to_meet": "، وحُرِّك بالكسر لالتقاء الساكنين",
+  "moved_to_meet": "، وحُرِّك بالكسر لالتقاء الساكنين", "_doer_said": "How a verb's card says the doer drawn inside it (card_wording.pieces.doer), by the doer's role; `piece_said` a pronoun written onto the word (زارنا: the نا), by its form, place and role.", "doer_said": {"فاعل": "وفاعله {detail}", "نائب فاعل": "ونائب فاعله {detail}", "اسم كان": "واسمها {detail}", "اسم كاد": "واسمها {detail}"}, "piece_said": "و«{form}» ضمير متصل مبني في محل {place} {role}",
   "past_on": "الفتح",
   "past_on_alef": "الفتح المقدر على الألف للتعذر",
   "command_on": "السكون",
@@ -48,7 +48,7 @@
   "_built_on": "What else a verb or a noun is built on (services/signs.py): a command to many or to one woman drops its nun (اُكْتُبُوا، اُكْتُبِي), a command from a weak root drops its last letter (اِسْقِ، اِتَّقِ), a present verb is built on the fatha with the nun of emphasis (لَيَنْصُرَنَّ) and on the sukun with the nun of women (يَرْسُمْنَ), and the single indefinite noun after لا of the genus is built on what its nasb would show (لا ضَرَرَ، لا قَلَمَيْنِ).",
   "nun_on": {"emphasis": "الفتح", "women": "السكون"},
   "la_jins_on": {"vowel": "الفتح", "dual": "الياء", "sound_plural": "الياء", "on_alef": "الفتح المقدر على الألف"},
-  "condition": {"verb": "وهو فعل الشرط", "answer": "وهو جواب الشرط", "jazm": "{part} مجزوم", "by_family": {"jazm": {"place": "{part} في محل جزم", "ties": {"ف": "والفاء رابطة لجواب الشرط"}}, "ghair_amila_other": {"place": "{part}، وجملته لا محل لها من الإعراب", "ties": {"ل": "واللام واقعة في جواب الشرط"}, "subject": "وخبره محذوف وجوبًا تقديره موجود"}, "zarf_zaman": {"place": {"verb": "{part}، وجملته في محل جر بالإضافة", "answer": "{part}، وجملته لا محل لها من الإعراب"}, "ties": {"ف": "والفاء رابطة لجواب الشرط"}}}},
+  "condition": {"_comment": "The part names (فعل الشرط، جواب الشرط) are roles.json frames.condition; `is` says one on a card.", "is": "وهو {name}", "jazm": "{part} مجزوم", "by_family": {"jazm": {"place": "{part} في محل جزم", "ties": {"ف": "والفاء رابطة لجواب الشرط"}}, "ghair_amila_other": {"place": "{part}، وجملته لا محل لها من الإعراب", "ties": {"ل": "واللام واقعة في جواب الشرط"}, "subject": "وخبره محذوف وجوبًا تقديره موجود"}, "zarf_zaman": {"place": {"verb": "{part}، وجملته في محل جر بالإضافة", "answer": "{part}، وجملته لا محل لها من الإعراب"}, "ties": {"ف": "والفاء رابطة لجواب الشرط"}}}},
   "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"},
   "passive": "مبني للمجهول",
   "_by_family": "A particle or verb named by the family it governs as (closed_words.json card, services/signs.py): its name and what it does, said in place of the plain حرف or after the tense.",
@@ -66,7 +66,7 @@
   "الضم": {"tails": ["وا"]},
   "السكون": {"before": "ْ", "tails": ["تما", "تم", "تن", "نا", "ت"]}
  },
- "reasons": {
+ "_card_keys": "What a card is first said to be by what the word itself shows (rule_engine), each a key of `reasons`; a role is in roles.json `named`, these are not roles.", "card_keys": {"atf": "حرف عطف", "nasikh": "حرف ناسخ", "damir": "ضمير", "la_nahiya": "لا ناهية", "la_nafiya": "لا نافية"}, "reasons": {
   "_comment": "The reason a card shows, one per role, so it always explains the role the card wears (rule_engine writes it, iraab.cards rewrites it when the parser renames the word, signs.py writes a verb's). Every name in roles.json has one; the keys after it are the rule engine's own variants.",
   "فعل": "فعل في جملة فعلية",
   "اسم موصول": "اسم موصول مبني، والجملة بعده صلته",

@@ -7,11 +7,10 @@ import pytest
 
 from backend.services import morphology
 from backend.services.syntax import catib_onnx
-from backend.services.syntax.catib_onnx import files_present, parse
+from backend.services.syntax.catib_onnx import parse
+from tests.nahw_helpers import needs_parser
 
-pytestmark = pytest.mark.skipif(
-    not files_present(), reason="CATiB parser model files not present under backend/data/parser/"
-)
+pytestmark = needs_parser
 
 
 def test_verb_subject_object():
