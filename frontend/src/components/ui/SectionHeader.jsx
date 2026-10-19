@@ -11,13 +11,15 @@
  * `nameOf` turns a step's address into words, for a tab whose addresses are ids.
  */
 import ArabicText from './ArabicText'
+import Emblem from './Emblem'
 import Trail from './Trail'
 
-export default function SectionHeader({ title, arabic, subtitle, aside = null, nameOf }) {
+export default function SectionHeader({ title, arabic, subtitle, emblem, aside = null, nameOf }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-4 flex-wrap">
         <div className="flex items-baseline gap-2 flex-wrap">
+          {emblem && <Emblem id={emblem} size={34} className="section-emblem" />}
           {/* No leading at all on the title, so the line box holds the letters
               and nothing else. A title and the sentence explaining it are one
               thing, and the gap between them should be smaller than the gap to

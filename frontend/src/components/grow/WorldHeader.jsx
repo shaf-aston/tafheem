@@ -1,5 +1,6 @@
 /** A world's header: back button, scene, name, idea. Colour from --w. `back` names where the button goes (default: all worlds). */
 import { sayIn } from '../../lib/say'
+import Emblem from '../ui/Emblem'
 import ArabicText from '../ui/ArabicText'
 
 const say = sayIn('en')
@@ -18,7 +19,10 @@ export default function WorldHeader({ world, onBack, back = say('Worlds'), child
           <h2>{world.name}</h2>
           <p className="grow-world-idea">{world.idea}</p>
         </div>
-        <ArabicText size="lg" className="grow-world-ar">{world.arabic}</ArabicText>
+        <span className="grow-world-pic">
+          <Emblem id={world.id} size={64} />
+          <ArabicText size="lg" className="grow-world-ar">{world.arabic}</ArabicText>
+        </span>
       </div>
       {children}
     </header>

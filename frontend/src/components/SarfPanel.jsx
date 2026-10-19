@@ -20,6 +20,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
     <div className="panel">
       <SectionHeader
         title="Sarf"
+        emblem="sarf"
         arabic="صرف"
         subtitle="Where a word comes from: its three-letter root, its pattern, and how it conjugates."
       />
