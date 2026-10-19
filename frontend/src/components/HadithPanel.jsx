@@ -24,6 +24,7 @@ import StatusNote from './ui/StatusNote'
 import HadithCollectionPicker from './hadith/HadithCollectionPicker'
 import HadithBookList from './hadith/HadithBookList'
 import HadithCards from './hadith/HadithCards'
+import HadithMoreMenu from './hadith/HadithMoreMenu'
 import HadithOptions from './hadith/HadithOptions'
 import HadithList from './hadith/HadithList'
 import HadithSearchResults from './hadith/HadithSearchResults'
@@ -156,18 +157,21 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         <StatusNote>That link names a hadith that is not here, so the collection opens plainly.</StatusNote>
       )}
 
-      <HadithSearchResults accent={accent} onNarrator={openNarrator} onHadith={openHadith} onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}>
+      <HadithSearchResults
+        accent={accent}
+        onNarrator={openNarrator}
+        onHadith={openHadith}
+        onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}
+        menu={(
+          <HadithMoreMenu accent={accent} items={[
+            { label: '★ Starred', count: favorites.length, on: starred, pick: () => setStarred(!starred) },
+            { label: 'Narrators', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
+            { label: 'Scholars', on: listing === SCHOLARS_PLACE, pick: () => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE)) },
+          ]} />
+        )}
+      >
         <ChipRow>
           <HadithCollectionPicker value={collection} onChange={pickCollection} accent={accent} />
-          <Chip selected={starred} tinted accent={accent} onClick={() => setStarred(!starred)}>
-            &#9733; Starred {favorites.length > 0 && favorites.length}
-          </Chip>
-          <Chip selected={listing === NARRATORS_PLACE} tinted accent={accent} onClick={() => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE))}>
-            Narrators
-          </Chip>
-          <Chip selected={listing === SCHOLARS_PLACE} tinted accent={accent} onClick={() => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE))}>
-            Scholars
-          </Chip>
           {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this
               collection, unless the picker beside it already names it. */}
           {!starred && !listing && source && <SourceBadge source={collections.length > 1 ? source : { ...source, label: open.name }} className="ml-auto" />}

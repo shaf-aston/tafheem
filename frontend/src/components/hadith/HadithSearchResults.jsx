@@ -31,7 +31,7 @@ import StatusNote, { CorrectedNote, NoteWord } from '../ui/StatusNote'
 import HadithCards from './HadithCards'
 import HadithOptions from './HadithOptions'
 
-export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, children }) {
+export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, menu, children }) {
   const { collections, of } = useHadithCollections()
   const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
     historyKey: 'hadith-history',
@@ -67,6 +67,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
           accent={accent}
           title="Say what you are looking for"
         />
+        {menu}
       </SearchBox>
 
       {!searching && <RecentRow items={history.map((h) => h.q)} accent={accent} onPick={submit} />}

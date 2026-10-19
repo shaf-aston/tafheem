@@ -5,7 +5,7 @@
  */
 import { ahead } from '../../lib/warm'
 
-const MORE = 'M6 12h.01M12 12h.01M18 12h.01'
+import MoreIcon from '../ui/MoreIcon'
 
 export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, onAll, onHover }) {
   const dock = ids.map((id) => tabs.find((tab) => tab.id === id))
@@ -42,7 +42,7 @@ export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, 
         className={`${item} ${elsewhere ? 'text-[var(--c)]' : 'text-[var(--text-dim)]'}`}
       >
         <span className={`bottom-nav-mark ${elsewhere ? 'bottom-nav-on' : ''}`} aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d={MORE} /></svg>
+          <MoreIcon />
         </span>
         {here ? here.short : 'More'}
       </button>
