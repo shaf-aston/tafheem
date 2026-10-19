@@ -5,7 +5,7 @@ independent examiner, each with the role a nahw teacher expects on its key words
 A sentence here is never used to write a rule; a rule is fixed on its sibling and checked here."""
 import pytest
 
-from tests.nahw_helpers import cards, needs_parser
+from tests.nahw_helpers import analyze, cards, needs_parser, tree_roles
 
 pytestmark = needs_parser
 
@@ -79,3 +79,52 @@ def test_held_out_signs(sentence):
     words = cards(sentence)
     got = {i: words[i].get("sign") for i in EXPECTED_SIGN[sentence]}
     assert got == EXPECTED_SIGN[sentence], sentence
+
+
+# ── Rules a mutation showed no test guarded: one sentence each way, the answer checked by hand ──
+
+# the mood a لام written onto a present verb gives it: لام الأمر jazm, لام التعليل nasb (naming._lam_mood)
+# and a present verb joined by و to a verb in jazm or nasb is in that mood too (naming._followers_take_their_ending)
+EXPECTED_CASE = {
+    "لِيَكْتُبْ زَيْدٌ الدَّرْسَ": {0: "jazm"},
+    "جِئْتُ لِأَتَعَلَّمَ": {1: "nasb"},
+    "لَمْ يَأْكُلْ وَيَشْرَب": {2: "jazm"},
+    "لَنْ يَأْكُلُوا وَيَشْرَبُوا": {2: "nasb"},
+}
+# the five verbs' nun: kept in raf', dropped in nasb and jazm (signs._present_sign)
+EXPECTED_SIGN.update({
+    "لَنْ يَكْتُبُوا": {1: "حذف النون"},
+    "الطُّلَّابُ يَكْتُبُونَ الدَّرْسَ": {1: "ثبوت النون"},
+})
+# a verb clause is governed only by a family that frames it (كان: its khabar); the verb a parser hangs
+# a صلة on does not govern it (naming._governed)
+EXPECTED_GOVERNOR = {
+    "كَانَ الطِّفْلُ يَلْعَبُ": {2: 0},
+    "جَاءَ مَنْ نَجَحَ": {2: None},
+}
+# a command's doer is the hidden أنت, so the noun after it is its object, unless its damma says it is the doer
+# (slot.verb_place); a noun with a pronoun stuck on is definite, so what follows it is a حال, and the pair
+# an idafa (tree.definite)
+EXPECTED_PICTURE = {
+    "اكْتُبْ الدَّرْسَ": ["فعل أمر", "مفعول به"],
+    "لِيَقُمْ زَيْدٌ": ["لام الأمر", "فعل مضارع للأمر", "فاعل"],
+    "كِتَابُهُ جَدِيدٌ": ["مبتدأ", "مضاف", "مضاف إليه", "خبر"],
+    "جَاءَ أَخُوهُ مُسْرِعًا": ["فعل", "فاعل", "مضاف", "مضاف إليه", "حال"],
+}
+
+
+@pytest.mark.parametrize("sentence", list(EXPECTED_CASE))
+def test_held_out_cases(sentence):
+    words = cards(sentence)
+    assert {i: words[i].get("case") for i in EXPECTED_CASE[sentence]} == EXPECTED_CASE[sentence], sentence
+
+
+@pytest.mark.parametrize("sentence", list(EXPECTED_GOVERNOR))
+def test_held_out_governors(sentence):
+    words = cards(sentence)
+    assert {i: words[i].get("governor") for i in EXPECTED_GOVERNOR[sentence]} == EXPECTED_GOVERNOR[sentence], sentence
+
+
+@pytest.mark.parametrize("sentence", list(EXPECTED_PICTURE))
+def test_held_out_pictures(sentence):
+    assert tree_roles(analyze(sentence)["tree"]["tree"]) == EXPECTED_PICTURE[sentence], sentence
