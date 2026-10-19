@@ -62,6 +62,11 @@ class SentenceWord(BaseModel):
     arabic: str
     english: str
     base: str  # the word without its joined pieces, what the dictionary looks up
+    # What the grammar said of the word, when it was asked (Arabic sentences only).
+    lemma: str = ""
+    pos: str = ""
+    role: str | None = None
+    case: str | None = None
 
 
 class SentenceResponse(BaseModel):
@@ -73,6 +78,7 @@ class SentenceResponse(BaseModel):
 
     query: str
     kind: str  # word | phrase | sentence
+    direction: str = "ar"  # "ar": Arabic read into English; "en": English put into Arabic
     meaning: str | None = None
     source: Source | None = None
     ref: str | None = None

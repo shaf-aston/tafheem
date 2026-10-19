@@ -59,3 +59,8 @@ fsrs==6.3.2
 # clients); parsing the pages is backend/services/hadith/rijal/parse.py.
 curl_cffi>=0.9.0
 beautifulsoup4>=4.12
+
+# ── English lookup ────────────────────────────────────────────────────────────
+# Lemmatises English (ran -> run) so the dictionary's English search finds the headword
+# (backend/services/dictionary_service.py).
+simplemma>=2.0.0

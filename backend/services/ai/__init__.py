@@ -73,7 +73,7 @@ def get_backend_name() -> str:
     return b.name() if b else "none (local rule engine only)"
 
 
-def _ask(user_prompt: str, max_tokens: int) -> dict:
+def _ask(user_prompt: str, max_tokens: int, system: str | None = None) -> dict:
     """Call the active AI backend; raises RuntimeError when none is available."""
     backend = _get_backend()
     if backend is None:
@@ -84,7 +84,7 @@ def _ask(user_prompt: str, max_tokens: int) -> dict:
     try:
         return backend.complete_json(
             messages=[
-                {"role": "system", "content": prompts.system_prompt()},
+                {"role": "system", "content": system or prompts.system_prompt()},
                 {"role": "user",   "content": user_prompt},
             ],
             max_tokens=max_tokens,
@@ -122,15 +122,25 @@ def explain_root_entry(root: str, entry: str) -> dict:
     )
 
 
-def translate_sentence(text: str, word_by_word: str) -> dict:
-    """A reader's phrase or sentence in natural English, steered by its word-by-word.
+def translate_sentence(text: str, facts: str) -> dict:
+    """A reader's Arabic phrase or sentence as one English sentence, from the grammar's facts.
 
     Unlike the two below, this hands the model what a reader typed. The route
     caps its length, and the answer only ever goes back to that reader as text.
     """
     return _ask(
-        prompts.SENTENCE_USER.format(text=text, word_by_word=word_by_word),
+        prompts.SENTENCE_USER.format(text=text, facts=facts),
         max_tokens=get_settings().sentence_max_tokens,
+        system=prompts.SENTENCE_SYSTEM,
+    )
+
+
+def render_in_arabic(text: str) -> dict:
+    """A reader's English phrase or sentence as Arabic ({"arabic": ...}); same caveats as above."""
+    return _ask(
+        prompts.RENDER_ARABIC_USER.format(text=text),
+        max_tokens=get_settings().sentence_max_tokens,
+        system=prompts.RENDER_ARABIC_SYSTEM,
     )
 
 

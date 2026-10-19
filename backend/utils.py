@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import re
 from typing import Any, Callable, TypeVar
 
 from fastapi import HTTPException
@@ -45,6 +46,21 @@ def arabic_sentence(text: str, field: str = "input") -> str:
     text = normalize_text(text, field)
     require_arabic(text, field)
     kept = words(text)
+    if len(kept) > (limit := get_settings().max_sentence_words):
+        raise HTTPException(status_code=422, detail=f"{field} is longer than {limit} words.")
+    return " ".join(kept)
+
+
+_ENGLISH_RE = re.compile(r"[A-Za-z0-9'\s,.;:!?\-\"()]+")
+
+
+def english_sentence(text: str, field: str = "input") -> str:
+    """English words ready to look up: Latin letters and basic punctuation only, at least
+    two words and no more than settings.max_sentence_words (HTTP 422)."""
+    text = normalize_text(text, field)
+    if not _ENGLISH_RE.fullmatch(text) or not re.search(r"[A-Za-z]", text):
+        raise HTTPException(status_code=422, detail=f"{field} must be English words and basic punctuation.")
+    kept = re.findall(r"[A-Za-z0-9']+", text)
     if len(kept) > (limit := get_settings().max_sentence_words):
         raise HTTPException(status_code=422, detail=f"{field} is longer than {limit} words.")
     return " ".join(kept)

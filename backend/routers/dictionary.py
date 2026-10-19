@@ -35,8 +35,8 @@ from backend.services import (
     sentence_meaning,
     verb_forms,
 )
-from backend.services.arabic_text import normalize_root, not_arabic
-from backend.utils import arabic_sentence, call_service, normalize_text, require_arabic, search_query
+from backend.services.arabic_text import has_arabic, normalize_root, not_arabic
+from backend.utils import arabic_sentence, call_service, english_sentence, normalize_text, require_arabic, search_query
 
 router = APIRouter(prefix="/api/dictionary", tags=["dictionary"])
 
@@ -116,21 +116,30 @@ def _root_as_typed(query: str, found: list[dict]) -> str:
 
 @router.get("/sentence", response_model=SentenceResponse)
 async def translate_sentence(
-    q: str = Query(..., min_length=1, max_length=get_settings().search_max_query_chars, description="Arabic phrase or sentence"),
+    q: str = Query(..., min_length=1, max_length=get_settings().search_max_query_chars, description="Arabic or English phrase or sentence"),
 ) -> SentenceResponse:
-    """More than one word: the sense of the whole, then each word on its own."""
-    text = arabic_sentence(q, "Sentence")
-    found = await asyncio.to_thread(sentence_meaning.translate, text)
+    """More than one word: the sense of the whole, then each word on its own.
+    Arabic is read into English; English is put into Arabic."""
+    if not has_arabic(q):
+        text = english_sentence(q, "Sentence")
+        if " " not in text:
+            raise HTTPException(status_code=422, detail="Sentence needs at least two words; look a single word up instead.")
+        found = await asyncio.to_thread(sentence_meaning.translate_english, text)
+    else:
+        text = arabic_sentence(q, "Sentence")
+        found = await asyncio.to_thread(sentence_meaning.translate, text)
     return SentenceResponse(
         query=text,
         kind=found["kind"],
+        direction=found.get("direction", "ar"),
         meaning=found["meaning"],
         source=provenance.of(found["source"]) if found["source"] else None,
         ref=found["ref"],
         words=[SentenceWord(**w) for w in found["words"]],
         words_source=provenance.of(found["words_source"]),
-        left_out=not_arabic(q),
+        left_out=not_arabic(q) if has_arabic(q) else [],
     )
+
 
 @router.get("/babs", response_model=VerbVerdict)
 async def get_root_babs(root: Root) -> VerbVerdict:
