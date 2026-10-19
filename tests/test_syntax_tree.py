@@ -30,7 +30,7 @@ def test_idafa_is_a_unit_that_plays_one_role():
     sentence = drawn["tree"]  # the خبر hangs outside the unit: the sentence holds both
     unit, khabar = sentence["children"]
     assert sentence["label"] == term_ar("jumlah_ismiyyah")
-    assert (unit["role"], unit["label"]) == ("مبتدأ", term_ar("murakkab_idafi"))  # what it does, what it is
+    assert (unit["role"], unit["label"]) == ("مبتدأ", "")  # its job shown → what it is made of left off
     assert [child.get("role") for child in unit["children"]] == ["مضاف", "مضاف إليه"]
     assert khabar["role"] == "خبر"
 

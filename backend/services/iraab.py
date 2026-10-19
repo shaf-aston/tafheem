@@ -112,7 +112,9 @@ def _named(entry: dict, found: dict, annexed: bool) -> None:
         entry["type"] = "harf"
     if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
         found = {**found, "case": CASE_NAME[own]}  # a recorded ayah's name brings its own case
-    moved = found["case"] and found["case"] != entry.get("case")
+    if found.get("built"):
+        entry["case"] = "mabni"  # أكلتُ ما طبختَ: a relative the tagger took for a particle is built all the same
+    moved = found["case"] and found["case"] != entry.get("case") and not found.get("built")
     if found["role"] == NAMED.fil:
         # أَقِمْ: the root made it a command; the parser, seeing only a sukun, says jazm
         if entry.get("case") == "mabni" and found["case"] == "jazm":

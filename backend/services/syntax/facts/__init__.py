@@ -20,8 +20,8 @@ from __future__ import annotations
 
 from typing import Callable
 
-from backend.services.syntax.facts.word import (WEAK, base_tokens, is_suffix, is_prefix, read_as, is_verb, is_built, is_light, is_passive, typed_case_of, shows_nasb_by_kasra, shows_jarr, shown_cases, is_preposition, typed_or_parsed_case, same_case, agrees, unlike, told_of_subject, indefinite_nasb, is_state_word, state_or_specification, is_deputy, is_object_pronoun, is_called_alone, is_called_noun, same_root, is_participle, is_elative, is_masdar, listed, is_name, is_nasab, noun_tagged, verb_tagged, present_verb_tagged, SUBJECTS, NOUN_LINKS, subject_link, attached_pronoun, works_as_verb)
-from backend.services.syntax.facts.sentence import (Sentence, next_word, puts_in_jarr, place_case, told_of_lone_mubtada, verb_above, previous_noun, jarr_takes)
+from backend.services.syntax.facts.word import (WEAK, case_shown, base_tokens, is_suffix, is_prefix, read_as, is_verb, is_built, is_light, is_passive, typed_case_of, shows_nasb_by_kasra, shows_jarr, shown_cases, is_preposition, typed_or_parsed_case, same_case, agrees, unlike, told_of_subject, indefinite_nasb, is_state_word, state_or_specification, is_deputy, is_object_pronoun, is_called_alone, is_called_noun, same_root, is_participle, is_elative, is_masdar, listed, is_name, is_nasab, noun_tagged, verb_tagged, present_verb_tagged, SUBJECTS, NOUN_LINKS, subject_link, attached_pronoun, works_as_verb)
+from backend.services.syntax.facts.sentence import (Sentence, next_word, puts_in_jarr, place_case, told_of_lone_mubtada, verb_above, previous_noun, jarr_takes, excepted_after_la, ma_kind)
 from backend.services.syntax.facts.kind import (calling_head, joins_clauses, asked_verb, negates, _kind)
 from backend.services.syntax.facts.follows import (stands_for, with_waw, _follows)
 from backend.services.syntax.facts.slot import (takes_tamyeez, completes_kaada, is_built_zarf, is_zarf, zarf_of_khabar, place_time, verb_place, _slot)

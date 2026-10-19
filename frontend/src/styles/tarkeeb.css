@@ -14,15 +14,18 @@
 .tk-scroller {
   overflow-x: auto;
   overflow-y: hidden;
-  padding-top: 0.5rem;
+  /* room above the words for a word's English on hover (the box clips anything outside it) */
+  padding-top: 1.75rem;
   padding-bottom: 1rem;
   scrollbar-width: none;
 }
+/* with the dots line, that room slides up under it, so the chart sits no lower */
+.tk-frame:has(.tk-dots) .tk-scroller { margin-top: -1.5rem; }
 .tk-scroller::-webkit-scrollbar { display: none; }
 
 /* The line above: one dot per word, lit while the word is in view; a dot
    takes the chart to its word. Quiet on purpose, the words are the content. */
-.tk-dots { position: relative; height: 1.25rem; margin: 0 0.5rem 0.25rem; }
+.tk-dots { position: relative; z-index: 1; height: 1.25rem; margin: 0 0.5rem 0.25rem; }
 .tk-dots::before {
   content: "";
   position: absolute;
@@ -265,16 +268,16 @@
   background: color-mix(in srgb, var(--tone, var(--border-hi)) 14%, transparent);
   border-radius: var(--radius-sm, 4px) var(--radius-sm, 4px) 0 0;
 }
-/* its English, word for word, the moment the pointer is on it; drawn under the word,
-   since the scroller clips above it */
+/* its English, word for word, the moment the pointer is on it; drawn over the word,
+   in the room the scroller keeps above its words, so the names under it stay in view */
 .tk-word[data-gloss]:hover::after,
 .tk-word[data-gloss]:focus-visible::after {
   content: attr(data-gloss);
   position: absolute;
-  top: 100%;
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 0.25rem;
+  margin-bottom: 0.15rem;
   z-index: 2;
   padding: 0.15rem 0.5rem;
   border-radius: var(--radius-sm, 4px);
@@ -287,3 +290,6 @@
   pointer-events: none;
   direction: ltr;
 }
+/* the chart runs right to left: the first word's English hangs left from its right edge, the last's right from its left */
+.tk-word[data-edge='start'][data-gloss]::after { left: auto; right: 0; transform: none; }
+.tk-word[data-edge='end'][data-gloss]::after { left: 0; transform: none; }

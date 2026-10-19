@@ -308,7 +308,7 @@ def test_a_noun_with_its_followers_and_no_governor_hangs_on_an_understood_verb()
     (verb, above), = leaves["فعل محذوف"]
     assert verb["hidden"] is True and above["label"] == "جُمْلَةٌ فِعْلِيَّةٌ"
     unit = next(kid for kid in above["children"] if kid.get("role") == "مفعول به")
-    assert unit["label"] == "مُرَكَّبٌ تَوْصِيْفِيٌّ" and cards[0]["role"] == "مفعول به"
+    assert not unit["label"] and cards[0]["role"] == "مفعول به"  # its job says enough
     # nothing settles who "you or she" is, so the doer is still said both ways
     assert "ضمير مستتر تقديره أنتَ أو هي" in [p["detail"] for p in leaves["تَطَّوَّعَ"][0][0]["parts"]]
 
@@ -363,3 +363,67 @@ def test_laula_before_a_verb_urges():
 ])
 def test_the_khabar_is_named_for_its_own_governor(sentence, khabar, role):
     assert _named(sentence)[khabar][0] == role
+
+
+@pytest.mark.parametrize("sentence", ["لَا إِلَٰهَ إِلَّا اللَّهُ", "لا إله إلا الله", "لَا إِلَٰهَ إِلَّا هُوَ"])
+def test_the_shahada_draws_its_unsaid_khabar_and_names_its_badal(sentence):
+    """Ibn Hishām: the khabar of لا is left out, known (مَعْبُودٌ بِحَقٍّ), and sits between
+    إله and إلا; اللهُ is a بدل of the pronoun hidden in it, no بدل كل من كل of the منصوب noun."""
+    cards, leaves = analysed(sentence)
+    (khabar, _), = leaves["مَعْبُودٌ بِحَقٍّ"]
+    assert khabar["role"] == "خبر لا" and khabar["hidden"] is True
+    columns = client.post("/api/analyze", json={"sentence": sentence}).json()["tree"]["words"]
+    assert [strip_diacritics(c) for c in columns][1:4] == ["إله", "معبود بحق", "إلا"]
+    badal = cards[-1]
+    assert badal["role"] == "بدل" and badal["case"] in ("raf'", "mabni") and "الضمير المستتر في الخبر المحذوف" in badal["reason"]
+
+
+def test_another_noun_after_la_keeps_its_plain_badal():
+    """The تقدير is chosen for إله alone: لا رجلَ إلا زيدٌ draws no khabar of it."""
+    cards, leaves = analysed("لَا رَجُلَ إِلَّا زَيْدٌ")
+    assert "مَعْبُودٌ بِحَقٍّ" not in leaves and cards[-1]["reason"].endswith("بدل كل من كل")
+
+
+@pytest.mark.parametrize("sentence, kind, job", [
+    ("أَكَلْتُ مَا طَبَخْتَ", "relative", "مفعول به"),       # طبخ wants an object it lacks: that gap is the عائد
+    ("أَعْجَبَنِي مَا كَتَبْتَهُ", "relative", "فاعل"),      # the هـ written on the verb is the عائد
+    ("سَرَّنِي مَا قُمْتَ", "masdar", "فاعل"),               # قام takes no object, its doer is written: no room for one
+    ("أَدْهَشَ بِمَا تُرِكَ الْعَمَلُ", "masdar", "مجرور"),  # the passive's نائب فاعل is written
+])
+def test_ma_is_relative_only_when_its_sila_has_room_for_an_aid(sentence, kind, job):
+    """مغني اللبيب: the relative's صلة holds a pronoun going back to ما, ما المصدرية's never does."""
+    cards, leaves = analysed(sentence)
+    (ma, unit), = [pair for text, found in leaves.items() if strip_diacritics(text).endswith("ما") for pair in found]
+    assert unit["role"] == job
+    if kind == "masdar":
+        assert unit["label"] == "مَصْدَرٌ مُؤَوَّلٌ" and ma["role"] == "ما المصدرية، حرف مصدري"
+        assert next(c for c in cards if strip_diacritics(c["word"]).endswith("ما"))["role"] == "حرف"
+    else:
+        assert ma["role"] == "اسم موصول"
+        card = next(c for c in cards if strip_diacritics(c["word"]) == "ما")
+        assert card["role"] == job and card["case"] == "mabni"
+
+
+@pytest.mark.parametrize("sentence", ["أَنْ تَدْرُسُوا يُؤَدِّي إِلَى أَنْ تَنْجَحُوا", "أَسْلَمْتُ لِكَيْ أَدْخُلَ الْجَنَّةَ"])
+def test_a_masdar_on_a_preposition_is_its_majrur(sentence):
+    """إلى أن تنجحوا، لكي أدخل: the masdar the particle makes is the مجرور of the حرف جر before it."""
+    _, leaves = analysed(sentence)
+    units = [unit for found in leaves.values() for _, unit in found if unit.get("label") == "مَصْدَرٌ مُؤَوَّلٌ"]
+    assert units and units[-1]["role"] == "مجرور"
+
+
+def test_a_unit_with_a_job_leaves_off_what_it_is_made_of():
+    """قرأت كتابَ الطالب: مفعول به, not مفعول به / مركب إضافي; كتابُ زيدٍ alone keeps its name."""
+    _, leaves = analysed("قَرَأْتُ كِتَابَ الطَّالِبِ")
+    (_, unit), = leaves["كِتَابَ"]
+    assert unit["role"] == "مفعول به" and not unit["label"]
+    body = client.post("/api/analyze", json={"sentence": "كِتَابُ زَيْدٍ"}).json()
+    assert body["tree"]["tree"]["label"] == "مُرَكَّبٌ إِضَافِيٌّ"
+
+
+def test_a_weak_radical_left_unpinned_is_still_one_root():
+    """سارَ سَيْرًا: without the Qur'an corpus the analyser files سار under سور, its masdar
+    under سير; the weak middle letter is the same radical, so the مفعول مطلق still shows."""
+    from backend.services.syntax.facts import same_root
+    assert same_root({"root": "سور", "lemma": "سار"}, {"root": "سير", "lemma": "سير"})
+    assert not same_root({"root": "كتب", "lemma": "كتب"}, {"root": "كسب", "lemma": "كسب"})

@@ -218,15 +218,17 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
             const text = pieces.join('').replaceAll('ـ', '')
             const open = (e) => onWord(text, nth, e.currentTarget)
             const gloss = !missing && glossOf?.(nth, text)
-            // on hover: the word and its English; before the English is in, the word and
-            // that a tap opens its meaning and the dictionary
-            const hover = !missing && onWord && `${text} · ${gloss || 'tap for its meaning'}`
+            // on hover: its English alone (the word is right under it); before the English
+            // is in, that a tap opens its meaning and the dictionary
+            const hover = !missing && onWord && (gloss || 'tap for its meaning')
             return (
               <div
                 className={`tk-word${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
                 key={`word-${from}`}
                 style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone[from]) }}
                 data-gloss={hover || undefined}
+                // the first and last word's English opens inward, so the box's edge cuts none of it
+                data-edge={n === 0 ? 'start' : n === spans.length - 1 ? 'end' : undefined}
                 {...(onWord && !missing && {
                   role: 'button',
                   tabIndex: 0,
