@@ -71,8 +71,8 @@ export default function HomePanel({ accent, onGo }) {
   return (
     <div className="panel space-y-6" style={{ '--c': accent }}>
       <header className="relative space-y-2">
-        <ArabicText aria-hidden="true" className="absolute -top-2 end-0 text-[clamp(6rem,24vw,12rem)] leading-none pointer-events-none select-none"
-          style={{ color: 'transparent', WebkitTextStroke: '1.5px color-mix(in srgb, var(--primary) 30%, transparent)' }}>
+        <ArabicText aria-hidden="true" className="absolute -top-2 right-0 leading-none pointer-events-none select-none"
+          style={{ fontSize: 'clamp(6rem, 24vw, 12rem)', color: 'transparent', WebkitTextStroke: '1.5px color-mix(in srgb, var(--primary) 30%, transparent)' }}>
           فهم
         </ArabicText>
         <p className="rise-in type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{first ? copy['greeting-first'] : greeting()}</p>
