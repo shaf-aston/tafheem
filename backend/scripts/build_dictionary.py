@@ -36,6 +36,10 @@ SKIP_GLOSS = re.compile(r"^(plural|singular|dual|feminine|masculine) of ", re.I)
 # definition stands beside it; when it is the whole entry (2,103 nouns) it is
 # kept, cut to "verbal noun of فَهِمَ", so the word still has an entry.
 POINTER_GLOSS = re.compile(r"^verbal noun of (\S+).*", re.I)
+# "Derived from the active participle of اِشْتَاقَ": the word an entry comes
+# from, named in its etymology. Wiktionary tags مُشْتَاق with no root but tags
+# اِشْتَاقَ ش و ق, so a rootless entry takes the root of the word it names.
+SOURCE_WORD = re.compile(r"\bof ([ء-ي][ء-ي\u064B-\u0652\u0670]*)")
 
 # A headword needs at least one real definition to be worth an entry.
 MIN_DEFINITIONS = 1
@@ -58,6 +62,40 @@ def root_of(entry: dict) -> str:
             if match := ROOT_CATEGORY.search(name):
                 return match.group(1).replace("ـ", "").strip()
     return ""
+
+
+def source_words(entry: dict) -> list[str]:
+    """The words Wiktionary says this entry is a form of or comes from, bare."""
+    named = SOURCE_WORD.findall(entry.get("etymology_text") or "")
+    named += [form.get("word", "") for sense in entry.get("senses", [])
+              for form in sense.get("form_of", []) or []]
+    return [bare for word in named if (bare := strip_diacritics(word))]
+
+
+def fits(root: str, word: str) -> bool:
+    """Whether every strong letter of `root` is in `word`.
+
+    An etymology names more than the word an entry is built on: إله is "a
+    variant of" something else, تاب is "cognate with" ثاب. A root that does not
+    sit in the word's own letters came from one of those, so it is not taken.
+    Weak letters and hamza are let through: قال holds no و of ق و ل.
+    """
+    letters = strip_diacritics(word)
+    return all(letter in letters or letter in "اويءى" for letter in root.split())
+
+
+def inherit_roots(by_word: dict[str, dict], sources: dict[str, list[str]]) -> int:
+    """Give each rootless entry the root of the word it comes from; how many got one."""
+    rooted = {strip_diacritics(word): e["root"] for word, e in by_word.items() if e["root"]}
+    filled = 0
+    for word, entry in by_word.items():
+        if entry["root"]:
+            continue
+        named = (rooted[w] for w in sources.get(word, ()) if w in rooted)
+        if root := next((r for r in named if fits(r, word)), ""):
+            entry["root"] = root
+            filled += 1
+    return filled
 
 
 def romanization_of(entry: dict) -> str:
@@ -186,6 +224,7 @@ def main(output: Path = OUTPUT) -> int:
     # this keeps what each row said it was, counted, so the entry can name its
     # parts of speech commonest-first instead of losing them in the merge.
     parts_of_speech: dict[str, Counter] = defaultdict(Counter)
+    sources: dict[str, list[str]] = defaultdict(list)
     scanned = 0
 
     with open(SOURCE, encoding="utf-8") as handle:
@@ -209,6 +248,7 @@ def main(output: Path = OUTPUT) -> int:
             if pos := entry.get("pos", ""):
                 parts_of_speech[word][pos] += 1
 
+            sources[word] += source_words(entry)
             verb = verb_form_of(entry)
             if existing := by_word.get(word):
                 merge_row(existing, entry, definitions, synonyms, verb)
@@ -222,6 +262,8 @@ def main(output: Path = OUTPUT) -> int:
                 "synonyms": synonyms,
                 "verbs": [verb] if verb else [],
             }
+
+    inherited = inherit_roots(by_word, sources)
 
     for word, entry in by_word.items():
         # Commonest first, so a reader that wants one answer can take the first.
@@ -241,7 +283,7 @@ def main(output: Path = OUTPUT) -> int:
     with_bab = sum(any(v["babs"] for v in e["verbs"]) for e in entries)
     print(
         f"Scanned {scanned} rows -> {len(entries)} entries "
-        f"({with_root} with a root, {with_pos} with a part of speech, "
+        f"({with_root} with a root, {inherited} of them from the word it comes from, {with_pos} with a part of speech, "
         f"{with_synonyms} with a synonym, {with_verbs} with a verb form, "
         f"{with_bab} with a Form I bab)."
     )
