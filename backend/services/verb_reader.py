@@ -47,6 +47,11 @@ def _fold(word: str) -> str:
     return word.replace("ٱ", "ا")
 
 
+def _letters_of(root: str) -> list[str]:
+    """A root's letters in any order, its weak و and ي as one."""
+    return sorted(root.replace("ي", "و"))
+
+
 def _read_words(column: str, row: int, word: str, form: str) -> list[tuple[str, str]]:
     """(name the column is read as, word) for one cell of the table, its allowed
     spellings too; nothing for a column that is not read."""
@@ -203,8 +208,9 @@ def command(word: str, governed: bool = False, root: str = "") -> Cell | None:
     # اُكْتُبَا: the dual is one word for two men or two women, both أنتما, so one person
     # only for the root the dictionary read: اهْدِنَا is هدي with "us", not a dual of هدن
     # قِفَا: the dictionary's قفو holds وقف's letters, out of order, so it still vouches for it
-    closest = [c for c in closest if sorted(c.root) == sorted(root)] or closest if root else closest
-    sure = bool(root) and all(sorted(c.root) == sorted(root) for c in closest)
+    # قفي too: a dictionary spells a weak root's last letter و or ي, so the two are one letter here
+    closest = [c for c in closest if _letters_of(c.root) == _letters_of(root)] or closest if root else closest
+    sure = bool(root) and all(_letters_of(c.root) == _letters_of(root) for c in closest)
     people = {(c.person, "" if c.number == "d" and sure else c.gender, c.number) for c in closest}
     if all(c.column == "amr" for c in closest) and len(people) == 1:
         # its root tied between بابs whose pasts differ (ضَرَبَ، حَسِبَ): the command is sure, its past is not
