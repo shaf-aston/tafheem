@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from backend.services.nahw_book import (card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
-from backend.services.syntax.facts import (Sentence, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
+from backend.services.syntax.facts import (Sentence, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
                                           is_nasab, is_verb, read_as, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
@@ -76,6 +76,15 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
 # the family whose sisters lend their own name to what they govern, by its mother's word
 SISTERS = {family: family_mother(family) for family in ("inna", "kana")}
 # the roles that stay inside the unit their head names (a صفة of the مضاف إليه, a عطف on it)
+def _quieted(node: dict) -> dict:
+    """مفعول به, not مفعول به / مركب إضافي: a unit wearing a job leaves off the name of what it
+    is made of (roles.json units `quiet_under_job`); one with no job keeps it."""
+    label = "" if node.get("role") and node.get("label") in QUIET_UNDER_JOB else node.get("label")
+    return {**node, **({"label": label} if "label" in node else {}),
+            **({"children": [_quieted(kid) for kid in node["children"]]} if node.get("children") else {})}
+
+
+QUIET_UNDER_JOB = {term_ar(unit["label"]) for unit in role_units() if unit.get("quiet_under_job")}
 UNIT_CHILDREN = {unit["child"] for unit in role_units()} | set(FOLLOWERS) | {card_keys().atf}
 
 
@@ -275,6 +284,29 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         t["head"] == token["id"] and t["id"] < token["id"] and role_of[t["id"]] == NAMED.mubtada
         and token["head"] != t["id"] for t in drawn)}
     opens = {token["id"] for token in drawn if role_of[token["id"]] == NAMED.fil} | nominal
+    # أكلتُ ما طبختَ: a ما whose صلة has room for its عائد is the relative, whatever the tagger
+    # guessed; سرّني ما قمتَ: one with none is ما المصدرية (facts.ma_kind)
+    masdar = FRAMES["masdar"]
+
+    def job_by_place(token: dict) -> tuple[str, str] | None:
+        """The job a ما or masdar unit does: a حرف جر's مجرور, else by the relation it hangs by."""
+        governor = by_id.get(token["head"])
+        if governor and is_preposition(governor):
+            return masdar["after_preposition"]["job"], masdar["after_preposition"]["case"]
+        rel = token["rel"]
+        return (masdar["job_by_rel"][rel], masdar["case_by_rel"][rel]) if rel in masdar["job_by_rel"] else None
+
+    kind_of_ma = {token["id"]: kind for token in drawn if (kind := ma_kind(token, sentence))}
+    ma_card: dict[int, tuple[str | None, str | None]] = {}  # what the ما's card says: its job and case, or none
+    for token in drawn:
+        kind = kind_of_ma.get(token["id"])
+        if kind == "masdar":
+            token["pos"], token["pos_camel"] = "PRT", "part"
+            for verb in sentence.kids(token):
+                if is_verb(verb) and verb["id"] > token["id"]:
+                    role_of[verb["id"]] = NAMED.fil  # بما تُرِكَ العملُ: the verb is no صفة of ما
+        elif kind == "relative":
+            token["pos"], token["pos_camel"] = "NOM", "pron_rel"
     # جاء الذي نجح: the clause after a relative is its صلة, with no place of its own
     for token in drawn:
         up = next((t for t in drawn if t["id"] == token["head"]), None)
@@ -334,15 +366,23 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             place_of[token["id"]] = in_place(clause["case"])
     # تحب أن تطوّق: أنْ and the verb hung on it are one masdar, doing the job أنْ hangs by
     # (the parser's أنّ takes a noun, so a verb on it is the nasb أنْ whatever the card guessed)
-    masdar = FRAMES["masdar"]
     for token in drawn:
-        if (strip_diacritics(token["form"]) in masdar["words"] and SHADDA not in token["form"]
-                and token["rel"] in masdar["job_by_rel"]
+        # أكلتُ ما طبختَ: the relative ما does the job of the place it stands in
+        if (kind_of_ma.get(token["id"]) == "relative" and (placed := job_by_place(token))
+                and role_of[token["id"]] not in masdar["job_by_rel"].values()):
+            job_of[token["id"]], place_of[token["id"]] = placed[0], in_place(placed[1])
+            ma_card[token["id"]] = placed
+    for token in drawn:
+        word = strip_diacritics(token["form"])
+        if (word in masdar["words"] and SHADDA not in token["form"] and (placed := job_by_place(token))
+                and kind_of_ma.get(token["id"], "masdar") == "masdar"
                 and any(t["head"] == token["id"] and role_of[t["id"]] == NAMED.fil for t in drawn)):
-            name_of[token["id"]] = (token.get("reading") or {}).get("named") or CARDS[masdar["family"]]["named"]
+            name_of[token["id"]] = (masdar["named_by_word"].get(word) or (token.get("reading") or {}).get("named")
+                                    or CARDS[masdar["family"]]["named"])
             label_of[token["id"]] = masdar["label"]
-            job_of[token["id"]] = masdar["job_by_rel"][token["rel"]]
-            place_of[token["id"]] = in_place(masdar["case_by_rel"][token["rel"]])
+            job_of[token["id"]], place_of[token["id"]] = placed[0], in_place(placed[1])
+            if token["id"] in kind_of_ma:
+                ma_card[token["id"]] = (None, None)  # the unit has the job; ما itself is a حرف
             # إلا أنْ تتطوعَ after a noun: an action is not of the group the noun names, so a منقطع;
             # غَيْرَ أنْ is غير's مضاف إليه, the excepting noun being the مستثنى itself
             excepting = by_id.get(token["head"])
@@ -636,7 +676,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     if not phrase and (tree is None or tree.get("word") is not None or not tree.get("label")):
         tree = {"label": top_label,
                 "children": [part for _, part in drawn] if tree is None else [tree]}
-    tree = _unbracket(tree)
+    tree = _quieted(_unbracket(tree))
     covered = sum(1 for found in named if found["role"])
     return {"words": columns, "written": written, "tree": tree, "coverage": round(covered / len(words), 2),
             "unsaid": [role_of[token["id"]] if token["id"] in unsaid_objects else None for token in bases],  # the job on the card too
@@ -644,6 +684,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             "finer": [name_of.get(token["id"]) if name_of.get(token["id"]) != role_of[token["id"]] else None for token in bases],
             # the doer no typed word is (هو hidden in يكتبُ, the تاء of كتبتُ): the card says it as the picture draws it
             "doer": [doer_of.get(token["id"]) for token in bases],
+            # ما read by its عائد (facts.ma_kind): the relative's job and case, or (None, None) for ما المصدرية
+            "ma": [ma_card.get(token["id"]) for token in bases],
             **({"unwritten": {"mark": columns[written.index(-1)], "note": tarkeeb_rules()["treebank"]["unwritten_note"]}} if understood else {})}
 
 

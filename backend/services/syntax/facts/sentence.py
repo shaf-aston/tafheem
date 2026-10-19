@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters
 from backend.services.nahw_book import frames, is_one
-from backend.services.syntax.facts.word import NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
+from backend.services.arabic_text import strip_diacritics
+from backend.services.syntax.facts.word import is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -193,6 +194,33 @@ def excepted_after_la(token: dict, s: Sentence) -> tuple[dict, dict, dict] | Non
     if not (entry and read_as(la, "la_jins") and read_as(illa, "istithna")):
         return None
     return noun, illa, entry
+
+
+def ma_kind(token: dict, s: Sentence) -> str | None:
+    """What a ما with a verb hung on it after it is, by its عائد (مغني اللبيب، ما المصدرية):
+    the relative's صلة holds a pronoun going back to it, ما المصدرية's never does. So "relative"
+    while the verb has a place one could sit in: a هـ on it (أعجبني ما كتبتَه), a hidden هو for
+    its doer (ما نفعك), an object it may take and lacks (أكلتُ ما طبختَ, the default when both
+    readings stand). "masdar" when every place is taken by another word: its object written
+    (أكره ما يهمل الطلابُ دروسَهم), a passive's نائب فاعل written (بما تُرِكَ العملُ), or a verb
+    that takes no object (intransitive_verbs) with its doer written (سرّني ما قمتَ). None: no verb."""
+    if strip_diacritics(token["form"]) != "ما":
+        return None
+    verb = next((t for t in s.kids(token) if t["id"] > token["id"] and is_verb(t)), None)
+    if not verb:
+        return None
+    kids = s.kids(verb)
+    pronouns = [t for t in kids if is_suffix(t) and t.get("pos_camel") == "pron"]
+    if any(strip_diacritics(t["form"]).strip("+") == "ه" for t in pronouns):  # the هـ that goes back to ما
+        return "relative"
+    named = [t for t in kids if t["rel"] in ("SBJ", "OBJ") and not is_suffix(t) and not is_verb(t)]
+    if is_passive(verb):
+        return "masdar" if named else "relative"
+    if not any(t["rel"] == "SBJ" for t in kids) and (verb.get("per"), verb.get("gen"), verb.get("num")) == ("3", "m", "s"):
+        return "relative"
+    if any(t["rel"] == "OBJ" for t in kids) or listed(verb, "intransitive_verbs"):
+        return "masdar"
+    return "relative"
 
 
 def jarr_takes(token: dict, s: Sentence) -> bool:

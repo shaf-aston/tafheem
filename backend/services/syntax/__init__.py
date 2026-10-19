@@ -20,7 +20,8 @@ from backend.services import provenance
 from backend.services.arabic_text import words as split_words
 from backend.services.syntax import teacher, tree
 from backend.services.syntax.repair import correct
-from backend.services.syntax.naming import roles as name_roles
+from backend.services.syntax.naming import NAMED, roles as name_roles
+from backend.services.harakat import CASE_NAME
 
 logger = logging.getLogger(__name__)
 
@@ -104,6 +105,13 @@ def read(sentence: str, picks: list[dict]) -> dict:
         for word, doer in zip(found, drawn.pop("doer", [])):
             if doer and word["role"]:
                 word["doer"] = doer
+        for word, ma in zip(found, drawn.pop("ma", [])):
+            if ma:
+                job, case = ma
+                word.update(role=job or NAMED.harf, case=CASE_NAME[case] if case else None, built=bool(job))
+                if not job:
+                    word["named"] = tree.FRAMES["masdar"]["named_by_word"]["ما"]
+                word.pop("gap", None)
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         read = {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
         if get_settings().show_parse:

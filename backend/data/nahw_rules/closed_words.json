@@ -163,6 +163,11 @@
     }
    }
   },
+  "intransitive_verbs": {
+   "ar": "أفعال لازمة",
+   "_comment": "Verbs that take no object (الفعل اللازم). After ما they leave no slot for a pronoun going back to ما (العائد), and a صلة with no عائد is ما المصدرية, never the relative (مغني اللبيب، ما المصدرية؛ شرح ابن عقيل، الموصول). Read by facts.ma_kind.",
+   "words": ["جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي"]
+  },
   "istithna_verbs": {
    "ar": "خلا وعدا وحاشا",
    "masdar_ma": ["ما"],
