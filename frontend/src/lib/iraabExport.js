@@ -2,13 +2,14 @@
  * Render an I'raab analysis result as plain text suitable for the clipboard.
  * Terms print in Arabic, as on the page: مرفوع, not "raf'".
  */
-import { caseLabel } from './grammarTerms'
+import { reading } from './grammarTerms'
 import { GAP, kids, pieces } from './tarkeebLayout'
 
 // The columns a node covers, in reading order (children come sorted). A word no one
 // wrote (the ثابت a jar-majroor hangs on) stays out of the typed text around it.
 const span = (node) => (node.word != null ? (node.hidden ? [] : [node.word]) : (kids(node) ?? []).flatMap(span))
-const named = (piece) => piece.role && (piece.detail ? `${piece.role} (${piece.detail})` : piece.role)
+// a doer's pronoun as the chart writes it under the name (فاعل (هو)), its longer wording otherwise
+const named = (piece) => piece.role && ((piece.pronoun || piece.detail) ? `${piece.role} (${piece.pronoun || piece.detail})` : piece.role)
 // What the diagram writes for a node: the unit's name, then its job, then the
 // pieces inside one word (a verb and its hidden doer). A word with none is the
 // chart's open mark; a group with none the chart leaves unnamed, and so does this.
@@ -34,12 +35,18 @@ export function buildIraabExportText(data) {
   for (const w of data.words) {
     lines.push(w.word)
     if (w.role) lines.push(`  Role: ${w.name ?? w.role}`)
-    if (w.case) lines.push(`  Case: ${caseLabel(w.case)}${w.sign ? ` (${w.sign})` : ''}`)
+    const [said, ...rest] = reading(w)
+    if (said) lines.push(`  Case: ${said}${rest.length ? ` (${rest.join(' ')})` : ''}`)
     if (w.root) lines.push(`  Root: ${w.root}`)
     if (w.reason) lines.push(`  Reason: ${w.reason}`)
     if (w.book) lines.push(`  Book: ${w.book}`)
     lines.push('')
   }
-  if (data.tree?.tree) lines.push('Structure:', ...structureLines(data.tree, data.tree.tree))
+  if (data.tree?.tree) {
+    lines.push('Structure:', ...structureLines(data.tree, data.tree.tree))
+    // the line under the chart: a tidy picture never implies every word was placed
+    const { coverage = 1 } = data.tree
+    if (coverage < 1) lines.push(`${Math.round(coverage * 100)}% of the words placed, the rest left open`)
+  }
   return lines.join('\n')
 }

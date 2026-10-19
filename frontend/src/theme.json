@@ -346,6 +346,8 @@
     "chart-rem": 1.75,
     "_chart_fit_comment": "How far the tarkeeb chart may shrink, all of it at once, to fit its box: a long sentence is read whole at a glance rather than a third at a time. Below this the names under the words stop being readable on a phone, so a chart that still does not fit scrolls sideways from here.",
     "chart-fit-min": 0.7,
+    "_chart_rows_comment": "How many rows of names the tarkeeb chart shows before the rest fold behind \"more rows\": every book example fits in four; a long ayah's widest joins wait for a tap.",
+    "chart-rows-shown": 4,
     "display-rem": 2.4,
     "stage-rem": 3,
     "line-height": 1.9,

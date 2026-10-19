@@ -32,12 +32,14 @@ const joins = (node) => kids(node) || (pieces(node) && !flat(node))
 export function measure(node) {
   const children = kids(node)?.map(measure)
   if (children) {
+    const level = 1 + Math.max(...children.map((c) => c.level))
     return {
       ...node,
-      children,
+      // each child knows the row its own name is written on: this group's
+      children: children.map((c) => ({ ...c, parentLevel: level })),
       from: Math.min(...children.map((c) => c.from)),
       to: Math.max(...children.map((c) => c.to)),
-      level: 1 + Math.max(...children.map((c) => c.level)),
+      level,
     }
   }
   // Pieces inside one written word are a join of their own, one level up.
@@ -105,6 +107,21 @@ export function threadSpans(levels) {
       open.set(word, fresh)
       return [fresh]
     }),
+  )
+}
+
+/**
+ * A unit whose job is written rows below its own brace (رَبَّكُمْ: مُرَكَّبٌ إِضَافِيٌّ on row 1,
+ * its مفعول به on the sentence's row 3) gets a line from its name down to that job, as a
+ * word does, so the job reads as the unit's and not as a word's: [{ from, to, rowFrom, rowTo }],
+ * the rows strictly between the two. Only the rows drawn (`levels`) are threaded.
+ */
+export function groupThreads(levels) {
+  const last = levels.at(-1)?.level ?? 0
+  return levels.flatMap(({ groups }) =>
+    groups
+      .filter((g) => kids(g) && named(g) && g.parentLevel > g.level + 1 && g.parentLevel <= last)
+      .map((g) => ({ from: g.from, to: g.to, rowFrom: g.level + 1, rowTo: g.parentLevel - 1 })),
   )
 }
 

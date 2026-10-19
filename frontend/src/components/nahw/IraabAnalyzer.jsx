@@ -10,7 +10,7 @@ import { analyzeIraab, generatePractice, translateSentence } from '../../api'
 import { errorMessage, errorStatus } from '../../lib/apiError'
 import { buildIraabExportText } from '../../lib/iraabExport'
 import { bareForm } from '../../lib/arabicText'
-import { caseLabel, isUnnamed } from '../../lib/grammarTerms'
+import { UNNAMED, caseLabel, isUnnamed, reading } from '../../lib/grammarTerms'
 import { arc } from '../../lib/govArc'
 import { roleVar } from '../../lib/roleColors'
 import { useRemembered } from '../../lib/useRemembered'
@@ -342,7 +342,7 @@ function WordGrid({ words, onClick, governs, picked, corner }) {
  * The click lives on the row, one handler on the table body; the keyboard lives
  * on each word, a real button, so Tab reaches it and Enter opens it.
  */
-const NONE = '–'
+const NONE = UNNAMED
 
 // The full table's columns: the ones every screen shows side by side, then the proof,
 // which a phone moves under its row.
@@ -373,8 +373,7 @@ function FullIraabTable({ words, onRowClick }) {
           </thead>
           <tbody onClick={pick}>
             {words.map((w, i) => {
-              const c = w.case ? caseLabel(w.case) : ''
-              const reading = w.sign?.startsWith(c) ? [w.sign] : [c, w.sign].filter(Boolean)
+              const said = reading(w)  // one reading of case and sign, the same the copied text prints
               const proof = (
                 <>
                   <ArabicText size="sm" className="block leading-relaxed">{w.reason || NONE}</ArabicText>
@@ -394,8 +393,8 @@ function FullIraabTable({ words, onRowClick }) {
                   </td>
                   <td className="py-3 px-3 whitespace-nowrap">
                     <ArabicText size="sm" className="block" style={{ color: 'var(--c)' }}>{w.name ?? (w.role || '–')}</ArabicText>
-                    {reading.length > 0 && (
-                      <ArabicText size="tiny" className="block mt-1 text-[var(--text-dim)]">{reading.join(' · ')}</ArabicText>
+                    {said.length > 0 && (
+                      <ArabicText size="tiny" className="block mt-1 text-[var(--text-dim)]">{said.join(' · ')}</ArabicText>
                     )}
                   </td>
                   <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">{w.root || NONE}</ArabicText>
