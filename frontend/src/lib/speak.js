@@ -33,28 +33,57 @@ async function playFile(url) {
 
 const serverUrl = (text) => `${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}`
 
+/** The device's voices. Many browsers list none until they have loaded, so wait once for them. */
+async function deviceVoices() {
+  const synth = globalThis.speechSynthesis
+  const first = synth.getVoices()
+  if (first.length) return first
+  await new Promise((resolve) => {
+    const timer = setTimeout(done, config.voices.browser.voicesTimeoutMs)
+    function done() { clearTimeout(timer); synth.removeEventListener?.('voiceschanged', done); resolve() }
+    synth.addEventListener?.('voiceschanged', done)
+  })
+  return synth.getVoices()
+}
+
+/** The best Arabic voice: a named favourite, else one on the device, else any. Null if none. */
+export function pickVoice(voices, cfg = config) {
+  const arabic = [...voices].filter((v) => /^ar([-_]|$)/i.test(v.lang))
+  for (const name of cfg.voices.browser.preferred) {
+    const hit = arabic.find((v) => v.name.toLowerCase().includes(name.toLowerCase()))
+    if (hit) return hit
+  }
+  return arabic.find((v) => v.localService) ?? arabic[0] ?? null
+}
+
 /** Each voice resolves to { done } once sound has started, rejects if it cannot. */
 const VOICES = {
   recorded: async (text) => playFile(await recordingOf(text)),
   server: (text) => playFile(serverUrl(text)),
-  browser: (text) => new Promise((started, fail) => {
+  browser: async (text) => {
     const synth = globalThis.speechSynthesis
-    if (!synth) return fail(new Error('no device voice'))
-    stopAudio()
-    synth.cancel()
-    const line = new SpeechSynthesisUtterance(text)
-    line.lang = config.voices.browser.lang
-    line.rate = config.voices.browser.rate
-    let finish
-    const done = new Promise((resolve) => { finish = resolve })
-    // A phone with no Arabic voice never starts and never says so.
-    const silent = setTimeout(() => { synth.cancel(); fail(new Error('device voice never started')) }, config.voices.browser.startTimeoutMs)
-    line.onstart = () => { clearTimeout(silent); started({ done }) }
-    line.onend = finish
-    // Cancelled or interrupted: before starting it failed, after it simply stopped.
-    line.onerror = (e) => { clearTimeout(silent); fail(e); finish() }
-    synth.speak(line)
-  }),
+    if (!synth) throw new Error('no device voice')
+    // Never guess a voice: an Android with no Arabic pack spells the letters in English.
+    const voice = pickVoice(await deviceVoices(), config)
+    if (!voice) throw new Error('no Arabic device voice')
+    return new Promise((started, fail) => {
+      stopAudio()
+      synth.cancel()
+      const line = new SpeechSynthesisUtterance(text)
+      line.voice = voice
+      line.lang = voice.lang
+      line.rate = config.voices.browser.rate
+      let finish
+      const done = new Promise((resolve) => { finish = resolve })
+      // A voice that is listed but will not start never says so.
+      const silent = setTimeout(() => { synth.cancel(); fail(new Error('device voice never started')) }, config.voices.browser.startTimeoutMs)
+      line.onstart = () => { clearTimeout(silent); started({ done }) }
+      line.onend = finish
+      // Cancelled or interrupted: before starting it failed, after it simply stopped.
+      line.onerror = (e) => { clearTimeout(silent); fail(e); finish() }
+      synth.speak(line)
+    })
+  },
 }
 
 /**
