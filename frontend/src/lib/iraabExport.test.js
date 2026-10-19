@@ -18,6 +18,19 @@ describe('buildIraabExportText', () => {
     expect(text).not.toMatch(/raf'|nasb|mabni/)
   })
 
+  it('says a sign that opens with its case once, as the table does', () => {
+    const text = buildIraabExportText({ sentence: 'ذهب', words: [{ word: 'ذهب', role: 'فعل', case: 'mabni', sign: 'مبني على الفتح' }] })
+    expect(text).toContain('Case: مبني على الفتح')
+    expect(text).not.toContain('مبني (مبني')
+  })
+
+  it('writes a doer by its pronoun, as the chart does, and says how much was placed', () => {
+    const verb = { word: 0, role: 'فعل', parts: [{ role: 'فعل' }, { role: 'فاعل', detail: 'ضمير مستتر تقديره هو', pronoun: 'هو' }], children: [] }
+    const text = buildIraabExportText({ sentence: 'ذهب', words: [], tree: { words: ['ذَهَبَ'], tree: { label: 'جملة فعلية', children: [verb] }, coverage: 0.5 } })
+    expect(text).toContain('ذَهَبَ = فعل + فاعل (هو)')
+    expect(text).toContain('50% of the words placed')
+  })
+
   it('copies the joins the diagram draws: the khabar, the hidden doer, the silah and what a jar-majroor hangs on', () => {
     // إنّ اللهَ حرّمَ من الرضاعةِ ما حرّمَ, the tree as the server returns it
     const leaf = (word, role, parts = []) => ({ word, role, parts, children: [] })

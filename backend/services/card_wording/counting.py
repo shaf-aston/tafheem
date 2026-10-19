@@ -12,7 +12,7 @@ def counted(cards: list[dict], roles: list[dict]) -> None:
     run = 0  # how many of this role came straight before
     for before, card in zip(cards, cards[1:]):
         role = card.get("role")
-        if not role or role != before.get("role") or not (role == "مفعول به" or role.startswith("خبر")):
+        if not role or role != before.get("role") or not (role == NAMED.mafool_bih or role.startswith(NAMED.khabar)):
             run = 0
             continue
         run += 1

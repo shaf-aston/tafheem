@@ -14,7 +14,7 @@ from typing import Any
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import SUKUN, build_nun, has_tanween
-from backend.services.nahw_book import book_words, is_mabni, verb_aspect, condition_of, named_roles, reason, teacher_rules
+from backend.services.nahw_book import book_words, card_keys, is_mabni, verb_aspect, condition_of, named_roles, reason
 
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
@@ -25,6 +25,7 @@ from backend.services.nahw_book import book_words, is_mabni, verb_aspect, condit
 # the role a card wears until the book's tree names its job
 UNNAMED = "–"
 NAMED = named_roles()
+SAID = card_keys()  # what a card is first said to be by its word alone (teacher.json)
 
 _FAMILY_POS = {"jarr": {"prep"}, "inna": {"conj_sub", "part_focus"}, "atf": {"conj"}}
 
@@ -94,34 +95,6 @@ def opens_condition(tags: list[dict]) -> dict | None:
     return frame if frame and not frame["noun"] else None  # مَنْ، ما: syntax.condition decides
 
 
-def mark_condition(cards: list[dict], roles: list[dict]) -> list[dict]:
-    """فعل الشرط and جواب الشرط on the verbs syntax.condition found for each condition, each
-    in jazm or in the place its opener gives it when built (كُنْتَ), with the letter that
-    ties the answer to it (فاقبلها، لأمرتُ); a conditional noun named for its place (مبتدأ)
-    says what it is first. Runs after signs.settle."""
-    said = teacher_rules()["case_said"]["condition"]
-    for card, found in zip(cards, roles):
-        part = found.get("condition") or {}
-        if part.get("kind") and card.get("role") != part["kind"]:
-            card["reason"] = f"{part['kind']}، {card['reason']}"
-        if part.get("part") == "subject" and (left := said["by_family"][part["family"]].get("subject")):
-            head, dot, rule = card["reason"].partition(". القاعدة")
-            card["reason"] = f"{head}، {left}{dot}{rule}"  # لولا زيدٌ: وخبره محذوف وجوبًا
-            continue
-        if part.get("part") not in ("verb", "answer") or card.get("type") != "fi'l":
-            continue
-        own = said["by_family"][part["family"]]
-        # إذا: the condition's clause is its مضاف إليه, the answer's has no place
-        place = own["place"][part["part"]] if isinstance(own["place"], dict) else own["place"]
-        # فَلْيَصُمْهُ: tied by its letter, the answer is a sentence standing in the place of jazm
-        where = said["jazm"] if card.get("case") == "jazm" and not part["tie"] else place
-        tie = f"{own['ties'][part['tie']]}، " if part["tie"] else ""
-        head, dot, rule = card["reason"].partition(". القاعدة")
-        named = f"وهو {part['named']}" if part.get("named") else said[part["part"]]  # جواب لولا
-        card["reason"] = f"{head}، {tie}{where.format(part=named)}{dot}{rule}"
-    return cards
-
-
 def _card(tag: dict[str, Any], i: int, tags: list[dict]) -> dict:
     """One word's card by what the word is; a noun or a pronoun waits for its role."""
     pos = _pos(tag)
@@ -134,16 +107,16 @@ def _card(tag: dict[str, Any], i: int, tags: list[dict]) -> dict:
         verb = tags[i + 1] if i + 1 < len(tags) and tags[i + 1].get("pos") == "verb" else None
         if verb and strip_diacritics(tag["word"]) == "لا":
             forbids = verb.get("mood") == "j" or verb["word"].endswith(SUKUN)
-            return _harf_entry(tag, NAMED.harf, "لا ناهية" if forbids else "لا نافية")
-        return _harf_entry(tag, NAMED.harf, "حرف عطف")
+            return _harf_entry(tag, NAMED.harf, SAID.la_nahiya if forbids else SAID.la_nafiya)
+        return _harf_entry(tag, NAMED.harf, SAID.atf)
     if _is(tag, "jarr"):
         return _harf_entry(tag, NAMED.harf_jarr, NAMED.harf_jarr)
     if _is(tag, "inna") and i == 0:
-        return _harf_entry(tag, NAMED.harf, "حرف ناسخ")
+        return _harf_entry(tag, NAMED.harf, SAID.nasikh)
     if pos in ("part", "det"):
         return _harf_entry(tag, NAMED.harf, NAMED.harf)
     if pos == "pron":
-        return _entry(tag, "damir", UNNAMED, None, "mabni", reason("ضمير"))
+        return _entry(tag, "damir", UNNAMED, None, "mabni", reason(SAID.damir))
     if pos == "verb":
         if not has_tanween(tag["word"]):
             return _verb_entry(tag)

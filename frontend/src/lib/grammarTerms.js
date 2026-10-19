@@ -22,8 +22,21 @@ export const caseLabel = (key) => {
   return term ? [term, ...rest].join(' ') : key
 }
 
+/** What the analyser sends for a word it would not name, or a cell with nothing in it. */
+export const UNNAMED = '–'
+
 /** A word the analyser would not name: it sends a dash rather than guess. */
-export const isUnnamed = (word) => word?.role === '–'
+export const isUnnamed = (word) => word?.role === UNNAMED
+
+/**
+ * A word's case and sign as one reading, the pieces to print in order: a sign that
+ * already opens with the case (مبني على الفتح) is not said twice (مبني · مبني على الفتح).
+ * The table and the copied text both print it through here, so they never differ.
+ */
+export const reading = (word) => {
+  const c = word.case ? caseLabel(word.case) : ''
+  return word.sign?.startsWith(c) ? [word.sign] : [c, word.sign].filter(Boolean)
+}
 
 /** The Arabic for a backend word type ("ism", "fi'l"), or the string itself. */
 export const typeLabel = (key) => TYPES[key]?.arabic ?? key

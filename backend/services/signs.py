@@ -9,7 +9,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, paused, typed_passive
+from backend.services.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, paused, typed_passive
 from backend.services.nahw_book import book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
@@ -97,7 +97,6 @@ def _family_said(card: dict) -> dict | None:
     return {"named": named, "does": family["does"]}
 
 
-_PLACE = {"raf'": "u", "nasb": "a", "jarr": "i"}  # a case by its name, as case_said.place keys it
 
 
 def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | None:
@@ -113,7 +112,7 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         said = teacher_rules()["case_said"]
         on = said["la_jins_on"]
         # built, yet it stands where nasb would be: مبني على الفتح في محل نصب
-        place = said["in_place"].format(place=said["place"][_PLACE[case]])
+        place = said["in_place"].format(place=said["place"][CASE_LETTER[case]])
         return f"{_built(on.get(kind, on['vowel']))} {place}"
     if case == "mabni" and (ending := _typed_ending(_unmoved(card, after))):
         return _built(ending) + _moved(card, after)  # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter
@@ -153,7 +152,7 @@ def _after_la_jins(card: dict, before: dict | None, after: dict | None) -> bool:
     if card.get("role") != NAMED.ism_inna or not before:
         return False
     return before["camel"]["base"] in book_words("la_jins") and not has_tanween(card["word"]) and not (
-        after and after.get("role") == "مضاف إليه")
+        after and after.get("role") == NAMED.mudaf_ilayh)
 
 
 def _built(ending: str) -> str:

@@ -11,12 +11,13 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.nahw_book import (clause_of, condition_of, family_cards, frames, is_one, role_units,
+from backend.services.nahw_book import (card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
 from backend.services.syntax.facts import (Sentence, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
                                           is_nasab, is_verb, read_as, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
+from backend.services.syntax.doer import DOER, doer as _doer, person_key as _person, persons as _persons
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import SHADDA, five_verb_nun, has_tanween, letters, own_letters
 
@@ -30,7 +31,7 @@ CONDITION = term_ar("jumlah_shartiyyah")
 FRAMES = frames()
 CARDS = dict(family_cards())
 JAR_MAJROOR = term_ar("jar_majroor")
-FOLLOWED = "متبوع"  # roles.json: the word any تابع follows
+FOLLOWED = NAMED.matboo  # the word any تابع follows
 
 
 def names_a_sentence(label: str | None) -> bool:
@@ -73,46 +74,9 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
 
 
 # the family whose sisters lend their own name to what they govern, by its mother's word
-SISTERS = {"inna": "إن", "kana": "كان"}
-DOER = FRAMES["doer"]
+SISTERS = {family: family_mother(family) for family in ("inna", "kana")}
 # the roles that stay inside the unit their head names (a صفة of the مضاف إليه, a عطف on it)
-UNIT_CHILDREN = {unit["child"] for unit in role_units()} | set(FOLLOWERS) | {"حرف عطف"}
-
-
-def _person(token: dict) -> str:
-    """CAMeL's person, gender and number as one key of DOER["pronoun"] (2ms, 1s)."""
-    per = token.get("per", "na")
-    return per + ("" if per == "1" else token.get("gen", "na")) + token.get("num", "na")
-
-
-def _persons(token: dict, owner: list[str] | None) -> list[str]:
-    """Who a verb's doer may be: one person, or the two its letters allow (تكتبُ is you
-    or she) narrowed by the subject its pronoun goes back to (`owner`)."""
-    if token.get("asp") == "c" and token.get("per") != "2":
-        return [DOER["command"]]  # a command speaks to the listener, whatever the reading said
-    letter = strip_diacritics(token["base"])[:1]
-    if token.get("asp") == "i" and letter in DOER["prefix_says"]:
-        return [DOER["prefix_says"][letter]]
-    if token.get("asp") == "i" and token.get("per", "na") not in DOER["prefix_person"].get(letter, token.get("per", "na")):
-        return []  # the reading's person is not one its letter allows
-    # تَكْتُبِينَ: the ياء is the doer (أنتِ), so the reading's own person stands, not the bare ت that is أنتَ or هي
-    if token.get("asp") == "i" and token.get("num") == "s" and letter == "ت" and not five_verb_nun(token.get("typed") or "", token.get("stuck_on", 0), token.get("weak_last")):
-        both = DOER["ta_prefix"]
-        # the subject's person settles it: a ت said of a third person is هي (هِنْدٌ تَكْتُبُ)
-        return [key for key in both if key[0] in {o[0] for o in owner or []}] or both
-    return [_person(token)]
-
-
-def _doer(token: dict, family: str | None, persons: list[str]) -> dict | None:
-    """The doer inside a verb no typed word stands as (اقبلْ: أنت, كنتَ: the تاء);
-    None when the person is not known."""
-    pronouns = [DOER["pronoun"].get(key) for key in persons]
-    if token.get("asp") not in DOER["hidden"] or not pronouns or not all(pronouns):
-        return None
-    name = DOER["by_family"].get(family) or DOER["passive" if is_passive(token) else "active"]
-    said = DOER["hidden_said_by_family"].get(family, DOER["hidden_said"]) if persons[0] in DOER["hidden"][token["asp"]]         else DOER["attached_said"]
-    pronoun = pronouns[0] if len(pronouns) == 1 else DOER["either"].format(one=pronouns[0], other=pronouns[1])
-    return {"role": name, "tone": tone(name), "detail": said.format(pronoun=pronoun), "pronoun": pronoun}
+UNIT_CHILDREN = {unit["child"] for unit in role_units()} | set(FOLLOWERS) | {card_keys().atf}
 
 
 def _finer(token: dict, role: str | None, family: str | None) -> str | None:
@@ -549,6 +513,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             owner = [DOER["reply_to"]]  # the answer is said to the one who asked
         persons_of[token["id"]] = _persons(token, owner)
 
+    doer_of: dict[int, dict] = {}  # the doer drawn inside each typed verb, said on its card too
+
     def pieces(token: dict, leaf: dict) -> dict:
         """The leaf with what is written after a verb (ـها) and its doer, in the order
         the books say them: the verb, its doer, then the pronoun on it."""
@@ -558,6 +524,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                      "gap": piece["role"] is None}
                     for piece in found.get("attached", []) if piece["id"] not in split]
         doer = _doer(token, family_of[token["id"]], persons_of[token["id"]]) if token["id"] in persons_of else None
+        if doer and token["id"] in typed_at:
+            doer_of[token["id"]] = doer
         if not attached and not doer:
             return leaf
         own = {key: leaf[key] for key in ("role", "tone", "gap", "detail") if key in leaf}
@@ -666,6 +634,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             "unsaid": [role_of[token["id"]] if token["id"] in unsaid_objects else None for token in bases],  # the job on the card too
             # the picture's finer name (حرف ناسخ, فعل أمر, فعل مجهول) where it says more than the role
             "finer": [name_of.get(token["id"]) if name_of.get(token["id"]) != role_of[token["id"]] else None for token in bases],
+            # the doer no typed word is (هو hidden in يكتبُ, the تاء of كتبتُ): the card says it as the picture draws it
+            "doer": [doer_of.get(token["id"]) for token in bases],
             **({"unwritten": {"mark": columns[written.index(-1)], "note": tarkeeb_rules()["treebank"]["unwritten_note"]}} if understood else {})}
 
 

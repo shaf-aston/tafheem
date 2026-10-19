@@ -59,7 +59,7 @@ jobs:
           camel_data -i defaults
       - name: Whole-sentence tests
         if: steps.model.outputs.ready == 'true'
-        run: python -m pytest tests/test_rule_engine.py tests/test_attached_pieces.py tests/test_catib_onnx.py tests/test_practice_questions.py tests/test_nahw_rules_sukun_kafa_khabar.py -q
+        run: python -m pytest tests/test_rule_engine.py tests/test_attached_pieces.py tests/test_catib_onnx.py tests/test_practice_questions.py tests/test_nahw_rules_sukun_kafa_khabar.py tests/test_nahw_held_out.py -q
       - name: Scores no lower than the baseline
         if: steps.model.outputs.ready == 'true'
         run: python -m backend.scripts.score_iraab --check

@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from backend.services.card_wording.reason import Reason
-from backend.services.nahw_book import extra_ba_named, extra_ba_said, family_cards, kaffa_card
+from backend.services.nahw_book import case_of, extra_ba_named, extra_ba_said, family_cards, kaffa_card, teacher_rules
 
 
 def pieces(cards: list[dict], roles: list[dict]) -> None:
@@ -14,6 +14,21 @@ def pieces(cards: list[dict], roles: list[dict]) -> None:
             line = said.get((piece.get("reading") or {}).get("family"), {}).get("said")
             if line and (reason := card.get("said")):
                 reason.front.insert(0, line)  # the last piece written is said first
+
+
+def doer(cards: list[dict], roles: list[dict]) -> None:
+    """كَتَبَ، كَتَبْتُ، زَارَنَا: a verb's card says the doer the picture draws inside it (hidden, or a
+    pronoun written onto it), and any pronoun written onto the word with a job of its own
+    (the نا that is زارنا's object), each with its place (data: teacher.json doer_said, piece_said)."""
+    said = teacher_rules()["case_said"]
+    for card, found in zip(cards, roles):
+        if not (reason := card.get("said")):
+            continue
+        if (drawn := found.get("doer")) and (line := said["doer_said"].get(drawn["role"])):
+            reason.extras.append(line.format(detail=drawn["detail"]))
+        for piece in found.get("attached", []):
+            if not piece["before"] and piece.get("role") and (place := case_of(piece["role"])):
+                reason.extras.append(said["piece_said"].format(form=piece["form"], place=said["place"][place], role=piece["role"]))
 
 
 def extra_ba(cards: list[dict], roles: list[dict]) -> None:

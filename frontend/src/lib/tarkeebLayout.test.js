@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cells, fold, foldRows, hiddenWords, measure, rows, threadSpans, tones } from './tarkeebLayout'
+import { cells, fold, foldRows, groupThreads, hiddenWords, measure, rows, threadSpans, tones } from './tarkeebLayout'
 
 /** Shaped exactly as the API sends it: empty arrays, not missing keys. */
 const AYAH = {
@@ -197,5 +197,32 @@ describe('hiddenWords', () => {
       parts: [],
     }
     expect([...hiddenWords(tree)]).toEqual([1])
+  })
+})
+
+describe('groupThreads', () => {
+  // يَا أَيُّهَا النَّاسُ اعْبُدُوا رَبَّكُمْ: رَبَّ+كُمْ is a مركب إضافي on row 1 whose job, مفعول به,
+  // is written on the sentence's row 3 (the نداء unit beside it is two rows tall)
+  const leaf = (word, role) => ({ word, role, children: [], parts: [] })
+  const tree = {
+    label: 'جملة فعلية',
+    children: [
+      { label: 'جملة ندائية', children: [leaf(0, 'حرف نداء'), { label: 'مركب توصيفي', role: 'منادى', children: [leaf(1, 'موصوف'), leaf(2, 'صفة')] }] },
+      leaf(3, 'فعل'),
+      { label: 'مركب إضافي', role: 'مفعول به', children: [leaf(4, 'مضاف'), leaf(5, 'مضاف إليه')] },
+    ],
+  }
+
+  it('threads a unit from its own row down to the row its job is written on', () => {
+    expect(groupThreads(rows(tree, 6))).toEqual([{ from: 4, to: 5, rowFrom: 2, rowTo: 2 }])
+  })
+
+  it('threads nothing past the rows shown', () => {
+    expect(groupThreads(foldRows(rows(tree, 6), 2).shown)).toEqual([])
+  })
+
+  it('does not thread a unit with no job to reach', () => {
+    const plain = { label: 'جملة', children: [{ label: 'x', children: [leaf(0, 'a'), leaf(1, 'b')] }, { label: 'y', children: [{ label: 'z', children: [leaf(2, 'c'), leaf(3, 'd')] }, leaf(4, 'e')] }] }
+    expect(groupThreads(rows(plain, 5))).toEqual([])
   })
 })

@@ -2,19 +2,12 @@
 from backend.services.nahw_book import role_units
 from backend.services.syntax import tree
 from backend.services.nahw_book import condition_of, term_ar
+from tests.nahw_helpers import tree_roles as roles_in
 from tests.test_naming import named, token
 
 
 def built(words, toks):
     return tree.build(words, toks, named(words, toks))
-
-
-def roles_in(node):
-    """Every role in the tree, outermost first."""
-    found = [node.get("role")] if node.get("role") else []
-    for child in node.get("children", []):
-        found += roles_in(child)
-    return found
 
 
 def test_verb_sentence_is_one_bracket():

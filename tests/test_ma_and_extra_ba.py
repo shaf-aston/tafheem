@@ -5,9 +5,9 @@ from __future__ import annotations
 import pytest
 
 from backend.services import iraab
-from backend.services.syntax.catib_onnx import files_present
+from tests.nahw_helpers import needs_parser
 
-pytestmark = pytest.mark.skipif(not files_present(), reason="CATiB parser model files not present")
+pytestmark = needs_parser
 
 
 def card(sentence: str, word: str) -> dict:

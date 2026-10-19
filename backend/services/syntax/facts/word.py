@@ -6,7 +6,7 @@ import re
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
 from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
-from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_object_stem, is_one, six_noun_case
+from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
 # a root letter is what is left once the letters that come and go are removed
@@ -21,6 +21,16 @@ def is_suffix(token: dict) -> bool:
 def is_prefix(token: dict) -> bool:
     """A letter written onto the word after it (ف+, و+, ل+)."""
     return token.get("form", "").endswith("+")
+
+
+def base_tokens(words: list[str], tokens: list[dict]) -> list[dict]:
+    """The parser's tokens that are the words the reader typed, clitics aside.
+    Fewer or more than `words` means the split does not line up."""
+    bases = [t for t in tokens if t.get("token_type") == "baseword"]
+    if len(bases) != len(words):
+        # a reader who writes بِ or وَ apart types as many words as the parser splits
+        bases = [t for t in tokens if not is_suffix(t)]
+    return bases
 
 
 SUBJECTS = ("SBJ", "TPC")  # the parser's links for a doer or a topic
@@ -81,6 +91,15 @@ def is_verb(token: dict) -> bool:
     return token.get("pos_camel") == "noun_prop" and (
         (token["base"][:1] in PRESENT_PREFIX and typed_passive(typed, True, token.get("stuck_on", 0)))
         or past_passive_shape(typed))
+
+
+def is_built(token: dict) -> bool:
+    """A word that keeps one ending whatever its job (a pronoun, pointer, relative or question
+    word, nahw_book.is_mabni), except the dual of a pointer or a relative (هَذَانِ، اللَّتَانِ):
+    that one inflects by its letters, the alef in raf' and the ya in nasb and jarr
+    (Tasheel: المثنى من أسماء الإشارة والموصولات معرب), so its last kasra is no ending it is built on."""
+    kind = token.get("pos_camel", "")
+    return is_mabni(kind) and not (token.get("num") == "d" and any(k in kind for k in ("dem", "rel")))
 
 
 def is_light(token: dict) -> bool:

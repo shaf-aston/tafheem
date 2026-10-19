@@ -5,7 +5,7 @@ from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_one, is_subject_pronoun
 from backend.services.syntax.facts.word import case_unseen, is_nasab, is_suffix, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
-from backend.services.syntax.facts.sentence import Sentence, next_word, place_case, previous_noun, told_of_lone_mubtada, verb_above
+from backend.services.syntax.facts.sentence import Sentence, next_word, place_case, praised_noun, previous_noun, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.kind import joins_clauses, calling_head
 
 
@@ -62,8 +62,8 @@ def _follows(token: dict, s: Sentence) -> str:
     answers none and the rest of the naming decides it. Tested in this order because
     each earlier follower has a mark of its own (a pointer child, a joining particle, a
     bare name after a noun with ال, a listed تأكيد word) that a plain na't lacks."""
-    if s.asked_of(token) or calling_head(token, s) or with_waw(token, s):
-        return "none"  # غيرُ خالدٍ after a complete clause is the مستثنى, not a صفة
+    if s.asked_of(token) or calling_head(token, s) or with_waw(token, s) or praised_noun(token, s):
+        return "none"  # غيرُ خالدٍ after a complete clause is the مستثنى, not a صفة; بِئْسَ الْخُلُقُ الْكَذِبُ: the one blamed
     # ما جاء أحدٌ إلا زيدٌ: after إلا in a negated complete sentence the excepted noun in the
     # case of the noun before إلا is its بدل (Tasheel 3.2 p67)
     excepting = s.by_id.get(token["id"] - 1)

@@ -29,6 +29,7 @@ ENDING_NUN = {"ين": {"َ", "ِ"}, "ون": {"َ"}, "ان": {"ِ"}}
 FORM_V_STEM = 3
 
 CASE_NAME = {"u": "raf'", "a": "nasb", "i": "jarr"}
+CASE_LETTER = {name: letter for letter, name in CASE_NAME.items()}  # raf' → u: the vowel a case is
 # CAMeL's own case letters, as the vowel each one is
 CAMEL_CASE = {"n": "u", "a": "a", "g": "i"}
 
