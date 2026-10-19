@@ -81,3 +81,10 @@ def test_a_database_failing_mid_read_is_broken_not_an_empty_shelf(client, monkey
     body = client.get("/api/dictionary/lexicons", params={"root": "امر"}).json()
     assert body["status"] == "broken"
     assert body["entries"] == []
+
+
+def test_a_headword_wiktionary_left_rootless_asks_the_books_about_its_root(monkeypatch):
+    """مشتاق is a headword with no root: the books are asked about شوق, not about مشتاق."""
+    monkeypatch.setattr(router_module.roots, "root_of", lambda word: "شوق" if word == "مشتاق" else "")
+    assert router_module._root_as_typed("مشتاق", [{"arabic": "مُشْتَاق", "root": ""}]) == "شوق"
+    assert router_module._root_as_typed("مدرسة", [{"arabic": "مَدْرَسَة", "root": "د ر س"}]) == "د ر س"
