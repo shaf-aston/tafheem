@@ -29,6 +29,7 @@ import ShowRest from '../ui/ShowRest'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 import StatusNote, { CorrectedNote, NoteWord } from '../ui/StatusNote'
 import HadithCards from './HadithCards'
+import HadithOptions from './HadithOptions'
 
 export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, children }) {
   const { collections, of } = useHadithCollections()
@@ -131,7 +132,12 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
         </ChipRow>
       )}
 
-      {data && data.hits.length > 0 && <HadithCards items={data.hits} accent={accent} onNarrator={onNarrator} onHadith={onHadith} />}
+      {data && data.hits.length > 0 && (
+        <>
+          <HadithOptions accent={accent} />
+          <HadithCards items={data.hits} accent={accent} onNarrator={onNarrator} onHadith={onHadith} />
+        </>
+      )}
     </div>
   )
 }

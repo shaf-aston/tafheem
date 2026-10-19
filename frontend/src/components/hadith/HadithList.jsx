@@ -21,6 +21,7 @@ import { AnalyzerSkeleton } from '../ui/Skeleton'
 import ReadingOptions from '../ui/ReadingOptions'
 import SheetLink from '../ui/SheetLink'
 import HadithCards from './HadithCards'
+import { useHideChain } from '../../lib/useHideChain'
 
 /** How far down the page you are, drawn into `ref` without re-rendering per scroll. */
 function useReadingRail(ref) {
@@ -43,7 +44,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
   const [missing, setMissing] = useState(false)
   const [columns, setColumns] = useRememberedFlag('hadith-two-columns', false)
   const [sideBySide, setSideBySide] = useSideBySide()
-  const [hideChain, setHideChain] = useRememberedFlag('hadith-hide-chain', false)
+  const [hideChain, setHideChain] = useHideChain()
   const [guide, setGuide] = useState(false)
 
   // A link to one hadith lands on it, once its book has arrived, and stays there while the cards above fill in.
@@ -115,7 +116,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
 
       {data && (data.hadiths.length === 0
         ? <EmptyState>This book has no hadiths yet.</EmptyState>
-        : <HadithCards items={data.hadiths} collection={collection} accent={accent} columns={columns} hideChain={hideChain} onNarrator={onNarrator} onHadith={onHadith} />)}
+        : <HadithCards items={data.hadiths} collection={collection} accent={accent} columns={columns} onNarrator={onNarrator} onHadith={onHadith} />)}
     </div>
   )
 }

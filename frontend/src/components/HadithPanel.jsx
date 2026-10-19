@@ -24,6 +24,7 @@ import StatusNote from './ui/StatusNote'
 import HadithCollectionPicker from './hadith/HadithCollectionPicker'
 import HadithBookList from './hadith/HadithBookList'
 import HadithCards from './hadith/HadithCards'
+import HadithOptions from './hadith/HadithOptions'
 import HadithList from './hadith/HadithList'
 import HadithSearchResults from './hadith/HadithSearchResults'
 import NarratorList from './hadith/NarratorList'
@@ -177,7 +178,12 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
           <ScholarTerms accent={accent} onOpen={openHadith} />
         ) : starred ? (
           favorites.length
-            ? <HadithCards items={favorites} accent={accent} onNarrator={openNarrator} onHadith={openHadith} />
+            ? (
+              <>
+                <HadithOptions accent={accent} />
+                <HadithCards items={favorites} accent={accent} onNarrator={openNarrator} onHadith={openHadith} />
+              </>
+            )
             : <EmptyState>Star a hadith and it is kept here.</EmptyState>
         ) : place?.book == null ? (
           <HadithBookList collection={collection} onPick={pickBook} accent={accent} />

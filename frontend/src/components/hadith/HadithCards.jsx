@@ -24,6 +24,7 @@ import { useState } from 'react'
 import { useHadithCollections } from '../../lib/useHadithCollections'
 import { useHadithFavorites } from '../../lib/useHadithFavorites'
 import { useKin, useNarrators, useWeakNotes } from '../../lib/useNarrators'
+import { useHideChain } from '../../lib/useHideChain'
 import { useSideBySide } from '../../lib/useSideBySide'
 import { drawnChain } from '../../lib/rijal'
 import { weakLinks, weakPoints } from '../../lib/weak'
@@ -37,8 +38,8 @@ import HadithReference from './HadithReference'
 import HadithText from '../ui/HadithText'
 import NarrationFamily from './NarrationFamily'
 import NarratorSheet from './NarratorSheet'
-
-export default function HadithCards({ items, accent, collection, columns = false, hideChain = false, onNarrator, onHadith }) {
+export default function HadithCards({ items, accent, collection, columns = false, onNarrator, onHadith }) {
+  const [hideChain] = useHideChain()
   const { isFavorite, toggle } = useHadithFavorites()
   const { of } = useHadithCollections()
   const [sideBySide] = useSideBySide()
