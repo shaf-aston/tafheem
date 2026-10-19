@@ -135,7 +135,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   return (
     <div className="panel">
       <QuranSeal wide={Boolean(search.data || at || rootLookup.data)} />
-      <SectionHeader title="Quran" arabic="القرآن" />
+      <SectionHeader title="Quran" arabic="القرآن" emblem="quran" />
 
       <RecentRow
         items={recent.map((h) => `${h.surah}:${h.ayah}`)}

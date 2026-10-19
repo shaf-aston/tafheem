@@ -86,6 +86,7 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
       {/* The views ride on the title line: on their own row they read as a step before typing. */}
       <SectionHeader
         title="Nahw"
+        emblem="nahw"
         arabic="نحو"
         aside={(
           <Segmented

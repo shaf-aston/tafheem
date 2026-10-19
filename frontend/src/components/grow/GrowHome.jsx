@@ -12,6 +12,7 @@ import { LAST_BOOK, REVIEW } from '../../lib/useBookWorld'
 import { sayIn } from '../../lib/say'
 import { useRemembered } from '../../lib/useRemembered'
 import ProfileDialog from '../profile/ProfileDialog'
+import Emblem from '../ui/Emblem'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
 import SectionHeader from '../ui/SectionHeader'
@@ -114,6 +115,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const accent = worldOf(lead ?? 'words').accent
   return (
     <section className="grow-today" style={{ '--w': accent }} aria-labelledby="grow-today-h">
+      <span className="grow-today-art" aria-hidden="true"><Emblem id={lead ?? 'words'} /></span>
       {lead ? (
         <>
           <p className="grow-today-kicker">{say('Continue · {world}', { world: worldOf(lead).name })}</p>
@@ -165,16 +167,17 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
 }
 
 /** One world's tile. */
-function WorldTile({ world, status, share, onOpen }) {
+function WorldTile({ world, status, share, index, onOpen }) {
   return (
     <button
       type="button"
       className="grow-world-tile"
-      style={{ '--w': world.accent }}
+      style={{ '--w': world.accent, '--i': index }}
       disabled={!world.live}
       onClick={() => onOpen(world.id)}
       aria-label={`${world.name}, ${world.live ? status : say('coming soon')}`}
     >
+      <Emblem id={world.id} size={52} />
       <ArabicText size="lg" className="grow-tile-ar">{world.arabic}</ArabicText>
       <span className="grow-tile-name">{world.name}</span>
       <span className="grow-tile-status">{world.live ? status : say('Coming soon')}</span>
@@ -206,14 +209,14 @@ export default function GrowHome({ worlds, rewards, lessons, books, onOpen, onSt
   const worldOf = (id) => worlds.find((world) => world.id === id)
   return (
     <div className="grow-home">
-      <SectionHeader title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')}
+      <SectionHeader emblem="words" title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')}
         aside={rewards ? null : <LogInNudge />} />
       <Growth rewards={rewards} />
       <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>
       <div className="grow-worlds">
-        {worlds.map((world) => (
-          <WorldTile key={world.id} world={world} {...(statusOf[world.id] ?? {})} onOpen={onOpen} />
+        {worlds.map((world, index) => (
+          <WorldTile key={world.id} world={world} index={index} {...(statusOf[world.id] ?? {})} onOpen={onOpen} />
         ))}
       </div>
     </div>

@@ -81,7 +81,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (isPending) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" />
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
         <div inert>
           <HadithSearchResults accent={accent} onNarrator={noop} onHadith={noop} onOpenBook={noop}>
             <AnalyzerSkeleton />
@@ -100,7 +100,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (!collections.length) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" />
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
         <ErrorAlert title="No collection is built yet">
           Fetch and build one with{' '}
           <Code>
@@ -136,7 +136,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (narrator != null) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" />
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
         <NarratorPage
           id={narrator}
           accent={accent}
@@ -149,7 +149,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
 
   return (
     <div className="panel">
-      <SectionHeader title="Hadith" arabic="الحديث" />
+      <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
 
       {missed && (
         <StatusNote>That link names a hadith that is not here, so the collection opens plainly.</StatusNote>
