@@ -397,3 +397,10 @@ body { margin: 0; overflow-x: hidden; }
   .landing-page .cta-row .cta { flex: 1 1 12rem; text-align: center; }
   .landing-page .strip-item { width: var(--landing-strip-w-sm); height: auto; aspect-ratio: var(--landing-strip-aspect); }
 }
+
+/* Sections: the app's own tiles; the reset above would strip their padding. */
+.landing-page .landing-sections h2 { margin-block: .4em 1em; }
+.landing-page .landing-sections-groups section { padding: 0; }
+.landing-page .landing-sections-groups { display: grid; gap: var(--space-card, 1.25rem); }
+.landing-page .landing-sections .tile { padding: var(--space-tile); text-decoration: none; color: var(--text); }
+.landing-page .landing-sections .eyebrow { margin-bottom: .5rem; }
