@@ -9,7 +9,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, five_verb_nun, has_tanween, letters, paused, typed_passive
+from backend.services.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, paused, typed_passive
 from backend.services.nahw_book import book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
@@ -46,6 +46,8 @@ def kind_of(tag: dict, annexed: bool) -> str:
             return "diptote"
         if tag.get("enclitic") != "1s_poss" and six_noun_case(tag["base"], tag.get("lemma") or ""):
             return "six_nouns"  # أَخًا has a tanween: not a مضاف, so the vowels show
+    if drops_ya(word, tag.get("lemma") or ""):
+        return "manqus_dropped"  # بِصَوْتٍ عَالٍ، قَاضٍ: the tanween took the ya's place, so the vowel is on the ya that went
     if tag.get("enclitic") == "1s_poss":
         return "before_ya"  # كِتَابِي: the kasra belongs to the ya, the case cannot show
     # ى is always an alef maqsura; a plain alef is one only on a weak root (العَصَا)

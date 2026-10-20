@@ -248,6 +248,36 @@ def best_reading(typed: str, readings: list[dict]) -> dict | None:
     return readings[max(scored, key=lambda pair: (pair[0], -pair[1]))[1]] if scored else None
 
 
+def drops_ya(word: str, lemma: str) -> bool:
+    """An indefinite منقوص typed with its tanween in place of the ya (قَاضٍ، عَالٍ): the ٍ or ٌ
+    stands on the ya that went, in raf' and jarr alike, so it names neither case."""
+    marked = letters(word)
+    lemma = strip_diacritics(lemma or "")
+    return bool(marked) and bool(marked[-1][1] & {"ٌ", "ٍ"}) and lemma.endswith("ي") \
+        and strip_diacritics(word).removeprefix("ال") == lemma[:-1]
+
+
+def nearest_reading(typed: str, readings: list[dict]) -> dict | None:
+    """When every reading spelled with the letters typed contradicts a typed vowel, the one
+    contradicting fewest, then sharing most: خُلُقُهُ, which the dictionary has only as خُلْقٌ,
+    is خُلْقُهُ (one vowel off), not خَلَقَهُ the verb (three) nor خَلَقَة, another word's letters.
+    One slip only: a letter doubled otherwise than typed is a second, so زَيْدًا is never زَيَّدَا."""
+    def off(reading: str) -> tuple[int, int] | None:
+        mine, theirs = letters(typed), letters(reading)
+        if [bare_letters(c) for c, _ in mine] != [bare_letters(c) for c, _ in theirs]:
+            return None
+        wrong = same = 0
+        for (_, said), (_, read) in zip(mine, theirs):
+            said_v, read_v = {_MARK[m] for m in said if m in _MARK}, {_MARK[m] for m in read if m in _MARK}
+            if said_v and read_v:
+                wrong += said_v != read_v
+                same += len(said_v & read_v)
+            wrong += (SHADDA in said) != (SHADDA in read)
+        return wrong, same
+    scored = [(found, i) for i, r in enumerate(readings) if (found := off(r.get("diac", ""))) is not None and found[0] <= 1]
+    return readings[min(scored, key=lambda pair: (pair[0][0], -pair[0][1], pair[1]))[1]] if scored else None
+
+
 def _without_ending(marked: list[tuple[str, set]]) -> list[tuple[str, set]]:
     """The letters of a present verb before its plural or dual ending: the stem of
     يُعَلَّمُونَ and يُكْتَبَانِ, or of يُكْتَبْنَ (a nun after a bare letter)."""

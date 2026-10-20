@@ -465,3 +465,21 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
 
     monkeypatch.setattr(catib_onnx, "parse", parse)
     assert [w["role"] for w in iraab.analyze("مُنِحَ الطَّالِبُ هَدِيَّةً")["words"]] == ["فعل مجهول", "نائب فاعل", "مفعول به"]
+
+
+@pytest.mark.parametrize("sentence, word, want", [
+    # و of company: the و's head is the verb's attached doer, not a particle
+    ("سافرت والصديقَ", "والصديقَ", ("role", "مفعول معه")),
+    # خُلُقُهُ is read as the noun (خُلْق), not the verb خَلَقَ, so it copies الطالب
+    ("أَعْجَبَنِي الطَّالِبُ خُلُقُهُ", "خُلُقُهُ", ("role", "بدل")),
+    # but a guessed name is never a verb two slips off: زَيْدًا is not زَيَّدَا
+    ("رَأَيْتُ أَخَاكَ زَيْدًا", "زَيْدًا", ("role", "بدل")),
+    # the manqus with tanween drops its ya: قاضٍ shows nothing, so nothing clashes
+    ("هذا قاضٍ عادل", "قاضٍ", ("sign", "ضمة مقدرة على الياء المحذوفة")),
+    # عسى names its own two, as كأنّ and أصبح do
+    ("عَسَى اللَّهُ أَنْ يَرْحَمَنَا", "اللَّهُ", ("name", "اسم عسى")),
+])
+def test_sentence_check_fixes(sentence, word, want):
+    from backend.services import iraab
+    card = next(w for w in iraab.analyze(sentence)["words"] if w["word"] == word)
+    assert card.get(want[0]) == want[1]
