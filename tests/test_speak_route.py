@@ -139,16 +139,16 @@ def test_a_word_readied_then_pressed_is_made_once(monkeypatch, tmp_path):
 def test_the_page_marks_a_word_made_ahead(monkeypatch, tmp_path):
     app, _ = client(monkeypatch, tmp_path)
     heard = []
-    monkeypatch.setattr(speech, "say", lambda text, pressed=True: heard.append(pressed) or b"RIFF-fake")
+    monkeypatch.setattr(speech, "say", lambda text, pressed=True, first=None: heard.append(pressed) or b"RIFF-fake")
     app.get("/api/speak", params={"text": "كتب"}, headers={"x-speak-ahead": "1"})
     app.get("/api/speak", params={"text": "كتب"})
     assert heard == [False, True]
 
 
 def test_premade_lines_cover_the_quiz_too():
-    from backend.scripts.premake_speech import WORDS, lines, spoken_sentence
+    from backend.scripts.premake_speech import WORDS, said, spoken_sentence
     import json
-    todo = set(lines())
+    todo = {text for text, voice in said() if voice is None}
     sentences = json.loads((WORDS / "sentences.json").read_text(encoding="utf-8"))["sentences"]
     arabic = next(iter(sentences.values()))[0]
     assert speech.tidy(spoken_sentence(arabic)) in todo
@@ -156,6 +156,7 @@ def test_premade_lines_cover_the_quiz_too():
     words = json.loads((WORDS / "words.json").read_text(encoding="utf-8"))["words"]
     assert next(w["ar"] for w in words if w["ar"] not in recorded) in todo
     assert not todo & set(recorded)  # a reciter says those
+    assert ("كِيفَك؟", "edge:ar-SY-LaithNeural") in said()  # a dialect's line, by its own speaker
 
 
 def test_what_is_only_written_is_not_said():
@@ -226,3 +227,37 @@ def test_name_of_allah_is_spelt_out_wherever_it_falls():
     assert said("ولله") == "وَلِلَّاه"
     assert said("سبحان الله؟") == "سبحان اللَّاه؟"
     assert said("ظلله اللهو") == "ظلله اللهو"  # look-alikes untouched
+
+
+def test_a_dialect_is_said_by_its_own_speaker_first(monkeypatch, tmp_path):
+    app, calls = client(monkeypatch, tmp_path)
+    heard = []
+    monkeypatch.setattr(speech.EdgeVoice, "say", lambda self, text: heard.append((self.speaker, text)) or b"ID3-fake")
+    reply = app.get("/api/speak", params={"text": "كيفك", "accent": "damascene"})
+    assert reply.status_code == 200
+    assert reply.headers["content-type"] == "audio/mpeg"
+    assert heard == [("ar-SY-LaithNeural", "كيفك")] and calls == []
+    assert app.get("/api/speak", params={"text": "كيفك", "accent": "fusha"}).status_code == 200
+    assert calls == ["كيفك"]  # a dialect with no speaker of its own keeps the Fusha voice
+    assert app.get("/api/speak", params={"text": "كيفك", "accent": "martian"}).status_code == 422
+
+
+def test_a_dialect_speaker_out_of_reach_falls_back_to_the_fusha_voice(monkeypatch, tmp_path):
+    app, calls = client(monkeypatch, tmp_path)
+
+    def offline(self, text):
+        raise OSError("offline")
+
+    monkeypatch.setattr(speech.EdgeVoice, "say", offline)
+    voice = speech.voice_named("edge:ar-EG-ShakirNeural")
+    monkeypatch.setattr(voice, "_resting_until", 0.0)
+    assert app.get("/api/speak", params={"text": "إزيك", "accent": "egyptian"}).status_code == 200
+    assert calls == ["إزيك"] and voice.resting()
+
+
+def test_every_dialect_voice_named_in_the_data_is_a_voice():
+    from backend.services.colloquial import loader
+
+    for dialect in loader.catalogue()["dialects"]:
+        name = loader.voice_of(dialect["key"])
+        assert name is None or speech.voice_named(name).name

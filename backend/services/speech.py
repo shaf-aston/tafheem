@@ -8,6 +8,12 @@ page plays their recordings straight from quran.com (frontend lib/speak.js).
 Adding a voice, a cloned reciter say, is one class below plus its name in
 `speech_voices`.
 
+A spoken dialect is said by a speaker of it, not by the Fusha voice guessing:
+a caller may name one voice to try first (`say(text, first="edge:ar-SY-...")`),
+and `voice_named` makes it from the name, so which dialect gets which speaker is
+data (colloquial/dialects.json), never code. The default order stays behind it,
+so a dialect phrase is still said when that speaker cannot be reached.
+
 Every word said is kept on disk by (voice, text), because a quiz asks the same
 words again and again and the second time should cost a file read.
 
@@ -35,7 +41,7 @@ import time
 import uuid
 import wave
 from abc import ABC, abstractmethod
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 from pathlib import Path
 
 from backend.config import get_settings
@@ -72,6 +78,8 @@ class Voice(Retirable, ABC):
     name: str
     #: Changes whenever the same name would sound different (another model), so the cache misses.
     version: str = ""
+    #: Runs on this machine's cores, so it takes its turn (see Turns); a voice over the network does not.
+    local: bool = True
 
     @abstractmethod
     def say(self, text: str) -> bytes:
@@ -153,12 +161,63 @@ class FastPitchVoice(Voice):
         return out.getvalue()
 
 
+class EdgeVoice(Voice):
+    """One of Microsoft's neural voices, each a native speaker of one country's Arabic
+    (ar-SY, ar-EG, ar-MA...), through the `edge-tts` package. Over the network, so it
+    costs this machine nothing and shares no turn with FastPitch; MP3, not WAV.
+    Reads text with or without harakat, so a dialect line is said as written."""
+
+    local = False
+
+    def __init__(self, speaker: str) -> None:
+        self.speaker = speaker
+        self.name = f"edge-{speaker}"
+
+    @property
+    def version(self) -> str:
+        return f"rate{get_settings().speech_edge_rate}"
+
+    def say(self, text: str) -> bytes:
+        import asyncio
+
+        import edge_tts
+
+        async def spoken() -> bytes:
+            # Its aiohttp ignores the usual proxy variables unless handed one.
+            talk = edge_tts.Communicate(text, self.speaker, rate=get_settings().speech_edge_rate,
+                                        proxy=os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy"))
+            return b"".join([part["data"] async for part in talk.stream() if part["type"] == "audio"])
+
+        audio = asyncio.run(spoken())
+        if not audio:
+            raise RuntimeError(f"{self.speaker} returned no sound")
+        return audio
+
+
 _VOICES: dict[str, Voice] = {voice.name: voice for voice in (FastPitchVoice(),)}
+# How a voice named in data is made: the part before ':' picks the kind, the rest is its speaker.
+_KINDS = {"edge": EdgeVoice}
 
 
-def order() -> list[Voice]:
-    """The voices to try, in config's order. Unknown names are logged, not ignored."""
-    chain = []
+def voice_named(name: str) -> Voice:
+    """The voice `name` means: a built-in one by its name, or `kind:speaker` made once and kept,
+    so its rests and retirement last the run. A name that is neither is a ValueError."""
+    if name not in _VOICES:
+        kind, _, speaker = name.partition(":")
+        if kind not in _KINDS or not speaker:
+            raise ValueError(f"{name!r} is not a voice")
+        _VOICES[name] = _KINDS[kind](speaker)
+    return _VOICES[name]
+
+
+def media_type(audio: bytes) -> str:
+    """What kind of sound file `audio` is: FastPitch writes WAV, the network voices MP3."""
+    return "audio/wav" if audio[:4] == b"RIFF" else "audio/mpeg"
+
+
+def order(first: str | None = None) -> list[Voice]:
+    """The voices to try: `first` if named, then config's order. Unknown names are logged, not ignored."""
+    chain = [voice_named(first)] if first else []
     for name in (part.strip() for part in get_settings().speech_voices.split(",")):
         if name in _VOICES:
             chain.append(_VOICES[name])
@@ -238,7 +297,7 @@ def _trim(added: int) -> None:
 def stored(voice: Voice, text: str) -> Path:
     """Where `voice` keeps `text` once said."""
     key = hashlib.sha256(f"{voice.version}\n{text}".encode()).hexdigest()[:32]
-    return CACHE / f"{voice.name}-{key}.wav"
+    return CACHE / f"{voice.name}-{key}.wav"  # an MP3 too: the name only has to be unique
 
 
 def forget(text: str) -> None:
@@ -247,20 +306,21 @@ def forget(text: str) -> None:
         stored(voice, text).unlink(missing_ok=True)
 
 
-def say(text: str, pressed: bool = True) -> bytes:
+def say(text: str, pressed: bool = True, first: str | None = None) -> bytes:
     """Spoken `text` from the first voice that manages. Raises when none can.
 
     `pressed` is False for a word only being made ahead of a press, which
-    waits while any pressed word is waiting.
+    waits while any pressed word is waiting. `first` names a voice to try
+    before the usual order: a dialect's own speaker.
     """
-    for voice in order():
+    for voice in order(first):
         if voice.retired_reason or voice.resting():
             continue
         cached = stored(voice, text)
         if cached.exists():
             return cached.read_bytes()
         asked = time.monotonic()
-        with _turns.take(pressed):
+        with _turns.take(pressed) if voice.local else nullcontext():
             # Made while this one waited: by the same word readied, or pressed twice.
             if cached.exists():
                 return cached.read_bytes()

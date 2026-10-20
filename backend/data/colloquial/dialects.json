@@ -1,5 +1,6 @@
 {
-  "_about": "Every spoken dialect the Colloquial tab offers. A dialect is a folder of unit files beside this one, nothing more: adding one is a folder and a line here, with no code change anywhere.",
+  "_about": "Every spoken dialect the Colloquial tab offers. A dialect is a folder of unit files beside this one, nothing more: adding one is a folder and a line here, with no code change anywhere. `voice` is who says its lines aloud: a native speaker of it (services/speech.py `voice_named`); without one, the Fusha voice reads them.",
+  "_voice": "edge:<speaker> is a Microsoft neural voice from that country, `edge-tts --list-voices` lists them. The Fusha voice stays behind it for when it cannot be reached.",
   "dialects": [
     {
       "key": "fusha",
@@ -15,7 +16,8 @@
       "label": "Damascene",
       "arabic": "الشامي",
       "where": "Damascus and the Syrian south",
-      "order": 2
+      "order": 2,
+      "voice": "edge:ar-SY-LaithNeural"
     },
     {
       "key": "egyptian",
@@ -23,7 +25,8 @@
       "label": "Egyptian",
       "arabic": "المصري",
       "where": "Cairo and the Nile Delta",
-      "order": 1
+      "order": 1,
+      "voice": "edge:ar-EG-ShakirNeural"
     },
     {
       "key": "lebanese",
@@ -31,7 +34,8 @@
       "label": "Lebanese",
       "arabic": "اللبناني",
       "where": "Beirut and the Lebanese coast",
-      "order": 3
+      "order": 3,
+      "voice": "edge:ar-LB-RamiNeural"
     },
     {
       "key": "gulf",
@@ -39,7 +43,8 @@
       "label": "Gulf",
       "arabic": "الخليجي",
       "where": "The UAE, Kuwait and the Arabian Gulf",
-      "order": 4
+      "order": 4,
+      "voice": "edge:ar-AE-HamdanNeural"
     },
     {
       "key": "iraqi",
@@ -47,7 +52,8 @@
       "label": "Iraqi",
       "arabic": "العراقي",
       "where": "Baghdad and central Iraq",
-      "order": 6
+      "order": 6,
+      "voice": "edge:ar-IQ-BasselNeural"
     },
     {
       "key": "moroccan",
@@ -55,7 +61,8 @@
       "label": "Moroccan",
       "arabic": "المغربي",
       "where": "Casablanca, Rabat and Morocco",
-      "order": 5
+      "order": 5,
+      "voice": "edge:ar-MA-JamalNeural"
     },
     {
       "key": "hejazi",
@@ -63,7 +70,8 @@
       "label": "Hejazi",
       "arabic": "الحجازي",
       "where": "Makkah, Madinah and Jeddah",
-      "order": 7
+      "order": 7,
+      "voice": "edge:ar-SA-HamedNeural"
     },
     {
       "key": "yemeni",
@@ -71,7 +79,8 @@
       "label": "Yemeni",
       "arabic": "اليمني",
       "where": "Sana'a and Yemen",
-      "order": 8
+      "order": 8,
+      "voice": "edge:ar-YE-SalehNeural"
     }
   ]
 }

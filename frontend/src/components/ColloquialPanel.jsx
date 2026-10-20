@@ -10,6 +10,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { colloquialQuery, colloquialUnitQuery } from '../api'
+import { Accent } from '../lib/accent'
 import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf, unitNumber } from '../lib/colloquialPlace'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
@@ -200,7 +201,9 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
 
   const steps = trailOf(place, dialects).map((step) => ({ label: step.label, go: () => go(step.place) }))
 
+  // Every speaker icon below says its line in this dialect's own voice (lib/accent.js).
   return (
+    <Accent.Provider value={dialect?.key ?? null}>
     <div className="panel">
       <SectionHeader title="Colloquial" arabic="عامية" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'}
         nameOf={(q) => nameOfPlace(q, dialects)} />
@@ -266,5 +269,6 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
         </div>
       )}
     </div>
+    </Accent.Provider>
   )
 }

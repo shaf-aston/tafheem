@@ -287,6 +287,15 @@ def catalogue() -> dict:
     }
 
 
+def voice_of(dialect: str) -> str | None:
+    """Who says `dialect`'s lines aloud (dialects.json `voice`), or None for the default voice.
+    An unknown dialect is a KeyError."""
+    for known in _content()["dialects"]:
+        if known["key"] == dialect:
+            return known.get("voice")
+    raise KeyError(f"no dialect {dialect!r}")
+
+
 def unit(dialect: str, name: str) -> dict:
     """One whole unit. An unknown dialect or unit is a KeyError, so the route 404s."""
     for known in _content()["dialects"]:

@@ -37,6 +37,12 @@ describe('which voice says a word', () => {
     expect(played[0]).toBe(`/api/speak?text=${encodeURIComponent('قِطَار')}&voice=${config.voices.server.version}`)
   })
 
+  it('asks a dialect\'s own speaker, never a reciter, when given an accent', async () => {
+    const voice = await speak('كِتَاب', { accent: 'damascene' })
+    expect(voice.id).toBe('server')
+    expect(played).toEqual([`/api/speak?text=${encodeURIComponent('كِتَاب')}&voice=${config.voices.server.version}&accent=damascene`])
+  })
+
   it('falls through to the next voice when a file will not load', async () => {
     refuse = (url) => url.includes('qurancdn')
     const voice = await speak('كِتَاب')
@@ -99,6 +105,14 @@ describe('readying a voice before the press', () => {
     await prepare('بَيْتٌ كَبِيرٌ')
     const asked = globalThis.fetch.mock.calls.map(([url]) => url).filter((url) => url.startsWith('/api/speak'))
     expect(asked).toEqual([`/api/speak?text=${encodeURIComponent('بَيْتٌ كَبِيرٌ')}&voice=${config.voices.server.version}`])
+  })
+
+  it('readies a phrase once per accent, so a second dialect still gets its own voice', async () => {
+    await prepare('كِيفَك', { accent: 'damascene' })
+    await prepare('كِيفَك', { accent: 'damascene' })
+    await prepare('كِيفَك', { accent: 'lebanese' })
+    const asked = globalThis.fetch.mock.calls.map(([url]) => url).filter((url) => url.startsWith('/api/speak'))
+    expect(asked.map((url) => new URL(url, 'http://x').searchParams.get('accent'))).toEqual(['damascene', 'lebanese'])
   })
 
   it('marks the ask as ahead, so a word pressed on the server goes first', async () => {

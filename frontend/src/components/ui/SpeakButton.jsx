@@ -4,6 +4,7 @@
 import { ahead } from '../../lib/warm'
 import { useEffect, useRef, useState } from 'react'
 
+import { useAccent } from '../../lib/accent'
 import { prepare, speak, stop } from '../../lib/speak'
 
 // `ref` reaches the button itself, so a keyboard shortcut can press it; `shortcut`
@@ -12,12 +13,13 @@ import { prepare, speak, stop } from '../../lib/speak'
 export default function SpeakButton({ text, ref, shortcut, early, className = '' }) {
   // idle | busy (finding a voice) | speaking | failed
   const [state, setState] = useState('idle')
+  const accent = useAccent()
 
   // Whether the sound playing is this button's, and whether it is still on screen.
   const mine = useRef(false)
   const alive = useRef(true)
 
-  useEffect(() => { if (early) prepare(text) }, [early, text])
+  useEffect(() => { if (early) prepare(text, { accent }) }, [early, text, accent])
 
   // Leaving (a new word) silences this button's word, never another's or an ayah.
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function SpeakButton({ text, ref, shortcut, early, className = ''
     setState('busy')
     mine.current = true
     try {
-      const voice = await speak(text)
+      const voice = await speak(text, { accent })
       if (!alive.current) return stop()
       setState('speaking')
       await voice.done
@@ -56,7 +58,7 @@ export default function SpeakButton({ text, ref, shortcut, early, className = ''
       ref={ref}
       type="button"
       onClick={press}
-      {...ahead(() => prepare(text))}
+      {...ahead(() => prepare(text, { accent }))}
       aria-label={state === 'speaking' ? 'Stop' : state === 'failed' ? FAILED : 'Say it aloud'}
       title={state === 'failed' ? FAILED : shortcut ? `Say it aloud (${shortcut})` : 'Say it aloud'}
       aria-busy={state === 'busy'}

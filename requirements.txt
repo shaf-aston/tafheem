@@ -28,6 +28,10 @@ python-bidi>=0.4.2
 # Leave GROQ_API_KEY blank in .env to skip Groq entirely.
 groq>=0.9.0
 
+# ── Saying a dialect aloud ────────────────────────────────────────────────────
+# Each Colloquial dialect read by a native speaker's neural voice, over the network.
+edge-tts>=7.0.0
+
 # ── Hearing a recitation ──────────────────────────────────────────────────────
 # Speech to text on this machine: no account, no key, and nothing leaves the
 # computer. The model itself is downloaded once on first use and cached under
