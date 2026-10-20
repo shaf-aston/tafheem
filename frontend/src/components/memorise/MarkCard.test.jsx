@@ -12,9 +12,9 @@ const MARKS = [
   { word: WORDS[1], state: 'wrong', heard: '', said: 'نَعْبِدُ', sure: 0.41, weak: 'ع', at: 2.4, take: 1 },
 ]
 
-function Page() {
+function Page({ marks = MARKS }) {
   const [open, setOpen] = useState(null)
-  const recite = { words: MARKS, extras: [], at: 2, from: 0, shown: new Set(), open, setOpen, recordingOf: () => undefined }
+  const recite = { words: marks, extras: [], at: 2, from: 0, shown: new Set(), open, setOpen, recordingOf: () => undefined }
   return (
     <Line
       line={{ id: 'a', label: '1:5', arabic: WORDS.join(' ') }}
@@ -48,6 +48,19 @@ describe('the word card', () => {
   it('opens an ayah card from its number, listing the problem words', () => {
     render(<Page />)
     fireEvent.click(screen.getByRole('button', { name: 'ayah 5' }))
-    expect(screen.getByRole('dialog').textContent).toContain('1 right, 0 not sure, 1 wrong, 0 not said')
+    expect(screen.getByRole('dialog').textContent).toContain('1 right, 1 wrong')
+  })
+
+  it('stays open, as waiting, when its word flips back, and leaves zero counts out', () => {
+    const { rerender } = render(<Page />)
+    fireEvent.click(screen.getByRole('button', { name: /نَعْبُدُ, wrong/ }))
+    rerender(<Page marks={[MARKS[0], { word: WORDS[1], state: 'waiting', heard: '', said: '' }]} />)
+    const card = screen.getByRole('dialog')
+    expect(card.textContent).toContain('Not reached yet.')
+    expect(card.textContent).toContain('waiting')
+    fireEvent.keyDown(document, { key: 'Escape' })
+    rerender(<Page marks={[MARKS[0], { ...MARKS[0], word: WORDS[1] }]} />)
+    fireEvent.click(screen.getByRole('button', { name: 'ayah 5' }))
+    expect(screen.getByRole('dialog').textContent).toContain('All right')
   })
 })

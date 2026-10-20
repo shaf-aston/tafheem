@@ -3,10 +3,11 @@
  * the ear doubted. Pure, so the card that shows them has nothing to decide.
  */
 import { bareForm, sameSpokenWord } from './arabicText'
-import { CHECK, MISSED, SAID, WRONG } from './follow'
+import { CHECK, MISSED, SAID, WAITING, WRONG } from './follow'
 
 /** One plain sentence for why a word is marked as it is. */
 export const whyOf = (mark) => {
+  if (mark.state === WAITING) return 'Not reached yet.'
   if (mark.state === SAID) return 'Said right.'
   if (mark.state === MISSED) return 'Not heard.'
   if (mark.state === CHECK) return 'The model could not confirm this word. It may be your slip or a mishearing.'

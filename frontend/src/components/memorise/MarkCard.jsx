@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 import { ayahAudioUrl, play, playFrom } from '../../lib/ayahAudio'
 import { CHECK, MISSED, SAID, WRONG } from '../../lib/follow'
 import { weakParts, whyOf } from '../../lib/markWhy'
-import { LOOK } from '../../lib/reciteColors'
+import { LOOK, WAITING_LOOK } from '../../lib/reciteColors'
 import { PHONE, useMedia } from '../../lib/useMedia'
 
 import ArabicText from '../ui/ArabicText'
@@ -47,7 +47,7 @@ function WordShown({ word, weak, colour }) {
 }
 
 function WordBody({ mark, word }) {
-  const look = LOOK[mark.state]
+  const look = LOOK[mark.state] ?? WAITING_LOOK
   const percent = mark.sure == null ? null : Math.round(mark.sure * 100)
   return (
     <>
@@ -57,7 +57,7 @@ function WordBody({ mark, word }) {
       >
         {look.label}
       </span>
-      <WordShown word={word} weak={mark.state === SAID ? null : mark.weak} colour={mark.state === SAID ? undefined : look.colour} />
+      <WordShown word={word} weak={mark.state === SAID ? null : mark.weak} colour={LOOK[mark.state] && mark.state !== SAID ? look.colour : undefined} />
       <p className="type-body my-2 text-[var(--text)]">{whyOf(mark)}</p>
       <Row label="Page"><ArabicText size="sm">{word}</ArabicText></Row>
       <Row label="Heard">{mark.said ? <ArabicText size="sm">{mark.said}</ArabicText> : 'nothing'}</Row>
@@ -76,12 +76,15 @@ function WordBody({ mark, word }) {
 function AyahBody({ ayah, words, recite }) {
   const count = (state) => words.filter((one) => one.state === state).length
   const heard = words.map((one) => one.said).filter(Boolean).join(' ')
+  // Only what there is: "2 not sure", and "All right" when nothing else is.
+  const tally = [[SAID, 'right'], [CHECK, 'not sure'], [WRONG, 'wrong'], [MISSED, 'not said']]
+    .filter(([state]) => count(state)).map(([state, label]) => `${count(state)} ${label}`)
   const problems = words.map((one, k) => ({ one, k })).filter(({ one }) => PROBLEM.includes(one.state))
   return (
     <>
       <p className="type-body font-medium">Ayah {ayah.label}</p>
       <p className="type-small text-[var(--text-dim)] tabular-nums">
-        {count(SAID)} right, {count(CHECK)} not sure, {count(WRONG)} wrong, {count(MISSED)} not said
+        {words.length && count(SAID) === words.length ? 'All right' : tally.join(', ') || 'Nothing reached yet'}
       </p>
       <Row label="Heard">{heard ? <ArabicText size="sm">{heard}</ArabicText> : 'nothing'}</Row>
       {problems.map(({ one, k }) => (
@@ -158,23 +161,28 @@ export default function MarkCard({ ayah, at, recite, anchor, onStartAt }) {
     <div
       ref={card}
       role="dialog"
-      aria-label={mark ? `${ayah.printed[at - ayah.from]}, ${LOOK[mark.state]?.label}` : `ayah ${ayah.label}`}
+      aria-label={mark ? `${ayah.printed[at - ayah.from]}, ${(LOOK[mark.state] ?? WAITING_LOOK).label}` : `ayah ${ayah.label}`}
       dir="ltr"
-      className={`bg-[var(--surface)] border border-[var(--border-hi)] rounded-[var(--radius-md)] p-4 shadow-[var(--shadow-pop)] z-[var(--layer-popover)] text-start
-        ${phone ? 'fixed inset-x-2 bottom-[calc(var(--layout-nav)+env(safe-area-inset-bottom,0px)+0.5rem)]' : 'absolute top-full mt-2 left-1/2 -ml-[150px] w-[300px]'}`}
+      className={`flex flex-col bg-[var(--surface)] border border-[var(--border-hi)] rounded-[var(--radius-md)] shadow-[var(--shadow-pop)] z-[var(--layer-popover)] text-start
+        ${phone
+          // Between the top of the screen and the nav: the body scrolls, the buttons do not.
+          ? 'fixed inset-x-2 bottom-[calc(var(--layout-nav)+env(safe-area-inset-bottom,0px)+0.5rem)] max-h-[calc(100dvh-var(--layout-nav)-env(safe-area-inset-bottom,0px)-4rem)]'
+          : 'absolute top-full mt-2 left-1/2 -ml-[150px] w-[300px]'}`}
     >
       <button
         type="button"
         onClick={() => recite.setOpen(null)}
         aria-label="Close"
-        className={`absolute top-2 end-2 type-small text-[var(--text-faint)] px-2 rounded-full cursor-pointer bg-transparent ${focus}`}
+        className={`absolute top-2 end-2 z-[var(--layer-raised)] type-small text-[var(--text-faint)] px-2 rounded-full cursor-pointer bg-transparent ${focus}`}
       >
         ✕
       </button>
-      {mark
-        ? <WordBody mark={mark} word={ayah.printed[at - ayah.from]} />
-        : <AyahBody ayah={ayah} words={words} recite={recite} />}
-      <div className="flex flex-wrap gap-1.5 mt-3">
+      <div className="min-h-0 overflow-y-auto overscroll-contain px-4 pt-4 pb-1">
+        {mark
+          ? <WordBody mark={mark} word={ayah.printed[at - ayah.from]} />
+          : <AyahBody ayah={ayah} words={words} recite={recite} />}
+      </div>
+      <div className="shrink-0 flex flex-wrap gap-1.5 px-4 pt-2 pb-4">
         {hear && <button type="button" onClick={hear} className={solid}>▶ Hear it said right</button>}
         {mine && <button type="button" onClick={mine} className={button}>▶ Mine</button>}
         {mark && onStartAt && (

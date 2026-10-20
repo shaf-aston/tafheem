@@ -17,7 +17,8 @@ import MarkCard from './MarkCard'
  * it is where it was first put and it was too hard to see.
  *
  * A word that has been reached opens its card when pressed (MarkCard); one not
- * yet reached still starts the recitation there.
+ * yet reached still starts the recitation there. An open card stays open if its
+ * word flips back to waiting as a later reading lands.
  */
 export default function RecitedWord({ word, at, ayah, recite, accent, coverWidth, onStartAt }) {
   const anchor = useRef(null)
@@ -86,7 +87,7 @@ export default function RecitedWord({ word, at, ayah, recite, accent, coverWidth
           >
             {printed}
           </button>
-          {opened && reached && <MarkCard ayah={ayah} at={at} recite={recite} anchor={anchor} onStartAt={onStartAt} />}
+          {opened && <MarkCard ayah={ayah} at={at} recite={recite} anchor={anchor} onStartAt={onStartAt} />}
         </span>
       ) : printed}
       {mark.heard && (

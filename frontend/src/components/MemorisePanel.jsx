@@ -62,7 +62,14 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const phone = useMedia(PHONE)
   // The word or ayah whose card is open: { at } or { line }. Only a place; the
   // card reads the live marks, so what it shows keeps up with the recitation.
-  const [opened, setOpen] = useState(null)
+  const [asked, setAsked] = useState(null)
+  // Closed by the reader, Esc or a press outside (MarkCard), and here by a page
+  // turn or by stopping; never by a mark changing under it. A card is stamped
+  // with the page and listening state it was opened in, and only counts while
+  // they are unchanged.
+  const stamp = `${bookId}/${part}/${pageNumber}/${reciting.listening}`
+  const opened = asked?.stamp === stamp ? asked : null
+  const setOpen = (place) => setAsked(place && { ...place, stamp })
   const ways = waysOf(book)
   const missing = way === 'recite'
     ? [{ id: 'none', label: 'Show all' }, { id: HIDDEN, label: 'Hidden' }]
