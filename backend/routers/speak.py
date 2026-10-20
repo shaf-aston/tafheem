@@ -1,4 +1,4 @@
-"""Say an Arabic word aloud: GET /api/speak?text=... returns a WAV.
+"""Say an Arabic word aloud: GET /api/speak?text=...&accent=... returns its sound.
 
 Thin: it checks the text, hands it to services/speech.py and sets how long the
 browser may keep the answer. A GET, so the page's own audio player can play the
@@ -13,6 +13,7 @@ from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
 from backend.services import speech
+from backend.services.colloquial import loader as colloquial
 from backend.services.ratelimit import PerMinute, visitor
 
 router = APIRouter(prefix="/api/speak", tags=["speak"])
@@ -28,7 +29,7 @@ _limit = PerMinute("speech_per_minute")
 
 
 @router.get("")
-async def speak(request: Request, text: str = Query(..., min_length=1)) -> Response:
+async def speak(request: Request, text: str = Query(..., min_length=1), accent: str | None = None) -> Response:
     text = speech.tidy(text)
     settings = get_settings()
     if len(text) > settings.speech_max_chars:
@@ -38,14 +39,19 @@ async def speak(request: Request, text: str = Query(..., min_length=1)) -> Respo
     # A long phrase costs the voice what several words do, so it counts as several asks.
     if _limit.too_many(visitor(request), -(-len(text) // settings.speech_chars_per_ask)):
         raise HTTPException(429, "Too many words at once; try again in a minute")
+    # A Colloquial dialect is said by a speaker of it (dialects.json `voice`).
+    try:
+        first = colloquial.voice_of(accent) if accent else None
+    except KeyError as exc:
+        raise HTTPException(422, "Unknown accent") from exc
     # lib/speak.js's `prepare` marks a word made ahead of a press, so a press goes first.
     pressed = request.headers.get("x-speak-ahead") != "1"
     try:
-        audio = await run_in_threadpool(speech.say, text, pressed)
+        audio = await run_in_threadpool(speech.say, text, pressed, first)
     except RuntimeError as exc:
         raise HTTPException(503, "No voice is available right now") from exc
     # The same text always sounds the same, so the browser may keep it, and so
     # may Vercel's edge in front of this server, for every visitor near it.
-    return Response(audio, media_type="audio/wav",
+    return Response(audio, media_type=speech.media_type(audio),
                     headers={"Cache-Control": "public, max-age=31536000, immutable",
                              "CDN-Cache-Control": "public, max-age=31536000"})

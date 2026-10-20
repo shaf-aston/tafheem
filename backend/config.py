@@ -272,6 +272,8 @@ class Speech(BaseSettings):
     speech_fastpitch_speaker: int = Field(default=3, ge=0, le=3)
     # Below 1 speaks slower at the same pitch; 0.8 matches the device voice, so every voice keeps one pace.
     speech_fastpitch_pace: float = Field(default=0.8, gt=0.5, le=1.5)
+    # The network dialect voices (colloquial/dialects.json `voice`) a touch slower, like FastPitch's 0.8.
+    speech_edge_rate: str = "-10%"
     # Whole colloquial dialogue lines; the longest is 104.
     speech_max_chars: int = Field(default=120, gt=0)
     speech_rest_s: float = Field(default=60.0, gt=0)

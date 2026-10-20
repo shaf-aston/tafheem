@@ -5,6 +5,9 @@
  * voice that cannot say a word, or whose file will not load, passes it on, so a
  * word is never silent while any voice can reach it.
  *
+ * An accent (a Colloquial dialect's key) asks the server for that dialect's own
+ * speaker, and skips the reciters: a Qur'an reciter is not a Damascene.
+ *
  * Recordings share lib/ayahAudio.js's one player, so a word stops an ayah and
  * an ayah stops a word: never two sounds at once.
  */
@@ -31,7 +34,7 @@ async function playFile(url) {
   }
 }
 
-const serverUrl = (text) => `${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}`
+const serverUrl = (text, accent) => `${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}${accent ? `&accent=${encodeURIComponent(accent)}` : ''}`
 
 /** The device's voices. Many browsers list none until they have loaded, so wait once for them. */
 async function deviceVoices() {
@@ -58,8 +61,8 @@ export function pickVoice(voices, cfg = config) {
 
 /** Each voice resolves to { done } once sound has started, rejects if it cannot. */
 const VOICES = {
-  recorded: async (text) => playFile(await recordingOf(text)),
-  server: (text) => playFile(serverUrl(text)),
+  recorded: async (text, accent) => playFile(accent ? null : await recordingOf(text)),
+  server: (text, accent) => playFile(serverUrl(text, accent)),
   browser: async (text) => {
     const synth = globalThis.speechSynthesis
     if (!synth) throw new Error('no device voice')
@@ -87,16 +90,16 @@ const VOICES = {
 }
 
 /**
- * Say `text`. Resolves as soon as a voice starts, to { id, done },
+ * Say `text`, in `accent` when given. Resolves as soon as a voice starts, to { id, done },
  * where `done` settles when it falls quiet. Rejects if no voice could say it.
  */
 let latest = 0
 
-export async function speak(text) {
+export async function speak(text, { accent } = {}) {
   const turn = ++latest
   for (const id of config.order) {
     try {
-      const { done } = await VOICES[id](text)
+      const { done } = await VOICES[id](text, accent)
       return { id, done }
     } catch (err) {
       // Cut off by a newer press or an ayah, not unable: the next voice must not talk over it.
@@ -112,12 +115,13 @@ export async function speak(text) {
  * need nothing. Once per text; a failure just leaves the press to make it.
  */
 const prepared = new Set()
-export async function prepare(text) {
-  if (prepared.has(text)) return
-  prepared.add(text)
-  if (await recordingOf(text)) return
+export async function prepare(text, { accent } = {}) {
+  const key = `${accent ?? ''}|${text}`
+  if (prepared.has(key)) return
+  prepared.add(key)
+  if (!accent && await recordingOf(text)) return
   // Marked as ahead, so a word actually pressed is made before it on the server.
-  fetch(serverUrl(text), { headers: { 'X-Speak-Ahead': '1' } }).catch(() => prepared.delete(text))
+  fetch(serverUrl(text, accent), { headers: { 'X-Speak-Ahead': '1' } }).catch(() => prepared.delete(key))
 }
 
 export function stop() {
