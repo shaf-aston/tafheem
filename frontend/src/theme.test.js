@@ -164,7 +164,33 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
   it('has a border that can be seen on a card', () => {
     expect(contrast(color['border-hi'], color.surface)).toBeGreaterThanOrEqual(1.5)
   })
+
+  // Too much is a fault on a dark ground too: glaring text, colours that vibrate.
+  it.runIf(looks[name].scheme === 'dark')('is easy on the eyes', () => {
+    const comfort = theme.themes.comfort
+    expect(contrast(color.text, color.bg), 'text on the page').toBeLessThanOrEqual(comfort['text-max-contrast'])
+    const loud = Object.entries(palette)
+      .map(([colour, hex]) => [colour, oklch(hex)])
+      .filter(([, [l, c]]) => c > comfort['max-chroma'] || l > comfort['max-lightness'])
+      .map(([colour, [l, c]]) => `${colour}: lightness ${l.toFixed(2)}, chroma ${c.toFixed(3)}`)
+    expect(loud).toEqual([])
+  })
 })
+
+// OKLCH lightness and chroma of a colour (Ottosson's matrices), the scale the
+// comfort limits are written in.
+const oklch = (hex) => {
+  const n = parseInt(hex.slice(1), 16)
+  const [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255].map(channel)
+  const [l, m, s] = [
+    0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b,
+    0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b,
+    0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b,
+  ].map(Math.cbrt)
+  const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s
+  const bb = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
+  return [0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s, Math.hypot(a, bb)]
+}
 
 // A look is one file. A new colour literal in a stylesheet or a component is the
 // look leaking out of it again, so the count of lines carrying one may only fall.
