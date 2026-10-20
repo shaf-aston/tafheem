@@ -24,23 +24,28 @@ wait_healthy() {
 	return 1
 }
 git fetch -q origin master
-NEW=$(git rev-parse origin/master)
+# The newest master commit whose CI passed: on a busy day a push lands every few
+# minutes, so master's very tip is nearly always still in CI, and waiting on the tip
+# kept the site hours behind. The rerun below (SYNC_FRESH) is already on the chosen commit.
+# SYNC_SKIP_CI=1 by hand takes the tip as it is.
+if [ -n "${SYNC_FRESH:-}" ]; then
+	NEW=$(git rev-parse HEAD)
+elif [ -n "${SYNC_SKIP_CI:-}" ]; then
+	NEW=$(git rev-parse origin/master)
+else
+	GREEN=$(curl -fsS --max-time 20 "https://api.github.com/repos/shaf-aston/tafheem/actions/workflows/ci.yml/runs?branch=master&event=push&status=success&per_page=50" \
+		| python3 -c 'import json,sys; print(" ".join(r["head_sha"] for r in json.load(sys.stdin)["workflow_runs"]))' 2>/dev/null || true)
+	NEW=$(git rev-list --first-parent -n 100 origin/master | grep -m1 -xF -f <(tr ' ' '\n' <<<"$GREEN" | grep .) || true)
+	if [ -z "$NEW" ]; then
+		echo "not deploying: no recent master commit has passed CI (or GitHub can't be asked)"
+		exit 0
+	fi
+fi
 if [ "$NEW" = "$(cat /home/ubuntu/.deployed-sha 2>/dev/null || true)" ]; then
 	echo "already on $NEW"
 	exit 0
 fi
-# CI must have passed on this exact commit first: the timer runs before CI ends, so
-# without this a red master would go live. Still running → try again next timer tick;
-# failed, or GitHub can't be asked → stay on the old code. SYNC_SKIP_CI=1 by hand skips it.
-if [ -z "${SYNC_SKIP_CI:-}" ] && [ -z "${SYNC_FRESH:-}" ]; then
-	CI=$(curl -fsS --max-time 20 "https://api.github.com/repos/shaf-aston/tafheem/actions/workflows/ci.yml/runs?head_sha=$NEW&event=push" \
-		| python3 -c 'import json,sys; r=json.load(sys.stdin)["workflow_runs"]; print(r[0]["conclusion"] or r[0]["status"] if r else "none")' 2>/dev/null || echo "unreachable")
-	if [ "$CI" != "success" ]; then
-		echo "not deploying $NEW: CI is $CI"
-		exit 0
-	fi
-fi
-git reset -q --hard origin/master
+git reset -q --hard "$NEW"
 # The reset may have changed this very script; bash would finish the old one,
 # so a change here would only apply a deploy late. Run the new copy once.
 if [ -z "${SYNC_FRESH:-}" ]; then
