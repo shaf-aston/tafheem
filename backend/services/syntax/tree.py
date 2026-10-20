@@ -74,7 +74,7 @@ def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
 
 
 # the family whose sisters lend their own name to what they govern, by its mother's word
-SISTERS = {family: family_mother(family) for family in ("inna", "kana")}
+SISTERS = {family: family_mother(family) for family in ("inna", "kana", "kaada")}
 # the roles that stay inside the unit their head names (a صفة of the مضاف إليه, a عطف on it)
 def _quieted(node: dict) -> dict:
     """مفعول به, not مفعول به / مركب إضافي: a unit wearing a job leaves off the name of what it

@@ -20,7 +20,7 @@ from typing import Any
 from backend.services.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services import noun_reader, verb_reader
 from backend.services.nahw_book import is_built_word, is_mabni, is_one, six_noun_case
-from backend.services.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
+from backend.services.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -540,7 +540,10 @@ def _reading(word: str, readings: list[dict]) -> dict:
         # the shape is a past verb's: اسْتُعْمِلَ, which CAMeL lacks, is its active اِسْتَعْمَلَ
         # with the voice read off the vowels, never أَسْتَعْمِلُ
         return next((r for r in verbs if r.get("asp") == "p"), verbs[0])
-    return best_reading(word, real) or readings[0]
+    # a reading spelled with the letters typed goes first, even one vowel off, before another word's
+    # letters that say nothing either way (خُلُقُهُ is خُلْقُهُ, not خَلَقَة)
+    same = [r for r in real if [bare_letters(c) for c, _ in letters(r.get("diac", ""))] == [bare_letters(c) for c, _ in letters(word)]]
+    return best_reading(word, same) or nearest_reading(word, same) or best_reading(word, real) or readings[0]
 
 
 def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:

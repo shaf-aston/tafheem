@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
+from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
@@ -130,6 +130,8 @@ def is_passive(token: dict) -> bool:
 def typed_case_of(token: dict) -> str | None:
     """The case the reader typed on the word: its last vowel, or for one of the six nouns
     as a مضاف the long letter standing for it (أَخُوْ، أَخَا، أَخِيْ زَيْدٍ; أَبَاهُ)."""
+    if drops_ya(token.get("typed") or "", token["lemma"]):
+        return None  # هَذَا قَاضٍ: the tanween stands on the ya that went, raf' or jarr alike
     shown = typed_case(token.get("typed") or "", token.get("stuck_on", 0))
     return shown or six_noun_case(token["base"], token["lemma"])
 
