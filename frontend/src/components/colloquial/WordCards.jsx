@@ -8,6 +8,7 @@ import MicButton from '../ui/MicButton'
 import SmallButton from '../ui/SmallButton'
 import SpeakButton from '../ui/SpeakButton'
 import { FOCUS } from './Face'
+import PhrasePicture from './PhrasePicture'
 import Spelling from './Spelling'
 
 export default function WordCards({ words }) {
@@ -31,6 +32,8 @@ export default function WordCards({ words }) {
           className={`press w-full min-h-48 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)]
             hover:border-[var(--border-hi)] flex flex-col items-center justify-center gap-2 p-6 ${FOCUS}`}
         >
+          {/* The picture is the meaning without English, so it stays on both sides. */}
+          {word.image && <PhrasePicture phrase={word} alt="" className="w-32 h-32 rounded-[var(--radius-md)]" />}
           {word.category && <span className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{word.category}</span>}
           {/* Keyed by side, so turning the card fades the other side in rather than snapping. */}
           <span key={String(turned)} className="fade-in flex flex-col items-center gap-2">
