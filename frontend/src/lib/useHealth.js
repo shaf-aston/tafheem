@@ -31,6 +31,8 @@ export function useHealth() {
     // backend is: an engine that quietly stopped working should be readable,
     // not guessed at from how slow the microphone feels.
     ear: data?.ear ?? '',
+    // Readings a minute the server's listening keys allow between them; 0 when it has none or has not said.
+    listenPerMinute: data?.listen_per_minute ?? 0,
     // The trial listening model's name, empty when the server offers none.
     reciteTrial: data?.recite_trial ?? '',
     // Null until the answer arrives, so a panel can tell "not installed" apart

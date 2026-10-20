@@ -40,7 +40,6 @@ const WINDOW_MS = config['window-s'] * 1000
 const PAUSE_MS = config['pause-s'] * 1000
 const CHECK_TIMEOUT_MS = config['check-timeout-s'] * 1000
 const CHECK_QUEUE_MAX = config['check-queue-max']
-const ASKS_PER_MINUTE = config['asks-per-minute']
 const KEEP_RECORDINGS = config['keep-recordings']
 // How far the voice meter can lag a cut and still count as "spoken in this
 // window": the same tick length the meter itself reads at.
@@ -74,6 +73,14 @@ export const recentAsks = (now, asks) => asks.filter((at) => now - at < 60000)
  * does not tell them apart. Only the mid-phrase ones give way to it.
  */
 export const allowanceLeft = (now, asks, perMinute) => perMinute - recentAsks(now, asks).length
+
+/**
+ * How many readings a minute to ask for: the server's own count (its listening
+ * keys times each key's allowance) less the margin recite.json explains, or the
+ * fixed figure when the server gave none.
+ */
+export const asksPerMinute = (fromServer) =>
+  fromServer > 0 ? Math.floor(fromServer * config['asks-share']) : config['asks-per-minute']
 
 /** Whether it is time to ask for a reading: free, something new to send, paced by how long the last one took, and inside the ear's allowance. */
 export const readyToSend = (now, asked, took, stepMs, busy, chunksLen, sent, left = Infinity) =>
@@ -216,7 +223,7 @@ const REAL = {
 /**
  * `update(page)` tells the session what it is listening against, and the
  * newest one is read at the moment each value is needed, never kept per
- * recording: { fusha, trial, pageWords, ayahs }. `ayahs` are the page's lines the ear
+ * recording: { fusha, trial, perMinute, pageWords, ayahs }. `ayahs` are the page's lines the ear
  * can check by sound, each { key, from, count }: its "surah:ayah", where its
  * words start on the page and how many; empty for a text the backend has no
  * plain spelling of, and marks are then the page's alone. `onChange` gets a new
@@ -551,7 +558,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       // answer, and it rests the fast ear for a minute. The reading at a pause
       // is never held back for it (see asks-per-minute); this one is.
       const at = Date.now()
-      const left = allowanceLeft(at, asks, ASKS_PER_MINUTE)
+      const left = allowanceLeft(at, asks, asksPerMinute(page.perMinute))
       if (readyToSend(at, asked, took, STEP_MS, !!sending, chunks.length, sent, left)) send()
     }
 

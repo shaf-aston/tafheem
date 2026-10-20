@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { batchOf } from './journal'
 import {
-  allowanceLeft, byPlace, createRecitingSession, cutReason, keepRecording, problemOf, queueCheck, readyToSend, recentAsks, settledScores, spokeSince, surer,
+  allowanceLeft, asksPerMinute, byPlace, createRecitingSession, cutReason, keepRecording, problemOf, queueCheck, readyToSend, recentAsks, settledScores, spokeSince, surer,
 } from './recitingSession'
 
 const ayahs = [{ key: '1:6', from: 17, count: 3 }, { key: '1:7', from: 20, count: 9 }]
@@ -120,6 +120,18 @@ describe('allowanceLeft', () => {
     expect(allowanceLeft(3000, asks.slice(0, 20), 20)).toBe(0)
     expect(allowanceLeft(3000, asks, 20)).toBe(-1)
     expect(readyToSend(3000, 0, 0, 3000, false, 5, 0, -1)).toBe(false)
+  })
+
+  it('takes the count the server gives, less the margin, and the fixed figure when it gave none', () => {
+    // Two keys, 40 a minute, 0.9 of it: 36. One key: 18, which is also the fixed figure.
+    expect(asksPerMinute(40)).toBe(36)
+    expect(asksPerMinute(20)).toBe(18)
+    expect(asksPerMinute(0)).toBe(18)
+    expect(asksPerMinute(undefined)).toBe(18)
+    // The allowance follows it: 30 asks in the last minute leave 6 of 36, and none of 18.
+    const asks = Array.from({ length: 30 }, (_, i) => i * 100)
+    expect(allowanceLeft(3000, asks, asksPerMinute(40))).toBe(6)
+    expect(allowanceLeft(3000, asks, asksPerMinute(20))).toBeLessThan(0)
   })
 
   it('drops the aged-out asks rather than growing without bound', () => {
