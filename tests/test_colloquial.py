@@ -164,7 +164,7 @@ def bank_faults(said, ids=None, monkeypatch=None):
 def test_a_topic_bank_takes_its_english_from_the_shared_list(monkeypatch):
     words, said = bank_faults(words_said(*EIGHT), monkeypatch=monkeypatch)
     assert said == [] and words[0] == {"id": "w0", "english": "thing 0", "category": "home",
-                                        "arabic": "بيت", "transliteration": "t"}
+                                        "arabic": "بيت", "transliteration": "t", "image": ""}
 
 
 def test_a_topic_with_no_words_said_yet_is_coming_but_half_is_caught(monkeypatch):
@@ -337,6 +337,40 @@ def test_pictures_are_proposed_then_approved_by_a_person(tmp_path, monkeypatch):
     credits = json.loads((tmp_path / "pics" / "attribution.json").read_text(encoding="utf-8"))
     assert credits[saved.split("/")[-1]]["creator"] == "Sam"
     assert first()["image"] == saved
+
+
+def test_a_word_picture_is_searched_by_its_own_term_and_kept_in_words_json(tmp_path, monkeypatch):
+    import json
+
+    import httpx
+
+    from backend.scripts import fetch_colloquial_images as fetch
+    from backend.services.colloquial import wordlist
+
+    spine = {"units": [{"unit": "unit-02", "title": "t", "lessons": [{"lesson": "lesson-01", "title": "t", "phrases": [],
+                                                                     "words": ["apple", "from"]}]}]}
+    (tmp_path / "spine.json").write_text(json.dumps(spine), encoding="utf-8")
+    words = {"apple": {"english": "apple", "group": "fruit", "search_term": "red apple"},
+             "from": {"english": "from", "group": "little words"}}
+    (tmp_path / "words.json").write_text(wordlist.text(words, "about"), encoding="utf-8")
+    monkeypatch.setattr(fetch, "data_path", lambda _: tmp_path)
+    monkeypatch.setattr(fetch, "paths", lambda u: (tmp_path / "spine.json", tmp_path / "review.json", tmp_path / "pics"))
+
+    def serve(request):
+        if request.url.path.endswith("/thumb/"):
+            return httpx.Response(200, content=b"apple")
+        return httpx.Response(200, json={"results": [{"id": "a", "title": "Apple", "creator": "Sam", "license": "cc0",
+                                                      "thumbnail": "https://api.openverse.org/v1/images/a/thumb/"}]})
+
+    client = httpx.Client(transport=httpx.MockTransport(serve))
+    review = fetch.propose_words("unit-02", None, client)
+    assert list(review["found"]) == ["apple"] and review["needs_search_term"] == ["from"]
+
+    assert fetch.approve_word("apple", 1, client) == "words/apple.jpg"
+    assert (tmp_path / "images" / "words" / "apple.jpg").read_bytes() == b"apple"
+    kept = json.loads((tmp_path / "words.json").read_text(encoding="utf-8"))
+    assert kept["_about"] == "about" and kept["words"]["apple"]["image"] == "words/apple.jpg"
+    assert "image" not in kept["words"]["from"]
 
 
 OUTLINE = {"unit": "unit-01", "title": "First Conversations", "lessons": [

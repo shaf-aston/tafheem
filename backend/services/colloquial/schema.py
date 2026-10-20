@@ -48,6 +48,8 @@ class VocabWord(Word):
     """A word of a topic's list: its meaning from words.json, its Arabic from the dialect's."""
     id: str
     category: str = ""
+    # A picture of the word, under images/, when one was chosen; shared by every dialect.
+    image: str = ""
 
 
 class ComingLesson(BaseModel):

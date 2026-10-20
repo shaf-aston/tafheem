@@ -1,0 +1,652 @@
+{
+  "father.jpg": {
+    "id": "a7819dca-2d09-45e6-a738-e598aa476982",
+    "title": "Free father holding child's hand",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5912976/image-public-domain-hands-kid",
+    "search_term": "father with child"
+  },
+  "brother.jpg": {
+    "id": "14d34338-6d1a-450a-829f-7da4091ddf6f",
+    "title": "Two brothers smiling",
+    "creator": "InOutPeaceProject",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/93485852@N05/10015046524",
+    "search_term": "two brothers smiling"
+  },
+  "baby.jpg": {
+    "id": "2ed0757b-25e1-4b8c-88a1-3878ec022746",
+    "title": "Baby smiles at net distribution",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/8759407/baby-smiles-net-distribution",
+    "search_term": "baby smiling"
+  },
+  "child.jpg": {
+    "id": "bfbc01c8-4783-4354-a83a-62e8e47ce31d",
+    "title": "Father Son",
+    "creator": "Family Moments",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/father-son-HBKFP7NCLL",
+    "search_term": "young child smiling"
+  },
+  "family.jpg": {
+    "id": "02d48ec3-59c0-4bc8-9fd9-9af765898327",
+    "title": "Family Portrait",
+    "creator": "Family Moments",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-OYDG4SCZSV",
+    "search_term": "happy family portrait"
+  },
+  "mother.jpg": {
+    "id": "84005e87-a2a9-45ab-aed2-580fca6db46f",
+    "title": "Mother Joy",
+    "creator": "Direct Media",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/mother-joy-JURGOKWYHI",
+    "search_term": "mother holding baby"
+  },
+  "wedding.jpg": {
+    "id": "5318f344-f16e-425c-8bc0-4cb551ef7af7",
+    "title": "Wedding Rings",
+    "creator": "Birch Landing Home",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/wedding-rings-C1ZAW5IMSC",
+    "search_term": "wedding rings"
+  },
+  "bread.jpg": {
+    "id": "0cf32669-d302-4ac8-b1f8-01e256702376",
+    "title": "Free thick whoweat bread image",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5922734/photo-image-light-public-domain-food",
+    "search_term": "loaf of bread on white"
+  },
+  "rice.jpg": {
+    "id": "a31923fb-c84f-4efd-b2bd-3956f328e621",
+    "title": "White rice, Japanese food image",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6032946/photo-image-public-domain-food-free",
+    "search_term": "bowl of white rice"
+  },
+  "meat.jpg": {
+    "id": "2ee077be-6eed-4a4a-be62-7e4be72aa40a",
+    "title": "Free raw beef steak fillet",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5927080/photo-image-public-domain-food-free",
+    "search_term": "raw beef steak"
+  },
+  "egg.jpg": {
+    "id": "a5479e7f-bc95-4cad-832e-e81ebef9b4db",
+    "title": "Eggs Basket White",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5966665/eggs-basket-white",
+    "search_term": "eggs on white"
+  },
+  "fruit.jpg": {
+    "id": "7c74695e-f471-4275-aa46-6b4359d4f9a2",
+    "title": "Fruit Basket",
+    "creator": "WDnet Studio",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/fruit-basket-TV0WT8JT5B",
+    "search_term": "fruit basket"
+  },
+  "vegetables.jpg": {
+    "id": "0f8202d3-634c-4ca7-90ae-8f07834fe88a",
+    "title": "Free closeup fresh vegetables table",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5927583/photo-image-public-domain-plant-fruit",
+    "search_term": "fresh vegetables"
+  },
+  "falafel.jpg": {
+    "id": "a79413b0-4eb7-46d0-ab77-485bdbcfb982",
+    "title": "Falafel balls served on herbed white sauce, topped with hummus and fresh parsley, alongside a salad of tomato, red onion, carrot, and cucumber ribbons.",
+    "creator": "Guste Cibulskyte",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://wordpress.org/photos/photo/1496a21709/",
+    "search_term": "falafel balls"
+  },
+  "sugar.jpg": {
+    "id": "8867ea18-25f9-4e5b-abf1-82194aef7a8d",
+    "title": "Free sugar cube bowl image",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5912782/image-background-public-domain-kitchen",
+    "search_term": "sugar in bowl"
+  },
+  "coffee.jpg": {
+    "id": "6060b1eb-8231-4953-9850-5df858df2e77",
+    "title": "cup black coffee wooden table",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/3283072/free-photo-image-coffee-cup-beer",
+    "search_term": "cup of coffee"
+  },
+  "tea.jpg": {
+    "id": "9e6ba21f-d58a-412c-81ab-7d794573eba4",
+    "title": "Free warm cup herbal tea",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5923477/photo-image-public-domain-leaf-glass",
+    "search_term": "cup of tea"
+  },
+  "juice.jpg": {
+    "id": "1f859675-73b6-4a31-bdbb-aae788c04368",
+    "title": "A glass of Orange juice",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/8718218/glass-orange-juice",
+    "search_term": "glass of orange juice"
+  },
+  "milk.jpg": {
+    "id": "35e968c1-06c3-439d-819c-6eb28c339317",
+    "title": "Glass Milk",
+    "creator": "Krzysztof%20Puszczy%u0144ski",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/glass-milk-P2QSUXKCN5",
+    "search_term": "glass of milk"
+  },
+  "breakfast.jpg": {
+    "id": "b8ddc098-99e9-43e4-ac1a-86462efbaa2e",
+    "title": "Breakfast Smokedsalmon",
+    "creator": "Adriana Lau",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/breakfast-smokedsalmon-INZNNS77FB",
+    "search_term": "breakfast table with bread and eggs"
+  },
+  "salt.jpg": {
+    "id": "b67bdbd8-e57b-445d-b39a-c6e84953317c",
+    "title": "Salt shaker",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6019081/salt-shaker-free-public-domain-cc0-image",
+    "search_term": "salt shaker"
+  },
+  "kitchen.jpg": {
+    "id": "62f34a93-723c-45c4-9df8-f67558c90ceb",
+    "title": "Free modern kitchen image",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5922237/photo-image-public-domain-house-kitchen",
+    "search_term": "modern kitchen"
+  },
+  "plate.jpg": {
+    "id": "c225affd-429d-4ae6-9b39-7aadcaf37fc7",
+    "title": null,
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5944446/free-public-domain-cc0-photo",
+    "search_term": "empty white plate"
+  },
+  "bowl.jpg": {
+    "id": "70a7ecd3-8143-4bc3-a7cf-027c36176774",
+    "title": "Stacked Bowls",
+    "creator": "Travel Photographer",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/stacked-bowls-GAMHRIGNDW",
+    "search_term": "empty white bowl"
+  },
+  "spoon.jpg": {
+    "id": "44238e26-ca7a-4200-9d23-0698bc47ee06",
+    "title": "Antique spoon black white",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6031944/photo-image-public-domain-kitchen-free",
+    "search_term": "spoon on white"
+  },
+  "knife.jpg": {
+    "id": "2c9817ff-414f-4f6c-b504-8da81f52ee44",
+    "title": "Vintage ornate silver knife",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/12568056/knife",
+    "search_term": "kitchen knife on white"
+  },
+  "napkin.jpg": {
+    "id": "994a9470-8443-4a47-a369-103dc8d4f2f5",
+    "title": "Folded napkins dinner table",
+    "creator": "Markus Spiske",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/432595/free-photo-image-napkin-spoon-fork-dining",
+    "search_term": "folded napkin"
+  },
+  "to-cook.jpg": {
+    "id": "e398cab4-1b08-4cb7-91ab-8f0273b7e16d",
+    "title": "Food Cook",
+    "creator": "ela haney",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/food-cook-R09NTYYS4U",
+    "search_term": "cooking in pan on stove"
+  },
+  "city.jpg": {
+    "id": "ffc50946-335c-4f4e-a644-a4804d2c4da1",
+    "title": "City Skyline",
+    "creator": "Joe deSousa",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/city-skyline-KFA0ZJHD66",
+    "search_term": "city skyline"
+  },
+  "countryside.jpg": {
+    "id": "1d79c96d-d7fe-4e89-a9f9-6fee566ed647",
+    "title": "Green Grass",
+    "creator": "Lili Popper",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/green-grass-T1VA15FJXL",
+    "search_term": "countryside green fields"
+  },
+  "street.jpg": {
+    "id": "e98e1ae0-ddcc-4185-b079-6eabd178ef19",
+    "title": "City Bratislava",
+    "creator": "Manea Robbi",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/city-bratislava-IQUEOYGX8Y",
+    "search_term": "quiet city street"
+  },
+  "house.jpg": {
+    "id": "6dbcdb1e-9d74-44b1-b6f8-452356933d3c",
+    "title": "Free white family house image",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5913733/image-public-domain-plants-house",
+    "search_term": "family house exterior"
+  },
+  "apartment-building.jpg": {
+    "id": "99ef0260-1680-4960-9d7e-d1555fe950ab",
+    "title": "Apartment Building",
+    "creator": "Matt Bango",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/apartment-building-2T9NFO4RNI",
+    "search_term": "apartment building"
+  },
+  "masjid.jpg": {
+    "id": "14846c60-b128-4bdc-9069-2be6449af624",
+    "title": "Sheikh Zayed Grand Mosque exterior",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6032448/photo-image-public-domain-free",
+    "search_term": "mosque exterior"
+  },
+  "market.jpg": {
+    "id": "07d2d1bc-418d-440c-842d-f4897336ea01",
+    "title": "Colorful fruit vegetables market stall",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/3284018/free-photo-image-farmers-market-vegetables-store-fruit-shop",
+    "search_term": "fruit and vegetable market stall"
+  },
+  "bedroom.jpg": {
+    "id": "2e281677-ea3f-4ce9-a7f9-ce060bf4ccd3",
+    "title": "Office Work",
+    "creator": "Gabriel Beaudry",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/office-work-4ALWT6KXM0",
+    "search_term": "bedroom with bed"
+  },
+  "living-room.jpg": {
+    "id": "c53f7dfa-5803-419c-85f8-d6ee2586a65c",
+    "title": "living room sofa, television, armchair",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/3285035/free-photo-image-living-room-map",
+    "search_term": "living room sofa"
+  },
+  "garden.jpg": {
+    "id": "68f2d70f-7502-4fe3-a196-231b93752be1",
+    "title": "Beautiful home garden",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6041292/photo-image-public-domain-home-free",
+    "search_term": "home garden"
+  },
+  "roof.jpg": {
+    "id": "25e4e2b7-9047-4e81-a211-6322ddf444da",
+    "title": "Brick tile roof",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6019599/brick-tile-roof-free-public-domain-cc0-photo",
+    "search_term": "house roof tiles"
+  },
+  "window.jpg": {
+    "id": "1f384bfb-b95e-467b-9d42-8ad7c1df2f10",
+    "title": "White Window",
+    "creator": "Nathan Fertig",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/white-window-LMUGL3LQ7X",
+    "search_term": "window"
+  },
+  "door.jpg": {
+    "id": "35cecce1-544f-4fda-a272-ca62e2778cb6",
+    "title": "Old Door",
+    "creator": "Matt Bango",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/old-door-ZVJFWSNIMA",
+    "search_term": "wooden front door"
+  },
+  "bed.jpg": {
+    "id": "97821cc5-b750-4ed2-8834-fd1911c55f11",
+    "title": "Room Beds",
+    "creator": "Jay Mantri",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/room-beds-8B828310AC",
+    "search_term": "bed with white sheets"
+  },
+  "sofa.jpg": {
+    "id": "a9ed9f24-6f32-4c78-b28f-22fa71b4c516",
+    "title": "Mahogany sofa home Robert Smalls",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/8848687/mahogany-sofa-from-the-home-robert-smalls",
+    "search_term": "sofa"
+  },
+  "chair.jpg": {
+    "id": "79adc2ee-b121-4470-8e4b-eb0e5c83db23",
+    "title": "Wooden Chair",
+    "creator": "Ryan Riggins",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/wooden-chair-0DH6S6OU6Q",
+    "search_term": "wooden chair"
+  },
+  "wardrobe.jpg": {
+    "id": "121668a1-f8cc-4da9-a3dd-31a7f9774ecd",
+    "title": "Wardrobe Closet",
+    "creator": "Oliver Klein",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/wardrobe-closet-YISUDLOYC3",
+    "search_term": "wardrobe"
+  },
+  "carpet.jpg": {
+    "id": "b578a1ce-8e20-4b80-88c9-9e8cc8ffac4a",
+    "title": "Carpet. Original public domain image",
+    "creator": "lacma",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/16131150/image-background-pattern-fabric",
+    "search_term": "rug carpet on floor"
+  },
+  "mirror.jpg": {
+    "id": "d356b47e-f33a-46c5-8ea1-5059c638a0c9",
+    "title": "Wall Mirror (late 18th century)",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/9793352/wall-mirror-late-18th-century",
+    "search_term": "wall mirror"
+  },
+  "lamp.jpg": {
+    "id": "23aad1d1-b2ee-4016-97c4-9a1629d3a51d",
+    "title": "Table lamp room",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/6035773/photo-image-public-domain-plant-space",
+    "search_term": "table lamp"
+  },
+  "television.jpg": {
+    "id": "b4ce57f2-e96e-4cf4-94be-68864acb77da",
+    "title": "Tv Television",
+    "creator": "Sven Scheuermeier",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/tv-television-E5XKV8B7TJ",
+    "search_term": "television"
+  },
+  "fan.jpg": {
+    "id": "e78472d3-4797-403b-b276-63b9cfe2410d",
+    "title": "Isolated electrical fan",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5901123/photo-image-public-domain-table-free",
+    "search_term": "electric fan"
+  },
+  "curtains.jpg": {
+    "id": "e714aebf-9d61-4ec0-8a30-fb3d0314360b",
+    "title": "Curtains Window",
+    "creator": "Catt Liu",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/curtains-window-B904140969",
+    "search_term": "curtains window"
+  },
+  "clock.jpg": {
+    "id": "6e9198b0-517a-4c39-a0b9-0a8b3806126a",
+    "title": "Wall Clock",
+    "creator": "Noah Silliman",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/wall-clock-NP4PTJZ6C3",
+    "search_term": "wall clock"
+  },
+  "pillow.jpg": {
+    "id": "1ce9f84d-a670-40cb-be37-ec0600f435ad",
+    "title": "Pillows Sheets",
+    "creator": "Jay Mantri",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/pillows-sheets-M0YZ9Q79DZ",
+    "search_term": "pillow on bed"
+  },
+  "washing-machine.jpg": {
+    "id": "a778753f-380e-45b9-8987-5f4b9fb0fbde",
+    "title": "Washing Machine",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5927124/washing-machine-free-public-domain-cc0-photo",
+    "search_term": "washing machine"
+  },
+  "cooker.jpg": {
+    "id": "5a7fe4e2-b675-4639-ae46-a2fa81bb134d",
+    "title": "Gas Stove",
+    "creator": "Tim Sullivan",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/gas-stove-ZMB1IUO6X0",
+    "search_term": "gas cooker stove"
+  },
+  "remote-control.jpg": {
+    "id": "00d380f6-f0b1-473f-b330-0facca84038b",
+    "title": "Free remote control image",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5920827/photo-image-public-domain-hand-technology",
+    "search_term": "tv remote control"
+  },
+  "key.jpg": {
+    "id": "d02070cd-81a9-4afb-9197-7ec5b68866f5",
+    "title": "House Keys",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5969541/house-keys",
+    "search_term": "house key"
+  },
+  "light.jpg": {
+    "id": "fa67c26c-fa88-424b-bcda-56ca94dbaba6",
+    "title": "Light Bulb",
+    "creator": "Johannes Plenio",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/light-bulb-LE8PCMM4GS",
+    "search_term": "light bulb"
+  },
+  "square.jpg": {
+    "id": "83a40e19-5a9c-457d-8116-9922dca5d98d",
+    "title": "Bremen town square Germany",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5908557/image-public-domain-cute-free",
+    "search_term": "town square"
+  },
+  "citadel.jpg": {
+    "id": "7528f04a-3ef9-42f9-aafd-48ea599eba0e",
+    "title": "Aleppo citadel",
+    "creator": "Eusebius@Commons",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/35854555@N04/4551299260",
+    "search_term": "old stone citadel fortress"
+  },
+  "to-walk.jpg": {
+    "id": "caabe2d4-daa2-42f1-81ba-3cce5a71215e",
+    "title": "Walking Pedestrians",
+    "creator": "Freestocks.org",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/walking-pedestrians-I1R1CWCB19",
+    "search_term": "people walking on sidewalk"
+  },
+  "morning.jpg": {
+    "id": "8f3ffafe-eae9-42b8-951a-e6d73b668b1a",
+    "title": "Sunrise Morning",
+    "creator": "Philipp Reiner",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/sunrise-morning-CD2134E2DD",
+    "search_term": "sunrise morning sky"
+  },
+  "evening.jpg": {
+    "id": "84667419-db66-4b49-81d8-047793765382",
+    "title": "Pier Dock",
+    "creator": "Skitter Photo",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/pier-dock-Q9RGEBWABA",
+    "search_term": "sunset evening sky"
+  },
+  "night.jpg": {
+    "id": "820ee25f-b61c-4ff5-812e-6208838a315b",
+    "title": "Night Sky Stars Over Lake",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5970221/night-sky-stars-over-lake",
+    "search_term": "night sky stars"
+  },
+  "person.jpg": {
+    "id": "2cd309b9-3aac-4343-b8ad-c7fc23a8d1f5",
+    "title": "Business Man",
+    "creator": "Direct Media",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/business-man-IVZBYWKEFM",
+    "search_term": "portrait of smiling man"
+  }
+}

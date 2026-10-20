@@ -20,6 +20,15 @@ Plain stock-photo sources (STOCK) are asked first: their pictures are simple,
 well lit and object-centred, where the open search is mostly holiday snapshots.
 The open search only tops up a phrase the stock sources have too little for.
 
+Single words work the same way, keyed by the word's id in words.json rather
+than by position, since one picture serves the word in every topic that teaches it:
+
+    python -m backend.scripts.fetch_colloquial_images propose-words --unit 2 [--lesson 2]
+    python -m backend.scripts.fetch_colloquial_images approve-word --id apple --pick 1
+
+A word is only searched for when its line in words.json has a `search_term`;
+"from" or "also" have nothing to show and simply never get one.
+
 Only pictures licensed for commercial use and for modification are asked for, and
 the 600 px thumbnail is fetched, never the full original.
 """
@@ -34,6 +43,7 @@ from pathlib import Path
 import httpx
 
 from backend.config import data_path
+from backend.services.colloquial import wordlist
 
 API = "https://api.openverse.org/v1/images/"
 HEADERS = {"User-Agent": "tafheem-colloquial/1.0 (learning app; image proposals)"}
@@ -124,17 +134,77 @@ def approve(unit: str, lesson: int, phrase: int, pick: int, client: httpx.Client
     return relative
 
 
+def _words_file() -> Path:
+    return data_path("colloquial_dir") / wordlist.FILE
+
+
+def propose_words(unit: str, lesson: int | None, client: httpx.Client) -> dict:
+    """Candidates for every word of a unit's topics that has a search_term and no picture yet."""
+    spine_file, _, _ = paths(unit)
+    meanings = json.loads(_words_file().read_text(encoding="utf-8"))["words"]
+    ids = [one for at, topic in enumerate(outline(json.loads(spine_file.read_text(encoding="utf-8")), unit)["lessons"], start=1)
+           if not lesson or at == lesson for one in topic.get("words", [])]
+    found, missing = {}, []
+    for one in dict.fromkeys(ids):
+        meaning = meanings.get(one, {})
+        if meaning.get("image"):
+            continue
+        if not meaning.get("search_term"):
+            missing.append(one)
+            continue
+        found[one] = {"english": meaning["english"], "search_term": meaning["search_term"],
+                      "candidates": search(meaning["search_term"], client)}
+    review = {"found": found, "needs_search_term": missing}
+    review_file = data_path("colloquial_dir") / "review" / f"words-{unit}.json"
+    review_file.parent.mkdir(parents=True, exist_ok=True)
+    review_file.write_text(json.dumps(review, ensure_ascii=False, indent=2), encoding="utf-8")
+    return review
+
+
+def approve_word(word: str, pick: int, client: httpx.Client) -> str:
+    """Save the chosen candidate for one word, credit it, and point the word at it."""
+    reviews = sorted((data_path("colloquial_dir") / "review").glob("words-*.json"))
+    entry = next(found[word] for review in reviews if word in (found := json.loads(review.read_text(encoding="utf-8"))["found"]))
+    chosen = entry["candidates"][pick - 1]
+    picture = client.get(chosen["thumbnail"], follow_redirects=True)
+    picture.raise_for_status()
+
+    folder = data_path("colloquial_dir") / "images" / "words"
+    name = f"{slug(word)}.jpg"
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / name).write_bytes(picture.content)
+    sidecar = folder / "attribution.json"
+    credits = json.loads(sidecar.read_text(encoding="utf-8")) if sidecar.exists() else {}
+    credits[name] = {k: v for k, v in chosen.items() if k != "thumbnail"} | {"search_term": entry["search_term"]}
+    sidecar.write_text(json.dumps(credits, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    whole = json.loads(_words_file().read_text(encoding="utf-8"))
+    whole["words"][word]["image"] = f"words/{name}"
+    _words_file().write_text(wordlist.text(whole["words"], whole.get("_about", "")), encoding="utf-8")
+    return f"words/{name}"
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("action", choices=("propose", "approve"))
-    ap.add_argument("--unit", type=int, required=True)
+    ap.add_argument("action", choices=("propose", "approve", "propose-words", "approve-word"))
+    ap.add_argument("--unit", type=int)
+    ap.add_argument("--id")
     ap.add_argument("--lesson", type=int)
     ap.add_argument("--phrase", type=int)
     ap.add_argument("--pick", type=int)
     args = ap.parse_args(argv)
-    unit = unit_name(args.unit)
+    if args.action != "approve-word" and not args.unit:
+        sys.exit(f"{args.action} needs --unit")
+    unit = unit_name(args.unit) if args.unit else ""
     with httpx.Client(headers=HEADERS, timeout=TIMEOUT_SECONDS) as client:
-        if args.action == "propose":
+        if args.action == "propose-words":
+            review = propose_words(unit, args.lesson, client)
+            print(f"{len(review['found'])} words with candidates, {len(review['needs_search_term'])} have no search_term")
+        elif args.action == "approve-word":
+            if not (args.id and args.pick):
+                sys.exit("approve-word needs --id and --pick")
+            print("saved", approve_word(args.id, args.pick, client))
+        elif args.action == "propose":
             review = propose(unit, args.lesson, client)
             print(f"{len(review['found'])} phrases with candidates, {len(review['needs_search_term'])} need a search_term")
         else:
