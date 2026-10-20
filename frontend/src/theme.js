@@ -7,10 +7,12 @@
  * makes the whole look editable from one file.
  *
  * A look is the groups as written with a named theme's overrides laid over,
- * key by key. Switching looks rewrites the same variables on :root, so
+ * key by key, except the palette, which each look tones for its own grounds
+ * (lib/tone.js). Switching looks rewrites the same variables on :root, so
  * nothing downstream knows there is more than one.
  */
 import theme from './theme.json'
+import { tonePalette } from './lib/tone'
 
 const UNPREFIXED_GROUP = 'color'
 const PRIVATE_KEY = '_'
@@ -18,7 +20,7 @@ const PALETTE_GROUP = 'palette'
 const THEMES_GROUP = 'themes'
 const REFERENCE = '@'
 
-const { base: BASE_THEME, 'hint-key': HINT_KEY, device: DEVICE, looks: LOOKS } = theme[THEMES_GROUP]
+const { base: BASE_THEME, 'hint-key': HINT_KEY, device: DEVICE, looks: LOOKS, tone: TONE } = theme[THEMES_GROUP]
 
 /** The look the groups in theme.json describe, and what the landing page always wears. */
 export { BASE_THEME }
@@ -39,13 +41,32 @@ const isReference = (value) => typeof value === 'string' && value.startsWith(REF
 const cssValue = (value) =>
   isReference(value) ? `var(${variableName(PALETTE_GROUP, value.slice(1))})` : String(value)
 
+const withoutPrivate = (values) => Object.fromEntries(Object.entries(values).filter(([key]) => !isPrivate(key)))
+
+/** The palette as one look wears it: every colour toned for its grounds, then its exceptions. */
+const palettes = {}
+function paletteOf(name) {
+  const look = LOOKS[name] ?? {}
+  const color = { ...theme.color, ...look.color }
+  palettes[name] ??= {
+    ...tonePalette(
+      withoutPrivate(theme[PALETTE_GROUP]),
+      { ...TONE, ...look.tone },
+      [color.bg, color.surface, color['surface-hi']],
+      look.scheme === 'dark',
+    ),
+    ...look[PALETTE_GROUP],
+  }
+  return palettes[name]
+}
+
 /** The groups and keys of one look, in file order: [group, [[key, cssValue]...]]. */
 function groupsOf(name) {
   return Object.entries(theme)
     .filter(([group, values]) => !isPrivate(group) && group !== THEMES_GROUP && typeof values === 'object')
     .map(([group, values]) => [
       group,
-      Object.entries({ ...values, ...LOOKS[name]?.[group] })
+      Object.entries(group === PALETTE_GROUP ? paletteOf(name) : { ...values, ...LOOKS[name]?.[group] })
         .filter(([key]) => !isPrivate(key))
         .map(([key, value]) => [key, cssValue(value)]),
     ])

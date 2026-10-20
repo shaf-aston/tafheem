@@ -65,10 +65,13 @@ describe('settings', () => {
   it('puts the chosen look on :root, and the base one back', () => {
     setSetting('theme', 'parchment')
     expect(applied().get('--bg')).toBe(theme.themes.looks.parchment.color.bg)
-    expect(applied().get('--palette-violet')).toBe(theme.themes.looks.parchment.palette.violet)
+    // The palette is toned per look (lib/tone.js), so paper's violet is its own.
+    const paperViolet = applied().get('--palette-violet')
+    expect(paperViolet).toBe(themeVariable('--palette-violet'))
 
     setSetting('theme', 'ink')
     expect(applied().get('--bg')).toBe(theme.color.bg)
+    expect(applied().get('--palette-violet')).not.toBe(paperViolet)
   })
 
   it('lays the other settings over the look, not under it', () => {
