@@ -65,9 +65,9 @@ working.
 
 ### Phase A: render-test seam
 
-Status: steps 0 and 1 done, and the quiz half of step 2 (`src/test/`). The fake
-backend answers static files from `public/`, so the quiz runs on the real word
-banks. Still to do: the memorise gap.
+Status: done (`src/test/`). The fake backend answers static files from
+`public/`, so the quiz runs on the real word banks; `test/memorise.test.jsx`
+fills in a page and checks the marking.
 
 0. Walking skeleton: add `happy-dom` + `@testing-library/react` as dev
    dependencies, plus `src/test/render.jsx` (a fresh `QueryClient`, data filled in
@@ -126,7 +126,9 @@ Memorise step 2 done: `MemorisePanel.jsx` is 322 lines (was 621); `Line`, `Gap`,
 `RecitedWord` and `SimilarCards` are each their own file in `memorise/`. Lint
 does not catch a JSX component left unimported, so the move was checked by
 scanning every tag against the imports, and by the same Playwright run (Type,
-Pick from 4, Recite, Check) on old and new code. Step 3 (hooks.js tests) next.
+Pick from 4, Recite, Check) on old and new code. Step 3: `hooks.test.jsx` covers
+`useGaps`, `useBookPage`, `useAnswers` and `useHowYouAnswer`; `hooks.js` stays one
+file (454 lines, every hook tested), since splitting it now buys nothing.
 Sarf done: `SarfPanel.jsx` is 76 lines (was 551); the word, the three requests
 and the table they add up to are `lib/useSarf`, and the result, gardaan, cards
 and titles are each their own file in `sarf/`. `test/sarf.test.jsx` types a
