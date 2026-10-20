@@ -1,6 +1,6 @@
 /**
  * One tab on Home, the one tile every section wears: its Arabic name large in its
- * own colour, its name under it, what you do there (laptop up) and your progress.
+ * own colour, its name under it, what you do there (tablet up) and your progress.
  */
 import ArabicText from '../ui/ArabicText'
 import Tile from '../ui/Tile'
@@ -14,7 +14,7 @@ export default function ModuleCard({ tab, accent, index, progressText, onOpen })
           <span aria-hidden="true" className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: accent }} />
           {tab.label}
         </span>
-        <span className="hidden lg:block type-small text-[var(--text-dim)]">{tab.blurb}</span>
+        <span className="hidden sm:block type-small text-[var(--text-dim)]">{tab.blurb}</span>
         {progressText && <span className="block type-small tabular-nums text-[var(--text-faint)]">{progressText}</span>}
       </span>
     </Tile>

@@ -105,8 +105,8 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
                       <circle cx="9" cy="18" r="1.6" /><circle cx="15" cy="18" r="1.6" />
                     </svg>
                   </span>
-                    )}
-                  </div>
+                )}
+              </div>
             )}
           </TabGroups>
           {children}

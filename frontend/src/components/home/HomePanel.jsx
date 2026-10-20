@@ -112,7 +112,7 @@ export default function HomePanel({ accent, onGo }) {
         <div className="space-y-5">
           <TabGroups groups={SHOWN_GROUPS} tabs={OTHERS} heading="h4"
             className="space-y-2 md:space-y-0 md:grid md:grid-cols-[9rem_1fr] lg:grid-cols-[11rem_1fr] md:gap-4"
-            grid="gap-2 sm:gap-3 grid-cols-3 sm:grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))]">
+            grid="gap-2 sm:gap-3 grid-cols-3 sm:grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] lg:grid-cols-4">
             {card}
           </TabGroups>
         </div>

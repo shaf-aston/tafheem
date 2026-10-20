@@ -10,9 +10,9 @@ export default function TabGroups({ groups, tabs, grid, className = 'space-y-2',
   const id = useId()
   return groups.map((group) => (
     <section key={group.id} className={`pt-1 ${className}`} aria-labelledby={`${id}-${group.id}`}>
-      <div className="flex flex-wrap content-start items-baseline gap-x-2">
-        <Heading id={`${id}-${group.id}`} className="type-small font-bold text-[var(--text-dim)]">{group.label}</Heading>
-        {group.note && <span className="type-small text-[var(--text-faint)]">{group.note}</span>}
+      <div>
+        <Heading id={`${id}-${group.id}`} className="type-ui font-semibold">{group.label}</Heading>
+        {group.note && <p className="type-small text-[var(--text-faint)]">{group.note}</p>}
       </div>
       <div className={`grid ${grid}`}>
         {tabs.filter((tab) => tab.group === group.id).map(children)}
