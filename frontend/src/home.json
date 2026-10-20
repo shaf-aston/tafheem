@@ -1,42 +1,22 @@
 {
-  "_comment": "Home's words and counts. greetings: the first whose 'until' (hour, 24h) is above the hour of day. {n} in a line is filled in by the code.",
-  "greetings": [
-    {
-      "until": 12,
-      "text": "Good morning"
-    },
-    {
-      "until": 18,
-      "text": "Good afternoon"
-    },
-    {
-      "until": 24,
-      "text": "Good evening"
-    }
-  ],
+  "_comment": "Home's words and counts. {n} in a line is filled in by the code.",
   "copy": {
     "title-resume": "Pick up where you stopped.",
     "title-first": "Start here.",
-    "welcome-resume": "One tap to carry on. Everything else is one step away.",
     "welcome-first": "Tafheem reads Arabic word by word, with the reason. Start with one small lesson.",
-    "greeting-first": "Welcome",
     "placeholder": "Type an ayah, a word, @root or a sentence",
     "resume-label": "Where you stopped",
     "resume-go": "Continue",
     "first-label": "Your first lesson",
     "first-go": "Begin",
-    "all": "All sections",
+    "all": "Or pick a section",
     "keys": "Press 1 to {n} to open the tabs along the top.",
     "offline-title": "Not connected yet",
     "offline-body": "Lessons will not load until the backend is running. Your place is saved on this device.",
     "guest": "Keep your progress on every device.",
-    "streak-one": "1 day in a row",
-    "streak-many": "days in a row",
     "learnt": "{learnt} learnt",
     "answers-one": "{n} answer",
     "answers-many": "{n} answers",
-    "progress-error": "Your progress did not load",
-    "guest-go": "Log in",
-    "progress-error-body": "Nothing was lost."
+    "guest-go": "Log in"
   }
 }

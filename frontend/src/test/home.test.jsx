@@ -8,6 +8,7 @@ import { renderScreen } from './render'
 import HomePanel from '../components/home/HomePanel'
 import { visit } from '../lib/journey'
 import { FIXED, HOME, LISTED } from '../lib/tabs'
+import knobs from '../home.json'
 
 const FIRST = LISTED.find((tab) => tab.id === FIXED.find((id) => id !== HOME))
 
@@ -25,7 +26,7 @@ describe('Home', () => {
     expect(container.querySelector('details')).toBeNull()
     const others = LISTED.filter((tab) => tab.id !== HOME)
     // Each tab once in the list; the first-lesson card above is the only other place one shows.
-    const list = screen.getByRole('region', { name: /All sections/ })
+    const list = screen.getByRole('region', { name: knobs.copy.all })
     for (const tab of others) {
       expect(within(list).getAllByText(tab.blurb), tab.id).toHaveLength(1)
     }
