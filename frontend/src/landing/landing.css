@@ -124,7 +124,7 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .marquee:hover .m-track, .landing-page .marquee-section[data-off] .m-track { animation-play-state: paused; }
 @keyframes landing-mq { to { transform: translateX(-50%); } }
 .landing-page .m-item { font-family: var(--font-serif); font-size: clamp(1.3rem, 2.6vw, 2rem); white-space: nowrap; display: flex; align-items: center; gap: 3rem; }
-.landing-page .m-item b { font-weight: 600; color: transparent; -webkit-text-stroke: 1px var(--gold); }
+.landing-page .m-item b { --outline-c: var(--gold); --outline-w: 1px; font-weight: 600; }
 .landing-page .m-item:nth-child(even) b { color: var(--gold-hi); -webkit-text-stroke: 0; }
 
 /* ================= SCROLL STORY: pill rail over a turning star ================= */

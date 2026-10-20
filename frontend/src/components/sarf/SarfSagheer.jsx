@@ -14,7 +14,7 @@ export default function SarfSagheer({ summary, accent }) {
           so the slots are laid out that way too, same as the grid below. */}
       <div dir="rtl" className="grid gap-2 grid-cols-[repeat(auto-fit,minmax(8rem,1fr))]">
         {summary.map((slot, i) => (
-          <div key={slot.label} style={{ '--i': i }} className="card-tile rise-in text-center">
+          <div key={slot.label} style={{ '--i': i }} className="tile rise-in text-center">
             <SlotHead label={slot.label} term={slot.term} />
             <ArabicText className="block mt-1 text-[var(--text)]">{slot.arabic}</ArabicText>
           </div>

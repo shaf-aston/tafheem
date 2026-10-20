@@ -1,34 +1,38 @@
 // @vitest-environment happy-dom
-// Home lists every browsable tab from the registry, goes to one on a tap, and
-// offers the places left open in other tabs.
+// Home offers where you stopped and the recent tabs from the journey, a first-visit
+// start when there is no path, and every tab behind All sections.
 import { describe, expect, it, vi } from 'vitest'
 import { act, fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import HomePanel from '../components/home/HomePanel'
 import { visit } from '../lib/journey'
-import { LISTED } from '../lib/tabs'
+import { FIXED, HOME, LISTED } from '../lib/tabs'
 
-const CARDS = LISTED.filter((tab) => tab.group !== 'start')
+const FIRST = LISTED.find((tab) => tab.id === FIXED.find((id) => id !== HOME))
 
 describe('Home', () => {
-  it('shows one card per tab and opens it on a tap', async () => {
+  it('on a first visit offers the first fixed tab, and opens it on a tap', async () => {
     const onGo = vi.fn()
-    const { client } = renderScreen(<HomePanel accent="#0a7" onGo={onGo} />)
-    client.setQueryData(['overview', null], { modules: [], attempts: 0, correct: 0, learnt: 0, streak: 0 })
-    expect(await screen.findByRole('heading', { name: /Home/ })).toBeTruthy()
-    for (const tab of CARDS) {
-      expect(screen.getByRole('button', { name: new RegExp(tab.blurb.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) }), tab.id).toBeTruthy()
-    }
-    fireEvent.click(screen.getByRole('button', { name: /Type a sentence/ }))
-    expect(onGo).toHaveBeenCalledWith('nahw')
+    renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
+    fireEvent.click(await screen.findByRole('button', { name: /Begin/ }))
+    expect(onGo).toHaveBeenCalledWith(FIRST.id, undefined)
   })
 
-  it('offers a place left open in another tab', async () => {
+  it('lists every other tab behind All sections', async () => {
     const onGo = vi.fn()
-    renderScreen(<HomePanel accent="#0a7" onGo={onGo} />)
+    renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
+    const others = LISTED.filter((tab) => tab.id !== HOME)
+    for (const tab of others) {
+      expect(screen.getAllByText(tab.blurb).length, tab.id).toBeGreaterThan(0)
+    }
+  })
+
+  it('carries on where you stopped, with the word', async () => {
+    const onGo = vi.fn()
+    renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
     act(() => { visit('dict', 'كتب') })
-    fireEvent.click(await screen.findByRole('button', { name: /Dictionary\s+كتب/ }))
+    fireEvent.click(await screen.findByRole('button', { name: /Continue/ }))
     expect(onGo).toHaveBeenCalledWith('dict', 'كتب')
   })
 })
