@@ -159,6 +159,49 @@ dialog {
 }
 
 
+/* Every pop-up arrives the same way: its box rises in and its scrim fades, over
+   base-ms like a tab. Settings and All sections used to appear fully formed
+   while the launcher sprang in, so two taps in the same header felt like two
+   apps. The launcher is left out: its ring has its own arrival (.dance), and
+   its scrim already fades in command.css. A sheet pinned to the bottom of a
+   phone (.sections-menu there, a BottomSheet's mt-auto) slides up instead,
+   from where the finger is. */
+/* :where(), so the leave rule below, plainer, still wins while leaving. */
+dialog:where([open]:not(.sh-dialog)) > * {
+  animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-slide-ease) backwards;
+}
+
+
+dialog:where([open]:not(.sh-dialog))::backdrop {
+  animation: fade-in calc(var(--motion-base-ms) * 1ms) ease;
+  --fade-from: 0;
+}
+
+
+/* The way out, every pop-up alike (lib/useModal.js sets data-leaving): the box
+   and its scrim fade over instant-ms, then the dialog closes. */
+/* A tap during the fade would land on the scrim and be lost. */
+dialog[data-leaving] { pointer-events: none; }
+
+
+dialog[data-leaving] > * {
+  animation: fade-out calc(var(--motion-instant-ms) * 1ms) ease forwards;
+}
+
+
+dialog[data-leaving]::backdrop {
+  animation: fade-out calc(var(--motion-instant-ms) * 1ms) ease forwards;
+}
+
+
+@media (max-width: 39.99rem) {
+  dialog:where(.sections-menu[open]) > *,
+  dialog:where(.mt-auto[open]) > * {
+    animation-name: sheet-up;
+  }
+}
+
+
 dialog::backdrop {
   background: var(--shadow-scrim);
 }

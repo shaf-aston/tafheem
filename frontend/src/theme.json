@@ -241,6 +241,8 @@
     "_shake_comment": "How long a wrong answer shakes its head. The .shake class in styles/motion.css lasts this long, and the code that clears a shaking tile after it waits this long too, so the two cannot drift apart.",
     "shake-ms": 330,
     "spring-ease": "cubic-bezier(.34,1.56,.64,1)",
+    "_settle_comment": "The curve for anything with weight: a box growing, a block of content arriving, the backdrop drifting. It eases out and stops, where spring-ease overshoots by a tenth; an overshoot suits a small thing landing (a star, the launcher ring) and makes a wide box or a column of text wobble.",
+    "settle-ease": "cubic-bezier(.22,1,.36,1)",
     "_slide_comment": "A step sideways: the next page, or a strip arriving from the edge, and the same step back as it leaves. slide-px is how far it travels, slide-ease how it settles.",
     "slide-px": 40,
     "slide-ease": "cubic-bezier(.2,.8,.2,1)",

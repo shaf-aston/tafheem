@@ -58,7 +58,7 @@ export function useCommandLine(tabs, onRun, extras = {}) {
       && (e.key === 'ArrowRight' || e.key === 'ArrowLeft'
         || e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
       e.preventDefault()
-      onSpin(e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : -1)
+      onSpin(e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : -1, e.key === 'ArrowDown' || e.key === 'ArrowUp')
       return true
     }
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {

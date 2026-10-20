@@ -43,7 +43,7 @@
   background: color-mix(in srgb, var(--surface) 70%, transparent);
   color: var(--text-faint);
   transition:
-    width calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    width calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
     border-color calc(var(--motion-base-ms) * 1ms) ease,
     background-color calc(var(--motion-base-ms) * 1ms) ease,
     box-shadow calc(var(--motion-base-ms) * 1ms) ease;
@@ -129,12 +129,12 @@
 .cb-key {
   flex-shrink: 0;
   font-family: var(--font-ui);
-  font-size: var(--type-tiny);
+  font-size: max(var(--type-tiny), 0.6875rem);
   letter-spacing: 0.04em;
   padding: 0.1rem 0.3rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  color: var(--text-faint);
+  color: var(--text-dim);
   transition: opacity calc(var(--motion-instant-ms) * 1ms) ease;
 }
 
@@ -161,7 +161,7 @@
   background: var(--surface);
   box-shadow: var(--shadow-pop);
   transform-origin: 100% 0;
-  animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease);
+  animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease);
   --rise-from: 0;
   --rise-y: -0.4rem;
   --rise-scale: 0.985;
@@ -345,7 +345,18 @@
    further down. */
 .sh-pair {
   --sh-panel-w: min(34rem, 92vw);
-  --sh-ring-w: calc(var(--command-orbit-r) * 2 + var(--command-sat-w));
+  /* The radius follows the count (--count, from SpatialHome): the ring's round
+     is one satellite's width per tab plus a little air, never less than the
+     token. The token alone was written for seven tabs; at thirteen the
+     satellites sat on each other (13 overlapping pairs measured at 1280px). */
+  /* k is the air a satellite needs on the round: its box stands upright, so
+     at the diagonals two neighbours meet corner to corner and need the
+     chord's 1.4, not 1. The width shrinks first, so the whole ring stays
+     inside the screen's height with room for the keys line below. */
+  --sh-k: 1.4;
+  --sh-w: min(var(--command-sat-w), calc((100vh - 7rem) / (var(--count, 7) * var(--sh-k) / 3.1416 + 1)));
+  --sh-r: max(var(--command-orbit-r), calc(var(--count, 7) * var(--sh-w) * var(--sh-k) / 6.2832));
+  --sh-ring-w: calc(var(--sh-r) * 2 + var(--sh-w));
   --sh-split: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -383,7 +394,7 @@
   .sh-ring,
   .sh-panel {
     grid-area: 1 / 1;
-    transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+    transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
   }
 
   /* English runs left to right, so its answers open on the right. */
@@ -421,8 +432,8 @@
 .sh-orbit {
   position: relative;
   flex-shrink: 0;
-  width: calc(var(--command-orbit-r) * 2 + var(--command-sat-w));
-  height: calc(var(--command-orbit-r) * 2 + var(--command-sat-w));
+  width: var(--sh-ring-w);
+  height: var(--sh-ring-w);
   transform: rotate(var(--turn));
   transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
 }
@@ -432,7 +443,7 @@
    reads as the thing being alive rather than as something happening. */
 .sh-track {
   position: absolute;
-  inset: calc(var(--command-sat-w) / 2);
+  inset: calc(var(--sh-w) / 2);
   border: 1px dashed color-mix(in srgb, var(--border-hi) 70%, transparent);
   border-radius: 50%;
   animation:
@@ -451,12 +462,17 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: var(--command-sat-w);
+  width: var(--sh-w);
+  /* As tall as it is wide, so the air worked out above (--sh-k) holds whatever
+     the satellite carries; what does not fit the square is dropped below. */
+  aspect-ratio: 1;
+  justify-content: center;
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.6rem 0.4rem;
+  gap: 0.15rem;
+  padding: 0.5rem 0.4rem;
   border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
@@ -468,7 +484,7 @@
   transform:
     translate(-50%, -50%)
     rotate(var(--a))
-    translateY(calc(-1 * var(--command-orbit-r) * var(--spread)))
+    translateY(calc(-1 * var(--sh-r) * var(--spread)))
     rotate(calc(-1 * var(--a)))
     rotate(calc(-1 * var(--turn)))
     scale(var(--pop));
@@ -515,9 +531,15 @@
 
 
 .sh-sat-label { color: var(--text); font-size: var(--type-body); }
+/* A narrow satellite (a short screen, many tabs) takes the smaller label. */
+/* A container query measures the content box, a satellite's width less its
+   padding and edge (about a rem). Under 84px of content the Arabic name no
+   longer fits the square; under 76px the English takes the smaller size. */
+@container (max-width: 5.25rem) { .sh-sat-arabic { display: none; } }
+@container (max-width: 4.75rem) { .sh-sat-label { font-size: var(--type-small); } }
 
 
-.sh-sat-arabic { color: var(--text-faint); }
+.sh-sat-arabic { color: var(--text-faint); line-height: 1.1; }
 
 
 .sh-orb {
@@ -529,7 +551,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  width: calc(var(--command-orbit-r) * 1.15);
+  width: calc(var(--sh-r) * 1.15);
   aspect-ratio: 1;
   padding: 1rem;
   border: 1px solid color-mix(in srgb, var(--c) 35%, var(--border));
@@ -598,10 +620,40 @@
 /* A phone cannot hold a ring this wide: the satellites would touch. Drawn
    smaller rather than allowed to overlap. */
 @media (max-width: 40rem) {
+  /* A phone cannot hold the ring: thirteen tabs need a round wider than the
+     screen (432px at 390px). So the ring becomes three columns, the orb at
+     the top, and each tab still arrives with the same dance, only growing
+     where it stands. The arrows still turn the selection; nothing spins. */
+  .sh-ring { width: 100%; max-width: 24rem; }
+  /* Answers take the screen below the orb; the tabs behind would run off it. */
+  .sh-pair:not([data-side='none']) .sh-sat { display: none; }
   .sh-orbit {
-    --command-orbit-r: 7.5rem;
-    --command-sat-w: 5.25rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 24rem;
+    height: auto;
+    transform: none;
   }
+  .sh-track { display: none; }
+  .sh-sat {
+    position: static;
+    width: auto;
+    aspect-ratio: auto;
+    padding: 0.45rem 0.25rem;
+    transform: scale(var(--pop));
+  }
+  .sh-sat-label { font-size: var(--type-small); }
   .sh-sat-arabic { display: none; }
+  .sh-orb {
+    position: static;
+    grid-column: 1 / -1;
+    justify-self: center;
+    order: -1;
+    width: 10rem;
+    margin-bottom: 0.25rem;
+    transform: scale(var(--pop));
+  }
 }
 

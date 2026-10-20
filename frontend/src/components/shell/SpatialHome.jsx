@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { useCommandLine } from '../../lib/useCommandLine'
+import { PHONE, useMedia } from '../../lib/useMedia'
 import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import { isArabic } from '../../lib/arabicText'
 import { moodFrom } from '../../lib/mood'
@@ -26,6 +27,8 @@ const NAME = 'sh'
 export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }) {
   const dialog = useModal(open)
   const input = useRef(null)
+  // The orb on a phone is narrower than the full placeholder; a cut word read as a mistake.
+  const phone = useMedia(PHONE)
 
   // Which satellite the ring is turned to. Counted as steps rather than held as
   // an index, so spinning past the last one keeps turning the same way instead
@@ -37,7 +40,8 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
   const [startAt, setStartAt] = useState(0)
   const count = tabs.length
   const selected = ((steps % count) + count) % count
-  const spin = (by) => setSteps((current) => current + by)
+  // Up and down are a row on a phone, where the ring is three columns.
+  const spin = (by, vertical = false) => setSteps((current) => current + by * (vertical && phone ? 3 : 1))
 
   const line = useCommandLine(tabs, (row) => {
     onClose()
@@ -94,7 +98,7 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
       className="sh-dialog"
     >
       {/* The stage fills the screen, so its own empty space is the backdrop here. */}
-      <div className="sh-stage" onClick={closeOnBackdrop(onClose)}>
+      <div className="sh-stage" style={{ '--count': count }} onClick={closeOnBackdrop(onClose)}>
         {/* Two halves that slide apart the moment there is something to show.
             Which half goes where follows the language being typed, so the
             answers always open on the side that language runs towards and the
@@ -103,6 +107,21 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
         <div className="sh-ring">
         <div className="sh-orbit" style={{ '--turn': `${-steps * (360 / count)}deg` }}>
           <span className="sh-track" aria-hidden="true" />
+
+          <div className="sh-orb dance" style={{ '--c': colorOf(tabs[selected].id) }}>
+            <Mascot mood={moodFrom({})} place="orb" />
+            {/* The header's own box, not a second one that looks like it: same
+                glass, same grey completion ahead of the cursor, same rounded
+                edge. No Ctrl K badge, because the shortcut that opens this is
+                already what the reader just pressed. */}
+            <CommandField
+              line={line}
+              name={NAME}
+              inputRef={input}
+              placeholder={phone ? 'Search' : 'Search or ask'}
+              showing={rows.length > 0}
+            />
+          </div>
 
           {tabs.map((tab, i) => {
             const angle = i * (360 / count)
@@ -142,20 +161,6 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
             )
           })}
 
-          <div className="sh-orb dance" style={{ '--c': colorOf(tabs[selected].id) }}>
-            <Mascot mood={moodFrom({})} place="orb" />
-            {/* The header's own box, not a second one that looks like it: same
-                glass, same grey completion ahead of the cursor, same rounded
-                edge. No Ctrl K badge, because the shortcut that opens this is
-                already what the reader just pressed. */}
-            <CommandField
-              line={line}
-              name={NAME}
-              inputRef={input}
-              placeholder="Search or ask"
-              showing={rows.length > 0}
-            />
-          </div>
         </div>
         </div>
 
@@ -179,7 +184,7 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
 
         {rows.length === 0 && (
           <p className="sh-hint">
-            <kbd>←</kbd> <kbd>→</kbd> spin · <kbd>Enter</kbd> open{' '}
+            <kbd>←</kbd> <kbd>→</kbd> {phone ? 'move' : 'spin'} · <kbd>Enter</kbd> open{' '}
             {/* Spun with the arrows, the ring moving is the only thing that says
                 which tab Enter would open. Spoken here so it is not sight only. */}
             <span className="sh-hint-tab" aria-live="polite">{tabs[selected].label}</span>

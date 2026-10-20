@@ -166,12 +166,14 @@ textarea.arabic-lg {
 }
 
 
-/* On a phone the two smallest rungs are lifted to a readable floor, and on a
-   touch screen .tap (pills, links, small buttons) is at least layout.tap square. Both
-   wrap the token rather than redefine it: theme.js writes the tokens inline on
-   the root, which no stylesheet rule could override. */
+/* The two smallest rungs are lifted to a readable floor of 11px on every
+   screen: at 9px a settings heading was below what a desktop reads at arm's
+   length too (the detector's floor for functional text), not only a phone's.
+   On a touch screen .tap (pills, links, small buttons) is at least layout.tap
+   square. Both wrap the token rather than redefine it: theme.js writes the
+   tokens inline on the root, which no stylesheet rule could override. */
+.type-micro, .type-tiny, .eyebrow { font-size: max(var(--type-micro), 0.6875rem); }
 @media (max-width: 40rem) {
-  .type-micro, .type-tiny, .eyebrow { font-size: max(var(--type-micro), 0.6875rem); }
   .type-small { font-size: max(var(--type-small), 0.75rem); }
 }
 

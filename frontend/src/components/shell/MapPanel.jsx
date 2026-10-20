@@ -83,7 +83,7 @@ export default function MapPanel({ open, onClose }) {
     <dialog
       ref={dialog}
       onClose={handleDialogClose}
-      onClick={closeOnBackdrop((e) => e.currentTarget.close())}
+      onClick={closeOnBackdrop(onClose)}
       onKeyDown={handleKeyDown}
       aria-labelledby="map-title"
       className="m-auto p-0 bg-transparent max-w-[min(76rem,96vw)] w-full h-[min(46rem,92vh)]"
@@ -133,7 +133,7 @@ export default function MapPanel({ open, onClose }) {
               <button type="button" onClick={() => setZoom((z) => Math.min(ZOOM_MAX, z + ZOOM_STEP))} className="icon-button" aria-label="Zoom in">+</button>
             </div>
           )}
-          <button type="button" onClick={() => dialog.current?.close()} title="Close (Esc)" aria-label="Close" className="icon-button">
+          <button type="button" onClick={onClose} title="Close (Esc)" aria-label="Close" className="icon-button">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M18 6 6 18M6 6l12 12" />
             </svg>
