@@ -15,6 +15,11 @@ export function useHealth() {
   const { data, isPending, isError, refetch } = useQuery({
     queryKey: ['health'],
     queryFn: healthCheck,
+    // A failed check is kept as failed. Retrying when the next panel mounts
+    // reset the query to pending for the retry's whole second, so the offline
+    // banner vanished and came back on every tab switch, moving the page 126px
+    // twice. The retry is retryHealth, pressed on purpose.
+    retryOnMount: false,
   })
 
   return {

@@ -128,7 +128,7 @@
      every hover lift on the element. Measured on the quiz options, they jumped
      2px with no transition at all. `backwards` still hides the element before its
      stagger delay, and hands transform back afterwards. */
-  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
+  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) backwards;
   animation-delay: calc(var(--i, 0) * var(--motion-stagger-ms) * 1ms);
 }
 
@@ -175,6 +175,14 @@
 
 .slide-away {
   animation: slide-out calc(var(--motion-base-ms) * 1ms) var(--motion-slide-ease) forwards;
+}
+
+
+/* A sheet rising from the foot of a phone: the same step as slide-in, turned
+   upright. Its own keyframes, since slide-in's distance is a sideways one. */
+@keyframes sheet-up {
+  from { opacity: var(--motion-arrive-from); transform: translateY(calc(var(--motion-slide-px) * 1px)); }
+  to   { opacity: 1; transform: none; }
 }
 
 

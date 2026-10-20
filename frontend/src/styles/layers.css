@@ -91,7 +91,7 @@
   color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength), transparent);
   transition-property: top, right, width, transform, color, filter;
   transition-duration: calc(var(--motion-base-ms) * 4ms);
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-timing-function: var(--motion-settle-ease);
 }
 
 

@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { useCommandLine } from '../../lib/useCommandLine'
+import { PHONE, useMedia } from '../../lib/useMedia'
 import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import { isArabic } from '../../lib/arabicText'
 import { moodFrom } from '../../lib/mood'
@@ -26,6 +27,8 @@ const NAME = 'sh'
 export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }) {
   const dialog = useModal(open)
   const input = useRef(null)
+  // The orb on a phone is narrower than the full placeholder; a cut word read as a mistake.
+  const phone = useMedia(PHONE)
 
   // Which satellite the ring is turned to. Counted as steps rather than held as
   // an index, so spinning past the last one keeps turning the same way instead
@@ -94,7 +97,7 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
       className="sh-dialog"
     >
       {/* The stage fills the screen, so its own empty space is the backdrop here. */}
-      <div className="sh-stage" onClick={closeOnBackdrop(onClose)}>
+      <div className="sh-stage" style={{ '--count': count }} onClick={closeOnBackdrop(onClose)}>
         {/* Two halves that slide apart the moment there is something to show.
             Which half goes where follows the language being typed, so the
             answers always open on the side that language runs towards and the
@@ -152,7 +155,7 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
               line={line}
               name={NAME}
               inputRef={input}
-              placeholder="Search or ask"
+              placeholder={phone ? 'Search' : 'Search or ask'}
               showing={rows.length > 0}
             />
           </div>
