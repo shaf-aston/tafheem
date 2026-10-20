@@ -33,7 +33,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   useEffect(() => () => session.dispose(), [session])
 
   const { state, problem, before, now, ended, sure, checking, elsewhere } = view
-  const heard = before.length ? joinWindows(before, now.words) : now.words
+  const heard = useMemo(() => (before.length ? joinWindows(before, now.words) : now.words), [before, now.words])
 
   // The page is finished once its last word is in what has already been read
   // for the last time (`before`, folded at a pause), so no later reading can
@@ -45,6 +45,13 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
     [pageWords, before, startAt],
   )
   const finished = final?.heardTo != null
+  // Lining the page up is the costly part, and the view changes for things
+  // that do not move it (a check queued or answered), so it is redone only
+  // when the words do.
+  const followed = useMemo(
+    () => (finished ? final : follow(pageWords, heard, { startAt, ended })),
+    [finished, final, pageWords, heard, startAt, ended],
+  )
 
   // What a recording in progress listens against, without a new session for it:
   // the dialect setting, the words of the page being recited, and whether that
@@ -61,7 +68,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
     state,
     problem,
     heard,
-    marks: bySound(finished ? final : follow(pageWords, heard, { startAt, ended }), surer(sure.before, sure.now)),
+    marks: bySound(followed, surer(sure.before, sure.now)),
     // Finished and weighed: every check of this page is back. The panel turns
     // the page on this, so the last ayah is marked by sound before it goes.
     finished: finished && checking === 0,
