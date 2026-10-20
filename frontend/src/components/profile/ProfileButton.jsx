@@ -25,7 +25,7 @@ export default function ProfileButton() {
   })
   useQuery({ queryKey: ['account-check', name], queryFn: check, enabled: !!name, retry: false })
   const { rewards, gain } = useRewards(name)
-  if (!name) return <LogInButton />
+  if (!name) return <LogInButton quiet />
 
   return (
     <>
