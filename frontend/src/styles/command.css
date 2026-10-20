@@ -467,8 +467,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.6rem 0.4rem;
+  gap: 0.15rem;
+  padding: 0.5rem 0.4rem;
   border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
@@ -535,7 +535,7 @@
 @container (max-width: 4.75rem) { .sh-sat-label { font-size: var(--type-small); } }
 
 
-.sh-sat-arabic { color: var(--text-faint); }
+.sh-sat-arabic { color: var(--text-faint); line-height: 1.1; }
 
 
 .sh-orb {

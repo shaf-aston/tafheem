@@ -5,6 +5,8 @@
  */
 import { useEffect, useRef } from 'react'
 
+import { reducedMotion } from './motion'
+
 export function useModal(open) {
   const ref = useRef(null)
   useEffect(() => {
@@ -22,7 +24,7 @@ export function useModal(open) {
     const leave = () => {
       if (!element.open || 'leaving' in element.dataset) return
       const root = getComputedStyle(document.documentElement)
-      const ms = Number(root.getPropertyValue('--motion-instant-ms')) * Number(root.getPropertyValue('--motion-scale'))
+      const ms = reducedMotion() ? 0 : Number(root.getPropertyValue('--motion-instant-ms')) * Number(root.getPropertyValue('--motion-scale'))
       if (!(ms > 0)) return element.close()
       element.dataset.leaving = ''
       setTimeout(() => {
@@ -34,14 +36,20 @@ export function useModal(open) {
     element.addEventListener('cancel', cancel)
     if (open && !element.open) element.showModal()
     if (!open && element.open) leave()
-    // Closed when its tab is hidden (App keeps the panel alive) and shown again
-    // on return: a modal left open in a hidden tab would leave the page inert.
     return () => {
       element.removeEventListener('close', stale, true)
       element.removeEventListener('cancel', cancel)
-      if (element.open) element.close()
     }
   }, [open])
+  // Closed when its tab is hidden (App keeps the panel alive) and shown again
+  // on return: a modal left open in a hidden tab would leave the page inert.
+  // Its own effect, run only on the way out: in the effect above this cleanup
+  // ran on every change of `open`, closing the dialog at once before leave()
+  // could fade it, so only Esc ever had its exit.
+  useEffect(() => {
+    const element = ref.current
+    return () => { if (element?.open) element.close() }
+  }, [])
   return ref
 }
 
