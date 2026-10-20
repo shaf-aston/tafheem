@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import ErrorAlert from '../ui/ErrorAlert'
+import { copy, noSignal } from '../../lib/offline'
 
 // Telling a visitor to start a server on their own machine only makes sense on
 // the machine the server would run on.
@@ -17,8 +18,8 @@ export default function BackendBanner({ status }) {
   if (status !== 'error' || dismissed) return null
   return (
     <div className="shell pt-4 relative">
-      <ErrorAlert title={OWN_MACHINE ? 'Backend offline' : 'Not connected yet'}>
-        {OWN_MACHINE ? (
+      <ErrorAlert title={noSignal() ? copy['offline-title'] : OWN_MACHINE ? 'Backend offline' : 'Not connected yet'}>
+        {noSignal() ? copy['offline-body'] : OWN_MACHINE ? (
           <>
             The backend is not running.
             {/* The command was the only advice here; most readers can't run

@@ -1,0 +1,32 @@
+{
+  "_comment": "The app on a phone with no signal, decided here and nowhere else. vite/offline.js reads this at build: every built file that no pack claims and core-skip does not drop is the core, saved on the first visit (the app's code, styles, fonts, icons). A pack is extra, saved only when the reader asks in Settings: 'match' claims built files by path, 'api' + 'count' names server answers (bytes measured once, since the build cannot ask the server). 'keep' lists the server answers worth keeping once seen, so what was opened still opens; anything about a person (progress, profile) is left out on purpose. wait-ms is how long a slow connection is waited for before the saved copy is shown instead. Copy for Settings and the offline banner is under 'copy'.",
+
+  "core-skip": "\\.(mp4|jpe?g|webp|woff|mp3|md)$|^index\\.html$|^_recite/",
+  "wait-ms": 3500,
+  "seen-max": 400,
+  "keep": [
+    "/api/quran/", "/api/hadith/", "/api/dictionary/", "/api/rijal/", "/api/usul/", "/api/timelines",
+    "/api/tarkeeb/", "/api/tamreen", "/api/sources", "/api/colloquial", "/api/dawah", "/api/daleel/", "/api/speak"
+  ],
+
+  "packs": [
+    { "id": "quran", "label": "Qur'an", "blurb": "All 114 surahs, Arabic with English.", "api": "/api/quran/surah/{n}", "count": 114, "bytes": 2532682 },
+    { "id": "words", "label": "Word lists", "blurb": "The words and sentences behind Quiz and Memorise.", "match": "^words/" },
+    { "id": "books", "label": "Books", "blurb": "Grow's books: al-Ajurrumiyya, al-Quduri, Nawawi's forty and more.", "match": "^grow/(?!backdrops/)" }
+  ],
+
+  "copy": {
+    "title": "Offline",
+    "core-ready": "The app is saved on this phone ({size}), so it opens with no signal.",
+    "core-saving": "Saving the app on this phone…",
+    "unsupported": "This browser can't keep the app offline.",
+    "seen": "Whatever you open is kept too. Download more below:",
+    "get": "Download",
+    "remove": "Remove",
+    "getting": "{done} of {total}…",
+    "ready": "✓ On this phone",
+    "failed": "Didn't finish. Try again with a signal.",
+    "offline-title": "You're offline",
+    "offline-body": "What's saved on this phone still opens. The rest comes back with a signal."
+  }
+}
