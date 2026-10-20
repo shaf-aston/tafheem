@@ -6,6 +6,7 @@
 import { ahead } from '../../lib/warm'
 
 import MoreIcon from '../ui/MoreIcon'
+import TabMark from '../ui/TabMark'
 
 export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, onAll, onHover }) {
   const dock = ids.map((id) => tabs.find((tab) => tab.id === id))
@@ -27,7 +28,7 @@ export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, 
             style={{ '--c': colorOf(tab.id) }}
             className={`${item} ${on ? 'text-[var(--c)]' : 'text-[var(--text-dim)]'}`}
           >
-            <span className={`bottom-nav-mark arabic-inline ${on ? 'bottom-nav-on' : ''}`} lang="ar" dir="rtl" aria-hidden="true">{tab.mark}</span>
+            <span className={`bottom-nav-mark ${on ? 'bottom-nav-on' : ''}`} aria-hidden="true"><TabMark tab={tab} /></span>
             {tab.short}
           </button>
         )

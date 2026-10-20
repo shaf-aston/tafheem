@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { colorFor } from '../theme'
 import { accentOf, GROUPS, LISTED, TABS } from './tabs'
+import Emblem from '../components/ui/Emblem'
 
 describe('the tab registry', () => {
   it('gives every tab its own id', () => {
@@ -9,10 +10,10 @@ describe('the tab registry', () => {
     expect(new Set(ids).size).toBe(ids.length)
   })
 
-  it('gives every tab its own one-letter mark', () => {
-    const marks = TABS.map((tab) => tab.mark)
-    for (const mark of marks) expect(mark).toBeTruthy()
-    expect(new Set(marks).size).toBe(marks.length)
+  it('gives every tab its own picture', () => {
+    const emblems = TABS.map((tab) => tab.emblem)
+    for (const tab of TABS) expect(Emblem({ id: tab.emblem }), tab.id).not.toBeNull()
+    expect(new Set(emblems).size).toBe(emblems.length)
   })
 
   it('files every tab under a heading All sections has', () => {

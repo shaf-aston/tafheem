@@ -9,10 +9,10 @@
  *   aqidah  geometric lantern          quran   soft-glow open book
  *   hadith  sketched scroll and pen    sarf    cartoon tree of letters
  *   nahw    chunky 3-D blocks       daleel  book under a lens
- *   dict    bookmarked lexicon      mem     heart holding lines
+ *   dict    bookmarked lexicon      mem     a lawh, one line left blank
  *   quiz    question card           timelines  events on a line
  *   dawah   speech bubble, star     colloq  two speech bubbles
- *   kit     toolbox
+ *   kit     toolbox                 home    an open arch, a crescent over it
  */
 const ink = { fill: 'none', stroke: 'currentColor', strokeLinecap: 'round', strokeLinejoin: 'round' }
 
@@ -103,11 +103,14 @@ const ART = {
       <text x="30" y="40" textAnchor="middle" fontSize="16" fontWeight="700" fill="currentColor" fontFamily="var(--font-arabic)">ع</text>
     </>
   ),
+  // The board a child learns hifz on: lines written out, one left blank to fill (the tab's gaps).
   mem: (
     <>
-      <path d="M32 56C14 44 6 34 6 23c0-8 6-13 13-13 6 0 10 3 13 8 3-5 7-8 13-8 7 0 13 5 13 13 0 11-8 21-26 33z" fill="currentColor" opacity=".2" />
-      <path className="em-lift" d="M32 56C14 44 6 34 6 23c0-8 6-13 13-13 6 0 10 3 13 8 3-5 7-8 13-8 7 0 13 5 13 13 0 11-8 21-26 33z" {...ink} strokeWidth="2.6" />
-      <path d="M20 28h24M22 35h20M26 42h12" {...ink} strokeWidth="2" opacity=".7" />
+      <path d="M12 20h40v36a4 4 0 01-4 4H16a4 4 0 01-4-4z" fill="currentColor" opacity=".2" />
+      <path d="M12 20h40v36a4 4 0 01-4 4H16a4 4 0 01-4-4zM24 20v-6a8 8 0 0116 0v6" {...ink} strokeWidth="2.6" />
+      <circle cx="32" cy="14" r="2.4" fill="currentColor" />
+      <path d="M19 30h26M19 38h7M38 38h7M19 46h26M19 54h14" {...ink} strokeWidth="2.6" />
+      <path className="em-rays" d="M29 38h6" {...ink} strokeWidth="2.6" strokeDasharray="1 3" />
     </>
   ),
   quiz: (
@@ -143,6 +146,14 @@ const ART = {
       <path d="M6 10h30a4 4 0 014 4v16a4 4 0 01-4 4H18l-8 7v-7H6a4 4 0 01-4-4V14a4 4 0 014-4z" fill="currentColor" opacity=".55" />
       <path className="em-lift em-late" d="M58 26H30a4 4 0 00-4 4v14a4 4 0 004 4h16l8 7v-7h4a4 4 0 004-4V30a4 4 0 00-4-4z" {...ink} strokeWidth="2.4" />
       <path d="M33 37h22M33 42h14" {...ink} strokeWidth="2" opacity=".6" />
+    </>
+  ),
+  home: (
+    <>
+      <path d="M14 58V32a18 18 0 0136 0v26z" fill="currentColor" opacity=".2" />
+      <path d="M14 58V32a18 18 0 0136 0v26M6 58h52" {...ink} strokeWidth="2.6" />
+      <path d="M25 58V40a7 7 0 0114 0v18" {...ink} strokeWidth="2.2" />
+      <path className="em-rays" d="M34 3a5 5 0 100 9 4 4 0 110-9z" fill="currentColor" />
     </>
   ),
   kit: (

@@ -766,8 +766,6 @@ button.tile:hover { border-color: var(--c); }
   width: 3.25rem;
   height: 1.75rem;
   border-radius: 999px;
-  font-size: 1.25rem;
-  line-height: 1;
   transition: background-color calc(var(--motion-base-ms) * 1ms) ease;
 }
 

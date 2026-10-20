@@ -4,6 +4,8 @@
  * by the whole slot; letting a tab go over a slot puts it there (lib/dock.js).
  * Draws what it is given and decides nothing.
  */
+import TabMark from '../ui/TabMark'
+
 export default function DockSlots({ size, tabs, colorOf, drag, grip }) {
   return (
     <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}>
@@ -23,7 +25,7 @@ export default function DockSlots({ size, tabs, colorOf, drag, grip }) {
           >
             {tab ? (
               <>
-                <span className="arabic-inline" lang="ar" dir="rtl" aria-hidden="true">{tab.mark}</span>
+                <span aria-hidden="true"><TabMark tab={tab} /></span>
                 {tab.short}
               </>
             ) : <span aria-hidden="true">+</span>}

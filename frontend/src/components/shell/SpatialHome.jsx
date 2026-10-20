@@ -21,6 +21,7 @@ import ArabicText from '../ui/ArabicText'
 import CommandField from './CommandField'
 import CommandResults from './CommandResults'
 import Mascot from '../ui/Mascot'
+import TabMark from '../ui/TabMark'
 
 const NAME = 'sh'
 
@@ -153,7 +154,7 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
                 }}
               >
                 <span className="sh-sat-mark" aria-hidden="true">
-                  <ArabicText size="sm">{tab.mark}</ArabicText>
+                  <TabMark tab={tab} />
                 </span>
                 <span className="sh-sat-label">{tab.label}</span>
                 <ArabicText size="sm" className="sh-sat-arabic">{tab.arabic}</ArabicText>

@@ -24,7 +24,7 @@ const PATHS = {
   manners: 'M4 5h16v11H9l-5 4z',
   heart: 'M12 20s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z',
   endtimes: 'M6 3h12M6 21h12M7 3c0 6 10 6 10 9s-10 3-10 9M17 3c0 6-10 6-10 9s10 3 10 9',
-  people: 'M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4l-5.3 3 1.2-6-4.5-4.1 6-.7z',
+  people: 'M9 11a3 3 0 1 0 0-6a3 3 0 0 0 0 6zM3 20v-1a6 6 0 0 1 12 0v1M16 11a3 3 0 1 0 0-6M17 14a5 5 0 0 1 4 5v1',
 }
 
 /** The timelines' pictures, drawn on a 48 box: bigger, since they sit faint behind a card. */
