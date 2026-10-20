@@ -202,7 +202,6 @@ async def listen(
     before: str = Query(
         "", description="The words of the last reading whose place was not sure, so this one is placed with them in front",
     ),
-    trial: bool = Query(False, description="Hear this with the trial model on this machine alone, no Groq; 503 when none is installed"),
 ) -> Heard:
     """What was said, and optionally which ayahs it was.
 
@@ -218,7 +217,6 @@ async def listen(
             )
         body = await _read_recording(audio, filed)
         is_recitation = recite or match
-        model = _trial_model(trial and is_recitation, filed)
         journal.note("reading.received", bytes=len(body), recite=is_recitation)
 
         if not body:
@@ -238,7 +236,7 @@ async def listen(
             try:
                 heard_started = time.perf_counter()
                 text, hits = await run_in_threadpool(
-                    recitation.hear, body, match_ayahs=match, recite=recite, fusha=fusha, model=model,
+                    recitation.hear, body, match_ayahs=match, recite=recite, fusha=fusha,
                 )
                 journal.note(
                     "reading.heard", ms=round((time.perf_counter() - heard_started) * 1000), chars=len(text),
@@ -267,7 +265,7 @@ async def listen(
         # `_turn` protects this machine's own CPU, so it is only worth queuing
         # behind when this machine is the one about to spend it. A reading
         # Groq will answer costs this machine nothing to wait for.
-        if is_recitation and (model or recitation.ears.would_answer_locally()):
+        if is_recitation and recitation.ears.would_answer_locally():
             async with _my_turn(request, "reading") as wanted:
                 if not wanted:
                     filed.done(200)

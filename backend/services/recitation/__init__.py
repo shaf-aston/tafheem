@@ -82,7 +82,7 @@ def warm() -> None:
         pass
 
 
-def transcribe(audio: bytes, language: str | None = None, hint: str = "", model: str | None = None) -> str:
+def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str:
     """What was said, as words. Empty when nothing could be made out.
 
     Name a language to hear it in that one; leave it out and it is heard in
@@ -95,7 +95,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "", model:
     """
     if not audio:
         return ""
-    return ears.hear(audio, language, hint, model)
+    return ears.hear(audio, language, hint)
 
 
 def find(heard: str, limit: int = 5) -> list[Match]:
@@ -104,7 +104,7 @@ def find(heard: str, limit: int = 5) -> list[Match]:
 
 
 def hear(
-    audio: bytes, match_ayahs: bool, recite: bool = False, fusha: bool = True, model: str | None = None,
+    audio: bytes, match_ayahs: bool, recite: bool = False, fusha: bool = True,
 ) -> tuple[str, list[Match]]:
     """Words, plus the ayahs they came from when asked.
 
@@ -112,14 +112,16 @@ def hear(
     - `match_ayahs`, `recite`: either makes it a recitation, Arabic and no
       language guess; the first also looks the ayahs up. A search is either.
     - `fusha`: the reader's switch; on sends the register hint, off sends none.
-      A recitation never gets it either way: the Qur'an model hears worse with it.
+      A recitation gets `recitation_hosted_hint` instead, whatever the switch:
+      only Groq's ear reads it (so the words come back vowelled), and the
+      Qur'an model here drops every hint because it hears worse with one.
     """
     settings = get_settings()
+    reciting = match_ayahs or recite
     text = transcribe(
         audio,
-        language=settings.recitation_language if match_ayahs or recite else None,
-        hint=settings.listening_fusha_hint if fusha else "",
-        model=model,
+        language=settings.recitation_language if reciting else None,
+        hint=settings.recitation_hosted_hint if reciting else settings.listening_fusha_hint if fusha else "",
     )
     if not text or not match_ayahs:
         return text, []

@@ -224,14 +224,14 @@ def warm() -> None:
         log.info("listening is unavailable: %s", exc)
 
 
-def transcribe(audio: bytes, language: str | None = None, hint: str = "", model: str | None = None) -> str:
+def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str:
     """What was said, as plain words. Empty when there was nothing to hear.
 
     `language` is the language to hear it in, and naming one makes this a
     recitation: the Qur'an model, no register hint, and a word it is not sure
     of left out. Leaving it out is dictation, heard by the
     general model in whichever of the dictation languages the recording sounds
-    like. `model` swaps the Qur'an model for a recitation (the trial one).
+    like.
 
     The recording becomes sound in sound_of, which is the only place it does,
     and which keeps the last one so the check that follows does not decode the
@@ -244,7 +244,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "", model:
     sound = sound_of(audio)
     reciting = language is not None
     how = dict(
-        model=(model or settings.recitation_model) if reciting else settings.dictation_model,
+        model=settings.recitation_model if reciting else settings.dictation_model,
         language=language or _which_language(sound),
         hint="" if reciting else hint,
         word_min=settings.recitation_word_min if reciting else 0.0,

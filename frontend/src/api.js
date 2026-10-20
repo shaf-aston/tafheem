@@ -316,7 +316,8 @@ export const daleelBooksQuery = {
 // How sure the ear is of each word is a separate question, `checkReading`
 // below, never asked here: a slow score must never hold back the words a
 // reciter is already reading by.
-// `trial` hears this with the server's trial model instead of the usual ears.
+// `trial` is for the two checks below: they score with the server's trial model. A reading is always
+// written down by the usual ears, quick first.
 // `signal` lets a reading be given up on. A recitation asks about the same
 // recording again as it grows, so a reading already on its way is sometimes
 // known to be out of date before it comes back, and on this machine waiting

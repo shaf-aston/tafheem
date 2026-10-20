@@ -399,7 +399,6 @@ export function createRecitingSession({ onChange, deps = {} }) {
             near: page.ayahs.length ? `${page.ayahs[0].key}-${page.ayahs.at(-1).key}` : undefined,
             fusha: page.fusha,
             before: carried,
-            trial: page.trial,
             signal: stopper.signal,
             reading,
           })

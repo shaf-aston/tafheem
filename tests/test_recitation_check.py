@@ -241,27 +241,19 @@ def test_a_search_request_never_takes_the_recitation_turn(monkeypatch):
     assert resp.json()["text"] == "mercy"
 
 
-def test_a_trial_reading_uses_the_trial_model_and_always_takes_the_turn(monkeypatch):
-    seen = {}
-    monkeypatch.setattr(recitation.listen, "trial_model", lambda: "data/trial")
-    monkeypatch.setattr(recitation.ears, "would_answer_locally", lambda: False)
-    monkeypatch.setattr(recitation, "hear", lambda *a, **k: seen.update(k) or ("tuned heard it", []))
-    resp = client.post("/api/listen?recite=true&trial=true", files={"audio": ("r.webm", WEBM)})
-    assert resp.status_code == 200
-    assert seen["model"] == "data/trial"
-
-
-def test_a_standard_reading_carries_no_model(monkeypatch):
+def test_listen_has_no_trial_option_it_is_always_heard_by_the_usual_ears(monkeypatch):
+    """The tuned model judges (/check) but never writes the words down: on a
+    two-thread server it took seconds a reading where Groq takes a fraction."""
     seen = {}
     monkeypatch.setattr(recitation, "hear", lambda *a, **k: seen.update(k) or ("x", []))
-    assert client.post("/api/listen?recite=true", files={"audio": ("r.webm", WEBM)}).status_code == 200
-    assert seen["model"] is None
+    resp = client.post("/api/listen?recite=true&trial=true", files={"audio": ("r.webm", WEBM)})
+    assert resp.status_code == 200
+    assert "model" not in seen
 
 
 def test_a_trial_without_an_installed_model_is_a_503_never_another_ear(monkeypatch):
     monkeypatch.setattr(recitation.listen, "trial_model", lambda: "")
-    monkeypatch.setattr(recitation, "hear", lambda *a, **k: (_ for _ in ()).throw(AssertionError("heard")))
-    for path, params in (("/api/listen", {"recite": "true", "trial": "true"}), ("/api/listen/check", {"heard": "قل", "check": "112:1", "trial": "true"}),
+    for path, params in (("/api/listen/check", {"heard": "قل", "check": "112:1", "trial": "true"}),
                          ("/api/listen/check-text", {"heard": "الله", "expected": "اللَّهُ", "trial": "true"})):
         resp = client.post(path, params=params, files={"audio": ("r.webm", WEBM)})
         assert resp.status_code == 503, path
