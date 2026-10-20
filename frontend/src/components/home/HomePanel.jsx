@@ -1,10 +1,11 @@
 /**
- * Home: the first screen, and the way into every tab on phone and desktop.
+ * Home: where the app opens. One thing to carry on with, a few recent tabs,
+ * and every tab behind "All sections".
  *
- * The cards come from the tab registry (lib/tabs.js), so a new tab appears here
- * with no edit. The progress under each card is the overview the profile reads,
+ * Where you stopped and the recent tabs come from the journey (lib/journey.js),
+ * never a list written here; with no history, the fixed tabs (lib/tabs.js)
+ * stand in. The progress under each card is the overview the profile reads,
  * filed to tabs by lib/moduleTab.js. The line is the header's own command line.
- * Continue lists the last places visited in other tabs (lib/journey.js).
  */
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -12,52 +13,82 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchOverview } from '../../lib/progress'
 import { getProfile } from '../../lib/profile'
 import { useRewards } from '../../lib/useRewards'
-import { useJourney } from '../../lib/journey'
+import { useHealth } from '../../lib/useHealth'
+import { jumpTabs, resumePlace, useJourney } from '../../lib/journey'
 import { progressByTab } from '../../lib/moduleTab'
 import { useCommandLine } from '../../lib/useCommandLine'
-import { accentOf, GROUPS, LISTED } from '../../lib/tabs'
+import { accentOf, FIXED, GROUPS, HOME, LISTED, RECENT, START } from '../../lib/tabs'
+import { fill, greeting, progressText } from '../../lib/homeCopy'
 import knobs from '../../home.json'
 
-import SectionHeader from '../ui/SectionHeader'
+import ArabicText from '../ui/ArabicText'
+import Disclosure from '../ui/Disclosure'
+import ErrorAlert from '../ui/ErrorAlert'
+import { Skeleton } from '../ui/Skeleton'
 import CommandField from '../shell/CommandField'
 import CommandResults from '../shell/CommandResults'
-import XpCard from '../profile/XpCard'
-import ProfileDialog from '../profile/ProfileDialog'
 import ModuleCard from './ModuleCard'
-import ContinueRow from './ContinueRow'
+import JumpTile from './JumpTile'
+import ProgressStrip from './ProgressStrip'
+import ResumeCard from './ResumeCard'
 
 const { copy } = knobs
 const NAME = 'home'
-const OTHERS = LISTED.filter((tab) => tab.id !== 'home')
-
-// The newest place per tab, newest first, leaving out Home itself.
-function recentPlaces(steps) {
-  const seen = new Set(['home'])
-  const places = []
-  for (const step of [...steps].reverse()) {
-    if (seen.has(step.tab) || !step.value) continue
-    seen.add(step.tab)
-    places.push(step)
-  }
-  return places.slice(0, knobs['continue-max'])
-}
+const OTHERS = LISTED.filter((tab) => tab.id !== HOME)
+const FALLBACK = FIXED.filter((id) => id !== HOME)
+const KEY_COUNT = FIXED.length + RECENT.length
+const tabOf = (id) => LISTED.find((tab) => tab.id === id)
 
 export default function HomePanel({ accent, onGo }) {
   const [name] = useState(getProfile)
-  const [asking, setAsking] = useState(false)
   const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview, enabled: !!name, retry: false })
   const { rewards } = useRewards(name)
   const { steps } = useJourney()
+  const health = useHealth()
   const line = useCommandLine(LISTED, (row) => onGo(row.tabId, row.value))
   const sums = progressByTab(overview.data?.modules)
-  const streak = overview.data?.streak
   const showing = line.rows.length > 0
+  const offline = health.status === 'error'
+
+  const resume = resumePlace(steps, LISTED, HOME)
+  const first = !resume
+  const lead = tabOf(resume?.tab ?? FALLBACK[0])
+  const tiles = jumpTabs(steps, {
+    listed: LISTED, fallback: FALLBACK, home: HOME, skip: lead.id, pin: offline ? knobs['offline-pin'] : null,
+    count: first ? knobs.tiles.first : knobs.tiles.recent,
+  })
+  const jumpLabel = first ? copy['jump-first'] : copy['jump-resume']
+
+  const progressStrip = (
+    <>
+      {name && overview.isPending && <Skeleton className="h-16 w-full" />}
+      {name && overview.isError && <ErrorAlert inline title={copy['progress-error']} onRetry={overview.refetch}>{copy['progress-error-body']}</ErrorAlert>}
+      {!(name && (overview.isPending || overview.isError)) && (
+        <ProgressStrip name={name} rewards={rewards} streak={overview.data?.streak} copy={copy} />
+      )}
+    </>
+  )
 
   return (
     <div className="panel space-y-6" style={{ '--c': accent }}>
-      <SectionHeader title={copy.title} arabic={copy.arabic} subtitle={copy.subtitle} />
+      <header className="relative isolate space-y-2">
+        <ArabicText aria-hidden="true" className="outline-text hidden sm:block absolute -z-10 top-0 right-0 [--outline-size:6rem] leading-none pointer-events-none select-none">
+          فهم
+        </ArabicText>
+        <p className="rise-in type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{first ? copy['greeting-first'] : greeting()}</p>
+        <h2 className="rise-in text-3xl sm:text-5xl font-semibold leading-tight" style={{ '--i': 1 }}>
+          {first ? copy['title-first'] : copy['title-resume']}
+        </h2>
+        <p className="rise-in relative text-[var(--text-dim)] max-w-[46ch]" style={{ '--i': 2 }}>
+          {first ? copy['welcome-first'] : copy['welcome-resume']}
+        </p>
+      </header>
 
-      <div className="cb" data-open="true" style={{ width: "100%", "--command-rest-w": "100%" }}>
+      {offline && (
+        <ErrorAlert title={copy['offline-title']} onRetry={health.retryHealth}>{copy['offline-body']}</ErrorAlert>
+      )}
+
+      <div className="cb" data-wide>
         <CommandField line={line} name={NAME} placeholder={copy.placeholder} showing={showing} />
         {showing && (
           <CommandResults id={`${NAME}-results`} name={NAME} rows={line.rows} tabs={LISTED} colorOf={accentOf}
@@ -66,35 +97,45 @@ export default function HomePanel({ accent, onGo }) {
         )}
       </div>
 
-      <ContinueRow places={recentPlaces(steps)} title={copy.continue} onGo={onGo} />
-
-      {name ? (
-        <div className="grid grid-cols-2 gap-3">
-          <XpCard rewards={rewards} />
-          {streak > 0 && (
-            <p className="col-span-2 type-small text-[var(--text-dim)]">
-              {streak === 1 ? copy['streak-one'] : `${streak} ${copy['streak-many']}`}
-            </p>
-          )}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-[1.15fr_1fr]">
+        <div className="space-y-6 min-w-0">
+        <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume?.value}
+          label={first ? copy['first-label'] : copy['resume-label']} goLabel={first ? copy['first-go'] : copy['resume-go']}
+          progressText={progressText(sums[lead.id])} onGo={onGo} />
+        {progressStrip}
         </div>
-      ) : (
-        <button type="button" onClick={() => setAsking(true)} aria-haspopup="dialog"
-          className="tap type-small px-3 rounded-[var(--radius-sm)] border border-[var(--border)] text-[var(--text-dim)] hover:text-[var(--text)]">
-          {copy.guest}
-        </button>
-      )}
-      {asking && <ProfileDialog onClose={() => setAsking(false)} />}
 
-      {GROUPS.filter((group) => group.id !== 'start').map((group) => (
-        <section key={group.id} className="space-y-2" aria-label={group.label}>
-          <h3 className="type-small font-bold text-[var(--text-dim)]">{group.label}</h3>
-          <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {OTHERS.filter((tab) => tab.group === group.id).map((tab) => (
-              <ModuleCard key={tab.id} tab={tab} accent={accentOf(tab.id)} progress={sums[tab.id]} onOpen={onGo} />
-            ))}
-          </div>
+        <section className="space-y-2" aria-label={jumpLabel}>
+          <h3 className="type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{jumpLabel}</h3>
+          {health.status === 'checking' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3" role="status" aria-label={copy['progress-loading']}>
+              {tiles.map((id) => <Skeleton key={id} className="h-24" />)}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {tiles.map((id, at) => <JumpTile key={id} tab={tabOf(id)} accent={accentOf(id)} index={at} wide={tiles.length % 2 === 1 && at === tiles.length - 1} onOpen={onGo} />)}
+            </div>
+          )}
+          <p className="type-small text-[var(--text-dim)] [@media(pointer:coarse)]:hidden">
+            {fill(copy.keys, { n: KEY_COUNT })}
+          </p>
         </section>
-      ))}
+      </div>
+
+      <Disclosure tone="strong" label={`${copy.all} (${OTHERS.length})`} className="[&_summary]:min-h-11">
+        <div className="space-y-4 pt-2">
+          {GROUPS.filter((group) => group.id !== START).map((group) => (
+            <section key={group.id} className="space-y-2" aria-label={group.label}>
+              <h3 className="type-small font-bold text-[var(--text-dim)]">{group.label}</h3>
+              <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                {OTHERS.filter((tab) => tab.group === group.id).map((tab) => (
+                  <ModuleCard key={tab.id} tab={tab} accent={accentOf(tab.id)} progressText={progressText(sums[tab.id])} onOpen={onGo} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </Disclosure>
     </div>
   )
 }

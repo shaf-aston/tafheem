@@ -17,6 +17,10 @@
 }
 
 
+/* Fills the line it sits in (Home's own search), instead of the header's compact width. */
+.cb[data-wide] { --command-rest-w: 100%; width: 100%; }
+
+
 .cb-field {
   display: flex;
   align-items: center;

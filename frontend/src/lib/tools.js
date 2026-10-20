@@ -17,6 +17,8 @@ export const TOOLS = [
     danger: true,
     // It forgets everything, so the first click only asks: a second within a
     // few seconds goes ahead. One click is the click made on the way to Map.
+    // Once confirmed it still waits a few seconds, with an Undo, before forgetting.
+    pending: { message: 'Starting over', undo: 'Undo' },
     armed: { label: 'Sure? Start over', aria: 'Press again to start over, or wait and nothing happens' },
   },
   {

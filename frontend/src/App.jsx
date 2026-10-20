@@ -1,7 +1,7 @@
 import { Activity, useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { FIXED, GROUPS, LISTED, TABS, accentOf } from './lib/tabs'
+import { FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/tabs'
 import { idle, inTurn } from './lib/warm'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
@@ -26,6 +26,9 @@ import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
 import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
+import UndoToast from './components/ui/UndoToast'
+
+const startOver = TOOLS.find((tool) => tool.id === 'startOver')
 
 const queryClient = new QueryClient({
   // The data is fixed for the life of the backend: keep every answer, so a
@@ -153,7 +156,7 @@ function AppContent() {
 
       <InstallBanner />
 
-      <BackendBanner status={status} />
+      {!TABS.find((tab) => tab.id === activeTab)?.ownsHealth && <BackendBanner status={status} />}
 
       {/* The tabpanel role sits on the inner element, not on <main>: overriding
           main's own role would leave the page with no main landmark to skip to. */}
@@ -192,7 +195,7 @@ function AppContent() {
             column of its own, which is why a list of thirteen sources wrapped
             into a stripe while two thirds of the page sat empty beside it. */}
         <div className="shell space-y-5">
-          <SourceFooter tab={activeTab} onSeeAll={() => setSettingsOpen(true)} />
+          {activeTab !== HOME && <SourceFooter tab={activeTab} offline={status === 'error'} onSeeAll={() => setSettingsOpen(true)} />}
 
           {/* The colophon, on the same pane as the page and only as wide as its
               words, so the backdrop still shows around it. */}
@@ -203,6 +206,7 @@ function AppContent() {
           </div>
         </div>
       </footer>
+      <UndoToast message={tools.undo.pending && startOver.pending.message} undoLabel={startOver.pending.undo} onUndo={tools.undo.cancel} />
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
       <MapPanel open={mapOpen} onClose={() => setMapOpen(false)} />
       <SpatialHome

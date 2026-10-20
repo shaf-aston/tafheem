@@ -130,7 +130,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
         />
 
         {phone
-          ? <SettingsPill label={pillWords.join(' · ')} title="How you answer" align="end">{practise}</SettingsPill>
+          ? <SettingsPill label={pillWords.join(' · ')} title="How you answer" align="start">{practise}</SettingsPill>
           : practise}
       </div>
 
@@ -166,27 +166,18 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
               {/* One short live line: where reciting is following from, or the
                   one thing worth knowing before typing. Where to begin is
                   chosen on the page itself, a word at a time. */}
-              <span className="text-[var(--text-faint)]" aria-live="polite">
-                {way === 'recite'
-                  ? reciting.marks.began != null
-                    ? `following you from ${startLabel}`
-                    : reciting.listening
-                      ? 'listening for where you are'
-                      : 'tap a word to start'
-                  : way === 'type' || similar ? 'vowels not needed' : null}
-              </span>
+              {/* Reciting says what to do in its own dock; typing has one
+                  thing worth knowing first. */}
+              {way !== 'recite' && (way === 'type' || similar) && (
+                <span className="text-[var(--text-faint)]">vowels not needed</span>
+              )}
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               {/* Only when there is something covered to uncover. Two sizes
                   of help, because being stuck on one word and having lost the
                   thread of a whole ayah are not the same trouble. What they
                   give is marked as given, never as recited. */}
-              {hidden && way === 'recite' ? (
-                <>
-                  <Chip accent={accent} onClick={() => show(false)}>Show a word</Chip>
-                  <Chip accent={accent} onClick={() => show(true)}>Show this ayah</Chip>
-                </>
-              ) : !similar && (
+              {way !== 'recite' && !similar && (
                 <Chip accent={accent} onClick={reDeal}>New gaps</Chip>
               )}
               {/* Off to start with, and that is the point: "Say He (is) Allah
@@ -270,6 +261,14 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
               marks={reciting.marks}
               lines={recitedPage.lines}
               accent={accent}
+              status={reciting.marks.began != null ? `Following you from ${startLabel}` : 'Or tap any word to begin there'}
+              // Two sizes of help, because being stuck on one word and having
+              // lost the thread of a whole ayah are not the same trouble. What
+              // they give is marked as given, never as recited.
+              help={hidden ? [
+                { label: 'Show a word', onClick: () => show(false) },
+                { label: 'Show this ayah', onClick: () => show(true) },
+              ] : null}
               onStart={listen}
               onStop={reciting.stop}
             />

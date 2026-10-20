@@ -11,7 +11,7 @@ function Track({ reverse }) {
     <div className="marquee" style={reverse ? { marginTop: '1rem' } : undefined}>
       <div className={`m-track${reverse ? ' rev' : ''}`}>
         {items.map((s, i) => (
-          <span className="m-item" key={s + i}><b>{s}</b></span>
+          <span className="m-item" key={s + i}><b className="outline-text">{s}</b></span>
         ))}
       </div>
     </div>

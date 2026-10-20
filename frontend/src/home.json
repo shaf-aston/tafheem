@@ -1,14 +1,50 @@
 {
-  "_comment": "Home's words. 'continue-max': how many places the Continue row offers.",
-  "continue-max": 3,
+  "_comment": "Home's words and counts. tiles: how many recent-tab tiles show, 'first' on a first visit when there is nothing recent. offline-pin: the tab kept among them while the backend is down. greetings: the first whose 'until' (hour, 24h) is above the hour of day. {n} in a line is filled in by the code.",
+  "tiles": {
+    "recent": 3,
+    "first": 2
+  },
+  "offline-pin": "dict",
+  "greetings": [
+    {
+      "until": 12,
+      "text": "Good morning"
+    },
+    {
+      "until": 18,
+      "text": "Good afternoon"
+    },
+    {
+      "until": 24,
+      "text": "Good evening"
+    }
+  ],
   "copy": {
-    "title": "Home",
-    "arabic": "البداية",
-    "subtitle": "Start anywhere. Your place in each tab is kept.",
+    "title-resume": "Pick up where you stopped.",
+    "title-first": "Start here.",
+    "welcome-resume": "One tap to carry on. Everything else is one step away.",
+    "welcome-first": "Tafheem reads Arabic word by word, with the reason. Start with one small lesson.",
+    "greeting-first": "Welcome",
     "placeholder": "Type an ayah, a word, @root or a sentence",
-    "continue": "Continue",
-    "guest": "Log in to keep your progress",
+    "resume-label": "Where you stopped",
+    "resume-go": "Continue",
+    "first-label": "Your first lesson",
+    "first-go": "Begin",
+    "jump-resume": "Jump back in",
+    "jump-first": "Start anywhere",
+    "all": "All sections",
+    "keys": "Press 1 to {n} to jump to a tab.",
+    "offline-title": "Not connected yet",
+    "offline-body": "Lessons will not load until the backend is running. Your place is saved on this device.",
+    "guest": "Keep your progress on every device.",
     "streak-one": "1 day in a row",
-    "streak-many": "days in a row"
+    "streak-many": "days in a row",
+    "learnt": "{learnt} learnt",
+    "answers-one": "{n} answer",
+    "answers-many": "{n} answers",
+    "progress-loading": "Loading your progress",
+    "progress-error": "Your progress did not load",
+    "guest-go": "Log in",
+    "progress-error-body": "Nothing was lost."
   }
 }
