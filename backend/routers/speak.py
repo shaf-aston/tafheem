@@ -29,7 +29,8 @@ _limit = PerMinute("speech_per_minute")
 
 
 @router.get("")
-async def speak(request: Request, text: str = Query(..., min_length=1), accent: str | None = None) -> Response:
+async def speak(request: Request, text: str = Query(..., min_length=1), accent: str | None = None,
+                speed: str = "normal") -> Response:
     text = speech.tidy(text)
     settings = get_settings()
     if len(text) > settings.speech_max_chars:
@@ -44,10 +45,13 @@ async def speak(request: Request, text: str = Query(..., min_length=1), accent: 
         first = colloquial.voice_of(accent) if accent else None
     except KeyError as exc:
         raise HTTPException(422, "Unknown accent") from exc
+    # A named pace from config only, so no one can ask for a new file per decimal place.
+    if speed not in settings.speech_speeds:
+        raise HTTPException(422, "Unknown speed")
     # lib/speak.js's `prepare` marks a word made ahead of a press, so a press goes first.
     pressed = request.headers.get("x-speak-ahead") != "1"
     try:
-        audio = await run_in_threadpool(speech.say, text, pressed, first)
+        audio = await run_in_threadpool(speech.say, text, pressed, first, settings.speech_speeds[speed])
     except RuntimeError as exc:
         raise HTTPException(503, "No voice is available right now") from exc
     # The same text always sounds the same, so the browser may keep it, and so

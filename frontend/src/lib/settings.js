@@ -128,6 +128,9 @@ onReplaced(() => {
 // Device means whatever the device says now, including after it changes.
 if (THEME_SETTING) followDevice(() => followsDevice(values()[THEME_SETTING.key]) && applySettings())
 
+/** One setting's current value, read once, for code that is not a component (lib/speak.js). */
+export const settingOf = (key) => values()[key]
+
 /** One setting's current value, kept in step across every component showing it. */
 export function useSetting(key) {
   return useSyncExternalStore(

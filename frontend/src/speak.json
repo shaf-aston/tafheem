@@ -1,6 +1,9 @@
 {
   "_comment": "Who says a word aloud when a speaker icon is pressed. lib/speak.js tries each voice in `order` and the first that can say the word plays it. Adding a voice is a block here plus one entry in lib/speak.js; reordering is an edit here only.",
   "order": ["recorded", "server", "browser"],
+  "_repeat": "A word pressed again within repeatMs is said at repeatSpeed, the way a teacher repeats a word slowly. Speeds are the names the server lists in config's speech_speeds; the Voice speed setting picks the usual one.",
+  "repeatMs": 5000,
+  "repeatSpeed": "slow",
   "voices": {
     "recorded": {
       "_comment": "A real reciter saying the word alone, from quran.com's word-by-word audio. Only Qur'an words; the map is built by backend/scripts/build_word_audio.py.",
@@ -11,11 +14,13 @@
       "_comment": "Synthetic voice on this app's backend, for words not in the Qur'an.",
       "url": "/api/speak",
       "_version": "Words are kept by the browser for a year. Change this whenever the server's voice changes, or a word already heard plays the old voice.",
-      "version": "fastpitch-6"
+      "version": "fastpitch-7"
     },
     "browser": {
       "_comment": "The device's own voice, the last resort. Varies by phone and may ignore harakat.",
       "rate": 0.8,
+      "_speeds": "The same names as the server's speech_speeds, as a share of rate.",
+      "speeds": { "normal": 1, "slow": 0.7 },
       "startTimeoutMs": 3000,
       "_preferred": "Arabic voices to choose first, by name (part of it will do), best first: Apple's, Windows', Google's. Otherwise a voice on the device is used. Never a non-Arabic one: it spells the letters out.",
       "preferred": ["Majed", "Maged", "Tarik", "Hoda", "Naayf", "Arabic", "العربية"],

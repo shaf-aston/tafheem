@@ -29,6 +29,18 @@
       }
     },
     {
+      "key": "voice-speed",
+      "section": "General",
+      "label": "Voice speed",
+      "help": "How fast the app's voice says a word. Tap a word again to hear it slower, whichever you pick. Qur'an reciters keep their own pace.",
+      "type": "choice",
+      "default": "normal",
+      "options": [
+        { "id": "normal", "label": "Normal" },
+        { "id": "slow",   "label": "Slow" }
+      ]
+    },
+    {
       "key": "study-size",
       "section": "Reading",
       "label": "Study text size",
