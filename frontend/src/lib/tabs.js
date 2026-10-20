@@ -41,8 +41,8 @@ const KitPanel = panel(() => import('../components/KitPanel'))
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together.
 // `group`: its heading in All sections, an id from GROUPS.
 // `blurb`: one plain line on what you do there (Home's cards).
-// `mark`: one Arabic letter for where only a letter fits (search rail, launcher
-//   ring). Taken from the tab's own name, unique across tabs.
+// `emblem`: the tab's picture (components/ui/Emblem.jsx), on its title and wherever
+//   only a small mark fits (phone bar, search rail, launcher ring). Unique across tabs.
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
 // `modules`: other names its answers are filed under in the progress store, so a
 //   progress row can say which tab it came from.
@@ -65,22 +65,22 @@ export const GROUPS = [
 const GROW_MODULES = [HADITH_MODULE, QURAN_MODULE, ...grow.worlds.filter((world) => world.module).map((world) => world.module)]
 
 export const TABS = [
-  { id: 'home',   label: 'Home',       short: 'Home',   arabic: 'البداية', mark: 'ه', Component: HomePanel, ownsHealth: true, blurb: "Where you left off, your progress, and every tab", group: 'start' },
-  { id: 'nahw',   label: 'Nahw',       short: 'Nahw',   arabic: 'نحو',    mark: 'ن', Component: NahwPanel,   study: true, half: true, blurb: "Type a sentence: every word's role and the reason", group: 'arabic' },
-  { id: 'sarf',   label: 'Sarf',       short: 'Sarf',   arabic: 'صرف',    mark: 'ص', Component: SarfPanel,   study: true, half: true, blurb: "Conjugate any root, or read a verb back", group: 'arabic' },
-  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', mark: 'ق', Component: QuranLookup, open: quranOpen, study: true, blurb: "Read, search and study the Qur'an word by word", group: 'read' },
+  { id: 'home',   label: 'Home',       short: 'Home',   arabic: 'البداية', emblem: 'home', Component: HomePanel, ownsHealth: true, blurb: "Where you left off, your progress, and every tab", group: 'start' },
+  { id: 'nahw',   label: 'Nahw',       short: 'Nahw',   arabic: 'نحو',    emblem: 'nahw', Component: NahwPanel,   study: true, half: true, blurb: "Type a sentence: every word's role and the reason", group: 'arabic' },
+  { id: 'sarf',   label: 'Sarf',       short: 'Sarf',   arabic: 'صرف',    emblem: 'sarf', Component: SarfPanel,   study: true, half: true, blurb: "Conjugate any root, or read a verb back", group: 'arabic' },
+  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', emblem: 'quran', Component: QuranLookup, open: quranOpen, study: true, blurb: "Read, search and study the Qur'an word by word", group: 'read' },
   // Daleel finds a passage, Dictionary a word: reached for together.
-  { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   mark: 'د', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, blurb: "Find the passage that speaks to your question", group: 'read' },
-  { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', mark: 'ح', Component: HadithPanel, open: hadithOpen, study: true, blurb: "Search hadith, with narrators and grading", group: 'read' },
-  { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  mark: 'م', Component: Dictionary,  study: true, blurb: "Look up an Arabic word, root or meaning", group: 'arabic' },
-  { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    mark: 'ف', Component: MemorisePanel, open: memoriseOpen, study: true, blurb: "Learn verses by heart and check your recital", group: 'practise' },
+  { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   emblem: 'daleel', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, blurb: "Find the passage that speaks to your question", group: 'read' },
+  { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', emblem: 'hadith', Component: HadithPanel, open: hadithOpen, study: true, blurb: "Search hadith, with narrators and grading", group: 'read' },
+  { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  emblem: 'dict', Component: Dictionary,  study: true, blurb: "Look up an Arabic word, root or meaning", group: 'arabic' },
+  { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    emblem: 'mem', Component: MemorisePanel, open: memoriseOpen, study: true, blurb: "Learn verses by heart and check your recital", group: 'practise' },
   // Grow, نبات (3:37): a little every day: words, fiqh, Quran and hadith.
-  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   mark: 'ب', Component: GrowPanel, study: true, blurb: "A little every day: words, fiqh, Quran and hadith", group: 'practise', modules: GROW_MODULES },
-  { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel, open: table, blurb: "Practise words and meanings, and review what is due", group: 'practise' },
-  { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, open: load(timelinesQuery), study: true, blurb: "See events and their ayat laid out in order", group: 'more' },
-  { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   mark: 'و', Component: DawahPanel, open: load(dawahQuery), study: true, blurb: "Answers to common questions, with the evidence", group: 'more' },
-  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, open: load(colloquialQuery), blurb: "Everyday spoken Arabic, by dialect", group: 'arabic', study: true, modules: [WORDS_MODULE] },
-  { id: 'kit',    label: 'Kit',        short: 'Kit',    arabic: 'عدة',    mark: 'ك', Component: KitPanel, hidden: true, blurb: "Small tools for study", group: 'more' },
+  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   emblem: 'words', Component: GrowPanel, study: true, blurb: "A little every day: words, fiqh, Quran and hadith", group: 'practise', modules: GROW_MODULES },
+  { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', emblem: 'quiz', Component: QuizPanel, open: table, blurb: "Practise words and meanings, and review what is due", group: 'practise' },
+  { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', emblem: 'timelines', Component: TimelinesPanel, open: load(timelinesQuery), study: true, blurb: "See events and their ayat laid out in order", group: 'more' },
+  { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   emblem: 'dawah', Component: DawahPanel, open: load(dawahQuery), study: true, blurb: "Answers to common questions, with the evidence", group: 'more' },
+  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  emblem: 'colloq', Component: ColloquialPanel, open: load(colloquialQuery), blurb: "Everyday spoken Arabic, by dialect", group: 'arabic', study: true, modules: [WORDS_MODULE] },
+  { id: 'kit',    label: 'Kit',        short: 'Kit',    arabic: 'عدة',    emblem: 'kit', Component: KitPanel, hidden: true, blurb: "Small tools for study", group: 'more' },
 ]
 
 /** The tabs a person can browse to: strip, All sections, command bar, launcher, number keys. */

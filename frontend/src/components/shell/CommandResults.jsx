@@ -15,6 +15,7 @@
  * a page, so the prefix has to differ.
  */
 import ArabicText from '../ui/ArabicText'
+import TabMark from '../ui/TabMark'
 import { grouped, rowId } from '../../lib/commandRoutes'
 
 export default function CommandResults({
@@ -42,7 +43,7 @@ export default function CommandResults({
             data-lit={railTab === tab.id ? 'true' : undefined}
             style={{ '--c': colorOf(tab.id) }}
           >
-            <ArabicText size="sm">{tab.mark}</ArabicText>
+            <TabMark tab={tab} />
           </button>
         ))}
       </div>
@@ -74,9 +75,7 @@ export default function CommandResults({
                       style={{ '--c': accent }}
                     >
                       <span className="cb-row-mark" aria-hidden="true">
-                        <ArabicText size="sm">
-                          {tabs.find((tab) => tab.id === row.tabId)?.mark}
-                        </ArabicText>
+                        <TabMark tab={tabs.find((tab) => tab.id === row.tabId)} />
                       </span>
                       <span className="cb-row-text">
                         {row.arabic

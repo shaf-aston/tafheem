@@ -41,8 +41,12 @@
 }
 .grow-today-art .emblem { width: clamp(110px, 22vw, 190px); height: auto; }
 
-/* ── a panel's title: its picture rides before the name, small ── */
-.section-emblem { align-self: center; margin-inline-end: 2px; }
+/* ── a panel's title: its picture before the name, in the tab's own colour ── */
+.section-emblem { --w: var(--c); width: var(--mark-head); height: var(--mark-head); }
+
+/* ── a tab's small mark (TabMark): the colour of the text around it, held still ── */
+.tab-mark { --w: currentColor; width: var(--mark-size); height: var(--mark-size); }
+.tab-mark [class*='em-'] { animation: none; }
 
 /* ── a world's header: picture and Arabic name side by side ── */
 .grow-world-pic { display: flex; align-items: center; gap: 12px; color: var(--w); }

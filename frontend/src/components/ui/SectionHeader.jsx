@@ -18,8 +18,10 @@ export default function SectionHeader({ title, arabic, subtitle, emblem, aside =
   return (
     <div>
       <div className="flex items-baseline justify-between gap-4 flex-wrap">
-        <div className="flex items-baseline gap-2 flex-wrap">
-          {emblem && <Emblem id={emblem} size={34} className="section-emblem" />}
+        {/* The picture centres on the title; the two names keep one baseline between them. */}
+        <div className="flex items-center gap-2.5 min-w-0">
+          {emblem && <Emblem id={emblem} className="section-emblem" />}
+          <div className="flex items-baseline gap-2 flex-wrap min-w-0">
           {/* No leading at all on the title, so the line box holds the letters
               and nothing else. A title and the sentence explaining it are one
               thing, and the gap between them should be smaller than the gap to
@@ -33,6 +35,7 @@ export default function SectionHeader({ title, arabic, subtitle, emblem, aside =
               {arabic}
             </ArabicText>
           )}
+          </div>
         </div>
 
         <div className="flex items-center justify-end gap-3 flex-wrap min-w-0 ms-auto">

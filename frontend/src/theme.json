@@ -542,6 +542,11 @@
     "label": "'Syne', sans-serif",
     "label-tracking": "0.13em"
   },
+  "mark": {
+    "_comment": "A tab's picture (components/ui/Emblem.jsx). size is the small mark where only a mark fits: the phone's bar, the dock editor, the search rail and rows, the launcher ring (TabMark). head is the picture before a panel's title (SectionHeader), a little taller than the title's capitals so it reads as the title's own.",
+    "size": "1.375rem",
+    "head": "2.125rem"
+  },
   "cta": {
     "_comment": "The call to action (.cta in styles/components.css: Log in, PrimaryButton). pad is its side room, lift-px how far it rises under the pointer and press how small it gives under the finger, nudge-px how far its arrow leans. sheen is how bright the light passing across it is and sheen-beats how long one pass and its rest take, in spring-ms. quiet is the unfilled pill in the header: its height, side room, and the gold of its edge and its hover wash.",
     "pad": "1.25rem",
