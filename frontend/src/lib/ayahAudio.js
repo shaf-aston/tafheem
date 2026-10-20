@@ -73,6 +73,14 @@ export function play(url) {
   return a.play()
 }
 
+/** Play a recording from `from` seconds in, stopping whatever else was playing. */
+export function playFrom(url, from) {
+  const a = audio()
+  // Set once the element knows the new recording; a seek before that is lost.
+  a.addEventListener('loadedmetadata', () => { a.currentTime = Math.max(0, from) }, { once: true })
+  return play(url)
+}
+
 export function stop() {
   if (!player) return
   player.pause()

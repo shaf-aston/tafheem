@@ -11,6 +11,8 @@
  * no knowledge of the screen; the books are in lib/books.js, with no knowledge
  * of either. This file only shows what those two decide.
  */
+import { useState } from 'react'
+
 import { BOOKS } from '../lib/books'
 import { DIFFICULTIES, printedPageOf, score } from '../lib/memorise'
 import { PHONE, useMedia } from '../lib/useMedia'
@@ -58,6 +60,9 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   // behind one pill on a phone, where the pickers and both of these were three
   // rows before the page began.
   const phone = useMedia(PHONE)
+  // The word or ayah whose card is open: { at } or { line }. Only a place; the
+  // card reads the live marks, so what it shows keeps up with the recitation.
+  const [opened, setOpen] = useState(null)
   const ways = waysOf(book)
   const missing = way === 'recite'
     ? [{ id: 'none', label: 'Show all' }, { id: HIDDEN, label: 'Hidden' }]
@@ -230,7 +235,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                   accent={accent}
                   twin={similar && twinned.has(line.label)}
                   recite={way === 'recite'
-                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown }
+                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown, open: opened, setOpen, recordingOf: reciting.recordingOf }
                     : null}
                   // Pressable while listening too: jumping back or ahead must not
                   // mean stopping first. forget() keeps the microphone running.

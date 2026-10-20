@@ -1,6 +1,9 @@
+import { useRef } from 'react'
+
 import { LOOK, SHOWN } from '../../lib/reciteColors'
 
 import ArabicText from '../ui/ArabicText'
+import MarkCard from './MarkCard'
 
 /**
  * One word of the page while it is being recited.
@@ -12,8 +15,12 @@ import ArabicText from '../ui/ArabicText'
  *
  * What came back sits beside the word on the same line, never under it: under
  * it is where it was first put and it was too hard to see.
+ *
+ * A word that has been reached opens its card when pressed (MarkCard); one not
+ * yet reached still starts the recitation there.
  */
-export default function RecitedWord({ word, at, recite, accent, coverWidth, onStartAt }) {
+export default function RecitedWord({ word, at, ayah, recite, accent, coverWidth, onStartAt }) {
+  const anchor = useRef(null)
   const mark = recite.words[at] ?? { state: 'waiting', heard: '' }
   // A word that was asked for rather than said. It is not one of the follower's
   // states, so it is read here and never written back into the marks.
@@ -22,6 +29,8 @@ export default function RecitedWord({ word, at, recite, accent, coverWidth, onSt
   const missed = mark.state === 'missed'
   const here = at === recite.at
   const added = recite.extras.filter((extra) => extra.after === at)
+  const reached = mark.state !== 'waiting'
+  const opened = recite.open?.at === at
   // A covered word shows nothing until it has been reached, right or wrong, or
   // asked for. Every cover on a line is the same width, taken from the longest
   // word among them, because a cover the size of its own word gives it away.
@@ -59,20 +68,26 @@ export default function RecitedWord({ word, at, recite, accent, coverWidth, onSt
 
   return (
     <>
-      {/* The page is the control: pressing a word starts the recitation there.
-          A button rather than a click handler on the text, so it is reachable
-          by keyboard and announces itself, and it carries no look of its own. */}
+      {/* The page is the control: pressing a word starts the recitation there,
+          or once it is reached shows what the ear made of it. A button rather
+          than a click handler on the text, so it is reachable by keyboard and
+          announces itself, and it carries no look of its own. */}
       {onStartAt ? (
-        <button
-          type="button"
-          onClick={() => onStartAt(at)}
-          title="start reciting from here"
-          aria-label={`start reciting from ${word}`}
-          className="inline-flex items-baseline bg-transparent p-0 cursor-pointer rounded-[var(--radius-sm)]
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--c)]/40"
-        >
-          {printed}
-        </button>
+        <span ref={anchor} className="relative inline-flex items-baseline">
+          <button
+            type="button"
+            data-word=""
+            onClick={() => (reached ? recite.setOpen(opened ? null : { at }) : onStartAt(at))}
+            title={reached ? 'what the ear made of this word' : 'start reciting from here'}
+            aria-label={reached ? `${word}, ${look?.label}, show details` : `start reciting from ${word}`}
+            aria-expanded={reached ? opened : undefined}
+            className="inline-flex items-baseline bg-transparent p-0 cursor-pointer rounded-[var(--radius-sm)]
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--c)]/40"
+          >
+            {printed}
+          </button>
+          {opened && reached && <MarkCard ayah={ayah} at={at} recite={recite} anchor={anchor} onStartAt={onStartAt} />}
+        </span>
       ) : printed}
       {mark.heard && (
         <ArabicText

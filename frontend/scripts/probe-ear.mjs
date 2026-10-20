@@ -99,7 +99,7 @@ await page.addInitScript(({ clips, gap, quiet }) => {
     // wait from a clip's last sound to its last word marked is measured.
     window.__saidAt = {}
     setInterval(() => {
-      document.querySelectorAll('button[aria-label^="start reciting from"]').forEach((w, i) => {
+      document.querySelectorAll('button[data-word]').forEach((w, i) => {
         if (window.__saidAt[i] == null && w.querySelector('span[style*="--text-dim"]')) window.__saidAt[i] = Date.now()
       })
     }, 50)
@@ -172,7 +172,7 @@ if (JUMP) {
   const jumpAt = await page.evaluate((clip) => window.__clipStarts[clip], JUMP)
   await page.waitForTimeout((jumpAt - 0.5) * 1000)
   waitedS = jumpAt - 0.5
-  await page.locator('button[aria-label^="start reciting from"]').nth(START).click()
+  await page.locator('button[data-word]').nth(START).click()
   const still = await page.getByRole('button', { name: 'Stop', exact: true }).count()
   check('a word can be pressed while reciting, and reciting carries on', still > 0)
 }
@@ -180,12 +180,12 @@ if (JUMP) {
 // the last word is said the page turns to the next surah by itself, and a
 // look taken after that turn found a fresh page and failed 3 runs in 4.
 const look = () => page.evaluate((start) => {
-  const words = [...document.querySelectorAll('button[aria-label^="start reciting from"]')]
+  const words = [...document.querySelectorAll('button[data-word]')]
   const count = (list, css) => list.reduce((n, w) => n + w.querySelectorAll(`span[style*="${css}"]`).length, 0)
   const line = [...document.querySelectorAll('[aria-live="polite"]')].map((e) => e.innerText)
     .find((t) => /following you from|listening for where you are|tap a word to start/.test(t)) ?? ''
   return {
-    first: words[0]?.getAttribute('aria-label'),
+    first: words[0]?.textContent,
     line,
     total: words.length,
     said: count(words.slice(start), '--text-dim'),
