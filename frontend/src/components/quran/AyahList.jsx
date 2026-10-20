@@ -37,11 +37,13 @@ export default function AyahList({ listRef, ayahs, target, still, onScrolled, ch
     return release
   }, [listRef, reached, target])
 
+  // Unlike other scroll panes, the surah hands a swipe on to the page at its
+  // ends, so on a phone the search above is never out of reach.
   return (
     <ol
       ref={listRef}
       onScroll={(e) => onScrolled(rowAt(e.currentTarget))}
-      className={`scroll-pane flex-1 min-w-0 h-full divide-y divide-[var(--border)] ${still ? 'touch-none [&>li]:pointer-events-none' : ''}`}
+      className={`scroll-pane overscroll-y-auto flex-1 min-w-0 h-full divide-y divide-[var(--border)] ${still ? 'touch-none [&>li]:pointer-events-none' : ''}`}
     >
       {rows.map(row)}
     </ol>

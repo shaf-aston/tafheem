@@ -104,7 +104,7 @@ export default function QuizPanel({ accent, onProgress }) {
     // between them comes out in the wrong order, because the element is neutral
     // and takes the direction of the text either side of it.
     <div className="panel" lang={language} dir={language === 'en' ? 'ltr' : 'rtl'}>
-      <SectionHeader title={say('Quiz')} arabic="اختبار" />
+      <SectionHeader emblem="quiz" title={say('Quiz')} arabic="اختبار" />
 
       <QuizSetup setup={setup} owed={owed} say={say} phone={phone} accent={accent} onChange={startRound} />
 

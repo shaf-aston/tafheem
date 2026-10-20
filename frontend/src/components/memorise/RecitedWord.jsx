@@ -84,9 +84,9 @@ export default function RecitedWord({ word, at, recite, accent, coverWidth, onSt
           {`← ${mark.heard}`}
         </ArabicText>
       )}
-      {added.map((extra) => (
+      {added.map((extra, i) => (
         <ArabicText
-          key={extra.heard}
+          key={`${i}:${extra.heard}`}
           size="sm"
           title="said, and not in the book"
           style={{ color: 'var(--danger)', borderColor: 'var(--danger)' }}

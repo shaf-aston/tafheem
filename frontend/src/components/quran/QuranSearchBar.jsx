@@ -56,7 +56,7 @@ export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSea
               : kind === KIND.ayah
                 ? `Enter opens ${surahs[0].en} ${ayah}.`
                 : `Enter reads ${surahs[0].en}.`}
-            {kind === KIND.text && hasDiacritics(value) && ' Diacritics are optional; leaving them off matches more.'}
+            {kind === KIND.text && hasDiacritics(value) && ' Fewer diacritics, more matches.'}
           </p>
         )
       )}

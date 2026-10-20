@@ -69,7 +69,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
 
   return (
     <div className="panel">
-      <SectionHeader
+      <SectionHeader emblem="dict"
         title="Dictionary"
         arabic="قاموس"
         subtitle="Search an Arabic word, a root or an English meaning, or translate a whole Arabic sentence."

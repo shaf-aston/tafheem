@@ -488,6 +488,19 @@ describe('a reciting session', () => {
     expect(h.session.view().now.words).toEqual(['الرحمن', 'الرحيم'])
   })
 
+  it('keeps a check that answers after the page was found done, so its last ayah is still weighed', async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    await h.session.start()
+    h.speak()
+    await h.pause()
+    await h.answer(0, 'الحمد لله رب العالمين')
+    h.session.update({ ...h.page, done: true })
+    h.checks[0].answer({ '1:2': [1, 1, 1, 1] })
+    await h.wait(0)
+    expect(h.session.view().sure.before).not.toEqual({})
+  })
+
   it("takes the server's place: sure elsewhere moves nothing onto the page, home clears it", async () => {
     const h = harness()
     h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]

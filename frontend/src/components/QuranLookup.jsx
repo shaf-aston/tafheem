@@ -134,7 +134,6 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
 
   return (
     <div className="panel">
-      <QuranSeal wide={Boolean(search.data || at || rootLookup.data)} />
       <SectionHeader title="Quran" arabic="القرآن" emblem="quran" />
 
       <RecentRow
@@ -172,7 +171,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
         <ErrorAlert
           title="Lookup failed"
           error={search.error}
-          fallback="Could not reach the backend. Check that it is running."
+          fallback="Could not reach the server."
           onRetry={() => runSearch()}
         />
       )}
@@ -213,6 +212,9 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
       {at && (
         <QuranReader place={at} accent={accent} onGo={onGo} onPlace={onPlace} onClose={() => setAt(null)} />
       )}
+      {/* Fixed behind the page; last so the panel's gap between blocks never
+          lands above the title. */}
+      <QuranSeal wide={Boolean(search.data || at || rootLookup.data)} />
     </div>
   )
 }
@@ -220,7 +222,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
 function SearchResults({ results, onSelect, accent }) {
   if (results.length === 0) {
     return (
-      <EmptyState>Nothing matched. Try a shorter phrase, or drop the diacritics.</EmptyState>
+      <EmptyState>Nothing matched. Try fewer words, or no diacritics.</EmptyState>
     )
   }
 

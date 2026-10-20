@@ -68,7 +68,7 @@ export default function RecitationBar({ surah, count, from, here, recitation, re
   const round = 'press shrink-0 grid place-items-center rounded-full transition-colors'
   // Only while it recites, or to say why it could not.
   if (!sounding && !failed) return null
-  const skip = `${round} w-8 h-8 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`
+  const skip = `${round} w-10 h-10 text-[var(--text-dim)] hover:text-[var(--text)] disabled:opacity-30`
 
   return (
     <div className="reader-dock rise-in flex items-center gap-2 p-2 pl-3 border-t border-[var(--border)] bg-[var(--surface-hi)]">

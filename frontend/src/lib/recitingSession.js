@@ -439,8 +439,11 @@ export function createRecitingSession({ onChange, deps = {} }) {
             // never waited for here.
             const checkAyahs = page.ayahs
             // Scores are placed by position on the page they were asked about,
-            // so one that answers after the page has turned lands nowhere.
-            const askedOf = page
+            // so one that answers after the page has turned lands nowhere. The
+            // page's words say which page it is: the rest of `page` changes on
+            // the same page too (done, fusha), and the last ayah's check is the
+            // one that answers just after `done` flips.
+            const askedOf = page.pageWords
             // follow()'s own rule for a wrong word: settle-words past it, or a
             // pause. Counted between the first and last words heard right, not
             // lineUp's `at`: the ear's made-up tail (نهاية الدرس) pairs with the
@@ -460,7 +463,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
                 ayahs: checkAyahs.map((line) => line.key),
                 sent: false,
                 apply: (scored) => {
-                  if (!live() || page !== askedOf) return
+                  if (!live() || page.pageWords !== askedOf) return
                   const placed = settledScores(byPlace(scored, checkAyahs), from, to)
                   set(({ sure }) => ({
                     sure: folded

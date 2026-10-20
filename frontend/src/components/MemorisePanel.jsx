@@ -102,7 +102,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
 
   return (
     <div className="panel" {...swipe}>
-      <SectionHeader
+      <SectionHeader emblem="mem"
         title="Memorise"
         arabic="حفظ"
         subtitle="Fill in the gaps"

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { ayahEnd } from '../../lib/ayahEnd'
 import { useRecitedWord } from '../../lib/useRecitedWord'
 
@@ -11,6 +13,17 @@ import GlossedAyah from './GlossedAyah'
  */
 export default function AyahRow({ ayah, english, glosses, learnt, allMeanings, src, segments, open, onOpen }) {
   const lit = useRecitedWord(src, segments)
+  // A touch screen has no hover, so a tap on a word shows its meaning first; a
+  // second tap on the same word, or a tap anywhere else, opens the ayah.
+  const [peek, setPeek] = useState(-1)
+  const tap = (e) => {
+    if (!(window.getSelection()?.isCollapsed ?? true)) return
+    const word = e.target.closest?.('.gloss-word[data-gloss]')
+    const i = word ? Number(word.dataset.i) : -1
+    if (i >= 0 && i !== peek && window.matchMedia?.('(pointer: coarse)').matches) { setPeek(i); return }
+    setPeek(-1)
+    onOpen(ayah.ayah)
+  }
   return (
     <li className="surah-row">
       {/* Not a <button>: text inside a button cannot be dragged over to select. The
@@ -19,7 +32,7 @@ export default function AyahRow({ ayah, english, glosses, learnt, allMeanings, s
       <div
         role="button"
         tabIndex={0}
-        onClick={() => { if (window.getSelection()?.isCollapsed ?? true) onOpen(ayah.ayah) }}
+        onClick={tap}
         onKeyDown={(e) => {
           if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return
           e.preventDefault()
@@ -30,7 +43,7 @@ export default function AyahRow({ ayah, english, glosses, learnt, allMeanings, s
           focus:outline-none focus-visible:bg-[var(--surface-hi)]
           ${open ? 'bg-[color-mix(in_srgb,var(--c)_8%,transparent)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--c)_35%,transparent)]' : ''}`}
       >
-        <GlossedAyah arabic={ayah.arabic} english={glosses} learnt={learnt} allMeanings={allMeanings} lit={lit} end={ayahEnd(ayah.ayah)} />
+        <GlossedAyah arabic={ayah.arabic} english={glosses} learnt={learnt} allMeanings={allMeanings} lit={lit} peek={peek} end={ayahEnd(ayah.ayah)} />
         {english && (
           <span className="block type-body text-[var(--text)] leading-relaxed border-t border-[var(--border)] pt-2">
             {english}
