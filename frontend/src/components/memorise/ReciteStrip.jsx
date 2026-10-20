@@ -33,7 +33,7 @@ export default function ReciteStrip({ listening, problem, heard, marks, lines, a
           aria-pressed={listening}
           aria-label={listening ? 'Stop reciting' : 'Start reciting'}
           title={listening ? 'Stop' : 'Start reciting'}
-          style={{ backgroundColor: listening ? live : undefined, borderColor: live, color: listening ? 'white' : live }}
+          style={{ backgroundColor: listening ? live : undefined, borderColor: live, color: listening ? 'var(--on-accent)' : live }}
           className={`mic-host shrink-0 grid place-items-center w-14 h-14 rounded-full border-2 transition-colors
             focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:var(--c)]/30
             ${listening ? '' : 'hover:bg-[var(--surface-hi)]'}`}

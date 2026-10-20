@@ -7,7 +7,7 @@
  * makes the whole look editable from one file.
  *
  * A look is the groups as written with a named theme's overrides laid over,
- * key by key, except the palette, which each look tones for its own grounds
+ * key by key, except the toned groups (palette, pbs), which each look tones for its own grounds
  * (lib/tone.js). Switching looks rewrites the same variables on :root, so
  * nothing downstream knows there is more than one.
  */
@@ -17,6 +17,9 @@ import { tonePalette } from './lib/tone'
 const UNPREFIXED_GROUP = 'color'
 const PRIVATE_KEY = '_'
 const PALETTE_GROUP = 'palette'
+/** Groups whose colours each look tones (lib/tone.js); their other keys pass through. */
+const TONED_GROUPS = [PALETTE_GROUP, 'pbs']
+const isColor = (value) => typeof value === 'string' && value.startsWith('#')
 const THEMES_GROUP = 'themes'
 const REFERENCE = '@'
 
@@ -43,21 +46,23 @@ const cssValue = (value) =>
 
 const withoutPrivate = (values) => Object.fromEntries(Object.entries(values).filter(([key]) => !isPrivate(key)))
 
-/** The palette as one look wears it: every colour toned for its grounds, then its exceptions. */
-const palettes = {}
-function paletteOf(name) {
+/** A toned group as one look wears it: every colour toned for its grounds, then the look's exceptions. */
+const toned = {}
+function tonedOf(group, name) {
   const look = LOOKS[name] ?? {}
   const color = { ...theme.color, ...look.color }
-  palettes[name] ??= {
+  const values = withoutPrivate(theme[group])
+  toned[`${group}/${name}`] ??= {
+    ...values,
     ...tonePalette(
-      withoutPrivate(theme[PALETTE_GROUP]),
+      Object.fromEntries(Object.entries(values).filter(([, value]) => isColor(value))),
       { ...TONE, ...look.tone },
       [color.bg, color.surface, color['surface-hi']],
       look.scheme === 'dark',
     ),
-    ...look[PALETTE_GROUP],
+    ...look[group],
   }
-  return palettes[name]
+  return toned[`${group}/${name}`]
 }
 
 /** The groups and keys of one look, in file order: [group, [[key, cssValue]...]]. */
@@ -66,7 +71,7 @@ function groupsOf(name) {
     .filter(([group, values]) => !isPrivate(group) && group !== THEMES_GROUP && typeof values === 'object')
     .map(([group, values]) => [
       group,
-      Object.entries(group === PALETTE_GROUP ? paletteOf(name) : { ...values, ...LOOKS[name]?.[group] })
+      Object.entries(TONED_GROUPS.includes(group) ? tonedOf(group, name) : { ...values, ...LOOKS[name]?.[group] })
         .filter(([key]) => !isPrivate(key))
         .map(([key, value]) => [key, cssValue(value)]),
     ])
@@ -162,6 +167,7 @@ export const themeVariable = (name) => variablesOf(active)[name]
  */
 export function colorFor(group, key) {
   const table = theme[group] ?? {}
+  if (TONED_GROUPS.includes(group) && isColor(table[key])) return `var(${variableName(group, key)})`
   return cssValue(table[key] ?? table.default ?? theme.color['text-dim'])
 }
 

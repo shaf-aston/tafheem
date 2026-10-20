@@ -17,12 +17,13 @@
 
 import { colorFor } from "../theme"
 
-/** Each branch colour once: line, tint, label, from theme.json's `pbs` group. A chart names one by key. */
+/** Each branch colour once, toned per look: line, box wash, label, from theme.json's `pbs` group. A chart names one by key. */
+const mix = (hue, wash) => `color-mix(in oklch, ${colorFor("pbs", hue)} ${colorFor("pbs", wash)}, var(--surface))`
 const HUE = Object.fromEntries(
   ["teal", "rose", "amber", "violet", "indigo", "slate", "sky", "slateDeep", "blue", "emerald", "orange", "cyan"].map((hue) => [hue, {
-    bar: colorFor("pbs", `${hue}-bar`),
-    fill: colorFor("pbs", `${hue}-fill`),
-    text: colorFor("pbs", `${hue}-text`),
+    bar: colorFor("pbs", hue),
+    head: mix(hue, "head-wash"),
+    fill: mix(hue, "wash"),
   }]),
 )
 
