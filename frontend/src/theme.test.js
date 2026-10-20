@@ -165,15 +165,18 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
     expect(contrast(color['border-hi'], color.surface)).toBeGreaterThanOrEqual(1.5)
   })
 
-  // Too much is a fault on a dark ground too: glaring text, colours that vibrate.
-  it.runIf(looks[name].scheme === 'dark')('is easy on the eyes', () => {
-    const comfort = theme.themes.comfort
-    expect(contrast(color.text, color.bg), 'text on the page').toBeLessThanOrEqual(comfort['text-max-contrast'])
+  // Too much is a fault too: glaring text, dazzling grounds, colours that vibrate.
+  it('is easy on the eyes', () => {
+    const comfort = theme.themes.comfort[looks[name].scheme]
+    const brightest = Math.max(...Object.values(grounds).map((ground) => contrast(color.text, ground)))
+    expect(brightest, 'text on its brightest ground').toBeLessThanOrEqual(comfort['text-max-contrast'])
     const loud = Object.entries(palette)
       .map(([colour, hex]) => [colour, oklch(hex)])
-      .filter(([, [l, c]]) => c > comfort['max-chroma'] || l > comfort['max-lightness'])
+      .filter(([, [l, c]]) => c > comfort['max-chroma'] || l > (comfort['max-lightness'] ?? 1))
       .map(([colour, [l, c]]) => `${colour}: lightness ${l.toFixed(2)}, chroma ${c.toFixed(3)}`)
     expect(loud).toEqual([])
+    const dazzling = Object.entries(washGrounds).filter(([, ground]) => oklch(ground)[0] > (comfort['max-ground-lightness'] ?? 1))
+    expect(dazzling.map(([where]) => where)).toEqual([])
   })
 })
 
