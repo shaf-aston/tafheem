@@ -29,8 +29,9 @@ import ShowRest from '../ui/ShowRest'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 import StatusNote, { CorrectedNote, NoteWord } from '../ui/StatusNote'
 import HadithCards from './HadithCards'
+import HadithOptions from './HadithOptions'
 
-export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, children }) {
+export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, menu, children }) {
   const { collections, of } = useHadithCollections()
   const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
     historyKey: 'hadith-history',
@@ -66,6 +67,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
           accent={accent}
           title="Say what you are looking for"
         />
+        {menu}
       </SearchBox>
 
       {!searching && <RecentRow items={history.map((h) => h.q)} accent={accent} onPick={submit} />}
@@ -131,7 +133,12 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
         </ChipRow>
       )}
 
-      {data && data.hits.length > 0 && <HadithCards items={data.hits} accent={accent} onNarrator={onNarrator} onHadith={onHadith} />}
+      {data && data.hits.length > 0 && (
+        <>
+          <HadithOptions accent={accent} />
+          <HadithCards items={data.hits} accent={accent} onNarrator={onNarrator} onHadith={onHadith} />
+        </>
+      )}
     </div>
   )
 }

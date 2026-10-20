@@ -97,21 +97,11 @@ async def search_dictionary(
         source=provenance.of("wiktionary"),
         corrected=corrected,
         read_as=ReadAs(typed=query, lemma=reading[0], root=reading[1]) if reading else None,
-        root=reading[1] if reading else (_root_as_typed(query, found) if language == "ar" else ""),
+        # The one root finder every tab uses, handed to the classical cards as is.
+        # Wiktionary leaves some headwords rootless (مُشْتَاق); the finder still
+        # places them (شوق), so Maqayees is never asked about the word itself.
+        root=reading[1] if reading else (roots.root_of(query) if language == "ar" else ""),
     )
-
-
-def _root_as_typed(query: str, found: list[dict]) -> str:
-    """The root of the entry spelled as typed, else the root the word is read as, else "".
-
-    A result found only by sharing letters says nothing about it. Wiktionary
-    leaves some headwords without a root (مُشْتَاق): asking Maqayees about the
-    word itself then found nothing, so the root finder places it (شوق) instead.
-    """
-    typed = dictionary_service.folded(query)
-    filed = next((e.get("root") or "" for e in found if dictionary_service.folded(e.get("arabic", "")) == typed), "")
-    return filed or roots.root_of(query)
-
 
 
 @router.get("/sentence", response_model=SentenceResponse)

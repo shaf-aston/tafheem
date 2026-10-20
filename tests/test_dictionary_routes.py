@@ -83,8 +83,9 @@ def test_a_database_failing_mid_read_is_broken_not_an_empty_shelf(client, monkey
     assert body["entries"] == []
 
 
-def test_a_headword_wiktionary_left_rootless_asks_the_books_about_its_root(monkeypatch):
-    """مشتاق is a headword with no root: the books are asked about شوق, not about مشتاق."""
+
+@pytest.mark.usefixtures("took")
+def test_the_classical_cards_get_the_root_finders_root(client, monkeypatch):
+    """A headword Wiktionary left rootless still hands its root on: مشتاق asks the books about شوق."""
     monkeypatch.setattr(router_module.roots, "root_of", lambda word: "شوق" if word == "مشتاق" else "")
-    assert router_module._root_as_typed("مشتاق", [{"arabic": "مُشْتَاق", "root": ""}]) == "شوق"
-    assert router_module._root_as_typed("مدرسة", [{"arabic": "مَدْرَسَة", "root": "د ر س"}]) == "د ر س"
+    assert _search(client, "مشتاق").json()["root"] == "شوق"
