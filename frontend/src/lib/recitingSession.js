@@ -107,19 +107,30 @@ export const problemOf = (error) => {
 }
 
 /**
- * One reading's per-ayah answer, keyed by page place; words it did not reach are
- * left out. Each is { sure, weak, at, take }: `detail` is the answer's weak
- * piece and second per word, `take` the recording they were scored from.
+ * A word's score: { sure, weak, weakFrom, at, take }. `sure` is how likely the
+ * ear found the word, `weak` the text of its least likely piece and `weakFrom`
+ * the characters of the word before it, `at` the second of the recording the
+ * word sits at, `take` which recording that is. `detail` is the server's own
+ * {weak, weak_from, at} for the word, when it gave one.
  */
-export const byPlace = (answer = {}, ayahs, detail = {}, take = 0) => {
+export const scoreOf = (sure, detail, take = null) => (
+  { sure, weak: detail?.weak, weakFrom: detail?.weak_from, at: detail?.at, take }
+)
+
+/**
+ * One reading's per-ayah answer as scores, keyed by page place; words it did not
+ * reach are left out. `detail` is the answer's per-ayah detail, `take` the
+ * recording it was scored from.
+ */
+export const byPlace = (answer = {}, ayahs, detail = {}, take = null) => {
   const out = {}
   for (const { key, from, count } of ayahs) {
     // A count that differs is an ayah the two spellings split into different
     // words; its words cannot be told apart, so it keeps the page's marks.
-    const scores = answer[key]
-    if (scores?.length !== count) continue
-    scores.forEach((score, k) => {
-      if (score != null) out[from + k] = { sure: score, ...detail[key]?.[k], take }
+    const sures = answer[key]
+    if (sures?.length !== count) continue
+    sures.forEach((sure, k) => {
+      if (sure != null) out[from + k] = scoreOf(sure, detail[key]?.[k], take)
     })
   }
   return out
@@ -132,14 +143,14 @@ export const byPlace = (answer = {}, ayahs, detail = {}, take = 0) => {
  * the whole ayah), so low there means "not in this recording", and it showed
  * the next words red until a later check, two seconds on, cleared them.
  */
-export const settledScores = (placed, from, to) => Object.fromEntries(
-  Object.entries(placed).filter(([at, { sure }]) => sure >= config['sure-at'] || (Number(at) >= from && Number(at) < to)),
+export const settledScores = (scores, from, to) => Object.fromEntries(
+  Object.entries(scores).filter(([at, { sure }]) => sure >= config['sure-at'] || (Number(at) >= from && Number(at) < to)),
 )
 
-/** The surer of two recordings' scores for each page place, with that reading's own detail. */
+/** The surer of two recordings' scores for each page place, each with its own detail. */
 export const surer = (a, b) => {
   const out = { ...a }
-  for (const [at, entry] of Object.entries(b)) if (!out[at] || out[at].sure < entry.sure) out[at] = entry
+  for (const [at, score] of Object.entries(b)) if (!out[at] || out[at].sure < score.sure) out[at] = score
   return out
 }
 
@@ -195,13 +206,13 @@ export const EMPTY_VIEW = {
   now: { from: 0, words: [] },
   ended: false,
   // How sure the ear has been of each page word, by its place on the page, in
-  // the same two halves. Each is { sure, weak, at, take }, see byPlace. Within a recording the newest reading wins: it holds
+  // the same two halves. Each is a score, see scoreOf. Within a recording the newest reading wins: it holds
   // more of the sound, and an early reading scores words not said yet, up to
   // 0.1 for one word in six (measured on 69 cut recordings), which kept for
   // good would pass that word however it was then said. Across recordings the
   // surer one wins: a word is said once, and one clipped at a recording's
   // edge should not unsay it.
-  sure: { before: {}, now: {} },
+  scores: { before: {}, now: {} },
   // Where in the Qur'an the reciter seems to be, { surah, ayah }, when what
   // they recite is not on this page; null while they are on it.
   elsewhere: null,
@@ -301,9 +312,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
     const timer = setTimeout(() => job.abort.abort(), CHECK_TIMEOUT_MS)
     note('check.sent', { session: sessionId, reading: job.reading })
     checkReading(job.blob, { heard: job.heard, check: job.ayahs, trial: page.trial, reading: job.reading, signal: job.abort.signal })
-      .then(({ sure: scored, detail }) => {
+      .then(({ sure, detail }) => {
         note('check.answered', { session: sessionId, reading: job.reading })
-        job.apply(scored, detail)
+        job.apply(sure, detail)
       })
       .catch((error) => {
         if (job.abort.signal.aborted) {
@@ -388,7 +399,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
     // Whether this recording's words have already been folded into `before`
     // (see onstop). A sureness check answers after the words that asked for it
     // did, sometimes after that fold has already happened, so this is what
-    // tells its result which half of `sure` to land in.
+    // tells its result which half of `scores` to land in.
     let folded = false
 
     const send = async (last = false) => {
@@ -411,7 +422,8 @@ export function createRecitingSession({ onChange, deps = {} }) {
       seq += 1
       const reading = `${sessionId}-${thisWindow}-${seq}`
       const blob = new Blob(chunks, { type: made.mimeType })
-      keepRecording(recordings, thisWindow, blob, KEEP_RECORDINGS)
+      // Not for a recording that was forgotten: nothing on the page can name it.
+      if (live()) keepRecording(recordings, thisWindow, blob, KEEP_RECORDINGS)
       note('reading.sent', { session: sessionId, reading, bytes: blob.size, last })
       const stopper = new AbortController()
       giveUp = stopper
@@ -486,13 +498,13 @@ export function createRecitingSession({ onChange, deps = {} }) {
                 heard: heard.text,
                 ayahs: checkAyahs.map((line) => line.key),
                 sent: false,
-                apply: (scored, detail) => {
+                apply: (sure, detail) => {
                   if (!live() || page.pageWords !== askedOf) return
-                  const placed = settledScores(byPlace(scored, checkAyahs, detail, thisWindow), from, to)
-                  set(({ sure }) => ({
-                    sure: folded
-                      ? { ...sure, before: surer(sure.before, placed) }
-                      : { ...sure, now: placed },
+                  const placed = settledScores(byPlace(sure, checkAyahs, detail, thisWindow), from, to)
+                  set(({ scores }) => ({
+                    scores: folded
+                      ? { ...scores, before: surer(scores.before, placed) }
+                      : { ...scores, now: placed },
                   }))
                 },
               })
@@ -590,7 +602,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       set((was) => ({
         before: joinWindows(was.before, latest),
         now: was.now.from === thisWindow ? { from: thisWindow, words: [] } : was.now,
-        sure: { before: surer(was.sure.before, was.sure.now), now: {} },
+        scores: { before: surer(was.scores.before, was.scores.now), now: {} },
       }))
       // From here on, this recording's words are `before`'s, not `now`'s; a
       // check that answers after this point (see `send`'s `apply`) must land there too.
@@ -645,6 +657,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
    */
   const forget = () => {
     carried = ''
+    recordings.clear()
     // A stopped recording's last reading is still on its way and would write
     // the old page back over the blank one. Only once stopped: a start word
     // pressed mid-recitation forgets too, and must keep hearing the recording.
@@ -656,7 +669,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       clearInterval(cutTimer)
       if (recorder?.state === 'recording') recorder.stop()
     }
-    set({ before: [], now: { from: windows, words: [] }, sure: { before: {}, now: {} }, ended: false, elsewhere: null })
+    set({ before: [], now: { from: windows, words: [] }, scores: { before: {}, now: {} }, ended: false, elsewhere: null })
   }
 
   /**
@@ -683,7 +696,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       elsewhere: null,
       before: carry,
       now: view.now.words.length ? view.now : { from: windows, words: [] },
-      sure: { before: {}, now: {} },
+      scores: { before: {}, now: {} },
       ended: false,
       checking: checkQueue.length,
     })
@@ -706,6 +719,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       checkQueue[0]?.abort?.abort()
       checkQueue = []
       sessionId = Math.random().toString(36).slice(2, 10)
+      recordings.clear()
       note('recite.start', { session: sessionId })
       // Nothing said for long enough is a microphone left on by mistake.
       // Patient, because a breath between ayahs is not the end.
@@ -727,6 +741,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
     if (going) note('recite.stop', { session: sessionId, why: 'page left' })
     going = false
     session += 1
+    recordings.clear()
     clearInterval(cutTimer)
     stopWatching?.()
     if (recorder?.state === 'recording') recorder.stop()
@@ -735,5 +750,5 @@ export function createRecitingSession({ onChange, deps = {} }) {
 
   const update = (next) => { page = next }
 
-  return { start, stop, forget, turn, dispose, update, view: () => view, recordingOf: (take) => recordings.get(take) }
+  return { start, stop, forget, turn, dispose, update, view: () => view, takeAudio: (take) => recordings.get(take) }
 }

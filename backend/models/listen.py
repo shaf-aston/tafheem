@@ -51,10 +51,12 @@ class WordDetail(BaseModel):
     """What a word card needs of one scored word.
 
     `weak`: the text of its least likely piece, null when the word is a single
-    piece. `at`: the second of the recording its last piece lines up with, null
-    when the ear gave no position.
+    piece; `weak_from`: how many characters of the word come before it.
+    `at`: the second of the recording its last piece lines up with, null when
+    the ear gave no position.
     """
     weak: str | None = None
+    weak_from: int | None = None
     at: float | None = None
 
 

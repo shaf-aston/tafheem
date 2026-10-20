@@ -449,7 +449,7 @@ describe('a reciting session', () => {
     await h.wait(0)
     h.checks[0].answer({ '1:2': [1, 1, 1, 1] })
     await h.wait(0)
-    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    expect(h.session.view().scores).toEqual({ before: {}, now: {} })
     expect(h.session.view().state).toBe('listening')
   })
 
@@ -468,11 +468,11 @@ describe('a reciting session', () => {
     await h.wait(0)
     expect(recording.state).toBe('recording')
     expect(h.session.view().state).toBe('listening')
-    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    expect(h.session.view().scores).toEqual({ before: {}, now: {} })
     // The old page's check answering late lands nowhere.
     h.checks[0].answer({ '1:2': [0.1, 0.1, 0.1, 0.1] })
     await h.wait(0)
-    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    expect(h.session.view().scores).toEqual({ before: {}, now: {} })
     // The recording under way is read against the new page, after the word
     // carried over from the one that finished the old page.
     await h.answer(1, 'يوم الدين')
@@ -501,7 +501,7 @@ describe('a reciting session', () => {
     expect(h.session.view().now.words).toEqual(['الرحمن'])
     h.checks[1].answer({ '1:2': [0.1, 0.1, 0.1, 0.1] })
     await h.wait(0)
-    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    expect(h.session.view().scores).toEqual({ before: {}, now: {} })
     // Its last reading, whole, still lands, on the new page.
     await h.answer(2, 'الرحمن الرحيم مالك')
     expect(h.heard()).toEqual(['الرحمن', 'الرحيم', 'مالك'])
@@ -532,7 +532,7 @@ describe('a reciting session', () => {
     h.session.update({ ...h.page, done: true })
     h.checks[0].answer({ '1:2': [1, 1, 1, 1] })
     await h.wait(0)
-    expect(h.session.view().sure.before).not.toEqual({})
+    expect(h.session.view().scores.before).not.toEqual({})
   })
 
   it("takes the server's place: sure elsewhere moves nothing onto the page, home clears it", async () => {
@@ -641,7 +641,7 @@ describe('a reciting session', () => {
     await h.answer(1, 'الحمد لله رب العالمين')
     h.checks[1].answer({ '1:2': [1, 1, null, 1] })
     await h.wait(0)
-    expect(h.session.view().sure.now).toEqual({ 0: { sure: 1, take: 1 }, 1: { sure: 1, take: 1 }, 3: { sure: 1, take: 1 } })
+    expect(h.session.view().scores.now).toEqual({ 0: { sure: 1, take: 1 }, 1: { sure: 1, take: 1 }, 3: { sure: 1, take: 1 } })
   })
 
   it('files a sureness answer that arrives after the fold under the words already kept', async () => {
@@ -654,7 +654,7 @@ describe('a reciting session', () => {
     expect(h.checks).toHaveLength(1)
     h.checks[0].answer({ '1:2': [1, 1, 0.2, 1] })
     await h.wait(0)
-    expect(h.session.view().sure).toEqual({
+    expect(h.session.view().scores).toEqual({
       before: { 0: { sure: 1, take: 1 }, 1: { sure: 1, take: 1 }, 2: { sure: 0.2, take: 1 }, 3: { sure: 1, take: 1 } },
       now: {},
     })
@@ -667,12 +667,15 @@ describe('a reciting session', () => {
     h.speak()
     await h.pause()
     await h.answer(0, 'الحمد لله رب العالمين')
-    h.checks[0].answer({ '1:2': [1, 1, 0.2, 1] }, { '1:2': [null, null, { weak: 'بِّ', at: 2.4 }, null] })
+    h.checks[0].answer({ '1:2': [1, 1, 0.2, 1] }, { '1:2': [null, null, { weak: 'بِّ', weak_from: 1, at: 2.4 }, null] })
     await h.wait(0)
-    const word = h.session.view().sure.before[2]
-    expect(word).toEqual({ sure: 0.2, weak: 'بِّ', at: 2.4, take: 1 })
-    expect(h.session.recordingOf(word.take)).toBeInstanceOf(Blob)
-    expect(h.session.recordingOf(99)).toBeUndefined()
+    const word = h.session.view().scores.before[2]
+    expect(word).toEqual({ sure: 0.2, weak: 'بِّ', weakFrom: 1, at: 2.4, take: 1 })
+    expect(h.session.takeAudio(word.take)).toBeInstanceOf(Blob)
+    expect(h.session.takeAudio(99)).toBeUndefined()
+    // Starting the page over lets every kept recording go.
+    h.session.forget()
+    expect(h.session.takeAudio(word.take)).toBeUndefined()
   })
 
   it('holds mid-phrase readings once the allowance is spent, but never the one at a pause', async () => {

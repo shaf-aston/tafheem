@@ -51,20 +51,27 @@ def test_each_word_carries_its_weak_piece_and_second_to_its_own_ayah(monkeypatch
     plain = {"112:1": "قُلْ هُوَ اللَّهُ أَحَدٌ", "112:2": "اللَّهُ الصَّمَدُ"}
     monkeypatch.setattr(recitation, "_plain", lambda: plain)
     monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: [
-        {"sure": 0.9, "weak": f"w{i}", "at": float(i)} for i in range(len(words))])
+        {"sure": 0.9, "weak": {"text": f"w{i}", "start": i}, "at": float(i)} for i in range(len(words))])
     sure, detail = recitation.check(b"sound", "أحد الله الصمد", ["112:1", "112:2"])
     assert detail == {
-        "112:1": [None, None, None, {"weak": "w0", "at": 0.0}],
-        "112:2": [{"weak": "w1", "at": 1.0}, {"weak": "w2", "at": 2.0}],
+        "112:1": [None, None, None, {"weak": "w0", "weak_from": 0, "at": 0.0}],
+        "112:2": [{"weak": "w1", "weak_from": 1, "at": 1.0}, {"weak": "w2", "weak_from": 2, "at": 2.0}],
     }
     assert [x is None for x in sure["112:1"]] == [x is None for x in detail["112:1"]]
 
 
-def test_the_weak_piece_is_the_least_likely_one_and_a_single_piece_or_half_a_letter_has_none():
-    decode = {1: "ال", 2: "صَ", 3: chr(0xFFFD)}.get
-    assert listen.weakest([1, 2], [0.9, 0.2], lambda t: decode(t[0])) == "صَ"
-    assert listen.weakest([1], [0.2], lambda t: decode(t[0])) is None
-    assert listen.weakest([1, 3], [0.9, 0.2], lambda t: decode(t[0])) is None
+def test_the_weak_piece_is_the_least_likely_one_with_where_it_starts_and_a_bad_answer_has_none():
+    pieces = {1: " ال", 2: "صَ", 3: chr(0xFFFD)}
+    decode = lambda tokens: "".join(pieces[t] for t in tokens)
+    # The weak piece's text, and how many characters of the word come before it
+    # (the space a later word is encoded with is not one of them).
+    assert listen.weakest([1, 2], [0.9, 0.2], decode) == {"text": "صَ", "start": 2}
+    assert listen.weakest([1, 2], [0.2, 0.9], decode) == {"text": "ال", "start": 0}
+    # One piece, half a letter, or pieces and likelihoods that do not pair up: nothing.
+    assert listen.weakest([1], [0.2], decode) is None
+    assert listen.weakest([1, 3], [0.9, 0.2], decode) is None
+    assert listen.weakest([1, 2], [0.9], decode) is None
+    assert listen.weakest([1, 2], [], decode) is None
 
 
 def test_the_check_runs_on_to_the_end_of_the_ayah_the_transcript_stopped_in(monkeypatch):
@@ -129,7 +136,7 @@ def test_an_oversize_heard_string_is_rejected(monkeypatch):
 def test_sureness_comes_from_its_own_endpoint_not_the_words_one(monkeypatch):
     monkeypatch.setattr(recitation, "hear", lambda *a, **k: ("قل هو", []))
     monkeypatch.setattr(recitation, "check", lambda audio, text, ayahs, model=None: (
-        {"112:1": [1.0, 1.0, None, None]}, {"112:1": [{"weak": "ـُ", "at": 0.4}, {"weak": None, "at": 0.9}, None, None]}))
+        {"112:1": [1.0, 1.0, None, None]}, {"112:1": [{"weak": "ـُ", "weak_from": 0, "at": 0.4}, {"weak": None, "weak_from": None, "at": 0.9}, None, None]}))
     words = client.post("/api/listen?recite=true", files={"audio": ("r.webm", WEBM)}).json()
     assert "sure" not in words
 
@@ -138,7 +145,7 @@ def test_sureness_comes_from_its_own_endpoint_not_the_words_one(monkeypatch):
     ).json()
     assert checked == {
         "sure": {"112:1": [1.0, 1.0, None, None]},
-        "detail": {"112:1": [{"weak": "ـُ", "at": 0.4}, {"weak": None, "at": 0.9}, None, None]},
+        "detail": {"112:1": [{"weak": "ـُ", "weak_from": 0, "at": 0.4}, {"weak": None, "weak_from": None, "at": 0.9}, None, None]},
     }
 
 

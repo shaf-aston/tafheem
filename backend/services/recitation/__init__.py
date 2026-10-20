@@ -161,13 +161,19 @@ def find_place(heard: str, near: tuple[int, int] | None = None, before: str = ""
     )
 
 
+def _detail(word: dict) -> dict:
+    """The {weak, weak_from, at} a word card needs, out of listen.weigh's word."""
+    weak = word["weak"]
+    return {"weak": weak and weak["text"], "weak_from": weak and weak["start"], "at": word["at"]}
+
+
 def check(
     audio: bytes, heard: str, ayahs: list[str], model: str | None = None,
 ) -> tuple[dict[str, list[float | None]], dict[str, list[dict | None]]]:
     """How sure the ear is of each word of these ayahs, from this recording.
 
     Two dicts by ayah, one entry per word: the sureness, 0 to 1, and its
-    {"weak", "at"} detail (see listen.weakest). Both are None for a word this
+    {"weak", "weak_from", "at"} detail (see _detail). Both are None for a word this
     recording does not reach: it was said in another one, and scoring it here
     would call it unsaid. Both empty when the recording does not place on these ayahs,
     or places on more words than one recording can hold. The page words are
@@ -202,7 +208,7 @@ def check(
     for i, word in zip(range(first, last), weighed):
         key = owner[i]
         sure[key][i - owner.index(key)] = round(word["sure"], 3)
-        detail[key][i - owner.index(key)] = {"weak": word["weak"], "at": word["at"]}
+        detail[key][i - owner.index(key)] = _detail(word)
     return sure, detail
 
 
@@ -217,10 +223,10 @@ def check_text(audio: bytes, heard: str, expected: str, model: str | None = None
     spells it (spelling.as_heard), which is one per word as written: the phrase
     is vowelled plain Arabic with no pause signs. Nothing when nothing was
     heard, or the phrase is longer than one recording holds. Alongside the
-    numbers, one {"weak", "at"} detail per word, as check() gives.
+    numbers, one detail per word, as check() gives.
     """
     words = as_heard(expected)
     if not heard.strip() or not words or len(words) > get_settings().recitation_sure_max_words:
         return [], []
     weighed = timed("checked-text", listen.weigh, audio, words, model, words=len(words))
-    return [round(w["sure"], 3) for w in weighed], [{"weak": w["weak"], "at": w["at"]} for w in weighed]
+    return [round(w["sure"], 3) for w in weighed], [_detail(w) for w in weighed]

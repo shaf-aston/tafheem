@@ -6,22 +6,15 @@ import { CHECK, MISSED, SAID, WRONG } from '../../lib/follow'
 import { weakParts, whyOf } from '../../lib/markWhy'
 import { LOOK, WAITING_LOOK } from '../../lib/reciteColors'
 import { PHONE, useMedia } from '../../lib/useMedia'
+import config from '../../recite.json'
 
 import ArabicText from '../ui/ArabicText'
 
-// How far before the weak word "Mine" starts, so the word is not clipped.
-const LEAD_IN_S = 1
-// Keeps a card off the page edge when it hangs under a word near it.
-const EDGE_PX = 8
+const LEAD_IN_S = config['card-lead-in-s']
+const EDGE_PX = config['card-edge-px']
+const WIDTH_PX = config['card-width-px']
 const PROBLEM = [WRONG, CHECK, MISSED]
 const KEY = /^(\d+):(\d+)$/
-
-// A blob has its address made once and kept, so pressing "Mine" twice is one URL.
-const urls = new WeakMap()
-const urlOf = (blob) => {
-  if (!urls.has(blob)) urls.set(blob, URL.createObjectURL(blob))
-  return urls.get(blob)
-}
 
 const focus = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--c)]/40'
 const button = `type-small inline-flex items-center gap-1.5 rounded-full border border-[var(--border-hi)] px-3 py-1.5 cursor-pointer text-[var(--text)] bg-transparent hover:bg-[var(--surface-hi)] ${focus}`
@@ -35,8 +28,8 @@ const Row = ({ label, children }) => (
 )
 
 /** A word with the part the ear doubted underlined, when that part can be found in it. */
-function WordShown({ word, weak, colour }) {
-  const parts = weakParts(word, weak)
+function WordShown({ word, weak, weakFrom, colour }) {
+  const parts = weakParts(word, weak, weakFrom)
   return (
     <ArabicText size="lg" className="block text-center" style={{ color: colour }}>
       {parts
@@ -49,6 +42,8 @@ function WordShown({ word, weak, colour }) {
 function WordBody({ mark, word }) {
   const look = LOOK[mark.state] ?? WAITING_LOOK
   const percent = mark.sure == null ? null : Math.round(mark.sure * 100)
+  const shown = mark.state !== SAID && LOOK[mark.state]
+  const underlined = Boolean(shown && weakParts(word, mark.weak, mark.weakFrom))
   return (
     <>
       <span
@@ -57,8 +52,8 @@ function WordBody({ mark, word }) {
       >
         {look.label}
       </span>
-      <WordShown word={word} weak={mark.state === SAID ? null : mark.weak} colour={LOOK[mark.state] && mark.state !== SAID ? look.colour : undefined} />
-      <p className="type-body my-2 text-[var(--text)]">{whyOf(mark)}</p>
+      <WordShown word={word} weak={shown ? mark.weak : null} weakFrom={mark.weakFrom} colour={shown ? look.colour : undefined} />
+      <p className="type-body my-2 text-[var(--text)]">{whyOf(mark, underlined)}</p>
       <Row label="Page"><ArabicText size="sm">{word}</ArabicText></Row>
       <Row label="Heard">{mark.said ? <ArabicText size="sm">{mark.said}</ArabicText> : 'nothing'}</Row>
       {percent != null && (
@@ -77,8 +72,7 @@ function AyahBody({ ayah, words, recite }) {
   const count = (state) => words.filter((one) => one.state === state).length
   const heard = words.map((one) => one.said).filter(Boolean).join(' ')
   // Only what there is: "2 not sure", and "All right" when nothing else is.
-  const tally = [[SAID, 'right'], [CHECK, 'not sure'], [WRONG, 'wrong'], [MISSED, 'not said']]
-    .filter(([state]) => count(state)).map(([state, label]) => `${count(state)} ${label}`)
+  const tally = [SAID, CHECK, WRONG, MISSED].filter(count).map((state) => `${count(state)} ${LOOK[state].label}`)
   const problems = words.map((one, k) => ({ one, k })).filter(({ one }) => PROBLEM.includes(one.state))
   return (
     <>
@@ -151,11 +145,11 @@ export default function MarkCard({ ayah, at, recite, anchor, onStartAt }) {
   // second, or for an ayah the latest recording among its words and the
   // earliest second any of them sits at.
   const judged = (mark ? [mark] : words).filter((one) => one.take != null)
-  const take = Math.max(-1, ...judged.map((one) => one.take))
-  const recording = take >= 0 ? recite.recordingOf(take) : undefined
+  const take = judged.length ? Math.max(...judged.map((one) => one.take)) : null
+  const recording = take != null ? recite.takeAudio(take) : undefined
   const seconds = judged.filter((one) => one.take === take && one.at != null).map((one) => one.at)
   const from = seconds.length ? Math.min(...seconds) - LEAD_IN_S : 0
-  const mine = recording ? () => playFrom(urlOf(recording), from) : null
+  const mine = recording ? () => playFrom(recording, from) : null
 
   const shell = (
     <div
@@ -163,11 +157,12 @@ export default function MarkCard({ ayah, at, recite, anchor, onStartAt }) {
       role="dialog"
       aria-label={mark ? `${ayah.printed[at - ayah.from]}, ${(LOOK[mark.state] ?? WAITING_LOOK).label}` : `ayah ${ayah.label}`}
       dir="ltr"
+      style={phone ? undefined : { width: WIDTH_PX, marginLeft: -WIDTH_PX / 2 }}
       className={`flex flex-col bg-[var(--surface)] border border-[var(--border-hi)] rounded-[var(--radius-md)] shadow-[var(--shadow-pop)] z-[var(--layer-popover)] text-start
         ${phone
           // Between the top of the screen and the nav: the body scrolls, the buttons do not.
           ? 'fixed inset-x-2 bottom-[calc(var(--layout-nav)+env(safe-area-inset-bottom,0px)+0.5rem)] max-h-[calc(100dvh-var(--layout-nav)-env(safe-area-inset-bottom,0px)-4rem)]'
-          : 'absolute top-full mt-2 left-1/2 -ml-[150px] w-[300px]'}`}
+          : 'absolute top-full mt-2 left-1/2'}`}
     >
       <button
         type="button"

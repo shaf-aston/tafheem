@@ -46,6 +46,15 @@
   "_keep-recordings": "How many of the latest recordings the page keeps in memory so a word card can play back what a mark was judged from. Each is a few seconds of compressed sound, up to window-s long; twelve is about three pages of ayahs, and the oldest is dropped past it.",
   "keep-recordings": 12,
 
+  "_card-lead-in-s": "How long before a word's own second in the recording \"Mine\" starts playing, so the word is heard whole and not from its middle.",
+  "card-lead-in-s": 1,
+
+  "_card-edge-px": "The least gap kept between a word card and the edge of the screen when it hangs under a word near the side of the page.",
+  "card-edge-px": 8,
+
+  "_card-width-px": "The width of a word card or an ayah card on a wide screen. On a phone it spans the screen and this is not used.",
+  "card-width-px": 300,
+
   "_turn-after-s": "How long a finished page stays up before the next one turns in by itself, while reciting carries on. The page is finished once its last word is reached and the reciter has paused, and every sureness check of it is back; this is then only the moment to see how its last ayah went. Long enough to catch a red word, short enough that the new page is up before the reciter is far into it (the words said meanwhile are kept either way).",
   "turn-after-s": 1.5,
 

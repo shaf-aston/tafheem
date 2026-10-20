@@ -308,10 +308,12 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
 /**
  * The marks, with the ear's sureness weighed in.
  *
- * `scored` holds, per page word, { sure, weak, at, take }: how likely the ear
- * found that word in the sound (`sure`, 0 to 1), the text of its least likely
- * piece, the second of the recording it sits at, and which recording that is.
- * Every mark it covers keeps all four for a word card. Lining up words compares letters only, so it passes a word said
+ * `scores` holds, per page word, its score { sure, weak, weakFrom, at, take }
+ * (recitingSession.scoreOf): how likely the ear found that word in the sound
+ * (`sure`, 0 to 1), its weak piece, the second of the recording it sits at and
+ * which recording that is. Every mark it covers keeps them for a word card.
+ *
+ * Lining up words compares letters only, so it passes a word said
  * with the wrong vowel and fails a right word the ear wrote down wrong.
  * Sureness is judged on sound, and recite.json's sure-at says how far to
  * trust it either way. A waiting word stays waiting.
@@ -334,13 +336,12 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  * 58% of vowel slips where needing the transcript to miss too caught 16%, for
  * 3.3% of right words marked against 2.0%; it now sits at 0.95 (backend/scripts/sweep_sureness.py).
  */
-export const bySound = (marks, scored) => {
+export const bySound = (marks, scores) => {
   const sureAt = config['sure-at']
   const words = marks.words.map((mark, i) => {
-    const entry = scored[i]
-    const s = entry?.sure
-    const next = judged(mark, s, sureAt)
-    return entry ? { ...next, sure: s, weak: entry.weak, at: entry.at, take: entry.take } : next
+    const score = scores[i]
+    const next = judged(mark, score?.sure, sureAt)
+    return score ? { ...next, ...score } : next
   })
   return { ...marks, words }
 }

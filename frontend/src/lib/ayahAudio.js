@@ -53,17 +53,21 @@ function audio() {
     player.addEventListener('pause', changed)
     // By 'ended' the 'pause' before it has already cleared playingUrl, so the
     // finished recording is named by the element's own src.
-    player.addEventListener('ended', () => { changed(); enders.forEach((tell) => tell(player.src)) })
+    player.addEventListener('ended', () => { changed(); enders.forEach((tell) => tell(player.src)); letGo(player.src) })
     player.addEventListener('error', () => { playingUrl = ''; changed() })
   }
   return player
 }
+
+/** Free the address of a recording of the reader's own, once the player has moved off it. */
+const letGo = (src) => { if (src?.startsWith('blob:')) URL.revokeObjectURL(src) }
 
 /** Play this ayah, stopping whatever else was playing. Returns a promise that
  *  rejects only if the browser refused to play at all. */
 export function play(url) {
   const a = audio()
   if (a.src !== url) {
+    letGo(a.src)
     a.src = url
     a.load()
   }
@@ -73,12 +77,17 @@ export function play(url) {
   return a.play()
 }
 
-/** Play a recording from `from` seconds in, stopping whatever else was playing. */
-export function playFrom(url, from) {
+/**
+ * Play the reader's own recording from `from` seconds in, stopping whatever else
+ * was playing. The blob gets an address for as long as it plays: it is let go
+ * when the recording ends or another takes the player (see `play`).
+ */
+export function playFrom(blob, from) {
   const a = audio()
-  // Set once the element knows the new recording; a seek before that is lost.
+  // A new address every press, so the element always loads afresh and this
+  // fires once; a seek made before the element knows the recording is lost.
   a.addEventListener('loadedmetadata', () => { a.currentTime = Math.max(0, from) }, { once: true })
-  return play(url)
+  return play(URL.createObjectURL(blob))
 }
 
 export function stop() {

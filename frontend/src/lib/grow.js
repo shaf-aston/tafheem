@@ -54,12 +54,12 @@ const oneWord = (printed, heard) => {
 /**
  * Every word of the step, marked, once the reader has stopped.
  *
- * `heard` is the transcript, `sure` the ear's sureness per word of the step
+ * `heard` is the transcript, `scores` the ear's score per word of the step
  * (sparse is fine: a word with none is judged on the transcript alone, and
  * bySound never lets that alone make it red). Nothing of the step heard at
  * all marks every word "not said"; the sound can still rescue each of them.
  */
-const markRecitation = (words, heard, sure) => {
+const markRecitation = (words, heard, scores) => {
   const said = wordsHeard(heard)
   let marks
   if (words.length < recite['anchor-words']) {
@@ -70,7 +70,7 @@ const markRecitation = (words, heard, sure) => {
       marks = { ...marks, words: words.map((word) => ({ word, state: MISSED, heard: '' })) }
     }
   }
-  const marked = bySound(marks, sure)
+  const marked = bySound(marks, scores)
   return { ...marked, words: marked.words.map((mark) => (mark.state === WAITING ? { ...mark, state: MISSED } : mark)) }
 }
 
@@ -78,13 +78,13 @@ const markRecitation = (words, heard, sure) => {
 export const isClean = (marks) => marks.words.length > 0 && marks.words.every((mark) => mark.state === SAID)
 
 /**
- * The whole verdict on one recitation. `sure` is null when the sound could not
+ * The whole verdict on one recitation. `scores` is null when the sound could not
  * be checked, and clean also needs the sound weighed for every word: a run the
  * ear could not check is shown and never counted.
  */
-export const judge = (words, text, sure) => {
-  const weighed = words.length > 0 && sure != null && words.every((_, i) => sure[i] != null)
-  const marks = markRecitation(words, text, sure ?? [])
+export const judge = (words, text, scores) => {
+  const weighed = words.length > 0 && scores != null && words.every((_, i) => scores[i] != null)
+  const marks = markRecitation(words, text, scores ?? [])
   return { marks, weighed, clean: weighed && isClean(marks) }
 }
 

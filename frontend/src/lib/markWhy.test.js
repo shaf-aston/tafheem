@@ -1,12 +1,13 @@
 import { describe, expect, it } from 'vitest'
 
-import { CHECK, MISSED, SAID, WRONG } from './follow'
+import { CHECK, MISSED, SAID, WAITING, WRONG } from './follow'
 import { weakParts, whyOf } from './markWhy'
 
 describe('why a word is marked', () => {
   it('names the case in one sentence each', () => {
     expect(whyOf({ state: SAID })).toBe('Said right.')
     expect(whyOf({ state: MISSED })).toBe('Not heard.')
+    expect(whyOf({ state: WAITING })).toBe('Not reached yet.')
     expect(whyOf({ state: CHECK })).toMatch(/could not confirm/)
   })
 
@@ -14,21 +15,29 @@ describe('why a word is marked', () => {
     expect(whyOf({ state: WRONG, word: 'نَعْبُدُ', said: 'المسكين' })).toBe('A different word was heard.')
     expect(whyOf({ state: WRONG, word: 'نَعْبُدُ', said: 'نَعْبِدُ' })).toMatch(/letters matched/)
   })
+
+  it('points at the underlined part only when there is one', () => {
+    const slip = { state: WRONG, word: 'نَعْبُدُ', said: 'نَعْبِدُ' }
+    expect(whyOf(slip, true)).toMatch(/at the underlined part/)
+    expect(whyOf(slip, false)).not.toMatch(/underlined/)
+  })
 })
 
 describe('the weak part of a word', () => {
-  it('finds a plainly spelt piece in the printed word and keeps the printed marks', () => {
-    expect(weakParts('نَعْبُدُ', 'عب')).toEqual(['نَ', 'عْبُ', 'دُ'])
+  it('cuts where the ear said the piece starts, not at its first look-alike', () => {
+    // اللَّهِ has two lams; the piece starts at the second.
+    expect(weakParts('ٱللَّهِ', 'ل', 2)).toEqual(['ٱل', 'لَّ', 'هِ'])
+    expect(weakParts('نَعْبُدُ', 'ع', 2)).toEqual(['نَ', 'عْ', 'بُدُ'])
   })
 
-  it('takes the marks that trail the last letter of the piece', () => {
-    expect(weakParts('نَعْبُدُ', 'ن')).toEqual(['', 'نَ', 'عْبُدُ'])
+  it('folds alif forms and keeps the page marks', () => {
+    expect(weakParts('ٱلرَّحْمَٰنِ', 'ا', 0)).toEqual(['', 'ٱ', 'لرَّحْمَٰنِ'])
   })
 
-  it('folds alif forms and ignores a piece that is only marks or not there', () => {
-    expect(weakParts('ٱلرَّحْمَٰنِ', 'الر')).toEqual(['', 'ٱلرَّ', 'حْمَٰنِ'])
-    expect(weakParts('نَعْبُدُ', 'ـَ')).toBeNull()
-    expect(weakParts('نَعْبُدُ', 'سس')).toBeNull()
-    expect(weakParts('نَعْبُدُ', null)).toBeNull()
+  it('has nothing to underline for a lone mark, a piece not there, or no start', () => {
+    expect(weakParts('ٱللَّهِ', 'ّ', 3)).toBeNull()
+    expect(weakParts('نَعْبُدُ', 'س', 2)).toBeNull()
+    expect(weakParts('نَعْبُدُ', 'ع', null)).toBeNull()
+    expect(weakParts('نَعْبُدُ', null, 0)).toBeNull()
   })
 })

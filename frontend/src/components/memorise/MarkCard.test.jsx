@@ -9,12 +9,12 @@ const WORDS = ['إِيَّاكَ', 'نَعْبُدُ']
 const MARKS = [
   { word: WORDS[0], state: 'said', heard: '', said: 'إِيَّاكَ' },
   // Wrong on sound with the letters right: the ear wrote the word with a vowel off.
-  { word: WORDS[1], state: 'wrong', heard: '', said: 'نَعْبِدُ', sure: 0.41, weak: 'ع', at: 2.4, take: 1 },
+  { word: WORDS[1], state: 'wrong', heard: '', said: 'نَعْبِدُ', sure: 0.41, weak: 'ع', weakFrom: 2, at: 2.4, take: 1 },
 ]
 
 function Page({ marks = MARKS }) {
   const [open, setOpen] = useState(null)
-  const recite = { words: marks, extras: [], at: 2, from: 0, shown: new Set(), open, setOpen, recordingOf: () => undefined }
+  const recite = { words: marks, extras: [], at: 2, from: 0, shown: new Set(), open, setOpen, takeAudio: () => undefined }
   return (
     <Line
       line={{ id: 'a', label: '1:5', arabic: WORDS.join(' ') }}

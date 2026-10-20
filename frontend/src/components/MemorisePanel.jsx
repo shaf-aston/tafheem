@@ -242,7 +242,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                   accent={accent}
                   twin={similar && twinned.has(line.label)}
                   recite={way === 'recite'
-                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown, open: opened, setOpen, recordingOf: reciting.recordingOf }
+                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown, open: opened, setOpen, takeAudio: reciting.takeAudio }
                     : null}
                   // Pressable while listening too: jumping back or ahead must not
                   // mean stopping first. forget() keeps the microphone running.

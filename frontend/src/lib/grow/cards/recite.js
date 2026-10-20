@@ -5,7 +5,7 @@
  * on that ayah's words (lib/grow.js pageOf).
  */
 import { checkReading, checkText } from '../../../api'
-import { byPlace } from '../../recitingSession'
+import { byPlace, scoreOf } from '../../recitingSession'
 
 export const check = async (recording, heard, card, page, trial) => {
   if (card.ayahs.length) {
@@ -13,5 +13,5 @@ export const check = async (recording, heard, card, page, trial) => {
     return byPlace(sure, page.ayahs, detail)
   }
   const { sure, detail = [] } = await checkText(recording, { heard, expected: card.arabic, trial })
-  return sure.map((score, i) => ({ sure: score, ...detail[i] }))
+  return sure.map((one, i) => scoreOf(one, detail[i]))
 }

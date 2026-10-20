@@ -231,9 +231,9 @@ def test_every_phrase_is_one_ear_word_per_written_word():
 def test_a_phrase_is_scored_whole(monkeypatch):
     asked = []
     monkeypatch.setattr(
-        listen, "weigh", lambda audio, words, model=None: asked.append(words) or [{"sure": 0.91234, "weak": "ـَ", "at": 1.5}] * len(words),
+        listen, "weigh", lambda audio, words, model=None: asked.append(words) or [{"sure": 0.91234, "weak": {"text": "ـَ", "start": 1}, "at": 1.5}] * len(words),
     )
-    assert recitation.check_text(b"x", "سبحان ربي", "سُبْحَانَ رَبِّيَ الْعَظِيمِ") == ([0.912] * 3, [{"weak": "ـَ", "at": 1.5}] * 3)
+    assert recitation.check_text(b"x", "سبحان ربي", "سُبْحَانَ رَبِّيَ الْعَظِيمِ") == ([0.912] * 3, [{"weak": "ـَ", "weak_from": 1, "at": 1.5}] * 3)
     assert len(asked[0]) == 3
 
 
@@ -246,14 +246,14 @@ def test_nothing_heard_or_too_long_is_not_scored(monkeypatch):
 
 def test_check_text_route_answers_per_word(monkeypatch):
     monkeypatch.setattr(
-        recitation, "check_text", lambda audio, heard, expected, model=None: ([1.0, 0.4], [{"weak": None, "at": 0.5}, {"weak": "ـِ", "at": 1.1}]),
+        recitation, "check_text", lambda audio, heard, expected, model=None: ([1.0, 0.4], [{"weak": None, "weak_from": None, "at": 0.5}, {"weak": "ـِ", "weak_from": 2, "at": 1.1}]),
     )
     resp = client.post(
         "/api/listen/check-text", params={"heard": "الله اكبر", "expected": "اللَّهُ أَكْبَرُ"},
         files={"audio": ("r.webm", WEBM)},
     )
     assert resp.status_code == 200
-    assert resp.json() == {"sure": [1.0, 0.4], "detail": [{"weak": None, "at": 0.5}, {"weak": "ـِ", "at": 1.1}]}
+    assert resp.json() == {"sure": [1.0, 0.4], "detail": [{"weak": None, "weak_from": None, "at": 0.5}, {"weak": "ـِ", "weak_from": 2, "at": 1.1}]}
 
 
 def test_check_text_route_refuses_what_is_not_a_recording(monkeypatch):

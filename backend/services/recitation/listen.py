@@ -339,8 +339,8 @@ def scores(audio: bytes, words: list[str], model: str | None = None) -> list[dic
             ),
             words=len(words), rule=get_settings().recitation_sure_of_word,
         )[0]
-    # align gives one (piece, frame) pair per piece, and two of the encoder's
-    # frames are a hundredth of a second of sound.
+    # align gives one (piece, position) pair per piece, in the model's own
+    # tokens per second (50: an encoder position is two hundredths of a second).
     where = dict(answer.alignments)
     out, at = [], 0
     for piece in pieces:
@@ -349,28 +349,36 @@ def scores(audio: bytes, words: list[str], model: str | None = None) -> list[dic
         out.append({
             "probs": probs,
             "weak": weakest(piece, probs, tokenizer.decode),
-            "at": round(where[end - 1] / 100, 2) if end - 1 in where else None,
+            "at": round(where[end - 1] / model.tokens_per_second, 2) if end - 1 in where else None,
         })
         at = end
     return out
 
 
-def weakest(piece: list[int], probs: list[float], decode) -> str | None:
-    """The text of a word's least likely piece, for a word card to point at.
+def weakest(piece: list[int], probs: list[float], decode) -> dict | None:
+    """A word's least likely piece, for a word card to point at: its `text` and
+    `start`, the characters of the word before it.
 
-    None for a word of one piece (the piece is the whole word) and for a piece
-    that is half a letter: Arabic letters are sometimes split into bytes, and
-    decoding half of one gives a replacement mark, which says nothing.
+    None for a word of one piece (the piece is the whole word), for a piece
+    that is half a letter (Arabic letters are sometimes split into bytes, and
+    decoding half of one gives a replacement mark, which says nothing), and for
+    pieces and likelihoods that do not pair up, so a bad answer cannot fail a check.
     """
-    if len(piece) < 2:
+    if len(piece) < 2 or len(probs) != len(piece):
         return None
-    text = decode([piece[probs.index(min(probs))]]).strip()
-    return text if text and "\ufffd" not in text else None
+    k = probs.index(min(probs))
+    text = decode([piece[k]]).strip()
+    if not text or "�" in text:
+        return None
+    # A word after the first is encoded with a space in front of it, which is
+    # not part of the word.
+    before = decode(piece[:k]).lstrip()
+    return {"text": text, "start": len(before)}
 
 
 def weigh(audio: bytes, words: list[str], model: str | None = None) -> list[dict]:
     """What the ear makes of each word: `sure`, one number at the rule in config,
-    and the `weak` piece and `at` second that scores() found."""
+    and the `weak` piece ({text, start}) and `at` second that scores() found."""
     rule = get_settings().recitation_sure_of_word
     return [
         {"sure": aggregate(word["probs"], rule), "weak": word["weak"], "at": word["at"]}
