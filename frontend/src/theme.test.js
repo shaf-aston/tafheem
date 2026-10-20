@@ -178,6 +178,13 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
     const dazzling = Object.entries(washGrounds).filter(([, ground]) => oklch(ground)[0] > (comfort['max-ground-lightness'] ?? 1))
     expect(dazzling.map(([where]) => where)).toEqual([])
   })
+
+  it('outlines a control and writes on a filled accent so both can be seen', () => {
+    const faint = Object.entries(grounds).filter(([, ground]) => contrast(color['border-hi'], ground) < 3)
+    expect(faint.map(([where]) => where), 'border-hi under 3:1').toEqual([])
+    const unreadable = Object.entries(palette).filter(([, hex]) => contrast(color['on-accent'], hex) < 4.5)
+    expect(unreadable.map(([colour]) => colour), 'on-accent under 4.5:1').toEqual([])
+  })
 })
 
 // A look is one file. A new colour literal in a stylesheet or a component is the

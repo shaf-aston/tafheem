@@ -5,7 +5,7 @@
  * in each `frame`), unchanged in substance — this file only holds data, no
  * layout or rendering.
  *
- * `CHARTS`: one entry per science; `accent` is its card colour on the Map index (the look-toned ink). `config.branches` are its book-level
+ * `CHARTS`: one entry per science; `accent` is its card colour on the Map index. `config.branches` are its book-level
  * divisions (never أبواب inside one — each chart's own footnote states the
  * rule it follows and what it deliberately leaves out); each branch's `kids`
  * are the topics under it, `[arabic, english]` pairs. `config.footnote` is the
@@ -17,20 +17,20 @@
 
 import { colorFor } from "../theme"
 
-/** Each branch colour once: line, tint, label, and as words on any look (ink), from theme.json's `pbs` group. A chart names one by key. */
+/** Each branch colour once, toned per look: line, box wash, label, from theme.json's `pbs` group. A chart names one by key. */
+const mix = (hue, wash) => `color-mix(in oklch, ${colorFor("pbs", hue)} ${colorFor("pbs", wash)}, var(--surface))`
 const HUE = Object.fromEntries(
   ["teal", "rose", "amber", "violet", "indigo", "slate", "sky", "slateDeep", "blue", "emerald", "orange", "cyan"].map((hue) => [hue, {
-    bar: colorFor("pbs", `${hue}-bar`),
-    fill: colorFor("pbs", `${hue}-fill`),
-    text: colorFor("pbs", `${hue}-text`),
-    ink: colorFor("pbs", `${hue}-ink`),
+    bar: colorFor("pbs", hue),
+    head: mix(hue, "head-wash"),
+    fill: mix(hue, "wash"),
   }]),
 )
 
 export const CHARTS = [
 
 /* ---------------------------------------------------------- 07 */
-{ id:"07", ar:"عُلوم اللُّغة", en:"Arabic Language", frame:"البصريون", accent:HUE.violet.ink,
+{ id:"07", ar:"عُلوم اللُّغة", en:"Arabic Language", frame:"البصريون", accent:HUE.violet.bar,
   config:{
   root:{ar:"عُلوم اللُّغة العَرَبِيَّة", en:"Arabic Language Sciences"},
   footnote:[
@@ -63,7 +63,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 08 */
-{ id:"08", ar:"المَنطِق", en:"Logic", frame:"آلة, not a Sharʿī science", accent:HUE.slate.ink,
+{ id:"08", ar:"المَنطِق", en:"Logic", frame:"آلة, not a Sharʿī science", accent:HUE.slate.bar,
   config:{
   root:{ar:"المَنطِق", en:"Logic"},
   footnote:[
@@ -97,7 +97,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 04 */
-{ id:"04", ar:"عُلوم القُرآن", en:"Qur'anic Sciences", frame:"السيوطي / الزركشي", accent:HUE.teal.ink,
+{ id:"04", ar:"عُلوم القُرآن", en:"Qur'anic Sciences", frame:"السيوطي / الزركشي", accent:HUE.teal.bar,
   config:{
   root:{ar:"عُلوم القُرآن", en:"Qur'anic Sciences"},
   footnote:[
@@ -134,7 +134,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 05 */
-{ id:"05", ar:"عُلوم الحَديث", en:"Hadith Sciences", frame:"ابن الصلاح / ابن حجر", accent:HUE.rose.ink,
+{ id:"05", ar:"عُلوم الحَديث", en:"Hadith Sciences", frame:"ابن الصلاح / ابن حجر", accent:HUE.rose.bar,
   config:{
   root:{ar:"عُلوم الحَديث", en:"Hadith Sciences"},
   footnote:[
@@ -167,7 +167,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 06 */
-{ id:"06", ar:"العَقيدة", en:"Creed", frame:"الماتريدية", accent:HUE.blue.ink,
+{ id:"06", ar:"العَقيدة", en:"Creed", frame:"الماتريدية", accent:HUE.blue.bar,
   config:{
   root:{ar:"العَقيدة", en:"Islamic Creed"},
   footnote:[
@@ -208,7 +208,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 02 */
-{ id:"02", ar:"أُصول الفِقه", en:"Legal Theory", frame:"Hanafi · طريقة الفقهاء", accent:HUE.indigo.ink,
+{ id:"02", ar:"أُصول الفِقه", en:"Legal Theory", frame:"Hanafi · طريقة الفقهاء", accent:HUE.indigo.bar,
   config:{
   root:{ar:"أُصول الفِقه", en:"Legal Theory & Methodology"},
   footnote:[
@@ -244,7 +244,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 01 */
-{ id:"01", ar:"الفِقه", en:"Jurisprudence", frame:"Hanafi · القدوري", accent:HUE.emerald.ink,
+{ id:"01", ar:"الفِقه", en:"Jurisprudence", frame:"Hanafi · القدوري", accent:HUE.emerald.bar,
   config:{
   root:{ar:"الفِقْه", en:"Islamic Jurisprudence"},
   footnote:[
@@ -297,7 +297,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 03 */
-{ id:"03", ar:"القَواعِد الفِقهِيّة", en:"Legal Maxims", frame:"Hanafi · ابن نجيم / المجلة", accent:HUE.amber.ink,
+{ id:"03", ar:"القَواعِد الفِقهِيّة", en:"Legal Maxims", frame:"Hanafi · ابن نجيم / المجلة", accent:HUE.amber.bar,
   config:{
   root:{ar:"القَواعِد الفِقهِيَّة", en:"Legal Maxims"},
   footnote:[
@@ -333,7 +333,7 @@ export const CHARTS = [
   ]}},
 
 /* ---------------------------------------------------------- 09 */
-{ id:"09", ar:"التَّزكية", en:"Purification of the Soul", frame:"الغزالي · الإحياء", accent:HUE.sky.ink,
+{ id:"09", ar:"التَّزكية", en:"Purification of the Soul", frame:"الغزالي · الإحياء", accent:HUE.sky.bar,
   config:{
   root:{ar:"التَّزكِية", en:"Purification of the Soul"},
   footnote:[

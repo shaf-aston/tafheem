@@ -3,7 +3,7 @@
  *
  * Every position comes from lib/pbsLayout (root box, branch boxes, kid boxes,
  * every connector), and every chrome colour from the theme; a branch's own
- * accent (`c.bar`/`c.fill`/`c.text`) is content, carried straight from
+ * accent (`c.bar`/`c.head`/`c.fill`) is content, carried straight from
  * lib/pbsData, the same way TimelineMap takes its accent from a prop rather
  * than deciding one. This file decides no position and no colour of its own.
  *
@@ -79,7 +79,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }
               onMouseEnter={() => onHoverBranch?.(i)}
               onMouseLeave={() => onHoverBranch?.(null)}
             >
-              <rect x={box.x} y={box.y} width={box.w} height={box.h} rx="12" fill={b.c.bar} />
+              <rect x={box.x} y={box.y} width={box.w} height={box.h} rx="12" fill={b.c.head} stroke={b.c.bar} strokeWidth="1.3" />
               <text x={box.cx} y={box.textY} textAnchor="middle" fontSize="17" fontWeight="700" fill="var(--text)" lang="ar" dir="rtl">
                 {b.ar}
               </text>
@@ -98,13 +98,13 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }
                 >
                   <rect x={kbox.x} y={kbox.y} width={kbox.w} height={kbox.h} rx="10"
                     fill={b.c.fill} stroke={b.c.bar} strokeWidth="1.3" />
-                  <text x={kbox.cx} y={kbox.textY} textAnchor="middle" fontSize="15.5" fontWeight="700" fill={b.c.text} lang="ar" dir="rtl">
+                  <text x={kbox.cx} y={kbox.textY} textAnchor="middle" fontSize="15.5" fontWeight="700" fill="var(--text)" lang="ar" dir="rtl">
                     {k[0]}
                   </text>
-                  <text x={kbox.cx} y={kbox.subTextY} textAnchor="middle" fontSize="9.5" fill={b.c.text} fillOpacity=".7">
+                  <text x={kbox.cx} y={kbox.subTextY} textAnchor="middle" fontSize="9.5" fill="var(--text)" fillOpacity=".7">
                     {k[1] && `(${k[1]})`}
                   </text>
-                  {k[2] && <Arrow x={kbox.x + 12} y={kbox.y + kbox.h / 2 + 5} fill={b.c.text} />}
+                  {k[2] && <Arrow x={kbox.x + 12} y={kbox.y + kbox.h / 2 + 5} fill="var(--text)" />}
                 </g>
               </g>
             ))}
