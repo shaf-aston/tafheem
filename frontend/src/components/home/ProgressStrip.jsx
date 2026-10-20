@@ -1,23 +1,14 @@
 /** XP and streak when logged in, or the way to log in. One job: the progress line of Home. */
-import { useState } from 'react'
-
 import XpCard from '../profile/XpCard'
-import ProfileDialog from '../profile/ProfileDialog'
+import LogInButton from '../profile/LogInButton'
 
 export default function ProgressStrip({ name, rewards, streak, copy }) {
-  const [asking, setAsking] = useState(false)
   if (!name) {
     return (
-      <>
-        <p className="flex flex-wrap items-center gap-x-2 text-[var(--text-dim)]">
-          <span>{copy.guest}</span>
-          <button type="button" onClick={() => setAsking(true)} aria-haspopup="dialog"
-            className="press min-h-11 px-1 font-semibold text-[var(--primary-hi)] underline underline-offset-4">
-            {copy['guest-go']}
-          </button>
-        </p>
-        {asking && <ProfileDialog onClose={() => setAsking(false)} />}
-      </>
+      <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[var(--text-dim)]">
+        <span>{copy.guest}</span>
+        <LogInButton>{copy['guest-go']}</LogInButton>
+      </p>
     )
   }
   return (
