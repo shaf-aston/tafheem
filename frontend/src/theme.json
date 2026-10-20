@@ -341,7 +341,10 @@
   "radius": {
     "sm": "0.5rem",
     "md": "0.85rem",
-    "lg": "1.25rem"
+    "lg": "1.25rem",
+    "_pill_comment": "Fully round ends: the call to action (.cta) and every PrimaryButton. control is the header's chrome (the gear, the pen, the command bar), round like the landing page's; set it to a radius above to square them again.",
+    "pill": "999px",
+    "control": "999px"
   },
   "shadow": {
     "_comment": "Depth, for the few things that float over the page rather than sit in it. pop is a tooltip or popover, lift a card raised under the pointer, scrim the dim behind a modal. One of each, on purpose: one lift reads as one layer.",
@@ -524,5 +527,31 @@
     "_comment": "The halo of the .glow box and the .text-glow word (styles/components.css), in the colour of the --c it sits under: a word's role, the chosen tab's line. strength scales both, blur is how far they spread.",
     "strength": "0.55",
     "blur": "18px"
+  },
+  "font": {
+    "_comment": "The landing page's two display faces, now the app's too. head sets page and section titles (h1, h2), label the small capitals over a block (.eyebrow), spaced by label-tracking. Both are bundled (styles/base.css imports them), so no network request blocks a title.",
+    "head": "'Fraunces Variable', Georgia, serif",
+    "label": "'Syne', sans-serif",
+    "label-tracking": "0.13em"
+  },
+  "cta": {
+    "_comment": "The call to action (.cta in styles/components.css: Log in, PrimaryButton). pad is its side room, lift-px how far it rises under the pointer and press how small it gives under the finger, nudge-px how far its arrow leans. sheen is how bright the light passing across it is and sheen-beats how long one pass and its rest take, in spring-ms. quiet is the unfilled pill in the header: its height, side room, and the gold of its edge and its hover wash.",
+    "pad": "1.25rem",
+    "lift-px": 2,
+    "press": 0.96,
+    "nudge-px": 4,
+    "sheen": "35%",
+    "sheen-beats": 9,
+    "quiet-height": "2.25rem",
+    "quiet-pad": "0.9rem",
+    "quiet-edge": "50%",
+    "quiet-wash": "12%"
+  },
+  "tile": {
+    "_comment": "A tab's tile on Home (ui/Tile, .tile-wash): under the pointer its Arabic name grows by hover-scale and leans by hover-turn, and the colour wash in its corner deepens from wash to wash-hover.",
+    "hover-scale": 1.1,
+    "hover-turn": "-3deg",
+    "wash": "22%",
+    "wash-hover": "32%"
   }
 }

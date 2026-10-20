@@ -4,6 +4,13 @@
 /* Self-hosted, so the app still looks right with no network.
    Noto Naskh is chosen over a calligraphic face because diacritics stay
    legible at small sizes, this text gets read closely, not admired. */
+/* The landing page's title and label faces (theme.json `font`), bundled too. */
+@import "@fontsource-variable/fraunces/index.css";
+
+
+@import "@fontsource/syne/latin-700.css";
+
+
 @import "@fontsource/noto-naskh-arabic/400.css";
 
 

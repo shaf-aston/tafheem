@@ -47,7 +47,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between gap-2">
-          <h2 id="sections-title" className="text-base font-bold text-[var(--text)]">All sections</h2>
+          <h2 id="sections-title" className="type-head text-base font-bold text-[var(--text)]">All sections</h2>
           <div className="flex items-center">
             {editable && (
               <button

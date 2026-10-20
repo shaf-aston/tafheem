@@ -29,7 +29,7 @@ export default function ProfileDialog({ onClose }) {
   return (
     <BottomSheet label={title} onClose={onClose} className="p-5 space-y-4">
       <div className="flex items-baseline justify-between gap-3">
-        <h2 className="text-base font-bold text-[var(--text)]">{title}</h2>
+        <h2 className="type-head text-base font-bold text-[var(--text)]">{title}</h2>
         <button
           type="button"
           onClick={onClose}

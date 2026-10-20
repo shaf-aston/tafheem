@@ -25,7 +25,7 @@ export default function SectionHeader({ title, arabic, subtitle, emblem, aside =
               thing, and the gap between them should be smaller than the gap to
               whatever comes next, most of what used to sit there was empty line
               box, not margin. */}
-          <h2 className="text-xl font-semibold leading-none text-[var(--text)]">{title}</h2>
+          <h2 className="type-head text-xl font-semibold leading-none text-[var(--text)]">{title}</h2>
           {arabic && (
             /* arabic-inline, not the reading line-height: the tall empty line
                box under one word was most of the gap beneath this header. */

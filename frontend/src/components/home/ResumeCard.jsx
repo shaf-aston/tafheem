@@ -10,7 +10,7 @@ import Tile from '../ui/Tile'
 export default function ResumeCard({ tab, accent, value, label, goLabel, progressText, onGo }) {
   return (
     <section aria-label={label} className="space-y-2">
-      <h3 className="type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{label}</h3>
+      <h3 className="eyebrow eyebrow-lg">{label}</h3>
       <Tile as="div" variant="lead" accent={accent}>
         <div className="flex items-center gap-3">
           <ArabicText size="lg" style={{ color: accent }}>{tab.arabic}</ArabicText>

@@ -158,13 +158,23 @@ textarea.arabic-lg {
 }
 
 
-/* Small grey capitals label. In the components layer so a utility beside it wins. */
+/* The landing page's two display faces (theme.json `font`). .type-head is a
+   title: a tab's (ui/SectionHeader), Home's, a sheet's. .eyebrow is the small
+   gold capitals over a block. In the components layer so a utility beside
+   either wins. */
 @layer components {
+  .type-head {
+    font-family: var(--font-head);
+    letter-spacing: -0.01em;
+  }
+  /* .eyebrow-lg: the same label a rung up, heading a block of its own (Home). */
+  .eyebrow-lg { --eyebrow-size: var(--type-label); }
   .eyebrow {
-    font-size: var(--type-tiny);
+    font-family: var(--font-label);
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.025em;
-    color: var(--text-faint);
+    letter-spacing: var(--font-label-tracking);
+    color: var(--primary-hi);
   }
 }
 
@@ -175,7 +185,8 @@ textarea.arabic-lg {
    On a touch screen .tap (pills, links, small buttons) is at least layout.tap
    square. Both wrap the token rather than redefine it: theme.js writes the
    tokens inline on the root, which no stylesheet rule could override. */
-.type-micro, .type-tiny, .eyebrow { font-size: max(var(--type-micro), 0.6875rem); }
+.type-micro, .type-tiny { font-size: max(var(--type-micro), 0.6875rem); }
+.eyebrow { font-size: max(var(--eyebrow-size, var(--type-tiny)), 0.6875rem); }
 @media (max-width: 40rem) {
   .type-small { font-size: max(var(--type-small), 0.75rem); }
 }
