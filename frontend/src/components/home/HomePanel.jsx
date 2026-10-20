@@ -58,11 +58,14 @@ export default function HomePanel({ accent, onGo }) {
   )
 
   return (
-    <div className="panel space-y-6" style={{ '--c': accent }}>
-      <header className="relative isolate space-y-2">
-        <ArabicText aria-hidden="true" className="outline-text hidden sm:block absolute -z-10 top-0 right-0 [--outline-size:6rem] leading-none pointer-events-none select-none">
+    <div className="panel isolate space-y-6" style={{ '--c': accent }}>
+      {/* The quiet word stays put behind the page as it scrolls (.pin-back). */}
+      <div aria-hidden="true" className="pin-back hidden sm:block">
+        <ArabicText className="outline-text absolute top-0 right-0 [--outline-size:6rem] leading-none select-none">
           فهم
         </ArabicText>
+      </div>
+      <header className="space-y-2">
         <h2 className="type-head rise-in text-3xl sm:text-5xl font-semibold leading-tight">
           {first ? copy['title-first'] : copy['title-resume']}
         </h2>
