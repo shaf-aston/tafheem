@@ -213,7 +213,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             )}
           </div>
 
-          <div ref={card} key={`${bookId}/${part}/${pageNumber}`} {...slide}
+          <div ref={card} data-recite-page="" key={`${bookId}/${part}/${pageNumber}`} {...slide}
             className={`rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4 ${slide.className}`}>
             {/* A flowing book runs its lines on as a printed mushaf does: one
                 block, justified, each ayah ending in its number, and never a

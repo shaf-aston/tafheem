@@ -55,6 +55,12 @@
   "_card-width-px": "The width of a word card or an ayah card on a wide screen. On a phone it spans the screen and this is not used.",
   "card-width-px": 300,
 
+  "_card-phone-height-share": "The most of the screen's height a word card may take on a phone, as a share. Past it the card's body scrolls and its buttons stay put, so the page and the live marks behind it stay in view.",
+  "card-phone-height-share": 0.45,
+
+  "_card-scroll-gap-px": "On a phone, how far above the card the page is scrolled so the tapped word or ayah number sits just clear of it.",
+  "card-scroll-gap-px": 12,
+
   "_turn-after-s": "How long a finished page stays up before the next one turns in by itself, while reciting carries on. The page is finished once its last word is reached and the reciter has paused, and every sureness check of it is back; this is then only the moment to see how its last ayah went. Long enough to catch a red word, short enough that the new page is up before the reciter is far into it (the words said meanwhile are kept either way).",
   "turn-after-s": 1.5,
 

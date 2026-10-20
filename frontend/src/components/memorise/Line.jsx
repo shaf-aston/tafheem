@@ -89,7 +89,7 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
   })
   const opens = reached ? () => recite.setOpen(numberOpen ? null : { line: ayah.key }) : undefined
   const bare = flow
-    ? <AyahNumber aria-label={`ayah ${ayah.label}`} onClick={opens}>{ayah.label}</AyahNumber>
+    ? <AyahNumber aria-label={opens ? `Ayah ${ayah.label}, details` : `ayah ${ayah.label}`} onClick={opens}>{ayah.label}</AyahNumber>
     : <AyahNumber onClick={opens}>{line.label}</AyahNumber>
   // The card hangs from a wrapper round the number, so a press on the number
   // itself is not an outside press that closes it just before it opens.

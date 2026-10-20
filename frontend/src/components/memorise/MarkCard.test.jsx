@@ -47,7 +47,7 @@ describe('the word card', () => {
 
   it('opens an ayah card from its number, listing the problem words', () => {
     render(<Page />)
-    fireEvent.click(screen.getByRole('button', { name: 'ayah 5' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Ayah 5, details' }))
     expect(screen.getByRole('dialog').textContent).toContain('1 right, 1 wrong')
   })
 
@@ -60,7 +60,7 @@ describe('the word card', () => {
     expect(card.textContent).toContain('waiting')
     fireEvent.keyDown(document, { key: 'Escape' })
     rerender(<Page marks={[MARKS[0], { ...MARKS[0], word: WORDS[1] }]} />)
-    fireEvent.click(screen.getByRole('button', { name: 'ayah 5' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Ayah 5, details' }))
     expect(screen.getByRole('dialog').textContent).toContain('All right')
   })
 })

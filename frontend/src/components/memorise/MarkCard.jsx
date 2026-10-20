@@ -9,10 +9,14 @@ import { PHONE, useMedia } from '../../lib/useMedia'
 import config from '../../recite.json'
 
 import ArabicText from '../ui/ArabicText'
+import { hitArea } from '../ui/hitArea'
 
 const LEAD_IN_S = config['card-lead-in-s']
 const EDGE_PX = config['card-edge-px']
 const WIDTH_PX = config['card-width-px']
+const MAX_SHARE = config['card-phone-height-share']
+const SCROLL_GAP_PX = config['card-scroll-gap-px']
+const GAP = '0.5rem'
 const PROBLEM = [WRONG, CHECK, MISSED]
 const KEY = /^(\d+):(\d+)$/
 
@@ -112,6 +116,7 @@ function AyahBody({ ayah, words, recite }) {
 export default function MarkCard({ ayah, at, recite, anchor, onStartAt }) {
   const phone = useMedia(PHONE)
   const card = useRef(null)
+  const close = useRef(null)
 
   useEffect(() => {
     const onKey = (event) => event.key === 'Escape' && recite.setOpen(null)
@@ -126,14 +131,53 @@ export default function MarkCard({ ayah, at, recite, anchor, onStartAt }) {
     }
   }, [anchor, recite])
 
-  // Hung under a word it is centred on it, then slid back inside the screen.
+  // Focus goes into the card when it opens, so a keyboard reader does not have
+  // to tab through a page to reach one that sits at the end of the document,
+  // and back to the word or number that opened it when it closes. Not when
+  // focus has already gone somewhere the reader chose.
+  useEffect(() => {
+    const opener = anchor.current?.querySelector('button')
+    const el = card.current
+    close.current?.focus({ preventScroll: true })
+    return () => {
+      const now = document.activeElement
+      if (!now || now === document.body || el?.contains(now)) opener?.focus({ preventScroll: true })
+    }
+  }, [anchor])
+
+  // On a phone the card covers the bottom of the screen: scroll the page so
+  // what was tapped sits just above it.
+  useEffect(() => {
+    const el = card.current
+    const from = anchor.current
+    if (!phone || !el || !from) return
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const hidden = from.getBoundingClientRect().bottom - (el.getBoundingClientRect().top - SCROLL_GAP_PX)
+    const above = from.getBoundingClientRect().top - SCROLL_GAP_PX
+    const top = hidden > 0 ? hidden : Math.min(0, above)
+    if (top) window.scrollBy({ top, behavior: reduced ? 'auto' : 'smooth' })
+  }, [phone, anchor])
+
+  // On a wide screen the card hangs from its anchor, centred on it, then is
+  // slid back inside the page card (one edge gap in) and put above the line
+  // instead when the line is in the lower half of the page and there is room.
   useLayoutEffect(() => {
     const el = card.current
     if (!el || phone) return
+    const page = anchor.current?.closest('[data-recite-page]')
+    const bounds = page ? page.getBoundingClientRect() : { left: 0, right: document.documentElement.clientWidth, top: 0, height: window.innerHeight }
+    const from = anchor.current.getBoundingClientRect()
     el.style.translate = '0px'
     const box = el.getBoundingClientRect()
-    const over = Math.max(0, EDGE_PX - box.left) - Math.max(0, box.right - (document.documentElement.clientWidth - EDGE_PX))
+    const over = Math.max(0, bounds.left + EDGE_PX - box.left) - Math.max(0, box.right - (bounds.right - EDGE_PX))
     el.style.translate = `${over}px`
+    const lower = from.top + from.height / 2 - bounds.top > bounds.height / 2
+    const room = from.top - box.height - EDGE_PX > 0
+    const above = lower && room
+    el.style.top = above ? 'auto' : '100%'
+    el.style.bottom = above ? '100%' : 'auto'
+    el.style.marginTop = above ? '0' : GAP
+    el.style.marginBottom = above ? GAP : '0'
   })
 
   const words = recite.words.slice(ayah.from, ayah.from + ayah.count)
@@ -157,18 +201,21 @@ export default function MarkCard({ ayah, at, recite, anchor, onStartAt }) {
       role="dialog"
       aria-label={mark ? `${ayah.printed[at - ayah.from]}, ${(LOOK[mark.state] ?? WAITING_LOOK).label}` : `ayah ${ayah.label}`}
       dir="ltr"
-      style={phone ? undefined : { width: WIDTH_PX, marginLeft: -WIDTH_PX / 2 }}
+      style={phone
+        ? { maxHeight: `min(${MAX_SHARE * 100}dvh, calc(100dvh - var(--layout-nav) - env(safe-area-inset-bottom, 0px) - 4rem))` }
+        : { width: WIDTH_PX, marginLeft: -WIDTH_PX / 2 }}
       className={`flex flex-col bg-[var(--surface)] border border-[var(--border-hi)] rounded-[var(--radius-md)] shadow-[var(--shadow-pop)] z-[var(--layer-popover)] text-start
         ${phone
-          // Between the top of the screen and the nav: the body scrolls, the buttons do not.
-          ? 'fixed inset-x-2 bottom-[calc(var(--layout-nav)+env(safe-area-inset-bottom,0px)+0.5rem)] max-h-[calc(100dvh-var(--layout-nav)-env(safe-area-inset-bottom,0px)-4rem)]'
-          : 'absolute top-full mt-2 left-1/2'}`}
+          // Above the nav and at most a share of the screen: the body scrolls, the buttons do not.
+          ? 'fixed inset-x-2 bottom-[calc(var(--layout-nav)+env(safe-area-inset-bottom,0px)+0.5rem)]'
+          : 'absolute left-1/2'}`}
     >
       <button
+        ref={close}
         type="button"
         onClick={() => recite.setOpen(null)}
         aria-label="Close"
-        className={`absolute top-2 end-2 z-[var(--layer-raised)] type-small text-[var(--text-faint)] px-2 rounded-full cursor-pointer bg-transparent ${focus}`}
+        className={`${hitArea} absolute top-2 end-2 z-[var(--layer-raised)] type-small text-[var(--text-faint)] px-2 rounded-full cursor-pointer bg-transparent ${focus}`}
       >
         ✕
       </button>
@@ -180,8 +227,8 @@ export default function MarkCard({ ayah, at, recite, anchor, onStartAt }) {
       <div className="shrink-0 flex flex-wrap gap-1.5 px-4 pt-2 pb-4">
         {hear && <button type="button" onClick={hear} className={solid}>▶ Hear it said right</button>}
         {mine && <button type="button" onClick={mine} className={button}>▶ Mine</button>}
-        {mark && onStartAt && (
-          <button type="button" onClick={() => { onStartAt(at); recite.setOpen(null) }} className={button}>Start here</button>
+        {onStartAt && (
+          <button type="button" onClick={() => { onStartAt(mark ? at : ayah.from); recite.setOpen(null) }} className={button}>Start here</button>
         )}
       </div>
     </div>

@@ -1,3 +1,5 @@
+import { hitArea } from '../ui/hitArea'
+
 // An ayah's (or a verse's) number, drawn one way in every tab: a small round outlined badge.
 // Given `onClick` (reciting, once the ayah has been reached) it is a button that opens the ayah's card.
 export default function AyahNumber({ children, className = '', onClick, ...rest }) {
@@ -7,7 +9,7 @@ export default function AyahNumber({ children, className = '', onClick, ...rest 
     <button
       type="button"
       onClick={onClick}
-      className={`${look} bg-transparent cursor-pointer hover:bg-[var(--surface-hi)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--c)]/40`}
+      className={`${look} ${hitArea} bg-transparent cursor-pointer hover:bg-[var(--surface-hi)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--c)]/40`}
       {...rest}
     >
       {children}
