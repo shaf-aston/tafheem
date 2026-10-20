@@ -17,6 +17,8 @@ import { forgetSaved } from '../../lib/stored'
 import { useSources } from '../../lib/useSources'
 import { ARMED_MS, useMoment } from '../../lib/useMoment'
 
+import { useInstall } from '../../lib/install'
+import { InstallSteps } from './InstallBanner'
 import Disclosure from '../ui/Disclosure'
 import Segmented from '../ui/Segmented'
 
@@ -69,6 +71,8 @@ export default function SettingsPanel({ open, onClose }) {
           )
         })}
 
+        <InstallPanel />
+
         <SourceList />
 
         <a
@@ -83,6 +87,23 @@ export default function SettingsPanel({ open, onClose }) {
         <StorageFooter />
       </div>
     </dialog>
+  )
+}
+
+/**
+ * Putting the app on this phone's home screen, offered here whether or not the
+ * banner was closed, so "not now" never means never. Absent where it cannot be
+ * done or is already done (lib/install.js decides).
+ */
+function InstallPanel() {
+  const { kind } = useInstall()
+  return kind !== 'none' && (
+    <section aria-label="App" className="space-y-2">
+      <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">App</h3>
+      <div className="flex items-center gap-3 type-small text-[var(--text-dim)]">
+        <InstallSteps kind={kind} />
+      </div>
+    </section>
   )
 }
 

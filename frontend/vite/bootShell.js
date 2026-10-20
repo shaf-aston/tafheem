@@ -27,8 +27,19 @@ const GROUNDS = [
 // look name -> the colour-scheme it asks the browser for
 const SCHEMES = Object.fromEntries(Object.entries(looks).map(([name, look]) => [name, look.scheme]))
 
+// Opening from the splash: the page fades in and, on a themed page, the ground
+// eases from the splash's dark (the base look, as the manifest has it) to the
+// chosen look's. Same keyframe as every other arrival (fade-in, styles/motion.css).
+// The Animations setting (--motion-scale 0) and reduced motion both make it a cut.
+const { 'boot-ms': BOOT_MS, 'boot-from': BOOT_FROM, 'settle-ease': SETTLE } = theme.motion
+const BOOT = (themed) => `@media (prefers-reduced-motion: no-preference) {
+      #root > * { --fade-from: ${BOOT_FROM}; animation: fade-in calc(${BOOT_MS}ms * var(--motion-scale, 1)) ${SETTLE} backwards; }${themed ? `
+      @keyframes boot-ground { from { background: ${theme.color.bg}; } }
+      html[data-theme] { animation: boot-ground calc(${BOOT_MS}ms * var(--motion-scale, 1)) ${SETTLE} backwards; }` : ''}
+    }`
+
 const STYLE = (themed) =>
-  `<style>html, body { margin: 0; }\n    ${(themed ? GROUNDS : GROUNDS.slice(0, 1)).join('\n    ')}</style>`
+  `<style>html, body { margin: 0; }\n    ${(themed ? GROUNDS : GROUNDS.slice(0, 1)).join('\n    ')}\n    ${BOOT(themed)}</style>`
 
 // The same decision as theme.js's resolveTheme, from the same theme.json: a
 // look's name, or the device choice, which asks the device; anything else is
