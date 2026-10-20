@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { jumpTabs, lastOn, nearest, resume, resumePlace, tabNow, trailFor } from './journey'
+import { lastOn, nearest, resume, resumePlace, tabNow, trailFor } from './journey'
 
 const STEPS = [
   { tab: 'dict', value: null },
@@ -278,7 +278,6 @@ describe('the journey and the back arrow', () => {
 
 describe('what Home offers', () => {
   const listed = ['home', 'quran', 'nahw', 'sarf', 'dict', 'quiz'].map((id) => ({ id }))
-  const base = { listed, fallback: ['quran', 'nahw', 'sarf', 'dict'], home: 'home', count: 3 }
 
   it('resumes the newest step with a word, never Home', () => {
     const steps = [{ tab: 'dict', value: 'a' }, { tab: 'sarf', value: null }, { tab: 'home', value: 'x' }]
@@ -286,13 +285,4 @@ describe('what Home offers', () => {
     expect(resumePlace([], listed, 'home')).toBe(null)
   })
 
-  it('tiles are the recent tabs, newest first, without the resume tab or repeats', () => {
-    const steps = [{ tab: 'quiz' }, { tab: 'sarf' }, { tab: 'quiz' }, { tab: 'dict', value: 'a' }]
-    expect(jumpTabs(steps, { ...base, skip: 'dict' })).toEqual(['quiz', 'sarf', 'quran'])
-  })
-
-  it('a first visit falls back, and a pinned tab stays when offline', () => {
-    expect(jumpTabs([], base)).toEqual(['quran', 'nahw', 'sarf'])
-    expect(jumpTabs([], { ...base, pin: 'dict' })).toEqual(['quran', 'nahw', 'dict'])
-  })
 })

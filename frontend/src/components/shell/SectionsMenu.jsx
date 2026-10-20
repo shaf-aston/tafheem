@@ -8,6 +8,7 @@ import { ahead } from '../../lib/warm'
 import { useDrag } from '../../lib/useDrag'
 import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import ArabicText from '../ui/ArabicText'
+import TabGroups from '../ui/TabGroups'
 import DockSlots from './DockSlots'
 
 // `dock` is the ids on the phone bar, `onDock(id, slot)` changes it (lib/dock.js);
@@ -70,49 +71,44 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
         )}
         {/* Dropping a tab anywhere in here sends it off the bar. */}
         <div data-slot="more" className="space-y-5">
-          {groups.map((group) => (
-            <section key={group.id} className="space-y-2">
-              <h3 className="type-small text-[var(--text-faint)]">{group.label}</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {tabs.filter((tab) => tab.group === group.id).map((tab) => (
-                  <div
-                    key={tab.id}
-                    style={{ '--c': colorOf(tab.id) }}
-                    aria-current={tab.id === here ? 'page' : undefined}
-                    className={`flex items-stretch rounded-[var(--radius-sm)] border bg-[var(--bg)]
-                      hover:border-[var(--border-hi)] aria-[current=page]:border-[var(--c)]
-                      ${editing && onBar(tab.id) ? 'border-[var(--c)]' : 'border-[var(--border)]'}
-                      ${drag?.id === tab.id ? 'opacity-40' : ''}`}
+          <TabGroups groups={groups} tabs={tabs} grid="grid-cols-2 sm:grid-cols-3 gap-2">
+            {(tab) => (
+              <div
+                key={tab.id}
+                style={{ '--c': colorOf(tab.id) }}
+                aria-current={tab.id === here ? 'page' : undefined}
+                className={`flex items-stretch rounded-[var(--radius-sm)] border bg-[var(--bg)]
+                  hover:border-[var(--border-hi)] aria-[current=page]:border-[var(--c)]
+                  ${editing && onBar(tab.id) ? 'border-[var(--c)]' : 'border-[var(--border)]'}
+                  ${drag?.id === tab.id ? 'opacity-40' : ''}`}
+              >
+                <button
+                  type="button"
+                  onClick={() => tap(tab.id)}
+                  {...ahead(() => onHover?.(tab.id))}
+                  aria-pressed={editing ? onBar(tab.id) : undefined}
+                  className="flex flex-1 min-w-0 items-center justify-between gap-2 min-h-11 px-3 text-left"
+                >
+                  <span className="type-body font-medium text-[var(--c)]">{tab.label}</span>
+                  <ArabicText className="text-[var(--text-faint)]">{tab.arabic}</ArabicText>
+                </button>
+                {editing && (
+                  <span
+                    {...grip(tab.id)}
+                    role="img"
+                    aria-label={`Drag ${tab.label} to the bar`}
+                    className="grid place-items-center w-9 shrink-0 border-s border-[var(--border)] text-[var(--text-faint)] cursor-grab"
                   >
-                    <button
-                      type="button"
-                      onClick={() => tap(tab.id)}
-                      {...ahead(() => onHover?.(tab.id))}
-                      aria-pressed={editing ? onBar(tab.id) : undefined}
-                      className="flex flex-1 min-w-0 items-center justify-between gap-2 min-h-11 px-3 text-left"
-                    >
-                      <span className="type-body font-medium text-[var(--c)]">{tab.label}</span>
-                      <ArabicText className="text-[var(--text-faint)]">{tab.arabic}</ArabicText>
-                    </button>
-                    {editing && (
-                      <span
-                        {...grip(tab.id)}
-                        role="img"
-                        aria-label={`Drag ${tab.label} to the bar`}
-                        className="grid place-items-center w-9 shrink-0 border-s border-[var(--border)] text-[var(--text-faint)] cursor-grab"
-                      >
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-                          <circle cx="9" cy="6" r="1.6" /><circle cx="15" cy="6" r="1.6" />
-                          <circle cx="9" cy="12" r="1.6" /><circle cx="15" cy="12" r="1.6" />
-                          <circle cx="9" cy="18" r="1.6" /><circle cx="15" cy="18" r="1.6" />
-                        </svg>
-                      </span>
-                    )}
-                  </div>
-                ))}
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                      <circle cx="9" cy="6" r="1.6" /><circle cx="15" cy="6" r="1.6" />
+                      <circle cx="9" cy="12" r="1.6" /><circle cx="15" cy="12" r="1.6" />
+                      <circle cx="9" cy="18" r="1.6" /><circle cx="15" cy="18" r="1.6" />
+                    </svg>
+                  </span>
+                )}
               </div>
-            </section>
-          ))}
+            )}
+          </TabGroups>
           {children}
         </div>
       </div>
