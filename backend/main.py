@@ -15,7 +15,7 @@ from fastapi.middleware.gzip import GZipMiddleware
 from backend.config import get_settings
 from backend.routers import (
     analyze, colloquial, daleel, dawah, dictionary, grow, hadith, journal, listen, morphology, nahw_notes, practice, progress, quran,
-    speak, tamreen, tarkeeb, timelines,
+    recordings, speak, tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
 from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, speech, startup, syntax
@@ -135,6 +135,7 @@ def create_app() -> FastAPI:
         hadith.router,
         dawah.router,
         speak.router,
+        recordings.router,
     ):
         app.include_router(router)
 
