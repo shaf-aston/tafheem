@@ -20,7 +20,6 @@ import ProfileButton from './components/profile/ProfileButton'
 import SettingsPanel from './components/shell/SettingsPanel'
 import SpatialHome from './components/shell/SpatialHome'
 import SourceFooter from './components/shell/SourceFooter'
-import StatusPill from './components/shell/StatusPill'
 import TabStrip from './components/shell/TabStrip'
 import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
@@ -55,7 +54,7 @@ function AppContent() {
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
   const tools = useTools(TOOLS, { map: () => setMapOpen(true) })
-  const { status, nlpEngine, aiBackend, ear } = useHealth()
+  const { status } = useHealth()
   const accent = accentOf(activeTab)
 
   // Every tab's opening data, fetched once the page is idle, one tab at a time
@@ -131,7 +130,6 @@ function AppContent() {
           <div className="flex items-center gap-2 min-w-0">
             {/* Home has the command line and the tabs on a phone; the header keeps pen, profile, gear. */}
             <div className="phone-hide min-w-0"><CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} /></div>
-            <span className="phone-hide"><StatusPill status={status} nlpEngine={nlpEngine} aiBackend={aiBackend} ear={ear} /></span>
             <ProfileButton />
             <button
               type="button"
