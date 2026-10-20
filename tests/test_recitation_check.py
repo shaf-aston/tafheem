@@ -33,30 +33,51 @@ def test_the_stretch_grows_by_misheard_words_at_either_end_but_not_past_the_page
 def fake_check(monkeypatch, plain, sure=lambda audio, words: [0.5] * len(words)):
     asked = []
     monkeypatch.setattr(recitation, "_plain", lambda: plain)
-    monkeypatch.setattr(listen, "sureness", lambda audio, words, model=None: asked.append(list(words)) or sure(audio, words))
+    monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: asked.append(list(words)) or [
+        {"sure": score, "weak": None, "at": None} for score in sure(audio, words)])
     return asked
 
 
 def test_each_sureness_goes_back_to_its_own_ayah_and_unreached_words_are_none(monkeypatch):
     plain = {"112:1": "قُلْ هُوَ اللَّهُ أَحَدٌ", "112:2": "اللَّهُ الصَّمَدُ", "112:3": "لَمْ يَلِدْ وَلَمْ يُولَدْ"}
     asked = fake_check(monkeypatch, plain, lambda audio, words: [round(0.1 * (i + 1), 1) for i in range(len(words))])
-    out = recitation.check(b"sound", "أحد الله الصمد", ["112:1", "112:2", "112:3"])
+    out = recitation.check(b"sound", "أحد الله الصمد", ["112:1", "112:2", "112:3"])[0]
     # الله appears in both ayahs; the stretch starts at 112:1's last word.
     assert out == {"112:1": [None, None, None, 0.1], "112:2": [0.2, 0.3], "112:3": [None, None, None, None]}
     assert len(asked) == 1 and len(asked[0]) == 3
+
+
+def test_each_word_carries_its_weak_piece_and_second_to_its_own_ayah(monkeypatch):
+    plain = {"112:1": "قُلْ هُوَ اللَّهُ أَحَدٌ", "112:2": "اللَّهُ الصَّمَدُ"}
+    monkeypatch.setattr(recitation, "_plain", lambda: plain)
+    monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: [
+        {"sure": 0.9, "weak": f"w{i}", "at": float(i)} for i in range(len(words))])
+    sure, detail = recitation.check(b"sound", "أحد الله الصمد", ["112:1", "112:2"])
+    assert detail == {
+        "112:1": [None, None, None, {"weak": "w0", "at": 0.0}],
+        "112:2": [{"weak": "w1", "at": 1.0}, {"weak": "w2", "at": 2.0}],
+    }
+    assert [x is None for x in sure["112:1"]] == [x is None for x in detail["112:1"]]
+
+
+def test_the_weak_piece_is_the_least_likely_one_and_a_single_piece_or_half_a_letter_has_none():
+    decode = {1: "ال", 2: "صَ", 3: chr(0xFFFD)}.get
+    assert listen.weakest([1, 2], [0.9, 0.2], lambda t: decode(t[0])) == "صَ"
+    assert listen.weakest([1], [0.2], lambda t: decode(t[0])) is None
+    assert listen.weakest([1, 3], [0.9, 0.2], lambda t: decode(t[0])) is None
 
 
 def test_the_check_runs_on_to_the_end_of_the_ayah_the_transcript_stopped_in(monkeypatch):
     """The ear leaves out a word it doubts, often the last; that word is still checked."""
     plain = {"1:7": "غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", "2:1": "الم"}
     fake_check(monkeypatch, plain)
-    assert recitation.check(b"sound", "غير المغضوب عليهم ولا", ["1:7", "2:1"]) == {
+    assert recitation.check(b"sound", "غير المغضوب عليهم ولا", ["1:7", "2:1"])[0] == {
         "1:7": [0.5, 0.5, 0.5, 0.5, 0.5], "2:1": [None]}
 
 
 def test_a_recording_that_does_not_place_is_not_checked(monkeypatch):
     asked = fake_check(monkeypatch, {"1:1": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ"})
-    assert recitation.check(b"sound", "موسيقى", ["1:1"]) == {}
+    assert recitation.check(b"sound", "موسيقى", ["1:1"])[0] == {}
     assert asked == []
 
 
@@ -65,20 +86,20 @@ def test_more_words_than_one_recording_holds_is_not_checked(monkeypatch):
     asked = fake_check(monkeypatch, {"2:282": long})
     monkeypatch.setattr(get_settings(), "recitation_sure_max_words", 10)
     heard = " ".join(f"كلمة{n}" for n in range(30))
-    assert recitation.check(b"sound", heard, ["2:282"]) == {}
+    assert recitation.check(b"sound", heard, ["2:282"])[0] == {}
     assert asked == []
 
 
 def test_an_ayah_the_text_does_not_have_is_skipped_not_crashed(monkeypatch):
     fake_check(monkeypatch, {"1:1": "بِسْمِ اللَّهِ"})
-    assert recitation.check(b"sound", "بسم الله", ["1:1", "999:1"]) == {"1:1": [0.5, 0.5]}
+    assert recitation.check(b"sound", "بسم الله", ["1:1", "999:1"])[0] == {"1:1": [0.5, 0.5]}
 
 
 def test_a_plain_undiacritised_heard_string_still_places(monkeypatch):
     """Groq writes no harakat at all; place.reach folds marks off both sides
     already, so a bare transcript must place exactly as a voweled one does."""
     fake_check(monkeypatch, {"1:2": "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَالَمِينَ"})
-    assert recitation.check(b"sound", "الحمد لله رب العالمين", ["1:2"]) == {"1:2": [0.5, 0.5, 0.5, 0.5]}
+    assert recitation.check(b"sound", "الحمد لله رب العالمين", ["1:2"])[0] == {"1:2": [0.5, 0.5, 0.5, 0.5]}
 
 
 def test_heard_text_with_stray_punctuation_and_digits_still_places(monkeypatch):
@@ -86,7 +107,7 @@ def test_heard_text_with_stray_punctuation_and_digits_still_places(monkeypatch):
     among real words (see test_recitation.py); a digit-and-dot token must not
     stop the words after it from placing."""
     fake_check(monkeypatch, {"1:2": "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَالَمِينَ"})
-    assert recitation.check(b"sound", "114. الحمد لله رب العالمين", ["1:2"]) == {"1:2": [0.5, 0.5, 0.5, 0.5]}
+    assert recitation.check(b"sound", "114. الحمد لله رب العالمين", ["1:2"])[0] == {"1:2": [0.5, 0.5, 0.5, 0.5]}
 
 
 def test_the_ayahs_to_check_are_validated_before_the_recording_is_read(monkeypatch):
@@ -107,20 +128,24 @@ def test_an_oversize_heard_string_is_rejected(monkeypatch):
 
 def test_sureness_comes_from_its_own_endpoint_not_the_words_one(monkeypatch):
     monkeypatch.setattr(recitation, "hear", lambda *a, **k: ("قل هو", []))
-    monkeypatch.setattr(recitation, "check", lambda audio, text, ayahs, model=None: {"112:1": [1.0, 1.0, None, None]})
+    monkeypatch.setattr(recitation, "check", lambda audio, text, ayahs, model=None: (
+        {"112:1": [1.0, 1.0, None, None]}, {"112:1": [{"weak": "ـُ", "at": 0.4}, {"weak": None, "at": 0.9}, None, None]}))
     words = client.post("/api/listen?recite=true", files={"audio": ("r.webm", WEBM)}).json()
     assert "sure" not in words
 
     checked = client.post(
         "/api/listen/check", params={"heard": "قل هو", "check": "112:1"}, files={"audio": ("r.webm", WEBM)},
     ).json()
-    assert checked == {"sure": {"112:1": [1.0, 1.0, None, None]}}
+    assert checked == {
+        "sure": {"112:1": [1.0, 1.0, None, None]},
+        "detail": {"112:1": [{"weak": "ـُ", "at": 0.4}, {"weak": None, "at": 0.9}, None, None]},
+    }
 
 
 def test_a_check_with_no_ayahs_or_no_heard_text_answers_empty_without_scoring(monkeypatch):
     monkeypatch.setattr(recitation, "check", lambda *a, **k: (_ for _ in ()).throw(AssertionError("scored")))
-    assert client.post("/api/listen/check?heard=&check=112:1", files={"audio": ("r.webm", WEBM)}).json() == {"sure": {}}
-    assert client.post("/api/listen/check?heard=x&check=", files={"audio": ("r.webm", WEBM)}).json() == {"sure": {}}
+    assert client.post("/api/listen/check?heard=&check=112:1", files={"audio": ("r.webm", WEBM)}).json() == {"sure": {}, "detail": {}}
+    assert client.post("/api/listen/check?heard=x&check=", files={"audio": ("r.webm", WEBM)}).json() == {"sure": {}, "detail": {}}
 
 
 def test_a_zero_byte_audio_file_with_valid_answers_short_circuits_without_scoring(monkeypatch):
@@ -129,7 +154,7 @@ def test_a_zero_byte_audio_file_with_valid_answers_short_circuits_without_scorin
         "/api/listen/check", params={"heard": "قل", "check": "112:1"}, files={"audio": ("r.webm", b"")},
     )
     assert resp.status_code == 200
-    assert resp.json() == {"sure": {}}
+    assert resp.json() == {"sure": {}, "detail": {}}
 
 
 def test_a_check_always_takes_the_turn(monkeypatch):
@@ -145,7 +170,7 @@ def test_a_check_always_takes_the_turn(monkeypatch):
             return False
 
     monkeypatch.setattr(listen_router, "_turn", _Track())
-    monkeypatch.setattr(recitation, "check", lambda audio, text, ayahs, model=None: {"112:1": [1.0]})
+    monkeypatch.setattr(recitation, "check", lambda audio, text, ayahs, model=None: ({"112:1": [1.0]}, {"112:1": [None]}))
     resp = client.post(
         "/api/listen/check", params={"heard": "قل", "check": "112:1"}, files={"audio": ("r.webm", WEBM)},
     )
@@ -163,7 +188,7 @@ def test_a_stale_check_is_dropped_when_the_page_has_given_up(monkeypatch):
         "/api/listen/check", params={"heard": "قل", "check": "112:1"}, files={"audio": ("r.webm", WEBM)},
     )
     assert resp.status_code == 200
-    assert resp.json() == {"sure": {}}
+    assert resp.json() == {"sure": {}, "detail": {}}
 
 
 def test_a_recitation_skips_the_turn_when_the_hosted_ear_would_answer(monkeypatch):
@@ -263,7 +288,7 @@ def test_a_trial_check_scores_with_the_trial_model(monkeypatch):
     seen = {}
     monkeypatch.setattr(recitation.listen, "trial_model", lambda: "data/trial")
     monkeypatch.setattr(recitation, "_plain", lambda: {"112:1": "قُلْ هُوَ"})
-    monkeypatch.setattr(listen, "sureness", lambda audio, words, model=None: seen.update(model=model) or [0.5] * len(words))
+    monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: seen.update(model=model) or [{"sure": 0.5, "weak": None, "at": None}] * len(words))
     resp = client.post(
         "/api/listen/check", params={"heard": "قل هو", "check": "112:1", "trial": "true"}, files={"audio": ("r.webm", WEBM)},
     )
@@ -273,7 +298,7 @@ def test_a_trial_check_scores_with_the_trial_model(monkeypatch):
 def test_a_trial_phrase_check_scores_with_the_trial_model(monkeypatch):
     seen = {}
     monkeypatch.setattr(recitation.listen, "trial_model", lambda: "data/trial")
-    monkeypatch.setattr(listen, "sureness", lambda audio, words, model=None: seen.update(model=model) or [0.5] * len(words))
+    monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: seen.update(model=model) or [{"sure": 0.5, "weak": None, "at": None}] * len(words))
     resp = client.post(
         "/api/listen/check-text", params={"heard": "الله اكبر", "expected": "اللَّهُ أَكْبَرُ", "trial": "true"},
         files={"audio": ("r.webm", WEBM)},

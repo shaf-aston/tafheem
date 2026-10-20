@@ -302,7 +302,7 @@ async def listen_check(
     response: Response,
     audio: UploadFile = File(..., description="The same recording the words reading already heard"),
     heard: str = Query(..., description="What that reading wrote down, to be scored by sound"),
-    check: str = Query("", description="Ayahs being recited, as 1:1,1:2; each word's sureness comes back in `sure`"),
+    check: str = Query("", description="Ayahs being recited, as 1:1,1:2; each word's sureness comes back in `sure`, its weakest piece and second in `detail`"),
     trial: bool = Query(False, description="Score with the trial model; 503 when none is installed"),
 ) -> Sureness:
     """How sure the ear is of each word, asked separately from writing them down.
@@ -349,7 +349,7 @@ async def listen_check(
                 return Sureness(sure={})
 
             try:
-                sure = await run_in_threadpool(recitation.check, body, heard, checked, model)
+                sure, detail = await run_in_threadpool(recitation.check, body, heard, checked, model)
             except Exception as exc:
                 log.exception("checking failed")
                 raise filed.fail(
@@ -360,7 +360,7 @@ async def listen_check(
                 ) from None
 
         filed.done(200)
-        return Sureness(sure=sure)
+        return Sureness(sure=sure, detail=detail)
 
 
 @router.post("/check-text", response_model=TextSureness)
@@ -402,7 +402,7 @@ async def listen_check_text(
                 return TextSureness(sure=[])
 
             try:
-                sure = await run_in_threadpool(recitation.check_text, body, heard, expected, model)
+                sure, detail = await run_in_threadpool(recitation.check_text, body, heard, expected, model)
             except Exception as exc:
                 log.exception("checking a phrase failed")
                 raise filed.fail(
@@ -413,4 +413,4 @@ async def listen_check_text(
                 ) from None
 
         filed.done(200)
-        return TextSureness(sure=sure)
+        return TextSureness(sure=sure, detail=detail)

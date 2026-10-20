@@ -161,12 +161,15 @@ def find_place(heard: str, near: tuple[int, int] | None = None, before: str = ""
     )
 
 
-def check(audio: bytes, heard: str, ayahs: list[str], model: str | None = None) -> dict[str, list[float | None]]:
+def check(
+    audio: bytes, heard: str, ayahs: list[str], model: str | None = None,
+) -> tuple[dict[str, list[float | None]], dict[str, list[dict | None]]]:
     """How sure the ear is of each word of these ayahs, from this recording.
 
-    Per ayah, one number per word, 0 to 1, or None for a word this recording
-    does not reach: it was said in another one, and scoring it here would call
-    it unsaid. Nothing at all when the recording does not place on these ayahs,
+    Two dicts by ayah, one entry per word: the sureness, 0 to 1, and its
+    {"weak", "at"} detail (see listen.weakest). Both are None for a word this
+    recording does not reach: it was said in another one, and scoring it here
+    would call it unsaid. Both empty when the recording does not place on these ayahs,
     or places on more words than one recording can hold. The page words are
     Uthmani and the ear is only fair to its own spelling, which is why the
     ayahs are named rather than their words sent (see quran_imlaei_path).
@@ -180,7 +183,7 @@ def check(audio: bytes, heard: str, ayahs: list[str], model: str | None = None) 
         owner += [key] * len(spelt)
     span = place.reach(words, heard.split())
     if span is None:
-        return {}
+        return {}, {}
     first, last = span
     # On to the end of the ayah it stops in. The transcript drops a word it is
     # unsure of, most often the last one said, and that is exactly the word
@@ -192,16 +195,18 @@ def check(audio: bytes, heard: str, ayahs: list[str], model: str | None = None) 
         last += 1
     if last - first > settings.recitation_sure_max_words:
         log.info("placed on %d words, more than one recording holds; not checked", last - first)
-        return {}
-    sure = timed("checked", listen.sureness, audio, words[first:last], model, words=last - first)
-    out = {key: [None] * owner.count(key) for key in dict.fromkeys(owner)}
-    for i, score in zip(range(first, last), sure):
+        return {}, {}
+    weighed = timed("checked", listen.weigh, audio, words[first:last], model, words=last - first)
+    sure = {key: [None] * owner.count(key) for key in dict.fromkeys(owner)}
+    detail = {key: [None] * owner.count(key) for key in sure}
+    for i, word in zip(range(first, last), weighed):
         key = owner[i]
-        out[key][i - owner.index(key)] = round(score, 3)
-    return out
+        sure[key][i - owner.index(key)] = round(word["sure"], 3)
+        detail[key][i - owner.index(key)] = {"weak": word["weak"], "at": word["at"]}
+    return sure, detail
 
 
-def check_text(audio: bytes, heard: str, expected: str, model: str | None = None) -> list[float | None]:
+def check_text(audio: bytes, heard: str, expected: str, model: str | None = None) -> tuple[list[float], list[dict]]:
     """How sure the ear is of each word of `expected`, a phrase that is not an ayah.
 
     For words a learner was shown and asked to say, a takbir or a tashahhud:
@@ -211,10 +216,11 @@ def check_text(audio: bytes, heard: str, expected: str, model: str | None = None
     with one slip never has. One number per word of `expected` as the ear
     spells it (spelling.as_heard), which is one per word as written: the phrase
     is vowelled plain Arabic with no pause signs. Nothing when nothing was
-    heard, or the phrase is longer than one recording holds.
+    heard, or the phrase is longer than one recording holds. Alongside the
+    numbers, one {"weak", "at"} detail per word, as check() gives.
     """
     words = as_heard(expected)
     if not heard.strip() or not words or len(words) > get_settings().recitation_sure_max_words:
-        return []
-    sure = timed("checked-text", listen.sureness, audio, words, model, words=len(words))
-    return [round(score, 3) for score in sure]
+        return [], []
+    weighed = timed("checked-text", listen.weigh, audio, words, model, words=len(words))
+    return [round(w["sure"], 3) for w in weighed], [{"weak": w["weak"], "at": w["at"]} for w in weighed]
