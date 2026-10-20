@@ -47,16 +47,33 @@ class Heard(BaseModel):
     place: HeardPlace | None = None
 
 
+class WordDetail(BaseModel):
+    """What a word card needs of one scored word.
+
+    `weak`: the text of its least likely piece, null when the word is a single
+    piece; `weak_from`: how many characters of the word come before it.
+    `at`: the second of the recording its last piece lines up with, null when
+    the ear gave no position.
+    """
+    weak: str | None = None
+    weak_from: int | None = None
+    at: float | None = None
+
+
 class Sureness(BaseModel):
     """How sure the ear is of each word of the ayahs POST /api/listen/check named.
 
     Per "surah:ayah", one number per word, or null for a word the recording
     does not reach. Empty when the recording did not place on any of them.
+    `detail` is the same shape with a WordDetail (or null) in place of each number.
     """
     sure: dict[str, list[float | None]] = {}
+    detail: dict[str, list[WordDetail | None]] = {}
 
 
 class TextSureness(BaseModel):
     """How sure the ear is of each word of the phrase POST /api/listen/check-text
-    was given: one number per word, in order. Empty when nothing was heard."""
+    was given: one number per word, in order. Empty when nothing was heard.
+    `detail` is one WordDetail per word, in the same order."""
     sure: list[float] = []
+    detail: list[WordDetail] = []

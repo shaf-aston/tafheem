@@ -17,8 +17,8 @@
  *          reciting softly or sitting back from the microphone: -30 is about a
  *          thirtieth of the loudness, and used to reach the page as nothing
  *   VIEW   phone for a phone-sized screen
- *   LISTEN trial to hear with the server's trial model (Settings, Listening);
- *          every reading and check must then carry trial=true
+ *   LISTEN trial to check with the server's trial model (Settings, Listening);
+ *          every check must then carry trial=true, and no reading may
  *   JUMP   a clip in CLIPS, e.g. 001005: just before it plays, its first word
  *          is pressed while still recording, as a reciter skipping ahead does;
  *          the words before it must then be neither said nor accused
@@ -66,7 +66,7 @@ page.on('console', (m) => { if (m.type() === 'error') console.log('CONSOLE', m.t
 await page.addInitScript(({ listen }) => {
   localStorage.setItem('settings', JSON.stringify({ 'listening-ear': listen }))
 }, { listen: LISTEN })
-let askedTrial = 0, askedAll = 0
+let askedTrial = 0, askedAll = 0, readingsTrial = 0
 
 // The microphone: the clips decoded and played one after another, a breath apart.
 await page.addInitScript(({ clips, gap, quiet }) => {
@@ -95,6 +95,14 @@ await page.addInitScript(({ clips, gap, quiet }) => {
       at += buffer.duration + gap
     }
     window.__micEnds = at - ctx.currentTime
+    // When each page word first shows as said, on the same wall clock, so the
+    // wait from a clip's last sound to its last word marked is measured.
+    window.__saidAt = {}
+    setInterval(() => {
+      document.querySelectorAll('button[data-word]').forEach((w, i) => {
+        if (window.__saidAt[i] == null && w.querySelector('span[style*="--text-dim"]')) window.__saidAt[i] = Date.now()
+      })
+    }, 50)
     return out.stream
   }
 }, { clips: CLIPS, gap: GAP_S, quiet: QUIET_DB })
@@ -111,8 +119,10 @@ let gaveUp = 0
 const t0 = Date.now()
 await page.route('**/api/listen**', async (route) => {
   const url = new URL(route.request().url())
-  askedAll += 1
-  if (url.searchParams.get('trial') === 'true') askedTrial += 1
+  // Trial judges, it never writes the words down: only checks carry it, readings never do.
+  const isCheck = url.pathname.endsWith('/check')
+  if (isCheck) askedAll += 1
+  if (url.searchParams.get('trial') === 'true') isCheck ? (askedTrial += 1) : (readingsTrial += 1)
   if (DUMP) {
     // Multipart: the webm sits between the first blank line and the last boundary.
     const body = route.request().postDataBuffer()
@@ -162,7 +172,7 @@ if (JUMP) {
   const jumpAt = await page.evaluate((clip) => window.__clipStarts[clip], JUMP)
   await page.waitForTimeout((jumpAt - 0.5) * 1000)
   waitedS = jumpAt - 0.5
-  await page.locator('button[aria-label^="start reciting from"]').nth(START).click()
+  await page.locator('button[data-word]').nth(START).click()
   const still = await page.getByRole('button', { name: 'Stop', exact: true }).count()
   check('a word can be pressed while reciting, and reciting carries on', still > 0)
 }
@@ -170,12 +180,12 @@ if (JUMP) {
 // the last word is said the page turns to the next surah by itself, and a
 // look taken after that turn found a fresh page and failed 3 runs in 4.
 const look = () => page.evaluate((start) => {
-  const words = [...document.querySelectorAll('button[aria-label^="start reciting from"]')]
+  const words = [...document.querySelectorAll('button[data-word]')]
   const count = (list, css) => list.reduce((n, w) => n + w.querySelectorAll(`span[style*="${css}"]`).length, 0)
   const line = [...document.querySelectorAll('[aria-live="polite"]')].map((e) => e.innerText)
     .find((t) => /following you from|listening for where you are|tap a word to start/.test(t)) ?? ''
   return {
-    first: words[0]?.getAttribute('aria-label'),
+    first: words[0]?.textContent,
     line,
     total: words.length,
     said: count(words.slice(start), '--text-dim'),
@@ -205,7 +215,7 @@ await watch(3000)
 
 const { line, total, said, above, aboveSaid, covered, named } = seen
 check('the ear was asked', heard.length > 0, `${heard.length} readings, ${gaveUp} given up on`)
-check(`Listening ${LISTEN} reached the server`, askedTrial === (LISTEN === 'trial' ? askedAll : 0), `${askedTrial} of ${askedAll} asked for trial`)
+check(`Listening ${LISTEN} reached the server`, readingsTrial === 0 && askedTrial === (LISTEN === 'trial' ? askedAll : 0), `${readingsTrial} readings and ${askedTrial} of ${askedAll} checks asked for trial`)
 check('it checked words by sound', checked.some((n) => n > 0), `${checked.join(', ')} words per reading`)
 check(`it worked out it was 1:${AYAH} by itself`, new RegExp(`following you from\\s*${AYAH}`).test(line), line.trim())
 if (CLIPS.includes('001007')) check('the page turned on by itself after its last word', turned)
@@ -227,6 +237,11 @@ console.log(`\n  a reading came back in ${(middle / 1000).toFixed(1)}s typically
 // page stamps each cut in the journal, which only a backend on this machine
 // writes; a cut more than 3s late is another pause.
 const clipEnds = await page.evaluate(() => window.__clipEnds)
+// The wait a reciter feels: from a clip's last sound to its last word marked said.
+const saidAt = await page.evaluate(() => window.__saidAt)
+const LAST = { '001001': 3, '001002': 7, '001003': 9, '001004': 12, '001005': 16, '001006': 19, '001007': 28 }
+const felt = CLIPS.map((clip, i) => [clip, saidAt[LAST[clip]] && saidAt[LAST[clip]] - clipEnds[i]])
+console.log(`  last word marked after its sound ended: ${felt.map(([c, ms]) => `${c.slice(3)} ${ms == null ? 'never' : (ms / 1000).toFixed(1) + 's'}`).join(', ')}`)
 const JOURNAL = '../logs/recite-journal.jsonl'
 const cuts = (existsSync(JOURNAL) ? readFileSync(JOURNAL, 'utf8').trim().split('\n') : []).map((l) => JSON.parse(l))
   .filter((e) => e.kind === 'window.cut' && e.detail?.why === 'pause').map((e) => Date.parse(e.at))

@@ -88,7 +88,7 @@ export default function SearchBox({
             lang={rtl ? 'ar' : 'en'}
             style={{ '--c': accent }}
             className={`w-full rounded-[var(--radius-md)] p-4 bg-[var(--surface)]
-              border border-[var(--border)] text-[var(--text)]
+              border border-[var(--border-hi)] text-[var(--text)]
               placeholder:text-[var(--text-faint)] focus:border-[var(--c)]
               focus:outline-none transition-colors
               ${multiline ? 'resize-none max-h-48 [field-sizing:content]' : ''}

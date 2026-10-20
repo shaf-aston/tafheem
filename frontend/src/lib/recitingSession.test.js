@@ -2,31 +2,53 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { batchOf } from './journal'
 import {
-  allowanceLeft, byPlace, createRecitingSession, cutReason, problemOf, queueCheck, readyToSend, recentAsks, settledScores, spokeSince, surer,
+  allowanceLeft, asksPerMinute, byPlace, createRecitingSession, cutReason, keepRecording, problemOf, queueCheck, readyToSend, recentAsks, settledScores, spokeSince, surer,
 } from './recitingSession'
 
 const ayahs = [{ key: '1:6', from: 17, count: 3 }, { key: '1:7', from: 20, count: 9 }]
 
 describe('sureness by page place', () => {
   it('places each ayah at its words and leaves unreached and mismatched words out', () => {
-    expect(byPlace({ '1:6': [0.2, null, 1], '1:7': [1, 1] }, ayahs)).toEqual({ 17: 0.2, 19: 1 })
+    expect(byPlace({ '1:6': [0.2, null, 1], '1:7': [1, 1] }, ayahs, {}, 3)).toEqual({ 17: { sure: 0.2, take: 3 }, 19: { sure: 1, take: 3 } })
+  })
+
+  it('carries the weak piece and second, and which recording they came from', () => {
+    const detail = { '1:6': [{ weak: 'ـَ', at: 0.5 }, null, { weak: null, at: 1.4 }] }
+    expect(byPlace({ '1:6': [0.2, null, 1] }, ayahs, detail, 3)).toEqual({
+      17: { sure: 0.2, weak: 'ـَ', at: 0.5, take: 3 },
+      19: { sure: 1, weak: null, at: 1.4, take: 3 },
+    })
   })
 
   it('lets a newer reading of the same recording replace an early guess', () => {
     // An early reading scored a word not said yet; the word was then said wrong.
     const early = byPlace({ '1:7': [1, 1, 0.95, null, null, null, null, null, null] }, ayahs)
     const later = byPlace({ '1:7': [1, 1, 0.02, 1, null, null, null, null, null] }, ayahs)
-    expect({ ...early, ...later }[22]).toBe(0.02)
+    expect({ ...early, ...later }[22].sure).toBe(0.02)
   })
 
   it('lets a low score accuse only words the recording heard, a high one anywhere', () => {
     // 21 before the recording began; 22 heard; 23 at its end and 24 past it.
-    expect(settledScores({ 21: 0.004, 22: 0.02, 23: 0.03, 24: 0.001, 25: 1 }, 22, 23)).toEqual({ 22: 0.02, 25: 1 })
-    expect(settledScores({ 22: 0.94, 23: 0.95 }, -1, 0)).toEqual({ 23: 0.95 })
+    const of = (scores) => Object.fromEntries(Object.entries(scores).map(([at, sure]) => [at, { sure }]))
+    expect(settledScores(of({ 21: 0.004, 22: 0.02, 23: 0.03, 24: 0.001, 25: 1 }), 22, 23)).toEqual(of({ 22: 0.02, 25: 1 }))
+    expect(settledScores(of({ 22: 0.94, 23: 0.95 }), -1, 0)).toEqual(of({ 23: 0.95 }))
   })
 
   it('keeps the surer score across recordings, one clipped at its edge does not unsay a word', () => {
-    expect(surer({ 28: 1, 20: 0.3 }, { 28: 0.002, 21: 0.5 })).toEqual({ 20: 0.3, 21: 0.5, 28: 1 })
+    const first = { 28: { sure: 1, weak: 'a', take: 1 }, 20: { sure: 0.3, take: 1 } }
+    const second = { 28: { sure: 0.002, weak: 'b', take: 2 }, 21: { sure: 0.5, take: 2 } }
+    // The surer reading's detail comes with its number.
+    expect(surer(first, second)).toEqual({ 20: first[20], 21: second[21], 28: first[28] })
+    expect(surer(second, first)[28]).toEqual(first[28])
+  })
+
+  it('keeps the latest recordings of the last few takes and drops the oldest past the cap', () => {
+    const store = new Map()
+    for (const take of [1, 2, 3, 4]) keepRecording(store, take, `blob${take}`, 3)
+    expect([...store.keys()]).toEqual([2, 3, 4])
+    // A take whose reading grew replaces its blob and does not push another out.
+    keepRecording(store, 3, 'blob3-longer', 3)
+    expect([...store]).toEqual([[2, 'blob2'], [3, 'blob3-longer'], [4, 'blob4']])
   })
 })
 
@@ -98,6 +120,18 @@ describe('allowanceLeft', () => {
     expect(allowanceLeft(3000, asks.slice(0, 20), 20)).toBe(0)
     expect(allowanceLeft(3000, asks, 20)).toBe(-1)
     expect(readyToSend(3000, 0, 0, 3000, false, 5, 0, -1)).toBe(false)
+  })
+
+  it('takes the count the server gives, less the margin, and the fixed figure when it gave none', () => {
+    // Two keys, 40 a minute, 0.9 of it: 36. One key: 18, which is also the fixed figure.
+    expect(asksPerMinute(40)).toBe(36)
+    expect(asksPerMinute(20)).toBe(18)
+    expect(asksPerMinute(0)).toBe(18)
+    expect(asksPerMinute(undefined)).toBe(18)
+    // The allowance follows it: 30 asks in the last minute leave 6 of 36, and none of 18.
+    const asks = Array.from({ length: 30 }, (_, i) => i * 100)
+    expect(allowanceLeft(3000, asks, asksPerMinute(40))).toBe(6)
+    expect(allowanceLeft(3000, asks, asksPerMinute(20))).toBeLessThan(0)
   })
 
   it('drops the aged-out asks rather than growing without bound', () => {
@@ -271,7 +305,7 @@ describe('a reciting session', () => {
         readings.push({ options, answer: (said) => resolve(typeof said === 'string' ? { text: said } : said) })
       }),
       checkReading: (_blob, options) => new Promise((resolve) => {
-        checks.push({ options, answer: (sure) => resolve({ sure }) })
+        checks.push({ options, answer: (sure, detail) => resolve({ sure, detail }) })
       }),
       note: (kind, detail) => notes.push({ kind, ...detail }),
     }
@@ -322,19 +356,19 @@ describe('a reciting session', () => {
     expect(h.session.view().now.words).toEqual([])
   })
 
-  it('asks for the trial ear on the reading and its check only when the page says so', async () => {
+  it('asks for the trial ear on the check only, never on the reading, when the page says so', async () => {
     const h = harness()
     h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
     await h.session.start()
     h.speak()
     await h.pause()
     await h.answer(0, 'الحمد لله رب العالمين')
-    expect(h.readings[0].options.trial).toBeFalsy()
+    expect(h.readings[0].options.trial).toBeUndefined()
     expect(h.checks[0].options.trial).toBeFalsy()
     h.session.update({ ...h.page, trial: true })
     await h.midPhrase()
     await h.answer(1, 'الحمد لله رب العالمين الرحمن')
-    expect(h.readings[1].options.trial).toBe(true)
+    expect(h.readings[1].options.trial).toBeUndefined()
     h.checks[0].answer({ '1:2': [1, 1, 1, 1] })
     await h.wait(0)
     expect(h.checks.at(-1).options.trial).toBe(true)
@@ -415,7 +449,7 @@ describe('a reciting session', () => {
     await h.wait(0)
     h.checks[0].answer({ '1:2': [1, 1, 1, 1] })
     await h.wait(0)
-    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    expect(h.session.view().scores).toEqual({ before: {}, now: {} })
     expect(h.session.view().state).toBe('listening')
   })
 
@@ -434,11 +468,11 @@ describe('a reciting session', () => {
     await h.wait(0)
     expect(recording.state).toBe('recording')
     expect(h.session.view().state).toBe('listening')
-    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    expect(h.session.view().scores).toEqual({ before: {}, now: {} })
     // The old page's check answering late lands nowhere.
     h.checks[0].answer({ '1:2': [0.1, 0.1, 0.1, 0.1] })
     await h.wait(0)
-    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    expect(h.session.view().scores).toEqual({ before: {}, now: {} })
     // The recording under way is read against the new page, after the word
     // carried over from the one that finished the old page.
     await h.answer(1, 'يوم الدين')
@@ -467,7 +501,7 @@ describe('a reciting session', () => {
     expect(h.session.view().now.words).toEqual(['الرحمن'])
     h.checks[1].answer({ '1:2': [0.1, 0.1, 0.1, 0.1] })
     await h.wait(0)
-    expect(h.session.view().sure).toEqual({ before: {}, now: {} })
+    expect(h.session.view().scores).toEqual({ before: {}, now: {} })
     // Its last reading, whole, still lands, on the new page.
     await h.answer(2, 'الرحمن الرحيم مالك')
     expect(h.heard()).toEqual(['الرحمن', 'الرحيم', 'مالك'])
@@ -498,7 +532,7 @@ describe('a reciting session', () => {
     h.session.update({ ...h.page, done: true })
     h.checks[0].answer({ '1:2': [1, 1, 1, 1] })
     await h.wait(0)
-    expect(h.session.view().sure.before).not.toEqual({})
+    expect(h.session.view().scores.before).not.toEqual({})
   })
 
   it("takes the server's place: sure elsewhere moves nothing onto the page, home clears it", async () => {
@@ -607,7 +641,7 @@ describe('a reciting session', () => {
     await h.answer(1, 'الحمد لله رب العالمين')
     h.checks[1].answer({ '1:2': [1, 1, null, 1] })
     await h.wait(0)
-    expect(h.session.view().sure.now).toEqual({ 0: 1, 1: 1, 3: 1 })
+    expect(h.session.view().scores.now).toEqual({ 0: { sure: 1, take: 1 }, 1: { sure: 1, take: 1 }, 3: { sure: 1, take: 1 } })
   })
 
   it('files a sureness answer that arrives after the fold under the words already kept', async () => {
@@ -620,7 +654,28 @@ describe('a reciting session', () => {
     expect(h.checks).toHaveLength(1)
     h.checks[0].answer({ '1:2': [1, 1, 0.2, 1] })
     await h.wait(0)
-    expect(h.session.view().sure).toEqual({ before: { 0: 1, 1: 1, 2: 0.2, 3: 1 }, now: {} })
+    expect(h.session.view().scores).toEqual({
+      before: { 0: { sure: 1, take: 1 }, 1: { sure: 1, take: 1 }, 2: { sure: 0.2, take: 1 }, 3: { sure: 1, take: 1 } },
+      now: {},
+    })
+  })
+
+  it('keeps the weak piece and second of a word with the recording its mark names', async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    await h.session.start()
+    h.speak()
+    await h.pause()
+    await h.answer(0, 'الحمد لله رب العالمين')
+    h.checks[0].answer({ '1:2': [1, 1, 0.2, 1] }, { '1:2': [null, null, { weak: 'بِّ', weak_from: 1, at: 2.4 }, null] })
+    await h.wait(0)
+    const word = h.session.view().scores.before[2]
+    expect(word).toEqual({ sure: 0.2, weak: 'بِّ', weakFrom: 1, at: 2.4, take: 1 })
+    expect(h.session.takeAudio(word.take)).toBeInstanceOf(Blob)
+    expect(h.session.takeAudio(99)).toBeUndefined()
+    // Starting the page over lets every kept recording go.
+    h.session.forget()
+    expect(h.session.takeAudio(word.take)).toBeUndefined()
   })
 
   it('holds mid-phrase readings once the allowance is spent, but never the one at a pause', async () => {

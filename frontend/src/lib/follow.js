@@ -224,13 +224,15 @@ export const joinWindows = (heard, window) => {
  *
  * Gives back `at`, the page word expected next; `began`, the page word they
  * actually started on or null while that is not yet known; `words`, one state
- * and any misheard word for each word of the page; `extras`, words said that
+ * and any misheard word for each word of the page, plus `said`, whatever was
+ * heard for that word with its vowels, shown or not (a word card reads it);
+ * `extras`, words said that
  * are not in the book, each with the page word it came after; and `started`,
  * false while too little of this page has been heard for any of it to be worth
  * marking.
  */
 export const follow = (page, heard, { startAt = 0, ended = false, settle = config['settle-words'] } = {}) => {
-  const words = page.map((word) => ({ word, state: WAITING, heard: '' }))
+  const words = page.map((word) => ({ word, state: WAITING, heard: '', said: '' }))
   const extras = []
   if (!page.length) return { at: 0, began: null, words, extras, started: false, heardTo: null }
 
@@ -261,7 +263,7 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
     // Said, in pieces, and right. Nothing is shown of the seam: the reciter did
     // not make it and has nothing to correct.
     if (step === 'joined') {
-      words[i] = { word: page[i], state: SAID, heard: '' }
+      words[i] = { word: page[i], state: SAID, heard: '', said: `${heard[j - 1]} ${heard[j]}` }
       lastSaid = i
       continue
     }
@@ -273,6 +275,7 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
         word: page[i],
         state: state === SAID || settled(j) ? state : WAITING,
         heard: state === SAID || !settled(j) ? '' : heard[j],
+        said: heard[j],
       }
       lastSaid = i
       continue
@@ -282,7 +285,7 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
     // began: above that nobody claimed anything, whether they said where they
     // were starting or it was worked out from what they recited.
     if (step === MISSED) {
-      if (i >= (startAt ?? began ?? 0) && settled(j)) words[i] = { word: page[i], state: MISSED, heard: '' }
+      if (i >= (startAt ?? began ?? 0) && settled(j)) words[i] = { word: page[i], state: MISSED, heard: '', said: '' }
       continue
     }
 
@@ -305,8 +308,12 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
 /**
  * The marks, with the ear's sureness weighed in.
  *
- * `sure` holds, per page word, how likely the ear found that word in the sound
- * (0 to 1). Lining up words compares letters only, so it passes a word said
+ * `scores` holds, per page word, its score { sure, weak, weakFrom, at, take }
+ * (recitingSession.scoreOf): how likely the ear found that word in the sound
+ * (`sure`, 0 to 1), its weak piece, the second of the recording it sits at and
+ * which recording that is. Every mark it covers keeps them for a word card.
+ *
+ * Lining up words compares letters only, so it passes a word said
  * with the wrong vowel and fails a right word the ear wrote down wrong.
  * Sureness is judged on sound, and recite.json's sure-at says how far to
  * trust it either way. A waiting word stays waiting.
@@ -329,16 +336,22 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  * 58% of vowel slips where needing the transcript to miss too caught 16%, for
  * 3.3% of right words marked against 2.0%; it now sits at 0.95 (backend/scripts/sweep_sureness.py).
  */
-export const bySound = (marks, sure) => {
+export const bySound = (marks, scores) => {
   const sureAt = config['sure-at']
   const words = marks.words.map((mark, i) => {
-    const s = sure[i]
-    if (mark.state === WAITING || mark.state === SAID) {
-      if (s == null || mark.state === WAITING) return mark
-      return s < sureAt ? { ...mark, state: WRONG, heard: '' } : mark
-    }
-    if (s == null) return { ...mark, state: CHECK, heard: '' }
-    return s >= sureAt ? { ...mark, state: SAID, heard: '' } : mark
+    const score = scores[i]
+    const next = judged(mark, score?.sure, sureAt)
+    return score ? { ...next, ...score } : next
   })
   return { ...marks, words }
+}
+
+/** One mark after the ear's say: a number, or undefined when the sound never checked it. */
+const judged = (mark, s, sureAt) => {
+  if (mark.state === WAITING || mark.state === SAID) {
+    if (s == null || mark.state === WAITING) return mark
+    return s < sureAt ? { ...mark, state: WRONG, heard: '' } : mark
+  }
+  if (s == null) return { ...mark, state: CHECK, heard: '' }
+  return s >= sureAt ? { ...mark, state: SAID, heard: '' } : mark
 }

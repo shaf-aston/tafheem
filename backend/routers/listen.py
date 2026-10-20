@@ -202,7 +202,6 @@ async def listen(
     before: str = Query(
         "", description="The words of the last reading whose place was not sure, so this one is placed with them in front",
     ),
-    trial: bool = Query(False, description="Hear this with the trial model on this machine alone, no Groq; 503 when none is installed"),
 ) -> Heard:
     """What was said, and optionally which ayahs it was.
 
@@ -218,7 +217,6 @@ async def listen(
             )
         body = await _read_recording(audio, filed)
         is_recitation = recite or match
-        model = _trial_model(trial and is_recitation, filed)
         journal.note("reading.received", bytes=len(body), recite=is_recitation)
 
         if not body:
@@ -238,7 +236,7 @@ async def listen(
             try:
                 heard_started = time.perf_counter()
                 text, hits = await run_in_threadpool(
-                    recitation.hear, body, match_ayahs=match, recite=recite, fusha=fusha, model=model,
+                    recitation.hear, body, match_ayahs=match, recite=recite, fusha=fusha,
                 )
                 journal.note(
                     "reading.heard", ms=round((time.perf_counter() - heard_started) * 1000), chars=len(text),
@@ -267,7 +265,7 @@ async def listen(
         # `_turn` protects this machine's own CPU, so it is only worth queuing
         # behind when this machine is the one about to spend it. A reading
         # Groq will answer costs this machine nothing to wait for.
-        if is_recitation and (model or recitation.ears.would_answer_locally()):
+        if is_recitation and recitation.ears.would_answer_locally():
             async with _my_turn(request, "reading") as wanted:
                 if not wanted:
                     filed.done(200)
@@ -304,7 +302,7 @@ async def listen_check(
     response: Response,
     audio: UploadFile = File(..., description="The same recording the words reading already heard"),
     heard: str = Query(..., description="What that reading wrote down, to be scored by sound"),
-    check: str = Query("", description="Ayahs being recited, as 1:1,1:2; each word's sureness comes back in `sure`"),
+    check: str = Query("", description="Ayahs being recited, as 1:1,1:2; each word's sureness comes back in `sure`, its weakest piece and second in `detail`"),
     trial: bool = Query(False, description="Score with the trial model; 503 when none is installed"),
 ) -> Sureness:
     """How sure the ear is of each word, asked separately from writing them down.
@@ -351,7 +349,7 @@ async def listen_check(
                 return Sureness(sure={})
 
             try:
-                sure = await run_in_threadpool(recitation.check, body, heard, checked, model)
+                sure, detail = await run_in_threadpool(recitation.check, body, heard, checked, model)
             except Exception as exc:
                 log.exception("checking failed")
                 raise filed.fail(
@@ -362,7 +360,7 @@ async def listen_check(
                 ) from None
 
         filed.done(200)
-        return Sureness(sure=sure)
+        return Sureness(sure=sure, detail=detail)
 
 
 @router.post("/check-text", response_model=TextSureness)
@@ -404,7 +402,7 @@ async def listen_check_text(
                 return TextSureness(sure=[])
 
             try:
-                sure = await run_in_threadpool(recitation.check_text, body, heard, expected, model)
+                sure, detail = await run_in_threadpool(recitation.check_text, body, heard, expected, model)
             except Exception as exc:
                 log.exception("checking a phrase failed")
                 raise filed.fail(
@@ -415,4 +413,4 @@ async def listen_check_text(
                 ) from None
 
         filed.done(200)
-        return TextSureness(sure=sure)
+        return TextSureness(sure=sure, detail=detail)

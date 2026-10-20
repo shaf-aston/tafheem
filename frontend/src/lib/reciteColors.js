@@ -27,6 +27,9 @@ export const LOOK = {
  */
 export const SHOWN = { colour: 'var(--text-faint)', label: 'shown, not remembered' }
 
+/** A word not reached, as its card names it. Not in LOOK: the page draws a waiting word plain. */
+export const WAITING_LOOK = { colour: 'var(--text-faint)', label: 'waiting' }
+
 /** How a whole ayah went, as one state: its worst word decides. */
 export const verdictOf = (states) => {
   if (states.some((state) => state === WRONG || state === MISSED)) return WRONG

@@ -11,19 +11,22 @@
  * no knowledge of the screen; the books are in lib/books.js, with no knowledge
  * of either. This file only shows what those two decide.
  */
+import { useState } from 'react'
+
 import { BOOKS } from '../lib/books'
 import { DIFFICULTIES, printedPageOf, score } from '../lib/memorise'
 import { PHONE, useMedia } from '../lib/useMedia'
 
 import Line from './memorise/Line'
 import ReciteStrip from './memorise/ReciteStrip'
+import SettingsSheet from './memorise/SettingsSheet'
 import EmptyState from './ui/EmptyState'
 import Chip from './ui/Chip'
 import ErrorAlert from './ui/ErrorAlert'
 import PrimaryButton from './ui/PrimaryButton'
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
-import SettingsPill from './ui/SettingsPill'
+import Stepper from './ui/Stepper'
 import WheelPicker from './ui/WheelPicker'
 import { Skeleton } from './ui/Skeleton'
 import {
@@ -44,7 +47,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const printedPage = printedPageOf(page)
   const { recitedPage, reciting, startFrom, startLabel, show } = useReciteState({ page, book, pinned, shown, setShown })
   const { blanks, choices } = useGaps({
-    data, page, part, pageNumber, deal, difficulty, way, hidden, startFrom,
+    data, page, pageNumber, deal, difficulty, way, hidden, startFrom,
   })
   const marks = page ? score(page, blanks, answers) : { right: 0, total: 0 }
   const { partBy, stepPage, atStart, atEnd, swipe, slide } = usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart })
@@ -57,37 +60,53 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   // behind one pill on a phone, where the pickers and both of these were three
   // rows before the page began.
   const phone = useMedia(PHONE)
+  // The word or ayah whose card is open: { at } or { line }. Only a place; the
+  // card reads the live marks, so what it shows keeps up with the recitation.
+  const [asked, setAsked] = useState(null)
+  // Closed by the reader, Esc or a press outside (MarkCard), and here by a page
+  // turn or by stopping; never by a mark changing under it. A card is stamped
+  // with the page and listening state it was opened in, and only counts while
+  // they are unchanged.
+  const stamp = `${bookId}/${part}/${pageNumber}/${reciting.listening}`
+  const opened = asked?.stamp === stamp ? asked : null
+  const setOpen = (place) => setAsked(place && { ...place, stamp })
   const ways = waysOf(book)
   const missing = way === 'recite'
     ? [{ id: 'none', label: 'Show all' }, { id: HIDDEN, label: 'Hidden' }]
     : DIFFICULTIES.map((d) => ({ id: d.id, label: d.label }))
   const missingNow = way === 'recite' && difficulty !== 'none' ? HIDDEN : difficulty
-  const practise = (
-    <>
-      <Segmented
-        captioned={phone}
-        wrap={phone}
-        label="How you answer"
-        options={ways}
-        value={way}
-        onChange={chooseWay}
-        accent={accent}
-      />
-      {/* Reciting has two states worth choosing between, not five: the page
-          read from, or the page said from memory. */}
-      <Segmented
-          captioned={phone}
-          wrap={phone}
-          label={way === 'recite' ? 'Words to say from memory' : 'How much is missing'}
-          title={way === 'recite' ? undefined : difficultyOf(difficulty).title}
-          options={missing}
-          value={missingNow}
-          onChange={chooseDifficulty}
-          accent={accent}
-        />
-    </>
+  const answerWay = (
+    <Segmented
+      fill={phone}
+      label="How you answer"
+      options={ways}
+      value={way}
+      onChange={chooseWay}
+      accent={accent}
+    />
   )
-  const pillWords = [ways.find((o) => o.id === way)?.label, missing.find((o) => o.id === missingNow)?.label].filter(Boolean)
+  // Reciting has two states worth choosing between, not five: the page read
+  // from, or the page said from memory.
+  const missingLabel = way === 'recite' ? 'Words to say from memory' : 'How much is missing'
+  const missingSwitch = (
+    <Segmented
+      wrap={phone}
+      label={missingLabel}
+      title={way === 'recite' ? undefined : difficultyOf(difficulty).title}
+      options={missing}
+      value={missingNow}
+      onChange={chooseDifficulty}
+      accent={accent}
+    />
+  )
+  // On a phone the book, the gaps and the translation wait in one sheet, so
+  // the rows over the page are the way you answer, the surah and the page.
+  const settingsRows = [
+    { caption: 'Book', control: <Segmented label="Book" options={Object.values(BOOKS)} value={bookId} onChange={openBook} accent={accent} /> },
+    missingSwitch && { caption: missingLabel, control: missingSwitch },
+    { caption: 'Translation', control: <Segmented label="Translation" options={[{ id: false, label: 'Off' }, { id: true, label: 'On' }]} value={meaning} onChange={setMeaning} accent={accent} /> },
+  ].filter(Boolean)
+  const settingsWords = [book.label, missing.find((o) => o.id === missingNow)?.label].filter(Boolean)
 
   // Above the page and again under it, so a page read to its end turns from there.
   const pageSteps = (
@@ -99,23 +118,20 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
 
   return (
     <div className="panel" {...swipe}>
-      <SectionHeader emblem="mem"
-        title="Memorise"
-        arabic="حفظ"
-        subtitle="Fill in the gaps"
-      />
+      {/* No subtitle: "fill in the gaps" was wrong for reciting, and the way
+          switch under it already says what each way is. */}
+      <SectionHeader emblem="mem" title="Memorise" arabic="حفظ" />
 
       {/* One row, no captions: each control's choices already say what it is,
           and the captions were a second row of grey restating them. Their
           words stay as screen-reader labels and hover titles. */}
+      {/* On a phone: the way you answer, always in sight, then the part and
+          one pill for what is chosen once and left (book, gaps, translation). */}
+      {phone && answerWay}
       <div className="flex flex-wrap items-center gap-2">
-        <WheelPicker
-          label="Book"
-          options={Object.values(BOOKS)}
-          value={bookId}
-          onChange={openBook}
-          accent={accent}
-        />
+        {!phone && (
+          <WheelPicker label="Book" options={Object.values(BOOKS)} value={bookId} onChange={openBook} accent={accent} />
+        )}
 
         <WheelPicker
           label={book.partLabel}
@@ -127,8 +143,8 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
         />
 
         {phone
-          ? <SettingsPill label={pillWords.join(' · ')} title="How you answer" align="start">{practise}</SettingsPill>
-          : practise}
+          ? <SettingsSheet label={settingsWords.join(' · ')} rows={settingsRows} accent={accent} />
+          : <>{answerWay}{missingSwitch}</>}
       </div>
 
       {isPending && <Skeleton className="h-40 w-full" />}
@@ -141,49 +157,48 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
 
       {page && (
         <>
-          <div className="flex items-center justify-between gap-3 flex-wrap">
-            <div className="text-sm text-[var(--text-dim)] flex items-center gap-2 flex-wrap">
-              {/* A picker, not steps alone: stepping is fine for the next page
-                  and useless for the fifteenth. The mushaf page, when known,
-                  is the number a memoriser already uses, so it is the label. */}
-              {/* Valued by the number it shows, so typing "177" finds Mushaf p.177. */}
-              <span title={printedPage != null ? 'Page in the 604-page Madani mushaf' : undefined}>
-                <WheelPicker
-                  label="Page"
-                  options={pages.map((p, n) => ({
-                    id: printedPageOf(p) ?? n + 1,
-                    label: `${printedPageOf(p) != null ? `Mushaf p.${printedPageOf(p)}` : `Page ${n + 1} of ${pages.length}`} · ${withinPart(p[0].label)}–${withinPart(p[p.length - 1].label)}`,
-                  }))}
-                  value={printedPage ?? pageNumber + 1}
-                  onChange={(no) => openPage(pages.findIndex((p, n) => (printedPageOf(p) ?? n + 1) === no))}
-                  accent={accent}
-                />
-              </span>
-              {pageSteps}
-              {/* One short live line: where reciting is following from, or the
-                  one thing worth knowing before typing. Where to begin is
-                  chosen on the page itself, a word at a time. */}
-              {/* Reciting says what to do in its own dock; typing has one
-                  thing worth knowing first. */}
-              {way !== 'recite' && way === 'type' && (
-                <span className="text-[var(--text-faint)]">vowels not needed</span>
-              )}
-            </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              {/* Only when there is something covered to uncover. Two sizes
-                  of help, because being stuck on one word and having lost the
-                  thread of a whole ayah are not the same trouble. What they
-                  give is marked as given, never as recited. */}
-              {way !== 'recite' && (
-                <Chip accent={accent} onClick={reDeal}>New gaps</Chip>
-              )}
-              {/* Off to start with, and that is the point: "Say He (is) Allah
-                  the One" names both words missing from 112:1. It is here for
-                  when you are stuck, not for while you are trying. */}
+          {/* One wrapping row: the page and its arrows, then what helps. */}
+          <div className="flex items-center gap-2 flex-wrap text-sm text-[var(--text-dim)]">
+            {/* A picker, not steps alone: stepping is fine for the next page
+                and useless for the fifteenth. The mushaf page, when known,
+                is the number a memoriser already uses, so it is the label. */}
+            {/* Valued by the number it shows, so typing "177" finds Mushaf p.177. */}
+            <span title={printedPage != null ? 'Page in the 604-page Madani mushaf' : undefined}>
+              <WheelPicker
+                label="Page"
+                options={pages.map((p, n) => ({
+                  id: printedPageOf(p) ?? n + 1,
+                  label: `${printedPageOf(p) != null ? `Mushaf p.${printedPageOf(p)}` : `Page ${n + 1} of ${pages.length}`} · ${withinPart(p[0].label)}–${withinPart(p[p.length - 1].label)}`,
+                }))}
+                value={printedPage ?? pageNumber + 1}
+                onChange={(no) => openPage(pages.findIndex((p, n) => (printedPageOf(p) ?? n + 1) === no))}
+                accent={accent}
+              />
+            </span>
+            <Stepper label="page"
+              onPrev={atStart ? null : () => stepPage(-1)}
+              onNext={atEnd ? null : () => stepPage(1)} />
+            <span className="flex-1" />
+            {/* Only when there is something covered to uncover. Two sizes
+                of help, because being stuck on one word and having lost the
+                thread of a whole ayah are not the same trouble. What they
+                give is marked as given, never as recited. */}
+            {way !== 'recite' && (
+              <Chip accent={accent} onClick={reDeal}>New gaps</Chip>
+            )}
+            {/* Off to start with, and that is the point: "Say He (is) Allah
+                the One" names both words missing from 112:1. It is here for
+                when you are stuck, not for while you are trying. */}
+            {!phone && (
               <Chip accent={accent} onClick={() => setMeaning((on) => !on)}>
                 {meaning ? 'Hide translation' : 'Show translation'}
               </Chip>
-            </div>
+            )}
+            {/* Reciting says what to do in its own dock; typing has one
+                thing worth knowing first. */}
+            {way === 'type' && (
+              <span className="basis-full sm:basis-auto text-[var(--text-faint)]">vowels not needed</span>
+            )}
           </div>
 
           {/* Mounted always, so a screen reader hears the question when it
@@ -198,7 +213,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             )}
           </div>
 
-          <div ref={card} key={`${bookId}/${part}/${pageNumber}`} {...slide}
+          <div ref={card} data-recite-page="" key={`${bookId}/${part}/${pageNumber}`} {...slide}
             className={`rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4 ${slide.className}`}>
             {/* A flowing book runs its lines on as a printed mushaf does: one
                 block, justified, each ayah ending in its number, and never a
@@ -226,7 +241,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                   choices={choices}
                   accent={accent}
                   recite={way === 'recite'
-                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown }
+                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown, open: opened, setOpen, takeAudio: reciting.takeAudio }
                     : null}
                   // Pressable while listening too: jumping back or ahead must not
                   // mean stopping first. forget() keeps the microphone running.
@@ -267,6 +282,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
               ] : null}
               onStart={listen}
               onStop={reciting.stop}
+              onStartAt={openAt}
             />
           ) : blanks.size === 0 ? (
             // Two different reasons land here: the reader chose "None" to just

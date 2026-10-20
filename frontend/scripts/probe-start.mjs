@@ -49,7 +49,7 @@ await page.getByRole('button', { name: 'Recite it' }).click()
 await page.waitForTimeout(500)
 
 const covered = () => page.locator('[aria-label="a word to say from memory"]').count()
-const words = await page.locator('button[aria-label^="start reciting from"]').count()
+const words = await page.locator('button[data-word]').count()
 check('the page opens with one word showing', (await covered()) === words - 1, `${await covered()} of ${words}`)
 
 // The strip's own button, by its exact name: every word on the page is also a
@@ -74,7 +74,7 @@ const missed = await page.locator('span[style*="--danger"]').count()
 check('the words above the start are not called skipped', missed === 0, `${missed} accused`)
 
 // And the reader still wins: pressing the first word pins the start back to it.
-await page.locator('button[aria-label^="start reciting from"]').first().click()
+await page.locator('button[data-word]').first().click()
 await page.waitForTimeout(400)
 const after = await hint.first().innerText().catch(() => '')
 check('pressing a word overrules it', /following you from\s*1|tap a word/.test(after), after.trim())

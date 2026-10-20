@@ -132,19 +132,15 @@ class LocalEar(Ear):
 
     local = True
 
-    def __init__(self, model: str | None = None) -> None:
-        #: A Qur'an model other than recitation_model, the trial one; None is the configured one.
-        self.model = model
-
     def transcribe(self, audio: bytes, language: str | None, hint: str) -> str:
-        return listen.transcribe(audio, language, hint, self.model)
+        return listen.transcribe(audio, language, hint)
 
     def is_available(self) -> bool:
         return True
 
     def name(self, reciting: bool = False) -> str:
         settings = get_settings()
-        return f"local-{(self.model or settings.recitation_model) if reciting else settings.dictation_model}"
+        return f"local-{settings.recitation_model if reciting else settings.dictation_model}"
 
 
 class LettersEar(Ear):
@@ -226,11 +222,8 @@ def order(reciting: bool = False) -> list[Ear]:
     return chain
 
 
-def hear(audio: bytes, language: str | None, hint: str, model: str | None = None) -> str:
+def hear(audio: bytes, language: str | None, hint: str) -> str:
     """Ask each ear in turn until one answers. Raises only when none can.
-
-    `model` is the trial model: this machine's ear alone, no Groq, no letters,
-    and no fallback, so a trial is never quietly heard by another ear.
 
     Every way of not answering is the same thing to the reader, a moment longer,
     so they are caught together rather than told apart: no internet, a key that
@@ -243,7 +236,7 @@ def hear(audio: bytes, language: str | None, hint: str, model: str | None = None
     """
     reciting = language is not None
     last: Exception | None = None
-    for ear in [LocalEar(model)] if model else order(reciting):
+    for ear in order(reciting):
         if not _ready(ear):
             continue
         name = ear.name(reciting)

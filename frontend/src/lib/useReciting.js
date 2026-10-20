@@ -11,7 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { bySound, follow, joinWindows } from './follow'
 import { createRecitingSession, EMPTY_VIEW, surer } from './recitingSession'
 import { useSetting } from './settings'
-import { useTrial } from './useHealth'
+import { useHealth, useTrial } from './useHealth'
 
 /**
  * `ayahs` are the page's lines the ear can check by sound, each { key, from,
@@ -22,6 +22,7 @@ import { useTrial } from './useHealth'
 export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   const fusha = useSetting('fusha')
   const trial = useTrial()
+  const { listenPerMinute } = useHealth()
   const [view, setView] = useState(EMPTY_VIEW)
 
   // One session for the life of the page. Making one opens nothing; the
@@ -32,7 +33,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   // However this page is left, the microphone goes off with it.
   useEffect(() => () => session.dispose(), [session])
 
-  const { state, problem, before, now, ended, sure, checking, elsewhere } = view
+  const { state, problem, before, now, ended, scores, checking, elsewhere } = view
   const heard = useMemo(() => (before.length ? joinWindows(before, now.words) : now.words), [before, now.words])
 
   // The page is finished once its last word is in what has already been read
@@ -56,7 +57,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   // What a recording in progress listens against, without a new session for it:
   // the dialect setting, the words of the page being recited, and whether that
   // page is done.
-  useEffect(() => { session.update({ fusha, trial, pageWords, ayahs, done: finished }) }, [session, fusha, trial, pageWords, ayahs, finished])
+  useEffect(() => { session.update({ fusha, trial, perMinute: listenPerMinute, pageWords, ayahs, done: finished }) }, [session, fusha, trial, listenPerMinute, pageWords, ayahs, finished])
   // What the finished recordings held after this page's last word goes with
   // the reciter; the recording still going is kept by the session. Read
   // when the page turns, not when it was found finished: the panel waits a
@@ -68,12 +69,14 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
     state,
     problem,
     heard,
-    marks: bySound(followed, surer(sure.before, sure.now)),
+    marks: bySound(followed, surer(scores.before, scores.now)),
     // Finished and weighed: every check of this page is back. The panel turns
     // the page on this, so the last ayah is marked by sound before it goes.
     finished: finished && checking === 0,
     listening: state === 'listening',
     elsewhere,
+    // The recording a mark's `take` names, while it is still kept; else undefined.
+    takeAudio: session.takeAudio,
     start: session.start,
     stop: session.stop,
     forget: session.forget,

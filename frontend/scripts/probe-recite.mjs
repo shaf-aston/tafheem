@@ -23,11 +23,11 @@ await page.waitForTimeout(600)
 console.log('hint:', await page.getByText('tap a word to start').isVisible())
 
 const covers = () => page.locator('[aria-label="a word to say from memory"]').count()
-const starts = () => page.locator('button[aria-label^="start reciting from"]').count()
+const starts = () => page.locator('button[data-word]').count()
 console.log('start buttons:', await starts(), 'covered:', await covers())
 
 // Start from the third word on the page.
-await page.locator('button[aria-label^="start reciting from"]').nth(2).click()
+await page.locator('button[data-word]').nth(2).click()
 await page.waitForTimeout(400)
 console.log('after tapping the 3rd word, covered:', await covers())
 

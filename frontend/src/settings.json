@@ -74,13 +74,13 @@
       "key": "listening-ear",
       "section": "Reciting",
       "label": "Speech to text",
-      "help": "Trial hears and checks your recitation with a tuned model on the server, instead of the usual one.",
+      "help": "Trial checks your words with a tuned model on the server. The quick listening that writes them down stays the same.",
       "needs-health": "reciteTrial",
       "type": "choice",
       "default": "standard",
       "options": [
         { "id": "standard", "label": "Standard" },
-        { "id": "trial",    "label": "Trial (tuned model, slower)" }
+        { "id": "trial",    "label": "Trial (tuned model checks)" }
       ]
     },
     {
