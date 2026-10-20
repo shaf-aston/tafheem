@@ -1,14 +1,16 @@
 /**
  * A ranking by words learnt, the global one or one circle's: your row stands
- * out, and is added below when you are not among the rows shown.
+ * out, and is added below when you are not among the rows shown. `limit` keeps the
+ * top few only; `compact` drops the answers, for a narrow column (Home's).
  */
 import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'
 
-export default function Ranking({ board, name, title }) {
+export default function Ranking({ board, name, title, limit, compact = false }) {
   if (board.isPending) return <Skeleton className="h-24 w-full" />
   if (board.isError) return <ErrorAlert inline title="Could not load the ranking." onRetry={() => board.refetch()} />
-  const { rows, you } = board.data
+  const { you } = board.data
+  const rows = board.data.rows.slice(0, limit)
   const shown = you && !rows.some((row) => row.name === name) ? [...rows, you] : rows
   return (
     <section className="space-y-2">
@@ -25,7 +27,7 @@ export default function Ranking({ board, name, title }) {
               <span className="w-6 tabular-nums">{row.rank}</span>
               <span dir="auto" className="flex-1 truncate">{mine ? `${row.name} (you)` : row.name}</span>
               <span className="tabular-nums">{row.learnt} learnt</span>
-              <span className="tabular-nums text-[var(--text-faint)]">{row.answers} {row.answers === 1 ? 'answer' : 'answers'}</span>
+              {!compact && <span className="tabular-nums text-[var(--text-faint)]">{row.answers} {row.answers === 1 ? 'answer' : 'answers'}</span>}
             </li>
           )
         })}

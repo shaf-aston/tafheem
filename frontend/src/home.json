@@ -18,5 +18,27 @@
     "answers-one": "{n} answer",
     "answers-many": "{n} answers",
     "guest-go": "Log in"
+  },
+  "stats": {
+    "_comment": "The progress column beside Home's tiles (wide screens) and the small button that opens the profile instead (phones). {n}, {next} are filled in by the code.",
+    "title": "Your progress",
+    "level": "Lv {n}",
+    "xp-left": "{n} XP to level {next}",
+    "streak": "Streak",
+    "days-one": "{n} day",
+    "days-many": "{n} days",
+    "learnt": "Words learnt",
+    "quran": "Of the Qur’an",
+    "answers": "Answers",
+    "board": "Top learners",
+    "open": "See your profile",
+    "guest": "Log in to see your level, streak and ranking.",
+    "button": "Your progress",
+    "icon": [
+      "M4 20V11",
+      "M10 20V5",
+      "M16 20v-6",
+      "M21 20H3"
+    ]
   }
 }
