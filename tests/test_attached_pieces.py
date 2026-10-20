@@ -448,3 +448,20 @@ def test_the_answer_of_a_jazm_condition_is_never_a_command():
 def test_a_word_with_its_owner_written_on_is_a_noun_not_the_particle():
     """أمُّكَ: the كَ is its مضاف إليه, so it is a noun (فاعل), not the particle أَمْ."""
     assert _reason("رُبَّ أَخٍ لَكَ لَمْ تَلِدْهُ أُمُّكَ", "أُمُّكَ").startswith("مرفوع لأنه فاعل")
+
+
+@pytest.mark.parametrize("rel", ["OBJ", "MOD", "TMZ"])
+def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
+    """مُنِحَ الطَّالِبُ هَدِيَّةً: the نائب فاعل is the first object, so هدية is the second
+    مفعول به however the parser hung it (a CPU's rounding tipped it to MOD on CI)."""
+    from backend.services import iraab
+    from backend.services.syntax import catib_onnx
+    real = catib_onnx.parse
+
+    def parse(typed, picks):
+        tokens = real(typed, picks)
+        tokens[2]["rel"] = rel
+        return tokens
+
+    monkeypatch.setattr(catib_onnx, "parse", parse)
+    assert [w["role"] for w in iraab.analyze("مُنِحَ الطَّالِبُ هَدِيَّةً")["words"]] == ["فعل مجهول", "نائب فاعل", "مفعول به"]
