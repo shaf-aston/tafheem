@@ -74,6 +74,8 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
     finished: finished && checking === 0,
     listening: state === 'listening',
     elsewhere,
+    // The recording a mark's `take` names, while it is still kept; else undefined.
+    recordingOf: session.recordingOf,
     start: session.start,
     stop: session.stop,
     forget: session.forget,

@@ -41,6 +41,7 @@ const PAUSE_MS = config['pause-s'] * 1000
 const CHECK_TIMEOUT_MS = config['check-timeout-s'] * 1000
 const CHECK_QUEUE_MAX = config['check-queue-max']
 const ASKS_PER_MINUTE = config['asks-per-minute']
+const KEEP_RECORDINGS = config['keep-recordings']
 // How far the voice meter can lag a cut and still count as "spoken in this
 // window": the same tick length the meter itself reads at.
 const LEVEL_LAG_MS = dictationConfig['level-check-ms']
@@ -98,8 +99,12 @@ export const problemOf = (error) => {
   return { kind: 'server', text: `The server failed on this reading (error ${error.response.status}).` }
 }
 
-/** One reading's per-ayah answer, keyed by page place; words it did not reach are left out. */
-export const byPlace = (answer = {}, ayahs) => {
+/**
+ * One reading's per-ayah answer, keyed by page place; words it did not reach are
+ * left out. Each is { sure, weak, at, take }: `detail` is the answer's weak
+ * piece and second per word, `take` the recording they were scored from.
+ */
+export const byPlace = (answer = {}, ayahs, detail = {}, take = 0) => {
   const out = {}
   for (const { key, from, count } of ayahs) {
     // A count that differs is an ayah the two spellings split into different
@@ -107,7 +112,7 @@ export const byPlace = (answer = {}, ayahs) => {
     const scores = answer[key]
     if (scores?.length !== count) continue
     scores.forEach((score, k) => {
-      if (score != null) out[from + k] = score
+      if (score != null) out[from + k] = { sure: score, ...detail[key]?.[k], take }
     })
   }
   return out
@@ -121,14 +126,23 @@ export const byPlace = (answer = {}, ayahs) => {
  * the next words red until a later check, two seconds on, cleared them.
  */
 export const settledScores = (placed, from, to) => Object.fromEntries(
-  Object.entries(placed).filter(([at, score]) => score >= config['sure-at'] || (Number(at) >= from && Number(at) < to)),
+  Object.entries(placed).filter(([at, { sure }]) => sure >= config['sure-at'] || (Number(at) >= from && Number(at) < to)),
 )
 
-/** The surer of two recordings' scores for each page place. */
+/** The surer of two recordings' scores for each page place, with that reading's own detail. */
 export const surer = (a, b) => {
   const out = { ...a }
-  for (const [at, score] of Object.entries(b)) out[at] = Math.max(score, out[at] ?? 0)
+  for (const [at, entry] of Object.entries(b)) if (!out[at] || out[at].sure < entry.sure) out[at] = entry
   return out
+}
+
+/**
+ * Keep a recording by its take, dropping the oldest past `max`. A take that is
+ * kept again (its reading grew) replaces its blob and keeps its place in line.
+ */
+export const keepRecording = (store, take, blob, max) => {
+  store.set(take, blob)
+  while (store.size > max) store.delete(store.keys().next().value)
 }
 
 /**
@@ -174,7 +188,7 @@ export const EMPTY_VIEW = {
   now: { from: 0, words: [] },
   ended: false,
   // How sure the ear has been of each page word, by its place on the page, in
-  // the same two halves. Within a recording the newest reading wins: it holds
+  // the same two halves. Each is { sure, weak, at, take }, see byPlace. Within a recording the newest reading wins: it holds
   // more of the sound, and an early reading scores words not said yet, up to
   // 0.1 for one word in six (measured on 69 cut recordings), which kept for
   // good would pass that word however it was then said. Across recordings the
@@ -260,6 +274,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
   // wait on this, a check is only ever fired and forgotten from send() below.
   let checkQueue = []
   let checkBusy = false
+  // The latest (so the most complete) recording of each of the last few
+  // windows, by take, so a word card can play what a mark was judged from.
+  const recordings = new Map()
 
   /**
    * Send the front of the queue, if the ear is free and there is one. A
@@ -277,9 +294,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
     const timer = setTimeout(() => job.abort.abort(), CHECK_TIMEOUT_MS)
     note('check.sent', { session: sessionId, reading: job.reading })
     checkReading(job.blob, { heard: job.heard, check: job.ayahs, trial: page.trial, reading: job.reading, signal: job.abort.signal })
-      .then(({ sure: scored }) => {
+      .then(({ sure: scored, detail }) => {
         note('check.answered', { session: sessionId, reading: job.reading })
-        job.apply(scored)
+        job.apply(scored, detail)
       })
       .catch((error) => {
         if (job.abort.signal.aborted) {
@@ -387,6 +404,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       seq += 1
       const reading = `${sessionId}-${thisWindow}-${seq}`
       const blob = new Blob(chunks, { type: made.mimeType })
+      keepRecording(recordings, thisWindow, blob, KEEP_RECORDINGS)
       note('reading.sent', { session: sessionId, reading, bytes: blob.size, last })
       const stopper = new AbortController()
       giveUp = stopper
@@ -461,9 +479,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
                 heard: heard.text,
                 ayahs: checkAyahs.map((line) => line.key),
                 sent: false,
-                apply: (scored) => {
+                apply: (scored, detail) => {
                   if (!live() || page.pageWords !== askedOf) return
-                  const placed = settledScores(byPlace(scored, checkAyahs), from, to)
+                  const placed = settledScores(byPlace(scored, checkAyahs, detail, thisWindow), from, to)
                   set(({ sure }) => ({
                     sure: folded
                       ? { ...sure, before: surer(sure.before, placed) }
@@ -710,5 +728,5 @@ export function createRecitingSession({ onChange, deps = {} }) {
 
   const update = (next) => { page = next }
 
-  return { start, stop, forget, turn, dispose, update, view: () => view }
+  return { start, stop, forget, turn, dispose, update, view: () => view, recordingOf: (take) => recordings.get(take) }
 }

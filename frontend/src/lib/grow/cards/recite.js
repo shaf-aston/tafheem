@@ -8,6 +8,10 @@ import { checkReading, checkText } from '../../../api'
 import { byPlace } from '../../recitingSession'
 
 export const check = async (recording, heard, card, page, trial) => {
-  if (card.ayahs.length) return byPlace((await checkReading(recording, { heard, check: card.ayahs, trial })).sure, page.ayahs)
-  return (await checkText(recording, { heard, expected: card.arabic, trial })).sure
+  if (card.ayahs.length) {
+    const { sure, detail } = await checkReading(recording, { heard, check: card.ayahs, trial })
+    return byPlace(sure, page.ayahs, detail)
+  }
+  const { sure, detail = [] } = await checkText(recording, { heard, expected: card.arabic, trial })
+  return sure.map((score, i) => ({ sure: score, ...detail[i] }))
 }
