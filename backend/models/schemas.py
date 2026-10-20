@@ -1005,3 +1005,35 @@ class ProgressSummary(BaseModel):
 class ReviewList(BaseModel):
     module: str
     items: list[str] = []
+
+
+class SimilarPartner(BaseModel):
+    """A verse that reads almost like another, with where the two differ."""
+    key: str
+    surah: int
+    ayah: int
+    text: str
+    diff_self: list[list[int]]   # [start, end) word positions in the asked verse
+    diff_other: list[list[int]]  # the same, in this partner
+    change_type: str = ""
+    sources: list[Source]
+
+
+class SimilarAyah(BaseModel):
+    surah: int
+    ayah: int
+    text: str
+    partners: list[SimilarPartner]
+
+
+class SimilarGroup(BaseModel):
+    id: int
+    keys: list[str]
+    change_type: str = ""
+    sources: list[Source]
+
+
+class SimilarSurah(BaseModel):
+    surah: int
+    ayahs: list[int]  # the ayahs of this surah that have a twin
+    groups: list[SimilarGroup]

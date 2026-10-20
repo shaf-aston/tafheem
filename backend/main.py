@@ -14,11 +14,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.config import get_settings
 from backend.routers import (
-    analysis, daleel, dictionary, journal, listen, morphology, nahw_notes, practice, progress, quran, tamreen,
-    tarkeeb, timelines,
+    analysis, colloquial, daleel, dawah, dictionary, journal, listen, morphology, nahw_notes, practice, progress, quran, speak,
+    tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
-from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning
+from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, speech
 from backend.services.morphology import get_engine_name
 
 BACKEND_ROOT = Path(__file__).resolve().parent
@@ -91,6 +91,8 @@ async def lifespan(_: FastAPI):
     # from the first recitation to every startup.
     if get_settings().recitation_warm:
         loop.run_in_executor(None, _warm_and_freeze)
+    # Same reason: the voice loads once, in the background, before anyone asks.
+    loop.run_in_executor(None, speech.warm)
 
     # Log which engines are active so the operator knows the mode at a glance
     logger.info("NLP engine   : %s", get_engine_name())
@@ -135,6 +137,9 @@ def create_app() -> FastAPI:
         tamreen.router,
         nahw_notes.router,
         timelines.router,
+        colloquial.router,
+        dawah.router,
+        speak.router,
     ):
         app.include_router(router)
 

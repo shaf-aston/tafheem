@@ -183,9 +183,16 @@ export const wordsHeard = (text) => (text ?? '')
  * reciter has finished, was reported as a word added to al-Fatihah. A reading
  * with not one word of the page in it is not this page being recited, so it is
  * left out rather than argued with.
+ *
+ * A word that sounds like a page word counts too. A short phrase can come back
+ * with every word slightly misheard (السراط for ٱلصِّرَٰطَ), and needing one
+ * exact word threw the whole reading away: its words were then marked missed,
+ * which accuses the reciter of skipping what the ear misheard. A real session
+ * had six phrase-ending readings thrown away (journal, 2026-09-24), with no
+ * transcript kept to say which were misheard; reading.answered now keeps one.
  */
 export const isOfPage = (words, page) =>
-  words.some((word) => page.some((printed) => sameSpokenWord(word, printed)))
+  words.some((word) => page.some((printed) => sameSpokenWord(word, printed) || soundsTheSame(word, printed)))
 
 /**
  * Everything heard so far, with the newest window of sound added on the end.

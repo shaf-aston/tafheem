@@ -21,7 +21,7 @@ export default function Tooltip({ text, children }) {
       <span
         role="tooltip"
         aria-hidden={!visible}
-        className={`pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50
+        className={`pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-(--layer-modal)
           px-2.5 py-1.5 rounded-[var(--radius-sm)] shadow-xl
           bg-[var(--surface-hi)] border border-[var(--border-hi)]
           text-[var(--text)] text-xs leading-snug whitespace-normal max-w-[240px] text-center

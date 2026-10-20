@@ -16,13 +16,17 @@ from backend.models.schemas import (
     QuranSurah,
     QuranWord,
     RootResponse,
+    SimilarAyah,
+    SimilarGroup,
+    SimilarPartner,
+    SimilarSurah,
     Source,
     SurahEdition,
     SurahGlosses,
     TarkeebTree,
 )
 from backend.services import arabic_text, provenance, quran_corpus, quran_library, quran_service
-from backend.services import quran_search
+from backend.services import mutashabihat, quran_search
 from backend.services import tarkeeb
 from backend.services import tarkeeb_store
 from backend.utils import normalize_text
@@ -84,6 +88,48 @@ async def get_surah_glosses(surah: int = Path(..., ge=1, le=SURAHS)) -> SurahGlo
     """
     glosses = await asyncio.to_thread(quran_service.glosses_for_surah, surah)
     return SurahGlosses(surah=surah, ayahs=glosses)
+
+
+# Declared before /similar/{surah}/{ayah}: both are three segments, and "surah" is not a number.
+@router.get("/similar/surah/{surah}", response_model=SimilarSurah)
+async def get_similar_surah(surah: int = Path(..., ge=1, le=SURAHS)) -> SimilarSurah:
+    """Every group of similar verses touching a surah, so a page can mark which ayahs have twins."""
+    groups = await asyncio.to_thread(mutashabihat.surah_groups, surah)
+    prefix = f"{surah}:"
+    return SimilarSurah(
+        surah=surah,
+        ayahs=sorted({int(k.partition(":")[2]) for g in groups for k in g["keys"] if k.startswith(prefix)}),
+        groups=[
+            SimilarGroup(id=g["id"], keys=g["keys"], change_type=g["change_type"],
+                         sources=[Source(**provenance.of(f"mutashabihat-{s}")) for s in g["sources"]])
+            for g in groups
+        ],
+    )
+
+
+@router.get("/similar/{surah}/{ayah}", response_model=SimilarAyah)
+async def get_similar_ayah(
+    surah: int = Path(..., ge=1, le=SURAHS),
+    ayah: int = Path(..., ge=1, le=LONGEST_SURAH),
+) -> SimilarAyah:
+    """The catalogued twins of one ayah, each with the words where they differ.
+
+    An ayah with no twin returns an empty list; an ayah that does not exist is a 404.
+    """
+    key = f"{surah}:{ayah}"
+    text = (await asyncio.to_thread(mutashabihat.texts)).get(key)
+    if text is None:
+        raise HTTPException(status_code=404, detail=f"There is no ayah {key}")
+    found = await asyncio.to_thread(mutashabihat.partners, key)
+    return SimilarAyah(surah=surah, ayah=ayah, text=text, partners=[
+        SimilarPartner(
+            **{k: v for k, v in p.items() if k != "sources"},
+            surah=int(p["key"].partition(":")[0]),
+            ayah=int(p["key"].partition(":")[2]),
+            sources=[Source(**provenance.of(f"mutashabihat-{s}")) for s in p["sources"]],
+        )
+        for p in found
+    ])
 
 
 @router.get("/editions", response_model=list[Edition])

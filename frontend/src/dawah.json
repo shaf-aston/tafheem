@@ -1,0 +1,5 @@
+{
+  "_comment": "Dawah tab knobs, read only by components/DawahPanel.jsx. Content lives in backend/data/dawah.",
+  "_comment-mode": "reading-mode is how the reasoning opens before the reader picks: 'steps' reveals one point per press, 'all' shows every point. The reader's own pick is remembered.",
+  "reading-mode": "steps"
+}

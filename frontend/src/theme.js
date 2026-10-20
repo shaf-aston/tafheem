@@ -11,15 +11,24 @@ import theme from './theme.json'
 const UNPREFIXED_GROUP = 'color'
 const PRIVATE_KEY = '_'
 
+/** The groups and keys that become variables, in file order: [group, [[key, value]...]]. */
+export function tokenGroups() {
+  return Object.entries(theme)
+    .filter(([group, values]) => !group.startsWith(PRIVATE_KEY) && typeof values === 'object')
+    .map(([group, values]) => [
+      group,
+      Object.entries(values).filter(([key]) => !key.startsWith(PRIVATE_KEY)),
+    ])
+}
+
+/** The CSS variable a token is written to, e.g. variableName('role', 'fail') is --role-fail. */
+export const variableName = (group, key) =>
+  `--${group === UNPREFIXED_GROUP ? '' : `${group}-`}${key}`
+
 function cssVariables() {
   const vars = {}
-  for (const [group, values] of Object.entries(theme)) {
-    if (group.startsWith(PRIVATE_KEY) || typeof values !== 'object') continue
-    const prefix = group === UNPREFIXED_GROUP ? '' : `${group}-`
-    for (const [key, value] of Object.entries(values)) {
-      if (key.startsWith(PRIVATE_KEY)) continue
-      vars[`--${prefix}${key}`] = String(value)
-    }
+  for (const [group, entries] of tokenGroups()) {
+    for (const [key, value] of entries) vars[variableName(group, key)] = String(value)
   }
   return vars
 }

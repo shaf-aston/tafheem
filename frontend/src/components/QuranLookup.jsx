@@ -18,6 +18,8 @@ import { hasDiacritics } from '../lib/arabicText'
 import { smartError } from '../lib/apiError'
 import { useArrival } from '../lib/useArrival'
 import { useHistory } from '../lib/useHistory'
+import surahs from '../data/surahs.json'
+import juzList from '../data/juz.json'
 
 import AyahStudy from './AyahStudy'
 import EmptyState from './ui/EmptyState'
@@ -33,7 +35,11 @@ import SourceBadge from './ui/SourceBadge'
 import ArabicText from './ui/ArabicText'
 import SearchBox from './ui/SearchBox'
 import RecentRow from './ui/RecentRow'
+import WheelSelect from './ui/WheelSelect'
 import { AnalyzerSkeleton } from './ui/Skeleton'
+
+const SURAH_OPTIONS = surahs.map((s) => ({ value: s.n, label: `${s.n}. ${s.en}`, sub: s.ar }))
+const JUZ_OPTIONS = juzList.map((j) => ({ value: j.n, label: `Juz ${j.n}` }))
 
 const MODES = [
   { id: 'ref', label: 'Surah & ayah' },
@@ -43,7 +49,6 @@ const MODES = [
 // "1:3" as another tab writes it. Anything else arriving is a root.
 const AYAH_REF = /^(\d+):(\d+)$/
 
-const SURAH_MIN = 1
 const SURAH_MAX = 114
 
 export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }) {
@@ -112,8 +117,8 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arrival, incoming, lookupRoot, lookupAyahRef])
 
-  const lookupAyah = () => {
-    if (surah && ayah) ayahLookup.mutate({ s: Number(surah), a: Number(ayah) })
+  const lookupAyah = (s = surah, a = ayah) => {
+    if (s && a) ayahLookup.mutate({ s: Number(s), a: Number(a) })
   }
   const runSearch = () => {
     const trimmed = query.trim()
@@ -196,7 +201,8 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
         <ReferenceForm
           surah={surah} ayah={ayah}
           onSurah={setSurah} onAyah={setAyah}
-          onSubmit={lookupAyah} busy={busy} accent={accent}
+          onSubmit={lookupAyah} onJuz={(n) => openResult(juzList[n - 1])}
+          busy={busy} accent={accent}
         />
       ) : (
         <SearchForm
@@ -271,38 +277,52 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
   )
 }
 
-function ReferenceForm({ surah, ayah, onSurah, onAyah, onSubmit, busy, accent }) {
-  const surahNumber = Number(surah)
-  const surahInvalid = Boolean(surah) && (
-    !Number.isInteger(surahNumber) || surahNumber < SURAH_MIN || surahNumber > SURAH_MAX
-  )
+function ReferenceForm({ surah, ayah, onSurah, onAyah, onSubmit, onJuz, busy, accent }) {
+  const chosen = surahs.find((s) => s.n === Number(surah))
+  const ayahOptions = chosen
+    ? Array.from({ length: chosen.ayahs }, (_, i) => ({ value: i + 1, label: String(i + 1) }))
+    : []
 
   return (
     <div className="space-y-3">
+      {/* Jump straight to a juz: one pick, no ayah to know or choose. Sits
+          above the surah/ayah row since it is the fastest way in when the
+          reader wants "the 5th juz", not a specific verse. */}
+      <WheelSelect
+        label="Jump to juz"
+        value={null}
+        options={JUZ_OPTIONS}
+        onChange={onJuz}
+        accent={accent}
+        placeholder="Any juz, 1–30"
+      />
+
       <div className="flex gap-3">
-        <NumberField
-          id="surah-input" label="Surah" value={surah} onChange={onSurah}
-          min={SURAH_MIN} max={SURAH_MAX} placeholder={`${SURAH_MIN}–${SURAH_MAX}`}
-          invalid={surahInvalid} hint={surahInvalid ? `Must be ${SURAH_MIN}–${SURAH_MAX}` : null}
-          accent={accent} onEnter={onSubmit}
+        <WheelSelect
+          label="Surah" value={Number(surah) || null} options={SURAH_OPTIONS}
+          onChange={(v) => onSurah(String(v))} accent={accent}
+          placeholder={`Any surah, 1–${SURAH_MAX}`}
         />
-        <NumberField
-          id="ayah-input" label="Ayah" value={ayah} onChange={onAyah}
-          min={1} placeholder="e.g. 255" accent={accent} onEnter={onSubmit}
+        <WheelSelect
+          label="Ayah" value={Number(ayah) || null} options={ayahOptions}
+          onChange={(v) => { onAyah(String(v)); onSubmit(surah, v) }}
+          accent={accent} placeholder={chosen ? `1–${chosen.ayahs}` : 'Pick a surah first'}
         />
       </div>
 
       {!surah && !ayah && (
         <p className="text-[var(--text-faint)] type-small">
-          Try 2:255 (Ayat al-Kursi) or 1:1 (the opening of al-Fatiha).
+          Try Al-Baqarah 255 (Ayat al-Kursi) or Al-Fatihah 1, or jump straight to a juz above.
         </p>
       )}
 
+      {/* Picking the ayah already looks the reference up; this stays as the
+          fallback for a surah picked with the keyboard, Enter never pressed. */}
       <PrimaryButton
         accent={accent}
-        disabled={busy || !surah || !ayah || surahInvalid}
+        disabled={busy || !surah || !ayah}
         loading={busy}
-        onClick={onSubmit}
+        onClick={() => onSubmit(surah, ayah)}
       >
         {busy ? 'Loading…' : 'Look up ayah'}
       </PrimaryButton>
@@ -340,34 +360,6 @@ function SearchForm({ query, onChange, onSubmit, onHeard, busy, accent }) {
       <PrimaryButton accent={accent} disabled={busy || !query.trim()} loading={busy} onClick={onSubmit}>
         {busy ? 'Searching…' : 'Search the Quran'}
       </PrimaryButton>
-    </div>
-  )
-}
-
-function NumberField({ id, label, value, onChange, min, max, placeholder, invalid = false, hint, accent, onEnter }) {
-  return (
-    <div className="flex-1">
-      <label htmlFor={id} className="text-[var(--text-faint)] text-xs uppercase tracking-wide block mb-1">
-        {label}
-      </label>
-      <input
-        id={id}
-        type="number"
-        min={min}
-        max={max}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && onEnter?.()}
-        placeholder={placeholder}
-        aria-invalid={invalid || undefined}
-        style={{
-          '--c': invalid ? 'var(--danger)' : accent,
-          borderColor: invalid ? 'var(--danger)' : 'var(--border)',
-        }}
-        className="w-full rounded-[var(--radius-md)] p-3 bg-[var(--surface)] text-[var(--text)]
-          border focus:border-[var(--c)] focus:outline-none transition-colors"
-      />
-      {hint && <p className="text-xs mt-1" style={{ color: 'var(--danger)' }}>{hint}</p>}
     </div>
   )
 }

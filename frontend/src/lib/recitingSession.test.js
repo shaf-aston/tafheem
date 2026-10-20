@@ -1,8 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import config from '../recite.json'
 import { batchOf } from './journal'
 import {
-  allowanceLeft, byPlace, createRecitingSession, cutReason, problemOf, queueCheck, readyToSend, recentAsks, spokeSince, surer,
+  allowanceLeft, byPlace, createRecitingSession, cutReason, pace, problemOf, queueCheck, readyToSend, recentAsks, spokeSince, surer,
 } from './recitingSession'
 
 const ayahs = [{ key: '1:6', from: 17, count: 3 }, { key: '1:7', from: 20, count: 9 }]
@@ -73,6 +74,27 @@ describe('readyToSend', () => {
   it('holds a mid-phrase reading when the ear has no allowance left', () => {
     expect(readyToSend(10000, 0, 0, 4000, false, 5, 0, 1)).toBe(true)
     expect(readyToSend(10000, 0, 0, 4000, false, 5, 0, 0)).toBe(false)
+  })
+})
+
+describe('pace', () => {
+  it('asks as often as every key together allows, keeping a share back', () => {
+    // One account: every three seconds, 18 a minute. Two: every one and a half, 36.
+    expect(pace(20)).toEqual({ stepMs: 3000, perMinute: 18 })
+    expect(pace(40)).toEqual({ stepMs: 1500, perMinute: 36 })
+  })
+
+  it('is one key\'s pace until the server has said', () => {
+    expect(pace(null)).toEqual(pace(60 / config['step-s']))
+    expect(pace(undefined)).toEqual(pace(null))
+  })
+
+  it('with no hosted ear, spends no allowance and lets the reading time pace it', () => {
+    expect(pace(0)).toEqual({ stepMs: config['tick-s'] * 1000, perMinute: Infinity })
+  })
+
+  it('never asks quicker than the recording hands sound over', () => {
+    expect(pace(600).stepMs).toBe(config['tick-s'] * 1000)
   })
 })
 

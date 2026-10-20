@@ -78,11 +78,26 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
       )}
 
       {/* Only when the source speaks in sentences (segments/lemma) rather than
-          case/sign pairs; a corpus word with no grammar array still says so. */}
+          case/sign pairs; a corpus word with no grammar array still says so.
+          The first term often repeats the pos tag already shown above (both
+          say فعل) — dropped here rather than shown twice. Small wrapped tags,
+          not one long right-flushed line: that line floated on its own with
+          nothing to its left, reading as a stray banner rather than a detail. */}
       {(word.grammar || word.segments || word.lemma) && (
-        word.grammar?.length
-          ? <ArabicText as="p" size="sm" className="text-[var(--text)] leading-relaxed">{word.grammar.join(' · ')}</ArabicText>
-          : <p className="type-small text-[var(--text)]">No grammar recorded for this word.</p>
+        (() => {
+          const terms = (word.grammar ?? []).filter((t) => t !== posLabel(word.pos))
+          return terms.length
+            ? (
+              <div className="flex flex-wrap gap-1.5" dir="rtl">
+                {terms.map((term, i) => (
+                  <ArabicText key={i} size="tiny" className="type-tiny text-[var(--text-dim)] bg-[var(--surface-hi)] rounded-full px-2 py-0.5">
+                    {term}
+                  </ArabicText>
+                ))}
+              </div>
+            )
+            : (!word.grammar?.length && <p className="type-small text-[var(--text)]">No grammar recorded for this word.</p>)
+        })()
       )}
 
       {word.lemma && (
@@ -107,8 +122,11 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
         </ul>
       )}
 
+      {/* Wrapped, not a 2-column grid: a corpus word usually has only Root, and
+          a grid left an empty cell beside it — dead space that read as part
+          of the layout being unfinished. */}
       {(word.root || word.type || word.case || word.sign) && (
-        <div className="grid grid-cols-2 gap-2.5 type-small">
+        <div className="flex flex-wrap gap-2.5 type-small">
           {word.root && <Detail label="Root" value={word.root} arabic />}
           {word.type && <Detail label="Type" value={typeLabel(word.type)} arabic />}
           {word.case && <Detail label="Case" value={caseLabel(word.case)} arabic />}
@@ -137,7 +155,7 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
 
 function Detail({ label, value, arabic }) {
   return (
-    <div className="rounded-[var(--radius-sm)] p-3 bg-[var(--surface-hi)]">
+    <div className="rounded-[var(--radius-sm)] p-3 bg-[var(--surface-hi)] min-w-[6rem]">
       <div className="text-[var(--text-faint)] type-tiny uppercase tracking-wide mb-1">{label}</div>
       {arabic
         ? <ArabicText className="text-[var(--text)]">{value}</ArabicText>

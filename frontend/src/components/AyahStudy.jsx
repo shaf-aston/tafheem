@@ -132,20 +132,10 @@ export default function AyahStudy({ data, onGo, onReadSurah, accent }) {
         )}
       </div>
 
-      {/* The open word's grammar, in the page's own flow rather than floating
-          over it. Floating put it half off the screen for a word at the line's
-          right edge, and laid it across the words on the line below, so the
-          next word could not be tapped. In flow it can do neither, and the
-          reader's eye lands in the same place whichever word they picked. */}
-      {opened && (
-        <div ref={detailRef}>
-          <WordCard word={opened} onGo={onGo} onClose={() => setOpenWord(null)} exclude="quran" />
-        </div>
-      )}
-
       {/* The corpus credit belongs to the word grammar, so it stands where the
           words do, not up beside the ayah number where it read as a second
-          credit for the translation. */}
+          credit for the translation. Above the detail card, not below it: this
+          is where the reader picks a word, so it comes first. */}
       <div className="flex items-center justify-center gap-3 flex-wrap">
         <p className="text-xs text-[var(--text-faint)]">
           Tap any word for its full grammar and its root
@@ -175,6 +165,17 @@ export default function AyahStudy({ data, onGo, onReadSurah, accent }) {
           <ArabicText key={pos} size="tiny" style={{ color: posColor(pos) }}>{posLabel(pos)}</ArabicText>
         ))}
       </div>
+
+      {/* The open word's grammar, in the page's own flow rather than floating
+          over it. Floating put it half off the screen for a word at the line's
+          right edge, and laid it across the words on the line below, so the
+          next word could not be tapped. In flow it can do neither, and the
+          reader's eye lands in the same place whichever word they picked. */}
+      {opened && (
+        <div ref={detailRef}>
+          <WordCard word={opened} onGo={onGo} onClose={() => setOpenWord(null)} exclude="quran" />
+        </div>
+      )}
 
       <AyahTarkeeb surah={data.surah} ayah={data.ayah} />
 

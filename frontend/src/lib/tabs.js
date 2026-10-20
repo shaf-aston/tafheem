@@ -16,6 +16,8 @@ import NahwPanel from '../components/NahwPanel'
 import DaleelPanel from '../components/DaleelPanel'
 import TimelinesPanel from '../components/TimelinesPanel'
 import ColloquialPanel from '../components/ColloquialPanel'
+import DawahPanel from '../components/DawahPanel'
+import KitPanel from '../components/KitPanel'
 
 // `study`: read closely, so the text-size setting applies.
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together.
@@ -25,6 +27,8 @@ import ColloquialPanel from '../components/ColloquialPanel'
 // `group`: its heading in All sections, an id from GROUPS.
 // `mark`: one Arabic letter for where only a letter fits (search rail, launcher
 //   ring). Taken from the tab's own name, unique across tabs.
+// `hidden`: reachable by URL only (journey and the panel mapping read TABS), left out of
+//   everything a person browses; those read LISTED.
 // Order = strip order = number-key shortcuts. Related tabs sit together.
 export const GROUPS = [
   { id: 'language', label: 'Language' },
@@ -42,8 +46,13 @@ export const TABS = [
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    mark: 'ح', Component: MemorisePanel, study: true, row: 2, group: 'quran' },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', mark: 'خ', Component: QuizPanel,   row: 2, group: 'tools' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', mark: 'ت', Component: TimelinesPanel, study: true, row: 3, group: 'tools' },
-  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, row: 3, group: 'language' },
+  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  mark: 'ع', Component: ColloquialPanel, study: true, row: 2, group: 'language' },
+  { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   mark: 'و', Component: DawahPanel, study: true, row: 3, group: 'tools' },
+  { id: 'kit',    label: 'Kit',        short: 'Kit',    arabic: 'عدة',    mark: 'ك', Component: KitPanel, hidden: true, group: 'tools' },
 ]
+
+/** The tabs a person can browse to: strip, All sections, command bar, launcher, number keys. */
+export const LISTED = TABS.filter((tab) => !tab.hidden)
 
 /** A tab's colour, with the theme's own fallback rule. */
 export const accentOf = (id) => colorFor('tab', id)

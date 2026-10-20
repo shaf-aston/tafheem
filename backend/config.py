@@ -128,6 +128,18 @@ class Settings(BaseSettings):
     # recitations the ear was at least 0.9 sure of 74% of right words in this
     # spelling and 51% in the Uthmani one. Fetched by fetch_recitation_checks.py.
     quran_imlaei_path: str = "data/quran/imlaei.json"
+    # Verbally similar verses (mutashabihat). The catalogue is built by
+    # scripts/build_mutashabihat.py; the rest tune the finder in
+    # services/mutashabihat.py, judged by scripts/score_mutashabihat.py.
+    mutashabihat_path: str = "data/quran/mutashabihat.json"
+    # Words per shingle. Two reached 77% pair recall over the benchmark.
+    mutashabihat_shingle_size: int = Field(2, ge=1)
+    # A shingle in more verses than this is a stock phrase, not a clue.
+    mutashabihat_shingle_cap: int = Field(200, ge=1)
+    mutashabihat_candidate_limit: int = Field(10, ge=1)
+    # Shared shingles over the shorter verse's shingles, 0-1, to be proposed.
+    mutashabihat_propose_min_score: float = Field(0.5, gt=0, le=1)
+    mutashabihat_propose_limit: int = Field(50, ge=1)
     # How much of the Qur'an a commentary must reach before the import believes
     # it. A tafsir does not comment on everything, so this is a floor and not an
     # exact count: Ibn Kathir, the fullest book here, reaches 6,011 of 6,236.
@@ -210,6 +222,16 @@ class Settings(BaseSettings):
     # Read by the frontend ears benchmark through process.env, not by any backend
     # code; declared so a shared .env validates.
     recitation_deepgram_api_key: str = ""
+
+    # Saying a word aloud (services/speech.py). Voices in the order to try,
+    # comma separated. Real reciters are played by the page, not listed here.
+    speech_voices: str = "piper"
+    # Path inside the rhasspy/piper-voices repo; fetched once on first use.
+    speech_piper_model: str = "ar/ar_JO/kareem/medium/ar_JO-kareem-medium.onnx"
+    # Longest text /api/speak accepts. A word or short phrase, not a page.
+    speech_max_chars: int = Field(default=40, gt=0)
+    # How long a voice that failed is skipped before it is tried again.
+    speech_rest_s: float = Field(default=60.0, gt=0)
 
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
     # The search boxes are dictation, not recitation, and the Qur'an model knows
@@ -432,10 +454,27 @@ class Settings(BaseSettings):
     # by the same script, read so the panel can say how many are not shown.
     asbab_unmatched_path: str = "data/quran/asbab-unmatched.json"
 
+    # ── Mushkil al-hadith ─────────────────────────────────────────────────────
+    # Hadith that seem to conflict, grouped by al-Tahawi's own chapters, and the
+    # paragraphs the cutter could not place. Both written by build_mushkil.py.
+    mushkil_path: str = "data/hadith/mushkil-tahawi.json"
+    mushkil_unplaced_path: str = "data/hadith/mushkil-unplaced.json"
+
     # ── Timelines ─────────────────────────────────────────────────────────────
     # library.json (sciences, places, collections, map) and one file per section
     # under sections/. Hand-written data, checked on load by services/timelines.py.
     timelines_dir: str = "data/timelines"
+
+    # ── Dawah ─────────────────────────────────────────────────────────────────
+    # Common questions put to Islam, one file. Its references use the
+    # collections declared in timelines/library.json. Checked on load by services/dawah.py.
+    dawah_path: str = "data/dawah/dawah.json"
+
+    # ── Colloquial (spoken dialects) ───────────────────────────────────────────
+    # dialects.json and one folder per dialect holding unit-NN.json files, with
+    # the pictures under images/. Written by a model, checked on load by
+    # services/colloquial/loader.py.
+    colloquial_dir: str = "data/colloquial"
 
     # ── Progress (what a learner has answered) ────────────────────────────────
     # The only database this app writes to while serving. Made on first use, so

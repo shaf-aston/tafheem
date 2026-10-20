@@ -1,0 +1,24 @@
+{
+  "fold": {
+    "marks": {
+      "ʔ": "2", "ʾ": "2", "ʕ": "3", "ʿ": "3", "ḥ": "7", "ṣ": "s", "ṭ": "t", "ḍ": "d", "ẓ": "z",
+      "ġ": "gh", "š": "sh", "ḫ": "kh", "ž": "j", "ǧ": "j", "ṛ": "r", "x": "kh"
+    },
+    "digraphs": { "sh": "S", "kh": "K", "gh": "G" },
+    "schwas": "ǝəәᵊ",
+    "dropped": "2",
+    "prefixes": ["w", "b", "bi", "il", "el", "wil", "ha", "m"],
+    "suffixes": ["ak", "ik", "ek", "ki", "ka", "na", "ha", "hon", "ni", "i", "u", "o", "t", "ti"],
+    "min_length": 2
+  },
+  "sources": [
+    {
+      "name": "ddda",
+      "label": "Digital Dictionary of Damascus Arabic (Prochazka et al.)",
+      "licence": "CC BY 4.0",
+      "url": "https://arche.acdh.oeaw.ac.at/api/44780",
+      "file": "ddda.xml",
+      "format": "tei"
+    }
+  ]
+}

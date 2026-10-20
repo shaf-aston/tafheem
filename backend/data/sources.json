@@ -295,6 +295,27 @@
     ],
     "category": "Tafsir"
   },
+  "mushkil-tahawi": {
+    "label": "al-Tahawi, Sharh Mushkil al-Athar",
+    "confidence": "verified",
+    "detail": "Hadith that seem to conflict, grouped by the scholar's own chapters, with his reconciliation after them. Printed page numbers dropped; no harakat in this text.",
+    "url": "https://github.com/OpenITI",
+    "where": "The book as OpenITI published it (Shu'ayb al-Arna'ut's edition), cut into one issue per chapter by backend/scripts/build_mushkil.py. The grouping is al-Tahawi's, never ours or a model's; paragraphs that fit no chapter are listed in data/hadith/mushkil-unplaced.json rather than guessed at.",
+    "used_in": [
+      "daleel"
+    ],
+    "category": "Hadith"
+  },
+  "colloquial": {
+    "label": "Colloquial lessons",
+    "confidence": "guessed",
+    "detail": "Damascene phrases, conversations and exercises written by Claude; no native speaker has checked them yet",
+    "url": "",
+    "where": "One file per unit in backend/data/colloquial, generated to the prompt in docs/colloquial-authoring-prompt.md. Spoken Arabic is not written down in any corpus this app has, so nothing here was checked against a source: it is a model's account of how Damascus speaks. Pictures beside the phrases come from Openverse and each carries its own creator and licence.",
+    "used_in": [
+      "colloq"
+    ]
+  },
   "nahw-notes": {
     "label": "Year 3 Nahw notes",
     "confidence": "guessed",
@@ -303,6 +324,36 @@
     "where": "Typed and handwritten notes from the Year 3 Nahw course, at data/nahw_notes. The wording is the teacher's; turning the pages into text was done by Claude, so a misread is possible and every block says which page it came from.",
     "used_in": [
       "nahw"
+    ]
+  },
+  "dawah": {
+    "label": "Dawah answers",
+    "confidence": "guessed",
+    "detail": "Replies researched with Claude from the Qur'an, hadith and classical scholars, in mainstream Sunni terms; evidence under each point, IslamQA linked for further reading",
+    "url": "",
+    "where": "One file, backend/data/dawah/dawah.json, checked on load by services/dawah.py. Each point carries its own evidence: Qur'an references open the ayah, hadith numbers are as commonly cited and not checked here, and notes name tafsir or scholars. A matching IslamQA fatwa is linked as further reading.",
+    "used_in": [
+      "dawah"
+    ]
+  },
+  "mutashabihat-benchmark": {
+    "label": "Mutashabihat benchmark",
+    "confidence": "verified",
+    "detail": "Similar-verse pairs recorded by scholars in Hidayat al-Murtab and Tatimmat al-Bayan, collected for the paper \"Detecting and Localizing Verbally Similar Verses (Mutashabihat) in the Quran\". GPL-3.0",
+    "url": "https://github.com/ambaqasah/mutashabihat",
+    "where": "Two classical books on verses that read almost alike, gathered into a public dataset by the paper's authors. Downloaded once and merged by backend/scripts/build_mutashabihat.py into data/quran/mutashabihat.json; the highlighted words are worked out here against this app's own text.",
+    "used_in": [
+      "quran"
+    ]
+  },
+  "mutashabihat-waqar144": {
+    "label": "Mutashabihat list (Waqar144)",
+    "confidence": "verified",
+    "detail": "A hafiz's list of similar verses, curated from the work of Qari Idrees Al Asim, shared by Waqar144 free to use with credit",
+    "url": "",
+    "where": "A public JSON file of similar-verse pairs kept by a hafiz. Downloaded once and merged by backend/scripts/build_mutashabihat.py into data/quran/mutashabihat.json; the highlighted words are worked out here against this app's own text.",
+    "used_in": [
+      "quran"
     ]
   }
 }

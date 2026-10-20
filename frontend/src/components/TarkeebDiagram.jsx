@@ -18,7 +18,6 @@ import { colorFor } from '../theme'
 import ArabicText from './ui/ArabicText'
 import Segmented from './ui/Segmented'
 import Tooltip from './ui/Tooltip'
-import './tarkeeb.css'
 
 const WORD_MIN = '7rem'
 const NAME_COLUMN = '11rem'
@@ -106,7 +105,7 @@ export default function TarkeebDiagram({ words, tree, unwritten, className = '' 
       )}
       {/* Horizontal scroll region: keyboard-focusable so a non-mouse user can
           reach it. The focus ring comes from the global focus-visible rule
-          in index.css, which already covers [tabindex]. */}
+          in styles/base.css, which already covers [tabindex]. */}
       {/* Named by its sentence: a page of worked examples has several of these,
           and same-named regions are one region to a screen reader. */}
       <div className="tk-scroller" tabIndex={0} role="region" aria-label={`Tarkeeb of ${shown.words.join(' ')}, scroll sideways to see the rest`}>

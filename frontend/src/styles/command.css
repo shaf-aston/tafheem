@@ -6,9 +6,9 @@
    Timings are theme.json's motion group, which holds plain numbers so that a
    duration has to be built with `calc(... * 1ms)`. Written as a bare var it is
    not a duration at all and the browser drops the whole line, which is how a
-   file full of transitions can animate nothing. Same idiom as index.css.
+   file full of transitions can animate nothing. Same idiom as base.css.
 
-   Reduced motion is handled once for the whole app in index.css (the wildcard
+   Reduced motion is handled once for the whole app in base.css (the wildcard
    rule reaches this file's classes too, CSS has no file scope). */
 .cb {
   position: relative;
@@ -124,7 +124,7 @@
   position: absolute;
   top: calc(100% + 0.45rem);
   right: 0;
-  z-index: 60;
+  z-index: var(--layer-dropdown);
   display: flex;
   width: max(var(--command-open-w), 22rem);
   max-width: 92vw;
@@ -263,7 +263,7 @@
 /* ── The orbit launcher ─────────────────────────────────────────────────────
    The seven tabs on a ring round the orb. The ring turns; each satellite turns
    back by the same amount, so no label is ever upside down. The arrival is the
-   shared .dance in index.css: the satellites and the orb wear it, and this file
+   shared .dance in motion.css: the satellites and the orb wear it, and this file
    only says what --spread and --pop mean here. */
 .sh-dialog {
   width: 100vw;

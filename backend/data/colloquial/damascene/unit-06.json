@@ -1,0 +1,1610 @@
+{
+  "unit": "unit-06",
+  "title": "Shopping",
+  "dialect": "Damascene Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "title": "Clothes and Sizes",
+      "phrases": [
+        {
+          "arabic": "بدي فستان",
+          "transliteration": "baddi fustaan",
+          "english": "I want a dress.",
+          "reply": {
+            "arabic": "شو لونه بتحبي؟",
+            "transliteration": "shu lawno bit7ebbi?",
+            "english": "What color do you like?"
+          },
+          "search_term": "woman shopping for a dress"
+        },
+        {
+          "arabic": "بدي قميص",
+          "transliteration": "baddi 2amiiS",
+          "english": "I want a shirt.",
+          "search_term": "man trying on a shirt"
+        },
+        {
+          "arabic": "شو مقاسك؟",
+          "transliteration": "shu ma2aasak?",
+          "english": "What's your size? (to a man)",
+          "reply": {
+            "arabic": "مقاسي لارج",
+            "transliteration": "ma2aasi laarj",
+            "english": "My size is large."
+          }
+        },
+        {
+          "arabic": "شو مقاسِك؟",
+          "transliteration": "shu ma2aasik?",
+          "english": "What's your size? (to a woman)",
+          "reply": {
+            "arabic": "مقاسي سمول",
+            "transliteration": "ma2aasi smool",
+            "english": "My size is small."
+          }
+        },
+        {
+          "arabic": "فيني قيسه؟",
+          "transliteration": "fiini 2ayyso?",
+          "english": "Can I try it on?",
+          "reply": {
+            "arabic": "أكيد، غرفة القياس هونيك",
+            "transliteration": "akiid, ghurfet l-2yaas honiik",
+            "english": "Sure, the fitting room is over there."
+          },
+          "search_term": "fitting room curtain"
+        },
+        {
+          "arabic": "وين غرفة القياس؟",
+          "transliteration": "ween ghurfet l-2yaas?",
+          "english": "Where's the fitting room?"
+        },
+        {
+          "arabic": "هاد كتير كبير علي",
+          "transliteration": "haad ktiir kbiir 3alayy",
+          "english": "This is too big for me."
+        },
+        {
+          "arabic": "هاد كتير ضيق علي",
+          "transliteration": "haad ktiir Dayye2 3alayy",
+          "english": "This is too tight for me."
+        },
+        {
+          "arabic": "عندك قياس أصغر؟",
+          "transliteration": "3andak 2yaas azghar?",
+          "english": "Do you have a smaller size?",
+          "reply": {
+            "arabic": "بفحص، ثانية",
+            "transliteration": "bfaHeS, saanye",
+            "english": "Let me check, one second."
+          }
+        },
+        {
+          "arabic": "لبسته وناسبني",
+          "transliteration": "labesto w naasabni",
+          "english": "I tried it on and it fits me."
+        },
+        {
+          "arabic": "هاد القماش قطن؟",
+          "transliteration": "haad l-2maash 2uTun?",
+          "english": "Is this fabric cotton?",
+          "reply": {
+            "arabic": "إي، قطن مية بالمية",
+            "transliteration": "ee, 2uTun miyye bil-miyye",
+            "english": "Yes, one hundred percent cotton."
+          }
+        },
+        {
+          "arabic": "بدي جزمة رياضة",
+          "transliteration": "baddi jazme riyaaDa",
+          "english": "I want sports shoes.",
+          "search_term": "pair of sneakers on a shelf"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rami",
+          "arabic": "مرحبا، بدي قميص لو سمحت.",
+          "transliteration": "mar7aba, baddi 2amiiS law sama7t.",
+          "english": "Hello, I want a shirt please."
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "أهلين، شو مقاسك؟",
+          "transliteration": "ahleen, shu ma2aasak?",
+          "english": "Welcome, what's your size?"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "مقاسي لارج.",
+          "transliteration": "ma2aasi laarj.",
+          "english": "My size is large."
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "تفضل، هاد القميص قطن مية بالمية.",
+          "transliteration": "tfaddal, haad l-2amiiS 2uTun miyye bil-miyye.",
+          "english": "Here you go, this shirt is 100% cotton."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "فيني قيسه؟",
+          "transliteration": "fiini 2ayyso?",
+          "english": "Can I try it on?"
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "أكيد، غرفة القياس هونيك عاليمين.",
+          "transliteration": "akiid, ghurfet l-2yaas honiik 3al-yamiin.",
+          "english": "Sure, the fitting room is over there on the right."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "هاد كتير ضيق علي.",
+          "transliteration": "haad ktiir Dayye2 3alayy.",
+          "english": "This is too tight for me."
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "عندي قياس أكبر، ثانية.",
+          "transliteration": "3andi 2yaas akbar, saanye.",
+          "english": "I have a bigger size, one second."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "يعطيك العافية.",
+          "transliteration": "ya3Tiik l-3aafye.",
+          "english": "Thanks."
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "تفضل جرب هادا.",
+          "transliteration": "tfaddal jarreb haada.",
+          "english": "Here, try this one."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "هلق ناسبني، منيح كتير.",
+          "transliteration": "halla2 naasabni, mnii7 ktiir.",
+          "english": "Now it fits me, very good."
+        },
+        {
+          "speaker": "Abu Khaled",
+          "arabic": "مبروك، قديش حلو عليك.",
+          "transliteration": "mabruuk, addeesh 7ilu 3aleek.",
+          "english": "Congrats, it looks great on you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو مقاسك؟",
+            "transliteration": "shu ma2aasak?",
+            "english": "What's your size?"
+          },
+          "response": {
+            "arabic": "مقاسي ميديم",
+            "transliteration": "ma2aasi miidyum",
+            "english": "My size is medium."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فيني قيسه؟",
+            "transliteration": "fiini 2ayyso?",
+            "english": "Can I try it on?"
+          },
+          "response": {
+            "arabic": "أكيد، تفضل",
+            "transliteration": "akiid, tfaddal",
+            "english": "Sure, go ahead."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هاد القماش قطن؟",
+            "transliteration": "haad l-2maash 2uTun?",
+            "english": "Is this fabric cotton?"
+          },
+          "response": {
+            "arabic": "إي، قطن مية بالمية",
+            "transliteration": "ee, 2uTun miyye bil-miyye",
+            "english": "Yes, 100% cotton."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك قياس أصغر؟",
+            "transliteration": "3andak 2yaas azghar?",
+            "english": "Do you have a smaller size?"
+          },
+          "response": {
+            "arabic": "بفحص، ثانية",
+            "transliteration": "bfaHeS, saanye",
+            "english": "Let me check, one second."
+          }
+        }
+      ],
+      "culture": "In Damascus, a shopkeeper in Souq al-Hamidiyeh or a small neighborhood store will pull several sizes off the rack without being asked twice, and trying something on and saying it does not fit is completely normal, never rude.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "A shopkeeper asks you: \"شو مقاسك؟\" Answer that your size is large.",
+          "answer": "مقاسي لارج",
+          "accepted": [
+            "مقاسي لارج",
+            "لارج",
+            "مقاسي: لارج"
+          ],
+          "too_formal": {
+            "item": "قياسي هو الكبير",
+            "feedback": "This is grammatically correct, but it is a stiff, bookish way to say something as simple as your clothing size."
+          },
+          "tip": "The borrowed English sizes \"سمول\", \"ميديم\", \"لارج\" are what people actually say in shops."
+        },
+        {
+          "id": "unit-06.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A shopkeeper asks a woman: \"شو مقاسِك؟\" Answer that your size is small.",
+          "answer": "مقاسي سمول",
+          "accepted": [
+            "مقاسي سمول",
+            "سمول",
+            "مقاسي صغير"
+          ],
+          "too_formal": {
+            "item": "حجمي صغير",
+            "feedback": "Understandable, but \"حجم\" is used for size of an object, not a person's clothing size."
+          },
+          "tip": "Ask this to a woman with \"مقاسِك\", with a kasra at the end."
+        },
+        {
+          "id": "unit-06.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"بدي _____ لو سمحت.\" English meaning: I want a shirt, please.",
+          "answer": "قميص",
+          "accepted": [
+            "قميص"
+          ],
+          "too_formal": {
+            "item": "سترة قماشية",
+            "feedback": "This is a roundabout, formal way to describe a shirt; the everyday word is simply \"قميص\"."
+          },
+          "tip": "\"بدي\" plus the item name is the everyday way to ask for something in a shop."
+        },
+        {
+          "id": "unit-06.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"هاد كتير _____ علي.\" English meaning: This is too big for me.",
+          "answer": "كبير",
+          "accepted": [
+            "كبير"
+          ],
+          "too_formal": {
+            "item": "فسيح جدا علي",
+            "feedback": "This sounds like a description of a room, not clothing that does not fit."
+          },
+          "tip": "\"كتير + adjective + علي\" is the everyday pattern for \"too X for me\"."
+        },
+        {
+          "id": "unit-06.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene: \"Can I try it on?\"",
+          "answer": "فيني قيسه؟",
+          "accepted": [
+            "فيني قيسه؟",
+            "فيني إجربه؟"
+          ],
+          "too_formal": {
+            "item": "هل يمكنني أن أقيسه؟",
+            "feedback": "Grammatically fine but this is Modern Standard Arabic, not how it is said on the street."
+          },
+          "tip": "\"فيني\" is \"can I\" in everyday Damascene speech."
+        },
+        {
+          "id": "unit-06.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene: \"Where's the fitting room?\"",
+          "answer": "وين غرفة القياس؟",
+          "accepted": [
+            "وين غرفة القياس؟"
+          ],
+          "too_formal": {
+            "item": "أين غرفة قياس الملابس؟",
+            "feedback": "The meaning is right but \"أين\" and the fuller phrasing are formal; Damascenes say \"وين\"."
+          },
+          "tip": "\"وين\" replaces \"أين\" everywhere in Damascene speech."
+        },
+        {
+          "id": "unit-06.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"too tight\"?",
+          "answer": "ضيق",
+          "accepted": [
+            "ضيق"
+          ],
+          "tip": "\"ضيق\" is tight, the opposite of \"واسع\" (loose/wide).",
+          "options": [
+            "ضيق",
+            "واسع",
+            "غالي",
+            "رخيص"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "How do you ask a man \"What's your size?\"",
+          "answer": "شو مقاسك؟",
+          "accepted": [
+            "شو مقاسك؟"
+          ],
+          "tip": "\"مقاسَك\" with a fatha ending is the masculine form; \"مقاسِك\" with a kasra is for a woman.",
+          "options": [
+            "شو مقاسك؟",
+            "شو مقاسِك؟",
+            "كم سعره؟",
+            "وين غرفة القياس؟"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange the words to say: \"This is too big for me.\"",
+          "answer": "هاد كتير كبير علي",
+          "accepted": [
+            "هاد كتير كبير علي"
+          ],
+          "tip": "\"هاد\" (this) always opens the sentence.",
+          "words": [
+            "هاد",
+            "كتير",
+            "كبير",
+            "علي"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange the words to say: \"Do you have a bigger size?\"",
+          "answer": "عندك قياس أكبر؟",
+          "accepted": [
+            "عندك قياس أكبر؟"
+          ],
+          "tip": "\"عندك\" (do you have) opens a question about what is available.",
+          "words": [
+            "عندك",
+            "قياس",
+            "أكبر؟"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "title": "Colours and Choosing",
+      "phrases": [
+        {
+          "arabic": "شو رأيك بهالفستان؟",
+          "transliteration": "shu ra2yak b-hal-fustaan?",
+          "english": "What do you think of this dress?",
+          "reply": {
+            "arabic": "حلو كتير، بس جرب اللون الأزرق",
+            "transliteration": "7ilu ktiir, bas jarreb l-lawn l-azra2",
+            "english": "Very nice, but try the blue color."
+          }
+        },
+        {
+          "arabic": "بحب اللون الأزرق",
+          "transliteration": "ba7ebb l-lawn l-azra2",
+          "english": "I like the blue color.",
+          "search_term": "blue clothing on a rack"
+        },
+        {
+          "arabic": "عندك لون تاني؟",
+          "transliteration": "3andak lawn taani?",
+          "english": "Do you have another color?",
+          "reply": {
+            "arabic": "إي، عندي أحمر وأسود",
+            "transliteration": "ee, 3andi a7mar w aswad",
+            "english": "Yes, I have red and black."
+          }
+        },
+        {
+          "arabic": "هاد اللون ما بيناسبني",
+          "transliteration": "haad l-lawn ma byinaasibni",
+          "english": "This color doesn't suit me."
+        },
+        {
+          "arabic": "أي واحد بتنصحني فيه؟",
+          "transliteration": "ayy waa7ed btinSa7ni fii?",
+          "english": "Which one do you recommend?",
+          "reply": {
+            "arabic": "بنصحك بالأسود، بلبق فيك",
+            "transliteration": "bnaSSa7ak bil-aswad, byilbo2 fiik",
+            "english": "I recommend the black, it suits you."
+          }
+        },
+        {
+          "arabic": "هاد أحلى من هداك",
+          "transliteration": "haada a7la min hadaak",
+          "english": "This one is nicer than that one."
+        },
+        {
+          "arabic": "خدلي هاد بس",
+          "transliteration": "khudli haad bas",
+          "english": "Just give me this one."
+        },
+        {
+          "arabic": "لسا ما قررت",
+          "transliteration": "lissa ma 2arrart",
+          "english": "I haven't decided yet."
+        },
+        {
+          "arabic": "عندكن لون رمادي؟",
+          "transliteration": "3andkon lawn ramaadi?",
+          "english": "Do you have gray?",
+          "search_term": "gray sweater folded"
+        },
+        {
+          "arabic": "بحب الألوان الفاتحة",
+          "transliteration": "ba7ebb l-alwaan l-faat7a",
+          "english": "I like light colors."
+        },
+        {
+          "arabic": "هاد كتير غامق علي",
+          "transliteration": "haad ktiir ghaame2 3alayy",
+          "english": "This is too dark for me."
+        },
+        {
+          "arabic": "شو أحلى، الأحمر ولا الأزرق؟",
+          "transliteration": "shu a7la, l-a7mar walla l-azra2?",
+          "english": "Which is nicer, red or blue?",
+          "reply": {
+            "arabic": "الأزرق أحلى برأيي",
+            "transliteration": "l-azra2 a7la bra2yi",
+            "english": "Blue is nicer in my opinion."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Lina",
+          "arabic": "مرحبا، عم دور على فستان.",
+          "transliteration": "mar7aba, 3am dawwer 3ala fustaan.",
+          "english": "Hello, I'm looking for a dress."
+        },
+        {
+          "speaker": "Samira",
+          "arabic": "أهلين، شو لون بتحبي؟",
+          "transliteration": "ahleen, shu lawn bit7ebbi?",
+          "english": "Welcome, what color do you like?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "بحب اللون الأزرق.",
+          "transliteration": "ba7ebb l-lawn l-azra2.",
+          "english": "I like the blue color."
+        },
+        {
+          "speaker": "Samira",
+          "arabic": "عندي هاد الأزرق وعندي وردي كمان.",
+          "transliteration": "3andi haad l-azra2 w 3andi wardi kaman.",
+          "english": "I have this blue and I also have pink."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "شو رأيك بهالفستان الأزرق؟",
+          "transliteration": "shu ra2yik b-hal-fustaan l-azra2?",
+          "english": "What do you think of this blue dress?"
+        },
+        {
+          "speaker": "Samira",
+          "arabic": "حلو كتير عليكي، بس في وردي أحلى منه.",
+          "transliteration": "7ilu ktiir 3aleeki, bas fii wardi a7la mno.",
+          "english": "It's very nice on you, but there's a pink one nicer than it."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "هاد الوردي كتير غامق علي.",
+          "transliteration": "haad l-wardi ktiir ghaame2 3alayy.",
+          "english": "This pink is too dark for me."
+        },
+        {
+          "speaker": "Samira",
+          "arabic": "عندي لون فاتح تاني، ثانية جيبلك ياه.",
+          "transliteration": "3andi lawn faate7 taani, saanye jiblik yaah.",
+          "english": "I have another light color, one second I'll bring it to you."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "يسلمو، هلق أحلى.",
+          "transliteration": "yislamu, halla2 a7la.",
+          "english": "Thanks, now it's nicer."
+        },
+        {
+          "speaker": "Samira",
+          "arabic": "أي واحد بدك، الأزرق ولا الفاتح؟",
+          "transliteration": "ayy waa7ed baddik, l-azra2 walla l-faate7?",
+          "english": "Which one do you want, the blue or the light one?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "خدلي الأزرق بس.",
+          "transliteration": "khudli l-azra2 bas.",
+          "english": "Just give me the blue one."
+        },
+        {
+          "speaker": "Samira",
+          "arabic": "تمام، مبروك عليكي.",
+          "transliteration": "tamaam, mabruuk 3aleeki.",
+          "english": "Great, congratulations."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو رأيك بهالفستان؟",
+            "transliteration": "shu ra2yak b-hal-fustaan?",
+            "english": "What do you think of this dress?"
+          },
+          "response": {
+            "arabic": "حلو كتير",
+            "transliteration": "7ilu ktiir",
+            "english": "Very nice."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك لون تاني؟",
+            "transliteration": "3andak lawn taani?",
+            "english": "Do you have another color?"
+          },
+          "response": {
+            "arabic": "إي، عندي أحمر وأسود",
+            "transliteration": "ee, 3andi a7mar w aswad",
+            "english": "Yes, I have red and black."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أي واحد بتنصحني فيه؟",
+            "transliteration": "ayy waa7ed btinSa7ni fii?",
+            "english": "Which one do you recommend?"
+          },
+          "response": {
+            "arabic": "بنصحك بالأسود، بلبق فيك",
+            "transliteration": "bnaSSa7ak bil-aswad, byilbo2 fiik",
+            "english": "I recommend the black, it suits you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو أحلى، الأحمر ولا الأزرق؟",
+            "transliteration": "shu a7la, l-a7mar walla l-azra2?",
+            "english": "Which is nicer, red or blue?"
+          },
+          "response": {
+            "arabic": "الأزرق أحلى برأيي",
+            "transliteration": "l-azra2 a7la bra2yi",
+            "english": "Blue is nicer in my opinion."
+          }
+        }
+      ],
+      "culture": "Shopkeepers genuinely enjoy the back-and-forth of helping someone choose a color, often bringing out three or four options unasked. Saying a color does not suit you is heard as useful, not rude.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: \"شو رأيك بهالفستان؟\" Say it is very nice.",
+          "answer": "حلو كتير",
+          "accepted": [
+            "حلو كتير",
+            "حلو كتير كتير",
+            "كتير حلو"
+          ],
+          "too_formal": {
+            "item": "إنه جميل جدا",
+            "feedback": "Correct meaning, but this bookish phrasing is not how Damascenes react to a dress in a shop."
+          },
+          "tip": "\"حلو\" (nice/pretty) is the everyday word of approval for almost anything."
+        },
+        {
+          "id": "unit-06.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "The shopkeeper asks: \"أي واحد بتنصحني فيه؟\" Recommend the black one and say it suits them.",
+          "answer": "بنصحك بالأسود، بلبق فيك",
+          "accepted": [
+            "بنصحك بالأسود، بلبق فيك",
+            "الأسود، بلبق فيك"
+          ],
+          "too_formal": {
+            "item": "أنصحك باللون الأسود لأنه يليق بك",
+            "feedback": "Grammatically correct, but far more formal than the quick, casual way a friend gives fashion advice."
+          },
+          "tip": "\"بلبق فيك\" (it suits you) is the natural compliment, dropped in casually."
+        },
+        {
+          "id": "unit-06.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"بحب اللون _____.\" English meaning: I like the blue color.",
+          "answer": "الأزرق",
+          "accepted": [
+            "الأزرق"
+          ],
+          "too_formal": {
+            "item": "اللون الأزرق السماوي",
+            "feedback": "Over-specified; nobody adds \"sky-blue\" unless they mean a very particular shade."
+          },
+          "tip": "Colors take \"ال\" (the) when naming a specific one you like."
+        },
+        {
+          "id": "unit-06.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"هاد كتير _____ علي.\" English meaning: This is too dark for me.",
+          "answer": "غامق",
+          "accepted": [
+            "غامق"
+          ],
+          "too_formal": {
+            "item": "قاتم اللون بشكل مبالغ فيه",
+            "feedback": "This is an exaggerated, literary way to describe a shade; \"غامق\" alone is what is said."
+          },
+          "tip": "\"غامق\" (dark) pairs with \"فاتح\" (light) for describing shades."
+        },
+        {
+          "id": "unit-06.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene: \"Do you have another color?\"",
+          "answer": "عندك لون تاني؟",
+          "accepted": [
+            "عندك لون تاني؟",
+            "في عندك لون تاني؟"
+          ],
+          "too_formal": {
+            "item": "هل تتوفر لديكم ألوان أخرى؟",
+            "feedback": "Correct meaning but far too formal, like a customer-service script rather than a shop chat."
+          },
+          "tip": "\"تاني\" is \"other/another\", used constantly in daily speech."
+        },
+        {
+          "id": "unit-06.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene: \"I haven't decided yet.\"",
+          "answer": "لسا ما قررت",
+          "accepted": [
+            "لسا ما قررت",
+            "لسا ما قرّرت"
+          ],
+          "too_formal": {
+            "item": "لم أتخذ قراري بعد",
+            "feedback": "Correct but stiff; \"لسا\" (not yet) is the spoken word, never \"لم... بعد\" in conversation."
+          },
+          "tip": "\"لسا ما\" + verb is the everyday way to say \"haven't yet\"."
+        },
+        {
+          "id": "unit-06.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"light\" (a light color)?",
+          "answer": "فاتح",
+          "accepted": [
+            "فاتح"
+          ],
+          "tip": "\"فاتح\" is light/pale; its opposite is \"غامق\" (dark).",
+          "options": [
+            "فاتح",
+            "غامق",
+            "غالي",
+            "رخيص"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "How do you say \"Just give me this one\"?",
+          "answer": "خدلي هاد بس",
+          "accepted": [
+            "خدلي هاد بس"
+          ],
+          "tip": "\"خدلي\" literally \"take for me\", is how a shopper asks to be handed an item.",
+          "options": [
+            "خدلي هاد بس",
+            "عندك لون تاني؟",
+            "لسا ما قررت",
+            "هاد أحلى من هداك"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange the words to say: \"This color doesn't suit me.\"",
+          "answer": "هاد اللون ما بيناسبني",
+          "accepted": [
+            "هاد اللون ما بيناسبني"
+          ],
+          "tip": "\"ما بيناسبني\" (doesn't suit me) comes right after naming what is wrong.",
+          "words": [
+            "هاد",
+            "اللون",
+            "ما",
+            "بيناسبني"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange the words to say: \"Which is nicer, red or blue?\"",
+          "answer": "شو أحلى، الأحمر ولا الأزرق؟",
+          "accepted": [
+            "شو أحلى، الأحمر ولا الأزرق؟"
+          ],
+          "tip": "\"ولا\" links the two choices in an either/or question.",
+          "words": [
+            "شو",
+            "أحلى،",
+            "الأحمر",
+            "ولا",
+            "الأزرق؟"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "title": "Bargaining",
+      "phrases": [
+        {
+          "arabic": "قديش هاد؟",
+          "transliteration": "addeesh haad?",
+          "english": "How much is this?",
+          "reply": {
+            "arabic": "هاد بخمسة آلاف",
+            "transliteration": "haad bi-khamse aalaaf",
+            "english": "This is five thousand."
+          }
+        },
+        {
+          "arabic": "غالي كتير",
+          "transliteration": "ghaali ktiir",
+          "english": "It's very expensive."
+        },
+        {
+          "arabic": "فيك تنزل بالسعر؟",
+          "transliteration": "fiik tnazzel bis-si3r?",
+          "english": "Can you lower the price?",
+          "reply": {
+            "arabic": "شوي بس، مو كتير",
+            "transliteration": "shwayy bas, mu ktiir",
+            "english": "A little, not much."
+          }
+        },
+        {
+          "arabic": "نزلّي شوي",
+          "transliteration": "nazzelli shwayy",
+          "english": "Lower it a bit for me."
+        },
+        {
+          "arabic": "هاد آخر سعر",
+          "transliteration": "haad aakhir si3r",
+          "english": "This is the final price."
+        },
+        {
+          "arabic": "مافي أرخص من هيك؟",
+          "transliteration": "maafi arkhaS min heek?",
+          "english": "Isn't there cheaper than this?"
+        },
+        {
+          "arabic": "خدها بألفين",
+          "transliteration": "khudha b-alfeen",
+          "english": "Take it for two thousand."
+        },
+        {
+          "arabic": "ما فيني، بخسر",
+          "transliteration": "ma fiini, bikhsar",
+          "english": "I can't, I'll lose money."
+        },
+        {
+          "arabic": "بدي خصم لأني بشتري كتير",
+          "transliteration": "baddi khasem la2anni bishtiri ktiir",
+          "english": "I want a discount because I'm buying a lot.",
+          "search_term": "shopkeeper and customer bargaining at a stall"
+        },
+        {
+          "arabic": "تمام، اتفقنا",
+          "transliteration": "tamaam, ittafa2na",
+          "english": "Ok, we agreed.",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "alla ybaarek fiik",
+            "english": "God bless you."
+          }
+        },
+        {
+          "arabic": "هيك منيح، خدها",
+          "transliteration": "heek mnii7, khudha",
+          "english": "That's fine, take it."
+        },
+        {
+          "arabic": "قديش صار المجموع؟",
+          "transliteration": "addeesh Saar l-majmuu3?",
+          "english": "How much did the total come to?",
+          "reply": {
+            "arabic": "صار عشرة آلاف كلشي",
+            "transliteration": "Saar 3ashara aalaaf killshi",
+            "english": "It came to ten thousand total."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rami",
+          "arabic": "قديش هاد القميص؟",
+          "transliteration": "addeesh haad l-2amiiS?",
+          "english": "How much is this shirt?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "هاد بعشرة آلاف.",
+          "transliteration": "haad bi-3ashara aalaaf.",
+          "english": "This is ten thousand."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "غالي كتير، فيك تنزل بالسعر؟",
+          "transliteration": "ghaali ktiir, fiik tnazzel bis-si3r?",
+          "english": "Very expensive, can you lower the price?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "شوي بس، مو كتير.",
+          "transliteration": "shwayy bas, mu ktiir.",
+          "english": "A little, not much."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "نزلّي لثمانية آلاف.",
+          "transliteration": "nazzelli la-tamanye aalaaf.",
+          "english": "Lower it to eight thousand for me."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "ما فيني، بخسر عاهاد السعر.",
+          "transliteration": "ma fiini, bikhsar 3ala haad s-si3r.",
+          "english": "I can't, I'll lose money at this price."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "طيب، تسعة آلاف وخلص.",
+          "transliteration": "Tayyeb, tis3a aalaaf w khalaS.",
+          "english": "Ok, nine thousand and that's it."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "هاد آخر سعري، والله.",
+          "transliteration": "haad aakhir si3ri, walla.",
+          "english": "This is my final price, I swear."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "خدها بتسعة آلاف؟",
+          "transliteration": "khudha bi-tis3a aalaaf?",
+          "english": "Take it for nine thousand?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "تمام، اتفقنا.",
+          "transliteration": "tamaam, ittafa2na.",
+          "english": "Ok, we agreed."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "يسلمو، هلق أنا رابح كمان.",
+          "transliteration": "yislamu, halla2 ana raabe7 kaman.",
+          "english": "Thanks, now I'm winning too."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "الله يبارك فيك، تعا كمان مرة.",
+          "transliteration": "alla ybaarek fiik, ta3a kaman marra.",
+          "english": "God bless you, come again."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "قديش هاد؟",
+            "transliteration": "addeesh haad?",
+            "english": "How much is this?"
+          },
+          "response": {
+            "arabic": "هاد بخمسة آلاف",
+            "transliteration": "haad bi-khamse aalaaf",
+            "english": "This is five thousand."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فيك تنزل بالسعر؟",
+            "transliteration": "fiik tnazzel bis-si3r?",
+            "english": "Can you lower the price?"
+          },
+          "response": {
+            "arabic": "شوي بس، مو كتير",
+            "transliteration": "shwayy bas, mu ktiir",
+            "english": "A little, not much."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مافي أرخص من هيك؟",
+            "transliteration": "maafi arkhaS min heek?",
+            "english": "Isn't there cheaper than this?"
+          },
+          "response": {
+            "arabic": "هاد آخر سعر",
+            "transliteration": "haad aakhir si3r",
+            "english": "This is the final price."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "خدها بألفين",
+            "transliteration": "khudha b-alfeen",
+            "english": "Take it for two thousand."
+          },
+          "response": {
+            "arabic": "تمام، اتفقنا",
+            "transliteration": "tamaam, ittafa2na",
+            "english": "Ok, we agreed."
+          }
+        }
+      ],
+      "culture": "Bargaining over anything but food is expected in a Damascene souk. A first price is almost always an opening offer, and going back and forth two or three times before agreeing is a friendly ritual, not an argument.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "You ask \"قديش هاد؟\" and the shopkeeper waits. Say it is very expensive.",
+          "answer": "غالي كتير",
+          "accepted": [
+            "غالي كتير",
+            "كتير غالي"
+          ],
+          "too_formal": {
+            "item": "إن سعره مرتفع جدا",
+            "feedback": "Grammatically fine but this is how a report or a news item would phrase it, not a shopper reacting out loud."
+          },
+          "tip": "\"غالي\" (expensive) is the blunt, everyday reaction to a high price."
+        },
+        {
+          "id": "unit-06.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "You and the shopkeeper agree on a price. Say \"Ok, we agreed.\"",
+          "answer": "تمام، اتفقنا",
+          "accepted": [
+            "تمام، اتفقنا",
+            "طيب، اتفقنا"
+          ],
+          "too_formal": {
+            "item": "حسنا، لقد توصلنا إلى اتفاق",
+            "feedback": "Correct but sounds like a business contract closing, not a friendly handshake over a shirt."
+          },
+          "tip": "\"اتفقنا\" (we agreed) closes a bargain warmly and simply."
+        },
+        {
+          "id": "unit-06.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"_____ هاد؟\" English meaning: How much is this?",
+          "answer": "قديش",
+          "accepted": [
+            "قديش",
+            "أديش"
+          ],
+          "too_formal": {
+            "item": "بكم يقدر ثمن هذا؟",
+            "feedback": "Overly wordy; the one word \"قديش\" already means \"how much\"."
+          },
+          "tip": "\"قديش\" alone asks about price, quantity, or amount."
+        },
+        {
+          "id": "unit-06.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"هاد _____ سعر.\" English meaning: This is the final price.",
+          "answer": "آخر",
+          "accepted": [
+            "آخر"
+          ],
+          "too_formal": {
+            "item": "السعر النهائي والأخير الذي لا يمكن تجاوزه",
+            "feedback": "Way too elaborate; a shopkeeper just says \"آخر سعر\" and means it."
+          },
+          "tip": "\"آخر سعر\" (final price) is the standard way to end haggling."
+        },
+        {
+          "id": "unit-06.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene: \"Can you lower the price?\"",
+          "answer": "فيك تنزل بالسعر؟",
+          "accepted": [
+            "فيك تنزل بالسعر؟",
+            "فيك تنزلّي شوي؟"
+          ],
+          "too_formal": {
+            "item": "هل يمكنك تخفيض السعر؟",
+            "feedback": "Correct meaning, but this is how a formal request would be written, not asked across a counter."
+          },
+          "tip": "\"فيك\" (can you) plus \"تنزل بالسعر\" (lower the price) is the everyday ask."
+        },
+        {
+          "id": "unit-06.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene: \"Isn't there cheaper than this?\"",
+          "answer": "مافي أرخص من هيك؟",
+          "accepted": [
+            "مافي أرخص من هيك؟",
+            "ما في أرخص من هيك؟"
+          ],
+          "too_formal": {
+            "item": "ألا يوجد شيء أرخص من هذا؟",
+            "feedback": "Correct but stilted; the spoken form drops straight to \"مافي\" (isn't there)."
+          },
+          "tip": "\"مافي\" is the everyday contraction of \"ما في\" (there isn't)."
+        },
+        {
+          "id": "unit-06.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"expensive\"?",
+          "answer": "غالي",
+          "accepted": [
+            "غالي"
+          ],
+          "tip": "\"غالي\" is expensive; its opposite is \"رخيص\" (cheap).",
+          "options": [
+            "غالي",
+            "رخيص",
+            "منيح",
+            "كبير"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "How do you say \"Lower it a bit for me\"?",
+          "answer": "نزلّي شوي",
+          "accepted": [
+            "نزلّي شوي"
+          ],
+          "tip": "\"نزلّي\" (lower for me) plus \"شوي\" (a little) softens the ask.",
+          "options": [
+            "نزلّي شوي",
+            "قديش هاد؟",
+            "هاد آخر سعر",
+            "خدها بألفين"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange the words to say: \"I want a discount because I'm buying a lot.\"",
+          "answer": "بدي خصم لأني بشتري كتير",
+          "accepted": [
+            "بدي خصم لأني بشتري كتير"
+          ],
+          "tip": "\"لأني\" (because I) links the reason to the request.",
+          "words": [
+            "بدي",
+            "خصم",
+            "لأني",
+            "بشتري",
+            "كتير"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange the words to say: \"How much did the total come to?\"",
+          "answer": "قديش صار المجموع؟",
+          "accepted": [
+            "قديش صار المجموع؟"
+          ],
+          "tip": "\"صار\" (became/came to) is used for a total reached after adding up.",
+          "words": [
+            "قديش",
+            "صار",
+            "المجموع؟"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "title": "Returning and Exchanging",
+      "phrases": [
+        {
+          "arabic": "بدي رجع هاد القميص",
+          "transliteration": "baddi rajje3 haad l-2amiiS",
+          "english": "I want to return this shirt.",
+          "reply": {
+            "arabic": "شو فيه، في مشكلة؟",
+            "transliteration": "shu fii, fii mishkle?",
+            "english": "What's wrong, is there a problem?"
+          }
+        },
+        {
+          "arabic": "فيه عيب",
+          "transliteration": "fii 3ib",
+          "english": "There's a defect.",
+          "search_term": "torn shirt seam close up"
+        },
+        {
+          "arabic": "ما عجبني اللون",
+          "transliteration": "ma 3ajabni l-lawn",
+          "english": "I didn't like the color."
+        },
+        {
+          "arabic": "بدي بدله بغيره",
+          "transliteration": "baddi baddlo b-ghayro",
+          "english": "I want to exchange it for another one."
+        },
+        {
+          "arabic": "معي الفاتورة",
+          "transliteration": "ma3i l-faatuura",
+          "english": "I have the receipt.",
+          "reply": {
+            "arabic": "منيح، هيك أسهل",
+            "transliteration": "mnii7, heek as-hal",
+            "english": "Good, that makes it easier."
+          }
+        },
+        {
+          "arabic": "ما معي الفاتورة",
+          "transliteration": "ma ma3i l-faatuura",
+          "english": "I don't have the receipt."
+        },
+        {
+          "arabic": "من إمتى اشتريتها؟",
+          "transliteration": "min eemta shtareetha?",
+          "english": "When did you buy it?",
+          "reply": {
+            "arabic": "من أول أمبارح",
+            "transliteration": "min awwal mbaare7",
+            "english": "The day before yesterday."
+          }
+        },
+        {
+          "arabic": "بترجع مصاري؟",
+          "transliteration": "btrajje3 maSaari?",
+          "english": "Do you give money back?",
+          "reply": {
+            "arabic": "لأ، بس فيني بدلها بس",
+            "transliteration": "la2, bas fiini baddilha bas",
+            "english": "No, but I can only exchange it."
+          }
+        },
+        {
+          "arabic": "هاد مقاس غلط",
+          "transliteration": "haad ma2aas ghalaT",
+          "english": "This is the wrong size."
+        },
+        {
+          "arabic": "هاد مو اللي طلبته",
+          "transliteration": "haad mu yalli Talabto",
+          "english": "This isn't what I ordered."
+        },
+        {
+          "arabic": "فيني بدلها بمقاس أكبر؟",
+          "transliteration": "fiini baddilha bi-ma2aas akbar?",
+          "english": "Can I exchange it for a bigger size?",
+          "reply": {
+            "arabic": "أكيد، ولا يهمك",
+            "transliteration": "akiid, wala yhemmak",
+            "english": "Sure, don't worry."
+          }
+        },
+        {
+          "arabic": "شكرا عالتعاون",
+          "transliteration": "shukran 3at-ta3aawon",
+          "english": "Thanks for your cooperation."
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Lina",
+          "arabic": "مرحبا، بدي رجع هالقميص.",
+          "transliteration": "mar7aba, baddi rajje3 hal-2amiiS.",
+          "english": "Hello, I want to return this shirt."
+        },
+        {
+          "speaker": "Um Samer",
+          "arabic": "أهلين، شو فيه، في مشكلة؟",
+          "transliteration": "ahleen, shu fii, fii mishkle?",
+          "english": "Welcome, what's wrong, is there a problem?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "فيه عيب، خيط مفكوك.",
+          "transliteration": "fii 3ib, khayT mafkuuk.",
+          "english": "There's a defect, a loose thread."
+        },
+        {
+          "speaker": "Um Samer",
+          "arabic": "معك الفاتورة؟",
+          "transliteration": "ma3ak l-faatuura?",
+          "english": "Do you have the receipt?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "إي، معي.",
+          "transliteration": "ee, ma3i.",
+          "english": "Yes, I have it."
+        },
+        {
+          "speaker": "Um Samer",
+          "arabic": "منيح، هيك أسهل. من إمتى اشتريتها؟",
+          "transliteration": "mnii7, heek as-hal. min eemta shtareetha?",
+          "english": "Good, that makes it easier. When did you buy it?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "من أول أمبارح.",
+          "transliteration": "min awwal mbaare7.",
+          "english": "The day before yesterday."
+        },
+        {
+          "speaker": "Um Samer",
+          "arabic": "تمام، بترجعلك المصاري ولا بتحبي تبدليها؟",
+          "transliteration": "tamaam, btrajje3lek l-maSaari walla bit7ebbi tbaddliiha?",
+          "english": "Ok, should I give you the money back or would you like to exchange it?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "بدي بدلها بغيرها.",
+          "transliteration": "baddi baddilha b-ghayirha.",
+          "english": "I want to exchange it for another one."
+        },
+        {
+          "speaker": "Um Samer",
+          "arabic": "تفضلي شوفي شو في.",
+          "transliteration": "tfaddali shuufi shu fii.",
+          "english": "Go ahead, see what's there."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "هاد منيح، خدلي هاد.",
+          "transliteration": "haad mnii7, khudli haad.",
+          "english": "This is good, give me this one."
+        },
+        {
+          "speaker": "Um Samer",
+          "arabic": "تمام، سوري عالإزعاج.",
+          "transliteration": "tamaam, sorry 3al-iz3aaj.",
+          "english": "Ok, sorry for the trouble."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بدي رجع هاد القميص",
+            "transliteration": "baddi rajje3 haad l-2amiiS",
+            "english": "I want to return this shirt."
+          },
+          "response": {
+            "arabic": "شو فيه، في مشكلة؟",
+            "transliteration": "shu fii, fii mishkle?",
+            "english": "What's wrong, is there a problem?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "معي الفاتورة",
+            "transliteration": "ma3i l-faatuura",
+            "english": "I have the receipt."
+          },
+          "response": {
+            "arabic": "منيح، هيك أسهل",
+            "transliteration": "mnii7, heek as-hal",
+            "english": "Good, that makes it easier."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بترجع مصاري؟",
+            "transliteration": "btrajje3 maSaari?",
+            "english": "Do you give money back?"
+          },
+          "response": {
+            "arabic": "لأ، بس فيني بدلها بس",
+            "transliteration": "la2, bas fiini baddilha bas",
+            "english": "No, but I can only exchange it."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فيني بدلها بمقاس أكبر؟",
+            "transliteration": "fiini baddilha bi-ma2aas akbar?",
+            "english": "Can I exchange it for a bigger size?"
+          },
+          "response": {
+            "arabic": "أكيد، ولا يهمك",
+            "transliteration": "akiid, wala yhemmak",
+            "english": "Sure, don't worry."
+          }
+        }
+      ],
+      "culture": "Small Damascene shops usually prefer to exchange an item rather than refund cash, and having the receipt makes the whole conversation much shorter. A genuine defect is almost always accepted without an argument.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "The shopkeeper asks: \"شو فيه، في مشكلة؟\" Say there is a defect.",
+          "answer": "فيه عيب",
+          "accepted": [
+            "فيه عيب",
+            "في عيب فيه"
+          ],
+          "too_formal": {
+            "item": "يوجد فيه عيب مصنعي",
+            "feedback": "Overly technical; a customer just says \"فيه عيب\" and points to it."
+          },
+          "tip": "\"فيه عيب\" (there's a defect) is enough, the shopkeeper will ask to see it."
+        },
+        {
+          "id": "unit-06.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "The shopkeeper asks \"بترجع مصاري؟\" implicitly by explaining store policy. Ask: \"Can I exchange it for a bigger size?\"",
+          "answer": "فيني بدلها بمقاس أكبر؟",
+          "accepted": [
+            "فيني بدلها بمقاس أكبر؟",
+            "فيني بدله بمقاس أكبر؟"
+          ],
+          "too_formal": {
+            "item": "هل بإمكاني استبدالها بمقاس أكبر؟",
+            "feedback": "Correct meaning, but this is how a written complaint form would phrase it."
+          },
+          "tip": "\"فيني بدلها\" (can I exchange it) is the direct spoken ask."
+        },
+        {
+          "id": "unit-06.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"معي _____.\" English meaning: I have the receipt.",
+          "answer": "الفاتورة",
+          "accepted": [
+            "الفاتورة"
+          ],
+          "too_formal": {
+            "item": "إيصال الشراء الرسمي",
+            "feedback": "Nobody in a shop calls it the \"official purchase receipt\"; it's just \"الفاتورة\"."
+          },
+          "tip": "\"الفاتورة\" is the everyday word for a receipt or invoice."
+        },
+        {
+          "id": "unit-06.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"هاد مقاس _____.\" English meaning: This is the wrong size.",
+          "answer": "غلط",
+          "accepted": [
+            "غلط"
+          ],
+          "too_formal": {
+            "item": "غير صحيح ولا يتناسب مع المقاس المطلوب",
+            "feedback": "Far too wordy; \"غلط\" alone means wrong here."
+          },
+          "tip": "\"غلط\" (wrong) is used for almost any kind of mistake in daily speech."
+        },
+        {
+          "id": "unit-06.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene: \"I want to return this shirt.\"",
+          "answer": "بدي رجع هاد القميص",
+          "accepted": [
+            "بدي رجع هاد القميص",
+            "بدي رجع هالقميص"
+          ],
+          "too_formal": {
+            "item": "أرغب في إرجاع هذا القميص",
+            "feedback": "Correct meaning, but this is formal phrasing, not what is said walking up to the counter."
+          },
+          "tip": "\"بدي رجع\" (I want to return) opens the request plainly."
+        },
+        {
+          "id": "unit-06.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene: \"When did you buy it?\"",
+          "answer": "من إمتى اشتريتها؟",
+          "accepted": [
+            "من إمتى اشتريتها؟",
+            "إمتى اشتريتها؟"
+          ],
+          "too_formal": {
+            "item": "متى قمت بشراء هذا المنتج؟",
+            "feedback": "Correct but stiff, sounds like a form question rather than a shopkeeper asking casually."
+          },
+          "tip": "\"إمتى\" (when) with \"من\" in front is how it's asked conversationally."
+        },
+        {
+          "id": "unit-06.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"a defect\"?",
+          "answer": "عيب",
+          "accepted": [
+            "عيب"
+          ],
+          "tip": "\"عيب\" covers a flaw or defect in an object, and separately means \"shameful\" for behavior.",
+          "options": [
+            "عيب",
+            "خصم",
+            "قياس",
+            "فاتورة"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "How do you say \"I don't have the receipt\"?",
+          "answer": "ما معي الفاتورة",
+          "accepted": [
+            "ما معي الفاتورة"
+          ],
+          "tip": "\"ما معي\" (I don't have with me) negates \"معي\" (I have).",
+          "options": [
+            "ما معي الفاتورة",
+            "معي الفاتورة",
+            "بدي بدله بغيره",
+            "هاد مو اللي طلبته"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange the words to say: \"This isn't what I ordered.\"",
+          "answer": "هاد مو اللي طلبته",
+          "accepted": [
+            "هاد مو اللي طلبته"
+          ],
+          "tip": "\"اللي\" (that which) introduces what was ordered.",
+          "words": [
+            "هاد",
+            "مو",
+            "اللي",
+            "طلبته"
+          ]
+        },
+        {
+          "id": "unit-06.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange the words to say: \"I want to exchange it for another one.\"",
+          "answer": "بدي بدله بغيره",
+          "accepted": [
+            "بدي بدله بغيره"
+          ],
+          "tip": "\"بغيره\" (for another one of it) follows the verb \"بدله\" (exchange it).",
+          "words": [
+            "بدي",
+            "بدله",
+            "بغيره"
+          ]
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "A Shopping Trip in the Souk",
+    "instructions": "Write and act a shopping conversation that lasts at least 10 lines. It must include asking for an item by size, discussing a color choice, checking the price, bargaining at least once, and a return or exchange with the receipt mentioned. Use at least 8 target phrases from Unit 6 and include both a masculine-address and a feminine-address form.",
+    "required_elements": [
+      "An opening request using بدي and a clothing item.",
+      "A size question using شو مقاسك؟ or شو مقاسِك؟",
+      "A color question or preference using اللون.",
+      "A price question using قديش or كم.",
+      "At least one bargaining line using فيك تنزل بالسعر؟ or نزلّي شوي.",
+      "A final price line using آخر سعر.",
+      "A return or exchange line using بدي رجع or بدي بدله.",
+      "A mention of the receipt using الفاتورة.",
+      "A closing thank-you or blessing such as يسلمو or الله يبارك فيك."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Samer",
+          "arabic": "مرحبا، بدي قميص، مقاسي لارج.",
+          "transliteration": "mar7aba, baddi 2amiiS, ma2aasi laarj.",
+          "english": "Hello, I want a shirt, my size is large."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "أهلين، شو لون بتحب؟",
+          "transliteration": "ahleen, shu lawn bit7ebb?",
+          "english": "Welcome, what color do you like?"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "بحب اللون الأزرق. قديش هاد؟",
+          "transliteration": "ba7ebb l-lawn l-azra2. addeesh haad?",
+          "english": "I like the blue color. How much is this?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "هاد بعشرة آلاف.",
+          "transliteration": "haad bi-3ashara aalaaf.",
+          "english": "This is ten thousand."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "غالي كتير، فيك تنزل بالسعر؟",
+          "transliteration": "ghaali ktiir, fiik tnazzel bis-si3r?",
+          "english": "Very expensive, can you lower the price?"
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "نزلّك لتسعة آلاف، هاد آخر سعر.",
+          "transliteration": "nazzellak la-tis3a aalaaf, haad aakhir si3r.",
+          "english": "I'll lower it to nine thousand for you, this is the final price."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "تمام، اتفقنا.",
+          "transliteration": "tamaam, ittafa2na.",
+          "english": "Ok, we agreed."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "(بعد يومين) مرحبا، بدي رجع هالقميص، فيه عيب.",
+          "transliteration": "(ba3d yawmeen) mar7aba, baddi rajje3 hal-2amiiS, fii 3ib.",
+          "english": "(two days later) Hello, I want to return this shirt, there's a defect."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "شو فيه؟ معك الفاتورة؟",
+          "transliteration": "shu fii? ma3ak l-faatuura?",
+          "english": "What's wrong with it? Do you have the receipt?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "إي، معي. خيط مفكوك.",
+          "transliteration": "ee, ma3i. khayT mafkuuk.",
+          "english": "Yes, I have it. A loose thread."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "منيح، هيك أسهل. بدك ترجعيه ولا تبدليه؟",
+          "transliteration": "mnii7, heek as-hal. baddik tarje3iih walla tbaddliih?",
+          "english": "Good, that makes it easier. Do you want to return it or exchange it?"
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "بدي بدله بغيره، بمقاس أكبر شوي.",
+          "transliteration": "baddi baddlo b-ghayro, bi-ma2aas akbar shwayy.",
+          "english": "I want to exchange it for another, a slightly bigger size."
+        },
+        {
+          "speaker": "Abu Ali",
+          "arabic": "أكيد، ولا يهمك، تفضلي شوفي شو في.",
+          "transliteration": "akiid, wala yhemmak, tfaddali shuufi shu fii.",
+          "english": "Sure, don't worry, go ahead and see what's there."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "يسلمو كتير، الله يبارك فيك.",
+          "transliteration": "yislamu ktiir, alla ybaarek fiik.",
+          "english": "Thanks a lot, God bless you."
+        }
+      ]
+    }
+  }
+}

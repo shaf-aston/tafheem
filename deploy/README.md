@@ -58,6 +58,11 @@ bash deploy/copy-data.sh ubuntu@<the machine's IP>
 
 About 1.6 GB, so it depends on your upload speed. Run it again if it drops out.
 
+This is the only way a database ever reaches the server, not just the first time: the
+5-minute GitHub sync copies only the files git tracks under `backend/data`, so a push never
+touches a database. See the
+Deploying section of `CORE-FLOW.md`.
+
 Check it answers:
 
 ```bash

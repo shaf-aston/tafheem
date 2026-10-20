@@ -293,6 +293,12 @@ describe('reading a window of sound as words', () => {
     expect(isOfPage(['موسيقى', 'الصراط'], PAGE)).toBe(true)
     expect(isOfPage(['المستقيم'], PAGE)).toBe(true)
   })
+
+  it('keeps a phrase whose every word was misheard, so its words are not called missed', () => {
+    expect(isOfPage(['السراط'], PAGE)).toBe(true)
+    // The nearest case: a word the page does not have, and nothing like one.
+    expect(isOfPage(['السلام'], PAGE)).toBe(false)
+  })
 })
 
 describe('joining one window of sound to the next', () => {

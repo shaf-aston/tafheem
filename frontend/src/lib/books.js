@@ -64,6 +64,8 @@ export const BOOKS = {
     // Each line is an ayah whose label the backend can check words against by
     // sound, so the checking level applies. The poem has no such text.
     checkedBySound: true,
+    // Has twin verses to drill, see lib/similar.js.
+    similar: true,
     /**
      * One part as lines, plus whatever the book wants to show as its title.
      * The same endpoint the Quran tab reads, the text is not fetched twice

@@ -1,4 +1,3 @@
-import './micMark.css'
 
 /**
  * The capsule microphone: the mark that means dictation.

@@ -254,7 +254,7 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
                         the book calls itself and what the quotation is filed
                         under. Its line is kept even when the book has no
                         English name, so the rows either side of it stay level;
-                        see .book-name in index.css. */}
+                        see .book-name in styles/components.css. */}
                     <span className="min-w-0">
                       {isArabic(book.name) ? (
                         /* Right-to-left letters, left-aligned box. The name

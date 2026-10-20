@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { GROUPS, TABS, accentOf } from './lib/tabs'
+import { GROUPS, LISTED, TABS, accentOf } from './lib/tabs'
 import { lastPlaceOn, onJump, startJourney, startOver, visit } from './lib/journey'
 import { useTabShortcuts } from './lib/useTabShortcuts'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
 
+import Backdrop from './components/Backdrop'
 import CursorLight from './components/CursorLight'
 import CommandBar from './components/ui/CommandBar'
 import ErrorAlert from './components/ui/ErrorAlert'
@@ -109,7 +110,7 @@ function AppContent() {
     setHandoff(incoming ? { tab: id, value: incoming, at: ++arrivals } : null)
   }, [])
 
-  useTabShortcuts(TABS, switchTab)
+  useTabShortcuts(LISTED, switchTab)
 
   // The trail and the browser's back arrow are the same list; this follows the
   // arrow: a step returned to is handed back to its panel exactly like a
@@ -135,7 +136,10 @@ function AppContent() {
 
   return (
     <div className="min-h-screen" style={{ '--c': accent }}>
-      <header ref={pinHeader} className="app-header sticky top-0 z-40">
+      {/* First child, so it paints under everything; the content below sits on
+          the page layer to stay above it. */}
+      <Backdrop />
+      <header ref={pinHeader} className="app-header sticky top-0 z-(--layer-header)">
         <div className="shell py-1 flex items-center justify-between gap-3">
           {/* The name used to be printed here in two lines that said what every
               tab below already says. The pen is the name now, and clicking it
@@ -180,7 +184,7 @@ function AppContent() {
           </div>
 
           <div className="flex items-center gap-2 min-w-0">
-            <CommandBar tabs={TABS} colorOf={accentOf} onGo={switchTab} />
+            <CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} />
             <StatusPill status={status} nlpEngine={nlpEngine} aiBackend={aiBackend} ear={ear} />
             <button
               type="button"
@@ -198,12 +202,12 @@ function AppContent() {
         </div>
 
         <div className="shell">
-          <TabStrip tabs={TABS} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} />
+          <TabStrip tabs={LISTED} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} />
         </div>
       </header>
 
       {status === 'error' && !bannerDismissed && (
-        <div className="shell pt-4 relative">
+        <div className="shell pt-4 relative z-(--layer-page)">
           <ErrorAlert title={OWN_MACHINE ? 'Backend offline' : 'Not connected yet'}>
             {OWN_MACHINE ? (
               <>
@@ -238,7 +242,7 @@ function AppContent() {
 
       {/* The tabpanel role sits on the inner element, not on <main>: overriding
           main's own role would leave the page with no main landmark to skip to. */}
-      <main className="shell py-8">
+      <main className="shell py-8 relative z-(--layer-page) glass rounded-[var(--radius-lg)]">
         <div role="tabpanel" id="tabpanel" aria-labelledby={`tab-${activeTab}`}>
           {/* Keyed by the tab and nothing else. Remounting on tab change is
               what replays each panel's entrance animation; a word arriving on
@@ -266,7 +270,7 @@ function AppContent() {
           It now names what THIS tab is built on, read from data/sources.json;
           so a source added to a panel appears here without anyone remembering
           to come and edit a sentence. */}
-      <footer className="border-t border-[var(--border)] mt-16 py-8 text-[var(--text-faint)]">
+      <footer className="relative z-(--layer-page) border-t border-[var(--border)] mt-16 py-8 text-[var(--text-faint)]">
         {/* The same width as everything above it. It was held to a narrower
             column of its own, which is why a list of thirteen sources wrapped
             into a stripe while two thirds of the page sat empty beside it. */}
@@ -289,7 +293,7 @@ function AppContent() {
       <SpatialHome
         open={spatialOpen}
         onClose={() => setSpatialOpen(false)}
-        tabs={TABS}
+        tabs={LISTED}
         colorOf={accentOf}
         onGo={switchTab}
         here={activeTab}
@@ -298,7 +302,7 @@ function AppContent() {
         open={sectionsOpen}
         onClose={() => setSectionsOpen(false)}
         groups={GROUPS}
-        tabs={TABS}
+        tabs={LISTED}
         colorOf={accentOf}
         onGo={switchTab}
         here={activeTab}

@@ -1,0 +1,1652 @@
+{
+  "unit": "unit-02",
+  "title": "Family and Home",
+  "dialect": "Damascene Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "title": "My Family",
+      "phrases": [
+        {
+          "arabic": "مرحبا، هاي عيلتي.",
+          "transliteration": "mar7aba, hay 3eelti.",
+          "english": "Hello, this is my family.",
+          "search_term": "a family portrait"
+        },
+        {
+          "arabic": "كم واحد بعيلتك؟",
+          "transliteration": "kam wa7ed b3eeltak?",
+          "english": "How many people are in your family?",
+          "reply": {
+            "arabic": "نحنا خمسة بالبيت",
+            "transliteration": "ni7na khamse bil beet",
+            "english": "We are five at home"
+          }
+        },
+        {
+          "arabic": "عندي أخ وأختين.",
+          "transliteration": "3indi akh w ekhteen.",
+          "english": "I have one brother and two sisters."
+        },
+        {
+          "arabic": "أنا أصغر واحد بالعيلة.",
+          "transliteration": "ana asghar wa7ed bil3eele.",
+          "english": "I'm the youngest in the family."
+        },
+        {
+          "arabic": "بابا شغله دكتور.",
+          "transliteration": "baba shughlo doktor.",
+          "english": "My dad's job is a doctor.",
+          "search_term": "a doctor at work"
+        },
+        {
+          "arabic": "ماما ربة بيت.",
+          "transliteration": "mama rabbet beet.",
+          "english": "My mom is a homemaker.",
+          "search_term": "a mother at home"
+        },
+        {
+          "arabic": "جدو وتيتا ساكنين معنا.",
+          "transliteration": "jiddo w teeta saakniin ma3na.",
+          "english": "My grandpa and grandma live with us."
+        },
+        {
+          "arabic": "عمي متجوز وعندو ولدين.",
+          "transliteration": "3ammi mitjawwez w 3indo waladeen.",
+          "english": "My uncle (dad's brother) is married and has two kids."
+        },
+        {
+          "arabic": "خالتي بتسكن بحلب.",
+          "transliteration": "khaalti btiskon b7alab.",
+          "english": "My aunt (mom's sister) lives in Aleppo."
+        },
+        {
+          "arabic": "شو اسم أخوك؟",
+          "transliteration": "shoo ism akhuuk?",
+          "english": "What's your brother's name?",
+          "reply": {
+            "arabic": "اسمه كريم",
+            "transliteration": "ismo kariim",
+            "english": "His name is Kareem"
+          }
+        },
+        {
+          "arabic": "إنت الكبير أو الصغير؟",
+          "transliteration": "enta l-kbiir aw is-sghiir?",
+          "english": "Are you the oldest or the youngest?",
+          "reply": {
+            "arabic": "أنا الكبير",
+            "transliteration": "ana l-kbiir",
+            "english": "I'm the oldest"
+          }
+        },
+        {
+          "arabic": "كلنا منحب نتجمع بعطلة الأسبوع.",
+          "transliteration": "kellna mnib nijtame3 b3otlet il-usboo3.",
+          "english": "We all love to get together on the weekend.",
+          "search_term": "a family gathering at a table"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rami",
+          "arabic": "مرحبا نور، كيفك؟",
+          "transliteration": "mar7aba Noor, keefek?",
+          "english": "Hi Nour, how are you?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "أهلين رامي، منيحة الحمد لله.",
+          "transliteration": "ahleen Raami, mnii7a il7amdella.",
+          "english": "Hi Rami, I'm good, thank God."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "شو أخبار العيلة؟",
+          "transliteration": "shoo akhbaar il3eele?",
+          "english": "How's the family?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "تمام. عندي أخ وأختين بس.",
+          "transliteration": "tamaam. 3indi akh w ekhteen bas.",
+          "english": "Good. I just have one brother and two sisters."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "وإنتِ الكبيرة ولا الصغيرة؟",
+          "transliteration": "w enti l-kbiire wala is-sghiire?",
+          "english": "Are you the oldest or the youngest?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "أنا الوسطى. أختي الكبيرة متجوزة.",
+          "transliteration": "ana il-wusTa. ekhti l-kbiire mitjawwze.",
+          "english": "I'm the middle one. My older sister is married."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "ما شاء الله. وجدك وتيتك عايشين؟",
+          "transliteration": "ma sha2 alla. w jiddek w teetek 3aayshiin?",
+          "english": "God bless. Are your grandpa and grandma alive?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "إي، ساكنين معنا بنفس البيت.",
+          "transliteration": "ee, saakniin ma3na b nafs il-beet.",
+          "english": "Yes, they live with us in the same house."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "هلق مين ربى الأولاد أكتر؟ تيتك؟",
+          "transliteration": "halla2 miin rabba l-awlaad aktar? teetek?",
+          "english": "So who raised the kids more? Your grandma?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "إي، تيتا كانت دايما معنا لما ماما بتشتغل.",
+          "transliteration": "ee, teeta kaanet daayman ma3na lamma mama btishtghel.",
+          "english": "Yes, grandma was always with us when mom was working."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "عندك عم أو خال؟",
+          "transliteration": "3indek 3amm aw khaal?",
+          "english": "Do you have an uncle (paternal or maternal)?"
+        },
+        {
+          "speaker": "Nour",
+          "arabic": "عندي عمين وخالة وحدة بس.",
+          "transliteration": "3indi 3ammeen w khaale wa7de bas.",
+          "english": "I have two uncles (paternal) and just one aunt (maternal)."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كم واحد بعيلتك؟",
+            "transliteration": "kam wa7ed b3eeltak?",
+            "english": "How many people are in your family?"
+          },
+          "response": {
+            "arabic": "نحنا أربعة: بابا وماما وأخوي وأنا.",
+            "transliteration": "ni7na arba3a: baba w mama w akhuuy w ana.",
+            "english": "We are four: dad, mom, my brother and me."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إنت متجوز؟",
+            "transliteration": "enta mtjawwez?",
+            "english": "Are you married?"
+          },
+          "response": {
+            "arabic": "لسا لأ، لسا أعزب.",
+            "transliteration": "lissa la2, lissa a3zab.",
+            "english": "Not yet, still single."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو شغل بابا؟",
+            "transliteration": "shoo shughl baba?",
+            "english": "What does your dad do?"
+          },
+          "response": {
+            "arabic": "بابا مهندس، وماما معلمة.",
+            "transliteration": "baba muhandis, w mama mu3allme.",
+            "english": "Dad's an engineer, and mom's a teacher."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك ولاد؟",
+            "transliteration": "3indek awlaad?",
+            "english": "Do you have kids?"
+          },
+          "response": {
+            "arabic": "إي، عندي صبي وبنت.",
+            "transliteration": "ee, 3indi Sabi w bint.",
+            "english": "Yes, I have a boy and a girl."
+          }
+        }
+      ],
+      "culture": "In Damascus extended families often live close together or under one roof, and grandparents (جدو/تيتا) commonly help raise the grandchildren while the parents work. Asking after someone's family (كيف العيلة؟) is a standard part of any greeting, and skipping it can feel cold.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"كم واحد بعيلتك؟\" Say your family has five people.",
+          "answer": "نحنا خمسة بالعيلة",
+          "accepted": [
+            "نحنا خمسة بالعيلة",
+            "نحنا خمسة",
+            "احنا خمسة بالعيلة"
+          ],
+          "too_formal": {
+            "item": "نحن خمسة أفراد في العائلة",
+            "feedback": "This is correct Arabic but sounds like a formal register; spoken Damascene uses نحنا/احنا and بالعيلة."
+          },
+          "tip": "\"نحنا\" (or \"احنا\") is the everyday word for \"we\"."
+        },
+        {
+          "id": "unit-02.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: \"إنت الكبير أو الصغير؟\" Tell them you're the youngest.",
+          "answer": "أنا الصغير",
+          "accepted": [
+            "أنا الصغير",
+            "أنا الأصغر",
+            "أنا اصغر واحد"
+          ],
+          "too_formal": {
+            "item": "أنا الأصغر بين إخوتي",
+            "feedback": "Correct but more literary; everyday speech is shorter."
+          },
+          "tip": "\"الصغير\" alone is enough in casual speech."
+        },
+        {
+          "id": "unit-02.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"_____ متجوز وعندو ولدين.\" English meaning: My uncle is married and has two kids.",
+          "answer": "عمي",
+          "accepted": [
+            "عمي",
+            "عمي هو"
+          ],
+          "too_formal": {
+            "item": "عمّي الكريم",
+            "feedback": "\"الكريم\" is a formal honorific rarely used in casual spoken descriptions."
+          },
+          "tip": "عمي = my paternal uncle (father's brother)."
+        },
+        {
+          "id": "unit-02.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"جدو وتيتا _____ معنا.\" English meaning: Grandpa and grandma live with us.",
+          "answer": "ساكنين",
+          "accepted": [
+            "ساكنين",
+            "ساكنين معنا"
+          ],
+          "too_formal": {
+            "item": "مقيمون",
+            "feedback": "\"مقيمون\" is formal/written Arabic for \"residing\"; spoken Damascene says ساكنين."
+          },
+          "tip": "ساكنين is the plural form of \"living/residing\" used for two or more people."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene Arabic: \"I have one brother and two sisters.\"",
+          "answer": "عندي أخ وأختين",
+          "accepted": [
+            "عندي أخ وأختين",
+            "عندي خي وأختين",
+            "معي أخ وأختين"
+          ],
+          "too_formal": {
+            "item": "لدي أخ وأختان",
+            "feedback": "\"لدي\" and the dual \"أختان\" are Modern Standard Arabic; spoken Damascene uses عندي and أختين."
+          },
+          "tip": "عندي = \"I have\", used constantly in spoken Arabic instead of MSA لدي."
+        },
+        {
+          "id": "unit-02.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say in Damascene Arabic: \"My mom is a homemaker.\"",
+          "answer": "ماما ربة بيت",
+          "accepted": [
+            "ماما ربة بيت",
+            "أمي ربة بيت",
+            "ماما ست بيت"
+          ],
+          "too_formal": {
+            "item": "والدتي متفرغة لشؤون المنزل",
+            "feedback": "This is a formal written description; spoken Damascene simply says ربة بيت / ست بيت."
+          },
+          "tip": "ربة بيت and ست بيت are both common for \"housewife/homemaker\"."
+        },
+        {
+          "id": "unit-02.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "How do you say \"grandmother\" in Damascene Arabic?",
+          "answer": "تيتا",
+          "accepted": [
+            "تيتا"
+          ],
+          "too_formal": {
+            "item": "جدة",
+            "feedback": "جدة is correct MSA but Damascenes almost always say تيتا in daily speech."
+          },
+          "tip": "تيتا is used across Syria and much of the Levant for \"grandma\".",
+          "options": [
+            "تيتا",
+            "جدة",
+            "العجوز",
+            "الوالدة"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "What's the Damascene Arabic word for \"family\"?",
+          "answer": "عيلة",
+          "accepted": [
+            "عيلة"
+          ],
+          "too_formal": {
+            "item": "أسرة",
+            "feedback": "أسرة is standard/formal Arabic for \"family\"; Damascenes say عيلة in everyday speech."
+          },
+          "tip": "عيلة is the everyday word, أسرة sounds more like news Arabic.",
+          "options": [
+            "عيلة",
+            "أسرة",
+            "قبيلة",
+            "جماعة"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange into the sentence: \"We all love to get together on the weekend.\"",
+          "answer": "كلنا منحب نتجمع بعطلة الأسبوع",
+          "accepted": [
+            "كلنا منحب نتجمع بعطلة الأسبوع"
+          ],
+          "too_formal": {
+            "item": "نحن جميعا نحب أن نجتمع في عطلة نهاية الأسبوع",
+            "feedback": "This word order and vocabulary (نحن، نجتمع) is formal written Arabic; spoken Damascene uses كلنا، منحب، نتجمع."
+          },
+          "tip": "منحب + verb is how \"we like to...\" is said in Damascene.",
+          "words": [
+            "كلنا",
+            "منحب",
+            "نتجمع",
+            "بعطلة",
+            "الأسبوع"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange into the sentence: \"My aunt (mom's sister) lives in Aleppo.\"",
+          "answer": "خالتي بتسكن بحلب",
+          "accepted": [
+            "خالتي بتسكن بحلب"
+          ],
+          "too_formal": {
+            "item": "خالتي تقطن في مدينة حلب",
+            "feedback": "تقطن and في مدينة are formal written phrasing; spoken Damascene says بتسكن ب."
+          },
+          "tip": "بتسكن ب... is how \"lives in...\" is said for a woman in the present tense.",
+          "words": [
+            "خالتي",
+            "بتسكن",
+            "بحلب"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "title": "Where I Live",
+      "phrases": [
+        {
+          "arabic": "وين بيتك؟",
+          "transliteration": "ween beetak?",
+          "english": "Where is your house?",
+          "reply": {
+            "arabic": "ساكن بحي المزة",
+            "transliteration": "saaken b7ay il-Mazza",
+            "english": "I live in the Mazza neighborhood"
+          }
+        },
+        {
+          "arabic": "أنا ساكن بدمشق من زمان.",
+          "transliteration": "ana saaken b Dimashq min zamaan.",
+          "english": "I've lived in Damascus for a long time."
+        },
+        {
+          "arabic": "بيتنا بالطابق التالت.",
+          "transliteration": "beetna bit-taabe2 it-taalet.",
+          "english": "Our apartment is on the third floor."
+        },
+        {
+          "arabic": "في مصعد بالبناية؟",
+          "transliteration": "fii mas3ad bil-binaaye?",
+          "english": "Is there an elevator in the building?",
+          "reply": {
+            "arabic": "لأ، لازم تطلع عالدرج",
+            "transliteration": "la2, laazem teTla3 3ad-daraj",
+            "english": "No, you have to go up the stairs"
+          }
+        },
+        {
+          "arabic": "الحي هادي وقريب من السوق.",
+          "transliteration": "il-7ay haadi w 2ariib min is-soo2.",
+          "english": "The neighborhood is quiet and close to the market.",
+          "search_term": "a quiet residential street"
+        },
+        {
+          "arabic": "من شو مدة إنت ساكن هون؟",
+          "transliteration": "min shoo mudde enta saaken hoon?",
+          "english": "How long have you been living here?",
+          "reply": {
+            "arabic": "من عشر سنين تقريبا",
+            "transliteration": "min 3ashr siniin ta2riiban",
+            "english": "About ten years"
+          }
+        },
+        {
+          "arabic": "أجرة البيت غالية هالأيام.",
+          "transliteration": "ujret il-beet ghaalye hal-2ayyaam.",
+          "english": "Rent is expensive these days.",
+          "search_term": "an apartment building exterior"
+        },
+        {
+          "arabic": "جيراننا لطاف كتير.",
+          "transliteration": "jiraanna leTaaf ktiir.",
+          "english": "Our neighbors are very nice.",
+          "search_term": "neighbors talking outside a house"
+        },
+        {
+          "arabic": "بيتنا قريب من المدرسة والجامع.",
+          "transliteration": "beetna 2ariib min il-madrase w il-jaame3.",
+          "english": "Our house is close to the school and the mosque."
+        },
+        {
+          "arabic": "عم نفكر ننتقل عبيت أكبر.",
+          "transliteration": "3am nfakker ninta2el la beet akbar.",
+          "english": "We're thinking of moving to a bigger house."
+        },
+        {
+          "arabic": "شارعنا فيه محل خضرة وفرن.",
+          "transliteration": "shaar3na fii ma7all khoDra w forn.",
+          "english": "Our street has a vegetable shop and a bakery.",
+          "search_term": "a small local bakery"
+        },
+        {
+          "arabic": "لما بترجع عالبيت المسا؟",
+          "transliteration": "lamma btirja3 3al-beet il-masa?",
+          "english": "When do you get back home in the evening?",
+          "reply": {
+            "arabic": "عادة حوالي الساعة سبعة",
+            "transliteration": "3aade 7awaali is-saa3a sab3a",
+            "english": "Usually around seven o'clock"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Samer",
+          "arabic": "أهلا سامي، وين ساكن هلق؟",
+          "transliteration": "ahla Saami, ween saaken halla2?",
+          "english": "Hey Sami, where do you live now?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "ساكن بحي ركن الدين، بشقة صغيرة.",
+          "transliteration": "saaken b7ay Rukn id-Diin, b sha22a sghiire.",
+          "english": "I live in the Rukn id-Din neighborhood, in a small apartment."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "طيب، بأي طابق؟",
+          "transliteration": "Tayyeb, b ayy Taabe2?",
+          "english": "Okay, which floor?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "بالطابق التاني. ما في مصعد بس مو مشكلة.",
+          "transliteration": "bit-Taabe2 it-taani. ma fii mas3ad bas mu mishkle.",
+          "english": "On the second floor. There's no elevator but it's not a problem."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "وقديش الأجرة، إذا ما في مانع؟",
+          "transliteration": "w 2addeesh il-ujra, iza ma fii maane3?",
+          "english": "And how much is the rent, if you don't mind?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "تقريبا خمسميت دولار بالشهر.",
+          "transliteration": "ta2riiban khamsmiit doolaar bish-shahr.",
+          "english": "About five hundred dollars a month."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "غالية شوي بس الحي منيح.",
+          "transliteration": "ghaalye shwayy bas il-7ay mnii7.",
+          "english": "A bit expensive but the neighborhood is good."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "إي، هادي وفيها كل شي قريب.",
+          "transliteration": "ee, haadi w fiiha kell shi 2ariib.",
+          "english": "Yeah, it's quiet and everything is close."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "وجيرانك كيف؟",
+          "transliteration": "w jiiraanak keef?",
+          "english": "And how are your neighbors?"
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "لطاف كتير، بيساعدوني لما بحتاج شي.",
+          "transliteration": "leTaaf ktiir, byse3duuni lamma ba7taaj shi.",
+          "english": "Very nice, they help me when I need something."
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "طيب يعطيك العافية، خليك مبسوط بالبيت الجديد.",
+          "transliteration": "Tayyeb ya3Tiik il-3aafye, khalliik mabsooT bil-beet ij-jdiid.",
+          "english": "Well, take care, stay happy in the new place."
+        },
+        {
+          "speaker": "Sami",
+          "arabic": "الله يعافيك، تعا زورني يوم.",
+          "transliteration": "alla y3aafiik, ta3a zoorni yoom.",
+          "english": "Thanks (God keep you well), come visit me sometime."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين بيتك؟",
+            "transliteration": "ween beetak?",
+            "english": "Where's your house?"
+          },
+          "response": {
+            "arabic": "ساكن بحي القصاع.",
+            "transliteration": "saaken b7ay il-2aSSaa3.",
+            "english": "I live in the Qassaa neighborhood."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بأي طابق ساكن؟",
+            "transliteration": "b ayy Taabe2 saaken?",
+            "english": "Which floor do you live on?"
+          },
+          "response": {
+            "arabic": "بالطابق الأرضي.",
+            "transliteration": "bit-Taabe2 il-arDi.",
+            "english": "On the ground floor."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قديش أجرة البيت؟",
+            "transliteration": "2addeesh ujret il-beet?",
+            "english": "How much is the rent?"
+          },
+          "response": {
+            "arabic": "حوالي ثلاثميت دولار.",
+            "transliteration": "7awaali tlatmiit doolaar.",
+            "english": "About three hundred dollars."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الحي هادي؟",
+            "transliteration": "il-7ay haadi?",
+            "english": "Is the neighborhood quiet?"
+          },
+          "response": {
+            "arabic": "إي، وقريب من كل شي.",
+            "transliteration": "ee, w 2ariib min kell shi.",
+            "english": "Yes, and close to everything."
+          }
+        }
+      ],
+      "culture": "Damascenes usually describe where they live by حي (neighborhood) rather than a formal address, and naming the neighborhood alone is enough for someone else to picture it. Talking about rent (أجرة) and building floors is normal small talk, and asking a neighbor for help is common and expected in most حارات (old quarters).",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks \"وين بيتك؟\". Say you live in the Mazza neighborhood.",
+          "answer": "ساكن بحي المزة",
+          "accepted": [
+            "ساكن بحي المزة",
+            "أنا ساكن بحي المزة",
+            "ساكنة بحي المزة"
+          ],
+          "too_formal": {
+            "item": "أسكن في حي المزة",
+            "feedback": "\"أسكن في\" is written/formal Arabic; spoken Damascene says ساكن ب (dropping the extra في)."
+          },
+          "tip": "ساكن/ساكنة ب... is how you state where you live."
+        },
+        {
+          "id": "unit-02.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks \"من شو مدة إنت ساكن هون؟\". Say about ten years.",
+          "answer": "من عشر سنين تقريبا",
+          "accepted": [
+            "من عشر سنين تقريبا",
+            "من عشر سنين",
+            "حوالي عشر سنين"
+          ],
+          "too_formal": {
+            "item": "منذ عشر سنوات تقريبا",
+            "feedback": "\"منذ\" and \"سنوات\" are formal written Arabic; spoken Damascene says من and سنين."
+          },
+          "tip": "من + a length of time is how \"for [duration]\" is said."
+        },
+        {
+          "id": "unit-02.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"بيتنا بالطابق _____.\" English meaning: Our apartment is on the third floor.",
+          "answer": "التالت",
+          "accepted": [
+            "التالت",
+            "الثالث"
+          ],
+          "too_formal": {
+            "item": "الثالث",
+            "feedback": "\"الثالث\" is the written/MSA form; spoken Damascene says التالت."
+          },
+          "tip": "التالت = third, following the Damascene number pattern (تاني، تالت، رابع...)."
+        },
+        {
+          "id": "unit-02.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"جيراننا _____ كتير.\" English meaning: Our neighbors are very nice.",
+          "answer": "لطاف",
+          "accepted": [
+            "لطاف",
+            "طيبين"
+          ],
+          "too_formal": {
+            "item": "لطفاء",
+            "feedback": "لطفاء is the plural form used in formal written Arabic; spoken Damascene says لطاف."
+          },
+          "tip": "لطاف is the everyday plural of \"nice/kind\" for people."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say: \"The neighborhood is quiet and close to the market.\"",
+          "answer": "الحي هادي وقريب من السوق",
+          "accepted": [
+            "الحي هادي وقريب من السوق",
+            "الحارة هادية وقريبة من السوق"
+          ],
+          "too_formal": {
+            "item": "الحي هادئ وقريب من السوق",
+            "feedback": "هادئ is the MSA spelling/pronunciation; spoken Damascene drops the hamza and says هادي."
+          },
+          "tip": "هادي (quiet) is used for places, هادئ is the more formal spelling."
+        },
+        {
+          "id": "unit-02.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say: \"We're thinking of moving to a bigger house.\"",
+          "answer": "عم نفكر ننتقل عبيت أكبر",
+          "accepted": [
+            "عم نفكر ننتقل عبيت أكبر",
+            "عم نفكر ننتقل لبيت أكبر"
+          ],
+          "too_formal": {
+            "item": "نحن نفكر بالانتقال إلى منزل أكبر",
+            "feedback": "نحن، بالانتقال، إلى، ومنزل are all formal written choices; spoken Damascene uses عم نفكر، عبيت."
+          },
+          "tip": "عم + present tense verb is the ongoing \"-ing\" form in Damascene."
+        },
+        {
+          "id": "unit-02.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "What's the Damascene word for \"neighborhood\"?",
+          "answer": "حي",
+          "accepted": [
+            "حي"
+          ],
+          "too_formal": {
+            "item": "منطقة سكنية",
+            "feedback": "This is a formal descriptive term (\"residential area\"); everyday speech just says حي or حارة."
+          },
+          "tip": "حي (or حارة for an old quarter) is the everyday word for neighborhood.",
+          "options": [
+            "حي",
+            "منطقة",
+            "بلد",
+            "مدينة"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "What's the Damascene word for \"elevator\"?",
+          "answer": "مصعد",
+          "accepted": [
+            "مصعد"
+          ],
+          "too_formal": {
+            "item": "مصعد كهربائي",
+            "feedback": "\"كهربائي\" (electric) is an unnecessary formal addition; spoken Damascene just says مصعد."
+          },
+          "tip": "مصعد is used the same in speech and writing, unlike many other words.",
+          "options": [
+            "مصعد",
+            "درج",
+            "سلم",
+            "باب"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange into the sentence: \"Our house is close to the school and the mosque.\"",
+          "answer": "بيتنا قريب من المدرسة والجامع",
+          "accepted": [
+            "بيتنا قريب من المدرسة والجامع"
+          ],
+          "too_formal": {
+            "item": "منزلنا قريب من المدرسة والمسجد",
+            "feedback": "منزل and المسجد are the more formal written words; spoken Damascene says بيت and الجامع."
+          },
+          "tip": "الجامع is the everyday word for mosque; المسجد is more formal/written.",
+          "words": [
+            "بيتنا",
+            "قريب",
+            "من",
+            "المدرسة",
+            "والجامع"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange into the sentence: \"Rent is expensive these days.\"",
+          "answer": "أجرة البيت غالية هالأيام",
+          "accepted": [
+            "أجرة البيت غالية هالأيام"
+          ],
+          "too_formal": {
+            "item": "إيجار المنزل مرتفع في هذه الأيام",
+            "feedback": "إيجار، مرتفع، في هذه الأيام are all formal written choices; spoken Damascene uses أجرة، غالية، هالأيام."
+          },
+          "tip": "هالأيام (\"these days\") is a fused everyday form of هذه الأيام.",
+          "words": [
+            "أجرة",
+            "البيت",
+            "غالية",
+            "هالأيام"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "title": "Rooms and Things at Home",
+      "phrases": [
+        {
+          "arabic": "تعا فرجيك البيت.",
+          "transliteration": "ta3a farjiik il-beet.",
+          "english": "Come, let me show you the house.",
+          "search_term": "a person giving a house tour"
+        },
+        {
+          "arabic": "هاد الصالون، هون منستقبل الضيوف.",
+          "transliteration": "haad iS-Saaloon, hoon mnistaqbel iD-Dyoof.",
+          "english": "This is the living room, here we receive guests."
+        },
+        {
+          "arabic": "المطبخ عالشمال، وفيه كل شي جديد.",
+          "transliteration": "il-maTbakh 3ash-shmaal, w fii kell shi jdiid.",
+          "english": "The kitchen is on the left, everything in it is new.",
+          "search_term": "a modern kitchen interior"
+        },
+        {
+          "arabic": "وين الحمام لو سمحت؟",
+          "transliteration": "ween il-7ammaam law sama7t?",
+          "english": "Where's the bathroom, please?",
+          "reply": {
+            "arabic": "عالطول، على يمينك",
+            "transliteration": "3aT-Tuul, 3ala ymiinak",
+            "english": "Straight ahead, on your right"
+          }
+        },
+        {
+          "arabic": "هاي غرفة نومي، صغيرة بس مرتبة.",
+          "transliteration": "hay ghurfet noomi, sghiire bas mrattabe.",
+          "english": "This is my bedroom, small but tidy.",
+          "search_term": "a tidy bedroom"
+        },
+        {
+          "arabic": "في تخت وخزانة ومكتب بالغرفة.",
+          "transliteration": "fii takht w khazaane w maktab bil-ghurfe.",
+          "english": "There's a bed, a closet and a desk in the room."
+        },
+        {
+          "arabic": "الطاولة والكراسي جداد، اشتريناهن الشهر الماضي.",
+          "transliteration": "iT-Taawle w il-karaasi jdaad, ishtareenaahen ish-shahr il-maaDi.",
+          "english": "The table and chairs are new, we bought them last month."
+        },
+        {
+          "arabic": "الثلاجة عم تعمل صوت، لازم نصلحها.",
+          "transliteration": "ith-thallaaje 3am ta3mel Soot, laazem naSli7a.",
+          "english": "The fridge is making noise, we need to fix it."
+        },
+        {
+          "arabic": "الشباك بغرفتي مطل عالحديقة.",
+          "transliteration": "ish-shbbaak bghurfeti moTell 3al-7adiiqa.",
+          "english": "The window in my room looks out onto the garden.",
+          "search_term": "a window overlooking a garden"
+        },
+        {
+          "arabic": "فيني افتح المكيف؟ الجو حر.",
+          "transliteration": "fiini afta7 il-mkayyef? ij-jaww 7arr.",
+          "english": "Can I turn on the AC? The weather is hot.",
+          "reply": {
+            "arabic": "إي أكيد، تفضل",
+            "transliteration": "ee akiid, tfaDDal",
+            "english": "Yes of course, go ahead"
+          }
+        },
+        {
+          "arabic": "الباب الرئيسي دايما مقفل بالليل.",
+          "transliteration": "il-baab ir-ra2iisi daayman mi2fal bil-leel.",
+          "english": "The main door is always locked at night."
+        },
+        {
+          "arabic": "حبيت البيت كتير، مرتب وحلو.",
+          "transliteration": "7abbeet il-beet ktiir, mrattab w 7ilu.",
+          "english": "I really liked the house, tidy and nice."
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Layla",
+          "arabic": "أهلا، تفضلي فوتي.",
+          "transliteration": "ahla, tfaDDali footi.",
+          "english": "Hi, please come in."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "يسلمو، بيتك حلو كتير.",
+          "transliteration": "yislamo, beetek 7ilu ktiir.",
+          "english": "Thanks, your house is really nice."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "تعا فرجيكي الصالون هون.",
+          "transliteration": "ta3a farjiiki iS-Saaloon hoon.",
+          "english": "Come, let me show you the living room here."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "ما شاء الله، واسع ونظيف.",
+          "transliteration": "ma sha2 alla, waase3 w naDiif.",
+          "english": "Wow, spacious and clean."
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "والمطبخ من هون، لسا رتبتو الأسبوع الماضي.",
+          "transliteration": "w il-maTbakh min hoon, lissa rattabto il-usboo3 il-maaDi.",
+          "english": "And the kitchen is this way, I just organized it last week."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "حلو كتير، والثلاجة جديدة؟",
+          "transliteration": "7ilu ktiir, w ith-thallaaje jdiide?",
+          "english": "Really nice, is the fridge new?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "إي، اشتريناها من شهرين بس.",
+          "transliteration": "ee, ishtareenaaha min shahreen bas.",
+          "english": "Yes, we just bought it two months ago."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "وين الحمام، ممكن أغسل إيدي؟",
+          "transliteration": "ween il-7ammaam, mumken aghsel iidi?",
+          "english": "Where's the bathroom, can I wash my hands?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "عالطول وبعدين عاليمين.",
+          "transliteration": "3aT-Tuul w ba3deen 3al-ymiin.",
+          "english": "Straight ahead and then to the right."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "يسلمو. وشو هاي الغرفة الصغيرة؟",
+          "transliteration": "yislamo. w shoo hay il-ghurfe iS-sghiire?",
+          "english": "Thanks. And what's this small room?"
+        },
+        {
+          "speaker": "Layla",
+          "arabic": "هاي غرفة نوم الولاد.",
+          "transliteration": "hay ghurfet noom il-awlaad.",
+          "english": "This is the kids' bedroom."
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "مرتبة كتير ما شاء الله. تسلم إيديكي عالبيت الحلو.",
+          "transliteration": "mrattabe ktiir ma sha2 alla. tislam iideeki 3al-beet il-7ilu.",
+          "english": "Very tidy, God bless. Well done on the beautiful house."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين الحمام؟",
+            "transliteration": "ween il-7ammaam?",
+            "english": "Where's the bathroom?"
+          },
+          "response": {
+            "arabic": "عالطول وبعدين شمال.",
+            "transliteration": "3aT-Tuul w ba3deen shmaal.",
+            "english": "Straight ahead then left."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو في بغرفة نومك؟",
+            "transliteration": "shoo fii bghurfet noomak?",
+            "english": "What's in your bedroom?"
+          },
+          "response": {
+            "arabic": "تخت وخزانة وطاولة صغيرة.",
+            "transliteration": "takht w khazaane w Taawle sghiire.",
+            "english": "A bed, a closet, and a small table."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "المطبخ جديد؟",
+            "transliteration": "il-maTbakh jdiid?",
+            "english": "Is the kitchen new?"
+          },
+          "response": {
+            "arabic": "إي، رتبناه هالسنة.",
+            "transliteration": "ee, rattabnaa ha-s-sane.",
+            "english": "Yes, we renovated it this year."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فيك تفتح الشباك؟ الجو حر.",
+            "transliteration": "fiik tafta7 ish-shbbaak? ij-jaww 7arr.",
+            "english": "Can you open the window? It's hot."
+          },
+          "response": {
+            "arabic": "إي أكيد، هلق بفتحو.",
+            "transliteration": "ee akiid, halla2 baftaHo.",
+            "english": "Sure, I'll open it now."
+          }
+        }
+      ],
+      "culture": "A Damascene home visit almost always starts with a short tour, and a guest is expected to praise the house (بيتك حلو / ما شاء الله) as they're shown around. \"ما شاء الله\" is said when admiring something to ward off envy, and refusing tea or coffee offered during the visit is considered impolite.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "A guest asks \"وين الحمام لو سمحت؟\". Tell them straight ahead, on the right.",
+          "answer": "عالطول، على يمينك",
+          "accepted": [
+            "عالطول، على يمينك",
+            "عالطول عاليمين",
+            "دغري عاليمين"
+          ],
+          "too_formal": {
+            "item": "على طول الممر ثم إلى اليمين",
+            "feedback": "This is an overly formal, written-style direction; spoken Damascene keeps it short: عالطول، عاليمين."
+          },
+          "tip": "عالطول means \"straight ahead\" in directions."
+        },
+        {
+          "id": "unit-02.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks \"فيني افتح المكيف؟\". Say yes of course, go ahead.",
+          "answer": "إي أكيد، تفضل",
+          "accepted": [
+            "إي أكيد، تفضل",
+            "إي طبعا، تفضل",
+            "أكيد تفضل"
+          ],
+          "too_formal": {
+            "item": "نعم بالطبع، تفضل مشكورا",
+            "feedback": "نعم and بالطبع are formal written Arabic; spoken Damascene says إي and أكيد/طبعا."
+          },
+          "tip": "إي (or ايه) is the everyday spoken \"yes\", not just نعم."
+        },
+        {
+          "id": "unit-02.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"المطبخ عالشمال، وفيه كل شي _____.\" English meaning: The kitchen is on the left, everything in it is new.",
+          "answer": "جديد",
+          "accepted": [
+            "جديد",
+            "جديدة"
+          ],
+          "too_formal": {
+            "item": "حديث",
+            "feedback": "حديث is a formal written word for \"new/modern\"; spoken Damascene just says جديد."
+          },
+          "tip": "جديد is the everyday word for \"new\"."
+        },
+        {
+          "id": "unit-02.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"الشباك بغرفتي _____ عالحديقة.\" English meaning: The window in my room looks out onto the garden.",
+          "answer": "مطل",
+          "accepted": [
+            "مطل",
+            "مطلة"
+          ],
+          "too_formal": {
+            "item": "يُطِلّ",
+            "feedback": "The MSA-marked verb form يُطِلّ with its vowel marks is written Arabic; spoken Damascene says مطل/مطلة as a simple adjective."
+          },
+          "tip": "مطل ع... is how \"overlooking/facing\" is said."
+        },
+        {
+          "id": "unit-02.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say: \"This is my bedroom, small but tidy.\"",
+          "answer": "هاي غرفة نومي، صغيرة بس مرتبة",
+          "accepted": [
+            "هاي غرفة نومي، صغيرة بس مرتبة",
+            "هاي غرفت نومي صغيرة بس مرتبة"
+          ],
+          "too_formal": {
+            "item": "هذه غرفة نومي، صغيرة لكنها مرتبة",
+            "feedback": "هذه and لكنها are formal written Arabic; spoken Damascene uses هاي and بس."
+          },
+          "tip": "بس is the everyday word for \"but\", used constantly instead of لكن."
+        },
+        {
+          "id": "unit-02.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say: \"The fridge is making noise, we need to fix it.\"",
+          "answer": "الثلاجة عم تعمل صوت، لازم نصلحها",
+          "accepted": [
+            "الثلاجة عم تعمل صوت، لازم نصلحها",
+            "الثلاجة عم تعمل صوت لازم نصلحا"
+          ],
+          "too_formal": {
+            "item": "الثلاجة تصدر ضوضاء ويجب إصلاحها",
+            "feedback": "تصدر ضوضاء and يجب are formal written Arabic; spoken Damascene says عم تعمل صوت and لازم."
+          },
+          "tip": "لازم is the everyday word for \"must/need to\"."
+        },
+        {
+          "id": "unit-02.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "What's the Damascene word for \"living room\"?",
+          "answer": "صالون",
+          "accepted": [
+            "صالون"
+          ],
+          "too_formal": {
+            "item": "غرفة الجلوس",
+            "feedback": "\"غرفة الجلوس\" is a descriptive formal term; spoken Damascene just says صالون."
+          },
+          "tip": "صالون is the room where guests are received.",
+          "options": [
+            "صالون",
+            "مطبخ",
+            "حمام",
+            "ممر"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "What's the Damascene word for \"closet/wardrobe\"?",
+          "answer": "خزانة",
+          "accepted": [
+            "خزانة"
+          ],
+          "too_formal": {
+            "item": "دولاب الملابس",
+            "feedback": "This literal descriptive phrase (\"clothes cabinet\") is more explanatory than what's actually said; spoken Damascene just says خزانة."
+          },
+          "tip": "خزانة covers any closet or cabinet, for clothes or otherwise.",
+          "options": [
+            "خزانة",
+            "طاولة",
+            "تخت",
+            "باب"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange into the sentence: \"There's a bed, a closet and a desk in the room.\"",
+          "answer": "في تخت وخزانة ومكتب بالغرفة",
+          "accepted": [
+            "في تخت وخزانة ومكتب بالغرفة"
+          ],
+          "too_formal": {
+            "item": "يوجد سرير وخزانة ومكتب في الغرفة",
+            "feedback": "يوجد and سرير and في الغرفة are all formal written choices; spoken Damascene says في، تخت، بالغرفة."
+          },
+          "tip": "في at the start of a sentence means \"there is/are\" in spoken Arabic.",
+          "words": [
+            "في",
+            "تخت",
+            "وخزانة",
+            "ومكتب",
+            "بالغرفة"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange into the sentence: \"The main door is always locked at night.\"",
+          "answer": "الباب الرئيسي دايما مقفل بالليل",
+          "accepted": [
+            "الباب الرئيسي دايما مقفل بالليل"
+          ],
+          "too_formal": {
+            "item": "الباب الرئيسي مغلق دائما في الليل",
+            "feedback": "مغلق، دائما، في الليل are the formal written choices; spoken Damascene uses مقفل، دايما، بالليل."
+          },
+          "tip": "مقفل (locked) and مسكر (closed) are both common; مغلق is the more formal/written word.",
+          "words": [
+            "الباب",
+            "الرئيسي",
+            "دايما",
+            "مقفل",
+            "بالليل"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "title": "Talking About Relatives",
+      "phrases": [
+        {
+          "arabic": "شو صار مع خالك؟",
+          "transliteration": "shoo Saar ma3 khaalak?",
+          "english": "What happened with your (maternal) uncle?",
+          "reply": {
+            "arabic": "ولا شي، منيح الحمد لله",
+            "transliteration": "wala shi, mnii7 il7amdella",
+            "english": "Nothing, he's fine thank God"
+          }
+        },
+        {
+          "arabic": "هو متجوز؟",
+          "transliteration": "huwwe mtjawwez?",
+          "english": "Is he married?",
+          "reply": {
+            "arabic": "لأ، لسا أعزب",
+            "transliteration": "la2, lissa a3zab",
+            "english": "No, still single"
+          }
+        },
+        {
+          "arabic": "أختي الكبيرة متجوزة من سنتين.",
+          "transliteration": "ekhti l-kbiire mitjawwze min sinteen.",
+          "english": "My older sister has been married for two years."
+        },
+        {
+          "arabic": "عندها ولد صغير عمرو سنة.",
+          "transliteration": "3inda walad sghiir 3omro sane.",
+          "english": "She has a little boy who's a year old.",
+          "search_term": "a mother holding a baby"
+        },
+        {
+          "arabic": "ابن عمي عايش برا البلد.",
+          "transliteration": "ebn 3ammi 3aayesh barra l-balad.",
+          "english": "My paternal cousin lives abroad.",
+          "search_term": "an airport departure gate"
+        },
+        {
+          "arabic": "بنت خالتي عم تدرس طب.",
+          "transliteration": "bint khaalti 3am tedros Tebb.",
+          "english": "My maternal cousin is studying medicine."
+        },
+        {
+          "arabic": "جدي توفي من كم سنة، الله يرحمو.",
+          "transliteration": "jiddi tawaffa min kam sane, alla yer7amo.",
+          "english": "My grandfather passed away a few years ago, may God have mercy on him."
+        },
+        {
+          "arabic": "تيتا هلق عايشة لحالها بس منزورها كل أسبوع.",
+          "transliteration": "teeta halla2 3aayshe la7aala bas minzoorha kell isboo3.",
+          "english": "Grandma lives alone now but we visit her every week.",
+          "search_term": "an elderly woman at home"
+        },
+        {
+          "arabic": "عمي وخالي عم يتخانقوا عالميراث.",
+          "transliteration": "3ammi w khaali 3am yitkhaan2o 3al-miiraath.",
+          "english": "My paternal and maternal uncles are arguing about the inheritance."
+        },
+        {
+          "arabic": "كل العيلة منتجمع بالعيد عند جدي.",
+          "transliteration": "kell il-3eele mnitjamma3 bil-3iid 3end jiddi.",
+          "english": "The whole family gets together at grandpa's for the holiday."
+        },
+        {
+          "arabic": "من زمان ما شفت ابن خالتي.",
+          "transliteration": "min zamaan ma shefet ebn khaalti.",
+          "english": "I haven't seen my maternal cousin in a long time."
+        },
+        {
+          "arabic": "لازم نزور عمتي، صارلنا كتير ما رحنا.",
+          "transliteration": "laazem nzuur 3ammti, Saarlna ktiir ma re7na.",
+          "english": "We should visit my paternal aunt, it's been a while since we went."
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "مرحبا وليد، شفتك بالعرس مبارح.",
+          "transliteration": "mar7aba Waliid, shiftak bil-3ors mbaare7.",
+          "english": "Hi Walid, I saw you at the wedding yesterday."
+        },
+        {
+          "speaker": "Waleed",
+          "arabic": "إي، كان عرس ابن خالي.",
+          "transliteration": "ee, kaan 3ors ebn khaali.",
+          "english": "Yeah, it was my maternal cousin's wedding."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "مبروك عليه. شو اسم العروس؟",
+          "transliteration": "mabrook 3aleeh. shoo ism il-3aroos?",
+          "english": "Congrats to him. What's the bride's name?"
+        },
+        {
+          "speaker": "Waleed",
+          "arabic": "اسمها رنا، من بنات عمي بالحقيقة.",
+          "transliteration": "ismha Rana, min banaat 3ammi bil-7a2ii2a.",
+          "english": "Her name is Rana, she's actually one of my paternal cousins."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "يعني هو تجوز قريبتو؟",
+          "transliteration": "ya3ni huwwe tjawwaz 2ariibto?",
+          "english": "So he married a relative of his?"
+        },
+        {
+          "speaker": "Waleed",
+          "arabic": "إي، هون كتير مبين هيك شي عادي.",
+          "transliteration": "ee, hoon ktiir mbayyen heek shi 3aadi.",
+          "english": "Yeah, here that's very much a normal thing."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وجدك حضر العرس؟",
+          "transliteration": "w jiddak 7aDar il-3ors?",
+          "english": "And did your grandfather attend the wedding?"
+        },
+        {
+          "speaker": "Waleed",
+          "arabic": "لأ، جدي توفي من سنتين الله يرحمو.",
+          "transliteration": "la2, jiddi tawaffa min sinteen alla yer7amo.",
+          "english": "No, my grandfather passed away two years ago, may God rest him."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الله يرحمو. وتيتك؟",
+          "transliteration": "alla yer7amo. w teetak?",
+          "english": "God rest him. And your grandma?"
+        },
+        {
+          "speaker": "Waleed",
+          "arabic": "تيتا كانت هونيك، فرحانة كتير.",
+          "transliteration": "teeta kaanet hooniik, far7aane ktiir.",
+          "english": "Grandma was there, very happy."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "يسلم قلبها. طيب سلملي عليها وع العيلة كلها.",
+          "transliteration": "yislam 2albha. Tayyeb sallemli 3aleeha w 3al-3eele kella.",
+          "english": "Bless her heart. Well, say hi to her and the whole family for me."
+        },
+        {
+          "speaker": "Waleed",
+          "arabic": "الله يسلمك، أكيد بسلملها.",
+          "transliteration": "alla ysallmak, akiid bsallemla.",
+          "english": "Thanks, I'll definitely say hi."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو صار مع خالك؟",
+            "transliteration": "shoo Saar ma3 khaalak?",
+            "english": "What's up with your uncle?"
+          },
+          "response": {
+            "arabic": "منيح، بس مشغول بالشغل.",
+            "transliteration": "mnii7, bas mashghool bish-shughl.",
+            "english": "He's fine, just busy with work."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندها ولاد؟",
+            "transliteration": "3inda awlaad?",
+            "english": "Does she have kids?"
+          },
+          "response": {
+            "arabic": "إي، صبي وبنت.",
+            "transliteration": "ee, Sabi w bint.",
+            "english": "Yes, a boy and a girl."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "جدك لسا عايش؟",
+            "transliteration": "jiddak lissa 3aayesh?",
+            "english": "Is your grandfather still alive?"
+          },
+          "response": {
+            "arabic": "لأ، الله يرحمو، توفي من زمان.",
+            "transliteration": "la2, alla yer7amo, tawaffa min zamaan.",
+            "english": "No, God rest him, he passed away a long time ago."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ابن عمك عايش وين؟",
+            "transliteration": "ebn 3ammak 3aayesh ween?",
+            "english": "Where does your paternal cousin live?"
+          },
+          "response": {
+            "arabic": "عايش برا البلد، بألمانيا.",
+            "transliteration": "3aayesh barra l-balad, b Almaanya.",
+            "english": "He lives abroad, in Germany."
+          }
+        }
+      ],
+      "culture": "Marriage between cousins (especially ابن/بنت العم) is still common and unremarkable in Damascus, so it comes up naturally in conversation without being treated as unusual. When someone mentions a relative who has died, the listener always answers with الله يرحمو / يرحمها (God have mercy on him/her), and skipping this is considered rude.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks \"هو متجوز؟\" about your cousin. Say no, he's still single.",
+          "answer": "لأ، لسا أعزب",
+          "accepted": [
+            "لأ، لسا أعزب",
+            "لأ لسا أعزب",
+            "لا، لسا أعزب"
+          ],
+          "too_formal": {
+            "item": "لا، إنه لا يزال أعزبا",
+            "feedback": "\"لا يزال\" is formal written Arabic for \"still\"; spoken Damascene uses لسا."
+          },
+          "tip": "لسا means \"still/not yet\" and is used constantly in speech."
+        },
+        {
+          "id": "unit-02.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "A friend mentions their grandfather passed away. Respond with \"God have mercy on him.\"",
+          "answer": "الله يرحمو",
+          "accepted": [
+            "الله يرحمو",
+            "الله يرحمه",
+            "الله يرحمو يا رب"
+          ],
+          "too_formal": {
+            "item": "رحمه الله تعالى",
+            "feedback": "This longer, more formal phrase is used in writing or religious speech; spoken Damascene simply says الله يرحمو."
+          },
+          "tip": "الله يرحمو/يرحمها is said automatically whenever someone who died is mentioned."
+        },
+        {
+          "id": "unit-02.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"أختي الكبيرة _____ من سنتين.\" English meaning: My older sister has been married for two years.",
+          "answer": "متجوزة",
+          "accepted": [
+            "متجوزة",
+            "مجوزة"
+          ],
+          "too_formal": {
+            "item": "متزوجة",
+            "feedback": "متزوجة with the ت-ز pattern is the MSA spelling; spoken Damascene shifts it to متجوزة."
+          },
+          "tip": "Damascene often turns MSA تزوج (marry) into تجوز, so \"married\" becomes متجوز/متجوزة."
+        },
+        {
+          "id": "unit-02.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete the sentence: \"بنت خالتي عم _____ طب.\" English meaning: My maternal cousin is studying medicine.",
+          "answer": "تدرس",
+          "accepted": [
+            "تدرس",
+            "تدرس ب"
+          ],
+          "too_formal": {
+            "item": "تتلقى تعليمها في",
+            "feedback": "This formal descriptive phrase (\"receiving her education in\") is far more elaborate than needed; spoken Damascene just says عم تدرس."
+          },
+          "tip": "عم + present tense verb makes the ongoing \"is studying\" form."
+        },
+        {
+          "id": "unit-02.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Say: \"My paternal cousin lives abroad.\"",
+          "answer": "ابن عمي عايش برا البلد",
+          "accepted": [
+            "ابن عمي عايش برا البلد",
+            "ابن عمي عايش برا",
+            "ابن عمي ساكن برا البلد"
+          ],
+          "too_formal": {
+            "item": "ابن عمي يعيش في الخارج",
+            "feedback": "يعيش في الخارج is the formal written phrase for \"lives abroad\"; spoken Damascene says عايش برا البلد."
+          },
+          "tip": "برا البلد is the everyday way to say \"abroad/outside the country\"."
+        },
+        {
+          "id": "unit-02.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Say: \"The whole family gets together at grandpa's for the holiday.\"",
+          "answer": "كل العيلة منتجمع بالعيد عند جدي",
+          "accepted": [
+            "كل العيلة منتجمع بالعيد عند جدي",
+            "كل العيلة بتتجمع بالعيد عند جدي"
+          ],
+          "too_formal": {
+            "item": "تجتمع العائلة بأكملها في العيد عند جدي",
+            "feedback": "تجتمع and بأكملها are formal written choices; spoken Damascene uses منتجمع and كل العيلة."
+          },
+          "tip": "عند جدي means \"at grandpa's place\", using عند for location the way \"chez\" works in French."
+        },
+        {
+          "id": "unit-02.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "What's the Damascene word for \"maternal uncle\" (mom's brother)?",
+          "answer": "خال",
+          "accepted": [
+            "خال"
+          ],
+          "too_formal": {
+            "item": "أخو الوالدة",
+            "feedback": "This explanatory phrase (\"mother's brother\") is not how it's actually said; spoken Damascene just uses the single word خال."
+          },
+          "tip": "خال is mom's brother; عم is dad's brother, a distinction Arabic keeps that English doesn't.",
+          "options": [
+            "خال",
+            "عم",
+            "جد",
+            "أخ"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "What's the Damascene word for \"still/not yet\" as in \"still single\"?",
+          "answer": "لسا",
+          "accepted": [
+            "لسا"
+          ],
+          "too_formal": {
+            "item": "لا يزال",
+            "feedback": "\"لا يزال\" is the formal written equivalent of \"still\"; spoken Damascene uses لسا constantly."
+          },
+          "tip": "لسا can mean both \"still\" and \"not yet\" depending on context.",
+          "options": [
+            "لسا",
+            "هلق",
+            "بعدين",
+            "دايما"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange into the sentence: \"We should visit my paternal aunt, it's been a while since we went.\"",
+          "answer": "لازم نزور عمتي، صارلنا كتير ما رحنا",
+          "accepted": [
+            "لازم نزور عمتي، صارلنا كتير ما رحنا"
+          ],
+          "too_formal": {
+            "item": "يجب أن نزور عمتي فقد مضى وقت طويل منذ ذهبنا",
+            "feedback": "يجب أن، فقد، منذ are all formal written connectors; spoken Damascene uses لازم and صارلنا... ما."
+          },
+          "tip": "صارلنا + time + ما + verb is the spoken pattern for \"it's been [time] since we...\".",
+          "words": [
+            "لازم",
+            "نزور",
+            "عمتي",
+            "صارلنا",
+            "كتير",
+            "ما",
+            "رحنا"
+          ]
+        },
+        {
+          "id": "unit-02.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange into the sentence: \"My paternal and maternal uncles are arguing about the inheritance.\"",
+          "answer": "عمي وخالي عم يتخانقوا عالميراث",
+          "accepted": [
+            "عمي وخالي عم يتخانقوا عالميراث"
+          ],
+          "too_formal": {
+            "item": "عمي وخالي يتجادلان حول الميراث",
+            "feedback": "يتجادلان (dual form) and حول are formal written Arabic; spoken Damascene uses the plural يتخانقوا and عم for ongoing action."
+          },
+          "tip": "يتخانقوا (bicker/argue) is a common everyday verb, stronger and more casual than يتجادلوا.",
+          "words": [
+            "عمي",
+            "وخالي",
+            "عم",
+            "يتخانقوا",
+            "عالميراث"
+          ]
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Tell Me About Your Family and Home",
+    "instructions": "Have a conversation of at least 10 lines about your family and your home. It must include how many people are in your family, at least two named relatives (with their relation, like أخ or خالة), whether someone is married or single, a description of your house or apartment (rooms and floor), and one line about the neighborhood or rent. Use at least 8 target phrases from Unit 2 and include both a masculine-address and a feminine-address question.",
+    "required_elements": [
+      "A statement of how many people are in the family, like كم واحد بعيلتك؟ or نحنا... بالعيلة.",
+      "At least two named relatives with their relation, such as أخي، أختي، عمي، خالتي، جدي or تيتا.",
+      "A married/single statement using متجوز، متجوزة، or أعزب.",
+      "A description of the house using بيت، شقة، or a room word like صالون، مطبخ، or غرفة نوم.",
+      "Which floor the home is on, using طابق.",
+      "A comment on the neighborhood or rent using حي، هادي، or أجرة.",
+      "A masculine-address question using إنت, like إنت وين ساكن؟",
+      "A feminine-address question using إنتي, like إنتي وين ساكنة؟"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Rami",
+          "arabic": "مرحبا هبة، كيفك؟",
+          "transliteration": "mar7aba Hiba, keefek?",
+          "english": "Hi Hiba, how are you?"
+        },
+        {
+          "speaker": "Hiba",
+          "arabic": "أهلين رامي، منيحة الحمد لله.",
+          "transliteration": "ahleen Raami, mnii7a il7amdella.",
+          "english": "Hi Rami, good, thank God."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "كم واحد بعيلتك؟",
+          "transliteration": "kam wa7ed b3eeltek?",
+          "english": "How many people are in your family?"
+        },
+        {
+          "speaker": "Hiba",
+          "arabic": "نحنا خمسة: بابا وماما وأخوي وأختي وأنا.",
+          "transliteration": "ni7na khamse: baba w mama w akhuuy w ekhti w ana.",
+          "english": "We're five: dad, mom, my brother, my sister and me."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "وإنتِ الكبيرة أو الصغيرة؟",
+          "transliteration": "w enti l-kbiire aw is-sghiire?",
+          "english": "Are you the oldest or the youngest?"
+        },
+        {
+          "speaker": "Hiba",
+          "arabic": "أنا الوسطى. أختي الكبيرة متجوزة.",
+          "transliteration": "ana il-wusTa. ekhti l-kbiire mitjawwze.",
+          "english": "I'm the middle one. My older sister is married."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "طيب، إنتي وين ساكنة هلق؟",
+          "transliteration": "Tayyeb, enti ween saakne halla2?",
+          "english": "Okay, where do you live now?"
+        },
+        {
+          "speaker": "Hiba",
+          "arabic": "ساكنة بحي المهاجرين، بشقة بالطابق التاني.",
+          "transliteration": "saakne b7ay il-Muhaajriin, b sha22a bit-Taabe2 it-taani.",
+          "english": "I live in the Muhajireen neighborhood, in an apartment on the second floor."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "وإنت يا كريم، وين بيتك؟",
+          "transliteration": "w enta ya Kariim, ween beetak?",
+          "english": "And you Kareem, where's your house?"
+        },
+        {
+          "speaker": "Kareem",
+          "arabic": "بيتي بحي القصاع، عندي صالون ومطبخ وغرفتين نوم.",
+          "transliteration": "beeti b7ay il-2aSSaa3, 3indi Saaloon w maTbakh w ghurfteen noom.",
+          "english": "My house is in the Qassaa neighborhood, I have a living room, a kitchen, and two bedrooms."
+        },
+        {
+          "speaker": "Hiba",
+          "arabic": "والأجرة غالية هونيك؟",
+          "transliteration": "w il-ujra ghaalye hooniik?",
+          "english": "Is the rent expensive there?"
+        },
+        {
+          "speaker": "Kareem",
+          "arabic": "شوي، بس الحي هادي وحلو.",
+          "transliteration": "shwayy, bas il-7ay haadi w 7ilu.",
+          "english": "A bit, but the neighborhood is quiet and nice."
+        }
+      ]
+    }
+  }
+}

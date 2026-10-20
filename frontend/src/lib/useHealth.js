@@ -25,6 +25,9 @@ export function useHealth() {
     // backend is: an engine that quietly stopped working should be readable,
     // not guessed at from how slow the microphone feels.
     ear: data?.ear ?? '',
+    // Readings a minute the listening keys allow together, null until the
+    // answer arrives; reciting paces itself by it (lib/recitingSession.js's pace).
+    listenPerMinute: data?.listen_per_minute ?? null,
     // Null until the answer arrives, so a panel can tell "not installed" apart
     // from "not asked yet" and stay quiet in the meantime.
     dictionaryLoaded: data ? data.dictionary_loaded === true : null,

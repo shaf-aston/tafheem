@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { bySound, follow, joinWindows } from './follow'
 import { createRecitingSession, EMPTY_VIEW, surer } from './recitingSession'
 import { useSetting } from './settings'
+import { useHealth } from './useHealth'
 
 /**
  * `ayahs` are the page's lines the ear can check by sound, each { key, from,
@@ -21,6 +22,7 @@ import { useSetting } from './settings'
 export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   const fusha = useSetting('fusha')
   const level = useSetting('reciting-level')
+  const { listenPerMinute: perMinute } = useHealth()
   const [view, setView] = useState(EMPTY_VIEW)
 
   // One session for the life of the page. Making one opens nothing; the
@@ -28,8 +30,9 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   const [session] = useState(() => createRecitingSession({ onChange: setView }))
 
   // What a recording in progress listens against, without a new session for it:
-  // the dialect setting, and the words of the page being recited.
-  useEffect(() => { session.update({ fusha, pageWords, ayahs }) }, [session, fusha, pageWords, ayahs])
+  // the dialect setting, the words of the page being recited, and how often the
+  // server's keys allow a reading.
+  useEffect(() => { session.update({ fusha, pageWords, ayahs, perMinute }) }, [session, fusha, pageWords, ayahs, perMinute])
 
   // However this page is left, the microphone goes off with it.
   useEffect(() => () => session.dispose(), [session])

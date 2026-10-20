@@ -182,7 +182,7 @@ it is the term that is wrong.
   250ms), `letters` (tilawa's small Qur'an model on this computer, about 640ms,
   recitations only, `recitation/letters.py`) and `here` (Whisper on this computer, about
   1,600ms), behind one interface in `backend/services/recitation/ears.py`. They are tried
-  in the order `recitation_ears` names, Whisper here always last because it needs no key
+  in the order `listening_ears` names, Whisper here always last because it needs no key
   and no internet; an ear that answers with a rejected key is struck off for the rest of
   the run, the same way the AI backends are (`backend/services/fallback.py`).
   `/api/health` says which would answer a search (`ear`) and a recitation (`recite_ear`).

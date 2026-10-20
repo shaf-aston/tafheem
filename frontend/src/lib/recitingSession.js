@@ -34,13 +34,11 @@ import { isOfPage, joinWindows, wordsHeard } from './follow'
 import * as journal from './journal'
 import * as microphone from './microphone'
 
-const STEP_MS = config['step-s'] * 1000
 const TICK_MS = config['tick-s'] * 1000
 const WINDOW_MS = config['window-s'] * 1000
 const PAUSE_MS = config['pause-s'] * 1000
 const CHECK_TIMEOUT_MS = config['check-timeout-s'] * 1000
 const CHECK_QUEUE_MAX = config['check-queue-max']
-const ASKS_PER_MINUTE = config['asks-per-minute']
 // How far the voice meter can lag a cut and still count as "spoken in this
 // window": the same tick length the meter itself reads at.
 const LEVEL_LAG_MS = dictationConfig['level-check-ms']
@@ -73,6 +71,26 @@ export const recentAsks = (now, asks) => asks.filter((at) => now - at < 60000)
  * does not tell them apart. Only the mid-phrase ones give way to it.
  */
 export const allowanceLeft = (now, asks, perMinute) => perMinute - recentAsks(now, asks).length
+
+/**
+ * How often readings may be asked for, from the allowance the server reports
+ * (/api/health's listen_per_minute, every listening key together): the least
+ * time between two, and how many in any sixty seconds.
+ *
+ * Unknown yet (null), it is one key's pace, `step-s`. Zero means no hosted ear,
+ * so nothing to spend and only how long a reading takes paces it. Otherwise one
+ * reading per its share of the minute, never quicker than the recording hands
+ * sound over, and `allowance-share` of the minute's allowance, the rest being
+ * room for the pause readings that never wait and for the search microphone.
+ */
+export const pace = (perMinute) => {
+  if (perMinute === 0) return { stepMs: TICK_MS, perMinute: Infinity }
+  const full = perMinute ?? 60 / config['step-s']
+  return {
+    stepMs: Math.max(TICK_MS, 60000 / full),
+    perMinute: Math.floor(full * config['allowance-share']),
+  }
+}
 
 /** Whether it is time to ask for a reading: free, something new to send, paced by how long the last one took, and inside the ear's allowance. */
 export const readyToSend = (now, asked, took, stepMs, busy, chunksLen, sent, left = Infinity) =>
@@ -185,8 +203,9 @@ const REAL = {
 /**
  * `update(page)` tells the session what it is listening against, and the
  * newest one is read at the moment each value is needed, never kept per
- * recording: { fusha, pageWords, ayahs }. `ayahs` are the page's lines the ear
- * can check by sound, each { key, from, count }: its "surah:ayah", where its
+ * recording: { fusha, pageWords, ayahs, perMinute }. `perMinute` is the
+ * readings a minute the server allows, null until it has said (see `pace`).
+ * `ayahs` are the page's lines the ear can check by sound, each { key, from, count }: its "surah:ayah", where its
  * words start on the page and how many; empty for a text the backend has no
  * plain spelling of, and marks are then the page's alone. `onChange` gets a new
  * view object every time anything shown changes.
@@ -195,7 +214,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
   const { canRecord, openMicrophone, createRecorder, watchForVoice, listen, checkReading, note } = { ...REAL, ...deps }
 
   let view = EMPTY_VIEW
-  let page = { fusha: true, pageWords: [], ayahs: [] }
+  let page = { fusha: true, pageWords: [], ayahs: [], perMinute: null }
   const set = (patch) => {
     view = { ...view, ...(typeof patch === 'function' ? patch(view) : patch) }
     onChange(view)
@@ -430,6 +449,10 @@ export function createRecitingSession({ onChange, deps = {} }) {
             chars: heard.text?.length || 0,
             words: words.length,
             kept: ofPage,
+            // What was heard, so a reading thrown away (kept false) can be
+            // told apart later: the room, or the page misheard. Capped so a
+            // looping engine cannot fill the journal line.
+            text: (heard.text || '').slice(0, 500),
           })
         } catch (error) {
           // A bug in the page's own code after a good answer, not a network or
@@ -465,17 +488,18 @@ export function createRecitingSession({ onChange, deps = {} }) {
       // did not: a mark took eighteen seconds to appear instead of five.
       //
       // So: wait for the ear to be free, and then for as long as the last
-      // reading actually took, never less than step-s. On a quick ear that is
-      // step-s and readings keep flowing; on this machine it is five seconds
+      // reading actually took, never less than the pace (see `pace`). On a
+      // quick ear that is the pace and readings keep flowing; on this machine it is five seconds
       // or so, which for an ayah-length recording means the only reading asked
       // for is the one at the pause, which is the one that settles the marks.
       //
       // And inside the ear's allowance: going over it is a refusal, not a slow
       // answer, and it rests the fast ear for a minute. The reading at a pause
-      // is never held back for it (see asks-per-minute); this one is.
+      // is never held back for it (see allowance-share); this one is.
       const at = Date.now()
-      const left = allowanceLeft(at, asks, ASKS_PER_MINUTE)
-      if (readyToSend(at, asked, took, STEP_MS, !!sending, chunks.length, sent, left)) send()
+      const { stepMs, perMinute } = pace(page.perMinute)
+      const left = allowanceLeft(at, asks, perMinute)
+      if (readyToSend(at, asked, took, stepMs, !!sending, chunks.length, sent, left)) send()
     }
 
     made.onstop = async () => {

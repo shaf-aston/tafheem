@@ -1,0 +1,46 @@
+{
+  "_about": "When each word of the everyayah al-Fatihah clips ends, in seconds from the clip start, as Groq whisper-large-v3-turbo timed them (2026-09-24). probe-ear.mjs measures how far behind the voice the page runs from these.",
+  "001001": [
+    0.36,
+    0.88,
+    2.24,
+    3.22
+  ],
+  "001002": [
+    1.36,
+    2.16,
+    2.8,
+    5.24
+  ],
+  "001003": [
+    1.38,
+    2.48
+  ],
+  "001004": [
+    0.92,
+    1.58,
+    2.84
+  ],
+  "001005": [
+    1.26,
+    2,
+    3.42,
+    5.04
+  ],
+  "001006": [
+    0.88,
+    1.8,
+    3.58
+  ],
+  "001007": [
+    1.12,
+    2.06,
+    3.06,
+    4.12,
+    4.86,
+    6.18,
+    7.24,
+    7.7,
+    13.76
+  ]
+}

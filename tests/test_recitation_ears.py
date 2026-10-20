@@ -25,14 +25,19 @@ SOUND = b"pretend this is a recording"
 class Rejected(Exception):
     """An SDK error carrying an HTTP status, shaped the way the real ones are."""
 
-    def __init__(self, status: int):
+    def __init__(self, status: int, headers: dict | None = None):
         super().__init__(f"HTTP {status}")
-        self.response = type("Response", (), {"status_code": status})()
+        self.response = type("Response", (), {"status_code": status, "headers": headers or {}})()
 
 
 @pytest.fixture(autouse=True)
-def fresh():
-    """No ear stays retired or resting from one test into the next."""
+def fresh(monkeypatch):
+    """One listening key, whatever .env says, and no ear retired or resting
+    from one test into the next."""
+    monkeypatch.setattr(get_settings(), "listening_groq_api_keys", "gsk_one")
+    monkeypatch.setattr(get_settings(), "listening_ears", "hosted,letters,here")
+    monkeypatch.setattr(ears, "_HOSTED", {})
+
     def reset():
         for ear in (ears.named("hosted"), ears.named("letters"), ears.named("here")):
             ear.retired_reason = ""
@@ -150,7 +155,7 @@ def test_a_permanent_failure_is_not_also_left_resting(both):
 
 
 def test_the_order_comes_from_config(both, monkeypatch):
-    monkeypatch.setattr(get_settings(), "recitation_ears", "here,hosted")
+    monkeypatch.setattr(get_settings(), "listening_ears", "here,hosted")
     asked = both()
     assert ears.hear(SOUND, None, "") == "here heard it"
     assert asked == ["here"]
@@ -159,7 +164,7 @@ def test_the_order_comes_from_config(both, monkeypatch):
 def test_a_mistyped_ear_name_still_leaves_the_app_able_to_listen(both, monkeypatch, caplog):
     """A typo in a setting must not make the app deaf: this machine is always
     there at the end of the order, whatever the setting says."""
-    monkeypatch.setattr(get_settings(), "recitation_ears", "hosted,ear-trumpet")
+    monkeypatch.setattr(get_settings(), "listening_ears", "hosted,ear-trumpet")
     asked = both(hosted_fails=ConnectionError("no internet"))
     assert ears.hear(SOUND, None, "") == "here heard it"
     assert asked == ["hosted", "here"]
@@ -194,7 +199,7 @@ def test_an_unreadable_recording_is_answered_415_and_not_500(monkeypatch):
 def test_the_health_line_says_which_ear_would_answer(both):
     both()
     body = TestClient(app).get("/api/health").json()
-    assert body["ear"] == get_settings().recitation_hosted_model
+    assert body["ear"] == get_settings().listening_model
 
     ears.named("hosted").retire("the API key was rejected")
     assert TestClient(app).get("/api/health").json()["ear"].startswith("local-")
@@ -207,7 +212,7 @@ def test_the_health_line_names_recitation_words_and_sureness_separately(both, mo
     both()
     monkeypatch.setattr(ears.letters, "installed", lambda: True)
     body = TestClient(app).get("/api/health").json()
-    assert body["recite_ear"] == get_settings().recitation_hosted_model
+    assert body["recite_ear"] == get_settings().listening_model
     assert body["recite_sure"] == f"local-{get_settings().recitation_model}"
 
     ears.named("hosted").retire("the API key was rejected")
@@ -255,3 +260,81 @@ def test_an_ear_that_hears_nothing_is_believed_rather_than_asked_again(both, mon
                         lambda audio, language, hint: asked.append("hosted") or "")
     assert ears.hear(SOUND, None, "") == ""
     assert asked == ["hosted"]
+
+
+@pytest.fixture
+def two_keys(monkeypatch):
+    """Two accounts' keys, each ear answering with its own key, refusing when told to."""
+    monkeypatch.setattr(get_settings(), "listening_groq_api_keys", "gsk_one,gsk_two")
+    monkeypatch.setattr(ears.hosted, "is_available", lambda key: bool(key))
+    asked: list[str] = []
+    refusing: dict[str, Exception] = {}
+
+    def hears(audio, key, language=None, hint=""):
+        asked.append(key)
+        if key in refusing:
+            raise refusing[key]
+        return f"heard on {key}"
+
+    monkeypatch.setattr(ears.hosted, "transcribe", hears)
+    return asked, refusing
+
+
+def test_two_keys_take_turns(two_keys):
+    """Each account allows 20 a minute; taking turns is what makes it 40."""
+    asked, _ = two_keys
+    for _ in range(4):
+        ears.hear(SOUND, "ar", "")
+    assert asked == ["gsk_one", "gsk_two", "gsk_one", "gsk_two"]
+
+
+def test_a_refused_key_rests_alone_and_the_other_answers(two_keys):
+    """One account's minute spent must not send a recitation to the slow ear
+    while the other account still has room."""
+    asked, refusing = two_keys
+    refusing["gsk_one"] = Rejected(429, {"retry-after": "7"})
+    assert ears.hear(SOUND, "ar", "") == "heard on gsk_two"
+    assert ears.hear(SOUND, "ar", "") == "heard on gsk_two"
+    assert asked == ["gsk_one", "gsk_two", "gsk_two"]
+    first = ears.named("hosted")
+    assert first.resting() and not first.retired_reason
+
+
+def test_a_refusal_rests_as_long_as_it_says(two_keys, monkeypatch):
+    """Groq says how long; a refusal for the day must not be asked again every minute."""
+    _, refusing = two_keys
+    monkeypatch.setattr("time.monotonic", lambda: 1000.0)
+    refusing["gsk_one"] = Rejected(429, {"retry-after": "3600"})
+    ears.hear(SOUND, "ar", "")
+    assert ears.named("hosted")._resting_until == 4600.0
+
+
+def test_a_refusal_that_says_nothing_rests_the_configured_while(two_keys, monkeypatch):
+    _, refusing = two_keys
+    monkeypatch.setattr("time.monotonic", lambda: 1000.0)
+    refusing["gsk_one"] = Rejected(429)
+    ears.hear(SOUND, "ar", "")
+    assert ears.named("hosted")._resting_until == 1000.0 + get_settings().listening_rest_s
+
+
+def test_the_allowance_is_every_usable_key_times_its_minute(two_keys, monkeypatch):
+    rpm = get_settings().listening_rpm_per_key
+    assert ears.per_minute() == 2 * rpm
+    # Resting still counts, its rest ends; struck off does not.
+    ears.named("hosted").rest(60, "a busy minute")
+    assert ears.per_minute() == 2 * rpm
+    ears.named("hosted").retire("the API key was rejected")
+    assert ears.per_minute() == rpm
+    # No Groq in the order at all: the page paces itself by how long readings take.
+    monkeypatch.setattr(get_settings(), "listening_ears", "letters,here")
+    assert ears.per_minute() == 0
+
+
+def test_the_health_line_tells_the_page_its_allowance(two_keys):
+    body = TestClient(app).get("/api/health").json()
+    assert body["listen_per_minute"] == 2 * get_settings().listening_rpm_per_key
+
+
+def test_with_two_keys_the_log_says_which_one_answered(two_keys):
+    model = get_settings().listening_model
+    assert [ear.name() for ear in ears.order() if isinstance(ear, ears.HostedEar)] == [f"{model} key 1", f"{model} key 2"]

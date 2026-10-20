@@ -16,11 +16,31 @@ cd frontend && npm test && npm run lint                    # frontend tests
 EAR=http://127.0.0.1:8000 node frontend/scripts/probe-ear.mjs  # reciting, end to end
 venv/Scripts/python -m backend.scripts.score_iraab             # i'raab roles vs the books, as a score
 venv/Scripts/python -m backend.scripts.score_iraab --set checked  # and vs the 72 checked sentences
+venv/Scripts/python -m backend.scripts.score_mutashabihat  # similar-verse finder vs the benchmark
 ```
 
 Data is built once by the scripts in `backend/scripts/`, each explained in its own
 docstring, and never committed. The Qur'an builds come first: `build_quran_corpus.py`, then
 `build_quran_meanings.py`. Rebuild the Daleel index whole: `build_daleel_index.py`, never `--only`.
+
+## Deploying
+
+**Code** goes by git: push to `master` and `deploy/sync.sh` (`tafheem-sync.timer`) makes the
+server match it within 5 minutes. Never hand-upload code or a built site.
+
+**Data files git tracks** (Sarf rules, Nahw notes, Colloquial lessons) go with the push:
+`sync.sh` copies exactly `git ls-files backend/data`, nothing else.
+
+**Databases and anything untracked** go by hand, always this computer to the server. The sync
+never touches them, so a push cannot wipe 2.4 GB of databases:
+
+```bash
+bash deploy/copy-data.sh ubuntu@132.145.17.56
+ssh ubuntu@132.145.17.56 'sudo systemctl restart tafheem@8000 tafheem@8001'
+```
+
+Only `progress.db` is written while serving, so for that one file the server holds the real
+copy and `copy-data.sh` leaves it alone. Nothing is backed up yet.
 
 ## Core flow
 
@@ -39,6 +59,8 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
    hand-tagged corpus; `quran_service.py` joins it with the English gloss. Tafsirs and
    translations are **editions**, all in `data/quran/library.db`, read only by
    `quran_library.py` and named only in `data/quran/editions.json`.
+   Verses that read alike: `data/quran/mutashabihat.json` (built by `scripts/build_mutashabihat.py`),
+   read by `services/mutashabihat.py`, which also proposes pairs the books missed.
 4. **The root is the spine.** One click sends a word's root to Sarf
    (`services/conjugation.py`), the dictionary, or every place it occurs. A verb's bab
    comes only from a dictionary that states it (`services/verb_forms.py`), never a guess.
@@ -68,6 +90,7 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 - **Sarf**: a word's root and pattern. The **gardaan** is the full table of 14 persons.
   **I'lal** is the rules that reshape a filled pattern when the root holds a weak letter, a
   hamzah or a doubled one, one per entry in `data/sarf/ilal.json`.
+- **Colloquial**: spoken Arabic by dialect. A dialect is a folder in `data/colloquial`, a unit one JSON file, an exercise kind one file per end (`services/colloquial/exercises`, `lib/exercises/registry.js`); pictures are fetched by `scripts/fetch_colloquial_images.py` and approved one by one.
 - **Root**: the three letters most Arabic words are built from; the one link every tab
   shares.
 - **Bab**: which vowel pattern (or which form, II to X) a verb follows, read from Lane's
@@ -76,9 +99,14 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 - **Ear**: anything that turns sound into words. Three: `hosted` (Groq, about 250 ms),
   `letters` (tilawa's small Qur'an model on this computer, recitations only,
   `recitation/letters.py`) and `here` (Whisper on this computer). Tried in the order
-  `recitation_ears` names, `here` always last. An ear that fails rests for 60 s; one
+  `listening_ears` names, `here` always last. An ear that fails rests for 60 s; one
   whose key is rejected is dropped for the run. `/api/health` names them (`ear`,
   `recite_ear`, `recite_sure`).
+- **Voice**: anything that says a word aloud, the ear's opposite. `lib/speak.js` tries
+  them in `frontend/src/speak.json`'s order: `recorded` (a reciter from quran.com, for
+  Qur'an words mapped by `scripts/build_word_audio.py`), `server` (Piper via
+  `/api/speak`, `services/speech.py`) and `browser` (the device). `ui/SpeakButton` is
+  the one button; it names the voice that spoke.
 - **Recitation / reading**: Qur'an said aloud. A **reading** is one request about one
   phrase, with a reading number (`X-Reading-Id`) that the page and server both log. The
   words only place the reciter on the page; the mark comes from this computer's sureness,
@@ -92,6 +120,8 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 
 - `backend/routers/`: thin endpoints. `backend/services/`: the logic.
   `backend/config.py`: every setting, and the only reader of the environment.
+- `services/mushkil_split.py` cuts al-Tahawi's Mushkil al-Athar into issues (hadith that seem to
+  conflict); `scripts/build_mushkil.py` writes `data/hadith/mushkil-tahawi.json`. No tab reads it yet.
 - `backend/services/sarf/`: the pure core of morphology. `word.py` holds a word as letters
   that know their job, and names the alphabet once; `ilal.py` the rules. `conjugation.py`
   is the only caller. Every label, column and template is in `data/sarf/`, never in code.
@@ -104,4 +134,5 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
   (`lib/notes.js`), so the stored note stays the reference. Tamreen questions link to it.
 - `frontend/src/components/`: one component per tab, shared parts in `ui/`.
   `frontend/src/lib/`: helpers, and `journey.js` for where the reader has been.
+  `frontend/src/components/Backdrop.jsx`: the drifting-lights canvas behind every tab, tinted by the tab colour; it exists so the dark page has depth, and it stops when Animations is off. Maths in `lib/bokeh.js`, knobs in theme.json `backdrop` and `marks` (the faint drifting letters under the lights). The kit page (`/app?tab=kit`, hidden from every menu) is where every element and token is seen.
 - `logs/recite-journal.jsonl`: the reciting log, rolled over at 5 MB, last 3 kept.

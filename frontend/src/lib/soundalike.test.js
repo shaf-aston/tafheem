@@ -111,13 +111,9 @@ describe('the settings in recite.json', () => {
     expect(config['step-s']).toBeLessThanOrEqual(config['window-s'])
   })
 
-  it('leaves the allowance, and not the floor between two readings, in charge of the pacing', () => {
-    // Under the ear's own twenty a minute, with room for the readings at each
-    // pause, which never wait; and the floor is loose enough that a reciter
-    // can actually reach the allowance rather than the floor stopping them first.
-    expect(Number.isInteger(config['asks-per-minute'])).toBe(true)
-    expect(config['asks-per-minute']).toBeLessThan(20)
-    expect(60 / config['step-s']).toBeGreaterThanOrEqual(config['asks-per-minute'])
+  it('keeps part of the allowance back for the pause readings, which never wait', () => {
+    expect(config['allowance-share']).toBeGreaterThan(0)
+    expect(config['allowance-share']).toBeLessThan(1)
   })
 
   it('hands sound over more often than it asks for a reading', () => {

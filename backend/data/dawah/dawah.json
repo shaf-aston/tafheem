@@ -1,0 +1,1941 @@
+{
+ "_about": [
+  "Dawah: common questions put to Islam, each with a short reply and the reasoning as bold points, each point with its own evidence.",
+  "Read only by services/dawah.py and checked on load.",
+  "Each answer was researched independently with Claude from the Qur'an, hadith, classical tafsir and scholars.",
+  "  islamqa    the site's name and link shape; {number} is filled from each question's islamqa.number.",
+  "  topics     id, title, arabic, blurb, and its questions in reading order.",
+  "  question   id, q, short, points [{title, text, refs?, note?}], islamqa {number, title} or null (further reading).",
+  "  refs       the timelines' shape: quran 'S:A' or 'S:A-B', or hadith + number from timelines/library.json.",
+  "  note       a source that is not a Qur'an or hadith link, such as a tafsir. Every point has refs or a note."
+ ],
+ "islamqa": {
+  "name": "IslamQA",
+  "cite": "https://islamqa.info/en/answers/{number}"
+ },
+ "topics": [
+  {
+   "id": "god",
+   "title": "God",
+   "arabic": "الله",
+   "blurb": "Does God exist, who made Him, and why does He allow suffering?",
+   "questions": [
+    {
+     "id": "who-made-god",
+     "q": "If everything has a creator, who created God?",
+     "short": "Only things that begin need a maker. Allah has no beginning, so He was never made: He is the First, and everything else began because of Him.",
+     "points": [
+      {
+       "title": "The question misstates God",
+       "text": "Nobody claims everything needs a creator, only everything that begins. Allah is the One who never began.",
+       "refs": [
+        {
+         "quran": "112:1-4"
+        }
+       ]
+      },
+      {
+       "title": "A chain cannot go back forever",
+       "text": "If every maker needed a maker, nothing would ever have started. So the chain must stop at One who was not made.",
+       "refs": [
+        {
+         "quran": "52:35-36"
+        }
+       ]
+      },
+      {
+       "title": "Allah is the First",
+       "text": "The Qur'an names Him the First, before whom there is nothing. The Prophet taught that Allah was, and nothing was before Him.",
+       "refs": [
+        {
+         "quran": "57:3"
+        }
+       ],
+       "note": "Sahih al-Bukhari, Beginning of Creation"
+      },
+      {
+       "title": "Time is created too",
+       "text": "Asking what came before assumes God is inside time. Time is part of creation, so its Creator is not bound by it.",
+       "refs": [
+        {
+         "quran": "39:62"
+        }
+       ],
+       "note": "Ibn Taymiyyah, Dar' Ta'arud al-'Aql wa'l-Naql"
+      },
+      {
+       "title": "Do not spiral into the doubt",
+       "text": "The Prophet said Shaytan whispers 'who created Allah?'. The cure is to seek refuge in Allah, say 'I believe in Allah and His messengers', and stop.",
+       "note": "Sahih al-Bukhari and Sahih Muslim, the hadith of the whisper"
+      }
+     ],
+     "islamqa": {
+      "number": 6660,
+      "title": "Who Created Allah?"
+     }
+    },
+    {
+     "id": "proof-god-exists",
+     "q": "What proof is there that God exists?",
+     "short": "Three lines of evidence point to Him: the sense of God we are born with, a universe that is ordered and cannot explain itself, and the guidance He revealed.",
+     "points": [
+      {
+       "title": "Born with a sense of God",
+       "text": "People are made recognising their Creator. That is why even those who deny Him call on Him in real danger.",
+       "refs": [
+        {
+         "quran": "30:30"
+        },
+        {
+         "quran": "29:65"
+        }
+       ]
+      },
+      {
+       "title": "Nothing makes itself",
+       "text": "Things do not come from nothing, and they did not create themselves. Both options are absurd, which leaves a Creator.",
+       "refs": [
+        {
+         "quran": "52:35-36"
+        }
+       ]
+      },
+      {
+       "title": "Order points to design",
+       "text": "Sun, moon, rain and plants run on fixed, precise laws. The Qur'an asks us again and again to look at them and think.",
+       "refs": [
+        {
+         "quran": "36:37-40"
+        },
+        {
+         "quran": "67:3-4"
+        }
+       ]
+      },
+      {
+       "title": "Revelation shows a wise Lawgiver",
+       "text": "No one has matched the Qur'an's challenge, and its laws are just and merciful. That points to Someone who knows us fully.",
+       "refs": [
+        {
+         "quran": "17:88"
+        },
+        {
+         "quran": "4:82"
+        }
+       ]
+      },
+      {
+       "title": "Purpose explains our existence",
+       "text": "We were made to know and worship Him, and life is a test. Only this gives real meaning to right, wrong and justice.",
+       "refs": [
+        {
+         "quran": "51:56"
+        },
+        {
+         "quran": "67:2"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 26745,
+      "title": "Existence of God: Any Evidence?"
+     }
+    },
+    {
+     "id": "why-suffering",
+     "q": "If God is good and all-powerful, why is there evil and suffering?",
+     "short": "Allah is perfectly wise, just and merciful, and we see only a small part of the picture. This life is a test with free choice, and suffering can cleanse, teach and be repaid in full in the Hereafter.",
+     "points": [
+      {
+       "title": "He is wise, we see little",
+       "text": "A surgeon's cut looks cruel to a child who does not know the reason. Allah's knowledge is complete and ours is not.",
+       "refs": [
+        {
+         "quran": "21:23"
+        },
+        {
+         "quran": "2:216"
+        }
+       ]
+      },
+      {
+       "title": "Free choice brings real evil",
+       "text": "Allah gave us the choice between good and evil. Much suffering comes from what people choose to do to each other.",
+       "refs": [
+        {
+         "quran": "42:30"
+        },
+        {
+         "quran": "90:10"
+        }
+       ]
+      },
+      {
+       "title": "This life is a test",
+       "text": "Hardship is part of the test, not the final result. Those who endure are rewarded.",
+       "refs": [
+        {
+         "quran": "67:2"
+        },
+        {
+         "quran": "2:155-156"
+        }
+       ]
+      },
+      {
+       "title": "Pain can cleanse",
+       "text": "The Prophet taught that no tiredness, illness or worry strikes a believer without Allah wiping away some of their sins by it.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 5641
+        }
+       ]
+      },
+      {
+       "title": "Justice is completed later",
+       "text": "No one is wronged for good. Every victim is repaid in the Hereafter, so suffering is never the last word.",
+       "refs": [
+        {
+         "quran": "4:40"
+        },
+        {
+         "quran": "39:10"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 2850,
+      "title": "Why Does Allah Allow Suffering?"
+     }
+    },
+    {
+     "id": "moon-god",
+     "q": "Isn't Allah just an old Arabian moon god?",
+     "short": "No. 'Allah' is simply the Arabic word for the one God. The Qur'an forbids worshipping the moon and sun, and the Arabs before Islam already knew Allah as the Creator above their idols.",
+     "points": [
+      {
+       "title": "The Qur'an forbids moon worship",
+       "text": "It says plainly: do not prostrate to the sun or the moon, but to Allah who created them.",
+       "refs": [
+        {
+         "quran": "41:37"
+        }
+       ]
+      },
+      {
+       "title": "Abraham rejected the sky gods",
+       "text": "Abraham looked at a star, the moon and the sun, and said none was his Lord, because they set.",
+       "refs": [
+        {
+         "quran": "6:76-78"
+        }
+       ]
+      },
+      {
+       "title": "Allah was known as Creator",
+       "text": "Pre-Islamic Arabs already said Allah made the heavens and earth. Their fault was worshipping others beside Him.",
+       "refs": [
+        {
+         "quran": "29:61"
+        },
+        {
+         "quran": "31:25"
+        }
+       ]
+      },
+      {
+       "title": "The Arabic word for God",
+       "text": "Arab Christians and Jews also say 'Allah' for God, including in Arabic Bibles. It is not the name of an idol.",
+       "note": "Arabic Bible translations, e.g. the Van Dyck Bible"
+      },
+      {
+       "title": "The moon only keeps time",
+       "text": "Islam uses the lunar calendar for dates only. No prayer, verse or law is directed to the moon.",
+       "refs": [
+        {
+         "quran": "2:189"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 1930,
+      "title": "Doubts of one who is interested in Islam"
+     }
+    },
+    {
+     "id": "hell-and-mercy",
+     "q": "How can a merciful God send people to Hell?",
+     "short": "Allah's mercy is vast, but mercy does not cancel justice. Hell is for those who knowingly reject the truth, and Allah wrongs no one.",
+     "points": [
+      {
+       "title": "His mercy covers everything",
+       "text": "In this life His mercy reaches everyone through food, air and health. His special mercy in the Hereafter is for believers.",
+       "refs": [
+        {
+         "quran": "7:156"
+        }
+       ]
+      },
+      {
+       "title": "Greater than a mother's",
+       "text": "The Prophet saw a mother hug her child and said Allah is more merciful to His servants than she is to her child.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 5999
+        }
+       ]
+      },
+      {
+       "title": "Justice requires a difference",
+       "text": "Treating those who did good and those who did great evil as equal would be unjust.",
+       "refs": [
+        {
+         "quran": "45:21"
+        },
+        {
+         "quran": "38:28"
+        },
+        {
+         "quran": "68:35-36"
+        }
+       ]
+      },
+      {
+       "title": "No punishment without a message",
+       "text": "Allah does not punish until a messenger has come. Judgment follows what reached a person and what they chose.",
+       "refs": [
+        {
+         "quran": "17:15"
+        },
+        {
+         "quran": "4:40"
+        }
+       ]
+      },
+      {
+       "title": "Rejection is a choice",
+       "text": "The people of Hell admit they were warned and turned away. They shut the door on themselves.",
+       "refs": [
+        {
+         "quran": "23:105-108"
+        },
+        {
+         "quran": "67:8-9"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 211871,
+      "title": "There is no contradiction between the fact that Allah is more merciful to His slaves than a mother to her child and the fact that the disbeliever will abide in Hell for eternity"
+     }
+    }
+   ]
+  },
+  {
+   "id": "jesus",
+   "title": "Jesus and Christianity",
+   "arabic": "عيسى",
+   "blurb": "What Islam says about Jesus, the Trinity and the crucifixion.",
+   "questions": [
+    {
+     "id": "muslims-and-jesus",
+     "q": "Do Muslims believe in Jesus?",
+     "short": "Yes. Believing in Jesus (Isa) is part of being Muslim. We honour him as one of the greatest messengers, born miraculously to the Virgin Mary, but we do not say he is God or God's son.",
+     "points": [
+      {
+       "title": "A mighty messenger",
+       "text": "Jesus was a servant and messenger of Allah, sent to the Children of Israel to call them to worship Allah alone. Denying him would take a person out of Islam.",
+       "refs": [
+        {
+         "quran": "3:45-49"
+        },
+        {
+         "quran": "43:59"
+        }
+       ]
+      },
+      {
+       "title": "Born miraculously to Mary",
+       "text": "Mary is the most honoured woman in the Qur'an, and Jesus was born with no father. Allah creates as He wills, as He did with Adam.",
+       "refs": [
+        {
+         "quran": "19:16-21"
+        },
+        {
+         "quran": "3:59"
+        }
+       ]
+      },
+      {
+       "title": "Miracles by Allah's leave",
+       "text": "He spoke as a baby, healed the blind and the leper and raised the dead, always \"by Allah's permission\". The miracles prove his mission, not divinity.",
+       "refs": [
+        {
+         "quran": "5:110"
+        },
+        {
+         "quran": "19:29-33"
+        }
+       ]
+      },
+      {
+       "title": "Raised up, will return",
+       "text": "Muslims believe Allah raised him alive, and he will return before the Last Day to rule justly and uphold pure monotheism.",
+       "refs": [
+        {
+         "quran": "4:157-158"
+        },
+        {
+         "quran": "43:61"
+        }
+       ],
+       "note": "Ibn Kathir on 4:159 and 43:61; the hadith of the descent of the son of Mary in Bukhari and Muslim"
+      },
+      {
+       "title": "He never claimed divinity",
+       "text": "On the Day of Resurrection Jesus will deny ever telling people to worship him and his mother. He also gave glad tidings of a messenger to come after him, named Ahmad.",
+       "refs": [
+        {
+         "quran": "5:116-117"
+        },
+        {
+         "quran": "61:6"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 43148,
+      "title": "Muslims' Belief About Jesus"
+     }
+    },
+    {
+     "id": "trinity",
+     "q": "Why don't Muslims accept the Trinity?",
+     "short": "Because Islam teaches that God is absolutely One, and the Trinity makes Jesus and the Holy Spirit divine alongside Him. The Qur'an rejects this and calls Jesus a messenger and a created human being.",
+     "points": [
+      {
+       "title": "The Qur'an names it to refute it",
+       "text": "It says those who claim God is 'the third of three' have disbelieved, and tells people to stop saying 'three'.",
+       "refs": [
+        {
+         "quran": "5:73"
+        },
+        {
+         "quran": "4:171"
+        }
+       ]
+      },
+      {
+       "title": "Jesus is a servant",
+       "text": "Jesus was a messenger whose mother was a truthful woman; both ate food. Someone who needs food is not God.",
+       "refs": [
+        {
+         "quran": "5:75"
+        },
+        {
+         "quran": "5:17"
+        }
+       ]
+      },
+      {
+       "title": "Jesus never taught it",
+       "text": "Jesus himself will disown any claim that he told people to worship him and his mother.",
+       "refs": [
+        {
+         "quran": "5:116-117"
+        },
+        {
+         "quran": "3:59"
+        }
+       ]
+      },
+      {
+       "title": "Not found in Islam's sources",
+       "text": "The word and idea are absent from the Qur'an and hadith. Muslim scholars say it was shaped by later church councils, not taught by Jesus.",
+       "note": "Ibn al-Qayyim, Hidayat al-Hayara; the 'We' of the Qur'an is a royal plural, not three persons"
+      },
+      {
+       "title": "God is One, plainly",
+       "text": "'Say: He is Allah, One... He begets not, nor is He begotten.' A God who needs no partner and no son is the clearest God.",
+       "refs": [
+        {
+         "quran": "112:1-4"
+        },
+        {
+         "quran": "19:88-93"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 12713,
+      "title": "Is the trinity that the Christians believe in mentioned in Islam?"
+     }
+    },
+    {
+     "id": "crucifixion",
+     "q": "Was Jesus crucified?",
+     "short": "No. Muslims believe Jesus was neither killed nor crucified: it was made to appear so, and Allah raised him up alive. We take this from the Qur'an, and the historical record of the event is thinner than people assume.",
+     "points": [
+      {
+       "title": "The Qur'an is explicit",
+       "text": "'They did not kill him, nor crucify him, but it was made to appear so to them.' Allah raised him up to Himself.",
+       "refs": [
+        {
+         "quran": "4:157-158"
+        }
+       ]
+      },
+      {
+       "title": "Why the belief arose",
+       "text": "Someone was made to resemble Jesus, so those who saw the event could honestly think it was him. Classical tafsir differs on who that was.",
+       "note": "Ibn Kathir and al-Tabari on 4:157"
+      },
+      {
+       "title": "Those who claim to know, only guess",
+       "text": "The same verse says those who differ about it are in doubt and follow only conjecture, with no certain knowledge.",
+       "refs": [
+        {
+         "quran": "4:157"
+        }
+       ]
+      },
+      {
+       "title": "Eyewitness record is thin",
+       "text": "The Gospels say the disciples fled and only some women watched from a distance. This supports the belief; it is not its basis.",
+       "note": "Gospel of Mark 14:50 and 15:40"
+      },
+      {
+       "title": "Allah protects His messengers",
+       "text": "Allah promised to save Jesus from his enemies, and Allah's plan prevails.",
+       "refs": [
+        {
+         "quran": "3:54-55"
+        },
+        {
+         "quran": "5:110"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 231057,
+      "title": "Don't the Christians have the right to believe in the crucifixion, as they saw it with their own eyes?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "prophet",
+   "title": "The Prophet ﷺ",
+   "arabic": "النبي",
+   "blurb": "Who Muhammad ﷺ was, and the accusations made against him.",
+   "questions": [
+    {
+     "id": "copied-bible",
+     "q": "Didn't Muhammad copy the Qur'an from the Bible?",
+     "short": "No. He could not read or write, no Arabic Bible existed in his lifetime, and no teacher is known who could have taught him. The Qur'an also corrects the Bible on key points, so it is not a copy.",
+     "points": [
+      {
+       "title": "He could not read",
+       "text": "He was unlettered, and the Qur'an told this to people who knew him all his life. Had it been false, they could easily have refuted it.",
+       "refs": [
+        {
+         "quran": "29:48"
+        },
+        {
+         "quran": "7:157"
+        },
+        {
+         "quran": "62:2"
+        }
+       ]
+      },
+      {
+       "title": "No Arabic Bible existed",
+       "text": "The oldest known Arabic Bible translation comes after his death. There was no Arabic text to copy from.",
+       "note": "Bruce Metzger on early Bible translations, cited in IslamQA 487612"
+      },
+      {
+       "title": "No teacher can be named",
+       "text": "Enemies said a man taught him, but the Qur'an answers that the man's tongue was foreign while the Qur'an is clear Arabic. Brief meetings with Bahira or Waraqah cannot account for a whole book.",
+       "refs": [
+        {
+         "quran": "16:103"
+        },
+        {
+         "quran": "25:4-5"
+        }
+       ]
+      },
+      {
+       "title": "It corrects the Bible",
+       "text": "The Qur'an disagrees with the Bible on points such as the crucifixion and the sins of prophets. A copyist would not correct his source; the Qur'an says it confirms and judges over earlier scripture.",
+       "refs": [
+        {
+         "quran": "4:157"
+        },
+        {
+         "quran": "5:48"
+        }
+       ]
+      },
+      {
+       "title": "Knowledge of the unseen",
+       "text": "After telling past stories, the Qur'an says he was not there and knew them only by revelation. Shared stories are what you expect if both come from the same God.",
+       "refs": [
+        {
+         "quran": "11:49"
+        },
+        {
+         "quran": "3:44"
+        },
+        {
+         "quran": "28:44-45"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 487612,
+      "title": "The claim that the Quran was plagiarized from the scriptures of the People of the Book"
+     }
+    },
+    {
+     "id": "aisha",
+     "q": "Why did the Prophet marry Aisha so young?",
+     "short": "Authentic reports say the marriage was contracted when Aisha was six and began at nine, which was normal in 7th-century Arabia. No one at the time, friend or enemy, objected, and she became one of the greatest scholars of the ummah.",
+     "points": [
+      {
+       "title": "The report is clear",
+       "text": "Bukhari and Muslim report she was six at the contract and nine when she joined him. Muslims accept this and do not soften it.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 5133
+        }
+       ]
+      },
+      {
+       "title": "Normal in that world",
+       "text": "Marriage at puberty was common in Arabia and elsewhere at the time. Not one enemy of the Prophet, who attacked him for everything, raised it.",
+       "note": "IslamQA 44990"
+      },
+      {
+       "title": "Desire does not explain it",
+       "text": "She was his only virgin wife, and all the others had been married before, several older than him. He was faithful to one older wife, Khadijah, for about 25 years.",
+       "note": "IslamQA 44990"
+      },
+      {
+       "title": "She carried his teaching",
+       "text": "Aisha lived about 48 years after him and narrated over 2,000 hadith. Senior companions came to her to settle questions of law.",
+       "note": "al-Dhahabi, Siyar A'lam al-Nubala, on Aisha"
+      },
+      {
+       "title": "Blessed by her family",
+       "text": "Her father Abu Bakr, his closest friend, welcomed the marriage. She later spoke of her life with him with love.",
+       "note": "IslamQA 44990"
+      }
+     ],
+     "islamqa": {
+      "number": 44990,
+      "title": "The reason why the Prophet (peace and blessings of Allah be upon him) married 'Aa'ishah despite the age difference"
+     }
+    },
+    {
+     "id": "many-wives",
+     "q": "Why did the Prophet have so many wives?",
+     "short": "He had one wife, Khadijah, until he was about 50, and most of his later wives were widows or divorcees. Each marriage had a purpose: care, alliances and teaching.",
+     "points": [
+      {
+       "title": "One wife until fifty",
+       "text": "He married Khadijah, an older widow, at 25 and took no other wife for about 25 years. A man led by desire does not live that way in his prime.",
+       "note": "Ibn Kathir, al-Bidayah wa'l-Nihayah; IslamQA 127066"
+      },
+      {
+       "title": "Mostly widows and divorcees",
+       "text": "Apart from Aisha, all his wives had been married before, and several were widows of men killed for Islam. Marriage gave them a home and dignity.",
+       "note": "IslamQA 127066"
+      },
+      {
+       "title": "Bonds between tribes",
+       "text": "Marriages to women of different clans, such as Juwayriyah and Safiyyah, ended feuds and built trust. Hostile tribes became relatives.",
+       "note": "Ibn Hisham, Sirah"
+      },
+      {
+       "title": "Teachers of his home life",
+       "text": "His wives taught the community what only they saw at home, including rulings for women. Aisha and Umm Salamah are the best-known examples.",
+       "note": "IslamQA 127066"
+      },
+      {
+       "title": "A ruling for him alone",
+       "text": "Believers are limited to four wives; the Qur'an gave the Prophet a specific exception, then forbade him from taking more.",
+       "refs": [
+        {
+         "quran": "4:3"
+        },
+        {
+         "quran": "33:50"
+        },
+        {
+         "quran": "33:52"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 127066,
+      "title": "The wisdom behind the Prophet's marrying more than four wives"
+     }
+    },
+    {
+     "id": "prophet-in-bible",
+     "q": "Is Muhammad mentioned in earlier scriptures?",
+     "short": "The Qur'an says he is described in the Torah and Gospel, and Muslims point to Deuteronomy 18:18 and John 14 to 16. Jews and Christians read these passages differently, so this is a Muslim reading, not a shared one.",
+     "points": [
+      {
+       "title": "The Qur'an makes the claim",
+       "text": "It says the unlettered Prophet is written of in the Torah and Gospel, and that Jesus announced a messenger named Ahmad.",
+       "refs": [
+        {
+         "quran": "7:157"
+        },
+        {
+         "quran": "61:6"
+        },
+        {
+         "quran": "26:196-197"
+        }
+       ]
+      },
+      {
+       "title": "A prophet like Moses",
+       "text": "Deuteronomy 18:18 promises a prophet like Moses from the 'brothers' of Israel. Muslims read the brothers as the Ishmaelites; like Moses, Muhammad brought a law and led a nation.",
+       "note": "IslamQA 44018; Christians usually read it as Jesus, Jews as Joshua or later prophets"
+      },
+      {
+       "title": "The one who comes after",
+       "text": "In John 14 to 16 Jesus promises one who will speak what he hears and guide to all truth. Muslims see Muhammad; Christians read it as the Holy Spirit.",
+       "note": "IslamQA 44018"
+      },
+      {
+       "title": "Paran and Makkah",
+       "text": "Deuteronomy 33:2 names Sinai, Seir and Paran, and Genesis 21:21 places Ishmael in the wilderness of Paran. Muslims read these as Moses, Jesus and Muhammad.",
+       "note": "IslamQA 44018"
+      },
+      {
+       "title": "Earlier texts were changed",
+       "text": "Muslims believe the Bible we have is not the original revelation, so the clearest wording may be lost. The Qur'an is the standard it is judged by.",
+       "refs": [
+        {
+         "quran": "2:146"
+        },
+        {
+         "quran": "5:48"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 44018,
+      "title": "Is the Prophet Muhammad (peace and blessings of Allaah be upon him) Mentioned in the Bible?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "quran",
+   "title": "The Qur'an",
+   "arabic": "القرآن",
+   "blurb": "Has it changed, does it contradict itself, and why believe it is from God?",
+   "questions": [
+    {
+     "id": "preserved",
+     "q": "Hasn't the Qur'an been changed over time, like other scriptures?",
+     "short": "No. God promised to guard the Qur'an, and history fits: it was written down in the Prophet's lifetime, gathered into one book within two years of his death, and checked against the memory of huge numbers of people.",
+     "points": [
+      {
+       "title": "God promised to guard it",
+       "text": "The Qur'an says God sent down the Reminder and He Himself will protect it. The history below is what you would expect if that promise is true.",
+       "refs": [
+        {
+         "quran": "15:9"
+        }
+       ]
+      },
+      {
+       "title": "Written in the Prophet's time",
+       "text": "Scribes wrote revelation down as it came, and companions memorised it from him. It was never a late collection of oral stories.",
+       "refs": [
+        {
+         "quran": "80:11-16"
+        }
+       ],
+       "note": "Ibn Kathir on 75:16-19"
+      },
+      {
+       "title": "Gathered by Abu Bakr",
+       "text": "After many reciters died at Yamama, Zayd ibn Thabit collected the whole text, accepting only what was written and confirmed by witnesses. It was a check, not a rewrite.",
+       "note": "Sahih al-Bukhari, Virtues of the Qur'an, the hadith of Zayd ibn Thabit"
+      },
+      {
+       "title": "Uthman's copies matched",
+       "text": "When recitation began to differ in new lands, Uthman had copies made from that collection and sent them out. Today's Qur'ans trace to these, and early manuscripts match them.",
+       "note": "Sahih al-Bukhari, Virtues of the Qur'an, the hadith of Hudhayfah"
+      },
+      {
+       "title": "The al-Hajjaj story fails",
+       "text": "The claim that al-Hajjaj changed eleven letters rests on a narrator scholars reject. No change could pass unseen with memorisers and copies in every land.",
+       "note": "IslamQA 23487"
+      }
+     ],
+     "islamqa": {
+      "number": 23487,
+      "title": "Claims that the Qur'aan has been distorted"
+     }
+    },
+    {
+     "id": "from-god",
+     "q": "Why should I believe the Qur'an is from God?",
+     "short": "The Qur'an challenged the best Arabic speakers of its day to produce even one chapter like it, and nobody has in 1,400 years. It also foretold Rome's comeback against Persia, which happened.",
+     "points": [
+      {
+       "title": "An open challenge",
+       "text": "The Qur'an dares doubters to bring ten chapters, then one, like it, with any help they wish. A forger would not stake everything on such a test.",
+       "refs": [
+        {
+         "quran": "2:23"
+        },
+        {
+         "quran": "11:13"
+        },
+        {
+         "quran": "17:88"
+        }
+       ]
+      },
+      {
+       "title": "Its own people could not answer",
+       "text": "The Arabs prized eloquence and had every motive to silence him. They chose war and boycott instead, and Musaylimah's attempt became a joke.",
+       "note": "Ibn Kathir on 2:23"
+      },
+      {
+       "title": "A prophecy that came true",
+       "text": "Surah al-Rum, revealed while Persia was crushing Rome, said Rome would win within a few years. It did.",
+       "refs": [
+        {
+         "quran": "30:1-4"
+        }
+       ],
+       "note": "Ibn Kathir on 30:1-4"
+      },
+      {
+       "title": "No contradiction found",
+       "text": "The Qur'an says a book from other than God would hold much contradiction. Revealed over 23 years in changing situations, it holds none.",
+       "refs": [
+        {
+         "quran": "4:82"
+        }
+       ]
+      },
+      {
+       "title": "A sign that lasts",
+       "text": "Earlier prophets brought signs seen once. The final message came with a sign anyone can still examine: the book itself.",
+       "refs": [
+        {
+         "quran": "29:50-51"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 245475,
+      "title": "Miraculous aspects of the Holy Qur'an"
+     }
+    },
+    {
+     "id": "science",
+     "q": "Does the Qur'an contain scientific mistakes?",
+     "short": "No error has been shown once the Arabic is read properly. The Qur'an is a book of guidance, not a science textbook, and most alleged mistakes come from a poor translation or a forced reading.",
+     "points": [
+      {
+       "title": "Name the verse first",
+       "text": "Ask which verse and which Arabic word. Many claimed errors vanish once the word's range of meaning is checked in classical dictionaries and tafsir.",
+       "note": "Classical tafsir such as Ibn Kathir and al-Tabari"
+      },
+      {
+       "title": "A book of guidance",
+       "text": "It speaks of the sky, earth and human creation to point to God, not to teach physics. Its plain language serves every age.",
+       "refs": [
+        {
+         "quran": "38:29"
+        },
+        {
+         "quran": "16:89"
+        }
+       ]
+      },
+      {
+       "title": "It invites investigation",
+       "text": "It tells people again and again to study the universe and themselves, promising the signs will become clear. It does not fear inquiry.",
+       "refs": [
+        {
+         "quran": "41:53"
+        },
+        {
+         "quran": "3:190-191"
+        }
+       ]
+      },
+      {
+       "title": "Facts, not passing theories",
+       "text": "Established facts are weighed against the text, but a changing theory should not overrule it. Clear revelation and sound reason do not truly conflict.",
+       "note": "Ibn Taymiyyah, Dar' Ta'arud al-'Aql wa'l-Naql"
+      },
+      {
+       "title": "Test one example",
+       "text": "The verse that sun and moon each glide in an orbit uses a word for moving through space, which fits modern astronomy.",
+       "refs": [
+        {
+         "quran": "36:40"
+        },
+        {
+         "quran": "21:33"
+        }
+       ]
+      }
+     ],
+     "islamqa": null
+    }
+   ]
+  },
+  {
+   "id": "peace",
+   "title": "Violence and Jihad",
+   "arabic": "الجهاد",
+   "blurb": "Was Islam spread by the sword, and what does jihad mean?",
+   "questions": [
+    {
+     "id": "spread-by-sword",
+     "q": "Wasn't Islam spread by the sword?",
+     "short": "No. Armies did expand Muslim rule, but the Qur'an forbids forcing belief, and most people came to Islam over generations through trade, teaching and example. Most Muslims today live where no Muslim army ever went.",
+     "points": [
+      {
+       "title": "Belief cannot be forced",
+       "text": "There is no compulsion in religion; the Prophet's job was to convey, not to control hearts.",
+       "refs": [
+        {
+         "quran": "2:256"
+        },
+        {
+         "quran": "10:99"
+        },
+        {
+         "quran": "88:21-22"
+        }
+       ]
+      },
+      {
+       "title": "Conquest is not conversion",
+       "text": "Jews and Christians kept their faith under Muslim rule for centuries, paying a tax in place of military service. That is impossible if conversion was forced.",
+       "refs": [
+        {
+         "quran": "9:29"
+        }
+       ],
+       "note": "Christian and Jewish communities of Egypt, Syria and Iraq to this day"
+      },
+      {
+       "title": "Fighting had set reasons",
+       "text": "Fighting was permitted against those who attacked or expelled Muslims or blocked the message by force, never for disagreeing.",
+       "refs": [
+        {
+         "quran": "22:39-40"
+        },
+        {
+         "quran": "2:190"
+        },
+        {
+         "quran": "60:8"
+        }
+       ],
+       "note": "Ibn Kathir on 22:39"
+      },
+      {
+       "title": "Most were never conquered",
+       "text": "Indonesia, Malaysia and much of Africa accepted Islam through merchants and teachers. No army arrived.",
+       "refs": [
+        {
+         "quran": "16:125"
+        }
+       ],
+       "note": "Richard Bulliet, Conversion to Islam in the Medieval Period"
+      },
+      {
+       "title": "Invitation first, always",
+       "text": "Commanders had to invite people and offer terms before fighting, and spare women and children. Scholars who say the sword removed obstacles still held that no one is made to believe.",
+       "refs": [
+        {
+         "hadith": "muslim",
+         "number": 1731
+        },
+        {
+         "hadith": "bukhari",
+         "number": 3015
+        }
+       ],
+       "note": "IslamQA 43087"
+      }
+     ],
+     "islamqa": {
+      "number": 43087,
+      "title": "Was Islam spread by the sword?"
+     }
+    },
+    {
+     "id": "jihad-meaning",
+     "q": "Doesn't jihad mean holy war against non-Muslims?",
+     "short": "No. Jihad means striving, and most of it is peaceful: against your own desires, with words, with wealth. Armed fighting is one form, bound by strict rules, and never a licence to attack people for not being Muslim.",
+     "points": [
+      {
+       "title": "It means striving",
+       "text": "The word comes from juhd, effort. The Qur'an uses it for doing good, patience and defending the faith.",
+       "refs": [
+        {
+         "quran": "29:6"
+        },
+        {
+         "quran": "22:78"
+        },
+        {
+         "quran": "49:15"
+        }
+       ]
+      },
+      {
+       "title": "Peaceful jihad came first",
+       "text": "In Makkah, before any fighting, God told the Prophet to strive with the Qur'an: a great striving by argument and patience.",
+       "refs": [
+        {
+         "quran": "25:52"
+        }
+       ],
+       "note": "Ibn Kathir on 25:52"
+      },
+      {
+       "title": "Many forms, not one",
+       "text": "Scholars list jihad against the self, against Shaytan, with words and with wealth, as well as fighting.",
+       "refs": [
+        {
+         "hadith": "abudawud",
+         "number": 2504
+        }
+       ],
+       "note": "Ibn al-Qayyim, Zad al-Ma'ad"
+      },
+      {
+       "title": "Fighting has strict limits",
+       "text": "Armed jihad is a communal duty under legitimate authority, only against those who fight. Killing women, children and non-combatants is forbidden.",
+       "refs": [
+        {
+         "quran": "2:190"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 3015
+        }
+       ]
+      },
+      {
+       "title": "Not war on all unbelievers",
+       "text": "God does not forbid kindness and fairness to peaceful non-Muslims.",
+       "refs": [
+        {
+         "quran": "60:8"
+        },
+        {
+         "quran": "8:61"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 20214,
+      "title": "Ruling on jihad and kinds of jihad"
+     }
+    },
+    {
+     "id": "sword-verse",
+     "q": "Doesn't the Qur'an say 'kill the unbelievers wherever you find them'?",
+     "short": "That verse (9:5) is about the Arabian polytheists who broke their treaties and attacked the Muslims, not non-Muslims in general. The same passage spares those who kept treaties and protects anyone who asks for safety.",
+     "points": [
+      {
+       "title": "Read the verses around it",
+       "text": "9:4 exempts those who kept their treaties, and 9:13 names the target: those who broke oaths, tried to expel the Prophet and attacked first.",
+       "refs": [
+        {
+         "quran": "9:4"
+        },
+        {
+         "quran": "9:5"
+        },
+        {
+         "quran": "9:13"
+        }
+       ],
+       "note": "al-Tabari and Ibn Kathir on 9:5"
+      },
+      {
+       "title": "Asylum is commanded",
+       "text": "If any polytheist asks for protection, grant it, let him hear the Qur'an, then escort him to safety.",
+       "refs": [
+        {
+         "quran": "9:6"
+        }
+       ]
+      },
+      {
+       "title": "No compulsion still stands",
+       "text": "9:5 is a wartime ruling about one enemy; it does not cancel 'no compulsion in religion'.",
+       "refs": [
+        {
+         "quran": "2:256"
+        }
+       ],
+       "note": "IslamQA 165408"
+      },
+      {
+       "title": "Fight back, don't start",
+       "text": "Fight only those who fight you, and do not go beyond the limit.",
+       "refs": [
+        {
+         "quran": "2:190"
+        },
+        {
+         "quran": "2:194"
+        }
+       ]
+      },
+      {
+       "title": "Peace answers peace",
+       "text": "If the enemy leans to peace, accept it. Peaceful non-Muslims are owed justice and kindness.",
+       "refs": [
+        {
+         "quran": "8:61"
+        },
+        {
+         "quran": "60:8"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 165408,
+      "title": "Specious argument from a Christian who claims that there are verses in the Qur'an which contradict the verse {There shall be no compulsion in [acceptance of] the religion} [al-Baqarah 2:256]"
+     }
+    },
+    {
+     "id": "terrorism",
+     "q": "Why do Muslims commit terrorism?",
+     "short": "Islam forbids killing innocents, and scholars across the schools call attacks on civilians a major sin. Anyone who does it is breaking the religion, not following it.",
+     "points": [
+      {
+       "title": "One life is all humanity",
+       "text": "Killing one innocent person is like killing all people; saving one is like saving all.",
+       "refs": [
+        {
+         "quran": "5:32"
+        },
+        {
+         "quran": "6:151"
+        }
+       ]
+      },
+      {
+       "title": "Civilians are protected",
+       "text": "The Prophet forbade killing women and children in war, and said whoever kills a non-Muslim under a treaty will not smell Paradise.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 3015
+        },
+        {
+         "hadith": "bukhari",
+         "number": 3166
+        }
+       ]
+      },
+      {
+       "title": "Even scaring is forbidden",
+       "text": "A Muslim may not frighten another even as a joke. Terror against innocents is far worse.",
+       "refs": [
+        {
+         "hadith": "abudawud",
+         "number": 5004
+        }
+       ]
+      },
+      {
+       "title": "Spreading terror is punished",
+       "text": "The Qur'an sets its harshest penalty for those who wage war on society and spread corruption.",
+       "refs": [
+        {
+         "quran": "5:33"
+        }
+       ],
+       "note": "Ibn Kathir on 5:33; the Amman Message (2004)"
+      },
+      {
+       "title": "Crimes are personal",
+       "text": "A Muslim's crime is his own, not his religion's. Most victims of groups like ISIS have been Muslims.",
+       "refs": [
+        {
+         "quran": "6:164"
+        }
+       ],
+       "note": "Global Terrorism Index"
+      }
+     ],
+     "islamqa": {
+      "number": 117724,
+      "title": "Definition of terrorism and what it means in Islam and in the West"
+     }
+    },
+    {
+     "id": "apostasy",
+     "q": "Is it true that Muslims who leave Islam are killed?",
+     "short": "In the classical ruling of all four Sunni schools, a Muslim who knowingly and freely leaves Islam may be executed, but only by a court and only after repentance is offered. Some modern scholars limit it to apostasy joined with treason.",
+     "points": [
+      {
+       "title": "The classical ruling",
+       "text": "The hadith says 'Whoever changes his religion, kill him', and the four schools took it as a state penalty.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 6922
+        },
+        {
+         "hadith": "muslim",
+         "number": 1676
+        }
+       ]
+      },
+      {
+       "title": "Repentance offered first",
+       "text": "The person is asked to repent, often over three days, and helped with doubts before any penalty.",
+       "note": "Ibn Qudamah, al-Mughni; IslamQA 14231"
+      },
+      {
+       "title": "Only a court, not individuals",
+       "text": "Penalties belong to the judge and the state. A private person who kills for this commits murder.",
+       "note": "The fiqh manuals on who carries out hudud"
+      },
+      {
+       "title": "The Qur'an names no worldly penalty",
+       "text": "It condemns leaving Islam and warns of the Hereafter, but sets no punishment in this life.",
+       "refs": [
+        {
+         "quran": "2:217"
+        },
+        {
+         "quran": "3:90"
+        }
+       ]
+      },
+      {
+       "title": "A political side is debated",
+       "text": "The hadith describes one who leaves the community. Scholars like al-Qaradawi therefore apply it only to apostasy that attacks the community.",
+       "refs": [
+        {
+         "hadith": "muslim",
+         "number": 1676
+        }
+       ],
+       "note": "Yusuf al-Qaradawi; a minority view in classical fiqh"
+      }
+     ],
+     "islamqa": {
+      "number": 14231,
+      "title": "Punishment for Apostasy in Islam"
+     }
+    }
+   ]
+  },
+  {
+   "id": "women",
+   "title": "Women in Islam",
+   "arabic": "المرأة",
+   "blurb": "Equality, hijab, inheritance, and the verses people quote.",
+   "questions": [
+    {
+     "id": "oppressed",
+     "q": "Doesn't Islam oppress women?",
+     "short": "No. Islam gave women the right to own property, inherit, trade and learn 1,400 years ago, and ranks mothers first in honour. Where women are mistreated today, people are failing Islam, not following it.",
+     "points": [
+      {
+       "title": "Equal before God",
+       "text": "Men and women are addressed equally in faith, worship and reward. Each is judged on their own deeds.",
+       "refs": [
+        {
+         "quran": "33:35"
+        },
+        {
+         "quran": "16:97"
+        },
+        {
+         "quran": "3:195"
+        }
+       ]
+      },
+      {
+       "title": "Mothers ranked highest",
+       "text": "Kindness to parents is tied to worship of God. The Prophet named the mother three times before the father, and said Paradise is at her feet.",
+       "refs": [
+        {
+         "quran": "17:23-24"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 5971
+        },
+        {
+         "hadith": "ibnmajah",
+         "number": 2781
+        }
+       ]
+      },
+      {
+       "title": "Rights as wives",
+       "text": "Wives have rights like their duties, and the marriage gift is hers alone. The Prophet said the best of you are the best to their wives.",
+       "refs": [
+        {
+         "quran": "2:228"
+        },
+        {
+         "quran": "4:4"
+        },
+        {
+         "hadith": "tirmidhi",
+         "number": 3895
+        }
+       ]
+      },
+      {
+       "title": "Her own wealth",
+       "text": "A woman owns, earns, trades and inherits in her own name. No husband or father may take it without her consent.",
+       "refs": [
+        {
+         "quran": "4:7"
+        },
+        {
+         "quran": "4:32"
+        }
+       ]
+      },
+      {
+       "title": "Daughters are a blessing",
+       "text": "Islam ended the burying of baby girls. The Prophet promised closeness to him for whoever raises daughters well.",
+       "refs": [
+        {
+         "quran": "81:8-9"
+        },
+        {
+         "quran": "16:58-59"
+        },
+        {
+         "hadith": "muslim",
+         "number": 2631
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 70042,
+      "title": "Women's Rights in Islam"
+     }
+    },
+    {
+     "id": "hijab",
+     "q": "Why do Muslim women have to cover?",
+     "short": "A Muslim woman covers first because God commanded it, as obedience and modesty. The Qur'an gives the wisdom: she is recognised as dignified and protected from harassment, and men are commanded to be modest first.",
+     "points": [
+      {
+       "title": "A command from God",
+       "text": "The Qur'an tells believing women to draw their head covers over their chests. A believer obeys out of trust, even before seeing every reason.",
+       "refs": [
+        {
+         "quran": "24:31"
+        },
+        {
+         "quran": "33:36"
+        }
+       ]
+      },
+      {
+       "title": "Dignity and protection",
+       "text": "Covering makes women known as respectable, so they are not harassed.",
+       "refs": [
+        {
+         "quran": "33:59"
+        }
+       ]
+      },
+      {
+       "title": "Men are commanded first",
+       "text": "The verse telling men to lower their gaze and guard their modesty comes right before the one for women. The duty is shared.",
+       "refs": [
+        {
+         "quran": "24:30"
+        }
+       ]
+      },
+      {
+       "title": "Worship, not force",
+       "text": "It counts as worship when done willingly, and millions wear it by conviction. Obedience comes first, understanding the wisdom second.",
+       "refs": [
+        {
+         "quran": "2:256"
+        }
+       ],
+       "note": "IslamQA 6244"
+      }
+     ],
+     "islamqa": {
+      "number": 6244,
+      "title": "Why Do Women Cover Their Hair?"
+     }
+    },
+    {
+     "id": "inheritance",
+     "q": "Why does a woman inherit half of what a man does?",
+     "short": "In some cases a woman gets half a brother's share, because only the man must pay for the family. She spends on no one and keeps all she has, so she is not worse off. Other shares are equal, and some favour her.",
+     "points": [
+      {
+       "title": "A fixed ruling",
+       "text": "God set the shares in the Qur'an, including a son receiving two daughters' shares. It is not a claim that women are worth half.",
+       "refs": [
+        {
+         "quran": "4:11"
+        }
+       ]
+      },
+      {
+       "title": "Not always half",
+       "text": "Mother and father each get one sixth when there is a child, and siblings through the mother share equally.",
+       "refs": [
+        {
+         "quran": "4:11"
+        },
+        {
+         "quran": "4:12"
+        }
+       ]
+      },
+      {
+       "title": "Men carry the costs",
+       "text": "The husband pays the marriage gift, housing and upkeep, and supports relatives. That duty is the reason for the larger share.",
+       "refs": [
+        {
+         "quran": "4:34"
+        },
+        {
+         "quran": "4:4"
+        }
+       ]
+      },
+      {
+       "title": "Her money is hers",
+       "text": "A wife has no duty to spend on the household, even if she is rich. Anything she gives is voluntary and rewarded.",
+       "refs": [
+        {
+         "quran": "4:32"
+        }
+       ],
+       "note": "IslamQA 14357"
+      },
+      {
+       "title": "Compare the result",
+       "text": "Her share is kept entirely for herself, while his is largely spent on others.",
+       "note": "IslamQA 14357"
+      }
+     ],
+     "islamqa": {
+      "number": 14357,
+      "title": "Women's Inheritance Share Unchanged by Household Spending"
+     }
+    },
+    {
+     "id": "four-thirty-four",
+     "q": "Doesn't 4:34 allow husbands to beat their wives?",
+     "short": "The verse deals with a wife's serious misconduct, in steps: advise, then separate beds, and at most a light tap that leaves no pain or mark, which scholars say is better left. The rule of marriage is kindness, and the Prophet never struck a woman.",
+     "points": [
+      {
+       "title": "Kindness is the rule",
+       "text": "Live with wives honourably; the best of you are the best to their wives.",
+       "refs": [
+        {
+         "quran": "4:19"
+        },
+        {
+         "quran": "2:228"
+        },
+        {
+         "hadith": "tirmidhi",
+         "number": 3895
+        }
+       ]
+      },
+      {
+       "title": "Steps, for serious wrong",
+       "text": "The verse starts with advice, then leaving the bed. It is for serious misconduct, not everyday quarrels.",
+       "refs": [
+        {
+         "quran": "4:34"
+        }
+       ],
+       "note": "Ibn Kathir on 4:34"
+      },
+      {
+       "title": "No harm allowed",
+       "text": "In his farewell sermon the Prophet allowed only a strike that is 'not severe'. Ibn Abbas said: like with a toothstick, causing no pain or injury.",
+       "refs": [
+        {
+         "hadith": "muslim",
+         "number": 1218
+        }
+       ],
+       "note": "al-Tabari on 4:34; IslamQA 41199"
+      },
+      {
+       "title": "The Prophet's own example",
+       "text": "Aisha said he never struck a woman or a servant. Al-Shafi'i said leaving it is better.",
+       "refs": [
+        {
+         "hadith": "muslim",
+         "number": 2328
+        }
+       ]
+      },
+      {
+       "title": "Other ways out",
+       "text": "If the marriage is failing, family arbitrators step in, and a wife may seek divorce or a judge's help.",
+       "refs": [
+        {
+         "quran": "4:35"
+        },
+        {
+         "quran": "4:128"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 41199,
+      "title": "Beating Wife in Islam"
+     }
+    },
+    {
+     "id": "polygamy",
+     "q": "Why can a Muslim man have four wives?",
+     "short": "It is permitted, not required, and only with justice. The Qur'an capped it at four when Arabia had no limit, and says marry one if you fear being unfair.",
+     "points": [
+      {
+       "title": "Limited, not invented",
+       "text": "Before Islam men took any number of wives. The Qur'an capped it at four and tied it to justice.",
+       "refs": [
+        {
+         "quran": "4:3"
+        }
+       ],
+       "note": "Ibn Kathir on 4:3"
+      },
+      {
+       "title": "Justice is the condition",
+       "text": "If a man fears he cannot be fair, he must marry one. He must never neglect a wife by leaning wholly to another.",
+       "refs": [
+        {
+         "quran": "4:3"
+        },
+        {
+         "quran": "4:129"
+        }
+       ]
+      },
+      {
+       "title": "It cared for widows",
+       "text": "The verse came after many men died at Uhud, leaving widows and orphans. Marriage gave them a home and provision.",
+       "note": "al-Tabari and Ibn Kathir on 4:3"
+      },
+      {
+       "title": "Women keep their rights",
+       "text": "A woman may refuse such a marriage, and in the Hanbali school she can make monogamy a condition of her contract. Each wife keeps her own home, upkeep and gift.",
+       "refs": [
+        {
+         "quran": "4:4"
+        }
+       ],
+       "note": "Ibn Qudamah, al-Mughni"
+      },
+      {
+       "title": "Trust the ruling",
+       "text": "A believer accepts God's ruling even where it is hard, since good may lie in what we dislike.",
+       "refs": [
+        {
+         "quran": "2:216"
+        }
+       ],
+       "note": "IslamQA 372570"
+      }
+     ],
+     "islamqa": {
+      "number": 372570,
+      "title": "Why Allah Permits Polygamy Even Though It Hurts the Wife's Feelings"
+     }
+    }
+   ]
+  },
+  {
+   "id": "life",
+   "title": "Belief and Practice",
+   "arabic": "الدين",
+   "blurb": "Why so many rules, and what about good people of other faiths?",
+   "questions": [
+    {
+     "id": "good-people",
+     "q": "Do good people of other religions go to Hell?",
+     "short": "Someone who clearly hears Islam and rejects it is not saved by good deeds alone, because faith in God is the condition for reward in the Hereafter. Someone the message never truly reached is tested on the Day of Judgment, and God is perfectly just.",
+     "points": [
+      {
+       "title": "Faith is the condition",
+       "text": "Paradise is forbidden to whoever worships others beside God, and no religion but Islam is accepted. Good character is real, but it does not replace knowing your Maker.",
+       "refs": [
+        {
+         "quran": "5:72"
+        },
+        {
+         "quran": "3:85"
+        }
+       ]
+      },
+      {
+       "title": "Deeds need a foundation",
+       "text": "Deeds done while denying God become scattered dust in the Hereafter; they are repaid in this world.",
+       "refs": [
+        {
+         "quran": "25:23"
+        }
+       ],
+       "note": "Ibn Kathir on 25:23"
+      },
+      {
+       "title": "The Prophet's example",
+       "text": "Aisha asked about Ibn Jud'an, who fed the poor before Islam. The Prophet said it would not help him, because he never once asked God to forgive him.",
+       "refs": [
+        {
+         "hadith": "muslim",
+         "number": 214
+        }
+       ]
+      },
+      {
+       "title": "No punishment without a message",
+       "text": "God never punishes until a messenger has come. Whoever the message never truly reached is tested on the Day of Judgment.",
+       "refs": [
+        {
+         "quran": "17:15"
+        }
+       ],
+       "note": "Ibn Kathir on 17:15"
+      },
+      {
+       "title": "Judged by a just God",
+       "text": "Only God knows who was truly reached and who rejected out of stubbornness. Muslims do not name individuals as being in Hell.",
+       "refs": [
+        {
+         "quran": "4:40"
+        },
+        {
+         "quran": "18:49"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 6667,
+      "title": "Will good deeds avail a person anything if he dies as a kaafir?"
+     }
+    },
+    {
+     "id": "arab-religion",
+     "q": "Isn't Islam just a religion for Arabs?",
+     "short": "No. The Qur'an addresses all humanity, and the Prophet taught that an Arab has no superiority over a non-Arab except through taqwa. Most Muslims today are not Arabs.",
+     "points": [
+      {
+       "title": "Sent to all mankind",
+       "text": "The Prophet was sent as a mercy to the worlds and to all people, not to one tribe.",
+       "refs": [
+        {
+         "quran": "21:107"
+        },
+        {
+         "quran": "34:28"
+        },
+        {
+         "quran": "7:158"
+        }
+       ]
+      },
+      {
+       "title": "Worth is piety",
+       "text": "God made nations and tribes so they would know one another, and the noblest is the most righteous.",
+       "refs": [
+        {
+         "quran": "49:13"
+        },
+        {
+         "quran": "30:22"
+        }
+       ]
+      },
+      {
+       "title": "The Prophet said so",
+       "text": "In his farewell sermon: an Arab has no superiority over a non-Arab, nor a non-Arab over an Arab, except by taqwa.",
+       "note": "Musnad Ahmad, the farewell sermon; IslamQA 182686"
+      },
+      {
+       "title": "Non-Arab companions honoured",
+       "text": "Salman was Persian, Bilal Ethiopian and Suhayb from Byzantium, all close to the Prophet.",
+       "note": "Ibn Hajar, al-Isabah"
+      },
+      {
+       "title": "Faith went beyond Arabia",
+       "text": "The Prophet said if faith were at the Pleiades, men from Persia would reach it. Bukhari, Muslim and Abu Hanifa were all non-Arabs.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 4897
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 182686,
+      "title": "Is the Arab Muslim better than the non-Arab Muslim?"
+     }
+    },
+    {
+     "id": "why-pray",
+     "q": "Why do Muslims pray five times a day? Isn't that excessive?",
+     "short": "Prayer is the believer's direct meeting with God, and He commanded it five times a day. It takes under an hour in total, and it keeps God present through the whole day.",
+     "points": [
+      {
+       "title": "Made to worship",
+       "text": "God created humans to worship Him and commanded prayer to remember Him. He knows what our hearts need.",
+       "refs": [
+        {
+         "quran": "51:56"
+        },
+        {
+         "quran": "20:14"
+        }
+       ]
+      },
+      {
+       "title": "A reminder through the day",
+       "text": "Prayer keeps a person from indecency and wrongdoing. Spread through the day, it stops forgetfulness building up.",
+       "refs": [
+        {
+         "quran": "29:45"
+        },
+        {
+         "quran": "11:114"
+        }
+       ]
+      },
+      {
+       "title": "Short and light",
+       "text": "Each prayer takes a few minutes, and the sick and travellers have concessions.",
+       "refs": [
+        {
+         "quran": "4:101-103"
+        },
+        {
+         "quran": "2:185"
+        }
+       ]
+      },
+      {
+       "title": "Fifty became five",
+       "text": "On the Night Journey fifty prayers were given and reduced to five, with the reward of fifty. Mercy, not burden.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 349
+        }
+       ]
+      },
+      {
+       "title": "Some rulings are pure worship",
+       "text": "Some rulings show their reason. The exact number of prayers is accepted from God, like trusting a doctor's prescription without demanding the chemistry.",
+       "refs": [
+        {
+         "quran": "21:23"
+        }
+       ],
+       "note": "IslamQA 9603"
+      }
+     ],
+     "islamqa": {
+      "number": 9603,
+      "title": "Why Do Muslims Pray 5 Times a Day?"
+     }
+    },
+    {
+     "id": "pork",
+     "q": "Why is pork forbidden?",
+     "short": "Pork is forbidden because God forbade it, and the Qur'an calls it impure. Health harms are a real supporting reason, but Muslims obey the command first.",
+     "points": [
+      {
+       "title": "An explicit command",
+       "text": "The Qur'an forbids the flesh of swine in four separate places.",
+       "refs": [
+        {
+         "quran": "2:173"
+        },
+        {
+         "quran": "5:3"
+        },
+        {
+         "quran": "6:145"
+        },
+        {
+         "quran": "16:115"
+        }
+       ]
+      },
+      {
+       "title": "Called impure",
+       "text": "God describes it as rijs, filthy and unfit, and the Prophet forbade even selling swine.",
+       "refs": [
+        {
+         "quran": "6:145"
+        },
+        {
+         "hadith": "bukhari",
+         "number": 2236
+        }
+       ]
+      },
+      {
+       "title": "Good allowed, harmful forbidden",
+       "text": "The Prophet makes lawful what is good and forbids what is bad; pork is in the second group.",
+       "refs": [
+        {
+         "quran": "7:157"
+        }
+       ]
+      },
+      {
+       "title": "Health reasons exist",
+       "text": "Pigs carry parasites such as tapeworm and trichinella. A supporting point, not the basis.",
+       "note": "IslamQA 49688"
+      },
+      {
+       "title": "Obedience, with mercy",
+       "text": "When God decides a matter, a believer submits. In real necessity, eating it is not a sin.",
+       "refs": [
+        {
+         "quran": "33:36"
+        },
+        {
+         "quran": "2:173"
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 49688,
+      "title": "Why Is Pork Haram?"
+     }
+    },
+    {
+     "id": "slavery",
+     "q": "Didn't Islam allow slavery?",
+     "short": "Islam permitted slavery where it already existed everywhere, but never commanded it. It closed nearly every source, gave slaves rights, and made freeing them one of the most rewarded acts.",
+     "points": [
+      {
+       "title": "Every source but war closed",
+       "text": "Debt, kidnapping and poverty no longer made anyone a slave; only war captives remained. The Prophet said God is the enemy of whoever sells a free person.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 2227
+        }
+       ]
+      },
+      {
+       "title": "Freeing is urged",
+       "text": "Freeing a slave is the steep path to righteousness, and the penalty for many sins.",
+       "refs": [
+        {
+         "quran": "90:11-13"
+        },
+        {
+         "quran": "4:92"
+        },
+        {
+         "quran": "58:3"
+        },
+        {
+         "quran": "5:89"
+        }
+       ]
+      },
+      {
+       "title": "Captives freed",
+       "text": "Prisoners of war are released as a favour or for ransom. No verse commands enslaving anyone.",
+       "refs": [
+        {
+         "quran": "47:4"
+        }
+       ]
+      },
+      {
+       "title": "Paths to freedom",
+       "text": "A slave could contract to buy freedom and the master must help; zakah funds free slaves.",
+       "refs": [
+        {
+         "quran": "24:33"
+        },
+        {
+         "quran": "9:60"
+        }
+       ]
+      },
+      {
+       "title": "Rights and dignity",
+       "text": "Slaves are your brothers: feed them what you eat, clothe them as you dress. Bilal, freed, became the first caller to prayer.",
+       "refs": [
+        {
+         "hadith": "bukhari",
+         "number": 30
+        }
+       ]
+      }
+     ],
+     "islamqa": {
+      "number": 94840,
+      "title": "Slavery in Islam"
+     }
+    }
+   ]
+  }
+ ]
+}

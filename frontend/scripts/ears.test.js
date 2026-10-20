@@ -7,7 +7,7 @@
  * have seen: words called wrong, words called missed, words invented. The
  * number, not an impression, is what picks the engine.
  *
- *   RECITATION_GROQ_API_KEY=... RECITATION_DEEPGRAM_API_KEY=... npx vitest run scripts/ears.test.js
+ *   LISTENING_GROQ_API_KEYS=... RECITATION_DEEPGRAM_API_KEY=... npx vitest run scripts/ears.test.js
  *
  * A local engine can be added to the same run: EARS_LOCAL_URL points at a
  * running backend's /api/listen (e.g. http://127.0.0.1:8011/api/listen) and
@@ -15,7 +15,7 @@
  * cached readings instead of overwriting each other's.
  *
  * That is also how to judge an ear whose key lives in .env and should stay
- * there: start the backend with RECITATION_EARS naming one engine (hosted,
+ * there: start the backend with LISTENING_EARS naming one engine (hosted,
  * letters or here), point EARS_LOCAL_URL at it, and the backend reads its own
  * key through its own env module. One pass per engine, each named.
  *
@@ -44,7 +44,8 @@ const REPORT = new URL('./ears-report.txt', import.meta.url)
 const kept = existsSync(HEARD) ? JSON.parse(readFileSync(HEARD, 'utf8')) : {}
 const heardOf = (entry) => (typeof entry === 'string' ? entry : entry?.text)
 
-const GROQ = process.env.RECITATION_GROQ_API_KEY
+// The first listening key: one account is enough to benchmark.
+const GROQ = process.env.LISTENING_GROQ_API_KEYS?.split(',')[0]?.trim()
 const DEEPGRAM = process.env.RECITATION_DEEPGRAM_API_KEY
 const LOCAL_URL = process.env.EARS_LOCAL_URL
 const LOCAL_NAME = process.env.EARS_LOCAL_NAME

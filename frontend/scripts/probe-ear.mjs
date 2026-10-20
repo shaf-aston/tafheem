@@ -6,7 +6,7 @@
  *   EAR=http://127.0.0.1:8011 node scripts/probe-ear.mjs
  *
  * Knobs, all by environment:
- *   EAR    the backend to hear it; 8011 started with RECITATION_HOSTED=false
+ *   EAR    the backend to hear it; 8011 started with LISTENING_HOSTED=false
  *          proves the local ear, 8000 proves the app as configured
  *   CLIPS  everyayah clip numbers, comma separated; default is 1:5 to 1:7,
  *          which also proves the page finds its own start. 001001,...,001007
@@ -23,6 +23,9 @@
  *          the words before it must then be neither said nor accused
  *   DUMP   a directory; every recording the page sends is saved there as webm,
  *          which is how a lost word is traced to the page or to the ear
+ *   PER_MINUTE  what /api/health tells the page about its allowance, e.g. 40 to
+ *          feel two keys on one. Keep the run under a minute of asking (CLIPS
+ *          001001 to 001004) or the one real account refuses and it measures that
  *
  * The mp3s must be under public/_recite/ while it runs; they never belong in
  * the repo. Reciting is patient about silence, so Stop is pressed here once
@@ -46,6 +49,7 @@ const LEVEL = process.env.LEVEL ?? 'standard'
 const viewport = process.env.VIEW === 'phone' ? { width: 390, height: 844 } : { width: 1280, height: 1000 }
 // The first word of the first clip, as the page counts words: 1:1 to 1:4 is 15 words.
 const FIRST = { '001001': 0, '001002': 4, '001003': 8, '001004': 10, '001005': 13, '001006': 17, '001007': 20 }
+const WORD_ENDS = JSON.parse(readFileSync(new URL('./fatihah-word-ends.json', import.meta.url), 'utf8'))
 const START = FIRST[JUMP ?? CLIPS[0]] ?? 0
 const AYAH = Number((JUMP ?? CLIPS[0]).slice(3))
 
@@ -81,6 +85,8 @@ await page.addInitScript(({ clips, gap, quiet }) => {
     // When each clip's sound truly ends, on the wall clock, so the lag before
     // the page notices the pause can be measured instead of assumed.
     window.__clipEnds = []
+    // Each clip's sound on the wall clock, start and end, for the marker lag.
+    window.__clipSpans = {}
     for (const clip of clips) {
       window.__clipStarts[clip] = at - ctx.currentTime
       const bytes = await (await fetch(`/_recite/${clip}.mp3`)).arrayBuffer()
@@ -89,6 +95,8 @@ await page.addInitScript(({ clips, gap, quiet }) => {
       source.buffer = buffer
       source.connect(softer)
       source.start(at)
+      const wallStart = Date.now() + (at - ctx.currentTime) * 1000
+      window.__clipSpans[clip] = [wallStart, wallStart + buffer.duration * 1000]
       window.__clipEnds.push(Date.now() + (at + buffer.duration - ctx.currentTime) * 1000)
       at += buffer.duration + gap
     }
@@ -96,6 +104,24 @@ await page.addInitScript(({ clips, gap, quiet }) => {
     return out.stream
   }
 }, { clips: CLIPS, gap: GAP_S, quiet: QUIET_DB })
+
+// When each page word was first marked, said or wrong, and where the "you are
+// here" underline sat over time: the reciter's complaint is how far behind the
+// voice both run, so both are stamped rather than judged by eye.
+await page.addInitScript(() => {
+  window.__marked = {}
+  window.__here = []
+  setInterval(() => {
+    const words = document.querySelectorAll('button[aria-label^="start reciting from"]')
+    words.forEach((word, i) => {
+      if (window.__marked[i] == null && word.querySelector('span[style*="--text-dim"], span[style*="--danger"]')) {
+        window.__marked[i] = Date.now()
+      }
+    })
+    const here = [...words].findIndex((word) => word.getAttribute('aria-current') === 'location')
+    if (here !== (window.__here.at(-1)?.[1] ?? -2)) window.__here.push([Date.now(), here])
+  }, 50)
+})
 
 // Every listen goes to the ear under test, everything else to the dev server.
 const heard = []
@@ -142,9 +168,17 @@ await page.route('**/api/listen**', async (route) => {
   }
 })
 
+if (process.env.PER_MINUTE) {
+  await page.route('**/api/health', async (route) => {
+    const got = await route.fetch()
+    const body = { ...(await got.json()), listen_per_minute: Number(process.env.PER_MINUTE) }
+    await route.fulfill({ response: got, json: body })
+  })
+}
+
 // Not networkidle: the page keeps asking the backend how it is, so it never
 // falls idle, and waiting for that timed the probe out instead of running it.
-await page.goto(`${APP}/?tab=mem`, { waitUntil: 'domcontentloaded' })
+await page.goto(`${APP}/app?tab=mem`, { waitUntil: 'domcontentloaded' })
 await page.getByRole('button', { name: 'Recite it' }).click({ timeout: 30000 })
 await page.waitForTimeout(500)
 await page.getByRole('button', { name: 'Start reciting', exact: true }).click()
@@ -227,6 +261,33 @@ const cuts = readFileSync('../logs/recite-journal.jsonl', 'utf8').trim().split('
 const lags = clipEnds.map((end) => cuts.find((cut) => cut > end - 300) - end).filter((ms) => ms < 3000).sort((a, b) => a - b)
 if (lags.length) console.log(`  a pause was noticed ${(lags[lags.length >> 1] / 1000).toFixed(2)}s after the sound ended, typically`
   + ` (${lags.map((ms) => (ms / 1000).toFixed(2)).join(', ')})`)
+
+// How far behind the voice the page runs, per word: from when the word ends in
+// the clip (fatihah-word-ends.json, Groq's own word timings) to when the page
+// coloured it, and to when the underline moved past it.
+const { spans, marked, here } = await page.evaluate(() => ({
+  spans: window.__clipSpans, marked: window.__marked, here: window.__here,
+}))
+const markLags = []
+const hereLags = []
+CLIPS.forEach((clip) => {
+  const from = FIRST[clip]
+  // Where the next ayah starts; al-Fatihah is 29 words.
+  const to = FIRST[`00100${Number(clip.slice(3)) + 1}`] ?? 29
+  const [start] = spans[clip]
+  for (let i = from; i < to; i += 1) {
+    const spoken = start + WORD_ENDS[clip][i - from] * 1000
+    if (marked[i] != null) markLags.push(marked[i] - spoken)
+    const passed = here.find(([, at]) => at > i)
+    if (passed) hereLags.push(passed[0] - spoken)
+  }
+})
+const med = (xs) => (xs.length ? [...xs].sort((a, b) => a - b)[xs.length >> 1] / 1000 : NaN)
+console.log(`  a word was coloured ${med(markLags).toFixed(1)}s after it was said, typically`
+  + ` (worst ${(Math.max(...markLags) / 1000).toFixed(1)}s, ${markLags.length} words)`)
+console.log(`  the underline moved past a word ${med(hereLags).toFixed(1)}s after it was said, typically`
+  + ` (${hereLags.length} words)`)
+console.log(`  underline path: ${here.map(([, at]) => at).join(' ')}`)
 
 await page.screenshot({ path: process.env.SHOT ?? 'probe-ear.png', fullPage: true })
 await browser.close()
