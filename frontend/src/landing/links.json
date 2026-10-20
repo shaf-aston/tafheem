@@ -1,3 +1,7 @@
 {
-  "tool": "/app"
+  "tool": "/app",
+  "sections": {
+    "eyebrow": "Go straight in",
+    "title": "Pick where to start"
+  }
 }

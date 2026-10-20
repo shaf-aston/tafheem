@@ -747,6 +747,8 @@ button.tile:hover { border-color: var(--c); }
 .tile-wash:hover { --wash: var(--tile-wash-hover); border-color: var(--c); }
 .tile-wash .arabic-lg { transform-origin: left center; transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease); }
 .tile-wash:hover .arabic-lg { transform: scale(var(--tile-hover-scale)) rotate(var(--tile-hover-turn)); }
+.tile-chip { padding-block: calc(var(--space-tile) / 2); }
+.tile-chip.tile-wash .arabic-lg { transform-origin: right center; }
 .tile-lead { padding: var(--space-card); background: var(--surface); border-color: var(--c); }
 .card-accent { border-left: 4px solid var(--c); }
 }
