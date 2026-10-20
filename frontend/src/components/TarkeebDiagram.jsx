@@ -32,7 +32,7 @@ function Bracket({ node, style }) {
   // roleVar is the word grid's own lookup, so one role is one colour in both.
 
   return (
-    <div className="tk-group" data-level={node.level} style={style}>
+    <div className="tk-group rise-in" data-level={node.level} style={style}>
       {/* each name over its own words' columns: the row is a subgrid of the chart's */}
       <div className="tk-roles">
         {cells(node).map((cell, index) => {
@@ -223,9 +223,9 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
             const hover = !missing && onWord && (gloss || 'tap for its meaning')
             return (
               <div
-                className={`tk-word${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
+                className={`tk-word rise-in${missing ? ' tk-unwritten' : ''}${to > from ? ' tk-written' : ''}`}
                 key={`word-${from}`}
-                style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone[from]) }}
+                style={{ gridColumn: `${from + 1} / ${to + 2}`, '--tone': roleVar(tone[from]), '--i': n }}
                 data-gloss={hover || undefined}
                 // the first and last word's English opens inward, so the box's edge cuts none of it
                 data-edge={n === 0 ? 'start' : n === spans.length - 1 ? 'end' : undefined}
@@ -268,7 +268,8 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
                 <Bracket
                   key={`${level}-${node.from}`}
                   node={node}
-                  style={{ gridRow: level + 1, gridColumn: `${node.from + 1} / ${node.to + 2}` }}
+                  // the words rise in one by one, as the Qur'an's do, then each row of names under them
+                  style={{ gridRow: level + 1, gridColumn: `${node.from + 1} / ${node.to + 2}`, '--i': spans.length + level }}
                 />
               ))}
             </Fragment>
@@ -276,7 +277,7 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
           {/* a word named further down than the row under it has a line running down to its name */}
           {threadSpans(levels).map(({ word, from, to }) => (
             <div
-              className="tk-thread"
+              className="tk-thread fade-in"
               key={`thread-${word}-${from}`}
               style={{ gridRow: `${from + 1} / ${to + 2}`, gridColumn: word + 1 }}
               aria-hidden="true"
@@ -285,7 +286,7 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
           {/* and so has a unit whose job is written rows below its own name (رَبَّكُمْ: مفعول به) */}
           {groupThreads(levels).map(({ from, to, rowFrom, rowTo }) => (
             <div
-              className="tk-thread"
+              className="tk-thread fade-in"
               key={`unit-thread-${from}-${rowFrom}`}
               style={{ gridRow: `${rowFrom + 1} / ${rowTo + 2}`, gridColumn: `${from + 1} / ${to + 2}` }}
               aria-hidden="true"
