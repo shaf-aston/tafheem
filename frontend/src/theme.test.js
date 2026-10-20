@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest'
 
 import theme from './theme.json'
 import { THEME_NAMES, colorAt, colorFor, resolveTheme, themeChoices, tokenGroups } from './theme'
+import { contrast, oklch } from './lib/tone'
 
 const SRC = fileURLToPath(new URL('.', import.meta.url))
 const HEX = /^#[0-9a-f]{6}$/i
@@ -44,7 +45,9 @@ describe('the palette', () => {
 })
 
 const { looks, device, base } = theme.themes
-const groupsOf = (look) => Object.entries(look).filter(([key, value]) => !key.startsWith('_') && typeof value === 'object')
+// A look's tone is how it works out its palette, not a group it overrides.
+const groupsOf = (look) =>
+  Object.entries(look).filter(([key, value]) => !key.startsWith('_') && key !== 'tone' && typeof value === 'object')
 
 describe('the looks', () => {
   it('are the ones theme.json lists, and include the base', () => {
@@ -64,10 +67,18 @@ describe('the looks', () => {
     expect(unknown).toEqual([])
   })
 
-  it('repaint the whole palette whenever they touch it', () => {
-    const names = (palette) => Object.keys(palette).filter((key) => !key.startsWith('_')).sort()
-    for (const [, look] of Object.entries(looks).filter(([, look]) => look.palette)) {
-      expect(names(look.palette)).toEqual(names(theme.palette))
+  it('tone inside the comfort limits of their scheme', () => {
+    for (const look of Object.values(looks)) {
+      const tone = { ...theme.themes.tone, ...look.tone }
+      const comfort = theme.themes.comfort[look.scheme]
+      expect(tone['max-chroma']).toBeLessThanOrEqual(comfort['max-chroma'])
+      expect(tone['max-lightness']).toBeLessThanOrEqual(comfort['max-lightness'] ?? 1)
+    }
+  })
+
+  it('tone with the keys the base tone has', () => {
+    for (const look of Object.values(looks).filter((look) => look.tone)) {
+      expect(Object.keys(look.tone).filter((key) => !(key in theme.themes.tone))).toEqual([])
     }
   })
 
@@ -93,15 +104,6 @@ describe('the looks', () => {
 // Contrast is the one thing a colour swap breaks without anything crashing, so
 // each look is held to it. Text tokens and every palette colour (worn as text,
 // on the page, on a card, and on its own tint) need 4.5:1; borders only 3:1.
-const channel = (c) => ((c /= 255) <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
-const luminance = (hex) => {
-  const n = parseInt(hex.slice(1), 16)
-  return 0.2126 * channel(n >> 16) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255)
-}
-const contrast = (a, b) => {
-  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x)
-  return (hi + 0.05) / (lo + 0.05)
-}
 // A palette colour is also worn as text on a wash of itself (an error box, a
 // tinted chip), which is a ground nearer to the text than the card is. The
 // strongest wash in use is 14% (ui/Chip), so that is the one held to.
@@ -112,9 +114,7 @@ const washed = (hex, ground) => {
   return `#${mixed.map((v) => v.toString(16).padStart(2, '0')).join('')}`
 }
 const lookOf = (name) => ({
-  palette: Object.fromEntries(
-    Object.entries({ ...theme.palette, ...looks[name]?.palette }).filter(([key]) => !key.startsWith('_')),
-  ),
+  palette: Object.fromEntries(tokenGroups(name).find(([group]) => group === 'palette')[1]),
   color: { ...theme.color, ...looks[name]?.color },
 })
 
@@ -179,21 +179,6 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
     expect(dazzling.map(([where]) => where)).toEqual([])
   })
 })
-
-// OKLCH lightness and chroma of a colour (Ottosson's matrices), the scale the
-// comfort limits are written in.
-const oklch = (hex) => {
-  const n = parseInt(hex.slice(1), 16)
-  const [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255].map(channel)
-  const [l, m, s] = [
-    0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b,
-    0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b,
-    0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b,
-  ].map(Math.cbrt)
-  const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s
-  const bb = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
-  return [0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s, Math.hypot(a, bb)]
-}
 
 // A look is one file. A new colour literal in a stylesheet or a component is the
 // look leaking out of it again, so the count of lines carrying one may only fall.
