@@ -420,7 +420,20 @@
     "blue-bar": "#1d4ed8", "blue-fill": "#dbeafe", "blue-text": "#1e3a8a",
     "emerald-bar": "#047857", "emerald-fill": "#d1fae5", "emerald-text": "#064e3b",
     "orange-bar": "#c2410c", "orange-fill": "#ffedd5", "orange-text": "#7c2d12",
-    "cyan-bar": "#0e7490", "cyan-fill": "#cffafe", "cyan-text": "#164e63"
+    "cyan-bar": "#0e7490", "cyan-fill": "#cffafe", "cyan-text": "#164e63",
+    "_ink_comment": "Each hue as words on the Map index: a palette colour, so every look tones it to read on its own ground (the bars above are one dark tone everywhere, too dark on a dark look).",
+    "teal-ink": "@teal",
+    "rose-ink": "@rose",
+    "amber-ink": "@amber",
+    "violet-ink": "@violet",
+    "indigo-ink": "@lilac",
+    "slate-ink": "@slate",
+    "sky-ink": "@sky",
+    "slateDeep-ink": "@slate",
+    "blue-ink": "@blue",
+    "emerald-ink": "@green",
+    "orange-ink": "@orange",
+    "cyan-ink": "@teal"
   },
   "themes": {
     "_comment": "The looks a reader can pick, and everything the code knows about them: it names none. base is the look the groups above describe. Each entry in looks has a label (what Settings calls it), a scheme (which the browser's own controls, scrollbars and inputs, should match) and then only what it changes, group by group and key by key; the rest stays as above. A new look is mostly its ground and text in color plus a tone: the palette, which tab, role, unit and science all point at, is toned for it, so the sections keep their colours without being listed again. Adding a look is adding an entry here and nothing else: Settings lists it, the page paints its ground before any script runs, and the tests hold it to contrast. device is the reader's \"follow my phone or computer\" choice: its id and label, and which look a light device and a dark one each get. hint-key is the one localStorage entry that lets the page paint the right ground early (vite/bootShell.js reads it).",
