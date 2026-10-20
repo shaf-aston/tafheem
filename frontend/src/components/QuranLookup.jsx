@@ -134,7 +134,6 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
 
   return (
     <div className="panel">
-      <QuranSeal wide={Boolean(search.data || at || rootLookup.data)} />
       <SectionHeader title="Quran" arabic="القرآن" emblem="quran" />
 
       <RecentRow
@@ -213,6 +212,9 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
       {at && (
         <QuranReader place={at} accent={accent} onGo={onGo} onPlace={onPlace} onClose={() => setAt(null)} />
       )}
+      {/* Fixed behind the page; last so the panel's gap between blocks never
+          lands above the title. */}
+      <QuranSeal wide={Boolean(search.data || at || rootLookup.data)} />
     </div>
   )
 }
