@@ -36,6 +36,12 @@ def _span(at: list[int], start: int, end: int) -> list[int]:
     return [at[start], at[end - 1] + 1]
 
 
+def _point(at: list[int], count: int, start: int) -> list[int]:
+    """An empty [i, i) span: where words absent on this side would go."""
+    i = at[start] if start < len(at) else count
+    return [i, i]
+
+
 def diff(words_a: list[str], words_b: list[str]) -> tuple[list[list[int]], list[list[int]]]:
     """Where two verses differ: spans in a, spans in b.
 
@@ -55,6 +61,25 @@ def diff(words_a: list[str], words_b: list[str]) -> tuple[list[list[int]], list[
         if b1 > b0:
             spans_b.append(_span(at_b, b0, b1))
     return spans_a, spans_b
+
+
+def changes(words_a: list[str], words_b: list[str]) -> list[dict[str, list[int]]]:
+    """The same differences as diff, paired: each says what a has where b has something else.
+
+    A side with nothing there gets an empty span at the place the other side's words
+    would go, so a drill can ask "is there anything here?" as well as "which word?".
+    """
+    folded_a, at_a = _folded(words_a)
+    folded_b, at_b = _folded(words_b)
+    out = []
+    for tag, a0, a1, b0, b1 in SequenceMatcher(None, folded_a, folded_b, autojunk=False).get_opcodes():
+        if tag == "equal":
+            continue
+        out.append({
+            "self": _span(at_a, a0, a1) if a1 > a0 else _point(at_a, len(words_a), a0),
+            "other": _span(at_b, b0, b1) if b1 > b0 else _point(at_b, len(words_b), b0),
+        })
+    return out
 
 
 def pair_key(a: str, b: str) -> tuple[str, str]:
@@ -90,7 +115,7 @@ def catalogued_pairs() -> set[tuple[str, str]]:
 
 
 def partners(key: str) -> list[dict]:
-    """Catalogued partners of a verse, each with its text, both diffs, type and sources."""
+    """Catalogued partners of a verse, each with its text, both diffs, the paired changes, type and sources."""
     out = []
     for pair, _ in _by_key().get(key, []):
         mine = pair["a"] == key
@@ -100,6 +125,7 @@ def partners(key: str) -> list[dict]:
             "text": texts()[other],
             "diff_self": pair["diff_a"] if mine else pair["diff_b"],
             "diff_other": pair["diff_b"] if mine else pair["diff_a"],
+            "changes": changes(texts()[key].split(), texts()[other].split()),
             "change_type": pair["change_type"],
             "sources": pair["sources"],
         })

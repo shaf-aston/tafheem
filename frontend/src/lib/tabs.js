@@ -6,7 +6,7 @@
  * entry here; nothing else is edited.
  *
  * Each panel's code is its own file (lib/panel.js), so the first load carries the
- * shell and not all fourteen tabs. The code is fetched with the tab's opening
+ * shell and not every tab. The code is fetched with the tab's opening
  * data (App.jsx openTab: idle, hover), so a tab opens at once and still opens
  * after the network drops.
  */
@@ -27,6 +27,7 @@ const Dictionary = panel(() => import('../components/Dictionary'))
 const QuizPanel = panel(() => import('../components/QuizPanel'))
 const QuranLookup = panel(() => import('../components/QuranLookup'))
 const MemorisePanel = panel(() => import('../components/MemorisePanel'))
+const SimilarPanel = panel(() => import('../components/SimilarPanel'))
 const SarfPanel = panel(() => import('../components/SarfPanel'))
 const NahwPanel = panel(() => import('../components/NahwPanel'))
 const DaleelPanel = panel(() => import('../components/DaleelPanel'))
@@ -74,6 +75,8 @@ export const TABS = [
   { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', emblem: 'hadith', Component: HadithPanel, open: hadithOpen, study: true, blurb: "Search hadith, with narrators and grading", group: 'read' },
   { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  emblem: 'dict', Component: Dictionary,  study: true, blurb: "Look up an Arabic word, root or meaning", group: 'arabic' },
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    emblem: 'mem', Component: MemorisePanel, open: memoriseOpen, study: true, blurb: "Learn verses by heart and check your recital", group: 'practise' },
+  // Similar verses, متشابهات: telling look-alike ayat apart, next to learning them by heart.
+  { id: 'similar', label: 'Similar verses', short: 'Similar', arabic: 'متشابهات', emblem: 'similar', Component: SimilarPanel, study: true, blurb: "Tell look-alike verses apart, and drill the wording", group: 'practise' },
   // Grow, نبات (3:37): a little every day: words, fiqh, Quran and hadith.
   { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   emblem: 'words', Component: GrowPanel, study: true, blurb: "A little every day: words, fiqh, Quran and hadith", group: 'practise', modules: GROW_MODULES },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', emblem: 'quiz', Component: QuizPanel, open: table, blurb: "Practise words and meanings, and review what is due", group: 'practise' },

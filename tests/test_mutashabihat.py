@@ -39,6 +39,23 @@ def test_order_swap_is_marked():
     assert spans_a and spans_b
 
 
+def test_changes_pair_a_replacement():
+    a = "قال ربي الله".split()
+    b = "قال ربي الرحمن".split()
+    assert mutashabihat.changes(a, b) == [{"self": [2, 3], "other": [2, 3]}]
+
+
+def test_changes_give_an_addition_an_empty_place_on_the_shorter_side():
+    a = "فبدل الذين ظلموا قولا".split()
+    b = "فبدل الذين ظلموا منهم قولا".split()
+    assert mutashabihat.changes(a, b) == [{"self": [3, 3], "other": [3, 4]}]
+    assert mutashabihat.changes(b, a) == [{"self": [3, 4], "other": [3, 3]}]
+
+
+def test_changes_place_a_trailing_addition_at_the_end():
+    assert mutashabihat.changes("قال ربي".split(), "قال ربي العظيم".split()) == [{"self": [2, 2], "other": [2, 3]}]
+
+
 def test_identical_verses_have_no_diff():
     words = "بسم الله الرحمن الرحيم".split()
     assert mutashabihat.diff(words, list(words)) == ([], [])
@@ -77,3 +94,15 @@ def test_partners_carry_text_diff_and_sources():
     assert twin["text"] == mutashabihat.texts()["7:162"]
     assert twin["diff_self"] and twin["diff_other"]
     assert "benchmark" in twin["sources"]
+
+
+def test_surah_groups_send_only_the_pairs_recorded_in_that_surah():
+    from fastapi.testclient import TestClient
+
+    from backend.main import app
+
+    groups = TestClient(app).get("/api/quran/similar/surah/2").json()["groups"]
+    pairs = [pair for group in groups for pair in group["pairs"]]
+    assert pairs and all(a.startswith("2:") or b.startswith("2:") for a, b in pairs)
+    # the biggest group is far more verses than pairs set side by side here
+    assert len(pairs) < sum(len(g["keys"]) ** 2 for g in groups)

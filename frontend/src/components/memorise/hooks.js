@@ -1,14 +1,12 @@
 /** Memorise's state, one hook per job, for MemorisePanel to read. */
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { getSimilar, getSimilarSurah } from '../../api'
 import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../../lib/books'
 import {
   blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, makeRandom,
   optionsFor, pagesOf, wordsOf,
 } from '../../lib/memorise'
-import { closestSpans, flagsOnPage, twinKeys } from '../../lib/similar'
 import { readViewParam, writeViewParams } from '../../lib/tabUrl'
 import { useSlide, useSwipe } from '../../lib/useSwipe'
 import { scrollToEl } from '../../lib/scrollToEl'
@@ -51,9 +49,6 @@ export const WAYS = [
   // Neither recall nor recognition: saying it, with the page following along.
   // Nothing is taken out here, so the whole page is shown.
   { id: 'recite', label: 'Recite it' },
-  // Only the words that tell a verse from its twin are taken out, typed like
-  // any other gap. Offered only by a book that has twins to show.
-  { id: 'similar', label: 'Similar verses', onlyIf: (book) => book.similar },
 ]
 /** The ways this book offers. */
 export const waysOf = (book) => WAYS.filter((w) => !w.onlyIf || w.onlyIf(book))
@@ -86,7 +81,6 @@ export function useHowYouAnswer(fresh) {
   // can open the page already reciting.
   const [way, setWay] = useState(() => readViewParam('mode', WAYS.map((w) => w.id)) ?? 'type')
   useEffect(() => { writeViewParams({ mode: way === 'type' ? '' : way }) }, [way])
-  const similar = way === 'similar'
   // Reciting from memory covers the page rather than sampling it, so which
   // words are missing is a different question there and not a harder setting
   // of the same one; lib/memorise.js says why. The word to start on is only
@@ -96,7 +90,7 @@ export function useHowYouAnswer(fresh) {
   const chooseDifficulty = (id) => { setDifficulty(id); fresh() }
   const reDeal = () => { setDeal((n) => n + 1); fresh() }
   const chooseWay = (id) => { setWay(id); fresh() }
-  return { way, setWay, similar, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay }
+  return { way, setWay, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay }
 }
 
 /** The book, part and page open, the word started on, and the moves between places. */
@@ -257,56 +251,18 @@ export function useReciteState({ page, book, pinned, shown, setShown }) {
   return { recitedPage, reciting, startFrom, startLabel, show }
 }
 
-/** Which ayahs of this surah have a twin, and the twins of the ones on this page. */
-function useTwins({ part, page, similar }) {
-  // Asked only in this mode, and only for ayahs that have one.
-  const twinsOfSurah = useQuery({
-    queryKey: ['similar-surah', part],
-    queryFn: () => getSimilarSurah(part),
-    enabled: similar && part !== null,
-    staleTime: Infinity,
-  })
-  const twinned = useMemo(() => twinKeys(twinsOfSurah.data?.groups), [twinsOfSurah.data])
-  const twinLines = useMemo(
-    () => (page ?? []).map((line, l) => ({ line, l })).filter(({ line }) => twinned.has(line.label)),
-    [page, twinned],
-  )
-  const twinQueries = useQueries({
-    queries: twinLines.map(({ line }) => {
-      const [surah, ayah] = line.label.split(':').map(Number)
-      return { queryKey: ['similar', surah, ayah], queryFn: () => getSimilar(surah, ayah), staleTime: Infinity }
-    }),
-  })
-  // The query array is new every render, so the gaps are keyed on when each
-  // answer last arrived instead.
-  const twinData = twinQueries.map((q) => q.data)
-  const twinStamp = twinQueries.map((q) => q.dataUpdatedAt).join()
-  return { twinsOfSurah, twinned, twinLines, twinQueries, twinData, twinStamp }
-}
-
-/** Which words are missing, the options offered for them, and the twins behind the similar mode. */
-export function useGaps({ data, page, part, pageNumber, deal, difficulty, way, similar, hidden, startFrom }) {
-  const { twinsOfSurah, twinned, twinLines, twinQueries, twinData, twinStamp } = useTwins({ part, page, similar })
+/** Which words are missing, and the options offered for them. */
+export function useGaps({ data, page, pageNumber, deal, difficulty, way, hidden, startFrom }) {
 
   // The gaps depend on the page, the difficulty and the deal; and on nothing
   // else, so typing an answer never moves them.
   const blanks = useMemo(
     () => {
       if (!page) return new Set()
-      if (similar) {
-        const gaps = new Set()
-        twinLines.forEach(({ line, l }, i) => {
-          const words = wordsOf(line.arabic)
-          const flags = flagsOnPage(words, twinData[i]?.text ?? '', closestSpans(twinData[i]?.text ?? '', twinData[i]?.partners))
-          flags.forEach((on, w) => { if (on) gaps.add(`${l}:${w}`) })
-        })
-        return gaps
-      }
       if (hidden) return fromMemory(page, startFrom)
       return blanksFor(page, difficultyOf(difficulty).share, makeRandom(pageNumber * 131 + deal))
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [page, hidden, similar, twinLines, twinStamp, startFrom, difficulty, pageNumber, deal],
+    [page, hidden, startFrom, difficulty, pageNumber, deal],
   )
 
   // Every word of the whole part, not just this page: three wrong options taken
@@ -331,7 +287,7 @@ export function useGaps({ data, page, part, pageNumber, deal, difficulty, way, s
     }
     return map
   }, [page, blanks, pool, way, deal])
-  return { blanks, choices, twinsOfSurah, twinned, twinLines, twinQueries }
+  return { blanks, choices }
 }
 
 /** The microphone and the page turning under it: stopping, forgetting, carrying on, and reciting from elsewhere. */

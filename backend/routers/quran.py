@@ -97,6 +97,7 @@ async def get_similar_surah(surah: int = Path(..., ge=1, le=SURAHS)) -> SimilarS
         ayahs=sorted({int(k.partition(":")[2]) for g in groups for k in g["keys"] if k.startswith(prefix)}),
         groups=[
             SimilarGroup(id=g["id"], keys=g["keys"], change_type=g["change_type"],
+                         pairs=[[p["a"], p["b"]] for p in g["pairs"] if p["a"].startswith(prefix) or p["b"].startswith(prefix)],
                          sources=[provenance.of(f"mutashabihat-{s}") for s in g["sources"]])
             for g in groups
         ],

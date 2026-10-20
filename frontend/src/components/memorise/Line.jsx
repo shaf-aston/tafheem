@@ -16,7 +16,7 @@ import { withinPart } from './hooks'
  * never of the missing word on its own, so it is a reminder of where you are
  * rather than the answer.
  */
-export default function Line({ line, flow, index, blanks, answers, checked, meaning, choices, accent, twin, recite, onStartAt, onAnswer }) {
+export default function Line({ line, flow, index, blanks, answers, checked, meaning, choices, accent, recite, onStartAt, onAnswer }) {
   const words = wordsOf(line.arabic)
   // One width for every typed blank on this line, from the longest recited
   // word among them: sizing each blank to its own answer leaks the length.
@@ -83,17 +83,6 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
   const number = flow
     ? <AyahNumber aria-label={`ayah ${withinPart(line.label)}`}>{withinPart(line.label)}</AyahNumber>
     : <AyahNumber>{line.label}</AyahNumber>
-  const marker = twin ? (
-    <>
-      {number}
-      <span
-        role="img"
-        aria-label="has similar verses"
-        title="has similar verses"
-        className="w-1.5 h-1.5 rounded-full shrink-0 bg-[var(--text-faint)]"
-      />
-    </>
-  ) : number
   // Flowing, the line's two boxes step aside (display: contents) so its words
   // join the page's one run; the words themselves are drawn the same either way.
   return (
@@ -113,13 +102,13 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
                 is never left alone at the start of a row. */}
             <span className="inline-flex items-baseline gap-x-2">
               {drawn.at(-1)}
-              {marker}
+              {number}
             </span>
           </>
         ) : (
           <>
             {drawn}
-            {marker}
+            {number}
           </>
         )}
       </div>

@@ -16,8 +16,8 @@ import RetryButton from './RetryButton'
 import { Skeleton } from './Skeleton'
 import SourceBadge from './SourceBadge'
 
-/** One verse as a row of words, the differing ones in the accent. */
-function TwinRow({ label, words, flags, accent }) {
+/** One verse as a row of words, the differing ones in the accent. Similar verses' Compare draws its verses with it too. */
+export function TwinRow({ label, words, flags, accent }) {
   return (
     <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1" dir="rtl">
       {words.map((word, w) => (

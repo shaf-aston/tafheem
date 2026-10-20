@@ -171,6 +171,12 @@ class QuranSearchResponse(BaseModel):
     corrected: list[Correction] = []
 
 
+class SimilarChange(BaseModel):
+    """One place two twin verses differ: [start, end) on each side, start == end when that side has nothing."""
+    self: list[int]
+    other: list[int]
+
+
 class SimilarPartner(BaseModel):
     """A verse that reads almost like another, with where the two differ."""
     key: str
@@ -179,6 +185,7 @@ class SimilarPartner(BaseModel):
     text: str
     diff_self: list[list[int]]   # [start, end) word positions in the asked verse
     diff_other: list[list[int]]  # the same, in this partner
+    changes: list[SimilarChange] = []  # the two, paired; an empty span is "nothing here"
     change_type: str = ""
     sources: list[Source]
 
@@ -193,6 +200,7 @@ class SimilarAyah(BaseModel):
 class SimilarGroup(BaseModel):
     id: int
     keys: list[str]
+    pairs: list[list[str]] = []  # the pairs recorded with a verse in the asked surah, [a, b]
     change_type: str = ""
     sources: list[Source]
 

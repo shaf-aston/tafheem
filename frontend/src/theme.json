@@ -84,8 +84,14 @@
     "colloq": "@orange",
     "grow": "@lime",
     "home": "@gold",
+    "similar": "@lilac",
     "_comment": "default is what an unknown id wears, the primary purple, so colorFor('tab', id) is the one rule for tab colour everywhere.",
     "default": "@violet"
+  },
+  "similar": {
+    "_comment": "Similar verses (components/similar): the asked verse and its twin, each in its own colour wherever either is named or marked.",
+    "mine": "@teal",
+    "twin": "@amber"
   },
   "science": {
     "_comment": "Card colour of each map science (shell/MapPanel), keyed by chart id. One hue each, all readable on the raised surface, borrowed from the tab palette.",
