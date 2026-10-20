@@ -919,9 +919,6 @@ button.tile:hover { border-color: var(--c); }
 }
 
 /* Profile XP card (XpCard): the bar fills on sight; a tap opens the rank path. */
-.xp-card { transition: border-color 150ms, transform 150ms; cursor: pointer; }
-.xp-card:hover { border-color: var(--xp-tone); }
-.xp-card:active { transform: scale(0.985); }
 .xp-bar { height: 0.6rem; border-radius: 999px; background: var(--border); overflow: hidden; }
 .xp-bar > span {
   display: block; height: 100%; border-radius: inherit; background: var(--xp-tone);

@@ -51,14 +51,13 @@ const KitPanel = panel(() => import('../components/KitPanel'))
 //   everything a person browses; those read LISTED.
 // Home is first, so it is where a visit with no saved place opens.
 // Order = All sections order; the strip is FIXED then RECENT, below. Related tabs sit together.
-// Grouped by what you came to do, so a choice is a goal, then a tab. `note` says
-// what is in a group under its heading on Home.
+// Grouped by what you came to do, one word each, so a choice is a goal, then a tab.
 export const GROUPS = [
   { id: 'start',    label: 'Start' },
-  { id: 'read',     label: 'Read the sources',      note: "Qur'an, hadith, a passage for a question" },
-  { id: 'arabic',   label: 'Understand the Arabic', note: 'Grammar, word forms, meanings' },
-  { id: 'practise', label: 'Practise and keep it',  note: 'By heart, review, a little daily' },
-  { id: 'more',     label: 'Go further',            note: 'History and answers' },
+  { id: 'read',     label: 'Read' },
+  { id: 'arabic',   label: 'Understand' },
+  { id: 'practise', label: 'Practise' },
+  { id: 'more',     label: 'Explore' },
 ]
 
 // What Grow files its answers under: the hadith and Qur'an worlds' own names, and
