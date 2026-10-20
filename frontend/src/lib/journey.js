@@ -188,24 +188,6 @@ export function resumePlace(steps, listed, home) {
   return null
 }
 
-/**
- * Tab ids for Home's tiles: the most recent distinct tabs, newest first, never
- * `home` or `skip`, topped up from `fallback` (a first visit has no path). `pin`
- * takes the last tile if it is not already there.
- */
-export function jumpTabs(steps, { listed, fallback, home, skip = null, count, pin = null }) {
-  const known = new Set(listed.map((tab) => tab.id))
-  const picked = []
-  const add = (id) => {
-    if (id !== home && id !== skip && known.has(id) && !picked.includes(id)) picked.push(id)
-  }
-  for (let at = steps.length - 1; at >= 0; at -= 1) add(steps[at].tab)
-  fallback.forEach(add)
-  const tiles = picked.slice(0, count)
-  if (pin && known.has(pin) && pin !== skip && !tiles.includes(pin)) tiles[count - 1] = pin
-  return tiles
-}
-
 /** `lastOn` for the path as it is now. */
 export const lastPlaceOn = (tab) => lastOn(snapshot.steps, snapshot.at, tab)
 

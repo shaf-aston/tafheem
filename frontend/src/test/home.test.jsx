@@ -1,8 +1,8 @@
 // @vitest-environment happy-dom
 // Home offers where you stopped and the recent tabs from the journey, a first-visit
-// start when there is no path, and every tab behind All sections.
+// start when there is no path, and every tab in view under its group.
 import { describe, expect, it, vi } from 'vitest'
-import { act, fireEvent, screen } from '@testing-library/react'
+import { act, fireEvent, screen, within } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import HomePanel from '../components/home/HomePanel'
@@ -19,12 +19,15 @@ describe('Home', () => {
     expect(onGo).toHaveBeenCalledWith(FIRST.id, undefined)
   })
 
-  it('lists every other tab behind All sections', async () => {
+  it('shows every other tab without opening anything', async () => {
     const onGo = vi.fn()
-    renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
+    const { container } = renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
+    expect(container.querySelector('details')).toBeNull()
     const others = LISTED.filter((tab) => tab.id !== HOME)
+    // Each tab once in the list; the first-lesson card above is the only other place one shows.
+    const list = screen.getByRole('region', { name: /All sections/ })
     for (const tab of others) {
-      expect(screen.getAllByText(tab.blurb).length, tab.id).toBeGreaterThan(0)
+      expect(within(list).getAllByText(tab.blurb), tab.id).toHaveLength(1)
     }
   })
 
