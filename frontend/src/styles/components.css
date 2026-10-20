@@ -652,10 +652,6 @@ dialog::backdrop {
 
 /* Every tab's outer column: one gap between its blocks, from theme.json space.panel. */
 .panel > * + * { margin-top: var(--space-panel); }
-/* A word pinned behind a tab (Home's فهم): no height and no gap of its own, held just under the
-   app header (plus main's sm:pt-5, so it never moves) while the page scrolls past it in front. The panel is isolated so it stays above the page's ground. */
-.panel > .pin-back { position: sticky; top: calc(var(--app-header-h, 0px) + var(--spacing) * 5); height: 0; margin: 0; z-index: -1; pointer-events: none; }
-.panel > .pin-back + * { margin-top: 0; }
 
 
 /* The landing page's call to action, worn in the app wherever one step is the
