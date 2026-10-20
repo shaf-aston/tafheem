@@ -8,6 +8,8 @@ import WheelPicker from '../ui/WheelPicker'
 const VOICES = RECITERS.map((one) => ({ id: one.id, label: one.name, hint: one.arabic }))
 
 export const PLAY = 'M7 4.5v15l13-7.5z'
+// A speaker with one wave: "the voice is here".
+const SOUND = 'M4 9h4l5-4v14l-5-4H4zM16 8.5a5 5 0 0 1 0 7l-1.4-1.4a3 3 0 0 0 0-4.2z'
 
 /**
  * The one player for the surah, held to the bottom of the screen: back, play or
@@ -72,6 +74,19 @@ export default function RecitationBar({ surah, count, from, here, recitation, re
 
   return (
     <div className="reader-dock rise-in flex items-center gap-2 p-2 pl-3 border-t border-[var(--border)] bg-[var(--surface-hi)]">
+      {/* Reading somewhere else while it recites: a small faded chip floats just
+          above the player, like a chat's "back to latest", the arrow pointing
+          to where the voice is. Faded so it never sits over the reading. */}
+      {away && !failed && (
+        <button type="button" onClick={() => onFollow(sounding)}
+          aria-label={`Go to ${surah}:${sounding}, being recited`}
+          className="now-chip fade-in press absolute bottom-full left-1/2 -translate-x-1/2 mb-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--surface-hi)] font-mono type-small text-[var(--c)] shadow-sm">
+          <Glyph d={SOUND} />
+          <Glyph d={sounding < here ? 'M12 5l7 8h-5v6h-4v-6H5z' : 'M12 19l7-8h-5V5h-4v6H5z'} />
+          {/* The ayah alone: the bar only plays its own surah, and 2:255 in full would not fit a phone. */}
+          {sounding}
+        </button>
+      )}
       <button type="button" className={skip}
         onClick={() => skipTo(at - 1)} disabled={at <= 1} aria-label="Previous ayah">
         <Glyph d="M6 5h2v14H6zM20 5v14L9 12z" />
@@ -89,14 +104,6 @@ export default function RecitationBar({ surah, count, from, here, recitation, re
       <p className="min-w-0 flex-1 truncate type-small" aria-live="polite">
         {failed ? (
           <span className="text-[var(--warn)]">That recitation could not be reached</span>
-        ) : away ? (
-          <button type="button" onClick={() => onFollow(sounding)}
-            aria-label={`Go to ${surah}:${sounding}, being recited`}
-            className="fade-in press inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-mono text-[var(--bg)] bg-[var(--c)]">
-            <Glyph d={sounding < here ? 'M12 5l7 8h-5v6h-4v-6H5z' : 'M12 19l7-8h-5V5h-4v6H5z'} />
-            {/* The ayah alone: the bar only plays its own surah, and 2:255 in full would not fit a phone. */}
-            {sounding}
-          </button>
         ) : (
           <span className="font-mono text-[var(--text)]">{surah}:{at}</span>
         )}
