@@ -1,5 +1,6 @@
 import io
 import json
+import shutil
 import subprocess
 import wave
 
@@ -10,6 +11,9 @@ from pydantic import SecretStr
 from backend.config import get_settings
 from backend.main import create_app
 from backend.services import recordings
+
+# Tidying a take runs ffmpeg; a machine without it cannot check that part.
+needs_ffmpeg = pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="ffmpeg is not installed")
 
 
 def _take(seconds=0.5, quiet=0.6):
@@ -47,6 +51,7 @@ def test_a_wrong_key_is_refused(studio):
     assert studio.get("/api/recordings/todo", headers={"X-Recorder-Key": "nope"}).status_code == 403
 
 
+@needs_ffmpeg
 def test_a_kept_take_is_trimmed_indexed_and_leaves_the_todo(studio):
     key = {"X-Recorder-Key": "sesame"}
     first = studio.get("/api/recordings/todo", params={"limit": 1}, headers=key).json()
@@ -64,6 +69,7 @@ def test_a_kept_take_is_trimmed_indexed_and_leaves_the_todo(studio):
     assert after["words"][0]["ar"] != word
 
 
+@needs_ffmpeg
 def test_what_is_not_sound_is_refused(studio):
     sent = studio.post("/api/recordings", data={"text": "كِتَاب"}, files={"audio": ("w.wav", b"hello")},
                        headers={"X-Recorder-Key": "sesame"})
