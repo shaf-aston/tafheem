@@ -16,7 +16,7 @@ import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
 import MicMark from '../ui/MicMark'
 
-export default function ReciteStrip({ listening, problem, heard, marks, lines, accent, status, help, onStart, onStop }) {
+export default function ReciteStrip({ listening, problem, heard, marks, lines, accent, status, help, onStart, onStop, onStartAt }) {
   const tally = { [SAID]: 0, [CHECK]: 0, [WRONG]: 0, [MISSED]: 0 }
   for (const word of marks.words) if (word.state in tally) tally[word.state] += 1
   const live = accent || 'var(--primary)'
@@ -72,22 +72,27 @@ export default function ReciteStrip({ listening, problem, heard, marks, lines, a
       </div>
 
       {/* One segment an ayah, settled at the pause, so a whole page is one
-          glance: a progress bar that also says how each ayah went. */}
+          glance: a progress bar that also says how each ayah went. Each is
+          also a way in: pressed, reciting follows from that ayah. The press
+          area is taller than the bar, for a thumb. */}
       <div className="flex gap-1" dir="rtl" role="list" aria-label="how each ayah went">
         {lines.map((line) => {
           const verdict = verdictOf(marks.words.slice(line.from, line.from + line.count).map((w) => w.state))
           return (
-            <span
-              key={line.label}
-              role="listitem"
-              title={`${line.label}: ${verdict ? LOOK[verdict].label : 'not reached yet'}`}
-              className="h-1.5 rounded-full transition-colors"
-              style={{
-                flexGrow: line.count,
-                flexBasis: 0,
-                backgroundColor: verdict ? LOOK[verdict].bar : 'var(--border)',
-              }}
-            />
+            <span key={line.label} role="listitem" className="flex" style={{ flexGrow: line.count, flexBasis: 0 }}>
+              <button
+                type="button"
+                onClick={() => onStartAt?.(line.from)}
+                aria-label={`Recite from ${line.label}: ${verdict ? LOOK[verdict].label : 'not reached yet'}`}
+                title={`${line.label}: ${verdict ? LOOK[verdict].label : 'not reached yet'}`}
+                className="press flex-1 py-2 -my-2"
+              >
+                <span
+                  className="block h-1.5 rounded-full transition-colors"
+                  style={{ backgroundColor: verdict ? LOOK[verdict].bar : 'var(--border)' }}
+                />
+              </button>
+            </span>
           )
         })}
       </div>
