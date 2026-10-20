@@ -31,4 +31,15 @@ describe('bootShellPlugin', () => {
     expect(manifest.theme_color).toBe(theme.color.bg)
     expect(here('../app.html')).toContain(`<meta name="theme-color" content="${theme.color.bg}" />`)
   })
+
+  it('fades the page in from the splash with theme.json motion, and only eases the ground on a themed page', () => {
+    const plain = run('<html lang="en"><head></head></html>')
+    const themed = run('<html lang="en" data-themed><head></head></html>')
+    for (const out of [plain, themed]) {
+      expect(out).toContain('prefers-reduced-motion: no-preference')
+      expect(out).toContain(`calc(${theme.motion['boot-ms']}ms * var(--motion-scale, 1))`)
+    }
+    expect(plain).not.toContain('boot-ground')
+    expect(themed).toContain(`@keyframes boot-ground { from { background: ${theme.color.bg}; } }`)
+  })
 })

@@ -3,6 +3,7 @@
  * header, phones only, shown only when this device can actually do it
  * (lib/install.js decides; this draws). Android gets a button that opens the
  * browser's own install prompt; iPhone has no prompt, so it gets the steps.
+ * Closing it hides only the strip: Settings keeps the same steps (InstallPanel).
  */
 import { dismissInstall, install, useInstall } from '../../lib/install'
 
@@ -16,24 +17,36 @@ function ShareIcon() {
   )
 }
 
+/**
+ * What this device is told and offered, for a kind other than 'none'. The banner
+ * and Settings both draw this, so the words and the button cannot drift apart.
+ */
+export function InstallSteps({ kind }) {
+  return (
+    <>
+      <span className="flex-1 min-w-0">
+        {kind === 'prompt' && 'Add Tafheem to your home screen: opens full screen, like an app.'}
+        {kind === 'ios' && (
+          <>To install: tap <ShareIcon /> <b>Share</b>, then <b>Add to Home Screen</b>.</>
+        )}
+        {kind === 'ios-other' && 'To install, open this page in Safari, then Share → Add to Home Screen.'}
+      </span>
+      {kind === 'prompt' && (
+        <button type="button" onClick={install} className="tap shrink-0 rounded-[var(--radius-md)] px-3 py-1 font-semibold bg-[var(--c,var(--primary))] text-[var(--bg)]">
+          Install
+        </button>
+      )}
+    </>
+  )
+}
+
 export default function InstallBanner() {
   const { kind, dismissed } = useInstall()
   if (dismissed || kind === 'none') return null
   return (
     <div className="shell sm:hidden pt-2">
       <div className="flex items-center gap-3 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] px-3 py-2 type-small">
-        <span className="flex-1 min-w-0">
-          {kind === 'prompt' && 'Add Tafheem to your home screen: opens full screen, like an app.'}
-          {kind === 'ios' && (
-            <>To install: tap <ShareIcon /> <b>Share</b>, then <b>Add to Home Screen</b>.</>
-          )}
-          {kind === 'ios-other' && 'To install, open this page in Safari, then Share → Add to Home Screen.'}
-        </span>
-        {kind === 'prompt' && (
-          <button type="button" onClick={install} className="tap shrink-0 rounded-[var(--radius-md)] px-3 py-1 font-semibold bg-[var(--c)] text-[var(--bg)]">
-            Install
-          </button>
-        )}
+        <InstallSteps kind={kind} />
         <button type="button" onClick={dismissInstall} aria-label="Not now" className="tap shrink-0 px-1 text-[var(--text-dim)]">
           ✕
         </button>
