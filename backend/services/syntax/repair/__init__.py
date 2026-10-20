@@ -1,7 +1,7 @@
 """The one step that corrects the parser's tokens, in place, before anything reads them.
 Each repair is its own module, run in the order below; `naming` and everything after only read.
 
-    book links → typed words → مَنْ that asks → subject clash → كان's raf' khabar → doer after the object → object after tanween → verb under يا → praying noun → times counted → indefinite after a definite opener → second khabar → noun before لا → و هو + verb → ابن between names → particle readings
+    book links → typed words → مَنْ that asks → subject clash → كان's raf' khabar → doer after the object → object after tanween → verb under يا → praying noun → times counted → indefinite after a definite opener → second khabar → noun before لا → و هو + verb → ابن between names → untied command answering a condition → particle readings
 
 A split that does not line up with the typed words keeps only the book's links."""
 from __future__ import annotations
@@ -9,6 +9,7 @@ from __future__ import annotations
 from backend.services.syntax import particles
 from backend.services.syntax.mask import book_links
 from backend.services.syntax.facts import base_tokens
+from backend.services.syntax.repair.answer import untied_command
 from backend.services.syntax.repair.asked import asked_man
 from backend.services.syntax.repair.called import called
 from backend.services.syntax.repair.dua import counted_times, dua_clause
@@ -37,4 +38,5 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         before_la(tokens)
         hal_clause(bases, tokens)
         nasab(bases, tokens)
+        untied_command(tokens)
         particles.stamp(tokens)

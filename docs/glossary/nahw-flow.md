@@ -47,6 +47,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/sy
 - before_la: a noun hung on لا from before it → the mubtada, the لا clause its khabar (`backend/services/syntax/repair/khabar.py`)
 - hal_clause: و + a raf' pronoun + a verb → a hal clause, the pronoun its mubtada (`backend/services/syntax/repair/hal.py`)
 - nasab: name + ابن/بن + noun → صفة and مضاف chain; next noun = خبر in a verbless sentence (`backend/services/syntax/repair/nasab.py`)
+- untied_command: a command read as a jazm condition's answer (إن تضربْ أضربْ) with no فاء on it → jussive present, جواب الشرط (`backend/services/syntax/repair/answer.py`)
 - stamp: particle families from the particle decision tree (`backend/services/syntax/particles.py`, `backend/data/nahw_rules/particle_tree.json`)
 <!-- /list -->
 
