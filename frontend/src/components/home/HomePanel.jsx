@@ -29,6 +29,8 @@ import CommandResults from '../shell/CommandResults'
 import LogInButton from '../profile/LogInButton'
 import ModuleCard from './ModuleCard'
 import ResumeCard from './ResumeCard'
+import StatsButton from './StatsButton'
+import StatsRail from './StatsRail'
 
 const { copy } = knobs
 const NAME = 'home'
@@ -66,9 +68,13 @@ export default function HomePanel({ accent, onGo }) {
         </ArabicText>
       </div>
       <header className="space-y-2">
-        <h2 className="type-head rise-in text-3xl sm:text-5xl font-semibold leading-tight">
-          {first ? copy['title-first'] : copy['title-resume']}
-        </h2>
+        <div className="flex items-start justify-between gap-3">
+          <h2 className="type-head rise-in text-3xl sm:text-5xl font-semibold leading-tight">
+            {first ? copy['title-first'] : copy['title-resume']}
+          </h2>
+          {/* A wide screen has the column beside the tiles; a narrower one, this way into the same figures. */}
+          <span className="lg:hidden"><StatsButton /></span>
+        </div>
         {first && <p className="rise-in relative text-[var(--text-dim)] max-w-[46ch]" style={{ '--i': 1 }}>{copy['welcome-first']}</p>}
       </header>
 
@@ -76,39 +82,47 @@ export default function HomePanel({ accent, onGo }) {
         <ErrorAlert title={down['offline-title']} onRetry={health.retryHealth}>{down['offline-body']}</ErrorAlert>
       )}
 
-      <div className="cb" data-wide>
-        <CommandField line={line} name={NAME} placeholder={copy.placeholder} showing={showing} />
-        {showing && (
-          <CommandResults id={`${NAME}-results`} name={NAME} rows={line.rows} tabs={LISTED} colorOf={accentOf}
-            active={line.active} onHover={line.setActive} onPick={line.run}
-            railTab={line.rows[line.active]?.tabId} onRail={(id) => onGo(id)} />
-        )}
-      </div>
+      {/* Beside the tiles on a wide screen, the progress column, held in view as the page scrolls. */}
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_var(--layout-rail)] lg:gap-8 lg:items-start">
+        <div className="space-y-6">
+          <div className="cb" data-wide>
+            <CommandField line={line} name={NAME} placeholder={copy.placeholder} showing={showing} />
+            {showing && (
+              <CommandResults id={`${NAME}-results`} name={NAME} rows={line.rows} tabs={LISTED} colorOf={accentOf}
+                active={line.active} onHover={line.setActive} onPick={line.run}
+                railTab={line.rows[line.active]?.tabId} onRail={(id) => onGo(id)} />
+            )}
+          </div>
 
-      <p className="-mt-3 type-small text-[var(--text-dim)] [@media(pointer:coarse)]:hidden">{fill(copy.keys, { n: KEY_COUNT })}</p>
+          <p className="-mt-3 type-small text-[var(--text-dim)] [@media(pointer:coarse)]:hidden">{fill(copy.keys, { n: KEY_COUNT })}</p>
 
-      <div className="space-y-4 md:max-w-2xl">
-        <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume?.value}
-          label={first ? copy['first-label'] : copy['resume-label']} goLabel={first ? copy['first-go'] : copy['resume-go']}
-          progressText={progressText(sums[lead.id])} onGo={onGo} />
-        {!name && (
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[var(--text-dim)]">
-            <span>{copy.guest}</span>
-            <LogInButton>{copy['guest-go']}</LogInButton>
-          </p>
-        )}
-      </div>
+          <div className="space-y-4 md:max-w-2xl">
+            <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume?.value}
+              label={first ? copy['first-label'] : copy['resume-label']} goLabel={first ? copy['first-go'] : copy['resume-go']}
+              progressText={progressText(sums[lead.id])} onGo={onGo} />
+            {!name && (
+              <p className="flex lg:hidden flex-wrap items-center gap-x-3 gap-y-2 text-[var(--text-dim)]">
+                <span>{copy.guest}</span>
+                <LogInButton>{copy['guest-go']}</LogInButton>
+              </p>
+            )}
+          </div>
 
-      <section className="space-y-4" aria-labelledby="home-all">
-        <h3 id="home-all" className="type-head text-xl font-semibold">{copy.all}</h3>
-        {/* One goal to a row: its one-word name over its tiles. */}
-        <div className="space-y-5">
-          <TabGroups groups={SHOWN_GROUPS} tabs={OTHERS} heading="h4"
-            grid="gap-2 sm:gap-3 grid-cols-3 sm:grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] lg:grid-cols-4">
-            {card}
-          </TabGroups>
+          <section className="space-y-4" aria-labelledby="home-all">
+            <h3 id="home-all" className="type-head text-xl font-semibold">{copy.all}</h3>
+            {/* One goal to a row: its one-word name over its tiles. */}
+            <div className="space-y-5">
+              <TabGroups groups={SHOWN_GROUPS} tabs={OTHERS} heading="h4"
+                grid="gap-2 sm:gap-3 grid-cols-3 sm:grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] lg:grid-cols-4">
+                {card}
+              </TabGroups>
+            </div>
+          </section>
         </div>
-      </section>
+        <div className="hidden lg:block sticky top-[calc(var(--app-header-h,0px)+var(--spacing)*5)]">
+          <StatsRail name={name} />
+        </div>
+      </div>
     </div>
   )
 }

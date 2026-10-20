@@ -7,15 +7,10 @@
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { shareOf } from '../../lib/coverage'
 import { logOut } from '../../lib/profile'
-import { deleteAccount, fetchAccount, fetchLeaderboard, fetchOverview, setPublic } from '../../lib/progress'
-import { MEANINGS } from '../../lib/quiz'
-import { useRewards } from '../../lib/useRewards'
-import { moduleFor, QUIZ } from '../../lib/quizBanks'
+import { deleteAccount, fetchLeaderboard, setPublic } from '../../lib/progress'
 import { forgetShelf } from '../../lib/shelf'
-import { useQuizCoverage } from '../../lib/useQuizCoverage'
-import { useRemembered } from '../../lib/useRemembered'
+import { useProgressFacts } from '../../lib/useProgressFacts'
 
 import CirclesView from './CirclesView'
 import ModuleRows from './ModuleRows'
@@ -26,16 +21,7 @@ import { Skeleton } from '../ui/Skeleton'
 import SmallButton from '../ui/SmallButton'
 
 export default function ProfileView({ name }) {
-  // The language the quiz was last set to, as the quiz reads it: an Urdu
-  // learner's words are filed under the Urdu module, not the default's.
-  const [language] = useRemembered('quiz-language', Object.keys(MEANINGS), QUIZ.language)
-  const module = moduleFor(language)
-  const account = useQuery({ queryKey: ['account', name], queryFn: fetchAccount })
-  const { stats, learnt, share } = useQuizCoverage(language)
-  const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview })
-  const { rewards } = useRewards(name)
-  // Nothing learnt covers nothing; something learnt waits for the word table.
-  const covered = !stats.data ? null : learnt.length === 0 ? '0%' : share === null ? null : `${shareOf(share, language)}%`
+  const { module, account, overview, stats, learnt, covered, rewards } = useProgressFacts(name)
 
   return (
     <div className="space-y-4">
