@@ -19,6 +19,7 @@ import { ARMED_MS, useMoment } from '../../lib/useMoment'
 
 import { useInstall } from '../../lib/install'
 import { InstallSteps } from './InstallBanner'
+import OfflinePanel from './OfflinePanel'
 import Disclosure from '../ui/Disclosure'
 import Segmented from '../ui/Segmented'
 
@@ -72,6 +73,8 @@ export default function SettingsPanel({ open, onClose }) {
         })}
 
         <InstallPanel />
+
+        <OfflinePanel />
 
         <SourceList />
 

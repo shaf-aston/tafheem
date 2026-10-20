@@ -18,6 +18,7 @@ import { progressByTab } from '../../lib/moduleTab'
 import { useCommandLine } from '../../lib/useCommandLine'
 import { accentOf, FIXED, GROUPS, HOME, LISTED, RECENT, START } from '../../lib/tabs'
 import { fill, progressText } from '../../lib/homeCopy'
+import { copy as offlineCopy, noSignal } from '../../lib/offline'
 import knobs from '../../home.json'
 
 import ArabicText from '../ui/ArabicText'
@@ -46,6 +47,8 @@ export default function HomePanel({ accent, onGo }) {
   const sums = progressByTab(overview.data?.modules)
   const showing = line.rows.length > 0
   const offline = health.status === 'error'
+  // No signal is the phone's, not the server's: say so, and that what is saved still opens.
+  const down = noSignal() ? offlineCopy : copy
 
   const resume = resumePlace(steps, LISTED, HOME)
   const first = !resume
@@ -67,7 +70,7 @@ export default function HomePanel({ accent, onGo }) {
       </header>
 
       {offline && (
-        <ErrorAlert title={copy['offline-title']} onRetry={health.retryHealth}>{copy['offline-body']}</ErrorAlert>
+        <ErrorAlert title={down['offline-title']} onRetry={health.retryHealth}>{down['offline-body']}</ErrorAlert>
       )}
 
       <div className="cb" data-wide>
