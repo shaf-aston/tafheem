@@ -52,8 +52,8 @@ export default function HomePanel({ accent, onGo }) {
   const resume = resumePlace(steps, LISTED, HOME)
   const first = !resume
   const lead = tabOf(resume?.tab ?? FALLBACK[0])
-  const card = (tab) => (
-    <ModuleCard key={tab.id} tab={tab} accent={accentOf(tab.id)} progressText={progressText(sums[tab.id])} onOpen={onGo} />
+  const card = (tab, at) => (
+    <ModuleCard key={tab.id} tab={tab} accent={accentOf(tab.id)} index={at} progressText={progressText(sums[tab.id])} onOpen={onGo} />
   )
 
   const progressStrip = (
@@ -94,7 +94,10 @@ export default function HomePanel({ accent, onGo }) {
         )}
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start">
+      <p className="-mt-3 type-small text-[var(--text-dim)] [@media(pointer:coarse)]:hidden">{fill(copy.keys, { n: KEY_COUNT })}</p>
+
+      {/* A guest has only the log-in line beside the card, so the two stack. */}
+      <div className={`grid grid-cols-1 gap-6 md:items-start ${name ? 'md:grid-cols-2' : 'md:max-w-2xl'}`}>
         <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume?.value}
           label={first ? copy['first-label'] : copy['resume-label']} goLabel={first ? copy['first-go'] : copy['resume-go']}
           progressText={progressText(sums[lead.id])} onGo={onGo} />
@@ -105,12 +108,14 @@ export default function HomePanel({ accent, onGo }) {
         <h3 id="home-all" className="type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">
           {`${copy.all} (${OTHERS.length})`}
         </h3>
-        <TabGroups groups={SHOWN_GROUPS} tabs={OTHERS} heading="h4" grid="gap-3 grid-cols-2 lg:grid-cols-3">
-          {card}
-        </TabGroups>
-        <p className="type-small text-[var(--text-dim)] [@media(pointer:coarse)]:hidden">
-          {fill(copy.keys, { n: KEY_COUNT })}
-        </p>
+        {/* One goal to a row: its name on the left from a tablet up, its tiles after it. */}
+        <div className="space-y-5">
+          <TabGroups groups={SHOWN_GROUPS} tabs={OTHERS} heading="h4"
+            className="space-y-2 md:space-y-0 md:grid md:grid-cols-[9rem_1fr] lg:grid-cols-[11rem_1fr] md:gap-4"
+            grid="gap-2 sm:gap-3 grid-cols-3 sm:grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))]">
+            {card}
+          </TabGroups>
+        </div>
       </section>
     </div>
   )

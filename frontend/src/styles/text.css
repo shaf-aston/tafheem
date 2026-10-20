@@ -79,6 +79,9 @@
 .arabic-lg {
   font-size: calc(var(--arabic-display-rem) * 1rem);
 }
+/* On a tab tile (.tile-wash, a size container), a long name (الحديث, التاريخ)
+   shrinks to fit a phone's tile instead of running out of it. */
+.tile-wash .arabic-lg { font-size: min(calc(var(--arabic-display-rem) * 1rem), 30cqi); }
 
 
 /* The smallest rung. For an Arabic name sitting in a control beside English

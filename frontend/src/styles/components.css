@@ -674,6 +674,7 @@ dialog::backdrop {
   transition: border-color calc(var(--motion-base-ms) * 1ms), background-color calc(var(--motion-base-ms) * 1ms);
 }
 button.tile:hover { border-color: var(--c); }
+.tile-wash { background-image: radial-gradient(90% 90% at 100% 0, color-mix(in srgb, var(--c) 22%, transparent), transparent 65%); container-type: inline-size; }
 .tile-lead { padding: var(--space-card); background: var(--surface); border-color: var(--c); }
 .card-accent { border-left: 4px solid var(--c); }
 }
