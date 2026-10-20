@@ -13,6 +13,7 @@
  *   quiz    question card           timelines  events on a line
  *   dawah   speech bubble, star     colloq  two speech bubbles
  *   kit     toolbox                 home    an open arch, a crescent over it
+ *   similar two pages, one line apart
  */
 const ink = { fill: 'none', stroke: 'currentColor', strokeLinecap: 'round', strokeLinejoin: 'round' }
 
@@ -104,6 +105,15 @@ const ART = {
     </>
   ),
   // The board a child learns hifz on: lines written out, one left blank to fill (the tab's gaps).
+  similar: (
+    <>
+      <rect x="10" y="14" width="26" height="36" rx="3" {...ink} strokeWidth="2.4" />
+      <rect className="em-sway" x="28" y="14" width="26" height="36" rx="3" fill="currentColor" opacity=".18" stroke="currentColor" strokeWidth="2.4" />
+      <path d="M15 24h16M15 32h16M15 40h10" {...ink} strokeWidth="2.2" />
+      <path d="M33 24h16M33 40h16" {...ink} strokeWidth="2.2" />
+      <path d="M33 32h9" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" />
+    </>
+  ),
   mem: (
     <>
       <path d="M12 20h40v36a4 4 0 01-4 4H16a4 4 0 01-4-4z" fill="currentColor" opacity=".2" />

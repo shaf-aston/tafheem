@@ -1,0 +1,39 @@
+{
+  "_comment": "The Similar verses tab (components/SimilarPanel.jsx): its words and its one knob. The rules are in lib/similar.js; the pairs come from the backend's catalogue.",
+  "title": "Similar verses",
+  "arabic": "متشابهات",
+  "subtitle": "Verses that read almost alike: see what tells them apart, then learn which wording is where",
+  "module": "similar",
+  "default-surah": 2,
+
+  "_comment-gap": "A difference longer than this many words, on either side, is shown in Compare but never asked: past a short phrase it is a different passage to learn, not a wording to tell apart.",
+  "max-gap-words": 6,
+
+  "surah": "Surah",
+  "mastered": "Mastered",
+  "steps": [
+    { "id": "compare", "label": "Compare" },
+    { "id": "drill", "label": "Drill" }
+  ],
+  "twin": "with {where}",
+  "apart": "What tells them apart",
+  "nothing": "nothing here",
+  "start": "Drill this pair",
+  "question": "Question {n} of {of}",
+  "ask": "How does {where} say it?",
+  "right": "Right.",
+  "wrong": "Not quite: that wording is {where}.",
+  "next": "Next",
+  "passed": "All correct: this pair is mastered.",
+  "slipped": "Slips: {n}. Compare them again, then try once more.",
+  "again": "Compare again",
+  "next-pair": "Next pair",
+  "no-drill": "These two differ in whole passages rather than a word or two, so there is nothing short to drill. Compare them instead.",
+  "none": "No similar verses recorded for this surah.",
+  "error": "Similar verses could not be read",
+  "fallback": "They come from the Qur'an tab's own source.",
+  "label-new": "new",
+  "label-due": "review",
+  "label-known": "mastered",
+  "differences": "{n} differences"
+}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { closestSpans, flagsOnPage, placeLine, twinKeys, wordFlags } from './similar'
+import { drillOf, fill, flagsOnPage, pairId, placeLine, wordFlags } from './similar'
 
 describe('wordFlags', () => {
   it('flags the words inside a span, end exclusive', () => {
@@ -28,36 +28,6 @@ describe('flagsOnPage', () => {
   })
 })
 
-describe('closestSpans', () => {
-  const text = 'ا ب ج د هـ و ز ح ط ي'
-  const far = { diff_self: [[0, 8]] }
-  const near = { diff_self: [[1, 2]] }
-
-  it('picks the partner with the fewest differing words', () => {
-    expect(closestSpans(text, [far, { diff_self: [[1, 4]] }, near])).toEqual([[1, 2]])
-  })
-
-  it('keeps API order on a tie', () => {
-    const first = { diff_self: [[0, 1]] }
-    expect(closestSpans(text, [first, { diff_self: [[5, 6]] }])).toBe(first.diff_self)
-  })
-
-  it('covers nothing when every twin differs in more than half the verse', () => {
-    expect(closestSpans(text, [far, { diff_self: [[0, 6]] }])).toEqual([])
-    expect(closestSpans(text, [])).toEqual([])
-  })
-
-  it('counts exactly half as near', () => {
-    expect(closestSpans(text, [{ diff_self: [[0, 5]] }])).toEqual([[0, 5]])
-  })
-})
-
-describe('twinKeys', () => {
-  it('collects keys across groups, once each', () => {
-    expect([...twinKeys([{ keys: ['2:59', '7:162'] }, { keys: ['7:162', '3:1'] }])]).toHaveLength(3)
-  })
-})
-
 describe('placeLine', () => {
   it('names two surahs', () => {
     expect(placeLine('2:59', '7:162')).toBe("This one is in Surah Al-Baqarah, that one in Surah Al-A'raf")
@@ -65,5 +35,47 @@ describe('placeLine', () => {
 
   it('says so when both are in one surah', () => {
     expect(placeLine('2:59', '2:60')).toContain('Both are in Surah Al-Baqarah')
+  })
+})
+
+describe('drillOf', () => {
+  const mine = { key: '2:59', text: 'فبدل الذين ظلموا قولا فأنزلنا' }
+  const partner = {
+    key: '7:162',
+    text: 'فبدل الذين ظلموا منهم قولا فأرسلنا',
+    changes: [{ self: [3, 3], other: [3, 4] }, { self: [4, 5], other: [5, 6] }],
+  }
+
+  it('asks every difference, from both verses', () => {
+    const qs = drillOf(mine, partner)
+    expect(qs.map((q) => [q.key, q.right, q.wrong])).toEqual([
+      ['2:59', '', 'منهم'],
+      ['2:59', 'فأنزلنا', 'فأرسلنا'],
+      ['7:162', 'منهم', ''],
+      ['7:162', 'فأرسلنا', 'فأنزلنا'],
+    ])
+  })
+
+  it('leaves out a difference longer than the limit on either side', () => {
+    expect(drillOf(mine, partner, 0)).toEqual([])
+    expect(drillOf(mine, { ...partner, changes: [{ self: [0, 5], other: [0, 1] }] }, 2)).toEqual([])
+  })
+
+  it('has nothing to ask of a partner without paired changes', () => {
+    expect(drillOf(mine, { ...partner, changes: undefined })).toEqual([])
+  })
+})
+
+describe('pairId', () => {
+  it('is the same whichever verse is asked', () => {
+    expect(pairId('7:162', '2:59')).toBe('2:59~7:162')
+    expect(pairId('2:59', '7:162')).toBe('2:59~7:162')
+    expect(pairId('10:1', '9:2')).toBe('9:2~10:1')
+  })
+})
+
+describe('fill', () => {
+  it('puts named values into the copy', () => {
+    expect(fill('Question {n} of {of}', { n: 2, of: 5 })).toBe('Question 2 of 5')
   })
 })

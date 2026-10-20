@@ -20,7 +20,6 @@ import { PHONE, useMedia } from '../lib/useMedia'
 import Line from './memorise/Line'
 import ReciteStrip from './memorise/ReciteStrip'
 import SettingsSheet from './memorise/SettingsSheet'
-import SimilarCards from './memorise/SimilarCards'
 import EmptyState from './ui/EmptyState'
 import Chip from './ui/Chip'
 import ErrorAlert from './ui/ErrorAlert'
@@ -37,7 +36,7 @@ import {
 
 export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const { answers, setAnswers, checked, setChecked, shown, setShown, fresh } = useAnswers()
-  const { way, setWay, similar, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay } = useHowYouAnswer(fresh)
+  const { way, setWay, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay } = useHowYouAnswer(fresh)
   const {
     bookId, book, parts, part, data, isPending, isError, error, refetch, pages, page, pageNumber, meaning,
     setMeaning, pinned, openAt, openPart, openPage, openBook, pageOfLine,
@@ -47,8 +46,8 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   // claiming a printed number is the honest thing to show for that.
   const printedPage = printedPageOf(page)
   const { recitedPage, reciting, startFrom, startLabel, show } = useReciteState({ page, book, pinned, shown, setShown })
-  const { blanks, choices, twinsOfSurah, twinned, twinLines, twinQueries } = useGaps({
-    data, page, part, pageNumber, deal, difficulty, way, similar, hidden, startFrom,
+  const { blanks, choices } = useGaps({
+    data, page, pageNumber, deal, difficulty, way, hidden, startFrom,
   })
   const marks = page ? score(page, blanks, answers) : { right: 0, total: 0 }
   const { partBy, stepPage, atStart, atEnd, swipe, slide } = usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart })
@@ -89,7 +88,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   // Reciting has two states worth choosing between, not five: the page read
   // from, or the page said from memory.
   const missingLabel = way === 'recite' ? 'Words to say from memory' : 'How much is missing'
-  const missingSwitch = !similar && (
+  const missingSwitch = (
     <Segmented
       wrap={phone}
       label={missingLabel}
@@ -107,7 +106,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
     missingSwitch && { caption: missingLabel, control: missingSwitch },
     { caption: 'Translation', control: <Segmented label="Translation" options={[{ id: false, label: 'Off' }, { id: true, label: 'On' }]} value={meaning} onChange={setMeaning} accent={accent} /> },
   ].filter(Boolean)
-  const settingsWords = [book.label, !similar && missing.find((o) => o.id === missingNow)?.label].filter(Boolean)
+  const settingsWords = [book.label, missing.find((o) => o.id === missingNow)?.label].filter(Boolean)
 
   // Above the page and again under it, so a page read to its end turns from there.
   const pageSteps = (
@@ -184,7 +183,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                 of help, because being stuck on one word and having lost the
                 thread of a whole ayah are not the same trouble. What they
                 give is marked as given, never as recited. */}
-            {way !== 'recite' && !similar && (
+            {way !== 'recite' && (
               <Chip accent={accent} onClick={reDeal}>New gaps</Chip>
             )}
             {/* Off to start with, and that is the point: "Say He (is) Allah
@@ -197,7 +196,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             )}
             {/* Reciting says what to do in its own dock; typing has one
                 thing worth knowing first. */}
-            {way !== 'recite' && (way === 'type' || similar) && (
+            {way === 'type' && (
               <span className="basis-full sm:basis-auto text-[var(--text-faint)]">vowels not needed</span>
             )}
           </div>
@@ -241,7 +240,6 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                   meaning={meaning}
                   choices={choices}
                   accent={accent}
-                  twin={similar && twinned.has(line.label)}
                   recite={way === 'recite'
                     ? { ...reciting.marks, from: recitedPage.lines[l].from, shown, open: opened, setOpen, takeAudio: reciting.takeAudio }
                     : null}
@@ -291,7 +289,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             // read the page, or every line on it is one word long so there was
             // nothing to take out even at a harder setting. Only the second is
             // worth saying, the first is exactly what was asked for.
-            !similar && difficulty !== 'none' && (
+            difficulty !== 'none' && (
               <EmptyState>
                 Every line here is one word long, so there is nothing to take out.
               </EmptyState>
@@ -318,14 +316,6 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                 </p>
               )}
             </div>
-          )}
-          {similar && (
-            <SimilarCards
-              lines={twinLines}
-              queries={twinQueries}
-              surah={twinsOfSurah}
-              accent={accent}
-            />
           )}
           <div className="flex justify-center">{pageSteps}</div>
         </>

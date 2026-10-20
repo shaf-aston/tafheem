@@ -6,6 +6,7 @@
  * spans become one flag per word here and nowhere else.
  */
 import surahs from '../data/surahs.json'
+import config from '../similar.json'
 
 /** One true/false per word: is it inside any span. Spans may overlap or run past the end. */
 export function wordFlags(count, spans = []) {
@@ -38,31 +39,6 @@ export function flagsOnPage(pageWords, text, spans = []) {
   return extents(pageWords).map(([start, end]) => marked.some(([s, e]) => s < end && start < e))
 }
 
-/** A twin differing in more than this share of the verse is a thematic link, not a near-duplicate. */
-export const NEAR_DUPLICATE_MAX_SHARE = 0.5
-
-/**
- * The spans to cover for one ayah: the diff_self of its closest twin, the partner with
- * the fewest differing words (the first listed on a tie), ignoring partners that differ
- * in more than NEAR_DUPLICATE_MAX_SHARE of the verse. No such partner: no spans.
- */
-export function closestSpans(text, partners = []) {
-  const tokens = text.split(/\s+/).filter(Boolean)
-  const real = tokens.map((token) => skeleton(token).length > 0)
-  const total = real.filter(Boolean).length
-  let best = null
-  for (const partner of partners) {
-    const flags = wordFlags(tokens.length, partner.diff_self)
-    const differing = flags.filter((on, i) => on && real[i]).length
-    if (differing > total * NEAR_DUPLICATE_MAX_SHARE) continue
-    if (!best || differing < best.differing) best = { differing, spans: partner.diff_self }
-  }
-  return best ? best.spans : []
-}
-
-/** Every ayah key ("2:59") that sits in some group, from a surah's groups. */
-export const twinKeys = (groups = []) => new Set(groups.flatMap((group) => group.keys))
-
 const nameOf = (key) => surahs.find((s) => s.n === Number(key.split(':')[0]))?.en ?? key
 
 /** Where the two verses are, in plain words. */
@@ -73,3 +49,44 @@ export function placeLine(mine, theirs) {
     ? `Both are in Surah ${nameOf(mine)}, this one is ayah ${mineAyah}, that one ayah ${theirAyah}`
     : `This one is in Surah ${nameOf(mine)}, that one in Surah ${nameOf(theirs)}`
 }
+
+/** "{n} of {of}" filled from an object: the tab's copy keeps its numbers as names. */
+export const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, name) => values[name] ?? '')
+
+const byPlace = (a, b) => a.split(':').map(Number).reduce((d, n, i) => d || n - b.split(':').map(Number)[i], 0)
+
+/** One id for a pair whichever verse is asked about, so its progress is filed once. */
+export const pairId = (a, b) => [a, b].sort(byPlace).join('~')
+
+const splitWords = (text) => text.split(/\s+/).filter(Boolean)
+
+/** The words a [start, end) span holds, '' for an empty span (nothing on that side). */
+export const wordsAt = (text, [start, end]) => splitWords(text).slice(start, end).join(' ')
+
+/**
+ * The questions for one pair, both ways round: each verse in turn with one of its
+ * differences taken out, offered its own wording and its twin's. `changes` are the
+ * backend's paired spans, `self` in `mine`. A difference longer than `maxWords` on
+ * either side is left out (see similar.json), so a pair can have none.
+ */
+export function drillOf(mine, partner, maxWords = config['max-gap-words']) {
+  const short = (span) => span[1] - span[0] <= maxWords
+  const sides = [
+    { verse: mine, twin: partner, own: 'self', theirs: 'other' },
+    { verse: partner, twin: mine, own: 'other', theirs: 'self' },
+  ]
+  return sides.flatMap(({ verse, twin, own, theirs }) => (partner.changes ?? [])
+    .filter((change) => short(change[own]) && short(change[theirs]))
+    .map((change) => ({
+      key: verse.key,
+      twin: twin.key,
+      words: splitWords(verse.text),
+      span: change[own],
+      marked: partner.changes.map((c) => c[own]),
+      right: wordsAt(verse.text, change[own]),
+      wrong: wordsAt(twin.text, change[theirs]),
+    })))
+}
+
+/** The surah name of a key, for the copy ("Al-Baqarah 2:59"). */
+export const whereOf = (key) => `${nameOf(key)} ${key}`

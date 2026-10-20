@@ -17,7 +17,7 @@ import { withinPart } from './hooks'
  * never of the missing word on its own, so it is a reminder of where you are
  * rather than the answer.
  */
-export default function Line({ line, flow, index, blanks, answers, checked, meaning, choices, accent, twin, recite, onStartAt, onAnswer }) {
+export default function Line({ line, flow, index, blanks, answers, checked, meaning, choices, accent, recite, onStartAt, onAnswer }) {
   const words = wordsOf(line.arabic)
   // The ayah as the card needs it, and the number's own place to hang the card from.
   const ayah = { key: line.label, label: withinPart(line.label), from: recite?.from, count: words.length, printed: words }
@@ -99,17 +99,6 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
       {numberOpen && <MarkCard ayah={ayah} at={null} recite={recite} anchor={numberAnchor} onStartAt={onStartAt} />}
     </span>
   ) : bare
-  const marker = twin ? (
-    <>
-      {number}
-      <span
-        role="img"
-        aria-label="has similar verses"
-        title="has similar verses"
-        className="w-1.5 h-1.5 rounded-full shrink-0 bg-[var(--text-faint)]"
-      />
-    </>
-  ) : number
   // Flowing, the line's two boxes step aside (display: contents) so its words
   // join the page's one run; the words themselves are drawn the same either way.
   return (
@@ -129,13 +118,13 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
                 is never left alone at the start of a row. */}
             <span className="inline-flex items-baseline gap-x-2">
               {drawn.at(-1)}
-              {marker}
+              {number}
             </span>
           </>
         ) : (
           <>
             {drawn}
-            {marker}
+            {number}
           </>
         )}
       </div>

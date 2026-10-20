@@ -1,11 +1,10 @@
 // @vitest-environment happy-dom
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, renderHook, waitFor } from '@testing-library/react'
 
 import { renderWithBackend } from '../../test/render'
 import { CHOICES, wordsOf } from '../../lib/memorise'
-import { useAnswers, useBookPage, useGaps, useHowYouAnswer, usePageSteps, waysOf, withinPart } from './hooks'
-import { BOOKS } from '../../lib/books'
+import { useAnswers, useBookPage, useGaps, useHowYouAnswer, usePageSteps, withinPart } from './hooks'
 
 // Two surahs: the first over two printed pages, the second on one.
 const WORDS = ['الحمد', 'لله', 'رب', 'العالمين', 'الرحمن', 'الرحيم', 'مالك', 'يوم', 'الدين']
@@ -25,20 +24,19 @@ function useMemorise() {
   const gaps = useGaps({ ...where, ...how, startFrom: 0 })
   return { ...answers, ...how, ...where, ...steps, ...gaps }
 }
+// Each test opens where the app would on a first visit, not where the last test left the page.
+beforeEach(() => { localStorage.clear(); window.history.replaceState(null, '', '/') })
+
 const open = async () => {
   const view = renderWithBackend(useMemorise, { routes })
   await waitFor(() => expect(view.result.current.page).not.toBeNull())
   return view
 }
 
-describe('withinPart and waysOf', () => {
+describe('withinPart', () => {
   it('drops the surah a line label repeats, and leaves other labels alone', () => {
     expect(withinPart('3:158')).toBe('158')
     expect(withinPart('12')).toBe('12')
-  })
-  it('offers similar verses only in a book that has twins', () => {
-    expect(waysOf(BOOKS.quran).map((w) => w.id)).toContain('similar')
-    expect(waysOf(BOOKS.jazariyya).map((w) => w.id)).not.toContain('similar')
   })
 })
 
@@ -91,13 +89,6 @@ describe('useBookPage and usePageSteps', () => {
     await waitFor(() => expect(result.current).toMatchObject({ part: 1, pageNumber: 1 }))
   })
 
-  it('a book without twins puts "similar verses" back to typing', async () => {
-    const { result } = await open()
-    act(() => result.current.chooseWay('similar'))
-    act(() => result.current.openBook('jazariyya'))
-    expect(result.current.way).toBe('type')
-    await waitFor(() => expect(result.current.page).not.toBeNull())
-  })
 })
 
 describe('useGaps', () => {
