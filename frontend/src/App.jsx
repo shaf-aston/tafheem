@@ -1,4 +1,4 @@
-import { Activity, useCallback, useEffect, useState } from 'react'
+import { Activity, Suspense, lazy, useCallback, useEffect, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/tabs'
@@ -15,7 +15,6 @@ import TabPane from './components/shell/TabPane'
 import CursorLight from './components/shell/CursorLight'
 import CommandBar from './components/shell/CommandBar'
 import Mascot from './components/ui/Mascot'
-import MapPanel from './components/shell/MapPanel'
 import ProfileButton from './components/profile/ProfileButton'
 import SettingsPanel from './components/shell/SettingsPanel'
 import SpatialHome from './components/shell/SpatialHome'
@@ -26,6 +25,10 @@ import InstallBanner from './components/shell/InstallBanner'
 import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
 import UndoToast from './components/ui/UndoToast'
+
+// The Map carries every chart's data (~100 kB), so it is fetched the first time
+// it opens rather than with the page everyone loads.
+const MapPanel = lazy(() => import('./components/shell/MapPanel'))
 
 const startOver = TOOLS.find((tool) => tool.id === 'startOver')
 
@@ -51,9 +54,11 @@ function AppContent() {
   const { activeTab, alive, handoffs, switchTab, said, round, strip, dock, placeInDock } = useTabNavigation()
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
+  // Mounted from its first opening on, so closing it keeps its place.
+  const [mapSeen, setMapSeen] = useState(false)
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
-  const tools = useTools(TOOLS, { map: () => setMapOpen(true) })
+  const tools = useTools(TOOLS, { map: () => { setMapSeen(true); setMapOpen(true) } })
   const { status } = useHealth()
   const accent = accentOf(activeTab)
 
@@ -206,7 +211,11 @@ function AppContent() {
       </footer>
       <UndoToast message={tools.undo.pending && startOver.pending.message} undoLabel={startOver.pending.undo} onUndo={tools.undo.cancel} />
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
-      <MapPanel open={mapOpen} onClose={() => setMapOpen(false)} />
+      {mapSeen && (
+        <Suspense fallback={null}>
+          <MapPanel open={mapOpen} onClose={() => setMapOpen(false)} />
+        </Suspense>
+      )}
       <SpatialHome
         open={spatialOpen}
         onClose={() => setSpatialOpen(false)}
