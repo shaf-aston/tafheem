@@ -82,8 +82,8 @@ class Voice(Retirable, ABC):
     local: bool = True
 
     @abstractmethod
-    def say(self, text: str) -> bytes:
-        """The spoken text as a WAV file."""
+    def say(self, text: str, speed: float = 1.0) -> bytes:
+        """The spoken text as a WAV file, at `speed` times this voice's own pace (below 1 is slower)."""
 
 
 MARKS = "ً-ْٰ"
@@ -140,9 +140,10 @@ class FastPitchVoice(Voice):
     @property
     def version(self) -> str:
         settings = get_settings()
-        return f"hifigan-speaker{settings.speech_fastpitch_speaker}-pace{settings.speech_fastpitch_pace}-name2"
+        return (f"hifigan-speaker{settings.speech_fastpitch_speaker}-pace{settings.speech_fastpitch_pace}"
+                f"-lead{settings.speech_lead_ms}-name2")
 
-    def say(self, text: str) -> bytes:
+    def say(self, text: str, speed: float = 1.0) -> bytes:
         # One word at a time: the model is not known to be safe to share between threads.
         with self._lock:
             if self._model is None:
@@ -151,7 +152,12 @@ class FastPitchVoice(Voice):
                 self._model = get_model("fastpitch", "hifigan", cuda=None)
             settings = get_settings()
             audio = self._model.infer(long_aa_spelt_out(name_spelt_out(text)).translate(self.PAUSES),
-                                      speaker=settings.speech_fastpitch_speaker, pace=settings.speech_fastpitch_pace)
+                                      speaker=settings.speech_fastpitch_speaker,
+                                      pace=settings.speech_fastpitch_pace * speed)
+        import numpy as np
+
+        lead = np.zeros(22050 * settings.speech_lead_ms // 1000, dtype=audio.dtype)
+        audio = np.concatenate([lead, audio, lead])
         out = io.BytesIO()
         with wave.open(out, "wb") as file:
             file.setframerate(22050)
@@ -177,14 +183,14 @@ class EdgeVoice(Voice):
     def version(self) -> str:
         return f"rate{get_settings().speech_edge_rate}"
 
-    def say(self, text: str) -> bytes:
+    def say(self, text: str, speed: float = 1.0) -> bytes:
         import asyncio
 
         import edge_tts
 
         async def spoken() -> bytes:
             # Its aiohttp ignores the usual proxy variables unless handed one.
-            talk = edge_tts.Communicate(text, self.speaker, rate=get_settings().speech_edge_rate,
+            talk = edge_tts.Communicate(text, self.speaker, rate=edge_rate(get_settings().speech_edge_rate, speed),
                                         proxy=os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy"))
             return b"".join([part["data"] async for part in talk.stream() if part["type"] == "audio"])
 
@@ -192,6 +198,11 @@ class EdgeVoice(Voice):
         if not audio:
             raise RuntimeError(f"{self.speaker} returned no sound")
         return audio
+
+
+def edge_rate(base: str, speed: float) -> str:
+    """Edge's rate ("-10%") with `speed` applied on top: -10% at 0.7 is -37%."""
+    return f"{round(((1 + int(base.rstrip('%')) / 100) * speed - 1) * 100):+d}%"
 
 
 _VOICES: dict[str, Voice] = {voice.name: voice for voice in (FastPitchVoice(),)}
@@ -294,9 +305,11 @@ def _trim(added: int) -> None:
         _stored -= stat.st_size
 
 
-def stored(voice: Voice, text: str) -> Path:
-    """Where `voice` keeps `text` once said."""
-    key = hashlib.sha256(f"{voice.version}\n{text}".encode()).hexdigest()[:32]
+def stored(voice: Voice, text: str, speed: float = 1.0) -> Path:
+    """Where `voice` keeps `text` once said at `speed`."""
+    # The usual speed keeps its old key, so every word already made is still found.
+    said = f"{voice.version}\n{text}" if speed == 1.0 else f"{voice.version}\nspeed{speed}\n{text}"
+    key = hashlib.sha256(said.encode()).hexdigest()[:32]
     return CACHE / f"{voice.name}-{key}.wav"  # an MP3 too: the name only has to be unique
 
 
@@ -306,17 +319,18 @@ def forget(text: str) -> None:
         stored(voice, text).unlink(missing_ok=True)
 
 
-def say(text: str, pressed: bool = True, first: str | None = None) -> bytes:
+def say(text: str, pressed: bool = True, first: str | None = None, speed: float = 1.0) -> bytes:
     """Spoken `text` from the first voice that manages. Raises when none can.
 
     `pressed` is False for a word only being made ahead of a press, which
     waits while any pressed word is waiting. `first` names a voice to try
-    before the usual order: a dialect's own speaker.
+    before the usual order: a dialect's own speaker. `speed` is one of
+    config's speech_speeds, below 1 slower.
     """
     for voice in order(first):
         if voice.retired_reason or voice.resting():
             continue
-        cached = stored(voice, text)
+        cached = stored(voice, text, speed)
         if cached.exists():
             return cached.read_bytes()
         asked = time.monotonic()
@@ -328,7 +342,7 @@ def say(text: str, pressed: bool = True, first: str | None = None) -> bytes:
                 continue
             started = time.monotonic()
             try:
-                audio = voice.say(text)
+                audio = voice.say(text, speed)
             except ImportError as exc:  # not installed: will not fix itself
                 voice.retire(str(exc))
                 continue

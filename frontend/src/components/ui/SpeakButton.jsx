@@ -10,7 +10,9 @@ import { prepare, speak, stop } from '../../lib/speak'
 // `ref` reaches the button itself, so a keyboard shortcut can press it; `shortcut`
 // names that key in the tooltip. `early` readies the voice on arrival, for a
 // button that is the point of its view; others ready it on hover or focus.
-export default function SpeakButton({ text, ref, shortcut, early, className = '' }) {
+// `label` and `glyph` make it another way of hearing, the letter-by-letter
+// button say, with the same states, voices and stopping.
+export default function SpeakButton({ text, ref, shortcut, early, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
   // idle | busy (finding a voice) | speaking | failed
   const [state, setState] = useState('idle')
   const accent = useAccent()
@@ -59,13 +61,13 @@ export default function SpeakButton({ text, ref, shortcut, early, className = ''
       type="button"
       onClick={press}
       {...ahead(() => prepare(text, { accent }))}
-      aria-label={state === 'speaking' ? 'Stop' : state === 'failed' ? FAILED : 'Say it aloud'}
-      title={state === 'failed' ? FAILED : shortcut ? `Say it aloud (${shortcut})` : 'Say it aloud'}
+      aria-label={state === 'speaking' ? 'Stop' : state === 'failed' ? FAILED : label}
+      title={state === 'failed' ? FAILED : shortcut ? `${label} (${shortcut})` : label}
       aria-busy={state === 'busy'}
       className={`shrink-0 w-7 h-7 grid place-items-center rounded-full border transition-colors ${look}
         ${state === 'busy' ? 'animate-pulse' : ''} ${className}`}
     >
-      <SpeakerGlyph />
+      {glyph}
     </button>
   )
 }

@@ -12,7 +12,7 @@ def client(monkeypatch, tmp_path):
     speak_route._limit.asks.clear()
     monkeypatch.setattr(speech, "CACHE", tmp_path)
     monkeypatch.setattr(speech, "_stored", None)
-    monkeypatch.setattr(speech.FastPitchVoice, "say", lambda self, text: calls.append(text) or b"RIFF-fake")
+    monkeypatch.setattr(speech.FastPitchVoice, "say", lambda self, text, speed=1.0: calls.append(text) or b"RIFF-fake")
     return TestClient(create_app()), calls
 
 
@@ -51,7 +51,7 @@ def test_a_failing_voice_rests_instead_of_retiring(monkeypatch, tmp_path):
     monkeypatch.setattr(voice, "retired_reason", "")
     monkeypatch.setattr(speech, "CACHE", tmp_path)
 
-    def broken(self, text):
+    def broken(self, text, speed=1.0):
         raise OSError("offline")
 
     monkeypatch.setattr(speech.FastPitchVoice, "say", broken)
@@ -102,7 +102,7 @@ def test_a_pressed_word_goes_before_words_made_ahead(monkeypatch, tmp_path):
     monkeypatch.setattr(speech, "_stored", None)
     order, first_started = [], threading.Event()
 
-    def slow(self, text):
+    def slow(self, text, speed=1.0):
         first_started.set()
         time.sleep(0.15)
         order.append(text)
@@ -127,7 +127,7 @@ def test_a_word_readied_then_pressed_is_made_once(monkeypatch, tmp_path):
     monkeypatch.setattr(speech, "CACHE", tmp_path)
     monkeypatch.setattr(speech, "_stored", None)
     made = []
-    monkeypatch.setattr(speech.FastPitchVoice, "say", lambda self, text: time.sleep(0.1) or made.append(text) or b"RIFF-fake")
+    monkeypatch.setattr(speech.FastPitchVoice, "say", lambda self, text, speed=1.0: time.sleep(0.1) or made.append(text) or b"RIFF-fake")
     readied = threading.Thread(target=speech.say, args=("كتاب", False))
     readied.start()
     time.sleep(0.03)
@@ -139,7 +139,7 @@ def test_a_word_readied_then_pressed_is_made_once(monkeypatch, tmp_path):
 def test_the_page_marks_a_word_made_ahead(monkeypatch, tmp_path):
     app, _ = client(monkeypatch, tmp_path)
     heard = []
-    monkeypatch.setattr(speech, "say", lambda text, pressed=True, first=None: heard.append(pressed) or b"RIFF-fake")
+    monkeypatch.setattr(speech, "say", lambda text, pressed=True, first=None, speed=1.0: heard.append(pressed) or b"RIFF-fake")
     app.get("/api/speak", params={"text": "كتب"}, headers={"x-speak-ahead": "1"})
     app.get("/api/speak", params={"text": "كتب"})
     assert heard == [False, True]
@@ -206,8 +206,30 @@ def test_the_voice_hands_back_a_playable_wav(monkeypatch):
     monkeypatch.setattr(voice, "_model", model)
     with wave.open(io.BytesIO(voice.say("كِتَاب"))) as file:
         assert (file.getframerate(), file.getsampwidth(), file.getnchannels()) == (22050, 2, 1)
-        assert file.getnframes() == 22050 // 4
+        # The word, with the quiet a phone's speaker needs to wake on each side.
+        assert file.getnframes() == 22050 // 4 + 2 * (22050 * get_settings().speech_lead_ms // 1000)
     assert model.pace == get_settings().speech_fastpitch_pace  # the slower pace reaches the engine
+
+
+def test_slow_reaches_the_engine_and_is_kept_apart(monkeypatch, tmp_path):
+    model = _Model()
+    monkeypatch.setattr(speech, "CACHE", tmp_path)
+    monkeypatch.setattr(speech, "_stored", None)
+    monkeypatch.setattr(speech._VOICES["fastpitch"], "_model", model)
+    slow = get_settings().speech_speeds["slow"]
+    client = TestClient(create_app())
+    assert client.get("/api/speak", params={"text": "قَطَاة", "speed": "slow"}).status_code == 200
+    assert model.pace == get_settings().speech_fastpitch_pace * slow
+    voice = speech._VOICES["fastpitch"]
+    assert speech.stored(voice, "قَطَاة", slow) != speech.stored(voice, "قَطَاة")
+    # A speed the config does not name is refused, so no file is made per decimal place.
+    assert client.get("/api/speak", params={"text": "قَطَاة", "speed": "0.123"}).status_code == 422
+
+
+def test_edge_rate_takes_the_speed_on_top():
+    assert speech.edge_rate("-10%", 1.0) == "-10%"
+    assert speech.edge_rate("-10%", 0.7) == "-37%"
+    assert speech.edge_rate("+0%", 1.0) == "+0%"
 
 
 def test_arabic_marks_reach_the_engine_as_pauses(monkeypatch):
@@ -232,7 +254,7 @@ def test_name_of_allah_is_spelt_out_wherever_it_falls():
 def test_a_dialect_is_said_by_its_own_speaker_first(monkeypatch, tmp_path):
     app, calls = client(monkeypatch, tmp_path)
     heard = []
-    monkeypatch.setattr(speech.EdgeVoice, "say", lambda self, text: heard.append((self.speaker, text)) or b"ID3-fake")
+    monkeypatch.setattr(speech.EdgeVoice, "say", lambda self, text, speed=1.0: heard.append((self.speaker, text)) or b"ID3-fake")
     reply = app.get("/api/speak", params={"text": "كيفك", "accent": "damascene"})
     assert reply.status_code == 200
     assert reply.headers["content-type"] == "audio/mpeg"
@@ -245,7 +267,7 @@ def test_a_dialect_is_said_by_its_own_speaker_first(monkeypatch, tmp_path):
 def test_a_dialect_speaker_out_of_reach_falls_back_to_the_fusha_voice(monkeypatch, tmp_path):
     app, calls = client(monkeypatch, tmp_path)
 
-    def offline(self, text):
+    def offline(self, text, speed=1.0):
         raise OSError("offline")
 
     monkeypatch.setattr(speech.EdgeVoice, "say", offline)

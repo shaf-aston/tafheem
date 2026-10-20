@@ -13,6 +13,7 @@
  */
 import config from '../speak.json'
 import { play, stop as stopAudio, watch } from './ayahAudio'
+import { settingOf } from './settings'
 
 let recordings = null
 async function recordingOf(text) {
@@ -34,7 +35,22 @@ async function playFile(url) {
   }
 }
 
-const serverUrl = (text, accent) => `${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}${accent ? `&accent=${encodeURIComponent(accent)}` : ''}`
+// Only what differs from the server's defaults is sent, so a word's address (and
+// the browser's and the edge's copy of it) stays the same as before speeds existed.
+function serverUrl(text, accent, speed = 'normal') {
+  const url = `${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}`
+  return url + (accent ? `&accent=${encodeURIComponent(accent)}` : '') + (speed !== 'normal' ? `&speed=${speed}` : '')
+}
+
+// The last word said and when, so a second press soon after can be said slower.
+let last = { text: null, at: 0 }
+
+/** The speed for a press of `text` now: the setting's, or repeatSpeed for a quick second press. */
+export function speedFor(text, now = Date.now(), chosen = settingOf('voice-speed')) {
+  const again = last.text === text && now - last.at < config.repeatMs
+  last = { text, at: now }
+  return again ? config.repeatSpeed : chosen
+}
 
 /** The device's voices. Many browsers list none until they have loaded, so wait once for them. */
 async function deviceVoices() {
@@ -62,8 +78,8 @@ export function pickVoice(voices, cfg = config) {
 /** Each voice resolves to { done } once sound has started, rejects if it cannot. */
 const VOICES = {
   recorded: async (text, accent) => playFile(accent ? null : await recordingOf(text)),
-  server: (text, accent) => playFile(serverUrl(text, accent)),
-  browser: async (text) => {
+  server: (text, accent, speed) => playFile(serverUrl(text, accent, speed)),
+  browser: async (text, _accent, speed) => {
     const synth = globalThis.speechSynthesis
     if (!synth) throw new Error('no device voice')
     // Never guess a voice: an Android with no Arabic pack spells the letters in English.
@@ -75,7 +91,7 @@ const VOICES = {
       const line = new SpeechSynthesisUtterance(text)
       line.voice = voice
       line.lang = voice.lang
-      line.rate = config.voices.browser.rate
+      line.rate = config.voices.browser.rate * (config.voices.browser.speeds[speed] ?? 1)
       let finish
       const done = new Promise((resolve) => { finish = resolve })
       // A voice that is listed but will not start never says so.
@@ -94,12 +110,18 @@ const VOICES = {
  * where `done` settles when it falls quiet. Rejects if no voice could say it.
  */
 let latest = 0
+let heard = null
+
+/** The last thing a voice actually said, and which voice at what speed: what a "sounded wrong" report files. */
+export const lastHeard = () => heard
 
 export async function speak(text, { accent } = {}) {
   const turn = ++latest
+  const speed = speedFor(text)
   for (const id of config.order) {
     try {
-      const { done } = await VOICES[id](text, accent)
+      const { done } = await VOICES[id](text, accent, speed)
+      heard = { text, voice: id, speed, accent: accent ?? null }
       return { id, done }
     } catch (err) {
       // Cut off by a newer press or an ayah, not unable: the next voice must not talk over it.
@@ -116,12 +138,13 @@ export async function speak(text, { accent } = {}) {
  */
 const prepared = new Set()
 export async function prepare(text, { accent } = {}) {
-  const key = `${accent ?? ''}|${text}`
+  const speed = settingOf('voice-speed')
+  const key = `${accent ?? ''}|${speed}|${text}`
   if (prepared.has(key)) return
   prepared.add(key)
   if (!accent && await recordingOf(text)) return
   // Marked as ahead, so a word actually pressed is made before it on the server.
-  fetch(serverUrl(text, accent), { headers: { 'X-Speak-Ahead': '1' } }).catch(() => prepared.delete(key))
+  fetch(serverUrl(text, accent, speed), { headers: { 'X-Speak-Ahead': '1' } }).catch(() => prepared.delete(key))
 }
 
 export function stop() {
@@ -132,4 +155,6 @@ export function stop() {
 /** Test seam: forget the loaded recording map. */
 export function reset() {
   recordings = null
+  last = { text: null, at: 0 }
+  heard = null
 }

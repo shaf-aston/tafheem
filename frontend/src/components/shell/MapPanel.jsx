@@ -166,45 +166,42 @@ export default function MapPanel({ open, onClose }) {
 /** Numbered 1 to 9 by how the sciences lead into each other, in threes that belong together: the law, the sources, the language. The arrow keys walk this same order. */
 const ORDER = [...CHARTS].sort((a, b) => a.id.localeCompare(b.id))
 
-/** The nine-card overview: one science per card, click opens its chart; the methodologies card sits apart below. */
+/** The nine-card overview: one science per card, click opens its chart; the methodologies card sits apart below.
+ * Number, English and frame read down the left, the Arabic name large on the right. */
 function MapIndex({ onOpen, onOpenManhaj }) {
   return (
     <div className="p-5 flex flex-col gap-5">
-    <div className="grid gap-5 grid-cols-[repeat(auto-fill,minmax(18rem,1fr))]">
-      {ORDER.map((chart, delay) => {
-        const fg = chart.accent
-        return (
-          <button
-            key={chart.id}
-            type="button"
-            onClick={() => onOpen(chart.id)}
-            className="pbs-card pbs-rise text-right p-3 rounded-[var(--radius-md)] border border-[var(--border)]
-              border-r-4 bg-[var(--surface-hi)]"
-            style={{ borderRightColor: fg, '--d': `${delay * 55}ms` }}
-          >
-            <span className="pbs-ghost" style={{ color: fg }} aria-hidden="true">{chart.id}</span>
-            <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
-            <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)] relative">{chart.id}</p>
-            <ArabicText as="p" size="base" className="my-0.5 relative" style={{ color: fg }}>
-              {chart.ar}
-            </ArabicText>
-            <p className="type-small text-[var(--text-dim)] relative">{chart.en}</p>
-            <p className="type-tiny text-[var(--text-faint)] mt-1.5 relative">{chart.frame}</p>
-          </button>
-        )
-      })}
+      <div className="grid gap-5 grid-cols-[repeat(auto-fill,minmax(18rem,1fr))]">
+        {ORDER.map((chart, delay) => (
+          <IndexCard key={chart.id} label={chart.id} ar={chart.ar} en={chart.en} note={chart.frame} color={chart.accent}
+            className="pbs-rise border-r-4" style={{ borderRightColor: chart.accent, '--d': `${delay * 55}ms` }}
+            onClick={() => onOpen(chart.id)} />
+        ))}
+      </div>
+      <IndexCard label="Beyond the sciences" ar="المناهج والفِرَق"
+        en="Methodologies: creed schools, schools of law, Sufi orders, modern movements"
+        note="Core beliefs of each, and where they differ"
+        className="border-dashed border-[var(--border-hi)]" onClick={onOpenManhaj} />
     </div>
+  )
+}
+
+function IndexCard({ label, ar, en, note, color, className, style, onClick }) {
+  return (
     <button
       type="button"
-      onClick={onOpenManhaj}
-      className="pbs-card text-right p-3 rounded-[var(--radius-md)] border border-dashed border-[var(--border-hi)] bg-[var(--surface-hi)]"
+      onClick={onClick}
+      className={`pbs-card flex items-center justify-between gap-4 text-left p-4 rounded-[var(--radius-md)] border
+        border-[var(--border)] bg-[var(--surface-hi)] ${className}`}
+      style={style}
     >
       <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
-      <p className="type-tiny tracking-widest font-bold text-[var(--text-faint)]">BEYOND THE SCIENCES</p>
-      <ArabicText as="p" size="base" className="my-0.5">المناهج والفِرَق</ArabicText>
-      <p className="type-small text-[var(--text-dim)]">Methodologies: creed schools, schools of law, Sufi orders, modern movements</p>
-      <p className="type-tiny text-[var(--text-faint)] mt-1.5">Core beliefs of each, and where they differ</p>
+      <span className="min-w-0 space-y-1">
+        <span className="block type-small tracking-widest uppercase font-bold tabular-nums text-[var(--text-faint)]">{label}</span>
+        <span className="block font-semibold text-[var(--text)]">{en}</span>
+        <span className="block type-small text-[var(--text-dim)]">{note}</span>
+      </span>
+      <ArabicText as="span" size="lg" className="shrink-0 leading-tight" style={color ? { color } : undefined}>{ar}</ArabicText>
     </button>
-    </div>
   )
 }

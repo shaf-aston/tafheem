@@ -274,6 +274,12 @@ class Speech(BaseSettings):
     speech_fastpitch_pace: float = Field(default=0.8, gt=0.5, le=1.5)
     # The network dialect voices (colloquial/dialects.json `voice`) a touch slower, like FastPitch's 0.8.
     speech_edge_rate: str = "-10%"
+    # How fast a reader may ask a word to be said (lib/speak.js `speed`), as a share of each
+    # voice's own pace above. Only these names are accepted, so a page cannot make new files at will.
+    speech_speeds: dict[str, float] = {"normal": 1.0, "slow": 0.7}
+    # Silence before and after every FastPitch word. A phone wakes its speaker as a sound
+    # starts and loses the first tenth of a second, which was the word's first letter.
+    speech_lead_ms: int = Field(default=150, ge=0, le=1000)
     # Whole colloquial dialogue lines; the longest is 104.
     speech_max_chars: int = Field(default=120, gt=0)
     speech_rest_s: float = Field(default=60.0, gt=0)

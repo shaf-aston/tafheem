@@ -14,7 +14,7 @@ vi.mock('./ayahAudio', () => ({
   watch: vi.fn((fn) => { tell = fn; return () => {} }),
 }))
 
-const { prepare, speak, reset, pickVoice } = await import('./speak')
+const { prepare, speak, reset, pickVoice, speedFor, lastHeard } = await import('./speak')
 
 beforeEach(() => {
   played.length = 0
@@ -41,6 +41,19 @@ describe('which voice says a word', () => {
     const voice = await speak('كِتَاب', { accent: 'damascene' })
     expect(voice.id).toBe('server')
     expect(played).toEqual([`/api/speak?text=${encodeURIComponent('كِتَاب')}&voice=${config.voices.server.version}&accent=damascene`])
+  })
+
+  it('says a word pressed again soon after slower, like a teacher repeating it', async () => {
+    await speak('قَطَاة')
+    await speak('قَطَاة')
+    expect(played[1]).toContain(`&speed=${config.repeatSpeed}`)
+    expect(played[0]).not.toContain('speed=')
+  })
+
+  it('remembers what was last heard and by which voice, for a "sounded wrong" report', async () => {
+    expect(lastHeard()).toBe(null)
+    await speak('قِطَار')
+    expect(lastHeard()).toEqual({ text: 'قِطَار', voice: 'server', speed: 'normal', accent: null })
   })
 
   it('falls through to the next voice when a file will not load', async () => {
@@ -95,6 +108,15 @@ describe('which voice says a word', () => {
     tell('')
     await voice.done
     expect(finished).toBe(true)
+  })
+})
+
+describe('the speed of a press', () => {
+  it('is the setting, unless the same word was pressed within repeatMs', () => {
+    expect(speedFor('أُمَّة', 0, 'normal')).toBe('normal')
+    expect(speedFor('أُمَّة', config.repeatMs - 1, 'normal')).toBe(config.repeatSpeed)
+    expect(speedFor('أُمَّة', 3 * config.repeatMs, 'normal')).toBe('normal')
+    expect(speedFor('فِتْنَة', 3 * config.repeatMs + 1, 'slow')).toBe('slow')
   })
 })
 
