@@ -8,6 +8,7 @@ import Pairs from './Pairs'
 import Practice from './Practice'
 import Sheet from './Sheet'
 import WordBank from './WordBank'
+import WordGrid from './WordGrid'
 
 function Act({ kicker, title, children }) {
   return (
@@ -33,6 +34,13 @@ function Scene({ unit, lesson, number, place }) {
         </header>
         <Mosaic phrases={lesson.phrases} onOpen={setOpen} />
       </div>
+      {/* Phrases first, then the topic's words on their own: a learner needs far
+          more single words than any set of phrases can carry. */}
+      {lesson.vocabulary?.length > 0 && (
+        <Act kicker="Words" title={`${lesson.vocabulary.length} words for this topic`}>
+          <WordGrid words={lesson.vocabulary} />
+        </Act>
+      )}
       {open !== null && <Sheet phrases={lesson.phrases} at={open} onAt={setOpen} onClose={() => setOpen(null)} place={place} />}
 
       <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-10 lg:items-start">

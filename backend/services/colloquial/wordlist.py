@@ -33,7 +33,7 @@ def _read(path) -> dict:
 
 @lru_cache(maxsize=1)
 def meanings() -> dict:
-    """Every meaning by id: {"english", "group"}."""
+    """Every meaning by id: {"english", "group"}, and optionally "search_term" and "image" for its picture."""
     return _read(data_path("colloquial_dir") / FILE)
 
 
@@ -110,6 +110,7 @@ def bank(ids: list[str], said: dict, where: str) -> tuple[list[dict], list[str]]
     if missing:
         return [], [f"{where} has no word for {', '.join(missing)}"]
     words = [{"id": one, "english": meanings()[one]["english"], "category": meanings()[one]["group"],
+              "image": meanings()[one].get("image", ""),
               "arabic": said[one].get("arabic"), "transliteration": said[one].get("transliteration")}
              for one in ids]
     faults, seen = [], set()

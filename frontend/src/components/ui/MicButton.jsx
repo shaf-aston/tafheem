@@ -40,12 +40,14 @@ import MicMark from './MicMark'
  * button rather than beside it, so the box it belongs to does not shrink when
  * recording starts; the colour already says the rest.
  */
-export default function MicButton({ onHeard, match = false, recite = false, accent, title = 'Recite' }) {
+// `anyArabic` hears spoken dialect as it is, whatever the reader's classical-Arabic setting
+// (Colloquial): leaning to classical turns a dialect word into its fusha cousin.
+export default function MicButton({ onHeard, match = false, recite = false, anyArabic = false, accent, title = 'Recite' }) {
   // Falls back to the theme's own colour, so a caller that gives no accent gets
   // a button that is still visible while recording rather than a white-on-white one.
   const live = accent || 'var(--primary)'
   const [state, setState] = useState('idle')
-  const fusha = useSetting('fusha')
+  const fusha = useSetting('fusha') && !anyArabic
   const trial = useTrial()
   const [problem, setProblem] = useState('')
   const recorder = useRef(null)
