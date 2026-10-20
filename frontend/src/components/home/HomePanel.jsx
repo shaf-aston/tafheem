@@ -61,12 +61,6 @@ export default function HomePanel({ accent, onGo }) {
 
   return (
     <div className="panel isolate space-y-6" style={{ '--c': accent }}>
-      {/* The quiet word stays put behind the page as it scrolls (.pin-back). */}
-      <div aria-hidden="true" className="pin-back hidden sm:block">
-        <ArabicText className="outline-text absolute top-0 right-0 [--outline-size:6rem] leading-none select-none">
-          فهم
-        </ArabicText>
-      </div>
       <header className="space-y-2">
         <div className="flex items-start justify-between gap-3">
           <h2 className="type-head rise-in text-3xl sm:text-5xl font-semibold leading-tight">
@@ -96,16 +90,22 @@ export default function HomePanel({ accent, onGo }) {
 
           <p className="-mt-3 type-small text-[var(--text-dim)] [@media(pointer:coarse)]:hidden">{fill(copy.keys, { n: KEY_COUNT })}</p>
 
-          <div className="space-y-4 md:max-w-2xl">
-            <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume?.value}
-              label={first ? copy['first-label'] : copy['resume-label']} goLabel={first ? copy['first-go'] : copy['resume-go']}
-              progressText={progressText(sums[lead.id])} onGo={onGo} />
-            {!name && (
-              <p className="flex lg:hidden flex-wrap items-center gap-x-3 gap-y-2 text-[var(--text-dim)]">
-                <span>{copy.guest}</span>
-                <LogInButton>{copy['guest-go']}</LogInButton>
-              </p>
-            )}
+          {/* The quiet word sits in the room beside the card and scrolls with the page. */}
+          <div className="md:flex md:items-center md:gap-6">
+            <div className="space-y-4 md:max-w-2xl md:flex-[3] min-w-0">
+              <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume?.value}
+                label={first ? copy['first-label'] : copy['resume-label']} goLabel={first ? copy['first-go'] : copy['resume-go']}
+                progressText={progressText(sums[lead.id])} onGo={onGo} />
+              {!name && (
+                <p className="flex lg:hidden flex-wrap items-center gap-x-3 gap-y-2 text-[var(--text-dim)]">
+                  <span>{copy.guest}</span>
+                  <LogInButton>{copy['guest-go']}</LogInButton>
+                </p>
+              )}
+            </div>
+            <div aria-hidden="true" className="hidden md:flex flex-1 justify-center min-w-0">
+              <ArabicText className="outline-text [--outline-size:6rem] leading-none select-none">فهم</ArabicText>
+            </div>
           </div>
 
           <section className="space-y-4" aria-labelledby="home-all">
