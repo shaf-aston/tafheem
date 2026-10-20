@@ -110,6 +110,10 @@ const VOICES = {
  * where `done` settles when it falls quiet. Rejects if no voice could say it.
  */
 let latest = 0
+let heard = null
+
+/** The last thing a voice actually said, and which voice at what speed: what a "sounded wrong" report files. */
+export const lastHeard = () => heard
 
 export async function speak(text, { accent } = {}) {
   const turn = ++latest
@@ -117,6 +121,7 @@ export async function speak(text, { accent } = {}) {
   for (const id of config.order) {
     try {
       const { done } = await VOICES[id](text, accent, speed)
+      heard = { text, voice: id, speed, accent: accent ?? null }
       return { id, done }
     } catch (err) {
       // Cut off by a newer press or an ayah, not unable: the next voice must not talk over it.
@@ -151,4 +156,5 @@ export function stop() {
 export function reset() {
   recordings = null
   last = { text: null, at: 0 }
+  heard = null
 }

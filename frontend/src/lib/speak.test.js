@@ -14,7 +14,7 @@ vi.mock('./ayahAudio', () => ({
   watch: vi.fn((fn) => { tell = fn; return () => {} }),
 }))
 
-const { prepare, speak, reset, pickVoice, speedFor } = await import('./speak')
+const { prepare, speak, reset, pickVoice, speedFor, lastHeard } = await import('./speak')
 
 beforeEach(() => {
   played.length = 0
@@ -48,6 +48,12 @@ describe('which voice says a word', () => {
     await speak('قَطَاة')
     expect(played[1]).toContain(`&speed=${config.repeatSpeed}`)
     expect(played[0]).not.toContain('speed=')
+  })
+
+  it('remembers what was last heard and by which voice, for a "sounded wrong" report', async () => {
+    expect(lastHeard()).toBe(null)
+    await speak('قِطَار')
+    expect(lastHeard()).toEqual({ text: 'قِطَار', voice: 'server', speed: 'normal', accent: null })
   })
 
   it('falls through to the next voice when a file will not load', async () => {
