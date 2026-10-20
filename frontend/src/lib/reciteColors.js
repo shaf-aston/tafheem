@@ -8,11 +8,13 @@
 import { CHECK, MISSED, SAID, WRONG } from './follow'
 
 export const LOOK = {
-  [SAID]: { colour: 'var(--text-dim)', label: 'right' },
+  // `bar` is the ayah's segment on the progress bar: a word said right stays
+  // calm grey on the page, but a finished ayah earns the success colour.
+  [SAID]: { colour: 'var(--text-dim)', bar: 'var(--success)', label: 'right' },
   // Orange is doubt, not a verdict: two different words that sound the same.
-  [CHECK]: { colour: 'var(--warn)', label: 'not sure' },
-  [WRONG]: { colour: 'var(--danger)', label: 'wrong' },
-  [MISSED]: { colour: 'var(--danger)', label: 'not said' },
+  [CHECK]: { colour: 'var(--warn)', bar: 'var(--warn)', label: 'not sure' },
+  [WRONG]: { colour: 'var(--danger)', bar: 'var(--danger)', label: 'wrong' },
+  [MISSED]: { colour: 'var(--danger)', bar: 'var(--danger)', label: 'not said' },
 }
 
 /**
