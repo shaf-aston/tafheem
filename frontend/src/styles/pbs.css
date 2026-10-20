@@ -17,14 +17,8 @@
   transition: transform calc(300ms * var(--motion-scale)) cubic-bezier(.2, .7, .2, 1), box-shadow calc(300ms * var(--motion-scale)) ease;
 }
 .pbs-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
-.pbs-card .pbs-ghost {
-  position: absolute; right: 6px; bottom: -20px;
-  font-size: 4.5rem; font-weight: 900; line-height: 1;
-  opacity: .10; pointer-events: none; transition: opacity calc(300ms * var(--motion-scale)) ease, transform calc(300ms * var(--motion-scale)) ease;
-}
-.pbs-card:hover .pbs-ghost { opacity: .14; transform: translate(-2px, -3px); }
 .pbs-card .pbs-go {
-  position: absolute; top: 12px; left: 12px;
+  position: absolute; bottom: 8px; right: 12px;
   opacity: 0; transform: translateX(6px);
   transition: opacity calc(300ms * var(--motion-scale)) ease, transform calc(300ms * var(--motion-scale)) ease;
 }
@@ -41,5 +35,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .pbs-rise { animation: none !important; opacity: 1 !important; transform: none !important; }
-  .pbs-card, .pbs-card .pbs-ghost, .pbs-card .pbs-go, .pbs-kid, .pbs-branch { transition: none !important; }
+  .pbs-card, .pbs-card .pbs-go, .pbs-kid, .pbs-branch { transition: none !important; }
 }
