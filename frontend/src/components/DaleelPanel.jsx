@@ -92,7 +92,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
 
   return (
     <div className="panel">
-      <SectionHeader
+      <SectionHeader emblem="daleel"
         title="Daleel"
         arabic="دليل"
         subtitle="Searchable in Arabic or in English. It quotes the books; it does not rule."

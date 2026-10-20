@@ -124,7 +124,7 @@ export default function AyahTafsir({ surah, ayah, accent, defaultOpen = false })
         )}
 
         {isError && (
-          <ErrorAlert title="The commentary could not be read" error={error} fallback="The ayah and its grammar above are unaffected." onRetry={refetch} />
+          <ErrorAlert title="The commentary could not be read" error={error} fallback="The ayah above still works." onRetry={refetch} />
         )}
 
         {passage && (

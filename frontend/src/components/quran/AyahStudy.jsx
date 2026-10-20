@@ -104,7 +104,7 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet })
           </div>
           {opened && <WordCard word={opened} onGo={onGo} onClose={() => setOpenWord(null)} exclude="quran" />}
           <div className="flex items-center gap-3 flex-wrap">
-            <p className="text-xs text-[var(--text-faint)]">Tap any word for its full grammar and its root</p>
+            <p className="text-xs text-[var(--text-faint)]">Tap a word for its grammar and root</p>
           </div>
         </>
       )}
@@ -143,7 +143,7 @@ function AyahTarkeeb({ surah, ayah }) {
   // Why a join is open depends on who did the work; said in a hover, not a paragraph.
   const openWhy = data?.source?.key === 'treebank'
     ? 'Left open by the people who worked this ayah out.'
-    : 'Worked out by rule from each word’s own tags, which never link one word to another. Drawn open, not hidden.'
+    : 'Worked out by rule from each word’s tags.'
 
   return (
     <section className="space-y-3 pt-2">

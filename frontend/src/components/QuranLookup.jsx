@@ -172,7 +172,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
         <ErrorAlert
           title="Lookup failed"
           error={search.error}
-          fallback="Could not reach the backend. Check that it is running."
+          fallback="Could not reach the server."
           onRetry={() => runSearch()}
         />
       )}
@@ -220,7 +220,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
 function SearchResults({ results, onSelect, accent }) {
   if (results.length === 0) {
     return (
-      <EmptyState>Nothing matched. Try a shorter phrase, or drop the diacritics.</EmptyState>
+      <EmptyState>Nothing matched. Try fewer words, or no diacritics.</EmptyState>
     )
   }
 

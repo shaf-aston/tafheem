@@ -69,6 +69,19 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
     </>
   )
 
+  // Only where there is a choice to make. On a phone it waits in the options,
+  // so the bar stays one row and the ayahs start higher.
+  const books = translation.books.length > 1 && (
+    <Segmented
+      label="Translation"
+      options={translation.books.map((book) => ({ id: book.id, label: book.short }))}
+      value={translation.chosen}
+      onChange={translation.choose}
+      accent={accent}
+      className="flex-wrap"
+    />
+  )
+
   return (
     <div {...swipe} style={{ '--c': accent }} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-clip">
       <header className="flex items-center gap-2 sm:gap-3 flex-wrap p-3 sm:p-4 border-b border-[var(--border)]">
@@ -82,17 +95,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         )}
         {!phone && about}
         <span className="flex-1" />
-        {/* Only where there is a choice to make. */}
-        {translation.books.length > 1 && (
-          <Segmented
-            label="Translation"
-            options={translation.books.map((book) => ({ id: book.id, label: book.short }))}
-            value={translation.chosen}
-            onChange={translation.choose}
-            accent={accent}
-            className="flex-wrap"
-          />
-        )}
+        {!phone && books}
         {data && !reciting && (
           <button type="button" onClick={() => recite.current?.(ayah ?? here)}
             aria-label={`Recite from ${surah}:${ayah ?? here}`} title="Recite"
@@ -102,9 +105,10 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         )}
         {touch && noTouchButton && <NoTouchButton on={noTouchOn} onChange={setNoTouch} />}
         <ReadingOptions accent={accent} options={[
-          ...(anyGlosses ? [{ label: 'Every word\'s meaning', on: allMeanings, set: showAllMeanings }] : []),
-          { label: 'Without-wudu button', on: noTouchButton, set: showNoTouchButton, only: 'touch' },
+          ...(anyGlosses ? [{ label: 'Word meanings', on: allMeanings, set: showAllMeanings }] : []),
+          { label: 'No-wudu mode', on: noTouchButton, set: showNoTouchButton, only: 'touch' },
         ]}>
+          {phone && books}
           {phone && about}
         </ReadingOptions>
         <CloseButton onClick={onClose} aria-label="Close the surah" className="shrink-0" />
@@ -121,12 +125,12 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         <div className={stacked ? 'min-w-0 min-h-0 shrink-0' : 'min-w-0'} style={stacked ? { height: `${share * 100}%` } : undefined}>
           {translation.isError && (
             <div className="p-4" aria-live="assertive">
-              <ErrorAlert title="The translation could not be read" error={translation.error} fallback="The Arabic and its word-by-word English are unaffected." onRetry={() => translation.refetch()} />
+              <ErrorAlert title="The translation could not be read" error={translation.error} fallback="The Arabic still works." onRetry={() => translation.refetch()} />
             </div>
           )}
           {isError && (
             <div className="p-4" aria-live="assertive">
-              <ErrorAlert title="Could not open that surah" error={error} fallback="The surah could not be loaded." onRetry={() => refetch()} />
+              <ErrorAlert title="Could not open that surah" error={error} fallback="Try again." onRetry={() => refetch()} />
             </div>
           )}
           {isPending && (
@@ -160,7 +164,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
           <aside aria-label="Study" className="scroll-pane h-[var(--layout-pane)] p-4 border-l border-[var(--border)]">
             {study || (
               <p className="type-small text-[var(--text-faint)]">
-                Tap an ayah to study it here: every word's grammar and root, how the words join, and its tafsir.
+                Tap an ayah to study it.
               </p>
             )}
           </aside>

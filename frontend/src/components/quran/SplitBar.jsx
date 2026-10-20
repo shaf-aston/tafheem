@@ -39,7 +39,7 @@ export default function SplitBar({ panes, share, onShare }) {
       onPointerMove={drag}
       onPointerUp={release}
       onKeyDown={(e) => step[e.key] && (e.preventDefault(), onShare(clampShare(share + step[e.key])))}
-      className="touch-none select-none shrink-0 grid place-items-center h-6 cursor-row-resize rounded-t-[var(--radius-lg)]
+      className="touch-none select-none shrink-0 grid place-items-center h-8 cursor-row-resize rounded-t-[var(--radius-lg)]
         border-t border-[var(--border-hi)] bg-[var(--surface)] shadow-[var(--shadow-pop)] focus:outline-none focus-visible:bg-[var(--surface-hi)]"
     >
       <span aria-hidden="true" className="w-10 h-1 rounded-full bg-[var(--border-hi)]" />
