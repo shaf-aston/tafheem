@@ -4,11 +4,11 @@
  * the Arabic; aria-description still gives it to a screen reader. A learnt word
  * is underlined and says so.
  */
-export default function GlossWord({ as: Tag = 'span', gloss, lit = false, learnt = false, children, ...props }) {
+export default function GlossWord({ as: Tag = 'span', gloss, lit = false, learnt = false, peek = false, children, ...props }) {
   const said = [gloss, learnt && 'learnt'].filter(Boolean).join(', ')
   return (
     <Tag
-      className={['gloss-word', lit && 'gloss-word-lit', learnt && 'gloss-word-learnt'].filter(Boolean).join(' ')}
+      className={['gloss-word', lit && 'gloss-word-lit', peek && 'gloss-word-peek', learnt && 'gloss-word-learnt'].filter(Boolean).join(' ')}
       data-gloss={gloss || undefined}
       title={learnt ? 'learnt' : undefined}
       aria-description={said || undefined}
