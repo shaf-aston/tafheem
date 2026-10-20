@@ -125,7 +125,7 @@
 .cb-key {
   flex-shrink: 0;
   font-family: var(--font-ui);
-  font-size: var(--type-tiny);
+  font-size: max(var(--type-tiny), 0.6875rem);
   letter-spacing: 0.04em;
   padding: 0.1rem 0.3rem;
   border: 1px solid var(--border);
@@ -349,8 +349,8 @@
      at the diagonals two neighbours meet corner to corner and need the
      chord's 1.4, not 1. The width shrinks first, so the whole ring stays
      inside the screen's height with room for the keys line below. */
-  --sh-k: 1.5;
-  --sh-w: min(var(--command-sat-w), calc((100vh - 9rem) / (var(--count, 7) * var(--sh-k) / 3.1416 + 1)));
+  --sh-k: 1.4;
+  --sh-w: min(var(--command-sat-w), calc((100vh - 7rem) / (var(--count, 7) * var(--sh-k) / 3.1416 + 1)));
   --sh-r: max(var(--command-orbit-r), calc(var(--count, 7) * var(--sh-w) * var(--sh-k) / 6.2832));
   --sh-ring-w: calc(var(--sh-r) * 2 + var(--sh-w));
   --sh-split: 1.5rem;
@@ -390,7 +390,7 @@
   .sh-ring,
   .sh-panel {
     grid-area: 1 / 1;
-    transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+    transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
   }
 
   /* English runs left to right, so its answers open on the right. */
@@ -459,6 +459,10 @@
   left: 50%;
   top: 50%;
   width: var(--sh-w);
+  /* As tall as it is wide, so the air worked out above (--sh-k) holds whatever
+     the satellite carries; what does not fit the square is dropped below. */
+  aspect-ratio: 1;
+  justify-content: center;
   container-type: inline-size;
   display: flex;
   flex-direction: column;
@@ -524,10 +528,11 @@
 
 .sh-sat-label { color: var(--text); font-size: var(--type-body); }
 /* A narrow satellite (a short screen, many tabs) takes the smaller label. */
-@container (max-width: 6rem) {
-  .sh-sat-label { font-size: var(--type-small); }
-  .sh-sat-arabic { display: none; }
-}
+/* A container query measures the content box, a satellite's width less its
+   padding and edge (about a rem). Under 84px of content the Arabic name no
+   longer fits the square; under 76px the English takes the smaller size. */
+@container (max-width: 5.25rem) { .sh-sat-arabic { display: none; } }
+@container (max-width: 4.75rem) { .sh-sat-label { font-size: var(--type-small); } }
 
 
 .sh-sat-arabic { color: var(--text-faint); }
@@ -615,6 +620,9 @@
      screen (432px at 390px). So the ring becomes three columns, the orb at
      the top, and each tab still arrives with the same dance, only growing
      where it stands. The arrows still turn the selection; nothing spins. */
+  .sh-ring { width: 100%; max-width: 24rem; }
+  /* Answers take the screen below the orb; the tabs behind would run off it. */
+  .sh-pair:not([data-side='none']) .sh-sat { display: none; }
   .sh-orbit {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -628,6 +636,7 @@
   .sh-sat {
     position: static;
     width: auto;
+    aspect-ratio: auto;
     padding: 0.45rem 0.25rem;
     transform: scale(var(--pop));
   }

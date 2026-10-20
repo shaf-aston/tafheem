@@ -40,7 +40,8 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
   const [startAt, setStartAt] = useState(0)
   const count = tabs.length
   const selected = ((steps % count) + count) % count
-  const spin = (by) => setSteps((current) => current + by)
+  // Up and down are a row on a phone, where the ring is three columns.
+  const spin = (by, vertical = false) => setSteps((current) => current + by * (vertical && phone ? 3 : 1))
 
   const line = useCommandLine(tabs, (row) => {
     onClose()
@@ -107,6 +108,21 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
         <div className="sh-orbit" style={{ '--turn': `${-steps * (360 / count)}deg` }}>
           <span className="sh-track" aria-hidden="true" />
 
+          <div className="sh-orb dance" style={{ '--c': colorOf(tabs[selected].id) }}>
+            <Mascot mood={moodFrom({})} place="orb" />
+            {/* The header's own box, not a second one that looks like it: same
+                glass, same grey completion ahead of the cursor, same rounded
+                edge. No Ctrl K badge, because the shortcut that opens this is
+                already what the reader just pressed. */}
+            <CommandField
+              line={line}
+              name={NAME}
+              inputRef={input}
+              placeholder={phone ? 'Search' : 'Search or ask'}
+              showing={rows.length > 0}
+            />
+          </div>
+
           {tabs.map((tab, i) => {
             const angle = i * (360 / count)
             return (
@@ -145,20 +161,6 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
             )
           })}
 
-          <div className="sh-orb dance" style={{ '--c': colorOf(tabs[selected].id) }}>
-            <Mascot mood={moodFrom({})} place="orb" />
-            {/* The header's own box, not a second one that looks like it: same
-                glass, same grey completion ahead of the cursor, same rounded
-                edge. No Ctrl K badge, because the shortcut that opens this is
-                already what the reader just pressed. */}
-            <CommandField
-              line={line}
-              name={NAME}
-              inputRef={input}
-              placeholder={phone ? 'Search' : 'Search or ask'}
-              showing={rows.length > 0}
-            />
-          </div>
         </div>
         </div>
 
@@ -182,7 +184,7 @@ export default function SpatialHome({ open, onClose, tabs, colorOf, onGo, here }
 
         {rows.length === 0 && (
           <p className="sh-hint">
-            <kbd>←</kbd> <kbd>→</kbd> spin · <kbd>Enter</kbd> open{' '}
+            <kbd>←</kbd> <kbd>→</kbd> {phone ? 'move' : 'spin'} · <kbd>Enter</kbd> open{' '}
             {/* Spun with the arrows, the ring moving is the only thing that says
                 which tab Enter would open. Spoken here so it is not sight only. */}
             <span className="sh-hint-tab" aria-live="polite">{tabs[selected].label}</span>

@@ -20,6 +20,7 @@ export function useHealth() {
     // banner vanished and came back on every tab switch, moving the page 126px
     // twice. The retry is retryHealth, pressed on purpose.
     retryOnMount: false,
+    refetchOnReconnect: false,
   })
 
   return {
