@@ -1,11 +1,12 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 
 import theme from './theme.json'
 import { THEME_NAMES, colorAt, colorFor, resolveTheme, themeChoices, tokenGroups } from './theme'
 
-const SRC = new URL('.', import.meta.url).pathname
+const SRC = fileURLToPath(new URL('.', import.meta.url))
 const HEX = /^#[0-9a-f]{6}$/i
 
 const tokens = Object.entries(theme).filter(([group, values]) => !group.startsWith('_') && typeof values === 'object')
@@ -149,12 +150,12 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
 
   // Words sit on tinted boxes too (an error, a role pill, a tinted chip), so a
   // text token has to read on the palette's washes over the page, a card and a
-  // raised card. The dark base predates this check, so its two quieter tokens
+  // raised card. Midnight (the old dark base) predates this check, so its two quieter tokens
   // are held at what they measure today (they can only get better); a new look
   // gets the full 4.5.
   const BASE_FLOOR = { 'text-dim': 4.3, 'text-faint': 3.1 }
   it.each(['text', 'text-dim', 'text-faint'])('%s reads on a tinted card', (token) => {
-    const floor = name === base ? BASE_FLOOR[token] ?? 4.5 : 4.5
+    const floor = name === 'dark' ? BASE_FLOOR[token] ?? 4.5 : 4.5
     const worst = Math.min(...Object.values(palette).flatMap((hex) =>
       Object.values(washGrounds).map((ground) => contrast(color[token], washed(hex, ground)))))
     expect(worst).toBeGreaterThanOrEqual(floor)
@@ -173,8 +174,7 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
 const LITERAL = /#[0-9a-f]{3}\b|#[0-9a-f]{6}\b|\brgba?\(|\bhsla?\(/i
 const isMask = (line) => /mask|soft-edge/i.test(line)
 const ALLOWED = {
-  'landing/landing.css': 18,
-  'landing/AyahDiagram.css': 10,
+  'landing/AyahDiagram.css': 1,
   'styles/timelines.css': 2,
   'styles/motion.css': 1,
   'components/shell/Backdrop.jsx': 1,
@@ -192,7 +192,7 @@ describe('colour literals outside theme.json', () => {
   const found = Object.fromEntries(
     sources(SRC)
       .map((path) => [
-        relative(SRC, path),
+        relative(SRC, path).replaceAll('\\', '/'),
         readFileSync(path, 'utf8').split('\n').filter((line) => LITERAL.test(line) && !isMask(line)).length,
       ])
       .filter(([, count]) => count > 0),

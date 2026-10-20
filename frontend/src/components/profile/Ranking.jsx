@@ -20,7 +20,7 @@ export default function Ranking({ board, name, title }) {
             <li
               key={row.name}
               className={`flex items-center gap-3 px-3 py-1.5 rounded-[var(--radius-sm)] type-small ${
-                mine ? 'bg-[var(--surface-hi)] font-bold text-[var(--gold)]' : 'text-[var(--text-dim)]'}`}
+                mine ? 'bg-[var(--surface-hi)] font-bold text-[var(--palette-gold)]' : 'text-[var(--text-dim)]'}`}
             >
               <span className="w-6 tabular-nums">{row.rank}</span>
               <span dir="auto" className="flex-1 truncate">{mine ? `${row.name} (you)` : row.name}</span>
