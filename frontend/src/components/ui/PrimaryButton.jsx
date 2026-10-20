@@ -1,7 +1,8 @@
 /**
- * The one action that finishes a step. Its colour is the active panel's accent,
- * passed in as a token value rather than chosen from a list of class names here,
- * so adding a panel colour needs no change to this file.
+ * The one action that finishes a step, drawn as the call to action (.cta in
+ * styles/components.css): a pill in the active panel's accent. The colour is
+ * passed in as a token value rather than chosen from a list of class names
+ * here, so adding a panel colour needs no change to this file.
  */
 export default function PrimaryButton({
   accent = 'var(--primary)',
@@ -18,15 +19,8 @@ export default function PrimaryButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      style={{
-        '--c': accent,
-        background: disabled ? 'var(--surface)' : accent,
-        color: disabled ? 'var(--text-faint)' : 'var(--bg)',
-      }}
-      className={`w-full py-3 rounded-[var(--radius-md)] font-semibold text-sm
-        flex items-center justify-center gap-2
-        transition-[filter] duration-[calc(var(--motion-instant-ms)*1ms)]
-        ${disabled ? 'cursor-not-allowed' : 'glow press hover:brightness-110'}`}
+      style={{ '--c': accent, '--cta-fill': accent }}
+      className={`cta w-full py-3 text-sm ${disabled ? '' : 'glow'}`}
     >
       {loading && (
         <span

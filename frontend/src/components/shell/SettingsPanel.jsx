@@ -47,7 +47,7 @@ export default function SettingsPanel({ open, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-baseline justify-between gap-3">
-          <h2 id="settings-title" className="text-base font-bold text-[var(--text)]">
+          <h2 id="settings-title" className="type-head text-base font-bold text-[var(--text)]">
             Settings
           </h2>
           <button

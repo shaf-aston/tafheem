@@ -1,8 +1,7 @@
 /**
  * The one way in for a guest, wherever it is offered: Home's progress line and
- * Grow wear the landing page's gold pill (.cta), the header the same pill
- * unfilled (`quiet`), so it never shouts over the tabs. It opens the profile
- * dialog itself.
+ * Grow wear the call to action (.cta), the header the same pill unfilled
+ * (`quiet`), so it never shouts over the tabs. It opens the profile dialog itself.
  */
 import { useState } from 'react'
 

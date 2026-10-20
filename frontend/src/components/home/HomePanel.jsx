@@ -72,8 +72,8 @@ export default function HomePanel({ accent, onGo }) {
         <ArabicText aria-hidden="true" className="outline-text hidden sm:block absolute -z-10 top-0 right-0 [--outline-size:6rem] leading-none pointer-events-none select-none">
           فهم
         </ArabicText>
-        <p className="rise-in type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">{first ? copy['greeting-first'] : greeting()}</p>
-        <h2 className="rise-in text-3xl sm:text-5xl font-semibold leading-tight" style={{ '--i': 1 }}>
+        <p className="rise-in eyebrow eyebrow-lg">{first ? copy['greeting-first'] : greeting()}</p>
+        <h2 className="type-head rise-in text-3xl sm:text-5xl font-semibold leading-tight" style={{ '--i': 1 }}>
           {first ? copy['title-first'] : copy['title-resume']}
         </h2>
         <p className="rise-in relative text-[var(--text-dim)] max-w-[46ch]" style={{ '--i': 2 }}>
@@ -105,7 +105,7 @@ export default function HomePanel({ accent, onGo }) {
       </div>
 
       <section className="space-y-4" aria-labelledby="home-all">
-        <h3 id="home-all" className="type-label font-bold uppercase tracking-widest text-[var(--primary-hi)]">
+        <h3 id="home-all" className="eyebrow eyebrow-lg">
           {`${copy.all} (${OTHERS.length})`}
         </h3>
         {/* One goal to a row: its name on the left from a tablet up, its tiles after it. */}

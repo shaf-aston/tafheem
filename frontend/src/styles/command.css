@@ -37,9 +37,8 @@
   height: var(--layout-control);
   padding: 0 0.7rem;
   border: 1px solid var(--border);
-  /* A box you type in, so it takes the radius every other text box in the app
-     takes, not the tighter one the square buttons beside it use. */
-  border-radius: var(--radius-md);
+  /* The same round ends as the chrome buttons either side of it (radius.control). */
+  border-radius: var(--radius-control);
   background: color-mix(in srgb, var(--surface) 70%, transparent);
   color: var(--text-faint);
   transition:

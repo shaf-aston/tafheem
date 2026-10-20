@@ -10,7 +10,7 @@
   width: var(--layout-control);
   height: var(--layout-control);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-control);
   color: var(--text-faint);
   transition:
     color calc(var(--motion-base-ms) * 1ms) ease,
@@ -654,10 +654,12 @@ dialog::backdrop {
 .panel > * + * { margin-top: var(--space-panel); }
 
 
-/* The landing page's call to action, worn in the app where a guest is asked in
-   (ui/../profile/LogInButton): a gold pill, a light passing across it now and
-   then, the arrow leaning the way it goes on hover. .cta-quiet is the same pill
-   without the fill, for the header, where gold would shout over the tabs.
+/* The landing page's call to action, worn in the app wherever one step is the
+   point: Log in (profile/LogInButton) and every PrimaryButton. A pill in the
+   fill colour (--cta-fill, the tab's accent or the gold), a light passing across
+   it now and then, the arrow (.cta-arrow) leaning the way it goes on hover.
+   .cta-quiet is the same pill unfilled, for the header, where a fill would
+   shout over the tabs. Every number is theme.json's `cta` group.
    In the components layer so a utility beside it wins. */
 @layer components {
 .cta {
@@ -669,39 +671,44 @@ dialog::backdrop {
   gap: 0.5rem;
   flex-shrink: 0;
   min-height: var(--layout-control);
-  padding-inline: 1.25rem;
-  border-radius: 999px;
+  padding-inline: var(--cta-pad);
+  border-radius: var(--radius-pill);
   font-weight: 700;
-  background: var(--primary-hi);
+  background: var(--cta-fill, var(--primary-hi));
   color: var(--bg);
   transition:
     transform calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease),
+    filter calc(var(--motion-base-ms) * 1ms) ease,
     background-color calc(var(--motion-base-ms) * 1ms) ease,
     border-color calc(var(--motion-base-ms) * 1ms) ease;
 }
-.cta:hover { transform: translateY(-2px); background: var(--primary); }
-.cta:active { transform: scale(0.96); }
+.cta:hover:not(:disabled) { transform: translateY(calc(var(--cta-lift-px) * -1px)); filter: brightness(1.1); }
+.cta:active:not(:disabled) { transform: scale(var(--cta-press)); }
 .cta::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, white 35%, transparent) 50%, transparent 70%);
+  background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, white var(--cta-sheen), transparent) 50%, transparent 70%);
   transform: translateX(-120%);
-  animation: sheen calc(var(--motion-spring-ms) * 9ms) ease-in-out infinite;
+  /* Times motion.scale, like every ambient loop, so the Animations setting stops it. */
+  animation: sheen calc(var(--motion-spring-ms) * var(--cta-sheen-beats) * var(--motion-scale) * 1ms) ease-in-out infinite;
 }
+.cta:disabled { background: var(--surface); color: var(--text-faint); cursor: not-allowed; }
+.cta:disabled::after { display: none; }
 .cta-arrow { transition: transform calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease); }
-.cta:hover .cta-arrow { transform: translateX(4px); }
+.cta:hover .cta-arrow { transform: translateX(calc(var(--cta-nudge-px) * 1px)); }
 .cta-quiet {
-  min-height: 2.25rem;
-  padding-inline: 0.9rem;
+  min-height: var(--cta-quiet-height);
+  padding-inline: var(--cta-quiet-pad);
   background: transparent;
   color: var(--primary-hi);
-  border: 1px solid color-mix(in srgb, var(--primary) 50%, var(--border));
+  border: 1px solid color-mix(in srgb, var(--primary) var(--cta-quiet-edge), var(--border));
 }
-.cta-quiet:hover { background: color-mix(in srgb, var(--primary) 12%, transparent); border-color: var(--primary); }
+.cta-quiet:hover { background: color-mix(in srgb, var(--primary) var(--cta-quiet-wash), transparent); border-color: var(--primary); filter: none; }
 .cta-quiet::after { display: none; }
 }
+/* Reduced motion stops the passing light and the hover moves. */
 @media (prefers-reduced-motion: reduce) {
   .cta, .cta-arrow { transition: none; }
   .cta::after { animation: none; }
@@ -729,7 +736,13 @@ dialog::backdrop {
   transition: border-color calc(var(--motion-base-ms) * 1ms), background-color calc(var(--motion-base-ms) * 1ms);
 }
 button.tile:hover { border-color: var(--c); }
-.tile-wash { background-image: radial-gradient(90% 90% at 100% 0, color-mix(in srgb, var(--c) 22%, transparent), transparent 65%); container-type: inline-size; }
+.tile-wash {
+  background-image: radial-gradient(90% 90% at 100% 0, color-mix(in srgb, var(--c) var(--wash, var(--tile-wash)), transparent), transparent 65%);
+  container-type: inline-size;
+}
+.tile-wash:hover { --wash: var(--tile-wash-hover); border-color: var(--c); }
+.tile-wash .arabic-lg { transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease); }
+.tile-wash:hover .arabic-lg { transform: scale(var(--tile-hover-scale)) rotate(var(--tile-hover-turn)); }
 .tile-lead { padding: var(--space-card); background: var(--surface); border-color: var(--c); }
 .card-accent { border-left: 4px solid var(--c); }
 }
