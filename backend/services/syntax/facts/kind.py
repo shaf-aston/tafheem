@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import letters
 from backend.services.nahw_book import book_map, is_one
-from backend.services.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_verb, read_as
+from backend.services.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_suffix, is_verb, read_as
 from backend.services.syntax.facts.sentence import Sentence, verb_above
 
 
@@ -31,10 +31,16 @@ def calling_head(token: dict, s: Sentence) -> str | None:
     return None
 
 
+def owns_pronoun(token: dict, s: Sentence) -> bool:
+    """أُمُّكَ: a pronoun written onto it as its مضاف إليه makes it a noun, never the particle
+    spelled like it (أَمْ، ثُمَّ); a particle's pronoun (إِنَّهُ، لَكَ) is its اسم or its مجرور."""
+    return any(is_suffix(t) and t["head"] == token["id"] and t["rel"] == "IDF" for t in s.tokens)
+
+
 def joins_clauses(token: dict, s: Sentence) -> bool:
     """ثم is a noun to the parser, but a listed joining word between two nouns, or bare
     before a verb, is the particle, as is any typed with its damma: the place-word is ثَمَّ."""
-    if not read_as(token, "atf"):
+    if not read_as(token, "atf") or owns_pronoun(token, s):
         return False
     marked = letters(token.get("typed") or "")
     if marked and "ُ" in marked[0][1]:

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import five_verb_nun
-from backend.services.nahw_book import frames
+from backend.services.nahw_book import frames, verb_aspect
 from backend.services.syntax.facts import is_passive
 from backend.services.syntax.naming import tone
 
@@ -24,7 +24,8 @@ def person_key(token: dict) -> str:
 def persons(token: dict, owner: list[str] | None) -> list[str]:
     """Who a verb's doer may be: one person, or the two its letters allow (تكتبُ is you
     or she) narrowed by the subject its pronoun goes back to (`owner`)."""
-    if token.get("asp") == "c" and token.get("per") != "2":
+    # اضربْ typed with a bare alif: the card's own test names it a command, so the doer says so too
+    if verb_aspect(token.get("asp", ""), strip_diacritics(token.get("base", ""))) == "c" and token.get("per") != "2":
         return [DOER["command"]]  # a command speaks to the listener, whatever the reading said
     letter = strip_diacritics(token["base"])[:1]
     if token.get("asp") == "i" and letter in DOER["prefix_says"]:

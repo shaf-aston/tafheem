@@ -175,6 +175,12 @@ def verb_place(token: dict, s: Sentence) -> str:
         # لا يُؤْتُونَ النَّاسَ نَقِيرًا: a verb of two objects keeps its second OBJ, so no state or tamyeez
         if after_first and (s.family(head) == "zanna" or is_one(head["lemma"], "two_objects_give")):
             return "second_object"
+        # مُنِحَ الطَّالِبُ هَدِيَّةً: a passive verb of giving raises its first object to نائب فاعل and keeps
+        # the second منصوب, however the parser hung it (OBJ, MOD or TMZ)
+        if (is_passive(head) and is_one(head["lemma"], "two_objects_give") and not before
+                and rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a")
+                and any(t["rel"] in (*SUBJECTS, "OBJ") and t["id"] < token["id"] for t in siblings)):
+            return "second_object"
         if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
             return "purpose"
         if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
