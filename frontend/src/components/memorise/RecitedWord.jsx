@@ -28,12 +28,14 @@ export default function RecitedWord({ word, at, recite, accent, coverWidth, onSt
   const covered = coverWidth && mark.state === 'waiting' && !wasShown
 
   const printed = covered ? (
+    // A soft block where the word sits, rather than a bare underline: a page
+    // of underlines read as empty, a page of blocks reads as words hidden.
     <span
       aria-label="a word to say from memory"
-      className="inline-block border-b align-baseline"
+      className="inline-block align-middle rounded-[var(--radius-sm)] bg-[var(--surface-hi)] border transition-colors"
       style={{
         width: `${coverWidth}ch`,
-        height: '1.2em',
+        height: '1.1em',
         borderColor: here ? accent : 'var(--border)',
       }}
     />
