@@ -74,7 +74,7 @@ describe('firstThese', () => {
     expect(firstThese(['home', 'nahw', 'quran', 'dict', 'quiz'], ['quiz', 'home'])).toEqual(['quiz', 'home', 'nahw', 'quran', 'dict'])
   })
 
-  it('ignores a chosen id that is not in the list, and never repeats one', () => {
+  it('ignores a chosen id that is not in the list', () => {
     expect(firstThese(['a', 'b'], ['gone', 'b'])).toEqual(['b', 'a'])
   })
 })
