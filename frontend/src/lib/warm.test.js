@@ -2,7 +2,7 @@ import { QueryClient } from '@tanstack/react-query'
 import { describe, expect, it, vi } from 'vitest'
 
 import { hadithOpen } from '../api'
-import { load, onHover, warm } from './warm'
+import { firstThese, load, onHover, warm } from './warm'
 
 const query = (fn) => ({ queryKey: ['k'], queryFn: fn })
 
@@ -66,5 +66,15 @@ describe('idle and inTurn', () => {
     release()
     await done
     expect(log).toEqual(['a', 'c'])
+  })
+})
+
+describe('firstThese', () => {
+  it('moves the chosen ids to the front in their own order, keeping the rest in place', () => {
+    expect(firstThese(['home', 'nahw', 'quran', 'dict', 'quiz'], ['quiz', 'home'])).toEqual(['quiz', 'home', 'nahw', 'quran', 'dict'])
+  })
+
+  it('ignores a chosen id that is not in the list, and never repeats one', () => {
+    expect(firstThese(['a', 'b'], ['gone', 'b'])).toEqual(['b', 'a'])
   })
 })

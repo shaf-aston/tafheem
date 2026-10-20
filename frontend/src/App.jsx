@@ -1,8 +1,8 @@
-import { Activity, Suspense, lazy, useCallback, useEffect, useState } from 'react'
+import { Activity, Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/tabs'
-import { idle, inTurn } from './lib/warm'
+import { firstThese, idle, inTurn } from './lib/warm'
 import { useHealth } from './lib/useHealth'
 import { moodFrom } from './lib/mood'
 import { TOOLS } from './lib/tools'
@@ -64,7 +64,13 @@ function AppContent() {
 
   // Every tab's opening data, fetched once the page is idle, one tab at a time
   // so a tab pressed meanwhile is not queued behind all the others (lib/warm).
-  useEffect(() => { idle(() => inTurn(TABS.map((t) => () => openTab(t.id)))) }, [])
+  // The bar's tabs go first: on a slow phone the queue takes seconds, and a tab
+  // that has to wait its turn opened in ~430ms where one fetched ahead took ~160ms.
+  const openingDock = useRef(dock)
+  useEffect(() => {
+    const order = firstThese(TABS.map((t) => t.id), openingDock.current)
+    idle(() => inTurn(order.map((id) => () => openTab(id))))
+  }, [])
 
   // The header is pinned, so anything else pinned sits under it: its height is
   // published as --app-header-h, kept true as it wraps on a narrow screen.

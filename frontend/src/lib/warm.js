@@ -19,6 +19,13 @@ export async function inTurn(steps) {
   for (const step of steps) await Promise.resolve().then(step).catch(() => {})
 }
 
+// `ids` with any of `first` it holds moved to the front, in `first`'s order:
+// the queue for inTurn when some steps are likelier to be wanted soon.
+export const firstThese = (ids, first) => [
+  ...first.filter((id) => ids.includes(id)),
+  ...ids.filter((id) => !first.includes(id)),
+]
+
 export const warm = (client, query) => idle(() => client.prefetchQuery(query))
 
 // A tab's `open` step for the common case: its opening data is one query.
