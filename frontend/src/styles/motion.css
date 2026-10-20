@@ -109,6 +109,13 @@
 }
 
 
+/* A light passing across a button (.cta), then a long rest: the move lives in
+   the first 60%, so the pause between passes is part of the keyframe. */
+@keyframes sheen {
+  60%, 100% { transform: translateX(120%); }
+}
+
+
 /* A star landing: it swells past its size and settles, the same spring as the rest. */
 @keyframes pop {
   0%   { transform: scale(0.6); }

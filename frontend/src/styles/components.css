@@ -653,6 +653,60 @@ dialog::backdrop {
 .panel > * + * { margin-top: var(--space-panel); }
 
 
+/* The landing page's call to action, worn in the app where a guest is asked in
+   (ui/../profile/LogInButton): a gold pill, a light passing across it now and
+   then, the arrow leaning the way it goes on hover. .cta-quiet is the same pill
+   without the fill, for the header, where gold would shout over the tabs.
+   In the components layer so a utility beside it wins. */
+@layer components {
+.cta {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  min-height: var(--layout-control);
+  padding-inline: 1.25rem;
+  border-radius: 999px;
+  font-weight: 700;
+  background: var(--primary-hi);
+  color: var(--bg);
+  transition:
+    transform calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease),
+    background-color calc(var(--motion-base-ms) * 1ms) ease,
+    border-color calc(var(--motion-base-ms) * 1ms) ease;
+}
+.cta:hover { transform: translateY(-2px); background: var(--primary); }
+.cta:active { transform: scale(0.96); }
+.cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, white 35%, transparent) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: sheen calc(var(--motion-spring-ms) * 9ms) ease-in-out infinite;
+}
+.cta-arrow { transition: transform calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease); }
+.cta:hover .cta-arrow { transform: translateX(4px); }
+.cta-quiet {
+  min-height: 2.25rem;
+  padding-inline: 0.9rem;
+  background: transparent;
+  color: var(--primary-hi);
+  border: 1px solid color-mix(in srgb, var(--primary) 50%, var(--border));
+}
+.cta-quiet:hover { background: color-mix(in srgb, var(--primary) 12%, transparent); border-color: var(--primary); }
+.cta-quiet::after { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta, .cta-arrow { transition: none; }
+  .cta::after { animation: none; }
+}
+
+
 /* One card look. .card is a block on the page; .tile is a smaller box inside one
    (or on Home, ui/Tile), a step lighter; .card-accent adds the tab's colour bar (--c).
    In the components layer so a utility beside it (a hover border) wins. */
