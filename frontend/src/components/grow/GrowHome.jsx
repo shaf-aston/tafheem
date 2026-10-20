@@ -4,14 +4,14 @@
  * a book with questions due shows its review as a step too.
  * A guest's log-in nudge rides on the title line (SectionHeader `aside`).
  */
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 
 import { GOAL, GOALS, rankOf, shareOf } from '../../lib/rewards'
 import { REVIEW_SIZE } from '../../lib/bookLesson'
 import { LAST_BOOK, REVIEW } from '../../lib/useBookWorld'
 import { sayIn } from '../../lib/say'
 import { useRemembered } from '../../lib/useRemembered'
-import ProfileDialog from '../profile/ProfileDialog'
+import LogInButton from '../profile/LogInButton'
 import Emblem from '../ui/Emblem'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
@@ -19,18 +19,6 @@ import SectionHeader from '../ui/SectionHeader'
 
 const say = sayIn('en')
 
-/** For a guest: one line offering the log-in, which opens the profile dialog. */
-function LogInNudge() {
-  const [open, setOpen] = useState(false)
-  return (
-    <>
-      <button type="button" className="grow-login" onClick={() => setOpen(true)}>
-        {say('Log in to keep your XP')}
-      </button>
-      {open && <ProfileDialog onClose={() => setOpen(false)} />}
-    </>
-  )
-}
 
 /** Level, streak and goal; nothing for a guest (the nudge is on the title line). */
 function Growth({ rewards }) {
@@ -210,7 +198,7 @@ export default function GrowHome({ worlds, rewards, lessons, books, onOpen, onSt
   return (
     <div className="grow-home">
       <SectionHeader emblem="words" title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')}
-        aside={rewards ? null : <LogInNudge />} />
+        aside={rewards ? null : <LogInButton>{say('Log in to keep your XP')}</LogInButton>} />
       <Growth rewards={rewards} />
       <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>

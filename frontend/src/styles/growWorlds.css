@@ -44,8 +44,6 @@
 @media (prefers-reduced-motion: reduce) { .grow-next { transition: none; } }
 
 /* a guest's log-in offer, on the title line */
-.grow-login { font-size: var(--type-small); color: var(--text-dim); padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
-.grow-login:hover { color: var(--text); border-color: var(--border-hi); }
 
 /* ── home: the worlds ── */
 .grow-worlds-h { font-size: var(--type-body); font-weight: 800; color: var(--text); }
