@@ -106,8 +106,8 @@ describe('the settings in recite.json', () => {
     expect(config['settle-words']).toBeGreaterThan(0)
   })
 
-  it('moves the window often enough to stay under 20 requests a minute', () => {
-    expect(60 / config['step-s']).toBeLessThanOrEqual(20)
+  it('keeps the floor between two readings inside a window, and the share spent of the server count under all of it', () => {
+    expect(config['asks-share']).toBeLessThan(1)
     expect(config['step-s']).toBeLessThanOrEqual(config['window-s'])
   })
 

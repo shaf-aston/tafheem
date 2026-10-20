@@ -134,7 +134,7 @@ describe('a word that is plainly the wrong word', () => {
     const heard = [...SPOKEN]
     heard[10] = 'وما'
     const answer = follow(PAGE, heard, { ended: true })
-    expect(answer.words[10]).toEqual({ word: 'وَلَا', state: WRONG, heard: 'وما' })
+    expect(answer.words[10]).toEqual({ word: 'وَلَا', state: WRONG, heard: 'وما', said: 'وما' })
     expect(answer.extras).toEqual([])
   })
 })
@@ -390,7 +390,9 @@ describe('weighing in the ear', () => {
       { word: 'd', state: WAITING, heard: '' },
     ],
   }
-  const states = (sure) => bySound(marks, sure).words.map((w) => w.state)
+  // The ear's say per word as bySound takes it; null is a word it never checked.
+  const scored = (sure) => sure.map((s) => (s == null ? null : { sure: s }))
+  const states = (sure) => bySound(marks, scored(sure)).words.map((w) => w.state)
 
   it('softens an accusation the ear never checked into doubt', () => {
     expect(states([])).toEqual([SAID, CHECK, CHECK, WAITING])
@@ -402,24 +404,36 @@ describe('weighing in the ear', () => {
   })
 
   it('a said word blamed on sound names no word, because the transcript heard it right', () => {
-    expect(bySound(marks, [0.1]).words[0]).toEqual({ word: 'a', state: WRONG, heard: '' })
+    expect(bySound(marks, scored([0.1])).words[0]).toEqual({ word: 'a', state: WRONG, heard: '', sure: 0.1 })
   })
 
   it('a word passed on sound shows no misheard word under it', () => {
-    expect(bySound(marks, [1, 1]).words[1]).toEqual({ word: 'b', state: SAID, heard: '' })
+    expect(bySound(marks, scored([1, 1])).words[1]).toEqual({ word: 'b', state: SAID, heard: '', sure: 1 })
   })
 
   it('a doubtful word never names a word', () => {
     // The orange "← بسم" beside a perfectly recited ٱلرَّحِيمِ came from here.
     for (const sure of [[], [1, 0.7], [1, 0.95], [0.5, 0.5]]) {
-      for (const word of bySound(marks, sure).words) {
+      for (const word of bySound(marks, scored(sure)).words) {
         if (word.state === CHECK) expect(word.heard).toBe('')
       }
     }
   })
 
+  it('a word judged wrong keeps what was said, how sure the ear was, its weakest piece and where it sits', () => {
+    const page = ['قُلْ', 'هُوَ', 'ٱللَّهُ']
+    const judgedWords = follow(page, ['قل', 'هو', 'الله'], { ended: true })
+    const answer = bySound(judgedWords, [null, { sure: 0.3, weak: 'ـُ', at: 1.2, take: 4 }, null])
+    expect(answer.words[1]).toMatchObject({ state: WRONG, heard: '', said: 'هو', sure: 0.3, weak: 'ـُ', at: 1.2, take: 4 })
+  })
+
+  it('keeps the vowels of what was said, and both pieces of a word the engine cut in two', () => {
+    const answer = follow(['الْحَمْدُ', 'الْعَالَمِينَ'], ['الْحَمْدُ', 'الْعَالَ', 'مِينَ'], { ended: true, startAt: 0 })
+    expect(answer.words[1].said).toBe('الْعَالَ مِينَ')
+  })
+
   it('only a word the ear checked and failed is called wrong', () => {
-    const red = bySound(marks, []).words.filter((w) => w.state === WRONG || w.state === MISSED)
+    const red = bySound(marks, scored([])).words.filter((w) => w.state === WRONG || w.state === MISSED)
     expect(red).toEqual([])
   })
 })

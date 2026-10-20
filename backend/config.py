@@ -163,6 +163,14 @@ class Listening(BaseSettings):
     # Sets register, not words. Sent only when "Prefer Fusha" is on, never to the Qur'an model:
     # with it the last word of every ayah fell to 0.90 sure and it looped on invented words; without it every real word is 1.00.
     listening_fusha_hint: str = "هذا كلامٌ بالعربية الفصحى."
+    # A fixed phrase, never the page's own words (those would hide a reader's mistakes). Groq's Whisper reads it as
+    # the prompt, and then writes the recitation vowelled; without it the text comes back bare.
+    # Measured on al-Fatihah 1:5-1:7: this phrase gave vowelled text 3 of 3 at 0.2 to 0.3s; a 76-letter hint 2 of 3.
+    # Then on 47 correct clips (7 al-Fatihah, 40 from the marked set), word error with marks folded, vowelled replies, median:
+    #   no hint 36.3% 0% 160ms; this phrase 38.6% 81% 165ms; "بِسْمِ اللَّهِ" 39.4% 74% 165ms; the fusha hint it replaces 37.8% 23% 160ms.
+    # Vowels cost about 2 points of word error against none, a little under 1 against the old hint. Empty sends no hint.
+    # Only the hosted ear sends it (recitation.hear); the Qur'an model on this machine never gets a hint.
+    recitation_hosted_hint: str = "إِيَّاكَ نَعْبُدُ"
     # Short because the local engine answers in ~3s and a slow cloud answer has already lost; Groq turbo takes ~0.5s.
     listening_timeout_s: float = 4.0
     # Rest for a transient failure (no internet, rate limit, bad gateway); a settled one (rejected key, missing model) retires the ear.

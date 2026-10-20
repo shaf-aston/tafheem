@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useRef } from 'react'
 
 import { isQuranic, recitedForm } from '../../lib/arabicText'
 import { wordsOf } from '../../lib/memorise'
@@ -6,6 +6,7 @@ import { wordsOf } from '../../lib/memorise'
 import ArabicText from '../ui/ArabicText'
 import AyahNumber from './AyahNumber'
 import Gap from './Gap'
+import MarkCard from './MarkCard'
 import RecitedWord from './RecitedWord'
 import { withinPart } from './hooks'
 
@@ -18,6 +19,11 @@ import { withinPart } from './hooks'
  */
 export default function Line({ line, flow, index, blanks, answers, checked, meaning, choices, accent, twin, recite, onStartAt, onAnswer }) {
   const words = wordsOf(line.arabic)
+  // The ayah as the card needs it, and the number's own place to hang the card from.
+  const ayah = { key: line.label, label: withinPart(line.label), from: recite?.from, count: words.length, printed: words }
+  const numberAnchor = useRef(null)
+  const reached = recite?.words.slice(ayah.from, ayah.from + ayah.count).some((mark) => mark.state !== 'waiting')
+  const numberOpen = recite?.open && recite.open.at == null && recite.open.line === ayah.key
   // One width for every typed blank on this line, from the longest recited
   // word among them: sizing each blank to its own answer leaks the length.
   const typeWidth = Math.max(
@@ -40,7 +46,7 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
           {/* The display size, as the Qur'an tab and the surah reader set the
               text being read; the reading size made the mushaf look smaller. */}
           {recite
-            ? <RecitedWord word={word} at={recite.from + w} recite={recite} accent={accent} onStartAt={onStartAt} />
+            ? <RecitedWord word={word} at={recite.from + w} ayah={ayah} recite={recite} accent={accent} onStartAt={onStartAt} />
             : <ArabicText size="lg">{word}</ArabicText>}
           {hemistichBreak}
         </Fragment>
@@ -55,6 +61,7 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
           <RecitedWord
             word={word}
             at={recite.from + w}
+            ayah={ayah}
             recite={recite}
             accent={accent}
             coverWidth={typeWidth}
@@ -80,9 +87,18 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
       </Fragment>
     )
   })
-  const number = flow
-    ? <AyahNumber aria-label={`ayah ${withinPart(line.label)}`}>{withinPart(line.label)}</AyahNumber>
-    : <AyahNumber>{line.label}</AyahNumber>
+  const opens = reached ? () => recite.setOpen(numberOpen ? null : { line: ayah.key }) : undefined
+  const bare = flow
+    ? <AyahNumber aria-label={opens ? `Ayah ${ayah.label}, details` : `ayah ${ayah.label}`} onClick={opens}>{ayah.label}</AyahNumber>
+    : <AyahNumber onClick={opens}>{line.label}</AyahNumber>
+  // The card hangs from a wrapper round the number, so a press on the number
+  // itself is not an outside press that closes it just before it opens.
+  const number = recite ? (
+    <span ref={numberAnchor} className="relative inline-flex">
+      {bare}
+      {numberOpen && <MarkCard ayah={ayah} at={null} recite={recite} anchor={numberAnchor} onStartAt={onStartAt} />}
+    </span>
+  ) : bare
   const marker = twin ? (
     <>
       {number}

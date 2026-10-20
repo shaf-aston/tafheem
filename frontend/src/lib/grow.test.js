@@ -8,13 +8,15 @@ import {
 const RUKU = ['سُبْحَانَ', 'رَبِّيَ', 'الْعَظِيمِ']
 const states = (marks) => marks.words.map((mark) => mark.state)
 // Marks only.
-const mark = (words, text, sure) => judge(words, text, sure).marks
+// The ear's numbers as judge takes them: a { sure } per word, null for none.
+const scored = (sure) => sure && Array.from(sure, (s) => (s == null ? null : { sure: s }))
+const mark = (words, text, sure) => judge(words, text, scored(sure)).marks
 
 describe('marking one recitation', () => {
   it('marks every word right when every word was said and the sound agrees', () => {
     const marks = mark(RUKU, 'سبحان ربي العظيم', [0.99, 0.99, 0.99])
     expect(states(marks)).toEqual([SAID, SAID, SAID])
-    expect(judge(RUKU, 'سبحان ربي العظيم', [0.99, 0.99, 0.99])).toMatchObject({ clean: true, weighed: true })
+    expect(judge(RUKU, 'سبحان ربي العظيم', scored([0.99, 0.99, 0.99]))).toMatchObject({ clean: true, weighed: true })
   })
 
   it('never calls a doubtful word right, so a run with one is not clean', () => {
@@ -22,12 +24,12 @@ describe('marking one recitation', () => {
     // orange, and not a pass.
     const marks = mark(RUKU, 'سبحان ربي الكريم', [0.99, 0.99])
     expect(states(marks)).toEqual([SAID, SAID, CHECK])
-    expect(judge(RUKU, 'سبحان ربي الكريم', [0.99, 0.99]).clean).toBe(false)
+    expect(judge(RUKU, 'سبحان ربي الكريم', scored([0.99, 0.99])).clean).toBe(false)
   })
 
   it('is never clean when the sound was not weighed for every word, however right it reads', () => {
     for (const sure of [null, [], [0.99, 0.99]]) {
-      expect(judge(RUKU, 'سبحان ربي العظيم', sure, 'standard')).toMatchObject({ clean: false, weighed: false })
+      expect(judge(RUKU, 'سبحان ربي العظيم', scored(sure), 'standard')).toMatchObject({ clean: false, weighed: false })
     }
   })
 
@@ -134,7 +136,7 @@ describe('nothing heard at all', () => {
   })
 
   it('is never clean', () => {
-    expect(judge(RUKU, '', [0.01, 0.01, 0.01]).clean).toBe(false)
+    expect(judge(RUKU, '', scored([0.01, 0.01, 0.01])).clean).toBe(false)
   })
 })
 

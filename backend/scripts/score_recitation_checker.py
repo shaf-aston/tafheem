@@ -10,7 +10,7 @@ word by word, against the ayah it should be:
   page     what the app does today: the Qur'an ear writes down what it heard,
            and a word counts as said when its letters match. Vowels ignored.
   scored   the ear is handed the expected words and says how sure it is of
-           each (listen.sureness); a word counts as said above a threshold.
+           each (listen.weigh); a word counts as said above a threshold.
 
 And both are held against the reviewer:
 
@@ -187,7 +187,7 @@ def judge(ayahs: dict[str, str], limit: int | None) -> None:
             else:
                 heard = listen.transcribe(audio, language="ar")
                 around, a, b, reach = stretch(ayahs, key, heard)
-                sure = listen.sureness(audio, around)[a:b]
+                sure = [w["sure"] for w in listen.weigh(audio, around)[a:b]]
                 row |= {"heard": heard, "page": page_verdict(expected, heard),
                         "sure": [round(p, 3) for p in sure], "stretch": len(around), "reach": reach}
             out.write(json.dumps(row, ensure_ascii=False) + "\n")

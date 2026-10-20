@@ -224,14 +224,14 @@ def warm() -> None:
         log.info("listening is unavailable: %s", exc)
 
 
-def transcribe(audio: bytes, language: str | None = None, hint: str = "", model: str | None = None) -> str:
+def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str:
     """What was said, as plain words. Empty when there was nothing to hear.
 
     `language` is the language to hear it in, and naming one makes this a
     recitation: the Qur'an model, no register hint, and a word it is not sure
     of left out. Leaving it out is dictation, heard by the
     general model in whichever of the dictation languages the recording sounds
-    like. `model` swaps the Qur'an model for a recitation (the trial one).
+    like.
 
     The recording becomes sound in sound_of, which is the only place it does,
     and which keeps the last one so the check that follows does not decode the
@@ -244,7 +244,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "", model:
     sound = sound_of(audio)
     reciting = language is not None
     how = dict(
-        model=(model or settings.recitation_model) if reciting else settings.dictation_model,
+        model=settings.recitation_model if reciting else settings.dictation_model,
         language=language or _which_language(sound),
         hint="" if reciting else hint,
         word_min=settings.recitation_word_min if reciting else 0.0,
@@ -283,9 +283,10 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "", model:
 def scores(audio: bytes, words: list[str], model: str | None = None) -> list[dict]:
     """What the Qur'an ear makes of each of `words`, in order, given the sound.
 
-    Per word: `probs`, how likely each piece of it was, 0 to 1; and `at`, the
-    second of the recording the word's last piece lines up with, or None when
-    the ear gave no position for it.
+    Per word: `probs`, how likely each piece of it was, 0 to 1; `weak`, the
+    text of its least likely piece (see weakest); and `at`, the second of the
+    recording the word's last piece lines up with, or None when the ear gave
+    no position for it.
 
     Checking, not transcribing: the ear is handed the words the page expects
     and asked how likely each is given the sound, so a misheard word is never
@@ -338,24 +339,51 @@ def scores(audio: bytes, words: list[str], model: str | None = None) -> list[dic
             ),
             words=len(words), rule=get_settings().recitation_sure_of_word,
         )[0]
-    # align gives one (piece, frame) pair per piece, and two of the encoder's
-    # frames are a hundredth of a second of sound.
+    # align gives one (piece, position) pair per piece, in the model's own
+    # tokens per second (50: an encoder position is two hundredths of a second).
     where = dict(answer.alignments)
     out, at = [], 0
     for piece in pieces:
         end = at + len(piece)
+        probs = [float(p) for p in answer.text_token_probs[at:end]]
         out.append({
-            "probs": [float(p) for p in answer.text_token_probs[at:end]],
-            "at": round(where[end - 1] / 100, 2) if end - 1 in where else None,
+            "probs": probs,
+            "weak": weakest(piece, probs, tokenizer.decode),
+            "at": round(where[end - 1] / model.tokens_per_second, 2) if end - 1 in where else None,
         })
         at = end
     return out
 
 
-def sureness(audio: bytes, words: list[str], model: str | None = None) -> list[float]:
-    """How sure the ear is of each word, one number each, at the rule in config."""
+def weakest(piece: list[int], probs: list[float], decode) -> dict | None:
+    """A word's least likely piece, for a word card to point at: its `text` and
+    `start`, the characters of the word before it.
+
+    None for a word of one piece (the piece is the whole word), for a piece
+    that is half a letter (Arabic letters are sometimes split into bytes, and
+    decoding half of one gives a replacement mark, which says nothing), and for
+    pieces and likelihoods that do not pair up, so a bad answer cannot fail a check.
+    """
+    if len(piece) < 2 or len(probs) != len(piece):
+        return None
+    k = probs.index(min(probs))
+    text = decode([piece[k]]).strip()
+    if not text or "�" in text:
+        return None
+    # A word after the first is encoded with a space in front of it, which is
+    # not part of the word.
+    before = decode(piece[:k]).lstrip()
+    return {"text": text, "start": len(before)}
+
+
+def weigh(audio: bytes, words: list[str], model: str | None = None) -> list[dict]:
+    """What the ear makes of each word: `sure`, one number at the rule in config,
+    and the `weak` piece ({text, start}) and `at` second that scores() found."""
     rule = get_settings().recitation_sure_of_word
-    return [aggregate(word["probs"], rule) for word in scores(audio, words, model)]
+    return [
+        {"sure": aggregate(word["probs"], rule), "weak": word["weak"], "at": word["at"]}
+        for word in scores(audio, words, model)
+    ]
 
 
 def aggregate(probs: list[float], rule: str) -> float:

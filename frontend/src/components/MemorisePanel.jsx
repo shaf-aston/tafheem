@@ -11,6 +11,8 @@
  * no knowledge of the screen; the books are in lib/books.js, with no knowledge
  * of either. This file only shows what those two decide.
  */
+import { useState } from 'react'
+
 import { BOOKS } from '../lib/books'
 import { DIFFICULTIES, printedPageOf, score } from '../lib/memorise'
 import { PHONE, useMedia } from '../lib/useMedia'
@@ -59,6 +61,16 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   // behind one pill on a phone, where the pickers and both of these were three
   // rows before the page began.
   const phone = useMedia(PHONE)
+  // The word or ayah whose card is open: { at } or { line }. Only a place; the
+  // card reads the live marks, so what it shows keeps up with the recitation.
+  const [asked, setAsked] = useState(null)
+  // Closed by the reader, Esc or a press outside (MarkCard), and here by a page
+  // turn or by stopping; never by a mark changing under it. A card is stamped
+  // with the page and listening state it was opened in, and only counts while
+  // they are unchanged.
+  const stamp = `${bookId}/${part}/${pageNumber}/${reciting.listening}`
+  const opened = asked?.stamp === stamp ? asked : null
+  const setOpen = (place) => setAsked(place && { ...place, stamp })
   const ways = waysOf(book)
   const missing = way === 'recite'
     ? [{ id: 'none', label: 'Show all' }, { id: HIDDEN, label: 'Hidden' }]
@@ -202,7 +214,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             )}
           </div>
 
-          <div ref={card} key={`${bookId}/${part}/${pageNumber}`} {...slide}
+          <div ref={card} data-recite-page="" key={`${bookId}/${part}/${pageNumber}`} {...slide}
             className={`rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4 ${slide.className}`}>
             {/* A flowing book runs its lines on as a printed mushaf does: one
                 block, justified, each ayah ending in its number, and never a
@@ -231,7 +243,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                   accent={accent}
                   twin={similar && twinned.has(line.label)}
                   recite={way === 'recite'
-                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown }
+                    ? { ...reciting.marks, from: recitedPage.lines[l].from, shown, open: opened, setOpen, takeAudio: reciting.takeAudio }
                     : null}
                   // Pressable while listening too: jumping back or ahead must not
                   // mean stopping first. forget() keeps the microphone running.
