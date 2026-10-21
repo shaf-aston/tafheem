@@ -20,10 +20,22 @@ beforeEach(() => {
   played.length = 0
   refuse = () => false
   reset()
-  globalThis.fetch = vi.fn(async () => ({ ok: true, json: async () => ({ 'كِتَاب': 'wbw/002_002_002.mp3' }) }))
+  person = {}
+  globalThis.fetch = vi.fn(async (url) => ({
+    ok: true,
+    json: async () => (url === config.voices.person.map ? person : { 'كِتَاب': 'wbw/002_002_002.mp3' }),
+  }))
 })
+let person = {}
 
 describe('which voice says a word', () => {
+  it('prefers the teacher\'s own recording over the reciter and the made voices', async () => {
+    person = { 'كِتَاب': 'a1.mp3' }
+    const voice = await speak('كِتَاب')
+    expect(voice.id).toBe('person')
+    expect(played).toEqual(['/words/voice/a1.mp3'])
+  })
+
   it('uses the reciter when the word has a recording', async () => {
     const voice = await speak('كِتَاب')
     expect(voice.id).toBe('recorded')
@@ -75,7 +87,7 @@ describe('which voice says a word', () => {
   it('asks for the recording map again after a failed fetch', async () => {
     globalThis.fetch = vi.fn(async () => ({ ok: false, status: 503 }))
     expect((await speak('كِتَاب')).id).toBe('server')
-    globalThis.fetch = vi.fn(async () => ({ ok: true, json: async () => ({ 'كِتَاب': 'wbw/002_002_002.mp3' }) }))
+    globalThis.fetch = vi.fn(async (url) => ({ ok: true, json: async () => (url === config.voices.recorded.map ? { 'كِتَاب': 'wbw/002_002_002.mp3' } : {}) }))
     expect((await speak('كِتَاب')).id).toBe('recorded')
   })
 

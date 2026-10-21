@@ -965,3 +965,8 @@ button.tile:hover { border-color: var(--c); }
 @media (prefers-reduced-motion: reduce) {
   .xp-bar > span, .xp-step, .xp-now .xp-dot { animation: none; }
 }
+
+/* The player's "back to the ayah being recited" chip: faded until pointed at,
+   so it says where the voice is without covering the reading. */
+.now-chip { opacity: 0.75; transition: opacity calc(var(--motion-base-ms) * 1ms) ease; }
+.now-chip:hover, .now-chip:focus-visible { opacity: 1; }

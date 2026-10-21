@@ -255,6 +255,8 @@ backend/data/rijal/pages/
 
 # Spoken words, remade on demand by services/speech.py.
 backend/data/speech_cache/
+# The studio's takes, kept on the server; scripts/export_recordings.py ships them.
+backend/data/recordings/
 # quran.com word list, fetched once by backend/scripts/build_word_audio.py.
 backend/data/quran/wbw_words.json
 
