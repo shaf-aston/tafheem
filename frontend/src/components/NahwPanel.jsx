@@ -85,9 +85,7 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
     <div className="panel">
       {/* The views ride on the title line: on their own row they read as a step before typing. */}
       <SectionHeader
-        title="Nahw"
-        emblem="nahw"
-        arabic="نحو"
+        tab="nahw"
         aside={(
           <Segmented
             label="Which part of Nahw to work on"

@@ -51,9 +51,7 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
   if (isPending) {
     return (
       <div className="panel">
-        <SectionHeader emblem="timelines"
-          title="Timelines"
-          arabic="التاريخ"
+        <SectionHeader tab="timelines"
           aside={<div inert><Segmented label="Science" options={[{ id: ALL, label: 'All' }]} value={ALL} onChange={() => {}} accent={accent} wrap /></div>}
         />
         <AnalyzerSkeleton />
@@ -85,9 +83,7 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
 
   return (
     <div className="panel">
-      <SectionHeader emblem="timelines"
-        title="Timelines"
-        arabic="التاريخ"
+      <SectionHeader tab="timelines"
         nameOf={(q) => nameOfPlace(q, data.sections)}
         aside={<Segmented label="Science" options={filter} value={science} onChange={setScience} accent={accent} wrap />}
       />

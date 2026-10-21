@@ -51,7 +51,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
   if (isPending) {
     return (
       <div className="panel" style={{ '--c': accent }}>
-        <SectionHeader emblem="dawah" title={copy.title} arabic={copy.arabic} subtitle={copy.subtitle} />
+        <SectionHeader tab="dawah" subtitle={copy.subtitle} />
         <div inert>
           <SearchBox
             id="dawah-search"
@@ -98,9 +98,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
 
   return (
     <div className="panel" style={{ '--c': accent }}>
-      <SectionHeader emblem="dawah"
-        title={copy.title}
-        arabic={copy.arabic}
+      <SectionHeader tab="dawah"
         subtitle={copy.subtitle}
         nameOf={(id) => all.find(({ question }) => question.id === id)?.question.q ?? id}
       />
