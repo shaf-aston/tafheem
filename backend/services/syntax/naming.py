@@ -230,7 +230,7 @@ def _extra_ba(n: Named) -> None:
 
 
 def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: dict[int, int]) -> str | None:
-    """Which kind of idafa or badal the word is, as the books name it (teacher.json kinds)."""
+    """Which kind of idafa, badal or فاعل the word is, as the books name it (teacher.json kinds)."""
     kinds = teacher_rules()["kinds"]
     if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
         if (facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ") and not facts.is_elative(mudaf):
@@ -241,6 +241,8 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
             return kinds["idafa"]["fi"]  # مكرُ الليلِ
         bare = strip_diacritics(token["lemma"]).strip("+")
         return kinds["idafa"]["min" if bare in kinds["material"] else "lam"]
+    if role == NAMED.fail and s.described_doer and token is s.described_doer[2]:
+        return kinds["fail"]["sadda"]  # ما ذاهبٌ المسلمون
     if role == NAMED.badal:
         if said := facts.excepted_after_la(token, s):
             return said[2]["badal"]  # لا إله إلا الله: no بدل كل من كل of the منصوب noun

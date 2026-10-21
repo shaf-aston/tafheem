@@ -225,9 +225,10 @@ def _informing(token: dict, s: facts.Sentence) -> dict | None:
 def _asks_nominal(token: dict, s: facts.Sentence) -> bool:
     """ما اسمك، من أنت: a noun, pronoun or pointer in raf' (its مبتدأ; a ظرف is one only if typed so:
     ما يومُ الدين) and nothing else of a clause: no verb after it, no preposition or restricting إلا
-    (ما أنت بعالمٍ, ما أنت إلا بشر), no khabar of its own for the noun (ما زيدٌ قائمٌ), not ما الحجازية."""
+    (ما أنت بعالمٍ, ما أنت إلا بشر), no khabar of its own for the noun (ما زيدٌ قائمٌ), not ما الحجازية,
+    not a وصف with its own doer (ما ذاهبٌ المسلمون: ما negates the مبتدأ وصف)."""
     after = facts.next_word(token, s)
-    if token["pos"] == "PRT" or s.hijazi or not after or not facts.noun_tagged(after) or facts.is_verb(after) \
+    if token["pos"] == "PRT" or s.hijazi or (s.described_doer and token is s.described_doer[0]) or not after or not facts.noun_tagged(after) or facts.is_verb(after) \
             or (facts.is_zarf(after, s) and facts.typed_case_of(after) != "u") \
             or not (is_mabni(after.get("pos_camel", "")) or facts.typed_case_of(after) in (None, "u")):
         return False

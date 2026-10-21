@@ -19,7 +19,7 @@ from typing import Any
 
 from backend.services.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services import noun_reader, verb_reader
-from backend.services.nahw_book import is_built_word, is_mabni, is_one, six_noun_case
+from backend.services.nahw_book import book_words, is_built_word, is_mabni, is_one, six_noun_case
 from backend.services.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -576,6 +576,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the table's own tense is only spelled otherwise: the dictionary's stays. A command is left to
             # repair.typed (verb_reader.command), which reads its attached pronoun (اِهْدِنَا) as the table cannot
             ranked = [{"lex": evidence, **sarf, "diac": evidence}]
+        elif not steps and not _agreeing(evidence, ranked) and (asked := _asked_reading(evidence, disambiguator)):
+            ranked = [asked]
         elif not _agreeing(evidence, ranked) and (noun := noun_reader.reading_of(evidence)):
             # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off
             ranked = [noun]
@@ -630,6 +632,27 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
                                          if not _bare_construct(r) and r.get("pos") != "noun_prop"]) or reading
     return out
+
+
+def _asked_reading(typed: str, disambiguator=None) -> dict | None:
+    """أَذَاهِبٌ زَيْدٌ: the question hamza (closed_words istifham, a one-letter word) opens the
+    sentence before a full clause, written onto its first word; the dictionary lacks it on a
+    noun, so the rest of the word is read and the hamza put back as its proclitic, as CAMeL
+    writes a وَ (وَ+_ذاهِب)."""
+    marked = letters(typed)
+    hamza = next((w for w in book_words("istifham") if len(w) == 1), None)
+    if not (hamza and len(marked) > 2 and marked[0][0] == hamza and "َ" in marked[0][1]):
+        return None
+    asked = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
+    rest = typed[len(asked):]
+    ranked = (_ranked([rest], disambiguator) or [[]])[0]
+    if not _agreeing(rest, ranked):
+        return None
+    found = _reading(rest, ranked)
+    return {**found, "diac": asked + found.get("diac", ""), "atbtok": f"{asked}+_" + found.get("atbtok", ""),
+            "catib6": "PRT+" + found.get("catib6", ""), "ud": "PART+" + found.get("ud", ""),
+            "bw": f"{asked}/INTERROG_PART+" + found.get("bw", ""), "prc3": "Aa_ques",
+            "pattern": asked + found.get("pattern", "")}
 
 
 def _agreeing(typed: str, ranked: list[dict]) -> bool:
