@@ -55,3 +55,15 @@ def test_every_fix_is_applied_once():
 def test_the_written_file_matches_the_build(body):
     written = Path(build.OUT).read_text(encoding="utf-8").split("#META#Header#End#", 1)[1]
     assert written == body
+
+
+def test_a_bayt_without_two_halves_stops_the_build():
+    with pytest.raises(SystemExit):
+        build.bayts_of("{{أبيات|نصف واحد}}")
+
+
+def test_the_wrong_number_of_bayts_stops_the_build():
+    many = "{{أبيات|" + "\n".join("أ\\\\ب" for _ in range(145)) + "}}"
+    assert len(build.bayts_of(many)) == 145
+    with pytest.raises(SystemExit):
+        build.build(many)

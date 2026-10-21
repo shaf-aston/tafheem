@@ -11,7 +11,7 @@ import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, searchHadith } from '../api'
-import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE } from '../lib/hadithPlace'
+import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -43,6 +43,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
   const [narrator, setNarrator] = useState(null)   // the narrator whose page is open, if any
   const [starred, setStarred] = useState(false)
+  const [termsGroup, setTermsGroup] = useState(null)   // the Terms group drawn alone, if any
   const [listing, setListing] = useState(null)   // the list showing, narrators, scholars or terms, if any
   const { favorites } = useHadithFavorites()
   const source = useSources().sources.find((s) => s.key === 'hadith')
@@ -56,7 +57,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
 
   // A link with no book (muslim/2927) is read once its collection's books say the number is no book, and
   // search, which already reads "muslim 2927", has found which book holds it.
-  const pair = /^[^/]+\/\d+[a-z]?$/.test(incoming ?? '') && !narratorOf(incoming) ? incoming.split('/') : null
+  const pair = /^[^/]+\/\d+[a-z]?$/.test(incoming ?? '') && !narratorOf(incoming) && !listOf(incoming) ? incoming.split('/') : null
   const books = useQuery({ ...hadithBooksQuery(pair?.[0]), enabled: Boolean(pair) })
   const short = shortOf(incoming, books.data)
   const found = useQuery({
@@ -74,6 +75,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
     const asked = hit ? { collection: hit.collection, book: hit.book, number: hit.number, part: hit.part } : short ? null : parsePlace(incoming, collections)
     setNarrator(narratorOf(incoming))
     setListing(listOf(incoming))
+    setTermsGroup(termsGroupOf(incoming))
     if (asked) setPlace(asked)
     else if (collections.length) setPlace({ collection: collections[0].id, book: null, number: null, part: '' })
     setMissed(Boolean(incoming) && !asked && !narratorOf(incoming) && !listOf(incoming))
@@ -97,6 +99,19 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (isError) {
     return (
       <ErrorAlert title="Could not load the hadith collections" error={error} fallback="The hadith collections could not be reached." onRetry={refetch} />
+    )
+  }
+
+  // The terms and the scholars' rulings need no collection, so a link to them is answered before this guard.
+  const termsGroupPick = (group) => onGo('hadith', group == null ? TERMS_PLACE : termsPlaceOf(group))
+  if (!collections.length && (listing === TERMS_PLACE || listing === SCHOLARS_PLACE)) {
+    return (
+      <div className="panel">
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+        {listing === TERMS_PLACE
+          ? <TermsView accent={accent} onOpen={noop} group={termsGroup} onGroup={termsGroupPick} />
+          : <ScholarTerms accent={accent} onOpen={noop} />}
+      </div>
     )
   }
 
@@ -183,7 +198,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         ) : listing === SCHOLARS_PLACE ? (
           <ScholarTerms accent={accent} onOpen={openHadith} />
         ) : listing === TERMS_PLACE ? (
-          <TermsView accent={accent} onOpen={openHadith} />
+          <TermsView accent={accent} onOpen={openHadith} group={termsGroup} onGroup={termsGroupPick} />
         ) : starred ? (
           favorites.length
             ? (

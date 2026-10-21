@@ -6,12 +6,14 @@
  * the Map's sciences and would graft their sub-topics onto these. Every box is tappable (a third `true`), since
  * a tap on a term opens its card; the chart is two levels, so a term's own kids show only in `branchChart`.
  */
+import { layoutChart } from './pbsLayout'
 import { HUE } from './pbsData'
 
 const HUES = Object.values(HUE)
 const ROOT = { ar: 'مصطلح الحديث', en: 'Hadith terms' }
 
-const pair = (t) => [t.arabic, t.en, true]
+// [arabic, english, tappable, leaf]: a tap opens the term's card, so no › drill hint (shell/PbsChart).
+const pair = (t) => [t.arabic, t.en, true, true]
 
 /** The whole tree: the hadith terms at its root, a group to a branch, its terms to the branch's kids. */
 export function termsChart(glossary) {
@@ -28,7 +30,7 @@ export function branchChart(glossary, groupIndex) {
   const c = HUES[groupIndex % HUES.length]
   return {
     root: { ar: group.name, en: group.title },
-    branches: group.terms.map((t) => ({ ar: t.arabic, en: t.en, c, hasKids: true, kids: (t.kids ?? []).map(pair) })),
+    branches: group.terms.map((t) => ({ ar: t.arabic, en: t.en, c, hasKids: true, leaf: true, kids: (t.kids ?? []).map(pair) })),
     footnote: [],
   }
 }
@@ -50,5 +52,9 @@ export function termAt(glossary, arabic) {
   return null
 }
 
-/** The smallest the chart is drawn, as a share of its own width: the term boxes' 15.5px label stays at 12px or more. */
-export const MIN_SCALE = 12 / 15.5
+/** The smallest label PbsChart draws, in px (the English sub-label of a term box). */
+export const SMALLEST_LABEL = 9.5
+/** The smallest the chart is drawn, as a share of its own width: its smallest label stays at 12px or more. */
+export const MIN_SCALE = 12 / SMALLEST_LABEL
+/** The page width, in px, from which the whole tree draws at MIN_SCALE without scrolling sideways. */
+export const wholeWidth = (config) => Math.ceil(layoutChart(config).width * MIN_SCALE)

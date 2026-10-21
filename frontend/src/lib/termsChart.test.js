@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { layoutChart } from './pbsLayout'
-import { branchChart, termAt, termsChart } from './termsChart'
+import { branchChart, MIN_SCALE, SMALLEST_LABEL, termAt, termsChart, wholeWidth } from './termsChart'
 
 const glossary = [
   { title: 'Accepted', name: 'المقبول', terms: [
@@ -19,7 +19,7 @@ describe('termsChart', () => {
   })
 
   it('lists each group\'s terms as tappable pairs', () => {
-    expect(termsChart(glossary).branches[0].kids).toEqual([['الصحيح', 'Sahih', true], ['الحسن', 'Hasan', true]])
+    expect(termsChart(glossary).branches[0].kids).toEqual([['الصحيح', 'Sahih', true, true], ['الحسن', 'Hasan', true, true]])
   })
 
   it('gives each group its own hue', () => {
@@ -45,12 +45,29 @@ describe('termsChart', () => {
   })
 })
 
+describe('the smallest scale', () => {
+  it('keeps the smallest label at 12px', () => {
+    expect(MIN_SCALE * SMALLEST_LABEL).toBeCloseTo(12)
+    expect(MIN_SCALE * 9.5).toBeCloseTo(12)
+  })
+
+  it('makes a tree as wide as its layout at that scale', () => {
+    const chart = termsChart(glossary)
+    expect(wholeWidth(chart)).toBe(Math.ceil(layoutChart(chart).width * MIN_SCALE))
+  })
+
+  it('marks every term a leaf, so no drill chevron is drawn for a card', () => {
+    expect(termsChart(glossary).branches[0].kids.every((k) => k[3] === true)).toBe(true)
+    expect(branchChart(glossary, 0).branches.every((b) => b.leaf)).toBe(true)
+  })
+})
+
 describe('branchChart', () => {
   it('roots one group and branches its terms, a term\'s kids under it', () => {
     const chart = branchChart(glossary, 0)
     expect(chart.root).toEqual({ ar: 'المقبول', en: 'Accepted' })
     expect(chart.branches.map((b) => b.ar)).toEqual(['الصحيح', 'الحسن'])
-    expect(chart.branches[0].kids).toEqual([['لذاته', 'in itself', true], ['لغيره', 'by support', true]])
+    expect(chart.branches[0].kids).toEqual([['لذاته', 'in itself', true, true], ['لغيره', 'by support', true, true]])
     expect(chart.branches[1].kids).toEqual([])
   })
 

@@ -198,3 +198,10 @@ textarea.arabic-lg {
   .tap { min-height: var(--layout-tap); min-width: var(--layout-tap); }
 }
 
+
+/* A bayt (ui/Bayt): its two halves one above the other on a phone, side by side with room between from 640px. */
+.bayt { display: block; }
+.bayt-half { display: block; }
+@media (min-width: 40rem) {
+  .bayt { display: flex; justify-content: center; gap: 3em; }
+}
