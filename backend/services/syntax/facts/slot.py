@@ -3,7 +3,7 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.nahw_book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles
+from backend.services.nahw_book import book_map, frames, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles
 from backend.services.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, NOUN_LINKS, SUBJECTS
 from backend.services.syntax.facts.sentence import Sentence, jarr_takes, praised_noun, told_of_lone_mubtada, verb_above
 from backend.services.syntax.facts.follows import with_waw
@@ -118,6 +118,16 @@ def purpose(token: dict, verb: dict) -> bool:
             and typed_or_parsed_case(token) in (None, "a") and token.get("stt") in ("i", "c"))
 
 
+def quoted_head(token: dict, s: Sentence) -> bool:
+    """قال الضيفُ سلامٌ عليكم، قال زيدٌ الجوُّ جميلٌ: a verb has one doer (Tasheel 2.4.1), so a raf'
+    word a verb of saying (roles.json said_clause) holds after its doer is no second one but heads
+    the sentence it says, its مقول القول, named inside as that sentence would be on its own."""
+    head = s.head(token)
+    return (token["rel"] == "OBJ" and typed_case_of(token) == "u" and head is not None and is_verb(head)
+            and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
+            and any(subject_link(t) and t["id"] < token["id"] for t in s.kids(head) if t is not token))
+
+
 def verb_place(token: dict, s: Sentence) -> str:
     """The place a word fills under a verb (Tasheel 3.1 p60, 3.2 p67), `none` where the
     book names it elsewhere. Tested in this order because an earlier place shadows a
@@ -154,10 +164,14 @@ def verb_place(token: dict, s: Sentence) -> str:
         asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
         if asked and before and not any(t["rel"] == "OBJ" and not is_verb(t) for t in siblings):  # قال after it is the reply, not its object
             return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
-        if before and rel in SUBJECTS and typed == "a" and not is_mabni(token.get("pos_camel", "")):
+        if before and typed == "a" and not is_mabni(token.get("pos_camel", "")) and (
+                rel in SUBJECTS or (rel == "MOD" and is_plain_noun(token) and not is_participle(token)
+                                    and any(t["rel"] in SUBJECTS and t["id"] > token["id"] for t in siblings))):
             return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object (a built word's is no case: أنتَ)
         if before and rel in SUBJECTS:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
+        if quoted_head(token, s):
+            return "none"  # its place is inside the sentence it heads (_nominal_place)
         if praised_noun(token, s):
             return "none"  # نِعْمَ الْخُلُقُ الْوَفَاءُ: the one praised is no second doer (_nominal_place: مبتدأ)
         if head.get("asp") == "c" and rel in (*NOUN_LINKS, "---") and typed != "u":
@@ -186,11 +200,14 @@ def verb_place(token: dict, s: Sentence) -> str:
         if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
             return "purpose"
         if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
-                and token.get("stt") == "i" and any(t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head) for t in siblings):
+                and token.get("stt") == "i" and any(t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head)
+                                                    or (t["id"] < token["id"] and verb_place(t, s) == "subject") for t in siblings):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
                 return "specification"
             if is_participle(token):
                 return "state"
+            if rel != "TMZ" and is_plain_noun(token) and not same_root(token, head) and not is_one(head["lemma"], "intransitive_verbs"):
+                return "object"  # نصر زيدٌ بكرًا: a plain noun is no hal, and a tamyeez only after a tamyeez verb (above)
         if after_first:
             return "second_object"  # ظن الولد الأمر سهلا, أعطى الولد الكتاب
         # صِلْ مَنْ قَطَعَكَ: a relative hung on the verb as a modifier is a noun no hal or tamyeez can be
@@ -199,7 +216,11 @@ def verb_place(token: dict, s: Sentence) -> str:
         if rel in ("MOD", "IDF") and listed(token, "mawsul") and not any(t["rel"] == "OBJ" for t in siblings) \
                 and (head.get("asp") == "c" or any(subject_link(t) for t in siblings)):
             return "object"
+        # نصر زيدٌ بكرًا: a noun the parser hung on the verb with no relation ("---" belongs to the
+        # root alone) is still one of its arguments, told by its case like the rest; one with a subject
+        # of its own heads a sentence instead (قال ما اسمُك: ما is the khabar of اسم)
         if (rel in NOUN_LINKS or (rel == "IDF" and typed != "i")
+                or (rel == "---" and typed != "i" and not any(subject_link(k) for k in s.kids(token)))
                 or (rel == "MOD" and typed == "u" and is_plain_noun(token))
                 # بِعْ الكِتَابَ: hung on the verb as a modifier, but a definite word is never a
                 # hal or tamyeez, so its fatha makes it the object (unless it is the verb's own masdar)
@@ -290,7 +311,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     if rel == "OBJ" and head and head["pos"] == "PRT" and typed_or_parsed_case(token) == "u" \
             and any(subject_link(c) and c["id"] < token["id"] for c in kids):
         return "predicate"
-    if rel == "---":
+    quoted = quoted_head(token, s)
+    if rel == "---" or quoted:
         if any(subject_link(c) for c in kids):
             return "predicate"
         pointer = next((c for c in kids if "dem" in c.get("pos_camel", "") and c["id"] < token["id"]), None)
@@ -302,7 +324,7 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # noun is the khabar and the verb its صفة
         if not pointer and any(c["rel"] == "PRD" or (is_verb(c) and c["id"] > token["id"]) for c in kids):
             return "subject"
-        if noun_tagged(token) and s.verbless:
+        if noun_tagged(token) and (s.verbless or quoted):
             loose = [t for t in s.tokens if t["rel"] == "---" and noun_tagged(t)]
             if loose != [token]:
                 return "subject" if not loose or token is loose[0] else "predicate"

@@ -313,6 +313,19 @@ def test_a_noun_with_its_followers_and_no_governor_hangs_on_an_understood_verb()
     assert "ضمير مستتر تقديره أنتَ أو هي" in [p["detail"] for p in leaves["تَطَّوَّعَ"][0][0]["parts"]]
 
 
+@pytest.mark.parametrize("sentence, subject, khabar", [
+    ("قَالَ الضَّيْفُ سَلَامٌ عَلَيْكُمْ", "سَلَامٌ", "ثَابِتٌ"),
+    ("قَالَ زَيْدٌ الْجَوُّ جَمِيلٌ", "الْجَوُّ", "جَمِيلٌ"),
+])
+def test_the_sentence_after_said_and_its_doer_is_one_unit_its_maqul_al_qawl(sentence, subject, khabar):
+    """A verb has one doer, so the raf' sentence قال holds after it is its مقول القول, in the place of
+    nasb: its مبتدأ and خبر (written or the understood ثابت) sit in that one unit."""
+    _, leaves = analysed(sentence)
+    (_, unit), = leaves[subject]
+    assert (unit["role"], unit["detail"], unit["label"]) == ("مقول القول", "في محل نصب", "جُمْلَةٌ اِسْمِيَّةٌ")
+    assert any(leaf["role"] == "خبر" and around is unit for leaf, around in leaves[khabar])
+
+
 def test_the_answer_to_a_question_hangs_on_the_questions_verb_and_is_said_to_the_asker():
     _, leaves = analysed(BUKHARI)
     (verb, above), = [pair for pair in leaves["فَرَضَ"] if pair[0].get("hidden")]
@@ -498,6 +511,19 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     ("أَنَا أَكْتُبُ الدَّرْسَ", "أَكْتُبُ", ("role", "فعل")),
     # a hamza-final participle (قارئ) works as its verb like any other: its noun is its object
     ("يَا قَارِئًا الْقُرْآنَ تَدَبَّرْ", "الْقُرْآنَ", ("role", "مفعول به")),
+    # a verb has one doer: the raf' word قال holds after its doer opens the sentence it says
+    ("قَالَ الضَّيْفُ سَلَامٌ عَلَيْكُمْ", "سَلَامٌ", ("role", "مبتدأ")),
+    ("قَالَ زَيْدٌ الْجَوُّ جَمِيلٌ", "الْجَوُّ", ("role", "مبتدأ")),
+    ("قَالَ زَيْدٌ الْجَوُّ جَمِيلٌ", "جَمِيلٌ", ("role", "خبر")),
+    ("قَالَ الرَّجُلُ الْحَقَّ", "الْحَقَّ", ("role", "مفعول به")),
+    # Nahw Basics 4-5 (Fil, Musnad): a noun hung on the verb with no relation is still its argument
+    ("نَصَرَ زَيْدٌ بَكْرًا", "زَيْدٌ", ("role", "فاعل")),
+    ("نَصَرَ زَيْدٌ بَكْرًا", "بَكْرًا", ("role", "مفعول به")),
+    ("نُصِرَ بَكْرٌ", "بَكْرٌ", ("role", "نائب فاعل")),
+    # Jumla Filiyya p4: the مفعول به, no essential, may come before the verb
+    ("عِلْمًا طَلَبَ زَيْدٌ", "عِلْمًا", ("role", "مفعول به")),
+    # a tamyeez of the relation after a verb that takes no object (Maryam 4)
+    ("اِشْتَعَلَ الرَّأْسُ شَيْبًا", "شَيْبًا", ("role", "تمييز")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
     from backend.services import iraab
