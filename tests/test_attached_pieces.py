@@ -499,6 +499,20 @@ def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, ro
     assert [w["role"] for w in iraab.analyze("عِلْمًا طَلَبَ زَيْدٌ")["words"]] == ["مفعول به", "فعل", "فاعل"]
 
 
+@pytest.mark.parametrize("sentence, moved", [("عِلْمًا طَلَبَ زَيْدٌ", True), ("عِلْمًا طَلَبَهُ زَيْدٌ", False)])
+def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved):
+    """طَلَبَهُ has its pronoun back to عِلْمًا, so the parser's صفة reading stands; without one it cannot."""
+    from backend.services import morphology, syntax
+    from backend.services.syntax import catib_onnx
+    from backend.services.syntax.repair import correct
+    words = sentence.split()
+    tokens = catib_onnx.parse(words, morphology.pick(words, syntax.disambiguator()))
+    tokens[0]["head"], tokens[0]["rel"] = 0, "---"
+    tokens[1]["head"], tokens[1]["rel"] = 1, "MOD"
+    correct(words, tokens)
+    assert (tokens[0]["head"], tokens[1]["head"]) == ((2, 0) if moved else (0, 1))
+
+
 @pytest.mark.parametrize("sentence, word, want", [
     # و of company: the و's head is the verb's attached doer, not a particle
     ("سافرت والصديقَ", "والصديقَ", ("role", "مفعول معه")),
