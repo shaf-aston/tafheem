@@ -39,6 +39,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/sy
 - kana_subject: a raf' noun right after كان/ليس, with a later predicate → كان's subject, not its khabar (`backend/services/syntax/repair/subject_clash.py`)
 - zanna_pair: under ظن and its sisters, a nasb noun the parser kept as the subject of the nasb word after it → the verb's first object, that word its second (`backend/services/syntax/repair/subject_clash.py`)
 - doer_after_object: a subject typed in nasb with a raf' word hung on it → the object, that word the doer (`backend/services/syntax/repair/subject_clash.py`)
+- verb_under_fronted_object: a verb with its doer hung as the صفة of a nasb noun before it, with no pronoun back → the verb heads, the noun its fronted object (`backend/services/syntax/repair/subject_clash.py`)
 - object_after_tanween: a nasb word hung as مضاف إليه on a participle with tanween → its object (`backend/services/syntax/repair/subject_clash.py`)
 - called: a verb the parser hung on يا → a sentence of its own, not a second منادى (`backend/services/syntax/repair/called.py`)
 - dua_clause: a praying noun (ويل، سلام) in raf' with a لِ phrase after it → a mubtada of its own with that khabar, not the verb's doer (`backend/services/syntax/repair/dua.py`)

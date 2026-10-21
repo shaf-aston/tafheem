@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw_book import is_mabni, is_one
 from backend.services.syntax.facts import (
-    Sentence, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, typed_case_of, noun_tagged, subject_link, works_as_verb)
+    Sentence, attached_pronoun, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, typed_case_of, noun_tagged, subject_link, works_as_verb)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -46,6 +46,25 @@ def doer_after_object(tokens: list[dict]) -> None:
         if doer:
             token["rel"] = "OBJ"
             doer["head"], doer["rel"] = verb["id"], "SBJ"
+            s = Sentence(tokens)
+
+
+def verb_under_fronted_object(tokens: list[dict]) -> None:
+    """عِلْمًا طَلَبَ زَيْدٌ: the مفعول به may come before its verb (Jumla Filiyya p4). A verb with
+    its own doer that the parser hung as the صفة of a nasb noun before it describes nothing: a
+    describing sentence needs a pronoun back to its noun (عِلْمًا طَلَبَهُ زَيْدٌ), so with none the
+    verb heads the sentence and the noun is its fronted object."""
+    s = Sentence(tokens)
+    for verb in tokens:
+        noun = s.head(verb)
+        if not (noun and is_verb(verb) and verb["rel"] == "MOD" and noun["head"] == 0 and noun["id"] < verb["id"]
+                and noun_tagged(noun) and not is_verb(noun) and typed_case_of(noun) == "a"
+                and not is_mabni(noun.get("pos_camel", ""))):
+            continue
+        kids = s.kids(verb)
+        if any(subject_link(k) and k["id"] > verb["id"] for k in kids) and not any(attached_pronoun(k) for k in kids):
+            verb["head"], verb["rel"] = 0, "---"
+            noun["head"], noun["rel"] = verb["id"], "OBJ"
             s = Sentence(tokens)
 
 
