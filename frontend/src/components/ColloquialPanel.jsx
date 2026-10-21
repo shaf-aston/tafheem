@@ -21,6 +21,7 @@ import UnitView from './colloquial/UnitView'
 import WordBank from './colloquial/WordBank'
 import WordsView from './colloquial/WordsView'
 import ArabicText from './ui/ArabicText'
+import { CountryIcons, CountryMap } from './ui/CountryMap'
 import ErrorAlert from './ui/ErrorAlert'
 import SectionHeader from './ui/SectionHeader'
 import SpeakButton from './ui/SpeakButton'
@@ -36,7 +37,7 @@ const unitsNote = (units) => {
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
 // Without onClick it is a unit or topic this dialect has not written yet: shown, not openable.
 // With `twin` it is two halves joined, each its own way in: a topic's phrases and its words.
-function Lines({ hue, kicker, title, arabic, note }) {
+function Lines({ hue, kicker, title, arabic, note, more }) {
   return (
     <>
       <span className="flex items-baseline justify-between gap-3">
@@ -45,6 +46,7 @@ function Lines({ hue, kicker, title, arabic, note }) {
       </span>
       <span className="block type-ui font-semibold text-[var(--text)] mt-1">{title}</span>
       {note && <span className="block type-small text-[var(--text-faint)] mt-1">{note}</span>}
+      {more && <span className="block mt-2">{more}</span>}
     </>
   )
 }
@@ -58,7 +60,7 @@ const lookOf = (hue, index) => {
   }
 }
 
-function Card({ hue, index, onClick, twin, ...lines }) {
+function Card({ hue, index, onClick, twin, picture, ...lines }) {
   const look = lookOf(hue, index)
   const half = `lift press group text-start w-full px-5 py-4 ${FOCUS}`
   if (twin) {
@@ -77,9 +79,18 @@ function Card({ hue, index, onClick, twin, ...lines }) {
       onClick={onClick}
       disabled={!onClick}
       style={look}
-      className={`rise-in ${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS}`}
+      className={`rise-in ${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS} ${picture ? 'grid grid-cols-[1fr_auto] items-center gap-4' : ''}`}
     >
-      <Lines hue={hue} {...lines} />
+      {picture ? (
+        // The Arabic name sits over the picture, so the English lines get the width.
+        <>
+          <span className="min-w-0"><Lines hue={hue} {...lines} arabic={null} /></span>
+          <span className="flex flex-col items-end gap-1 self-stretch">
+            <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text-dim)]">{lines.arabic}</span>
+            {picture}
+          </span>
+        </>
+      ) : <Lines hue={hue} {...lines} />}
     </button>
   )
 }
@@ -220,7 +231,9 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
         <Grid>
           {dialects.map((d, i) => (
             <Card key={d.key} index={i} hue={colorFor('tab', 'colloq')} kicker={d.where} title={d.label} arabic={d.arabic}
-              note={unitsNote(d.units)} onClick={() => go({ dialect: d.key })} />
+              note={unitsNote(d.units)} onClick={() => go({ dialect: d.key })}
+              more={<CountryIcons codes={d.countries} hue={colorFor('tab', 'colloq')} />}
+              picture={<CountryMap codes={d.countries} cities={d.cities} hue={colorFor('tab', 'colloq')} className="w-32 shrink-0" />} />
           ))}
         </Grid>
       )}

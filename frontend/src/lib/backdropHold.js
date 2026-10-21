@@ -1,5 +1,5 @@
 /**
- * Holding the backdrop still while a tab switches.
+ * Holding the backdrop still while a tab switches or the page scrolls.
  *
  * The backdrop redraws the whole screen every frame, under a blurred glass
  * panel, and a switch is the busiest frame there is: a new panel laid out and

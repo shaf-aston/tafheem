@@ -516,3 +516,13 @@ def test_a_rule_that_is_not_a_whole_number_above_zero_is_refused(tmp_path, value
     path.write_text(json.dumps({"_comment": "x", "least-options": value}), encoding="utf-8")
     with pytest.raises(ValueError, match="least-options"):
         knobs.read(path)
+
+
+def test_every_dialect_card_says_where_it_is_spoken():
+    # The card's map draws these (frontend components/ui/CountryMap.jsx).
+    for dialect in loader.catalogue()["dialects"]:
+        assert dialect["countries"], dialect["key"]
+        assert all(len(code) == 2 and code.isupper() for code in dialect["countries"]), dialect["key"]
+        for city in dialect["cities"]:
+            lon, lat = city["at"]
+            assert city["name"] and -20 < lon < 62 and -15 < lat < 42, (dialect["key"], city)
