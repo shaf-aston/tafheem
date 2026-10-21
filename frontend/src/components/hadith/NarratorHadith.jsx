@@ -98,28 +98,31 @@ function Book({ index, collection, book, name, rows, accent, onHadith }) {
 function Rows({ collection, book, rows, accent, onHadith }) {
   // The book the reader lands in on a tap: fetched now, it is what gives each row its English.
   const { data } = useQuery(hadithBookQuery(collection, book))
-  const english = (h) => {
-    const found = data?.hadiths.find((x) => x.number === h.number && x.part === h.part)
-    return found ? narrated(found.english).body : ''
-  }
+  // One lookup per book, not a search of it per row. A missing part is '' on one side and null on the other.
+  const english = new Map(data?.hadiths.map((x) => [`${x.number}${x.part ?? ''}`, narrated(x.english).body]))
   return (
     <ul className={PAIR_ROWS}>
-      {rows.map((h) => (
-        <li key={`${h.number}${h.part}`}>
-          <button
-            type="button"
-            onClick={() => onHadith(h)}
-            style={{ '--c': accent }}
-            className="press w-full text-start py-3 flex items-baseline gap-3 group hover:bg-[var(--surface)] transition-colors"
-          >
-            <span className="type-small tabular-nums text-[var(--text-faint)] group-hover:text-[var(--c)] min-w-[3ch] transition-colors">{h.number}{h.part}</span>
-            <span className="min-w-0 flex-1 grid gap-x-6 gap-y-1 md:grid-cols-2">
-              {english(h) && <span className="type-small text-[var(--text)] line-clamp-2">{english(h)}</span>}
-              <ArabicText size="sm" className="block line-clamp-2 text-[var(--text-dim)]">{h.opening}</ArabicText>
-            </span>
-          </button>
-        </li>
-      ))}
+      {rows.map((h) => {
+        const ref = `${h.number}${h.part ?? ''}`
+        return (
+          <li key={ref}>
+            <button
+              type="button"
+              onClick={() => onHadith(h)}
+              style={{ '--c': accent }}
+              className="press w-full text-start py-3 flex items-baseline gap-3 group hover:bg-[var(--surface)] transition-colors"
+            >
+              <span className="type-small tabular-nums text-[var(--text-faint)] group-hover:text-[var(--c)] min-w-[3ch] transition-colors">{ref}</span>
+              <span className="min-w-0 flex-1 grid gap-x-6 gap-y-1 md:grid-cols-2">
+                {/* A line held for the English while the book comes, so the row does not jump. */}
+                {!data && <span className="skeleton block h-4 w-3/4" />}
+                {english.get(ref) && <span className="type-small text-[var(--text)] line-clamp-2">{english.get(ref)}</span>}
+                <ArabicText size="sm" className="block line-clamp-2 text-[var(--text-dim)]">{h.opening}</ArabicText>
+              </span>
+            </button>
+          </li>
+        )
+      })}
     </ul>
   )
 }

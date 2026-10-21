@@ -24,7 +24,7 @@ import { AnalyzerSkeleton } from '../ui/Skeleton'
 
 /** A section headed in both languages, English left and Arabic right, as the header card sets its facts. */
 const Section = ({ title, ar, children }) => (
-  <section className="space-y-3">
+  <section className="flex flex-col gap-3">
     <h3 className="m-0 flex items-baseline justify-between gap-4 pb-2 border-b border-[var(--border)]">
       <span className="type-body font-semibold text-[var(--text)]">{title}</span>
       {ar && <ArabicText size="base" className="text-[var(--text)]">{ar}</ArabicText>}
@@ -102,7 +102,7 @@ export default function NarratorPage({ id, accent, onNarrator, onHadith }) {
                   <Disclosure
                     key={`${id}:${i}:${t.book}`}
                     framed
-                    label={<ArabicText size="sm" className="block text-[var(--text)]">{t.book}</ArabicText>}
+                    label={<ArabicText size="sm" className="block text-left text-[var(--text)]">{t.book}</ArabicText>}
                     bodyClassName="px-4 py-3"
                   >
                     <ShowRest lines={14} accent={accent}>

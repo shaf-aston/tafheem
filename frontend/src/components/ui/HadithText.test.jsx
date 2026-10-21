@@ -29,6 +29,18 @@ describe('HadithText', () => {
     expect(none).not.toContain('text-[var(--text-faint)]">حَدَّثَنَا')
   })
 
+  it('with the chain hidden, starts at the teller and keeps the split where it was, marks or no marks', () => {
+    // Direction marks before the cut, in what is dropped and in what stays, so both shifts are counted.
+    const marked = arabic.replace('عَبْدُ', '\u200fعَبْدُ').replace('الْمُغِيرَةِ', '\u200fالْمُغِيرَةِ')
+    const teller = marked.indexOf('عَنِ')
+    const cut = [teller, marked.indexOf('أَنَّ')]
+    const named = [[marked.indexOf('الْمُغِيرَةِ'), marked.indexOf('الْمُغِيرَةِ') + 'الْمُغِيرَةِ'.length, 7]]
+    const html = renderToStaticMarkup(<HadithText label="1" arabic={marked} cut={cut} names={named} hideChain onNarrator={() => {}} />)
+    expect(decode(arabicShown(html))).toBe(marked.slice(teller).replace(MARKS, ''))
+    const quiet = /<span class="text-\[var\(--text-faint\)\]">(.*?)<\/span><span>/s.exec(html)[1].replace(/<[^>]+>/g, '')
+    expect(quiet).toBe(marked.slice(teller, cut[1]).replace(MARKS, ''))
+  })
+
   it('sets the English teller line quiet and the rest as written', () => {
     const html = renderToStaticMarkup(<HadithText label="1" arabic={arabic} english={'Narrated Anas: The Prophet said, "Pray."'} />)
     expect(html).toContain('text-[var(--text-faint)]">Narrated Anas: </span>The Prophet said, &quot;Pray.&quot;')

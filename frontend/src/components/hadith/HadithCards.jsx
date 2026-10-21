@@ -90,7 +90,7 @@ export default function HadithCards({ items, accent, collection, columns = false
               footer={(
                 <>
                   <HadithReference name={of(h.collection).name} number={h.number} part={h.part} book={h.book} inBook={h.in_book} cite={h.cite} />
-                  {kin > 1 && !hideChain && (
+                  {kin > 1 && (
                     <NarrationFamily
                       collection={h.collection} number={h.number} part={h.part} count={kin} accent={accent}
                       onOpen={(p) => onHadith?.({ collection: h.collection, book: p.book, number: h.number, part: p.part })}

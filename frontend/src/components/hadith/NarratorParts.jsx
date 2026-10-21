@@ -340,13 +340,12 @@ export function NarratorLinks({ items, onOpen, row = false }) {
 const FIRST = 5
 
 // A long list cut to its first few, the rest drawn only once asked for (Abu Hurayra
-// has over a thousand students) and rising in, as the hadith cards do.
+// has over a thousand students). One draw, so a two-column grid runs on unbroken.
 export function FoldedList({ items, accent, noun = '', children: draw }) {
   const [open, setOpen] = useState(false)
   return (
     <div>
-      {draw(items.slice(0, FIRST))}
-      {open && <div className="rise-in">{draw(items.slice(FIRST))}</div>}
+      {draw(open ? items : items.slice(0, FIRST))}
       {items.length > FIRST && (
         <button
           type="button"
