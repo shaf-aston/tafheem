@@ -392,3 +392,14 @@ export const getSimilar = (surah, ayah) =>
 
 export const getSimilarSurah = (surah) =>
   api.get(`/quran/similar/surah/${surah}`).then((r) => r.data)
+
+// The same two as queries, one key each wherever they are read or fetched ahead.
+export const similarSurahQuery = (surah) => ({
+  queryKey: ['similar-surah', Number(surah)],
+  queryFn: () => getSimilarSurah(surah),
+})
+
+export const similarAyahQuery = (key) => {
+  const [surah, ayah] = key.split(':')
+  return { queryKey: ['similar', surah, ayah], queryFn: () => getSimilar(surah, ayah), staleTime: Infinity }
+}

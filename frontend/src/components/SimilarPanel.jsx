@@ -14,14 +14,18 @@
  * The pairs and where they differ come from the backend catalogue; the rules are
  * in lib/similar.js; the words are in similar.json.
  */
-import { useState } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 
+import { similarAyahQuery } from '../api'
 import surahs from '../data/surahs.json'
-import { fill, nextUp } from '../lib/similar'
+import { fill, firstPair, nextUp } from '../lib/similar'
+import { SURAH_KEY } from '../lib/similarOpen'
 import { parsePlace } from '../lib/similarPlace'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { PHONE, useMedia } from '../lib/useMedia'
 import { useRemembered } from '../lib/useRemembered'
+import { warm } from '../lib/warm'
 import copy from '../similar.json'
 
 import Compare from './similar/Compare'
@@ -41,7 +45,7 @@ import WheelPicker from './ui/WheelPicker'
 const SURAHS = surahs.map((s) => ({ id: String(s.n), label: `${s.n}. ${s.en}`, hint: s.ar }))
 
 export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
-  const [surah, setSurah] = useRemembered('similar-surah', SURAHS.map((s) => s.id), String(copy['default-surah']))
+  const [surah, setSurah] = useRemembered(SURAH_KEY, SURAHS.map((s) => s.id), String(copy['default-surah']))
   const { query: surahQuery, pairs } = useSurahPairs(Number(surah))
   const [chosenId, choose] = useState(null)
   // The verse a link asked for, until its pairs have come.
@@ -62,14 +66,21 @@ export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
     }
   }
 
-  const chosen = pairs.find((p) => p.id === chosenId)
-    ?? (wanted && pairs.find((p) => p.mine === wanted))
-    ?? pairs[0]
-    ?? null
+  const chosen = pairs.find((p) => p.id === chosenId) ?? firstPair(pairs, wanted)
   const { query: pairQuery, mine, partner } = usePair(chosen)
   const known = pairs.filter((p) => standing(p.id) === 'known').length
   const at = pairs.indexOf(chosen)
   const up = nextUp(pairs, standing)
+
+  // Fetched ahead: the pairs a learner most likely opens next (Start's, and the
+  // one after this, for the stepper and a passed drill), and any the pointer is on.
+  const client = useQueryClient()
+  const ahead = (pair) => pair && client.prefetchQuery(similarAyahQuery(pair.mine))
+  const after = pairs[at + 1]
+  useEffect(() => {
+    if (up) warm(client, similarAyahQuery(up.mine))
+    if (after) warm(client, similarAyahQuery(after.mine))
+  }, [client, up, after])
 
   const open = (id, to = 'compare') => {
     const pair = pairs.find((p) => p.id === id)
@@ -91,7 +102,7 @@ export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
     open(next.id, standing(next.id) === 'due' ? 'drill' : 'compare')
   }
 
-  const list = <PairList pairs={pairs} chosen={chosen?.id} onChoose={(id) => open(id)} standing={standing} className={phone ? '' : 'lg:max-h-[60vh] lg:overflow-y-auto lg:pr-1'} />
+  const list = <PairList pairs={pairs} chosen={chosen?.id} onChoose={(id) => open(id)} onAhead={ahead} standing={standing} className={phone ? '' : 'lg:max-h-[60vh] lg:overflow-y-auto lg:pr-1'} />
 
   return (
     <div className="panel">

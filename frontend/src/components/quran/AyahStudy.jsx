@@ -18,7 +18,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getQuranTarkeeb, getSimilarSurah, quranAyahQuery } from '../../api'
+import { getQuranTarkeeb, quranAyahQuery, similarSurahQuery } from '../../api'
 import { posLabel } from '../../lib/grammarTerms'
 import { posColor } from '../../lib/roleColors'
 import { fill } from '../../lib/similar'
@@ -51,7 +51,7 @@ const wordByKey = (words, key) =>
 
 /** How many look-alike pairs the catalogue records for this ayah, 0 while unknown. The same query Similar keeps. */
 function useLookAlikes(surah, ayah) {
-  const { data } = useQuery({ queryKey: ['similar-surah', surah], queryFn: () => getSimilarSurah(surah) })
+  const { data } = useQuery(similarSurahQuery(surah))
   const key = `${surah}:${ayah}`
   return (data?.groups ?? []).reduce((n, g) => n + (g.pairs ?? []).filter(([a, b]) => a === key || b === key).length, 0)
 }
