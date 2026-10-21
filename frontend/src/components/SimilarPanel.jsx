@@ -146,7 +146,7 @@ export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
           {surahQuery.isSuccess && pairs.length === 0 && <EmptyState>{copy.none}</EmptyState>}
           {chosen && (
             <>
-              <Segmented label={copy.pairs} options={copy.steps} value={step} onChange={(id) => open(chosen.id, id)} accent={accent} />
+              <Segmented label={copy.pairs} options={copy.steps} value={step} onChange={(id) => open(chosen.id, id)} accent={accent} className="w-fit" />
               {pairQuery.isPending && <Skeleton className="h-48 w-full" />}
               {pairQuery.isError && (
                 <ErrorAlert title={copy.error} error={pairQuery.error} fallback={copy.fallback} onRetry={pairQuery.refetch} />
