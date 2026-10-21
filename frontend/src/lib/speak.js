@@ -15,13 +15,20 @@ import config from '../speak.json'
 import { play, stop as stopAudio, watch } from './ayahAudio'
 import { settingOf } from './settings'
 
-let recordings = null
-async function recordingOf(text) {
-  recordings ??= fetch(config.voices.recorded.map)
+// Each recorded voice (a block with `map` and `host`) has its own map, loaded once.
+let recordings = {}
+async function recordingOf(text, id = 'recorded') {
+  const { map: where, host } = config.voices[id]
+  recordings[id] ??= fetch(where)
     .then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.status))))
-    .catch(() => { recordings = null; return {} })  // asked again next press, not given up on
-  const map = await recordings
-  return Object.hasOwn(map, text) ? config.voices.recorded.host + map[text] : null
+    .catch(() => { delete recordings[id]; return {} })  // asked again next press, not given up on
+  const map = await recordings[id]
+  return Object.hasOwn(map, text) ? host + map[text] : null
+}
+const RECORDED = ['person', 'recorded']
+async function anyRecordingOf(text) {
+  for (const id of RECORDED) { const url = await recordingOf(text, id); if (url) return url }
+  return null
 }
 
 /** Starts the file; `done` settles when it stops. Rejects if it never started. */
@@ -77,6 +84,7 @@ export function pickVoice(voices, cfg = config) {
 
 /** Each voice resolves to { done } once sound has started, rejects if it cannot. */
 const VOICES = {
+  person: async (text, accent) => playFile(accent ? null : await recordingOf(text, 'person')),
   recorded: async (text, accent) => playFile(accent ? null : await recordingOf(text)),
   server: (text, accent, speed) => playFile(serverUrl(text, accent, speed)),
   browser: async (text, _accent, speed) => {
@@ -142,7 +150,7 @@ export async function prepare(text, { accent } = {}) {
   const key = `${accent ?? ''}|${speed}|${text}`
   if (prepared.has(key)) return
   prepared.add(key)
-  if (!accent && await recordingOf(text)) return
+  if (!accent && await anyRecordingOf(text)) return
   // Marked as ahead, so a word actually pressed is made before it on the server.
   fetch(serverUrl(text, accent, speed), { headers: { 'X-Speak-Ahead': '1' } }).catch(() => prepared.delete(key))
 }
@@ -154,7 +162,7 @@ export function stop() {
 
 /** Test seam: forget the loaded recording map. */
 export function reset() {
-  recordings = null
+  recordings = {}
   last = { text: null, at: 0 }
   heard = null
 }

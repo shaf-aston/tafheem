@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { DOCK, FIXED, LISTED, RECENT, TABS } from './tabs'
 import { useDock } from './dock'
@@ -6,6 +6,7 @@ import { keepRecent, useStrip } from './recent'
 import { lastPlaceOn, onJump, startJourney, visit } from './journey'
 import { holdBackdrop } from './backdropHold'
 import { useTabShortcuts } from './useTabShortcuts'
+import { scrollToTop } from './scrollToEl'
 
 // Nothing to say about a round: no streak, no answer just given.
 export const QUIET = { streak: 0, answer: null }
@@ -52,11 +53,18 @@ export function useTabNavigation() {
   // The practice tabs (Quiz, Tamreen) say how it is going.
   // They report; `moodFrom` in the header is still the only thing that decides.
   const [round, setRound] = useState(QUIET)
+  // How far down each tab was left. The page is one scroll for every tab, so
+  // without this a tab opened from halfway down another opens halfway down too.
+  // Coming back finds the tab where it was; a tab new to the visit, or handed
+  // a new word, opens at the top.
+  const scrolled = useRef({})
 
   // Every way onto a tab. `arrive`: the word it brings is one for the panel to
   // follow; without, a tab still alive is shown exactly as it was left.
   const show = useCallback((id, value, arrive) => {
     holdBackdrop(SWITCH_MS)
+    if (id !== activeRef.current) scrolled.current[activeRef.current] = globalThis.scrollY ?? 0
+    if (arrive) delete scrolled.current[id]
     activeRef.current = id
     setActiveTab(id)
     // Leaving the quiz ends the round as far as the pen is concerned, a streak
@@ -79,6 +87,16 @@ export function useTabNavigation() {
     if (!visit(id, value)) return
     show(id, value, handed != null)
   }, [show])
+
+  // Before paint, so the old tab's place never flashes on the new one. Skips
+  // the first render: a reload keeps the browser's own restored place.
+  const first = useRef(true)
+  useLayoutEffect(() => {
+    if (first.current) { first.current = false; return }
+    const top = scrolled.current[activeTab]
+    if (top) globalThis.scrollTo?.({ top, behavior: 'instant' })
+    else scrollToTop()
+  }, [activeTab])
 
   const strip = useStrip(LISTED, FIXED, RECENT, activeTab)
   const [dock, placeInDock] = useDock(LISTED, DOCK)

@@ -1,10 +1,15 @@
 {
   "_comment": "Who says a word aloud when a speaker icon is pressed. lib/speak.js tries each voice in `order` and the first that can say the word plays it. Adding a voice is a block here plus one entry in lib/speak.js; reordering is an edit here only.",
-  "order": ["recorded", "server", "browser"],
+  "order": ["person", "recorded", "server", "browser"],
   "_repeat": "A word pressed again within repeatMs is said at repeatSpeed, the way a teacher repeats a word slowly. Speeds are the names the server lists in config's speech_speeds; the Voice speed setting picks the usual one.",
   "repeatMs": 5000,
   "repeatSpeed": "slow",
   "voices": {
+    "person": {
+      "_comment": "One teacher saying each quiz word, recorded in the studio (record.html) and copied out by backend/scripts/export_recordings.py. First, because a person beats any made voice.",
+      "map": "/words/voice_audio.json",
+      "host": "/words/voice/"
+    },
     "recorded": {
       "_comment": "A real reciter saying the word alone, from quran.com's word-by-word audio. Only Qur'an words; the map is built by backend/scripts/build_word_audio.py.",
       "map": "/words/word_audio.json",
