@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { drillOf, fill, flagsOnPage, pairId, placeLine, wordFlags } from './similar'
+import { drillOf, fill, flagsOnPage, kindOf, nextUp, opening, pairId, placeLine, wordFlags } from './similar'
 
 describe('wordFlags', () => {
   it('flags the words inside a span, end exclusive', () => {
@@ -77,5 +77,54 @@ describe('pairId', () => {
 describe('fill', () => {
   it('puts named values into the copy', () => {
     expect(fill('Question {n} of {of}', { n: 2, of: 5 })).toBe('Question 2 of 5')
+  })
+})
+
+describe('drillOf on twins that read the same', () => {
+  const mine = { key: '27:3', text: 'ا ب ج', after: 'د ه و ز ح' }
+  const partner = { key: '31:4', text: 'ا ب ج', after: 'ط ي ك ل م', changes: [] }
+
+  it('asks what comes next, each verse against its twin, with the gap after the last word', () => {
+    const questions = drillOf(mine, partner)
+    expect(questions.map((q) => [q.key, q.right, q.wrong, q.next])).toEqual([
+      ['27:3', 'د ه و ز', 'ط ي ك ل', true],
+      ['31:4', 'ط ي ك ل', 'د ه و ز', true],
+    ])
+    expect(questions[0].span).toEqual([3, 3])
+  })
+
+  it('asks nothing when both run on the same way, or when a wording question exists', () => {
+    expect(drillOf(mine, { ...partner, after: 'د ه و ز ح ط' })).toEqual([])
+    const worded = drillOf({ ...mine, text: 'ا ب ج' }, { ...partner, text: 'ا ق ج', changes: [{ self: [1, 2], other: [1, 2] }] })
+    expect(worded.every((q) => !q.next)).toBe(true)
+  })
+
+  it('says the surah ends when there is nothing after', () => {
+    expect(opening('')).toBe('')
+    expect(drillOf(mine, { ...partner, after: '' })[1].right).toBe('')
+  })
+})
+
+describe('kindOf', () => {
+  it('puts the benchmark types in plain words and leaves an unknown one blank', () => {
+    expect(kindOf('replacement')).toBe('a different word')
+    expect(kindOf('')).toBe('')
+    expect(kindOf('something new')).toBe('')
+  })
+})
+
+describe('nextUp', () => {
+  const pairs = [{ id: 'a' }, { id: 'b' }, { id: 'c' }]
+  const standing = (id) => ({ a: 'known', b: 'new', c: 'due' })[id]
+
+  it('prefers what is due, then what is new', () => {
+    expect(nextUp(pairs, standing)).toEqual({ id: 'c' })
+    expect(nextUp(pairs, (id) => (id === 'c' ? 'known' : standing(id)))).toEqual({ id: 'b' })
+  })
+
+  it('looks on from the given pair and round again, and is null once all are known', () => {
+    expect(nextUp(pairs, (id) => (id === 'c' ? 'new' : standing(id)), 1)).toEqual({ id: 'c' })
+    expect(nextUp(pairs, (id) => (id === 'c' ? 'known' : standing(id)), 1)).toEqual({ id: 'b' })
+    expect(nextUp(pairs, () => 'known')).toBeNull()
   })
 })

@@ -96,6 +96,20 @@ def test_partners_carry_text_diff_and_sources():
     assert "benchmark" in twin["sources"]
 
 
+@fetched
+def test_twins_that_read_the_same_are_told_apart_by_what_follows():
+    twin = next(p for p in mutashabihat.partners("27:3") if p["key"] == "31:4")
+    assert twin["changes"] == []
+    assert twin["after"] == mutashabihat.texts()["31:5"]
+    assert mutashabihat.after("27:3") == mutashabihat.texts()["27:4"]
+    assert twin["after"] != mutashabihat.after("27:3")
+
+
+@fetched
+def test_after_is_empty_at_the_end_of_a_surah():
+    assert mutashabihat.after("114:6") == ""
+
+
 def test_surah_groups_send_only_the_pairs_recorded_in_that_surah():
     from fastapi.testclient import TestClient
 

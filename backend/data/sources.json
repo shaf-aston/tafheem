@@ -398,7 +398,8 @@
     "url": "https://github.com/ambaqasah/mutashabihat",
     "where": "Two classical books on verses that read almost alike, gathered into a public dataset by the paper's authors. Downloaded once and merged by backend/scripts/build_mutashabihat.py into data/quran/mutashabihat.json; the highlighted words are worked out here against this app's own text.",
     "used_in": [
-      "quran"
+      "quran",
+      "similar"
     ]
   },
   "mutashabihat-waqar144": {
@@ -408,7 +409,8 @@
     "url": "",
     "where": "A public JSON file of similar-verse pairs kept by a hafiz. Downloaded once and merged by backend/scripts/build_mutashabihat.py into data/quran/mutashabihat.json; the highlighted words are worked out here against this app's own text.",
     "used_in": [
-      "quran"
+      "quran",
+      "similar"
     ]
   }
 }

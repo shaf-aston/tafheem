@@ -9,8 +9,30 @@
   "_comment-gap": "A difference longer than this many words, on either side, is shown in Compare but never asked: past a short phrase it is a different passage to learn, not a wording to tell apart.",
   "max-gap-words": 6,
 
+  "_comment-next": "Twins that read word for word the same are told apart by what follows: Compare shows the next ayah of each, Drill asks for its first next-words words.",
+  "next-words": 4,
+  "kinds": {
+    "replacement": "a different word",
+    "addition & subtraction": "extra words on one side",
+    "order change": "same words, other order",
+    "order similarity": "same words, other order",
+    "multiple differences": "several differences",
+    "identical": "word for word the same"
+  },
+
   "surah": "Surah",
   "mastered": "Mastered",
+  "start-new": "Start",
+  "start-due": "Review what is due",
+  "all-done": "Every pair here is mastered",
+  "pair-of": "Pair {n} of {of}",
+  "browse": "Browse",
+  "look-alikes": "{n} look-alikes",
+  "look-alike": "1 look-alike",
+  "after": "What comes next",
+  "same": "These two read word for word the same: what follows each is the tell.",
+  "ask-next": "What comes after this in {where}?",
+  "end": "the surah ends",
   "steps": [
     { "id": "compare", "label": "Compare" },
     { "id": "drill", "label": "Drill" }
@@ -28,7 +50,7 @@
   "slipped": "Slips: {n}. Compare them again, then try once more.",
   "again": "Compare again",
   "next-pair": "Next pair",
-  "no-drill": "These two differ in whole passages rather than a word or two, so there is nothing short to drill. Compare them instead.",
+  "no-drill": "These two differ in whole passages rather than a word or two, and run on the same way, so there is nothing short to drill. Compare them instead.",
   "none": "No similar verses recorded for this surah.",
   "error": "Similar verses could not be read",
   "fallback": "They come from the Qur'an tab's own source.",
