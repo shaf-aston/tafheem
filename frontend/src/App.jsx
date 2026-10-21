@@ -153,7 +153,7 @@ function AppContent() {
 
         {/* Phones get the tabs at the bottom instead (BottomNav). */}
         <div className="shell hidden sm:block">
-          <TabStrip tabs={strip} fixed={FIXED.length} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
+          <TabStrip tabs={strip} fixed={FIXED.length} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} hint={activeTab === HOME} />
         </div>
       </header>
 
@@ -258,7 +258,7 @@ function AppContent() {
           ))}
         </section>
       </SectionsMenu>
-      <BottomNav tabs={LISTED} dock={dock} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} />
+      <BottomNav tabs={LISTED} dock={dock} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} hint={activeTab === HOME} />
       {/* Drawn last so it sits over the page, and once for the whole app. */}
       <CursorLight />
     </div>
