@@ -480,6 +480,25 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     assert [w["role"] for w in iraab.analyze("مُنِحَ الطَّالِبُ هَدِيَّةً")["words"]] == ["فعل مجهول", "نائب فاعل", "مفعول به"]
 
 
+@pytest.mark.parametrize("rooted", [False, True])
+def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, rooted):
+    """عِلْمًا طَلَبَ زَيْدٌ: the verb has no pronoun back to عِلْمًا, so it is no صفة of it; the noun is
+    the fronted مفعول به however the parser rooted it (a CPU's rounding rooted the noun on CI)."""
+    from backend.services import iraab
+    from backend.services.syntax import catib_onnx
+    real = catib_onnx.parse
+
+    def parse(typed, picks):
+        tokens = real(typed, picks)
+        if rooted:
+            tokens[0]["head"], tokens[0]["rel"] = 0, "---"
+            tokens[1]["head"], tokens[1]["rel"] = 1, "MOD"
+        return tokens
+
+    monkeypatch.setattr(catib_onnx, "parse", parse)
+    assert [w["role"] for w in iraab.analyze("عِلْمًا طَلَبَ زَيْدٌ")["words"]] == ["مفعول به", "فعل", "فاعل"]
+
+
 @pytest.mark.parametrize("sentence, word, want", [
     # و of company: the و's head is the verb's attached doer, not a particle
     ("سافرت والصديقَ", "والصديقَ", ("role", "مفعول معه")),
