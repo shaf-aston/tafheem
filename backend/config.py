@@ -194,7 +194,7 @@ class Listening(BaseSettings):
     # Empty means no trial offered. Loaded like recitation_model; a learner's "Trial" listening hears
     # and checks with it alone. Written and pushed by scripts/finetune_ear/cloud.py --ship; each of
     # its commits carries the scores that won (git log backend/config.py).
-    recitation_trial_model: str = "shafTheG/quran-ear@c0df8677a0f0175053ffb95fe69adc590c5ceb5f"
+    recitation_trial_model: str = "shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a"
     # Search boxes are dictation, and the Qur'an model knows no other words:
     # "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ, "mercy" as مَسْكُوبُ, where base heard both.
     # A recording is a recitation only when its language is asked for by name.
