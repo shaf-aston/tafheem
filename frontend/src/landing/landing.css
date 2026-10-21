@@ -394,8 +394,9 @@ body { margin: 0; overflow-x: hidden; }
 }
 
 /* Sections: the app's own tiles; the reset above would strip their padding. */
-.landing-page .landing-sections h2 { margin-block: .4em 1em; }
+.landing-page .landing-sections h2 { margin-block: 0 .75em; }
 .landing-page .landing-sections-groups section { padding: 0; }
-.landing-page .landing-sections-groups { display: grid; gap: var(--space-card, 1.25rem); }
+.landing-page .landing-sections-groups { display: flex; flex-wrap: wrap; gap: calc(var(--spacing) * 4) calc(var(--spacing) * 6); }
 .landing-page .landing-sections .tile { padding: var(--space-tile); text-decoration: none; color: var(--text); }
+.landing-page .landing-sections .tile-chip { padding-block: calc(var(--space-tile) / 2); }
 .landing-page .landing-sections .eyebrow { margin-bottom: .5rem; }
