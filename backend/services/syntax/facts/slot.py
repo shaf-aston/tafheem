@@ -130,6 +130,8 @@ def verb_place(token: dict, s: Sentence) -> str:
     absolute object (same root), a hal or a tamyeez."""
     if place_time(token, s):
         return "place_time"
+    if s.head(token) and listed(token, "verbless_masdars") and token.get("stt") == "i" and typed_or_parsed_case(token) in (None, "a"):
+        return "absolute"  # مجتهداتٌ جِدًّا: a heard masdar whose verb is never said (جَدَّ جِدًّا); a lone one (شكرًا) gets its drawn verb (understood.verb)
     if is_object_pronoun(token):
         return "object"  # إيّاك نعبد، ما عبدنا إلا إيّاه: the detached pronoun of nasb is only an object
     if with_waw(token, s):

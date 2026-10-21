@@ -483,6 +483,10 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     ("الْعِلْمُ لَا حَدَّ لَهُ", "حَدَّ", ("role", "اسم لا")),
     # a مضاف إليه is مجرور, so a damma-typed الْجَوُّ cannot make بَرَدَ the noun "hail of"
     ("إِذَا جَاءَ الشِّتَاءُ بَرَدَ الْجَوُّ", "الْجَوُّ", ("role", "فاعل")),
+    # كاد وأخواتها work as كان does (Alfiyya: ككان كاد وعسى), so the verb is فعل ناقص
+    ("كَادَ الْقِطَارُ يَتَحَرَّكُ", "كَادَ", ("name", "فعل ناقص")),
+    # جِدًّا is heard with its verb never said (جَدَّ جِدًّا): مفعول مطلق, not an object of مجتهدات
+    ("الطَّالِبَاتُ مُجْتَهِدَاتٌ جِدًّا", "جِدًّا", ("role", "مفعول مطلق")),
     # a hamza-final participle (قارئ) works as its verb like any other: its noun is its object
     ("يَا قَارِئًا الْقُرْآنَ تَدَبَّرْ", "الْقُرْآنَ", ("role", "مفعول به")),
 ])
