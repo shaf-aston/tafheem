@@ -372,6 +372,11 @@ dialog::backdrop {
   position: static;
   opacity: 1;
   transform: none;
+  /* transform snaps, never eases: eased from the floating gloss's offset, it left
+     every English stuck half its width to the left once the meanings came on. The
+     lean on hover is `translate`, a property of its own, so it can ease both ways. */
+  transition-property: opacity, translate;
+  transition-duration: calc(var(--motion-base-ms) * 1ms);
   background: none;
   box-shadow: none;
   color: var(--text-dim);
@@ -379,6 +384,11 @@ dialog::backdrop {
   max-width: 7rem;
   text-align: center;
   padding: 0.2rem 0 0.6rem;
+}
+/* Pointed at, the English leans a little toward where the reading goes. */
+.surah-row:not(:active) .gloss-all .gloss-word[data-gloss]:is(:hover, :focus-visible)::after {
+  transform: none;
+  translate: calc(var(--motion-nudge-px) * -1px) 0;
 }
 /* An underline would run through the English too, so a learnt word's English
    carries the mark instead. */
