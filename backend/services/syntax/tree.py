@@ -208,7 +208,13 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             continue
         # the books write مبتدأ، خبر (ثابت)، ق (ثابت) side by side, so the khabar sits beside
         # the unit; a subject the unit headed (the لِ of الحمدُ لله) comes out beside them too
-        if subject["head"] == held["id"]:
+        # قال الضيفُ سلامٌ عليكم: a subject a verb hangs as its object heads the sentence it says,
+        # so the unit and the khabar stay inside it, not beside it among the verb's own words
+        inside = subject["rel"] == "OBJ" and subject["head"] in by_id and is_verb(by_id[subject["head"]])
+        if inside:
+            held = {**held, "head": subject["id"]}
+            drawn[[t["id"] for t in drawn].index(held["id"])], by_id[held["id"]] = held, held
+        elif subject["head"] == held["id"]:
             new = {**subject, "head": held["head"]}
             drawn[drawn.index(subject)], by_id[subject["id"]] = new, new
         elif held["head"] == subject["id"]:  # إنما الأعمالُ بالنيات: the unit hung on its subject, not inside it
@@ -219,7 +225,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         # voweled for its place: the case its subject's khabar stands in (ثَابِتٌ، ثَابِتًا)
         case = (clause_of(role_of[subject["id"]]) or {}).get("case", "u")
         said_word = understand(kept["voweled"] + kept["tanween"][case], khabar, place,
-                               head=held["head"], rel="PRD", pos="NOM", pos_camel="")
+                               head=subject["id"] if inside else held["head"], rel="PRD", pos="NOM", pos_camel="")
         understood_pair[said_word["id"]] = pair_of.get(subject["id"], {})
         at = [t["id"] for t in drawn]
         if at.index(said_word["id"]) < at.index(subject["id"]) and role_of[subject["id"]] in kept["fronted"]:
