@@ -129,8 +129,7 @@
     "popover": 30,
     "header": 40,
     "overlay": 50,
-    "tip": 60,
-    "grain": 70
+    "tip": 60
   },
   "backdrop": {
     "_comment": "The faint seal behind a tab (quran/QuranSeal). ink is its colour, strength how much of it shows (wide: once a search fills the page); a light theme changes these two only.",
@@ -166,10 +165,7 @@
   "glass": {
     "_comment": "The frosted pane the page content sits on, so the lights behind it read as a soft glow rather than as noise under the words. blur-px is how far the lights are smeared, alpha how much of the surface colour covers them (100% would hide them).",
     "blur-px": 22,
-    "alpha": "72%",
-    "_grain_comment": "A fixed film of fine noise over the ground (components/shell/Backdrop.jsx draws one 128px tile, once, never animated), so a large flat dark or pale area reads as a surface rather than a gradient on a screen, and banding hides. Its alpha, 0 to 1; tests hold it at or under 0.05, past which it dirties small text. Parchment sets its own, lower.",
-    "grain": 0.035,
-    "grain-tile-px": 128
+    "alpha": "72%"
   },
   "tabstrip": {
     "_comment": "How much of its own colour an unselected tab keeps. 0% is plain grey, 100% is as loud as the selected one.",
@@ -564,10 +560,6 @@
         },
         "marks": {
           "alpha": 0.07
-        },
-        "glass": {
-          "_grain_comment": "Dark specks on pale paper show at far less alpha than light ones on black, so Parchment's film is lighter: at Ink's 0.035 it greyed the cream.",
-          "grain": 0.02
         },
         "shadow": {
           "pop": "0 6px 18px rgba(30, 41, 80, 0.18)",

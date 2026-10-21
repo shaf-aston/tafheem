@@ -253,7 +253,7 @@ Level-4 gate: every slice below names its component; nothing invents a name.
 ## Stage 4 · Slices (walking skeleton first; each runnable + testable)
 A1 audit script lands (worker) · A2 palette/keyframe literal tests + 16 duration fixes · A3 tap-min,
 Segmented wrap, dismiss, badge, placeholder, aria-hidden · A4 comfort floor + Midnight text-dim +
-wheel-pill label · A5 motion vocabulary: `.reveal`, elevation, grain, tilt on Home tiles + lists.
+wheel-pill label · A5 motion vocabulary: `.reveal`, elevation, tilt on Home tiles + lists. (Grain film removed next morning: read as a grey overlay and cost scroll paint.)
 Pre-mortem A: "fails because raising text-dim breaks the max-contrast cap" → test both bounds.
 B1 glossary data + faults + backend test · B2 `termsChart` + tests · B3 TermsView/TermCard + menu +
 render test. Pre-mortem B: "tree too wide on 640–900px" → zoom at group level by default.
