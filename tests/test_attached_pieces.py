@@ -478,6 +478,9 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     ("هذا قاضٍ عادل", "قاضٍ", ("sign", "ضمة مقدرة على الياء المحذوفة")),
     # عسى names its own two, as كأنّ and أصبح do
     ("عَسَى اللَّهُ أَنْ يَرْحَمَنَا", "اللَّهُ", ("name", "اسم عسى")),
+    # after لا النافية للجنس the missing tanween is لا's building, not a مضاف before a preposition
+    ("هَذَا الْأَمْرُ لَا شَكَّ فِيهِ", "شَكَّ", ("role", "اسم لا")),
+    ("الْعِلْمُ لَا حَدَّ لَهُ", "حَدَّ", ("role", "اسم لا")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
     from backend.services import iraab

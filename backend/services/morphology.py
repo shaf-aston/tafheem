@@ -613,8 +613,11 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                 out[i] = verb
     # مَنْ جَدَّ وَجَدَ: a مضاف needs its مضاف إليه straight after it, so a bare construct noun
     # before a و, a preposition or nothing is not the word typed (here the verb جَدَّ)
+    # لَا رَيْبَ فِيهِ: after لا النافية للجنس the noun's missing tanween is لا's building on fatha
+    # (closed_words la_jins, Tasheel 3.7.3 p69), not a مضاف waiting for its مضاف إليه
     for i, reading in enumerate(out):
-        if _bare_construct(reading) and not _takes_mudaf_ilayh(out[i + 1] if i + 1 < len(out) else {}):
+        after_la = i > 0 and is_one(bare_letters(out[i - 1].get("diac", "")), "la_jins")
+        if _bare_construct(reading) and not after_la and not _takes_mudaf_ilayh(out[i + 1] if i + 1 < len(out) else {}):
             word, ranked = steps[i]
             # the word's whole list too (أَكْبَرُ's own indefinite reading may be ranked out), never a guessed name
             out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
