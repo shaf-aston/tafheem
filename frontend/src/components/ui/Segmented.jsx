@@ -26,7 +26,9 @@ export default function Segmented({
   // enough choices to spill onto a second line, a pill's ends curve around two
   // rows at once and the control reads as a blob, so those rows square off.
   // On a phone every row may wrap: five choices at 390px clipped instead; its choices then
-  // share each row equally, so a choice pushed to a second row does not sit alone at the left.
+  // share each row's spare room, so a choice pushed to a second row does not sit alone at the left.
+  // Each starts at its own word's width (grow, not flex-1): from zero, with a touch screen's
+  // 44px floor (.tap) standing in for "no narrower than my word", every row "fit" and the words overlapped.
   const phone = useMedia(PHONE)
   const shape = wrap || phone ? 'flex-wrap rounded-2xl' : 'rounded-full'
   const row = (
@@ -47,7 +49,7 @@ export default function Segmented({
             style={on
               ? { color: accent, background: `color-mix(in srgb, ${accent} 16%, transparent)` }
               : undefined}
-            className={`press tap inline-flex items-center ${phone && !compact ? 'flex-1 justify-center' : ''} ${fill ? 'flex-1 justify-center py-2.5' : compact ? 'px-3 py-1.5' : 'px-3.5 py-1.5'} rounded-full ${compact ? 'text-xs' : 'text-sm'} font-medium transition-colors ${
+            className={`press tap inline-flex items-center ${phone && !compact ? 'grow justify-center' : ''} ${fill ? 'flex-1 justify-center py-2.5' : compact ? 'px-3 py-1.5' : 'px-3.5 py-1.5'} rounded-full ${compact ? 'text-xs' : 'text-sm'} font-medium transition-colors ${
               on ? '' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
             }`}
           >
