@@ -546,15 +546,17 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
 
 
 @pytest.mark.parametrize("sentence, expected", [
-    ("مَا اسْمُكَ", ["خبر", "مبتدأ"]),  # the question word is the khabar brought to the front (Tasheel 2.4.7 p47)
-    ("مَا هَذَا", ["خبر", "مبتدأ"]),
-    ("مَا الْإِيمَانُ", ["خبر", "مبتدأ"]),
-    ("مَنْ أَنْتَ", ["خبر", "مبتدأ"]),
-    ("مَنْ هَذَا؟", ["خبر", "مبتدأ"]),
-    ("مَنْ أَبُوكَ", ["خبر", "مبتدأ"]),
-    ("قَالَ مَا اسْمُكَ", ["فعل", "خبر", "مبتدأ"]),
-    ("يَا أَخِي مَا اسْمُكَ", ["حرف", "منادى", "خبر", "مبتدأ"]),
-    ("وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ", ["مبتدأ", "فعل", "خبر", "مبتدأ", "مضاف إليه"]),  # a verb of informing, its second object a question
+    # ما/مَن with a noun after them: the mubtada, that noun the khabar (Sibawayh, as the notes teach,
+    # Musnad p12); Tasheel 2.4.7 p47 also allows the khabar brought to the front
+    ("مَا اسْمُكَ", ["مبتدأ", "خبر"]),
+    ("مَا هَذَا", ["مبتدأ", "خبر"]),
+    ("مَا الْإِيمَانُ", ["مبتدأ", "خبر"]),
+    ("مَنْ أَنْتَ", ["مبتدأ", "خبر"]),
+    ("مَنْ هَذَا؟", ["مبتدأ", "خبر"]),
+    ("مَنْ أَبُوكَ", ["مبتدأ", "خبر"]),
+    ("قَالَ مَا اسْمُكَ", ["فعل", "مبتدأ", "خبر"]),
+    ("يَا أَخِي مَا اسْمُكَ", ["حرف", "منادى", "مبتدأ", "خبر"]),
+    ("وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ", ["مبتدأ", "فعل", "مبتدأ", "خبر", "مضاف إليه"]),  # a verb of informing, its second object a question
     ("مَا أَجْمَلَ السَّمَاءَ", ["مبتدأ", "فعل", "مفعول به"]),
     # not a question: ما الحجازية, a negation, a relative before a ظرف or a verb, من before a preposition
     ("مَا هَذَا بَشَرًا", ["حرف", "اسم كان", "خبر كان"]),
@@ -566,7 +568,7 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("مَنْ فِي الْبَيْتِ", ["مبتدأ", "حرف جر", "مجرور"]),
     ("إِنَّ مَا عِنْدَ اللَّهِ هُوَ خَيْرٌ لَكُمْ", ["حرف", "اسم إن", "مفعول فيه", "مضاف إليه", "مبتدأ", "خبر إن", "حرف جر"]),
 ])
-def test_a_question_word_before_its_mubtada_is_the_khabar(sentence: str, expected: list[str]):
+def test_a_question_word_heads_the_noun_after_it(sentence: str, expected: list[str]):
     assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
 
 

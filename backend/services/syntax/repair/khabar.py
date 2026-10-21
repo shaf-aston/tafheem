@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.syntax.facts import Sentence, has_added, is_elative, is_participle, is_verb, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw_book import is_one
+from backend.services.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_elative, is_participle, is_verb, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -16,6 +17,31 @@ def second_khabar(tokens: list[dict]) -> None:
                 and is_participle(head) and is_participle(token) and token.get("stt") == head.get("stt") == "i"
                 and typed_or_parsed_case(token) == typed_or_parsed_case(head)):
             token["head"], token["rel"] = head["head"], "PRD"
+
+
+def hasr_khabar(tokens: list[dict]) -> None:
+    """مَا جَزَاؤُهُ إِلَّا سَجْنُهُ، مَا مُحَمَّدٌ إِلَّا رَسُولٌ: after a negation, إلا excepts nothing; the
+    word after it takes the place the sentence leaves for it (closed_words hasr, Tasheel 3.8.7 p85).
+    A verbless clause with its mubtada said leaves the khabar, so a noun the parser hung on an إلا
+    that hangs on that mubtada is its khabar, and the negation and إلا hang on it."""
+    s = Sentence(tokens)
+    for told in tokens:
+        illa = s.head(told)
+        if not (illa and illa["pos"] == "PRT" and is_one(illa["lemma"], "hasr") and illa["id"] < told["id"] and noun_tagged(told)):
+            continue
+        before = tokens[:tokens.index(illa)]
+        # the parser may tag ما a noun, and hang إلا on the mubtada or on the negation
+        negation = next((t for t in reversed(before) if is_one(t["lemma"], "negation") and not read_as(t, "la_jins")), None)
+        if not negation or any(is_verb(t) for t in tokens[tokens.index(negation):tokens.index(told)]):
+            continue  # ما جاء إلا زيدٌ: a verb in the clause takes the word after إلا
+        held = s.head(illa)
+        subject = held if held is not negation else next((k for k in s.kids(negation) if k in before and subject_link(k)), None)
+        if subject and subject is not negation and noun_tagged(subject):
+            # the khabar takes the clause's place (قالوا إن هذا إلا سحر: the said clause)
+            told["head"], told["rel"] = negation["head"], negation["rel"]
+            for word in (subject, illa, negation):
+                word["head"], word["rel"] = told["id"], "SBJ" if word is subject else "MOD"
+            return
 
 
 def before_la(tokens: list[dict]) -> None:
