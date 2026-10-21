@@ -19,8 +19,6 @@
   "strand": "ح",
   "_prophet_comment": "prophet opens a link that reaches the Prophet himself (عن النبي، سمع رسول الله). With the chain hidden, the narrator kept is the one before such a link, the one who tells it; the same for a link to a kin word (عن أبيه), which names no one without the link before it. hands is the saying word that can name the next narrator before his link (أن طاوسا أخبره عن ابن عباس), so the chain walks on through it.",
   "prophet": ["النبي", "رسول"],
-  "_voice_comment": "lib/hadithWords spoken: where the Arabic carries no quote marks, the saying starts after the last of these verbs past the body start, and past who says it (prophet, free) and to whom (to).",
-  "voice": { "to_him": ["إلى", "مع", "على", "من", "في", "عند", "حول"], "kunya": ["أبو", "أبا", "أبي", "أم", "ابن", "بن", "بنت"], "he": ["قال", "يقول"], "call": ["يا"], "past": ["قال", "قالت", "قالا", "قالوا"], "verbs": ["قال", "قالت", "قالا", "قالوا", "يقول", "تقول"], "to": ["لي", "له", "لها", "لهم", "لنا", "لهما", "لكم"] },
   "hands": ["أن"],
   "together": ["قالا", "قالوا", "كلاهما", "كلهم", "جميعا"],
   "terms": {

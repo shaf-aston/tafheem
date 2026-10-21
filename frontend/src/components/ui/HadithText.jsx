@@ -1,60 +1,49 @@
 /**
- * One hadith's own words: Arabic and English, said drawn apart from told.
+ * One hadith's own words: Arabic and English, the chain of narrators drawn back.
  *
  * Promoted out of TimelineHadith, which drew this the same way for the
  * hadiths a timeline event cites; the Hadith tab's browse and search both
  * need the identical rendering for a hadith found a different way. One
  * implementation, not two that would drift the moment either was touched.
  *
- * The chain of narrators, the scene, who did what next: all of that is the
- * telling, drawn back so the eye lands on the saying. The books mark the
- * saying themselves with quote marks; where they did not, the saying is read
- * from its verbs, and a hadith with no saying (what was done) is all body.
- * lib/hadithWords spoken owns that rule. The book's own marks are kept as well as the colour,
- * because a reader who cannot tell two colours apart still has to be able to
- * tell speech from telling.
+ * One rule, as sunnah.com draws it: the chain is quiet, what it carries is in
+ * full ink. The split is the server's own (`cut`), and the English's
+ * "Narrated X:" line is quiet the same way. Nothing guesses who is speaking
+ * (lib/hadithWords says why), and the book's own quote marks stand as printed.
  */
 import ArabicText from './ArabicText'
 import ShowRest from './ShowRest'
-import { narrated, spoken } from '../../lib/hadithWords'
+import { chainAndBody, narrated } from '../../lib/hadithWords'
 import { runs, told, withoutMarks } from '../../lib/rijal'
 
 import NarratorLink from './NarratorLink'
 import { themeVariable } from '../../theme'
 
-const TONE = {
-  said: { color: 'var(--hadith-said)' },
-  told: { color: 'var(--hadith-told)' },
-  plain: { color: 'var(--text-dim)' },
-}
+// The chain and the English's teller line: read past rather than read, still 4.5:1 on the card.
+const QUIET = 'text-[var(--text-faint)]'
 // How much of one hadith shows before the rest waits behind a press.
 const LINES = Number(themeVariable('--hadith-lines')) || 7
 // Cards past this many appear together, so a long book never waits on its own stagger.
 const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
+// Where the English sits. A phone: on top, ruled off from the Arabic. A wide screen: the left
+// column when split, else under the Arabic as it always was (two columns, the timelines).
+const SPLIT = 'order-first mb-3 pb-3 border-b md:m-0 md:p-0 md:border-b-0'
+const STACKED = 'max-md:order-first max-md:mb-3 max-md:pb-3 max-md:border-b md:mt-3 md:pt-3 md:border-t'
 
 /**
- * One run of words, each span wearing the colour of whoever is talking.
- * The quote marks are the book's own, where the book put them; `arabic` only
- * draws a straight " as the « or » it stands for.
+ * The Arabic, its chain quiet up to `from` (where the body starts; null, all body).
  * `names` are [start, end, id] slices of `text`; each is a ui/NarratorLink.
- * `from` (where the body starts) goes to lib/hadithWords spoken, which owns the colour rule.
  */
-function Spans({ text, arabic = false, names = [], onNarrator, from = null }) {
-  // saying() drops the direction marks, so the slices move with them.
+function Spans({ text, names = [], onNarrator, from = null }) {
+  // chainAndBody drops the direction marks, so the slices move with them.
   const at = withoutMarks(text, names)
-  const mark = (ch, opens) => (arabic && ch === '"' ? (opens ? '«' : '»') : ch)
-  let cursor = 0
-  return spoken(text, { from }).map((span, i) => {
-    const start = cursor + span.open.length
-    cursor = start + span.text.length + span.close.length
-    const parts = runs(span.text, at, start).map((run, j) => (
+  let start = 0
+  return chainAndBody(text, from).map((part) => {
+    const parts = runs(part.text, at, start).map((run, j) => (
       <NarratorLink key={j} id={run.id} onOpen={onNarrator}>{run.text}</NarratorLink>
     ))
-    return (
-      <span key={`${span.kind}-${i}`} style={TONE[span.kind]}>
-        {mark(span.open, true)}{parts}{mark(span.close, false)}
-      </span>
-    )
+    start += part.text.length
+    return <span key={part.kind} className={part.kind === 'chain' ? QUIET : undefined}>{parts}</span>
   })
 }
 
@@ -90,17 +79,17 @@ export default function HadithText({ label, arabic, cut = null, english = '', ac
       </div>
 
       <ShowRest lines={LINES} accent={accent} more="Show the rest" less="Show less">
-        {/* English first, as sunnah.com sets it on a phone too: stacked Arabic-first, a phone's
-            cut showed only the chain of narrators, and the meaning waited behind "Show the rest". */}
+        {/* A phone puts the English first, as sunnah.com does: Arabic first, its cut showed only the
+            chain of narrators and the meaning waited behind "Show the rest". */}
         <div className={`flex flex-col ${split && english ? 'md:grid md:grid-cols-2 md:gap-x-8 md:items-start' : ''}`}>
         <ArabicText as="p" size="base" className="block leading-loose m-0">
-          <Spans text={shown.text} arabic names={shown.names} onNarrator={onNarrator} from={from} />
+          <Spans text={shown.text} names={shown.names} onNarrator={onNarrator} from={from} />
         </ArabicText>
 
         {english && (
-          <p className={`order-first type-ui leading-relaxed mb-3 pb-3 border-b border-[var(--border)] ${split ? 'md:m-0 md:p-0 md:border-b-0' : ''}`}>
-            {narrator && <span style={TONE.told}>{narrator} </span>}
-            <Spans text={body} from={0} />
+          <p className={`type-ui leading-relaxed border-[var(--border)] ${split ? SPLIT : STACKED}`}>
+            {narrator && <span className={QUIET}>{narrator} </span>}
+            {body}
           </p>
         )}
         </div>

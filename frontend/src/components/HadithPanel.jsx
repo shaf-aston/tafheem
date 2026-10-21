@@ -8,11 +8,13 @@
  */
 import { useEffect, useState } from 'react'
 import { useArrivalWhenReady } from '../lib/useArrival'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith } from '../api'
 import { bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
+import { nearest, tabNow, trailFor, useJourney } from '../lib/journey'
+import { TRAIL_STEPS } from '../lib/session'
 
 import Chip from './ui/Chip'
 import ChipRow from './ui/ChipRow'
@@ -44,11 +46,15 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   const [starred, setStarred] = useState(false)
   const [listing, setListing] = useState(null)   // the list showing, narrators or scholars, if any
   const { favorites } = useHadithFavorites()
-  // The trail names each step: "Bukhari 5a", a narrator by his name once his page has loaded. The
-  // open narrator is watched (the same request his page makes), so his name lands once it arrives.
+  // The trail names each step: "Bukhari 5a", a narrator by his name. Every narrator on the trail is
+  // watched (the same request his page makes), so a name lands once it arrives, a reloaded trail too.
   const client = useQueryClient()
-  useQuery({ ...narratorQuery(narrator), enabled: narrator != null })
-  const named = (q) => nameOfPlace(q, collections, (id) => client.getQueryData(narratorQuery(id).queryKey)?.name_en)
+  const { steps, at } = useJourney()
+  const onTrail = new Set([narrator, ...nearest(trailFor(steps, tabNow(steps, at), at), at, TRAIL_STEPS).shown.map((step) => narratorOf(step.value))])
+  onTrail.delete(null)
+  const pages = useQueries({ queries: [...onTrail].map((id) => narratorQuery(id)) })
+  const names = Object.fromEntries([...onTrail].map((id, n) => [id, pages[n].data?.name_en]))
+  const named = (q) => nameOfPlace(q, collections, (id) => names[id])
   const source = useSources().sources.find((s) => s.key === 'hadith')
 
   // A link naming a book starts that book loading beside the collections, not after them.

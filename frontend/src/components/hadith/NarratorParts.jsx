@@ -1,8 +1,10 @@
 /**
  * The pieces a narrator is drawn from, shared by his pop-up (NarratorSheet) and
  * his page (NarratorPage): the name, the grade pill, the facts under them, and
- * a tappable list of other narrators.
+ * a tappable list of other narrators, and the fold a long list of them sits in.
  */
+import { useState } from 'react'
+
 import HADITH from '../../hadith.json'
 import { toneOf } from '../../lib/rijal'
 
@@ -330,5 +332,32 @@ export function NarratorLinks({ items, onOpen, row = false }) {
         </li>
       ))}
     </ul>
+  )
+}
+
+// Rows a list shows before "Show all N", as sunnah.com's narrator pages do: enough to
+// say who, few enough that the sections under it are still in reach.
+const FIRST = 5
+
+// A long list cut to its first few, the rest drawn only once asked for (Abu Hurayra
+// has over a thousand students) and rising in, as the hadith cards do.
+export function FoldedList({ items, accent, noun = '', children: draw }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div>
+      {draw(items.slice(0, FIRST))}
+      {open && <div className="rise-in">{draw(items.slice(FIRST))}</div>}
+      {items.length > FIRST && (
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          style={{ '--c': accent }}
+          className="tap mt-1 inline-flex items-center type-small text-[var(--text-faint)] hover:text-[var(--c)] transition-colors"
+        >
+          {open ? 'Show less' : `Show all ${items.length}${noun && ` ${noun}`}`}
+        </button>
+      )}
+    </div>
   )
 }

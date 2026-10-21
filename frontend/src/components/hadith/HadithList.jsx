@@ -72,14 +72,14 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
             &larr; Books
           </button>
           {data && (
-            <h3 className="flex-1 min-w-[min(100%,14rem)] flex items-center gap-2 type-ui font-medium text-[var(--text)]">
-              <TopicIcon topic={topicOf(data.book.name)} className="w-4 h-4" />
+            <h3 className="flex-1 min-w-[min(100%,14rem)] flex items-start gap-2 type-ui font-medium text-[var(--text)]">
+              <TopicIcon topic={topicOf(data.book.name)} className="w-4 h-4 shrink-0 mt-[0.2em]" />
               {/* The name and count as one run of text, the Arabic name under them: as four boxes, a phone
-                  split each over two lines. */}
+                  split each over two lines. The icon keeps to the first line, the Arabic to the name's start. */}
               <span className="min-w-0">
                 {data.book.number}. {data.book.name}
                 <span className="ms-2 type-small font-normal text-[var(--text-faint)] whitespace-nowrap">{data.hadiths.length} hadiths</span>
-                {data.book.arabic && <ArabicText size="sm" className="block font-normal text-[var(--text-faint)]">{data.book.arabic}</ArabicText>}
+                {data.book.arabic && <ArabicText size="sm" className="block text-left font-normal text-[var(--text-faint)]">{data.book.arabic}</ArabicText>}
               </span>
             </h3>
           )}

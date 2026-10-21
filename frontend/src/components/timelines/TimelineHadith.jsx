@@ -4,7 +4,7 @@
  * A number and a link were all this tab gave: a reader who wanted to know what
  * the Prophet actually said had to leave the app for sunnah.com and find his
  * way back. The page has the room, so the words sit here, the book's Arabic and
- * the English under it, drawn by ui/HadithText: the same rendering the Hadith
+ * the English under it (on top on a phone), drawn by ui/HadithText: the same rendering the Hadith
  * tab's own browse and search use, since it is the same question, "what does
  * this hadith say", asked from a different door.
  *
