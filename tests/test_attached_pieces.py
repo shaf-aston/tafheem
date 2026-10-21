@@ -478,8 +478,44 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     ("هذا قاضٍ عادل", "قاضٍ", ("sign", "ضمة مقدرة على الياء المحذوفة")),
     # عسى names its own two, as كأنّ and أصبح do
     ("عَسَى اللَّهُ أَنْ يَرْحَمَنَا", "اللَّهُ", ("name", "اسم عسى")),
+    # after لا النافية للجنس the missing tanween is لا's building, not a مضاف before a preposition
+    ("هَذَا الْأَمْرُ لَا شَكَّ فِيهِ", "شَكَّ", ("role", "اسم لا")),
+    ("الْعِلْمُ لَا حَدَّ لَهُ", "حَدَّ", ("role", "اسم لا")),
+    # a مضاف إليه is مجرور, so a damma-typed الْجَوُّ cannot make بَرَدَ the noun "hail of"
+    ("إِذَا جَاءَ الشِّتَاءُ بَرَدَ الْجَوُّ", "الْجَوُّ", ("role", "فاعل")),
+    # كاد وأخواتها work as كان does (Alfiyya: ككان كاد وعسى), so the verb is فعل ناقص
+    ("كَادَ الْقِطَارُ يَتَحَرَّكُ", "كَادَ", ("name", "فعل ناقص")),
+    # جِدًّا is heard with its verb never said (جَدَّ جِدًّا): مفعول مطلق, not an object of مجتهدات
+    ("الطَّالِبَاتُ مُجْتَهِدَاتٌ جِدًّا", "جِدًّا", ("role", "مفعول مطلق")),
+    # ظنّ's two objects were a مبتدأ and خبر; the parser kept the pair, both typed in nasb
+    ("حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا", "الطَّرِيقَ", ("role", "مفعول به")),
+    ("حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا", "الرَّجُلُ", ("role", "فاعل")),
+    # a plain noun takes no object: أكثر is زيد's khabar, مالا the elative's تمييز
+    ("زَيْدٌ أَكْثَرُ مِنْكَ مَالًا", "زَيْدٌ", ("role", "مبتدأ")),
+    ("زَيْدٌ أَكْثَرُ مِنْكَ مَالًا", "أَكْثَرُ", ("role", "خبر")),
+    # a verb khabar needs a pronoun back to its مبتدأ, so أَنْفَعُ is the elative, not "I benefit"
+    ("الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ", "أَنْفَعُ", ("role", "خبر")),
+    ("أَنَا أَكْتُبُ الدَّرْسَ", "أَكْتُبُ", ("role", "فعل")),
+    # a hamza-final participle (قارئ) works as its verb like any other: its noun is its object
+    ("يَا قَارِئًا الْقُرْآنَ تَدَبَّرْ", "الْقُرْآنَ", ("role", "مفعول به")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
     from backend.services import iraab
     card = next(w for w in iraab.analyze(sentence)["words"] if w["word"] == word)
     assert card.get(want[0]) == want[1]
+
+
+@pytest.mark.parametrize("hung", [{}, {4: (2, "MOD")}, {4: (2, "MOD"), 2: (1, "SBJ")}, {2: (1, "SBJ"), 3: (4, "TPC")}])
+def test_zanna_pair_whatever_tree_the_parser_gives(hung):
+    """ظنّ's two objects come out the same however the parser hung the old مبتدأ and خبر:
+    machines differ in the tree they read (CI hung قصيرا on الرجل)."""
+    from backend.services import morphology, syntax
+    from backend.services.syntax import catib_onnx
+    from backend.services.syntax.naming import roles
+    from backend.services.syntax.repair import correct
+    words = "حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا".split()
+    tokens = catib_onnx.parse(words, morphology.pick(words, syntax.disambiguator()))
+    for word_id, (head, rel) in hung.items():
+        tokens[word_id - 1]["head"], tokens[word_id - 1]["rel"] = head, rel
+    correct(words, tokens)
+    assert [r.get("role") for r in roles(words, tokens)] == ["فعل", "فاعل", "مفعول به", "مفعول به"]

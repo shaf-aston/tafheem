@@ -1,10 +1,9 @@
 """Repair 2: a word hung on a verb's subject that the typed vowels forbid there is the verb's object."""
 from __future__ import annotations
 
-from backend.services.harakat import has_tanween
-from backend.services.nahw_book import is_mabni
+from backend.services.nahw_book import is_mabni, is_one
 from backend.services.syntax.facts import (
-    Sentence, indefinite_nasb, is_state_word, is_verb, is_zarf, same_root, typed_case_of, noun_tagged, subject_link, works_as_verb)
+    Sentence, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, typed_case_of, noun_tagged, subject_link, works_as_verb)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -12,8 +11,7 @@ def subject_clash(tokens: list[dict]) -> None:
     أَعْطَى الرَّجُلُ الْفَقِيرَ دِرْهَمًا، ضَرَبَ زَيْدٌ عَمْرًا: a نعت wears its noun's case (Tasheel 3.10.1),
     so a word in nasb after the subject's damma is no نعت; a hal (جَاءَ زَيْدٌ رَاكِبًا) or the verb's own
     masdar (فَرِحَ الْوَلَدُ فَرَحًا) is left to its own rule.
-    ضَرَبَ زَيْدٌ مَرْيَمَ: a noun with tanween is complete, so nothing after it is its مضاف إليه.
-    Written over before the words are read."""
+    ضَرَبَ زَيْدٌ مَرْيَمَ: a noun with tanween is complete, so nothing after it is its مضاف إليه."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
@@ -24,11 +22,11 @@ def subject_clash(tokens: list[dict]) -> None:
             continue
         clash = token["rel"] == "MOD" and typed_case_of(token) == "a" and not (indefinite_nasb(token) and (is_state_word(token) or same_root(token, verb)))
         # the parser may hang it there unlabelled (---) rather than as IDF; either way an إضافة is meant
-        added = (token["rel"] in ("IDF", "---") and has_tanween(head.get("typed") or "")
+        added = (token["rel"] in ("IDF", "---") and typed_tanween(head)
                  and typed_case_of(token) in ("a", None) and not any(k["rel"] == "OBJ" for k in s.kids(verb)))
         if clash or added:
             token["head"], token["rel"] = verb["id"], "OBJ"
-            head["mudaf"] = any(t["head"] == head["id"] and t["rel"] == "IDF" for t in tokens)
+            head["mudaf"] = has_added(head, tokens)
             s = Sentence(tokens)
 
 
@@ -36,7 +34,7 @@ def doer_after_object(tokens: list[dict]) -> None:
     """أَدْهَشَ الْجُمْهُورَ السَّاحِرُ: the object may come before the doer. A word hung on a verb
     as its subject that the reader typed in nasb, with a raf' word hung on it straight after,
     is the object and that raf' word the doer: a نعت wears its noun's case, and a مضاف إليه is
-    in jarr. Written over before the words are read."""
+    in jarr."""
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
@@ -54,11 +52,11 @@ def doer_after_object(tokens: list[dict]) -> None:
 def object_after_tanween(tokens: list[dict]) -> None:
     """يَا سَائِقًا الشَّاحِنَةَ: a word with tanween is complete, so nothing after it is its
     مضاف إليه; a participle typed so takes the word the parser hung on it that way, in nasb,
-    as its object. Written over before the words are read."""
+    as its object."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
-        if (head and token["rel"] == "IDF" and works_as_verb(head) and has_tanween(head.get("typed") or "")
+        if (head and token["rel"] == "IDF" and works_as_verb(head) and typed_tanween(head)
                 and typed_case_of(token) == "a"):
             token["rel"] = "OBJ"
 
@@ -66,8 +64,7 @@ def object_after_tanween(tokens: list[dict]) -> None:
 def kana_subject(tokens: list[dict]) -> None:
     """لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so
     a word the parser made the خبر that the reader typed in raf', with no اسم beside it, is the
-    اسم; what the parser hung on it after it (here بِالصُّرَعَةِ) is the خبر. Written over before
-    the words are read."""
+    اسم; what the parser hung on it after it (here بِالصُّرَعَةِ) is the خبر."""
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
@@ -80,4 +77,27 @@ def kana_subject(tokens: list[dict]) -> None:
                      and (k["pos"] == "PRT" or typed_case_of(k) == "a")), None)
         if told:
             told["head"], told["rel"] = verb["id"], "PRD"
+        s = Sentence(tokens)
+
+
+def zanna_pair(tokens: list[dict]) -> None:
+    """حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا: ظنّ and its sisters enter a مبتدأ and its خبر and put both
+    in nasb as their two objects (Alfiyya: انصب بفعل القلب جزأي ابتدا). The parser may keep the pair
+    as it was, the first word the subject of the second, and hang the second anywhere (on the verb,
+    or on its doer); with the reader's fatha on both, after the nearest verb before them being one of
+    ظنّ's (by the book's list: the family test wants the two objects already on the verb), the first is that verb's first object and the second its second. A doer the parser took for
+    the object, typed in raf', is the verb's doer."""
+    s = Sentence(tokens)
+    for first in tokens:
+        second = s.head(first)
+        verb = second and next((t for t in reversed(tokens[:tokens.index(first)]) if is_verb(t)), None)
+        if not (verb and first["rel"] in ("SBJ", "TPC") and is_one(verb["lemma"], "zanna") and first["id"] < second["id"]
+                and noun_tagged(first) and typed_case_of(first) == typed_case_of(second) == "a"):
+            continue
+        for doer in tokens:
+            if doer["head"] in (verb["id"], second["id"]) and doer["rel"] in ("OBJ", "MOD") \
+                    and verb["id"] < doer["id"] < first["id"] and typed_case_of(doer) == "u":
+                doer["head"], doer["rel"] = verb["id"], "SBJ"
+        first["head"], first["rel"] = verb["id"], "OBJ"
+        second["head"], second["rel"] = verb["id"], "OBJ"
         s = Sentence(tokens)

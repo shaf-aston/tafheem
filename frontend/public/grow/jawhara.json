@@ -1,0 +1,933 @@
+{
+  "_comment": "Grow's Jawhara world: Jawharat al-Tawhid, al-Laqani's 144-bayt creed poem of the Ashʿarī school, part by part, lesson by lesson. Hand-written. Every `ar` and `source` is a bayt, or half of one, exactly as backend/data/books/openiti/<file> prints it (the two halves joined by ` % `); src/lib/bookLesson.test.js checks each. `en` and `why` are our English, written from the standard commentaries (al-Bajuri's Tuhfat al-Murid, al-Laqani's own Ittihaf al-Murid), never quoted from them. We teach what the poem says in plain words; where another school reads a line differently, a neutral Note says so and nothing is asked on it.",
+  "_cards": "teach {title, ar, en} · choose {ask, ar?, options, answer: index, source, why} — an `ar` with ____ is a gap the answer fills · pick {ask, options: [{text, right?}], source, why} · sort {ask, into, items: [[text, bucket]], source, why} · order {ask, steps (in the right order), source, why}. `source` may be one quote or a list.",
+  "book": "Jawharat al-Tawhid",
+  "author": "Burhan al-Din Ibrahim al-Laqani (d. 1041 AH)",
+  "madhhab": "Ashʿarī creed (Ahl al-Sunna, the kalām school of Abu al-Hasan al-Ashʿarī)",
+  "file": "1041BurhanDinLaqani.JawharatTawhid.Wikisource-ara1",
+  "glossary": [
+    {
+      "term": "urjuza",
+      "ar": "أرجوزة",
+      "en": "Urjuza: a teaching poem in the rajaz metre, written to be learnt by heart.",
+      "lesson": "jaw-open-why"
+    },
+    {
+      "term": "mukallaf",
+      "ar": "المكلف",
+      "en": "Mukallaf: the one the Law holds responsible: sane, of age, and reached by the message.",
+      "lesson": "jaw-open-know"
+    },
+    {
+      "term": "wajib",
+      "ar": "الواجب",
+      "en": "Wajib: what the mind cannot conceive as absent. Of Allah, what must be true of Him.",
+      "lesson": "jaw-open-know"
+    },
+    {
+      "term": "jaiz",
+      "ar": "الجائز",
+      "en": "Ja'iz: what may be or not be. Of Allah, what He may do or leave.",
+      "lesson": "jaw-open-know"
+    },
+    {
+      "term": "mumtani",
+      "ar": "الممتنع",
+      "en": "Mumtani' (mustahil): what the mind cannot conceive as existing. Of Allah, what is impossible for Him.",
+      "lesson": "jaw-open-know"
+    },
+    {
+      "term": "taqlid",
+      "ar": "التقليد",
+      "en": "Taqlid: holding a belief only because someone else holds it, without a proof of one's own.",
+      "lesson": "jaw-open-know"
+    },
+    {
+      "term": "tasdiq",
+      "ar": "التصديق",
+      "en": "Tasdiq: assent of the heart; what the poem says faith is.",
+      "lesson": "jaw-open-iman"
+    },
+    {
+      "term": "qidam",
+      "ar": "القدم",
+      "en": "Qidam: having no beginning.",
+      "lesson": "jaw-sifat-nafs"
+    },
+    {
+      "term": "baqa",
+      "ar": "البقاء",
+      "en": "Baqa': having no end.",
+      "lesson": "jaw-sifat-nafs"
+    },
+    {
+      "term": "qiyam-bin-nafs",
+      "ar": "القيام بالنفس",
+      "en": "Qiyam bi-l-nafs: needing no place and no maker to exist.",
+      "lesson": "jaw-sifat-nafs"
+    },
+    {
+      "term": "wahdaniyya",
+      "ar": "الوحدانية",
+      "en": "Wahdaniyya: oneness; no second in His essence, attributes or acts.",
+      "lesson": "jaw-sifat-nafs"
+    },
+    {
+      "term": "sifat-al-maani",
+      "ar": "صفات المعاني",
+      "en": "Sifat al-ma'ani: the seven attributes that are real meanings in the essence: power, will, knowledge, life, hearing, sight, speech.",
+      "lesson": "jaw-sifat-maani"
+    },
+    {
+      "term": "taalluq",
+      "ar": "التعلق",
+      "en": "Ta'alluq: what an attribute reaches. Power and will reach the possible; knowledge and speech reach everything.",
+      "lesson": "jaw-sifat-maani"
+    },
+    {
+      "term": "tawil",
+      "ar": "التأويل",
+      "en": "Ta'wil: reading a text whose outward sense would liken Allah to creation in a fitting sense Arabic allows.",
+      "lesson": "jaw-sifat-tanzih"
+    },
+    {
+      "term": "tafwid",
+      "ar": "التفويض",
+      "en": "Tafwid: leaving the meaning of such a text to Allah, while denying any likeness.",
+      "lesson": "jaw-sifat-tanzih"
+    },
+    {
+      "term": "tanzih",
+      "ar": "التنزيه",
+      "en": "Tanzih: keeping Allah above any likeness to creation.",
+      "lesson": "jaw-sifat-tanzih"
+    }
+  ],
+  "parts": [
+    {
+      "id": "jaw-open",
+      "title": "Opening: why, and what every Muslim must know",
+      "arabic": "المقدمة وحكم التقليد",
+      "kitabs": [
+        "المقدمة",
+        "سبب التأليف",
+        "حكم التقليد ووجوب النظر",
+        "الإيمان والإسلام وزيادته"
+      ],
+      "lessons": [
+        {
+          "id": "jaw-open-why",
+          "title": "Praise, and why the poem was written",
+          "arabic": "الحمد وسبب التأليف",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "hamd",
+              "title": "Praise and blessings",
+              "ar": "الحَمْدُ لِلّهِ عَلَى صِلاَتِهِ % ثُمَّ سَلاَمُ اللهِ مَعْ صَلاَتِهِ",
+              "en": "The poem opens as every classical text does: praise to Allah for His blessings (ṣilāt), then Allah's peace and blessings on the Prophet."
+            },
+            {
+              "kind": "teach",
+              "id": "nabi",
+              "title": "The Prophet brought tawhid",
+              "ar": "عَلَى نَبِيّ جَاءَ بِالتَّوْحِيدِ % وَقَدْ عَرَى الدِّينُ عَنِ التَّوْحِيدِ",
+              "en": "Blessings are on the Prophet who came with tawhid when religion had been stripped bare of it: people had largely lost Allah's oneness."
+            },
+            {
+              "kind": "choose",
+              "id": "nabi-state",
+              "ask": "What state was religion in when the Prophet came, according to the poem?",
+              "options": [
+                "Stripped bare of tawhid",
+                "Full of tawhid but weak in law",
+                "Unknown to the Arabs"
+              ],
+              "answer": 0,
+              "source": "وَقَدْ عَرَى الدِّينُ عَنِ التَّوْحِيدِ",
+              "why": "ʿarā means 'was bare': religion had been emptied of Allah's oneness before he came."
+            },
+            {
+              "kind": "teach",
+              "id": "aqib",
+              "title": "The last of the messengers",
+              "ar": "مُحَمَّدِ الْعَاقِبْ لِرُسْلِ رَبِّهِ % وَآلِهِ وَصَحْبِهِ وَحِزْبِهِ",
+              "en": "He is Muhammad, al-ʿĀqib: the one who comes after all his Lord's messengers, the last. Blessings also on his family, his companions and his party."
+            },
+            {
+              "kind": "choose",
+              "id": "aqib-means",
+              "ask": "The Prophet is called al-ʿĀqib. What does the poem mean by it?",
+              "options": [
+                "The one who comes last after all the messengers",
+                "The one who punishes those who deny the messengers",
+                "The one whom later prophets followed and copied"
+              ],
+              "answer": 0,
+              "source": "مُحَمَّدِ الْعَاقِبْ لِرُسْلِ رَبِّهِ",
+              "why": "al-ʿĀqib li-rusli rabbihi: the one coming after his Lord's messengers, so no prophet follows him."
+            },
+            {
+              "kind": "teach",
+              "id": "why",
+              "title": "Knowing the root of religion is a duty",
+              "ar": "وَبَعْدُ: فَالْعِلْمُ بأَصْلِ الدِّينِ % مُحَتَّمٌ يَحْتَاجُ لِلتَّبْيِين",
+              "en": "'And after that': knowing the root of religion, creed, is binding (muḥattam) on every Muslim, and it needs to be set out clearly."
+            },
+            {
+              "kind": "teach",
+              "id": "short",
+              "title": "Why so short",
+              "ar": "لكِنْ مِنَ التَّطْوِيلِ كَلَّتِ الْهِمَمْ % فَصَارَ فِيهِ الاِخْتِصَارُ مُلْتَزَمْ",
+              "en": "Long books tire people's resolve, so he commits to brevity: a short poem that can be memorised."
+            },
+            {
+              "kind": "choose",
+              "id": "name",
+              "ask": "Fill the gap: what did al-Laqani call his poem?",
+              "ar": "وَهذِهِ أُرْجُوزَةٌ لَقَّبْتُهَا: % ____ قَدْ هَذَّبْتُهَا",
+              "options": [
+                "جوْهَرَةَ التَّوْحِيدِ.",
+                "عَقِيدَةَ التَّوْحِيدِ.",
+                "خُلاَصَةَ التَّوْحِيدِ."
+              ],
+              "answer": 0,
+              "source": "وَهذِهِ أُرْجُوزَةٌ لَقَّبْتُهَا: % جوْهَرَةَ التَّوْحِيدِ. قَدْ هَذَّبْتُهَا",
+              "why": "He names it himself: Jawharat al-Tawhid, 'the Jewel of Tawhid', an urjuza he has polished (hadhdhabtuhā)."
+            },
+            {
+              "kind": "pick",
+              "id": "hope",
+              "ask": "What does the author ask Allah for in the last bayt of the opening?",
+              "options": [
+                {
+                  "text": "That the poem be accepted",
+                  "right": true
+                },
+                {
+                  "text": "That it benefit the one who wants it",
+                  "right": true
+                },
+                {
+                  "text": "Reward from Allah",
+                  "right": true
+                },
+                {
+                  "text": "Fame among scholars"
+                },
+                {
+                  "text": "A long life"
+                }
+              ],
+              "source": "وَاللهَ أَرْجُو فِي الْقَبُولِ نَافِعًا % بِهَا مُرِيدًا فِي الثَّوابِ طَامِعًا",
+              "why": "He hopes for acceptance (al-qabūl), that it benefits the seeker (murīd), and he is eager (ṭāmiʿ) for reward."
+            }
+          ]
+        },
+        {
+          "id": "jaw-open-know",
+          "title": "What every responsible person must know",
+          "arabic": "ما يجب على المكلف معرفته",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "mukallaf",
+              "title": "The duty of every mukallaf",
+              "ar": "فَكُلُّ مَنْ كُلِّفَ شَرْعًا وَجَبَا % عَلَيْهِ أَنْ يَعْرِفَ: مَا قَدْ وَجَبَا",
+              "en": "Everyone the Law holds responsible (mukallaf: sane and of age) must know what is necessarily true (wājib) of Allah."
+            },
+            {
+              "kind": "teach",
+              "id": "three",
+              "title": "Three things, for Allah and His messengers",
+              "ar": "لِلّهِ وَالجَائِزَ وَالمُمْتَنِعَا % وَمِثْلَ ذَا لِرُسْلِهِ فَاسْتَمِعَا",
+              "en": "What is necessary (wājib), what is possible (jāʾiz) and what is impossible (mumtaniʿ) for Allah, and the same three for His messengers. This triple is the frame of the whole poem."
+            },
+            {
+              "kind": "sort",
+              "id": "sort-three",
+              "ask": "Sort each into its kind.",
+              "into": [
+                "Wājib (necessary)",
+                "Jāʾiz (possible)",
+                "Mumtaniʿ (impossible)"
+              ],
+              "items": [
+                [
+                  "That Allah exists",
+                  "Wājib (necessary)"
+                ],
+                [
+                  "That Allah has a partner",
+                  "Mumtaniʿ (impossible)"
+                ],
+                [
+                  "That Allah gives a person wealth",
+                  "Jāʾiz (possible)"
+                ],
+                [
+                  "That Allah has no beginning",
+                  "Wājib (necessary)"
+                ],
+                [
+                  "That the messengers lie",
+                  "Mumtaniʿ (impossible)"
+                ]
+              ],
+              "source": "لِلّهِ وَالجَائِزَ وَالمُمْتَنِعَا % وَمِثْلَ ذَا لِرُسْلِهِ فَاسْتَمِعَا",
+              "why": "Wājib cannot be absent, mumtaniʿ cannot be, jāʾiz may be or not. Existence and having no beginning are wājib; a partner or a lying messenger is mumtaniʿ; giving wealth is jāʾiz."
+            },
+            {
+              "kind": "teach",
+              "id": "taqlid",
+              "title": "The imitator's faith is unsettled",
+              "ar": "إِذْ كُلُّ مَنْ قَلَّدَ فِي التَوْحِيدِ % إِيمَانُهُ لَمْ يَخْلُ مِنْ تَرْدِيدِ",
+              "en": "Why must one know, not merely repeat? Because whoever holds tawhid by imitation alone (taqlīd) has a faith not free of wavering (tardīd): the scholars disagreed on whether it counts."
+            },
+            {
+              "kind": "teach",
+              "id": "khulf",
+              "title": "The scholars' discussion",
+              "ar": "فَفِيهِ بَعْضُ الْقَوْمِ يَحْكِي الخُلْفَا % وَبَعْضُهُمْ حَقَّقَ فِيهِ الْكَشْفَا",
+              "en": "Some scholars only report the disagreement about the imitator's faith; others settled the matter (ḥaqqaqa al-kashfā)."
+            },
+            {
+              "kind": "choose",
+              "id": "jazm-q",
+              "ask": "On the settled view, when does an imitator's faith count?",
+              "options": [
+                "When he holds it with firm conviction, even from another's word",
+                "Never: faith by imitation never counts without a rational proof of his own",
+                "Only after he has memorised the proofs of the theologians"
+              ],
+              "answer": 0,
+              "source": "فَقَالَ: إِنْ يَجْزِمْ بِقَوْلِ الْغَيْرِ % كَفَى وَإِلا لَمْ يَزَلْ فِي الضَّيْرِ",
+              "why": "in yajzim bi-qawli l-ghayri kafā: firm conviction suffices, even if it came from someone else's word."
+            },
+            {
+              "kind": "teach",
+              "id": "jazm",
+              "title": "The settled view: firm conviction is enough",
+              "ar": "فَقَالَ: إِنْ يَجْزِمْ بِقَوْلِ الْغَيْرِ % كَفَى وَإِلا لَمْ يَزَلْ فِي الضَّيْرِ",
+              "en": "The one who settled it said: if the imitator is firmly convinced (yajzim) by what others say, that suffices; if his belief is not firm he remains in harm. This is the view the poem adopts. The Tuhfa adds that, on one view, such a person sins by leaving reflection when he is able to reflect."
+            },
+            {
+              "kind": "teach",
+              "id": "first",
+              "title": "The first duty: knowing Allah",
+              "ar": "وَاجْزِمْ بِأَنَّ أَوَّلاً مِمَّا يَجِبْ % مَعْرِفَةٌ وَفِيهِ خُلْفٌ مُنْتَصِبْ",
+              "en": "Hold firmly that the first duty is knowledge of Allah (maʿrifa), though there is a standing disagreement on what exactly is first: the knowledge, or the reflection that leads to it."
+            },
+            {
+              "kind": "order",
+              "id": "look-order",
+              "ask": "Put the steps of reflection in the poem's order.",
+              "steps": [
+                "Look at yourself",
+                "Then the upper world",
+                "Then the lower world",
+                "You find wondrous making, and the sign that it can cease to be"
+              ],
+              "source": [
+                "فَانْظُرْ إِلَى نَفْسِكَ ثُمَّ انْتَقِلِ % لِلْعَالَمِ العُلوِيِّ ثُمَّ السُّفْلِي",
+                "تَجِدْ بِهِ صُنْعًا بَدِيعَ الْحِكَمِ % لكِنْ بِهِ قامَ دَلِيلُ الْعَدَمِ"
+              ],
+              "why": "Self, then the heavens, then the earth: in each you find wise and wondrous making, and in each the sign that it could cease to be, so it was brought to be."
+            },
+            {
+              "kind": "teach",
+              "id": "look",
+              "title": "Look at yourself, then at the worlds",
+              "ar": "فَانْظُرْ إِلَى نَفْسِكَ ثُمَّ انْتَقِلِ % لِلْعَالَمِ العُلوِيِّ ثُمَّ السُّفْلِي",
+              "en": "The way to that knowledge: reflect on yourself, then on the upper world (the heavens) and the lower world (the earth)."
+            },
+            {
+              "kind": "teach",
+              "id": "hudth",
+              "title": "The proof from contingency",
+              "ar": "وَكُلُّ مَا جَازَ عَلَيْهِ الْعَدَمُ % عَلَيْهِ قَطْعًا يَسْتَحِيلُ الْقِدَمُ",
+              "en": "The heart of the proof: whatever could be absent cannot have no beginning. Everything that might not have existed must have been given existence, so the world needs a Maker who has no beginning."
+            },
+            {
+              "kind": "choose",
+              "id": "hudth-q",
+              "ask": "What follows for anything that could have not existed?",
+              "options": [
+                "It cannot be beginningless",
+                "It must then be eternal and needs no maker at all",
+                "It needs no maker, since it exists on its own"
+              ],
+              "answer": 0,
+              "source": "وَكُلُّ مَا جَازَ عَلَيْهِ الْعَدَمُ % عَلَيْهِ قَطْعًا يَسْتَحِيلُ الْقِدَمُ",
+              "why": "yastaḥīlu l-qidam: for it, being without beginning is impossible; so it began, and what begins needs one who brought it to be."
+            }
+          ]
+        },
+        {
+          "id": "jaw-open-iman",
+          "title": "What faith is, and does it grow",
+          "arabic": "معنى الإيمان وزيادته",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "tasdiq",
+              "title": "Faith is assent",
+              "ar": "وَفُسِّرَ الإِيمَانُ: بِالتَّصْدِيقِ % وَالنُّطْقُ فِيهِ الخُلْفُ بِالتَّحْقِيقِ",
+              "en": "Faith (īmān) is explained as assent of the heart (taṣdīq). Whether saying the testimony aloud is part of faith itself is a matter the scholars examined and disagreed on."
+            },
+            {
+              "kind": "teach",
+              "id": "amal",
+              "title": "Deeds: condition or part?",
+              "ar": "فَقِيلَ: شَرْطٌ كالْعَمَلْ. وَقِيلَ: بَلْ % شَطْرٌ وَالإِسْلاَمَ اشْرَحَنَّ بِالْعَمَلْ",
+              "en": "Some said saying it is a condition (sharṭ) for the rulings of this world, as deeds are a condition of faith's completeness, not of its existence; others said it is a part (shaṭr) of faith itself. Islam, though, is explained by deeds: the outward acts."
+            },
+            {
+              "kind": "choose",
+              "id": "islam-q",
+              "ask": "How does the poem explain Islam, as opposed to faith?",
+              "options": [
+                "By deeds, the outward acts",
+                "By assent of the heart alone",
+                "By knowledge of the proofs"
+              ],
+              "answer": 0,
+              "source": "وَالإِسْلاَمَ اشْرَحَنَّ بِالْعَمَلْ",
+              "why": "wa-l-islāma shraḥanna bi-l-ʿamal: Islam is explained by deeds, while īmān is the heart's assent."
+            },
+            {
+              "kind": "pick",
+              "id": "examples",
+              "ask": "Which does the poem give as examples of deeds that are Islam?",
+              "options": [
+                {
+                  "text": "Hajj",
+                  "right": true
+                },
+                {
+                  "text": "Prayer",
+                  "right": true
+                },
+                {
+                  "text": "Fasting",
+                  "right": true
+                },
+                {
+                  "text": "Zakat",
+                  "right": true
+                },
+                {
+                  "text": "Jihad"
+                },
+                {
+                  "text": "Reading the Qur'an"
+                }
+              ],
+              "source": "مِثَالُ هذَا: الحَجُّ وَالصَّلاَةُ % كَذَا الصِّيَامُ فَادْرِ وَالزَّكاةُ",
+              "why": "Hajj, prayer, fasting and zakat: the four acts the bayt names."
+            },
+            {
+              "kind": "teach",
+              "id": "grow",
+              "title": "Faith grows with obedience",
+              "ar": "وَرُجِّحَتْ: زيَادَةُ الإِيمَانِ % بِمَا تَزِيدُ طَاعَةُ الإِنْسَانِ",
+              "en": "The weightier view (rujjiḥat): faith increases as a person's obedience increases."
+            },
+            {
+              "kind": "teach",
+              "id": "shrink",
+              "title": "And shrinks when obedience does",
+              "ar": "وَنَقْصُهُ بِنَقْصهَا. وَقِيلَ: لاَ % وَقِيلَ: لاَ خُلْفَ كَذَا قَدْ نُقلاَ",
+              "en": "And it decreases as obedience decreases. Some said it neither increases nor decreases; others said the disagreement is only in wording (lā khulf): the assent itself does not vary, its strength and fruits do. So the matter has been reported."
+            },
+            {
+              "kind": "choose",
+              "id": "grow-q",
+              "ask": "Which view does the poem call weightier?",
+              "options": [
+                "Faith increases with obedience and decreases with its lack",
+                "Faith never changes at all, whatever a person does or leaves",
+                "Faith increases with obedience but can never decrease"
+              ],
+              "answer": 0,
+              "source": [
+                "وَرُجِّحَتْ: زيَادَةُ الإِيمَانِ % بِمَا تَزِيدُ طَاعَةُ الإِنْسَانِ",
+                "وَنَقْصُهُ بِنَقْصهَا."
+              ],
+              "why": "rujjiḥat ziyādatu l-īmān... wa-naqṣuhu bi-naqṣihā: increase with obedience, decrease with its lack."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jaw-sifat",
+      "title": "What is necessarily true of Allah",
+      "arabic": "ما يجب لله تعالى",
+      "kitabs": [
+        "ما يجب لله تعالى من الصفات",
+        "الأسماء والصفات"
+      ],
+      "lessons": [
+        {
+          "id": "jaw-sifat-nafs",
+          "title": "Existence, no beginning, no end, oneness",
+          "arabic": "الوجود والقدم والبقاء والوحدانية",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "wujud",
+              "title": "Existence, no beginning, no end",
+              "ar": "فَوَاجبٌ لهُ: الْوُجُودُ وَالْقِدَمْ % كَذَا بَقَاءٌ لاَ يُشَابُ بِالْعَدَمْ",
+              "en": "Necessarily true of Allah: existence (wujūd), having no beginning (qidam) and a lasting (baqāʾ) never touched by non-existence."
+            },
+            {
+              "kind": "teach",
+              "id": "mukhalafa",
+              "title": "Unlike what passes away",
+              "ar": "وَأَنَّهُ لِمَا يَنَالُ الْعَدَمُ % مُخَالفٌ بُرْهَانُ هذَا الْقِدَمُ",
+              "en": "He is unlike (mukhālif) everything that non-existence can reach, that is, unlike all creation. The proof of this is His having no beginning: what has no beginning cannot resemble what does."
+            },
+            {
+              "kind": "pick",
+              "id": "six",
+              "ask": "Which of these does the poem list as necessarily true of Allah in these bayts?",
+              "options": [
+                {
+                  "text": "Existence",
+                  "right": true
+                },
+                {
+                  "text": "No beginning",
+                  "right": true
+                },
+                {
+                  "text": "No end",
+                  "right": true
+                },
+                {
+                  "text": "Being unlike creation",
+                  "right": true
+                },
+                {
+                  "text": "Self-subsistence",
+                  "right": true
+                },
+                {
+                  "text": "Oneness",
+                  "right": true
+                },
+                {
+                  "text": "Having a body"
+                },
+                {
+                  "text": "Being in a direction"
+                }
+              ],
+              "source": [
+                "فَوَاجبٌ لهُ: الْوُجُودُ وَالْقِدَمْ % كَذَا بَقَاءٌ لاَ يُشَابُ بِالْعَدَمْ",
+                "مُخَالفٌ بُرْهَانُ هذَا الْقِدَمُ",
+                "قِيَامُهُ بِالنَّفس وَحْدَانيَّةْ"
+              ],
+              "why": "Six: existence, qidam, baqāʾ, unlikeness to what passes away, self-subsistence, oneness. A body or a direction is what the poem later rules out."
+            },
+            {
+              "kind": "teach",
+              "id": "qiyam",
+              "title": "Self-subsistence and oneness",
+              "ar": "قِيَامُهُ بِالنَّفس وَحْدَانيَّةْ % مُنَزَّهًا أَوْصَافُهُ سَنِيَّةْ",
+              "en": "He subsists by Himself (qiyām bi-l-nafs), needing no place and no one to bring Him to be, and He is One (waḥdāniyya). He is exalted above all lack; His attributes are sublime."
+            },
+            {
+              "kind": "teach",
+              "id": "tanzih",
+              "title": "No opposite, no like, no partner, no parent, no child",
+              "ar": "عَنْ ضِدٍّ أَوْ شِبْهٍ شَرِيكٍ مُطْلَقَا % وَوَالِدٍ كَذَا الْوَلَدْ وَالأَصْدِقَا",
+              "en": "He is exalted above any opposite, any like, any partner at all, any parent, any child, and any friends in the sense of equals or helpers."
+            },
+            {
+              "kind": "choose",
+              "id": "tanzih-q",
+              "ask": "Fill the gap.",
+              "ar": "عَنْ ضِدٍّ أَوْ شِبْهٍ ____ مُطْلَقَا % وَوَالِدٍ كَذَا الْوَلَدْ وَالأَصْدِقَا",
+              "options": [
+                "شَرِيكٍ",
+                "عَبْدٍ لَهُ",
+                "مَلَكٍ لَهُ"
+              ],
+              "answer": 0,
+              "source": "عَنْ ضِدٍّ أَوْ شِبْهٍ شَرِيكٍ مُطْلَقَا % وَوَالِدٍ كَذَا الْوَلَدْ وَالأَصْدِقَا",
+              "why": "sharīkin muṭlaqā: no partner whatsoever, the heart of tawhid."
+            }
+          ]
+        },
+        {
+          "id": "jaw-sifat-maani",
+          "title": "Power, will, knowledge, life, hearing, sight, speech",
+          "arabic": "صفات المعاني السبع",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "qudra",
+              "title": "Power and will",
+              "ar": "وَقُدْرَةٌ إِرَادَةٌ وَغَايَرَتْ % أَمْرًا وَعِلْمًا وَالرِّضَا كما ثَبَتْ",
+              "en": "Power (qudra) and will (irāda) are His. Will is other than command, other than knowledge and other than being pleased (riḍā): He may will what He does not command or approve, and command what He does not will, as is established."
+            },
+            {
+              "kind": "teach",
+              "id": "ilm",
+              "title": "Knowledge, not acquired",
+              "ar": "وَعِلْمُهُ وَلاَ يُقَالُ مُكْتَسَبْ % فَاتْبَعْ سَبِيلَ الحَقِّ وَاطرَحِ الرِّيَبْ",
+              "en": "Knowledge (ʿilm) is His, and it is never said to be acquired (muktasab), for acquired knowledge comes after ignorance. Follow the way of truth and cast off doubts."
+            },
+            {
+              "kind": "pick",
+              "id": "seven",
+              "ask": "Pick the seven attributes of meaning the poem names.",
+              "options": [
+                {
+                  "text": "Power",
+                  "right": true
+                },
+                {
+                  "text": "Will",
+                  "right": true
+                },
+                {
+                  "text": "Knowledge",
+                  "right": true
+                },
+                {
+                  "text": "Life",
+                  "right": true
+                },
+                {
+                  "text": "Speech",
+                  "right": true
+                },
+                {
+                  "text": "Hearing",
+                  "right": true
+                },
+                {
+                  "text": "Sight",
+                  "right": true
+                },
+                {
+                  "text": "Anger"
+                },
+                {
+                  "text": "Movement"
+                }
+              ],
+              "source": [
+                "وَقُدْرَةٌ إِرَادَةٌ وَغَايَرَتْ",
+                "وَعِلْمُهُ وَلاَ يُقَالُ مُكْتَسَبْ",
+                "حَيَاتُهُ كَذَا الْكَلاَمُ السَّمْعُ % ثُمَّ الْبَصَرْ بِذِي أَتَانَا السَّمْعُ"
+              ],
+              "why": "The seven ṣifāt al-maʿānī: qudra, irāda, ʿilm, ḥayāt, kalām, samʿ, baṣar."
+            },
+            {
+              "kind": "teach",
+              "id": "hayat",
+              "title": "Life, speech, hearing, sight",
+              "ar": "حَيَاتُهُ كَذَا الْكَلاَمُ السَّمْعُ % ثُمَّ الْبَصَرْ بِذِي أَتَانَا السَّمْعُ",
+              "en": "His life (ḥayāt), speech (kalām), hearing (samʿ) and sight (baṣar). For these the transmitted texts (al-samʿ) are our proof: revelation brought them to us."
+            },
+            {
+              "kind": "teach",
+              "id": "idrak",
+              "title": "Perception: a question left open",
+              "ar": "فَهَلْ لَهُ إِدْرَاكٌ أَوْ لاَ خُلْفُ % وَعِنْدَ قَوْمٍ صَحَّ فِيهِ الْوَقْفُ",
+              "en": "Does He have other perception (idrāk: of smell, taste, touch)? The scholars disagreed, and some held that the right course is to suspend judgement (waqf)."
+            },
+            {
+              "kind": "choose",
+              "id": "idrak-q",
+              "ask": "What does the poem say about perception (idrāk) beyond hearing and sight?",
+              "options": [
+                "The scholars disagreed, and some chose to suspend judgement",
+                "It is affirmed by consensus as an eighth attribute",
+                "It is denied by consensus, since perception needs a body"
+              ],
+              "answer": 0,
+              "source": "فَهَلْ لَهُ إِدْرَاكٌ أَوْ لاَ خُلْفُ % وَعِنْدَ قَوْمٍ صَحَّ فِيهِ الْوَقْفُ",
+              "why": "khulf: a disagreement; and 'inda qawmin sahha fihi l-waqf: for some, suspending judgement is the sound course."
+            },
+            {
+              "kind": "teach",
+              "id": "names",
+              "title": "The derived names",
+              "ar": "حَيٌّ عَلِيمٌ قادِرٌ مُرِيدُ % سَمِعْ بَصِيرٌ مَا يَشَا يُرِيدُ",
+              "en": "From the seven come the names: Living, Knowing, Powerful, Willing, Hearing, Seeing, and (the next bayt) Speaking. Whatever He wishes, He wills."
+            },
+            {
+              "kind": "teach",
+              "id": "ayn",
+              "title": "Neither other than the essence nor the essence itself",
+              "ar": "مُتَكَلِّمٌ ثُمَّ صِفَاتُ الذَّاتِ % لَيْسَتْ بِغَيْرٍ أَوْ بِعَيْنِ الذَّاتِ",
+              "en": "And Speaking. The attributes of the essence are not other than the essence (they are not separate things) nor the essence itself (they are real meanings). Note: Atharī writers such as Ibn Taymiyya ask what 'other' means before answering: the attributes are not separable from Him, and not the same meaning as His essence. The question is not asked here."
+            },
+            {
+              "kind": "pick",
+              "id": "names-q",
+              "ask": "Which names does the bayt derive from the attributes?",
+              "options": [
+                {
+                  "text": "Living",
+                  "right": true
+                },
+                {
+                  "text": "Knowing",
+                  "right": true
+                },
+                {
+                  "text": "Powerful",
+                  "right": true
+                },
+                {
+                  "text": "Willing",
+                  "right": true
+                },
+                {
+                  "text": "Hearing",
+                  "right": true
+                },
+                {
+                  "text": "Seeing",
+                  "right": true
+                },
+                {
+                  "text": "Creator"
+                },
+                {
+                  "text": "Provider"
+                }
+              ],
+              "source": "حَيٌّ عَلِيمٌ قادِرٌ مُرِيدُ % سَمِعْ بَصِيرٌ مَا يَشَا يُرِيدُ",
+              "why": "Hayy, 'Alim, Qadir, Murid, Sami', Basir: one name per attribute; Creator and Provider are names of act, not of these seven."
+            },
+            {
+              "kind": "teach",
+              "id": "taalluq",
+              "title": "What power reaches",
+              "ar": "فَقُدْرةٌ بِمُمْكِنٍ تَعَلَّقَتْ % بِلاَ تَنَاهِي مَا بِهِ تَعَلَّقَتْ",
+              "en": "Power attaches (taʿallaqat) to the possible, without limit to what it reaches. It does not attach to the necessary or the impossible, since neither can be brought about."
+            },
+            {
+              "kind": "teach",
+              "id": "ilm-amm",
+              "title": "What knowledge reaches",
+              "ar": "وَوَحْدَةً أَوْجِبْ لَهَا وَمِثْلُ ذِي % إِرَادَةٌ وَالْعِلْمُ لكِنْ عَمَّ ذِى",
+              "en": "Affirm that power is one, not many; the same holds for will, which, like power, attaches only to the possible. Knowledge is wider: it reaches the possible, and also, the next bayt says, the necessary and the impossible."
+            },
+            {
+              "kind": "choose",
+              "id": "reach-q",
+              "ask": "Which attribute reaches the necessary and the impossible as well as the possible?",
+              "options": [
+                "Knowledge",
+                "Power alone",
+                "Will alone"
+              ],
+              "answer": 0,
+              "source": [
+                "إِرَادَةٌ وَالْعِلْمُ لكِنْ عَمَّ ذِى",
+                "وَعَمَّ أَيْضًا وَاجِبًا وَالمُمْتَنِعْ % وَمِثلُ ذَا كَلاَمُهُ فَلْنَتَّبِعْ"
+              ],
+              "why": "ʿamma: knowledge is general, covering wājib and mumtaniʿ too; power and will reach only the possible. Speech is like knowledge in its reach."
+            },
+            {
+              "kind": "teach",
+              "id": "hear",
+              "title": "Hearing and sight reach every existent",
+              "ar": "وَكُلُّ مَوْجُودٍ أَنِطْ لِلسَّمْعِ بِهْ % كَذَا الْبَصَرْ إِدْرَاكُهُ إِنْ قِيلَ بِهْ",
+              "en": "Attach hearing to every existent, and sight too; and perception, if one affirms it. The next bayt adds that life attaches to nothing: it is a condition of the others, not directed at anything.",
+              "source": [
+                "وَكُلُّ مَوْجُودٍ أَنِطْ لِلسَّمْعِ بِهْ % كَذَا الْبَصَرْ إِدْرَاكُهُ إِنْ قِيلَ بِهْ",
+                "ثُمَّ الحَيَاةُ مَا بشَيْ تَعَلَّقَتْ"
+              ]
+            },
+            {
+              "kind": "sort",
+              "id": "reach-sort",
+              "ask": "Sort each attribute by what it reaches.",
+              "into": [
+                "Only the possible",
+                "Everything, the necessary and impossible too"
+              ],
+              "items": [
+                [
+                  "Power",
+                  "Only the possible"
+                ],
+                [
+                  "Will",
+                  "Only the possible"
+                ],
+                [
+                  "Knowledge",
+                  "Everything, the necessary and impossible too"
+                ],
+                [
+                  "Speech",
+                  "Everything, the necessary and impossible too"
+                ]
+              ],
+              "source": [
+                "فَقُدْرةٌ بِمُمْكِنٍ تَعَلَّقَتْ",
+                "وَعَمَّ أَيْضًا وَاجِبًا وَالمُمْتَنِعْ % وَمِثلُ ذَا كَلاَمُهُ فَلْنَتَّبِعْ"
+              ],
+              "why": "Power and will bring things about, so only the possible; knowledge and speech are about things, so they reach all three."
+            }
+          ]
+        },
+        {
+          "id": "jaw-sifat-tanzih",
+          "title": "His names, and texts that seem to liken Him",
+          "arabic": "الأسماء وآيات الصفات",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "qadim",
+              "title": "Names and attributes are eternal",
+              "ar": "وَعِنْدَنَا أَسْمَاؤُهُ الْعَظِيمَةْ % كَذَا صفَاتُ ذَاتِهِ قَدِيمَةْ",
+              "en": "With us (the Ashʿarīs) His great names and the attributes of His essence are eternal, without beginning."
+            },
+            {
+              "kind": "teach",
+              "id": "tawqif",
+              "title": "Names are fixed by revelation",
+              "ar": "وَاخْتِيرَ أَنَّ اسْمَاهُ تَوقِيفِيَّةْ % كَذَا الصِّفَاتُ فاحْفَظِ السَّمْعِيَّةْ",
+              "en": "The chosen view: His names are tawqīfiyya, fixed by revelation, and so are the attributes. Keep to what the texts say; do not invent a name for Allah."
+            },
+            {
+              "kind": "choose",
+              "id": "tawqif-q",
+              "ask": "Where do Allah's names come from, on the chosen view?",
+              "options": [
+                "Only from revelation, the Qur'an and Sunna",
+                "From whatever praise the mind finds fitting",
+                "From the consensus of poets"
+              ],
+              "answer": 0,
+              "source": "وَاخْتِيرَ أَنَّ اسْمَاهُ تَوقِيفِيَّةْ",
+              "why": "tawqīfiyya: stopped at what revelation gives."
+            },
+            {
+              "kind": "teach",
+              "id": "awwil",
+              "title": "A text that seems to liken Him",
+              "ar": "وَكُلُّ نَصٍ أَوْهَمَ التَّشْبِيهَا % أَوِّلْهُ أَوْ فَوِّضْ وَرُمْ تَنْزِيهَا",
+              "en": "A text whose outward sense suggests likeness (a hand, a face, settling): interpret it fittingly (taʾwīl) or entrust its meaning to Allah (tafwīḍ), keeping Him above likeness. Note: the Tuhfa calls tafwīḍ the salaf's way and taʾwīl the khalaf's; the Atharī school affirms such texts as they stand, 'without how'. Compared in the Map."
+            },
+            {
+              "kind": "choose",
+              "id": "awwil-q",
+              "ask": "What two ways does the poem give for a text that seems to liken Allah to creation?",
+              "options": [
+                "Interpret it fittingly, or entrust its meaning to Allah",
+                "Reject the text outright, or take it exactly as it sounds",
+                "Ignore the text altogether, or ask the poets what it means"
+              ],
+              "answer": 0,
+              "source": "أَوِّلْهُ أَوْ فَوِّضْ وَرُمْ تَنْزِيهَا",
+              "why": "awwilhu aw fawwiḍ: taʾwīl or tafwīḍ, both aiming at tanzīh."
+            },
+            {
+              "kind": "teach",
+              "id": "quran",
+              "title": "The Qur'an, Allah's speech, is not created",
+              "ar": "وَنَزّهِ الْقُرْآنَ أَيْ كَلاَمَهْ % عَنِ الحُدُوثِ وَاحْذَرِ انْتِقَامَهْ",
+              "en": "Declare the Qur'an, that is Allah's speech, free of having a beginning, and beware His retribution for saying otherwise. This is the eternal speech of the essence; the written letters and sounds are what we recite. Even so, the Tuhfa says not to call the Qur'an 'created' except when teaching this distinction."
+            },
+            {
+              "kind": "teach",
+              "id": "lafz",
+              "title": "A text that points to creation",
+              "ar": "وَكُلُّ نَصٍ لِلْحُدُوثِ دَلاَّ % اِحْمِلْ عَلَى اللَّفْظِ الَّذِي قَدْ دَلاَّ",
+              "en": "Any text that points to the Qur'an being created or coming to be ('We have sent it down') carry upon the wording (lafẓ): the recited words and letters, not the eternal speech."
+            },
+            {
+              "kind": "choose",
+              "id": "jaiz-q",
+              "ask": "Fill the gap.",
+              "ar": "وَجَائِزٌ فِي حقِّهِ مَا أَمْكَنَا % إِيجَادًا إعْدَامًا ____",
+              "options": [
+                "كَرَزْقِهِ الْغِنَا",
+                "كَخَلْقِهِ السَّمَا",
+                "كَرَحْمَةِ الْوَرَى"
+              ],
+              "answer": 0,
+              "source": "وَجَائِزٌ فِي حقِّهِ مَا أَمْكَنَا % إِيجَادًا إعْدَامًا كَرَزْقِهِ الْغِنَا",
+              "why": "ka-rizqihi l-ghinā: like His giving wealth, the poem's example of a possible act."
+            },
+            {
+              "kind": "teach",
+              "id": "jiha",
+              "title": "The opposites are impossible; being in a direction too",
+              "ar": "وَيَسْتَحِيلُ ضِدُّ ذِى الصِّفَات % فِي حَقِّهِ كالْكَوْن فِي الْجِهَاتِ",
+              "en": "The opposite of each of these attributes is impossible for Him, as is being in a direction (jiha): above, below, inside the world. Note: the Atharī school affirms Allah's being above His Throne, as the texts say, without likeness; the Ashʿarīs read 'above' as rank and dominion. Nothing is asked on it."
+            },
+            {
+              "kind": "teach",
+              "id": "jaiz",
+              "title": "What is possible for Him",
+              "ar": "وَجَائِزٌ فِي حقِّهِ مَا أَمْكَنَا % إِيجَادًا إعْدَامًا كَرَزْقِهِ الْغِنَا",
+              "en": "Possible (jāʾiz) for Him is everything that can be: bringing a thing to be or to nothing, like giving someone wealth. He is not obliged to any of it."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jaw-afal",
+      "title": "Allah's acts, the decree and seeing Him",
+      "arabic": "أفعال الله والقدر والرؤية",
+      "kitabs": [
+        "أفعال العباد والقدر"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "jaw-rusul",
+      "title": "The messengers, the Prophet, the Companions and the saints",
+      "arabic": "الرسل والنبي والصحابة والأولياء",
+      "kitabs": [
+        "إرسال الرسل وما يجب لهم",
+        "النبوة فضل لا كسب",
+        "فضل نبينا ﷺ ومعجزاته",
+        "الصحابة وفضلهم",
+        "الكرامات والدعاء والحفظة"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "jaw-akhira",
+      "title": "Death, the grave and the Last Day",
+      "arabic": "الموت والقبر واليوم الآخر",
+      "kitabs": [
+        "الموت والأرواح",
+        "القبر والبعث والحساب",
+        "اليوم الآخر",
+        "الحوض والشفاعة"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "jaw-furu",
+      "title": "Provision, sins, the five necessities, leadership and the closing",
+      "arabic": "مسائل متفرقة والخاتمة",
+      "kitabs": [
+        "الرزق والكسب",
+        "الموجود والمعدوم",
+        "الذنوب والتوبة",
+        "الكليات الخمس",
+        "الإمامة",
+        "آداب الطريق وآفات القلب",
+        "الخاتمة"
+      ],
+      "lessons": []
+    }
+  ]
+}

@@ -72,6 +72,8 @@ describe('nameOfPlace', () => {
   it('names the lists, and a narrator once his name is known', () => {
     expect(nameOfPlace('narrators', collections)).toBe('Narrators')
     expect(nameOfPlace('scholars', collections)).toBe('Scholars')
+    expect(nameOfPlace('terms', collections)).toBe('Terms')
+    expect(nameOfPlace('terms/3', collections)).toBe('Terms')
     expect(nameOfPlace('narrator/4396', collections)).toBe('A narrator')
     expect(nameOfPlace('narrator/4396', collections, (id) => (id === '4396' ? 'Abu Huraira' : null))).toBe('Abu Huraira')
   })

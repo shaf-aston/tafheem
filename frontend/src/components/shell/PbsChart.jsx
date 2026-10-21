@@ -15,7 +15,7 @@ import { layoutChart } from '../../lib/pbsLayout'
 
 const M_ = 18
 
-/** Button semantics only for a box that opens something deeper. */
+/** Button semantics only for a box that opens something: deeper (with a › hint) or, for a `leaf` (a branch's `leaf`, a kid's fourth item), a card without one. */
 const zoomable = (hasKids, go) => hasKids
   ? {
     role: 'button',
@@ -30,6 +30,7 @@ const Arrow = ({ x, y, fill }) => (
   <text x={x} y={y} fontSize="20" fontWeight="700" fill={fill} fillOpacity=".8" aria-hidden="true">›</text>
 )
 
+/** With onZoom the chart is a group of buttons, not one picture: role=img would hide them from assistive tech. */
 export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }) {
   const L = layoutChart(config)
 
@@ -37,7 +38,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }
     <svg
       viewBox={`0 0 ${L.width} ${L.height}`}
       className="block w-full h-auto"
-      role="img"
+      role={onZoom ? 'group' : 'img'}
       aria-label={config.root.en || config.root.ar}
     >
       <defs>
@@ -70,7 +71,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }
           <g
             key={i}
             className="pbs-rise"
-            style={{ '--d': `${120 + i * 70}ms`, opacity: active ? 1 : 0.18, transition: 'opacity calc(250ms * var(--motion-scale)) ease' }}
+            style={{ '--d': `calc(var(--motion-stagger-ms) * ${5 + i * 3} * 1ms)`, opacity: active ? 1 : 0.18, transition: 'opacity calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) ease' }}
           >
             <path d={stemPath} stroke="var(--border-hi)" strokeWidth="1.6" fill="none" markerEnd="url(#pbs-m-root)" />
             <g
@@ -86,7 +87,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }
               <text x={box.cx} y={box.subTextY} textAnchor="middle" fontSize="10" fill="var(--text)" fillOpacity=".9">
                 {b.en && `(${b.en})`}
               </text>
-              {b.hasKids && <Arrow x={box.x + 14} y={box.y + box.h / 2 + 6} fill="var(--text)" />}
+              {b.hasKids && !b.leaf && <Arrow x={box.x + 14} y={box.y + box.h / 2 + 6} fill="var(--text)" />}
             </g>
             {kids.length > 0 && <path d={spinePath} stroke={b.c.bar} strokeWidth="1.5" fill="none" />}
             {kids.map(({ kid: k, j, box: kbox, connectorPath }) => (
@@ -104,7 +105,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }
                   <text x={kbox.cx} y={kbox.subTextY} textAnchor="middle" fontSize="9.5" fill="var(--text)" fillOpacity=".7">
                     {k[1] && `(${k[1]})`}
                   </text>
-                  {k[2] && <Arrow x={kbox.x + 12} y={kbox.y + kbox.h / 2 + 5} fill="var(--text)" />}
+                  {k[2] && !k[3] && <Arrow x={kbox.x + 12} y={kbox.y + kbox.h / 2 + 5} fill="var(--text)" />}
                 </g>
               </g>
             ))}

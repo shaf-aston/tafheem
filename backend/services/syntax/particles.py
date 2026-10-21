@@ -14,7 +14,7 @@ from typing import Callable
 
 from backend.services.arabic_text import strip_diacritics
 from backend.services.harakat import (
-    PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, has_tanween, letters, own_letters, stilled, typed_case)
+    PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
 from backend.services.morphology import has_comparative
 from backend.services.nahw_book import (
     book_file, book_map, book_words, condition_of, family_cards, frames, is_mabni, is_one)
@@ -26,7 +26,7 @@ def _lemma(token: dict) -> str:
     إذن, which the time word إذا never takes (data: nasb_mudari `tanween_spells`)."""
     lemma = strip_diacritics(token["lemma"]).strip("+")
     spelled = book_map("nasb_mudari", "tanween_spells").get(lemma)
-    return spelled if spelled and has_tanween(token.get("typed") or "") else lemma
+    return spelled if spelled and facts.typed_tanween(token) else lemma
 
 
 def _word(token: dict, s: facts.Sentence) -> str:

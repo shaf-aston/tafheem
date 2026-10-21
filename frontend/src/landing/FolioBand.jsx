@@ -1,4 +1,4 @@
-import Reveal from './Reveal.jsx'
+import Reveal from '../components/ui/Reveal'
 import { quranFolio } from './assets/clips.js'
 
 // Full-bleed manuscript image with a scroll-linked parallax handled entirely

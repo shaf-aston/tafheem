@@ -54,7 +54,7 @@
   background: linear-gradient(180deg, color-mix(in srgb, var(--w) 16%, var(--surface)), var(--surface));
   transition: transform calc(var(--motion-instant-ms) * 1ms) ease, border-color calc(var(--motion-instant-ms) * 1ms) ease;
 }
-.grow-world-tile:not(:disabled):hover { transform: translateY(-2px); border-color: var(--w); }
+.grow-world-tile:not(:disabled):hover { border-color: var(--w); }
 .grow-world-tile:disabled { opacity: 0.55; cursor: default; border-style: dashed; }
 .grow-tile-ar { color: var(--w); font-size: 2rem; line-height: 1.2; }
 .grow-tile-name { font-size: var(--type-body); font-weight: 800; color: var(--text); }
@@ -221,14 +221,14 @@
 .grow-path-row[data-s='now'] .grow-path-star::after {
   content: ''; position: absolute; inset: 0; z-index: -1; background: var(--w);
   clip-path: polygon(50% 0, 64.6% 14.6%, 85.4% 14.6%, 85.4% 35.4%, 100% 50%, 85.4% 64.6%, 85.4% 85.4%, 64.6% 85.4%, 50% 100%, 35.4% 85.4%, 14.6% 85.4%, 14.6% 64.6%, 0 50%, 14.6% 35.4%, 14.6% 14.6%, 35.4% 14.6%);
-  animation: grow-ring calc(var(--motion-spring-ms) * 4ms) ease-out infinite;
+  animation: grow-ring calc(var(--motion-loop-ms) * 1ms) ease-out infinite;
 }
 @keyframes grow-ring { from { transform: scale(1); opacity: 0.45; } to { transform: scale(1.45); opacity: 0; } }
 .grow-path-bubble {
   position: absolute; bottom: calc(100% + 10px); left: 50%; translate: -50% 0; z-index: 1; white-space: nowrap;
   padding: 4px 12px; border-radius: var(--radius-md); background: var(--surface); color: var(--w); border: 2px solid color-mix(in srgb, var(--w) 45%, var(--border));
   font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;
-  animation: grow-bob calc(var(--motion-spring-ms) * 3ms) ease-in-out infinite;
+  animation: grow-bob calc(var(--motion-loop-ms) * 0.75 * 1ms) ease-in-out infinite;
 }
 @keyframes grow-bob { 50% { transform: translateY(-4px); } }
 .grow-path-label { display: grid; gap: 2px; min-width: 0; }
@@ -267,7 +267,7 @@
 }
 .grow-medal i {
   position: absolute; left: 50%; top: 50%; width: 9px; height: 18px; margin: -9px 0 0 -4.5px; border-radius: 3px; background: var(--tone);
-  transform: rotate(var(--a)) translateY(-58px); animation: grow-burst calc(var(--motion-spring-ms) * 2ms) var(--motion-spring-ease) backwards;
+  transform: rotate(var(--a)) translateY(-58px); animation: grow-burst calc(var(--motion-spring-ms) * 2 * 1ms) var(--motion-spring-ease) backwards;
 }
 @keyframes grow-burst {
   0% { transform: rotate(var(--a)) translateY(0) scale(0.2); opacity: 0; }

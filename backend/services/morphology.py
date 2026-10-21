@@ -611,10 +611,20 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the verb reads the typed vowels at least as well, or the reading kept contradicts them (ظُلْمُكَ for ظَلَمَكَ)
             if said is not None and (here is None or said >= here):
                 out[i] = verb
+    # الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ: after a noun opening the sentence in raf', a word that is either
+    # أَفْعَلُ "I do" or the elative is that noun's khabar, and a verb khabar needs a pronoun back to
+    # its مبتدأ (رابط جملة الخبر, Ibn Aqil on the Alfiyya); "I" with nothing on it has none
+    if len(out) > 1 and out[0].get("pos", "").startswith("noun") and typed_case(tokens[0]) == "u" \
+            and out[1].get("pos") == "verb" and out[1].get("per") == "1" and out[1].get("enc0") in ("0", "na", None) \
+            and (elative := noun_reader.reading_of(steps[1][0])):
+        out[1] = elative
     # مَنْ جَدَّ وَجَدَ: a مضاف needs its مضاف إليه straight after it, so a bare construct noun
     # before a و, a preposition or nothing is not the word typed (here the verb جَدَّ)
+    # لَا رَيْبَ فِيهِ: after لا النافية للجنس the noun's missing tanween is لا's building on fatha
+    # (closed_words la_jins, Tasheel 3.7.3 p69), not a مضاف waiting for its مضاف إليه
     for i, reading in enumerate(out):
-        if _bare_construct(reading) and not _takes_mudaf_ilayh(out[i + 1] if i + 1 < len(out) else {}):
+        after_la = i > 0 and is_one(bare_letters(out[i - 1].get("diac", "")), "la_jins")
+        if _bare_construct(reading) and not after_la and not _takes_mudaf_ilayh(*((out[i + 1], tokens[i + 1]) if i + 1 < len(out) else ({}, ""))):
             word, ranked = steps[i]
             # the word's whole list too (أَكْبَرُ's own indefinite reading may be ranked out), never a guessed name
             out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
@@ -637,9 +647,11 @@ def _bare_construct(reading: dict) -> bool:
     return reading.get("pos") in ("noun", "adj") and reading.get("stt") == "c" and reading.get("enc0") in ("0", "na", None)
 
 
-def _takes_mudaf_ilayh(after: dict) -> bool:
-    """The next word can be a مضاف إليه: a noun or pronoun with no و, ف or preposition on it."""
-    return after.get("pos", "").startswith(("noun", "adj", "pron", "abbrev", "digit")) and all(
+def _takes_mudaf_ilayh(after: dict, typed: str = "") -> bool:
+    """The next word can be a مضاف إليه: a noun or pronoun with no و, ف or preposition on it,
+    not typed with a damma. A مضاف إليه is مجرور (Alfiyya: وَالثَّانِيَ اجْرُرْ), and no جرّ is a
+    damma (a diptote's is a fatha), so بَرَدَ before الْجَوُّ is the verb, not "the hail of"."""
+    return typed_case(typed) != "u" and after.get("pos", "").startswith(("noun", "adj", "pron", "abbrev", "digit")) and all(
         after.get(prc, "0") in ("0", "na") for prc in ("prc1", "prc2", "prc3"))
 
 

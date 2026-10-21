@@ -127,6 +127,16 @@ def is_passive(token: dict) -> bool:
     return typed_passive(typed, present, token.get("stuck_on", 0))
 
 
+def typed_tanween(token: dict) -> bool:
+    """The reader typed tanween on the word: it is complete, nothing is added to it."""
+    return has_tanween(token.get("typed") or "")
+
+
+def has_added(token: dict, tokens: list[dict]) -> bool:
+    """A word hangs on it as its مضاف إليه: it is a مضاف."""
+    return any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
+
+
 def typed_case_of(token: dict) -> str | None:
     """The case the reader typed on the word: its last vowel, or for one of the six nouns
     as a مضاف the long letter standing for it (أَخُوْ، أَخَا، أَخِيْ زَيْدٍ; أَبَاهُ)."""
@@ -275,7 +285,7 @@ def is_participle(token: dict) -> bool:
     A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا."""
     typed = bare_letters(token.get("typed") or "")
     return (token.get("ud") == "ADJ" or token.get("pos_camel") == "adj"
-            or token.get("pattern", "").removeprefix("ال").startswith(tuple(book_words("participle_patterns")))
+            or measure(token.get("pattern", "")).startswith(tuple(book_words("participle_patterns")))
             or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
@@ -294,15 +304,18 @@ def works_as_verb(token: dict) -> str | None:
     if is_verb(token):
         return "passive" if is_passive(token) else "active"
     if is_participle(token):
-        return "passive" if token.get("pattern", "").removeprefix("ال").startswith(PASSIVE_PARTICIPLE) else "active"
+        return "passive" if measure(token.get("pattern", "")).startswith(PASSIVE_PARTICIPLE) else "active"
     return None
 
 
 def measure(pattern: str) -> str:
     """The analyser's pattern laid back on its measure: a doubled root writes its last two
     radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
-    in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3)."""
+    in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3), a last radical hamza keeps its seat in place of the 3
+    (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3)."""
     pattern = pattern.removeprefix("ال")
+    if "3" not in pattern and "2" in pattern:
+        pattern = re.sub(r"(?<=2)([\u064b-\u0652]*[اوي]?)[ءأإئؤ]", r"\g<1>3", pattern, count=1)
     if "3" not in pattern and "2" + SHADDA in pattern:
         return pattern.replace("2" + SHADDA, "2" + SUKUN + "3", 1)
     if "2" not in pattern:  # قِيَام 1ِيا3: the weak letter stands as the 2, and the alef after it implies its fatha
@@ -335,5 +348,5 @@ def listed(token: dict, family: str, part: str = "words") -> bool:
     tanween alef: the list holds صباحا and كوب, while the parser lemmatises the first
     to صباح and may misread the second (كُوبًا as كوان)."""
     form = strip_diacritics(token["form"])
-    bare = form[:-1] if form.endswith("ا") and has_tanween(token.get("typed") or "") else form
+    bare = form[:-1] if form.endswith("ا") and typed_tanween(token) else form
     return any(is_one(spelling, family, part) for spelling in (token["lemma"], form, bare))

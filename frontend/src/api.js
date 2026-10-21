@@ -246,6 +246,8 @@ export const usulTermQuery = (kind) => ({
   queryKey: ['usul-term', kind],
   queryFn: ({ pageParam }) => api.get(`/usul/terms/${kind}`, { params: { offset: pageParam } }).then((r) => r.data),
   initialPageParam: 0,
+  // A 404 is an index not built: it stays so, so it is not retried.
+  retry: (count, error) => error?.response?.status !== 404 && count < 1,
   getNextPageParam: (last, pages) => {
     const seen = pages.reduce((n, p) => n + p.items.length, 0)
     return last.items.length && seen < last.total ? seen : undefined

@@ -36,15 +36,15 @@
    around it, and hovering the button should be enough. A working state owns the
    mark, so idle is the only one that pulses on hover. */
 .mic-host:hover .mic-mark[data-state='idle'] .mic-grille line {
-  animation: mic-grille-pulse calc(var(--mic-hover-pulse-ms) * 1ms * var(--motion-scale)) ease-in-out 350ms infinite;
+  animation: mic-grille-pulse calc(var(--mic-hover-pulse-ms) * 1ms * var(--motion-scale)) ease-in-out calc(var(--motion-spring-ms) * 1ms) infinite;
 }
 
 .mic-host:hover .mic-mark[data-state='idle'] .mic-grille line:nth-child(2) {
-  animation-delay: calc(350ms + var(--mic-hover-pulse-ms) * 1ms * 0.17);
+  animation-delay: calc(var(--motion-spring-ms) * 1ms + var(--mic-hover-pulse-ms) * 1ms * 0.17);
 }
 
 .mic-host:hover .mic-mark[data-state='idle'] .mic-grille line:nth-child(3) {
-  animation-delay: calc(350ms + var(--mic-hover-pulse-ms) * 1ms * 0.34);
+  animation-delay: calc(var(--motion-spring-ms) * 1ms + var(--mic-hover-pulse-ms) * 1ms * 0.34);
 }
 
 /* The grille slits pulse out of step, a small level meter hearing a voice. */
@@ -78,7 +78,7 @@
 }
 
 .mic-ring {
-  animation: mic-ring calc(1600ms * var(--motion-scale)) ease-out infinite;
+  animation: mic-ring calc(var(--motion-loop-ms) * 1ms * var(--motion-scale)) ease-out infinite;
 }
 
 @keyframes mic-ring {

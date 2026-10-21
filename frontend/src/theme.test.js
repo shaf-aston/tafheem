@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 
 import theme from './theme.json'
 import { THEME_NAMES, colorAt, colorFor, resolveTheme, themeChoices, tokenGroups } from './theme'
-import { contrast, oklch } from './lib/tone'
+import { apca, contrast, oklch } from './lib/tone'
 
 const SRC = fileURLToPath(new URL('.', import.meta.url))
 const HEX = /^#[0-9a-f]{6}$/i
@@ -179,6 +179,16 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
     expect(dazzling.map(([where]) => where)).toEqual([])
   })
 
+  // WCAG's ratio can pass while APCA calls the text faint, so secondary text
+  // also holds a Lc floor on every ground, and body text a high one.
+  it('keeps text-dim over the comfort floor and text strong, in APCA Lc', () => {
+    const { 'dim-min-lc': floor } = theme.themes.comfort[looks[name].scheme]
+    for (const [where, ground] of Object.entries(washGrounds)) {
+      expect(Math.abs(apca(color['text-dim'], ground)), `text-dim on ${where}`).toBeGreaterThanOrEqual(floor)
+      expect(Math.abs(apca(color.text, ground)), `text on ${where}`).toBeGreaterThanOrEqual(75)
+    }
+  })
+
   it('outlines a control and writes on a filled accent so both can be seen', () => {
     const faint = Object.entries(grounds).filter(([, ground]) => contrast(color['border-hi'], ground) < 3)
     expect(faint.map(([where]) => where), 'border-hi under 3:1').toEqual([])
@@ -231,5 +241,28 @@ describe('colour literals outside theme.json', () => {
       .filter(([file, count]) => (found[file] ?? 0) < count)
       .map(([file, count]) => `${file}: ${found[file] ?? 0} lines, ${count} allowed`)
     expect(slack).toEqual([])
+  })
+})
+
+// The soft vocabulary (styles/motion.css .reveal .e1-.e3 .tilt, the grain film
+// in shell/Backdrop.jsx): its knobs exist in every look and stay gentle.
+describe.each(THEME_NAMES)('soft motion tokens in the %s look', (name) => {
+  const groups = Object.fromEntries(tokenGroups(name).map(([group, pairs]) => [group, Object.fromEntries(pairs)]))
+
+  it('has three elevations, each ending in the inner highlight', () => {
+    for (const rung of ['e1', 'e2', 'e3']) {
+      expect(groups.shadow[rung], rung).toMatch(/inset 0 1px 0 var\(--shadow-edge\)$/)
+    }
+    expect(groups.shadow.edge).toMatch(/^color-mix\(in srgb, var\(--[\w-]+\) \d+%, transparent\)$/)
+  })
+
+  it('keeps the grain film at or under 5% alpha', () => {
+    expect(Number(groups.glass.grain)).toBeGreaterThanOrEqual(0)
+    expect(Number(groups.glass.grain)).toBeLessThanOrEqual(0.05)
+  })
+
+  it('caps the reveal stagger and the tilt', () => {
+    expect(Number(groups.motion['reveal-cap'])).toBe(6)
+    expect(Number(groups.motion['tilt-max-deg'])).toBeLessThanOrEqual(3)
   })
 })

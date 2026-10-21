@@ -14,6 +14,7 @@
  *   dawah   speech bubble, star     colloq  two speech bubbles
  *   kit     toolbox                 home    an open arch, a crescent over it
  *   similar two pages, one line apart
+ *   jawhara  a cut jewel, one spark     wasitiyya  a line held between two bars
  */
 const ink = { fill: 'none', stroke: 'currentColor', strokeLinecap: 'round', strokeLinejoin: 'round' }
 
@@ -45,6 +46,21 @@ const ART = {
       <path className="em-star" d="M32 26l2.6 4.6 5.2.6-3.8 3.6 1 5.2L32 37.4l-5 2.6 1-5.2-3.8-3.6 5.2-.6z" fill="currentColor" />
       <path d="M24 56h16" {...ink} strokeWidth="3" />
       <path className="em-flicker" d="M32 54c-2-2 0-4 0-6 2 2 2 4 0 6z" fill="currentColor" opacity=".6" />
+    </>
+  ),
+  jawhara: (
+    <>
+      <path d="M18 24l6-10h16l6 10-14 28z" {...ink} strokeWidth="2.4" />
+      <path d="M18 24h28M24 14l8 38 8-38M28 24l4-10 4 10" {...ink} strokeWidth="1.6" />
+      <path className="em-star" d="M50 8l1.6 3.4 3.4 1.6-3.4 1.6L50 18l-1.6-3.4L45 13l3.4-1.6z" fill="currentColor" />
+    </>
+  ),
+  wasitiyya: (
+    <>
+      <path d="M14 12h36M14 52h36" {...ink} strokeWidth="3" />
+      <path d="M20 12v40M44 12v40" {...ink} strokeWidth="2" opacity=".5" />
+      <path className="em-flicker" d="M32 18v28" {...ink} strokeWidth="3.4" />
+      <circle cx="32" cy="32" r="4" fill="currentColor" />
     </>
   ),
   quran: (

@@ -19,13 +19,32 @@
   "fetch_timeout_seconds": 120,
   "gap_print": 15,
   "levels_source": "taqrib",
-  "verify": { "elision": "...", "gap": 600, "strip": "\\[[^\\]\\n]*\\d[^\\]\\n]*\\]" },
+  "verify": {
+    "elision": "...",
+    "gap": 600,
+    "strip": "\\[[^\\]\\n]*\\d[^\\]\\n]*\\]"
+  },
   "join": {
-    "name_words": 3, "nisba_window": 12, "bound": ["عبد", "أبو", "أم"],
+    "name_words": 3,
+    "nisba_window": 12,
+    "bound": [
+      "عبد",
+      "أبو",
+      "أم"
+    ],
     "books": {
-      "tarif": { "by": "written", "repeats": false },
-      "jami": { "by": "opened", "repeats": true },
-      "mukhtalitin": { "by": "headed", "repeats": true }
+      "tarif": {
+        "by": "written",
+        "repeats": false
+      },
+      "jami": {
+        "by": "opened",
+        "repeats": true
+      },
+      "mukhtalitin": {
+        "by": "headed",
+        "repeats": true
+      }
     }
   },
   "books": {
@@ -36,11 +55,15 @@
     },
     "tarif": {
       "path": "0875AH/master/data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.TacrifAhlTaqdis/0852IbnHajarCasqalani.TacrifAhlTaqdis.Shamela0001186BK1-ara1",
-      "entry": "^# \\((?P<n>[1-9]\\d*)\\) ?(?P<text>.*)$", "end": "^# \\(0\\)", "inline": "\\((?P<n>[1-9]\\d*)\\)"
+      "entry": "^# \\((?P<n>[1-9]\\d*)\\) ?(?P<text>.*)$",
+      "end": "^# \\(0\\)",
+      "inline": "\\((?P<n>[1-9]\\d*)\\)"
     },
     "jami": {
       "path": "0775AH/master/data/0761IbnKaykaldiCalai/0761IbnKaykaldiCalai.JamicTahsil/0761IbnKaykaldiCalai.JamicTahsil.Shamela0025864-ara1.completed",
-      "entry": "^### \\$ (?P<n>\\d+)(?: ms\\d+)? ?-", "in_heading": "الباب السادس", "stop": "هذا آخر ما يسر الله"
+      "entry": "^### \\$ (?P<n>\\d+)(?: ms\\d+)? ?-",
+      "in_heading": "الباب السادس",
+      "stop": "هذا آخر ما يسر الله"
     },
     "mukhtalitin": {
       "path": "0775AH/master/data/0761IbnKaykaldiCalai/0761IbnKaykaldiCalai.Mukhtalitin/0761IbnKaykaldiCalai.Mukhtalitin.Shamela0025846-ara1.completed",
@@ -48,15 +71,22 @@
     },
     "shahin": {
       "path": "0400AH/master/data/0385IbnShahin/0385IbnShahin.NasikhHadithWaMansukhuh/0385IbnShahin.NasikhHadithWaMansukhuh.Shamela0013184-ara1",
-      "entry": "^### \\| (?P<n>\\d+)(?: ms\\d+)? ?-\\s*$", "skip": "^### \\| \\[ص: ?(?:ms\\d+ )?\\d+\\]", "end": "^# باب "
+      "entry": "^### \\| (?P<n>\\d+)(?: ms\\d+)? ?-\\s*$",
+      "skip": "^### \\| \\[ص: ?(?:ms\\d+ )?\\d+\\]",
+      "end": "^# باب "
     },
     "ilal_ah": {
       "path": "0350AH/master/data/0327IbnAbiHatimRazi/0327IbnAbiHatimRazi.CilalHadith/0327IbnAbiHatimRazi.CilalHadith.Shamela0001350-ara1",
-      "entry": "^### \\| (?P<n>\\d+)(?: ms\\d+)? ?-\\s*$", "skip": "^### \\| \\.*\\s*$", "end": "^# \\d+/[أ-ي]-", "from_heading": "بيان علل", "stop": "آخر \"كتاب العلل\""
+      "entry": "^### \\| (?P<n>\\d+)(?: ms\\d+)? ?-\\s*$",
+      "skip": "^### \\| \\.*\\s*$",
+      "end": "^# \\d+/[أ-ي]-",
+      "from_heading": "بيان علل",
+      "stop": "آخر \"كتاب العلل\""
     },
     "mawduat": {
       "path": "0600AH/master/data/0597IbnJawzi/0597IbnJawzi.Mawducat/0597IbnJawzi.Mawducat.Shamela0000882-ara1",
-      "entry": "^# (?P<text>باب(?: .*)?)$", "stop": "آخر كتاب الموضوعات"
+      "entry": "^# (?P<text>باب(?: .*)?)$",
+      "stop": "آخر كتاب الموضوعات"
     },
     "nuzha": {
       "path": "0875AH/master/data/0852IbnHajarCasqalani/0852IbnHajarCasqalani.NuzhatNazar/0852IbnHajarCasqalani.NuzhatNazar.Shamela0012115-ara1"
@@ -69,86 +99,235 @@
     }
   },
   "taqrib": {
-    "generations": ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة", "السادسة", "السابعة", "الثامنة", "التاسعة", "العاشرة", "الحادية عشرة", "الثانية عشرة"],
+    "generations": [
+      "الأولى",
+      "الثانية",
+      "الثالثة",
+      "الرابعة",
+      "الخامسة",
+      "السادسة",
+      "السابعة",
+      "الثامنة",
+      "التاسعة",
+      "العاشرة",
+      "الحادية عشرة",
+      "الثانية عشرة"
+    ],
     "death": {
-      "doubt": ["أو", "وقيل", "ويقال", "قيل", "يقال"],
-      "bands": [{ "from": 1, "to": 2, "add": 0 }, { "from": 3, "to": 4, "add": null }, { "from": 5, "to": 8, "add": 100 }, { "from": 9, "to": 12, "add": 200 }],
+      "doubt": [
+        "أو",
+        "وقيل",
+        "ويقال",
+        "قيل",
+        "يقال"
+      ],
+      "bands": [
+        {
+          "from": 1,
+          "to": 2,
+          "add": 0
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "add": null
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "add": 100
+        },
+        {
+          "from": 9,
+          "to": 12,
+          "add": 200
+        }
+      ],
       "bands_say": "A year written without its hundreds takes the hundreds of his generation from the preface. Generations 3 and 4 are left out: the third and fourth hold men who died before the 100th year as well as after it (of 42 checked against sunnah.com's years, 12 read as written and 28 take the hundred), so their year is not read.",
       "book": "taqrib",
       "quote": "وذكرت وفاة من عرفت سنة وفاته منهم، فإن كان من الأولى والثانية: فهم قبل المائة، وإن كان من الثالثة إلى آخر الثامنة: فهم بعد المائة، وإن كان من التاسعة إلى آخر الطبقات: فهم بعد المائتين، ومن ندر عن ذلك بينته",
       "page": "PageV01P075",
-      "numbers": { "unit": {"1": "واحد احد احدى واحدة", "2": "اثنين اثنتين اثنان اثنتان اثنا اثنتا اثني اثنتي ثنتين ثنتان ثنتي", "3": "ثلاث ثلاثة", "4": "أربع أربعة", "5": "خمس خمسة", "6": "ست ستة", "7": "سبع سبعة", "8": "ثمان ثماني ثمانية", "9": "تسع تسعة"}, "ten": {"10": "عشر عشرة"}, "tens": {"20": "عشرين عشرون", "30": "ثلاثين ثلاثون", "40": "أربعين أربعون", "50": "خمسين خمسون", "60": "ستين ستون", "70": "سبعين سبعون", "80": "ثمانين ثمانون", "90": "تسعين تسعون"}, "hundred": {"100": "مائة مئة", "200": "مائتين مائتان مئتين مئتان", "300": "ثلاثمائة", "400": "أربعمائة", "500": "خمسمائة", "600": "ستمائة", "700": "سبعمائة", "800": "ثمانمائة", "900": "تسعمائة"} }
+      "numbers": {
+        "unit": {
+          "1": "واحد احد احدى واحدة",
+          "2": "اثنين اثنتين اثنان اثنتان اثنا اثنتا اثني اثنتي ثنتين ثنتان ثنتي",
+          "3": "ثلاث ثلاثة",
+          "4": "أربع أربعة",
+          "5": "خمس خمسة",
+          "6": "ست ستة",
+          "7": "سبع سبعة",
+          "8": "ثمان ثماني ثمانية",
+          "9": "تسع تسعة"
+        },
+        "ten": {
+          "10": "عشر عشرة"
+        },
+        "tens": {
+          "20": "عشرين عشرون",
+          "30": "ثلاثين ثلاثون",
+          "40": "أربعين أربعون",
+          "50": "خمسين خمسون",
+          "60": "ستين ستون",
+          "70": "سبعين سبعون",
+          "80": "ثمانين ثمانون",
+          "90": "تسعين تسعون"
+        },
+        "hundred": {
+          "100": "مائة مئة",
+          "200": "مائتين مائتان مئتين مئتان",
+          "300": "ثلاثمائة",
+          "400": "أربعمائة",
+          "500": "خمسمائة",
+          "600": "ستمائة",
+          "700": "سبعمائة",
+          "800": "ثمانمائة",
+          "900": "تسعمائة"
+        }
+      }
     }
   },
   "tarif": {
-    "levels": ["الاولى", "الثانية", "الثالثة", "الرابعة", "الخامسة"],
-    "marks": ["ع", "4", "خ", "خت", "بخ", "عخ", "ر", "ي", "م", "د", "مد", "صد", "خد", "قد", "ف", "ل", "كد", "ت", "تم", "س", "عس", "كن", "ق", "فق", "ه", "ز", "ح", "ن", "مقرونا"]
+    "levels": [
+      "الاولى",
+      "الثانية",
+      "الثالثة",
+      "الرابعة",
+      "الخامسة"
+    ],
+    "marks": [
+      "ع",
+      "4",
+      "خ",
+      "خت",
+      "بخ",
+      "عخ",
+      "ر",
+      "ي",
+      "م",
+      "د",
+      "مد",
+      "صد",
+      "خد",
+      "قد",
+      "ف",
+      "ل",
+      "كد",
+      "ت",
+      "تم",
+      "س",
+      "عس",
+      "كن",
+      "ق",
+      "فق",
+      "ه",
+      "ز",
+      "ح",
+      "ن",
+      "مقرونا"
+    ]
   },
   "tadlis": {
     "levels": {
       "1": {
-        "notes": false, "say": "Level 1 of 5 in tadlis: he is hardly ever described as doing it.",
+        "notes": false,
+        "say": "Level 1 of 5 in tadlis: he is hardly ever described as doing it.",
         "quote": "من لم يوصف بذلك الا نادرا كيحيى بن سعيد الانصاري",
-        "book": "tarif", "page": "PageV01P013"
+        "book": "tarif",
+        "page": "PageV01P013"
       },
       "2": {
-        "notes": false, "say": "Level 2 of 5 in tadlis: the imams put up with it and took his hadith into the Sahih.",
+        "notes": false,
+        "say": "Level 2 of 5 in tadlis: the imams put up with it and took his hadith into the Sahih.",
         "quote": "من احتمل الائمة تدليسه وأخرجوا له في الصحيح لامامته وقلة تدليسه في جنب ما روى كالثوري أو كان لا يدلس الا عن ثقة كإبن عيينة",
-        "book": "tarif", "page": "PageV01P013"
+        "book": "tarif",
+        "page": "PageV01P013"
       },
       "3": {
-        "notes": true, "say": "Level 3 of 5 in tadlis: the imams took his hadith only where he states hearing.",
+        "notes": true,
+        "say": "Level 3 of 5 in tadlis: the imams took his hadith only where he states hearing.",
         "quote": "من أكثر من التدليس فلم يحتج الائمة من أحاديثهم الا بما صرحوا فيه بالسماع ومنهم من رد حديثهم مطلقا ومنهم من قبلهم",
-        "book": "tarif", "page": "PageV01P013"
+        "book": "tarif",
+        "page": "PageV01P013"
       },
       "4": {
-        "notes": true, "say": "Level 4 of 5 in tadlis: agreed that none of his hadith is used unless he states hearing.",
+        "notes": true,
+        "say": "Level 4 of 5 in tadlis: agreed that none of his hadith is used unless he states hearing.",
         "quote": "اتفق على أنه لا يحتج بشئ من حديثهم الا بما صرحوا فيه بالسماع",
-        "book": "tarif", "page": "PageV01P014"
+        "book": "tarif",
+        "page": "PageV01P014"
       },
       "5": {
-        "notes": false, "say": "Level 5 of 5 in tadlis: weak for another reason, so his hadith is rejected even where he states hearing.",
+        "notes": false,
+        "say": "Level 5 of 5 in tadlis: weak for another reason, so his hadith is rejected even where he states hearing.",
         "quote": "من ضعف بأمر آخر سوى التدليس فحديثهم مردود ولو صرحوا بالسماع الا أن يوثق من كان ضعفه يسيرا كابن لهيعة",
-        "book": "tarif", "page": "PageV01P014"
+        "book": "tarif",
+        "page": "PageV01P014"
       }
     },
-    "ways": { "عن": "tadlis", "قال": "tadlis", "أن": "tadlis_unclear" },
+    "ways": {
+      "عن": "tadlis",
+      "قال": "tadlis",
+      "أن": "tadlis_unclear"
+    },
     "kinds": {
       "tadlis": {
-        "label": "Possible tadlis", "say": "This link does not state hearing, and Ibn al-Salah gives it the ruling of a mursal.",
+        "label": "Possible tadlis",
+        "say": "This link does not state hearing, and Ibn al-Salah gives it the ruling of a mursal.",
         "quote": "وأن ما رواه المدلس بلفظ محتمل لم يبين فيه السماع والاتصال، حكمه حكم المرسل وأنواعه",
-        "book": "salah", "page": "PageV01P235"
+        "book": "salah",
+        "page": "PageV01P235"
       },
       "tadlis_unclear": {
-        "label": "Tadlis, unclear", "say": "This link says anna (that). Scholars differ on whether that counts like an (from).",
+        "label": "Tadlis, unclear",
+        "say": "This link says anna (that). Scholars differ on whether that counts like an (from).",
         "quote": "اختلفوا في قول الراوي: أن فلانا قال كذا وكذا؛ هل هو بمنزلة عن في الحمل على الاتصال إذا ثبت التلاقي بينهما، حتى يتبين فيه الانقطاع؟ ... فروينا عن مالك رضي الله عنه أنه كان يرى عن فلان و أن فلانا سواء. وعن أحمد بن حنبل رضي الله عنه أنهما ليسا سواء",
-        "book": "salah", "page": "PageV01P220-221"
+        "book": "salah",
+        "page": "PageV01P220-221"
       }
     },
     "skip": {
-      "collections": ["bukhari", "muslim"],
+      "collections": [
+        "bukhari",
+        "muslim"
+      ],
       "say": "In the two Sahihs the scholars take hearing as established from another route, so no note is made there.",
       "quote": "وما كان في الصحيحين وشبههما عن المدلسين بعن محمول على ثبوت السماع من جهة أخرى",
-      "book": "nawawi", "page": "PageV01P039"
+      "book": "nawawi",
+      "page": "PageV01P039"
     },
     "unless": [
       {
-        "tellers": ["سليمان بن مهران الأعمش الكوفي", "عمرو بن عبد الله بن عبيد السبيعي", "قتادة بن دعامة السدوسي"],
-        "via": "شعبة بن الحجاج العتكي", "teacher": null,
+        "tellers": [
+          "سليمان بن مهران الأعمش الكوفي",
+          "عمرو بن عبد الله بن عبيد السبيعي",
+          "قتادة بن دعامة السدوسي"
+        ],
+        "via": "شعبة بن الحجاج العتكي",
+        "teacher": null,
         "say": "Shu'ba stands below him in this strand: his hadith through Shu'ba shows hearing even when worded عن.",
         "quote": "فهذه قاعدة جيدة في أحاديث هؤلاء الثلاثة أنها إذا جاءت من طريق شعبة دلت على السماع ولو كانت معنعنة",
-        "book": "tarif", "page": "PageV01P059"
+        "book": "tarif",
+        "page": "PageV01P059"
       },
       {
-        "tellers": ["محمد بن مسلم بن تدرس المكي"],
-        "via": "الليث بن سعد الفهمي", "teacher": "جابر بن عبد الله الأنصاري",
+        "tellers": [
+          "محمد بن مسلم بن تدرس المكي"
+        ],
+        "via": "الليث بن سعد الفهمي",
+        "teacher": "جابر بن عبد الله الأنصاري",
         "say": "al-Layth stands below him, and what he took from Jabir through al-Layth is what he heard from Jabir.",
         "quote": "ونظيره ثنا الليث عن أبي الزبير عن جابر فإنه لم يسمع منه الا مسموعة من جابر",
-        "book": "tarif", "page": "PageV01P059"
+        "book": "tarif",
+        "page": "PageV01P059"
       }
     ]
   },
-  "fact_groups": ["reliability", "habits", "life", "books"],
+  "fact_groups": [
+    "reliability",
+    "habits",
+    "life",
+    "books"
+  ],
   "facts": {
     "level": "Level {value} of 12, {en}",
     "generation": "Generation {value} of 12",
@@ -165,61 +344,229 @@
   },
   "jami": {
     "statements": [
-      { "kind": "not_heard", "words": "لم يسمع من" },
-      { "kind": "not_reached", "words": "لم يدرك" },
-      { "kind": "not_met", "words": "لم يلق" }
+      {
+        "kind": "not_heard",
+        "words": "لم يسمع من"
+      },
+      {
+        "kind": "not_reached",
+        "words": "لم يدرك"
+      },
+      {
+        "kind": "not_met",
+        "words": "لم يلق"
+      }
     ],
-    "mursal": { "from": "عن", "word": "مرسل", "between": 4 },
+    "mursal": {
+      "from": "عن",
+      "word": "مرسل",
+      "between": 4
+    },
     "name_words_max": 8,
-    "lone": ["أبو", "بن", "أم"],
-    "scholar": { "says": ["قال", "قالا", "قالوا"], "before_max": 6, "after": ["قاله"], "after_max": 4, "after_stop": ["في", "وفي"] },
-    "qualified": ["إلا", "الا"],
+    "lone": [
+      "أبو",
+      "بن",
+      "أم"
+    ],
+    "scholar": {
+      "says": [
+        "قال",
+        "قالا",
+        "قالوا"
+      ],
+      "before_max": 6,
+      "after": [
+        "قاله"
+      ],
+      "after_max": 4,
+      "after_stop": [
+        "في",
+        "وفي"
+      ]
+    },
+    "qualified": [
+      "إلا",
+      "الا"
+    ],
     "kinds": {
-      "not_heard": { "label": "Possible break", "say": "A scholar says he did not hear from this teacher." },
-      "not_reached": { "label": "Possible break", "say": "A scholar says he did not reach this teacher." },
-      "not_met": { "label": "Possible break", "say": "A scholar says he did not meet this teacher." },
-      "mursal": { "label": "Possible break", "say": "A scholar calls his hadith from this teacher mursal." }
+      "not_heard": {
+        "label": "Possible break",
+        "say": "A scholar says he did not hear from this teacher."
+      },
+      "not_reached": {
+        "label": "Possible break",
+        "say": "A scholar says he did not reach this teacher."
+      },
+      "not_met": {
+        "label": "Possible break",
+        "say": "A scholar says he did not meet this teacher."
+      },
+      "mursal": {
+        "label": "Possible break",
+        "say": "A scholar calls his hadith from this teacher mursal."
+      }
     },
     "book": "jami"
   },
   "levels": [
-    { "level": 1, "ar": "الصحابة", "en": "Companion", "kind": "praise", "terms": ["الصحابة", "صحابي", "صحابية"] },
-    { "level": 2, "ar": "ثقة ثقة", "en": "Most reliable", "kind": "praise", "terms": ["أوثق الناس", "ثقة ثقة", "ثقة حافظ"] },
-    { "level": 3, "ar": "ثقة", "en": "Reliable", "kind": "praise", "terms": ["ثقة", "متقن", "ثبت", "عدل"] },
-    { "level": 4, "ar": "صدوق", "en": "Truthful", "kind": "praise", "terms": ["صدوق", "لا بأس به", "ليس به بأس"] },
     {
-      "level": 5, "ar": "صدوق سيء الحفظ", "en": "Truthful, with a fault", "kind": "memory", "under": 4,
-      "terms": ["صدوق سيء الحفظ", "صدوق يهم", "له أوهام", "يخطىء", "تغير بأخرة", "رمي"],
-      "kinds": { "رمي": "innovation" }
+      "level": 1,
+      "ar": "الصحابة",
+      "en": "Companion",
+      "kind": "praise",
+      "terms": [
+        "الصحابة",
+        "صحابي",
+        "صحابية"
+      ]
     },
-    { "level": 6, "ar": "مقبول", "en": "Accepted only with support", "kind": "unknown", "terms": ["مقبول", "لين الحديث"] },
-    { "level": 7, "ar": "مستور", "en": "Condition not known", "kind": "unknown", "terms": ["مستور", "مجهول الحال"] },
-    { "level": 8, "ar": "ضعيف", "en": "Weak", "kind": "weak", "terms": ["ضعيف"] },
-    { "level": 9, "ar": "مجهول", "en": "Unknown man", "kind": "unknown", "terms": ["مجهول"] },
-    { "level": 10, "ar": "متروك", "en": "Abandoned", "kind": "abandoned", "terms": ["متروك", "متروك الحديث", "واهي الحديث", "ساقط"] },
-    { "level": 11, "ar": "متهم بالكذب", "en": "Accused of lying", "kind": "lying", "terms": ["متهم بالكذب"] },
-    { "level": 12, "ar": "كذاب", "en": "Liar or forger", "kind": "lying", "terms": ["كذاب", "وضاع"] }
+    {
+      "level": 2,
+      "ar": "ثقة ثقة",
+      "en": "Most reliable",
+      "kind": "praise",
+      "terms": [
+        "أوثق الناس",
+        "ثقة ثقة",
+        "ثقة حافظ"
+      ]
+    },
+    {
+      "level": 3,
+      "ar": "ثقة",
+      "en": "Reliable",
+      "kind": "praise",
+      "terms": [
+        "ثقة",
+        "متقن",
+        "ثبت",
+        "عدل"
+      ]
+    },
+    {
+      "level": 4,
+      "ar": "صدوق",
+      "en": "Truthful",
+      "kind": "praise",
+      "terms": [
+        "صدوق",
+        "لا بأس به",
+        "ليس به بأس"
+      ]
+    },
+    {
+      "level": 5,
+      "ar": "صدوق سيء الحفظ",
+      "en": "Truthful, with a fault",
+      "kind": "memory",
+      "under": 4,
+      "terms": [
+        "صدوق سيء الحفظ",
+        "صدوق يهم",
+        "له أوهام",
+        "يخطىء",
+        "تغير بأخرة",
+        "رمي"
+      ],
+      "kinds": {
+        "رمي": "innovation"
+      }
+    },
+    {
+      "level": 6,
+      "ar": "مقبول",
+      "en": "Accepted only with support",
+      "kind": "unknown",
+      "terms": [
+        "مقبول",
+        "لين الحديث"
+      ]
+    },
+    {
+      "level": 7,
+      "ar": "مستور",
+      "en": "Condition not known",
+      "kind": "unknown",
+      "terms": [
+        "مستور",
+        "مجهول الحال"
+      ]
+    },
+    {
+      "level": 8,
+      "ar": "ضعيف",
+      "en": "Weak",
+      "kind": "weak",
+      "terms": [
+        "ضعيف"
+      ]
+    },
+    {
+      "level": 9,
+      "ar": "مجهول",
+      "en": "Unknown man",
+      "kind": "unknown",
+      "terms": [
+        "مجهول"
+      ]
+    },
+    {
+      "level": 10,
+      "ar": "متروك",
+      "en": "Abandoned",
+      "kind": "abandoned",
+      "terms": [
+        "متروك",
+        "متروك الحديث",
+        "واهي الحديث",
+        "ساقط"
+      ]
+    },
+    {
+      "level": 11,
+      "ar": "متهم بالكذب",
+      "en": "Accused of lying",
+      "kind": "lying",
+      "terms": [
+        "متهم بالكذب"
+      ]
+    },
+    {
+      "level": 12,
+      "ar": "كذاب",
+      "en": "Liar or forger",
+      "kind": "lying",
+      "terms": [
+        "كذاب",
+        "وضاع"
+      ]
+    }
   ],
   "lift": {
     "6": {
       "en": "Accepted when another narrator supports him; otherwise his hadith is soft.",
-      "quote": "مقبول، حيث يتابع، وإلا فلين الحديث", "book": "taqrib", "page": "PageV01P074"
+      "quote": "مقبول، حيث يتابع، وإلا فلين الحديث",
+      "book": "taqrib",
+      "page": "PageV01P074"
     },
     "memory": {
       "en": "A memory fault is lifted when a sound narrator supports him; the hadith becomes good (hasan), though not on its own strength.",
       "quote": "ومتى توبع السيء الحفظ بمعتبر ... وكذا المختلط الذي لم يتميز، والمستور، والإسناد المرسل، وكذا المدلس إذا لم يعرف المحذوف منه صار حديثهم حسنا، لا لذاته",
-      "book": "nuzha", "page": "PageV01P129-130"
+      "book": "nuzha",
+      "page": "PageV01P129-130"
     },
     "7": {
       "en": "Lifted when a sound narrator supports him; the hadith becomes good (hasan), though not on its own strength.",
       "quote": "ومتى توبع السيء الحفظ بمعتبر ... وكذا المختلط الذي لم يتميز، والمستور، والإسناد المرسل، وكذا المدلس إذا لم يعرف المحذوف منه صار حديثهم حسنا، لا لذاته",
-      "book": "nuzha", "page": "PageV01P129-130"
+      "book": "nuzha",
+      "page": "PageV01P129-130"
     },
     "11": {
       "en": "Support does not lift this weakness.",
       "lifts": false,
       "quote": "ومن ذلك ضعف لا يزول بنحو ذلك لقوة الضعف ... كالضعف الذي ينشأ من كون الراوي متهما بالكذب",
-      "book": "salah", "page": "PageV01P178"
+      "book": "salah",
+      "page": "PageV01P178"
     }
   },
   "rulings": {
@@ -238,12 +585,16 @@
       "speaker_join": " و",
       "title_join": "، ",
       "dangling": "(?:[:،]|(?<![ء-ي])(?:ما|الذي|التي|الذين|أن|إن|أنه|لأن|لأنه|و|ف|ثم|أو|في|من|عن|على|إلى|حتى|إذا|لو|كما|حيث|مما|بما|فيما)(?![ء-ي]))\\s*$",
-      "matn_quote": ["[«\"“]", "[»\"”]"],
+      "matn_quote": [
+        "[«\"“]",
+        "[»\"”]"
+      ],
       "qualifier": "^\\s*(?:و|ف)?(?:إلا|لكن|غير أن|بيد أن|سوى|على أن|إنما)(?![ء-ي])"
     },
     "kinds": {
       "nasikh_chapter": {
-        "book": "shahin", "numbered": true,
+        "book": "shahin",
+        "numbered": true,
         "scholar": "ابن شاهين",
         "label": "In a book of abrogation",
         "say": "Ibn Shahin placed this hadith in his book of abrogating and abrogated hadith, under the chapter heading shown. A remark is his, made at this point in the chapter; it may speak of other hadith there.",
@@ -252,7 +603,8 @@
         "another": "^(?:و?(?:حدثنا|أخبرنا|حدثني|أخبرني|نا|أنا))(?![ء-ي])"
       },
       "ilal": {
-        "book": "ilal_ah", "numbered": true,
+        "book": "ilal_ah",
+        "numbered": true,
         "scholar": "",
         "asked": true,
         "label": "Asked of Abu Hatim or Abu Zur'a",
@@ -275,7 +627,8 @@
         "matn_after": "\\(ص\\)"
       },
       "mawdu_listed": {
-        "book": "mawduat", "numbered": false,
+        "book": "mawduat",
+        "numbered": false,
         "scholar": "ابن الجوزي",
         "self": [
           "المصنف"
@@ -287,11 +640,36 @@
         "another": "^(?:حديث آخر|الحديث\\s+{ordinal}|{ordinal}\\s*:|وأما حديث|فأما حديث|أما حديث)",
         "ordinal": {
           "article": "ال",
-          "ones": ["أول", "ثاني", "ثالث", "رابع", "خامس", "سادس", "سابع", "ثامن", "تاسع", "عاشر"],
-          "teen_ones": ["حادي", "ثاني", "ثالث", "رابع", "خامس", "سادس", "سابع", "ثامن", "تاسع"],
+          "ones": [
+            "أول",
+            "ثاني",
+            "ثالث",
+            "رابع",
+            "خامس",
+            "سادس",
+            "سابع",
+            "ثامن",
+            "تاسع",
+            "عاشر"
+          ],
+          "teen_ones": [
+            "حادي",
+            "ثاني",
+            "ثالث",
+            "رابع",
+            "خامس",
+            "سادس",
+            "سابع",
+            "ثامن",
+            "تاسع"
+          ],
           "teen": "عشر",
           "and": "و",
-          "tens": ["عشرون", "ثلاثون", "أربعون"]
+          "tens": [
+            "عشرون",
+            "ثلاثون",
+            "أربعون"
+          ]
         },
         "chain_start": "(?:أنبأنا|أخبرنا|حدثنا|أخبرني|حدثني|(?<!ما )روى)(?![ء-ي])"
       }
@@ -306,7 +684,10 @@
       "min_name_words": 2,
       "rare_name": 300,
       "rare_men": 100,
-      "name_stop": ["بن", "ابن"],
+      "name_stop": [
+        "بن",
+        "ابن"
+      ],
       "name_run": 5
     }
   },
@@ -340,9 +721,23 @@
     },
     "min_words": 8,
     "same_text_min": 0.2,
-    "clitics": { "و": 3, "ف": 3, "ب": 4 },
+    "clitics": {
+      "و": 3,
+      "ف": 3,
+      "ب": 4
+    },
     "clitic_max": 2,
-    "rasm": ["بتثني", "جحخ", "دذ", "رز", "سش", "صض", "طظ", "عغ", "فق"],
+    "rasm": [
+      "بتثني",
+      "جحخ",
+      "دذ",
+      "رز",
+      "سش",
+      "صض",
+      "طظ",
+      "عغ",
+      "فق"
+    ],
     "dot_min": 4,
     "sample": 10,
     "sample_seed": 20261009,
@@ -350,65 +745,943 @@
     "sample_text": 160
   },
   "glossary": [
-    { "title": "Accepted", "ar": "المقبول", "terms": [
-      { "ar": "الصحيح لذاته", "en": "Sahih (sound) in itself", "say": "Upright narrators of full precision, a joined chain, no hidden flaw, and not going against stronger narrators.", "quote": "بنقل عدل ... تام الضبط، متصل السند، غير معلل ولا شاذ هو ... الصحيح لذاته", "book": "nuzha", "page": "PageV01P067" },
-      { "ar": "الحسن لذاته", "en": "Hasan (good) in itself", "say": "As sahih, but a narrator's precision is lighter.", "quote": "فإن خف الضبط: فالحسن لذاته", "book": "nuzha", "page": "PageV01P275" },
-      { "ar": "الصحيح لغيره", "en": "Sahih through others", "say": "A hasan chain that becomes sahih by coming through several routes.", "quote": "وبكثرة طرقه يصحح، وإنما نحكم له بالصحة عند تعدد الطرق", "book": "nuzha", "page": "PageV01P078" },
-      { "ar": "الحسن لغيره", "en": "Hasan through others", "say": "A narrator of poor memory, an unknown one, or a gap, supported by a fitting narration: hasan, though not on its own strength.", "quote": "ومتى توبع السيء الحفظ بمعتبر ... صار حديثهم حسنا، لا لذاته", "book": "nuzha", "page": "PageV01P129-130" }
-    ]},
-    { "title": "Rejected", "ar": "المردود", "terms": [
-      { "ar": "المردود", "en": "Rejected", "say": "A report whose teller is not shown to be likely truthful.", "quote": "وفيها المردود: وهو الذي لم يرجح صدق المخبر به", "book": "nuzha", "page": "PageV01P055" },
-      { "ar": "الضعيف", "en": "Da'if (weak)", "say": "Any hadith with neither the qualities of a sahih nor those of a hasan.", "quote": "كل حديث لم تجتمع فيه صفات الحديث الصحيح، ولا صفات الحديث الحسن، ... فهو ضعيف", "book": "salah", "page": "PageV01P188" }
-    ]},
-    { "title": "A gap in the chain", "ar": "السقط", "terms": [
-      { "ar": "المعلق", "en": "Mu'allaq (hung)", "say": "The compiler drops one or more narrators at his own end of the chain.", "quote": "من مبادئ السند من تصرف مصنف ... فالأول ... المعلق، سواء كان الساقط واحدا، أم أكثر", "book": "nuzha", "page": "PageV01P098" },
-      { "ar": "المرسل", "en": "Mursal", "say": "The chain stops at a Successor, who quotes the Prophet without naming the Companion.", "quote": "والثاني: وهو ما سقط من آخره من بعد التابعي ... هو \"المرسل\"", "book": "nuzha", "page": "PageV01P100" },
-      { "ar": "المعضل", "en": "Mu'dal", "say": "Two or more narrators missing one after another.", "quote": "إن كان باثنين فصاعدا، مع التوالي، فهو \"المعضل\"", "book": "nuzha", "page": "PageV01P102" },
-      { "ar": "المنقطع", "en": "Munqati' (broken)", "say": "Narrators missing, but not two in a row.", "quote": "وإلا، فإن كان الساقط ... باثنين ... غير متواليين، في موضعين مثلا، فهو المنقطع", "book": "nuzha", "page": "PageV01P102" },
-      { "ar": "المدلس", "en": "Tadlis (concealing)", "say": "A narrator leaves out who told him and words it, with 'from' or 'said', as if he heard it from the one above.", "quote": "المدلس -بفتح اللام- سمي بذلك لكون الراوي لم يسم من حدثه، وأوهم سماعه للحديث ممن لم يحدثه به", "book": "nuzha", "page": "PageV01P103" },
-      { "ar": "المرسل الخفي", "en": "Hidden mursal", "say": "He lived at the same time as the one he narrates from, but is not known to have met him.", "quote": "فأما إن عاصره، ولم يعرف أنه لقيه، فهو المرسل الخفي", "book": "nuzha", "page": "PageV01P104" },
-      { "ar": "المعنعن", "en": "Mu'an'an", "say": "Told with 'from' (عن): read as heard where the two lived at the same time, except from one known for tadlis.", "quote": "وعنعنة المعاصر محمولة على السماع ... بخلاف غير المعاصر فإنها تكون مرسلة ... أو منقطعة", "book": "nuzha", "page": "PageV01P158" }
-    ]},
-    { "title": "A fault in a narrator", "ar": "الطعن", "terms": [
-      { "ar": "الموضوع", "en": "Mawdu' (fabricated)", "say": "The narrator lies about the Prophet.", "quote": "فالقسم الأول: -وهو الطعن بكذب الراوي في الحديث النبوي- هو الموضوع", "book": "nuzha", "page": "PageV01P107" },
-      { "ar": "المتروك", "en": "Matruk (abandoned)", "say": "The narrator is accused of lying.", "quote": "والقسم الثاني من أقسام المردود: -وهو ما يكون بسبب تهمة الراوي بالكذب- ... هو المتروك", "book": "nuzha", "page": "PageV01P112" },
-      { "ar": "المنكر", "en": "Munkar (denounced)", "say": "A weak narrator goes against stronger ones; their version is ma'ruf (known).", "quote": "وإن وقعت المخالفة مع الضعف؛ فالراجح يقال له: \"المعروف\"، ومقابله يقال ... له: \"المنكر\"", "book": "nuzha", "page": "PageV01P086" },
-      { "ar": "الشاذ", "en": "Shadhdh (odd)", "say": "An acceptable narrator goes against a stronger one; the stronger version is mahfuz (kept).", "quote": "الشاذ: ما رواه المقبول مخالفا لمن هو أولى منه", "book": "nuzha", "page": "PageV01P085" },
-      { "ar": "المعلل", "en": "Mu'allal (flawed)", "say": "A hidden flaw that harms it, found by gathering its routes.", "quote": "والمعلل لغة: ما فيه علة، واصطلاحا: ما فيه علة خفية قادحة", "book": "nuzha", "page": "PageV01P070" },
-      { "ar": "المدرج", "en": "Mudraj (inserted)", "say": "Words that are not the hadith's get into its text.", "quote": "وأما مدرج المتن: فهو أن يقع في المتن كلام ليس منه", "book": "nuzha", "page": "PageV01P115" },
-      { "ar": "المقلوب", "en": "Maqlub (reversed)", "say": "Names or words put in the wrong order, as Murra ibn Ka'b for Ka'b ibn Murra.", "quote": "أو إن كانت المخالفة بتقديم أو تأخير أي في الأسماء كمرة بن كعب، وكعب بن ... مرة؛ لأن اسم أحدهما اسم أبي الآخر، فهذا هو المقلوب", "book": "nuzha", "page": "PageV01P116" },
-      { "ar": "المضطرب", "en": "Mudtarib (shaky)", "say": "Told in conflicting ways, with nothing to prefer one over another.", "quote": "أو كانت المخالفة بإبداله، أي: الراوي، ولا مرجح لإحدى الروايتين على ... الأخرى، فهذا هو المضطرب", "book": "nuzha", "page": "PageV01P117" }
-    ]},
-    { "title": "Where the chain ends", "ar": "منتهى الإسناد", "terms": [
-      { "ar": "المرفوع", "en": "Marfu' (raised)", "say": "Ends with the Prophet: his words, deeds or approval, whether the chain is joined or not.", "quote": "هو المرفوع، سواء كان ذلك الانتهاء بإسناد متصل أم لا", "book": "nuzha", "page": "PageV01P145" },
-      { "ar": "الموقوف", "en": "Mawquf (stopped)", "say": "Ends with a Companion.", "quote": "والثاني الموقوف -وهو: ما انتهى إلى الصحابي-", "book": "nuzha", "page": "PageV01P145" },
-      { "ar": "المقطوع", "en": "Maqtu' (cut)", "say": "Ends with a Successor. Not the same as munqati', a broken chain.", "quote": "والثالث: المقطوع، وهو ما انتهى إلى التابعي", "book": "nuzha", "page": "PageV01P145" },
-      { "ar": "المسند", "en": "Musnad", "say": "Raised to the Prophet by a Companion, through a chain that looks joined.", "quote": "هو: مرفوع صحابي ... بسند ظاهره ... الاتصال", "book": "nuzha", "page": "PageV01P145" },
-      { "ar": "المتصل", "en": "Muttasil (joined)", "say": "Nobody dropped: each narrator heard it from his teacher.", "quote": "والمتصل: ما سلم إسناده من سقوط فيه، بحيث يكون كل من رجاله سمع ذلك ... المروي من شيخه", "book": "nuzha", "page": "PageV01P070" }
-    ]},
-    { "title": "How many routes", "ar": "عدد الطرق", "terms": [
-      { "ar": "المتواتر", "en": "Mutawatir", "say": "So many tell it, from start to end, that agreeing on a lie is ruled out.", "quote": "عدد كثير أحالت العادة تواطؤهم، أو توافقهم، على الكذب ... رووا ذلك عن مثلهم من الابتداء إلى الانتهاء", "book": "nuzha", "page": "PageV01P039" },
-      { "ar": "المشهور", "en": "Mashhur (well known)", "say": "More than two routes, but a limited number.", "quote": "ما له طرق محصورة بأكثر من اثنين، وهو ... المشهور عند المحدثين", "book": "nuzha", "page": "PageV01P049" },
-      { "ar": "العزيز", "en": "'Aziz (rare)", "say": "Never fewer than two narrators from two.", "quote": "والثالث: العزيز: وهو أن لا يرويه أقل من اثنين عن اثنين", "book": "nuzha", "page": "PageV01P050" },
-      { "ar": "الغريب", "en": "Gharib (lone)", "say": "One narrator alone carries it, somewhere in the chain.", "quote": "والرابع: الغريب: وهو ما يتفرد بروايته شخص واحد في أي موضع وقع التفرد ... به من السند", "book": "nuzha", "page": "PageV01P054" }
-    ]},
-    { "title": "People and support", "ar": "الرواة والشواهد", "terms": [
-      { "ar": "الصحابي", "en": "Companion", "say": "Met the Prophet believing in him and died a Muslim.", "quote": "وهو من لقي النبي صلى الله عليه وسلم مؤمنا به، ومات على الإسلام", "book": "nuzha", "page": "PageV01P140" },
-      { "ar": "التابعي", "en": "Successor", "say": "Met a Companion in the same way.", "quote": "أو إلى التابعي: وهو من لقي الصحابي كذلك", "book": "nuzha", "page": "PageV01P278" },
-      { "ar": "المتابع", "en": "Corroboration (mutaba'a)", "say": "Another narrator agrees with one who seemed to stand alone.", "quote": "إن وجد -بعد ظن كونه فردا- قد وافقه غيره ... فهو المتابع", "book": "nuzha", "page": "PageV01P087" },
-      { "ar": "الشاهد", "en": "Witness (shahid)", "say": "The same text, in its words or its meaning, from another Companion.", "quote": "وإن وجد متن يروى من حديث صحابي آخر يشبهه في اللفظ والمعنى، أو في ... المعنى فقط = فهو \"الشاهد\"", "book": "nuzha", "page": "PageV01P090" },
-      { "ar": "الاعتبار", "en": "I'tibar (searching)", "say": "Looking through the books for other routes of a hadith thought to stand alone.", "quote": "واعلم أن تتبع الطرق: من الجوامع ... والمسانيد، والأجزاء، لذلك الحديث ... الذي يظن أنه فرد؛ ليعلم: هل له متابع أم لا؟ هو \"الاعتبار\"", "book": "nuzha", "page": "PageV01P090" }
-    ]}
+    {
+      "title": "Accepted",
+      "ar": "المقبول",
+      "terms": [
+        {
+          "ar": "الصحيح لذاته",
+          "en": "Sahih (sound) in itself",
+          "say": "Upright narrators of full precision, a joined chain, no hidden flaw, and not going against stronger narrators.",
+          "quote": "بنقل عدل ... تام الضبط، متصل السند، غير معلل ولا شاذ هو ... الصحيح لذاته",
+          "book": "nuzha",
+          "page": "PageV01P067",
+          "lugha": "ṣaḥīḥ: sound, the opposite of sick (saqīm)",
+          "answers": {
+            "dabt": "Full precision",
+            "routes": "Sound on its own"
+          },
+          "confuse": [
+            {
+              "ar": "الحسن لذاته",
+              "why": "Both are accepted with a joined chain and upright narrators; only the narrator's precision differs: full for sahih, lighter for hasan."
+            }
+          ]
+        },
+        {
+          "ar": "الحسن لذاته",
+          "en": "Hasan (good) in itself",
+          "say": "As sahih, but a narrator's precision is lighter.",
+          "quote": "فإن خف الضبط: فالحسن لذاته",
+          "book": "nuzha",
+          "page": "PageV01P275",
+          "lugha": "ḥasan: good, pleasing",
+          "answers": {
+            "dabt": "Lighter precision",
+            "routes": "Good on its own"
+          },
+          "confuse": [
+            {
+              "ar": "الصحيح لغيره",
+              "why": "A hasan li-dhatihi that comes through several routes is raised to sahih li-ghayrihi: the same report, before and after the other chains are counted."
+            }
+          ]
+        },
+        {
+          "ar": "الصحيح لغيره",
+          "en": "Sahih through others",
+          "say": "A hasan chain that becomes sahih by coming through several routes.",
+          "quote": "وبكثرة طرقه يصحح، وإنما نحكم له بالصحة عند تعدد الطرق",
+          "book": "nuzha",
+          "page": "PageV01P078",
+          "answers": {
+            "dabt": "Lighter precision, made up by other routes",
+            "routes": "Sound through others"
+          }
+        },
+        {
+          "ar": "الحسن لغيره",
+          "en": "Hasan through others",
+          "say": "A report by a narrator of poor memory, or a mastūr (unknown condition), or a mursal or mudallas chain, raised to hasan when a fitting route (muʿtabar) backs it up.",
+          "quote": "ومتى توبع السيء الحفظ بمعتبر ... صار حديثهم حسنا، لا لذاته",
+          "book": "nuzha",
+          "page": "PageV01P129-130",
+          "answers": {
+            "dabt": "Weak (poor memory, unknown, a gap)",
+            "routes": "Good through others"
+          },
+          "confuse": [
+            {
+              "ar": "الضعيف",
+              "why": "A hasan li-ghayrihi starts life as a weak report; what lifts it is a fitting corroboration, which a plain da'if lacks."
+            }
+          ]
+        }
+      ],
+      "by": "Is the report taken, and on what strength?",
+      "axes": [
+        {
+          "id": "dabt",
+          "q": "How precise is the narrator?"
+        },
+        {
+          "id": "routes",
+          "q": "Sound on its own, or through other routes?"
+        }
+      ]
+    },
+    {
+      "title": "Rejected",
+      "ar": "المردود",
+      "terms": [
+        {
+          "ar": "المردود",
+          "en": "Rejected",
+          "say": "A report whose teller is not shown to be likely truthful.",
+          "quote": "وفيها المردود: وهو الذي لم يرجح صدق المخبر به",
+          "book": "nuzha",
+          "page": "PageV01P055",
+          "answers": {
+            "why": "The teller's truthfulness is not shown to be likely"
+          }
+        },
+        {
+          "ar": "الضعيف",
+          "en": "Da'if (weak)",
+          "say": "Any hadith with neither the qualities of a sahih nor those of a hasan.",
+          "quote": "كل حديث لم تجتمع فيه صفات الحديث الصحيح، ولا صفات الحديث الحسن، ... فهو ضعيف",
+          "book": "salah",
+          "page": "PageV01P188",
+          "lugha": "ḍaʿīf: weak, frail",
+          "answers": {
+            "why": "A quality of sahih or hasan is missing"
+          },
+          "confuse": [
+            {
+              "ar": "الحسن لغيره",
+              "why": "Both begin weak; da'if stays so because nothing fitting backs it."
+            }
+          ]
+        }
+      ],
+      "by": "Why is the report left aside?",
+      "axes": [
+        {
+          "id": "why",
+          "q": "What is missing?"
+        }
+      ]
+    },
+    {
+      "title": "A gap in the chain",
+      "ar": "السقط",
+      "terms": [
+        {
+          "ar": "المعلق",
+          "en": "Mu'allaq (hung)",
+          "say": "The compiler drops one or more narrators at his own end of the chain.",
+          "quote": "من مبادئ السند من تصرف مصنف ... فالأول ... المعلق، سواء كان الساقط واحدا، أم أكثر",
+          "book": "nuzha",
+          "page": "PageV01P098",
+          "lugha": "muʿallaq: hung, as a thing hangs from a roof with nothing below",
+          "answers": {
+            "where": "The start (the compiler's end)",
+            "how": "One or more, from the start",
+            "plain": "Plain"
+          },
+          "confuse": [
+            {
+              "ar": "المعضل",
+              "why": "They can overlap: two in a row dropped at the compiler's end is both. Muʿallaq is named by place (the compiler's end, any number); muʿdal by count (two or more in a row, anywhere)."
+            }
+          ]
+        },
+        {
+          "ar": "المرسل",
+          "en": "Mursal",
+          "say": "A Successor attributes words to the Prophet ﷺ directly; whoever stood between them is dropped (a Companion, or more).",
+          "quote": "والثاني: وهو ما سقط من آخره من بعد التابعي ... هو \"المرسل\"",
+          "book": "nuzha",
+          "page": "PageV01P100",
+          "lugha": "mursal: let loose, sent off without a tether",
+          "answers": {
+            "where": "The end (after the Successor)",
+            "how": "Whoever stood after the Successor",
+            "plain": "Plain"
+          },
+          "confuse": [
+            {
+              "ar": "المنقطع",
+              "why": "Both have a narrator missing; mursal is the Successor skipping to the Prophet, munqati' is a gap elsewhere. Most hadith scholars keep the names apart; the jurists and uṣūlīs call any broken chain mursal."
+            },
+            {
+              "ar": "المرسل الخفي",
+              "why": "The plain mursal shows its gap at the Companion; the hidden mursal looks joined, because the two lived at the same time but never met."
+            }
+          ]
+        },
+        {
+          "ar": "المعضل",
+          "en": "Mu'dal",
+          "say": "Two or more narrators missing one after another.",
+          "quote": "إن كان باثنين فصاعدا، مع التوالي، فهو \"المعضل\"",
+          "book": "nuzha",
+          "page": "PageV01P102",
+          "lugha": "muʿḍal: from aʿḍala, made intractable, as an illness that defeats the doctor",
+          "answers": {
+            "where": "Anywhere",
+            "how": "Two or more, one after another",
+            "plain": "Plain"
+          },
+          "confuse": [
+            {
+              "ar": "المنقطع",
+              "why": "Both lose narrators in the middle: two in a row make it mu'dal, otherwise it is munqati'."
+            }
+          ]
+        },
+        {
+          "ar": "المنقطع",
+          "en": "Munqati' (broken)",
+          "say": "Narrators missing, but not two in a row.",
+          "quote": "وإلا، فإن كان الساقط ... باثنين ... غير متواليين، في موضعين مثلا، فهو المنقطع",
+          "book": "nuzha",
+          "page": "PageV01P102",
+          "lugha": "munqaṭiʿ: cut off",
+          "answers": {
+            "where": "Anywhere",
+            "how": "One, or several not in a row",
+            "plain": "Plain"
+          },
+          "confuse": [
+            {
+              "ar": "المقطوع",
+              "why": "Munqati' is a broken chain; maqtu' is a whole chain whose words stop at a Successor. The roots look alike, the ideas do not."
+            }
+          ]
+        },
+        {
+          "ar": "المدلس",
+          "en": "Tadlis (concealing)",
+          "say": "A narrator leaves out who told him and words it, with 'from' or 'said', as if he heard it from the one above.",
+          "quote": "المدلس -بفتح اللام- سمي بذلك لكون الراوي لم يسم من حدثه، وأوهم سماعه للحديث ممن لم يحدثه به",
+          "book": "nuzha",
+          "page": "PageV01P103",
+          "lugha": "tadlīs: from dalas, the half-light where a buyer misses a flaw",
+          "answers": {
+            "where": "Between a narrator and his teacher",
+            "how": "One left out, worded as if heard",
+            "plain": "Hidden"
+          },
+          "confuse": [
+            {
+              "ar": "المرسل الخفي",
+              "why": "In tadlis the narrator did meet the one he skips to; in the hidden mursal he only lived at the same time and never met him."
+            },
+            {
+              "ar": "المعنعن",
+              "why": "'From' (ʿan) is the wording tadlis hides behind; a mu'an'an chain is read as heard unless its narrator is known for tadlis."
+            }
+          ]
+        },
+        {
+          "ar": "المرسل الخفي",
+          "en": "Hidden mursal",
+          "say": "He lived at the same time as the one he narrates from, but is not known to have met him.",
+          "quote": "فأما إن عاصره، ولم يعرف أنه لقيه، فهو المرسل الخفي",
+          "book": "nuzha",
+          "page": "PageV01P104",
+          "answers": {
+            "where": "Between two who never met",
+            "how": "One left out, looks joined",
+            "plain": "Hidden"
+          }
+        },
+        {
+          "ar": "المعنعن",
+          "en": "Mu'an'an",
+          "say": "Told with 'from' (عن). Read as heard when the narrator is not a mudallis and the two lived at the same time (Muslim's condition). Al-Bukhari also required that they are known to have met once, and Ibn Hajar calls that the chosen view.",
+          "quote": "وعنعنة المعاصر محمولة على السماع ... بخلاف غير المعاصر فإنها تكون مرسلة ... أو منقطعة",
+          "book": "nuzha",
+          "page": "PageV01P158",
+          "lugha": "muʿanʿan: told with ʿan, 'from'",
+          "answers": {
+            "where": "None, if the two are shown to have met (or, on Muslim's view, lived at the same time)",
+            "how": "None, read as heard",
+            "plain": "Looks joined"
+          }
+        }
+      ],
+      "by": "Where is the chain broken, and how?",
+      "axes": [
+        {
+          "id": "where",
+          "q": "Where is the gap?"
+        },
+        {
+          "id": "how",
+          "q": "How many are missing, and how?"
+        },
+        {
+          "id": "plain",
+          "q": "Plain to see, or hidden?"
+        }
+      ]
+    },
+    {
+      "title": "A fault in a narrator",
+      "ar": "الطعن",
+      "terms": [
+        {
+          "ar": "الموضوع",
+          "en": "Mawdu' (fabricated)",
+          "say": "The narrator lies about the Prophet.",
+          "quote": "فالقسم الأول: -وهو الطعن بكذب الراوي في الحديث النبوي- هو الموضوع",
+          "book": "nuzha",
+          "page": "PageV01P107",
+          "lugha": "mawḍūʿ: put down, fabricated",
+          "kind": "mawdu_listed",
+          "answers": {
+            "who": "A liar",
+            "what": "Invented words",
+            "verdict": "Never told, except to warn"
+          },
+          "confuse": [
+            {
+              "ar": "المتروك",
+              "why": "Both are the worst; mawdu' is a known fabrication, matruk is told by one accused of lying but not proved to have lied here."
+            }
+          ]
+        },
+        {
+          "ar": "المتروك",
+          "en": "Matruk (abandoned)",
+          "say": "The narrator is accused of lying.",
+          "quote": "والقسم الثاني من أقسام المردود: -وهو ما يكون بسبب تهمة الراوي بالكذب- ... هو المتروك",
+          "book": "nuzha",
+          "page": "PageV01P112",
+          "lugha": "matrūk: abandoned",
+          "answers": {
+            "who": "One accused of lying",
+            "what": "His lone report",
+            "verdict": "Left aside"
+          }
+        },
+        {
+          "ar": "المنكر",
+          "en": "Munkar (denounced)",
+          "say": "A weak narrator goes against stronger ones; their version is ma'ruf (known). Some earlier scholars also call a weak narrator's lone report munkar, even with nothing against it.",
+          "quote": "وإن وقعت المخالفة مع الضعف؛ فالراجح يقال له: \"المعروف\"، ومقابله يقال ... له: \"المنكر\"",
+          "book": "nuzha",
+          "page": "PageV01P086",
+          "lugha": "munkar: disowned, found strange",
+          "answers": {
+            "who": "A weak narrator",
+            "what": "Goes against the trustworthy",
+            "verdict": "Rejected; the other is the maʿruf"
+          },
+          "confuse": [
+            {
+              "ar": "الشاذ",
+              "why": "Both go against better narrators; shadhdh is a trustworthy narrator doing it, munkar a weak one. Ibn Hajar keeps them apart on exactly that."
+            }
+          ]
+        },
+        {
+          "ar": "الشاذ",
+          "en": "Shadhdh (odd)",
+          "say": "An acceptable narrator goes against a stronger one; the stronger version is mahfuz (kept).",
+          "quote": "الشاذ: ما رواه المقبول مخالفا لمن هو أولى منه",
+          "book": "nuzha",
+          "page": "PageV01P085",
+          "lugha": "shādhdh: standing apart from the group",
+          "answers": {
+            "who": "An acceptable narrator (thiqa or ṣadūq)",
+            "what": "Goes against those more trustworthy",
+            "verdict": "Rejected; the other is the mahfuz"
+          }
+        },
+        {
+          "ar": "المعلل",
+          "en": "Mu'allal (flawed)",
+          "say": "A hidden flaw that harms it, found by gathering its routes.",
+          "quote": "والمعلل لغة: ما فيه علة، واصطلاحا: ما فيه علة خفية قادحة",
+          "book": "nuzha",
+          "page": "PageV01P070",
+          "lugha": "muʿallal: carrying an ʿilla, a hidden ailment",
+          "kind": "ilal",
+          "answers": {
+            "who": "A narrator's hidden mistake (wahm), found by the experts",
+            "what": "A hidden flaw in a chain that looks sound",
+            "verdict": "Weak, once the flaw is shown"
+          }
+        },
+        {
+          "ar": "المدرج",
+          "en": "Mudraj (inserted)",
+          "say": "Words that are not the hadith's get into its text.",
+          "quote": "وأما مدرج المتن: فهو أن يقع في المتن كلام ليس منه",
+          "book": "nuzha",
+          "page": "PageV01P115",
+          "lugha": "mudraj: slipped in, inserted",
+          "answers": {
+            "who": "A narrator adding his own words or chain",
+            "what": "Something joined to the hadith that was not in it",
+            "verdict": "The addition is cut out"
+          },
+          "confuse": [
+            {
+              "ar": "المزيد في متصل الأسانيد",
+              "why": "Both add something; mudraj adds words to the text or a chain, mazid adds one narrator in the middle of a joined chain."
+            }
+          ]
+        },
+        {
+          "ar": "المقلوب",
+          "en": "Maqlub (reversed)",
+          "say": "Names or words put in the wrong order, as Murra ibn Ka'b for Ka'b ibn Murra.",
+          "quote": "أو إن كانت المخالفة بتقديم أو تأخير أي في الأسماء كمرة بن كعب، وكعب بن ... مرة؛ لأن اسم أحدهما اسم أبي الآخر، فهذا هو المقلوب",
+          "book": "nuzha",
+          "page": "PageV01P116",
+          "lugha": "maqlūb: turned over",
+          "answers": {
+            "who": "A narrator swapping",
+            "what": "Names or wording exchanged",
+            "verdict": "Rejected as told"
+          },
+          "confuse": [
+            {
+              "ar": "المضطرب",
+              "why": "Maqlub is one swap; mudtarib is tellings that clash with no way to prefer one."
+            }
+          ]
+        },
+        {
+          "ar": "المضطرب",
+          "en": "Mudtarib (shaky)",
+          "say": "Told in conflicting ways, with nothing to prefer one over another.",
+          "quote": "أو كانت المخالفة بإبداله، أي: الراوي، ولا مرجح لإحدى الروايتين على ... الأخرى، فهذا هو المضطرب",
+          "book": "nuzha",
+          "page": "PageV01P117",
+          "lugha": "muḍṭarib: shaken, disordered",
+          "answers": {
+            "who": "One or more narrators",
+            "what": "Clashing tellings of equal weight",
+            "verdict": "Weak. If one telling can be preferred, it is no longer mudtarib: the preferred one is taken."
+          }
+        },
+        {
+          "ar": "المزيد في متصل الأسانيد",
+          "en": "An extra narrator in a joined chain",
+          "say": "One narrator added in the middle of a chain by a less exact teller; the shorter chain is kept when its narrator said he heard it.",
+          "quote": "إن كانت المخالفة بزيادة راو في أثناء الإسناد، ومن لم يزدها أتقن ممن زادها، فهذا هو المزيد في متصل الأسانيد",
+          "book": "nuzha",
+          "page": "PageV01P117",
+          "answers": {
+            "who": "A less exact narrator",
+            "what": "A name added in the chain",
+            "verdict": "The shorter chain is kept"
+          }
+        },
+        {
+          "ar": "المصحف",
+          "en": "Musahhaf (a dot changed)",
+          "say": "A letter changed by its dots while the written shape stays, as العوام بن مُراجِم read as مُزاحِم.",
+          "quote": "إن كانت المخالفة بتغيير حرف، أو حروف، مع بقاء صورة الخط في السياق: فإن كان ذلك بالنسبة إلى النقط فالمصحف",
+          "book": "nuzha",
+          "page": "PageV01P118",
+          "lugha": "taṣḥīf: from ṣaḥīfa, the error of one who learnt from pages, not from teachers",
+          "answers": {
+            "who": "A copyist or reader",
+            "what": "Dots misplaced",
+            "verdict": "The right reading is restored"
+          },
+          "confuse": [
+            {
+              "ar": "المحرف",
+              "why": "Both change a word without changing its written skeleton: dots for musahhaf, vowels for muharraf."
+            }
+          ]
+        },
+        {
+          "ar": "المحرف",
+          "en": "Muharraf (a vowel changed)",
+          "say": "The same word with its vowels wrong while the letters stand.",
+          "quote": "وإن كان بالنسبة إلى الشكل فالمحرف",
+          "book": "nuzha",
+          "page": "PageV01P119",
+          "answers": {
+            "who": "A copyist or reader",
+            "what": "Vowels misplaced",
+            "verdict": "The right reading is restored"
+          }
+        }
+      ],
+      "by": "What did the narrator get wrong?",
+      "axes": [
+        {
+          "id": "who",
+          "q": "Who is at fault?"
+        },
+        {
+          "id": "what",
+          "q": "What goes wrong?"
+        },
+        {
+          "id": "verdict",
+          "q": "What becomes of the hadith?"
+        }
+      ]
+    },
+    {
+      "title": "Where the chain ends",
+      "ar": "منتهى الإسناد",
+      "terms": [
+        {
+          "ar": "المرفوع",
+          "en": "Marfu' (raised)",
+          "say": "Ends with the Prophet: his words, deeds or approval, whether the chain is joined or not.",
+          "quote": "هو المرفوع، سواء كان ذلك الانتهاء بإسناد متصل أم لا",
+          "book": "nuzha",
+          "page": "PageV01P145",
+          "lugha": "marfūʿ: raised up, to the Prophet",
+          "answers": {
+            "ends": "The Prophet ﷺ",
+            "joined": "Not said"
+          },
+          "confuse": [
+            {
+              "ar": "المسند",
+              "why": "Marfu' says only whose words they are; musnad adds that the chain reaches him unbroken."
+            }
+          ]
+        },
+        {
+          "ar": "الموقوف",
+          "en": "Mawquf (stopped)",
+          "say": "Ends with a Companion.",
+          "quote": "والثاني الموقوف -وهو: ما انتهى إلى الصحابي-",
+          "book": "nuzha",
+          "page": "PageV01P145",
+          "lugha": "mawqūf: stopped, at a Companion",
+          "answers": {
+            "ends": "A Companion",
+            "joined": "Not said"
+          },
+          "confuse": [
+            {
+              "ar": "المقطوع",
+              "why": "Mawquf stops at a Companion, maqtu' at a Successor; both are words of men, not of the Prophet."
+            }
+          ],
+          "kids": [
+            {
+              "ar": "المرفوع حكما",
+              "en": "Raised in ruling",
+              "say": "A Companion's words on what cannot come from opinion (the unseen, a set reward) count as marfuʿ in ruling; his opinion or ijtihad stays mawquf.",
+              "quote": "وإنما كان له حكم المرفوع؛ لأن إخباره بذلك يقتضي مخبرا له",
+              "book": "nuzha",
+              "page": "PageV01P134",
+              "answers": {
+                "ends": "A Companion, saying what only revelation could tell",
+                "joined": "Not said"
+              },
+              "confuse": [
+                {
+                  "ar": "الموقوف",
+                  "why": "Both are a Companion's words; what he could only have learnt from the Prophet is raised in ruling, his own view stays stopped at him."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ar": "المقطوع",
+          "en": "Maqtu' (cut)",
+          "say": "Ends with a Successor. Not the same as munqati', a broken chain.",
+          "quote": "والثالث: المقطوع، وهو ما انتهى إلى التابعي",
+          "book": "nuzha",
+          "page": "PageV01P145",
+          "lugha": "maqṭūʿ: cut short, at a Successor",
+          "answers": {
+            "ends": "A Successor",
+            "joined": "Not said"
+          }
+        },
+        {
+          "ar": "المسند",
+          "en": "Musnad",
+          "say": "Raised to the Prophet by a Companion, through a chain that looks joined.",
+          "quote": "هو: مرفوع صحابي ... بسند ظاهره ... الاتصال",
+          "book": "nuzha",
+          "page": "PageV01P145",
+          "lugha": "musnad: supported, given a chain",
+          "answers": {
+            "ends": "The Prophet ﷺ",
+            "joined": "Yes"
+          },
+          "confuse": [
+            {
+              "ar": "المتصل",
+              "why": "Both are unbroken; musnad must also reach the Prophet. Muttasil may stop at a Companion; for a Successor's words it is said only with a qualifier."
+            }
+          ]
+        },
+        {
+          "ar": "المتصل",
+          "en": "Muttasil (joined)",
+          "say": "Nobody dropped: each narrator heard it from his teacher.",
+          "quote": "والمتصل: ما سلم إسناده من سقوط فيه، بحيث يكون كل من رجاله سمع ذلك ... المروي من شيخه",
+          "book": "nuzha",
+          "page": "PageV01P070",
+          "lugha": "muttaṣil: joined",
+          "answers": {
+            "ends": "Anyone",
+            "joined": "Yes"
+          }
+        }
+      ],
+      "by": "Whose words are they, and does the chain reach them?",
+      "axes": [
+        {
+          "id": "ends",
+          "q": "Whose words?"
+        },
+        {
+          "id": "joined",
+          "q": "Does the chain reach them unbroken?"
+        }
+      ]
+    },
+    {
+      "title": "How many routes",
+      "ar": "عدد الطرق",
+      "terms": [
+        {
+          "ar": "المتواتر",
+          "en": "Mutawatir",
+          "say": "So many tell it, from start to end, that agreeing on a lie is ruled out. And what they report rests on the senses (seen or heard), not on reasoning.",
+          "quote": "عدد كثير أحالت العادة تواطؤهم، أو توافقهم، على الكذب ... رووا ذلك عن مثلهم من الابتداء إلى الانتهاء",
+          "book": "nuzha",
+          "page": "PageV01P039",
+          "lugha": "mutawātir: from watr, coming one after another",
+          "answers": {
+            "count": "So many that lying together is impossible",
+            "proof": "Certain knowledge"
+          },
+          "confuse": [
+            {
+              "ar": "المشهور",
+              "why": "Both have many chains; mashhur has three or more but not enough to rule out an agreed lie, so it gives probability, not certainty."
+            }
+          ]
+        },
+        {
+          "ar": "المشهور",
+          "en": "Mashhur (well known)",
+          "say": "More than two routes, but a limited number.",
+          "quote": "ما له طرق محصورة بأكثر من اثنين، وهو ... المشهور عند المحدثين",
+          "book": "nuzha",
+          "page": "PageV01P049",
+          "lugha": "mashhūr: well known",
+          "answers": {
+            "count": "Three or more",
+            "proof": "Probability"
+          }
+        },
+        {
+          "ar": "العزيز",
+          "en": "'Aziz (rare)",
+          "say": "Never fewer than two narrators from two.",
+          "quote": "والثالث: العزيز: وهو أن لا يرويه أقل من اثنين عن اثنين",
+          "book": "nuzha",
+          "page": "PageV01P050",
+          "lugha": "ʿazīz: rare (from ʿazza, yaʿizzu: became scarce), or strong (from ʿazza, yaʿazzu: became strong), because a second route strengthens it",
+          "answers": {
+            "count": "Two",
+            "proof": "Probability"
+          },
+          "confuse": [
+            {
+              "ar": "الغريب",
+              "why": "ʿAziz has two chains at its narrowest, gharib one; a report may be gharib at one step and ʿaziz at the next."
+            }
+          ]
+        },
+        {
+          "ar": "الغريب",
+          "en": "Gharib (lone)",
+          "say": "One narrator alone carries it, somewhere in the chain.",
+          "quote": "والرابع: الغريب: وهو ما يتفرد بروايته شخص واحد في أي موضع وقع التفرد ... به من السند",
+          "book": "nuzha",
+          "page": "PageV01P054",
+          "lugha": "gharīb: a stranger, alone",
+          "answers": {
+            "count": "One",
+            "proof": "Probability, if accepted"
+          },
+          "kids": [
+            {
+              "ar": "الفرد المطلق",
+              "en": "Absolutely single",
+              "say": "One narrator alone at the root of the chain, as Abdullah ibn Dinar alone from Ibn Umar.",
+              "quote": "فالأول: الفرد المطلق: كحديث النهي عن بيع الولاء وعن هبته، تفرد به عبد الله بن دينار عن ابن عمر",
+              "book": "nuzha",
+              "page": "PageV01P065",
+              "answers": {
+                "count": "One, at the root of the chain (the Successor from the Companion)",
+                "proof": "Probability, if accepted"
+              }
+            },
+            {
+              "ar": "الفرد النسبي",
+              "en": "Single relative to something",
+              "say": "Single only relative to something: one city, or one narrator from a given teacher, with the hadith known through others.",
+              "quote": "والثاني: الفرد النسبي: سمي بذلك لكون التفرد فيه حصل بالنسبة إلى شخص معين، وإن كان الحديث في نفسه مشهورا",
+              "book": "nuzha",
+              "page": "PageV01P066",
+              "answers": {
+                "count": "One, at one step or from one place only",
+                "proof": "Probability, if accepted"
+              }
+            }
+          ]
+        }
+      ],
+      "by": "How many chains carry it?",
+      "axes": [
+        {
+          "id": "count",
+          "q": "How many chains at each step?"
+        },
+        {
+          "id": "proof",
+          "q": "What does it prove?"
+        }
+      ]
+    },
+    {
+      "title": "The text itself",
+      "ar": "المتن",
+      "by": "What is hard in the wording, and how is it read?",
+      "axes": [
+        {
+          "id": "problem",
+          "q": "What is the difficulty?"
+        },
+        {
+          "id": "cure",
+          "q": "How is it settled?"
+        }
+      ],
+      "terms": [
+        {
+          "ar": "مختلف الحديث",
+          "en": "Apparently conflicting hadith",
+          "say": "Two sound reports that seem to clash, where both can be read together without strain.",
+          "quote": "إما أن يمكن الجمع بين مدلوليهما بغير تعسف، أو لا، فإن أمكن الجمع فهو النوع المسمى: مختلف الحديث",
+          "book": "nuzha",
+          "page": "PageV01P091",
+          "answers": {
+            "problem": "Two reports seem to clash",
+            "cure": "Read together"
+          },
+          "confuse": [
+            {
+              "ar": "الناسخ والمنسوخ",
+              "why": "Both start from two clashing reports: mukhtalif is read together; if they cannot be and the later is known it is nāsikh/mansūkh; if neither, one is preferred (tarjīḥ); failing that, judgement is suspended."
+            }
+          ]
+        },
+        {
+          "ar": "الناسخ والمنسوخ",
+          "en": "Abrogating and abrogated",
+          "say": "Where two reports cannot be read together and the later is known, it lifts the earlier ruling.",
+          "quote": "والنسخ: رفع تعلق حكم شرعي بدليل شرعي متأخر عنه. والناسخ: ما دل على الرفع المذكور",
+          "book": "nuzha",
+          "page": "PageV01P095",
+          "kind": "nasikh_chapter",
+          "answers": {
+            "problem": "Two reports clash and cannot be joined",
+            "cure": "The later lifts the earlier"
+          }
+        },
+        {
+          "ar": "غريب الحديث",
+          "en": "Rare wording",
+          "say": "A word used so seldom that its meaning is unclear; the books written on rare words settle it.",
+          "quote": "فإن خفي المعنى، بأن كان اللفظ مستعملا بقلة، احتيج إلى الكتب المصنفة في شرح الغريب",
+          "book": "nuzha",
+          "page": "PageV01P120",
+          "answers": {
+            "problem": "A seldom-used word",
+            "cure": "The books of gharib"
+          },
+          "confuse": [
+            {
+              "ar": "الغريب",
+              "why": "Gharib al-hadith is about a rare word in the text; al-gharib is a hadith with one chain. Same word, two sciences."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "The narrators",
+      "ar": "الرواة",
+      "by": "Who is he, and whom did he meet?",
+      "axes": [
+        {
+          "id": "met",
+          "q": "Whom did he meet, and who took from him?"
+        }
+      ],
+      "terms": [
+        {
+          "ar": "الصحابي",
+          "en": "Companion",
+          "say": "Met the Prophet believing in him and died a Muslim.",
+          "quote": "وهو من لقي النبي صلى الله عليه وسلم مؤمنا به، ومات على الإسلام",
+          "book": "nuzha",
+          "page": "PageV01P140",
+          "answers": {
+            "met": "Met the Prophet ﷺ as a believer and died so"
+          }
+        },
+        {
+          "ar": "التابعي",
+          "en": "Successor",
+          "say": "Met a Companion in the same way.",
+          "quote": "أو إلى التابعي: وهو من لقي الصحابي كذلك",
+          "book": "nuzha",
+          "page": "PageV01P278",
+          "answers": {
+            "met": "Met a Companion as a believer"
+          }
+        },
+        {
+          "ar": "مجهول العين",
+          "en": "Unknown in person",
+          "say": "Named, but only one narrator ever took from him.",
+          "quote": "فإن سمي الراوي، وانفرد راو واحد بالرواية عنه، فهو مجهول العين",
+          "book": "nuzha",
+          "page": "PageV01P125",
+          "answers": {
+            "met": "Named, one narrator from him"
+          },
+          "confuse": [
+            {
+              "ar": "مجهول الحال",
+              "why": "Majhul al-ʿayn: only one narrator took from him. Majhul al-hal: two or more did, but no one vouched for his uprightness."
+            }
+          ]
+        },
+        {
+          "ar": "مجهول الحال",
+          "en": "Unknown in condition (mastūr)",
+          "say": "Two or more took from him, but no one declared him reliable.",
+          "quote": "أو إن روى عنه اثنان فصاعدا، ولم يوثق فهو مجهول الحال، وهو المستور",
+          "book": "nuzha",
+          "page": "PageV01P126",
+          "answers": {
+            "met": "Named, two or more from him, no one vouched"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Support and additions",
+      "ar": "الاعتبار والمتابعات",
+      "by": "What backs a report up, and what is added to it?",
+      "axes": [
+        {
+          "id": "same",
+          "q": "Same Companion, or another?"
+        },
+        {
+          "id": "role",
+          "q": "Its place"
+        }
+      ],
+      "terms": [
+        {
+          "ar": "المتابع",
+          "en": "Corroboration (mutaba'a)",
+          "say": "Another narrator agrees with one who seemed to stand alone. Full (tāmma) if the agreement is with the narrator himself, partial (qāṣira) if with someone above him. Some scholars instead call agreement in wording mutābaʿa and in meaning shāhid.",
+          "quote": "إن وجد -بعد ظن كونه فردا- قد وافقه غيره ... فهو المتابع",
+          "book": "nuzha",
+          "page": "PageV01P087",
+          "lugha": "mutābiʿ: one who follows along",
+          "answers": {
+            "same": "Same Companion",
+            "role": "Another narrator telling the same hadith"
+          },
+          "confuse": [
+            {
+              "ar": "الشاهد",
+              "why": "Both back a report up; a mutabi' tells it from the same Companion, a shahid tells its like from another Companion."
+            }
+          ]
+        },
+        {
+          "ar": "الشاهد",
+          "en": "Witness (shahid)",
+          "say": "The same text, in its words or its meaning, from another Companion.",
+          "quote": "وإن وجد متن يروى من حديث صحابي آخر يشبهه في اللفظ والمعنى، أو في ... المعنى فقط = فهو \"الشاهد\"",
+          "book": "nuzha",
+          "page": "PageV01P090",
+          "lugha": "shāhid: a witness",
+          "answers": {
+            "same": "Another Companion",
+            "role": "Another hadith of the same meaning"
+          }
+        },
+        {
+          "ar": "الاعتبار",
+          "en": "I'tibar (searching)",
+          "say": "Looking through the books for other routes of a hadith thought to stand alone.",
+          "quote": "واعلم أن تتبع الطرق: من الجوامع ... والمسانيد، والأجزاء، لذلك الحديث ... الذي يظن أنه فرد؛ ليعلم: هل له متابع أم لا؟ هو \"الاعتبار\"",
+          "book": "nuzha",
+          "page": "PageV01P090",
+          "lugha": "iʿtibār: weighing, considering",
+          "answers": {
+            "same": "—",
+            "role": "The search for both"
+          }
+        },
+        {
+          "ar": "زيادة الثقة",
+          "en": "A trustworthy narrator's addition",
+          "say": "An extra word from a sahih or hasan narrator is accepted, unless it contradicts what a more trustworthy narrator told.",
+          "quote": "وزيادة راويهما، أي: الصحيح والحسن، مقبولة",
+          "book": "nuzha",
+          "page": "PageV01P082",
+          "answers": {
+            "same": "The same hadith, with more in it",
+            "role": "An addition to be weighed"
+          },
+          "confuse": [
+            {
+              "ar": "الشاذ",
+              "why": "A trustworthy narrator's extra word is accepted when it does not contradict the others; it becomes shādhdh only when it cannot be held together with what the stronger narrators told."
+            }
+          ]
+        }
+      ]
+    }
   ],
   "sources": {
     "taqrib": {
-      "label": "Ibn Hajar, Taqrib al-Tahdhib", "openiti": "0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1"
+      "label": "Ibn Hajar, Taqrib al-Tahdhib",
+      "openiti": "0852IbnHajarCasqalani.TaqribTahdhib.JK000121-ara1"
     },
     "nuzha": {
-      "label": "Ibn Hajar, Nuzhat al-Nazar (ed. al-Rahili)", "openiti": "0852IbnHajarCasqalani.NuzhatNazar.Shamela0012115-ara1"
+      "label": "Ibn Hajar, Nuzhat al-Nazar (ed. al-Rahili)",
+      "openiti": "0852IbnHajarCasqalani.NuzhatNazar.Shamela0012115-ara1"
     },
     "salah": {
-      "label": "Ibn al-Salah, Muqaddima (ed. with al-Bulqini's Mahasin al-Istilah)", "openiti": "0643IbnSalahShahrazuri.MuqaddimatCulumHadith.Shamela0029878BK1-ara1"
+      "label": "Ibn al-Salah, Muqaddima (ed. with al-Bulqini's Mahasin al-Istilah)",
+      "openiti": "0643IbnSalahShahrazuri.MuqaddimatCulumHadith.Shamela0029878BK1-ara1"
     },
     "tarif": {
       "label": "Ibn Hajar, Ta'rif Ahl al-Taqdis",
@@ -431,12 +1704,20 @@
       "openiti": "0385IbnShahin.NasikhHadithWaMansukhuh.Shamela0013184-ara1"
     },
     "ilal_ah": {
-      "label": "Ibn Abi Hatim, 'Ilal al-Hadith", "openiti": "0327IbnAbiHatimRazi.CilalHadith.Shamela0001350-ara1"
+      "label": "Ibn Abi Hatim, 'Ilal al-Hadith",
+      "openiti": "0327IbnAbiHatimRazi.CilalHadith.Shamela0001350-ara1"
     },
     "mawduat": {
-      "label": "Ibn al-Jawzi, al-Mawdu'at", "openiti": "0597IbnJawzi.Mawducat.Shamela0000882-ara1"
+      "label": "Ibn al-Jawzi, al-Mawdu'at",
+      "openiti": "0597IbnJawzi.Mawducat.Shamela0000882-ara1"
     },
-    "ours": { "label": "Hadith in this app (sunnah.com)", "openiti": "" },
-    "grade": { "label": "Our reading of the grade on Ibn Hajar's twelve levels", "openiti": "" }
+    "ours": {
+      "label": "Hadith in this app (sunnah.com)",
+      "openiti": ""
+    },
+    "grade": {
+      "label": "Our reading of the grade on Ibn Hajar's twelve levels",
+      "openiti": ""
+    }
   }
 }

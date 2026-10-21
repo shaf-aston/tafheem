@@ -25,6 +25,18 @@
 }
 
 
+/* The grain film (shell/Backdrop.jsx): above everything, because under the glass
+   pane it would be 72% covered and invisible. It is a tile of noise at a few
+   percent alpha, so it never takes a click and barely touches text. */
+.backdrop-grain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--layer-grain);
+  pointer-events: none;
+  background-size: calc(var(--glass-grain-tile-px) * 1px);
+}
+
+
 /* The backdrop canvas: behind the page, never in the way of a click. */
 .backdrop {
   position: fixed;
@@ -90,7 +102,7 @@
   pointer-events: none;
   color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength), transparent);
   transition-property: top, right, width, transform, color, filter;
-  transition-duration: calc(var(--motion-base-ms) * 4ms);
+  transition-duration: calc(var(--motion-base-ms) * 4 * 1ms);
   transition-timing-function: var(--motion-settle-ease);
 }
 

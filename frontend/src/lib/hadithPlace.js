@@ -34,11 +34,18 @@ export function shortOf(q, books) {
 export const narratorOf = (q) => /^narrator\/(\d+)$/.exec(q ?? '')?.[1] ?? null
 export const narratorPlaceOf = (id) => `narrator/${id}`
 
-// The lists are the places "narrators" and "scholars", apart from "narrator/<id>" and every collection.
+// The lists are the places "narrators", "scholars" and "terms", apart from "narrator/<id>" and every collection.
 export const NARRATORS_PLACE = 'narrators'
 export const SCHOLARS_PLACE = 'scholars'
-const LISTS = [NARRATORS_PLACE, SCHOLARS_PLACE]
-export const listOf = (q) => (LISTS.includes(q) ? q : null)
+export const TERMS_PLACE = 'terms'
+const LISTS = [NARRATORS_PLACE, SCHOLARS_PLACE, TERMS_PLACE]
+// The Terms list keeps its open group in the place, "terms/3", so reload, Back and a shared link return to it.
+export const termsPlaceOf = (group) => `${TERMS_PLACE}/${group}`
+export const termsGroupOf = (q) => {
+  const found = /^terms\/(\d+)$/.exec(q ?? '')
+  return found ? Number(found[1]) : null
+}
+export const listOf = (q) => (termsGroupOf(q) != null ? TERMS_PLACE : LISTS.includes(q) ? q : null)
 
 // The (collection, book) a place string names, before the collections are known to check it; null if none.
 export function bookOf(q) {
@@ -55,6 +62,7 @@ export const placeOf = (collection, book, number, part = '') => (
 export function nameOfPlace(q, collections = [], nameOf = () => null) {
   if (q === NARRATORS_PLACE) return 'Narrators'
   if (q === SCHOLARS_PLACE) return 'Scholars'
+  if (listOf(q) === TERMS_PLACE) return 'Terms'
   if (narratorOf(q)) return nameOf(narratorOf(q)) || 'A narrator'
   const [id, book, hadith] = q.split('/')
   const found = collections.find((c) => c.id === id)

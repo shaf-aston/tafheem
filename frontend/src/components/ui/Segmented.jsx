@@ -17,13 +17,18 @@
  * `fill` spreads the choices across the full width, equally, for a row that is
  * the main switch of a screen (log in or sign up) rather than a small filter.
  */
+import { useMedia, PHONE } from '../../lib/useMedia'
+
 export default function Segmented({
   label, options, value, onChange, accent, captioned = false, wrap = false, fill = false, compact = false, className = '', title,
 }) {
   // A pill is the right shape for a row that stays one row. Where there are
   // enough choices to spill onto a second line, a pill's ends curve around two
   // rows at once and the control reads as a blob, so those rows square off.
-  const shape = wrap ? 'flex-wrap rounded-2xl' : 'rounded-full'
+  // On a phone every row may wrap: five choices at 390px clipped instead; its choices then
+  // share each row equally, so a choice pushed to a second row does not sit alone at the left.
+  const phone = useMedia(PHONE)
+  const shape = wrap || phone ? 'flex-wrap rounded-2xl' : 'rounded-full'
   const row = (
     <div
       className={`flex gap-0.5 p-0.5 ${shape} bg-[var(--surface)] border border-[var(--border)] ${className}`}
@@ -42,7 +47,7 @@ export default function Segmented({
             style={on
               ? { color: accent, background: `color-mix(in srgb, ${accent} 16%, transparent)` }
               : undefined}
-            className={`press tap inline-flex items-center ${fill ? 'flex-1 justify-center py-2.5' : compact ? 'px-3 py-1.5' : 'px-3.5 py-1.5'} rounded-full ${compact ? 'text-xs' : 'text-sm'} font-medium transition-colors ${
+            className={`press tap inline-flex items-center ${phone && !compact ? 'flex-1 justify-center' : ''} ${fill ? 'flex-1 justify-center py-2.5' : compact ? 'px-3 py-1.5' : 'px-3.5 py-1.5'} rounded-full ${compact ? 'text-xs' : 'text-sm'} font-medium transition-colors ${
               on ? '' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
             }`}
           >

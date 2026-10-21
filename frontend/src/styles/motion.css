@@ -148,6 +148,44 @@
 }
 
 
+/* ── The soft vocabulary: reveal, elevation, tilt ───────────────────────────
+   Three classes, no keyframe of their own. Their knobs are theme.json's motion
+   (reveal-*, tilt-*) and shadow (e1-e3) groups.
+
+   .reveal waits, invisible, until it scrolls into view, then plays rise-in once
+   with the rise knobs set to the reveal tokens. ui/Reveal.jsx adds .in when the
+   element enters (an IntersectionObserver, so it also works where CSS scroll
+   timelines do not, and honours the Animations switch through the same
+   durations as .rise-in). --i staggers neighbours, capped at reveal-cap.
+   Rule of use: what is on screen when a page opens keeps .rise-in (it should
+   arrive with the page); what is below the fold wears .reveal. */
+.reveal:not(.in) { opacity: 0; }
+.reveal.in {
+  --rise-y: calc(var(--motion-reveal-y-px) * 1px);
+  --rise-from: var(--motion-reveal-from);
+  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) backwards;
+  animation-delay: calc(min(var(--i, 0), var(--motion-reveal-cap)) * var(--motion-stagger-ms) * 1ms);
+}
+
+
+/* Elevation: how far a thing stands off the page. */
+.e1 { box-shadow: var(--shadow-e1); }
+.e2 { box-shadow: var(--shadow-e2); }
+.e3 { box-shadow: var(--shadow-e3); }
+
+
+/* A card leaning toward the pointer; --tx and --ty (-1 to 1) come from
+   lib/useTilt.js. A mouse only, and never on text meant to be read. */
+@media (hover: hover) and (pointer: fine) {
+  .tilt:hover:where(:not(:disabled)) {
+    transform:
+      perspective(calc(var(--motion-tilt-perspective-px) * 1px))
+      rotateX(calc(var(--ty, 0) * var(--motion-tilt-max-deg) * -1deg))
+      rotateY(calc(var(--tx, 0) * var(--motion-tilt-max-deg) * 1deg));
+  }
+}
+
+
 /* ── Stepping sideways ──────────────────────────────────────────────────────
    The next card or page comes in from the side it was asked for, so a step
    reads as moving along rather than as the screen reloading. Worn through

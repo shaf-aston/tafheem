@@ -447,7 +447,7 @@
   border-radius: 50%;
   animation:
     sh-drift calc(90s * var(--motion-scale)) linear infinite,
-    fade-in calc(var(--motion-spring-ms) * 2ms) ease backwards;
+    fade-in calc(var(--motion-spring-ms) * 2 * 1ms) ease backwards;
   --fade-from: 0;
 }
 
@@ -583,7 +583,7 @@
 /* Last to arrive: the ring is what the eye should follow first. */
 .sh-hint,
 .sh-stage .cb-results {
-  animation: fade-in calc(var(--motion-spring-ms) * 2ms) ease backwards;
+  animation: fade-in calc(var(--motion-spring-ms) * 2 * 1ms) ease backwards;
   --fade-from: 0;
   animation-delay: calc(var(--motion-spring-ms) * 1ms);
 }

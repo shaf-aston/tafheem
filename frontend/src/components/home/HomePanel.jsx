@@ -20,6 +20,7 @@ import { accentOf, FIXED, GROUPS, HOME, LISTED, START } from '../../lib/tabs'
 import { progressText } from '../../lib/homeCopy'
 import { copy as offlineCopy, noSignal } from '../../lib/offline'
 import knobs from '../../home.json'
+import { useMedia, PHONE } from '../../lib/useMedia'
 
 import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -40,6 +41,7 @@ const tabOf = (id) => LISTED.find((tab) => tab.id === id)
 const SHOWN_GROUPS = GROUPS.filter((group) => group.id !== START && OTHERS.some((tab) => tab.group === group.id))
 
 export default function HomePanel({ accent, onGo }) {
+  const phone = useMedia(PHONE)
   const [name] = useState(getProfile)
   const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview, enabled: !!name, retry: false })
   const { steps } = useJourney()
@@ -79,7 +81,7 @@ export default function HomePanel({ accent, onGo }) {
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_var(--layout-rail)] lg:gap-8 lg:items-start">
         <div className="space-y-6">
           <div className="cb" data-wide>
-            <CommandField line={line} name={NAME} placeholder={copy.placeholder} showing={showing} />
+            <CommandField line={line} name={NAME} placeholder={phone ? copy['placeholder-phone'] : copy.placeholder} showing={showing} />
             {showing && (
               <CommandResults id={`${NAME}-results`} name={NAME} rows={line.rows} tabs={LISTED} colorOf={accentOf}
                 active={line.active} onHover={line.setActive} onPick={line.run}
