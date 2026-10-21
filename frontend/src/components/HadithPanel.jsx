@@ -8,11 +8,13 @@
  */
 import { useEffect, useState } from 'react'
 import { useArrivalWhenReady } from '../lib/useArrival'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, searchHadith } from '../api'
-import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from '../lib/hadithPlace'
+import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith } from '../api'
+import { bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
+import { nearest, tabNow, trailFor, useJourney } from '../lib/journey'
+import { TRAIL_STEPS } from '../lib/session'
 
 import Chip from './ui/Chip'
 import ChipRow from './ui/ChipRow'
@@ -46,10 +48,18 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   const [termsGroup, setTermsGroup] = useState(null)   // the Terms group drawn alone, if any
   const [listing, setListing] = useState(null)   // the list showing, narrators, scholars or terms, if any
   const { favorites } = useHadithFavorites()
+  // The trail names each step: "Bukhari 5a", a narrator by his name. Every narrator on the trail is
+  // watched (the same request his page makes), so a name lands once it arrives, a reloaded trail too.
+  const client = useQueryClient()
+  const { steps, at } = useJourney()
+  const onTrail = new Set([narrator, ...nearest(trailFor(steps, tabNow(steps, at), at), at, TRAIL_STEPS).shown.map((step) => narratorOf(step.value))])
+  onTrail.delete(null)
+  const pages = useQueries({ queries: [...onTrail].map((id) => narratorQuery(id)) })
+  const names = Object.fromEntries([...onTrail].map((id, n) => [id, pages[n].data?.name_en]))
+  const named = (q) => nameOfPlace(q, collections, (id) => names[id])
   const source = useSources().sources.find((s) => s.key === 'hadith')
 
   // A link naming a book starts that book loading beside the collections, not after them.
-  const client = useQueryClient()
   useEffect(() => {
     const named = bookOf(incoming)
     if (named) client.prefetchQuery(hadithBookQuery(...named))
@@ -86,7 +96,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (isPending) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
         <div inert>
           <HadithSearchResults accent={accent} onNarrator={noop} onHadith={noop} onOpenBook={noop}>
             <AnalyzerSkeleton />
@@ -118,7 +128,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (!collections.length) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
         <ErrorAlert title="No collection is built yet">
           Fetch and build one with{' '}
           <Code>
@@ -154,7 +164,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (narrator != null) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
         <NarratorPage
           id={narrator}
           accent={accent}
@@ -167,7 +177,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
 
   return (
     <div className="panel">
-      <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+      <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
 
       {missed && (
         <StatusNote>That link names a hadith that is not here, so the collection opens plainly.</StatusNote>

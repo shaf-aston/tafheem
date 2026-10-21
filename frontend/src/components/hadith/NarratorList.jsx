@@ -51,6 +51,8 @@ export default function NarratorList({ accent, onOpen }) {
                   className="lift press w-full h-full text-start px-4 py-3 space-y-1 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--c)] transition-colors"
                 >
                   <ArabicText as="span" size="base" className="block">{n.name_ar}</ArabicText>
+                  {/* The name in English letters, for a reader who cannot yet read the Arabic. */}
+                  {n.name_en && <span className="block type-small text-[var(--text-dim)]">{n.name_en}</span>}
                   <NarratorWhen who={n} also={[`in ${n.hadith_count} of our hadith`]} />
                 </button>
               </li>

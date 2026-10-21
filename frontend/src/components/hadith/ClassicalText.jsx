@@ -7,6 +7,8 @@
  *
  * An entry from a build that kept no lines (`blocks` empty) shows its plain text.
  */
+import { withoutButton } from '../../lib/rijal'
+
 import ArabicText from '../ui/ArabicText'
 
 function Run({ run, accent }) {
@@ -34,7 +36,7 @@ const LINE = {
 
 export default function ClassicalText({ text, accent }) {
   if (!text.blocks?.length) {
-    return <ArabicText as="p" size="sm" className="block m-0 whitespace-pre-line text-[var(--text-dim)]">{text.body}</ArabicText>
+    return <ArabicText as="p" size="sm" className="block m-0 whitespace-pre-line text-[var(--text-dim)]">{withoutButton(text.body)}</ArabicText>
   }
   // The key to the book letters, each as the page names it; a letter the page gives no name is left out, never guessed.
   const key = new Map(text.blocks.flatMap((b) => b.runs).filter((r) => r.role === 'mark' && r.title).map((r) => [r.t, r.title]))

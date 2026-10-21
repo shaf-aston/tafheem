@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { drawnChain, runs, toneOf, told, withoutMarks } from './rijal'
+import { drawnChain, runs, toneOf, told, withoutButton, withoutMarks } from './rijal'
 
 describe('runs', () => {
   it('opens on a name at the very start', () => {
@@ -96,5 +96,15 @@ describe('drawnChain', () => {
     const names = [[at('زَيْدٌ'), at('زَيْدٌ') + 6, 1], [at('عَمْرٍو'), at('عَمْرٍو') + 6, 2]]
     const out = drawnChain(arabic, [0, arabic.lastIndexOf('قَالَ')], names, [{ at: at('عَمْرٍو'), id: 2, level: 8 }])
     expect(out.main.map((l) => l.members[0].note?.level ?? null)).toEqual([null, 8])
+  })
+})
+
+describe('withoutButton', () => {
+  it('leaves off the copied page\'s own button at the end', () => {
+    expect(withoutButton('روى له الجماعة\nexpand_more\nاقرأ المزيد')).toBe('روى له الجماعة')
+  })
+
+  it('keeps the words when the same word is part of the text', () => {
+    expect(withoutButton('اقرأ المزيد من كتبه\nروى له الجماعة')).toBe('اقرأ المزيد من كتبه\nروى له الجماعة')
   })
 })

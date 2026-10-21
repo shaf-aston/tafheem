@@ -1,8 +1,10 @@
 /**
  * The pieces a narrator is drawn from, shared by his pop-up (NarratorSheet) and
  * his page (NarratorPage): the name, the grade pill, the facts under them, and
- * a tappable list of other narrators.
+ * a tappable list of other narrators, and the fold a long list of them sits in.
  */
+import { useState } from 'react'
+
 import HADITH from '../../hadith.json'
 import { toneOf } from '../../lib/rijal'
 
@@ -172,6 +174,10 @@ function Labelled({ label, arabic = false, children }) {
 /** Two sides of one row, English left and Arabic right as sunnah.com sets them; stacked on a phone. */
 const PAIR = 'grid gap-x-10 gap-y-2 sm:grid-cols-2'
 
+/** One fact in both languages: short enough to sit side by side on a phone too, where
+ *  stacking them made one fact four lines and his page several screens long. */
+const FACT_PAIR = 'grid grid-cols-2 gap-x-4 sm:gap-x-10 gap-y-2'
+
 /** Said in place of the facts for a narrator known only by name from other narrators' lists. */
 const UNFETCHED = 'Known here only by name, from the teacher and student lists of other narrators. His own sunnah.com page has not been fetched, so his grade, generation and counts are not shown.'
 
@@ -212,7 +218,7 @@ export function NarratorHead({ who }) {
       {who.facts.length > 0 && (
         <div className="space-y-5">
           {who.facts.map((f, i) => (
-            <div key={i} className={PAIR}>
+            <div key={i} className={FACT_PAIR}>
               <Labelled label={f.label_en}>{f.en}</Labelled>
               <Labelled label={f.label_ar} arabic>{f.ar}</Labelled>
             </div>
@@ -289,9 +295,10 @@ export function PairRow({ en, ar, dot, title, hint, onClick }) {
       title={title}
       className="press tap w-full flex items-center gap-3 py-2 hover:bg-[var(--surface)] transition-colors"
     >
-      {en && <span className="min-w-0 shrink-0 max-w-[45%] text-left type-small text-[var(--text-dim)] truncate">{en}</span>}
+      {/* Wrapped, not cut: "`Abd Allah ibn al-`Abbas" and "`Abd Allah ibn al-`Ala'" differ only at the end. */}
+      {en && <span className="min-w-0 shrink-0 max-w-[45%] text-left type-small text-[var(--text-dim)]">{en}</span>}
       <span className="min-w-0 flex-1 flex items-center justify-end gap-2">
-        <ArabicText size="sm" className="min-w-0 truncate text-[var(--text)]">{ar}</ArabicText>
+        <ArabicText size="sm" className="min-w-0 text-[var(--text)]">{ar}</ArabicText>
         {dot && <span aria-hidden="true" className="w-2 h-2 rounded-full shrink-0" style={{ background: dot }} />}
       </span>
       {hint && <span className="sr-only">{hint}</span>}
@@ -326,5 +333,31 @@ export function NarratorLinks({ items, onOpen, row = false }) {
         </li>
       ))}
     </ul>
+  )
+}
+
+// Rows a list shows before "Show all N", as sunnah.com's narrator pages do: enough to
+// say who, few enough that the sections under it are still in reach.
+const FIRST = 5
+
+// A long list cut to its first few, the rest drawn only once asked for (Abu Hurayra
+// has over a thousand students). One draw, so a two-column grid runs on unbroken.
+export function FoldedList({ items, accent, noun = '', children: draw }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div>
+      {draw(open ? items : items.slice(0, FIRST))}
+      {items.length > FIRST && (
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          style={{ '--c': accent }}
+          className="tap mt-1 inline-flex items-center type-small text-[var(--text-faint)] hover:text-[var(--c)] transition-colors"
+        >
+          {open ? 'Show less' : `Show all ${items.length}${noun && ` ${noun}`}`}
+        </button>
+      )}
+    </div>
   )
 }

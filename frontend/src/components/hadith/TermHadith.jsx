@@ -29,9 +29,11 @@ export default function TermHadith({ kind, accent, onOpen }) {
       {!isPending && (!isError || unbuilt) && !items.length && <EmptyState>No hadith carry this ruling.</EmptyState>}
       {items.length > 0 && (
         <>
+          {/* Named and quiet, so these read as hadith to open, not as more rulings to filter by. */}
+          <p className="type-tiny text-[var(--text-faint)] m-0 pt-2">{total} hadith with this ruling, tap one to read it</p>
           <ChipRow>
             {items.map((h) => (
-              <Chip key={`${h.collection}:${h.number}${h.part}`} accent={accent} onClick={() => onOpen(h)}>
+              <Chip key={`${h.collection}:${h.number}${h.part}`} quiet accent={accent} onClick={() => onOpen(h)}>
                 {of(h.collection).short} {h.number}{h.part}
               </Chip>
             ))}

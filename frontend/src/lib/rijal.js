@@ -115,3 +115,8 @@ export function drawnChain(arabic, cut, names, notes = [], ties = []) {
   const moved = (list) => list.map((n) => ({ ...n, at: n.at - at }))
   return linked(chainLinks(chain), names.map(([start, end, id]) => [start - at, end - at, id]), chain, moved(notes), moved(ties))
 }
+
+// The page a narrator's classical entry was copied from ended it with its own button, "expand_more"
+// (an icon's name) and "اقرأ المزيد": the site's words, not the book's, so they are left off the end.
+const BUTTON = /(\s*\n(expand_more|اقرأ المزيد))+\s*$/
+export const withoutButton = (body = '') => body.replace(BUTTON, '')
