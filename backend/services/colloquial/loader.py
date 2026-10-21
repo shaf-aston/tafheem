@@ -274,6 +274,7 @@ def catalogue() -> dict:
                 "label": dialect["label"],
                 "arabic": dialect["arabic"],
                 "where": dialect["where"],
+                "gloss": dialect.get("gloss"),
                 "countries": dialect.get("countries", []),
                 "cities": dialect.get("cities", []),
                 "units": [{"unit": u["unit"], "title": u["title"], "written": u["written"],
