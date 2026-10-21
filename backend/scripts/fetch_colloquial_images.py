@@ -27,7 +27,7 @@ than by position, since one picture serves the word in every topic that teaches 
     python -m backend.scripts.fetch_colloquial_images approve-word --id apple --pick 1
 
 To fill a whole course at once, `auto` proposes and then approves the first
-(stock-first) candidate for every phrase and word that has a search_term and no
+candidate whose title names what was searched for, for every phrase and word that has a search_term and no
 picture. Every picture it saves is listed in review/auto.json so a person can look
 over them in one sitting and `reject` any that are wrong:
 
@@ -58,7 +58,7 @@ HEADERS = {"User-Agent": "tafheem-colloquial/1.0 (https://tafheem-app.vercel.app
 LICENSES = "commercial,modification"
 CANDIDATES_PER_PHRASE = 4
 STOCK = "stocksnap,rawpixel"
-TIMEOUT_SECONDS = 20
+TIMEOUT_SECONDS = 45
 COMMONS = "https://commons.wikimedia.org/w/api.php"
 
 
@@ -109,7 +109,28 @@ def search(term: str, client: httpx.Client) -> list[dict]:
                 break
     except httpx.HTTPError:
         pass
-    return (found or commons(term, client))[:CANDIDATES_PER_PHRASE]
+    if not found:
+        try:
+            found = commons(term, client)
+        except httpx.HTTPError:
+            pass
+    return found[:CANDIDATES_PER_PHRASE]
+
+
+FILLER = {"a", "an", "the", "of", "and", "with", "in", "on", "at", "for", "to", "photo", "image", "free", "picture", "together"}
+
+
+def words_of(text: str) -> set[str]:
+    return {w.rstrip("s") for w in re.findall(r"[a-z]+", (text or "").lower())} - FILLER
+
+
+def fitting(entry: dict) -> int | None:
+    """The first candidate whose title names something the search asked for, as a 1-based
+    pick, or None. A stock search matches loose tags ("family photo together" brings
+    penguins first), so an unchecked first result is often the wrong picture. Every word asked for
+    must be in the title: one shared word let "tall man" through as a cigar label."""
+    wanted = words_of(entry["search_term"])
+    return next((at for at, one in enumerate(entry["candidates"], start=1) if wanted <= words_of(one["title"])), None)
 
 
 def paths(unit: str) -> tuple[Path, Path, Path]:
@@ -223,11 +244,11 @@ def auto(client: httpx.Client) -> list[str]:
     for one in spine["units"]:
         unit = one["unit"]
         for entry in propose(unit, None, client)["found"]:
-            if entry["candidates"]:
-                saved.append(approve(unit, entry["lesson"], entry["phrase"], 1, client))
+            if pick := fitting(entry):
+                saved.append(approve(unit, entry["lesson"], entry["phrase"], pick, client))
         for word, entry in propose_words(unit, None, client)["found"].items():
-            if entry["candidates"] and not json.loads(_words_file().read_text(encoding="utf-8"))["words"][word].get("image"):
-                saved.append(approve_word(word, 1, client))
+            if (pick := fitting(entry)) and not json.loads(_words_file().read_text(encoding="utf-8"))["words"][word].get("image"):
+                saved.append(approve_word(word, pick, client))
     log = data_path("colloquial_dir") / "review" / "auto.json"
     earlier = json.loads(log.read_text(encoding="utf-8")) if log.exists() else []
     log.write_text(json.dumps(earlier + saved, indent=2), encoding="utf-8")
