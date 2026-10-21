@@ -516,6 +516,14 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     ("قَالَ زَيْدٌ الْجَوُّ جَمِيلٌ", "الْجَوُّ", ("role", "مبتدأ")),
     ("قَالَ زَيْدٌ الْجَوُّ جَمِيلٌ", "جَمِيلٌ", ("role", "خبر")),
     ("قَالَ الرَّجُلُ الْحَقَّ", "الْحَقَّ", ("role", "مفعول به")),
+    # Nahw Basics 4-5 (Fil, Musnad): a noun hung on the verb with no relation is still its argument
+    ("نَصَرَ زَيْدٌ بَكْرًا", "زَيْدٌ", ("role", "فاعل")),
+    ("نَصَرَ زَيْدٌ بَكْرًا", "بَكْرًا", ("role", "مفعول به")),
+    ("نُصِرَ بَكْرٌ", "بَكْرٌ", ("role", "نائب فاعل")),
+    # Jumla Filiyya p4: the مفعول به, no essential, may come before the verb
+    ("عِلْمًا طَلَبَ زَيْدٌ", "عِلْمًا", ("role", "مفعول به")),
+    # a tamyeez of the relation after a verb that takes no object (Maryam 4)
+    ("اِشْتَعَلَ الرَّأْسُ شَيْبًا", "شَيْبًا", ("role", "تمييز")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
     from backend.services import iraab

@@ -164,7 +164,8 @@ def verb_place(token: dict, s: Sentence) -> str:
         asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
         if asked and before and not any(t["rel"] == "OBJ" and not is_verb(t) for t in siblings):  # قال after it is the reply, not its object
             return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
-        if before and rel in SUBJECTS and typed == "a" and not is_mabni(token.get("pos_camel", "")):
+        if before and typed == "a" and not is_mabni(token.get("pos_camel", "")) and (
+                rel in SUBJECTS or (rel == "MOD" and is_plain_noun(token) and not is_participle(token))):
             return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object (a built word's is no case: أنتَ)
         if before and rel in SUBJECTS:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
@@ -198,11 +199,14 @@ def verb_place(token: dict, s: Sentence) -> str:
         if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
             return "purpose"
         if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
-                and token.get("stt") == "i" and any(t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head) for t in siblings):
+                and token.get("stt") == "i" and any(t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head)
+                                                    or (t["id"] < token["id"] and verb_place(t, s) == "subject") for t in siblings):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
                 return "specification"
             if is_participle(token):
                 return "state"
+            if is_plain_noun(token) and not same_root(token, head) and not is_one(head["lemma"], "intransitive_verbs"):
+                return "object"  # نصر زيدٌ بكرًا: a plain noun is no hal, and a tamyeez only after a tamyeez verb (above)
         if after_first:
             return "second_object"  # ظن الولد الأمر سهلا, أعطى الولد الكتاب
         # صِلْ مَنْ قَطَعَكَ: a relative hung on the verb as a modifier is a noun no hal or tamyeez can be
@@ -211,7 +215,11 @@ def verb_place(token: dict, s: Sentence) -> str:
         if rel in ("MOD", "IDF") and listed(token, "mawsul") and not any(t["rel"] == "OBJ" for t in siblings) \
                 and (head.get("asp") == "c" or any(subject_link(t) for t in siblings)):
             return "object"
+        # نصر زيدٌ بكرًا: a noun the parser hung on the verb with no relation ("---" belongs to the
+        # root alone) is still one of its arguments, told by its case like the rest; one with a subject
+        # of its own heads a sentence instead (قال ما اسمُك: ما is the khabar of اسم)
         if (rel in NOUN_LINKS or (rel == "IDF" and typed != "i")
+                or (rel == "---" and typed != "i" and not any(subject_link(k) for k in s.kids(token)))
                 or (rel == "MOD" and typed == "u" and is_plain_noun(token))
                 # بِعْ الكِتَابَ: hung on the verb as a modifier, but a definite word is never a
                 # hal or tamyeez, so its fatha makes it the object (unless it is the verb's own masdar)
