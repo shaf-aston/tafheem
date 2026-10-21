@@ -82,7 +82,7 @@ export const TABS = [
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', emblem: 'quiz', Component: QuizPanel, open: table, blurb: "Practise words and meanings, and review what is due", group: 'practise' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', emblem: 'timelines', Component: TimelinesPanel, open: load(timelinesQuery), study: true, blurb: "See events and their ayat laid out in order", group: 'more' },
   { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   emblem: 'dawah', Component: DawahPanel, open: load(dawahQuery), study: true, blurb: "Answers to common questions, with the evidence", group: 'more' },
-  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  emblem: 'colloq', Component: ColloquialPanel, open: load(colloquialQuery), blurb: "Everyday spoken Arabic, by dialect", group: 'arabic', study: true, modules: [WORDS_MODULE] },
+  { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  emblem: 'colloq', Component: ColloquialPanel, open: load(colloquialQuery), blurb: "Spoken, everyday Arabic dialects", group: 'arabic', study: true, modules: [WORDS_MODULE] },
   { id: 'kit',    label: 'Kit',        short: 'Kit',    arabic: 'عدة',    emblem: 'kit', Component: KitPanel, hidden: true, blurb: "Small tools for study", group: 'more' },
 ]
 

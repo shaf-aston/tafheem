@@ -1,14 +1,15 @@
 {
   "_about": "Every spoken dialect the Colloquial tab offers. A dialect is a folder of unit files beside this one, nothing more: adding one is a folder and a line here, with no code change anywhere. `voice` is who says its lines aloud: a native speaker of it (services/speech.py `voice_named`); without one, the Fusha voice reads them.",
   "_voice": "edge:<speaker> is a Microsoft neural voice from that country, `edge-tts --list-voices` lists them. The Fusha voice stays behind it for when it cannot be reached.",
-  "_places": "countries is where a dialect is spoken, as ISO 3166 alpha-2 codes; cities are the ones its `where` names, each at [longitude, latitude]. The dialect card draws them as a small map (frontend components/ui/CountryMap.jsx).",
+  "_places": "countries is where a dialect is spoken, as ISO 3166 alpha-2 codes; cities are the ones its `where` names, each at [longitude, latitude]. The dialect card draws them as a small map (frontend components/ui/CountryMap.jsx). `where` is a short line, a place and no more, so the card's top line holds it; `gloss`, where given, is the dialect's other name, set in italics beside its own.",
   "dialects": [
     {
       "key": "fusha",
       "folder": "fusha",
       "label": "Fusha",
       "arabic": "الفصحى",
-      "where": "Modern Standard Arabic, the written and formal language shared by every country",
+      "gloss": "Modern Standard Arabic",
+      "where": "Every Arab country",
       "countries": ["DZ", "BH", "KM", "DJ", "EG", "IQ", "JO", "KW", "LB", "LY", "MR", "MA", "OM", "PS", "QA", "SA", "SO", "SD", "SY", "TN", "AE", "YE"],
       "cities": [],
       "order": 0
@@ -18,7 +19,7 @@
       "folder": "damascene",
       "label": "Damascene",
       "arabic": "الشامي",
-      "where": "Damascus and the Syrian south",
+      "where": "Damascus and south Syria",
       "countries": ["SY"],
       "cities": [
         {
@@ -50,7 +51,7 @@
       "folder": "lebanese",
       "label": "Lebanese",
       "arabic": "اللبناني",
-      "where": "Beirut and the Lebanese coast",
+      "where": "Beirut and the coast",
       "countries": ["LB"],
       "cities": [
         {
@@ -66,7 +67,7 @@
       "folder": "gulf",
       "label": "Gulf",
       "arabic": "الخليجي",
-      "where": "The UAE, Kuwait and the Arabian Gulf",
+      "where": "UAE, Kuwait and the Gulf",
       "countries": ["AE", "KW", "QA", "BH"],
       "cities": [
         {
@@ -102,7 +103,7 @@
       "folder": "moroccan",
       "label": "Moroccan",
       "arabic": "المغربي",
-      "where": "Casablanca, Rabat and Morocco",
+      "where": "Casablanca and Rabat",
       "countries": ["MA"],
       "cities": [
         {
@@ -122,7 +123,7 @@
       "folder": "hejazi",
       "label": "Hejazi",
       "arabic": "الحجازي",
-      "where": "Makkah, Madinah and Jeddah",
+      "where": "Makkah, Madinah, Jeddah",
       "countries": ["SA"],
       "cities": [
         {
