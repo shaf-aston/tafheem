@@ -42,10 +42,16 @@ export default function BackendBanner({ status }) {
         type="button"
         aria-label="Dismiss backend warning"
         onClick={() => setDismissed(true)}
-        className="absolute top-6 right-6 w-7 h-7 grid place-items-center rounded-full border text-[var(--danger)] bg-[var(--surface)] hover:opacity-70 text-sm"
-        style={{ borderColor: 'var(--danger-edge)' }}
+        className="absolute top-4 right-4 min-w-[calc(var(--layout-tap-min)*1px)] min-h-[calc(var(--layout-tap-min)*1px)] grid place-items-center hover:opacity-70 text-sm"
       >
-        ✕
+        {/* The visible disc stays small; the button around it is the finger's target. */}
+        <span
+          aria-hidden="true"
+          className="w-7 h-7 grid place-items-center rounded-full border text-[var(--danger)] bg-[var(--surface)]"
+          style={{ borderColor: 'var(--danger-edge)' }}
+        >
+          ✕
+        </span>
       </button>
     </div>
   )

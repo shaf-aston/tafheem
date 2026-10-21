@@ -25,6 +25,25 @@ export const contrast = (a, b) => {
   return (hi + 0.05) / (lo + 0.05)
 }
 
+/**
+ * APCA-W3 0.0.98G lightness contrast (Lc) of text on a ground: about +106 for
+ * black on white, -108 for white on black. Positive is dark text on light.
+ * WCAG ratio is blind to polarity and to how thin small text is, so a pair
+ * passing 7:1 can still be Lc 54; the comfort floor is held in Lc (themes.comfort.dim-min-lc).
+ */
+const sapcY = (hex) => {
+  const [r, g, b] = [16, 8, 0].map((shift) => ((parseInt(hex.slice(1), 16) >> shift) & 255) / 255)
+  const y = r ** 2.4 * 0.2126729 + g ** 2.4 * 0.7151522 + b ** 2.4 * 0.072175
+  return y < 0.022 ? y + (0.022 - y) ** 1.414 : y
+}
+export const apca = (text, ground) => {
+  const [yt, yb] = [sapcY(text), sapcY(ground)]
+  if (Math.abs(yb - yt) < 0.0005) return 0
+  const lc = yb > yt ? (yb ** 0.56 - yt ** 0.57) * 1.14 : (yb ** 0.65 - yt ** 0.62) * 1.14
+  if (Math.abs(lc) < 0.1) return 0
+  return (lc > 0 ? lc - 0.027 : lc + 0.027) * 100
+}
+
 /** OKLCH [lightness, chroma, hue in degrees] of a #rrggbb colour (Ottosson's matrices). */
 export function oklch(hex) {
   const [r, g, b] = rgbOf(hex)

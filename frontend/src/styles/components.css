@@ -9,6 +9,8 @@
   flex-shrink: 0;
   width: var(--layout-control);
   height: var(--layout-control);
+  min-width: calc(var(--layout-tap-min) * 1px);
+  min-height: calc(var(--layout-tap-min) * 1px);
   border: 1px solid var(--border);
   border-radius: var(--radius-control);
   color: var(--text-faint);
@@ -207,8 +209,8 @@ dialog::backdrop {
 }
 
 
-/* Shown only after 200ms: fade-in with no length is a switch that flips late. */
-.late { opacity: 0; animation: fade-in 0s 200ms forwards; }
+/* Shown only after patience-ms: fade-in with no length is a switch that flips late. */
+.late { opacity: 0; animation: fade-in 0s calc(var(--motion-patience-ms) * 1ms) forwards; }
 
 .skeleton {
   background: linear-gradient(
@@ -450,7 +452,7 @@ dialog::backdrop {
   position: absolute; top: calc(100% + 0.25rem); translate: -50% 0; z-index: 1;
   display: none; flex-direction: column; align-items: center; pointer-events: none;
   opacity: 0.35;
-  transition: left calc(var(--motion-spring-ms) * 1.6ms) var(--motion-spring-ease), opacity calc(var(--motion-base-ms) * 1ms);
+  transition: left calc(var(--motion-spring-ms) * 1.6 * 1ms) var(--motion-spring-ease), opacity calc(var(--motion-base-ms) * 1ms);
 }
 @media (hover: hover) and (pointer: fine) { .key-hint { display: flex; } }
 .key-hint-host:hover .key-hint { opacity: 1; }
@@ -535,7 +537,8 @@ dialog::backdrop {
 .wheel-pill:hover:not(:disabled) { border-color: var(--border-hi); }
 
 
-.wheel-pill:disabled { opacity: 0.5; }
+/* Disabled reads by its dashed edge, not by fading the words: half-opacity text-dim measured 3.3:1 on the card. */
+.wheel-pill:disabled { color: var(--text-dim); border-style: dashed; cursor: not-allowed; }
 
 
 .wheel-card {
@@ -919,11 +922,11 @@ button.tile:hover { border-color: var(--c); }
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   font-size: 9px; font-weight: 700; color: var(--text-dim); font-variant-numeric: tabular-nums;
 }
-.level-ring-fill { transition: stroke-dasharray calc(600ms * var(--motion-scale)) ease-out; }
+.level-ring-fill { transition: stroke-dasharray calc(var(--motion-enter-ms) * 1ms * var(--motion-scale)) ease-out; }
 .level-ring-gain {
   position: absolute; left: 50%; bottom: 100%; pointer-events: none;
   font-size: 10px; font-weight: 700; color: var(--palette-lime); white-space: nowrap;
-  animation: level-gain calc(1100ms * var(--motion-scale)) ease-out both;
+  animation: level-gain calc(var(--motion-enter-ms) * 2 * 1ms * var(--motion-scale)) ease-out both;
 }
 @keyframes level-gain {
   from { opacity: 0; transform: translate(-50%, 6px); }
@@ -940,16 +943,16 @@ button.tile:hover { border-color: var(--c); }
 .xp-bar > span {
   display: block; height: 100%; border-radius: inherit; background: var(--xp-tone);
   transform-origin: left; transform: scaleX(var(--xp-share));
-  animation: xp-fill calc(900ms * var(--motion-scale)) cubic-bezier(.2,.8,.2,1) both;
+  animation: xp-fill calc(var(--motion-enter-ms) * 2 * 1ms * var(--motion-scale)) var(--motion-slide-ease) both;
 }
 @keyframes xp-fill { from { transform: scaleX(0); } }
 .xp-path { display: flex; justify-content: space-between; gap: 0.25rem; position: relative; padding-top: 0.5rem; }
 .xp-path::before { content: ''; position: absolute; top: 1.05rem; inset-inline: 0.6rem; height: 2px; background: var(--border); }
 .xp-step {
   position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; flex: 1;
-  color: var(--text-faint); animation: rise-in calc(400ms * var(--motion-scale)) ease-out both;
+  color: var(--text-faint); animation: rise-in calc(var(--motion-enter-ms) * 1ms * var(--motion-scale)) ease-out both;
   --rise-from: 0; --rise-scale: 1;
-  animation-delay: calc(var(--i) * 60ms * var(--motion-scale)); /* one after another, Seed to Fruit */
+  animation-delay: calc(var(--i) * var(--motion-stagger-ms) * 2 * 1ms * var(--motion-scale)); /* one after another, Seed to Fruit */
 }
 .xp-dot { width: 0.9rem; height: 0.9rem; border-radius: 999px; background: var(--surface); border: 2px solid var(--border); }
 .xp-done { color: var(--text-dim); }

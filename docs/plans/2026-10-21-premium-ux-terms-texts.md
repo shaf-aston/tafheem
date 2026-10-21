@@ -148,3 +148,131 @@ cubic-bezier); micMark.css:81; PbsChart.jsx:73 inline stagger; `--motion-spring-
 growWorlds/command/layers → name them (`--motion-loop-ms`, `--motion-enter-ms`). ~15 lines, one slice.
 Easings: 84 bare `ease*` outside motion.css → A4 sharpened to **"0 literal `Nms` and 0
 `cubic-bezier(` outside motion.css/theme.json"**; add one `--motion-ease` token used by the shared moves.
+
+### Worker · slice 1 (rendered audit, `frontend/scripts/contrast-audit.mjs`, 96 rows, ~5.5 min)
+Text: **one** real failure, the "Ayah" label in `button.wheel-pill` (Quran): 3.33 ink / 2.77 dark /
+2.44 parchment. Controls: `--border` on cards reads 1.4–1.5:1 everywhere (an upper bound: a filled
+tile passes on its fill, WCAG 1.4.11); Timelines hue borders 1.9–2.4; parchment rose/gold edges
+(`close`, `Try again`, `lift`) 1.26–1.55. Small targets at 390: nahw 105, settings 57, quran 22,
+daleel 18, dict 17, quiz 16 … repeat offenders `.icon-button` 40×40, `.cta.type-small` 84×36,
+close 28×28, `button.w-8.h-8`. `a.sr-only` is noise → exclude.
+### Worker · slice 2 (sources)
+al-Wasitiyya on OpenITI (Shamela0022665, 69 KB; JK000359 49 KB). Jawhara and Tuhfa **not on
+OpenITI**. Orchestrator: the Jawhara matn is on Arabic Wikisource (public domain, vowelled,
+**144 bayts**, 22 blocks) → fetched to the scratchpad. Tuhfat al-Murid has no clean digital text we
+may ship → the Ashʿarī world teaches the Jawhara's own words, with our English drawn from the
+Tuhfa's well-known explanations (as the Tahawiyya world does), never a quoted Tuhfa passage.
+### Critic · task 3 (research)
+Comfort: caps confirmed by APCA (text Lc ≤ ~90 dark); **gap: Midnight `text-dim` is Lc 54** (WCAG
+7.8 passes, still faint for small type) → add `dim-min-lc: 60` floor + test. Motion picks (≤3):
+(1) one `.reveal` scroll-rise with capped stagger; (2) elevation tokens e0–e3 (layered shadow +
+1px inner highlight) + ≤3° tilt on fine-pointer hover only; (3) static 3–4% grain on the ground
+(never animated). Rejected: WebGL, scroll parallax, wide glass blur. Term-tree patterns: label the
+split by its **question** (`by`), diff cards for confused pairs (`axis`), optional `lugha`.
+
+## Stage 2 gate: passed (option families + unknowns above). Critic's cuts accepted:
+C3 cut; A5 → grep audit only; sharh side-by-side → stretch; easing sweep → durations +
+cubic-bezier only; A1 gains A1b (APCA floors); A3 becomes three concrete fixes.
+
+## Stage 3 · Architecture
+
+### Track A — candidates
+| | i · measure → fix tokens, keep the audit | ii · runtime comfort layer (tone text too) | iii · per-screen overrides |
+|---|---|---|---|
+| Speed | 5 (CSS only) | 3 (JS on every look switch) | 4 |
+| Quality | 4 (audit + theme.test hold it) | 3 (new maths, regressions) | 2 |
+| UX | 4 | 4 | 3 |
+| Maintainable | 5 (one token each) | 2 | 1 (sprinkles) |
+| Novelty | 3 | 4 | 1 |
+**Pick i.** Loser ii: the only win is auto-toning text; one `dim-min-lc` floor + test gets that.
+Components (level 3→4):
+- `theme.json` → `themes.comfort.<scheme>.dim-min-lc: 60`; Midnight `text-dim` raised to meet it;
+  `type` gains nothing; `motion` gains `loop-ms`, `enter-ms`, `ease` (one cubic-bezier string);
+  `layout.tap-min: 44`; `shadow.e1..e3` + `glass.grain` (alpha).
+- `theme.test.js` → APCA Lc of `text` ≥ 75 and `text-dim` ≥ `dim-min-lc` on every ground.
+- `styles/palette.test.js` (new) → colour-literal allowlist (masks, entities) fails on a new literal.
+- `styles/keyframes.test.js` → also fails on literal `Nms` or `cubic-bezier(` outside motion.css.
+- `ui/Segmented.jsx` → wraps under `layout.phone` width; `.icon-button`, close/dismiss → `tap-min`.
+- `styles/motion.css` → `.reveal` (rise + fade, `--i` stagger, capped 6), `.e1/.e2/.e3`, `.tilt`
+  (fine pointer only), ground grain in `shell/Backdrop`. All read `motionOff()` via `--motion-scale`.
+- Quran wheel-pill label → `--text-dim`; watermark + فهم art `aria-hidden`; stray "4" badge; Home
+  phone placeholder copy (`home.json`).
+Spike: none needed (all CSS/tokens).
+
+### Track B — candidates
+| | i · Terms view in Hadith over usul glossary (PbsChart ≥ 640, list < 640) | ii · terms in the Map's chart | iii · a Terms tab |
+|---|---|---|---|
+| Speed | 4 | 4 | 3 |
+| Quality | 5 (backend-checked data, one source) | 2 (duplicates glossary) | 4 |
+| UX | 4 (where hadith readers already are) | 3 | 3 (one more tab) |
+| Maintainable | 5 | 2 | 3 |
+| Novelty | 3 | 2 | 2 |
+**Pick i.** Loser ii recorded: the Map stays an overview; its hadith card may link to the view later.
+Contracts:
+- `usul.json.glossary[]` → `{title, ar, by?, terms[{ar, en, say, lugha?, quote, book, page, kind?,
+  kids?[same shape], confuse?[{ar, why, axis}]}]}`; target ≥ 40 terms, ≥ 10 confuse pairs.
+- `store.glossary()` → same tree in API shape (`arabic, en, meaning, lugha, quote, source, page, kind,
+  kids, confuse[{arabic, why, axis}]`, group `by`); `store.glossary_faults()` → list of strings
+  (dup ar; confuse target not a term; kind unknown to `rulings`); the app stops on faults at load,
+  `tests/test_usul_glossary.py` covers each fault.
+- `lib/termsChart.js` (pure) → glossary → `{root, branches[{ar, en, c, kids:[[ar,en]]}]}` for
+  `chartTree`/`PbsChart`, colours from `theme.json` `pbs` hues by group index; `termAt(glossary,
+  arabic)` → the term + its group; tested, mutation-checked.
+- `hadith/TermsView.jsx` → `useQuery(usulGuideQuery)`; ≥ `layout.phone` → `PbsChart` (zoom into a
+  group), tap a leaf → `TermCard`; below → `TermGuide` groups as `Disclosure`s, tap → same card.
+- `hadith/TermCard.jsx` (BottomSheet) → meaning, lugha, quote + source/page, confused-with rows
+  aligned on `axis`, "hadith carrying this" via `usulTermQuery(kind)` when `kind`.
+- `HadithPanel` → `listing === TERMS_PLACE` renders `TermsView`; `HadithMoreMenu` gains "Terms".
+- Security: read-only, no new route.
+
+### Track C — candidates
+| | i · one Grow book world per text | ii · generic OpenITI reader tab | iii · Memorise book entry (Jawhara) |
+|---|---|---|---|
+| Speed | 4 | 3 (new routes) | 5 |
+| Quality | 5 (word-for-word test exists) | 3 (teaches nothing) | 4 |
+| UX | 5 (lessons, progress, review) | 2 | 3 |
+| Maintainable | 5 (data only) | 3 | 5 |
+| Novelty | 3 | 2 | 3 |
+**Pick i**, iii as a stretch (the Jawhara is a poem: Memorise's `books.js` could list it like the
+Jazariyya). Loser ii: a reader with no progress is what Daleel already half-does.
+Contracts:
+- `backend/data/books/openiti/` gains Wasitiyya (Shamela0022665); `backend/data/books/wikisource/`
+  gains the Jawhara written in the same `# ` / `~~` / `### | ` shape with a header naming the source
+  (Wikisource, public domain) and the bayt numbers; `openiti-books.json` gains an `aqida-books`
+  collection (Tahawi, Wasitiyya) so Daleel also searches them.
+- `bookLesson.test.js` → a book `file` holding a `/` is read from `books/<file>`, else from
+  `books/openiti/<file>` (one line).
+- `worlds.json` → three worlds of kind `book`: `wasitiyya` (module `wasitiyya`), `shashi`
+  (`shashi`), `jawhara` (`jawhara`), colours in `theme.json` `world`, each `idea` naming the school.
+- `public/grow/<book>.json` → walking skeleton = ≥ 2 parts, ≥ 4 lessons, ≥ 24 cards each, every
+  `ar` word-for-word from the file (the test proves it), `madhhab` line names the school.
+- Security: static files only; no new API.
+
+Level-4 gate: every slice below names its component; nothing invents a name.
+
+## Stage 4 · Slices (walking skeleton first; each runnable + testable)
+A1 audit script lands (worker) · A2 palette/keyframe literal tests + 16 duration fixes · A3 tap-min,
+Segmented wrap, dismiss, badge, placeholder, aria-hidden · A4 comfort floor + Midnight text-dim +
+wheel-pill label · A5 motion vocabulary: `.reveal`, elevation, grain, tilt on Home tiles + lists.
+Pre-mortem A: "fails because raising text-dim breaks the max-contrast cap" → test both bounds.
+B1 glossary data + faults + backend test · B2 `termsChart` + tests · B3 TermsView/TermCard + menu +
+render test. Pre-mortem B: "tree too wide on 640–900px" → zoom at group level by default.
+C1 files + manifest + import + test seam · C2 three skeleton books · C3 worlds.json + theme + tests.
+Pre-mortem C: "a card quotes a line the test can't find" → author from the file's own lines only.
+Each track: lint + 1700 tests + audit re-run → PR → CI → squash merge → Production deploy check.
+
+## Stage 3 gate: passed, with the critic's changes
+- Terms tree: `PbsChart` is 1784px wide for 7 groups → **< 1100px: group list, tap a group → the
+  chart of that one branch; ≥ 1100px: the full tree.** Render test asserts a rendered label ≥ 12px.
+- `lib/termsChart.js` builds the `{ar,en,c,kids}` tree itself and hands it to `layoutChart`/`PbsChart`
+  (never `chartTree`, whose DEEP/SUB keys belong to the Map).
+- Glossary diff rows: group-level `axes: [{id, q}]` + per-term `answers: {id: text}` (any two terms
+  in a group line up); `confuse: [{ar, why}]` names the pair. `glossary_faults` also checks every
+  answered axis is in its group. Faults stop the backend at startup (as dawah does), tested.
+- `TermCard` degrades to `EmptyState` when the rulings index is not built; render test mocks it.
+- Track C cut to **two worlds: jawhara (Ashʿarī) + wasitiyya (Salafi)**, ≥ 2 parts, ≥ 3 lessons,
+  ≥ 16 cards each; Usul al-Shashi next run; Memorise entry for the Jawhara is the stretch.
+- The Jawhara is written into `books/openiti/` in OpenITI shape (`build_jawhara.py`, 21 slips
+  corrected, `tests/test_jawhara.py`), so neither the book test nor the importer changes; it joins
+  Daleel under a new `aqida-books` collection with Tahawi and the Wasitiyya.
+- Midnight `text-dim` floor test also keeps |Lc(text)| − |Lc(text-dim)| ≥ 15.

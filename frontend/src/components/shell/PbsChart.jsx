@@ -70,7 +70,7 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }
           <g
             key={i}
             className="pbs-rise"
-            style={{ '--d': `${120 + i * 70}ms`, opacity: active ? 1 : 0.18, transition: 'opacity calc(250ms * var(--motion-scale)) ease' }}
+            style={{ '--d': `calc(var(--motion-stagger-ms) * ${5 + i * 3} * 1ms)`, opacity: active ? 1 : 0.18, transition: 'opacity calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) ease' }}
           >
             <path d={stemPath} stroke="var(--border-hi)" strokeWidth="1.6" fill="none" markerEnd="url(#pbs-m-root)" />
             <g
