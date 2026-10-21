@@ -260,6 +260,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     rel = token["rel"]
     if s.hijazi and token in s.hijazi[1:]:
         return "subject" if token is s.hijazi[1] else "predicate"
+    if s.asked_pair and token in s.asked_pair:
+        return "subject" if token is s.asked_pair[0] else "predicate"
     if praised_noun(token, s):
         return "subject"  # بِئْسَ الْخُلُقُ الْكَذِبُ: the one blamed, a مبتدأ whose khabar is the sentence before it
     if zarf_of_khabar(token, s):

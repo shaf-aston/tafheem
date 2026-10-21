@@ -1,6 +1,7 @@
 """A typed noun the dictionary lacks, read off sarf's own shapes: the masdar of a derived
-form (تَبَسُّمٌ is Form V's تَفَعُّل) and the elative (أَدْوَمُ is أَفْعَلُ), with a pronoun
-joined on (تَبَسُّمُكَ، أَدْوَمُهَا).
+form (تَبَسُّمٌ is Form V's تَفَعُّل), the elative (أَدْوَمُ is أَفْعَلُ) and the active
+participle (الْحَاقَّةُ is فَاعِلَة of حقّ, its doubled letters merged: فَاعّ), with ال before
+it, a ة after it, or a pronoun joined on (تَبَسُّمُكَ، أَدْوَمُهَا).
 
 verb_reader does this for verbs. CAMeL has no تَبَسُّم and offers the verb تَبَسَّمَكَ or a
 guessed name instead, which the typed vowels contradict; the parser then reads the ك's
@@ -14,7 +15,7 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
-from backend.services.harakat import CAMEL_CASE, SHADDA, VOWEL, fits_shape, letters
+from backend.services.harakat import CAMEL_CASE, SHADDA, SUKUN, VOWEL, fits_shape, letters
 from backend.services.nahw_book import book_words
 
 _PATTERNS = Path(__file__).parent.parent / "data" / "sarf" / "patterns.json"
@@ -30,12 +31,15 @@ def _shapes() -> list[tuple[str, str, str]]:
     """(shape in فعل letters, the analyser's digit pattern, part of speech), the elative first."""
     elative = [(shape.replace("1", "ف").replace("2", "ع") + "ل", shape + "3", "adj")
                for shape in book_words("elative_patterns")]
-    masdars = []
+    masdars, participles = [], []
     for form in json.loads(_PATTERNS.read_text(encoding="utf-8"))["forms"].values():
-        shape = form.get("masdar") or ""
-        if shape and "{4}" not in shape:  # fits_shape holds a root of three
-            masdars.append((shape.format("", *_ROOT), shape.format("", 1, 2, 3), "noun"))
-    return elative + masdars
+        for key, kept, pos in (("masdar", masdars, "noun"), ("fail", participles, "adj")):
+            shape = form.get(key) or ""
+            if shape and "{4}" not in shape and (shape.format("", *_ROOT), shape.format("", 1, 2, 3), pos) not in kept:  # fits_shape holds a root of three
+                kept.append((shape.format("", *_ROOT), shape.format("", 1, 2, 3), pos))
+    # حَاقّ، ضَالّ: a doubled root's فَاعِل merges its last two letters (الإدغام), the kasra between them dropped
+    merged = [("فَاعّ", "1َا2ّ", "adj")]
+    return elative + masdars + participles + merged
 
 
 def _pronoun(marked: list[tuple[str, set]]) -> tuple[int, str]:
@@ -60,8 +64,17 @@ def reading_of(word: str) -> dict | None:
     """The noun this typed word is, in the dictionary's own features ({pos, diac, atbtok, ...}),
     or None when no shape fits it, or a letter before its case was left bare (a long letter needs none)."""
     marked = letters(word)
-    size, enclitic = _pronoun(marked)
+    definite = len(marked) > 4 and marked[0][0] in "اأ" and marked[1][0] == "ل" and not marked[0][1] - {"َ"}
+    if definite:
+        # الطَّامَّة: after a ل left bare the sun letter's shadda is the ل's, not the word's own
+        sun = SUKUN not in marked[1][1]
+        marked = [(marked[2][0], marked[2][1] - ({SHADDA} if sun else set())), *marked[3:]]
+    size, enclitic = (0, "0") if definite else _pronoun(marked)
     stem = marked[:len(marked) - size]
+    feminine = len(stem) > 3 and stem[-1][0] == "ة"
+    if feminine:
+        # the ة carries the case, and the letter before it its fatha
+        stem = [*stem[:-2], (stem[-2][0], (stem[-2][1] - {"َ"}) | (stem[-1][1] & VOWEL.keys()))]
     # a long letter (the ا of تَعَاوُن) carries no vowel of its own; a bare ا opening the word is
     # hamzat al-wasl, a command's (افْعَلِي), never the hamza of أَفْعَل
     if len(stem) < 3 or not all(marks or (letter in "اوي" and i) for i, (letter, marks) in enumerate(stem[:-1])):
@@ -75,11 +88,11 @@ def reading_of(word: str) -> dict | None:
             continue
         typed_stem = "".join(letter + "".join(sorted(marks)) for letter, marks in stem)
         pronoun = "".join(letter + "".join(sorted(marks)) for letter, marks in marked[len(stem):])
-        return {"pos": pos, "diac": word, "lex": "".join(letter for letter, _ in stem), "pattern": pattern,
+        return {"pos": pos, "diac": word, "lex": "".join(letter for letter, _ in stem), "pattern": ("ال" if definite else "") + pattern + ("ة" if feminine else ""),
                 "atbtok": f"{typed_stem}_+{pronoun}" if size else typed_stem,
                 "catib6": "NOM+NOM" if size else "NOM", "ud": ("NOUN" if pos == "noun" else "ADJ") + ("+PRON" if size else ""),
-                "enc0": f"{enclitic}_poss" if size else "0", "stt": "c" if size else "i",
-                "cas": _CASE.get(case, "u") if case else "na", "num": "s", "gen": "m",
+                "enc0": f"{enclitic}_poss" if size else "0", "stt": "d" if definite else "c" if size else "i",
+                "cas": _CASE.get(case, "u") if case else "na", "num": "s", "gen": "f" if feminine else "m",
                 "asp": "na", "vox": "na", "per": "na", "mod": "na",
-                "prc0": "0", "prc1": "0", "prc2": "0", "prc3": "0", "source": "sarf"}
+                "prc0": "Al_det" if definite else "0", "prc1": "0", "prc2": "0", "prc3": "0", "source": "sarf"}
     return None

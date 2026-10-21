@@ -604,6 +604,8 @@
    "_before_verb": "The place a question noun fills when it opens a verb clause whose verb has no object of its own (Tasheel 2.4.7 p47): what or how many is asked is the object (ماذا قرأت، كم كتابًا قرأت), how is the hal (كيف جئت), when and where the maf'ul fihi (متى سافر، أين جلس). Read by services/syntax/facts.py.",
    "before_verb": {"ماذا": "object", "كم": "object", "كيف": "state", "متى": "place_time", "أين": "place_time", "أيان": "place_time"},
    "inflected": ["أي"],
+   "heads": ["ما", "من", "ماذا", "كم"],
+   "_heads": "question nouns that are no ظرف or hal: with a noun after them they are the mubtada and that noun the khabar (مَنْ أبوك، ما هي، القارعة ما القارعة: Sibawayh, on Ibn Aqil's Alfiyya; notes, Musnad p12). متى، أين، كيف stand for a time, place or state, so they are the khabar brought to the front (متى السفرُ). Read by services/syntax/facts/sentence.py.",
    "_inflected": "the one question noun that takes a case ending and a مضاف إليه (أيُّ الأعمالِ أفضلُ: أيّ the mubtada, الأعمال its مضاف إليه); every other is built, and the noun hung on it is what is asked about (متى السفرُ: السفر the mubtada). Read by services/syntax/facts.py.",
    "words": [
     "أ",

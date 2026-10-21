@@ -633,8 +633,11 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
 
 
 def _agreeing(typed: str, ranked: list[dict]) -> bool:
-    """Some real reading (not the no-analysis guess) has no vowel against the typed ones."""
-    return best_reading(typed, [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")]) is not None
+    """Some real reading (not the no-analysis guess), spelled with the typed letters (الحاقّة is no
+    إلحاقه), has no vowel against the typed ones."""
+    spelled = [bare_letters(c) for c, _ in letters(typed)]
+    return best_reading(typed, [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")
+                                and [bare_letters(c) for c, _ in letters(r.get("diac", ""))] == spelled]) is not None
 
 
 def _widened(token: str, ranked: list[dict]) -> list[dict]:
