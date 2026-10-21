@@ -1,7 +1,7 @@
 """Repair 2: a word hung on a verb's subject that the typed vowels forbid there is the verb's object."""
 from __future__ import annotations
 
-from backend.services.nahw_book import is_mabni
+from backend.services.nahw_book import is_mabni, is_one
 from backend.services.syntax.facts import (
     Sentence, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, typed_case_of, noun_tagged, subject_link, works_as_verb)
 
@@ -83,19 +83,21 @@ def kana_subject(tokens: list[dict]) -> None:
 def zanna_pair(tokens: list[dict]) -> None:
     """حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا: ظنّ and its sisters enter a مبتدأ and its خبر and put both
     in nasb as their two objects (Alfiyya: انصب بفعل القلب جزأي ابتدا). The parser may keep the pair
-    as it was, the first word the subject of the second; with the reader's fatha on both, the first is
-    the verb's first object and the second its second. A doer the parser took for the object, typed
-    in raf', is the verb's doer."""
+    as it was, the first word the subject of the second, and hang the second anywhere (on the verb,
+    or on its doer); with the reader's fatha on both, after the nearest verb before them being one of
+    ظنّ's (by the book's list: the family test wants the two objects already on the verb), the first is that verb's first object and the second its second. A doer the parser took for
+    the object, typed in raf', is the verb's doer."""
     s = Sentence(tokens)
     for first in tokens:
         second = s.head(first)
-        verb = second and s.head(second)
-        if not (verb and first["rel"] in ("SBJ", "TPC") and s.family(verb) == "zanna" and first["id"] < second["id"]
+        verb = second and next((t for t in reversed(tokens[:tokens.index(first)]) if is_verb(t)), None)
+        if not (verb and first["rel"] in ("SBJ", "TPC") and is_one(verb["lemma"], "zanna") and first["id"] < second["id"]
                 and noun_tagged(first) and typed_case_of(first) == typed_case_of(second) == "a"):
             continue
-        for doer in s.kids(verb):
-            if doer["rel"] == "OBJ" and doer["id"] < first["id"] and typed_case_of(doer) == "u":
-                doer["rel"] = "SBJ"
+        for doer in tokens:
+            if doer["head"] in (verb["id"], second["id"]) and doer["rel"] in ("OBJ", "MOD") \
+                    and verb["id"] < doer["id"] < first["id"] and typed_case_of(doer) == "u":
+                doer["head"], doer["rel"] = verb["id"], "SBJ"
         first["head"], first["rel"] = verb["id"], "OBJ"
-        second["rel"] = "OBJ"
+        second["head"], second["rel"] = verb["id"], "OBJ"
         s = Sentence(tokens)
