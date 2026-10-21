@@ -195,7 +195,18 @@ function bookStatus(state) {
   return { status: say('{done} of {total} lessons', { done, total }), share: total ? done / total : 0 }
 }
 
-export default function GrowHome({ worlds, rewards, lessons, books, onOpen, onStart, onStartBook }) {
+/** A lesson left unfinished: one tap back in, above everything else. */
+function Resume({ world, onResume }) {
+  return (
+    <section className="grow-today" style={{ '--w': world.accent }} aria-labelledby="grow-resume-h">
+      <p className="grow-today-kicker">{say('Unfinished lesson')}</p>
+      <h3 id="grow-resume-h">{world.name}</h3>
+      <PrimaryButton accent={world.accent} onClick={onResume}>{say('Resume')}</PrimaryButton>
+    </section>
+  )
+}
+
+export default function GrowHome({ worlds, rewards, lessons, books, resume, onResume, onOpen, onStart, onStartBook }) {
   const statusOf = {
     ...Object.fromEntries(Object.entries(lessons).map(([id, state]) => [id, stageStatus(state)])),
     ...Object.fromEntries(Object.entries(books).map(([id, state]) => [id, bookStatus(state)])),
@@ -205,6 +216,7 @@ export default function GrowHome({ worlds, rewards, lessons, books, onOpen, onSt
     <div className="grow-home">
       <SectionHeader tab="grow" subtitle={say('A little every day, in every part of the app.')}
         aside={rewards ? null : <LogInButton>{say('Log in to keep your XP')}</LogInButton>} />
+      {resume && <Resume world={worldOf(resume.id)} onResume={onResume} />}
       <Growth rewards={rewards} />
       <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>

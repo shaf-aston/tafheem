@@ -217,7 +217,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
     <Accent.Provider value={dialect?.key ?? null}>
     <div className="panel">
       <SectionHeader tab="colloq" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'}
-        nameOf={(q) => nameOfPlace(q, dialects)} />
+        nameOf={(q) => nameOfPlace(q, dialects)} history={false} />
       {catalogue.isPending && <AnalyzerSkeleton />}
       {catalogue.isError && <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={catalogue.error} onRetry={catalogue.refetch} />}
       {catalogue.data && (

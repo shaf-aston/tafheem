@@ -101,7 +101,7 @@
 .grow-lesson-top { display: flex; align-items: center; gap: 12px; }
 .grow-lesson-top .grow-lesson-bar { flex: 1; height: 12px; }
 .grow-card { display: grid; gap: 14px; animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) both; }
-.grow-card-tag { justify-self: start; font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--w) 20%, var(--surface)); color: var(--w); }
+.grow-card-tag { justify-self: start; font-size: max(var(--type-micro), 0.6875rem); /* the 11px floor, as text.css gives .type-micro */ font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--w) 20%, var(--surface)); color: var(--w); }
 .grow-card-ask { font-size: var(--type-body); color: var(--text-dim); }
 .grow-card-word, .grow-teach-ar { text-align: center; padding: 18px 8px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); font-size: 2.6rem; line-height: 1.6; }
 .grow-teach-en { text-align: center; font-size: var(--type-title); font-weight: 800; color: var(--text); }

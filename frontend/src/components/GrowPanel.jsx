@@ -10,7 +10,7 @@ import { useEffect, useEffectEvent, useState } from 'react'
 import config from '../worlds.json'
 import { colorFor } from '../theme'
 import { nextAfter } from '../lib/bookLesson'
-import { placeOf, valueOf } from '../lib/growPlace'
+import { landingOf, placeOf, valueOf } from '../lib/growPlace'
 import { goBack } from '../lib/journey'
 import { getProfile } from '../lib/profile'
 import { useHadithWorld } from '../lib/useHadithWorld'
@@ -48,8 +48,14 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
   const lessons = { words: useWordsWorld(worldOf('words')), hadith: useHadithWorld(worldOf('hadith')), quran: useQuranWorld(worldOf('quran')) }
   const placeAt = (value) => placeOf(value, WORLD_IDS, Object.keys(lessons), BOOK_IDS)
   // { at: 'home' } | { at: 'world', id, part? } | { at: 'lesson', id, part?, lesson?, cards?, inApp? }; a lesson without cards deals them once its world is ready.
-  const [view, setView] = useState(() => placeAt(incoming))
-  if (useArrival(arrival).arrived) setView(placeAt(incoming))
+  // The page opening on a lesson's address lands on home with that lesson offered (landingOf); its answers are kept either way.
+  const [landed] = useState(() => landingOf(placeAt(incoming)))
+  const [view, setView] = useState(landed.view)
+  const [resume, setResume] = useState(landed.resume)
+  if (useArrival(arrival).arrived) {
+    setView(placeAt(incoming))
+    setResume(null)
+  }
   // A book world fetches the part files the view needs (its open part, the lesson's, a review's).
   const books = useBookWorlds(BOOKS, view)
   const sourceOf = (id) => books[id] ?? lessons[id]
@@ -72,6 +78,7 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
 
   const [, rememberBook] = useRemembered(LAST_BOOK, BOOK_IDS, '')
   const go = (next) => {
+    setResume(null)
     if (next.at === 'lesson' && BOOK_IDS.includes(next.id)) rememberBook(next.id)
     setView(next)
     onVisit?.(valueOf(next))
@@ -107,8 +114,8 @@ export default function GrowPanel({ incoming, arrival, onVisit }) {
     screen = SCREENS[world.kind]({ world, lessons, books, view, back: home, go, start, startBook })
   } else {
     screen = (
-      <GrowHome worlds={WORLDS} rewards={rewards} lessons={lessons} books={books} onOpen={open} onStart={start}
-        onStartBook={startBook} />
+      <GrowHome worlds={WORLDS} rewards={rewards} lessons={lessons} books={books} resume={resume} onResume={() => go(resume)}
+        onOpen={open} onStart={start} onStartBook={startBook} />
     )
   }
   return <div className="panel">{screen}</div>

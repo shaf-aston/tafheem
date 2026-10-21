@@ -97,8 +97,18 @@ describe('fiqh', () => {
     localStorage.removeItem('grow-last-book')
   })
 
+  it('opens on Grow home with the unfinished lesson to resume, not inside it', async () => {
+    const visits = []
+    renderScreen(<GrowPanel incoming="fiqh/tahara/wudu" onVisit={(value) => visits.push(value)} />, { routes: { 'GET /progress/summary': { items: [] } } })
+    expect(await screen.findByText('Unfinished lesson')).toBeTruthy()
+    expect(screen.queryByRole('progressbar', { name: 'Lesson progress' })).toBeNull()
+    fireEvent.click(screen.getByRole('button', { name: 'Resume' }))
+    expect(visits.at(-1)).toBe('fiqh/tahara/wudu')
+  })
+
   it('falls back to the part for a lesson the book does not have', async () => {
     renderScreen(<GrowPanel incoming="fiqh/tahara/nothing" />, { routes: { 'GET /progress/summary': { items: [] } } })
+    fireEvent.click(await screen.findByRole('button', { name: 'Resume' }))
     expect(await screen.findByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()
   })
 

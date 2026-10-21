@@ -35,3 +35,9 @@ export const valueOf = (view) => {
   }
   return null
 }
+
+/**
+ * Where Grow opens for an address: a lesson's cards are not in the address, so a page that opens on one (a reload, a
+ * fresh visit to the saved tab) lands on home and offers the lesson as `resume`; the lesson itself starts on that tap.
+ */
+export const landingOf = (place) => (place.at === 'lesson' ? { view: { at: 'home' }, resume: place } : { view: place, resume: null })

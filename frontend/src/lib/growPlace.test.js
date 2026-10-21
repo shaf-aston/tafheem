@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { placeOf, valueOf } from './growPlace'
+import { landingOf, placeOf, valueOf } from './growPlace'
 
 const WORLDS = ['words', 'prayer', 'quran', 'hadith']
 const LESSONS = ['words', 'quran', 'hadith']
@@ -52,5 +52,19 @@ describe('a book world', () => {
       { at: 'lesson', id: 'fiqh', part: 'tahara', lesson: 'wudu' },
       { at: 'lesson', id: 'fiqh', lesson: 'review' },
     ]) expect(at(valueOf(view))).toEqual(view)
+  })
+})
+
+describe('landingOf', () => {
+  it('lands a page that opens on a lesson on home, with the lesson to resume', () => {
+    const lesson = { at: 'lesson', id: 'hadith' }
+    expect(landingOf(lesson)).toEqual({ view: { at: 'home' }, resume: lesson })
+    const book = { at: 'lesson', id: 'fiqh', part: 'tahara', lesson: 'wudu' }
+    expect(landingOf(book).resume).toBe(book)
+  })
+
+  it('leaves home and worlds where they are, with nothing to resume', () => {
+    expect(landingOf({ at: 'home' })).toEqual({ view: { at: 'home' }, resume: null })
+    expect(landingOf({ at: 'world', id: 'fiqh' }).resume).toBeNull()
   })
 })

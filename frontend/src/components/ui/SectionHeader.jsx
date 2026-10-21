@@ -9,6 +9,8 @@
  * title instead pushed the whole panel down a row for no gain.
  *
  * `nameOf` turns a step's address into words, for a tab whose addresses are ids.
+ * `history={false}` drops the trail, for a panel that draws its own way back
+ * (Colloquial's course trail): two trails stacked read as one path said twice.
  *
  * `tab` is the tab's id: its name, Arabic name and emblem then come from the
  * registry (lib/tabs.js), the one place they are written, so renaming a tab is
@@ -20,7 +22,7 @@ import Emblem from './Emblem'
 import Trail from './Trail'
 import { TABS } from '../../lib/tabs'
 
-export default function SectionHeader({ tab, title, arabic, subtitle, emblem, aside = null, nameOf }) {
+export default function SectionHeader({ tab, title, arabic, subtitle, emblem, aside = null, nameOf, history = true }) {
   const named = tab ? TABS.find((t) => t.id === tab) : null
   title ??= named?.label
   arabic ??= named?.arabic
@@ -50,7 +52,7 @@ export default function SectionHeader({ tab, title, arabic, subtitle, emblem, as
 
         <div className="flex items-center justify-end gap-3 flex-wrap min-w-0 ms-auto">
           {aside}
-          <Trail nameOf={nameOf} />
+          {history && <Trail nameOf={nameOf} />}
         </div>
       </div>
       {subtitle && <p className="text-[var(--text-dim)] text-sm leading-snug mt-1">{subtitle}</p>}

@@ -26,6 +26,14 @@ than by position, since one picture serves the word in every topic that teaches 
     python -m backend.scripts.fetch_colloquial_images propose-words --unit 2 [--lesson 2]
     python -m backend.scripts.fetch_colloquial_images approve-word --id apple --pick 1
 
+To fill a whole course at once, `auto` proposes and then approves the first
+(stock-first) candidate for every phrase and word that has a search_term and no
+picture. Every picture it saves is listed in review/auto.json so a person can look
+over them in one sitting and `reject` any that are wrong:
+
+    python -m backend.scripts.fetch_colloquial_images auto
+    python -m backend.scripts.fetch_colloquial_images reject --image words/apple.jpg
+
 A word is only searched for when its line in words.json has a `search_term`;
 "from" or "also" have nothing to show and simply never get one.
 
@@ -46,11 +54,12 @@ from backend.config import data_path
 from backend.services.colloquial import wordlist
 
 API = "https://api.openverse.org/v1/images/"
-HEADERS = {"User-Agent": "tafheem-colloquial/1.0 (learning app; image proposals)"}
+HEADERS = {"User-Agent": "tafheem-colloquial/1.0 (https://tafheem-app.vercel.app; learning app image proposals)"}
 LICENSES = "commercial,modification"
 CANDIDATES_PER_PHRASE = 4
 STOCK = "stocksnap,rawpixel"
 TIMEOUT_SECONDS = 20
+COMMONS = "https://commons.wikimedia.org/w/api.php"
 
 
 def unit_name(number: int) -> str:
@@ -67,17 +76,40 @@ def candidate(result: dict) -> dict:
     return {key: result.get(key) for key in keep} | {"thumbnail": result["thumbnail"]}
 
 
+def commons(term: str, client: httpx.Client) -> list[dict]:
+    """Wikimedia Commons, asked when Openverse is out of its daily allowance (200 a day
+    without an account). Commons only holds freely licensed files, commercial use included."""
+    params = {"action": "query", "format": "json", "generator": "search", "gsrnamespace": 6,
+              "gsrsearch": f"{term} filemime:image/jpeg", "gsrlimit": CANDIDATES_PER_PHRASE,
+              "prop": "imageinfo", "iiprop": "url|extmetadata", "iiurlwidth": 600}
+    reply = client.get(COMMONS, params=params)
+    reply.raise_for_status()
+    pages = sorted(reply.json().get("query", {}).get("pages", {}).values(), key=lambda page: page["index"])
+    found = []
+    for page in pages:
+        info = page["imageinfo"][0]
+        meta = {key: re.sub(r"<[^>]+>", "", value["value"]).strip() for key, value in info.get("extmetadata", {}).items()}
+        found.append({"id": f"commons-{page['pageid']}", "title": page["title"].removeprefix("File:"),
+                      "creator": meta.get("Artist"), "license": meta.get("LicenseShortName"),
+                      "license_version": None, "license_url": meta.get("LicenseUrl"),
+                      "foreign_landing_url": info.get("descriptionurl"), "thumbnail": info["thumburl"]})
+    return found
+
+
 def search(term: str, client: httpx.Client) -> list[dict]:
     found: list[dict] = []
-    for source in (STOCK, None):
-        params = {"q": term, "license_type": LICENSES, "page_size": CANDIDATES_PER_PHRASE, "extension": "jpg"}
-        reply = client.get(API, params=params | ({"source": source} if source else {}))
-        reply.raise_for_status()
-        seen = {one["id"] for one in found}
-        found += [candidate(r) for r in reply.json()["results"] if r["id"] not in seen]
-        if len(found) >= CANDIDATES_PER_PHRASE:
-            break
-    return found[:CANDIDATES_PER_PHRASE]
+    try:
+        for source in (STOCK, None):
+            params = {"q": term, "license_type": LICENSES, "page_size": CANDIDATES_PER_PHRASE, "extension": "jpg"}
+            reply = client.get(API, params=params | ({"source": source} if source else {}))
+            reply.raise_for_status()
+            seen = {one["id"] for one in found}
+            found += [candidate(r) for r in reply.json()["results"] if r["id"] not in seen]
+            if len(found) >= CANDIDATES_PER_PHRASE:
+                break
+    except httpx.HTTPError:
+        pass
+    return (found or commons(term, client))[:CANDIDATES_PER_PHRASE]
 
 
 def paths(unit: str) -> tuple[Path, Path, Path]:
@@ -184,15 +216,67 @@ def approve_word(word: str, pick: int, client: httpx.Client) -> str:
     return f"words/{name}"
 
 
+def auto(client: httpx.Client) -> list[str]:
+    """Approve the first candidate everywhere a search_term has no picture yet."""
+    spine = json.loads(paths("unit-01")[0].read_text(encoding="utf-8"))
+    saved: list[str] = []
+    for one in spine["units"]:
+        unit = one["unit"]
+        for entry in propose(unit, None, client)["found"]:
+            if entry["candidates"]:
+                saved.append(approve(unit, entry["lesson"], entry["phrase"], 1, client))
+        for word, entry in propose_words(unit, None, client)["found"].items():
+            if entry["candidates"] and not json.loads(_words_file().read_text(encoding="utf-8"))["words"][word].get("image"):
+                saved.append(approve_word(word, 1, client))
+    log = data_path("colloquial_dir") / "review" / "auto.json"
+    earlier = json.loads(log.read_text(encoding="utf-8")) if log.exists() else []
+    log.write_text(json.dumps(earlier + saved, indent=2), encoding="utf-8")
+    return saved
+
+
+def reject(image: str) -> None:
+    """Undo one picture: delete the file, its credit, and every slot pointing at it."""
+    root = data_path("colloquial_dir")
+    folder, name = (root / "images" / image).parent, Path(image).name
+    (folder / name).unlink(missing_ok=True)
+    sidecar = folder / "attribution.json"
+    if sidecar.exists():
+        credits = json.loads(sidecar.read_text(encoding="utf-8"))
+        credits.pop(name, None)
+        sidecar.write_text(json.dumps(credits, ensure_ascii=False, indent=2), encoding="utf-8")
+    spine_file = root / "spine.json"
+    spine = json.loads(spine_file.read_text(encoding="utf-8"))
+    for unit in spine["units"]:
+        for lesson in unit["lessons"]:
+            for phrase in lesson["phrases"]:
+                if phrase.get("image") == image:
+                    del phrase["image"]
+    spine_file.write_text(json.dumps(spine, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    whole = json.loads(_words_file().read_text(encoding="utf-8"))
+    for meaning in whole["words"].values():
+        if meaning.get("image") == image:
+            del meaning["image"]
+    _words_file().write_text(wordlist.text(whole["words"], whole.get("_about", "")), encoding="utf-8")
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("action", choices=("propose", "approve", "propose-words", "approve-word"))
+    ap.add_argument("action", choices=("propose", "approve", "propose-words", "approve-word", "auto", "reject"))
     ap.add_argument("--unit", type=int)
     ap.add_argument("--id")
     ap.add_argument("--lesson", type=int)
     ap.add_argument("--phrase", type=int)
     ap.add_argument("--pick", type=int)
+    ap.add_argument("--image")
     args = ap.parse_args(argv)
+    if args.action == "reject":
+        if not args.image:
+            sys.exit("reject needs --image")
+        return reject(args.image)
+    if args.action == "auto":
+        with httpx.Client(headers=HEADERS, timeout=TIMEOUT_SECONDS) as client:
+            print(len(auto(client)), "pictures saved; see review/auto.json")
+        return
     if args.action != "approve-word" and not args.unit:
         sys.exit(f"{args.action} needs --unit")
     unit = unit_name(args.unit) if args.unit else ""
