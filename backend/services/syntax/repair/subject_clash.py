@@ -1,10 +1,9 @@
 """Repair 2: a word hung on a verb's subject that the typed vowels forbid there is the verb's object."""
 from __future__ import annotations
 
-from backend.services.harakat import has_tanween
 from backend.services.nahw_book import is_mabni
 from backend.services.syntax.facts import (
-    Sentence, indefinite_nasb, is_state_word, is_verb, is_zarf, same_root, typed_case_of, noun_tagged, subject_link, works_as_verb)
+    Sentence, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, typed_case_of, noun_tagged, subject_link, works_as_verb)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -12,8 +11,7 @@ def subject_clash(tokens: list[dict]) -> None:
     أَعْطَى الرَّجُلُ الْفَقِيرَ دِرْهَمًا، ضَرَبَ زَيْدٌ عَمْرًا: a نعت wears its noun's case (Tasheel 3.10.1),
     so a word in nasb after the subject's damma is no نعت; a hal (جَاءَ زَيْدٌ رَاكِبًا) or the verb's own
     masdar (فَرِحَ الْوَلَدُ فَرَحًا) is left to its own rule.
-    ضَرَبَ زَيْدٌ مَرْيَمَ: a noun with tanween is complete, so nothing after it is its مضاف إليه.
-    Written over before the words are read."""
+    ضَرَبَ زَيْدٌ مَرْيَمَ: a noun with tanween is complete, so nothing after it is its مضاف إليه."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
@@ -24,11 +22,11 @@ def subject_clash(tokens: list[dict]) -> None:
             continue
         clash = token["rel"] == "MOD" and typed_case_of(token) == "a" and not (indefinite_nasb(token) and (is_state_word(token) or same_root(token, verb)))
         # the parser may hang it there unlabelled (---) rather than as IDF; either way an إضافة is meant
-        added = (token["rel"] in ("IDF", "---") and has_tanween(head.get("typed") or "")
+        added = (token["rel"] in ("IDF", "---") and typed_tanween(head)
                  and typed_case_of(token) in ("a", None) and not any(k["rel"] == "OBJ" for k in s.kids(verb)))
         if clash or added:
             token["head"], token["rel"] = verb["id"], "OBJ"
-            head["mudaf"] = any(t["head"] == head["id"] and t["rel"] == "IDF" for t in tokens)
+            head["mudaf"] = has_added(head, tokens)
             s = Sentence(tokens)
 
 
@@ -36,7 +34,7 @@ def doer_after_object(tokens: list[dict]) -> None:
     """أَدْهَشَ الْجُمْهُورَ السَّاحِرُ: the object may come before the doer. A word hung on a verb
     as its subject that the reader typed in nasb, with a raf' word hung on it straight after,
     is the object and that raf' word the doer: a نعت wears its noun's case, and a مضاف إليه is
-    in jarr. Written over before the words are read."""
+    in jarr."""
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
@@ -54,11 +52,11 @@ def doer_after_object(tokens: list[dict]) -> None:
 def object_after_tanween(tokens: list[dict]) -> None:
     """يَا سَائِقًا الشَّاحِنَةَ: a word with tanween is complete, so nothing after it is its
     مضاف إليه; a participle typed so takes the word the parser hung on it that way, in nasb,
-    as its object. Written over before the words are read."""
+    as its object."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
-        if (head and token["rel"] == "IDF" and works_as_verb(head) and has_tanween(head.get("typed") or "")
+        if (head and token["rel"] == "IDF" and works_as_verb(head) and typed_tanween(head)
                 and typed_case_of(token) == "a"):
             token["rel"] = "OBJ"
 
@@ -66,8 +64,7 @@ def object_after_tanween(tokens: list[dict]) -> None:
 def kana_subject(tokens: list[dict]) -> None:
     """لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so
     a word the parser made the خبر that the reader typed in raf', with no اسم beside it, is the
-    اسم; what the parser hung on it after it (here بِالصُّرَعَةِ) is the خبر. Written over before
-    the words are read."""
+    اسم; what the parser hung on it after it (here بِالصُّرَعَةِ) is the خبر."""
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)

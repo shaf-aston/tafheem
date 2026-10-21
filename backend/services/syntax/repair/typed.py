@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services import verb_reader
 from backend.services.harakat import has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw_book import book_words, is_built_word, is_one, only_adverb
-from backend.services.syntax.facts import verb_tagged
+from backend.services.syntax.facts import has_added, verb_tagged
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -52,7 +52,7 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
             elif verb and merged_prefix(own, book_words("ta_merges")):
                 token["asp"] = "i"  # تَطَّوَّعَ: the shadda is the second ta' merged in, so it is present
-        token["mudaf"] = any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
+        token["mudaf"] = has_added(token, tokens)
 
 
 

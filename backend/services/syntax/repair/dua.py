@@ -22,7 +22,7 @@ def says(lemma: str) -> bool:
 def dua_clause(tokens: list[dict]) -> None:
     """نَادَى وَيْلٌ لِلأَعْقَابِ: a noun of prayer (closed_words dua_nouns) in raf' with a لِ phrase
     straight after it after a verb of saying (closed_words saying_verbs) is the mubtada of what was said, not the verb's doer; the لِ phrase is its khabar.
-    So it stands as a sentence of its own. Written over before the words are read."""
+    So it stands as a sentence of its own."""
     s = Sentence(tokens)
     for token, after in zip(tokens, tokens[1:]):
         head = s.head(token)
@@ -34,7 +34,7 @@ def dua_clause(tokens: list[dict]) -> None:
 
 def counted_times(tokens: list[dict]) -> None:
     """نَادَى بِصَوْتِهِ مَرَّتَيْنِ: the count of times belongs to the verb it counts (closed_words
-    times_counted); the parser hangs it on the jar-majrur before it. Written over before the words are read."""
+    times_counted); the parser hangs it on the jar-majrur before it."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
