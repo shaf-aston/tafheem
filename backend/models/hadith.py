@@ -274,6 +274,11 @@ class Ruling(BaseModel):
     page: str = ""
 
 
+class GlossaryConfusion(BaseModel):
+    arabic: str   # the other term, by its Arabic name
+    why: str
+
+
 class GlossaryEntry(BaseModel):
     """One word of the science: its plain meaning and the sentence that defines it, with book and page."""
     arabic: str
@@ -282,11 +287,23 @@ class GlossaryEntry(BaseModel):
     quote: str
     source: str
     page: str
+    lugha: str = ""              # the word in the language, before the science narrowed it
+    kind: str = ""               # the ruling kind it matches in usul.db, if any
+    answers: dict[str, str] = {}  # axis id -> this term's answer, on its group's axes
+    confuse: list[GlossaryConfusion] = []
+    kids: list[GlossaryEntry] = []
+
+
+class GlossaryAxis(BaseModel):
+    id: str
+    q: str
 
 
 class GlossaryGroup(BaseModel):
     title: str
     name: str   # the group's Arabic name
+    by: str = ""                 # the question this group splits on
+    axes: list[GlossaryAxis] = []
     terms: list[GlossaryEntry]
 
 

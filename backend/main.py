@@ -19,6 +19,7 @@ from backend.routers import (
 )
 from backend.services import ai as ai_service
 from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, speech, startup, syntax
+from backend.services.hadith.usul import store as usul
 from backend.services.morphology import get_engine_name
 from backend.identity import PROFILE_HEADER
 from backend.services.username import GUEST
@@ -75,6 +76,7 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
+    usul.glossary()  # a broken glossary stops the app here, as the dawah file does at its first read
     await startup.run()
 
     # Log which engines are active so the operator knows the mode at a glance

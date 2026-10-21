@@ -6,6 +6,8 @@ weak points, with no notes and no scale.
 """
 from __future__ import annotations
 
+from functools import lru_cache
+
 from backend.config import data_path, get_settings
 from backend.services.hadith import loader
 from backend.services.hadith.chain import chain_of
@@ -160,13 +162,55 @@ def link_rules() -> dict:
     }
 
 
+def _term_row(t: dict) -> dict:
+    """One glossary term in the API's words; kids are terms of the same shape, to any depth."""
+    return {"arabic": t["ar"], "en": t["en"], "meaning": t["say"], "lugha": t.get("lugha", ""),
+            "quote": t["quote"], "source": _source(t["book"]), "page": page_label(t["page"]),
+            "kind": t.get("kind", ""), "answers": t.get("answers", {}),
+            "confuse": [{"arabic": c["ar"], "why": c["why"]} for c in t.get("confuse", [])],
+            "kids": [_term_row(k) for k in t.get("kids", [])]}
+
+
+def _walk(terms: list[dict]):
+    for t in terms:
+        yield t
+        yield from _walk(t.get("kids", []))
+
+
+def glossary_faults(groups: list[dict], kinds) -> list[str]:
+    """Everything wrong with the glossary; empty when it is sound: a repeated Arabic name anywhere in the tree, a
+    confuse that names no term, a kind that is no ruling kind, an answer to an axis its group does not have."""
+    said, seen = [], set()
+    names = {t["ar"] for g in groups for t in _walk(g["terms"])}
+    for g in groups:
+        axes = {a["id"] for a in g.get("axes", [])}
+        for t in _walk(g["terms"]):
+            if t["ar"] in seen:
+                said.append(f"{t['ar']}: listed twice")
+            seen.add(t["ar"])
+            said += [f"{t['ar']}: confuses with {c['ar']}, which is no term" for c in t.get("confuse", [])
+                     if c["ar"] not in names]
+            if t.get("kind") and t["kind"] not in kinds:
+                said.append(f"{t['ar']}: kind {t['kind']} is no ruling kind")
+            said += [f"{t['ar']}: answers {a}, which {g['title']} has no axis for" for a in t.get("answers", {})
+                     if a not in axes]
+    return said
+
+
+@lru_cache(maxsize=1)
+def _glossary_sound() -> bool:
+    if broken := glossary_faults(rule()["glossary"], rule()["rulings"]["kinds"]):
+        raise ValueError("The usul glossary is broken. " + " | ".join(broken))
+    return True
+
+
 def glossary() -> list[dict]:
     """The terms of the science by group, each quoted from the book that defines it. Needs only usul.json.
-    Shaped as the chain words are (data/hadith/chain.json terms: name, arabic, meaning), so one list shows both."""
-    return [{"title": group["title"], "name": group["ar"],
-             "terms": [{"arabic": t["ar"], "en": t["en"], "meaning": t["say"], "quote": t["quote"],
-                        "source": _source(t["book"]), "page": page_label(t["page"])} for t in group["terms"]]}
-            for group in rule()["glossary"]]
+    Shaped as the chain words are (data/hadith/chain.json terms: name, arabic, meaning), so one list shows both.
+    A fault in the file raises here; the app calls this once at startup so it stops there, as dawah does."""
+    _glossary_sound()
+    return [{"title": g["title"], "name": g["ar"], "by": g.get("by", ""), "axes": g.get("axes", []),
+             "terms": [_term_row(t) for t in g["terms"]]} for g in rule()["glossary"]]
 
 
 def facts(narrator_id: int) -> dict[str, list[dict]]:

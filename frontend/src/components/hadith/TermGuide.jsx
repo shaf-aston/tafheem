@@ -2,16 +2,19 @@
  * Words and what they mean, in groups, laid out as GrammarGlossary lays out the grammar terms.
  * Fed the chain words (lib/hadithWords CHAIN: how each one says the hadith was received, a group's
  * `way` wearing the colour the chain drawing gives it) and the terms of the science (the usul guide:
- * each also has its English name and the sentence that defines it, behind its book and page).
+ * each also has its English name and the sentence that defines it, behind its book and page). `onTerms`, if given,
+ * adds a link to the Terms view's tree.
  */
 import { themeVariable } from '../../theme'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'
+import SheetLink from '../ui/SheetLink'
 
-export default function TermGuide({ groups }) {
+export default function TermGuide({ groups, onTerms, accent }) {
   return (
     <div className="grid gap-y-5 sm:grid-cols-[auto_1fr]">
+      {onTerms && <div className="col-span-full"><SheetLink accent={accent} onClick={onTerms}>All terms, as a tree →</SheetLink></div>}
       {groups.map(({ way, title, name, terms }) => (
         <section key={title} className="col-span-full grid grid-cols-subgrid">
           <h3 className="col-span-full flex items-center gap-2 type-tiny uppercase tracking-[0.14em] text-[var(--text-faint)] mb-2">

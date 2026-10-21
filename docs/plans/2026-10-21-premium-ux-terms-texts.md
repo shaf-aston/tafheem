@@ -276,3 +276,16 @@ Each track: lint + 1700 tests + audit re-run → PR → CI → squash merge → 
   corrected, `tests/test_jawhara.py`), so neither the book test nor the importer changes; it joins
   Daleel under a new `aqida-books` collection with Tahawi and the Wasitiyya.
 - Midnight `text-dim` floor test also keeps |Lc(text)| − |Lc(text-dim)| ≥ 15.
+
+## Stage 5 · status
+- Track A → PR #579 merged (d1cbadc), Production deploy 7215820495 success.
+- Track C → PR #581 open (f48256e): jawhara + wasitiyya worlds, 87 cards, reviewed twice by the
+  critic for accuracy and balance; the Jawhara text built from Wikisource with 61 slips fixed.
+- Track B → built in the tree: `glossary` grew to 9 groups / 47 terms / 27 confused pairs with
+  `by`, `axes`, `answers`, `lugha`, `kids`; `store.glossary_faults` stops startup on a fault;
+  `lib/termsChart.js` (own tree, no Map keys); `hadith/TermsView` (≥ 1100px the whole tree,
+  below it the groups as chips → a group's terms stacked → `TermCard` with the quote, the
+  confused-with pair and the axis table); reviewed by the critic (content) → commit after C merges.
+- Track A5 (motion vocabulary) → in progress: `.reveal`, `e1–e3` + `.tilt`, static grain.
+## Stage 6 · verification (running): mutation pass on termsChart / glossary_faults /
+build_jawhara / apca; adversarial read of B; axe on the Terms view; C played in the app.
