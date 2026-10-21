@@ -138,3 +138,25 @@ export function glossAt(words, grammar, [from, to]) {
     roles: picked.map((w) => ({ arabic: w.arabic, pos: w.pos, grammar: w.grammar ?? [] })),
   }
 }
+
+/**
+ * Every pair to learn in one surah from its groups: the pairs the catalogue
+ * records with one verse here, the verse here as `mine`, in ayah order. Not
+ * every two verses of a group: one group holds 218, and its pairs are the ones
+ * scholars actually set side by side.
+ */
+export function pairsOf(data, surah) {
+  const here = (key) => key.startsWith(`${surah}:`)
+  const seen = new Map()
+  for (const group of data?.groups ?? []) {
+    for (const [a, b] of group.pairs ?? []) {
+      const [mine, twin] = here(a) ? [a, b] : [b, a]
+      seen.set(pairId(a, b), { id: pairId(a, b), mine, twin })
+    }
+  }
+  const ayah = (key) => Number(key.split(':')[1])
+  return [...seen.values()].sort((x, y) => ayah(x.mine) - ayah(y.mine))
+}
+
+/** The pair the tab opens on: the asked verse's first, else the surah's first. */
+export const firstPair = (pairs, wanted) => (wanted && pairs.find((p) => p.mine === wanted)) ?? pairs[0] ?? null
