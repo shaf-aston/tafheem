@@ -500,3 +500,19 @@ def test_sentence_check_fixes(sentence, word, want):
     from backend.services import iraab
     card = next(w for w in iraab.analyze(sentence)["words"] if w["word"] == word)
     assert card.get(want[0]) == want[1]
+
+
+@pytest.mark.parametrize("hung", [{}, {4: (2, "MOD")}, {4: (2, "MOD"), 2: (1, "SBJ")}, {2: (1, "SBJ"), 3: (4, "TPC")}])
+def test_zanna_pair_whatever_tree_the_parser_gives(hung):
+    """ظنّ's two objects come out the same however the parser hung the old مبتدأ and خبر:
+    machines differ in the tree they read (CI hung قصيرا on الرجل)."""
+    from backend.services import morphology, syntax
+    from backend.services.syntax import catib_onnx
+    from backend.services.syntax.naming import roles
+    from backend.services.syntax.repair import correct
+    words = "حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا".split()
+    tokens = catib_onnx.parse(words, morphology.pick(words, syntax.disambiguator()))
+    for word_id, (head, rel) in hung.items():
+        tokens[word_id - 1]["head"], tokens[word_id - 1]["rel"] = head, rel
+    correct(words, tokens)
+    assert [r.get("role") for r in roles(words, tokens)] == ["فعل", "فاعل", "مفعول به", "مفعول به"]
