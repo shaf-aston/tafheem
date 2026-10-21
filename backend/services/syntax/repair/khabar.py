@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.syntax.facts import Sentence, has_added, is_participle, is_verb, typed_or_parsed_case, subject_link
+from backend.services.syntax.facts import Sentence, has_added, is_elative, is_participle, is_verb, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -49,3 +49,24 @@ def after_pointer(tokens: list[dict]) -> None:
 def _indefinite(token: dict, tokens: list[dict]) -> bool:
     """Without ال: read so, or read as a مضاف with nothing added to it (الملاحون أقوياء), which it then is not."""
     return token.get("stt") == "i" or (token.get("stt") == "c" and not has_added(token, tokens))
+
+
+def object_of_noun(tokens: list[dict]) -> None:
+    """زَيْدٌ أَكْثَرُ مِنْكَ مَالًا: only a verb or a word working as one takes an object (notes,
+    المفعول به: a فعل or a شبه الفعل governs it), so a word the parser hung as the object of a
+    plain noun opening the sentence, both typed in raf', is that noun's khabar. A noun in nasb
+    hung there after an elative khabar is the elative's تمييز (Tasheel 3.10: أفعل التفضيل
+    ينصب التمييز), as the parser already hangs it when the opener is not between them."""
+    s = Sentence(tokens)
+    for token in tokens:
+        opener = s.head(token)
+        if not (opener and token["rel"] == "OBJ" and opener["rel"] == "---" and opener["id"] < token["id"]
+                and not is_verb(opener) and not works_as_verb(opener)
+                and typed_case_of(opener) == typed_case_of(token) == "u"):
+            continue
+        token["rel"] = "PRD"
+        if is_elative(token):
+            for kid in s.kids(opener):
+                if kid["rel"] == "OBJ" and kid["id"] > token["id"] and typed_case_of(kid) == "a" and kid.get("stt") == "i":
+                    kid["head"], kid["rel"] = token["id"], "TMZ"
+        s = Sentence(tokens)

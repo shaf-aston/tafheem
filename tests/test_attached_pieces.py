@@ -478,6 +478,23 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     ("هذا قاضٍ عادل", "قاضٍ", ("sign", "ضمة مقدرة على الياء المحذوفة")),
     # عسى names its own two, as كأنّ and أصبح do
     ("عَسَى اللَّهُ أَنْ يَرْحَمَنَا", "اللَّهُ", ("name", "اسم عسى")),
+    # after لا النافية للجنس the missing tanween is لا's building, not a مضاف before a preposition
+    ("هَذَا الْأَمْرُ لَا شَكَّ فِيهِ", "شَكَّ", ("role", "اسم لا")),
+    ("الْعِلْمُ لَا حَدَّ لَهُ", "حَدَّ", ("role", "اسم لا")),
+    # a مضاف إليه is مجرور, so a damma-typed الْجَوُّ cannot make بَرَدَ the noun "hail of"
+    ("إِذَا جَاءَ الشِّتَاءُ بَرَدَ الْجَوُّ", "الْجَوُّ", ("role", "فاعل")),
+    # كاد وأخواتها work as كان does (Alfiyya: ككان كاد وعسى), so the verb is فعل ناقص
+    ("كَادَ الْقِطَارُ يَتَحَرَّكُ", "كَادَ", ("name", "فعل ناقص")),
+    # جِدًّا is heard with its verb never said (جَدَّ جِدًّا): مفعول مطلق, not an object of مجتهدات
+    ("الطَّالِبَاتُ مُجْتَهِدَاتٌ جِدًّا", "جِدًّا", ("role", "مفعول مطلق")),
+    # ظنّ's two objects were a مبتدأ and خبر; the parser kept the pair, both typed in nasb
+    ("حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا", "الطَّرِيقَ", ("role", "مفعول به")),
+    ("حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا", "الرَّجُلُ", ("role", "فاعل")),
+    # a plain noun takes no object: أكثر is زيد's khabar, مالا the elative's تمييز
+    ("زَيْدٌ أَكْثَرُ مِنْكَ مَالًا", "زَيْدٌ", ("role", "مبتدأ")),
+    ("زَيْدٌ أَكْثَرُ مِنْكَ مَالًا", "أَكْثَرُ", ("role", "خبر")),
+    # a hamza-final participle (قارئ) works as its verb like any other: its noun is its object
+    ("يَا قَارِئًا الْقُرْآنَ تَدَبَّرْ", "الْقُرْآنَ", ("role", "مفعول به")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
     from backend.services import iraab

@@ -78,3 +78,24 @@ def kana_subject(tokens: list[dict]) -> None:
         if told:
             told["head"], told["rel"] = verb["id"], "PRD"
         s = Sentence(tokens)
+
+
+def zanna_pair(tokens: list[dict]) -> None:
+    """حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا: ظنّ and its sisters enter a مبتدأ and its خبر and put both
+    in nasb as their two objects (Alfiyya: انصب بفعل القلب جزأي ابتدا). The parser may keep the pair
+    as it was, the first word the subject of the second; with the reader's fatha on both, the first is
+    the verb's first object and the second its second. A doer the parser took for the object, typed
+    in raf', is the verb's doer."""
+    s = Sentence(tokens)
+    for first in tokens:
+        second = s.head(first)
+        verb = second and s.head(second)
+        if not (verb and first["rel"] in ("SBJ", "TPC") and s.family(verb) == "zanna" and first["id"] < second["id"]
+                and noun_tagged(first) and typed_case_of(first) == typed_case_of(second) == "a"):
+            continue
+        for doer in s.kids(verb):
+            if doer["rel"] == "OBJ" and doer["id"] < first["id"] and typed_case_of(doer) == "u":
+                doer["rel"] = "SBJ"
+        first["head"], first["rel"] = verb["id"], "OBJ"
+        second["rel"] = "OBJ"
+        s = Sentence(tokens)
