@@ -430,6 +430,8 @@
   "hadith": {
     "_comment": "The words of a hadith. lines is how much of one hadith shows before the rest waits behind Show the rest.",
     "_way_comment": "The chain drawing colours the word between two narrators by how it was received: heard (سمعت، حدّثنا، أخبرنا) and loose (عن, which does not say how). The chain words guide wears the same two.",
+    "_chain_comment": "chain is the chain of narrators and the English's \"Narrated X:\" line, read past rather than read: text-faint mixed toward the card, 4.8 to 5.4:1 on the looks (the theme's floor is 4.8), where text-faint alone (6.5 to 7.2:1) sat too near the words it carries.",
+    "chain": "color-mix(in oklab, var(--text-faint) 85%, var(--surface))",
     "heard": "#6cc495",
     "loose": "#e09a6a",
     "_weak_comment": "The edge and rank numeral on a narrator in the chain drawing, and the filled step on a weak point's scale. One colour for every weak narrator: how weak is said by the rank and the words beside it, never by a shade.",

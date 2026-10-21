@@ -24,9 +24,9 @@ describe('HadithText', () => {
 
   it('draws the chain quiet and the body in full ink, guessing at nothing without a cut', () => {
     const cut = renderToStaticMarkup(<HadithText label="1" arabic={arabic} cut={[body - 10, body]} />)
-    expect(cut).toMatch(/<span class="text-\[var\(--text-faint\)\]">حَدَّثَنَا/)
+    expect(cut).toMatch(/<span class="text-\[var\(--hadith-chain\)\]">حَدَّثَنَا/)
     const none = renderToStaticMarkup(<HadithText label="1" arabic={arabic} />)
-    expect(none).not.toContain('text-[var(--text-faint)]">حَدَّثَنَا')
+    expect(none).not.toContain('text-[var(--hadith-chain)]">حَدَّثَنَا')
   })
 
   it('with the chain hidden, starts at the teller and keeps the split where it was, marks or no marks', () => {
@@ -37,12 +37,12 @@ describe('HadithText', () => {
     const named = [[marked.indexOf('الْمُغِيرَةِ'), marked.indexOf('الْمُغِيرَةِ') + 'الْمُغِيرَةِ'.length, 7]]
     const html = renderToStaticMarkup(<HadithText label="1" arabic={marked} cut={cut} names={named} hideChain onNarrator={() => {}} />)
     expect(decode(arabicShown(html))).toBe(marked.slice(teller).replace(MARKS, ''))
-    const quiet = /<span class="text-\[var\(--text-faint\)\]">(.*?)<\/span><span>/s.exec(html)[1].replace(/<[^>]+>/g, '')
+    const quiet = /<span class="text-\[var\(--hadith-chain\)\]">(.*?)<\/span><span>/s.exec(html)[1].replace(/<[^>]+>/g, '')
     expect(quiet).toBe(marked.slice(teller, cut[1]).replace(MARKS, ''))
   })
 
   it('sets the English teller line quiet and the rest as written', () => {
     const html = renderToStaticMarkup(<HadithText label="1" arabic={arabic} english={'Narrated Anas: The Prophet said, "Pray."'} />)
-    expect(html).toContain('text-[var(--text-faint)]">Narrated Anas: </span>The Prophet said, &quot;Pray.&quot;')
+    expect(html).toContain('text-[var(--hadith-chain)]">Narrated Anas: </span>The Prophet said, &quot;Pray.&quot;')
   })
 })
