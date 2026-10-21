@@ -289,3 +289,16 @@ Each track: lint + 1700 tests + audit re-run → PR → CI → squash merge → 
 - Track A5 (motion vocabulary) → in progress: `.reveal`, `e1–e3` + `.tilt`, static grain.
 ## Stage 6 · verification (running): mutation pass on termsChart / glossary_faults /
 build_jawhara / apca; adversarial read of B; axe on the Terms view; C played in the app.
+
+## Stage 6 · findings (critic) → Stage 7 routing
+Mutation pass: 36 mutants, 28 killed on first run; 8 survivors, each with the test that kills it
+(termsChart MIN_SCALE; store meaning/page; build_jawhara half-count and bayt-count guards; apca
+near-equal, channel order, polarity) → code. Adversarial read: B1 PbsChart `role="img"` hides
+~50 buttons from screen readers (HIGH, a11y) → code; B2 Terms dead-ends behind the "no collection"
+guard → plan/code; B3 whole-tree threshold below the chart's real width → design; B4 English
+sub-label ≈ 7.4px at MIN_SCALE → design; B5 focus lost on "Open X" in a card; B7 404 masks a
+kind typo; B8 one-sided axis rows dropped; B9 chevron on leaves; B6 group not in the URL
+(requirement, low). Track C: C1 raw " % " printed in every Jawhara bayt (HIGH) → one shared verse
+helper; C2 world tiles without emblems. Passed: Esc/focus return, dialog labelling, kind → hadith
+chips, no overflow at 390, "coming" parts, glossary drawer. All routed to one fix round (worker),
+then re-verified.
