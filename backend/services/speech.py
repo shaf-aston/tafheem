@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import hashlib
 import io
+import json
 import logging
 import os
 import re
@@ -50,6 +51,11 @@ from backend.services.fallback import Retirable
 log = logging.getLogger(__name__)
 
 CACHE = Path(__file__).resolve().parents[1] / "data" / "speech_cache"
+# How fast every voice speaks, and the speeds a reader may pick, kept with the page's
+# own voice settings so the server's voices and the phone's never drift apart.
+_SPEAK = json.loads((Path(__file__).resolve().parents[2] / "frontend" / "src" / "speak.json").read_text("utf-8"))
+PACE: float = _SPEAK["pace"]
+SPEEDS: dict[str, float] = _SPEAK["speeds"]
 # The marks a phrase ends or breathes on.
 PAUSE = "[،؛؟.!?,]"
 
@@ -140,7 +146,7 @@ class FastPitchVoice(Voice):
     @property
     def version(self) -> str:
         settings = get_settings()
-        return (f"hifigan-speaker{settings.speech_fastpitch_speaker}-pace{settings.speech_fastpitch_pace}"
+        return (f"hifigan-speaker{settings.speech_fastpitch_speaker}-pace{PACE}"
                 f"-lead{settings.speech_lead_ms}-name2"
                 f"-peak{settings.speech_peak}-fade{settings.speech_fade_ms}")
 
@@ -154,7 +160,7 @@ class FastPitchVoice(Voice):
             settings = get_settings()
             audio = self._model.infer(long_aa_spelt_out(name_spelt_out(text)).translate(self.PAUSES),
                                       speaker=settings.speech_fastpitch_speaker,
-                                      pace=settings.speech_fastpitch_pace * speed)
+                                      pace=PACE * speed)
         return wav(shaped(audio))
 
 
@@ -205,7 +211,7 @@ class EdgeVoice(Voice):
 
     @property
     def version(self) -> str:
-        return f"rate{get_settings().speech_edge_rate}"
+        return f"pace{PACE}"
 
     def say(self, text: str, speed: float = 1.0) -> bytes:
         import asyncio
@@ -214,7 +220,7 @@ class EdgeVoice(Voice):
 
         async def spoken() -> bytes:
             # Its aiohttp ignores the usual proxy variables unless handed one.
-            talk = edge_tts.Communicate(text, self.speaker, rate=edge_rate(get_settings().speech_edge_rate, speed),
+            talk = edge_tts.Communicate(text, self.speaker, rate=edge_rate(PACE * speed),
                                         proxy=os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy"))
             return b"".join([part["data"] async for part in talk.stream() if part["type"] == "audio"])
 
@@ -224,9 +230,9 @@ class EdgeVoice(Voice):
         return audio
 
 
-def edge_rate(base: str, speed: float) -> str:
-    """Edge's rate ("-10%") with `speed` applied on top: -10% at 0.7 is -37%."""
-    return f"{round(((1 + int(base.rstrip('%')) / 100) * speed - 1) * 100):+d}%"
+def edge_rate(pace: float) -> str:
+    """A pace as Edge writes it: 0.9 is "-10%"."""
+    return f"{round((pace - 1) * 100):+d}%"
 
 
 _VOICES: dict[str, Voice] = {voice.name: voice for voice in (FastPitchVoice(),)}
@@ -349,7 +355,7 @@ def say(text: str, pressed: bool = True, first: str | None = None, speed: float 
     `pressed` is False for a word only being made ahead of a press, which
     waits while any pressed word is waiting. `first` names a voice to try
     before the usual order: a dialect's own speaker. `speed` is one of
-    config's speech_speeds, below 1 slower.
+    SPEEDS, below 1 slower.
     """
     for voice in order(first):
         if voice.retired_reason or voice.resting():

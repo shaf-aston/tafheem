@@ -99,7 +99,7 @@ const VOICES = {
       const line = new SpeechSynthesisUtterance(text)
       line.voice = voice
       line.lang = voice.lang
-      line.rate = config.voices.browser.rate * (config.voices.browser.speeds[speed] ?? 1)
+      line.rate = config.pace * (config.speeds[speed] ?? 1)
       let finish
       const done = new Promise((resolve) => { finish = resolve })
       // A voice that is listed but will not start never says so.

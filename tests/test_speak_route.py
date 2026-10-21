@@ -208,7 +208,7 @@ def test_the_voice_hands_back_a_playable_wav(monkeypatch):
         assert (file.getframerate(), file.getsampwidth(), file.getnchannels()) == (22050, 2, 1)
         # The word, with the quiet a phone's speaker needs to wake on each side.
         assert file.getnframes() == 22050 // 4 + 2 * (22050 * get_settings().speech_lead_ms // 1000)
-    assert model.pace == get_settings().speech_fastpitch_pace  # the slower pace reaches the engine
+    assert model.pace == speech.PACE  # the slower pace reaches the engine
 
 
 def test_slow_reaches_the_engine_and_is_kept_apart(monkeypatch, tmp_path):
@@ -216,20 +216,20 @@ def test_slow_reaches_the_engine_and_is_kept_apart(monkeypatch, tmp_path):
     monkeypatch.setattr(speech, "CACHE", tmp_path)
     monkeypatch.setattr(speech, "_stored", None)
     monkeypatch.setattr(speech._VOICES["fastpitch"], "_model", model)
-    slow = get_settings().speech_speeds["slow"]
+    slow = speech.SPEEDS["slow"]
     client = TestClient(create_app())
     assert client.get("/api/speak", params={"text": "قَطَاة", "speed": "slow"}).status_code == 200
-    assert model.pace == get_settings().speech_fastpitch_pace * slow
+    assert model.pace == speech.PACE * slow
     voice = speech._VOICES["fastpitch"]
     assert speech.stored(voice, "قَطَاة", slow) != speech.stored(voice, "قَطَاة")
     # A speed the config does not name is refused, so no file is made per decimal place.
     assert client.get("/api/speak", params={"text": "قَطَاة", "speed": "0.123"}).status_code == 422
 
 
-def test_edge_rate_takes_the_speed_on_top():
-    assert speech.edge_rate("-10%", 1.0) == "-10%"
-    assert speech.edge_rate("-10%", 0.7) == "-37%"
-    assert speech.edge_rate("+0%", 1.0) == "+0%"
+def test_edge_rate_is_the_shared_pace():
+    assert speech.edge_rate(0.9) == "-10%"
+    assert speech.edge_rate(0.63) == "-37%"
+    assert speech.edge_rate(1.0) == "+0%"
 
 
 def test_arabic_marks_reach_the_engine_as_pauses(monkeypatch):
