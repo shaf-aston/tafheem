@@ -19,8 +19,8 @@ import { runs, told, withoutMarks } from '../../lib/rijal'
 import NarratorLink from './NarratorLink'
 import { themeVariable } from '../../theme'
 
-// The chain and the English's teller line: read past rather than read, still 4.5:1 on the card.
-const QUIET = 'text-[var(--text-faint)]'
+// The chain and the English's teller line: read past rather than read (theme.json hadith.chain).
+const QUIET = 'text-[var(--hadith-chain)]'
 // How much of one hadith shows before the rest waits behind a press.
 const LINES = Number(themeVariable('--hadith-lines')) || 7
 // Cards past this many appear together, so a long book never waits on its own stagger.
