@@ -611,6 +611,13 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the verb reads the typed vowels at least as well, or the reading kept contradicts them (ظُلْمُكَ for ظَلَمَكَ)
             if said is not None and (here is None or said >= here):
                 out[i] = verb
+    # الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ: after a noun opening the sentence in raf', a word that is either
+    # أَفْعَلُ "I do" or the elative is that noun's khabar, and a verb khabar needs a pronoun back to
+    # its مبتدأ (رابط جملة الخبر, Ibn Aqil on the Alfiyya); "I" with nothing on it has none
+    if len(out) > 1 and out[0].get("pos", "").startswith("noun") and typed_case(tokens[0]) == "u" \
+            and out[1].get("pos") == "verb" and out[1].get("per") == "1" and out[1].get("enc0") in ("0", "na", None) \
+            and (elative := noun_reader.reading_of(steps[1][0])):
+        out[1] = elative
     # مَنْ جَدَّ وَجَدَ: a مضاف needs its مضاف إليه straight after it, so a bare construct noun
     # before a و, a preposition or nothing is not the word typed (here the verb جَدَّ)
     # لَا رَيْبَ فِيهِ: after لا النافية للجنس the noun's missing tanween is لا's building on fatha
