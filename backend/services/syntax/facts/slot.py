@@ -165,7 +165,8 @@ def verb_place(token: dict, s: Sentence) -> str:
         if asked and before and not any(t["rel"] == "OBJ" and not is_verb(t) for t in siblings):  # قال after it is the reply, not its object
             return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
         if before and typed == "a" and not is_mabni(token.get("pos_camel", "")) and (
-                rel in SUBJECTS or (rel == "MOD" and is_plain_noun(token) and not is_participle(token))):
+                rel in SUBJECTS or (rel == "MOD" and is_plain_noun(token) and not is_participle(token)
+                                    and any(t["rel"] in SUBJECTS and t["id"] > token["id"] for t in siblings))):
             return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object (a built word's is no case: أنتَ)
         if before and rel in SUBJECTS:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
@@ -205,7 +206,7 @@ def verb_place(token: dict, s: Sentence) -> str:
                 return "specification"
             if is_participle(token):
                 return "state"
-            if is_plain_noun(token) and not same_root(token, head) and not is_one(head["lemma"], "intransitive_verbs"):
+            if rel != "TMZ" and is_plain_noun(token) and not same_root(token, head) and not is_one(head["lemma"], "intransitive_verbs"):
                 return "object"  # نصر زيدٌ بكرًا: a plain noun is no hal, and a tamyeez only after a tamyeez verb (above)
         if after_first:
             return "second_object"  # ظن الولد الأمر سهلا, أعطى الولد الكتاب

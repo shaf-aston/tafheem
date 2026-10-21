@@ -26,7 +26,7 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
                     kid["rel"] = "IDF"
         # مُلَبِّينَ: no verb opens with مُ and ends in the plural ـونَ/ـينَ, so it is a participle
         elif verb_tagged(token) and _participle_plural(word):
-            token.update(pos="NOM", asp="na", cas=_plural_case(word, token, tokens))
+            token.update(pos="NOM", pos_camel="adj", asp="na", cas=_plural_case(word, token, tokens))
         # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
         token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
         token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
