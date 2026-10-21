@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 from backend.services.arabic_text import strip_diacritics
-from backend.services.harakat import has_tanween, typed_case
-from backend.services.syntax.facts import is_name, listed, noun_tagged, verb_tagged
+from backend.services.harakat import typed_case
+from backend.services.syntax.facts import Sentence, is_name, listed, typed_tanween, noun_tagged, verb_tagged
 from backend.services.syntax.mask import above
 
 
@@ -18,15 +18,15 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
     mubtada and its khabar, typed vowels or none. A name typed with tanween is complete,
     so ابن after it opens what is told of it (زيدٌ ابنُ عمرٍو) and is left to the parser.
     The name keeps its own place in the sentence, or the one the ابن held when the parser
-    hung the name under it. Written over before the words are read."""
-    by_id = {t["id"]: t for t in tokens}
+    hung the name under it."""
+    s = Sentence(tokens)
     for name, son, after in zip(bases, bases[1:], bases[2:]):
         if not (_names(name, son) and listed(son, "nasab") and noun_tagged(after)
-                and not has_tanween(name.get("typed") or "")):
+                and not typed_tanween(name)):
             continue
         # محمدُ بنُ عبدِ اللهِ بنِ عبدِ المطلبِ: the second ابن describes the whole name عبد الله,
         # so it hangs on that name's first word, the مضاف
-        while name["rel"] == "IDF" and (head := by_id.get(name["head"])) and head["id"] < name["id"] \
+        while name["rel"] == "IDF" and (head := s.head(name)) and head["id"] < name["id"] \
                 and not listed(head, "nasab"):
             name = head
         # climb the name out from under the ابن and its noun into the place they held;
@@ -49,7 +49,7 @@ def _names(word: dict, son: dict) -> bool:
 
 def _bare(word: dict) -> bool:
     """No ال and no tanween: nothing closes the word, so a noun after it can be its مضاف إليه."""
-    return not word["form"].startswith("ال") and not has_tanween(word.get("typed") or "")
+    return not word["form"].startswith("ال") and not typed_tanween(word)
 
 
 def _told_of(name: dict, end: dict, bases: list[dict], tokens: list[dict]) -> None:

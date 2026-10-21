@@ -127,6 +127,16 @@ def is_passive(token: dict) -> bool:
     return typed_passive(typed, present, token.get("stuck_on", 0))
 
 
+def typed_tanween(token: dict) -> bool:
+    """The reader typed tanween on the word: it is complete, nothing is added to it."""
+    return has_tanween(token.get("typed") or "")
+
+
+def has_added(token: dict, tokens: list[dict]) -> bool:
+    """A word hangs on it as its مضاف إليه: it is a مضاف."""
+    return any(t["head"] == token["id"] and t["rel"] == "IDF" for t in tokens)
+
+
 def typed_case_of(token: dict) -> str | None:
     """The case the reader typed on the word: its last vowel, or for one of the six nouns
     as a مضاف the long letter standing for it (أَخُوْ، أَخَا، أَخِيْ زَيْدٍ; أَبَاهُ)."""
@@ -335,5 +345,5 @@ def listed(token: dict, family: str, part: str = "words") -> bool:
     tanween alef: the list holds صباحا and كوب, while the parser lemmatises the first
     to صباح and may misread the second (كُوبًا as كوان)."""
     form = strip_diacritics(token["form"])
-    bare = form[:-1] if form.endswith("ا") and has_tanween(token.get("typed") or "") else form
+    bare = form[:-1] if form.endswith("ا") and typed_tanween(token) else form
     return any(is_one(spelling, family, part) for spelling in (token["lemma"], form, bare))
