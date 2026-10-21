@@ -1,4 +1,4 @@
-"""Run finetune_ear.py on Kaggle's free graphics card from this computer, and bring back what it decided.
+"""Run the ear/ package on Kaggle's free graphics card from this computer, and bring back what it decided.
 
     python backend/scripts/finetune_ear/cloud.py          send this folder, wait, fetch the result
     python backend/scripts/finetune_ear/cloud.py --fetch  wait for the last run, then fetch its result
@@ -6,6 +6,8 @@
 
 The result lands in backend/data/models/finetune-ear/. The whole loop and its keys: README.md here.
 """
+import base64
+import io
 import json
 import os
 import re
@@ -14,6 +16,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import zipfile
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -25,6 +28,13 @@ EVERY = 60  # seconds between status checks
 ENDED = ('COMPLETE', 'ERROR', 'CANCEL')
 # Without these the CLI writes the Arabic log in Windows' own code page and fails half way.
 ENV = {**os.environ, 'PYTHONUTF8': '1', 'PYTHONIOENCODING': 'utf-8'}
+# Kaggle runs one file, so ear/ travels inside it as a zip Python imports from directly (zipimport).
+LAUNCH = """import base64, pathlib, sys, tempfile
+bundle = pathlib.Path(tempfile.mkdtemp()) / 'ear.zip'
+bundle.write_bytes(base64.b64decode('{}'))
+sys.path.insert(0, str(bundle))
+import ear.run
+"""
 
 
 def kaggle(*args):
@@ -38,6 +48,18 @@ def status():
         return kaggle('status', KERNEL)
     except subprocess.CalledProcessError:
         return ''
+
+
+def bundle(folder):
+    """A copy of kernel-metadata.json and the one file it names, holding ear/ whole, ready to push."""
+    meta = json.loads((HERE / 'kernel-metadata.json').read_text())
+    packed = io.BytesIO()
+    with zipfile.ZipFile(packed, 'w', zipfile.ZIP_DEFLATED) as z:
+        for f in sorted((HERE / 'ear').glob('*.py')):
+            z.write(f, f'ear/{f.name}')
+    (folder / meta['code_file']).write_text(LAUNCH.format(base64.b64encode(packed.getvalue()).decode()))
+    (folder / 'kernel-metadata.json').write_text(json.dumps(meta))
+    return folder
 
 
 def git(*args):
@@ -72,7 +94,8 @@ if '--ship' in sys.argv:
     ship()
     sys.exit()
 if '--fetch' not in sys.argv:
-    print(kaggle('push', '-p', str(HERE)), f'\nlive: https://www.kaggle.com/code/{KERNEL}', flush=True)
+    with tempfile.TemporaryDirectory() as folder:
+        print(kaggle('push', '-p', str(bundle(Path(folder)))), f'\nlive: https://www.kaggle.com/code/{KERNEL}', flush=True)
     time.sleep(EVERY)  # right after a push the status can still be the last run's
 while not any(end in (now := status()) for end in ENDED):
     time.sleep(EVERY)
