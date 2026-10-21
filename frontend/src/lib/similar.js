@@ -63,11 +63,21 @@ const splitWords = (text) => text.split(/\s+/).filter(Boolean)
 /** The words a [start, end) span holds, '' for an empty span (nothing on that side). */
 export const wordsAt = (text, [start, end]) => splitWords(text).slice(start, end).join(' ')
 
+/** The first few words of what follows a verse, '' at the surah's end. */
+export const opening = (after, n = config['next-words']) => splitWords(after ?? '').slice(0, n).join(' ')
+
+/** The benchmark's change type in plain words, '' when it has none. */
+export const kindOf = (changeType) => config.kinds[changeType] ?? ''
+
 /**
  * The questions for one pair, both ways round: each verse in turn with one of its
  * differences taken out, offered its own wording and its twin's. `changes` are the
  * backend's paired spans, `self` in `mine`. A difference longer than `maxWords` on
- * either side is left out (see similar.json), so a pair can have none.
+ * either side is left out (see similar.json).
+ *
+ * A pair with no short difference (88 read word for word the same) is asked what
+ * comes next instead, each verse's own continuation against its twin's, when the
+ * two continuations differ; so a pair can still have no questions.
  */
 export function drillOf(mine, partner, maxWords = config['max-gap-words']) {
   const short = (span) => span[1] - span[0] <= maxWords
@@ -75,7 +85,7 @@ export function drillOf(mine, partner, maxWords = config['max-gap-words']) {
     { verse: mine, twin: partner, own: 'self', theirs: 'other' },
     { verse: partner, twin: mine, own: 'other', theirs: 'self' },
   ]
-  return sides.flatMap(({ verse, twin, own, theirs }) => (partner.changes ?? [])
+  const wording = sides.flatMap(({ verse, twin, own, theirs }) => (partner.changes ?? [])
     .filter((change) => short(change[own]) && short(change[theirs]))
     .map((change) => ({
       key: verse.key,
@@ -86,6 +96,29 @@ export function drillOf(mine, partner, maxWords = config['max-gap-words']) {
       right: wordsAt(verse.text, change[own]),
       wrong: wordsAt(twin.text, change[theirs]),
     })))
+  if (wording.length || opening(mine.after) === opening(partner.after)) return wording
+  return sides.map(({ verse, twin }) => {
+    const words = splitWords(verse.text)
+    return {
+      key: verse.key,
+      twin: twin.key,
+      words,
+      span: [words.length, words.length],
+      marked: [],
+      right: opening(verse.after),
+      wrong: opening(twin.after),
+      next: true,
+    }
+  })
+}
+
+/**
+ * The pair to open next: the first due for review, else the first not yet known,
+ * from `from` onwards and round again; null when every pair is known.
+ */
+export function nextUp(pairs, standing, from = -1) {
+  const order = [...pairs.slice(from + 1), ...pairs.slice(0, from + 1)]
+  return order.find((p) => standing(p.id) === 'due') ?? order.find((p) => standing(p.id) === 'new') ?? null
 }
 
 /** The surah name of a key, for the copy ("Al-Baqarah 2:59"). */

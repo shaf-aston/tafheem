@@ -118,7 +118,7 @@ async def get_similar_ayah(
     if text is None:
         raise HTTPException(status_code=404, detail=f"There is no ayah {key}")
     found = await asyncio.to_thread(mutashabihat.partners, key)
-    return SimilarAyah(surah=surah, ayah=ayah, text=text, partners=[
+    return SimilarAyah(surah=surah, ayah=ayah, text=text, after=mutashabihat.after(key), partners=[
         SimilarPartner(
             **{k: v for k, v in p.items() if k != "sources"},
             surah=int(p["key"].partition(":")[0]),

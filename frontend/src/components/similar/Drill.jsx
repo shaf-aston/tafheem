@@ -11,7 +11,10 @@ import PrimaryButton from '../ui/PrimaryButton'
 
 const COLOR = { self: colorFor('similar', 'mine'), other: colorFor('similar', 'twin') }
 
-/** The verse with one difference taken out: the gap shows "?" until answered, then the right words. */
+/**
+ * The verse with one difference taken out: the gap shows "?" until answered, then
+ * the right words. A "what comes next" question has its gap after the last word.
+ */
 function GapVerse({ question, answered }) {
   const { words, span, marked } = question
   const tone = answered === null ? 'var(--primary-hi)' : answered ? 'var(--success)' : 'var(--danger)'
@@ -67,7 +70,7 @@ export default function Drill({ mine, partner, seed, accent, onDone, onCompare, 
   }
 
   const side = q.key === mine.key ? 'self' : 'other'
-  const [before, after] = copy.ask.split('{where}')
+  const [before, after] = (q.next ? copy['ask-next'] : copy.ask).split('{where}')
   const options = [{ words: q.right, right: true }, { words: q.wrong, right: false }]
   if (q.flip) options.reverse()
   const choose = (right) => {
@@ -101,7 +104,7 @@ export default function Drill({ mine, partner, seed, accent, onDone, onCompare, 
             >
               {o.words
                 ? <ArabicText size="base" className="text-[var(--text)]">{o.words}</ArabicText>
-                : <span className="type-small italic text-[var(--text-faint)]">{copy.nothing}</span>}
+                : <span className="type-small italic text-[var(--text-faint)]">{q.next ? copy.end : copy.nothing}</span>}
             </button>
           ))}
         </div>

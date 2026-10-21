@@ -183,6 +183,7 @@ class SimilarPartner(BaseModel):
     surah: int
     ayah: int
     text: str
+    after: str = ""  # the next ayah's text, '' at the surah's end: the tell for twins that read the same
     diff_self: list[list[int]]   # [start, end) word positions in the asked verse
     diff_other: list[list[int]]  # the same, in this partner
     changes: list[SimilarChange] = []  # the two, paired; an empty span is "nothing here"
@@ -194,6 +195,7 @@ class SimilarAyah(BaseModel):
     surah: int
     ayah: int
     text: str
+    after: str = ""
     partners: list[SimilarPartner]
 
 

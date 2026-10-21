@@ -114,8 +114,18 @@ def catalogued_pairs() -> set[tuple[str, str]]:
     return {pair_key(p["a"], p["b"]) for g in _catalogue()["groups"] for p in g["pairs"]}
 
 
+def after(key: str) -> str:
+    """The next ayah's text, '' at the end of a surah.
+
+    Two twins that read word for word the same (88 pairs: 27:3 and 31:4, 9:33 and
+    61:9) are told apart only by what follows each, so it travels with the pair.
+    """
+    surah, _, ayah = key.partition(":")
+    return texts().get(f"{surah}:{int(ayah) + 1}", "")
+
+
 def partners(key: str) -> list[dict]:
-    """Catalogued partners of a verse, each with its text, both diffs, the paired changes, type and sources."""
+    """Catalogued partners of a verse, each with its text, what follows it, both diffs, the paired changes, type and sources."""
     out = []
     for pair, _ in _by_key().get(key, []):
         mine = pair["a"] == key
@@ -123,6 +133,7 @@ def partners(key: str) -> list[dict]:
         out.append({
             "key": other,
             "text": texts()[other],
+            "after": after(other),
             "diff_self": pair["diff_a"] if mine else pair["diff_b"],
             "diff_other": pair["diff_b"] if mine else pair["diff_a"],
             "changes": changes(texts()[key].split(), texts()[other].split()),

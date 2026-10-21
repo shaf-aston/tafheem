@@ -18,9 +18,11 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getQuranTarkeeb, quranAyahQuery } from '../../api'
+import { getQuranTarkeeb, getSimilarSurah, quranAyahQuery } from '../../api'
 import { posLabel } from '../../lib/grammarTerms'
 import { posColor } from '../../lib/roleColors'
+import { fill } from '../../lib/similar'
+import similarCopy from '../../similar.json'
 
 import WordCard from '../WordCard'
 import TarkeebFigure from '../TarkeebFigure'
@@ -31,6 +33,7 @@ import { isQuranic } from '../../lib/arabicText'
 import { useTarkeebView } from '../../lib/useTarkeebView'
 import ArabicText from '../ui/ArabicText'
 import CloseButton from '../ui/CloseButton'
+import { GoButton } from '../ui/RootActions'
 import ErrorAlert from '../ui/ErrorAlert'
 import Segmented from '../ui/Segmented'
 import Stepper from '../ui/Stepper'
@@ -46,8 +49,16 @@ const TABS = [
 const wordByKey = (words, key) =>
   key == null ? undefined : words.find((w, i) => (w.position || i) === key)
 
+/** How many look-alike pairs the catalogue records for this ayah, 0 while unknown. The same query Similar keeps. */
+function useLookAlikes(surah, ayah) {
+  const { data } = useQuery({ queryKey: ['similar-surah', surah], queryFn: () => getSimilarSurah(surah) })
+  const key = `${surah}:${ayah}`
+  return (data?.groups ?? []).reduce((n, g) => n + (g.pairs ?? []).filter(([a, b]) => a === key || b === key).length, 0)
+}
+
 export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet }) {
   const { data, isPending, isError, error, refetch } = useQuery(quranAyahQuery(surah, ayah))
+  const lookAlikes = useLookAlikes(surah, ayah)
   // One word open at a time. A closed chip stays a word you can read; the full
   // grammar only appears for the word actually being asked about.
   const [openWord, setOpenWord] = useState(null)
@@ -105,6 +116,11 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet })
           {opened && <WordCard word={opened} onGo={onGo} onClose={() => setOpenWord(null)} exclude="quran" />}
           <div className="flex items-center gap-3 flex-wrap">
             <p className="text-xs text-[var(--text-faint)]">Tap a word for its grammar and root</p>
+            {lookAlikes > 0 && onGo && (
+              <GoButton data-look-alikes={lookAlikes} onClick={() => onGo('similar', `${surah}:${ayah}`)}>
+                {lookAlikes === 1 ? similarCopy['look-alike'] : fill(similarCopy['look-alikes'], { n: lookAlikes })}
+              </GoButton>
+            )}
           </div>
         </>
       )}

@@ -38,7 +38,7 @@ export function usePair(pair) {
     staleTime: Infinity,
   })
   const partner = query.data?.partners.find((p) => p.key === pair?.twin) ?? null
-  const mine = query.data && pair ? { key: pair.mine, text: query.data.text } : null
+  const mine = query.data && pair ? { key: pair.mine, text: query.data.text, after: query.data.after ?? '' } : null
   return { query, mine, partner }
 }
 
