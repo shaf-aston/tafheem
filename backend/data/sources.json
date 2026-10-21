@@ -250,6 +250,17 @@
     ],
     "category": "Fiqh"
   },
+  "aqida-books": {
+    "label": "Creed (Aqida)",
+    "detail": "Al-Tahawi's creed, Ibn Taymiyya's al-Wasitiyya and al-Laqani's Jawharat al-Tawhid (the Jawhara from Arabic Wikisource, public domain; the others from OpenITI). No harakat except the poem.",
+    "confidence": "verified",
+    "url": "@openiti",
+    "where": "3 creed texts. Stored locally.",
+    "used_in": [
+      "daleel"
+    ],
+    "category": "Creed"
+  },
   "jazariyya": {
     "label": "Al-Muqaddimah al-Jazariyyah",
     "detail": "All 107 verses with their harakat. The English beside each verse is our own short gloss of what it says, not a translation",

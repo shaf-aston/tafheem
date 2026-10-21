@@ -1,0 +1,1216 @@
+{
+  "_comment": "Grow's Wasitiyya world: al-Aqida al-Wasitiyya, Ibn Taymiyya's creed, section by section, lesson by lesson. Hand-written. Every `ar` and `source` is the book's own words, from backend/data/books/openiti/<file> (the Shamela edition, whose editor numbered the passages: those numbers and bracketed titles are headings the parts read through, `continues`); src/lib/bookLesson.test.js checks each. `en` and `why` are our English, written from the standard commentaries (Ibn ʿUthaymin, al-Harras), never quoted. We teach what Ibn Taymiyya says in plain words; where the Ashʿarī school reads a line differently, a neutral Note says so and nothing is asked on it.",
+  "_cards": "teach {title, ar, en} · choose {ask, ar?, options, answer: index, source, why} — an `ar` with ____ is a gap the answer fills · pick {ask, options: [{text, right?}], source, why} · sort {ask, into, items: [[text, bucket]], source, why} · order {ask, steps (in the right order), source, why}. `source` may be one quote or a list.",
+  "book": "al-Aqida al-Wasitiyya",
+  "author": "Taqi al-Din Ibn Taymiyya (d. 728 AH)",
+  "madhhab": "Atharī creed (Ahl al-Hadith; the Salafi school today)",
+  "file": "0728IbnTaymiyya.CaqidaWasitiyya.Shamela0022665-ara1",
+  "continues": [
+    "1-",
+    "10-",
+    "100-",
+    "101-",
+    "102-",
+    "103-",
+    "104-",
+    "105-",
+    "106-",
+    "107-",
+    "108-",
+    "109-",
+    "11-",
+    "110-",
+    "111-",
+    "112-",
+    "113-",
+    "114-",
+    "115-",
+    "116-",
+    "117-",
+    "118-",
+    "119-",
+    "12-",
+    "120-",
+    "121-",
+    "122-",
+    "123-",
+    "124-",
+    "125-",
+    "126-",
+    "127-",
+    "128-",
+    "129-",
+    "13-",
+    "130-",
+    "131-",
+    "132-",
+    "133-",
+    "134-",
+    "135-",
+    "136-",
+    "137-",
+    "138-",
+    "139-",
+    "14-",
+    "140-",
+    "141-",
+    "142-",
+    "143-",
+    "144-",
+    "145-",
+    "146-",
+    "147-",
+    "148-",
+    "149-",
+    "15-",
+    "150-",
+    "151-",
+    "152-",
+    "153-",
+    "154-",
+    "155-",
+    "156-",
+    "157-",
+    "158-",
+    "159-",
+    "16-",
+    "160-",
+    "161-",
+    "162-",
+    "163-",
+    "164-",
+    "165-",
+    "166-",
+    "167-",
+    "168-",
+    "169-",
+    "17-",
+    "170-",
+    "171-",
+    "172-",
+    "173-",
+    "174-",
+    "175-",
+    "176-",
+    "177-",
+    "178-",
+    "179-",
+    "18-",
+    "180-",
+    "181-",
+    "182-",
+    "183-",
+    "184-",
+    "185-",
+    "186-",
+    "187-",
+    "188-",
+    "189-",
+    "19-",
+    "190-",
+    "191-",
+    "192-",
+    "193-",
+    "194-",
+    "195-",
+    "196-",
+    "197-",
+    "198-",
+    "199-",
+    "2-",
+    "20-",
+    "200-",
+    "201-",
+    "202-",
+    "203-",
+    "204-",
+    "205-",
+    "206-",
+    "207-",
+    "208-",
+    "209-",
+    "21-",
+    "210-",
+    "211-",
+    "212-",
+    "213-",
+    "214-",
+    "215-",
+    "216-",
+    "217-",
+    "218-",
+    "219-",
+    "22-",
+    "220-",
+    "221-",
+    "222-",
+    "223-",
+    "224-",
+    "225-",
+    "226-",
+    "227-",
+    "228-",
+    "229-",
+    "23-",
+    "230-",
+    "231-",
+    "232-",
+    "233-",
+    "234-",
+    "235-",
+    "236-",
+    "237-",
+    "238-",
+    "239-",
+    "24-",
+    "240-",
+    "241-",
+    "242-",
+    "243-",
+    "244-",
+    "245-",
+    "246-",
+    "247-",
+    "248-",
+    "249-",
+    "25-",
+    "250-",
+    "251-",
+    "252-",
+    "253-",
+    "254-",
+    "255-",
+    "256-",
+    "257-",
+    "258-",
+    "259-",
+    "26-",
+    "260-",
+    "261-",
+    "262-",
+    "263-",
+    "264-",
+    "265-",
+    "266-",
+    "267-",
+    "268-",
+    "269-",
+    "27-",
+    "270-",
+    "271-",
+    "272-",
+    "273-",
+    "274-",
+    "275-",
+    "276-",
+    "277-",
+    "278-",
+    "279-",
+    "28-",
+    "280-",
+    "281-",
+    "282-",
+    "283-",
+    "284-",
+    "285-",
+    "286-",
+    "287-",
+    "288-",
+    "289-",
+    "29-",
+    "290-",
+    "291-",
+    "292-",
+    "293-",
+    "294-",
+    "295-",
+    "296-",
+    "297-",
+    "298-",
+    "299-",
+    "3-",
+    "30-",
+    "300-",
+    "301-",
+    "302-",
+    "303-",
+    "304-",
+    "305-",
+    "306-",
+    "307-",
+    "308-",
+    "309-",
+    "31-",
+    "310-",
+    "311-",
+    "312-",
+    "313-",
+    "314-",
+    "315-",
+    "316-",
+    "317-",
+    "318-",
+    "319-",
+    "32-",
+    "320-",
+    "321-",
+    "33-",
+    "34-",
+    "35-",
+    "36-",
+    "37-",
+    "38-",
+    "39-",
+    "4-",
+    "40-",
+    "41-",
+    "42-",
+    "43-",
+    "44-",
+    "45-",
+    "46-",
+    "47-",
+    "48-",
+    "49-",
+    "5-",
+    "50-",
+    "51-",
+    "52-",
+    "53-",
+    "54-",
+    "55-",
+    "56-",
+    "57-",
+    "58-",
+    "59-",
+    "6-",
+    "60-",
+    "61-",
+    "62-",
+    "63-",
+    "64-",
+    "65-",
+    "66-",
+    "67-",
+    "68-",
+    "69-",
+    "7-",
+    "70-",
+    "71-",
+    "72-",
+    "73-",
+    "74-",
+    "75-",
+    "76-",
+    "77-",
+    "78-",
+    "79-",
+    "8-",
+    "80-",
+    "81-",
+    "82-",
+    "83-",
+    "84-",
+    "85-",
+    "86-",
+    "87-",
+    "88-",
+    "89-",
+    "9-",
+    "90-",
+    "91-",
+    "92-",
+    "93-",
+    "94-",
+    "95-",
+    "96-",
+    "97-",
+    "98-",
+    "99-",
+    "[10- في إثبات العلو أيضا] :",
+    "[12- ينشئ الله للجنة أقواما فيدخلهم إياها] :",
+    "[8",
+    "[9- في إثبات العلو أيضا] :",
+    "[إثبات أن القرآن منزل من الله تعالى] :",
+    "[الإجماع الذي ينضبط] :",
+    "[الباب الأول:",
+    "[الباب الثالث:",
+    "[الباب الثاني:",
+    "[الباب الخامس:",
+    "[الباب الرابع:",
+    "[الباب السادس:",
+    "[الفصل الأول:",
+    "[الفصل الثالث:",
+    "[الفصل الثاني:",
+    "[الفصل الخامس:",
+    "[الفصل الرابع:",
+    "[الفصل السادس:",
+    "[صفات المكر والكيد والمحال لله تعالى على ما يليق بجلاله] :"
+  ],
+  "glossary": [
+    {
+      "term": "tawqifi",
+      "ar": "توقيفي",
+      "en": "Tawqifi: fixed by the texts; Allah's names and attributes are taken from the Qur'an and Sunna, not reasoned out.",
+      "lesson": "was-usul-rules"
+    },
+    {
+      "term": "tahrif",
+      "ar": "التحريف",
+      "en": "Tahrif: twisting a text's wording or meaning away from what it says.",
+      "lesson": "was-usul-rules"
+    },
+    {
+      "term": "tatil",
+      "ar": "التعطيل",
+      "en": "Taʿṭīl: denying all or some of the attributes the texts give Allah.",
+      "lesson": "was-usul-rules"
+    },
+    {
+      "term": "takyif",
+      "ar": "التكييف",
+      "en": "Takyif: asking or claiming how an attribute is.",
+      "lesson": "was-usul-rules"
+    },
+    {
+      "term": "tamthil",
+      "ar": "التمثيل",
+      "en": "Tamthil: likening Allah's attributes to those of creation.",
+      "lesson": "was-usul-rules"
+    },
+    {
+      "term": "ilhad",
+      "ar": "الإلحاد",
+      "en": "Ilhad in the names: turning them from their meaning, denying them, or giving them to others.",
+      "lesson": "was-usul-rules"
+    },
+    {
+      "term": "nafy-ithbat",
+      "ar": "النفي والإثبات",
+      "en": "Nafy and ithbat: Allah describes Himself by denying what does not befit Him and affirming what does.",
+      "lesson": "was-usul-way"
+    },
+    {
+      "term": "sifat-dhatiyya",
+      "ar": "الصفات الذاتية",
+      "en": "Attributes of the essence, such as life and knowledge, that Allah always has.",
+      "lesson": "was-ayat-dhat"
+    },
+    {
+      "term": "sifat-filiyya",
+      "ar": "الصفات الفعلية",
+      "en": "Attributes of act, such as love, pleasure and anger: tied to His will, eternal in their kind, each instance occurring when He wills.",
+      "lesson": "was-ayat-fil"
+    },
+    {
+      "term": "irada-kawniyya",
+      "ar": "الإرادة الكونية",
+      "en": "Kawniyya will: what Allah decrees to happen; it always comes to pass, loved or not.",
+      "lesson": "was-ayat-fil"
+    },
+    {
+      "term": "irada-shariyya",
+      "ar": "الإرادة الشرعية",
+      "en": "Shar'iyya will: what Allah loves and commands; His slaves may or may not do it.",
+      "lesson": "was-ayat-fil"
+    }
+  ],
+  "parts": [
+    {
+      "id": "was-usul",
+      "title": "The pillars of faith, and how Allah is described",
+      "arabic": "أصول الإيمان وقواعد الصفات",
+      "kitabs": [
+        "مقدمة المصنف",
+        "أصول الإيمان وأركانه الست",
+        "الابتعاد عن التحريف والتعطيل والتكييف والتمثيل",
+        "الإلحاد في أسماء الله وآياته",
+        "لا يقاس الله بخلقه"
+      ],
+      "lessons": [
+        {
+          "id": "was-usul-six",
+          "title": "The saved group and the six pillars",
+          "arabic": "الفرقة الناجية وأركان الإيمان",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "hamd",
+              "title": "The opening",
+              "ar": "الحمد لله الذي أرسل رسوله بالهدى ودين الحق؛ ليظهره على الدين كله وكفى بالله شهيدا.",
+              "en": "Ibn Taymiyya opens with praise to Allah who sent His Messenger with guidance and the religion of truth to make it prevail over all religion, and Allah suffices as witness: the Qur'an's own words (48:28)."
+            },
+            {
+              "kind": "teach",
+              "id": "shahada",
+              "title": "The two testimonies",
+              "ar": "وأشهد أن لا إله إلا الله وحده لا شريك له؛ إقرارا به وتوحيدا.",
+              "en": "He testifies that there is no god but Allah, alone without partner, 'acknowledging Him and declaring His oneness', and that Muhammad is His slave and messenger."
+            },
+            {
+              "kind": "choose",
+              "id": "najiya-q",
+              "ask": "What does the subtitle call Ahl al-Sunna wal-Jama'a?",
+              "options": [
+                "The saved and aided group, until the Hour",
+                "The group of the jurists of Iraq and their students everywhere",
+                "The group that wrote the most books of creed in the early centuries"
+              ],
+              "answer": 0,
+              "source": "اعتقاد الفرقة الناجية المنصورة إلى قيام الساعة أهل السنة والجماعة",
+              "why": "al-firqa al-najiya al-mansura ila qiyam al-sa'a: saved, aided, lasting until the Hour."
+            },
+            {
+              "kind": "teach",
+              "id": "najiya",
+              "title": "Whose creed this is",
+              "ar": "اعتقاد الفرقة الناجية المنصورة إلى قيام الساعة أهل السنة والجماعة",
+              "en": "The book's subtitle. The author presents Ahl al-Sunna wal-Jamaʿa as the saved and aided group, the names taken from the hadith of the sects and of the group that stays on the truth until the Hour."
+            },
+            {
+              "kind": "teach",
+              "id": "six",
+              "title": "The six pillars",
+              "ar": "الإيمان بالله، وملائكته، وكتبه، ورسله، والبعث بعد الموت، والإيمان بالقدر؛ خيره وشره.",
+              "en": "Their belief is faith in Allah, His angels, His books, His messengers, the resurrection after death, and the decree, its good and its bad: the six pillars of the hadith of Jibril."
+            },
+            {
+              "kind": "pick",
+              "id": "six-q",
+              "ask": "Pick the six pillars as the book lists them.",
+              "options": [
+                {
+                  "text": "Allah",
+                  "right": true
+                },
+                {
+                  "text": "His angels",
+                  "right": true
+                },
+                {
+                  "text": "His books",
+                  "right": true
+                },
+                {
+                  "text": "His messengers",
+                  "right": true
+                },
+                {
+                  "text": "The resurrection after death",
+                  "right": true
+                },
+                {
+                  "text": "The decree, its good and its bad",
+                  "right": true
+                },
+                {
+                  "text": "The four caliphs"
+                },
+                {
+                  "text": "The Kaaba"
+                }
+              ],
+              "source": "الإيمان بالله، وملائكته، وكتبه، ورسله، والبعث بعد الموت، والإيمان بالقدر؛ خيره وشره.",
+              "why": "Six: Allah, angels, books, messengers, resurrection, decree with its good and bad."
+            },
+            {
+              "kind": "order",
+              "id": "six-order",
+              "ask": "Put the pillars in the order the book names them.",
+              "steps": [
+                "Allah",
+                "His angels",
+                "His books",
+                "His messengers",
+                "The resurrection after death",
+                "The decree"
+              ],
+              "source": "الإيمان بالله، وملائكته، وكتبه، ورسله، والبعث بعد الموت، والإيمان بالقدر؛ خيره وشره.",
+              "why": "The order of the hadith of Jibril, which the book follows word for word."
+            }
+          ]
+        },
+        {
+          "id": "was-usul-rules",
+          "title": "Describing Allah as He described Himself",
+          "arabic": "الإيمان بما وصف الله به نفسه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "source",
+              "title": "Two sources of description",
+              "ar": "ومن الإيمان بالله:",
+              "en": "Part of faith in Allah is to believe in what He described Himself with in His Book and what His Messenger ﷺ described Him with. The attributes are taken from these two (tawqīfī); reason does not set them, it follows what the texts give."
+            },
+            {
+              "kind": "choose",
+              "id": "source-q",
+              "ask": "Where do Ahl al-Sunna take Allah's attributes from, in this book?",
+              "options": [
+                "What Allah said of Himself in His Book and what His Messenger said of Him",
+                "What reason finds fitting for a perfect being, checked against the texts afterwards",
+                "What the philosophers established and the theologians refined over the centuries"
+              ],
+              "answer": 0,
+              "source": [
+                "- الإيمان بما وصف به نفسه في كتابه.",
+                "- وبما وصفه به رسوله محمد صلى الله عليه وسلم."
+              ],
+              "why": "bima wasafa bihi nafsahu fi kitabihi, wa bima wasafahu bihi rasuluhu: the Book and the Sunna, nothing else."
+            },
+            {
+              "kind": "teach",
+              "id": "four",
+              "title": "Without four things",
+              "ar": "من غير: تحريف ولا تعطيل، ومن غير: تكييف ولا تمثيل.",
+              "en": "They affirm those descriptions without tahrif (twisting the wording or meaning), ta'til (emptying Him of the attribute), takyif (asking how) or tamthil (likening to creation). Note: what the Ashʿarī school calls taʾwīl, argued from Arabic usage, this book counts as taḥrīf when it leaves the plain sense without a valid proof. Nothing is asked on which name is right."
+            },
+            {
+              "kind": "sort",
+              "id": "four-sort",
+              "ask": "Match each error to its name.",
+              "into": [
+                "تحريف",
+                "تعطيل",
+                "تكييف",
+                "تمثيل"
+              ],
+              "items": [
+                [
+                  "Reading 'His hand' as something other than what the words say",
+                  "تحريف"
+                ],
+                [
+                  "Denying that He has the attribute at all",
+                  "تعطيل"
+                ],
+                [
+                  "Saying how the attribute is",
+                  "تكييف"
+                ],
+                [
+                  "Saying His hearing is like ours",
+                  "تمثيل"
+                ]
+              ],
+              "source": "من غير: تحريف ولا تعطيل، ومن غير: تكييف ولا تمثيل.",
+              "why": "Tahrif changes the text, ta'til empties it, takyif asks how, tamthil likens."
+            },
+            {
+              "kind": "teach",
+              "id": "laysa",
+              "title": "Nothing is like Him, and He hears and sees",
+              "ar": "بل يؤمنون بأن الله تعالى: {ليس كمثله شيء وهو السميع البصير}",
+              "en": "The verse that holds both sides together (42:11): 'There is nothing like Him' denies likeness, 'and He is the Hearing, the Seeing' affirms the attributes. Denial and affirmation in one breath."
+            },
+            {
+              "kind": "choose",
+              "id": "laysa-q",
+              "ask": "Fill the gap.",
+              "ar": "بل يؤمنون بأن الله تعالى: {ليس كمثله شيء وهو ____}",
+              "options": [
+                "السميع البصير",
+                "العليم الحكيم",
+                "الغفور الرحيم"
+              ],
+              "answer": 0,
+              "source": "بل يؤمنون بأن الله تعالى: {ليس كمثله شيء وهو السميع البصير}",
+              "why": "42:11 ends 'the Hearing, the Seeing': affirmation right after the denial of likeness."
+            },
+            {
+              "kind": "teach",
+              "id": "nafy",
+              "title": "They do not deny what He affirmed",
+              "ar": "فلا ينفون عنه: ما وصف به نفسه.",
+              "en": "So they do not strip from Him what He said of Himself, nor 'twist words from their places', the Qur'an's phrase (4:46, 5:13)."
+            },
+            {
+              "kind": "teach",
+              "id": "ilhad",
+              "title": "No ilhad in His names, no likening of His attributes",
+              "ar": "ولا يلحدون في: أسماء الله، وآياته.",
+              "en": "They do not deviate (ilhad) in Allah's names and signs, and they do not liken His attributes to the attributes of His creation."
+            },
+            {
+              "kind": "pick",
+              "id": "not-q",
+              "ask": "Which does the book say Ahl al-Sunna do NOT do?",
+              "options": [
+                {
+                  "text": "Deny what He said of Himself",
+                  "right": true
+                },
+                {
+                  "text": "Twist words from their places",
+                  "right": true
+                },
+                {
+                  "text": "Deviate in His names and signs",
+                  "right": true
+                },
+                {
+                  "text": "Liken His attributes to creation's",
+                  "right": true
+                },
+                {
+                  "text": "Affirm what the Messenger said of Him"
+                },
+                {
+                  "text": "Believe in the resurrection"
+                }
+              ],
+              "source": [
+                "فلا ينفون عنه: ما وصف به نفسه.",
+                "ولا يحرفون: الكلم عن مواضعه.",
+                "ولا يلحدون في: أسماء الله، وآياته.",
+                "ولا يمثلون: صفاته بصفات خلقه."
+              ],
+              "why": "Four denials: no stripping, no twisting, no ilhad, no likening. Affirming and believing are what they do."
+            }
+          ]
+        },
+        {
+          "id": "was-usul-way",
+          "title": "Why: He knows Himself best",
+          "arabic": "لا يقاس الله بخلقه",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "samiy",
+              "title": "No namesake, no equal, no rival",
+              "ar": "لأنه سبحانه؛ لا سمي له، ولا كفو له، ولا ند له،",
+              "en": "The reason: He has no namesake (samiyy), no equal (kufu') and no rival (nidd), and He is not measured against His creation."
+            },
+            {
+              "kind": "teach",
+              "id": "alam",
+              "title": "He knows Himself best",
+              "ar": "فإنه سبحانه؛ أعلم بنفسه وبغيره، وأصدق قيلا، وأحسن حديثا من خلقه.",
+              "en": "He knows Himself and others best, is the most truthful in speech and the best in discourse of all His creation: so what He says of Himself is taken over what anyone else says."
+            },
+            {
+              "kind": "choose",
+              "id": "alam-q",
+              "ask": "Why is what Allah says of Himself preferred to what people reason out?",
+              "options": [
+                "He knows Himself best and speaks most truly",
+                "Because reason cannot speak of Allah at all",
+                "Because the scholars agreed by vote"
+              ],
+              "answer": 0,
+              "source": "فإنه سبحانه؛ أعلم بنفسه وبغيره، وأصدق قيلا، وأحسن حديثا من خلقه.",
+              "why": "a'lamu bi-nafsihi, asdaqu qilan: most knowing of Himself, most truthful in word."
+            },
+            {
+              "kind": "teach",
+              "id": "rusul",
+              "title": "Then His messengers",
+              "ar": "ثم رسله صادقون مصدقون؛ بخلاف الذين يقولون عليه ما لا يعلمون.",
+              "en": "Then His messengers are truthful and believed, unlike those who say of Him what they do not know."
+            },
+            {
+              "kind": "teach",
+              "id": "subhan",
+              "title": "The verse that sums it up",
+              "ar": "فسبح نفسه عما وصفه به المخالفون للرسل، وسلم على المرسلين لسلامة ما قالوه من النقص والعيب.",
+              "en": "37:180–182: Allah declared Himself above what the opponents of the messengers describe, and sent peace on the messengers because what they said is free of defect and fault."
+            },
+            {
+              "kind": "choose",
+              "id": "jama-q",
+              "ask": "Fill the gap.",
+              "ar": "وهو سبحانه قد جمع فيما وصف وسمى به نفسه بين: ____",
+              "options": [
+                "النفي والإثبات.",
+                "العقل والنقل.",
+                "الظاهر والباطن."
+              ],
+              "answer": 0,
+              "source": "وهو سبحانه قد جمع فيما وصف وسمى به نفسه بين: النفي والإثبات.",
+              "why": "al-nafy wa-l-ithbat: denying what does not befit Him, affirming what He affirmed."
+            },
+            {
+              "kind": "teach",
+              "id": "jama",
+              "title": "Denial and affirmation together",
+              "ar": "وهو سبحانه قد جمع فيما وصف وسمى به نفسه بين: النفي والإثبات.",
+              "en": "In how He described and named Himself He joined denial (nafy: nothing is like Him) and affirmation (ithbat: He is the Hearing, the Seeing). Ahl al-Sunna keep both."
+            },
+            {
+              "kind": "teach",
+              "id": "sirat",
+              "title": "No turning from what the messengers brought",
+              "ar": "فلا عدول لأهل السنة والجماعة عما جاءت به المرسلون.",
+              "en": "So Ahl al-Sunna do not turn away from what the messengers brought: it is the straight path, the path of those Allah favoured, the prophets, the truthful, the martyrs and the righteous (4:69)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "was-ayat",
+      "title": "The verses that describe Him",
+      "arabic": "آيات الصفات",
+      "kitabs": [
+        "سورة الإخلاص تعدل ثلث القرآن",
+        "آية الكرسي أعظم آية في كتاب الله",
+        "صفة الحياة",
+        "صفة العلم",
+        "صفة القوة",
+        "صفة السمع وصفة البصر",
+        "صفة الإرادة",
+        "صفة المحبة",
+        "صفة الرضى",
+        "صفة الرحمة"
+      ],
+      "lessons": [
+        {
+          "id": "was-ayat-ikhlas",
+          "title": "Surat al-Ikhlas and Ayat al-Kursi",
+          "arabic": "الإخلاص وآية الكرسي",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "ikhlas",
+              "title": "A third of the Qur'an",
+              "ar": "ما وصف به نفسه في «سورة الإخلاص» التي تعدل ثلث القرآن.",
+              "en": "First among what Allah said of Himself: Surat al-Ikhlas, which equals a third of the Qur'an (sahih hadith): the commentators explain that the Qur'an is rulings, reports and tawhid, and this sura is pure tawhid. It equals a third in reward; it does not replace reciting the whole."
+            },
+            {
+              "kind": "choose",
+              "id": "ikhlas-q",
+              "ask": "Fill the gap from Surat al-Ikhlas as the book quotes it.",
+              "ar": "حيث يقول: {قل هو الله أحد • الله الصمد • ____ • ولم يكن له كفوا أحد}",
+              "options": [
+                "لم يلد ولم يولد",
+                "له الملك وله الحمد",
+                "وهو السميع البصير"
+              ],
+              "answer": 0,
+              "source": "حيث يقول: {قل هو الله أحد • الله الصمد • لم يلد ولم يولد • ولم يكن له كفوا أحد}",
+              "why": "112:3: He neither begets nor is begotten."
+            },
+            {
+              "kind": "teach",
+              "id": "kursi",
+              "title": "The greatest verse",
+              "ar": "وما وصف به نفسه في أعظم آية في كتابه.",
+              "en": "Then Ayat al-Kursi (2:255), the greatest verse in His Book: the Living, the Sustaining, whom neither drowsiness nor sleep takes, whose Kursi encompasses the heavens and the earth."
+            },
+            {
+              "kind": "pick",
+              "id": "kursi-q",
+              "ask": "Which attributes does Ayat al-Kursi name, as quoted here?",
+              "options": [
+                {
+                  "text": "Living (الحي)",
+                  "right": true
+                },
+                {
+                  "text": "Sustaining (القيوم)",
+                  "right": true
+                },
+                {
+                  "text": "Neither drowsiness nor sleep takes Him",
+                  "right": true
+                },
+                {
+                  "text": "The Forgiving"
+                },
+                {
+                  "text": "The Loving"
+                }
+              ],
+              "source": "حيث يقول: {الله لا إله إلا هو الحي القيوم لا تأخذه سنة ولا نوم",
+              "why": "Life, sustaining all, and no drowsiness or sleep: the verse's opening, as quoted here."
+            },
+            {
+              "kind": "teach",
+              "id": "hafiz",
+              "title": "Its protection",
+              "ar": "ولهذا كان من قرأ هذه الآية في ليلة؛ لم يزل عليه من الله حافظ، ولا يقربه شيطان حتى يصبح.",
+              "en": "For this reason whoever recites it at night has a guardian from Allah over him, and no devil comes near him until morning: the hadith of Abu Hurayra in al-Bukhari."
+            },
+            {
+              "kind": "choose",
+              "id": "hafiz-q",
+              "ask": "What does reciting Ayat al-Kursi at night bring, according to the book?",
+              "options": [
+                "A guardian from Allah, and no devil near until morning",
+                "Forgiveness of every sin committed that day and the day before",
+                "The reward of reciting a third of the whole Qur'an that night"
+              ],
+              "answer": 0,
+              "source": "لم يزل عليه من الله حافظ، ولا يقربه شيطان حتى يصبح.",
+              "why": "hafiz min Allah... la yaqrabuhu shaytan hatta yusbih."
+            }
+          ]
+        },
+        {
+          "id": "was-ayat-dhat",
+          "title": "Life, knowledge, power, hearing and sight",
+          "arabic": "الحياة والعلم والقوة والسمع والبصر",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "hayy",
+              "title": "Life",
+              "ar": "وقوله سبحانه: {وتوكل على الحي الذي لا يموت}",
+              "en": "Life (al-hayat): 'Rely on the Living who does not die' (25:58). The book's method from here on: each attribute is shown by the verses that state it, with little or no comment added."
+            },
+            {
+              "kind": "teach",
+              "id": "ilm",
+              "title": "Knowledge",
+              "ar": "وقوله سبحانه: {هو الأول والآخر والظاهر والباطن وهو بكل شيء عليم}",
+              "en": "Knowledge (al-'ilm): He is the First and the Last, the Outward and the Inward, and He knows all things (57:3); the keys of the unseen are with Him, no leaf falls but He knows it (6:59)."
+            },
+            {
+              "kind": "choose",
+              "id": "ilm-q",
+              "ask": "Fill the gap (6:59).",
+              "ar": "{وعنده مفاتح الغيب لا يعلمها إلا هو ويعلم ما في البر والبحر وما تسقط من ____ إلا يعلمها",
+              "options": [
+                "ورقة",
+                "نجمة",
+                "قطرة"
+              ],
+              "answer": 0,
+              "source": "{وعنده مفاتح الغيب لا يعلمها إلا هو ويعلم ما في البر والبحر وما تسقط من ورقة إلا يعلمها",
+              "why": "'no leaf falls but He knows it': knowledge down to a single leaf."
+            },
+            {
+              "kind": "teach",
+              "id": "quwwa",
+              "title": "Power",
+              "ar": "وقوله: {إن الله هو الرزاق ذو القوة المتين}",
+              "en": "Power (al-quwwa): 'Allah is the Provider, the Possessor of strength, the Firm' (51:58)."
+            },
+            {
+              "kind": "teach",
+              "id": "sam",
+              "title": "Hearing and sight",
+              "ar": "وقوله: {ليس كمثله شيء وهو السميع البصير}",
+              "en": "Hearing and sight (al-sam' wa-l-basar): 'There is nothing like Him, and He is the Hearing, the Seeing' (42:11), and 'Allah is ever Hearing, Seeing' (4:58)."
+            },
+            {
+              "kind": "sort",
+              "id": "dhat-sort",
+              "ask": "Match each verse to the attribute the book files it under.",
+              "into": [
+                "Life",
+                "Knowledge",
+                "Power",
+                "Hearing and sight"
+              ],
+              "items": [
+                [
+                  "وتوكل على الحي الذي لا يموت",
+                  "Life"
+                ],
+                [
+                  "وهو بكل شيء عليم",
+                  "Knowledge"
+                ],
+                [
+                  "ذو القوة المتين",
+                  "Power"
+                ],
+                [
+                  "إن الله كان سميعا بصيرا",
+                  "Hearing and sight"
+                ]
+              ],
+              "source": [
+                "{وتوكل على الحي الذي لا يموت}",
+                "{هو الأول والآخر والظاهر والباطن وهو بكل شيء عليم}",
+                "{إن الله هو الرزاق ذو القوة المتين}",
+                "{إن الله نعما يعظكم به إن الله كان سميعا بصيرا}"
+              ],
+              "why": "Each verse sits under the heading of the attribute it states."
+            }
+          ]
+        },
+        {
+          "id": "was-ayat-fil",
+          "title": "Will, love, pleasure and mercy",
+          "arabic": "الإرادة والمحبة والرضا والرحمة",
+          "cards": [
+            {
+              "kind": "teach",
+              "id": "irada",
+              "title": "Will",
+              "ar": "وقوله: {ولو شاء الله ما اقتتل الذين من بعدهم من بعد ما جاءتهم البينات ولكن اختلفوا فمنهم من آمن ومنهم من كفر ولو شاء الله ما اقتتلوا ولكن الله يفعل ما يريد}",
+              "en": "Will (al-irāda): 'had Allah willed they would not have fought... but Allah does what He wills' (2:253). The commentators divide His will in two: kawniyya (cosmic, the same as mashīʾa: it always comes to pass, whether He loves the thing or not) and sharʿiyya (religious: what He loves and commands, which may or may not be done by His slaves)."
+            },
+            {
+              "kind": "teach",
+              "id": "hidaya",
+              "title": "Guidance by His will",
+              "ar": "وقوله: {فمن يرد الله أن يهديه يشرح صدره للإسلام ومن يرد أن يضله يجعل صدره ضيقا حرجا كأنما يصعد في السماء}",
+              "en": "'Whomever Allah wills to guide, He opens his breast to Islam; whomever He wills to lead astray, He makes his breast tight and narrow' (6:125): guidance is in His will."
+            },
+            {
+              "kind": "pick",
+              "id": "hubb-q",
+              "ask": "Whom does Allah love, in the verses the book quotes?",
+              "options": [
+                {
+                  "text": "Those who do good",
+                  "right": true
+                },
+                {
+                  "text": "The just",
+                  "right": true
+                },
+                {
+                  "text": "The God-fearing",
+                  "right": true
+                },
+                {
+                  "text": "Those who repent",
+                  "right": true
+                },
+                {
+                  "text": "Those who purify themselves",
+                  "right": true
+                },
+                {
+                  "text": "The arrogant"
+                },
+                {
+                  "text": "The wasteful"
+                }
+              ],
+              "source": [
+                "{وأحسنوا إن الله يحب المحسنين}",
+                "{وأقسطوا إن الله يحب المقسطين}",
+                "{فما استقاموا لكم فاستقيموا لهم إن الله يحب المتقين}",
+                "{إن الله يحب التوابين ويحب المتطهرين}"
+              ],
+              "why": "al-muhsinin, al-muqsitin, al-muttaqin, al-tawwabin, al-mutatahhirin."
+            },
+            {
+              "kind": "teach",
+              "id": "hubb",
+              "title": "Love",
+              "ar": "وقوله: {وأحسنوا إن الله يحب المحسنين}",
+              "en": "Love (al-mahabba): Allah loves those who do good (2:195), the just (49:9), the God-fearing (9:7), those who repent and purify themselves (2:222), and a people He loves who love Him (5:54). Note: the Ashʿarī school reads 'love' as His will to reward; this book affirms it as a real attribute befitting Him. Nothing is asked on that."
+            },
+            {
+              "kind": "choose",
+              "id": "ittiba-q",
+              "ask": "Fill the gap (3:31).",
+              "ar": "{قل إن كنتم تحبون الله ____ يحببكم الله ويغفر لكم ذنوبكم}",
+              "options": [
+                "فاتبعوني",
+                "فاعبدوني",
+                "فاذكروني"
+              ],
+              "answer": 0,
+              "source": "{قل إن كنتم تحبون الله فاتبعوني يحببكم الله ويغفر لكم ذنوبكم}",
+              "why": "fa-ttabi'uni: following the Prophet is how Allah's love is won."
+            },
+            {
+              "kind": "teach",
+              "id": "rida",
+              "title": "Pleasure",
+              "ar": "وقوله: {رضي الله عنهم ورضوا عنه}",
+              "en": "Pleasure (al-rida): 'Allah is pleased with them and they with Him' (98:8)."
+            },
+            {
+              "kind": "teach",
+              "id": "rahma",
+              "title": "Mercy",
+              "ar": "وقوله: {بسم الله الرحمن الرحيم}",
+              "en": "Mercy (al-rahma): the Basmala itself (27:30), 'our Lord, You encompass all things in mercy and knowledge' (40:7), 'He is ever Merciful to the believers' (33:43), 'your Lord has prescribed mercy upon Himself' (6:54)."
+            },
+            {
+              "kind": "choose",
+              "id": "rahma-q",
+              "ask": "Fill the gap (6:54).",
+              "ar": "{كتب ربكم على نفسه ____}",
+              "options": [
+                "الرحمة",
+                "العدل",
+                "الحكمة"
+              ],
+              "answer": 0,
+              "source": "{كتب ربكم على نفسه الرحمة}",
+              "why": "kataba 'ala nafsihi al-rahma: He prescribed mercy upon Himself."
+            },
+            {
+              "kind": "sort",
+              "id": "fil-sort",
+              "ask": "Sort each attribute by the group the book's commentators give it.",
+              "into": [
+                "Attribute of the essence",
+                "Attribute of act"
+              ],
+              "items": [
+                [
+                  "Life",
+                  "Attribute of the essence"
+                ],
+                [
+                  "Knowledge",
+                  "Attribute of the essence"
+                ],
+                [
+                  "Love",
+                  "Attribute of act"
+                ],
+                [
+                  "Pleasure",
+                  "Attribute of act"
+                ],
+                [
+                  "Mercy toward the believers",
+                  "Attribute of act"
+                ]
+              ],
+              "source": [
+                "{وتوكل على الحي الذي لا يموت}",
+                "وهو بكل شيء عليم",
+                "إن الله يحب المحسنين",
+                "{رضي الله عنهم ورضوا عنه}",
+                "{وكان بالمؤمنين رحيما}"
+              ],
+              "why": "Life and knowledge He always has (dhātiyya). Love, pleasure and a particular mercy toward someone are tied in the texts to His will and to a cause (fiʿliyya). Mercy itself, the commentators add, is of the essence in its root and of act in each instance. Acts are eternal in their kind, each instance happening when He wills."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "was-ayat-more",
+      "title": "More attributes: anger, coming, face, hands, eyes, speech, the Throne",
+      "arabic": "بقية آيات الصفات",
+      "kitabs": [
+        "صفات: الغضب والسخط والكراهية والبغض",
+        "صفتي: المجيء والإتيان",
+        "صفة الوجه لله سبحانه",
+        "إثبات اليدين لله تعال",
+        "إثبات العينين لله تعالى",
+        "صفتي السمع والبصر لله تعالى",
+        "صفات العفو والمغفرة والرحمة والعزة والقدرة",
+        "إثبات الاسم لله",
+        "آيات الصفات المنفية في تنزيه الله ونفي المثل عنه",
+        "استواء الله على عرشه",
+        "إثبات علو الله على مخلوقاته",
+        "إثبات معية الله لخلقه",
+        "إثبات الكلام لله تعالى",
+        "إثبات رؤية المؤمنين لربهم يوم القيامة"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "was-ahadith",
+      "title": "The hadith of the attributes",
+      "arabic": "أحاديث الصفات",
+      "kitabs": [
+        "أحاديث الصفات",
+        "1- في إثبات نزول الله إلى السماء الدنيا",
+        "2- في إثبات الفرح لله عز وجل",
+        "3- في إثبات الضحك",
+        "4- في إثبات العجب وصفات أخرى",
+        "5- في إثبات الرجل أو القدم",
+        "6- في إثبات الكلام والصوت",
+        "7- في إثبات العلو لله وصفات أخرى",
+        "- في إثبات العلو أيضا] :",
+        "11- في إثبات المعية",
+        "12- في إثبات كون الله قبل وجه المصلي",
+        "13- في إثبات العلو وصفات أخرى",
+        "14- في إثبات قرب الله تعالى",
+        "15- إثبات رؤية المؤمنين لربهم"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "was-wasat",
+      "title": "The middle way of Ahl al-Sunna",
+      "arabic": "وسطية أهل السنة",
+      "kitabs": [
+        "الأصل الأول: باب الأسماء والصفات",
+        "الأصل الثاني: أفعال الله",
+        "الأصل الثالث: الوعيد",
+        "الأصل الرابع: أسماء الإيمان والدين",
+        "الأصل الخامس: في الصحابة رضي الله عنهم"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "was-quran",
+      "title": "The Qur'an is Allah's speech, and seeing Him",
+      "arabic": "القرآن كلام الله والرؤية",
+      "kitabs": [
+        "الفصل الأول: الإيمان بأن القرآن كلام الله منزل غير مخلوق"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "was-akhira",
+      "title": "After death: the grave, the resurrection, the reckoning",
+      "arabic": "الإيمان باليوم الآخر",
+      "kitabs": [
+        "الفصل الأول: الإيمان بكل ما أخبر به النبي صلى الله عليه وسلم مما يكون بعد الموت",
+        "1- فتنة القبر",
+        "2- عذاب القبر ونعيمه",
+        "1- إعادة الأرواح إلى الأجساد",
+        "2- قيام الناس من قبورهم",
+        "3- دنو الشمس",
+        "4- العرق",
+        "5- نصب الموازين",
+        "6- نشر الدواوين",
+        "7- الحساب",
+        "8- الحوض المورود",
+        "9- الصراط",
+        "10- دخول الجنة",
+        "11- الشفاعة"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "was-qadar",
+      "title": "The decree",
+      "arabic": "الإيمان بالقدر",
+      "kitabs": [
+        "الفصل الأول: الدرجة الأولى من درجات الإيمان بالقدر",
+        "لا تعارض بين القدر والشرع ولا بين تقدير الله للمعاصي وبغضه لها",
+        "إثبات القدر لا ينافي إسناد أفعال العباد إليهم حقيقة وأنهم يفعلونها باختيارهم",
+        "أهل السنة لا يكفرون أهل القبلة بمطلق المعاصي والكبائر"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "was-iman-sahaba",
+      "title": "Faith, the grave sinner and the Companions",
+      "arabic": "الإيمان والصحابة",
+      "kitabs": [
+        "فضائل الصحابة ومراتبهم وتفاضلهم وموقف أهل السنة والجماعة من ذلك",
+        "حكم تقديم علي رضي الله عنه على غيره من الخلفاء الأربعة في الخلافة",
+        "مكانة أهل بيت رسول الله صلى الله عليه وسلم عند أهل السنة",
+        "مكانة أزواج رسول الله صلى الله عليه وسلم عند أهل السنة",
+        "تبرؤ أهل السنة والجماعة مما يقوله المبتدعة في حق الصحابة وأهل البيت، والذب عنهم",
+        "منهج أهل السنة فيما شجر بين الصحابة",
+        "من مناقب أصحاب رسول الله صلى الله عليه وسلم"
+      ],
+      "lessons": []
+    },
+    {
+      "id": "was-manhaj",
+      "title": "The way of Ahl al-Sunna and the closing",
+      "arabic": "منهج أهل السنة والخاتمة",
+      "kitabs": [
+        "الفصل الأول: اتباع آثار رسول الله صلى الله عليه وسلم واتباع سبيل السابقين",
+        "لماذا سمي أهل الكتاب والسنة بهذا الاسم؟",
+        "لماذا سموا بأهل الجماعة؟",
+        "الإجماع هو الأصل الثالث",
+        "فصل في بيان مكملات العقيدة من مكارم الأخلاق ومحاسن الأعمال التي يتحلى بها أهل السنة والجماعة",
+        "من مزايا أهل السنة",
+        "خاتمة"
+      ],
+      "lessons": []
+    }
+  ]
+}
