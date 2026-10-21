@@ -617,7 +617,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     # (closed_words la_jins, Tasheel 3.7.3 p69), not a مضاف waiting for its مضاف إليه
     for i, reading in enumerate(out):
         after_la = i > 0 and is_one(bare_letters(out[i - 1].get("diac", "")), "la_jins")
-        if _bare_construct(reading) and not after_la and not _takes_mudaf_ilayh(out[i + 1] if i + 1 < len(out) else {}):
+        if _bare_construct(reading) and not after_la and not _takes_mudaf_ilayh(*((out[i + 1], tokens[i + 1]) if i + 1 < len(out) else ({}, ""))):
             word, ranked = steps[i]
             # the word's whole list too (أَكْبَرُ's own indefinite reading may be ranked out), never a guessed name
             out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
@@ -640,9 +640,11 @@ def _bare_construct(reading: dict) -> bool:
     return reading.get("pos") in ("noun", "adj") and reading.get("stt") == "c" and reading.get("enc0") in ("0", "na", None)
 
 
-def _takes_mudaf_ilayh(after: dict) -> bool:
-    """The next word can be a مضاف إليه: a noun or pronoun with no و, ف or preposition on it."""
-    return after.get("pos", "").startswith(("noun", "adj", "pron", "abbrev", "digit")) and all(
+def _takes_mudaf_ilayh(after: dict, typed: str = "") -> bool:
+    """The next word can be a مضاف إليه: a noun or pronoun with no و, ف or preposition on it,
+    not typed with a damma. A مضاف إليه is مجرور (Alfiyya: وَالثَّانِيَ اجْرُرْ), and no جرّ is a
+    damma (a diptote's is a fatha), so بَرَدَ before الْجَوُّ is the verb, not "the hail of"."""
+    return typed_case(typed) != "u" and after.get("pos", "").startswith(("noun", "adj", "pron", "abbrev", "digit")) and all(
         after.get(prc, "0") in ("0", "na") for prc in ("prc1", "prc2", "prc3"))
 
 

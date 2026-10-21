@@ -481,6 +481,8 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     # after لا النافية للجنس the missing tanween is لا's building, not a مضاف before a preposition
     ("هَذَا الْأَمْرُ لَا شَكَّ فِيهِ", "شَكَّ", ("role", "اسم لا")),
     ("الْعِلْمُ لَا حَدَّ لَهُ", "حَدَّ", ("role", "اسم لا")),
+    # a مضاف إليه is مجرور, so a damma-typed الْجَوُّ cannot make بَرَدَ the noun "hail of"
+    ("إِذَا جَاءَ الشِّتَاءُ بَرَدَ الْجَوُّ", "الْجَوُّ", ("role", "فاعل")),
     # a hamza-final participle (قارئ) works as its verb like any other: its noun is its object
     ("يَا قَارِئًا الْقُرْآنَ تَدَبَّرْ", "الْقُرْآنَ", ("role", "مفعول به")),
 ])
