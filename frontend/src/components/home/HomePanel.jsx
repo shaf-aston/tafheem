@@ -70,7 +70,6 @@ export default function HomePanel({ accent, onGo }) {
           {/* A wide screen has the column beside the tiles; a narrower one, this way into the same figures. */}
           <span className="lg:hidden"><StatsButton /></span>
         </div>
-        {first && <p className="rise-in relative text-[var(--text-dim)] max-w-[46ch]" style={{ '--i': 1 }}>{copy['welcome-first']}</p>}
       </header>
 
       {offline && (
