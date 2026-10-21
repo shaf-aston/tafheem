@@ -10,17 +10,21 @@
  * draws. It stops, leaving the last frame, when the Animations setting drives
  * --motion-scale to 0, under prefers-reduced-motion, or while the tab is
  * hidden, so it costs nothing when nobody can see it move. It also holds
- * still, tint change included, for the moment a tab switches (lib/backdropHold).
+ * still, tint change included, for the moment a tab switches and while the
+ * page scrolls (lib/backdropHold).
  * data-frames counts
  * drawn frames, which is how a probe proves it stopped.
  */
 import { useEffect, useRef } from 'react'
 
 import { pickColor, seed, seedMarks, step, stepMarks } from '../../lib/bokeh'
-import { heldFor } from '../../lib/backdropHold'
+import { heldFor, holdBackdrop } from '../../lib/backdropHold'
 import { motionOff } from '../../lib/motion'
 
 const MAX_DPR = 1.5
+// Held still while anything scrolls, and this long after: a scroll is where a
+// dropped frame shows most, and a redraw under it dropped most of them.
+const SCROLL_HOLD_MS = 200
 
 function readKnobs(style) {
   const num = (name) => parseFloat(style.getPropertyValue(`--lights-${name}`))
@@ -137,7 +141,7 @@ export default function Backdrop() {
       const wait = heldFor()
       if (!wait) return false
       clearTimeout(held)
-      held = setTimeout(() => { held = 0; paint(); run() }, wait)
+      held = setTimeout(() => { held = 0; if (waitOut()) return; paint(); run() }, wait)
       return true
     }
 
@@ -178,14 +182,18 @@ export default function Backdrop() {
     if (marksKnobs.count > 0) {
       document.fonts.load(`1rem ${marksKnobs.font}`, marksKnobs.letters.join('')).then(paint)
     }
+    const onScroll = () => holdBackdrop(SCROLL_HOLD_MS)
     window.addEventListener('resize', resize)
     document.addEventListener('visibilitychange', run)
+    // Capture, so a panel that scrolls inside the page counts too.
+    document.addEventListener('scroll', onScroll, { capture: true, passive: true })
     return () => {
       cancelAnimationFrame(raf)
       clearTimeout(held)
       watch.disconnect()
       window.removeEventListener('resize', resize)
       document.removeEventListener('visibilitychange', run)
+      document.removeEventListener('scroll', onScroll, { capture: true })
     }
   }, [])
 
