@@ -283,3 +283,16 @@ def test_every_dialect_voice_named_in_the_data_is_a_voice():
     for dialect in loader.catalogue()["dialects"]:
         name = loader.voice_of(dialect["key"])
         assert name is None or speech.voice_named(name).name
+
+
+def test_a_made_word_is_evened_out_and_soft_at_both_ends():
+    import numpy as np
+
+    settings = get_settings()
+    lead = speech.RATE * settings.speech_lead_ms // 1000
+    quiet = np.full(speech.RATE // 10, 0.2, dtype=np.float32)
+    out = speech.shaped(quiet.copy())
+    word = out[lead:len(out) - lead]
+    assert len(out) == len(quiet) + 2 * lead and not out[:lead].any()
+    assert abs(np.abs(word).max() - settings.speech_peak) < 1e-6
+    assert word[0] == 0 and word[-1] == 0

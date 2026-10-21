@@ -288,6 +288,10 @@ class Speech(BaseSettings):
     # Silence before and after every FastPitch word. A phone wakes its speaker as a sound
     # starts and loses the first tenth of a second, which was the word's first letter.
     speech_lead_ms: int = Field(default=150, ge=0, le=1000)
+    # Every made word scaled to this peak, so one is never louder than the next; and faded
+    # in and out over speech_fade_ms, so it starts and stops without a click.
+    speech_peak: float = Field(default=0.9, gt=0, le=1)
+    speech_fade_ms: int = Field(default=8, ge=0, le=100)
     # The recording studio (services/recordings.py): who may add a person's voice for a word.
     # Empty turns the studio off. A recording is at most recording_max_kb, and is saved
     # trimmed of the quiet around it, with speech_lead_ms put back on each side.
