@@ -55,4 +55,5 @@ def test_api_shape_carries_new_fields(monkeypatch):
     first = model.terms[0]
     assert (model.by, model.axes[0].q) == ("what?", "?")
     assert (first.lugha, first.kind, first.answers) == ("l", "daif", {"y": "t"})
+    assert (first.meaning, first.quote, first.page) == ("s", "q", "p. 1")
     assert first.confuse[0].arabic == "ب" and first.kids[0].arabic == "ك"

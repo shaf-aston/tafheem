@@ -38,8 +38,8 @@ const sapcY = (hex) => {
 }
 export const apca = (text, ground) => {
   const [yt, yb] = [sapcY(text), sapcY(ground)]
-  if (Math.abs(yb - yt) < 0.0005) return 0
   const lc = yb > yt ? (yb ** 0.56 - yt ** 0.57) * 1.14 : (yb ** 0.65 - yt ** 0.62) * 1.14
+  // The published noise floor; it also zeroes equal colours, so they need no check of their own.
   if (Math.abs(lc) < 0.1) return 0
   return (lc > 0 ? lc - 0.027 : lc + 0.027) * 100
 }
