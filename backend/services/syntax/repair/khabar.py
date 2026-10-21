@@ -44,6 +44,18 @@ def hasr_khabar(tokens: list[dict]) -> None:
             return
 
 
+def described_doer(tokens: list[dict]) -> None:
+    """ما ذاهبٌ المسلمون، أذاهبٌ زيدٌ: the مبتدأ وصف (facts.Sentence.described_doer) heads its
+    clause and the raf' noun after it is its doer, not its صفة: a نعت follows a noun, and the
+    وصف here is no noun said of anything before it. The particle before it hangs on it."""
+    if said := Sentence(tokens).described_doer:
+        lead, wasf, doer = said
+        doer["head"], doer["rel"] = wasf["id"], "SBJ"
+        lead["head"], lead["rel"] = wasf["id"], "MOD"
+        if wasf["head"] in (lead["id"], doer["id"]):
+            wasf["head"], wasf["rel"] = 0, "---"
+
+
 def before_la(tokens: list[dict]) -> None:
     """ذَلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ: the noun of لا النافية للجنس stands after it, so a noun
     the parser hung on لا from before it is the mubtada, and the لا clause its khabar."""
