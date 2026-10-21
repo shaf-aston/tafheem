@@ -2,7 +2,6 @@
   "_comment": "The books imported from OpenITI, and nothing about how they are imported. Adding a book is a line here plus a re-run of backend/scripts/import_openiti.py; no code changes. Removing one is deleting its line and re-running.",
   "_field_comment": "file is the OpenITI filename, which carries the author's death year at the front. collection decides which Daleel source the book is grouped under on screen. title/author are written here rather than read from the file because the two OpenITI metadata schemas disagree and half the files give neither.",
   "_source_comment": "OpenITI pri-data v9, https://github.com/OpenITI. Texts are digitised from Shamela and al-Jami' al-Kabir. No harakat in any of them.",
-
   "collections": {
     "nahw-books": {
       "label": "Classical Nahw & Sarf",
@@ -11,9 +10,12 @@
     "fiqh-books": {
       "label": "Hanafi Fiqh & Usul",
       "note": "The Hanafi ladder: Quduri, then Bidaya with its Hidaya, and Shashi on usul."
+    },
+    "aqida-books": {
+      "label": "Creed (Aqida)",
+      "note": "Three creeds as their authors wrote them: al-Tahawi's statements, Ibn Taymiyya's Wasitiyya, al-Laqani's Jawhara poem (from Wikisource, public domain)."
     }
   },
-
   "books": [
     {
       "collection": "nahw-books",
@@ -85,7 +87,6 @@
       "author": "الزمخشري",
       "died": 538
     },
-
     {
       "collection": "nahw-books",
       "file": "0180Sibawayhi.KitabSibawayhi.Shamela0023018-ara1.mARkdown",
@@ -226,7 +227,6 @@
       "author": "السيوطي",
       "died": 911
     },
-
     {
       "collection": "fiqh-books",
       "file": "0428AbuHusaynQuduri.Mukhtasar.Sham19Y0124336-ara1",
@@ -254,6 +254,27 @@
       "title": "أصول الشاشي",
       "author": "نظام الدين الشاشي",
       "died": 344
+    },
+    {
+      "collection": "aqida-books",
+      "file": "0321Tahawi.MatnCaqida.JK000126-ara1",
+      "title": "متن العقيدة الطحاوية",
+      "author": "أبو جعفر الطحاوي",
+      "died": 321
+    },
+    {
+      "collection": "aqida-books",
+      "file": "0728IbnTaymiyya.CaqidaWasitiyya.Shamela0022665-ara1",
+      "title": "العقيدة الواسطية",
+      "author": "ابن تيمية",
+      "died": 728
+    },
+    {
+      "collection": "aqida-books",
+      "file": "1041BurhanDinLaqani.JawharatTawhid.Wikisource-ara1",
+      "title": "جوهرة التوحيد",
+      "author": "برهان الدين اللقاني",
+      "died": 1041
     }
   ]
 }

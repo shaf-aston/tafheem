@@ -41,6 +41,7 @@ SOURCES: tuple[Source, ...] = (
     # page. Which books each holds is data/books/openiti-books.json.
     OpenItiSource("nahw-books"),
     OpenItiSource("fiqh-books"),
+    OpenItiSource("aqida-books"),
     MaqayeesSource(),
     # The classical dictionaries, one entry per credit they carry rather than a
     # written list of books. A dictionary added to data/lexicons.db appears here
