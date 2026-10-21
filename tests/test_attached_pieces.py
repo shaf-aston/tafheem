@@ -490,6 +490,9 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     # ظنّ's two objects were a مبتدأ and خبر; the parser kept the pair, both typed in nasb
     ("حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا", "الطَّرِيقَ", ("role", "مفعول به")),
     ("حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا", "الرَّجُلُ", ("role", "فاعل")),
+    # a plain noun takes no object: أكثر is زيد's khabar, مالا the elative's تمييز
+    ("زَيْدٌ أَكْثَرُ مِنْكَ مَالًا", "زَيْدٌ", ("role", "مبتدأ")),
+    ("زَيْدٌ أَكْثَرُ مِنْكَ مَالًا", "أَكْثَرُ", ("role", "خبر")),
     # a hamza-final participle (قارئ) works as its verb like any other: its noun is its object
     ("يَا قَارِئًا الْقُرْآنَ تَدَبَّرْ", "الْقُرْآنَ", ("role", "مفعول به")),
 ])

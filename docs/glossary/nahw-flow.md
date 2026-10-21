@@ -43,6 +43,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/sy
 - called: a verb the parser hung on يا → a sentence of its own, not a second منادى (`backend/services/syntax/repair/called.py`)
 - dua_clause: a praying noun (ويل، سلام) in raf' with a لِ phrase after it → a mubtada of its own with that khabar, not the verb's doer (`backend/services/syntax/repair/dua.py`)
 - counted_times: مرة/مرتين hung on a jar-majrur → the verb's (`backend/services/syntax/repair/dua.py`)
+- object_of_noun: a raf' word the parser hung as the object of a plain raf' noun opening the sentence → its khabar; a nasb noun after an elative khabar → the elative's تمييز (`backend/services/syntax/repair/khabar.py`)
 - after_pointer: an indefinite word hung as the صفة of a definite opener (هذا، زيد، ال) → the khabar (`backend/services/syntax/repair/khabar.py`)
 - second_khabar: an adjective hung on an adjective khabar → a second khabar, not its صفة (`backend/services/syntax/repair/khabar.py`)
 - before_la: a noun hung on لا from before it → the mubtada, the لا clause its khabar (`backend/services/syntax/repair/khabar.py`)
