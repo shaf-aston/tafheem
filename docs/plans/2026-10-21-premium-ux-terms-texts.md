@@ -302,3 +302,16 @@ kind typo; B8 one-sided axis rows dropped; B9 chevron on leaves; B6 group not in
 helper; C2 world tiles without emblems. Passed: Esc/focus return, dialog labelling, kind → hadith
 chips, no overflow at 390, "coming" parts, glossary drawer. All routed to one fix round (worker),
 then re-verified.
+
+## Stage 7 · shipped
+| PR | What | Merge | Deploy |
+|---|---|---|---|
+| #579 | Looks and phone: measured contrast audit, APCA floor, 44px taps, durations as tokens | d1cbadc | success |
+| #581 | Grow: Jawhara (Ashʿarī) and Wasitiyya (Salafi) book worlds, Jawhara text from Wikisource | ba7eafe | success |
+| #582 | Hadith: the terms of the science as a tree with quotes, look-alikes and diff rows | 2344680 | success |
+| #584 | Looks: reveal, elevation with tilt, still grain | 85f03d3 | success |
+| #585 | Verify round: every critic finding fixed, mutation survivors killed | 3bdbe09 | success |
+Ship-readiness (critic, after re-verifying the fixes in the app): **Go**.
+Next run: Usul al-Shashi world; author the remaining parts of both creed worlds; a Memorise
+entry for the Jawhara poem; play one lesson to the end to see progress filed under the new
+modules; the empty band above the 1280 terms tree; a "scroll →" hint beside the edge fade.
