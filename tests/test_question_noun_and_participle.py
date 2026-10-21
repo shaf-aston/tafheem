@@ -145,3 +145,22 @@ def test_question_hamza_split_only_off_the_first_word_that_needs_it():
     assert (first["prc3"], first["atbtok"]) == ("Aa_ques", "أَ+_ذاهِبٌ")
     assert morphology.pick(["أَمِنَ", "زَيْدٌ"])[0].get("prc3") != "Aa_ques"  # read whole, though مِنَ is a word
     assert morphology.pick(["زَيْدٌ", "أَذَاهِبٌ"])[1].get("prc3") != "Aa_ques"  # only a sentence's first word
+
+
+@needs_parser
+@pytest.mark.parametrize("words, verb", [
+    (["نصر", "زيد", "بكرا"], True),        # the written alif of nasb tanween needs an عامل
+    (["نصر", "زيد"], False),               # nothing in nasb: نَصْرُ زيدٍ stands
+    (["نَصْرُ", "زَيْدٍ", "بَكْرًا"], False),  # typed vowels choose, not this rule
+    (["ما", "زيد", "ذاهبا"], False),       # a particle is there to work the nasb
+    (["يا", "نصر", "بكرا"], False),        # يا works it (منادى), nothing else need be a verb
+    (["نصر", "عصا"], False),               # the alif is عصا's own letter, no nasb to work
+])
+def test_a_bare_first_word_is_the_verb_a_written_nasb_needs(words, verb):
+    assert ("verb" in [r.get("pos") for r in morphology.pick(words)]) is verb
+
+
+@needs_parser
+def test_the_verb_is_the_plainest_reading_before_the_nasb():
+    assert [r.get("pos") for r in morphology.pick(["زيد", "نصر", "بكرا"])][:2] == ["noun_prop", "verb"]
+    assert [r.get("pos") for r in morphology.pick(["نصر", "نصر", "بكرا"])][:2] == ["verb", "noun_prop"]  # one عامل
