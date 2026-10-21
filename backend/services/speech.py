@@ -51,8 +51,7 @@ from backend.services.fallback import Retirable
 log = logging.getLogger(__name__)
 
 CACHE = Path(__file__).resolve().parents[1] / "data" / "speech_cache"
-# How fast every voice speaks, and the speeds a reader may pick, kept with the page's
-# own voice settings so the server's voices and the phone's never drift apart.
+# Pace and speeds shared with the page's voice (speak.json), so they never drift apart.
 _SPEAK = json.loads((Path(__file__).resolve().parents[2] / "frontend" / "src" / "speak.json").read_text("utf-8"))
 PACE: float = _SPEAK["pace"]
 SPEEDS: dict[str, float] = _SPEAK["speeds"]

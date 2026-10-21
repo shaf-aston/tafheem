@@ -208,7 +208,7 @@ def test_the_voice_hands_back_a_playable_wav(monkeypatch):
         assert (file.getframerate(), file.getsampwidth(), file.getnchannels()) == (22050, 2, 1)
         # The word, with the quiet a phone's speaker needs to wake on each side.
         assert file.getnframes() == 22050 // 4 + 2 * (22050 * get_settings().speech_lead_ms // 1000)
-    assert model.pace == speech.PACE  # the slower pace reaches the engine
+    assert model.pace == speech.PACE
 
 
 def test_slow_reaches_the_engine_and_is_kept_apart(monkeypatch, tmp_path):
