@@ -16,8 +16,8 @@ import { useHealth } from '../../lib/useHealth'
 import { resumePlace, useJourney } from '../../lib/journey'
 import { progressByTab } from '../../lib/moduleTab'
 import { useCommandLine } from '../../lib/useCommandLine'
-import { accentOf, FIXED, GROUPS, HOME, LISTED, RECENT, START } from '../../lib/tabs'
-import { fill, progressText } from '../../lib/homeCopy'
+import { accentOf, FIXED, GROUPS, HOME, LISTED, START } from '../../lib/tabs'
+import { progressText } from '../../lib/homeCopy'
 import { copy as offlineCopy, noSignal } from '../../lib/offline'
 import knobs from '../../home.json'
 
@@ -36,7 +36,6 @@ const { copy } = knobs
 const NAME = 'home'
 const OTHERS = LISTED.filter((tab) => tab.id !== HOME)
 const FALLBACK = FIXED.filter((id) => id !== HOME)
-const KEY_COUNT = FIXED.length + RECENT.length
 const tabOf = (id) => LISTED.find((tab) => tab.id === id)
 const SHOWN_GROUPS = GROUPS.filter((group) => group.id !== START && OTHERS.some((tab) => tab.group === group.id))
 
@@ -87,8 +86,6 @@ export default function HomePanel({ accent, onGo }) {
                 railTab={line.rows[line.active]?.tabId} onRail={(id) => onGo(id)} />
             )}
           </div>
-
-          <p className="-mt-3 type-small text-[var(--text-dim)] [@media(pointer:coarse)]:hidden">{fill(copy.keys, { n: KEY_COUNT })}</p>
 
           {/* The quiet word sits in the room beside the card and scrolls with the page. */}
           <div className="md:flex md:items-center md:gap-6">

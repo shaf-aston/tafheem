@@ -247,6 +247,8 @@
     "stagger-ms": 25,
     "_shake_comment": "How long a wrong answer shakes its head. The .shake class in styles/motion.css lasts this long, and the code that clears a shaking tile after it waits this long too, so the two cannot drift apart.",
     "shake-ms": 330,
+    "_key_hint_comment": "How long Home's key hint rests on each tab before it hops to the next (components/shell/KeyHint.jsx).",
+    "key-hint-ms": 1400,
     "_boot_comment": "Opening the app from the home screen: the phone shows its splash (the manifest's dark ground), then the page. There is no tap to answer, so unlike arrive-from the page starts from boot-from and takes boot-ms: a cut from splash to a full screen of text read as a flash. The ground eases from the splash's dark to the chosen look in the same time, so Parchment does not switch on like a light. Drawn by vite/bootShell.js before any script; a device asking for reduced motion gets the cut.",
     "boot-ms": 450,
     "boot-from": 0,

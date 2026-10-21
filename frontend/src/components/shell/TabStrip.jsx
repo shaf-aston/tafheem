@@ -2,13 +2,18 @@
  * The row of tabs under the header. Draws the list it is given, decides nothing:
  * which tab is active and what switching does belong to the caller.
  */
+import { useRef } from 'react'
+
 import { ahead } from '../../lib/warm'
 import ArabicText from '../ui/ArabicText'
+import KeyHint from './KeyHint'
 
+// `hint` puts the moving number-key hint under the strip (Home).
 // The first `fixed` tabs always show; the rest wait for md. The open tab always shows.
 const tierClass = (i, fixed) => (i < fixed ? '' : 'hidden md:block')
 
-export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll, onHover }) {
+export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll, onHover, hint = false }) {
+  const list = useRef(null)
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
     // auto too, and the 1px underline below the strip would then raise a
@@ -20,8 +25,8 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
     //
     // The sections button sits beside the tablist, not in it: a tablist may
     // hold only tabs, and screen readers count its children as tabs.
-    <div className="flex gap-0.5 sm:gap-1">
-      <div className="flex flex-1 min-w-0 flex-wrap gap-0.5 sm:gap-1" role="tablist" aria-label="Tools">
+    <div className="key-hint-host relative flex gap-0.5 sm:gap-1">
+      <div ref={list} className="relative flex flex-1 min-w-0 flex-wrap gap-0.5 sm:gap-1" role="tablist" aria-label="Tools">
         {tabs.map((tab, i) => {
           const selected = active === tab.id
           const tabAccent = colorOf(tab.id)
@@ -67,6 +72,7 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
           )
         })}
       </div>
+      {hint && <KeyHint strip={list} />}
       <button
         type="button"
         onClick={onAll}

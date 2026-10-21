@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tab Key Hint</title>
+<style>
+  :root {
+    --bg: #0f1420; --surface: #161c2a; --border: #262f42; --text: #e8e6df; --dim: #9aa3b5; --faint: #5d6679;
+    --gold: #e0b45a; --quran: #6fd3c4; --nahw: #a99cf0; --sarf: #ef8a9a; --dict: #e8c46a; --hadith: #ddd3c0; --coll: #f0a070; --grow: #b6dc7a; --memo: #8cc4f8;
+    --ease: cubic-bezier(.2,.9,.25,1.15);
+  }
+  :root[data-theme="light"] {
+    --bg: #f4efe4; --surface: #fbf8f1; --border: #ddd4c2; --text: #2a2620; --dim: #5e574b; --faint: #a39a88;
+    --gold: #7a5a10; --quran: #0b5e55; --nahw: #5b3fa8; --sarf: #a01f3a; --dict: #8a5a10; --hadith: #4a4236; --coll: #8a3f10; --grow: #3f5f10; --memo: #1d5a9a;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, sans-serif; padding: 24px 16px 60px; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  .lede { color: var(--dim); max-width: 70ch; margin-bottom: 20px; }
+  .bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .bar button { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+  .opt { border: 1px solid var(--border); border-radius: 16px; background: var(--surface); margin-bottom: 28px; overflow: hidden; }
+  .opt h2 { font-size: 15px; padding: 14px 18px 0; }
+  .opt p.how { color: var(--dim); font-size: 13px; padding: 2px 18px 0; }
+  .stage { position: relative; padding: 44px 18px 56px; overflow-x: auto; }
+  .tabs { position: relative; display: flex; gap: 22px; border-bottom: 1px solid var(--border); padding-bottom: 10px; width: max-content; }
+  .tab { color: var(--c); white-space: nowrap; font-weight: 600; font-size: 14px; display: flex; gap: 6px; align-items: baseline; position: relative; }
+  .tab .ar { font-size: 19px; font-weight: 400; }
+  .tab.here::after { content: ""; position: absolute; left: 0; right: 0; bottom: -11px; height: 2px; background: var(--c); }
+
+  /* The hint: a keycap plus a small arrow pointing at its tab. It hops tab to tab. */
+  .hint { position: absolute; left: 0; display: flex; flex-direction: column; align-items: center; gap: 2px;
+    opacity: .35; transition: left 480ms var(--ease), opacity 200ms; pointer-events: auto; cursor: default; }
+  .stage:hover .hint, .hint:focus-visible { opacity: 1; }
+  .key { min-width: 24px; height: 24px; padding: 0 6px; display: grid; place-items: center; border-radius: 6px;
+    font: 600 12px/1 ui-monospace, monospace; color: var(--text); background: var(--bg);
+    border: 1px solid var(--faint); box-shadow: 0 2px 0 var(--faint); }
+  .arrow { width: 0; height: 0; border: 6px solid transparent; }
+  .below { top: calc(100% - 46px); }
+  .below .arrow { border-bottom-color: var(--faint); order: -1; }
+  .above { top: 6px; }
+  .above .arrow { border-top-color: var(--faint); }
+  .word { font-size: 11px; color: var(--faint); white-space: nowrap; }
+  .key.tap { animation: tap 260ms ease; }
+  @keyframes tap { 50% { transform: translateY(2px); box-shadow: 0 0 0 var(--faint); } }
+
+  /* C: every tab carries its own tiny key; a wave lights them one by one. */
+  .tabs.inline .tab .mini { font: 600 10px/1 ui-monospace, monospace; color: var(--faint); border: 1px solid var(--faint);
+    border-radius: 4px; padding: 2px 4px; opacity: .3; transition: opacity 200ms, color 200ms, border-color 200ms; align-self: center; }
+  .tabs.inline .tab.lit .mini { opacity: 1; color: var(--c); border-color: var(--c); }
+  .stage:hover .tabs.inline .tab .mini { opacity: .9; }
+  @media (prefers-reduced-motion: reduce) { .hint { transition: none; } .key.tap { animation: none; } }
+</style>
+</head>
+<body>
+  <h1>“Press 1–8” as a moving hint</h1>
+  <p class="lede">The line “Press 1 to 8 to open the tabs along the top” goes. Instead a faded keycap points at a tab and hops along: 1 → 2 → 3 … → 8. Hover the strip and it goes clear. Fewer words, the motion shows it.</p>
+  <div class="bar"><button id="theme">Switch light / dark</button></div>
+
+  <section class="opt">
+    <h2>A · Beneath the tabs, arrow points up</h2>
+    <p class="how">Sits in the gap under the strip, where the old line was. Closest to the eye on the page.</p>
+    <div class="stage" data-place="below"></div>
+  </section>
+
+  <section class="opt">
+    <h2>B · Above the tabs, arrow points down</h2>
+    <p class="how">Floats over the strip, like a tooltip. Keeps the page below completely clean.</p>
+    <div class="stage" data-place="above"></div>
+  </section>
+
+  <section class="opt">
+    <h2>C · A tiny key on every tab, lit one after another</h2>
+    <p class="how">No floating thing: each tab wears its number faintly; a wave lights 1 → 8 in turn. Hover shows all of them.</p>
+    <div class="stage" data-place="inline"></div>
+  </section>
+
+<script>
+  const TABS = [
+    ['Home', 'البداية', '--gold'], ['Quran', 'القرآن', '--quran'], ['Nahw', 'نحو', '--nahw'], ['Sarf', 'صرف', '--sarf'],
+    ['Dictionary', 'قاموس', '--dict'], ['Hadith', 'الحديث', '--hadith'], ['Colloquial', 'عامية', '--coll'], ['Grow!', 'نبات', '--grow'],
+  ]
+  const STEP = 1400
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  for (const stage of document.querySelectorAll('.stage')) {
+    const place = stage.dataset.place
+    const strip = document.createElement('div')
+    strip.className = 'tabs' + (place === 'inline' ? ' inline' : '')
+    strip.innerHTML = TABS.map(([en, ar, c], i) =>
+      `<span class="tab${i === 0 ? ' here' : ''}" style="--c: var(${c})">${place === 'inline' ? `<span class="mini">${i + 1}</span>` : ''}${en} <span class="ar">${ar}</span></span>`).join('')
+    stage.append(strip)
+    const tabs = [...strip.children]
+
+    if (place === 'inline') {
+      let at = 0
+      const lite = () => { tabs.forEach((t, i) => t.classList.toggle('lit', i === at)); at = (at + 1) % tabs.length }
+      lite(); if (!still) setInterval(lite, STEP / 2)
+      continue
+    }
+
+    const hint = document.createElement('div')
+    hint.className = `hint ${place}`
+    hint.tabIndex = 0
+    hint.innerHTML = '<span class="arrow"></span><span class="key">1</span>'
+    stage.append(hint)
+    const key = hint.querySelector('.key')
+    let at = 0
+    const move = () => {
+      const t = tabs[at]
+      const x = t.offsetLeft + strip.offsetLeft + t.offsetWidth / 2 - hint.offsetWidth / 2
+      hint.style.left = `${x}px`
+      key.textContent = at + 1
+      key.classList.remove('tap'); void key.offsetWidth; key.classList.add('tap')
+      at = (at + 1) % tabs.length
+    }
+    move(); if (!still) setInterval(move, STEP)
+  }
+
+  document.getElementById('theme').onclick = () => {
+    const r = document.documentElement
+    r.dataset.theme = r.dataset.theme === 'light' ? 'dark' : 'light'
+  }
+</script>
+</body>
+</html>

@@ -445,6 +445,23 @@ dialog::backdrop {
 /* An unselected tab already hints at the colour it will turn, enough to tell
    Sarf's red from Quran's teal at a glance, not enough to compete with the tab
    you are actually on. How much of the hint shows is a theme.json knob. */
+/* Home's number-key hint (KeyHint.jsx): keyboards only (a phone has no number keys). */
+.key-hint {
+  position: absolute; top: calc(100% + 0.25rem); translate: -50% 0; z-index: 1;
+  display: none; flex-direction: column; align-items: center; pointer-events: none;
+  opacity: 0.35;
+  transition: left calc(var(--motion-spring-ms) * 1.6ms) var(--motion-spring-ease), opacity calc(var(--motion-base-ms) * 1ms);
+}
+@media (hover: hover) and (pointer: fine) { .key-hint { display: flex; } }
+.key-hint-host:hover .key-hint { opacity: 1; }
+.key-hint-arrow { width: 0; height: 0; border: 6px solid transparent; border-bottom-color: var(--text-faint); }
+.key-hint-key {
+  min-width: 1.5rem; height: 1.5rem; padding-inline: 0.375rem; display: grid; place-items: center;
+  border-radius: var(--radius-sm); border: 1px solid var(--text-faint); box-shadow: 0 2px 0 var(--text-faint);
+  background: var(--bg); color: var(--text); font: 600 var(--type-tiny) / 1 ui-monospace, monospace;
+  animation: key-tap calc(var(--motion-spring-ms) * 1ms) ease;
+}
+@keyframes key-tap { 50% { transform: translateY(2px); box-shadow: 0 0 0 var(--text-faint); } }
 .tab-idle {
   color: color-mix(in srgb, var(--c) var(--tabstrip-idle-tint), var(--text-faint));
 }
