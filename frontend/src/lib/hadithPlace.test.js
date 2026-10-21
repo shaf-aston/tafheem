@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { bookOf, listOf, narratorOf, narratorPlaceOf, parsePlace, placeOf, shortOf } from './hadithPlace'
+import { bookOf, listOf, nameOfPlace, narratorOf, narratorPlaceOf, parsePlace, placeOf, shortOf } from './hadithPlace'
 
 const collections = [{ id: 'bukhari', name: 'Sahih al-Bukhari' }]
 
@@ -59,5 +59,20 @@ describe('list places', () => {
 
   it('is not mistaken for a book to prefetch', () => {
     expect(bookOf('scholars/2')).toBeNull()
+  })
+})
+
+describe('nameOfPlace', () => {
+  it('names a hadith, a book and a collection by the collection', () => {
+    expect(nameOfPlace('bukhari/1/5a', collections)).toBe('Sahih al-Bukhari 5a')
+    expect(nameOfPlace('bukhari/1', [{ id: 'bukhari', name: 'Sahih al-Bukhari', short: 'Bukhari' }])).toBe('Bukhari, book 1')
+    expect(nameOfPlace('bukhari', collections)).toBe('Sahih al-Bukhari')
+  })
+
+  it('names the lists, and a narrator once his name is known', () => {
+    expect(nameOfPlace('narrators', collections)).toBe('Narrators')
+    expect(nameOfPlace('scholars', collections)).toBe('Scholars')
+    expect(nameOfPlace('narrator/4396', collections)).toBe('A narrator')
+    expect(nameOfPlace('narrator/4396', collections, (id) => (id === '4396' ? 'Abu Huraira' : null))).toBe('Abu Huraira')
   })
 })

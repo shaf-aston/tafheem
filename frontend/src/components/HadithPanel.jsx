@@ -10,8 +10,8 @@ import { useEffect, useState } from 'react'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, searchHadith } from '../api'
-import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf } from '../lib/hadithPlace'
+import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith } from '../api'
+import { bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -44,10 +44,14 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   const [starred, setStarred] = useState(false)
   const [listing, setListing] = useState(null)   // the list showing, narrators or scholars, if any
   const { favorites } = useHadithFavorites()
+  // The trail names each step: "Bukhari 5a", a narrator by his name once his page has loaded. The
+  // open narrator is watched (the same request his page makes), so his name lands once it arrives.
+  const client = useQueryClient()
+  useQuery({ ...narratorQuery(narrator), enabled: narrator != null })
+  const named = (q) => nameOfPlace(q, collections, (id) => client.getQueryData(narratorQuery(id).queryKey)?.name_en)
   const source = useSources().sources.find((s) => s.key === 'hadith')
 
   // A link naming a book starts that book loading beside the collections, not after them.
-  const client = useQueryClient()
   useEffect(() => {
     const named = bookOf(incoming)
     if (named) client.prefetchQuery(hadithBookQuery(...named))
@@ -83,7 +87,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (isPending) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
         <div inert>
           <HadithSearchResults accent={accent} onNarrator={noop} onHadith={noop} onOpenBook={noop}>
             <AnalyzerSkeleton />
@@ -102,7 +106,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (!collections.length) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
         <ErrorAlert title="No collection is built yet">
           Fetch and build one with{' '}
           <Code>
@@ -138,7 +142,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (narrator != null) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
         <NarratorPage
           id={narrator}
           accent={accent}
@@ -151,7 +155,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
 
   return (
     <div className="panel">
-      <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+      <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
 
       {missed && (
         <StatusNote>That link names a hadith that is not here, so the collection opens plainly.</StatusNote>

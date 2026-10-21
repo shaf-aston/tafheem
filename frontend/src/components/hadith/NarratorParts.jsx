@@ -172,6 +172,10 @@ function Labelled({ label, arabic = false, children }) {
 /** Two sides of one row, English left and Arabic right as sunnah.com sets them; stacked on a phone. */
 const PAIR = 'grid gap-x-10 gap-y-2 sm:grid-cols-2'
 
+/** One fact in both languages: short enough to sit side by side on a phone too, where
+ *  stacking them made one fact four lines and his page several screens long. */
+const FACT_PAIR = 'grid grid-cols-2 gap-x-4 sm:gap-x-10 gap-y-2'
+
 /** Said in place of the facts for a narrator known only by name from other narrators' lists. */
 const UNFETCHED = 'Known here only by name, from the teacher and student lists of other narrators. His own sunnah.com page has not been fetched, so his grade, generation and counts are not shown.'
 
@@ -212,7 +216,7 @@ export function NarratorHead({ who }) {
       {who.facts.length > 0 && (
         <div className="space-y-5">
           {who.facts.map((f, i) => (
-            <div key={i} className={PAIR}>
+            <div key={i} className={FACT_PAIR}>
               <Labelled label={f.label_en}>{f.en}</Labelled>
               <Labelled label={f.label_ar} arabic>{f.ar}</Labelled>
             </div>

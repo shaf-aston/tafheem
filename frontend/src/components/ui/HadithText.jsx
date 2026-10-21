@@ -66,7 +66,7 @@ function Spans({ text, arabic = false, names = [], onNarrator, from = null }) {
  * `names` are the narrators named in the Arabic (lib/rijal); with the chain
  * hidden, the teller and anyone named after him keep theirs.
  * `footer` sits under the text: the other narrations of this number.
- * `split` sets English left and Arabic right on a wide screen, as sunnah.com does; a phone stacks them.
+ * `split` sets English left and Arabic right on a wide screen, as sunnah.com does; a phone stacks them, English on top.
  */
 export default function HadithText({ label, arabic, cut = null, english = '', accent, action = null, id, index = 0, className = '', hideChain = false, split = false, names = [], onNarrator, footer = null }) {
   const { narrator, body } = narrated(english)
@@ -82,7 +82,7 @@ export default function HadithText({ label, arabic, cut = null, english = '', ac
       <div className="flex items-center justify-between gap-2 mb-3">
         <span
           style={{ color: accent, borderColor: accent }}
-          className="type-tiny tabular-nums min-w-7 h-7 px-2 grid place-items-center rounded-full border"
+          className="type-tiny tabular-nums whitespace-nowrap min-w-7 h-7 px-2 grid place-items-center rounded-full border"
         >
           {label}
         </span>
@@ -90,13 +90,15 @@ export default function HadithText({ label, arabic, cut = null, english = '', ac
       </div>
 
       <ShowRest lines={LINES} accent={accent} more="Show the rest" less="Show less">
-        <div className={split && english ? 'md:grid md:grid-cols-2 md:gap-x-8 md:items-start' : ''}>
+        {/* English first, as sunnah.com sets it on a phone too: stacked Arabic-first, a phone's
+            cut showed only the chain of narrators, and the meaning waited behind "Show the rest". */}
+        <div className={`flex flex-col ${split && english ? 'md:grid md:grid-cols-2 md:gap-x-8 md:items-start' : ''}`}>
         <ArabicText as="p" size="base" className="block leading-loose m-0">
           <Spans text={shown.text} arabic names={shown.names} onNarrator={onNarrator} from={from} />
         </ArabicText>
 
         {english && (
-          <p className={`type-ui leading-relaxed mt-3 pt-3 border-t border-[var(--border)] ${split ? 'md:order-first md:m-0 md:p-0 md:border-t-0' : ''}`}>
+          <p className={`order-first type-ui leading-relaxed mb-3 pb-3 border-b border-[var(--border)] ${split ? 'md:m-0 md:p-0 md:border-b-0' : ''}`}>
             {narrator && <span style={TONE.told}>{narrator} </span>}
             <Spans text={body} from={0} />
           </p>
