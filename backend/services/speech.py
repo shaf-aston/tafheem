@@ -141,7 +141,8 @@ class FastPitchVoice(Voice):
     def version(self) -> str:
         settings = get_settings()
         return (f"hifigan-speaker{settings.speech_fastpitch_speaker}-pace{settings.speech_fastpitch_pace}"
-                f"-lead{settings.speech_lead_ms}-name2")
+                f"-lead{settings.speech_lead_ms}-name2"
+                f"-peak{settings.speech_peak}-fade{settings.speech_fade_ms}")
 
     def say(self, text: str, speed: float = 1.0) -> bytes:
         # One word at a time: the model is not known to be safe to share between threads.
@@ -154,17 +155,40 @@ class FastPitchVoice(Voice):
             audio = self._model.infer(long_aa_spelt_out(name_spelt_out(text)).translate(self.PAUSES),
                                       speaker=settings.speech_fastpitch_speaker,
                                       pace=settings.speech_fastpitch_pace * speed)
-        import numpy as np
+        return wav(shaped(audio))
 
-        lead = np.zeros(22050 * settings.speech_lead_ms // 1000, dtype=audio.dtype)
-        audio = np.concatenate([lead, audio, lead])
-        out = io.BytesIO()
-        with wave.open(out, "wb") as file:
-            file.setframerate(22050)
-            file.setsampwidth(2)
-            file.setnchannels(1)
-            file.writeframes((audio.clip(-1, 1) * 32767).astype("<i2").tobytes())
-        return out.getvalue()
+
+RATE = 22050  # FastPitch's samples a second
+
+
+def shaped(audio):
+    """A made word as it should reach the ear: every word as loud as the next
+    (speech_peak), soft at both ends so it starts and stops without a click
+    (speech_fade_ms), and quiet around it for a phone's speaker to wake (speech_lead_ms)."""
+    import numpy as np
+
+    settings = get_settings()
+    peak = np.abs(audio).max()
+    if peak:
+        audio = audio * (settings.speech_peak / peak)
+    fade = min(RATE * settings.speech_fade_ms // 1000, len(audio) // 2)
+    if fade:
+        ramp = np.linspace(0, 1, fade, dtype=audio.dtype)
+        audio[:fade] *= ramp
+        audio[-fade:] *= ramp[::-1]
+    lead = np.zeros(RATE * settings.speech_lead_ms // 1000, dtype=audio.dtype)
+    return np.concatenate([lead, audio, lead])
+
+
+def wav(audio) -> bytes:
+    """Samples between -1 and 1 as a 16-bit mono WAV file."""
+    out = io.BytesIO()
+    with wave.open(out, "wb") as file:
+        file.setframerate(RATE)
+        file.setsampwidth(2)
+        file.setnchannels(1)
+        file.writeframes((audio.clip(-1, 1) * 32767).astype("<i2").tobytes())
+    return out.getvalue()
 
 
 class EdgeVoice(Voice):
