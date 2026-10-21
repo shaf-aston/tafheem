@@ -54,7 +54,7 @@
   background: linear-gradient(180deg, color-mix(in srgb, var(--w) 16%, var(--surface)), var(--surface));
   transition: transform calc(var(--motion-instant-ms) * 1ms) ease, border-color calc(var(--motion-instant-ms) * 1ms) ease;
 }
-.grow-world-tile:not(:disabled):hover { transform: translateY(-2px); border-color: var(--w); }
+.grow-world-tile:not(:disabled):hover { border-color: var(--w); }
 .grow-world-tile:disabled { opacity: 0.55; cursor: default; border-style: dashed; }
 .grow-tile-ar { color: var(--w); font-size: 2rem; line-height: 1.2; }
 .grow-tile-name { font-size: var(--type-body); font-weight: 800; color: var(--text); }

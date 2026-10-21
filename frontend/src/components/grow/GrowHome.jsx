@@ -16,6 +16,8 @@ import Emblem from '../ui/Emblem'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
 import SectionHeader from '../ui/SectionHeader'
+import { useReveal } from '../../lib/useReveal'
+import { useTilt } from '../../lib/useTilt'
 
 const say = sayIn('en')
 
@@ -156,10 +158,14 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
 
 /** One world's tile. */
 function WorldTile({ world, status, share, index, onOpen }) {
+  const [ref, reveal] = useReveal()
+  const tilt = useTilt()
   return (
     <button
+      ref={ref}
       type="button"
-      className="grow-world-tile"
+      {...tilt}
+      className={`grow-world-tile e1 tilt ${reveal}`}
       style={{ '--w': world.accent, '--i': index }}
       disabled={!world.live}
       onClick={() => onOpen(world.id)}

@@ -50,15 +50,9 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page :focus-visible { outline: 3px solid var(--gold-hi); outline-offset: 3px; border-radius: 3px; }
 .landing-page img, .landing-page video { max-width: 100%; display: block; }
 
-.landing-page.js .reveal {
-  opacity: 0; transform: translateY(26px);
-  transition: opacity var(--slow) var(--smooth), transform var(--slow) var(--smooth);
-}
-.landing-page .reveal.in { opacity: 1; transform: translateY(0); }
 /* The one reduced-motion block: nothing animates or transitions, and the
    things that start hidden show at once. */
 @media (prefers-reduced-motion: reduce) {
-  .landing-page .reveal { opacity: 1 !important; transform: none !important; }
   .landing-page * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .landing-page .story-ring { display: none; }
 }
