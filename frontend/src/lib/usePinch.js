@@ -9,12 +9,23 @@ import { useEffect } from 'react'
  * (touch-action pan-x pan-y, which also stops the page zooming over it) and a
  * pinch calls `onPinch(ratio, x, y)`: how much the fingers spread since the
  * last call, and their midpoint inside the element, so the caller can keep
- * that spot under the fingers.
+ * that spot under the fingers. A null `onPinch` leaves the element alone.
  */
+
+/** The new scroll offset that keeps the point `at` px into the view in place when the content grows by `ratio`. */
+export function anchoredScroll(scroll, at, ratio) {
+  return (scroll + at) * ratio - at
+}
+
+/** `zoom` times `by`, kept within [min, max]. */
+export function pinchedZoom(zoom, by, min, max) {
+  return Math.min(max, Math.max(min, zoom * by))
+}
+
 export function usePinch(ref, onPinch) {
   useEffect(() => {
     const el = ref.current
-    if (!el) return undefined
+    if (!el || !onPinch) return undefined
     el.style.touchAction = 'pan-x pan-y'
     let last = null
 

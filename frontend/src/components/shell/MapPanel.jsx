@@ -23,7 +23,7 @@ import ArabicText from '../ui/ArabicText'
 import ManhajView from '../ui/ManhajView'
 import PbsChart from './PbsChart'
 import { closeOnBackdrop, useModal } from '../../lib/useModal'
-import { usePinch } from '../../lib/usePinch'
+import { anchoredScroll, pinchedZoom, usePinch } from '../../lib/usePinch'
 import { CHARTS } from '../../lib/pbsData'
 import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'
 
@@ -50,18 +50,17 @@ export default function MapPanel({ open, onClose }) {
   const pinch = useCallback((by, x, y) => {
     setPinching(true)
     setZoom((z) => {
-      const next = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, z * by))
+      const next = pinchedZoom(z, by, ZOOM_MIN, ZOOM_MAX)
       anchor.current = { x, y, ratio: next / z }
       return next
     })
   }, [])
-  usePinch(frame, pinch)
   useLayoutEffect(() => {
     const el = frame.current
     const a = anchor.current
     if (!el || !a) return
-    el.scrollLeft = (el.scrollLeft + a.x) * a.ratio - a.x
-    el.scrollTop = (el.scrollTop + a.y) * a.ratio - a.y
+    el.scrollLeft = anchoredScroll(el.scrollLeft, a.x, a.ratio)
+    el.scrollTop = anchoredScroll(el.scrollTop, a.y, a.ratio)
     anchor.current = null
   }, [zoom])
 
@@ -77,6 +76,7 @@ export default function MapPanel({ open, onClose }) {
   }
 
   const current = CHARTS.find((c) => c.id === currentId) ?? null
+  usePinch(frame, current ? pinch : null) // the index has nothing to zoom
   const showManhaj = currentId === MANHAJ
   const tree = useMemo(() => (current ? chartTree(current) : null), [current])
   const shown = tree && (nodeAt(tree, path) ?? tree)
@@ -164,7 +164,7 @@ export default function MapPanel({ open, onClose }) {
           </button>
         </header>
 
-        <div ref={frame} onTouchEnd={() => setPinching(false)} className="relative flex-1 min-h-0 overflow-auto" tabIndex={0} role="region" aria-label="Map">
+        <div ref={frame} onTouchEnd={() => setPinching(false)} onTouchCancel={() => setPinching(false)} className="relative flex-1 min-h-0 overflow-auto" tabIndex={0} role="region" aria-label="Map">
           {current ? (
             <div className="p-4" style={{ width: `max(${zoom * 100}%, ${zoom * CHART_MIN_REM}rem)`, transition: pinching ? 'none' : 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
               <PbsChart
