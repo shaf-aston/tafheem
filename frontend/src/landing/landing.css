@@ -142,10 +142,11 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .story-stage { position: relative; display: grid; min-height: var(--landing-story-stage-h); }
 .landing-page .story-star {
   position: absolute; left: 50%; top: 50%; width: var(--landing-star-size); aspect-ratio: 1; translate: -50% -50%;
-  pointer-events: none; color: var(--accent); rotate: calc(var(--p, 0) * var(--landing-star-turn));
+  pointer-events: none; color: var(--accent); animation: star-spin var(--landing-star-lap) linear infinite;
   will-change: rotate; /* own layer: turning it each frame then skips repainting the blurred panel over it */
   transition: color var(--med) ease;
 }
+@keyframes star-spin { to { rotate: 360deg; } }
 .landing-page .story-star svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1; opacity: var(--landing-star-opacity); }
 .landing-page .story-star svg * { vector-effect: non-scaling-stroke; }
 .landing-page .story-panel {
