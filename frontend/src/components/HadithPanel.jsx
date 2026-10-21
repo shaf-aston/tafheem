@@ -11,7 +11,7 @@ import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, searchHadith } from '../api'
-import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf } from '../lib/hadithPlace'
+import { bookOf, listOf, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE } from '../lib/hadithPlace'
 import { useHadithFavorites } from '../lib/useHadithFavorites'
 
 import Chip from './ui/Chip'
@@ -31,6 +31,7 @@ import HadithSearchResults from './hadith/HadithSearchResults'
 import NarratorList from './hadith/NarratorList'
 import NarratorPage from './hadith/NarratorPage'
 import ScholarTerms from './hadith/ScholarTerms'
+import TermsView from './hadith/TermsView'
 import Code from './ui/Code'
 import SourceBadge from './ui/SourceBadge'
 import { useSources } from '../lib/useSources'
@@ -42,7 +43,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   const [place, setPlace] = useState(null)   // { collection, book, number, part }
   const [narrator, setNarrator] = useState(null)   // the narrator whose page is open, if any
   const [starred, setStarred] = useState(false)
-  const [listing, setListing] = useState(null)   // the list showing, narrators or scholars, if any
+  const [listing, setListing] = useState(null)   // the list showing, narrators, scholars or terms, if any
   const { favorites } = useHadithFavorites()
   const source = useSources().sources.find((s) => s.key === 'hadith')
 
@@ -167,6 +168,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
             { label: '★ Starred', count: favorites.length, on: starred, pick: () => setStarred(!starred) },
             { label: 'Narrators', hint: 'who passed them on', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
             { label: 'Scholars', hint: 'what they said of them', on: listing === SCHOLARS_PLACE, pick: () => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE)) },
+            { label: 'Terms', hint: 'the words of the science', on: listing === TERMS_PLACE, pick: () => (listing === TERMS_PLACE ? go(place) : onGo('hadith', TERMS_PLACE)) },
           ]} />
         )}
       >
@@ -180,6 +182,8 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
           <NarratorList accent={accent} onOpen={openNarrator} />
         ) : listing === SCHOLARS_PLACE ? (
           <ScholarTerms accent={accent} onOpen={openHadith} />
+        ) : listing === TERMS_PLACE ? (
+          <TermsView accent={accent} onOpen={openHadith} />
         ) : starred ? (
           favorites.length
             ? (

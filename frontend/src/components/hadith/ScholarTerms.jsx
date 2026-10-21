@@ -5,10 +5,9 @@
  * entry by wording and narrators, so none of this claims more than "possible".
  */
 import { useState } from 'react'
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
-import { usulTermQuery, usulTermsQuery } from '../../api'
-import { useHadithCollections } from '../../lib/useHadithCollections'
+import { usulTermsQuery } from '../../api'
 import { useOpenAtTop } from '../../lib/scrollToEl'
 
 import Chip from '../ui/Chip'
@@ -16,36 +15,7 @@ import ChipRow from '../ui/ChipRow'
 import EmptyState from '../ui/EmptyState'
 import ErrorAlert from '../ui/ErrorAlert'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
-import LoadMore from '../ui/LoadMore'
-
-function TermHadith({ kind, accent, onOpen }) {
-  const { of } = useHadithCollections()
-  const { data, isPending, isError, error, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(usulTermQuery(kind))
-  const items = data?.pages.flatMap((p) => p.items) ?? []
-  const total = data?.pages[0].total ?? 0
-
-  return (
-    <div className="space-y-3">
-      {isPending && <AnalyzerSkeleton />}
-      {isError && <ErrorAlert title="Could not load these hadith" error={error} fallback="The hadith could not be reached." onRetry={refetch} />}
-      {!isPending && !isError && !items.length && <EmptyState>No hadith carry this ruling.</EmptyState>}
-      {items.length > 0 && (
-        <>
-          <ChipRow>
-            {items.map((h) => (
-              <Chip key={`${h.collection}:${h.number}${h.part}`} accent={accent} onClick={() => onOpen(h)}>
-                {of(h.collection).short} {h.number}{h.part}
-              </Chip>
-            ))}
-          </ChipRow>
-          {hasNextPage && (
-            <LoadMore left={total - items.length} busy={isFetchingNextPage} onClick={fetchNextPage} />
-          )}
-        </>
-      )}
-    </div>
-  )
-}
+import TermHadith from './TermHadith'
 
 export default function ScholarTerms({ accent, onOpen }) {
   useOpenAtTop()
