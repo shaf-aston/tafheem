@@ -295,9 +295,10 @@ export function PairRow({ en, ar, dot, title, hint, onClick }) {
       title={title}
       className="press tap w-full flex items-center gap-3 py-2 hover:bg-[var(--surface)] transition-colors"
     >
-      {en && <span className="min-w-0 shrink-0 max-w-[45%] text-left type-small text-[var(--text-dim)] truncate">{en}</span>}
+      {/* Wrapped, not cut: "`Abd Allah ibn al-`Abbas" and "`Abd Allah ibn al-`Ala'" differ only at the end. */}
+      {en && <span className="min-w-0 shrink-0 max-w-[45%] text-left type-small text-[var(--text-dim)]">{en}</span>}
       <span className="min-w-0 flex-1 flex items-center justify-end gap-2">
-        <ArabicText size="sm" className="min-w-0 truncate text-[var(--text)]">{ar}</ArabicText>
+        <ArabicText size="sm" className="min-w-0 text-[var(--text)]">{ar}</ArabicText>
         {dot && <span aria-hidden="true" className="w-2 h-2 rounded-full shrink-0" style={{ background: dot }} />}
       </span>
       {hint && <span className="sr-only">{hint}</span>}

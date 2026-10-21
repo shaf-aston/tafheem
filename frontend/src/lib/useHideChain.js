@@ -1,5 +1,8 @@
-import { PHONE, useMedia } from './useMedia'
+import { PHONE } from './useMedia'
 import { useRememberedFlag } from './useRemembered'
+
+// Read once as the app opens: turning a phone sideways must not flip every card's chain back on.
+const PHONE_AT_START = typeof matchMedia === 'function' && matchMedia(PHONE).matches
 
 /**
  * Whether hadith chains are hidden: one remembered switch, so a book, search and Starred agree.
@@ -7,6 +10,5 @@ import { useRememberedFlag } from './useRemembered'
  * there, and the words they carry waited behind "Show the rest". The chain stays a tap away.
  */
 export function useHideChain() {
-  const phone = useMedia(PHONE)
-  return useRememberedFlag('hadith-hide-chain', phone)
+  return useRememberedFlag('hadith-hide-chain', PHONE_AT_START)
 }
