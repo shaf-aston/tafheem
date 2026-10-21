@@ -1,7 +1,7 @@
 {
   "id": "shafeinhashmi/finetune-ear",
   "title": "finetune-ear",
-  "code_file": "finetune_ear.py",
+  "code_file": "kernel.py",
   "language": "python",
   "kernel_type": "script",
   "is_private": true,
