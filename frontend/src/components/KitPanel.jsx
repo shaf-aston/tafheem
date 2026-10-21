@@ -333,7 +333,7 @@ function Motion() {
 export default function KitPanel({ accent }) {
   return (
     <div className="space-y-6">
-      <SectionHeader emblem="kit" title="Kit" arabic="عدة"
+      <SectionHeader tab="kit"
         subtitle="Every token and every element, drawn from the live code." />
 
       <h2 className="text-sm font-semibold text-[var(--text-dim)]">Tokens</h2>

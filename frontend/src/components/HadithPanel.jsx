@@ -96,7 +96,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (isPending) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
+        <SectionHeader tab="hadith" nameOf={named} />
         <div inert>
           <HadithSearchResults accent={accent} onNarrator={noop} onHadith={noop} onOpenBook={noop}>
             <AnalyzerSkeleton />
@@ -117,7 +117,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (!collections.length && (listing === TERMS_PLACE || listing === SCHOLARS_PLACE)) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" />
+        <SectionHeader tab="hadith" />
         {listing === TERMS_PLACE
           ? <TermsView accent={accent} onOpen={noop} group={termsGroup} onGroup={termsGroupPick} />
           : <ScholarTerms accent={accent} onOpen={noop} />}
@@ -128,7 +128,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (!collections.length) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
+        <SectionHeader tab="hadith" nameOf={named} />
         <ErrorAlert title="No collection is built yet">
           Fetch and build one with{' '}
           <Code>
@@ -164,7 +164,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   if (narrator != null) {
     return (
       <div className="panel">
-        <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
+        <SectionHeader tab="hadith" nameOf={named} />
         <NarratorPage
           id={narrator}
           accent={accent}
@@ -177,7 +177,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
 
   return (
     <div className="panel">
-      <SectionHeader title="Hadith" arabic="الحديث" emblem="hadith" nameOf={named} />
+      <SectionHeader tab="hadith" nameOf={named} />
 
       {missed && (
         <StatusNote>That link names a hadith that is not here, so the collection opens plainly.</StatusNote>

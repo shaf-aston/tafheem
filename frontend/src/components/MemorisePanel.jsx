@@ -120,7 +120,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
     <div className="panel" {...swipe}>
       {/* No subtitle: "fill in the gaps" was wrong for reciting, and the way
           switch under it already says what each way is. */}
-      <SectionHeader emblem="mem" title="Memorise" arabic="حفظ" />
+      <SectionHeader tab="mem" />
 
       {/* One row, no captions: each control's choices already say what it is,
           and the captions were a second row of grey restating them. Their

@@ -95,7 +95,7 @@ export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
 
   return (
     <div className="panel">
-      <SectionHeader emblem="similar" title={copy.title} arabic={copy.arabic} subtitle={copy.subtitle} />
+      <SectionHeader tab="similar" subtitle={copy.subtitle} />
 
       <div className="grid gap-4 lg:grid-cols-[var(--layout-rail)_minmax(0,1fr)] items-start">
         <aside className="min-w-0 space-y-3 lg:sticky lg:top-[calc(var(--app-header-h,0px)+1rem)]">
@@ -106,7 +106,7 @@ export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
                 {up ? (standing(up.id) === 'due' ? copy['start-due'] : copy['start-new']) : copy['all-done']}
               </PrimaryButton>
               <div className="space-y-1">
-                <div className="flex justify-between type-small text-[var(--text-dim)]">
+                <div className="flex justify-between type-label text-[var(--text-dim)]">
                   <span>{copy.mastered}</span>
                   <span>{known} / {pairs.length}</span>
                 </div>
@@ -119,11 +119,11 @@ export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
           {surahQuery.isPending && <Skeleton className="h-40 w-full" />}
           {pairs.length > 0 && (phone ? (
             <div className="flex items-center justify-between gap-3">
-              <button type="button" onClick={() => setBrowsing(true)} className="press tap type-small underline underline-offset-4 text-[var(--text-dim)]">
+              <button type="button" onClick={() => setBrowsing(true)} className="press tap type-label underline underline-offset-4 text-[var(--text-dim)]">
                 {copy.browse}
               </button>
-              <span className="type-small text-[var(--text-dim)]">{fill(copy['pair-of'], { n: at + 1, of: pairs.length })}</span>
-              <Stepper label={copy.title} onPrev={at > 0 ? () => open(pairs[at - 1].id) : null} onNext={at < pairs.length - 1 ? () => open(pairs[at + 1].id) : null} />
+              <span className="type-label text-[var(--text-dim)]">{fill(copy['pair-of'], { n: at + 1, of: pairs.length })}</span>
+              <Stepper label={copy.pairs} onPrev={at > 0 ? () => open(pairs[at - 1].id) : null} onNext={at < pairs.length - 1 ? () => open(pairs[at + 1].id) : null} />
             </div>
           ) : list)}
         </aside>
@@ -135,14 +135,14 @@ export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
           {surahQuery.isSuccess && pairs.length === 0 && <EmptyState>{copy.none}</EmptyState>}
           {chosen && (
             <>
-              <Segmented label={copy.title} options={copy.steps} value={step} onChange={(id) => open(chosen.id, id)} accent={accent} />
+              <Segmented label={copy.pairs} options={copy.steps} value={step} onChange={(id) => open(chosen.id, id)} accent={accent} />
               {pairQuery.isPending && <Skeleton className="h-48 w-full" />}
               {pairQuery.isError && (
                 <ErrorAlert title={copy.error} error={pairQuery.error} fallback={copy.fallback} onRetry={pairQuery.refetch} />
               )}
               {mine && partner && step === 'compare' && (
                 <>
-                  <Compare mine={mine} partner={partner} />
+                  <Compare mine={mine} partner={partner} accent={accent} />
                   <PrimaryButton accent={accent} onClick={() => open(chosen.id, 'drill')}>{copy.start}</PrimaryButton>
                 </>
               )}

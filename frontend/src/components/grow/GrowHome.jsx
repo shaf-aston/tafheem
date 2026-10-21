@@ -203,7 +203,7 @@ export default function GrowHome({ worlds, rewards, lessons, books, onOpen, onSt
   const worldOf = (id) => worlds.find((world) => world.id === id)
   return (
     <div className="grow-home">
-      <SectionHeader emblem="words" title="Grow!" arabic="نَبَات" subtitle={say('A little every day, in every part of the app.')}
+      <SectionHeader tab="grow" subtitle={say('A little every day, in every part of the app.')}
         aside={rewards ? null : <LogInButton>{say('Log in to keep your XP')}</LogInButton>} />
       <Growth rewards={rewards} />
       <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />

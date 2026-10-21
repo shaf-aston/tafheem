@@ -86,7 +86,7 @@ export default function Drill({ mine, partner, seed, accent, onDone, onCompare, 
   return (
     <div className="space-y-3">
       <h3 className="eyebrow">{fill(copy.question, { n: at + 1, of: questions.length })}</h3>
-      <p className="type-small text-[var(--text-dim)]">
+      <p className="type-ui text-[var(--text-dim)]">
         {before}<b style={{ color: COLOR[side] }}>{whereOf(q.key)}</b>{after}
       </p>
       <div className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--bg)] p-3 sm:p-4">
@@ -104,13 +104,13 @@ export default function Drill({ mine, partner, seed, accent, onDone, onCompare, 
             >
               {o.words
                 ? <ArabicText size="base" className="text-[var(--text)]">{o.words}</ArabicText>
-                : <span className="type-small italic text-[var(--text-faint)]">{q.next ? copy.end : copy.nothing}</span>}
+                : <span className="type-ui italic text-[var(--text-faint)]">{q.next ? copy.end : copy.nothing}</span>}
             </button>
           ))}
         </div>
       ) : (
         <div className="space-y-3">
-          <p className="rounded-[var(--radius-sm)] p-3 type-small text-[var(--text)]" style={{ background: answered ? 'var(--success-wash)' : 'var(--danger-wash)' }}>
+          <p className="rounded-[var(--radius-sm)] p-3 type-ui text-[var(--text)]" style={{ background: answered ? 'var(--success-wash)' : 'var(--danger-wash)' }}>
             {answered ? copy.right : fill(copy.wrong, { where: whereOf(q.twin) })}
           </p>
           <PrimaryButton accent={accent} onClick={next}>{copy.next}</PrimaryButton>
