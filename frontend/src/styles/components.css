@@ -753,7 +753,7 @@ dialog::backdrop {
   border-radius: var(--radius-md);
   background: var(--surface-hi);
   border: 1px solid var(--border);
-  transition: border-color calc(var(--motion-base-ms) * 1ms), background-color calc(var(--motion-base-ms) * 1ms);
+  transition: border-color calc(var(--motion-base-ms) * 1ms), background-color calc(var(--motion-base-ms) * 1ms), transform calc(var(--motion-instant-ms) * 1ms) ease-out;
 }
 button.tile:hover { border-color: var(--c); }
 .tile-wash {

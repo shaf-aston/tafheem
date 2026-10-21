@@ -24,7 +24,7 @@ export default function BottomSheet({ label, onClose, className = '', children }
     >
       <div
         className={`bg-[var(--surface)] border border-[var(--border-hi)] rounded-t-[var(--radius-md)]
-          sm:rounded-[var(--radius-md)] shadow-[var(--shadow-pop)] ${className}`}
+          sm:rounded-[var(--radius-md)] e2 ${className}`}
       >
         {children}
       </div>

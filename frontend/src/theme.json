@@ -129,7 +129,8 @@
     "popover": 30,
     "header": 40,
     "overlay": 50,
-    "tip": 60
+    "tip": 60,
+    "grain": 70
   },
   "backdrop": {
     "_comment": "The faint seal behind a tab (quran/QuranSeal). ink is its colour, strength how much of it shows (wide: once a search fills the page); a light theme changes these two only.",
@@ -165,7 +166,10 @@
   "glass": {
     "_comment": "The frosted pane the page content sits on, so the lights behind it read as a soft glow rather than as noise under the words. blur-px is how far the lights are smeared, alpha how much of the surface colour covers them (100% would hide them).",
     "blur-px": 22,
-    "alpha": "72%"
+    "alpha": "72%",
+    "_grain_comment": "A fixed film of fine noise over the ground (components/shell/Backdrop.jsx draws one 128px tile, once, never animated), so a large flat dark or pale area reads as a surface rather than a gradient on a screen, and banding hides. Its alpha, 0 to 1; tests hold it at or under 0.05, past which it dirties small text. Parchment sets its own, lower.",
+    "grain": 0.035,
+    "grain-tile-px": 128
   },
   "tabstrip": {
     "_comment": "How much of its own colour an unselected tab keeps. 0% is plain grey, 100% is as loud as the selected one.",
@@ -260,6 +264,13 @@
     "base-ms": 150,
     "spring-ms": 300,
     "stagger-ms": 25,
+    "_reveal_comment": "The .reveal class in styles/motion.css: a thing below the fold rises (the rise-in move) and fades in once, when it scrolls into view. reveal-y-px is how far it rises from, reveal-from the opacity it starts at (it is off screen, so unlike arrive-from it may start at 0), reveal-cap how many neighbours in a row stagger before the rest arrive together (--i beyond it counts as the cap, times stagger-ms), so a long grid never makes the last tile wait a second.",
+    "reveal-y-px": 20,
+    "reveal-from": 0,
+    "reveal-cap": 6,
+    "_tilt_comment": "The .tilt class: a card leans toward the pointer on a mouse hover, never on touch. max-deg is the most it leans, perspective-px how far the viewer is from it (smaller is more dramatic).",
+    "tilt-max-deg": 3,
+    "tilt-perspective-px": 900,
     "_shake_comment": "How long a wrong answer shakes its head. The .shake class in styles/motion.css lasts this long, and the code that clears a shaking tile after it waits this long too, so the two cannot drift apart.",
     "shake-ms": 330,
     "_key_hint_comment": "How long Home's key hint rests on each tab before it hops to the next (components/shell/KeyHint.jsx).",
@@ -364,10 +375,10 @@
     "nav": "4rem",
     "_proof_comment": "The least width of the Nahw full table's proof column on a wide screen, so a rule and its book path read as lines, not a word to a line. A phone sets the proof on its own line under the row instead.",
     "proof": "18rem",
-    "_rail_comment": "How wide Home's progress column stands beside the tiles on a wide screen (components/home/StatsRail).",
-    "rail": "17rem",
     "_terms_tree_comment": "The page width, in px, from which the hadith Terms view draws the whole tree of terms at once (components/hadith/TermsView). The tree is 1784px wide for seven groups, so below this a phone or tablet gets the groups as a list and one group's branch at a time, where the words stay readable.",
-    "terms-tree-min": 1100
+    "terms-tree-min": 1100,
+    "_rail_comment": "How wide Home's progress column stands beside the tiles on a wide screen (components/home/StatsRail).",
+    "rail": "17rem"
   },
   "sheet": {
     "_comment": "How big a pop-up may get on a wide screen. Maximums, not widths: a phone stays full width. narrow is a short list of choices (settings, a Grow step), standard a pop-up with reading in it (the chain, a phrase, the word bank), wide a pop-up laid out in columns (the sections menu). tall is how much of the screen height any of them may take. narrator is the widest a name box grows in the chain drawing before it wraps.",
@@ -389,7 +400,12 @@
     "_comment": "Depth, for the few things that float over the page rather than sit in it. pop is a tooltip or popover, lift a card raised under the pointer, scrim the dim behind a modal. One of each, on purpose: one lift reads as one layer.",
     "pop": "0 6px 18px rgba(0, 0, 0, 0.45)",
     "lift": "0 14px 34px rgba(0, 0, 0, 0.35)",
-    "scrim": "rgb(0 0 0 / 60%)"
+    "scrim": "rgb(0 0 0 / 60%)",
+    "_elevation_comment": "Resting depth, three rungs (styles/motion.css .e1 .e2 .e3): e1 a card on the page, e2 a panel over it (a sheet, a dialog), e3 the top of the stack. Each is a close shadow and a wide soft one, plus a 1px inner highlight along the top edge (edge) that catches the light. pop and lift above stay for what floats or is picked up.",
+    "edge": "color-mix(in srgb, var(--text) 7%, transparent)",
+    "e1": "0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 var(--shadow-edge)",
+    "e2": "0 2px 4px rgba(0, 0, 0, 0.3), 0 10px 28px rgba(0, 0, 0, 0.35), inset 0 1px 0 var(--shadow-edge)",
+    "e3": "0 4px 8px rgba(0, 0, 0, 0.3), 0 20px 48px rgba(0, 0, 0, 0.45), inset 0 1px 0 var(--shadow-edge)"
   },
   "arabic": {
     "_comment": "One ladder for every piece of Arabic in the app, in rem. Smallest first; tiny, small, reading and display are ui/ArabicText's sizes: tiny is a name inside another name; small is a term or a table cell, and a name inside another name in the tarkeeb chart; term is a name read under its word in the chart; reading is Arabic being read: an ayah, a memorise page, a dictionary entry, chart is the sentence the tarkeeb chart is drawn under, read across a row of names rather than as a line; display is a word on its own, in a search box or as an answer; stage is the Arabic a whole page is built around, the words of the landing hero diagram, which have to stand clear of the names under them. The diagram used to keep a ladder of its own, and then a rung of its own, and both times its words drifted a third bigger than the same sentence in the word cards under it. Anything Arabic picks a rung here; nothing sets a size of its own.",
@@ -551,10 +567,18 @@
         "marks": {
           "alpha": 0.07
         },
+        "glass": {
+          "_grain_comment": "Dark specks on pale paper show at far less alpha than light ones on black, so Parchment's film is lighter: at Ink's 0.035 it greyed the cream.",
+          "grain": 0.02
+        },
         "shadow": {
           "pop": "0 6px 18px rgba(30, 41, 80, 0.18)",
           "lift": "0 14px 34px rgba(30, 41, 80, 0.18)",
-          "scrim": "rgb(20 28 50 / 35%)"
+          "scrim": "rgb(20 28 50 / 35%)",
+          "edge": "color-mix(in srgb, var(--surface) 85%, transparent)",
+          "e1": "0 1px 2px rgba(30, 41, 80, 0.1), 0 4px 12px rgba(30, 41, 80, 0.08), inset 0 1px 0 var(--shadow-edge)",
+          "e2": "0 2px 4px rgba(30, 41, 80, 0.1), 0 10px 28px rgba(30, 41, 80, 0.14), inset 0 1px 0 var(--shadow-edge)",
+          "e3": "0 4px 8px rgba(30, 41, 80, 0.1), 0 20px 48px rgba(30, 41, 80, 0.2), inset 0 1px 0 var(--shadow-edge)"
         },
         "command": {
           "hint": "var(--text)"

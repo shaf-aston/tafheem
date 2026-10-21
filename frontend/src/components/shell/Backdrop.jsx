@@ -11,6 +11,8 @@
  * --motion-scale to 0, under prefers-reduced-motion, or while the tab is
  * hidden, so it costs nothing when nobody can see it move. It also holds
  * still, tint change included, for the moment a tab switches (lib/backdropHold).
+ * The grain film over everything is a separate static div: one 128px tile of
+ * noise made once per look (never repainted, never animated) at glass.grain alpha.
  * data-frames counts
  * drawn frames, which is how a probe proves it stopped.
  */
@@ -21,6 +23,24 @@ import { heldFor } from '../../lib/backdropHold'
 import { motionOff } from '../../lib/motion'
 
 const MAX_DPR = 1.5
+
+// One tile of noise in the look's text colour, as a data URL: random alpha per
+// pixel averaging the glass.grain token. '' when the film is off or there is no canvas.
+function grainTile(style) {
+  const alpha = parseFloat(style.getPropertyValue('--glass-grain'))
+  const side = parseFloat(style.getPropertyValue('--glass-grain-tile-px'))
+  const tile = document.createElement('canvas')
+  const ctx = tile.getContext('2d')
+  if (!ctx || !(alpha > 0)) return ''
+  tile.width = tile.height = side
+  const n = parseInt(style.getPropertyValue('--text').trim().slice(1), 16)
+  const image = ctx.createImageData(side, side)
+  for (let i = 0; i < image.data.length; i += 4) {
+    image.data.set([n >> 16, (n >> 8) & 255, n & 255, Math.random() * 255 * alpha * 2], i)
+  }
+  ctx.putImageData(image, 0, 0)
+  return `url(${tile.toDataURL()})`
+}
 
 function readKnobs(style) {
   const num = (name) => parseFloat(style.getPropertyValue(`--lights-${name}`))
@@ -63,6 +83,7 @@ const withAlpha = (hex, a) => {
 
 export default function Backdrop() {
   const canvas = useRef(null)
+  const grain = useRef(null)
 
   useEffect(() => {
     const node = canvas.current
@@ -72,6 +93,8 @@ export default function Backdrop() {
     // --c is set on App's wrapper, the canvas's parent, not on :root.
     const wrapper = node.parentElement
 
+    const film = () => { grain.current.style.backgroundImage = grainTile(getComputedStyle(root)) }
+    film()
     let knobs = readKnobs(getComputedStyle(root))
     let look = root.dataset.theme
     let tab = knobs.colors[0]
@@ -158,6 +181,7 @@ export default function Backdrop() {
       // A different look has different lights and ground: read them again.
       if (root.dataset.theme !== look) {
         look = root.dataset.theme
+        film()
         knobs = readKnobs(getComputedStyle(root))
         marksKnobs = { ...marksKnobs, alpha: readMarks(getComputedStyle(root)).alpha }
       }
@@ -189,5 +213,10 @@ export default function Backdrop() {
     }
   }, [])
 
-  return <canvas ref={canvas} className="backdrop" data-frames="0" aria-hidden="true" />
+  return (
+    <>
+      <canvas ref={canvas} className="backdrop" data-frames="0" aria-hidden="true" />
+      <div ref={grain} className="backdrop-grain" aria-hidden="true" />
+    </>
+  )
 }

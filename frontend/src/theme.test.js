@@ -243,3 +243,26 @@ describe('colour literals outside theme.json', () => {
     expect(slack).toEqual([])
   })
 })
+
+// The soft vocabulary (styles/motion.css .reveal .e1-.e3 .tilt, the grain film
+// in shell/Backdrop.jsx): its knobs exist in every look and stay gentle.
+describe.each(THEME_NAMES)('soft motion tokens in the %s look', (name) => {
+  const groups = Object.fromEntries(tokenGroups(name).map(([group, pairs]) => [group, Object.fromEntries(pairs)]))
+
+  it('has three elevations, each ending in the inner highlight', () => {
+    for (const rung of ['e1', 'e2', 'e3']) {
+      expect(groups.shadow[rung], rung).toMatch(/inset 0 1px 0 var\(--shadow-edge\)$/)
+    }
+    expect(groups.shadow.edge).toMatch(/^color-mix\(in srgb, var\(--[\w-]+\) \d+%, transparent\)$/)
+  })
+
+  it('keeps the grain film at or under 5% alpha', () => {
+    expect(Number(groups.glass.grain)).toBeGreaterThanOrEqual(0)
+    expect(Number(groups.glass.grain)).toBeLessThanOrEqual(0.05)
+  })
+
+  it('caps the reveal stagger and the tilt', () => {
+    expect(Number(groups.motion['reveal-cap'])).toBe(6)
+    expect(Number(groups.motion['tilt-max-deg'])).toBeLessThanOrEqual(3)
+  })
+})
