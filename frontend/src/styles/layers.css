@@ -13,6 +13,15 @@
 }
 
 
+/* isolation also caps every layer inside the pane at the pane's own level, so a
+   page piece after it that makes a layer of its own (a References dot, faded with
+   opacity) painted over an open dropdown (ui/WheelPicker). While one is open the
+   pane rises to the popover layer itself, so the dropdown is in front everywhere. */
+.glass:has(.wheel-card) {
+  z-index: var(--layer-popover);
+}
+
+
 .glass::before {
   content: '';
   position: absolute;
