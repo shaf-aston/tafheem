@@ -123,3 +123,18 @@ export function nextUp(pairs, standing, from = -1) {
 
 /** The surah name of a key, for the copy ("Al-Baqarah 2:59"). */
 export const whereOf = (key) => `${nameOf(key)} ${key}`
+
+/**
+ * What the reader's word-by-word grammar says about the words in a span: their
+ * English, one phrase, and their roles, one per word. Nothing when the grammar's
+ * words do not line up one to one with the text the span was cut on, because a
+ * meaning pinned to the wrong word is worse than none.
+ */
+export function glossAt(words, grammar, [from, to]) {
+  if (!grammar || grammar.length !== words.length) return null
+  const picked = grammar.slice(from, to)
+  return {
+    meaning: picked.map((w) => w.meaning).filter(Boolean).join(' '),
+    roles: picked.map((w) => ({ arabic: w.arabic, pos: w.pos, grammar: w.grammar ?? [] })),
+  }
+}

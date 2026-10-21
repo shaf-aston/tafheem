@@ -1,7 +1,5 @@
 {
-  "_comment": "The Similar verses tab (components/SimilarPanel.jsx): its words and its one knob. The rules are in lib/similar.js; the pairs come from the backend's catalogue.",
-  "title": "Similar verses",
-  "arabic": "متشابهات",
+  "_comment": "The Similar tab (components/SimilarPanel.jsx): its words and its knobs; its name is in lib/tabs.js. The rules are in lib/similar.js; the pairs come from the backend's catalogue.",
   "subtitle": "Verses that read almost alike: see what tells them apart, then learn which wording is where",
   "module": "similar",
   "default-surah": 2,
@@ -21,6 +19,7 @@
   },
 
   "surah": "Surah",
+  "pairs": "Pairs",
   "mastered": "Mastered",
   "start-new": "Start",
   "start-due": "Review what is due",
@@ -30,6 +29,16 @@
   "look-alikes": "{n} look-alikes",
   "look-alike": "1 look-alike",
   "after": "What comes next",
+
+  "_comment-why": "Why they differ: each differing word's meaning and role (the reader's word-by-word grammar), then each verse in the reader's translation and the chosen tafsir. Fetched only when opened. `tafsir` is the book used until a reader picks one in the Qur'an tab: a short per-ayah one, so the context is a line, not a chapter.",
+  "tafsir": "mukhtasar-en",
+  "why": "Why they differ: meaning and context",
+  "why-words": "The words",
+  "why-context": "The context",
+  "why-no-grammar": "No word-by-word grammar for this verse.",
+  "why-no-tafsir": "This book says nothing on this verse.",
+  "show-all": "Show all",
+  "show-less": "Show less",
   "same": "These two read word for word the same: what follows each is the tell.",
   "ask-next": "What comes after this in {where}?",
   "end": "the surah ends",

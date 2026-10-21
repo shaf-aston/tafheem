@@ -31,6 +31,13 @@ const ROUTES = {
   'GET /quran/similar/27/4': WORDED,
   'GET /progress/summary': { items: [{ item: '27:3~31:4', known: true, due: false }, { item: '16:22~27:4', known: true, due: true }] },
   'POST /progress/attempts': { earned: 1 },
+  'GET /quran/editions': [{ id: 'mukhtasar-en', kind: 'tafsir', language: 'en', short: 'Al-Mukhtasar' }],
+  'GET /quran/editions/surah/27': { surah: 27, edition: 'saheeh-en', ayahs: { 4: 'Those who do not believe' } },
+  'GET /quran/editions/surah/16': { surah: 16, edition: 'saheeh-en', ayahs: { 22: 'Your god is one God' } },
+  'GET /quran/27/4': { words: [{ position: '1', arabic: 'ا', meaning: 'Indeed' }, { position: '2', arabic: 'ب', pos: 'V', meaning: 'believe', grammar: ['verb'] }, { position: '3', arabic: 'ج', meaning: 'not' }] },
+  'GET /quran/16/22': { words: [{ position: '1', arabic: 'ا', meaning: 'Your god' }, { position: '2', arabic: 'ق', pos: 'N', meaning: 'one', grammar: ['noun'] }, { position: '3', arabic: 'ج', meaning: 'God' }] },
+  'GET /quran/editions/27/4': { passages: [{ edition: 'mukhtasar-en', text: 'They deny the hereafter.' }] },
+  'GET /quran/editions/16/22': { passages: [] },
 }
 
 describe('similar verses', () => {
@@ -62,13 +69,36 @@ describe('similar verses', () => {
 
   it('names the change type on a worded pair and the Browse sheet on a phone', async () => {
     localStorage.setItem('similar-surah', '27')
+    const was = window.matchMedia
     window.matchMedia = (q) => ({ matches: q.includes('max-width'), addEventListener() {}, removeEventListener() {} })
     renderScreen(<SimilarPanel accent="#0a7" incoming="27:4" arrival={2} onVisit={() => {}} />, { routes: ROUTES })
     expect(await screen.findByText(/a different word/)).toBeTruthy()
     expect(screen.getByText('Pair 2 of 2')).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: 'Browse' }))
     expect(await screen.findByRole('dialog')).toBeTruthy()
-    delete window.matchMedia
+    window.matchMedia = was
+  })
+
+  it('names the tab once: the header reads the registry', async () => {
+    localStorage.setItem('similar-surah', '27')
+    renderScreen(<SimilarPanel accent="#0a7" incoming={null} arrival={null} onVisit={() => {}} />, { routes: ROUTES })
+    expect(await screen.findByRole('heading', { name: 'Similar' })).toBeTruthy()
+  })
+
+  it('explains why a pair differs: the words, their roles, and the context, only once asked', async () => {
+    localStorage.setItem('similar-surah', '27')
+    const { asked } = renderScreen(<SimilarPanel accent="#0a7" incoming="27:4" arrival={3} onVisit={() => {}} />, { routes: ROUTES })
+    await screen.findByText(/a different word/)
+    expect(asked).not.toContain('GET /quran/27/4')
+    // happy-dom does not open <details> on a click, so the toggle is sent as the browser would.
+    const details = screen.getByText('Why they differ: meaning and context').closest('details')
+    details.open = true
+    fireEvent(details, new Event('toggle'))
+    expect(await screen.findByText('believe')).toBeTruthy()
+    expect(screen.getByText('one')).toBeTruthy()
+    expect(screen.getByText('Those who do not believe')).toBeTruthy()
+    expect(await screen.findByText('They deny the hereafter.')).toBeTruthy()
+    expect(screen.getByText('This book says nothing on this verse.')).toBeTruthy()
   })
 
   it('shows the way in from the ayah study', async () => {

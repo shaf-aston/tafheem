@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { drillOf, fill, flagsOnPage, kindOf, nextUp, opening, pairId, placeLine, wordFlags } from './similar'
+import { drillOf, fill, flagsOnPage, kindOf, nextUp, opening, pairId, placeLine, wordFlags, glossAt } from './similar'
 
 describe('wordFlags', () => {
   it('flags the words inside a span, end exclusive', () => {
@@ -126,5 +126,23 @@ describe('nextUp', () => {
     expect(nextUp(pairs, (id) => (id === 'c' ? 'new' : standing(id)), 1)).toEqual({ id: 'c' })
     expect(nextUp(pairs, (id) => (id === 'c' ? 'known' : standing(id)), 1)).toEqual({ id: 'b' })
     expect(nextUp(pairs, () => 'known')).toBeNull()
+  })
+})
+
+describe('glossAt', () => {
+  const grammar = [
+    { arabic: 'ا', pos: 'N', meaning: 'Those who', grammar: ['noun'] },
+    { arabic: 'ب', pos: 'V', meaning: 'believe', grammar: ['verb', 'present'] },
+    { arabic: 'ج', pos: 'N', meaning: 'in the unseen', grammar: [] },
+  ]
+  it('reads the meaning and roles of the words in a span', () => {
+    expect(glossAt(['ا', 'ب', 'ج'], grammar, [1, 3])).toEqual({
+      meaning: 'believe in the unseen',
+      roles: [{ arabic: 'ب', pos: 'V', grammar: ['verb', 'present'] }, { arabic: 'ج', pos: 'N', grammar: [] }],
+    })
+  })
+  it('says nothing when the grammar does not line up with the text', () => {
+    expect(glossAt(['ا', 'ب'], grammar, [0, 1])).toBeNull()
+    expect(glossAt(['ا', 'ب', 'ج'], undefined, [0, 1])).toBeNull()
   })
 })

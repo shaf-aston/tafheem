@@ -9,12 +9,22 @@
  * title instead pushed the whole panel down a row for no gain.
  *
  * `nameOf` turns a step's address into words, for a tab whose addresses are ids.
+ *
+ * `tab` is the tab's id: its name, Arabic name and emblem then come from the
+ * registry (lib/tabs.js), the one place they are written, so renaming a tab is
+ * one edit. `title`, `arabic` and `emblem` passed as well win, for a panel that
+ * names a step rather than itself.
  */
 import ArabicText from './ArabicText'
 import Emblem from './Emblem'
 import Trail from './Trail'
+import { TABS } from '../../lib/tabs'
 
-export default function SectionHeader({ title, arabic, subtitle, emblem, aside = null, nameOf }) {
+export default function SectionHeader({ tab, title, arabic, subtitle, emblem, aside = null, nameOf }) {
+  const named = tab ? TABS.find((t) => t.id === tab) : null
+  title ??= named?.label
+  arabic ??= named?.arabic
+  emblem ??= named?.emblem
   return (
     <div>
       <div className="flex items-baseline justify-between gap-4 flex-wrap">

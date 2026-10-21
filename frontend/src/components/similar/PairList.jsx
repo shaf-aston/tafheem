@@ -23,10 +23,10 @@ export default function PairList({ pairs, chosen, onChoose, standing, className 
               className={`w-full text-left rounded-[var(--radius-sm)] border px-3 py-2 min-h-[var(--layout-tap-min)] hover:bg-[var(--surface-hi)] ${pair.id === chosen ? 'border-[var(--border-hi)] bg-[var(--surface-hi)]' : 'border-transparent'}`}
             >
               <span className="flex items-center justify-between gap-3">
-                <span className="type-small font-semibold text-[var(--text)]">{pair.mine}</span>
-                <span className="type-tiny" style={{ color: TONE[state] }}>{LABEL[state]}</span>
+                <span className="type-ui font-semibold text-[var(--text)]">{pair.mine}</span>
+                <span className="type-label" style={{ color: TONE[state] }}>{LABEL[state]}</span>
               </span>
-              <span className="block type-tiny text-[var(--text-dim)]">{fill(copy.twin, { where: whereOf(pair.twin) })}</span>
+              <span className="block type-label text-[var(--text-dim)]">{fill(copy.twin, { where: whereOf(pair.twin) })}</span>
             </button>
           </li>
         )

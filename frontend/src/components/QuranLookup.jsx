@@ -134,7 +134,7 @@ export default function QuranLookup({ accent, incoming, arrival, onGo, onVisit }
 
   return (
     <div className="panel">
-      <SectionHeader title="Quran" arabic="القرآن" emblem="quran" />
+      <SectionHeader tab="quran" />
 
       <RecentRow
         items={recent.map((h) => `${h.surah}:${h.ayah}`)}
