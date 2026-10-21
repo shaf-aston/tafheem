@@ -4,6 +4,8 @@
 // translate/scale on its way to rest (or only fades to nothing) is a copy of
 // those, and fails here. One-off moves (a drift, a marquee, a ring pulsing
 // out, a badge floating up and away) end somewhere else and pass.
+// Timing has one owner too: a literal Nms or cubic-bezier( in a stylesheet is
+// a duration or curve the Animations setting and theme.json cannot reach.
 import { readFileSync, readdirSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -44,7 +46,24 @@ const isCopy = (body) => {
   return Object.keys(frames).length === 1 && end.length === 1 && end[0][0] === 'opacity' && end[0][1] === '0'
 }
 
+// Allowed: 0.01ms (the reduced-motion reset), 0ms, and the unit in '* 1ms'.
+const literalTimes = (css) => {
+  const bare = css.replace(/\/\*[\s\S]*?\*\//g, '')
+  return bare.split('\n').flatMap((line, i) => {
+    const bad = [...line.matchAll(/(\*\s*)?(?<![\w.-])(\d*\.?\d+)ms\b/g)]
+      .filter(([, times, n]) => !(Number(n) === 0 || n === '0.01' || (times && Number(n) === 1)))
+    return bad.length || /cubic-bezier\(/.test(line) ? [i + 1] : []
+  })
+}
+
 describe('keyframes', () => {
+  it('durations and curves live in theme.json, not in a stylesheet', () => {
+    const literals = sheets(SRC)
+      .filter((path) => !['styles/motion.css'].includes(relative(SRC, path)) && !relative(SRC, path).startsWith('landing'))
+      .flatMap((path) => literalTimes(readFileSync(path, 'utf8')).map((n) => `${relative(SRC, path)}:${n}`))
+    expect(literals).toEqual([])
+  })
+
   it('fade and rise live only in motion.css', () => {
     const copies = sheets(SRC)
       .filter((path) => relative(SRC, path) !== OWNER)

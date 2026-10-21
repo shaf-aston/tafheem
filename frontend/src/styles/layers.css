@@ -90,7 +90,7 @@
   pointer-events: none;
   color: color-mix(in srgb, var(--backdrop-ink) var(--backdrop-strength), transparent);
   transition-property: top, right, width, transform, color, filter;
-  transition-duration: calc(var(--motion-base-ms) * 4ms);
+  transition-duration: calc(var(--motion-base-ms) * 4 * 1ms);
   transition-timing-function: var(--motion-settle-ease);
 }
 

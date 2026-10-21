@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 
 import theme from './theme.json'
 import { THEME_NAMES, colorAt, colorFor, resolveTheme, themeChoices, tokenGroups } from './theme'
-import { contrast, oklch } from './lib/tone'
+import { apca, contrast, oklch } from './lib/tone'
 
 const SRC = fileURLToPath(new URL('.', import.meta.url))
 const HEX = /^#[0-9a-f]{6}$/i
@@ -177,6 +177,16 @@ describe.each(THEME_NAMES)('contrast in the %s look', (name) => {
     expect(loud).toEqual([])
     const dazzling = Object.entries(washGrounds).filter(([, ground]) => oklch(ground)[0] > (comfort['max-ground-lightness'] ?? 1))
     expect(dazzling.map(([where]) => where)).toEqual([])
+  })
+
+  // WCAG's ratio can pass while APCA calls the text faint, so secondary text
+  // also holds a Lc floor on every ground, and body text a high one.
+  it('keeps text-dim over the comfort floor and text strong, in APCA Lc', () => {
+    const { 'dim-min-lc': floor } = theme.themes.comfort[looks[name].scheme]
+    for (const [where, ground] of Object.entries(washGrounds)) {
+      expect(Math.abs(apca(color['text-dim'], ground)), `text-dim on ${where}`).toBeGreaterThanOrEqual(floor)
+      expect(Math.abs(apca(color.text, ground)), `text on ${where}`).toBeGreaterThanOrEqual(75)
+    }
   })
 
   it('outlines a control and writes on a filled accent so both can be seen', () => {

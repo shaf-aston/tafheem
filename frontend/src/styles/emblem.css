@@ -32,7 +32,7 @@
 .grow-world-tile:disabled .emblem { filter: grayscale(1); opacity: 0.6; }
 .grow-world-tile { min-height: 168px; }
 .grow-world-tile:not(:disabled):hover { box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--w) 55%, transparent); }
-.grow-world-tile { animation: rise-in calc(400ms * var(--motion-scale)) ease-out both; animation-delay: calc(var(--i, 0) * 60ms * var(--motion-scale)); }
+.grow-world-tile { animation: rise-in calc(var(--motion-enter-ms) * 1ms * var(--motion-scale)) ease-out both; animation-delay: calc(var(--i, 0) * var(--motion-stagger-ms) * 2 * 1ms * var(--motion-scale)); }
 
 /* ── today's card: a big soft picture behind the words ── */
 .grow-today { position: relative; isolation: isolate; overflow: hidden; }

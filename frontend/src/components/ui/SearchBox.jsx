@@ -118,7 +118,7 @@ export default function SearchBox({
               aria-label="Search"
               title="Search, or press Enter"
               style={{ background: ready ? accent : 'transparent' }}
-              className={`w-8 h-8 grid place-items-center rounded-[var(--radius-sm)] shrink-0
+              className={`min-w-[calc(var(--layout-tap-min)*1px)] min-h-[calc(var(--layout-tap-min)*1px)] -my-1 grid place-items-center rounded-[var(--radius-sm)] shrink-0
                 transition-[filter,background,color] duration-[calc(var(--motion-instant-ms)*1ms)]
                 ${ready
                   ? 'text-[var(--bg)] hover:brightness-110'

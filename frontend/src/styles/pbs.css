@@ -6,7 +6,7 @@
   --rise-from: 0;
   --rise-y: 12px;
   --rise-scale: 1;
-  animation: rise-in calc(500ms * var(--motion-scale)) cubic-bezier(.2, .7, .2, 1) backwards;
+  animation: rise-in calc(var(--motion-enter-ms) * 1ms * var(--motion-scale)) var(--motion-ease) backwards;
   animation-delay: var(--d, 0ms);
 }
 
@@ -14,13 +14,13 @@
 .pbs-card {
   position: relative;
   overflow: hidden;
-  transition: transform calc(300ms * var(--motion-scale)) cubic-bezier(.2, .7, .2, 1), box-shadow calc(300ms * var(--motion-scale)) ease;
+  transition: transform calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) var(--motion-ease), box-shadow calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) ease;
 }
 .pbs-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
 .pbs-card .pbs-go {
   position: absolute; bottom: 8px; right: 12px;
   opacity: 0; transform: translateX(6px);
-  transition: opacity calc(300ms * var(--motion-scale)) ease, transform calc(300ms * var(--motion-scale)) ease;
+  transition: opacity calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) ease, transform calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) ease;
 }
 .pbs-card:hover .pbs-go { opacity: 1; transform: none; }
 
@@ -28,7 +28,7 @@
 .pbs-kid, .pbs-branch {
   transform-box: fill-box;
   transform-origin: center;
-  transition: transform calc(250ms * var(--motion-scale)) cubic-bezier(.2, .7, .2, 1);
+  transition: transform calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) var(--motion-ease);
 }
 .pbs-kid:hover { transform: translateY(-2px) scale(1.035); }
 .pbs-branch:hover { transform: scale(1.03); }
