@@ -121,3 +121,30 @@ Track C: (i) one Grow book world per text, authored slice by slice, verified by 
 (ii) a generic OpenITI reader tab (reads any book; teaches nothing; no progress); (iii) Memorise
 book entry for the Jawhara poem (lines to learn by heart; complements (i)). Unknowns: are the
 Jawhara / Tuhfa / Wasitiyya files on OpenITI; authoring volume per night.
+
+### Critic findings · task 1 (phone + look audit, 96 screens)
+Measured text contrast is sound in all looks (body 11.5–13.8:1, dim 7.8–8.0, eyebrow ≥ 7.3; chroma
+under the caps); no horizontal overflow; grounds change per look. The "hurts the eye" complaint is
+therefore not raw text contrast → it is washes/alpha layers, size and crowding. Real findings:
+| sev | where | finding | fix |
+|---|---|---|---|
+| 1 | Settings 390 | Appearance Segmented clips; Parchment cut, Device unreachable | Segmented wraps under 420px (one rule in ui/) |
+| 1 | header 390 | icon buttons 40×40; banner ✕ 28×28 | one tap-min token (44) on the icon button |
+| 1 | Nahw 390 | 57 targets < 44 (chips/word tokens); Settings 43, Quran 18, Daleel 17 | chip min-height or 24px + spacing (WCAG 2.5.8) |
+| 2 | Quran | 9%-alpha watermark text is in the a11y tree | aria-hidden |
+| 2 | Home 1280 | stray "4" pill under the tab row (leaked badge) | anchor to its tab or remove |
+| 2 | Home 390 | search placeholder truncated | shorter phone placeholder (copy in home.json) |
+| 3 | Home 1280 | فهم outline art is transparent text | aria-hidden |
+| 3 | dock 390 | More slot moves when the current tab is not docked | keep More fixed |
+| 3 | Home parch 390 | three CTA styles on one screen | one primary per screen |
+Audit-tool gotchas: the look is `localStorage.settings.theme`, not the hint key; computed colours
+arrive as `color(srgb r g b / a)` and must be composited.
+
+### Critic findings · task 2 (code audit A2/A4)
+Colours: 18 grep hits, **0 real UI violations** (masks, HTML entities, tokenised hsl). Deliverable
+= the allowlist test (`/(?<!&)#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i`, skip `mask-image` lines).
+Durations: 16 literal `Nms` left → components.css:211, 922–952; emblem.css:35; pbs.css:9–31 (+3
+cubic-bezier); micMark.css:81; PbsChart.jsx:73 inline stagger; `--motion-spring-ms * 4ms` hacks in
+growWorlds/command/layers → name them (`--motion-loop-ms`, `--motion-enter-ms`). ~15 lines, one slice.
+Easings: 84 bare `ease*` outside motion.css → A4 sharpened to **"0 literal `Nms` and 0
+`cubic-bezier(` outside motion.css/theme.json"**; add one `--motion-ease` token used by the shared moves.
