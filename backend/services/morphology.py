@@ -631,6 +631,18 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the word's whole list too (أَكْبَرُ's own indefinite reading may be ranked out), never a guessed name
             out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
                                          if not _bare_construct(r) and r.get("pos") != "noun_prop"]) or reading
+    # نصر زيد بكرا، زيد نصر بكرا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به).
+    # A noun read in nasb (بكرا's alif of tanween is written, typed vowels or none), in a line of
+    # nouns alone, has none but a verb before it: the first word that reads as a past verb adding
+    # no letter the writing lacks (زَيَّدَ's shadda: الأصل عدم الزيادة). Typed vowels still choose
+    nasb = next((i for i, r in enumerate(out) if i and r.get("cas") == "a"), None)
+    if nasb and all(r.get("pos") in NOUNISH for r in out):
+        for i in range(nasb):
+            verb = best_reading(tokens[i], [r for r in _widened(tokens[i], steps[i][1])
+                                            if r.get("pos") == "verb" and "ّ" not in r.get("diac", "")])
+            if verb:
+                out[i] = verb
+                break
     return out
 
 
