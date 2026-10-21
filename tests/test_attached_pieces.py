@@ -487,6 +487,9 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     ("كَادَ الْقِطَارُ يَتَحَرَّكُ", "كَادَ", ("name", "فعل ناقص")),
     # جِدًّا is heard with its verb never said (جَدَّ جِدًّا): مفعول مطلق, not an object of مجتهدات
     ("الطَّالِبَاتُ مُجْتَهِدَاتٌ جِدًّا", "جِدًّا", ("role", "مفعول مطلق")),
+    # ظنّ's two objects were a مبتدأ and خبر; the parser kept the pair, both typed in nasb
+    ("حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا", "الطَّرِيقَ", ("role", "مفعول به")),
+    ("حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا", "الرَّجُلُ", ("role", "فاعل")),
     # a hamza-final participle (قارئ) works as its verb like any other: its noun is its object
     ("يَا قَارِئًا الْقُرْآنَ تَدَبَّرْ", "الْقُرْآنَ", ("role", "مفعول به")),
 ])

@@ -1,7 +1,7 @@
 """The one step that corrects the parser's tokens, in place, before anything reads them.
 Each repair is its own module, run in the order below; `naming` and everything after only read.
 
-    book links → typed words → مَنْ that asks → subject clash → كان's raf' khabar → doer after the object → object after tanween → verb under يا → praying noun → times counted → indefinite after a definite opener → second khabar → noun before لا → و هو + verb → ابن between names → untied command answering a condition → particle readings
+    book links → typed words → مَنْ that asks → subject clash → كان's raf' khabar → ظنّ's two objects → doer after the object → object after tanween → verb under يا → praying noun → times counted → indefinite after a definite opener → second khabar → noun before لا → و هو + verb → ابن between names → untied command answering a condition → particle readings
 
 A split that does not line up with the typed words keeps only the book's links."""
 from __future__ import annotations
@@ -16,7 +16,7 @@ from backend.services.syntax.repair.dua import counted_times, dua_clause
 from backend.services.syntax.repair.hal import hal_clause
 from backend.services.syntax.repair.khabar import after_pointer, before_la, second_khabar
 from backend.services.syntax.repair.nasab import nasab
-from backend.services.syntax.repair.subject_clash import doer_after_object, kana_subject, object_after_tanween, subject_clash
+from backend.services.syntax.repair.subject_clash import doer_after_object, kana_subject, object_after_tanween, subject_clash, zanna_pair
 from backend.services.syntax.repair.typed import since_jarr, typed_words
 
 
@@ -28,6 +28,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         asked_man(bases, tokens)
         subject_clash(tokens)
         kana_subject(tokens)
+        zanna_pair(tokens)
         doer_after_object(tokens)
         object_after_tanween(tokens)
         called(tokens)
