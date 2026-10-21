@@ -77,8 +77,9 @@ export default function PbsChart({ config, activeBranch, onHoverBranch, onZoom }
             <g
               {...zoomable(b.hasKids, () => onZoom([i]))}
               className={b.hasKids ? 'pbs-branch cursor-pointer' : undefined}
-              onMouseEnter={() => onHoverBranch?.(i)}
-              onMouseLeave={() => onHoverBranch?.(null)}
+              // A mouse only: a finger's tap also fires these, and the fade then stuck until the next tap.
+              onPointerEnter={(e) => e.pointerType === 'mouse' && onHoverBranch?.(i)}
+              onPointerLeave={(e) => e.pointerType === 'mouse' && onHoverBranch?.(null)}
             >
               <rect x={box.x} y={box.y} width={box.w} height={box.h} rx="12" fill={b.c.head} stroke={b.c.bar} strokeWidth="1.3" />
               <text x={box.cx} y={box.textY} textAnchor="middle" fontSize="17" fontWeight="700" fill="var(--text)" lang="ar" dir="rtl">

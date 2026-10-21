@@ -17,17 +17,18 @@
  * has gone through a science; a `progress` prop could later decorate a box in
  * PbsChart without restructuring it.
  */
-import { useMemo, useState } from 'react'
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import ArabicText from '../ui/ArabicText'
 import ManhajView from '../ui/ManhajView'
 import PbsChart from './PbsChart'
 import { closeOnBackdrop, useModal } from '../../lib/useModal'
+import { usePinch } from '../../lib/usePinch'
 import { CHARTS } from '../../lib/pbsData'
 import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'
 
 const ZOOM_MIN = 0.7
-const ZOOM_MAX = 2.2
+const ZOOM_MAX = 3
 const ZOOM_STEP = 0.2
 // At 100% the chart never draws narrower than this, so on a phone its text stays readable and the chart scrolls inside its own frame.
 const CHART_MIN_REM = 56
@@ -40,6 +41,29 @@ export default function MapPanel({ open, onClose }) {
   const [path, setPath] = useState([]) // child indices from the chart root to the zoomed box
   const [hoverBranch, setHoverBranch] = useState(null)
   const [zoom, setZoom] = useState(1)
+  const [pinching, setPinching] = useState(false)
+  const frame = useRef(null)
+  const anchor = useRef(null) // { x, y, ratio }: the spot to keep under the fingers once the new zoom is drawn
+
+  // A pinch on the chart zooms the chart, never the page. The spot between the fingers stays put:
+  // the content grows by `ratio` around it, so the scroll moves by the same amount.
+  const pinch = useCallback((by, x, y) => {
+    setPinching(true)
+    setZoom((z) => {
+      const next = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, z * by))
+      anchor.current = { x, y, ratio: next / z }
+      return next
+    })
+  }, [])
+  usePinch(frame, pinch)
+  useLayoutEffect(() => {
+    const el = frame.current
+    const a = anchor.current
+    if (!el || !a) return
+    el.scrollLeft = (el.scrollLeft + a.x) * a.ratio - a.x
+    el.scrollTop = (el.scrollTop + a.y) * a.ratio - a.y
+    anchor.current = null
+  }, [zoom])
 
   // Reopening should not resume where a previous visit left off: reset on the
   // way out, once the dialog has actually closed (Esc, backdrop, or the
@@ -127,7 +151,7 @@ export default function MapPanel({ open, onClose }) {
             )}
           </div>
           {current && (
-            <div className="hidden sm:flex items-center gap-1.5 type-tiny text-[var(--text-faint)]">
+            <div className="flex items-center gap-1.5 type-tiny text-[var(--text-faint)]">
               <button type="button" onClick={() => setZoom((z) => Math.max(ZOOM_MIN, z - ZOOM_STEP))} className="icon-button" aria-label="Zoom out">−</button>
               <span className="w-9 text-center">{Math.round(zoom * 100)}%</span>
               <button type="button" onClick={() => setZoom((z) => Math.min(ZOOM_MAX, z + ZOOM_STEP))} className="icon-button" aria-label="Zoom in">+</button>
@@ -140,9 +164,9 @@ export default function MapPanel({ open, onClose }) {
           </button>
         </header>
 
-        <div className="relative flex-1 min-h-0 overflow-auto" tabIndex={0} role="region" aria-label="Map">
+        <div ref={frame} onTouchEnd={() => setPinching(false)} className="relative flex-1 min-h-0 overflow-auto" tabIndex={0} role="region" aria-label="Map">
           {current ? (
-            <div className="p-4" style={{ width: `max(${zoom * 100}%, ${zoom * CHART_MIN_REM}rem)`, transition: 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
+            <div className="p-4" style={{ width: `max(${zoom * 100}%, ${zoom * CHART_MIN_REM}rem)`, transition: pinching ? 'none' : 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
               <PbsChart
                 key={path.join('.')}
                 config={config}
@@ -196,12 +220,14 @@ function IndexCard({ label, ar, en, note, color, className, style, onClick }) {
       style={style}
     >
       <span className="pbs-go text-[var(--text-faint)]" aria-hidden="true">↗</span>
-      <span className="min-w-0 space-y-1">
+      <span className="flex-1 min-w-[8rem] space-y-1">
         <span className="block type-small tracking-widest uppercase font-bold tabular-nums text-[var(--text-faint)]">{label}</span>
         <span className="block font-semibold text-[var(--text)]">{en}</span>
         <span className="block type-small text-[var(--text-dim)]">{note}</span>
       </span>
-      <ArabicText as="span" size="lg" className="shrink-0 leading-tight" style={color ? { color } : undefined}>{ar}</ArabicText>
+      {/* Takes what the English (min 8rem) leaves: a name too long for that (القواعد الفقهية) breaks
+          between its words onto two lines instead of squeezing the English to a word per line. */}
+      <ArabicText as="span" size="lg" className="arabic-inline min-w-0 text-right" style={color ? { color } : undefined}>{ar}</ArabicText>
     </button>
   )
 }
