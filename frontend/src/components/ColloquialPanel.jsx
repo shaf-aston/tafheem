@@ -40,9 +40,11 @@ const unitsNote = (units) => {
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
 // Without onClick it is a unit or topic this dialect has not written yet: shown, not openable.
 // With `twin` it is two halves joined, each its own way in: a topic's phrases and its words.
-function Lines({ hue, kicker, title, gloss, arabic, note, more }) {
+// `image` is a topic's first picture, a small square beside its words.
+function Lines({ hue, kicker, title, gloss, arabic, note, more, image }) {
   return (
     <>
+      {image && <PhrasePicture phrase={{ image }} alt="" className="float-end ms-3 w-12 h-12 rounded-[var(--radius-md)]" />}
       <span className="flex items-baseline justify-between gap-3">
         <span className="type-micro uppercase tracking-[0.18em]" style={{ color: hue }}>{kicker}</span>
         {arabic && <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text-dim)]">{arabic}</span>}
@@ -269,7 +271,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
                 {lessons.map((l, n) => {
                   const i = from + n
                   return (
-                    <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title}
+                    <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} image={l.picture}
                       note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words` : l.words ? 'Phrases' : undefined}
                       onClick={l.written ? () => go({ dialect: dialect.key, unit: unit.unit, at: i, words: !l.phrases }) : undefined}
                       twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => go({ dialect: dialect.key, unit: unit.unit, at: i, words: true }) }} />
