@@ -45,6 +45,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from contextlib import suppress
 import sys
 from pathlib import Path
 
@@ -100,7 +101,8 @@ def search(term: str, client: httpx.Client) -> list[dict]:
     found: list[dict] = []
     try:
         for source in (STOCK, None):
-            params = {"q": term, "license_type": LICENSES, "page_size": CANDIDATES_PER_PHRASE, "extension": "jpg"}
+            params = {"q": term, "license_type": LICENSES, "page_size": CANDIDATES_PER_PHRASE, "extension": "jpg",
+                      "category": "photograph"}  # museum scans and drawings match titles, not meaning
             reply = client.get(API, params=params | ({"source": source} if source else {}))
             reply.raise_for_status()
             seen = {one["id"] for one in found}
@@ -137,6 +139,14 @@ def paths(unit: str) -> tuple[Path, Path, Path]:
     """The spine, the unit's review file and its picture folder."""
     root = data_path("colloquial_dir")
     return root / "spine.json", root / "review" / f"{unit}.json", root / "images" / unit
+
+
+def spine_text(spine: dict) -> str:
+    """The spine as it is kept by hand: indented, but a list of plain values on one line."""
+    def flat(m: re.Match) -> str:
+        return json.dumps(json.loads(m.group(0)), ensure_ascii=False)
+    body = json.dumps(spine, ensure_ascii=False, indent=2)
+    return re.sub(r"\[(?:\s*\"[^\"\n]*\",?)+\s*\]", flat, body) + "\n"
 
 
 def outline(spine: dict, unit: str) -> dict:
@@ -183,7 +193,7 @@ def approve(unit: str, lesson: int, phrase: int, pick: int, client: httpx.Client
     spine = json.loads(spine_file.read_text(encoding="utf-8"))
     relative = f"{unit}/{name}"
     outline(spine, unit)["lessons"][lesson - 1]["phrases"][phrase - 1]["image"] = relative
-    spine_file.write_text(json.dumps(spine, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    spine_file.write_text(spine_text(spine), encoding="utf-8")
     return relative
 
 
@@ -245,12 +255,14 @@ def auto(client: httpx.Client) -> list[str]:
         unit = one["unit"]
         for entry in propose(unit, None, client)["found"]:
             if pick := fitting(entry):
-                saved.append(approve(unit, entry["lesson"], entry["phrase"], pick, client))
+                with suppress(httpx.HTTPError):  # one dead thumbnail never stops the run
+                    saved.append(approve(unit, entry["lesson"], entry["phrase"], pick, client))
         for word, entry in propose_words(unit, None, client)["found"].items():
             # A word is matched on itself: its search_term may add a hint ("lion wild
             # animal") that a good picture's title would not carry.
             if (pick := fitting(entry, "english")) and not json.loads(_words_file().read_text(encoding="utf-8"))["words"][word].get("image"):
-                saved.append(approve_word(word, pick, client))
+                with suppress(httpx.HTTPError):
+                    saved.append(approve_word(word, pick, client))
     log = data_path("colloquial_dir") / "review" / "auto.json"
     earlier = json.loads(log.read_text(encoding="utf-8")) if log.exists() else []
     log.write_text(json.dumps(earlier + saved, indent=2), encoding="utf-8")
@@ -274,7 +286,7 @@ def reject(image: str) -> None:
             for phrase in lesson["phrases"]:
                 if phrase.get("image") == image:
                     del phrase["image"]
-    spine_file.write_text(json.dumps(spine, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    spine_file.write_text(spine_text(spine), encoding="utf-8")
     whole = json.loads(_words_file().read_text(encoding="utf-8"))
     for meaning in whole["words"].values():
         if meaning.get("image") == image:
