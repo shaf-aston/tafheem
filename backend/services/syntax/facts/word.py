@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
+from backend.services.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
@@ -150,8 +150,10 @@ def written_nasb(token: dict) -> str | None:
     """زيد بكرا typed bare: the alif of نصب tanween is written, not voweled (رسم المصحف و الإملاء),
     so it shows the nasb on its own when the word's reading puts that tanween on it; عصا's alif is its own."""
     typed = token.get("typed") or ""
-    return "a" if typed and typed == strip_diacritics(typed) and typed.endswith("ا") \
-        and "ً" in token.get("diac", "")[-2:] else None
+    if not typed or typed != strip_diacritics(typed) or not typed.endswith("ا"):
+        return None
+    # only nasb tanween is written with an alif, so any tanween before it is that one
+    return CASE_LETTER["nasb"] if TANWEEN & set(token.get("diac", "")[-2:]) else None
 
 
 def shows_nasb_by_kasra(token: dict) -> bool:
