@@ -124,12 +124,12 @@ def words_of(text: str) -> set[str]:
     return {w.rstrip("s") for w in re.findall(r"[a-z]+", (text or "").lower())} - FILLER
 
 
-def fitting(entry: dict) -> int | None:
+def fitting(entry: dict, key: str = "search_term") -> int | None:
     """The first candidate whose title names something the search asked for, as a 1-based
     pick, or None. A stock search matches loose tags ("family photo together" brings
     penguins first), so an unchecked first result is often the wrong picture. Every word asked for
     must be in the title: one shared word let "tall man" through as a cigar label."""
-    wanted = words_of(entry["search_term"])
+    wanted = words_of(entry[key])
     return next((at for at, one in enumerate(entry["candidates"], start=1) if wanted <= words_of(one["title"])), None)
 
 
@@ -247,7 +247,9 @@ def auto(client: httpx.Client) -> list[str]:
             if pick := fitting(entry):
                 saved.append(approve(unit, entry["lesson"], entry["phrase"], pick, client))
         for word, entry in propose_words(unit, None, client)["found"].items():
-            if (pick := fitting(entry)) and not json.loads(_words_file().read_text(encoding="utf-8"))["words"][word].get("image"):
+            # A word is matched on itself: its search_term may add a hint ("lion wild
+            # animal") that a good picture's title would not carry.
+            if (pick := fitting(entry, "english")) and not json.loads(_words_file().read_text(encoding="utf-8"))["words"][word].get("image"):
                 saved.append(approve_word(word, pick, client))
     log = data_path("colloquial_dir") / "review" / "auto.json"
     earlier = json.loads(log.read_text(encoding="utf-8")) if log.exists() else []
