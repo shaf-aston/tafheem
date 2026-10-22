@@ -15,12 +15,16 @@ import { useQuery } from '@tanstack/react-query'
 
 import { daleelBooksQuery, findDaleel } from '../api'
 import { isArabic, mostlyArabic } from '../lib/arabicText'
+import { isAyah } from '../lib/surahRef'
 import { plainEntry } from '../lib/laneEntry'
 import { sourcesFor, useSources } from '../lib/useSources'
 import { useSearch } from '../lib/useSearch'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../lib/useLaneTidy'
 
 import ArabicText from './ui/ArabicText'
+import Chip from './ui/Chip'
+import ChipRow from './ui/ChipRow'
+import Disclosure from './ui/Disclosure'
 import BookPicker from './daleel/BookPicker'
 import EmptyState from './ui/EmptyState'
 import IndexNotBuilt from './ui/IndexNotBuilt'
@@ -52,6 +56,9 @@ const MATCH_NOTE = {
 export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }) {
   const [laneTidy, setLaneTidy] = useLaneTidy()
   const [chosen, setChosen] = useState([])
+  // The shelf the answer is being looked through, for the question it was
+  // picked on; a new question starts with every shelf again.
+  const [looking, setLooking] = useState({ query: null, shelf: null })
 
   // A question that came back is a place reached: Recent, the trail, and the
   // address bar all record it. Which books were searched is not in it; that is
@@ -86,9 +93,26 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   // Stale results under a spinner is a state a reader has no way to name; the
   // skeleton fully replaces them instead of sitting on top, except through a
   // return (lib/useSearch).
-  const books = groupByBook(data?.hits ?? [], sourcesFor(sources, 'daleel'))
-  const passageCount = data?.hits?.length ?? 0
-  const bookCount = books.length
+  const hits = inBookOrder(data?.hits ?? [], sourcesFor(sources, 'daleel'))
+  // Each book's shelf (Qur'an, Tafsir, Dictionary…), as the catalogue files it.
+  const shelfOf = new Map(catalogue.map((book) => [book.source, book.category]))
+  const shelves = countShelves(hits, shelfOf)
+  const shelf = looking.query === data?.query ? looking.shelf : null
+  const seen = shelf ? hits.filter((hit) => shelfOf.get(hit.source?.key) === shelf) : hits
+  // Of what is on show, so the line agrees with the cards under it once a shelf is picked.
+  const passageCount = seen.length
+  const bookCount = new Set(seen.map(bookOf)).size
+  // What was asked for first; the search widening the question (a close
+  // spelling, the root, a related word) folds under it, so a looser match
+  // never takes the room of a quotation.
+  const exact = seen.filter((hit) => !MATCH_NOTE[hit.match])
+  const looser = seen.filter((hit) => MATCH_NOTE[hit.match])
+  const anyLane = hits.some((hit) => bookOf(hit) === LANE)
+  const card = (hit) => (
+    <li key={`${bookOf(hit)}-${hit.locator}`}>
+      <Quotation hit={hit} onGo={onGo} accent={accent} tidy={bookOf(hit) === LANE && laneTidy} />
+    </li>
+  )
 
   return (
     <div className="panel">
@@ -113,7 +137,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
           id="daleel-input"
           label="Arabic or English"
           hint="Enter to search, or say it"
-          placeholder="Search الصبر or patience"
+          placeholder="الصبر or patience"
           value={query}
           onChange={setQuery}
           onSubmit={submit}
@@ -170,18 +194,16 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
 
       {mutation.isPending && !data && <AnalyzerSkeleton />}
 
-      <div className="space-y-5">
-      {books.map(([label, hits]) => {
-        const isLane = label === LANE
-        return (
-        <section key={label} className="space-y-3">
+      {hits.length > 0 && (
+        <div className="space-y-3">
+          {/* The answer at a glance: how much came back, and from which shelves,
+              each a press away from being all that is shown. */}
           <div className="flex items-center gap-3">
-            <SourceBadge source={hits[0].source} />
-            <span className="type-small text-[var(--text-faint)] tabular-nums">
-              {hits.length}
-            </span>
-            {/* Only Lane carries the scholar's marks, so only his row has the switch. */}
-            {isLane && (
+            <p className="type-small text-[var(--text-faint)]">
+              {passageCount} {passageCount === 1 ? 'passage' : 'passages'} · {bookCount} {bookCount === 1 ? 'book' : 'books'}
+            </p>
+            {/* Only Lane carries the scholar's marks, so the switch shows only with him. */}
+            {anyLane && (
               <div className="ms-auto">
                 <FlagButton value={laneTidy} onChange={setLaneTidy} accent={accent} title={LANE_TIDY_TITLE}>
                   {LANE_TIDY_LABEL}
@@ -189,18 +211,26 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
               </div>
             )}
           </div>
+          {shelves.length > 1 && (
+            <ChipRow scroll role="group" aria-label="Show one shelf">
+              {[[null, hits.length], ...shelves].map(([name, count]) => (
+                <Chip key={name ?? 'all'} selected={shelf === name} accent={accent}
+                  onClick={() => setLooking({ query: data.query, shelf: name })}>
+                  <span className="whitespace-nowrap">{name ?? 'All'} {count}</span>
+                </Chip>
+              ))}
+            </ChipRow>
+          )}
 
-          <ul className="space-y-3">
-            {hits.map((hit) => (
-              <li key={`${label}-${hit.locator}`}>
-                <Quotation hit={hit} onGo={onGo} accent={accent} tidy={isLane && laneTidy} />
-              </li>
-            ))}
-          </ul>
-        </section>
-        )
-      })}
-      </div>
+          {exact.length > 0 && <ul className="space-y-3">{exact.map(card)}</ul>}
+          {looser.length > 0 && (
+            <Disclosure key={`${data.query} ${shelf}`} defaultOpen={exact.length === 0}
+              label={`${looser.length} looser ${looser.length === 1 ? 'match' : 'matches'}`}>
+              <ul className="space-y-3 pt-3">{looser.map(card)}</ul>
+            </Disclosure>
+          )}
+        </div>
+      )}
     </div>
   )
 }
@@ -214,48 +244,57 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
  */
 function Quotation({ hit, onGo, accent, tidy }) {
   const note = MATCH_NOTE[hit.match]
+  const ayah = ayahIn(hit.locator)
+  const [open, setOpen] = useState(false)
+  const [cut, setCut] = useState(false)
+  // A press anywhere on a cut card opens all of it. Not a press on one of its
+  // own controls, and not the end of a drag that selected some of the text.
+  const openFromCard = (event) => {
+    if (!cut || open || event.target.closest('a, button')) return
+    if (!(window.getSelection()?.isCollapsed ?? true)) return
+    setOpen(true)
+  }
 
   return (
     <article
       // The accent is set here, not inherited: it was read off the search box,
       // which is a different subtree, so the hover below resolved to nothing.
       style={{ '--c': accent }}
-      className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-        p-5 space-y-3"
+      onClick={openFromCard}
+      className={`rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
+        p-4 sm:p-5 space-y-3 ${cut && !open ? 'cursor-pointer' : ''}`}
     >
-      {hit.arabic && <Passage text={hit.arabic} accent={accent} tidy={tidy} arabic />}
-
-      {hit.english && <Passage text={hit.english} accent={accent} tidy={tidy} />}
-
-      <div className="flex items-center justify-between gap-3 flex-wrap pt-1">
+      {/* Whose words, and where in the book, at the head of the card: a heading
+          of its own over every book cost a row per passage. */}
+      <header className="flex items-center gap-2 flex-wrap">
+        <SourceBadge source={hit.source} />
         {/* A dictionary entry is cited by the word itself, which is already the
-            quotation above. Printing it again in a mono face said nothing and
-            set the same Arabic twice in two different types. */}
+            quotation below. Printing it again said nothing. */}
         <Locator text={hit.locator === hit.arabic ? '' : hit.locator} />
+        {/* Set apart from the quiet citation beside it: the one line that stops
+            a probable typo-fix from reading as a clean find. */}
+        {note && (
+          <span className="ms-auto type-small px-2 py-0.5 rounded-full border"
+            style={{ color: 'var(--warn)', borderColor: 'var(--warn-edge)' }}>
+            {note}
+          </span>
+        )}
+      </header>
 
-        <div className="flex items-center gap-3">
-          {/* Set apart from the quiet metadata beside it. This is the one line
-              that stops a probable typo-fix from reading as a clean find, and
-              in the same grey as the citation it was indistinguishable from
-              filler. */}
-          {note && (
-            <span
-              className="type-small px-2 py-0.5 rounded-full border"
-              style={{
-                color: 'var(--warn)',
-                borderColor: 'var(--warn-edge)',
-              }}
-            >
-              {note}
-            </span>
-          )}
-          {onGo && isAyah(hit.locator) && (
-            <GoButton onClick={() => onGo('quran', hit.locator)} style={{ '--c': accent }}>
-              Open the ayah
-            </GoButton>
-          )}
+      {/* One fold for the whole passage: a press on the card, or on Show all,
+          opens the Arabic and the English together. */}
+      <ShowRest height="var(--daleel-passage-h)" accent={accent}
+        open={open} onOpenChange={setOpen} onCutChange={setCut}
+        beside={onGo && ayah && (
+          <GoButton onClick={() => onGo('quran', ayah)} style={{ '--c': accent }}>
+            Open the ayah
+          </GoButton>
+        )}>
+        <div className="space-y-3">
+          {hit.arabic && <Passage text={hit.arabic} tidy={tidy} arabic />}
+          {hit.english && <Passage text={hit.english} tidy={tidy} />}
         </div>
-      </div>
+      </ShowRest>
     </article>
   )
 }
@@ -278,49 +317,59 @@ function Quotation({ hit, onGo, accent, tidy }) {
  * used to keep called a 330-character line long on a phone and on a desktop
  * alike, where it is four lines and one.
  */
-function Passage({ text, accent, tidy = false, arabic = false }) {
+function Passage({ text, tidy = false, arabic = false }) {
   // A dictionary entry arrives with the marks its own dump wrote into it.
   // Every other book passes through untouched, none of them carrying those
   // marks in the first place.
   const said = plainEntry(text, { tidy })
 
-  return (
-    <ShowRest lines={4} accent={accent}>
-      {arabic && mostlyArabic(said) ? (
-        <ArabicText size="lg" className="block leading-loose whitespace-pre-line">{said}</ArabicText>
-      ) : (
-        <p className="type-body text-[var(--text-dim)] leading-relaxed whitespace-pre-line">
-          {said}
-        </p>
-      )}
-    </ShowRest>
+  return arabic && mostlyArabic(said) ? (
+    <ArabicText size="lg" className="block leading-loose whitespace-pre-line">{said}</ArabicText>
+  ) : (
+    <p className="type-body text-[var(--text-dim)] leading-relaxed whitespace-pre-line max-w-prose">
+      {said}
+    </p>
   )
 }
 
+const bookOf = (hit) => hit.source?.key ?? 'unknown'
+
 /**
- * Hits grouped by book, books in the order sources.json lists them.
+ * Hits in book order, books in the order sources.json lists them, each book's
+ * own hits in the order the search returned them.
  *
  * The order is fixed rather than by how well each book scored, because the two
  * differ and the fixed one is the useful one. On a misspelling every book can
  * match about equally well, and ordering by score put a dictionary idiom above
  * al-Fatihah purely because it was the shorter line.
  */
-function groupByBook(hits, order) {
-  const books = new Map()
-  for (const hit of hits) {
-    const key = hit.source?.key ?? 'unknown'
-    if (!books.has(key)) books.set(key, [])
-    books.get(key).push(hit)
-  }
-
+function inBookOrder(hits, order) {
   const rank = new Map(order.map((source, n) => [source.key, n]))
-  return [...books.entries()].sort(
-    ([a], [b]) => (rank.get(a) ?? 99) - (rank.get(b) ?? 99),
-  )
+  return hits.map((hit, n) => [hit, n])
+    .sort(([a, i], [b, j]) => (rank.get(bookOf(a)) ?? 99) - (rank.get(bookOf(b)) ?? 99) || i - j)
+    .map(([hit]) => hit)
 }
 
-/** "2:255" is somewhere the Quran tab can open; "§1.4.4" and a root are not. */
-const isAyah = (locator) => /^\d+:\d+$/.test(locator)
+/** Each shelf the hits are on, in the order they first appear, with how many each holds. */
+function countShelves(hits, shelfOf) {
+  const counted = new Map()
+  for (const hit of hits) {
+    const shelf = shelfOf.get(hit.source?.key)
+    if (shelf) counted.set(shelf, (counted.get(shelf) ?? 0) + 1)
+  }
+  return [...counted.entries()]
+}
+
+/**
+ * The ayah a citation points at, "2:255", or null. A translation or a tafsir
+ * cites one after its own name ("Saheeh International 18:68"), so the ayah is
+ * read off the end, and only one that is really in the Qur'an counts: a
+ * section mark or a root is no place the Quran tab can open.
+ */
+function ayahIn(locator) {
+  const [, surah, ayah] = /(?:^|\s)(\d+):(\d+)$/.exec(locator ?? '') ?? []
+  return surah && isAyah({ surah: Number(surah), ayah: Number(ayah) }) ? `${surah}:${ayah}` : null
+}
 
 /**
  * Where a passage came from. An ayah reference like 2:45 is a number and reads

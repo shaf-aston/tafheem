@@ -225,6 +225,10 @@
     "_comment": "The shelf of classical dictionaries under a root. entry-h is how much of an entry is shown before the rest is folded behind Show all: Taj al-Arus on أمر is 23,000 letters, and printed whole one book would bury the three under it. Enough to tell whether this is the entry wanted, not enough to be a wall. In rem, so a browser's own text setting moves it with the words.",
     "entry-h": "13rem"
   },
+  "daleel": {
+    "_comment": "Daleel's passage cards. passage-h is how much of a passage shows before the rest folds behind Show all: one fold for the whole card, Arabic and English together, in rem so it is about three lines of the Arabic it quotes however small the English beside it is. Counted in the English's lines it cut the Arabic to one line on a phone.",
+    "passage-h": "11rem"
+  },
   "command": {
     "_comment": "The command line: the bar in the header and the orbit launcher behind the pen. rest-w is how wide the bar sits when nobody is using it and open-w how wide it grows on focus, both in rem, so a longer placeholder needs a number changed here and not a class edited. orbit-r is the radius the seven tabs sit at in the launcher, sat-w the width of one of them, and rail-w the strip of letters beside a result list. hint is the keys line under the launcher's ring, which sits straight on the modal's scrim rather than on a card: quiet on a dark scrim, but a light look's scrim is a mid grey that only full ink reads on.",
     "rest-w": "13.5rem",
