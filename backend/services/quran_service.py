@@ -20,6 +20,7 @@ import httpx
 
 from backend.config import get_settings
 from backend.services import quran_corpus, quran_layout, quran_meanings, roots
+from backend.services.arabic_text import mushaf_words
 
 logger = logging.getLogger(__name__)
 
@@ -81,9 +82,18 @@ def get_ayah(surah: int, ayah: int) -> dict | None:
 
     english = _translations(surah, ayah)
     uthmani = quran_meanings.uthmani_for_ayah(surah, ayah)
+    nexts = quran_corpus.words_for_ayah(surah, ayah + 1)
+    then = nexts[0]["arabic"] if nexts else _BASMALA if surah < 114 else ""
+    spelt = mushaf_words([word["arabic"] for word in words], then)
+    printed = mushaf_words([uthmani.get(index, "") for index in range(1, len(words) + 1)], then)
     for index, word in enumerate(words, start=1):
         word["meaning"] = english.get(index, "")
-        word["uthmani"] = uthmani.get(index, "") or None
+        word["uthmani"] = printed[index - 1] or None
+        # The word's pieces see what it sees: the ending holds the tanween.
+        following = spelt[index] if index < len(words) else then
+        word["arabic"] = spelt[index - 1]
+        for piece in word["segments"]:
+            piece["arabic"] = mushaf_words([piece["arabic"]], following)[0]
     return {"words": words, "end_mark": quran_meanings.ayah_end_mark(surah, ayah)}
 
 
@@ -116,6 +126,10 @@ def as_printed(text: str, printed: dict[int, str]) -> str:
     )
 
 
+# What is read after a surah's last ayah: the next surah's opening.
+_BASMALA = "بِسْمِ"
+
+
 def get_surah(surah: int) -> dict | None:
     """A whole surah in one go, or None if there is no such surah.
 
@@ -137,6 +151,12 @@ def get_surah(surah: int) -> dict | None:
     # checks for that rather than being handed an estimate dressed up as a fact.
     pages = quran_layout.for_surah(surah)
 
+    # Each ayah in the mushaf's spelling, then its tanween meems settled with
+    # the next ayah in view (arabic_text.mushaf_words).
+    spelt = [as_printed(text, printed.get(number, {})) for number, text in ayahs]
+    after = [*spelt[1:], _BASMALA if surah < 114 else ""]
+    spelt = [" ".join(mushaf_words(line.split(" "), then)) for line, then in zip(spelt, after)]
+
     return {
         "surah": surah,
         "name_en": named.get("name_en", ""),
@@ -145,11 +165,11 @@ def get_surah(surah: int) -> dict | None:
         "ayahs": [
             {
                 "ayah": number,
-                "arabic": as_printed(text, printed.get(number, {})),
+                "arabic": line,
                 "page": pages.get(number),
                 "english": " ".join(english.get(number, {}).values()),
             }
-            for number, text in ayahs
+            for (number, _), line in zip(ayahs, spelt)
         ],
     }
 

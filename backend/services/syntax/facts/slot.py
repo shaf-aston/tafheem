@@ -154,8 +154,8 @@ def verb_place(token: dict, s: Sentence) -> str:
     if head and not is_verb(head) and works_as_verb(head):
         if _object_of_participle(token, head, s):
             return "object"
-        if _doer_of_describer(token, head, s):
-            return "subject"
+        if _doer_of_describer(token, head, s) or (s.described_doer and [head, token] == list(s.described_doer[1:])):
+            return "subject"  # its فاعل, standing in for the khabar
     if head and is_verb(head):
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
@@ -260,6 +260,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     rel = token["rel"]
     if s.hijazi and token in s.hijazi[1:]:
         return "subject" if token is s.hijazi[1] else "predicate"
+    if s.described_doer and token is s.described_doer[1]:
+        return "subject"  # ما ذاهبٌ المسلمون: the وصف is the mubtada, before ما is asked of it
     if s.asked_pair and token in s.asked_pair:
         return "subject" if token is s.asked_pair[0] else "predicate"
     if praised_noun(token, s):

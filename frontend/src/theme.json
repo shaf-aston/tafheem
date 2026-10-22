@@ -285,6 +285,8 @@
     "settle-ease": "cubic-bezier(.22,1,.36,1)",
     "_slide_comment": "A step sideways: the next page, or a strip arriving from the edge, and the same step back as it leaves. slide-px is how far it travels, slide-ease how it settles.",
     "slide-px": 40,
+    "_nudge_comment": "nudge-px is how far a thing leans under the pointer, a hint it is live rather than a move: a word meaning in the Quran reader (styles/components.css .gloss-all).",
+    "nudge-px": 3,
     "slide-ease": "cubic-bezier(.2,.8,.2,1)",
     "_patience_comment": "Not an animation: how a wait is announced. Nothing is said for the first patience-ms, because an answer that arrives sooner than that has arrived at once as far as the eye is concerned, and a spinner shown and taken away inside a fifth of a second reads as a flash rather than as news. Once something has been said it stays for patience-hold-ms, so an answer landing just after the wait was announced does not snatch it away again. Read in JavaScript by lib/useSlowPending.js, not by the stylesheet, so the Animations setting leaves it alone.",
     "patience-ms": 250,
@@ -418,6 +420,16 @@
     "stage-rem": 3,
     "line-height": 1.9,
     "input-line-height": 1.6
+  },
+  "mushaf": {
+    "_comment": "The Qur'an reader's page view (components/quran/MushafPage). A printed line is drawn as one row and keeps the print's words, so each page sets one font size: the largest at which its longest line still fits. measure-px is the size a line is measured at, gap-em the room between words, fill how much of the width a line spreads across (a short line on the framed first two pages sits in the middle, at centred-fill), page the widest a page stands.",
+    "measure-px": 40,
+    "gap-em": 0.22,
+    "fill": 1,
+    "centred-fill": 0.62,
+    "line-height": 2.05,
+    "name-em": 0.8,
+    "page": "36rem"
   },
   "urdu": {
     "_comment": "Urdu rides the Arabic ladder above; only what genuinely differs is here. Nastaliq slopes each word down to the left, so a line needs far more room under it than Naskh does, and two lines set at the Arabic height overlap. Raise this if descenders touch the line below; styles/text.css swaps it in wherever lang=\"ur\".",

@@ -28,7 +28,7 @@ function Growth({ rewards }) {
   const rank = rankOf(rewards.level)
   return (
     <dl className="grow-stats">
-      <div className="grow-stat grow-stat-wide">
+      <div className="grow-stat grow-stat-wide rise-in">
         <dt>{say('Level {level}', { level: rewards.level })}</dt>
         <dd>
           <span>{rank.en} <ArabicText size="sm">{rank.ar}</ArabicText></span>
@@ -36,7 +36,7 @@ function Growth({ rewards }) {
           <span className="grow-stat-small tabular-nums">{say('{into} / {need} XP to the next level', rewards)}</span>
         </dd>
       </div>
-      <div className="grow-stat">
+      <div className="grow-stat rise-in">
         <dt>{say('Streak')}</dt>
         <dd className="tabular-nums">{rewards.streak === 1 ? say('1 day') : say('{n} days', { n: rewards.streak })}</dd>
       </div>
@@ -51,7 +51,7 @@ function Goal({ xpToday }) {
   const goal = Number(picked)
   const met = xpToday >= goal
   return (
-    <div className="grow-stat" data-met={met ? '' : undefined}>
+    <div className="grow-stat rise-in" data-met={met ? '' : undefined}>
       <dt>{say('Daily goal')}</dt>
       <dd>
         <span className="tabular-nums">{met ? say('Met · {xp} XP', { xp: xpToday }) : say('{xp} / {goal} XP', { xp: xpToday, goal })}</span>
@@ -72,7 +72,7 @@ function Goal({ xpToday }) {
 /** One world's next step, under today's lesson: its name, where it is up to, the item itself. */
 function NextStep({ world, where, line, onGo }) {
   return (
-    <button type="button" className="grow-next" style={{ '--w': world.accent }} onClick={onGo}>
+    <button type="button" className="grow-next rise-in" style={{ '--w': world.accent }} onClick={onGo}>
       <ArabicText className="grow-next-ar">{world.arabic}</ArabicText>
       <span className="grow-next-text">
         <b>{world.name} · {where}</b>
@@ -104,7 +104,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const partOf = (book) => book.parts.find((part) => part.id === book.next.part)?.title
   const accent = worldOf(lead ?? 'words').accent
   return (
-    <section className="grow-today" style={{ '--w': accent }} aria-labelledby="grow-today-h">
+    <section className="grow-today rise-in" style={{ '--w': accent }} aria-labelledby="grow-today-h">
       <span className="grow-today-art" aria-hidden="true"><Emblem id={lead ?? 'words'} /></span>
       {lead ? (
         <>

@@ -1,12 +1,13 @@
 """ما/مَن heading a verbless sentence, and the active participle the dictionary lacks."""
 import pytest
 
-from backend.services import iraab, noun_reader
-from tests.nahw_helpers import needs_parser
+from backend.services import morphology, noun_reader
+from backend.services.syntax.facts import Sentence
+from tests.nahw_helpers import analyze, needs_parser
 
 
 def _roles(sentence):
-    return [w["role"] for w in iraab.analyze(sentence)["words"]]
+    return [w["role"] for w in analyze(sentence)["words"]]  # by the rules, never a stored record
 
 
 @needs_parser
@@ -94,3 +95,72 @@ def test_hasr_khabar_needs_each_of_its_parts(change, moved):
         words[1].update(pos="PRT", pos_camel="part")
     hasr_khabar(words)
     assert (told["head"] == 0) is moved
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, roles", [
+    ("مَا ذَاهِبٌ الْمُسْلِمُونَ", ["حرف", "مبتدأ", "فاعل"]),
+    ("أَذَاهِبٌ زَيْدٌ", ["مبتدأ", "فاعل"]),  # the question hamza written onto the وصف
+    ("هَلْ نَاجِحٌ أَخُوكَ", ["حرف", "مبتدأ", "فاعل"]),
+    # not a مبتدأ وصف: ما الحجازية with its khabar in nasb, and a question noun before a pronoun
+    ("مَا زَيْدٌ ذَاهِبًا", ["حرف", "اسم كان", "خبر كان"]),
+    ("مَا هِيَ", ["مبتدأ", "خبر"]),
+])
+def test_a_wasf_after_negation_or_question_is_the_mubtada(sentence, roles):
+    assert _roles(sentence) == roles
+
+
+@needs_parser
+def test_the_doer_of_a_wasf_stands_in_for_the_khabar():
+    assert analyze("مَا ذَاهِبٌ الْمُسْلِمُونَ")["words"][2]["reason"].endswith("فاعل سدّ مسدّ الخبر")
+
+
+def _clause(lead="ما", wasf=None, doer=None, after=None):
+    words = [_tok(1, lead, "PRT", 2, "MOD"),
+             _tok(2, "ذاهب", "NOM", 0, "---", **{"pos_camel": "adj", "ud": "ADJ", "num": "s", **(wasf or {})}),
+             _tok(3, "زيد", "PROP", 2, "SBJ", **(doer or {}))]
+    if after:
+        words.append(_tok(4, "ذهب", "VRB", 2, "MOD"))
+    return words
+
+
+@pytest.mark.parametrize("kw, found", [
+    ({}, True),
+    ({"lead": "في"}, False),                      # no negation or question before it
+    ({"wasf": {"num": "p"}}, False),             # أقائمون الزيدون: plural, so the khabar
+    ({"wasf": {"stt": "d"}}, False),             # with ال it is no وصف at work
+    ({"wasf": {"pos_camel": "noun", "ud": "NOUN"}}, False),  # a plain noun describes nothing
+    ({"wasf": {"cas": "a", "case": "a"}}, False),  # not in raf'
+    ({"doer": {"cas": "g", "case": "i"}}, False),   # the doer is in raf'
+    ({"after": True}, False),                     # a verb in the clause
+])
+def test_described_doer_needs_each_of_its_parts(kw, found):
+    s = Sentence(_clause(**kw))
+    assert (s.described_doer is not None) is found
+
+
+@needs_parser
+def test_question_hamza_split_only_off_the_first_word_that_needs_it():
+    first = morphology.pick(["أَذَاهِبٌ", "زَيْدٌ"])[0]
+    assert (first["prc3"], first["atbtok"]) == ("Aa_ques", "أَ+_ذاهِبٌ")
+    assert morphology.pick(["أَمِنَ", "زَيْدٌ"])[0].get("prc3") != "Aa_ques"  # read whole, though مِنَ is a word
+    assert morphology.pick(["زَيْدٌ", "أَذَاهِبٌ"])[1].get("prc3") != "Aa_ques"  # only a sentence's first word
+
+
+@needs_parser
+@pytest.mark.parametrize("words, verb", [
+    (["نصر", "زيد", "بكرا"], True),        # the written alif of nasb tanween needs an عامل
+    (["نصر", "زيد"], False),               # nothing in nasb: نَصْرُ زيدٍ stands
+    (["نَصْرُ", "زَيْدٍ", "بَكْرًا"], False),  # typed vowels choose, not this rule
+    (["ما", "زيد", "ذاهبا"], False),       # a particle is there to work the nasb
+    (["يا", "نصر", "بكرا"], False),        # يا works it (منادى), nothing else need be a verb
+    (["نصر", "عصا"], False),               # the alif is عصا's own letter, no nasb to work
+])
+def test_a_bare_first_word_is_the_verb_a_written_nasb_needs(words, verb):
+    assert ("verb" in [r.get("pos") for r in morphology.pick(words)]) is verb
+
+
+@needs_parser
+def test_the_verb_is_the_plainest_reading_before_the_nasb():
+    assert [r.get("pos") for r in morphology.pick(["زيد", "نصر", "بكرا"])][:2] == ["noun_prop", "verb"]
+    assert [r.get("pos") for r in morphology.pick(["نصر", "نصر", "بكرا"])][:2] == ["verb", "noun_prop"]  # one عامل

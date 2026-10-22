@@ -89,7 +89,8 @@ def _kind(token: dict, s: Sentence) -> str:
         return token["reading"]["kind"]  # إذا before a verb is a ظرف, أَلَا a حرف
     if negates(token, s):
         return "harf"
-    if token["pos"] == "PRT" or joins_clauses(token, s) or (s.hijazi and token is s.hijazi[0]):
+    if token["pos"] == "PRT" or joins_clauses(token, s) or (s.hijazi and token is s.hijazi[0]) \
+            or (s.described_doer and token is s.described_doer[0]):  # ما ذاهبٌ المسلمون: ما negates
         return "harf"
     if calling_head(token, s):
         return "ism"

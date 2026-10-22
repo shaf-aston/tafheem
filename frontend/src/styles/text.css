@@ -79,6 +79,13 @@
 .arabic-lg {
   font-size: calc(var(--arabic-display-rem) * 1rem);
 }
+
+
+/* A tab title's Arabic (ui/SectionHeader): from a tablet up the English steps
+   up to the display rung (md:text-3xl), so its Arabic takes the display rung too. */
+@media (min-width: 48rem) {
+  .section-title-ar { font-size: calc(var(--arabic-display-rem) * 1rem); }
+}
 /* On a tab tile (.tile-wash, a size container), a long name (الحديث, التاريخ)
    shrinks to fit a phone's tile instead of running out of it. */
 .tile-wash .arabic-lg { font-size: min(calc(var(--arabic-display-rem) * 1rem), 30cqi); }

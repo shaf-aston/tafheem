@@ -11,7 +11,9 @@
  * nothing is "on", leaves it undefined and no state is announced.
  *
  * `tinted` is the filter-row look: no surface behind it, and the chosen one
- * filled with its own accent rather than only outlined. The tarkeeb filters
+ * filled with its own accent rather than only outlined. Its hover is a plain
+ * edge, never the accent: a chip just turned off, still under the pointer, read
+ * as on. The tarkeeb filters
  * had this as a second Chip of their own until it moved here.
  *
  * `quiet` is the Recent-searches look: a row of things already done, which sits
@@ -81,7 +83,8 @@ export default function Chip({
       className={`press tap type-small leading-none rounded-full transition-colors
         inline-flex items-center justify-center shrink-0 whitespace-nowrap max-w-full
         h-[var(--layout-chip)] disabled:opacity-40
-        hover:border-[var(--c)] hover:text-[var(--text)] disabled:hover:border-[var(--border)]
+        hover:text-[var(--text)] disabled:hover:border-[var(--border)]
+        ${tinted ? 'hover:border-[var(--border-hi)]' : 'hover:border-[var(--c)]'}
         ${quiet
           ? 'px-2 border border-[var(--border)] text-[var(--text-faint)]'
           : 'px-2.5 border border-[var(--border)] text-[var(--text-dim)]'}

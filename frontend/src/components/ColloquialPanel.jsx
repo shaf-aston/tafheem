@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import { colloquialQuery, colloquialUnitQuery } from '../api'
 import { Accent } from '../lib/accent'
 import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf, unitNumber } from '../lib/colloquialPlace'
+import { TABS } from '../lib/tabs'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
 import { colorAt, colorFor } from '../theme'
@@ -28,6 +29,8 @@ import SpeakButton from './ui/SpeakButton'
 import WheelPicker from './ui/WheelPicker'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
+const BLURB = TABS.find((t) => t.id === 'colloq')?.blurb
+
 // "16 of 19 units": the list below shows the unwritten ones too, marked Coming.
 const unitsNote = (units) => {
   const written = units.filter((u) => u.written).length
@@ -37,7 +40,7 @@ const unitsNote = (units) => {
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
 // Without onClick it is a unit or topic this dialect has not written yet: shown, not openable.
 // With `twin` it is two halves joined, each its own way in: a topic's phrases and its words.
-function Lines({ hue, kicker, title, arabic, note, more }) {
+function Lines({ hue, kicker, title, gloss, arabic, note, more }) {
   return (
     <>
       <span className="flex items-baseline justify-between gap-3">
@@ -45,6 +48,7 @@ function Lines({ hue, kicker, title, arabic, note, more }) {
         {arabic && <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text-dim)]">{arabic}</span>}
       </span>
       <span className="block type-ui font-semibold text-[var(--text)] mt-1">{title}</span>
+      {gloss && <i className="block type-small text-[var(--text-dim)]">{gloss}</i>}
       {note && <span className="block type-small text-[var(--text-faint)] mt-1">{note}</span>}
       {more && <span className="block mt-2">{more}</span>}
     </>
@@ -216,24 +220,25 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   return (
     <Accent.Provider value={dialect?.key ?? null}>
     <div className="panel">
-      <SectionHeader tab="colloq" subtitle={dialect?.where ?? 'Spoken, everyday Arabic.'}
+      <SectionHeader tab="colloq" subtitle={dialect ? [dialect.gloss, dialect.where].filter(Boolean).join(' · ') : BLURB}
         nameOf={(q) => nameOfPlace(q, dialects)} history={false} />
       {catalogue.isPending && <AnalyzerSkeleton />}
       {catalogue.isError && <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={catalogue.error} onRetry={catalogue.refetch} />}
-      {catalogue.data && (
+      {/* At the top the subtitle already says these are the dialects: the trail starts one step down. */}
+      {catalogue.data && dialect && (
         <div className="flex flex-wrap items-center gap-3 pb-5 border-b border-[var(--border)]">
           <Trail steps={steps} />
-          {dialect && dialects.length > 1 && <Switch dialects={dialects} current={dialect.key} onPick={(key) => go(switchPlace(place, key, dialects))} />}
+          {dialects.length > 1 && <Switch dialects={dialects} current={dialect.key} onPick={(key) => go(switchPlace(place, key, dialects))} />}
         </div>
       )}
 
       {catalogue.data && !dialect && (
         <Grid>
           {dialects.map((d, i) => (
-            <Card key={d.key} index={i} hue={colorFor('tab', 'colloq')} kicker={d.where} title={d.label} arabic={d.arabic}
+            <Card key={d.key} index={i} hue={colorFor('tab', 'colloq')} kicker={d.where} title={d.label} gloss={d.gloss} arabic={d.arabic}
               note={unitsNote(d.units)} onClick={() => go({ dialect: d.key })}
-              more={<CountryIcons codes={d.countries} hue={colorFor('tab', 'colloq')} />}
-              picture={<CountryMap codes={d.countries} cities={d.cities} hue={colorFor('tab', 'colloq')} className="w-32 shrink-0" />} />
+              more={<CountryIcons codes={d.countries} />}
+              picture={<CountryMap codes={d.countries} cities={d.cities} hue={colorFor('tab', 'colloq')} className="w-24 sm:w-32 shrink-0" />} />
           ))}
         </Grid>
       )}

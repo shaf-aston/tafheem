@@ -18,16 +18,17 @@ describe('CountryMap', () => {
 })
 
 describe('CountryIcons', () => {
-  it('names each country beside its outline', () => {
-    const html = renderToStaticMarkup(<CountryIcons codes={['KW', 'QA']} hue="#c80" />)
+  it('names each country beside its flag', () => {
+    const html = renderToStaticMarkup(<CountryIcons codes={['KW', 'QA']} />)
     expect(html).toContain('Kuwait')
     expect(html).toContain('Qatar')
-    expect(html.match(/<svg/g)).toHaveLength(2)
+    expect(html.match(/<img/g)).toHaveLength(2)
   })
 
-  it('past the most, says how many instead', () => {
-    const html = renderToStaticMarkup(<CountryIcons codes={['EG', 'SY', 'LB', 'IQ', 'YE']} hue="#c80" />)
+  it('past the most, the flags alone and how many', () => {
+    const html = renderToStaticMarkup(<CountryIcons codes={['EG', 'SY', 'LB', 'IQ', 'YE']} />)
     expect(html).toContain('5 countries')
-    expect(html).not.toContain('<svg')
+    expect(html.match(/<img/g)).toHaveLength(5)
+    expect(html).not.toContain('Egypt')
   })
 })

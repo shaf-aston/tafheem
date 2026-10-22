@@ -13,6 +13,7 @@
  */
 import theme from './theme.json'
 import { tonePalette } from './lib/tone'
+import { colorScheme } from './lib/colorScheme'
 
 const UNPREFIXED_GROUP = 'color'
 const PRIVATE_KEY = '_'
@@ -134,7 +135,7 @@ export function applyTheme(root = document.documentElement, name = BASE_THEME) {
   const doc = root.ownerDocument
   if (!doc) return
   root.dataset.theme = active
-  root.style.colorScheme = schemeOf(active)
+  root.style.colorScheme = colorScheme(schemeOf(active))
   doc.querySelector('meta[name="theme-color"]')?.setAttribute('content', variables['--bg'])
 }
 

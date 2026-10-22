@@ -43,11 +43,12 @@
   "mushaf": {
     "label": "Madani mushaf layout",
     "confidence": "verified",
-    "detail": "Page breaks of the 604-page, 15-line Madani printing, from Quran.com",
+    "detail": "Page and line breaks of the 604-page, 15-line Madani 1421 printing (KFGQPC V2), with the King Fahd Complex's Unicode text for its QPC Hafs font, from Quran.com. The font is the Complex's, served unmodified",
     "url": "@quran.com",
-    "where": "Page each ayah starts on, 604-page Madani. Stored locally.",
+    "where": "Page each ayah starts on (Memorise) and every line of every page (the Quran reader's page view), 604-page Madani. Stored locally.",
     "used_in": [
-      "mem"
+      "mem",
+      "quran"
     ]
   },
   "tafsir": {

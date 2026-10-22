@@ -182,3 +182,25 @@ def shown_root(text: str | None) -> str:
     letter or # is dropped whole rather than trimmed to its Arabic letters.
     """
     return "" if not text or _NOT_A_ROOT_RE.search(text) else normalize_root(text)
+
+
+# A small meem (U+06E2 above, U+06ED below) written straight after a tanween.
+_TANWEEN_MEEM_RE = re.compile("([ً-ٍ])[ۭۢ]")
+
+
+def mushaf_words(words: list[str], then: str = "") -> list[str]:
+    """An ayah's words as the Madinah mushaf prints them.
+
+    The corpus and Quran.com's word list put a small meem after nearly every
+    tanween (4,807 of them) to tag how it is said, and a font draws each one as
+    a stray letter: إِثْمًۭا. The mushaf prints that meem only for iqlab, where
+    the next word starts with ب (سَمِيعًۢا بَصِيرًا), so that is the one kept.
+    A stop sign held to its word (غُلْفٌۢ ۚ) does not hide the ب after it.
+    `then` is what is read next, so the ayah's last word sees it too: the next
+    ayah, or the next surah's بِسْمِ (أَحَدٌۢ at the end of al-Ikhlas).
+    Checked against Quran.com's whole-ayah text: the same meems on every ayah.
+    """
+    return [
+        word if following.startswith("ب") else _TANWEEN_MEEM_RE.sub(r"\1", word)
+        for word, following in zip(words, [*words[1:], then])
+    ]

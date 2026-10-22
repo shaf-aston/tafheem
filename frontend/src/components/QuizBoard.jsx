@@ -9,7 +9,6 @@ import AutoAdvanceToggle from './ui/AutoAdvanceToggle'
 import NoteBadge, { NoteReason } from './ui/NoteBadge'
 import SoundedWrong from './ui/SoundedWrong'
 import SpeakButton from './ui/SpeakButton'
-import { spelled } from '../lib/spell'
 
 // Arabic and Urdu are both read right to left and both go through ArabicText;
 // English is the only side that is plain Latin text. So what each side needs
@@ -117,10 +116,6 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
             ))}
             {/* Only the Arabic prompt: speaking an Arabic answer option would give it away. */}
             {(shown.listen || arabicPrompt) && <SpeakButton key={shown.answerId} ref={speakRef} shortcut="S" early text={shown.listen ? shown.say : shown.prompt} />}
-            {(shown.listen || arabicPrompt) && (
-              <SpeakButton key={`spell-${shown.answerId}`} text={spelled(shown.listen ? shown.say : shown.prompt)}
-                label={say('Letter by letter')} glyph={<span lang="ar" className="text-[11px] leading-none">ا ب</span>} />
-            )}
           </div>
           {(shown.listen || arabicPrompt) && <div><SoundedWrong key={shown.answerId} /></div>}
         </div>

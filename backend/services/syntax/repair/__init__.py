@@ -14,7 +14,7 @@ from backend.services.syntax.repair.asked import asked_man
 from backend.services.syntax.repair.called import called
 from backend.services.syntax.repair.dua import counted_times, dua_clause
 from backend.services.syntax.repair.hal import hal_clause
-from backend.services.syntax.repair.khabar import after_pointer, before_la, hasr_khabar, object_of_noun, second_khabar
+from backend.services.syntax.repair.khabar import after_pointer, before_la, described_doer, hasr_khabar, object_of_noun, second_khabar
 from backend.services.syntax.repair.nasab import nasab
 from backend.services.syntax.repair.subject_clash import doer_after_object, kana_subject, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair
 from backend.services.syntax.repair.typed import since_jarr, typed_words
@@ -40,6 +40,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         second_khabar(tokens)
         before_la(tokens)
         hasr_khabar(tokens)
+        described_doer(tokens)
         hal_clause(bases, tokens)
         nasab(bases, tokens)
         untied_command(tokens)

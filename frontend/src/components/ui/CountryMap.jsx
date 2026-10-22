@@ -2,18 +2,21 @@
  * A small map of where something is spoken or found: its countries in the
  * card's hue among faint neighbours, with a dot on each named city.
  *
- * CountryMap is the picture; CountryIcons is the row of tiny outlines with
+ * CountryMap is the picture; CountryIcons is the row of tiny flags with
  * names that says which countries, for a card's side. Both take ISO alpha-2
  * codes, so the places live in data (colloquial/dialects.json), not here.
+ * The flags are data/countryFlags.json (scripts/countryFlags.mjs).
  * The outlines are data/countryShapes.json (scripts/countryShapes.mjs); land
  * and borders wear the Timelines map's colours, so every map reads alike.
  */
 import { useId } from 'react'
 
+import flagFile from '../../data/countryFlags.json'
 import shapes from '../../data/countryShapes.json'
 import { project, touches, viewOf } from '../../lib/countryMap'
 
 const { countries } = shapes
+const { flags } = flagFile
 const tint = (hue, pct) => `color-mix(in oklab, ${hue} ${pct}%, transparent)`
 // 4 wide to 3 high: the Arab world is wide, and a square left Fusha's map a strip.
 const ASPECT = 4 / 3
@@ -56,25 +59,34 @@ export function CountryMap({ codes = [], cities = [], hue, className = '' }) {
   )
 }
 
-/** Each country as a tiny outline and its name; past `most`, just how many. */
-export function CountryIcons({ codes = [], hue, most = 4 }) {
+// A flag the size of a letter; as an image, so no two flags' inner ids can collide.
+function Flag({ code }) {
+  if (!flags[code]) return null
+  return (
+    <img src={`data:image/svg+xml,${encodeURIComponent(flags[code])}`} alt="" aria-hidden="true"
+      className="h-2.5 aspect-[3/2] shrink-0 rounded-[2px] shadow-[0_0_0_1px_var(--border)]" />
+  )
+}
+
+/** Each country as a tiny flag and its name; past `most`, the flags alone and how many. */
+export function CountryIcons({ codes = [], most = 4 }) {
   const known = codes.filter((c) => countries[c])
   if (known.length > most) {
-    return <span className="type-small text-[var(--text-faint)]">{known.length} countries</span>
+    return (
+      <span className="flex flex-wrap items-center gap-1 type-small text-[var(--text-faint)]">
+        <span className="w-full">{known.length} countries</span>
+        {known.map((code) => <Flag key={code} code={code} />)}
+      </span>
+    )
   }
   return (
     <ul className="flex flex-wrap gap-x-3 gap-y-1 type-small text-[var(--text-faint)]">
-      {known.map((code) => {
-        const c = countries[code]
-        return (
-          <li key={code} className="flex items-center gap-1.5">
-            <svg viewBox={viewOf([c.box], [], { pad: 0.04, least: 0 }).join(' ')} aria-hidden="true" className="size-3.5 shrink-0">
-              <path d={c.d} fill={hue} />
-            </svg>
-            {c.name}
-          </li>
-        )
-      })}
+      {known.map((code) => (
+        <li key={code} className="flex items-center gap-1.5">
+          <Flag code={code} />
+          {countries[code].name}
+        </li>
+      ))}
     </ul>
   )
 }

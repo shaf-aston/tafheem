@@ -32,6 +32,7 @@ from backend.services.username import GUEST
 CACHEABLE = re.compile(
     r"/api/(?:"
     r"quran/surah/\d+(?:/glosses)?"
+    r"|quran/similar/(?:surah/\d+|\d+/\d+)"
     r"|quran/editions/surah/\d+"
     r"|hadith/collections"
     r"|hadith/[^/]+/books(?:/\d+)?"

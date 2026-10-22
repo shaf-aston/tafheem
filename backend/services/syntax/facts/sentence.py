@@ -43,7 +43,23 @@ class Sentence:
         self._family: dict[int, str | None] = {}
         self.governed_by: dict[int, int] = {}  # token id -> the id of the word that governs it
         self.hijazi = self._hijazi()
+        self.described_doer = self._described_doer()
         self.asked_pair = self._asked_pair()
+
+    def _described_doer(self) -> tuple[dict, dict, dict] | None:
+        """(the negation or question particle, the وصف, its doer) of the مبتدأ وصف: a singular describing word straight after a
+        negation or a question word, then a raf' noun, is the mubtada and that noun its فاعل,
+        which stands in for the khabar (Alfiyya: وأوّلٌ مبتدأ والثاني فاعلٌ اغنى؛ ما ذاهبٌ
+        المسلمون، أقائمٌ الزيدان). Dual or plural and agreeing (أقائمون الزيدون), the noun is the
+        mubtada and the وصف its khabar (إن في سوى الإفراد طِبقًا استقر), left to the other rules."""
+        words = [t for t in self.tokens if not is_suffix(t)]
+        return next(((lead, wasf, doer) for lead, wasf, doer in zip(words, words[1:], words[2:])
+                     if (is_one(lead["lemma"], "negation") or is_one(lead["lemma"], "istifham"))
+                     and not any(is_verb(t) for t in words[words.index(lead):])
+                     and is_participle(wasf) and wasf.get("stt") == "i" and wasf.get("num") in ("s", None)
+                     and typed_or_parsed_case(wasf) in ("u", None)
+                     and doer["pos"] in ("NOM", "PROP") and not is_preposition(doer)
+                     and typed_or_parsed_case(doer) in ("u", None)), None)
 
     def _asked_pair(self) -> tuple[dict, dict] | None:
         """(the question noun, the noun after it) when a question noun that is no ظرف or hal
@@ -54,7 +70,7 @@ class Sentence:
         return next(((asked, told) for asked, told in zip(words, words[1:])
                      if not any(is_verb(t) for t in words[words.index(asked):])
                      and read_as(asked, "istifham") and is_one(asked["lemma"], "istifham", "heads")
-                     and told["pos"] == "NOM" and not is_preposition(told)), None)
+                     and told["pos"] == "NOM" and not is_preposition(told)), None)  # ما ذاهبٌ المسلمون: ما negates
 
     def _hijazi(self) -> tuple[dict, dict, dict] | None:
         """(ما, its ism, its khabar) of ما الحجازية, which works like ليس (Tasheel 1.9 n6
