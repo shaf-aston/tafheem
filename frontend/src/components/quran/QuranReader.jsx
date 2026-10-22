@@ -16,6 +16,7 @@
  */
 import { learntWords } from '../../lib/coverage'
 import { FIRST_SURAH, LAST_SURAH } from '../../lib/surahRef'
+import { useMushaf } from '../../lib/useMushaf'
 import { useSurahPlace } from '../../lib/useSurahPlace'
 import { useSurahReading } from '../../lib/useSurahReading'
 
@@ -23,6 +24,7 @@ import AyahList from './AyahList'
 import AyahRail from './AyahRail'
 import AyahRow from './AyahRow'
 import AyahStudy from './AyahStudy'
+import MushafPages from './MushafPages'
 import RecitationBar, { Glyph, PLAY } from './RecitationBar'
 import SplitBar from './SplitBar'
 import { NoTouchButton, ScrollPad } from './NoTouchReading'
@@ -52,6 +54,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
     twoPanes, stacked, list, here, setHere, tapped, panes, share, setShare,
     goTo, open, shut, changeSurah, swipe, slide, sheet,
   } = useSurahPlace(place, data, onPlace, onClose)
+  const mushaf = useMushaf()
 
   const study = ayah && (
     <AyahStudy key={`${surah}:${ayah}`} surah={surah} ayah={ayah} onGo={onGo} onClose={shut} accent={accent} sheet={sheet || undefined} />
@@ -82,6 +85,11 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
     />
   )
 
+  // Ayahs or the pages of a printed mushaf: offered only once a printing is built.
+  const layouts = mushaf.choices.length > 0 && (
+    <Segmented label="Layout" options={mushaf.choices} value={mushaf.layout} onChange={mushaf.choose} accent={accent} />
+  )
+
   return (
     <div {...swipe} style={{ '--c': accent }} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] overflow-clip">
       <header className="flex items-center gap-2 sm:gap-3 flex-wrap p-3 sm:p-4 border-b border-[var(--border)]">
@@ -105,9 +113,10 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         )}
         {touch && noTouchButton && <NoTouchButton on={noTouchOn} onChange={setNoTouch} />}
         <ReadingOptions accent={accent} options={[
-          ...(anyGlosses ? [{ label: 'Word meanings', on: allMeanings, set: showAllMeanings }] : []),
+          ...(anyGlosses && !mushaf.printing ? [{ label: 'Word meanings', on: allMeanings, set: showAllMeanings }] : []),
           { label: 'No-wudu mode', on: noTouchButton, set: showNoTouchButton, only: 'touch' },
         ]}>
+          {layouts}
           {phone && books}
           {phone && about}
         </ReadingOptions>
@@ -116,7 +125,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
 
       {/* Not on a phone: the Surah, Ayah and Juz pickers above already jump to an
           ayah, and the strip cost the reading a row. */}
-      {data && !phone && <AyahRail key={`rail ${surah}`} count={data.ayah_count} here={here} open={ayah} onPick={goTo} />}
+      {data && !phone && !mushaf.printing && <AyahRail key={`rail ${surah}`} count={data.ayah_count} here={here} open={ayah} onPick={goTo} />}
 
       {/* Each keyed by the surah to start afresh with it, and each key its own:
           siblings sharing one drew the panes three times on a phone. */}
@@ -138,7 +147,12 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
               {Array.from({ length: 6 }, (_, i) => <Skeleton key={i} className="h-12 w-full" />)}
             </div>
           )}
-          {data && (
+          {data && mushaf.printing && (
+            <MushafPages printing={mushaf.printing} surah={surah} open={ayah ? { surah, ayah } : null}
+              onOpen={(at) => (at.surah === surah ? open(at.ayah) : onPlace(at))}
+              className={`px-3 sm:px-6 ${stacked ? 'h-full' : 'h-[var(--layout-pane)]'}`} />
+          )}
+          {data && !mushaf.printing && (
             <div className={`flex ${stacked ? 'h-full' : 'h-[var(--layout-pane)]'}`}>
               <AyahList listRef={list} ayahs={data.ayahs} target={ayah === tapped ? null : ayah} still={noTouch} onScrolled={setHere}>
                 {(row) => (

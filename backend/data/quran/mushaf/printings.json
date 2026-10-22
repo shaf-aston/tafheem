@@ -1,0 +1,14 @@
+{
+  "_about": [
+    "Every printed mushaf the Qur'an tab can show as pages, and the only place one is named.",
+    "Adding one is an entry here plus its file beside this one; no code is written.",
+    "  id      what the reader's choice is remembered by, and the file's name (<id>.json).",
+    "  name    what the picker says.",
+    "  script  which face draws it: the frontend maps it to a font (styles/components.css .mushaf).",
+    "  source  the sources.json entry that credits it.",
+    "The files are built by backend/scripts/build_mushaf.py and read by backend/services/mushaf.py."
+  ],
+  "printings": [
+    {"id": "madani-1421", "name": "Madani 1421", "pages": 604, "lines": 15, "script": "qpc-hafs", "source": "mushaf"}
+  ]
+}

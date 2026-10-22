@@ -95,6 +95,31 @@ class SurahGlosses(BaseModel):
     lemmas: dict[int, list[list[str]]] = {}
 
 
+class Printing(BaseModel):
+    """A printed mushaf the reader can show as pages (data/quran/mushaf/printings.json)."""
+    id: str
+    name: str
+    pages: int
+    lines: int
+    # Which face draws it; the frontend maps it to a font.
+    script: str
+    source: Source | None = None
+
+
+class MushafPage(BaseModel):
+    """One printed page, line by line. A line is ["ayah", [[surah, ayah, "words"], …]],
+    ["surah", surah] for a surah's name, or ["basmala"] (scripts/build_mushaf.py)."""
+    page: int
+    lines: list[list]
+
+
+class SurahPages(BaseModel):
+    printing: str
+    surah: int
+    pages: list[MushafPage]
+    source: Source | None = None
+
+
 class Edition(BaseModel):
     """One book of text hung on the ayahs: a tafsir, a translation.
 

@@ -52,6 +52,16 @@ export const getQuranSurah = (surah) =>
 
 export const quranSurahQuery = (surah) => ({ queryKey: ['quran-surah', surah], queryFn: () => getQuranSurah(surah) })
 
+/** The printed mushafs a surah can be read in as pages; empty until one is built. */
+export const mushafsQuery = { queryKey: ['mushafs'], queryFn: () => api.get('/quran/mushaf').then((r) => r.data), staleTime: Infinity }
+
+/** A surah as one printing's pages, each whole page it is on. */
+export const mushafPagesQuery = (printing, surah) => ({
+  queryKey: ['mushaf-pages', printing, surah],
+  queryFn: () => api.get(`/quran/mushaf/${printing}/surah/${surah}`).then((r) => r.data),
+  staleTime: Infinity,
+})
+
 // The English of each word, for showing what one word means without leaving the
 // page. Its own request, not part of the surah above: it is wanted only where
 // the words are drawn separately, and an ayah the two sources disagree about is

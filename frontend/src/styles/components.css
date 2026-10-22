@@ -980,3 +980,70 @@ button.tile:hover { border-color: var(--c); }
    so it says where the voice is without covering the reading. */
 .now-chip { opacity: 0.75; transition: opacity calc(var(--motion-base-ms) * 1ms) ease; }
 .now-chip:hover, .now-chip:focus-visible { opacity: 1; }
+
+
+/* ── The Qur'an reader's page view (components/quran/MushafPages) ────────────
+   A printed page, line for line. Each line is one row that never wraps: its
+   words spread to both edges as the print's do, and the page's font size (set
+   on the section, lib/mushafFit) is the largest its widest line fits at. The
+   face is the printing's: data-script names it, and only here is it mapped. */
+@font-face {
+  font-family: 'QPC Hafs';
+  /* The King Fahd Complex's Uthmanic Hafs, as published, unmodified (its licence). */
+  src: url('/fonts/qpc-hafs.woff2') format('woff2');
+  font-display: block;
+}
+.mushaf {
+  max-width: var(--mushaf-page);
+  margin-inline: auto;
+}
+.mushaf[data-script="qpc-hafs"] {
+  font-family: 'QPC Hafs', var(--font-quran);
+}
+.mushaf-page {
+  line-height: var(--mushaf-line-height);
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.mushaf-line {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(var(--mushaf-gap-em) * 1em);
+  white-space: nowrap;
+}
+.mushaf-page[data-centred] .mushaf-line {
+  justify-content: center;
+}
+.mushaf-name,
+.mushaf-basmala {
+  justify-content: center;
+}
+.mushaf-name > span {
+  font-size: calc(var(--mushaf-name-em) * 1em);
+  padding-inline: 2em;
+  border: 1px solid color-mix(in oklab, var(--c) 45%, transparent);
+  border-radius: var(--radius-sm);
+  color: var(--c);
+}
+/* The ayah being studied is coloured, as a finger on the page would mark it;
+   a tinted box the height of the line hid the words of the line above. */
+.mushaf-word {
+  cursor: pointer;
+  transition: color calc(var(--motion-base-ms) * 1ms);
+}
+.mushaf-word:hover,
+.mushaf-word[data-open] {
+  color: var(--c);
+}
+button.mushaf-word {
+  font: inherit;
+  color: var(--c);
+}
+.mushaf-folio {
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  line-height: 2;
+  color: var(--text-faint);
+}
