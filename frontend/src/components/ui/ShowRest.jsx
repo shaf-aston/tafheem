@@ -17,7 +17,7 @@
  * or to everything. A height in lines holds either kind, and the fade at the
  * bottom edge says "there is more" before the button is read.
  */
-import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 export default function ShowRest({
   lines = 4,
@@ -32,6 +32,12 @@ export default function ShowRest({
   // index jumping to a section below the cut.
   open: held,
   onOpenChange,
+  // Told whether anything is being held back, for a card that opens on a
+  // press anywhere on it and so must know when there is something to open.
+  onCutChange,
+  // Set at the end of the button's row, so a card's own action and Show all
+  // share one line rather than stacking two.
+  beside,
   className = '',
   children,
 }) {
@@ -92,6 +98,8 @@ export default function ShowRest({
     return () => observer.disconnect()
   }, [measure, children])
 
+  useEffect(() => { onCutChange?.(cut) }, [cut, onCutChange])
+
   const reveal = () => {
     const next = !open
     // No glide when Animations is off: a 0ms transition never ends, and the cap would stay.
@@ -142,7 +150,9 @@ export default function ShowRest({
         {children}
       </div>
 
-      {(cut || open) && (
+      {(cut || open || beside) && (
+        <div className="flex items-center gap-3">
+        {(cut || open) && (
         <button
           type="button"
           onClick={reveal}
@@ -152,6 +162,9 @@ export default function ShowRest({
         >
           {open ? less : more}
         </button>
+        )}
+        {beside && <div className="ms-auto">{beside}</div>}
+        </div>
       )}
     </div>
   )
