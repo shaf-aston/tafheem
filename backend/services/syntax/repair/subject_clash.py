@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw_book import is_mabni, is_one
 from backend.services.syntax.facts import (
-    Sentence, attached_pronoun, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, typed_case_of, noun_tagged, subject_link, works_as_verb)
+    Sentence, attached_pronoun, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, typed_case_of, noun_tagged, subject_link, works_as_verb)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -11,16 +11,20 @@ def subject_clash(tokens: list[dict]) -> None:
     أَعْطَى الرَّجُلُ الْفَقِيرَ دِرْهَمًا، ضَرَبَ زَيْدٌ عَمْرًا: a نعت wears its noun's case (Tasheel 3.10.1),
     so a word in nasb after the subject's damma is no نعت; a hal (جَاءَ زَيْدٌ رَاكِبًا) or the verb's own
     masdar (فَرِحَ الْوَلَدُ فَرَحًا) is left to its own rule.
-    ضَرَبَ زَيْدٌ مَرْيَمَ: a noun with tanween is complete, so nothing after it is its مضاف إليه."""
+    ضَرَبَ زَيْدٌ مَرْيَمَ: a noun with tanween is complete, so nothing after it is its مضاف إليه.
+    ضرب زيد عمرا typed bare: the subject is raf' by its place, unless typed otherwise, and a word
+    whose nasb is written (its alif of tanween) is neither its نعت nor its مضاف إليه, which is jarr."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
         verb = s.head(head) if head else None
         if not (verb and is_verb(verb) and noun_tagged(token) and token["id"] > head["id"]
-                and subject_link(head) and not is_verb(token) and typed_case_of(head) == "u"
+                and subject_link(head) and not is_verb(token) and typed_case_of(head) in ("u", None)
                 and not is_mabni(token.get("pos_camel", "")) and not is_zarf(token, s)):
             continue
-        clash = token["rel"] == "MOD" and typed_case_of(token) == "a" and not (indefinite_nasb(token) and (is_state_word(token) or same_root(token, verb)))
+        # جَاءَ خَلِيفَةُ عُمَرَ: a diptote's fatha is its jarr, so the مضاف إليه stays
+        clash = (token["rel"] in ("MOD", "---") or (token["rel"] == "IDF" and not shows_jarr(token))) \
+            and typed_case_of(token) == "a" and not (indefinite_nasb(token) and (is_state_word(token) or same_root(token, verb)))
         # the parser may hang it there unlabelled (---) rather than as IDF; either way an إضافة is meant
         added = (token["rel"] in ("IDF", "---") and typed_tanween(head)
                  and typed_case_of(token) in ("a", None) and not any(k["rel"] == "OBJ" for k in s.kids(verb)))

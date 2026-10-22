@@ -143,7 +143,15 @@ def typed_case_of(token: dict) -> str | None:
     if drops_ya(token.get("typed") or "", token["lemma"]):
         return None  # هَذَا قَاضٍ: the tanween stands on the ya that went, raf' or jarr alike
     shown = typed_case(token.get("typed") or "", token.get("stuck_on", 0))
-    return shown or six_noun_case(token["base"], token["lemma"])
+    return shown or written_nasb(token) or six_noun_case(token["base"], token["lemma"])
+
+
+def written_nasb(token: dict) -> str | None:
+    """زيد بكرا typed bare: the alif of نصب tanween is written, not voweled (رسم المصحف و الإملاء),
+    so it shows the nasb on its own when the word's reading puts that tanween on it; عصا's alif is its own."""
+    typed = token.get("typed") or ""
+    return "a" if typed and typed == strip_diacritics(typed) and typed.endswith("ا") \
+        and "ً" in token.get("diac", "")[-2:] else None
 
 
 def shows_nasb_by_kasra(token: dict) -> bool:
@@ -349,4 +357,6 @@ def listed(token: dict, family: str, part: str = "words") -> bool:
     to صباح and may misread the second (كُوبًا as كوان)."""
     form = strip_diacritics(token["form"])
     bare = form[:-1] if form.endswith("ا") and typed_tanween(token) else form
-    return any(is_one(spelling, family, part) for spelling in (token["lemma"], form, bare))
+    # بُكْرَة's ة is its own letter, written ة or ت in all its forms: بكرا (بَكَرًا) is another word
+    lemma = token["lemma"] if not token["lemma"].endswith("ة") or "ة" in form or "ت" in form else ""
+    return any(is_one(spelling, family, part) for spelling in (lemma, form, bare) if spelling)
