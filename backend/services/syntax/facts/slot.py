@@ -13,9 +13,10 @@ NAMED = named_roles()
 
 def takes_tamyeez(token: dict, s: Sentence) -> bool:
     """A tamyeez stands after a number or a measure, or after a verb of tamyeez al-nisba or an
-    elative, which tells in what way one thing passes another (أَثْقَلُ وَزْنًا)."""
+    elative, which tells in what way one thing passes another (أَثْقَلُ وَزْنًا), or after a verb of
+    praise or blame, whose hidden doer it explains (نِعْمَ رَجُلًا زَيْدٌ)."""
     head = s.head(token)
-    if head and (is_one(head["lemma"], "tamyeez_verbs") or is_elative(head)):
+    if head and (is_one(head["lemma"], "tamyeez_verbs") or is_one(head["lemma"], "praise_blame") or is_elative(head)):
         return True
     return any(listed(t, "tamyeez_head") for t in s.tokens if t["id"] < token["id"])
 

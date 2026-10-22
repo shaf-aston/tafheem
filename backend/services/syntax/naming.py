@@ -12,7 +12,7 @@ from typing import NamedTuple, TypedDict
 from backend.services.arabic_text import strip_diacritics
 from backend.services.nahw_book import (
     extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
-    book_map, book_merges, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, named_roles, role_table, unseen_case)
+    book_map, book_merges, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
 from backend.services.syntax import condition, facts, walker
 from backend.services.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
 from backend.services.harakat import (
@@ -159,7 +159,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
     found = [{"role": role, "case": case,
              "aspect": token.get("asp") if role == NAMED.fil else None,
              "printed": frames()["passive"]["verb"] if role == NAMED.fil and facts.is_passive(token) else None,
-             "family": _family(token, bases, shown) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
+             "family": _family(token, bases, shown, s=s) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "named": (token.get("reading") or {}).get("named"),
              "book": book_path(found.path, found.book) if found else None,
              # محمدُ بنُ عبدِ اللهِ: the books also read the ابن as عطف بيان or بدل
@@ -373,7 +373,8 @@ def _followers_take_their_ending(named: list, cases: list, bases: list[dict], to
             cases[i] = cases[head] if head is not None and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm") else "raf'"
 
 
-def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None = None) -> str | None:
+def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None = None,
+            s: facts.Sentence | None = None) -> str | None:
     """The family a particle or verb is named by (كان، إنّ): one whose list holds it and whose effect
     shows on a word linked to it. A listed word that governs nothing here (the لا of a plain negation)
     keeps its plain name, unless particles.stamp read it. A piece written onto a word (وَ، بِـ، لْـ)
@@ -382,8 +383,15 @@ def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None =
         return token["reading"]["family"]
     linked = set().union(onto or set(), *(said for other, said in zip(bases, shown)
                          if other["head"] == token["id"] or (onto is None and other["id"] == token["head"])))
-    return next((family for family, card in family_cards()
-                 if card.get("governs") in linked and in_family(token["lemma"], family)), None)
+    family = next((family for family, card in family_cards()
+                   if in_family(token["lemma"], family)
+                   # حبذا governs the doer written inside it (ذا), so shows its work on no other word
+                   and (card.get("governs") in linked or doer_written_in(token["lemma"], family))), None)
+    # سَاءَ الخبرُ زيدًا is a plain verb: ساء blames only with the one blamed after its doer (Ibn Aqil)
+    if family and s and needs_praised(token["lemma"], family) \
+            and not any(facts.praised_noun(t, s) for t in bases):
+        return None
+    return family
 
 
 def opens_with_verb(roles: list[str | None]) -> bool:

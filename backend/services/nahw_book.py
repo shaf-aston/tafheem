@@ -63,6 +63,17 @@ def extra_ba_said(place: str) -> str:
     return family["said"].format(place=family["place_said"][place])
 
 
+def needs_praised(lemma: str, family: str) -> bool:
+    """ساء: a member that is its family's only with the one praised or blamed after its doer."""
+    return book_spelling(lemma) in _closed()["families"][family].get("needs_praised", ())
+
+
+def doer_written_in(lemma: str, family: str) -> bool:
+    """حبذا: a member written as one word with its own doer (حَبَّ + ذا), so the raf' noun after
+    it is already the one praised."""
+    return book_spelling(lemma) in _closed()["families"][family].get("doer_written_in", ())
+
+
 def kaffa_sister(word: str) -> str | None:
     """إنما → إن: the إن sister a كافة ما is written onto, for a bare word; none otherwise."""
     family = _closed()["families"]["inna"]
