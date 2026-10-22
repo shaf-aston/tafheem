@@ -11,6 +11,7 @@
  * The landing page does not, and is always the base look.
  */
 import { readFileSync } from 'node:fs'
+import { colorScheme } from '../src/lib/colorScheme.js'
 
 const theme = JSON.parse(readFileSync(new URL('../src/theme.json', import.meta.url), 'utf8'))
 const { base, 'hint-key': HINT_KEY, device, looks } = theme.themes
@@ -25,7 +26,7 @@ const GROUNDS = [
 ]
 
 // look name -> the colour-scheme it asks the browser for
-const SCHEMES = Object.fromEntries(Object.entries(looks).map(([name, look]) => [name, look.scheme]))
+const SCHEMES = Object.fromEntries(Object.entries(looks).map(([name, look]) => [name, colorScheme(look.scheme)]))
 
 // Opening from the splash: the page fades in and, on a themed page, the ground
 // eases from the splash's dark (the base look, as the manifest has it) to the

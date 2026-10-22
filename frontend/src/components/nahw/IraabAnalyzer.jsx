@@ -174,7 +174,7 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
       <p className="text-center type-small text-[var(--text-faint)]">
         {governs && picked >= 0 && source(data.words[picked]) !== undefined
           ? <GovernsWhy words={data.words} i={picked} />
-          : 'Tap any word for its full breakdown'}
+          : 'Tap a word for breakdown'}
       </p>
       {detail}
 
@@ -266,8 +266,10 @@ function WordGrid({ words, onClick, governs, picked, corner }) {
     if (!governs) return undefined
     const line = lineRef.current
     function measure() {
-      const cards = [...line.querySelectorAll('.word')]
-      const at = (i) => [cards[i].offsetLeft + cards[i].offsetWidth / 2, cards[i].offsetTop]
+      // Measured against the svg the arcs are drawn in, so no offsetParent can skew them.
+      const box = line.querySelector('svg').getBoundingClientRect()
+      const cards = [...line.querySelectorAll('.word')].map((c) => c.getBoundingClientRect())
+      const at = (i) => [cards[i].left - box.left + cards[i].width / 2, cards[i].top - box.top]
       setArcs(words.flatMap((w, i) => (source(w) === undefined ? [] : [{
         i, dashed: w.governor == null, ...arc(at(source(w)), at(i), ARC_CAP),
       }])))
@@ -275,8 +277,10 @@ function WordGrid({ words, onClick, governs, picked, corner }) {
     measure()
     const ro = new ResizeObserver(measure)
     ro.observe(line)
+    // The cards rise in; measure again once they have landed.
+    line.addEventListener('animationend', measure)
     document.fonts?.ready.then(measure)
-    return () => ro.disconnect()
+    return () => { ro.disconnect(); line.removeEventListener('animationend', measure) }
   }, [governs, words])
 
   // `corner` sits in the card's top-right, outside the scroller so it stays put.
@@ -286,7 +290,7 @@ function WordGrid({ words, onClick, governs, picked, corner }) {
     <div
       dir="rtl"
       className={`peer-dim p-5 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-        ${governs ? 'overflow-x-auto' : ''}`}
+        ${corner ? 'pt-12' : ''} ${governs ? 'overflow-x-auto' : ''}`}
     >
       <div
         ref={lineRef}
