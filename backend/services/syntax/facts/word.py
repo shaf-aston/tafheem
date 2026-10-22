@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import CAMEL_CASE, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
+from backend.services.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw_book import book_words, is_diptote, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
@@ -143,7 +143,17 @@ def typed_case_of(token: dict) -> str | None:
     if drops_ya(token.get("typed") or "", token["lemma"]):
         return None  # هَذَا قَاضٍ: the tanween stands on the ya that went, raf' or jarr alike
     shown = typed_case(token.get("typed") or "", token.get("stuck_on", 0))
-    return shown or six_noun_case(token["base"], token["lemma"])
+    return shown or written_nasb(token) or six_noun_case(token["base"], token["lemma"])
+
+
+def written_nasb(token: dict) -> str | None:
+    """زيد بكرا typed bare: the alif of نصب tanween is written, not voweled (رسم المصحف و الإملاء),
+    so it shows the nasb on its own when the word's reading puts that tanween on it; عصا's alif is its own."""
+    typed = token.get("typed") or ""
+    if not typed or typed != strip_diacritics(typed) or not typed.endswith("ا"):
+        return None
+    # only nasb tanween is written with an alif, so any tanween before it is that one
+    return CASE_LETTER["nasb"] if TANWEEN & set(token.get("diac", "")[-2:]) else None
 
 
 def shows_nasb_by_kasra(token: dict) -> bool:
@@ -349,4 +359,6 @@ def listed(token: dict, family: str, part: str = "words") -> bool:
     to صباح and may misread the second (كُوبًا as كوان)."""
     form = strip_diacritics(token["form"])
     bare = form[:-1] if form.endswith("ا") and typed_tanween(token) else form
-    return any(is_one(spelling, family, part) for spelling in (token["lemma"], form, bare))
+    # بُكْرَة's ة is its own letter, written ة or ت in all its forms: بكرا (بَكَرًا) is another word
+    lemma = token["lemma"] if not token["lemma"].endswith("ة") or "ة" in form or "ت" in form else ""
+    return any(is_one(spelling, family, part) for spelling in (lemma, form, bare) if spelling)

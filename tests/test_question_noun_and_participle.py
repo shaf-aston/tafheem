@@ -164,3 +164,54 @@ def test_a_bare_first_word_is_the_verb_a_written_nasb_needs(words, verb):
 def test_the_verb_is_the_plainest_reading_before_the_nasb():
     assert [r.get("pos") for r in morphology.pick(["زيد", "نصر", "بكرا"])][:2] == ["noun_prop", "verb"]
     assert [r.get("pos") for r in morphology.pick(["نصر", "نصر", "بكرا"])][:2] == ["verb", "noun_prop"]  # one عامل
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, roles", [
+    ("نصر زيد بكرا", ["فعل", "فاعل", "مفعول به"]),  # typed bare: the nasb alif is written
+    ("ضرب زيد عمرا", ["فعل", "فاعل", "مفعول به"]),
+    ("جئت بكرة", ["فعل", "مفعول فيه"]),            # بُكْرَة keeps its ة: still the time word
+    ("جاء زيد راكبا", ["فعل", "فاعل", "حال"]),       # a state word stays the hal
+])
+def test_bare_text_reads_its_written_nasb(sentence, roles):
+    assert _roles(sentence) == roles
+
+
+@pytest.mark.parametrize("typed, diac, case", [
+    ("بكرا", "بَكْراً", "a"),
+    ("عصا", "عَصا", None),        # the alif is the word's own
+    ("بكرًا", "بَكْراً", None),    # a typed vowel speaks for itself (typed_case)
+    ("بكر", "بَكْرٌ", None),       # no alif written
+    ("بكرة", "بُكْرَةً", None),    # the tanween sits on the ة, nothing written shows it
+])
+def test_written_nasb_is_the_alif_of_tanween(typed, diac, case):
+    from backend.services.syntax.facts.word import written_nasb
+    assert written_nasb({"typed": typed, "diac": diac}) == case
+
+
+@pytest.mark.parametrize("form, lemma, found", [
+    ("بكرا", "بكرة", False),   # بَكَرًا: no ة, another word
+    ("بكرة", "بكرة", True),
+    ("ساعات", "ساعة", True),   # its ة written ت in the plural
+    ("يوما", "يوم", True),
+    ("الساعة", "ساعة", True),  # by its lemma, the ة written
+])
+def test_a_listed_word_keeps_its_ta(form, lemma, found):
+    from backend.services.syntax.facts.word import listed
+    assert listed({"form": form, "lemma": lemma, "typed": form}, "zarf_zaman") is found
+
+
+@pytest.mark.parametrize("head_typed, rel, moved", [
+    ("زيد", "---", True),     # bare subject: raf' by its place
+    ("زيد", "IDF", True),     # nasb is no مضاف إليه
+    ("زيد", "MOD", True),     # nor a نعت
+    ("زيد", "IDF-diptote", False),  # عُمَرَ typed: a diptote's fatha is its jarr
+    ("زيدًا", "---", False),  # the subject typed in nasb is no raf' subject
+])
+def test_a_written_nasb_after_the_subject_is_the_object(head_typed, rel, moved):
+    from backend.services.syntax.repair.subject_clash import subject_clash
+    last = dict(typed="عمرا", diac="عَمْراً") if rel != "IDF-diptote" else dict(typed="عُمَرَ", diac="عُمَرَ")
+    words = [_tok(1, "ضرب", "VRB", 0, "---"), _tok(2, "زيد", "PROP", 1, "SBJ", typed=head_typed),
+             _tok(3, "عمر", "PROP", 2, rel.removesuffix("-diptote"), **last)]
+    subject_clash(words)
+    assert ((words[2]["head"], words[2]["rel"]) == (1, "OBJ")) is moved
