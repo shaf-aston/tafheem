@@ -124,3 +124,20 @@ def zanna_pair(tokens: list[dict]) -> None:
         first["head"], first["rel"] = verb["id"], "OBJ"
         second["head"], second["rel"] = verb["id"], "OBJ"
         s = Sentence(tokens)
+
+
+def praise_specified(tokens: list[dict]) -> None:
+    """نِعْمَ رَجُلًا زَيْدٌ: the فاعل of a verb of praise or blame may be a pronoun hidden in it, which
+    an indefinite noun in nasb straight after explains as its تمييز; the raf' noun after that is
+    the one praised (Ibn Aqil, باب نعم وبئس). The parser takes the تمييز for an object and hangs the
+    praised noun on it; both go on the verb, as the pattern reads."""
+    s = Sentence(tokens)
+    for verb in tokens:
+        specifier = s.by_id.get(verb["id"] + 1)
+        if not (is_verb(verb) and is_one(verb["lemma"], "praise_blame") and specifier
+                and noun_tagged(specifier) and indefinite_nasb(specifier)):
+            continue
+        specifier["head"], specifier["rel"] = verb["id"], "TMZ"
+        praised = s.by_id.get(specifier["id"] + 1)
+        if praised and noun_tagged(praised):
+            praised["head"], praised["rel"] = verb["id"], "SBJ"

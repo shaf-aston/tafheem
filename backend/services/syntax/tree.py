@@ -92,7 +92,9 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
     """A governor's name in the picture: كان is a فعل ناقص, أنْ a حرف نصب, as its card says;
     a particle read one way of several (particles.stamp) by that reading's name."""
     if family in FRAMES["leaf_by_family"] and role != NAMED.harf:
-        return FRAMES["leaf_by_family"][family]
+        card = CARDS.get(family, {})
+        named = card.get("named_as", {}).get(book_spelling(strip_diacritics(token["form"])), card.get("named"))
+        return FRAMES["leaf_by_family"][family].format(named=named)
     if role == NAMED.harf and (reading := token.get("reading")):
         card = CARDS.get(reading["family"], {})
         word = strip_diacritics(token["form"]).strip("+")
