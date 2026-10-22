@@ -165,3 +165,18 @@ def test_a_word_inside_another_word_is_not_a_whole_use_of_it():
     clean = rank_of(row("x", english="the prayer"), expansion)
     sprayer = rank_of(row("x", english="the prayers of the sprayer"), expansion)
     assert clean < sprayer
+
+
+def test_the_words_in_the_order_typed_lead():
+    """ "in the name of" used to search for "name" alone, in any order."""
+    expansion = Expansion(typed=("name",), related=(), roots=(), loose=(), phrase="in the name of")
+    in_order = rank_of(row("", english="in the name of god"), expansion)
+    scattered = rank_of(row("", english="the name he gave in it, of course"), expansion)
+    assert in_order[0] == TIER
+    assert in_order < scattered
+
+
+def test_lamma_is_not_a_use_of_ma():
+    """لما is "when", not ل joined to ما, so it is no clean find for ما."""
+    assert rank_of(row("فلما جاء"), only("ما"))[0] != TIER
+    assert rank_of(row("لما جاء ما كان"), only("ما"))[0] == TIER

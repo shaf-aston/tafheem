@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { sentencesQuery } from '../../lib/quizBanks'
 
 import ArabicText from '../ui/ArabicText'
+import Mark from '../ui/Mark'
 import SpeakButton from '../ui/SpeakButton'
 
 export default function QuizExample({ word, accent, say }) {
@@ -26,10 +27,7 @@ export default function QuizExample({ word, accent, say }) {
       <div className="flex items-center justify-center gap-2">
         <ArabicText as="p" size="lg" className="text-[var(--text)] text-center">
           {before}
-          {/* Colour and an underline, so the word is found without seeing colour. */}
-          <mark className="bg-transparent underline underline-offset-8 decoration-2" style={{ color: accent }}>
-            {marked}
-          </mark>
+          <Mark accent={accent}>{marked}</Mark>
           {after}
         </ArabicText>
         <SpeakButton key={spoken} early text={spoken} />

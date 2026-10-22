@@ -72,9 +72,19 @@ class Expansion:
     related: tuple[str, ...]
     roots: tuple[str, ...]
     loose: tuple[str, ...]
+    phrase: str = ""
+    """The words in the order they were typed, when there is more than one.
+    "in the name of" is four words, three of them too common to search for on
+    their own, so word by word it was a search for "name"; a passage saying the
+    phrase itself is the answer to that question and ranks above the rest."""
 
     def is_empty(self) -> bool:
         return not (self.typed or self.related or self.roots or self.loose)
+
+    @property
+    def phrase_terms(self) -> tuple[str, ...]:
+        """The phrase as a term of its own, when there is one."""
+        return (self.phrase,) if self.phrase else ()
 
     @property
     def all_terms(self) -> tuple[str, ...]:
@@ -98,6 +108,8 @@ def expand(
     `max_translations` is the same cap for an English word's Arabic.
     """
     words = _words(query)
+    typed_words = bare_letters(query).lower().split()
+    phrase = " ".join(typed_words) if len(typed_words) > 1 else ""
 
     if content := [word for word in words if word not in ENGLISH_NOISE]:
         words = tuple(content)
@@ -142,7 +154,7 @@ def expand(
     # A word cannot be both. If someone typed it, that is what it is.
     related = [term for term in related if term not in typed]
 
-    return Expansion(tuple(typed), tuple(related), tuple(roots), tuple(loose))
+    return Expansion(tuple(typed), tuple(related), tuple(roots), tuple(loose), phrase)
 
 
 def _words(query: str) -> tuple[str, ...]:
