@@ -81,9 +81,15 @@ def book_merges(family: str) -> dict:
     return _closed()["families"][family].get("merges", {})
 
 
+def book_spelling(lemma: str) -> str:
+    """The parser's lemma as the book writes it: an attached clitic's '+' aside, and
+    the wasl alif ٱ (ٱنفك) written ا (انفك)."""
+    return lemma.strip("+").replace("ٱ", "ا")
+
+
 def is_one(lemma: str, family: str, part: str = "words") -> bool:
-    """True when the parser's lemma (an attached clitic's '+' aside) is on that list."""
-    return lemma.strip("+") in book_words(family, part)
+    """True when the parser's lemma is on that list."""
+    return book_spelling(lemma) in book_words(family, part)
 
 
 @lru_cache(maxsize=None)
