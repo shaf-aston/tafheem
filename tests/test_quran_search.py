@@ -57,7 +57,7 @@ _TEMP_INDEX = "data/quran/search-under-test.db"
 def index(monkeypatch):
     """A tiny index of three fabricated ayahs, pointed at through the real
     setting, so what the test exercises is the path the app itself takes."""
-    from backend.scripts.build_quran_search_index import _fold
+    from backend.services.arabic_text import both_spellings as _fold
 
     target = Path(__file__).resolve().parents[1] / "backend" / _TEMP_INDEX
     target.unlink(missing_ok=True)

@@ -136,6 +136,21 @@ def alef_written_out(text: str) -> str:
     return bare_letters(text)
 
 
+def both_spellings(text: str) -> str:
+    """The text folded both ways a reader might type it, in one string.
+
+    The Qur'an writes a long "aa" as a small mark above the letter, so ٱلْكِتَٰب is
+    the word an ordinary book spells الكتاب. Drop the mark and someone typing
+    الكتاب finds nothing; write it out as a full alef and someone typing الرحمن
+    finds nothing, because that word is never spelled الرحمان. Neither fold is
+    right on its own, so both go in and a query matches whichever fits. Text
+    without the mark, which is every book but the Qur'an, comes back once.
+    """
+    dropped = bare_letters(text)
+    written = alef_written_out(text)
+    return dropped if written == dropped else f"{dropped} {written}"
+
+
 def normalize_root(text: str) -> str:
     """One spelling of a root, so the same three letters always match.
 

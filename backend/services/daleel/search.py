@@ -22,12 +22,14 @@ loose match rather than passed off as a clean find.
 from __future__ import annotations
 
 import logging
+import re
 import sqlite3
 from dataclasses import dataclass
 from typing import NamedTuple
 
 from backend.config import data_path, get_settings
 from backend.services import fts
+from backend.services.arabic_text import has_arabic
 from backend.services.daleel import registry
 from backend.services.daleel.expand import Expansion, expand
 from backend.services.daleel.lexicon import DictionaryLexicon
@@ -101,12 +103,31 @@ def search(query: str, limit: int | None = None, books: tuple[str, ...] = ()) ->
         return []
     rows = _candidates(conn, expansion, limit * settings.daleel_candidate_factor, tuple(books))
 
-    ranked = sorted(((rank_of(row, expansion), row) for row in rows), key=lambda i: i[0])
+    ranked = _close_enough(sorted(((rank_of(row, expansion), row) for row in rows), key=lambda i: i[0]), expansion)
 
     return [
         Hit(row.source, row.book, row.locator, row.arabic, row.english, _MATCH_BY_TIER[rank[0]])
         for rank, row in _spread(ranked, limit)
     ]
+
+
+def _close_enough(ranked: list[tuple], expansion: Expansion) -> list[tuple]:
+    """The guesses at a misspelling that are as near as the nearest one.
+
+    Every book is promised a place below, so without this each one sent its
+    best guess however poor: searching الرحييم gave al-Fatihah and ten
+    passages that shared a run of letters with it, a millstone idiom and a
+    grammar's opening page among them. A guess is kept when it is no more
+    letters away than the closest guess, and never more than a third of the word.
+    """
+    loose = [rank[1] for rank, _ in ranked if rank[0] == _LOOSE_TIER]
+    if not loose:
+        return ranked
+    most = min(min(loose), _allowed_edits(expansion.loose))
+    return [item for item in ranked if item[0][0] != _LOOSE_TIER or item[0][1] <= most]
+
+
+_LOOSE_TIER = 4
 
 
 def _spread(ranked: list[tuple], limit: int) -> list[tuple]:
@@ -170,8 +191,8 @@ def rank_of(row: Passage, expansion: Expansion) -> tuple[int, int, int, int]:
     # the Arabic alone would rank every one of their passages as a bad match.
     fold = f"{fold} {english.lower()}"
 
-    present = [term for term in expansion.typed if term in fold]
-    also = [term for term in expansion.related if term in fold]
+    present = [term for term in expansion.typed if _found(term, fold) >= 0]
+    also = [term for term in expansion.related if _found(term, fold) >= 0]
 
     if expansion.typed and len(present) == len(expansion.typed):
         tier = 0
@@ -183,7 +204,7 @@ def rank_of(row: Passage, expansion: Expansion) -> tuple[int, int, int, int]:
                          for root in expansion.roots):
         return (3, -shared_roots, 0, len(fold))
     else:
-        return (4, -_closeness(expansion.loose, fold), 0, len(fold))
+        return (_LOOSE_TIER, _closeness(expansion.loose, fold), 0, len(fold))
 
     # A passage using the word beats one that merely contains its letters.
     # Without this the shortest passage won every tie, and the shortest thing
@@ -196,11 +217,50 @@ def rank_of(row: Passage, expansion: Expansion) -> tuple[int, int, int, int]:
     # both sides called that a poor match and put a dictionary entry above the
     # verse. A suffix is different: كتبي is a different word from كتب.
     matched = present or also
-    padded = f"{fold} "
-    whole = sum(f"{term} " in padded for term in matched)
+    whole = sum(bool(_pattern(term, whole=True).search(fold)) for term in matched)
 
-    first = min((fold.find(term) for term in matched), default=len(fold))
+    first = min((_found(term, fold) for term in matched), default=len(fold))
     return (tier, -whole, first, len(fold))
+
+
+# Whatever Arabic writes joined on in front of a word: and, so, with, for, like,
+# the, and لل, which is ل and ال with the alef dropped.
+_PROCLITIC = "(?:[وف]?(?:لل|[بلك]?(?:ال)?))"
+# Arabic letters as the folded text holds them, with Persian and Urdu forms and
+# the presentation forms, so none of them reads as the edge of a word.
+_ARABIC_LETTER = "\u0621-\u064A\u0671-\u06D3\uFB50-\uFDFF\uFE70-\uFEFF"
+_NOT_LETTER = f"(?![a-z{_ARABIC_LETTER}])"
+_PROCLITIC_AT_START = re.compile(f"^{_PROCLITIC}")
+_WORDS = re.compile(f"[a-z{_ARABIC_LETTER}]+")
+
+
+def _pattern(term: str, whole: bool = False) -> re.Pattern:
+    """What counts as using the term, as a pattern whose group 1 is the term.
+
+    Containing its letters is not enough, and how much more is needed depends
+    on the word. An English word has to start where a word starts, or prayer
+    found "sprayer" and zakat found "zawzakat" and both were called clean
+    finds. A two-letter Arabic word has to be the whole word, bar what Arabic
+    joins on in front: أب was found inside الكتاب and تراب, and من inside every
+    منه. A longer Arabic word keeps matching inside a word, because that is
+    how Arabic inflects it: يكتب and كتبه are كتب.
+
+    `whole` asks further that the word end there, which is the strength inside a tier.
+    """
+    word = f"({re.escape(term)})"
+    if not has_arabic(term):
+        found = f"(?<![a-z]){word}"
+    elif len(term) < fts.TRIGRAM_MIN:
+        found = f"(?<![{_ARABIC_LETTER}]){_PROCLITIC}{word}{_NOT_LETTER}"
+    else:
+        found = word
+    return re.compile(found + (_NOT_LETTER if whole else ""))
+
+
+def _found(term: str, text: str) -> int:
+    """Where the term is used as a word in the text, or -1. See _pattern."""
+    found = _pattern(term).search(text)
+    return found.start(1) if found else -1
 
 
 def _has_root(roots: str, root: str) -> bool:
@@ -348,19 +408,49 @@ def _trigrams(term: str) -> set[str]:
 
 
 def _closeness(terms: tuple, haystack: str) -> int:
-    """How near a misspelling is to what this passage actually says.
+    """How many letters this passage is from the misspelt word: the fewest edits
+    turning any of its words into it, or _FAR when none is near. Smaller is closer.
 
-    Three-letter runs alone are too coarse to separate near misses: searching
-    الرحييم, both الرحيم and الرحى share exactly three of them, so the tie fell
-    to whichever passage was shorter and an idiom about millstones was put
-    above al-Fatihah. Counting four-letter runs as well breaks that tie the way
-    a reader would: الرحيم keeps more of the word in one piece.
+    Shared runs of letters were the measure before and could not tell a near
+    miss from a far one: searching الرحييم, الرحيم and الرحى each share the same
+    runs with it once ى is folded to ي, so an idiom about millstones tied with
+    al-Fatihah. One edit away and two edits away is the difference a reader sees.
     """
-    score = 0
-    for size in (fts.TRIGRAM_MIN, fts.TRIGRAM_MIN + 1):
-        for term in terms:
-            score += sum(run in haystack for run in _runs(term, size))
-    return score
+    # Words as letters only, each also without what is joined on in front, so
+    # والرحيم and الرحيم، are each one letter from الرحييم, as الرحيم is.
+    words = set(_WORDS.findall(haystack))
+    words |= {_PROCLITIC_AT_START.sub("", word) for word in words}
+    best = _FAR
+    for term in terms:
+        runs = _trigrams(term)
+        for candidate in {term, _PROCLITIC_AT_START.sub("", term)}:
+            for word in words:
+                # Only words sharing a run of letters can be near; the rest are never compared.
+                if abs(len(word) - len(candidate)) < best and any(run in word for run in runs):
+                    best = min(best, _edits(candidate, word, best))
+    return best
+
+
+# Further than any guess is allowed to be.
+_FAR = 99
+
+
+def _edits(a: str, b: str, enough: int) -> int:
+    """Letters to add, drop or change to turn a into b; stops counting at `enough`."""
+    previous = list(range(len(b) + 1))
+    for i, letter in enumerate(a, 1):
+        current = [i]
+        for j, other in enumerate(b, 1):
+            current.append(min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + (letter != other)))
+        if min(current) >= enough:
+            return enough
+        previous = current
+    return previous[-1]
+
+
+def _allowed_edits(terms: tuple) -> int:
+    """How far a guess may be: one letter in three of the word, at least one."""
+    return max(1, max((len(term) for term in terms), default=0) // 3)
 
 
 def _has_table(conn: sqlite3.Connection, name: str) -> bool:

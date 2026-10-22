@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services import quran_corpus  # noqa: E402
-from backend.services.arabic_text import alef_written_out, bare_letters  # noqa: E402
+from backend.services.arabic_text import both_spellings  # noqa: E402
 
 # One column is searched, the rest are carried. `fold` is the ayah with its
 # diacritics and spelling variants flattened, which is what a typed query is
@@ -45,21 +45,6 @@ CREATE VIRTUAL TABLE verse USING fts5(
 """
 
 _SURAHS = 114
-
-
-def _fold(text: str) -> str:
-    """The ayah written both ways a reader might type it, in one column.
-
-    The Qur'an writes a long "aa" as a small mark above the letter, so ٱلْكِتَٰب is
-    the word an ordinary book spells الكتاب. Drop the mark and someone typing
-    الكتاب finds nothing; write it out as a full alef and someone typing الرحمن
-    finds nothing, because that word is never spelled الرحمان. Neither fold is
-    right on its own, so both go in and a query matches whichever fits. It costs
-    roughly twice the index size, which here is four megabytes.
-    """
-    dropped = bare_letters(text)
-    written = alef_written_out(text)
-    return dropped if written == dropped else f"{dropped} {written}"
 
 
 def build() -> int:
@@ -83,7 +68,7 @@ def build() -> int:
             # into an ayah. Repeating that join here would be a second answer to
             # a question the corpus module already owns.
             rows = [
-                (surah, number, text, _fold(text))
+                (surah, number, text, both_spellings(text))
                 for number, text in quran_corpus.ayah_texts(surah)
             ]
             if not rows:
