@@ -11,7 +11,7 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.nahw_book import (card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
+from backend.services.nahw_book import (book_spelling, card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
 from backend.services.syntax.facts import (Sentence, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
                                           is_nasab, is_verb, read_as, excepted_after_la, shown_cases, noun_tagged,
@@ -338,7 +338,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         role, at_gov = role_of.get(token["id"]), found.get("governor")
         if not role or at_gov is None or family_of.get(bases[at_gov]["id"]) not in SISTERS:
             continue
-        mother, sister = SISTERS[family_of[bases[at_gov]["id"]]], strip_diacritics(bases[at_gov]["lemma"]).strip("+")
+        mother, sister = SISTERS[family_of[bases[at_gov]["id"]]], book_spelling(strip_diacritics(bases[at_gov]["lemma"]))
         if role.endswith(f" {mother}") and sister != mother:
             name_of[token["id"]] = f"{role.removesuffix(mother)}{sister}"
             if job_of.get(token["id"]) == role:

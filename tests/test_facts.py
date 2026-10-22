@@ -125,8 +125,13 @@ def test_governor_istithna_particle_head_unless_negated():
 def test_governor_family_heads_and_none():
     for lemma, family in (("إن", "inna"), ("كان", "kana")):
         toks = [token(1, lemma, lemma, "VRB" if family != "inna" else "PRT", 0, "---", **VERB),
-                token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n")]
-        assert governor([lemma, "الْوَلَدُ"], toks, 1) == family
+                token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),
+                token(3, "نائما", "نائم", "NOM", 1, "PRD", stt="i", cas="a")]
+        assert governor([lemma, "الْوَلَدُ", "نَائِمًا"], toks, 1) == family
+    # كان with no خبر is تامة, a plain verb with its فاعل: وَإِنْ كَانَ ذُو عُسْرَةٍ
+    toks = [token(1, "كان", "كان", "VRB", 0, "---", **VERB),
+            token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n")]
+    assert governor(["كَانَ", "الْوَلَدُ"], toks, 1) == "verb"
     # ظن governs as a ناسخ only with its two objects: ظن الولدُ الأمرَ سهلًا
     toks = [token(1, "ظن", "ظن", "VRB", 0, "---", **VERB),
             token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),

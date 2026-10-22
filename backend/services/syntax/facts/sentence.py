@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.arabic_text import bare_letters
 from backend.services.nahw_book import frames, is_one
 from backend.services.arabic_text import strip_diacritics
-from backend.services.syntax.facts.word import is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
+from backend.services.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -121,13 +121,21 @@ class Sentence:
         # the other families are verbs: the noun عِلْمُهُ shares a lemma with عَلِمَ and governs nothing
         if not is_verb(word):
             return None
-        if is_one(lemma, "kana") \
-                or (is_one(lemma, "kana", "needs_negation") and self._has_particle(word, "negation")) \
-                or (is_one(lemma, "kana", "needs_ma") and self._has_particle(word, "kana", "like_laysa")):
+        if (is_one(lemma, "kana")
+                or (is_one(lemma, "kana", "needs_negation") and self._has_particle(word, "negation"))
+                or (is_one(lemma, "kana", "needs_ma") and self._has_particle(word, "kana", "like_laysa"))) \
+                and not self._stands_alone(word):
             return "kana"
         if is_one(lemma, "kaada") and self._completed_by_present_verb(word):
             return "kaada"
         return "zanna" if is_one(lemma, "zanna") and self._two_objects(word) else None
+
+    def _stands_alone(self, verb: dict) -> bool:
+        """وَإِنْ كَانَ ذُو عُسْرَةٍ، أَصْبَحْنَا: with no خبر, كان and its sisters are تامة and take a
+        فاعل like any verb (Ibn Aqil on كان التامة); كان في الدار رجل: the خبر may come first, a phrase.
+        ليس is never تامة: it has no meaning of being without its خبر."""
+        return not is_one(verb["lemma"], "kana", "always_defective") \
+            and all(k["rel"] in SUBJECTS or k["pos"] == "PRT" and k["rel"] == "MOD" for k in self.kids(verb))
 
     def _two_objects(self, verb: dict) -> bool:
         """ظن الولدُ الأمرَ سهلًا: an object and a second word in nasb after it, or an أنّ
