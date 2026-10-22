@@ -52,4 +52,25 @@ describe('quran reader', () => {
     expect(await screen.findByRole('button', { name: /other-en 1:1/ })).toBeTruthy()
     expect(screen.queryByRole('button', { name: /saheeh-en/ })).toBeNull()
   })
+
+  it('reads a surah as the printed pages once a printing is offered', async () => {
+    const PAGES = {
+      ...ROUTES,
+      'GET /quran/mushaf': [{ id: 'madani-1421', name: 'Madani 1421', pages: 604, lines: 15, script: 'qpc-hafs' }],
+      'GET /quran/mushaf/madani-1421/surah/1': {
+        printing: 'madani-1421', surah: 1,
+        pages: [{ page: 1, lines: [['surah', 1], ['ayah', [[1, 1, 'بِسۡمِ ٱللَّهِ ١']]], ['ayah', [[1, 2, 'ٱلۡحَمۡدُ لِلَّهِ ٢']]]] }],
+      },
+    }
+    renderScreen(<Reader />, { routes: PAGES })
+    expect(await screen.findByRole('button', { name: /-en 1:1/ })).toBeTruthy()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reading options' }))
+    fireEvent.click(await screen.findByRole('button', { name: 'Madani 1421' }))
+    expect(await screen.findByRole('region', { name: 'Page 1' })).toBeTruthy()
+    expect(screen.queryByRole('button', { name: /-en 1:1/ })).toBeNull()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Study 1:2' }))
+    expect(screen.getByRole('button', { name: 'Study 1:2' }).dataset.open).toBe('true')
+  })
 })

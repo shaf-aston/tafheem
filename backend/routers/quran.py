@@ -11,7 +11,9 @@ from backend.models.common import Correction
 from backend.models.quran import (
     AyahEditions,
     Edition,
+    MushafPage,
     Passage,
+    Printing,
     QuranAyah,
     QuranSearchResponse,
     QuranSearchResult,
@@ -24,10 +26,11 @@ from backend.models.quran import (
     SimilarSurah,
     SurahEdition,
     SurahGlosses,
+    SurahPages,
 )
 from backend.models.tarkeeb import TarkeebTree
 from backend.services import arabic_text, provenance, quran_library, quran_service
-from backend.services import mutashabihat, quran_search
+from backend.services import mushaf, mutashabihat, quran_search
 from backend.services import iraab
 from backend.services import tarkeeb_store, tree_columns
 from backend.services.refs import SURAHS
@@ -84,6 +87,27 @@ async def get_surah_glosses(surah: int = Path(..., ge=1, le=SURAHS)) -> SurahGlo
     """
     glosses, lemmas = await asyncio.to_thread(quran_service.aligned_for_surah, surah)
     return SurahGlosses(surah=surah, ayahs=glosses, lemmas=lemmas)
+
+
+# Two and three segments starting "mushaf", so before /{surah}/{ayah} as the rest are.
+@router.get("/mushaf", response_model=list[Printing])
+async def get_printings() -> list[Printing]:
+    """The printed mushafs a surah can be read in as pages. Empty where none is built."""
+    return [Printing(**{**entry, "source": provenance.of(entry["source"])}) for entry in mushaf.printings()]
+
+
+@router.get("/mushaf/{printing}/surah/{surah}", response_model=SurahPages)
+async def get_surah_pages(
+    printing: str = Path(..., pattern="^[a-z0-9-]{1,40}$"),
+    surah: int = Path(..., ge=1, le=SURAHS),
+) -> SurahPages:
+    """A surah as the pages of one printing, each whole page it is on."""
+    pages = await asyncio.to_thread(mushaf.for_surah, printing, surah)
+    if pages is None:
+        raise HTTPException(status_code=404, detail=f"There is no mushaf {printing}")
+    entry = next(one for one in mushaf.printings() if one["id"] == printing)
+    return SurahPages(printing=printing, surah=surah, pages=[MushafPage(**page) for page in pages],
+                      source=provenance.of(entry["source"]))
 
 
 # Declared before /similar/{surah}/{ayah}: both are three segments, and "surah" is not a number.
