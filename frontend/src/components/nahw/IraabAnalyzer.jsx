@@ -174,7 +174,7 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
       <p className="text-center type-small text-[var(--text-faint)]">
         {governs && picked >= 0 && source(data.words[picked]) !== undefined
           ? <GovernsWhy words={data.words} i={picked} />
-          : 'Tap any word for its full breakdown'}
+          : 'Tap a word for breakdown'}
       </p>
       {detail}
 
