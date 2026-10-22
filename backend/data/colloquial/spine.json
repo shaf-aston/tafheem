@@ -38,7 +38,8 @@
             {
               "slot": "great-fine",
               "english": "Great / Fine.",
-              "search_term": "thumbs up"
+              "search_term": "thumbs up",
+              "image": "unit-01/l01-p06-thumbs-up.jpg"
             },
             {
               "slot": "what-s-your-name-to-a-man",
@@ -63,7 +64,8 @@
             {
               "slot": "nice-to-meet-you",
               "english": "Nice to meet you.",
-              "search_term": "handshake"
+              "search_term": "handshake",
+              "image": "unit-01/l01-p11-handshake.jpg"
             },
             {
               "slot": "me-too",

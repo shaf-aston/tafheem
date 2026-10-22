@@ -221,7 +221,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
     <Accent.Provider value={dialect?.key ?? null}>
     <div className="panel">
       <SectionHeader tab="colloq" subtitle={dialect ? [dialect.gloss, dialect.where].filter(Boolean).join(' · ') : BLURB}
-        nameOf={(q) => nameOfPlace(q, dialects)} />
+        nameOf={(q) => nameOfPlace(q, dialects)} history={false} />
       {catalogue.isPending && <AnalyzerSkeleton />}
       {catalogue.isError && <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={catalogue.error} onRetry={catalogue.refetch} />}
       {/* At the top the subtitle already says these are the dialects: the trail starts one step down. */}

@@ -34,13 +34,14 @@ export default function WordCards({ words }) {
         >
           {/* The picture is the meaning without English, so it stays on both sides. */}
           {word.image && <PhrasePicture phrase={word} alt="" className="w-32 h-32 rounded-[var(--radius-md)]" />}
-          {word.category && <span className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{word.category}</span>}
+          {word.category && <span className="eyebrow">{word.category}</span>}
           {/* Keyed by side, so turning the card fades the other side in rather than snapping. */}
           <span key={String(turned)} className="fade-in flex flex-col items-center gap-2">
             {turned
               ? <ArabicText as="span" size="lg" className="text-[var(--text)]">{word.arabic}</ArabicText>
               : <span className="type-figure font-semibold text-[var(--text)]">{word.english}</span>}
-            <span className="type-small text-[var(--text-faint)]">{turned ? word.english : 'Tap to see the Arabic'}</span>
+            {/* The gloss under the Arabic is read, not a label, so it takes the reading size. */}
+            <span className={turned ? 'type-body text-[var(--text-dim)]' : 'type-ui text-[var(--text-faint)]'}>{turned ? word.english : 'Tap to see the Arabic'}</span>
           </span>
         </button>
         <div className="flex items-center justify-center gap-2 min-h-8">
@@ -61,7 +62,7 @@ export default function WordCards({ words }) {
       </div>
       <div className="flex items-center justify-between gap-3">
         <SmallButton onClick={() => step(at - 1)} disabled={at === 0} aria-label="Previous word">← Prev</SmallButton>
-        <span className="type-small tabular-nums text-[var(--text-dim)]">{at + 1} / {words.length}</span>
+        <span className="type-ui tabular-nums text-[var(--text-dim)]">{at + 1} / {words.length}</span>
         <SmallButton onClick={() => step(at + 1)} disabled={at === words.length - 1} aria-label="Next word">Next →</SmallButton>
       </div>
     </div>
