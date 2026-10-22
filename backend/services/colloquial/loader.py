@@ -254,6 +254,12 @@ def _cover(unit: dict) -> dict | None:
     return phrase and {"arabic": phrase["arabic"], "english": phrase["english"], "image": phrase["image"]}
 
 
+def _picture(lesson: dict) -> str | None:
+    """A topic card's picture: its first phrase picture, else its first word's."""
+    return next((one["image"] for key in ("phrases", "vocabulary")
+                 for one in lesson.get(key) or [] if one.get("image")), None)
+
+
 def catalogue() -> dict:
     """Every dialect and the units in it, without the lessons.
 
@@ -261,7 +267,8 @@ def catalogue() -> dict:
     opened, so an unwritten unit shows as coming instead of vanishing. A lesson's
     `words` counts its word list, so a topic with one can offer it beside the phrases.
     `cover` is the phrase the unit's card says, with its picture. `countries` and
-    `cities` are where the dialect is spoken, for its card's map.
+    `cities` are where the dialect is spoken, for its card's map. A lesson's
+    `picture` is the first one it holds, for its topic card.
 
     The tab opens on this, so it stays small: a unit's own lessons are about
     sixty kilobytes and there is no reason to send fifteen of them to draw a
@@ -280,7 +287,8 @@ def catalogue() -> dict:
                 "units": [{"unit": u["unit"], "title": u["title"], "written": u["written"],
                            "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"], "section": lesson["section"],
                                         "written": lesson["written"], "words": len(lesson.get("vocabulary") or []),
-                                        "phrases": len(lesson.get("phrases") or [])}
+                                        "phrases": len(lesson.get("phrases") or []),
+                                        "picture": _picture(lesson)}
                                        for lesson in u["lessons"]],
                            "cover": _cover(u)}
                           for u in dialect["units"]],

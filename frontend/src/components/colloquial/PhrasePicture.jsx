@@ -4,6 +4,9 @@
  * Every layout draws a phrase's picture through this one component, so "no
  * picture yet" and "picture failed to load" look the same everywhere and a lesson
  * never shows a broken image. The size comes from the caller's className.
+ *
+ * A drawn picture (an emoji, .svg) is shown whole with room around it; a photo
+ * fills its box and is cropped.
  */
 import { useState } from 'react'
 
@@ -20,7 +23,7 @@ export default function PhrasePicture({ phrase, alt = phrase.english, className 
       alt={alt}
       loading="lazy"
       onError={() => setGone(true)}
-      className={`${box} object-cover`}
+      className={`${box} ${phrase.image.endsWith('.svg') ? 'object-contain p-[12%]' : 'object-cover'}`}
     />
   )
 }
