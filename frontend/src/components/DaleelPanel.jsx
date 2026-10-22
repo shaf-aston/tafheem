@@ -48,6 +48,8 @@ import SourceBadge from './ui/SourceBadge'
  * shown another needs to be told which liberty was taken.
  */
 const MATCH_NOTE = {
+  // Only some of the words asked for. Without a note it read as a clean find.
+  partial: 'some of your words',
   loose: 'close spelling',
   root: 'same root',
   related: 'related word',

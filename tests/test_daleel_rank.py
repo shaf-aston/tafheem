@@ -95,8 +95,8 @@ def test_an_english_only_passage_can_still_match():
     assert rank_of(row("", english="The Virtue of Patience"), expansion)[0] == 0
 
 
-def test_loose_rows_are_ordered_by_how_much_they_share():
-    """Among "did you mean" results, more shared runs means more likely meant."""
+def test_loose_rows_are_ordered_by_how_near_they_are():
+    """Among "did you mean" results, fewer letters away means more likely meant."""
     expansion = Expansion(typed=("الرحييم",), related=(), roots=(), loose=("الرحييم",))
     close = rank_of(row("الرحيم"), expansion)
     distant = rank_of(row("الرجل"), expansion)
@@ -124,3 +124,44 @@ def test_a_root_hit_beats_a_loose_hit_even_when_longer():
     loose = rank_of(row("qq", roots=""), expansion)
     assert root[0] == ROOT_TIER and loose[0] == LOOSE_TIER
     assert root < loose
+
+
+def test_an_english_word_must_start_a_word():
+    """prayer was found in "sprayer", and called a clean find."""
+    expansion = only("prayer")
+    assert rank_of(row("بخاخ", english="sprayer"), expansion)[0] != TIER
+    assert rank_of(row("صلاة", english="the prayer"), expansion)[0] == TIER
+
+
+def test_an_english_word_may_carry_an_ending():
+    assert rank_of(row("صبر", english="patiently"), only("patient"))[0] == TIER
+
+
+def test_a_short_arabic_word_must_be_the_whole_word():
+    """أب was found inside الكتاب and تراب, and من inside منه."""
+    assert rank_of(row("اشتريت هذا الكتاب"), only("اب"))[0] != TIER
+    assert rank_of(row("خلقه من تراب"), only("اب"))[0] != TIER
+    assert rank_of(row("ناداه منه"), only("من"))[0] != TIER
+    assert rank_of(row("قال اب لابنه"), only("اب"))[0] == TIER
+
+
+def test_a_short_arabic_word_keeps_what_is_joined_in_front():
+    assert rank_of(row("فمن الله علينا"), only("من"))[0] == TIER
+    assert rank_of(row("ذهب الى الاب"), only("اب"))[0] == TIER
+
+
+def test_a_longer_arabic_word_still_matches_inflected():
+    assert rank_of(row("كان زيد يكتب"), only("كتب"))[0] == TIER
+
+
+def test_for_the_father_is_the_father():
+    """لل is ل and ال with the alef dropped, so للاب is الاب."""
+    assert rank_of(row("قال للاب"), only("اب"))[0] == TIER
+
+
+def test_a_word_inside_another_word_is_not_a_whole_use_of_it():
+    """sprayer ended where prayer ends and was counted a whole use of it."""
+    expansion = only("prayer")
+    clean = rank_of(row("x", english="the prayer"), expansion)
+    sprayer = rank_of(row("x", english="the prayers of the sprayer"), expansion)
+    assert clean < sprayer
