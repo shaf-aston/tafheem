@@ -24,23 +24,21 @@
  * filter that looked the same as a full one would leave the reader guessing
  * whether their last search covered the library or one corner of it.
  *
- * Closed by default: most searches want the whole library, and the open grid
- * outweighed the search box it sits above. It is a Disclosure like every other
- * open-and-shut control in the app, so the arrow, the timing and the keyboard
- * behaviour all come from one place; only the summary line ("all 47 books" or
- * "3 books") is this file's own, since only it knows what is chosen. Whether it
- * is open is remembered per visitor, so a learner who opens it once is not made
- * to reopen it every time.
+ * Always open. It used to fold shut under a "Which books" bar, but the page
+ * under the search box is empty until a search is made, so the fold hid the
+ * one thing there to look at and cost a click to reach it; the list scrolls
+ * inside its own short box, so open it is no taller than a few results. The
+ * line above it still says what will be searched ("all 47 books", "3 books")
+ * and carries the one-click way back to the whole library.
  */
 import { useEffect, useMemo, useState } from 'react'
 
 import { nameMatches } from '../../lib/bookSearch'
 import { isArabic } from '../../lib/arabicText'
-import { useRememberedFlag } from '../../lib/useRemembered'
 
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
-import Disclosure from '../ui/Disclosure'
+import ChipRow from '../ui/ChipRow'
 
 // Not a shelf, the absence of one. A name no category can have, so a shelf
 // called "All books" could never collide with it.
@@ -71,7 +69,6 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
   const [category, setCategory] = useState(EVERY)
   const [chosen, setChosen] = useState([])
   const [typed, setTyped] = useState('')
-  const [open, setOpen] = useRememberedFlag('daleel-picker-open', false)
 
   const listed = useMemo(() => matching(books, category, typed), [books, category, typed])
   const shelfHolds = useMemo(
@@ -121,37 +118,23 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
         : category
 
   return (
-    <Disclosure
-      defaultOpen={open}
-      onToggle={setOpen}
-      label={
-        <span className="flex items-baseline gap-2 flex-1 min-w-0">
-          <span className="text-sm font-medium text-[var(--text-dim)]">Which books</span>
-          <span className="type-small text-[var(--text-faint)] ms-auto truncate">{summary}</span>
-          {/* On the closed bar, so undoing a filter costs one click from
-              wherever the reader is. It used to be a line of text inside the
-              picker, which meant opening the picker to say "never mind". */}
-          {narrowed && (
-            <button
-              type="button"
-              onClick={(event) => {
-                // The details toggle listens for the click's default action,
-                // not React's bubbling, so only preventDefault stops this
-                // button from also opening or shutting the picker.
-                event.preventDefault()
-                clear()
-              }}
-              className="type-small shrink-0 px-2 py-0.5 rounded-[var(--radius-sm)]
-                border border-[var(--border)] text-[var(--text-faint)]
-                hover:text-[var(--text)] hover:border-[var(--border-hi)] transition-colors"
-            >
-              Search all books
-            </button>
-          )}
-        </span>
-      }
-      className="space-y-2"
-    >
+    <section aria-label="Which books" className="space-y-2">
+      <div className="flex items-baseline gap-2 min-w-0">
+        <span className="type-small text-[var(--text-faint)] truncate">Searching {summary}</span>
+        {/* Beside the summary, so undoing a filter is one click from the line
+            that says it is on. */}
+        {narrowed && (
+          <button
+            type="button"
+            onClick={clear}
+            className="type-small shrink-0 ms-auto px-2 py-0.5 rounded-[var(--radius-sm)]
+              border border-[var(--border)] text-[var(--text-faint)]
+              hover:text-[var(--text)] hover:border-[var(--border-hi)] transition-colors"
+          >
+            Search all books
+          </button>
+        )}
+      </div>
       {chosen.length > 0 && (
         <ul className="flex flex-wrap gap-1.5">
           {chosen.map((name) => (
@@ -171,35 +154,19 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
         </ul>
       )}
 
-      <div
-        className="grid gap-px bg-[var(--border)] rounded-[var(--radius-md)] overflow-hidden
-          border border-[var(--border)] sm:grid-cols-[11rem_1fr]"
-      >
-        {/* The subjects. A short list that does not grow with the library, so
-            it is shown rather than typed for; the books beside it are the long
-            list and have the box. */}
-        <div className="bg-[var(--surface)] p-1" role="group" aria-label="Which subject">
-          <Shelf
-            name={EVERY}
-            label="All books"
-            count={books.length}
-            on={category === EVERY}
-            accent={accent}
-            onPick={pickShelf}
-          />
-          {shelves(books).map(([name, count]) => (
-            <Shelf
-              key={name}
-              name={name}
-              label={name}
-              count={count}
-              on={category === name}
-              accent={accent}
-              onPick={pickShelf}
-            />
-          ))}
-        </div>
+      {/* The subjects. A short list that does not grow with the library, so
+          it is shown rather than typed for; the books under it are the long
+          list and have the box. One scrolling row of chips, as the shelves over
+          the results are, so on a phone it costs one line rather than six. */}
+      <ChipRow scroll role="group" aria-label="Which subject">
+        {[[EVERY, books.length], ...shelves(books)].map(([name, count]) => (
+          <Chip key={name} selected={category === name} accent={accent} onClick={() => pickShelf(name)}>
+            <span className="whitespace-nowrap">{name === EVERY ? 'All books' : name} {count}</span>
+          </Chip>
+        ))}
+      </ChipRow>
 
+      <div className="rounded-[var(--radius-md)] overflow-hidden border border-[var(--border)]">
         <div className="bg-[var(--surface)] p-1 space-y-1">
           <input
             type="text"
@@ -229,7 +196,7 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
           {/* The fade signals more rows below the clip rather than letting a
               name look cut off mid-letter. */}
           <div className="relative">
-          <ul className="max-h-52 overflow-y-auto sm:grid sm:grid-cols-2 sm:gap-x-1">
+          <ul className="max-h-40 sm:max-h-52 overflow-y-auto sm:grid sm:grid-cols-2 sm:gap-x-1">
             {listed.length === 0 ? (
               <li className="px-2 py-1.5 type-small text-[var(--text-faint)]">
                 No book here is called that.
@@ -294,37 +261,6 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
           </div>
         </div>
       </div>
-    </Disclosure>
-  )
-}
-
-/** One subject. A row, not a chip: the column reads as a list to go down. */
-function Shelf({ name, label, count, on, accent, onPick }) {
-  return (
-    <button
-      type="button"
-      onClick={() => onPick(name)}
-      aria-pressed={on}
-      style={
-        on
-          ? { color: accent, background: `color-mix(in srgb, ${accent} 12%, transparent)` }
-          : undefined
-      }
-      className={`w-full text-start px-2 py-1.5 rounded-[var(--radius-sm)] text-sm
-        flex items-baseline justify-between gap-2 transition-colors
-        ${on ? '' : 'text-[var(--text-dim)] hover:bg-[var(--surface-hi)]'}`}
-    >
-      <span>
-        {/* Colour alone failed contrast-blind readers; the glyph says "on"
-            independent of hue. */}
-        {on && <span aria-hidden="true">✓ </span>}
-        {label}
-      </span>
-      {/* The chosen row's count inherits the accent: faint grey on the tinted
-          band fell just under the contrast floor (4.05 of 4.5). */}
-      <span className={`type-small tabular-nums ${on ? '' : 'text-[var(--text-faint)]'}`}>
-        {count}
-      </span>
-    </button>
+    </section>
   )
 }

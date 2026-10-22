@@ -21,15 +21,17 @@ loose match rather than passed off as a clean find.
 """
 from __future__ import annotations
 
+import bisect
+import heapq
 import logging
 import re
 import sqlite3
 from dataclasses import dataclass
+from functools import lru_cache
 from typing import NamedTuple
 
 from backend.config import data_path, get_settings
 from backend.services import fts
-from functools import lru_cache
 
 from backend.services.arabic_text import bare_letters, has_arabic
 from backend.services.daleel import registry
@@ -477,7 +479,18 @@ def _fairly(
     156 sources kept their best passage that way and 149 do now. The score
     costs about 20 ms on a typical question and 0.3 s on the slowest. Putting
     passages holding every typed word first was tried too and kept only 121.
+
+    Without a book filter the share is cut here rather than in SQL. Every
+    source's passages are one unbroken run of rowids, because the build writes
+    one source after another, so which source a rowid is in is a binary search
+    over a dozen starts instead of a lookup in passage_meta for every match,
+    and each source keeps its best few in a heap of that size instead of every
+    match being sorted. For a word as common as قال that is one pass over
+    thirty thousand rowids and their scores, and about half the time.
     """
+    if not books and (spans := _source_spans()):
+        return _best_per_source(conn, match, per_source, spans)
+
     only, chosen = fts.only_in("book", books)
     return list(map(Passage._make, conn.execute(
         f"SELECT {_COLUMNS} FROM ("
@@ -487,6 +500,69 @@ def _fairly(
         f") share JOIN passage p ON p.rowid = share.id WHERE share.place <= ?",
         (match, *chosen, per_source),
     )))
+
+
+class _Spans(NamedTuple):
+    """Where each source's run of rowids starts, in rowid order."""
+
+    starts: tuple[int, ...]
+    sources: tuple[str, ...]
+
+
+def _source_spans() -> _Spans | None:
+    """The index's source runs, worked out once per build of the file."""
+    return _spans_of(_db.stamp())
+
+
+@lru_cache(maxsize=2)
+def _spans_of(stamp: tuple[str, int] | None) -> _Spans | None:
+    """The source runs of the index on disk, or None when they are not unbroken.
+
+    Keyed on the file's path and mtime, so a rebuild is read afresh. None sends
+    the search back to passage_meta, which is right whatever the order, so an
+    index written some other way is slower rather than wrong.
+    """
+    conn = _db()
+    if stamp is None or conn is None or not _has_table(conn, "passage_meta"):
+        return None
+    runs = conn.execute(
+        "SELECT min(id), max(id), count(*), source FROM passage_meta GROUP BY source ORDER BY min(id)"
+    ).fetchall()
+    if any(last - first + 1 != count for first, last, count, _ in runs):
+        log.warning("passage rowids are not one run per source; searching via passage_meta")
+        return None
+    return _Spans(tuple(run[0] for run in runs), tuple(run[3] for run in runs))
+
+
+def _best_per_source(
+    conn: sqlite3.Connection, match: str, per_source: int, spans: _Spans,
+) -> list[Passage]:
+    """The `per_source` best-scored matches of each source, then those rows in full.
+
+    FTS5 scores lower as better, and rowid breaks a tie, as the SQL version
+    orders them; the heap keeps the worst of the best on top to be replaced.
+    """
+    kept: list[list[tuple[float, int]]] = [[] for _ in spans.starts]
+    # FTS5 hands rowids back in order, so the source only ever moves forward:
+    # its run is found once by binary search, then stepped past, not looked up.
+    ends = (*spans.starts[1:], float("inf"))
+    at, heap, end = 0, kept[0], ends[0]
+    for rowid, score in conn.execute("SELECT rowid, rank FROM passage WHERE passage MATCH ?", (match,)):
+        if rowid >= end:
+            at = bisect.bisect_right(spans.starts, rowid) - 1
+            heap, end = kept[at], ends[at]
+        if len(heap) < per_source:
+            heapq.heappush(heap, (-score, -rowid))
+        elif -score > heap[0][0] or (-score == heap[0][0] and -rowid > heap[0][1]):
+            heapq.heapreplace(heap, (-score, -rowid))
+
+    ids = [-rowid for heap in kept for _, rowid in sorted(heap, reverse=True)]
+    if not ids:
+        return []
+    rows = {row[0]: Passage._make(row[1:]) for row in conn.execute(
+        f"SELECT p.rowid, {_COLUMNS} FROM passage p WHERE p.rowid IN ({','.join('?' * len(ids))})", ids,
+    )}
+    return [rows[rowid] for rowid in ids if rowid in rows]
 
 
 def _loosely(
