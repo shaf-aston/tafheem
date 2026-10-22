@@ -29,7 +29,9 @@ from typing import NamedTuple
 
 from backend.config import data_path, get_settings
 from backend.services import fts
-from backend.services.arabic_text import has_arabic
+from functools import lru_cache
+
+from backend.services.arabic_text import bare_letters, has_arabic
 from backend.services.daleel import registry
 from backend.services.daleel.expand import Expansion, expand
 from backend.services.daleel.lexicon import DictionaryLexicon
@@ -77,6 +79,11 @@ class Hit:
     match: str
     """One of exact / partial / root / loose. Carried to the screen so a loose
     match can be labelled as one instead of passing for a clean find."""
+    arabic_marks: tuple[tuple[int, int], ...] = ()
+    english_marks: tuple[tuple[int, int], ...] = ()
+    """Where in `arabic` and `english` the words that made it a match are, as
+    [start, end) character offsets, so the screen can show why it came back
+    without knowing anything about how Arabic is matched."""
 
 
 def search(query: str, limit: int | None = None, books: tuple[str, ...] = ()) -> list[Hit]:
@@ -105,8 +112,10 @@ def search(query: str, limit: int | None = None, books: tuple[str, ...] = ()) ->
 
     ranked = _close_enough(sorted(((rank_of(row, expansion), row) for row in rows), key=lambda i: i[0]), expansion)
 
+    shown = (*expansion.phrase_terms, *expansion.typed, *expansion.related)
     return [
-        Hit(row.source, row.book, row.locator, row.arabic, row.english, _MATCH_BY_TIER[rank[0]])
+        Hit(row.source, row.book, row.locator, row.arabic, row.english, _MATCH_BY_TIER[rank[0]],
+            marks(row.arabic, shown), marks(row.english, shown))
         for rank, row in _spread(ranked, limit)
     ]
 
@@ -194,6 +203,9 @@ def rank_of(row: Passage, expansion: Expansion) -> tuple[int, int, int, int]:
     present = [term for term in expansion.typed if _found(term, fold) >= 0]
     also = [term for term in expansion.related if _found(term, fold) >= 0]
 
+    if expansion.phrase and _found(expansion.phrase, fold) >= 0:
+        # The words as typed, in order, beat the same words anywhere.
+        return (0, -_PHRASE, _found(expansion.phrase, fold), len(fold))
     if expansion.typed and len(present) == len(expansion.typed):
         tier = 0
     elif present:
@@ -217,7 +229,7 @@ def rank_of(row: Passage, expansion: Expansion) -> tuple[int, int, int, int]:
     # both sides called that a poor match and put a dictionary entry above the
     # verse. A suffix is different: كتبي is a different word from كتب.
     matched = present or also
-    whole = sum(bool(_pattern(term, whole=True).search(fold)) for term in matched)
+    whole = sum(next(_uses(term, fold, whole=True), None) is not None for term in matched)
 
     first = min((_found(term, fold) for term in matched), default=len(fold))
     return (tier, -whole, first, len(fold))
@@ -257,10 +269,107 @@ def _pattern(term: str, whole: bool = False) -> re.Pattern:
     return re.compile(found + (_NOT_LETTER if whole else ""))
 
 
+# Stronger than any count of whole words, so the phrase always leads its tier.
+_PHRASE = 1000
+
+# A short word with a letter joined on that is a word of its own: لما is
+# "when", not ل and ما, and was being passed off as a clean find for ما.
+_OWN_WORDS = frozenset({"لما"})
+
+
+def _uses(term: str, text: str, whole: bool = False):
+    """Each place the term is used as a word in the text. See _pattern."""
+    for found in _pattern(term, whole).finditer(text):
+        if text[found.start():found.end(1)].lstrip("وف") not in _OWN_WORDS:
+            yield found
+
+
 def _found(term: str, text: str) -> int:
-    """Where the term is used as a word in the text, or -1. See _pattern."""
-    found = _pattern(term).search(text)
+    """Where the term is first used as a word in the text, or -1."""
+    found = next(_uses(term, text), None)
     return found.start(1) if found else -1
+
+
+def marks(text: str, terms: tuple[str, ...]) -> tuple[tuple[int, int], ...]:
+    """Where in the text as printed each term is used, each widened to its whole word.
+
+    The terms are folded and the text is not, so the text is folded a letter
+    at a time with a note of where each folded letter came from. It is folded
+    twice, once for each spelling the index holds, so الصلاة is found in the
+    ayah's الصلوٰة as well as in a book's الصلاة. The rule for what counts as
+    a use is _uses, the same one that ranked the passage.
+    """
+    if not text or not terms:
+        return ()
+    found: list[tuple[int, int]] = []
+    for written in (False, True):
+        folded, origin = _folded_with_origin(text, written)
+        for term in terms:
+            for use in _uses(term, folded):
+                start, end = origin[use.start(1)], origin[use.end(1) - 1] + 1
+                found.append(_widened(text, start, end))
+    return tuple(_merged(found))
+
+
+_SMALL_ALEF = "\u0670"
+_MARK = re.compile("[\u0610-\u061a\u064b-\u065f\u06d6-\u06ed]")
+
+
+@lru_cache(maxsize=4096)
+def _fold_letter(letter: str) -> str:
+    return bare_letters(letter).lower()
+
+
+def _folded_with_origin(text: str, written: bool) -> tuple[str, list[int]]:
+    """The text folded as the index folds it, and for each folded letter the
+    place in `text` it came from. `written` spells the small alef out, as the
+    second of the index's two spellings does: a waw or ya carrying it becomes
+    that alef, as in الصلوٰة."""
+    out: list[str] = []
+    origin: list[int] = []
+    for at, letter in enumerate(text):
+        if written and letter == _SMALL_ALEF:
+            piece = "ا"
+        elif written and letter in "وي" and _carries_small_alef(text, at):
+            piece = ""
+        else:
+            piece = _fold_letter(letter)
+        out.append(piece)
+        origin.extend([at] * len(piece))
+    return "".join(out), origin
+
+
+def _carries_small_alef(text: str, at: int) -> bool:
+    """Whether the next letter after any vowel marks is the small alef."""
+    for letter in text[at + 1:at + 4]:
+        if letter == _SMALL_ALEF:
+            return True
+        if not _MARK.match(letter):
+            return False
+    return False
+
+
+_WORD_LETTER = re.compile("[\\w\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed]")
+
+
+def _widened(text: str, start: int, end: int) -> tuple[int, int]:
+    """Out to the edges of the word, so بالصبر is marked whole, not just صبر."""
+    while start > 0 and _WORD_LETTER.match(text[start - 1]):
+        start -= 1
+    while end < len(text) and _WORD_LETTER.match(text[end]):
+        end += 1
+    return start, end
+
+
+def _merged(spans: list[tuple[int, int]]) -> list[tuple[int, int]]:
+    """In order, with overlapping ones made one."""
+    out: list[tuple[int, int]] = []
+    for start, end in sorted(spans):
+        if out and start <= out[-1][1]:
+            out[-1] = (out[-1][0], max(out[-1][1], end))
+        else:
+            out.append((start, end))
+    return out
 
 
 def _has_root(roots: str, root: str) -> bool:
@@ -299,7 +408,7 @@ def _candidates(
     # roots. A long question still fans out, but not without limit.
     # Deduplicated before the cap: a translation is often its own root (صبر),
     # and each repeat spent one of the twelve places on nothing.
-    long_terms = list(dict.fromkeys(t for t in (*expansion.all_terms, *expansion.roots)
+    long_terms = list(dict.fromkeys(t for t in (*expansion.phrase_terms, *expansion.all_terms, *expansion.roots)
                                     if len(t) >= fts.TRIGRAM_MIN))[:settings.daleel_max_terms]
 
     # The words the trigram index cannot see, because it cannot match anything

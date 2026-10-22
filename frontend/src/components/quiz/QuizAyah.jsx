@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { ayahQueries } from '../../lib/quizAyah'
 
 import ArabicText from '../ui/ArabicText'
+import Mark from '../ui/Mark'
 import ShowRest from '../ui/ShowRest'
 
 // A word's position reads "surah:ayah:word"; the word number is the last part.
@@ -30,10 +31,7 @@ export default function QuizAyah({ ayah: [surah, ayah, wordNumber], accent }) {
           <span key={i}>
             {i > 0 && ' '}
             {numberOf(word) === wordNumber ? (
-              // Colour and an underline, so the word is found without seeing colour.
-              <mark className="bg-transparent underline underline-offset-8 decoration-2" style={{ color: accent }}>
-                {word.uthmani || word.arabic}
-              </mark>
+              <Mark accent={accent}>{word.uthmani || word.arabic}</Mark>
             ) : (word.uthmani || word.arabic)}
           </span>
         ))}

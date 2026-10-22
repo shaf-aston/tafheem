@@ -154,3 +154,9 @@ def test_wildcards_are_not_treated_as_search_syntax():
     # A quote is the one character that is syntax here, and it is doubled
     # rather than passed through, so a term cannot close its own phrase.
     assert quoted('a"b') == '"a""b"'
+
+
+def test_the_whole_query_is_kept_as_a_phrase():
+    """Noise words go from the terms, not from the phrase, so order still counts."""
+    assert run("in the name of").phrase == "in the name of"
+    assert run("كتاب").phrase == ""

@@ -71,6 +71,8 @@ async def find(
                 arabic=hit.arabic,
                 english=hit.english,
                 match=hit.match,
+                arabic_marks=list(hit.arabic_marks),
+                english_marks=list(hit.english_marks),
                 book=hit.book,
                 source=provenance.of(hit.source),
             )

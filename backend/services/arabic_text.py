@@ -115,6 +115,9 @@ def bare_letters(text: str) -> str:
     For deciding whether two sources are talking about the same word, never for
     display, because what it returns is not how anyone writes Arabic.
     """
+    # NFKC first: a ligature is the letters it is drawn from, so ﷲ is الله and
+    # ﻻ is لا. Without it a typed ﷲ matched nothing, not even itself in a book.
+    text = unicodedata.normalize("NFKC", text)
     return _QURANIC_MARKS_RE.sub("", strip_diacritics(text)).translate(_LETTER_FOLD)
 
 

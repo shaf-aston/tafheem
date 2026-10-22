@@ -25,6 +25,10 @@ class DaleelHit(BaseModel):
     book: str = ""
     """Which book of that source. Fourteen classical works share one badge, so
     the badge alone no longer says where a quotation is from."""
+    arabic_marks: list[tuple[int, int]] = []
+    english_marks: list[tuple[int, int]] = []
+    """The words that made it a match, as [start, end) offsets in code points
+    into `arabic` and `english`, so the screen marks them without matching."""
 
 
 class DaleelBook(BaseModel):

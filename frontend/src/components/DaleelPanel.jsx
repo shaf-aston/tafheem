@@ -17,6 +17,7 @@ import { daleelBooksQuery, findDaleel } from '../api'
 import { isArabic, mostlyArabic } from '../lib/arabicText'
 import { isAyah } from '../lib/surahRef'
 import { plainEntry } from '../lib/laneEntry'
+import { markedPieces, withMarks } from '../lib/marked'
 import { sourcesFor, useSources } from '../lib/useSources'
 import { useSearch } from '../lib/useSearch'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../lib/useLaneTidy'
@@ -28,6 +29,7 @@ import Disclosure from './ui/Disclosure'
 import BookPicker from './daleel/BookPicker'
 import EmptyState from './ui/EmptyState'
 import IndexNotBuilt from './ui/IndexNotBuilt'
+import Mark from './ui/Mark'
 import FlagButton from './ui/FlagButton'
 import MicButton from './ui/MicButton'
 import PlaceLinks from './ui/PlaceLinks'
@@ -293,8 +295,8 @@ function Quotation({ hit, onGo, accent, tidy }) {
           </GoButton>
         )}>
         <div className="space-y-3">
-          {hit.arabic && <Passage text={hit.arabic} tidy={tidy} arabic />}
-          {hit.english && <Passage text={hit.english} tidy={tidy} />}
+          {hit.arabic && <Passage text={hit.arabic} marks={hit.arabic_marks} accent={accent} tidy={tidy} arabic />}
+          {hit.english && <Passage text={hit.english} marks={hit.english_marks} accent={accent} tidy={tidy} />}
         </div>
       </ShowRest>
     </article>
@@ -319,13 +321,17 @@ function Quotation({ hit, onGo, accent, tidy }) {
  * used to keep called a 330-character line long on a phone and on a desktop
  * alike, where it is four lines and one.
  */
-function Passage({ text, tidy = false, arabic = false }) {
+function Passage({ text, marks, accent, tidy = false, arabic = false }) {
   // A dictionary entry arrives with the marks its own dump wrote into it.
   // Every other book passes through untouched, none of them carrying those
-  // marks in the first place.
-  const said = plainEntry(text, { tidy })
+  // marks in the first place. The server's marks for the matched words go in
+  // first, so they ride through that reshaping and still land on their words.
+  const pieces = markedPieces(plainEntry(withMarks(text, marks), { tidy }))
+  const said = pieces.map((piece, n) => piece.marked
+    ? <Mark key={n} accent={accent}>{piece.text}</Mark>
+    : piece.text)
 
-  return arabic && mostlyArabic(said) ? (
+  return arabic && mostlyArabic(pieces.map((piece) => piece.text).join('')) ? (
     <ArabicText size="lg" className="block leading-loose whitespace-pre-line">{said}</ArabicText>
   ) : (
     <p className="type-body text-[var(--text-dim)] leading-relaxed whitespace-pre-line max-w-prose">
