@@ -62,30 +62,27 @@ export default function LexiconShelf({ root: asked, hasAlternates, accent }) {
   if (!asked) return null
   const entries = data?.entries ?? []
 
+  // Each book is its own ruled-off block in the frame the caller draws; the
+  // shelf adds no frame or heading of its own. Its heading used to list the
+  // books by name, which went stale the day a root came back without one.
+  if (entries.length) {
+    return entries.map((entry) => (
+      <BookEntry key={entry.book} entry={entry} root={data.root} accent={accent} />
+    ))
+  }
+
   return (
-    <section className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden">
-      <header className="px-4 py-2.5 bg-[var(--surface)]">
-        <h3 className="type-body font-medium text-[var(--text)]">
-          What the classical dictionaries say: Lisan al-Arab, Taj al-Arus, Lane
-        </h3>
-      </header>
+    <div className="p-4">
+      {isPending && <Skeleton className="h-24" />}
 
-      <div className="p-4 space-y-3">
-        {isPending && <Skeleton className="h-24" />}
+      {isError && (
+        <ErrorAlert title="The dictionaries could not be read" error={error} onRetry={() => refetch()} />
+      )}
 
-        {isError && (
-          <ErrorAlert title="The dictionaries could not be read" error={error} onRetry={() => refetch()} />
-        )}
-
-        {data && entries.length === 0 && (
-          <Nothing said={NOTHING[data.status] ?? NOTHING[READY]} hasAlternates={hasAlternates} />
-        )}
-
-        {entries.map((entry) => (
-          <BookEntry key={entry.book} entry={entry} root={data.root} accent={accent} />
-        ))}
-      </div>
-    </section>
+      {data && (
+        <Nothing said={NOTHING[data.status] ?? NOTHING[READY]} hasAlternates={hasAlternates} />
+      )}
+    </div>
   )
 }
 
@@ -117,28 +114,31 @@ function BookEntry({ entry, root, accent }) {
   }
 
   return (
-    <article className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden">
-      <header className="px-3 py-2 bg-[var(--surface)] flex items-baseline gap-2 flex-wrap">
-        {/* Left off where the badge at the foot already names the book (Lane):
-            the same name at the top and the bottom of one card reads as two. */}
-        {entry.title !== entry.source?.label && (arabic
-          ? <ArabicText size="sm">{entry.title}</ArabicText>
-          : <span className="type-body text-[var(--text)]">{entry.title}</span>)}
+    <article className="p-4 space-y-2">
+      <header className="flex items-center gap-x-2 gap-y-1.5 flex-wrap">
+        {/* The book's name leads every block: its title, or its badge where the
+            badge already is the title (Lane), so one name is never printed twice. */}
+        {entry.title === entry.source?.label ? <SourceBadge source={entry.source} /> : (arabic
+          ? <ArabicText size="sm" className="font-medium text-[var(--text)]">{entry.title}</ArabicText>
+          : <span className="type-body font-medium text-[var(--text)]">{entry.title}</span>)}
         <span className="type-small text-[var(--text-faint)]">
           {entry.author}{entry.died ? `, d. ${entry.died}` : ''}
           {arabic ? '' : ' · in English'}
         </span>
-        {/* Only Lane carries the scholar's marks, so only his title has the switch. */}
-        {lane && (
-          <div className="ms-auto self-center">
+        {/* In the header, not at the foot: under a long entry a badge at the
+            bottom was a screen away from the name it vouches for. */}
+        <div className="ms-auto flex items-center gap-2">
+          {/* Only Lane carries the scholar's marks, so only his title has the switch. */}
+          {lane && (
             <FlagButton value={tidy} onChange={setTidy} accent={accent} title={LANE_TIDY_TITLE}>
               {LANE_TIDY_LABEL}
             </FlagButton>
-          </div>
-        )}
+          )}
+          {entry.title !== entry.source?.label && <SourceBadge source={entry.source} />}
+        </div>
       </header>
 
-      <div className="p-3 space-y-2">
+      <div className="space-y-2">
         {/* Said before the entry, not after: a reader who typed امر and is shown
             the book's أمر must know that before they read a word of it. */}
         {entry.book_root && (
@@ -152,7 +152,13 @@ function BookEntry({ entry, root, accent }) {
             own scrollbar, which hid the same words and also took the wheel off
             the page inside it. How tall the snippet stands is theme.json's
             lexicon.entry-h, the same knob that used to set the box. */}
-        {lane && <LaneIndex forms={shown} onJump={jump} accent={accent} />}
+        {/* Two rows of the index, the rest a press away: forty-odd headwords
+            stood half a screen deep between Lane's name and his first word. */}
+        {lane && (
+          <ShowRest lines={3} accent={accent} more="All words">
+            <LaneIndex forms={shown} onJump={jump} accent={accent} />
+          </ShowRest>
+        )}
 
         <ShowRest height="var(--lexicon-entry-h)" open={open} onOpenChange={setOpen}>
           {lane ? <LaneEntry forms={shown} anchor={anchor} /> : (
@@ -163,8 +169,6 @@ function BookEntry({ entry, root, accent }) {
             </div>
           )}
         </ShowRest>
-
-        <SourceBadge source={entry.source} />
       </div>
     </article>
   )

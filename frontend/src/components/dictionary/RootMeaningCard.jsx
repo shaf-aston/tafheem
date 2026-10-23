@@ -26,6 +26,7 @@ import ArabicText from '../ui/ArabicText'
 import ShowRest from '../ui/ShowRest'
 import ErrorAlert from '../ui/ErrorAlert'
 import Segmented from '../ui/Segmented'
+import SmallButton from '../ui/SmallButton'
 import { Skeleton } from '../ui/Skeleton'
 import SourceBadge from '../ui/SourceBadge'
 
@@ -82,26 +83,15 @@ export default function RootMeaningCard({ root: asked, hasAlternates, accent }) 
   if (!asked) return null
 
   return (
-    <section
-      className="p-4 rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)] space-y-3"
-      aria-label="Classical root sense"
-    >
+    <section className="p-4 space-y-3" aria-label="Classical root sense">
+      {/* The badge is the book's name here, as on every book under it: the
+          badge names the source, so a heading saying the same two lines above
+          it was the book's name printed twice. Until it arrives the heading
+          stands in, so the block is never nameless. */}
       <div className="flex items-start justify-between gap-3 flex-wrap">
-        <div>
-          {/* The book's name is in the heading, not only in the badge: a reader
-              scanning the page for classical dictionaries counted three below and
-              missed this one, which is the fourth. */}
-          <h3 className="type-body font-medium text-[var(--text)]">
-            Classical root sense: Maqayees al-Lugha (Ibn Faris)
-          </h3>
-        </div>
-        {/* The same badge every other panel names its source with, rather than
-            this card's own wording for the same thing, one shape to learn, and
-            the book's standing is stated in the same terms as everyone else's.
-            Every source on the card wears that badge and nothing else: a mark
-            beside one of them and not the others read as a difference in
-            standing that is not there. */}
-        <SourceBadge source={data?.source} className="shrink-0" />
+        {data?.source
+          ? <SourceBadge source={data.source} />
+          : <h4 className="type-body font-medium text-[var(--text)]">Maqayees al-Lugha</h4>}
       </div>
 
       {/* The body swaps between three different answers, and swaps again when
@@ -139,6 +129,10 @@ function Body({
   // Whether the rest of the entry is open. The English below it is
   // fetched on that alone, so a root looked up and never opened costs nothing.
   const [opened, setOpened] = useState(false)
+  // Whether the Arabic of the rest is shown whole. Held here, not in ShowRest:
+  // the paired views take ShowRest off the page, and coming back to Together
+  // folded the Arabic away again.
+  const [whole, setWhole] = useState(false)
   const queryClient = useQueryClient()
   // Both shapes are asked for on the press that opens the rest, not on the
   // press that switches view: fetched on the switch, every first change of
@@ -316,15 +310,26 @@ function Body({
             <Segmented
               label="How to read the entry"
               accent={accent}
+              compact
               options={VIEWS}
               value={view}
               onChange={setView}
             />
           )}
 
-          {/* Paired views carry the Arabic in their own lines; Together keeps it here. */}
+          {/* Paired views carry the Arabic in their own lines; Together keeps it here.
+              The English is its own press, beside Show all rather than behind
+              it: a rest short enough to need no cut had no button at all, and
+              its English and its views were out of reach. */}
           {!(opened && paired) && (
-            <ShowRest lines={config['root-meaning']['rest-lines']} accent={accent} onOpen={open}>
+            <ShowRest
+              lines={config['root-meaning']['rest-lines']}
+              accent={accent}
+              onOpen={open}
+              open={whole}
+              onOpenChange={setWhole}
+              beside={!opened && <SmallButton onClick={open}>Read in English</SmallButton>}
+            >
               {/* The book first, its English under it. This panel is the
                   book's own words; the English is what a machine made of them,
                   and printing the machine first put a retelling where the
@@ -353,11 +358,15 @@ function Body({
 function EntryEnglish({ view, root, accent }) {
   // 'lines' and 'one' are two ways to read the same pairs: one entry, one query.
   const english = ENGLISH[view === 'one' ? 'lines' : view]
-  const { data, isFetching, isError, error, refetch } = useQuery(englishQuery(english, root))
+  const { data, isPending, isError, error, refetch } = useQuery(englishQuery(english, root))
 
-  if (isFetching) {
+  // Said in words, not only drawn: a root whose English is not kept is put into
+  // English while the reader waits, a few seconds, and two grey bars alone read
+  // as a page that has stuck.
+  if (isPending) {
     return (
-      <div className="space-y-2">
+      <div className="space-y-2" role="status">
+        <p className="type-small text-[var(--text-faint)]">Putting the entry into English…</p>
         <Skeleton className="h-4 w-3/4" />
         <Skeleton className="h-3 w-1/2" />
       </div>
