@@ -17,6 +17,7 @@ from typing import Callable
 from backend.config import get_settings
 from backend.services import dictionary_service, recitation, root_meaning, speech, syntax, verb_reader
 from backend.services.colloquial import loader as colloquial
+from backend.services.daleel import search as daleel
 from backend.services.hadith import meaning as hadith_meaning
 
 logger = logging.getLogger(__name__)
@@ -45,6 +46,7 @@ STEPS: dict[str, tuple[str, Callable[[], object]]] = {
     "nahw_parser": ("Nahw parser", syntax.warm),
     "sarf_reader": ("Sarf verb reader", verb_reader.warm),
     "hadith_meaning": ("Hadith meaning search", hadith_meaning.warm),
+    "daleel": ("Daleel search", daleel.warm),
 }
 
 

@@ -87,6 +87,18 @@ def search(
     return hits
 
 
+def warm() -> None:
+    """One English and one Arabic search, run at startup (services/startup).
+
+    The first search after a restart otherwise loads what expanding a question
+    needs, the English word forms and the root reader among them, and reads the
+    index's first pages from disk: 823ms of expand alone on the server, waited
+    out by whoever asked first, twice a deploy, once per copy.
+    """
+    for query in ("patience", "الصبر"):
+        search(query)
+
+
 def expand_query(query: str) -> Expansion:
     """What was typed, as the terms to search for, with the app's settings."""
     settings = get_settings()

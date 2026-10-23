@@ -69,8 +69,16 @@ def candidates(
                     len(short_terms))
         short_terms = []
 
+    # A root is looked for in the roots column alone. In the text it is only
+    # three letters in a row: رحم sits inside 2,756 passages of the books, and
+    # none of them can rank as a root match, since only the Qur'an and the
+    # dictionaries say which roots a passage holds. They came back as loose
+    # guesses, were mostly thrown away, and had first taken the share of the
+    # passages that did answer: fasting in القدوري found nothing at all.
+    words = set(expansion.phrase_terms) | set(expansion.all_terms)
     if long_terms:
-        match = " OR ".join(fts.quoted(term) for term in long_terms)
+        match = " OR ".join(fts.quoted(term) if term in words else f"roots:{fts.quoted(term)}"
+                            for term in long_terms)
         for row in fairly(conn, match, per_source, books):
             found[row.key] = row
 

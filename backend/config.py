@@ -508,8 +508,11 @@ class Server(BaseSettings):
     # recitation ~1s, 150MB (first recitation loads it instead); nahw_parser ~110MB ONNX + CAMeL BERT, ~600MB, ~8s+;
     # colloquial reads and checks every unit, ~3s, which the first Colloquial visit after a restart waited out;
     # hadith_meaning ~2s, ~150MB model + 50MB vectors, which the first hadith search waited out;
-    # sarf_reader ~4s building the verb shapes the Nahw tab reads commands with.
-    startup_background: list[str] = ["recitation", "speech", "colloquial", "nahw_parser", "sarf_reader", "hadith_meaning"]
+    # sarf_reader ~4s building the verb shapes the Nahw tab reads commands with;
+    # daleel ~1s, two searches, which the first Daleel search after a restart waited out (expand 823ms).
+    startup_background: list[str] = [
+        "recitation", "speech", "colloquial", "nahw_parser", "sarf_reader", "hadith_meaning", "daleel",
+    ]
 
     # Longest question any search box sends (Daleel, Hadith, Dictionary, Qur'an); past it, a paste, not a search.
     search_max_query_chars: int = 200
