@@ -24,13 +24,10 @@ import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
 import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
-import UndoToast from './components/ui/UndoToast'
 
 // The Map carries every chart's data (~100 kB), so it is fetched the first time
 // it opens rather than with the page everyone loads.
 const MapPanel = lazy(() => import('./components/shell/MapPanel'))
-
-const startOver = TOOLS.find((tool) => tool.id === 'startOver')
 
 const queryClient = new QueryClient({
   // The data is fixed for the life of the backend: keep every answer, so a
@@ -115,8 +112,7 @@ function AppContent() {
               })}
             />
           </button>
-          {/* Tools from lib/tools.js. Start over asks once (its `armed` look); the
-              wipe with more cost, settings and streak, stays in Settings. */}
+          {/* Tools from lib/tools.js. */}
           {TOOLS.map(tools.now).map((tool) => (
             <button
               key={tool.id}
@@ -125,7 +121,7 @@ function AppContent() {
               title={tool.label}
               aria-label={tool.aria}
               aria-haspopup={tool.dialog ? 'dialog' : undefined}
-              className={`icon-button${tool.phone === 'more' ? ' phone-hide' : ''}${tools.armed === tool.id ? ' text-[var(--danger)] border-[var(--danger-edge)]' : ''}`}
+              className={`icon-button${tool.phone === 'more' ? ' phone-hide' : ''}`}
             >
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 {tool.paths.map((d) => <path key={d} d={d} />)}
@@ -215,7 +211,6 @@ function AppContent() {
           </div>
         </div>
       </footer>
-      <UndoToast message={tools.undo.pending && startOver.pending.message} undoLabel={startOver.pending.undo} onUndo={tools.undo.cancel} />
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
       {mapSeen && (
         <Suspense fallback={null}>
@@ -246,20 +241,20 @@ function AppContent() {
         <section className="sm:hidden space-y-2">
           <h3 className="type-small text-[var(--text-faint)]">Actions</h3>
           <div className="grid grid-cols-2 gap-2">
-            {TOOLS.filter((tool) => tool.phone === 'more').map(tools.now).map((tool) => (
+            {TOOLS.filter((tool) => tool.phone).map(tools.now).map((tool) => (
               <button
                 key={tool.id}
                 type="button"
                 aria-haspopup={tool.dialog ? 'dialog' : undefined}
                 aria-describedby={tool.hint ? `${tool.id}-hint` : undefined}
                 onClick={() => { if (!tools.staysOpen(tool)) setSectionsOpen(false); tools.run[tool.id]() }}
-                className={`tap min-h-11 rounded-[var(--radius-sm)] border type-body font-medium ${tool.danger ? 'border-[var(--danger-edge)] text-[var(--danger)]' : 'border-[var(--border)]'}`}
+                className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium"
               >
                 {tool.label}
               </button>
             ))}
           </div>
-          {TOOLS.filter((tool) => tool.phone === 'more' && tool.hint).map((tool) => (
+          {TOOLS.filter((tool) => tool.phone && tool.hint).map((tool) => (
             <p key={tool.id} id={`${tool.id}-hint`} className="type-small text-[var(--text-faint)]">{tool.hint}</p>
           ))}
         </section>
