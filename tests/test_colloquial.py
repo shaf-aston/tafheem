@@ -440,6 +440,17 @@ def test_a_unit_card_fronts_its_named_cover_or_else_its_first_picture():
     assert loader._cover(unit | {"cover": "named"})["image"] == "b.jpg"
     assert loader._cover(unit | {"cover": "not-written-here"})["image"] == "a.jpg"  # this dialect lacks it
     assert loader._cover({"lessons": [{"phrases": [said("plain")]}]}) is None
+    word = {"id": "cow", "arabic": "بقرة", "english": "cow", "image": "c.svg"}
+    assert loader._cover({"lessons": [{"phrases": [], "vocabulary": [word]}]})["image"] == "c.svg"
+
+
+def test_every_written_unit_has_a_cover_and_every_written_topic_a_picture():
+    bare = [(dialect["key"], unit["unit"], lesson["title"])
+            for dialect in loader.catalogue()["dialects"] for unit in dialect["units"] if unit["written"]
+            for lesson in unit["lessons"] if lesson["written"] and not lesson["picture"]]
+    uncovered = [(dialect["key"], unit["unit"]) for dialect in loader.catalogue()["dialects"]
+                 for unit in dialect["units"] if unit["written"] and not unit["cover"]]
+    assert bare == [] and uncovered == []
 
 
 def test_a_repeated_slot_in_one_lesson_is_caught():

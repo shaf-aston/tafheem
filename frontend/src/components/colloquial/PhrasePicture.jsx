@@ -5,7 +5,8 @@
  * picture yet" and "picture failed to load" look the same everywhere and a lesson
  * never shows a broken image. The size comes from the caller's className.
  *
- * A drawn picture (an emoji, .svg) is shown whole with room around it; a photo
+ * A drawn picture (an emoji, .svg) is shown whole with room around it (a padding
+ * capped, since a percentage is of the width and a wide card is short); a photo
  * fills its box and is cropped.
  */
 import { useState } from 'react'
@@ -23,7 +24,7 @@ export default function PhrasePicture({ phrase, alt = phrase.english, className 
       alt={alt}
       loading="lazy"
       onError={() => setGone(true)}
-      className={`${box} ${phrase.image.endsWith('.svg') ? 'object-contain p-[12%]' : 'object-cover'}`}
+      className={`${box} ${phrase.image.endsWith('.svg') ? 'object-contain p-[min(12%,0.75rem)]' : 'object-cover'}`}
     />
   )
 }
