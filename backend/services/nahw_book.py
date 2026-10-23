@@ -103,6 +103,32 @@ def is_one(lemma: str, family: str, part: str = "words") -> bool:
     return book_spelling(lemma) in book_words(family, part)
 
 
+@lru_cache(maxsize=4096)
+def joined_off(word: str) -> tuple[str, ...]:
+    """What is left of `word` with the letters the book writes onto it taken off, the fewest first.
+
+    In front at most one of each slot, in the book's order (أفنجعل: أ then ف), behind one
+    pronoun (damir_muttasil) and the نون of emphasis before it (لأجعلنك). A word CAMeL
+    cannot read whole (أتريد، لنصدقن) it often reads once these are off.
+    """
+    kept = _closed()["families"]["joined_letters"]
+    fronts = [""]
+    for slot in kept["front"]:
+        fronts += [front + letter for front in fronts for letter in slot]
+    for joined, written in kept["merged"].items():
+        fronts = [front.replace(joined, written) for front in fronts]
+    pronouns = [""] + sorted(book_words("damir_muttasil", "on_nouns") | book_words("damir_muttasil", "on_verbs"), key=len, reverse=True)
+    backs = [emphasis + pronoun for pronoun in pronouns for emphasis in ["", *kept["emphasis"]]]
+    found = []
+    for front in fronts:
+        for back in backs:
+            if (front or back) and len(word) > len(front + back) and word.startswith(front) and word.endswith(back):
+                stem = word[len(front):len(word) - len(back)]
+                ending = next((said for bare, said in kept["farika"].items() if back and stem.endswith(bare)), "")
+                found.append((len(front + back), stem[:-1] + ending if ending else stem))
+    return tuple(dict.fromkeys(stem for _, stem in sorted(found, key=lambda peeled: peeled[0])))
+
+
 @lru_cache(maxsize=None)
 def family_cards() -> tuple[tuple[str, dict], ...]:
     """(family, card) for every family whose words govern (إن وأخواتها، حروف الجر...): what

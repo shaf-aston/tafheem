@@ -1063,6 +1063,17 @@
     "تن": "plural-feminine subject ending on a past verb vs none"
    }
   },
+  "joined_letters": {
+   "ar": "الحروف المتصلة بالكلمة",
+   "effect": "one-letter words written onto the word after them, and the نون of emphasis written onto the verb before its pronoun (لَأُصَلِّبَنَّكُمْ): a word read alone is read again with them off",
+   "_front": "In this order, at most one of each: the question hamza first, as it heads its sentence (Mughni al-Labib, الهمزة: أَفَلَمْ، أَوَلَمْ), then the conjunction, then the lam, ba, kaf or sin, then the article.",
+   "front": [["أ"], ["و", "ف"], ["ل", "ب", "ك", "س"], ["ال"]],
+   "_merged": "The article's alif is not written after the lam (لِلنَّاسِ).",
+   "merged": {"لال": "لل"},
+   "emphasis": ["ن"],
+   "_farika": "The alif after the plural و is written only at the word's end (تَخَافُوا, تَخَافُوهُمْ): with the pronoun off it comes back.",
+   "farika": {"و": "وا"}
+  },
   "ismfil": {
    "ar": "أسماء الأفعال",
    "effect": "a noun that does the work of a verb; past-meaning ones give raf' to the noun after, command-meaning ones give nasb",

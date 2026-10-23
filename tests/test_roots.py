@@ -14,7 +14,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import create_app
-from backend.services import arabic_text, dictionary_service, morphology, quran_corpus, roots, sarf_word
+from backend.services import arabic_text, dictionary_service, morphology, nahw_book, quran_corpus, roots, sarf_word
 from backend.services.daleel.query.lexicon import DictionaryLexicon
 
 
@@ -165,6 +165,30 @@ def test_a_root_spelled_out_whole_is_kept_only_if_it_is_one():
     assert roots.settle("خنزر", "خنزير") == "خنزر"  # four: the books seldom list one as a root
     assert roots.settle("سفرجل", "سفرجل") == "سفرجل"  # five, a bare noun's most
     assert roots.settle("سفرجلل", "سفرجل") == ""
+
+
+def test_the_joined_letters_come_off_in_the_books_order_the_fewest_first():
+    assert nahw_book.joined_off("أفنجعل")[:2] == ("فنجعل", "نجعل")  # the question أ, then the فاء
+    assert "أجعل" in nahw_book.joined_off("لأجعلنك")  # the oath's لَ, the نون of emphasis, the pronoun
+    assert "مكذبين" in nahw_book.joined_off("للمكذبين")  # the article's alif is not written after لِ
+    assert "تخافوا" in nahw_book.joined_off("تخافوهم")  # the plural's alif back, its pronoun off
+    assert "كواب" not in nahw_book.joined_off("وأكواب")  # the question أ never follows the واو
+    assert nahw_book.joined_off("وكتبهم")[0] == "كتبهم"  # one letter off before two
+
+
+def test_a_word_camel_cannot_read_whole_is_read_with_its_joined_letters_off(monkeypatch):
+    read_as(monkeypatch, {"نصدق": [("صدق", "صدق")], "صدق": [("صدق", "صدق")]})
+    assert roots.roots_of("لنصدقن") == ("صدق",)
+    assert roots.roots_of("لَنُصَدِّقَنَّ") == ("صدق",)  # typed with its vowels
+    assert roots.roots_of("صدق") == ("صدق",)  # read whole, nothing peeled
+    read_as(monkeypatch, {"عد": [("عاد", "عود")]})
+    assert roots.roots_of("وعدك") == ()  # عد is too short for a root: وعد's و and ك are its own
+
+
+def test_the_first_stem_read_stands_even_with_no_root(monkeypatch):
+    names = {"لوطا": [morphology.Reading("لوط", "", rooted=False)], "وطا": [morphology.Reading("وطئ", "وطء", rooted=True)]}
+    monkeypatch.setattr(morphology, "readings", lambda word: names.get(word, []))
+    assert roots.roots_of("ولوطا") == ()  # a name: the ل of لوط is no lam
 
 
 def rootless(monkeypatch, word: str) -> None:

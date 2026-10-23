@@ -9,7 +9,8 @@ Where an answer comes from, surest first:
   1. the Qur'an corpus, every word of the Qur'an tagged by hand;
   2. the dictionary, whose headword spelled as typed files its root;
   3. CAMeL (services/morphology.py), which reads any form, prefixes, endings
-     and all, to the word it is a form of and that word's root.
+     and all, to the word it is a form of and that word's root; a classical form
+     it cannot read (أتريد، لنصدقن), read again with the book's joined letters off.
 
 CAMeL writes # for a weak radical it cannot pin down (ق#ل for قالوا, ب#ت for
 بيوت). That is settled here against the roots the books really file (the
@@ -23,12 +24,13 @@ import re
 from functools import lru_cache
 from itertools import product
 
-from backend.services import dictionary_service, quran_corpus, root_meaning
+from backend.services import dictionary_service, nahw_book, quran_corpus, root_meaning
 from backend.services.arabic_text import (
     as_root_letters,
     bare_letters,
     normalize_root,
     root_letters_in_order,
+    strip_diacritics,
 )
 
 log = logging.getLogger(__name__)
@@ -146,7 +148,18 @@ def _filed_roots(word: str) -> list[str]:
 
 
 def readings(word: str) -> list:
-    """Every way `word` can be read alone, likeliest first, each root settled; "" where none could be."""
+    """Every way `word` can be read alone, likeliest first, each root settled; "" where none could be.
+
+    CAMeL reads MSA: a question أ or an oath's لَ with the نون of emphasis (أتريد، لنصدقن) it has
+    no reading for. Then the word left with the book's joined letters off, the fewest first.
+    """
+    if read := _read_whole(word):
+        return read
+    stems = (stem for stem in nahw_book.joined_off(strip_diacritics(word)) if len(stem) >= FEWEST_RADICALS)
+    return next(filter(None, map(_read_whole, stems)), [])  # a name read is rootless, not peeled on: ولوطا
+
+
+def _read_whole(word: str) -> list:
     from backend.services import morphology  # morphology settles its own roots here
 
     out = []
