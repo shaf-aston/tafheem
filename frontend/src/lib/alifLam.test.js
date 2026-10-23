@@ -1,11 +1,10 @@
 import { describe, expect, it } from 'vitest'
 
 import data from '../../public/grow/basics.json'
-import worlds from '../worlds.json'
 import { makeRandom } from './quiz'
 import {
-  FORMS, INTRO, MODULE, SUN_LETTERS, article, basicsCards, definite, english, isSun, keyOfBasic, plain,
-  toArabicCard, toEnglishCard, wrongForms,
+  FORMS, INTRO, MODULE, SUN_LETTERS, article, definite, english, isSun, keyOfBasic, plain,
+  teachWord, toArabicCard, toEnglishCard, wordAsks, wrongForms,
 } from './alifLam'
 
 const nfc = (text) => text.normalize('NFC')
@@ -15,7 +14,6 @@ const fixed = (...values) => { let i = 0; return () => values[i++ % values.lengt
 
 const book = { id: 'book', ar: 'كِتَاب', en: 'book' }
 const sun = { id: 'sun', ar: 'شَمْس', en: 'sun' }
-const night = { id: 'night', ar: 'لَيْل', en: 'night' }
 const apple = { id: 'apple', ar: 'تُفَّاحَة', en: 'apple' }
 const hour = { id: 'hour', ar: 'سَاعَة', en: 'hour', a: 'an' }
 
@@ -151,17 +149,10 @@ describe('toEnglishCard', () => {
   })
 })
 
-describe('basicsCards', () => {
-  it('opens a first lesson on what ال is, then teaches each new word and asks it both ways', () => {
-    const cards = basicsCards({ fresh: [book, sun], reviews: [] }, makeRandom(2), true)
-    expect(cards.map((card) => card.id)).toEqual(['teach:al', 'teach:book', 'the:book', 'means:book', 'teach:sun', 'the:sun', 'means:sun'])
-    expect(cards[0]).toBe(INTRO)
-    expect(cards[1]).toEqual({ kind: 'teach', id: 'teach:book', tag: 'New word', ar: nfc('الْكِتَاب'), en: 'the book', also: { ar: nfc('كِتَاب'), en: 'a book' } })
-  })
-  it('does not open a later lesson on it, and asks a review with no teach card', () => {
-    const cards = basicsCards({ fresh: [night], reviews: [book] }, makeRandom(2))
-    expect(cards.map((card) => card.id)).toEqual(['teach:night', 'the:night', 'means:night', 'the:book', 'means:book'])
-    expect(cards.find((card) => card.id === 'the:book').tag).toBe('Review')
+describe('teachWord and wordAsks', () => {
+  it('teach a new word with ال and without it, then ask it both ways', () => {
+    expect(teachWord(book)).toEqual({ kind: 'teach', id: 'teach:book', tag: 'New word', ar: nfc('الْكِتَاب'), en: 'the book', also: { ar: nfc('كِتَاب'), en: 'a book' } })
+    expect(wordAsks(book, false, makeRandom(2)).map((card) => [card.id, card.tag])).toEqual([['the:book', 'Review'], ['means:book', 'Review']])
   })
   it('the intro shows ال and a word that has it', () => {
     expect(INTRO).toEqual({ kind: 'teach', id: 'teach:al', tag: 'New', ar: 'ال', en: 'means “the”', also: { ar: definite('كِتَاب'), en: 'the book' } })
@@ -202,8 +193,4 @@ describe('every word in the list', () => {
     }
   })
 
-  it('has as many words as its last stage asks for', () => {
-    const { stages } = worlds.worlds.find((world) => world.id === 'basics')
-    expect(stages.at(-1)).toBe(WORDS.length)
-  })
 })

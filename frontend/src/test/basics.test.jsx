@@ -8,7 +8,11 @@ import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { renderScreen } from './render'
 import GrowPanel from '../components/GrowPanel'
 import { definite } from '../lib/alifLam'
+import { pathItems } from '../lib/basicsSkills'
 import data from '../../public/grow/basics.json'
+import verbs from '../../public/grow/basics-verbs.json'
+
+const items = pathItems(data.words, { verbs: verbs.verbs, path: data.path })
 
 const click = (name) => fireEvent.click(screen.getByRole('button', { name }))
 
@@ -78,9 +82,38 @@ describe('basics', () => {
     expect(screen.queryByRole('button', { name: /New to Arabic\?/ })).toBeNull()
   })
 
-  it('stops leading Today once every word has been met and none is due', async () => {
+  it('after the first ten words, teaches “my” with its rule, then asks it on a word of its own', async () => {
     localStorage.setItem('basics-begun', 'on')
-    renderScreen(home(), { routes: shared(data.words.map((word) => seen(word.id))) })
+    const filed = []
+    const rows = items.slice(0, 10).map((item) => seen(item.id))
+    renderScreen(<GrowPanel incoming="basics/lesson" arrival={1} handed onVisit={() => {}} />, {
+      routes: { ...shared(rows), 'POST /progress/attempts': (config) => { filed.push(JSON.parse(config.data)); return { earned: 1 } } },
+    })
+
+    expect(await screen.findByText('my book')).toBeTruthy()
+    expect(screen.getByText('a book')).toBeTruthy()
+    expect(screen.getByText(/on the end means “my”/)).toBeTruthy()
+    click('Continue')
+
+    expect(screen.getByText(/^Which one is “my .+”\?$/)).toBeTruthy()
+    expect(screen.getAllByRole('radio')).toHaveLength(3)
+    fireEvent.click(screen.getAllByRole('radio')[0])
+    click('Check')
+    expect(screen.getByRole('status').textContent).toMatch(/on the end means “my”/)
+    await waitFor(() => expect(filed.at(-1)).toMatchObject({
+      module: 'basics', item: 'mine:my', context: { world: 'basics', skill: 'mine', direction: 'to-arabic' },
+    }))
+  })
+
+  it('reads “new steps” on Today, since a step can be a word or an addition', async () => {
+    localStorage.setItem('basics-begun', 'on')
+    renderScreen(home(), { routes: shared([seen('book')]) })
+    expect(await screen.findByText(/\d new steps · \d to review/)).toBeTruthy()
+  })
+
+  it('stops leading Today once every step has been met and none is due', async () => {
+    localStorage.setItem('basics-begun', 'on')
+    renderScreen(home(), { routes: shared(items.map((item) => seen(item.id))) })
     // While the record loads the Basics hold the place, so nothing flips for a learner still on them.
     await waitFor(async () => expect((await hero()).textContent).toBe('Keep your garden growing'))
     expect(screen.queryByRole('button', { name: /Basics · / })).toBeNull()
