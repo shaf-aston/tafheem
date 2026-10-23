@@ -53,6 +53,7 @@
   },
   "world": {
     "_comment": "Grow world colours (worlds.json ids). colorFor('world', id).",
+    "basics": "@lime",
     "words": "@green",
     "fiqh": "@blue",
     "quran": "@sky",

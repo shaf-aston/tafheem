@@ -31,6 +31,12 @@ describe('lessonItems', () => {
     expect(got.reviews.map((w) => w.meaningKey)).toEqual(['a', 'b'])
   })
 
+  it('tops up with no new word when reviews already fill the lesson', () => {
+    const got = lessonItems({ keyOf: (w) => w.meaningKey, order: ORDER, all: ALL, seen: new Set(['a', 'b']), due: ['a', 'b'], fresh: 2, most: 3, size: 4 })
+    expect(got.fresh.map((w) => w.meaningKey)).toEqual(['c', 'd'])
+    expect(got.reviews.map((w) => w.meaningKey)).toEqual(['a', 'b'])
+  })
+
   it('drops a due id the table no longer has', () => {
     const got = lessonItems({ keyOf: (w) => w.meaningKey, order: ORDER, all: ALL, seen: new Set(ORDER.map((w) => w.meaningKey)), due: ['gone', 'a'], fresh: 3, size: 3 })
     expect(got.reviews.map((w) => w.meaningKey)).toEqual(['a'])
@@ -63,8 +69,14 @@ describe('stageOf', () => {
     expect(stageOf(0, STAGES)).toEqual({ stage: 0, into: 0, need: 20, done: false })
     expect(stageOf(35, STAGES)).toEqual({ stage: 1, into: 15, need: 30, done: false })
   })
+  it('moves on to the next stage the moment one is full', () => {
+    expect(stageOf(20, STAGES)).toEqual({ stage: 1, into: 0, need: 30, done: false })
+  })
   it('reads full past the last stage', () => {
     expect(stageOf(500, STAGES)).toEqual({ stage: 2, into: 50, need: 50, done: true })
+  })
+  it('reads full for a world of one stage', () => {
+    expect(stageOf(9, [5])).toEqual({ stage: 0, into: 5, need: 5, done: true })
   })
 })
 

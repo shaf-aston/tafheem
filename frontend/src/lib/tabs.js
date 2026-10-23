@@ -16,6 +16,7 @@ import { load } from './warm'
 import { memoriseOpen } from './books'
 import { table } from './quizBanks'
 import { WORDS_MODULE } from './wordPractice'
+import { MODULE as BASICS_MODULE } from './alifLam'
 import { MODULE as HADITH_MODULE } from './hadithLesson'
 import { MODULE as QURAN_MODULE } from './quranLesson'
 import { panel } from './panel'
@@ -62,9 +63,9 @@ export const GROUPS = [
   { id: 'more',     label: 'Explore' },
 ]
 
-// What Grow files its answers under: the hadith and Qur'an worlds' own names, and
+// What Grow files its answers under: the Basics, hadith and Qur'an worlds' own names, and
 // each book world's `module` as worlds.json declares it, so a new book needs no edit here.
-const GROW_MODULES = [HADITH_MODULE, QURAN_MODULE, ...grow.worlds.filter((world) => world.module).map((world) => world.module)]
+const GROW_MODULES = [BASICS_MODULE, HADITH_MODULE, QURAN_MODULE, ...grow.worlds.filter((world) => world.module).map((world) => world.module)]
 
 export const TABS = [
   { id: 'home',   label: 'Home',       short: 'Home',   arabic: 'البداية', emblem: 'home', Component: HomePanel, ownsHealth: true, blurb: "Where you left off, your progress, and every tab", group: 'start' },

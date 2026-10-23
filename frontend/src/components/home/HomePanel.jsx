@@ -18,6 +18,7 @@ import { progressByTab } from '../../lib/moduleTab'
 import { useCommandLine } from '../../lib/useCommandLine'
 import { accentOf, FIXED, GROUPS, HOME, LISTED, START } from '../../lib/tabs'
 import { progressText } from '../../lib/homeCopy'
+import { colorFor } from '../../theme'
 import { copy as offlineCopy, noSignal } from '../../lib/offline'
 import knobs from '../../home.json'
 import { useMedia, PHONE } from '../../lib/useMedia'
@@ -28,6 +29,7 @@ import TabGroups from '../ui/TabGroups'
 import CommandField from '../shell/CommandField'
 import CommandResults from '../shell/CommandResults'
 import LogInButton from '../profile/LogInButton'
+import BeginnerFork from './BeginnerFork'
 import ModuleCard from './ModuleCard'
 import ResumeCard from './ResumeCard'
 import StatsButton from './StatsButton'
@@ -91,9 +93,11 @@ export default function HomePanel({ accent, onGo }) {
           {/* The quiet word sits in the room beside the card and scrolls with the page. */}
           <div className="md:flex md:items-center md:gap-6">
             <div className="space-y-4 md:max-w-2xl md:flex-[3] min-w-0">
-              <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume?.value}
-                label={first ? copy['first-label'] : copy['resume-label']} goLabel={first ? copy['first-go'] : copy['resume-go']}
-                progressText={progressText(sums[lead.id])} onGo={onGo} />
+              {/* A first visit asks where to begin; after that, where you stopped. */}
+              {first
+                ? <BeginnerFork copy={copy} basicsAccent={colorFor('world', 'basics')} reader={lead} readerAccent={accentOf(lead.id)} onGo={onGo} />
+                : <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume.value} label={copy['resume-label']} goLabel={copy['resume-go']}
+                  progressText={progressText(sums[lead.id])} onGo={onGo} />}
               {!name && (
                 <p className="flex lg:hidden flex-wrap items-center gap-x-3 gap-y-2 text-[var(--text-dim)]">
                   <span>{copy.guest}</span>

@@ -13,11 +13,22 @@ import knobs from '../home.json'
 const FIRST = LISTED.find((tab) => tab.id === FIXED.find((id) => id !== HOME))
 
 describe('Home', () => {
-  it('on a first visit offers the first fixed tab, and opens it on a tap', async () => {
+  it('on a first visit offers the first fixed tab to someone who reads Arabic, and opens it on a tap', async () => {
     const onGo = vi.fn()
     renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
-    fireEvent.click(await screen.findByRole('button', { name: /Begin/ }))
-    expect(onGo).toHaveBeenCalledWith(FIRST.id, undefined)
+    const fork = screen.getByRole('region', { name: knobs.copy['fork-label'] })
+    expect(within(fork).getByText(knobs.copy['reader-title'])).toBeTruthy()
+    fireEvent.click(within(fork).getByRole('button', { name: /Begin/ }))
+    expect(onGo).toHaveBeenCalledWith(FIRST.id)
+  })
+
+  it('on a first visit offers a newcomer the basics, straight into its first lesson', async () => {
+    const onGo = vi.fn()
+    renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
+    const fork = screen.getByRole('region', { name: knobs.copy['fork-label'] })
+    expect(within(fork).getByText(knobs.copy['new-title'])).toBeTruthy()
+    fireEvent.click(within(fork).getByRole('button', { name: new RegExp(knobs.copy['new-go']) }))
+    expect(onGo).toHaveBeenCalledWith('grow', 'basics/lesson')
   })
 
   it('shows every other tab without opening anything', async () => {
@@ -38,5 +49,6 @@ describe('Home', () => {
     act(() => { visit('dict', 'كتب') })
     fireEvent.click(await screen.findByRole('button', { name: /Continue/ }))
     expect(onGo).toHaveBeenCalledWith('dict', 'كتب')
+    expect(screen.queryByRole('region', { name: knobs.copy['fork-label'] })).toBeNull()
   })
 })

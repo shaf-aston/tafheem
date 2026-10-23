@@ -6,6 +6,7 @@ describe('which tab a module belongs to', () => {
   it('reads the part before the colon, and the names a tab files under', () => {
     expect(tabOf('quiz:ur').id).toBe('quiz')
     expect(tabOf('words').id).toBe('colloq')
+    expect(tabOf('basics').id).toBe('grow')
     expect(tabOf('nawawi40').id).toBe('grow')
     expect(tabOf('quran-ayat').id).toBe('grow')
     expect(tabOf('quduri').id).toBe('grow')

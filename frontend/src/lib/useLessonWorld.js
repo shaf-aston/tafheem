@@ -1,7 +1,7 @@
 /**
  * Any lessons world's data: its items (`load` → { order, all }), the learner's record for `module`
  * (server summary: seen, due, known), the next lesson's picks, the stage, `items` (each with its status, for a scene), and the cards on demand.
- * Configs: lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js; numbers from worlds.json.
+ * Configs: lib/useBasicsWorld.js, lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js; numbers from worlds.json.
  */
 import { useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
