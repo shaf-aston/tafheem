@@ -68,17 +68,10 @@ function Flag({ code }) {
   )
 }
 
-/** Each country as a tiny flag and its name; past `most`, the flags alone and how many. */
+/** Each country as a tiny flag and its name; past `most`, only how many, as the map beside it shows which. */
 export function CountryIcons({ codes = [], most = 4 }) {
   const known = codes.filter((c) => countries[c])
-  if (known.length > most) {
-    return (
-      <span className="flex flex-wrap items-center gap-1 type-small text-[var(--text-faint)]">
-        <span className="w-full">{known.length} countries</span>
-        {known.map((code) => <Flag key={code} code={code} />)}
-      </span>
-    )
-  }
+  if (known.length > most) return <span className="type-small text-[var(--text-faint)]">{known.length} countries</span>
   return (
     <ul className="flex flex-wrap gap-x-3 gap-y-1 type-small text-[var(--text-faint)]">
       {known.map((code) => (
