@@ -52,7 +52,8 @@ def analyze(word: str, form: str | None) -> MorphologyResponse:
     meaning = dictionary_service.meaning_of(word)
     meaning_key = "wiktionary" if meaning else "rules"
     if not meaning:
-        meaning = morphology.clean_gloss(tag.get("gloss") or "") or None
+        # the word's own piece of CAMeL's gloss: the whole of وَكَتَبَ's is and+write+he, read as "and"
+        meaning = morphology.clean_gloss(tag.get("stemgloss") or tag.get("gloss") or "") or None
 
     radicals = conjugation.radicals_of(root or word)
     verdict = verb_forms.babs_of(word)

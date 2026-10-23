@@ -37,6 +37,8 @@ def camel_in(monkeypatch):
     # no job named, or CAMeL already read the word so: its gloss stands
     ({"gloss": "if;whether", "stemgloss": "if;whether", "pos": "conj_sub", "base": "إن"}, None, "if;whether"),
     ({"gloss": "if;whether", "stemgloss": "if;whether", "pos": "conj_sub", "base": "إن"}, "conj_sub", "if;whether"),
+    # already that class: CAMeL's own sense of it stands, not another reading's of the class
+    ({"gloss": "whether", "stemgloss": "whether", "pos": "conj_sub", "base": "إن"}, "conj_sub", "whether"),
     # CAMeL has no reading of that class for the word: its gloss stands
     ({"gloss": "if;whether", "stemgloss": "if;whether", "pos": "conj_sub", "base": "إن"}, "part_neg", "if;whether"),
 ])
@@ -77,6 +79,23 @@ def test_lamma_before_a_past_verb_is_read_as_lamma() -> None:
     assert (first["family"], first["named"]) == ("ghair_amila_other", "حرف وجود لوجود")
 
 
+@pytest.mark.parametrize("written, word", [
+    ("لما", "لما"),  # a word of the book's own: its lemma ما is CAMeL's filing, not the word
+    ("عما", "ما"), ("كلما", "ما"),  # joined letters the book has no word for: the ما stands
+])
+def test_a_word_is_the_books_word_it_is_written_as(written, word) -> None:
+    from backend.services.syntax import particles
+    assert particles._lemma({"lemma": "ما", "form": written}) == word
+
+
 @needs_parser
 def test_no_word_shows_camels_mark_as_english() -> None:
     assert sentence_meaning.read_words("لننزعن من كل شيعة")[0][0]["english"] == ""
+
+
+@pytest.mark.skipif(not morphology._CAMEL_AVAILABLE, reason="CAMeL data not installed")
+def test_a_lone_words_meaning_is_its_own_not_its_joined_letters(monkeypatch) -> None:
+    """The Sarf page's meaning, when the dictionary has none: وَكَتَبَ means "write", not "and"."""
+    from backend.services import dictionary_service, sarf_word
+    monkeypatch.setattr(dictionary_service, "meaning_of", lambda word: None)
+    assert "write" in sarf_word.analyze("وَكَتَبَ", None).meaning
