@@ -367,6 +367,8 @@
     "chip": "1.9rem",
     "_tap_comment": "The least height a pill or link stands on a touch screen, where a finger needs more than a pointer does. styles/text.css applies it to .tap when the pointer is coarse; a mouse keeps the compact sizes.",
     "tap": "2.25rem",
+    "_pointer_tap_comment": "The least height of a .tap pill or link under a mouse: WCAG 2.5.8's 24px, so a one-line link in a list is never a sliver to aim at. Touch screens get layout.tap instead.",
+    "pointer-tap": "1.5rem",
     "_pane_comment": "How tall the Quran reader's two panes stand, the surah and the ayah being studied. Each scrolls on its own inside it, so the header, the ayat rail and the recitation bar never leave the screen.",
     "pane": "min(70dvh, 46rem)",
     "_split_comment": "How tall the reader stands on a phone while an ayah is studied: the surah over the study, sharing it. Brought up under the top bar, it ends where the recitation bar and the tab bar begin.",

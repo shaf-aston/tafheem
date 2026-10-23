@@ -201,6 +201,7 @@ textarea.arabic-lg {
 }
 
 
+.tap { min-height: var(--layout-pointer-tap); }
 @media (pointer: coarse) {
   .tap { min-height: var(--layout-tap); min-width: var(--layout-tap); }
 }

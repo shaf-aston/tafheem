@@ -26,7 +26,7 @@ import ExampleQuestion from './tamreen/ExampleQuestion'
 import RuleQuestion from './tamreen/RuleQuestion'
 
 const SHOW_LABEL = { all: 'All', wrong: 'Wrong', todo: 'Not done' }
-const KIND_LABEL = { all: 'Both types', rule: 'Rules', example: 'Sentences' }
+const KIND_LABEL = { all: 'All types', rule: 'Rules', example: 'Sentences' }
 const KIND_BADGE = { rule: 'Rule · tick all that are true', example: 'Sentence · tarkeeb' }
 
 export default function TamreenPractise({ exercises, tags = [], accent, onProgress, onNotes }) {
@@ -36,7 +36,7 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
     togglePartOption, redo, startOver,
   } = useTamreenPractise({ exercises, tags, onProgress })
 
-  // One row: topic, type, show. Each control names itself, so no separate labels.
+  // Topic up front; type and show folded under it. Each control names itself, so no separate labels.
   const controls = (
     <div className="flex flex-wrap items-center gap-2">
       <WheelPicker
@@ -50,15 +50,24 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
         accent={accent}
         className="min-w-0 w-full sm:w-auto sm:max-w-xs"
       />
-      <Segmented label="Question type" options={KINDS.map((id) => ({ id, label: KIND_LABEL[id] }))}
-        value={kind} accent={accent} onChange={(id) => choose(() => setKind(id))} />
-      <Segmented
-        label="Show"
-        options={SHOWS.map((id) => ({ id, label: `${SHOW_LABEL[id]} · ${counts[id]}` }))}
-        value={show}
-        accent={accent}
-        onChange={(id) => choose(() => setShow(id))}
-      />
+      {/* Type and Show are second-level choices: folded away so the question sits near the top. */}
+      <Disclosure
+        label={`Filters · ${KIND_LABEL[kind]} · ${SHOW_LABEL[show]}`}
+        defaultOpen={kind !== 'all' || show !== 'all'}
+        className="w-full"
+      >
+        <div className="flex flex-wrap items-center gap-2 pt-2">
+          <Segmented label="Question type" options={KINDS.map((id) => ({ id, label: KIND_LABEL[id] }))}
+            value={kind} accent={accent} onChange={(id) => choose(() => setKind(id))} />
+          <Segmented
+            label="Show"
+            options={SHOWS.map((id) => ({ id, label: `${SHOW_LABEL[id]} · ${counts[id]}` }))}
+            value={show}
+            accent={accent}
+            onChange={(id) => choose(() => setShow(id))}
+          />
+        </div>
+      </Disclosure>
     </div>
   )
 
