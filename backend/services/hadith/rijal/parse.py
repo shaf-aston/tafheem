@@ -8,9 +8,10 @@ place() then finds those words in our own copy of the hadith.
 from __future__ import annotations
 
 import re
-import unicodedata
 
 from bs4 import BeautifulSoup, NavigableString
+
+from backend.services.arabic_text import marks_in_order
 
 _REFERENCE = re.compile(r"^/\w+:(\d+)([a-z]*)$")
 _NARRATOR = re.compile(r"^/narrator/(\d+)$")
@@ -48,12 +49,6 @@ def _paired(en: list, ar: list) -> list[tuple]:
     if len(en) == len(ar):
         return list(zip(en, ar))
     return [(e, None) for e in en] + [(None, a) for a in ar]
-
-
-def _ordered(text: str) -> str:
-    """The marks on each letter in one fixed order, its length kept: the page and our text may write the same
-    shadda and damma either way round, which look alike but miss an exact match."""
-    return re.sub(rf"{_MARKS}{{2,}}", lambda run: "".join(sorted(run.group(), key=unicodedata.combining)), text)
 
 
 def _letters(text: str) -> int:
@@ -107,9 +102,9 @@ def place(arabic: str, names: list[tuple[int, str, int, bool]]) -> tuple[list[tu
     for ch in arabic:
         letters.append(letters[-1] + (not ch.isspace()))
     placed, lost, taken = [], [], set()
-    ours = _ordered(arabic)
+    ours = marks_in_order(arabic)
     for who, shown, before, in_chain in names:
-        hits = re.finditer(_WORD_START + "(?P<name>" + re.escape(_ordered(shown)) + r")(?![\w\u064B-\u065F\u0670])", ours)
+        hits = re.finditer(_WORD_START + "(?P<name>" + re.escape(marks_in_order(shown)) + r")(?![\w\u064B-\u065F\u0670])", ours)
         hit = min((h for h in hits if h.start("name") not in taken), key=lambda h: abs(letters[h.start("name")] - before), default=None)
         if hit:
             taken.add(hit.start("name"))

@@ -32,6 +32,11 @@ def has_arabic(text: str) -> bool:
     return bool(ARABIC_RE.search(text))
 
 
+
+def marks_in_order(text: str) -> str:
+    """Each letter's marks in one fixed order, length kept: shadda+damma and damma+shadda look alike but differ as text."""
+    return re.sub(f"(?:{DIACRITICS_RE.pattern}){{2,}}", lambda run: "".join(sorted(run.group(), key=unicodedata.combining)), text)
+
 _strip_fn = None
 try:
     from pyarabic.araby import strip_tashkeel as _strip_fn  # type: ignore[no-redef]
