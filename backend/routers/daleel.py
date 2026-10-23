@@ -4,7 +4,9 @@ from __future__ import annotations
 import asyncio
 from typing import Annotated
 
-from fastapi import APIRouter, Query
+import time
+
+from fastapi import APIRouter, Query, Response
 from pydantic import StringConstraints
 
 from backend.config import get_settings
@@ -12,7 +14,7 @@ from backend.models.daleel import DaleelBook, DaleelHit, DaleelResponse
 from backend.services import provenance
 from backend.services.daleel import catalogue, search
 from backend.services.daleel.index.connection import is_built
-from backend.utils import search_query
+from backend.utils import Timings, search_query
 
 router = APIRouter(prefix="/api/daleel", tags=["daleel"])
 
@@ -44,6 +46,7 @@ async def list_books() -> list[DaleelBook]:
 async def find(
     q: str = Query("", max_length=get_settings().search_max_query_chars),
     books: list[BookName] = Query(default=[]),
+    response: Response = None,
 ) -> DaleelResponse:
     """Passages from the app's books that match what was asked.
 
@@ -57,10 +60,23 @@ async def find(
     if not is_built():
         return DaleelResponse(query=query, hits=[], ready=False)
 
-    chosen = await asyncio.to_thread(catalogue.known_books, books)
+    timings = Timings()
+    with timings.step("books"):
+        chosen = await asyncio.to_thread(catalogue.known_books, books)
+
+    # Each step of the search, timed where it ends, so one curl of the live
+    # server names the slow step: `curl -sI ... | grep -i server-timing`.
+    since = [time.perf_counter()]
+
+    def lap(step: str) -> None:
+        now = time.perf_counter()
+        timings.ms[step] = (now - since[0]) * 1000
+        since[0] = now
 
     limit = get_settings().daleel_result_limit
-    hits = await asyncio.to_thread(search.search, query, limit, chosen)
+    hits = await asyncio.to_thread(search.search, query, limit, chosen, lap)
+    if response is not None:  # FastAPI always passes it; a direct call (tests, scripts) may not
+        response.headers["Server-Timing"] = timings.header()
 
     return DaleelResponse(
         query=query,
