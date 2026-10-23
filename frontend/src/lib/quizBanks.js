@@ -55,11 +55,14 @@ export const moduleFor = (language) => (language === 'en' ? MODULE : `${MODULE}:
 const WORDS_DIR = '/words'
 
 /**
- * The three sets on the first control, and which cut each one is. `all` has no
+ * The sets on the first control, and which cut each one is. `all` has no
  * cut: it is every word there is, which is now simply no filter rather than
  * three lists stitched together with the overlaps removed.
  */
 export const BANKS = {
+  // Not words at all: Grow's Basics lessons, played on this tab (components/quiz/BasicsRound.jsx). `lesson` marks a
+  // set the panel hands to Grow's runner instead of asking a word's meaning; it is no cut of the table.
+  basics: { label: 'Basics', cut: null, grouped: false, lesson: true },
   quranic: { label: "Qur'anic", cut: 'book', grouped: true },
   everyday: { label: 'Everyday', cut: 'everyday', grouped: false },
   all: { label: 'All', cut: null, grouped: false },

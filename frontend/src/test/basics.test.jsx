@@ -9,6 +9,8 @@ import { renderScreen } from './render'
 import GrowPanel from '../components/GrowPanel'
 import { definite } from '../lib/alifLam'
 import { pathItems } from '../lib/basicsSkills'
+import { LEVEL_KEY } from '../lib/learnerLevel'
+import { writeRaw } from '../lib/stored'
 import data from '../../public/grow/basics.json'
 import verbs from '../../public/grow/basics-verbs.json'
 
@@ -132,5 +134,27 @@ describe('basics', () => {
     // While the record loads the Basics hold the place, so nothing flips for a learner still on them.
     await waitFor(async () => expect((await hero()).textContent).toBe('Keep your garden growing'))
     expect(screen.queryByRole('button', { name: /Basics · / })).toBeNull()
+  })
+
+  describe('Today by the learner\'s level', () => {
+    it('leads a beginner with the Basics before they have begun them, without offering them twice', async () => {
+      writeRaw(LEVEL_KEY, 'beginner')
+      renderScreen(home(), { routes: shared([]) })
+      await waitFor(async () => expect((await hero()).textContent).toBe('Your first steps'))
+      expect(screen.queryByRole('button', { name: /New to Arabic\?/ })).toBeNull()
+    })
+
+    it('leads an intermediate learner with the words, and does not offer the Basics', async () => {
+      writeRaw(LEVEL_KEY, 'intermediate')
+      renderScreen(home(), { routes: shared([]) })
+      await waitFor(async () => expect((await hero()).textContent).toBe('Keep your garden growing'))
+      expect(screen.queryByRole('button', { name: /New to Arabic\?/ })).toBeNull()
+    })
+
+    it('leads an advanced learner with Nahw, the first book of grammar', async () => {
+      writeRaw(LEVEL_KEY, 'advanced')
+      renderScreen(home(), { routes: shared([]) })
+      expect(await screen.findByText('Continue · Nahw', {}, { timeout: 3000 })).toBeTruthy()
+    })
   })
 })

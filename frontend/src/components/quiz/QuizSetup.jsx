@@ -78,8 +78,8 @@ export default function QuizSetup({ setup, owed, say, phone, accent, onChange })
     ...(phone && bank.grouped
       ? [section?.options.find((o) => o.id === groupId)?.label ?? scopeOptions.find((o) => o.id === scope)?.label]
       : []),
-    MEANINGS[language].label,
-    DIRECTIONS[direction].short,
+    // A lesson set asks in Grow's own ways, so the meaning's language and the direction say nothing about it.
+    ...(bank.lesson ? [] : [MEANINGS[language].label, DIRECTIONS[direction].short]),
   ].filter(Boolean)
 
   return (
@@ -96,6 +96,7 @@ export default function QuizSetup({ setup, owed, say, phone, accent, onChange })
       >
         {phone && bankControl}
         {phone && scopeControls}
+        {!bank.lesson && <>
         <Segmented
           captioned
           label={say('Meaning in')}
@@ -115,6 +116,7 @@ export default function QuizSetup({ setup, owed, say, phone, accent, onChange })
           accent={accent}
           onChange={(id) => onChange({ direction: id })}
         />
+        </>}
       </SettingsPill>
     </div>
   )
