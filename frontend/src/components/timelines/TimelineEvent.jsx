@@ -17,7 +17,7 @@ import TimelineRefs from '../TimelineRefs'
 import TimelineSteps from './TimelineSteps'
 import TimelineWhere from './TimelineWhere'
 import { printedBy } from '../../lib/hadithWords'
-import { NO_DATE, TRAD, isDated, sectionLook } from '../../lib/timelineLayout'
+import { NO_DATE, TRAD, isDated, sectionLook } from '../../lib/timeline/look'
 
 export default function TimelineEvent({ section, event, library, accent, onGo, here, onHere, onPick, at }) {
   const place = event.place ? library.places[event.place] : null

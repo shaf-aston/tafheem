@@ -16,7 +16,7 @@ import TileCard from './TileCard'
 import { asbabQuery } from '../../api'
 import { useRail } from '../../lib/useRail'
 import { onHover } from '../../lib/warm'
-import { NO_DATE, eventIcon, isDated, sectionLook } from '../../lib/timelineLayout'
+import { NO_DATE, eventIcon, isDated, sectionLook } from '../../lib/timeline/look'
 
 const WEAK = 'weakchain'
 

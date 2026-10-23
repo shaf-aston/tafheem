@@ -1,14 +1,14 @@
 /**
  * Where a section's events happened, drawn only.
  *
- * Every number comes from lib/timelineLayout (the projection, the pin size, the
+ * Every number comes from lib/timeline/map (the projection, the pin size, the
  * label spacing) and every colour from the theme, so this file decides nothing.
  * The land is Natural Earth's 1:50m outline from the backend's library.json.
  * A pin can hold several nearby places; pressing it again steps to its next
  * event, so every event there is one press away without a list.
  * `at` is the place lit: the chosen event's, or the step being read's.
  */
-import { labelGap, labelText, pinsOf, placeLabels, projection } from '../../lib/timelineLayout'
+import { labelGap, labelText, pinsOf, placeLabels, projection } from '../../lib/timeline/map'
 
 export default function TimelineMap({ section, library, accent, chosen, at, onPick }) {
   const view = library.map.views[section.map]

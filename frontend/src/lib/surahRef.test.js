@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import surahs from '../data/surahs.json'
-import { CLOSE, ayahProblem, placeProblem, placesNamed, readSurahRef, surahsNamed } from './surahRef'
+import { CLOSE, ayahProblem, firstAyah, placeProblem, placesNamed, readSurahRef, surahsNamed } from './surahRef'
 
 const top = (text) => readSurahRef(text).matches[0]
 
@@ -118,5 +118,11 @@ describe('placeProblem', () => {
     expect(placeProblem('nisa 99')).toBeNull()
     expect(placeProblem('nisa')).toBeNull()
     expect(placeProblem('patience 5')).toBeNull()
+  })
+})
+
+describe('firstAyah', () => {
+  it.each([['2:30-37', '2:30'], ['9:40', '9:40'], ['105', '105:1']])('%s opens on %s', (ref, ayah) => {
+    expect(firstAyah(ref)).toBe(ayah)
   })
 })

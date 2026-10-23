@@ -3,7 +3,7 @@
  *
  * The tab fetches the library once (about fifty events, fixed for the life of
  * the backend) and owns two things only: which section is open (none: the board
- * of sections) and which event is read. Where each of those goes on the screen is lib/timelineLayout's job,
+ * of sections) and which event is read. Where each of those goes on the screen is lib/timeline/'s job,
  * and what they say is the backend's.
  *
  * The place in the tab is written as "section/event", so
@@ -15,7 +15,7 @@ import { useArrivalWhenReady } from '../lib/useArrival'
 import { useQuery } from '@tanstack/react-query'
 
 import { timelinesQuery } from '../api'
-import { nameOfPlace, parsePlace, placeOf } from '../lib/timelineLayout'
+import { nameOfPlace, parsePlace, placeOf } from '../lib/timeline/address'
 
 import SectionHeader from './ui/SectionHeader'
 import Segmented from './ui/Segmented'
