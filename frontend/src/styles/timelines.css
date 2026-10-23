@@ -169,5 +169,19 @@
 .tl-scrub-years span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
 .tl-scrub-years span:first-child { transform: none; }
 .tl-scrub-years span:last-child { transform: translateX(-100%); }
+/* A phone has no room for the tiles, the map and the bar on one screen, so the
+   bar waits above the tab bar until it is scrolled to, as .reader-dock does. */
+@media (max-width: 39.99rem) {
+  .tl-scrub {
+    position: sticky;
+    bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px));
+    z-index: var(--layer-sticky);
+    margin-inline: -0.5rem;
+    padding: 0.5rem 0.5rem 0.25rem;
+    border-top: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg) 96%, transparent);
+    backdrop-filter: blur(8px);
+  }
+}
 .tl-pin { transition: opacity 0.25s; }
 @media (prefers-reduced-motion: reduce) { .tl-pin { transition: none; } }

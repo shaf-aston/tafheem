@@ -7,9 +7,11 @@
  * at once. Where each event sits, and the year marks, are lib/timeline/time's.
  *
  * A dated section can be spread by true years or evenly, remembered; the
- * others are even only, so the choice is not offered. A phone starts even:
+ * others are even only, so the choice is not offered. A phone is even only:
  * by true years the Seerah's last twenty-three years crowd thirteen events
- * into a third of a narrow bar, too close for a finger to land on one.
+ * into a third of a narrow bar, too close for a finger to land on one, and the
+ * bar docks above the tab bar there (styles/timelines.css), where the toggle
+ * took a second line over the map.
  */
 import { useState } from 'react'
 
@@ -26,9 +28,9 @@ const STEPS = 1000
 const KEYS = { ArrowRight: 1, ArrowUp: 1, PageUp: 1, ArrowLeft: -1, ArrowDown: -1, PageDown: -1 }
 
 export default function TimelineScrub({ section, index, accent, onPreview, onPick }) {
-  const modes = scaleModes(section)
   const phone = useMedia(PHONE)
-  const [mode, setMode] = useRemembered('timeline-scale', modes, phone ? 'even' : modes[0])
+  const modes = phone ? ['even'] : scaleModes(section)
+  const [mode, setMode] = useRemembered('timeline-scale', modes)
   const [drag, setDrag] = useState(null)   // 0..1 while a finger is on the bar
   const pos = positions(section, mode)
   const last = section.events.length - 1
