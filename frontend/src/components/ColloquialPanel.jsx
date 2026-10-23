@@ -11,177 +11,19 @@ import { useEffect, useState } from 'react'
 
 import { colloquialQuery, colloquialUnitQuery } from '../api'
 import { Accent } from '../lib/accent'
-import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf, unitNumber } from '../lib/colloquial/place'
+import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf } from '../lib/colloquial/place'
 import { TABS } from '../lib/tabs'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
-import { colorAt, colorFor } from '../theme'
-import { FOCUS } from './colloquial/parts/Face'
-import PhrasePicture from './colloquial/parts/PhrasePicture'
+import { DialectList, TopicList, UnitList } from './colloquial/course/Lists'
+import { Switch, Trail } from './colloquial/course/Trail'
 import TopicView from './colloquial/topic/TopicView'
-import WordBank from './colloquial/words/WordBank'
 import WordsView from './colloquial/words/WordsView'
-import ArabicText from './ui/ArabicText'
-import { CountryIcons, CountryMap } from './ui/CountryMap'
 import ErrorAlert from './ui/ErrorAlert'
 import SectionHeader from './ui/SectionHeader'
-import SpeakButton from './ui/SpeakButton'
-import WheelPicker from './ui/WheelPicker'
 import { AnalyzerSkeleton } from './ui/Skeleton'
 
 const BLURB = TABS.find((t) => t.id === 'colloq')?.blurb
-
-// "16 of 19 units": the list below shows the unwritten ones too, marked Coming.
-const unitsNote = (units) => {
-  const written = units.filter((u) => u.written).length
-  return written === units.length ? `${written} units` : `${written} of ${units.length} units`
-}
-
-// A choice card: its colour glows in from both ends and fades to nothing in the middle.
-// Without onClick it is a unit or topic this dialect has not written yet: shown, not openable.
-// With `twin` it is two halves joined, each its own way in: a topic's phrases and its words.
-// `image` is a topic's first picture, a small square beside its words.
-function Lines({ hue, kicker, title, gloss, arabic, note, more, image }) {
-  return (
-    <>
-      {image && <PhrasePicture phrase={{ image }} alt="" className="float-end ms-3 w-12 h-12 rounded-[var(--radius-md)]" />}
-      <span className="flex items-baseline justify-between gap-3">
-        <span className="type-micro uppercase tracking-[0.18em]" style={{ color: hue }}>{kicker}</span>
-        {arabic && <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text-dim)]">{arabic}</span>}
-      </span>
-      <span className="block type-ui font-semibold text-[var(--text)] mt-1">{title}</span>
-      {gloss && <i className="block type-small text-[var(--text-dim)]">{gloss}</i>}
-      {note && <span className="block type-small text-[var(--text-faint)] mt-1">{note}</span>}
-      {more && <span className="block mt-2">{more}</span>}
-    </>
-  )
-}
-
-const lookOf = (hue, index) => {
-  const tint = (pct) => `color-mix(in oklab, ${hue} ${pct}%, transparent)`
-  return {
-    '--i': index,
-    background: `linear-gradient(90deg, ${tint(26)}, transparent 38%, transparent 62%, ${tint(26)}), var(--surface)`,
-    borderColor: tint(40),
-  }
-}
-
-function Card({ hue, index, onClick, twin, picture, ...lines }) {
-  const look = lookOf(hue, index)
-  const half = `lift press group text-start w-full px-5 py-4 ${FOCUS}`
-  if (twin) {
-    return (
-      <div style={look} className="rise-in grid grid-cols-2 rounded-[var(--radius-lg)] border overflow-hidden">
-        <button type="button" onClick={onClick} aria-label={`${lines.title}: ${lines.note}`} className={half}><Lines hue={hue} {...lines} /></button>
-        <button type="button" onClick={twin.onClick} aria-label={`${lines.title}: ${twin.title} ${twin.kicker.toLowerCase()}`} className={`${half} border-s`} style={{ borderColor: look.borderColor }}>
-          <Lines hue={hue} {...twin} />
-        </button>
-      </div>
-    )
-  }
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={!onClick}
-      style={look}
-      className={`rise-in ${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS} ${picture ? 'grid grid-cols-[1fr_auto] items-center gap-4' : ''}`}
-    >
-      {picture ? (
-        // The Arabic name sits over the picture, so the English lines get the width.
-        <>
-          <span className="min-w-0"><Lines hue={hue} {...lines} arabic={null} /></span>
-          <span className="flex flex-col items-end gap-1 self-stretch">
-            <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text-dim)]">{lines.arabic}</span>
-            {picture}
-          </span>
-        </>
-      ) : <Lines hue={hue} {...lines} />}
-    </button>
-  )
-}
-
-// A written unit opens on its cover phrase: said aloud, its picture filling the card's
-// whole empty lower left, out to the border and across to the words, so no word sits
-// on it. It takes the height the words make and never adds its own (contain: size).
-// The speaker faces left, off the start of the Arabic. The whole card opens the unit; the speaker is
-// drawn above that and only speaks, the words beside it letting a click through.
-function UnitCard({ hue, index, unit, onClick }) {
-  const { cover } = unit
-  const number = unitNumber(unit.unit)
-  return (
-    <div style={lookOf(hue, index)} className="rise-in lift press relative grid grid-rows-[auto_auto_1fr] px-5 py-4 rounded-[var(--radius-lg)] border">
-      <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`stretch absolute inset-0 rounded-[var(--radius-lg)] ${FOCUS}`} />
-      <span className="flex items-baseline justify-between gap-3 type-micro uppercase tracking-[0.18em]">
-        <span style={{ color: hue }}>Unit {number}</span>
-        <span className="text-[var(--text-faint)]">{unit.lessons.length} topics</span>
-      </span>
-      <span className="type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
-      <span className="flex gap-3.5 mt-2">
-        <PhrasePicture phrase={cover} alt="" className="soft-edge pointer-events-none flex-1 min-w-0 [contain:size] -ms-5 -mb-4 rounded-es-[calc(var(--radius-lg)-1px)]" />
-        <span className="relative pointer-events-none self-end flex flex-col items-end max-w-[70%]">
-          <span className="flex items-center gap-2">
-            <SpeakButton text={cover.arabic} className="pointer-events-auto -scale-x-100" />
-            <ArabicText className="min-w-0 text-start [overflow-wrap:anywhere]">{cover.arabic}</ArabicText>
-          </span>
-          <span className="type-small text-[var(--text-faint)] text-end">{cover.english}</span>
-        </span>
-      </span>
-    </div>
-  )
-}
-
-// Neighbouring topics under one heading; a unit without sections is one run with no heading.
-function sectionsOf(lessons) {
-  return lessons.reduce((runs, l, i) => {
-    const last = runs.at(-1)
-    if (last && last.section === (l.section ?? null)) last.lessons.push(l)
-    else runs.push({ section: l.section ?? null, from: i, lessons: [l] })
-    return runs
-  }, [])
-}
-
-function Grid({ children }) {
-  return <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">{children}</div>
-}
-
-// Where you are, each earlier step a button back to it.
-function Trail({ steps }) {
-  return (
-    <nav aria-label="Where you are" className="flex flex-wrap items-center gap-x-2 gap-y-1 type-small">
-      {steps.map((step, i) => {
-        const last = i === steps.length - 1
-        return (
-          <span key={step.label} className="flex items-center gap-2">
-            {i > 0 && <span aria-hidden className="text-[var(--text-faint)]">›</span>}
-            {last
-              ? <span aria-current="page" className="text-[var(--text)] font-medium">{step.label}</span>
-              : <button type="button" onClick={step.go} className={`press text-[var(--text-dim)] hover:text-[var(--text)] underline-offset-4 hover:underline rounded ${FOCUS}`}>{step.label}</button>}
-          </span>
-        )
-      })}
-    </nav>
-  )
-}
-
-// A quiet switch for learners who know more than one dialect: every dialect
-// walks the same spine, so the same unit and topic are there to land on. A unit
-// the other dialect has not written yet drops back to its unit list.
-function Switch({ dialects, current, onPick }) {
-  return (
-    <div className="ms-auto flex items-center gap-2 type-small text-[var(--text-faint)]">
-      <span className="hidden sm:inline">Same place in</span>
-      <WheelPicker label="Dialect" options={dialects.map((d) => ({ id: d.key, label: d.label }))}
-        value={current} onChange={onPick} accent={colorFor('tab', 'colloq')} />
-    </div>
-  )
-}
-
-// The unit's word bank sits on the topic list; the unit loads once and is shared with the topics.
-function UnitWordBank({ dialect, unit }) {
-  const { data } = useQuery(colloquialUnitQuery(dialect, unit))
-  return data ? <WordBank unit={data} /> : null
-}
 
 function Topic({ dialect, unit, at, words }) {
   const { data, isPending, isError, error, refetch } = useQuery(colloquialUnitQuery(dialect, unit))
@@ -205,7 +47,6 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   useEffect(() => {
     if (dialect && unit) warm(client, colloquialUnitQuery(dialect.key, unit.unit))
   }, [client, dialect, unit])
-  const hue = unit ? colorAt('unit', unitNumber(unit.unit)) : null
 
   // One way to move: every step down or up the tree is a place on the journey,
   // so a reload, a pasted link and the back arrow all land where the reader was.
@@ -234,54 +75,9 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
         </div>
       )}
 
-      {catalogue.data && !dialect && (
-        <Grid>
-          {dialects.map((d, i) => (
-            <Card key={d.key} index={i} hue={colorFor('tab', 'colloq')} kicker={d.where} title={d.label} gloss={d.gloss} arabic={d.arabic}
-              note={unitsNote(d.units)} onClick={() => go({ dialect: d.key })}
-              more={<CountryIcons codes={d.countries} />}
-              picture={<CountryMap codes={d.countries} cities={d.cities} hue={colorFor('tab', 'colloq')} className="w-24 sm:w-32 shrink-0" />} />
-          ))}
-        </Grid>
-      )}
-
-      {dialect && !unit && (
-        <Grid key={dialect.key}>
-          {dialect.units.map((u, i) => {
-            const unitHue = colorAt('unit', unitNumber(u.unit))
-            return u.written && u.cover
-              ? <UnitCard key={u.unit} index={i} hue={unitHue} unit={u} onClick={() => go({ dialect: dialect.key, unit: u.unit })} />
-              : <Card key={u.unit} index={i} hue={unitHue} kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}
-                  note={u.written ? `${u.lessons.length} topics` : 'Coming'}
-                  onClick={u.written ? () => go({ dialect: dialect.key, unit: u.unit }) : undefined} />
-          })}
-        </Grid>
-      )}
-
-      {unit && lessonAt === null && (
-        <div key={unit.unit} className="space-y-3">
-          <div className="flex flex-wrap items-center gap-3">
-            <h2 className="type-figure font-semibold text-[var(--text)]">{unit.title}</h2>
-            <UnitWordBank dialect={dialect.key} unit={unit.unit} />
-          </div>
-          {sectionsOf(unit.lessons).map(({ section, from, lessons }) => (
-            <div key={from} className="space-y-2">
-              {section && <h3 className="type-small font-semibold text-[var(--text-dim)] pt-4">{section}</h3>}
-              <Grid>
-                {lessons.map((l, n) => {
-                  const i = from + n
-                  return (
-                    <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} image={l.picture}
-                      note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words` : l.words ? 'Phrases' : undefined}
-                      onClick={l.written ? () => go({ dialect: dialect.key, unit: unit.unit, at: i, words: !l.phrases }) : undefined}
-                      twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => go({ dialect: dialect.key, unit: unit.unit, at: i, words: true }) }} />
-                  )
-                })}
-              </Grid>
-            </div>
-          ))}
-        </div>
-      )}
+      {catalogue.data && !dialect && <DialectList dialects={dialects} go={go} />}
+      {dialect && !unit && <UnitList dialect={dialect} go={go} />}
+      {unit && lessonAt === null && <TopicList dialect={dialect} unit={unit} go={go} />}
 
       {unit && lessonAt !== null && (
         <div key={`${unit.unit}/${lessonAt}/${words}`} className="rise-in">
