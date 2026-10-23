@@ -170,7 +170,7 @@ function Trail({ steps }) {
 function Switch({ dialects, current, onPick }) {
   return (
     <div className="ms-auto flex items-center gap-2 type-small text-[var(--text-faint)]">
-      <span>Same place in</span>
+      <span className="hidden sm:inline">Same place in</span>
       <WheelPicker label="Dialect" options={dialects.map((d) => ({ id: d.key, label: d.label }))}
         value={current} onChange={onPick} accent={colorFor('tab', 'colloq')} />
     </div>

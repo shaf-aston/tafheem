@@ -248,9 +248,11 @@ def _content() -> dict:
 def _cover(unit: dict) -> dict | None:
     """The phrase the spine names as the unit's `cover`, else (not named, or not yet
     written in this dialect) its first phrase with a picture. Every dialect fills the
-    same spine slots, so the same unit opens on the same phrase in each, said its own way."""
-    pictured = [p for lesson in unit["lessons"] for p in lesson.get("phrases") or [] if p.get("image")]
-    phrase = next((p for p in pictured if p["slot"] == unit.get("cover")), pictured[0] if pictured else None)
+    same spine slots, so the same unit opens on the same phrase in each, said its own way.
+    A unit of words alone opens on its first word with a picture."""
+    pictured = [p for key in ("phrases", "vocabulary")
+                for lesson in unit["lessons"] for p in lesson.get(key) or [] if p.get("image")]
+    phrase = next((p for p in pictured if p.get("slot") == unit.get("cover")), pictured[0] if pictured else None)
     return phrase and {"arabic": phrase["arabic"], "english": phrase["english"], "image": phrase["image"]}
 
 

@@ -48,6 +48,29 @@ def names(emojibase: Path, svgs: Path) -> dict[str, str]:
 NOT_THE_MEANING = {"dizzy", "bald"}
 FLAG = re.compile(r"^1f1(e[6-9a-f]|f[0-9a-f])-")
 
+# Words whose emoji has another name, chosen by hand and looked at once, so that
+# every topic has a picture of one of its own words. Only where the emoji shows
+# that word; nothing for God, angels or prophets.
+CHOSEN = {
+    "price": "label", "week": "spiral calendar", "fever": "face with thermometer",
+    "message": "speech balloon", "email": "e-mail", "letter": "envelope",
+    "happy": "smiling face with smiling eyes", "sad": "disappointed face", "angry": "angry face",
+    "scared": "fearful face", "worried": "worried face", "tired": "tired face",
+    "surprised": "hushed face", "confused": "confused face",
+    "right-correct": "check mark button", "wrong": "cross mark", "ok": "OK hand",
+    "advice": "light bulb", "medicine": "pill", "what": "red question mark",
+    "under": "down arrow", "above": "up arrow", "again": "repeat button", "metre": "straight ruler",
+    "to-run": "person running", "to-climb": "person climbing", "to-clap": "clapping hands",
+    "to-wave": "waving hand", "to-sneeze": "sneezing face", "to-laugh": "face with tears of joy",
+    "to-study": "books", "to-print": "printer", "to-sign": "writing hand", "to-calculate": "abacus",
+    "to-repair": "wrench", "to-build": "building construction", "to-paint": "paintbrush",
+    "to-sew": "sewing needle", "to-dig": "pick", "to-saw": "carpentry saw", "to-lock": "locked",
+    "to-plant": "seedling", "to-burn": "fire",
+    "to-love": "red heart", "love": "red heart", "to-think": "thinking face", "to-hug": "people hugging",
+    "quiet": "shushing face", "loud": "speaker high volume", "asleep": "sleeping face",
+    "male": "male sign", "female": "female sign", "liar": "lying face", "hajj": "kaaba",
+}
+
 
 def match(english: str, group: str | None, emoji: dict[str, str]) -> str | None:
     word = english.lower().strip()
@@ -74,8 +97,11 @@ def main(argv: list[str] | None = None) -> None:
     words_file = root / wordlist.FILE
     whole = json.loads(words_file.read_text(encoding="utf-8"))
     given = 0
-    for meaning in whole["words"].values():
-        if meaning.get("image") or not (file := match(meaning["english"], meaning.get("group"), emoji)):
+    for key, meaning in whole["words"].items():
+        if meaning.get("image"):
+            continue
+        file = emoji[CHOSEN[key].lower()] if key in CHOSEN else match(meaning["english"], meaning.get("group"), emoji)
+        if not file:
             continue
         shutil.copyfile(args.twemoji / file, folder / file)
         meaning["image"] = f"emoji/{file}"
