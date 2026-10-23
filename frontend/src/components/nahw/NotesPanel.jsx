@@ -18,13 +18,14 @@ import { useRemembered, useRememberedFlag } from '../../lib/useRemembered'
 
 import NoteBlock from './NoteBlock'
 import NoteCards from './NoteCards'
+import { TopicList, TopicSelect, TopicSteps } from './NoteTopics'
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
 import EmptyState from '../ui/EmptyState'
 import FlagButton from '../ui/FlagButton'
 import ErrorAlert from '../ui/ErrorAlert'
 import Segmented from '../ui/Segmented'
-import { AnalyzerSkeleton, Skeleton } from '../ui/Skeleton'
+import { AnalyzerSkeleton } from '../ui/Skeleton'
 import SmallButton from '../ui/SmallButton'
 
 const MODES = [
@@ -73,14 +74,10 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
   const used = useMemo(() => (topic ? rolesUsed(topic) : new Set()), [topic])
   const cards = useMemo(() => (topic ? cardsOf(topic, [...hidden]) : []), [topic, hidden])
 
-  // Everything that needs no data is drawn as it will be, and the topic chips
-  // are held open by blanks, so nothing moves when the notes arrive.
+  // Everything that needs no data is drawn as it will be, so little moves when the notes arrive.
   if (isPending) {
     return (
       <div className="space-y-4" style={{ '--c': accent }}>
-        <div className="flex flex-wrap gap-1.5" aria-hidden="true">
-          {[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-[var(--layout-chip)] w-14 rounded-full" />)}
-        </div>
         <div className="flex flex-wrap items-center gap-2">
           <Segmented label="How to use the notes" options={MODES} value={mode} onChange={setMode} accent={accent} />
           {mode !== 'cards' && (
@@ -122,14 +119,10 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
   const blocks = repeatsTitle ? topic.blocks.slice(1) : topic.blocks
 
   return (
-    <div className="space-y-4" style={{ '--c': accent }}>
-      <div className="flex flex-wrap gap-1.5" role="group" aria-label="Topic">
-        {topics.map((t) => (
-          <Chip key={t.id} accent={accent} arabic selected={t.id === topic.id} title={t.title} onClick={() => setTopic(t.id)}>
-            {t.arabic}
-          </Chip>
-        ))}
-      </div>
+    <div className="lg:grid lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-8" style={{ '--c': accent }}>
+      <TopicList topics={topics} current={topic.id} onPick={setTopic} />
+      <div className="space-y-4 min-w-0">
+      <TopicSelect topics={topics} current={topic.id} onPick={setTopic} />
 
       <div className="flex flex-wrap items-center gap-2">
         <Segmented label="How to use the notes" options={MODES} value={mode} onChange={setMode} accent={accent} />
@@ -162,7 +155,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
             above are Arabic only, so without it the heading is the one place
             the two names never meet. */}
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
-          <h3 className="text-lg font-semibold">{topic.title}</h3>
+          <h3 id="note-topic" tabIndex={-1} className="text-lg font-semibold scroll-mt-24 outline-none">{topic.title}</h3>
           {topic.arabic && <ArabicText size="lg" className="font-semibold text-[var(--text-dim)]">{topic.arabic}</ArabicText>}
         </div>
         <p className="type-small text-[var(--text-faint)]">{topic.pages} {topic.pages === 1 ? 'page' : 'pages'} of the teacher&apos;s notes</p>
@@ -191,6 +184,8 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
           })}
         </div>
       )}
+      <TopicSteps topics={topics} current={topic.id} onPick={setTopic} />
+      </div>
     </div>
   )
 }
