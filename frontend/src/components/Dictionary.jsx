@@ -173,27 +173,38 @@ function ClassicalRoot({ found, accent }) {
   const { primary, alternates } = pickRoots(found.root || found.query, found.results)
   const [root, setRoot] = useState(primary)
   const hasAlternates = alternates.length > 0
+  // One frame round every book, not a frame per book inside a frame per shelf:
+  // three borders deep, the page read as boxes before it read as dictionaries.
+  // The books are ruled off from each other instead.
   return (
-    <>
-      {hasAlternates && (
-        <ChipRow label="Which root to look up" role="group" aria-label="Which root to look up">
-          {[primary, ...alternates].map((one) => (
-            <Chip
-              key={one}
-              arabic
-              accent={accent}
-              selected={root === one}
-              onClick={() => setRoot(one)}
-            >
-              {one}
-            </Chip>
-          ))}
-        </ChipRow>
-      )}
-      <RootMeaningCard root={root} hasAlternates={hasAlternates} accent={accent} />
-      {/* Under the short answer: the books it was drawn from, for a reader who
-          wants more than a sentence. */}
-      <LexiconShelf root={root} hasAlternates={hasAlternates} accent={accent} />
-    </>
+    <section
+      aria-label="Classical dictionaries"
+      className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden"
+    >
+      <header className="px-4 py-2.5 bg-[var(--surface)] flex items-center gap-x-3 gap-y-2 flex-wrap">
+        <h3 className="type-body font-medium text-[var(--text)]">Classical dictionaries</h3>
+        {hasAlternates && (
+          <ChipRow label="Root" role="group" aria-label="Which root to look up">
+            {[primary, ...alternates].map((one) => (
+              <Chip
+                key={one}
+                arabic
+                accent={accent}
+                selected={root === one}
+                onClick={() => setRoot(one)}
+              >
+                {one}
+              </Chip>
+            ))}
+          </ChipRow>
+        )}
+      </header>
+      <div className="divide-y divide-[var(--border)]">
+        <RootMeaningCard root={root} hasAlternates={hasAlternates} accent={accent} />
+        {/* Under the short answer: the books it was drawn from, for a reader who
+            wants more than a sentence. */}
+        <LexiconShelf root={root} hasAlternates={hasAlternates} accent={accent} />
+      </div>
+    </section>
   )
 }
