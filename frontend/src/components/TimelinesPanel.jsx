@@ -12,6 +12,7 @@
  */
 import { useState } from 'react'
 import { useArrivalWhenReady } from '../lib/useArrival'
+import { useMedia, PHONE } from '../lib/useMedia'
 import { useQuery } from '@tanstack/react-query'
 
 import { timelinesQuery } from '../api'
@@ -31,6 +32,8 @@ const ALL = 'all'
 export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisit }) {
   const { data, isPending, isError, error, refetch } = useQuery(timelinesQuery)
   const [science, setScience] = useState(ALL)
+  // Small on a phone, so the five sciences stay one row instead of leaving History alone on a second.
+  const phone = useMedia(PHONE)
   const [place, setPlace] = useState(null)   // { section, event, report }
 
   // An arrival is a deep link, a link from another tab, or the back arrow
@@ -85,7 +88,7 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
     <div className="panel">
       <SectionHeader tab="timelines"
         nameOf={(q) => nameOfPlace(q, data.sections)}
-        aside={<Segmented label="Science" options={filter} value={science} onChange={setScience} accent={accent} wrap />}
+        aside={<Segmented label="Science" options={filter} value={science} onChange={setScience} accent={accent} compact={phone} wrap={!phone} />}
       />
 
       {missed && (

@@ -7,9 +7,11 @@
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
+import { startOver } from '../../lib/journey'
 import { logOut } from '../../lib/profile'
 import { deleteAccount, fetchLeaderboard, setPublic } from '../../lib/progress'
 import { forgetShelf } from '../../lib/shelf'
+import { ARMED_MS, useMoment } from '../../lib/useMoment'
 import { useProgressFacts } from '../../lib/useProgressFacts'
 
 import CirclesView from './CirclesView'
@@ -77,9 +79,13 @@ function Global({ name, module, account }) {
   )
 }
 
-/** Log out, or delete the account: the second asks twice, since it cannot be undone. */
+/**
+ * Log out, then the two that cannot be undone, in their own red box: Start
+ * over (progress and XP back to zero, the account kept) and Delete account.
+ * Each asks twice, its first press arming it for ARMED_MS.
+ */
 function Leave() {
-  const [asking, setAsking] = useState(false)
+  const [asking, setAsking] = useMoment(ARMED_MS)
   const [failed, setFailed] = useState(false)
 
   const remove = async () => {
@@ -92,23 +98,34 @@ function Leave() {
     forgetShelf()
     logOut()
   }
+  const risky = [
+    { id: 'startOver', label: 'Start over', sure: 'Sure? Start over', act: startOver,
+      says: 'Forgets where you have been, your recent searches, your answers and your Grow steps. XP goes back to zero.' },
+    { id: 'delete', label: 'Delete account', sure: 'Sure? Delete it all', act: remove,
+      says: failed ? 'Could not delete. Try again.' : 'Deletes your username, every answer you gave and your saved settings.' },
+  ]
+  const armed = risky.find((r) => r.id === asking)
 
   return (
-    <div className="pt-2 border-t border-[var(--border)] space-y-2">
-      <div className="flex items-center justify-end gap-2">
-        <SmallButton onClick={logOut}>Log out</SmallButton>
-        <SmallButton
-          className={asking ? 'text-[var(--danger)] border-[var(--danger)]' : ''}
-          onClick={() => (asking ? remove() : setAsking(true))}
-        >
-          {asking ? 'Sure? Delete it all' : 'Delete account'}
-        </SmallButton>
-      </div>
-      {asking && (
+    <div className="pt-2 border-t border-[var(--border)] space-y-3">
+      <div className="flex justify-end"><SmallButton onClick={logOut}>Log out</SmallButton></div>
+      <section aria-labelledby="danger-title" className="rounded-[var(--radius-md)] border border-[var(--danger-edge)] p-3 space-y-2">
+        <h3 id="danger-title" className="type-small font-semibold text-[var(--danger)]">Danger zone</h3>
+        <div className="flex flex-wrap justify-end gap-2">
+          {risky.map((r) => (
+            <SmallButton
+              key={r.id}
+              className={`text-[var(--danger)] ${asking === r.id ? 'border-[var(--danger)]' : ''}`}
+              onClick={() => (asking === r.id ? r.act() : setAsking(r.id))}
+            >
+              {asking === r.id ? r.sure : r.label}
+            </SmallButton>
+          ))}
+        </div>
         <p aria-live="polite" className="type-small text-[var(--text-faint)]">
-          {failed ? 'Could not delete. Try again.' : 'Deletes your username, every answer you gave and your saved settings.'}
+          {armed ? armed.says : 'Neither can be undone.'}
         </p>
-      )}
+      </section>
     </div>
   )
 }

@@ -7,7 +7,9 @@
  * at once. Where each event sits, and the year marks, are lib/timeline/time's.
  *
  * A dated section can be spread by true years or evenly, remembered; the
- * others are even only, so the choice is not offered.
+ * others are even only, so the choice is not offered. A phone starts even:
+ * by true years the Seerah's last twenty-three years crowd thirteen events
+ * into a third of a narrow bar, too close for a finger to land on one.
  */
 import { useState } from 'react'
 
@@ -15,6 +17,7 @@ import Segmented from '../ui/Segmented'
 import SmallButton from '../ui/SmallButton'
 import settings from '../../timelines.json'
 import { nearest, positions, scaleModes, yearTicks } from '../../lib/timeline/time'
+import { useMedia, PHONE } from '../../lib/useMedia'
 import { useRemembered } from '../../lib/useRemembered'
 
 const { scrub: SCRUB } = settings
@@ -24,7 +27,8 @@ const KEYS = { ArrowRight: 1, ArrowUp: 1, PageUp: 1, ArrowLeft: -1, ArrowDown: -
 
 export default function TimelineScrub({ section, index, accent, onPreview, onPick }) {
   const modes = scaleModes(section)
-  const [mode, setMode] = useRemembered('timeline-scale', modes)
+  const phone = useMedia(PHONE)
+  const [mode, setMode] = useRemembered('timeline-scale', modes, phone ? 'even' : modes[0])
   const [drag, setDrag] = useState(null)   // 0..1 while a finger is on the bar
   const pos = positions(section, mode)
   const last = section.events.length - 1
@@ -61,7 +65,7 @@ export default function TimelineScrub({ section, index, accent, onPreview, onPic
       <div className="tl-scrub-head">
         <p className="tl-scrub-read" aria-live="polite">
           {event
-            ? <><b>{event.when}</b> <span>{shown + 1} of {section.events.length}</span></>
+            ? <><b>{event.title}</b> <span>{event.when}</span> <span>{shown + 1} of {section.events.length}</span></>
             : <span>Drag along the bar to walk through {section.events.length} events</span>}
         </p>
         <div className="flex items-center gap-2 ml-auto">

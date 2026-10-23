@@ -19,12 +19,10 @@ export function scrollToEl(el, align = 'nearest') {
 const MOVES = ['wheel', 'touchstart', 'keydown', 'pointerdown']
 
 /**
- * A link landing on `el`: at the top at once (an arrival, not a glide), kept there while the page grows above it,
- * until the reader moves or motion['hold-ms'] passes. Returns the stop.
+ * Keeps a place while the page grows under it: `land` runs now and on every
+ * resize, until the reader moves or motion['hold-ms'] passes. Returns the stop.
  */
-export function holdAtTop(el) {
-  if (!el) return () => {}
-  const land = () => el.scrollIntoView({ block: 'start', behavior: 'instant' })
+function hold(land) {
   land()
   const watch = new ResizeObserver(land)
   const stop = () => {
@@ -36,6 +34,17 @@ export function holdAtTop(el) {
   watch.observe(document.body)
   MOVES.forEach((m) => addEventListener(m, stop, { passive: true }))
   return stop
+}
+
+/** A link landing on `el`: at the top at once (an arrival, not a glide), held there as the page grows above it. */
+export function holdAtTop(el) {
+  if (!el) return () => {}
+  return hold(() => el.scrollIntoView({ block: 'start', behavior: 'instant' }))
+}
+
+/** Back to `top`, held there while a tab coming back grows to its full height, which cut the place short. */
+export function holdAt(top) {
+  return hold(() => globalThis.scrollTo({ top, behavior: 'instant' }))
 }
 
 /** Back to the top of the page at once, as a fresh page would open. */

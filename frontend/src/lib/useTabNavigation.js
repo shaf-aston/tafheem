@@ -6,7 +6,7 @@ import { keepRecent, useStrip } from './recent'
 import { lastPlaceOn, onJump, startJourney, visit } from './journey'
 import { holdBackdrop } from './backdropHold'
 import { useTabShortcuts } from './useTabShortcuts'
-import { scrollToTop } from './scrollToEl'
+import { holdAt, scrollToTop } from './scrollToEl'
 
 // Nothing to say about a round: no streak, no answer just given.
 export const QUIET = { streak: 0, answer: null }
@@ -95,8 +95,8 @@ export function useTabNavigation() {
   useLayoutEffect(() => {
     if (first.current) { first.current = false; return }
     const top = scrolled.current[activeTab]
-    if (top) globalThis.scrollTo?.({ top, behavior: 'instant' })
-    else scrollToTop()
+    if (!top) return scrollToTop()
+    return holdAt(top)
   }, [activeTab])
 
   const strip = useStrip(LISTED, FIXED, RECENT, activeTab)

@@ -191,6 +191,11 @@ dialog[data-leaving] > * {
 }
 
 
+/* A pop-up arrives as one piece: its tiles ride the box's rise instead of
+   springing in one by one after it (All sections flickered, 15 pops). */
+dialog:where([open]:not(.sh-dialog)) .rise-in { animation: none; }
+
+
 dialog[data-leaving]::backdrop {
   animation: fade-out calc(var(--motion-instant-ms) * 1ms) ease forwards;
 }

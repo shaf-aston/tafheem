@@ -7,6 +7,26 @@ import { readingOrder } from './steps'
 
 const { map: MAP } = settings
 
+/** The lon/lat box the land is drawn over: as far as a view can be widened. */
+export function landBounds(land) {
+  const lons = land.flat().map(([lon]) => lon)
+  return { west: Math.min(...lons), east: Math.max(...lons) }
+}
+
+/**
+ * The view widened east and west to fill a box `aspect` times as wide as it is
+ * tall, about its middle where the land allows, slid along where one side runs
+ * out, and never past the land there is to draw. A wide screen sees more of the
+ * real map, rather than the same map cropped top and bottom, which cut
+ * Jerusalem and Abyssinia off the Seerah.
+ */
+export function fitView(view, aspect, bounds) {
+  const wide = Math.min(aspect * (view.north - view.south), bounds.east - bounds.west)
+  if (!(wide > view.east - view.west)) return view
+  const west = Math.min(Math.max((view.west + view.east - wide) / 2, bounds.west), bounds.east - wide)
+  return { ...view, west, east: west + wide }
+}
+
 /** A view's drawing box, and a function taking lon/lat into it. */
 export function projection(view) {
   const k = MAP['px-per-degree']
@@ -17,10 +37,10 @@ export function projection(view) {
   return {
     width,
     height,
-    // In rem, not a share of the window: a cap in vh shrinks the drawing when
-    // the window is short while the box around it keeps its width, and the map
-    // ends up a small picture in a wide empty frame.
-    maxHeight: `${MAP['max-rem']}rem`,
+    // The lower of a fixed cap and a share of the window, so the time bar under
+    // it is on screen too. A short wide box is filled by fitView widening the
+    // view, not by a small picture in a wide empty frame.
+    maxHeight: `min(${MAP['max-rem']}rem, ${MAP['max-vh']}svh)`,
     minHeight: `${MAP['min-rem']}rem`,
     font,
     pin,
