@@ -35,7 +35,9 @@ const STOPPED = 'The backend may have stopped since this page was opened.'
 
 /**
  * The rest of the entry in English, in two shapes (read three ways, see VIEWS).
- * Both cost a model call, so neither retries: the message offers to try again.
+ * Together is kept for every root, so a failure there is real and the message
+ * offers to try again. Lines is kept for few, so it is mostly made on the spot,
+ * and the server fails a first try often enough that one more is worth it.
  */
 const ENGLISH = {
   together: {
@@ -50,6 +52,7 @@ const ENGLISH = {
     failed: "Couldn't line the English up",
     fallback: STOPPED,
     after: ' The Together view above still shows the whole entry.',
+    retry: 1,
   },
 }
 
@@ -57,7 +60,7 @@ const ENGLISH = {
 const englishQuery = (english, root) => ({
   queryKey: [english.key, root],
   queryFn: () => english.get(root),
-  retry: false,
+  retry: english.retry ?? false,
 })
 
 /** The ways to read the rest of the entry; the first is the default. */
@@ -311,6 +314,7 @@ function Body({
               label="How to read the entry"
               accent={accent}
               compact
+              className="w-fit"
               options={VIEWS}
               value={view}
               onChange={setView}
@@ -409,7 +413,7 @@ function EntryEnglish({ view, root, accent }) {
  * sources rather than one label adrift in the middle of the card.
  */
 const MachineEnglish = ({ source, children }) => (
-  <div className="space-y-1.5">
+  <div className="space-y-1.5 max-w-[var(--lexicon-reading-w)]">
     {children}
     <SourceBadge source={source} className="ms-auto flex" />
   </div>
