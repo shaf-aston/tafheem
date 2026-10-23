@@ -11,16 +11,16 @@ import { useEffect, useState } from 'react'
 
 import { colloquialQuery, colloquialUnitQuery } from '../api'
 import { Accent } from '../lib/accent'
-import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf, unitNumber } from '../lib/colloquialPlace'
+import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf, unitNumber } from '../lib/colloquial/place'
 import { TABS } from '../lib/tabs'
 import { useArrivalWhenReady } from '../lib/useArrival'
 import { warm } from '../lib/warm'
 import { colorAt, colorFor } from '../theme'
-import { FOCUS } from './colloquial/Face'
-import PhrasePicture from './colloquial/PhrasePicture'
-import UnitView from './colloquial/UnitView'
-import WordBank from './colloquial/WordBank'
-import WordsView from './colloquial/WordsView'
+import { FOCUS } from './colloquial/parts/Face'
+import PhrasePicture from './colloquial/parts/PhrasePicture'
+import TopicView from './colloquial/topic/TopicView'
+import WordBank from './colloquial/words/WordBank'
+import WordsView from './colloquial/words/WordsView'
 import ArabicText from './ui/ArabicText'
 import { CountryIcons, CountryMap } from './ui/CountryMap'
 import ErrorAlert from './ui/ErrorAlert'
@@ -187,7 +187,7 @@ function Topic({ dialect, unit, at, words }) {
   const { data, isPending, isError, error, refetch } = useQuery(colloquialUnitQuery(dialect, unit))
   if (isPending) return <AnalyzerSkeleton />
   if (isError) return <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={error} onRetry={refetch} />
-  return words || !data.lessons[at].phrases.length ? <WordsView unit={data} at={at} /> : <UnitView unit={data} at={at} />
+  return words || !data.lessons[at].phrases.length ? <WordsView unit={data} at={at} /> : <TopicView unit={data} at={at} />
 }
 
 export default function ColloquialPanel({ incoming, arrival, onVisit }) {

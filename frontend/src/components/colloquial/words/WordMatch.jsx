@@ -6,11 +6,11 @@
 // easier than recalling it.
 import { useState } from 'react'
 
-import settings from '../../colloquial.json'
-import { shuffled } from '../../lib/shuffle'
-import ArabicText from '../ui/ArabicText'
-import SmallButton from '../ui/SmallButton'
-import { FOCUS } from './Face'
+import settings from '../../../colloquial.json'
+import { shuffled } from '../../../lib/shuffle'
+import ArabicText from '../../ui/ArabicText'
+import SmallButton from '../../ui/SmallButton'
+import { FOCUS } from '../parts/Face'
 
 const BOARD = settings['match-board']
 

@@ -12,12 +12,12 @@
  */
 import { useRef, useState } from 'react'
 
-import { hasAnswer } from '../../lib/colloquialAnswer'
-import { recordAttempt } from '../../lib/progress'
-import ArabicText from '../ui/ArabicText'
-import PrimaryButton from '../ui/PrimaryButton'
-import SpeakButton from '../ui/SpeakButton'
-import { exerciseOf } from './exercises/registry'
+import { hasAnswer } from '../../../lib/colloquial/answer'
+import { recordAttempt } from '../../../lib/progress'
+import ArabicText from '../../ui/ArabicText'
+import PrimaryButton from '../../ui/PrimaryButton'
+import SpeakButton from '../../ui/SpeakButton'
+import { exerciseOf } from './registry'
 
 const statusOf = (saved) => (!saved ? '' : saved.correct ? 'right' : 'wrong')
 

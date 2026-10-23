@@ -1,15 +1,15 @@
 // One topic as a scene: its pictures come first, then the conversation and practice.
 import { useState } from 'react'
 
-import TranslationStrip from '../ui/TranslationStrip'
+import TranslationStrip from '../../ui/TranslationStrip'
 import Dialogue from './Dialogue'
-import { FOCUS } from './Face'
+import { FOCUS } from '../parts/Face'
 import Mosaic from './Mosaic'
 import Pairs from './Pairs'
-import Practice from './Practice'
+import Practice from '../exercises/Practice'
 import Sheet from './Sheet'
-import WordBank from './WordBank'
-import WordGrid from './WordGrid'
+import WordBank from '../words/WordBank'
+import WordGrid from '../words/WordGrid'
 
 function Act({ kicker, title, children }) {
   return (
@@ -90,7 +90,7 @@ function Scene({ unit, lesson, number, place }) {
 }
 
 // One topic of a unit; the panel above owns which unit and topic are open.
-export default function UnitView({ unit, at }) {
+export default function TopicView({ unit, at }) {
   return (
     <div className="max-w-3xl lg:max-w-6xl mx-auto">
       <Scene unit={unit} lesson={unit.lessons[at]} number={at + 1}

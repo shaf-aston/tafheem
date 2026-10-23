@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { exerciseOf } from '../components/colloquial/exercises/registry'
+import { exerciseOf } from '../../components/colloquial/exercises/registry'
 import { WORDS_MODULE, reviewOf, reviewQuestions, wordDrills, wordKey } from './wordPractice'
 
 const w = (arabic, english = arabic) => ({ arabic, english, transliteration: english })

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf, unitNumber } from './colloquialPlace'
+import { nameOfPlace, parsePlace, placeOf, switchPlace, trailOf, unitNumber } from './place'
 
 const dialects = [{
   key: 'fusha',

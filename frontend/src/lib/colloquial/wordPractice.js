@@ -9,8 +9,8 @@
  * learns the word whichever mode or topic asked it. Pure and seeded: the same
  * words always make the same questions, and a rerender reshuffles nothing.
  */
-import { buildQuestion, makeRandom } from './quiz'
-import { QUIZ } from './quizBanks'
+import { buildQuestion, makeRandom } from '../quiz'
+import { QUIZ } from '../quizBanks'
 
 export const WORDS_MODULE = 'words'
 export const wordKey = (dialect, word) => `${dialect}:${word.arabic}`

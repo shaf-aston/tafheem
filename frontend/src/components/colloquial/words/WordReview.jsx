@@ -4,14 +4,14 @@
 import { useQuery } from '@tanstack/react-query'
 import { useRef, useState } from 'react'
 
-import { fetchSummary, recordAttempt } from '../../lib/progress'
-import { QUIZ } from '../../lib/quizBanks'
-import { fillIn, sayIn } from '../../lib/say'
-import { useQuizRound } from '../../lib/useQuizRound'
-import { useRememberedFlag } from '../../lib/useRemembered'
-import { WORDS_MODULE, reviewOf, reviewQuestions } from '../../lib/wordPractice'
-import QuizBoard from '../QuizBoard'
-import SmallButton from '../ui/SmallButton'
+import { fetchSummary, recordAttempt } from '../../../lib/progress'
+import { QUIZ } from '../../../lib/quizBanks'
+import { fillIn, sayIn } from '../../../lib/say'
+import { useQuizRound } from '../../../lib/useQuizRound'
+import { useRememberedFlag } from '../../../lib/useRemembered'
+import { WORDS_MODULE, reviewOf, reviewQuestions } from '../../../lib/colloquial/wordPractice'
+import QuizBoard from '../../QuizBoard'
+import SmallButton from '../../ui/SmallButton'
 
 const dayOf = (iso) => new Date(iso).toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'short' })
 const say = sayIn('en')

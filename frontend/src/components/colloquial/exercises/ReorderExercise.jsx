@@ -10,7 +10,7 @@
  */
 import { useMemo } from 'react'
 
-import { bankOf } from '../../../lib/colloquialAnswer'
+import { bankOf } from '../../../lib/colloquial/answer'
 import { shuffled } from '../../../lib/shuffle'
 import ArabicText from '../../ui/ArabicText'
 

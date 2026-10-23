@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import ExerciseHost from '../ExerciseHost'
+import ExerciseHost from './ExerciseHost'
 import { exerciseOf } from './registry'
 
 const base = { id: 'u.l.x.01', prompt: 'Say hello', answer: 'مرحبا', accepted: ['مرحبا'] }

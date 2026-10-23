@@ -1,9 +1,9 @@
 // Question and answer as a matched pair of cards: press the question to turn it over.
 import { useState } from 'react'
 
-import ArabicText from '../ui/ArabicText'
-import { FOCUS } from './Face'
-import Spelling from './Spelling'
+import ArabicText from '../../ui/ArabicText'
+import { FOCUS } from '../parts/Face'
+import Spelling from '../parts/Spelling'
 
 const FACE = `col-start-1 row-start-1 flex flex-col items-center justify-center gap-1 px-4 py-6 text-center
   rounded-[var(--radius-md)] border transition-[transform,opacity] [backface-visibility:hidden]`

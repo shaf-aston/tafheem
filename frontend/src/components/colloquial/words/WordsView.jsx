@@ -3,9 +3,9 @@
 // and a component beside this one.
 import { useMemo, useState } from 'react'
 
-import { wordDrills } from '../../lib/wordPractice'
-import Segmented from '../ui/Segmented'
-import Practice from './Practice'
+import { wordDrills } from '../../../lib/colloquial/wordPractice'
+import Segmented from '../../ui/Segmented'
+import Practice from '../exercises/Practice'
 import WordCards from './WordCards'
 import WordMatch from './WordMatch'
 import WordReview from './WordReview'

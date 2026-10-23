@@ -1,15 +1,15 @@
 // Flash cards: the English first, a tap turns it to the Arabic; swipe or prev/next for the next word.
 import { useState } from 'react'
 
-import { isRight } from '../../lib/colloquialAnswer'
-import { useSlide, useSwipe } from '../../lib/useSwipe'
-import ArabicText from '../ui/ArabicText'
-import MicButton from '../ui/MicButton'
-import SmallButton from '../ui/SmallButton'
-import SpeakButton from '../ui/SpeakButton'
-import { FOCUS } from './Face'
-import PhrasePicture from './PhrasePicture'
-import Spelling from './Spelling'
+import { isRight } from '../../../lib/colloquial/answer'
+import { useSlide, useSwipe } from '../../../lib/useSwipe'
+import ArabicText from '../../ui/ArabicText'
+import MicButton from '../../ui/MicButton'
+import SmallButton from '../../ui/SmallButton'
+import SpeakButton from '../../ui/SpeakButton'
+import { FOCUS } from '../parts/Face'
+import PhrasePicture from '../parts/PhrasePicture'
+import Spelling from '../parts/Spelling'
 
 export default function WordCards({ words }) {
   const [at, setAt] = useState(0)

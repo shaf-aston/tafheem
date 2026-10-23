@@ -11,7 +11,7 @@
  */
 import { useState } from 'react'
 
-import { colloquialImageUrl } from '../../api'
+import { colloquialImageUrl } from '../../../api'
 
 // `alt` is empty where the English is already printed beside the picture.
 export default function PhrasePicture({ phrase, alt = phrase.english, className = '' }) {

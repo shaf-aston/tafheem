@@ -15,7 +15,7 @@
  * it. Those are compared as plain lowercase letters and digits, which is what
  * the transliteration is written in.
  */
-import { recitedForm } from './arabicText'
+import { recitedForm } from '../arabicText'
 
 const latin = (text) => (text ?? '').toLowerCase().replace(/[^a-z0-9]/g, '')
 

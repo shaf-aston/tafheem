@@ -1,5 +1,5 @@
 // A phrase's picture and its words, shared by the mosaic tile and the sheet.
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../../ui/ArabicText'
 import PhrasePicture from './PhrasePicture'
 
 export const FOCUS = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]'

@@ -1,16 +1,16 @@
 // The focused view of one phrase: big picture, its words, the reply, and prev/next (or a swipe).
 import { useEffect } from 'react'
 
-import { useSlide, useSwipe } from '../../lib/useSwipe'
+import { useSlide, useSwipe } from '../../../lib/useSwipe'
 
-import ArabicText from '../ui/ArabicText'
-import BottomSheet from '../ui/BottomSheet'
-import CloseButton from '../ui/CloseButton'
-import SmallButton from '../ui/SmallButton'
-import SpeakButton from '../ui/SpeakButton'
-import Face, { FOCUS } from './Face'
+import ArabicText from '../../ui/ArabicText'
+import BottomSheet from '../../ui/BottomSheet'
+import CloseButton from '../../ui/CloseButton'
+import SmallButton from '../../ui/SmallButton'
+import SpeakButton from '../../ui/SpeakButton'
+import Face, { FOCUS } from '../parts/Face'
 import OtherDialects from './OtherDialects'
-import Spelling from './Spelling'
+import Spelling from '../parts/Spelling'
 
 export default function Sheet({ phrases, at, onAt, onClose, place }) {
   const phrase = phrases[at]

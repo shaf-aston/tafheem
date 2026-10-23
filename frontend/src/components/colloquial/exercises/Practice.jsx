@@ -1,8 +1,8 @@
 // Practice: one exercise at a time under a row of answer squares.
 import { useState } from 'react'
 
-import AnswerSquare from '../ui/AnswerSquare'
-import SmallButton from '../ui/SmallButton'
+import AnswerSquare from '../../ui/AnswerSquare'
+import SmallButton from '../../ui/SmallButton'
 import ExerciseHost from './ExerciseHost'
 
 const ACCENT = 'var(--primary)'

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { bankOf, hasAnswer, isRight, ARRANGED, PICKED, TYPED } from './colloquialAnswer'
+import { bankOf, hasAnswer, isRight, ARRANGED, PICKED, TYPED } from './answer'
 
 const accepted = ['كيفك؟', 'keefak']
 

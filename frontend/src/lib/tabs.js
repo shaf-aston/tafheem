@@ -15,7 +15,7 @@ import { colloquialQuery, dawahQuery, daleelBooksQuery, hadithOpen, timelinesQue
 import { load } from './warm'
 import { memoriseOpen } from './books'
 import { table } from './quizBanks'
-import { WORDS_MODULE } from './wordPractice'
+import { WORDS_MODULE } from './colloquial/wordPractice'
 import { MODULE as BASICS_MODULE } from './alifLam'
 import { MODULE as HADITH_MODULE } from './hadithLesson'
 import { MODULE as QURAN_MODULE } from './quranLesson'

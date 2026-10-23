@@ -2,15 +2,15 @@
 // Built from the unit already loaded, so it adds no request.
 import { useState } from 'react'
 
-import { grouped } from '../../lib/wordGroups'
-import ArabicText from '../ui/ArabicText'
-import BottomSheet from '../ui/BottomSheet'
-import CloseButton from '../ui/CloseButton'
-import Segmented from '../ui/Segmented'
-import SmallButton from '../ui/SmallButton'
-import SpeakButton from '../ui/SpeakButton'
-import { FOCUS } from './Face'
-import Spelling from './Spelling'
+import { grouped } from '../../../lib/colloquial/wordGroups'
+import ArabicText from '../../ui/ArabicText'
+import BottomSheet from '../../ui/BottomSheet'
+import CloseButton from '../../ui/CloseButton'
+import Segmented from '../../ui/Segmented'
+import SmallButton from '../../ui/SmallButton'
+import SpeakButton from '../../ui/SpeakButton'
+import { FOCUS } from '../parts/Face'
+import Spelling from '../parts/Spelling'
 
 // Repeats across topics show once: a word by its meaning's id, a phrase by its Arabic.
 const keyOf = (r) => r.id ?? r.arabic
