@@ -10,7 +10,8 @@
     "src/lib/alifLam.js",
     "src/lib/lesson.js",
     "src/lib/wordForms.js",
-    "src/lib/basicsSkills.js"
+    "src/lib/basicsSkills.js",
+    "src/lib/learnerLevel.js"
   ],
   "ignorePatterns": [
     "dist",

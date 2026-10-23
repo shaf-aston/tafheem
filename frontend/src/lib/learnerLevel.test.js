@@ -1,12 +1,16 @@
 import { describe, expect, it } from 'vitest'
 
-import { LEVEL_IDS, LEVELS, RULES, classify, levelOf } from './learnerLevel'
+import { LEVEL_IDS, LEVEL_KEY, LEVELS, RULES, classify, levelOf } from './learnerLevel'
 
 // Answers in a module: `n` given, `right` of them right.
 const row = (module, n, right) => ({ module, attempts: n, correct: right, learnt: 0 })
 const MIN = RULES.minAnswers
 
 describe('levels.json', () => {
+  it('stores the level under its own key', () => {
+    expect(LEVEL_KEY).toBe('level')
+  })
+
   it('runs beginner, intermediate, advanced, with proof under all but the top', () => {
     expect(LEVEL_IDS).toEqual(['beginner', 'intermediate', 'advanced'])
     expect(LEVELS.slice(0, -1).every((level) => level.proof.length > 0)).toBe(true)
@@ -106,5 +110,29 @@ describe('classify', () => {
     expect(classify('beginner', [row('basics', 2, 1)], rules).level).toBe('intermediate')
     expect(classify('intermediate', [row('quiz', 4, 0)], rules).level).toBe('intermediate')
     expect(classify('advanced', [row('quiz', 4, 0)], rules).level).toBe('intermediate')
+  })
+  it('does not lift anyone to a tier they struggle with', () => {
+    expect(classify('', [row('quiz', 40, 20)])).toMatchObject({ level: 'beginner', basis: { id: 'intermediate' } })
+    expect(classify('beginner', [row('quiz', 40, 20)]).level).toBe('beginner')
+  })
+
+  it('lifts someone who never chose to a tier they hold at exactly the fail share', () => {
+    expect(classify('', [row('quiz', 50, 30)]).level).toBe('intermediate')
+  })
+
+  it('names the answers, not the bare choice, when both point at the same level', () => {
+    expect(classify('intermediate', [row('basics', 40, 30), row('quiz', 40, 28)]).basis.id).toBe('intermediate')
+  })
+
+  it('names the answers that lifted them when a struggle sits at the same level', () => {
+    expect(classify('', [row('basics', 40, 36), row('quiz', 40, 20)])).toMatchObject({ level: 'intermediate', basis: { id: 'beginner' } })
+  })
+  it('reads no answers as none, before the record has loaded', () => {
+    expect(classify('intermediate')).toEqual({ level: 'intermediate', settled: false, basis: null })
+  })
+
+  it('never passes anyone beyond the top, even a top tier with proof of its own', () => {
+    const levels = LEVELS.map((level) => (level.proof.length ? level : { ...level, proof: ['nahw'] }))
+    expect(classify('', [row('nahw', 40, 40)], { ...RULES, levels }).level).toBe('advanced')
   })
 })

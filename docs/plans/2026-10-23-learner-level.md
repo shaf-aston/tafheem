@@ -112,3 +112,15 @@ B also loses guests, who are the main first-visit audience. **A** is chosen.
 - *Sign-up reloads before the level is written* → write it to the new name's shelf before `logInAs`.
 - *Basics bank fetches the word table anyway* → harmless, because that cache is shared with Review counts.
 - *XP "Level" confusion* → the UI says "Your Arabic".
+
+## 8 · Verify
+
+| # | Result |
+|---|---|
+| L1 | Playwright 375 px: each level row → 1 tap → Basics lesson / Words lesson / Nahw, level stored |
+| L2 | Sign-up sheet prefilled from Home's pick. Signed up as Advanced (keep off) → `@name/level` on device and server shelf → Grow Today "Continue · Nahw" |
+| L3 | `level.test.jsx`: open below the minimum, locked with "90% right over 40 Basics answers" once settled |
+| L4 | 25 rule tests. While simplifying, the struggle stayed a ceiling (struggling with the word quiz never lifts anyone to it) and ties now credit the answers over the bare choice |
+| L5–L6 | `basics.test.jsx` Today per level, `quiz.test.jsx` Basics bank plays Grow's ال card, a picked bank beats the level |
+| L7 | Existing suite green: 2205 passed, 1 skipped. eslint 0 |
+| L9 | Stryker on `learnerLevel.js` **98.75%** (79/80). The survivor (`modules = ["…"]` default) is equivalent: a string matches no module. axe 0 at 375 px light and dark on Home, lesson, Quiz, Grow, Settings, sign-up. No sideways scroll |
