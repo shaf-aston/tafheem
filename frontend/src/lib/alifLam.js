@@ -8,9 +8,8 @@
  *   apart    ال كِتَاب    ال written as a word of its own, like "the"
  *   heard    اشَّمْس      spelt as said: before a sun letter the ل is silent, but it is still written
  *            (never for ل: الَّيْل is how the Qur'an's script writes it)
- * Words come from public/grow/basics.json (bare, vowelled, no ال); the world's hook is lib/useBasicsWorld.js.
+ * Words come from public/grow/basics.json (bare, vowelled, no ال); the path they sit on is lib/basicsSkills.js.
  */
-import { weave } from './lesson'
 import { shuffled } from './shuffle'
 
 export const MODULE = 'basics'
@@ -121,21 +120,15 @@ export const INTRO = {
   also: { ar: 'الْكِتَاب', en: 'the book' },
 }
 
-/**
- * A lesson's cards: a new word is taught (with ال, and without it), then asked both ways; a review is asked both ways.
- * A learner's first lesson (`intro`) opens on what ال is.
- */
-export function basicsCards(picked, random = Math.random, intro = false) {
-  const cards = weave(picked, {
-    teach: (word) => ({
-      kind: 'teach',
-      id: `teach:${word.id}`,
-      tag: 'New word',
-      ar: definite(word.ar),
-      en: english(word, true),
-      also: { ar: plain(word.ar), en: english(word, false) },
-    }),
-    asks: (word, isNew) => [toArabicCard(word, isNew, random), toEnglishCard(word, isNew, random)],
-  })
-  return intro ? [INTRO, ...cards] : cards
-}
+/** A new word: with ال, and without it. */
+export const teachWord = (word) => ({
+  kind: 'teach',
+  id: `teach:${word.id}`,
+  tag: 'New word',
+  ar: definite(word.ar),
+  en: english(word, true),
+  also: { ar: plain(word.ar), en: english(word, false) },
+})
+
+/** A word asked both ways. The Basics path that weaves these with the other skills: lib/basicsSkills.js. */
+export const wordAsks = (word, isNew, random) => [toArabicCard(word, isNew, random), toEnglishCard(word, isNew, random)]

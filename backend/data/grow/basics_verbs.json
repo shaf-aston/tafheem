@@ -1,0 +1,205 @@
+{
+ "_about": "Basics verbs: sound Form I, everyday. Arabic is never typed here: backend/scripts/build_basics_verbs.py conjugates each root with backend/services/conjugation.py. English: base / past / he-form, checked by hand.",
+ "verbs": [
+  {
+   "id": "write",
+   "root": "كتب",
+   "bab": "I-nasara",
+   "en": {
+    "base": "write",
+    "past": "wrote",
+    "s3": "writes"
+   }
+  },
+  {
+   "id": "open",
+   "root": "فتح",
+   "bab": "I-fataha",
+   "en": {
+    "base": "open",
+    "past": "opened",
+    "s3": "opens"
+   }
+  },
+  {
+   "id": "enter",
+   "root": "دخل",
+   "bab": "I-nasara",
+   "en": {
+    "base": "enter",
+    "past": "entered",
+    "s3": "enters"
+   }
+  },
+  {
+   "id": "go-out",
+   "root": "خرج",
+   "bab": "I-nasara",
+   "en": {
+    "base": "go out",
+    "past": "went out",
+    "s3": "goes out"
+   }
+  },
+  {
+   "id": "sit",
+   "root": "جلس",
+   "bab": "I-daraba",
+   "en": {
+    "base": "sit",
+    "past": "sat",
+    "s3": "sits"
+   }
+  },
+  {
+   "id": "go",
+   "root": "ذهب",
+   "bab": "I-fataha",
+   "en": {
+    "base": "go",
+    "past": "went",
+    "s3": "goes"
+   }
+  },
+  {
+   "id": "hear",
+   "root": "سمع",
+   "bab": "I-samia",
+   "en": {
+    "base": "hear",
+    "past": "heard",
+    "s3": "hears"
+   }
+  },
+  {
+   "id": "know",
+   "root": "علم",
+   "bab": "I-samia",
+   "en": {
+    "base": "know",
+    "past": "knew",
+    "s3": "knows"
+   }
+  },
+  {
+   "id": "drink",
+   "root": "شرب",
+   "bab": "I-samia",
+   "en": {
+    "base": "drink",
+    "past": "drank",
+    "s3": "drinks"
+   }
+  },
+  {
+   "id": "understand",
+   "root": "فهم",
+   "bab": "I-samia",
+   "en": {
+    "base": "understand",
+    "past": "understood",
+    "s3": "understands"
+   }
+  },
+  {
+   "id": "remember",
+   "root": "ذكر",
+   "bab": "I-nasara",
+   "en": {
+    "base": "remember",
+    "past": "remembered",
+    "s3": "remembers"
+   }
+  },
+  {
+   "id": "thank",
+   "root": "شكر",
+   "bab": "I-nasara",
+   "en": {
+    "base": "give thanks",
+    "past": "gave thanks",
+    "s3": "gives thanks"
+   }
+  },
+  {
+   "id": "look",
+   "root": "نظر",
+   "bab": "I-nasara",
+   "en": {
+    "base": "look",
+    "past": "looked",
+    "s3": "looks"
+   }
+  },
+  {
+   "id": "return",
+   "root": "رجع",
+   "bab": "I-daraba",
+   "en": {
+    "base": "go back",
+    "past": "went back",
+    "s3": "goes back"
+   }
+  },
+  {
+   "id": "memorise",
+   "root": "حفظ",
+   "bab": "I-samia",
+   "en": {
+    "base": "memorise",
+    "past": "memorised",
+    "s3": "memorises"
+   }
+  },
+  {
+   "id": "wash",
+   "root": "غسل",
+   "bab": "I-daraba",
+   "en": {
+    "base": "wash",
+    "past": "washed",
+    "s3": "washes"
+   }
+  },
+  {
+   "id": "play",
+   "root": "لعب",
+   "bab": "I-samia",
+   "en": {
+    "base": "play",
+    "past": "played",
+    "s3": "plays"
+   }
+  },
+  {
+   "id": "ride",
+   "root": "ركب",
+   "bab": "I-samia",
+   "en": {
+    "base": "ride",
+    "past": "rode",
+    "s3": "rides"
+   }
+  },
+  {
+   "id": "carry",
+   "root": "حمل",
+   "bab": "I-daraba",
+   "en": {
+    "base": "carry",
+    "past": "carried",
+    "s3": "carries"
+   }
+  },
+  {
+   "id": "study",
+   "root": "درس",
+   "bab": "I-nasara",
+   "en": {
+    "base": "study",
+    "past": "studied",
+    "s3": "studies"
+   }
+  }
+ ]
+}

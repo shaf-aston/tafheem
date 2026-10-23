@@ -109,7 +109,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const open = (id) => books[id]?.ready && books[id].next
   const lead = open(last) ? last : words.error ? Object.keys(books).find(open) ?? null : null
   const lineOf = (state) => {
-    if (state.ready) return say('{fresh} new words · {due} to review', { fresh: state.next.fresh.length, due: state.next.reviews.length })
+    if (state.ready) return say('{fresh} new {unit} · {due} to review', { fresh: state.next.fresh.length, unit: state.world.unit, due: state.next.reviews.length })
     return state.error ? say('Words could not load just now. The book worlds below still work.') : '\u00a0'
   }
   // The Basics and the words each show as a step whenever they are not the lesson above.
