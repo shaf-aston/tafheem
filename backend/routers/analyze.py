@@ -8,13 +8,13 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 
 from backend.models.analyze import AnalyzeRequest, AnalyzeResponse, WordAnalysis
 
 from backend.services import iraab
 from backend.services.ratelimit import PerMinute, visitor
-from backend.utils import arabic_sentence
+from backend.utils import Timings, arabic_sentence
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/analyze", tags=["analysis"])
@@ -27,10 +27,14 @@ def _within_limit(http: Request) -> None:
 
 
 @router.post("", response_model=AnalyzeResponse, dependencies=[Depends(_within_limit)])
-async def analyze_sentence(request: AnalyzeRequest) -> AnalyzeResponse:
+async def analyze_sentence(request: AnalyzeRequest, response: Response = None) -> AnalyzeResponse:
     sentence = arabic_sentence(request.sentence, "Sentence")
-    read = await asyncio.to_thread(iraab.analyze, sentence)
-    logger.info("Analysed a %d-word sentence from %s", len(read["words"]), read["source"]["label"])
+    timings = Timings()
+    with timings.step("analyze"):
+        read = await asyncio.to_thread(iraab.analyze, sentence)
+    if response is not None:  # FastAPI always passes it; a direct call (tests, scripts) may not
+        response.headers["Server-Timing"] = timings.header()
+    logger.info("Analysed a %d-word sentence from %s: %s", len(read["words"]), read["source"]["label"], timings.header())
     return AnalyzeResponse(
         sentence=sentence,
         words=[WordAnalysis.from_raw(w) for w in read["words"]],

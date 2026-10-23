@@ -59,6 +59,9 @@ class Nahw(BaseSettings):
     max_sentence_words: int = Field(default=160, gt=0)  # the longest ayah (2:282) is about 130 words
     # Analyses a minute per visitor (POST /api/analyze); the parser costs far more than a page's own clicks.
     analyze_per_minute: int = Field(default=60, gt=0)
+    # Recent sentences kept read in memory: the Analyse page and its practice questions ask for the same
+    # sentence one after the other, and the parser is most of each answer's time.
+    analyses_kept: int = Field(default=256, ge=0)
     catib_parser_enabled: bool = True
     # The top disambiguator reading comes from bare letters and can contradict typed vowels (آفِلًا for typed أَفَلَا);
     # the first of these that agrees is used. Scoring all costs nothing extra. 40 because a rare passive (أُكِلَ) can rank below the 20th.

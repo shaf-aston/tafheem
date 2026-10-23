@@ -5,6 +5,8 @@ from __future__ import annotations
 import asyncio
 import logging
 import re
+import time
+from contextlib import contextmanager
 from typing import Any, Callable, TypeVar
 
 from fastapi import HTTPException
@@ -99,3 +101,22 @@ async def call_service(
     except Exception as exc:
         logger.exception("%s failed", operation)
         raise HTTPException(status_code=500, detail=f"{operation} failed.") from exc
+
+
+class Timings:
+    """How long each step of one answer took, for the Server-Timing header (the browser's
+    Network → Timing tab draws it) and the log line, so a slow answer names its slow step."""
+
+    def __init__(self) -> None:
+        self.ms: dict[str, float] = {}
+
+    @contextmanager
+    def step(self, name: str):
+        start = time.perf_counter()
+        try:
+            yield
+        finally:
+            self.ms[name] = (time.perf_counter() - start) * 1000
+
+    def header(self) -> str:
+        return ", ".join(f"{name};dur={ms:.1f}" for name, ms in self.ms.items())

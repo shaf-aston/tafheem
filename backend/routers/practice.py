@@ -13,7 +13,7 @@ import asyncio
 import logging
 import random
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Query, Response
 
 from backend.config import get_settings
 from backend.models.practice import (
@@ -26,7 +26,7 @@ from backend.models.practice import (
 )
 from backend.identity import USER
 from backend.services import ai, iraab, practice_service, progress_store, provenance, sentence_check
-from backend.utils import arabic_sentence
+from backend.utils import Timings, arabic_sentence
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/practice", tags=["practice"])
@@ -36,11 +36,16 @@ MODULE = "nahw"
 
 
 @router.post("", response_model=PracticeResponse)
-async def generate_practice(request: PracticeRequest) -> PracticeResponse:
+async def generate_practice(request: PracticeRequest, response: Response, later: BackgroundTasks) -> PracticeResponse:
     sentence = arabic_sentence(request.sentence, "Sentence")
-    read = await asyncio.to_thread(iraab.analyze, sentence)
-    questions = practice_service.from_analysis(sentence, read)
-    return await _answer(sentence, [PracticeQuestion(**q) for q in questions], "nahw")
+    timings = Timings()
+    with timings.step("analyze"):
+        read = await asyncio.to_thread(iraab.analyze, sentence)
+    with timings.step("questions"):
+        questions = [PracticeQuestion(**q) for q in practice_service.from_analysis(sentence, read)]
+    response.headers["Server-Timing"] = timings.header()
+    logger.info("Practice for a %d-word sentence: %s", len(read["words"]), timings.header())
+    return _answer(sentence, questions, "nahw", later)
 
 
 @router.get("/kept", response_model=KeptQuestions)
@@ -71,21 +76,19 @@ async def checked_sentence(user: str = USER) -> CheckedSentence:
     return CheckedSentence(**made, words=given)
 
 
-async def _answer(sentence: str, questions: list[PracticeQuestion], source_key: str) -> PracticeResponse:
-    """File the questions under the source the page will show, then answer.
+def _answer(sentence: str, questions: list[PracticeQuestion], source_key: str, later: BackgroundTasks) -> PracticeResponse:
+    """Answer, and file the questions under the source the page will show once the answer is sent.
 
-    Filing is not allowed to cost the learner their questions: a database that
-    will not take them is logged and the answer goes out regardless.
+    Filing is not allowed to cost the learner their questions, nor their time: it runs after
+    the answer, and a database that will not take them is logged.
     """
+    later.add_task(_keep, sentence, [q.model_dump() for q in questions], source_key)
+    return PracticeResponse(sentence=sentence, questions=questions, source=provenance.of(source_key))
+
+
+def _keep(sentence: str, questions: list[dict], source_key: str) -> None:
     try:
-        added = await asyncio.to_thread(
-            progress_store.keep_questions,
-            module=MODULE,
-            sentence=sentence,
-            questions=[q.model_dump() for q in questions],
-            source=source_key,
-        )
+        added = progress_store.keep_questions(module=MODULE, sentence=sentence, questions=questions, source=source_key)
         logger.info("Kept %d new practice question(s) for '%s' (%s)", added, sentence[:40], source_key)
     except Exception as exc:
         logger.warning("Could not keep practice questions: %s", exc)
-    return PracticeResponse(sentence=sentence, questions=questions, source=provenance.of(source_key))
