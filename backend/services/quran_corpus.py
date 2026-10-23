@@ -279,10 +279,15 @@ def lemmas_for_surah(surah: int) -> dict[int, list[list[str]]]:
 
 @lru_cache(maxsize=1)
 def _roots_by_bare_spelling() -> dict:
-    """Each lemma and stem form, folded to bare letters, with the root it most often carries."""
+    """Each lemma and stem form, folded to bare letters, with the root it most often carries.
+
+    A stem tagged with no root votes too, for "": من is a particle in nearly all its uses,
+    and counting only the rooted ones filed it under منن (مَنّ, manna).
+    """
     rows = _db().execute(
         """SELECT lemma, form, root, COUNT(*) AS uses FROM segment
-           WHERE root <> '' GROUP BY lemma, form, root"""
+           WHERE features NOT LIKE '%PREF%' AND features NOT LIKE '%SUFF%'
+           GROUP BY lemma, form, root"""
     ).fetchall()
     votes: dict[str, dict[str, int]] = {}
     for r in rows:
@@ -294,12 +299,14 @@ def _roots_by_bare_spelling() -> dict:
     return {bare: max(by_root, key=by_root.get) for bare, by_root in votes.items()}
 
 
-def root_of(word: str) -> str:
-    """The root a word is built from, or '' when the corpus does not know the word."""
+def root_of(word: str) -> str | None:
+    """The root a word is built from; "" when the corpus has it with no root (a particle, a
+    pronoun, a foreign name), None when the corpus does not have the word."""
     bare = arabic_text.bare_letters(word)
     roots = _roots_by_bare_spelling()
+    found = roots.get(bare)
     # The corpus splits the article off, so its stems never start with ال.
-    return roots.get(bare) or (roots.get(bare[2:], "") if bare.startswith("ال") else "")
+    return roots.get(bare[2:]) if found is None and bare.startswith("ال") else found
 
 
 def occurrences_of_root(root: str, limit: int) -> dict:

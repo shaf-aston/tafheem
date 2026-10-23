@@ -262,11 +262,11 @@ def is_loaded() -> bool:
 # handed over by another tab, from simply searching twice. A second search cannot
 # find anything a first did not, so it is not searched a second time.
 #
-def is_root(letters: str) -> bool:
-    """Whether the dictionary files any entry under the root `letters`."""
+def filed_root(letters: str) -> str:
+    """The root `letters` as the dictionary spells it (قرء is its قرأ); "" when it files nothing under it."""
     load_dictionary()
     key = _folded(letters)
-    return bool(key) and any(_folded(entry.get("root") or "") == key for entry in _arabic_index.get(key, ()))
+    return next((entry["root"] for entry in _arabic_index.get(key, ()) if key and _folded(entry.get("root") or "") == key), "")
 
 
 def headword_roots(word: str) -> list[str]:
@@ -286,7 +286,7 @@ def _by_reading(word: str) -> tuple[list[dict], tuple[str, str] | None]:
     from backend.services import roots as root_finder  # it asks this module back
 
     read = root_finder.readings(word)
-    spelt = [lemma for lemma, _ in read]  # as written: آتى (give) before أتى (come), which fold alike
+    spelt = [r.lemma for r in read]  # as written: آتى (give) before أتى (come), which fold alike
     lemmas: list[str] = []
     for lemma in spelt:
         if (folded := _folded(lemma)) not in lemmas:
@@ -294,7 +294,7 @@ def _by_reading(word: str) -> tuple[list[dict], tuple[str, str] | None]:
     found = [entry for lemma in lemmas for entry in _arabic_index.get(lemma, ())]
     # The roots of the words found first, then the readings' own.
     roots = list(dict.fromkeys(r for e in found if (r := e.get("root") or "")))
-    roots += [r for _, r in read if r and _folded(r) not in {_folded(x) for x in roots}]
+    roots += [r.root for r in read if r.root and _folded(r.root) not in {_folded(x) for x in roots}]
     found += [entry for root in roots for entry in _arabic_index.get(_folded(root), ())]
     if not found:
         return [], None

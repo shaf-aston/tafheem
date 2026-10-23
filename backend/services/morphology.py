@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import logging
 import re
-from typing import Any
+from typing import Any, NamedTuple
 
 from backend.services.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services import noun_reader, verb_reader
@@ -159,6 +159,25 @@ def _bw_to_ar(bw: str) -> str:
 ROOTED_POS = {"verb", "noun", "noun_prop", "adj"}
 
 
+def has_no_root(pos: str) -> bool:
+    """A harf, or a noun built like one (a pronoun, a demonstrative, a relative): no root to find.
+
+    "حرفٌ وشِبْهُهُ من الصَّرْفِ بَرِي" (the Alfiyya, at التصريف): sarf, and so a root, is only for
+    the declined noun and the conjugated verb. The Qur'an corpus agrees: of the words CAMeL
+    reads first as one of these, it roots 0 to 14 in 100; nouns, verbs and adverbs, 80 to 99.
+    CAMeL still files a root for many of them (إليه under و ل ي, إنه under أ و ن).
+    """
+    return _pos_type(pos) == "harf" or pos.startswith("pron") or pos == "verb_pseudo"
+
+
+class Reading(NamedTuple):
+    """One way a word can be read alone."""
+
+    lemma: str
+    root: str  # CAMeL's, a # kept for a weak radical it could not pin down; "" for none
+    rooted: bool  # False for a word that has no root at all (has_no_root)
+
+
 def root_pattern(root: str) -> str:
     """CAMeL's root in Arabic letters, keeping its # for a radical it could not pin down; "" for none.
 
@@ -186,14 +205,25 @@ def root_in_arabic(root: str, lemma: str = "") -> str:
     A # (typically an elided weak letter, ق#ل for قالوا) is settled by
     services/roots.py against the roots the books really file, `lemma`
     choosing between two that fit; one no book files stays no root, never a
-    guess dressed as an answer. Without a lemma it is not settled.
+    guess dressed as an answer. Without a lemma it is not settled. A root of
+    two letters (لس for ليس) is the one a book files the lemma under, or none.
     """
-    pattern = root_pattern(root)
-    if _UNKNOWN_RADICAL in pattern and lemma:
-        from backend.services import roots  # it reads with this module
+    from backend.services import roots  # it reads with this module
 
+    pattern = root_pattern(root)
+    if pattern and (lemma or len(pattern) < roots.FEWEST_RADICALS):
         pattern = roots.settle(pattern, lemma)
     return shown_root(pattern)
+
+
+def reading_root(a: dict) -> str:
+    """The root of one CAMeL reading as every tab shows it; "" for a word with none.
+
+    CAMeL still files a root for لم, هو, الذي and their kind (has_no_root). The lemma
+    settles a # only for a word built from a root (ROOTED_POS).
+    """
+    pos = a.get("pos") or ""
+    return "" if has_no_root(pos) else root_in_arabic(a.get("root") or "", (a.get("lex") or "") if pos in ROOTED_POS else "")
 
 
 def _build_features(a: dict) -> str:
@@ -258,8 +288,7 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
     a = _as_command(word, a, before, after)
     pos = (a.get("pos") or "").lower()
     word_type = _pos_type(pos)
-    # A harf has no root in nahw; CAMeL still files one for لم and its kind.
-    root_ar = "" if word_type == "harf" else root_in_arabic(a.get("root") or "", (a.get("lex") or "") if pos in ROOTED_POS else "")
+    root_ar = reading_root(a)
 
     lex = a.get("lex") or a.get("diac") or word
     lemma = strip_diacritics(lex)
@@ -385,25 +414,44 @@ def _handle_fatha_bias(items: list[dict]) -> dict | None:
     return _perfect_verb(items)
 
 
+# How often a reading's lemma, as its part of speech, occurs in CAMeL's training text (log10);
+# a reading without the figure ranks last.
+_LIKELIHOOD = "pos_lex_logprob"
+_NEVER_SEEN = -99.0
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Word-level analysis
 # ─────────────────────────────────────────────────────────────────────────────
+
+def _analyses(word: str) -> list[dict]:
+    """Every CAMeL reading of one word, the likeliest lemma first; [] when CAMeL is not there.
+
+    The analyzer lists readings in no order of likelihood, so a first pick from its list
+    took يترك for وَتَر rather than تَرَك and يكن for كَنّ rather than كان. Each reading
+    carries how often its lemma, as that part of speech, occurs in CAMeL's training text
+    (pos_lex_logprob); every pick below that falls back to "the first" now means the likeliest.
+    """
+    if _camel_analyzer is None:
+        return []
+    try:
+        analyses = _camel_analyzer.analyze(word)
+    except Exception as exc:
+        logger.debug("CAMeL analyze error for '%s': %s", word, exc)
+        return []
+    return sorted(analyses, key=lambda a: -a.get(_LIKELIHOOD, _NEVER_SEEN))
+
 
 def _analyze_word_camel_only(word: str) -> dict[str, Any] | None:
     """Word-level CAMeL Analyzer with diacritic-guided best-analysis selection."""
     if _camel_analyzer is None:
         return None
-    try:
-        analyses = _camel_analyzer.analyze(word)
-    except Exception as exc:
-        logger.debug("CAMeL analyze error for '%s': %s", word, exc)
-        return None
-    best = _pick_best_analysis(word, analyses)
+    best = _pick_best_analysis(word, _analyses(word))
     return None if best is None else _analysis_dict_from_camel(word, best)
 
 
-def readings(word: str) -> list[tuple[str, str]]:
-    """Every way `word` can be read alone, as (lemma, root) pairs, likeliest first.
+def readings(word: str) -> list[Reading]:
+    """Every way `word` can be read alone, likeliest first.
 
     For looking a word up rather than parsing it, so nothing is chosen away: a
     dictionary shows فَرّ (flee) and فَرْو (fur) for فروا and lets the reader see
@@ -414,12 +462,8 @@ def readings(word: str) -> list[tuple[str, str]]:
     if not word or not has_arabic(word):
         return []
     if _camel_analyzer is None:
-        return [(_analyze_qalsadi(word)["lemma"], "")] if _QALSADI_AVAILABLE else []
-    try:
-        analyses = _camel_analyzer.analyze(word)
-    except Exception as exc:
-        logger.debug("CAMeL analyze error for '%s': %s", word, exc)
-        return []
+        return [Reading(_analyze_qalsadi(word)["lemma"], "", True)] if _QALSADI_AVAILABLE else []
+    analyses = _analyses(word)
     # The typed vowels choose first, as they do for a sentence; the readings they allow come
     # next, then the rest by how many typed marks they share: CAMeL has no command فِرُّوا,
     # and the shadda typed on its ر is what puts فَرّ (flee) before فَرْو (fur).
@@ -434,42 +478,31 @@ def readings(word: str) -> list[tuple[str, str]]:
     else:
         ranked = sorted(analyses, key=lambda a: (vowel_agreement(word, a.get("diac", "")) is None, -shared(a)))
         best = best if best is not None and vowel_agreement(word, best.get("diac", "")) is not None else None
-    out: list[tuple[str, str]] = []
+    out: list[Reading] = []
     for a in ([best] if best else []) + ranked:
         pos = (a.get("pos") or "").lower()
-        root = "" if _pos_type(pos) == "harf" else root_pattern(a.get("root") or "")
+        rooted = not has_no_root(pos)
+        root = root_pattern(a.get("root") or "") if rooted else ""
         if _UNKNOWN_RADICAL in root and pos not in ROOTED_POS:
             root = ""
-        reading = (strip_diacritics(a.get("lex") or ""), root)
-        if reading[0] and reading not in out:
+        reading = Reading(strip_diacritics(a.get("lex") or ""), root, rooted)
+        if reading.lemma and reading not in out:
             out.append(reading)
     return out
 
 
 def glosses_of(word: str) -> list[str]:
     """CAMeL's gloss for every analysis of one word; [] when CAMeL is not there."""
-    if _camel_analyzer is None:
-        return []
-    try:
-        return [a.get("gloss") or "" for a in _camel_analyzer.analyze(word)]
-    except Exception as exc:
-        logger.debug("CAMeL analyze error for '%s': %s", word, exc)
-        return []
+    return [a.get("gloss") or "" for a in _analyses(word)]
 
 
 def has_comparative(word: str) -> bool:
     """CAMeL lists a bare noun with the same letters (أجمل: أَجْمَل, more beautiful); a verb
     with no such twin (أنزل, أظن) gives no comparative. False when CAMeL is not there."""
-    if _camel_analyzer is None:
-        return False
     bare = strip_diacritics(word)
-    try:
-        return any(a["pos"] in NOUNISH and strip_diacritics(a["lex"]) == bare
-                   and all(a.get(c, "0") in ("0", "na") for c in ("prc0", "prc1", "prc2", "enc0"))
-                   for a in _camel_analyzer.analyze(bare))
-    except Exception as exc:
-        logger.debug("CAMeL analyze error for '%s': %s", word, exc)
-        return False
+    return any(a["pos"] in NOUNISH and strip_diacritics(a["lex"]) == bare
+               and all(a.get(c, "0") in ("0", "na") for c in ("prc0", "prc1", "prc2", "enc0"))
+               for a in _analyses(bare))
 
 
 def _analyze_qalsadi(word: str) -> dict[str, Any]:

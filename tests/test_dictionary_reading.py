@@ -41,7 +41,8 @@ def dictionary(monkeypatch):
 
 def read_as(monkeypatch, table: dict[str, list[tuple[str, str]]]) -> None:
     """CAMeL's readings, as CI has no CAMeL data: # for a weak radical it could not pin down."""
-    monkeypatch.setattr(morphology, "readings", lambda word: table.get(word, []))
+    read = {word: [morphology.Reading(lemma, root, rooted=True) for lemma, root in rows] for word, rows in table.items()}
+    monkeypatch.setattr(morphology, "readings", lambda word: read.get(word, []))
 
 
 def found(query: str) -> list[str]:
@@ -96,6 +97,9 @@ def test_the_page_is_told_the_reading_and_the_root_to_ask_the_books(monkeypatch)
 
 @pytest.mark.skipif(morphology.get_engine_name() != "camel-tools", reason="CAMeL data not installed")
 def test_camel_reads_the_words_from_the_report():
-    assert ("منتصر", "نصر") in morphology.readings("مُنْتَصِرًا")
-    assert morphology.readings("قالوا")[0] == ("قال", "ق#ل")
-    assert morphology.readings("فَفِرُّوا")[0] == ("فر", "فرر")  # the typed shadda: flee, not fur
+    def read(word: str) -> list[tuple[str, str]]:
+        return [(r.lemma, r.root) for r in morphology.readings(word)]
+
+    assert ("منتصر", "نصر") in read("مُنْتَصِرًا")
+    assert read("قالوا")[0] == ("قال", "ق#ل")
+    assert read("فَفِرُّوا")[0] == ("فر", "فرر")  # the typed shadda: flee, not fur
