@@ -117,3 +117,10 @@ def test_a_nonsense_word_is_not_found():
     from backend.main import app
 
     assert TestClient(app).get("/api/quran/root/ززززززز").status_code == 404
+
+
+def test_a_word_the_quran_uses_as_a_particle_has_no_root():
+    """من is a particle in nearly every use; counting only rooted uses filed it under منن."""
+    assert quran_corpus.root_of("من") == ""
+    assert quran_corpus.root_of("قال") == "قول"
+    assert quran_corpus.root_of("زززز") is None  # not a word the Qur'an has

@@ -22,14 +22,21 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.services import verb_forms  # noqa: E402, needs the path above
-from backend.services.arabic_text import strip_diacritics  # noqa: E402
+from backend.services.arabic_text import (  # noqa: E402
+    as_root_letters,
+    root_letters_in_order,
+    strip_diacritics,
+)
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 SOURCE = DATA_DIR / "wiktionary-arabic.jsonl"
 OUTPUT = DATA_DIR / "arabic_dictionary.json"
 
 ARABIC_LETTER = re.compile(r"[ء-ي]")
-ROOT_CATEGORY = re.compile(r"root ([ء-يـ ]+)")
+# The forms a row writes its stem in, as against its endings (مُعْتَلِّين's ي is no radical).
+STEM_FORMS = {"canonical", "non-past", "noun-from-verb"}
+# Arabic's own root category only: a page's Tunisian or Moroccan root sits beside it.
+ROOT_CATEGORY = re.compile(r"^Arabic terms belonging to the root ([ء-يـ ]+)$")
 # Wiktionary marks entries that only point elsewhere; they carry no meaning.
 SKIP_GLOSS = re.compile(r"^(plural|singular|dual|feminine|masculine) of ", re.I)
 # "verbal noun of فَهِمَ (fahima) (form I)" also only points. Dropped when a real
@@ -53,15 +60,26 @@ def root_of(entry: dict) -> str:
     """The three-letter root, read off the categories Wiktionary already tags.
 
     Nearly always tagged on the sense rather than the entry, so both are read.
+    A page with two words spelled alike hands both their roots to each (قَالَ, say,
+    and قَالَ, nap, each carry ق و ل and ق ي ل), so the root kept is the one the
+    row's own forms spell: its present يَقُولُ and noun قَوْل hold ق و ل, not ق ي ل.
     """
     groups = [entry.get("categories", [])]
     groups += [sense.get("categories", []) for sense in entry.get("senses", [])]
-    for categories in groups:
-        for category in categories:
-            name = category if isinstance(category, str) else category.get("name", "")
-            if match := ROOT_CATEGORY.search(name):
-                return match.group(1).replace("ـ", "").strip()
-    return ""
+    names = (category if isinstance(category, str) else category.get("name", "")
+             for categories in groups for category in categories)
+    found = list(dict.fromkeys(match.group(1).replace("ـ", "").strip()
+                               for name in names if (match := ROOT_CATEGORY.match(name))))
+    if len(found) < 2:
+        return next(iter(found), "")
+    stems = [form.get("form", "") for form in entry.get("forms", []) if STEM_FORMS & set(form.get("tags", []))]
+    spelt = [as_root_letters(word) for word in [entry.get("word", ""), *stems]]
+
+    def carried(root: str) -> int:
+        letters = as_root_letters(root)
+        return max(root_letters_in_order(letters, form) for form in spelt)
+
+    return max(found, key=carried)  # max keeps the first of equals: the order Wiktionary gave
 
 
 def source_words(entry: dict) -> list[str]:
@@ -85,17 +103,24 @@ def fits(root: str, word: str) -> bool:
 
 
 def inherit_roots(by_word: dict[str, dict], sources: dict[str, list[str]]) -> int:
-    """Give each rootless entry the root of the word it comes from; how many got one."""
-    rooted = {strip_diacritics(word): e["root"] for word, e in by_word.items() if e["root"]}
+    """Give each rootless entry the root of the word it comes from; how many got one.
+
+    Followed down the chain: مَرَّتَيْن comes from مَرَّة, which has a root only from مُرّ.
+    """
     filled = 0
-    for word, entry in by_word.items():
-        if entry["root"]:
-            continue
-        named = (rooted[w] for w in sources.get(word, ()) if w in rooted)
-        if root := next((r for r in named if fits(r, word)), ""):
-            entry["root"] = root
-            filled += 1
-    return filled
+    while True:
+        rooted = {strip_diacritics(word): e["root"] for word, e in by_word.items() if e["root"]}
+        this_pass = 0
+        for word, entry in by_word.items():
+            if entry["root"]:
+                continue
+            named = (rooted[w] for w in sources.get(word, ()) if w in rooted)
+            if root := next((r for r in named if fits(r, word)), ""):
+                entry["root"] = root
+                this_pass += 1
+        if not this_pass:
+            return filled
+        filled += this_pass
 
 
 def romanization_of(entry: dict) -> str:

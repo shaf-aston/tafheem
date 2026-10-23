@@ -165,6 +165,43 @@ def normalize_root(text: str) -> str:
     return _NOT_ROOT_LETTER_RE.sub("", strip_diacritics(text))
 
 
+# A letter as a root writes it: every seated hamza is the root's ء, and آتى keeps the ي of أتي as ى.
+_AS_ROOT = str.maketrans({"ى": "ي", "أ": "ء", "إ": "ء", "آ": "ء", "ؤ": "ء", "ئ": "ء", "ٱ": "ا"})
+
+
+_THREE_LETTERS = 3
+# A shadda is its letter twice, whichever side of the letter's vowel it is written.
+_SHADDA_RE = re.compile("([ء-ي])([\u064b-\u0650\u0652]?)\u0651")
+
+
+def as_root_letters(text: str) -> str:
+    """A word's letters spelled the way its root writes them: قَرَأ is قرء, مُعْتَلّ is معتلل.
+
+    Not bare_letters, which folds أ to ا for searching and so loses the hamza a root keeps;
+    and a shadda's letter counted once leaves ع ل ل a letter short in مُعْتَلّ.
+    """
+    letters = normalize_root(_SHADDA_RE.sub(r"\1\1", text))
+    # A final ى is a ي only in a word of three letters (رمى, but دعا): past three it is written ى
+    # whatever the root, أدنى of د ن و as أبقى of ب ق ي, so it says nothing either way.
+    if len(letters) > _THREE_LETTERS and letters.endswith("ى"):
+        letters = letters[:-1]
+    return letters.translate(_AS_ROOT)
+
+
+def root_letters_in_order(root: str, word: str) -> int:
+    """How many of the root's letters `word` carries in the root's order (both as as_root_letters).
+
+    A root's letters stand in each of its words in order, so this is what tells two roots one
+    spelling could be apart: يَقُول holds ق و ل whole and ق ي ل only in part. A letter out of order
+    is no radical: the أ of أراد, before its ر, is not the third letter of ر#د.
+    """
+    held = [[0] * (len(word) + 1) for _ in range(len(root) + 1)]
+    for i, r in enumerate(root, 1):
+        for j, w in enumerate(word, 1):
+            held[i][j] = held[i - 1][j - 1] + 1 if r == w else max(held[i - 1][j], held[i][j - 1])
+    return held[-1][-1]
+
+
 # What a person puts between letters when they spell a word out: spaces of any
 # kind, hyphens and dashes, the zero-width space.
 _SPELLING_GAP_RE = re.compile(r"[\s\-‐-―​]+")
