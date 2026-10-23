@@ -37,39 +37,20 @@ def names(emojibase: Path, svgs: Path) -> dict[str, str]:
     found: dict[str, str] = {}
     for emoji in json.loads(emojibase.read_text(encoding="utf-8")):
         code = emoji["hexcode"].lower()
-        file = next((f for f in (f"{code}.svg", f"{code.replace('-fe0f', '')}.svg") if f in have), None)
+        file = next((f for f in (f"{code}.svg", f"{code.replace('-fe0f', '')}.svg", f"{code.replace('-fe0f', '').lstrip('0')}.svg") if f in have), None)
         if file:
             found.setdefault(emoji["label"].lower().removeprefix("flag: "), file)
     return found
 
 
 # Names that are an emoji's but not the word's meaning: "dizzy" is drawn as a
-# star, "bald" as a blank head shape. Found by looking at every match once.
-NOT_THE_MEANING = {"dizzy", "bald"}
+# star, "bald" as a blank head shape; Twemoji's Syria is the flag before 2025.
+# Found by looking at every match once.
+NOT_THE_MEANING = {"dizzy", "bald", "syria"}
 FLAG = re.compile(r"^1f1(e[6-9a-f]|f[0-9a-f])-")
 
-# Words whose emoji has another name, chosen by hand and looked at once, so that
-# every topic has a picture of one of its own words. Only where the emoji shows
-# that word; nothing for God, angels or prophets.
-CHOSEN = {
-    "price": "label", "week": "spiral calendar", "fever": "face with thermometer",
-    "message": "speech balloon", "email": "e-mail", "letter": "envelope",
-    "happy": "smiling face with smiling eyes", "sad": "disappointed face", "angry": "angry face",
-    "scared": "fearful face", "worried": "worried face", "tired": "tired face",
-    "surprised": "hushed face", "confused": "confused face",
-    "right-correct": "check mark button", "wrong": "cross mark", "ok": "OK hand",
-    "advice": "light bulb", "medicine": "pill", "what": "red question mark",
-    "under": "down arrow", "above": "up arrow", "again": "repeat button", "metre": "straight ruler",
-    "to-run": "person running", "to-climb": "person climbing", "to-clap": "clapping hands",
-    "to-wave": "waving hand", "to-sneeze": "sneezing face", "to-laugh": "face with tears of joy",
-    "to-study": "books", "to-print": "printer", "to-sign": "writing hand", "to-calculate": "abacus",
-    "to-repair": "wrench", "to-build": "building construction", "to-paint": "paintbrush",
-    "to-sew": "sewing needle", "to-dig": "pick", "to-saw": "carpentry saw", "to-lock": "locked",
-    "to-plant": "seedling", "to-burn": "fire",
-    "to-love": "red heart", "love": "red heart", "to-think": "thinking face", "to-hug": "people hugging",
-    "quiet": "shushing face", "loud": "speaker high volume", "asleep": "sleeping face",
-    "male": "male sign", "female": "female sign", "liar": "lying face", "hajj": "kaaba",
-}
+# Words whose emoji has another name, chosen by hand: images/emoji/chosen.json.
+CHOSEN_FILE = "chosen.json"
 
 
 def match(english: str, group: str | None, emoji: dict[str, str]) -> str | None:
@@ -94,13 +75,14 @@ def main(argv: list[str] | None = None) -> None:
     root = data_path("colloquial_dir")
     folder = root / "images" / "emoji"
     folder.mkdir(parents=True, exist_ok=True)
+    chosen = json.loads((folder / CHOSEN_FILE).read_text(encoding="utf-8"))["chosen"]
     words_file = root / wordlist.FILE
     whole = json.loads(words_file.read_text(encoding="utf-8"))
     given = 0
     for key, meaning in whole["words"].items():
         if meaning.get("image"):
             continue
-        file = emoji[CHOSEN[key].lower()] if key in CHOSEN else match(meaning["english"], meaning.get("group"), emoji)
+        file = emoji[chosen[key].lower()] if key in chosen else match(meaning["english"], meaning.get("group"), emoji)
         if not file:
             continue
         shutil.copyfile(args.twemoji / file, folder / file)
