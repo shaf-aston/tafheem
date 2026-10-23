@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.arabic_text import bare_letters
-from backend.services.nahw_book import frames, is_one
+from backend.services.nahw_book import doer_written_in, frames, is_one
 from backend.services.arabic_text import strip_diacritics
 from backend.services.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
 
@@ -20,9 +20,12 @@ def praised_noun(token: dict, s: "Sentence") -> bool:
     verb = head if is_verb(head) else s.head(head)
     if not verb or not is_verb(verb) or not is_one(verb["lemma"], "praise_blame"):
         return False
+    if doer_written_in(verb["lemma"], "praise_blame"):
+        return head is verb and token["rel"] in NOUN_LINKS
     # the doer by what it shows, not the parser's label for it (it hangs the noun as SBJ or OBJ)
-    doer = next((k for k in s.kids(verb) if k["id"] < token["id"] and noun_tagged(k) and k["rel"] in NOUN_LINKS
-                 and typed_or_parsed_case(k) == "u"), None)
+    # or the تمييز that explains a doer hidden in the verb (نِعْمَ رَجُلًا زَيْدٌ)
+    doer = next((k for k in s.kids(verb) if k["id"] < token["id"] and noun_tagged(k) and (k["rel"] == "TMZ" or (
+                 k["rel"] in NOUN_LINKS and typed_or_parsed_case(k) == "u"))), None)
     return bool(doer and (token["rel"] in NOUN_LINKS or (token["rel"] == "MOD" and head is doer)))
 
 

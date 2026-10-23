@@ -574,6 +574,7 @@
   },
   "praise_blame": {
    "ar": "أفعال المدح والذم والتعجب",
+   "card": {"_comment": "Ibn Aqil, باب نعم وبئس: a past verb that never changes (جامد), made for praise or blame, its فاعل a noun with ال or a hidden pronoun its تمييز explains; in حبذا the doer is ذا, written joined to حَبَّ.", "named": "جامد لإنشاء المدح أو الذم", "named_as": {"نعم": "جامد لإنشاء المدح", "حبذا": "جامد لإنشاء المدح، و«ذا» اسم إشارة في محل رفع فاعل", "بئس": "جامد لإنشاء الذم", "ساء": "جامد لإنشاء الذم"}, "does": "يرفع الفاعل", "governs": "verb"},
    "effect": "a verb of praise/blame is followed by its subject (definite noun or a hidden pronoun plus a specifier) and then the praised/blamed; wonder forms are fixed patterns",
    "words": [
     "نعم",
@@ -588,7 +589,9 @@
     "بئس": "verb of blame vs the noun 'evil' in some adjectival phrases",
     "ساء": "verb of blame (as بئس) vs ordinary 'was bad / harmed'",
     "حبذا": "'how lovely it is' fixed phrase; the noun after it is the praised"
-   }
+   },
+   "needs_praised": ["ساء"],
+   "doer_written_in": ["حبذا"]
   },
   "wonder": {
    "ar": "التعجب: ما أفعلَه",
