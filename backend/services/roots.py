@@ -19,6 +19,7 @@ letter no book files under is never offered as a root.
 from __future__ import annotations
 
 import logging
+import re
 from functools import lru_cache
 from itertools import product
 
@@ -37,6 +38,9 @@ UNKNOWN = "#"
 WEAK = ("و", "ي", "ء")
 # No Arabic root has fewer letters: CAMeL's لس for ليس is a slip, no root.
 FEWEST_RADICALS = 3
+# Nor more than a bare noun's five («ومنتهى اسمٍ خمسٌ إن تجرّدا», سفرجل), nor a mark among
+# them: CAMeL's بللّه for بالله and ٱثنتن for اثنتين are slips.
+ROOT_SHAPE = re.compile("[ء-ي]{3,5}")
 
 
 def _corpus(call, *args, default):
@@ -92,6 +96,8 @@ def spelling(root: str) -> str:
 def settle(pattern: str, lemma: str = "") -> str:
     """CAMeL's root made one a book files; "" when none does.
 
+    A root CAMeL spells out whole is kept only if it is one: three to five
+    letters, and the three a book files (تبغ for تبغِ is no root, بغي is).
     CAMeL writes # for a weak radical it cannot pin down (ق#ل for قالوا), so each
     # is tried as و, ي and ء. Two can fit: ق#ل is قول (say) and قيل (siesta) in
     Maqayees. The one the lemma itself is filed under wins (قال under قول), then
@@ -100,7 +106,10 @@ def settle(pattern: str, lemma: str = "") -> str:
     sure letters in place: CAMeL has ماء as م## though the books file it under م و ه.
     """
     if UNKNOWN not in pattern and len(pattern) >= FEWEST_RADICALS:
-        return pattern
+        if not ROOT_SHAPE.fullmatch(pattern):
+            return ""
+        # A book files a three-letter root it knows; a longer one (خنزر, قسطس) it seldom lists as one.
+        return spelling(pattern) if len(pattern) == FEWEST_RADICALS else pattern
     filed = _filed_roots(lemma) if lemma else []
     if len(pattern) < FEWEST_RADICALS:  # a slip: the lemma's own root, holding the letters CAMeL gave
         short = as_root_letters(pattern)
