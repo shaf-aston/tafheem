@@ -15,6 +15,7 @@ import { goBack } from '../lib/journey'
 import { getProfile } from '../lib/profile'
 import { useHadithWorld } from '../lib/useHadithWorld'
 import { useArrival } from '../lib/useArrival'
+import { useBasicsWorld } from '../lib/useBasicsWorld'
 import { LAST_BOOK, REVIEW, useBookWorlds } from '../lib/useBookWorld'
 import { useQuranWorld } from '../lib/useQuranWorld'
 import { useRemembered } from '../lib/useRemembered'
@@ -45,11 +46,17 @@ const SCREENS = {
 export default function GrowPanel({ incoming, arrival, onVisit }) {
   const [name] = useState(getProfile)
   const { rewards } = useRewards(name)
-  const lessons = { words: useWordsWorld(worldOf('words')), hadith: useHadithWorld(worldOf('hadith')), quran: useQuranWorld(worldOf('quran')) }
+  const lessons = {
+    basics: useBasicsWorld(worldOf('basics')),
+    words: useWordsWorld(worldOf('words')),
+    hadith: useHadithWorld(worldOf('hadith')),
+    quran: useQuranWorld(worldOf('quran')),
+  }
   const placeAt = (value) => placeOf(value, WORLD_IDS, Object.keys(lessons), BOOK_IDS)
   // { at: 'home' } | { at: 'world', id, part? } | { at: 'lesson', id, part?, lesson?, cards?, inApp? }; a lesson without cards deals them once its world is ready.
   // The page opening on a lesson's address lands on home with that lesson offered (landingOf); its answers are kept either way.
-  const [landed] = useState(() => landingOf(placeAt(incoming)))
+  // A tap in another tab (an arrival of 1 or more; a page load's is 0) goes straight into the lesson, as it does once Grow is open.
+  const [landed] = useState(() => (arrival > 0 ? { view: placeAt(incoming), resume: null } : landingOf(placeAt(incoming))))
   const [view, setView] = useState(landed.view)
   const [resume, setResume] = useState(landed.resume)
   if (useArrival(arrival).arrived) {

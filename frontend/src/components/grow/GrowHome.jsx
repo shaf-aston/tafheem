@@ -91,21 +91,26 @@ const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="t
 /** Today's lesson: the last book's next one when there is one, else the words lesson; then every world's next step. */
 function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const [last] = useRemembered(LAST_BOOK, Object.keys(books), '')
-  const { words } = lessons
-  const empty = words.ready && !words.fresh && !words.dueCount
+  const { words, basics } = lessons
+  // Someone who has begun the Basics carries on there until it is done; everyone else, the words.
+  const begun = basics.ready && basics.items.some((item) => item.status !== 'new')
+  const onBasics = begun && !basics.stage.done
+  const main = onBasics ? basics : words
+  const mainId = onBasics ? 'basics' : 'words'
+  const empty = main.ready && !main.fresh && !main.dueCount
   const hadith = nextOf(lessons.hadith)
   const ayah = nextOf(lessons.quran)
   // Without words to start, a book leads even before one was studied.
   const open = (id) => books[id]?.ready && books[id].next
   const lead = open(last) ? last : words.error ? Object.keys(books).find(open) ?? null : null
   let wordsLine = '\u00a0'
-  if (words.ready) wordsLine = say('{fresh} new words · {due} to review', { fresh: words.next.fresh.length, due: words.next.reviews.length })
-  else if (words.error) wordsLine = say('Words could not load just now. The book worlds below still work.')
+  if (main.ready) wordsLine = say('{fresh} new words · {due} to review', { fresh: main.next.fresh.length, due: main.next.reviews.length })
+  else if (main.error) wordsLine = say('Words could not load just now. The book worlds below still work.')
   const partOf = (book) => book.parts.find((part) => part.id === book.next.part)?.title
-  const accent = worldOf(lead ?? 'words').accent
+  const accent = worldOf(lead ?? mainId).accent
   return (
     <section className="grow-today rise-in" style={{ '--w': accent }} aria-labelledby="grow-today-h">
-      <span className="grow-today-art" aria-hidden="true"><Emblem id={lead ?? 'words'} /></span>
+      <span className="grow-today-art" aria-hidden="true"><Emblem id={lead ?? mainId} /></span>
       {lead ? (
         <>
           <p className="grow-today-kicker">{say('Continue · {world}', { world: worldOf(lead).name })}</p>
@@ -116,14 +121,17 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
       ) : (
         <>
           <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
-          <h3 id="grow-today-h">{say('Keep your garden growing')}</h3>
+          <h3 id="grow-today-h">{onBasics ? say('Your first steps') : say('Keep your garden growing')}</h3>
           <p className="grow-today-holds tabular-nums">{wordsLine}</p>
-          <PrimaryButton accent={accent} disabled={!words.ready || empty} onClick={() => onStart('words')}>
+          <PrimaryButton accent={accent} disabled={!main.ready || empty} onClick={() => onStart(mainId)}>
             {empty ? say('Every word learnt and nothing due') : say('Start')}
           </PrimaryButton>
         </>
       )}
       <div className="grow-nexts">
+        {basics.ready && !begun && (
+          <NextStep world={worldOf('basics')} where={say('New to Arabic?')} line={say('Start with ال, “the”')} onGo={() => onStart('basics')} />
+        )}
         {lead && words.ready && !empty && (
           <NextStep world={worldOf('words')} where={say('Today’s words')} line={wordsLine} onGo={() => onStart('words')} />
         )}

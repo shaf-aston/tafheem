@@ -15,10 +15,20 @@
  *   kit     toolbox                 home    an open arch, a crescent over it
  *   similar two pages, one line apart
  *   jawhara  a cut jewel, one spark     wasitiyya  a line held between two bars
+ *   basics   brush-stroke ال on a first step
  */
 const ink = { fill: 'none', stroke: 'currentColor', strokeLinecap: 'round', strokeLinejoin: 'round' }
 
 const ART = {
+  basics: (
+    <>
+      <rect x="10" y="53" width="44" height="6" rx="3" fill="currentColor" opacity=".45" />
+      <g className="em-lift">
+        <path d="M43 11v35" {...ink} strokeWidth="5" />
+        <path d="M27 11v29c0 8-12 9-15 2" {...ink} strokeWidth="5" />
+      </g>
+    </>
+  ),
   words: (
     <>
       <path d="M20 54h24l-3 8H23z" fill="currentColor" opacity=".85" />
