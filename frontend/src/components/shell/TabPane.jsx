@@ -21,6 +21,7 @@ export default memo(function TabPane({ tab, handoff, accent, onGo, onVisit, onPr
           accent={accent}
           incoming={handoff?.value ?? null}
           arrival={handoff?.at ?? null}
+          handed={handoff?.handed ?? false}
           onGo={onGo}
           onVisit={onVisit}
           onProgress={onProgress}

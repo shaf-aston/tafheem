@@ -94,11 +94,13 @@ FORMS: { [type]: (bare) => string | null } // wrong forms; null when the type do
 wrongForms(bare, random): string[2]       // 'bare' always + one of (heard if it applies, else tanween|apart)
 toArabicCard(word, isNew, random): choose card   // ask 'the book' → 3 Arabic options
 toEnglishCard(word, isNew, random): choose card  // ar = definite or bare (random) → 'the book' | 'a book'
-basicsCards(picked, all, random): Card[]  // weave: teach(definite + 'the book'), then the two asks; a rule card first when every pick is new
+basicsCards(picked, random, intro): Card[] // weave: teach(definite + 'the book'), then the two asks; INTRO first when `intro`
 keyOfBasic(word): string                  // word.id
 MODULE = 'basics'
 ```
 - **Card record:** `{ module: 'basics', item: word.id, context: { world: 'basics', direction: 'to-arabic' | 'to-english', word: bare } }`.
+- **Begun, per device:** `useBasicsWorld` keeps `basics-begun` (a remembered flag, on a signed-in learner's shelf too) and passes `intro = !begunHere`; GrowPanel calls `began()` once a Basics lesson is on screen. Today reads `begunHere`, never the shared record (see risks).
+- **Hand-off:** a tap elsewhere hands Grow `handed: true` (useTabNavigation → TabPane), so "Start the basics" opens the lesson at once; the tab reopened on its saved place still lands on home with the lesson offered.
 - **Seam:** `useBasicsWorld` is the only place that knows the data file. A later skill, such as sun/moon or ة, is a sibling builder plus one entry in a `SKILLS` list. The world doesn't change.
 - **Knobs (data):** `worlds.json` `lesson {new, most-new, size}` and `stages`; the word list and its order are in `basics.json`.
 
@@ -119,6 +121,16 @@ MODULE = 'basics'
 | 5 | Verify: fresh-context lanes (code review, Arabic accuracy, UX), mutation run, full suite | — | every finding classified | — |
 
 ## 5 · Risks / known unknowns
-- **Shared guest record (pre-existing).** A guest's "learnt" mixes with other guests'. Fix later with Pick 0.1, one record per learner.
+- **Shared guest record (pre-existing).** A guest's "learnt" mixes with other guests'. Mitigated here: whether Basics has begun (the intro card, Today) is kept on the device. Which words come next still reads the shared record. Real fix: Pick 0.1, one record per learner.
 - **Two-option English cards** have a 50% guess rate. This is softened because which form is shown is random, and FSRS needs repeated correct answers.
 - **Sun-letter "heard" error frequency** is not measured in any study we found. It is kept because it targets exactly the rule the teach card states.
+
+## 6 · Verify (results)
+
+| Check | Result |
+|---|---|
+| Unit, property and screen tests | full suite green; `alifLam.test.js`, `basics.test.jsx`, `firstVisit.test.jsx`, `home.test.jsx` |
+| Mutation (`npm run mutate`) | `alifLam.js` 99.2%, `lesson.js` 96.2%. Left: equivalent only (`TANWEEN` without `$`: tanween only ever ends a word; loop `<` → `<=` reading past the end; a due id is never also unseen) |
+| Arabic accuracy (second agent, all 128 words) | no wrong entry. Acted on: الَّيْل is the Qur'an's own spelling (92:1), so `heard` is never built for ل; day/night/tiger/envelope swapped for unambiguous words; tanween keeps a final shadda |
+| Code review (fresh agent) | guests' shared record (→ device flag), Grow tab reopened jumping into a lesson (→ `handed`), Basics answers not counted under Grow (→ `GROW_MODULES`), Today mislabels and a stuck hero (→ `hasWork`), two Arabic words swapping in a feedback line (→ reworded): all fixed, each with a test |
+| R9: Playwright at 375 px + axe (wcag2a/aa, 21aa, 22aa) | Home first visit, intro, teach, question, wrong-answer feedback, to-English card, Grow home in dark mode: 0 violations, no sideways scroll, 3 taps to the first question |

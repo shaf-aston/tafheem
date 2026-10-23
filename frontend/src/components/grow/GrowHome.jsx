@@ -1,6 +1,7 @@
 /**
  * Grow's home: level, streak, daily goal, today's lesson with each world's next step, every world (unbuilt ones shown as coming).
- * Today leads with the book last studied (its next lesson, one tap away) once there is one, and the words lesson otherwise;
+ * Today leads with the book last studied (its next lesson, one tap away) once there is one, then the Basics while a
+ * beginner has begun them on this device and they have a lesson to give, and the words lesson otherwise;
  * a book with questions due shows its review as a step too.
  * A guest's log-in nudge rides on the title line (SectionHeader `aside`).
  */
@@ -88,24 +89,31 @@ const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.rev
 /** A next-step card's room while its world loads, so nothing below jumps when it lands. */
 const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
 
-/** Today's lesson: the last book's next one when there is one, else the words lesson; then every world's next step. */
+/** A lessons world with a lesson to give: words not yet met, or some due. */
+const hasWork = (state) => state.ready && (state.fresh > 0 || state.dueCount > 0)
+
+/**
+ * Today's lesson: the last book's next one when there is one, else the Basics while begun here and with work to give,
+ * else the words lesson; then every world's next step.
+ */
 function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const [last] = useRemembered(LAST_BOOK, Object.keys(books), '')
   const { words, basics } = lessons
-  // Someone who has begun the Basics carries on there until it is done; everyone else, the words.
-  const begun = basics.ready && basics.items.some((item) => item.status !== 'new')
-  const onBasics = begun && !basics.stage.done
+  const onBasics = basics.begunHere && !(basics.ready && !hasWork(basics))
   const main = onBasics ? basics : words
   const mainId = onBasics ? 'basics' : 'words'
-  const empty = main.ready && !main.fresh && !main.dueCount
+  const empty = main.ready && !hasWork(main)
   const hadith = nextOf(lessons.hadith)
   const ayah = nextOf(lessons.quran)
   // Without words to start, a book leads even before one was studied.
   const open = (id) => books[id]?.ready && books[id].next
   const lead = open(last) ? last : words.error ? Object.keys(books).find(open) ?? null : null
-  let wordsLine = '\u00a0'
-  if (main.ready) wordsLine = say('{fresh} new words · {due} to review', { fresh: main.next.fresh.length, due: main.next.reviews.length })
-  else if (main.error) wordsLine = say('Words could not load just now. The book worlds below still work.')
+  const lineOf = (state) => {
+    if (state.ready) return say('{fresh} new words · {due} to review', { fresh: state.next.fresh.length, due: state.next.reviews.length })
+    return state.error ? say('Words could not load just now. The book worlds below still work.') : '\u00a0'
+  }
+  // The Basics and the words each show as a step whenever they are not the lesson above.
+  const hero = lead ?? mainId
   const partOf = (book) => book.parts.find((part) => part.id === book.next.part)?.title
   const accent = worldOf(lead ?? mainId).accent
   return (
@@ -122,18 +130,21 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
         <>
           <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
           <h3 id="grow-today-h">{onBasics ? say('Your first steps') : say('Keep your garden growing')}</h3>
-          <p className="grow-today-holds tabular-nums">{wordsLine}</p>
+          <p className="grow-today-holds tabular-nums">{lineOf(main)}</p>
           <PrimaryButton accent={accent} disabled={!main.ready || empty} onClick={() => onStart(mainId)}>
             {empty ? say('Every word learnt and nothing due') : say('Start')}
           </PrimaryButton>
         </>
       )}
       <div className="grow-nexts">
-        {basics.ready && !begun && (
+        {basics.ready && !basics.begunHere && (
           <NextStep world={worldOf('basics')} where={say('New to Arabic?')} line={say('Start with ال, “the”')} onGo={() => onStart('basics')} />
         )}
-        {lead && words.ready && !empty && (
-          <NextStep world={worldOf('words')} where={say('Today’s words')} line={wordsLine} onGo={() => onStart('words')} />
+        {basics.begunHere && hero !== 'basics' && hasWork(basics) && (
+          <NextStep world={worldOf('basics')} where={say('Your first steps')} line={lineOf(basics)} onGo={() => onStart('basics')} />
+        )}
+        {hero !== 'words' && hasWork(words) && (
+          <NextStep world={worldOf('words')} where={say('Today’s words')} line={lineOf(words)} onGo={() => onStart('words')} />
         )}
         {Object.entries(books).map(([id, book]) => {
           if (!book.ready) return book.error ? null : <NextSlot key={id} />

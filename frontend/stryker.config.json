@@ -7,6 +7,7 @@
     "related": true
   },
   "mutate": [
+    "src/lib/alifLam.js",
     "src/lib/lesson.js"
   ],
   "ignorePatterns": [

@@ -93,9 +93,10 @@ export function toArabicCard(word, isNew, random) {
 export function toEnglishCard(word, isNew, random) {
   const isDefinite = random() < 0.5
   const shown = isDefinite ? definite(word.ar) : plain(word.ar)
+  // Never two Arabic words with only a comma or space between them: in a left-to-right line they swap places.
   const why = isDefinite
     ? `ال at the start means “the”: ${shown} = ${english(word, true)}.`
-    : `No ال at the start, so it is “${english(word, false)}”. With ال, ${definite(word.ar)} = ${english(word, true)}.`
+    : `No ال at the start, so it is “${english(word, false)}”. Add ال and it is “${english(word, true)}”: ${definite(word.ar)}.`
   return {
     kind: 'choose',
     id: `means:${word.id}`,
@@ -122,9 +123,9 @@ export const INTRO = {
 
 /**
  * A lesson's cards: a new word is taught (with ال, and without it), then asked both ways; a review is asked both ways.
- * The lesson that teaches the list's first word (the first lesson) opens on what ال is.
+ * A learner's first lesson (`intro`) opens on what ال is.
  */
-export function basicsCards(picked, all, random = Math.random) {
+export function basicsCards(picked, random = Math.random, intro = false) {
   const cards = weave(picked, {
     teach: (word) => ({
       kind: 'teach',
@@ -136,5 +137,5 @@ export function basicsCards(picked, all, random = Math.random) {
     }),
     asks: (word, isNew) => [toArabicCard(word, isNew, random), toEnglishCard(word, isNew, random)],
   })
-  return picked.fresh.some((word) => word.id === all[0].id) ? [INTRO, ...cards] : cards
+  return intro ? [INTRO, ...cards] : cards
 }

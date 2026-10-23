@@ -74,7 +74,8 @@ export function useTabNavigation() {
     aliveRef.current = keepRecent(aliveRef.current, id, KEEP)
     setAlive(aliveRef.current)
     if (!arrive && kept) return
-    const handoff = value ? { value, at: ++arrivals } : null
+    // `handed`: brought by a tap elsewhere, not the tab's own saved place reopened.
+    const handoff = value ? { value, at: ++arrivals, handed: Boolean(arrive) } : null
     setHandoffs((all) => ({ ...all, [id]: handoff }))
   }, [])
 

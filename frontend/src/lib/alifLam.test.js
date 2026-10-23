@@ -147,20 +147,19 @@ describe('toEnglishCard', () => {
     const card = toEnglishCard(apple, false, fixed(0.5, 0.1))
     expect(card).toMatchObject({ ar: nfc('تُفَّاحَة'), answer: 'a', tag: 'Review' })
     expect(card.options.find((option) => option.id === 'a').text).toBe('an apple')
-    expect(card.why).toBe(`No ال at the start, so it is “an apple”. With ال, ${nfc('التُّفَّاحَة')} = the apple.`)
+    expect(card.why).toBe(`No ال at the start, so it is “an apple”. Add ال and it is “the apple”: ${nfc('التُّفَّاحَة')}.`)
   })
 })
 
 describe('basicsCards', () => {
-  const LIST = [book, sun, night, apple]
-  it('opens the first lesson on what ال is, then teaches each new word and asks it both ways', () => {
-    const cards = basicsCards({ fresh: [book, sun], reviews: [] }, LIST, makeRandom(2))
+  it('opens a first lesson on what ال is, then teaches each new word and asks it both ways', () => {
+    const cards = basicsCards({ fresh: [book, sun], reviews: [] }, makeRandom(2), true)
     expect(cards.map((card) => card.id)).toEqual(['teach:al', 'teach:book', 'the:book', 'means:book', 'teach:sun', 'the:sun', 'means:sun'])
     expect(cards[0]).toBe(INTRO)
     expect(cards[1]).toEqual({ kind: 'teach', id: 'teach:book', tag: 'New word', ar: nfc('الْكِتَاب'), en: 'the book', also: { ar: nfc('كِتَاب'), en: 'a book' } })
   })
   it('does not open a later lesson on it, and asks a review with no teach card', () => {
-    const cards = basicsCards({ fresh: [night], reviews: [book] }, LIST, makeRandom(2))
+    const cards = basicsCards({ fresh: [night], reviews: [book] }, makeRandom(2))
     expect(cards.map((card) => card.id)).toEqual(['teach:night', 'the:night', 'means:night', 'the:book', 'means:book'])
     expect(cards.find((card) => card.id === 'the:book').tag).toBe('Review')
   })
@@ -195,7 +194,8 @@ describe('every word in the list', () => {
     for (const word of WORDS) {
       expect(plain(word.ar), word.id).toBe(word.ar.normalize('NFC'))
       expect(word.ar.startsWith('ال'), word.id).toBe(false)
-      expect(word.ar, word.id).toMatch(/^[\u0621-\u064A][\u064E-\u0652]/)
+      // One word, starting on a letter with its mark; never a bare alif (hamzat al-wasl, اِسْم), which ال changes.
+      expect(word.ar, word.id).toMatch(/^[\u0621-\u0626\u0628-\u064A][\u064E-\u0652]\S*$/)
       // Pausal: no vowel on the last letter (a shadda may stay), so tanween can go straight on.
       expect(word.ar, word.id).toMatch(/[\u0621-\u064A]\u0651?$/)
       expect(word.en, word.id).toMatch(/^[a-z]+$/)
