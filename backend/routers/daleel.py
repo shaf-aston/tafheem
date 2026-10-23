@@ -10,8 +10,8 @@ from pydantic import StringConstraints
 from backend.config import get_settings
 from backend.models.daleel import DaleelBook, DaleelHit, DaleelResponse
 from backend.services import provenance
-from backend.services.daleel import search as daleel_search
-from backend.services.daleel import titles
+from backend.services.daleel import catalogue, search
+from backend.services.daleel.index.connection import is_built
 from backend.utils import search_query
 
 router = APIRouter(prefix="/api/daleel", tags=["daleel"])
@@ -21,20 +21,20 @@ BookName = Annotated[str, StringConstraints(max_length=get_settings().daleel_max
 
 
 @router.get("/books", response_model=list[DaleelBook])
-async def catalogue() -> list[DaleelBook]:
+async def list_books() -> list[DaleelBook]:
     """Every book the index holds, for the picker to offer.
 
     Read from the index itself, so a book can only be offered if searching it
     would actually find something. Empty before the index is built, which the
     panel already has a way of saying.
     """
-    found = await asyncio.to_thread(daleel_search.books)
+    found = await asyncio.to_thread(catalogue.books)
     return [
         DaleelBook(
             name=name,
             source=source,
             category=provenance.category_of(source),
-            english=titles.english_of(name),
+            english=catalogue.english_of(name),
         )
         for name, source in found
     ]
@@ -52,15 +52,15 @@ async def find(
     """
     query = search_query(q)
     if not query:
-        return DaleelResponse(query="", hits=[], ready=daleel_search.is_built())
+        return DaleelResponse(query="", hits=[], ready=is_built())
 
-    if not daleel_search.is_built():
+    if not is_built():
         return DaleelResponse(query=query, hits=[], ready=False)
 
-    chosen = await asyncio.to_thread(daleel_search.known_books, books)
+    chosen = await asyncio.to_thread(catalogue.known_books, books)
 
     limit = get_settings().daleel_result_limit
-    hits = await asyncio.to_thread(daleel_search.search, query, limit, chosen)
+    hits = await asyncio.to_thread(search.search, query, limit, chosen)
 
     return DaleelResponse(
         query=query,

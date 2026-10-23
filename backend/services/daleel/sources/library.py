@@ -25,7 +25,7 @@ from __future__ import annotations
 from typing import Iterable
 
 from backend.services import quran_library
-from backend.services.daleel.model import Passage
+from backend.services.daleel.sources.model import Passage
 
 
 class LibrarySource:

@@ -6,7 +6,7 @@ lookups in mappings that already exist. So these tests use a made-up lexicon
 of five words rather than the real dictionary, because what is being checked
 is the rule, not whether the dictionary happens to hold a particular word.
 """
-from backend.services.daleel.expand import expand
+from backend.services.daleel.query.expand import expand
 
 # A stand-in dictionary. Small enough to read, which is the point: every
 # expectation below can be traced by eye.
@@ -114,7 +114,7 @@ def test_expansion_touches_no_file_and_no_database():
     Guards the layering: the moment this file reads the dictionary itself, it
     stops being testable without the whole app and starts being slow per query.
     """
-    import backend.services.daleel.expand as module
+    import backend.services.daleel.query.expand as module
 
     source = open(module.__file__, encoding="utf-8").read()
     for forbidden in ("sqlite3", "open(", "requests", "dictionary_service", "Path("):
@@ -144,7 +144,8 @@ def test_wildcards_are_not_treated_as_search_syntax():
     Same twelve quotations, same lie, different mechanism, so the test outlives
     the escaping it was written for.
     """
-    from backend.services.daleel.search import _is_a_word, search
+    from backend.services.daleel.index.candidates import is_a_word as _is_a_word
+    from backend.services.daleel.search import search
     from backend.services.fts import quoted
 
     assert not _is_a_word("%") and not _is_a_word("_")

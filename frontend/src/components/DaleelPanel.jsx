@@ -160,7 +160,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
 
         {/* Below the search box, not above: most searches want the whole
             library, so the box that everyone uses leads and the filter, which
-            is the occasional case, folds under it. See daleel/BookPicker. */}
+            is the occasional case, sits under it. See daleel/BookPicker. */}
         <BookPicker
           books={catalogue}
           onChange={narrow}

@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 from typing import Iterable
 
-from backend.services.daleel.model import Passage
+from backend.services.daleel.sources.model import Passage
 from backend.services.daleel.sources.roots import roots_in
 
 _EXAMPLES = (

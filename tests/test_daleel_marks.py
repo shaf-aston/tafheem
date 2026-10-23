@@ -4,7 +4,7 @@ The screen does no matching of its own, so these offsets are the whole story:
 they must land on the word as printed, with its vowels and its Uthmani
 spelling, by the same rule that ranked the passage.
 """
-from backend.services.daleel.search import marks
+from backend.services.daleel.match.marks import marks
 
 
 def marked(text, *terms):

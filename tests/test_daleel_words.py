@@ -15,7 +15,8 @@ import pytest
 
 from backend.config import data_path
 from backend.services.daleel import search
-from backend.services.daleel.expand import Expansion
+from backend.services.daleel.index.candidates import candidates, word_match
+from backend.services.daleel.query.expand import Expansion
 
 FI = "\u0641\u064a"          # two letters, so the trigram index cannot see it
 ALLAH = "\u0627\u0644\u0644\u0647"
@@ -62,12 +63,12 @@ def test_narrowing_to_a_source_is_part_of_the_lookup(index):
     fetched before it could be ruled out."""
     plan = [row[-1] for row in index.execute(
         "EXPLAIN QUERY PLAN SELECT p.locator FROM word JOIN passage p ON p.rowid = word.rowid "
-        "WHERE word MATCH ? LIMIT 10", (search._word_match(FI, "corpus", ()),),
+        "WHERE word MATCH ? LIMIT 10", (word_match(FI, "corpus", ()),),
     )]
     assert any("word" in line for line in plan)
     for (source,) in index.execute(
         "SELECT p.source FROM word JOIN passage p ON p.rowid = word.rowid "
-        "WHERE word MATCH ? LIMIT 20", (search._word_match(FI, "corpus", ()),),
+        "WHERE word MATCH ? LIMIT 20", (word_match(FI, "corpus", ()),),
     ):
         assert source == "corpus"
 
@@ -78,7 +79,7 @@ def test_a_book_filter_narrows_the_same_lookup(index):
     for (book,) in index.execute(
         "SELECT p.book FROM word JOIN passage p ON p.rowid = word.rowid "
         "WHERE word MATCH ? LIMIT 20",
-        (search._word_match(FI, source, (name,)),),
+        (word_match(FI, source, (name,)),),
     ):
         assert book == name
 
@@ -116,7 +117,7 @@ def test_an_index_from_before_this_table_answers_instead_of_failing(caplog):
     expansion = Expansion(typed=(FI,), related=(), roots=(), loose=())
 
     with caplog.at_level(logging.WARNING):
-        assert search._candidates(old, expansion, 20) == []
+        assert candidates(old, expansion, 20) == []
 
     assert "--words" in caplog.text, "the log must name the command that mends it"
     old.close()

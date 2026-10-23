@@ -48,3 +48,36 @@ def test_pointing_at_another_path_opens_that_one(tmp_path) -> None:
     assert get().execute("SELECT v FROM t").fetchone()["v"] == "a"
     target["path"] = b
     assert get().execute("SELECT v FROM t").fetchone()["v"] == "b"
+
+
+def test_per_build_is_worked_out_once_and_again_after_a_rebuild(tmp_path) -> None:
+    path, fresh = tmp_path / "a.db", tmp_path / "b.db"
+    _make(path, "old")
+    get = ReadOnlyDb(lambda: path)
+    calls = []
+
+    def value(conn):
+        calls.append(conn)
+        return conn.execute("SELECT v FROM t").fetchone()["v"]
+
+    assert get.per_build(get(), value) == "old"
+    assert get.per_build(get(), value) == "old"
+    assert len(calls) == 1
+
+    _make(fresh, "new")
+    get().close()
+    os.replace(fresh, path)
+    stat = path.stat()
+    os.utime(path, ns=(stat.st_atime_ns, stat.st_mtime_ns + 1_000_000_000))
+    assert get.per_build(get(), value) == "new"
+
+
+def test_per_build_never_keeps_an_answer_about_another_connection(tmp_path) -> None:
+    """A connection the caller opened itself is answered afresh, so its answer
+    can never be handed to this thread's connection to some other file."""
+    path = tmp_path / "a.db"
+    _make(path, "mine")
+    other = sqlite3.connect(":memory:")
+    get = ReadOnlyDb(lambda: path)
+    assert get.per_build(other, lambda conn: "other") == "other"
+    assert get.per_build(get(), lambda conn: "mine") == "mine"
