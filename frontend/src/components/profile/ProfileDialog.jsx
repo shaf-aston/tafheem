@@ -10,7 +10,9 @@ import { useQuery } from '@tanstack/react-query'
 import { smartError } from '../../lib/apiError'
 import { getProfile, logInAs } from '../../lib/profile'
 import { fetchAccountNames, logIn, signUp } from '../../lib/progress'
-import { copyGuestShelf, pullShelf } from '../../lib/shelf'
+import { LEVEL_KEY } from '../../lib/learnerLevel'
+import { copyGuestShelf, pullShelf, startShelf } from '../../lib/shelf'
+import { readRaw } from '../../lib/stored'
 
 import BottomSheet from '../ui/BottomSheet'
 import PrimaryButton from '../ui/PrimaryButton'
@@ -18,6 +20,7 @@ import ProfileView from './ProfileView'
 import SearchBox from '../ui/SearchBox'
 import Segmented from '../ui/Segmented'
 import SmallButton from '../ui/SmallButton'
+import LevelSetting from '../level/LevelSetting'
 
 const MODES = [{ id: 'login', label: 'Log in' }, { id: 'signup', label: 'Sign up' }]
 
@@ -58,8 +61,9 @@ function SignIn() {
     setBusy(true)
     try {
       const { name } = await (signingUp ? signUp(chosen, keep) : logIn(chosen))
-      // A new name starts from the guest's shelf only if it kept the guest's answers.
-      await (signingUp ? (keep ? copyGuestShelf(name) : null) : pullShelf(name))
+      // A new name starts from the guest's shelf only if it kept the guest's answers; the level picked above goes either way.
+      const fresh = () => startShelf(name, { [LEVEL_KEY]: readRaw(LEVEL_KEY) })
+      await (signingUp ? (keep ? copyGuestShelf(name) : fresh()) : pullShelf(name))
       logInAs(name)
     } catch (refused) {
       setError(smartError(refused, 'Could not reach the server. Try again.'))
@@ -85,6 +89,8 @@ function SignIn() {
       <p className="type-small text-[var(--text-faint)]">
         No password: anyone who knows your username can open your progress.
       </p>
+      {/* Asked here, prefilled with what Home's first visit picked: the account starts at the right place. */}
+      {signingUp && <LevelSetting hint={false} />}
       {signingUp && (
         <label className="flex items-center gap-2 type-small text-[var(--text-dim)]">
           <input type="checkbox" checked={keep} onChange={(e) => setKeep(e.target.checked)} />

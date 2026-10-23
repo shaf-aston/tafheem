@@ -7,28 +7,36 @@ import { act, fireEvent, screen, within } from '@testing-library/react'
 import { renderScreen } from './render'
 import HomePanel from '../components/home/HomePanel'
 import { visit } from '../lib/journey'
-import { FIXED, HOME, LISTED } from '../lib/tabs'
+import { HOME, LISTED } from '../lib/tabs'
+import { LEVEL_KEY, LEVELS, levelOf } from '../lib/learnerLevel'
+import { readRaw, writeRaw } from '../lib/stored'
 import knobs from '../home.json'
 
-const FIRST = LISTED.find((tab) => tab.id === FIXED.find((id) => id !== HOME))
-
 describe('Home', () => {
-  it('on a first visit offers the first fixed tab to someone who reads Arabic, and opens it on a tap', async () => {
-    const onGo = vi.fn()
-    renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
+  it('on a first visit asks how much Arabic you know, one row a level', () => {
+    renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />)
     const fork = screen.getByRole('region', { name: knobs.copy['fork-label'] })
-    expect(within(fork).getByText(knobs.copy['reader-title'])).toBeTruthy()
-    fireEvent.click(within(fork).getByRole('button', { name: /Begin/ }))
-    expect(onGo).toHaveBeenCalledWith(FIRST.id)
+    expect(within(fork).getAllByRole('button').map((row) => row.textContent)).toEqual(
+      LEVELS.map((level) => expect.stringContaining(level.title)),
+    )
   })
 
-  it('on a first visit offers a newcomer the basics, straight into its first lesson', async () => {
+  it.each(LEVELS.map((level) => [level.id, level]))('one tap on %s keeps it and starts there', (id, level) => {
     const onGo = vi.fn()
     renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
     const fork = screen.getByRole('region', { name: knobs.copy['fork-label'] })
-    expect(within(fork).getByText(knobs.copy['new-title'])).toBeTruthy()
-    fireEvent.click(within(fork).getByRole('button', { name: new RegExp(knobs.copy['new-go']) }))
-    expect(onGo).toHaveBeenCalledWith('grow', 'basics/lesson')
+    fireEvent.click(within(fork).getByRole('button', { name: new RegExp(level.title) }))
+    expect(onGo).toHaveBeenCalledWith(...level.start)
+    expect(readRaw(LEVEL_KEY)).toBe(id)
+  })
+
+  it('marks a level already chosen', () => {
+    writeRaw(LEVEL_KEY, 'intermediate')
+    renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />)
+    const fork = screen.getByRole('region', { name: knobs.copy['fork-label'] })
+    const marked = within(fork).getAllByRole('button').filter((row) => row.getAttribute('aria-current'))
+    expect(marked.map((row) => row.textContent)).toEqual([expect.stringContaining(knobs.copy['fork-yours'])])
+    expect(marked[0].textContent).toContain(levelOf('intermediate').title)
   })
 
   it('shows every other tab without opening anything', async () => {

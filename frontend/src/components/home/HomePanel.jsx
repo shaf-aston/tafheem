@@ -18,7 +18,6 @@ import { progressByTab } from '../../lib/moduleTab'
 import { useCommandLine } from '../../lib/useCommandLine'
 import { accentOf, FIXED, GROUPS, HOME, LISTED, START } from '../../lib/tabs'
 import { progressText } from '../../lib/homeCopy'
-import { colorFor } from '../../theme'
 import { copy as offlineCopy, noSignal } from '../../lib/offline'
 import knobs from '../../home.json'
 import { useMedia, PHONE } from '../../lib/useMedia'
@@ -29,7 +28,7 @@ import TabGroups from '../ui/TabGroups'
 import CommandField from '../shell/CommandField'
 import CommandResults from '../shell/CommandResults'
 import LogInButton from '../profile/LogInButton'
-import BeginnerFork from './BeginnerFork'
+import LevelPicker from '../level/LevelPicker'
 import ModuleCard from './ModuleCard'
 import ResumeCard from './ResumeCard'
 import StatsButton from './StatsButton'
@@ -93,9 +92,9 @@ export default function HomePanel({ accent, onGo }) {
           {/* The quiet word sits in the room beside the card and scrolls with the page. */}
           <div className="md:flex md:items-center md:gap-6">
             <div className="space-y-4 md:max-w-2xl md:flex-[3] min-w-0">
-              {/* A first visit asks where to begin; after that, where you stopped. */}
+              {/* A first visit asks how much Arabic you know, and starts there; after that, where you stopped. */}
               {first
-                ? <BeginnerFork copy={copy} basicsAccent={colorFor('world', 'basics')} reader={lead} readerAccent={accentOf(lead.id)} onGo={onGo} />
+                ? <LevelPicker copy={copy} onGo={onGo} />
                 : <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume.value} label={copy['resume-label']} goLabel={copy['resume-go']}
                   progressText={progressText(sums[lead.id])} onGo={onGo} />}
               {!name && (

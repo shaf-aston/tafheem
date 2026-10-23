@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { api } from '../api'
-import { copyGuestShelf, keepShelfInStep, pullShelf } from './shelf'
+import { copyGuestShelf, keepShelfInStep, pullShelf, startShelf } from './shelf'
 import { writeRaw } from './stored'
 
 let data
@@ -50,6 +50,16 @@ describe('the shelf on the server', () => {
     await copyGuestShelf('amina')
     expect(data.get('@amina/settings')).toBe('guest')
     expect(put.mock.calls[0][1]).toEqual({ data: { settings: 'guest' } })
+  })
+})
+
+describe('a sign-up that leaves the guest\'s answers behind', () => {
+  it('starts the shelf with what the sheet asked, and sends it up', async () => {
+    data.set('settings', 'guest')
+    const put = vi.spyOn(api, 'put').mockResolvedValue({})
+    await startShelf('amina', { level: 'advanced', empty: '' })
+    expect([...data.entries()]).toEqual([['settings', 'guest'], ['@amina/level', 'advanced']])
+    expect(put.mock.calls[0][1]).toEqual({ data: { level: 'advanced' } })
   })
 })
 

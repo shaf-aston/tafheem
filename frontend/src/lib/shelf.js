@@ -71,5 +71,11 @@ export function copyGuestShelf(name) {
   return pushShelf(name)
 }
 
+/** Sign-up that left the guest's answers behind still takes what the sheet itself asked (the level); empty values are left out. */
+export function startShelf(name, data) {
+  fillShelf(name, Object.fromEntries(Object.entries(data).filter(([, text]) => text)))
+  return pushShelf(name)
+}
+
 /** A deleted account's shelf goes from this device too; the server's went with it. */
 export const forgetShelf = (name = getProfile()) => fillShelf(name, {})

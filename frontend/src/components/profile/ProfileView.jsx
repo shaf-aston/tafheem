@@ -18,6 +18,7 @@ import CirclesView from './CirclesView'
 import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
 import XpCard from './XpCard'
+import LevelSetting from '../level/LevelSetting'
 import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'
 import SmallButton from '../ui/SmallButton'
@@ -31,6 +32,7 @@ export default function ProfileView({ name }) {
       {account.isError && (
         <ErrorAlert inline title="Could not load your profile." onRetry={() => account.refetch()} />
       )}
+      <LevelSetting />
       <dl className="grid grid-cols-2 gap-3">
         <XpCard rewards={rewards} />
         <Fact name="Joined" value={account.data && new Date(account.data.joined).toLocaleDateString()} />
