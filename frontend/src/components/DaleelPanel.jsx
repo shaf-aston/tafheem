@@ -14,6 +14,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { daleelBooksQuery, findDaleel } from '../api'
+import settings from '../daleel.json'
 import { isArabic, mostlyArabic } from '../lib/arabicText'
 import { isAyah } from '../lib/surahRef'
 import { plainEntry } from '../lib/laneEntry'
@@ -127,8 +128,11 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
       {/* Every recent question, whichever language it was asked in, each chip
           set in its own script. They used to be split into two lists by the
           toggle above, so half of them were hidden at any one time. */}
+      {/* Until anything has been asked, the same row offers questions to try,
+          so the empty page says what it can be asked. */}
       <RecentRow
-        items={history.map((h) => h.q)}
+        items={history.length ? history.map((h) => h.q) : settings.examples}
+        label={history.length ? 'Recent' : 'Try'}
         accent={accent}
         onPick={submit}
       />
@@ -163,6 +167,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
             is the occasional case, sits under it. See daleel/BookPicker. */}
         <BookPicker
           books={catalogue}
+          folded={hits.length > 0}
           onChange={narrow}
           accent={accent}
           sourceLabel={(key) => sources.find((s) => s.key === key)?.label ?? key}
@@ -187,6 +192,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
               + ` matches “${data.query}”.`
               + ' The rest of the library has not been searched.'
             : `Nothing in the books matches “${data.query}”.`}
+          {' '}{settings.tries}
         </EmptyState>
       )}
 
