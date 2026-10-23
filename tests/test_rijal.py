@@ -214,6 +214,13 @@ def test_a_name_in_the_story_is_told_from_the_chain_by_the_pages_own_markup():
     assert all(n[3] for n in parse.book_chains(plain)[0]["names"])  # not wrapped: nothing is guessed to be story
 
 
+def test_a_name_is_placed_whichever_order_its_marks_are_written_in():
+    name = "\u0627\u0644\u062e\u0637{}\u0627\u0628"  # الخطّاب, its ط carrying shadda and fatha
+    ours = "\u0633\u0645\u0639\u062a " + name.format("\u0651\u064e")  # shadda then fatha, as our text has it
+    placed, lost = parse.place(ours, [(5913, name.format("\u064e\u0651"), 4, True)])  # the page: fatha then shadda
+    assert lost == [] and ours[placed[0][0]:placed[0][1]] == name.format("\u0651\u064e")
+
+
 def test_two_names_never_take_the_same_place_and_a_particle_may_be_attached():
     placed, lost = parse.place("حدثنا عمر وعمر", [(1, "عمر", 0, True), (2, "عمر", 0, True)])
     assert [(a, b) for a, b, *_ in placed] == [(6, 9), (11, 14)] and lost == []

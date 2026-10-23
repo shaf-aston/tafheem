@@ -11,6 +11,8 @@ import re
 
 from bs4 import BeautifulSoup, NavigableString
 
+from backend.services.arabic_text import marks_in_order
+
 _REFERENCE = re.compile(r"^/\w+:(\d+)([a-z]*)$")
 _NARRATOR = re.compile(r"^/narrator/(\d+)$")
 _GRADE = re.compile(r"pill-grade--grade-(\d+)")
@@ -100,8 +102,9 @@ def place(arabic: str, names: list[tuple[int, str, int, bool]]) -> tuple[list[tu
     for ch in arabic:
         letters.append(letters[-1] + (not ch.isspace()))
     placed, lost, taken = [], [], set()
+    ours = marks_in_order(arabic)
     for who, shown, before, in_chain in names:
-        hits = re.finditer(_WORD_START + "(?P<name>" + re.escape(shown) + r")(?![\w\u064B-\u065F\u0670])", arabic)
+        hits = re.finditer(_WORD_START + "(?P<name>" + re.escape(marks_in_order(shown)) + r")(?![\w\u064B-\u065F\u0670])", ours)
         hit = min((h for h in hits if h.start("name") not in taken), key=lambda h: abs(letters[h.start("name")] - before), default=None)
         if hit:
             taken.add(hit.start("name"))
