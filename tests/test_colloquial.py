@@ -530,8 +530,9 @@ def test_a_rule_that_is_not_a_whole_number_above_zero_is_refused(tmp_path, value
 
 
 def test_every_dialect_card_says_where_it_is_spoken():
-    # The card's map draws these (frontend components/ui/CountryMap.jsx).
-    for dialect in loader.catalogue()["dialects"]:
+    # The card's map draws these (frontend components/ui/CountryMap.jsx). Read through the
+    # route, so the response model cannot drop them on the way out.
+    for dialect in TestClient(app).get("/api/colloquial").json()["dialects"]:
         assert dialect["countries"], dialect["key"]
         assert all(len(code) == 2 and code.isupper() for code in dialect["countries"]), dialect["key"]
         for city in dialect["cities"]:

@@ -114,11 +114,20 @@ class UnitCard(BaseModel):
     cover: Cover | None = None
 
 
+class City(BaseModel):
+    name: str
+    at: tuple[float, float]  # [longitude, latitude]
+
+
 class DialectCard(BaseModel):
     key: str
     label: str
     arabic: str
     where: str
+    gloss: str | None = None
+    # Where it is spoken (ISO alpha-2) and its named cities, for the card's map and flags.
+    countries: list[str] = []
+    cities: list[City] = []
     units: list[UnitCard]
 
 
