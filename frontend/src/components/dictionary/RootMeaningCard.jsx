@@ -12,7 +12,7 @@
  * prints the letters that were actually searched.
  */
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { getRootEntryEnglish, getRootEntryLines, getRootMeaning } from '../../api'
 import config from '../../dictionary.json'
@@ -51,6 +51,13 @@ const ENGLISH = {
     after: ' The Together view above still shows the whole entry.',
   },
 }
+
+/** One shape of the English as a query, shared by the fetch and the prefetch. */
+const englishQuery = (english, root) => ({
+  queryKey: [english.key, root],
+  queryFn: () => english.get(root),
+  retry: false,
+})
 
 /** The ways to read the rest of the entry; the first is the default. */
 const VIEWS = [
@@ -132,6 +139,14 @@ function Body({
   // Whether the rest of the entry is open. The English below it is
   // fetched on that alone, so a root looked up and never opened costs nothing.
   const [opened, setOpened] = useState(false)
+  const queryClient = useQueryClient()
+  // Both shapes are asked for on the press that opens the rest, not on the
+  // press that switches view: fetched on the switch, every first change of
+  // view sat on a loading bar.
+  const open = () => {
+    setOpened(true)
+    for (const english of Object.values(ENGLISH)) queryClient.prefetchQuery(englishQuery(english, data.root))
+  }
 
   // How the panel reads: the book whole with its English after it, one flowing
   // page with the English of the line you touch, or one line at a time.
@@ -309,7 +324,7 @@ function Body({
 
           {/* Paired views carry the Arabic in their own lines; Together keeps it here. */}
           {!(opened && paired) && (
-            <ShowRest lines={config['root-meaning']['rest-lines']} accent={accent} onOpen={() => setOpened(true)}>
+            <ShowRest lines={config['root-meaning']['rest-lines']} accent={accent} onOpen={open}>
               {/* The book first, its English under it. This panel is the
                   book's own words; the English is what a machine made of them,
                   and printing the machine first put a retelling where the
@@ -338,11 +353,7 @@ function Body({
 function EntryEnglish({ view, root, accent }) {
   // 'lines' and 'one' are two ways to read the same pairs: one entry, one query.
   const english = ENGLISH[view === 'one' ? 'lines' : view]
-  const { data, isFetching, isError, error, refetch } = useQuery({
-    queryKey: [english.key, root],
-    queryFn: () => english.get(root),
-    retry: false,
-  })
+  const { data, isFetching, isError, error, refetch } = useQuery(englishQuery(english, root))
 
   if (isFetching) {
     return (
