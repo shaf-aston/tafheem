@@ -10,7 +10,7 @@
  *   hadith  sketched scroll and pen    sarf    cartoon tree of letters
  *   nahw    chunky 3-D blocks       daleel  book under a lens
  *   dict    bookmarked lexicon      mem     a lawh, one line left blank
- *   quiz    question card           timelines  events on a line
+ *   quiz    question card           timelines  events along an arrow
  *   dawah   speech bubble, star     colloq  two speech bubbles
  *   kit     toolbox                 home    an open arch, a crescent over it
  *   similar two pages, one line apart
@@ -149,14 +149,19 @@ const ART = {
   ),
   timelines: (
     <>
-      <path d="M6 32h52" {...ink} strokeWidth="2.4" />
-      <path d="M14 32V18M32 32v14M50 32V18" {...ink} strokeWidth="1.8" opacity=".6" />
-      <circle cx="14" cy="32" r="5" fill="currentColor" />
-      <circle className="em-lift" cx="32" cy="32" r="6" fill="currentColor" opacity=".6" />
-      <circle cx="50" cy="32" r="5" fill="currentColor" />
-      <rect x="8" y="10" width="12" height="7" rx="2" fill="currentColor" opacity=".35" />
-      <rect x="26" y="47" width="12" height="7" rx="2" fill="currentColor" opacity=".35" />
-      <rect x="44" y="10" width="12" height="7" rx="2" fill="currentColor" opacity=".35" />
+      {/* An arrow, so time reads as moving one way, and four events taking
+          turns above and below it. Three marks hung evenly off a bar, as this
+          once was, read as a ceiling lamp. */}
+      <path d="M4 33h52M54 28l6 5-6 5" {...ink} strokeWidth="2.4" />
+      <path d="M10 33V21M23 33v12M36 33V21M49 33v12" {...ink} strokeWidth="1.6" opacity=".6" />
+      <rect x="4" y="13" width="12" height="7" rx="2" fill="currentColor" opacity=".35" />
+      <rect x="17" y="46" width="12" height="7" rx="2" fill="currentColor" opacity=".35" />
+      <rect x="30" y="13" width="12" height="7" rx="2" fill="currentColor" opacity=".35" />
+      <rect x="43" y="46" width="12" height="7" rx="2" fill="currentColor" opacity=".35" />
+      <circle cx="10" cy="33" r="3.5" fill="currentColor" />
+      <circle cx="23" cy="33" r="3.5" fill="currentColor" />
+      <circle className="em-lift" cx="36" cy="33" r="4.5" fill="currentColor" />
+      <circle cx="49" cy="33" r="3.5" fill="currentColor" />
     </>
   ),
   dawah: (
