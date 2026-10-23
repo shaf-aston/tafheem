@@ -116,6 +116,9 @@ describe('possessiveTable', () => {
     expect(at(mine, 'mine:our').ar).toBe(nfc('كِتَابُنَا'))
     expect(at(mine, 'mine:your-all')).toEqual({ key: 'mine:your-all', ar: nfc('كِتَابُكُمْ'), en: 'your book (all of you)' })
     expect(at(mine, 'mine:their').ar).toBe(nfc('كِتَابُهُمْ'))
+    expect(POSSESSORS.map((owner) => at(mine, `mine:${owner.id}`).en)).toEqual(
+      ['my book', 'your book (one man)', 'his book', 'her book', 'our book', 'your book (all of you)', 'their book'],
+    )
     expect(at(mine, 'wrong:al:his')).toEqual({ key: 'wrong:al:his', ar: nfc('الْكِتَابُهُ'), en: null })
     expect(at(mine, 'wrong:ta:his')).toBeUndefined()
     // ال with ـِي could read as a real word (الْكِتَابِي, like الْجَارِي the flowing), so that one is not offered.

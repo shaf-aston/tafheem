@@ -195,6 +195,56 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
   })
 })
 
+describe('SKILLS', () => {
+  it('names each skill as its teach cards show it, in path order', () => {
+    expect(Object.entries(SKILLS).map(([id, skill]) => [id, skill.title, skill.table])).toEqual([
+      ['mine', 'My, his, her', 'nouns'], ['past', 'The past', 'verbs'], ['present', 'The present', 'verbs'],
+      ['negation', 'Not', 'verbs'], ['command', 'Do! Don’t!', 'verbs'], ['future', 'Will', 'verbs'],
+    ])
+  })
+
+  // Every key a marker names (its own, its base, its pools) is a form the table has, for every person it draws.
+  it.each(markers.map((item) => [item.id, item]))('%s: every form it names is in the table', (_, item) => {
+    const { table, markers: all } = SKILLS[item.skill]
+    const word = item.words[0]
+    const keys = new Set((table === 'verbs' ? verbTable(word) : possessiveTable({ ...word, ar: 'مَدْرَسَة' })).map((entry) => entry.key))
+    const { key, base, persons, pool, toEnglish = [] } = item.marker
+    expect(all).toContain(item.marker)
+    for (const person of persons) {
+      const at = (one) => one.replace('{p}', person)
+      for (const one of [key, ...pool, ...toEnglish]) expect(keys.has(at(one)), `${at(one)}`).toBe(true)
+      if (base && base !== 'bare') expect(keys.has(at(base)), at(base)).toBe(true)
+      expect(pool.filter((one) => keys.has(at(one)) && at(one) !== at(key)).length).toBeGreaterThanOrEqual(2)
+    }
+  })
+
+  it('says “my, his, her” on nouns for anyone, and each verb marker for the persons it is said by', () => {
+    expect(SKILLS.mine.markers.every((marker) => marker.persons.length === 1 && marker.persons[0] === null && marker.base === 'bare')).toBe(true)
+    expect(SKILLS.past.markers.map((marker) => marker.persons)).toEqual([['he'], ['they'], ['I'], ['we'], ['you'], ['you-all'], ['she']])
+    expect(SKILLS.command.markers.map((marker) => marker.persons)).toEqual([['you', 'you-all'], ['you', 'you-all']])
+    for (const skill of ['negation', 'future']) for (const marker of SKILLS[skill].markers) expect(marker.persons).toEqual(['he', 'she', 'they', 'you', 'you-all', 'I', 'we'])
+  })
+
+  // What each rule teaches: the addition, then what it says in English.
+  const TAUGHT = {
+    'mine:my': ['ـِي', '“my”'], 'mine:his': ['ـهُ', '“his”'], 'mine:her': ['ـهَا', '“her”'], 'mine:our': ['ـنَا', '“our”'],
+    'mine:their': ['ـهُمْ', '“their”'], 'mine:your': ['ـكَ', 'one man'], 'mine:your-all': ['ـكُمْ', 'a group'],
+    'past:he': ['كَتَبَ', 'he wrote'], 'past:they': ['ـُوا', 'they did'], 'past:I': ['ـْتُ', 'I did'], 'past:we': ['ـْنَا', 'we did'],
+    'past:you': ['ـْتَ', 'one man'], 'past:you-all': ['ـْتُمْ', 'you all did'], 'past:she': ['ـَتْ', 'she did'],
+    'present:he': ['يَـ', 'he writes'], 'present:she': ['تَـ', 'she'], 'present:they': ['ـُونَ', 'they'], 'present:I': ['أَ', 'I'],
+    'present:we': ['نَ', 'we'], 'present:you': ['تَـ', 'one man'], 'present:you-all': ['ـُونَ', 'you all'],
+    'negation:not': ['لَا', 'doesn’t'], 'negation:not-past': ['لَمْ', 'didn’t'], 'negation:not-future': ['لَنْ', 'won’t'],
+    'negation:not-past-ma': ['مَا', 'didn’t'], 'command:command': ['اُكْتُبْ', 'drops “you”'], 'command:prohibit': ['لَا', 'Don’t'],
+    'future:future': ['سَ', 'will'], 'future:future-sawfa': ['سَوْفَ', 'will'],
+  }
+  it('teaches every marker, and no other', () => expect(markers.map((item) => item.id).sort()).toEqual(Object.keys(TAUGHT).sort()))
+  it.each(Object.entries(TAUGHT))('%s: its rule names the addition and what it says', (id, said) => {
+    const { rule } = itemOf(id).marker
+    for (const one of said) expect(rule).toContain(one)
+    if (id.startsWith('mine:')) expect(rule).toMatch(/never takes ال as well, and a final ة is written ت before it\.$/)
+  })
+})
+
 describe('rules', () => {
   // A vowel mark alone, after a space or quote, draws on a dotted circle or on the letter before it: it sits on ـ.
   it.each(markers.map((item) => [item.id, item.marker.rule]))('%s: no mark stands alone', (_, rule) => {
