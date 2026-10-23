@@ -12,8 +12,9 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 
+from backend.config import data_path
 from backend.main import app
-from backend.services.colloquial import knobs, loader, wordlist
+from backend.services.colloquial import knobs, loader, schema, wordlist
 from backend.services.colloquial.exercises import registry
 
 
@@ -529,9 +530,19 @@ def test_a_rule_that_is_not_a_whole_number_above_zero_is_refused(tmp_path, value
         knobs.read(path)
 
 
+def test_every_dialect_field_reaches_the_page_or_is_named_as_the_servers():
+    # The card is built through schema.DialectCard, which drops what it does not name.
+    # So a new dialects.json field is either added there or named here as the server's own.
+    servers_own = {"folder", "order", "voice"}
+    entries = json.loads((data_path("colloquial_dir") / "dialects.json").read_text(encoding="utf-8"))["dialects"]
+    for entry in entries:
+        assert set(entry) - set(schema.DialectCard.model_fields) <= servers_own, entry["key"]
+
+
 def test_every_dialect_card_says_where_it_is_spoken():
-    # The card's map draws these (frontend components/ui/CountryMap.jsx).
-    for dialect in loader.catalogue()["dialects"]:
+    # The card's map draws these (frontend components/ui/CountryMap.jsx). Read through the
+    # route, so the response model cannot drop them on the way out.
+    for dialect in TestClient(app).get("/api/colloquial").json()["dialects"]:
         assert dialect["countries"], dialect["key"]
         assert all(len(code) == 2 and code.isupper() for code in dialect["countries"]), dialect["key"]
         for city in dialect["cities"]:

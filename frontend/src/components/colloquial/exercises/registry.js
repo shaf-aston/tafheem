@@ -17,7 +17,7 @@
  * That contract is what lets a renderer be reused from anywhere, including
  * outside the Colloquial tab.
  */
-import { ARRANGED, PICKED, TYPED } from '../../../lib/colloquialAnswer'
+import { ARRANGED, PICKED, TYPED } from '../../../lib/colloquial/answer'
 import ChooseExercise from './ChooseExercise'
 import ReorderExercise from './ReorderExercise'
 import TypedExercise from './TypedExercise'

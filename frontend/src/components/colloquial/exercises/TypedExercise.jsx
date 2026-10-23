@@ -3,7 +3,7 @@
  *
  * One box, right to left, in the Arabic face. The transliteration is accepted
  * too, so the box is not forced into Arabic input: a learner without an Arabic
- * keyboard can still answer, and lib/colloquialAnswer takes either.
+ * keyboard can still answer, and lib/colloquial/answer.js takes either.
  */
 import ArabicText from '../../ui/ArabicText'
 

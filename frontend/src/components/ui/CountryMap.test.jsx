@@ -25,10 +25,10 @@ describe('CountryIcons', () => {
     expect(html.match(/<img/g)).toHaveLength(2)
   })
 
-  it('past the most, the flags alone and how many', () => {
+  it('past the most, only how many: the map shows which', () => {
     const html = renderToStaticMarkup(<CountryIcons codes={['EG', 'SY', 'LB', 'IQ', 'YE']} />)
     expect(html).toContain('5 countries')
-    expect(html.match(/<img/g)).toHaveLength(5)
+    expect(html).not.toContain('<img')
     expect(html).not.toContain('Egypt')
   })
 })
