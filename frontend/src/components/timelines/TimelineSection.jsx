@@ -1,7 +1,9 @@
 /**
- * One chosen stretch of time: its heading, a rail of its events, and the opened
- * event read underneath. The map is a small toggle by the heading, off unless
- * the reader turned it on last time, so the first screen is the story.
+ * One chosen stretch of time: its heading, the map with the time bar under it,
+ * a rail of its events, and the opened event read underneath. Time and place
+ * move together: dragging the bar previews an event on the map at once, and
+ * letting go opens it. The map can be folded away by the heading, remembered;
+ * a section with no places has the bar alone.
  *
  * Every section wears its own hue (timelines.json), set once here and read by
  * everything inside as --tl-acc.
@@ -12,6 +14,7 @@ import Chip from '../ui/Chip'
 import TimelineRail from './TimelineRail'
 import TimelineEvent from './TimelineEvent'
 import TimelineMap from './TimelineMap'
+import TimelineScrub from './TimelineScrub'
 import AsbabPanel from './AsbabPanel'
 import { sectionLook } from '../../lib/timeline/look'
 import { pinsOf } from '../../lib/timeline/map'
@@ -22,7 +25,7 @@ import { useRememberedFlag } from '../../lib/useRemembered'
 const ACCENT = 'var(--tl-acc)'
 
 export default function TimelineSection({ section, library, chosen, report, onPick, onReport, onGo }) {
-  const [showMap, setShowMap] = useRememberedFlag('timeline-map-open', false)
+  const [showMap, setShowMap] = useRememberedFlag('timeline-map-open', true)
   const { hue } = sectionLook(section.id)
   // The step being read, shared by the steps, the map and the where-am-I line.
   // Held with its event, so opening another event starts with none.
@@ -31,12 +34,27 @@ export default function TimelineSection({ section, library, chosen, report, onPi
   const onHere = (step) => setFocus(step ? { event: chosen.id, step } : null)
   const at = chosen ? (here ? placeOfStep(chosen, here) : chosen.place ?? null) : null
 
-  // Opening an event brings its reader to the top of the screen.
+  // The event under a finger on the time bar, before it is let go.
+  const [preview, setPreview] = useState(null)
+  const index = chosen ? section.events.indexOf(chosen) : null
+  const upTo = preview ?? index
+  const mapAt = preview === null ? at : section.events[preview].place ?? null
+
+  // Opening an event brings its reader to the top of the screen, except from
+  // the time bar: walking through time keeps the map and bar where they are.
   const reader = useRef(null)
+  const fromBar = useRef(false)
   const chosenId = chosen?.id
   useEffect(() => {
-    if (chosenId) scrollToEl(reader.current, 'top')
+    if (chosenId && !fromBar.current) scrollToEl(reader.current, 'top')
+    fromBar.current = false
   }, [chosenId])
+  // Let go on the event already open: nothing to open, and no step in the history.
+  const pickFromBar = (id) => {
+    if (id === chosenId) return
+    fromBar.current = true
+    onPick(id)
+  }
 
   return (
     <section className="tl-hue space-y-3" style={{ '--h': hue }}>
@@ -56,8 +74,10 @@ export default function TimelineSection({ section, library, chosen, report, onPi
       </div>
 
       {section.map && showMap && (
-        <TimelineMap section={section} library={library} accent={ACCENT} chosen={chosen} at={at} onPick={onPick} />
+        <TimelineMap section={section} library={library} accent={ACCENT} chosen={chosen} at={mapAt} upTo={upTo} onPick={onPick} />
       )}
+
+      <TimelineScrub section={section} index={index} accent={ACCENT} onPreview={setPreview} onPick={pickFromBar} />
 
       <TimelineRail section={section} library={library} chosenId={chosen?.id ?? null} onPick={onPick} />
 

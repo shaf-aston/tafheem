@@ -7,10 +7,18 @@
  * A pin can hold several nearby places; pressing it again steps to its next
  * event, so every event there is one press away without a list.
  * `at` is the place lit: the chosen event's, or the step being read's.
+ *
+ * `upTo` is the event the time bar stands on. Places reached by then are drawn
+ * full and joined by the route in the order visited, the last leg solid; places
+ * not reached yet are faint. With nothing open, every place is drawn full.
  */
+import settings from '../../timelines.json'
 import { labelGap, labelText, pinsOf, placeLabels, projection } from '../../lib/timeline/map'
+import { routeTo } from '../../lib/timeline/time'
 
-export default function TimelineMap({ section, library, accent, chosen, at, onPick }) {
+const { map: MAP } = settings
+
+export default function TimelineMap({ section, library, accent, chosen, at, upTo = null, onPick }) {
   const view = library.map.views[section.map]
   if (!view) return null
   const { width, height, maxHeight, minHeight, font, pin, size, project } = projection(view)
@@ -18,6 +26,10 @@ export default function TimelineMap({ section, library, accent, chosen, at, onPi
   const sides = placeLabels(pins, at, project, { font, pin, width, height })
   const ring = (points) => points.map(([lon, lat]) => project({ lon, lat }).map((n) => n.toFixed(1)).join(',')).join(' ')
   const next = (p) => p.events[(p.events.indexOf(chosen?.id) + 1) % p.events.length]
+  const order = new Map(section.events.map((e, i) => [e.id, i]))
+  const reached = (p) => upTo === null || p.events.some((id) => order.get(id) <= upTo)
+  const route = upTo === null ? [] : routeTo(section, upTo).filter((key) => library.places[key]).map((key) => project(library.places[key]))
+  const line = (points) => points.map((pt) => pt.map((n) => n.toFixed(1)).join(',')).join(' ')
 
   return (
     // Full width of the reader; the views are wide, so the drawing fills it
@@ -44,6 +56,12 @@ export default function TimelineMap({ section, library, accent, chosen, at, onPi
             strokeLinejoin="round"
           />
         ))}
+        {route.length > 1 && (
+          <g fill="none" stroke={accent} strokeWidth={size.route} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points={line(route.slice(0, -1))} strokeDasharray={`${size.route * MAP['route-dash']} ${size.route * MAP['route-dash']}`} opacity={MAP['route-past-opacity']} />
+            <polyline points={line(route.slice(-2))} />
+          </g>
+        )}
         {pins.map((p) => {
           const [cx, cy] = project(p)
           const on = p.places.includes(at)
@@ -56,7 +74,8 @@ export default function TimelineMap({ section, library, accent, chosen, at, onPi
               aria-label={p.events.length > 1
                 ? `${names}: ${p.events.length} events, each press opens the next`
                 : names}
-              className="cursor-pointer"
+              className="cursor-pointer tl-pin"
+              opacity={reached(p) ? 1 : MAP['unseen-opacity']}
               onClick={() => onPick?.(next(p))}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onPick?.(next(p)) } }}
             >
