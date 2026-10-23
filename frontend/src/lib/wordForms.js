@@ -102,7 +102,8 @@ export function possessiveTable(word) {
   const entries = []
   for (const owner of POSSESSORS) {
     entries.push({ key: `mine:${owner.id}`, ar: nfc(`${open(bare)}${owner.end}`), en: `${owner.en} ${word.en}${owner.hint ?? ''}` })
-    entries.push({ key: `wrong:al:${owner.id}`, ar: nfc(`${open(definite(bare))}${owner.end}`), en: null })
+    // ال with ـِي can read as a real word (الْجَارِي the flowing, الْقَلْبِي of the heart), unless the ة shows it is not one.
+    if (owner.id !== 'my' || bare.endsWith(TA_MARBUTA)) entries.push({ key: `wrong:al:${owner.id}`, ar: nfc(`${open(definite(bare))}${owner.end}`), en: null })
     if (bare.endsWith(TA_MARBUTA)) entries.push({ key: `wrong:ta:${owner.id}`, ar: nfc(`${bare}${owner.end}`), en: null })
   }
   return entries

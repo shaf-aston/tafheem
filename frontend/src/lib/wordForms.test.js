@@ -65,14 +65,14 @@ describe('verbTable', () => {
     expect(table).toHaveLength(PERSONS.length * each + 2 * ADDRESSED.length)
   })
 
-  it('uses the third-person English for he and she only', () => {
-    const goIn = verbTable(data.verbs.find((verb) => verb.id === 'enter'))
-    expect(at(goIn, 'present:she').en).toBe('she goes in')
-    expect(at(goIn, 'present:we').en).toBe('we go in')
-    expect(at(goIn, 'not:she').en).toBe('she doesn’t go in')
-    expect(at(goIn, 'not:I').en).toBe('I don’t go in')
-    expect(at(goIn, 'past:I').en).toBe('I went in')
-    expect(at(goIn, 'command:you').en).toBe('Go in! (one man)')
+  it('uses the third-person English for he and she only, and keeps a two-word verb whole', () => {
+    const thank = verbTable(data.verbs.find((verb) => verb.id === 'thank'))
+    expect(at(thank, 'present:she').en).toBe('she gives thanks')
+    expect(at(thank, 'present:we').en).toBe('we give thanks')
+    expect(at(thank, 'not:she').en).toBe('she doesn’t give thanks')
+    expect(at(thank, 'not:I').en).toBe('I don’t give thanks')
+    expect(at(thank, 'past:I').en).toBe('I gave thanks')
+    expect(at(thank, 'command:you').en).toBe('Give thanks! (one man)')
   })
 
   it('is normalised, so equal spellings compare equal', () => {
@@ -118,7 +118,9 @@ describe('possessiveTable', () => {
     expect(at(mine, 'mine:their').ar).toBe(nfc('كِتَابُهُمْ'))
     expect(at(mine, 'wrong:al:his')).toEqual({ key: 'wrong:al:his', ar: nfc('الْكِتَابُهُ'), en: null })
     expect(at(mine, 'wrong:ta:his')).toBeUndefined()
-    expect(mine).toHaveLength(2 * POSSESSORS.length)
+    // ال with ـِي could read as a real word (الْكِتَابِي, like الْجَارِي the flowing), so that one is not offered.
+    expect(at(mine, 'wrong:al:my')).toBeUndefined()
+    expect(mine).toHaveLength(2 * POSSESSORS.length - 1)
   })
   it('writes ة as ت before the ending, and keeps the wrong ة as a wrong form', () => {
     const mine = possessiveTable(school)
@@ -129,7 +131,8 @@ describe('possessiveTable', () => {
     expect(mine).toHaveLength(3 * POSSESSORS.length)
   })
   it('follows ال’s sun-letter spelling in the wrong form', () => {
-    expect(at(possessiveTable({ ar: 'شَمْس', en: 'sun' }), 'wrong:al:my').ar).toBe(nfc('الشَّمْسِي'))
+    expect(at(possessiveTable({ ar: 'شَمْس', en: 'sun' }), 'wrong:al:his').ar).toBe(nfc('الشَّمْسُهُ'))
+    expect(at(possessiveTable({ ar: 'سَيَّارَة', en: 'car' }), 'wrong:al:my').ar).toBe(nfc('السَّيَّارَتِي'))
   })
 })
 

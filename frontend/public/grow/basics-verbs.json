@@ -126,9 +126,9 @@
    "root": "دخل",
    "bab": "I-nasara",
    "en": {
-    "base": "go in",
-    "past": "went in",
-    "s3": "goes in"
+    "base": "enter",
+    "past": "entered",
+    "s3": "enters"
    },
    "forms": {
     "he": {
@@ -630,9 +630,9 @@
    "root": "شكر",
    "bab": "I-nasara",
    "en": {
-    "base": "thank",
-    "past": "thanked",
-    "s3": "thanks"
+    "base": "give thanks",
+    "past": "gave thanks",
+    "s3": "gives thanks"
    },
    "forms": {
     "he": {

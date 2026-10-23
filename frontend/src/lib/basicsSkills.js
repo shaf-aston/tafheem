@@ -71,17 +71,18 @@ export const SKILLS = {
     title: 'Not',
     table: 'verbs',
     markers: [
-      particle('not', EVERYONE, 'present:{p}', 'لَا before the present = not: “doesn’t” or “don’t”. English adds a word in front too.', ['present:{p}', 'not-past:{p}', 'not-future:{p}']),
+      // لَا + present can mean “won’t” too (لَا يُؤْمِنُونَ, they will not believe), so it is never set beside لَنْ.
+      particle('not', EVERYONE, 'present:{p}', 'لَا before the present = not: “doesn’t” or “don’t” (in the Qur’an often “won’t”). English adds a word in front too.', ['present:{p}', 'not-past:{p}']),
       particle('not-past', EVERYONE, 'present:{p}', 'لَمْ before the present = didn’t. The last ُ becomes ْ, and ـُونَ becomes ـُوا.', ['not:{p}', 'not-future:{p}', 'past:{p}', 'wrong:lam-past:{p}']),
-      particle('not-future', EVERYONE, 'future:{p}', 'لَنْ before the present = won’t. The last ُ becomes َ, and ـُونَ becomes ـُوا.', ['future:{p}', 'not:{p}', 'not-past:{p}', 'wrong:lan-past:{p}']),
-      particle('not-past-ma', EVERYONE, 'past:{p}', 'مَا before the past = didn’t, the same as لَمْ before the present.', ['not:{p}', 'not-future:{p}', 'past:{p}']),
+      particle('not-future', EVERYONE, 'future:{p}', 'لَنْ before the present = won’t. The last ُ becomes َ, and ـُونَ becomes ـُوا.', ['future:{p}', 'not-past:{p}', 'wrong:lan-past:{p}']),
+      particle('not-past-ma', EVERYONE, 'past:{p}', 'مَا before the past can say didn’t too, like لَمْ before the present. (مَا has other jobs as well, such as “what”.)', ['not:{p}', 'not-future:{p}', 'past:{p}']),
     ],
   },
   command: {
     title: 'Do! Don’t!',
     table: 'verbs',
     markers: [
-      particle('command', ADDRESSED, 'present:{p}', 'A command is the present without its front letter: it starts with ا and ends in ْ (to a group, ـُوا). English drops “you” the same way.', ['present:{p}', 'past:{p}', 'prohibit:{p}']),
+      particle('command', ADDRESSED, 'present:{p}', 'A command is the present without its front letter: it ends in ْ (to a group, ـُوا) and starts with ا, said اُ when the present has ُ in the middle (اُكْتُبْ), else اِ (اِجْلِسْ). English drops “you” the same way.', ['present:{p}', 'past:{p}', 'prohibit:{p}']),
       particle('prohibit', ADDRESSED, 'command:{p}', 'لَا before the “you” present, ending in ْ (to a group, ـُوا) = “Don’t …!”', ['command:{p}', 'present:{p}', 'past:{p}', 'future:{p}']),
     ],
   },
@@ -95,10 +96,13 @@ export const SKILLS = {
   },
 }
 
-/** The nouns the possessive skill draws: things a person has, every one taking the endings plainly (wordForms canPossess). */
+/**
+ * The nouns the possessive skill draws: things a person has, every one taking the endings plainly (wordForms canPossess).
+ * Not the body (or a shirt): “their heart”, “our face” are said with the plural in Arabic (قُلُوبُهُمْ), which is not taught yet.
+ */
 export const OWNED = [
   'book', 'house', 'pen', 'car', 'school', 'notebook', 'teacher', 'room', 'bed', 'key', 'cup', 'phone', 'bag', 'friend',
-  'sister', 'doctor', 'family', 'hand', 'eye', 'heart', 'face', 'head', 'garden', 'city', 'village', 'shirt', 'picture',
+  'sister', 'doctor', 'family', 'garden', 'city', 'village', 'picture',
   'ball', 'horse', 'cat', 'dog', 'camel', 'lesson', 'question', 'word', 'language', 'door', 'table', 'shop', 'ticket', 'neighbour',
 ]
 
