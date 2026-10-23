@@ -158,6 +158,15 @@ def test_a_two_letter_root_is_a_slip(monkeypatch):
     assert morphology.root_in_arabic("l.s") == ""
 
 
+def test_a_root_spelled_out_whole_is_kept_only_if_it_is_one():
+    assert roots.settle("كتب", "كتب") == "كتب"
+    assert roots.settle("بللّه", "الله") == ""  # a shadda is no radical: CAMeL's slip for بالله
+    assert roots.settle("بنت", "بنات") == ""  # three letters no book files: بنات is of ب ن ي
+    assert roots.settle("خنزر", "خنزير") == "خنزر"  # four: the books seldom list one as a root
+    assert roots.settle("سفرجل", "سفرجل") == "سفرجل"  # five, a bare noun's most
+    assert roots.settle("سفرجلل", "سفرجل") == ""
+
+
 def rootless(monkeypatch, word: str) -> None:
     monkeypatch.setattr(morphology, "readings", lambda w: [morphology.Reading(word, "", rooted=False)] if w == word else [])
 
