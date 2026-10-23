@@ -22,6 +22,7 @@ import { InstallSteps } from './InstallBanner'
 import OfflinePanel from './OfflinePanel'
 import Disclosure from '../ui/Disclosure'
 import Segmented from '../ui/Segmented'
+import LevelSetting from '../level/LevelSetting'
 
 // Settings grouped by the module they change, in the order settings.json first names each.
 const SECTIONS = Object.entries(Object.groupBy(SETTINGS, (setting) => setting.section))
@@ -59,6 +60,12 @@ export default function SettingsPanel({ open, onClose }) {
             Close
           </button>
         </div>
+
+        {/* The learner's level is the account's, not the device's: kept on its shelf, not in settings.json. */}
+        <section aria-label="Learning" className="space-y-4">
+          <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Learning</h3>
+          <LevelSetting />
+        </section>
 
         {SECTIONS.map(([section, all]) => {
           const settings = all.filter((setting) => !setting['needs-health'] || health[setting['needs-health']])

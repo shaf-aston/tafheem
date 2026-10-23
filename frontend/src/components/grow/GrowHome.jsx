@@ -1,7 +1,8 @@
 /**
  * Grow's home: level, streak, daily goal, today's lesson with each world's next step, every world (unbuilt ones shown as coming).
- * Today leads with the book last studied (its next lesson, one tap away) once there is one, then the Basics while a
- * beginner has begun them on this device and they have a lesson to give, and the words lesson otherwise;
+ * Today leads with the book last studied (its next lesson, one tap away) once there is one, then the learner's level
+ * (levels.json `grow`: a beginner's Basics, an advanced learner's Nahw), the Basics while begun on this device and with a
+ * lesson to give, and the words lesson otherwise;
  * a book with questions due shows its review as a step too.
  * A guest's log-in nudge rides on the title line (SectionHeader `aside`).
  */
@@ -12,6 +13,8 @@ import { REVIEW_SIZE } from '../../lib/bookLesson'
 import { LAST_BOOK, REVIEW } from '../../lib/useBookWorld'
 import { sayIn } from '../../lib/say'
 import { useRemembered } from '../../lib/useRemembered'
+import { levelOf } from '../../lib/learnerLevel'
+import { useLearnerLevel } from '../../lib/useLearnerLevel'
 import LogInButton from '../profile/LogInButton'
 import Emblem from '../ui/Emblem'
 import ArabicText from '../ui/ArabicText'
@@ -98,8 +101,10 @@ const hasWork = (state) => state.ready && (state.fresh > 0 || state.dueCount > 0
  */
 function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const [last] = useRemembered(LAST_BOOK, Object.keys(books), '')
+  // The world the learner's level starts from (levels.json `grow`); none until a level is chosen.
+  const leads = levelOf(useLearnerLevel().level)?.grow
   const { words, basics } = lessons
-  const onBasics = basics.begunHere && !(basics.ready && !hasWork(basics))
+  const onBasics = (basics.begunHere || leads === 'basics') && !(basics.ready && !hasWork(basics))
   const main = onBasics ? basics : words
   const mainId = onBasics ? 'basics' : 'words'
   const empty = main.ready && !hasWork(main)
@@ -107,7 +112,8 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const ayah = nextOf(lessons.quran)
   // Without words to start, a book leads even before one was studied.
   const open = (id) => books[id]?.ready && books[id].next
-  const lead = open(last) ? last : words.error ? Object.keys(books).find(open) ?? null : null
+  // A level that starts from a book (advanced: Nahw) leads with it until another book is studied.
+  const lead = open(last) ? last : open(leads) ? leads : words.error ? Object.keys(books).find(open) ?? null : null
   const lineOf = (state) => {
     if (state.ready) return say('{fresh} new {unit} · {due} to review', { fresh: state.next.fresh.length, unit: state.world.unit, due: state.next.reviews.length })
     return state.error ? say('Words could not load just now. The book worlds below still work.') : '\u00a0'
@@ -137,7 +143,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
         </>
       )}
       <div className="grow-nexts">
-        {basics.ready && !basics.begunHere && (
+        {basics.ready && !basics.begunHere && hero !== 'basics' && (!leads || leads === 'basics') && (
           <NextStep world={worldOf('basics')} where={say('New to Arabic?')} line={say('Start with ال, “the”')} onGo={() => onStart('basics')} />
         )}
         {basics.begunHere && hero !== 'basics' && hasWork(basics) && (
@@ -236,8 +242,9 @@ export default function GrowHome({ worlds, rewards, lessons, books, resume, onRe
       <SectionHeader tab="grow" subtitle={say('A little every day, in every part of the app.')}
         aside={rewards ? null : <LogInButton>{say('Log in to keep your XP')}</LogInButton>} />
       {resume && <Resume world={worldOf(resume.id)} onResume={onResume} />}
-      <Growth rewards={rewards} />
+      {/* Today's lesson first, where a phone's first screen shows it; the level, streak and goal under it. */}
       <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />
+      <Growth rewards={rewards} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>
       <div className="grow-worlds">
         {worlds.map((world, index) => (

@@ -11,6 +11,7 @@ import { useQuizRound } from '../lib/useQuizRound'
 import { useQuizScore } from '../lib/useQuizScore'
 import { useQuizSetup } from '../lib/useQuizSetup'
 
+import BasicsRound from './quiz/BasicsRound'
 import QuizAyah from './quiz/QuizAyah'
 import QuizExample from './quiz/QuizExample'
 import PracticeSentence from './quiz/PracticeSentence'
@@ -103,80 +104,85 @@ export default function QuizPanel({ accent, onProgress }) {
     // not merely untidy: a sentence built from two Urdu pieces with an element
     // between them comes out in the wrong order, because the element is neutral
     // and takes the direction of the text either side of it.
-    <div className="panel" lang={language} dir={language === 'en' ? 'ltr' : 'rtl'}>
+    // A lesson set (Basics) is Grow's cards, written in English whatever the meaning language.
+    <div className="panel" lang={bank.lesson ? 'en' : language} dir={language === 'en' || bank.lesson ? 'ltr' : 'rtl'}>
       <SectionHeader tab="quiz" title={say('Quiz')} />
 
       <QuizSetup setup={setup} owed={owed} say={say} phone={phone} accent={accent} onChange={startRound} />
 
-      {words.isError && (
-        <ErrorAlert
-          title={say('Could not load those words')}
-          error={words.error}
-          fallback={say('Those word lists may not have been built yet.')}
-        />
-      )}
-
-      {words.isPending && <Skeleton className="h-64 w-full" />}
-
-      {/* A short surah can hold fewer words than a question has options. Say so
-          instead of quietly padding the question out with words from elsewhere.
-          A set with no meanings in the chosen language is a different problem
-          with a different answer, so it is told apart rather than counted as a
-          set that is merely short. */}
-      {!words.isPending && !enough && !words.isError && (
-        <EmptyState>
-          {noneInLanguage
-            ? say(
-              "No {language} meaning has ever been written for these words."
-              + " The Qur'an sets have one; the everyday list has no {language} source at all.",
-              { language: say(MEANINGS[language].name) },
-            )
-            : bank.live
-              ? say('Nothing due now. A word comes back here when it is time to see it again.')
-              : say(
-                'Only {n} words here, too few for a {k}-option question.'
-                + ' Pick a longer surah or a whole juz.',
-                { n: questionCount, k: QUIZ.optionCount },
-              )}
-        </EmptyState>
-      )}
-
-      {enough && (
+      {bank.lesson ? <BasicsRound say={sayIn('en')} /> : (
         <>
-          <QuizBoard
-            round={play}
-            accent={accent}
-            say={say}
-            fill={fill}
-            autoNext={autoNext}
-            setAutoNext={setAutoNext}
-            score={score}
-            bestStreak={bestStreak}
-            onRestart={resetRound}
-            note={note}
-            afterAnswer={(word) => (word.ayah
-              ? <QuizAyah key={word.ayah.join(':')} ayah={word.ayah} accent={accent} />
-              : <QuizExample word={word.answerWord} accent={accent} say={say} />)}
-          />
-
-          {/* Said once, quietly, and only when it is true. A whole session
-              saved to nowhere is worth knowing about while it is happening,
-              not a week later when Review is mysteriously empty. */}
-          {!saving && (
-            <p className="text-center type-small text-[var(--text-faint)]">
-              {say('Answers aren’t being saved right now, so they won’t reach Review.')}
-            </p>
+          {words.isError && (
+            <ErrorAlert
+              title={say('Could not load those words')}
+              error={words.error}
+              fallback={say('Those word lists may not have been built yet.')}
+            />
           )}
 
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <p className="type-small text-[var(--text-faint)]">
-              {say('Keys 1–{k} answer', { k: QUIZ.optionCount })}
-            </p>
-            <FeedbackButton module="quiz" item={question?.answerId} accent={accent} />
-          </div>
+          {words.isPending && <Skeleton className="h-64 w-full" />}
 
-          <QuizInsights accent={accent} language={language} />
-          <PracticeSentence say={say} />
+          {/* A short surah can hold fewer words than a question has options. Say so
+              instead of quietly padding the question out with words from elsewhere.
+              A set with no meanings in the chosen language is a different problem
+              with a different answer, so it is told apart rather than counted as a
+              set that is merely short. */}
+          {!words.isPending && !enough && !words.isError && (
+            <EmptyState>
+              {noneInLanguage
+                ? say(
+                  "No {language} meaning has ever been written for these words."
+                  + " The Qur'an sets have one; the everyday list has no {language} source at all.",
+                  { language: say(MEANINGS[language].name) },
+                )
+                : bank.live
+                  ? say('Nothing due now. A word comes back here when it is time to see it again.')
+                  : say(
+                    'Only {n} words here, too few for a {k}-option question.'
+                    + ' Pick a longer surah or a whole juz.',
+                    { n: questionCount, k: QUIZ.optionCount },
+                  )}
+            </EmptyState>
+          )}
+
+          {enough && (
+            <>
+              <QuizBoard
+                round={play}
+                accent={accent}
+                say={say}
+                fill={fill}
+                autoNext={autoNext}
+                setAutoNext={setAutoNext}
+                score={score}
+                bestStreak={bestStreak}
+                onRestart={resetRound}
+                note={note}
+                afterAnswer={(word) => (word.ayah
+                  ? <QuizAyah key={word.ayah.join(':')} ayah={word.ayah} accent={accent} />
+                  : <QuizExample word={word.answerWord} accent={accent} say={say} />)}
+              />
+
+              {/* Said once, quietly, and only when it is true. A whole session
+                  saved to nowhere is worth knowing about while it is happening,
+                  not a week later when Review is mysteriously empty. */}
+              {!saving && (
+                <p className="text-center type-small text-[var(--text-faint)]">
+                  {say('Answers aren’t being saved right now, so they won’t reach Review.')}
+                </p>
+              )}
+
+              <div className="flex items-center justify-center gap-4 flex-wrap">
+                <p className="type-small text-[var(--text-faint)]">
+                  {say('Keys 1–{k} answer', { k: QUIZ.optionCount })}
+                </p>
+                <FeedbackButton module="quiz" item={question?.answerId} accent={accent} />
+              </div>
+
+              <QuizInsights accent={accent} language={language} />
+              <PracticeSentence say={say} />
+            </>
+          )}
         </>
       )}
     </div>

@@ -31,6 +31,8 @@ export function useLessonWorld({ world, module, load, keyOf, cards, alsoRefresh 
     world,
     stages,
     ready: Boolean(state),
+    // The record is being re-read (after a lesson): a lesson dealt now would offer the items just answered as new.
+    settling: summary.isFetching,
     error: source.error ?? summary.error,
     retry: () => { source.refetch(); summary.refetch() },
     ...(state ?? { dueCount: 0, items: [] }),

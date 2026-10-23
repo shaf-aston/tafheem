@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 
 import { DIRECTIONS, MEANINGS } from './quiz'
 import { BANKS, groupsFor, QUIZ, WHOLE_SET_SCOPES } from './quizBanks'
+import { levelOf } from './learnerLevel'
+import { useLearnerLevel } from './useLearnerLevel'
 import { useRemembered, useRememberedFlag } from './useRemembered'
 
 // What each remembered control is allowed to be, taken from the same tables the
@@ -36,7 +38,9 @@ export function useQuizSetup() {
   // fresh array every render would rebuild it under the player.
   const directions = useMemo(() => directionsIn(language), [language])
   const direction = directions.includes(savedDirection) ? savedDirection : directions[0]
-  const [bankId, setBankId] = useRemembered('quiz-bank', BANK_IDS, QUIZ.bank)
+  // Until a set is picked here, the learner's level picks it (levels.json `quiz-bank`): a beginner's Basics.
+  const levelBank = levelOf(useLearnerLevel().level)?.['quiz-bank']
+  const [bankId, setBankId] = useRemembered('quiz-bank', BANK_IDS, levelBank ?? QUIZ.bank)
   const [autoNext, setAutoNext] = useRememberedFlag('quiz-auto-next', QUIZ.autoNext)
   const bank = BANKS[bankId]
 
