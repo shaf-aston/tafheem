@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest'
 
 import { readRouteFromUrl, readViewParam, shareLink, writeTabToUrl, writeViewParams } from './tabUrl'
 
-const TABS = [{ id: 'nahw' }, { id: 'dict' }, { id: 'mem' }]
+const TABS = [{ id: 'nahw' }, { id: 'dict', label: 'Dictionary' }, { id: 'mem' }]
 const ORIGIN = 'https://tafheem-app.vercel.app'
 
 // A browser tab reduced to what tabUrl touches: the address and one history entry's state.
@@ -31,6 +31,11 @@ describe('the address shows the tab and the place in it', () => {
     openAt(shown(page), page.state)
     expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: 'ذهب' })
     expect(readViewParam('view', ['analyse', 'tree'])).toBe('analyse')
+  })
+
+  it('a tab typed by its name opens that tab, not the first one', () => {
+    openAt('/app/dictionary/%D9%83%D8%AA%D8%A8')
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'dict', value: 'كتب' })
   })
 
   it('a word searched is a new back step with the word in the address', () => {
