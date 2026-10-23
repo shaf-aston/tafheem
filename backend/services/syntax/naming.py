@@ -161,6 +161,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
              "printed": frames()["passive"]["verb"] if role == NAMED.fil and facts.is_passive(token) else None,
              "family": _family(token, bases, shown, s=s) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
              "named": (token.get("reading") or {}).get("named"),
+             "sense": (token.get("reading") or {}).get("sense"),  # the dictionary class its English is read in
              "book": book_path(found.path, found.book) if found else None,
              # محمدُ بنُ عبدِ اللهِ: the books also read the ابن as عطف بيان or بدل
              "also": book_map("nasab", "also") if role == NAMED.sifah and facts.is_nasab(token)

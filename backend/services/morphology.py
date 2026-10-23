@@ -292,6 +292,7 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
 
     lex = a.get("lex") or a.get("diac") or word
     lemma = strip_diacritics(lex)
+    guessed = NO_ANALYSIS in a.get("atbtok", "")
 
     cas = a.get("cas", "na") or "na"
     # A built word (a past verb, a pronoun) has no case: its last vowel is not one.
@@ -305,7 +306,9 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
         "type": word_type,
         "case": case_str,
         "case_raw": cas,
-        "gloss": a.get("gloss") or "",
+        # a word CAMeL could not read has its mark for that as the gloss, which is no English
+        "gloss": "" if guessed else a.get("gloss") or "",
+        "stemgloss": "" if guessed else a.get("stemgloss") or "",  # the word's own piece of the gloss
         "gender": a.get("gen") or "na",
         "number": a.get("num") or "na",
         "person": a.get("per") or "na",
@@ -494,6 +497,23 @@ def readings(word: str) -> list[Reading]:
 def glosses_of(word: str) -> list[str]:
     """CAMeL's gloss for every analysis of one word; [] when CAMeL is not there."""
     return [a.get("gloss") or "" for a in _analyses(word)]
+
+
+def gloss_as(reading: dict, pos: str | None) -> str:
+    """The reading's gloss with the word itself read as the class `pos`, its joined letters'
+    English kept: the grammar's job for a word CAMeL lists under more than one (فَإِنَّ is
+    "so indeed", the condition's فَإِنْ "so if"). A reading CAMeL has of that class spelled with
+    the word's own letters gives the sense, the likeliest first; with none the gloss stands."""
+    gloss = reading.get("gloss") or ""
+    if not pos or reading.get("pos") == pos:
+        return gloss
+    written = strip_diacritics(reading.get("base") or reading.get("word") or "")
+    other = next((a for a in _analyses(written)
+                  if a.get("pos") == pos and strip_diacritics(a.get("diac") or "") == written), None)
+    if other is None:
+        return gloss
+    stem = reading.get("stemgloss")
+    return "+".join(other.get("stemgloss") or piece if piece == stem else piece for piece in gloss.split("+"))
 
 
 def has_comparative(word: str) -> bool:

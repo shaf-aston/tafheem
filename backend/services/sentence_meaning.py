@@ -67,12 +67,14 @@ def read_words(text: str) -> tuple[list[dict], str | None]:
     """(a row per word, the grammar's name for the whole or None).
 
     The row is what the i'rab card says of the word: CAMeL's chosen reading plus the
-    role and case the book's rules gave it. The parser's model files may be missing,
+    role and case the book's rules gave it, its English read in the class the grammar
+    settled (إنّ "indeed", never the condition's "if"). The parser's model files may be missing,
     and then CAMeL's reading stands alone, with no role.
     """
     try:
         read = iraab.analyze(text)
-        cards = [(c["word"], c["camel"], c.get("role_key") and c.get("role"), c.get("case")) for c in read["words"]]
+        cards = [(c["word"], {**c["camel"], "gloss": morphology.gloss_as(c["camel"], c.get("sense"))},
+                  c.get("role_key") and c.get("role"), c.get("case")) for c in read["words"]]
         summary = read["summary"]
     except Exception as exc:  # noqa: BLE001, the parser is optional here
         logger.info("sentence meaning  no i'rab reading: %s", exc)
