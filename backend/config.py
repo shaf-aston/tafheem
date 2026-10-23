@@ -326,6 +326,9 @@ class Daleel(BaseSettings):
     grow_dir: str = "data/grow"
     # Past a handful of passages the list is scrolled, not read.
     daleel_result_limit: int = 12
+    # How far "Show more" may widen one page. Each passage asks the index for
+    # daleel_candidate_factor rows, so 48 is the most one question reads in.
+    daleel_result_limit_max: int = Field(default=48, gt=0)
     # A common word expands to its root family plus synonyms (hundreds for قول); capped to avoid a hundred-term search.
     daleel_root_expand_max: int = 6
     # Lower than the cap above because each translation also brings its root: six made a twelve-term search vs one to three for Arabic.

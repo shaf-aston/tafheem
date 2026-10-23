@@ -46,12 +46,16 @@ async def list_books() -> list[DaleelBook]:
 async def find(
     q: str = Query("", max_length=get_settings().search_max_query_chars),
     books: list[BookName] = Query(default=[]),
+    limit: int = Query(0, ge=0),
     response: Response = None,
 ) -> DaleelResponse:
     """Passages from the app's books that match what was asked.
 
     Runs off a prebuilt index, so this is a read, not a search of the books
     themselves. Nothing here calls an AI: this endpoint quotes and stops.
+    `limit` is how many passages, the page's own size when left out; "Show
+    more" asks the same question again with a bigger one, never past the most
+    one page may hold, so the screen need not know that number.
     """
     query = search_query(q)
     if not query:
@@ -73,7 +77,8 @@ async def find(
         timings.ms[step] = (now - since[0]) * 1000
         since[0] = now
 
-    limit = get_settings().daleel_result_limit
+    settings = get_settings()
+    limit = min(limit or settings.daleel_result_limit, settings.daleel_result_limit_max)
     hits = await asyncio.to_thread(search.search, query, limit, chosen, lap)
     if response is not None:  # FastAPI always passes it; a direct call (tests, scripts) may not
         response.headers["Server-Timing"] = timings.header()
@@ -81,6 +86,8 @@ async def find(
     return DaleelResponse(
         query=query,
         books=list(chosen),
+        # A full page may have more behind it; a short one was all there was.
+        more=len(hits) >= limit and limit < settings.daleel_result_limit_max,
         hits=[
             DaleelHit(
                 locator=hit.locator,

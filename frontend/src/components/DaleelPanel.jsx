@@ -11,7 +11,7 @@
  * leaving passages on screen from books the reader has just excluded.
  */
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 
 import { daleelBooksQuery, findDaleel } from '../api'
 import settings from '../daleel.json'
@@ -30,6 +30,7 @@ import Disclosure from './ui/Disclosure'
 import BookPicker from './daleel/BookPicker'
 import EmptyState from './ui/EmptyState'
 import IndexNotBuilt from './ui/IndexNotBuilt'
+import LoadMore from './ui/LoadMore'
 import Mark from './ui/Mark'
 import FlagButton from './ui/FlagButton'
 import MicButton from './ui/MicButton'
@@ -73,6 +74,22 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
     historyKey: 'daleel-history', ask: findDaleel, onVisit, incoming, arrival,
   })
 
+  // Show more: the same question again with a bigger page. A query of its own,
+  // not the search, so Recent and the trail do not count it as a second
+  // question, and the page already read stays up while the bigger one loads.
+  // Keyed to the books too: narrowing starts again from one page.
+  const asked = data && `${data.query}\n${data.books?.join('\n')}`
+  const [widened, setWidened] = useState({ asked: null, size: 0 })
+  const size = widened.asked === asked ? widened.size : 0
+  const bigger = useQuery({
+    queryKey: ['daleel', asked, size],
+    queryFn: () => findDaleel({ q: data.query, books: data.books, limit: size }),
+    enabled: size > 0,
+    placeholderData: keepPreviousData,
+  })
+  const answer = size > 0 && bigger.data && `${bigger.data.query}\n${bigger.data.books?.join('\n')}` === asked
+    ? bigger.data : data
+
   // The list of books to offer. Asked for once and kept: it changes only when
   // the index is rebuilt, which cannot happen while the page is open.
   const { data: catalogue = [] } = useQuery(daleelBooksQuery)
@@ -98,7 +115,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   // Stale results under a spinner is a state a reader has no way to name; the
   // skeleton fully replaces them instead of sitting on top, except through a
   // return (lib/useSearch).
-  const hits = inBookOrder(data?.hits ?? [], sourcesFor(sources, 'daleel'))
+  const hits = inBookOrder(answer?.hits ?? [], sourcesFor(sources, 'daleel'))
   // Each book's shelf (Qur'an, Tafsir, Dictionary…), as the catalogue files it.
   const shelfOf = new Map(catalogue.map((book) => [book.source, book.category]))
   const shelves = countShelves(hits, shelfOf)
@@ -238,6 +255,10 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
               label={`${looser.length} looser ${looser.length === 1 ? 'match' : 'matches'}`}>
               <ul className="space-y-3 pt-3">{looser.map(card)}</ul>
             </Disclosure>
+          )}
+          {answer.more && (
+            <LoadMore busy={bigger.isFetching}
+              onClick={() => setWidened({ asked, size: answer.hits.length + settings.more })} />
           )}
         </div>
       )}
