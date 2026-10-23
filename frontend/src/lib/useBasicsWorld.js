@@ -16,8 +16,11 @@ async function json(url) {
   return response.json()
 }
 
+// The verbs are only for the verb skills: without them (offline, before the file is saved) the words and the rest still load.
+const verbsOrNone = () => json(VERBS_URL).then(({ verbs }) => verbs, () => null)
+
 async function load() {
-  const [{ words, path }, { verbs }] = await Promise.all([json(SOURCE_URL), json(VERBS_URL)])
+  const [{ words, path }, verbs] = await Promise.all([json(SOURCE_URL), verbsOrNone()])
   const items = pathItems(words, { verbs, path })
   return { order: items, all: items }
 }

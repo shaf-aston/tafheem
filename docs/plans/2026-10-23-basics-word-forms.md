@@ -135,16 +135,19 @@ PERSONS: [{id:'he', subj:'he', s3:true}, 'she', 'they', {id:'you', hint:'one man
 verbTable(verb): Entry[]            // Entry {key:'past:she', ar, en}; keys past|present|future|future-sawfa|not|not-past|not-past-ma|not-future (×7)
                                     // + command|prohibit (×you, you-all); malformed: wrong:sa-past|wrong:sa-apart|wrong:lam-past|wrong:lan-past (en null)
 possessiveTable(word): Entry[]      // mine:my|your|his|her|our|your-all|their, + wrong:al|wrong:ta (ة kept); en null for wrong ones
+                                    // no wrong:al:my unless the noun ends in ة (ال + ـِي can be a real word: الْجَارِي)
 canPossess(word): boolean           // ends on a plain consonant or ة, no final shadda, no alif/hamza/weak letter
 meanings(entries): Map<ar, Set<en>>
 arabicOptions(entries, key, pool, random, n=2) -> [{id, text}]   // id 'right' plus the picked keys
 englishOptions(entries, key, pool, random, n=2) -> [{id, text}]
 // basicsSkills.js
-SKILLS: {[skill]: {title, markers:[{id, key, base, rule, pool:[keys]}], data:'verbs'|'nouns'}}
-pathItems(words, verbs, path) -> Item[]   // ال words + marker items {id:`${skill}:${marker}`, skill, marker}
-basicsCards(picked, ctx, random, intro) -> Card[]
+SKILLS: {[skill]: {title, table:'verbs'|'nouns', markers:[{id, key, base, persons, rule, pool:[keys], toEnglish?:[keys]}]}}
+                                    // toEnglish: the pool for the English direction when it differs (future: the bare present can say will)
+pathItems(words, {verbs, path=[]}) -> Item[]   // ال words + marker items {id:`${skill}:${marker}`, skill, marker, words}
+                                    // verbs null (file not loaded) → the verb skills are left out; the words always come
+basicsCards(picked, random, intro) -> Card[]
 ```
-- **Records:** `{module:'basics', item: item.id, context:{world:'basics', skill, direction, word: <the drawn verb or noun>}}`.
+- **Records:** `{module:'basics', item: item.id, context:{world:'basics', skill, direction, word: <the form asked>, from: <verb or noun id>, person?}}`.
 - **Seam:** a new skill is one `SKILLS` entry plus one path line. Its Arabic comes from a table function, and the picker already rules out ambiguity.
 
 ### Gate
@@ -165,3 +168,11 @@ basicsCards(picked, ctx, random, intro) -> Card[]
 - Vowel-only contrasts (كَتَبْتُ / كَتَبْتَ / كَتَبَتْ) are unavoidable in the past tense. Where a letter contrast exists it is preferred; the singular prohibition is never set against لا + present.
 - لا + present in the Qur'an often means "will not". The card says "doesn't", the usual beginner gloss.
 - Same shared guest record as before (Pick 0.1).
+- A returning learner's service worker may hold an old `basics.json` with no `path`, or lack `basics-verbs.json` offline → `pathItems` defaults the path and skips skills with no data, so the 128 words always load.
+- A lone vowel mark in a rule line (“the last ُ”) draws on a dotted circle → rules write marks on ـ (ـُ, ـْ); a test checks every rule.
+
+## 6 · Verify results
+- **Arabic reviewer:** all 20 verbs × 95 forms correct; no malformed distractor is a real word. Fixed: لا vs لن (لا can mean “won’t”, so not-future is never its distractor), the مَا rule, the command's اُ/اِ rule, ال + ـِي distractors (الْجَارِي), body nouns dropped from the possessives, the glosses for دخل (enter) and شكر (give thanks). Kept: “Hear!”, “Know!”.
+- **Code reviewer:** no serious bugs. Fixed: robust load (above), the bare present offered as wrong for “will” (now only in the English direction), lone marks in rules, records without the verb/noun and person. Each fix has a test that fails without it.
+- **Playwright + axe** at 375px, light and dark: 0 violations, no sideways scroll.
+- **Tests:** vitest full suite, eslint, pytest (63) green; Stryker on wordForms.js + basicsSkills.js below.

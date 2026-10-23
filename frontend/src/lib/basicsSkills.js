@@ -10,7 +10,8 @@
  *   negation  not             لَا لَمْ لَنْ مَا
  *   command   do! / don't!    اُكْتُبْ · لَا تَكْتُبْ
  *   future    will            سَ سَوْفَ
- * A marker's `pool` is the forms it is told apart from (keys of lib/wordForms.js tables, `{p}` the person drawn);
+ * A marker's `pool` is the forms it is told apart from (keys of lib/wordForms.js tables, `{p}` the person drawn; `toEnglish`, if
+ * given, the ones for the English direction);
  * the pickers there leave out any that could mean the same. The order of the path: `path` in public/grow/basics.json.
  */
 import { INTRO, MODULE, english, plain, teachWord, wordAsks } from './alifLam'
@@ -25,7 +26,7 @@ const own = (id, end, said, pool, to = '') => ({
   rule: `${end} on the end means “${said}”${to}. ${MINE_TAIL}`,
 })
 const fixed = (tense, person, base, rule, pool) => ({ id: person, key: `${tense}:${person}`, base, persons: [person], rule, pool })
-const particle = (id, persons, base, rule, pool) => ({ id, key: `${id}:{p}`, base, persons, rule, pool })
+const particle = (id, persons, base, rule, pool, toEnglish) => ({ id, key: `${id}:{p}`, base, persons, rule, pool, ...(toEnglish && { toEnglish }) })
 
 export const SKILLS = {
   mine: {
@@ -73,8 +74,8 @@ export const SKILLS = {
     markers: [
       // لَا + present can mean “won’t” too (لَا يُؤْمِنُونَ, they will not believe), so it is never set beside لَنْ.
       particle('not', EVERYONE, 'present:{p}', 'لَا before the present = not: “doesn’t” or “don’t” (in the Qur’an often “won’t”). English adds a word in front too.', ['present:{p}', 'not-past:{p}']),
-      particle('not-past', EVERYONE, 'present:{p}', 'لَمْ before the present = didn’t. The last ُ becomes ْ, and ـُونَ becomes ـُوا.', ['not:{p}', 'not-future:{p}', 'past:{p}', 'wrong:lam-past:{p}']),
-      particle('not-future', EVERYONE, 'future:{p}', 'لَنْ before the present = won’t. The last ُ becomes َ, and ـُونَ becomes ـُوا.', ['future:{p}', 'not-past:{p}', 'wrong:lan-past:{p}']),
+      particle('not-past', EVERYONE, 'present:{p}', 'لَمْ before the present = didn’t. The last ـُ becomes ـْ, and ـُونَ becomes ـُوا.', ['not:{p}', 'not-future:{p}', 'past:{p}', 'wrong:lam-past:{p}']),
+      particle('not-future', EVERYONE, 'future:{p}', 'لَنْ before the present = won’t. The last ـُ becomes ـَ, and ـُونَ becomes ـُوا.', ['future:{p}', 'not-past:{p}', 'wrong:lan-past:{p}']),
       particle('not-past-ma', EVERYONE, 'past:{p}', 'مَا before the past can say didn’t too, like لَمْ before the present. (مَا has other jobs as well, such as “what”.)', ['not:{p}', 'not-future:{p}', 'past:{p}']),
     ],
   },
@@ -82,16 +83,20 @@ export const SKILLS = {
     title: 'Do! Don’t!',
     table: 'verbs',
     markers: [
-      particle('command', ADDRESSED, 'present:{p}', 'A command is the present without its front letter: it ends in ْ (to a group, ـُوا) and starts with ا, said اُ when the present has ُ in the middle (اُكْتُبْ), else اِ (اِجْلِسْ). English drops “you” the same way.', ['present:{p}', 'past:{p}', 'prohibit:{p}']),
-      particle('prohibit', ADDRESSED, 'command:{p}', 'لَا before the “you” present, ending in ْ (to a group, ـُوا) = “Don’t …!”', ['command:{p}', 'present:{p}', 'past:{p}', 'future:{p}']),
+      particle('command', ADDRESSED, 'present:{p}', 'A command is the present without its front letter: it ends in ـْ (to a group, ـُوا) and starts with ا, said اُ when the present has ـُ in the middle (اُكْتُبْ), else اِ (اِجْلِسْ). English drops “you” the same way.', ['present:{p}', 'past:{p}', 'prohibit:{p}']),
+      particle('prohibit', ADDRESSED, 'command:{p}', 'لَا before the “you” present, ending in ـْ (to a group, ـُوا) = “Don’t …!”', ['command:{p}', 'present:{p}', 'past:{p}', 'future:{p}']),
     ],
   },
   future: {
     title: 'Will',
     table: 'verbs',
     markers: [
-      particle('future', EVERYONE, 'present:{p}', 'سَ joined to the front of the present = will. English adds a word; Arabic adds one letter.', ['present:{p}', 'past:{p}', 'wrong:sa-past:{p}', 'wrong:sa-apart:{p}']),
-      particle('future-sawfa', EVERYONE, 'future:{p}', 'سَوْفَ, a word of its own before the present, = will too.', ['present:{p}', 'past:{p}', 'wrong:sawfa-past:{p}']),
+      // The bare present can mean "will" too (يَكْتُبُ, he will write), so it is no wrong answer to "he will write";
+      // shown سَيَكْتُبُ, though, "he writes" is a wrong meaning, so it stays in the English direction.
+      particle('future', EVERYONE, 'present:{p}', 'سَ joined to the front of the present = will. English adds a word; Arabic adds one letter.',
+        ['past:{p}', 'not-future:{p}', 'wrong:sa-past:{p}', 'wrong:sa-apart:{p}'], ['present:{p}', 'past:{p}', 'not-future:{p}']),
+      particle('future-sawfa', EVERYONE, 'future:{p}', 'سَوْفَ, a word of its own before the present, = will too.',
+        ['past:{p}', 'not-future:{p}', 'wrong:sawfa-past:{p}'], ['present:{p}', 'past:{p}', 'not-future:{p}']),
     ],
   },
 }
@@ -109,10 +114,11 @@ export const OWNED = [
 /**
  * The path as items: `path` steps in order, `{ words: n }` the next n ال words, `{ skill }` that skill's markers;
  * any words left come at the end. A marker item carries what its questions draw from (`words`).
+ * A skill whose list did not load (`verbs` null: an older cached file, or offline) is left out, and the words still come.
  */
-export function pathItems(words, { verbs, path }) {
-  const nouns = OWNED.map((id) => words.find((word) => word.id === id))
-  const draws = { verbs, nouns }
+export function pathItems(words, { verbs, path = [] }) {
+  const nouns = OWNED.map((id) => words.find((word) => word.id === id)).filter(Boolean)
+  const draws = { verbs: verbs ?? [], nouns }
   const items = []
   let next = 0
   for (const step of path) {
@@ -121,6 +127,7 @@ export function pathItems(words, { verbs, path }) {
       next += step.words
     } else {
       const skill = SKILLS[step.skill]
+      if (!skill || !draws[skill.table].length) continue
       for (const marker of skill.markers) items.push({ id: `${step.skill}:${marker.id}`, skill: step.skill, marker, words: draws[skill.table] })
     }
   }
@@ -133,12 +140,12 @@ const keyFor = (template, person) => template.replace('{p}', person)
 const tagOf = (isNew) => (isNew ? 'New form' : 'Review')
 
 /** A marker's form of `word` (and the person), with the form it is set beside on its teach card. */
-function drawn(item, word, person) {
+function drawn(item, word, person, direction = 'to-arabic') {
   const table = tableOf(item, word)
   const at = (key) => table.find((entry) => entry.key === key)
   const { marker } = item
   const base = marker.base === 'bare' ? { ar: plain(word.ar), en: english(word, false) } : marker.base && at(keyFor(marker.base, person))
-  return { table, key: keyFor(marker.key, person), asked: at(keyFor(marker.key, person)), base, pool: marker.pool.map((one) => keyFor(one, person)) }
+  return { table, key: keyFor(marker.key, person), asked: at(keyFor(marker.key, person)), base, pool: (direction === 'to-english' && marker.toEnglish ? marker.toEnglish : marker.pool).map((one) => keyFor(one, person)) }
 }
 
 /** Taught on the list's first verb (كَتَبَ) or noun (كِتَاب), and the marker's first person. */
@@ -155,12 +162,17 @@ export function teachMarker(item) {
   }
 }
 
-const record = (item, direction, asked) => ({ module: MODULE, item: item.id, context: { world: MODULE, skill: item.skill, direction, word: asked.ar } })
+// `word` the form asked; `from` the verb or noun it was drawn from, and the person (none for a noun).
+const record = (item, direction, asked, word, person) => ({
+  module: MODULE, item: item.id, context: { world: MODULE, skill: item.skill, direction, word: asked.ar, from: word.id, ...(person && { person }) },
+})
 
 /** "she wrote" → pick the Arabic, and كَتَبَتْ → pick the English: each on its own verb (or noun) and person. */
 export function markerAsks(item, isNew, random) {
   const ask = (direction) => {
-    const { table, key, asked, pool } = drawn(item, pick(item.words, random), pick(item.marker.persons, random))
+    const word = pick(item.words, random)
+    const person = pick(item.marker.persons, random)
+    const { table, key, asked, pool } = drawn(item, word, person, direction)
     const toArabic = direction === 'to-arabic'
     return {
       kind: 'choose',
@@ -171,7 +183,7 @@ export function markerAsks(item, isNew, random) {
       options: (toArabic ? arabicOptions : englishOptions)(table, key, pool, random),
       answer: 'right',
       why: `${asked.ar} = ${asked.en}. ${item.marker.rule}`,
-      record: record(item, direction, asked),
+      record: record(item, direction, asked, word, person),
     }
   }
   return [ask('to-arabic'), ask('to-english')]

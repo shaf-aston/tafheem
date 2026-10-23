@@ -2,7 +2,7 @@
 // Grow's Basics world on the real word file: a tap from Home goes straight into the first lesson, which says what ال is,
 // teaches "the book", then asks it both ways; every answer is filed under module 'basics'. A page load on the same address
 // lands on Grow's home with the lesson offered instead.
-import { beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 
 import { renderScreen } from './render'
@@ -103,6 +103,21 @@ describe('basics', () => {
     await waitFor(() => expect(filed.at(-1)).toMatchObject({
       module: 'basics', item: 'mine:my', context: { world: 'basics', skill: 'mine', direction: 'to-arabic' },
     }))
+  })
+
+  describe('with the verbs file missing (offline, or before it was saved)', () => {
+    const served = globalThis.fetch
+    beforeEach(() => {
+      globalThis.fetch = (input) => (String(input).endsWith('/basics-verbs.json') ? Promise.resolve(new Response('', { status: 404 })) : served(input))
+    })
+    afterEach(() => { globalThis.fetch = served })
+
+    it('still opens the first lesson on the words', async () => {
+      renderScreen(<GrowPanel incoming="basics/lesson" arrival={1} handed onVisit={() => {}} />, { routes: routes() })
+      expect(await screen.findByText('means “the”')).toBeTruthy()
+      click('Continue')
+      expect(screen.getByText('a book')).toBeTruthy()
+    })
   })
 
   it('reads “new steps” on Today, since a step can be a word or an addition', async () => {

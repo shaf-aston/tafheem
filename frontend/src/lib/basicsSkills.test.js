@@ -51,6 +51,14 @@ describe('pathItems', () => {
     )
   })
 
+  it('still gives every word when the verbs or the path did not load (an older cached file, or offline)', () => {
+    const noVerbs = pathItems(words, { verbs: null, path })
+    expect(noVerbs.filter((item) => !item.marker)).toEqual(words)
+    expect(new Set(noVerbs.filter((item) => item.marker).map((item) => item.skill))).toEqual(new Set(['mine']))
+    expect(pathItems(words, { verbs })).toEqual(words)
+    expect(pathItems(words, { verbs, path: [{ skill: 'gone' }] })).toEqual(words)
+  })
+
   it('is as long as the last stage asks for', () => {
     const { stages } = worlds.worlds.find((world) => world.id === 'basics')
     expect(stages.at(-1)).toBe(items.length)
@@ -92,6 +100,12 @@ describe('markerAsks', () => {
     expect(toArabic.record).toMatchObject({ module: 'basics', item: 'past:she', context: { world: 'basics', skill: 'past', direction: 'to-arabic' } })
     expect(toEnglish.record.context.direction).toBe('to-english')
     expect(toEnglish.record.context.word).toBe(toEnglish.ar)
+    // Which verb and person were asked, so a later review can tell what a learner keeps missing.
+    expect(verbs.map((verb) => verb.id)).toContain(toArabic.record.context.from)
+    expect(toArabic.record.context.person).toBe('she')
+    const [mine] = markerAsks(itemOf('mine:his'), true, makeRandom(3))
+    expect(OWNED).toContain(mine.record.context.from)
+    expect(mine.record.context).not.toHaveProperty('person')
     expect(markerAsks(itemOf('past:she'), false, makeRandom(3))[0].tag).toBe('Review')
   })
 
@@ -111,6 +125,22 @@ describe('markerAsks', () => {
     }
     expect(asked.size).toBeGreaterThan(15)
     expect(persons.size).toBeGreaterThanOrEqual(5)
+  })
+
+  it('never offers the plain present as wrong for “will”, since it can say will too, but does for reading سَ', () => {
+    for (const id of ['future:future', 'future:future-sawfa']) {
+      for (let seed = 1; seed <= 40; seed += 1) {
+        const [toArabic, toEnglish] = markerAsks(itemOf(id), true, makeRandom(seed))
+        const word = verbs.find((verb) => verb.id === toArabic.record.context.from)
+        const table = verbTable(word)
+        const presents = new Set(table.filter((entry) => entry.key.startsWith('present:')).map((entry) => entry.ar))
+        for (const option of toArabic.options) expect(presents.has(option.text), `${id} ${option.text}`).toBe(false)
+        expect(toEnglish.options.length).toBe(3)
+      }
+    }
+    const offered = new Set()
+    for (let seed = 1; seed <= 40; seed += 1) for (const option of markerAsks(itemOf('future:future'), true, makeRandom(seed))[1].options) offered.add(option.id.split(':')[0])
+    expect(offered).toContain('present')
   })
 
   it('asks a command of the two “you” persons only', () => {
@@ -162,6 +192,13 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
         expect(card.options.map((option) => option.text)).not.toContain(not.en)
       }
     }
+  })
+})
+
+describe('rules', () => {
+  // A vowel mark alone, after a space or quote, draws on a dotted circle or on the letter before it: it sits on ـ.
+  it.each(markers.map((item) => [item.id, item.marker.rule]))('%s: no mark stands alone', (_, rule) => {
+    expect(rule).not.toMatch(/(?:^|[\s"“‘(,.])[\u064B-\u0652]/)
   })
 })
 
