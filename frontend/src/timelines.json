@@ -1,5 +1,5 @@
 {
- "_comment": "Timelines tab knobs, read only by lib/timelineLayout.js. Content lives in backend/data/timelines; colours in theme.json's timeline group.",
+ "_comment": "Timelines tab knobs, read only by lib/timeline/. Content lives in backend/data/timelines; colours in theme.json's timeline group.",
  "_comment-look": "Each section's picture and hue (0 to 360, turned into its tint by theme.json's timeline group). unknown is what a section not listed here wears. event-icons are cycled down a section's event cards in order.",
  "sections": {
   "prophets": { "icon": "branch", "hue": 150 },

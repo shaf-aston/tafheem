@@ -9,7 +9,7 @@
  * title right under this line already says it, and the line is just the way
  * back to the section.
  */
-import { readingOrder } from '../../lib/timelineLayout'
+import { readingOrder } from '../../lib/timeline/steps'
 
 export default function TimelineWhere({ section, event, here, onHere, onPick }) {
   const at = readingOrder(event.steps).find((r) => r.step.id === here)

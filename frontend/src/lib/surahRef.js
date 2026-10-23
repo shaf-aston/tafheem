@@ -129,3 +129,12 @@ export function placeProblem(text) {
   const { matches: [m], ayah } = readSurahRef(text, CLOSE.inside)
   return m ? ayahProblem(m, ayah) : null
 }
+
+/**
+ * The ayah a Qur'an reference opens on: the first of its range, or the first of
+ * the surah. The Qur'an tab reads one ayah at a time (surahRef's AYAH_REF).
+ */
+export function firstAyah(ref) {
+  const [surah, ayahs = '1'] = ref.split(':')
+  return `${surah}:${ayahs.split('-')[0]}`
+}

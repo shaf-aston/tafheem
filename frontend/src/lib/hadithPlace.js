@@ -1,6 +1,6 @@
 /**
  * Where the Hadith tab is: "bukhari", "bukhari/1", or "bukhari/1/2a" for one
- * hadith. Same shape as lib/timelineLayout's parsePlace/placeOf, so a deep
+ * hadith. Same shape as lib/timeline/address's parsePlace/placeOf, so a deep
  * link and the back arrow work here exactly as they do on every other tab.
  *
  * Pure: no fetching. Only the collection id is checked against what was
