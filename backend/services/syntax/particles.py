@@ -25,6 +25,9 @@ def _lemma(token: dict) -> str:
     """The word's lemma, spelled as the reader typed it: إِذًا (a tanween) is the spelling of
     إذن, which the time word إذا never takes (data: nasb_mudari `tanween_spells`)."""
     lemma = strip_diacritics(token["lemma"]).strip("+")
+    written = strip_diacritics(token["form"]).strip("+")
+    if written != lemma and written.endswith(lemma) and written in _words():
+        lemma = written  # فَلَمّا: the dictionary files the negation لَمّا under ما; the word written is لما
     spelled = book_map("nasb_mudari", "tanween_spells").get(lemma)
     return spelled if spelled and facts.typed_tanween(token) else lemma
 
@@ -465,7 +468,7 @@ def _retagged() -> frozenset[str]:
 
 
 def stamp(tokens: list[dict]) -> None:
-    """Stamp each listed word's reading on its token: {family, named, kind, book}, and the
+    """Stamp each listed word's reading on its token: {family, named, kind, book, sense}, and the
     families the tree judges for it as `judged`. A word no leaf took (a و that opens no
     sentence) is read by its other lists as before, never as one of those families."""
     s = facts.Sentence(tokens)
@@ -480,9 +483,11 @@ def stamp(tokens: list[dict]) -> None:
             token["lemma"] = word  # إِذًا is إذن, to every list
         values = {"word": word, **{axis: answer(token, s) for axis, (_, answer) in AXES.items()}}
         if found := walker.walk(values, _tree()):
+            retag = found.leaf.get("retag", {})
             token["reading"] = {"family": found.role, "named": found.leaf.get("named"),
-                                "kind": found.leaf.get("kind", "harf"), "book": found.book}
-            token.update(found.leaf.get("retag", {}))
+                                "kind": found.leaf.get("kind", "harf"), "book": found.book,
+                                "sense": found.leaf.get("sense", retag.get("pos_camel"))}
+            token.update(retag)
     _merged(tokens, s)
     _emphasis_lam(tokens, s)
     _hasr_frees_its_words(tokens)

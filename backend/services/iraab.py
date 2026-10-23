@@ -115,6 +115,7 @@ def _named(entry: dict, found: dict, annexed: bool) -> None:
     entry.update(role=found["role"], book=found.get("book"), role_key=role_key(plain),
                  family=found.get("family"),  # كان، إنّ: named by what they govern (signs.settle)
                  named=found.get("named"),  # أَلَا: a reading's own name, where the family card's does not fit
+                 sense=found.get("sense"),  # إنّ "indeed", not the condition's "if": the job's English (sentence_meaning)
                  name=found.get("name"),  # the picture's finer name (حرف ناسخ، فعل أمر), said on the card too
                  governor=found.get("governor"), follows=found.get("follows"))
     if plain != NAMED.fil and entry.get("type") == "fi'l":  # نَعْبُدُ keeps CAMeL's tense and mood
