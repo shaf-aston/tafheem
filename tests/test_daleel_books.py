@@ -19,7 +19,8 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.scripts.build_daleel_index import _META_SCHEMA, fill_meta  # noqa: E402
-from backend.services.daleel import search  # noqa: E402
+from backend.services.daleel import catalogue, search  # noqa: E402
+from backend.services.daleel.index import connection, share  # noqa: E402
 
 _SCHEMA = """
 CREATE VIRTUAL TABLE passage USING fts5(
@@ -71,12 +72,12 @@ def index(tmp_path, monkeypatch):
     fill_meta(conn)
     conn.commit()
     conn.close()
-    monkeypatch.setattr(search, "data_path", lambda _key: path)
+    monkeypatch.setattr(connection, "data_path", lambda _key: path)
     return path
 
 
 def test_every_book_is_listed_with_its_source(index):
-    assert search.books() == [
+    assert catalogue.books() == [
         ("Quranic Arabic Corpus", "corpus"),
         ("بداية المبتدي", "fiqh-books"),
         ("مختصر القدوري", "fiqh-books"),
@@ -84,8 +85,8 @@ def test_every_book_is_listed_with_its_source(index):
 
 
 def test_no_index_lists_no_books(tmp_path, monkeypatch):
-    monkeypatch.setattr(search, "data_path", lambda _key: tmp_path / "nothing.db")
-    assert search.books() == []
+    monkeypatch.setattr(connection, "data_path", lambda _key: tmp_path / "nothing.db")
+    assert catalogue.books() == []
 
 
 def test_naming_a_book_searches_only_that_book(index):
@@ -137,7 +138,7 @@ def test_every_source_gets_its_share_of_the_places(index):
     """
     conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
     try:
-        rows = search._fairly(conn, f'"{_ARABIC_PRAYER}"', 1)
+        rows = share.fairly(conn, f'"{_ARABIC_PRAYER}"', 1)
     finally:
         conn.close()
 
@@ -150,7 +151,7 @@ def test_a_share_of_one_book_is_still_only_that_book(index):
     reader had just excluded and show one hit instead of two."""
     conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
     try:
-        rows = search._fairly(conn, f'"{_ARABIC_PRAYER}"', 8, ("\u0645\u062e\u062a\u0635\u0631 \u0627\u0644\u0642\u062f\u0648\u0631\u064a",))
+        rows = share.fairly(conn, f'"{_ARABIC_PRAYER}"', 8, ("\u0645\u062e\u062a\u0635\u0631 \u0627\u0644\u0642\u062f\u0648\u0631\u064a",))
     finally:
         conn.close()
 
@@ -163,8 +164,24 @@ def test_a_share_holds_the_better_passage_not_the_earlier_one(index):
     later. Cut by passage order, it went to whichever came first in the file."""
     conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
     try:
-        rows = search._fairly(conn, '"النافلة" OR "جائزة"', 1)
+        rows = share.fairly(conn, '"النافلة" OR "جائزة"', 1)
     finally:
         conn.close()
 
     assert [row[1] for row in rows] == ["بداية المبتدي"]
+
+
+def test_the_command_line_runs_the_same_search(index, capsys):
+    """`python -m backend.services.daleel` is how a person or an agent asks
+    without the web server; it must answer as the API does."""
+    import json
+
+    from backend.services.daleel.__main__ import main
+
+    assert main(["النافلة", "--book", "مختصر القدوري", "--json"]) == 0
+    printed = json.loads(capsys.readouterr().out)
+    assert [hit["book"] for hit in printed] == ["مختصر القدوري"]
+
+    assert main(["النافلة", "--explain"]) == 0
+    out = capsys.readouterr().out
+    assert "candidates" in out and "[exact]" in out

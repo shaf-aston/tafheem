@@ -4,8 +4,8 @@ Every book is promised a place, so without a floor each one sent its best
 guess however poor: الرحييم came back as al-Fatihah and ten passages sharing
 one run of letters with it.
 """
-from backend.services.daleel.expand import Expansion
-from backend.services.daleel.search import _close_enough, rank_of
+from backend.services.daleel.query.expand import Expansion
+from backend.services.daleel.match.rank import close_enough as _close_enough, rank_of
 
 
 def row(fold, source="corpus"):

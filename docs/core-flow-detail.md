@@ -43,6 +43,7 @@ python backend/scripts/build_tamreen.py save|build # the Tamreen form quizzes as
 python backend/scripts/build_daleel_index.py   # every book into one searchable index (the whole thing, never --only)
 python backend/scripts/build_daleel_index.py --words # just the word table, added to the index already there
 python backend/scripts/build_daleel_index.py --meta  # just the source/book table, added to the index already there
+python -m backend.services.daleel صبر --explain     # ask the built index from a terminal: hits, terms, ms per step (--json, --book)
 ```
 
 ## Detail not in CORE-FLOW.md

@@ -160,7 +160,9 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
           the results are, so on a phone it costs one line rather than six. */}
       <ChipRow scroll role="group" aria-label="Which subject">
         {[[EVERY, books.length], ...shelves(books)].map(([name, count]) => (
-          <Chip key={name} selected={category === name} accent={accent} onClick={() => pickShelf(name)}>
+          // Tinted, so the chosen subject is filled and not only recoloured: an
+          // outline in another colour was the one sign of which was on.
+          <Chip key={name} selected={category === name} tinted accent={accent} onClick={() => pickShelf(name)}>
             <span className="whitespace-nowrap">{name === EVERY ? 'All books' : name} {count}</span>
           </Chip>
         ))}

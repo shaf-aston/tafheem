@@ -23,7 +23,7 @@ import sqlite3
 from pathlib import Path
 from typing import Iterable
 
-from backend.services.daleel.model import Passage
+from backend.services.daleel.sources.model import Passage
 
 _BOOKS = Path(__file__).resolve().parents[3] / "data" / "books"
 _DB = _BOOKS / "openiti.db"

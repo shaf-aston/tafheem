@@ -11,7 +11,7 @@ give every new book a chance to alter how every other book is found.
 from __future__ import annotations
 
 from backend.services import lexicons
-from backend.services.daleel.model import Source
+from backend.services.daleel.sources.model import Source
 from backend.services.daleel.sources.maqayees import MaqayeesSource
 from backend.services.daleel.sources.openiti import OpenItiSource
 from backend.services.daleel.sources.quran import QuranSource

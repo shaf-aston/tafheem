@@ -9,8 +9,8 @@ hold today.
 Several of these pin behaviour that was wrong when first run, and the comment
 on each says what it was, so it is clear the case is real and not invented.
 """
-from backend.services.daleel.expand import Expansion
-from backend.services.daleel.search import rank_of
+from backend.services.daleel.query.expand import Expansion
+from backend.services.daleel.match.rank import rank_of
 
 TIER = 0
 ROOT_TIER = 3

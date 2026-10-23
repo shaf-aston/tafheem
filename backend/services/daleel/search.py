@@ -1,70 +1,28 @@
-"""Find the passages, put the best first, and say how strong each match is.
+"""One question in, the passages worth showing out, best first.
 
-Two jobs, deliberately kept apart. Fetching candidates needs the index and so
-needs SQLite; deciding which candidate is the better answer is a rule about
-words and needs nothing, so `rank_of` below is pure and is tested on its own.
+The whole pipeline, in the order it runs, each step in its own package:
 
-Two sharp edges in here, both found by running the thing:
+    query/expand   typed words → search terms (synonyms, translations, roots)
+    index/         terms → candidate passages from daleel.db, a share per source
+    match/rank     candidates → ranked, poor typo guesses dropped, spread over books
+    match/marks    each kept passage → where its matched words are, for the screen
 
-The trigram index cannot match anything shorter than three characters, and it
-does not complain when asked to, it simply returns nothing. Arabic is full of
-two-letter words, so a search for أب would quietly find zero passages and look
-like an honest "not in the book". Short terms are matched a different way.
-
-And a trigram index matches *substrings*, which is not the same as tolerating a
-typo: الرحييم is not a substring of anything, so it found nothing at all. What
-does tolerate a typo is comparing the query's own three-letter runs against the
-book's, because a misspelt word still shares most of them with the word meant.
-That runs only when the ordinary search has already come back empty, so it
-costs nothing on a query that was spelled correctly, and it is reported as a
-loose match rather than passed off as a clean find.
+Try it from a terminal: `python -m backend.services.daleel صبر`.
 """
 from __future__ import annotations
 
-import bisect
-import heapq
-import logging
-import re
-import sqlite3
 from dataclasses import dataclass
-from functools import lru_cache
-from typing import NamedTuple
+from typing import Callable
 
-from backend.config import data_path, get_settings
+from backend.config import get_settings
 from backend.services import fts
 
-from backend.services.arabic_text import bare_letters, has_arabic
-from backend.services.daleel import registry
-from backend.services.daleel.expand import Expansion, expand
-from backend.services.daleel.lexicon import DictionaryLexicon
-from backend.services.readonly_db import ReadOnlyDb
-
-log = logging.getLogger(__name__)
-
-# This thread's read-only connection to the index, reopened when a build replaces it.
-_db = ReadOnlyDb(lambda: data_path("daleel_index_path"))
-
-_MATCH_ALL = "exact"
-_MATCH_SOME = "partial"
-_MATCH_RELATED = "related"
-_MATCH_ROOT = "root"
-_MATCH_LOOSE = "loose"
-
-
-class Passage(NamedTuple):
-    """One row of the index, as every query here reads it."""
-
-    source: str
-    book: str
-    locator: str
-    arabic: str
-    english: str
-    roots: str
-    fold: str
-
-
-# The passage columns, read through the FTS table's alias `p`.
-_COLUMNS = ", ".join(f"p.{name}" for name in Passage._fields)
+from backend.services.daleel.index.candidates import candidates
+from backend.services.daleel.index.connection import db
+from backend.services.daleel.match.marks import Span, marks
+from backend.services.daleel.match.rank import Tier, close_enough, rank_of, spread
+from backend.services.daleel.query.expand import Expansion, expand
+from backend.services.daleel.query.lexicon import DictionaryLexicon
 
 
 @dataclass(frozen=True)
@@ -79,644 +37,63 @@ class Hit:
     arabic: str
     english: str
     match: str
-    """One of exact / partial / root / loose. Carried to the screen so a loose
-    match can be labelled as one instead of passing for a clean find."""
-    arabic_marks: tuple[tuple[int, int], ...] = ()
-    english_marks: tuple[tuple[int, int], ...] = ()
+    """A `Tier` label: exact / partial / related / root / loose. Carried to the
+    screen so a loose match can be labelled as one instead of passing for a clean find."""
+    arabic_marks: tuple[Span, ...] = ()
+    english_marks: tuple[Span, ...] = ()
     """Where in `arabic` and `english` the words that made it a match are, as
     [start, end) character offsets, so the screen can show why it came back
     without knowing anything about how Arabic is matched."""
 
 
-def search(query: str, limit: int | None = None, books: tuple[str, ...] = ()) -> list[Hit]:
+def search(
+    query: str,
+    limit: int | None = None,
+    books: tuple[str, ...] = (),
+    lap: Callable[[str], None] = lambda step: None,
+) -> list[Hit]:
     """Passages worth showing for what was typed, best first.
 
     `books` narrows the search to those books by name. Empty means every book,
-    which is the ordinary case. The router passes them through known_books first.
+    which is the ordinary case. The router passes them through
+    `catalogue.known_books` first. `lap` is told as each step ends, which is
+    how the command line times them without a second copy of this pipeline.
     """
     settings = get_settings()
     limit = limit or settings.daleel_result_limit
 
-    expansion = expand(
+    expansion = expand_query(query)
+    lap("expand")
+    if expansion.is_empty():
+        return []
+
+    conn = db()
+    if conn is None:
+        return []
+    rows = candidates(conn, expansion, limit * settings.daleel_candidate_factor, tuple(books))
+    lap("candidates")
+
+    ranked = close_enough(sorted(((rank_of(row, expansion), row) for row in rows), key=lambda i: i[0]), expansion)
+    page = spread(ranked, limit)
+    lap("rank")
+
+    shown = (*expansion.phrase_terms, *expansion.typed, *expansion.related)
+    hits = [
+        Hit(row.source, row.book, row.locator, row.arabic, row.english, Tier(rank[0]).label,
+            marks(row.arabic, shown), marks(row.english, shown))
+        for rank, row in page
+    ]
+    lap("marks")
+    return hits
+
+
+def expand_query(query: str) -> Expansion:
+    """What was typed, as the terms to search for, with the app's settings."""
+    settings = get_settings()
+    return expand(
         query,
         DictionaryLexicon(),
         max_expand=settings.daleel_root_expand_max,
         max_translations=settings.daleel_english_expand_max,
         min_trigram_len=fts.TRIGRAM_MIN,
     )
-    if expansion.is_empty():
-        return []
-
-    conn = _db()
-    if conn is None:
-        return []
-    rows = _candidates(conn, expansion, limit * settings.daleel_candidate_factor, tuple(books))
-
-    ranked = _close_enough(sorted(((rank_of(row, expansion), row) for row in rows), key=lambda i: i[0]), expansion)
-
-    shown = (*expansion.phrase_terms, *expansion.typed, *expansion.related)
-    return [
-        Hit(row.source, row.book, row.locator, row.arabic, row.english, _MATCH_BY_TIER[rank[0]],
-            marks(row.arabic, shown), marks(row.english, shown))
-        for rank, row in _spread(ranked, limit)
-    ]
-
-
-def _close_enough(ranked: list[tuple], expansion: Expansion) -> list[tuple]:
-    """The guesses at a misspelling that are as near as the nearest one.
-
-    Every book is promised a place below, so without this each one sent its
-    best guess however poor: searching الرحييم gave al-Fatihah and ten
-    passages that shared a run of letters with it, a millstone idiom and a
-    grammar's opening page among them. A guess is kept when it is no more
-    letters away than the closest guess, and never more than a third of the word.
-    """
-    loose = [rank[1] for rank, _ in ranked if rank[0] == _LOOSE_TIER]
-    if not loose:
-        return ranked
-    most = min(min(loose), _allowed_edits(expansion.loose))
-    return [item for item in ranked if item[0][0] != _LOOSE_TIER or item[0][1] <= most]
-
-
-_LOOSE_TIER = 4
-
-
-def _spread(ranked: list[tuple], limit: int) -> list[tuple]:
-    """The best matches, with every book that has one getting a place.
-
-    Sorted purely on how good a match each passage is, so no book is favoured;
-    but a book that matched is then guaranteed one slot before the rest of the
-    list is filled. Without that guarantee the Qur'an wins every slot on almost
-    any query, simply because it has by far the most passages, and a reader
-    would never learn that the dictionary or Ibn Faris had an answer too.
-    """
-    best_of: dict[str, tuple] = {}
-    for item in ranked:
-        best_of.setdefault(item[1].source, item)
-
-    chosen = list(best_of.values())[:limit]
-    taken = {_key(item[1]) for item in chosen}
-
-    for item in ranked:
-        if len(chosen) >= limit:
-            break
-        if _key(item[1]) not in taken:
-            chosen.append(item)
-            taken.add(_key(item[1]))
-
-    return sorted(chosen, key=lambda i: i[0])
-
-
-def _key(row: Passage) -> tuple[str, str]:
-    """One passage, however many queries found it."""
-    return row.source, row.locator
-
-
-_MATCH_BY_TIER = {
-    0: _MATCH_ALL,
-    1: _MATCH_SOME,
-    2: _MATCH_RELATED,
-    3: _MATCH_ROOT,
-    4: _MATCH_LOOSE,
-}
-
-
-def rank_of(row: Passage, expansion: Expansion) -> tuple[int, int, int, int]:
-    """How good a match this row is. Pure, so it can be argued with in a test.
-
-    Returns four numbers, all smaller-is-better: the tier, then a strength
-    within that tier, then where the first hit falls, then how long the passage
-    is. Position matters because a passage whose opening words answer the
-    question reads as the better quotation; length breaks the remaining ties
-    towards the tighter passage rather than the rambling one.
-
-    The three weaker tiers each need their own strength, because the one that
-    suits a word match means nothing to them. A root match has no position to
-    speak of, so it counts how many of the query's roots the passage carries; a
-    loose match counts how much of the misspelt word it shares.
-    """
-    _, _, _, _, english, roots, fold = row
-
-    # Both halves of the passage count as places a term can be found. Some
-    # books here are English only, Ibn Kathir among them, and a rule that read
-    # the Arabic alone would rank every one of their passages as a bad match.
-    fold = f"{fold} {english.lower()}"
-
-    present = [term for term in expansion.typed if _found(term, fold) >= 0]
-    also = [term for term in expansion.related if _found(term, fold) >= 0]
-
-    if expansion.phrase and _found(expansion.phrase, fold) >= 0:
-        # The words as typed, in order, beat the same words anywhere.
-        return (0, -_PHRASE, _found(expansion.phrase, fold), len(fold))
-    if expansion.typed and len(present) == len(expansion.typed):
-        tier = 0
-    elif present:
-        tier = 1
-    elif also:
-        tier = 2
-    elif shared_roots := sum(bool(_has_root(roots, root))
-                         for root in expansion.roots):
-        return (3, -shared_roots, 0, len(fold))
-    else:
-        return (_LOOSE_TIER, _closeness(expansion.loose, fold), 0, len(fold))
-
-    # A passage using the word beats one that merely contains its letters.
-    # Without this the shortest passage won every tie, and the shortest thing
-    # in the index is a dictionary headword: searching كتب returned كتبي and
-    # كتبة ahead of the ayahs that actually say كُتِبَ.
-    #
-    # The test is that the word *ends* where a word ends, and deliberately says
-    # nothing about what comes before it. Arabic writes its prefixes joined on,
-    # so بِالصَّبْرِ is the ordinary way an ayah says الصبر; demanding a space on
-    # both sides called that a poor match and put a dictionary entry above the
-    # verse. A suffix is different: كتبي is a different word from كتب.
-    matched = present or also
-    whole = sum(next(_uses(term, fold, whole=True), None) is not None for term in matched)
-
-    first = min((_found(term, fold) for term in matched), default=len(fold))
-    return (tier, -whole, first, len(fold))
-
-
-# Whatever Arabic writes joined on in front of a word: and, so, with, for, like,
-# the, and لل, which is ل and ال with the alef dropped.
-_PROCLITIC = "(?:[وف]?(?:لل|[بلك]?(?:ال)?))"
-# Arabic letters as the folded text holds them, with Persian and Urdu forms and
-# the presentation forms, so none of them reads as the edge of a word.
-_ARABIC_LETTER = "\u0621-\u064A\u0671-\u06D3\uFB50-\uFDFF\uFE70-\uFEFF"
-_NOT_LETTER = f"(?![a-z{_ARABIC_LETTER}])"
-_PROCLITIC_AT_START = re.compile(f"^{_PROCLITIC}")
-_WORDS = re.compile(f"[a-z{_ARABIC_LETTER}]+")
-
-
-def _pattern(term: str, whole: bool = False) -> re.Pattern:
-    """What counts as using the term, as a pattern whose group 1 is the term.
-
-    Containing its letters is not enough, and how much more is needed depends
-    on the word. An English word has to start where a word starts, or prayer
-    found "sprayer" and zakat found "zawzakat" and both were called clean
-    finds. A two-letter Arabic word has to be the whole word, bar what Arabic
-    joins on in front: أب was found inside الكتاب and تراب, and من inside every
-    منه. A longer Arabic word keeps matching inside a word, because that is
-    how Arabic inflects it: يكتب and كتبه are كتب.
-
-    `whole` asks further that the word end there, which is the strength inside a tier.
-    """
-    word = f"({re.escape(term)})"
-    if not has_arabic(term):
-        found = f"(?<![a-z]){word}"
-    elif len(term) < fts.TRIGRAM_MIN:
-        found = f"(?<![{_ARABIC_LETTER}]){_PROCLITIC}{word}{_NOT_LETTER}"
-    else:
-        found = word
-    return re.compile(found + (_NOT_LETTER if whole else ""))
-
-
-# Stronger than any count of whole words, so the phrase always leads its tier.
-_PHRASE = 1000
-
-# A short word with a letter joined on that is a word of its own: لما is
-# "when", not ل and ما, and was being passed off as a clean find for ما.
-_OWN_WORDS = frozenset({"لما"})
-
-
-def _uses(term: str, text: str, whole: bool = False):
-    """Each place the term is used as a word in the text. See _pattern."""
-    for found in _pattern(term, whole).finditer(text):
-        if text[found.start():found.end(1)].lstrip("وف") not in _OWN_WORDS:
-            yield found
-
-
-def _found(term: str, text: str) -> int:
-    """Where the term is first used as a word in the text, or -1."""
-    found = next(_uses(term, text), None)
-    return found.start(1) if found else -1
-
-
-def marks(text: str, terms: tuple[str, ...]) -> tuple[tuple[int, int], ...]:
-    """Where in the text as printed each term is used, each widened to its whole word.
-
-    The terms are folded and the text is not, so the text is folded a letter
-    at a time with a note of where each folded letter came from. It is folded
-    twice, once for each spelling the index holds, so الصلاة is found in the
-    ayah's الصلوٰة as well as in a book's الصلاة. The rule for what counts as
-    a use is _uses, the same one that ranked the passage.
-    """
-    if not text or not terms:
-        return ()
-    found: list[tuple[int, int]] = []
-    for written in (False, True):
-        folded, origin = _folded_with_origin(text, written)
-        for term in terms:
-            for use in _uses(term, folded):
-                start, end = origin[use.start(1)], origin[use.end(1) - 1] + 1
-                found.append(_widened(text, start, end))
-    return tuple(_merged(found))
-
-
-_SMALL_ALEF = "\u0670"
-_MARK = re.compile("[\u0610-\u061a\u064b-\u065f\u06d6-\u06ed]")
-
-
-@lru_cache(maxsize=4096)
-def _fold_letter(letter: str) -> str:
-    return bare_letters(letter).lower()
-
-
-def _folded_with_origin(text: str, written: bool) -> tuple[str, list[int]]:
-    """The text folded as the index folds it, and for each folded letter the
-    place in `text` it came from. `written` spells the small alef out, as the
-    second of the index's two spellings does: a waw or ya carrying it becomes
-    that alef, as in الصلوٰة."""
-    out: list[str] = []
-    origin: list[int] = []
-    for at, letter in enumerate(text):
-        if written and letter == _SMALL_ALEF:
-            piece = "ا"
-        elif written and letter in "وي" and _carries_small_alef(text, at):
-            piece = ""
-        else:
-            piece = _fold_letter(letter)
-        out.append(piece)
-        origin.extend([at] * len(piece))
-    return "".join(out), origin
-
-
-def _carries_small_alef(text: str, at: int) -> bool:
-    """Whether the next letter after any vowel marks is the small alef."""
-    for letter in text[at + 1:at + 4]:
-        if letter == _SMALL_ALEF:
-            return True
-        if not _MARK.match(letter):
-            return False
-    return False
-
-
-_WORD_LETTER = re.compile("[\\w\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed]")
-
-
-def _widened(text: str, start: int, end: int) -> tuple[int, int]:
-    """Out to the edges of the word, so بالصبر is marked whole, not just صبر."""
-    while start > 0 and _WORD_LETTER.match(text[start - 1]):
-        start -= 1
-    while end < len(text) and _WORD_LETTER.match(text[end]):
-        end += 1
-    return start, end
-
-
-def _merged(spans: list[tuple[int, int]]) -> list[tuple[int, int]]:
-    """In order, with overlapping ones made one."""
-    out: list[tuple[int, int]] = []
-    for start, end in sorted(spans):
-        if out and start <= out[-1][1]:
-            out[-1] = (out[-1][0], max(out[-1][1], end))
-        else:
-            out.append((start, end))
-    return out
-
-
-def _has_root(roots: str, root: str) -> bool:
-    """Whether the passage carries that exact root.
-
-    Compared word by word rather than as a substring: the roots column is a
-    space-joined list, and a plain `in` would let كتب match a longer root that
-    merely contains those letters.
-    """
-    return root in roots.split()
-
-
-def _candidates(
-    conn: sqlite3.Connection, expansion: Expansion, cap: int, books: tuple[str, ...] = ()
-) -> list[Passage]:
-    """Rows that could match, with every source getting a share of the places.
-
-    Each source gets its own share rather than the best matches being taken as
-    they come. Without that the Qur'an fills the limit every time, simply
-    because it has by far the most passages, and the other books were in the
-    index, matched the query, and never once reached the screen.
-
-    The share is cut by `passage_meta`, not by asking the same question twelve
-    times over with `AND source = ?`. That filter reads a column FTS5 does not
-    index, so it could only be answered by fetching every matching passage in
-    full and looking at it, and the whole of that was done again for each
-    source: a question of a few words took nineteen seconds. It now takes a
-    third of one.
-    """
-    settings = get_settings()
-    per_source = max(cap // max(len(registry.SOURCES), 1), settings.daleel_per_source_least)
-    found: dict[tuple[str, str], Passage] = {}
-
-    # Capped, and the strongest terms come first, so what is dropped is always
-    # the weakest end: the typed words survive, then the synonyms, then the
-    # roots. A long question still fans out, but not without limit.
-    # Deduplicated before the cap: a translation is often its own root (صبر),
-    # and each repeat spent one of the twelve places on nothing.
-    long_terms = list(dict.fromkeys(t for t in (*expansion.phrase_terms, *expansion.all_terms, *expansion.roots)
-                                    if len(t) >= fts.TRIGRAM_MIN))[:settings.daleel_max_terms]
-
-    # The words the trigram index cannot see, because it cannot match anything
-    # shorter than three characters. They go to the `word` index, which holds
-    # the same folded text cut into whole words. This used to be a LIKE with a
-    # leading wildcard, which no index can help, so every two-letter word cost
-    # a full scan of every book and a search took fifteen and a half seconds.
-    # The terms past the cap are not lost; they are still matched by the
-    # trigram path when they are long enough.
-    short_terms = [t for t in expansion.all_terms
-                   if len(t) < fts.TRIGRAM_MIN and _is_a_word(t)][:settings.daleel_max_short_terms]
-
-    # An index built before the word table existed still opens and still
-    # answers every long word, so it must not turn a short one into a 500.
-    # Said out loud with the command that mends it, because the quiet version
-    # of this is a two-letter word reading as "no book says this".
-    if short_terms and not _has_table(conn, "word"):
-        log.warning("this index has no word table, so %d short term(s) cannot be "
-                    "searched; run: python backend/scripts/build_daleel_index.py --words",
-                    len(short_terms))
-        short_terms = []
-
-    if long_terms:
-        match = " OR ".join(fts.quoted(term) for term in long_terms)
-        for row in _fairly(conn, match, per_source, books):
-            found[_key(row)] = row
-
-    # Matched as whole words, which is what the word index holds, so a
-    # two-letter query does not match the inside of every longer one. The
-    # quotes make each piece a phrase rather than a bare token, so a term
-    # FTS5 would otherwise read as an operator is read as the word it is.
-    #
-    # Asked a source at a time, unlike the long terms above, because here the
-    # narrowing is free: source and book are indexed columns of the word table,
-    # so it is part of the same lookup rather than a filter over its answers.
-    for source in registry.SOURCES:
-        for term in short_terms:
-            for row in map(Passage._make, conn.execute(
-                f"SELECT {_COLUMNS} FROM word JOIN passage p ON p.rowid = word.rowid "
-                f"WHERE word MATCH ? LIMIT ?",
-                (_word_match(term, source.id, books), per_source),
-            )):
-                found.setdefault(_key(row), row)
-
-    # Only now, and only if nothing was found spelled the way it was typed.
-    if not found:
-        for row in _loosely(conn, expansion, per_source, books):
-            found.setdefault(_key(row), row)
-
-    return list(found.values())
-
-
-def _fairly(
-    conn: sqlite3.Connection, match: str, per_source: int, books: tuple[str, ...] = (),
-) -> list[Passage]:
-    """The best `per_source` passages each source has for that match, in one question.
-
-    The matching is left to the trigram index, which answers in rowids and
-    never unpacks a passage. `passage_meta` says which source each of those
-    rowids belongs to, the numbering hands every source its own share, and only
-    the rows that survive that are fetched in full.
-
-    The share is cut by FTS5's own relevance score, not by passage order. Cut
-    by order, a source with many matches kept its earliest ones and its best
-    was often never ranked: over sixteen questions on the real index, 112 of
-    156 sources kept their best passage that way and 149 do now. The score
-    costs about 20 ms on a typical question and 0.3 s on the slowest. Putting
-    passages holding every typed word first was tried too and kept only 121.
-
-    Without a book filter the share is cut here rather than in SQL. Every
-    source's passages are one unbroken run of rowids, because the build writes
-    one source after another, so which source a rowid is in is a binary search
-    over a dozen starts instead of a lookup in passage_meta for every match,
-    and each source keeps its best few in a heap of that size instead of every
-    match being sorted. For a word as common as قال that is one pass over
-    thirty thousand rowids and their scores, and about half the time.
-    """
-    if not books and (spans := _source_spans()):
-        return _best_per_source(conn, match, per_source, spans)
-
-    only, chosen = fts.only_in("book", books)
-    return list(map(Passage._make, conn.execute(
-        f"SELECT {_COLUMNS} FROM ("
-        f" SELECT m.id, row_number() OVER (PARTITION BY m.source ORDER BY f.rank, m.id) AS place"
-        f" FROM (SELECT rowid AS id, rank FROM passage WHERE passage MATCH ?) f"
-        f" JOIN passage_meta m ON m.id = f.id{only}"
-        f") share JOIN passage p ON p.rowid = share.id WHERE share.place <= ?",
-        (match, *chosen, per_source),
-    )))
-
-
-class _Spans(NamedTuple):
-    """Where each source's run of rowids starts, in rowid order."""
-
-    starts: tuple[int, ...]
-    sources: tuple[str, ...]
-
-
-def _source_spans() -> _Spans | None:
-    """The index's source runs, worked out once per build of the file."""
-    return _spans_of(_db.stamp())
-
-
-@lru_cache(maxsize=2)
-def _spans_of(stamp: tuple[str, int] | None) -> _Spans | None:
-    """The source runs of the index on disk, or None when they are not unbroken.
-
-    Keyed on the file's path and mtime, so a rebuild is read afresh. None sends
-    the search back to passage_meta, which is right whatever the order, so an
-    index written some other way is slower rather than wrong.
-    """
-    conn = _db()
-    if stamp is None or conn is None or not _has_table(conn, "passage_meta"):
-        return None
-    runs = conn.execute(
-        "SELECT min(id), max(id), count(*), source FROM passage_meta GROUP BY source ORDER BY min(id)"
-    ).fetchall()
-    if any(last - first + 1 != count for first, last, count, _ in runs):
-        log.warning("passage rowids are not one run per source; searching via passage_meta")
-        return None
-    return _Spans(tuple(run[0] for run in runs), tuple(run[3] for run in runs))
-
-
-def _best_per_source(
-    conn: sqlite3.Connection, match: str, per_source: int, spans: _Spans,
-) -> list[Passage]:
-    """The `per_source` best-scored matches of each source, then those rows in full.
-
-    FTS5 scores lower as better, and rowid breaks a tie, as the SQL version
-    orders them; the heap keeps the worst of the best on top to be replaced.
-    """
-    kept: list[list[tuple[float, int]]] = [[] for _ in spans.starts]
-    # FTS5 hands rowids back in order, so the source only ever moves forward:
-    # its run is found once by binary search, then stepped past, not looked up.
-    ends = (*spans.starts[1:], float("inf"))
-    at, heap, end = 0, kept[0], ends[0]
-    for rowid, score in conn.execute("SELECT rowid, rank FROM passage WHERE passage MATCH ?", (match,)):
-        if rowid >= end:
-            at = bisect.bisect_right(spans.starts, rowid) - 1
-            heap, end = kept[at], ends[at]
-        if len(heap) < per_source:
-            heapq.heappush(heap, (-score, -rowid))
-        elif -score > heap[0][0] or (-score == heap[0][0] and -rowid > heap[0][1]):
-            heapq.heapreplace(heap, (-score, -rowid))
-
-    ids = [-rowid for heap in kept for _, rowid in sorted(heap, reverse=True)]
-    if not ids:
-        return []
-    rows = {row[0]: Passage._make(row[1:]) for row in conn.execute(
-        f"SELECT p.rowid, {_COLUMNS} FROM passage p WHERE p.rowid IN ({','.join('?' * len(ids))})", ids,
-    )}
-    return [rows[rowid] for rowid in ids if rowid in rows]
-
-
-def _loosely(
-    conn: sqlite3.Connection, expansion: Expansion, per_source: int, books: tuple[str, ...] = (),
-) -> list[Passage]:
-    """Passages sharing most of a term's three-letter runs. The "did you mean".
-
-    A misspelling keeps nearly all of the runs of the word intended: الرحييم
-    and الرحيم share four of five. Matching on the runs rather than on the word
-    is what turns SQLite's index into typo tolerance without any model.
-    """
-    runs = {run for term in expansion.loose for run in _trigrams(term)}
-    if not runs:
-        return []
-
-    match = " OR ".join(fts.quoted(run) for run in sorted(runs))
-    return _fairly(conn, match, per_source, books)
-
-
-def _runs(term: str, size: int) -> set[str]:
-    """Every window of `size` characters in a term."""
-    return {term[i:i + size] for i in range(len(term) - size + 1)}
-
-
-def _trigrams(term: str) -> set[str]:
-    """Every three-character window. What the index itself is built from."""
-    return _runs(term, fts.TRIGRAM_MIN)
-
-
-def _closeness(terms: tuple, haystack: str) -> int:
-    """How many letters this passage is from the misspelt word: the fewest edits
-    turning any of its words into it, or _FAR when none is near. Smaller is closer.
-
-    Shared runs of letters were the measure before and could not tell a near
-    miss from a far one: searching الرحييم, الرحيم and الرحى each share the same
-    runs with it once ى is folded to ي, so an idiom about millstones tied with
-    al-Fatihah. One edit away and two edits away is the difference a reader sees.
-    """
-    # Words as letters only, each also without what is joined on in front, so
-    # والرحيم and الرحيم، are each one letter from الرحييم, as الرحيم is.
-    words = set(_WORDS.findall(haystack))
-    words |= {_PROCLITIC_AT_START.sub("", word) for word in words}
-    best = _FAR
-    for term in terms:
-        runs = _trigrams(term)
-        for candidate in {term, _PROCLITIC_AT_START.sub("", term)}:
-            for word in words:
-                # Only words sharing a run of letters can be near; the rest are never compared.
-                if abs(len(word) - len(candidate)) < best and any(run in word for run in runs):
-                    best = min(best, _edits(candidate, word, best))
-    return best
-
-
-# Further than any guess is allowed to be.
-_FAR = 99
-
-
-def _edits(a: str, b: str, enough: int) -> int:
-    """Letters to add, drop or change to turn a into b; stops counting at `enough`."""
-    previous = list(range(len(b) + 1))
-    for i, letter in enumerate(a, 1):
-        current = [i]
-        for j, other in enumerate(b, 1):
-            current.append(min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + (letter != other)))
-        if min(current) >= enough:
-            return enough
-        previous = current
-    return previous[-1]
-
-
-def _allowed_edits(terms: tuple) -> int:
-    """How far a guess may be: one letter in three of the word, at least one."""
-    return max(1, max((len(term) for term in terms), default=0) // 3)
-
-
-def _has_table(conn: sqlite3.Connection, name: str) -> bool:
-    """Whether this index holds that table. Older ones hold fewer of them."""
-    return bool(conn.execute(
-        "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ?", (name,)
-    ).fetchone())
-
-
-def _is_a_word(term: str) -> bool:
-    """Whether the word index would make a word of this at all.
-
-    A single % is not a word, and asking for it is not asking for nothing: the
-    tokenizer drops it, the query left behind is the source filter on its own,
-    and that matches every passage in the book. One typed % came back as twelve
-    quotations picked at random, each labelled a clean match. It did this once
-    before through LIKE's own wildcards; the shape of the mistake is the same
-    one, so the guard is kept even though the escape it needed is gone.
-    """
-    return any(letter.isalnum() for letter in term)
-
-
-def _word_match(term: str, source: str, books: tuple[str, ...]) -> str:
-    """One FTS5 query for the word index: this word, in this source, in these books.
-
-    Written as column filters rather than as a WHERE on the joined passage,
-    because a WHERE only runs once the index has already found every passage
-    holding the word and fetched each one to look at.
-    """
-    query = f"source:{fts.quoted(source)} fold:{fts.quoted(term)}"
-    if books:
-        inside = " OR ".join(map(fts.quoted, books))
-        query += f" AND book:({inside})"
-    return query
-
-
-def books() -> list[tuple[str, str]]:
-    """Every book in the index and the source it is credited to.
-
-    Read from the index rather than from a manifest, so the picker can only
-    ever offer a book that is genuinely searchable. A book listed but not
-    indexed would be a filter that always finds nothing.
-
-    From the catalogue table the build writes, not from the passages. Asking
-    the passages for DISTINCT book made FTS5 unpack every column of every row,
-    which is fifteen seconds of the picker sitting empty for forty-seven names.
-    """
-    conn = _db()
-    if conn is None:
-        return []
-    # Ordered by source first so the list arrives grouped the way the page
-    # already groups its results, one shape for the reader to learn.
-    return [tuple(row) for row in conn.execute("SELECT name, source FROM book ORDER BY source, name")]
-
-
-def known_books(asked: list[str]) -> tuple[str, ...]:
-    """The asked books the index holds, once each, at most daleel_max_books.
-
-    Unknown names are dropped, not refused: a bookmark naming a removed book
-    searches the rest of the library instead of reading as "no book says this".
-    """
-    known = {name for name, _ in books()}
-    most = get_settings().daleel_max_books
-    return tuple(dict.fromkeys(b for b in asked[:most] if b in known))
-
-
-def is_built() -> bool:
-    """Whether the index is there and whole. The panel says so rather than
-    showing nothing.
-
-    An index built before `passage_meta` existed holds every passage but cannot
-    answer the query above, so it counts as not built. The half-minute mend is
-    named in the log rather than on screen: the screen would be telling a
-    reader to run a command about a table they have never heard of.
-    """
-    conn = _db()
-    if conn is None:
-        return False
-    if _has_table(conn, "passage_meta"):
-        return True
-
-    log.warning("this index has no passage_meta table, so no search can run; "
-                "run: python backend/scripts/build_daleel_index.py --meta")
-    return False

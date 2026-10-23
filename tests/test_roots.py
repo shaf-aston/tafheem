@@ -15,7 +15,7 @@ from fastapi.testclient import TestClient
 
 from backend.main import create_app
 from backend.services import dictionary_service, morphology, quran_corpus, roots, sarf_word
-from backend.services.daleel.lexicon import DictionaryLexicon
+from backend.services.daleel.query.lexicon import DictionaryLexicon
 
 
 @pytest.fixture(autouse=True)

@@ -28,7 +28,7 @@ from typing import Iterable
 
 from backend.services import lexicons
 from backend.services.arabic_text import normalize_root
-from backend.services.daleel.model import Passage
+from backend.services.daleel.sources.model import Passage
 
 
 class LexiconsSource:

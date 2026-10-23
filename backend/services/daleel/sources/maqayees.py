@@ -15,7 +15,7 @@ from typing import Iterable
 
 from backend.config import data_path
 from backend.services.arabic_text import normalize_root
-from backend.services.daleel.model import Passage
+from backend.services.daleel.sources.model import Passage
 from backend.services.root_english import STORE_FILE
 
 
