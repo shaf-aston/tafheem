@@ -12,6 +12,11 @@ The Analyse page and the practice questions both read sentences through here.
 """
 from __future__ import annotations
 
+import copy
+from functools import lru_cache
+
+from backend.config import get_settings
+
 from backend.services.arabic_text import strip_diacritics, words
 from backend.services import card_wording, morphology, provenance, quran_corpus, rule_engine, signs, syntax, tarkeeb_store, tree_columns
 from backend.services.harakat import CASE_LETTER, CASE_NAME, typed_case
@@ -23,7 +28,17 @@ from backend.services.syntax.naming import NAMED, role_key
 def analyze(sentence: str, recorded: bool = True) -> dict:
     """{words, summary, source, tree} for one sentence; `tree` is None when nothing joins.
     `recorded=False` skips the treebank and always works the sentence out. The summary is the picture's own top label, so the line above the cards and the
-    picture can never name the sentence apart; with no picture, or a phrase (محمد بن عبد الله), there is none."""
+    picture can never name the sentence apart; with no picture, or a phrase (محمد بن عبد الله), there is none.
+    A sentence read lately is answered from memory (settings analyses_kept), as a copy the caller may change."""
+    return copy.deepcopy(_kept(sentence, recorded))
+
+
+@lru_cache(maxsize=get_settings().analyses_kept)
+def _kept(sentence: str, recorded: bool) -> dict:
+    return _read(sentence, recorded)
+
+
+def _read(sentence: str, recorded: bool) -> dict:
     picks = morphology.pick(words(sentence), syntax.disambiguator())  # the one reading, cards and parser alike
     tags = morphology.analyze_sentence(sentence, picks)
     record = tarkeeb_store.for_sentence(sentence) if recorded else None

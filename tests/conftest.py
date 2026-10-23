@@ -10,7 +10,7 @@ from __future__ import annotations
 import pytest
 
 from backend.config import get_settings
-from backend.services import journal
+from backend.services import iraab, journal
 
 
 @pytest.fixture(autouse=True)
@@ -24,3 +24,9 @@ def _journal_writes_to_tmp(tmp_path, monkeypatch):
 def _analyze_unlimited(monkeypatch):
     """Suites that analyse hundreds of sentences from one client are not one hammering visitor."""
     monkeypatch.setattr(get_settings(), "analyze_per_minute", 10**9)
+
+
+@pytest.fixture(autouse=True)
+def _analyses_read_afresh():
+    """A test that changes the book or a model reads its sentences again, not another test's answer."""
+    iraab._kept.cache_clear()
