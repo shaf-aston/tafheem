@@ -24,11 +24,10 @@
  */
 import { useId, useMemo, useState } from 'react'
 import { flushSync } from 'react-dom'
-import { useQuery } from '@tanstack/react-query'
 
-import { getLexicons } from '../../api'
 import { paragraphs } from '../../lib/entryLines'
 import { laneEntry } from '../../lib/laneEntry'
+import { useLexicons } from '../../lib/classicalBooks'
 import { BROKEN, MISSING, READY } from '../../lib/loadStatus'
 import { scrollToEl } from '../../lib/scrollToEl'
 import { colorFor } from '../../theme'
@@ -39,7 +38,6 @@ import Chip from '../ui/Chip'
 import ErrorAlert from '../ui/ErrorAlert'
 import FlagButton from '../ui/FlagButton'
 import ShowRest from '../ui/ShowRest'
-import { Skeleton } from '../ui/Skeleton'
 import SourceBadge from '../ui/SourceBadge'
 
 /** How the three kinds of nothing are told apart. Never one sentence for all. */
@@ -52,29 +50,33 @@ const NOTHING = {
 /** Added to that one sentence only, and only when there is another root to try. */
 const ELSEWHERE = ' The other root above may be the one they file it under.'
 
-export default function LexiconShelf({ root: asked, hasAlternates, accent }) {
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ['lexicons', asked],
-    queryFn: () => getLexicons(asked),
-    enabled: Boolean(asked),
-  })
+/**
+ * `shown` is the book on screen; the others stay mounted but hidden, so a
+ * book left half read, opened or tidied, is as it was when it is come back to.
+ */
+export default function LexiconShelf({ root: asked, shown, hasAlternates, accent }) {
+  const { data, isError, error, refetch } = useLexicons(asked)
 
   if (!asked) return null
   const entries = data?.entries ?? []
 
-  // Each book is its own ruled-off block in the frame the caller draws; the
-  // shelf adds no frame or heading of its own. Its heading used to list the
-  // books by name, which went stale the day a root came back without one.
+  // Each book is a block in the frame the caller draws, one on screen at a
+  // time; the shelf adds no frame or heading of its own. Its heading used to
+  // list the books by name, which went stale the day a root came back without one.
   if (entries.length) {
     return entries.map((entry) => (
-      <BookEntry key={entry.book} entry={entry} root={data.root} accent={accent} />
+      <div key={entry.book} hidden={entry.book !== shown}>
+        <BookEntry entry={entry} root={data.root} accent={accent} />
+      </div>
     ))
   }
 
-  return (
-    <div className="p-4">
-      {isPending && <Skeleton className="h-24" />}
+  // Nothing while the books are on their way: the switch above grows their
+  // names when they land, and a grey block here only to vanish moved the page.
+  if (!data && !isError) return null
 
+  return (
+    <div className="p-4 border-t border-[var(--border)]">
       {isError && (
         <ErrorAlert title="The dictionaries could not be read" error={error} onRetry={() => refetch()} />
       )}
@@ -202,7 +204,7 @@ const hasSenses = (form) => form.senses.some((sense) => sense.kind === 'sense' &
  */
 function LaneEntry({ forms, anchor }) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 max-w-[var(--lexicon-reading-w)]">
       {forms.map((form, i) => (
         // One headword per section, ruled off from the next. Lane starts a new
         // paragraph at every one and the column read as a single grey slab

@@ -4,8 +4,11 @@ import { useState } from 'react'
 import { searchDictionary, translateSentence } from '../api'
 import config from '../dictionary.json'
 import { isArabic } from '../lib/arabicText'
+import { classicalBooks, MAQAYEES, useLexicons } from '../lib/classicalBooks'
 import { pickRoots } from '../lib/rootKey'
+import { scrollToEl } from '../lib/scrollToEl'
 import { useHealth } from '../lib/useHealth'
+import { useRemembered } from '../lib/useRemembered'
 import { useSearch } from '../lib/useSearch'
 
 import LexiconShelf from './dictionary/LexiconShelf'
@@ -147,6 +150,18 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
       <ReadAsNote readAs={shown?.read_as} />
 
       {shown?.words && <SentenceMeaning data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
+      {/* The classical books sit under every word card, three or four screens
+          down on a phone; this is the way to them without the scroll. */}
+      {shown?.lang === 'ar' && shown.results && (
+        <button
+          type="button"
+          onClick={() => scrollToEl(document.getElementById(CLASSICAL), 'top')}
+          style={{ '--c': accent }}
+          className="tap type-small text-[var(--text-faint)] hover:text-[var(--c)] transition-colors"
+        >
+          Classical dictionaries ↓
+        </button>
+      )}
       {shown?.results && <Results data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
 
       {/* Under the word results, not above them: the meaning searched for is the
@@ -168,18 +183,29 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
  * only the card it sits in left the other saying the root does not exist. The
  * chips sit above both, not inside one, for the same reason.
  */
+/** Where the jump to the classical books lands. */
+const CLASSICAL = 'dict-classical'
+
 function ClassicalRoot({ found, accent }) {
   // The root the search worked out, when it did (مُنْتَصِرًا is نصر); the word as typed otherwise.
   const { primary, alternates } = pickRoots(found.root || found.query, found.results)
   const [root, setRoot] = useState(primary)
   const hasAlternates = alternates.length > 0
+  // One book at a time, from one switch. Four books on a common root ran to
+  // ten screens on a phone, Lane fourth and a reader scrolling past three
+  // Arabic walls to reach the one in English. The choice is remembered: a
+  // reader who reads Lane keeps Lane from root to root.
+  const { data: shelf } = useLexicons(root)
+  const books = classicalBooks(shelf?.entries)
+  const [book, setBook] = useRemembered('dict.book', books.map((one) => one.id))
   // One frame round every book, not a frame per book inside a frame per shelf:
   // three borders deep, the page read as boxes before it read as dictionaries.
   // The books are ruled off from each other instead.
   return (
     <section
+      id={CLASSICAL}
       aria-label="Classical dictionaries"
-      className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden"
+      className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden scroll-mt-24"
     >
       <header className="px-4 py-2.5 bg-[var(--surface)] flex items-center gap-x-3 gap-y-2 flex-wrap">
         <h3 className="type-body font-medium text-[var(--text)]">Classical dictionaries</h3>
@@ -199,12 +225,23 @@ function ClassicalRoot({ found, accent }) {
           </ChipRow>
         )}
       </header>
-      <div className="divide-y divide-[var(--border)]">
+      {books.length > 1 && (
+        // Chips on one sliding line, the root row's own shape: as a segmented
+        // control four names wrapped on a phone and left Lane alone on a second row.
+        <ChipRow scroll role="group" aria-label="Which book" className="px-4 pt-3">
+          {books.map((one) => (
+            <Chip key={one.id} accent={accent} selected={book === one.id} onClick={() => setBook(one.id)}>
+              {one.label}
+            </Chip>
+          ))}
+        </ChipRow>
+      )}
+      {/* Hidden, not unmounted: an entry opened, or put into English, is as it
+          was left when the reader comes back to its book. */}
+      <div hidden={book !== MAQAYEES}>
         <RootMeaningCard root={root} hasAlternates={hasAlternates} accent={accent} />
-        {/* Under the short answer: the books it was drawn from, for a reader who
-            wants more than a sentence. */}
-        <LexiconShelf root={root} hasAlternates={hasAlternates} accent={accent} />
       </div>
+      <LexiconShelf root={root} shown={book} hasAlternates={hasAlternates} accent={accent} />
     </section>
   )
 }
