@@ -32,6 +32,7 @@ export function projection(view) {
       coastStroke: pin * MAP['coast-stroke'],
       halo: font * MAP.halo,
       baseline: font * MAP.baseline,
+      route: pin * MAP['route-stroke'],
     },
     project: ({ lon, lat }) => [(lon - view.west) * k, (view.north - lat) * k],
   }

@@ -18,7 +18,13 @@
  "asbab": {
   "search-from": 12
  },
- "_comment-map": "px-per-degree turns lon/lat into drawing units; the view box is a section's lon/lat box times this. Views are twice as wide as tall so the map fills the reader's width; text and pins scale with the view's height, the side drawn at a fixed size. Places closer than merge-deg share one pin (Makkah, Hira, Arafat, al-Hudaybiyyah). A name goes right of its pin, or left when the right is taken; char-width guesses a letter's width as a share of the font size; label-gap is the space from pin centre to name, in pin radii. A name with no free side is left off; hovering shows it. max-rem caps how tall it is drawn, in rem so a short window does not letterbox it; min-rem keeps a phone map tall enough to read, trimming the empty east and west edges instead (views are centred on their pins). Drawing ratios: hit-pins is the invisible press ring and chosen-pins the chosen dot, both in pin radii (the chosen size is also the space a label keeps from other dots); pin-stroke and coast-stroke are line widths in pin radii; halo is the dark edge behind a name and baseline drops text onto its pin, both in font sizes; ascent and descent are how far a name reaches above and below its baseline, for the overlap check.",
+ "_comment-scrub": "The time bar under the map. A dated section can spread its events by true years or evenly; the others only evenly. Year marks step by the smallest of tick-steps that keeps them at or under max-ticks. While dragging, the map follows at once and the event opens on release.",
+ "scrub": {
+  "tick-steps": [1, 2, 5, 10, 25, 50, 100, 250],
+  "max-ticks": 8,
+  "modes": { "years": "True years", "even": "Even steps" }
+ },
+ "_comment-map": "px-per-degree turns lon/lat into drawing units; the view box is a section's lon/lat box times this. Views are twice as wide as tall so the map fills the reader's width; text and pins scale with the view's height, the side drawn at a fixed size. Places closer than merge-deg share one pin (Makkah, Hira, Arafat, al-Hudaybiyyah). A name goes right of its pin, or left when the right is taken; char-width guesses a letter's width as a share of the font size; label-gap is the space from pin centre to name, in pin radii. A name with no free side is left off; hovering shows it. max-rem caps how tall it is drawn, in rem so a short window does not letterbox it; min-rem keeps a phone map tall enough to read, trimming the empty east and west edges instead (views are centred on their pins). Drawing ratios: hit-pins is the invisible press ring and chosen-pins the chosen dot, both in pin radii (the chosen size is also the space a label keeps from other dots); pin-stroke and coast-stroke are line widths in pin radii; halo is the dark edge behind a name and baseline drops text onto its pin, both in font sizes; ascent and descent are how far a name reaches above and below its baseline, for the overlap check. route-stroke is the line joining the places visited so far, in pin radii, its earlier legs dashed (route-dash, in line widths) and fainter (route-past-opacity), the leg just walked solid; unseen-opacity is how faint a place not yet reached is drawn while an event is open.",
  "map": {
   "px-per-degree": 20,
   "font-per-height": 0.034,
@@ -35,6 +41,10 @@
   "halo": 0.25,
   "baseline": 0.33,
   "ascent": 0.7,
-  "descent": 0.5
+  "descent": 0.5,
+  "route-stroke": 0.45,
+  "route-dash": 3,
+  "route-past-opacity": 0.7,
+  "unseen-opacity": 0.35
  }
 }
