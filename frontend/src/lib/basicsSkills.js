@@ -20,9 +20,9 @@ import { ADDRESSED, PERSONS, arabicOptions, englishOptions, possessiveTable, ver
 const EVERYONE = PERSONS.map((person) => person.id)
 const MINE_TAIL = 'A word with an ending never takes ال as well, and a final ة is written ت before it.'
 
-const own = (id, end, said, pool) => ({
+const own = (id, end, said, pool, to = '') => ({
   id, key: `mine:${id}`, base: 'bare', persons: [null], pool: [...pool.map((one) => `mine:${one}`), `wrong:al:${id}`, `wrong:ta:${id}`],
-  rule: `${end} on the end means “${said}”. ${MINE_TAIL}`,
+  rule: `${end} on the end means “${said}”${to}. ${MINE_TAIL}`,
 })
 const fixed = (tense, person, base, rule, pool) => ({ id: person, key: `${tense}:${person}`, base, persons: [person], rule, pool })
 const particle = (id, persons, base, rule, pool) => ({ id, key: `${id}:{p}`, base, persons, rule, pool })
@@ -37,8 +37,8 @@ export const SKILLS = {
       own('her', 'ـهَا', 'her', ['his', 'my', 'our']),
       own('our', 'ـنَا', 'our', ['my', 'her', 'their']),
       own('their', 'ـهُمْ', 'their', ['his', 'her', 'our']),
-      own('your', 'ـكَ', 'your, said to one man', ['my', 'his', 'your-all']),
-      own('your-all', 'ـكُمْ', 'your, said to a group', ['your', 'their', 'our']),
+      own('your', 'ـكَ', 'your', ['my', 'his', 'your-all'], ', said to one man'),
+      own('your-all', 'ـكُمْ', 'your', ['your', 'their', 'our'], ', said to a group'),
     ],
   },
   past: {
