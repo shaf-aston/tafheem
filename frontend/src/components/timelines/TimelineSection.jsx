@@ -79,7 +79,8 @@ export default function TimelineSection({ section, library, chosen, report, onPi
 
       <TimelineScrub section={section} index={index} accent={ACCENT} onPreview={setPreview} onPick={pickFromBar} />
 
-      <TimelineRail section={section} library={library} chosenId={chosen?.id ?? null} onPick={onPick} />
+      <TimelineRail section={section} library={library} chosenId={chosen?.id ?? null}
+        nearId={preview === null ? null : section.events[preview].id} onPick={onPick} />
 
       {chosen && (
         <div ref={reader} className="space-y-4 scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
@@ -94,6 +95,19 @@ export default function TimelineSection({ section, library, chosen, report, onPi
             onPick={onPick}
             at={at}
           />
+          {/* The way on from the foot of a long event, so finishing one does
+              not mean scrolling back up to the bar to reach the next. */}
+          <nav className="tl-next" aria-label="Other events">
+            {[[index - 1, '←', 'Previous'], [index + 1, '→', 'Next']].map(([i, arrow, word]) => {
+              const to = section.events[i]
+              return to ? (
+                <button key={word} type="button" className={`tl-next-${word.toLowerCase()}`} onClick={() => onPick(to.id)}>
+                  <span className="tl-layer">{arrow} {word}</span>
+                  <span className="tl-next-title">{to.title}</span>
+                </button>
+              ) : <span key={word} />
+            })}
+          </nav>
           {/* Only where there is something in it: an event nobody wrote a
               report about should not offer an empty panel. */}
           {chosen.asbab > 0 && (

@@ -12,15 +12,20 @@
  * full and joined by the route in the order visited, the last leg solid; places
  * not reached yet are faint. With nothing open, every place is drawn full.
  */
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+
 import settings from '../../timelines.json'
-import { labelGap, labelText, pinsOf, placeLabels, projection } from '../../lib/timeline/map'
+import { fitView, labelGap, labelText, landBounds, pinsOf, placeLabels, projection } from '../../lib/timeline/map'
 import { routeTo } from '../../lib/timeline/time'
 
 const { map: MAP } = settings
 
 export default function TimelineMap({ section, library, accent, chosen, at, upTo = null, onPick }) {
-  const view = library.map.views[section.map]
-  if (!view) return null
+  const [box, aspect] = useBoxAspect()
+  const bounds = useMemo(() => landBounds(library.map.land), [library.map.land])
+  const given = library.map.views[section.map]
+  if (!given) return null
+  const view = aspect > 0 ? fitView(given, aspect, bounds) : given
   const { width, height, maxHeight, minHeight, font, pin, size, project } = projection(view)
   const pins = pinsOf(section, library.places)
   const sides = placeLabels(pins, at, project, { font, pin, width, height })
@@ -34,7 +39,10 @@ export default function TimelineMap({ section, library, accent, chosen, at, upTo
   return (
     // Full width of the reader; the views are wide, so the drawing fills it
     // instead of leaving an empty band beside a tall narrow map.
-    <figure className="w-full rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden m-0 bg-[var(--timeline-map-water)]">
+    // Never wider than the cap allows at this view's shape: where even the
+    // widest view is narrower than the box, the map is framed and centred
+    // rather than cropped, its edge the frame's.
+    <figure ref={box} style={{ maxWidth: `calc(${maxHeight} * ${(width / height).toFixed(3)})` }} className="w-full mx-auto rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden m-0 bg-[var(--timeline-map-water)]">
       <svg
         viewBox={`0 0 ${width} ${height}`}
         className="block w-full h-auto mx-auto"
@@ -117,4 +125,29 @@ export default function TimelineMap({ section, library, accent, chosen, at, upTo
       )}
     </figure>
   )
+}
+
+/**
+ * How many times wider than its tallest the map's box is, kept as it resizes:
+ * the room around it (the frame is narrowed to the map, so not its own width) over the height the map may take (max-rem or max-vh,
+ * whichever is lower, as projection's maxHeight says in CSS).
+ */
+function useBoxAspect() {
+  const ref = useRef(null)
+  const [value, setValue] = useState(0)
+  useLayoutEffect(() => {
+    const el = ref.current
+    if (!el) return undefined
+    const read = () => {
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize)
+      const cap = Math.min(MAP['max-rem'] * rem, (MAP['max-vh'] / 100) * window.innerHeight)
+      setValue((el.parentElement ?? el).clientWidth / cap)
+    }
+    read()
+    const watch = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(read)
+    watch?.observe(el.parentElement ?? el)
+    window.addEventListener('resize', read)
+    return () => { watch?.disconnect(); window.removeEventListener('resize', read) }
+  }, [])
+  return [ref, value]
 }

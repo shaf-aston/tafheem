@@ -24,12 +24,13 @@
  * filter that looked the same as a full one would leave the reader guessing
  * whether their last search covered the library or one corner of it.
  *
- * Always open. It used to fold shut under a "Which books" bar, but the page
- * under the search box is empty until a search is made, so the fold hid the
- * one thing there to look at and cost a click to reach it; the list scrolls
- * inside its own short box, so open it is no taller than a few results. The
- * line above it still says what will be searched ("all 47 books", "3 books")
- * and carries the one-click way back to the whole library.
+ * Open while the page has nothing else on it. Folded under a "Which books"
+ * bar it hid the one thing there to look at and cost a click to reach it.
+ * Once answers are on screen (`folded`) the list steps aside to its one line:
+ * open, the shelf row and the list put the first passage below the fold of
+ * a laptop, and the shelf row over the results already says where they are.
+ * The line still says what is searched ("all 47 books", "3 books"), opens
+ * the list again in one press, and carries the way back to the whole library.
  */
 import { useEffect, useMemo, useState } from 'react'
 
@@ -65,8 +66,16 @@ function matching(books, category, typed) {
   return shelved.filter((book) => nameMatches(book, typed))
 }
 
-export default function BookPicker({ books, onChange, accent, sourceLabel }) {
+export default function BookPicker({ books, onChange, accent, sourceLabel, folded = false }) {
   const [category, setCategory] = useState(EVERY)
+  // Opened by hand while answers are on screen; a new set of answers folds it again.
+  const [open, setOpen] = useState(false)
+  const [wasFolded, setWasFolded] = useState(folded)
+  if (folded !== wasFolded) {
+    setWasFolded(folded)
+    if (folded) setOpen(false)
+  }
+  const listShown = !folded || open
   const [chosen, setChosen] = useState([])
   const [typed, setTyped] = useState('')
 
@@ -123,6 +132,18 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
         <span className="type-small text-[var(--text-faint)] truncate">Searching {summary}</span>
         {/* Beside the summary, so undoing a filter is one click from the line
             that says it is on. */}
+        {folded && (
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            className="type-small shrink-0 px-2 py-0.5 rounded-[var(--radius-sm)]
+              border border-[var(--border)] text-[var(--text-dim)]
+              hover:text-[var(--text)] hover:border-[var(--border-hi)] transition-colors"
+          >
+            {open ? 'Hide books' : 'Choose books'}
+          </button>
+        )}
         {narrowed && (
           <button
             type="button"
@@ -154,6 +175,7 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
         </ul>
       )}
 
+      {listShown && <>
       {/* The subjects. A short list that does not grow with the library, so
           it is shown rather than typed for; the books under it are the long
           list and have the box. One scrolling row of chips, as the shelves over
@@ -263,6 +285,7 @@ export default function BookPicker({ books, onChange, accent, sourceLabel }) {
           </div>
         </div>
       </div>
+      </>}
     </section>
   )
 }

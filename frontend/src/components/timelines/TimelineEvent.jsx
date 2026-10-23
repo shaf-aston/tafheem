@@ -29,7 +29,8 @@ export default function TimelineEvent({ section, event, library, accent, onGo, h
   const cautions = event.flags?.filter((f) => f !== TRAD)
   const facts = [
     event.when,
-    event.hijri && event.hijri !== event.when ? event.hijri : null,
+    // "624 CE, 2 AH" already says 2 AH; a second chip saying it again said nothing.
+    event.hijri && !event.when?.includes(event.hijri) ? event.hijri : null,
     place ? `${place.name}${traditional ? `, ${library.flags[TRAD]}` : ''}` : null,
   ].filter(Boolean)
   // One hadith often tells the event and its steps alike; whoever cites it

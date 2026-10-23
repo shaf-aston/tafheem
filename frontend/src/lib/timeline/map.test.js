@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import settings from '../../timelines.json'
-import { pinsOf, placeLabels, projection } from './map'
+import { fitView, landBounds, pinsOf, placeLabels, projection } from './map'
 
 const ev = (id, at, more = {}) => ({ id, at, ...more })
 const { map: MAP } = settings
@@ -81,5 +81,33 @@ describe('map', () => {
   it('names a merged pin after its first place, whichever place is chosen', () => {
     const pins = pinsOf({ events: [ev('a', 1, { place: 'makkah' }), ev('b', 2, { place: 'hira' }), ev('c', 3, { place: 'madinah' })] }, places)
     expect(pins.map((p) => [p.key, p.places])).toEqual([['makkah', ['makkah', 'hira']], ['madinah', ['madinah']]])
+  })
+})
+
+describe('fitView', () => {
+  const view = { west: 20, east: 60, north: 32, south: 12 } // 40 wide, 20 tall
+  const land = { west: 10, east: 75 }
+
+  it('leaves a view alone when the box is no wider than it', () => {
+    expect(fitView(view, 2, land)).toBe(view)
+    expect(fitView(view, 1, land)).toBe(view)
+  })
+
+  it('widens about the middle to fill a wider box', () => {
+    expect(fitView(view, 3, land)).toEqual({ ...view, west: 10, east: 70 })
+  })
+
+  it('slides along where one side runs out of land', () => {
+    expect(fitView(view, 3.2, land)).toEqual({ ...view, west: 10, east: 74 })
+  })
+
+  it('never widens past the land there is to draw', () => {
+    expect(fitView(view, 5, land)).toEqual({ ...view, west: 10, east: 75 })
+  })
+})
+
+describe('landBounds', () => {
+  it('is the west and east edges of every outline', () => {
+    expect(landBounds([[[12, 1], [30, 2]], [[-4, 0], [9, 9]]])).toEqual({ west: -4, east: 30 })
   })
 })

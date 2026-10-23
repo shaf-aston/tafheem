@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { QUIZ } from '../lib/quizBanks'
+import { scrollToEl } from '../lib/scrollToEl'
 
 import AnswerSquare from './ui/AnswerSquare'
 import ArabicText from './ui/ArabicText'
@@ -93,10 +94,17 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
   useEffect(() => {
     if (answered) nextButton.current?.focus({ preventScroll: true })
   }, [answered])
+  // A new question whose top sits under the header (Next pressed far down the
+  // last one) glides up to it; one already in sight stays put.
+  const card = useRef(null)
+  useEffect(() => {
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
+    if (card.current?.getBoundingClientRect().top < header) scrollToEl(card.current, 'top')
+  }, [])
   const arabicPrompt = shown.promptLang === 'ar'
 
   return (
-    <div className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-5 space-y-4">
+    <div ref={card} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-5 space-y-4 scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
       <div className="relative flex items-center justify-center">
         {/* Whatever this question needs said before you answer (ui/NoteBadge). */}
         {note && <NoteBadge note={note} open={noteOpen} onToggle={() => setNoteOpen((o) => !o)} />}
