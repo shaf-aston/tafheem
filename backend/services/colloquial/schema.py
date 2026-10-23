@@ -103,13 +103,25 @@ class Cover(BaseModel):
     image: str
 
 
+class TopicCard(BaseModel):
+    """A topic as its unit's list shows it: counts and a picture, not its lessons."""
+    lesson: str
+    title: str
+    section: str | None = None
+    written: bool
+    words: int = 0
+    phrases: int = 0
+    # Its first picture, phrase or word, for the card.
+    picture: str | None = None
+
+
 class UnitCard(BaseModel):
     """A unit as the list shows it, before it is opened."""
     unit: str
     title: str
     # False while the dialect has not written this spine unit yet: shown as coming.
     written: bool
-    lessons: list[dict]
+    lessons: list[TopicCard]
     # None while no phrase in the unit has a picture: the card shows its title only.
     cover: Cover | None = None
 
@@ -120,6 +132,9 @@ class City(BaseModel):
 
 
 class DialectCard(BaseModel):
+    """A dialect as its card shows it. The one list of what reaches the page from its
+    dialects.json entry: the loader builds the card through this model, never by naming
+    fields, so a field added here and in the data reaches the page with no other edit."""
     key: str
     label: str
     arabic: str

@@ -27,7 +27,7 @@ from functools import lru_cache
 
 from backend.config import data_path
 from backend.services import provenance
-from backend.services.colloquial import wordlist
+from backend.services.colloquial import schema, wordlist
 from backend.services.colloquial.exercises import registry
 
 logger = logging.getLogger(__name__)
@@ -262,6 +262,16 @@ def _picture(lesson: dict) -> str | None:
                  for one in lesson.get(key) or [] if one.get("image")), None)
 
 
+def _card(dialect: dict) -> dict:
+    """A dialect's card, through schema.DialectCard: its fields are named there only."""
+    units = [{**u, "cover": _cover(u),
+              "lessons": [{**lesson, "words": len(lesson.get("vocabulary") or []),
+                           "phrases": len(lesson.get("phrases") or []), "picture": _picture(lesson)}
+                          for lesson in u["lessons"]]}
+             for u in dialect["units"]]
+    return schema.DialectCard.model_validate({**dialect, "units": units}).model_dump()
+
+
 def catalogue() -> dict:
     """Every dialect and the units in it, without the lessons.
 
@@ -277,26 +287,7 @@ def catalogue() -> dict:
     list of titles.
     """
     return {
-        "dialects": [
-            {
-                "key": dialect["key"],
-                "label": dialect["label"],
-                "arabic": dialect["arabic"],
-                "where": dialect["where"],
-                "gloss": dialect.get("gloss"),
-                "countries": dialect.get("countries", []),
-                "cities": dialect.get("cities", []),
-                "units": [{"unit": u["unit"], "title": u["title"], "written": u["written"],
-                           "lessons": [{"lesson": lesson["lesson"], "title": lesson["title"], "section": lesson["section"],
-                                        "written": lesson["written"], "words": len(lesson.get("vocabulary") or []),
-                                        "phrases": len(lesson.get("phrases") or []),
-                                        "picture": _picture(lesson)}
-                                       for lesson in u["lessons"]],
-                           "cover": _cover(u)}
-                          for u in dialect["units"]],
-            }
-            for dialect in _content()["dialects"]
-        ],
+        "dialects": [_card(dialect) for dialect in _content()["dialects"]],
         "source": provenance.of(SOURCE),
     }
 
@@ -336,8 +327,7 @@ def compare(name: str, lesson: str) -> dict:
         found = next((l for l in one["lessons"] if l["lesson"] == lesson), None)
         if found is None:
             raise KeyError(f"{name} has no lesson {lesson!r}")
-        phrases = [{key: p[key] for key in ("slot", "arabic", "transliteration")}
-                   for p in found["phrases"]] if one["written"] and found["written"] else None
+        phrases = [schema.Said.model_validate(p).model_dump() for p in found["phrases"]] if one["written"] and found["written"] else None
         dialects.append({"key": known["key"], "label": known["label"], "phrases": phrases})
     return {"unit": name, "lesson": lesson, "dialects": dialects}
 
