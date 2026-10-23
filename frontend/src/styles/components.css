@@ -811,6 +811,28 @@ button.tile:hover { border-color: var(--c); }
   background: color-mix(in srgb, currentColor 18%, transparent);
 }
 
+/* Holding the current tab: Top, Back, Bottom rise above the thumb (lib/jumpFan.js). */
+.bottom-nav .tap { touch-action: none; -webkit-touch-callout: none; user-select: none; }
+.jump-fan {
+  position: fixed;
+  bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px) + 0.5rem);
+  transform: translateX(-50%);
+  display: grid;
+  gap: 0.375rem;
+}
+.jump-fan > div {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  text-align: center;
+  box-shadow: var(--shadow-pop);
+  animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease) both;
+  transition: background-color calc(var(--motion-instant-ms) * 1ms), color calc(var(--motion-instant-ms) * 1ms);
+}
+.jump-fan > .jump-fan-lit { background: var(--c); border-color: var(--c); color: var(--surface); }
+
 
 /* The reader's player: held to the bottom of the screen while the reader is
    on it, settling at the reader's end. Above the phone's bottom bar there. */

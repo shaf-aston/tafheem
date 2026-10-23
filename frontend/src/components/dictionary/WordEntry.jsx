@@ -35,7 +35,7 @@ export function ReadAsNote({ readAs }) {
   )
 }
 
-export default function Results({ data, accent, onGo, onLookup }) {
+export default function Results({ data, accent, onGo, onLookup, aside = null }) {
   // The badge at the top right opens the references behind the bab names.
   const [refs, setRefs] = useState(false)
   if (data.results.length === 0) {
@@ -53,6 +53,8 @@ export default function Results({ data, accent, onGo, onLookup }) {
         <p className="text-[var(--text-dim)] type-body">
           {data.results.length === 1 ? '1 entry' : `${data.results.length} entries`}
         </p>
+        {/* The panel's own link, on this line rather than a row of its own above it. */}
+        {aside}
         <button
           type="button"
           onClick={() => setRefs((on) => !on)}

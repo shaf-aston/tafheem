@@ -57,8 +57,10 @@ export default function Trail({ nameOf = (value) => value }) {
           onClick={goBack}
           aria-label="Back"
           title="Back"
-          className="shrink-0 opacity-60 hover:opacity-100 hover:text-[var(--c)]
-            transition-opacity"
+          // A 24px square round a 12px arrow, the least a finger can be asked
+          // to hit; the negative margin keeps the line its own height.
+          className="shrink-0 w-6 h-6 -m-1.5 grid place-items-center opacity-60 hover:opacity-100
+            hover:text-[var(--c)] transition-opacity"
         >
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
             <path d="M19 12H5" />

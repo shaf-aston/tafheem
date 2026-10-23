@@ -72,7 +72,7 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
 
   return (
     <div className="panel">
-      <SectionHeader tab="dict"
+      <SectionHeader tab="dict" answered={Boolean(shown)}
         subtitle="Search an Arabic word, a root or an English meaning, or translate a whole Arabic sentence."
       />
 
@@ -152,17 +152,19 @@ export default function Dictionary({ accent, incoming, arrival, onGo, onVisit })
       {shown?.words && <SentenceMeaning data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
       {/* The classical books sit under every word card, three or four screens
           down on a phone; this is the way to them without the scroll. */}
-      {shown?.lang === 'ar' && shown.results && (
-        <button
-          type="button"
-          onClick={() => scrollToEl(document.getElementById(CLASSICAL), 'top')}
-          style={{ '--c': accent }}
-          className="tap type-small text-[var(--text-faint)] hover:text-[var(--c)] transition-colors"
-        >
-          Classical dictionaries ↓
-        </button>
+      {shown?.results && (
+        <Results data={shown} accent={accent} onGo={onGo} onLookup={submit}
+          aside={shown.lang === 'ar' && (
+            <button
+              type="button"
+              onClick={() => scrollToEl(document.getElementById(CLASSICAL), 'top')}
+              style={{ '--c': accent }}
+              className="tap type-small text-[var(--text-faint)] hover:text-[var(--c)] transition-colors me-auto"
+            >
+              Classical dictionaries ↓
+            </button>
+          )} />
       )}
-      {shown?.results && <Results data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
 
       {/* Under the word results, not above them: the meaning searched for is the
           answer, and the root's origin sense is the wider context behind it. On a
