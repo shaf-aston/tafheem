@@ -55,7 +55,9 @@ export function readRouteFromUrl(tabs) {
   try {
     const { tab, value } = current()
     if (!tab) return { tab: null, value }
-    return { tab: LEGACY[tab] ?? tabs.find((one) => one.id === tab)?.id ?? tabs[0].id, value }
+    // A tab typed by its name, /app/dictionary for /app/dict, is that tab, not the first one.
+    const named = tabs.find((one) => one.id === tab || one.label?.toLowerCase() === tab.toLowerCase())
+    return { tab: LEGACY[tab] ?? named?.id ?? tabs[0].id, value }
   } catch {
     return { tab: null, value: null }
   }

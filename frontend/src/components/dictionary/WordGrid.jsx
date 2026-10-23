@@ -153,7 +153,7 @@ function Word({ entry, query, accent, i, open, onGo, onToggle, onToggleLine }) {
             onClick={onToggleLine}
             aria-expanded={open}
             title="Open this one and the others on its line together"
-            className="type-small leading-none px-2 py-1 rounded-full shrink-0 ms-auto
+            className="type-small leading-none px-2 min-h-6 rounded-full shrink-0 ms-auto
               border border-[var(--border)] text-[var(--text-faint)]
               hover:border-[var(--c)] hover:text-[var(--text)] transition-colors"
           >
