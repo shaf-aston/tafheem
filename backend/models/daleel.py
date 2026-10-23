@@ -56,6 +56,9 @@ class DaleelResponse(BaseModel):
     """The books this search was narrowed to, echoed back. Names the reader
     asked for that no book has are dropped, so this is what was actually
     searched rather than what was requested."""
+    more: bool = False
+    """Whether a bigger page could hold passages this one left out: the page
+    came back full and is not yet the largest one allowed."""
     # False when the index has not been built yet, so the panel can say that
     # instead of showing an empty list, which would read as "not in any book".
     ready: bool = True

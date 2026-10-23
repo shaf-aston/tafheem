@@ -1,5 +1,6 @@
 {
-  "_comment": "Daleel's screen settings. examples are offered under the search box until the reader has asked anything, so an empty page shows what it can be asked, in both languages; each is asked as typed. tries is said under a search that found nothing, the ways a question is most often widened into one that finds something.",
+  "_comment": "Daleel's screen settings. examples are offered under the search box until the reader has asked anything, so an empty page shows what it can be asked, in both languages; each is asked as typed. tries is said under a search that found nothing, the ways a question is most often widened into one that finds something. more is how many passages Show more adds to the page.",
   "examples": ["الصبر", "patience", "رحمة", "whoever believes", "التوكل", "kindness to parents"],
-  "tries": "Try fewer words, the Arabic root (صبر rather than الصابرين), or the same idea in the other language."
+  "tries": "Try fewer words, the Arabic root (صبر rather than الصابرين), or the same idea in the other language.",
+  "more": 12
 }
