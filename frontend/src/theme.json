@@ -260,6 +260,8 @@
     "glide-screens": 2,
     "_hold_comment": "A link to one card keeps it at the top while what is above it is still arriving (names, folds), until the reader scrolls or touches, or hold-ms passes. Without it a deep link to Muslim 2927 left the card 4,000px below the screen.",
     "hold-ms": 6000,
+    "_press_comment": "How long a finger rests on the phone's current tab before its jump fan opens (lib/jumpFan.js): longer than a tap, short enough not to feel stuck.",
+    "press-ms": 450,
     "instant-ms": 120,
     "_arrive_comment": "What a tap brings in is already there on its first frame: arrivals start at this opacity, never 0, so motion polishes the change rather than holding it back. With 0 a new tab or answer read as nothing for most of base-ms, the lag felt on every tap.",
     "arrive-from": 0.6,

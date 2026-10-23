@@ -16,6 +16,12 @@ export function scrollToEl(el, align = 'nearest') {
   el.scrollIntoView({ block: ALIGN[align], behavior: reduce ? 'auto' : 'smooth' })
 }
 
+/** Scroll the page to `top` the same way: a glide, unless motion is off or it is far. */
+export function glideTo(top) {
+  const far = Math.abs(top - globalThis.scrollY) > window.innerHeight * theme.motion['glide-screens']
+  globalThis.scrollTo({ top, behavior: far || motionOff() ? 'auto' : 'smooth' })
+}
+
 const MOVES = ['wheel', 'touchstart', 'keydown', 'pointerdown']
 
 /**
