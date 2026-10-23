@@ -1,5 +1,7 @@
 /**
- * A section's events as one horizontal rail of cards, dots on a line above.
+ * A section's events as one horizontal rail of cards. The time bar above is
+ * the line through time; the rail follows it, the card under a drag (`nearId`)
+ * brought into view and edged, so the two never point at different events.
  *
  * No scrollbar: the edges fade and round arrows page it, hiding at the ends
  * (a phone just swipes). The opened event's card is brought into view on
@@ -20,19 +22,20 @@ import { NO_DATE, eventIcon, isDated, sectionLook } from '../../lib/timeline/loo
 
 const WEAK = 'weakchain'
 
-export default function TimelineRail({ section, library, chosenId, onPick }) {
+export default function TimelineRail({ section, library, chosenId, nearId = null, onPick }) {
   const { strip, ends, measure, page } = useRail(section.id)
   const client = useQueryClient()
   const { hue } = sectionLook(section.id)
   const dated = isDated(section)
 
-  // Centre the opened card in the strip only: scrollIntoView would move the page too.
+  // Centre the opened card, or the one under a drag, in the strip only:
+  // scrollIntoView would move the page too.
   useEffect(() => {
     const el = strip.current
-    const card = el?.querySelector('[aria-current="true"]')
+    const card = el?.querySelector(nearId ? `[data-event="${nearId}"]` : '[aria-current="true"]')
     if (!card) return
     el.scrollTo({ left: card.offsetLeft - (el.clientWidth - card.offsetWidth) / 2 })
-  }, [chosenId, section.id, strip])
+  }, [chosenId, nearId, section.id, strip])
 
   return (
     <div className="tl-rail tl-hue" style={{ '--h': hue }}>
@@ -49,7 +52,8 @@ export default function TimelineRail({ section, library, chosenId, onPick }) {
               <TileCard
                 key={event.id}
                 variant="event"
-                className={`tl-rail-card${weak ? ' tl-weak' : ''}`}
+                className={`tl-rail-card${weak ? ' tl-weak' : ''}${event.id === nearId ? ' tl-near' : ''}`}
+                data-event={event.id}
                 hue={hue}
                 icon={eventIcon(i)}
                 index={i}

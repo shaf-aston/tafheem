@@ -85,7 +85,11 @@
   box-shadow: inset 0 0 0 1px var(--tl-acc);
 }
 @media (max-width: 520px) {
-  .tl-minis { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.375rem; }
+  /* One sliding row, not two: the second row pushed the map and the time bar
+     under the bottom bar. */
+  .tl-minis { display: flex; overflow-x: auto; gap: 0.375rem; scrollbar-width: none; scroll-snap-type: x proximity; margin-inline: -0.25rem; padding-inline: 0.25rem; }
+  .tl-minis::-webkit-scrollbar { display: none; }
+  .tl-minis > * { flex: none; width: 5.5rem; scroll-snap-align: start; }
   .tl-mini { align-items: center; padding: 0.5rem 0.25rem; text-align: center; }
   .tl-mini .tl-title, .tl-mini .tl-count { display: none; }
   .tl-mini .tl-ar { text-align: center; }
@@ -96,7 +100,7 @@
 .tl-rail { position: relative; }
 .tl-strip {
   overflow-x: auto;
-  padding: 1.625rem 1.5rem 1rem;
+  padding: 0.25rem 1.5rem 1rem;
   scroll-padding-inline: 1.5rem;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
@@ -104,31 +108,10 @@
 }
 .tl-strip::-webkit-scrollbar { display: none; }
 .tl-strip-in { position: relative; display: flex; gap: 0.75rem; width: max-content; }
-.tl-strip-in::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: -0.875rem;
-  height: 3px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--tl-acc), color-mix(in srgb, var(--tl-acc) 30%, transparent));
-}
 .tl-rail-card { flex: none; width: 14.75rem; scroll-snap-align: start; }
-.tl-rail-card::after {
-  content: "";
-  position: absolute;
-  top: -1.45rem;
-  left: 1.125rem;
-  width: 0.875rem;
-  height: 0.875rem;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 3px solid var(--tl-acc);
-  z-index: var(--layer-raised);
-  transition: transform calc(var(--motion-base-ms) * 1ms) ease;
-}
 .tl-rail-card[aria-current="true"] { outline: 2px solid var(--tl-acc); outline-offset: 2px; }
-.tl-rail-card[aria-current="true"]::after { background: var(--tl-acc); transform: scale(1.25); }
+/* The card under the time bar while it is dragged: the rail follows the finger. */
+.tl-rail-card.tl-near { border-color: var(--tl-acc); }
 /* An event on a weak narration keeps its place but wears a dashed edge. */
 .tl-weak { border-style: dashed; }
 
@@ -148,6 +131,19 @@
 .tl-facts { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.625rem; }
 .tl-facts .tl-chip { white-space: normal; background: color-mix(in srgb, var(--tl-acc) 12%, var(--surface)); }
 .tl-layer { margin: 0 0 0.5rem; font-size: var(--type-tiny); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tl-ink); }
+
+/* The way on at the foot of an event: the one before and the one after. */
+.tl-next { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.tl-next button {
+  display: grid; gap: 0.125rem; padding: 0.75rem 1rem; text-align: start;
+  background: var(--tl-tint); border: 1px solid var(--tl-edge); border-radius: var(--radius-md);
+  transition: border-color calc(var(--motion-base-ms) * 1ms) ease;
+}
+.tl-next button:hover { border-color: var(--tl-acc); }
+.tl-next button:focus-visible { outline: 2px solid var(--tl-acc); outline-offset: 2px; }
+.tl-next .tl-next-next { text-align: end; }
+.tl-next .tl-layer { margin: 0; }
+.tl-next-title { font-weight: 600; color: var(--text); }
 
 /* ── the time bar ─────────────────────────────────────────────
    A native range input lies over a drawn track, invisible, so a drag, a tap,
