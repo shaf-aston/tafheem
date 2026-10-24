@@ -115,7 +115,7 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   } else if (view.at === 'lesson' && !sourceOf(view.id).error) {
     // Being dealt (a part still coming, the record catching up with the last lesson): the lesson's shape, not a flash of
     // its world. A world that could not load is shown, with its error.
-    screen = <Skeleton className="h-96 w-full" />
+    screen = <div className="late"><Skeleton className="h-96 w-full" /></div>
   } else if (view.at !== 'home') {
     const world = worldOf(view.id)
     screen = SCREENS[world.kind]({ world, lessons, books, view, back: home, go, start, startBook })
@@ -125,5 +125,8 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
         onOpen={open} onStart={start} onStartBook={startBook} />
     )
   }
-  return <div className="panel">{screen}</div>
+  // Each screen arrives as one piece (styles/growWorlds.css .grow-screen): keyed by where it is, so a new screen fades in once
+  // and its blocks do not each replay their own rise, which washed the whole page pale on every tap.
+  const screenKey = view.at === 'lesson' ? `lesson/${playing}` : valueOf(view) ?? 'home'
+  return <div key={screenKey} className="panel grow-screen fade-in">{screen}</div>
 }
