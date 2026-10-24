@@ -12,6 +12,7 @@ import { useRememberedFlag } from '../../../lib/store/useRemembered'
 import { WORDS_MODULE, reviewOf, reviewQuestions } from '../../../lib/colloquial/wordPractice'
 import QuizBoard from '../../quiz/QuizBoard'
 import SmallButton from '../../ui/SmallButton'
+import { Skeleton } from '../../ui/Skeleton'
 
 const dayOf = (iso) => new Date(iso).toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'short' })
 const say = sayIn('en')
@@ -82,14 +83,19 @@ function Round({ words, rows, dialect, offline, onRestart }) {
 }
 
 export default function WordReview({ words, dialect }) {
-  const summary = useQuery({
-    ...summaryQuery(WORDS_MODULE),
-    // The app keeps answers forever by default; what is due changes with every answer.
-    staleTime: 0,
-    refetchOnMount: 'always',
-    retry: false,
-  })
-  // Fetching as well as pending: coming back to Review must not plan from the last visit's answers.
-  if (summary.isFetching) return <p className="type-small text-[var(--text-dim)]">Finding the words due…</p>
+  // Fresh until an answer marks it old (lib/learner/record), so a Review opened on an
+  // unchanged record plans at once; WordsView fetches it ahead.
+  const summary = useQuery({ ...summaryQuery(WORDS_MODULE), retry: false })
+  // Fetching as well as pending: a record answered since must not plan from the old answers.
+  // The wait holds the board's place, so the board does not push the page down as it lands.
+  if (summary.isFetching) {
+    return (
+      <div role="status" className="space-y-3">
+        <span className="sr-only">Finding the words due…</span>
+        <Skeleton className="h-4 w-48" />
+        <Skeleton className="h-80 rounded-[var(--radius-lg)]" />
+      </div>
+    )
+  }
   return <Round words={words} rows={summary.data ?? []} dialect={dialect} offline={summary.isError} onRestart={() => summary.refetch()} />
 }
