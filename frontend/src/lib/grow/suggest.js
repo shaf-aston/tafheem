@@ -17,13 +17,15 @@ export const KNOBS = knobs.suggest
 
 /** A module row's answers in `world`, every meaning language of its record together ("quiz", "quiz:ur"). */
 function usageOf(world, modules) {
-  const rows = modules.filter((row) => row.module.split(':')[0] === world.module)
-  if (!rows.length) return null
-  return {
-    answers: rows.reduce((sum, row) => sum + row.attempts, 0),
-    right: rows.reduce((sum, row) => sum + row.correct, 0),
-    lastAt: rows.reduce((last, row) => (row.lastAt > last ? row.lastAt : last), ''),
+  let used = null
+  for (const row of modules) {
+    if (row.module.split(':')[0] !== world.module) continue
+    used ??= { answers: 0, right: 0, lastAt: '' }
+    used.answers += row.attempts
+    used.right += row.correct
+    if (row.lastAt > used.lastAt) used.lastAt = row.lastAt
   }
+  return used
 }
 
 /** One world's score and the main reason for it: 'recent' (used lately), 'level' (fits the level) or null. */

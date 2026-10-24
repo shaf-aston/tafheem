@@ -5,15 +5,13 @@
  * starts the step (a handed Grow address). Nothing while it is being worked out, or when it is where you stopped.
  * `studiedOnly`: only a world the learner has been studying (Home's first screen, where the level picker offers the rest).
  */
-import config from '../../config/worlds.json'
-import { colorFor } from '../../theme'
 import { fill } from '../../lib/shell/homeCopy'
 import { bookStep, lessonStep, rankWorlds } from '../../lib/grow/suggest'
 import { useBookWorlds } from '../../lib/grow/useBookWorld'
+import { WORLDS } from '../../lib/grow/worlds'
 import Tile from '../ui/Tile'
 import ArabicText from '../ui/ArabicText'
 
-const WORLDS = config.worlds
 // Books looked into at once: the top one, and the next in case it is finished.
 const LOOKED = 2
 
@@ -35,7 +33,7 @@ export default function GrowNext({ modules, level, copy, skip, studiedOnly = fal
   const found = pick(ranked, books)
   if (!found || found.step.value === skip) return null
   const { world, why, step } = found
-  const accent = colorFor('world', world.id)
+  const { accent } = world
   const reason = step.due
     ? (step.due === 1 ? copy['next-due-one'] : fill(copy['next-due-many'], { n: step.due }))
     : copy[why === 'recent' ? 'next-recent' : 'next-level']

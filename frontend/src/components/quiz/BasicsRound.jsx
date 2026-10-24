@@ -7,19 +7,18 @@
  */
 import { useState } from 'react'
 
-import config from '../../config/worlds.json'
-import { colorFor } from '../../theme'
 import { getProfile } from '../../lib/learner/profile'
 import { useBasicsWorld } from '../../lib/grow/useBasicsWorld'
 import { useLessonSession } from '../../lib/grow/useLessonSession'
 import { useRewards } from '../../lib/learner/useRewards'
+import { worldOf } from '../../lib/grow/worlds'
 import LessonRunner from '../grow/LessonRunner'
 import EmptyState from '../ui/EmptyState'
 import PrimaryButton from '../ui/PrimaryButton'
 import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'
 
-const BASICS = { ...config.worlds.find((world) => world.id === 'basics'), accent: colorFor('world', 'basics') }
+const BASICS = worldOf('basics')
 
 export default function BasicsRound({ say }) {
   const [name] = useState(getProfile)

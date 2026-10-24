@@ -89,7 +89,7 @@ export default function BookWorld({ world, accent, state: book, place, onBack, o
         <Header world={world} area={area} part={part} onBack={onBack} onPart={onPart} />
       </div>
       {book.error && <ErrorAlert title={say('Could not load this world')} error={book.error} onRetry={book.retry} />}
-      {loading && <Skeleton className="h-80 w-full" />}
+      {loading && <Skeleton late className="h-80 w-full" />}
       {book.ready && (
         <div className="grow-book">
           {book.offline && <p className="grow-hint">{say('Your progress could not be loaded, so it is not shown. The lessons still work.')}</p>}
