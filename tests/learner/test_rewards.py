@@ -83,7 +83,7 @@ def test_the_guest_record_earns_nothing():
     assert saved["rewards"] is None
 
 
-def test_rewards_needs_a_name():
+def test_rewards_needs_a_name_or_a_device():
     assert client.get("/api/progress/rewards").status_code == 422
 
 

@@ -1,6 +1,7 @@
 /**
  * The learner's XP and level: read once, then kept current by each answer's reply.
- * `gain` is the last earning while its "+10" floats.
+ * `gain` is the last earning while its "+10" floats. A guest has their own too: their device's record
+ * (docs/plans/2026-10-24-device-guest.md §8), which sign-up with keep brings to the account.
  */
 import { useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
@@ -10,7 +11,7 @@ import { FLOAT_MS, onEarned } from './rewards'
 
 export function useRewards(name) {
   const client = useQueryClient()
-  const rewards = useQuery({ queryKey: ['rewards', name], queryFn: fetchRewards, enabled: !!name, retry: false })
+  const rewards = useQuery({ queryKey: ['rewards', name], queryFn: fetchRewards, retry: false })
   const [gain, setGain] = useState(null)
 
   useEffect(() => onEarned((saved) => {

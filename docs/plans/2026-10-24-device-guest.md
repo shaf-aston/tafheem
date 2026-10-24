@@ -176,3 +176,9 @@ Once records are separate, a guest's XP is truly theirs. The routes stay the sam
 
 The leaderboard stays accounts only. This is product copy across Home, Grow and the header, so it ships
 on its own, after this one is merged and walked.
+
+**Shipped.** A device's guest earns XP and a streak, and `/rewards` takes it (`OWN` in `identity.py`). The old
+shared record earns nothing and is refused at `/rewards`: its XP would be many people's. Sign-up with keep
+brings the XP along, because XP is worked out from the answers that keep moves. The header wears the
+level ring beside "Log in". Grow and a lesson's end say "Log in to keep your XP on any device". Home's
+overview stays signed-in only for now.

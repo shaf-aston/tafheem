@@ -129,9 +129,26 @@ def test_checked_practice_reads_the_devices_record(monkeypatch):
     assert asked == [device_key(PHONE)]
 
 
-def test_a_guest_earns_nothing_yet():
+def test_a_device_earns_xp_and_a_streak_of_its_own():
     body = answer(on(PHONE), "to-write").json()
+    assert body["earned"] > 0 and body["rewards"]["xp"] == body["earned"]
+    assert body["rewards"]["streak"] == 1
+    rewards = lambda device: client.get("/api/progress/rewards", headers=on(device)).json()["xp"]
+    assert (rewards(PHONE), rewards(LAPTOP)) == (body["earned"], 0)
+
+
+def test_the_old_shared_record_earns_nothing():
+    """Many old pages write there, so its XP would be no one's."""
+    body = answer(on(), "to-write").json()
     assert (body["earned"], body["rewards"]) == (0, None)
+    assert client.get("/api/progress/rewards").status_code == 422
+
+
+def test_keep_brings_the_devices_xp_to_the_account():
+    earned = answer(on(PHONE), "to-write").json()["earned"]
+    signup("Amina", PHONE, keep=True)
+    assert client.get("/api/progress/rewards", headers=on(name="Amina")).json()["xp"] == earned
+    assert client.get("/api/progress/rewards", headers=on(PHONE)).json()["xp"] == 0
 
 
 # A guest is never an account (G6)
@@ -139,7 +156,7 @@ def test_a_guest_earns_nothing_yet():
 def test_a_device_cannot_sign_up_log_in_or_use_account_routes():
     assert client.post("/api/progress/signup", json={}, headers=on(PHONE)).status_code == 422
     assert client.post("/api/progress/login", headers=on(PHONE)).status_code == 422
-    for path in ("/api/progress/account", "/api/progress/saved", "/api/progress/rewards", "/api/progress/circles"):
+    for path in ("/api/progress/account", "/api/progress/saved", "/api/progress/circles"):
         assert client.get(path, headers=on(PHONE)).status_code == 422, path
 
 

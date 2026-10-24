@@ -68,12 +68,20 @@ def current_user(name: str = Depends(typed_name)) -> str:
     return name if is_guest(name) else _signed_up(name)
 
 
+def own_record(user: str = Depends(current_user)) -> str:
+    """`current_user`, but never the old shared record: XP and streak are one learner's, and that record is many."""
+    if user == GUEST:
+        raise HTTPException(status_code=422, detail="Not a device id")
+    return user
+
+
 def named(name: str = Depends(typed)) -> str:
     """A signed-up name, never the guest: for routes about one account."""
     return _signed_up(name)
 
 
 USER = Depends(current_user)
+OWN = Depends(own_record)
 DEVICE = Depends(guest)
 TYPED = Depends(typed)
 NAMED = Depends(named)

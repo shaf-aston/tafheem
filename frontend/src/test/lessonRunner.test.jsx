@@ -58,16 +58,17 @@ describe('lesson runner', () => {
     expect(screen.getByText('Wrong one: no ال.')).toBeTruthy()
   })
 
-  it('shows XP only to someone who earns it: a guest is told how to', () => {
+  it('shows XP when there is a reading of it, and tells a guest it is this device\'s until they log in', () => {
     const { unmount } = renderScreen(<LessonRunner cards={[choose('a')]} accent="#26c" onLeave={() => {}} />, { routes: { 'POST /progress/attempts': { earned: 0 } } })
     answer('a', 'right')
     expect(screen.queryByText('XP')).toBe(null)
-    expect(screen.getByText('Log in to earn XP and keep a streak on any device.')).toBeTruthy()
+    expect(screen.queryByText(/Log in/)).toBe(null)
     unmount()
-    renderScreen(<LessonRunner cards={[choose('a')]} accent="#26c" rewards={{ level: 2, into: 5, need: 20 }} onLeave={() => {}} />,
+    renderScreen(<LessonRunner cards={[choose('a')]} accent="#26c" rewards={{ level: 2, into: 5, need: 20 }} guest onLeave={() => {}} />,
       { routes: { 'POST /progress/attempts': { earned: 2 } } })
     answer('a', 'right')
     expect(screen.getByText('XP')).toBeTruthy()
+    expect(screen.getByText('Log in to keep your XP and streak on any device.')).toBeTruthy()
   })
 
   it('recaps a missed gap card with its line, the gap filled with the right word', () => {
