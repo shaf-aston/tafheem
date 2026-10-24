@@ -3,7 +3,7 @@
 // module's own views old, so a round or a lesson being played holds still until its screen calls `refresh`.
 import { afterEach, describe, expect, it } from 'vitest'
 import { act, fireEvent, screen, waitFor } from '@testing-library/react'
-import { useQuery } from '@tanstack/react-query'
+import { focusManager, useQuery } from '@tanstack/react-query'
 
 import { renderScreen, renderWithBackend } from '../../test/render'
 import LevelSetting from '../../components/level/LevelSetting'
@@ -57,6 +57,11 @@ describe('fileAnswer', () => {
     expect(count).toMatchObject({ account: 1, leaderboard: 1, 'summary basics': 1, 'review basics': 1 })
     // Another module's record is untouched.
     expect(stale(client, summaryQuery('quiz'))).toBe(false)
+    expect(result.current.views[5].isStale).toBe(false)
+    // Coming back to the window does not re-read the old views either: only a screen's `refresh` does.
+    await act(async () => { focusManager.setFocused(false); focusManager.setFocused(true) })
+    expect(count).toMatchObject({ 'summary basics': 1, 'review basics': 1 })
+    focusManager.setFocused(undefined)
   })
 
   it('changes nothing when the answer did not land', async () => {

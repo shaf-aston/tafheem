@@ -27,12 +27,15 @@ export function useLessonWorld({ world, module, load, keyOf, cards }) {
     return { items: itemsOf(order, keyOf, rows), learnt, next, fresh: order.filter((item) => !seen.has(keyOf(item))).length, dueCount: due.length, stage: stageOf(learnt, stages) }
   }, [source.data, summary.data, keyOf, lesson, stages])
 
+  // The record has answers it does not show yet (marked old by lib/learner/record), or is being re-read: a lesson dealt
+  // now would offer the items just answered as new.
+  const behind = summary.isSuccess && summary.isStale && !summary.isFetching
   return {
     world,
     stages,
     ready: Boolean(state),
-    // The record is being re-read (after a lesson): a lesson dealt now would offer the items just answered as new.
-    settling: summary.isFetching,
+    behind,
+    dealable: Boolean(state) && !behind && !summary.isFetching,
     error: source.error ?? summary.error,
     retry: () => { source.refetch(); summary.refetch() },
     ...(state ?? { dueCount: 0, items: [] }),

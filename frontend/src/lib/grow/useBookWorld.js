@@ -66,10 +66,13 @@ export function useBookWorlds(worlds, view) {
     const state = states[i]
     const mine = parts.filter((_, at) => wanted[at].world === world)
     const withCards = { parts: mine.map((part) => part.data).filter(Boolean) }
+    // As a lessons world's (lib/grow/useLessonWorld.js): a review dealt from a record behind its answers would miss them.
+    const behind = summary.isSuccess && summary.isStale && !summary.isFetching
     return [world.id, {
       world,
       ready: Boolean(state),
-      dealable: Boolean(state) && mine.every((part) => part.data),
+      behind,
+      dealable: Boolean(state) && mine.every((part) => part.data) && !behind && !summary.isFetching,
       error: source.error ?? mine.find((part) => part.error)?.error,
       offline: summary.isError,
       retry: () => { source.refetch(); summary.refetch(); for (const part of mine) part.refetch() },

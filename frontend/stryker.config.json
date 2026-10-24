@@ -11,7 +11,9 @@
     "src/lib/grow/lesson.js",
     "src/lib/grow/wordForms.js",
     "src/lib/grow/basicsSkills.js",
-    "src/lib/learner/learnerLevel.js"
+    "src/lib/learner/learnerLevel.js",
+    "src/lib/grow/useLessonSession.js",
+    "src/lib/learner/record.js"
   ],
   "ignorePatterns": [
     "dist",

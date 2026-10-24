@@ -16,9 +16,10 @@ import { fetchAccount, fetchLeaderboard, fetchOverview, fetchReviewItems, fetchS
 
 const RECORD = 'record'
 
-// A module's own views are re-read when a screen says so (`refresh`), never on coming back to the window: a round or a
-// lesson planned from one must not be re-planned behind the player.
-const QUIET = { refetchOnWindowFocus: false }
+// A module's own views are fresh until an answer marks them old (so a world can tell its record is behind), and are
+// re-read when a screen says so (`refresh`), never on coming back to the window: a round or a lesson planned from one
+// must not be re-planned behind the player.
+const QUIET = { staleTime: Infinity, refetchOnWindowFocus: false }
 
 /** Every item answered in `module`, with its record. */
 export const summaryQuery = (module) => ({ queryKey: [RECORD, 'summary', module], queryFn: () => fetchSummary(module), ...QUIET })
