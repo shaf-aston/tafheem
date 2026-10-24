@@ -13,7 +13,8 @@
     "2a": "أ / همزة في بداية الكلمة",
     "aa": "ا طويلة",
     "ee": "ي طويلة",
-    "oo": "و طويلة"
+    "oo": "و طويلة",
+    "g": "ق (تُنطق g)"
   },
   "lessons": [
     {
@@ -1479,6 +1480,738 @@
             "بِيِسَافِرُون"
           ],
           "tip": "\"لحد\" = anyone."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-traveled-to-another-city-last-week",
+          "arabic": "سَافَرْت مَدِينَة ثَانِيَة الْأُسْبُوع الْمَاضِي",
+          "transliteration": "saafart madeena thaanya al-usboo3 al-maaDi",
+          "reply": {
+            "arabic": "الْحَمْدُ لِلَّه عَلَى السَّلَامَة",
+            "transliteration": "al-7amdu lillaah 3ala s-salaama",
+            "english": "Praise be to Allah for your safe return."
+          }
+        },
+        {
+          "slot": "i-took-the-train-from-the-main-station",
+          "arabic": "رَكِبْت الْقِطَار مِن الْمَحَطَّة الرَّئِيسِيَّة",
+          "transliteration": "rakibt al-giTaar min al-ma7aTTa ar-ra2eesiyya"
+        },
+        {
+          "slot": "i-bought-the-ticket-the-day-before",
+          "arabic": "شَرَيْت التَّذْكِرَة قَبْلهَا بِيَوْم",
+          "transliteration": "sharayt at-tadhkira gablaha bi-yawm"
+        },
+        {
+          "slot": "i-packed-my-suitcase-the-night-before",
+          "arabic": "جَهَّزْت شَنْطَتِي قَبْلهَا بِلَيْلَة",
+          "transliteration": "jahhazt shanTati gablaha bi-layla"
+        },
+        {
+          "slot": "the-journey-took-four-hours",
+          "arabic": "السَّفَر أَخَذ أَرْبَع سَاعَات",
+          "transliteration": "as-safar akhadh arba3 saa3aat"
+        },
+        {
+          "slot": "i-sat-next-to-the-window",
+          "arabic": "جَلَسْت جَنْب الشُّبَّاك",
+          "transliteration": "jalast jamb ash-shubbaak"
+        },
+        {
+          "slot": "i-saw-green-fields-and-mountains",
+          "arabic": "بَسَرْت مَزَارِع خَضْرَا وَجِبَال",
+          "transliteration": "basart mazaari3 khaDra wa jibaal"
+        },
+        {
+          "slot": "we-arrived-after-noon",
+          "arabic": "وَصَلْنَا بَعْد الظُّهْر",
+          "transliteration": "waSalna ba3d aDH-DHuhr"
+        },
+        {
+          "slot": "i-stayed-in-a-small-hotel-near-the-sea",
+          "arabic": "قَعَدْت فِي فُنْدُق صَغِير جَنْب الْبَحْر",
+          "transliteration": "ga3adt fi fundug Sagheer jamb al-ba7r"
+        },
+        {
+          "slot": "i-took-many-photos",
+          "arabic": "صَوَّرْت صُوَر كَثِير",
+          "transliteration": "Sawwart Suwar katheer",
+          "reply": {
+            "arabic": "أَشْتِي أَبْسِرْهَا!",
+            "transliteration": "ashti absirha!",
+            "english": "I want to see them!"
+          }
+        },
+        {
+          "slot": "i-tried-the-local-food",
+          "arabic": "جَرَّبْت أَكْل الْبِلَاد",
+          "transliteration": "jarrabt akl al-bilaad",
+          "english": "I tried the food of the country.",
+          "reply": {
+            "arabic": "إِيش أَكَلْت؟",
+            "transliteration": "eesh akalt?",
+            "english": "What did you eat?"
+          }
+        },
+        {
+          "slot": "i-came-back-tired-but-happy",
+          "arabic": "رِجِعْت تَعْبَان بَس مَرْيُوح",
+          "transliteration": "rij3it ta3baan bas maryoo7"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "بشير",
+          "arabic": "أَيْن كُنْت يَا أَنَس؟ مَا بَسَرْتَكْش مِن أُسْبُوع.",
+          "transliteration": "ayn kunt yaa anas? maa basartaksh min usboo3.",
+          "english": "Where were you, Anas? I haven't seen you for a week."
+        },
+        {
+          "speaker": "أنس",
+          "slot": "i-traveled-to-another-city-last-week"
+        },
+        {
+          "speaker": "بشير",
+          "slot": "i-traveled-to-another-city-last-week",
+          "reply": true
+        },
+        {
+          "speaker": "بشير",
+          "arabic": "كَيْف سَافَرْت؟",
+          "transliteration": "kayf saafart?",
+          "english": "How did you travel?"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "i-took-the-train-from-the-main-station"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "the-journey-took-four-hours"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "i-sat-next-to-the-window"
+        },
+        {
+          "speaker": "بشير",
+          "arabic": "وَإِيش بَسَرْت؟",
+          "transliteration": "wa eesh basart?",
+          "english": "And what did you see?"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "i-saw-green-fields-and-mountains"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "i-stayed-in-a-small-hotel-near-the-sea"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "i-took-many-photos"
+        },
+        {
+          "speaker": "بشير",
+          "slot": "i-took-many-photos",
+          "reply": true
+        },
+        {
+          "speaker": "بشير",
+          "arabic": "وَالْأَكْل؟",
+          "transliteration": "wa l-akl?",
+          "english": "And the food?"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "i-tried-the-local-food"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "i-came-back-tired-but-happy"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَيْن سَافَرْت؟",
+            "transliteration": "ayn saafart?",
+            "english": "Where did you travel?"
+          },
+          "response": {
+            "arabic": "سَافَرْت مَدِينَة ثَانِيَة الْأُسْبُوع الْمَاضِي.",
+            "transliteration": "saafart madeena thaanya al-usboo3 al-maaDi.",
+            "english": "I traveled to another city last week."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَيْف سَافَرْت؟",
+            "transliteration": "kayf saafart?",
+            "english": "How did you travel?"
+          },
+          "response": {
+            "arabic": "رَكِبْت الْقِطَار مِن الْمَحَطَّة الرَّئِيسِيَّة.",
+            "transliteration": "rakibt al-giTaar min al-ma7aTTa ar-ra2eesiyya.",
+            "english": "I took the train from the main station."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَمْ أَخَذ السَّفَر؟",
+            "transliteration": "kam akhadh as-safar?",
+            "english": "How long did the journey take?"
+          },
+          "response": {
+            "arabic": "أَرْبَع سَاعَات.",
+            "transliteration": "arba3 saa3aat.",
+            "english": "Four hours."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيْن قَعَدْت؟",
+            "transliteration": "ayn ga3adt?",
+            "english": "Where did you stay?"
+          },
+          "response": {
+            "arabic": "فِي فُنْدُق صَغِير جَنْب الْبَحْر.",
+            "transliteration": "fi fundug Sagheer jamb al-ba7r.",
+            "english": "In a small hotel near the sea."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَيْف رِجِعْت؟",
+            "transliteration": "kayf rij3it?",
+            "english": "How did you come back?"
+          },
+          "response": {
+            "arabic": "رِجِعْت تَعْبَان بَس مَرْيُوح.",
+            "transliteration": "rij3it ta3baan bas maryoo7.",
+            "english": "I came back tired but happy."
+          }
+        }
+      ],
+      "culture": "Yemen has no railway, so a train ride is usually a story brought home from abroad, from Egypt or Malaysia where many Yemenis study; at home people travel between cities by bus or shared car. Whoever comes back from a journey is greeted with الْحَمْدُ لِلَّه عَلَى السَّلَامَة, and then asked for the whole story.",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Your friend says: \"سَافَرْت مَدِينَة ثَانِيَة الْأُسْبُوع الْمَاضِي.\" Welcome him back safely.",
+          "answer": "الحمد لله على السلامة",
+          "accepted": [
+            "الحمد لله على السلامة",
+            "الحمد لله على سلامتك",
+            "al-7amdu lillaah 3ala s-salaama"
+          ],
+          "tip": "This greeting for a returning traveller is used in every dialect."
+        },
+        {
+          "id": "unit-16.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Your friend says: \"صَوَّرْت صُوَر كَثِير.\" Say you want to see them.",
+          "answer": "أشتي أبسرها",
+          "accepted": [
+            "أشتي أبسرها",
+            "اشتي ابسرها",
+            "أشتي أبسرها!",
+            "ashti absirha"
+          ],
+          "tip": "\"أشتي\" is \"I want\" and \"أبسر\" is \"I see\" in Sana'a."
+        },
+        {
+          "id": "unit-16.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ مَزَارِع خَضْرَا وَجِبَال.\" (I saw green fields and mountains.)",
+          "answer": "بسرت",
+          "accepted": [
+            "بسرت",
+            "basart"
+          ],
+          "too_formal": {
+            "item": "رأيت",
+            "feedback": "\"رأيت\" is Fusha; in Sana'a say \"بسرت\"."
+          },
+          "tip": "\"بسرت\" is \"I saw\" in Sana'a; \"شفت\" is understood too."
+        },
+        {
+          "id": "unit-16.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"رِجِعْت تَعْبَان _____ مَرْيُوح.\" (I came back tired but happy.)",
+          "answer": "بس",
+          "accepted": [
+            "بس",
+            "لكن",
+            "bas"
+          ],
+          "too_formal": {
+            "item": "ولكن",
+            "feedback": "\"ولكن\" is formal; say \"بس\"."
+          }
+        },
+        {
+          "id": "unit-16.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"We arrived after noon.\"",
+          "answer": "وصلنا بعد الظهر",
+          "accepted": [
+            "وصلنا بعد الظهر",
+            "waSalna ba3d aDH-DHuhr"
+          ]
+        },
+        {
+          "id": "unit-16.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I sat next to the window.\"",
+          "answer": "جلست جنب الشباك",
+          "accepted": [
+            "جلست جنب الشباك",
+            "جلست جنب الشبّاك",
+            "قعدت جنب الشباك",
+            "jalast jamb ash-shubbaak"
+          ],
+          "too_formal": {
+            "item": "جلست بجانب النافذة",
+            "feedback": "This is formal; say \"جلست جنب الشباك\"."
+          }
+        },
+        {
+          "id": "unit-16.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I bought the ticket the day before.\"",
+          "answer": "شريت التذكرة قبلها بيوم",
+          "accepted": [
+            "شريت التذكرة قبلها بيوم",
+            "اشتريت التذكرة قبلها بيوم",
+            "sharayt at-tadhkira gablaha bi-yawm"
+          ],
+          "tip": "\"شريت\" is \"I bought\"."
+        },
+        {
+          "id": "unit-16.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"The journey took four hours\"?",
+          "answer": "السفر أخذ أربع ساعات",
+          "options": [
+            "السفر أخذ أربع ساعات",
+            "وصلنا بعد الظهر",
+            "شريت التذكرة قبلها بيوم",
+            "جهزت شنطتي قبلها بليلة"
+          ],
+          "accepted": [
+            "السفر أخذ أربع ساعات",
+            "السفر اخذ اربع ساعات",
+            "as-safar akhadh arba3 saa3aat"
+          ]
+        },
+        {
+          "id": "unit-16.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"I stayed in a small hotel near the sea\"?",
+          "answer": "قعدت في فندق صغير جنب البحر",
+          "options": [
+            "قعدت في فندق صغير جنب البحر",
+            "جلست جنب الشباك",
+            "سافرت مدينة ثانية الأسبوع الماضي",
+            "بسرت مزارع خضرا وجبال"
+          ],
+          "accepted": [
+            "قعدت في فندق صغير جنب البحر",
+            "ga3adt fi fundug Sagheer jamb al-ba7r"
+          ],
+          "tip": "\"قعد\" here is \"to stay\"."
+        },
+        {
+          "id": "unit-16.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"بليلة / شنطتي / قبلها / جهزت\".",
+          "answer": "جهزت شنطتي قبلها بليلة",
+          "accepted": [
+            "جهزت شنطتي قبلها بليلة",
+            "jahhazt shanTati gablaha bi-layla"
+          ]
+        },
+        {
+          "id": "unit-16.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"كثير / صورت / صور\".",
+          "answer": "صورت صور كثير",
+          "accepted": [
+            "صورت صور كثير",
+            "Sawwart Suwar katheer"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "i-have-good-news-for-you",
+          "arabic": "مَعِي لَك بِشَارَة",
+          "transliteration": "ma3i lak bishaara",
+          "reply": {
+            "arabic": "خَيْر إِن شَاء اللَّه، إِيش هِي؟",
+            "transliteration": "khayr in shaa2 allaah, eesh hee?",
+            "english": "Good news, Allah willing. What is it?"
+          }
+        },
+        {
+          "slot": "i-passed-the-exam",
+          "arabic": "نَجَحْت فِي الِامْتِحَان",
+          "transliteration": "naja7t fi l-imti7aan"
+        },
+        {
+          "slot": "i-got-the-job",
+          "arabic": "حَصَّلْت الْوَظِيفَة",
+          "transliteration": "7aSSalt al-waDHeefa"
+        },
+        {
+          "slot": "we-will-have-a-new-baby-allah-willing",
+          "arabic": "عَيْجِي لَنَا مَوْلُود جَدِيد إِن شَاء اللَّه",
+          "transliteration": "3a-yiji lana mawlood jadeed in shaa2 allaah"
+        },
+        {
+          "slot": "my-brother-got-engaged-yesterday",
+          "arabic": "أَخِي خَطَب أَمْس",
+          "transliteration": "akhi khaTab ams"
+        },
+        {
+          "slot": "we-bought-a-new-house",
+          "arabic": "شَرَيْنَا بَيْت جَدِيد",
+          "transliteration": "sharayna bayt jadeed"
+        },
+        {
+          "slot": "my-father-came-back-from-the-hospital-and-he-is",
+          "arabic": "أَبِي رِجِع مِن الْمُسْتَشْفَى وَهُو بِخَيْر ذَلْحِين",
+          "transliteration": "abi rij3 min al-mustashfa wa hoo bi-khayr dhal7een"
+        },
+        {
+          "slot": "praise-be-to-allah-this-is-a-great-blessing",
+          "arabic": "الْحَمْدُ لِلَّه، هَذِي نِعْمَة كَبِيرَة",
+          "transliteration": "al-7amdu lillaah, haadhi ni3ma kabeera"
+        },
+        {
+          "slot": "congratulations-i-am-very-happy-for-you-to-a-man",
+          "arabic": "مَبْرُوك، أَنَا فَرْحَان لَك قَوِي",
+          "transliteration": "mabrook, ana far7aan lak gawi"
+        },
+        {
+          "slot": "may-allah-bless-it-for-you",
+          "arabic": "اللَّه يِبَارِك لَك فِيه",
+          "transliteration": "allaah yibaarik lak feeh",
+          "reply": {
+            "arabic": "اللَّه يِجْزَاك خَيْر",
+            "transliteration": "allaah yijzaak khayr",
+            "english": "May Allah reward you."
+          }
+        },
+        {
+          "slot": "when-did-you-hear-the-news",
+          "arabic": "مَتَى سِمِعْت الْخَبَر؟",
+          "transliteration": "mata simi3t al-khabar?",
+          "reply": {
+            "arabic": "الصُّبْح",
+            "transliteration": "aS-Sub7",
+            "english": "This morning."
+          }
+        },
+        {
+          "slot": "let-us-celebrate-together-this-evening",
+          "arabic": "يَلَّه نِحْتَفِل سَوَا اللَّيْلَة",
+          "transliteration": "yallah ni7tafil sawa al-layla",
+          "english": "Let us celebrate together tonight."
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "ياسر",
+          "slot": "i-have-good-news-for-you"
+        },
+        {
+          "speaker": "عبدالرحمن",
+          "slot": "i-have-good-news-for-you",
+          "reply": true
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "i-got-the-job"
+        },
+        {
+          "speaker": "عبدالرحمن",
+          "slot": "congratulations-i-am-very-happy-for-you-to-a-man"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "we-bought-a-new-house"
+        },
+        {
+          "speaker": "عبدالرحمن",
+          "slot": "praise-be-to-allah-this-is-a-great-blessing"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "my-brother-got-engaged-yesterday"
+        },
+        {
+          "speaker": "عبدالرحمن",
+          "slot": "may-allah-bless-it-for-you"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "may-allah-bless-it-for-you",
+          "reply": true
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "my-father-came-back-from-the-hospital-and-he-is"
+        },
+        {
+          "speaker": "عبدالرحمن",
+          "arabic": "الْحَمْدُ لِلَّه عَلَى سَلَامَتُه.",
+          "transliteration": "al-7amdu lillaah 3ala salaamatuh.",
+          "english": "Praise be to Allah for his recovery."
+        },
+        {
+          "speaker": "عبدالرحمن",
+          "slot": "when-did-you-hear-the-news"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "when-did-you-hear-the-news",
+          "reply": true
+        },
+        {
+          "speaker": "عبدالرحمن",
+          "slot": "let-us-celebrate-together-this-evening"
+        },
+        {
+          "speaker": "ياسر",
+          "arabic": "نَاهِي، شَاجِي بَعْد الْعِشَاء.",
+          "transliteration": "naahi, shaa-jee ba3d al-3ishaa2.",
+          "english": "OK, I'll come after Isha."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَعِي لَك بِشَارَة.",
+            "transliteration": "ma3i lak bishaara.",
+            "english": "I have good news for you."
+          },
+          "response": {
+            "arabic": "خَيْر إِن شَاء اللَّه، إِيش هِي؟",
+            "transliteration": "khayr in shaa2 allaah, eesh hee?",
+            "english": "Good news, Allah willing. What is it?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِيش حَصَل؟",
+            "transliteration": "eesh 7aSal?",
+            "english": "What happened?"
+          },
+          "response": {
+            "arabic": "نَجَحْت فِي الِامْتِحَان!",
+            "transliteration": "naja7t fi l-imti7aan!",
+            "english": "I passed the exam!"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَبْرُوك!",
+            "transliteration": "mabrook!",
+            "english": "Congratulations!"
+          },
+          "response": {
+            "arabic": "اللَّه يِبَارِك فِيك.",
+            "transliteration": "allaah yibaarik feek.",
+            "english": "May Allah bless you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى سِمِعْت الْخَبَر؟",
+            "transliteration": "mata simi3t al-khabar?",
+            "english": "When did you hear the news?"
+          },
+          "response": {
+            "arabic": "الصُّبْح.",
+            "transliteration": "aS-Sub7.",
+            "english": "This morning."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَيْف أَبُوك؟",
+            "transliteration": "kayf abook?",
+            "english": "How is your father?"
+          },
+          "response": {
+            "arabic": "رِجِع مِن الْمُسْتَشْفَى وَهُو بِخَيْر ذَلْحِين.",
+            "transliteration": "rij3 min al-mustashfa wa hoo bi-khayr dhal7een.",
+            "english": "He came back from the hospital and he is well now."
+          }
+        }
+      ],
+      "culture": "In Yemen whoever brings good news may be given a بِشَارَة, a small gift for being the first to tell it. The news is answered with مَبْرُوك or اللَّه يِبَارِك لَك فِيه, credited to Allah with الْحَمْدُ لِلَّه, and good things still to come are spoken of with إِن شَاء اللَّه. A family celebration often ends with بِنْت الصَّحْن, the layered honey bread served on happy occasions.",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your friend says: \"مَعِي لَك بِشَارَة.\" Say good news, Allah willing, what is it?",
+          "answer": "خير إن شاء الله، إيش هي؟",
+          "accepted": [
+            "خير إن شاء الله، إيش هي؟",
+            "خير ان شاء الله ايش هي",
+            "خير إن شاء الله، إيش هو؟",
+            "khayr in shaa2 allaah, eesh hee?"
+          ],
+          "tip": "\"إيش\" is \"what\" in Sana'a."
+        },
+        {
+          "id": "unit-16.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Your friend says: \"اللَّه يِبَارِك لَك فِيه.\" Answer: may Allah reward you.",
+          "answer": "الله يجزاك خير",
+          "accepted": [
+            "الله يجزاك خير",
+            "جزاك الله خيرا",
+            "allaah yijzaak khayr"
+          ],
+          "tip": "To a woman: \"الله يجزاش خير\"."
+        },
+        {
+          "id": "unit-16.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ الْوَظِيفَة.\" (I got the job.)",
+          "answer": "حصلت",
+          "accepted": [
+            "حصلت",
+            "حصّلت",
+            "7aSSalt"
+          ],
+          "too_formal": {
+            "item": "حصلت على الوظيفة",
+            "feedback": "\"حصلت على\" is the formal phrasing; people say \"حصّلت الوظيفة\"."
+          }
+        },
+        {
+          "id": "unit-16.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"مَبْرُوك، أَنَا فَرْحَان لَك _____.\" (Congratulations, I am very happy for you.)",
+          "answer": "قوي",
+          "accepted": [
+            "قوي",
+            "قوى",
+            "كثير",
+            "gawi"
+          ],
+          "too_formal": {
+            "item": "جدا",
+            "feedback": "\"جدا\" is formal; in Sana'a \"قوي\" comes after the word."
+          },
+          "tip": "A woman says \"أنا فرحانة لك قوي\"."
+        },
+        {
+          "id": "unit-16.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"We bought a new house.\"",
+          "answer": "شرينا بيت جديد",
+          "accepted": [
+            "شرينا بيت جديد",
+            "اشترينا بيت جديد",
+            "sharayna bayt jadeed"
+          ],
+          "too_formal": {
+            "item": "اشترينا بيتا جديدا",
+            "feedback": "The \"ـًا\" endings are Fusha; say \"شرينا بيت جديد\"."
+          }
+        },
+        {
+          "id": "unit-16.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My brother got engaged yesterday.\"",
+          "answer": "أخي خطب أمس",
+          "accepted": [
+            "أخي خطب أمس",
+            "اخي خطب امس",
+            "أخويه خطب أمس",
+            "akhi khaTab ams"
+          ]
+        },
+        {
+          "id": "unit-16.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"When did you hear the news?\" (to a man)",
+          "answer": "متى سمعت الخبر؟",
+          "accepted": [
+            "متى سمعت الخبر؟",
+            "متى سمعت الخبر",
+            "mata simi3t al-khabar?"
+          ],
+          "tip": "To a woman: \"متى سمعتي الخبر؟\"."
+        },
+        {
+          "id": "unit-16.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"We will have a new baby, Allah willing\"?",
+          "answer": "عيجي لنا مولود جديد إن شاء الله",
+          "options": [
+            "عيجي لنا مولود جديد إن شاء الله",
+            "أخي خطب أمس",
+            "شرينا بيت جديد",
+            "حصلت الوظيفة"
+          ],
+          "accepted": [
+            "عيجي لنا مولود جديد إن شاء الله",
+            "عيجي لنا مولود جديد ان شاء الله",
+            "3a-yiji lana mawlood jadeed in shaa2 allaah"
+          ],
+          "tip": "\"عـ\" marks the future for he, she and they: \"عيجي\"."
+        },
+        {
+          "id": "unit-16.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Praise be to Allah, this is a great blessing\"?",
+          "answer": "الحمد لله، هذي نعمة كبيرة",
+          "options": [
+            "الحمد لله، هذي نعمة كبيرة",
+            "الله يبارك لك فيه",
+            "مبروك، أنا فرحان لك قوي",
+            "يله نحتفل سوا الليلة"
+          ],
+          "accepted": [
+            "الحمد لله، هذي نعمة كبيرة",
+            "الحمد لله هذي نعمة كبيرة",
+            "al-7amdu lillaah, haadhi ni3ma kabeera"
+          ]
+        },
+        {
+          "id": "unit-16.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"الليلة / نحتفل / يله / سوا\".",
+          "answer": "يله نحتفل سوا الليلة",
+          "accepted": [
+            "يله نحتفل سوا الليلة",
+            "يلا نحتفل سوا الليلة",
+            "yallah ni7tafil sawa al-layla"
+          ]
+        },
+        {
+          "id": "unit-16.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"في / نجحت / الامتحان\".",
+          "answer": "نجحت في الامتحان",
+          "accepted": [
+            "نجحت في الامتحان",
+            "naja7t fi l-imti7aan"
+          ]
         }
       ]
     }
