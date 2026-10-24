@@ -80,7 +80,7 @@ Ears are tried in the order `listening_ears` names, `here` last as it needs no k
 
 - `backend/models/`: Pydantic shapes, one file per router, `common.py` for `Source` and `Correction`.
 - `frontend/src/config/theme.json` + `settings.json`: every visual token and reader setting; `theme.js` and `lib/settings.js` are their only readers, both writing CSS variables onto `:root`.
-- `lib/journey.js` is where the reader has been; `lib/tabUrl.js` is the only writer of the address bar; `lib/session.js` the only reader and writer of the saved path (knobs in `frontend/src/session.json`). A place is a tab plus what it was opened with, never a result.
+- `lib/journey.js` is where the reader has been; `lib/tabUrl.js` is the only writer of the address bar; `lib/session.js` the only reader and writer of the saved path (knobs in `frontend/src/config/session.json`). A place is a tab plus what it was opened with, never a result.
 - `lib/` shared vocabularies, one file each: `roleColors.js`, `loadStatus.js`, `verbClass.js`.
 - `services/arabic_text.py` owns "is this Arabic?" and root spelling; `normalize_root` keeps Arabic letters rather than dropping a separator list.
 - `backend/data/lexicon.db`: one row per quiz word, from `vocabulary.json`, `quranic-words.json` and the corpus. Derived: rebuild it, and correct a type in `word_kinds.json`. `frontend/public/words/` holds it as `words.json` and `cuts.json` (positions into it), so no word is stored twice.

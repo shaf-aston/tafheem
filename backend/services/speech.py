@@ -52,7 +52,7 @@ log = logging.getLogger(__name__)
 
 CACHE = Path(__file__).resolve().parents[1] / "data" / "speech_cache"
 # Pace and speeds shared with the page's voice (speak.json), so they never drift apart.
-_SPEAK = json.loads((Path(__file__).resolve().parents[2] / "frontend" / "src" / "speak.json").read_text("utf-8"))
+_SPEAK = json.loads((Path(__file__).resolve().parents[2] / "frontend" / "src" / "config" / "speak.json").read_text("utf-8"))
 PACE: float = _SPEAK["pace"]
 SPEEDS: dict[str, float] = _SPEAK["speeds"]
 # The marks a phrase ends or breathes on.
